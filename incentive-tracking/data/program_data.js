@@ -120183,11 +120183,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_extra",
               "label": "Corona Extra",
-              "buyers": 87,
+              "buyers": 90,
               "goal": 108,
-              "pct": 80.6,
+              "pct": 83.3,
               "retained": false,
-              "toGo": 21,
+              "toGo": 18,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -120220,6 +120220,46 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Las Maravillas Restaurant",
+                  "num": "19011",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2405 Coronita Extra 1/24/7 oz Btl",
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "D'Carbon Restaurant Hawthorne",
+                  "num": "19028",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2404 Coronita Extra 4/6/7 oz Btl",
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Applebee's Clifton",
+                  "num": "24022",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2404 Coronita Extra 4/6/7 oz Btl",
+                    "2405 Coronita Extra 1/24/7 oz Btl",
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Dave & Buster's Nj, Inc",
+                  "num": "12034",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Maggies Town Tavern Ii",
                   "num": "12037",
                   "units": null,
@@ -120233,6 +120273,24 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "12038",
                   "units": null,
                   "lastDate": "2026-09-15",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Cheesecake Fact (A)Wayne",
+                  "num": "12041",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Maggie's Town Tav.(P)",
+                  "num": "13003",
+                  "units": null,
+                  "lastDate": "2026-09-21",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -120257,31 +120315,29 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Blackjack Mulligan's Public House",
+                  "num": "15004",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Bask 46",
+                  "num": "15074",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Jimmy Geez (P)",
                   "num": "17009",
                   "units": null,
                   "lastDate": "2026-09-15",
                   "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Las Maravillas Restaurant",
-                  "num": "19011",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2405 Coronita Extra 1/24/7 oz Btl",
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "D'Carbon Restaurant Hawthorne",
-                  "num": "19028",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2404 Coronita Extra 4/6/7 oz Btl",
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
@@ -120299,6 +120355,25 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "23001",
                   "units": null,
                   "lastDate": "2026-09-18",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Clifton City Tavern(P)",
+                  "num": "23020",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2405 Coronita Extra 1/24/7 oz Btl",
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Rock Bar",
+                  "num": "24026",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -120342,10 +120417,28 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Yesterdays (P)",
+                  "num": "25049",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Uno Chicago Grl (A)Clifto",
                   "num": "25052",
                   "units": null,
                   "lastDate": "2026-09-16",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "The Celtic Knot",
+                  "num": "3002",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -120423,10 +120516,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Dave & Buster's Nj, Inc",
-                  "num": "12034",
+                  "customer": "Casa Don Manuel",
+                  "num": "12032",
                   "units": null,
-                  "lastDate": "2026-09-10",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -120439,15 +120532,6 @@ const PROGRAM_DATA_2026_09 = {
                   "products": [
                     "2407 Corona Extra 2/12/12 oz Can",
                     "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Cheesecake Fact (A)Wayne",
-                  "num": "12041",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
                 },
                 {
@@ -120471,10 +120555,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Maggie's Town Tav.(P)",
-                  "num": "13003",
+                  "customer": "Buffalo Wild Wings - Wayne, NJ",
+                  "num": "12065",
                   "units": null,
-                  "lastDate": "2026-09-08",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -120516,30 +120600,12 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Blackjack Mulligan's Public House",
-                  "num": "15004",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "River Terrace Inn(P)",
                   "num": "15036",
                   "units": null,
                   "lastDate": "2026-09-11",
                   "products": [
                     "2418 Corona Extra 1/18/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Bask 46",
-                  "num": "15074",
-                  "units": null,
-                  "lastDate": "2026-09-16",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -120580,25 +120646,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Applebee's Clifton",
-                  "num": "24022",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2404 Coronita Extra 4/6/7 oz Btl",
-                    "2405 Coronita Extra 1/24/7 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Rock Bar",
-                  "num": "24026",
-                  "units": null,
-                  "lastDate": "2026-09-11",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Dingo's Den (P)",
                   "num": "24029",
                   "units": null,
@@ -120617,15 +120664,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Yesterdays (P)",
-                  "num": "25049",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Rutt's Hut (A)",
                   "num": "25083",
                   "units": null,
@@ -120635,10 +120673,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "The Celtic Knot",
-                  "num": "3002",
+                  "customer": "Celtic Crossings",
+                  "num": "5008",
                   "units": null,
-                  "lastDate": "2026-09-11",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -120650,6 +120688,15 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-18",
                   "products": [
                     "2425 Corona Extra 1/24/12 oz Loose Can"
+                  ]
+                },
+                {
+                  "customer": "Chili's (Riverdale)",
+                  "num": "7005",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -120716,15 +120763,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Casa Don Manuel",
-                  "num": "12032",
-                  "units": null,
-                  "lastDate": "2026-09-02",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Brokedown Palace",
                   "num": "12036",
                   "units": null,
@@ -120747,15 +120785,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "12048",
                   "units": null,
                   "lastDate": "2026-09-10",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Buffalo Wild Wings - Wayne, NJ",
-                  "num": "12065",
-                  "units": null,
-                  "lastDate": "2026-09-04",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -120842,6 +120871,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "The Front Porch (Z)",
+                  "num": "19021",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Duffy's Tavern (Z)",
                   "num": "21043",
                   "units": null,
@@ -120851,10 +120889,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Clifton City Tavern(P)",
-                  "num": "23020",
+                  "customer": "Vfw 7165 (P)",
+                  "num": "23013",
                   "units": null,
-                  "lastDate": "2026-09-02",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -120882,6 +120920,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "24025",
                   "units": null,
                   "lastDate": "2026-09-16",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Veterans Post (9)",
+                  "num": "24039",
+                  "units": null,
+                  "lastDate": "2026-09-23",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -120950,24 +120997,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Celtic Crossings",
-                  "num": "5008",
-                  "units": null,
-                  "lastDate": "2026-09-03",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Chili's (Riverdale)",
-                  "num": "7005",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Tavern 5_2",
                   "num": "9002",
                   "units": null,
@@ -120991,13 +121020,22 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_light",
               "label": "Corona Light",
-              "buyers": 26,
+              "buyers": 28,
               "goal": 49,
-              "pct": 53.1,
+              "pct": 57.1,
               "retained": false,
-              "toGo": 23,
+              "toGo": 21,
               "emptyPickups": 0,
               "accounts": [
+                {
+                  "customer": "Maggie's Town Tav.(P)",
+                  "num": "13003",
+                  "units": null,
+                  "lastDate": "2026-09-21",
+                  "products": [
+                    "2510 Corona Light 4/6/12 oz Btl"
+                  ]
+                },
                 {
                   "customer": "The Little Falls Tavern",
                   "num": "13002",
@@ -121008,19 +121046,19 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Maggie's Town Tav.(P)",
-                  "num": "13003",
+                  "customer": "Murph's Bar & Liquor",
+                  "num": "14003",
                   "units": null,
-                  "lastDate": "2026-09-11",
+                  "lastDate": "2026-09-16",
                   "products": [
                     "2510 Corona Light 4/6/12 oz Btl"
                   ]
                 },
                 {
-                  "customer": "Murph's Bar & Liquor",
-                  "num": "14003",
+                  "customer": "Rock Bar",
+                  "num": "24026",
                   "units": null,
-                  "lastDate": "2026-09-16",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2510 Corona Light 4/6/12 oz Btl"
                   ]
@@ -121076,15 +121114,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "14004",
                   "units": null,
                   "lastDate": "2026-09-18",
-                  "products": [
-                    "2510 Corona Light 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Rock Bar",
-                  "num": "24026",
-                  "units": null,
-                  "lastDate": "2026-09-11",
                   "products": [
                     "2510 Corona Light 4/6/12 oz Btl"
                   ]
@@ -121198,6 +121227,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Celtic Corner",
+                  "num": "19005",
+                  "units": null,
+                  "lastDate": "2026-09-21",
+                  "products": [
+                    "2510 Corona Light 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "The Front Porch (Z)",
                   "num": "19021",
                   "units": null,
@@ -121211,6 +121249,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "25078",
                   "units": null,
                   "lastDate": "2026-09-03",
+                  "products": [
+                    "2510 Corona Light 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "The Celtic Knot",
+                  "num": "3002",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2510 Corona Light 4/6/12 oz Btl"
                   ]
@@ -121367,11 +121414,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "modelo_especial",
               "label": "Modelo Especial",
-              "buyers": 40,
+              "buyers": 42,
               "goal": 68,
-              "pct": 58.8,
+              "pct": 61.8,
               "retained": false,
-              "toGo": 28,
+              "toGo": 26,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -121379,6 +121426,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "13002",
                   "units": null,
                   "lastDate": "2026-09-15",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Las Maravillas Restaurant",
+                  "num": "19011",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -121421,6 +121477,24 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "WAYNE ALE HOUSE & PIZZA",
+                  "num": "12026",
+                  "units": null,
+                  "lastDate": "2026-09-21",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Casa Don Manuel",
+                  "num": "12032",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Maggies Town Tavern Ii",
                   "num": "12037",
                   "units": null,
@@ -121430,19 +121504,19 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Naxos Estiatorio",
-                  "num": "15067",
+                  "customer": "Maggie's Town Tav.(P)",
+                  "num": "13003",
                   "units": null,
-                  "lastDate": "2026-09-18",
+                  "lastDate": "2026-09-21",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
                 },
                 {
-                  "customer": "Las Maravillas Restaurant",
-                  "num": "19011",
+                  "customer": "Naxos Estiatorio",
+                  "num": "15067",
                   "units": null,
-                  "lastDate": "2026-09-10",
+                  "lastDate": "2026-09-18",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -121475,6 +121549,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Clifton City Tavern(P)",
+                  "num": "23020",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Rock Bar",
                   "num": "24026",
                   "units": null,
@@ -121488,6 +121571,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "25027",
                   "units": null,
                   "lastDate": "2026-09-16",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Yesterdays (P)",
+                  "num": "25049",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -121520,24 +121612,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "WAYNE ALE HOUSE & PIZZA",
-                  "num": "12026",
-                  "units": null,
-                  "lastDate": "2026-09-11",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Casa Don Manuel",
-                  "num": "12032",
-                  "units": null,
-                  "lastDate": "2026-09-02",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Preakness Hills (A) cc",
                   "num": "12035",
                   "units": null,
@@ -121551,15 +121625,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "12041",
                   "units": null,
                   "lastDate": "2026-09-03",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Maggie's Town Tav.(P)",
-                  "num": "13003",
-                  "units": null,
-                  "lastDate": "2026-09-08",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -121664,15 +121729,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Clifton City Tavern(P)",
-                  "num": "23020",
-                  "units": null,
-                  "lastDate": "2026-09-02",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "The Clif (P)",
                   "num": "24025",
                   "units": null,
@@ -121682,10 +121738,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Yesterdays (P)",
-                  "num": "25049",
+                  "customer": "Veterans Post (9)",
+                  "num": "24039",
                   "units": null,
-                  "lastDate": "2026-09-02",
+                  "lastDate": "2026-09-23",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -121695,6 +121751,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "25052",
                   "units": null,
                   "lastDate": "2026-09-16",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Emerald Corner (Z)",
+                  "num": "25056",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -121763,18 +121828,18 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "pacifico",
               "label": "Pacifico",
-              "buyers": 2,
+              "buyers": 3,
               "goal": 10,
-              "pct": 20.0,
+              "pct": 30.0,
               "retained": false,
-              "toGo": 8,
+              "toGo": 7,
               "emptyPickups": 0,
               "accounts": [
                 {
                   "customer": "Casa Don Manuel",
                   "num": "12032",
                   "units": null,
-                  "lastDate": "2026-09-02",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2610 Pacifico 4/6/12 oz Btl"
                   ]
@@ -121783,7 +121848,16 @@ const PROGRAM_DATA_2026_09 = {
                   "customer": "Las Maravillas Restaurant",
                   "num": "19011",
                   "units": null,
-                  "lastDate": "2026-09-04",
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2610 Pacifico 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Clifton City Tavern(P)",
+                  "num": "23020",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2610 Pacifico 4/6/12 oz Btl"
                   ]
@@ -121794,11 +121868,11 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "goalsTotal": 8,
           "goalsRetained": 0,
-          "buyers": 166,
-          "held": 166,
+          "buyers": 174,
+          "held": 174,
           "goal": 274,
-          "pct": 60.6,
-          "toGo": 108,
+          "pct": 63.5,
+          "toGo": 100,
           "emptyPickups": 0
         },
         "on_draft": {
@@ -121859,8 +121933,8 @@ const PROGRAM_DATA_2026_09 = {
                 {
                   "customer": "Sharky's Wings(P)",
                   "num": "24019",
-                  "units": 6.0,
-                  "lastDate": "2026-09-15",
+                  "units": 8.0,
+                  "lastDate": "2026-09-22",
                   "products": [
                     "2804 Modelo Especial 7.75 Gal Keg"
                   ]
@@ -121911,10 +121985,37 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Rock Bar",
+                  "num": "24026",
+                  "units": 3.0,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2802 Modelo Especial 15.5 Gal Keg"
+                  ]
+                },
+                {
+                  "customer": "Celtic Crossings",
+                  "num": "5008",
+                  "units": 3.0,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2802 Modelo Especial 15.5 Gal Keg"
+                  ]
+                },
+                {
                   "customer": "Grasshopper Too (A)",
                   "num": "12022",
                   "units": 2.0,
                   "lastDate": "2026-09-18",
+                  "products": [
+                    "2802 Modelo Especial 15.5 Gal Keg"
+                  ]
+                },
+                {
+                  "customer": "Dave & Buster's Nj, Inc",
+                  "num": "12034",
+                  "units": 2.0,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2802 Modelo Especial 15.5 Gal Keg"
                   ]
@@ -121942,6 +122043,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "14003",
                   "units": 2.0,
                   "lastDate": "2026-09-16",
+                  "products": [
+                    "2802 Modelo Especial 15.5 Gal Keg"
+                  ]
+                },
+                {
+                  "customer": "Blackjack Mulligan's Public House",
+                  "num": "15004",
+                  "units": 2.0,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2802 Modelo Especial 15.5 Gal Keg"
                   ]
@@ -121984,10 +122094,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Rock Bar",
-                  "num": "24026",
+                  "customer": "Chevy's Fresh Mex (A)Clif",
+                  "num": "25077",
                   "units": 2.0,
-                  "lastDate": "2026-09-15",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2802 Modelo Especial 15.5 Gal Keg"
                   ]
@@ -122015,15 +122125,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "12014",
                   "units": 1.0,
                   "lastDate": "2026-09-16",
-                  "products": [
-                    "2802 Modelo Especial 15.5 Gal Keg"
-                  ]
-                },
-                {
-                  "customer": "Dave & Buster's Nj, Inc",
-                  "num": "12034",
-                  "units": 1.0,
-                  "lastDate": "2026-09-03",
                   "products": [
                     "2802 Modelo Especial 15.5 Gal Keg"
                   ]
@@ -122101,15 +122202,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Blackjack Mulligan's Public House",
-                  "num": "15004",
-                  "units": 1.0,
-                  "lastDate": "2026-09-03",
-                  "products": [
-                    "2802 Modelo Especial 15.5 Gal Keg"
-                  ]
-                },
-                {
                   "customer": "D'CARBON BAR AND GRILL haledon",
                   "num": "17003",
                   "units": 1.0,
@@ -122155,15 +122247,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Chevy's Fresh Mex (A)Clif",
-                  "num": "25077",
-                  "units": 1.0,
-                  "lastDate": "2026-09-03",
-                  "products": [
-                    "2802 Modelo Especial 15.5 Gal Keg"
-                  ]
-                },
-                {
                   "customer": "The Celtic Knot",
                   "num": "3002",
                   "units": 1.0,
@@ -122179,15 +122262,6 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-09",
                   "products": [
                     "2804 Modelo Especial 7.75 Gal Keg"
-                  ]
-                },
-                {
-                  "customer": "Celtic Crossings",
-                  "num": "5008",
-                  "units": 1.0,
-                  "lastDate": "2026-09-03",
-                  "products": [
-                    "2802 Modelo Especial 15.5 Gal Keg"
                   ]
                 },
                 {
@@ -122275,10 +122349,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 13,
         "goalsRetained": 0,
-        "overallHeld": 210,
+        "overallHeld": 218,
         "overallGoal": 366,
-        "overallPct": 57.4,
-        "overallToGo": 156,
+        "overallPct": 59.6,
+        "overallToGo": 148,
         "hasAnyGoal": true
       },
       "Andrew Lundy": {
@@ -122460,51 +122534,51 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 84,
+            "placements": 91,
             "goal": 125,
-            "pct": 67.2,
+            "pct": 72.8,
             "retained": false,
-            "toGo": 41,
+            "toGo": 34,
             "inReport": true,
             "products": [
               {
-                "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 13,
-                "base": 24,
-                "goal": 24,
-                "pct": 54.2,
-                "retained": false,
-                "toGo": 11,
-                "lost": false
-              },
-              {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 17,
+                "placements": 18,
                 "base": 26,
                 "goal": 26,
-                "pct": 65.4,
-                "retained": false,
-                "toGo": 9,
-                "lost": false
-              },
-              {
-                "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 17,
-                "base": 25,
-                "goal": 25,
-                "pct": 68.0,
+                "pct": 69.2,
                 "retained": false,
                 "toGo": 8,
                 "lost": false
               },
               {
-                "product": "Modelo Especial 1/12/24 oz Can",
+                "product": "Modelo Especial 2/12/12 oz Btl",
                 "placements": 16,
                 "base": 24,
                 "goal": 24,
                 "pct": 66.7,
                 "retained": false,
                 "toGo": 8,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 2/12/12 oz Can",
+                "placements": 18,
+                "base": 25,
+                "goal": 25,
+                "pct": 72.0,
+                "retained": false,
+                "toGo": 7,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/12/24 oz Can",
+                "placements": 17,
+                "base": 24,
+                "goal": 24,
+                "pct": 70.8,
+                "retained": false,
+                "toGo": 7,
                 "lost": false
               },
               {
@@ -122519,12 +122593,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
-                "placements": 5,
+                "placements": 6,
                 "base": 7,
                 "goal": 7,
-                "pct": 71.4,
+                "pct": 85.7,
                 "retained": false,
-                "toGo": 2,
+                "toGo": 1,
                 "lost": false
               },
               {
@@ -122550,89 +122624,59 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 134,
+            "placements": 150,
             "goal": 200,
-            "pct": 67.0,
+            "pct": 75.0,
             "retained": false,
-            "toGo": 66,
+            "toGo": 50,
             "inReport": true,
             "products": [
               {
                 "product": "Pacifico 2/12/12 oz Can",
-                "placements": 9,
+                "placements": 10,
                 "base": 20,
                 "goal": 20,
-                "pct": 45.0,
+                "pct": 50.0,
                 "retained": false,
-                "toGo": 11,
+                "toGo": 10,
                 "lost": false
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 15,
+                "placements": 16,
                 "base": 23,
                 "goal": 23,
-                "pct": 65.2,
+                "pct": 69.6,
                 "retained": false,
-                "toGo": 8,
+                "toGo": 7,
                 "lost": false
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
-                "placements": 3,
+                "placements": 4,
                 "base": 11,
                 "goal": 11,
-                "pct": 27.3,
+                "pct": 36.4,
                 "retained": false,
-                "toGo": 8,
-                "lost": false
-              },
-              {
-                "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 15,
-                "base": 21,
-                "goal": 21,
-                "pct": 71.4,
-                "retained": false,
-                "toGo": 6,
+                "toGo": 7,
                 "lost": false
               },
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 13,
+                "placements": 14,
                 "base": 19,
                 "goal": 19,
-                "pct": 68.4,
-                "retained": false,
-                "toGo": 6,
-                "lost": false
-              },
-              {
-                "product": "Pacifico 2/12/12 oz Btl",
-                "placements": 0,
-                "base": 6,
-                "goal": 6,
-                "pct": 0.0,
-                "retained": false,
-                "toGo": 6,
-                "lost": true
-              },
-              {
-                "product": "Victoria 2/12/12 oz Btl",
-                "placements": 7,
-                "base": 12,
-                "goal": 12,
-                "pct": 58.3,
+                "pct": 73.7,
                 "retained": false,
                 "toGo": 5,
                 "lost": false
               },
               {
-                "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 6,
-                "base": 10,
-                "goal": 10,
-                "pct": 60.0,
+                "product": "Victoria 2/12/12 oz Btl",
+                "placements": 8,
+                "base": 12,
+                "goal": 12,
+                "pct": 66.7,
                 "retained": false,
                 "toGo": 4,
                 "lost": false
@@ -122645,6 +122689,26 @@ const PROGRAM_DATA_2026_09 = {
                 "pct": 50.0,
                 "retained": false,
                 "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Pacifico 2/12/12 oz Btl",
+                "placements": 2,
+                "base": 6,
+                "goal": 6,
+                "pct": 33.3,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 1/12/24 oz Can",
+                "placements": 18,
+                "base": 21,
+                "goal": 21,
+                "pct": 85.7,
+                "retained": false,
+                "toGo": 3,
                 "lost": false
               },
               {
@@ -122668,6 +122732,16 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
+                "product": "Modelito Especial 1/24/7 oz Loose Btl",
+                "placements": 7,
+                "base": 10,
+                "goal": 10,
+                "pct": 70.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
+              },
+              {
                 "product": "Corona Familiar 1/12/32 oz Btl",
                 "placements": 11,
                 "base": 13,
@@ -122678,41 +122752,21 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 9,
-                "base": 10,
-                "goal": 10,
-                "pct": 90.0,
-                "retained": false,
-                "toGo": 1,
-                "lost": false
-              },
-              {
-                "product": "Corona Light 1/24/12 oz Loose Can",
-                "placements": 1,
-                "base": 2,
-                "goal": 2,
-                "pct": 50.0,
-                "retained": false,
-                "toGo": 1,
-                "lost": false
-              },
-              {
-                "product": "Modelo Chelada 2/12/12 oz Can",
-                "placements": 0,
-                "base": 1,
-                "goal": 1,
-                "pct": 0.0,
-                "retained": false,
-                "toGo": 1,
-                "lost": true
-              },
-              {
                 "product": "Victoria 1/12/32 oz Btl",
                 "placements": 11,
                 "base": 10,
                 "goal": 10,
                 "pct": 110.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
+                "placements": 10,
+                "base": 10,
+                "goal": 10,
+                "pct": 100.0,
                 "retained": true,
                 "toGo": 0,
                 "lost": false
@@ -122736,25 +122790,45 @@ const PROGRAM_DATA_2026_09 = {
                 "retained": true,
                 "toGo": 0,
                 "lost": false
+              },
+              {
+                "product": "Modelo Chelada 2/12/12 oz Can",
+                "placements": 3,
+                "base": 1,
+                "goal": 1,
+                "pct": 300.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Corona Light 1/24/12 oz Loose Can",
+                "placements": 2,
+                "base": 2,
+                "goal": 2,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
             "goalOverride": false,
             "baseGoal": 200,
             "skusTotal": 18,
-            "skusHeld": 3,
-            "skusLost": 2,
-            "skusShort": 15,
+            "skusHeld": 6,
+            "skusLost": 0,
+            "skusShort": 12,
             "skusNew": 0
           },
           {
             "key": "innovation",
             "label": "Innovation",
-            "placements": 22,
+            "placements": 23,
             "goal": 79,
-            "pct": 27.8,
+            "pct": 29.1,
             "retained": false,
-            "toGo": 57,
+            "toGo": 56,
             "inReport": true,
             "products": [
               {
@@ -122768,16 +122842,6 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 6,
-                "base": 17,
-                "goal": 17,
-                "pct": 35.3,
-                "retained": false,
-                "toGo": 11,
-                "lost": false
-              },
-              {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
                 "placements": 0,
                 "base": 11,
@@ -122786,6 +122850,16 @@ const PROGRAM_DATA_2026_09 = {
                 "retained": false,
                 "toGo": 11,
                 "lost": true
+              },
+              {
+                "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
+                "placements": 7,
+                "base": 17,
+                "goal": 17,
+                "pct": 41.2,
+                "retained": false,
+                "toGo": 10,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
@@ -122871,20 +122945,20 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 275,
+        "offPlacements": 299,
         "offGoal": 484,
-        "offPct": 56.8,
-        "offToGo": 209,
+        "offPct": 61.8,
+        "offToGo": 185,
         "on_packages": {
           "families": [
             {
               "key": "corona_extra",
               "label": "Corona Extra",
-              "buyers": 33,
+              "buyers": 35,
               "goal": 43,
-              "pct": 76.7,
+              "pct": 81.4,
               "retained": false,
-              "toGo": 10,
+              "toGo": 8,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -122977,6 +123051,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "The New Jessies Kettle(P)",
+                  "num": "1023",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "D'Boathaus Restaurant",
                   "num": "1033",
                   "units": null,
@@ -122999,6 +123082,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "230929",
                   "units": null,
                   "lastDate": "2026-09-16",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Brick & Brew",
+                  "num": "230930",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -123059,12 +123151,12 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "The New Jessies Kettle(P)",
-                  "num": "1023",
+                  "customer": "Chido Mexican Kitchen",
+                  "num": "1014",
                   "units": null,
-                  "lastDate": "2026-09-10",
+                  "lastDate": "2026-09-17",
                   "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
                 },
                 {
@@ -123131,15 +123223,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Brick & Brew",
-                  "num": "230930",
-                  "units": null,
-                  "lastDate": "2026-09-02",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Great Gorge Golf (A) Club",
                   "num": "231207",
                   "units": null,
@@ -123185,6 +123268,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "The River Of Beer",
+                  "num": "4004",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Cafe' Chameleon",
                   "num": "6001",
                   "units": null,
@@ -123199,11 +123291,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_light",
               "label": "Corona Light",
-              "buyers": 13,
+              "buyers": 15,
               "goal": 26,
-              "pct": 50.0,
+              "pct": 57.7,
               "retained": false,
-              "toGo": 13,
+              "toGo": 11,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -123211,6 +123303,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "4007",
                   "units": null,
                   "lastDate": "2026-09-16",
+                  "products": [
+                    "2510 Corona Light 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "The New Jessies Kettle(P)",
+                  "num": "1023",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2510 Corona Light 4/6/12 oz Btl"
                   ]
@@ -123234,12 +123335,12 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "The New Jessies Kettle(P)",
-                  "num": "1023",
+                  "customer": "Chido Mexican Kitchen",
+                  "num": "1014",
                   "units": null,
-                  "lastDate": "2026-09-10",
+                  "lastDate": "2026-09-17",
                   "products": [
-                    "2510 Corona Light 4/6/12 oz Btl"
+                    "2509 Corona Light 1/24/12 oz Loose Btl"
                   ]
                 },
                 {
@@ -123319,6 +123420,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "231309",
                   "units": null,
                   "lastDate": "2026-09-16",
+                  "products": [
+                    "2510 Corona Light 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "The River Of Beer",
+                  "num": "4004",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2510 Corona Light 4/6/12 oz Btl"
                   ]
@@ -123402,11 +123512,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "modelo_especial",
               "label": "Modelo Especial",
-              "buyers": 7,
+              "buyers": 8,
               "goal": 18,
-              "pct": 38.9,
+              "pct": 44.4,
               "retained": false,
-              "toGo": 11,
+              "toGo": 10,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -123423,6 +123533,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "The New Jessies Kettle(P)",
+                  "num": "1023",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2811 Modelo Especial 2/12/12 oz Can"
+                  ]
+                },
+                {
                   "customer": "Brick & Brew",
                   "num": "230930",
                   "units": null,
@@ -123432,12 +123551,21 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "The New Jessies Kettle(P)",
-                  "num": "1023",
+                  "customer": "Flip's Bar (P)",
+                  "num": "3011",
                   "units": null,
-                  "lastDate": "2026-09-10",
+                  "lastDate": "2026-09-17",
                   "products": [
-                    "2811 Modelo Especial 2/12/12 oz Can"
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Chido Mexican Kitchen",
+                  "num": "1014",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
                   ]
                 },
                 {
@@ -123454,15 +123582,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "231305",
                   "units": null,
                   "lastDate": "2026-09-18",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Flip's Bar (P)",
-                  "num": "3011",
-                  "units": null,
-                  "lastDate": "2026-09-10",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -123514,11 +123633,11 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "goalsTotal": 7,
           "goalsRetained": 0,
-          "buyers": 59,
-          "held": 59,
+          "buyers": 64,
+          "held": 64,
           "goal": 122,
-          "pct": 48.4,
-          "toGo": 63,
+          "pct": 52.5,
+          "toGo": 58,
           "emptyPickups": 0
         },
         "on_draft": {
@@ -123579,10 +123698,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 13,
         "goalsRetained": 0,
-        "overallHeld": 336,
+        "overallHeld": 365,
         "overallGoal": 616,
-        "overallPct": 54.5,
-        "overallToGo": 280,
+        "overallPct": 59.3,
+        "overallToGo": 251,
         "hasAnyGoal": true
       },
       "Brian Sengebush": {
@@ -123870,13 +123989,42 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_extra",
               "label": "Corona Extra",
-              "buyers": 76,
+              "buyers": 79,
               "goal": 99,
-              "pct": 76.8,
+              "pct": 79.8,
               "retained": false,
-              "toGo": 23,
+              "toGo": 20,
               "emptyPickups": 0,
               "accounts": [
+                {
+                  "customer": "Applebee's Grill(A)Newton",
+                  "num": "230430",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2405 Coronita Extra 1/24/7 oz Btl",
+                    "2409 Corona Extra 1/24/12 oz Loose Btl",
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Johnnie's Tavern",
+                  "num": "190214",
+                  "units": null,
+                  "lastDate": "2026-09-21",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "O'reilly Pub (P)",
+                  "num": "230428",
+                  "units": null,
+                  "lastDate": "2026-09-18",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
                 {
                   "customer": "Buffalo Wild Wings (Rockaway)",
                   "num": "1024",
@@ -123887,12 +124035,12 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Johnnie's Tavern",
-                  "num": "190214",
+                  "customer": "Tavern On The Rocks",
+                  "num": "190704",
                   "units": null,
-                  "lastDate": "2026-09-14",
+                  "lastDate": "2026-09-17",
                   "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
                 },
                 {
@@ -123900,6 +124048,42 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "190905",
                   "units": null,
                   "lastDate": "2026-09-15",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Knotty Pine Pub (P)",
+                  "num": "190923",
+                  "units": null,
+                  "lastDate": "2026-09-18",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Jefferson House (A)",
+                  "num": "191504",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "The Windlass Rest (A)",
+                  "num": "191507",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Lola's Restaurant",
+                  "num": "191510",
+                  "units": null,
+                  "lastDate": "2026-09-18",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
@@ -123914,22 +124098,47 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "O'reilly Pub (P)",
-                  "num": "230428",
+                  "customer": "American Lgn Stanhope",
+                  "num": "191719",
                   "units": null,
-                  "lastDate": "2026-09-15",
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Sheridan Lodge (P)",
+                  "num": "230405",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
-                  "customer": "Applebee's Grill(A)Newton",
-                  "num": "230430",
+                  "customer": "Lakeside Pub (P)",
+                  "num": "231710",
                   "units": null,
-                  "lastDate": "2026-09-11",
+                  "lastDate": "2026-09-17",
                   "products": [
-                    "2405 Coronita Extra 1/24/7 oz Btl",
-                    "2409 Corona Extra 1/24/12 oz Loose Btl",
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "The Cheesecake Factory",
+                  "num": "1022",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Rails Steakhouse (A)",
+                  "num": "190106",
+                  "units": null,
+                  "lastDate": "2026-09-22",
+                  "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
@@ -123940,6 +124149,15 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-16",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Boonton Lanes",
+                  "num": "190203",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
                 },
                 {
@@ -123971,10 +124189,19 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Tavern On The Rocks",
-                  "num": "190704",
+                  "customer": "The Second Half On Main",
+                  "num": "190615",
                   "units": null,
-                  "lastDate": "2026-09-09",
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "The Exchange",
+                  "num": "190707",
+                  "units": null,
+                  "lastDate": "2026-09-18",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
@@ -123993,6 +124220,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "191001",
                   "units": null,
                   "lastDate": "2026-09-15",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Charley's Tavern",
+                  "num": "191007",
+                  "units": null,
+                  "lastDate": "2026-09-21",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -124035,15 +124271,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Jefferson House (A)",
-                  "num": "191504",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
                   "customer": "Mckenna's Pub (P)",
                   "num": "191505",
                   "units": null,
@@ -124053,30 +124280,12 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "The Windlass Rest (A)",
-                  "num": "191507",
+                  "customer": "Polo's Bar And Grill",
+                  "num": "191618",
                   "units": null,
-                  "lastDate": "2026-09-11",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Lola's Restaurant",
-                  "num": "191510",
-                  "units": null,
-                  "lastDate": "2026-09-11",
-                  "products": [
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "American Lgn Stanhope",
-                  "num": "191719",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
                 },
                 {
@@ -124117,15 +124326,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Sheridan Lodge (P)",
-                  "num": "230405",
-                  "units": null,
-                  "lastDate": "2026-09-11",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Fountain House (Z)",
                   "num": "230407",
                   "units": null,
@@ -124147,15 +124347,6 @@ const PROGRAM_DATA_2026_09 = {
                 {
                   "customer": "The Lafayette House",
                   "num": "231606",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Lakeside Pub (P)",
-                  "num": "231710",
                   "units": null,
                   "lastDate": "2026-09-10",
                   "products": [
@@ -124191,15 +124382,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "The Cheesecake Factory",
-                  "num": "1022",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Lake Valhalla Club (P)",
                   "num": "190102",
                   "units": null,
@@ -124213,24 +124395,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "190104",
                   "units": null,
                   "lastDate": "2026-09-03",
-                  "products": [
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Rails Steakhouse (A)",
-                  "num": "190106",
-                  "units": null,
-                  "lastDate": "2026-09-01",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Boonton Lanes",
-                  "num": "190203",
-                  "units": null,
-                  "lastDate": "2026-09-10",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
@@ -124254,28 +124418,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "The Second Half On Main",
-                  "num": "190615",
-                  "units": null,
-                  "lastDate": "2026-09-04",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Mill Lane Tavern",
                   "num": "190706",
                   "units": null,
                   "lastDate": "2026-09-04",
-                  "products": [
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "The Exchange",
-                  "num": "190707",
-                  "units": null,
-                  "lastDate": "2026-09-03",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
@@ -124308,15 +124454,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Knotty Pine Pub (P)",
-                  "num": "190923",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Olive Garden Rockaway",
                   "num": "190925",
                   "units": null,
@@ -124339,15 +124476,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "191006",
                   "units": null,
                   "lastDate": "2026-09-15",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Charley's Tavern",
-                  "num": "191007",
-                  "units": null,
-                  "lastDate": "2026-09-01",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -124407,15 +124535,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Polo's Bar And Grill",
-                  "num": "191618",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Freddy's Lake House Bar And Grill",
                   "num": "191706",
                   "units": null,
@@ -124470,6 +124589,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Tomahawk Lake,Inc",
+                  "num": "230101",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2407 Corona Extra 2/12/12 oz Can"
+                  ]
+                },
+                {
                   "customer": "Mohawk House (P)",
                   "num": "230104",
                   "units": null,
@@ -124492,6 +124620,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "230123",
                   "units": null,
                   "lastDate": "2026-09-03",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "AG Pizza & Restaurant - Newton",
+                  "num": "230306",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -124567,6 +124704,15 @@ const PROGRAM_DATA_2026_09 = {
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
+                },
+                {
+                  "customer": "Walpack Inn",
+                  "num": "231806",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
                 }
               ],
               "baseWindow": "3/1/2026 - 5/31/2026"
@@ -124574,11 +124720,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_light",
               "label": "Corona Light",
-              "buyers": 25,
+              "buyers": 26,
               "goal": 56,
-              "pct": 44.6,
+              "pct": 46.4,
               "retained": false,
-              "toGo": 31,
+              "toGo": 30,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -124592,6 +124738,35 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Charley's Tavern",
+                  "num": "191007",
+                  "units": null,
+                  "lastDate": "2026-09-21",
+                  "products": [
+                    "2510 Corona Light 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Jefferson House (A)",
+                  "num": "191504",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2510 Corona Light 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Lake Mohawk Country Club",
+                  "num": "230116",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2507 Corona Light 2/12/12 oz Can",
+                    "2510 Corona Light 4/6/12 oz Btl",
+                    "2511 Corona Light 1/24/12 oz Loose Can"
+                  ]
+                },
+                {
                   "customer": "Rails Steakhouse (A)",
                   "num": "190106",
                   "units": null,
@@ -124601,19 +124776,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Charley's Tavern",
-                  "num": "191007",
+                  "customer": "Mason Street Grille",
+                  "num": "191009",
                   "units": null,
-                  "lastDate": "2026-09-14",
-                  "products": [
-                    "2510 Corona Light 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Jefferson House (A)",
-                  "num": "191504",
-                  "units": null,
-                  "lastDate": "2026-09-10",
+                  "lastDate": "2026-09-18",
                   "products": [
                     "2510 Corona Light 4/6/12 oz Btl"
                   ]
@@ -124691,15 +124857,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Mason Street Grille",
-                  "num": "191009",
-                  "units": null,
-                  "lastDate": "2026-09-02",
-                  "products": [
-                    "2510 Corona Light 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Chapala Mexican Grill 4",
                   "num": "191305",
                   "units": null,
@@ -124731,6 +124888,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "191505",
                   "units": null,
                   "lastDate": "2026-09-02",
+                  "products": [
+                    "2510 Corona Light 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "The Windlass Rest (A)",
+                  "num": "191507",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2510 Corona Light 4/6/12 oz Btl"
                   ]
@@ -124778,15 +124944,6 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-15",
                   "products": [
                     "2509 Corona Light 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Lake Mohawk Country Club",
-                  "num": "230116",
-                  "units": null,
-                  "lastDate": "2026-09-03",
-                  "products": [
-                    "2507 Corona Light 2/12/12 oz Can"
                   ]
                 },
                 {
@@ -124844,18 +125001,18 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_premier",
               "label": "Corona Premier",
-              "buyers": 5,
+              "buyers": 6,
               "goal": 12,
-              "pct": 41.7,
+              "pct": 50.0,
               "retained": false,
-              "toGo": 7,
+              "toGo": 6,
               "emptyPickups": 0,
               "accounts": [
                 {
                   "customer": "Millers Ale House Rockawa",
                   "num": "1017",
                   "units": null,
-                  "lastDate": "2026-09-08",
+                  "lastDate": "2026-09-21",
                   "products": [
                     "2440 Corona Premier 4/6/12 oz Btl"
                   ]
@@ -124864,7 +125021,16 @@ const PROGRAM_DATA_2026_09 = {
                   "customer": "The Second Half On Main",
                   "num": "190615",
                   "units": null,
-                  "lastDate": "2026-09-04",
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2440 Corona Premier 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Charley's Tavern",
+                  "num": "191007",
+                  "units": null,
+                  "lastDate": "2026-09-21",
                   "products": [
                     "2440 Corona Premier 4/6/12 oz Btl"
                   ]
@@ -124922,6 +125088,24 @@ const PROGRAM_DATA_2026_09 = {
               "emptyPickups": 0,
               "accounts": [
                 {
+                  "customer": "Millers Ale House Rockawa",
+                  "num": "1017",
+                  "units": null,
+                  "lastDate": "2026-09-21",
+                  "products": [
+                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Johnnie's Tavern",
+                  "num": "190214",
+                  "units": null,
+                  "lastDate": "2026-09-21",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Elevengreen",
                   "num": "190905",
                   "units": null,
@@ -124931,10 +125115,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Johnnie's Tavern",
-                  "num": "190214",
+                  "customer": "The Windlass Rest (A)",
+                  "num": "191507",
                   "units": null,
-                  "lastDate": "2026-09-14",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -124958,21 +125142,21 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "White Owl Tavern",
+                  "num": "190921",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Chapala Mexican Grill 4",
                   "num": "191305",
                   "units": null,
                   "lastDate": "2026-09-18",
                   "products": [
                     "2808 Modelo Especial 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "The Windlass Rest (A)",
-                  "num": "191507",
-                  "units": null,
-                  "lastDate": "2026-09-11",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -124992,15 +125176,6 @@ const PROGRAM_DATA_2026_09 = {
                   "products": [
                     "2811 Modelo Especial 2/12/12 oz Can",
                     "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Millers Ale House Rockawa",
-                  "num": "1017",
-                  "units": null,
-                  "lastDate": "2026-09-08",
-                  "products": [
-                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
                   ]
                 },
                 {
@@ -125026,15 +125201,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "190724",
                   "units": null,
                   "lastDate": "2026-09-03",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "White Owl Tavern",
-                  "num": "190921",
-                  "units": null,
-                  "lastDate": "2026-09-04",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -125166,11 +125332,11 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "goalsTotal": 7,
           "goalsRetained": 0,
-          "buyers": 133,
-          "held": 133,
+          "buyers": 138,
+          "held": 138,
           "goal": 230,
-          "pct": 57.8,
-          "toGo": 97,
+          "pct": 60.0,
+          "toGo": 92,
           "emptyPickups": 0
         },
         "on_draft": {
@@ -125200,12 +125366,12 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "modelo_especial",
               "label": "Modelo Especial",
-              "buyers": 11,
+              "buyers": 12,
               "goal": 29,
-              "pct": 37.9,
+              "pct": 41.4,
               "retained": false,
-              "toGo": 18,
-              "emptyPickups": 4,
+              "toGo": 17,
+              "emptyPickups": 3,
               "accounts": [
                 {
                   "customer": "Lola's Restaurant",
@@ -125223,6 +125389,15 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-10",
                   "products": [
                     "2804 Modelo Especial 7.75 Gal Keg"
+                  ]
+                },
+                {
+                  "customer": "Millers Ale House Rockawa",
+                  "num": "1017",
+                  "units": 2.0,
+                  "lastDate": "2026-09-21",
+                  "products": [
+                    "2802 Modelo Especial 15.5 Gal Keg"
                   ]
                 },
                 {
@@ -125365,19 +125540,19 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "goalsTotal": 4,
           "goalsRetained": 0,
-          "buyers": 15,
-          "held": 15,
+          "buyers": 16,
+          "held": 16,
           "goal": 55,
-          "pct": 27.3,
-          "toGo": 40,
-          "emptyPickups": 4
+          "pct": 29.1,
+          "toGo": 39,
+          "emptyPickups": 3
         },
         "goalsTotal": 15,
         "goalsRetained": 0,
-        "overallHeld": 163,
+        "overallHeld": 169,
         "overallGoal": 319,
-        "overallPct": 51.1,
-        "overallToGo": 156,
+        "overallPct": 53.0,
+        "overallToGo": 150,
         "hasAnyGoal": true
       },
       "Chris Payton": {
@@ -125455,39 +125630,29 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 153,
+            "placements": 161,
             "goal": 210,
-            "pct": 72.9,
+            "pct": 76.7,
             "retained": false,
-            "toGo": 57,
+            "toGo": 49,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 21,
+                "placements": 23,
                 "base": 36,
                 "goal": 36,
-                "pct": 58.3,
+                "pct": 63.9,
                 "retained": false,
-                "toGo": 15,
+                "toGo": 13,
                 "lost": false
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 27,
+                "placements": 28,
                 "base": 36,
                 "goal": 36,
-                "pct": 75.0,
-                "retained": false,
-                "toGo": 9,
-                "lost": false
-              },
-              {
-                "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 30,
-                "base": 38,
-                "goal": 38,
-                "pct": 78.9,
+                "pct": 77.8,
                 "retained": false,
                 "toGo": 8,
                 "lost": false
@@ -125503,13 +125668,13 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 32,
+                "product": "Modelo Especial 4/6/12 oz Btl",
+                "placements": 31,
                 "base": 38,
                 "goal": 38,
-                "pct": 84.2,
+                "pct": 81.6,
                 "retained": false,
-                "toGo": 6,
+                "toGo": 7,
                 "lost": false
               },
               {
@@ -125524,12 +125689,22 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 17,
+                "placements": 18,
                 "base": 22,
                 "goal": 22,
-                "pct": 77.3,
+                "pct": 81.8,
                 "retained": false,
-                "toGo": 5,
+                "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/12/24 oz Can",
+                "placements": 35,
+                "base": 38,
+                "goal": 38,
+                "pct": 92.1,
+                "retained": false,
+                "toGo": 3,
                 "lost": false
               }
             ],
@@ -125545,85 +125720,55 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 191,
+            "placements": 219,
             "goal": 312,
-            "pct": 61.2,
+            "pct": 70.2,
             "retained": false,
-            "toGo": 121,
+            "toGo": 93,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 12,
+                "placements": 14,
                 "base": 25,
                 "goal": 25,
-                "pct": 48.0,
+                "pct": 56.0,
                 "retained": false,
-                "toGo": 13,
+                "toGo": 11,
                 "lost": false
               },
               {
                 "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 14,
+                "placements": 18,
                 "base": 26,
                 "goal": 26,
-                "pct": 53.8,
+                "pct": 69.2,
                 "retained": false,
-                "toGo": 12,
-                "lost": false
-              },
-              {
-                "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 27,
-                "base": 38,
-                "goal": 38,
-                "pct": 71.1,
-                "retained": false,
-                "toGo": 11,
-                "lost": false
-              },
-              {
-                "product": "Victoria 1/12/32 oz Btl",
-                "placements": 4,
-                "base": 15,
-                "goal": 15,
-                "pct": 26.7,
-                "retained": false,
-                "toGo": 11,
+                "toGo": 8,
                 "lost": false
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
-                "placements": 7,
+                "placements": 8,
                 "base": 16,
                 "goal": 16,
-                "pct": 43.8,
-                "retained": false,
-                "toGo": 9,
-                "lost": false
-              },
-              {
-                "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 15,
-                "base": 23,
-                "goal": 23,
-                "pct": 65.2,
+                "pct": 50.0,
                 "retained": false,
                 "toGo": 8,
                 "lost": false
               },
               {
-                "product": "Pacifico 2/12/12 oz Can",
-                "placements": 6,
-                "base": 14,
-                "goal": 14,
-                "pct": 42.9,
+                "product": "Corona Extra 1/12/24 oz Can",
+                "placements": 31,
+                "base": 38,
+                "goal": 38,
+                "pct": 81.6,
                 "retained": false,
-                "toGo": 8,
+                "toGo": 7,
                 "lost": false
               },
               {
-                "product": "Victoria 2/12/12 oz Btl",
+                "product": "Victoria 1/12/32 oz Btl",
                 "placements": 8,
                 "base": 15,
                 "goal": 15,
@@ -125633,11 +125778,21 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 15,
-                "base": 21,
-                "goal": 21,
-                "pct": 71.4,
+                "product": "Pacifico 2/12/12 oz Can",
+                "placements": 7,
+                "base": 14,
+                "goal": 14,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 7,
+                "lost": false
+              },
+              {
+                "product": "Victoria 2/12/12 oz Btl",
+                "placements": 9,
+                "base": 15,
+                "goal": 15,
+                "pct": 60.0,
                 "retained": false,
                 "toGo": 6,
                 "lost": false
@@ -125653,16 +125808,6 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 31,
-                "base": 36,
-                "goal": 36,
-                "pct": 86.1,
-                "retained": false,
-                "toGo": 5,
-                "lost": false
-              },
-              {
                 "product": "Modelito Especial 1/24/7 oz Loose Btl",
                 "placements": 19,
                 "base": 24,
@@ -125673,23 +125818,13 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Pacifico 2/12/12 oz Btl",
-                "placements": 11,
-                "base": 16,
-                "goal": 16,
-                "pct": 68.8,
+                "product": "Corona Familiar 1/12/32 oz Btl",
+                "placements": 19,
+                "base": 23,
+                "goal": 23,
+                "pct": 82.6,
                 "retained": false,
-                "toGo": 5,
-                "lost": false
-              },
-              {
-                "product": "Modelo Oro 2/12/12 oz Can",
-                "placements": 2,
-                "base": 7,
-                "goal": 7,
-                "pct": 28.6,
-                "retained": false,
-                "toGo": 5,
+                "toGo": 4,
                 "lost": false
               },
               {
@@ -125700,6 +125835,46 @@ const PROGRAM_DATA_2026_09 = {
                 "pct": 75.0,
                 "retained": false,
                 "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Pacifico 2/12/12 oz Btl",
+                "placements": 12,
+                "base": 16,
+                "goal": 16,
+                "pct": 75.0,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Modelo Oro 2/12/12 oz Can",
+                "placements": 3,
+                "base": 7,
+                "goal": 7,
+                "pct": 42.9,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
+                "placements": 33,
+                "base": 36,
+                "goal": 36,
+                "pct": 91.7,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
+                "placements": 18,
+                "base": 21,
+                "goal": 21,
+                "pct": 85.7,
+                "retained": false,
+                "toGo": 3,
                 "lost": false
               },
               {
@@ -125745,11 +125920,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "innovation",
             "label": "Innovation",
-            "placements": 30,
+            "placements": 33,
             "goal": 120,
-            "pct": 25.0,
+            "pct": 27.5,
             "retained": false,
-            "toGo": 90,
+            "toGo": 87,
             "inReport": true,
             "products": [
               {
@@ -125794,22 +125969,22 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Pacifico 1/24/7 oz Btl",
-                "placements": 1,
+                "placements": 2,
                 "base": 8,
                 "goal": 8,
-                "pct": 12.5,
+                "pct": 25.0,
                 "retained": false,
-                "toGo": 7,
+                "toGo": 6,
                 "lost": false
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Can",
-                "placements": 2,
+                "placements": 3,
                 "base": 7,
                 "goal": 7,
-                "pct": 28.6,
+                "pct": 42.9,
                 "retained": false,
-                "toGo": 5,
+                "toGo": 4,
                 "lost": false
               },
               {
@@ -125833,16 +126008,6 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": true
               },
               {
-                "product": "Corona Sunbrew 1/12/24 oz Can",
-                "placements": 2,
-                "base": 3,
-                "goal": 3,
-                "pct": 66.7,
-                "retained": false,
-                "toGo": 1,
-                "lost": false
-              },
-              {
                 "product": "Victoria Vicky Mango 1/12/24 oz Can",
                 "placements": 1,
                 "base": 2,
@@ -125850,6 +126015,16 @@ const PROGRAM_DATA_2026_09 = {
                 "pct": 50.0,
                 "retained": false,
                 "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 1/12/24 oz Can",
+                "placements": 3,
+                "base": 3,
+                "goal": 3,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
                 "lost": false
               },
               {
@@ -125867,19 +126042,19 @@ const PROGRAM_DATA_2026_09 = {
             "goalOverride": false,
             "baseGoal": 120,
             "skusTotal": 11,
-            "skusHeld": 1,
+            "skusHeld": 2,
             "skusLost": 1,
-            "skusShort": 10,
+            "skusShort": 9,
             "skusNew": 0
           }
         ],
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 456,
+        "offPlacements": 495,
         "offGoal": 775,
-        "offPct": 58.8,
-        "offToGo": 319,
+        "offPct": 63.9,
+        "offToGo": 280,
         "on_packages": {
           "families": [
             {
@@ -125903,19 +126078,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Fiesta (A)",
-                  "num": "35009",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
                   "customer": "Colonial Bar",
                   "num": "45005",
                   "units": null,
-                  "lastDate": "2026-09-03",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
@@ -125924,7 +126090,16 @@ const PROGRAM_DATA_2026_09 = {
                   "customer": "Mk Valencia Rest & Lg(P)",
                   "num": "47003",
                   "units": null,
-                  "lastDate": "2026-09-03",
+                  "lastDate": "2026-09-21",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Fiesta (A)",
+                  "num": "35009",
+                  "units": null,
+                  "lastDate": "2026-09-10",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
@@ -126020,13 +126195,23 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_na",
               "label": "Corona NA",
-              "buyers": 0,
+              "buyers": 1,
               "goal": 10,
-              "pct": 0.0,
+              "pct": 10.0,
               "retained": false,
-              "toGo": 10,
+              "toGo": 9,
               "emptyPickups": 0,
-              "accounts": [],
+              "accounts": [
+                {
+                  "customer": "Colonial Bar",
+                  "num": "45005",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "9055 Corona Non-Alcohol 2/12/12 oz Btl"
+                  ]
+                }
+              ],
               "baseWindow": "3/1/2026 - 5/31/2026"
             },
             {
@@ -126066,27 +126251,27 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "modelo_especial",
               "label": "Modelo Especial",
-              "buyers": 7,
+              "buyers": 8,
               "goal": 10,
-              "pct": 70.0,
+              "pct": 80.0,
               "retained": false,
-              "toGo": 3,
+              "toGo": 2,
               "emptyPickups": 0,
               "accounts": [
                 {
-                  "customer": "Fiesta (A)",
-                  "num": "35009",
+                  "customer": "Colonial Bar",
+                  "num": "45005",
                   "units": null,
-                  "lastDate": "2026-09-10",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2808 Modelo Especial 1/24/12 oz Loose Btl"
                   ]
                 },
                 {
-                  "customer": "Colonial Bar",
-                  "num": "45005",
+                  "customer": "Fiesta (A)",
+                  "num": "35009",
                   "units": null,
-                  "lastDate": "2026-09-03",
+                  "lastDate": "2026-09-10",
                   "products": [
                     "2808 Modelo Especial 1/24/12 oz Loose Btl"
                   ]
@@ -126128,6 +126313,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "JJ's Pub",
+                  "num": "81017",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "B R C Catering (P)",
                   "num": "81018",
                   "units": null,
@@ -126164,11 +126358,11 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "goalsTotal": 7,
           "goalsRetained": 0,
-          "buyers": 21,
-          "held": 21,
+          "buyers": 23,
+          "held": 23,
           "goal": 62,
-          "pct": 33.9,
-          "toGo": 41,
+          "pct": 37.1,
+          "toGo": 39,
           "emptyPickups": 0
         },
         "on_draft": {
@@ -126241,10 +126435,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 14,
         "goalsRetained": 0,
-        "overallHeld": 479,
+        "overallHeld": 520,
         "overallGoal": 849,
-        "overallPct": 56.4,
-        "overallToGo": 370,
+        "overallPct": 61.2,
+        "overallToGo": 329,
         "hasAnyGoal": true
       },
       "Dan Lagala": {
@@ -126322,51 +126516,51 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 163,
+            "placements": 172,
             "goal": 206,
-            "pct": 79.1,
+            "pct": 83.5,
             "retained": false,
-            "toGo": 43,
+            "toGo": 34,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 24,
+                "placements": 26,
                 "base": 35,
                 "goal": 35,
-                "pct": 68.6,
+                "pct": 74.3,
                 "retained": false,
-                "toGo": 11,
+                "toGo": 9,
                 "lost": false
               },
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 32,
+                "placements": 34,
                 "base": 42,
                 "goal": 42,
-                "pct": 76.2,
-                "retained": false,
-                "toGo": 10,
-                "lost": false
-              },
-              {
-                "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 33,
-                "base": 41,
-                "goal": 41,
-                "pct": 80.5,
+                "pct": 81.0,
                 "retained": false,
                 "toGo": 8,
                 "lost": false
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 19,
+                "placements": 20,
                 "base": 27,
                 "goal": 27,
-                "pct": 70.4,
+                "pct": 74.1,
                 "retained": false,
-                "toGo": 8,
+                "toGo": 7,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 2/12/12 oz Can",
+                "placements": 35,
+                "base": 41,
+                "goal": 41,
+                "pct": 85.4,
+                "retained": false,
+                "toGo": 6,
                 "lost": false
               },
               {
@@ -126381,20 +126575,20 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 7,
+                "placements": 8,
                 "base": 10,
                 "goal": 10,
-                "pct": 70.0,
+                "pct": 80.0,
                 "retained": false,
-                "toGo": 3,
+                "toGo": 2,
                 "lost": false
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
-                "placements": 10,
+                "placements": 11,
                 "base": 9,
                 "goal": 9,
-                "pct": 111.1,
+                "pct": 122.2,
                 "retained": true,
                 "toGo": 0,
                 "lost": false
@@ -126412,41 +126606,31 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 148,
+            "placements": 160,
             "goal": 206,
-            "pct": 71.8,
+            "pct": 77.7,
             "retained": false,
-            "toGo": 58,
+            "toGo": 46,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 12,
+                "placements": 15,
                 "base": 26,
                 "goal": 26,
-                "pct": 46.2,
+                "pct": 57.7,
                 "retained": false,
-                "toGo": 14,
+                "toGo": 11,
                 "lost": false
               },
               {
                 "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 9,
+                "placements": 11,
                 "base": 21,
                 "goal": 21,
-                "pct": 42.9,
+                "pct": 52.4,
                 "retained": false,
-                "toGo": 12,
-                "lost": false
-              },
-              {
-                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 29,
-                "base": 36,
-                "goal": 36,
-                "pct": 80.6,
-                "retained": false,
-                "toGo": 7,
+                "toGo": 10,
                 "lost": false
               },
               {
@@ -126460,21 +126644,21 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 20,
-                "base": 25,
-                "goal": 25,
-                "pct": 80.0,
+                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
+                "placements": 31,
+                "base": 36,
+                "goal": 36,
+                "pct": 86.1,
                 "retained": false,
                 "toGo": 5,
                 "lost": false
               },
               {
-                "product": "Pacifico 2/12/12 oz Btl",
-                "placements": 1,
-                "base": 5,
-                "goal": 5,
-                "pct": 20.0,
+                "product": "Modelo Especial 1/12/32 oz Btl",
+                "placements": 21,
+                "base": 25,
+                "goal": 25,
+                "pct": 84.0,
                 "retained": false,
                 "toGo": 4,
                 "lost": false
@@ -126500,11 +126684,11 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Corona Premier 1/24/12 oz Loose Can",
-                "placements": 1,
-                "base": 3,
-                "goal": 3,
-                "pct": 33.3,
+                "product": "Pacifico 2/12/12 oz Btl",
+                "placements": 3,
+                "base": 5,
+                "goal": 5,
+                "pct": 60.0,
                 "retained": false,
                 "toGo": 2,
                 "lost": false
@@ -126540,7 +126724,7 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Victoria 2/12/12 oz Btl",
+                "product": "Corona Premier 1/24/12 oz Loose Can",
                 "placements": 2,
                 "base": 3,
                 "goal": 3,
@@ -126550,11 +126734,11 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Oro 2/12/12 oz Can",
-                "placements": 1,
-                "base": 2,
-                "goal": 2,
-                "pct": 50.0,
+                "product": "Victoria 2/12/12 oz Btl",
+                "placements": 2,
+                "base": 3,
+                "goal": 3,
+                "pct": 66.7,
                 "retained": false,
                 "toGo": 1,
                 "lost": false
@@ -126588,25 +126772,35 @@ const PROGRAM_DATA_2026_09 = {
                 "retained": true,
                 "toGo": 0,
                 "lost": false
+              },
+              {
+                "product": "Modelo Oro 2/12/12 oz Can",
+                "placements": 2,
+                "base": 2,
+                "goal": 2,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
             "goalOverride": false,
             "baseGoal": 206,
             "skusTotal": 17,
-            "skusHeld": 3,
+            "skusHeld": 4,
             "skusLost": 0,
-            "skusShort": 14,
+            "skusShort": 13,
             "skusNew": 0
           },
           {
             "key": "innovation",
             "label": "Innovation",
-            "placements": 22,
+            "placements": 23,
             "goal": 130,
-            "pct": 16.9,
+            "pct": 17.7,
             "retained": false,
-            "toGo": 108,
+            "toGo": 107,
             "inReport": true,
             "products": [
               {
@@ -126640,16 +126834,6 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 5,
-                "base": 16,
-                "goal": 16,
-                "pct": 31.2,
-                "retained": false,
-                "toGo": 11,
-                "lost": false
-              },
-              {
                 "product": "Corona Sunbrew 1/12/24 oz Can",
                 "placements": 0,
                 "base": 11,
@@ -126658,6 +126842,16 @@ const PROGRAM_DATA_2026_09 = {
                 "retained": false,
                 "toGo": 11,
                 "lost": true
+              },
+              {
+                "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
+                "placements": 6,
+                "base": 16,
+                "goal": 16,
+                "pct": 37.5,
+                "retained": false,
+                "toGo": 10,
+                "lost": false
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Btl",
@@ -126713,20 +126907,20 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 406,
+        "offPlacements": 428,
         "offGoal": 668,
-        "offPct": 60.8,
-        "offToGo": 262,
+        "offPct": 64.1,
+        "offToGo": 240,
         "on_packages": {
           "families": [
             {
               "key": "corona_extra",
               "label": "Corona Extra",
-              "buyers": 18,
+              "buyers": 19,
               "goal": 43,
-              "pct": 41.9,
+              "pct": 44.2,
               "retained": false,
-              "toGo": 25,
+              "toGo": 24,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -126734,6 +126928,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "44017",
                   "units": null,
                   "lastDate": "2026-09-15",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "O'Malleys Pub LLC DBA Blackbird Pub",
+                  "num": "44035",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -126752,15 +126955,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "44012",
                   "units": null,
                   "lastDate": "2026-09-11",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "O'Malleys Pub LLC DBA Blackbird Pub",
-                  "num": "44035",
-                  "units": null,
-                  "lastDate": "2026-09-10",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -126798,6 +126992,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "49072",
                   "units": null,
                   "lastDate": "2026-09-18",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Raku Izakaya (Z)",
+                  "num": "49076",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -126848,6 +127051,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Sedona Tap House",
+                  "num": "44047",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Rock 21",
                   "num": "46006",
                   "units": null,
@@ -126875,15 +127087,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Raku Izakaya (Z)",
-                  "num": "49076",
-                  "units": null,
-                  "lastDate": "2026-09-03",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Brownstone Pancake Factor",
                   "num": "53001",
                   "units": null,
@@ -126898,13 +127101,22 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_light",
               "label": "Corona Light",
-              "buyers": 1,
+              "buyers": 2,
               "goal": 12,
-              "pct": 8.3,
+              "pct": 16.7,
               "retained": false,
-              "toGo": 11,
+              "toGo": 10,
               "emptyPickups": 0,
               "accounts": [
+                {
+                  "customer": "Sedona Tap House",
+                  "num": "44047",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2510 Corona Light 4/6/12 oz Btl"
+                  ]
+                },
                 {
                   "customer": "In Napoli (A)",
                   "num": "49034",
@@ -127012,6 +127224,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "O'Malleys Pub LLC DBA Blackbird Pub",
+                  "num": "44035",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "El Tio Taco Ii",
                   "num": "43029",
                   "units": null,
@@ -127022,10 +127243,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "O'Malleys Pub LLC DBA Blackbird Pub",
-                  "num": "44035",
+                  "customer": "Sedona Tap House",
+                  "num": "44047",
                   "units": null,
-                  "lastDate": "2026-09-10",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -127053,15 +127274,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "44043",
                   "units": null,
                   "lastDate": "2026-09-09",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Sedona Tap House",
-                  "num": "44047",
-                  "units": null,
-                  "lastDate": "2026-09-10",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -127111,11 +127323,11 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "goalsTotal": 7,
           "goalsRetained": 0,
-          "buyers": 33,
-          "held": 33,
+          "buyers": 35,
+          "held": 35,
           "goal": 116,
-          "pct": 28.4,
-          "toGo": 83,
+          "pct": 30.2,
+          "toGo": 81,
           "emptyPickups": 0
         },
         "on_draft": {
@@ -127178,10 +127390,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 14,
         "goalsRetained": 0,
-        "overallHeld": 440,
+        "overallHeld": 464,
         "overallGoal": 791,
-        "overallPct": 55.6,
-        "overallToGo": 351,
+        "overallPct": 58.7,
+        "overallToGo": 327,
         "hasAnyGoal": true
       },
       "Dave Ehlers": {
@@ -127259,21 +127471,21 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 162,
+            "placements": 164,
             "goal": 176,
-            "pct": 92.0,
+            "pct": 93.2,
             "retained": false,
-            "toGo": 14,
+            "toGo": 12,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 28,
+                "placements": 29,
                 "base": 34,
                 "goal": 34,
-                "pct": 82.4,
+                "pct": 85.3,
                 "retained": false,
-                "toGo": 6,
+                "toGo": 5,
                 "lost": false
               },
               {
@@ -127288,12 +127500,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 26,
+                "placements": 27,
                 "base": 31,
                 "goal": 31,
-                "pct": 83.9,
+                "pct": 87.1,
                 "retained": false,
-                "toGo": 5,
+                "toGo": 4,
                 "lost": false
               },
               {
@@ -127304,16 +127516,6 @@ const PROGRAM_DATA_2026_09 = {
                 "pct": 90.6,
                 "retained": false,
                 "toGo": 3,
-                "lost": false
-              },
-              {
-                "product": "Modelo Especial 1/18/12 oz Can",
-                "placements": 18,
-                "base": 20,
-                "goal": 20,
-                "pct": 90.0,
-                "retained": false,
-                "toGo": 2,
                 "lost": false
               },
               {
@@ -127328,10 +127530,20 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 16,
+                "placements": 15,
                 "base": 17,
                 "goal": 17,
-                "pct": 94.1,
+                "pct": 88.2,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/18/12 oz Can",
+                "placements": 19,
+                "base": 20,
+                "goal": 20,
+                "pct": 95.0,
                 "retained": false,
                 "toGo": 1,
                 "lost": false
@@ -127349,121 +127561,121 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 223,
+            "placements": 233,
             "goal": 250,
-            "pct": 89.2,
+            "pct": 93.2,
             "retained": false,
-            "toGo": 27,
+            "toGo": 17,
             "inReport": true,
             "products": [
               {
                 "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 22,
+                "placements": 24,
                 "base": 31,
                 "goal": 31,
-                "pct": 71.0,
+                "pct": 77.4,
                 "retained": false,
-                "toGo": 9,
+                "toGo": 7,
                 "lost": false
               },
               {
                 "product": "Victoria 2/12/12 oz Btl",
-                "placements": 12,
+                "placements": 13,
                 "base": 20,
                 "goal": 20,
-                "pct": 60.0,
+                "pct": 65.0,
                 "retained": false,
-                "toGo": 8,
+                "toGo": 7,
                 "lost": false
               },
               {
                 "product": "Pacifico 2/12/12 oz Btl",
-                "placements": 6,
+                "placements": 7,
                 "base": 14,
                 "goal": 14,
-                "pct": 42.9,
+                "pct": 50.0,
                 "retained": false,
-                "toGo": 8,
-                "lost": false
-              },
-              {
-                "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 17,
-                "base": 23,
-                "goal": 23,
-                "pct": 73.9,
-                "retained": false,
-                "toGo": 6,
+                "toGo": 7,
                 "lost": false
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
-                "placements": 9,
+                "placements": 10,
                 "base": 15,
                 "goal": 15,
-                "pct": 60.0,
+                "pct": 66.7,
                 "retained": false,
-                "toGo": 6,
+                "toGo": 5,
                 "lost": false
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 23,
+                "placements": 24,
                 "base": 28,
                 "goal": 28,
-                "pct": 82.1,
+                "pct": 85.7,
                 "retained": false,
-                "toGo": 5,
+                "toGo": 4,
                 "lost": false
               },
               {
                 "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 19,
+                "placements": 20,
                 "base": 24,
                 "goal": 24,
-                "pct": 79.2,
+                "pct": 83.3,
                 "retained": false,
-                "toGo": 5,
+                "toGo": 4,
                 "lost": false
               },
               {
                 "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 17,
+                "placements": 18,
                 "base": 22,
                 "goal": 22,
-                "pct": 77.3,
+                "pct": 81.8,
                 "retained": false,
-                "toGo": 5,
+                "toGo": 4,
                 "lost": false
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
-                "placements": 7,
+                "placements": 6,
                 "base": 10,
                 "goal": 10,
-                "pct": 70.0,
+                "pct": 60.0,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Corona Familiar 1/12/32 oz Btl",
+                "placements": 20,
+                "base": 23,
+                "goal": 23,
+                "pct": 87.0,
                 "retained": false,
                 "toGo": 3,
                 "lost": false
               },
               {
                 "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 18,
+                "placements": 17,
                 "base": 20,
                 "goal": 20,
-                "pct": 90.0,
+                "pct": 85.0,
                 "retained": false,
-                "toGo": 2,
+                "toGo": 3,
                 "lost": false
               },
               {
                 "product": "Pacifico 2/12/12 oz Can",
-                "placements": 9,
+                "placements": 8,
                 "base": 11,
                 "goal": 11,
-                "pct": 81.8,
+                "pct": 72.7,
                 "retained": false,
-                "toGo": 2,
+                "toGo": 3,
                 "lost": false
               },
               {
@@ -127497,21 +127709,21 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 15,
-                "base": 7,
-                "goal": 7,
-                "pct": 214.3,
+                "product": "Victoria 1/12/32 oz Btl",
+                "placements": 16,
+                "base": 14,
+                "goal": 14,
+                "pct": 114.3,
                 "retained": true,
                 "toGo": 0,
                 "lost": false
               },
               {
-                "product": "Victoria 1/12/32 oz Btl",
-                "placements": 14,
-                "base": 14,
-                "goal": 14,
-                "pct": 100.0,
+                "product": "Coronita Extra 2/12/7 oz Btl",
+                "placements": 15,
+                "base": 7,
+                "goal": 7,
+                "pct": 214.3,
                 "retained": true,
                 "toGo": 0,
                 "lost": false
@@ -127559,21 +127771,21 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "innovation",
             "label": "Innovation",
-            "placements": 62,
+            "placements": 67,
             "goal": 105,
-            "pct": 59.0,
+            "pct": 63.8,
             "retained": false,
-            "toGo": 43,
+            "toGo": 38,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 7,
+                "placements": 9,
                 "base": 24,
                 "goal": 24,
-                "pct": 29.2,
+                "pct": 37.5,
                 "retained": false,
-                "toGo": 17,
+                "toGo": 15,
                 "lost": false
               },
               {
@@ -127587,16 +127799,6 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 9,
-                "base": 14,
-                "goal": 14,
-                "pct": 64.3,
-                "retained": false,
-                "toGo": 5,
-                "lost": false
-              },
-              {
                 "product": "Corona Sunbrew 2/12/12 oz Btl",
                 "placements": 5,
                 "base": 10,
@@ -127607,13 +127809,23 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 12,
-                "base": 16,
-                "goal": 16,
-                "pct": 75.0,
+                "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
+                "placements": 10,
+                "base": 14,
+                "goal": 14,
+                "pct": 71.4,
                 "retained": false,
                 "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
+                "placements": 13,
+                "base": 16,
+                "goal": 16,
+                "pct": 81.2,
+                "retained": false,
+                "toGo": 3,
                 "lost": false
               },
               {
@@ -127647,21 +127859,21 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Pacifico 1/24/7 oz Btl",
-                "placements": 5,
-                "base": 4,
-                "goal": 4,
-                "pct": 125.0,
+                "product": "Victoria Vicky Mango 1/12/24 oz Can",
+                "placements": 6,
+                "base": 5,
+                "goal": 5,
+                "pct": 120.0,
                 "retained": true,
                 "toGo": 0,
                 "lost": false
               },
               {
-                "product": "Victoria Vicky Mango 1/12/24 oz Can",
+                "product": "Pacifico 1/24/7 oz Btl",
                 "placements": 5,
-                "base": 5,
-                "goal": 5,
-                "pct": 100.0,
+                "base": 4,
+                "goal": 4,
+                "pct": 125.0,
                 "retained": true,
                 "toGo": 0,
                 "lost": false
@@ -127690,10 +127902,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 560,
+        "offPlacements": 577,
         "offGoal": 646,
-        "offPct": 86.7,
-        "offToGo": 86,
+        "offPct": 89.3,
+        "offToGo": 69,
         "on_packages": {
           "families": [
             {
@@ -127743,10 +127955,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 6,
         "goalsRetained": 0,
-        "overallHeld": 560,
+        "overallHeld": 577,
         "overallGoal": 648,
-        "overallPct": 86.4,
-        "overallToGo": 88,
+        "overallPct": 89.0,
+        "overallToGo": 71,
         "hasAnyGoal": true
       },
       "Derrick Laws": {
@@ -127824,11 +128036,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 128,
+            "placements": 132,
             "goal": 156,
-            "pct": 82.1,
+            "pct": 84.6,
             "retained": false,
-            "toGo": 28,
+            "toGo": 24,
             "inReport": true,
             "products": [
               {
@@ -127842,23 +128054,13 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 24,
-                "base": 29,
-                "goal": 29,
-                "pct": 82.8,
-                "retained": false,
-                "toGo": 5,
-                "lost": false
-              },
-              {
                 "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 22,
+                "placements": 23,
                 "base": 27,
                 "goal": 27,
-                "pct": 81.5,
+                "pct": 85.2,
                 "retained": false,
-                "toGo": 5,
+                "toGo": 4,
                 "lost": false
               },
               {
@@ -127872,13 +128074,23 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": true
               },
               {
-                "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 24,
-                "base": 27,
-                "goal": 27,
-                "pct": 88.9,
+                "product": "Modelo Especial 4/6/12 oz Btl",
+                "placements": 26,
+                "base": 29,
+                "goal": 29,
+                "pct": 89.7,
                 "retained": false,
                 "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/12/24 oz Can",
+                "placements": 25,
+                "base": 27,
+                "goal": 27,
+                "pct": 92.6,
+                "retained": false,
+                "toGo": 2,
                 "lost": false
               },
               {
@@ -127914,39 +128126,29 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 204,
+            "placements": 214,
             "goal": 272,
-            "pct": 75.0,
+            "pct": 78.7,
             "retained": false,
-            "toGo": 68,
+            "toGo": 58,
             "inReport": true,
             "products": [
               {
                 "product": "Victoria 2/12/12 oz Btl",
-                "placements": 6,
+                "placements": 8,
                 "base": 16,
                 "goal": 16,
-                "pct": 37.5,
-                "retained": false,
-                "toGo": 10,
-                "lost": false
-              },
-              {
-                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 16,
-                "base": 24,
-                "goal": 24,
-                "pct": 66.7,
+                "pct": 50.0,
                 "retained": false,
                 "toGo": 8,
                 "lost": false
               },
               {
-                "product": "Victoria 1/12/32 oz Btl",
-                "placements": 10,
-                "base": 17,
-                "goal": 17,
-                "pct": 58.8,
+                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
+                "placements": 17,
+                "base": 24,
+                "goal": 24,
+                "pct": 70.8,
                 "retained": false,
                 "toGo": 7,
                 "lost": false
@@ -127972,13 +128174,13 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 19,
-                "base": 25,
-                "goal": 25,
-                "pct": 76.0,
+                "product": "Victoria 1/12/32 oz Btl",
+                "placements": 12,
+                "base": 17,
+                "goal": 17,
+                "pct": 70.6,
                 "retained": false,
-                "toGo": 6,
+                "toGo": 5,
                 "lost": false
               },
               {
@@ -128002,13 +128204,23 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 20,
-                "base": 24,
-                "goal": 24,
-                "pct": 83.3,
+                "product": "Corona Familiar 1/12/32 oz Btl",
+                "placements": 21,
+                "base": 25,
+                "goal": 25,
+                "pct": 84.0,
                 "retained": false,
                 "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/12/32 oz Btl",
+                "placements": 21,
+                "base": 24,
+                "goal": 24,
+                "pct": 87.5,
+                "retained": false,
+                "toGo": 3,
                 "lost": false
               },
               {
@@ -128052,16 +128264,6 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Pacifico 2/12/12 oz Btl",
-                "placements": 4,
-                "base": 5,
-                "goal": 5,
-                "pct": 80.0,
-                "retained": false,
-                "toGo": 1,
-                "lost": false
-              },
-              {
                 "product": "Corona Light 1/24/12 oz Loose Can",
                 "placements": 0,
                 "base": 1,
@@ -128093,10 +128295,20 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 15,
+                "placements": 16,
                 "base": 13,
                 "goal": 13,
-                "pct": 115.4,
+                "pct": 123.1,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Pacifico 2/12/12 oz Btl",
+                "placements": 5,
+                "base": 5,
+                "goal": 5,
+                "pct": 100.0,
                 "retained": true,
                 "toGo": 0,
                 "lost": false
@@ -128106,19 +128318,19 @@ const PROGRAM_DATA_2026_09 = {
             "goalOverride": false,
             "baseGoal": 272,
             "skusTotal": 18,
-            "skusHeld": 2,
+            "skusHeld": 3,
             "skusLost": 2,
-            "skusShort": 16,
+            "skusShort": 15,
             "skusNew": 0
           },
           {
             "key": "innovation",
             "label": "Innovation",
-            "placements": 20,
+            "placements": 25,
             "goal": 91,
-            "pct": 22.0,
+            "pct": 27.5,
             "retained": false,
-            "toGo": 71,
+            "toGo": 66,
             "inReport": true,
             "products": [
               {
@@ -128133,22 +128345,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 1,
+                "placements": 2,
                 "base": 18,
                 "goal": 18,
-                "pct": 5.6,
+                "pct": 11.1,
                 "retained": false,
-                "toGo": 17,
-                "lost": false
-              },
-              {
-                "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 7,
-                "base": 16,
-                "goal": 16,
-                "pct": 43.8,
-                "retained": false,
-                "toGo": 9,
+                "toGo": 16,
                 "lost": false
               },
               {
@@ -128162,13 +128364,23 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": true
               },
               {
-                "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 3,
-                "base": 11,
-                "goal": 11,
-                "pct": 27.3,
+                "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
+                "placements": 8,
+                "base": 16,
+                "goal": 16,
+                "pct": 50.0,
                 "retained": false,
                 "toGo": 8,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 4/6/12 oz Btl",
+                "placements": 5,
+                "base": 11,
+                "goal": 11,
+                "pct": 45.5,
+                "retained": false,
+                "toGo": 6,
                 "lost": false
               },
               {
@@ -128193,12 +128405,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Btl",
-                "placements": 1,
+                "placements": 2,
                 "base": 3,
                 "goal": 3,
-                "pct": 33.3,
+                "pct": 66.7,
                 "retained": false,
-                "toGo": 2,
+                "toGo": 1,
                 "lost": false
               },
               {
@@ -128235,20 +128447,20 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 452,
+        "offPlacements": 471,
         "offGoal": 642,
-        "offPct": 70.4,
-        "offToGo": 190,
+        "offPct": 73.4,
+        "offToGo": 171,
         "on_packages": {
           "families": [
             {
               "key": "corona_extra",
               "label": "Corona Extra",
-              "buyers": 7,
+              "buyers": 8,
               "goal": 13,
-              "pct": 53.8,
+              "pct": 61.5,
               "retained": false,
-              "toGo": 6,
+              "toGo": 5,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -128281,7 +128493,17 @@ const PROGRAM_DATA_2026_09 = {
                   "customer": "Mexico Bar & Grill",
                   "num": "15069",
                   "units": null,
-                  "lastDate": "2026-09-11",
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2405 Coronita Extra 1/24/7 oz Btl",
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "El Escondite Bar and Restaurant",
+                  "num": "20125",
+                  "units": null,
+                  "lastDate": "2026-09-21",
                   "products": [
                     "2405 Coronita Extra 1/24/7 oz Btl",
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
@@ -128397,11 +128619,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "modelo_especial",
               "label": "Modelo Especial",
-              "buyers": 7,
+              "buyers": 8,
               "goal": 11,
-              "pct": 63.6,
+              "pct": 72.7,
               "retained": false,
-              "toGo": 4,
+              "toGo": 3,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -128433,7 +128655,7 @@ const PROGRAM_DATA_2026_09 = {
                   "customer": "Mexico Bar & Grill",
                   "num": "15069",
                   "units": null,
-                  "lastDate": "2026-09-11",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2808 Modelo Especial 1/24/12 oz Loose Btl"
                   ]
@@ -128452,6 +128674,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "20028",
                   "units": null,
                   "lastDate": "2026-09-04",
+                  "products": [
+                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "El Escondite Bar and Restaurant",
+                  "num": "20125",
+                  "units": null,
+                  "lastDate": "2026-09-21",
                   "products": [
                     "2808 Modelo Especial 1/24/12 oz Loose Btl"
                   ]
@@ -128523,11 +128754,11 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "goalsTotal": 8,
           "goalsRetained": 0,
-          "buyers": 18,
-          "held": 18,
+          "buyers": 20,
+          "held": 20,
           "goal": 55,
-          "pct": 32.7,
-          "toGo": 37,
+          "pct": 36.4,
+          "toGo": 35,
           "emptyPickups": 0
         },
         "on_draft": {
@@ -128543,10 +128774,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 12,
         "goalsRetained": 0,
-        "overallHeld": 470,
+        "overallHeld": 491,
         "overallGoal": 697,
-        "overallPct": 67.4,
-        "overallToGo": 227,
+        "overallPct": 70.4,
+        "overallToGo": 206,
         "hasAnyGoal": true
       },
       "Dylan Rubino": {
@@ -129289,31 +129520,21 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 129,
+            "placements": 132,
             "goal": 158,
-            "pct": 81.6,
+            "pct": 83.5,
             "retained": false,
-            "toGo": 29,
+            "toGo": 26,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 17,
+                "placements": 18,
                 "base": 24,
                 "goal": 24,
-                "pct": 70.8,
+                "pct": 75.0,
                 "retained": false,
-                "toGo": 7,
-                "lost": false
-              },
-              {
-                "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 21,
-                "base": 26,
-                "goal": 26,
-                "pct": 80.8,
-                "retained": false,
-                "toGo": 5,
+                "toGo": 6,
                 "lost": false
               },
               {
@@ -129337,13 +129558,23 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Especial 4/6/12 oz Btl",
+                "product": "Modelo Especial 2/12/12 oz Can",
                 "placements": 22,
                 "base": 26,
                 "goal": 26,
                 "pct": 84.6,
                 "retained": false,
                 "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 4/6/12 oz Btl",
+                "placements": 23,
+                "base": 26,
+                "goal": 26,
+                "pct": 88.5,
+                "retained": false,
+                "toGo": 3,
                 "lost": false
               },
               {
@@ -129379,33 +129610,13 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 225,
+            "placements": 232,
             "goal": 298,
-            "pct": 75.5,
+            "pct": 77.9,
             "retained": false,
-            "toGo": 73,
+            "toGo": 66,
             "inReport": true,
             "products": [
-              {
-                "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 20,
-                "base": 28,
-                "goal": 28,
-                "pct": 71.4,
-                "retained": false,
-                "toGo": 8,
-                "lost": false
-              },
-              {
-                "product": "Modelo Chelada 2/12/12 oz Can",
-                "placements": 1,
-                "base": 9,
-                "goal": 9,
-                "pct": 11.1,
-                "retained": false,
-                "toGo": 8,
-                "lost": false
-              },
               {
                 "product": "Pacifico 2/12/12 oz Can",
                 "placements": 5,
@@ -129417,21 +129628,21 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 23,
-                "base": 29,
-                "goal": 29,
-                "pct": 79.3,
+                "product": "Modelo Chelada 2/12/12 oz Can",
+                "placements": 2,
+                "base": 9,
+                "goal": 9,
+                "pct": 22.2,
                 "retained": false,
-                "toGo": 6,
+                "toGo": 7,
                 "lost": false
               },
               {
-                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 17,
-                "base": 23,
-                "goal": 23,
-                "pct": 73.9,
+                "product": "Corona Extra 1/12/24 oz Can",
+                "placements": 22,
+                "base": 28,
+                "goal": 28,
+                "pct": 78.6,
                 "retained": false,
                 "toGo": 6,
                 "lost": false
@@ -129444,6 +129655,16 @@ const PROGRAM_DATA_2026_09 = {
                 "pct": 60.0,
                 "retained": false,
                 "toGo": 6,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
+                "placements": 24,
+                "base": 29,
+                "goal": 29,
+                "pct": 82.8,
+                "retained": false,
+                "toGo": 5,
                 "lost": false
               },
               {
@@ -129477,6 +129698,16 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
+                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
+                "placements": 19,
+                "base": 23,
+                "goal": 23,
+                "pct": 82.6,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
+              },
+              {
                 "product": "Victoria 1/12/32 oz Btl",
                 "placements": 15,
                 "base": 19,
@@ -129498,12 +129729,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 17,
+                "placements": 18,
                 "base": 20,
                 "goal": 20,
-                "pct": 85.0,
+                "pct": 90.0,
                 "retained": false,
-                "toGo": 3,
+                "toGo": 2,
                 "lost": false
               },
               {
@@ -129569,11 +129800,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "innovation",
             "label": "Innovation",
-            "placements": 33,
+            "placements": 38,
             "goal": 84,
-            "pct": 39.3,
+            "pct": 45.2,
             "retained": false,
-            "toGo": 51,
+            "toGo": 46,
             "inReport": true,
             "products": [
               {
@@ -129588,32 +129819,32 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 6,
+                "placements": 7,
                 "base": 18,
                 "goal": 18,
-                "pct": 33.3,
+                "pct": 38.9,
                 "retained": false,
-                "toGo": 12,
+                "toGo": 11,
                 "lost": false
               },
               {
                 "product": "Victoria Vicky Mango 1/12/24 oz Can",
-                "placements": 6,
+                "placements": 8,
                 "base": 15,
                 "goal": 15,
-                "pct": 40.0,
+                "pct": 53.3,
                 "retained": false,
-                "toGo": 9,
+                "toGo": 7,
                 "lost": false
               },
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 3,
+                "placements": 5,
                 "base": 12,
                 "goal": 12,
-                "pct": 25.0,
+                "pct": 41.7,
                 "retained": false,
-                "toGo": 9,
+                "toGo": 7,
                 "lost": false
               },
               {
@@ -129690,10 +129921,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 469,
+        "offPlacements": 484,
         "offGoal": 657,
-        "offPct": 71.4,
-        "offToGo": 188,
+        "offPct": 73.7,
+        "offToGo": 173,
         "on_packages": {
           "families": [
             {
@@ -129726,7 +129957,7 @@ const PROGRAM_DATA_2026_09 = {
                   "customer": "Seguidilla 56 Lounge & Liquors",
                   "num": "20061",
                   "units": null,
-                  "lastDate": "2026-09-10",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2405 Coronita Extra 1/24/7 oz Btl",
                     "2409 Corona Extra 1/24/12 oz Loose Btl",
@@ -129737,11 +129968,31 @@ const PROGRAM_DATA_2026_09 = {
                   "customer": "Roses Bar & Liquors",
                   "num": "20104",
                   "units": null,
-                  "lastDate": "2026-09-11",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2404 Coronita Extra 4/6/7 oz Btl",
                     "2407 Corona Extra 2/12/12 oz Can",
                     "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "La Fortaleza (Carlstadt)",
+                  "num": "32011",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2405 Coronita Extra 1/24/7 oz Btl",
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "La Fortaleza (Garfield)",
+                  "num": "37066",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2405 Coronita Extra 1/24/7 oz Btl",
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
                 },
                 {
@@ -129774,6 +130025,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Los Arcos (P) Rest.",
+                  "num": "27108",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
                   "customer": "Mambo Lounge (P)",
                   "num": "22065",
                   "units": null,
@@ -129787,6 +130047,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "24051",
                   "units": null,
                   "lastDate": "2026-09-18",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Club Sq (A)",
+                  "num": "27095",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
@@ -129807,35 +130076,6 @@ const PROGRAM_DATA_2026_09 = {
                   "units": null,
                   "lastDate": "2026-09-18",
                   "products": [
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Los Arcos (P) Rest.",
-                  "num": "27108",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "La Fortaleza (Carlstadt)",
-                  "num": "32011",
-                  "units": null,
-                  "lastDate": "2026-09-02",
-                  "products": [
-                    "2405 Coronita Extra 1/24/7 oz Btl",
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "La Fortaleza (Garfield)",
-                  "num": "37066",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2405 Coronita Extra 1/24/7 oz Btl",
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
                 },
@@ -129907,15 +130147,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "27085",
                   "units": null,
                   "lastDate": "2026-09-09",
-                  "products": [
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Club Sq (A)",
-                  "num": "27095",
-                  "units": null,
-                  "lastDate": "2026-09-10",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
@@ -130028,13 +130259,23 @@ const PROGRAM_DATA_2026_09 = {
                   "customer": "Seguidilla 56 Lounge & Liquors",
                   "num": "20061",
                   "units": null,
-                  "lastDate": "2026-09-10",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2807 Modelito Especial 1/24/7 oz Loose Btl",
                     "2808 Modelo Especial 1/24/12 oz Loose Btl",
                     "2809 Modelo Especial 1/24/12 oz Loose Can",
                     "2816 Modelo Especial 1/12/24 oz Can",
                     "2817 Modelo Especial 1/12/32 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Roses Bar & Liquors",
+                  "num": "20104",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2811 Modelo Especial 2/12/12 oz Can",
+                    "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -130069,12 +130310,20 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Roses Bar & Liquors",
-                  "num": "20104",
+                  "customer": "Los Arcos (P) Rest.",
+                  "num": "27108",
                   "units": null,
-                  "lastDate": "2026-09-11",
+                  "lastDate": "2026-09-17",
                   "products": [
-                    "2811 Modelo Especial 2/12/12 oz Can",
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "La Fortaleza (Garfield)",
+                  "num": "37066",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
                 },
@@ -130107,6 +130356,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Club Sq (A)",
+                  "num": "27095",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
                   "customer": "La Posada",
                   "num": "27106",
                   "units": null,
@@ -130116,19 +130374,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Los Arcos (P) Rest.",
-                  "num": "27108",
+                  "customer": "La Fortaleza (Carlstadt)",
+                  "num": "32011",
                   "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "La Fortaleza (Garfield)",
-                  "num": "37066",
-                  "units": null,
-                  "lastDate": "2026-09-10",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -130206,15 +130455,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Club Sq (A)",
-                  "num": "27095",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
                   "customer": "Fragancia Sports Bar",
                   "num": "27102",
                   "units": null,
@@ -130240,15 +130480,6 @@ const PROGRAM_DATA_2026_09 = {
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
-                },
-                {
-                  "customer": "La Fortaleza (Carlstadt)",
-                  "num": "32011",
-                  "units": null,
-                  "lastDate": "2026-09-02",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
                 }
               ],
               "baseWindow": "3/1/2026 - 5/31/2026"
@@ -130268,13 +130499,22 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "pacifico",
               "label": "Pacifico",
-              "buyers": 8,
+              "buyers": 9,
               "goal": 19,
-              "pct": 42.1,
+              "pct": 47.4,
               "retained": false,
-              "toGo": 11,
+              "toGo": 10,
               "emptyPickups": 0,
               "accounts": [
+                {
+                  "customer": "Los Arcos (P) Rest.",
+                  "num": "27108",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2610 Pacifico 4/6/12 oz Btl"
+                  ]
+                },
                 {
                   "customer": "Paruta's (A)",
                   "num": "20055",
@@ -130290,15 +130530,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "27106",
                   "units": null,
                   "lastDate": "2026-09-18",
-                  "products": [
-                    "2610 Pacifico 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Los Arcos (P) Rest.",
-                  "num": "27108",
-                  "units": null,
-                  "lastDate": "2026-09-10",
                   "products": [
                     "2610 Pacifico 4/6/12 oz Btl"
                   ]
@@ -130331,6 +130562,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "La Fortaleza (Carlstadt)",
+                  "num": "32011",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2610 Pacifico 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "La Fortaleza (Garfield)",
                   "num": "37066",
                   "units": null,
@@ -130354,11 +130594,11 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "goalsTotal": 8,
           "goalsRetained": 0,
-          "buyers": 58,
-          "held": 58,
+          "buyers": 59,
+          "held": 59,
           "goal": 126,
-          "pct": 46.0,
-          "toGo": 68,
+          "pct": 46.8,
+          "toGo": 67,
           "emptyPickups": 0
         },
         "on_draft": {
@@ -130399,10 +130639,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 14,
         "goalsRetained": 0,
-        "overallHeld": 527,
+        "overallHeld": 543,
         "overallGoal": 785,
-        "overallPct": 67.1,
-        "overallToGo": 258,
+        "overallPct": 69.2,
+        "overallToGo": 242,
         "hasAnyGoal": true
       },
       "Jayson Romine": {
@@ -130480,71 +130720,71 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 87,
+            "placements": 100,
             "goal": 136,
-            "pct": 64.0,
+            "pct": 73.5,
             "retained": false,
-            "toGo": 49,
+            "toGo": 36,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 18,
+                "placements": 21,
                 "base": 31,
                 "goal": 31,
-                "pct": 58.1,
-                "retained": false,
-                "toGo": 13,
-                "lost": false
-              },
-              {
-                "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 15,
-                "base": 27,
-                "goal": 27,
-                "pct": 55.6,
-                "retained": false,
-                "toGo": 12,
-                "lost": false
-              },
-              {
-                "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 18,
-                "base": 28,
-                "goal": 28,
-                "pct": 64.3,
+                "pct": 67.7,
                 "retained": false,
                 "toGo": 10,
                 "lost": false
               },
               {
+                "product": "Modelo Especial 1/12/24 oz Can",
+                "placements": 17,
+                "base": 27,
+                "goal": 27,
+                "pct": 63.0,
+                "retained": false,
+                "toGo": 10,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 2/12/12 oz Can",
+                "placements": 22,
+                "base": 28,
+                "goal": 28,
+                "pct": 78.6,
+                "retained": false,
+                "toGo": 6,
+                "lost": false
+              },
+              {
                 "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 16,
+                "placements": 18,
                 "base": 23,
                 "goal": 23,
-                "pct": 69.6,
+                "pct": 78.3,
                 "retained": false,
-                "toGo": 7,
+                "toGo": 5,
                 "lost": false
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 4,
+                "placements": 5,
                 "base": 8,
                 "goal": 8,
-                "pct": 50.0,
+                "pct": 62.5,
                 "retained": false,
-                "toGo": 4,
+                "toGo": 3,
                 "lost": false
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 12,
+                "placements": 13,
                 "base": 14,
                 "goal": 14,
-                "pct": 85.7,
+                "pct": 92.9,
                 "retained": false,
-                "toGo": 2,
+                "toGo": 1,
                 "lost": false
               },
               {
@@ -130570,25 +130810,15 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 74,
+            "placements": 83,
             "goal": 144,
-            "pct": 51.4,
+            "pct": 57.6,
             "retained": false,
-            "toGo": 70,
+            "toGo": 61,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 12,
-                "base": 24,
-                "goal": 24,
-                "pct": 50.0,
-                "retained": false,
-                "toGo": 12,
-                "lost": false
-              },
-              {
-                "product": "Corona Extra 1/12/24 oz Can",
                 "placements": 13,
                 "base": 24,
                 "goal": 24,
@@ -130598,11 +130828,11 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Corona Light 1/24/12 oz Loose Btl",
-                "placements": 5,
-                "base": 13,
-                "goal": 13,
-                "pct": 38.5,
+                "product": "Corona Extra 1/12/24 oz Can",
+                "placements": 16,
+                "base": 24,
+                "goal": 24,
+                "pct": 66.7,
                 "retained": false,
                 "toGo": 8,
                 "lost": false
@@ -130628,11 +130858,11 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Pacifico 2/12/12 oz Can",
-                "placements": 7,
-                "base": 12,
-                "goal": 12,
-                "pct": 58.3,
+                "product": "Corona Light 1/24/12 oz Loose Btl",
+                "placements": 8,
+                "base": 13,
+                "goal": 13,
+                "pct": 61.5,
                 "retained": false,
                 "toGo": 5,
                 "lost": false
@@ -130645,6 +130875,16 @@ const PROGRAM_DATA_2026_09 = {
                 "pct": 37.5,
                 "retained": false,
                 "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Pacifico 2/12/12 oz Can",
+                "placements": 8,
+                "base": 12,
+                "goal": 12,
+                "pct": 66.7,
+                "retained": false,
+                "toGo": 4,
                 "lost": false
               },
               {
@@ -130728,6 +130968,16 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
+                "product": "Corona Premier 1/24/12 oz Loose Can",
+                "placements": 2,
+                "base": 1,
+                "goal": 1,
+                "pct": 200.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
                 "product": "Coronita Extra 2/12/7 oz Btl",
                 "placements": 2,
                 "base": 2,
@@ -130743,16 +130993,6 @@ const PROGRAM_DATA_2026_09 = {
                 "base": 1,
                 "goal": 1,
                 "pct": 200.0,
-                "retained": true,
-                "toGo": 0,
-                "lost": false
-              },
-              {
-                "product": "Corona Premier 1/24/12 oz Loose Can",
-                "placements": 1,
-                "base": 1,
-                "goal": 1,
-                "pct": 100.0,
                 "retained": true,
                 "toGo": 0,
                 "lost": false
@@ -130780,31 +131020,31 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "innovation",
             "label": "Innovation",
-            "placements": 14,
+            "placements": 18,
             "goal": 69,
-            "pct": 20.3,
+            "pct": 26.1,
             "retained": false,
-            "toGo": 55,
+            "toGo": 51,
             "inReport": true,
             "products": [
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 4,
+                "placements": 5,
                 "base": 24,
                 "goal": 24,
-                "pct": 16.7,
+                "pct": 20.8,
                 "retained": false,
-                "toGo": 20,
+                "toGo": 19,
                 "lost": false
               },
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 7,
+                "placements": 8,
                 "base": 19,
                 "goal": 19,
-                "pct": 36.8,
+                "pct": 42.1,
                 "retained": false,
-                "toGo": 12,
+                "toGo": 11,
                 "lost": false
               },
               {
@@ -130819,12 +131059,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Btl",
-                "placements": 1,
+                "placements": 2,
                 "base": 6,
                 "goal": 6,
-                "pct": 16.7,
+                "pct": 33.3,
                 "retained": false,
-                "toGo": 5,
+                "toGo": 4,
                 "lost": false
               },
               {
@@ -130876,6 +131116,16 @@ const PROGRAM_DATA_2026_09 = {
                 "retained": false,
                 "toGo": 1,
                 "lost": true
+              },
+              {
+                "product": "Corona Sunbrew 1/12/24 oz Can",
+                "placements": 1,
+                "base": 0,
+                "goal": null,
+                "pct": null,
+                "retained": false,
+                "toGo": 0,
+                "lost": false
               }
             ],
             "baseWindow": "3/1/2026 - 5/31/2026",
@@ -130885,16 +131135,16 @@ const PROGRAM_DATA_2026_09 = {
             "skusHeld": 0,
             "skusLost": 5,
             "skusShort": 9,
-            "skusNew": 0
+            "skusNew": 1
           }
         ],
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 235,
+        "offPlacements": 261,
         "offGoal": 443,
-        "offPct": 53.0,
-        "offToGo": 208,
+        "offPct": 58.9,
+        "offToGo": 182,
         "on_packages": {
           "families": [],
           "goalsTotal": 0,
@@ -130919,10 +131169,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 4,
         "goalsRetained": 0,
-        "overallHeld": 235,
+        "overallHeld": 261,
         "overallGoal": 443,
-        "overallPct": 53.0,
-        "overallToGo": 208,
+        "overallPct": 58.9,
+        "overallToGo": 182,
         "hasAnyGoal": true
       },
       "Jim Heaney": {
@@ -131000,29 +131250,19 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 151,
+            "placements": 159,
             "goal": 233,
-            "pct": 64.8,
+            "pct": 68.2,
             "retained": false,
-            "toGo": 82,
+            "toGo": 74,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 25,
+                "placements": 27,
                 "base": 41,
                 "goal": 41,
-                "pct": 61.0,
-                "retained": false,
-                "toGo": 16,
-                "lost": false
-              },
-              {
-                "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 28,
-                "base": 42,
-                "goal": 42,
-                "pct": 66.7,
+                "pct": 65.9,
                 "retained": false,
                 "toGo": 14,
                 "lost": false
@@ -131038,23 +131278,33 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 31,
-                "base": 43,
-                "goal": 43,
-                "pct": 72.1,
+                "product": "Modelo Especial 2/12/12 oz Btl",
+                "placements": 30,
+                "base": 42,
+                "goal": 42,
+                "pct": 71.4,
                 "retained": false,
                 "toGo": 12,
                 "lost": false
               },
               {
+                "product": "Modelo Especial 4/6/12 oz Btl",
+                "placements": 32,
+                "base": 43,
+                "goal": 43,
+                "pct": 74.4,
+                "retained": false,
+                "toGo": 11,
+                "lost": false
+              },
+              {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 14,
+                "placements": 16,
                 "base": 26,
                 "goal": 26,
-                "pct": 53.8,
+                "pct": 61.5,
                 "retained": false,
-                "toGo": 12,
+                "toGo": 10,
                 "lost": false
               },
               {
@@ -131069,12 +131319,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 35,
+                "placements": 36,
                 "base": 41,
                 "goal": 41,
-                "pct": 85.4,
+                "pct": 87.8,
                 "retained": false,
-                "toGo": 6,
+                "toGo": 5,
                 "lost": false
               }
             ],
@@ -131090,21 +131340,21 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 249,
+            "placements": 263,
             "goal": 393,
-            "pct": 63.4,
+            "pct": 66.9,
             "retained": false,
-            "toGo": 144,
+            "toGo": 130,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 13,
+                "placements": 14,
                 "base": 31,
                 "goal": 31,
-                "pct": 41.9,
+                "pct": 45.2,
                 "retained": false,
-                "toGo": 18,
+                "toGo": 17,
                 "lost": false
               },
               {
@@ -131119,40 +131369,20 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 27,
+                "placements": 28,
                 "base": 39,
                 "goal": 39,
-                "pct": 69.2,
-                "retained": false,
-                "toGo": 12,
-                "lost": false
-              },
-              {
-                "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 21,
-                "base": 32,
-                "goal": 32,
-                "pct": 65.6,
+                "pct": 71.8,
                 "retained": false,
                 "toGo": 11,
                 "lost": false
               },
               {
-                "product": "Victoria 1/12/32 oz Btl",
-                "placements": 12,
-                "base": 23,
-                "goal": 23,
-                "pct": 52.2,
-                "retained": false,
-                "toGo": 11,
-                "lost": false
-              },
-              {
-                "product": "Victoria 2/12/12 oz Can",
-                "placements": 8,
-                "base": 19,
-                "goal": 19,
-                "pct": 42.1,
+                "product": "Modelo Negra 2/12/12 oz Btl",
+                "placements": 10,
+                "base": 21,
+                "goal": 21,
+                "pct": 47.6,
                 "retained": false,
                 "toGo": 11,
                 "lost": false
@@ -131168,21 +131398,11 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 21,
-                "base": 31,
-                "goal": 31,
-                "pct": 67.7,
-                "retained": false,
-                "toGo": 10,
-                "lost": false
-              },
-              {
-                "product": "Modelo Negra 2/12/12 oz Btl",
-                "placements": 11,
-                "base": 21,
-                "goal": 21,
-                "pct": 52.4,
+                "product": "Victoria 1/12/32 oz Btl",
+                "placements": 13,
+                "base": 23,
+                "goal": 23,
+                "pct": 56.5,
                 "retained": false,
                 "toGo": 10,
                 "lost": false
@@ -131198,33 +131418,53 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
+                "product": "Victoria 2/12/12 oz Can",
+                "placements": 10,
+                "base": 19,
+                "goal": 19,
+                "pct": 52.6,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/12/32 oz Btl",
+                "placements": 24,
+                "base": 32,
+                "goal": 32,
+                "pct": 75.0,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
+              },
+              {
+                "product": "Corona Familiar 1/12/32 oz Btl",
+                "placements": 23,
+                "base": 31,
+                "goal": 31,
+                "pct": 74.2,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
+              },
+              {
                 "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 19,
+                "placements": 21,
                 "base": 26,
                 "goal": 26,
-                "pct": 73.1,
+                "pct": 80.8,
                 "retained": false,
-                "toGo": 7,
+                "toGo": 5,
                 "lost": false
               },
               {
                 "product": "Pacifico 2/12/12 oz Can",
-                "placements": 16,
+                "placements": 17,
                 "base": 22,
                 "goal": 22,
-                "pct": 72.7,
+                "pct": 77.3,
                 "retained": false,
-                "toGo": 6,
-                "lost": false
-              },
-              {
-                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 19,
-                "base": 23,
-                "goal": 23,
-                "pct": 82.6,
-                "retained": false,
-                "toGo": 4,
+                "toGo": 5,
                 "lost": false
               },
               {
@@ -131235,6 +131475,16 @@ const PROGRAM_DATA_2026_09 = {
                 "pct": 76.5,
                 "retained": false,
                 "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
+                "placements": 20,
+                "base": 23,
+                "goal": 23,
+                "pct": 87.0,
+                "retained": false,
+                "toGo": 3,
                 "lost": false
               },
               {
@@ -131259,12 +131509,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Can",
-                "placements": 2,
+                "placements": 3,
                 "base": 4,
                 "goal": 4,
-                "pct": 50.0,
+                "pct": 75.0,
                 "retained": false,
-                "toGo": 2,
+                "toGo": 1,
                 "lost": false
               },
               {
@@ -131300,31 +131550,31 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "innovation",
             "label": "Innovation",
-            "placements": 31,
+            "placements": 40,
             "goal": 118,
-            "pct": 26.3,
+            "pct": 33.9,
             "retained": false,
-            "toGo": 87,
+            "toGo": 78,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 2,
+                "placements": 3,
                 "base": 24,
                 "goal": 24,
-                "pct": 8.3,
+                "pct": 12.5,
                 "retained": false,
-                "toGo": 22,
+                "toGo": 21,
                 "lost": false
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 7,
+                "placements": 11,
                 "base": 24,
                 "goal": 24,
-                "pct": 29.2,
+                "pct": 45.8,
                 "retained": false,
-                "toGo": 17,
+                "toGo": 13,
                 "lost": false
               },
               {
@@ -131339,12 +131589,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 5,
+                "placements": 6,
                 "base": 17,
                 "goal": 17,
-                "pct": 29.4,
+                "pct": 35.3,
                 "retained": false,
-                "toGo": 12,
+                "toGo": 11,
                 "lost": false
               },
               {
@@ -131388,26 +131638,6 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Victoria Vicky Mango 1/12/24 oz Can",
-                "placements": 2,
-                "base": 4,
-                "goal": 4,
-                "pct": 50.0,
-                "retained": false,
-                "toGo": 2,
-                "lost": false
-              },
-              {
-                "product": "Corona Non-Alcohol 2/12/12 oz Btl",
-                "placements": 0,
-                "base": 1,
-                "goal": 1,
-                "pct": 0.0,
-                "retained": false,
-                "toGo": 1,
-                "lost": true
-              },
-              {
                 "product": "Corona Sunbrew 2/12/12 oz Can",
                 "placements": 0,
                 "base": 1,
@@ -131416,25 +131646,45 @@ const PROGRAM_DATA_2026_09 = {
                 "retained": false,
                 "toGo": 1,
                 "lost": true
+              },
+              {
+                "product": "Victoria Vicky Mango 1/12/24 oz Can",
+                "placements": 4,
+                "base": 4,
+                "goal": 4,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Corona Non-Alcohol 2/12/12 oz Btl",
+                "placements": 1,
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
             "baseWindow": "3/1/2026 - 5/31/2026",
             "goalOverride": false,
             "baseGoal": 118,
             "skusTotal": 11,
-            "skusHeld": 0,
-            "skusLost": 2,
-            "skusShort": 11,
+            "skusHeld": 2,
+            "skusLost": 1,
+            "skusShort": 9,
             "skusNew": 0
           }
         ],
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 508,
+        "offPlacements": 539,
         "offGoal": 892,
-        "offPct": 57.0,
-        "offToGo": 384,
+        "offPct": 60.4,
+        "offToGo": 353,
         "on_packages": {
           "families": [
             {
@@ -131504,10 +131754,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 6,
         "goalsRetained": 2,
-        "overallHeld": 510,
+        "overallHeld": 541,
         "overallGoal": 894,
-        "overallPct": 57.0,
-        "overallToGo": 384,
+        "overallPct": 60.5,
+        "overallToGo": 353,
         "hasAnyGoal": true
       },
       "John O'Donoghue": {
@@ -131845,23 +132095,13 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 124,
+            "placements": 128,
             "goal": 150,
-            "pct": 82.7,
+            "pct": 85.3,
             "retained": false,
-            "toGo": 26,
+            "toGo": 22,
             "inReport": true,
             "products": [
-              {
-                "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 13,
-                "base": 19,
-                "goal": 19,
-                "pct": 68.4,
-                "retained": false,
-                "toGo": 6,
-                "lost": false
-              },
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
                 "placements": 21,
@@ -131873,11 +132113,11 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 21,
-                "base": 26,
-                "goal": 26,
-                "pct": 80.8,
+                "product": "Modelo Especial 1/24/12 oz Loose Can",
+                "placements": 14,
+                "base": 19,
+                "goal": 19,
+                "pct": 73.7,
                 "retained": false,
                 "toGo": 5,
                 "lost": false
@@ -131893,23 +132133,33 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 24,
-                "base": 27,
-                "goal": 27,
-                "pct": 88.9,
+                "product": "Modelo Especial 2/12/12 oz Can",
+                "placements": 22,
+                "base": 26,
+                "goal": 26,
+                "pct": 84.6,
                 "retained": false,
-                "toGo": 3,
+                "toGo": 4,
                 "lost": false
               },
               {
-                "product": "Modelo Especial 2/12/12 oz Btl",
+                "product": "Modelo Especial 4/6/12 oz Btl",
                 "placements": 25,
                 "base": 27,
                 "goal": 27,
                 "pct": 92.6,
                 "retained": false,
                 "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 2/12/12 oz Btl",
+                "placements": 26,
+                "base": 27,
+                "goal": 27,
+                "pct": 96.3,
+                "retained": false,
+                "toGo": 1,
                 "lost": false
               },
               {
@@ -131935,21 +132185,21 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 165,
+            "placements": 170,
             "goal": 212,
-            "pct": 77.8,
+            "pct": 80.2,
             "retained": false,
-            "toGo": 47,
+            "toGo": 42,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 13,
+                "placements": 14,
                 "base": 20,
                 "goal": 20,
-                "pct": 65.0,
+                "pct": 70.0,
                 "retained": false,
-                "toGo": 7,
+                "toGo": 6,
                 "lost": false
               },
               {
@@ -131993,16 +132243,6 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 11,
-                "base": 16,
-                "goal": 16,
-                "pct": 68.8,
-                "retained": false,
-                "toGo": 5,
-                "lost": false
-              },
-              {
                 "product": "Corona Extra 1/12/24 oz Can",
                 "placements": 20,
                 "base": 24,
@@ -132013,21 +132253,11 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Pacifico 2/12/12 oz Can",
-                "placements": 11,
-                "base": 15,
-                "goal": 15,
-                "pct": 73.3,
-                "retained": false,
-                "toGo": 4,
-                "lost": false
-              },
-              {
-                "product": "Victoria 1/12/32 oz Btl",
-                "placements": 5,
-                "base": 9,
-                "goal": 9,
-                "pct": 55.6,
+                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
+                "placements": 12,
+                "base": 16,
+                "goal": 16,
+                "pct": 75.0,
                 "retained": false,
                 "toGo": 4,
                 "lost": false
@@ -132050,6 +132280,26 @@ const PROGRAM_DATA_2026_09 = {
                 "pct": 20.0,
                 "retained": false,
                 "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Pacifico 2/12/12 oz Can",
+                "placements": 12,
+                "base": 15,
+                "goal": 15,
+                "pct": 80.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Victoria 1/12/32 oz Btl",
+                "placements": 6,
+                "base": 9,
+                "goal": 9,
+                "pct": 66.7,
+                "retained": false,
+                "toGo": 3,
                 "lost": false
               },
               {
@@ -132094,10 +132344,10 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 15,
+                "placements": 16,
                 "base": 4,
                 "goal": 4,
-                "pct": 375.0,
+                "pct": 400.0,
                 "retained": true,
                 "toGo": 0,
                 "lost": false
@@ -132145,23 +132395,13 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "innovation",
             "label": "Innovation",
-            "placements": 30,
+            "placements": 34,
             "goal": 106,
-            "pct": 28.3,
+            "pct": 32.1,
             "retained": false,
-            "toGo": 76,
+            "toGo": 72,
             "inReport": true,
             "products": [
-              {
-                "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 5,
-                "base": 21,
-                "goal": 21,
-                "pct": 23.8,
-                "retained": false,
-                "toGo": 16,
-                "lost": false
-              },
               {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
                 "placements": 5,
@@ -132173,13 +132413,23 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
+                "product": "Corona Sunbrew 4/6/12 oz Btl",
+                "placements": 7,
+                "base": 21,
+                "goal": 21,
+                "pct": 33.3,
+                "retained": false,
+                "toGo": 14,
+                "lost": false
+              },
+              {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 6,
+                "placements": 7,
                 "base": 19,
                 "goal": 19,
-                "pct": 31.6,
+                "pct": 36.8,
                 "retained": false,
-                "toGo": 13,
+                "toGo": 12,
                 "lost": false
               },
               {
@@ -132194,12 +132444,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Corona Sunbrew 1/12/24 oz Can",
-                "placements": 2,
+                "placements": 3,
                 "base": 10,
                 "goal": 10,
-                "pct": 20.0,
+                "pct": 30.0,
                 "retained": false,
-                "toGo": 8,
+                "toGo": 7,
                 "lost": false
               },
               {
@@ -132276,10 +132526,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 391,
+        "offPlacements": 404,
         "offGoal": 566,
-        "offPct": 69.1,
-        "offToGo": 175,
+        "offPct": 71.4,
+        "offToGo": 162,
         "on_packages": {
           "families": [
             {
@@ -132296,9 +132546,10 @@ const PROGRAM_DATA_2026_09 = {
                   "customer": "Smith's Tavern",
                   "num": "190702",
                   "units": null,
-                  "lastDate": "2026-09-10",
+                  "lastDate": "2026-09-17",
                   "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
+                    "2410 Corona Extra 4/6/12 oz Btl",
+                    "2415 Corona Extra 1/12/24 oz Can"
                   ]
                 }
               ],
@@ -132318,10 +132569,11 @@ const PROGRAM_DATA_2026_09 = {
                   "customer": "Smith's Tavern",
                   "num": "190702",
                   "units": null,
-                  "lastDate": "2026-09-03",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2811 Modelo Especial 2/12/12 oz Can",
-                    "2814 Modelo Especial 4/6/12 oz Btl"
+                    "2814 Modelo Especial 4/6/12 oz Btl",
+                    "2816 Modelo Especial 1/12/24 oz Can"
                   ]
                 }
               ],
@@ -132350,10 +132602,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 6,
         "goalsRetained": 2,
-        "overallHeld": 393,
+        "overallHeld": 406,
         "overallGoal": 568,
-        "overallPct": 69.2,
-        "overallToGo": 175,
+        "overallPct": 71.5,
+        "overallToGo": 162,
         "hasAnyGoal": true
       },
       "Matt Powierski": {
@@ -132431,41 +132683,21 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 162,
+            "placements": 174,
             "goal": 223,
-            "pct": 72.6,
+            "pct": 78.0,
             "retained": false,
-            "toGo": 61,
+            "toGo": 49,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 16,
+                "placements": 19,
                 "base": 30,
                 "goal": 30,
-                "pct": 53.3,
+                "pct": 63.3,
                 "retained": false,
-                "toGo": 14,
-                "lost": false
-              },
-              {
-                "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 22,
-                "base": 31,
-                "goal": 31,
-                "pct": 71.0,
-                "retained": false,
-                "toGo": 9,
-                "lost": false
-              },
-              {
-                "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 20,
-                "base": 29,
-                "goal": 29,
-                "pct": 69.0,
-                "retained": false,
-                "toGo": 9,
+                "toGo": 11,
                 "lost": false
               },
               {
@@ -132479,33 +132711,53 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 28,
-                "base": 36,
-                "goal": 36,
-                "pct": 77.8,
+                "product": "Modelo Especial 2/12/12 oz Can",
+                "placements": 23,
+                "base": 31,
+                "goal": 31,
+                "pct": 74.2,
                 "retained": false,
                 "toGo": 8,
                 "lost": false
               },
               {
-                "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 28,
-                "base": 35,
-                "goal": 35,
-                "pct": 80.0,
+                "product": "Modelo Especial 1/24/12 oz Loose Can",
+                "placements": 21,
+                "base": 29,
+                "goal": 29,
+                "pct": 72.4,
                 "retained": false,
-                "toGo": 7,
+                "toGo": 8,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 4/6/12 oz Btl",
+                "placements": 31,
+                "base": 36,
+                "goal": 36,
+                "pct": 86.1,
+                "retained": false,
+                "toGo": 5,
                 "lost": false
               },
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 30,
+                "placements": 31,
                 "base": 35,
                 "goal": 35,
-                "pct": 85.7,
+                "pct": 88.6,
                 "retained": false,
-                "toGo": 5,
+                "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 2/12/12 oz Btl",
+                "placements": 31,
+                "base": 35,
+                "goal": 35,
+                "pct": 88.6,
+                "retained": false,
+                "toGo": 4,
                 "lost": false
               }
             ],
@@ -132521,51 +132773,21 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 224,
+            "placements": 247,
             "goal": 344,
-            "pct": 65.1,
+            "pct": 71.8,
             "retained": false,
-            "toGo": 120,
+            "toGo": 97,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
-                "placements": 4,
+                "placements": 5,
                 "base": 19,
                 "goal": 19,
-                "pct": 21.1,
+                "pct": 26.3,
                 "retained": false,
-                "toGo": 15,
-                "lost": false
-              },
-              {
-                "product": "Victoria 2/12/12 oz Can",
-                "placements": 7,
-                "base": 18,
-                "goal": 18,
-                "pct": 38.9,
-                "retained": false,
-                "toGo": 11,
-                "lost": false
-              },
-              {
-                "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 16,
-                "base": 26,
-                "goal": 26,
-                "pct": 61.5,
-                "retained": false,
-                "toGo": 10,
-                "lost": false
-              },
-              {
-                "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 14,
-                "base": 23,
-                "goal": 23,
-                "pct": 60.9,
-                "retained": false,
-                "toGo": 9,
+                "toGo": 14,
                 "lost": false
               },
               {
@@ -132579,13 +132801,13 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 26,
-                "base": 34,
-                "goal": 34,
-                "pct": 76.5,
+                "product": "Victoria 2/12/12 oz Can",
+                "placements": 9,
+                "base": 18,
+                "goal": 18,
+                "pct": 50.0,
                 "retained": false,
-                "toGo": 8,
+                "toGo": 9,
                 "lost": false
               },
               {
@@ -132594,16 +132816,6 @@ const PROGRAM_DATA_2026_09 = {
                 "base": 22,
                 "goal": 22,
                 "pct": 63.6,
-                "retained": false,
-                "toGo": 8,
-                "lost": false
-              },
-              {
-                "product": "Pacifico 2/12/12 oz Can",
-                "placements": 13,
-                "base": 21,
-                "goal": 21,
-                "pct": 61.9,
                 "retained": false,
                 "toGo": 8,
                 "lost": false
@@ -132619,6 +132831,26 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
+                "product": "Modelito Especial 1/24/7 oz Loose Btl",
+                "placements": 19,
+                "base": 26,
+                "goal": 26,
+                "pct": 73.1,
+                "retained": false,
+                "toGo": 7,
+                "lost": false
+              },
+              {
+                "product": "Pacifico 2/12/12 oz Can",
+                "placements": 14,
+                "base": 21,
+                "goal": 21,
+                "pct": 66.7,
+                "retained": false,
+                "toGo": 7,
+                "lost": false
+              },
+              {
                 "product": "Modelo Chelada 2/12/12 oz Can",
                 "placements": 4,
                 "base": 11,
@@ -132629,31 +132861,21 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 26,
-                "base": 32,
-                "goal": 32,
-                "pct": 81.2,
+                "product": "Corona Extra 1/12/24 oz Can",
+                "placements": 28,
+                "base": 34,
+                "goal": 34,
+                "pct": 82.4,
                 "retained": false,
                 "toGo": 6,
                 "lost": false
               },
               {
-                "product": "Victoria 2/12/12 oz Btl",
-                "placements": 15,
-                "base": 21,
-                "goal": 21,
-                "pct": 71.4,
-                "retained": false,
-                "toGo": 6,
-                "lost": false
-              },
-              {
-                "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 11,
-                "base": 17,
-                "goal": 17,
-                "pct": 64.7,
+                "product": "Corona Familiar 1/12/32 oz Btl",
+                "placements": 17,
+                "base": 23,
+                "goal": 23,
+                "pct": 73.9,
                 "retained": false,
                 "toGo": 6,
                 "lost": false
@@ -132669,23 +132891,53 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
+                "product": "Victoria 2/12/12 oz Btl",
+                "placements": 16,
+                "base": 21,
+                "goal": 21,
+                "pct": 76.2,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
+              },
+              {
                 "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 18,
+                "placements": 19,
                 "base": 22,
                 "goal": 22,
-                "pct": 81.8,
+                "pct": 86.4,
                 "retained": false,
-                "toGo": 4,
+                "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
+                "placements": 30,
+                "base": 32,
+                "goal": 32,
+                "pct": 93.8,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Coronita Extra 2/12/7 oz Btl",
+                "placements": 15,
+                "base": 17,
+                "goal": 17,
+                "pct": 88.2,
+                "retained": false,
+                "toGo": 2,
                 "lost": false
               },
               {
                 "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 20,
+                "placements": 21,
                 "base": 21,
                 "goal": 21,
-                "pct": 95.2,
-                "retained": false,
-                "toGo": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
                 "lost": false
               },
               {
@@ -132713,39 +132965,39 @@ const PROGRAM_DATA_2026_09 = {
             "goalOverride": false,
             "baseGoal": 344,
             "skusTotal": 18,
-            "skusHeld": 2,
+            "skusHeld": 3,
             "skusLost": 0,
-            "skusShort": 16,
+            "skusShort": 15,
             "skusNew": 0
           },
           {
             "key": "innovation",
             "label": "Innovation",
-            "placements": 51,
+            "placements": 53,
             "goal": 164,
-            "pct": 31.1,
+            "pct": 32.3,
             "retained": false,
-            "toGo": 113,
+            "toGo": 111,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 2,
+                "placements": 3,
                 "base": 26,
                 "goal": 26,
-                "pct": 7.7,
+                "pct": 11.5,
                 "retained": false,
-                "toGo": 24,
+                "toGo": 23,
                 "lost": false
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 6,
+                "placements": 7,
                 "base": 28,
                 "goal": 28,
-                "pct": 21.4,
+                "pct": 25.0,
                 "retained": false,
-                "toGo": 22,
+                "toGo": 21,
                 "lost": false
               },
               {
@@ -132852,22 +133104,31 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 545,
+        "offPlacements": 582,
         "offGoal": 884,
-        "offPct": 61.7,
-        "offToGo": 339,
+        "offPct": 65.8,
+        "offToGo": 302,
         "on_packages": {
           "families": [
             {
               "key": "corona_extra",
               "label": "Corona Extra",
-              "buyers": 12,
+              "buyers": 13,
               "goal": 17,
-              "pct": 70.6,
+              "pct": 76.5,
               "retained": false,
-              "toGo": 5,
+              "toGo": 4,
               "emptyPickups": 0,
               "accounts": [
+                {
+                  "customer": "Blvd Bar & Grill (Z)",
+                  "num": "77014",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
                 {
                   "customer": "Segovia Steak House(A)",
                   "num": "42014",
@@ -132882,15 +133143,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "77011",
                   "units": null,
                   "lastDate": "2026-09-16",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Blvd Bar & Grill (Z)",
-                  "num": "77014",
-                  "units": null,
-                  "lastDate": "2026-09-10",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -132927,6 +133179,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "33006",
                   "units": null,
                   "lastDate": "2026-09-02",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Sports Bar & Liquors",
+                  "num": "36043",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -133129,11 +133390,11 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "goalsTotal": 7,
           "goalsRetained": 0,
-          "buyers": 20,
-          "held": 20,
+          "buyers": 21,
+          "held": 21,
           "goal": 42,
-          "pct": 47.6,
-          "toGo": 22,
+          "pct": 50.0,
+          "toGo": 21,
           "emptyPickups": 0
         },
         "on_draft": {
@@ -133162,10 +133423,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 12,
         "goalsRetained": 0,
-        "overallHeld": 565,
+        "overallHeld": 603,
         "overallGoal": 929,
-        "overallPct": 60.8,
-        "overallToGo": 364,
+        "overallPct": 64.9,
+        "overallToGo": 326,
         "hasAnyGoal": true
       },
       "Michael Harboy": {
@@ -133243,21 +133504,21 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 29,
+            "placements": 30,
             "goal": 27,
-            "pct": 107.4,
+            "pct": 111.1,
             "retained": true,
             "toGo": 0,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 4,
+                "placements": 5,
                 "base": 6,
                 "goal": 6,
-                "pct": 66.7,
+                "pct": 83.3,
                 "retained": false,
-                "toGo": 2,
+                "toGo": 1,
                 "lost": false
               },
               {
@@ -133333,11 +133594,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 39,
+            "placements": 45,
             "goal": 50,
-            "pct": 78.0,
+            "pct": 90.0,
             "retained": false,
-            "toGo": 11,
+            "toGo": 5,
             "inReport": true,
             "products": [
               {
@@ -133358,46 +133619,6 @@ const PROGRAM_DATA_2026_09 = {
                 "pct": 33.3,
                 "retained": false,
                 "toGo": 2,
-                "lost": false
-              },
-              {
-                "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 5,
-                "base": 6,
-                "goal": 6,
-                "pct": 83.3,
-                "retained": false,
-                "toGo": 1,
-                "lost": false
-              },
-              {
-                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 5,
-                "base": 6,
-                "goal": 6,
-                "pct": 83.3,
-                "retained": false,
-                "toGo": 1,
-                "lost": false
-              },
-              {
-                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 3,
-                "base": 4,
-                "goal": 4,
-                "pct": 75.0,
-                "retained": false,
-                "toGo": 1,
-                "lost": false
-              },
-              {
-                "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 3,
-                "base": 4,
-                "goal": 4,
-                "pct": 75.0,
-                "retained": false,
-                "toGo": 1,
                 "lost": false
               },
               {
@@ -133431,16 +133652,6 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Victoria 2/12/12 oz Btl",
-                "placements": 1,
-                "base": 2,
-                "goal": 2,
-                "pct": 50.0,
-                "retained": false,
-                "toGo": 1,
-                "lost": false
-              },
-              {
                 "product": "Corona Light 1/24/12 oz Loose Can",
                 "placements": 0,
                 "base": 1,
@@ -133451,17 +133662,47 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": true
               },
               {
-                "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 0,
-                "base": 1,
-                "goal": 1,
-                "pct": 0.0,
-                "retained": false,
-                "toGo": 1,
-                "lost": true
+                "product": "Corona Extra 1/12/24 oz Can",
+                "placements": 6,
+                "base": 6,
+                "goal": 6,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
+                "placements": 6,
+                "base": 6,
+                "goal": 6,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               },
               {
                 "product": "Corona Familiar 1/12/32 oz Btl",
+                "placements": 4,
+                "base": 4,
+                "goal": 4,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
+                "placements": 4,
+                "base": 4,
+                "goal": 4,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/12/32 oz Btl",
                 "placements": 4,
                 "base": 4,
                 "goal": 4,
@@ -133501,7 +133742,27 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
+                "product": "Victoria 2/12/12 oz Btl",
+                "placements": 2,
+                "base": 2,
+                "goal": 2,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
                 "product": "Corona Light 1/24/12 oz Loose Btl",
+                "placements": 1,
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Coronita Extra 2/12/7 oz Btl",
                 "placements": 1,
                 "base": 1,
                 "goal": 1,
@@ -133525,9 +133786,9 @@ const PROGRAM_DATA_2026_09 = {
             "goalOverride": false,
             "baseGoal": 50,
             "skusTotal": 18,
-            "skusHeld": 6,
-            "skusLost": 2,
-            "skusShort": 12,
+            "skusHeld": 12,
+            "skusLost": 1,
+            "skusShort": 6,
             "skusNew": 0
           },
           {
@@ -133604,10 +133865,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 1,
-        "offPlacements": 91,
+        "offPlacements": 98,
         "offGoal": 111,
-        "offPct": 82.0,
-        "offToGo": 20,
+        "offPct": 88.3,
+        "offToGo": 13,
         "on_packages": {
           "families": [
             {
@@ -133655,10 +133916,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 5,
         "goalsRetained": 2,
-        "overallHeld": 92,
+        "overallHeld": 99,
         "overallGoal": 112,
-        "overallPct": 82.1,
-        "overallToGo": 20,
+        "overallPct": 88.4,
+        "overallToGo": 13,
         "hasAnyGoal": true
       },
       "Mike Ast": {
@@ -133826,11 +134087,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 86,
+            "placements": 88,
             "goal": 142,
-            "pct": 60.6,
+            "pct": 62.0,
             "retained": false,
-            "toGo": 56,
+            "toGo": 54,
             "inReport": true,
             "products": [
               {
@@ -133885,13 +134146,13 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Oro 2/12/12 oz Can",
-                "placements": 0,
+                "placements": 1,
                 "base": 6,
                 "goal": 6,
-                "pct": 0.0,
+                "pct": 16.7,
                 "retained": false,
-                "toGo": 6,
-                "lost": true
+                "toGo": 5,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
@@ -133904,17 +134165,17 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Pacifico 2/12/12 oz Can",
-                "placements": 6,
+                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
+                "placements": 7,
                 "base": 10,
                 "goal": 10,
-                "pct": 60.0,
+                "pct": 70.0,
                 "retained": false,
-                "toGo": 4,
+                "toGo": 3,
                 "lost": false
               },
               {
-                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
+                "product": "Pacifico 2/12/12 oz Can",
                 "placements": 7,
                 "base": 10,
                 "goal": 10,
@@ -134029,28 +134290,28 @@ const PROGRAM_DATA_2026_09 = {
             "baseGoal": 142,
             "skusTotal": 18,
             "skusHeld": 3,
-            "skusLost": 3,
+            "skusLost": 2,
             "skusShort": 15,
             "skusNew": 1
           },
           {
             "key": "innovation",
             "label": "Innovation",
-            "placements": 14,
+            "placements": 15,
             "goal": 73,
-            "pct": 19.2,
+            "pct": 20.5,
             "retained": false,
-            "toGo": 59,
+            "toGo": 58,
             "inReport": true,
             "products": [
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 4,
+                "placements": 5,
                 "base": 16,
                 "goal": 16,
-                "pct": 25.0,
+                "pct": 31.2,
                 "retained": false,
-                "toGo": 12,
+                "toGo": 11,
                 "lost": false
               },
               {
@@ -134157,10 +134418,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 223,
+        "offPlacements": 226,
         "offGoal": 434,
-        "offPct": 51.4,
-        "offToGo": 211,
+        "offPct": 52.1,
+        "offToGo": 208,
         "on_packages": {
           "families": [
             {
@@ -134220,6 +134481,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Pazza",
+                  "num": "95001",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
                   "customer": "Glen Rock Inn",
                   "num": "83005",
                   "units": null,
@@ -134263,15 +134533,6 @@ const PROGRAM_DATA_2026_09 = {
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
-                },
-                {
-                  "customer": "Pazza",
-                  "num": "95001",
-                  "units": null,
-                  "lastDate": "2026-09-04",
-                  "products": [
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
                 }
               ],
               "baseWindow": "3/1/2026 - 5/31/2026"
@@ -134279,11 +134540,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_light",
               "label": "Corona Light",
-              "buyers": 2,
+              "buyers": 3,
               "goal": 5,
-              "pct": 40.0,
+              "pct": 60.0,
               "retained": false,
-              "toGo": 3,
+              "toGo": 2,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -134293,6 +134554,15 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-18",
                   "products": [
                     "2510 Corona Light 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Glen Rock Ac Clb(P)",
+                  "num": "83008",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2509 Corona Light 1/24/12 oz Loose Btl"
                   ]
                 },
                 {
@@ -134430,11 +134700,11 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "goalsTotal": 8,
           "goalsRetained": 1,
-          "buyers": 18,
-          "held": 18,
+          "buyers": 19,
+          "held": 19,
           "goal": 43,
-          "pct": 41.9,
-          "toGo": 25,
+          "pct": 44.2,
+          "toGo": 24,
           "emptyPickups": 0
         },
         "on_draft": {
@@ -134517,10 +134787,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 15,
         "goalsRetained": 2,
-        "overallHeld": 244,
+        "overallHeld": 248,
         "overallGoal": 483,
-        "overallPct": 50.5,
-        "overallToGo": 239,
+        "overallPct": 51.3,
+        "overallToGo": 235,
         "hasAnyGoal": true
       },
       "Nick Melissari": {
@@ -134608,25 +134878,15 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 0,
+            "placements": 1,
             "goal": 3,
-            "pct": 0.0,
+            "pct": 33.3,
             "retained": false,
-            "toGo": 3,
+            "toGo": 2,
             "inReport": true,
             "products": [
               {
                 "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 0,
-                "base": 1,
-                "goal": 1,
-                "pct": 0.0,
-                "retained": false,
-                "toGo": 1,
-                "lost": true
-              },
-              {
-                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
                 "placements": 0,
                 "base": 1,
                 "goal": 1,
@@ -134644,15 +134904,25 @@ const PROGRAM_DATA_2026_09 = {
                 "retained": false,
                 "toGo": 1,
                 "lost": true
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
+                "placements": 1,
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
             "goalOverride": false,
             "baseGoal": 3,
             "skusTotal": 3,
-            "skusHeld": 0,
-            "skusLost": 3,
-            "skusShort": 3,
+            "skusHeld": 1,
+            "skusLost": 2,
+            "skusShort": 2,
             "skusNew": 0
           },
           {
@@ -134675,22 +134945,50 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 3,
         "offGoalsRetained": 1,
-        "offPlacements": 3,
+        "offPlacements": 4,
         "offGoal": 7,
-        "offPct": 42.9,
-        "offToGo": 4,
+        "offPct": 57.1,
+        "offToGo": 3,
         "on_packages": {
           "families": [
             {
               "key": "corona_extra",
               "label": "Corona Extra",
-              "buyers": 93,
+              "buyers": 103,
               "goal": 147,
-              "pct": 63.3,
+              "pct": 70.1,
               "retained": false,
-              "toGo": 54,
+              "toGo": 44,
               "emptyPickups": 0,
               "accounts": [
+                {
+                  "customer": "Viva Margarita Wallington",
+                  "num": "36014",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2404 Coronita Extra 4/6/7 oz Btl",
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Whiskey Roads",
+                  "num": "42003",
+                  "units": null,
+                  "lastDate": "2026-09-22",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Millers Paramus Ale House",
+                  "num": "80018",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
                 {
                   "customer": "Tavern On Ridge",
                   "num": "28008",
@@ -134706,6 +135004,16 @@ const PROGRAM_DATA_2026_09 = {
                   "units": null,
                   "lastDate": "2026-09-18",
                   "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Applebee's Garfield (A)",
+                  "num": "31023",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2404 Coronita Extra 4/6/7 oz Btl",
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
@@ -134728,10 +135036,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Viva Margarita Wallington",
-                  "num": "36014",
+                  "customer": "Chile",
+                  "num": "35005",
                   "units": null,
-                  "lastDate": "2026-09-11",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2404 Coronita Extra 4/6/7 oz Btl",
                     "2410 Corona Extra 4/6/12 oz Btl"
@@ -134767,10 +135075,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Whiskey Roads",
-                  "num": "42003",
+                  "customer": "Cheesecake Fact (A)Hacken",
+                  "num": "41016",
                   "units": null,
-                  "lastDate": "2026-09-15",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -134813,15 +135121,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Millers Paramus Ale House",
-                  "num": "80018",
-                  "units": null,
-                  "lastDate": "2026-09-14",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Brothers Smokehouse",
                   "num": "92004",
                   "units": null,
@@ -134835,6 +135134,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "92005",
                   "units": null,
                   "lastDate": "2026-09-15",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Brady's At(A)The Station",
+                  "num": "92007",
+                  "units": null,
+                  "lastDate": "2026-09-21",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -134871,6 +135179,24 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "96010",
                   "units": null,
                   "lastDate": "2026-09-16",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Tejo Bar & Rest",
+                  "num": "28020",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "N Arlington Bowl O Drome",
+                  "num": "28024",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -134913,16 +135239,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Applebee's Garfield (A)",
-                  "num": "31023",
-                  "units": null,
-                  "lastDate": "2026-09-03",
-                  "products": [
-                    "2404 Coronita Extra 4/6/7 oz Btl",
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Cjd 2l Corp(Sofive)",
                   "num": "32015",
                   "units": null,
@@ -134932,12 +135248,11 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Chile",
-                  "num": "35005",
+                  "customer": "Redd's Rest (Z)",
+                  "num": "32023",
                   "units": null,
-                  "lastDate": "2026-09-04",
+                  "lastDate": "2026-09-17",
                   "products": [
-                    "2404 Coronita Extra 4/6/7 oz Btl",
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
@@ -134969,21 +135284,31 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Cheesecake Fact (A)Hacken",
-                  "num": "41016",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Amc- Shops @ Riverside P",
                   "num": "41026",
                   "units": null,
                   "lastDate": "2026-09-16",
                   "products": [
                     "2415 Corona Extra 1/12/24 oz Can"
+                  ]
+                },
+                {
+                  "customer": "Applebee's (A) Hackensack",
+                  "num": "41033",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2404 Coronita Extra 4/6/7 oz Btl",
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Cantina 46",
+                  "num": "45007",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -135023,6 +135348,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Chili's Paramus",
+                  "num": "80054",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "The Green Lounge",
                   "num": "80061",
                   "units": null,
@@ -135051,19 +135385,19 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Brady's At(A)The Station",
-                  "num": "92007",
+                  "customer": "Rp Prime Restaurant",
+                  "num": "93007",
                   "units": null,
-                  "lastDate": "2026-09-14",
+                  "lastDate": "2026-09-15",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
-                  "customer": "Rp Prime Restaurant",
-                  "num": "93007",
+                  "customer": "Trovato's Due (Z)",
+                  "num": "94002",
                   "units": null,
-                  "lastDate": "2026-09-15",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -135100,24 +135434,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "28016",
                   "units": null,
                   "lastDate": "2026-09-18",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Tejo Bar & Rest",
-                  "num": "28020",
-                  "units": null,
-                  "lastDate": "2026-09-11",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "N Arlington Bowl O Drome",
-                  "num": "28024",
-                  "units": null,
-                  "lastDate": "2026-09-02",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -135168,6 +135484,24 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "House of Que (East Rutherford)",
+                  "num": "31043",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2407 Corona Extra 2/12/12 oz Can"
+                  ]
+                },
+                {
+                  "customer": "Marcus Live Bar & Grille",
+                  "num": "31049",
+                  "units": null,
+                  "lastDate": "2026-09-21",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Burger Shack",
                   "num": "31054",
                   "units": null,
@@ -135195,10 +135529,19 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Redd's Rest (Z)",
-                  "num": "32023",
+                  "customer": "The Local Pub",
+                  "num": "32012",
                   "units": null,
-                  "lastDate": "2026-09-10",
+                  "lastDate": "2026-09-21",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Gianna's (Z)",
+                  "num": "32026",
+                  "units": null,
+                  "lastDate": "2026-09-21",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -135208,6 +135551,24 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "34002",
                   "units": null,
                   "lastDate": "2026-09-10",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Charlies Tav(Z)",
+                  "num": "37005",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Sportsmens (P) Tavern",
+                  "num": "37012",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -135267,19 +135628,19 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Rosa Mexicano (A)",
-                  "num": "41017",
+                  "customer": "Capon's Chophouse",
+                  "num": "40015",
                   "units": null,
-                  "lastDate": "2026-09-09",
+                  "lastDate": "2026-09-21",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
-                  "customer": "Cantina 46",
-                  "num": "45007",
+                  "customer": "Rosa Mexicano (A)",
+                  "num": "41017",
                   "units": null,
-                  "lastDate": "2026-09-03",
+                  "lastDate": "2026-09-09",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -135438,19 +135799,19 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Biagio's",
+                  "num": "80040",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
                   "customer": "Olive Garden Paramus",
                   "num": "80042",
                   "units": null,
                   "lastDate": "2026-09-16",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Chili's Paramus",
-                  "num": "80054",
-                  "units": null,
-                  "lastDate": "2026-09-10",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -135501,6 +135862,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "The Shannon Rose/Ramsey",
+                  "num": "92012",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Nonna's Pizza",
                   "num": "93008",
                   "units": null,
@@ -135514,15 +135884,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "93014",
                   "units": null,
                   "lastDate": "2026-09-10",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Trovato's Due (Z)",
-                  "num": "94002",
-                  "units": null,
-                  "lastDate": "2026-09-03",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -135542,11 +135903,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_light",
               "label": "Corona Light",
-              "buyers": 20,
+              "buyers": 24,
               "goal": 57,
-              "pct": 35.1,
+              "pct": 42.1,
               "retained": false,
-              "toGo": 37,
+              "toGo": 33,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -135563,6 +135924,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "96006",
                   "units": null,
                   "lastDate": "2026-09-18",
+                  "products": [
+                    "2510 Corona Light 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Redd's Rest (Z)",
+                  "num": "32023",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2510 Corona Light 4/6/12 oz Btl"
                   ]
@@ -135586,6 +135956,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Brady's At(A)The Station",
+                  "num": "92007",
+                  "units": null,
+                  "lastDate": "2026-09-21",
+                  "products": [
+                    "2510 Corona Light 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Tejo Bar & Rest",
                   "num": "28020",
                   "units": null,
@@ -135599,6 +135978,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "31011",
                   "units": null,
                   "lastDate": "2026-09-03",
+                  "products": [
+                    "2510 Corona Light 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Applebee's Garfield (A)",
+                  "num": "31023",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2510 Corona Light 4/6/12 oz Btl"
                   ]
@@ -135622,10 +136010,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Redd's Rest (Z)",
-                  "num": "32023",
+                  "customer": "The Local Pub",
+                  "num": "32012",
                   "units": null,
-                  "lastDate": "2026-09-10",
+                  "lastDate": "2026-09-21",
                   "products": [
                     "2510 Corona Light 4/6/12 oz Btl"
                   ]
@@ -135635,6 +136023,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "34002",
                   "units": null,
                   "lastDate": "2026-09-10",
+                  "products": [
+                    "2510 Corona Light 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Sportsmens (P) Tavern",
+                  "num": "37012",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2510 Corona Light 4/6/12 oz Btl"
                   ]
@@ -135703,10 +136100,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Brady's At(A)The Station",
-                  "num": "92007",
+                  "customer": "The Shannon Rose/Ramsey",
+                  "num": "92012",
                   "units": null,
-                  "lastDate": "2026-09-14",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2510 Corona Light 4/6/12 oz Btl"
                   ]
@@ -135735,13 +136132,22 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_na",
               "label": "Corona NA",
-              "buyers": 2,
+              "buyers": 3,
               "goal": 12,
-              "pct": 16.7,
+              "pct": 25.0,
               "retained": false,
-              "toGo": 10,
+              "toGo": 9,
               "emptyPickups": 0,
               "accounts": [
+                {
+                  "customer": "Charlies Tav(Z)",
+                  "num": "37005",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "9053 Corona Non-Alcoholic 4/6/12 oz Btl"
+                  ]
+                },
                 {
                   "customer": "Rosa Mexicano (A)",
                   "num": "41017",
@@ -135819,13 +136225,31 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "modelo_especial",
               "label": "Modelo Especial",
-              "buyers": 50,
+              "buyers": 53,
               "goal": 88,
-              "pct": 56.8,
+              "pct": 60.2,
               "retained": false,
-              "toGo": 38,
+              "toGo": 35,
               "emptyPickups": 0,
               "accounts": [
+                {
+                  "customer": "Applebee's Garfield (A)",
+                  "num": "31023",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Viva Margarita Wallington",
+                  "num": "36014",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
                 {
                   "customer": "Jojo's Bar & Grill",
                   "num": "37063",
@@ -135845,10 +136269,28 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Millers Paramus Ale House",
+                  "num": "80018",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Kinchley's",
                   "num": "92005",
                   "units": null,
                   "lastDate": "2026-09-15",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Tejo Bar & Rest",
+                  "num": "28020",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -135863,15 +136305,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Applebee's Garfield (A)",
-                  "num": "31023",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "New Park Tav (A)",
                   "num": "31027",
                   "units": null,
@@ -135881,10 +136314,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Viva Margarita Wallington",
-                  "num": "36014",
+                  "customer": "Chile",
+                  "num": "35005",
                   "units": null,
-                  "lastDate": "2026-09-11",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -135908,6 +136341,24 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Whiskey Roads",
+                  "num": "42003",
+                  "units": null,
+                  "lastDate": "2026-09-22",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Cantina 46",
+                  "num": "45007",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Dino's Bar & Grill",
                   "num": "49004",
                   "units": null,
@@ -135917,19 +136368,19 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Millers Paramus Ale House",
-                  "num": "80018",
+                  "customer": "Anthony's CF Pizza (A) (Ramsey)",
+                  "num": "92002",
                   "units": null,
-                  "lastDate": "2026-09-14",
+                  "lastDate": "2026-09-15",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
                 },
                 {
-                  "customer": "Anthony's CF Pizza (A) (Ramsey)",
-                  "num": "92002",
+                  "customer": "Double Tree By Hilton",
+                  "num": "93014",
                   "units": null,
-                  "lastDate": "2026-09-15",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -135957,15 +136408,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "28016",
                   "units": null,
                   "lastDate": "2026-09-18",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Tejo Bar & Rest",
-                  "num": "28020",
-                  "units": null,
-                  "lastDate": "2026-09-11",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -136016,6 +136458,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Mozzarella Bar",
+                  "num": "31052",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2811 Modelo Especial 2/12/12 oz Can"
+                  ]
+                },
+                {
                   "customer": "Burger Shack",
                   "num": "31054",
                   "units": null,
@@ -136036,15 +136487,6 @@ const PROGRAM_DATA_2026_09 = {
                 {
                   "customer": "Steve's Bar & Grill (A)",
                   "num": "32008",
-                  "units": null,
-                  "lastDate": "2026-09-04",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Chile",
-                  "num": "35005",
                   "units": null,
                   "lastDate": "2026-09-04",
                   "products": [
@@ -136133,28 +136575,19 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Whiskey Roads",
-                  "num": "42003",
-                  "units": null,
-                  "lastDate": "2026-09-11",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Cantina 46",
-                  "num": "45007",
-                  "units": null,
-                  "lastDate": "2026-09-03",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "El asadero Mexican Grill (Fort Lee)",
                   "num": "49022",
                   "units": null,
                   "lastDate": "2026-09-03",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Outback Steakhouse(Z)Edg",
+                  "num": "49059",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -136193,6 +136626,15 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-08",
                   "products": [
                     "2815 Modelo Especial 2/12/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Applebee's Paramus",
+                  "num": "80024",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -136241,15 +136683,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Double Tree By Hilton",
-                  "num": "93014",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Hansil's Bar (P)",
                   "num": "94004",
                   "units": null,
@@ -136290,6 +136723,15 @@ const PROGRAM_DATA_2026_09 = {
               "emptyPickups": 0,
               "accounts": [
                 {
+                  "customer": "Chile",
+                  "num": "35005",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2610 Pacifico 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Dino's Bar & Grill",
                   "num": "49004",
                   "units": null,
@@ -136323,15 +136765,6 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-10",
                   "products": [
                     "2614 Pacifico 1/24/7 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Chile",
-                  "num": "35005",
-                  "units": null,
-                  "lastDate": "2026-09-04",
-                  "products": [
-                    "2610 Pacifico 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -136394,11 +136827,11 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "goalsTotal": 7,
           "goalsRetained": 0,
-          "buyers": 179,
-          "held": 179,
+          "buyers": 197,
+          "held": 197,
           "goal": 376,
-          "pct": 47.6,
-          "toGo": 197,
+          "pct": 52.4,
+          "toGo": 179,
           "emptyPickups": 0
         },
         "on_draft": {
@@ -136467,12 +136900,12 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "modelo_especial",
               "label": "Modelo Especial",
-              "buyers": 33,
+              "buyers": 34,
               "goal": 53,
-              "pct": 62.3,
+              "pct": 64.2,
               "retained": false,
-              "toGo": 20,
-              "emptyPickups": 7,
+              "toGo": 19,
+              "emptyPickups": 6,
               "accounts": [
                 {
                   "customer": "Cjd 2l Corp(Sofive)",
@@ -136526,6 +136959,15 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-08",
                   "products": [
                     "2802 Modelo Especial 15.5 Gal Keg"
+                  ]
+                },
+                {
+                  "customer": "Chili's Paramus",
+                  "num": "80054",
+                  "units": 3.0,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2804 Modelo Especial 7.75 Gal Keg"
                   ]
                 },
                 {
@@ -136665,6 +137107,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Cheesecake Fact (A)Hacken",
+                  "num": "41016",
+                  "units": 1.0,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2802 Modelo Especial 15.5 Gal Keg"
+                  ]
+                },
+                {
                   "customer": "Amc- Shops @ Riverside P",
                   "num": "41026",
                   "units": 1.0,
@@ -136734,15 +137185,6 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-16",
                   "products": [
                     "2802 Modelo Especial 15.5 Gal Keg",
-                    "2804 Modelo Especial 7.75 Gal Keg"
-                  ]
-                },
-                {
-                  "customer": "Chili's Paramus",
-                  "num": "80054",
-                  "units": 1.0,
-                  "lastDate": "2026-09-10",
-                  "products": [
                     "2804 Modelo Especial 7.75 Gal Keg"
                   ]
                 },
@@ -136833,19 +137275,19 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "goalsTotal": 5,
           "goalsRetained": 0,
-          "buyers": 40,
-          "held": 40,
+          "buyers": 41,
+          "held": 41,
           "goal": 86,
-          "pct": 46.5,
-          "toGo": 46,
-          "emptyPickups": 11
+          "pct": 47.7,
+          "toGo": 45,
+          "emptyPickups": 10
         },
         "goalsTotal": 15,
         "goalsRetained": 1,
-        "overallHeld": 222,
+        "overallHeld": 242,
         "overallGoal": 469,
-        "overallPct": 47.3,
-        "overallToGo": 247,
+        "overallPct": 51.6,
+        "overallToGo": 227,
         "hasAnyGoal": true
       },
       "Pablo Lopez": {
@@ -136923,23 +137365,13 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 97,
+            "placements": 100,
             "goal": 130,
-            "pct": 74.6,
+            "pct": 76.9,
             "retained": false,
-            "toGo": 33,
+            "toGo": 30,
             "inReport": true,
             "products": [
-              {
-                "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 17,
-                "base": 25,
-                "goal": 25,
-                "pct": 68.0,
-                "retained": false,
-                "toGo": 8,
-                "lost": false
-              },
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
                 "placements": 12,
@@ -136948,6 +137380,16 @@ const PROGRAM_DATA_2026_09 = {
                 "pct": 60.0,
                 "retained": false,
                 "toGo": 8,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 4/6/12 oz Btl",
+                "placements": 18,
+                "base": 25,
+                "goal": 25,
+                "pct": 72.0,
+                "retained": false,
+                "toGo": 7,
                 "lost": false
               },
               {
@@ -136972,22 +137414,22 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 20,
+                "placements": 21,
                 "base": 23,
                 "goal": 23,
-                "pct": 87.0,
+                "pct": 91.3,
                 "retained": false,
-                "toGo": 3,
+                "toGo": 2,
                 "lost": false
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 17,
+                "placements": 18,
                 "base": 20,
                 "goal": 20,
-                "pct": 85.0,
+                "pct": 90.0,
                 "retained": false,
-                "toGo": 3,
+                "toGo": 2,
                 "lost": false
               },
               {
@@ -137013,21 +137455,21 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 161,
+            "placements": 172,
             "goal": 220,
-            "pct": 73.2,
+            "pct": 78.2,
             "retained": false,
-            "toGo": 59,
+            "toGo": 48,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 11,
+                "placements": 13,
                 "base": 19,
                 "goal": 19,
-                "pct": 57.9,
+                "pct": 68.4,
                 "retained": false,
-                "toGo": 8,
+                "toGo": 6,
                 "lost": false
               },
               {
@@ -137061,26 +137503,6 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 14,
-                "base": 19,
-                "goal": 19,
-                "pct": 73.7,
-                "retained": false,
-                "toGo": 5,
-                "lost": false
-              },
-              {
-                "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 14,
-                "base": 19,
-                "goal": 19,
-                "pct": 73.7,
-                "retained": false,
-                "toGo": 5,
-                "lost": false
-              },
-              {
                 "product": "Victoria 2/12/12 oz Can",
                 "placements": 4,
                 "base": 9,
@@ -137091,61 +137513,71 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Chelada 2/12/12 oz Can",
-                "placements": 0,
-                "base": 4,
-                "goal": 4,
-                "pct": 0.0,
+                "product": "Corona Extra 1/12/24 oz Can",
+                "placements": 15,
+                "base": 19,
+                "goal": 19,
+                "pct": 78.9,
                 "retained": false,
                 "toGo": 4,
-                "lost": true
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/12/32 oz Btl",
+                "placements": 15,
+                "base": 19,
+                "goal": 19,
+                "pct": 78.9,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada 2/12/12 oz Can",
+                "placements": 1,
+                "base": 4,
+                "goal": 4,
+                "pct": 25.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
               },
               {
                 "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 14,
+                "placements": 15,
                 "base": 17,
                 "goal": 17,
-                "pct": 82.4,
+                "pct": 88.2,
                 "retained": false,
-                "toGo": 3,
+                "toGo": 2,
                 "lost": false
               },
               {
                 "product": "Victoria 1/12/32 oz Btl",
-                "placements": 12,
+                "placements": 13,
                 "base": 15,
                 "goal": 15,
-                "pct": 80.0,
+                "pct": 86.7,
                 "retained": false,
-                "toGo": 3,
+                "toGo": 2,
                 "lost": false
               },
               {
                 "product": "Victoria 2/12/12 oz Btl",
-                "placements": 11,
+                "placements": 12,
                 "base": 14,
                 "goal": 14,
-                "pct": 78.6,
+                "pct": 85.7,
                 "retained": false,
-                "toGo": 3,
+                "toGo": 2,
                 "lost": false
               },
               {
                 "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 8,
+                "placements": 9,
                 "base": 11,
                 "goal": 11,
-                "pct": 72.7,
-                "retained": false,
-                "toGo": 3,
-                "lost": false
-              },
-              {
-                "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 21,
-                "base": 23,
-                "goal": 23,
-                "pct": 91.3,
+                "pct": 81.8,
                 "retained": false,
                 "toGo": 2,
                 "lost": false
@@ -137171,6 +137603,16 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": true
               },
               {
+                "product": "Modelito Especial 1/24/7 oz Loose Btl",
+                "placements": 22,
+                "base": 23,
+                "goal": 23,
+                "pct": 95.7,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
                 "product": "Corona Light 1/24/12 oz Loose Btl",
                 "placements": 0,
                 "base": 1,
@@ -137182,10 +137624,10 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 17,
+                "placements": 18,
                 "base": 16,
                 "goal": 16,
-                "pct": 106.2,
+                "pct": 112.5,
                 "retained": true,
                 "toGo": 0,
                 "lost": false
@@ -137206,18 +137648,18 @@ const PROGRAM_DATA_2026_09 = {
             "baseGoal": 220,
             "skusTotal": 17,
             "skusHeld": 1,
-            "skusLost": 3,
+            "skusLost": 2,
             "skusShort": 16,
             "skusNew": 1
           },
           {
             "key": "innovation",
             "label": "Innovation",
-            "placements": 23,
+            "placements": 26,
             "goal": 76,
-            "pct": 30.3,
+            "pct": 34.2,
             "retained": false,
-            "toGo": 53,
+            "toGo": 50,
             "inReport": true,
             "products": [
               {
@@ -137232,22 +137674,22 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 6,
+                "placements": 7,
                 "base": 19,
                 "goal": 19,
-                "pct": 31.6,
+                "pct": 36.8,
                 "retained": false,
-                "toGo": 13,
+                "toGo": 12,
                 "lost": false
               },
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 4,
+                "placements": 5,
                 "base": 14,
                 "goal": 14,
-                "pct": 28.6,
+                "pct": 35.7,
                 "retained": false,
-                "toGo": 10,
+                "toGo": 9,
                 "lost": false
               },
               {
@@ -137262,12 +137704,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Pacifico 1/24/7 oz Btl",
-                "placements": 1,
+                "placements": 2,
                 "base": 6,
                 "goal": 6,
-                "pct": 16.7,
+                "pct": 33.3,
                 "retained": false,
-                "toGo": 5,
+                "toGo": 4,
                 "lost": false
               },
               {
@@ -137324,22 +137766,53 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 344,
+        "offPlacements": 361,
         "offGoal": 524,
-        "offPct": 65.6,
-        "offToGo": 180,
+        "offPct": 68.9,
+        "offToGo": 163,
         "on_packages": {
           "families": [
             {
               "key": "corona_extra",
               "label": "Corona Extra",
-              "buyers": 30,
+              "buyers": 32,
               "goal": 50,
-              "pct": 60.0,
+              "pct": 64.0,
               "retained": false,
-              "toGo": 20,
+              "toGo": 18,
               "emptyPickups": 0,
               "accounts": [
+                {
+                  "customer": "Noches De Colombia (S. Hackensack))",
+                  "num": "39004",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2405 Coronita Extra 1/24/7 oz Btl",
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Noches De Colombia(Englewood))",
+                  "num": "52005",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2404 Coronita Extra 4/6/7 oz Btl",
+                    "2405 Coronita Extra 1/24/7 oz Btl",
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Noches De Colombia (Hackensack)",
+                  "num": "41008",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2405 Coronita Extra 1/24/7 oz Btl",
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
                 {
                   "customer": "Lena Y Carbon Restaurant",
                   "num": "22001",
@@ -137356,37 +137829,6 @@ const PROGRAM_DATA_2026_09 = {
                   "units": null,
                   "lastDate": "2026-09-15",
                   "products": [
-                    "2405 Coronita Extra 1/24/7 oz Btl",
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Noches De Colombia (S. Hackensack))",
-                  "num": "39004",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2405 Coronita Extra 1/24/7 oz Btl",
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Noches De Colombia (Hackensack)",
-                  "num": "41008",
-                  "units": null,
-                  "lastDate": "2026-09-11",
-                  "products": [
-                    "2405 Coronita Extra 1/24/7 oz Btl",
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Noches De Colombia(Englewood))",
-                  "num": "52005",
-                  "units": null,
-                  "lastDate": "2026-09-09",
-                  "products": [
-                    "2404 Coronita Extra 4/6/7 oz Btl",
                     "2405 Coronita Extra 1/24/7 oz Btl",
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
@@ -137410,12 +137852,31 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Hacienda (P)",
+                  "num": "20081",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2405 Coronita Extra 1/24/7 oz Btl",
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
                   "customer": "Ranchito Mi Peru",
                   "num": "21014",
                   "units": null,
                   "lastDate": "2026-09-18",
                   "products": [
                     "2405 Coronita Extra 1/24/7 oz Btl",
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Hi-Beams (P)",
+                  "num": "22013",
+                  "units": null,
+                  "lastDate": "2026-09-22",
+                  "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
                 },
@@ -137448,6 +137909,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Colombia Kaliente",
+                  "num": "52037",
+                  "units": null,
+                  "lastDate": "2026-09-21",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
                   "customer": "Bocaditos Bistro",
                   "num": "20004",
                   "units": null,
@@ -137457,10 +137927,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Hacienda (P)",
-                  "num": "20081",
+                  "customer": "Bonfire Mofongo House (P)",
+                  "num": "21030",
                   "units": null,
-                  "lastDate": "2026-09-03",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2405 Coronita Extra 1/24/7 oz Btl",
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
@@ -137473,15 +137943,6 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-10",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Hi-Beams (P)",
-                  "num": "22013",
-                  "units": null,
-                  "lastDate": "2026-09-11",
-                  "products": [
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
                 },
                 {
@@ -137514,15 +137975,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Colombia Kaliente",
-                  "num": "52037",
-                  "units": null,
-                  "lastDate": "2026-09-11",
-                  "products": [
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
                   "customer": "Diana's Bar (Z)",
                   "num": "15018",
                   "units": null,
@@ -137541,12 +137993,12 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Bonfire Mofongo House (P)",
-                  "num": "21030",
+                  "customer": "Serie 92 Bar & Liquor",
+                  "num": "20100",
                   "units": null,
-                  "lastDate": "2026-09-03",
+                  "lastDate": "2026-09-17",
                   "products": [
-                    "2405 Coronita Extra 1/24/7 oz Btl"
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
                 },
                 {
@@ -137620,6 +138072,15 @@ const PROGRAM_DATA_2026_09 = {
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
+                },
+                {
+                  "customer": "La Havana 59",
+                  "num": "33005",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
                 }
               ],
               "baseWindow": "3/1/2026 - 5/31/2026"
@@ -137627,13 +138088,32 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_light",
               "label": "Corona Light",
-              "buyers": 0,
+              "buyers": 2,
               "goal": 8,
-              "pct": 0.0,
+              "pct": 25.0,
               "retained": false,
-              "toGo": 8,
+              "toGo": 6,
               "emptyPickups": 0,
-              "accounts": [],
+              "accounts": [
+                {
+                  "customer": "Noches De Colombia (S. Hackensack))",
+                  "num": "39004",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2510 Corona Light 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Noches De Colombia (Hackensack)",
+                  "num": "41008",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2510 Corona Light 4/6/12 oz Btl"
+                  ]
+                }
+              ],
               "baseWindow": "3/1/2026 - 5/31/2026"
             },
             {
@@ -137694,11 +138174,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "modelo_especial",
               "label": "Modelo Especial",
-              "buyers": 31,
+              "buyers": 33,
               "goal": 46,
-              "pct": 67.4,
+              "pct": 71.7,
               "retained": false,
-              "toGo": 15,
+              "toGo": 13,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -137738,6 +138218,16 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Saritas Mexican Rest(A)",
+                  "num": "27070",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2808 Modelo Especial 1/24/12 oz Loose Btl",
+                    "2809 Modelo Especial 1/24/12 oz Loose Can"
+                  ]
+                },
+                {
                   "customer": "Arepa Express",
                   "num": "27118",
                   "units": null,
@@ -137756,10 +138246,55 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Noches De Colombia (S. Hackensack))",
+                  "num": "39004",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Noches De Colombia (Hackensack)",
+                  "num": "41008",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Noches De Colombia(Englewood))",
+                  "num": "52005",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Colombia Kaliente",
+                  "num": "52037",
+                  "units": null,
+                  "lastDate": "2026-09-21",
+                  "products": [
+                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
                   "customer": "Bocaditos Bistro",
                   "num": "20004",
                   "units": null,
                   "lastDate": "2026-09-11",
+                  "products": [
+                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Bonfire Mofongo House (P)",
+                  "num": "21030",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2808 Modelo Especial 1/24/12 oz Loose Btl"
                   ]
@@ -137792,51 +138327,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Saritas Mexican Rest(A)",
-                  "num": "27070",
-                  "units": null,
-                  "lastDate": "2026-09-16",
-                  "products": [
-                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Noches De Colombia (S. Hackensack))",
-                  "num": "39004",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Noches De Colombia (Hackensack)",
-                  "num": "41008",
-                  "units": null,
-                  "lastDate": "2026-09-11",
-                  "products": [
-                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Noches De Colombia(Englewood))",
-                  "num": "52005",
-                  "units": null,
-                  "lastDate": "2026-09-09",
-                  "products": [
-                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Colombia Kaliente",
-                  "num": "52037",
-                  "units": null,
-                  "lastDate": "2026-09-11",
-                  "products": [
-                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
                   "customer": "Diana's Bar (Z)",
                   "num": "15018",
                   "units": null,
@@ -137864,6 +138354,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Serie 92 Bar & Liquor",
+                  "num": "20100",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
                   "customer": "5th Avenue (P) Tavern",
                   "num": "20108",
                   "units": null,
@@ -137877,15 +138376,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "21014",
                   "units": null,
                   "lastDate": "2026-09-11",
-                  "products": [
-                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Bonfire Mofongo House (P)",
-                  "num": "21030",
-                  "units": null,
-                  "lastDate": "2026-09-03",
                   "products": [
                     "2808 Modelo Especial 1/24/12 oz Loose Btl"
                   ]
@@ -137979,6 +138469,15 @@ const PROGRAM_DATA_2026_09 = {
                   "products": [
                     "2808 Modelo Especial 1/24/12 oz Loose Btl"
                   ]
+                },
+                {
+                  "customer": "La Havana 59",
+                  "num": "33005",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
+                  ]
                 }
               ],
               "baseWindow": "3/1/2026 - 5/31/2026"
@@ -138009,7 +138508,7 @@ const PROGRAM_DATA_2026_09 = {
                   "customer": "Hacienda (P)",
                   "num": "20081",
                   "units": null,
-                  "lastDate": "2026-09-03",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2610 Pacifico 4/6/12 oz Btl"
                   ]
@@ -138047,11 +138546,11 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "goalsTotal": 8,
           "goalsRetained": 0,
-          "buyers": 67,
-          "held": 67,
+          "buyers": 73,
+          "held": 73,
           "goal": 147,
-          "pct": 45.6,
-          "toGo": 80,
+          "pct": 49.7,
+          "toGo": 74,
           "emptyPickups": 0
         },
         "on_draft": {
@@ -138111,31 +138610,41 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "modelo_negra",
               "label": "Modelo Negra",
-              "buyers": 0,
+              "buyers": 1,
               "goal": 1,
-              "pct": 0.0,
-              "retained": false,
-              "toGo": 1,
+              "pct": 100.0,
+              "retained": true,
+              "toGo": 0,
               "emptyPickups": 0,
-              "accounts": [],
+              "accounts": [
+                {
+                  "customer": "Hacienda (P)",
+                  "num": "20081",
+                  "units": 1.0,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2803 Modelo Negra 7.75 Gal Keg"
+                  ]
+                }
+              ],
               "baseWindow": "3/1/2026 - 5/31/2026"
             }
           ],
           "goalsTotal": 3,
-          "goalsRetained": 1,
-          "buyers": 3,
-          "held": 3,
+          "goalsRetained": 2,
+          "buyers": 4,
+          "held": 4,
           "goal": 5,
-          "pct": 60.0,
-          "toGo": 2,
+          "pct": 80.0,
+          "toGo": 1,
           "emptyPickups": 0
         },
         "goalsTotal": 15,
-        "goalsRetained": 1,
-        "overallHeld": 414,
+        "goalsRetained": 2,
+        "overallHeld": 438,
         "overallGoal": 676,
-        "overallPct": 61.2,
-        "overallToGo": 262,
+        "overallPct": 64.8,
+        "overallToGo": 238,
         "hasAnyGoal": true
       },
       "Paul Mclaughlin": {
@@ -138217,11 +138726,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_extra",
               "label": "Corona Extra",
-              "buyers": 76,
+              "buyers": 78,
               "goal": 105,
-              "pct": 72.4,
+              "pct": 74.3,
               "retained": false,
-              "toGo": 29,
+              "toGo": 27,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -138229,6 +138738,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "41006",
                   "units": null,
                   "lastDate": "2026-09-18",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Lenoras Bar (P)",
+                  "num": "41010",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -138252,6 +138770,16 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Jack E Pooh's",
+                  "num": "56004",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl",
+                    "2412 Corona Extra 2/12/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "International Bar/Rest",
                   "num": "56011",
                   "units": null,
@@ -138262,6 +138790,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "QB's Bar and Grill",
+                  "num": "60002",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "White Beeches Golf Club",
                   "num": "61003",
                   "units": null,
@@ -138269,6 +138806,26 @@ const PROGRAM_DATA_2026_09 = {
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl",
                     "2425 Corona Extra 1/24/12 oz Loose Can"
+                  ]
+                },
+                {
+                  "customer": "The Rockleigh C C (P)",
+                  "num": "67014",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2405 Coronita Extra 1/24/7 oz Btl",
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Florentine Garden",
+                  "num": "69007",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2404 Coronita Extra 4/6/7 oz Btl",
+                    "2405 Coronita Extra 1/24/7 oz Btl"
                   ]
                 },
                 {
@@ -138337,21 +138894,21 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Lenoras Bar (P)",
-                  "num": "41010",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Riviera Lounge (P)",
                   "num": "41029",
                   "units": null,
                   "lastDate": "2026-09-16",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "101 Pub (A)",
+                  "num": "50008",
+                  "units": null,
+                  "lastDate": "2026-09-21",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -138383,15 +138940,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Jack E Pooh's",
-                  "num": "56004",
-                  "units": null,
-                  "lastDate": "2026-09-11",
-                  "products": [
-                    "2412 Corona Extra 2/12/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Pancho Burrito's (A)",
                   "num": "57009",
                   "units": null,
@@ -138411,10 +138959,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "QB's Bar and Grill",
-                  "num": "60002",
+                  "customer": "La Taberna Steak House",
+                  "num": "60004",
                   "units": null,
-                  "lastDate": "2026-09-10",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -138444,16 +138992,6 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-16",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Florentine Garden",
-                  "num": "69007",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2404 Coronita Extra 4/6/7 oz Btl",
-                    "2405 Coronita Extra 1/24/7 oz Btl"
                   ]
                 },
                 {
@@ -138593,15 +139131,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "101 Pub (A)",
-                  "num": "50008",
-                  "units": null,
-                  "lastDate": "2026-09-14",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Debonair Music Hall",
                   "num": "50018",
                   "units": null,
@@ -138642,6 +139171,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "52012",
                   "units": null,
                   "lastDate": "2026-09-01",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "El Tango",
+                  "num": "52014",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -138737,15 +139275,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "La Taberna Steak House",
-                  "num": "60004",
-                  "units": null,
-                  "lastDate": "2026-09-09",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Haworth Golf Club(A)",
                   "num": "61002",
                   "units": null,
@@ -138800,21 +139329,21 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "The Rockleigh C C (P)",
-                  "num": "67014",
-                  "units": null,
-                  "lastDate": "2026-09-09",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Old Tappan Manor (P)",
                   "num": "68006",
                   "units": null,
                   "lastDate": "2026-09-02",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Edgewood Country Club",
+                  "num": "69003",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2425 Corona Extra 1/24/12 oz Loose Can"
                   ]
                 },
                 {
@@ -138922,11 +139451,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_light",
               "label": "Corona Light",
-              "buyers": 20,
+              "buyers": 21,
               "goal": 40,
-              "pct": 50.0,
+              "pct": 52.5,
               "retained": false,
-              "toGo": 20,
+              "toGo": 19,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -138945,6 +139474,15 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-14",
                   "products": [
                     "2509 Corona Light 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Marriott (A) Teaneck",
+                  "num": "51014",
+                  "units": null,
+                  "lastDate": "2026-09-21",
+                  "products": [
+                    "2510 Corona Light 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -138967,10 +139505,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Marriott (A) Teaneck",
-                  "num": "51014",
+                  "customer": "Lenoras Bar (P)",
+                  "num": "41010",
                   "units": null,
-                  "lastDate": "2026-09-08",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2510 Corona Light 4/6/12 oz Btl"
                   ]
@@ -139139,7 +139677,7 @@ const PROGRAM_DATA_2026_09 = {
                   "customer": "Lenoras Bar (P)",
                   "num": "41010",
                   "units": null,
-                  "lastDate": "2026-09-10",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2440 Corona Premier 4/6/12 oz Btl"
                   ]
@@ -139180,11 +139718,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "modelo_especial",
               "label": "Modelo Especial",
-              "buyers": 34,
+              "buyers": 37,
               "goal": 57,
-              "pct": 59.6,
+              "pct": 64.9,
               "retained": false,
-              "toGo": 23,
+              "toGo": 20,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -139194,6 +139732,15 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-16",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "QB's Bar and Grill",
+                  "num": "60002",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
                   ]
                 },
                 {
@@ -139260,12 +139807,12 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "QB's Bar and Grill",
-                  "num": "60002",
+                  "customer": "Florentine Garden",
+                  "num": "69007",
                   "units": null,
-                  "lastDate": "2026-09-10",
+                  "lastDate": "2026-09-17",
                   "products": [
-                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
+                    "2807 Modelito Especial 1/24/7 oz Loose Btl"
                   ]
                 },
                 {
@@ -139327,6 +139874,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "52003",
                   "units": null,
                   "lastDate": "2026-09-11",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "El Tango",
+                  "num": "52014",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -139458,12 +140014,21 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Florentine Garden",
-                  "num": "69007",
+                  "customer": "The Rockleigh C C (P)",
+                  "num": "67014",
                   "units": null,
-                  "lastDate": "2026-09-03",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2807 Modelito Especial 1/24/7 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Edgewood Country Club",
+                  "num": "69003",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -139521,11 +140086,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "pacifico",
               "label": "Pacifico",
-              "buyers": 4,
+              "buyers": 5,
               "goal": 16,
-              "pct": 25.0,
+              "pct": 31.2,
               "retained": false,
-              "toGo": 12,
+              "toGo": 11,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -139533,6 +140098,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "74001",
                   "units": null,
                   "lastDate": "2026-09-16",
+                  "products": [
+                    "2610 Pacifico 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "El Tango",
+                  "num": "52014",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2610 Pacifico 4/6/12 oz Btl"
                   ]
@@ -139570,11 +140144,11 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "goalsTotal": 8,
           "goalsRetained": 1,
-          "buyers": 138,
-          "held": 138,
+          "buyers": 145,
+          "held": 145,
           "goal": 258,
-          "pct": 53.5,
-          "toGo": 120,
+          "pct": 56.2,
+          "toGo": 113,
           "emptyPickups": 0
         },
         "on_draft": {
@@ -139606,12 +140180,12 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "modelo_especial",
               "label": "Modelo Especial",
-              "buyers": 20,
+              "buyers": 21,
               "goal": 45,
-              "pct": 44.4,
+              "pct": 46.7,
               "retained": false,
-              "toGo": 25,
-              "emptyPickups": 6,
+              "toGo": 24,
+              "emptyPickups": 5,
               "accounts": [
                 {
                   "customer": "Medieval Times",
@@ -139645,6 +140219,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "41023",
                   "units": 2.0,
                   "lastDate": "2026-09-16",
+                  "products": [
+                    "2802 Modelo Especial 15.5 Gal Keg"
+                  ]
+                },
+                {
+                  "customer": "101 Pub (A)",
+                  "num": "50008",
+                  "units": 2.0,
+                  "lastDate": "2026-09-21",
                   "products": [
                     "2802 Modelo Especial 15.5 Gal Keg"
                   ]
@@ -139731,21 +140314,21 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "101 Pub (A)",
-                  "num": "50008",
-                  "units": 1.0,
-                  "lastDate": "2026-09-01",
-                  "products": [
-                    "2802 Modelo Especial 15.5 Gal Keg"
-                  ]
-                },
-                {
                   "customer": "Chapala Grill - Bergenfield",
                   "num": "56016",
                   "units": 1.0,
                   "lastDate": "2026-09-15",
                   "products": [
                     "2804 Modelo Especial 7.75 Gal Keg"
+                  ]
+                },
+                {
+                  "customer": "QB's Bar and Grill",
+                  "num": "60002",
+                  "units": 1.0,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2802 Modelo Especial 15.5 Gal Keg"
                   ]
                 },
                 {
@@ -139861,19 +140444,19 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "goalsTotal": 5,
           "goalsRetained": 0,
-          "buyers": 24,
-          "held": 24,
+          "buyers": 25,
+          "held": 25,
           "goal": 74,
-          "pct": 32.4,
-          "toGo": 50,
-          "emptyPickups": 8
+          "pct": 33.8,
+          "toGo": 49,
+          "emptyPickups": 7
         },
         "goalsTotal": 13,
         "goalsRetained": 1,
-        "overallHeld": 162,
+        "overallHeld": 170,
         "overallGoal": 332,
-        "overallPct": 48.8,
-        "overallToGo": 170,
+        "overallPct": 51.2,
+        "overallToGo": 162,
         "hasAnyGoal": true
       },
       "Phil Ernst": {
@@ -139951,11 +140534,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 123,
+            "placements": 126,
             "goal": 138,
-            "pct": 89.1,
+            "pct": 91.3,
             "retained": false,
-            "toGo": 15,
+            "toGo": 12,
             "inReport": true,
             "products": [
               {
@@ -139990,20 +140573,20 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 22,
+                "placements": 23,
                 "base": 26,
                 "goal": 26,
-                "pct": 84.6,
+                "pct": 88.5,
                 "retained": false,
-                "toGo": 4,
+                "toGo": 3,
                 "lost": false
               },
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 23,
+                "placements": 25,
                 "base": 23,
                 "goal": 23,
-                "pct": 100.0,
+                "pct": 108.7,
                 "retained": true,
                 "toGo": 0,
                 "lost": false
@@ -140041,23 +140624,13 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 125,
+            "placements": 134,
             "goal": 194,
-            "pct": 64.4,
+            "pct": 69.1,
             "retained": false,
-            "toGo": 69,
+            "toGo": 60,
             "inReport": true,
             "products": [
-              {
-                "product": "Modelo Oro 2/12/12 oz Can",
-                "placements": 3,
-                "base": 14,
-                "goal": 14,
-                "pct": 21.4,
-                "retained": false,
-                "toGo": 11,
-                "lost": false
-              },
               {
                 "product": "Pacifico 2/12/12 oz Can",
                 "placements": 8,
@@ -140069,31 +140642,31 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
+                "product": "Modelo Oro 2/12/12 oz Can",
+                "placements": 4,
+                "base": 14,
+                "goal": 14,
+                "pct": 28.6,
+                "retained": false,
+                "toGo": 10,
+                "lost": false
+              },
+              {
                 "product": "Modelo Negra 2/12/12 oz Btl",
-                "placements": 6,
+                "placements": 7,
                 "base": 15,
                 "goal": 15,
-                "pct": 40.0,
+                "pct": 46.7,
                 "retained": false,
-                "toGo": 9,
+                "toGo": 8,
                 "lost": false
               },
               {
                 "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 6,
+                "placements": 7,
                 "base": 13,
                 "goal": 13,
-                "pct": 46.2,
-                "retained": false,
-                "toGo": 7,
-                "lost": false
-              },
-              {
-                "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 17,
-                "base": 23,
-                "goal": 23,
-                "pct": 73.9,
+                "pct": 53.8,
                 "retained": false,
                 "toGo": 6,
                 "lost": false
@@ -140106,6 +140679,16 @@ const PROGRAM_DATA_2026_09 = {
                 "pct": 25.0,
                 "retained": false,
                 "toGo": 6,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 1/12/24 oz Can",
+                "placements": 18,
+                "base": 23,
+                "goal": 23,
+                "pct": 78.3,
+                "retained": false,
+                "toGo": 5,
                 "lost": false
               },
               {
@@ -140129,16 +140712,6 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 13,
-                "base": 16,
-                "goal": 16,
-                "pct": 81.2,
-                "retained": false,
-                "toGo": 3,
-                "lost": false
-              },
-              {
                 "product": "Corona Light 1/24/12 oz Loose Btl",
                 "placements": 3,
                 "base": 6,
@@ -140146,16 +140719,6 @@ const PROGRAM_DATA_2026_09 = {
                 "pct": 50.0,
                 "retained": false,
                 "toGo": 3,
-                "lost": false
-              },
-              {
-                "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 7,
-                "base": 9,
-                "goal": 9,
-                "pct": 77.8,
-                "retained": false,
-                "toGo": 2,
                 "lost": false
               },
               {
@@ -140179,21 +140742,31 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Pacifico 2/12/12 oz Btl",
-                "placements": 6,
-                "base": 7,
-                "goal": 7,
-                "pct": 85.7,
+                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
+                "placements": 15,
+                "base": 16,
+                "goal": 16,
+                "pct": 93.8,
                 "retained": false,
                 "toGo": 1,
                 "lost": false
               },
               {
-                "product": "Victoria 1/12/32 oz Btl",
-                "placements": 3,
-                "base": 4,
-                "goal": 4,
-                "pct": 75.0,
+                "product": "Modelo Especial 1/12/32 oz Btl",
+                "placements": 8,
+                "base": 9,
+                "goal": 9,
+                "pct": 88.9,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Pacifico 2/12/12 oz Btl",
+                "placements": 6,
+                "base": 7,
+                "goal": 7,
+                "pct": 85.7,
                 "retained": false,
                 "toGo": 1,
                 "lost": false
@@ -140210,10 +140783,10 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 11,
+                "placements": 12,
                 "base": 9,
                 "goal": 9,
-                "pct": 122.2,
+                "pct": 133.3,
                 "retained": true,
                 "toGo": 0,
                 "lost": false
@@ -140237,35 +140810,45 @@ const PROGRAM_DATA_2026_09 = {
                 "retained": true,
                 "toGo": 0,
                 "lost": false
+              },
+              {
+                "product": "Victoria 1/12/32 oz Btl",
+                "placements": 4,
+                "base": 4,
+                "goal": 4,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
             "goalOverride": false,
             "baseGoal": 194,
             "skusTotal": 19,
-            "skusHeld": 3,
+            "skusHeld": 4,
             "skusLost": 0,
-            "skusShort": 16,
+            "skusShort": 15,
             "skusNew": 0
           },
           {
             "key": "innovation",
             "label": "Innovation",
-            "placements": 39,
+            "placements": 40,
             "goal": 102,
-            "pct": 38.2,
+            "pct": 39.2,
             "retained": false,
-            "toGo": 63,
+            "toGo": 62,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 1,
+                "placements": 2,
                 "base": 14,
                 "goal": 14,
-                "pct": 7.1,
+                "pct": 14.3,
                 "retained": false,
-                "toGo": 13,
+                "toGo": 12,
                 "lost": false
               },
               {
@@ -140382,34 +140965,60 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 371,
+        "offPlacements": 384,
         "offGoal": 543,
-        "offPct": 68.3,
-        "offToGo": 172,
+        "offPct": 70.7,
+        "offToGo": 159,
         "on_packages": {
           "families": [
             {
               "key": "corona_extra",
               "label": "Corona Extra",
-              "buyers": 0,
+              "buyers": 1,
               "goal": 1,
-              "pct": 0.0,
-              "retained": false,
-              "toGo": 1,
+              "pct": 100.0,
+              "retained": true,
+              "toGo": 0,
               "emptyPickups": 0,
-              "accounts": [],
+              "accounts": [
+                {
+                  "customer": "Saddle Brook Liquor & Bar",
+                  "num": "76021",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2403 Coronita Extra 2/12/7 oz Btl",
+                    "2405 Coronita Extra 1/24/7 oz Btl",
+                    "2409 Corona Extra 1/24/12 oz Loose Btl",
+                    "2410 Corona Extra 4/6/12 oz Btl",
+                    "2412 Corona Extra 2/12/12 oz Btl",
+                    "2415 Corona Extra 1/12/24 oz Can"
+                  ]
+                }
+              ],
               "baseWindow": "3/1/2026 - 5/31/2026"
             },
             {
               "key": "corona_light",
               "label": "Corona Light",
-              "buyers": 0,
+              "buyers": 1,
               "goal": 1,
-              "pct": 0.0,
-              "retained": false,
-              "toGo": 1,
+              "pct": 100.0,
+              "retained": true,
+              "toGo": 0,
               "emptyPickups": 0,
-              "accounts": [],
+              "accounts": [
+                {
+                  "customer": "Saddle Brook Liquor & Bar",
+                  "num": "76021",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2510 Corona Light 4/6/12 oz Btl",
+                    "2512 Corona Light 2/12/12 oz Btl"
+                  ]
+                }
+              ],
               "baseWindow": "3/1/2026 - 5/31/2026"
             },
             {
@@ -140427,25 +141036,46 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_premier",
               "label": "Corona Premier",
-              "buyers": 0,
+              "buyers": 1,
               "goal": 1,
-              "pct": 0.0,
-              "retained": false,
-              "toGo": 1,
+              "pct": 100.0,
+              "retained": true,
+              "toGo": 0,
               "emptyPickups": 0,
-              "accounts": [],
+              "accounts": [
+                {
+                  "customer": "Saddle Brook Liquor & Bar",
+                  "num": "76021",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2440 Corona Premier 4/6/12 oz Btl",
+                    "2441 Corona Premier 2/12/12 oz Btl"
+                  ]
+                }
+              ],
               "baseWindow": "3/1/2026 - 5/31/2026"
             },
             {
               "key": "corona_sunbrew",
               "label": "Corona Sunbrew",
-              "buyers": 0,
+              "buyers": 1,
               "goal": 1,
-              "pct": 0.0,
-              "retained": false,
-              "toGo": 1,
+              "pct": 100.0,
+              "retained": true,
+              "toGo": 0,
               "emptyPickups": 0,
-              "accounts": [],
+              "accounts": [
+                {
+                  "customer": "Saddle Brook Liquor & Bar",
+                  "num": "76021",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2426 Corona Sunbrew 4/6/12 oz Btl"
+                  ]
+                }
+              ],
               "baseWindow": "3/1/2026 - 5/31/2026"
             },
             {
@@ -140462,13 +141092,14 @@ const PROGRAM_DATA_2026_09 = {
                   "customer": "Saddle Brook Liquor & Bar",
                   "num": "76021",
                   "units": null,
-                  "lastDate": "2026-09-14",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2808 Modelo Especial 1/24/12 oz Loose Btl",
                     "2809 Modelo Especial 1/24/12 oz Loose Can",
                     "2811 Modelo Especial 2/12/12 oz Can",
                     "2814 Modelo Especial 4/6/12 oz Btl",
-                    "2815 Modelo Especial 2/12/12 oz Btl"
+                    "2815 Modelo Especial 2/12/12 oz Btl",
+                    "2816 Modelo Especial 1/12/24 oz Can"
                   ]
                 }
               ],
@@ -140521,12 +141152,12 @@ const PROGRAM_DATA_2026_09 = {
             }
           ],
           "goalsTotal": 7,
-          "goalsRetained": 2,
-          "buyers": 3,
-          "held": 2,
+          "goalsRetained": 6,
+          "buyers": 7,
+          "held": 6,
           "goal": 7,
-          "pct": 28.6,
-          "toGo": 5,
+          "pct": 85.7,
+          "toGo": 1,
           "emptyPickups": 0
         },
         "on_draft": {
@@ -140541,11 +141172,11 @@ const PROGRAM_DATA_2026_09 = {
           "emptyPickups": 0
         },
         "goalsTotal": 11,
-        "goalsRetained": 2,
-        "overallHeld": 373,
+        "goalsRetained": 6,
+        "overallHeld": 390,
         "overallGoal": 550,
-        "overallPct": 67.8,
-        "overallToGo": 177,
+        "overallPct": 70.9,
+        "overallToGo": 160,
         "hasAnyGoal": true
       },
       "Robin Feldman": {
@@ -140583,23 +141214,13 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 1,
+            "placements": 2,
             "goal": 3,
-            "pct": 33.3,
+            "pct": 66.7,
             "retained": false,
-            "toGo": 2,
+            "toGo": 1,
             "inReport": true,
             "products": [
-              {
-                "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 1,
-                "base": 2,
-                "goal": 2,
-                "pct": 50.0,
-                "retained": false,
-                "toGo": 1,
-                "lost": false
-              },
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
                 "placements": 0,
@@ -140609,15 +141230,25 @@ const PROGRAM_DATA_2026_09 = {
                 "retained": false,
                 "toGo": 1,
                 "lost": true
+              },
+              {
+                "product": "Modelo Especial 4/6/12 oz Btl",
+                "placements": 2,
+                "base": 2,
+                "goal": 2,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
             "goalOverride": false,
             "baseGoal": 3,
             "skusTotal": 2,
-            "skusHeld": 0,
+            "skusHeld": 1,
             "skusLost": 1,
-            "skusShort": 2,
+            "skusShort": 1,
             "skusNew": 0
           },
           {
@@ -140656,20 +141287,20 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 2,
         "offGoalsRetained": 0,
-        "offPlacements": 2,
+        "offPlacements": 3,
         "offGoal": 5,
-        "offPct": 40.0,
-        "offToGo": 3,
+        "offPct": 60.0,
+        "offToGo": 2,
         "on_packages": {
           "families": [
             {
               "key": "corona_extra",
               "label": "Corona Extra",
-              "buyers": 71,
+              "buyers": 76,
               "goal": 145,
-              "pct": 49.0,
+              "pct": 52.4,
               "retained": false,
-              "toGo": 74,
+              "toGo": 69,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -140688,6 +141319,16 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-18",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl",
+                    "2425 Corona Extra 1/24/12 oz Loose Can"
+                  ]
+                },
+                {
+                  "customer": "Marriot Hotel(A)Saddle Bk",
+                  "num": "76004",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2415 Corona Extra 1/12/24 oz Can",
                     "2425 Corona Extra 1/24/12 oz Loose Can"
                   ]
                 },
@@ -140729,6 +141370,25 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Courtyard Marriott Mt Arl",
+                  "num": "191406",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Frungillo Caterers",
+                  "num": "2009",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl",
+                    "2412 Corona Extra 2/12/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "American Lgn Branchville",
                   "num": "231708",
                   "units": null,
@@ -140745,6 +141405,15 @@ const PROGRAM_DATA_2026_09 = {
                   "products": [
                     "2412 Corona Extra 2/12/12 oz Btl",
                     "2415 Corona Extra 1/12/24 oz Can"
+                  ]
+                },
+                {
+                  "customer": "Vesta Wood Fired Pizza",
+                  "num": "31009",
+                  "units": null,
+                  "lastDate": "2026-09-21",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -140776,13 +141445,12 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Marriot Hotel(A)Saddle Bk",
-                  "num": "76004",
+                  "customer": "Kiku Restaurant",
+                  "num": "80019",
                   "units": null,
-                  "lastDate": "2026-09-09",
+                  "lastDate": "2026-09-17",
                   "products": [
-                    "2415 Corona Extra 1/12/24 oz Can",
-                    "2425 Corona Extra 1/24/12 oz Loose Can"
+                    "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -140836,6 +141504,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "12067",
                   "units": null,
                   "lastDate": "2026-09-03",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Courtyard by Marriott Wayne Fairfield",
+                  "num": "12068",
+                  "units": null,
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -140904,15 +141581,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Courtyard Marriott Mt Arl",
-                  "num": "191406",
-                  "units": null,
-                  "lastDate": "2026-09-03",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "GRIFFIN & HOWE",
                   "num": "191524",
                   "units": null,
@@ -140928,15 +141596,6 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-02",
                   "products": [
                     "2412 Corona Extra 2/12/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Frungillo Caterers",
-                  "num": "2009",
-                  "units": null,
-                  "lastDate": "2026-09-03",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -140991,6 +141650,15 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-15",
                   "products": [
                     "2412 Corona Extra 2/12/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Homewood Suites By Hilton",
+                  "num": "28033",
+                  "units": null,
+                  "lastDate": "2026-09-21",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -141061,15 +141729,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "3012",
                   "units": null,
                   "lastDate": "2026-09-09",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Vesta Wood Fired Pizza",
-                  "num": "31009",
-                  "units": null,
-                  "lastDate": "2026-09-03",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -141156,6 +141815,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Amer Lgn (Z) Little Ferry",
+                  "num": "42015",
+                  "units": null,
+                  "lastDate": "2026-09-21",
+                  "products": [
+                    "2418 Corona Extra 1/18/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "American Lgn 58 (A) Englewood",
                   "num": "52027",
                   "units": null,
@@ -141237,6 +141905,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "American Lgn (Z) (Westwood)",
+                  "num": "74014",
+                  "units": null,
+                  "lastDate": "2026-09-21",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
                   "customer": "Vfw Of Saddlebrook",
                   "num": "76013",
                   "units": null,
@@ -141273,15 +141950,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Kiku Restaurant",
-                  "num": "80019",
-                  "units": null,
-                  "lastDate": "2026-09-03",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "K Of C W Bergen",
                   "num": "81023",
                   "units": null,
@@ -141297,6 +141965,15 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-08",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Pompton Queen (P)",
+                  "num": "9001",
+                  "units": null,
+                  "lastDate": "2026-09-21",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -141519,11 +142196,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "modelo_especial",
               "label": "Modelo Especial",
-              "buyers": 23,
+              "buyers": 27,
               "goal": 50,
-              "pct": 46.0,
+              "pct": 54.0,
               "retained": false,
-              "toGo": 27,
+              "toGo": 23,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -141563,6 +142240,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Courtyard by Marriott Wayne Fairfield",
+                  "num": "12068",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Hilton Garden Inn Rockaway",
                   "num": "190710",
                   "units": null,
@@ -141578,6 +142264,15 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-18",
                   "products": [
                     "2808 Modelo Especial 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Courtyard Marriott Mt Arl",
+                  "num": "191406",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -141716,6 +142411,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Marriot Hotel(A)Saddle Bk",
+                  "num": "76004",
+                  "units": null,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2811 Modelo Especial 2/12/12 oz Can"
+                  ]
+                },
+                {
                   "customer": "Hyatt Place Fair Lawn (A)",
                   "num": "81032",
                   "units": null,
@@ -141729,6 +142433,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "84021",
                   "units": null,
                   "lastDate": "2026-09-15",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Pompton Queen (P)",
+                  "num": "9001",
+                  "units": null,
+                  "lastDate": "2026-09-21",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -141751,11 +142464,11 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "goalsTotal": 7,
           "goalsRetained": 0,
-          "buyers": 110,
-          "held": 110,
+          "buyers": 119,
+          "held": 119,
           "goal": 238,
-          "pct": 46.2,
-          "toGo": 128,
+          "pct": 50.0,
+          "toGo": 119,
           "emptyPickups": 0
         },
         "on_draft": {
@@ -141763,13 +142476,23 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_light",
               "label": "Corona Light",
-              "buyers": 0,
+              "buyers": 1,
               "goal": 3,
-              "pct": 0.0,
+              "pct": 33.3,
               "retained": false,
-              "toGo": 3,
+              "toGo": 2,
               "emptyPickups": 0,
-              "accounts": [],
+              "accounts": [
+                {
+                  "customer": "The Village Inn",
+                  "num": "12023",
+                  "units": 1.0,
+                  "lastDate": "2026-09-17",
+                  "products": [
+                    "2517 Corona Light 7.75 Gal Keg"
+                  ]
+                }
+              ],
               "baseWindow": "3/1/2026 - 5/31/2026"
             },
             {
@@ -141888,19 +142611,19 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "goalsTotal": 5,
           "goalsRetained": 0,
-          "buyers": 7,
-          "held": 7,
+          "buyers": 8,
+          "held": 8,
           "goal": 29,
-          "pct": 24.1,
-          "toGo": 22,
+          "pct": 27.6,
+          "toGo": 21,
           "emptyPickups": 3
         },
         "goalsTotal": 14,
         "goalsRetained": 0,
-        "overallHeld": 119,
+        "overallHeld": 130,
         "overallGoal": 272,
-        "overallPct": 43.8,
-        "overallToGo": 153,
+        "overallPct": 47.8,
+        "overallToGo": 142,
         "hasAnyGoal": true
       },
       "Shane Barreca": {
@@ -141978,33 +142701,13 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 114,
+            "placements": 120,
             "goal": 145,
-            "pct": 78.6,
+            "pct": 82.8,
             "retained": false,
-            "toGo": 31,
+            "toGo": 25,
             "inReport": true,
             "products": [
-              {
-                "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 20,
-                "base": 28,
-                "goal": 28,
-                "pct": 71.4,
-                "retained": false,
-                "toGo": 8,
-                "lost": false
-              },
-              {
-                "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 10,
-                "base": 16,
-                "goal": 16,
-                "pct": 62.5,
-                "retained": false,
-                "toGo": 6,
-                "lost": false
-              },
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
                 "placements": 24,
@@ -142016,13 +142719,33 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Especial 1/12/24 oz Can",
+                "product": "Modelo Especial 2/12/12 oz Can",
                 "placements": 23,
                 "base": 28,
                 "goal": 28,
                 "pct": 82.1,
                 "retained": false,
                 "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/24/12 oz Loose Can",
+                "placements": 11,
+                "base": 16,
+                "goal": 16,
+                "pct": 68.8,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/12/24 oz Can",
+                "placements": 24,
+                "base": 28,
+                "goal": 28,
+                "pct": 85.7,
+                "retained": false,
+                "toGo": 4,
                 "lost": false
               },
               {
@@ -142047,12 +142770,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 8,
+                "placements": 9,
                 "base": 9,
                 "goal": 9,
-                "pct": 88.9,
-                "retained": false,
-                "toGo": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
                 "lost": false
               }
             ],
@@ -142060,19 +142783,19 @@ const PROGRAM_DATA_2026_09 = {
             "goalOverride": false,
             "baseGoal": 145,
             "skusTotal": 7,
-            "skusHeld": 0,
+            "skusHeld": 1,
             "skusLost": 0,
-            "skusShort": 7,
+            "skusShort": 6,
             "skusNew": 0
           },
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 125,
+            "placements": 133,
             "goal": 174,
-            "pct": 71.8,
+            "pct": 76.4,
             "retained": false,
-            "toGo": 49,
+            "toGo": 41,
             "inReport": true,
             "products": [
               {
@@ -142096,26 +142819,6 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 16,
-                "base": 22,
-                "goal": 22,
-                "pct": 72.7,
-                "retained": false,
-                "toGo": 6,
-                "lost": false
-              },
-              {
-                "product": "Pacifico 2/12/12 oz Can",
-                "placements": 9,
-                "base": 15,
-                "goal": 15,
-                "pct": 60.0,
-                "retained": false,
-                "toGo": 6,
-                "lost": false
-              },
-              {
                 "product": "Modelo Oro 2/12/12 oz Can",
                 "placements": 4,
                 "base": 10,
@@ -142126,13 +142829,33 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 15,
-                "base": 20,
-                "goal": 20,
-                "pct": 75.0,
+                "product": "Corona Extra 1/12/24 oz Can",
+                "placements": 17,
+                "base": 22,
+                "goal": 22,
+                "pct": 77.3,
                 "retained": false,
                 "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Pacifico 2/12/12 oz Can",
+                "placements": 10,
+                "base": 15,
+                "goal": 15,
+                "pct": 66.7,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
+                "placements": 16,
+                "base": 20,
+                "goal": 20,
+                "pct": 80.0,
+                "retained": false,
+                "toGo": 4,
                 "lost": false
               },
               {
@@ -142141,16 +142864,6 @@ const PROGRAM_DATA_2026_09 = {
                 "base": 14,
                 "goal": 14,
                 "pct": 71.4,
-                "retained": false,
-                "toGo": 4,
-                "lost": false
-              },
-              {
-                "product": "Modelo Negra 2/12/12 oz Btl",
-                "placements": 2,
-                "base": 6,
-                "goal": 6,
-                "pct": 33.3,
                 "retained": false,
                 "toGo": 4,
                 "lost": false
@@ -142166,7 +142879,7 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Victoria 2/12/12 oz Can",
+                "product": "Modelo Negra 2/12/12 oz Btl",
                 "placements": 4,
                 "base": 6,
                 "goal": 6,
@@ -142176,13 +142889,13 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelito Especial 1/24/7 oz Loose Btl",
+                "product": "Victoria 2/12/12 oz Can",
                 "placements": 4,
-                "base": 5,
-                "goal": 5,
-                "pct": 80.0,
+                "base": 6,
+                "goal": 6,
+                "pct": 66.7,
                 "retained": false,
-                "toGo": 1,
+                "toGo": 2,
                 "lost": false
               },
               {
@@ -142197,10 +142910,10 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 9,
+                "placements": 10,
                 "base": 6,
                 "goal": 6,
-                "pct": 150.0,
+                "pct": 166.7,
                 "retained": true,
                 "toGo": 0,
                 "lost": false
@@ -142210,6 +142923,16 @@ const PROGRAM_DATA_2026_09 = {
                 "placements": 8,
                 "base": 8,
                 "goal": 8,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Modelito Especial 1/24/7 oz Loose Btl",
+                "placements": 5,
+                "base": 5,
+                "goal": 5,
                 "pct": 100.0,
                 "retained": true,
                 "toGo": 0,
@@ -142247,10 +142970,10 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Corona Premier 1/24/12 oz Loose Can",
-                "placements": 1,
+                "placements": 2,
                 "base": 1,
                 "goal": 1,
-                "pct": 100.0,
+                "pct": 200.0,
                 "retained": true,
                 "toGo": 0,
                 "lost": false
@@ -142270,19 +142993,19 @@ const PROGRAM_DATA_2026_09 = {
             "goalOverride": false,
             "baseGoal": 174,
             "skusTotal": 18,
-            "skusHeld": 6,
+            "skusHeld": 7,
             "skusLost": 0,
-            "skusShort": 12,
+            "skusShort": 11,
             "skusNew": 1
           },
           {
             "key": "innovation",
             "label": "Innovation",
-            "placements": 30,
+            "placements": 35,
             "goal": 78,
-            "pct": 38.5,
+            "pct": 44.9,
             "retained": false,
-            "toGo": 48,
+            "toGo": 43,
             "inReport": true,
             "products": [
               {
@@ -142317,32 +143040,22 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 8,
+                "placements": 10,
                 "base": 14,
                 "goal": 14,
-                "pct": 57.1,
-                "retained": false,
-                "toGo": 6,
-                "lost": false
-              },
-              {
-                "product": "Corona Sunbrew 2/12/12 oz Btl",
-                "placements": 4,
-                "base": 8,
-                "goal": 8,
-                "pct": 50.0,
+                "pct": 71.4,
                 "retained": false,
                 "toGo": 4,
                 "lost": false
               },
               {
-                "product": "Corona Sunbrew 1/12/24 oz Can",
-                "placements": 1,
-                "base": 3,
-                "goal": 3,
-                "pct": 33.3,
+                "product": "Corona Sunbrew 2/12/12 oz Btl",
+                "placements": 5,
+                "base": 8,
+                "goal": 8,
+                "pct": 62.5,
                 "retained": false,
-                "toGo": 2,
+                "toGo": 3,
                 "lost": false
               },
               {
@@ -142366,7 +143079,7 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": true
               },
               {
-                "product": "Modelo Negra 2/12/12 oz Can",
+                "product": "Corona Sunbrew 1/12/24 oz Can",
                 "placements": 2,
                 "base": 3,
                 "goal": 3,
@@ -142376,11 +143089,11 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Corona Sunbrew 2/12/12 oz Can",
-                "placements": 1,
-                "base": 2,
-                "goal": 2,
-                "pct": 50.0,
+                "product": "Modelo Negra 2/12/12 oz Can",
+                "placements": 2,
+                "base": 3,
+                "goal": 3,
+                "pct": 66.7,
                 "retained": false,
                 "toGo": 1,
                 "lost": false
@@ -142394,25 +143107,35 @@ const PROGRAM_DATA_2026_09 = {
                 "retained": false,
                 "toGo": 1,
                 "lost": true
+              },
+              {
+                "product": "Corona Sunbrew 2/12/12 oz Can",
+                "placements": 2,
+                "base": 2,
+                "goal": 2,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
             "baseWindow": "3/1/2026 - 5/31/2026",
             "goalOverride": false,
             "baseGoal": 78,
             "skusTotal": 11,
-            "skusHeld": 0,
+            "skusHeld": 1,
             "skusLost": 3,
-            "skusShort": 11,
+            "skusShort": 10,
             "skusNew": 0
           }
         ],
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 329,
+        "offPlacements": 348,
         "offGoal": 482,
-        "offPct": 68.3,
-        "offToGo": 153,
+        "offPct": 72.2,
+        "offToGo": 134,
         "on_packages": {
           "families": [],
           "goalsTotal": 0,
@@ -142437,10 +143160,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 4,
         "goalsRetained": 0,
-        "overallHeld": 329,
+        "overallHeld": 348,
         "overallGoal": 482,
-        "overallPct": 68.3,
-        "overallToGo": 153,
+        "overallPct": 72.2,
+        "overallToGo": 134,
         "hasAnyGoal": true
       }
     },
@@ -142457,28 +143180,28 @@ const PROGRAM_DATA_2026_09 = {
       {
         "key": "modelo_gaintain",
         "label": "Modelo Gaintain",
-        "total": 1824,
+        "total": 1908,
         "goal": 2395,
         "met": false,
-        "short": 571,
+        "short": 487,
         "baseWindow": "9/1/2025 - 11/30/2025"
       },
       {
         "key": "impact",
         "label": "Impact",
-        "total": 2388,
+        "total": 2559,
         "goal": 3452,
         "met": false,
-        "short": 1064,
+        "short": 893,
         "baseWindow": "9/1/2025 - 11/30/2025"
       },
       {
         "key": "innovation",
         "label": "Innovation",
-        "total": 434,
+        "total": 483,
         "goal": 1419,
         "met": false,
-        "short": 985,
+        "short": 936,
         "baseWindow": "3/1/2026 - 5/31/2026"
       }
     ],
@@ -142487,64 +143210,64 @@ const PROGRAM_DATA_2026_09 = {
         {
           "key": "corona_extra",
           "label": "Corona Extra",
-          "total": 550,
+          "total": 581,
           "goal": 836,
           "met": false,
-          "short": 286,
+          "short": 255,
           "baseWindow": "3/1/2026 - 5/31/2026"
         },
         {
           "key": "modelo_especial",
           "label": "Modelo Especial",
-          "total": 269,
+          "total": 286,
           "goal": 471,
           "met": false,
-          "short": 202,
+          "short": 185,
           "baseWindow": "3/1/2026 - 5/31/2026"
         },
         {
           "key": "corona_light",
           "label": "Corona Light",
-          "total": 122,
+          "total": 137,
           "goal": 306,
           "met": false,
-          "short": 184,
+          "short": 169,
           "baseWindow": "3/1/2026 - 5/31/2026"
         },
         {
           "key": "corona_sunbrew",
           "label": "Corona Sunbrew",
-          "total": 1,
+          "total": 2,
           "goal": 149,
           "met": false,
-          "short": 148,
+          "short": 147,
           "baseWindow": "3/1/2026 - 5/31/2026"
         },
         {
           "key": "corona_na",
           "label": "Corona NA",
-          "total": 23,
+          "total": 25,
           "goal": 127,
           "met": false,
-          "short": 104,
+          "short": 102,
           "baseWindow": "3/1/2026 - 5/31/2026"
         },
         {
           "key": "pacifico",
           "label": "Pacifico",
-          "total": 38,
+          "total": 41,
           "goal": 123,
           "met": false,
-          "short": 85,
+          "short": 82,
           "baseWindow": "3/1/2026 - 5/31/2026"
         },
         {
           "key": "corona_premier",
           "label": "Corona Premier",
-          "total": 24,
+          "total": 26,
           "goal": 81,
           "met": false,
-          "short": 57,
+          "short": 55,
           "baseWindow": "3/1/2026 - 5/31/2026"
         },
         {
@@ -142561,10 +143284,10 @@ const PROGRAM_DATA_2026_09 = {
         {
           "key": "modelo_especial",
           "label": "Modelo Especial",
-          "total": 117,
+          "total": 120,
           "goal": 240,
           "met": false,
-          "short": 123,
+          "short": 120,
           "baseWindow": "3/1/2026 - 5/31/2026"
         },
         {
@@ -142579,19 +143302,19 @@ const PROGRAM_DATA_2026_09 = {
         {
           "key": "corona_light",
           "label": "Corona Light",
-          "total": 1,
+          "total": 2,
           "goal": 50,
           "met": false,
-          "short": 49,
+          "short": 48,
           "baseWindow": "3/1/2026 - 5/31/2026"
         },
         {
           "key": "modelo_negra",
           "label": "Modelo Negra",
-          "total": 3,
+          "total": 4,
           "goal": 18,
           "met": false,
-          "short": 15,
+          "short": 14,
           "baseWindow": "3/1/2026 - 5/31/2026"
         },
         {
@@ -142605,7 +143328,7 @@ const PROGRAM_DATA_2026_09 = {
         }
       ]
     },
-    "houseTotal": 5728,
+    "houseTotal": 6032,
     "houseGoal": 8876,
     "retainThresholdPct": 100,
     "periodStart": "2026-09-01",
@@ -142631,7 +143354,7 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "drift": [],
           "detailCarriesGoalColumns": true,
-          "emptyPickups": 40
+          "emptyPickups": 37
         }
       },
       "onBaseWindow": "3/1/2026 - 5/31/2026"

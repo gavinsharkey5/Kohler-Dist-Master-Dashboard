@@ -3758,6 +3758,43 @@ still the 2026-09-10 export -- 150/293 Lager, 3/7 Flight, 49 flagged buyers
 with no kegs excluded. Ask Gavin for the RDE draft ACCOUNT export to move it.
 Hub cache tag bumped for the new program_data.js.
 
+2026-09-21 FIFTH REFRESH -- Constellation Fall, five exports (Corona Gaintain applied this morning)
+  python3 generate.py
+*** SEPTEMBER 17 IS BACK. *** The 9/18 note flagged that every 9/17 row had
+vanished from the Constellation Fall family (194 packages, 10 draft) and
+asked for a re-pull. This pull carries them: Packages ON 10,187 -> 10,429
+(+242, none removed -- 194 dated 9/17, 5 more 9/18, 37 dated 9/21, 4 each
+9/22 and 9/23) and Draft ON 1,843 -> 1,856 (+13, none removed -- the 10
+missing 9/17 rows plus 9/21 x2 and 9/22 x1). Both files are clean supersets
+of what was published, so the 9/17 hole was the export window, not voided
+invoices. The three off-prem w/Goals files restated in place: Impact 345
+rows, Modelo 168, Innovation 180 -> 181 -- EVERY REP'S BASE COLUMN IS
+IDENTICAL (0 goals moved, verified per rep on all three) and every rep's
+2026 column went UP, the pattern the 9/18 restatement broke. Nothing in the
+generator changed.
+  off-prem house  Modelo Gaintain 1,824 -> 1,908 / 2,395 · Impact 2,388 ->
+                  2,559 / 3,452 · Innovation 434 -> 483 / 1,419. Corona
+                  Gaintain still this morning's 1,082 / 1,610. Every rep with
+                  an off-prem goal moved up; the biggest: Chris Payton 456 ->
+                  495 placements (58.8% -> 63.9%), Matt Powierski 545 -> 582,
+                  Jim Heaney 508 -> 539, Jayson Romine 235 -> 261, Anthony
+                  Palmisano 275 -> 299, Dan Lagala 406 -> 428. Dave Ehlers
+                  577 (89.3%) and MICHAEL HARBOY 91 -> 98 (82.0% -> 88.3%,
+                  back to closest) lead. Still 0 of 22 holding every
+                  off-prem category, day 21 of 91.
+  on-prem         packages 1,029 -> 1,100 / 2,107 buyers -- the 9/17 rows
+                  restored plus 9/21: Nick Melissari 179 -> 198, Robin
+                  Feldman 110 -> 120, Allison Scott 166 -> 174, Paul
+                  Mclaughlin 138 -> 146, Pablo Lopez 67 -> 74, Anthony
+                  Palmisano 59 -> 64, Brian Sengebush +6. PHIL ERNST 2 -> 6
+                  of his 7 packages families held again (the four 9/17-only
+                  families are back). Draft 141 -> 146 / 381 (empty-keg
+                  pickups 40 -> 37). Still 4 of 20 reps holding every
+                  packages family, 0 of 12 on draft.
+  goals retained  20 -> 25 of 238 across the roster (Phil Ernst 2 -> 6,
+                  Pablo Lopez 1 -> 2); still 0 of 24 reps hold every goal.
+Hub cache tag bumped (20260921e) for the new program_data.js.
+
 2026-09-21 FOURTH REFRESH -- Montauk, 2XO, Other Half (draft + off)
   python3 generate.py
 Diffed row by row before the run. Montauk 1,366 -> 1,373 (+7, none removed);
