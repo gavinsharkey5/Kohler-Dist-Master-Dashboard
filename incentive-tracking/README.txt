@@ -3758,6 +3758,56 @@ still the 2026-09-10 export -- 150/293 Lager, 3/7 Flight, 49 flagged buyers
 with no kegs excluded. Ask Gavin for the RDE draft ACCOUNT export to move it.
 Hub cache tag bumped for the new program_data.js.
 
+2026-09-21 NINTH REFRESH -- Southern District: Fall Seasonal Fast Start + Path to Victory (vSD)
+  python3 generate.py
+Both vSD exports straight over data/fall_seasonal_sd.csv and
+data/path_to_victory_sd.csv (same headers; Fall Seasonal 280 -> 282 rows,
+Path to Victory 47 unchanged; per-type subtotal rows reconciled). Diffed row
+by row first.
+  Fall Seasonal  4,579 -> 4,589 package CE, $3,220 -> $3,234 trackable. Two
+                 new lines: John O'Donoghue / Woodchuck Spiced Apple 4/6 (2
+                 cases) and Michael Harboy / Montauk Pumpkin Ale 5.2 gal --
+                 his first paid sixtels (0 -> 2, keg money $50 -> $60, payout
+                 $517.32 -> $527.32). Dylan Rubino 312 -> 330 cases (Saranac
+                 Pumpkin 310 -> 328, Pumking 73 -> 82, Cider Donut 317 ->
+                 335; $168.30 -> $177.10), Andrew Lundy 538 -> 541, Hakan
+                 Sadik 229 -> 230. JOHN O'DONOGHUE WENT DOWN 777 -> 764 cases:
+                 Evil Genius Trick or Treat 4/6 694 -> 675 and Saranac Pumpkin
+                 52 -> 30 (Hofbrau 151 -> 154, Haunted Hayride and Cider Donut
+                 up) -- returns or restated invoices, the export is the
+                 record; payout $567.01 -> $561.08. Jaime Colonna, Alisa
+                 Acciardi and Alex Rodriguez did not move.
+  Path to Victory  66 -> 67 new 6pk PODs of 228, $660 -> $670 trackable:
+                 Dylan Rubino 25 -> 26 (Juicy Monkey 7 -> 8; Sour Monkey units
+                 121 -> 124). Everyone else exactly as on 9/18; Andrew Lundy
+                 still not in the export.
+Hub cache tag bumped (20260921g) for the new program_data.js.
+
+2026-09-21 EIGHTH REFRESH -- MABI Fall actuals
+  python3 convert_mabi_fall.py MABI_Fall_2026_Retention_10.csv data/mabi_retention_fall_goals.xlsx
+  python3 generate.py
+Converter reconciled clean (every brand subtotal, rep total and the goals
+base add up). Actuals 665 -> 685 product rows across the same 23 reps,
+against the frozen goals workbook (26 reps, house base 8,140 / goal 7,326);
+Default, Dylan Rubino and John O'Donoghue still have a goal and no
+activity. THE 9/18 DROPS REVERSED: house 3,580 -> 3,937 of 7,326 MADE
+placements (48.9% -> 53.7%) and EVERY ONE OF THE 20 SCORED REPS MOVED UP --
+the 9/17 hole closing, as the 9/18 note said it should. Still 0 of 24 reps
+at their 90% goal on day 21 of 91; Phil Ernst 265 -> 289 (64.4%) and Dave
+Ehlers 364 -> 382 (65.7%) lead.
+  biggest  JAYSON ROMINE 328 -> 384 (47.6% -> 55.7%), SHANE BARRECA 149 ->
+           193 (35 -> 39 SKUs held), Chris Payton 266 -> 302 (43 -> 44 SKUs),
+           Jim Heaney 292 -> 328, Anthony Palmisano 325 -> 354, Phil Ernst
+           265 -> 289 (45 -> 47 SKUs), Pablo Lopez 85 -> 103 (27 -> 31 SKUs),
+           Dave Ehlers 364 -> 382, Klejdi Lamo 353 -> 370, Derrick Laws
+           137 -> 153, Mike Ast 202 -> 215 (40 -> 43 SKUs), Matt Powierski
+           334 -> 346.
+  rest     Dan Lagala 128 -> 138, Javier Melo 100 -> 109, Robin Feldman
+           28 -> 34, Nick Melissari 25 -> 29, Allison Scott 41 -> 44, Brian
+           Sengebush 67 -> 70, Michael Harboy 62 -> 64, Paul Mclaughlin
+           19 -> 20.
+Hub cache tag bumped (20260921g) for the new program_data.js.
+
 2026-09-21 SEVENTH REFRESH -- Yuengling Fall, all three reports
   python3 generate.py
 Flat CSVs straight over yuengling_retention_fall_off.csv / _packages_on.csv
