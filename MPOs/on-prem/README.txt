@@ -259,9 +259,23 @@ Four objectives at 25% each:
   3. Spirits - Carbliss (10) New On Premise Buying Accounts
   4. HUSA - (1) New XX Draft Line
 
-All four are data-backed. Numbers as of the 2026-09-18 refresh (RDE exports run
-through 9/18): Bardstown 15 menu placements, Fever Tree 21 new placements,
-Carbliss 20 new buying accounts, HUSA 1 new draft line.
+All four are data-backed. Numbers as of the 2026-09-21 refresh (RDE exports run
+through 9/21): Bardstown 15 menu placements, Fever Tree 21 new placements,
+Carbliss 21 new buying accounts, HUSA 1 new draft line.
+
+2026-09-21 REFRESH -- Fever Tree, Carbliss, HUSA exports + Promos_Report_30
+  python3 generate_2026-09.py --merge-bardstown Promos_Report_30.xlsx
+Diffed row by row before the run. Fever Tree set-identical at 556 rows and
+HUSA set-identical at 87 -- nothing new since 9/18 on either. Carbliss
+280 -> 282, both new rows dated 9/21: Brian Sengebush at 190706 Mill Lane
+Tavern (first Carbliss buy on record -> NEW) and Robin Feldman at 74014
+American Lgn (Z) (Westwood), a repeat (bought 7/2 and 9/1). Report_30 held
+the same 18 rows as Report_26 (14 Bardstown, 4 Yave skipped); merge read
+0 new / 14 already published, archive holds at 16 rows / 15 placements. Its
+Filters sheet now says End Date 09/25/2026, which is just the pull window.
+CARBLISS 20 -> 21: Brian Sengebush 4 -> 5. Everyone else exactly where the
+2026-09-18 note left them; Fever Tree 21, HUSA 1, Bardstown 15 unchanged
+(Brian's second Krogh's Origin Rye, flagged 9/17, still counted).
 
 2026-09-17 -- PROGRAM VIEW DETAIL (shared/guided.js, per Gavin)
 Every rep row under an opened objective in Program View now has a
