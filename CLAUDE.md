@@ -185,3 +185,31 @@ pairs -- it deliberately does not sum across items) and the fact that
 the dashboard holds NO goals: the Opportunity Tracker is deliberately
 not a goal tracker, and `ws_goals.csv` is the drop-in that would turn
 Goal / Progress / Still needed on if goals are ever approved.
+
+## Rolling Distribution Tracker keeps a month-per-file master (2026-09-21)
+
+`rolling-distribution/` is the history + baseline page: buyers, placements
+and cases by supplier -> brand family -> brand -> product in rolling
+N-month periods (default 3) that advance one calendar month, filterable by
+rep / DM / premise / area / draft-vs-package. It is fed by Fusion
+product x account exports (three months per file because of the export
+size cap) plus two optional lookups (product -> package, customer -> rep
+and DM). `generate.py` auto-detects all three by header.
+
+The historical dataset is `rolling-distribution/data/master/`: one CSV
+per calendar month (product_num, customer_num, buyer, cases) plus
+products.csv / customers.csv / sources.json. The raw 20 MB exports are
+NOT committed. Each month in a detail export REPLACES that month's file
+in full (restatement, never top-up -- same rule as the W&S grid); months
+the export doesn't cover are untouched, so history never drops off and
+overlapping exports can't double count. Routine pull = latest three
+months. A month equal to the export's own date is flagged partial.
+
+Counting rules, verified against Fusion's own product- and customer-level
+exports: Fusion's Buyer Count and Placement Count are the SAME 1/0 flag at
+the product x account grain. Buyer = distinct account with net cases > 0
+in the period for the rows in scope; placement = product x account with
+net cases > 0; cases net of returns. Rolling-period buyers are never the
+sum of monthly buyer counts -- always re-derive from account rows. Rep and
+DM are today's assignment applied to all history (Fusion has no history
+of who held an account). No dollars, no goals on this page.
