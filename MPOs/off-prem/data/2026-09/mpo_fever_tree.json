@@ -3690,10 +3690,10 @@
     "CUSTOMER_NUM": 191010,
     "CUSTOMER_NAME": "Liquor Factory II Jefferson",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -3822,10 +3822,10 @@
     "CUSTOMER_NUM": 230114,
     "CUSTOMER_NAME": "Liquor Factory III Sparta",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -3846,10 +3846,10 @@
     "CUSTOMER_NUM": 230114,
     "CUSTOMER_NAME": "Liquor Factory III Sparta",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -3882,10 +3882,10 @@
     "CUSTOMER_NUM": 230114,
     "CUSTOMER_NAME": "Liquor Factory III Sparta",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -3930,10 +3930,10 @@
     "CUSTOMER_NUM": 230114,
     "CUSTOMER_NAME": "Liquor Factory III Sparta",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -5034,10 +5034,10 @@
     "CUSTOMER_NUM": 25008,
     "CUSTOMER_NAME": "Clifton Commons S & W",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -5061,7 +5061,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/17/2026",
-    "LAST_DATE": "9/17/2026"
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -7585,6 +7585,18 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
+    "PRODUCT_NAME": "1166 Fever Tree Elderflower Tonic Water 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 89005,
+    "CUSTOMER_NAME": "Allendale Wine Shoppe",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
     "PRODUCT_NAME": "1168 Fever Tree mediterranean Tonic Water 6/4/200 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 89005,
@@ -8658,10 +8670,10 @@
     "CUSTOMER_NUM": 96002,
     "CUSTOMER_NAME": "Wine & Spirit World(W)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -8682,10 +8694,10 @@
     "CUSTOMER_NUM": 96002,
     "CUSTOMER_NAME": "Wine & Spirit World(W)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -8697,7 +8709,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/2/2026",
-    "LAST_DATE": "9/10/2026"
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -8706,10 +8718,10 @@
     "CUSTOMER_NUM": 96002,
     "CUSTOMER_NAME": "Wine & Spirit World(W)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -8718,10 +8730,10 @@
     "CUSTOMER_NUM": 96002,
     "CUSTOMER_NAME": "Wine & Spirit World(W)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -8733,7 +8745,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/10/2026",
-    "LAST_DATE": "9/10/2026"
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -8757,7 +8769,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/10/2026",
-    "LAST_DATE": "9/10/2026"
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -11478,10 +11490,10 @@
     "CUSTOMER_NUM": 92008,
     "CUSTOMER_NAME": "Ramsey Wine & Liquor",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -11517,7 +11529,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/10/2026",
-    "LAST_DATE": "9/10/2026"
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -11541,7 +11553,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/10/2026",
-    "LAST_DATE": "9/10/2026"
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -11550,10 +11562,10 @@
     "CUSTOMER_NUM": 92008,
     "CUSTOMER_NAME": "Ramsey Wine & Liquor",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",

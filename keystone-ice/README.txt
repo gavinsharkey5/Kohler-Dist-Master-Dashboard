@@ -98,6 +98,16 @@ the two boards were cross-checked per rep afterwards (101 accounts each, zero
 differences). Whenever this file changes, change that one to match in the same
 commit.
 
+2026-09-21 REFRESH: actuals.csv onto the 214-row export (6 new rows, none
+  removed -- diffed before the run). 168 -> 173 distinct accounts house-wide;
+  still 7 qualified, 3 at bonus, $855 projected. Only Jayson Romine moved:
+  5 -> 10 of 33 (29%), five 9/21 load sheets (Super Saver, Liquor Factory
+  III Sparta, Liquor Factory IV Hopatcong, Wine Country Newton, Wantage
+  Plaza Liquor Outlet); 4 more to qualify, 8 to bonus. Javier Melo / C & S
+  Lucky Liquors II is a repeat. Phil Ernst's 9/30 USA Wine Traders row (flagged
+  9/18) is still in the export. Same file onto MPOs/off-prem/keystone_ice_24oz.csv
+  (sync rule); off-prem MPO and incentive-tracking rebuilt after this board.
+
 2026-09-18 REFRESH: actuals.csv onto the 208-row export (5 new rows, none
   removed -- diffed before the run). 166 -> 168 distinct accounts house-wide;
   still 7 qualified, 3 at bonus, $850 -> $855 projected. Dave Ehlers 8 -> 9

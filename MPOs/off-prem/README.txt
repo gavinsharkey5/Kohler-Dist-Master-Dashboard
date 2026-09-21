@@ -928,6 +928,58 @@ on both boards: dated tables, Details toggles with photo links (cooler
 doors, Bardstown), Adam Badalamenti's Bardstown detail, no horizontal scroll
 at 390px, and the hub's off-prem tab still renders.
 
+2026-09-21 REFRESH -- all four exports plus Promos_Report_29
+    python3 generate_2026-09.py --merge-cooler-doors Promos_Report_29.xlsx
+Row counts: Constellation 123 -> 123 (restated in place), Keystone 208 -> 214,
+Fever Tree 2,145 -> 2,164, Wine & Spirits 2,767 -> 2,788. Diffed row by row
+before the run: Keystone +6/-0, Fever Tree +19/-0, Wine & Spirits +21/-2. The
+two W&S rows "removed" are Robin Feldman's Il Vero Westwood Origin BiB +
+Bourbon RE-DATED 9/18 -> 9/21 (same account, same SKUs) -- nothing left.
+Constellation's restatement moved 26 rows, every one upward. Every new RDE row
+is dated 9/21 except Shane Barreca's two Chateau Diana NA rows at ShopRite
+Northvale (9/22, a day ahead of the pull -- kept, as always). Phil Ernst's 32
+rows dated 9/30 (flagged 9/18) are all still in the exports and still counted.
+Promos_Report_29 held 46 rows, all Cooler Door Wrap (window 9/1-9/25), and
+every one was already published: 0 new, archive holds at 46 rows / 35
+stickers, still 4 reps at 5.
+  Constellation   1,059 -> 1,090 placements this fall against 1,628 last fall;
+                  still 23 of 24 reps at 30%. Jayson Romine 47 -> 60 (64%),
+                  Dan Lagala 68 -> 73, Chris Payton 79 -> 82, Derrick Laws
+                  97 -> 100, Matt Powierski 106 -> 108, Pablo Lopez 61 -> 63,
+                  Shane Barreca 58 -> 60, Klejdi Lamo 71 -> 72.
+  Keystone Ice    168 -> 173 distinct buying accounts, still 8 of 26 reps at
+                  40%: JAYSON ROMINE 5 -> 10 of 33 (15% -> 30%) on five 9/21
+                  load sheets -- Super Saver, Liquor Factory III Sparta,
+                  Liquor Factory IV Hopatcong, Wine Country Newton, Wantage
+                  Plaza. Javier Melo / C & S Lucky Liquors II is a repeat.
+                  Same 214-row export onto keystone-ice/actuals.csv (sync
+                  rule); keystone-ice rebuilt, then this board, then
+                  incentive-tracking.
+  Fever Tree      124 -> 125 new placements, still 7 reps at the goal of 10:
+                  Mike Ast 13 -> 14 (Allendale Wine Shoppe, Elderflower
+                  Tonic). His seven SKUs at Wine & Spirit World, Jayson
+                  Romine's five at Liquor Factory II / III, Jim Heaney's two at
+                  Clifton Commons and Shane Barreca's four at Ramsey Wine are
+                  all repeats -- each account bought that SKU in 6/1-8/31.
+  Wine & Spirits  290 -> 299 new placements, still 21 reps at the goal of 5:
+                  Shane Barreca 24 -> 27 (Bottle King Hillsdale: Origin
+                  Bourbon + Double Barrel Rye; Bottle King Ramsey: Lou Lou
+                  Bubbly), Dylan Rubino 26 -> 28 (Universal Liquors: Molly's
+                  x2), Jayson Romine 14 -> 16 (Liquor Factory III Sparta:
+                  Origin Double Barrel Rye + High Wheat; his BiB, Bourbon and
+                  Le Grand Noir rows are repeats), Jim Heaney 12 -> 13 (West
+                  End: Travelers Club 375), Mike Ast 12 -> 13 (Wine & Spirit
+                  World: Green River Rye). Klejdi Lamo's 2XO pair, Michael
+                  Harboy's Pride & Clarke, the Travelers Club rows for Jaime
+                  Colonna / Pablo Lopez / Phil Ernst / Shane Barreca and
+                  Robin Feldman's re-dated Il Vero rows are all repeats.
+  Target lists    Keystone 326 -> 321 (Jayson Romine's five); Fever Tree
+                  holds at 346.
+The Corona Gaintain export also went onto
+incentive-tracking/data/constellation_fall_corona_gaintain_off.csv (sync
+rule): Constellation Fall's Corona house 1,051 -> 1,082 of 1,610.
+Hub cache tag bumped (20260921a) for the new program_data.js.
+
 2026-09-18 REFRESH -- all four exports plus Promos_Report_28
     python3 generate_2026-09.py --merge-cooler-doors Promos_Report_28.xlsx
 Row counts: Constellation 122 -> 123 (restated in place), Keystone 203 -> 208,

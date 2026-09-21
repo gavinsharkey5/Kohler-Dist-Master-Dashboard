@@ -3758,6 +3758,23 @@ still the 2026-09-10 export -- 150/293 Lager, 3/7 Flight, 49 flagged buyers
 with no kegs excluded. Ask Gavin for the RDE draft ACCOUNT export to move it.
 Hub cache tag bumped for the new program_data.js.
 
+2026-09-21 REFRESH -- Keystone + Corona Gaintain, riding the off-prem MPO refresh
+  python3 generate.py
+Only the two shared exports moved (diffed row by row first): Keystone
+208 -> 214 (+6, none removed) and Corona Gaintain restated in place, 123 rows,
+26 values moved, all upward. Nothing else on this board was re-pulled.
+  Keystone    168 -> 173 accounts house-wide, still 7 of 17 reps qualified and
+              3 at bonus, $855: Jayson Romine 5 -> 10 of 33 (five 9/21 load
+              sheets -- Super Saver, Liquor Factory III + IV, Wine Country
+              Newton, Wantage Plaza). Javier Melo / C & S Lucky is a repeat.
+  Constellation Fall   Corona Gaintain house off-prem 1,051 -> 1,082 of 1,610.
+              Jayson Romine 47 -> 60, Dan Lagala 68 -> 73, Chris Payton
+              79 -> 82, Derrick Laws 97 -> 100, Matt Powierski 106 -> 108,
+              Pablo Lopez 61 -> 63, Shane Barreca 58 -> 60, Klejdi Lamo
+              71 -> 72. Modelo / Impact / Innovation untouched; still 0 of 22
+              reps holding every off-prem category, day 21 of 91.
+Hub cache tag bumped (20260921a) for the new program_data.js.
+
 2026-09-18 TENTH REFRESH -- Southern District: Fall Seasonal Fast Start + Path to Victory (vSD)
   python3 generate.py
 Both vSD exports straight over data/fall_seasonal_sd.csv and

@@ -869,6 +869,15 @@
     "BRAND_FAMILY": "Keystone Ice",
     "CUSTOMER_NUM": 21055,
     "CUSTOMER_NAME": "C & S Lucky Liquors II",
+    "DATE": "9/21/2026",
+    "CASES": 5.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 21055,
+    "CUSTOMER_NAME": "C & S Lucky Liquors II",
     "DATE": "9/9/2026",
     "CASES": 2.0
   },
@@ -1038,6 +1047,24 @@
     "SALES_REP_ASSIGNED": "Jayson Romine",
     "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
     "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 230114,
+    "CUSTOMER_NAME": "Liquor Factory III Sparta",
+    "DATE": "9/21/2026",
+    "CASES": 2.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 191526,
+    "CUSTOMER_NAME": "Liquor Factory IV Hopatcong",
+    "DATE": "9/21/2026",
+    "CASES": 2.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
     "CUSTOMER_NUM": 231316,
     "CUSTOMER_NAME": "Patricks Wine Barn",
     "DATE": "9/3/2026",
@@ -1060,6 +1087,33 @@
     "CUSTOMER_NAME": "Spring Street Liquors",
     "DATE": "8/5/2026",
     "CASES": 5.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 191408,
+    "CUSTOMER_NAME": "Super Saver Liq",
+    "DATE": "9/21/2026",
+    "CASES": 2.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 231308,
+    "CUSTOMER_NAME": "Wantage Plaza Liq Outlet",
+    "DATE": "9/21/2026",
+    "CASES": 2.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 230441,
+    "CUSTOMER_NAME": "Wine Country Newton",
+    "DATE": "9/21/2026",
+    "CASES": 2.0
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",

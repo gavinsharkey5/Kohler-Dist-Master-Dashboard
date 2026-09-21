@@ -8029,6 +8029,30 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dylan Rubino",
+    "PRODUCT_NAME": "200291 Molly's Irish Cream 6/1.75 L Btl",
+    "BRAND_FAMILY": "Molly's",
+    "CUSTOMER_NUM": 170013,
+    "CUSTOMER_NAME": "Universal Liquors (A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dylan Rubino",
+    "PRODUCT_NAME": "200294 Molly's Irish Cream 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Molly's",
+    "CUSTOMER_NUM": 170013,
+    "CUSTOMER_NAME": "Universal Liquors (A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dylan Rubino",
     "PRODUCT_NAME": "200401 Travelers Club Vodka 48/200 mL Btl",
     "BRAND_FAMILY": "Travelers Club",
     "CUSTOMER_NUM": 172051,
@@ -11922,10 +11946,10 @@
     "CUSTOMER_NUM": 171117,
     "CUSTOMER_NAME": "Delite Market",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jaime Colonna",
@@ -13314,10 +13338,10 @@
     "CUSTOMER_NUM": 230114,
     "CUSTOMER_NAME": "Liquor Factory III Sparta",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -13326,10 +13350,10 @@
     "CUSTOMER_NUM": 230114,
     "CUSTOMER_NAME": "Liquor Factory III Sparta",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -13338,10 +13362,22 @@
     "CUSTOMER_NUM": 230114,
     "CUSTOMER_NAME": "Liquor Factory III Sparta",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "201058 Bardstown Origin Series High Wheat 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 230114,
+    "CUSTOMER_NAME": "Liquor Factory III Sparta",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -13882,6 +13918,18 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "100122 Le Grand Noir Pinot Noir 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Le Grand Noir",
+    "CUSTOMER_NUM": 230412,
+    "CUSTOMER_NAME": "USA Wine Traders Club Of Newton (A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -15157,6 +15205,18 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "200402 Travelers Club Vodka 24/375 mL Btl",
+    "BRAND_FAMILY": "Travelers Club",
+    "CUSTOMER_NUM": 30004,
+    "CUSTOMER_NAME": "West End Wine & Liq",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
     "PRODUCT_NAME": "200404 Traveler's Club Vodka 6/1.75 L Btl",
     "BRAND_FAMILY": "Travelers Club",
     "CUSTOMER_NUM": 30004,
@@ -16158,10 +16218,10 @@
     "CUSTOMER_NUM": 190917,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Wharton",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -16170,10 +16230,10 @@
     "CUSTOMER_NUM": 190917,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Wharton",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -17358,10 +17418,10 @@
     "CUSTOMER_NUM": 150162,
     "CUSTOMER_NAME": "Krauszer's Food & Liq",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
@@ -18853,6 +18913,18 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
+    "PRODUCT_NAME": "201053 Green River Rye 1/750 mL",
+    "BRAND_FAMILY": "Bardstown Green River",
+    "CUSTOMER_NUM": 96002,
+    "CUSTOMER_NAME": "Wine & Spirit World(W)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
     "PRODUCT_NAME": "201054 Green River Wheated 1/750 mL",
     "BRAND_FAMILY": "Bardstown Green River",
     "CUSTOMER_NUM": 96002,
@@ -19878,10 +19950,10 @@
     "CUSTOMER_NUM": 26014,
     "CUSTOMER_NAME": "Regalado Liq",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -21222,10 +21294,10 @@
     "CUSTOMER_NUM": 81014,
     "CUSTOMER_NAME": "Shop Rite Liq(A) Fair Lwn",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -22208,8 +22280,8 @@
     "BASE_PLACEMENTS": 0.0,
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/18/2026",
-    "LAST_DATE": "9/18/2026"
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -22220,8 +22292,8 @@
     "BASE_PLACEMENTS": 0.0,
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/18/2026",
-    "LAST_DATE": "9/18/2026"
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -22578,10 +22650,22 @@
     "CUSTOMER_NUM": 73003,
     "CUSTOMER_NAME": "Bottle King (A) Hillsdale",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
+    "PRODUCT_NAME": "201057 Bardstown Origin Series Double Barrel Rye 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 73003,
+    "CUSTOMER_NAME": "Bottle King (A) Hillsdale",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -22662,10 +22746,10 @@
     "CUSTOMER_NUM": 92011,
     "CUSTOMER_NAME": "Bottle King (A) Ramsey",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/21/2026",
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -22953,7 +23037,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/8/2026",
-    "LAST_DATE": "9/8/2026"
+    "LAST_DATE": "9/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -23290,6 +23374,30 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
+    "PRODUCT_NAME": "200191 Chateau Diana Non-Alcoholic Cabernet Sauvignon 12/750 mL Btl",
+    "BRAND_FAMILY": "Chateau Diana",
+    "CUSTOMER_NUM": 67005,
+    "CUSTOMER_NAME": "Shoprite Liq (A)Northvle",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
+    "PRODUCT_NAME": "200195 Chateau Diana Non-Alcoholic Red Blend 12/750 mL Btl",
+    "BRAND_FAMILY": "Chateau Diana",
+    "CUSTOMER_NUM": 67005,
+    "CUSTOMER_NAME": "Shoprite Liq (A)Northvle",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
