@@ -133,5 +133,50 @@
   "cases": 490630.55,
   "partial": false,
   "loaded": "2026-09-21T18:45:20Z"
+ },
+ "2026-04": {
+  "file": "d8dcf5b1-Fusion_GSHARKEY_20260922_0745235133478.csv",
+  "exported": "2026-09-22",
+  "rows": 69380,
+  "placements": 69380,
+  "cases": 544585.89,
+  "partial": false,
+  "loaded": "2026-09-22T13:48:31Z"
+ },
+ "2026-05": {
+  "file": "d8dcf5b1-Fusion_GSHARKEY_20260922_0745235133478.csv",
+  "exported": "2026-09-22",
+  "rows": 69870,
+  "placements": 69870,
+  "cases": 602598.23,
+  "partial": false,
+  "loaded": "2026-09-22T13:48:31Z"
+ },
+ "2026-06": {
+  "file": "d8dcf5b1-Fusion_GSHARKEY_20260922_0745235133478.csv",
+  "exported": "2026-09-22",
+  "rows": 79461,
+  "placements": 79461,
+  "cases": 771557.34,
+  "partial": false,
+  "loaded": "2026-09-22T13:48:32Z"
+ },
+ "2026-07": {
+  "file": "2679564a-Fusion_GSHARKEY_20260922_0747177228412.csv",
+  "exported": "2026-09-22",
+  "rows": 73864,
+  "placements": 73864,
+  "cases": 682894.37,
+  "partial": false,
+  "loaded": "2026-09-22T13:48:33Z"
+ },
+ "2026-08": {
+  "file": "2679564a-Fusion_GSHARKEY_20260922_0747177228412.csv",
+  "exported": "2026-09-22",
+  "rows": 69245,
+  "placements": 69245,
+  "cases": 603338.84,
+  "partial": false,
+  "loaded": "2026-09-22T13:48:33Z"
  }
 }

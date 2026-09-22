@@ -126,7 +126,7 @@
   </footer>
 </div>
 <div class="tip" id="tip"></div>
-<script src="data/dist_data.js?v=3"></script>
+<script src="data/dist_data.js?v=4"></script>
 <script>
 (function(){
   var D = window.DIST_DATA;
@@ -170,16 +170,37 @@
            len:3, n:4, end:M-1, view:'compare', focus:M-1, yoy:1, raw:0, metric:'all', tab:'children',
            sort:'', dir:-1, cmetric:'cases', q:'', more:0, chart:0};
   var DEFAULTS = JSON.parse(JSON.stringify(S));
+  // Filters travel in the URL by NAME (product by its number), never by list position,
+  // so a bookmarked link still points at the same thing after a data refresh adds rows.
+  var NAMED = {sup:function(){return D.suppliers;}, fam:function(){return D.families;}, brand:function(){return D.brands;},
+               dm:function(){return D.dms;}, rep:function(){return D.reps;}, area:function(){return D.areas;}};
   function readHash(){
     Object.keys(DEFAULTS).forEach(function(k){ S[k]=DEFAULTS[k]; });
     var h = location.hash.replace(/^#/,''); if(!h) return;
     var q = new URLSearchParams(h);
-    q.forEach(function(v,k){ if(!(k in S)) return; if(typeof S[k]==='number') S[k]=parseInt(v,10); else S[k]=v; });
-    S.end = Math.max(S.len-1, Math.min(M-1, S.end)); S.focus = Math.max(S.len-1, Math.min(M-1, S.focus));
+    q.forEach(function(v,k){
+      if(!(k in S)) return;
+      if(k==='prod'){ if(v==='-1'||v==='') { S.prod=-1; return; } var pi=-1; for(var i=0;i<products.length;i++) if(products[i][0]===v){ pi=i; break; } S.prod=pi; return; }
+      if(NAMED[k]){ if(v==='-1'||v==='') { S[k]=-1; return; } var idx=NAMED[k]().indexOf(v); S[k]=idx; return; }
+      if(k==='end'||k==='focus'){ var mi=D.months.indexOf(v); S[k]= mi>=0 ? mi : (/^\d+$/.test(v)? Math.min(M-1,parseInt(v,10)) : M-1); return; }
+      if(typeof S[k]==='number') S[k]=parseInt(v,10); else S[k]=v;
+    });
+    // a product / brand / family pins its parents
+    if(S.prod>=0){ var pp=products[S.prod]; S.sup=pp[2]; S.fam=pp[3]; S.brand=pp[4]; }
+    else if(S.brand>=0){ var pb=products.filter(function(p){return p[4]===S.brand;})[0]; if(pb){ S.sup=pb[2]; S.fam=pb[3]; } }
+    else if(S.fam>=0){ var pf=products.filter(function(p){return p[3]===S.fam;})[0]; if(pf){ S.sup=pf[2]; } }
+    if(S.rep>=0 && S.dm<0){ var cr=customers.filter(function(c){return c[4]===S.rep;})[0]; if(cr) S.dm=cr[5]; }
+    S.end = Math.max(S.len-1, Math.min(M-1, isNaN(S.end)?M-1:S.end)); S.focus = Math.max(S.len-1, Math.min(M-1, isNaN(S.focus)?M-1:S.focus));
   }
   function writeHash(){
     var q = new URLSearchParams();
-    Object.keys(S).forEach(function(k){ if(k==='sort'||k==='dir'||k==='q'||k==='more'||k==='chart') return; q.set(k,S[k]); });
+    Object.keys(S).forEach(function(k){
+      if(k==='sort'||k==='dir'||k==='q'||k==='more'||k==='chart') return;
+      if(k==='prod'){ if(S.prod>=0) q.set('prod', products[S.prod][0]); return; }
+      if(NAMED[k]){ if(S[k]>=0) q.set(k, NAMED[k]()[S[k]]); return; }
+      if(k==='end'||k==='focus'){ q.set(k, D.months[S[k]]); return; }
+      q.set(k,S[k]);
+    });
     history.replaceState(null,'','#'+q.toString());
   }
   readHash();
@@ -290,6 +311,7 @@
     return '<span class="'+cls+'" title="'+fmtN(base)+' → '+fmtN(cur)+'">'+arrow+' '+txt+' '+label+' <span class="muted">('+absTxt+')</span></span>';
   }
   function yoyCell(cur, base){
+    if(!cur && !base) return '';
     var p = pct(cur, base);
     if(p===null) return '<span class="yoy flat">—</span>';
     var cls = p>0.005?'up':(p<-0.005?'down':'flat');

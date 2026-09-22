@@ -136,9 +136,8 @@ WHAT IS NOT HERE
 ----------------
 
   * No dollars -- cases only, by design for now.
-  * Product x account detail currently ends 2026-03; the product-only and
-    customer-only Fusion exports run to 2026-08 but cannot be crossed
-    with each other, so the page waits on the Apr-Jun and Jul-Sep detail
-    exports for those months.
+  * Detail runs Jan 2025 - Aug 2026 (loaded 2026-09-22). September 2026
+    and later arrive with the routine pull once the month closes; a pull
+    made mid-month is flagged partial on the page.
   * No goals. This page is the baseline; goals live in the incentive
     tracker and the hub.
