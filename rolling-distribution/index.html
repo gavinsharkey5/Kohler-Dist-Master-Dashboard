@@ -102,9 +102,10 @@
   th.sub{top:43px}
   .scrollhint{display:none;font-size:16.5px;color:var(--gold);margin:8px 0 0;font-weight:600}
   .tbl-wrap.overflowing + .scrollhint{display:block}
+  th.sub{height:44px;vertical-align:middle}
   th.sub.m-buyers{color:#9CC1FF}th.sub.m-placements{color:#8FE9DC}th.sub.m-cases{color:#FFD98F}
   th.sorted{text-decoration:underline;text-underline-offset:4px;color:var(--ink)}
-  th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:#0F1729;z-index:1;max-width:340px;min-width:200px;padding-left:12px;border-right:2px solid var(--line);overflow:hidden;text-overflow:ellipsis}
+  th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:#0F1729;z-index:1;padding-left:12px;border-right:2px solid var(--line);overflow:hidden;text-overflow:ellipsis}
   th:first-child{z-index:3;background:#0E1730}
   td.pg0{background:var(--pg0)}td.pg1{background:var(--pg1)}
   td.hi{background:var(--pghi)}th.sub.hi{background:#1E1B14}
@@ -154,7 +155,7 @@
   </footer>
 </div>
 <div class="tip" id="tip"></div>
-<script src="data/dist_data.js?v=10"></script>
+<script src="data/dist_data.js?v=12"></script>
 <script>
 (function(){
   var D = window.DIST_DATA;
@@ -424,8 +425,11 @@
     }else{
       html.push(focusView(ps, pm, cm, rows, total, periods[0], childLevel));
     }
+    var sy=window.scrollY, tw0=app.querySelector('.tbl-wrap'), st=tw0?tw0.scrollTop:0, sl=tw0?tw0.scrollLeft:0;
     app.className=''; app.innerHTML = html.join('');
     bind();
+    window.scrollTo(0, sy);
+    var tw1=app.querySelector('.tbl-wrap'); if(tw1){ tw1.scrollTop=st; tw1.scrollLeft=sl; }
   }
   function emptyEntity(P){ return {buyers:new Array(P).fill(0),placements:new Array(P).fill(0),cases:new Array(P).fill(0)}; }
 
@@ -595,6 +599,13 @@
     return '<div class="tabs">'+tabs.map(function(t){ return '<button data-rows="'+t[0]+'" class="'+(cur===t[0]?'on':'')+'">'+t[1]+'</button>'; }).join('')+'</div>';
   }
   // ---------------------------------------------------------------- compare table
+  function colgroup(nvals, extra){
+    // extra = [[width,...]] columns after the name column (e.g. Rep, Prem in the account list)
+    extra = extra||[]; var NAME=300, VAL=118, fixed=NAME+extra.reduce(function(a,w){return a+w;},0);
+    var html='<colgroup><col style="width:'+NAME+'px">'+extra.map(function(w){ return '<col style="width:'+w+'px">'; }).join('');
+    for(var i=0;i<nvals;i++) html+='<col>';
+    return {html:html+'</colgroup>', style:'table-layout:fixed;width:max(100%,'+(fixed+nvals*VAL)+'px)'};
+  }
   function metricsShown(){ return S.metric==='all' ? ['buyers','placements','cases'] : [S.metric]; }
   function sortRows(list, P, yoyOn){
     var key = S.sort || ('cases:'+(P-1));
@@ -612,7 +623,8 @@
     var sortKey = sortRows(list, P);
     var h=['<div class="card"><div class="toolbar"><div class="left stack"><h2 style="margin:0">'+esc(ROWKEYS[rk].label(li))+' · '+list.length+(list.length===1?' row':' rows')+'</h2><span class="muted">'+(drill?'Click a blue name to open it. ':'')+'Click a column heading to sort. Each period is '+S.len+' whole calendar month'+(S.len>1?'s':'')+'.</span></div><button class="btn" id="dl">Download CSV</button></div>'];
     h.push('<p class="help" style="margin:0 0 4px">Show rows by:</p>'+rowTabs(rk, li));
-    h.push('<div class="tbl-wrap"><table id="cmp"><thead><tr><th class="grp" rowspan="2" data-sort="name:0" style="text-align:left">'+esc(ROWKEYS[rk].col(li))+'</th>');
+    var cg=colgroup(P*ms.length);
+    h.push('<div class="tbl-wrap"><table id="cmp" style="'+cg.style+'">'+cg.html+'<thead><tr><th class="grp" rowspan="2" data-sort="name:0" style="text-align:left">'+esc(ROWKEYS[rk].col(li))+'</th>');
     periods.forEach(function(p,j){ h.push('<th class="grp pb'+(j===P-1?' hi':'')+'" colspan="'+ms.length+'" title="'+pDays(p)+'">'+esc(pLabel(p))+(pPartial(p)?' <span class="tag part">partial</span>':'')+'</th>'); });
     h.push('</tr><tr>');
     periods.forEach(function(p,j){ ms.forEach(function(m,mi){ var k=m+':'+j; h.push('<th class="sub m-'+m+(mi===0?' pb':'')+(j===P-1?' hi':'')+(sortKey===k?' sorted':'')+'" data-sort="'+k+'">'+MLBL[m]+(sortKey===k?(S.dir<0?' ↓':' ↑'):'')+'</th>'); }); });
@@ -672,7 +684,8 @@
     var cols = isAcct ? [['placements:0','Placements'],['cases:0','Cases'],['placements:1','Prior placements'],['cases:1','Prior cases'],['cases:2','Prior-yr cases']]
                       : [['buyers:0','Buyers'],['buyers:1','Prior'],['buyers:2','Prior yr'],['placements:0','Placements'],['placements:1','Prior'],['placements:2','Prior yr'],['cases:0','Cases'],['cases:1','Prior'],['cases:2','Prior yr']];
     if(isAcct) h.push('<div class="toolbar"><input type="search" id="q" placeholder="Search account or rep…" value="'+esc(S.q)+'" style="max-width:320px"><span class="muted">'+list.length+' accounts · buyers in this period plus accounts lost since the prior period</span></div>');
-    h.push('<div class="tbl-wrap"><table id="cmp"><thead><tr><th data-sort="name:0" style="text-align:left"'+(key==='name:0'?' class="sorted"':'')+'>'+(isAcct?'Account':(S.tab==='children'?LEVELS[li].label:(function(t){ t=t.replace('By ',''); return t.charAt(0).toUpperCase()+t.slice(1); })(tabs.filter(function(t){return t[0]===S.tab;})[0][1])))+'</th>');
+    var cg=colgroup(cols.length, isAcct?[200,80]:[]);
+    h.push('<div class="tbl-wrap"><table id="cmp" style="'+cg.style+'">'+cg.html+'<thead><tr><th data-sort="name:0" style="text-align:left"'+(key==='name:0'?' class="sorted"':'')+'>'+(isAcct?'Account':(S.tab==='children'?LEVELS[li].label:(function(t){ t=t.replace('By ',''); return t.charAt(0).toUpperCase()+t.slice(1); })(tabs.filter(function(t){return t[0]===S.tab;})[0][1])))+'</th>');
     if(isAcct) h.push('<th data-sort="rep:0" style="text-align:left">Rep</th><th>Prem.</th>');
     cols.forEach(function(c,ci){ var grpStart = !isAcct && ci%3===0; var mcls=' m-'+c[0].split(':')[0]+(c[0].split(':')[1]==='0'?' hi':''); h.push('<th class="sub'+mcls+(grpStart||(isAcct&&(ci===0||ci===2||ci===4))?' pb':'')+(key===c[0]?' sorted':'')+'" data-sort="'+c[0]+'">'+c[1]+(key===c[0]?(S.dir<0?' ↓':' ↑'):'')+'</th>'); });
     h.push('</tr></thead><tbody>');
@@ -729,7 +742,7 @@
     app.querySelectorAll('tr.drill').forEach(function(tr){ tr.querySelector('td').addEventListener('click', function(){
       var id=+tr.dataset.id, li=currentLevel();
       if(li===0) S.sup=id; else if(li===1) S.fam=id; else if(li===2){ S.brand=id; }
-      S.sort=''; S.tab = S.tab==='children'?'children':S.tab; render(); window.scrollTo({top: app.offsetTop-10, behavior:'smooth'});
+      S.sort=''; render();
     }); });
     var dl=el('dl'); if(dl) dl.addEventListener('click', downloadCsv);
     var tw=app.querySelector('.tbl-wrap'); if(tw){ var chk=function(){ tw.classList.toggle('overflowing', tw.scrollWidth>tw.clientWidth+4); }; chk(); window.addEventListener('resize', chk); }
