@@ -16,6 +16,29 @@ open/closed state are remembered per browser), and "Show rows by" to lay
 the periods out by supplier hierarchy, rep, DM, area, county, premise or
 account. Filters travel in the link by name, so a view can be bookmarked.
 
+The page has two tabs under the same link (page=tracker | page=quality
+in the link). ROLLING TRACKER is the period comparison described above.
+DISTRIBUTION QUALITY is the "are the points real?" tab for supplier
+conversations, using the same step 1 filters and period choice:
+  1. Placement quality -- every placement tiered by cases per month
+     (Core >= 3, Steady, Thin < 1; thresholds editable), share of
+     placements vs share of cases, and a per-period table with cases
+     per placement.
+  2. What happened to new points -- placements first gained in a chosen
+     period (never bought before it), what they sold, and whether they
+     were still buying 1-4 periods later, broken down by brand / rep /
+     DM / area / county / premise.
+  3. Where it fits -- areas, counties, premise, reps, DMs ranked by cases
+     per buyer, with penetration and retention, not by count.
+  4. Look-alike targets -- accounts buying from us that resemble the
+     scope's core buyers (premise, area, the other brands they carry)
+     but are not buying the scope; "Lapsed" ones bought it before.
+  5. Print one-pager -- prints / saves the tab as a PDF (light theme,
+     filters and buttons hidden) for the supplier meeting.
+Cases per placement is also a fourth column toggle and KPI tile on the
+tracker tab. Revenue / gross profit are not loaded yet; when they are,
+the tiers and fit map are where they plug in.
+
 This is the HISTORY + BASELINE page for incentive planning: what a brand
 did over any past window, so goals can be set against it. It holds no
 goals of its own.

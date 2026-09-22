@@ -10,7 +10,7 @@
 <style>
   :root{--canvas:#060A16;--card:#0F1729;--card-h:#182540;--ink:#F8FAFF;--ink-soft:#CCD6EA;--ink-dim:#8F9CB8;--line:#2A3A5C;--line-soft:#1D2946;
         --accent:#3D8BFF;--accent-hi:#6FB1FF;--accent-soft:#14264D;--accent-line:#3B78E0;--gold:#FFB13D;--gold-soft:#3B2A0A;--gold-line:#9A6A12;
-        --buyers:#3D8BFF;--placements:#22D3C5;--cases:#FFB13D;--kpi-b:#CFE3FF;--kpi-p:#BDF6EE;--kpi-c:#FFE3AE;
+        --buyers:#3D8BFF;--placements:#22D3C5;--cases:#FFB13D;--cpp:#C084FC;--kpi-b:#CFE3FF;--kpi-p:#BDF6EE;--kpi-c:#FFE3AE;--kpi-q:#EBD5FF;
         --good:#2EE59D;--good-bg:#0E3325;--bad:#FF6B81;--bad-bg:#3D1220;--warn:#FFB13D;--warn-bg:#3B2A0A;
         --input:#0B101C;--surface2:#0E1730;--grp:#132552;--tile:#0B1222;--namecol:#0F1729;--total:#132552;--hisub:#26200F;--pbline:#3E5282;
         --on-accent:#04112A;--on-gold:#1E1400;--card-top:#12203B;--filters-top:#152A55;--shadow:rgba(0,0,0,.4);
@@ -18,7 +18,7 @@
         --pg0:rgba(61,139,255,.07);--pg1:rgba(255,255,255,.035);--pghi:rgba(255,177,61,.12);}
   :root[data-theme="light"]{--canvas:#EEF2F9;--card:#FFFFFF;--card-h:#F1F5FC;--ink:#0F1730;--ink-soft:#2F3E5C;--ink-dim:#65728F;--line:#CBD3E4;--line-soft:#E1E6F0;
         --accent:#1F6FEB;--accent-hi:#3B82F6;--accent-soft:#E4EEFF;--accent-line:#8CB6FF;--gold:#F59E0B;--gold-soft:#FFF4DE;--gold-line:#F6C56A;
-        --buyers:#1F6FEB;--placements:#0E9F91;--cases:#D97706;--kpi-b:#1F4FA8;--kpi-p:#0B7F74;--kpi-c:#B4600A;
+        --buyers:#1F6FEB;--placements:#0E9F91;--cases:#D97706;--cpp:#7C3AED;--kpi-b:#1F4FA8;--kpi-p:#0B7F74;--kpi-c:#B4600A;--kpi-q:#5B21B6;
         --good:#059669;--good-bg:#DDF7EA;--bad:#DC2650;--bad-bg:#FFE1E7;--warn:#B45309;--warn-bg:#FFF1D6;
         --input:#FFFFFF;--surface2:#F3F6FC;--grp:#E4EEFF;--tile:#FFFFFF;--namecol:#FFFFFF;--total:#E4EEFF;--hisub:#FFF1D6;--pbline:#AFC0DE;
         --on-accent:#FFFFFF;--on-gold:#1E1400;--card-top:#FFFFFF;--filters-top:#F6F9FF;--shadow:rgba(20,40,80,.12);
@@ -114,10 +114,10 @@
   .crumbs .sep{color:var(--ink-dim)}
   .back{margin-left:auto}
   .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:12px}
-  .kpi{background:var(--tile);border:1px solid var(--line-soft);border-radius:12px;padding:14px 16px;border-top:4px solid var(--line);position:relative;text-align:center}
-  .kpi.m-buyers{border-top-color:var(--buyers)}.kpi.m-placements{border-top-color:var(--placements)}.kpi.m-cases{border-top-color:var(--cases)}
+  .kpi{background:var(--tile);border:1px solid var(--line-soft);border-radius:12px;padding:30px 16px 14px;border-top:4px solid var(--line);position:relative;text-align:center}
+  .kpi.m-buyers{border-top-color:var(--buyers)}.kpi.m-placements{border-top-color:var(--placements)}.kpi.m-cases{border-top-color:var(--cases)}.kpi.m-cpp{border-top-color:var(--cpp)}.kpi.m-cpp .v{color:var(--kpi-q)}
   .kpi.m-buyers .v{color:var(--kpi-b)}.kpi.m-placements .v{color:var(--kpi-p)}.kpi.m-cases .v{color:var(--kpi-c)}
-  .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:7px;vertical-align:0}.dot.buyers{background:var(--buyers)}.dot.placements{background:var(--placements)}.dot.cases{background:var(--cases)}
+  .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:7px;vertical-align:0}.dot.buyers{background:var(--buyers)}.dot.placements{background:var(--placements)}.dot.cases{background:var(--cases)}.dot.cpp{background:var(--cpp)}
   .kpi .l{font-size:17px;color:var(--ink-soft);font-weight:700;margin-top:6px}
   .kpi-p{position:absolute;top:10px;right:14px;font-size:14.5px;color:var(--ink-soft);font-weight:600}
   .kpi-x{position:absolute;top:8px;left:10px;width:28px;height:28px;border-radius:50%;border:1px solid var(--line);background:var(--surface2);color:var(--ink-dim);font-size:18px;line-height:1;cursor:pointer;padding:0}
@@ -142,7 +142,7 @@
   th.sub{height:44px;vertical-align:middle;font-size:15px;padding-left:4px;padding-right:4px;letter-spacing:-.01em;text-align:center;border-top:1px solid var(--line);box-shadow:0 -2px 0 0 var(--surface2)}
   th.sub.hi{box-shadow:0 -2px 0 0 var(--hisub)}
   td:not(:first-child){text-align:center}
-  th.sub.m-buyers{color:var(--buyers)}th.sub.m-placements{color:var(--placements)}th.sub.m-cases{color:var(--cases)}
+  th.sub.m-buyers{color:var(--buyers)}th.sub.m-placements{color:var(--placements)}th.sub.m-cases{color:var(--cases)}th.sub.m-cpp{color:var(--cpp)}
   th.sorted{text-decoration:underline;text-underline-offset:4px;color:var(--ink)}
   thead tr:first-child th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:var(--namecol);z-index:1;padding-left:12px;border-right:2px solid var(--line);overflow:hidden;text-overflow:ellipsis}
   thead tr:first-child th:first-child{z-index:3;background:var(--surface2)}
@@ -170,6 +170,42 @@
   .logo{height:28px;max-width:76px;object-fit:contain;vertical-align:middle;margin-right:10px;background:#FFFFFF;border-radius:5px;padding:2px 4px;box-sizing:border-box}
   .logo.big{height:40px;max-width:120px;margin-right:8px}
   td:first-child .logo{margin-top:-2px}
+  .pagetabs{display:flex;gap:10px;margin:16px 0 4px}
+  .pagetabs button{flex:1;display:flex;flex-direction:column;align-items:flex-start;gap:2px;background:var(--card);border:2px solid var(--line);border-radius:14px;padding:12px 18px;color:var(--ink-soft);font:inherit;font-size:19px;font-weight:700;cursor:pointer;text-align:left}
+  .pagetabs button small{font-size:14.5px;font-weight:500;color:var(--ink-dim)}
+  .pagetabs button .pt-ico{font-size:18px;margin-right:8px}
+  .pagetabs button:hover{border-color:var(--accent-line);color:var(--ink)}
+  .pagetabs button.on{background:linear-gradient(180deg,var(--filters-top),var(--card));border-color:var(--accent);color:var(--ink);box-shadow:0 0 0 4px rgba(61,139,255,.12)}
+  .pagetabs button.on small{color:var(--ink-soft)}
+  @media (max-width:700px){.pagetabs{flex-direction:column}}
+  .qcard h2 .qnum{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:var(--gold);color:var(--on-gold);font-size:16px;margin-right:10px;vertical-align:middle}
+  .inl{display:inline-flex;align-items:center;gap:6px;font-size:15px;color:var(--ink-soft);font-weight:600}
+  .inl input{width:72px;min-height:42px;padding:6px 8px;font-size:16px}
+  .inl select{width:auto;min-width:180px;min-height:42px;padding:6px 8px;font-size:16px}
+  .qbars{margin:14px 0 12px;display:grid;gap:8px}
+  .qbar{display:grid;grid-template-columns:170px 1fr;align-items:center;gap:12px}
+  .qbl{font-weight:600;color:var(--ink-soft);font-size:15.5px}
+  .qtrack{display:flex;height:34px;border-radius:8px;overflow:hidden;background:var(--input);border:1px solid var(--line)}
+  .qseg{display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#0A0C11;border-right:2px solid var(--card)}
+  .qlegend{display:flex;gap:18px;font-size:14.5px;color:var(--ink-soft);margin-left:182px}
+  .qlegend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+  .kpi.tier0{border-top-color:var(--good)}.kpi.tier1{border-top-color:var(--accent)}.kpi.tier2{border-top-color:var(--bad)}
+  .kpi.m-good{border-top-color:var(--good)}.kpi.m-bad{border-top-color:var(--bad)}
+  .qt{max-height:70vh;margin-top:6px}
+  .qt th.sub{white-space:normal;line-height:1.25}
+  .qmini{display:inline-block;width:70px;height:8px;background:var(--input);border-radius:4px;margin-right:8px;vertical-align:middle;overflow:hidden}
+  .qmini i{display:block;height:100%;background:var(--accent)}
+  @media print{
+    body{background:#fff !important;padding:0;font-size:12px}
+    .wrap{max-width:none}
+    .hero,.sub,.pills,.filters,.chart,.tbtns,.tabs,.coltog,.more,footer,.kpi-x,.scrollhint,.back,.showing,.pagetabs,.theme-btn{display:none !important}
+    .card{box-shadow:none;border:1px solid #bbb;break-inside:avoid;page-break-inside:avoid;margin:8px 0;padding:10px 12px}
+    .tbl-wrap{max-height:none !important;overflow:visible !important;border:0}
+    th,td{padding:4px 6px;font-size:11px}
+    .kpi .v{font-size:24px}
+    .qcard h2{font-size:16px}
+    .crumbs{font-size:14px}
+  }
   .tag{display:inline-block;border-radius:6px;padding:2px 8px;font-size:14px;font-weight:700;margin-left:8px;vertical-align:1px}
   .tag.new{background:var(--good-bg);color:var(--good)}.tag.lost{background:var(--bad-bg);color:var(--bad)}.tag.part{background:var(--warn-bg);color:var(--warn)}
   .chart{margin-top:14px;padding-top:14px;border-top:1px solid var(--line-soft)}
@@ -183,7 +219,7 @@
   .tog{display:inline-flex;align-items:center;gap:8px;background:var(--input);border:1.5px solid var(--line);border-radius:10px;color:var(--ink-soft);padding:8px 14px 8px 10px;font:inherit;font-size:16px;cursor:pointer;min-height:44px}
   .tog .box{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:6px;border:2px solid var(--line);font-size:14px;font-weight:700;color:var(--on-gold)}
   .tog.on{color:var(--ink);font-weight:600}
-  .tog.on.m-buyers{border-color:var(--buyers)}.tog.on.m-placements{border-color:var(--placements)}.tog.on.m-cases{border-color:var(--cases)}
+  .tog.on.m-buyers{border-color:var(--buyers)}.tog.on.m-placements{border-color:var(--placements)}.tog.on.m-cases{border-color:var(--cases)}.tog.on.m-cpp{border-color:var(--cpp)}.tog.on.m-cpp .box{background:var(--cpp);border-color:var(--cpp);color:#fff}
   .tog.on.m-buyers .box{background:var(--buyers);border-color:var(--buyers);color:var(--on-accent)}.tog.on.m-placements .box{background:var(--placements);border-color:var(--placements);color:var(--on-accent)}.tog.on.m-cases .box{background:var(--cases);border-color:var(--cases);color:var(--on-gold)}
   .toolbar .left.stack{align-items:flex-start}
   .ctl label.wide{grid-column:span 2}
@@ -220,7 +256,7 @@
 </div>
 <div class="tip" id="tip"></div>
 <script src="data/logos.js?v=2"></script>
-<script src="data/dist_data.js?v=25"></script>
+<script src="data/dist_data.js?v=28"></script>
 <script>
 (function(){
   var D = window.DIST_DATA;
@@ -264,9 +300,9 @@
   customers.forEach(function(c){ (repsByDm[c[5]] = repsByDm[c[5]]||{})[c[4]]=1; });
 
   // ---------------------------------------------------------------- state
-  var S = {bm:-1,sup:-1,fam:-1,brand:-1,prod:-1,pkg:'all',prem:'all',dm:-1,rep:-1,area:-1,county:-1,cust:-1,rows:'brand',
+  var S = {page:'tracker',bm:-1,sup:-1,fam:-1,brand:-1,prod:-1,pkg:'all',prem:'all',dm:-1,rep:-1,area:-1,county:-1,cust:-1,rows:'brand',
            len:3, n:3, end:M-1, view:'compare', focus:M-1, yoy:1, raw:0, metric:'all', tab:'children',
-           sort:'', dir:-1, cmetric:'cases', q:'', more:0, chart:0, pmode:'roll', cp:'', cols:'buyers'};
+           sort:'', dir:-1, cmetric:'cases', q:'', more:0, chart:0, pmode:'roll', cp:'', cols:'buyers', tcore:3, tthin:1, gain:'', qtab:'children', ftab:'area'};
   var DEFAULTS = JSON.parse(JSON.stringify(S));
   // Filters travel in the URL by NAME (product by its number), never by list position,
   // so a bookmarked link still points at the same thing after a data refresh adds rows.
@@ -282,7 +318,7 @@
       if(k==='cust'){ if(v==='-1'||v==='') { S.cust=-1; return; } var ci=-1; for(var j=0;j<customers.length;j++) if(customers[j][0]===v){ ci=j; break; } S.cust=ci; return; }
       if(NAMED[k]){ if(v==='-1'||v==='') { S[k]=-1; return; } var idx=NAMED[k]().indexOf(v); S[k]=idx; return; }
       if(k==='end'||k==='focus'){ var mi=D.months.indexOf(v); S[k]= mi>=0 ? mi : (/^\d+$/.test(v)? Math.min(M-1,parseInt(v,10)) : M-1); return; }
-      if(typeof S[k]==='number') S[k]=parseInt(v,10); else S[k]=v;
+      if(typeof S[k]==='number') S[k]=parseFloat(v); else S[k]=v;
     });
     // a product / brand / family pins its parents
     if(S.prod>=0){ var pp=products[S.prod]; S.sup=pp[2]; S.fam=pp[3]; S.brand=pp[4]; }
@@ -308,6 +344,9 @@
   try{ S.chart = +(localStorage.getItem('rdt-chart')||0); S.more = +(localStorage.getItem('rdt-more')||0); var sc=localStorage.getItem('rdt-cols'); if(sc && !/[?&#]cols=/.test(location.hash)) S.cols=sc; }catch(e){}
   function setTheme(t){ document.documentElement.setAttribute('data-theme', t); try{ localStorage.setItem('rdt-theme', t); }catch(e){} var i=document.getElementById('theme-ico'), l=document.getElementById('theme-lbl'); if(i){ i.textContent = t==='light' ? '☾' : '☀'; l.textContent = t==='light' ? 'Dark mode' : 'Light mode'; } }
   (function(){ var t='dark'; try{ t=localStorage.getItem('rdt-theme')||'dark'; }catch(e){} setTheme(t); })();
+  var themeBeforePrint=null;
+  window.addEventListener('beforeprint', function(){ themeBeforePrint=document.documentElement.getAttribute('data-theme'); document.documentElement.setAttribute('data-theme','light'); });
+  window.addEventListener('afterprint', function(){ if(themeBeforePrint) document.documentElement.setAttribute('data-theme', themeBeforePrint); });
 
   // ---------------------------------------------------------------- periods
   function period(endIdx, len){ var s=endIdx-len+1; if(s<0) return null; return {s:s,e:endIdx,len:len}; }
@@ -357,6 +396,7 @@
     return list;
   }
   function buildPeriods(){
+    if(S.page==='quality' && S.view==='focus'){ S.view='compare'; S.end=S.focus; }
     if(S.pmode==='custom'){
       var list=customList(); S.cp=customToString(list);
       if(S.view==='focus') list=[list[list.length-1]];
@@ -432,6 +472,7 @@
     }
     out.forEach(function(e){
       for(var j=0;j<P;j++){ var n=0; e._c[j].forEach(function(v){ if(isBuy(v.s,v.a)) n++; }); e.buyers[j]=n; }
+      e.cpp = e.cases.map(function(c,j){ return e.placements[j] ? c/e.placements[j] : 0; });
     });
     return out;
   }
@@ -450,7 +491,7 @@
     var cls = p>0.005?'up':(p<-0.005?'down':'flat');
     var arrow = p>0.005?'▲':(p<-0.005?'▼':'■');
     var txt = !isFinite(p) ? (p>0?'new':'gone') : (p>0?'+':'')+Math.round(p*100)+'%';
-    var abs = cur-base; var absTxt = (abs>0?'+':'')+fmtN(abs);
+    var abs = cur-base; var absTxt = (abs>0?'+':'')+(Math.abs(abs)<50 && Math.abs(abs)%1 ? fmt1(abs) : fmtN(abs));
     return '<span class="'+cls+'" title="'+fmtN(base)+' → '+fmtN(cur)+'">'+arrow+' '+txt+' '+label+' <span class="muted">('+absTxt+')</span></span>';
   }
   function yoyCell(cur, base){
@@ -496,7 +537,9 @@
     html.push(kpiHtml(total, periods, P));
     html.push(chartHtml(pm, cm, periods));
     html.push('</div>');
-    if(S.view==='compare'){
+    if(S.page==='quality'){
+      html.push(qualityView(ps, pm, cm, periods, childLevel));
+    }else if(S.view==='compare'){
       html.push(compareTable(rows, total, periods, P, childLevel, rk));
     }else{
       html.push(focusView(ps, pm, cm, rows, total, periods[0], childLevel));
@@ -507,10 +550,15 @@
     window.scrollTo(0, sy);
     var tw1=app.querySelector('.tbl-wrap'); if(tw1){ tw1.scrollTop=st; tw1.scrollLeft=sl; }
   }
-  function emptyEntity(P){ return {buyers:new Array(P).fill(0),placements:new Array(P).fill(0),cases:new Array(P).fill(0)}; }
+  function emptyEntity(P){ return {buyers:new Array(P).fill(0),placements:new Array(P).fill(0),cases:new Array(P).fill(0),cpp:new Array(P).fill(0)}; }
+  function fmt1(v){ return v===null||v===undefined ? '—' : (Math.round(v*10)/10).toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1}); }
+  function fmtM(m,v){ return m==='cases'?fmtC(v):(m==='cpp'?fmt1(v):fmtN(v)); }
 
+  function pageTabs(){
+    return '<div class="pagetabs"><button data-page="tracker" class="'+(S.page==='tracker'?'on':'')+'"><span class="pt-ico">📈</span>Rolling Tracker<small>Buyers, placements and cases by period</small></button><button data-page="quality" class="'+(S.page==='quality'?'on':'')+'"><span class="pt-ico">🎯</span>Distribution Quality<small>Are the points real? Where does the brand fit?</small></button></div>';
+  }
   function controlsHtml(){
-    var h = ['<div class="card filters">'];
+    var h = [pageTabs(), '<div class="card filters">'];
     h.push('<div class="step"><span class="num">1</span>Pick what to look at</div><p class="help stephelp">Leave a box on "All" to include everything.</p>');
     h.push('<div class="groups">');
     h.push('<div class="group"><div class="gtitle">Product</div><div class="ctl">');
@@ -546,11 +594,11 @@
     h.push('</div>');
     h.push(showingHtml());
     h.push('<div class="step step2"><span class="num">2</span>Pick the time periods</div><div class="row">');
-    h.push('<label>How to view it<span class="seg"><button data-view="compare" class="'+(S.view==='compare'?'on':'')+'">Multiple periods</button><button data-view="focus" class="'+(S.view==='focus'?'on':'')+'">One period</button></span></label>');
+    if(S.page==='tracker') h.push('<label>How to view it<span class="seg"><button data-view="compare" class="'+(S.view==='compare'?'on':'')+'">Multiple periods</button><button data-view="focus" class="'+(S.view==='focus'?'on':'')+'">One period</button></span></label>');
     h.push('<label>Which months<span class="seg"><button data-pmode="roll" class="'+(S.pmode==='roll'?'on':'')+'">Rolling (automatic)</button><button data-pmode="custom" class="'+(S.pmode==='custom'?'on':'')+'">Pick my own months</button></span></label>');
     if(S.pmode==='roll'){
       h.push('<label>Months in each period<span class="seg">'+[1,2,3,6,12].map(function(n){ return '<button data-len="'+n+'" class="'+(S.len===n?'on':'')+'">'+n+'</button>'; }).join('')+'</span></label>');
-      if(S.view==='compare'){
+      if(S.view!=='focus'){
         h.push('<label>How many periods<span class="seg">'+[1,3,4,6,0].map(function(n){ return '<button data-n="'+n+'" class="'+(S.n===n?'on':'')+'">'+(n||'All')+'</button>'; }).join('')+'</span></label>');
         h.push('<label>Most recent period<select id="f-end">'+monthOpts(S.end)+'</select></label>');
       }else{
@@ -569,12 +617,12 @@
           +'<span class="cpsum">'+esc(pLabel(p))+' · '+p.len+' month'+(p.len>1?'s':'')+(pPartial(p)?' · <span class="tag part">partial</span>':'')+'</span>'
           +(full.length>1&&S.view==='compare'?'<button class="btn small" data-cpdel="'+i+'" title="Remove this period">Remove</button>':'')+'</div>');
       });
-      if(S.view==='compare') h.push('<button class="btn" id="cpadd">+ Add another period</button>');
+      if(S.view!=='focus') h.push('<button class="btn" id="cpadd">+ Add another period</button>');
       h.push('<p class="help">Whole calendar months only. Periods can be different lengths; the newest one is highlighted as the latest.</p>');
       h.push('</div>');
     }
     h.push('<details class="more"'+(S.more?' open':'')+'><summary>More options</summary><div class="row">');
-    if(S.view==='compare'){
+    if(S.view!=='focus'){
       h.push('<label>Change vs. same period last year<span class="seg"><button data-yoy="1" class="'+(S.yoy?'on':'')+'">Show</button><button data-yoy="0" class="'+(!S.yoy?'on':'')+'">Hide</button></span></label>');
     }
     h.push('<label>Who counts as a buyer<span class="seg"><button data-raw="0" class="'+(!S.raw?'on':'')+'">Net cases above zero</button><button data-raw="1" class="'+(S.raw?'on':'')+'">Any invoice activity</button></span></label>');
@@ -624,10 +672,10 @@
   function kpiHtml(total, periods, P){
     var j=P-1, p=periods[j], pr=priorPeriod(p), yy=yoyPeriod(p);
     var h=['<div class="kpis">'], hidden=[];
-    [['Buyers','buyers'],['Placements','placements'],['Cases','cases']].forEach(function(m){
+    [['Buyers','buyers'],['Placements','placements'],['Cases','cases'],['Cases per placement','cpp']].forEach(function(m){
       if(HIDDEN[m[1]]){ hidden.push(m); return; }
       var cur=total[m[1]][j], prior=pr?total[m[1]][P+j]:null, yoy=yy?total[m[1]][2*P+j]:null;
-      h.push('<div class="kpi m-'+m[1]+'"><button class="kpi-x" data-hide="'+m[1]+'" title="Remove this tile from view" aria-label="Remove '+m[0]+' tile from view">&times;</button><span class="kpi-p">'+esc(pLabel(p))+(pPartial(p)?' <span class="tag part">partial</span>':'')+'</span><div class="l"><span class="dot '+m[1]+'"></span>'+m[0]+'</div><div class="v">'+fmtN(cur)+'</div><div class="d">'+deltaHtml(cur,prior,'vs '+(pr?pLabel(pr):'prior'))+' '+deltaHtml(cur,yoy,'vs prior yr')+'</div></div>');
+      h.push('<div class="kpi m-'+m[1]+'"><button class="kpi-x" data-hide="'+m[1]+'" title="Remove this tile from view" aria-label="Remove '+m[0]+' tile from view">&times;</button><span class="kpi-p">'+esc(pLabel(p))+(pPartial(p)?' <span class="tag part">partial</span>':'')+'</span><div class="l"><span class="dot '+m[1]+'"></span>'+m[0]+'</div><div class="v">'+fmtM(m[1],cur)+'</div><div class="d">'+deltaHtml(cur,prior,'vs '+(pr?pLabel(pr):'prior'))+' '+deltaHtml(cur,yoy,'vs prior yr')+'</div></div>');
     });
     h.push('</div>');
     if(hidden.length) h.push('<p class="help" style="margin:8px 0 0">Hidden tiles: '+hidden.map(function(m){ return '<button class="linkbtn" data-show="'+m[1]+'">Show '+m[0]+'</button>'; }).join(' · ')+'</p>');
@@ -697,10 +745,11 @@
     for(var i=0;i<nvals;i++) html+='<col>';
     return {html:html+'</colgroup>', style:'table-layout:fixed;width:100%;min-width:'+(fixed+nvals*VAL)+'px'};
   }
-  function metricsShown(){ var all=['buyers','placements','cases']; var on=all.filter(function(m){ return S.cols.split(',').indexOf(m)>=0; }); return on.length?on:['buyers']; }
+  var ALLM=['buyers','placements','cases','cpp'], MLBL={buyers:'Buyers',placements:'Placements',cases:'Cases',cpp:'Cases / placement'};
+  function metricsShown(){ var on=ALLM.filter(function(m){ return S.cols.split(',').indexOf(m)>=0; }); return on.length?on:['buyers']; }
   function colToggles(){
-    var MLBL={buyers:'Buyers',placements:'Placements',cases:'Cases'}, on=metricsShown();
-    return '<div class="coltog"><span class="help">Columns:</span>'+['buyers','placements','cases'].map(function(m){ var isOn=on.indexOf(m)>=0; return '<button class="tog'+(isOn?' on':'')+' m-'+m+'" data-col="'+m+'" aria-pressed="'+isOn+'"><span class="box">'+(isOn?'✓':'')+'</span>'+MLBL[m]+'</button>'; }).join('')+'</div>';
+    var on=metricsShown();
+    return '<div class="coltog"><span class="help">Columns:</span>'+ALLM.map(function(m){ var isOn=on.indexOf(m)>=0; return '<button class="tog'+(isOn?' on':'')+' m-'+m+'" data-col="'+m+'" aria-pressed="'+isOn+'"><span class="box">'+(isOn?'✓':'')+'</span>'+MLBL[m]+'</button>'; }).join('')+'</div>';
   }
   function sortRows(list, P, yoyOn){
     var key = S.sort || (metricsShown()[0]+':'+(P-1));
@@ -713,7 +762,7 @@
   }
   function compareTable(rows, total, periods, P, li, rk){
     var isBrand = rk==='brand', drill = isBrand && li<3;
-    var ms = metricsShown(), MLBL={buyers:'Buyers',placements:'Placements',cases:'Cases'};
+    var ms = metricsShown();
     var list=[]; rows.forEach(function(e){ e.name = isBrand ? levelName(li,e.id) : ROWKEYS[rk].name(e.id); e.sub = (!isBrand && ROWKEYS[rk].sub) ? ROWKEYS[rk].sub(e.id) : ''; list.push(e); });
     var sortKey = sortRows(list, P);
     var h=['<div class="card"><div class="toolbar"><div class="left stack"><h2 style="margin:0">'+esc(ROWKEYS[rk].label(li))+' · '+list.length+(list.length===1?' row':' rows')+'</h2><span class="muted">'+(drill?'Click a blue name to open it. ':(rk==='bm'?'Click a manager to see their suppliers. ':''))+'Click a column heading to sort. Each period is '+S.len+' whole calendar month'+(S.len>1?'s':'')+'.</span></div>'+tableButtons()+'</div>'];
@@ -729,7 +778,7 @@
       var c=[];
       periods.forEach(function(p,j){ ms.forEach(function(m,mi){
         var v=e[m][j], yy=yoyPeriod(p), base = yy? e[m][2*P+j] : null;
-        c.push('<td class="'+(mi===0?'pb ':'')+(j===P-1?'hi':'pg'+(j%2))+(v?'':' dim')+'">'+(m==='cases'?fmtC(v):fmtN(v))+(S.yoy&&yy? yoyCell(v, base):'')+'</td>');
+        c.push('<td class="'+(mi===0?'pb ':'')+(j===P-1?'hi':'pg'+(j%2))+(v?'':' dim')+'">'+fmtM(m,v)+(S.yoy&&yy? yoyCell(v, base):'')+'</td>');
       }); });
       return c.join('');
     }
@@ -785,7 +834,7 @@
     var isAcct = S.tab==='accounts';
     var ms=metricsShown(), cols;
     if(isAcct){ cols=[['placements:0','Placements'],['cases:0','Cases'],['placements:1','Prior placements'],['cases:1','Prior cases'],['cases:2','Prior-yr cases']]; }
-    else { cols=[]; ms.forEach(function(m){ var L={buyers:'Buyers',placements:'Placements',cases:'Cases'}[m]; cols.push([m+':0',L],[m+':1','Prior'],[m+':2','Prior yr']); }); }
+    else { cols=[]; ms.forEach(function(m){ cols.push([m+':0',MLBL[m]],[m+':1','Prior'],[m+':2','Prior yr']); }); }
     if(!isAcct) h.push(colToggles());
     if(isAcct) h.push('<div class="toolbar"><input type="search" id="q" placeholder="Search account or rep…" value="'+esc(S.q)+'" style="max-width:320px"><span class="muted">'+list.length+' accounts · buyers in this period plus accounts lost since the prior period</span></div>');
     var cg=colgroup(cols.length);
@@ -793,7 +842,7 @@
 
     cols.forEach(function(c,ci){ var grpStart = !isAcct && ci%3===0; var mcls=' m-'+c[0].split(':')[0]+(c[0].split(':')[1]==='0'?' hi':''); h.push('<th class="sub'+mcls+(grpStart||(isAcct&&(ci===0||ci===2||ci===4))?' pb':'')+(key===c[0]?' sorted':'')+'" data-sort="'+c[0]+'">'+c[1]+(key===c[0]?(S.dir<0?' ↓':' ↑'):'')+'</th>'); });
     h.push('</tr></thead><tbody>');
-    function valCell(e,c,ci){ var parts=c[0].split(':'), m=parts[0], j=+parts[1]; var v = (j===1&&!pr)||(j===2&&!yy) ? null : e[m][j]; var grpStart = !isAcct && ci%3===0; var band = isAcct ? (ci<2?'hi':'pg'+((ci>>1)%2)) : (j===0?'hi':'pg'+(ci%3===0?0:1)); band = isAcct ? band : (j===0?'hi':'pg'+(Math.floor(ci/3)%2)); return '<td class="'+(grpStart||(isAcct&&(ci===0||ci===2||ci===4))?'pb ':'')+band+(v?'':' dim')+'">'+(v===null?'—':(m==='cases'?fmtC(v):fmtN(v)))+'</td>'; }
+    function valCell(e,c,ci){ var parts=c[0].split(':'), m=parts[0], j=+parts[1]; var v = (j===1&&!pr)||(j===2&&!yy) ? null : e[m][j]; var grpStart = !isAcct && ci%3===0; var band = isAcct ? (ci<2?'hi':'pg'+((ci>>1)%2)) : (j===0?'hi':'pg'+(ci%3===0?0:1)); band = isAcct ? band : (j===0?'hi':'pg'+(Math.floor(ci/3)%2)); return '<td class="'+(grpStart||(isAcct&&(ci===0||ci===2||ci===4))?'pb ':'')+band+(v?'':' dim')+'">'+(v===null?'—':fmtM(m,v))+'</td>'; }
     if(!isAcct) h.push('<tr class="total"><td>Total · '+esc(crumbText())+'</td>'+cols.map(function(c,ci){ return valCell(total,c,ci); }).join('')+'</tr>');
     list.forEach(function(e){
       var lk2 = S.tab==='children' ? (li===0?'supplier':(li===1?'family':(li===2?'brand':null))) : null;
@@ -805,6 +854,150 @@
     return h.join('');
   }
 
+  // ================================================================ Distribution quality
+  // first month (0-based) in which a pair had net-positive cases; -1 if never
+  var FIRST = new Int16Array(NP);
+  (function(){ for(var i=0;i<NP;i++){ var f=-1, b=i*M; for(var k=0;k<M;k++){ if(ACT[b+k] && CASES[b+k]>0){ f=k; break; } } FIRST[i]=f; } })();
+  function sumRange(i, s, e){ var t=0, b=i*M; for(var k=s;k<=e;k++) t+=CASES[b+k]; return t; }
+  function scopeName(){ if(S.prod>=0) return products[S.prod][1]; if(S.brand>=0) return D.brands[S.brand]; if(S.fam>=0) return D.families[S.fam]; if(S.sup>=0) return D.suppliers[S.sup]; if(S.bm>=0) return D.bms[S.bm]+' (brand manager)'; return 'All suppliers'; }
+  function scopeLogo(){ if(S.brand>=0 && S.prod<0) return logoImg('brand',D.brands[S.brand],'big'); if(S.fam>=0) return logoImg('family',D.families[S.fam],'big'); if(S.sup>=0) return logoImg('supplier',D.suppliers[S.sup],'big'); return ''; }
+  var TIERN=['Core','Steady','Thin'], TIERC=['var(--good)','var(--accent)','var(--bad)'];
+  function tierOf(cpm){ return cpm>=S.tcore ? 0 : (cpm>=S.tthin ? 1 : 2); }
+  function pctS(a,b){ return b ? Math.round(a/b*100)+'%' : '—'; }
+  function median(arr){ if(!arr.length) return 0; var a=arr.slice().sort(function(x,y){return x-y;}); var m=a.length>>1; return a.length%2 ? a[m] : (a[m-1]+a[m])/2; }
+  function qtable(id, headers, rows, note){
+    var h=['<div class="tbl-wrap qt"><table id="'+id+'"><thead><tr>'+headers.map(function(x,i){ return '<th class="sub'+(i===0?' namehd':'')+'">'+x+'</th>'; }).join('')+'</tr></thead><tbody>'];
+    rows.forEach(function(r){ h.push('<tr class="'+(r.cls||'')+'">'+r.cells.map(function(c,i){ return '<td'+(i===0?' style="text-align:left"':'')+'>'+c+'</td>'; }).join('')+'</tr>'); });
+    h.push('</tbody></table></div>'+(note?'<p class="note">'+note+'</p>':''));
+    return h.join('');
+  }
+  function qhead(num, title, sub, right){
+    return '<div class="toolbar"><div class="left stack"><h2 style="margin:0"><span class="qnum">'+num+'</span>'+title+'</h2><span class="muted">'+sub+'</span></div>'+(right||'')+'</div>';
+  }
+  function qualityView(ps, pm, cm, periods, li){
+    var P=periods.length, T=periods[P-1], tj=P-1, pr=priorPeriod(T), yy=yoyPeriod(T), len=T.len;
+    var scoped = (S.sup>=0||S.fam>=0||S.brand>=0||S.prod>=0||S.bm>=0);
+    var h=[];
+    // ---------------------------------------------------------------- 1. placement quality tiers
+    var tiers = periods.map(function(p,j){ var t=[0,0,0], tc=[0,0,0]; for(var i=0;i<NP;i++){ if(!pm[PP[i]]||!cm[PC[i]]) continue; var v=ps.sum[i*ps.P+j]; if(!(v>0)) continue; var k=tierOf(v/p.len); t[k]++; tc[k]+=v; } return {p:p,t:t,tc:tc,pl:t[0]+t[1]+t[2],cs:tc[0]+tc[1]+tc[2]}; });
+    var cur=tiers[tj];
+    h.push('<div class="card qcard">'+qhead(1,'Placement quality · '+esc(scopeName())+' · '+esc(pLabel(T)),
+      'Every placement (one product at one account) sorted by what it sells per month. Core ≥ '+S.tcore+' cases a month, Thin under '+S.tthin+'. A point of distribution that sells under a case a month is a point on a scoresheet, not a customer.',
+      '<span class="tbtns"><label class="inl">Core ≥ <input type="number" id="q-core" min="0.5" step="0.5" value="'+S.tcore+'"> / mo</label><label class="inl">Thin &lt; <input type="number" id="q-thin" min="0" step="0.5" value="'+S.tthin+'"> / mo</label><button class="btn primary" id="q-print" title="Print or save as PDF">🖨 Print one-pager</button></span>'));
+    h.push('<div class="kpis">');
+    for(var k=0;k<3;k++){ h.push('<div class="kpi tier'+k+'"><span class="kpi-p">'+esc(pLabel(T))+'</span><div class="l"><span class="dot" style="background:'+TIERC[k]+'"></span>'+TIERN[k]+' placements</div><div class="v">'+fmtN(cur.t[k])+'</div><div class="d"><span>'+pctS(cur.t[k],cur.pl)+' of placements · <b>'+pctS(cur.tc[k],cur.cs)+' of cases</b></span><span>'+(cur.t[k]?fmt1(cur.tc[k]/cur.t[k]/len):'—')+' cases / placement / month</span></div></div>'); }
+    h.push('</div>');
+    function bar(label, vals){ var tot=vals.reduce(function(a,b){return a+b;},0)||1; return '<div class="qbar"><span class="qbl">'+label+'</span><div class="qtrack">'+vals.map(function(v,k){ var w=v/tot*100; return '<span class="qseg" style="width:'+w+'%;background:'+TIERC[k]+'" title="'+TIERN[k]+': '+fmtN(v)+' ('+Math.round(w)+'%)">'+(w>=7?Math.round(w)+'%':'')+'</span>'; }).join('')+'</div></div>'; }
+    h.push('<div class="qbars">'+bar('Share of placements', cur.t)+bar('Share of cases', cur.tc)+'<div class="qlegend">'+TIERN.map(function(n,k){ return '<span><i style="background:'+TIERC[k]+'"></i>'+n+'</span>'; }).join('')+'</div></div>');
+    h.push(qtable('q-tiers', ['Period','Placements','Core','Steady','Thin','Thin share of cases','Cases / placement'],
+      tiers.map(function(r,j){ return {cls:j===tj?'total':'', cells:[esc(pLabel(r.p)), fmtN(r.pl), fmtN(r.t[0])+' <span class="muted">('+pctS(r.t[0],r.pl)+')</span>', fmtN(r.t[1])+' <span class="muted">('+pctS(r.t[1],r.pl)+')</span>', fmtN(r.t[2])+' <span class="muted">('+pctS(r.t[2],r.pl)+')</span>', pctS(r.tc[2],r.cs), r.pl?fmt1(r.cs/r.pl):'—']}; }),
+      'Read across: when placements rise and cases per placement fall, the drive added thin points. The newest period is bold.'));
+    h.push('<div class="tbtns" style="margin-top:8px"><button class="btn small" data-csv="q-tiers">CSV</button></div></div>');
+
+    // ---------------------------------------------------------------- 2. new-point survival
+    var gains=[]; for(var e=len-1+3; e<=M-1-len; e++){ gains.push(period(e,len)); }
+    var G=null;
+    if(S.gain){ var gi=D.months.indexOf(S.gain); G=gains.filter(function(g){ return g.e===gi; })[0]||null; }
+    if(!G && gains.length){ G=gains.filter(function(g){ return g.e===T.e-12; })[0] || gains[Math.max(0,gains.length-3)]; }
+    h.push('<div class="card qcard">');
+    if(!G){
+      h.push(qhead(2,'What happened to new points','Needs at least '+(len+3)+' months of history before a later period exists. Shorten the period length or wait for more months.')+'</div>');
+    } else {
+      S.gain=D.months[G.e];
+      var laters=[]; for(var k=1;k<=4;k++){ var w={s:G.e+1+(k-1)*len, e:G.e+k*len, len:len}; if(w.e>M-1) break; laters.push(w); }
+      var keyFn = S.qtab==='children' ? function(i){ return entityOf(li,PP[i]); } : ROWKEYS[S.qtab].key;
+      var nameFn = S.qtab==='children' ? function(id){ return levelName(li,id); } : ROWKEYS[S.qtab].name;
+      var rmap=new Map(), all={n:0,cases:[],under3:0,kept:laters.map(function(){return 0;}),keptCases:laters.map(function(){return 0;})};
+      for(var i=0;i<NP;i++){
+        if(!pm[PP[i]]||!cm[PC[i]]) continue;
+        if(FIRST[i]<G.s||FIRST[i]>G.e) continue;
+        var g=sumRange(i,G.s,G.e); if(!(g>0)) continue;
+        var id=keyFn(i), r=rmap.get(id); if(!r){ r={id:id,n:0,cases:[],under3:0,kept:laters.map(function(){return 0;}),keptCases:laters.map(function(){return 0;})}; rmap.set(id,r); }
+        r.n++; all.n++; r.cases.push(g); all.cases.push(g); if(g<3){ r.under3++; all.under3++; }
+        for(var q=0;q<laters.length;q++){ var lv=sumRange(i,laters[q].s,laters[q].e); if(lv>0){ r.kept[q]++; all.kept[q]++; r.keptCases[q]+=lv; all.keptCases[q]+=lv; } }
+      }
+      var gsel='<label class="inl">Points gained in <select id="q-gain">'+gains.slice().reverse().map(function(g){ return opt(D.months[g.e], pLabel(g), g.e===G.e); }).join('')+'</select></label>';
+      h.push(qhead(2,'What happened to new points · gained '+esc(pLabel(G)),
+        'A new point is a product at an account that had never bought it before '+esc(mLabel(G.s,true))+' (history starts '+esc(mLabel(0,true))+'). Then: is it still buying one, two, three periods later, and how much did it do?',
+        '<span class="tbtns">'+gsel+'</span>'));
+      h.push('<div class="kpis">');
+      h.push('<div class="kpi"><span class="kpi-p">'+esc(pLabel(G))+'</span><div class="l">New points gained</div><div class="v">'+fmtN(all.n)+'</div><div class="d"><span>median '+fmt1(median(all.cases))+' cases in the period</span><span><b>'+pctS(all.under3,all.n)+'</b> did under 3 cases</span></div></div>');
+      laters.forEach(function(w,q){ var kp=all.kept[q]/(all.n||1); h.push('<div class="kpi '+(kp<0.5?'m-bad':'m-good')+'"><span class="kpi-p">'+esc(pLabel(w))+'</span><div class="l">Still buying '+(q+1)+' period'+(q?'s':'')+' later</div><div class="v">'+pctS(all.kept[q],all.n)+'</div><div class="d"><span>'+fmtN(all.kept[q])+' of '+fmtN(all.n)+' points</span><span>'+(all.kept[q]?fmt1(all.keptCases[q]/all.kept[q]):'—')+' cases each</span></div></div>'); });
+      h.push('</div>');
+      var qtabs=[['children',LEVELS[li].plural],['bm','Brand managers'],['rep','Sales reps'],['dm','District managers'],['area','Areas'],['county','Counties'],['premise','Premise']];
+      h.push('<p class="help" style="margin:10px 0 4px">Break it down by:</p><div class="tabs">'+qtabs.map(function(t){ return '<button data-qtab="'+t[0]+'" class="'+(S.qtab===t[0]?'on':'')+'">'+t[1]+'</button>'; }).join('')+'</div>');
+      var rows=[]; rmap.forEach(function(r){ r.name=nameFn(r.id); rows.push(r); }); rows.sort(function(a,b){ return b.n-a.n; });
+      var hdr=[S.qtab==='children'?LEVELS[li].label:qtabs.filter(function(t){return t[0]===S.qtab;})[0][1],'Gained','Median cases','Under 3 cases'].concat(laters.map(function(w,q){ return 'Still buying +'+(q+1)+'<br><span class="muted">'+esc(pLabel(w))+'</span>'; }));
+      var trs=[{cls:'total',cells:['Total · '+esc(scopeName()), fmtN(all.n), fmt1(median(all.cases)), pctS(all.under3,all.n)].concat(laters.map(function(w,q){ return '<b>'+pctS(all.kept[q],all.n)+'</b> <span class="muted">('+fmtN(all.kept[q])+')</span>'; }))}];
+      rows.slice(0,60).forEach(function(r){ trs.push({cells:[esc(r.name), fmtN(r.n), fmt1(median(r.cases)), pctS(r.under3,r.n)].concat(laters.map(function(w,q){ var kp=r.kept[q]/(r.n||1); return '<span class="'+(r.n>=10?(kp>=0.5?'up':'down'):'')+'">'+pctS(r.kept[q],r.n)+'</span> <span class="muted">('+fmtN(r.kept[q])+')</span>'; }))}); });
+      h.push(qtable('q-surv', hdr, trs, 'Green = at least half survived, red = less than half (rows with 10+ points). '+(rows.length>60?'Top 60 rows by points gained shown; the CSV has all '+rows.length+'.':'')));
+      h.push('<div class="tbtns" style="margin-top:8px"><button class="btn small" data-csv="q-surv">CSV</button></div></div>');
+    }
+
+    // ---------------------------------------------------------------- customer-level sums for 3 + 4
+    var NC=customers.length, scopeT=new Float64Array(NC), scopePr=new Float64Array(NC), scopeYY=new Float64Array(NC), anyT=new Uint8Array(NC), anyCases=new Float64Array(NC);
+    var acctFam=new Array(NC); var scopeFams={};
+    for(var i=0;i<NP;i++){
+      var c=PC[i]; if(!cm[c]) continue;
+      var v=ps.sum[i*ps.P+tj];
+      if(v>0){ anyT[c]=1; anyCases[c]+=v; (acctFam[c]=acctFam[c]||{})[products[PP[i]][3]]=1; }
+      if(pm[PP[i]]){ scopeT[c]+=v; scopePr[c]+=ps.sum[i*ps.P+P+tj]; scopeYY[c]+=ps.sum[i*ps.P+2*P+tj]; scopeFams[products[PP[i]][3]]=1; }
+    }
+    // ---------------------------------------------------------------- 3. fit map
+    var FK={area:{label:'Areas',col:'Distribution area',key:function(c){return c[3];},name:function(id){return D.areas[id];}},
+            county:{label:'Counties',col:'County',key:function(c){return countyIdx[c[6]||'(unknown)'];},name:function(id){return COUNTIES[id];}},
+            premise:{label:'Premise',col:'Premise',key:function(c){return c[2];},name:function(id){return id?'On premise':'Off premise';}},
+            rep:{label:'Sales reps',col:'Sales rep',key:function(c){return c[4];},name:function(id){return D.reps[id];}},
+            dm:{label:'District managers',col:'District manager',key:function(c){return c[5];},name:function(id){return D.dms[id];}}};
+    var fk=FK[S.ftab]||FK.area; var fm=new Map();
+    for(var c=0;c<NC;c++){ if(!cm[c]) continue; if(!anyT[c] && !(scopePr[c]>0)) continue; var id=fk.key(customers[c]); var r=fm.get(id); if(!r){ r={id:id,buyers:0,active:0,priorB:0,retained:0,cases:0}; fm.set(id,r); }
+      if(anyT[c]) r.active++; if(scopeT[c]>0){ r.buyers++; r.cases+=scopeT[c]; } if(scopePr[c]>0){ r.priorB++; if(scopeT[c]>0) r.retained++; } }
+    var frows=[]; fm.forEach(function(r){ r.name=fk.name(r.id); r.cpb=r.buyers?r.cases/r.buyers:0; frows.push(r); }); frows.sort(function(a,b){ return b.cpb-a.cpb; });
+    var best=frows.filter(function(r){ return r.buyers>=5; }).slice(0,3).map(function(r){ return r.name; });
+    h.push('<div class="card qcard">'+qhead(3,'Where it fits · '+esc(scopeName())+' · '+esc(pLabel(T)),
+      'Not where the count is highest, but where each buyer sells the most and keeps buying. Penetration = buyers as a share of accounts in that group buying anything from us this period. Retained = prior-period buyers still buying.'+(best.length?' Best fit right now: <b>'+esc(best.join(', '))+'</b>.':''))
+      +'<div class="tabs">'+Object.keys(FK).map(function(k){ return '<button data-ftab="'+k+'" class="'+((S.ftab||'area')===k?'on':'')+'">'+FK[k].label+'</button>'; }).join('')+'</div>');
+    var mx=frows.length?frows[0].cpb:1;
+    h.push(qtable('q-fit', [fk.col,'Buyers','Active accounts','Penetration','Cases / buyer','Retained from '+(pr?esc(pLabel(pr)):'prior'),'Cases'],
+      frows.map(function(r){ return {cells:[esc(r.name), fmtN(r.buyers), fmtN(r.active), pctS(r.buyers,r.active), '<span class="qmini"><i style="width:'+(mx?Math.round(r.cpb/mx*100):0)+'%"></i></span>'+fmt1(r.cpb), r.priorB?('<span class="'+(r.retained/r.priorB>=0.8?'up':(r.retained/r.priorB<0.6?'down':''))+'">'+pctS(r.retained,r.priorB)+'</span>'):'—', fmtC(r.cases)]}; }),
+      'Sorted by cases per buyer. A high-count group with low cases per buyer and weak retention is where extra points would go to die.'));
+    h.push('<div class="tbtns" style="margin-top:8px"><button class="btn small" data-csv="q-fit">CSV</button></div></div>');
+
+    // ---------------------------------------------------------------- 4. look-alike targets
+    h.push('<div class="card qcard">');
+    if(!scoped){
+      h.push(qhead(4,'Look-alike targets','Pick a supplier, brand family, brand or product in step 1 and this lists the accounts that look most like its best buyers but are not buying it.')+'</div>');
+    } else {
+      var core=[]; for(var c=0;c<NC;c++){ if(cm[c] && scopeT[c]/len>=S.tcore) core.push(c); }
+      var coreLbl='Core buyers (≥ '+S.tcore+' cases a month)';
+      if(core.length<8){ var bl=[]; for(var c2=0;c2<NC;c2++){ if(cm[c2]&&scopeT[c2]>0) bl.push(c2); } bl.sort(function(a,b){ return scopeT[b]-scopeT[a]; }); core=bl.slice(0,Math.max(8,Math.ceil(bl.length*0.2))); coreLbl='Top buyers (best 20%)'; }
+      var prem1=0, areaN={}, famN={};
+      core.forEach(function(c){ var cu=customers[c]; if(cu[2]) prem1++; areaN[cu[3]]=(areaN[cu[3]]||0)+1; var fs=acctFam[c]||{}; Object.keys(fs).forEach(function(f){ if(!scopeFams[f]) famN[f]=(famN[f]||0)+1; }); });
+      var topF=Object.keys(famN).sort(function(a,b){ return famN[b]-famN[a]; }).slice(0,10).map(Number);
+      var maxArea=Math.max.apply(null, Object.keys(areaN).map(function(k){ return areaN[k]; }).concat([1]));
+      var maxLog=0; for(var c3=0;c3<NC;c3++){ if(anyT[c3]) maxLog=Math.max(maxLog, Math.log(1+anyCases[c3])); }
+      var cands=[];
+      for(var c4=0;c4<NC;c4++){
+        if(!cm[c4]||!anyT[c4]||scopeT[c4]>0) continue;
+        var cu=customers[c4], fs=acctFam[c4]||{}; var ov=topF.filter(function(f){ return fs[f]; }).length;
+        var premS = cu[2] ? prem1/core.length : 1-prem1/core.length;
+        var areaS = (areaN[cu[3]]||0)/maxArea;
+        var sizeS = maxLog? Math.log(1+anyCases[c4])/maxLog : 0;
+        var score = 0.25*premS + 0.2*areaS + 0.4*(ov/10) + 0.15*sizeS;
+        var status = (scopePr[c4]>0||scopeYY[c4]>0) ? 'Lapsed' : 'Never bought';
+        cands.push({c:c4,score:score,ov:ov,status:status});
+      }
+      cands.sort(function(a,b){ return b.score-a.score; });
+      h.push(qhead(4,'Look-alike targets · '+esc(scopeName()),
+        'Accounts buying from us this period that look most like the '+coreLbl.toLowerCase()+' of '+esc(scopeName())+' (same premise and areas, and they carry the other brands those buyers carry) but are not buying it. This is the counter-offer to a blanket points target: these accounts, not any accounts.'
+        +' Core profile: '+fmtN(core.length)+' accounts, '+pctS(prem1,core.length)+' on premise, strongest in '+esc(Object.keys(areaN).sort(function(a,b){return areaN[b]-areaN[a];}).slice(0,3).map(function(k){ return D.areas[k]; }).join(', '))+'. Brands they also carry: '+esc(topF.map(function(f){ return D.families[f]; }).join(', '))+'.'));
+      h.push(qtable('q-targets', ['Account','Rep · Premise · Area','Why it fits','Cases (all brands)','Status'],
+        cands.slice(0,40).map(function(x){ var cu=customers[x.c]; return {cells:['<span class="n1">'+esc(cu[0]+' '+cu[1])+'</span>', esc(D.reps[cu[4]])+' · '+(cu[2]?'On':'Off')+' · '+esc(D.areas[cu[3]]), 'carries '+x.ov+' of the 10 core brands · match '+Math.round(x.score*100)+'%', fmtC(anyCases[x.c]), '<span class="tag '+(x.status==='Lapsed'?'lost':'new')+'">'+x.status+'</span>']}; }),
+        'Top 40 of '+fmtN(cands.length)+' candidates. "Lapsed" bought '+esc(scopeName())+' in the prior period or a year ago and stopped; those are usually the easiest wins.'));
+      h.push('<div class="tbtns" style="margin-top:8px"><button class="btn small" data-csv="q-targets">CSV</button></div></div>');
+    }
+    return h.join('');
+  }
   // ---------------------------------------------------------------- events
   function bind(){
     function on(id, fn){ var e=el(id); if(e) e.addEventListener('change', fn); }
@@ -823,14 +1016,15 @@
     on('f-end', function(e){ S.end=+e.target.value; S.sort=''; render(); });
     on('f-focus', function(e){ S.focus=+e.target.value; render(); });
     var q=el('q'); if(q){ q.addEventListener('input', function(e){ S.q=e.target.value; var pos=q.selectionStart; render(); var q2=el('q'); if(q2){ q2.focus(); q2.setSelectionRange(pos,pos);} }); }
-    app.querySelectorAll('[data-view]').forEach(function(b){ b.addEventListener('click', function(){ S.view=b.dataset.view; S.sort=''; if(S.view==='focus') S.focus=S.end; else S.end=S.focus; render(); }); });
+    app.querySelectorAll('[data-page]').forEach(function(b){ b.addEventListener('click', function(){ S.page=b.dataset.page; S.sort=''; render(); window.scrollTo(0,0); }); });
+    app.querySelectorAll('[data-view]').forEach(function(b){ b.addEventListener('click', function(){ var was=S.view; S.view=b.dataset.view; S.sort=''; if(S.view==='focus') S.focus=S.end; else if(was==='focus') S.end=S.focus; render(); }); });
     app.querySelectorAll('[data-pmode]').forEach(function(b){ b.addEventListener('click', function(){ var was=S.pmode; S.pmode=b.dataset.pmode; if(S.pmode==='custom' && was!=='custom'){ S.cp=customToString(rollingPeriods()); } S.sort=''; render(); }); });
     app.querySelectorAll('select[data-cp]').forEach(function(sel){ sel.addEventListener('change', function(){ var list=customList(); var i=+sel.dataset.cp, v=+sel.value; if(sel.dataset.side==='s'){ list[i].s=v; if(list[i].e<v) list[i].e=v; } else { list[i].e=v; if(list[i].s>v) list[i].s=v; } list[i].len=list[i].e-list[i].s+1; S.cp=customToString(list); S.sort=''; render(); }); });
     app.querySelectorAll('[data-cpdel]').forEach(function(b){ b.addEventListener('click', function(){ var list=customList(); list.splice(+b.dataset.cpdel,1); S.cp=customToString(list); S.sort=''; render(); }); });
     var ca=el('cpadd'); if(ca) ca.addEventListener('click', function(){ var list=customList(); var first=list[0]; var ns=first.s-first.len, ne=first.e-first.len; if(ns<0){ ns=0; ne=Math.min(M-1,first.len-1); } list.push({s:ns,e:ne,len:ne-ns+1}); S.cp=customToString(list); S.sort=''; render(); });
     app.querySelectorAll('[data-len]').forEach(function(b){ b.addEventListener('click', function(){ S.len=+b.dataset.len; S.end=Math.max(S.len-1,S.end); S.focus=Math.max(S.len-1,S.focus); S.sort=''; render(); }); });
     app.querySelectorAll('[data-n]').forEach(function(b){ b.addEventListener('click', function(){ S.n=+b.dataset.n; S.sort=''; render(); }); });
-    app.querySelectorAll('[data-col]').forEach(function(b){ b.addEventListener('click', function(){ var on=metricsShown(), m=b.dataset.col, i=on.indexOf(m); if(i>=0){ if(on.length===1) return; on.splice(i,1); } else on.push(m); S.cols=['buyers','placements','cases'].filter(function(x){ return on.indexOf(x)>=0; }).join(','); try{ localStorage.setItem('rdt-cols', S.cols); }catch(e){} S.sort=''; render(); }); });
+    app.querySelectorAll('[data-col]').forEach(function(b){ b.addEventListener('click', function(){ var on=metricsShown(), m=b.dataset.col, i=on.indexOf(m); if(i>=0){ if(on.length===1) return; on.splice(i,1); } else on.push(m); S.cols=ALLM.filter(function(x){ return on.indexOf(x)>=0; }).join(','); try{ localStorage.setItem('rdt-cols', S.cols); }catch(e){} S.sort=''; render(); }); });
     var tb=el('theme-btn'); if(tb) tb.addEventListener('click', function(){ setTheme(document.documentElement.getAttribute('data-theme')==='light'?'dark':'light'); });
     app.querySelectorAll('[data-yoy]').forEach(function(b){ b.addEventListener('click', function(){ S.yoy=+b.dataset.yoy; render(); }); });
     app.querySelectorAll('[data-raw]').forEach(function(b){ b.addEventListener('click', function(){ S.raw=+b.dataset.raw; render(); }); });
@@ -846,6 +1040,13 @@
       if(k==='bm'){ S.bm=S.sup=S.fam=S.brand=S.prod=-1; } else if(k==='sup'){ S.sup=S.fam=S.brand=S.prod=-1; } else if(k==='fam'){ S.fam=S.brand=S.prod=-1; } else if(k==='brand'){ S.brand=S.prod=-1; } else if(k==='prod'){ S.prod=-1; }
       else if(k==='pkg'){ S.pkg='all'; } else if(k==='prem'){ S.prem='all'; } else if(k==='dm'){ S.dm=S.rep=-1; } else if(k==='rep'){ S.rep=-1; } else if(k==='area'){ S.area=-1; } else if(k==='county'){ S.county=-1; } else if(k==='cust'){ S.cust=-1; }
       S.sort=''; render(); }); });
+    var qc=el('q-core'); if(qc) qc.addEventListener('change', function(){ var v=parseFloat(qc.value); if(v>0){ S.tcore=v; if(S.tthin>=v) S.tthin=Math.max(0,v-1); render(); } });
+    var qt=el('q-thin'); if(qt) qt.addEventListener('change', function(){ var v=parseFloat(qt.value); if(v>=0 && v<S.tcore){ S.tthin=v; render(); } });
+    var qg=el('q-gain'); if(qg) qg.addEventListener('change', function(){ S.gain=qg.value; render(); });
+    app.querySelectorAll('[data-qtab]').forEach(function(b){ b.addEventListener('click', function(){ S.qtab=b.dataset.qtab; render(); }); });
+    app.querySelectorAll('[data-ftab]').forEach(function(b){ b.addEventListener('click', function(){ S.ftab=b.dataset.ftab; render(); }); });
+    var qp=el('q-print'); if(qp) qp.addEventListener('click', function(){ window.print(); });
+    app.querySelectorAll('[data-csv]').forEach(function(b){ b.addEventListener('click', function(){ downloadCsv(el(b.dataset.csv), b.dataset.csv); }); });
     var pv=el('prev'); if(pv) pv.addEventListener('click', function(){ if(HIST.length<2) return; HIST.pop(); var prev=JSON.parse(HIST[HIST.length-1]); Object.keys(prev).forEach(function(k){ S[k]=prev[k]; }); restoring=true; render(); });
     var rs2=el('reset2'); if(rs2) rs2.addEventListener('click', function(){ S.bm=S.sup=S.fam=S.brand=S.prod=-1; S.pkg='all'; S.prem='all'; S.dm=S.rep=S.area=S.county=S.cust=-1; S.rows='brand'; S.tab='children'; S.sort=''; S.q=''; render(); });
     var rs=el('reset'); if(rs) rs.addEventListener('click', function(){ S.bm=S.sup=S.fam=S.brand=S.prod=-1; S.pkg='all'; S.prem='all'; S.dm=S.rep=S.area=S.county=S.cust=-1; S.rows='brand'; S.tab='children'; S.sort=''; S.q=''; render(); });
@@ -856,7 +1057,7 @@
       if(li===0) S.sup=id; else if(li===1) S.fam=id; else if(li===2){ S.brand=id; }
       S.sort=''; render();
     }); });
-    var dl=el('dl'); if(dl) dl.addEventListener('click', downloadCsv);
+    var dl=el('dl'); if(dl) dl.addEventListener('click', function(){ downloadCsv(); });
     var tw=app.querySelector('.tbl-wrap'); if(tw){ var chk=function(){ tw.classList.toggle('overflowing', tw.scrollWidth>tw.clientWidth+4); var g=app.querySelector('th.grp:not([rowspan])'); if(g){ var hh=Math.floor(g.getBoundingClientRect().height); app.querySelectorAll('th.sub').forEach(function(t){ t.style.top=(hh-1)+'px'; }); } }; chk(); window.addEventListener('resize', chk); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(chk); }
     // chart hover
     var tip=el('tip');
@@ -865,10 +1066,10 @@
       r.addEventListener('mouseleave', function(){ tip.style.display='none'; });
     });
   }
-  function downloadCsv(){
-    var t=el('cmp'); if(!t) return;
+  function downloadCsv(tbl, tag){
+    var t=(tbl&&tbl.tagName)?tbl:el('cmp'); if(!t) return;
     var rows=[]; t.querySelectorAll('tr').forEach(function(tr){ var cells=[]; tr.querySelectorAll('th,td').forEach(function(c){ var txt=c.childNodes.length? Array.prototype.map.call(c.childNodes,function(n){ return n.nodeType===3? n.textContent : (n.classList&&n.classList.contains('yoy')? '' : n.textContent); }).join('') : c.textContent; txt=txt.replace(/\s+/g,' ').trim(); cells.push('"'+txt.replace(/"/g,'""')+'"'); }); rows.push(cells.join(',')); });
-    var blob=new Blob([rows.join('\n')],{type:'text/csv'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='rolling-distribution-'+crumbText().replace(/[^a-z0-9]+/gi,'-').toLowerCase()+'.csv'; a.click();
+    var blob=new Blob([rows.join('\n')],{type:'text/csv'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='rolling-distribution-'+(tag?tag+'-':'')+crumbText().replace(/[^a-z0-9]+/gi,'-').toLowerCase()+'.csv'; a.click();
   }
 
   // ---------------------------------------------------------------- pills
