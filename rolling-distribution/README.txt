@@ -36,6 +36,7 @@ WHERE THE DATA LIVES
                                    it was exported, and whether the month
                                    was flagged partial
   data/dist_data.js                what index.html loads (GENERATED)
+  data/logos.js + assets/logos/    supplier / brand-family logos (logos.py)
   data/sync_meta.json              "Data refreshed" pill (GENERATED)
 
 The master folder IS the historical dataset. The raw Fusion exports are
@@ -68,6 +69,17 @@ REFRESH STEPS
       reads whatever third column is there as the brand manager.
       -> data/master/suppliers.csv. Suppliers missing from the list show
       as "Unassigned" on the page; the build prints which ones.
+
+   e) LOGOS (optional): the Fusion "Suppliers" and "Brand Families"
+      workbooks that carry a logo picture per row (xlsx, not csv). Run
+
+         python3 logos.py <Suppliers.xlsx> <BrandFamilies.xlsx>
+
+      (needs Pillow: pip install pillow). Each picture is matched to the
+      name on its row, shrunk, and written to assets/logos/; data/logos.js
+      maps names -> files and the page shows them beside supplier and
+      brand-family rows and in the breadcrumb. Names must match the
+      sales data exactly to appear.
 
 2. From this folder:
 
