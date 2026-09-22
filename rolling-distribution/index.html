@@ -213,7 +213,7 @@
   </footer>
 </div>
 <div class="tip" id="tip"></div>
-<script src="data/dist_data.js?v=22"></script>
+<script src="data/dist_data.js?v=23"></script>
 <script>
 (function(){
   var D = window.DIST_DATA;
@@ -505,7 +505,6 @@
     h.push('<div class="step"><span class="num">1</span>Pick what to look at</div><p class="help stephelp">Leave a box on "All" to include everything.</p>');
     h.push('<div class="groups">');
     h.push('<div class="group"><div class="gtitle">Product</div><div class="ctl">');
-    h.push('<label>Brand manager<select id="f-bm" class="'+(S.bm>=0?'active':'')+'">'+opt(-1,'All brand managers',S.bm<0)+D.bms.map(function(n,i){ return opt(i,n,S.bm===i); }).join('')+'</select></label>');
     var sups = D.suppliers.map(function(_,i){return i;}).filter(function(i){ return S.bm<0 || D.supplier_bm[i]===S.bm; });
     h.push('<label>Supplier<select id="f-sup" class="'+(S.sup>=0?'active':'')+'">'+opt(-1, S.bm<0?'All suppliers':'All '+sups.length+' of their suppliers',S.sup<0)+sups.map(function(i){ return opt(i,D.suppliers[i],S.sup===i); }).join('')+'</select></label>');
     var fams = S.sup>=0 ? Object.keys(famBySup[S.sup]||{}).map(Number) : D.families.map(function(_,i){return i;});
@@ -529,6 +528,7 @@
     h.push('<label class="wide">One account (type a name or number)<input type="search" id="f-cust" list="custlist" class="'+(S.cust>=0?'active':'')+'" placeholder="All accounts" value="'+(S.cust>=0?esc(customers[S.cust][0]+' '+customers[S.cust][1]):'')+'"><datalist id="custlist">'+customers.map(function(c){ return '<option value="'+esc(c[0]+' '+c[1])+'">'; }).join('')+'</datalist></label>');
     h.push('</div></div>');
     h.push('<div class="group"><div class="gtitle">Rep / Manager</div><div class="ctl">');
+    h.push('<label>Brand manager<select id="f-bm" class="'+(S.bm>=0?'active':'')+'">'+opt(-1,'All brand managers',S.bm<0)+D.bms.map(function(n,i){ return opt(i,n,S.bm===i); }).join('')+'</select></label>');
     h.push('<label>District manager<select id="f-dm" class="'+(S.dm>=0?'active':'')+'">'+opt(-1,'All district managers',S.dm<0)+D.dms.map(function(n,i){ return opt(i,n,S.dm===i); }).join('')+'</select></label>');
     var reps = S.dm>=0 ? Object.keys(repsByDm[S.dm]||{}).map(Number) : D.reps.map(function(_,i){return i;});
     reps.sort(function(a,b){ return D.reps[a].localeCompare(D.reps[b]); });
@@ -707,7 +707,7 @@
     var ms = metricsShown(), MLBL={buyers:'Buyers',placements:'Placements',cases:'Cases'};
     var list=[]; rows.forEach(function(e){ e.name = isBrand ? levelName(li,e.id) : ROWKEYS[rk].name(e.id); list.push(e); });
     var sortKey = sortRows(list, P);
-    var h=['<div class="card"><div class="toolbar"><div class="left stack"><h2 style="margin:0">'+esc(ROWKEYS[rk].label(li))+' · '+list.length+(list.length===1?' row':' rows')+'</h2><span class="muted">'+(drill?'Click a blue name to open it. ':'')+'Click a column heading to sort. Each period is '+S.len+' whole calendar month'+(S.len>1?'s':'')+'.</span></div>'+tableButtons()+'</div>'];
+    var h=['<div class="card"><div class="toolbar"><div class="left stack"><h2 style="margin:0">'+esc(ROWKEYS[rk].label(li))+' · '+list.length+(list.length===1?' row':' rows')+'</h2><span class="muted">'+(drill?'Click a blue name to open it. ':(rk==='bm'?'Click a manager to see their suppliers. ':''))+'Click a column heading to sort. Each period is '+S.len+' whole calendar month'+(S.len>1?'s':'')+'.</span></div>'+tableButtons()+'</div>'];
     h.push(colToggles());
     h.push('<p class="help" style="margin:0 0 4px">Show rows by:</p>'+rowTabs(rk, li));
     var cg=colgroup(P*ms.length);
@@ -725,7 +725,8 @@
       return c.join('');
     }
     h.push('<tr class="total"><td>Total · '+esc(crumbText())+'</td>'+cells(total)+'</tr>');
-    list.forEach(function(e){ h.push('<tr class="'+(drill?'drill':'')+'" data-id="'+e.id+'"><td title="'+esc(e.name)+'">'+esc(e.name)+'</td>'+cells(e)+'</tr>'); });
+    var bmDrill = rk==='bm';
+    list.forEach(function(e){ h.push('<tr class="'+((drill||bmDrill)?'drill':'')+'"'+(bmDrill?' data-bm="'+e.id+'"':'')+' data-id="'+e.id+'"><td title="'+esc(e.name)+(bmDrill?' — click to see their suppliers':'')+'">'+esc(e.name)+'</td>'+cells(e)+'</tr>'); });
     h.push('</tbody></table></div><p class="scrollhint">&larr; Scroll this table sideways to see every period &rarr;</p>');
     if(S.yoy) h.push('<p class="note">The small green or red % under a number is the change against the same '+S.len+'-month window one year earlier (nothing shown where the data does not go back that far). Grey numbers are zero.</p>');
     h.push('</div>');
@@ -764,7 +765,7 @@
     else if(S.tab==='premise'){ aggregate(ps,pm,cm,function(i){ return customers[PC[i]][2]; }).forEach(function(e){ e.name=e.id?'On premise':'Off premise'; list.push(e); }); }
     else if(S.tab==='area'){ aggregate(ps,pm,cm,function(i){ return customers[PC[i]][3]; }).forEach(function(e){ e.name=D.areas[e.id]; list.push(e); }); }
     else if(S.tab==='county'){ aggregate(ps,pm,cm,ROWKEYS.county.key).forEach(function(e){ e.name=COUNTIES[e.id]; list.push(e); }); }
-    else if(S.tab==='bm'){ aggregate(ps,pm,cm,ROWKEYS.bm.key).forEach(function(e){ e.name=D.bms[e.id]; list.push(e); }); }
+    else if(S.tab==='bm'){ aggregate(ps,pm,cm,ROWKEYS.bm.key).forEach(function(e){ e.name=D.bms[e.id]; e.bm=e.id; list.push(e); }); drill=true; }
     else { acct.forEach(function(e,c){ var cu=customers[c]; e.name=cu[0]+' '+cu[1]; e.rep=D.reps[cu[4]]; e.prem=cu[2]?'On':'Off'; e.status = e.buyers[0]? (priorB.has(c)?'':'new') : (priorB.has(c)?'lost':''); if(e.buyers[0]||priorB.has(c)) list.push(e); }); }
     if(S.tab==='accounts'){
       var q=S.q.toLowerCase(); if(q) list=list.filter(function(e){ return (e.name+' '+e.rep).toLowerCase().indexOf(q)>=0; });
@@ -785,7 +786,7 @@
     function valCell(e,c,ci){ var parts=c[0].split(':'), m=parts[0], j=+parts[1]; var v = (j===1&&!pr)||(j===2&&!yy) ? null : e[m][j]; var grpStart = !isAcct && ci%3===0; var band = isAcct ? (ci<2?'hi':'pg'+((ci>>1)%2)) : (j===0?'hi':'pg'+(ci%3===0?0:1)); band = isAcct ? band : (j===0?'hi':'pg'+(Math.floor(ci/3)%2)); return '<td class="'+(grpStart||(isAcct&&(ci===0||ci===2||ci===4))?'pb ':'')+band+(v?'':' dim')+'">'+(v===null?'—':(m==='cases'?fmtC(v):fmtN(v)))+'</td>'; }
     if(!isAcct) h.push('<tr class="total"><td>Total · '+esc(crumbText())+'</td>'+cols.map(function(c,ci){ return valCell(total,c,ci); }).join('')+'</tr>');
     list.forEach(function(e){
-      h.push('<tr class="'+(drill?'drill':'')+'" data-id="'+e.id+'"><td title="'+esc(e.name)+'">'+esc(e.name)+(e.status?'<span class="tag '+e.status+'">'+e.status+'</span>':'')+'</td>'+(isAcct?'<td style="text-align:left">'+esc(e.rep)+'</td><td>'+e.prem+'</td>':'')+cols.map(function(c,ci){ return valCell(e,c,ci); }).join('')+'</tr>');
+      h.push('<tr class="'+(drill?'drill':'')+'"'+(e.bm!==undefined?' data-bm="'+e.bm+'"':'')+' data-id="'+e.id+'"><td title="'+esc(e.name)+'">'+esc(e.name)+(e.status?'<span class="tag '+e.status+'">'+e.status+'</span>':'')+'</td>'+(isAcct?'<td style="text-align:left">'+esc(e.rep)+'</td><td>'+e.prem+'</td>':'')+cols.map(function(c,ci){ return valCell(e,c,ci); }).join('')+'</tr>');
     });
     h.push('</tbody></table></div><p class="scrollhint">&larr; Scroll this table sideways to see every column &rarr;</p>');
     h.push('<p class="note">"Prior" is '+(pr?esc(pLabel(pr)):'not available')+' (the same number of months immediately before). "Prior yr" is '+(yy?esc(pLabel(yy)):'not available')+'. New = buyer now but not in the prior period; lost = buyer in the prior period but not now.</p>');
@@ -839,6 +840,7 @@
     var rs=el('reset'); if(rs) rs.addEventListener('click', function(){ S.bm=S.sup=S.fam=S.brand=S.prod=-1; S.pkg='all'; S.prem='all'; S.dm=S.rep=S.area=S.county=S.cust=-1; S.sort=''; S.q=''; render(); });
     app.querySelectorAll('th[data-sort]').forEach(function(th){ th.addEventListener('click', function(){ var k=th.dataset.sort; if(S.sort===k) S.dir=-S.dir; else { S.sort=k; S.dir = k.indexOf('name')===0||k.indexOf('rep')===0 ? 1 : -1; } render(); }); });
     app.querySelectorAll('tr.drill').forEach(function(tr){ tr.querySelector('td').addEventListener('click', function(){
+      if(tr.dataset.bm!==undefined){ S.bm=+tr.dataset.bm; S.sup=S.fam=S.brand=S.prod=-1; S.rows='brand'; S.view='compare'; S.sort=''; render(); return; }
       var id=+tr.dataset.id, li=currentLevel();
       if(li===0) S.sup=id; else if(li===1) S.fam=id; else if(li===2){ S.brand=id; }
       S.sort=''; render();
