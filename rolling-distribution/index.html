@@ -36,6 +36,12 @@
   .stephelp{margin:0 0 14px}
   .step2{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
   .ctl{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px 14px}
+  .groups{display:grid;grid-template-columns:5fr 4fr 2fr;gap:12px}
+  .group{background:#0E1730;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+  .gtitle{font-family:"Archivo",Arial,sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:13.5px;color:var(--gold);margin:0 0 10px}
+  .group .ctl{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+  @media (max-width:1100px){.groups{grid-template-columns:1fr 1fr}}
+  @media (max-width:700px){.groups{grid-template-columns:1fr}}
   .ctl label,.row label{display:flex;flex-direction:column;gap:6px;font-size:16px;color:var(--ink-soft);font-weight:600}
   select,input[type=text],input[type=search]{width:100%;background:#0E1117;color:var(--ink);border:1.5px solid var(--line);border-radius:10px;padding:11px 12px;font:inherit;font-size:17.5px;font-weight:500;min-height:50px}
   select{cursor:pointer}
@@ -85,7 +91,11 @@
   .kpi.m-buyers{border-top-color:var(--buyers)}.kpi.m-placements{border-top-color:var(--placements)}.kpi.m-cases{border-top-color:var(--cases)}
   .kpi.m-buyers .v{color:#CFE0FF}.kpi.m-placements .v{color:#BDF3EA}.kpi.m-cases .v{color:#FFE2A8}
   .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:7px;vertical-align:0}.dot.buyers{background:var(--buyers)}.dot.placements{background:var(--placements)}.dot.cases{background:var(--cases)}
-  .kpi .l{font-size:16px;color:var(--ink-soft);font-weight:600}
+  .kpi .l{font-size:17px;color:var(--ink-soft);font-weight:700;margin-top:6px}
+  .kpi-p{position:absolute;top:10px;right:14px;font-size:14.5px;color:var(--ink-soft);font-weight:600}
+  .kpi-x{position:absolute;top:8px;left:10px;width:28px;height:28px;border-radius:50%;border:1px solid var(--line);background:#0E1730;color:var(--ink-dim);font-size:18px;line-height:1;cursor:pointer;padding:0}
+  .kpi-x:hover{color:var(--ink);border-color:var(--ink-dim);background:var(--card-h)}
+  .linkbtn{background:none;border:0;color:var(--accent-hi);text-decoration:underline;font:inherit;cursor:pointer;padding:0}
   .kpi .v{font-family:"Archivo",Arial,sans-serif;font-size:40px;font-weight:700;letter-spacing:-.01em;margin:2px 0 6px;line-height:1.1}
   .kpi .d{font-size:16.5px;color:var(--ink-soft);display:flex;flex-direction:column;gap:4px;align-items:center}
   .up{color:var(--good)}.down{color:var(--bad)}.flat{color:var(--ink-dim)}
@@ -131,6 +141,7 @@
   .tip b{font-family:"Archivo",Arial,sans-serif}
   .toolbar{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;margin:0 0 12px}
   .toolbar .left{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+  .tbtns{display:flex;flex-wrap:wrap;gap:8px}
   .toolbar .left.stack{align-items:flex-start}
   .ctl label.wide{grid-column:span 2}
   input.active{border-color:var(--gold);background:var(--gold-soft)}
@@ -157,7 +168,7 @@
   </footer>
 </div>
 <div class="tip" id="tip"></div>
-<script src="data/dist_data.js?v=15"></script>
+<script src="data/dist_data.js?v=16"></script>
 <script>
 (function(){
   var D = window.DIST_DATA;
@@ -404,7 +415,12 @@
     if(S.sup>=0) return 1;
     return 0;
   }
+  var HIST = [], restoring = false;
+  function snapshot(){ var o={}; Object.keys(S).forEach(function(k){ if(k!=='more'&&k!=='chart') o[k]=S[k]; }); return JSON.stringify(o); }
   function render(){
+    var snap = snapshot();
+    if(!restoring){ if(!HIST.length || HIST[HIST.length-1]!==snap){ HIST.push(snap); if(HIST.length>60) HIST.shift(); } }
+    restoring = false;
     writeHash();
     var pm = productMask(), cm = customerMask();
     var html = [];
@@ -437,7 +453,9 @@
 
   function controlsHtml(){
     var h = ['<div class="card filters">'];
-    h.push('<div class="step"><span class="num">1</span>Pick what to look at</div><p class="help stephelp">Leave a box on "All" to include everything.</p><div class="ctl">');
+    h.push('<div class="step"><span class="num">1</span>Pick what to look at</div><p class="help stephelp">Leave a box on "All" to include everything.</p>');
+    h.push('<div class="groups">');
+    h.push('<div class="group"><div class="gtitle">Product</div><div class="ctl">');
     h.push('<label>Supplier<select id="f-sup" class="'+(S.sup>=0?'active':'')+'">'+opt(-1,'All suppliers',S.sup<0)+D.suppliers.map(function(n,i){ return opt(i,n,S.sup===i); }).join('')+'</select></label>');
     var fams = S.sup>=0 ? Object.keys(famBySup[S.sup]||{}).map(Number) : D.families.map(function(_,i){return i;});
     fams.sort(function(a,b){ return D.families[a].localeCompare(D.families[b]); });
@@ -452,14 +470,19 @@
     prods.sort(function(a,b){ return products[a][1].localeCompare(products[b][1]); });
     h.push('<label>Product<select id="f-prod" class="'+(S.prod>=0?'active':'')+'"'+(prods.length?'':' disabled')+'>'+opt(-1, prods.length?'All products ('+prods.length+')':'Pick a supplier first',S.prod<0)+prods.map(function(i){ return opt(i,products[i][0]+' '+products[i][1],S.prod===i); }).join('')+'</select></label>');
     h.push('<label>Draft or package<select id="f-pkg" class="'+(S.pkg!=='all'?'active':'')+'">'+opt('all','Draft + package',S.pkg==='all')+opt('draft','Draft only',S.pkg==='draft')+opt('package','Package only',S.pkg==='package')+'</select></label>');
+    h.push('</div></div>');
+    h.push('<div class="group"><div class="gtitle">Customer</div><div class="ctl">');
     h.push('<label>Premise<select id="f-prem" class="'+(S.prem!=='all'?'active':'')+'">'+opt('all','On + off premise',S.prem==='all')+opt('on','On premise only',S.prem==='on')+opt('off','Off premise only',S.prem==='off')+'</select></label>');
+    h.push('<label>Distribution area<select id="f-area" class="'+(S.area>=0?'active':'')+'">'+opt(-1,'All areas',S.area<0)+D.areas.map(function(n,i){ return opt(i,n,S.area===i); }).join('')+'</select></label>');
+    h.push('<label>County<select id="f-county" class="'+(S.county>=0?'active':'')+'">'+opt(-1,'All counties',S.county<0)+COUNTIES.map(function(n,i){ return opt(i,n,S.county===i); }).join('')+'</select></label>');
+    h.push('<label class="wide">One account (type a name or number)<input type="search" id="f-cust" list="custlist" class="'+(S.cust>=0?'active':'')+'" placeholder="All accounts" value="'+(S.cust>=0?esc(customers[S.cust][0]+' '+customers[S.cust][1]):'')+'"><datalist id="custlist">'+customers.map(function(c){ return '<option value="'+esc(c[0]+' '+c[1])+'">'; }).join('')+'</datalist></label>');
+    h.push('</div></div>');
+    h.push('<div class="group"><div class="gtitle">Rep / Manager</div><div class="ctl">');
     h.push('<label>District manager<select id="f-dm" class="'+(S.dm>=0?'active':'')+'">'+opt(-1,'All district managers',S.dm<0)+D.dms.map(function(n,i){ return opt(i,n,S.dm===i); }).join('')+'</select></label>');
     var reps = S.dm>=0 ? Object.keys(repsByDm[S.dm]||{}).map(Number) : D.reps.map(function(_,i){return i;});
     reps.sort(function(a,b){ return D.reps[a].localeCompare(D.reps[b]); });
     h.push('<label>Sales rep<select id="f-rep" class="'+(S.rep>=0?'active':'')+'">'+opt(-1,'All reps',S.rep<0)+reps.map(function(i){ return opt(i,D.reps[i],S.rep===i); }).join('')+'</select></label>');
-    h.push('<label>Distribution area<select id="f-area" class="'+(S.area>=0?'active':'')+'">'+opt(-1,'All areas',S.area<0)+D.areas.map(function(n,i){ return opt(i,n,S.area===i); }).join('')+'</select></label>');
-    h.push('<label>County<select id="f-county" class="'+(S.county>=0?'active':'')+'">'+opt(-1,'All counties',S.county<0)+COUNTIES.map(function(n,i){ return opt(i,n,S.county===i); }).join('')+'</select></label>');
-    h.push('<label class="wide">One account (type a name or number)<input type="search" id="f-cust" list="custlist" class="'+(S.cust>=0?'active':'')+'" placeholder="All accounts" value="'+(S.cust>=0?esc(customers[S.cust][0]+' '+customers[S.cust][1]):'')+'"><datalist id="custlist">'+customers.map(function(c){ return '<option value="'+esc(c[0]+' '+c[1])+'">'; }).join('')+'</datalist></label>');
+    h.push('</div></div>');
     h.push('</div>');
     h.push(showingHtml());
     h.push('<div class="step step2"><span class="num">2</span>Pick the time periods</div><div class="row">');
@@ -468,7 +491,7 @@
     if(S.pmode==='roll'){
       h.push('<label>Months in each period<span class="seg">'+[1,2,3,6,12].map(function(n){ return '<button data-len="'+n+'" class="'+(S.len===n?'on':'')+'">'+n+'</button>'; }).join('')+'</span></label>');
       if(S.view==='compare'){
-        h.push('<label>How many periods<span class="seg">'+[3,4,6,0].map(function(n){ return '<button data-n="'+n+'" class="'+(S.n===n?'on':'')+'">'+(n||'All')+'</button>'; }).join('')+'</span></label>');
+        h.push('<label>How many periods<span class="seg">'+[1,3,4,6,0].map(function(n){ return '<button data-n="'+n+'" class="'+(S.n===n?'on':'')+'">'+(n||'All')+'</button>'; }).join('')+'</span></label>');
         h.push('<label>Most recent period<select id="f-end">'+monthOpts(S.end)+'</select></label>');
       }else{
         h.push('<label>Which period<select id="f-focus">'+monthOpts(S.focus)+'</select></label>');
@@ -535,14 +558,18 @@
     c.push('</div>');
     return c.join('');
   }
+  var HIDDEN = {}; try{ HIDDEN = JSON.parse(localStorage.getItem('rdt-hidden')||'{}'); }catch(e){}
+  function saveHidden(){ try{ localStorage.setItem('rdt-hidden', JSON.stringify(HIDDEN)); }catch(e){} }
   function kpiHtml(total, periods, P){
     var j=P-1, p=periods[j], pr=priorPeriod(p), yy=yoyPeriod(p);
-    var h=['<div class="kpis">'];
+    var h=['<div class="kpis">'], hidden=[];
     [['Buyers','buyers'],['Placements','placements'],['Cases','cases']].forEach(function(m){
+      if(HIDDEN[m[1]]){ hidden.push(m); return; }
       var cur=total[m[1]][j], prior=pr?total[m[1]][P+j]:null, yoy=yy?total[m[1]][2*P+j]:null;
-      h.push('<div class="kpi m-'+m[1]+'"><div class="l"><span class="dot '+m[1]+'"></span>'+m[0]+' · '+esc(pLabel(p))+(pPartial(p)?' <span class="tag part">partial</span>':'')+'</div><div class="v">'+fmtN(cur)+'</div><div class="d">'+deltaHtml(cur,prior,'vs '+(pr?pLabel(pr):'prior'))+' '+deltaHtml(cur,yoy,'vs prior yr')+'</div></div>');
+      h.push('<div class="kpi m-'+m[1]+'"><button class="kpi-x" data-hide="'+m[1]+'" title="Remove this tile from view" aria-label="Remove '+m[0]+' tile from view">&times;</button><span class="kpi-p">'+esc(pLabel(p))+(pPartial(p)?' <span class="tag part">partial</span>':'')+'</span><div class="l"><span class="dot '+m[1]+'"></span>'+m[0]+'</div><div class="v">'+fmtN(cur)+'</div><div class="d">'+deltaHtml(cur,prior,'vs '+(pr?pLabel(pr):'prior'))+' '+deltaHtml(cur,yoy,'vs prior yr')+'</div></div>');
     });
     h.push('</div>');
+    if(hidden.length) h.push('<p class="help" style="margin:8px 0 0">Hidden tiles: '+hidden.map(function(m){ return '<button class="linkbtn" data-show="'+m[1]+'">Show '+m[0]+'</button>'; }).join(' · ')+'</p>');
     return h.join('');
   }
 
@@ -623,7 +650,7 @@
     var ms = metricsShown(), MLBL={buyers:'Buyers',placements:'Placements',cases:'Cases'};
     var list=[]; rows.forEach(function(e){ e.name = isBrand ? levelName(li,e.id) : ROWKEYS[rk].name(e.id); list.push(e); });
     var sortKey = sortRows(list, P);
-    var h=['<div class="card"><div class="toolbar"><div class="left stack"><h2 style="margin:0">'+esc(ROWKEYS[rk].label(li))+' · '+list.length+(list.length===1?' row':' rows')+'</h2><span class="muted">'+(drill?'Click a blue name to open it. ':'')+'Click a column heading to sort. Each period is '+S.len+' whole calendar month'+(S.len>1?'s':'')+'.</span></div><button class="btn" id="dl">Download CSV</button></div>'];
+    var h=['<div class="card"><div class="toolbar"><div class="left stack"><h2 style="margin:0">'+esc(ROWKEYS[rk].label(li))+' · '+list.length+(list.length===1?' row':' rows')+'</h2><span class="muted">'+(drill?'Click a blue name to open it. ':'')+'Click a column heading to sort. Each period is '+S.len+' whole calendar month'+(S.len>1?'s':'')+'.</span></div>'+tableButtons()+'</div>'];
     h.push('<p class="help" style="margin:0 0 4px">Show rows by:</p>'+rowTabs(rk, li));
     var cg=colgroup(P*ms.length);
     h.push('<div class="tbl-wrap"><table id="cmp" style="'+cg.style+'">'+cg.html+'<thead><tr><th class="grp" rowspan="2" data-sort="name:0" style="text-align:left">'+esc(ROWKEYS[rk].col(li))+'</th>');
@@ -646,6 +673,9 @@
     h.push('</div>');
     return h.join('');
   }
+  function tableButtons(){
+    return '<span class="tbtns">'+(HIST.length>1?'<button class="btn" id="prev">&larr; Previous view</button>':'')+'<button class="btn" id="reset2">Reset filters</button><button class="btn" id="dl">Download CSV</button></span>';
+  }
   function crumbText(){
     if(S.prod>=0) return products[S.prod][1]; if(S.brand>=0) return D.brands[S.brand]; if(S.fam>=0) return D.families[S.fam]; if(S.sup>=0) return D.suppliers[S.sup]; return 'all suppliers';
   }
@@ -654,7 +684,7 @@
   function focusView(ps, pm, cm, rows, total, p, li){
     var pr = priorPeriod(p), yy = yoyPeriod(p);
     var h=['<div class="card">'];
-    h.push('<div class="toolbar"><div class="left stack"><h2 style="margin:0">'+esc(pLabel(p))+' <span class="muted" style="font-weight:400">('+pDays(p)+')</span></h2>'+(pr?'<span class="muted">Prior period: '+esc(pLabel(pr))+'</span>':'')+(yy?'<span class="muted">Prior year: '+esc(pLabel(yy))+'</span>':'')+'</div><button class="btn" id="dl">Download CSV</button></div>');
+    h.push('<div class="toolbar"><div class="left stack"><h2 style="margin:0">'+esc(pLabel(p))+' <span class="muted" style="font-weight:400">('+pDays(p)+')</span></h2>'+(pr?'<span class="muted">Prior period: '+esc(pLabel(pr))+'</span>':'')+(yy?'<span class="muted">Prior year: '+esc(pLabel(yy))+'</span>':'')+'</div>'+tableButtons()+'</div>');
     // account-level sets for new / lost
     var acct = aggregate(ps, pm, cm, function(i){ return PC[i]; });
     var curB=new Set(), priorB=new Set(), yoyB=new Set();
@@ -733,12 +763,16 @@
     app.querySelectorAll('[data-rows]').forEach(function(b){ b.addEventListener('click', function(){ S.rows=b.dataset.rows; S.sort=''; render(); }); });
     app.querySelectorAll('[data-tab]').forEach(function(b){ b.addEventListener('click', function(){ S.tab=b.dataset.tab; S.sort=''; S.q=''; render(); }); });
     app.querySelectorAll('[data-up]').forEach(function(a){ a.addEventListener('click', function(){ var u=+a.dataset.up; if(u<=0) S.sup=-1; if(u<=1) S.fam=-1; if(u<=2) S.brand=-1; S.prod=-1; S.sort=''; render(); }); });
+    app.querySelectorAll('[data-hide]').forEach(function(b){ b.addEventListener('click', function(){ HIDDEN[b.dataset.hide]=1; saveHidden(); render(); }); });
+    app.querySelectorAll('[data-show]').forEach(function(b){ b.addEventListener('click', function(){ delete HIDDEN[b.dataset.show]; saveHidden(); render(); }); });
     var ct=el('chart-toggle'); if(ct) ct.addEventListener('click', function(){ S.chart=S.chart?0:1; try{ localStorage.setItem('rdt-chart', S.chart); }catch(e){} render(); });
     var mo=app.querySelector('details.more'); if(mo) mo.addEventListener('toggle', function(){ S.more=mo.open?1:0; try{ localStorage.setItem('rdt-more', S.more); }catch(e){} });
     app.querySelectorAll('[data-clear]').forEach(function(b){ b.addEventListener('click', function(){ var k=b.dataset.clear;
       if(k==='sup'){ S.sup=S.fam=S.brand=S.prod=-1; } else if(k==='fam'){ S.fam=S.brand=S.prod=-1; } else if(k==='brand'){ S.brand=S.prod=-1; } else if(k==='prod'){ S.prod=-1; }
       else if(k==='pkg'){ S.pkg='all'; } else if(k==='prem'){ S.prem='all'; } else if(k==='dm'){ S.dm=S.rep=-1; } else if(k==='rep'){ S.rep=-1; } else if(k==='area'){ S.area=-1; } else if(k==='county'){ S.county=-1; } else if(k==='cust'){ S.cust=-1; }
       S.sort=''; render(); }); });
+    var pv=el('prev'); if(pv) pv.addEventListener('click', function(){ if(HIST.length<2) return; HIST.pop(); var prev=JSON.parse(HIST[HIST.length-1]); Object.keys(prev).forEach(function(k){ S[k]=prev[k]; }); restoring=true; render(); });
+    var rs2=el('reset2'); if(rs2) rs2.addEventListener('click', function(){ S.sup=S.fam=S.brand=S.prod=-1; S.pkg='all'; S.prem='all'; S.dm=S.rep=S.area=S.county=S.cust=-1; S.sort=''; S.q=''; render(); });
     var rs=el('reset'); if(rs) rs.addEventListener('click', function(){ S.sup=S.fam=S.brand=S.prod=-1; S.pkg='all'; S.prem='all'; S.dm=S.rep=S.area=S.county=S.cust=-1; S.sort=''; S.q=''; render(); });
     app.querySelectorAll('th[data-sort]').forEach(function(th){ th.addEventListener('click', function(){ var k=th.dataset.sort; if(S.sort===k) S.dir=-S.dir; else { S.sort=k; S.dir = k.indexOf('name')===0||k.indexOf('rep')===0 ? 1 : -1; } render(); }); });
     app.querySelectorAll('tr.drill').forEach(function(tr){ tr.querySelector('td').addEventListener('click', function(){
