@@ -31,6 +31,7 @@ WHERE THE DATA LIVES
                                    brand, package
   data/master/customers.csv        customer_num -> name, premise, address,
                                    county, area, rep, dm
+  data/master/suppliers.csv        supplier -> supplier_id, brand_manager
   data/master/sources.json         which export supplied each month, when
                                    it was exported, and whether the month
                                    was flagged partial
@@ -60,6 +61,13 @@ REFRESH STEPS
 
    c) CUSTOMER lookup (optional, only when reps or DMs changed): Customer
       Num & Company / Sales Rep Assigned / District Manager, any months.
+
+   d) SUPPLIER lookup (optional, only when brand managers change): the
+      Fusion "Suppliers" list -- Supplier ID / Supplier / brand manager.
+      Fusion labels the manager column "License Number"; the generator
+      reads whatever third column is there as the brand manager.
+      -> data/master/suppliers.csv. Suppliers missing from the list show
+      as "Unassigned" on the page; the build prints which ones.
 
 2. From this folder:
 

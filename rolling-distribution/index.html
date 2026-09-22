@@ -213,7 +213,7 @@
   </footer>
 </div>
 <div class="tip" id="tip"></div>
-<script src="data/dist_data.js?v=21"></script>
+<script src="data/dist_data.js?v=22"></script>
 <script>
 (function(){
   var D = window.DIST_DATA;
@@ -255,13 +255,13 @@
   customers.forEach(function(c){ (repsByDm[c[5]] = repsByDm[c[5]]||{})[c[4]]=1; });
 
   // ---------------------------------------------------------------- state
-  var S = {sup:-1,fam:-1,brand:-1,prod:-1,pkg:'all',prem:'all',dm:-1,rep:-1,area:-1,county:-1,cust:-1,rows:'brand',
+  var S = {bm:-1,sup:-1,fam:-1,brand:-1,prod:-1,pkg:'all',prem:'all',dm:-1,rep:-1,area:-1,county:-1,cust:-1,rows:'brand',
            len:3, n:3, end:M-1, view:'compare', focus:M-1, yoy:1, raw:0, metric:'all', tab:'children',
            sort:'', dir:-1, cmetric:'cases', q:'', more:0, chart:0, pmode:'roll', cp:'', cols:'buyers'};
   var DEFAULTS = JSON.parse(JSON.stringify(S));
   // Filters travel in the URL by NAME (product by its number), never by list position,
   // so a bookmarked link still points at the same thing after a data refresh adds rows.
-  var NAMED = {sup:function(){return D.suppliers;}, fam:function(){return D.families;}, brand:function(){return D.brands;},
+  var NAMED = {bm:function(){return D.bms;}, sup:function(){return D.suppliers;}, fam:function(){return D.families;}, brand:function(){return D.brands;},
                dm:function(){return D.dms;}, rep:function(){return D.reps;}, area:function(){return D.areas;}, county:function(){return COUNTIES;}};
   function readHash(){
     Object.keys(DEFAULTS).forEach(function(k){ S[k]=DEFAULTS[k]; });
@@ -277,6 +277,7 @@
     });
     // a product / brand / family pins its parents
     if(S.prod>=0){ var pp=products[S.prod]; S.sup=pp[2]; S.fam=pp[3]; S.brand=pp[4]; }
+    if(S.sup>=0) S.bm=D.supplier_bm[S.sup];
     else if(S.brand>=0){ var pb=products.filter(function(p){return p[4]===S.brand;})[0]; if(pb){ S.sup=pb[2]; S.fam=pb[3]; } }
     else if(S.fam>=0){ var pf=products.filter(function(p){return p[3]===S.fam;})[0]; if(pf){ S.sup=pf[2]; } }
     if(S.rep>=0 && S.dm<0){ var cr=customers.filter(function(c){return c[4]===S.rep;})[0]; if(cr) S.dm=cr[5]; }
@@ -359,6 +360,7 @@
     var m = new Uint8Array(products.length);
     for(var i=0;i<products.length;i++){
       var p=products[i];
+      if(S.bm>=0 && D.supplier_bm[p[2]]!==S.bm) continue;
       if(S.sup>=0 && p[2]!==S.sup) continue;
       if(S.fam>=0 && p[3]!==S.fam) continue;
       if(S.brand>=0 && p[4]!==S.brand) continue;
@@ -503,7 +505,9 @@
     h.push('<div class="step"><span class="num">1</span>Pick what to look at</div><p class="help stephelp">Leave a box on "All" to include everything.</p>');
     h.push('<div class="groups">');
     h.push('<div class="group"><div class="gtitle">Product</div><div class="ctl">');
-    h.push('<label>Supplier<select id="f-sup" class="'+(S.sup>=0?'active':'')+'">'+opt(-1,'All suppliers',S.sup<0)+D.suppliers.map(function(n,i){ return opt(i,n,S.sup===i); }).join('')+'</select></label>');
+    h.push('<label>Brand manager<select id="f-bm" class="'+(S.bm>=0?'active':'')+'">'+opt(-1,'All brand managers',S.bm<0)+D.bms.map(function(n,i){ return opt(i,n,S.bm===i); }).join('')+'</select></label>');
+    var sups = D.suppliers.map(function(_,i){return i;}).filter(function(i){ return S.bm<0 || D.supplier_bm[i]===S.bm; });
+    h.push('<label>Supplier<select id="f-sup" class="'+(S.sup>=0?'active':'')+'">'+opt(-1, S.bm<0?'All suppliers':'All '+sups.length+' of their suppliers',S.sup<0)+sups.map(function(i){ return opt(i,D.suppliers[i],S.sup===i); }).join('')+'</select></label>');
     var fams = S.sup>=0 ? Object.keys(famBySup[S.sup]||{}).map(Number) : D.families.map(function(_,i){return i;});
     fams.sort(function(a,b){ return D.families[a].localeCompare(D.families[b]); });
     h.push('<label>Brand family<select id="f-fam" class="'+(S.fam>=0?'active':'')+'">'+opt(-1,'All brand families',S.fam<0)+fams.map(function(i){ return opt(i,D.families[i],S.fam===i); }).join('')+'</select></label>');
@@ -572,6 +576,7 @@
   function showingHtml(){
     var chips=[];
     function chip(label, key){ return '<span class="chip">'+esc(label)+'<button data-clear="'+key+'" title="Remove this filter" aria-label="Remove '+esc(label)+'">×</button></span>'; }
+    if(S.bm>=0) chips.push(chip('Brand mgr: '+D.bms[S.bm],'bm'));
     if(S.sup>=0) chips.push(chip(D.suppliers[S.sup],'sup'));
     if(S.fam>=0) chips.push(chip(D.families[S.fam],'fam'));
     if(S.brand>=0) chips.push(chip(D.brands[S.brand],'brand'));
@@ -592,6 +597,7 @@
   }
   function crumbsHtml(li){
     var c=['<div class="crumbs">'];
+    if(S.bm>=0) c.push('<span class="muted">'+esc(D.bms[S.bm])+'</span><span class="sep">›</span>');
     c.push(S.sup<0 ? '<span class="cur">All suppliers</span>' : '<a data-up="0">All suppliers</a>');
     if(S.sup>=0){ c.push('<span class="sep">›</span>'); c.push(S.fam<0 ? '<span class="cur">'+esc(D.suppliers[S.sup])+'</span>' : '<a data-up="1">'+esc(D.suppliers[S.sup])+'</a>'); }
     if(S.fam>=0){ c.push('<span class="sep">›</span>'); c.push(S.brand<0 ? '<span class="cur">'+esc(D.families[S.fam])+'</span>' : '<a data-up="2">'+esc(D.families[S.fam])+'</a>'); }
@@ -662,6 +668,7 @@
   // How the table rows are grouped: the brand hierarchy, or a customer attribute.
   var ROWKEYS = {
     brand:  {label:function(li){ return LEVELS[li].plural; }, col:function(li){ return LEVELS[li].label; }},
+    bm:     {label:function(){ return 'Brand managers'; }, col:function(){ return 'Brand manager'; }, key:function(i){ return D.supplier_bm[products[PP[i]][2]]; }, name:function(id){ return D.bms[id]; }},
     rep:    {label:function(){ return 'Sales reps'; }, col:function(){ return 'Sales rep'; }, key:function(i){ return customers[PC[i]][4]; }, name:function(id){ var c=customers.filter(function(c){return c[4]===id;})[0]; return D.reps[id]+'  ·  '+D.dms[c?c[5]:0]; }},
     dm:     {label:function(){ return 'District managers'; }, col:function(){ return 'District manager'; }, key:function(i){ return customers[PC[i]][5]; }, name:function(id){ return D.dms[id]; }},
     area:   {label:function(){ return 'Distribution areas'; }, col:function(){ return 'Distribution area'; }, key:function(i){ return customers[PC[i]][3]; }, name:function(id){ return D.areas[id]; }},
@@ -670,7 +677,7 @@
     account:{label:function(){ return 'Accounts'; }, col:function(){ return 'Account'; }, key:function(i){ return PC[i]; }, name:function(id){ var c=customers[id]; return c[0]+' '+c[1]+'  ·  '+D.reps[c[4]]+' · '+(c[2]?'On':'Off'); }}
   };
   function rowTabs(cur, li){
-    var tabs=[['brand',LEVELS[li].plural],['rep','By sales rep'],['dm','By district manager'],['area','By area'],['county','By county'],['premise','By premise'],['account','By account']];
+    var tabs=[['brand',LEVELS[li].plural],['bm','By brand manager'],['rep','By sales rep'],['dm','By district manager'],['area','By area'],['county','By county'],['premise','By premise'],['account','By account']];
     return '<div class="tabs">'+tabs.map(function(t){ return '<button data-rows="'+t[0]+'" class="'+(cur===t[0]?'on':'')+'">'+t[1]+'</button>'; }).join('')+'</div>';
   }
   // ---------------------------------------------------------------- compare table
@@ -748,7 +755,7 @@
     h.push('<div class="kpi"><div class="l">Cases per buyer</div><div class="v">'+(total.buyers[0]?fmtC(total.cases[0]/total.buyers[0]):'—')+'</div><div class="d">'+(pr&&total.buyers[1]?deltaHtml(total.cases[0]/(total.buyers[0]||1), total.cases[1]/total.buyers[1],'vs prior'):'')+'</div></div>');
     h.push('<div class="kpi"><div class="l">Placements per buyer</div><div class="v">'+(total.buyers[0]?(total.placements[0]/total.buyers[0]).toFixed(1):'—')+'</div><div class="d">'+(pr&&total.buyers[1]?deltaHtml(total.placements[0]/(total.buyers[0]||1), total.placements[1]/total.buyers[1],'vs prior'):'')+'</div></div>');
     h.push('</div>');
-    var tabs=[['children',LEVELS[li].plural],['rep','By sales rep'],['dm','By district manager'],['area','By area'],['county','By county'],['premise','By premise'],['accounts','Accounts']];
+    var tabs=[['children',LEVELS[li].plural],['bm','By brand manager'],['rep','By sales rep'],['dm','By district manager'],['area','By area'],['county','By county'],['premise','By premise'],['accounts','Accounts']];
     h.push('<div class="tabs">'+tabs.map(function(t){ return '<button data-tab="'+t[0]+'" class="'+(S.tab===t[0]?'on':'')+'">'+t[1]+'</button>'; }).join('')+'</div>');
     var list=[], nameOf, drill=false;
     if(S.tab==='children'){ rows.forEach(function(e){ e.name=levelName(li,e.id); list.push(e); }); drill = li<3; }
@@ -757,6 +764,7 @@
     else if(S.tab==='premise'){ aggregate(ps,pm,cm,function(i){ return customers[PC[i]][2]; }).forEach(function(e){ e.name=e.id?'On premise':'Off premise'; list.push(e); }); }
     else if(S.tab==='area'){ aggregate(ps,pm,cm,function(i){ return customers[PC[i]][3]; }).forEach(function(e){ e.name=D.areas[e.id]; list.push(e); }); }
     else if(S.tab==='county'){ aggregate(ps,pm,cm,ROWKEYS.county.key).forEach(function(e){ e.name=COUNTIES[e.id]; list.push(e); }); }
+    else if(S.tab==='bm'){ aggregate(ps,pm,cm,ROWKEYS.bm.key).forEach(function(e){ e.name=D.bms[e.id]; list.push(e); }); }
     else { acct.forEach(function(e,c){ var cu=customers[c]; e.name=cu[0]+' '+cu[1]; e.rep=D.reps[cu[4]]; e.prem=cu[2]?'On':'Off'; e.status = e.buyers[0]? (priorB.has(c)?'':'new') : (priorB.has(c)?'lost':''); if(e.buyers[0]||priorB.has(c)) list.push(e); }); }
     if(S.tab==='accounts'){
       var q=S.q.toLowerCase(); if(q) list=list.filter(function(e){ return (e.name+' '+e.rep).toLowerCase().indexOf(q)>=0; });
@@ -788,10 +796,11 @@
   // ---------------------------------------------------------------- events
   function bind(){
     function on(id, fn){ var e=el(id); if(e) e.addEventListener('change', fn); }
-    on('f-sup', function(e){ S.sup=+e.target.value; S.fam=-1; S.brand=-1; S.prod=-1; S.sort=''; render(); });
-    on('f-fam', function(e){ S.fam=+e.target.value; S.brand=-1; S.prod=-1; if(S.fam>=0 && S.sup<0){ S.sup = products.filter(function(p){return p[3]===S.fam;})[0][2]; } S.sort=''; render(); });
-    on('f-brand', function(e){ S.brand=+e.target.value; S.prod=-1; if(S.brand>=0){ var p=products.filter(function(p){return p[4]===S.brand;})[0]; S.sup=p[2]; S.fam=p[3]; } S.sort=''; render(); });
-    on('f-prod', function(e){ S.prod=+e.target.value; if(S.prod>=0){ var p=products[S.prod]; S.sup=p[2]; S.fam=p[3]; S.brand=p[4]; } S.sort=''; render(); });
+    on('f-bm', function(e){ S.bm=+e.target.value; S.sup=S.fam=S.brand=S.prod=-1; S.sort=''; render(); });
+    on('f-sup', function(e){ S.sup=+e.target.value; S.fam=-1; S.brand=-1; S.prod=-1; if(S.sup>=0) S.bm=D.supplier_bm[S.sup]; S.sort=''; render(); });
+    on('f-fam', function(e){ S.fam=+e.target.value; S.brand=-1; S.prod=-1; if(S.fam>=0 && S.sup<0){ S.sup = products.filter(function(p){return p[3]===S.fam;})[0][2]; } if(S.sup>=0) S.bm=D.supplier_bm[S.sup]; S.sort=''; render(); });
+    on('f-brand', function(e){ S.brand=+e.target.value; S.prod=-1; if(S.brand>=0){ var p=products.filter(function(p){return p[4]===S.brand;})[0]; S.sup=p[2]; S.fam=p[3]; S.bm=D.supplier_bm[S.sup]; } S.sort=''; render(); });
+    on('f-prod', function(e){ S.prod=+e.target.value; if(S.prod>=0){ var p=products[S.prod]; S.sup=p[2]; S.fam=p[3]; S.brand=p[4]; S.bm=D.supplier_bm[S.sup]; } S.sort=''; render(); });
     on('f-pkg', function(e){ S.pkg=e.target.value; render(); });
     on('f-prem', function(e){ S.prem=e.target.value; render(); });
     on('f-dm', function(e){ S.dm=+e.target.value; S.rep=-1; render(); });
@@ -822,12 +831,12 @@
     var ct=el('chart-toggle'); if(ct) ct.addEventListener('click', function(){ S.chart=S.chart?0:1; try{ localStorage.setItem('rdt-chart', S.chart); }catch(e){} render(); });
     var mo=app.querySelector('details.more'); if(mo) mo.addEventListener('toggle', function(){ S.more=mo.open?1:0; try{ localStorage.setItem('rdt-more', S.more); }catch(e){} });
     app.querySelectorAll('[data-clear]').forEach(function(b){ b.addEventListener('click', function(){ var k=b.dataset.clear;
-      if(k==='sup'){ S.sup=S.fam=S.brand=S.prod=-1; } else if(k==='fam'){ S.fam=S.brand=S.prod=-1; } else if(k==='brand'){ S.brand=S.prod=-1; } else if(k==='prod'){ S.prod=-1; }
+      if(k==='bm'){ S.bm=S.sup=S.fam=S.brand=S.prod=-1; } else if(k==='sup'){ S.sup=S.fam=S.brand=S.prod=-1; } else if(k==='fam'){ S.fam=S.brand=S.prod=-1; } else if(k==='brand'){ S.brand=S.prod=-1; } else if(k==='prod'){ S.prod=-1; }
       else if(k==='pkg'){ S.pkg='all'; } else if(k==='prem'){ S.prem='all'; } else if(k==='dm'){ S.dm=S.rep=-1; } else if(k==='rep'){ S.rep=-1; } else if(k==='area'){ S.area=-1; } else if(k==='county'){ S.county=-1; } else if(k==='cust'){ S.cust=-1; }
       S.sort=''; render(); }); });
     var pv=el('prev'); if(pv) pv.addEventListener('click', function(){ if(HIST.length<2) return; HIST.pop(); var prev=JSON.parse(HIST[HIST.length-1]); Object.keys(prev).forEach(function(k){ S[k]=prev[k]; }); restoring=true; render(); });
-    var rs2=el('reset2'); if(rs2) rs2.addEventListener('click', function(){ S.sup=S.fam=S.brand=S.prod=-1; S.pkg='all'; S.prem='all'; S.dm=S.rep=S.area=S.county=S.cust=-1; S.sort=''; S.q=''; render(); });
-    var rs=el('reset'); if(rs) rs.addEventListener('click', function(){ S.sup=S.fam=S.brand=S.prod=-1; S.pkg='all'; S.prem='all'; S.dm=S.rep=S.area=S.county=S.cust=-1; S.sort=''; S.q=''; render(); });
+    var rs2=el('reset2'); if(rs2) rs2.addEventListener('click', function(){ S.bm=S.sup=S.fam=S.brand=S.prod=-1; S.pkg='all'; S.prem='all'; S.dm=S.rep=S.area=S.county=S.cust=-1; S.sort=''; S.q=''; render(); });
+    var rs=el('reset'); if(rs) rs.addEventListener('click', function(){ S.bm=S.sup=S.fam=S.brand=S.prod=-1; S.pkg='all'; S.prem='all'; S.dm=S.rep=S.area=S.county=S.cust=-1; S.sort=''; S.q=''; render(); });
     app.querySelectorAll('th[data-sort]').forEach(function(th){ th.addEventListener('click', function(){ var k=th.dataset.sort; if(S.sort===k) S.dir=-S.dir; else { S.sort=k; S.dir = k.indexOf('name')===0||k.indexOf('rep')===0 ? 1 : -1; } render(); }); });
     app.querySelectorAll('tr.drill').forEach(function(tr){ tr.querySelector('td').addEventListener('click', function(){
       var id=+tr.dataset.id, li=currentLevel();

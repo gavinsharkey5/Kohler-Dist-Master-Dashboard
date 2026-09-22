@@ -20,6 +20,9 @@ Every file is auto-detected by its header:
   CUSTOMER Customer Num & Company, Sales Rep Assigned, District Manager,
            (monthly totals ignored)
            -> rep / DM per account in data/master/customers.csv
+  SUPPLIER Supplier ID, Supplier, <brand manager column> (Fusion labels
+           it "License Number"; the third column is taken as the brand
+           manager) -> data/master/suppliers.csv
 
 Dimension attributes (names, supplier, family, brand, premise, area, rep,
 DM, package) are "latest file wins": the attributes of a product or account
@@ -37,12 +40,14 @@ MASTER = os.path.join(HERE, 'data', 'master')
 MONTHS_DIR = os.path.join(MASTER, 'months')
 PRODUCTS_CSV = os.path.join(MASTER, 'products.csv')
 CUSTOMERS_CSV = os.path.join(MASTER, 'customers.csv')
+SUPPLIERS_CSV = os.path.join(MASTER, 'suppliers.csv')
 SOURCES_JSON = os.path.join(MASTER, 'sources.json')
 OUT_JS = os.path.join(HERE, 'data', 'dist_data.js')
 OUT_META = os.path.join(HERE, 'data', 'sync_meta.json')
 
 PRODUCT_FIELDS = ['product_num', 'name', 'supplier', 'family', 'brand', 'package']
 CUSTOMER_FIELDS = ['customer_num', 'name', 'premise', 'address', 'county', 'area', 'rep', 'dm']
+SUPPLIER_FIELDS = ['supplier', 'supplier_id', 'brand_manager']
 METRIC_RE = re.compile(r'^(Buyer Count|Placement Count|Cases)\s+(\d{4})/(\d{1,2})$')
 
 
@@ -135,6 +140,8 @@ def detect(hdr):
         return 'product'
     if 'Customer Num & Company' in h and 'Sales Rep Assigned' in h:
         return 'customer'
+    if 'Supplier ID' in h and 'Supplier' in h:
+        return 'supplier'
     die('unrecognised header: %s' % h[:6])
 
 
@@ -252,6 +259,29 @@ def ingest_customer(path, customers):
     print('CUSTOMER %s  rows=%d  (%d accounts not yet in any detail export)' % (os.path.basename(path), n, new))
 
 
+def ingest_supplier(path, suppliers):
+    n = 0
+    with open(path, newline='', encoding='utf-8-sig') as fh:
+        r = csv.reader(fh)
+        hdr = [x.strip() for x in next(r)]
+        col = {h: i for i, h in enumerate(hdr)}
+        # the brand-manager column is whatever is not the id / name column
+        bm_col = [i for i, h in enumerate(hdr) if h not in ('Supplier ID', 'Supplier')]
+        if not bm_col:
+            die('%s: no brand manager column' % path)
+        bm_col = bm_col[0]
+        for x in r:
+            if not any(v.strip() for v in x):
+                continue
+            name = x[col['Supplier']].strip()
+            if not name:
+                continue
+            suppliers[name] = {'supplier': name, 'supplier_id': x[col['Supplier ID']].strip(),
+                               'brand_manager': x[bm_col].strip()}
+            n += 1
+    print('SUPPLIER %s  rows=%d  (column %r read as brand manager)' % (os.path.basename(path), n, hdr[bm_col]))
+
+
 # ---------------------------------------------------------------- build
 
 DRAFT_RE = re.compile(r'\b(keg|gal)\b', re.I)
@@ -269,7 +299,8 @@ def fmt(v):
     return ('%.2f' % v).rstrip('0').rstrip('.')
 
 
-def build(products, customers, sources):
+def build(products, customers, sources, suppliers=None):
+    suppliers = suppliers or {}
     months = sorted(mk[:-4] for mk in os.listdir(MONTHS_DIR) if mk.endswith('.csv'))
     if not months:
         die('no months in %s' % MONTHS_DIR)
@@ -296,7 +327,11 @@ def build(products, customers, sources):
         vals = sorted(set(values), key=lambda s: (s == '', s.lower()))
         return vals, {v: i for i, v in enumerate(vals)}
 
-    suppliers, si = lut(products[p]['supplier'] or '(unknown)' for p in used_p)
+    supplier_names, si = lut(products[p]['supplier'] or '(unknown)' for p in used_p)
+    bms, bmi = lut((suppliers.get(n, {}).get('brand_manager') or 'Unassigned') for n in supplier_names)
+    no_bm = [n for n in supplier_names if not suppliers.get(n, {}).get('brand_manager')]
+    if suppliers and no_bm:
+        print('NOTE: %d suppliers have no brand manager: %s' % (len(no_bm), ', '.join(no_bm[:8]) + (' ...' if len(no_bm) > 8 else '')))
     families, fi = lut(products[p]['family'] or '(unknown)' for p in used_p)
     brands, bi = lut(products[p]['brand'] or '(unknown)' for p in used_p)
     packages, ki = lut(products[p]['package'] or '(unknown)' for p in used_p)
@@ -315,7 +350,9 @@ def build(products, customers, sources):
     out.append('window.DIST_DATA={')
     out.append('"months":%s,' % json.dumps(months))
     out.append('"partial":%s,' % json.dumps({mk: sources[mk]['exported'] for mk in months if sources.get(mk, {}).get('partial')}))
-    out.append('"suppliers":%s,' % json.dumps(suppliers))
+    out.append('"suppliers":%s,' % json.dumps(supplier_names))
+    out.append('"bms":%s,' % json.dumps(bms))
+    out.append('"supplier_bm":%s,' % json.dumps([bmi[(suppliers.get(n, {}).get('brand_manager') or 'Unassigned')] for n in supplier_names]))
     out.append('"families":%s,' % json.dumps(families))
     out.append('"brands":%s,' % json.dumps(brands))
     out.append('"packages":%s,' % json.dumps(packages))
@@ -373,24 +410,28 @@ def main(argv):
     os.makedirs(MONTHS_DIR, exist_ok=True)
     products = load_dim(PRODUCTS_CSV, PRODUCT_FIELDS, 'product_num')
     customers = load_dim(CUSTOMERS_CSV, CUSTOMER_FIELDS, 'customer_num')
+    suppliers = load_dim(SUPPLIERS_CSV, SUPPLIER_FIELDS, 'supplier')
     sources = load_sources()
     # detail first so lookups apply on top, then product/customer files
     typed = []
     for f in files:
         with open(f, newline='', encoding='utf-8-sig') as fh:
             typed.append((detect(next(csv.reader(fh))), f))
-    for kind, f in sorted(typed, key=lambda t: {'detail': 0, 'product': 1, 'customer': 2}[t[0]]):
+    for kind, f in sorted(typed, key=lambda t: {'detail': 0, 'product': 1, 'customer': 2, 'supplier': 3}[t[0]]):
         if kind == 'detail':
             ingest_detail(f, products, customers, sources, complete)
         elif kind == 'product':
             ingest_product(f, products)
-        else:
+        elif kind == 'customer':
             ingest_customer(f, customers)
+        else:
+            ingest_supplier(f, suppliers)
     save_dim(PRODUCTS_CSV, PRODUCT_FIELDS, products)
     save_dim(CUSTOMERS_CSV, CUSTOMER_FIELDS, customers)
+    save_dim(SUPPLIERS_CSV, SUPPLIER_FIELDS, suppliers)
     with open(SOURCES_JSON, 'w', encoding='utf-8') as fh:
         json.dump(dict(sorted(sources.items())), fh, indent=1)
-    build(products, customers, sources)
+    build(products, customers, sources, suppliers)
 
 
 if __name__ == '__main__':
