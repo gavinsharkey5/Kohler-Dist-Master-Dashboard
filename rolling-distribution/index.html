@@ -16,7 +16,7 @@
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
   body{margin:0;background:radial-gradient(1200px 600px at 15% -10%,#14254A 0%,rgba(20,37,74,0) 60%),radial-gradient(900px 500px at 100% 0%,#2A1E08 0%,rgba(42,30,8,0) 55%),var(--canvas);background-attachment:fixed;color:var(--ink);font-family:"Public Sans","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;line-height:1.45;padding:0 18px env(safe-area-inset-bottom);font-size:18px;font-feature-settings:"tnum" 1,"cv11" 1}
-  .wrap{max-width:1440px;margin:0 auto}
+  .wrap{max-width:1800px;margin:0 auto}
   header{padding:26px 0 8px}
   .eyebrow{font-family:"Archivo",Arial,sans-serif;letter-spacing:.14em;font-weight:600;text-transform:uppercase;font-size:13.5px;color:var(--gold);margin:0 0 8px}
   .eyebrow a{color:inherit;text-decoration:none}
@@ -92,19 +92,19 @@
   .tabs{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 12px}
   .tabs button{background:transparent;border:1.5px solid var(--line);border-radius:999px;color:var(--ink-soft);padding:9px 16px;font:inherit;font-size:17px;cursor:pointer;min-height:46px}
   .tabs button.on{background:linear-gradient(180deg,var(--accent-hi),var(--accent));border-color:var(--accent);color:#05101F;font-weight:700}
-  .tbl-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px;max-height:75vh;background:#0B1222}
+  .tbl-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px;max-height:86vh;background:#0B1222}
   table{border-collapse:separate;border-spacing:0;width:100%;font-size:16.5px;font-variant-numeric:tabular-nums}
-  th,td{padding:9px 6px;border-bottom:1px solid var(--line-soft);white-space:nowrap;text-align:right}
+  th,td{padding:10px 8px;border-bottom:1px solid var(--line);border-right:1px solid var(--line-soft);white-space:nowrap;text-align:center}
   th{position:sticky;top:0;background:#0E1730;z-index:2;font-size:16px;color:var(--ink-soft);font-weight:600;cursor:pointer;user-select:none}
   th:hover{color:var(--ink)}
-  th.grp{top:0;border-bottom:0;text-align:center;color:var(--ink);font-size:16px;font-weight:700;cursor:default;background:#122043;font-family:"Archivo",Arial,sans-serif;letter-spacing:.03em;text-transform:uppercase}
+  th.grp{top:0;border-bottom:1px solid var(--line);text-align:center;color:var(--ink);font-size:16px;font-weight:700;cursor:default;background:#122043;font-family:"Archivo",Arial,sans-serif;letter-spacing:.03em;text-transform:uppercase}
   th.grp.hi{color:#1A1200;background:linear-gradient(180deg,#FFD27A,var(--gold))}
   th.sub{top:43px}
   .scrollhint{display:none;font-size:16.5px;color:var(--gold);margin:8px 0 0;font-weight:600}
   .tbl-wrap.overflowing + .scrollhint{display:block}
   th.sub.m-buyers{color:#9CC1FF}th.sub.m-placements{color:#8FE9DC}th.sub.m-cases{color:#FFD98F}
   th.sorted{text-decoration:underline;text-underline-offset:4px;color:var(--ink)}
-  th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:#0F1729;z-index:1;max-width:250px;padding-left:12px;overflow:hidden;text-overflow:ellipsis}
+  th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:#0F1729;z-index:1;max-width:340px;min-width:200px;padding-left:12px;border-right:2px solid var(--line);overflow:hidden;text-overflow:ellipsis}
   th:first-child{z-index:3;background:#0E1730}
   td.pg0{background:var(--pg0)}td.pg1{background:var(--pg1)}
   td.hi{background:var(--pghi)}th.sub.hi{background:#1E1B14}
@@ -117,8 +117,9 @@
   tr.total td:first-child{background:#132043}
   td.dim{color:var(--ink-dim)}
   td .yoy{display:block;font-size:14px;line-height:1.1;margin-top:2px;font-weight:600}
-  td.pb,th.pb{border-left:2px solid var(--line)}
-  th.grp.pb{border-left:2px solid var(--line)}
+  td.pb,th.pb{border-left:2px solid #3A4A70}
+  th.grp.pb{border-left:2px solid #3A4A70}
+  td:last-child,th:last-child{border-right:0}
   .tag{display:inline-block;border-radius:6px;padding:2px 8px;font-size:14px;font-weight:700;margin-left:8px;vertical-align:1px}
   .tag.new{background:var(--good-bg);color:var(--good)}.tag.lost{background:var(--bad-bg);color:var(--bad)}.tag.part{background:var(--warn-bg);color:var(--warn)}
   .chart{margin-top:14px;padding-top:14px;border-top:1px solid var(--line-soft)}
@@ -127,6 +128,9 @@
   .tip b{font-family:"Archivo",Arial,sans-serif}
   .toolbar{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;margin:0 0 12px}
   .toolbar .left{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+  .toolbar .left.stack{align-items:flex-start}
+  .ctl label.wide{grid-column:span 2}
+  input.active{border-color:var(--gold);background:var(--gold-soft)}
   .muted{color:var(--ink-dim);font-size:16.5px}
   .loading{padding:60px 0;text-align:center;color:var(--ink-soft)}
   footer{color:var(--ink-dim);font-size:16.5px;padding:20px 0 40px;line-height:1.6}
@@ -150,7 +154,7 @@
   </footer>
 </div>
 <div class="tip" id="tip"></div>
-<script src="data/dist_data.js?v=9"></script>
+<script src="data/dist_data.js?v=10"></script>
 <script>
 (function(){
   var D = window.DIST_DATA;
@@ -186,18 +190,20 @@
     (brandByFam[p[3]] = brandByFam[p[3]]||{})[p[4]]=1;
     (prodByBrand[p[4]] = prodByBrand[p[4]]||{})[pi]=1;
   });
+  var COUNTIES = []; (function(){ var seen={}; customers.forEach(function(c){ var k=c[6]||'(unknown)'; if(!seen[k]){ seen[k]=1; COUNTIES.push(k); } }); COUNTIES.sort(); })();
+  var countyIdx = {}; COUNTIES.forEach(function(n,i){ countyIdx[n]=i; });
   var repsByDm = {};
   customers.forEach(function(c){ (repsByDm[c[5]] = repsByDm[c[5]]||{})[c[4]]=1; });
 
   // ---------------------------------------------------------------- state
-  var S = {sup:-1,fam:-1,brand:-1,prod:-1,pkg:'all',prem:'all',dm:-1,rep:-1,area:-1,
+  var S = {sup:-1,fam:-1,brand:-1,prod:-1,pkg:'all',prem:'all',dm:-1,rep:-1,area:-1,county:-1,cust:-1,rows:'brand',
            len:3, n:3, end:M-1, view:'compare', focus:M-1, yoy:1, raw:0, metric:'all', tab:'children',
            sort:'', dir:-1, cmetric:'cases', q:'', more:0, chart:0, pmode:'roll', cp:''};
   var DEFAULTS = JSON.parse(JSON.stringify(S));
   // Filters travel in the URL by NAME (product by its number), never by list position,
   // so a bookmarked link still points at the same thing after a data refresh adds rows.
   var NAMED = {sup:function(){return D.suppliers;}, fam:function(){return D.families;}, brand:function(){return D.brands;},
-               dm:function(){return D.dms;}, rep:function(){return D.reps;}, area:function(){return D.areas;}};
+               dm:function(){return D.dms;}, rep:function(){return D.reps;}, area:function(){return D.areas;}, county:function(){return COUNTIES;}};
   function readHash(){
     Object.keys(DEFAULTS).forEach(function(k){ S[k]=DEFAULTS[k]; });
     var h = location.hash.replace(/^#/,''); if(!h) return;
@@ -205,6 +211,7 @@
     q.forEach(function(v,k){
       if(!(k in S)) return;
       if(k==='prod'){ if(v==='-1'||v==='') { S.prod=-1; return; } var pi=-1; for(var i=0;i<products.length;i++) if(products[i][0]===v){ pi=i; break; } S.prod=pi; return; }
+      if(k==='cust'){ if(v==='-1'||v==='') { S.cust=-1; return; } var ci=-1; for(var j=0;j<customers.length;j++) if(customers[j][0]===v){ ci=j; break; } S.cust=ci; return; }
       if(NAMED[k]){ if(v==='-1'||v==='') { S[k]=-1; return; } var idx=NAMED[k]().indexOf(v); S[k]=idx; return; }
       if(k==='end'||k==='focus'){ var mi=D.months.indexOf(v); S[k]= mi>=0 ? mi : (/^\d+$/.test(v)? Math.min(M-1,parseInt(v,10)) : M-1); return; }
       if(typeof S[k]==='number') S[k]=parseInt(v,10); else S[k]=v;
@@ -221,6 +228,7 @@
     Object.keys(S).forEach(function(k){
       if(k==='sort'||k==='dir'||k==='q'||k==='more'||k==='chart') return;
       if(k==='prod'){ if(S.prod>=0) q.set('prod', products[S.prod][0]); return; }
+      if(k==='cust'){ if(S.cust>=0) q.set('cust', customers[S.cust][0]); return; }
       if(NAMED[k]){ if(S[k]>=0) q.set(k, NAMED[k]()[S[k]]); return; }
       if(k==='end'||k==='focus'){ q.set(k, D.months[S[k]]); return; }
       q.set(k,S[k]);
@@ -309,6 +317,8 @@
       if(S.dm>=0 && c[5]!==S.dm) continue;
       if(S.rep>=0 && c[4]!==S.rep) continue;
       if(S.area>=0 && c[3]!==S.area) continue;
+      if(S.county>=0 && (c[6]||'(unknown)')!==COUNTIES[S.county]) continue;
+      if(S.cust>=0 && i!==S.cust) continue;
       m[i]=1;
     }
     return m;
@@ -401,7 +411,8 @@
     var P = periods.length;
     var li = currentLevel();
     var childLevel = li; // level whose rows we show
-    var rows = aggregate(ps, pm, cm, function(i){ return entityOf(childLevel, PP[i]); });
+    var rk = S.view==='compare' ? S.rows : 'brand';
+    var rows = aggregate(ps, pm, cm, rk==='brand' ? function(i){ return entityOf(childLevel, PP[i]); } : ROWKEYS[rk].key);
     var total = aggregate(ps, pm, cm, function(){ return 0; }).get(0) || emptyEntity(ps.P);
     html.push('<div class="card">');
     html.push(crumbsHtml(li));
@@ -409,7 +420,7 @@
     html.push(chartHtml(pm, cm, periods));
     html.push('</div>');
     if(S.view==='compare'){
-      html.push(compareTable(rows, total, periods, P, childLevel));
+      html.push(compareTable(rows, total, periods, P, childLevel, rk));
     }else{
       html.push(focusView(ps, pm, cm, rows, total, periods[0], childLevel));
     }
@@ -440,7 +451,9 @@
     var reps = S.dm>=0 ? Object.keys(repsByDm[S.dm]||{}).map(Number) : D.reps.map(function(_,i){return i;});
     reps.sort(function(a,b){ return D.reps[a].localeCompare(D.reps[b]); });
     h.push('<label>Sales rep<select id="f-rep" class="'+(S.rep>=0?'active':'')+'">'+opt(-1,'All reps',S.rep<0)+reps.map(function(i){ return opt(i,D.reps[i],S.rep===i); }).join('')+'</select></label>');
-    h.push('<label>Area<select id="f-area" class="'+(S.area>=0?'active':'')+'">'+opt(-1,'All areas',S.area<0)+D.areas.map(function(n,i){ return opt(i,n,S.area===i); }).join('')+'</select></label>');
+    h.push('<label>Distribution area<select id="f-area" class="'+(S.area>=0?'active':'')+'">'+opt(-1,'All areas',S.area<0)+D.areas.map(function(n,i){ return opt(i,n,S.area===i); }).join('')+'</select></label>');
+    h.push('<label>County<select id="f-county" class="'+(S.county>=0?'active':'')+'">'+opt(-1,'All counties',S.county<0)+COUNTIES.map(function(n,i){ return opt(i,n,S.county===i); }).join('')+'</select></label>');
+    h.push('<label class="wide">One account (type a name or number)<input type="search" id="f-cust" list="custlist" class="'+(S.cust>=0?'active':'')+'" placeholder="All accounts" value="'+(S.cust>=0?esc(customers[S.cust][0]+' '+customers[S.cust][1]):'')+'"><datalist id="custlist">'+customers.map(function(c){ return '<option value="'+esc(c[0]+' '+c[1])+'">'; }).join('')+'</datalist></label>');
     h.push('</div>');
     h.push(showingHtml());
     h.push('<div class="step step2"><span class="num">2</span>Pick the time periods</div><div class="row">');
@@ -493,11 +506,10 @@
     if(S.dm>=0) chips.push(chip('DM: '+D.dms[S.dm],'dm'));
     if(S.rep>=0) chips.push(chip('Rep: '+D.reps[S.rep],'rep'));
     if(S.area>=0) chips.push(chip('Area: '+D.areas[S.area],'area'));
-    var h='<div class="showing"><span class="lab">Showing:</span>';
-    h+= chips.length ? chips.join('') : '<span class="chip quiet">Everything — all suppliers, all reps, on + off premise</span>';
-    if(chips.length) h+='<button class="btn" id="reset" style="margin-left:auto;min-height:40px;padding:6px 14px;font-size:15px">Clear all filters</button>';
-    h+='</div>';
-    return h;
+    if(S.county>=0) chips.push(chip(COUNTIES[S.county]+' County','county'));
+    if(S.cust>=0) chips.push(chip(customers[S.cust][0]+' '+customers[S.cust][1],'cust'));
+    if(!chips.length) return '';
+    return '<div class="showing"><span class="lab">Showing:</span>'+chips.join('')+'<button class="btn" id="reset" style="margin-left:auto;min-height:40px;padding:6px 14px;font-size:15px">Clear all filters</button></div>';
   }
   function allMonthOpts(sel){ var o=[]; for(var i=M-1;i>=0;i--) o.push(opt(i, mLabel(i,true)+(D.partial[D.months[i]]?' (partial)':''), sel===i)); return o.join(''); }
   function monthOpts(sel){
@@ -568,6 +580,20 @@
     return h.join('');
   }
 
+  // How the table rows are grouped: the brand hierarchy, or a customer attribute.
+  var ROWKEYS = {
+    brand:  {label:function(li){ return LEVELS[li].plural; }, col:function(li){ return LEVELS[li].label; }},
+    rep:    {label:function(){ return 'Sales reps'; }, col:function(){ return 'Sales rep'; }, key:function(i){ return customers[PC[i]][4]; }, name:function(id){ var c=customers.filter(function(c){return c[4]===id;})[0]; return D.reps[id]+'  ·  '+D.dms[c?c[5]:0]; }},
+    dm:     {label:function(){ return 'District managers'; }, col:function(){ return 'District manager'; }, key:function(i){ return customers[PC[i]][5]; }, name:function(id){ return D.dms[id]; }},
+    area:   {label:function(){ return 'Distribution areas'; }, col:function(){ return 'Distribution area'; }, key:function(i){ return customers[PC[i]][3]; }, name:function(id){ return D.areas[id]; }},
+    county: {label:function(){ return 'Counties'; }, col:function(){ return 'County'; }, key:function(i){ return countyIdx[customers[PC[i]][6]||'(unknown)']; }, name:function(id){ return COUNTIES[id]; }},
+    premise:{label:function(){ return 'Premise'; }, col:function(){ return 'Premise'; }, key:function(i){ return customers[PC[i]][2]; }, name:function(id){ return id?'On premise':'Off premise'; }},
+    account:{label:function(){ return 'Accounts'; }, col:function(){ return 'Account'; }, key:function(i){ return PC[i]; }, name:function(id){ var c=customers[id]; return c[0]+' '+c[1]+'  ·  '+D.reps[c[4]]+' · '+(c[2]?'On':'Off'); }}
+  };
+  function rowTabs(cur, li){
+    var tabs=[['brand',LEVELS[li].plural],['rep','By sales rep'],['dm','By district manager'],['area','By area'],['county','By county'],['premise','By premise'],['account','By account']];
+    return '<div class="tabs">'+tabs.map(function(t){ return '<button data-rows="'+t[0]+'" class="'+(cur===t[0]?'on':'')+'">'+t[1]+'</button>'; }).join('')+'</div>';
+  }
   // ---------------------------------------------------------------- compare table
   function metricsShown(){ return S.metric==='all' ? ['buyers','placements','cases'] : [S.metric]; }
   function sortRows(list, P, yoyOn){
@@ -579,12 +605,14 @@
     });
     return key;
   }
-  function compareTable(rows, total, periods, P, li){
+  function compareTable(rows, total, periods, P, li, rk){
+    var isBrand = rk==='brand', drill = isBrand && li<3;
     var ms = metricsShown(), MLBL={buyers:'Buyers',placements:'Placements',cases:'Cases'};
-    var list=[]; rows.forEach(function(e){ e.name=levelName(li,e.id); list.push(e); });
+    var list=[]; rows.forEach(function(e){ e.name = isBrand ? levelName(li,e.id) : ROWKEYS[rk].name(e.id); list.push(e); });
     var sortKey = sortRows(list, P);
-    var h=['<div class="card"><div class="toolbar"><div class="left stack"><h2 style="margin:0">'+esc(LEVELS[li].plural)+' · '+list.length+(list.length===1?' row':' rows')+'</h2><span class="muted">'+(li<3?'Click a blue name to open it. ':'')+'Click a column heading to sort. Each period is '+S.len+' whole calendar month'+(S.len>1?'s':'')+'.</span></div><button class="btn" id="dl">Download CSV</button></div>'];
-    h.push('<div class="tbl-wrap"><table id="cmp"><thead><tr><th class="grp" rowspan="2" data-sort="name:0" style="text-align:left">'+esc(LEVELS[li].label)+'</th>');
+    var h=['<div class="card"><div class="toolbar"><div class="left stack"><h2 style="margin:0">'+esc(ROWKEYS[rk].label(li))+' · '+list.length+(list.length===1?' row':' rows')+'</h2><span class="muted">'+(drill?'Click a blue name to open it. ':'')+'Click a column heading to sort. Each period is '+S.len+' whole calendar month'+(S.len>1?'s':'')+'.</span></div><button class="btn" id="dl">Download CSV</button></div>'];
+    h.push('<p class="help" style="margin:0 0 4px">Show rows by:</p>'+rowTabs(rk, li));
+    h.push('<div class="tbl-wrap"><table id="cmp"><thead><tr><th class="grp" rowspan="2" data-sort="name:0" style="text-align:left">'+esc(ROWKEYS[rk].col(li))+'</th>');
     periods.forEach(function(p,j){ h.push('<th class="grp pb'+(j===P-1?' hi':'')+'" colspan="'+ms.length+'" title="'+pDays(p)+'">'+esc(pLabel(p))+(pPartial(p)?' <span class="tag part">partial</span>':'')+'</th>'); });
     h.push('</tr><tr>');
     periods.forEach(function(p,j){ ms.forEach(function(m,mi){ var k=m+':'+j; h.push('<th class="sub m-'+m+(mi===0?' pb':'')+(j===P-1?' hi':'')+(sortKey===k?' sorted':'')+'" data-sort="'+k+'">'+MLBL[m]+(sortKey===k?(S.dir<0?' ↓':' ↑'):'')+'</th>'); }); });
@@ -598,7 +626,7 @@
       return c.join('');
     }
     h.push('<tr class="total"><td>Total · '+esc(crumbText())+'</td>'+cells(total)+'</tr>');
-    list.forEach(function(e){ h.push('<tr class="'+(li<3?'drill':'')+'" data-id="'+e.id+'"><td title="'+esc(e.name)+'">'+esc(e.name)+'</td>'+cells(e)+'</tr>'); });
+    list.forEach(function(e){ h.push('<tr class="'+(drill?'drill':'')+'" data-id="'+e.id+'"><td title="'+esc(e.name)+'">'+esc(e.name)+'</td>'+cells(e)+'</tr>'); });
     h.push('</tbody></table></div><p class="scrollhint">&larr; Scroll this table sideways to see every period &rarr;</p>');
     if(S.yoy) h.push('<p class="note">The small green or red % under a number is the change against the same '+S.len+'-month window one year earlier (nothing shown where the data does not go back that far). Grey numbers are zero.</p>');
     h.push('</div>');
@@ -625,7 +653,7 @@
     h.push('<div class="kpi"><div class="l">Cases per buyer</div><div class="v">'+(total.buyers[0]?fmtC(total.cases[0]/total.buyers[0]):'—')+'</div><div class="d">'+(pr&&total.buyers[1]?deltaHtml(total.cases[0]/(total.buyers[0]||1), total.cases[1]/total.buyers[1],'vs prior'):'')+'</div></div>');
     h.push('<div class="kpi"><div class="l">Placements per buyer</div><div class="v">'+(total.buyers[0]?(total.placements[0]/total.buyers[0]).toFixed(1):'—')+'</div><div class="d">'+(pr&&total.buyers[1]?deltaHtml(total.placements[0]/(total.buyers[0]||1), total.placements[1]/total.buyers[1],'vs prior'):'')+'</div></div>');
     h.push('</div>');
-    var tabs=[['children',LEVELS[li].plural],['rep','By sales rep'],['dm','By district manager'],['premise','By premise'],['area','By area'],['accounts','Accounts']];
+    var tabs=[['children',LEVELS[li].plural],['rep','By sales rep'],['dm','By district manager'],['area','By area'],['county','By county'],['premise','By premise'],['accounts','Accounts']];
     h.push('<div class="tabs">'+tabs.map(function(t){ return '<button data-tab="'+t[0]+'" class="'+(S.tab===t[0]?'on':'')+'">'+t[1]+'</button>'; }).join('')+'</div>');
     var list=[], nameOf, drill=false;
     if(S.tab==='children'){ rows.forEach(function(e){ e.name=levelName(li,e.id); list.push(e); }); drill = li<3; }
@@ -633,6 +661,7 @@
     else if(S.tab==='dm'){ aggregate(ps,pm,cm,function(i){ return customers[PC[i]][5]; }).forEach(function(e){ e.name=D.dms[e.id]; list.push(e); }); }
     else if(S.tab==='premise'){ aggregate(ps,pm,cm,function(i){ return customers[PC[i]][2]; }).forEach(function(e){ e.name=e.id?'On premise':'Off premise'; list.push(e); }); }
     else if(S.tab==='area'){ aggregate(ps,pm,cm,function(i){ return customers[PC[i]][3]; }).forEach(function(e){ e.name=D.areas[e.id]; list.push(e); }); }
+    else if(S.tab==='county'){ aggregate(ps,pm,cm,ROWKEYS.county.key).forEach(function(e){ e.name=COUNTIES[e.id]; list.push(e); }); }
     else { acct.forEach(function(e,c){ var cu=customers[c]; e.name=cu[0]+' '+cu[1]; e.rep=D.reps[cu[4]]; e.prem=cu[2]?'On':'Off'; e.status = e.buyers[0]? (priorB.has(c)?'':'new') : (priorB.has(c)?'lost':''); if(e.buyers[0]||priorB.has(c)) list.push(e); }); }
     if(S.tab==='accounts'){
       var q=S.q.toLowerCase(); if(q) list=list.filter(function(e){ return (e.name+' '+e.rep).toLowerCase().indexOf(q)>=0; });
@@ -670,6 +699,8 @@
     on('f-dm', function(e){ S.dm=+e.target.value; S.rep=-1; render(); });
     on('f-rep', function(e){ S.rep=+e.target.value; if(S.rep>=0 && S.dm<0){ var c=customers.filter(function(c){return c[4]===S.rep;})[0]; S.dm=c[5]; } render(); });
     on('f-area', function(e){ S.area=+e.target.value; render(); });
+    on('f-county', function(e){ S.county=+e.target.value; render(); });
+    var fc=el('f-cust'); if(fc){ fc.addEventListener('change', function(){ var v=fc.value.trim(); if(!v){ S.cust=-1; render(); return; } var num=v.split(' ')[0]; var ci=-1; for(var j=0;j<customers.length;j++) if(customers[j][0]===num || (customers[j][0]+' '+customers[j][1]).toLowerCase()===v.toLowerCase()){ ci=j; break; } if(ci<0){ fc.value=''; S.cust=-1; } else S.cust=ci; render(); }); }
     on('f-end', function(e){ S.end=+e.target.value; S.sort=''; render(); });
     on('f-focus', function(e){ S.focus=+e.target.value; render(); });
     var q=el('q'); if(q){ q.addEventListener('input', function(e){ S.q=e.target.value; var pos=q.selectionStart; render(); var q2=el('q'); if(q2){ q2.focus(); q2.setSelectionRange(pos,pos);} }); }
@@ -684,15 +715,16 @@
     app.querySelectorAll('[data-yoy]').forEach(function(b){ b.addEventListener('click', function(){ S.yoy=+b.dataset.yoy; render(); }); });
     app.querySelectorAll('[data-raw]').forEach(function(b){ b.addEventListener('click', function(){ S.raw=+b.dataset.raw; render(); }); });
     app.querySelectorAll('[data-cmetric]').forEach(function(b){ b.addEventListener('click', function(){ S.cmetric=b.dataset.cmetric; render(); }); });
+    app.querySelectorAll('[data-rows]').forEach(function(b){ b.addEventListener('click', function(){ S.rows=b.dataset.rows; S.sort=''; render(); }); });
     app.querySelectorAll('[data-tab]').forEach(function(b){ b.addEventListener('click', function(){ S.tab=b.dataset.tab; S.sort=''; S.q=''; render(); }); });
     app.querySelectorAll('[data-up]').forEach(function(a){ a.addEventListener('click', function(){ var u=+a.dataset.up; if(u<=0) S.sup=-1; if(u<=1) S.fam=-1; if(u<=2) S.brand=-1; S.prod=-1; S.sort=''; render(); }); });
     var ct=el('chart-toggle'); if(ct) ct.addEventListener('click', function(){ S.chart=S.chart?0:1; try{ localStorage.setItem('rdt-chart', S.chart); }catch(e){} render(); });
     var mo=app.querySelector('details.more'); if(mo) mo.addEventListener('toggle', function(){ S.more=mo.open?1:0; try{ localStorage.setItem('rdt-more', S.more); }catch(e){} });
     app.querySelectorAll('[data-clear]').forEach(function(b){ b.addEventListener('click', function(){ var k=b.dataset.clear;
       if(k==='sup'){ S.sup=S.fam=S.brand=S.prod=-1; } else if(k==='fam'){ S.fam=S.brand=S.prod=-1; } else if(k==='brand'){ S.brand=S.prod=-1; } else if(k==='prod'){ S.prod=-1; }
-      else if(k==='pkg'){ S.pkg='all'; } else if(k==='prem'){ S.prem='all'; } else if(k==='dm'){ S.dm=S.rep=-1; } else if(k==='rep'){ S.rep=-1; } else if(k==='area'){ S.area=-1; }
+      else if(k==='pkg'){ S.pkg='all'; } else if(k==='prem'){ S.prem='all'; } else if(k==='dm'){ S.dm=S.rep=-1; } else if(k==='rep'){ S.rep=-1; } else if(k==='area'){ S.area=-1; } else if(k==='county'){ S.county=-1; } else if(k==='cust'){ S.cust=-1; }
       S.sort=''; render(); }); });
-    var rs=el('reset'); if(rs) rs.addEventListener('click', function(){ S.sup=S.fam=S.brand=S.prod=-1; S.pkg='all'; S.prem='all'; S.dm=S.rep=S.area=-1; S.sort=''; S.q=''; render(); });
+    var rs=el('reset'); if(rs) rs.addEventListener('click', function(){ S.sup=S.fam=S.brand=S.prod=-1; S.pkg='all'; S.prem='all'; S.dm=S.rep=S.area=S.county=S.cust=-1; S.sort=''; S.q=''; render(); });
     app.querySelectorAll('th[data-sort]').forEach(function(th){ th.addEventListener('click', function(){ var k=th.dataset.sort; if(S.sort===k) S.dir=-S.dir; else { S.sort=k; S.dir = k.indexOf('name')===0||k.indexOf('rep')===0 ? 1 : -1; } render(); }); });
     app.querySelectorAll('tr.drill').forEach(function(tr){ tr.querySelector('td').addEventListener('click', function(){
       var id=+tr.dataset.id, li=currentLevel();
