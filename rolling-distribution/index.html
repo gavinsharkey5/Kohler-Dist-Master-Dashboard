@@ -164,6 +164,9 @@
   td.pb,th.pb{border-left:2px solid var(--pbline)}
   th.grp.pb{border-left:2px solid var(--pbline)}
   td:last-child,th:last-child{border-right:0}
+  td:first-child .n1,td:first-child .n2{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  td:first-child .n2{font-size:13.5px;color:var(--ink-dim);font-weight:500;line-height:1.2;margin-top:1px}
+  tbody tr.drill td:first-child .n2{color:var(--ink-dim);text-decoration:none}
   .logo{height:28px;max-width:76px;object-fit:contain;vertical-align:middle;margin-right:10px;background:#FFFFFF;border-radius:5px;padding:2px 4px;box-sizing:border-box}
   .logo.big{height:40px;max-width:120px;margin-right:8px}
   td:first-child .logo{margin-top:-2px}
@@ -217,7 +220,7 @@
 </div>
 <div class="tip" id="tip"></div>
 <script src="data/logos.js?v=1"></script>
-<script src="data/dist_data.js?v=24"></script>
+<script src="data/dist_data.js?v=25"></script>
 <script>
 (function(){
   var D = window.DIST_DATA;
@@ -675,12 +678,12 @@
   var ROWKEYS = {
     brand:  {label:function(li){ return LEVELS[li].plural; }, col:function(li){ return LEVELS[li].label; }},
     bm:     {label:function(){ return 'Brand managers'; }, col:function(){ return 'Brand manager'; }, key:function(i){ return D.supplier_bm[products[PP[i]][2]]; }, name:function(id){ return D.bms[id]; }},
-    rep:    {label:function(){ return 'Sales reps'; }, col:function(){ return 'Sales rep'; }, key:function(i){ return customers[PC[i]][4]; }, name:function(id){ var c=customers.filter(function(c){return c[4]===id;})[0]; return D.reps[id]+'  ·  '+D.dms[c?c[5]:0]; }},
+    rep:    {label:function(){ return 'Sales reps'; }, col:function(){ return 'Sales rep'; }, key:function(i){ return customers[PC[i]][4]; }, name:function(id){ return D.reps[id]; }, sub:function(id){ var c=customers.filter(function(c){return c[4]===id;})[0]; return c ? D.dms[c[5]] : ''; }},
     dm:     {label:function(){ return 'District managers'; }, col:function(){ return 'District manager'; }, key:function(i){ return customers[PC[i]][5]; }, name:function(id){ return D.dms[id]; }},
     area:   {label:function(){ return 'Distribution areas'; }, col:function(){ return 'Distribution area'; }, key:function(i){ return customers[PC[i]][3]; }, name:function(id){ return D.areas[id]; }},
     county: {label:function(){ return 'Counties'; }, col:function(){ return 'County'; }, key:function(i){ return countyIdx[customers[PC[i]][6]||'(unknown)']; }, name:function(id){ return COUNTIES[id]; }},
     premise:{label:function(){ return 'Premise'; }, col:function(){ return 'Premise'; }, key:function(i){ return customers[PC[i]][2]; }, name:function(id){ return id?'On premise':'Off premise'; }},
-    account:{label:function(){ return 'Accounts'; }, col:function(){ return 'Account'; }, key:function(i){ return PC[i]; }, name:function(id){ var c=customers[id]; return c[0]+' '+c[1]+'  ·  '+D.reps[c[4]]+' · '+(c[2]?'On':'Off'); }}
+    account:{label:function(){ return 'Accounts'; }, col:function(){ return 'Account'; }, key:function(i){ return PC[i]; }, name:function(id){ var c=customers[id]; return c[0]+' '+c[1]; }, sub:function(id){ var c=customers[id]; return D.reps[c[4]]+' · '+(c[2]?'On premise':'Off premise'); }}
   };
   function rowTabs(cur, li){
     var tabs=[['brand',LEVELS[li].plural],['bm','Brand managers'],['rep','Sales reps'],['dm','District managers'],['area','Areas'],['county','Counties'],['premise','Premise'],['account','Accounts']];
@@ -711,7 +714,7 @@
   function compareTable(rows, total, periods, P, li, rk){
     var isBrand = rk==='brand', drill = isBrand && li<3;
     var ms = metricsShown(), MLBL={buyers:'Buyers',placements:'Placements',cases:'Cases'};
-    var list=[]; rows.forEach(function(e){ e.name = isBrand ? levelName(li,e.id) : ROWKEYS[rk].name(e.id); list.push(e); });
+    var list=[]; rows.forEach(function(e){ e.name = isBrand ? levelName(li,e.id) : ROWKEYS[rk].name(e.id); e.sub = (!isBrand && ROWKEYS[rk].sub) ? ROWKEYS[rk].sub(e.id) : ''; list.push(e); });
     var sortKey = sortRows(list, P);
     var h=['<div class="card"><div class="toolbar"><div class="left stack"><h2 style="margin:0">'+esc(ROWKEYS[rk].label(li))+' · '+list.length+(list.length===1?' row':' rows')+'</h2><span class="muted">'+(drill?'Click a blue name to open it. ':(rk==='bm'?'Click a manager to see their suppliers. ':''))+'Click a column heading to sort. Each period is '+S.len+' whole calendar month'+(S.len>1?'s':'')+'.</span></div>'+tableButtons()+'</div>'];
     h.push(colToggles());
@@ -733,7 +736,7 @@
     h.push('<tr class="total"><td>Total · '+esc(crumbText())+'</td>'+cells(total)+'</tr>');
     var bmDrill = rk==='bm';
     var lk = isBrand ? (li===0?'supplier':(li===1?'family':null)) : null;
-    list.forEach(function(e){ h.push('<tr class="'+((drill||bmDrill)?'drill':'')+'"'+(bmDrill?' data-bm="'+e.id+'"':'')+' data-id="'+e.id+'"><td title="'+esc(e.name)+(bmDrill?' — click to see their suppliers':'')+'">'+(lk?logoImg(lk,e.name):'')+esc(e.name)+'</td>'+cells(e)+'</tr>'); });
+    list.forEach(function(e){ h.push('<tr class="'+((drill||bmDrill)?'drill':'')+'"'+(bmDrill?' data-bm="'+e.id+'"':'')+' data-id="'+e.id+'"><td title="'+esc(e.name)+(e.sub?' — '+esc(e.sub):'')+(bmDrill?' — click to see their suppliers':'')+'">'+(lk?logoImg(lk,e.name):'')+(e.sub?'<span class="n1">'+esc(e.name)+'</span><span class="n2"> '+esc(e.sub)+'</span>':esc(e.name))+'</td>'+cells(e)+'</tr>'); });
     h.push('</tbody></table></div><p class="scrollhint">&larr; Scroll this table sideways to see every period &rarr;</p>');
     if(S.yoy) h.push('<p class="note">The small green or red % under a number is the change against the same '+S.len+'-month window one year earlier (nothing shown where the data does not go back that far). Grey numbers are zero.</p>');
     h.push('</div>');
@@ -767,13 +770,13 @@
     h.push('<div class="tabs">'+tabs.map(function(t){ return '<button data-tab="'+t[0]+'" class="'+(S.tab===t[0]?'on':'')+'">'+t[1]+'</button>'; }).join('')+'</div>');
     var list=[], nameOf, drill=false;
     if(S.tab==='children'){ rows.forEach(function(e){ e.name=levelName(li,e.id); list.push(e); }); drill = li<3; }
-    else if(S.tab==='rep'){ aggregate(ps,pm,cm,function(i){ return customers[PC[i]][4]; }).forEach(function(e){ e.name=D.reps[e.id]+'  ·  '+D.dms[(customers.find(function(c){return c[4]===e.id;})||[])[5]]||''; list.push(e); }); }
+    else if(S.tab==='rep'){ aggregate(ps,pm,cm,function(i){ return customers[PC[i]][4]; }).forEach(function(e){ e.name=D.reps[e.id]; e.sub=ROWKEYS.rep.sub(e.id); list.push(e); }); }
     else if(S.tab==='dm'){ aggregate(ps,pm,cm,function(i){ return customers[PC[i]][5]; }).forEach(function(e){ e.name=D.dms[e.id]; list.push(e); }); }
     else if(S.tab==='premise'){ aggregate(ps,pm,cm,function(i){ return customers[PC[i]][2]; }).forEach(function(e){ e.name=e.id?'On premise':'Off premise'; list.push(e); }); }
     else if(S.tab==='area'){ aggregate(ps,pm,cm,function(i){ return customers[PC[i]][3]; }).forEach(function(e){ e.name=D.areas[e.id]; list.push(e); }); }
     else if(S.tab==='county'){ aggregate(ps,pm,cm,ROWKEYS.county.key).forEach(function(e){ e.name=COUNTIES[e.id]; list.push(e); }); }
     else if(S.tab==='bm'){ aggregate(ps,pm,cm,ROWKEYS.bm.key).forEach(function(e){ e.name=D.bms[e.id]; e.bm=e.id; list.push(e); }); drill=true; }
-    else { acct.forEach(function(e,c){ var cu=customers[c]; e.name=cu[0]+' '+cu[1]; e.rep=D.reps[cu[4]]; e.prem=cu[2]?'On':'Off'; e.status = e.buyers[0]? (priorB.has(c)?'':'new') : (priorB.has(c)?'lost':''); if(e.buyers[0]||priorB.has(c)) list.push(e); }); }
+    else { acct.forEach(function(e,c){ var cu=customers[c]; e.name=cu[0]+' '+cu[1]; e.rep=D.reps[cu[4]]; e.prem=cu[2]?'On':'Off'; e.sub=e.rep+' · '+(cu[2]?'On premise':'Off premise'); e.status = e.buyers[0]? (priorB.has(c)?'':'new') : (priorB.has(c)?'lost':''); if(e.buyers[0]||priorB.has(c)) list.push(e); }); }
     if(S.tab==='accounts'){
       var q=S.q.toLowerCase(); if(q) list=list.filter(function(e){ return (e.name+' '+e.rep).toLowerCase().indexOf(q)>=0; });
     }
@@ -785,16 +788,16 @@
     else { cols=[]; ms.forEach(function(m){ var L={buyers:'Buyers',placements:'Placements',cases:'Cases'}[m]; cols.push([m+':0',L],[m+':1','Prior'],[m+':2','Prior yr']); }); }
     if(!isAcct) h.push(colToggles());
     if(isAcct) h.push('<div class="toolbar"><input type="search" id="q" placeholder="Search account or rep…" value="'+esc(S.q)+'" style="max-width:320px"><span class="muted">'+list.length+' accounts · buyers in this period plus accounts lost since the prior period</span></div>');
-    var cg=colgroup(cols.length, isAcct?[200,80]:[]);
+    var cg=colgroup(cols.length);
     h.push('<div class="tbl-wrap"><table id="cmp" style="'+cg.style+'">'+cg.html+'<thead><tr><th data-sort="name:0" class="namehd'+(key==='name:0'?' sorted':'')+'">'+(isAcct?'Account':(S.tab==='children'?LEVELS[li].label:(function(t){ return t.replace(/s$/,'').replace('Countie','County'); })(tabs.filter(function(t){return t[0]===S.tab;})[0][1])))+'</th>');
-    if(isAcct) h.push('<th data-sort="rep:0" style="text-align:left">Rep</th><th>Prem.</th>');
+
     cols.forEach(function(c,ci){ var grpStart = !isAcct && ci%3===0; var mcls=' m-'+c[0].split(':')[0]+(c[0].split(':')[1]==='0'?' hi':''); h.push('<th class="sub'+mcls+(grpStart||(isAcct&&(ci===0||ci===2||ci===4))?' pb':'')+(key===c[0]?' sorted':'')+'" data-sort="'+c[0]+'">'+c[1]+(key===c[0]?(S.dir<0?' ↓':' ↑'):'')+'</th>'); });
     h.push('</tr></thead><tbody>');
     function valCell(e,c,ci){ var parts=c[0].split(':'), m=parts[0], j=+parts[1]; var v = (j===1&&!pr)||(j===2&&!yy) ? null : e[m][j]; var grpStart = !isAcct && ci%3===0; var band = isAcct ? (ci<2?'hi':'pg'+((ci>>1)%2)) : (j===0?'hi':'pg'+(ci%3===0?0:1)); band = isAcct ? band : (j===0?'hi':'pg'+(Math.floor(ci/3)%2)); return '<td class="'+(grpStart||(isAcct&&(ci===0||ci===2||ci===4))?'pb ':'')+band+(v?'':' dim')+'">'+(v===null?'—':(m==='cases'?fmtC(v):fmtN(v)))+'</td>'; }
     if(!isAcct) h.push('<tr class="total"><td>Total · '+esc(crumbText())+'</td>'+cols.map(function(c,ci){ return valCell(total,c,ci); }).join('')+'</tr>');
     list.forEach(function(e){
       var lk2 = S.tab==='children' ? (li===0?'supplier':(li===1?'family':null)) : null;
-      h.push('<tr class="'+(drill?'drill':'')+'"'+(e.bm!==undefined?' data-bm="'+e.bm+'"':'')+' data-id="'+e.id+'"><td title="'+esc(e.name)+'">'+(lk2?logoImg(lk2,e.name):'')+esc(e.name)+(e.status?'<span class="tag '+e.status+'">'+e.status+'</span>':'')+'</td>'+(isAcct?'<td style="text-align:left">'+esc(e.rep)+'</td><td>'+e.prem+'</td>':'')+cols.map(function(c,ci){ return valCell(e,c,ci); }).join('')+'</tr>');
+      h.push('<tr class="'+(drill?'drill':'')+'"'+(e.bm!==undefined?' data-bm="'+e.bm+'"':'')+' data-id="'+e.id+'"><td title="'+esc(e.name)+(e.sub?' — '+esc(e.sub):'')+'">'+(lk2?logoImg(lk2,e.name):'')+(e.sub?'<span class="n1">'+esc(e.name)+(e.status?'<span class="tag '+e.status+'">'+e.status+'</span>':'')+'</span><span class="n2"> '+esc(e.sub)+'</span>':esc(e.name)+(e.status?'<span class="tag '+e.status+'">'+e.status+'</span>':''))+'</td>'+cols.map(function(c,ci){ return valCell(e,c,ci); }).join('')+'</tr>');
     });
     h.push('</tbody></table></div><p class="scrollhint">&larr; Scroll this table sideways to see every column &rarr;</p>');
     h.push('<p class="note">"Prior" is '+(pr?esc(pLabel(pr)):'not available')+' (the same number of months immediately before). "Prior yr" is '+(yy?esc(pLabel(yy)):'not available')+'. New = buyer now but not in the prior period; lost = buyer in the prior period but not now.</p>');
@@ -844,8 +847,8 @@
       else if(k==='pkg'){ S.pkg='all'; } else if(k==='prem'){ S.prem='all'; } else if(k==='dm'){ S.dm=S.rep=-1; } else if(k==='rep'){ S.rep=-1; } else if(k==='area'){ S.area=-1; } else if(k==='county'){ S.county=-1; } else if(k==='cust'){ S.cust=-1; }
       S.sort=''; render(); }); });
     var pv=el('prev'); if(pv) pv.addEventListener('click', function(){ if(HIST.length<2) return; HIST.pop(); var prev=JSON.parse(HIST[HIST.length-1]); Object.keys(prev).forEach(function(k){ S[k]=prev[k]; }); restoring=true; render(); });
-    var rs2=el('reset2'); if(rs2) rs2.addEventListener('click', function(){ S.bm=S.sup=S.fam=S.brand=S.prod=-1; S.pkg='all'; S.prem='all'; S.dm=S.rep=S.area=S.county=S.cust=-1; S.sort=''; S.q=''; render(); });
-    var rs=el('reset'); if(rs) rs.addEventListener('click', function(){ S.bm=S.sup=S.fam=S.brand=S.prod=-1; S.pkg='all'; S.prem='all'; S.dm=S.rep=S.area=S.county=S.cust=-1; S.sort=''; S.q=''; render(); });
+    var rs2=el('reset2'); if(rs2) rs2.addEventListener('click', function(){ S.bm=S.sup=S.fam=S.brand=S.prod=-1; S.pkg='all'; S.prem='all'; S.dm=S.rep=S.area=S.county=S.cust=-1; S.rows='brand'; S.tab='children'; S.sort=''; S.q=''; render(); });
+    var rs=el('reset'); if(rs) rs.addEventListener('click', function(){ S.bm=S.sup=S.fam=S.brand=S.prod=-1; S.pkg='all'; S.prem='all'; S.dm=S.rep=S.area=S.county=S.cust=-1; S.rows='brand'; S.tab='children'; S.sort=''; S.q=''; render(); });
     app.querySelectorAll('th[data-sort]').forEach(function(th){ th.addEventListener('click', function(){ var k=th.dataset.sort; if(S.sort===k) S.dir=-S.dir; else { S.sort=k; S.dir = k.indexOf('name')===0||k.indexOf('rep')===0 ? 1 : -1; } render(); }); });
     app.querySelectorAll('tr.drill').forEach(function(tr){ tr.querySelector('td').addEventListener('click', function(){
       if(tr.dataset.bm!==undefined){ S.bm=+tr.dataset.bm; S.sup=S.fam=S.brand=S.prod=-1; S.rows='brand'; S.view='compare'; S.sort=''; render(); return; }
