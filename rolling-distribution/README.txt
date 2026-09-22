@@ -9,6 +9,13 @@ premise / district manager / sales rep / area. Compare several periods
 side by side, or focus on one period to see who bought, who is new and
 who was lost, by brand, rep, DM, premise, area, or account by account.
 
+The page has a light / dark switch (top right of the banner), Buyers /
+Placements / Cases column toggles above the table (Buyers only by
+default; the choice, the hidden KPI tiles, the theme and the chart
+open/closed state are remembered per browser), and "Show rows by" to lay
+the periods out by supplier hierarchy, rep, DM, area, county, premise or
+account. Filters travel in the link by name, so a view can be bookmarked.
+
 This is the HISTORY + BASELINE page for incentive planning: what a brand
 did over any past window, so goals can be set against it. It holds no
 goals of its own.
