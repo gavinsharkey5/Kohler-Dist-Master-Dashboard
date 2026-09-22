@@ -219,7 +219,7 @@
   </footer>
 </div>
 <div class="tip" id="tip"></div>
-<script src="data/logos.js?v=1"></script>
+<script src="data/logos.js?v=2"></script>
 <script src="data/dist_data.js?v=25"></script>
 <script>
 (function(){
@@ -610,7 +610,7 @@
     c.push(S.sup<0 ? '<span class="cur">All suppliers</span>' : '<a data-up="0">All suppliers</a>');
     if(S.sup>=0){ c.push('<span class="sep">›</span>'); c.push(logoImg('supplier',D.suppliers[S.sup],'big')+(S.fam<0 ? '<span class="cur">'+esc(D.suppliers[S.sup])+'</span>' : '<a data-up="1">'+esc(D.suppliers[S.sup])+'</a>')); }
     if(S.fam>=0){ c.push('<span class="sep">›</span>'); c.push(logoImg('family',D.families[S.fam],'big')+(S.brand<0 ? '<span class="cur">'+esc(D.families[S.fam])+'</span>' : '<a data-up="2">'+esc(D.families[S.fam])+'</a>')); }
-    if(S.brand>=0){ c.push('<span class="sep">›</span>'); c.push(S.prod<0 ? '<span class="cur">'+esc(D.brands[S.brand])+'</span>' : '<a data-up="3">'+esc(D.brands[S.brand])+'</a>'); }
+    if(S.brand>=0){ c.push('<span class="sep">›</span>'); c.push(logoImg('brand',D.brands[S.brand],'big')+(S.prod<0 ? '<span class="cur">'+esc(D.brands[S.brand])+'</span>' : '<a data-up="3">'+esc(D.brands[S.brand])+'</a>')); }
     if(S.prod>=0){ c.push('<span class="sep">›</span><span class="cur">'+esc(products[S.prod][0]+' '+products[S.prod][1])+'</span>'); }
     var scope=[]; if(S.prem!=='all') scope.push(S.prem==='on'?'On premise':'Off premise'); if(S.pkg!=='all') scope.push(S.pkg==='draft'?'Draft':'Package');
     if(S.dm>=0) scope.push('DM '+D.dms[S.dm]); if(S.rep>=0) scope.push(D.reps[S.rep]); if(S.area>=0) scope.push(D.areas[S.area]);
@@ -735,7 +735,7 @@
     }
     h.push('<tr class="total"><td>Total · '+esc(crumbText())+'</td>'+cells(total)+'</tr>');
     var bmDrill = rk==='bm';
-    var lk = isBrand ? (li===0?'supplier':(li===1?'family':null)) : null;
+    var lk = isBrand ? (li===0?'supplier':(li===1?'family':(li===2?'brand':null))) : null;
     list.forEach(function(e){ h.push('<tr class="'+((drill||bmDrill)?'drill':'')+'"'+(bmDrill?' data-bm="'+e.id+'"':'')+' data-id="'+e.id+'"><td title="'+esc(e.name)+(e.sub?' — '+esc(e.sub):'')+(bmDrill?' — click to see their suppliers':'')+'">'+(lk?logoImg(lk,e.name):'')+(e.sub?'<span class="n1">'+esc(e.name)+'</span><span class="n2"> '+esc(e.sub)+'</span>':esc(e.name))+'</td>'+cells(e)+'</tr>'); });
     h.push('</tbody></table></div><p class="scrollhint">&larr; Scroll this table sideways to see every period &rarr;</p>');
     if(S.yoy) h.push('<p class="note">The small green or red % under a number is the change against the same '+S.len+'-month window one year earlier (nothing shown where the data does not go back that far). Grey numbers are zero.</p>');
@@ -796,7 +796,7 @@
     function valCell(e,c,ci){ var parts=c[0].split(':'), m=parts[0], j=+parts[1]; var v = (j===1&&!pr)||(j===2&&!yy) ? null : e[m][j]; var grpStart = !isAcct && ci%3===0; var band = isAcct ? (ci<2?'hi':'pg'+((ci>>1)%2)) : (j===0?'hi':'pg'+(ci%3===0?0:1)); band = isAcct ? band : (j===0?'hi':'pg'+(Math.floor(ci/3)%2)); return '<td class="'+(grpStart||(isAcct&&(ci===0||ci===2||ci===4))?'pb ':'')+band+(v?'':' dim')+'">'+(v===null?'—':(m==='cases'?fmtC(v):fmtN(v)))+'</td>'; }
     if(!isAcct) h.push('<tr class="total"><td>Total · '+esc(crumbText())+'</td>'+cols.map(function(c,ci){ return valCell(total,c,ci); }).join('')+'</tr>');
     list.forEach(function(e){
-      var lk2 = S.tab==='children' ? (li===0?'supplier':(li===1?'family':null)) : null;
+      var lk2 = S.tab==='children' ? (li===0?'supplier':(li===1?'family':(li===2?'brand':null))) : null;
       h.push('<tr class="'+(drill?'drill':'')+'"'+(e.bm!==undefined?' data-bm="'+e.bm+'"':'')+' data-id="'+e.id+'"><td title="'+esc(e.name)+(e.sub?' — '+esc(e.sub):'')+'">'+(lk2?logoImg(lk2,e.name):'')+(e.sub?'<span class="n1">'+esc(e.name)+(e.status?'<span class="tag '+e.status+'">'+e.status+'</span>':'')+'</span><span class="n2"> '+esc(e.sub)+'</span>':esc(e.name)+(e.status?'<span class="tag '+e.status+'">'+e.status+'</span>':''))+'</td>'+cols.map(function(c,ci){ return valCell(e,c,ci); }).join('')+'</tr>');
     });
     h.push('</tbody></table></div><p class="scrollhint">&larr; Scroll this table sideways to see every column &rarr;</p>');

@@ -77,9 +77,13 @@ REFRESH STEPS
 
       (needs Pillow: pip install pillow). Each picture is matched to the
       name on its row, shrunk, and written to assets/logos/; data/logos.js
-      maps names -> files and the page shows them beside supplier and
-      brand-family rows and in the breadcrumb. Names must match the
-      sales data exactly to appear.
+      maps names -> files and the page shows them beside supplier,
+      brand-family and brand rows and in the breadcrumb. Names must
+      match the sales data exactly to appear. The Fusion "Brands"
+      workbook (Brand Logo column) is accepted too; a brand family with
+      no logo of its own borrows one of its brands' logos, and
+      assets/logos/overrides.json forces entries (Corona Extra uses the
+      Constellation supplier logo, which is the Corona Extra crown).
 
 2. From this folder:
 
