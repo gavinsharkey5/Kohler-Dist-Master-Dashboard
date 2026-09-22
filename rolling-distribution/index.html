@@ -78,6 +78,10 @@
   .btn{background:var(--input);color:var(--ink);border:1.5px solid var(--line);border-radius:10px;padding:11px 16px;font:inherit;font-size:17px;cursor:pointer;min-height:50px}
   .btn.small{min-height:42px;padding:6px 12px;font-size:15.5px}
   .btn:hover{background:var(--card-h);border-color:var(--ink-dim)}
+  .btn.glow{background:linear-gradient(180deg,var(--accent-hi),var(--accent));color:var(--on-accent);border-color:var(--accent-hi);font-weight:700;animation:glow 2.2s ease-in-out infinite}
+  .btn.glow:hover{filter:brightness(1.1);animation:none;box-shadow:0 0 0 6px rgba(61,139,255,.35),0 0 28px rgba(61,139,255,.7)}
+  @keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(61,139,255,.55),0 0 10px rgba(61,139,255,.35)}50%{box-shadow:0 0 0 7px rgba(61,139,255,0),0 0 26px rgba(61,139,255,.75)}}
+  @media (prefers-reduced-motion:reduce){.btn.glow{animation:none;box-shadow:0 0 18px rgba(61,139,255,.6)}}
   .btn.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent);font-weight:700}
   .btn.primary:hover{background:#7AB0FA}
   .showing{margin:16px 0 0;padding:12px 14px;background:var(--input);border-radius:12px;font-size:17.5px;line-height:1.7;display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center}
@@ -130,12 +134,13 @@
   th,td{padding:10px 8px;border-bottom:1px solid var(--line);border-right:1px solid var(--line-soft);white-space:nowrap;text-align:center}
   th{position:sticky;top:0;background:var(--surface2);z-index:2;font-size:16px;color:var(--ink-soft);font-weight:600;cursor:pointer;user-select:none}
   th:hover{color:var(--ink)}
-  th.grp{top:0;border-bottom:1px solid var(--line);text-align:center;color:var(--ink);font-size:16px;font-weight:700;cursor:default;background:var(--grp);font-family:"Archivo",Arial,sans-serif;letter-spacing:.03em;text-transform:uppercase}
+  th.grp{top:0;border-bottom:0;text-align:center;color:var(--ink);font-size:16px;font-weight:700;cursor:default;background:var(--grp);font-family:"Archivo",Arial,sans-serif;letter-spacing:.03em;text-transform:uppercase}
   th.grp.hi{color:var(--on-gold);background:linear-gradient(180deg,#FFD27A,var(--gold))}
   th.sub{top:0}
   .scrollhint{display:none;font-size:16.5px;color:var(--gold);margin:8px 0 0;font-weight:600}
   .tbl-wrap.overflowing + .scrollhint{display:block}
-  th.sub{height:44px;vertical-align:middle;font-size:15px;padding-left:4px;padding-right:4px;letter-spacing:-.01em;text-align:center}
+  th.sub{height:44px;vertical-align:middle;font-size:15px;padding-left:4px;padding-right:4px;letter-spacing:-.01em;text-align:center;border-top:1px solid var(--line);box-shadow:0 -2px 0 0 var(--surface2)}
+  th.sub.hi{box-shadow:0 -2px 0 0 var(--hisub)}
   td:not(:first-child){text-align:center}
   th.sub.m-buyers{color:var(--buyers)}th.sub.m-placements{color:var(--placements)}th.sub.m-cases{color:var(--cases)}
   th.sorted{text-decoration:underline;text-underline-offset:4px;color:var(--ink)}
@@ -153,6 +158,7 @@
   th.sub:first-child{left:auto;z-index:2;text-align:center;padding-left:4px;border-right:1px solid var(--line-soft);background:var(--surface2)}
   th.sub.hi:first-child{background:var(--hisub)}
   thead th{background-clip:padding-box}
+  th.namehd{text-align:center !important;vertical-align:middle}
   td.dim{color:var(--ink-dim)}
   td .yoy{display:block;font-size:14px;line-height:1.1;margin-top:2px;font-weight:600}
   td.pb,th.pb{border-left:2px solid var(--pbline)}
@@ -207,7 +213,7 @@
   </footer>
 </div>
 <div class="tip" id="tip"></div>
-<script src="data/dist_data.js?v=20"></script>
+<script src="data/dist_data.js?v=21"></script>
 <script>
 (function(){
   var D = window.DIST_DATA;
@@ -630,7 +636,7 @@
     var hi = periods[periods.length-1];
     var mname = S.cmetric==='cases'?'cases':(S.cmetric==='buyers'?'buyers':'placements');
     if(!S.chart){
-      return '<div class="chart"><div class="toolbar"><div class="left"><button class="btn" id="chart-toggle">Show month-by-month chart</button><span class="muted">Bars for every month in the history, with the latest period highlighted.</span></div></div></div>';
+      return '<div class="chart"><div class="toolbar"><div class="left"><button class="btn glow" id="chart-toggle">📊 Show month-by-month chart</button><span class="muted">Bars for every month in the history, with the latest period highlighted.</span></div></div></div>';
     }
     var h=['<div class="chart"><div class="toolbar"><div class="left"><button class="btn" id="chart-toggle">Hide chart</button><h2 style="margin:0">Month by month · '+esc(mname)+'</h2><span class="muted">Gold bars = latest period shown. Hatched = partial month.</span></div><span class="seg">'+[['buyers','Buyers'],['placements','Placements'],['cases','Cases']].map(function(m){ return '<button data-cmetric="'+m[0]+'" class="'+(S.cmetric===m[0]?'on':'')+'">'+m[1]+'</button>'; }).join('')+'</span></div>'];
     h.push('<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Monthly '+S.cmetric+'"><defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#F5B942" opacity=".3"/><line x1="0" y1="0" x2="0" y2="6" stroke="#F5B942" stroke-width="2"/></pattern></defs>');
@@ -698,7 +704,7 @@
     h.push(colToggles());
     h.push('<p class="help" style="margin:0 0 4px">Show rows by:</p>'+rowTabs(rk, li));
     var cg=colgroup(P*ms.length);
-    h.push('<div class="tbl-wrap"><table id="cmp" style="'+cg.style+'">'+cg.html+'<thead><tr><th class="grp" rowspan="2" data-sort="name:0" style="text-align:left">'+esc(ROWKEYS[rk].col(li))+'</th>');
+    h.push('<div class="tbl-wrap"><table id="cmp" style="'+cg.style+'">'+cg.html+'<thead><tr><th class="grp namehd" rowspan="2" data-sort="name:0">'+esc(ROWKEYS[rk].col(li))+'</th>');
     periods.forEach(function(p,j){ h.push('<th class="grp pb'+(j===P-1?' hi':'')+'" colspan="'+ms.length+'" title="'+pDays(p)+'">'+esc(pLabel(p))+(pPartial(p)?' <span class="tag part">partial</span>':'')+'</th>'); });
     h.push('</tr><tr>');
     periods.forEach(function(p,j){ ms.forEach(function(m,mi){ var k=m+':'+j; h.push('<th class="sub m-'+m+(mi===0?' pb':'')+(j===P-1?' hi':'')+(sortKey===k?' sorted':'')+'" data-sort="'+k+'">'+MLBL[m]+(sortKey===k?(S.dir<0?' ↓':' ↑'):'')+'</th>'); }); });
@@ -764,7 +770,7 @@
     if(!isAcct) h.push(colToggles());
     if(isAcct) h.push('<div class="toolbar"><input type="search" id="q" placeholder="Search account or rep…" value="'+esc(S.q)+'" style="max-width:320px"><span class="muted">'+list.length+' accounts · buyers in this period plus accounts lost since the prior period</span></div>');
     var cg=colgroup(cols.length, isAcct?[200,80]:[]);
-    h.push('<div class="tbl-wrap"><table id="cmp" style="'+cg.style+'">'+cg.html+'<thead><tr><th data-sort="name:0" style="text-align:left"'+(key==='name:0'?' class="sorted"':'')+'>'+(isAcct?'Account':(S.tab==='children'?LEVELS[li].label:(function(t){ t=t.replace('By ',''); return t.charAt(0).toUpperCase()+t.slice(1); })(tabs.filter(function(t){return t[0]===S.tab;})[0][1])))+'</th>');
+    h.push('<div class="tbl-wrap"><table id="cmp" style="'+cg.style+'">'+cg.html+'<thead><tr><th data-sort="name:0" class="namehd'+(key==='name:0'?' sorted':'')+'">'+(isAcct?'Account':(S.tab==='children'?LEVELS[li].label:(function(t){ t=t.replace('By ',''); return t.charAt(0).toUpperCase()+t.slice(1); })(tabs.filter(function(t){return t[0]===S.tab;})[0][1])))+'</th>');
     if(isAcct) h.push('<th data-sort="rep:0" style="text-align:left">Rep</th><th>Prem.</th>');
     cols.forEach(function(c,ci){ var grpStart = !isAcct && ci%3===0; var mcls=' m-'+c[0].split(':')[0]+(c[0].split(':')[1]==='0'?' hi':''); h.push('<th class="sub'+mcls+(grpStart||(isAcct&&(ci===0||ci===2||ci===4))?' pb':'')+(key===c[0]?' sorted':'')+'" data-sort="'+c[0]+'">'+c[1]+(key===c[0]?(S.dir<0?' ↓':' ↑'):'')+'</th>'); });
     h.push('</tr></thead><tbody>');
@@ -829,7 +835,7 @@
       S.sort=''; render();
     }); });
     var dl=el('dl'); if(dl) dl.addEventListener('click', downloadCsv);
-    var tw=app.querySelector('.tbl-wrap'); if(tw){ var chk=function(){ tw.classList.toggle('overflowing', tw.scrollWidth>tw.clientWidth+4); var g=app.querySelector('th.grp:not([rowspan])'); if(g){ var hh=Math.round(g.getBoundingClientRect().height); app.querySelectorAll('th.sub').forEach(function(t){ t.style.top=hh+'px'; }); } }; chk(); window.addEventListener('resize', chk); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(chk); }
+    var tw=app.querySelector('.tbl-wrap'); if(tw){ var chk=function(){ tw.classList.toggle('overflowing', tw.scrollWidth>tw.clientWidth+4); var g=app.querySelector('th.grp:not([rowspan])'); if(g){ var hh=Math.floor(g.getBoundingClientRect().height); app.querySelectorAll('th.sub').forEach(function(t){ t.style.top=(hh-1)+'px'; }); } }; chk(); window.addEventListener('resize', chk); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(chk); }
     // chart hover
     var tip=el('tip');
     app.querySelectorAll('rect.hit').forEach(function(r){
