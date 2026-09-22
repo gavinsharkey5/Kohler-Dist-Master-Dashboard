@@ -132,7 +132,7 @@
   th:hover{color:var(--ink)}
   th.grp{top:0;border-bottom:1px solid var(--line);text-align:center;color:var(--ink);font-size:16px;font-weight:700;cursor:default;background:var(--grp);font-family:"Archivo",Arial,sans-serif;letter-spacing:.03em;text-transform:uppercase}
   th.grp.hi{color:var(--on-gold);background:linear-gradient(180deg,#FFD27A,var(--gold))}
-  th.sub{top:43px}
+  th.sub{top:0}
   .scrollhint{display:none;font-size:16.5px;color:var(--gold);margin:8px 0 0;font-weight:600}
   .tbl-wrap.overflowing + .scrollhint{display:block}
   th.sub{height:44px;vertical-align:middle;font-size:15px;padding-left:4px;padding-right:4px;letter-spacing:-.01em;text-align:center}
@@ -150,7 +150,9 @@
   tbody tr.drill:hover td:first-child{color:var(--accent)}
   tr.total td{font-weight:700;background:var(--total);border-bottom:2px solid var(--accent-line);color:var(--ink)}
   tr.total td:first-child{background:var(--total)}
-  th.sub:first-child{position:static;text-align:center;padding-left:4px;border-right:1px solid var(--line-soft)}
+  th.sub:first-child{left:auto;z-index:2;text-align:center;padding-left:4px;border-right:1px solid var(--line-soft);background:var(--surface2)}
+  th.sub.hi:first-child{background:var(--hisub)}
+  thead th{background-clip:padding-box}
   td.dim{color:var(--ink-dim)}
   td .yoy{display:block;font-size:14px;line-height:1.1;margin-top:2px;font-weight:600}
   td.pb,th.pb{border-left:2px solid var(--pbline)}
@@ -205,7 +207,7 @@
   </footer>
 </div>
 <div class="tip" id="tip"></div>
-<script src="data/dist_data.js?v=18"></script>
+<script src="data/dist_data.js?v=19"></script>
 <script>
 (function(){
   var D = window.DIST_DATA;
@@ -827,7 +829,7 @@
       S.sort=''; render();
     }); });
     var dl=el('dl'); if(dl) dl.addEventListener('click', downloadCsv);
-    var tw=app.querySelector('.tbl-wrap'); if(tw){ var chk=function(){ tw.classList.toggle('overflowing', tw.scrollWidth>tw.clientWidth+4); }; chk(); window.addEventListener('resize', chk); }
+    var tw=app.querySelector('.tbl-wrap'); if(tw){ var chk=function(){ tw.classList.toggle('overflowing', tw.scrollWidth>tw.clientWidth+4); var g=app.querySelector('th.grp:not([rowspan])'); if(g){ var hh=Math.round(g.getBoundingClientRect().height); app.querySelectorAll('th.sub').forEach(function(t){ t.style.top=hh+'px'; }); } }; chk(); window.addEventListener('resize', chk); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(chk); }
     // chart hover
     var tip=el('tip');
     app.querySelectorAll('rect.hit').forEach(function(r){
