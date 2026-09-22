@@ -186,7 +186,7 @@ the dashboard holds NO goals: the Opportunity Tracker is deliberately
 not a goal tracker, and `ws_goals.csv` is the drop-in that would turn
 Goal / Progress / Still needed on if goals are ever approved.
 
-## Rolling Distribution Tracker keeps a month-per-file master (2026-09-21)
+## Rolling Distribution Snapshot (rolling-distribution/) keeps a month-per-file master (2026-09-21)
 
 `rolling-distribution/` is the history + baseline page: buyers, placements
 and cases by supplier -> brand family -> brand -> product in rolling
