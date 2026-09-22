@@ -1,5 +1,5 @@
-ROLLING DISTRIBUTION SNAPSHOT
-=============================
+ROLLING DISTRIBUTION TRENDS
+===========================
 
 Buyers, placements and cases for every supplier -> brand family -> brand
 -> product, in rolling periods (default three whole calendar months) that
@@ -17,7 +17,7 @@ the periods out by supplier hierarchy, rep, DM, area, county, premise or
 account. Filters travel in the link by name, so a view can be bookmarked.
 
 The page has two tabs under the same link (page=tracker | page=quality
-in the link). ROLLING SNAPSHOT is the period comparison described above.
+in the link). ROLLING TRENDS is the period comparison described above.
 DISTRIBUTION QUALITY is the "are the points real?" tab for supplier
 conversations, using the same step 1 filters and period choice:
   1. Placement quality -- every placement tiered by cases per month
