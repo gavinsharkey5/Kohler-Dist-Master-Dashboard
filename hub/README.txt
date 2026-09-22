@@ -640,8 +640,18 @@ INCENTIVES ARE ONE PAGE, NO DRILL-DOWN (v11, 2026-09-11)
 
   TAP SHARE LINK: the on-premise team (Chris McCrohan's group, plus anyone
   grouped under him) gets a "Tap Share dashboard" pill under the rep title
-  on every rep screen, linking to ../isellbeer/executive-overview/
+  on every rep screen, linking to ../isellbeer/tap-survey-tracking/ (the Tap Tracker)
   (onPremTeam() / tapShareLink()).
+
+  BOOK TOO SMALL (2026-09-22): availability() also greys an MPO whose
+  objective counts ACCOUNTS (type 'new_accounts') when the accounts that
+  could ever count -- eligible + already buying (or credited) -- add up to
+  fewer than the goal. Dave Ehlers has one on-premise account against
+  5 / 3 / 10 new-account goals, so those three grey out exactly like a
+  brand that can't be sold on the route; his 1-draft-line objective stays
+  live. Placement-count objectives are NOT capped this way (one account can
+  carry several products). Same rendering, counts and rankings treatment
+  as every other Unavailable program.
 
   REFRESH STAMPS: refreshedLine() prints three lines -- Incentives, then
   Off-Premise and On-Premise MPOs (each scope's current month, else its

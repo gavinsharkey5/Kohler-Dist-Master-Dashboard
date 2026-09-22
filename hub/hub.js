@@ -42,7 +42,7 @@ const supportAllows = (rep, p) => !isSupport(rep) || (p.type==='MPO' && p.source
 // The on-premise team (Chris McCrohan's reps, plus anyone grouped under
 // him) gets a link to the Tap Share dashboard on every rep screen.
 const ON_PREM_DM = 'Chris McCrohan';
-const TAP_SHARE_URL = '../isellbeer/executive-overview/';
+const TAP_SHARE_URL = '../isellbeer/tap-survey-tracking/';
 const onPremTeam = rep => rep===ON_PREM_DM || HUB_DM_GROUPS.some(g=>(g.dm===ON_PREM_DM || g.under===ON_PREM_DM) && g.reps.includes(rep));
 const tapShareLink = rep => onPremTeam(rep) ? `<a class="taplink" href="${TAP_SHARE_URL}" target="_blank" rel="noopener">🍺 Tap Share dashboard <span class="ar">↗</span></a>` : '';
 const roleLine = rep => isSupport(rep) ? `<div class="rep-role">${E(HUB_SUPPORT[rep].label||'Sales Support')}${HUB_SUPPORT[rep].manager?` · reports to ${E(HUB_SUPPORT[rep].manager)}`:''} · no assigned route</div>` : '';
@@ -514,10 +514,29 @@ function availability(p, rep){
   if(p.type==='MPO' && !mpoMonthLoaded(p.source, p.monthKey)) return {ok:true};
   const A = accountsFor(p, rep);
   if(A.any) return {ok:true};
-  if(A.eligible.length + A.buying.length > 0) return {ok:true};
-  const brands = A.families.length>2 ? `${A.families[0]} and ${A.families.length-1} more brands` : A.families.join(' and ');
-  if(A.excluded.length + A.unknown.length > 0) return {ok:false, why:UNAVAILABLE, sub:`${brands} can’t be sold at any account on your route.`};
-  if(A.universe===0) return {ok:false, why:UNAVAILABLE, sub:`No ${p.channel==='on'?'on-premise':p.channel==='off'?'off-premise':''} accounts on your route.`};
+  const reach = A.eligible.length + A.buying.length;
+  if(reach===0){
+    const brands = A.families.length>2 ? `${A.families[0]} and ${A.families.length-1} more brands` : A.families.join(' and ');
+    if(A.excluded.length + A.unknown.length > 0) return {ok:false, why:UNAVAILABLE, sub:`${brands} can’t be sold at any account on your route.`};
+    if(A.universe===0) return {ok:false, why:UNAVAILABLE, sub:`No ${p.channel==='on'?'on-premise':p.channel==='off'?'off-premise':''} accounts on your route.`};
+  }
+  // BOOK TOO SMALL (2026-09-22, per Gavin -- Dave Ehlers' on-prem MPOs): an
+  // objective that counts ACCOUNTS is out of reach when the accounts that
+  // could ever count (sellable + already on the brand) add up to fewer than
+  // the goal. Dave has one on-premise account and a 10-new-accounts goal.
+  // Account-count objectives only -- a placements objective can credit
+  // several products per account, so a small book does not cap it.
+  if(p.type==='MPO' && p.objective && p.objective.type==='new_accounts'){
+    const r = p.forRep(rep);
+    if(r && !r.soon && r.status!=='complete' && r.status!=='exceeded' && isFinite(r.goalNum) && r.goalNum>0){
+      const cap = A.eligible.length + Math.max(A.buying.length, Number(r.valueNum)||0);
+      if(cap < r.goalNum){
+        const chan = p.channel==='on' ? 'on-premise ' : p.channel==='off' ? 'off-premise ' : '';
+        return {ok:false, why:UNAVAILABLE, tooSmall:true,
+          sub:`Only ${cap} ${chan}account${cap===1?'' : 's'} on your route can count toward this — the goal is ${r.goalNum}.`};
+      }
+    }
+  }
   return {ok:true};
 }
 function sortGroup(p, r, past){
