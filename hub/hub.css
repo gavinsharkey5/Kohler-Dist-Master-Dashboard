@@ -1252,3 +1252,22 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
 /* A house goal is the company's gap, not this rep's -- never amber. */
 .if.need.house .if-v{color:var(--text-dim);}
 .irow-body .bg{margin-top:2px;}
+
+/* ==== v2026-09-22: stamps under the home title, per-feed refresh lines,
+   status dots on incentive cards, Tap Share link for the on-prem team ==== */
+.home-head .updated{margin-top:12px;}
+.upd-lines{display:flex;flex-wrap:wrap;gap:3px 16px;min-width:0;}
+.upd{white-space:nowrap;}
+.upd-k{color:var(--text);font-weight:600;}
+@media (max-width:640px){ .upd-lines{flex-direction:column;gap:4px;} .upd{white-space:normal;} }
+.idot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--text-mute);vertical-align:middle;flex-shrink:0;
+  box-shadow:0 0 0 2px color-mix(in srgb,var(--card) 80%,transparent);}
+.idot.met{background:var(--good);} .idot.ontrack{background:var(--accent);} .idot.attn{background:var(--amber);}
+.idots{display:inline-flex;align-items:center;gap:5px;margin-left:2px;flex-shrink:0;}
+.ist .idot{width:8px;height:8px;margin-right:5px;position:relative;top:-1px;box-shadow:none;}
+.taplink{display:inline-flex;align-items:center;gap:6px;margin:4px 0 8px;padding:6px 12px;border-radius:999px;
+  background:var(--accent-soft);border:1px solid rgba(78,124,232,.45);color:var(--accent);text-decoration:none;
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;letter-spacing:.03em;}
+.taplink:hover{background:var(--accent);color:#fff;}
+.taplink .ar{font-size:14px;line-height:1;}
+.rep-role + .taplink{margin-left:8px;}

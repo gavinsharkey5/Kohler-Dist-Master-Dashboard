@@ -39,6 +39,12 @@ const HUB_DM_GROUPS = DM_GROUPS.concat(((window.OnPremMPO && window.OnPremMPO.DM
 // A support rep is in the hub for a named set of on-prem objectives only.
 const isSupport = rep => Object.prototype.hasOwnProperty.call(HUB_SUPPORT, rep);
 const supportAllows = (rep, p) => !isSupport(rep) || (p.type==='MPO' && p.source==='on' && HUB_SUPPORT[rep].objectives.includes(p.key));
+// The on-premise team (Chris McCrohan's reps, plus anyone grouped under
+// him) gets a link to the Tap Share dashboard on every rep screen.
+const ON_PREM_DM = 'Chris McCrohan';
+const TAP_SHARE_URL = '../isellbeer/executive-overview/';
+const onPremTeam = rep => rep===ON_PREM_DM || HUB_DM_GROUPS.some(g=>(g.dm===ON_PREM_DM || g.under===ON_PREM_DM) && g.reps.includes(rep));
+const tapShareLink = rep => onPremTeam(rep) ? `<a class="taplink" href="${TAP_SHARE_URL}" target="_blank" rel="noopener">🍺 Tap Share dashboard <span class="ar">↗</span></a>` : '';
 const roleLine = rep => isSupport(rep) ? `<div class="rep-role">${E(HUB_SUPPORT[rep].label||'Sales Support')}${HUB_SUPPORT[rep].manager?` · reports to ${E(HUB_SUPPORT[rep].manager)}`:''} · no assigned route</div>` : '';
 
 const $ = s => document.querySelector(s);
@@ -689,12 +695,20 @@ function topbar(){
     </div>` : ''}
   </div>`;
 }
+// One line per feed (2026-09-22, per Gavin): Incentives, then Off-Premise
+// and On-Premise MPOs, each with its own stamp. The MPO stamp is the month
+// a rep's page is showing (mpoRepMonth), falling back to the newest loaded
+// month; a scope with nothing loaded yet says so instead of vanishing.
+// hub.css lays the three out inline on desktop and stacked on phones.
 function refreshedLine(){
-  const inc = incRefreshed();
-  const mp = [];
-  Object.keys(MPO_SCOPES).forEach(s=>{ const st = mpoState[s]||{}; Object.keys(st).forEach(mk=>{ if(st[mk].syncedAt) mp.push(fmtSynced(st[mk].syncedAt)); }); });
-  const mpoTxt = mp.length ? [...new Set(mp)].join(' / ') : '';
-  return `<p class="updated"><span class="livedot"></span><span>Incentives refreshed ${E(inc)}${mpoTxt?` · MPOs refreshed ${E(mpoTxt)}`:''}</span></p>`;
+  const lines = [['Incentives', incRefreshed()]];
+  ['off','on'].forEach(s=>{
+    const st = mpoState[s]||{}; const mk = mpoRepMonth(s);
+    const iso = (st[mk] && st[mk].syncedAt) || Object.keys(st).map(k=>st[k].syncedAt).filter(Boolean).sort().pop();
+    lines.push([MPO_SCOPES[s].label, iso ? fmtSynced(iso) : 'loading…']);
+  });
+  return `<p class="updated"><span class="livedot"></span><span class="upd-lines">${lines.map(([k,v])=>
+    `<span class="upd"><span class="upd-k">${E(k)} refreshed</span> <span class="upd-v">${E(v||'—')}</span></span>`).join('')}</span></p>`;
 }
 
 /* ---- landing ---- */
@@ -708,10 +722,9 @@ function screenHome(){
     <div class="home-head">
       <h1>Choose your name</h1>
       <p class="home-sub">Tap your name to see your incentives and MPOs.</p>
+      ${refreshedLine()}
     </div>
     <div id="repList" class="replist">${repListHtml()}</div>
-    ${refreshedLine()}
-    <button class="reset" data-act="reset-all">↺ Start over</button>
     <div class="home-foot">${isMobile() ? '' : isMgr() ? `Manager Mode is on · <a href="#" data-act="programs">Browse by program</a> · <a href="#" data-act="set-mode" data-mode="rep">Back to Rep Mode</a>` : `Manager? <a href="#" data-act="set-mode" data-mode="manager">Switch to Manager Mode (desktop)</a>`}</div>
   </div>`;
 }
@@ -785,13 +798,27 @@ function incBand(p, r){
   if(r.pace==='close' || r.pace==='ontrack') return {band:1, label:'On Track', cls:'ontrack'};
   return {band:0, label:'Needs Attention', cls:'attn'};
 }
-// Within a supplier: gap programs first, soonest to end, then the biggest
-// share still needed; then on-track, then met, then the rest.
-function incSortKey(x){
+// Closest to complete first (2026-09-22, per Gavin): a rep's own share of
+// each goal, highest first, so met goals lead and the furthest-off program
+// sits last. Ties break on the sooner end date. Programs without a number
+// to measure follow: no set goal, awaiting data, not in territory.
+function incPctDone(x){
   const N = incNums(x.r);
+  if(!N) return null;
+  return N.goal > 0 ? N.cur / N.goal : (N.need<=0 ? 1 : 0);
+}
+function incSortKey(x){
+  const pct = incPctDone(x);
   const days = daysLeft(x.p.period.end);
-  const shortPct = N ? (N.need / N.goal) : 0;
-  return [x.b.band, x.b.band<=1 ? days : 0, x.b.band<=1 ? -shortPct : 0, x.p.name];
+  return [pct==null ? x.b.band : 0, pct==null ? 0 : -pct, days, x.p.name];
+}
+// Green / blue / amber dots for a supplier card: one per status its programs
+// hold (a supplier with one met and one lagging program shows both).
+function incDotsHtml(list){
+  const seen = [];
+  list.forEach(x=>{ if(x.b.band<=2 && !seen.includes(x.b.cls)) seen.push(x.b.cls); });
+  const order = ['met','ontrack','attn'], title = {met:'Goal met', ontrack:'On track', attn:'Needs attention'};
+  return seen.length ? `<span class="idots">${order.filter(c=>seen.includes(c)).map(c=>`<i class="idot ${c}" title="${title[c]}"></i>`).join('')}</span>` : '';
 }
 function cmpKey(a, b){
   for(let i=0;i<a.length;i++){ if(a[i]<b[i]) return -1; if(a[i]>b[i]) return 1; }
@@ -821,7 +848,7 @@ function incRowHtml(p, r, b, rep){
 
   return `<div class="irow b${b.band}${sec?' open':''}" id="card-${E(p.id)}">
     <div class="irow-head">
-      <span class="irow-top"><span class="irow-name">${E(p.shortName||p.name)}</span><span class="ist ${b.cls}">${E(b.label)}</span></span>
+      <span class="irow-top"><span class="irow-name">${E(p.shortName||p.name)}</span><span class="ist ${b.cls}">${b.band<=2?`<i class="idot ${b.cls}"></i>`:''}${E(b.label)}</span></span>
       <span class="irow-meta">${E(meta)}</span>
       ${figures}
       ${bar}
@@ -889,11 +916,12 @@ function screenRepIncentives(rep){
   rows.forEach(x=>{ const k = x.p.supplier;
     if(!sups.has(k)) sups.set(k, []); sups.get(k).push(x); });
   sups.forEach(list=>list.sort((a,b)=>cmpKey(incSortKey(a), incSortKey(b))));
-  // Suppliers with something to act on come first.
+  // Suppliers in the same order: the one holding the rep's most-complete
+  // program first, the one with only unmeasured programs last.
   const groups = [...sups.entries()].map(([name, list])=>({name, list,
-    best: Math.min(...list.map(x=>x.b.band)),
-    soonest: Math.min(...list.filter(x=>x.b.band<=1).map(x=>daysLeft(x.p.period.end)).concat([9e9]))}));
-  groups.sort((a,b)=> a.best-b.best || a.soonest-b.soonest || a.name.localeCompare(b.name));
+    top: Math.max(...list.map(x=>{ const v = incPctDone(x); return v==null ? -1 : v; })),
+    band: Math.min(...list.map(x=>x.b.band))}));
+  groups.sort((a,b)=> b.top-a.top || a.band-b.band || a.name.localeCompare(b.name));
 
   const scored = rows.filter(x=>x.b.band<=2);
   const met = rows.filter(x=>x.b.band===2).length;
@@ -928,7 +956,7 @@ function screenRepIncentives(rep){
     const note = [plw(g.list.length,'program'), a?`${a} need${a===1?'s':''} attention`:''].filter(Boolean).join(' · ');
     return `<section class="isup${expanded?'':' collapsed'}">
       <button class="isup-h" data-act="toggle-sup" data-sup="${E(key)}" aria-expanded="${expanded?'true':'false'}">
-        ${supLogoHtml(g.name, logo)}<span class="isup-n">${E(g.name)}</span><span class="isup-s">${E(note)}</span><span class="isup-ar">${expanded?'–':'+'}</span>
+        ${supLogoHtml(g.name, logo)}<span class="isup-n">${E(g.name)}</span>${incDotsHtml(g.list)}<span class="isup-s">${E(note)}</span><span class="isup-ar">${expanded?'–':'+'}</span>
       </button>
       ${expanded ? `<div class="isup-b">${g.list.map(x=>incRowHtml(x.p, x.r, x.b, rep)).join('')}</div>` : ''}
     </section>`;
@@ -937,7 +965,7 @@ function screenRepIncentives(rep){
   return `<div class="repview iview">
     <div class="rep-head">
       <div class="rep-title"><h1>${E(possessive(rep))} Incentives</h1>
-        ${roleLine(rep)}
+        ${roleLine(rep)}${tapShareLink(rep)}
         <div class="rep-sub">${plw(rows.length,'program')} across ${plw(groups.length,'supplier')} — everything on one page.</div>
         ${refreshedLine()}</div>
       ${tabbar(rep, 'inc')}
@@ -1024,7 +1052,7 @@ function screenRep(){
       : `${plw(active.length,'active program')}${counts.ending?` · <strong>${counts.ending} ending soon</strong>`:''}`;
   let html = `<div class="rep-head">
     <div class="rep-title"><h1>${E(possessive(rep))} ${E(catMeta.label)}</h1>
-      ${roleLine(rep)}
+      ${roleLine(rep)}${tapShareLink(rep)}
       <div class="rep-sub">${subline}</div>
       ${refreshedLine()}</div>
     ${tabbar(rep, cat)}
@@ -2425,6 +2453,7 @@ function render(){
   let needed = [];
   if(state.view==='rep') needed = PROGRAMS.filter(p=>inCategory(p, state.cat||'all')
     && (p.type==='MPO' ? p.monthKey===mpoViewMonth(p.source) : (isActive(p) || state.showEnded)));
+  else if(state.view==='home') needed = PROGRAMS.filter(p=>p.type==='MPO' && p.monthKey===mpoRepMonth(p.source));   // for the refreshed stamps
   else if(state.view==='detail' || state.view==='program'){ const p = PROGRAMS.find(x=>x.id===state.prog); if(p) needed=[p]; }
   else if(state.view==='programs'){ const f=state.filters; needed = PROGRAMS.filter(p=>p.type==='MPO' && (f.month==='all' ? true : f.month==='active' ? isActive(p) : p.monthKey===f.month)); }
   if(needed.length){ const token = ++renderToken; loadFor(needed).then(did=>{ if(did && token===renderToken) render(); }); }

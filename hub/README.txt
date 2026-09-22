@@ -625,10 +625,29 @@ INCENTIVES ARE ONE PAGE, NO DRILL-DOWN (v11, 2026-09-11)
   the sub-label says "across N goals of your own" rather than naming a unit.
   Do not "fix" it by adding the excluded rows back.
 
-  SORTING, per the brief: inside a supplier, gap programs first by soonest
-  end date then by largest share still needed, then on-track, then met, then
-  no-goal, then awaiting-data, then not-in-territory. Suppliers are ordered
-  by their best band, so whatever needs attention floats to the top.
+  SORTING (2026-09-22, per Gavin): closest to complete first. Inside a
+  supplier, programs sort by the rep's OWN share of goal, highest first
+  (met goals lead, the furthest-off program is last; ties by sooner end
+  date), then no-goal, then awaiting-data, then not-in-territory.
+  Suppliers are ordered by their most-complete program, so each rep's
+  page is tailored to where they stand. incPctDone() / incSortKey().
+
+  STATUS DOTS: every supplier card carries one small dot per status its
+  programs hold -- green = goal met, blue = on track, amber = needs
+  attention -- so a supplier with one met and one lagging program shows
+  both (incDotsHtml()). Each program row repeats its own dot beside the
+  status label.
+
+  TAP SHARE LINK: the on-premise team (Chris McCrohan's group, plus anyone
+  grouped under him) gets a "Tap Share dashboard" pill under the rep title
+  on every rep screen, linking to ../isellbeer/executive-overview/
+  (onPremTeam() / tapShareLink()).
+
+  REFRESH STAMPS: refreshedLine() prints three lines -- Incentives, then
+  Off-Premise and On-Premise MPOs (each scope's current month, else its
+  newest loaded month) -- inline on desktop and stacked on phones. The
+  home screen shows them under "Tap your name..." (it loads this month's
+  MPO data for that) and no longer carries a Start over button.
 
   RETENTION PROGRAMS KEEP THEIR BRAND GOALS. incRowDetail() checks
   brandGoals() first and renders brandGoalsHtml() -- including the per-SKU
