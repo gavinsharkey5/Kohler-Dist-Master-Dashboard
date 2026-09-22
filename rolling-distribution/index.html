@@ -102,7 +102,7 @@
   th.sub{top:43px}
   .scrollhint{display:none;font-size:16.5px;color:var(--gold);margin:8px 0 0;font-weight:600}
   .tbl-wrap.overflowing + .scrollhint{display:block}
-  th.sub{height:44px;vertical-align:middle}
+  th.sub{height:44px;vertical-align:middle;font-size:15px;padding-left:4px;padding-right:4px;letter-spacing:-.01em}
   th.sub.m-buyers{color:#9CC1FF}th.sub.m-placements{color:#8FE9DC}th.sub.m-cases{color:#FFD98F}
   th.sorted{text-decoration:underline;text-underline-offset:4px;color:var(--ink)}
   th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:#0F1729;z-index:1;padding-left:12px;border-right:2px solid var(--line);overflow:hidden;text-overflow:ellipsis}
@@ -155,7 +155,7 @@
   </footer>
 </div>
 <div class="tip" id="tip"></div>
-<script src="data/dist_data.js?v=12"></script>
+<script src="data/dist_data.js?v=13"></script>
 <script>
 (function(){
   var D = window.DIST_DATA;
@@ -601,7 +601,7 @@
   // ---------------------------------------------------------------- compare table
   function colgroup(nvals, extra){
     // extra = [[width,...]] columns after the name column (e.g. Rep, Prem in the account list)
-    extra = extra||[]; var NAME=300, VAL=118, fixed=NAME+extra.reduce(function(a,w){return a+w;},0);
+    extra = extra||[]; var NAME=280, VAL=120, fixed=NAME+extra.reduce(function(a,w){return a+w;},0);
     var html='<colgroup><col style="width:'+NAME+'px">'+extra.map(function(w){ return '<col style="width:'+w+'px">'; }).join('');
     for(var i=0;i<nvals;i++) html+='<col>';
     return {html:html+'</colgroup>', style:'table-layout:fixed;width:max(100%,'+(fixed+nvals*VAL)+'px)'};
