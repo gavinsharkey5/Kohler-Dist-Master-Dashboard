@@ -42,7 +42,7 @@ const supportAllows = (rep, p) => !isSupport(rep) || (p.type==='MPO' && p.source
 // The on-premise team (Chris McCrohan's reps, plus anyone grouped under
 // him) gets a link to the Tap Share dashboard on every rep screen.
 const ON_PREM_DM = 'Chris McCrohan';
-const TAP_SHARE_URL = '../isellbeer/executive-overview/';
+const TAP_SHARE_URL = '../isellbeer/tap-survey-tracking/';
 const onPremTeam = rep => rep===ON_PREM_DM || HUB_DM_GROUPS.some(g=>(g.dm===ON_PREM_DM || g.under===ON_PREM_DM) && g.reps.includes(rep));
 const tapShareLink = rep => onPremTeam(rep) ? `<a class="taplink" href="${TAP_SHARE_URL}" target="_blank" rel="noopener">🍺 Tap Share dashboard <span class="ar">↗</span></a>` : '';
 const roleLine = rep => isSupport(rep) ? `<div class="rep-role">${E(HUB_SUPPORT[rep].label||'Sales Support')}${HUB_SUPPORT[rep].manager?` · reports to ${E(HUB_SUPPORT[rep].manager)}`:''} · no assigned route</div>` : '';

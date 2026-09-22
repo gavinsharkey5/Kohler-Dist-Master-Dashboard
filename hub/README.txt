@@ -640,7 +640,7 @@ INCENTIVES ARE ONE PAGE, NO DRILL-DOWN (v11, 2026-09-11)
 
   TAP SHARE LINK: the on-premise team (Chris McCrohan's group, plus anyone
   grouped under him) gets a "Tap Share dashboard" pill under the rep title
-  on every rep screen, linking to ../isellbeer/executive-overview/
+  on every rep screen, linking to ../isellbeer/tap-survey-tracking/ (the Tap Tracker)
   (onPremTeam() / tapShareLink()).
 
   BOOK TOO SMALL (2026-09-22): availability() also greys an MPO whose
