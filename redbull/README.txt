@@ -119,6 +119,20 @@ accounts / Core 71 / Core+ 38. Gavin the same day: "make this start in
 july ignore june my apologies" -- July 1 it is, and June rows are dropped
 on every build from here.
 
+2026-09-22 REFRESH -- RDE_Red_Bull_Tracker_June_1_Start.csv (875 rows,
+7/1 through 9/23 -- despite the file name the export starts July 1, so
+nothing was dropped; July 345 and August 293 rows match the 9/17 build
+exactly, September 203 -> 237). Two accounts joined and none left:
+buying accounts 161 -> 163, Regular 152 -> 154, Free 71 -> 72, Flavor
+holds at 44. Core 63 -> 64, Core+ holds at 34.
+  Paul Mclaughlin   Florentine Garden        new, Regular + Free -> Core
+  Robin Feldman     Vfw 2906 Pompt. Lks.(Z)  new, Regular only
+No existing account changed a category. Four rows are dated 9/23
+(scheduled loads for the day after the pull); all inside the window, so
+they count. Core+ leaderboard unchanged: Paul Mclaughlin 10, Allison
+Scott 8, Nick Melissari 6, Robin Feldman 4, Brian Sengebush 3, Anthony
+Palmisano 2, Dan Lagala 1.
+
 2026-09-17 REBUILD FOR THE BUYING PERIOD -- RDE_Red_Bull_Tracker_Apr_1_Start_6.csv
   python3 generate.py RDE_Red_Bull_Tracker_Apr_1_Start_6.csv
 1,158 rows, 6/1 through 9/17; 317 June rows dropped, 841 kept (345 July,
