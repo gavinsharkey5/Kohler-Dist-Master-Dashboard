@@ -81,13 +81,13 @@
   .crumbs .sep{color:var(--ink-dim)}
   .back{margin-left:auto}
   .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:12px}
-  .kpi{background:#0B1222;border:1px solid var(--line-soft);border-radius:12px;padding:14px 16px;border-top:4px solid var(--line);position:relative}
+  .kpi{background:#0B1222;border:1px solid var(--line-soft);border-radius:12px;padding:14px 16px;border-top:4px solid var(--line);position:relative;text-align:center}
   .kpi.m-buyers{border-top-color:var(--buyers)}.kpi.m-placements{border-top-color:var(--placements)}.kpi.m-cases{border-top-color:var(--cases)}
   .kpi.m-buyers .v{color:#CFE0FF}.kpi.m-placements .v{color:#BDF3EA}.kpi.m-cases .v{color:#FFE2A8}
   .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:7px;vertical-align:0}.dot.buyers{background:var(--buyers)}.dot.placements{background:var(--placements)}.dot.cases{background:var(--cases)}
   .kpi .l{font-size:16px;color:var(--ink-soft);font-weight:600}
   .kpi .v{font-family:"Archivo",Arial,sans-serif;font-size:40px;font-weight:700;letter-spacing:-.01em;margin:2px 0 6px;line-height:1.1}
-  .kpi .d{font-size:16.5px;color:var(--ink-soft);display:flex;flex-direction:column;gap:4px}
+  .kpi .d{font-size:16.5px;color:var(--ink-soft);display:flex;flex-direction:column;gap:4px;align-items:center}
   .up{color:var(--good)}.down{color:var(--bad)}.flat{color:var(--ink-dim)}
   .tabs{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 12px}
   .tabs button{background:transparent;border:1.5px solid var(--line);border-radius:999px;color:var(--ink-soft);padding:9px 16px;font:inherit;font-size:17px;cursor:pointer;min-height:46px}
@@ -102,11 +102,12 @@
   th.sub{top:43px}
   .scrollhint{display:none;font-size:16.5px;color:var(--gold);margin:8px 0 0;font-weight:600}
   .tbl-wrap.overflowing + .scrollhint{display:block}
-  th.sub{height:44px;vertical-align:middle;font-size:15px;padding-left:4px;padding-right:4px;letter-spacing:-.01em}
+  th.sub{height:44px;vertical-align:middle;font-size:15px;padding-left:4px;padding-right:4px;letter-spacing:-.01em;text-align:center}
+  td:not(:first-child){text-align:center}
   th.sub.m-buyers{color:#9CC1FF}th.sub.m-placements{color:#8FE9DC}th.sub.m-cases{color:#FFD98F}
   th.sorted{text-decoration:underline;text-underline-offset:4px;color:var(--ink)}
-  th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:#0F1729;z-index:1;padding-left:12px;border-right:2px solid var(--line);overflow:hidden;text-overflow:ellipsis}
-  th:first-child{z-index:3;background:#0E1730}
+  thead tr:first-child th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:#0F1729;z-index:1;padding-left:12px;border-right:2px solid var(--line);overflow:hidden;text-overflow:ellipsis}
+  thead tr:first-child th:first-child{z-index:3;background:#0E1730}
   td.pg0{background:var(--pg0)}td.pg1{background:var(--pg1)}
   td.hi{background:var(--pghi)}th.sub.hi{background:#1E1B14}
   tbody tr:nth-child(even) td:not(:first-child){box-shadow:inset 0 0 0 999px rgba(255,255,255,.018)}
@@ -116,6 +117,7 @@
   tbody tr.drill:hover td:first-child{color:#B5D2FF}
   tr.total td{font-weight:700;background:#132043;border-bottom:2px solid var(--accent-line);color:#FFFFFF}
   tr.total td:first-child{background:#132043}
+  th.sub:first-child{position:static;text-align:center;padding-left:4px;border-right:1px solid var(--line-soft)}
   td.dim{color:var(--ink-dim)}
   td .yoy{display:block;font-size:14px;line-height:1.1;margin-top:2px;font-weight:600}
   td.pb,th.pb{border-left:2px solid #3A4A70}
@@ -155,7 +157,7 @@
   </footer>
 </div>
 <div class="tip" id="tip"></div>
-<script src="data/dist_data.js?v=13"></script>
+<script src="data/dist_data.js?v=15"></script>
 <script>
 (function(){
   var D = window.DIST_DATA;
@@ -604,7 +606,7 @@
     extra = extra||[]; var NAME=280, VAL=120, fixed=NAME+extra.reduce(function(a,w){return a+w;},0);
     var html='<colgroup><col style="width:'+NAME+'px">'+extra.map(function(w){ return '<col style="width:'+w+'px">'; }).join('');
     for(var i=0;i<nvals;i++) html+='<col>';
-    return {html:html+'</colgroup>', style:'table-layout:fixed;width:max(100%,'+(fixed+nvals*VAL)+'px)'};
+    return {html:html+'</colgroup>', style:'table-layout:fixed;width:100%;min-width:'+(fixed+nvals*VAL)+'px'};
   }
   function metricsShown(){ return S.metric==='all' ? ['buyers','placements','cases'] : [S.metric]; }
   function sortRows(list, P, yoyOn){
