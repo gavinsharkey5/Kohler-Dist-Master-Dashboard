@@ -146231,16 +146231,16 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Lager",
             "base": 28,
-            "actual": 9,
+            "actual": 12,
             "goal": 27,
-            "pct": 33.3,
+            "pct": 44.4,
             "held": false,
-            "toGo": 18
+            "toGo": 15
           }
         ],
-        "packagesActual": 9,
+        "packagesActual": 12,
         "packagesGoal": 28,
-        "packagesPct": 32.1,
+        "packagesPct": 42.9,
         "packagesGoalsTotal": 2,
         "packagesGoalsRetained": 0,
         "draftBrands": [
@@ -146267,7 +146267,7 @@ const PROGRAM_DATA_2026_09 = {
             "label": "Yuengling Lager",
             "base": 60,
             "actual": 31,
-            "summaryActual": 47,
+            "summaryActual": 49,
             "emptyPickups": 13,
             "accounts": [
               {
@@ -146664,45 +146664,45 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 0,
         "hasAnyGoal": true,
         "overallGoal": 86,
-        "overallHeld": 40,
-        "overallToGo": 46,
-        "overallPct": 46.5
+        "overallHeld": 43,
+        "overallToGo": 43,
+        "overallPct": 50.0
       },
       "Anthony Palmisano": {
         "offBrands": [
           {
             "label": "Yuengling Flight",
             "base": 14,
-            "actual": 9,
+            "actual": 10,
             "goal": 14,
-            "pct": 64.3,
+            "pct": 71.4,
             "held": false,
-            "toGo": 5
+            "toGo": 4
           },
           {
             "label": "Yuengling Lager",
             "base": 25,
-            "actual": 23,
+            "actual": 24,
             "goal": 24,
-            "pct": 95.8,
-            "held": false,
-            "toGo": 1
+            "pct": 100.0,
+            "held": true,
+            "toGo": 0
           },
           {
             "label": "Yuengling Light Lager",
             "base": 16,
-            "actual": 7,
+            "actual": 8,
             "goal": 16,
-            "pct": 43.8,
+            "pct": 50.0,
             "held": false,
-            "toGo": 9
+            "toGo": 8
           }
         ],
-        "offActual": 39,
+        "offActual": 42,
         "offGoal": 54,
-        "offPct": 72.2,
+        "offPct": 77.8,
         "offGoalsTotal": 3,
-        "offGoalsRetained": 0,
+        "offGoalsRetained": 1,
         "packagesBrands": [
           {
             "label": "Yuengling Flight",
@@ -146716,16 +146716,16 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Lager",
             "base": 30,
-            "actual": 25,
+            "actual": 26,
             "goal": 29,
-            "pct": 86.2,
+            "pct": 89.7,
             "held": false,
-            "toGo": 4
+            "toGo": 3
           }
         ],
-        "packagesActual": 25,
+        "packagesActual": 26,
         "packagesGoal": 30,
-        "packagesPct": 83.3,
+        "packagesPct": 86.7,
         "packagesGoalsTotal": 2,
         "packagesGoalsRetained": 0,
         "draftBrands": [
@@ -146733,7 +146733,7 @@ const PROGRAM_DATA_2026_09 = {
             "label": "Yuengling Lager",
             "base": 27,
             "actual": 15,
-            "summaryActual": 22,
+            "summaryActual": 24,
             "emptyPickups": 3,
             "accounts": [
               {
@@ -146923,12 +146923,12 @@ const PROGRAM_DATA_2026_09 = {
         "draftGoalsTotal": 1,
         "draftGoalsRetained": 0,
         "goalsTotal": 6,
-        "goalsRetained": 0,
+        "goalsRetained": 1,
         "hasAnyGoal": true,
         "overallGoal": 110,
-        "overallHeld": 79,
-        "overallToGo": 31,
-        "overallPct": 71.8
+        "overallHeld": 83,
+        "overallToGo": 27,
+        "overallPct": 75.5
       },
       "Brian Sengebush": {
         "offBrands": [],
@@ -146950,16 +146950,16 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Lager",
             "base": 55,
-            "actual": 40,
+            "actual": 41,
             "goal": 53,
-            "pct": 75.5,
+            "pct": 77.4,
             "held": false,
-            "toGo": 13
+            "toGo": 12
           }
         ],
-        "packagesActual": 40,
+        "packagesActual": 41,
         "packagesGoal": 54,
-        "packagesPct": 74.1,
+        "packagesPct": 75.9,
         "packagesGoalsTotal": 2,
         "packagesGoalsRetained": 0,
         "draftBrands": [
@@ -146986,7 +146986,7 @@ const PROGRAM_DATA_2026_09 = {
             "label": "Yuengling Lager",
             "base": 71,
             "actual": 45,
-            "summaryActual": 60,
+            "summaryActual": 63,
             "emptyPickups": 7,
             "accounts": [
               {
@@ -147437,20 +147437,20 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 0,
         "hasAnyGoal": true,
         "overallGoal": 123,
-        "overallHeld": 85,
-        "overallToGo": 38,
-        "overallPct": 69.1
+        "overallHeld": 86,
+        "overallToGo": 37,
+        "overallPct": 69.9
       },
       "Chris Payton": {
         "offBrands": [
           {
             "label": "Yuengling Flight",
             "base": 8,
-            "actual": 3,
+            "actual": 4,
             "goal": 8,
-            "pct": 37.5,
+            "pct": 50.0,
             "held": false,
-            "toGo": 5
+            "toGo": 4
           },
           {
             "label": "Yuengling Lager",
@@ -147471,9 +147471,9 @@ const PROGRAM_DATA_2026_09 = {
             "toGo": 7
           }
         ],
-        "offActual": 31,
+        "offActual": 32,
         "offGoal": 50,
-        "offPct": 62.0,
+        "offPct": 64.0,
         "offGoalsTotal": 3,
         "offGoalsRetained": 0,
         "packagesBrands": [],
@@ -147492,9 +147492,9 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 0,
         "hasAnyGoal": true,
         "overallGoal": 50,
-        "overallHeld": 31,
-        "overallToGo": 19,
-        "overallPct": 62.0
+        "overallHeld": 32,
+        "overallToGo": 18,
+        "overallPct": 64.0
       },
       "Dan Lagala": {
         "offBrands": [
@@ -147510,11 +147510,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Lager",
             "base": 30,
-            "actual": 17,
+            "actual": 19,
             "goal": 29,
-            "pct": 58.6,
+            "pct": 65.5,
             "held": false,
-            "toGo": 12
+            "toGo": 10
           },
           {
             "label": "Yuengling Light Lager",
@@ -147526,9 +147526,9 @@ const PROGRAM_DATA_2026_09 = {
             "toGo": 1
           }
         ],
-        "offActual": 20,
+        "offActual": 22,
         "offGoal": 37,
-        "offPct": 54.1,
+        "offPct": 59.5,
         "offGoalsTotal": 3,
         "offGoalsRetained": 0,
         "packagesBrands": [],
@@ -147547,29 +147547,29 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 0,
         "hasAnyGoal": true,
         "overallGoal": 37,
-        "overallHeld": 20,
-        "overallToGo": 17,
-        "overallPct": 54.1
+        "overallHeld": 22,
+        "overallToGo": 15,
+        "overallPct": 59.5
       },
       "Dave Ehlers": {
         "offBrands": [
           {
             "label": "Yuengling Flight",
             "base": 9,
-            "actual": 3,
+            "actual": 4,
             "goal": 9,
-            "pct": 33.3,
+            "pct": 44.4,
             "held": false,
-            "toGo": 6
+            "toGo": 5
           },
           {
             "label": "Yuengling Lager",
             "base": 32,
-            "actual": 21,
+            "actual": 22,
             "goal": 31,
-            "pct": 67.7,
+            "pct": 71.0,
             "held": false,
-            "toGo": 10
+            "toGo": 9
           },
           {
             "label": "Yuengling Light Lager",
@@ -147581,9 +147581,9 @@ const PROGRAM_DATA_2026_09 = {
             "toGo": 2
           }
         ],
-        "offActual": 31,
+        "offActual": 33,
         "offGoal": 49,
-        "offPct": 63.3,
+        "offPct": 67.3,
         "offGoalsTotal": 3,
         "offGoalsRetained": 0,
         "packagesBrands": [],
@@ -147602,9 +147602,9 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 0,
         "hasAnyGoal": true,
         "overallGoal": 49,
-        "overallHeld": 31,
-        "overallToGo": 18,
-        "overallPct": 63.3
+        "overallHeld": 33,
+        "overallToGo": 16,
+        "overallPct": 67.3
       },
       "Derrick Laws": {
         "offBrands": [
@@ -147625,6 +147625,15 @@ const PROGRAM_DATA_2026_09 = {
             "pct": 54.5,
             "held": false,
             "toGo": 5
+          },
+          {
+            "label": "Yuengling Light Lager",
+            "base": 0,
+            "actual": 1,
+            "goal": null,
+            "pct": null,
+            "held": false,
+            "toGo": 0
           }
         ],
         "offActual": 7,
@@ -147657,11 +147666,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Flight",
             "base": 28,
-            "actual": 23,
+            "actual": 25,
             "goal": 27,
-            "pct": 85.2,
+            "pct": 92.6,
             "held": false,
-            "toGo": 4
+            "toGo": 2
           },
           {
             "label": "Yuengling Lager",
@@ -147675,16 +147684,16 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Light Lager",
             "base": 29,
-            "actual": 20,
+            "actual": 21,
             "goal": 28,
-            "pct": 71.4,
+            "pct": 75.0,
             "held": false,
-            "toGo": 8
+            "toGo": 7
           }
         ],
-        "offActual": 74,
+        "offActual": 77,
         "offGoal": 86,
-        "offPct": 86.0,
+        "offPct": 89.5,
         "offGoalsTotal": 3,
         "offGoalsRetained": 1,
         "packagesBrands": [],
@@ -147703,43 +147712,43 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 1,
         "hasAnyGoal": true,
         "overallGoal": 86,
-        "overallHeld": 74,
-        "overallToGo": 12,
-        "overallPct": 86.0
+        "overallHeld": 77,
+        "overallToGo": 9,
+        "overallPct": 89.5
       },
       "Jim Heaney": {
         "offBrands": [
           {
             "label": "Yuengling Flight",
             "base": 11,
-            "actual": 8,
+            "actual": 9,
             "goal": 11,
-            "pct": 72.7,
+            "pct": 81.8,
             "held": false,
-            "toGo": 3
+            "toGo": 2
           },
           {
             "label": "Yuengling Lager",
             "base": 40,
-            "actual": 29,
+            "actual": 30,
             "goal": 38,
-            "pct": 76.3,
+            "pct": 78.9,
             "held": false,
-            "toGo": 9
+            "toGo": 8
           },
           {
             "label": "Yuengling Light Lager",
             "base": 9,
-            "actual": 5,
+            "actual": 6,
             "goal": 9,
-            "pct": 55.6,
+            "pct": 66.7,
             "held": false,
-            "toGo": 4
+            "toGo": 3
           }
         ],
-        "offActual": 42,
+        "offActual": 45,
         "offGoal": 58,
-        "offPct": 72.4,
+        "offPct": 77.6,
         "offGoalsTotal": 3,
         "offGoalsRetained": 0,
         "packagesBrands": [],
@@ -147758,9 +147767,9 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 0,
         "hasAnyGoal": true,
         "overallGoal": 58,
-        "overallHeld": 42,
-        "overallToGo": 16,
-        "overallPct": 72.4
+        "overallHeld": 45,
+        "overallToGo": 13,
+        "overallPct": 77.6
       },
       "Klejdi Lamo": {
         "offBrands": [
@@ -147776,11 +147785,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Lager",
             "base": 26,
-            "actual": 23,
+            "actual": 25,
             "goal": 25,
-            "pct": 92.0,
-            "held": false,
-            "toGo": 2
+            "pct": 100.0,
+            "held": true,
+            "toGo": 0
           },
           {
             "label": "Yuengling Light Lager",
@@ -147792,11 +147801,11 @@ const PROGRAM_DATA_2026_09 = {
             "toGo": 5
           }
         ],
-        "offActual": 44,
+        "offActual": 46,
         "offGoal": 56,
-        "offPct": 78.6,
+        "offPct": 82.1,
         "offGoalsTotal": 3,
-        "offGoalsRetained": 0,
+        "offGoalsRetained": 1,
         "packagesBrands": [],
         "packagesActual": 0,
         "packagesGoal": 0,
@@ -147810,12 +147819,12 @@ const PROGRAM_DATA_2026_09 = {
         "draftGoalsTotal": 0,
         "draftGoalsRetained": 0,
         "goalsTotal": 3,
-        "goalsRetained": 0,
+        "goalsRetained": 1,
         "hasAnyGoal": true,
         "overallGoal": 56,
-        "overallHeld": 44,
-        "overallToGo": 12,
-        "overallPct": 78.6
+        "overallHeld": 46,
+        "overallToGo": 10,
+        "overallPct": 82.1
       },
       "Matt Powierski": {
         "offBrands": [
@@ -147831,11 +147840,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Lager",
             "base": 35,
-            "actual": 22,
+            "actual": 23,
             "goal": 34,
-            "pct": 64.7,
+            "pct": 67.6,
             "held": false,
-            "toGo": 12
+            "toGo": 11
           },
           {
             "label": "Yuengling Light Lager",
@@ -147847,9 +147856,9 @@ const PROGRAM_DATA_2026_09 = {
             "toGo": 4
           }
         ],
-        "offActual": 30,
+        "offActual": 31,
         "offGoal": 50,
-        "offPct": 60.0,
+        "offPct": 62.0,
         "offGoalsTotal": 3,
         "offGoalsRetained": 0,
         "packagesBrands": [],
@@ -147868,9 +147877,9 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 0,
         "hasAnyGoal": true,
         "overallGoal": 50,
-        "overallHeld": 30,
-        "overallToGo": 20,
-        "overallPct": 60.0
+        "overallHeld": 31,
+        "overallToGo": 19,
+        "overallPct": 62.0
       },
       "Michael Harboy": {
         "offBrands": [
@@ -147932,11 +147941,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Flight",
             "base": 12,
-            "actual": 7,
+            "actual": 9,
             "goal": 12,
-            "pct": 58.3,
+            "pct": 75.0,
             "held": false,
-            "toGo": 5
+            "toGo": 3
           },
           {
             "label": "Yuengling Lager",
@@ -147957,9 +147966,9 @@ const PROGRAM_DATA_2026_09 = {
             "toGo": 8
           }
         ],
-        "offActual": 36,
+        "offActual": 38,
         "offGoal": 52,
-        "offPct": 69.2,
+        "offPct": 73.1,
         "offGoalsTotal": 3,
         "offGoalsRetained": 0,
         "packagesBrands": [],
@@ -147978,9 +147987,9 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 0,
         "hasAnyGoal": true,
         "overallGoal": 52,
-        "overallHeld": 36,
-        "overallToGo": 16,
-        "overallPct": 69.2
+        "overallHeld": 38,
+        "overallToGo": 14,
+        "overallPct": 73.1
       },
       "Nick Melissari": {
         "offBrands": [],
@@ -148041,7 +148050,7 @@ const PROGRAM_DATA_2026_09 = {
             "label": "Yuengling Lager",
             "base": 69,
             "actual": 31,
-            "summaryActual": 50,
+            "summaryActual": 51,
             "emptyPickups": 14,
             "accounts": [
               {
@@ -148495,16 +148504,16 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Lager",
             "base": 21,
-            "actual": 12,
+            "actual": 13,
             "goal": 20,
-            "pct": 60.0,
+            "pct": 65.0,
             "held": false,
-            "toGo": 8
+            "toGo": 7
           }
         ],
-        "packagesActual": 12,
+        "packagesActual": 13,
         "packagesGoal": 20,
-        "packagesPct": 60.0,
+        "packagesPct": 65.0,
         "packagesGoalsTotal": 1,
         "packagesGoalsRetained": 0,
         "draftBrands": [
@@ -148512,7 +148521,7 @@ const PROGRAM_DATA_2026_09 = {
             "label": "Yuengling Lager",
             "base": 38,
             "actual": 15,
-            "summaryActual": 29,
+            "summaryActual": 30,
             "emptyPickups": 8,
             "accounts": [
               {
@@ -148765,20 +148774,20 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 0,
         "hasAnyGoal": true,
         "overallGoal": 57,
-        "overallHeld": 27,
-        "overallToGo": 30,
-        "overallPct": 47.4
+        "overallHeld": 28,
+        "overallToGo": 29,
+        "overallPct": 49.1
       },
       "Phil Ernst": {
         "offBrands": [
           {
             "label": "Yuengling Flight",
             "base": 18,
-            "actual": 11,
+            "actual": 13,
             "goal": 18,
-            "pct": 61.1,
+            "pct": 72.2,
             "held": false,
-            "toGo": 7
+            "toGo": 5
           },
           {
             "label": "Yuengling Lager",
@@ -148799,9 +148808,9 @@ const PROGRAM_DATA_2026_09 = {
             "toGo": 5
           }
         ],
-        "offActual": 39,
+        "offActual": 41,
         "offGoal": 52,
-        "offPct": 75.0,
+        "offPct": 78.8,
         "offGoalsTotal": 3,
         "offGoalsRetained": 0,
         "packagesBrands": [],
@@ -148820,9 +148829,9 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 0,
         "hasAnyGoal": true,
         "overallGoal": 52,
-        "overallHeld": 39,
-        "overallToGo": 13,
-        "overallPct": 75.0
+        "overallHeld": 41,
+        "overallToGo": 11,
+        "overallPct": 78.8
       },
       "Robin Feldman": {
         "offBrands": [],
@@ -148844,16 +148853,16 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Lager",
             "base": 101,
-            "actual": 52,
+            "actual": 58,
             "goal": 96,
-            "pct": 54.2,
+            "pct": 60.4,
             "held": false,
-            "toGo": 44
+            "toGo": 38
           }
         ],
-        "packagesActual": 53,
+        "packagesActual": 59,
         "packagesGoal": 99,
-        "packagesPct": 53.5,
+        "packagesPct": 59.6,
         "packagesGoalsTotal": 2,
         "packagesGoalsRetained": 0,
         "draftBrands": [
@@ -148886,7 +148895,7 @@ const PROGRAM_DATA_2026_09 = {
             "label": "Yuengling Lager",
             "base": 41,
             "actual": 13,
-            "summaryActual": 21,
+            "summaryActual": 22,
             "emptyPickups": 4,
             "accounts": [
               {
@@ -149157,29 +149166,29 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 1,
         "hasAnyGoal": true,
         "overallGoal": 140,
-        "overallHeld": 68,
-        "overallToGo": 72,
-        "overallPct": 48.6
+        "overallHeld": 74,
+        "overallToGo": 66,
+        "overallPct": 52.9
       },
       "Shane Barreca": {
         "offBrands": [
           {
             "label": "Yuengling Flight",
             "base": 15,
-            "actual": 7,
+            "actual": 8,
             "goal": 15,
-            "pct": 46.7,
+            "pct": 53.3,
             "held": false,
-            "toGo": 8
+            "toGo": 7
           },
           {
             "label": "Yuengling Lager",
             "base": 26,
-            "actual": 19,
+            "actual": 21,
             "goal": 25,
-            "pct": 76.0,
+            "pct": 84.0,
             "held": false,
-            "toGo": 6
+            "toGo": 4
           },
           {
             "label": "Yuengling Light Lager",
@@ -149191,9 +149200,9 @@ const PROGRAM_DATA_2026_09 = {
             "toGo": 12
           }
         ],
-        "offActual": 30,
+        "offActual": 33,
         "offGoal": 56,
-        "offPct": 53.6,
+        "offPct": 58.9,
         "offGoalsTotal": 3,
         "offGoalsRetained": 0,
         "packagesBrands": [],
@@ -149212,9 +149221,9 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 0,
         "hasAnyGoal": true,
         "overallGoal": 56,
-        "overallHeld": 30,
-        "overallToGo": 26,
-        "overallPct": 53.6
+        "overallHeld": 33,
+        "overallToGo": 23,
+        "overallPct": 58.9
       }
     },
     "house": [
@@ -149243,30 +149252,30 @@ const PROGRAM_DATA_2026_09 = {
         "label": "Yuengling Flight",
         "base": 153,
         "goal": 152,
-        "actual": 95,
+        "actual": 106,
         "repsHeld": 1,
         "repsWithGoal": 13,
-        "pct": 62.5
+        "pct": 69.7
       },
       {
         "side": "off",
         "label": "Yuengling Lager",
         "base": 350,
         "goal": 338,
-        "actual": 270,
-        "repsHeld": 2,
+        "actual": 280,
+        "repsHeld": 4,
         "repsWithGoal": 13,
-        "pct": 79.9
+        "pct": 82.8
       },
       {
         "side": "off",
         "label": "Yuengling Light Lager",
         "base": 135,
         "goal": 134,
-        "actual": 68,
+        "actual": 72,
         "repsHeld": 0,
         "repsWithGoal": 12,
-        "pct": 50.7
+        "pct": 53.7
       },
       {
         "side": "packages",
@@ -149283,10 +149292,10 @@ const PROGRAM_DATA_2026_09 = {
         "label": "Yuengling Lager",
         "base": 269,
         "goal": 258,
-        "actual": 157,
+        "actual": 169,
         "repsHeld": 0,
         "repsWithGoal": 6,
-        "pct": 60.9
+        "pct": 65.5
       }
     ],
     "retainThresholdPct": 95,
@@ -153702,10 +153711,10 @@ const PROGRAM_DATA_2026_09 = {
         "window": "8/1/2026 - 9/30/2026",
         "packages": {
           "sixPack": {
-            "pods": 57.0,
-            "newPods": 26.0,
-            "units": 124.0,
-            "payout": 260.0
+            "pods": 59.0,
+            "newPods": 27.0,
+            "units": 128.0,
+            "payout": 270.0
           },
           "nineteenTwo": {
             "pods": 0.0,
@@ -153735,17 +153744,17 @@ const PROGRAM_DATA_2026_09 = {
             "product": "4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can",
             "package": "4/6/12oz Can",
             "bucket": "sixPack",
-            "pods": 16.0,
+            "pods": 17.0,
             "newPods": 6.0,
-            "units": 41.0
+            "units": 44.0
           },
           {
             "product": "11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can",
             "package": "4/6/12oz Can",
             "bucket": "sixPack",
-            "pods": 11.0,
-            "newPods": 5.0,
-            "units": 20.0
+            "pods": 12.0,
+            "newPods": 6.0,
+            "units": 21.0
           },
           {
             "product": "11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can",
@@ -153756,10 +153765,78 @@ const PROGRAM_DATA_2026_09 = {
             "units": 0.0
           }
         ],
-        "payout": 260.0,
-        "sixPackPods": 57.0,
-        "sixPackNewPods": 26.0,
-        "sixPackUnits": 124.0,
+        "payout": 270.0,
+        "sixPackPods": 59.0,
+        "sixPackNewPods": 27.0,
+        "sixPackUnits": 128.0,
+        "nineteenTwoPods": 0.0,
+        "nineteenTwoNewPods": 0.0,
+        "nineteenTwoUnits": 0.0,
+        "has192": false
+      },
+      "Jaime Colonna": {
+        "team": "Mike Kennedy",
+        "window": "8/1/2026 - 9/30/2026",
+        "packages": {
+          "sixPack": {
+            "pods": 37.0,
+            "newPods": 16.0,
+            "units": 113.0,
+            "payout": 160.0
+          },
+          "nineteenTwo": {
+            "pods": 0.0,
+            "newPods": 0.0,
+            "units": 0.0,
+            "payout": 0.0
+          }
+        },
+        "products": [
+          {
+            "product": "4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 14.0,
+            "newPods": 5.0,
+            "units": 51.0
+          },
+          {
+            "product": "4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 11.0,
+            "newPods": 4.0,
+            "units": 31.0
+          },
+          {
+            "product": "11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 8.0,
+            "newPods": 4.0,
+            "units": 19.0
+          },
+          {
+            "product": "11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 3.0,
+            "newPods": 2.0,
+            "units": 9.0
+          },
+          {
+            "product": "11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 1.0,
+            "newPods": 1.0,
+            "units": 3.0
+          }
+        ],
+        "payout": 160.0,
+        "sixPackPods": 37.0,
+        "sixPackNewPods": 16.0,
+        "sixPackUnits": 113.0,
         "nineteenTwoPods": 0.0,
         "nineteenTwoNewPods": 0.0,
         "nineteenTwoUnits": 0.0,
@@ -153772,7 +153849,7 @@ const PROGRAM_DATA_2026_09 = {
           "sixPack": {
             "pods": 59.0,
             "newPods": 14.0,
-            "units": 157.0,
+            "units": 167.0,
             "payout": 140.0
           },
           "nineteenTwo": {
@@ -153789,7 +153866,7 @@ const PROGRAM_DATA_2026_09 = {
             "bucket": "sixPack",
             "pods": 20.0,
             "newPods": 6.0,
-            "units": 58.0
+            "units": 60.0
           },
           {
             "product": "4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can",
@@ -153797,7 +153874,7 @@ const PROGRAM_DATA_2026_09 = {
             "bucket": "sixPack",
             "pods": 18.0,
             "newPods": 4.0,
-            "units": 45.0
+            "units": 46.0
           },
           {
             "product": "11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can",
@@ -153805,7 +153882,7 @@ const PROGRAM_DATA_2026_09 = {
             "bucket": "sixPack",
             "pods": 11.0,
             "newPods": 3.0,
-            "units": 33.0
+            "units": 38.0
           },
           {
             "product": "11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can",
@@ -153813,7 +153890,7 @@ const PROGRAM_DATA_2026_09 = {
             "bucket": "sixPack",
             "pods": 7.0,
             "newPods": 1.0,
-            "units": 17.0
+            "units": 19.0
           },
           {
             "product": "11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can",
@@ -153827,75 +153904,7 @@ const PROGRAM_DATA_2026_09 = {
         "payout": 140.0,
         "sixPackPods": 59.0,
         "sixPackNewPods": 14.0,
-        "sixPackUnits": 157.0,
-        "nineteenTwoPods": 0.0,
-        "nineteenTwoNewPods": 0.0,
-        "nineteenTwoUnits": 0.0,
-        "has192": false
-      },
-      "Jaime Colonna": {
-        "team": "Mike Kennedy",
-        "window": "8/1/2026 - 9/30/2026",
-        "packages": {
-          "sixPack": {
-            "pods": 32.0,
-            "newPods": 14.0,
-            "units": 95.0,
-            "payout": 140.0
-          },
-          "nineteenTwo": {
-            "pods": 0.0,
-            "newPods": 0.0,
-            "units": 0.0,
-            "payout": 0.0
-          }
-        },
-        "products": [
-          {
-            "product": "4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 13.0,
-            "newPods": 5.0,
-            "units": 48.0
-          },
-          {
-            "product": "4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 10.0,
-            "newPods": 4.0,
-            "units": 29.0
-          },
-          {
-            "product": "11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 6.0,
-            "newPods": 3.0,
-            "units": 12.0
-          },
-          {
-            "product": "11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 2.0,
-            "newPods": 1.0,
-            "units": 3.0
-          },
-          {
-            "product": "11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 1.0,
-            "newPods": 1.0,
-            "units": 3.0
-          }
-        ],
-        "payout": 140.0,
-        "sixPackPods": 32.0,
-        "sixPackNewPods": 14.0,
-        "sixPackUnits": 95.0,
+        "sixPackUnits": 167.0,
         "nineteenTwoPods": 0.0,
         "nineteenTwoNewPods": 0.0,
         "nineteenTwoUnits": 0.0,
@@ -153906,9 +153915,9 @@ const PROGRAM_DATA_2026_09 = {
         "window": "8/1/2026 - 9/30/2026",
         "packages": {
           "sixPack": {
-            "pods": 36.0,
+            "pods": 39.0,
             "newPods": 7.0,
-            "units": 104.0,
+            "units": 107.0,
             "payout": 70.0
           },
           "nineteenTwo": {
@@ -153939,31 +153948,31 @@ const PROGRAM_DATA_2026_09 = {
             "product": "4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can",
             "package": "4/6/12oz Can",
             "bucket": "sixPack",
-            "pods": 11.0,
+            "pods": 12.0,
             "newPods": 1.0,
-            "units": 35.0
+            "units": 36.0
           },
           {
             "product": "4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can",
             "package": "4/6/12oz Can",
             "bucket": "sixPack",
-            "pods": 10.0,
+            "pods": 11.0,
             "newPods": 1.0,
-            "units": 39.0
+            "units": 40.0
           },
           {
             "product": "11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can",
             "package": "4/6/12oz Can",
             "bucket": "sixPack",
-            "pods": 3.0,
+            "pods": 4.0,
             "newPods": 1.0,
-            "units": 5.0
+            "units": 6.0
           }
         ],
         "payout": 70.0,
-        "sixPackPods": 36.0,
+        "sixPackPods": 39.0,
         "sixPackNewPods": 7.0,
-        "sixPackUnits": 104.0,
+        "sixPackUnits": 107.0,
         "nineteenTwoPods": 0.0,
         "nineteenTwoNewPods": 0.0,
         "nineteenTwoUnits": 0.0,
@@ -153976,7 +153985,7 @@ const PROGRAM_DATA_2026_09 = {
           "sixPack": {
             "pods": 37.0,
             "newPods": 3.0,
-            "units": 105.0,
+            "units": 108.0,
             "payout": 30.0
           },
           "nineteenTwo": {
@@ -153993,7 +154002,7 @@ const PROGRAM_DATA_2026_09 = {
             "bucket": "sixPack",
             "pods": 12.0,
             "newPods": 2.0,
-            "units": 37.0
+            "units": 39.0
           },
           {
             "product": "4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can",
@@ -154001,7 +154010,7 @@ const PROGRAM_DATA_2026_09 = {
             "bucket": "sixPack",
             "pods": 15.0,
             "newPods": 1.0,
-            "units": 49.0
+            "units": 50.0
           },
           {
             "product": "11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can",
@@ -154031,7 +154040,7 @@ const PROGRAM_DATA_2026_09 = {
         "payout": 30.0,
         "sixPackPods": 37.0,
         "sixPackNewPods": 3.0,
-        "sixPackUnits": 105.0,
+        "sixPackUnits": 108.0,
         "nineteenTwoPods": 0.0,
         "nineteenTwoNewPods": 0.0,
         "nineteenTwoUnits": 0.0,
@@ -154172,54 +154181,54 @@ const PROGRAM_DATA_2026_09 = {
       "Jaime Colonna": {
         "team": "Mike Kennedy",
         "window": "8/1/2026 - 9/30/2026",
-        "packageCases": 1023.0,
-        "packageCE": 1068.57,
-        "packagePayout": 534.29,
+        "packageCases": 1103.0,
+        "packageCE": 1150.64,
+        "packagePayout": 575.32,
         "packages": [
           {
             "product": "5949 Shipyard Pumpkin Head 4/6/12 oz Btl",
             "type": "Case Beer",
-            "cases": 224.0,
-            "ce": 224.0,
+            "cases": 244.0,
+            "ce": 244.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 112.0
+            "payout": 122.0
           },
           {
             "product": "674 Montauk Pumpkin Ale 4/6/12 oz Can",
             "type": "Case Beer",
-            "cases": 129.0,
-            "ce": 129.0,
+            "cases": 142.0,
+            "ce": 142.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 64.5
+            "payout": 71.0
           },
           {
             "product": "4376 Southern Tier Pumking Imperial Pumpkin Ale 6/4/12 oz Btl",
             "type": "Case Beer",
-            "cases": 124.0,
-            "ce": 124.0,
+            "cases": 140.0,
+            "ce": 140.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 62.0
+            "payout": 70.0
           },
           {
             "product": "5830 Point Whole Hog Pumpkin Ale 4/6/12 oz Btl",
             "type": "Case Beer",
-            "cases": 97.0,
-            "ce": 97.0,
+            "cases": 100.0,
+            "ce": 100.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 48.5
+            "payout": 50.0
           },
           {
             "product": "3320 Hofbrau Oktoberfest 4/6/11.2 oz Btl",
             "type": "Case Beer",
-            "cases": 68.0,
-            "ce": 63.46,
+            "cases": 73.0,
+            "ce": 68.13,
             "ceEach": 0.9333,
             "ceExact": true,
-            "payout": 31.73
+            "payout": 34.07
           },
           {
             "product": "11682 Southern Tier Pumqueen 6/4/16 oz Can",
@@ -154242,11 +154251,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "5960 Shipyard Smashed Pumpkin 6/4/16 oz Can",
             "type": "Case Beer",
-            "cases": 27.0,
-            "ce": 36.0,
+            "cases": 32.0,
+            "ce": 42.67,
             "ceEach": 1.3333,
             "ceExact": true,
-            "payout": 18.0
+            "payout": 21.33
           },
           {
             "product": "7552 Saranac Pumpkin Ale 4/6/12 oz Btl",
@@ -154269,11 +154278,20 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "10404 Hacker-Pschorr Oktoberfest 4/6/11.2 oz Btl",
             "type": "Case Beer",
-            "cases": 27.0,
-            "ce": 25.2,
+            "cases": 33.0,
+            "ce": 30.8,
             "ceEach": 0.9333,
             "ceExact": true,
-            "payout": 12.6
+            "payout": 15.4
+          },
+          {
+            "product": "10522 Weihenstephan Festbier 4/6/11.2 oz Btl",
+            "type": "Case Beer",
+            "cases": 25.0,
+            "ce": 23.33,
+            "ceEach": 0.9333,
+            "ceExact": true,
+            "payout": 11.67
           },
           {
             "product": "10444 Paulaner Oktoberfest Bier 6/4/16.9 oz Can",
@@ -154285,15 +154303,6 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 11.27
           },
           {
-            "product": "10522 Weihenstephan Festbier 4/6/11.2 oz Btl",
-            "type": "Case Beer",
-            "cases": 22.0,
-            "ce": 20.53,
-            "ceEach": 0.9333,
-            "ceExact": true,
-            "payout": 10.27
-          },
-          {
             "product": "11236 Flying Dog The Fear 4/6/12 oz Btl",
             "type": "Case Beer",
             "cases": 20.0,
@@ -154303,13 +154312,31 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 10.0
           },
           {
-            "product": "11665 Southern Tier Maple Warlock Imperial Pumpkin Stout 6/4/12 oz Btl",
+            "product": "11640 Victory FestBier 4/6/12 oz Can",
             "type": "Case Beer",
-            "cases": 18.0,
-            "ce": 18.0,
+            "cases": 19.0,
+            "ce": 19.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 9.0
+            "payout": 9.5
+          },
+          {
+            "product": "11665 Southern Tier Maple Warlock Imperial Pumpkin Stout 6/4/12 oz Btl",
+            "type": "Case Beer",
+            "cases": 19.0,
+            "ce": 19.0,
+            "ceEach": 1.0,
+            "ceExact": true,
+            "payout": 9.5
+          },
+          {
+            "product": "9125 1911 Cider Donut 6/4/16 oz Can",
+            "type": "Case Cider",
+            "cases": 14.0,
+            "ce": 18.67,
+            "ceEach": 1.3333,
+            "ceExact": true,
+            "payout": 9.33
           },
           {
             "product": "9161 1911 Haunted Hayride 6/4/16 oz Can",
@@ -154321,22 +154348,13 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 8.67
           },
           {
-            "product": "9125 1911 Cider Donut 6/4/16 oz Can",
-            "type": "Case Cider",
-            "cases": 13.0,
-            "ce": 17.33,
+            "product": "11684 Southern Tier Nitro Warlock 6/4/16 oz Can",
+            "type": "Case Beer",
+            "cases": 9.0,
+            "ce": 12.0,
             "ceEach": 1.3333,
             "ceExact": true,
-            "payout": 8.67
-          },
-          {
-            "product": "11640 Victory FestBier 4/6/12 oz Can",
-            "type": "Case Beer",
-            "cases": 15.0,
-            "ce": 15.0,
-            "ceEach": 1.0,
-            "ceExact": true,
-            "payout": 7.5
+            "payout": 6.0
           },
           {
             "product": "3336 Hofbrau Oktoberfest 6/4/16.9 oz Can",
@@ -154355,15 +154373,6 @@ const PROGRAM_DATA_2026_09 = {
             "ceEach": 1.0,
             "ceExact": true,
             "payout": 5.5
-          },
-          {
-            "product": "11684 Southern Tier Nitro Warlock 6/4/16 oz Can",
-            "type": "Case Beer",
-            "cases": 6.0,
-            "ce": 8.0,
-            "ceEach": 1.3333,
-            "ceExact": true,
-            "payout": 4.0
           },
           {
             "product": "7766 Evil Genius Trick or Treat Chocolate Pumpkin Porter 4/6/12 oz Can",
@@ -154457,16 +154466,16 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "ceEstimatedLines": 0,
-        "sixtelCount": 24.0,
+        "sixtelCount": 27.0,
         "halfKegCount": 44.0,
-        "otherKegCount": 58.0,
-        "kegPayout": 560.0,
+        "otherKegCount": 72.0,
+        "kegPayout": 575.0,
         "kegs": [
           {
             "product": "3304 Hofbrau Oktoberfest 13.2 Gal Keg",
             "type": "Keg Beer",
-            "kegs": 31.0,
-            "bbl": 13.2,
+            "kegs": 44.0,
+            "bbl": 18.74,
             "tier": "other size",
             "payout": 0.0
           },
@@ -154481,34 +154490,26 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "10409 Paulaner Oktoberfest Marzen 13.2 Gal Keg",
             "type": "Keg Beer",
-            "kegs": 13.0,
-            "bbl": 5.54,
+            "kegs": 14.0,
+            "bbl": 5.96,
             "tier": "other size",
             "payout": 0.0
           },
           {
             "product": "5948 Shipyard Pumpkin Head 5.2 Gal Keg",
             "type": "Keg Beer",
-            "kegs": 10.0,
-            "bbl": 1.67,
+            "kegs": 11.0,
+            "bbl": 1.83,
             "tier": "sixtel",
-            "payout": 50.0
+            "payout": 55.0
           },
           {
             "product": "4378 Southern Tier Pumking Imperial Pumpkin Ale 5.2 Gal Keg",
             "type": "Keg Beer",
-            "kegs": 8.0,
-            "bbl": 1.33,
+            "kegs": 10.0,
+            "bbl": 1.67,
             "tier": "sixtel",
-            "payout": 40.0
-          },
-          {
-            "product": "5805 Point Whole Hog Pumpkin Ale 7.75 Gal Keg",
-            "type": "Keg Beer",
-            "kegs": 7.0,
-            "bbl": 1.75,
-            "tier": "other size",
-            "payout": 0.0
+            "payout": 50.0
           },
           {
             "product": "675 Montauk Pumpkin Ale 15.5 Gal Keg",
@@ -154517,6 +154518,14 @@ const PROGRAM_DATA_2026_09 = {
             "bbl": 3.5,
             "tier": "half-keg",
             "payout": 70.0
+          },
+          {
+            "product": "5805 Point Whole Hog Pumpkin Ale 7.75 Gal Keg",
+            "type": "Keg Beer",
+            "kegs": 7.0,
+            "bbl": 1.75,
+            "tier": "other size",
+            "payout": 0.0
           },
           {
             "product": "5213 Great Lakes Oktoberfest Keg 15.5 Gal Keg",
@@ -154543,7 +154552,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 30.0
           },
           {
-            "product": "676 Montauk Pumpkin Ale 5.2 Gal Keg",
+            "product": "5214 Great Lakes Oktoberfest 5.2 Gal Keg",
             "type": "Keg Beer",
             "kegs": 2.0,
             "bbl": 0.33,
@@ -154559,7 +154568,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 0.0
           },
           {
-            "product": "5214 Great Lakes Oktoberfest 5.2 Gal Keg",
+            "product": "676 Montauk Pumpkin Ale 5.2 Gal Keg",
             "type": "Keg Beer",
             "kegs": 2.0,
             "bbl": 0.33,
@@ -154567,7 +154576,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 10.0
           },
           {
-            "product": "7709 Evil Genius Trick Or Treat Chocolate Pumpkin Porter 5.2 Gal Keg",
+            "product": "11667 Southern Tier Maple Warlock Imperial Pumpkin Stout 5.2 Gal Keg",
             "type": "Keg Beer",
             "kegs": 1.0,
             "bbl": 0.17,
@@ -154575,7 +154584,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 5.0
           },
           {
-            "product": "11667 Southern Tier Maple Warlock Imperial Pumpkin Stout 5.2 Gal Keg",
+            "product": "7709 Evil Genius Trick Or Treat Chocolate Pumpkin Porter 5.2 Gal Keg",
             "type": "Keg Beer",
             "kegs": 1.0,
             "bbl": 0.17,
@@ -154600,41 +154609,41 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 15.0
           }
         ],
-        "payout": 1109.29
+        "payout": 1165.32
       },
       "Michael Harboy": {
         "team": "Mike Kennedy",
         "window": "8/1/2026 - 9/30/2026",
-        "packageCases": 912.0,
-        "packageCE": 934.63,
-        "packagePayout": 467.32,
+        "packageCases": 961.0,
+        "packageCE": 984.57,
+        "packagePayout": 492.28,
         "packages": [
           {
             "product": "5949 Shipyard Pumpkin Head 4/6/12 oz Btl",
             "type": "Case Beer",
-            "cases": 111.0,
-            "ce": 111.0,
+            "cases": 116.0,
+            "ce": 116.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 55.5
+            "payout": 58.0
           },
           {
             "product": "5830 Point Whole Hog Pumpkin Ale 4/6/12 oz Btl",
             "type": "Case Beer",
-            "cases": 104.0,
-            "ce": 104.0,
+            "cases": 114.0,
+            "ce": 114.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 52.0
+            "payout": 57.0
           },
           {
             "product": "3320 Hofbrau Oktoberfest 4/6/11.2 oz Btl",
             "type": "Case Beer",
-            "cases": 71.0,
-            "ce": 66.26,
+            "cases": 74.0,
+            "ce": 69.06,
             "ceEach": 0.9333,
             "ceExact": true,
-            "payout": 33.13
+            "payout": 34.53
           },
           {
             "product": "4376 Southern Tier Pumking Imperial Pumpkin Ale 6/4/12 oz Btl",
@@ -154648,38 +154657,38 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "10404 Hacker-Pschorr Oktoberfest 4/6/11.2 oz Btl",
             "type": "Case Beer",
-            "cases": 56.0,
-            "ce": 52.26,
+            "cases": 59.0,
+            "ce": 55.06,
             "ceEach": 0.9333,
             "ceExact": true,
-            "payout": 26.13
+            "payout": 27.53
           },
           {
             "product": "8235 Doc's Pumpkin Cider (Fall) 6/4/16 oz Can",
             "type": "Case Cider",
-            "cases": 37.0,
-            "ce": 49.33,
+            "cases": 39.0,
+            "ce": 52.0,
             "ceEach": 1.3333,
             "ceExact": true,
-            "payout": 24.67
+            "payout": 26.0
           },
           {
             "product": "674 Montauk Pumpkin Ale 4/6/12 oz Can",
             "type": "Case Beer",
-            "cases": 46.0,
-            "ce": 46.0,
+            "cases": 49.0,
+            "ce": 49.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 23.0
+            "payout": 24.5
           },
           {
             "product": "10417 Paulaner Oktoberfest Marzen 4/6/11.2 oz Btl",
             "type": "Case Beer",
-            "cases": 47.0,
-            "ce": 43.87,
+            "cases": 52.0,
+            "ce": 48.53,
             "ceEach": 0.9333,
             "ceExact": true,
-            "payout": 21.93
+            "payout": 24.27
           },
           {
             "product": "3953 Sam Adams Jack-O Pumpkin Ale 4/6/12 oz Btl",
@@ -154693,11 +154702,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "9125 1911 Cider Donut 6/4/16 oz Can",
             "type": "Case Cider",
-            "cases": 20.0,
-            "ce": 26.67,
+            "cases": 22.0,
+            "ce": 29.33,
             "ceEach": 1.3333,
             "ceExact": true,
-            "payout": 13.33
+            "payout": 14.67
           },
           {
             "product": "11665 Southern Tier Maple Warlock Imperial Pumpkin Stout 6/4/12 oz Btl",
@@ -154736,13 +154745,22 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 9.98
           },
           {
-            "product": "11640 Victory FestBier 4/6/12 oz Can",
-            "type": "Case Beer",
-            "cases": 16.0,
-            "ce": 16.0,
+            "product": "8143 Angry Orchard Thriller Variety 2/12/12 oz Can",
+            "type": "Case Cider",
+            "cases": 19.0,
+            "ce": 19.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 8.0
+            "payout": 9.5
+          },
+          {
+            "product": "11640 Victory FestBier 4/6/12 oz Can",
+            "type": "Case Beer",
+            "cases": 17.0,
+            "ce": 17.0,
+            "ceEach": 1.0,
+            "ceExact": true,
+            "payout": 8.5
           },
           {
             "product": "3954 Sam Adams Jack-O Pumpkin Ale 2/12/12 oz Btl",
@@ -154772,15 +154790,6 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 7.5
           },
           {
-            "product": "8143 Angry Orchard Thriller Variety 2/12/12 oz Can",
-            "type": "Case Cider",
-            "cases": 15.0,
-            "ce": 15.0,
-            "ceEach": 1.0,
-            "ceExact": true,
-            "payout": 7.5
-          },
-          {
             "product": "10522 Weihenstephan Festbier 4/6/11.2 oz Btl",
             "type": "Case Beer",
             "cases": 16.0,
@@ -154801,11 +154810,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "9161 1911 Haunted Hayride 6/4/16 oz Can",
             "type": "Case Cider",
-            "cases": 10.0,
-            "ce": 13.33,
+            "cases": 11.0,
+            "ce": 14.67,
             "ceEach": 1.3333,
             "ceExact": true,
-            "payout": 6.67
+            "payout": 7.33
           },
           {
             "product": "7641 Long Trail Harvest Ale 4/6/12 oz Btl",
@@ -154907,6 +154916,15 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 3.5
           },
           {
+            "product": "5607 Flying Fish Oktoberfish 4/6/12 oz Can",
+            "type": "Case Beer",
+            "cases": 6.0,
+            "ce": 6.0,
+            "ceEach": 1.0,
+            "ceExact": true,
+            "payout": 3.0
+          },
+          {
             "product": "10405 Hacker-Pschorr Oktoberfest 2/12/11.2 oz Btl",
             "type": "Case Beer",
             "cases": 6.0,
@@ -154916,13 +154934,22 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 2.8
           },
           {
-            "product": "12130 Dogfish Head Fall Variety 2/12/12 oz Can",
+            "product": "4824 Shiner Oktoberfest 4/6/12 oz Btl",
             "type": "Case Beer",
-            "cases": 4.0,
-            "ce": 4.0,
+            "cases": 5.0,
+            "ce": 5.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 2.0
+            "payout": 2.5
+          },
+          {
+            "product": "13137 Cape May Pick of The Batch Pumpkin Ale 4/6/12 oz Can",
+            "type": "Case Beer",
+            "cases": 5.0,
+            "ce": 5.0,
+            "ceEach": 1.0,
+            "ceExact": true,
+            "payout": 2.5
           },
           {
             "product": "930 Leinenkugel Oktoberfest 4/6/12 oz Btl",
@@ -154934,7 +154961,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 2.0
           },
           {
-            "product": "5607 Flying Fish Oktoberfish 4/6/12 oz Can",
+            "product": "12130 Dogfish Head Fall Variety 2/12/12 oz Can",
             "type": "Case Beer",
             "cases": 4.0,
             "ce": 4.0,
@@ -154952,8 +154979,8 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 1.5
           },
           {
-            "product": "13137 Cape May Pick of The Batch Pumpkin Ale 4/6/12 oz Can",
-            "type": "Case Beer",
+            "product": "8085 Woodchuck Spiced Apple 4/6/12 oz Can",
+            "type": "Case Cider",
             "cases": 3.0,
             "ce": 3.0,
             "ceEach": 1.0,
@@ -154968,15 +154995,6 @@ const PROGRAM_DATA_2026_09 = {
             "ceEach": 1.3333,
             "ceExact": true,
             "payout": 1.33
-          },
-          {
-            "product": "4824 Shiner Oktoberfest 4/6/12 oz Btl",
-            "type": "Case Beer",
-            "cases": 2.0,
-            "ce": 2.0,
-            "ceEach": 1.0,
-            "ceExact": true,
-            "payout": 1.0
           },
           {
             "product": "13134 Cape May Oktoberfest 4/6/12 oz Can",
@@ -155027,14 +155045,14 @@ const PROGRAM_DATA_2026_09 = {
         "ceEstimatedLines": 0,
         "sixtelCount": 2.0,
         "halfKegCount": 5.0,
-        "otherKegCount": 20.0,
+        "otherKegCount": 26.0,
         "kegPayout": 60.0,
         "kegs": [
           {
             "product": "5805 Point Whole Hog Pumpkin Ale 7.75 Gal Keg",
             "type": "Keg Beer",
-            "kegs": 12.0,
-            "bbl": 3.0,
+            "kegs": 16.0,
+            "bbl": 4.0,
             "tier": "other size",
             "payout": 0.0
           },
@@ -155047,26 +155065,10 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 0.0
           },
           {
-            "product": "4377 Southern Tier Pumking Imperial Pumpkin Ale Keg 15.5 Gal Keg",
-            "type": "Keg Beer",
-            "kegs": 2.0,
-            "bbl": 1.0,
-            "tier": "half-keg",
-            "payout": 20.0
-          },
-          {
-            "product": "5947 Shipyard Pumpkin Head Keg 15.5 Gal Keg",
-            "type": "Keg Beer",
-            "kegs": 2.0,
-            "bbl": 1.0,
-            "tier": "half-keg",
-            "payout": 20.0
-          },
-          {
             "product": "3304 Hofbrau Oktoberfest 13.2 Gal Keg",
             "type": "Keg Beer",
-            "kegs": 2.0,
-            "bbl": 0.85,
+            "kegs": 3.0,
+            "bbl": 1.28,
             "tier": "other size",
             "payout": 0.0
           },
@@ -155081,10 +155083,26 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "10409 Paulaner Oktoberfest Marzen 13.2 Gal Keg",
             "type": "Keg Beer",
-            "kegs": 1.0,
-            "bbl": 0.43,
+            "kegs": 2.0,
+            "bbl": 0.85,
             "tier": "other size",
             "payout": 0.0
+          },
+          {
+            "product": "5947 Shipyard Pumpkin Head Keg 15.5 Gal Keg",
+            "type": "Keg Beer",
+            "kegs": 2.0,
+            "bbl": 1.0,
+            "tier": "half-keg",
+            "payout": 20.0
+          },
+          {
+            "product": "4377 Southern Tier Pumking Imperial Pumpkin Ale Keg 15.5 Gal Keg",
+            "type": "Keg Beer",
+            "kegs": 2.0,
+            "bbl": 1.0,
+            "tier": "half-keg",
+            "payout": 20.0
           },
           {
             "product": "11666 Southern Tier Maple Warlock Imperial Pumpkin Stout 15.5 Gal Keg",
@@ -155098,41 +155116,41 @@ const PROGRAM_DATA_2026_09 = {
         "spiritsCases": 0.0,
         "spiritsPayout": 0.0,
         "spirits": [],
-        "payout": 527.32
+        "payout": 552.28
       },
       "John O'Donoghue": {
         "team": "Mike Kennedy",
         "window": "8/1/2026 - 9/30/2026",
-        "packageCases": 764.0,
-        "packageCE": 812.16,
-        "packagePayout": 406.08,
+        "packageCases": 815.0,
+        "packageCE": 862.96,
+        "packagePayout": 431.48,
         "packages": [
           {
             "product": "5830 Point Whole Hog Pumpkin Ale 4/6/12 oz Btl",
             "type": "Case Beer",
-            "cases": 167.0,
-            "ce": 167.0,
+            "cases": 180.0,
+            "ce": 180.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 83.5
+            "payout": 90.0
           },
           {
             "product": "3320 Hofbrau Oktoberfest 4/6/11.2 oz Btl",
             "type": "Case Beer",
-            "cases": 154.0,
-            "ce": 143.73,
+            "cases": 177.0,
+            "ce": 165.19,
             "ceEach": 0.9333,
             "ceExact": true,
-            "payout": 71.86
+            "payout": 82.6
           },
           {
             "product": "674 Montauk Pumpkin Ale 4/6/12 oz Can",
             "type": "Case Beer",
-            "cases": 73.0,
-            "ce": 73.0,
+            "cases": 78.0,
+            "ce": 78.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 36.5
+            "payout": 39.0
           },
           {
             "product": "3336 Hofbrau Oktoberfest 6/4/16.9 oz Can",
@@ -155173,20 +155191,20 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "7641 Long Trail Harvest Ale 4/6/12 oz Btl",
             "type": "Case Beer",
-            "cases": 39.0,
-            "ce": 39.0,
+            "cases": 41.0,
+            "ce": 41.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 19.5
+            "payout": 20.5
           },
           {
             "product": "8235 Doc's Pumpkin Cider (Fall) 6/4/16 oz Can",
             "type": "Case Cider",
-            "cases": 25.0,
-            "ce": 33.33,
+            "cases": 29.0,
+            "ce": 38.67,
             "ceEach": 1.3333,
             "ceExact": true,
-            "payout": 16.67
+            "payout": 19.33
           },
           {
             "product": "9161 1911 Haunted Hayride 6/4/16 oz Can",
@@ -155227,15 +155245,24 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "7766 Evil Genius Trick or Treat Chocolate Pumpkin Porter 4/6/12 oz Can",
             "type": "Case Beer",
-            "cases": 8.0,
-            "ce": 8.0,
+            "cases": 11.0,
+            "ce": 11.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 4.0
+            "payout": 5.5
           },
           {
             "product": "4376 Southern Tier Pumking Imperial Pumpkin Ale 6/4/12 oz Btl",
             "type": "Case Beer",
+            "cases": 3.0,
+            "ce": 3.0,
+            "ceEach": 1.0,
+            "ceExact": true,
+            "payout": 1.5
+          },
+          {
+            "product": "8085 Woodchuck Spiced Apple 4/6/12 oz Can",
+            "type": "Case Cider",
             "cases": 3.0,
             "ce": 3.0,
             "ceEach": 1.0,
@@ -155270,15 +155297,6 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 1.0
           },
           {
-            "product": "8085 Woodchuck Spiced Apple 4/6/12 oz Can",
-            "type": "Case Cider",
-            "cases": 2.0,
-            "ce": 2.0,
-            "ceEach": 1.0,
-            "ceExact": true,
-            "payout": 1.0
-          },
-          {
             "product": "8219 Doc's Pumpkin 1/12/22 oz Btl",
             "type": "Case Cider",
             "cases": 1.0,
@@ -155289,10 +155307,10 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "ceEstimatedLines": 0,
-        "sixtelCount": 15.0,
+        "sixtelCount": 17.0,
         "halfKegCount": 8.0,
-        "otherKegCount": 19.0,
-        "kegPayout": 155.0,
+        "otherKegCount": 20.0,
+        "kegPayout": 165.0,
         "kegs": [
           {
             "product": "5805 Point Whole Hog Pumpkin Ale 7.75 Gal Keg",
@@ -155303,20 +155321,20 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 0.0
           },
           {
-            "product": "3304 Hofbrau Oktoberfest 13.2 Gal Keg",
-            "type": "Keg Beer",
-            "kegs": 8.0,
-            "bbl": 3.41,
-            "tier": "other size",
-            "payout": 0.0
-          },
-          {
             "product": "5214 Great Lakes Oktoberfest 5.2 Gal Keg",
             "type": "Keg Beer",
-            "kegs": 7.0,
-            "bbl": 1.17,
+            "kegs": 9.0,
+            "bbl": 1.5,
             "tier": "sixtel",
-            "payout": 35.0
+            "payout": 45.0
+          },
+          {
+            "product": "3304 Hofbrau Oktoberfest 13.2 Gal Keg",
+            "type": "Keg Beer",
+            "kegs": 9.0,
+            "bbl": 3.83,
+            "tier": "other size",
+            "payout": 0.0
           },
           {
             "product": "5213 Great Lakes Oktoberfest Keg 15.5 Gal Keg",
@@ -155370,14 +155388,14 @@ const PROGRAM_DATA_2026_09 = {
         "spiritsCases": 0.0,
         "spiritsPayout": 0.0,
         "spirits": [],
-        "payout": 561.08
+        "payout": 596.48
       },
       "Alisa Acciardi": {
         "team": "Mike Kennedy",
         "window": "8/1/2026 - 9/30/2026",
-        "packageCases": 584.0,
-        "packageCE": 599.77,
-        "packagePayout": 299.88,
+        "packageCases": 608.0,
+        "packageCE": 623.78,
+        "packagePayout": 311.89,
         "packages": [
           {
             "product": "5949 Shipyard Pumpkin Head 4/6/12 oz Btl",
@@ -155389,22 +155407,22 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 39.0
           },
           {
-            "product": "10417 Paulaner Oktoberfest Marzen 4/6/11.2 oz Btl",
-            "type": "Case Beer",
-            "cases": 68.0,
-            "ce": 63.46,
-            "ceEach": 0.9333,
-            "ceExact": true,
-            "payout": 31.73
-          },
-          {
             "product": "5830 Point Whole Hog Pumpkin Ale 4/6/12 oz Btl",
             "type": "Case Beer",
-            "cases": 63.0,
-            "ce": 63.0,
+            "cases": 66.0,
+            "ce": 66.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 31.5
+            "payout": 33.0
+          },
+          {
+            "product": "10417 Paulaner Oktoberfest Marzen 4/6/11.2 oz Btl",
+            "type": "Case Beer",
+            "cases": 69.0,
+            "ce": 64.4,
+            "ceEach": 0.9333,
+            "ceExact": true,
+            "payout": 32.2
           },
           {
             "product": "10404 Hacker-Pschorr Oktoberfest 4/6/11.2 oz Btl",
@@ -155418,11 +155436,29 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "4376 Southern Tier Pumking Imperial Pumpkin Ale 6/4/12 oz Btl",
             "type": "Case Beer",
-            "cases": 43.0,
-            "ce": 43.0,
+            "cases": 46.0,
+            "ce": 46.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 21.5
+            "payout": 23.0
+          },
+          {
+            "product": "674 Montauk Pumpkin Ale 4/6/12 oz Can",
+            "type": "Case Beer",
+            "cases": 38.0,
+            "ce": 38.0,
+            "ceEach": 1.0,
+            "ceExact": true,
+            "payout": 19.0
+          },
+          {
+            "product": "3320 Hofbrau Oktoberfest 4/6/11.2 oz Btl",
+            "type": "Case Beer",
+            "cases": 37.0,
+            "ce": 34.53,
+            "ceEach": 0.9333,
+            "ceExact": true,
+            "payout": 17.27
           },
           {
             "product": "3330 Hofbrau Oktoberfest 2/5 L Keg Can",
@@ -155432,24 +155468,6 @@ const PROGRAM_DATA_2026_09 = {
             "ceEach": 1.1741,
             "ceExact": true,
             "payout": 15.26
-          },
-          {
-            "product": "674 Montauk Pumpkin Ale 4/6/12 oz Can",
-            "type": "Case Beer",
-            "cases": 30.0,
-            "ce": 30.0,
-            "ceEach": 1.0,
-            "ceExact": true,
-            "payout": 15.0
-          },
-          {
-            "product": "3320 Hofbrau Oktoberfest 4/6/11.2 oz Btl",
-            "type": "Case Beer",
-            "cases": 32.0,
-            "ce": 29.87,
-            "ceEach": 0.9333,
-            "ceExact": true,
-            "payout": 14.93
           },
           {
             "product": "10522 Weihenstephan Festbier 4/6/11.2 oz Btl",
@@ -155463,11 +155481,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "10444 Paulaner Oktoberfest Bier 6/4/16.9 oz Can",
             "type": "Case Beer",
-            "cases": 14.0,
-            "ce": 19.72,
+            "cases": 15.0,
+            "ce": 21.12,
             "ceEach": 1.4083,
             "ceExact": true,
-            "payout": 9.86
+            "payout": 10.56
           },
           {
             "product": "11640 Victory FestBier 4/6/12 oz Can",
@@ -155490,11 +155508,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "7552 Saranac Pumpkin Ale 4/6/12 oz Btl",
             "type": "Case Beer",
-            "cases": 16.0,
-            "ce": 16.0,
+            "cases": 17.0,
+            "ce": 17.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 8.0
+            "payout": 8.5
           },
           {
             "product": "8235 Doc's Pumpkin Cider (Fall) 6/4/16 oz Can",
@@ -155508,11 +155526,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "11665 Southern Tier Maple Warlock Imperial Pumpkin Stout 6/4/12 oz Btl",
             "type": "Case Beer",
-            "cases": 12.0,
-            "ce": 12.0,
+            "cases": 14.0,
+            "ce": 14.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 6.0
+            "payout": 7.0
           },
           {
             "product": "9161 1911 Haunted Hayride 6/4/16 oz Can",
@@ -155569,7 +155587,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 3.33
           },
           {
-            "product": "10418 Paulaner Oktoberfest Marzen 2/12/11.2 oz Btl",
+            "product": "10407 Paulaner Oktoberfest Bier 2/12/11.2 oz Btl",
             "type": "Case Beer",
             "cases": 7.0,
             "ce": 6.53,
@@ -155578,7 +155596,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 3.27
           },
           {
-            "product": "10407 Paulaner Oktoberfest Bier 2/12/11.2 oz Btl",
+            "product": "10418 Paulaner Oktoberfest Marzen 2/12/11.2 oz Btl",
             "type": "Case Beer",
             "cases": 7.0,
             "ce": 6.53,
@@ -155624,10 +155642,10 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "ceEstimatedLines": 0,
-        "sixtelCount": 6.0,
+        "sixtelCount": 7.0,
         "halfKegCount": 0.0,
-        "otherKegCount": 5.0,
-        "kegPayout": 30.0,
+        "otherKegCount": 8.0,
+        "kegPayout": 35.0,
         "kegs": [
           {
             "product": "5948 Shipyard Pumpkin Head 5.2 Gal Keg",
@@ -155640,16 +155658,16 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "3304 Hofbrau Oktoberfest 13.2 Gal Keg",
             "type": "Keg Beer",
-            "kegs": 3.0,
-            "bbl": 1.28,
+            "kegs": 5.0,
+            "bbl": 2.13,
             "tier": "other size",
             "payout": 0.0
           },
           {
             "product": "10403 Hacker-Pschorr Oktoberfest 13.2 Gal Keg",
             "type": "Keg Beer",
-            "kegs": 1.0,
-            "bbl": 0.43,
+            "kegs": 2.0,
+            "bbl": 0.85,
             "tier": "other size",
             "payout": 0.0
           },
@@ -155660,19 +155678,27 @@ const PROGRAM_DATA_2026_09 = {
             "bbl": 0.43,
             "tier": "other size",
             "payout": 0.0
+          },
+          {
+            "product": "8223 Doc's Pumpkin 5.2 Gal Keg",
+            "type": "Keg Cider",
+            "kegs": 1.0,
+            "bbl": 0.17,
+            "tier": "sixtel",
+            "payout": 5.0
           }
         ],
         "spiritsCases": 0.0,
         "spiritsPayout": 0.0,
         "spirits": [],
-        "payout": 329.88
+        "payout": 346.89
       },
       "Andrew Lundy": {
         "team": "Mike Kennedy",
         "window": "8/1/2026 - 9/30/2026",
-        "packageCases": 541.0,
-        "packageCE": 574.07,
-        "packagePayout": 287.03,
+        "packageCases": 544.0,
+        "packageCE": 578.07,
+        "packagePayout": 289.03,
         "packages": [
           {
             "product": "3330 Hofbrau Oktoberfest 2/5 L Keg Can",
@@ -155695,20 +155721,20 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "5830 Point Whole Hog Pumpkin Ale 4/6/12 oz Btl",
             "type": "Case Beer",
-            "cases": 74.0,
-            "ce": 74.0,
+            "cases": 71.0,
+            "ce": 71.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 37.0
+            "payout": 35.5
           },
           {
             "product": "674 Montauk Pumpkin Ale 4/6/12 oz Can",
             "type": "Case Beer",
-            "cases": 46.0,
-            "ce": 46.0,
+            "cases": 48.0,
+            "ce": 48.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 23.0
+            "payout": 24.0
           },
           {
             "product": "3336 Hofbrau Oktoberfest 6/4/16.9 oz Can",
@@ -155720,6 +155746,15 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 16.2
           },
           {
+            "product": "9125 1911 Cider Donut 6/4/16 oz Can",
+            "type": "Case Cider",
+            "cases": 24.0,
+            "ce": 32.0,
+            "ceEach": 1.3333,
+            "ceExact": true,
+            "payout": 16.0
+          },
+          {
             "product": "7552 Saranac Pumpkin Ale 4/6/12 oz Btl",
             "type": "Case Beer",
             "cases": 29.0,
@@ -155727,15 +155762,6 @@ const PROGRAM_DATA_2026_09 = {
             "ceEach": 1.0,
             "ceExact": true,
             "payout": 14.5
-          },
-          {
-            "product": "9125 1911 Cider Donut 6/4/16 oz Can",
-            "type": "Case Cider",
-            "cases": 21.0,
-            "ce": 28.0,
-            "ceEach": 1.3333,
-            "ceExact": true,
-            "payout": 14.0
           },
           {
             "product": "7559 Saranac 12 Beers of October 2/12/12 oz Btl",
@@ -155799,6 +155825,15 @@ const PROGRAM_DATA_2026_09 = {
             "ceEach": 0.9333,
             "ceExact": true,
             "payout": 1.87
+          },
+          {
+            "product": "8085 Woodchuck Spiced Apple 4/6/12 oz Can",
+            "type": "Case Cider",
+            "cases": 1.0,
+            "ce": 1.0,
+            "ceEach": 1.0,
+            "ceExact": true,
+            "payout": 0.5
           }
         ],
         "ceEstimatedLines": 0,
@@ -155824,69 +155859,69 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 0.0
           },
           {
-            "product": "5213 Great Lakes Oktoberfest Keg 15.5 Gal Keg",
-            "type": "Keg Beer",
-            "kegs": 1.0,
-            "bbl": 0.5,
-            "tier": "half-keg",
-            "payout": 10.0
-          },
-          {
             "product": "5214 Great Lakes Oktoberfest 5.2 Gal Keg",
             "type": "Keg Beer",
             "kegs": 1.0,
             "bbl": 0.17,
             "tier": "sixtel",
             "payout": 5.0
+          },
+          {
+            "product": "5213 Great Lakes Oktoberfest Keg 15.5 Gal Keg",
+            "type": "Keg Beer",
+            "kegs": 1.0,
+            "bbl": 0.5,
+            "tier": "half-keg",
+            "payout": 10.0
           }
         ],
         "spiritsCases": 0.0,
         "spiritsPayout": 0.0,
         "spirits": [],
-        "payout": 302.03
+        "payout": 304.03
       },
       "Dylan Rubino": {
         "team": "Mike Kennedy",
         "window": "8/1/2026 - 9/30/2026",
-        "packageCases": 330.0,
-        "packageCE": 334.21,
-        "packagePayout": 167.1,
+        "packageCases": 341.0,
+        "packageCE": 345.88,
+        "packagePayout": 172.94,
         "packages": [
           {
             "product": "5949 Shipyard Pumpkin Head 4/6/12 oz Btl",
             "type": "Case Beer",
-            "cases": 89.0,
-            "ce": 89.0,
+            "cases": 91.0,
+            "ce": 91.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 44.5
+            "payout": 45.5
           },
           {
             "product": "4376 Southern Tier Pumking Imperial Pumpkin Ale 6/4/12 oz Btl",
             "type": "Case Beer",
-            "cases": 82.0,
-            "ce": 82.0,
+            "cases": 83.0,
+            "ce": 83.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 41.0
+            "payout": 41.5
           },
           {
             "product": "674 Montauk Pumpkin Ale 4/6/12 oz Can",
             "type": "Case Beer",
-            "cases": 34.0,
-            "ce": 34.0,
+            "cases": 35.0,
+            "ce": 35.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 17.0
+            "payout": 17.5
           },
           {
             "product": "3320 Hofbrau Oktoberfest 4/6/11.2 oz Btl",
             "type": "Case Beer",
-            "cases": 22.0,
-            "ce": 20.53,
+            "cases": 23.0,
+            "ce": 21.47,
             "ceEach": 0.9333,
             "ceExact": true,
-            "payout": 10.27
+            "payout": 10.73
           },
           {
             "product": "10417 Paulaner Oktoberfest Marzen 4/6/11.2 oz Btl",
@@ -155916,6 +155951,15 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 8.4
           },
           {
+            "product": "10444 Paulaner Oktoberfest Bier 6/4/16.9 oz Can",
+            "type": "Case Beer",
+            "cases": 8.0,
+            "ce": 11.27,
+            "ceEach": 1.4083,
+            "ceExact": true,
+            "payout": 5.63
+          },
+          {
             "product": "11682 Southern Tier Pumqueen 6/4/16 oz Can",
             "type": "Case Beer",
             "cases": 8.0,
@@ -155923,15 +155967,6 @@ const PROGRAM_DATA_2026_09 = {
             "ceEach": 1.3333,
             "ceExact": true,
             "payout": 5.33
-          },
-          {
-            "product": "10444 Paulaner Oktoberfest Bier 6/4/16.9 oz Can",
-            "type": "Case Beer",
-            "cases": 7.0,
-            "ce": 9.86,
-            "ceEach": 1.4083,
-            "ceExact": true,
-            "payout": 4.93
           },
           {
             "product": "7552 Saranac Pumpkin Ale 4/6/12 oz Btl",
@@ -155961,6 +155996,15 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 2.82
           },
           {
+            "product": "11640 Victory FestBier 4/6/12 oz Can",
+            "type": "Case Beer",
+            "cases": 4.0,
+            "ce": 4.0,
+            "ceEach": 1.0,
+            "ceExact": true,
+            "payout": 2.0
+          },
+          {
             "product": "11665 Southern Tier Maple Warlock Imperial Pumpkin Stout 6/4/12 oz Btl",
             "type": "Case Beer",
             "cases": 4.0,
@@ -155970,15 +156014,6 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 2.0
           },
           {
-            "product": "11640 Victory FestBier 4/6/12 oz Can",
-            "type": "Case Beer",
-            "cases": 3.0,
-            "ce": 3.0,
-            "ceEach": 1.0,
-            "ceExact": true,
-            "payout": 1.5
-          },
-          {
             "product": "10404 Hacker-Pschorr Oktoberfest 4/6/11.2 oz Btl",
             "type": "Case Beer",
             "cases": 3.0,
@@ -155986,6 +156021,24 @@ const PROGRAM_DATA_2026_09 = {
             "ceEach": 0.9333,
             "ceExact": true,
             "payout": 1.4
+          },
+          {
+            "product": "9125 1911 Cider Donut 6/4/16 oz Can",
+            "type": "Case Cider",
+            "cases": 2.0,
+            "ce": 2.67,
+            "ceEach": 1.3333,
+            "ceExact": true,
+            "payout": 1.33
+          },
+          {
+            "product": "8085 Woodchuck Spiced Apple 4/6/12 oz Can",
+            "type": "Case Cider",
+            "cases": 2.0,
+            "ce": 2.0,
+            "ceEach": 1.0,
+            "ceExact": true,
+            "payout": 1.0
           },
           {
             "product": "10405 Hacker-Pschorr Oktoberfest 2/12/11.2 oz Btl",
@@ -156006,13 +156059,13 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 0.67
           },
           {
-            "product": "9125 1911 Cider Donut 6/4/16 oz Can",
-            "type": "Case Cider",
+            "product": "3953 Sam Adams Jack-O Pumpkin Ale 4/6/12 oz Btl",
+            "type": "Case Beer",
             "cases": 1.0,
-            "ce": 1.33,
-            "ceEach": 1.3333,
+            "ce": 1.0,
+            "ceEach": 1.0,
             "ceExact": true,
-            "payout": 0.67
+            "payout": 0.5
           },
           {
             "product": "11639 Southern Tier Harvest Autumn IPA 4/6/12 oz Can",
@@ -156073,14 +156126,14 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 5.0
           }
         ],
-        "payout": 177.1
+        "payout": 182.94
       },
       "Hakan Sadik": {
         "team": "Mike Kennedy",
         "window": "8/1/2026 - 9/30/2026",
-        "packageCases": 230.0,
-        "packageCE": 232.4,
-        "packagePayout": 116.2,
+        "packageCases": 242.0,
+        "packageCE": 244.4,
+        "packagePayout": 122.2,
         "packages": [
           {
             "product": "5949 Shipyard Pumpkin Head 4/6/12 oz Btl",
@@ -156092,6 +156145,15 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 18.0
           },
           {
+            "product": "4376 Southern Tier Pumking Imperial Pumpkin Ale 6/4/12 oz Btl",
+            "type": "Case Beer",
+            "cases": 34.0,
+            "ce": 34.0,
+            "ceEach": 1.0,
+            "ceExact": true,
+            "payout": 17.0
+          },
+          {
             "product": "5830 Point Whole Hog Pumpkin Ale 4/6/12 oz Btl",
             "type": "Case Beer",
             "cases": 27.0,
@@ -156099,15 +156161,6 @@ const PROGRAM_DATA_2026_09 = {
             "ceEach": 1.0,
             "ceExact": true,
             "payout": 13.5
-          },
-          {
-            "product": "4376 Southern Tier Pumking Imperial Pumpkin Ale 6/4/12 oz Btl",
-            "type": "Case Beer",
-            "cases": 24.0,
-            "ce": 24.0,
-            "ceEach": 1.0,
-            "ceExact": true,
-            "payout": 12.0
           },
           {
             "product": "10404 Hacker-Pschorr Oktoberfest 4/6/11.2 oz Btl",
@@ -156139,11 +156192,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "674 Montauk Pumpkin Ale 4/6/12 oz Can",
             "type": "Case Beer",
-            "cases": 12.0,
-            "ce": 12.0,
+            "cases": 14.0,
+            "ce": 14.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 6.0
+            "payout": 7.0
           },
           {
             "product": "10405 Hacker-Pschorr Oktoberfest 2/12/11.2 oz Btl",
@@ -156209,7 +156262,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 2.67
           },
           {
-            "product": "5344 Great Lakes Biergarten Party Pack 2/12/12 oz Can",
+            "product": "11640 Victory FestBier 4/6/12 oz Can",
             "type": "Case Beer",
             "cases": 5.0,
             "ce": 5.0,
@@ -156218,7 +156271,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 2.5
           },
           {
-            "product": "11640 Victory FestBier 4/6/12 oz Can",
+            "product": "5344 Great Lakes Biergarten Party Pack 2/12/12 oz Can",
             "type": "Case Beer",
             "cases": 5.0,
             "ce": 5.0,
@@ -156272,15 +156325,6 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 1.33
           },
           {
-            "product": "7766 Evil Genius Trick or Treat Chocolate Pumpkin Porter 4/6/12 oz Can",
-            "type": "Case Beer",
-            "cases": 1.0,
-            "ce": 1.0,
-            "ceEach": 1.0,
-            "ceExact": true,
-            "payout": 0.5
-          },
-          {
             "product": "11639 Southern Tier Harvest Autumn IPA 4/6/12 oz Can",
             "type": "Case Beer",
             "cases": 1.0,
@@ -156306,12 +156350,21 @@ const PROGRAM_DATA_2026_09 = {
             "ceEach": 1.0,
             "ceExact": true,
             "payout": 0.5
+          },
+          {
+            "product": "7766 Evil Genius Trick or Treat Chocolate Pumpkin Porter 4/6/12 oz Can",
+            "type": "Case Beer",
+            "cases": 1.0,
+            "ce": 1.0,
+            "ceEach": 1.0,
+            "ceExact": true,
+            "payout": 0.5
           }
         ],
         "ceEstimatedLines": 0,
         "sixtelCount": 0.0,
         "halfKegCount": 9.0,
-        "otherKegCount": 9.0,
+        "otherKegCount": 10.0,
         "kegPayout": 90.0,
         "kegs": [
           {
@@ -156339,6 +156392,14 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 0.0
           },
           {
+            "product": "10506 Weihenstephan Festbier 13.2 Gal Keg",
+            "type": "Keg Beer",
+            "kegs": 1.0,
+            "bbl": 0.43,
+            "tier": "other size",
+            "payout": 0.0
+          },
+          {
             "product": "5213 Great Lakes Oktoberfest Keg 15.5 Gal Keg",
             "type": "Keg Beer",
             "kegs": 1.0,
@@ -156356,7 +156417,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 5.0
           }
         ],
-        "payout": 211.2
+        "payout": 217.2
       },
       "Alex Rodriguez": {
         "team": "Mike Kennedy",
@@ -156384,7 +156445,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 2.0
           },
           {
-            "product": "10417 Paulaner Oktoberfest Marzen 4/6/11.2 oz Btl",
+            "product": "10404 Hacker-Pschorr Oktoberfest 4/6/11.2 oz Btl",
             "type": "Case Beer",
             "cases": 4.0,
             "ce": 3.73,
@@ -156393,7 +156454,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 1.87
           },
           {
-            "product": "10404 Hacker-Pschorr Oktoberfest 4/6/11.2 oz Btl",
+            "product": "10417 Paulaner Oktoberfest Marzen 4/6/11.2 oz Btl",
             "type": "Case Beer",
             "cases": 4.0,
             "ce": 3.73,
@@ -156475,5 +156536,5 @@ const PROGRAM_DATA_2026_09 = {
     }
   }
 };
-const PROGRAM_DATA_REFRESHED = "Sep 23, 2026, 11:42 AM ET";
-const PROGRAM_DATA_REFRESHED_AT = "2026-09-23T15:42:42Z";
+const PROGRAM_DATA_REFRESHED = "Sep 23, 2026, 11:50 AM ET";
+const PROGRAM_DATA_REFRESHED_AT = "2026-09-23T15:50:15Z";

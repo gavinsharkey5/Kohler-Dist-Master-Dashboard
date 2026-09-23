@@ -4096,6 +4096,35 @@ ahead of a 9/21 pull -- kept, as every future-dated row has been.
              3 at bonus, $855.
 Hub cache tag bumped (20260921b) for the new program_data.js.
 
+2026-09-23 SEVENTH REFRESH -- Yuengling Fall (off / packages / draft) + Southern District (vSD)
+  python3 generate.py
+All five flat CSVs straight over data/yuengling_retention_fall_off.csv /
+_packages_on.csv / _draft_on.csv, data/fall_seasonal_sd.csv and
+data/path_to_victory_sd.csv, same headers. Compared on the built output:
+0 Yuengling goals moved, EVERY count up or flat, nothing went down.
+  Yuengling  4 -> 6 / 58 brand goals held; 0 reps holding every goal, day 23
+             of 91. NEWLY HELD: ANTHONY PALMISANO off Lager 23 -> 24 of 24,
+             KLEJDI LAMO off Lager 23 -> 25 of 25. Off Lager 270 -> 280/338,
+             Flight 95 -> 106/152, Light Lager 68 -> 72/134; packages Lager
+             157 -> 169/258 (Robin Feldman 52 -> 58, Allison Scott 9 -> 12).
+             The off export gained one row: Derrick Laws / Light Lager with
+             no 2025 base and no goal (1 buyer) -- a brand row, not a
+             subtotal; it carries no goal and scores nothing.
+             DRAFT STILL READS THE 9/10 ACCOUNT SHEET (rule 6): 150/293 Lager,
+             3/7 Flight. The draft SUMMARY moved (Allison Scott 47 -> 49,
+             Anthony Palmisano 22 -> 24, Brian Sengebush 60 -> 63, ...) and the
+             CSV carries it, but the page counts draft from
+             yuengling_retention_fall_draft_on_detail.csv, not re-sent.
+  Fall Seasonal (vSD)  283 -> 290 rows; 4,589 -> 4,823 package CE, $3,234 ->
+             $3,382 trackable. Jaime Colonna $1,109 -> $1,165 (1,023 -> 1,103
+             cases, 3 more sixtels), John O'Donoghue $561 -> $596, Michael
+             Harboy $527 -> $552, Alisa Acciardi $330 -> $347 (first extra
+             sixtel), Dylan Rubino, Hakan Sadik, Andrew Lundy up. Nobody down.
+  Path to Victory (vSD)  67 -> 70 new 6pk PODs of 238, $670 -> $700: Jaime
+             Colonna 14 -> 16, Dylan Rubino 26 -> 27. Andrew Lundy still not
+             in the export.
+Hub cache tag bumped (20260923g) for the new program_data.js.
+
 2026-09-23 SIXTH REFRESH -- Molson Coors retention (on + off) + MABI Fall GOALS
   python3 convert_mc_retention.py <On_Premise ... w Goals_5.xlsx> <Off_Premise ... w Goals_5.xlsx>
   python3 convert_mabi_fall.py --goals-only data/mabi_retention_fall_goals_source.csv
