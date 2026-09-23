@@ -119,6 +119,26 @@ accounts / Core 71 / Core+ 38. Gavin the same day: "make this start in
 july ignore june my apologies" -- July 1 it is, and June rows are dropped
 on every build from here.
 
+2026-09-23 REFRESH -- RDE_Red_Bull_Tracker_June_1_Start_1.csv (899 rows,
+7/1 through 9/24 -- starts July 1 again, nothing dropped). Four accounts
+joined, none left, and no account lost a category: buying accounts
+163 -> 167, Regular 154 -> 158, Free 72 -> 75, Flavor 44 -> 49. Core 64 -> 67
+of 155, CORE+ 34 -> 40 of 84.
+  Newly Core+ (all 3):
+    Anthony Palmisano  Airport Pub & Pkg          new, straight to all 3
+    Anthony Palmisano  The Lamp Post Inn          Core -> all 3 (+ Flavor)
+    Brian Sengebush    Mckenna's Pub (P)          Core -> all 3 (+ Flavor)
+    Brian Sengebush    Pat's Bar (P)              Core -> all 3 (+ Flavor)
+    Brian Sengebush    Millers Ale House Rockawa  Reg+Flavor -> all 3 (+ Free)
+    Paul Mclaughlin    Bowler City Bowling        Core -> all 3 (+ Flavor)
+  Other moves: Paul Mclaughlin / Midland Brewhouse (A) Regular -> Core
+  (+ Free); new Regular-only buyers Allison Scott / Yesterdays (P), Pablo
+  Lopez / Azul Restaurant, Paul Mclaughlin / Jack E Pooh's.
+Rows dated 9/24 are scheduled loads for the day after the pull; inside the
+window, so they count. Core+ leaderboard: Paul Mclaughlin 10 -> 11, Allison
+Scott 8, Brian Sengebush 3 -> 6, Nick Melissari 6, Anthony Palmisano 2 -> 4,
+Robin Feldman 4, Dan Lagala 1.
+
 2026-09-22 REFRESH -- RDE_Red_Bull_Tracker_June_1_Start.csv (875 rows,
 7/1 through 9/23 -- despite the file name the export starts July 1, so
 nothing was dropped; July 345 and August 293 rows match the 9/17 build
