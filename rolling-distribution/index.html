@@ -189,6 +189,9 @@
   @media print{.qexpl{grid-template-columns:1fr 1fr 1fr;gap:6px}.qblk{padding:4px 8px}.qexpl li{margin:1px 0}}
   .qcard h2{font-size:23px}
   @media print{.qexpl{font-size:11px;gap:2px}}
+  .terr{margin:-6px 0 14px;padding:10px 14px;border-radius:10px;background:var(--card);border:1px solid var(--gold);border-left-width:6px;font-size:15.5px;line-height:1.5;color:var(--ink)}
+  .terr.off{border-color:var(--bad)}
+  .terr .btn{margin-left:8px;vertical-align:middle}
   .takeaway{margin:12px 0 16px;padding:16px 18px 14px;border-radius:14px;background:linear-gradient(180deg,var(--gold-soft),var(--card));border:2px solid var(--gold);box-shadow:0 0 0 4px rgba(255,177,61,.12)}
   .tk-title{font-family:"Archivo",Arial,sans-serif;font-weight:700;font-size:18px;color:var(--gold);letter-spacing:.02em;margin:0 0 6px}
   .takeaway ul{margin:0;padding-left:22px;font-size:17px;line-height:1.55;color:var(--ink)}
@@ -283,7 +286,7 @@
 </div>
 <div class="tip" id="tip"></div>
 <script src="data/logos.js?v=2"></script>
-<script src="data/dist_data.js?v=36"></script>
+<script src="data/dist_data.js?v=37"></script>
 <script>
 (function(){
   var D = window.DIST_DATA;
@@ -306,6 +309,34 @@
     for(var k=0;k<arr.length;k++){ if(arr[k]!==null){ CASES[i*M+lo+k]=arr[k]; ACT[i*M+lo+k]=1; } }
   }
   var products = D.products, customers = D.customers;
+  // ---- territory (Brand_Selling_Restrictions): which areas each brand family may be sold in
+  var RAW_CASES = CASES, RAW_ACT = ACT;
+  var SELL = D.sell||[], TERR = D.territory||[], RULE_AREAS = D.rule_areas||[];
+  var HAS_TERR = SELL.some(function(x){ return !!x; });
+  var isRuleArea = {}; RULE_AREAS.forEach(function(a){ isRuleArea[a]=1; });
+  var areaByKey = {}; D.areas.forEach(function(a,i){ areaByKey[a.toUpperCase()]=i; });
+  var morrisAreas = []; D.areas.forEach(function(a,i){ if(/^MORRIS/i.test(a) && isRuleArea[i]) morrisAreas.push(i); });
+  // effective area of each account: its distribution area when the rule sheet has a column for it, else its
+  // county when that is an area name (house / "Sales" accounts), -2 = Morris county (any Morris area), -1 = unmapped
+  var CAREA = new Int16Array(customers.length);
+  customers.forEach(function(c,i){ if(isRuleArea[c[3]]){ CAREA[i]=c[3]; return; } var k=(c[6]||'').toUpperCase(); if(k in areaByKey && isRuleArea[areaByKey[k]]){ CAREA[i]=areaByKey[k]; return; } CAREA[i] = k==='MORRIS' ? -2 : -1; });
+  var SELLSET = SELL.map(function(l){ if(!l) return null; var o={}; l.forEach(function(a){ o[a]=1; }); return o; });
+  function famSells(f, ci){ var st=SELLSET[f]; if(!st) return true; var a=CAREA[ci]; if(a>=0) return !!st[a]; if(a===-2) return morrisAreas.some(function(m){ return st[m]; }); return /all counties/i.test(TERR[f]||''); }
+  var PAIR_OK = new Uint8Array(NP);
+  for(var i0=0;i0<NP;i0++){ PAIR_OK[i0] = famSells(products[PP[i0]][3], PC[i0]) ? 1 : 0; }
+  var T_CASES=null, T_ACT=null;
+  function terrActive(){ return HAS_TERR && S.terr!=='off'; }
+  function applyTerritory(){
+    if(!terrActive()){ CASES=RAW_CASES; ACT=RAW_ACT; return; }
+    if(!T_CASES){ T_CASES=new Float32Array(RAW_CASES); T_ACT=new Uint8Array(RAW_ACT); for(var i=0;i<NP;i++){ if(!PAIR_OK[i]){ T_CASES.fill(0,i*M,(i+1)*M); T_ACT.fill(0,i*M,(i+1)*M); } } }
+    CASES=T_CASES; ACT=T_ACT;
+  }
+  function scopedFamilies(){
+    var o={}; if(S.fam>=0){ o[S.fam]=1; return Object.keys(o).map(Number); }
+    products.forEach(function(p,i){ if(S.prod>=0 && i!==S.prod) return; if(S.brand>=0 && p[4]!==S.brand) return; if(S.sup>=0 && p[2]!==S.sup) return; if(S.bm>=0 && D.supplier_bm[p[2]]!==S.bm) return; o[p[3]]=1; });
+    return Object.keys(o).map(Number);
+  }
+  var TERR_EXCL = 0, COUNTY_OK = null, AREA_OK = null;
   var LEVELS = [
     {key:'supplier', label:'Supplier', plural:'Suppliers', names:D.suppliers, idx:2},
     {key:'family',   label:'Brand family', plural:'Brand families', names:D.families, idx:3},
@@ -329,7 +360,7 @@
   // ---------------------------------------------------------------- state
   var S = {page:'tracker',bm:-1,sup:-1,fam:-1,brand:-1,prod:-1,pkg:'all',prem:'all',dm:-1,rep:-1,area:-1,county:-1,cust:-1,rows:'brand',
            len:3, n:3, end:M-1, view:'compare', focus:M-1, yoy:1, raw:0, metric:'all', tab:'children',
-           sort:'', dir:-1, cmetric:'cases', q:'', more:0, chart:0, pmode:'roll', cp:'', cols:'buyers', tcore:5, tthin:1, tmode:'rel', tq:25, gain:'', qtab:'children', ftab:'area', rtab:'children', gtab:'county'};
+           sort:'', dir:-1, cmetric:'cases', q:'', more:0, chart:0, pmode:'roll', cp:'', cols:'buyers', tcore:5, tthin:1, tmode:'rel', tq:25, gain:'', terr:'on', qtab:'children', ftab:'area', rtab:'children', gtab:'county'};
   var DEFAULTS = JSON.parse(JSON.stringify(S));
   // Filters travel in the URL by NAME (product by its number), never by list position,
   // so a bookmarked link still points at the same thing after a data refresh adds rows.
@@ -377,6 +408,10 @@
 
   // ---------------------------------------------------------------- periods
   function period(endIdx, len){ var s=endIdx-len+1; if(s<0) return null; return {s:s,e:endIdx,len:len}; }
+  function futureLabel(s, e){ // label for a period that runs past the loaded months
+    function nm(i){ var y=parseInt(D.months[0].slice(0,4),10), m=parseInt(D.months[0].slice(5),10)-1+i; return {n:MONTH_NAMES[((m%12)+12)%12], y:y+Math.floor(m/12)}; }
+    var a=nm(s), b=nm(e); return a.y===b.y ? a.n+'\u2013'+b.n+' '+b.y : a.n+' '+a.y+'\u2013'+b.n+' '+b.y;
+  }
   function pLabel(p, long){
     if(!p) return '—';
     if(p.len===1) return mLabel(p.s,true);
@@ -447,10 +482,17 @@
     }
     return m;
   }
-  function customerMask(){
+  function customerMask(ignoreTerr){
     var m = new Uint8Array(customers.length);
+    var fams = (!ignoreTerr && terrActive()) ? scopedFamilies() : null;
+    if(fams && !fams.some(function(f){ return !!SELLSET[f]; })) fams=null;   // nothing in scope has a rule
+    if(!ignoreTerr){
+      TERR_EXCL=0; COUNTY_OK={}; AREA_OK=fams?{}:null;
+    }
     for(var i=0;i<customers.length;i++){
       var c=customers[i];
+      if(fams){ var ok=false; for(var q=0;q<fams.length;q++){ if(famSells(fams[q],i)){ ok=true; break; } } if(!ok){ TERR_EXCL++; continue; } }
+      if(!ignoreTerr){ COUNTY_OK[c[6]||'(unknown)']=1; if(AREA_OK) AREA_OK[c[3]]=1; }
       if(S.prem==='on' && !c[2]) continue;
       if(S.prem==='off' && c[2]) continue;
       if(S.dm>=0 && c[5]!==S.dm) continue;
@@ -548,10 +590,12 @@
     if(!restoring){ if(!HIST.length || HIST[HIST.length-1]!==snap){ HIST.push(snap); if(HIST.length>60) HIST.shift(); } }
     restoring = false;
     writeHash();
+    applyTerritory();
     var pm = productMask(), cm = customerMask();
     var html = [];
     html.push(controlsHtml());
     var periods = buildPeriods();
+    html.push(terrNote(pm, periods[periods.length-1]));
     var ps = periodSums(periods.concat(periods.map(priorPeriod)).concat(periods.map(yoyPeriod)));
     var P = periods.length;
     var li = currentLevel();
@@ -584,6 +628,32 @@
   function pageTabs(){
     return '<div class="pagetabs"><button data-page="tracker" class="'+(S.page==='tracker'?'on':'')+'"><span class="pt-ico">📈</span>Rolling Trends<small>Buyers, placements and cases by period</small></button><button data-page="quality" class="'+(S.page==='quality'?'on':'')+'"><span class="pt-ico">🎯</span>Distribution Quality<small>Are the points real? Where does the brand fit?</small></button></div>';
   }
+  function terrNote(pm, T){
+    if(!HAS_TERR) return '';
+    var fams=scopedFamilies(), ruled=fams.filter(function(f){ return !!SELLSET[f]; });
+    if(!ruled.length){
+      if(fams.length===1) return '<div class="terr off"><b>No territory rule on file for '+esc(D.families[fams[0]])+'</b> — it is counted in every area until the Brand Selling Restrictions sheet gets a row for it.</div>';
+      return '';
+    }
+    if(!terrActive()){
+      return '<div class="terr off"><b>Territory rule is OFF.</b> Every account and every invoiced case is counted, including areas where the brand cannot be sold. <button class="btn small" id="terr-toggle">Switch it back on</button></div>';
+    }
+    // what the rule removed: accounts outside the territory, and invoiced placements / cases there in the newest period
+    var cm0=customerMask(true), hidP=0, hidC=0;
+    if(T){ for(var i=0;i<NP;i++){ if(!pm[PP[i]]||!cm0[PC[i]]||PAIR_OK[i]) continue; var b=i*M, v=0; for(var k=T.s;k<=T.e;k++){ if(RAW_ACT[b+k]) v+=RAW_CASES[b+k]; } if(v>0){ hidP++; hidC+=v; } } }
+    var h=['<div class="terr">'];
+    if(fams.length===1){
+      var f=fams[0], names=SELL[f].map(function(a){ return D.areas[a]; });
+      h.push('<b>Territory rule:</b> '+esc(D.families[f])+(TERR[f]?' is a <b>'+esc(TERR[f])+'</b> brand,':'')+' sold in <b>'+esc(names.join(', '))+'</b>. '
+        +'This page counts only accounts in those areas'+(TERR_EXCL?' — <b>'+fmtN(TERR_EXCL)+' accounts elsewhere are left out</b> so they never look like missed opportunities':'')+'.');
+    } else {
+      h.push('<b>Territory rule:</b> each brand family is counted only in the areas it can be sold ('+fmtN(ruled.length)+' of the '+fmtN(fams.length)+' families in view have a rule)'+(TERR_EXCL?'; <b>'+fmtN(TERR_EXCL)+' accounts</b> outside every family\u2019s territory are left out':'')+'.');
+    }
+    if(hidP) h.push(' Invoices outside the territory in '+esc(pLabel(T))+' — <b>'+fmtN(hidP)+' placements, '+fmtC(hidC)+' cases</b> — are hidden from every number here.');
+    else if(T) h.push(' Nothing was invoiced outside the territory in '+esc(pLabel(T))+'.');
+    h.push(' <button class="btn small" id="terr-toggle">Show all areas</button></div>');
+    return h.join('');
+  }
   function controlsHtml(){
     var h = [pageTabs(), '<div class="card filters">'];
     h.push('<div class="step"><span class="num">1</span>Pick what to look at</div><p class="help stephelp">Leave a box on "All" to include everything.</p>');
@@ -607,8 +677,9 @@
     h.push('</div></div>');
     h.push('<div class="group"><div class="gtitle">Customer</div><div class="ctl">');
     h.push('<label>Premise<select id="f-prem" class="'+(S.prem!=='all'?'active':'')+'">'+opt('all','On + off premise',S.prem==='all')+opt('on','On premise only',S.prem==='on')+opt('off','Off premise only',S.prem==='off')+'</select></label>');
-    h.push('<label>Distribution area<select id="f-area" class="'+(S.area>=0?'active':'')+'">'+opt(-1,'All areas',S.area<0)+D.areas.map(function(n,i){ return opt(i,n,S.area===i); }).join('')+'</select></label>');
-    h.push('<label>County<select id="f-county" class="'+(S.county>=0?'active':'')+'">'+opt(-1,'All counties',S.county<0)+COUNTIES.map(function(n,i){ return opt(i,n,S.county===i); }).join('')+'</select></label>');
+    h.push('<label>Distribution area<select id="f-area" class="'+(S.area>=0?'active':'')+'">'+opt(-1,'All areas',S.area<0)+D.areas.map(function(n,i){ return (!AREA_OK || AREA_OK[i] || S.area===i) ? opt(i,n,S.area===i) : ''; }).join('')+'</select></label>');
+    h.push('<label>County<select id="f-county" class="'+(S.county>=0?'active':'')+'">'+opt(-1,'All counties',S.county<0)+COUNTIES.map(function(n,i){ return (!AREA_OK || COUNTY_OK[n] || S.county===i) ? opt(i,n,S.county===i) : ''; }).join('')+'</select></label>');
+    if(HAS_TERR) h.push('<label>Territory<select id="f-terr" class="'+(S.terr==='off'?'active':'')+'">'+opt('on','Only where the brand can be sold',S.terr!=='off')+opt('off','All areas (ignore territory)',S.terr==='off')+'</select></label>');
     h.push('<label class="wide">One account (type a name or number)<input type="search" id="f-cust" list="custlist" class="'+(S.cust>=0?'active':'')+'" placeholder="All accounts" value="'+(S.cust>=0?esc(customers[S.cust][0]+' '+customers[S.cust][1]):'')+'"><datalist id="custlist">'+customers.map(function(c){ return '<option value="'+esc(c[0]+' '+c[1])+'">'; }).join('')+'</datalist></label>');
     h.push('</div></div>');
     h.push('<div class="group"><div class="gtitle">Rep / Manager</div><div class="ctl">');
@@ -1067,7 +1138,8 @@
         r.n++; all.n++; r.cases.push(g); all.cases.push(g); if(g<3){ r.under3++; all.under3++; }
         for(var q=0;q<laters.length;q++){ var lv=sumRange(i,laters[q].s,laters[q].e); if(lv>0){ r.kept[q]++; all.kept[q]++; r.keptCases[q]+=lv; all.keptCases[q]+=lv; } }
       }
-      var gsel='<label class="inl">Points gained in <select id="q-gain">'+gains.slice().reverse().map(function(g){ return opt(D.months[g.e], pLabel(g), g.e===G.e); }).join('')+'</select></label>';
+      var tooNew=[]; for(var e2=M-1; e2>M-1-len && e2>=len-1; e2--){ var np=period(e2,len); tooNew.push('<option disabled>'+esc(pLabel(np))+' \u2014 too new to judge (needs '+esc(futureLabel(e2+1,e2+len))+' data)</option>'); }
+      var gsel='<label class="inl">Points gained in <select id="q-gain">'+tooNew.join('')+gains.slice().reverse().map(function(g){ return opt(D.months[g.e], pLabel(g), g.e===G.e); }).join('')+'</select><span class="muted" style="font-size:14px;margin-left:8px">The newest '+len+' months are greyed out: a drive can only be judged once a full later period exists, so '+esc(pLabel(period(M-1,len)))+' becomes selectable after '+esc(futureLabel(M,M-1+len))+' is loaded.</span></label>';
       h.push(qhead(2,'What happened to the new points gained '+esc(pLabel(G)),
         'A new point is a product at an account that had never bought it before '+esc(mLabel(G.s,true))+' (history starts '+esc(mLabel(0,true))+'). Then: is it still buying one, two, three periods later, and how much did it do?',
         '<span class="tbtns">'+gsel+'</span>'));
@@ -1294,6 +1366,8 @@
     on('f-dm', function(e){ S.dm=+e.target.value; S.rep=-1; render(); });
     on('f-rep', function(e){ S.rep=+e.target.value; if(S.rep>=0 && S.dm<0){ var c=customers.filter(function(c){return c[4]===S.rep;})[0]; S.dm=c[5]; } render(); });
     on('f-area', function(e){ S.area=+e.target.value; render(); });
+    on('f-terr', function(e){ S.terr=e.target.value; render(); });
+    var tb=el('terr-toggle'); if(tb) tb.addEventListener('click', function(){ S.terr = S.terr==='off' ? 'on' : 'off'; render(); });
     on('f-county', function(e){ S.county=+e.target.value; render(); });
     var fc=el('f-cust'); if(fc){ fc.addEventListener('change', function(){ var v=fc.value.trim(); if(!v){ S.cust=-1; render(); return; } var num=v.split(' ')[0]; var ci=-1; for(var j=0;j<customers.length;j++) if(customers[j][0]===num || (customers[j][0]+' '+customers[j][1]).toLowerCase()===v.toLowerCase()){ ci=j; break; } if(ci<0){ fc.value=''; S.cust=-1; } else S.cust=ci; render(); }); }
     on('f-end', function(e){ S.end=+e.target.value; S.sort=''; render(); });

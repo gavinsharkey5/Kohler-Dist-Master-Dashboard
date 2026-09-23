@@ -67,6 +67,30 @@ Limitations stated on the tab: shipments net of credits are a proxy for
 consumer demand, not sell-through; returns / out-of-code / destruction
 are not loaded (the return signal is the nearest thing); rep and DM are
 today's assignment.
+Section 2's "Points gained in" list greys out the newest periods: a
+drive is judged by whether its points were still buying a FULL period
+later, so Jun-Aug 2026 only becomes selectable once Sep-Nov 2026 data
+is loaded (the greyed option says which months it needs).
+
+TERRITORY RULE (both tabs, on by default, "Territory" box under
+Customer): each brand family is counted only in the Encompass areas it
+can be sold in, per data/master/territory.csv (from the Brand Selling
+Restrictions workbook, step f below). Two things happen:
+  - the ACCOUNT UNIVERSE shrinks to accounts in those areas, so the fit
+    map, look-alike targets, county fit score and "not buying" lists
+    never show an Essex bar as a missed Coors opportunity;
+  - invoices outside the territory (rare: 103 placements / 477 cases
+    across all suppliers in Jun-Aug 2026) are hidden from every count.
+A gold note under the filters says which areas the brand is sold in,
+how many accounts were left out and what was hidden; "Show all areas"
+(or terr=off in the link) turns the rule off and the note goes red.
+Accounts whose area is not a rule column ("Sales" house accounts,
+Middlesex) are placed by county: Bergen/Passaic/Essex/Hudson/Union/
+Sussex map to the area of that name, Morris county is in if ANY Morris
+area is, anything else is in only for "All Counties" families. A family
+with no row in the workbook is counted everywhere and the note says so
+(the build prints the list -- Coors 0.0, Yuengling Premium, Newcastle,
+Honey Brown among them as of 2026-09-23).
 Cases per placement is also a fourth column toggle and KPI tile on the
 tracker tab. Revenue / gross profit are not loaded yet; when they are,
 the tiers and fit map are where they plug in.
@@ -87,6 +111,8 @@ WHERE THE DATA LIVES
   data/master/customers.csv        customer_num -> name, premise, address,
                                    county, area, rep, dm
   data/master/suppliers.csv        supplier -> supplier_id, brand_manager
+  data/master/territory.csv        brand family -> territory label, areas
+                                   it can / can't be sold in
   data/master/sources.json         which export supplied each month, when
                                    it was exported, and whether the month
                                    was flagged partial
@@ -124,6 +150,15 @@ REFRESH STEPS
       reads whatever third column is there as the brand manager.
       -> data/master/suppliers.csv. Suppliers missing from the list show
       as "Unassigned" on the page; the build prints which ones.
+
+   f) TERRITORY (optional, only when selling rules change): the
+      Brand_Selling_Restrictions workbook (Brand Family / Territory /
+      one Can Sell - Can't Sell column per area). Pass the .xlsx straight
+      to generate.py (needs openpyxl) or save the sheet as CSV. The file
+      is the WHOLE rule set -- it replaces data/master/territory.csv, it
+      does not top it up. The build prints families with no rule and
+      rule rows that match no family in the data (spelling differences:
+      the workbook must use the same family name Fusion does).
 
    e) LOGOS (optional): the Fusion "Suppliers" and "Brand Families"
       workbooks that carry a logo picture per row (xlsx, not csv). Run

@@ -214,6 +214,18 @@ sum of monthly buyer counts -- always re-derive from account rows. Rep and
 DM are today's assignment applied to all history (Fusion has no history
 of who held an account). No dollars, no goals on this page.
 
+Territory rule (2026-09-23): `data/master/territory.csv` (from Gavin's
+Brand_Selling_Restrictions workbook, fed to `generate.py` like any other
+lookup) says which Encompass areas each brand family may be sold in. The
+page applies it by DEFAULT: a brand's account universe is only the
+accounts in its areas (so nothing outside the territory shows up as a
+missed opportunity) and out-of-territory invoices are hidden; a gold note
+under the filters says what was left out and a Territory box / "Show all
+areas" turns it off (`terr=off` in the link). Families missing from the
+workbook are counted everywhere and the build prints them. Gavin's
+Sales_Reps__Customer_Base CSV was checked against the master and matched
+rep and area for every account -- it adds nothing here, don't load it.
+
 The page has a second tab, DISTRIBUTION QUALITY (page=quality in the
 link), built for pushing back on "more points = more sales": placement
 tiers by cases/month, new-point survival, fit map, look-alike targets,

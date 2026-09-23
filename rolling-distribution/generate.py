@@ -23,6 +23,14 @@ Every file is auto-detected by its header:
   SUPPLIER Supplier ID, Supplier, <brand manager column> (Fusion labels
            it "License Number"; the third column is taken as the brand
            manager) -> data/master/suppliers.csv
+  TERRITORY Brand Family, Territory, then one column per Encompass area
+           (BERGEN, PASSAIC, PASSAIC-FF, ESSEX, HUDSON, UNION, SUSSEX,
+           MORRIS 1, MORRIS 2, MORRIS 3) holding "Can Sell" / "Can't Sell"
+           -- the Brand_Selling_Restrictions workbook (.xlsx or .csv).
+           -> data/master/territory.csv, one row per brand family with the
+           areas it may be sold in. The page uses it to keep each brand's
+           account universe (and its placements) to those areas; a family
+           not in the file is treated as sellable everywhere.
 
 Dimension attributes (names, supplier, family, brand, premise, area, rep,
 DM, package) are "latest file wins": the attributes of a product or account
@@ -48,6 +56,8 @@ OUT_META = os.path.join(HERE, 'data', 'sync_meta.json')
 PRODUCT_FIELDS = ['product_num', 'name', 'supplier', 'family', 'brand', 'package']
 CUSTOMER_FIELDS = ['customer_num', 'name', 'premise', 'address', 'county', 'area', 'rep', 'dm']
 SUPPLIER_FIELDS = ['supplier', 'supplier_id', 'brand_manager']
+TERRITORY_CSV = os.path.join(MASTER, 'territory.csv')
+TERRITORY_FIELDS = ['family', 'territory', 'can_sell', 'cant_sell', 'source']
 METRIC_RE = re.compile(r'^(Buyer Count|Placement Count|Cases)\s+(\d{4})/(\d{1,2})$')
 
 
@@ -142,6 +152,8 @@ def detect(hdr):
         return 'customer'
     if 'Supplier ID' in h and 'Supplier' in h:
         return 'supplier'
+    if 'Brand Family' in h and 'Territory' in h:
+        return 'territory'
     die('unrecognised header: %s' % h[:6])
 
 
@@ -282,6 +294,51 @@ def ingest_supplier(path, suppliers):
     print('SUPPLIER %s  rows=%d  (column %r read as brand manager)' % (os.path.basename(path), n, hdr[bm_col]))
 
 
+def read_rows(path):
+    """Rows of a .csv or the first sheet of an .xlsx, as lists of strings."""
+    if path.lower().endswith('.xlsx'):
+        try:
+            import openpyxl
+        except ImportError:
+            die('%s: reading .xlsx needs openpyxl (pip install openpyxl) -- or save the sheet as CSV' % path)
+        wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
+        ws = wb.worksheets[0]
+        return [['' if v is None else str(v) for v in row] for row in ws.iter_rows(values_only=True)]
+    with open(path, newline='', encoding='utf-8-sig') as fh:
+        return list(csv.reader(fh))
+
+
+def area_key(name):
+    return re.sub(r'\s+', ' ', name.strip()).upper()
+
+
+def ingest_territory(path, territory):
+    rows = read_rows(path)
+    hdr = [x.strip() for x in rows[0]]
+    col = {h: i for i, h in enumerate(hdr)}
+    fam_c, terr_c = col['Brand Family'], col['Territory']
+    area_cols = []
+    for i, h in enumerate(hdr):
+        if i <= terr_c or not h or h.startswith('#') or h in ('Can Sell In', "Can't Sell In", 'Rule Source'):
+            continue
+        area_cols.append((i, h))
+    if not area_cols:
+        die('%s: no area columns after Territory' % path)
+    src_c = col.get('Rule Source')
+    n = 0
+    for x in rows[1:]:
+        if fam_c >= len(x) or not x[fam_c].strip():
+            continue
+        fam = x[fam_c].strip()
+        can = [h for i, h in area_cols if i < len(x) and x[i].strip().lower() == 'can sell']
+        cant = [h for i, h in area_cols if i < len(x) and x[i].strip().lower() != 'can sell']
+        territory[fam] = {'family': fam, 'territory': x[terr_c].strip() if terr_c < len(x) else '',
+                          'can_sell': '; '.join(can), 'cant_sell': '; '.join(cant),
+                          'source': x[src_c].strip() if src_c is not None and src_c < len(x) else ''}
+        n += 1
+    print('TERRITORY %s  rows=%d  areas=%s' % (os.path.basename(path), n, ', '.join(h for _, h in area_cols)))
+
+
 # ---------------------------------------------------------------- build
 
 DRAFT_RE = re.compile(r'\b(keg|gal)\b', re.I)
@@ -299,8 +356,9 @@ def fmt(v):
     return ('%.2f' % v).rstrip('0').rstrip('.')
 
 
-def build(products, customers, sources, suppliers=None):
+def build(products, customers, sources, suppliers=None, territory=None):
     suppliers = suppliers or {}
+    territory = territory or {}
     months = sorted(mk[:-4] for mk in os.listdir(MONTHS_DIR) if mk.endswith('.csv'))
     if not months:
         die('no months in %s' % MONTHS_DIR)
@@ -359,6 +417,38 @@ def build(products, customers, sources, suppliers=None):
     out.append('"areas":%s,' % json.dumps(areas))
     out.append('"reps":%s,' % json.dumps(reps))
     out.append('"dms":%s,' % json.dumps(dms))
+    # territory: per family, the area indexes it may be sold in (null = no rule -> everywhere)
+    area_by_key = {area_key(a): i for i, a in enumerate(areas)}
+    rule_areas = set()
+    sell, terr_label = [], []
+    for f in families:
+        t = territory.get(f)
+        if not t:
+            sell.append(None); terr_label.append('')
+            continue
+        idxs = []
+        for a in (t['can_sell'] + '; ' + t['cant_sell']).split(';'):
+            k = area_key(a)
+            if k and k in area_by_key:
+                rule_areas.add(area_by_key[k])
+        for a in t['can_sell'].split(';'):
+            k = area_key(a)
+            if k and k in area_by_key:
+                idxs.append(area_by_key[k])
+        sell.append(sorted(idxs)); terr_label.append(t['territory'])
+    if territory:
+        no_rule = [f for f, sl in zip(families, sell) if sl is None]
+        unused = [f for f in territory if f not in fi]
+        print('TERRITORY rules for %d of %d brand families in the data; %d without a rule (sold everywhere): %s'
+              % (len(families) - len(no_rule), len(families), len(no_rule), ', '.join(no_rule[:8]) + (' ...' if len(no_rule) > 8 else '')))
+        if unused:
+            print('NOTE: %d families in the territory file are not in the data: %s' % (len(unused), ', '.join(unused[:6]) + (' ...' if len(unused) > 6 else '')))
+        off = [a for i, a in enumerate(areas) if i not in rule_areas]
+        if off:
+            print('NOTE: areas in the data with no territory column (matched by county on the page): %s' % ', '.join(off))
+    out.append('"sell":%s,' % json.dumps(sell, separators=(',', ':')))
+    out.append('"territory":%s,' % json.dumps(terr_label))
+    out.append('"rule_areas":%s,' % json.dumps(sorted(rule_areas)))
     out.append('"products":[')
     for p in used_p:
         r = products[p]
@@ -411,27 +501,35 @@ def main(argv):
     products = load_dim(PRODUCTS_CSV, PRODUCT_FIELDS, 'product_num')
     customers = load_dim(CUSTOMERS_CSV, CUSTOMER_FIELDS, 'customer_num')
     suppliers = load_dim(SUPPLIERS_CSV, SUPPLIER_FIELDS, 'supplier')
+    territory = load_dim(TERRITORY_CSV, TERRITORY_FIELDS, 'family')
     sources = load_sources()
     # detail first so lookups apply on top, then product/customer files
     typed = []
     for f in files:
+        if f.lower().endswith('.xlsx'):
+            typed.append((detect(read_rows(f)[0]), f))
+            continue
         with open(f, newline='', encoding='utf-8-sig') as fh:
             typed.append((detect(next(csv.reader(fh))), f))
-    for kind, f in sorted(typed, key=lambda t: {'detail': 0, 'product': 1, 'customer': 2, 'supplier': 3}[t[0]]):
+    for kind, f in sorted(typed, key=lambda t: {'detail': 0, 'product': 1, 'customer': 2, 'supplier': 3, 'territory': 4}[t[0]]):
         if kind == 'detail':
             ingest_detail(f, products, customers, sources, complete)
         elif kind == 'product':
             ingest_product(f, products)
         elif kind == 'customer':
             ingest_customer(f, customers)
-        else:
+        elif kind == 'supplier':
             ingest_supplier(f, suppliers)
+        else:
+            territory = {}   # the territory file is the whole rule set, never a top-up
+            ingest_territory(f, territory)
     save_dim(PRODUCTS_CSV, PRODUCT_FIELDS, products)
     save_dim(CUSTOMERS_CSV, CUSTOMER_FIELDS, customers)
     save_dim(SUPPLIERS_CSV, SUPPLIER_FIELDS, suppliers)
+    save_dim(TERRITORY_CSV, TERRITORY_FIELDS, territory)
     with open(SOURCES_JSON, 'w', encoding='utf-8') as fh:
         json.dump(dict(sorted(sources.items())), fh, indent=1)
-    build(products, customers, sources, suppliers)
+    build(products, customers, sources, suppliers, territory)
 
 
 if __name__ == '__main__':
