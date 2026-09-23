@@ -276,7 +276,7 @@
 </div>
 <div class="tip" id="tip"></div>
 <script src="data/logos.js?v=2"></script>
-<script src="data/dist_data.js?v=34"></script>
+<script src="data/dist_data.js?v=35"></script>
 <script>
 (function(){
   var D = window.DIST_DATA;
@@ -891,7 +891,15 @@
     for(var i=0;i<NP;i++){ if(!pm[PP[i]]||!cm[PC[i]]) continue; var v=ps.sum[i*ps.P+j]; if(!(v>0)) continue; var f=products[PP[i]][3]; (byFam[f]=byFam[f]||[]).push(v); }
     var TH={}, q=Math.min(45,Math.max(5,S.tq))/100;
     Object.keys(byFam).forEach(function(f){ var a=byFam[f].sort(function(x,y){return x-y;}), n=a.length; if(n<8){ TH[f]=null; return; } TH[f]={hi:a[Math.min(n-1,Math.ceil((1-q)*n))], lo:a[Math.max(0,Math.floor(q*n)-1)]}; });
-    return function(i,v){ var t=TH[products[PP[i]][3]]; if(!t) return tierOf(v/len); return v>=t.hi ? 0 : (v<=t.lo ? 2 : 1); };
+    var fn=function(i,v){ var t=TH[products[PP[i]][3]]; if(!t) return tierOf(v/len); return v>=t.hi ? 0 : (v<=t.lo ? 2 : 1); };
+    fn.TH=TH; fn.len=len; return fn;
+  }
+  function cutoffText(tf){
+    if(S.tmode!=='rel' || !tf || !tf.TH) return '';
+    var fam = S.fam>=0 ? S.fam : (S.brand>=0 ? (products.filter(function(p){return p[4]===S.brand;})[0]||[])[3] : (S.prod>=0 ? products[S.prod][3] : -1));
+    if(fam===undefined||fam<0){ var n=Object.keys(tf.TH).filter(function(k){ return tf.TH[k]; }).length; return ' Cut-offs are set per brand family ('+n+' families with enough placements); pick a brand family to see its numbers.'; }
+    var t=tf.TH[fam]; if(!t) return ' '+esc(D.families[fam])+' has fewer than 8 placements this period, so the fixed rule applies.';
+    return ' For '+esc(D.families[fam])+' this period that means: <b>Core = '+fmt1(t.hi/tf.len)+' cases a month or more</b>, <b>Thin = '+fmt1(t.lo/tf.len)+' or less</b>, Steady in between.';
   }
   function tierRule(){ return S.tmode==='rel' ? 'Core = top '+S.tq+'% of each brand family’s own placements this period, Thin = bottom '+S.tq+'%' : 'Core ≥ '+S.tcore+' cases a month, Thin under '+S.tthin; }
   function pctS(a,b){ return b ? Math.round(a/b*100)+'%' : '—'; }
@@ -906,9 +914,9 @@
   // Plain-language introductions, one per section: what it shows / why it matters / how to read it.
   var EXPL={
     1:function(){ return [['What it shows',[
-                            'Every '+QCTX.scope+' placement in '+QCTX.period+'. A placement = one product at one account.',
-                            'Each placement is put in a tier by cases per month: <b>Core</b>, <b>Steady</b> or <b>Thin</b>.',
-                            S.tmode==='rel' ? 'Tiers are relative to the brand: Core = that brand’s top '+S.tq+'% of placements, Thin = its bottom '+S.tq+'%. Corona and Blue Moon are each judged against themselves.' : 'Tiers use fixed case counts, the same for every brand.']],
+                            'Every '+QCTX.scope+' placement in '+QCTX.period+', put in a tier by cases per month: <b>Core</b>, <b>Steady</b> or <b>Thin</b>.',
+                            S.tmode==='rel' ? 'Each brand sets its own bar. Line up a brand\u2019s placements from best-selling to slowest: the top '+S.tq+'% are Core, the bottom '+S.tq+'% are Thin, the rest are Steady.' : 'Tiers use fixed case counts, the same for every brand.',
+                            S.tmode==='rel' ? 'So Corona is measured against Corona accounts and Blue Moon against Blue Moon accounts. The exact cut-offs are under "Rule in use" below.' : 'Change the numbers below if a brand\u2019s normal volume is different.']],
                           ['Why it matters',[
                             'Suppliers count every placement as a point of distribution, no matter how little it sells.',
                             'A Thin point still counts on their scoreboard, but the account is not really a customer of the brand.',
@@ -992,7 +1000,8 @@
     QCTX={scope:esc(scopeName()), period:esc(pLabel(T)), plural:esc(LEVELS[li].plural), label:esc(LEVELS[li].label)};
     var h=[];
     // ---------------------------------------------------------------- 1. placement quality tiers
-    var tiers = periods.map(function(p,j){ var t=[0,0,0], tc=[0,0,0], tf=tierFn(pm,cm,ps,j,p.len); for(var i=0;i<NP;i++){ if(!pm[PP[i]]||!cm[PC[i]]) continue; var v=ps.sum[i*ps.P+j]; if(!(v>0)) continue; var k=tf(i,v); t[k]++; tc[k]+=v; } return {p:p,t:t,tc:tc,pl:t[0]+t[1]+t[2],cs:tc[0]+tc[1]+tc[2]}; });
+    var tfT=null;
+    var tiers = periods.map(function(p,j){ var t=[0,0,0], tc=[0,0,0], tf=tierFn(pm,cm,ps,j,p.len); if(j===tj) tfT=tf; for(var i=0;i<NP;i++){ if(!pm[PP[i]]||!cm[PC[i]]) continue; var v=ps.sum[i*ps.P+j]; if(!(v>0)) continue; var k=tf(i,v); t[k]++; tc[k]+=v; } return {p:p,t:t,tc:tc,pl:t[0]+t[1]+t[2],cs:tc[0]+tc[1]+tc[2]}; });
     var cur=tiers[tj];
     h.push('<div class="card qcard">'+qhead(1,'Are the points real? · '+esc(scopeName())+' · '+esc(pLabel(T)),
       'Every placement (one product at one account) sorted by what it sells per month. Core ≥ '+S.tcore+' cases a month, Thin under '+S.tthin+'. A point of distribution that sells under a case a month is a point on a scoresheet, not a customer.',
@@ -1000,7 +1009,7 @@
     h.push('<div class="row" style="margin:4px 0 10px"><label>How Core and Thin are set<span class="seg"><button data-tmode="rel" class="'+(S.tmode==='rel'?'on':'')+'">Relative to each brand</button><button data-tmode="fix" class="'+(S.tmode!=='rel'?'on':'')+'">Fixed cases per month</button></span></label>'
       +(S.tmode==='rel' ? '<label class="inl">Core = top <input type="number" id="q-tq" min="5" max="45" step="5" value="'+S.tq+'"> % of the brand’s placements, Thin = bottom '+S.tq+'%</label>'
                         : '<label class="inl">Core ≥ <input type="number" id="q-core" min="0.5" step="0.5" value="'+S.tcore+'"> cases / mo</label><label class="inl">Thin &lt; <input type="number" id="q-thin" min="0" step="0.5" value="'+S.tthin+'"> cases / mo</label>')
-      +'<span class="help">Rule in use: <b>'+tierRule()+'</b></span></div>');
+      +'</div><p class="help" style="margin:0 0 10px">Rule in use: <b>'+tierRule()+'</b>.'+cutoffText(tfT)+'</p>');
     h.push('<div class="kpis">');
     for(var k=0;k<3;k++){ h.push('<div class="kpi tier'+k+'"><span class="kpi-p">'+esc(pLabel(T))+'</span><div class="l"><span class="dot" style="background:'+TIERC[k]+'"></span>'+TIERN[k]+' placements</div><div class="v">'+fmtN(cur.t[k])+'</div><div class="d"><span>'+pctS(cur.t[k],cur.pl)+' of placements · <b>'+pctS(cur.tc[k],cur.cs)+' of cases</b></span><span>'+(cur.t[k]?fmt1(cur.tc[k]/cur.t[k]/len):'—')+' cases / placement / month</span></div></div>'); }
     h.push('</div>');
