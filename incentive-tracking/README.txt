@@ -4096,6 +4096,34 @@ ahead of a 9/21 pull -- kept, as every future-dated row has been.
              3 at bonus, $855.
 Hub cache tag bumped (20260921b) for the new program_data.js.
 
+2026-09-23 FOURTH REFRESH -- Montauk, 2XO, Other Half ON + OFF
+  python3 generate.py
+PHIL ERNST'S USA WINE TRADERS PARAMUS ORDER WAS RE-DATED, NOT CANCELLED. The
+9/30 load sheet flagged 2026-09-18 left every September-windowed export today
+(off-prem MPOs, Keystone, Woodchuck, Lytt, Touchdowns Tea, Montauk). The two
+exports here whose windows run into October show why: 2XO (Aug-Oct) and Other
+Half OFF (Sept-Oct) carry the same account #80004 rows dated 10/2/2026. So
+it is an October delivery. September-only programs lose it for good; Aug-Oct
+and Sept-Oct programs keep crediting it. If it slips again, it moves again.
+Diffed row by row first. Montauk 1,373 -> 1,400 rows (+29 / -2: Phil's two
+9/30 rows). 2XO 79 -> 81 (+5 / -3: Phil's three 9/30 rows back as 10/2).
+Other Half ON 58 -> 66 (+8, none removed). Other Half OFF 752 -> 852 (+108 /
+-8: Phil's six 9/30 rows back as 10/2, and Klejdi Lamo's two Midtown Liq rows
+RE-DATED 9/21 -> 9/22). Only these three programs changed.
+  Montauk     40 -> 41 new placements, $615 -> $715. Anthony Palmisano's
+              first qualifying draft line (Stuffed Olive, $100); Jaime Colonna
+              1 -> 2 and Michael Harboy 0 -> 1 new off-prem; Alisa Acciardi and
+              Brian Sengebush each +1 draft line (not yet qualifying); Phil
+              Ernst 23 -> 21 (the 9/30 rows, $320 -> $295).
+  2XO         unchanged: 2 off-prem pairs, $150. Phil's pair is still credited
+              (now 10/2, inside Aug-Oct). Paul Mclaughlin on-prem units 5 -> 6.
+  Other Half  off-prem accounts 160 -> 175, $8,190 -> $8,960. Jayson Romine
+              12 -> 16, Dave Ehlers 5 -> 8, Dylan Rubino 7 -> 9, Mike Ast
+              9 -> 11, Phil Ernst 4 -> 6, Jaime Colonna and Klejdi Lamo +1.
+              On-prem 45 -> 49 accounts active (30 -> 32 at the 1/3 bbl floor):
+              Alisa Acciardi and Brian Sengebush 1 -> 2 qualifying.
+Hub cache tag bumped (20260923d) for the new program_data.js.
+
 2026-09-23 THIRD REFRESH -- Garage Beer, Touchdowns Tea, Evil Genius (+ Le Grand Noir, unchanged)
   python3 generate.py
 Diffed row by row first. Le Grand Noir (_17) is identical to the published

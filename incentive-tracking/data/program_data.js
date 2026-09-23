@@ -110894,7 +110894,7 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "offPremNewCount": 1,
-        "offPremReorderCount": 7,
+        "offPremReorderCount": 8,
         "newAccounts": 0,
         "byTier": {
           "sixpack": 0,
@@ -110903,13 +110903,19 @@ const PROGRAM_DATA_2026_09 = {
         },
         "draftNew": [
           {
+            "customer": "Hometown Arcade - New Jersey",
+            "bbl": 0.167,
+            "qualifies": false,
+            "date": "9/24/2026"
+          },
+          {
             "customer": "The Old Canal Inn",
             "bbl": 0.333,
             "qualifies": false,
             "date": "9/11/2026"
           }
         ],
-        "draftNewCount": 1,
+        "draftNewCount": 2,
         "draftReorderCount": 2,
         "draftQualifiedCount": 0,
         "draftAccounts": [
@@ -110926,6 +110932,12 @@ const PROGRAM_DATA_2026_09 = {
             "status": "new"
           },
           {
+            "customer": "Hometown Arcade - New Jersey",
+            "bbl": 0.167,
+            "qualifies": false,
+            "status": "new"
+          },
+          {
             "customer": "Mompou Restaurant",
             "bbl": 0.167,
             "qualifies": false,
@@ -110938,7 +110950,7 @@ const PROGRAM_DATA_2026_09 = {
             "status": "lapsed"
           }
         ],
-        "caseVolume": 20.0,
+        "caseVolume": 23.0,
         "packagePayout": 15,
         "draftPayout": 0,
         "payout": 15,
@@ -111050,14 +111062,14 @@ const PROGRAM_DATA_2026_09 = {
             "status": "reorder"
           },
           {
-            "customer": "The Little Falls Tavern",
+            "customer": "Anthonys CF Pizza (Wayne)",
             "bbl": 0.167,
             "qualifies": false,
             "status": "reorder"
           },
           {
-            "customer": "Anthonys CF Pizza (Wayne)",
-            "bbl": 0.0,
+            "customer": "The Little Falls Tavern",
+            "bbl": 0.167,
             "qualifies": false,
             "status": "reorder"
           },
@@ -111074,7 +111086,7 @@ const PROGRAM_DATA_2026_09 = {
             "status": "lapsed"
           }
         ],
-        "caseVolume": 2.0,
+        "caseVolume": 3.0,
         "packagePayout": 0,
         "draftPayout": 0,
         "payout": 0,
@@ -111105,7 +111117,7 @@ const PROGRAM_DATA_2026_09 = {
         "draftReorderCount": 0,
         "draftQualifiedCount": 0,
         "draftAccounts": [],
-        "caseVolume": 16.0,
+        "caseVolume": 17.0,
         "packagePayout": 15,
         "draftPayout": 0,
         "payout": 15,
@@ -111205,11 +111217,24 @@ const PROGRAM_DATA_2026_09 = {
           "twelvepack": 0,
           "nineteen2": 0
         },
-        "draftNew": [],
-        "draftNewCount": 0,
+        "draftNew": [
+          {
+            "customer": "The Stuffed Olive_2",
+            "bbl": 0.5,
+            "qualifies": true,
+            "date": "9/23/2026"
+          }
+        ],
+        "draftNewCount": 1,
         "draftReorderCount": 1,
-        "draftQualifiedCount": 0,
+        "draftQualifiedCount": 1,
         "draftAccounts": [
+          {
+            "customer": "The Stuffed Olive_2",
+            "bbl": 0.5,
+            "qualifies": true,
+            "status": "new"
+          },
           {
             "customer": "The Kites (P)",
             "bbl": 0.5,
@@ -111229,11 +111254,11 @@ const PROGRAM_DATA_2026_09 = {
             "status": "lapsed"
           }
         ],
-        "caseVolume": 6.0,
+        "caseVolume": 7.0,
         "packagePayout": 0,
-        "draftPayout": 0,
-        "payout": 0,
-        "totalNewPlacements": 0,
+        "draftPayout": 100,
+        "payout": 100,
+        "totalNewPlacements": 1,
         "draftChannelOk": true,
         "offPremTargets": [
           {
@@ -111321,11 +111346,24 @@ const PROGRAM_DATA_2026_09 = {
           "twelvepack": 0,
           "nineteen2": 0
         },
-        "draftNew": [],
-        "draftNewCount": 0,
+        "draftNew": [
+          {
+            "customer": "Industry",
+            "bbl": 0.333,
+            "qualifies": false,
+            "date": "9/24/2026"
+          }
+        ],
+        "draftNewCount": 1,
         "draftReorderCount": 1,
         "draftQualifiedCount": 0,
         "draftAccounts": [
+          {
+            "customer": "Industry",
+            "bbl": 0.333,
+            "qualifies": false,
+            "status": "new"
+          },
           {
             "customer": "Lake Valhalla Club (P)",
             "bbl": 0.167,
@@ -111363,7 +111401,7 @@ const PROGRAM_DATA_2026_09 = {
             "status": "lapsed"
           }
         ],
-        "caseVolume": 1.0,
+        "caseVolume": 3.0,
         "packagePayout": 0,
         "draftPayout": 0,
         "payout": 0,
@@ -111522,7 +111560,7 @@ const PROGRAM_DATA_2026_09 = {
             "customer": "Manor Wine & Liquor",
             "tier": "6pk cans",
             "rate": 10,
-            "date": "9/2/2026"
+            "date": "9/22/2026"
           }
         ],
         "offPremNewCount": 1,
@@ -111557,7 +111595,7 @@ const PROGRAM_DATA_2026_09 = {
             "status": "lapsed"
           }
         ],
-        "caseVolume": 11.0,
+        "caseVolume": 13.0,
         "packagePayout": 10,
         "draftPayout": 0,
         "payout": 10,
@@ -111867,7 +111905,7 @@ const PROGRAM_DATA_2026_09 = {
       "Dylan Rubino": {
         "offPremNew": [],
         "offPremNewCount": 0,
-        "offPremReorderCount": 8,
+        "offPremReorderCount": 9,
         "newAccounts": 0,
         "byTier": {
           "sixpack": 0,
@@ -111904,7 +111942,7 @@ const PROGRAM_DATA_2026_09 = {
             "status": "lapsed"
           }
         ],
-        "caseVolume": 27.0,
+        "caseVolume": 29.0,
         "packagePayout": 0,
         "draftPayout": 0,
         "payout": 0,
@@ -112132,21 +112170,39 @@ const PROGRAM_DATA_2026_09 = {
             "tier": "6pk cans",
             "rate": 10,
             "date": "9/11/2026"
+          },
+          {
+            "customer": "Sparrows Wine & Liq (P) (126 Hoboken)",
+            "tier": "6pk cans",
+            "rate": 10,
+            "date": "9/24/2026"
           }
         ],
-        "offPremNewCount": 1,
-        "offPremReorderCount": 15,
-        "newAccounts": 1,
+        "offPremNewCount": 2,
+        "offPremReorderCount": 16,
+        "newAccounts": 2,
         "byTier": {
-          "sixpack": 1,
+          "sixpack": 2,
           "twelvepack": 0,
           "nineteen2": 0
         },
         "draftNew": [],
         "draftNewCount": 0,
-        "draftReorderCount": 5,
+        "draftReorderCount": 6,
         "draftQualifiedCount": 0,
         "draftAccounts": [
+          {
+            "customer": "Urban Coal House",
+            "bbl": 1.0,
+            "qualifies": true,
+            "status": "reorder"
+          },
+          {
+            "customer": "The Brass Rail Restaurant",
+            "bbl": 0.5,
+            "qualifies": true,
+            "status": "reorder"
+          },
           {
             "customer": "Madison Bar & Grill",
             "bbl": 0.5,
@@ -112155,12 +112211,6 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Finnegans",
-            "bbl": 0.5,
-            "qualifies": true,
-            "status": "reorder"
-          },
-          {
-            "customer": "Urban Coal House",
             "bbl": 0.5,
             "qualifies": true,
             "status": "reorder"
@@ -112176,12 +112226,6 @@ const PROGRAM_DATA_2026_09 = {
             "bbl": 0.333,
             "qualifies": false,
             "status": "reorder"
-          },
-          {
-            "customer": "The Brass Rail Restaurant",
-            "bbl": 0.0,
-            "qualifies": false,
-            "status": "lapsed"
           },
           {
             "customer": "Texas-Arizona (A)",
@@ -112208,11 +112252,11 @@ const PROGRAM_DATA_2026_09 = {
             "status": "lapsed"
           }
         ],
-        "caseVolume": 72.0,
-        "packagePayout": 10,
+        "caseVolume": 88.0,
+        "packagePayout": 20,
         "draftPayout": 0,
-        "payout": 10,
-        "totalNewPlacements": 1,
+        "payout": 20,
+        "totalNewPlacements": 2,
         "draftChannelOk": true,
         "offPremTargets": [
           {
@@ -112226,10 +112270,6 @@ const PROGRAM_DATA_2026_09 = {
           {
             "customer": "One Stop Wine (A) & Liq",
             "cases2026": 1578.0
-          },
-          {
-            "customer": "Sparrows Wine & Liq (P) (126 Hoboken)",
-            "cases2026": 642.0
           },
           {
             "customer": "Coolvines Powerhouse",
@@ -112264,7 +112304,7 @@ const PROGRAM_DATA_2026_09 = {
             "cases2026": 20.0
           }
         ],
-        "offPremTargetCount": 12
+        "offPremTargetCount": 11
       },
       "Javier Melo": {
         "offPremNew": [],
@@ -112504,7 +112544,7 @@ const PROGRAM_DATA_2026_09 = {
         "draftReorderCount": 0,
         "draftQualifiedCount": 0,
         "draftAccounts": [],
-        "caseVolume": 5.0,
+        "caseVolume": 8.0,
         "packagePayout": 20,
         "draftPayout": 0,
         "payout": 20,
@@ -112616,7 +112656,7 @@ const PROGRAM_DATA_2026_09 = {
             "status": "lapsed"
           }
         ],
-        "caseVolume": 46.0,
+        "caseVolume": 48.0,
         "packagePayout": 0,
         "draftPayout": 0,
         "payout": 0,
@@ -112917,13 +112957,20 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargetCount": 30
       },
       "Michael Harboy": {
-        "offPremNew": [],
-        "offPremNewCount": 0,
+        "offPremNew": [
+          {
+            "customer": "The Wine Rack North Caldwell",
+            "tier": "12pk cans",
+            "rate": 15,
+            "date": "9/22/2026"
+          }
+        ],
+        "offPremNewCount": 1,
         "offPremReorderCount": 9,
         "newAccounts": 0,
         "byTier": {
           "sixpack": 0,
-          "twelvepack": 0,
+          "twelvepack": 1,
           "nineteen2": 0
         },
         "draftNew": [],
@@ -112950,11 +112997,11 @@ const PROGRAM_DATA_2026_09 = {
             "status": "lapsed"
           }
         ],
-        "caseVolume": 22.0,
-        "packagePayout": 0,
+        "caseVolume": 28.0,
+        "packagePayout": 15,
         "draftPayout": 0,
-        "payout": 0,
-        "totalNewPlacements": 0,
+        "payout": 15,
+        "totalNewPlacements": 1,
         "draftChannelOk": true,
         "offPremTargets": [
           {
@@ -113056,7 +113103,7 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "offPremNewCount": 2,
-        "offPremReorderCount": 4,
+        "offPremReorderCount": 5,
         "newAccounts": 2,
         "byTier": {
           "sixpack": 1,
@@ -113075,7 +113122,7 @@ const PROGRAM_DATA_2026_09 = {
             "status": "reorder"
           }
         ],
-        "caseVolume": 22.0,
+        "caseVolume": 24.0,
         "packagePayout": 25,
         "draftPayout": 0,
         "payout": 25,
@@ -113169,7 +113216,7 @@ const PROGRAM_DATA_2026_09 = {
         "draftAccounts": [
           {
             "customer": "Dino's Bar & Grill",
-            "bbl": 0.5,
+            "bbl": 1.0,
             "qualifies": true,
             "status": "reorder"
           },
@@ -113192,13 +113239,13 @@ const PROGRAM_DATA_2026_09 = {
             "status": "reorder"
           },
           {
-            "customer": "Victor's Maywood Inn",
+            "customer": "H Mart Inc (Space A103)",
             "bbl": 0.0,
             "qualifies": false,
             "status": "reorder"
           },
           {
-            "customer": "H Mart Inc (Space A103)",
+            "customer": "Victor's Maywood Inn",
             "bbl": 0.0,
             "qualifies": false,
             "status": "reorder"
@@ -113246,7 +113293,7 @@ const PROGRAM_DATA_2026_09 = {
             "status": "lapsed"
           }
         ],
-        "caseVolume": 5.0,
+        "caseVolume": 6.0,
         "packagePayout": 0,
         "draftPayout": 0,
         "payout": 0,
@@ -113399,13 +113446,13 @@ const PROGRAM_DATA_2026_09 = {
         "draftAccounts": [
           {
             "customer": "Tierney's Tavern(A)",
-            "bbl": 2.0,
+            "bbl": 2.5,
             "qualifies": true,
             "status": "reorder"
           },
           {
             "customer": "Lou's",
-            "bbl": 1.0,
+            "bbl": 1.5,
             "qualifies": true,
             "status": "reorder"
           },
@@ -113414,6 +113461,12 @@ const PROGRAM_DATA_2026_09 = {
             "bbl": 0.5,
             "qualifies": true,
             "status": "new"
+          },
+          {
+            "customer": "Stern And Bow",
+            "bbl": 0.333,
+            "qualifies": false,
+            "status": "reorder"
           },
           {
             "customer": "Rivervale Country Club",
@@ -113426,12 +113479,6 @@ const PROGRAM_DATA_2026_09 = {
             "bbl": 0.333,
             "qualifies": false,
             "status": "new"
-          },
-          {
-            "customer": "Stern And Bow",
-            "bbl": 0.167,
-            "qualifies": false,
-            "status": "reorder"
           },
           {
             "customer": "The Cornerstone (P)",
@@ -113452,25 +113499,25 @@ const PROGRAM_DATA_2026_09 = {
             "status": "lapsed"
           },
           {
-            "customer": "Midland Brewhouse (A)",
-            "bbl": 0.0,
-            "qualifies": false,
-            "status": "lapsed"
-          },
-          {
-            "customer": "101 Pub (A)",
-            "bbl": 0.0,
-            "qualifies": false,
-            "status": "lapsed"
-          },
-          {
             "customer": "Emerson Hotel",
             "bbl": 0.0,
             "qualifies": false,
             "status": "lapsed"
           },
           {
+            "customer": "Midland Brewhouse (A)",
+            "bbl": 0.0,
+            "qualifies": false,
+            "status": "lapsed"
+          },
+          {
             "customer": "Marriott (P) Park Ridge",
+            "bbl": 0.0,
+            "qualifies": false,
+            "status": "lapsed"
+          },
+          {
+            "customer": "101 Pub (A)",
             "bbl": 0.0,
             "qualifies": false,
             "status": "lapsed"
@@ -113488,7 +113535,7 @@ const PROGRAM_DATA_2026_09 = {
             "status": "lapsed"
           }
         ],
-        "caseVolume": 12.0,
+        "caseVolume": 15.0,
         "packagePayout": 0,
         "draftPayout": 100,
         "payout": 100,
@@ -113509,7 +113556,7 @@ const PROGRAM_DATA_2026_09 = {
       "Phil Ernst": {
         "offPremNew": [
           {
-            "customer": "Shop-Rite Liq Lyndhurst",
+            "customer": "City Supermarket",
             "tier": "19.2oz cans",
             "rate": 15,
             "date": "9/15/2026"
@@ -113521,19 +113568,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/15/2026"
           },
           {
-            "customer": "City Supermarket",
-            "tier": "12pk cans",
-            "rate": 15,
-            "date": "9/15/2026"
-          },
-          {
             "customer": "Shop-Rite Liq Lyndhurst",
             "tier": "12pk cans",
             "rate": 15,
             "date": "9/15/2026"
           },
           {
-            "customer": "City Supermarket",
+            "customer": "Shop-Rite Liq Lyndhurst",
             "tier": "19.2oz cans",
             "rate": 15,
             "date": "9/15/2026"
@@ -113545,8 +113586,20 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/15/2026"
           },
           {
-            "customer": "Shop Rite Liq(A) Roch Pk",
+            "customer": "City Supermarket",
             "tier": "12pk cans",
+            "rate": 15,
+            "date": "9/15/2026"
+          },
+          {
+            "customer": "Shop Rite Liq(A) Roch Pk",
+            "tier": "19.2oz cans",
+            "rate": 15,
+            "date": "9/17/2026"
+          },
+          {
+            "customer": "Megha Liquor & Grocery",
+            "tier": "19.2oz cans",
             "rate": 15,
             "date": "9/17/2026"
           },
@@ -113563,6 +113616,12 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/17/2026"
           },
           {
+            "customer": "Megha Liquor & Grocery",
+            "tier": "12pk cans",
+            "rate": 15,
+            "date": "9/17/2026"
+          },
+          {
             "customer": "Stew Leonard's(A) Paramus Wine",
             "tier": "12pk cans",
             "rate": 15,
@@ -113575,28 +113634,10 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/17/2026"
           },
           {
-            "customer": "Megha Liquor & Grocery",
-            "tier": "19.2oz cans",
-            "rate": 15,
-            "date": "9/17/2026"
-          },
-          {
             "customer": "Shop Rite Liq(A) Roch Pk",
-            "tier": "19.2oz cans",
-            "rate": 15,
-            "date": "9/17/2026"
-          },
-          {
-            "customer": "Megha Liquor & Grocery",
             "tier": "12pk cans",
             "rate": 15,
             "date": "9/17/2026"
-          },
-          {
-            "customer": "Wides Deli & Liquor",
-            "tier": "19.2oz cans",
-            "rate": 15,
-            "date": "9/18/2026"
           },
           {
             "customer": "Shop Rite Liq (Paramus)",
@@ -113611,19 +113652,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/18/2026"
           },
           {
-            "customer": "USA Wine Traders Paramus",
+            "customer": "Wides Deli & Liquor",
             "tier": "19.2oz cans",
             "rate": 15,
-            "date": "9/30/2026"
+            "date": "9/18/2026"
           },
           {
             "customer": "Megha Liquor & Grocery",
-            "tier": "6pk cans",
-            "rate": 10,
-            "date": "9/17/2026"
-          },
-          {
-            "customer": "Shop Rite Liq(A) Roch Pk",
             "tier": "6pk cans",
             "rate": 10,
             "date": "9/17/2026"
@@ -113635,25 +113670,25 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/17/2026"
           },
           {
+            "customer": "Shop Rite Liq(A) Roch Pk",
+            "tier": "6pk cans",
+            "rate": 10,
+            "date": "9/17/2026"
+          },
+          {
             "customer": "Wides Deli & Liquor",
             "tier": "6pk cans",
             "rate": 10,
             "date": "9/18/2026"
-          },
-          {
-            "customer": "USA Wine Traders Paramus",
-            "tier": "6pk cans",
-            "rate": 10,
-            "date": "9/30/2026"
           }
         ],
-        "offPremNewCount": 23,
-        "offPremReorderCount": 10,
-        "newAccounts": 4,
+        "offPremNewCount": 21,
+        "offPremReorderCount": 11,
+        "newAccounts": 3,
         "byTier": {
-          "sixpack": 5,
+          "sixpack": 4,
           "twelvepack": 9,
-          "nineteen2": 9
+          "nineteen2": 8
         },
         "draftNew": [],
         "draftNewCount": 0,
@@ -113661,10 +113696,10 @@ const PROGRAM_DATA_2026_09 = {
         "draftQualifiedCount": 0,
         "draftAccounts": [],
         "caseVolume": 53.0,
-        "packagePayout": 320,
+        "packagePayout": 295,
         "draftPayout": 0,
-        "payout": 320,
-        "totalNewPlacements": 23,
+        "payout": 295,
+        "totalNewPlacements": 21,
         "draftChannelOk": false,
         "offPremTargets": [
           {
@@ -113719,7 +113754,7 @@ const PROGRAM_DATA_2026_09 = {
         "draftAccounts": [
           {
             "customer": "Bensi (P)",
-            "bbl": 0.667,
+            "bbl": 0.833,
             "qualifies": true,
             "status": "reorder"
           },
@@ -113754,7 +113789,7 @@ const PROGRAM_DATA_2026_09 = {
             "status": "lapsed"
           }
         ],
-        "caseVolume": 10.0,
+        "caseVolume": 13.0,
         "packagePayout": 0,
         "draftPayout": 0,
         "payout": 0,
@@ -113796,7 +113831,7 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "offPremNewCount": 4,
-        "offPremReorderCount": 14,
+        "offPremReorderCount": 15,
         "newAccounts": 1,
         "byTier": {
           "sixpack": 1,
@@ -113808,7 +113843,7 @@ const PROGRAM_DATA_2026_09 = {
         "draftReorderCount": 0,
         "draftQualifiedCount": 0,
         "draftAccounts": [],
-        "caseVolume": 52.0,
+        "caseVolume": 60.0,
         "packagePayout": 55,
         "draftPayout": 0,
         "payout": 55,
@@ -113858,8 +113893,8 @@ const PROGRAM_DATA_2026_09 = {
     "leaderboard": [
       {
         "rep": "Phil Ernst",
-        "newPlacements": 23,
-        "payout": 320,
+        "newPlacements": 21,
+        "payout": 295,
         "rank": 1
       },
       {
@@ -113881,121 +113916,121 @@ const PROGRAM_DATA_2026_09 = {
         "rank": 4
       },
       {
-        "rep": "Jim Heaney",
+        "rep": "Jaime Colonna",
         "newPlacements": 2,
         "payout": 20,
         "rank": 5
       },
       {
+        "rep": "Jim Heaney",
+        "newPlacements": 2,
+        "payout": 20,
+        "rank": 6
+      },
+      {
+        "rep": "Anthony Palmisano",
+        "newPlacements": 1,
+        "payout": 100,
+        "rank": 7
+      },
+      {
         "rep": "Paul Mclaughlin",
         "newPlacements": 1,
         "payout": 100,
-        "rank": 6
+        "rank": 8
       },
       {
         "rep": "Alisa Acciardi",
         "newPlacements": 1,
         "payout": 15,
-        "rank": 7
+        "rank": 9
       },
       {
         "rep": "Andrew Lundy",
         "newPlacements": 1,
         "payout": 15,
-        "rank": 8
+        "rank": 10
+      },
+      {
+        "rep": "Michael Harboy",
+        "newPlacements": 1,
+        "payout": 15,
+        "rank": 11
       },
       {
         "rep": "Chris Payton",
         "newPlacements": 1,
         "payout": 10,
-        "rank": 9
+        "rank": 12
       },
       {
         "rep": "Dan Lagala",
         "newPlacements": 1,
         "payout": 10,
-        "rank": 10
+        "rank": 13
       },
       {
         "rep": "Dave Ehlers",
         "newPlacements": 1,
         "payout": 10,
-        "rank": 11
-      },
-      {
-        "rep": "Jaime Colonna",
-        "newPlacements": 1,
-        "payout": 10,
-        "rank": 12
+        "rank": 14
       },
       {
         "rep": "Alex Rodriguez",
         "newPlacements": 0,
         "payout": 0,
-        "rank": 13
+        "rank": 15
       },
       {
         "rep": "Allison Scott",
         "newPlacements": 0,
         "payout": 0,
-        "rank": 14
-      },
-      {
-        "rep": "Anthony Palmisano",
-        "newPlacements": 0,
-        "payout": 0,
-        "rank": 15
+        "rank": 16
       },
       {
         "rep": "Brian Sengebush",
         "newPlacements": 0,
         "payout": 0,
-        "rank": 16
+        "rank": 17
       },
       {
         "rep": "Derrick Laws",
         "newPlacements": 0,
         "payout": 0,
-        "rank": 17
+        "rank": 18
       },
       {
         "rep": "Dylan Rubino",
         "newPlacements": 0,
         "payout": 0,
-        "rank": 18
+        "rank": 19
       },
       {
         "rep": "Javier Melo",
         "newPlacements": 0,
         "payout": 0,
-        "rank": 19
+        "rank": 20
       },
       {
         "rep": "Jayson Romine",
         "newPlacements": 0,
         "payout": 0,
-        "rank": 20
+        "rank": 21
       },
       {
         "rep": "John O'Donoghue",
         "newPlacements": 0,
         "payout": 0,
-        "rank": 21
+        "rank": 22
       },
       {
         "rep": "Klejdi Lamo",
         "newPlacements": 0,
         "payout": 0,
-        "rank": 22
-      },
-      {
-        "rep": "Matt Powierski",
-        "newPlacements": 0,
-        "payout": 0,
         "rank": 23
       },
       {
-        "rep": "Michael Harboy",
+        "rep": "Matt Powierski",
         "newPlacements": 0,
         "payout": 0,
         "rank": 24
@@ -114358,7 +114393,7 @@ const PROGRAM_DATA_2026_09 = {
         "onPremBuilding": [],
         "onPremNewCount": 0,
         "onPremReorderCount": 1,
-        "onPremUnits": 5.0,
+        "onPremUnits": 6.0,
         "onPremPayout": 0,
         "payout": 0
       },
@@ -114372,7 +114407,7 @@ const PROGRAM_DATA_2026_09 = {
               "White Oak Rye"
             ],
             "payout": 75,
-            "date": "9/30/2026"
+            "date": "10/2/2026"
           }
         ],
         "offPremSingles": [],
@@ -114592,12 +114627,6 @@ const PROGRAM_DATA_2026_09 = {
       "Alex Rodriguez": {
         "offPremNew": [
           {
-            "customer": "Wine Depot Of Livingston",
-            "skuCount": 1,
-            "southern": true,
-            "payout": 50
-          },
-          {
             "customer": "Bella Wine and Spirits",
             "skuCount": 5,
             "southern": true,
@@ -114606,6 +114635,12 @@ const PROGRAM_DATA_2026_09 = {
           {
             "customer": "L Town Liquors",
             "skuCount": 2,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Wine Depot Of Livingston",
+            "skuCount": 1,
             "southern": true,
             "payout": 50
           }
@@ -114619,6 +114654,18 @@ const PROGRAM_DATA_2026_09 = {
       "Alisa Acciardi": {
         "offPremNew": [
           {
+            "customer": "Buy-Rite Liquors",
+            "skuCount": 5,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Cordes Wine & Liquor",
+            "skuCount": 3,
+            "southern": true,
+            "payout": 50
+          },
+          {
             "customer": "Cottage Liquors",
             "skuCount": 5,
             "southern": true,
@@ -114631,55 +114678,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Brookdale W & S (A)",
-            "skuCount": 3,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Liquor Warehouse",
-            "skuCount": 1,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Shop Rite Wine & Spirits Kearny",
-            "skuCount": 1,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Massarelli's Liquors",
-            "skuCount": 2,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "High Spirits Of Bayonne",
-            "skuCount": 2,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Bottle King Glen Ridge",
-            "skuCount": 4,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "ShopRite Wines & Spirits of Bayonne",
-            "skuCount": 4,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Cordes Wine & Liquor",
-            "skuCount": 2,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Kearny Plaza Discount Liq",
+            "customer": "Kearny Wine & Liquor",
             "skuCount": 2,
             "southern": true,
             "payout": 50
@@ -114691,13 +114690,49 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Kearny Wine & Liquor",
+            "customer": "Liquor Warehouse",
+            "skuCount": 1,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Kearny Plaza Discount Liq",
             "skuCount": 2,
             "southern": true,
             "payout": 50
           },
           {
-            "customer": "Buy-Rite Liquors",
+            "customer": "Bottle King Glen Ridge",
+            "skuCount": 4,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Shop Rite Wine & Spirits Kearny",
+            "skuCount": 1,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Brookdale W & S (A)",
+            "skuCount": 3,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "High Spirits Of Bayonne",
+            "skuCount": 2,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "ShopRite Wines & Spirits of Bayonne",
+            "skuCount": 4,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Massarelli's Liquors",
             "skuCount": 2,
             "southern": true,
             "payout": 50
@@ -114712,12 +114747,17 @@ const PROGRAM_DATA_2026_09 = {
             "qualifies": true
           },
           {
+            "customer": "Six Points Pub",
+            "bbl": 0.5,
+            "qualifies": true
+          },
+          {
             "customer": "Obals Inn",
             "bbl": 0.25,
             "qualifies": false
           }
         ],
-        "onPremQualifyingCount": 1,
+        "onPremQualifyingCount": 2,
         "payout": 700
       },
       "Allison Scott": {
@@ -114751,12 +114791,17 @@ const PROGRAM_DATA_2026_09 = {
             "qualifies": true
           },
           {
-            "customer": "cherry's",
+            "customer": "Tavern 5_2",
             "bbl": 0.25,
             "qualifies": false
           },
           {
-            "customer": "Tavern 5_2",
+            "customer": "Uno Chicago Grl (A)Clifto",
+            "bbl": 0.25,
+            "qualifies": false
+          },
+          {
+            "customer": "cherry's",
             "bbl": 0.25,
             "qualifies": false
           },
@@ -114772,56 +114817,8 @@ const PROGRAM_DATA_2026_09 = {
       "Andrew Lundy": {
         "offPremNew": [
           {
-            "customer": "Shop Rite of Westfield",
-            "skuCount": 5,
-            "southern": true,
-            "payout": 50
-          },
-          {
             "customer": "Total Wine & More (Union)",
             "skuCount": 2,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Best Cellars (Summit)",
-            "skuCount": 2,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "House of Wine & Liquor Westfield",
-            "skuCount": 5,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "M & M Liquors",
-            "skuCount": 3,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Metro Liquor (Linden)",
-            "skuCount": 4,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Peterson's Wine Unltd",
-            "skuCount": 4,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Wine Anthology (A)",
-            "skuCount": 5,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Trader Joes Westfield",
-            "skuCount": 1,
             "southern": true,
             "payout": 50
           },
@@ -114838,8 +114835,56 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
+            "customer": "Wine Anthology (A)",
+            "skuCount": 5,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Metro Liquor (Linden)",
+            "skuCount": 4,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Shop Rite of Westfield",
+            "skuCount": 5,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Trader Joes Westfield",
+            "skuCount": 1,
+            "southern": true,
+            "payout": 50
+          },
+          {
             "customer": "Dittrick's W&L (A)",
             "skuCount": 3,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Drinq Linq The Liquor Store",
+            "skuCount": 2,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "M & M Liquors",
+            "skuCount": 3,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "House of Wine & Liquor Westfield",
+            "skuCount": 5,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Peterson's Wine Unltd",
+            "skuCount": 5,
             "southern": true,
             "payout": 50
           },
@@ -114850,8 +114895,8 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Drinq Linq The Liquor Store",
-            "skuCount": 1,
+            "customer": "Best Cellars (Summit)",
+            "skuCount": 2,
             "southern": true,
             "payout": 50
           }
@@ -114882,13 +114927,13 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 70
           },
           {
-            "customer": "Highland Wine&Liquor Inc",
+            "customer": "Usa Wine Traders (Wanaque)",
             "skuCount": 5,
             "southern": false,
             "payout": 60
           },
           {
-            "customer": "Usa Wine Traders (Wanaque)",
+            "customer": "Highland Wine&Liquor Inc",
             "skuCount": 5,
             "southern": false,
             "payout": 60
@@ -114906,6 +114951,11 @@ const PROGRAM_DATA_2026_09 = {
         "offPremPayout": 0,
         "onPremSeptember": [
           {
+            "customer": "St.Moritz Grill & Bar",
+            "bbl": 0.5,
+            "qualifies": true
+          },
+          {
             "customer": "Polo's Bar And Grill",
             "bbl": 0.5,
             "qualifies": true
@@ -114916,7 +114966,7 @@ const PROGRAM_DATA_2026_09 = {
             "qualifies": false
           }
         ],
-        "onPremQualifyingCount": 1,
+        "onPremQualifyingCount": 2,
         "payout": 0
       },
       "Chris Payton": {
@@ -114955,13 +115005,13 @@ const PROGRAM_DATA_2026_09 = {
       "Dan Lagala": {
         "offPremNew": [
           {
-            "customer": "Linwood Wine-Linwood Plaza",
+            "customer": "Tenafly Fine Wine & Spirits",
             "skuCount": 6,
             "southern": false,
             "payout": 70
           },
           {
-            "customer": "Tenafly Fine Wine & Spirits",
+            "customer": "Linwood Wine-Linwood Plaza",
             "skuCount": 6,
             "southern": false,
             "payout": 70
@@ -115000,6 +115050,12 @@ const PROGRAM_DATA_2026_09 = {
       "Dave Ehlers": {
         "offPremNew": [
           {
+            "customer": "Joes Beer Wine & Spirits",
+            "skuCount": 6,
+            "southern": false,
+            "payout": 70
+          },
+          {
             "customer": "Total Wine & More (River Edge)",
             "skuCount": 6,
             "southern": false,
@@ -115019,22 +115075,34 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "River Edge Wine & Liquor",
-            "skuCount": 3,
+            "skuCount": 4,
             "southern": false,
-            "payout": 40
+            "payout": 50
           },
           {
             "customer": "Bottle & Cork",
             "skuCount": 3,
             "southern": false,
             "payout": 40
+          },
+          {
+            "customer": "Barrel & Brew Bar & Liq",
+            "skuCount": 3,
+            "southern": false,
+            "payout": 40
+          },
+          {
+            "customer": "Hackensack Liquors",
+            "skuCount": 3,
+            "southern": false,
+            "payout": 40
           }
         ],
-        "offPremNewCount": 5,
-        "offPremPayout": 270,
+        "offPremNewCount": 8,
+        "offPremPayout": 430,
         "onPremSeptember": [],
         "onPremQualifyingCount": 0,
-        "payout": 270
+        "payout": 430
       },
       "Derrick Laws": {
         "offPremNew": [
@@ -115054,14 +115122,20 @@ const PROGRAM_DATA_2026_09 = {
       "Dylan Rubino": {
         "offPremNew": [
           {
-            "customer": "Cool Vines",
-            "skuCount": 3,
+            "customer": "Waterfront Wine & Liq(P)",
+            "skuCount": 6,
             "southern": true,
             "payout": 50
           },
           {
-            "customer": "Webster Liquors",
-            "skuCount": 5,
+            "customer": "International Liqs (P)",
+            "skuCount": 6,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Refined Wine and Spirits",
+            "skuCount": 6,
             "southern": true,
             "payout": 50
           },
@@ -115072,19 +115146,25 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Waterfront Wine & Liq(P)",
-            "skuCount": 6,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Jersey Wine & Spirits",
-            "skuCount": 1,
+            "customer": "Webster Liquors",
+            "skuCount": 5,
             "southern": true,
             "payout": 50
           },
           {
             "customer": "Pastore's Wine & Liquor",
+            "skuCount": 1,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Cool Vines",
+            "skuCount": 3,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Jersey Wine & Spirits",
             "skuCount": 1,
             "southern": true,
             "payout": 50
@@ -115096,8 +115176,8 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           }
         ],
-        "offPremNewCount": 7,
-        "offPremPayout": 350,
+        "offPremNewCount": 9,
+        "offPremPayout": 450,
         "onPremSeptember": [
           {
             "customer": "Ed & Mary's",
@@ -115111,7 +115191,7 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "onPremQualifyingCount": 1,
-        "payout": 350
+        "payout": 450
       },
       "Hakan Sadik": {
         "offPremNew": [
@@ -115122,14 +115202,14 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Maplewood Wine & Liquor",
-            "skuCount": 4,
+            "customer": "Lum's Cellars",
+            "skuCount": 6,
             "southern": true,
             "payout": 50
           },
           {
-            "customer": "Buy Rite Wine & Liquor",
-            "skuCount": 3,
+            "customer": "Maplewood Wine & Liquor",
+            "skuCount": 4,
             "southern": true,
             "payout": 50
           },
@@ -115140,19 +115220,19 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Lum's Cellars",
-            "skuCount": 6,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Joe Canals",
+            "customer": "Buy Rite Wine & Liquor",
             "skuCount": 3,
             "southern": true,
             "payout": 50
           },
           {
             "customer": "Liquor Cave",
+            "skuCount": 3,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Joe Canals",
             "skuCount": 3,
             "southern": true,
             "payout": 50
@@ -115173,14 +115253,8 @@ const PROGRAM_DATA_2026_09 = {
       "Jaime Colonna": {
         "offPremNew": [
           {
-            "customer": "ShopRite Wines & Spirits of Hoboken",
+            "customer": "Jersey City Buy Rite (A)",
             "skuCount": 6,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Wine Dad's Jersey City",
-            "skuCount": 4,
             "southern": true,
             "payout": 50
           },
@@ -115191,20 +115265,8 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Garden Wine & Liq (P)",
-            "skuCount": 2,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Jersey City Buy Rite (A)",
+            "customer": "ShopRite Wines & Spirits of Hoboken",
             "skuCount": 6,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Village Wine & Liquors Ii",
-            "skuCount": 3,
             "southern": true,
             "payout": 50
           },
@@ -115215,14 +115277,14 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Wine Dad's - Summit Ave Jersey City",
-            "skuCount": 3,
+            "customer": "Wine Dad's Jersey City",
+            "skuCount": 5,
             "southern": true,
             "payout": 50
           },
           {
-            "customer": "The Thirsty Quaker (P)",
-            "skuCount": 1,
+            "customer": "Sparrows Wine & Liq (P) (126 Hoboken)",
+            "skuCount": 3,
             "southern": true,
             "payout": 50
           },
@@ -115233,33 +115295,57 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
+            "customer": "The Thirsty Quaker (P)",
+            "skuCount": 1,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Wine Dad's - Summit Ave Jersey City",
+            "skuCount": 3,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Garden Wine & Liq (P)",
+            "skuCount": 2,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Village Wine & Liquors Ii",
+            "skuCount": 3,
+            "southern": true,
+            "payout": 50
+          },
+          {
             "customer": "Delite Market",
             "skuCount": 1,
             "southern": true,
             "payout": 50
           }
         ],
-        "offPremNewCount": 11,
-        "offPremPayout": 550,
+        "offPremNewCount": 12,
+        "offPremPayout": 600,
         "onPremSeptember": [
           {
             "customer": "8th Street Tavern",
-            "bbl": 2.0,
-            "qualifies": true
-          },
-          {
-            "customer": "Cork City Pub",
-            "bbl": 1.0,
+            "bbl": 2.75,
             "qualifies": true
           },
           {
             "customer": "Hudson Hall(A)",
             "bbl": 1.0,
             "qualifies": true
+          },
+          {
+            "customer": "Cork City Pub",
+            "bbl": 1.0,
+            "qualifies": true
           }
         ],
         "onPremQualifyingCount": 3,
-        "payout": 550
+        "payout": 600
       },
       "Javier Melo": {
         "offPremNew": [],
@@ -115278,6 +115364,18 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 70
           },
           {
+            "customer": "USA Wine Traders Club Of Newton (A)",
+            "skuCount": 6,
+            "southern": false,
+            "payout": 70
+          },
+          {
+            "customer": "George's Wine & Spirits",
+            "skuCount": 5,
+            "southern": false,
+            "payout": 60
+          },
+          {
             "customer": "Liquor Factory VI Byram",
             "skuCount": 5,
             "southern": false,
@@ -115290,19 +115388,13 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 60
           },
           {
-            "customer": "George's Wine & Spirits",
-            "skuCount": 5,
-            "southern": false,
-            "payout": 60
-          },
-          {
             "customer": "Buy Rite Liquors Franklin",
             "skuCount": 5,
             "southern": false,
             "payout": 60
           },
           {
-            "customer": "ShopRite Wine & Spirits of Newton#830",
+            "customer": "The Right Bottle",
             "skuCount": 4,
             "southern": false,
             "payout": 50
@@ -115314,10 +115406,34 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "The Right Bottle",
+            "customer": "ShopRite Wine & Spirits of Newton#830",
             "skuCount": 4,
             "southern": false,
             "payout": 50
+          },
+          {
+            "customer": "ShopRite Wines & Spirits of Franklin",
+            "skuCount": 4,
+            "southern": false,
+            "payout": 50
+          },
+          {
+            "customer": "Mac & Lindy's W & S (A)",
+            "skuCount": 4,
+            "southern": false,
+            "payout": 50
+          },
+          {
+            "customer": "The George Inn",
+            "skuCount": 3,
+            "southern": false,
+            "payout": 40
+          },
+          {
+            "customer": "Burkes",
+            "skuCount": 3,
+            "southern": false,
+            "payout": 40
           },
           {
             "customer": "Wine Country Newton",
@@ -115332,38 +115448,20 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 40
           },
           {
-            "customer": "Mac & Lindy's W & S (A)",
-            "skuCount": 3,
-            "southern": false,
-            "payout": 40
-          },
-          {
             "customer": "ShopRite Wines & Spirits of Sparta",
             "skuCount": 3,
             "southern": false,
             "payout": 40
           }
         ],
-        "offPremNewCount": 12,
-        "offPremPayout": 620,
+        "offPremNewCount": 16,
+        "offPremPayout": 830,
         "onPremSeptember": [],
         "onPremQualifyingCount": 0,
-        "payout": 620
+        "payout": 830
       },
       "Jim Heaney": {
         "offPremNew": [
-          {
-            "customer": "Clifton Commons S & W",
-            "skuCount": 4,
-            "southern": false,
-            "payout": 50
-          },
-          {
-            "customer": "Rutherford Wine (A)",
-            "skuCount": 4,
-            "southern": false,
-            "payout": 50
-          },
           {
             "customer": "Lucky 7 (A)",
             "skuCount": 4,
@@ -115377,10 +115475,16 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Village Wine (P)",
-            "skuCount": 3,
+            "customer": "Rutherford Wine (A)",
+            "skuCount": 4,
             "southern": false,
-            "payout": 40
+            "payout": 50
+          },
+          {
+            "customer": "Clifton Commons S & W",
+            "skuCount": 4,
+            "southern": false,
+            "payout": 50
           },
           {
             "customer": "Broad Liquors (A)",
@@ -115390,6 +115494,12 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Shoppers Vineyard (A)",
+            "skuCount": 3,
+            "southern": false,
+            "payout": 40
+          },
+          {
+            "customer": "Village Wine (P)",
             "skuCount": 3,
             "southern": false,
             "payout": 40
@@ -115422,13 +115532,13 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 70
           },
           {
-            "customer": "Village Wine & Liquors",
+            "customer": "Gary's Wine & Marketplace (Madison)",
             "skuCount": 5,
             "southern": false,
             "payout": 60
           },
           {
-            "customer": "Haworth Fine Wine/Spirits",
+            "customer": "Village Wine & Liquors",
             "skuCount": 5,
             "southern": false,
             "payout": 60
@@ -115440,10 +115550,16 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 60
           },
           {
-            "customer": "Gary's Wine & Marketplace (Madison)",
+            "customer": "Haworth Fine Wine/Spirits",
             "skuCount": 5,
             "southern": false,
             "payout": 60
+          },
+          {
+            "customer": "Mansfield Bottle King",
+            "skuCount": 4,
+            "southern": false,
+            "payout": 50
           },
           {
             "customer": "Vine Republik (Mountainside)",
@@ -115452,7 +115568,13 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Mansfield Bottle King",
+            "customer": "Fairfield Wine Cellar",
+            "skuCount": 4,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Shop Rite Liquors",
             "skuCount": 4,
             "southern": false,
             "payout": 50
@@ -115470,18 +115592,6 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Shop Rite Liquors",
-            "skuCount": 4,
-            "southern": false,
-            "payout": 50
-          },
-          {
-            "customer": "Fairfield Wine Cellar",
-            "skuCount": 4,
-            "southern": true,
-            "payout": 50
-          },
-          {
             "customer": "Wegmans",
             "skuCount": 3,
             "southern": false,
@@ -115494,13 +115604,13 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 40
           },
           {
-            "customer": "Buyrite Of Chatham",
+            "customer": "Hickory Wine Cellar",
             "skuCount": 3,
             "southern": false,
             "payout": 40
           },
           {
-            "customer": "Hickory Wine Cellar",
+            "customer": "Buyrite Of Chatham",
             "skuCount": 3,
             "southern": false,
             "payout": 40
@@ -115513,6 +115623,11 @@ const PROGRAM_DATA_2026_09 = {
             "customer": "Toby Grill and Bar",
             "bbl": 1.0,
             "qualifies": true
+          },
+          {
+            "customer": "Hoovers Tavern",
+            "bbl": 0.167,
+            "qualifies": false
           }
         ],
         "onPremQualifyingCount": 1,
@@ -115527,6 +115642,18 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 100
           },
           {
+            "customer": "Shop Rite Wine & Spirits Stanhope",
+            "skuCount": 5,
+            "southern": false,
+            "payout": 60
+          },
+          {
+            "customer": "Shop Rite Liq (A)Wharton",
+            "skuCount": 4,
+            "southern": false,
+            "payout": 50
+          },
+          {
             "customer": "Kingston Liquors",
             "skuCount": 4,
             "southern": false,
@@ -115539,10 +115666,10 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Shop Rite Liq (A)Wharton",
-            "skuCount": 4,
+            "customer": "3 IN 1 LIQUORS INC",
+            "skuCount": 3,
             "southern": false,
-            "payout": 50
+            "payout": 40
           },
           {
             "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
@@ -115552,12 +115679,6 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Patel Liqr & Gro(P)",
-            "skuCount": 3,
-            "southern": false,
-            "payout": 40
-          },
-          {
-            "customer": "3 IN 1 LIQUORS INC",
             "skuCount": 3,
             "southern": false,
             "payout": 40
@@ -115575,11 +115696,11 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 40
           }
         ],
-        "offPremNewCount": 9,
-        "offPremPayout": 450,
+        "offPremNewCount": 10,
+        "offPremPayout": 510,
         "onPremSeptember": [],
         "onPremQualifyingCount": 0,
-        "payout": 450
+        "payout": 510
       },
       "Matt Powierski": {
         "offPremNew": [
@@ -115599,8 +115720,26 @@ const PROGRAM_DATA_2026_09 = {
       "Michael Harboy": {
         "offPremNew": [
           {
+            "customer": "Wine Village",
+            "skuCount": 3,
+            "southern": true,
+            "payout": 50
+          },
+          {
             "customer": "B & B Liquors (West Orange)",
             "skuCount": 2,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "A&M Liquor",
+            "skuCount": 5,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Fairchilds Market Place",
+            "skuCount": 4,
             "southern": true,
             "payout": 50
           },
@@ -115611,7 +115750,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "ShopRite of West Caldwell",
+            "customer": "Krauser's Liquor Locker",
             "skuCount": 3,
             "southern": true,
             "payout": 50
@@ -115623,32 +115762,32 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
+            "customer": "Lincoln Center Liq",
+            "skuCount": 4,
+            "southern": false,
+            "payout": 50
+          },
+          {
+            "customer": "Verona Wine Cellar",
+            "skuCount": 3,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "The Wine Rack North Caldwell",
+            "skuCount": 6,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Grove Liquors",
+            "skuCount": 4,
+            "southern": true,
+            "payout": 50
+          },
+          {
             "customer": "Merit (P)",
             "skuCount": 4,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Fairchilds Market Place",
-            "skuCount": 4,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "The Bottle Stop (Caldwell)",
-            "skuCount": 3,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "A&M Liquor",
-            "skuCount": 5,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Wine Village",
-            "skuCount": 3,
             "southern": true,
             "payout": 50
           },
@@ -115665,31 +115804,13 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Grove Liquors",
+            "customer": "ShopRite of West Caldwell",
             "skuCount": 3,
             "southern": true,
             "payout": 50
           },
           {
-            "customer": "The Wine Rack North Caldwell",
-            "skuCount": 6,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Krauser's Liquor Locker",
-            "skuCount": 3,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Lincoln Center Liq",
-            "skuCount": 4,
-            "southern": false,
-            "payout": 50
-          },
-          {
-            "customer": "Verona Wine Cellar",
+            "customer": "The Bottle Stop (Caldwell)",
             "skuCount": 3,
             "southern": true,
             "payout": 50
@@ -115744,7 +115865,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Bottle King (A) Wayne",
+            "customer": "Long Hill Liquors (A)",
             "skuCount": 4,
             "southern": false,
             "payout": 50
@@ -115756,13 +115877,25 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "GREEN WAY MARKETS",
+            "customer": "Bottle King (A) Wayne",
+            "skuCount": 4,
+            "southern": false,
+            "payout": 50
+          },
+          {
+            "customer": "Ridgewood Super Cellar",
+            "skuCount": 4,
+            "southern": false,
+            "payout": 50
+          },
+          {
+            "customer": "Goffle Road Wine and More",
             "skuCount": 3,
             "southern": false,
             "payout": 40
           },
           {
-            "customer": "Goffle Road Wine and More",
+            "customer": "GREEN WAY MARKETS",
             "skuCount": 3,
             "southern": false,
             "payout": 40
@@ -115780,12 +115913,12 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 40
           }
         ],
-        "offPremNewCount": 9,
-        "offPremPayout": 440,
+        "offPremNewCount": 11,
+        "offPremPayout": 540,
         "onPremSeptember": [
           {
             "customer": "Steel Wheel Tavern",
-            "bbl": 0.667,
+            "bbl": 1.167,
             "qualifies": true
           },
           {
@@ -115805,7 +115938,7 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "onPremQualifyingCount": 2,
-        "payout": 440
+        "payout": 540
       },
       "Nick Melissari": {
         "offPremNew": [],
@@ -115814,7 +115947,7 @@ const PROGRAM_DATA_2026_09 = {
         "onPremSeptember": [
           {
             "customer": "Allendale Bar & Grill",
-            "bbl": 2.0,
+            "bbl": 2.5,
             "qualifies": true
           },
           {
@@ -115823,17 +115956,12 @@ const PROGRAM_DATA_2026_09 = {
             "qualifies": true
           },
           {
-            "customer": "Dream Bar",
-            "bbl": 0.5,
-            "qualifies": true
-          },
-          {
-            "customer": "Nellie's Place (P)",
-            "bbl": 0.5,
-            "qualifies": true
-          },
-          {
             "customer": "Biagio's",
+            "bbl": 0.5,
+            "qualifies": true
+          },
+          {
+            "customer": "House of Que (East Rutherford)",
             "bbl": 0.5,
             "qualifies": true
           },
@@ -115843,7 +115971,12 @@ const PROGRAM_DATA_2026_09 = {
             "qualifies": true
           },
           {
-            "customer": "House of Que (East Rutherford)",
+            "customer": "Nellie's Place (P)",
+            "bbl": 0.5,
+            "qualifies": true
+          },
+          {
+            "customer": "Dream Bar",
             "bbl": 0.5,
             "qualifies": true
           },
@@ -115875,18 +116008,13 @@ const PROGRAM_DATA_2026_09 = {
         "offPremPayout": 0,
         "onPremSeptember": [
           {
-            "customer": "Eleven Central",
+            "customer": "Andy's Corner (Z)",
             "bbl": 1.0,
             "qualifies": true
           },
           {
-            "customer": "Andy's Corner (Z)",
-            "bbl": 0.667,
-            "qualifies": true
-          },
-          {
-            "customer": "The Barrow House",
-            "bbl": 0.5,
+            "customer": "Eleven Central",
+            "bbl": 1.0,
             "qualifies": true
           },
           {
@@ -115905,12 +116033,17 @@ const PROGRAM_DATA_2026_09 = {
             "qualifies": true
           },
           {
-            "customer": "Olar Noso",
+            "customer": "The Barrow House",
+            "bbl": 0.5,
+            "qualifies": true
+          },
+          {
+            "customer": "Andiamo",
             "bbl": 0.167,
             "qualifies": false
           },
           {
-            "customer": "Andiamo",
+            "customer": "Olar Noso",
             "bbl": 0.167,
             "qualifies": false
           }
@@ -115933,23 +116066,35 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Bottle King (A) Glen Rock",
-            "skuCount": 3,
+            "customer": "City Supermarket",
+            "skuCount": 4,
             "southern": false,
-            "payout": 40
+            "payout": 50
           },
           {
             "customer": "Food Universe Marketplace",
             "skuCount": 3,
             "southern": false,
             "payout": 40
+          },
+          {
+            "customer": "Bottle King (A) Glen Rock",
+            "skuCount": 3,
+            "southern": false,
+            "payout": 40
+          },
+          {
+            "customer": "THE BOTTLE SHOP",
+            "skuCount": 3,
+            "southern": false,
+            "payout": 40
           }
         ],
-        "offPremNewCount": 4,
-        "offPremPayout": 200,
+        "offPremNewCount": 6,
+        "offPremPayout": 290,
         "onPremSeptember": [],
         "onPremQualifyingCount": 0,
-        "payout": 200
+        "payout": 290
       },
       "Robin Feldman": {
         "offPremNew": [],
@@ -115974,12 +116119,6 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 70
           },
           {
-            "customer": "Shop Rite Liq (A)Emerson",
-            "skuCount": 5,
-            "southern": false,
-            "payout": 60
-          },
-          {
             "customer": "Gary's Wine & Marketplace (Closter)",
             "skuCount": 5,
             "southern": false,
@@ -115987,6 +116126,12 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Westwood Wine and Liquors",
+            "skuCount": 5,
+            "southern": false,
+            "payout": 60
+          },
+          {
+            "customer": "Shop Rite Liq (A)Emerson",
             "skuCount": 5,
             "southern": false,
             "payout": 60
@@ -116037,86 +116182,86 @@ const PROGRAM_DATA_2026_09 = {
         "rank": 2
       },
       {
-        "rep": "Alisa Acciardi",
-        "payout": 700,
-        "newPlacements": 14,
+        "rep": "Jayson Romine",
+        "payout": 830,
+        "newPlacements": 16,
         "rank": 3
       },
       {
-        "rep": "Andrew Lundy",
+        "rep": "Alisa Acciardi",
         "payout": 700,
         "newPlacements": 14,
         "rank": 4
       },
       {
-        "rep": "Jayson Romine",
-        "payout": 620,
-        "newPlacements": 12,
+        "rep": "Andrew Lundy",
+        "payout": 700,
+        "newPlacements": 14,
         "rank": 5
       },
       {
         "rep": "Jaime Colonna",
-        "payout": 550,
-        "newPlacements": 11,
+        "payout": 600,
+        "newPlacements": 12,
         "rank": 6
+      },
+      {
+        "rep": "Mike Ast",
+        "payout": 540,
+        "newPlacements": 11,
+        "rank": 7
+      },
+      {
+        "rep": "Klejdi Lamo",
+        "payout": 510,
+        "newPlacements": 10,
+        "rank": 8
       },
       {
         "rep": "Shane Barreca",
         "payout": 500,
         "newPlacements": 9,
-        "rank": 7
-      },
-      {
-        "rep": "Klejdi Lamo",
-        "payout": 450,
-        "newPlacements": 9,
-        "rank": 8
-      },
-      {
-        "rep": "Mike Ast",
-        "payout": 440,
-        "newPlacements": 9,
         "rank": 9
       },
       {
         "rep": "Dylan Rubino",
-        "payout": 350,
-        "newPlacements": 7,
+        "payout": 450,
+        "newPlacements": 9,
         "rank": 10
+      },
+      {
+        "rep": "Dave Ehlers",
+        "payout": 430,
+        "newPlacements": 8,
+        "rank": 11
       },
       {
         "rep": "Hakan Sadik",
         "payout": 350,
         "newPlacements": 7,
-        "rank": 11
+        "rank": 12
       },
       {
         "rep": "Dan Lagala",
         "payout": 330,
         "newPlacements": 6,
-        "rank": 12
+        "rank": 13
       },
       {
         "rep": "Jim Heaney",
         "payout": 320,
         "newPlacements": 7,
-        "rank": 13
+        "rank": 14
       },
       {
-        "rep": "Dave Ehlers",
-        "payout": 270,
-        "newPlacements": 5,
-        "rank": 14
+        "rep": "Phil Ernst",
+        "payout": 290,
+        "newPlacements": 6,
+        "rank": 15
       },
       {
         "rep": "Chris Payton",
         "payout": 210,
-        "newPlacements": 4,
-        "rank": 15
-      },
-      {
-        "rep": "Phil Ernst",
-        "payout": 200,
         "newPlacements": 4,
         "rank": 16
       },
@@ -155288,5 +155433,5 @@ const PROGRAM_DATA_2026_09 = {
     }
   }
 };
-const PROGRAM_DATA_REFRESHED = "Sep 23, 2026, 9:49 AM ET";
-const PROGRAM_DATA_REFRESHED_AT = "2026-09-23T13:49:26Z";
+const PROGRAM_DATA_REFRESHED = "Sep 23, 2026, 10:02 AM ET";
+const PROGRAM_DATA_REFRESHED_AT = "2026-09-23T14:02:23Z";
