@@ -33,8 +33,32 @@ conversations, using the same step 1 filters and period choice:
   4. Look-alike targets -- accounts buying from us that resemble the
      scope's core buyers (premise, area, the other brands they carry)
      but are not buying the scope; "Lapsed" ones bought it before.
-  5. Print one-pager -- prints / saves the tab as a PDF (light theme,
+  5. Rebuy rates and repeat velocity -- cohort view over the whole
+     history: placement start = first month with net cases > 0
+     (placements already active in the first month of history are
+     excluded, they have no known start); rebuy within 3 / 6 months
+     counted only once that full window has passed ("too recent"
+     otherwise); months to rebuy, consistency (active months of the 6
+     after the start), first-month cases vs repeat cases per month,
+     one-and-done, return signal (a net-negative month after the start).
+     Rows with < 20 judged placements are flagged small.
+  6. Where it rebuys -- counties / areas with a fit score (percentile of
+     6-month rebuy + percentile of repeat velocity, 20+ judged only),
+     next to total cases and cases per buying account.
+  7. Account targeting -- Retain (bought 4+ of last 6 months), One-and-
+     done (never reordered in 6 months, biggest drops first, return
+     signal), Expand selectively (places with fit >= 50 -> use section 4).
+  8. Broad or selective? -- per child row: placements / cases / cases per
+     placement vs prior year, 6-month rebuy, repeat velocity, and a
+     verdict (Broader distribution works: rebuy >= 60% and cases per
+     placement holding; Be selective: rebuy < 40%, or points +10% with
+     cases growing less than half as fast; < 50 judged = Small sample).
+  9. Print one-pager -- prints / saves the tab as a PDF (light theme,
      filters and buttons hidden) for the supplier meeting.
+Limitations stated on the tab: shipments net of credits are a proxy for
+consumer demand, not sell-through; returns / out-of-code / destruction
+are not loaded (the return signal is the nearest thing); rep and DM are
+today's assignment.
 Cases per placement is also a fourth column toggle and KPI tile on the
 tracker tab. Revenue / gross profit are not loaded yet; when they are,
 the tiers and fit map are where they plug in.

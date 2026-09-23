@@ -213,3 +213,14 @@ net cases > 0; cases net of returns. Rolling-period buyers are never the
 sum of monthly buyer counts -- always re-derive from account rows. Rep and
 DM are today's assignment applied to all history (Fusion has no history
 of who held an account). No dollars, no goals on this page.
+
+The page has a second tab, DISTRIBUTION QUALITY (page=quality in the
+link), built for pushing back on "more points = more sales": placement
+tiers by cases/month, new-point survival, fit map, look-alike targets,
+rebuy cohorts (start = first net-positive month; placements active in
+the first month of history are excluded; a window is judged only once
+fully observed), county fit score, retain / one-and-done / expand
+lists, and a broad-vs-selective verdict per brand. All of it is
+computed in the browser from the same product x account months; the
+README lists every definition. Returns / out-of-code / destruction
+data are NOT loaded -- the "return signal" is a net-negative month.

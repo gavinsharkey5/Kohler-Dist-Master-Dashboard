@@ -178,6 +178,14 @@
   .pagetabs button.on{background:linear-gradient(180deg,var(--filters-top),var(--card));border-color:var(--accent);color:var(--ink);box-shadow:0 0 0 4px rgba(61,139,255,.12)}
   .pagetabs button.on small{color:var(--ink-soft)}
   @media (max-width:700px){.pagetabs{flex-direction:column}}
+  .qsub{font-family:"Archivo",Arial,sans-serif;font-size:17px;font-weight:700;margin:14px 0 6px;display:flex;align-items:center;gap:6px}
+  .defs{margin:6px 0 10px}
+  .defs summary{font-size:15.5px}
+  .deflist{margin:6px 0 0;padding-left:20px;color:var(--ink-soft);font-size:15px;line-height:1.5}
+  .deflist li{margin:4px 0}
+  .verdict{display:inline-block;padding:3px 10px;border-radius:999px;font-weight:700;font-size:14px;border:1px solid var(--line);color:var(--ink-soft)}
+  .verdict.up{background:var(--good-bg);color:var(--good);border-color:transparent}.verdict.down{background:var(--bad-bg);color:var(--bad);border-color:transparent}.verdict.muted{color:var(--ink-dim)}
+  @media print{.defs{display:block}.defs[open] summary,.defs summary{display:none}.deflist{display:block}}
   .qcard h2 .qnum{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:var(--gold);color:var(--on-gold);font-size:16px;margin-right:10px;vertical-align:middle}
   .inl{display:inline-flex;align-items:center;gap:6px;font-size:15px;color:var(--ink-soft);font-weight:600}
   .inl input{width:72px;min-height:42px;padding:6px 8px;font-size:16px}
@@ -256,7 +264,7 @@
 </div>
 <div class="tip" id="tip"></div>
 <script src="data/logos.js?v=2"></script>
-<script src="data/dist_data.js?v=28"></script>
+<script src="data/dist_data.js?v=29"></script>
 <script>
 (function(){
   var D = window.DIST_DATA;
@@ -302,7 +310,7 @@
   // ---------------------------------------------------------------- state
   var S = {page:'tracker',bm:-1,sup:-1,fam:-1,brand:-1,prod:-1,pkg:'all',prem:'all',dm:-1,rep:-1,area:-1,county:-1,cust:-1,rows:'brand',
            len:3, n:3, end:M-1, view:'compare', focus:M-1, yoy:1, raw:0, metric:'all', tab:'children',
-           sort:'', dir:-1, cmetric:'cases', q:'', more:0, chart:0, pmode:'roll', cp:'', cols:'buyers', tcore:3, tthin:1, gain:'', qtab:'children', ftab:'area'};
+           sort:'', dir:-1, cmetric:'cases', q:'', more:0, chart:0, pmode:'roll', cp:'', cols:'buyers', tcore:3, tthin:1, gain:'', qtab:'children', ftab:'area', rtab:'children', gtab:'county'};
   var DEFAULTS = JSON.parse(JSON.stringify(S));
   // Filters travel in the URL by NAME (product by its number), never by list position,
   // so a bookmarked link still points at the same thing after a data refresh adds rows.
@@ -996,6 +1004,123 @@
         'Top 40 of '+fmtN(cands.length)+' candidates. "Lapsed" bought '+esc(scopeName())+' in the prior period or a year ago and stopped; those are usually the easiest wins.'));
       h.push('<div class="tbtns" style="margin-top:8px"><button class="btn small" data-csv="q-targets">CSV</button></div></div>');
     }
+    h.push(rebuyView(pm, cm, periods, li, ps));
+    return h.join('');
+  }
+  // ================================================================ Rebuy cohorts (sections 5-8 of the quality tab)
+  var RW3=3, RW6=6;
+  // One record per placement in scope whose first purchase is inside the history (not already active in its first month).
+  function cohortRecords(pm, cm){
+    var out=[], established=0;
+    for(var i=0;i<NP;i++){
+      if(!pm[PP[i]]||!cm[PC[i]]) continue;
+      var m0=FIRST[i]; if(m0<0) continue; if(m0===0){ established++; continue; }
+      var b=i*M, r={i:i,m0:m0,first:CASES[b+m0],j3:0,j6:0,rb3:0,rb6:0,ttr:0,act6:0,rep6:0,neg6:0};
+      if(m0+RW3<=M-1){ r.j3=1; for(var k=m0+1;k<=m0+RW3;k++){ if(CASES[b+k]>0){ r.rb3=1; break; } } }
+      if(m0+RW6<=M-1){ r.j6=1; for(var k2=m0+1;k2<=m0+RW6;k2++){ var v=CASES[b+k2]; if(v>0){ if(!r.rb6){ r.rb6=1; r.ttr=k2-m0; } r.act6++; r.rep6+=v; } else if(v<0 && ACT[b+k2]){ r.neg6=1; } } }
+      out.push(r);
+    }
+    return {recs:out, established:established};
+  }
+  function cohortSummary(recs){
+    var n=recs.length, j3=0,rb3=0,j6=0,rb6=0,ttr=[],act=0,rep=0,firsts=[],neg=0,recent=0;
+    recs.forEach(function(r){ if(!r.j3) recent++; if(r.j3){ j3++; rb3+=r.rb3; } if(r.j6){ j6++; firsts.push(r.first); if(r.rb6){ rb6++; ttr.push(r.ttr); act+=r.act6; rep+=r.rep6; } neg+=r.neg6; } });
+    return {n:n,j3:j3,rb3:rb3,j6:j6,rb6:rb6,recent:recent,r3:j3?rb3/j3:null,r6:j6?rb6/j6:null,ttr:rb6?median(ttr):null,consist:rb6?act/(rb6*RW6):null,firstMed:j6?median(firsts):null,repeat:rb6?rep/(rb6*RW6):null,ood:j6?(j6-rb6)/j6:null,neg:j6?neg/j6:null};
+  }
+  function pctN(v){ return v===null||v===undefined ? '—' : Math.round(v*100)+'%'; }
+  function small(n, min){ return n<(min||20) ? ' <span class="tag part" title="Fewer than '+(min||20)+' placements judged">small</span>' : ''; }
+  function rebuyView(pm, cm, periods, li, ps){
+    var P=periods.length, T=periods[P-1], tj=P-1, yy=yoyPeriod(T);
+    var co=cohortRecords(pm, cm), recs=co.recs, all=cohortSummary(recs);
+    var h=[];
+    var defs='<details class="more defs"><summary>How these are measured (read once)</summary><ul class="deflist">'
+      +'<li><b>Placement</b>: one product at one account. Its <b>start</b> is the first month it shows net cases above zero. Placements already buying in '+esc(mLabel(0,true))+', the first month of history, have no known start and are left out of the rebuy figures ('+fmtN(co.established)+' here).</li>'
+      +'<li><b>Rebuy within 3 / 6 months</b>: any month in the 3 (or 6) months after the start month with net cases above zero. A placement is only <b>judged</b> once that full window has passed, so recent placements are counted as "too recent", never as failed.</li>'
+      +'<li><b>Months to rebuy</b>: median gap from the start month to the first reorder, among rebuyers. <b>Consistency</b>: among 6-month rebuyers, the share of those 6 months with a purchase.</li>'
+      +'<li><b>First-month cases</b>: median cases in the start month (the drop). <b>Repeat cases / month</b>: among 6-month rebuyers, cases in the 6 months after the start divided by 6. The gap between the two separates a strong drop from sustained demand.</li>'
+      +'<li><b>One-and-done</b>: judged at 6 months with no reorder. <b>Return signal</b>: a net-negative month (credit or return) inside the 6 months after the start; a partial proxy only.</li>'
+      +'<li>Cases are what Kohler shipped, net of credits: a proxy for consumer demand, not retail sell-through. Returns, out-of-code and destruction costs are <b>not loaded</b>; the return signal is the nearest thing in this data. Rep and DM are today’s assignments.</li></ul></details>';
+    // ---------------------------------------------------------------- 5. rebuy + velocity
+    h.push('<div class="card qcard">'+qhead(5,'Rebuy rates and repeat velocity · '+esc(scopeName()),
+      'Of every placement started in the history, how many reordered, how fast, how steadily, and how much they sold after the first drop. Cohorts use the whole history, not just the period above.')+defs);
+    h.push('<div class="kpis">');
+    h.push('<div class="kpi"><span class="kpi-p">judged at 6 mo</span><div class="l">Placements judged</div><div class="v">'+fmtN(all.j6)+'</div><div class="d"><span>'+fmtN(all.n)+' started in history</span><span>'+fmtN(all.recent)+' too recent to judge</span></div></div>');
+    h.push('<div class="kpi '+(all.r6>=0.5?'m-good':'m-bad')+'"><span class="kpi-p">'+RW6+' months</span><div class="l">Rebuy within 6 months</div><div class="v">'+pctN(all.r6)+'</div><div class="d"><span>within 3 months: <b>'+pctN(all.r3)+'</b></span><span>median '+(all.ttr!==null?fmt1(all.ttr):'—')+' months to reorder</span></div></div>');
+    h.push('<div class="kpi"><span class="kpi-p">rebuyers</span><div class="l">Consistency</div><div class="v">'+pctN(all.consist)+'</div><div class="d"><span>share of the 6 months after the start with a purchase</span></div></div>');
+    h.push('<div class="kpi m-cpp"><span class="kpi-p">rebuyers</span><div class="l">Repeat cases / month</div><div class="v">'+(all.repeat!==null?fmt1(all.repeat):'—')+'</div><div class="d"><span>vs a median first drop of <b>'+(all.firstMed!==null?fmt1(all.firstMed):'—')+'</b> cases</span></div></div>');
+    h.push('<div class="kpi '+(all.ood>0.5?'m-bad':'')+'"><span class="kpi-p">judged at 6 mo</span><div class="l">One-and-done</div><div class="v">'+pctN(all.ood)+'</div><div class="d"><span>'+fmtN(all.j6-all.rb6)+' placements never reordered</span><span>return signal on '+pctN(all.neg)+'</span></div></div>');
+    h.push('</div>');
+    var rtabs=[['children',LEVELS[li].plural],['bm','Brand managers'],['rep','Sales reps'],['dm','District managers'],['area','Areas'],['county','Counties'],['premise','Premise']];
+    h.push('<p class="help" style="margin:10px 0 4px">Break it down by:</p><div class="tabs">'+rtabs.map(function(t){ return '<button data-rtab="'+t[0]+'" class="'+((S.rtab||'children')===t[0]?'on':'')+'">'+t[1]+'</button>'; }).join('')+'</div>');
+    var rt=S.rtab||'children', keyFn = rt==='children' ? function(i){ return entityOf(li,PP[i]); } : ROWKEYS[rt].key, nameFn = rt==='children' ? function(id){ return levelName(li,id); } : ROWKEYS[rt].name;
+    var groups=new Map(); recs.forEach(function(r){ var id=keyFn(r.i); var g=groups.get(id); if(!g){ g=[]; groups.set(id,g); } g.push(r); });
+    var grows=[]; groups.forEach(function(g,id){ var sm=cohortSummary(g); sm.id=id; sm.name=nameFn(id); grows.push(sm); });
+    grows.sort(function(a,b){ return (b.r6||0)-(a.r6||0) || b.j6-a.j6; });
+    var rhdr=[rt==='children'?LEVELS[li].label:rtabs.filter(function(t){return t[0]===rt;})[0][1],'Judged (6 mo)','Rebuy 3 mo','Rebuy 6 mo','Months to rebuy','Consistency','First-month cases','Repeat cases / mo','One-and-done','Return signal','Too recent'];
+    function rrow(sm, cls){ return {cls:cls||'', cells:[esc(sm.name)+small(sm.j6), fmtN(sm.j6), pctN(sm.r3), '<b class="'+(sm.r6===null?'':(sm.r6>=0.5?'up':'down'))+'">'+pctN(sm.r6)+'</b>', sm.ttr!==null?fmt1(sm.ttr):'—', pctN(sm.consist), sm.firstMed!==null?fmt1(sm.firstMed):'—', sm.repeat!==null?fmt1(sm.repeat):'—', pctN(sm.ood), pctN(sm.neg), fmtN(sm.recent)]}; }
+    var trs=[rrow(Object.assign({name:'Total · '+scopeName()},all),'total')].concat(grows.slice(0,80).map(function(sm){ return rrow(sm); }));
+    h.push(qtable('q-rebuy', rhdr, trs, 'Sorted by 6-month rebuy rate. Rows with fewer than 20 judged placements are flagged small. '+(grows.length>80?'Top 80 shown; the CSV has all '+grows.length+'.':'')));
+    h.push('<div class="tbtns" style="margin-top:8px"><button class="btn small" data-csv="q-rebuy">CSV</button></div></div>');
+
+    // ---------------------------------------------------------------- 6. geography: rebuy x velocity by county / area, with volume and per-account
+    var gt=S.gtab||'county', GK={county:{label:'Counties',col:'County',key:function(c){return countyIdx[c[6]||'(unknown)'];},name:function(id){return COUNTIES[id];}}, area:{label:'Areas',col:'Distribution area',key:function(c){return c[3];},name:function(id){return D.areas[id];}}}[gt];
+    var geo=new Map();
+    recs.forEach(function(r){ var id=GK.key(customers[PC[r.i]]); var g=geo.get(id); if(!g){ g={recs:[],buyers:new Set(),cases:0}; geo.set(id,g); } g.recs.push(r); });
+    for(var i2=0;i2<NP;i2++){ if(!pm[PP[i2]]||!cm[PC[i2]]) continue; var v2=ps.sum[i2*ps.P+tj]; if(!(v2>0)) continue; var id2=GK.key(customers[PC[i2]]); var g2=geo.get(id2); if(!g2){ g2={recs:[],buyers:new Set(),cases:0}; geo.set(id2,g2); } g2.buyers.add(PC[i2]); g2.cases+=v2; }
+    var geoRows=[]; geo.forEach(function(g,id){ var sm=cohortSummary(g.recs); sm.id=id; sm.name=GK.name(id); sm.buyers=g.buyers.size; sm.cases=g.cases; sm.cpa=g.buyers.size?g.cases/g.buyers.size:0; geoRows.push(sm); });
+    var judged=geoRows.filter(function(r){ return r.j6>=20 && r.r6!==null && r.repeat!==null; });
+    function prank(arr, key){ var sorted=arr.map(function(r){return r[key];}).sort(function(a,b){return a-b;}); return function(v){ var lo=sorted.filter(function(x){return x<v;}).length; return sorted.length>1 ? lo/(sorted.length-1) : 1; }; }
+    var pr6=prank(judged,'r6'), prv=prank(judged,'repeat');
+    geoRows.forEach(function(r){ r.fit = (r.j6>=20 && r.r6!==null && r.repeat!==null) ? (pr6(r.r6)+prv(r.repeat))/2 : null; });
+    geoRows.sort(function(a,b){ return (b.fit===null?-1:b.fit)-(a.fit===null?-1:a.fit) || b.cases-a.cases; });
+    h.push('<div class="card qcard">'+qhead(6,'Where it rebuys · '+esc(scopeName()),
+      'Counties (or areas) ranked by a fit score that combines the 6-month rebuy rate and the repeat velocity, each as a percentile among places with 20+ judged placements. Total cases and cases per buying account for '+esc(pLabel(T))+' sit beside it so a big county does not win on size alone.')
+      +'<div class="tabs"><button data-gtab="county" class="'+(gt==='county'?'on':'')+'">Counties</button><button data-gtab="area" class="'+(gt==='area'?'on':'')+'">Areas</button></div>');
+    var mxc=Math.max.apply(null, geoRows.map(function(r){ return r.cpa; }).concat([1]));
+    h.push(qtable('q-geo', [GK.col,'Fit score','Judged (6 mo)','Rebuy 6 mo','Repeat cases / mo','Consistency','Buying accounts · '+esc(pLabel(T)),'Cases · '+esc(pLabel(T)),'Cases per account'],
+      geoRows.map(function(r){ return {cells:[esc(r.name)+small(r.j6), r.fit===null?'<span class="muted">n/a</span>':'<span class="qmini"><i style="width:'+Math.round(r.fit*100)+'%"></i></span><b>'+Math.round(r.fit*100)+'</b>', fmtN(r.j6), '<span class="'+(r.r6===null?'':(r.r6>=0.5?'up':'down'))+'">'+pctN(r.r6)+'</span>', r.repeat!==null?fmt1(r.repeat):'—', pctN(r.consist), fmtN(r.buyers), fmtC(r.cases), '<span class="qmini"><i style="width:'+(mxc?Math.round(r.cpa/mxc*100):0)+'%"></i></span>'+fmt1(r.cpa)]}; }),
+      'Fit score 100 = best on both rebuy and velocity among comparable places; n/a = fewer than 20 judged placements. The right two columns are volume; the score is quality.'));
+    h.push('<div class="tbtns" style="margin-top:8px"><button class="btn small" data-csv="q-geo">CSV</button></div></div>');
+
+    // ---------------------------------------------------------------- 7. account targeting: retain / one-and-done / expand
+    var L6s=Math.max(0,M-6), L6n=M-L6s, L3s=Math.max(0,M-3);
+    var acc=new Map();
+    for(var i3=0;i3<NP;i3++){ if(!pm[PP[i3]]||!cm[PC[i3]]) continue; var c=PC[i3], b3=i3*M, a=acc.get(c); if(!a){ a={c:c,months:new Array(L6n).fill(0),cases6:0,last3:0,prev3:0,pl:0}; acc.set(c,a); }
+      var any=false; for(var k3=L6s;k3<M;k3++){ var v3=CASES[b3+k3]; if(v3>0){ a.months[k3-L6s]=1; a.cases6+=v3; any=true; if(k3>=L3s) a.last3+=v3; else a.prev3+=v3; } } if(any) a.pl++; }
+    var retain=[]; acc.forEach(function(a){ a.active=a.months.reduce(function(x,y){return x+y;},0); if(a.active>=4 && a.cases6>0) retain.push(a); });
+    retain.sort(function(a,b){ return b.cases6-a.cases6; });
+    var ood=recs.filter(function(r){ return r.j6 && !r.rb6; }).sort(function(a,b){ return b.first-a.first; });
+    var oodCases=ood.reduce(function(s,r){ return s+r.first; },0);
+    h.push('<div class="card qcard">'+qhead(7,'Account targeting · '+esc(scopeName()),
+      'Three lists from the same data: accounts with sustained demand to protect, placements that never reordered (the out-of-code and pickup risk), and where selective expansion is likely to pay.'));
+    h.push('<h3 class="qsub"><span class="dot" style="background:var(--good)"></span>Retain · sustained demand · '+fmtN(retain.length)+' accounts bought in 4+ of the last 6 months</h3>');
+    h.push(qtable('q-retain', ['Account','Rep · Premise · County','Active months (of '+L6n+')','Products','Cases, last 6 mo','Cases / month','Last 3 vs prior 3'],
+      retain.slice(0,30).map(function(a){ var cu=customers[a.c]; var d=a.prev3? (a.last3-a.prev3)/a.prev3 : null; return {cells:['<span class="n1">'+esc(cu[0]+' '+cu[1])+'</span>', esc(D.reps[cu[4]])+' · '+(cu[2]?'On':'Off')+' · '+esc(cu[6]||'—'), a.active, a.pl, fmtC(a.cases6), fmt1(a.cases6/L6n), d===null?'<span class="muted">new</span>':'<span class="'+(d>0.05?'up':(d<-0.05?'down':'flat'))+'">'+(d>0?'+':'')+Math.round(d*100)+'%</span>']}; }),
+      'Top 30 by volume. These are the accounts a supplier’s drive should never distract a rep from.'));
+    h.push('<div class="tbtns" style="margin:6px 0 14px"><button class="btn small" data-csv="q-retain">CSV</button></div>');
+    h.push('<h3 class="qsub"><span class="dot" style="background:var(--bad)"></span>One-and-done · '+fmtN(ood.length)+' placements never reordered in 6 months · '+fmtC(oodCases)+' cases dropped once</h3>');
+    h.push(qtable('q-ood', ['Account','Product','First bought','First-month cases','Return signal','Rep'],
+      ood.slice(0,30).map(function(r){ var cu=customers[PC[r.i]], pd=products[PP[r.i]]; return {cells:['<span class="n1">'+esc(cu[0]+' '+cu[1])+'</span><span class="n2"> '+(cu[2]?'On':'Off')+' · '+esc(cu[6]||'')+'</span>', esc(pd[0]+' '+pd[1]), esc(mLabel(r.m0,true)), fmtC(r.first), r.neg6?'<span class="tag lost">credit / return</span>':'—', esc(D.reps[cu[4]])]}; }),
+      'Top 30 by size of the first drop. Each is a case for the supplier: this account took the product once, on a drive or a deal, and never reordered.'));
+    h.push('<div class="tbtns" style="margin:6px 0 14px"><button class="btn small" data-csv="q-ood">CSV</button></div>');
+    var expand=geoRows.filter(function(r){ return r.fit!==null && r.fit>=0.5; }).map(function(r){ return r.name+' (fit '+Math.round(r.fit*100)+')'; });
+    h.push('<h3 class="qsub"><span class="dot" style="background:var(--accent)"></span>Expand selectively</h3><p class="help" style="margin:0">'+(expand.length?'Places scoring 50+ on fit: <b>'+esc(expand.join(', '))+'</b>. Point new points there, at the accounts in section 4 (look-alike targets), rather than at a blanket count.':'No county or area clears a fit score of 50 with enough judged placements; this scope is not showing a place where broader distribution has earned it yet.')+'</p>');
+    h.push('</div>');
+
+    // ---------------------------------------------------------------- 8. broad vs selective verdict, one row per child of the scope
+    var vrows=new Map();
+    for(var i4=0;i4<NP;i4++){ if(!pm[PP[i4]]||!cm[PC[i4]]) continue; var id4=entityOf(li,PP[i4]); var g4=vrows.get(id4); if(!g4){ g4={id:id4,plT:0,csT:0,plY:0,csY:0,recs:[]}; vrows.set(id4,g4); }
+      var vT=ps.sum[i4*ps.P+tj]; if(vT>0){ g4.plT++; g4.csT+=vT; } if(yy){ var vY=ps.sum[i4*ps.P+2*P+tj]; if(vY>0){ g4.plY++; g4.csY+=vY; } } }
+    recs.forEach(function(r){ var g=vrows.get(entityOf(li,PP[r.i])); if(g) g.recs.push(r); });
+    var vlist=[]; vrows.forEach(function(g){ var sm=cohortSummary(g.recs); g.sm=sm; g.name=levelName(li,g.id); g.dp=g.plY?(g.plT-g.plY)/g.plY:null; g.dc=g.csY?(g.csT-g.csY)/g.csY:null; g.cppT=g.plT?g.csT/g.plT:0; g.cppY=g.plY?g.csY/g.plY:0; g.dcpp=g.cppY?(g.cppT-g.cppY)/g.cppY:null;
+      if(sm.j6<50) g.verdict=['Small sample','muted']; else if(sm.r6>=0.6 && (g.dcpp===null||g.dcpp>=-0.05)) g.verdict=['Broader distribution works','up']; else if(sm.r6<0.4 || (g.dp!==null&&g.dp>=0.1&&g.dc!==null&&g.dc<g.dp/2)) g.verdict=['Be selective','down']; else g.verdict=['Hold / watch','']; vlist.push(g); });
+    vlist.sort(function(a,b){ return b.plT-a.plT; });
+    h.push('<div class="card qcard">'+qhead(8,'Broad or selective? · '+esc(LEVELS[li].plural.toLowerCase())+' under '+esc(scopeName()),
+      'The test of "more points = more sales": for each row, how placements and cases moved against the same period a year ago, whether cases per placement held, and how well its new points rebuy. <b>Broader distribution works</b> = 6-month rebuy 60%+ and cases per placement holding. <b>Be selective</b> = rebuy under 40%, or points grew 10%+ while cases grew less than half as fast. Rows with under 50 judged placements get no verdict.'));
+    h.push(qtable('q-verdict', [LEVELS[li].label,'Placements · '+esc(pLabel(T)),'Placements vs prior yr','Cases vs prior yr','Cases / placement vs prior yr','Rebuy 6 mo','Repeat cases / mo','Verdict'],
+      vlist.slice(0,80).map(function(g){ function ch(v){ return v===null?'<span class="muted">—</span>':'<span class="'+(v>0.02?'up':(v<-0.02?'down':'flat'))+'">'+(v>0?'+':'')+Math.round(v*100)+'%</span>'; } return {cells:[esc(g.name), fmtN(g.plT), ch(g.dp), ch(g.dc), ch(g.dcpp), '<b>'+pctN(g.sm.r6)+'</b> <span class="muted">('+fmtN(g.sm.j6)+')</span>', g.sm.repeat!==null?fmt1(g.sm.repeat):'—', '<span class="verdict '+g.verdict[1]+'">'+g.verdict[0]+'</span>']}; }),
+      'Sorted by placements. A row that grew points, lost cases per placement and rebuys poorly is the supplier’s drive showing up as thin points.'));
+    h.push('<div class="tbtns" style="margin-top:8px"><button class="btn small" data-csv="q-verdict">CSV</button></div></div>');
     return h.join('');
   }
   // ---------------------------------------------------------------- events
@@ -1044,6 +1169,8 @@
     var qt=el('q-thin'); if(qt) qt.addEventListener('change', function(){ var v=parseFloat(qt.value); if(v>=0 && v<S.tcore){ S.tthin=v; render(); } });
     var qg=el('q-gain'); if(qg) qg.addEventListener('change', function(){ S.gain=qg.value; render(); });
     app.querySelectorAll('[data-qtab]').forEach(function(b){ b.addEventListener('click', function(){ S.qtab=b.dataset.qtab; render(); }); });
+    app.querySelectorAll('[data-rtab]').forEach(function(b){ b.addEventListener('click', function(){ S.rtab=b.dataset.rtab; render(); }); });
+    app.querySelectorAll('[data-gtab]').forEach(function(b){ b.addEventListener('click', function(){ S.gtab=b.dataset.gtab; render(); }); });
     app.querySelectorAll('[data-ftab]').forEach(function(b){ b.addEventListener('click', function(){ S.ftab=b.dataset.ftab; render(); }); });
     var qp=el('q-print'); if(qp) qp.addEventListener('click', function(){ window.print(); });
     app.querySelectorAll('[data-csv]').forEach(function(b){ b.addEventListener('click', function(){ downloadCsv(el(b.dataset.csv), b.dataset.csv); }); });
