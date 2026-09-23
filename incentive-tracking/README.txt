@@ -4096,6 +4096,33 @@ ahead of a 9/21 pull -- kept, as every future-dated row has been.
              3 at bonus, $855.
 Hub cache tag bumped (20260921b) for the new program_data.js.
 
+2026-09-23 FIFTH REFRESH -- Constellation Fall: Packages ON, Draft ON, Impact /
+Modelo Gaintain / Innovation OFF; Dave Ehlers Innovation goal 86
+  python3 generate.py
+DAVE EHLERS' INNOVATION GOAL IS NOW 86 (Gavin, 2026-09-23), a fourth row in
+data/constellation_fall_goal_overrides.csv beside his 9/16 Corona / Modelo /
+Impact overrides. It was 105 -- Innovation's goal is HALF the rep's spring-2026
+(3/1-5/31) placements, and his spring was 210 -- so the house Innovation goal
+moves 1,419 -> 1,400. He reads 70 of 86 (81.4%, 16 to go) instead of 70 of
+105. The build log prints the override every run.
+Diffed row by row first. The three off-prem files are restated in place
+(Impact 345 -> 347 rows, Modelo 168, Innovation 180 -- same keys, values up).
+Packages ON 10,429 -> 10,756 (+343 / -16: all 16 are Brian Sengebush's
+#191504 renamed "Jefferson House (A)" -> "The Jefferson House", same rows).
+Draft ON 1,856 -> 1,891 (+35, none removed). Only constellation_fall changed.
+  Off-prem house   Modelo Gaintain 1,908 -> 1,974 of 2,395, Impact 2,559 ->
+              2,720 of 3,452, Innovation 483 -> 545 of 1,400; Corona 1,146 of
+              1,610 unchanged (not re-pulled). Every rep up or flat. Dave
+              Ehlers 89.8% -> 95.4% of his off-prem goals (Modelo 171 of 176,
+              Impact 241 of 250, Corona held); Matt Powierski 587 -> 624,
+              Klejdi Lamo 411 -> 443, Jim Heaney 547 -> 573.
+  On-prem          packages 1,100 -> 1,195 buyers of 2,107, reps holding every
+              family 4 -> 5; draft 146 -> 157 of 381. Robin Feldman 119 -> 134,
+              Paul Mclaughlin 145 -> 161, Nick Melissari 197 -> 211, Allison
+              Scott 174 -> 187.
+Still 0 of 24 reps holding every goal across off + on, day 23 of 91.
+Hub cache tag bumped (20260923e) for the new program_data.js.
+
 2026-09-23 FOURTH REFRESH -- Montauk, 2XO, Other Half ON + OFF
   python3 generate.py
 PHIL ERNST'S USA WINE TRADERS PARAMUS ORDER WAS RE-DATED, NOT CANCELLED. The
