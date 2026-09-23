@@ -20,10 +20,13 @@ The page has two tabs under the same link (page=tracker | page=quality
 in the link). ROLLING TRENDS is the period comparison described above.
 DISTRIBUTION QUALITY is the "are the points real?" tab for supplier
 conversations, using the same step 1 filters and period choice:
-  1. Placement quality -- every placement tiered by cases per month
-     (Core >= 3, Steady, Thin < 1; thresholds editable), share of
-     placements vs share of cases, and a per-period table with cases
-     per placement.
+  1. Placement quality -- every placement tiered into Core / Steady /
+     Thin by cases per month. DEFAULT is relative to each brand family:
+     Core = top 25% of that family's own placements in the period, Thin
+     = bottom 25% (families with < 8 active placements fall back to the
+     fixed rule). The alternative is fixed cases per month (Core >= 5,
+     Thin < 1, editable). Share of placements vs share of cases, and a
+     per-period table with cases per placement.
   2. What happened to new points -- placements first gained in a chosen
      period (never bought before it), what they sold, and whether they
      were still buying 1-4 periods later, broken down by brand / rep /

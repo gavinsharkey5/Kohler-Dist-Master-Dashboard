@@ -268,7 +268,7 @@
 </div>
 <div class="tip" id="tip"></div>
 <script src="data/logos.js?v=2"></script>
-<script src="data/dist_data.js?v=30"></script>
+<script src="data/dist_data.js?v=31"></script>
 <script>
 (function(){
   var D = window.DIST_DATA;
@@ -314,7 +314,7 @@
   // ---------------------------------------------------------------- state
   var S = {page:'tracker',bm:-1,sup:-1,fam:-1,brand:-1,prod:-1,pkg:'all',prem:'all',dm:-1,rep:-1,area:-1,county:-1,cust:-1,rows:'brand',
            len:3, n:3, end:M-1, view:'compare', focus:M-1, yoy:1, raw:0, metric:'all', tab:'children',
-           sort:'', dir:-1, cmetric:'cases', q:'', more:0, chart:0, pmode:'roll', cp:'', cols:'buyers', tcore:3, tthin:1, gain:'', qtab:'children', ftab:'area', rtab:'children', gtab:'county'};
+           sort:'', dir:-1, cmetric:'cases', q:'', more:0, chart:0, pmode:'roll', cp:'', cols:'buyers', tcore:5, tthin:1, tmode:'rel', tq:25, gain:'', qtab:'children', ftab:'area', rtab:'children', gtab:'county'};
   var DEFAULTS = JSON.parse(JSON.stringify(S));
   // Filters travel in the URL by NAME (product by its number), never by list position,
   // so a bookmarked link still points at the same thing after a data refresh adds rows.
@@ -875,6 +875,17 @@
   function scopeLogo(){ if(S.brand>=0 && S.prod<0) return logoImg('brand',D.brands[S.brand],'big'); if(S.fam>=0) return logoImg('family',D.families[S.fam],'big'); if(S.sup>=0) return logoImg('supplier',D.suppliers[S.sup],'big'); return ''; }
   var TIERN=['Core','Steady','Thin'], TIERC=['var(--good)','var(--accent)','var(--bad)'];
   function tierOf(cpm){ return cpm>=S.tcore ? 0 : (cpm>=S.tthin ? 1 : 2); }
+  // Returns tier(i, sumOverPeriod) for one period column j. Relative mode: Core = top q% of the placement's
+  // own brand family this period, Thin = bottom q%; families with under 8 active placements fall back to the fixed rule.
+  function tierFn(pm, cm, ps, j, len){
+    if(S.tmode!=='rel') return function(i,v){ return tierOf(v/len); };
+    var byFam={};
+    for(var i=0;i<NP;i++){ if(!pm[PP[i]]||!cm[PC[i]]) continue; var v=ps.sum[i*ps.P+j]; if(!(v>0)) continue; var f=products[PP[i]][3]; (byFam[f]=byFam[f]||[]).push(v); }
+    var TH={}, q=Math.min(45,Math.max(5,S.tq))/100;
+    Object.keys(byFam).forEach(function(f){ var a=byFam[f].sort(function(x,y){return x-y;}), n=a.length; if(n<8){ TH[f]=null; return; } TH[f]={hi:a[Math.min(n-1,Math.ceil((1-q)*n))], lo:a[Math.max(0,Math.floor(q*n)-1)]}; });
+    return function(i,v){ var t=TH[products[PP[i]][3]]; if(!t) return tierOf(v/len); return v>=t.hi ? 0 : (v<=t.lo ? 2 : 1); };
+  }
+  function tierRule(){ return S.tmode==='rel' ? 'Core = top '+S.tq+'% of each brand family’s own placements this period, Thin = bottom '+S.tq+'%' : 'Core ≥ '+S.tcore+' cases a month, Thin under '+S.tthin; }
   function pctS(a,b){ return b ? Math.round(a/b*100)+'%' : '—'; }
   function median(arr){ if(!arr.length) return 0; var a=arr.slice().sort(function(x,y){return x-y;}); var m=a.length>>1; return a.length%2 ? a[m] : (a[m-1]+a[m])/2; }
   function qtable(id, headers, rows, note){
@@ -886,9 +897,9 @@
   var QCTX={scope:'',period:'',plural:'',label:''};
   // Plain-language introductions, one per section: what it shows / why it matters / how to read it.
   var EXPL={
-    1:function(){ return [['What it shows','Every placement of '+QCTX.scope+' in '+QCTX.period+' (one product at one account), sorted into Core, Steady and Thin by how many cases it sells per month.'],
-                          ['Why it matters','A point of distribution that sells under a case a month counts toward a supplier’s number, but it is not a real customer, and it is the product most likely to go out of code.'],
-                          ['How to read it','Compare the two bars. If Thin is a big share of placements but only a sliver of cases, extra points are not turning into sales. Change the thresholds if a brand’s normal volume is different.']]; },
+    1:function(){ return [['What it shows','Every placement of '+QCTX.scope+' in '+QCTX.period+' (one product at one account), sorted into three tiers by how many cases it sells per month: Core, Steady and Thin. '+(S.tmode==='rel'?'Each placement is judged against its own brand family, so a Core Corona placement and a Core Blue Moon placement mean the same thing: one of that brand’s best-selling accounts.':'The tiers use fixed case counts, the same for every brand.')],
+                          ['Why it matters','Suppliers count every placement as a "point of distribution", however little it sells. A Thin placement still counts as a point on their scoreboard, but the account is not really a customer of the brand: the product sits, goes past its date, and Kohler picks it up and destroys it at our cost. Points are not the same as sales.'],
+                          ['How to read it','Compare the two bars. When Thin is a big share of placements but only a sliver of cases, the extra points did not turn into sales. Switch between "Relative to each brand" and "Fixed cases per month" to see the tiers both ways.']]; },
     2:function(){ return [['What it shows','Placements that were brand new in the chosen period (never bought before), and whether they were still buying one, two, three and four periods later.'],
                           ['Why it matters','This is last year’s distribution drive judged by what it became. The answer to "give us 25 more points" is what the last 25 did.'],
                           ['How to read it','Change "Points gained in" to look at a different drive. Green means at least half survived, red means less than half. Switch the breakdown to see which brands, reps, areas or premise types kept their points.']]; },
@@ -921,11 +932,15 @@
     QCTX={scope:esc(scopeName()), period:esc(pLabel(T)), plural:esc(LEVELS[li].plural), label:esc(LEVELS[li].label)};
     var h=[];
     // ---------------------------------------------------------------- 1. placement quality tiers
-    var tiers = periods.map(function(p,j){ var t=[0,0,0], tc=[0,0,0]; for(var i=0;i<NP;i++){ if(!pm[PP[i]]||!cm[PC[i]]) continue; var v=ps.sum[i*ps.P+j]; if(!(v>0)) continue; var k=tierOf(v/p.len); t[k]++; tc[k]+=v; } return {p:p,t:t,tc:tc,pl:t[0]+t[1]+t[2],cs:tc[0]+tc[1]+tc[2]}; });
+    var tiers = periods.map(function(p,j){ var t=[0,0,0], tc=[0,0,0], tf=tierFn(pm,cm,ps,j,p.len); for(var i=0;i<NP;i++){ if(!pm[PP[i]]||!cm[PC[i]]) continue; var v=ps.sum[i*ps.P+j]; if(!(v>0)) continue; var k=tf(i,v); t[k]++; tc[k]+=v; } return {p:p,t:t,tc:tc,pl:t[0]+t[1]+t[2],cs:tc[0]+tc[1]+tc[2]}; });
     var cur=tiers[tj];
     h.push('<div class="card qcard">'+qhead(1,'Are the points real? · '+esc(scopeName())+' · '+esc(pLabel(T)),
       'Every placement (one product at one account) sorted by what it sells per month. Core ≥ '+S.tcore+' cases a month, Thin under '+S.tthin+'. A point of distribution that sells under a case a month is a point on a scoresheet, not a customer.',
-      '<span class="tbtns"><label class="inl">Core ≥ <input type="number" id="q-core" min="0.5" step="0.5" value="'+S.tcore+'"> / mo</label><label class="inl">Thin &lt; <input type="number" id="q-thin" min="0" step="0.5" value="'+S.tthin+'"> / mo</label><button class="btn primary" id="q-print" title="Print or save as PDF">🖨 Print one-pager</button></span>'));
+      '<span class="tbtns"><button class="btn primary" id="q-print" title="Print or save as PDF">🖨 Print one-pager</button></span>'));
+    h.push('<div class="row" style="margin:4px 0 10px"><label>How Core and Thin are set<span class="seg"><button data-tmode="rel" class="'+(S.tmode==='rel'?'on':'')+'">Relative to each brand</button><button data-tmode="fix" class="'+(S.tmode!=='rel'?'on':'')+'">Fixed cases per month</button></span></label>'
+      +(S.tmode==='rel' ? '<label class="inl">Core = top <input type="number" id="q-tq" min="5" max="45" step="5" value="'+S.tq+'"> % of the brand’s placements, Thin = bottom '+S.tq+'%</label>'
+                        : '<label class="inl">Core ≥ <input type="number" id="q-core" min="0.5" step="0.5" value="'+S.tcore+'"> cases / mo</label><label class="inl">Thin &lt; <input type="number" id="q-thin" min="0" step="0.5" value="'+S.tthin+'"> cases / mo</label>')
+      +'<span class="help">Rule in use: <b>'+tierRule()+'</b></span></div>');
     h.push('<div class="kpis">');
     for(var k=0;k<3;k++){ h.push('<div class="kpi tier'+k+'"><span class="kpi-p">'+esc(pLabel(T))+'</span><div class="l"><span class="dot" style="background:'+TIERC[k]+'"></span>'+TIERN[k]+' placements</div><div class="v">'+fmtN(cur.t[k])+'</div><div class="d"><span>'+pctS(cur.t[k],cur.pl)+' of placements · <b>'+pctS(cur.tc[k],cur.cs)+' of cases</b></span><span>'+(cur.t[k]?fmt1(cur.tc[k]/cur.t[k]/len):'—')+' cases / placement / month</span></div></div>'); }
     h.push('</div>');
@@ -1010,9 +1025,9 @@
     if(!scoped){
       h.push(qhead(4,'Look-alike targets','Pick a supplier, brand family, brand or product in step 1 and this lists the accounts that look most like its best buyers but are not buying it.')+'</div>');
     } else {
-      var core=[]; for(var c=0;c<NC;c++){ if(cm[c] && scopeT[c]/len>=S.tcore) core.push(c); }
+      var core=[]; if(S.tmode!=='rel'){ for(var c=0;c<NC;c++){ if(cm[c] && scopeT[c]/len>=S.tcore) core.push(c); } }
       var coreLbl='Core buyers (≥ '+S.tcore+' cases a month)';
-      if(core.length<8){ var bl=[]; for(var c2=0;c2<NC;c2++){ if(cm[c2]&&scopeT[c2]>0) bl.push(c2); } bl.sort(function(a,b){ return scopeT[b]-scopeT[a]; }); core=bl.slice(0,Math.max(8,Math.ceil(bl.length*0.2))); coreLbl='Top buyers (best 20%)'; }
+      if(core.length<8){ var bl=[]; for(var c2=0;c2<NC;c2++){ if(cm[c2]&&scopeT[c2]>0) bl.push(c2); } bl.sort(function(a,b){ return scopeT[b]-scopeT[a]; }); var q=(S.tmode==='rel'?S.tq:20)/100; core=bl.slice(0,Math.max(8,Math.ceil(bl.length*q))); coreLbl='Top buyers (best '+Math.round(q*100)+'%)'; }
       var prem1=0, areaN={}, famN={};
       core.forEach(function(c){ var cu=customers[c]; if(cu[2]) prem1++; areaN[cu[3]]=(areaN[cu[3]]||0)+1; var fs=acctFam[c]||{}; Object.keys(fs).forEach(function(f){ if(!scopeFams[f]) famN[f]=(famN[f]||0)+1; }); });
       var topF=Object.keys(famN).sort(function(a,b){ return famN[b]-famN[a]; }).slice(0,10).map(Number);
@@ -1068,6 +1083,7 @@
     var co=cohortRecords(pm, cm), recs=co.recs, all=cohortSummary(recs);
     var h=[];
     var defs='<details class="more defs"><summary>How these are measured (read once)</summary><ul class="deflist">'
+      +'<li><b>Core / Steady / Thin</b> (section 1): '+tierRule()+'. In relative mode a brand family with fewer than 8 active placements uses the fixed rule instead.</li>'
       +'<li><b>Placement</b>: one product at one account. Its <b>start</b> is the first month it shows net cases above zero. Placements already buying in '+esc(mLabel(0,true))+', the first month of history, have no known start and are left out of the rebuy figures ('+fmtN(co.established)+' here).</li>'
       +'<li><b>Rebuy within 3 / 6 months</b>: any month in the 3 (or 6) months after the start month with net cases above zero. A placement is only <b>judged</b> once that full window has passed, so recent placements are counted as "too recent", never as failed.</li>'
       +'<li><b>Months to rebuy</b>: median gap from the start month to the first reorder, among rebuyers. <b>Consistency</b>: among 6-month rebuyers, the share of those 6 months with a purchase.</li>'
@@ -1199,6 +1215,8 @@
       if(k==='bm'){ S.bm=S.sup=S.fam=S.brand=S.prod=-1; } else if(k==='sup'){ S.sup=S.fam=S.brand=S.prod=-1; } else if(k==='fam'){ S.fam=S.brand=S.prod=-1; } else if(k==='brand'){ S.brand=S.prod=-1; } else if(k==='prod'){ S.prod=-1; }
       else if(k==='pkg'){ S.pkg='all'; } else if(k==='prem'){ S.prem='all'; } else if(k==='dm'){ S.dm=S.rep=-1; } else if(k==='rep'){ S.rep=-1; } else if(k==='area'){ S.area=-1; } else if(k==='county'){ S.county=-1; } else if(k==='cust'){ S.cust=-1; }
       S.sort=''; render(); }); });
+    app.querySelectorAll('[data-tmode]').forEach(function(b){ b.addEventListener('click', function(){ S.tmode=b.dataset.tmode; render(); }); });
+    var qq=el('q-tq'); if(qq) qq.addEventListener('change', function(){ var v=parseInt(qq.value,10); if(v>=5&&v<=45){ S.tq=v; render(); } });
     var qc=el('q-core'); if(qc) qc.addEventListener('change', function(){ var v=parseFloat(qc.value); if(v>0){ S.tcore=v; if(S.tthin>=v) S.tthin=Math.max(0,v-1); render(); } });
     var qt=el('q-thin'); if(qt) qt.addEventListener('change', function(){ var v=parseFloat(qt.value); if(v>=0 && v<S.tcore){ S.tthin=v; render(); } });
     var qg=el('q-gain'); if(qg) qg.addEventListener('change', function(){ S.gain=qg.value; render(); });
