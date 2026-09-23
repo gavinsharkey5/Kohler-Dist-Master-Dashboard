@@ -27,6 +27,11 @@ conversations, using the same step 1 filters and period choice:
      fixed rule). The alternative is fixed cases per month (Core >= 5,
      Thin < 1, editable). Share of placements vs share of cases, and a
      per-period table with cases per placement.
+     Under the rule line sits a gold "The takeaway" box written from
+     the live numbers for whatever is filtered: placements, what the
+     best and slowest quarter sold, whether the Thin share moved since
+     last period, and a "Say it to the supplier" line. Sections 2 and
+     5 carry the same box for new-point survival and reorder rates.
   2. What happened to new points -- placements first gained in a chosen
      period (never bought before it), what they sold, and whether they
      were still buying 1-4 periods later, broken down by brand / rep /

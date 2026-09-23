@@ -189,6 +189,13 @@
   @media print{.qexpl{grid-template-columns:1fr 1fr 1fr;gap:6px}.qblk{padding:4px 8px}.qexpl li{margin:1px 0}}
   .qcard h2{font-size:23px}
   @media print{.qexpl{font-size:11px;gap:2px}}
+  .takeaway{margin:12px 0 16px;padding:16px 18px 14px;border-radius:14px;background:linear-gradient(180deg,var(--gold-soft),var(--card));border:2px solid var(--gold);box-shadow:0 0 0 4px rgba(255,177,61,.12)}
+  .tk-title{font-family:"Archivo",Arial,sans-serif;font-weight:700;font-size:18px;color:var(--gold);letter-spacing:.02em;margin:0 0 6px}
+  .takeaway ul{margin:0;padding-left:22px;font-size:17px;line-height:1.55;color:var(--ink)}
+  .takeaway li{margin:4px 0}
+  .tk-quote{margin:12px 0 0;padding:10px 14px;border-left:4px solid var(--gold);background:var(--input);border-radius:0 10px 10px 0;font-size:16.5px;line-height:1.5;color:var(--ink);font-style:italic}
+  .tk-say{display:block;font-style:normal;font-weight:700;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+  @media print{.takeaway{box-shadow:none;break-inside:avoid}}
   .qsub{font-family:"Archivo",Arial,sans-serif;font-size:17px;font-weight:700;margin:14px 0 6px;display:flex;align-items:center;gap:6px}
   .defs{margin:6px 0 10px}
   .defs summary{font-size:15.5px}
@@ -276,7 +283,7 @@
 </div>
 <div class="tip" id="tip"></div>
 <script src="data/logos.js?v=2"></script>
-<script src="data/dist_data.js?v=35"></script>
+<script src="data/dist_data.js?v=36"></script>
 <script>
 (function(){
   var D = window.DIST_DATA;
@@ -899,7 +906,7 @@
     var fam = S.fam>=0 ? S.fam : (S.brand>=0 ? (products.filter(function(p){return p[4]===S.brand;})[0]||[])[3] : (S.prod>=0 ? products[S.prod][3] : -1));
     if(fam===undefined||fam<0){ var n=Object.keys(tf.TH).filter(function(k){ return tf.TH[k]; }).length; return ' Cut-offs are set per brand family ('+n+' families with enough placements); pick a brand family to see its numbers.'; }
     var t=tf.TH[fam]; if(!t) return ' '+esc(D.families[fam])+' has fewer than 8 placements this period, so the fixed rule applies.';
-    return ' For '+esc(D.families[fam])+' this period that means: <b>Core = '+fmt1(t.hi/tf.len)+' cases a month or more</b>, <b>Thin = '+fmt1(t.lo/tf.len)+' or less</b>, Steady in between.';
+    return ' For the '+esc(D.families[fam])+' family'+((S.brand>=0||S.prod>=0)?' (which '+esc(scopeName())+' belongs to)':'')+' this period that means: <b>Core = '+fmt1(t.hi/tf.len)+' cases a month or more</b>, <b>Thin = '+fmt1(t.lo/tf.len)+' or less</b>, Steady in between.';
   }
   function tierRule(){ return S.tmode==='rel' ? 'Core = top '+S.tq+'% of each brand family’s own placements this period, Thin = bottom '+S.tq+'%' : 'Core ≥ '+S.tcore+' cases a month, Thin under '+S.tthin; }
   function pctS(a,b){ return b ? Math.round(a/b*100)+'%' : '—'; }
@@ -990,6 +997,10 @@
                             '<b>Be selective</b> = rebuy under 40%, or points up 10%+ while cases grew less than half as fast.',
                             '<b>Hold / watch</b> = in between. Under 50 judged placements = no verdict.']]]; }
   };
+  function scopeWord(){ return S.bm<0&&S.sup<0&&S.fam<0&&S.brand<0&&S.prod<0 ? 'across all suppliers' : 'on '+esc(scopeName()); }
+  function takeaway(title, lines, quote){
+    return '<div class="takeaway"><div class="tk-title">'+title+'</div><ul>'+lines.map(function(l){ return '<li>'+l+'</li>'; }).join('')+'</ul>'+(quote?'<div class="tk-quote"><span class="tk-say">Say it to the supplier</span>'+quote+'</div>':'')+'</div>';
+  }
   function qhead(num, title, sub, right){
     var blocks = EXPL[num] ? EXPL[num]() : [['',[sub]]];
     return '<div class="toolbar"><div class="left stack"><h2 style="margin:0"><span class="qnum">'+num+'</span>'+title+'</h2><div class="qexpl">'+blocks.map(function(b){ return '<div class="qblk">'+(b[0]?'<div class="qlab">'+b[0]+'</div>':'')+'<ul>'+b[1].map(function(t){ return '<li>'+t+'</li>'; }).join('')+'</ul></div>'; }).join('')+'</div></div>'+(right||'')+'</div>';
@@ -1010,6 +1021,20 @@
       +(S.tmode==='rel' ? '<label class="inl">Core = top <input type="number" id="q-tq" min="5" max="45" step="5" value="'+S.tq+'"> % of the brand’s placements, Thin = bottom '+S.tq+'%</label>'
                         : '<label class="inl">Core ≥ <input type="number" id="q-core" min="0.5" step="0.5" value="'+S.tcore+'"> cases / mo</label><label class="inl">Thin &lt; <input type="number" id="q-thin" min="0" step="0.5" value="'+S.tthin+'"> cases / mo</label>')
       +'</div><p class="help" style="margin:0 0 10px">Rule in use: <b>'+tierRule()+'</b>.'+cutoffText(tfT)+'</p>');
+    (function(){
+      var c=cur, n=c.pl; if(!n) return;
+      var coreP=c.t[0]/n, coreC=c.tc[0]/(c.cs||1), thinP=c.t[2]/n, thinC=c.tc[2]/(c.cs||1);
+      var corePm = c.t[0]? c.tc[0]/c.t[0]/len : 0, thinPm = c.t[2]? c.tc[2]/c.t[2]/len : 0;
+      var prev = tiers.length>1 ? tiers[tj-1] : null;
+      var lines=[
+        '<b>'+fmtN(n)+' placements '+scopeWord()+'</b> in '+esc(pLabel(T))+' (a placement = one product at one account).',
+        '<span class="up">The best '+fmtN(c.t[0])+' placements ('+Math.round(coreP*100)+'%)</span> sold <b>'+Math.round(coreC*100)+'% of the cases</b>, about '+fmt1(corePm)+' cases a month each.',
+        '<span class="down">The slowest '+fmtN(c.t[2])+' placements ('+Math.round(thinP*100)+'%)</span> sold <b>'+Math.round(thinC*100)+'% of the cases</b>, about '+fmt1(thinPm)+' cases a month each. Those '+fmtN(c.t[2])+' points are on the supplier’s scoreboard but barely move.'
+      ];
+      if(prev && prev.pl){ var pt=prev.t[2]/prev.pl; var d=thinP-pt; lines.push('Thin share was '+Math.round(pt*100)+'% in '+esc(pLabel(prev.p))+' and is '+Math.round(thinP*100)+'% now ('+(d>0.005?'<span class="down">getting worse</span>':(d<-0.005?'<span class="up">improving</span>':'flat'))+').'); }
+      var quote='“Of your '+fmtN(n)+' points '+scopeWord()+', '+fmtN(c.t[2])+' sell about '+fmt1(thinPm)+' cases a month and add up to '+Math.round(thinC*100)+'% of the volume. More points like those don’t sell cases. The '+fmtN(c.t[0])+' that do '+Math.round(coreC*100)+'% of the volume are the accounts we should be protecting and cloning.”';
+      h.push(takeaway('The takeaway · '+esc(scopeName()), lines, quote));
+    })();
     h.push('<div class="kpis">');
     for(var k=0;k<3;k++){ h.push('<div class="kpi tier'+k+'"><span class="kpi-p">'+esc(pLabel(T))+'</span><div class="l"><span class="dot" style="background:'+TIERC[k]+'"></span>'+TIERN[k]+' placements</div><div class="v">'+fmtN(cur.t[k])+'</div><div class="d"><span>'+pctS(cur.t[k],cur.pl)+' of placements · <b>'+pctS(cur.tc[k],cur.cs)+' of cases</b></span><span>'+(cur.t[k]?fmt1(cur.tc[k]/cur.t[k]/len):'—')+' cases / placement / month</span></div></div>'); }
     h.push('</div>');
@@ -1050,6 +1075,13 @@
       h.push('<div class="kpi"><span class="kpi-p">'+esc(pLabel(G))+'</span><div class="l">New points gained</div><div class="v">'+fmtN(all.n)+'</div><div class="d"><span>median '+fmt1(median(all.cases))+' cases in the period</span><span><b>'+pctS(all.under3,all.n)+'</b> did under 3 cases</span></div></div>');
       laters.forEach(function(w,q){ var kp=all.kept[q]/(all.n||1); h.push('<div class="kpi '+(kp<0.5?'m-bad':'m-good')+'"><span class="kpi-p">'+esc(pLabel(w))+'</span><div class="l">Still buying '+(q+1)+' period'+(q?'s':'')+' later</div><div class="v">'+pctS(all.kept[q],all.n)+'</div><div class="d"><span>'+fmtN(all.kept[q])+' of '+fmtN(all.n)+' points</span><span>'+(all.kept[q]?fmt1(all.keptCases[q]/all.kept[q]):'—')+' cases each</span></div></div>'); });
       h.push('</div>');
+      if(all.n){ var lq=laters.length-1, keptP=all.kept[lq]/all.n, lost=all.n-all.kept[lq];
+        h.push(takeaway('The takeaway · new points gained '+esc(pLabel(G)), [
+          '<b>'+fmtN(all.n)+' new points '+scopeWord()+'</b> were gained in '+esc(pLabel(G))+'. The typical one sold '+fmt1(median(all.cases))+' cases in that period, and '+Math.round(all.under3/all.n*100)+'% did under 3.',
+          'By '+esc(pLabel(laters[lq]))+', <span class="'+(keptP>=0.5?'up':'down')+'">'+fmtN(all.kept[lq])+' ('+Math.round(keptP*100)+'%) were still buying</span> and <span class="down">'+fmtN(lost)+' were gone</span>.',
+          (all.kept[lq]? 'The survivors now do '+fmt1(all.keptCases[lq]/all.kept[lq])+' cases each per period; the drive’s real yield was '+fmtN(all.kept[lq])+' accounts, not '+fmtN(all.n)+' points.' : 'None of them were still buying.')
+        ], '“Last time we added '+fmtN(all.n)+' points '+scopeWord()+', '+fmtN(lost)+' of them were gone within '+(laters.length*len)+' months. Show us which accounts the next batch will be, or let us pick them.”'));
+      }
       var qtabs=[['children',LEVELS[li].plural],['bm','Brand managers'],['rep','Sales reps'],['dm','District managers'],['area','Areas'],['county','Counties'],['premise','Premise']];
       h.push('<p class="help" style="margin:10px 0 4px">Break it down by:</p><div class="tabs">'+qtabs.map(function(t){ return '<button data-qtab="'+t[0]+'" class="'+(S.qtab===t[0]?'on':'')+'">'+t[1]+'</button>'; }).join('')+'</div>');
       var rows=[]; rmap.forEach(function(r){ r.name=nameFn(r.id); rows.push(r); }); rows.sort(function(a,b){ return b.n-a.n; });
@@ -1169,6 +1201,13 @@
     h.push('<div class="kpi m-cpp"><span class="kpi-p">rebuyers</span><div class="l">Repeat cases / month</div><div class="v">'+(all.repeat!==null?fmt1(all.repeat):'—')+'</div><div class="d"><span>vs a median first drop of <b>'+(all.firstMed!==null?fmt1(all.firstMed):'—')+'</b> cases</span></div></div>');
     h.push('<div class="kpi '+(all.ood>0.5?'m-bad':'')+'"><span class="kpi-p">judged at 6 mo</span><div class="l">One-and-done</div><div class="v">'+pctN(all.ood)+'</div><div class="d"><span>'+fmtN(all.j6-all.rb6)+' placements never reordered</span><span>return signal on '+pctN(all.neg)+'</span></div></div>');
     h.push('</div>');
+    if(all.j6){
+      h.push(takeaway('The takeaway · do these placements reorder?', [
+        'Of <b>'+fmtN(all.j6)+' placements '+scopeWord()+'</b> old enough to judge, <span class="'+(all.r6>=0.5?'up':'down')+'">'+pctN(all.r6)+' reordered within 6 months</span> and <span class="down">'+pctN(all.ood)+' never did</span> ('+fmtN(all.j6-all.rb6)+' one-and-done drops).',
+        'The typical first drop was '+fmt1(all.firstMed)+' cases. Accounts that did reorder went on to '+fmt1(all.repeat)+' cases a month, buying in '+pctN(all.consist)+' of the following months.',
+        (all.repeat!==null && all.firstMed!==null ? (all.repeat*T.len>all.firstMed ? 'Repeat volume beats the first drop: where this brand lands, it grows.' : 'The first drop is bigger than what follows: the launch order is the high point for most accounts.') : '')
+      ].filter(Boolean), '“One in '+(all.ood>0?Math.round(1/all.ood):0)+' placements '+scopeWord()+' never reorders. Before we add points, let’s agree which accounts look like the '+pctN(all.r6)+' that do.”'));
+    }
     var rtabs=[['children',LEVELS[li].plural],['bm','Brand managers'],['rep','Sales reps'],['dm','District managers'],['area','Areas'],['county','Counties'],['premise','Premise']];
     h.push('<p class="help" style="margin:10px 0 4px">Break it down by:</p><div class="tabs">'+rtabs.map(function(t){ return '<button data-rtab="'+t[0]+'" class="'+((S.rtab||'children')===t[0]?'on':'')+'">'+t[1]+'</button>'; }).join('')+'</div>');
     var rt=S.rtab||'children', keyFn = rt==='children' ? function(i){ return entityOf(li,PP[i]); } : ROWKEYS[rt].key, nameFn = rt==='children' ? function(id){ return levelName(li,id); } : ROWKEYS[rt].name;
