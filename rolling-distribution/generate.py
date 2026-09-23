@@ -40,6 +40,14 @@ Every file is auto-detected by its header:
            Repack, 120022 Samples...) are KEPT -- they are not customers,
            but "8 Out Of Code" per product is the out-of-code cost the
            quality tab otherwise lacks. All-zero rows are dropped.
+  ADJUST   Customer Num & Company, Product Num & Name, then Cases YYYY MM
+           (space, not slash) -- the "Comparison" export of Fusion's
+           internal accounts only (8 Out Of Code, 7 Breakage, 5 Inventory
+           Adjustment, 9 Fifo Adjustment, 25 Repack, 6 / 120022 Samples).
+           Cases by internal account x product x month. Each month
+           REPLACES data/master/adjust/YYYY-MM.csv. The "Total" row is
+           skipped, zero cells dropped, (1.00) read as -1. No customer in
+           this file: out-of-code is known per PRODUCT, never per account.
 
 Dimension attributes (names, supplier, family, brand, premise, area, rep,
 DM, package) are "latest file wins": the attributes of a product or account
@@ -67,6 +75,8 @@ CUSTOMER_FIELDS = ['customer_num', 'name', 'premise', 'address', 'county', 'area
 SUPPLIER_FIELDS = ['supplier', 'supplier_id', 'brand_manager']
 TERRITORY_CSV = os.path.join(MASTER, 'territory.csv')
 MONEY_DIR = os.path.join(MASTER, 'money')
+ADJUST_DIR = os.path.join(MASTER, 'adjust')
+ADJUST_RE = re.compile(r'^Cases\s+(\d{4})\s+(\d{1,2})$')
 MONEY_RE = re.compile(r'^(Laid-In Cost|\$Vol|Gross)\s+(\d{4})/(\d{1,2})$')
 TERRITORY_FIELDS = ['family', 'territory', 'can_sell', 'cant_sell', 'source']
 METRIC_RE = re.compile(r'^(Buyer Count|Placement Count|Cases)\s+(\d{4})/(\d{1,2})$')
@@ -167,6 +177,8 @@ def detect(hdr):
         return 'territory'
     if 'Customer Num & Company' in h and 'Product Num & Name' in h and any(MONEY_RE.match(x) for x in h):
         return 'money'
+    if 'Customer Num & Company' in h and 'Product Num & Name' in h and any(ADJUST_RE.match(x) for x in h):
+        return 'adjust'
     die('unrecognised header: %s' % h[:6])
 
 
@@ -420,6 +432,59 @@ def ingest_money(path, customers, sources):
     print('MONEY    %s  rows=%d  months=%s..%s' % (os.path.basename(path), nrows, months[0], months[-1]))
 
 
+def ingest_adjust(path, sources):
+    exported = export_date(path)
+    with open(path, newline='', encoding='utf-8-sig') as fh:
+        r = csv.reader(fh)
+        hdr = [x.strip() for x in next(r)]
+        col = {h: i for i, h in enumerate(hdr)}
+        cols = {}
+        for i, h in enumerate(hdr):
+            m = ADJUST_RE.match(h)
+            if m:
+                mk = month_key(m.group(1), m.group(2))
+                if mk in cols:
+                    die('duplicate column %r -- the export has the same month twice' % h)
+                cols[mk] = i
+        months = sorted(cols)
+        data = {mk: {} for mk in months}
+        accounts = {}
+        nrows = 0
+        for x in r:
+            if not any(v.strip() for v in x):
+                continue
+            acct = x[col['Customer Num & Company']].strip()
+            if acct.lower() == 'total' or not x[col['Product Num & Name']].strip():
+                continue
+            an, aname = split_num(acct)
+            accounts[an] = aname
+            pn = split_num(x[col['Product Num & Name']])[0]
+            nrows += 1
+            for mk in months:
+                v = money(x[cols[mk]])
+                if v == 0:
+                    continue
+                if (an, pn) in data[mk]:
+                    die('%s: account %s product %s appears twice for %s' % (path, an, pn, mk))
+                data[mk][(an, pn)] = v
+    os.makedirs(ADJUST_DIR, exist_ok=True)
+    for mk in months:
+        out = os.path.join(ADJUST_DIR, mk + '.csv')
+        existed = os.path.exists(out)
+        rows = data[mk]
+        with open(out, 'w', newline='', encoding='utf-8') as fh:
+            w = csv.writer(fh)
+            w.writerow(['account', 'product_num', 'cases'])
+            for (an, pn) in sorted(rows, key=lambda k: (len(k[0]), k[0], len(k[1]), k[1])):
+                w.writerow([an, pn, fmt(rows[(an, pn)])])
+        ooc = sum(v for (an, pn), v in rows.items() if an == '8')
+        brk = sum(v for (an, pn), v in rows.items() if an == '7')
+        src = sources.setdefault(mk, {})
+        src['adjust'] = {'file': os.path.basename(path), 'exported': exported.isoformat()}
+        print('ADJUST   %s  %s  rows=%d  out-of-code=%s cases  breakage=%s cases' % (mk, 'RESTATED' if existed else 'new', len(rows), format(round(ooc), ','), format(round(brk), ',')))
+    print('ADJUST   %s  rows=%d  months=%s..%s  accounts: %s' % (os.path.basename(path), nrows, months[0], months[-1], ', '.join('%s %s' % kv for kv in sorted(accounts.items(), key=lambda kv: (len(kv[0]), kv[0])))))
+
+
 # ---------------------------------------------------------------- build
 
 DRAFT_RE = re.compile(r'\b(keg|gal)\b', re.I)
@@ -592,7 +657,7 @@ def main(argv):
             continue
         with open(f, newline='', encoding='utf-8-sig') as fh:
             typed.append((detect(next(csv.reader(fh))), f))
-    for kind, f in sorted(typed, key=lambda t: {'detail': 0, 'product': 1, 'customer': 2, 'supplier': 3, 'territory': 4, 'money': 5}[t[0]]):
+    for kind, f in sorted(typed, key=lambda t: {'detail': 0, 'product': 1, 'customer': 2, 'supplier': 3, 'territory': 4, 'money': 5, 'adjust': 6}[t[0]]):
         if kind == 'detail':
             ingest_detail(f, products, customers, sources, complete)
         elif kind == 'product':
@@ -603,6 +668,8 @@ def main(argv):
             ingest_supplier(f, suppliers)
         elif kind == 'money':
             ingest_money(f, customers, sources)
+        elif kind == 'adjust':
+            ingest_adjust(f, sources)
         else:
             territory = {}   # the territory file is the whole rule set, never a top-up
             ingest_territory(f, territory)

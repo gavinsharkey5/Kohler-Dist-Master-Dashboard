@@ -242,6 +242,17 @@ every month through Sep 2026 is in. Then: revenue / gross columns on the
 tracker, GP by tier and GP per placement on the quality tab, and
 out-of-code cost by brand.
 
+Adjustments (2026-09-23): Fusion's "Comparison" export of the internal
+accounts (cases per internal account x product x month, `Cases YYYY MM`
+with a space) is ingested into `data/master/adjust/YYYY-MM.csv`; Jan 2025
+- Aug 2026 are loaded. Out-of-code (account 8) is the real destruction
+signal -- 69k cases over 20 months, 0.6% of sales overall but 14% for
+Colt 45 and 26% for Pabst Light -- and it is per PRODUCT only (no
+customer in the file), so it can be shown by brand / product / period,
+never per account or per placement. Not on the page yet; Gavin was
+asked whether to add it (recommended: yes, as a per-product series on
+the quality tab, independent of the money hold).
+
 The page has a second tab, DISTRIBUTION QUALITY (page=quality in the
 link), built for pushing back on "more points = more sales": placement
 tiers by cases/month, new-point survival, fit map, look-alike targets,

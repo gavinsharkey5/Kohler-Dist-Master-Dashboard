@@ -138,6 +138,14 @@ WHERE THE DATA LIVES
   data/master/suppliers.csv        supplier -> supplier_id, brand_manager
   data/master/territory.csv        brand family -> territory label, areas
                                    it can / can't be sold in
+  data/master/adjust/YYYY-MM.csv   account (8 = Out Of Code, 7 = Breakage, 5 =
+                                   Inventory Adjustment, 9 = Fifo, 25 = Repack,
+                                   6 / 120022 = Samples), product_num, cases --
+                                   Fusion's "Comparison" export of internal
+                                   accounts, one file per month, replace-the-
+                                   month. Per PRODUCT only (no customer). Jan
+                                   2025 - Aug 2026 loaded 2026-09-23; not yet
+                                   shown on the page.
   data/master/money/YYYY-MM.csv    product_num, customer_num, cost (laid-in),
                                    revenue ($Vol), gross (Fusion's gross
                                    profit) -- one file per month, same
@@ -207,6 +215,14 @@ REFRESH STEPS
       half the rows) -- use Gross as the profit figure, never recompute.
       The build prints revenue, gross, margin and out-of-code cost per
       month.
+
+   h) ADJUSTMENTS (optional): Fusion's "Comparison" export of the internal
+      accounts (Customer Num & Company / Product Num & Name / Cases YYYY MM,
+      note the space). Auto-detected; each month replaces
+      data/master/adjust/YYYY-MM.csv; the Total row is skipped and (1.00)
+      reads as -1. Out-of-code cases per product per month is the part
+      the quality tab can use; breakage is warehouse handling, repack
+      is negative by nature (it creates cases), samples are selling cost.
 
    e) LOGOS (optional): the Fusion "Suppliers" and "Brand Families"
       workbooks that carry a logo picture per row (xlsx, not csv). Run
