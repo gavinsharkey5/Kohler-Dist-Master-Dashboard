@@ -512,6 +512,15 @@ step of the refresh and check for these defects EVERY time:
            dashboards. Tracker 746 accounts / 6,237 taps (129 re-surveyed,
            1,062 superseded taps in history); exec core market 5,535 taps
            at 718 accounts, 51.7% ours. Survey data now through 9/15.
+  9.22.26  ("vF1") 6,870 raw rows with 372 duplicate "#" (1,900 rows
+           sharing them, scattered like 9.4); Import Template fully
+           populated again. Repaired as usual: OK 6,646 / Review 220 /
+           MISMATCH 4. Same workbook for both dashboards, plus a new
+           Encompass units-sold export (RDE_iSellBeer_TAPS_Exec_Overview_11)
+           over the exec page's encompass_units_sold.csv. Tracker 746
+           accounts / 6,238 taps (157 re-surveyed, 1,499 superseded taps
+           in history); exec core market 5,536 taps at 718 accounts,
+           51.8% ours. Survey data now through 9/22.
 
 Original write-up (2026-08-21):
 the 8.20.26 delivery ("iSellBeer_TAPS__US_THEM_Audit_Matrix_vF1_8.20.26.xlsx")
