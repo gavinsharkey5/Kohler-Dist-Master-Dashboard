@@ -259,9 +259,28 @@ Four objectives at 25% each:
   3. Spirits - Carbliss (10) New On Premise Buying Accounts
   4. HUSA - (1) New XX Draft Line
 
-All four are data-backed. Numbers as of the 2026-09-21 refresh (RDE exports run
-through 9/21): Bardstown 15 menu placements, Fever Tree 21 new placements,
-Carbliss 21 new buying accounts, HUSA 1 new draft line.
+All four are data-backed. Numbers as of the 2026-09-23 refresh (RDE exports run
+through 9/23, a few load-sheet rows dated 9/24-9/25): Bardstown 15 menu
+placements, Fever Tree 21 new placements, Carbliss 50 new buying accounts,
+HUSA 1 new draft line.
+
+2026-09-23 REFRESH -- Fever Tree, Carbliss, HUSA exports (no Promos_Report)
+  python3 generate_2026-09.py
+Diffed row by row before the run: every export is a clean superset of the 9/21
+pull. Fever Tree 556 -> 570 (+14, none removed), Carbliss 282 -> 321 (+39;
+the 7 Jefferson House rows only renamed "Jefferson House (A)" -> "The
+Jefferson House", same #191504), HUSA 87 -> 89 CSV rows (87 written after the
+usual off-premise exclusion). New rows are dated 9/22-9/25 -- future-dated
+load sheets kept as every refresh does.
+CARBLISS 21 -> 50 (+29 new accounts, all 9/22-9/24): Robin Feldman 0 -> 15,
+Brian Sengebush 5 -> 8, Nick Melissari 1 -> 4, Mike Ast 0 -> 3, Anthony
+Palmisano 0 -> 2, Dan Lagala 0 -> 2, Allison Scott 7 -> 8. The other new
+Carbliss rows (Duffy's, K of C N Arlington, VFW Sparta, Valley Regency, Elks
+1506, Am Lgn Totowa / Wayne, Valley Tavern, Doghouse, Elevengreen) are repeats
+of 6/1-8/31 buyers.
+FEVER TREE holds at 21: all 14 new rows are account+SKU pairs already bought
+in the base window. HUSA holds at 1: Yard House 8384 and Jalapeno Mex. Grille
+(9/22) are repeats. Bardstown archive untouched at 15.
 
 2026-09-21 REFRESH -- Fever Tree, Carbliss, HUSA exports + Promos_Report_30
   python3 generate_2026-09.py --merge-bardstown Promos_Report_30.xlsx
