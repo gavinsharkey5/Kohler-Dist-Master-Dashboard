@@ -236,3 +236,9 @@ lists, and a broad-vs-selective verdict per brand. All of it is
 computed in the browser from the same product x account months; the
 README lists every definition. Returns / out-of-code / destruction
 data are NOT loaded -- the "return signal" is a net-negative month.
+The tab has a SIMPLE (for managers) mode beside the full one -- a gold
+"How much detail?" bar, `qview=simple|full` in the link, remembered in
+localStorage. Simple renders `simpleView()` from the `QS` numbers the
+full `qualityView()` / `rebuyView()` stash as they run, so the two can
+never disagree; keep it that way (never recompute in the simple view)
+and keep Gavin's full layout untouched -- he uses it himself.

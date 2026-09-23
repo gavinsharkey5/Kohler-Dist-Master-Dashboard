@@ -194,6 +194,29 @@
   @media print{.qexpl{grid-template-columns:1fr 1fr 1fr;gap:6px}.qblk{padding:4px 8px}.qexpl li{margin:1px 0}}
   .qcard h2{font-size:23px}
   @media print{.qexpl{font-size:11px;gap:2px}}
+  .qmode{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:0 0 14px;padding:12px 16px;background:var(--card);border:1.5px solid var(--gold);border-radius:12px}
+  .qmode-l{font-weight:700;font-size:17px}.qmode-h{font-size:15px}
+  .scard{padding:22px 24px;margin-bottom:16px}
+  .sc-head{display:flex;align-items:center;gap:12px;margin-bottom:8px;flex-wrap:wrap}
+  .sc-head h2{margin:0;font-size:24px;flex:1}
+  .seelink{color:var(--accent-hi);text-decoration:underline;cursor:pointer;font-size:15px;white-space:nowrap}
+  .shead{font-size:21px;line-height:1.5;margin:4px 0 12px;color:var(--ink)}
+  .sline{font-size:17px;line-height:1.5;margin:8px 0 0;color:var(--ink)}
+  .sbigs{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:10px 0 12px}
+  .sbig{background:var(--tile);border:1px solid var(--line-soft);border-top:5px solid var(--line);border-radius:12px;padding:14px 12px;text-align:center}
+  .sbig .v{font-size:40px;font-weight:800;line-height:1.1}.sbig .l{font-size:15px;color:var(--ink-soft);margin-top:6px;line-height:1.35}
+  .sbig.good{border-top-color:var(--good)}.sbig.bad{border-top-color:var(--bad)}.sbig.mid{border-top-color:var(--accent)}
+  .sbar{height:40px;margin:6px 0}.sbar .qseg{font-size:16px}
+  .sact{margin:14px 0 0;padding:12px 16px;border-radius:10px;background:var(--gold-soft);border-left:5px solid var(--gold);font-size:17.5px;line-height:1.5;color:var(--ink)}
+  .sact-l{display:block;font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+  .slist{margin:6px 0 0;padding-left:26px;font-size:17px;line-height:1.7}.slist .muted{font-size:15px}.slist .tag{margin-left:6px;vertical-align:1px}
+  .scols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:4px}
+  .scol{background:var(--tile);border:1px solid var(--line-soft);border-radius:12px;padding:12px 14px}.scol h4{margin:0 0 6px;font-size:18px}.scol .slist{font-size:16px;line-height:1.55}.scol .slist li{margin:4px 0}
+  .sfit{display:grid;grid-template-columns:160px 1fr 200px;gap:12px;align-items:center;margin:6px 0;font-size:17px}
+  .sfit .qmini{width:100%;height:14px;margin:0}
+  .sverdict-wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:4px 0 8px}
+  .sverdict{font-size:24px;padding:10px 22px}
+  @media print{.qmode,.seelink{display:none !important}.scard{break-inside:avoid}}
   .terr{margin:-6px 0 14px;padding:10px 14px;border-radius:10px;background:var(--card);border:1px solid var(--gold);border-left-width:6px;font-size:15.5px;line-height:1.5;color:var(--ink)}
   .terr.off{border-color:var(--bad)}
   .terr .btn{margin-left:8px;vertical-align:middle}
@@ -291,7 +314,7 @@
 </div>
 <div class="tip" id="tip"></div>
 <script src="data/logos.js?v=2"></script>
-<script src="data/dist_data.js?v=42"></script>
+<script src="data/dist_data.js?v=43"></script>
 <script>
 (function(){
   var D = window.DIST_DATA;
@@ -369,7 +392,7 @@
   // ---------------------------------------------------------------- state
   var S = {page:'tracker',bm:-1,sup:-1,fam:-1,brand:-1,prod:-1,pkg:'all',prem:'all',dm:-1,rep:-1,area:-1,county:-1,cust:-1,rows:'brand',
            len:3, n:3, end:M-1, view:'compare', focus:M-1, yoy:1, raw:0, metric:'all', tab:'children',
-           sort:'', dir:-1, cmetric:'cases', q:'', more:0, chart:0, pmode:'roll', cp:'', cols:'buyers', tcore:5, tthin:1, tmode:'rel', tq:25, gain:'', terr:'on', ttab:'', qtab:'children', ftab:'area', rtab:'children', gtab:'county'};
+           sort:'', dir:-1, cmetric:'cases', q:'', more:0, chart:0, pmode:'roll', cp:'', cols:'buyers', tcore:5, tthin:1, tmode:'rel', tq:25, gain:'', terr:'on', ttab:'', qview:'full', qtab:'children', ftab:'area', rtab:'children', gtab:'county'};
   var DEFAULTS = JSON.parse(JSON.stringify(S));
   // Filters travel in the URL by NAME (product by its number), never by list position,
   // so a bookmarked link still points at the same thing after a data refresh adds rows.
@@ -408,6 +431,7 @@
     history.replaceState(null,'','#'+q.toString());
   }
   readHash();
+  try{ var qv0=localStorage.getItem('rdt-qview'); if(qv0 && !/[?&#]qview=/.test(location.hash)) S.qview=qv0; }catch(e){}
   try{ S.chart = +(localStorage.getItem('rdt-chart')||0); S.more = +(localStorage.getItem('rdt-more')||0); var sc=localStorage.getItem('rdt-cols'); if(sc && !/[?&#]cols=/.test(location.hash)) S.cols=sc; }catch(e){}
   function setTheme(t){ document.documentElement.setAttribute('data-theme', t); try{ localStorage.setItem('rdt-theme', t); }catch(e){} var i=document.getElementById('theme-ico'), l=document.getElementById('theme-lbl'); if(i){ i.textContent = t==='light' ? '☾' : '☀'; l.textContent = t==='light' ? 'Dark mode' : 'Light mode'; } }
   (function(){ var t='dark'; try{ t=localStorage.getItem('rdt-theme')||'dark'; }catch(e){} setTheme(t); })();
@@ -615,10 +639,12 @@
     html.push('<div class="card">');
     html.push(crumbsHtml(li));
     html.push(kpiHtml(total, periods, P));
-    html.push(chartHtml(pm, cm, periods));
+    var simple = S.page==='quality' && S.qview==='simple';
+    if(!simple) html.push(chartHtml(pm, cm, periods));
     html.push('</div>');
     if(S.page==='quality'){
-      html.push(qualityView(ps, pm, cm, periods, childLevel));
+      var fullQ = qualityView(ps, pm, cm, periods, childLevel);   // always computed: it fills QS for the simple view
+      html.push(simple ? simpleView() : fullQ);
     }else if(S.view==='compare'){
       html.push(compareTable(rows, total, periods, P, childLevel, rk));
     }else{
@@ -626,6 +652,7 @@
     }
     var sy=window.scrollY, tw0=app.querySelector('.tbl-wrap'), st=tw0?tw0.scrollTop:0, sl=tw0?tw0.scrollLeft:0;
     app.className=''; app.innerHTML = html.join('');
+    app.querySelectorAll('.qcard').forEach(function(c,i){ c.id='qsec'+(i+1); });
     bind();
     window.scrollTo(0, sy);
     var tw1=app.querySelector('.tbl-wrap'); if(tw1){ tw1.scrollTop=st; tw1.scrollLeft=sl; }
@@ -663,8 +690,15 @@
     h.push(' <button class="btn small" id="terr-toggle">Show all areas</button></div>');
     return h.join('');
   }
+  function qmodeBar(){
+    if(S.page!=='quality') return '';
+    var simple=S.qview==='simple';
+    return '<div class="qmode"><span class="qmode-l">How much detail?</span><span class="seg"><button data-qview="simple" class="'+(simple?'on':'')+'">Simple · for managers</button><button data-qview="full" class="'+(!simple?'on':'')+'">Full detail</button></span>'
+      +'<span class="muted qmode-h">'+(simple?'One plain-language card per question. Every card has a "See the detail" link.':'Every table and control. Switch to Simple for the short version.')+'</span>'
+      +(simple?'<button class="btn primary" id="q-print" title="Print or save as PDF" style="margin-left:auto">🖨 Print</button>':'')+'</div>';
+  }
   function controlsHtml(){
-    var h = [pageTabs(), '<div class="card filters">'];
+    var h = [pageTabs(), qmodeBar(), '<div class="card filters">'];
     h.push('<div class="step"><span class="num">1</span>Pick what to look at</div><p class="help stephelp">Leave a box on "All" to include everything.</p>');
     h.push('<div class="groups">');
     h.push('<div class="group"><div class="gtitle">Product</div><div class="ctl">');
@@ -1110,6 +1144,7 @@
     var tfT=null;
     var tiers = periods.map(function(p,j){ var t=[0,0,0], tc=[0,0,0], tf=tierFn(pm,cm,ps,j,p.len); if(j===tj) tfT=tf; for(var i=0;i<NP;i++){ if(!pm[PP[i]]||!cm[PC[i]]) continue; var v=ps.sum[i*ps.P+j]; if(!(v>0)) continue; var k=tf(i,v); t[k]++; tc[k]+=v; } return {p:p,t:t,tc:tc,pl:t[0]+t[1]+t[2],cs:tc[0]+tc[1]+tc[2]}; });
     var cur=tiers[tj];
+    QS={T:T, len:len, li:li, yy:yy, s1:{cur:cur, al:[]}, s2:null, s4:null};
     h.push('<div class="card qcard">'+qhead(1,'Are the points real? · '+esc(scopeName())+' · '+esc(pLabel(T)),
       'Every placement (one product at one account) sorted by what it sells per month. Core ≥ '+S.tcore+' cases a month, Thin under '+S.tthin+'. A point of distribution that sells under a case a month is a point on a scoresheet, not a customer.',
       '<span class="tbtns"><button class="btn primary" id="q-print" title="Print or save as PDF">🖨 Print one-pager</button></span>'));
@@ -1136,6 +1171,7 @@
     h.push('</div>');
     function bar(label, vals){ var tot=vals.reduce(function(a,b){return a+b;},0)||1; return '<div class="qbar"><span class="qbl">'+label+'</span><div class="qtrack">'+vals.map(function(v,k){ var w=v/tot*100; return '<span class="qseg" style="width:'+w+'%;background:'+TIERC[k]+'" title="'+TIERN[k]+': '+fmtN(v)+' ('+Math.round(w)+'%)">'+(w>=7?Math.round(w)+'%':'')+'</span>'; }).join('')+'</div></div>'; }
     h.push('<div class="qbars">'+bar('Share of placements', cur.t)+bar('Share of cases', cur.tc)+'<div class="qlegend">'+TIERN.map(function(n,k){ return '<span><i style="background:'+TIERC[k]+'"></i>'+n+'</span>'; }).join('')+'</div></div>');
+    QS.bar1 = bar('Share of placements', cur.t)+bar('Share of cases', cur.tc)+'<div class="qlegend">'+TIERN.map(function(n,k){ return '<span><i style="background:'+TIERC[k]+'"></i>'+n+'</span>'; }).join('')+'</div>';
     h.push(qtable('q-tiers', ['Period','Placements','Core','Steady','Thin','Thin share of cases','Cases / placement'],
       tiers.map(function(r,j){ return {cls:j===tj?'total':'', cells:[esc(pLabel(r.p)), fmtN(r.pl), fmtN(r.t[0])+' <span class="muted">('+pctS(r.t[0],r.pl)+')</span>', fmtN(r.t[1])+' <span class="muted">('+pctS(r.t[1],r.pl)+')</span>', fmtN(r.t[2])+' <span class="muted">('+pctS(r.t[2],r.pl)+')</span>', pctS(r.tc[2],r.cs), r.pl?fmt1(r.cs/r.pl):'—']}; }),
       'Read across: when placements rise and cases per placement fall, the drive added thin points. The newest period is bold.'));
@@ -1175,7 +1211,7 @@
         (!TK[tt]&&rows.length>80?'Top 80 of '+fmtN(rows.length)+' rows. ':'')+'Click any column header to re-sort.'));
       h.push('<div class="tbtns" style="margin-top:8px"><button class="btn small" data-csv="q-thin">CSV</button></div>');
       // accounts behind the Core placements
-      var al=[]; acct.forEach(function(a){ al.push(a); }); al.sort(function(a,b){ return b.cs-a.cs; });
+      var al=[]; acct.forEach(function(a){ al.push(a); }); al.sort(function(a,b){ return b.cs-a.cs; }); QS.s1.al=al;
       h.push('<h3 class="qsub">The accounts behind the Core placements · '+esc(scopeName())+'</h3>');
       h.push('<p class="help" style="margin:0 0 8px"><b>'+fmtN(al.length)+' accounts</b> hold the '+fmtN(cur.t[0])+' Core placements. These are the accounts where '+esc(scopeName())+' is already working: protect them, and use them as the model for where it should go next. <b>Section 4</b> lists the accounts that look most like these but are not buying '+esc(scopeName())+' yet. Click an account to open it on the Trends tab.</p>');
       h.push(qtable('q-coreacct', ['Account','Rep · Premise · Area','Core placements','Core cases / mo','All '+esc(scopeName())+' cases / mo','Core products'],
@@ -1224,6 +1260,7 @@
           (all.kept[lq]? 'The survivors now do '+fmt1(all.keptCases[lq]/all.kept[lq])+' cases each per period; the drive’s real yield was '+fmtN(all.kept[lq])+' accounts, not '+fmtN(all.n)+' points.' : 'None of them were still buying.')
         ], '“Last time we added '+fmtN(all.n)+' points '+scopeWord()+', '+fmtN(lost)+' of them were gone within '+(laters.length*len)+' months. Show us which accounts the next batch will be, or let us pick them.”'));
       }
+      QS.s2={G:G, laters:laters, all:all};
       var qtabs=[['children',LEVELS[li].plural],['bm','Brand managers'],['rep','Sales reps'],['dm','District managers'],['area','Areas'],['county','Counties'],['premise','Premise']];
       h.push('<p class="help" style="margin:10px 0 4px">Break it down by:</p><div class="tabs">'+qtabs.map(function(t){ return '<button data-qtab="'+t[0]+'" class="'+(S.qtab===t[0]?'on':'')+'">'+t[1]+'</button>'; }).join('')+'</div>');
       var rows=[]; rmap.forEach(function(r){ r.name=nameFn(r.id); rows.push(r); }); rows.sort(function(a,b){ return b.n-a.n; });
@@ -1288,6 +1325,7 @@
         cands.push({c:c4,score:score,ov:ov,status:status});
       }
       cands.sort(function(a,b){ return b.score-a.score; });
+      QS.s4={cands:cands, core:core, coreLbl:coreLbl};
       h.push(qhead(4,'Which accounts to target next · '+esc(scopeName()),
         'Accounts buying from us this period that look most like the '+coreLbl.toLowerCase()+' of '+esc(scopeName())+' (same premise and areas, and they carry the other brands those buyers carry) but are not buying it. This is the counter-offer to a blanket points target: these accounts, not any accounts.'
         +' Core profile: '+fmtN(core.length)+' accounts, '+pctS(prem1,core.length)+' on premise, strongest in '+esc(Object.keys(areaN).sort(function(a,b){return areaN[b]-areaN[a];}).slice(0,3).map(function(k){ return D.areas[k]; }).join(', '))+'. Brands they also carry: '+esc(topF.map(function(f){ return D.families[f]; }).join(', '))+'.'));
@@ -1324,6 +1362,7 @@
   function rebuyView(pm, cm, periods, li, ps){
     var P=periods.length, T=periods[P-1], tj=P-1, yy=yoyPeriod(T);
     var co=cohortRecords(pm, cm), recs=co.recs, all=cohortSummary(recs);
+    QS.s5=all;
     var h=[];
     var defs='<details class="more defs"><summary>How these are measured (read once)</summary><ul class="deflist">'
       +'<li><b>Core / Steady / Thin</b> (section 1): '+tierRule()+'. In relative mode a brand family with fewer than 8 active placements uses the fixed rule instead.</li>'
@@ -1373,6 +1412,7 @@
     var pr6=prank(judged,'r6'), prv=prank(judged,'repeat');
     geoRows.forEach(function(r){ r.fit = (r.j6>=20 && r.r6!==null && r.repeat!==null) ? (pr6(r.r6)+prv(r.repeat))/2 : null; });
     geoRows.sort(function(a,b){ return (b.fit===null?-1:b.fit)-(a.fit===null?-1:a.fit) || b.cases-a.cases; });
+    QS.s6={rows:geoRows, col:GK.col, label:GK.label};
     h.push('<div class="card qcard">'+qhead(6,'Where it reorders · '+esc(scopeName()),
       'Counties (or areas) ranked by a fit score that combines the 6-month rebuy rate and the repeat velocity, each as a percentile among places with 20+ judged placements. Total cases and cases per buying account for '+esc(pLabel(T))+' sit beside it so a big county does not win on size alone.')
       +'<div class="tabs"><button data-gtab="county" class="'+(gt==='county'?'on':'')+'">Counties</button><button data-gtab="area" class="'+(gt==='area'?'on':'')+'">Areas</button></div>');
@@ -1404,6 +1444,7 @@
       'Top 30 by size of the first drop. Each is a case for the supplier: this account took the product once, on a drive or a deal, and never reordered.'));
     h.push('<div class="tbtns" style="margin:6px 0 14px"><button class="btn small" data-csv="q-ood">CSV</button></div>');
     var expand=geoRows.filter(function(r){ return r.fit!==null && r.fit>=0.5; }).map(function(r){ return r.name+' (fit '+Math.round(r.fit*100)+')'; });
+    QS.s7={retain:retain, ood:ood, oodCases:oodCases, expand:expand, L6n:L6n};
     h.push('<h3 class="qsub"><span class="dot" style="background:var(--accent)"></span>Expand selectively</h3><p class="help" style="margin:0">'+(expand.length?'Places scoring 50+ on fit: <b>'+esc(expand.join(', '))+'</b>. Point new points there, at the accounts in section 4 (look-alike targets), rather than at a blanket count.':'No county or area clears a fit score of 50 with enough judged placements; this scope is not showing a place where broader distribution has earned it yet.')+'</p>');
     h.push('</div>');
 
@@ -1415,12 +1456,105 @@
     var vlist=[]; vrows.forEach(function(g){ var sm=cohortSummary(g.recs); g.sm=sm; g.name=levelName(li,g.id); g.dp=g.plY?(g.plT-g.plY)/g.plY:null; g.dc=g.csY?(g.csT-g.csY)/g.csY:null; g.cppT=g.plT?g.csT/g.plT:0; g.cppY=g.plY?g.csY/g.plY:0; g.dcpp=g.cppY?(g.cppT-g.cppY)/g.cppY:null;
       if(sm.j6<50) g.verdict=['Small sample','muted']; else if(sm.r6>=0.6 && (g.dcpp===null||g.dcpp>=-0.05)) g.verdict=['Broader distribution works','up']; else if(sm.r6<0.4 || (g.dp!==null&&g.dp>=0.1&&g.dc!==null&&g.dc<g.dp/2)) g.verdict=['Be selective','down']; else g.verdict=['Hold / watch','']; vlist.push(g); });
     vlist.sort(function(a,b){ return b.plT-a.plT; });
+    QS.s8={vlist:vlist};
     h.push('<div class="card qcard">'+qhead(8,'Broad or selective? · '+esc(LEVELS[li].plural.toLowerCase())+' under '+esc(scopeName()),
       'The test of "more points = more sales": for each row, how placements and cases moved against the same period a year ago, whether cases per placement held, and how well its new points rebuy. <b>Broader distribution works</b> = 6-month rebuy 60%+ and cases per placement holding. <b>Be selective</b> = rebuy under 40%, or points grew 10%+ while cases grew less than half as fast. Rows with under 50 judged placements get no verdict.'));
     h.push(qtable('q-verdict', [LEVELS[li].label,'Placements · '+esc(pLabel(T)),'Placements vs prior yr','Cases vs prior yr','Cases / placement vs prior yr','Rebuy 6 mo','Repeat cases / mo','Verdict'],
       vlist.slice(0,80).map(function(g){ function ch(v){ return v===null?'<span class="muted">—</span>':'<span class="'+(v>0.02?'up':(v<-0.02?'down':'flat'))+'">'+(v>0?'+':'')+Math.round(v*100)+'%</span>'; } return {cells:[esc(g.name), fmtN(g.plT), ch(g.dp), ch(g.dc), ch(g.dcpp), '<b>'+pctN(g.sm.r6)+'</b> <span class="muted">('+fmtN(g.sm.j6)+')</span>', g.sm.repeat!==null?fmt1(g.sm.repeat):'—', '<span class="verdict '+g.verdict[1]+'">'+g.verdict[0]+'</span>']}; }),
       'Sorted by placements. A row that grew points, lost cases per placement and rebuys poorly is the supplier’s drive showing up as thin points.'));
     h.push('<div class="tbtns" style="margin-top:8px"><button class="btn small" data-csv="q-verdict">CSV</button></div></div>');
+    return h.join('');
+  }
+  // ---------------------------------------------------------------- simple (manager) view of the quality tab
+  var QS={};
+  function simpleView(){
+    var Q=QS, T=Q.T, len=Q.len, name=esc(scopeName()), per=esc(pLabel(T)), h=[];
+    function card(n, title, body){ return '<div class="card scard" id="ss'+n+'"><div class="sc-head"><span class="qnum">'+n+'</span><h2>'+title+'</h2><a class="seelink" data-see="'+n+'">See the detail →</a></div>'+body+'</div>'; }
+    function big(v,l,cls){ return '<div class="sbig '+(cls||'')+'"><div class="v">'+v+'</div><div class="l">'+l+'</div></div>'; }
+    function head(t){ return '<p class="shead">'+t+'</p>'; }
+    function act(t){ return '<p class="sact"><span class="sact-l">What to do</span>'+t+'</p>'; }
+    function splitbar(parts){ var tot=0; parts.forEach(function(p){ tot+=p.v; }); tot=tot||1;
+      return '<div class="qtrack sbar">'+parts.map(function(p){ var w=p.v/tot*100; return '<span class="qseg" style="width:'+w+'%;background:'+p.color+'" title="'+p.label+'">'+(w>=8?Math.round(w)+'%':'')+'</span>'; }).join('')+'</div><div class="qlegend" style="margin-left:0">'+parts.map(function(p){ return '<span><i style="background:'+p.color+'"></i>'+p.label+': '+fmtN(p.v)+'</span>'; }).join('')+'</div>'; }
+    function acctLine(c){ var cu=customers[c]; return '<b>'+esc(cu[0]+' '+cu[1])+'</b> <span class="muted">'+esc(D.reps[cu[4]])+' · '+(cu[2]?'On':'Off')+' · '+esc(D.areas[cu[3]])+'</span>'; }
+    function inN(r){ return r>0 ? Math.max(2,Math.round(1/r)) : 0; }
+    // 1. are the points real
+    var c=Q.s1.cur, n=c.pl;
+    if(!n){ h.push(card(1,'Are the points real? · '+name, head('No placements for '+name+' in '+per+'.'))); }
+    else {
+      var coreP=c.t[0]/n, coreC=c.tc[0]/(c.cs||1), thinP=c.t[2]/n, thinC=c.tc[2]/(c.cs||1);
+      var b1=head('<b>'+fmtN(n)+' placements</b> of '+name+' in '+per+'. <span class="up">The best '+fmtN(c.t[0])+' ('+Math.round(coreP*100)+'%)</span> sell <b>'+Math.round(coreC*100)+'% of the cases</b>. <span class="down">The slowest '+fmtN(c.t[2])+' ('+Math.round(thinP*100)+'%)</span> sell just <b>'+Math.round(thinC*100)+'%</b>.')
+        +'<div class="sbigs">'+big(fmtN(c.t[0]),'Core placements · '+Math.round(coreC*100)+'% of cases · '+(c.t[0]?fmt1(c.tc[0]/c.t[0]/len):'—')+' cases a month each','good')
+        +big(fmtN(c.t[1]),'Steady placements · '+Math.round(c.tc[1]/(c.cs||1)*100)+'% of cases','mid')
+        +big(fmtN(c.t[2]),'Thin placements · '+Math.round(thinC*100)+'% of cases · '+(c.t[2]?fmt1(c.tc[2]/c.t[2]/len):'—')+' cases a month each','bad')+'</div>'
+        +'<div class="qbars">'+(Q.bar1||'')+'</div>'
+        +(Q.s1.al.length?'<p class="sline"><b>Best accounts:</b> '+Q.s1.al.slice(0,5).map(function(a){ return esc(customers[a.c][1]); }).join(', ')+(Q.s1.al.length>5?' and '+fmtN(Q.s1.al.length-5)+' more':'')+'.</p>':'')
+        +act('Protect the '+fmtN(c.t[0])+' Core accounts. When the supplier asks for more points, the '+fmtN(c.t[2])+' Thin ones are the proof that a point is not a sale: they are '+Math.round(thinP*100)+'% of the points and '+Math.round(thinC*100)+'% of the cases.');
+      h.push(card(1,'Are the points real? · '+name, b1));
+    }
+    // 2. what happened to the last batch of new points
+    if(!Q.s2 || !Q.s2.all.n){ h.push(card(2,'What happened to the new points', head('Not enough history yet: a batch of new points can only be judged once a full later period exists.'))); }
+    else { var s2=Q.s2, lq=s2.laters.length-1, kept=s2.all.kept[lq], lost=s2.all.n-kept, kp=kept/s2.all.n;
+      h.push(card(2,'What happened to the new points gained '+esc(pLabel(s2.G)),
+        head('<b>'+fmtN(s2.all.n)+' new points</b> were added in '+esc(pLabel(s2.G))+'. By '+esc(pLabel(s2.laters[lq]))+', <span class="'+(kp>=0.5?'up':'down')+'">'+fmtN(kept)+' ('+Math.round(kp*100)+'%) were still buying</span> and <span class="down">'+fmtN(lost)+' were gone</span>.')
+        +splitbar([{v:kept,label:'Still buying',color:'var(--good)'},{v:lost,label:'Gone',color:'var(--bad)'}])
+        +'<p class="sline">The typical new point sold '+fmt1(median(s2.all.cases))+' cases in its first period; '+Math.round(s2.all.under3/s2.all.n*100)+'% sold under 3.</p>'
+        +act('The last drive\u2019s real yield was <b>'+fmtN(kept)+' accounts</b>, not '+fmtN(s2.all.n)+' points. Next time, agree on which accounts before agreeing on how many.')));
+    }
+    // 4. where to go next
+    if(!Q.s4){ h.push(card(4,'Where to go next', head('Pick a supplier, brand family or brand in step 1 and this lists the accounts that look most like its best buyers but are not buying it yet.'))); }
+    else { var s4=Q.s4, lap=s4.cands.filter(function(x){ return x.status==='Lapsed'; }).length;
+      h.push(card(4,'Where to go next · '+name,
+        head('<b>'+fmtN(s4.cands.length)+' accounts</b> look like '+name+'\u2019s best buyers (same premise and areas, carrying the same other brands) but are not buying it. <b>'+fmtN(lap)+'</b> bought it before and stopped: those are the easiest wins.')
+        +'<ol class="slist">'+s4.cands.slice(0,10).map(function(x){ return '<li>'+acctLine(x.c)+' <span class="tag '+(x.status==='Lapsed'?'lost':'new')+'">'+x.status+'</span></li>'; }).join('')+'</ol>'
+        +act('Start with the Lapsed accounts, then the top of this list. Hand the supplier this list instead of a points target.')));
+    }
+    // 5. do they reorder
+    var a5=Q.s5;
+    if(!a5 || !a5.j6){ h.push(card(5,'Do accounts reorder? · '+name, head('Not enough placements old enough to judge yet.'))); }
+    else {
+      h.push(card(5,'Do accounts reorder? · '+name,
+        head('Of <b>'+fmtN(a5.j6)+' placements</b> old enough to judge, <span class="'+(a5.r6>=0.5?'up':'down')+'">'+pctN(a5.r6)+' reordered within 6 months</span>. <span class="down">'+pctN(a5.ood)+' never did</span>: about <b>1 in '+inN(a5.ood)+'</b> is a one-time drop.')
+        +'<div class="sbigs">'+big(pctN(a5.r6),'reorder within 6 months', a5.r6>=0.5?'good':'bad')+big(pctN(a5.ood),'never reorder (one-and-done)', a5.ood>0.5?'bad':'')+big(a5.repeat!==null?fmt1(a5.repeat):'—','cases a month after the first drop, among rebuyers','mid')+'</div>'
+        +act('Before adding points, agree with the supplier which accounts look like the '+pctN(a5.r6)+' that reorder. Card 4 is that list.')));
+    }
+    // 6. where it fits best
+    var g6=Q.s6, fits=g6?g6.rows.filter(function(r){ return r.fit!==null; }):[];
+    if(!fits.length){ h.push(card(6,'Where it fits best · '+name, head('Not enough judged placements in any '+(g6?g6.col.toLowerCase():'county')+' yet (20 are needed).'))); }
+    else { var top=fits.slice(0,5), weak=fits.slice(-3).reverse().filter(function(r){ return top.indexOf(r)<0; });
+      h.push(card(6,'Where it fits best · '+name,
+        head('It reorders best in <b>'+top.slice(0,3).map(function(r){ return esc(r.name); }).join(', ')+'</b>.'+(weak.length?' Weakest: <b>'+weak.map(function(r){ return esc(r.name); }).join(', ')+'</b>.':''))
+        +top.map(function(r){ return '<div class="sfit"><span>'+esc(r.name)+'</span><span class="qmini"><i style="width:'+Math.round(r.fit*100)+'%"></i></span><span class="muted">fit '+Math.round(r.fit*100)+' · rebuy '+pctN(r.r6)+'</span></div>'; }).join('')
+        +'<p class="sline muted">Fit 100 = best on both reorder rate and repeat volume among comparable '+g6.label.toLowerCase()+'. '+g6.label+' with fewer than 20 judged placements are not scored.</p>'
+        +act('Point new placements at the strong '+g6.label.toLowerCase()+' first. A weak one is where extra points go to sit.')));
+    }
+    // 7. protect / fix / grow
+    var s7=Q.s7;
+    if(s7){
+      h.push(card(7,'Protect · Fix · Grow · '+name,
+        '<div class="scols">'
+        +'<div class="scol"><h4><span class="dot" style="background:var(--good)"></span>Protect</h4><p class="muted" style="margin:0 0 6px">'+fmtN(s7.retain.length)+' accounts bought in 4+ of the last 6 months. Do not let a drive pull reps off them.</p><ol class="slist">'+s7.retain.slice(0,5).map(function(a){ return '<li>'+acctLine(a.c)+' <span class="muted">'+fmt1(a.cases6/s7.L6n)+' cases / mo</span></li>'; }).join('')+'</ol></div>'
+        +'<div class="scol"><h4><span class="dot" style="background:var(--bad)"></span>Fix</h4><p class="muted" style="margin:0 0 6px">'+fmtN(s7.ood.length)+' placements took product once and never reordered ('+fmtC(s7.oodCases)+' cases). Out-of-code and pickup risk.</p><ol class="slist">'+s7.ood.slice(0,5).map(function(r){ var cu=customers[PC[r.i]], pd=products[PP[r.i]]; return '<li><b>'+esc(cu[1])+'</b> <span class="muted">'+esc(pd[1])+' · '+esc(mLabel(r.m0,true))+' · '+fmtC(r.first)+' cases</span></li>'; }).join('')+'</ol></div>'
+        +'<div class="scol"><h4><span class="dot" style="background:var(--accent)"></span>Grow</h4><p class="muted" style="margin:0 0 6px">'+(s7.expand.length?'Places scoring 50+ on fit: <b>'+esc(s7.expand.slice(0,6).join(', '))+'</b>.':'No place scores 50+ on fit yet.')+(Q.s4?' Best look-alike accounts:':'')+'</p>'+(Q.s4?'<ol class="slist">'+Q.s4.cands.slice(0,5).map(function(x){ return '<li>'+acctLine(x.c)+'</li>'; }).join('')+'</ol>':'')+'</div>'
+        +'</div>'
+        +act('Protect first, fix second, grow third. Growth goes to the accounts and places on the right, not to a blanket count.')));
+    }
+    // 8. the verdict
+    var s8=Q.s8;
+    if(s8){ var plT=0, plY=0, csT=0, csY=0; s8.vlist.forEach(function(g){ plT+=g.plT; plY+=g.plY; csT+=g.csT; csY+=g.csY; });
+      var dp=plY?(plT-plY)/plY:null, dc=csY?(csT-csY)/csY:null, cppT=plT?csT/plT:0, cppY=plY?csY/plY:0, dcpp=cppY?(cppT-cppY)/cppY:null;
+      var v; if(!a5||a5.j6<50) v=['Small sample','muted','Fewer than 50 placements are old enough to judge, so no verdict yet.'];
+      else if(a5.r6>=0.6 && (dcpp===null||dcpp>=-0.05)) v=['Broader distribution works','up','New points reorder well and cases per point are holding: adding points is paying off.'];
+      else if(a5.r6<0.4 || (dp!==null&&dp>=0.1&&dc!==null&&dc<dp/2)) v=['Be selective','down','Points are growing faster than cases, or new points rarely reorder: more points are not turning into sales.'];
+      else v=['Hold / watch','','Neither clearly working nor clearly failing. Keep adding points only where cards 4 and 6 say so.'];
+      function ch(x){ return x===null?'<span class="muted">n/a</span>':'<span class="'+(x>0.02?'up':(x<-0.02?'down':'flat'))+'">'+(x>0?'+':'')+Math.round(x*100)+'%</span>'; }
+      var works=s8.vlist.filter(function(g){ return g.verdict[0]==='Broader distribution works'; }).slice(0,4).map(function(g){ return esc(g.name); });
+      var sel=s8.vlist.filter(function(g){ return g.verdict[0]==='Be selective'; }).slice(0,4).map(function(g){ return esc(g.name); });
+      h.push(card(8,'The verdict · '+name,
+        '<div class="sverdict-wrap"><span class="verdict sverdict '+v[1]+'">'+v[0]+'</span><span class="sline" style="margin:0">'+v[2]+'</span></div>'
+        +'<div class="sbigs">'+big(ch(dp),'placements vs a year ago')+big(ch(dc),'cases vs a year ago')+big(ch(dcpp),'cases per placement vs a year ago')+big(a5?pctN(a5.r6):'—','new points that reorder within 6 months', a5&&a5.r6>=0.6?'good':(a5&&a5.r6<0.4?'bad':''))+'</div>'
+        +(works.length||sel.length ? '<p class="sline">'+(works.length?'<span class="up">Working:</span> '+works.join(', ')+'. ':'')+(sel.length?'<span class="down">Be selective on:</span> '+sel.join(', ')+'.':'')+'</p>' : '')
+        +act(v[1]==='up' ? 'Say yes to more points, but at the accounts in card 4.' : (v[1]==='down' ? 'Say no to a points target. Offer the accounts in card 4 and the places in card 6 instead.' : 'Keep the points where they are working; add only where cards 4 and 6 point.'))));
+    }
     return h.join('');
   }
   // ---------------------------------------------------------------- events
@@ -1474,6 +1608,8 @@
     var qg=el('q-gain'); if(qg) qg.addEventListener('change', function(){ S.gain=qg.value; render(); });
     app.querySelectorAll('[data-qtab]').forEach(function(b){ b.addEventListener('click', function(){ S.qtab=b.dataset.qtab; render(); }); });
     app.querySelectorAll('[data-ttab]').forEach(function(b){ b.addEventListener('click', function(){ S.ttab=b.dataset.ttab; render(); }); });
+    app.querySelectorAll('[data-qview]').forEach(function(b){ b.addEventListener('click', function(){ S.qview=b.dataset.qview; try{ localStorage.setItem('rdt-qview', S.qview); }catch(e){} render(); }); });
+    app.querySelectorAll('a.seelink[data-see]').forEach(function(a){ a.addEventListener('click', function(){ S.qview='full'; try{ localStorage.setItem('rdt-qview','full'); }catch(e){} render(); var t=el('qsec'+a.dataset.see); if(t) t.scrollIntoView({behavior:'smooth',block:'start'}); }); });
     app.querySelectorAll('a.acct[data-acct]').forEach(function(a){ a.addEventListener('click', function(){ S.cust=+a.dataset.acct; S.page='tracker'; S.view='focus'; S.focus=S.end; S.tab='children'; S.sort=''; render(); window.scrollTo(0,0); }); });
     app.querySelectorAll('[data-rtab]').forEach(function(b){ b.addEventListener('click', function(){ S.rtab=b.dataset.rtab; render(); }); });
     app.querySelectorAll('[data-gtab]').forEach(function(b){ b.addEventListener('click', function(){ S.gtab=b.dataset.gtab; render(); }); });
@@ -1520,7 +1656,7 @@
   }
   pills();
   render();
-  window.addEventListener('hashchange', function(){ var c=S.chart, m=S.more, k=S.cols; readHash(); S.chart=c; S.more=m; if(!/[?&#]cols=/.test(location.hash)) S.cols=k; render(); });
+  window.addEventListener('hashchange', function(){ var c=S.chart, m=S.more, k=S.cols, qv=S.qview; readHash(); S.chart=c; S.more=m; if(!/[?&#]qview=/.test(location.hash)) S.qview=qv; if(!/[?&#]cols=/.test(location.hash)) S.cols=k; render(); });
 })();
 </script>
 </body>
