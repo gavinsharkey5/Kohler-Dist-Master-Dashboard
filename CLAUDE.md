@@ -236,9 +236,11 @@ destruction cost per product the quality tab was missing), 7 Breakage, 5
 Inventory Adjustment, 9 Fifo, 25 Repack, 120022 Samples. Keep those rows;
 never treat them as customers. Use Fusion's Gross as-is (it is not $Vol
 minus Laid-In on half the rows). Only Jan-Mar 2025 is loaded and NOTHING
-on the page reads it yet; the plan is revenue / gross columns on the
+on the page reads it yet. Gavin's instruction (2026-09-23): keep loading
+money months as they arrive but do NOT put dollars on the page until
+every month through Sep 2026 is in. Then: revenue / gross columns on the
 tracker, GP by tier and GP per placement on the quality tab, and
-out-of-code cost by brand, once Apr 2025 -> current are loaded.
+out-of-code cost by brand.
 
 The page has a second tab, DISTRIBUTION QUALITY (page=quality in the
 link), built for pushing back on "more points = more sales": placement
