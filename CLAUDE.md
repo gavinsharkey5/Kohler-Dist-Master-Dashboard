@@ -226,6 +226,20 @@ workbook are counted everywhere and the build prints them. Gavin's
 Sales_Reps__Customer_Base CSV was checked against the master and matched
 rep and area for every account -- it adds nothing here, don't load it.
 
+Money (2026-09-23): Fusion's cost / revenue / gross-profit export
+(Customer Num & Company, Product Num & Name, Laid-In Cost / $Vol / Gross
+per YYYY/M) is ingested by `generate.py` into `data/master/money/YYYY-MM.csv`
+(month replaces month). It matches the detail grain exactly -- every
+placement with cases had a $ row for Jan-Mar 2025 -- and it carries
+Fusion's internal accounts too: customer 8 is "Out Of Code" (the
+destruction cost per product the quality tab was missing), 7 Breakage, 5
+Inventory Adjustment, 9 Fifo, 25 Repack, 120022 Samples. Keep those rows;
+never treat them as customers. Use Fusion's Gross as-is (it is not $Vol
+minus Laid-In on half the rows). Only Jan-Mar 2025 is loaded and NOTHING
+on the page reads it yet; the plan is revenue / gross columns on the
+tracker, GP by tier and GP per placement on the quality tab, and
+out-of-code cost by brand, once Apr 2025 -> current are loaded.
+
 The page has a second tab, DISTRIBUTION QUALITY (page=quality in the
 link), built for pushing back on "more points = more sales": placement
 tiers by cases/month, new-point survival, fit map, look-alike targets,

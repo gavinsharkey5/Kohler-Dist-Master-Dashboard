@@ -31,6 +31,15 @@ Every file is auto-detected by its header:
            areas it may be sold in. The page uses it to keep each brand's
            account universe (and its placements) to those areas; a family
            not in the file is treated as sellable everywhere.
+  MONEY    Customer Num & Company, Product Num & Name, then Laid-In Cost /
+           $Vol / Gross per YYYY/M (Fusion's cost, revenue and gross profit
+           export at the same product x account x month grain). Each month
+           REPLACES data/master/money/YYYY-MM.csv in full, like a detail
+           month. Rows for Fusion's internal accounts (5 Inventory
+           Adjustment, 7 Breakage, 8 Out Of Code, 9 Fifo Adjustment, 25
+           Repack, 120022 Samples...) are KEPT -- they are not customers,
+           but "8 Out Of Code" per product is the out-of-code cost the
+           quality tab otherwise lacks. All-zero rows are dropped.
 
 Dimension attributes (names, supplier, family, brand, premise, area, rep,
 DM, package) are "latest file wins": the attributes of a product or account
@@ -57,6 +66,8 @@ PRODUCT_FIELDS = ['product_num', 'name', 'supplier', 'family', 'brand', 'package
 CUSTOMER_FIELDS = ['customer_num', 'name', 'premise', 'address', 'county', 'area', 'rep', 'dm']
 SUPPLIER_FIELDS = ['supplier', 'supplier_id', 'brand_manager']
 TERRITORY_CSV = os.path.join(MASTER, 'territory.csv')
+MONEY_DIR = os.path.join(MASTER, 'money')
+MONEY_RE = re.compile(r'^(Laid-In Cost|\$Vol|Gross)\s+(\d{4})/(\d{1,2})$')
 TERRITORY_FIELDS = ['family', 'territory', 'can_sell', 'cant_sell', 'source']
 METRIC_RE = re.compile(r'^(Buyer Count|Placement Count|Cases)\s+(\d{4})/(\d{1,2})$')
 
@@ -154,6 +165,8 @@ def detect(hdr):
         return 'supplier'
     if 'Brand Family' in h and 'Territory' in h:
         return 'territory'
+    if 'Customer Num & Company' in h and 'Product Num & Name' in h and any(MONEY_RE.match(x) for x in h):
+        return 'money'
     die('unrecognised header: %s' % h[:6])
 
 
@@ -339,6 +352,74 @@ def ingest_territory(path, territory):
     print('TERRITORY %s  rows=%d  areas=%s' % (os.path.basename(path), n, ', '.join(h for _, h in area_cols)))
 
 
+def money(v):
+    v = (v or '').strip().replace('$', '').replace(',', '')
+    if not v:
+        return 0.0
+    neg = v.startswith('(') or v.startswith('-')
+    v = v.strip('()-')
+    return (-1.0 if neg else 1.0) * float(v or 0)
+
+
+def ingest_money(path, customers, sources):
+    exported = export_date(path)
+    with open(path, newline='', encoding='utf-8-sig') as fh:
+        r = csv.reader(fh)
+        hdr = [x.strip() for x in next(r)]
+        col = {h: i for i, h in enumerate(hdr)}
+        cols = collections.defaultdict(dict)
+        for i, h in enumerate(hdr):
+            m = MONEY_RE.match(h)
+            if m:
+                mk = month_key(m.group(2), m.group(3))
+                if m.group(1) in cols[mk]:
+                    die('duplicate column %r -- the export has the same month twice' % h)
+                cols[mk][m.group(1)] = i
+        months = sorted(cols)
+        for mk in months:
+            if set(cols[mk]) != {'Laid-In Cost', '$Vol', 'Gross'}:
+                die('%s: month %s is missing one of Laid-In Cost / $Vol / Gross' % (path, mk))
+        data = {mk: {} for mk in months}
+        nrows = 0
+        for x in r:
+            if not any(v.strip() for v in x):
+                continue
+            pn = split_num(x[col['Product Num & Name']])[0]
+            cn = split_num(x[col['Customer Num & Company']])[0]
+            if not pn or not cn:
+                continue
+            nrows += 1
+            for mk in months:
+                c = cols[mk]
+                l, v, g = money(x[c['Laid-In Cost']]), money(x[c['$Vol']]), money(x[c['Gross']])
+                if l == 0 and v == 0 and g == 0:
+                    continue
+                if (pn, cn) in data[mk]:
+                    die('%s: product %s at account %s appears twice for %s' % (path, pn, cn, mk))
+                data[mk][(pn, cn)] = (l, v, g)
+    os.makedirs(MONEY_DIR, exist_ok=True)
+    for mk in months:
+        out = os.path.join(MONEY_DIR, mk + '.csv')
+        existed = os.path.exists(out)
+        rows = data[mk]
+        with open(out, 'w', newline='', encoding='utf-8') as fh:
+            w = csv.writer(fh)
+            w.writerow(['product_num', 'customer_num', 'cost', 'revenue', 'gross'])
+            for (pn, cn) in sorted(rows, key=lambda k: (len(k[0]), k[0], len(k[1]), k[1])):
+                l, v, g = rows[(pn, cn)]
+                w.writerow([pn, cn, '%.2f' % l, '%.2f' % v, '%.2f' % g])
+        internal = [k for k in rows if k[1] not in customers]
+        rev = sum(v for (l, v, g) in rows.values())
+        gp = sum(g for (l, v, g) in rows.values())
+        ooc = sum(l for (pn, cn), (l, v, g) in rows.items() if cn == '8')
+        src = sources.setdefault(mk, {})
+        src['money'] = {'file': os.path.basename(path), 'exported': exported.isoformat()}
+        print('MONEY    %s  %s%s  rows=%d  revenue=$%s  gross=$%s (%.1f%%)  internal-account rows=%d  out-of-code cost=$%s'
+              % (mk, 'RESTATED' if existed else 'new', '', len(rows), format(round(rev), ','), format(round(gp), ','),
+                 (gp / rev * 100) if rev else 0, len(internal), format(round(ooc), ',')))
+    print('MONEY    %s  rows=%d  months=%s..%s' % (os.path.basename(path), nrows, months[0], months[-1]))
+
+
 # ---------------------------------------------------------------- build
 
 DRAFT_RE = re.compile(r'\b(keg|gal)\b', re.I)
@@ -511,7 +592,7 @@ def main(argv):
             continue
         with open(f, newline='', encoding='utf-8-sig') as fh:
             typed.append((detect(next(csv.reader(fh))), f))
-    for kind, f in sorted(typed, key=lambda t: {'detail': 0, 'product': 1, 'customer': 2, 'supplier': 3, 'territory': 4}[t[0]]):
+    for kind, f in sorted(typed, key=lambda t: {'detail': 0, 'product': 1, 'customer': 2, 'supplier': 3, 'territory': 4, 'money': 5}[t[0]]):
         if kind == 'detail':
             ingest_detail(f, products, customers, sources, complete)
         elif kind == 'product':
@@ -520,6 +601,8 @@ def main(argv):
             ingest_customer(f, customers)
         elif kind == 'supplier':
             ingest_supplier(f, suppliers)
+        elif kind == 'money':
+            ingest_money(f, customers, sources)
         else:
             territory = {}   # the territory file is the whole rule set, never a top-up
             ingest_territory(f, territory)

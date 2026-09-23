@@ -6,7 +6,11 @@
   "placements": 50925,
   "cases": 366407.61,
   "partial": false,
-  "loaded": "2026-09-21T18:45:11Z"
+  "loaded": "2026-09-21T18:45:11Z",
+  "money": {
+   "file": "56c0d1a3-Fusion_GSHARKEY_20260923_1119406891256.csv",
+   "exported": "2026-09-23"
+  }
  },
  "2025-02": {
   "file": "56f7e374-Fusion_GSHARKEY_20260921_1137080084273.csv",
@@ -15,7 +19,11 @@
   "placements": 54025,
   "cases": 401749.87,
   "partial": false,
-  "loaded": "2026-09-21T18:45:12Z"
+  "loaded": "2026-09-21T18:45:12Z",
+  "money": {
+   "file": "b88d43b6-Fusion_GSHARKEY_20260923_1121190193961.csv",
+   "exported": "2026-09-23"
+  }
  },
  "2025-03": {
   "file": "56f7e374-Fusion_GSHARKEY_20260921_1137080084273.csv",
@@ -24,7 +32,11 @@
   "placements": 59986,
   "cases": 470549.69,
   "partial": false,
-  "loaded": "2026-09-21T18:45:12Z"
+  "loaded": "2026-09-21T18:45:12Z",
+  "money": {
+   "file": "d2d5971d-Fusion_GSHARKEY_20260923_1122533552907.csv",
+   "exported": "2026-09-23"
+  }
  },
  "2025-04": {
   "file": "490f3bc6-Fusion_GSHARKEY_20260921_1139527862445.csv",

@@ -138,6 +138,17 @@ WHERE THE DATA LIVES
   data/master/suppliers.csv        supplier -> supplier_id, brand_manager
   data/master/territory.csv        brand family -> territory label, areas
                                    it can / can't be sold in
+  data/master/money/YYYY-MM.csv    product_num, customer_num, cost (laid-in),
+                                   revenue ($Vol), gross (Fusion's gross
+                                   profit) -- one file per month, same
+                                   replace-the-month rule as months/.
+                                   Includes Fusion's internal accounts
+                                   (8 Out Of Code, 7 Breakage, 5 Inventory
+                                   Adjustment, 9 Fifo, 25 Repack, 120022
+                                   Samples) -- not customers, but the
+                                   out-of-code line is the destruction
+                                   cost per product. NOT yet shown on the
+                                   page; loaded Jan-Mar 2025 on 2026-09-23.
   data/master/sources.json         which export supplied each month, when
                                    it was exported, and whether the month
                                    was flagged partial
@@ -184,6 +195,18 @@ REFRESH STEPS
       does not top it up. The build prints families with no rule and
       rule rows that match no family in the data (spelling differences:
       the workbook must use the same family name Fusion does).
+
+   g) MONEY (optional, one export per month or several months per
+      file): Fusion's Customer Num & Company / Product Num & Name /
+      Laid-In Cost YYYY/M / $Vol YYYY/M / Gross YYYY/M export. Same
+      grain as the detail export, so every placement with cases gets its
+      revenue and gross profit; verified on Jan-Mar 2025 that every
+      master pair with cases > 0 had a $ row. Each month REPLACES
+      data/master/money/YYYY-MM.csv. Fusion's Gross is NOT always $Vol
+      minus Laid-In (deposits / allowances sit between them on about
+      half the rows) -- use Gross as the profit figure, never recompute.
+      The build prints revenue, gross, margin and out-of-code cost per
+      month.
 
    e) LOGOS (optional): the Fusion "Suppliers" and "Brand Families"
       workbooks that carry a logo picture per row (xlsx, not csv). Run
