@@ -4096,6 +4096,60 @@ ahead of a 9/21 pull -- kept, as every future-dated row has been.
              3 at bonus, $855.
 Hub cache tag bumped (20260921b) for the new program_data.js.
 
+2026-09-23 SIXTH REFRESH -- Molson Coors retention (on + off) + MABI Fall GOALS
+  python3 convert_mc_retention.py <On_Premise ... w Goals_5.xlsx> <Off_Premise ... w Goals_5.xlsx>
+  python3 convert_mabi_fall.py --goals-only data/mabi_retention_fall_goals_source.csv
+  python3 generate.py
+MABI: THE GOALS FILE IS NOW THE SOURCE OF THE GOALS (Gavin, 2026-09-23: "the
+file for mabi contains the goal in the 90% of Placement Count GOAL column.
+cross reference what is currently on dashboard to make they match"). This
+REVERSES the 2026-09-21 TENTH REFRESH rule ("use the export's goals"). The
+new file (MABI_Fall_2026_Retention_Goals.csv, kept as
+data/mabi_retention_fall_goals_source.csv) is the goals report as a flat CSV
+tree, 948 rows, and EVERY row is round-half-up(0.9 x base). Cross-referenced
+against the page before changing anything:
+  - all 24 roster rep goals already matched (the export and this file agree
+    at rep level, incl. Allison Scott 82 and Nick Melissari 70);
+  - 4 BRAND goals did not, and the page's were the wrong ones -- the export's
+    goal column broke the 90% rule on exactly these: Chris Payton / Mike's
+    Harder 77 -> 44 (base 49), Dave Ehlers / Mike's Harder 48 -> 64 (base 71),
+    Dave Ehlers / Mike's Hard Dirty Lemonade 5 -> 2 (base 2), Derrick Laws /
+    Cayman Jack 85 -> 81 (base 90);
+  - 4 BASES moved by one (restated summer): Allison Scott 90 -> 91 (White
+    Claw 87 -> 88), Nick Melissari 79 -> 78 (White Claw 76 -> 75). Goals on
+    those rows unchanged.
+After the rebuild: 24 rep goals + 101 brand goals on the page checked against
+the file, 0 mismatches. Only effect on status: Dave Ehlers now HOLDS Mike's
+Hard Dirty Lemonade (3 of 2; brand goals held 0 -> 1). Chris Payton's Harder
+reads 21 of 44 (47.7%, was 27.3% of 77), Dave's Harder 35 of 64 (54.7%, was
+72.9% of 48), Derrick's Cayman Jack 41 of 81 (50.6%). House unchanged, 3,957
+of 7,326 (54.0%); no MABI actuals were re-pulled.
+convert_mabi_fall.py changes: (1) the goals file may be the XLSX tree or this
+CSV shape; (2) its goals are FINAL -- the actuals export's goal column is
+printed as a cross-check, never applied (a rep the goals file lacks is the one
+exception); (3) --goals-only <goals> rewrites the two goals CSVs without an
+actuals export. data/mabi_retention_fall_goals.xlsx is REMOVED -- it was the
+9/8 workbook and disagreed with this file on two rep goals (Allison 81, Nick
+71); leaving it would let a routine run put those back. Next actuals refresh:
+  python3 convert_mabi_fall.py <actuals.csv> data/mabi_retention_fall_goals_source.csv
+MOLSON COORS: both grouped workbooks converted (sheets matched by premise, same
+07/27-10/31 window); every rep, DM and report total reconciled, 0 (rep,
+brand) pairs added or dropped, and 0 GOALS MOVED against what the page showed
+-- checked per rep+brand on all 100 goals. Off 2,787 -> 2,872 of 2,912
+placements, on 739 -> 749 of 840 buyers; brand goals retained 37 -> 42:
+  newly retained  MATT POWIERSKI Fever Tree 43 -> 51 of 44 and Peroni 84 -> 90
+                  of 89 (0 -> 2; 94.7% -> 100.4% overall), JIM HEANEY Fever
+                  Tree 33 -> 41 of 37 (0 -> 1), DERRICK LAWS Fever Tree 12 ->
+                  21 of 15 (2 -> 3), PHIL ERNST Fever Tree 84 -> 91 of 85
+                  (2 -> 3, every goal held).
+  other           Mike Ast Fever Tree 67 -> 76 of 98, Klejdi Lamo Fever Tree
+                  57 -> 62, Anthony Palmisano Fever Tree 17 -> 22, Dave Ehlers
+                  Fever Tree 27 -> 31, Chris Payton Fever Tree 77 -> 80, Allison
+                  Scott on-prem Blue Moon 62 -> 64.
+  down by one     Matt Powierski Coors 81 -> 80 of 82, Shane Barreca Fever
+                  Tree 111 -> 110 of 115 -- neither was a retained goal.
+Hub cache tag bumped (20260923f) for the new program_data.js.
+
 2026-09-23 FIFTH REFRESH -- Constellation Fall: Packages ON, Draft ON, Impact /
 Modelo Gaintain / Innovation OFF; Dave Ehlers Innovation goal 86
   python3 generate.py

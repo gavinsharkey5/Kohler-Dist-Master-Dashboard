@@ -64480,9 +64480,9 @@ const PROGRAM_DATA = {
         "onBrands": [
           {
             "label": "Blue Moon",
-            "actual": 62,
+            "actual": 64,
             "goal": 58,
-            "pct": 106.9
+            "pct": 110.3
           },
           {
             "label": "Coors Banquet",
@@ -64492,15 +64492,15 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Coors Light",
-            "actual": 47,
+            "actual": 48,
             "goal": 44,
-            "pct": 106.8
+            "pct": 109.1
           },
           {
             "label": "Miller Lite",
-            "actual": 45,
+            "actual": 46,
             "goal": 39,
-            "pct": 115.4
+            "pct": 117.9
           },
           {
             "label": "Peroni",
@@ -64509,12 +64509,12 @@ const PROGRAM_DATA = {
             "pct": 100.0
           }
         ],
-        "onActual": 175,
+        "onActual": 179,
         "onGoal": 163,
-        "onPct": 107.4,
+        "onPct": 109.8,
         "goalsTotal": 5,
         "goalsRetained": 4,
-        "overallPct": 107.4,
+        "overallPct": 109.8,
         "territoryEligible": true
       },
       "Andrew Lundy": {
@@ -64535,26 +64535,26 @@ const PROGRAM_DATA = {
         "offBrands": [
           {
             "label": "Coors",
-            "actual": 97,
+            "actual": 99,
             "goal": 87,
-            "pct": 111.5
+            "pct": 113.8
           },
           {
             "label": "Fever Tree",
-            "actual": 17,
+            "actual": 22,
             "goal": 6,
-            "pct": 283.3
+            "pct": 366.7
           },
           {
             "label": "Peroni",
-            "actual": 54,
+            "actual": 55,
             "goal": 63,
-            "pct": 85.7
+            "pct": 87.3
           }
         ],
-        "offActual": 168,
+        "offActual": 176,
         "offGoal": 156,
-        "offPct": 107.7,
+        "offPct": 112.8,
         "onBrands": [
           {
             "label": "Blue Moon",
@@ -64570,9 +64570,9 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Coors Light",
-            "actual": 8,
+            "actual": 9,
             "goal": 17,
-            "pct": 47.1
+            "pct": 52.9
           },
           {
             "label": "Miller Lite",
@@ -64587,12 +64587,12 @@ const PROGRAM_DATA = {
             "pct": 100.0
           }
         ],
-        "onActual": 59,
+        "onActual": 60,
         "onGoal": 88,
-        "onPct": 67.0,
+        "onPct": 68.2,
         "goalsTotal": 7,
         "goalsRetained": 3,
-        "overallPct": 93.0,
+        "overallPct": 96.7,
         "territoryEligible": true
       },
       "Brian Sengebush": {
@@ -64669,20 +64669,20 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Fever Tree",
-            "actual": 77,
+            "actual": 80,
             "goal": 60,
-            "pct": 128.3
+            "pct": 133.3
           },
           {
             "label": "Peroni",
-            "actual": 81,
+            "actual": 82,
             "goal": 85,
-            "pct": 95.3
+            "pct": 96.5
           }
         ],
-        "offActual": 244,
+        "offActual": 248,
         "offGoal": 230,
-        "offPct": 106.1,
+        "offPct": 107.8,
         "onBrands": [
           {
             "label": "Blue Moon",
@@ -64714,7 +64714,7 @@ const PROGRAM_DATA = {
         "onPct": 35.7,
         "goalsTotal": 7,
         "goalsRetained": 2,
-        "overallPct": 102.0,
+        "overallPct": 103.7,
         "territoryEligible": true
       },
       "Dan Lagala": {
@@ -64733,14 +64733,14 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Peroni",
-            "actual": 63,
+            "actual": 65,
             "goal": 90,
-            "pct": 70.0
+            "pct": 72.2
           }
         ],
-        "offActual": 151,
+        "offActual": 153,
         "offGoal": 176,
-        "offPct": 85.8,
+        "offPct": 86.9,
         "onBrands": [
           {
             "label": "Blue Moon",
@@ -64772,7 +64772,7 @@ const PROGRAM_DATA = {
         "onPct": 52.9,
         "goalsTotal": 7,
         "goalsRetained": 2,
-        "overallPct": 80.5,
+        "overallPct": 81.4,
         "territoryEligible": true
       },
       "Dave Ehlers": {
@@ -64785,9 +64785,9 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Fever Tree",
-            "actual": 27,
+            "actual": 31,
             "goal": 23,
-            "pct": 117.4
+            "pct": 134.8
           },
           {
             "label": "Peroni",
@@ -64796,31 +64796,31 @@ const PROGRAM_DATA = {
             "pct": 124.1
           }
         ],
-        "offActual": 182,
+        "offActual": 186,
         "offGoal": 159,
-        "offPct": 114.5,
+        "offPct": 117.0,
         "onBrands": [],
         "onActual": 0,
         "onGoal": 0,
         "onPct": null,
         "goalsTotal": 3,
         "goalsRetained": 3,
-        "overallPct": 114.5,
+        "overallPct": 117.0,
         "territoryEligible": true
       },
       "Derrick Laws": {
         "offBrands": [
           {
             "label": "Coors",
-            "actual": 57,
+            "actual": 58,
             "goal": 54,
-            "pct": 105.6
+            "pct": 107.4
           },
           {
             "label": "Fever Tree",
-            "actual": 12,
+            "actual": 21,
             "goal": 15,
-            "pct": 80.0
+            "pct": 140.0
           },
           {
             "label": "Peroni",
@@ -64829,9 +64829,9 @@ const PROGRAM_DATA = {
             "pct": 106.9
           }
         ],
-        "offActual": 100,
+        "offActual": 110,
         "offGoal": 98,
-        "offPct": 102.0,
+        "offPct": 112.2,
         "onBrands": [
           {
             "label": "Coors Light",
@@ -64844,8 +64844,8 @@ const PROGRAM_DATA = {
         "onGoal": 2,
         "onPct": 50.0,
         "goalsTotal": 4,
-        "goalsRetained": 2,
-        "overallPct": 101.0,
+        "goalsRetained": 3,
+        "overallPct": 111.0,
         "territoryEligible": true
       },
       "Dylan Rubino": {
@@ -64914,9 +64914,9 @@ const PROGRAM_DATA = {
         "offBrands": [
           {
             "label": "Coors",
-            "actual": 43,
+            "actual": 44,
             "goal": 54,
-            "pct": 79.6
+            "pct": 81.5
           },
           {
             "label": "Fever Tree",
@@ -64926,30 +64926,30 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Peroni",
-            "actual": 14,
+            "actual": 15,
             "goal": 22,
-            "pct": 63.6
+            "pct": 68.2
           }
         ],
-        "offActual": 57,
+        "offActual": 59,
         "offGoal": 76,
-        "offPct": 75.0,
+        "offPct": 77.6,
         "onBrands": [],
         "onActual": 0,
         "onGoal": 0,
         "onPct": null,
         "goalsTotal": 2,
         "goalsRetained": 0,
-        "overallPct": 75.0,
+        "overallPct": 77.6,
         "territoryEligible": true
       },
       "Jayson Romine": {
         "offBrands": [
           {
             "label": "Coors",
-            "actual": 152,
+            "actual": 153,
             "goal": 139,
-            "pct": 109.4
+            "pct": 110.1
           },
           {
             "label": "Fever Tree",
@@ -64959,54 +64959,54 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Peroni",
-            "actual": 71,
+            "actual": 72,
             "goal": 59,
-            "pct": 120.3
+            "pct": 122.0
           }
         ],
-        "offActual": 311,
+        "offActual": 313,
         "offGoal": 283,
-        "offPct": 109.9,
+        "offPct": 110.6,
         "onBrands": [],
         "onActual": 0,
         "onGoal": 0,
         "onPct": null,
         "goalsTotal": 3,
         "goalsRetained": 3,
-        "overallPct": 109.9,
+        "overallPct": 110.6,
         "territoryEligible": true
       },
       "Jim Heaney": {
         "offBrands": [
           {
             "label": "Coors",
-            "actual": 90,
+            "actual": 91,
             "goal": 110,
-            "pct": 81.8
+            "pct": 82.7
           },
           {
             "label": "Fever Tree",
-            "actual": 33,
+            "actual": 41,
             "goal": 37,
-            "pct": 89.2
+            "pct": 110.8
           },
           {
             "label": "Peroni",
-            "actual": 75,
+            "actual": 79,
             "goal": 104,
-            "pct": 72.1
+            "pct": 76.0
           }
         ],
-        "offActual": 198,
+        "offActual": 211,
         "offGoal": 251,
-        "offPct": 78.9,
+        "offPct": 84.1,
         "onBrands": [],
         "onActual": 0,
         "onGoal": 0,
         "onPct": null,
         "goalsTotal": 3,
-        "goalsRetained": 0,
-        "overallPct": 78.9,
+        "goalsRetained": 1,
+        "overallPct": 84.1,
         "territoryEligible": true
       },
       "John O'Donoghue": {
@@ -65040,15 +65040,15 @@ const PROGRAM_DATA = {
         "offBrands": [
           {
             "label": "Coors",
-            "actual": 104,
+            "actual": 106,
             "goal": 104,
-            "pct": 100.0
+            "pct": 101.9
           },
           {
             "label": "Fever Tree",
-            "actual": 57,
+            "actual": 62,
             "goal": 48,
-            "pct": 118.8
+            "pct": 129.2
           },
           {
             "label": "Peroni",
@@ -65057,42 +65057,42 @@ const PROGRAM_DATA = {
             "pct": 85.7
           }
         ],
-        "offActual": 221,
+        "offActual": 228,
         "offGoal": 222,
-        "offPct": 99.5,
+        "offPct": 102.7,
         "onBrands": [],
         "onActual": 0,
         "onGoal": 0,
         "onPct": null,
         "goalsTotal": 3,
         "goalsRetained": 2,
-        "overallPct": 99.5,
+        "overallPct": 102.7,
         "territoryEligible": true
       },
       "Matt Powierski": {
         "offBrands": [
           {
             "label": "Coors",
-            "actual": 81,
+            "actual": 80,
             "goal": 82,
-            "pct": 98.8
+            "pct": 97.6
           },
           {
             "label": "Fever Tree",
-            "actual": 43,
+            "actual": 51,
             "goal": 44,
-            "pct": 97.7
+            "pct": 115.9
           },
           {
             "label": "Peroni",
-            "actual": 84,
+            "actual": 90,
             "goal": 89,
-            "pct": 94.4
+            "pct": 101.1
           }
         ],
-        "offActual": 208,
+        "offActual": 221,
         "offGoal": 215,
-        "offPct": 96.7,
+        "offPct": 102.8,
         "onBrands": [
           {
             "label": "Blue Moon",
@@ -65129,8 +65129,8 @@ const PROGRAM_DATA = {
         "onGoal": 13,
         "onPct": 61.5,
         "goalsTotal": 6,
-        "goalsRetained": 0,
-        "overallPct": 94.7,
+        "goalsRetained": 2,
+        "overallPct": 100.4,
         "territoryEligible": true
       },
       "Michael Harboy": {
@@ -65176,9 +65176,9 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Fever Tree",
-            "actual": 67,
+            "actual": 76,
             "goal": 98,
-            "pct": 68.4
+            "pct": 77.6
           },
           {
             "label": "Peroni",
@@ -65187,9 +65187,9 @@ const PROGRAM_DATA = {
             "pct": 95.3
           }
         ],
-        "offActual": 244,
+        "offActual": 253,
         "offGoal": 276,
-        "offPct": 88.4,
+        "offPct": 91.7,
         "onBrands": [
           {
             "label": "Blue Moon",
@@ -65221,7 +65221,7 @@ const PROGRAM_DATA = {
         "onPct": 56.2,
         "goalsTotal": 7,
         "goalsRetained": 1,
-        "overallPct": 86.6,
+        "overallPct": 89.7,
         "territoryEligible": true
       },
       "Nick Melissari": {
@@ -65250,9 +65250,9 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Miller Lite",
-            "actual": 39,
+            "actual": 40,
             "goal": 50,
-            "pct": 78.0
+            "pct": 80.0
           },
           {
             "label": "Peroni",
@@ -65261,12 +65261,12 @@ const PROGRAM_DATA = {
             "pct": 60.0
           }
         ],
-        "onActual": 175,
+        "onActual": 176,
         "onGoal": 223,
-        "onPct": 78.5,
+        "onPct": 78.9,
         "goalsTotal": 5,
         "goalsRetained": 0,
-        "overallPct": 78.5,
+        "overallPct": 78.9,
         "territoryEligible": true
       },
       "Pablo Lopez": {
@@ -65279,7 +65279,7 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Fever Tree",
-            "actual": 0,
+            "actual": 3,
             "goal": null,
             "pct": null
           },
@@ -65342,9 +65342,9 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Miller Lite",
-            "actual": 16,
+            "actual": 18,
             "goal": 24,
-            "pct": 66.7
+            "pct": 75.0
           },
           {
             "label": "Peroni",
@@ -65353,27 +65353,27 @@ const PROGRAM_DATA = {
             "pct": 112.5
           }
         ],
-        "onActual": 93,
+        "onActual": 95,
         "onGoal": 110,
-        "onPct": 84.5,
+        "onPct": 86.4,
         "goalsTotal": 5,
         "goalsRetained": 1,
-        "overallPct": 81.0,
+        "overallPct": 82.8,
         "territoryEligible": true
       },
       "Phil Ernst": {
         "offBrands": [
           {
             "label": "Coors",
-            "actual": 97,
+            "actual": 101,
             "goal": 96,
-            "pct": 101.0
+            "pct": 105.2
           },
           {
             "label": "Fever Tree",
-            "actual": 84,
+            "actual": 91,
             "goal": 85,
-            "pct": 98.8
+            "pct": 107.1
           },
           {
             "label": "Peroni",
@@ -65382,16 +65382,16 @@ const PROGRAM_DATA = {
             "pct": 110.3
           }
         ],
-        "offActual": 267,
+        "offActual": 278,
         "offGoal": 259,
-        "offPct": 103.1,
+        "offPct": 107.3,
         "onBrands": [],
         "onActual": 0,
         "onGoal": 0,
         "onPct": null,
         "goalsTotal": 3,
-        "goalsRetained": 2,
-        "overallPct": 103.1,
+        "goalsRetained": 3,
+        "overallPct": 107.3,
         "territoryEligible": true
       },
       "Robin Feldman": {
@@ -65427,9 +65427,9 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Miller Lite",
-            "actual": 31,
+            "actual": 33,
             "goal": 30,
-            "pct": 103.3
+            "pct": 110.0
           },
           {
             "label": "Peroni",
@@ -65438,27 +65438,27 @@ const PROGRAM_DATA = {
             "pct": 75.0
           }
         ],
-        "onActual": 65,
+        "onActual": 67,
         "onGoal": 70,
-        "onPct": 92.9,
+        "onPct": 95.7,
         "goalsTotal": 4,
         "goalsRetained": 1,
-        "overallPct": 87.3,
+        "overallPct": 89.9,
         "territoryEligible": true
       },
       "Shane Barreca": {
         "offBrands": [
           {
             "label": "Coors",
-            "actual": 100,
+            "actual": 101,
             "goal": 95,
-            "pct": 105.3
+            "pct": 106.3
           },
           {
             "label": "Fever Tree",
-            "actual": 111,
+            "actual": 110,
             "goal": 115,
-            "pct": 96.5
+            "pct": 95.7
           },
           {
             "label": "Peroni",
@@ -116429,7 +116429,7 @@ const PROGRAM_DATA_2026_09 = {
       },
       "Allison Scott": {
         "placements": 44,
-        "base": 90,
+        "base": 91,
         "goal": 82,
         "pct": 53.7,
         "toGo": 38,
@@ -116509,7 +116509,7 @@ const PROGRAM_DATA_2026_09 = {
             "label": "White Claw",
             "placements": 41,
             "actual": 41,
-            "base": 87,
+            "base": 88,
             "goal": 79,
             "pct": 51.9,
             "toGo": 38,
@@ -117281,9 +117281,9 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 21,
             "actual": 21,
             "base": 49,
-            "goal": 77,
-            "pct": 27.3,
-            "toGo": 56,
+            "goal": 44,
+            "pct": 47.7,
+            "toGo": 23,
             "retained": false
           },
           {
@@ -117825,9 +117825,9 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 35,
             "actual": 35,
             "base": 71,
-            "goal": 48,
-            "pct": 72.9,
-            "toGo": 13,
+            "goal": 64,
+            "pct": 54.7,
+            "toGo": 29,
             "retained": false
           },
           {
@@ -117836,10 +117836,10 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 3,
             "actual": 3,
             "base": 2,
-            "goal": 5,
-            "pct": 60.0,
-            "toGo": 2,
-            "retained": false
+            "goal": 2,
+            "pct": 150.0,
+            "toGo": 0,
+            "retained": true
           },
           {
             "brand": "Mxd Cocktails",
@@ -117854,7 +117854,7 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "brandGoalsTotal": 5,
-        "brandGoalsRetained": 0,
+        "brandGoalsRetained": 1,
         "skusHeld": 48
       },
       "Derrick Laws": {
@@ -118106,9 +118106,9 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 41,
             "actual": 41,
             "base": 90,
-            "goal": 85,
-            "pct": 48.2,
-            "toGo": 44,
+            "goal": 81,
+            "pct": 50.6,
+            "toGo": 40,
             "retained": false
           },
           {
@@ -120329,7 +120329,7 @@ const PROGRAM_DATA_2026_09 = {
       },
       "Nick Melissari": {
         "placements": 29,
-        "base": 79,
+        "base": 78,
         "goal": 70,
         "pct": 41.4,
         "toGo": 41,
@@ -120374,7 +120374,7 @@ const PROGRAM_DATA_2026_09 = {
             "label": "White Claw",
             "placements": 28,
             "actual": 28,
-            "base": 76,
+            "base": 75,
             "goal": 68,
             "pct": 41.2,
             "toGo": 40,
@@ -156475,5 +156475,5 @@ const PROGRAM_DATA_2026_09 = {
     }
   }
 };
-const PROGRAM_DATA_REFRESHED = "Sep 23, 2026, 11:33 AM ET";
-const PROGRAM_DATA_REFRESHED_AT = "2026-09-23T15:33:16Z";
+const PROGRAM_DATA_REFRESHED = "Sep 23, 2026, 11:42 AM ET";
+const PROGRAM_DATA_REFRESHED_AT = "2026-09-23T15:42:42Z";

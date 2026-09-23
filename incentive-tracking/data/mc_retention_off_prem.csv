@@ -1,98 +1,67 @@
 District Manager Name,Sales Rep Name,Brand Family,"Placements   | Distribution Period: 07/27/2026 - 10/31/2026
 | Base Period: 05/01/2026 - 07/26/2026","( Placements   | Distribution Period: 07/27/2026 - 10/31/2026
-| Base Period: 05/01/2026 - 07/26/2026 ) Goals","( Placements   | Distribution Period: 07/27/2026 - 10/31/2026
-| Base Period: 05/01/2026 - 07/26/2026 ) % of Goals"
-Chris McCrohan,Robin Feldman,Peroni,189,,0%
-Chris McCrohan,Robin Feldman,Peroni,4,,0%
-Chris McCrohan,Robin Feldman,Peroni,4,9,44.4%
-Chris McCrohan,Paul Mclaughlin,Peroni,1,,0%
+| Base Period: 05/01/2026 - 07/26/2026) Goals","( Placements   | Distribution Period: 07/27/2026 - 10/31/2026
+| Base Period: 05/01/2026 - 07/26/2026) % of Goals"
 Chris McCrohan,Paul Mclaughlin,Peroni,1,6,16.7%
-Chris McCrohan,Office Tell Sell,Peroni,1,,0%
-Chris McCrohan,Office Tell Sell,Peroni,1,,0%
-Chris McCrohan,Brian Sengebush,Peroni,15,,0%
-Chris McCrohan,Brian Sengebush,Fever Tree,2,11,18.2%
 Chris McCrohan,Brian Sengebush,Coors,10,21,47.6%
 Chris McCrohan,Brian Sengebush,Peroni,3,3,100%
-Chris McCrohan,Anthony Palmisano,Peroni,168,,0%
-Chris McCrohan,Anthony Palmisano,Fever Tree,17,6,283.3%
-Chris McCrohan,Anthony Palmisano,Coors,97,87,111.5%
-Chris McCrohan,Anthony Palmisano,Peroni,54,63,85.7%
-Denise Montes,Pablo Lopez,Peroni,619,,0%
-Denise Montes,Matt Powierski,Peroni,208,,0%
-Denise Montes,Matt Powierski,Fever Tree,43,44,97.7%
-Denise Montes,Matt Powierski,Coors,81,82,98.8%
-Denise Montes,Matt Powierski,Peroni,84,89,94.4%
-Denise Montes,Derrick Laws,Peroni,100,,0%
-Denise Montes,Derrick Laws,Coors,57,54,105.6%
-Denise Montes,Derrick Laws,Fever Tree,12,15,80.0%
+Chris McCrohan,Brian Sengebush,Fever Tree,2,11,18.2%
+Chris McCrohan,Robin Feldman,Peroni,4,9,44.4%
+Chris McCrohan,Office Tell Sell,Peroni,1,,0%
+Chris McCrohan,Anthony Palmisano,Coors,99,87,113.8%
+Chris McCrohan,Anthony Palmisano,Fever Tree,22,6,366.7%
+Chris McCrohan,Anthony Palmisano,Peroni,55,63,87.3%
+Denise Montes,Derrick Laws,Fever Tree,21,15,140.0%
 Denise Montes,Derrick Laws,Peroni,31,29,106.9%
-Denise Montes,Pablo Lopez,Peroni,47,,0%
-Denise Montes,Pablo Lopez,Fever Tree,0,,0%
-Denise Montes,Pablo Lopez,Coors,37,31,119.4%
-Denise Montes,Pablo Lopez,Peroni,10,17,58.8%
-Denise Montes,Javier Melo,Peroni,66,,0%
-Denise Montes,Javier Melo,Coors,43,54,79.6%
-Denise Montes,Javier Melo,Peroni,14,22,63.6%
+Denise Montes,Derrick Laws,Coors,58,54,107.4%
+Denise Montes,Matt Powierski,Coors,80,82,97.6%
+Denise Montes,Matt Powierski,Fever Tree,51,44,115.9%
+Denise Montes,Matt Powierski,Peroni,90,89,101.1%
+Denise Montes,Javier Melo,Peroni,15,22,68.2%
 Denise Montes,Javier Melo,Fever Tree,9,,0%
-Denise Montes,Jim Heaney,Peroni,198,,0%
-Denise Montes,Jim Heaney,Coors,90,110,81.8%
-Denise Montes,Jim Heaney,Peroni,75,104,72.1%
-Denise Montes,Jim Heaney,Fever Tree,33,37,89.2%
-Mike Engel,Phil Ernst,Peroni,855,,0%
-Mike Engel,Chris Payton,Peroni,244,,0%
+Denise Montes,Javier Melo,Coors,44,54,81.5%
+Denise Montes,Jim Heaney,Peroni,79,104,76.0%
+Denise Montes,Jim Heaney,Fever Tree,41,37,110.8%
+Denise Montes,Jim Heaney,Coors,91,110,82.7%
+Denise Montes,Pablo Lopez,Fever Tree,3,,0%
+Denise Montes,Pablo Lopez,Peroni,10,17,58.8%
+Denise Montes,Pablo Lopez,Coors,37,31,119.4%
+Mike Engel,Dan Lagala,Fever Tree,41,36,113.9%
+Mike Engel,Dan Lagala,Peroni,65,90,72.2%
+Mike Engel,Dan Lagala,Coors,47,50,94.0%
+Mike Engel,Phil Ernst,Fever Tree,91,85,107.1%
+Mike Engel,Phil Ernst,Coors,101,96,105.2%
+Mike Engel,Phil Ernst,Peroni,86,78,110.3%
+Mike Engel,Chris Payton,Fever Tree,80,60,133.3%
 Mike Engel,Chris Payton,Coors,86,85,101.2%
-Mike Engel,Chris Payton,Peroni,81,85,95.3%
-Mike Engel,Chris Payton,Fever Tree,77,60,128.3%
-Mike Engel,John Neukum,Peroni,11,,0%
+Mike Engel,Chris Payton,Peroni,82,85,96.5%
+Mike Engel,Dave Ehlers,Peroni,72,58,124.1%
+Mike Engel,Dave Ehlers,Fever Tree,31,23,134.8%
+Mike Engel,Dave Ehlers,Coors,83,78,106.4%
 Mike Engel,John Neukum,Coors,2,9,22.2%
 Mike Engel,John Neukum,Fever Tree,6,,0%
 Mike Engel,John Neukum,Peroni,3,7,42.9%
-Mike Engel,Dan Lagala,Peroni,151,,0%
-Mike Engel,Dan Lagala,Coors,47,50,94.0%
-Mike Engel,Dan Lagala,Fever Tree,41,36,113.9%
-Mike Engel,Dan Lagala,Peroni,63,90,70.0%
-Mike Engel,Dave Ehlers,Peroni,182,,0%
-Mike Engel,Dave Ehlers,Coors,83,78,106.4%
-Mike Engel,Dave Ehlers,Fever Tree,27,23,117.4%
-Mike Engel,Dave Ehlers,Peroni,72,58,124.1%
-Mike Engel,Phil Ernst,Peroni,267,,0%
-Mike Engel,Phil Ernst,Coors,97,96,101.0%
-Mike Engel,Phil Ernst,Fever Tree,84,85,98.8%
-Mike Engel,Phil Ernst,Peroni,86,78,110.3%
-Mike Kennedy,Michael Harboy,Peroni,55,,0%
-Mike Kennedy,Jaime Colonna,Peroni,2,,0%
-Mike Kennedy,Jaime Colonna,Peroni,1,6,16.7%
+Mike Kennedy,Michael Harboy,Peroni,15,20,75.0%
+Mike Kennedy,Michael Harboy,Fever Tree,9,9,100%
+Mike Kennedy,Michael Harboy,Coors,19,24,79.2%
+Mike Kennedy,John O'Donoghue,Peroni,2,6,33.3%
+Mike Kennedy,John O'Donoghue,Coors,3,6,50.0%
 Mike Kennedy,Jaime Colonna,Coors,1,6,16.7%
-Mike Kennedy,Alisa Acciardi,Peroni,5,,0%
+Mike Kennedy,Jaime Colonna,Peroni,1,6,16.7%
+Mike Kennedy,Dylan Rubino,Peroni,0,6,0%
 Mike Kennedy,Alisa Acciardi,Coors,5,9,55.6%
 Mike Kennedy,Alisa Acciardi,Peroni,0,10,0%
-Mike Kennedy,Dylan Rubino,Peroni,0,,0%
-Mike Kennedy,Dylan Rubino,Peroni,0,6,0%
-Mike Kennedy,John O'Donoghue,Peroni,5,,0%
-Mike Kennedy,John O'Donoghue,Coors,3,6,50.0%
-Mike Kennedy,John O'Donoghue,Peroni,2,6,33.3%
-Mike Kennedy,Michael Harboy,Peroni,43,,0%
-Mike Kennedy,Michael Harboy,Peroni,15,20,75.0%
-Mike Kennedy,Michael Harboy,Coors,19,24,79.2%
-Mike Kennedy,Michael Harboy,Fever Tree,9,9,100%
-None,Default,Peroni,3,,0%
-None,Default,Peroni,3,,0%
-None,Default,Coors,2,,0%
 None,Default,Peroni,1,,0%
-Paul Deady,Shane Barreca,Peroni,1090,,0%
-Paul Deady,Klejdi Lamo,Peroni,221,,0%
+None,Default,Coors,2,,0%
+Paul Deady,Klejdi Lamo,Coors,106,104,101.9%
+Paul Deady,Klejdi Lamo,Fever Tree,62,48,129.2%
 Paul Deady,Klejdi Lamo,Peroni,60,70,85.7%
-Paul Deady,Klejdi Lamo,Coors,104,104,100%
-Paul Deady,Klejdi Lamo,Fever Tree,57,48,118.8%
-Paul Deady,Shane Barreca,Peroni,314,,0%
-Paul Deady,Shane Barreca,Fever Tree,111,115,96.5%
-Paul Deady,Shane Barreca,Coors,100,95,105.3%
-Paul Deady,Shane Barreca,Peroni,103,101,102.0%
-Paul Deady,Jayson Romine,Peroni,311,,0%
-Paul Deady,Jayson Romine,Coors,152,139,109.4%
-Paul Deady,Jayson Romine,Fever Tree,88,85,103.5%
-Paul Deady,Jayson Romine,Peroni,71,59,120.3%
-Paul Deady,Mike Ast,Peroni,244,,0%
+Paul Deady,Mike Ast,Fever Tree,76,98,77.6%
 Paul Deady,Mike Ast,Coors,95,92,103.3%
-Paul Deady,Mike Ast,Fever Tree,67,98,68.4%
 Paul Deady,Mike Ast,Peroni,82,86,95.3%
+Paul Deady,Jayson Romine,Fever Tree,88,85,103.5%
+Paul Deady,Jayson Romine,Coors,153,139,110.1%
+Paul Deady,Jayson Romine,Peroni,72,59,122.0%
+Paul Deady,Shane Barreca,Peroni,103,101,102.0%
+Paul Deady,Shane Barreca,Coors,101,95,106.3%
+Paul Deady,Shane Barreca,Fever Tree,110,115,95.7%
