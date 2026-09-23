@@ -178,8 +178,15 @@
   .pagetabs button.on{background:linear-gradient(180deg,var(--filters-top),var(--card));border-color:var(--accent);color:var(--ink);box-shadow:0 0 0 4px rgba(61,139,255,.12)}
   .pagetabs button.on small{color:var(--ink-soft)}
   @media (max-width:700px){.pagetabs{flex-direction:column}}
-  .qexpl{display:grid;gap:7px;margin:10px 0 2px;font-size:16.5px;line-height:1.5;color:var(--ink-soft);max-width:115ch}
+  .qexpl{display:grid;grid-template-columns:repeat(3,1fr);gap:10px 16px;margin:10px 0 4px;font-size:16px;line-height:1.45;color:var(--ink-soft);width:100%}
+  .qcard .toolbar .left.stack{flex:1 1 100%;width:100%}
+  @media (max-width:1000px){.qexpl{grid-template-columns:1fr}}
   .qexpl b{color:var(--ink)}
+  .qblk{background:var(--input);border:1px solid var(--line-soft);border-radius:10px;padding:10px 12px 8px}
+  .qlab{font-family:"Archivo",Arial,sans-serif;font-weight:700;font-size:13.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin:0 0 6px}
+  .qexpl ul{margin:0;padding-left:18px}
+  .qexpl li{margin:3px 0}
+  @media print{.qexpl{grid-template-columns:1fr 1fr 1fr;gap:6px}.qblk{padding:4px 8px}.qexpl li{margin:1px 0}}
   .qcard h2{font-size:23px}
   @media print{.qexpl{font-size:11px;gap:2px}}
   .qsub{font-family:"Archivo",Arial,sans-serif;font-size:17px;font-weight:700;margin:14px 0 6px;display:flex;align-items:center;gap:6px}
@@ -269,7 +276,7 @@
 </div>
 <div class="tip" id="tip"></div>
 <script src="data/logos.js?v=2"></script>
-<script src="data/dist_data.js?v=32"></script>
+<script src="data/dist_data.js?v=34"></script>
 <script>
 (function(){
   var D = window.DIST_DATA;
@@ -898,34 +905,86 @@
   var QCTX={scope:'',period:'',plural:'',label:''};
   // Plain-language introductions, one per section: what it shows / why it matters / how to read it.
   var EXPL={
-    1:function(){ return [['What it shows','Every placement of '+QCTX.scope+' in '+QCTX.period+' (one product at one account), sorted into three tiers by how many cases it sells per month: Core, Steady and Thin. '+(S.tmode==='rel'?'Each placement is judged against its own brand family, so a Core Corona placement and a Core Blue Moon placement mean the same thing: one of that brand’s best-selling accounts.':'The tiers use fixed case counts, the same for every brand.')],
-                          ['Why it matters','Suppliers count every placement as a "point of distribution", however little it sells. A Thin placement still counts as a point on their scoreboard, but the account is not really a customer of the brand: the product sits, goes past its date, and Kohler picks it up and destroys it at our cost. Points are not the same as sales.'],
-                          ['How to read it','Compare the two bars. When Thin is a big share of placements but only a sliver of cases, the extra points did not turn into sales. Switch between "Relative to each brand" and "Fixed cases per month" to see the tiers both ways.']]; },
-    2:function(){ return [['What it shows','Placements that were brand new in the chosen period (never bought before), and whether they were still buying one, two, three and four periods later.'],
-                          ['Why it matters','This is last year’s distribution drive judged by what it became. The answer to "give us 25 more points" is what the last 25 did.'],
-                          ['How to read it','Change "Points gained in" to look at a different drive. Green means at least half survived, red means less than half. Switch the breakdown to see which brands, reps, areas or premise types kept their points.']]; },
-    3:function(){ return [['What it shows','Areas, counties, premise types, reps or district managers ranked by how much each buyer sells, not by how many buyers there are.'],
-                          ['Why it matters','Where a brand fits, it sells more per account and keeps its accounts. That is where new points belong.'],
-                          ['How to read it','Penetration is buyers as a share of all our active accounts in that group. Retained is prior-period buyers still buying. High cases per buyer plus high retention is a fit; a big count with low cases per buyer is not.']]; },
-    4:function(){ return [['What it shows','Accounts that buy from us but not '+QCTX.scope+', ranked by how closely they resemble its best buyers: same premise type, same areas, and they carry the other brands its best buyers carry.'],
-                          ['Why it matters','This is the counter-offer to a blanket points target: name the accounts where the brand should work, instead of any account that will take a case.'],
-                          ['How to read it','"Carries 9 of the 10 core brands" means the account already stocks most of what this brand’s best buyers stock. Lapsed accounts bought it before and stopped; they are usually the easiest wins.']]; },
-    5:function(){ return [['What it shows','Of every '+QCTX.scope+' placement started in the history, the share that reordered within 3 and 6 months, how fast, how steadily, and how many cases they sold after the first drop.'],
-                          ['Why it matters','A first order can be a deal or a favor. A reorder is demand. Repeat cases per month is the number that says whether a placement is worth keeping in the account.'],
-                          ['How to read it','Only placements old enough to have had a full 6 months are judged; newer ones are counted as "too recent", never as failures. Rows with fewer than 20 judged placements are flagged small. Open "How these are measured" for the exact definitions.']]; },
-    6:function(){ return [['What it shows','Counties or areas ranked by a fit score that combines the rebuy rate and the repeat volume, with total cases and cases per account beside it.'],
-                          ['Why it matters','Big counties always have the most cases. The score shows where the brand is taken up again and again, regardless of size.'],
-                          ['How to read it','100 is the best place on both measures among places with at least 20 judged placements. A high score with low volume is room to grow; a low score with high volume is volume that may be at risk.']]; },
-    7:function(){ return [['What it shows','Three lists: accounts to protect, placements that never reordered, and where to expand.'],
-                          ['Why it matters','Retain is where the cases are. One-and-done is where the out-of-code and pickup cost is. Expand selectively answers "where would more points actually work".'],
-                          ['How to read it','Retain accounts bought in at least 4 of the last 6 months; the last column shows whether they are growing or slipping. One-and-done lists the biggest first drops that were never followed by a reorder, flagged when a credit or return followed.']]; },
-    8:function(){ return [['What it shows','For each '+QCTX.label.toLowerCase()+' under '+QCTX.scope+': how placements and cases moved against last year, whether cases per placement held, how well its new points rebuy, and a verdict.'],
-                          ['Why it matters','This is the direct test of "more points = more sales", brand by brand. Some brands earn broader distribution; for others, more points just means more thin points.'],
-                          ['How to read it','"Broader distribution works" = rebuy 60% or better and cases per placement holding. "Be selective" = rebuy under 40%, or points grew 10%+ while cases grew less than half as fast. "Hold / watch" is in between. Fewer than 50 judged placements gets no verdict.']]; }
+    1:function(){ return [['What it shows',[
+                            'Every '+QCTX.scope+' placement in '+QCTX.period+'. A placement = one product at one account.',
+                            'Each placement is put in a tier by cases per month: <b>Core</b>, <b>Steady</b> or <b>Thin</b>.',
+                            S.tmode==='rel' ? 'Tiers are relative to the brand: Core = that brand’s top '+S.tq+'% of placements, Thin = its bottom '+S.tq+'%. Corona and Blue Moon are each judged against themselves.' : 'Tiers use fixed case counts, the same for every brand.']],
+                          ['Why it matters',[
+                            'Suppliers count every placement as a point of distribution, no matter how little it sells.',
+                            'A Thin point still counts on their scoreboard, but the account is not really a customer of the brand.',
+                            'Thin product sits, goes out of code, and Kohler picks it up and destroys it at our cost.']],
+                          ['How to read it',[
+                            'Compare the two bars: share of placements vs share of cases.',
+                            'Thin taking a big slice of placements but a sliver of cases = points that never became sales.',
+                            'Flip between "Relative to each brand" and "Fixed cases per month" to see it both ways.']]]; },
+    2:function(){ return [['What it shows',[
+                            'Placements that were brand new in the chosen period (never bought before).',
+                            'Whether each one was still buying one, two, three and four periods later, and how much.']],
+                          ['Why it matters',[
+                            'This is last year’s distribution drive, judged by what it became.',
+                            'When a supplier asks for 25 more points, this is what the last 25 did.']],
+                          ['How to read it',[
+                            'Change "Points gained in" to look at a different drive.',
+                            'Green = at least half the points survived. Red = fewer than half.',
+                            'Switch the breakdown to see which brands, reps, areas or premise types kept their points.']]]; },
+    3:function(){ return [['What it shows',[
+                            'Areas, counties, premise types, reps or district managers ranked by cases per buyer, not by number of buyers.']],
+                          ['Why it matters',[
+                            'Where a brand fits, each account sells more and keeps buying.',
+                            'That is where new points belong, not wherever a count is easiest to hit.']],
+                          ['How to read it',[
+                            'Penetration = buyers as a share of our active accounts in that group.',
+                            'Retained = last period’s buyers still buying.',
+                            'High cases per buyer + high retention = fit. Big count + low cases per buyer = not.']]]; },
+    4:function(){ return [['What it shows',[
+                            'Accounts that buy from us but not '+QCTX.scope+', ranked by how much they look like its best buyers.',
+                            'Look-alike = same premise type, same areas, and they carry the other brands the best buyers carry.']],
+                          ['Why it matters',[
+                            'This is the counter-offer to a blanket points target: these accounts, not any account that will take a case.']],
+                          ['How to read it',[
+                            '"Carries 9 of the 10 core brands" = the account already stocks what this brand’s best buyers stock.',
+                            '<b>Lapsed</b> = bought it before and stopped. Usually the easiest wins.']]]; },
+    5:function(){ return [['What it shows',[
+                            'Of every '+QCTX.scope+' placement started in the history: how many reordered within 3 and 6 months.',
+                            'How fast they reordered, how steadily, and how many cases they sold after the first drop.']],
+                          ['Why it matters',[
+                            'A first order can be a deal or a favor. A reorder is demand.',
+                            '"Repeat cases per month" is the number that says whether a placement is worth keeping in the account.']],
+                          ['How to read it',[
+                            'Only placements old enough to have had a full 6 months are judged. Newer ones are "too recent", not failures.',
+                            'Rows with fewer than 20 judged placements are flagged <b>small</b>.',
+                            'Open "How these are measured" for the exact definitions.']]]; },
+    6:function(){ return [['What it shows',[
+                            'Counties or areas ranked by a fit score: rebuy rate and repeat volume combined.',
+                            'Total cases and cases per account sit beside it.']],
+                          ['Why it matters',[
+                            'Big counties always have the most cases. The score shows where the brand gets bought again and again, regardless of size.']],
+                          ['How to read it',[
+                            '100 = best on both measures among places with 20+ judged placements.',
+                            'High score, low volume = room to grow. Low score, high volume = volume at risk.']]]; },
+    7:function(){ return [['What it shows',[
+                            'Three lists: accounts to protect, placements that never reordered, and where to expand.']],
+                          ['Why it matters',[
+                            '<b>Retain</b> is where the cases are.',
+                            '<b>One-and-done</b> is where the out-of-code and pickup cost is.',
+                            '<b>Expand selectively</b> answers "where would more points actually work".']],
+                          ['How to read it',[
+                            'Retain = bought in at least 4 of the last 6 months. The last column shows growing or slipping.',
+                            'One-and-done = the biggest first drops never followed by a reorder, flagged when a credit or return followed.']]]; },
+    8:function(){ return [['What it shows',[
+                            'One row per '+QCTX.label.toLowerCase()+' under '+QCTX.scope+'.',
+                            'Placements, cases and cases per placement vs last year, plus how well its new points rebuy, and a verdict.']],
+                          ['Why it matters',[
+                            'This is the direct test of "more points = more sales", brand by brand.',
+                            'Some brands earn broader distribution. For others, more points just means more thin points.']],
+                          ['How to read it',[
+                            '<b>Broader distribution works</b> = rebuy 60%+ and cases per placement holding.',
+                            '<b>Be selective</b> = rebuy under 40%, or points up 10%+ while cases grew less than half as fast.',
+                            '<b>Hold / watch</b> = in between. Under 50 judged placements = no verdict.']]]; }
   };
   function qhead(num, title, sub, right){
-    var lines = EXPL[num] ? EXPL[num]() : [['',sub]];
-    return '<div class="toolbar"><div class="left stack"><h2 style="margin:0"><span class="qnum">'+num+'</span>'+title+'</h2><div class="qexpl">'+lines.map(function(l){ return '<div>'+(l[0]?'<b>'+l[0]+'.</b> ':'')+l[1]+'</div>'; }).join('')+'</div></div>'+(right||'')+'</div>';
+    var blocks = EXPL[num] ? EXPL[num]() : [['',[sub]]];
+    return '<div class="toolbar"><div class="left stack"><h2 style="margin:0"><span class="qnum">'+num+'</span>'+title+'</h2><div class="qexpl">'+blocks.map(function(b){ return '<div class="qblk">'+(b[0]?'<div class="qlab">'+b[0]+'</div>':'')+'<ul>'+b[1].map(function(t){ return '<li>'+t+'</li>'; }).join('')+'</ul></div>'; }).join('')+'</div></div>'+(right||'')+'</div>';
   }
   function qualityView(ps, pm, cm, periods, li){
     var P=periods.length, T=periods[P-1], tj=P-1, pr=priorPeriod(T), yy=yoyPeriod(T), len=T.len;
