@@ -4096,6 +4096,46 @@ ahead of a 9/21 pull -- kept, as every future-dated row has been.
              3 at bonus, $855.
 Hub cache tag bumped (20260921b) for the new program_data.js.
 
+2026-09-23 EIGHTH -- SAM ADAMS OCTOBERFEST FAST START IS AUG 1 - SEP 30 (Gavin)
+  data/sam_adams_octoberfest_fast_start.csv  (RDE "SAM ADAMS OCTOBERFEST FAST START AUGUST - SEPTEMBER")
+  python3 generate.py
+Gavin: "please include this on the hub dashboard. this is a 2 month program
+from august to september." The program had been built as AUGUST ONLY
+(tag 'August', an 8/1-8/31 account-level export), so the hub dated it to
+Aug 31 and dropped it as ended. Now:
+  - build_sam_adams() reads the new Aug-Sep comparison: Brand Family / Sales
+    Rep Assigned / Product Num & Name, Cases 8/1-9/30/2025 vs 8/1-9/30/2026.
+    It is a FLATTENED TREE -- the first data row is the house total and the
+    first row of each rep block is that rep's total, each borrowing a
+    product label -- peeled off positionally and RECONCILED (products = rep
+    total, rep totals = house row; the build stops on a mismatch). 28 reps,
+    house 14,956 -> 10,813 cases, all totals tie out.
+  - Tag 'Aug–Sept' on the August tab AND a September 'ongoing' entry pointing
+    at the same PROGRAM_DATA['sam_adams'] (the 1911 / Woodchuck pattern), plus
+    meta.startDate / endDate, so the hub reads it as live until Sep 30.
+  - SCORED: $1 per case of Octoberfest over last Aug-Sep, payout =
+    max(0, growth). Hub goal = last year's Aug-Sep Octoberfest cases; a rep
+    with no 2025 base is an open count; a rep exactly level reads "close",
+    not earned ($0).
+  - NOT SCORED: "double commission on all Sam Adams if positive" -- this
+    export carries Octoberfest SKUs only. allSku* / isPositive are null and
+    the card says the leg is not in the export. An all-Samuel-Adams Aug-Sep
+    comparison would turn it back on (the card already handles both).
+  - No account detail in this export: the product accordion has no
+    accounts under it, and "close the gap" lists products, not accounts.
+  - The August-only account export (data/sam_adams_octoberfest.csv) is
+    REMOVED -- its window no longer matches the program.
+Today: 2 reps ahead of last year -- Pablo Lopez 17 vs 12 (+5, $5) and John
+O'Donoghue 3 vs 1 (+2, $2); $7 earned house-wide. Everyone else behind, the
+biggest gaps Klejdi Lamo -831, Jayson Romine -488, Shane Barreca -419, Phil
+Ernst -383. Off roster: John Neukum, Default, Chris Politano, Office Tell Sell.
+Core Market only, as before (3 reps territory-blocked).
+Hub: SELL_ASK now "Sell more Octoberfest than last Aug-Sep."; cache tag
+20260923h. Verified headless: hub detail card (Jayson Romine 1,413 of 1,901,
+74%, 488 behind, ends Sep 30; Pablo Lopez exceeded), tracker card, no page
+errors. (Separately noticed: a FRESH page load with a #view=detail deep link
+lands on Home for every program -- pre-existing, not touched here.)
+
 2026-09-23 SEVENTH REFRESH -- Yuengling Fall (off / packages / draft) + Southern District (vSD)
   python3 generate.py
 All five flat CSVs straight over data/yuengling_retention_fall_off.csv /
