@@ -145,6 +145,18 @@
   },
   {
     "SALES_REP_ASSIGNED": "Alex Rodriguez",
+    "PRODUCT_NAME": "200310 Pride & Clarke Vodka 6/1.75 L Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 250068,
+    "CUSTOMER_NAME": "Jakob Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Alex Rodriguez",
     "PRODUCT_NAME": "200311 Pride & Clarke Vodka 12/1 L Btl",
     "BRAND_FAMILY": "Pride & Clarke",
     "CUSTOMER_NUM": 250068,
@@ -157,15 +169,39 @@
   },
   {
     "SALES_REP_ASSIGNED": "Alex Rodriguez",
+    "PRODUCT_NAME": "200312 Pride & Clarke Vodka 48/200 mL Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 250068,
+    "CUSTOMER_NAME": "Jakob Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Alex Rodriguez",
+    "PRODUCT_NAME": "200313 Pride & Clarke Vodka 24/375 mL Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 250068,
+    "CUSTOMER_NAME": "Jakob Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Alex Rodriguez",
     "PRODUCT_NAME": "200314 Pride & Clarke Vodka 1/12/750 mL Btl",
     "BRAND_FAMILY": "Pride & Clarke",
     "CUSTOMER_NUM": 250068,
     "CUSTOMER_NAME": "Jakob Liquors",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Alex Rodriguez",
@@ -186,10 +222,10 @@
     "CUSTOMER_NUM": 250068,
     "CUSTOMER_NAME": "Jakob Liquors",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Alex Rodriguez",
@@ -925,6 +961,42 @@
   },
   {
     "SALES_REP_ASSIGNED": "Alisa Acciardi",
+    "PRODUCT_NAME": "200731 2 Canos Cheerful Frizzante Blackberry & Mint 1/12/750 mL Btl",
+    "BRAND_FAMILY": "2 Canos",
+    "CUSTOMER_NUM": 170101,
+    "CUSTOMER_NAME": "High Spirits Of Bayonne",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Alisa Acciardi",
+    "PRODUCT_NAME": "200732 2 Canos Cheerful Frizzante Peach & Apricot 1/12/750 mL Btl",
+    "BRAND_FAMILY": "2 Canos",
+    "CUSTOMER_NUM": 170101,
+    "CUSTOMER_NAME": "High Spirits Of Bayonne",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Alisa Acciardi",
+    "PRODUCT_NAME": "200733 2 Canos Cheerful Frizzante Strawberry & Coconut 1/12/750 mL Btl",
+    "BRAND_FAMILY": "2 Canos",
+    "CUSTOMER_NUM": 170101,
+    "CUSTOMER_NAME": "High Spirits Of Bayonne",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Alisa Acciardi",
     "PRODUCT_NAME": "200738 Poca Loca Brazilian Wine 1/12/750 mL Btl",
     "BRAND_FAMILY": "Poca Loca",
     "CUSTOMER_NUM": 170101,
@@ -1269,7 +1341,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/15/2026",
-    "LAST_DATE": "9/15/2026"
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -1825,6 +1897,54 @@
   },
   {
     "SALES_REP_ASSIGNED": "Andrew Lundy",
+    "PRODUCT_NAME": "101021 Carinoso Durazno 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Carinoso",
+    "CUSTOMER_NUM": 250042,
+    "CUSTOMER_NAME": "Pied Piper Liquor",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Andrew Lundy",
+    "PRODUCT_NAME": "101022 Carinoso Manzana 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Carinoso",
+    "CUSTOMER_NUM": 250042,
+    "CUSTOMER_NAME": "Pied Piper Liquor",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Andrew Lundy",
+    "PRODUCT_NAME": "101023 Carinoso Manzana Rose 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Carinoso",
+    "CUSTOMER_NUM": 250042,
+    "CUSTOMER_NAME": "Pied Piper Liquor",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Andrew Lundy",
+    "PRODUCT_NAME": "101025 Carinoso Fiesta Sangria 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Carinoso",
+    "CUSTOMER_NUM": 250042,
+    "CUSTOMER_NAME": "Pied Piper Liquor",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Andrew Lundy",
     "PRODUCT_NAME": "200310 Pride & Clarke Vodka 6/1.75 L Btl",
     "BRAND_FAMILY": "Pride & Clarke",
     "CUSTOMER_NUM": 250119,
@@ -2181,7 +2301,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/9/2026",
-    "LAST_DATE": "9/9/2026"
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -2518,6 +2638,30 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "PRODUCT_NAME": "201056 Bardstown Origin Series Bourbon 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 190905,
+    "CUSTOMER_NAME": "Elevengreen",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "PRODUCT_NAME": "201058 Bardstown Origin Series High Wheat 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 190905,
+    "CUSTOMER_NAME": "Elevengreen",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -3361,6 +3505,30 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "200216 Leyenda 1925 Anejo Tequila 1/750 ML Btl",
+    "BRAND_FAMILY": "Leyenda 1925",
+    "CUSTOMER_NUM": 80027,
+    "CUSTOMER_NAME": "Ridgewood Country Club",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "200218 Leyenda 1925 Reposado Tequila 1/750 ML Btl",
+    "BRAND_FAMILY": "Leyenda 1925",
+    "CUSTOMER_NUM": 80027,
+    "CUSTOMER_NAME": "Ridgewood Country Club",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
     "PRODUCT_NAME": "9409 Terredirai Bloom Bubbles Sparkling Non-Alcoholic 1/12/750 ML Btl",
     "BRAND_FAMILY": "Bloom Bubbles",
     "CUSTOMER_NUM": 38008,
@@ -3418,6 +3586,18 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "100966 2XO The Collectibles Hip Hop Blend 1/750 mL Btl",
+    "BRAND_FAMILY": "2XO",
+    "CUSTOMER_NUM": 76010,
+    "CUSTOMER_NAME": "Usa Wine Traders Club (Saddle Brook)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -3738,10 +3918,10 @@
     "CUSTOMER_NUM": 49055,
     "CUSTOMER_NAME": "Edgewater Liquor (A)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -4465,6 +4645,18 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "200294 Molly's Irish Cream 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Molly's",
+    "CUSTOMER_NUM": 57003,
+    "CUSTOMER_NAME": "Joes Beer Wine & Spirits",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "PRODUCT_NAME": "200313 Pride & Clarke Vodka 24/375 mL Btl",
     "BRAND_FAMILY": "Pride & Clarke",
     "CUSTOMER_NUM": 57003,
@@ -4486,6 +4678,18 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/9/2026",
     "LAST_DATE": "9/9/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "200737 Lou Lou Bubbly Semi Sweet Rose 1/12/12 oz Can",
+    "BRAND_FAMILY": "Caravella",
+    "CUSTOMER_NUM": 57003,
+    "CUSTOMER_NAME": "Joes Beer Wine & Spirits",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -4662,10 +4866,10 @@
     "CUSTOMER_NUM": 56013,
     "CUSTOMER_NAME": "Time Lounge And Liq (A)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -4689,7 +4893,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/4/2026",
-    "LAST_DATE": "9/4/2026"
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -4782,10 +4986,10 @@
     "CUSTOMER_NUM": 58001,
     "CUSTOMER_NAME": "Total Wine & More (River Edge)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -4797,7 +5001,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/4/2026",
-    "LAST_DATE": "9/4/2026"
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -4930,6 +5134,30 @@
     "NEW_PLACEMENT": 1,
     "PLACED_DATE": "9/4/2026",
     "LAST_DATE": "9/4/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Default",
+    "PRODUCT_NAME": "200173 Chateau Diana Merlot 12/750 mL Btl",
+    "BRAND_FAMILY": "Chateau Diana",
+    "CUSTOMER_NUM": 120002,
+    "CUSTOMER_NAME": "PICNIC",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Default",
+    "PRODUCT_NAME": "200174 Chateau Diana Pinot Grigio 12/750 mL Btl",
+    "BRAND_FAMILY": "Chateau Diana",
+    "CUSTOMER_NUM": 120002,
+    "CUSTOMER_NAME": "PICNIC",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -6601,6 +6829,18 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dylan Rubino",
+    "PRODUCT_NAME": "200294 Molly's Irish Cream 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Molly's",
+    "CUSTOMER_NUM": 170099,
+    "CUSTOMER_NAME": "Columbia Park Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/24/2026",
+    "LAST_DATE": "9/24/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dylan Rubino",
     "PRODUCT_NAME": "100912 OVO Vodka 1/12/750 mL Btl",
     "BRAND_FAMILY": "OVO Vodka",
     "CUSTOMER_NUM": 170151,
@@ -6978,10 +7218,10 @@
     "CUSTOMER_NUM": 170312,
     "CUSTOMER_NAME": "J B Liquors",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Dylan Rubino",
@@ -6990,10 +7230,10 @@
     "CUSTOMER_NUM": 170312,
     "CUSTOMER_NAME": "J B Liquors",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Dylan Rubino",
@@ -7002,10 +7242,10 @@
     "CUSTOMER_NUM": 170312,
     "CUSTOMER_NAME": "J B Liquors",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Dylan Rubino",
@@ -11694,10 +11934,10 @@
     "CUSTOMER_NUM": 150062,
     "CUSTOMER_NAME": "United Liquor",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Hakan Sadik",
@@ -11706,10 +11946,22 @@
     "CUSTOMER_NUM": 150062,
     "CUSTOMER_NAME": "United Liquor",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Hakan Sadik",
+    "PRODUCT_NAME": "200401 Travelers Club Vodka 48/200 mL Btl",
+    "BRAND_FAMILY": "Travelers Club",
+    "CUSTOMER_NUM": 150062,
+    "CUSTOMER_NAME": "United Liquor",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Hakan Sadik",
@@ -11718,10 +11970,10 @@
     "CUSTOMER_NUM": 150062,
     "CUSTOMER_NAME": "United Liquor",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Hakan Sadik",
@@ -11814,10 +12066,10 @@
     "CUSTOMER_NUM": 150063,
     "CUSTOMER_NAME": "Victory Wine & Liquor",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Hakan Sadik",
@@ -11842,6 +12094,54 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Hakan Sadik",
+    "PRODUCT_NAME": "101021 Carinoso Durazno 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Carinoso",
+    "CUSTOMER_NUM": 150633,
+    "CUSTOMER_NAME": "Wine Warehouse (Newark)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Hakan Sadik",
+    "PRODUCT_NAME": "101022 Carinoso Manzana 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Carinoso",
+    "CUSTOMER_NUM": 150633,
+    "CUSTOMER_NAME": "Wine Warehouse (Newark)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Hakan Sadik",
+    "PRODUCT_NAME": "101023 Carinoso Manzana Rose 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Carinoso",
+    "CUSTOMER_NUM": 150633,
+    "CUSTOMER_NAME": "Wine Warehouse (Newark)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Hakan Sadik",
+    "PRODUCT_NAME": "101025 Carinoso Fiesta Sangria 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Carinoso",
+    "CUSTOMER_NUM": 150633,
+    "CUSTOMER_NAME": "Wine Warehouse (Newark)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Hakan Sadik",
@@ -12066,10 +12366,10 @@
     "CUSTOMER_NUM": 170153,
     "CUSTOMER_NAME": "Molos Rest",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jaime Colonna",
@@ -12658,6 +12958,18 @@
     "NEW_PLACEMENT": 1,
     "PLACED_DATE": "9/11/2026",
     "LAST_DATE": "9/11/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "200218 Leyenda 1925 Reposado Tequila 1/750 ML Btl",
+    "BRAND_FAMILY": "Leyenda 1925",
+    "CUSTOMER_NUM": 27001,
+    "CUSTOMER_NAME": "Fiesta Night Club(P)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -13662,10 +13974,10 @@
     "CUSTOMER_NUM": 230905,
     "CUSTOMER_NAME": "ShopRite Wines & Spirits of Franklin",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/24/2026",
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -13882,6 +14194,30 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "201055 Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 230924,
+    "CUSTOMER_NAME": "Sussex Co.Discount Liq(P)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "201056 Bardstown Origin Series Bourbon 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 230924,
+    "CUSTOMER_NAME": "Sussex Co.Discount Liq(P)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -14221,6 +14557,18 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "200051 Gin Pig 6/750 mL Btl",
+    "BRAND_FAMILY": "Gin Pig",
+    "CUSTOMER_NUM": 24016,
+    "CUSTOMER_NAME": "Broad Liquors (A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
     "PRODUCT_NAME": "200312 Pride & Clarke Vodka 48/200 mL Btl",
     "BRAND_FAMILY": "Pride & Clarke",
     "CUSTOMER_NUM": 24016,
@@ -14265,7 +14613,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/1/2026",
-    "LAST_DATE": "9/15/2026"
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -15973,6 +16321,18 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "11062 New Holland Dragon's Milk Reserve Coconut Rum 6/4/12 oz Btl",
+    "BRAND_FAMILY": "New Holland Brewing Co",
+    "CUSTOMER_NUM": 191210,
+    "CUSTOMER_NAME": "Milton Inn",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "PRODUCT_NAME": "201051 Green River Bourbon 1/750 mL Btl",
     "BRAND_FAMILY": "Bardstown Green River",
     "CUSTOMER_NUM": 191210,
@@ -16138,6 +16498,42 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "201051 Green River Bourbon 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Green River",
+    "CUSTOMER_NUM": 191814,
+    "CUSTOMER_NAME": "Sandy's Wine & Spirit (P) (Budd Lake)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "201052 Green River Full Proof 1/750 mL",
+    "BRAND_FAMILY": "Bardstown Green River",
+    "CUSTOMER_NUM": 191814,
+    "CUSTOMER_NAME": "Sandy's Wine & Spirit (P) (Budd Lake)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "201054 Green River Wheated 1/750 mL",
+    "BRAND_FAMILY": "Bardstown Green River",
+    "CUSTOMER_NUM": 191814,
+    "CUSTOMER_NAME": "Sandy's Wine & Spirit (P) (Budd Lake)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -17382,10 +17778,10 @@
     "CUSTOMER_NUM": 150048,
     "CUSTOMER_NAME": "Cedar Grove Wine Cellar",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
@@ -17394,10 +17790,10 @@
     "CUSTOMER_NUM": 150048,
     "CUSTOMER_NAME": "Cedar Grove Wine Cellar",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
@@ -17406,10 +17802,10 @@
     "CUSTOMER_NUM": 150048,
     "CUSTOMER_NAME": "Cedar Grove Wine Cellar",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
@@ -17506,6 +17902,18 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Michael Harboy",
+    "PRODUCT_NAME": "200175 Chateau Diana White Zinfandel 12/750 mL Btl",
+    "BRAND_FAMILY": "Chateau Diana",
+    "CUSTOMER_NUM": 12005,
+    "CUSTOMER_NAME": "Shay's Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
@@ -18333,7 +18741,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/8/2026",
-    "LAST_DATE": "9/15/2026"
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -18453,7 +18861,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/10/2026",
-    "LAST_DATE": "9/16/2026"
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -18801,7 +19209,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/9/2026",
-    "LAST_DATE": "9/9/2026"
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -18813,7 +19221,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/9/2026",
-    "LAST_DATE": "9/9/2026"
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -18997,6 +19405,18 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
+    "PRODUCT_NAME": "200609 Dogfish Head Straight Whiskey 6/750 mL Btl",
+    "BRAND_FAMILY": "Dogfish Head Spirits",
+    "CUSTOMER_NUM": 89002,
+    "CUSTOMER_NAME": "Allendale Bar & Grill",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
     "PRODUCT_NAME": "14132 BJ'S Prickly Pear Hard Lemonade Keg 15.5 Gal Keg",
     "BRAND_FAMILY": "BJ'S Private Label Brewa",
     "CUSTOMER_NUM": 39017,
@@ -19014,10 +19434,10 @@
     "CUSTOMER_NUM": 39017,
     "CUSTOMER_NAME": "Bj's Rest & Brewhouse(A)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -19165,6 +19585,30 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
+    "PRODUCT_NAME": "201056 Bardstown Origin Series Bourbon 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 88003,
+    "CUSTOMER_NAME": "W's Village Grille",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "PRODUCT_NAME": "201058 Bardstown Origin Series High Wheat 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 88003,
+    "CUSTOMER_NAME": "W's Village Grille",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
     "PRODUCT_NAME": "100953 Castellani Etichetta Gialla Pinot Noir 1/12/750 mL Btl",
     "BRAND_FAMILY": "Castellani Etichetta Gialla",
     "CUSTOMER_NUM": 78007,
@@ -19234,6 +19678,42 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "105521 Monte Xanic Cabernet Sauignon 12/750 mL",
+    "BRAND_FAMILY": "Monte Xanic",
+    "CUSTOMER_NUM": 40031,
+    "CUSTOMER_NAME": "Azul Restaurant",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "105540 Monte Xanic Calixa Chardonnay 1/750 mL Btl",
+    "BRAND_FAMILY": "Monte Xanic",
+    "CUSTOMER_NUM": 40031,
+    "CUSTOMER_NAME": "Azul Restaurant",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "200218 Leyenda 1925 Reposado Tequila 1/750 ML Btl",
+    "BRAND_FAMILY": "Leyenda 1925",
+    "CUSTOMER_NUM": 40031,
+    "CUSTOMER_NAME": "Azul Restaurant",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -19326,10 +19806,10 @@
     "CUSTOMER_NUM": 27069,
     "CUSTOMER_NAME": "Broadway W&L",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -20053,6 +20533,18 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "200400 Travelers Club Vodka 12/1 L Btl",
+    "BRAND_FAMILY": "Travelers Club",
+    "CUSTOMER_NUM": 27066,
+    "CUSTOMER_NAME": "Sunny's Liqs.(P)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
     "PRODUCT_NAME": "200402 Travelers Club Vodka 24/375 mL Btl",
     "BRAND_FAMILY": "Travelers Club",
     "CUSTOMER_NUM": 27066,
@@ -20157,7 +20649,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/2/2026",
-    "LAST_DATE": "9/11/2026"
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -21594,10 +22086,10 @@
     "CUSTOMER_NUM": 25010,
     "CUSTOMER_NAME": "Stew Leonard's Wines & Spirits of Clifton",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/24/2026",
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -21666,10 +22158,10 @@
     "CUSTOMER_NUM": 80026,
     "CUSTOMER_NAME": "Stew Leonard's(A) Paramus Wine",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -21702,10 +22194,10 @@
     "CUSTOMER_NUM": 80026,
     "CUSTOMER_NAME": "Stew Leonard's(A) Paramus Wine",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/24/2026",
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -21826,222 +22318,6 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "100961 2XO American Oak 1/750 mL Btl",
-    "BRAND_FAMILY": "2XO",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "100962 2XO French Oak 1/750 mL Btl",
-    "BRAND_FAMILY": "2XO",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "100965 2XO White Oak Rye 1/750 ML Btl",
-    "BRAND_FAMILY": "2XO",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "200216 Leyenda 1925 Anejo Tequila 1/750 ML Btl",
-    "BRAND_FAMILY": "Leyenda 1925",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "200381 YaVe Tequila Mango 1/6/750 mL Btl",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "200382 YaVe Tequila Jalapeno 1/6/750 mL Btl",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "200383 YaVe Tequila Reposado 1/6/750 mL Btl",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "200384 YaVe Tequila Blanco 1/6/750 mL Btl",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "200385 YaVe Tequila Coconut 1/6/750 mL Btl",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "201052 Green River Full Proof 1/750 mL",
-    "BRAND_FAMILY": "Bardstown Green River",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "201053 Green River Rye 1/750 mL",
-    "BRAND_FAMILY": "Bardstown Green River",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "201054 Green River Wheated 1/750 mL",
-    "BRAND_FAMILY": "Bardstown Green River",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "201055 Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl",
-    "BRAND_FAMILY": "Bardstown Bourbon",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "201056 Bardstown Origin Series Bourbon 1/750 mL Btl",
-    "BRAND_FAMILY": "Bardstown Bourbon",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "201057 Bardstown Origin Series Double Barrel Rye 1/750 mL Btl",
-    "BRAND_FAMILY": "Bardstown Bourbon",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "201058 Bardstown Origin Series High Wheat 1/750 mL Btl",
-    "BRAND_FAMILY": "Bardstown Bourbon",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "201077 Green River Honey 1/750 mL Btl",
-    "BRAND_FAMILY": "Bardstown Green River",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "201078 Green River Honey 1/10/50 mL Btl",
-    "BRAND_FAMILY": "Bardstown Green River",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -23245,6 +23521,18 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
+    "PRODUCT_NAME": "201053 Green River Rye 1/750 mL",
+    "BRAND_FAMILY": "Bardstown Green River",
+    "CUSTOMER_NUM": 70001,
+    "CUSTOMER_NAME": "Montvale Wine/Liq & Beer",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
     "PRODUCT_NAME": "201055 Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl",
     "BRAND_FAMILY": "Bardstown Bourbon",
     "CUSTOMER_NUM": 70001,
@@ -23550,10 +23838,10 @@
     "CUSTOMER_NUM": 74009,
     "CUSTOMER_NAME": "Westwood Wine and Liquors",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",

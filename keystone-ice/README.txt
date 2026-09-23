@@ -98,6 +98,16 @@ the two boards were cross-checked per rep afterwards (101 accounts each, zero
 differences). Whenever this file changes, change that one to match in the same
 commit.
 
+2026-09-23 REFRESH: actuals.csv onto the 234-row export (21 new rows; ONE
+  removed -- Phil Ernst's 9/30 USA Wine Traders Paramus row flagged 9/18, whose
+  month-end order left every RDE export). 173 -> 188 distinct accounts
+  house-wide; 7 -> 8 qualified, 3 -> 4 at bonus, $855 -> $1,040 projected.
+  Jayson Romine 10 -> 15 of 35 (qualified), Phil Ernst 13 -> 14 of 27 (bonus,
+  four new stores outweigh the lost one), Chris Payton 17 -> 19, Jim Heaney
+  12 -> 14, +1 each Pablo Lopez, Derrick Laws, Klejdi Lamo, Dave Ehlers, Mike
+  Ast. Same file onto MPOs/off-prem/keystone_ice_24oz.csv (sync rule);
+  off-prem MPO and incentive-tracking rebuilt after this board.
+
 2026-09-21 REFRESH: actuals.csv onto the 214-row export (6 new rows, none
   removed -- diffed before the run). 168 -> 173 distinct accounts house-wide;
   still 7 qualified, 3 at bonus, $855 projected. Only Jayson Romine moved:

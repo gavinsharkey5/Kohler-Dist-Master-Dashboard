@@ -181,12 +181,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 38019,
-    "CUSTOMER_NAME": "Circle Liquors",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 79004,
     "CUSTOMER_NAME": "Coronet Variety",
     "AREA": "Bergen"
@@ -273,12 +267,6 @@
     "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 81011,
     "CUSTOMER_NAME": "Radburn Liquors (A",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 38008,
-    "CUSTOMER_NAME": "Shop Rite Liq.(A)Lodi",
     "AREA": "Bergen"
   },
   {
@@ -451,12 +439,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 56008,
-    "CUSTOMER_NAME": "Bergenfield Liq & Fw",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 40022,
     "CUSTOMER_NAME": "Buy Rite Of Hackensack",
     "AREA": "Bergen"
@@ -603,12 +585,6 @@
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 20030,
     "CUSTOMER_NAME": "10th Ave Liq & Food (P)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 21031,
-    "CUSTOMER_NAME": "Broadway Liq (A)",
     "AREA": "Passaic"
   },
   {
@@ -841,12 +817,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "CUSTOMER_NUM": 230920,
-    "CUSTOMER_NAME": "Hamburg Liquor",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
     "CUSTOMER_NUM": 231501,
     "CUSTOMER_NAME": "Highland General Store",
     "AREA": "Sussex"
@@ -889,38 +859,14 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "CUSTOMER_NUM": 231215,
-    "CUSTOMER_NAME": "Mac & Lindy's W & S (A)",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
     "CUSTOMER_NUM": 230918,
     "CUSTOMER_NAME": "Market Place Liquor",
     "AREA": "Sussex"
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "CUSTOMER_NUM": 230431,
-    "CUSTOMER_NAME": "Seplow's Liquors",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
-    "CUSTOMER_NUM": 230427,
-    "CUSTOMER_NAME": "ShopRite Wine & Spirits of Newton#830",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
     "CUSTOMER_NUM": 230105,
     "CUSTOMER_NAME": "ShopRite Wines & Spirits of Sparta",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
-    "CUSTOMER_NUM": 230924,
-    "CUSTOMER_NAME": "Sussex Co.Discount Liq(P)",
     "AREA": "Sussex"
   },
   {
@@ -1039,12 +985,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 28007,
-    "CUSTOMER_NAME": "Metro Liquors (North Arlington)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
     "CUSTOMER_NUM": 13017,
     "CUSTOMER_NAME": "On The Rocks",
     "AREA": "Passaic"
@@ -1054,12 +994,6 @@
     "CUSTOMER_NUM": 23003,
     "CUSTOMER_NAME": "Pete's Liquors",
     "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 29009,
-    "CUSTOMER_NAME": "Quick Buy",
-    "AREA": "Bergen"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -1198,12 +1132,6 @@
     "CUSTOMER_NUM": 63001,
     "CUSTOMER_NAME": "X Plor Wine",
     "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 191518,
-    "CUSTOMER_NAME": "3 IN 1 LIQUORS INC",
-    "AREA": "Sussex"
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -1603,12 +1531,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 88005,
-    "CUSTOMER_NAME": "Waldwick Wine/Spirits",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 201099,
     "CUSTOMER_NAME": "Whole Foods #10106 (Ridgewood)",
     "AREA": "Bergen"
@@ -1641,12 +1563,6 @@
     "SALES_REP_ASSIGNED": "Office Tell Sell",
     "CUSTOMER_NUM": 15002,
     "CUSTOMER_NAME": "Cost Plus",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 27005,
-    "CUSTOMER_NAME": "#1 Liqrs (P)",
     "AREA": "Passaic"
   },
   {
@@ -1711,12 +1627,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 50003,
-    "CUSTOMER_NAME": "Agave Liquor, Wine & Spirits",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
     "CUSTOMER_NUM": 49082,
     "CUSTOMER_NAME": "Beverage Depot",
     "AREA": "Bergen"
@@ -1726,12 +1636,6 @@
     "CUSTOMER_NUM": 12007,
     "CUSTOMER_NAME": "Gary's Wine & Marketplace (Wayne)",
     "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 39001,
-    "CUSTOMER_NAME": "Home Wines & Liq 75 (A) (South Hackensack)",
-    "AREA": "Bergen"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
