@@ -86,8 +86,10 @@ how many accounts were left out and what was hidden; "Show all areas"
 (or terr=off in the link) turns the rule off and the note goes red.
 Accounts whose area is not a rule column ("Sales" house accounts,
 Middlesex) are placed by county: Bergen/Passaic/Essex/Hudson/Union/
-Sussex map to the area of that name, Morris county is in if ANY Morris
-area is, anything else is in only for "All Counties" families. A family
+Sussex map to the area of that name (and the account is SHOWN under
+that area in every filter and breakdown, so no "Sales" row appears),
+Morris county is in if ANY Morris area is, anything else is in only
+for "All Counties" families. A family
 with no row in the workbook is counted everywhere and the note says so
 (the build prints the list -- Coors 0.0, Yuengling Premium, Newcastle,
 Honey Brown among them as of 2026-09-23).

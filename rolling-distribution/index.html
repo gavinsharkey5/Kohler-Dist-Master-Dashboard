@@ -286,7 +286,7 @@
 </div>
 <div class="tip" id="tip"></div>
 <script src="data/logos.js?v=2"></script>
-<script src="data/dist_data.js?v=37"></script>
+<script src="data/dist_data.js?v=38"></script>
 <script>
 (function(){
   var D = window.DIST_DATA;
@@ -318,6 +318,10 @@
   var morrisAreas = []; D.areas.forEach(function(a,i){ if(/^MORRIS/i.test(a) && isRuleArea[i]) morrisAreas.push(i); });
   // effective area of each account: its distribution area when the rule sheet has a column for it, else its
   // county when that is an area name (house / "Sales" accounts), -2 = Morris county (any Morris area), -1 = unmapped
+  // An account whose distribution area is not a real area ("Sales" house accounts) is shown under the area
+  // named by its county everywhere on the page -- filters, breakdowns and the territory check alike.
+  var REMAPPED = 0;
+  if(HAS_TERR) customers.forEach(function(c){ if(isRuleArea[c[3]]) return; var k=(c[6]||'').toUpperCase(); if(k in areaByKey && isRuleArea[areaByKey[k]]){ c[3]=areaByKey[k]; REMAPPED++; } });
   var CAREA = new Int16Array(customers.length);
   customers.forEach(function(c,i){ if(isRuleArea[c[3]]){ CAREA[i]=c[3]; return; } var k=(c[6]||'').toUpperCase(); if(k in areaByKey && isRuleArea[areaByKey[k]]){ CAREA[i]=areaByKey[k]; return; } CAREA[i] = k==='MORRIS' ? -2 : -1; });
   var SELLSET = SELL.map(function(l){ if(!l) return null; var o={}; l.forEach(function(a){ o[a]=1; }); return o; });
