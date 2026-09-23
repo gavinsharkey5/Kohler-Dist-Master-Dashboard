@@ -145,6 +145,8 @@
   th.sub.m-buyers{color:var(--buyers)}th.sub.m-placements{color:var(--placements)}th.sub.m-cases{color:var(--cases)}th.sub.m-cpp{color:var(--cpp)}
   th.sorted{text-decoration:underline;text-underline-offset:4px;color:var(--ink)}
   table[data-qs] th{cursor:pointer;user-select:none}
+  a.acct{color:var(--accent-hi);text-decoration:underline;cursor:pointer}
+  .wrapcell{display:block;white-space:normal;text-align:left;min-width:240px;max-width:400px;line-height:1.3;font-size:15px}
   table[data-qs] th.sorted::after{content:" \25BC";font-size:11px;color:var(--gold)}
   table[data-qs] th.sorted.asc::after{content:" \25B2"}
   thead tr:first-child th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:var(--namecol);z-index:1;padding-left:12px;border-right:2px solid var(--line);overflow:hidden;text-overflow:ellipsis}
@@ -289,7 +291,7 @@
 </div>
 <div class="tip" id="tip"></div>
 <script src="data/logos.js?v=2"></script>
-<script src="data/dist_data.js?v=39"></script>
+<script src="data/dist_data.js?v=40"></script>
 <script>
 (function(){
   var D = window.DIST_DATA;
@@ -367,7 +369,7 @@
   // ---------------------------------------------------------------- state
   var S = {page:'tracker',bm:-1,sup:-1,fam:-1,brand:-1,prod:-1,pkg:'all',prem:'all',dm:-1,rep:-1,area:-1,county:-1,cust:-1,rows:'brand',
            len:3, n:3, end:M-1, view:'compare', focus:M-1, yoy:1, raw:0, metric:'all', tab:'children',
-           sort:'', dir:-1, cmetric:'cases', q:'', more:0, chart:0, pmode:'roll', cp:'', cols:'buyers', tcore:5, tthin:1, tmode:'rel', tq:25, gain:'', terr:'on', qtab:'children', ftab:'area', rtab:'children', gtab:'county'};
+           sort:'', dir:-1, cmetric:'cases', q:'', more:0, chart:0, pmode:'roll', cp:'', cols:'buyers', tcore:5, tthin:1, tmode:'rel', tq:25, gain:'', terr:'on', ttab:'', qtab:'children', ftab:'area', rtab:'children', gtab:'county'};
   var DEFAULTS = JSON.parse(JSON.stringify(S));
   // Filters travel in the URL by NAME (product by its number), never by list position,
   // so a bookmarked link still points at the same thing after a data refresh adds rows.
@@ -1024,7 +1026,8 @@
                           ['How to read it',[
                             'Compare the two bars: share of placements vs share of cases.',
                             'Thin taking a big slice of placements but a sliver of cases = points that never became sales.',
-                            'Flip between "Relative to each brand" and "Fixed cases per month" to see it both ways.']]]; },
+                            'Flip between "Relative to each brand" and "Fixed cases per month" to see it both ways.',
+                            'Below the period table: which brands, reps or areas have the fewest Thin points, and the accounts behind the Core placements.']]]; },
     2:function(){ return [['What it shows',[
                             'Placements that were brand new in the chosen period (never bought before).',
                             'Whether each one was still buying one, two, three and four periods later, and how much.']],
@@ -1136,7 +1139,50 @@
     h.push(qtable('q-tiers', ['Period','Placements','Core','Steady','Thin','Thin share of cases','Cases / placement'],
       tiers.map(function(r,j){ return {cls:j===tj?'total':'', cells:[esc(pLabel(r.p)), fmtN(r.pl), fmtN(r.t[0])+' <span class="muted">('+pctS(r.t[0],r.pl)+')</span>', fmtN(r.t[1])+' <span class="muted">('+pctS(r.t[1],r.pl)+')</span>', fmtN(r.t[2])+' <span class="muted">('+pctS(r.t[2],r.pl)+')</span>', pctS(r.tc[2],r.cs), r.pl?fmt1(r.cs/r.pl):'—']}; }),
       'Read across: when placements rise and cases per placement fall, the drive added thin points. The newest period is bold.'));
-    h.push('<div class="tbtns" style="margin-top:8px"><button class="btn small" data-csv="q-tiers">CSV</button></div></div>');
+    h.push('<div class="tbtns" style="margin-top:8px"><button class="btn small" data-csv="q-tiers">CSV</button></div>');
+    // ---- 1b. who has the fewest Thin points, and 1c. the accounts behind the Core placements
+    (function(){
+      if(!cur.pl || !tfT) return;
+      var autoTab = S.prod>=0 ? 'product' : (S.brand>=0 ? 'product' : (S.fam>=0 ? 'brand' : 'family'));
+      var tt = S.ttab || autoTab;
+      var TK = {family:{col:'Brand family',key:function(i){ return products[PP[i]][3]; },name:function(id){ return D.families[id]; }},
+                brand:{col:'Brand',key:function(i){ return products[PP[i]][4]; },name:function(id){ return D.brands[id]; }},
+                product:{col:'Product',key:function(i){ return PP[i]; },name:function(id){ return products[id][0]+' '+products[id][1]; }}};
+      var kf = TK[tt] ? TK[tt] : ROWKEYS[tt]; if(!kf){ tt=autoTab; kf=TK[tt]; }
+      var grp=new Map(), acct=new Map();
+      for(var i=0;i<NP;i++){
+        if(!pm[PP[i]]||!cm[PC[i]]) continue;
+        var v=ps.sum[i*ps.P+tj]; if(!(v>0)) continue;
+        var t=tfT(i,v), id=kf.key(i), g=grp.get(id);
+        if(!g){ g={id:id,n:0,t:[0,0,0],cs:0,tcs:0,u1:0}; grp.set(id,g); }
+        g.n++; g.t[t]++; g.cs+=v; if(t===2) g.tcs+=v; if(v/len<1) g.u1++;
+        if(t===0){ var c=PC[i], a=acct.get(c); if(!a){ a={c:c,n:0,cs:0,all:0,prods:[]}; acct.set(c,a); } a.n++; a.cs+=v; a.prods.push({p:PP[i],v:v}); }
+      }
+      // every product this account buys in scope (for cases/month), not just the Core ones
+      for(var i2=0;i2<NP;i2++){ if(!pm[PP[i2]]||!cm[PC[i2]]) continue; var v2=ps.sum[i2*ps.P+tj]; if(!(v2>0)) continue; var a2=acct.get(PC[i2]); if(a2) a2.all+=v2; }
+      var rows=[]; grp.forEach(function(g){ g.name=kf.name(g.id); g.thin=g.t[2]/g.n; rows.push(g); });
+      rows.sort(function(a,b){ var sa=a.n<10, sb=b.n<10; if(sa!==sb) return sa?1:-1; if(a.thin!==b.thin) return a.thin-b.thin; return b.n-a.n; });
+      var ttabs=[['family','Brand families'],['brand','Brands'],['product','Products'],['rep','Sales reps'],['dm','District managers'],['area','Areas'],['county','Counties'],['premise','Premise']];
+      h.push('<h3 class="qsub">Who has the fewest Thin points · '+esc(scopeName())+' · '+esc(pLabel(T))+'</h3>');
+      h.push('<p class="help" style="margin:0 0 6px">Least Thin at the top. '+(S.tmode==='rel'
+        ? 'In Relative mode every brand family is about '+S.tq+'% Thin by definition, so compare the <b>brands or products inside a family</b>, or use the <b>Under 1 case / mo</b> column, which holds every brand to the same bar.'
+        : 'Fixed rule: the same case bar for every brand, so families compare directly.')+' Groups under 10 placements sit at the bottom.</p>');
+      h.push('<p class="help" style="margin:6px 0 4px">Break it down by:</p><div class="tabs">'+ttabs.map(function(x){ return '<button data-ttab="'+x[0]+'" class="'+(tt===x[0]?'on':'')+'">'+x[1]+'</button>'; }).join('')+'</div>');
+      h.push(qtable('q-thin', [kf.col,'Placements','Core','Steady','Thin','Thin share','Thin share of cases','Under 1 case / mo','Cases / placement / mo'],
+        rows.slice(0,80).map(function(g){ return {cells:[esc(g.name)+small(g.n,10), fmtN(g.n), fmtN(g.t[0]), fmtN(g.t[1]), fmtN(g.t[2]), '<b class="'+(g.thin<=0.2?'up':(g.thin>=0.35?'down':''))+'">'+pctS(g.t[2],g.n)+'</b>', pctS(g.tcs,g.cs), fmtN(g.u1)+' <span class="muted">('+pctS(g.u1,g.n)+')</span>', fmt1(g.cs/g.n/len)]}; }),
+        (rows.length>80?'Top 80 of '+fmtN(rows.length)+' rows. ':'')+'Click any column header to re-sort.'));
+      h.push('<div class="tbtns" style="margin-top:8px"><button class="btn small" data-csv="q-thin">CSV</button></div>');
+      // accounts behind the Core placements
+      var al=[]; acct.forEach(function(a){ al.push(a); }); al.sort(function(a,b){ return b.cs-a.cs; });
+      h.push('<h3 class="qsub">The accounts behind the Core placements · '+esc(scopeName())+'</h3>');
+      h.push('<p class="help" style="margin:0 0 8px"><b>'+fmtN(al.length)+' accounts</b> hold the '+fmtN(cur.t[0])+' Core placements. These are the accounts where '+esc(scopeName())+' is already working: protect them, and use them as the model for where it should go next. <b>Section 4</b> lists the accounts that look most like these but are not buying '+esc(scopeName())+' yet. Click an account to open it on the Trends tab.</p>');
+      h.push(qtable('q-coreacct', ['Account','Rep · Premise · Area','Core placements','Core cases / mo','All '+esc(scopeName())+' cases / mo','Core products'],
+        al.slice(0,60).map(function(a){ var cu=customers[a.c]; a.prods.sort(function(x,y){ return y.v-x.v; }); var pl=a.prods.slice(0,3).map(function(x){ return esc(products[x.p][1]); }).join(', ')+(a.prods.length>3?' +'+(a.prods.length-3)+' more':'');
+          return {cells:['<a class="acct" data-acct="'+a.c+'">'+esc(cu[0]+' '+cu[1])+'</a>', esc(D.reps[cu[4]])+' · '+(cu[2]?'On':'Off')+' · '+esc(D.areas[cu[3]]), fmtN(a.n), fmt1(a.cs/len), fmt1(a.all/len), '<span class="wrapcell muted">'+pl+'</span>']}; }),
+        (al.length>60?'Top 60 of '+fmtN(al.length)+' accounts by Core cases. ':'')+'Sorted by Core cases a month; click a header to re-sort.'));
+      h.push('<div class="tbtns" style="margin-top:8px"><button class="btn small" data-csv="q-coreacct">CSV</button></div>');
+    })();
+    h.push('</div>');
 
     // ---------------------------------------------------------------- 2. new-point survival
     var gains=[]; for(var e=len-1+3; e<=M-1-len; e++){ gains.push(period(e,len)); }
@@ -1425,6 +1471,8 @@
     var qt=el('q-thin'); if(qt) qt.addEventListener('change', function(){ var v=parseFloat(qt.value); if(v>=0 && v<S.tcore){ S.tthin=v; render(); } });
     var qg=el('q-gain'); if(qg) qg.addEventListener('change', function(){ S.gain=qg.value; render(); });
     app.querySelectorAll('[data-qtab]').forEach(function(b){ b.addEventListener('click', function(){ S.qtab=b.dataset.qtab; render(); }); });
+    app.querySelectorAll('[data-ttab]').forEach(function(b){ b.addEventListener('click', function(){ S.ttab=b.dataset.ttab; render(); }); });
+    app.querySelectorAll('a.acct[data-acct]').forEach(function(a){ a.addEventListener('click', function(){ S.cust=+a.dataset.acct; S.page='tracker'; S.view='focus'; S.focus=S.end; S.tab='children'; S.sort=''; render(); window.scrollTo(0,0); }); });
     app.querySelectorAll('[data-rtab]').forEach(function(b){ b.addEventListener('click', function(){ S.rtab=b.dataset.rtab; render(); }); });
     app.querySelectorAll('[data-gtab]').forEach(function(b){ b.addEventListener('click', function(){ S.gtab=b.dataset.gtab; render(); }); });
     app.querySelectorAll('[data-ftab]').forEach(function(b){ b.addEventListener('click', function(){ S.ftab=b.dataset.ftab; render(); }); });

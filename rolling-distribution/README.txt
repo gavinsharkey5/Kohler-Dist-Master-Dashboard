@@ -27,6 +27,14 @@ conversations, using the same step 1 filters and period choice:
      fixed rule). The alternative is fixed cases per month (Core >= 5,
      Thin < 1, editable). Share of placements vs share of cases, and a
      per-period table with cases per placement.
+     Under the period table: "Who has the fewest Thin points" (the same
+     tiers broken down by brand family / brand / product / rep / DM /
+     area / county / premise, least Thin first; in Relative mode every
+     family is ~25% Thin by construction, so compare within a family or
+     use the "Under 1 case / mo" column) and "The accounts behind the
+     Core placements" (which accounts hold the Core points, Core cases
+     a month, products; click one to open it on the Trends tab; section
+     4 then finds accounts that look like them).
      Under the rule line sits a gold "The takeaway" box written from
      the live numbers for whatever is filtered: placements, what the
      best and slowest quarter sold, whether the Thin share moved since
