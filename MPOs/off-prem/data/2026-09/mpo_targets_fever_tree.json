@@ -91,12 +91,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 5001,
-    "CUSTOMER_NAME": "River Place Food Store",
-    "AREA": "Morris 3"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "CUSTOMER_NUM": 6002,
     "CUSTOMER_NAME": "Roserne Liquors North",
     "AREA": "Morris 3"
@@ -165,12 +159,6 @@
     "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 38021,
     "CUSTOMER_NAME": "Buy Rite Of Main St Lodi",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 38019,
-    "CUSTOMER_NAME": "Circle Liquors",
     "AREA": "Bergen"
   },
   {
@@ -661,12 +649,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 22022,
-    "CUSTOMER_NAME": "C Town (A)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 21045,
     "CUSTOMER_NAME": "Dorta Liquor (A)",
     "AREA": "Passaic"
@@ -681,12 +663,6 @@
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 15013,
     "CUSTOMER_NAME": "El Oasis",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 21048,
-    "CUSTOMER_NAME": "Ferraro's Liquor",
     "AREA": "Passaic"
   },
   {
@@ -1093,12 +1069,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 23007,
-    "CUSTOMER_NAME": "Field Liquors (A)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
     "CUSTOMER_NUM": 30006,
     "CUSTOMER_NAME": "Forest Dairy (A)",
     "AREA": "Bergen"
@@ -1197,12 +1167,6 @@
     "SALES_REP_ASSIGNED": "Jim Heaney",
     "CUSTOMER_NUM": 24009,
     "CUSTOMER_NAME": "Quik Stop Conv(Z)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 24017,
-    "CUSTOMER_NAME": "Rainbow Liquor (P)",
     "AREA": "Passaic"
   },
   {
@@ -1881,12 +1845,6 @@
     "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 20029,
     "CUSTOMER_NAME": "Star Liquor Store",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 27066,
-    "CUSTOMER_NAME": "Sunny's Liqs.(P)",
     "AREA": "Passaic"
   },
   {

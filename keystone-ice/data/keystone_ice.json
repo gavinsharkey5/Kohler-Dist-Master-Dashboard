@@ -4,10 +4,10 @@
     "window": "8/1/2026 \u2013 9/30/2026",
     "repLevel": true,
     "repCount": 18,
-    "houseBuyers": 173,
-    "qualifiedCount": 7,
-    "bonusCount": 3,
-    "totalPayout": 855
+    "houseBuyers": 188,
+    "qualifiedCount": 8,
+    "bonusCount": 4,
+    "totalPayout": 1040
   },
   "rewards": {
     "perPlacement": 5,
@@ -26,13 +26,13 @@
       "bonus": 14,
       "qualifierRaw": 11.2,
       "bonusRaw": 14.0,
-      "buyers": 19,
-      "pct": 68,
+      "buyers": 20,
+      "pct": 71,
       "qualified": true,
       "bonusHit": true,
       "toQualifier": 0,
       "toBonus": 0,
-      "payout": 190,
+      "payout": 200,
       "accounts": [
         {
           "num": "27069",
@@ -40,13 +40,8 @@
           "date": "8/4/2026"
         },
         {
-          "num": "26014",
-          "name": "Regalado Liq",
-          "date": "8/4/2026"
-        },
-        {
-          "num": "21034",
-          "name": "Schulman's (P) Deli",
+          "num": "27021",
+          "name": "Johnny's Liqs (P)",
           "date": "8/4/2026"
         },
         {
@@ -55,8 +50,13 @@
           "date": "8/4/2026"
         },
         {
-          "num": "27021",
-          "name": "Johnny's Liqs (P)",
+          "num": "21034",
+          "name": "Schulman's (P) Deli",
+          "date": "8/4/2026"
+        },
+        {
+          "num": "26014",
+          "name": "Regalado Liq",
           "date": "8/4/2026"
         },
         {
@@ -128,6 +128,11 @@
           "num": "21024",
           "name": "Altiero Liquors",
           "date": "9/18/2026"
+        },
+        {
+          "num": "27005",
+          "name": "#1 Liqrs (P)",
+          "date": "9/22/2026"
         }
       ]
     },
@@ -162,13 +167,8 @@
           "date": "9/8/2026"
         },
         {
-          "num": "46012",
-          "name": "Jay Cee (P) Deli & Liq.",
-          "date": "9/8/2026"
-        },
-        {
-          "num": "43013",
-          "name": "Buy Rite Of Fairview",
+          "num": "43006",
+          "name": "Fairview Liq & Groc.(A)",
           "date": "9/8/2026"
         },
         {
@@ -182,28 +182,18 @@
           "date": "9/8/2026"
         },
         {
-          "num": "43006",
-          "name": "Fairview Liq & Groc.(A)",
+          "num": "46012",
+          "name": "Jay Cee (P) Deli & Liq.",
           "date": "9/8/2026"
         },
         {
-          "num": "49019",
-          "name": "Bp Gas Station",
-          "date": "9/9/2026"
+          "num": "43013",
+          "name": "Buy Rite Of Fairview",
+          "date": "9/8/2026"
         },
         {
           "num": "44002",
           "name": "Wine And Food Mart (Z)",
-          "date": "9/9/2026"
-        },
-        {
-          "num": "43004",
-          "name": "Boulevard Liq.(Fairview)",
-          "date": "9/9/2026"
-        },
-        {
-          "num": "43015",
-          "name": "Kikos Liquors Ii",
           "date": "9/9/2026"
         },
         {
@@ -217,18 +207,33 @@
           "date": "9/9/2026"
         },
         {
-          "num": "45004",
-          "name": "Ridgefield Liq (Z)",
-          "date": "9/9/2026"
-        },
-        {
           "num": "43005",
           "name": "Rome Liquors (Fairview)",
           "date": "9/9/2026"
         },
         {
+          "num": "43004",
+          "name": "Boulevard Liq.(Fairview)",
+          "date": "9/9/2026"
+        },
+        {
+          "num": "45004",
+          "name": "Ridgefield Liq (Z)",
+          "date": "9/9/2026"
+        },
+        {
           "num": "49033",
           "name": "Banner Liquor Iii",
+          "date": "9/9/2026"
+        },
+        {
+          "num": "43015",
+          "name": "Kikos Liquors Ii",
+          "date": "9/9/2026"
+        },
+        {
+          "num": "49019",
+          "name": "Bp Gas Station",
           "date": "9/9/2026"
         },
         {
@@ -242,13 +247,13 @@
           "date": "9/10/2026"
         },
         {
-          "num": "44040",
-          "name": "Stop N Go Conven. (P)",
+          "num": "43007",
+          "name": "American Classic Liq",
           "date": "9/11/2026"
         },
         {
-          "num": "43007",
-          "name": "American Classic Liq",
+          "num": "44040",
+          "name": "Stop N Go Conven. (P)",
           "date": "9/11/2026"
         },
         {
@@ -270,13 +275,13 @@
       "bonus": 16,
       "qualifierRaw": 12.8,
       "bonusRaw": 16.0,
-      "buyers": 16,
-      "pct": 50,
+      "buyers": 17,
+      "pct": 53,
       "qualified": true,
       "bonusHit": true,
       "toQualifier": 0,
       "toBonus": 0,
-      "payout": 160,
+      "payout": 170,
       "accounts": [
         {
           "num": "15020",
@@ -324,13 +329,13 @@
           "date": "8/28/2026"
         },
         {
-          "num": "21035",
-          "name": "M & R Disc (A) Liqs.",
+          "num": "20027",
+          "name": "230 Liq & Groc.(A)",
           "date": "9/2/2026"
         },
         {
-          "num": "20027",
-          "name": "230 Liq & Groc.(A)",
+          "num": "21035",
+          "name": "M & R Disc (A) Liqs.",
           "date": "9/2/2026"
         },
         {
@@ -349,14 +354,19 @@
           "date": "9/10/2026"
         },
         {
+          "num": "20037",
+          "name": "The Point Liquor & Bar",
+          "date": "9/11/2026"
+        },
+        {
           "num": "22022",
           "name": "C Town (A)",
           "date": "9/11/2026"
         },
         {
-          "num": "20037",
-          "name": "The Point Liquor & Bar",
-          "date": "9/11/2026"
+          "num": "21031",
+          "name": "Broadway Liq (A)",
+          "date": "9/23/2026"
         }
       ]
     },
@@ -367,13 +377,13 @@
       "bonus": 14,
       "qualifierRaw": 10.8,
       "bonusRaw": 13.5,
-      "buyers": 13,
-      "pct": 48,
+      "buyers": 14,
+      "pct": 52,
       "qualified": true,
-      "bonusHit": false,
+      "bonusHit": true,
       "toQualifier": 0,
-      "toBonus": 1,
-      "payout": 65,
+      "toBonus": 0,
+      "payout": 140,
       "accounts": [
         {
           "num": "20106",
@@ -384,11 +394,6 @@
           "num": "83010",
           "name": "Bottle King (A) Glen Rock",
           "date": "8/26/2026"
-        },
-        {
-          "num": "29004",
-          "name": "Shop-Rite Liq Lyndhurst",
-          "date": "9/15/2026"
         },
         {
           "num": "40019",
@@ -406,9 +411,24 @@
           "date": "9/15/2026"
         },
         {
+          "num": "29004",
+          "name": "Shop-Rite Liq Lyndhurst",
+          "date": "9/15/2026"
+        },
+        {
           "num": "83001",
           "name": "Food Universe Marketplace",
           "date": "9/16/2026"
+        },
+        {
+          "num": "50009",
+          "name": "Riverview Liq (P)",
+          "date": "9/17/2026"
+        },
+        {
+          "num": "25010",
+          "name": "Stew Leonard's Wines & Spirits of Clifton",
+          "date": "9/17/2026"
         },
         {
           "num": "80026",
@@ -421,24 +441,213 @@
           "date": "9/17/2026"
         },
         {
-          "num": "25010",
-          "name": "Stew Leonard's Wines & Spirits of Clifton",
-          "date": "9/17/2026"
-        },
-        {
           "num": "78008",
           "name": "Shop Rite Liq(A) Roch Pk",
           "date": "9/17/2026"
         },
         {
-          "num": "50009",
-          "name": "Riverview Liq (P)",
+          "num": "39001",
+          "name": "Home Wines & Liq 75 (A) (South Hackensack)",
+          "date": "9/22/2026"
+        },
+        {
+          "num": "50003",
+          "name": "Agave Liquor, Wine & Spirits",
+          "date": "9/22/2026"
+        }
+      ]
+    },
+    {
+      "rep": "Chris Payton",
+      "base": 40,
+      "qualifier": 16,
+      "bonus": 20,
+      "qualifierRaw": 16.0,
+      "bonusRaw": 20.0,
+      "buyers": 19,
+      "pct": 48,
+      "qualified": true,
+      "bonusHit": false,
+      "toQualifier": 0,
+      "toBonus": 1,
+      "payout": 95,
+      "accounts": [
+        {
+          "num": "25045",
+          "name": "Clifton Disc Liq (A)",
+          "date": "8/7/2026"
+        },
+        {
+          "num": "25034",
+          "name": "Figlar's (P)",
+          "date": "8/7/2026"
+        },
+        {
+          "num": "47005",
+          "name": "Exquisite W & L (A)",
+          "date": "8/10/2026"
+        },
+        {
+          "num": "23006",
+          "name": "46 Discount Liquor Store",
+          "date": "8/13/2026"
+        },
+        {
+          "num": "38007",
+          "name": "Garden Liquors (P)",
+          "date": "8/24/2026"
+        },
+        {
+          "num": "76010",
+          "name": "Usa Wine Traders Club (Saddle Brook)",
+          "date": "9/1/2026"
+        },
+        {
+          "num": "80025",
+          "name": "Paramus Food Center",
+          "date": "9/1/2026"
+        },
+        {
+          "num": "38021",
+          "name": "Buy Rite Of Main St Lodi",
+          "date": "9/1/2026"
+        },
+        {
+          "num": "50016",
+          "name": "Teaneck Quickshop(P)Conv",
+          "date": "9/2/2026"
+        },
+        {
+          "num": "35002",
+          "name": "Woodridge Wines & Liq(A)",
+          "date": "9/2/2026"
+        },
+        {
+          "num": "38017",
+          "name": "Quick Stop Food & Liq",
+          "date": "9/3/2026"
+        },
+        {
+          "num": "34009",
+          "name": "The Wine Rack Hasbrouck Hts",
+          "date": "9/10/2026"
+        },
+        {
+          "num": "34001",
+          "name": "Meadowland Wine & Liquor",
+          "date": "9/11/2026"
+        },
+        {
+          "num": "79007",
+          "name": "Maywood Market(A)",
+          "date": "9/15/2026"
+        },
+        {
+          "num": "79002",
+          "name": "Hollywd Liq&Deli (A)",
+          "date": "9/16/2026"
+        },
+        {
+          "num": "47011",
+          "name": "Ridgefield Deli & Liq",
           "date": "9/17/2026"
         },
         {
-          "num": "80004",
-          "name": "USA Wine Traders Paramus",
-          "date": "9/30/2026"
+          "num": "50020",
+          "name": "Wineland",
+          "date": "9/17/2026"
+        },
+        {
+          "num": "38019",
+          "name": "Circle Liquors",
+          "date": "9/23/2026"
+        },
+        {
+          "num": "38008",
+          "name": "Shop Rite Liq.(A)Lodi",
+          "date": "9/23/2026"
+        }
+      ]
+    },
+    {
+      "rep": "Klejdi Lamo",
+      "base": 27,
+      "qualifier": 11,
+      "bonus": 14,
+      "qualifierRaw": 10.8,
+      "bonusRaw": 13.5,
+      "buyers": 13,
+      "pct": 48,
+      "qualified": true,
+      "bonusHit": false,
+      "toQualifier": 0,
+      "toBonus": 1,
+      "payout": 65,
+      "accounts": [
+        {
+          "num": "190917",
+          "name": "Shop Rite Liq (A)Wharton",
+          "date": "8/10/2026"
+        },
+        {
+          "num": "190804",
+          "name": "Midtown Liq",
+          "date": "8/17/2026"
+        },
+        {
+          "num": "191710",
+          "name": "Shop Rite Wine & Spirits Stanhope",
+          "date": "9/2/2026"
+        },
+        {
+          "num": "190207",
+          "name": "Liquor Outlet",
+          "date": "9/2/2026"
+        },
+        {
+          "num": "190907",
+          "name": "Wharton Liquor Store",
+          "date": "9/3/2026"
+        },
+        {
+          "num": "190913",
+          "name": "Main Street Liquor",
+          "date": "9/3/2026"
+        },
+        {
+          "num": "190208",
+          "name": "Boonton Liquor Locker",
+          "date": "9/4/2026"
+        },
+        {
+          "num": "191606",
+          "name": "Quick Check Liquor (A)",
+          "date": "9/9/2026"
+        },
+        {
+          "num": "191713",
+          "name": "Stanhope Liquors",
+          "date": "9/15/2026"
+        },
+        {
+          "num": "190302",
+          "name": "Basket Of Cheer Ii (Lake Hiawatha)",
+          "date": "9/15/2026"
+        },
+        {
+          "num": "191812",
+          "name": "Patel Liqr & Gro(P)",
+          "date": "9/15/2026"
+        },
+        {
+          "num": "191814",
+          "name": "Sandy's Wine & Spirit (P) (Budd Lake)",
+          "date": "9/16/2026"
+        },
+        {
+          "num": "191518",
+          "name": "3 IN 1 LIQUORS INC",
+          "date": "9/23/2026"
         }
       ]
     },
@@ -463,13 +672,13 @@
           "date": "8/5/2026"
         },
         {
-          "num": "27008",
-          "name": "Bermuda Liquors (P)",
+          "num": "15014",
+          "name": "Deli Parchardo Liquors",
           "date": "8/7/2026"
         },
         {
-          "num": "15014",
-          "name": "Deli Parchardo Liquors",
+          "num": "27008",
+          "name": "Bermuda Liquors (P)",
           "date": "8/7/2026"
         },
         {
@@ -525,181 +734,94 @@
       ]
     },
     {
-      "rep": "Klejdi Lamo",
-      "base": 27,
-      "qualifier": 11,
-      "bonus": 14,
-      "qualifierRaw": 10.8,
-      "bonusRaw": 13.5,
-      "buyers": 12,
-      "pct": 44,
-      "qualified": true,
-      "bonusHit": false,
-      "toQualifier": 0,
-      "toBonus": 2,
-      "payout": 60,
-      "accounts": [
-        {
-          "num": "190917",
-          "name": "Shop Rite Liq (A)Wharton",
-          "date": "8/10/2026"
-        },
-        {
-          "num": "190804",
-          "name": "Midtown Liq",
-          "date": "8/17/2026"
-        },
-        {
-          "num": "190207",
-          "name": "Liquor Outlet",
-          "date": "9/2/2026"
-        },
-        {
-          "num": "191710",
-          "name": "Shop Rite Wine & Spirits Stanhope",
-          "date": "9/2/2026"
-        },
-        {
-          "num": "190913",
-          "name": "Main Street Liquor",
-          "date": "9/3/2026"
-        },
-        {
-          "num": "190907",
-          "name": "Wharton Liquor Store",
-          "date": "9/3/2026"
-        },
-        {
-          "num": "190208",
-          "name": "Boonton Liquor Locker",
-          "date": "9/4/2026"
-        },
-        {
-          "num": "191606",
-          "name": "Quick Check Liquor (A)",
-          "date": "9/9/2026"
-        },
-        {
-          "num": "191713",
-          "name": "Stanhope Liquors",
-          "date": "9/15/2026"
-        },
-        {
-          "num": "191812",
-          "name": "Patel Liqr & Gro(P)",
-          "date": "9/15/2026"
-        },
-        {
-          "num": "190302",
-          "name": "Basket Of Cheer Ii (Lake Hiawatha)",
-          "date": "9/15/2026"
-        },
-        {
-          "num": "191814",
-          "name": "Sandy's Wine & Spirit (P) (Budd Lake)",
-          "date": "9/16/2026"
-        }
-      ]
-    },
-    {
-      "rep": "Chris Payton",
-      "base": 40,
-      "qualifier": 16,
-      "bonus": 20,
-      "qualifierRaw": 16.0,
-      "bonusRaw": 20.0,
-      "buyers": 17,
-      "pct": 42,
+      "rep": "Jayson Romine",
+      "base": 35,
+      "qualifier": 14,
+      "bonus": 18,
+      "qualifierRaw": 14.0,
+      "bonusRaw": 17.5,
+      "buyers": 15,
+      "pct": 43,
       "qualified": true,
       "bonusHit": false,
       "toQualifier": 0,
       "toBonus": 3,
-      "payout": 85,
+      "payout": 75,
       "accounts": [
         {
-          "num": "25045",
-          "name": "Clifton Disc Liq (A)",
-          "date": "8/7/2026"
+          "num": "230420",
+          "name": "Spring Street Liquors",
+          "date": "8/5/2026"
         },
         {
-          "num": "25034",
-          "name": "Figlar's (P)",
-          "date": "8/7/2026"
-        },
-        {
-          "num": "47005",
-          "name": "Exquisite W & L (A)",
-          "date": "8/10/2026"
-        },
-        {
-          "num": "23006",
-          "name": "46 Discount Liquor Store",
-          "date": "8/13/2026"
-        },
-        {
-          "num": "38007",
-          "name": "Garden Liquors (P)",
-          "date": "8/24/2026"
-        },
-        {
-          "num": "80025",
-          "name": "Paramus Food Center",
-          "date": "9/1/2026"
-        },
-        {
-          "num": "76010",
-          "name": "Usa Wine Traders Club (Saddle Brook)",
-          "date": "9/1/2026"
-        },
-        {
-          "num": "38021",
-          "name": "Buy Rite Of Main St Lodi",
-          "date": "9/1/2026"
-        },
-        {
-          "num": "35002",
-          "name": "Woodridge Wines & Liq(A)",
+          "num": "230905",
+          "name": "ShopRite Wines & Spirits of Franklin",
           "date": "9/2/2026"
         },
         {
-          "num": "50016",
-          "name": "Teaneck Quickshop(P)Conv",
-          "date": "9/2/2026"
-        },
-        {
-          "num": "38017",
-          "name": "Quick Stop Food & Liq",
+          "num": "231316",
+          "name": "Patricks Wine Barn",
           "date": "9/3/2026"
         },
         {
-          "num": "34009",
-          "name": "The Wine Rack Hasbrouck Hts",
-          "date": "9/10/2026"
+          "num": "408",
+          "name": "Fredon Liquor (Fredon Deli)",
+          "date": "9/4/2026"
         },
         {
-          "num": "34001",
-          "name": "Meadowland Wine & Liquor",
-          "date": "9/11/2026"
-        },
-        {
-          "num": "79007",
-          "name": "Maywood Market(A)",
-          "date": "9/15/2026"
-        },
-        {
-          "num": "79002",
-          "name": "Hollywd Liq&Deli (A)",
+          "num": "231315",
+          "name": "Woody's Liq Shop (A)",
           "date": "9/16/2026"
         },
         {
-          "num": "47011",
-          "name": "Ridgefield Deli & Liq",
-          "date": "9/17/2026"
+          "num": "230441",
+          "name": "Wine Country Newton",
+          "date": "9/21/2026"
         },
         {
-          "num": "50020",
-          "name": "Wineland",
-          "date": "9/17/2026"
+          "num": "191408",
+          "name": "Super Saver Liq",
+          "date": "9/21/2026"
+        },
+        {
+          "num": "231308",
+          "name": "Wantage Plaza Liq Outlet",
+          "date": "9/21/2026"
+        },
+        {
+          "num": "191526",
+          "name": "Liquor Factory IV Hopatcong",
+          "date": "9/21/2026"
+        },
+        {
+          "num": "230114",
+          "name": "Liquor Factory III Sparta",
+          "date": "9/21/2026"
+        },
+        {
+          "num": "230431",
+          "name": "Seplow's Liquors",
+          "date": "9/22/2026"
+        },
+        {
+          "num": "230920",
+          "name": "Hamburg Liquor",
+          "date": "9/22/2026"
+        },
+        {
+          "num": "230427",
+          "name": "ShopRite Wine & Spirits of Newton#830",
+          "date": "9/22/2026"
+        },
+        {
+          "num": "230924",
+          "name": "Sussex Co.Discount Liq(P)",
+          "date": "9/23/2026"
+        },
+        {
+          "num": "231215",
+          "name": "Mac & Lindy's W & S (A)",
+          "date": "9/23/2026"
         }
       ]
     },
@@ -759,6 +881,16 @@
           "date": "9/11/2026"
         },
         {
+          "num": "36006",
+          "name": "Wallington Liquor and Wine",
+          "date": "9/15/2026"
+        },
+        {
+          "num": "36016",
+          "name": "King Liquors",
+          "date": "9/15/2026"
+        },
+        {
           "num": "77022",
           "name": "All Star Wine & Liquor",
           "date": "9/15/2026"
@@ -769,23 +901,13 @@
           "date": "9/15/2026"
         },
         {
-          "num": "36016",
-          "name": "King Liquors",
-          "date": "9/15/2026"
-        },
-        {
-          "num": "36006",
-          "name": "Wallington Liquor and Wine",
-          "date": "9/15/2026"
+          "num": "27063",
+          "name": "Archies (P)",
+          "date": "9/16/2026"
         },
         {
           "num": "31033",
           "name": "Capri Deli&Liq (P)",
-          "date": "9/16/2026"
-        },
-        {
-          "num": "27063",
-          "name": "Archies (P)",
           "date": "9/16/2026"
         },
         {
@@ -796,85 +918,18 @@
       ]
     },
     {
-      "rep": "Jayson Romine",
-      "base": 35,
-      "qualifier": 14,
-      "bonus": 18,
-      "qualifierRaw": 14.0,
-      "bonusRaw": 17.5,
-      "buyers": 10,
-      "pct": 29,
-      "qualified": false,
-      "bonusHit": false,
-      "toQualifier": 4,
-      "toBonus": 8,
-      "payout": 0,
-      "accounts": [
-        {
-          "num": "230420",
-          "name": "Spring Street Liquors",
-          "date": "8/5/2026"
-        },
-        {
-          "num": "230905",
-          "name": "ShopRite Wines & Spirits of Franklin",
-          "date": "9/2/2026"
-        },
-        {
-          "num": "231316",
-          "name": "Patricks Wine Barn",
-          "date": "9/3/2026"
-        },
-        {
-          "num": "408",
-          "name": "Fredon Liquor (Fredon Deli)",
-          "date": "9/4/2026"
-        },
-        {
-          "num": "231315",
-          "name": "Woody's Liq Shop (A)",
-          "date": "9/16/2026"
-        },
-        {
-          "num": "231308",
-          "name": "Wantage Plaza Liq Outlet",
-          "date": "9/21/2026"
-        },
-        {
-          "num": "191526",
-          "name": "Liquor Factory IV Hopatcong",
-          "date": "9/21/2026"
-        },
-        {
-          "num": "230441",
-          "name": "Wine Country Newton",
-          "date": "9/21/2026"
-        },
-        {
-          "num": "230114",
-          "name": "Liquor Factory III Sparta",
-          "date": "9/21/2026"
-        },
-        {
-          "num": "191408",
-          "name": "Super Saver Liq",
-          "date": "9/21/2026"
-        }
-      ]
-    },
-    {
       "rep": "Jim Heaney",
       "base": 43,
       "qualifier": 18,
       "bonus": 22,
       "qualifierRaw": 17.2,
       "bonusRaw": 21.5,
-      "buyers": 12,
-      "pct": 28,
+      "buyers": 14,
+      "pct": 33,
       "qualified": false,
       "bonusHit": false,
-      "toQualifier": 6,
-      "toBonus": 10,
+      "toQualifier": 4,
+      "toBonus": 8,
       "payout": 0,
       "accounts": [
         {
@@ -936,6 +991,16 @@
           "num": "29008",
           "name": "Krauszers Food",
           "date": "9/16/2026"
+        },
+        {
+          "num": "29009",
+          "name": "Quick Buy",
+          "date": "9/23/2026"
+        },
+        {
+          "num": "28007",
+          "name": "Metro Liquors (North Arlington)",
+          "date": "9/24/2026"
         }
       ]
     },
@@ -946,12 +1011,12 @@
       "bonus": 18,
       "qualifierRaw": 14.0,
       "bonusRaw": 17.5,
-      "buyers": 9,
-      "pct": 26,
+      "buyers": 10,
+      "pct": 29,
       "qualified": false,
       "bonusHit": false,
-      "toQualifier": 5,
-      "toBonus": 9,
+      "toQualifier": 4,
+      "toBonus": 8,
       "payout": 0,
       "accounts": [
         {
@@ -985,19 +1050,24 @@
           "date": "9/3/2026"
         },
         {
-          "num": "40001",
-          "name": "Bottle & Cork",
+          "num": "51012",
+          "name": "Teaneck Liquors",
           "date": "9/16/2026"
         },
         {
-          "num": "51012",
-          "name": "Teaneck Liquors",
+          "num": "40001",
+          "name": "Bottle & Cork",
           "date": "9/16/2026"
         },
         {
           "num": "40017",
           "name": "Essex St Liquor and Wine",
           "date": "9/18/2026"
+        },
+        {
+          "num": "56008",
+          "name": "Bergenfield Liq & Fw",
+          "date": "9/23/2026"
         }
       ]
     },
@@ -1017,13 +1087,13 @@
       "payout": 0,
       "accounts": [
         {
-          "num": "8008",
-          "name": "Shoppers Disc(A)Pompton",
+          "num": "8007",
+          "name": "Krauszer's Liquor Wine and Spirits",
           "date": "9/1/2026"
         },
         {
-          "num": "8007",
-          "name": "Krauszer's Liquor Wine and Spirits",
+          "num": "8008",
+          "name": "Shoppers Disc(A)Pompton",
           "date": "9/1/2026"
         },
         {
@@ -1032,13 +1102,13 @@
           "date": "9/8/2026"
         },
         {
-          "num": "2002",
-          "name": "Ringwood Discount Liquors",
+          "num": "3005",
+          "name": "Usa Wine Traders (Wanaque)",
           "date": "9/10/2026"
         },
         {
-          "num": "3005",
-          "name": "Usa Wine Traders (Wanaque)",
+          "num": "2002",
+          "name": "Ringwood Discount Liquors",
           "date": "9/10/2026"
         },
         {
@@ -1141,18 +1211,23 @@
       "bonus": 15,
       "qualifierRaw": 12.0,
       "bonusRaw": 15.0,
-      "buyers": 1,
-      "pct": 3,
+      "buyers": 2,
+      "pct": 7,
       "qualified": false,
       "bonusHit": false,
-      "toQualifier": 11,
-      "toBonus": 14,
+      "toQualifier": 10,
+      "toBonus": 13,
       "payout": 0,
       "accounts": [
         {
           "num": "17011",
           "name": "Nico's Wine & Spirits",
           "date": "8/13/2026"
+        },
+        {
+          "num": "88005",
+          "name": "Waldwick Wine/Spirits",
+          "date": "9/24/2026"
         }
       ]
     },
@@ -1323,8 +1398,16 @@
       "buyers": 6
     },
     {
-      "date": "9/30/2026",
-      "buyers": 1
+      "date": "9/22/2026",
+      "buyers": 11
+    },
+    {
+      "date": "9/23/2026",
+      "buyers": 8
+    },
+    {
+      "date": "9/24/2026",
+      "buyers": 2
     }
   ]
 }

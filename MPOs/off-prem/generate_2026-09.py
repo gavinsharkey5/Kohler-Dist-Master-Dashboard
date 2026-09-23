@@ -585,6 +585,11 @@ def build_pos_cooler_doors():
         if who is None:
             parts = raw_rep.lower().split()
             who = roster_by_surname.get((parts[-1], parts[0][0])) if len(parts) >= 2 else None
+            # A surname iSellBeer splits in two ("Daniel La Gala" vs the roster's
+            # "Dan Lagala", 2026-09-23) misses on the last word alone; retry
+            # with everything after the first name run together.
+            if who is None and len(parts) >= 3:
+                who = roster_by_surname.get(("".join(parts[1:]), parts[0][0]))
             if who:
                 aliased[raw_rep] = who
             else:

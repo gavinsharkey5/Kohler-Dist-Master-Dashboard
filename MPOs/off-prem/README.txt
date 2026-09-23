@@ -928,6 +928,60 @@ on both boards: dated tables, Details toggles with photo links (cooler
 doors, Bardstown), Adam Badalamenti's Bardstown detail, no horizontal scroll
 at 390px, and the hub's off-prem tab still renders.
 
+2026-09-23 REFRESH -- all four exports plus Promos_Report_31
+    python3 generate_2026-09.py --merge-cooler-doors Promos_Report_31.xlsx
+Row counts: Constellation 123 -> 123 (restated in place, every rep up or flat),
+Keystone 214 -> 234, Fever Tree 2,164 -> 2,232, Wine & Spirits 2,788 -> 2,845.
+Diffed row by row before the run: Keystone +21/-1, Fever Tree +82/-14, W&S
++75/-18. EVERY ROW THAT LEFT IS PHIL ERNST'S 9/30 USA WINE TRADERS PARAMUS
+ORDER flagged 2026-09-18 (1 Keystone, 13 Fever Tree, 18 W&S -- account 80004
+is gone from all three exports), plus one Mike Ast Wine & Spirit World Ginger
+Beer can row that was a repeat anyway. The export is the record, so he drops
+exactly as that note warned: Fever Tree 19 -> 10 (still AT the goal of 10 on
+other accounts), W&S 30 -> 12 (still at 5). His Keystone count still rises
+13 -> 14 on four new 9/17-9/22 stores.
+Promos_Report_31 held 71 rows, all Cooler Door Wrap (window 9/1-9/25): 25 new,
+46 already published -> archive 71 rows. The merge's weekday-gap warning
+(nothing on 9/18) is a quiet day, not a missing pull -- Report_31's own window
+covers 9/18.
+NEW ROSTER MATCH: iSellBeer files Dan Lagala as "Daniel La Gala", which the
+surname match (last word + first initial) missed, so his 4 stickers were
+credited to nobody. Both generate_2026-09.py files (here and on-prem's
+Bardstown twin) now retry with everything after the first name run together
+("la gala" -> "lagala") when the last-word lookup fails. On-prem output is
+byte-identical after the change.
+  Constellation   1,090 -> 1,154 placements this fall against 1,628 last fall;
+                  still 23 of 24 reps at 30%. Mike Ast 38 -> 47, Javier Melo
+                  82 -> 90, Jim Heaney 77 -> 85, Klejdi Lamo 72 -> 79, Shane
+                  Barreca 60 -> 67, Jayson Romine 60 -> 65, Matt Powierski
+                  108 -> 113, Anthony Palmisano 35 -> 39, Dave Ehlers
+                  113 -> 116, smaller moves elsewhere.
+  Keystone Ice    173 -> 188 distinct buying accounts, 8 -> 9 reps at 40%:
+                  Jayson Romine 10 -> 15, Chris Payton 17 -> 19, Jim Heaney
+                  12 -> 14, one each for Dave Ehlers, Derrick Laws, Klejdi
+                  Lamo, Mike Ast, Pablo Lopez, Phil Ernst. Same 234-row export
+                  onto keystone-ice/actuals.csv (sync rule); keystone-ice
+                  rebuilt, then this board, then incentive-tracking.
+  Fever Tree      125 -> 147 new placements, 7 -> 8 reps at 10: DERRICK LAWS
+                  3 -> 11 (new at goal), Jim Heaney 0 -> 8, Chris Payton
+                  13 -> 16, Anthony Palmisano 0 -> 3, Pablo Lopez 0 -> 3,
+                  Dave Ehlers 4 -> 6, Mike Ast 14 -> 16, Klejdi Lamo 7 -> 8,
+                  Matt Powierski 20 -> 21; Phil Ernst 19 -> 10 (above).
+  Wine & Spirits  299 -> 323 new placements, 21 -> 23 reps at 5: ANDREW LUNDY
+                  3 -> 7 and NICK MELISSARI 4 -> 7 new at goal; Hakan Sadik
+                  34 -> 39, Klejdi Lamo 19 -> 23, Pablo Lopez 6 -> 10, Alex
+                  Rodriguez, Alisa Acciardi, Chris Payton +3 each; Phil Ernst
+                  30 -> 12 (above). RDE's "Default" (unassigned) bucket picked
+                  up 2 Chateau Diana rows at 120002 PICNIC, an account that
+                  already sits under Default in the core base.
+  POS stickers    35 -> 60 distinct, 4 -> 6 reps at 5: PABLO LOPEZ 1 -> 16
+                  and Jayson Romine 4 -> 5; Dan Lagala 0 -> 4 (the name fix),
+                  Jim Heaney 0 -> 4, Matt Powierski 3 -> 4.
+  Target lists    Keystone 321 -> 305; Fever Tree 346 -> 339.
+The Corona Gaintain export also went onto
+incentive-tracking/data/constellation_fall_corona_gaintain_off.csv (sync
+rule). Hub cache tag bumped (20260923a) for the new program_data.js.
+
 2026-09-21 REFRESH -- all four exports plus Promos_Report_29
     python3 generate_2026-09.py --merge-cooler-doors Promos_Report_29.xlsx
 Row counts: Constellation 123 -> 123 (restated in place), Keystone 208 -> 214,

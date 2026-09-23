@@ -265,6 +265,18 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "PRODUCT_NAME": "1151 Fever Tree Ginger Beer 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 5001,
+    "CUSTOMER_NAME": "River Place Food Store",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "PRODUCT_NAME": "1160 Fever Tree Tonic Water 6/4/200 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 5006,
@@ -438,10 +450,10 @@
     "CUSTOMER_NUM": 4009,
     "CUSTOMER_NAME": "Usa Wine Traders Club (Bloomingdale)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -462,10 +474,34 @@
     "CUSTOMER_NUM": 4009,
     "CUSTOMER_NAME": "Usa Wine Traders Club (Bloomingdale)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "PRODUCT_NAME": "1168 Fever Tree mediterranean Tonic Water 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 4009,
+    "CUSTOMER_NAME": "Usa Wine Traders Club (Bloomingdale)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "PRODUCT_NAME": "1175 Fever Tree Cucumber 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 4009,
+    "CUSTOMER_NAME": "Usa Wine Traders Club (Bloomingdale)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -718,6 +754,42 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "1166 Fever Tree Elderflower Tonic Water 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 38019,
+    "CUSTOMER_NAME": "Circle Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "1172 Fever Tree Pink Grapefruit Soda 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 38019,
+    "CUSTOMER_NAME": "Circle Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "1176 Fever Tree Sicilian Lemonade 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 38019,
+    "CUSTOMER_NAME": "Circle Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1833,7 +1905,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/1/2026",
-    "LAST_DATE": "9/1/2026"
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -2893,6 +2965,18 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "1157 Fever Tree Club Soda 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 57003,
+    "CUSTOMER_NAME": "Joes Beer Wine & Spirits",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "PRODUCT_NAME": "1159 Fever Tree Club Soda 3/8/150 mL Can",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 57003,
@@ -2950,6 +3034,18 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "1176 Fever Tree Sicilian Lemonade 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 57003,
+    "CUSTOMER_NAME": "Joes Beer Wine & Spirits",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -3082,6 +3178,90 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "1151 Fever Tree Ginger Beer 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 22022,
+    "CUSTOMER_NAME": "C Town (A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/25/2026",
+    "LAST_DATE": "9/25/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "1160 Fever Tree Tonic Water 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 22022,
+    "CUSTOMER_NAME": "C Town (A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/25/2026",
+    "LAST_DATE": "9/25/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "1151 Fever Tree Ginger Beer 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 21048,
+    "CUSTOMER_NAME": "Ferraro's Liquor",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "1152 Fever Tree Light Ginger Beer 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 21048,
+    "CUSTOMER_NAME": "Ferraro's Liquor",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "1154 Fever Tree Ginger Beer 8/500 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 21048,
+    "CUSTOMER_NAME": "Ferraro's Liquor",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "1157 Fever Tree Club Soda 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 21048,
+    "CUSTOMER_NAME": "Ferraro's Liquor",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "1180 Fever Tree Classic Margarita Light Mix 6/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 21048,
+    "CUSTOMER_NAME": "Ferraro's Liquor",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -3241,6 +3421,18 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "1154 Fever Tree Ginger Beer 8/500 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 23004,
+    "CUSTOMER_NAME": "Shop Rite Wines/Spirits",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/25/2026",
+    "LAST_DATE": "9/25/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
     "PRODUCT_NAME": "1155 Fever Tree Ginger Beer 3/8/150 mL Can",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 23004,
@@ -3306,10 +3498,10 @@
     "CUSTOMER_NUM": 23004,
     "CUSTOMER_NAME": "Shop Rite Wines/Spirits",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/25/2026",
+    "LAST_DATE": "9/25/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -5125,6 +5317,42 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "1151 Fever Tree Ginger Beer 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 23007,
+    "CUSTOMER_NAME": "Field Liquors (A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "1157 Fever Tree Club Soda 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 23007,
+    "CUSTOMER_NAME": "Field Liquors (A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "1160 Fever Tree Tonic Water 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 23007,
+    "CUSTOMER_NAME": "Field Liquors (A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
     "PRODUCT_NAME": "1157 Fever Tree Club Soda 6/4/200 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 28011,
@@ -5266,6 +5494,66 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/9/2026",
     "LAST_DATE": "9/9/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "1157 Fever Tree Club Soda 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 24017,
+    "CUSTOMER_NAME": "Rainbow Liquor (P)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "1160 Fever Tree Tonic Water 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 24017,
+    "CUSTOMER_NAME": "Rainbow Liquor (P)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "1169 Fever Tree Ginger Ale 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 24017,
+    "CUSTOMER_NAME": "Rainbow Liquor (P)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "1172 Fever Tree Pink Grapefruit Soda 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 24017,
+    "CUSTOMER_NAME": "Rainbow Liquor (P)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "1181 Fever Tree Classic Bloody Mary Mix 6/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 24017,
+    "CUSTOMER_NAME": "Rainbow Liquor (P)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -6318,10 +6606,10 @@
     "CUSTOMER_NUM": 191710,
     "CUSTOMER_NAME": "Shop Rite Wine & Spirits Stanhope",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -6366,10 +6654,10 @@
     "CUSTOMER_NUM": 191710,
     "CUSTOMER_NAME": "Shop Rite Wine & Spirits Stanhope",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -6402,10 +6690,10 @@
     "CUSTOMER_NUM": 191710,
     "CUSTOMER_NAME": "Shop Rite Wine & Spirits Stanhope",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -6426,10 +6714,10 @@
     "CUSTOMER_NUM": 191710,
     "CUSTOMER_NAME": "Shop Rite Wine & Spirits Stanhope",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -6450,10 +6738,10 @@
     "CUSTOMER_NUM": 191710,
     "CUSTOMER_NAME": "Shop Rite Wine & Spirits Stanhope",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -6474,10 +6762,10 @@
     "CUSTOMER_NUM": 191710,
     "CUSTOMER_NAME": "Shop Rite Wine & Spirits Stanhope",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -6486,10 +6774,10 @@
     "CUSTOMER_NUM": 191710,
     "CUSTOMER_NAME": "Shop Rite Wine & Spirits Stanhope",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -6534,10 +6822,10 @@
     "CUSTOMER_NUM": 191710,
     "CUSTOMER_NAME": "Shop Rite Wine & Spirits Stanhope",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -6574,6 +6862,18 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "1179 Fever Tree Classic Margarita Mix 6/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 191710,
+    "CUSTOMER_NAME": "Shop Rite Wine & Spirits Stanhope",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -6585,7 +6885,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/2/2026",
-    "LAST_DATE": "9/2/2026"
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -6594,10 +6894,10 @@
     "CUSTOMER_NUM": 191710,
     "CUSTOMER_NAME": "Shop Rite Wine & Spirits Stanhope",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -6654,10 +6954,10 @@
     "CUSTOMER_NUM": 31060,
     "CUSTOMER_NAME": "Bottle Republic (Rutherford)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -6690,10 +6990,10 @@
     "CUSTOMER_NUM": 31060,
     "CUSTOMER_NAME": "Bottle Republic (Rutherford)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -6726,10 +7026,10 @@
     "CUSTOMER_NUM": 31060,
     "CUSTOMER_NAME": "Bottle Republic (Rutherford)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -6738,10 +7038,10 @@
     "CUSTOMER_NUM": 31060,
     "CUSTOMER_NAME": "Bottle Republic (Rutherford)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -6750,10 +7050,10 @@
     "CUSTOMER_NUM": 31060,
     "CUSTOMER_NAME": "Bottle Republic (Rutherford)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -6762,10 +7062,10 @@
     "CUSTOMER_NUM": 31060,
     "CUSTOMER_NAME": "Bottle Republic (Rutherford)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -6774,10 +7074,10 @@
     "CUSTOMER_NUM": 31060,
     "CUSTOMER_NAME": "Bottle Republic (Rutherford)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -6798,10 +7098,10 @@
     "CUSTOMER_NUM": 31060,
     "CUSTOMER_NAME": "Bottle Republic (Rutherford)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -6858,10 +7158,10 @@
     "CUSTOMER_NUM": 31060,
     "CUSTOMER_NAME": "Bottle Republic (Rutherford)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -6870,10 +7170,10 @@
     "CUSTOMER_NUM": 31060,
     "CUSTOMER_NAME": "Bottle Republic (Rutherford)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -6898,6 +7198,18 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "PRODUCT_NAME": "1179 Fever Tree Classic Margarita Mix 6/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 31060,
+    "CUSTOMER_NAME": "Bottle Republic (Rutherford)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -8562,10 +8874,10 @@
     "CUSTOMER_NUM": 88005,
     "CUSTOMER_NAME": "Waldwick Wine/Spirits",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/24/2026",
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -8574,10 +8886,22 @@
     "CUSTOMER_NUM": 88005,
     "CUSTOMER_NAME": "Waldwick Wine/Spirits",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/24/2026",
+    "LAST_DATE": "9/24/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "PRODUCT_NAME": "1159 Fever Tree Club Soda 3/8/150 mL Can",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 88005,
+    "CUSTOMER_NAME": "Waldwick Wine/Spirits",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/24/2026",
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -8586,10 +8910,10 @@
     "CUSTOMER_NUM": 88005,
     "CUSTOMER_NAME": "Waldwick Wine/Spirits",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/24/2026",
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -8598,10 +8922,10 @@
     "CUSTOMER_NUM": 88005,
     "CUSTOMER_NAME": "Waldwick Wine/Spirits",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/24/2026",
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -8610,10 +8934,10 @@
     "CUSTOMER_NUM": 88005,
     "CUSTOMER_NAME": "Waldwick Wine/Spirits",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/24/2026",
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -8622,10 +8946,10 @@
     "CUSTOMER_NUM": 88005,
     "CUSTOMER_NAME": "Waldwick Wine/Spirits",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/24/2026",
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -8634,10 +8958,22 @@
     "CUSTOMER_NUM": 88005,
     "CUSTOMER_NAME": "Waldwick Wine/Spirits",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/24/2026",
+    "LAST_DATE": "9/24/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "PRODUCT_NAME": "1175 Fever Tree Cucumber 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 88005,
+    "CUSTOMER_NAME": "Waldwick Wine/Spirits",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/24/2026",
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -8670,10 +9006,10 @@
     "CUSTOMER_NUM": 96002,
     "CUSTOMER_NAME": "Wine & Spirit World(W)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 1.0,
+    "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "9/21/2026",
-    "LAST_DATE": "9/21/2026"
+    "PLACED_DATE": "",
+    "LAST_DATE": ""
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -8902,6 +9238,42 @@
     "NEW_PLACEMENT": 1,
     "PLACED_DATE": "9/10/2026",
     "LAST_DATE": "9/10/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "1154 Fever Tree Ginger Beer 8/500 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 27066,
+    "CUSTOMER_NAME": "Sunny's Liqs.(P)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "1158 Fever Tree Club Soda 8/500 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 27066,
+    "CUSTOMER_NAME": "Sunny's Liqs.(P)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "1161 Fever Tree Tonic Water 8/500 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 27066,
+    "CUSTOMER_NAME": "Sunny's Liqs.(P)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/23/2026",
+    "LAST_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -9337,15 +9709,27 @@
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
+    "PRODUCT_NAME": "1159 Fever Tree Club Soda 3/8/150 mL Can",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 80041,
+    "CUSTOMER_NAME": "PRIME WINE CELLAR Liquor & Beer",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
     "PRODUCT_NAME": "1160 Fever Tree Tonic Water 6/4/200 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 80041,
     "CUSTOMER_NAME": "PRIME WINE CELLAR Liquor & Beer",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -9366,10 +9750,10 @@
     "CUSTOMER_NUM": 80041,
     "CUSTOMER_NAME": "PRIME WINE CELLAR Liquor & Beer",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -9385,6 +9769,18 @@
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
+    "PRODUCT_NAME": "1165 Fever Tree Tonic Water Light 3/8/150 mL Can",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 80041,
+    "CUSTOMER_NAME": "PRIME WINE CELLAR Liquor & Beer",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
     "PRODUCT_NAME": "1166 Fever Tree Elderflower Tonic Water 6/4/200 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 80041,
@@ -9397,15 +9793,39 @@
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
+    "PRODUCT_NAME": "1168 Fever Tree mediterranean Tonic Water 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 80041,
+    "CUSTOMER_NAME": "PRIME WINE CELLAR Liquor & Beer",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
     "PRODUCT_NAME": "1172 Fever Tree Pink Grapefruit Soda 6/4/200 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 80041,
     "CUSTOMER_NAME": "PRIME WINE CELLAR Liquor & Beer",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "PRODUCT_NAME": "1174 Fever Tree Lime-Yuzu 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 80041,
+    "CUSTOMER_NAME": "PRIME WINE CELLAR Liquor & Beer",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -9414,10 +9834,10 @@
     "CUSTOMER_NUM": 80041,
     "CUSTOMER_NAME": "PRIME WINE CELLAR Liquor & Beer",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -9837,7 +10257,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/3/2026",
-    "LAST_DATE": "9/3/2026"
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -9909,7 +10329,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/3/2026",
-    "LAST_DATE": "9/3/2026"
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -9921,7 +10341,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/3/2026",
-    "LAST_DATE": "9/3/2026"
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -9933,7 +10353,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/10/2026",
-    "LAST_DATE": "9/10/2026"
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -9969,7 +10389,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/3/2026",
-    "LAST_DATE": "9/3/2026"
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -10294,162 +10714,6 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "1151 Fever Tree Ginger Beer 6/4/200 mL Btl",
-    "BRAND_FAMILY": "",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "1153 Fever Tree Blood Orange Ginger Beer 6/4/200 mL Btl",
-    "BRAND_FAMILY": "",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "1155 Fever Tree Ginger Beer 3/8/150 mL Can",
-    "BRAND_FAMILY": "",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "1157 Fever Tree Club Soda 6/4/200 mL Btl",
-    "BRAND_FAMILY": "",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "1159 Fever Tree Club Soda 3/8/150 mL Can",
-    "BRAND_FAMILY": "",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "1160 Fever Tree Tonic Water 6/4/200 mL Btl",
-    "BRAND_FAMILY": "",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "1162 Fever Tree Tonic Water 3/8/150 mL Can",
-    "BRAND_FAMILY": "",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "1169 Fever Tree Ginger Ale 6/4/200 mL Btl",
-    "BRAND_FAMILY": "",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "1170 Fever Tree Ginger Ale 3/8/150 mL Can",
-    "BRAND_FAMILY": "",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "1172 Fever Tree Pink Grapefruit Soda 6/4/200 mL Btl",
-    "BRAND_FAMILY": "",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "1173 Fever Tree Pink Grapefruit Soda 3/8/150 mL Can",
-    "BRAND_FAMILY": "",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "1174 Fever Tree Lime-Yuzu 6/4/200 mL Btl",
-    "BRAND_FAMILY": "",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "1176 Fever Tree Sicilian Lemonade 6/4/200 mL Btl",
-    "BRAND_FAMILY": "",
-    "CUSTOMER_NUM": 80004,
-    "CUSTOMER_NAME": "USA Wine Traders Paramus",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -11826,10 +12090,10 @@
     "CUSTOMER_NUM": 73008,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Hillsdal",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -11886,10 +12150,10 @@
     "CUSTOMER_NUM": 73008,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Hillsdal",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -11898,10 +12162,10 @@
     "CUSTOMER_NUM": 73008,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Hillsdal",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -11910,10 +12174,10 @@
     "CUSTOMER_NUM": 73008,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Hillsdal",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -11922,10 +12186,10 @@
     "CUSTOMER_NUM": 73008,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Hillsdal",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -11958,10 +12222,10 @@
     "CUSTOMER_NUM": 73008,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Hillsdal",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -11970,10 +12234,10 @@
     "CUSTOMER_NUM": 73008,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Hillsdal",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/22/2026",
+    "LAST_DATE": "9/22/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",

@@ -4096,6 +4096,22 @@ ahead of a 9/21 pull -- kept, as every future-dated row has been.
              3 at bonus, $855.
 Hub cache tag bumped (20260921b) for the new program_data.js.
 
+2026-09-23 REFRESH -- Keystone + Corona Gaintain, riding the off-prem MPO refresh
+  python3 generate.py
+Only the two shared exports moved (diffed row by row first): Keystone
+214 -> 234 (+21, and Phil Ernst's 9/30 USA Wine Traders row gone -- the
+month-end order flagged 9/18 left every export), Corona Gaintain restated in
+place, every rep up or flat. Everything else in PROGRAM_DATA_2026_09 changed
+only by days-elapsed / pace.
+  Keystone    173 -> 188 accounts house-wide; 7 -> 8 qualified, 3 -> 4 at
+              bonus, $855 -> $1,040. Jayson Romine 10 -> 15 of 35 (QUALIFIED),
+              Phil Ernst 13 -> 14 of 27 (BONUS), Chris Payton 17 -> 19, Jim
+              Heaney 12 -> 14, +1 each Pablo Lopez, Derrick Laws, Klejdi Lamo,
+              Dave Ehlers, Mike Ast.
+  Constellation Fall   Corona Gaintain house off-prem 1,082 -> 1,146 of 1,610.
+              Still 0 of 22 reps holding every off-prem category, day 23 of 91.
+Hub cache tag bumped (20260923a) for the new program_data.js.
+
 2026-09-21 REFRESH -- Keystone + Corona Gaintain, riding the off-prem MPO refresh
   python3 generate.py
 Only the two shared exports moved (diffed row by row first): Keystone

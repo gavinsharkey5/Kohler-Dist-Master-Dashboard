@@ -412,6 +412,11 @@ def build_bardstown_menu(off_premise_ids):
         if rep is None:
             parts = raw_rep.lower().split()
             rep = roster_by_surname.get((parts[-1], parts[0][0])) if len(parts) >= 2 else None
+            # A surname iSellBeer splits in two ("Daniel La Gala" vs the roster's
+            # "Dan Lagala", 2026-09-23) misses on the last word alone; retry
+            # with everything after the first name run together.
+            if rep is None and len(parts) >= 3:
+                rep = roster_by_surname.get(("".join(parts[1:]), parts[0][0]))
             if rep:
                 aliased[raw_rep] = rep
             else:
