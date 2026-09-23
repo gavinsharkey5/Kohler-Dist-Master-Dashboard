@@ -29,7 +29,8 @@ conversations, using the same step 1 filters and period choice:
      per-period table with cases per placement.
      Under the period table: "Who has the fewest Thin points" (the same
      tiers broken down by brand family / brand / product / rep / DM /
-     area / county / premise, least Thin first; in Relative mode every
+     area / county / premise, least Thin first; family / brand / product
+     rows need more than 200 placements to be listed; in Relative mode every
      family is ~25% Thin by construction, so compare within a family or
      use the "Under 1 case / mo" column) and "The accounts behind the
      Core placements" (which accounts hold the Core points, Core cases

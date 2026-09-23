@@ -291,7 +291,7 @@
 </div>
 <div class="tip" id="tip"></div>
 <script src="data/logos.js?v=2"></script>
-<script src="data/dist_data.js?v=40"></script>
+<script src="data/dist_data.js?v=42"></script>
 <script>
 (function(){
   var D = window.DIST_DATA;
@@ -978,7 +978,7 @@
     for(var i=0;i<NP;i++){ if(!pm[PP[i]]||!cm[PC[i]]) continue; var v=ps.sum[i*ps.P+j]; if(!(v>0)) continue; var f=products[PP[i]][3]; (byFam[f]=byFam[f]||[]).push(v); }
     var TH={}, q=Math.min(45,Math.max(5,S.tq))/100;
     Object.keys(byFam).forEach(function(f){ var a=byFam[f].sort(function(x,y){return x-y;}), n=a.length; if(n<8){ TH[f]=null; return; } TH[f]={hi:a[Math.min(n-1,Math.ceil((1-q)*n))], lo:a[Math.max(0,Math.floor(q*n)-1)]}; });
-    var fn=function(i,v){ var t=TH[products[PP[i]][3]]; if(!t) return tierOf(v/len); return v>=t.hi ? 0 : (v<=t.lo ? 2 : 1); };
+    var fn=function(i,v){ var t=TH[products[PP[i]][3]]; if(!t) return tierOf(v/len); return (v>=t.hi && v>t.lo) ? 0 : ((v<=t.lo && v<t.hi) ? 2 : 1); };
     fn.TH=TH; fn.len=len; return fn;
   }
   function cutoffText(tf){
@@ -1160,17 +1160,19 @@
       }
       // every product this account buys in scope (for cases/month), not just the Core ones
       for(var i2=0;i2<NP;i2++){ if(!pm[PP[i2]]||!cm[PC[i2]]) continue; var v2=ps.sum[i2*ps.P+tj]; if(!(v2>0)) continue; var a2=acct.get(PC[i2]); if(a2) a2.all+=v2; }
-      var rows=[]; grp.forEach(function(g){ g.name=kf.name(g.id); g.thin=g.t[2]/g.n; rows.push(g); });
+      var MINP = TK[tt] ? 200 : 10;   // brand-side rows need a real footprint before their Thin share means anything
+      var rows=[], dropped=0; grp.forEach(function(g){ if(g.n<=MINP && TK[tt]){ dropped++; return; } g.name=kf.name(g.id); g.thin=g.t[2]/g.n; rows.push(g); });
       rows.sort(function(a,b){ var sa=a.n<10, sb=b.n<10; if(sa!==sb) return sa?1:-1; if(a.thin!==b.thin) return a.thin-b.thin; return b.n-a.n; });
       var ttabs=[['family','Brand families'],['brand','Brands'],['product','Products'],['rep','Sales reps'],['dm','District managers'],['area','Areas'],['county','Counties'],['premise','Premise']];
+      function tabLabel(k){ return ttabs.filter(function(x){ return x[0]===k; })[0][1].toLowerCase(); }
       h.push('<h3 class="qsub">Who has the fewest Thin points · '+esc(scopeName())+' · '+esc(pLabel(T))+'</h3>');
       h.push('<p class="help" style="margin:0 0 6px">Least Thin at the top. '+(S.tmode==='rel'
         ? 'In Relative mode every brand family is about '+S.tq+'% Thin by definition, so compare the <b>brands or products inside a family</b>, or use the <b>Under 1 case / mo</b> column, which holds every brand to the same bar.'
-        : 'Fixed rule: the same case bar for every brand, so families compare directly.')+' Groups under 10 placements sit at the bottom.</p>');
+        : 'Fixed rule: the same case bar for every brand, so families compare directly.')+(TK[tt] ? ' Only '+tabLabel(tt)+' with more than 200 placements are listed'+(dropped?' ('+fmtN(dropped)+' smaller ones left out)':'')+'.' : ' Groups under 10 placements sit at the bottom.')+'</p>');
       h.push('<p class="help" style="margin:6px 0 4px">Break it down by:</p><div class="tabs">'+ttabs.map(function(x){ return '<button data-ttab="'+x[0]+'" class="'+(tt===x[0]?'on':'')+'">'+x[1]+'</button>'; }).join('')+'</div>');
       h.push(qtable('q-thin', [kf.col,'Placements','Core','Steady','Thin','Thin share','Thin share of cases','Under 1 case / mo','Cases / placement / mo'],
-        rows.slice(0,80).map(function(g){ return {cells:[esc(g.name)+small(g.n,10), fmtN(g.n), fmtN(g.t[0]), fmtN(g.t[1]), fmtN(g.t[2]), '<b class="'+(g.thin<=0.2?'up':(g.thin>=0.35?'down':''))+'">'+pctS(g.t[2],g.n)+'</b>', pctS(g.tcs,g.cs), fmtN(g.u1)+' <span class="muted">('+pctS(g.u1,g.n)+')</span>', fmt1(g.cs/g.n/len)]}; }),
-        (rows.length>80?'Top 80 of '+fmtN(rows.length)+' rows. ':'')+'Click any column header to re-sort.'));
+        (TK[tt]?rows:rows.slice(0,80)).map(function(g){ return {cells:[esc(g.name)+(TK[tt]?'':small(g.n,10)), fmtN(g.n), fmtN(g.t[0]), fmtN(g.t[1]), fmtN(g.t[2]), '<b class="'+(g.thin<=0.2?'up':(g.thin>=0.35?'down':''))+'">'+pctS(g.t[2],g.n)+'</b>', pctS(g.tcs,g.cs), fmtN(g.u1)+' <span class="muted">('+pctS(g.u1,g.n)+')</span>', fmt1(g.cs/g.n/len)]}; }),
+        (!TK[tt]&&rows.length>80?'Top 80 of '+fmtN(rows.length)+' rows. ':'')+'Click any column header to re-sort.'));
       h.push('<div class="tbtns" style="margin-top:8px"><button class="btn small" data-csv="q-thin">CSV</button></div>');
       // accounts behind the Core placements
       var al=[]; acct.forEach(function(a){ al.push(a); }); al.sort(function(a,b){ return b.cs-a.cs; });
