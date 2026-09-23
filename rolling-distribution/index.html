@@ -194,6 +194,8 @@
   @media print{.qexpl{grid-template-columns:1fr 1fr 1fr;gap:6px}.qblk{padding:4px 8px}.qexpl li{margin:1px 0}}
   .qcard h2{font-size:23px}
   @media print{.qexpl{font-size:11px;gap:2px}}
+  .measure{margin:8px 0 12px;padding:10px 14px;border-radius:10px;background:var(--input);border:1px solid var(--line);font-size:16px;line-height:1.5;color:var(--ink)}
+  .measure-l{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-right:8px}
   .qmode{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:0 0 14px;padding:12px 16px;background:var(--card);border:1.5px solid var(--gold);border-radius:12px}
   .qmode-l{font-weight:700;font-size:17px}.qmode-h{font-size:15px}
   .scard{padding:22px 24px;margin-bottom:16px}
@@ -314,7 +316,7 @@
 </div>
 <div class="tip" id="tip"></div>
 <script src="data/logos.js?v=2"></script>
-<script src="data/dist_data.js?v=43"></script>
+<script src="data/dist_data.js?v=44"></script>
 <script>
 (function(){
   var D = window.DIST_DATA;
@@ -392,7 +394,7 @@
   // ---------------------------------------------------------------- state
   var S = {page:'tracker',bm:-1,sup:-1,fam:-1,brand:-1,prod:-1,pkg:'all',prem:'all',dm:-1,rep:-1,area:-1,county:-1,cust:-1,rows:'brand',
            len:3, n:3, end:M-1, view:'compare', focus:M-1, yoy:1, raw:0, metric:'all', tab:'children',
-           sort:'', dir:-1, cmetric:'cases', q:'', more:0, chart:0, pmode:'roll', cp:'', cols:'buyers', tcore:5, tthin:1, tmode:'rel', tq:25, gain:'', terr:'on', ttab:'', qview:'full', qtab:'children', ftab:'area', rtab:'children', gtab:'county'};
+           sort:'', dir:-1, cmetric:'cases', q:'', more:0, chart:0, pmode:'roll', cp:'', cols:'buyers', tcore:5, tthin:1, tmode:'rel', tq:25, gain:'', terr:'on', ttab:'', qview:'simple', qtab:'children', ftab:'area', rtab:'children', gtab:'county'};
   var DEFAULTS = JSON.parse(JSON.stringify(S));
   // Filters travel in the URL by NAME (product by its number), never by list position,
   // so a bookmarked link still points at the same thing after a data refresh adds rows.
@@ -693,8 +695,8 @@
   function qmodeBar(){
     if(S.page!=='quality') return '';
     var simple=S.qview==='simple';
-    return '<div class="qmode"><span class="qmode-l">How much detail?</span><span class="seg"><button data-qview="simple" class="'+(simple?'on':'')+'">Simple · for managers</button><button data-qview="full" class="'+(!simple?'on':'')+'">Full detail</button></span>'
-      +'<span class="muted qmode-h">'+(simple?'One plain-language card per question. Every card has a "See the detail" link.':'Every table and control. Switch to Simple for the short version.')+'</span>'
+    return '<div class="qmode"><span class="qmode-l">How much detail?</span><span class="seg"><button data-qview="simple" class="'+(simple?'on':'')+'">Simple</button><button data-qview="full" class="'+(!simple?'on':'')+'">Detailed</button></span>'
+      +'<span class="muted qmode-h">'+(simple?'One plain-language card per question. "See the detail" on any card opens the detailed version.':'Every table and control. Switch to Simple for the short version.')+'</span>'
       +(simple?'<button class="btn primary" id="q-print" title="Print or save as PDF" style="margin-left:auto">🖨 Print</button>':'')+'</div>';
   }
   function controlsHtml(){
@@ -1245,10 +1247,12 @@
         for(var q=0;q<laters.length;q++){ var lv=sumRange(i,laters[q].s,laters[q].e); if(lv>0){ r.kept[q]++; all.kept[q]++; r.keptCases[q]+=lv; all.keptCases[q]+=lv; } }
       }
       var tooNew=[]; for(var e2=M-1; e2>M-1-len && e2>=len-1; e2--){ var np=period(e2,len); tooNew.push('<option disabled>'+esc(pLabel(np))+' \u2014 too new to judge (needs '+esc(futureLabel(e2+1,e2+len))+' data)</option>'); }
+      var measure='<div class="measure"><span class="measure-l">Measured against</span> New points gained in <b>'+esc(pLabel(G))+'</b> (a product at an account that had never bought it before '+esc(mLabel(G.s,true))+'; history starts '+esc(mLabel(0,true))+'). Checked again in <b>'+laters.map(function(w,q){ return esc(pLabel(w))+' ('+((q+1)*len)+' months later)'; }).join('</b>, <b>')+'</b>: still buying means net cases above zero in that period.</div>';
       var gsel='<label class="inl">Points gained in <select id="q-gain">'+tooNew.join('')+gains.slice().reverse().map(function(g){ return opt(D.months[g.e], pLabel(g), g.e===G.e); }).join('')+'</select><span class="muted" style="font-size:14px;margin-left:8px">The newest '+len+' months are greyed out: a drive can only be judged once a full later period exists, so '+esc(pLabel(period(M-1,len)))+' becomes selectable after '+esc(futureLabel(M,M-1+len))+' is loaded.</span></label>';
       h.push(qhead(2,'What happened to the new points gained '+esc(pLabel(G)),
         'A new point is a product at an account that had never bought it before '+esc(mLabel(G.s,true))+' (history starts '+esc(mLabel(0,true))+'). Then: is it still buying one, two, three periods later, and how much did it do?',
         '<span class="tbtns">'+gsel+'</span>'));
+      h.push(measure);
       h.push('<div class="kpis">');
       h.push('<div class="kpi"><span class="kpi-p">'+esc(pLabel(G))+'</span><div class="l">New points gained</div><div class="v">'+fmtN(all.n)+'</div><div class="d"><span>median '+fmt1(median(all.cases))+' cases in the period</span><span><b>'+pctS(all.under3,all.n)+'</b> did under 3 cases</span></div></div>');
       laters.forEach(function(w,q){ var kp=all.kept[q]/(all.n||1); h.push('<div class="kpi '+(kp<0.5?'m-bad':'m-good')+'"><span class="kpi-p">'+esc(pLabel(w))+'</span><div class="l">Still buying '+(q+1)+' period'+(q?'s':'')+' later</div><div class="v">'+pctS(all.kept[q],all.n)+'</div><div class="d"><span>'+fmtN(all.kept[q])+' of '+fmtN(all.n)+' points</span><span>'+(all.kept[q]?fmt1(all.keptCases[q]/all.kept[q]):'—')+' cases each</span></div></div>'); });
@@ -1260,7 +1264,7 @@
           (all.kept[lq]? 'The survivors now do '+fmt1(all.keptCases[lq]/all.kept[lq])+' cases each per period; the drive’s real yield was '+fmtN(all.kept[lq])+' accounts, not '+fmtN(all.n)+' points.' : 'None of them were still buying.')
         ], '“Last time we added '+fmtN(all.n)+' points '+scopeWord()+', '+fmtN(lost)+' of them were gone within '+(laters.length*len)+' months. Show us which accounts the next batch will be, or let us pick them.”'));
       }
-      QS.s2={G:G, laters:laters, all:all};
+      QS.s2={G:G, laters:laters, all:all, gsel:gsel, measure:measure};
       var qtabs=[['children',LEVELS[li].plural],['bm','Brand managers'],['rep','Sales reps'],['dm','District managers'],['area','Areas'],['county','Counties'],['premise','Premise']];
       h.push('<p class="help" style="margin:10px 0 4px">Break it down by:</p><div class="tabs">'+qtabs.map(function(t){ return '<button data-qtab="'+t[0]+'" class="'+(S.qtab===t[0]?'on':'')+'">'+t[1]+'</button>'; }).join('')+'</div>');
       var rows=[]; rmap.forEach(function(r){ r.name=nameFn(r.id); rows.push(r); }); rows.sort(function(a,b){ return b.n-a.n; });
@@ -1495,7 +1499,8 @@
     if(!Q.s2 || !Q.s2.all.n){ h.push(card(2,'What happened to the new points', head('Not enough history yet: a batch of new points can only be judged once a full later period exists.'))); }
     else { var s2=Q.s2, lq=s2.laters.length-1, kept=s2.all.kept[lq], lost=s2.all.n-kept, kp=kept/s2.all.n;
       h.push(card(2,'What happened to the new points gained '+esc(pLabel(s2.G)),
-        head('<b>'+fmtN(s2.all.n)+' new points</b> were added in '+esc(pLabel(s2.G))+'. By '+esc(pLabel(s2.laters[lq]))+', <span class="'+(kp>=0.5?'up':'down')+'">'+fmtN(kept)+' ('+Math.round(kp*100)+'%) were still buying</span> and <span class="down">'+fmtN(lost)+' were gone</span>.')
+        '<div class="row" style="margin:0 0 8px">'+s2.gsel+'</div>'+s2.measure
+        +head('<b>'+fmtN(s2.all.n)+' new points</b> were added in '+esc(pLabel(s2.G))+'. By '+esc(pLabel(s2.laters[lq]))+' ('+((lq+1)*len)+' months later), <span class="'+(kp>=0.5?'up':'down')+'">'+fmtN(kept)+' ('+Math.round(kp*100)+'%) were still buying</span> and <span class="down">'+fmtN(lost)+' were gone</span>.')
         +splitbar([{v:kept,label:'Still buying',color:'var(--good)'},{v:lost,label:'Gone',color:'var(--bad)'}])
         +'<p class="sline">The typical new point sold '+fmt1(median(s2.all.cases))+' cases in its first period; '+Math.round(s2.all.under3/s2.all.n*100)+'% sold under 3.</p>'
         +act('The last drive\u2019s real yield was <b>'+fmtN(kept)+' accounts</b>, not '+fmtN(s2.all.n)+' points. Next time, agree on which accounts before agreeing on how many.')));

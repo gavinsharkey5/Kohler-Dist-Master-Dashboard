@@ -22,14 +22,15 @@ DISTRIBUTION QUALITY is the "are the points real?" tab for supplier
 conversations, using the same step 1 filters and period choice. It has
 two levels of detail, switched by the gold "How much detail?" bar under
 the page tabs and remembered per browser (qview=simple / qview=full in
-the link): FULL DETAIL is every section below with every table and
-control; SIMPLE · FOR MANAGERS is one plain-language card per question
+the link): SIMPLE (the default) is one plain-language card per question
 (1, 2, 4, 5, 6, 7, 8 -- the fit map, section 3, is folded into 6 and
 7), each with big numbers, one bar or list, a gold "What to do" line
-and a "See the detail" link that opens the full section. Both read the
-same numbers; nothing is computed differently. The manager link is
-  .../rolling-distribution/#page=quality&qview=simple
-Full detail (the sections):
+and a "See the detail" link that opens the full section. DETAILED is every section below with every table and control (Gavin's
+view; qview=full in the link). Both read the same numbers; nothing is
+computed differently. Section 2 carries a "Measured against" line on
+both views naming the gained-in period and the later period(s) it is
+checked in.
+Detailed (the sections):
   1. Placement quality -- every placement tiered into Core / Steady /
      Thin by cases per month. DEFAULT is relative to each brand family:
      Core = top 25% of that family's own placements in the period, Thin
