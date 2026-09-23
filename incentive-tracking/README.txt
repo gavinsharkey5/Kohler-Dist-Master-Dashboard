@@ -4096,6 +4096,35 @@ ahead of a 9/21 pull -- kept, as every future-dated row has been.
              3 at bonus, $855.
 Hub cache tag bumped (20260921b) for the new program_data.js.
 
+2026-09-23 SECOND REFRESH -- 1911, Woodchuck, Tona, Lytt (+ Keystone, unchanged)
+  python3 generate.py
+Diffed row by row first. The Keystone export (_28) is byte-identical to the
+_27 pull published this morning -- nothing to do. 1911 1,782 -> 1,849 rows
+(+67 / -1: Jim Heaney's 9/21 Liquor Mart Tropical Pineapple Mango row left
+the export). Woodchuck 539 -> 584 (+51 / -6: Klejdi Lamo's four Midtown Liq
+rows RE-DATED 9/21 -> 9/22, and Phil Ernst's two 9/30 USA Wine Traders
+Paramus rows -- the month-end order flagged 9/18 that left every RDE export
+this morning). Tona 339 -> 344 (+5, none removed). Lytt 736 -> 754 (+24 / -6:
+Phil Ernst's six 9/30 USA Wine Traders rows). Brian Sengebush's 1911 Honey
+Crisp keg at Industry is dated 9/29 -- a scheduled load, kept as always.
+Only these four programs changed in PROGRAM_DATA.
+  1911        298 -> 320 new placements. Phil Ernst 19 -> 28, Andrew Lundy
+              39 -> 43, Derrick Laws 2 -> 5, Klejdi Lamo 18 -> 21, Jayson
+              Romine 22 -> 24, Jaime Colonna 13 -> 14, Shane Barreca 21 -> 22;
+              Jim Heaney 5 -> 4 (the dropped row). Cases 1,080 -> 1,166.
+  Woodchuck   47 -> 58 new placements. Dylan Rubino 2 -> 6, Klejdi Lamo
+              8 -> 11, Jayson Romine 2 -> 4, one each Andrew Lundy, Dave
+              Ehlers, John O'Donoghue, Michael Harboy; Phil Ernst 4 -> 2 (the
+              9/30 order). Cases 303 -> 391.
+  Tona        holds at 14 new 24 oz placements -- all five new rows are 4/6
+              bottles or 2/12 cans, which only add to the non-24 oz volume.
+  Lytt        141 -> 146 buying accounts of 477. ANTHONY PALMISANO 5 -> 9
+              (18.5% -> 33.3%, now in the Gettin' Lytt tier), Derrick Laws
+              12 -> 14 (43.8%, new top), Phil Ernst 11 -> 10 (44.0% -> 40.0%,
+              the 9/30 order). Mike Ast's three Franklin Lake rows are -1 case
+              returns and don't change his count.
+Hub cache tag bumped (20260923b) for the new program_data.js.
+
 2026-09-23 REFRESH -- Keystone + Corona Gaintain, riding the off-prem MPO refresh
   python3 generate.py
 Only the two shared exports moved (diffed row by row first): Keystone

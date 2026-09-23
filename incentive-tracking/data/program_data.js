@@ -11,7 +11,7 @@ const PROGRAM_DATA = {
             "customer": "Kings Super Markets",
             "products": [
               {
-                "product": "1911 Honey Crisp 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/7/2026"
               }
             ],
@@ -21,7 +21,7 @@ const PROGRAM_DATA = {
             "customer": "Kings Super Markets",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Honey Crisp 6/4/16 oz Can",
                 "date": "8/7/2026"
               }
             ],
@@ -169,12 +169,8 @@ const PROGRAM_DATA = {
             "customer": "Kelly's Liquors",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Honey Crisp 6/4/16 oz Can",
                 "date": "9/3/2026"
-              },
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "8/13/2026"
               }
             ],
             "date": "9/3/2026"
@@ -183,8 +179,12 @@ const PROGRAM_DATA = {
             "customer": "Kelly's Liquors",
             "products": [
               {
-                "product": "1911 Honey Crisp 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "9/3/2026"
+              },
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "8/13/2026"
               }
             ],
             "date": "9/3/2026"
@@ -217,7 +217,7 @@ const PROGRAM_DATA = {
             "customer": "Belleville Liquors",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/20/2026"
               }
             ],
@@ -227,21 +227,11 @@ const PROGRAM_DATA = {
             "customer": "Belleville Liquors",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/20/2026"
               }
             ],
             "date": "8/20/2026"
-          },
-          {
-            "customer": "ShopRite Wines & Spirits of Bayonne",
-            "products": [
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "8/19/2026"
-              }
-            ],
-            "date": "8/19/2026"
           },
           {
             "customer": "ShopRite Wines & Spirits of Bayonne",
@@ -255,6 +245,16 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Shop Rite Wine & Spirits Kearny",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "8/19/2026"
+              }
+            ],
+            "date": "8/19/2026"
+          },
+          {
+            "customer": "ShopRite Wines & Spirits of Bayonne",
             "products": [
               {
                 "product": "1911 Cider Donut 6/4/16 oz Can",
@@ -287,17 +287,7 @@ const PROGRAM_DATA = {
             "customer": "Nutley Wine Shop",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "8/13/2026"
-              }
-            ],
-            "date": "8/13/2026"
-          },
-          {
-            "customer": "Nutley Wine Shop",
-            "products": [
-              {
-                "product": "1911 Black Cherry 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/13/2026"
               }
             ],
@@ -317,7 +307,17 @@ const PROGRAM_DATA = {
             "customer": "Nutley Wine Shop",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Black Cherry 6/4/16 oz Can",
+                "date": "8/13/2026"
+              }
+            ],
+            "date": "8/13/2026"
+          },
+          {
+            "customer": "Nutley Wine Shop",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/13/2026"
               }
             ],
@@ -719,10 +719,14 @@ const PROGRAM_DATA = {
           }
         ],
         "draftAccountsQualified": 0,
-        "caseVolume": 15.0,
+        "caseVolume": 21.0,
         "caseVolumeByAccount": [
           {
             "customer": "Kitchen & Beer Bar",
+            "cases": 8.0
+          },
+          {
+            "customer": "Tavern 5_2",
             "cases": 5.0
           },
           {
@@ -731,10 +735,6 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Rock Bar",
-            "cases": 2.0
-          },
-          {
-            "customer": "Tavern 5_2",
             "cases": 2.0
           },
           {
@@ -774,25 +774,79 @@ const PROGRAM_DATA = {
             "date": "9/8/2026"
           },
           {
-            "customer": "Jersey Fine Wines",
+            "customer": "Buyrite Liquors",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "9/24/2026"
+              },
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "8/13/2026"
+              }
+            ],
+            "date": "9/24/2026"
+          },
+          {
+            "customer": "Best Cellars (Summit)",
+            "products": [
+              {
+                "product": "1911 Honey Crisp 6/4/16 oz Can",
+                "date": "9/23/2026"
+              }
+            ],
+            "date": "9/23/2026"
+          },
+          {
+            "customer": "Best Cellars (Summit)",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "9/23/2026"
+              }
+            ],
+            "date": "9/23/2026"
+          },
+          {
+            "customer": "Best Cellars (Summit)",
             "products": [
               {
                 "product": "1911 Original 6/4/16 oz Can",
-                "date": "9/15/2026"
+                "date": "9/23/2026"
               }
             ],
-            "date": "9/15/2026"
+            "date": "9/23/2026"
+          },
+          {
+            "customer": "Home Wines & Liquors (360 Union)",
+            "products": [
+              {
+                "product": "1911 Original 6/4/16 oz Can",
+                "date": "9/22/2026"
+              },
+              {
+                "product": "1911 Original 6/4/16 oz Can",
+                "date": "8/12/2026"
+              }
+            ],
+            "date": "9/22/2026"
+          },
+          {
+            "customer": "Home Wines & Liquors (360 Union)",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "9/22/2026"
+              }
+            ],
+            "date": "9/22/2026"
           },
           {
             "customer": "Jersey Fine Wines",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Original 6/4/16 oz Can",
                 "date": "9/15/2026"
-              },
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "8/19/2026"
               }
             ],
             "date": "9/15/2026"
@@ -817,6 +871,20 @@ const PROGRAM_DATA = {
               {
                 "product": "1911 Variety 3/8/12 oz Can",
                 "date": "9/15/2026"
+              }
+            ],
+            "date": "9/15/2026"
+          },
+          {
+            "customer": "Jersey Fine Wines",
+            "products": [
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "9/15/2026"
+              },
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "8/19/2026"
               }
             ],
             "date": "9/15/2026"
@@ -855,16 +923,6 @@ const PROGRAM_DATA = {
             "customer": "Dittrick's W&L (A)",
             "products": [
               {
-                "product": "1911 Black Cherry 6/4/16 oz Can",
-                "date": "8/28/2026"
-              }
-            ],
-            "date": "8/28/2026"
-          },
-          {
-            "customer": "Dittrick's W&L (A)",
-            "products": [
-              {
                 "product": "1911 Original 6/4/16 oz Can",
                 "date": "8/28/2026"
               }
@@ -895,7 +953,7 @@ const PROGRAM_DATA = {
             "customer": "Buy Rite Liq (A)",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/28/2026"
               }
             ],
@@ -905,7 +963,7 @@ const PROGRAM_DATA = {
             "customer": "Buy Rite Liq (A)",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/28/2026"
               }
             ],
@@ -916,6 +974,16 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "8/28/2026"
+              }
+            ],
+            "date": "8/28/2026"
+          },
+          {
+            "customer": "Dittrick's W&L (A)",
+            "products": [
+              {
+                "product": "1911 Black Cherry 6/4/16 oz Can",
                 "date": "8/28/2026"
               }
             ],
@@ -935,6 +1003,20 @@ const PROGRAM_DATA = {
             "customer": "Buyrite Liquors",
             "products": [
               {
+                "product": "1911 Half & Half 6/4/16 oz Can",
+                "date": "8/21/2026"
+              },
+              {
+                "product": "1911 Half & Half 6/4/16 oz Can",
+                "date": "8/20/2026"
+              }
+            ],
+            "date": "8/21/2026"
+          },
+          {
+            "customer": "Buyrite Liquors",
+            "products": [
+              {
                 "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/21/2026"
               },
@@ -950,20 +1032,6 @@ const PROGRAM_DATA = {
             "date": "8/21/2026"
           },
           {
-            "customer": "Buyrite Liquors",
-            "products": [
-              {
-                "product": "1911 Half & Half 6/4/16 oz Can",
-                "date": "8/21/2026"
-              },
-              {
-                "product": "1911 Half & Half 6/4/16 oz Can",
-                "date": "8/20/2026"
-              }
-            ],
-            "date": "8/21/2026"
-          },
-          {
             "customer": "Metro Liquor (Linden)",
             "products": [
               {
@@ -977,57 +1045,7 @@ const PROGRAM_DATA = {
             "customer": "House of Wine & Liquor Westfield",
             "products": [
               {
-                "product": "1911 Original 6/4/16 oz Can",
-                "date": "8/20/2026"
-              }
-            ],
-            "date": "8/20/2026"
-          },
-          {
-            "customer": "House of Wine & Liquor Westfield",
-            "products": [
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "8/20/2026"
-              }
-            ],
-            "date": "8/20/2026"
-          },
-          {
-            "customer": "House of Wine & Liquor Westfield",
-            "products": [
-              {
                 "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "8/20/2026"
-              }
-            ],
-            "date": "8/20/2026"
-          },
-          {
-            "customer": "Metro Liquor (Linden)",
-            "products": [
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "8/20/2026"
-              }
-            ],
-            "date": "8/20/2026"
-          },
-          {
-            "customer": "Metro Liquor (Linden)",
-            "products": [
-              {
-                "product": "1911 Black Cherry 6/4/16 oz Can",
-                "date": "8/20/2026"
-              }
-            ],
-            "date": "8/20/2026"
-          },
-          {
-            "customer": "House of Wine & Liquor Westfield",
-            "products": [
-              {
-                "product": "1911 Honey Crisp 6/4/16 oz Can",
                 "date": "8/20/2026"
               }
             ],
@@ -1044,10 +1062,60 @@ const PROGRAM_DATA = {
             "date": "8/20/2026"
           },
           {
-            "customer": "Jersey Fine Wines",
+            "customer": "House of Wine & Liquor Westfield",
+            "products": [
+              {
+                "product": "1911 Original 6/4/16 oz Can",
+                "date": "8/20/2026"
+              }
+            ],
+            "date": "8/20/2026"
+          },
+          {
+            "customer": "Metro Liquor (Linden)",
             "products": [
               {
                 "product": "1911 Black Cherry 6/4/16 oz Can",
+                "date": "8/20/2026"
+              }
+            ],
+            "date": "8/20/2026"
+          },
+          {
+            "customer": "House of Wine & Liquor Westfield",
+            "products": [
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "8/20/2026"
+              }
+            ],
+            "date": "8/20/2026"
+          },
+          {
+            "customer": "House of Wine & Liquor Westfield",
+            "products": [
+              {
+                "product": "1911 Honey Crisp 6/4/16 oz Can",
+                "date": "8/20/2026"
+              }
+            ],
+            "date": "8/20/2026"
+          },
+          {
+            "customer": "Metro Liquor (Linden)",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "8/20/2026"
+              }
+            ],
+            "date": "8/20/2026"
+          },
+          {
+            "customer": "M & M Liquors",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/19/2026"
               }
             ],
@@ -1077,17 +1145,7 @@ const PROGRAM_DATA = {
             "customer": "Drinq Linq The Liquor Store",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "8/19/2026"
-              }
-            ],
-            "date": "8/19/2026"
-          },
-          {
-            "customer": "M & M Liquors",
-            "products": [
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Original 6/4/16 oz Can",
                 "date": "8/19/2026"
               }
             ],
@@ -1104,10 +1162,20 @@ const PROGRAM_DATA = {
             "date": "8/19/2026"
           },
           {
+            "customer": "Jersey Fine Wines",
+            "products": [
+              {
+                "product": "1911 Black Cherry 6/4/16 oz Can",
+                "date": "8/19/2026"
+              }
+            ],
+            "date": "8/19/2026"
+          },
+          {
             "customer": "Drinq Linq The Liquor Store",
             "products": [
               {
-                "product": "1911 Original 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/19/2026"
               }
             ],
@@ -1134,7 +1202,7 @@ const PROGRAM_DATA = {
             "date": "8/14/2026"
           },
           {
-            "customer": "Buyrite Liquors",
+            "customer": "Witty's Fine Wine & Spirt",
             "products": [
               {
                 "product": "1911 Cider Donut 6/4/16 oz Can",
@@ -1152,29 +1220,9 @@ const PROGRAM_DATA = {
               }
             ],
             "date": "8/13/2026"
-          },
-          {
-            "customer": "Witty's Fine Wine & Spirt",
-            "products": [
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "8/13/2026"
-              }
-            ],
-            "date": "8/13/2026"
-          },
-          {
-            "customer": "Home Wines & Liquors (360 Union)",
-            "products": [
-              {
-                "product": "1911 Original 6/4/16 oz Can",
-                "date": "8/12/2026"
-              }
-            ],
-            "date": "8/12/2026"
           }
         ],
-        "offPremNewCount": 39,
+        "offPremNewCount": 43,
         "offPremReorderCount": 20,
         "offPremTargets": [
           {
@@ -1200,10 +1248,6 @@ const PROGRAM_DATA = {
           {
             "customer": "Chestnut St Spirits LLC",
             "cases2026": 633.0
-          },
-          {
-            "customer": "Best Cellars (Summit)",
-            "cases2026": 609.0
           },
           {
             "customer": "Pointe Grande Liquor",
@@ -1256,9 +1300,13 @@ const PROGRAM_DATA = {
           {
             "customer": "Rotondo's Liquor",
             "cases2026": 341.0
+          },
+          {
+            "customer": "Milton Liquors",
+            "cases2026": 255.0
           }
         ],
-        "offPremTargetCount": 46,
+        "offPremTargetCount": 45,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -1323,7 +1371,7 @@ const PROGRAM_DATA = {
         "draftTargetCount": 14,
         "draftAccounts": [],
         "draftAccountsQualified": 0,
-        "caseVolume": 90.0,
+        "caseVolume": 96.0,
         "caseVolumeByAccount": [
           {
             "customer": "Trader Joes Westfield",
@@ -1342,15 +1390,15 @@ const PROGRAM_DATA = {
             "cases": 9.0
           },
           {
+            "customer": "Buyrite Liquors",
+            "cases": 7.0
+          },
+          {
             "customer": "Park Beverage",
             "cases": 7.0
           },
           {
             "customer": "Shop Rite of Westfield",
-            "cases": 6.0
-          },
-          {
-            "customer": "Buyrite Liquors",
             "cases": 6.0
           },
           {
@@ -1374,6 +1422,14 @@ const PROGRAM_DATA = {
             "cases": 5.0
           },
           {
+            "customer": "Best Cellars (Summit)",
+            "cases": 3.0
+          },
+          {
+            "customer": "Home Wines & Liquors (360 Union)",
+            "cases": 3.0
+          },
+          {
             "customer": "Drinq Linq The Liquor Store",
             "cases": 3.0
           },
@@ -1382,29 +1438,15 @@ const PROGRAM_DATA = {
             "cases": 1.0
           },
           {
-            "customer": "Home Wines & Liquors (360 Union)",
-            "cases": 1.0
-          },
-          {
             "customer": "The Wine Rack Millburn",
             "cases": 1.0
           }
         ],
-        "totalNewPlacements": 39,
+        "totalNewPlacements": 43,
         "draftChannelOk": true
       },
       "Anthony Palmisano": {
         "offPremNew": [
-          {
-            "customer": "Usa Wine Traders Club (Bloomingdale)",
-            "products": [
-              {
-                "product": "1911 Original 6/4/16 oz Can",
-                "date": "9/9/2026"
-              }
-            ],
-            "date": "9/9/2026"
-          },
           {
             "customer": "Usa Wine Traders Club (Bloomingdale)",
             "products": [
@@ -1414,7 +1456,21 @@ const PROGRAM_DATA = {
               },
               {
                 "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "9/22/2026"
+              },
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/4/2026"
+              }
+            ],
+            "date": "9/9/2026"
+          },
+          {
+            "customer": "Usa Wine Traders Club (Bloomingdale)",
+            "products": [
+              {
+                "product": "1911 Original 6/4/16 oz Can",
+                "date": "9/9/2026"
               }
             ],
             "date": "9/9/2026"
@@ -1457,7 +1513,7 @@ const PROGRAM_DATA = {
             "customer": "Best Cellars (Wanaque)",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/24/2026"
               }
             ],
@@ -1467,7 +1523,7 @@ const PROGRAM_DATA = {
             "customer": "Best Cellars (Wanaque)",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/24/2026"
               }
             ],
@@ -1497,7 +1553,7 @@ const PROGRAM_DATA = {
             "customer": "Roserne Pkg Store South",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/11/2026"
               }
             ],
@@ -1507,7 +1563,7 @@ const PROGRAM_DATA = {
             "customer": "Roserne Pkg Store South",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/11/2026"
               }
             ],
@@ -1687,15 +1743,15 @@ const PROGRAM_DATA = {
         "draftTargetCount": 40,
         "draftAccounts": [],
         "draftAccountsQualified": 0,
-        "caseVolume": 39.0,
+        "caseVolume": 42.0,
         "caseVolumeByAccount": [
+          {
+            "customer": "Usa Wine Traders Club (Bloomingdale)",
+            "cases": 11.0
+          },
           {
             "customer": "Uncorked Wines & Spirits (West Milford)",
             "cases": 10.0
-          },
-          {
-            "customer": "Usa Wine Traders Club (Bloomingdale)",
-            "cases": 8.0
           },
           {
             "customer": "Best Cellars (Wanaque)",
@@ -1754,6 +1810,10 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "1911 Honey Crisp 5.2 Gal Keg",
+                "date": "9/29/2026"
+              },
+              {
+                "product": "1911 Honey Crisp 5.2 Gal Keg",
                 "date": "9/1/2026"
               },
               {
@@ -1761,8 +1821,8 @@ const PROGRAM_DATA = {
                 "date": "8/20/2026"
               }
             ],
-            "date": "9/1/2026",
-            "accountCumulativeBbl": 0.17,
+            "date": "9/29/2026",
+            "accountCumulativeBbl": 0.33,
             "accountQualifies": false
           },
           {
@@ -1881,13 +1941,13 @@ const PROGRAM_DATA = {
         "draftTargetCount": 98,
         "draftAccounts": [
           {
-            "customer": "Charley's Tavern",
+            "customer": "Industry",
             "cumulativeBbl": 0.33,
             "qualifies": false
           },
           {
-            "customer": "Industry",
-            "cumulativeBbl": 0.17,
+            "customer": "Charley's Tavern",
+            "cumulativeBbl": 0.33,
             "qualifies": false
           },
           {
@@ -1897,18 +1957,18 @@ const PROGRAM_DATA = {
           }
         ],
         "draftAccountsQualified": 0,
-        "caseVolume": 4.0,
+        "caseVolume": 5.0,
         "caseVolumeByAccount": [
+          {
+            "customer": "Industry",
+            "cases": 2.0
+          },
           {
             "customer": "Charley's Tavern",
             "cases": 2.0
           },
           {
             "customer": "Hyde-Away Rest & Tap Room",
-            "cases": 1.0
-          },
-          {
-            "customer": "Industry",
             "cases": 1.0
           }
         ],
@@ -1941,7 +2001,7 @@ const PROGRAM_DATA = {
             "customer": "Buy Rite Of Main St Lodi",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Tropical Pineapple Mango 6/4/16 oz Can",
                 "date": "8/4/2026"
               }
             ],
@@ -1961,7 +2021,7 @@ const PROGRAM_DATA = {
             "customer": "Buy Rite Of Main St Lodi",
             "products": [
               {
-                "product": "1911 Tropical Pineapple Mango 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/4/2026"
               }
             ],
@@ -1981,7 +2041,7 @@ const PROGRAM_DATA = {
             "customer": "Usa Wine Traders Club (Saddle Brook)",
             "products": [
               {
-                "product": "1911 Original 6/4/16 oz Can",
+                "product": "1911 Black Cherry 6/4/16 oz Can",
                 "date": "8/14/2026"
               }
             ],
@@ -2021,7 +2081,7 @@ const PROGRAM_DATA = {
             "customer": "Usa Wine Traders Club (Saddle Brook)",
             "products": [
               {
-                "product": "1911 Black Cherry 6/4/16 oz Can",
+                "product": "1911 Original 6/4/16 oz Can",
                 "date": "8/14/2026"
               }
             ],
@@ -2416,6 +2476,10 @@ const PROGRAM_DATA = {
               },
               {
                 "product": "1911 Half & Half 6/4/16 oz Can",
+                "date": "9/23/2026"
+              },
+              {
+                "product": "1911 Half & Half 6/4/16 oz Can",
                 "date": "8/5/2026"
               }
             ],
@@ -2425,11 +2489,11 @@ const PROGRAM_DATA = {
             "customer": "Bottle & Cork",
             "products": [
               {
-                "product": "1911 Original 6/4/16 oz Can",
+                "product": "1911 Raspberry 6/4/16 oz Can",
                 "date": "9/9/2026"
               },
               {
-                "product": "1911 Original 6/4/16 oz Can",
+                "product": "1911 Raspberry 6/4/16 oz Can",
                 "date": "8/6/2026"
               }
             ],
@@ -2439,11 +2503,11 @@ const PROGRAM_DATA = {
             "customer": "Bottle & Cork",
             "products": [
               {
-                "product": "1911 Raspberry 6/4/16 oz Can",
+                "product": "1911 Original 6/4/16 oz Can",
                 "date": "9/9/2026"
               },
               {
-                "product": "1911 Raspberry 6/4/16 oz Can",
+                "product": "1911 Original 6/4/16 oz Can",
                 "date": "8/6/2026"
               }
             ],
@@ -2581,11 +2645,11 @@ const PROGRAM_DATA = {
         "draftTargetCount": 1,
         "draftAccounts": [],
         "draftAccountsQualified": 0,
-        "caseVolume": 71.0,
+        "caseVolume": 76.0,
         "caseVolumeByAccount": [
           {
             "customer": "Total Wine & More (Totowa)",
-            "cases": 34.0
+            "cases": 39.0
           },
           {
             "customer": "Total Wine & More (River Edge)",
@@ -2601,6 +2665,36 @@ const PROGRAM_DATA = {
       },
       "Derrick Laws": {
         "offPremNew": [
+          {
+            "customer": "Shop Rite Wines/Spirits",
+            "products": [
+              {
+                "product": "1911 Black Cherry 1/12/19.2oz Can",
+                "date": "9/25/2026"
+              }
+            ],
+            "date": "9/25/2026"
+          },
+          {
+            "customer": "Shop Rite Wines/Spirits",
+            "products": [
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "9/25/2026"
+              }
+            ],
+            "date": "9/25/2026"
+          },
+          {
+            "customer": "Shop Rite Wines/Spirits",
+            "products": [
+              {
+                "product": "1911 Half & Half 6/4/16 oz Can",
+                "date": "9/25/2026"
+              }
+            ],
+            "date": "9/25/2026"
+          },
           {
             "customer": "Shop Rite Liq (A)Littlefl",
             "products": [
@@ -2622,7 +2716,7 @@ const PROGRAM_DATA = {
             "date": "8/24/2026"
           }
         ],
-        "offPremNewCount": 2,
+        "offPremNewCount": 5,
         "offPremReorderCount": 2,
         "offPremTargets": [
           {
@@ -2727,14 +2821,18 @@ const PROGRAM_DATA = {
         "draftTargetCount": 3,
         "draftAccounts": [],
         "draftAccountsQualified": 0,
-        "caseVolume": 7.0,
+        "caseVolume": 10.0,
         "caseVolumeByAccount": [
           {
             "customer": "Shop Rite Liq (A)Littlefl",
             "cases": 7.0
+          },
+          {
+            "customer": "Shop Rite Wines/Spirits",
+            "cases": 3.0
           }
         ],
-        "totalNewPlacements": 2,
+        "totalNewPlacements": 5,
         "draftChannelOk": true
       },
       "Dylan Rubino": {
@@ -2991,6 +3089,16 @@ const PROGRAM_DATA = {
             "customer": "Joe Canals",
             "products": [
               {
+                "product": "1911 Rose 6/4/16 oz Can",
+                "date": "8/20/2026"
+              }
+            ],
+            "date": "8/20/2026"
+          },
+          {
+            "customer": "Joe Canals",
+            "products": [
+              {
                 "product": "1911 Black Cherry 6/4/16 oz Can",
                 "date": "8/20/2026"
               }
@@ -3001,7 +3109,7 @@ const PROGRAM_DATA = {
             "customer": "Joe Canals",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/20/2026"
               }
             ],
@@ -3011,7 +3119,7 @@ const PROGRAM_DATA = {
             "customer": "Joe Canals",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/20/2026"
               }
             ],
@@ -3028,16 +3136,6 @@ const PROGRAM_DATA = {
             "date": "8/20/2026"
           },
           {
-            "customer": "Joe Canals",
-            "products": [
-              {
-                "product": "1911 Rose 6/4/16 oz Can",
-                "date": "8/20/2026"
-              }
-            ],
-            "date": "8/20/2026"
-          },
-          {
             "customer": "Buy Rite Wine & Liquor",
             "products": [
               {
@@ -3048,7 +3146,7 @@ const PROGRAM_DATA = {
             "date": "8/18/2026"
           },
           {
-            "customer": "Bottle King Livingston",
+            "customer": "Wine Barrel (P)",
             "products": [
               {
                 "product": "1911 Cider Donut 6/4/16 oz Can",
@@ -3058,7 +3156,7 @@ const PROGRAM_DATA = {
             "date": "8/13/2026"
           },
           {
-            "customer": "Wine Barrel (P)",
+            "customer": "Bottle King Livingston",
             "products": [
               {
                 "product": "1911 Cider Donut 6/4/16 oz Can",
@@ -3246,20 +3344,48 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "9/22/2026"
+              },
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/7/2026"
               }
             ],
-            "date": "8/7/2026"
+            "date": "9/22/2026"
+          },
+          {
+            "customer": "Central Ave Liquors",
+            "products": [
+              {
+                "product": "1911 Original 6/4/16 oz Can",
+                "date": "9/22/2026"
+              }
+            ],
+            "date": "9/22/2026"
           },
           {
             "customer": "Central Ave Liquors",
             "products": [
               {
                 "product": "1911 Rose 6/4/16 oz Can",
+                "date": "9/22/2026"
+              },
+              {
+                "product": "1911 Rose 6/4/16 oz Can",
                 "date": "8/7/2026"
               }
             ],
-            "date": "8/7/2026"
+            "date": "9/22/2026"
+          },
+          {
+            "customer": "Shop Rite/Metro Plaza",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "8/5/2026"
+              }
+            ],
+            "date": "8/5/2026"
           },
           {
             "customer": "Shop Rite/Metro Plaza",
@@ -3275,16 +3401,6 @@ const PROGRAM_DATA = {
             "customer": "Sparrow's Wine & Liq(P) (1224 Hoboken)",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "8/5/2026"
-              }
-            ],
-            "date": "8/5/2026"
-          },
-          {
-            "customer": "Shop Rite/Metro Plaza",
-            "products": [
-              {
                 "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/5/2026"
               }
@@ -3295,7 +3411,7 @@ const PROGRAM_DATA = {
             "customer": "Sparrow's Wine & Liq(P) (1224 Hoboken)",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/5/2026"
               }
             ],
@@ -3372,8 +3488,8 @@ const PROGRAM_DATA = {
             "date": "8/11/2026"
           }
         ],
-        "offPremNewCount": 13,
-        "offPremReorderCount": 15,
+        "offPremNewCount": 14,
+        "offPremReorderCount": 17,
         "offPremTargets": [
           {
             "customer": "Giannone Wines & Liq.(P)",
@@ -3551,8 +3667,12 @@ const PROGRAM_DATA = {
           }
         ],
         "draftAccountsQualified": 0,
-        "caseVolume": 54.0,
+        "caseVolume": 61.0,
         "caseVolumeByAccount": [
+          {
+            "customer": "Central Ave Liquors",
+            "cases": 14.0
+          },
           {
             "customer": "Sparrow's Wine & Liq(P) (1224 Hoboken)",
             "cases": 13.0
@@ -3570,10 +3690,6 @@ const PROGRAM_DATA = {
             "cases": 7.0
           },
           {
-            "customer": "Central Ave Liquors",
-            "cases": 7.0
-          },
-          {
             "customer": "Ani Ramen House",
             "cases": 2.0
           },
@@ -3586,7 +3702,7 @@ const PROGRAM_DATA = {
             "cases": 1.0
           }
         ],
-        "totalNewPlacements": 13,
+        "totalNewPlacements": 14,
         "draftChannelOk": true
       },
       "Javier Melo": {
@@ -3726,6 +3842,26 @@ const PROGRAM_DATA = {
             "date": "9/3/2026"
           },
           {
+            "customer": "Liquor Factory I Landing",
+            "products": [
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "9/22/2026"
+              }
+            ],
+            "date": "9/22/2026"
+          },
+          {
+            "customer": "Liquor Factory I Landing",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "9/22/2026"
+              }
+            ],
+            "date": "9/22/2026"
+          },
+          {
             "customer": "Liquor Factory VI Byram",
             "products": [
               {
@@ -3774,6 +3910,16 @@ const PROGRAM_DATA = {
               }
             ],
             "date": "9/21/2026"
+          },
+          {
+            "customer": "The Right Bottle",
+            "products": [
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "9/16/2026"
+              }
+            ],
+            "date": "9/16/2026"
           },
           {
             "customer": "The Right Bottle",
@@ -3796,40 +3942,30 @@ const PROGRAM_DATA = {
             "date": "9/16/2026"
           },
           {
-            "customer": "The Right Bottle",
-            "products": [
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "9/16/2026"
-              }
-            ],
-            "date": "9/16/2026"
-          },
-          {
-            "customer": "Liquor Factory V Andover",
-            "products": [
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "8/31/2026"
-              }
-            ],
-            "date": "8/31/2026"
-          },
-          {
-            "customer": "Liquor Factory V Andover",
-            "products": [
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "8/31/2026"
-              }
-            ],
-            "date": "8/31/2026"
-          },
-          {
             "customer": "Liquor Factory III Sparta",
             "products": [
               {
                 "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "8/31/2026"
+              }
+            ],
+            "date": "8/31/2026"
+          },
+          {
+            "customer": "Liquor Factory V Andover",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "8/31/2026"
+              }
+            ],
+            "date": "8/31/2026"
+          },
+          {
+            "customer": "Liquor Factory V Andover",
+            "products": [
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/31/2026"
               }
             ],
@@ -3880,20 +4016,20 @@ const PROGRAM_DATA = {
             "date": "8/3/2026"
           },
           {
-            "customer": "Liquor Factory VI Byram",
+            "customer": "Liquor Factory I Landing",
             "products": [
               {
-                "product": "1911 Original 6/4/16 oz Can",
+                "product": "1911 Tropical Pineapple Mango 6/4/16 oz Can",
                 "date": "8/3/2026"
               }
             ],
             "date": "8/3/2026"
           },
           {
-            "customer": "Liquor Factory I Landing",
+            "customer": "Liquor Factory VI Byram",
             "products": [
               {
-                "product": "1911 Tropical Pineapple Mango 6/4/16 oz Can",
+                "product": "1911 Original 6/4/16 oz Can",
                 "date": "8/3/2026"
               }
             ],
@@ -3930,16 +4066,6 @@ const PROGRAM_DATA = {
             "date": "8/25/2026"
           },
           {
-            "customer": "Liquor Factory III Sparta",
-            "products": [
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "8/17/2026"
-              }
-            ],
-            "date": "8/17/2026"
-          },
-          {
             "customer": "Liquor Factory IV Hopatcong",
             "products": [
               {
@@ -3958,9 +4084,19 @@ const PROGRAM_DATA = {
               }
             ],
             "date": "8/17/2026"
+          },
+          {
+            "customer": "Liquor Factory III Sparta",
+            "products": [
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "8/17/2026"
+              }
+            ],
+            "date": "8/17/2026"
           }
         ],
-        "offPremNewCount": 22,
+        "offPremNewCount": 24,
         "offPremReorderCount": 11,
         "offPremTargets": [
           {
@@ -4052,7 +4188,7 @@ const PROGRAM_DATA = {
         "draftTargetCount": 0,
         "draftAccounts": [],
         "draftAccountsQualified": 0,
-        "caseVolume": 78.0,
+        "caseVolume": 83.0,
         "caseVolumeByAccount": [
           {
             "customer": "Liquor Factory VI Byram",
@@ -4065,6 +4201,10 @@ const PROGRAM_DATA = {
           {
             "customer": "USA Wine Traders Club Of Newton (A)",
             "cases": 13.0
+          },
+          {
+            "customer": "Liquor Factory I Landing",
+            "cases": 10.0
           },
           {
             "customer": "Liquor Factory V Andover",
@@ -4085,27 +4225,13 @@ const PROGRAM_DATA = {
           {
             "customer": "Liquor Factory IV Hopatcong",
             "cases": 5.0
-          },
-          {
-            "customer": "Liquor Factory I Landing",
-            "cases": 5.0
           }
         ],
-        "totalNewPlacements": 22,
+        "totalNewPlacements": 24,
         "draftChannelOk": false
       },
       "Jim Heaney": {
         "offPremNew": [
-          {
-            "customer": "Liquor Mart (North Arlington)",
-            "products": [
-              {
-                "product": "1911 Tropical Pineapple Mango 6/4/16 oz Can",
-                "date": "9/21/2026"
-              }
-            ],
-            "date": "9/21/2026"
-          },
           {
             "customer": "Liquor Mart (North Arlington)",
             "products": [
@@ -4115,6 +4241,16 @@ const PROGRAM_DATA = {
               }
             ],
             "date": "8/7/2026"
+          },
+          {
+            "customer": "Clifton Commons S & W",
+            "products": [
+              {
+                "product": "1911 Black Cherry 1/12/19.2oz Can",
+                "date": "8/31/2026"
+              }
+            ],
+            "date": "8/31/2026"
           },
           {
             "customer": "Clifton Commons S & W",
@@ -4134,16 +4270,6 @@ const PROGRAM_DATA = {
             "customer": "Clifton Commons S & W",
             "products": [
               {
-                "product": "1911 Black Cherry 1/12/19.2oz Can",
-                "date": "8/31/2026"
-              }
-            ],
-            "date": "8/31/2026"
-          },
-          {
-            "customer": "Clifton Commons S & W",
-            "products": [
-              {
                 "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/10/2026"
               }
@@ -4151,7 +4277,7 @@ const PROGRAM_DATA = {
             "date": "8/10/2026"
           }
         ],
-        "offPremNewCount": 5,
+        "offPremNewCount": 4,
         "offPremReorderCount": 3,
         "offPremTargets": [
           {
@@ -4248,18 +4374,18 @@ const PROGRAM_DATA = {
         "draftTargetCount": 1,
         "draftAccounts": [],
         "draftAccountsQualified": 0,
-        "caseVolume": 12.0,
+        "caseVolume": 11.0,
         "caseVolumeByAccount": [
-          {
-            "customer": "Liquor Mart (North Arlington)",
-            "cases": 6.0
-          },
           {
             "customer": "Clifton Commons S & W",
             "cases": 6.0
+          },
+          {
+            "customer": "Liquor Mart (North Arlington)",
+            "cases": 5.0
           }
         ],
-        "totalNewPlacements": 5,
+        "totalNewPlacements": 4,
         "draftChannelOk": true
       },
       "John O'Donoghue": {
@@ -4268,7 +4394,7 @@ const PROGRAM_DATA = {
             "customer": "Sandy's Wine & Spirits (Flanders)",
             "products": [
               {
-                "product": "1911 Black Cherry 6/4/16 oz Can",
+                "product": "1911 Tropical Pineapple Mango 6/4/16 oz Can",
                 "date": "9/9/2026"
               }
             ],
@@ -4278,7 +4404,7 @@ const PROGRAM_DATA = {
             "customer": "Sandy's Wine & Spirits (Flanders)",
             "products": [
               {
-                "product": "1911 Tropical Pineapple Mango 6/4/16 oz Can",
+                "product": "1911 Black Cherry 6/4/16 oz Can",
                 "date": "9/9/2026"
               }
             ],
@@ -4315,14 +4441,44 @@ const PROGRAM_DATA = {
             "date": "9/4/2026"
           },
           {
-            "customer": "Joe Canal's Disc Liq",
+            "customer": "The Village Liquor Store_2",
             "products": [
               {
-                "product": "1911 Honey Crisp 6/4/16 oz Can",
-                "date": "9/18/2026"
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "9/24/2026"
+              },
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "9/17/2026"
+              },
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "8/6/2026"
               }
             ],
-            "date": "9/18/2026"
+            "date": "9/24/2026"
+          },
+          {
+            "customer": "The Village Liquor Store_2",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "9/24/2026"
+              },
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "9/17/2026"
+              },
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "8/6/2026"
+              },
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "8/28/2026"
+              }
+            ],
+            "date": "9/24/2026"
           },
           {
             "customer": "Partners Discount Liquors",
@@ -4334,6 +4490,36 @@ const PROGRAM_DATA = {
               {
                 "product": "1911 Honey Crisp 6/4/16 oz Can",
                 "date": "8/13/2026"
+              }
+            ],
+            "date": "9/18/2026"
+          },
+          {
+            "customer": "Joe Canal's Disc Liq",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "9/18/2026"
+              }
+            ],
+            "date": "9/18/2026"
+          },
+          {
+            "customer": "Florham Park Liquors",
+            "products": [
+              {
+                "product": "1911 Raspberry 6/4/16 oz Can",
+                "date": "9/18/2026"
+              }
+            ],
+            "date": "9/18/2026"
+          },
+          {
+            "customer": "Joe Canal's Disc Liq",
+            "products": [
+              {
+                "product": "1911 Honey Crisp 6/4/16 oz Can",
+                "date": "9/18/2026"
               }
             ],
             "date": "9/18/2026"
@@ -4361,58 +4547,6 @@ const PROGRAM_DATA = {
               }
             ],
             "date": "9/18/2026"
-          },
-          {
-            "customer": "Florham Park Liquors",
-            "products": [
-              {
-                "product": "1911 Raspberry 6/4/16 oz Can",
-                "date": "9/18/2026"
-              }
-            ],
-            "date": "9/18/2026"
-          },
-          {
-            "customer": "Joe Canal's Disc Liq",
-            "products": [
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "9/18/2026"
-              }
-            ],
-            "date": "9/18/2026"
-          },
-          {
-            "customer": "The Village Liquor Store_2",
-            "products": [
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "9/17/2026"
-              },
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "8/6/2026"
-              },
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "8/28/2026"
-              }
-            ],
-            "date": "9/17/2026"
-          },
-          {
-            "customer": "The Village Liquor Store_2",
-            "products": [
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "9/17/2026"
-              },
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "8/6/2026"
-              }
-            ],
-            "date": "9/17/2026"
           },
           {
             "customer": "Bottle King Morris Plains",
@@ -4450,7 +4584,7 @@ const PROGRAM_DATA = {
             "customer": "Best Cellars(Ledgewood)",
             "products": [
               {
-                "product": "1911 Black Cherry 6/4/16 oz Can",
+                "product": "1911 Raspberry 6/4/16 oz Can",
                 "date": "9/10/2026"
               }
             ],
@@ -4460,7 +4594,7 @@ const PROGRAM_DATA = {
             "customer": "Best Cellars(Ledgewood)",
             "products": [
               {
-                "product": "1911 Raspberry 6/4/16 oz Can",
+                "product": "1911 Black Cherry 6/4/16 oz Can",
                 "date": "9/10/2026"
               }
             ],
@@ -4470,7 +4604,7 @@ const PROGRAM_DATA = {
             "customer": "Florham Park Liquors",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "9/1/2026"
               }
             ],
@@ -4480,7 +4614,7 @@ const PROGRAM_DATA = {
             "customer": "Florham Park Liquors",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "9/1/2026"
               }
             ],
@@ -4490,7 +4624,7 @@ const PROGRAM_DATA = {
             "customer": "Sandy's Wine & Spirits (Flanders)",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/7/2026"
               }
             ],
@@ -4500,7 +4634,7 @@ const PROGRAM_DATA = {
             "customer": "Sandy's Wine & Spirits (Flanders)",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/7/2026"
               }
             ],
@@ -4510,7 +4644,7 @@ const PROGRAM_DATA = {
             "customer": "Wegmans",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/4/2026"
               }
             ],
@@ -4520,21 +4654,11 @@ const PROGRAM_DATA = {
             "customer": "Wegmans",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/4/2026"
               }
             ],
             "date": "8/4/2026"
-          },
-          {
-            "customer": "Shop Rite Liq Parsippany",
-            "products": [
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "8/27/2026"
-              }
-            ],
-            "date": "8/27/2026"
           },
           {
             "customer": "Shop Rite Liq Parsippany",
@@ -4547,14 +4671,14 @@ const PROGRAM_DATA = {
             "date": "8/27/2026"
           },
           {
-            "customer": "Shop Rite Wines & Spirits of Roxbury#832",
+            "customer": "Shop Rite Liq Parsippany",
             "products": [
               {
                 "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "8/26/2026"
+                "date": "8/27/2026"
               }
             ],
-            "date": "8/26/2026"
+            "date": "8/27/2026"
           },
           {
             "customer": "Shop Rite Wines & Spirits of Roxbury#832",
@@ -4577,10 +4701,20 @@ const PROGRAM_DATA = {
             "date": "8/26/2026"
           },
           {
-            "customer": "Partners Discount Liquors",
+            "customer": "Shop Rite Wines & Spirits of Roxbury#832",
             "products": [
               {
                 "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "8/26/2026"
+              }
+            ],
+            "date": "8/26/2026"
+          },
+          {
+            "customer": "Partners Discount Liquors",
+            "products": [
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/13/2026"
               }
             ],
@@ -4600,7 +4734,7 @@ const PROGRAM_DATA = {
             "customer": "Partners Discount Liquors",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/13/2026"
               }
             ],
@@ -4628,7 +4762,7 @@ const PROGRAM_DATA = {
           }
         ],
         "offPremNewCount": 33,
-        "offPremReorderCount": 42,
+        "offPremReorderCount": 45,
         "offPremTargets": [
           {
             "customer": "Gary's Wine & Marketplace (Madison)",
@@ -4800,8 +4934,12 @@ const PROGRAM_DATA = {
         "draftTargetCount": 42,
         "draftAccounts": [],
         "draftAccountsQualified": 0,
-        "caseVolume": 136.0,
+        "caseVolume": 148.0,
         "caseVolumeByAccount": [
+          {
+            "customer": "The Village Liquor Store_2",
+            "cases": 24.0
+          },
           {
             "customer": "Wegmans",
             "cases": 23.0
@@ -4809,10 +4947,6 @@ const PROGRAM_DATA = {
           {
             "customer": "Shop Rite Liquors",
             "cases": 20.0
-          },
-          {
-            "customer": "The Village Liquor Store_2",
-            "cases": 17.0
           },
           {
             "customer": "Partners Discount Liquors",
@@ -4835,6 +4969,10 @@ const PROGRAM_DATA = {
             "cases": 7.0
           },
           {
+            "customer": "Bottle King (Z) Chatham",
+            "cases": 6.0
+          },
+          {
             "customer": "Best Cellars(Ledgewood)",
             "cases": 5.0
           },
@@ -4847,12 +4985,12 @@ const PROGRAM_DATA = {
             "cases": 5.0
           },
           {
-            "customer": "Bottle King (Z) Chatham",
+            "customer": "Vine Republic (Berkeley Height)",
             "cases": 3.0
           },
           {
-            "customer": "Vine Republic (Berkeley Height)",
-            "cases": 3.0
+            "customer": "Randolph Liquors",
+            "cases": 2.0
           },
           {
             "customer": "Joe Canal's Disc Liq",
@@ -4891,6 +5029,36 @@ const PROGRAM_DATA = {
               }
             ],
             "date": "9/3/2026"
+          },
+          {
+            "customer": "Shop Rite Wine & Spirits Stanhope",
+            "products": [
+              {
+                "product": "1911 Rose 6/4/16 oz Can",
+                "date": "9/23/2026"
+              }
+            ],
+            "date": "9/23/2026"
+          },
+          {
+            "customer": "Montville Wine & Spirits",
+            "products": [
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "9/23/2026"
+              }
+            ],
+            "date": "9/23/2026"
+          },
+          {
+            "customer": "Shop Rite Wine & Spirits Stanhope",
+            "products": [
+              {
+                "product": "1911 Black Cherry 6/4/16 oz Can",
+                "date": "9/23/2026"
+              }
+            ],
+            "date": "9/23/2026"
           },
           {
             "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
@@ -4954,7 +5122,7 @@ const PROGRAM_DATA = {
             "customer": "Liquor Outlet",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/26/2026"
               }
             ],
@@ -4974,31 +5142,11 @@ const PROGRAM_DATA = {
             "customer": "Liquor Outlet",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/26/2026"
               }
             ],
             "date": "8/26/2026"
-          },
-          {
-            "customer": "Shoppers Disc Liquor",
-            "products": [
-              {
-                "product": "1911 Black Cherry 1/12/19.2oz Can",
-                "date": "8/25/2026"
-              }
-            ],
-            "date": "8/25/2026"
-          },
-          {
-            "customer": "Shoppers Disc Liquor",
-            "products": [
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "8/25/2026"
-              }
-            ],
-            "date": "8/25/2026"
           },
           {
             "customer": "Shoppers Disc Liquor",
@@ -5011,10 +5159,30 @@ const PROGRAM_DATA = {
             "date": "8/25/2026"
           },
           {
-            "customer": "Midtown Liq",
+            "customer": "Shoppers Disc Liquor",
             "products": [
               {
                 "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "8/25/2026"
+              }
+            ],
+            "date": "8/25/2026"
+          },
+          {
+            "customer": "Shoppers Disc Liquor",
+            "products": [
+              {
+                "product": "1911 Black Cherry 1/12/19.2oz Can",
+                "date": "8/25/2026"
+              }
+            ],
+            "date": "8/25/2026"
+          },
+          {
+            "customer": "Midtown Liq",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/17/2026"
               }
             ],
@@ -5024,7 +5192,7 @@ const PROGRAM_DATA = {
             "customer": "Midtown Liq",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/17/2026"
               }
             ],
@@ -5061,8 +5229,8 @@ const PROGRAM_DATA = {
             "date": "8/10/2026"
           }
         ],
-        "offPremNewCount": 18,
-        "offPremReorderCount": 12,
+        "offPremNewCount": 21,
+        "offPremReorderCount": 16,
         "offPremTargets": [
           {
             "customer": "Mountain Lakes Wine & Liquor",
@@ -5134,23 +5302,23 @@ const PROGRAM_DATA = {
         "draftTargetCount": 1,
         "draftAccounts": [],
         "draftAccountsQualified": 0,
-        "caseVolume": 79.0,
+        "caseVolume": 86.0,
         "caseVolumeByAccount": [
           {
             "customer": "Shop Rite Liq (A)Wharton",
             "cases": 18.0
           },
           {
-            "customer": "Liquor Outlet",
-            "cases": 16.0
+            "customer": "Shop Rite Wine & Spirits Stanhope",
+            "cases": 17.0
           },
           {
             "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
             "cases": 16.0
           },
           {
-            "customer": "Shop Rite Wine & Spirits Stanhope",
-            "cases": 12.0
+            "customer": "Liquor Outlet",
+            "cases": 16.0
           },
           {
             "customer": "House of Wine & Liquor - Boonton",
@@ -5165,11 +5333,15 @@ const PROGRAM_DATA = {
             "cases": 5.0
           },
           {
+            "customer": "Montville Wine & Spirits",
+            "cases": 2.0
+          },
+          {
             "customer": "Stanhope Liquors",
             "cases": 1.0
           }
         ],
-        "totalNewPlacements": 18,
+        "totalNewPlacements": 21,
         "draftChannelOk": true
       },
       "Matt Powierski": {
@@ -5345,6 +5517,48 @@ const PROGRAM_DATA = {
       "Michael Harboy": {
         "offPremNew": [
           {
+            "customer": "Shoprite Wine & Spirits",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "9/23/2026"
+              },
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "8/5/2026"
+              }
+            ],
+            "date": "9/23/2026"
+          },
+          {
+            "customer": "Shoprite Wine & Spirits",
+            "products": [
+              {
+                "product": "1911 Black Cherry 6/4/16 oz Can",
+                "date": "9/23/2026"
+              },
+              {
+                "product": "1911 Black Cherry 6/4/16 oz Can",
+                "date": "8/5/2026"
+              }
+            ],
+            "date": "9/23/2026"
+          },
+          {
+            "customer": "Shoprite Wine & Spirits",
+            "products": [
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "9/23/2026"
+              },
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "8/5/2026"
+              }
+            ],
+            "date": "9/23/2026"
+          },
+          {
             "customer": "Kinnelon Country Wine & Liquor",
             "products": [
               {
@@ -5378,16 +5592,6 @@ const PROGRAM_DATA = {
             "customer": "Shays Liquors",
             "products": [
               {
-                "product": "1911 Cranberry 6/4/16 oz Can",
-                "date": "9/15/2026"
-              }
-            ],
-            "date": "9/15/2026"
-          },
-          {
-            "customer": "Shays Liquors",
-            "products": [
-              {
                 "product": "1911 Black Cherry 6/4/16 oz Can",
                 "date": "9/15/2026"
               }
@@ -5408,6 +5612,16 @@ const PROGRAM_DATA = {
             "customer": "Shays Liquors",
             "products": [
               {
+                "product": "1911 Cranberry 6/4/16 oz Can",
+                "date": "9/15/2026"
+              }
+            ],
+            "date": "9/15/2026"
+          },
+          {
+            "customer": "Shays Liquors",
+            "products": [
+              {
                 "product": "1911 Honey Crisp 6/4/16 oz Can",
                 "date": "9/15/2026"
               }
@@ -5418,7 +5632,37 @@ const PROGRAM_DATA = {
             "customer": "B & B Liquors (West Orange)",
             "products": [
               {
+                "product": "1911 Honey Crisp 6/4/16 oz Can",
+                "date": "8/6/2026"
+              }
+            ],
+            "date": "8/6/2026"
+          },
+          {
+            "customer": "Total Wine & More (West Orange)",
+            "products": [
+              {
                 "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "8/6/2026"
+              }
+            ],
+            "date": "8/6/2026"
+          },
+          {
+            "customer": "B & B Liquors (West Orange)",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "8/6/2026"
+              }
+            ],
+            "date": "8/6/2026"
+          },
+          {
+            "customer": "B & B Liquors (West Orange)",
+            "products": [
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/6/2026"
               }
             ],
@@ -5443,66 +5687,6 @@ const PROGRAM_DATA = {
               }
             ],
             "date": "8/6/2026"
-          },
-          {
-            "customer": "B & B Liquors (West Orange)",
-            "products": [
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "8/6/2026"
-              }
-            ],
-            "date": "8/6/2026"
-          },
-          {
-            "customer": "B & B Liquors (West Orange)",
-            "products": [
-              {
-                "product": "1911 Honey Crisp 6/4/16 oz Can",
-                "date": "8/6/2026"
-              }
-            ],
-            "date": "8/6/2026"
-          },
-          {
-            "customer": "Total Wine & More (West Orange)",
-            "products": [
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "8/6/2026"
-              }
-            ],
-            "date": "8/6/2026"
-          },
-          {
-            "customer": "Shoprite Wine & Spirits",
-            "products": [
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "8/5/2026"
-              }
-            ],
-            "date": "8/5/2026"
-          },
-          {
-            "customer": "Shoprite Wine & Spirits",
-            "products": [
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "8/5/2026"
-              }
-            ],
-            "date": "8/5/2026"
-          },
-          {
-            "customer": "Shoprite Wine & Spirits",
-            "products": [
-              {
-                "product": "1911 Black Cherry 6/4/16 oz Can",
-                "date": "8/5/2026"
-              }
-            ],
-            "date": "8/5/2026"
           },
           {
             "customer": "A&M Liquor",
@@ -5555,17 +5739,7 @@ const PROGRAM_DATA = {
             "date": "8/19/2026"
           },
           {
-            "customer": "Krauser's Liquor Locker",
-            "products": [
-              {
-                "product": "1911 Original 6/4/16 oz Can",
-                "date": "8/19/2026"
-              }
-            ],
-            "date": "8/19/2026"
-          },
-          {
-            "customer": "Krauser's Liquor Locker",
+            "customer": "Verona Wine Cellar",
             "products": [
               {
                 "product": "1911 Cider Donut 6/4/16 oz Can",
@@ -5585,10 +5759,10 @@ const PROGRAM_DATA = {
             "date": "8/19/2026"
           },
           {
-            "customer": "Verona Wine Cellar",
+            "customer": "Krauser's Liquor Locker",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Original 6/4/16 oz Can",
                 "date": "8/19/2026"
               }
             ],
@@ -5603,10 +5777,20 @@ const PROGRAM_DATA = {
               }
             ],
             "date": "8/19/2026"
+          },
+          {
+            "customer": "Krauser's Liquor Locker",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "8/19/2026"
+              }
+            ],
+            "date": "8/19/2026"
           }
         ],
         "offPremNewCount": 26,
-        "offPremReorderCount": 10,
+        "offPremReorderCount": 11,
         "offPremTargets": [
           {
             "customer": "Wolfson Market",
@@ -5784,14 +5968,14 @@ const PROGRAM_DATA = {
           }
         ],
         "draftAccountsQualified": 0,
-        "caseVolume": 68.0,
+        "caseVolume": 74.0,
         "caseVolumeByAccount": [
           {
-            "customer": "Total Wine & More (West Orange)",
-            "cases": 9.0
+            "customer": "Shoprite Wine & Spirits",
+            "cases": 15.0
           },
           {
-            "customer": "Shoprite Wine & Spirits",
+            "customer": "Total Wine & More (West Orange)",
             "cases": 9.0
           },
           {
@@ -5898,16 +6082,6 @@ const PROGRAM_DATA = {
             "customer": "Fair Lawn Wine & Spirits",
             "products": [
               {
-                "product": "1911 Honey Crisp 6/4/16 oz Can",
-                "date": "9/18/2026"
-              }
-            ],
-            "date": "9/18/2026"
-          },
-          {
-            "customer": "Fair Lawn Wine & Spirits",
-            "products": [
-              {
                 "product": "1911 Original 6/4/16 oz Can",
                 "date": "9/18/2026"
               }
@@ -5919,6 +6093,16 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "9/18/2026"
+              }
+            ],
+            "date": "9/18/2026"
+          },
+          {
+            "customer": "Fair Lawn Wine & Spirits",
+            "products": [
+              {
+                "product": "1911 Honey Crisp 6/4/16 oz Can",
                 "date": "9/18/2026"
               }
             ],
@@ -5938,7 +6122,7 @@ const PROGRAM_DATA = {
             "customer": "Waldwick Wine/Spirits",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/7/2026"
               }
             ],
@@ -5948,7 +6132,7 @@ const PROGRAM_DATA = {
             "customer": "Waldwick Wine/Spirits",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/7/2026"
               }
             ],
@@ -5988,24 +6172,6 @@ const PROGRAM_DATA = {
             "customer": "Franklin Lake Liq",
             "products": [
               {
-                "product": "1911 Honey Crisp 6/4/16 oz Can",
-                "date": "8/25/2026"
-              },
-              {
-                "product": "1911 Honey Crisp 6/4/16 oz Can",
-                "date": "8/20/2026"
-              },
-              {
-                "product": "1911 Honey Crisp 6/4/16 oz Can",
-                "date": "8/19/2026"
-              }
-            ],
-            "date": "8/25/2026"
-          },
-          {
-            "customer": "Franklin Lake Liq",
-            "products": [
-              {
                 "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/25/2026"
               },
@@ -6039,34 +6205,22 @@ const PROGRAM_DATA = {
             "date": "8/25/2026"
           },
           {
-            "customer": "Oakland Wine (A)",
+            "customer": "Franklin Lake Liq",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "8/21/2026"
-              }
-            ],
-            "date": "8/21/2026"
-          },
-          {
-            "customer": "Waldwick Wine/Spirits",
-            "products": [
+                "product": "1911 Honey Crisp 6/4/16 oz Can",
+                "date": "8/25/2026"
+              },
               {
-                "product": "1911 Raspberry 6/4/16 oz Can",
-                "date": "8/21/2026"
-              }
-            ],
-            "date": "8/21/2026"
-          },
-          {
-            "customer": "Waldwick Wine/Spirits",
-            "products": [
+                "product": "1911 Honey Crisp 6/4/16 oz Can",
+                "date": "8/20/2026"
+              },
               {
-                "product": "1911 Rose 6/4/16 oz Can",
-                "date": "8/21/2026"
+                "product": "1911 Honey Crisp 6/4/16 oz Can",
+                "date": "8/19/2026"
               }
             ],
-            "date": "8/21/2026"
+            "date": "8/25/2026"
           },
           {
             "customer": "Waldwick Wine/Spirits",
@@ -6092,7 +6246,37 @@ const PROGRAM_DATA = {
             "customer": "Waldwick Wine/Spirits",
             "products": [
               {
+                "product": "1911 Rose 6/4/16 oz Can",
+                "date": "8/21/2026"
+              }
+            ],
+            "date": "8/21/2026"
+          },
+          {
+            "customer": "Waldwick Wine/Spirits",
+            "products": [
+              {
                 "product": "1911 Variety 3/8/12 oz Can",
+                "date": "8/21/2026"
+              }
+            ],
+            "date": "8/21/2026"
+          },
+          {
+            "customer": "Waldwick Wine/Spirits",
+            "products": [
+              {
+                "product": "1911 Raspberry 6/4/16 oz Can",
+                "date": "8/21/2026"
+              }
+            ],
+            "date": "8/21/2026"
+          },
+          {
+            "customer": "Oakland Wine (A)",
+            "products": [
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/21/2026"
               }
             ],
@@ -6126,7 +6310,7 @@ const PROGRAM_DATA = {
             "customer": "Ridgewood Super Cellar",
             "products": [
               {
-                "product": "1911 Original 6/4/16 oz Can",
+                "product": "1911 Honey Crisp 6/4/16 oz Can",
                 "date": "8/19/2026"
               }
             ],
@@ -6146,7 +6330,7 @@ const PROGRAM_DATA = {
             "customer": "Ridgewood Super Cellar",
             "products": [
               {
-                "product": "1911 Honey Crisp 6/4/16 oz Can",
+                "product": "1911 Original 6/4/16 oz Can",
                 "date": "8/19/2026"
               }
             ],
@@ -6496,11 +6680,11 @@ const PROGRAM_DATA = {
           }
         ],
         "draftAccountsQualified": 0,
-        "caseVolume": 9.0,
+        "caseVolume": 11.0,
         "caseVolumeByAccount": [
           {
             "customer": "Native Union Club",
-            "cases": 5.0
+            "cases": 7.0
           },
           {
             "customer": "Rebar (Z)",
@@ -6655,7 +6839,7 @@ const PROGRAM_DATA = {
         "offPremTargetCount": 2,
         "draftNew": [
           {
-            "customer": "Rivervale Country Club",
+            "customer": "Tenafly Pizza (Z)",
             "products": [
               {
                 "product": "1911 Honey Crisp 5.2 Gal Keg",
@@ -6667,7 +6851,7 @@ const PROGRAM_DATA = {
             "accountQualifies": false
           },
           {
-            "customer": "Tenafly Pizza (Z)",
+            "customer": "Rivervale Country Club",
             "products": [
               {
                 "product": "1911 Honey Crisp 5.2 Gal Keg",
@@ -6771,12 +6955,12 @@ const PROGRAM_DATA = {
             "qualifies": false
           },
           {
-            "customer": "Rivervale Country Club",
+            "customer": "Tenafly Pizza (Z)",
             "cumulativeBbl": 0.17,
             "qualifies": false
           },
           {
-            "customer": "Tenafly Pizza (Z)",
+            "customer": "Rivervale Country Club",
             "cumulativeBbl": 0.17,
             "qualifies": false
           }
@@ -6797,11 +6981,11 @@ const PROGRAM_DATA = {
             "cases": 3.0
           },
           {
-            "customer": "Rivervale Country Club",
+            "customer": "Tenafly Pizza (Z)",
             "cases": 1.0
           },
           {
-            "customer": "Tenafly Pizza (Z)",
+            "customer": "Rivervale Country Club",
             "cases": 1.0
           }
         ],
@@ -6833,6 +7017,110 @@ const PROGRAM_DATA = {
             "date": "9/3/2026"
           },
           {
+            "customer": "Stew Leonard's Wines & Spirits of Clifton",
+            "products": [
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "9/24/2026"
+              }
+            ],
+            "date": "9/24/2026"
+          },
+          {
+            "customer": "Stew Leonard's Wines & Spirits of Clifton",
+            "products": [
+              {
+                "product": "1911 Tropical Pineapple Mango 6/4/16 oz Can",
+                "date": "9/24/2026"
+              }
+            ],
+            "date": "9/24/2026"
+          },
+          {
+            "customer": "Stew Leonard's Wines & Spirits of Clifton",
+            "products": [
+              {
+                "product": "1911 Half & Half 6/4/16 oz Can",
+                "date": "9/24/2026"
+              }
+            ],
+            "date": "9/24/2026"
+          },
+          {
+            "customer": "City Supermarket",
+            "products": [
+              {
+                "product": "1911 Honey Crisp 6/4/16 oz Can",
+                "date": "9/22/2026"
+              }
+            ],
+            "date": "9/22/2026"
+          },
+          {
+            "customer": "Stew Leonard's(A) Paramus Wine",
+            "products": [
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "9/22/2026"
+              },
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "9/17/2026"
+              }
+            ],
+            "date": "9/22/2026"
+          },
+          {
+            "customer": "Shop-Rite Liq Lyndhurst",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "9/22/2026"
+              }
+            ],
+            "date": "9/22/2026"
+          },
+          {
+            "customer": "City Supermarket",
+            "products": [
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "9/22/2026"
+              }
+            ],
+            "date": "9/22/2026"
+          },
+          {
+            "customer": "City Supermarket",
+            "products": [
+              {
+                "product": "1911 Black Cherry 6/4/16 oz Can",
+                "date": "9/22/2026"
+              }
+            ],
+            "date": "9/22/2026"
+          },
+          {
+            "customer": "Shop-Rite Liq Lyndhurst",
+            "products": [
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "9/22/2026"
+              }
+            ],
+            "date": "9/22/2026"
+          },
+          {
+            "customer": "Shop-Rite Liq Lyndhurst",
+            "products": [
+              {
+                "product": "1911 Original 6/4/16 oz Can",
+                "date": "9/22/2026"
+              }
+            ],
+            "date": "9/22/2026"
+          },
+          {
             "customer": "Home Wines & Liq 75 (A) (South Hackensack)",
             "products": [
               {
@@ -6841,16 +7129,6 @@ const PROGRAM_DATA = {
               }
             ],
             "date": "9/21/2026"
-          },
-          {
-            "customer": "Stew Leonard's(A) Paramus Wine",
-            "products": [
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "9/17/2026"
-              }
-            ],
-            "date": "9/17/2026"
           },
           {
             "customer": "Stew Leonard's(A) Paramus Wine",
@@ -6918,7 +7196,7 @@ const PROGRAM_DATA = {
             "customer": "Shop Rite Liq(A) Fair Lwn",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/24/2026"
               }
             ],
@@ -6928,21 +7206,11 @@ const PROGRAM_DATA = {
             "customer": "Shop Rite Liq(A) Fair Lwn",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/24/2026"
               }
             ],
             "date": "8/24/2026"
-          },
-          {
-            "customer": "Shop Rite Liq (Paramus)",
-            "products": [
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "8/20/2026"
-              }
-            ],
-            "date": "8/20/2026"
           },
           {
             "customer": "Stew Leonard's(A) Paramus Wine",
@@ -6959,6 +7227,16 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "1911 Honey Crisp 6/4/16 oz Can",
+                "date": "8/20/2026"
+              }
+            ],
+            "date": "8/20/2026"
+          },
+          {
+            "customer": "Shop Rite Liq (Paramus)",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/20/2026"
               }
             ],
@@ -6998,7 +7276,7 @@ const PROGRAM_DATA = {
             "customer": "Food Universe Marketplace",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Black Cherry 1/12/19.2oz Can",
                 "date": "8/10/2026"
               }
             ],
@@ -7008,7 +7286,7 @@ const PROGRAM_DATA = {
             "customer": "Food Universe Marketplace",
             "products": [
               {
-                "product": "1911 Black Cherry 1/12/19.2oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/10/2026"
               }
             ],
@@ -7025,7 +7303,7 @@ const PROGRAM_DATA = {
             "date": "8/10/2026"
           }
         ],
-        "offPremNewCount": 19,
+        "offPremNewCount": 28,
         "offPremReorderCount": 12,
         "offPremTargets": [
           {
@@ -7043,10 +7321,6 @@ const PROGRAM_DATA = {
           {
             "customer": "Budy's Wine & Liq (A)",
             "cases2026": 13391.0
-          },
-          {
-            "customer": "City Supermarket",
-            "cases2026": 11028.0
           },
           {
             "customer": "Wine Country Of Saddle Brook (A)",
@@ -7089,7 +7363,7 @@ const PROGRAM_DATA = {
             "cases2026": 85.0
           }
         ],
-        "offPremTargetCount": 15,
+        "offPremTargetCount": 14,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -7102,15 +7376,15 @@ const PROGRAM_DATA = {
         "draftTargetCount": 1,
         "draftAccounts": [],
         "draftAccountsQualified": 0,
-        "caseVolume": 83.0,
+        "caseVolume": 95.0,
         "caseVolumeByAccount": [
           {
             "customer": "Stew Leonard's(A) Paramus Wine",
-            "cases": 24.0
+            "cases": 27.0
           },
           {
             "customer": "Stew Leonard's Wines & Spirits of Clifton",
-            "cases": 19.0
+            "cases": 22.0
           },
           {
             "customer": "Food Universe Marketplace",
@@ -7133,6 +7407,14 @@ const PROGRAM_DATA = {
             "cases": 4.0
           },
           {
+            "customer": "City Supermarket",
+            "cases": 3.0
+          },
+          {
+            "customer": "Shop-Rite Liq Lyndhurst",
+            "cases": 3.0
+          },
+          {
             "customer": "Shop Rite Liq (Paramus)",
             "cases": 2.0
           },
@@ -7141,7 +7423,7 @@ const PROGRAM_DATA = {
             "cases": 2.0
           }
         ],
-        "totalNewPlacements": 19,
+        "totalNewPlacements": 28,
         "draftChannelOk": true
       },
       "Robin Feldman": {
@@ -7265,62 +7547,76 @@ const PROGRAM_DATA = {
             "date": "9/25/2026"
           },
           {
-            "customer": "Beverage Barn (A)",
-            "products": [
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "9/18/2026"
-              }
-            ],
-            "date": "9/18/2026"
-          },
-          {
-            "customer": "Beverage Barn (A)",
+            "customer": "Royal Wine & Spirits II",
             "products": [
               {
                 "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "9/18/2026"
+                "date": "9/23/2026"
               }
             ],
-            "date": "9/18/2026"
+            "date": "9/23/2026"
           },
           {
-            "customer": "Bottle King (A) Ramsey",
-            "products": [
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "9/17/2026"
-              },
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "8/13/2026"
-              }
-            ],
-            "date": "9/17/2026"
-          },
-          {
-            "customer": "Bottle King (A) Ramsey",
-            "products": [
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "9/17/2026"
-              },
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "8/13/2026"
-              }
-            ],
-            "date": "9/17/2026"
-          },
-          {
-            "customer": "Gary's Wine & Marketplace (Closter)",
+            "customer": "Montvale Wine/Liq & Beer",
             "products": [
               {
                 "product": "1911 Original 6/4/16 oz Can",
-                "date": "9/15/2026"
+                "date": "9/22/2026"
+              },
+              {
+                "product": "1911 Original 6/4/16 oz Can",
+                "date": "8/18/2026"
               }
             ],
-            "date": "9/15/2026"
+            "date": "9/22/2026"
+          },
+          {
+            "customer": "Beverage Barn (A)",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "9/18/2026"
+              }
+            ],
+            "date": "9/18/2026"
+          },
+          {
+            "customer": "Beverage Barn (A)",
+            "products": [
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "9/18/2026"
+              }
+            ],
+            "date": "9/18/2026"
+          },
+          {
+            "customer": "Bottle King (A) Ramsey",
+            "products": [
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "9/17/2026"
+              },
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "8/13/2026"
+              }
+            ],
+            "date": "9/17/2026"
+          },
+          {
+            "customer": "Bottle King (A) Ramsey",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "9/17/2026"
+              },
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "8/13/2026"
+              }
+            ],
+            "date": "9/17/2026"
           },
           {
             "customer": "Montvale Wine/Liq & Beer",
@@ -7332,6 +7628,16 @@ const PROGRAM_DATA = {
               {
                 "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/4/2026"
+              }
+            ],
+            "date": "9/15/2026"
+          },
+          {
+            "customer": "Gary's Wine & Marketplace (Closter)",
+            "products": [
+              {
+                "product": "1911 Original 6/4/16 oz Can",
+                "date": "9/15/2026"
               }
             ],
             "date": "9/15/2026"
@@ -7370,7 +7676,7 @@ const PROGRAM_DATA = {
             "customer": "Shoprite Liq (A)Northvle",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/6/2026"
               }
             ],
@@ -7380,7 +7686,7 @@ const PROGRAM_DATA = {
             "customer": "Shoprite Liq (A)Northvle",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/6/2026"
               }
             ],
@@ -7410,16 +7716,6 @@ const PROGRAM_DATA = {
             "customer": "Shop Rite Liq (A)Hillsdal",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "8/18/2026"
-              }
-            ],
-            "date": "8/18/2026"
-          },
-          {
-            "customer": "Shop Rite Liq (A)Hillsdal",
-            "products": [
-              {
                 "product": "1911 Original 6/4/16 oz Can",
                 "date": "8/18/2026"
               }
@@ -7437,10 +7733,10 @@ const PROGRAM_DATA = {
             "date": "8/18/2026"
           },
           {
-            "customer": "Montvale Wine/Liq & Beer",
+            "customer": "Shop Rite Liq (A)Hillsdal",
             "products": [
               {
-                "product": "1911 Original 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/18/2026"
               }
             ],
@@ -7477,8 +7773,8 @@ const PROGRAM_DATA = {
             "date": "8/10/2026"
           }
         ],
-        "offPremNewCount": 21,
-        "offPremReorderCount": 20,
+        "offPremNewCount": 22,
+        "offPremReorderCount": 22,
         "offPremTargets": [
           {
             "customer": "Bottle King (A) Hillsdale",
@@ -7549,11 +7845,11 @@ const PROGRAM_DATA = {
         "draftTargetCount": 0,
         "draftAccounts": [],
         "draftAccountsQualified": 0,
-        "caseVolume": 109.0,
+        "caseVolume": 121.0,
         "caseVolumeByAccount": [
           {
             "customer": "Montvale Wine/Liq & Beer",
-            "cases": 36.0
+            "cases": 43.0
           },
           {
             "customer": "Shoprite Liq (A)Northvle",
@@ -7570,6 +7866,10 @@ const PROGRAM_DATA = {
           {
             "customer": "Bottle King (A) Dumont",
             "cases": 7.0
+          },
+          {
+            "customer": "Royal Wine & Spirits II",
+            "cases": 5.0
           },
           {
             "customer": "Beverage Barn (A)",
@@ -7592,21 +7892,21 @@ const PROGRAM_DATA = {
             "cases": 1.0
           }
         ],
-        "totalNewPlacements": 21,
+        "totalNewPlacements": 22,
         "draftChannelOk": false
       }
     },
     "leaderboard": [
       {
         "rep": "Andrew Lundy",
-        "newPlacements": 39,
-        "caseVolume": 90.0,
+        "newPlacements": 43,
+        "caseVolume": 96.0,
         "rank": 1
       },
       {
         "rep": "John O'Donoghue",
         "newPlacements": 33,
-        "caseVolume": 136.0,
+        "caseVolume": 148.0,
         "rank": 2
       },
       {
@@ -7616,33 +7916,33 @@ const PROGRAM_DATA = {
         "rank": 3
       },
       {
-        "rep": "Michael Harboy",
-        "newPlacements": 26,
-        "caseVolume": 68.0,
+        "rep": "Phil Ernst",
+        "newPlacements": 28,
+        "caseVolume": 95.0,
         "rank": 4
       },
       {
-        "rep": "Jayson Romine",
-        "newPlacements": 22,
-        "caseVolume": 78.0,
+        "rep": "Michael Harboy",
+        "newPlacements": 26,
+        "caseVolume": 74.0,
         "rank": 5
       },
       {
-        "rep": "Shane Barreca",
-        "newPlacements": 21,
-        "caseVolume": 109.0,
+        "rep": "Jayson Romine",
+        "newPlacements": 24,
+        "caseVolume": 83.0,
         "rank": 6
       },
       {
-        "rep": "Phil Ernst",
-        "newPlacements": 19,
-        "caseVolume": 83.0,
+        "rep": "Shane Barreca",
+        "newPlacements": 22,
+        "caseVolume": 121.0,
         "rank": 7
       },
       {
         "rep": "Klejdi Lamo",
-        "newPlacements": 18,
-        "caseVolume": 79.0,
+        "newPlacements": 21,
+        "caseVolume": 86.0,
         "rank": 8
       },
       {
@@ -7653,14 +7953,14 @@ const PROGRAM_DATA = {
       },
       {
         "rep": "Jaime Colonna",
-        "newPlacements": 13,
-        "caseVolume": 54.0,
+        "newPlacements": 14,
+        "caseVolume": 61.0,
         "rank": 10
       },
       {
         "rep": "Anthony Palmisano",
         "newPlacements": 11,
-        "caseVolume": 39.0,
+        "caseVolume": 42.0,
         "rank": 11
       },
       {
@@ -7678,43 +7978,43 @@ const PROGRAM_DATA = {
       {
         "rep": "Dave Ehlers",
         "newPlacements": 6,
-        "caseVolume": 71.0,
+        "caseVolume": 76.0,
         "rank": 14
       },
       {
-        "rep": "Jim Heaney",
+        "rep": "Derrick Laws",
         "newPlacements": 5,
-        "caseVolume": 12.0,
+        "caseVolume": 10.0,
         "rank": 15
+      },
+      {
+        "rep": "Jim Heaney",
+        "newPlacements": 4,
+        "caseVolume": 11.0,
+        "rank": 16
       },
       {
         "rep": "Dylan Rubino",
         "newPlacements": 3,
         "caseVolume": 14.0,
-        "rank": 16
+        "rank": 17
       },
       {
         "rep": "Brian Sengebush",
         "newPlacements": 3,
-        "caseVolume": 4.0,
-        "rank": 17
+        "caseVolume": 5.0,
+        "rank": 18
       },
       {
         "rep": "Allison Scott",
         "newPlacements": 2,
-        "caseVolume": 15.0,
-        "rank": 18
+        "caseVolume": 21.0,
+        "rank": 19
       },
       {
         "rep": "Paul Mclaughlin",
         "newPlacements": 2,
         "caseVolume": 11.0,
-        "rank": 19
-      },
-      {
-        "rep": "Derrick Laws",
-        "newPlacements": 2,
-        "caseVolume": 7.0,
         "rank": 20
       },
       {
@@ -7738,7 +8038,7 @@ const PROGRAM_DATA = {
       {
         "rep": "Nick Melissari",
         "newPlacements": 1,
-        "caseVolume": 9.0,
+        "caseVolume": 11.0,
         "rank": 24
       },
       {
@@ -8198,6 +8498,16 @@ const PROGRAM_DATA = {
       "Andrew Lundy": {
         "offPremNew": [
           {
+            "customer": "Park Beverage",
+            "products": [
+              {
+                "product": "Woodchuck Spiced Apple 4/6/12 oz Can",
+                "date": "9/22/2026"
+              }
+            ],
+            "date": "9/22/2026"
+          },
+          {
             "customer": "Pointe Grande Liquor",
             "products": [
               {
@@ -8218,8 +8528,8 @@ const PROGRAM_DATA = {
             "date": "8/4/2026"
           }
         ],
-        "offPremNewCount": 2,
-        "offPremReorderCount": 3,
+        "offPremNewCount": 3,
+        "offPremReorderCount": 6,
         "offPremTargets": [
           {
             "customer": "Bayway World Of Liquor",
@@ -8367,7 +8677,7 @@ const PROGRAM_DATA = {
         "draftTargetCount": 14,
         "draftAccounts": [],
         "draftAccountsQualified": 0,
-        "caseVolume": 34.0,
+        "caseVolume": 39.0,
         "caseVolumeByAccount": [
           {
             "customer": "Pointe Grande Liquor",
@@ -8378,11 +8688,15 @@ const PROGRAM_DATA = {
             "cases": 14.0
           },
           {
+            "customer": "Park Beverage",
+            "cases": 5.0
+          },
+          {
             "customer": "Dittrick's W&L (A)",
             "cases": 5.0
           }
         ],
-        "totalNewPlacements": 2,
+        "totalNewPlacements": 3,
         "draftChannelOk": true
       },
       "Anthony Palmisano": {
@@ -8401,7 +8715,7 @@ const PROGRAM_DATA = {
             "customer": "Best Cellars (Wanaque)",
             "products": [
               {
-                "product": "Woodchuck Blueberry 4/6/12 oz Can",
+                "product": "Woodchuck Hard Cider Variety 2/12/12 oz Can",
                 "date": "8/3/2026"
               }
             ],
@@ -8421,7 +8735,7 @@ const PROGRAM_DATA = {
             "customer": "Best Cellars (Wanaque)",
             "products": [
               {
-                "product": "Woodchuck Hard Cider Variety 2/12/12 oz Can",
+                "product": "Woodchuck Blueberry 4/6/12 oz Can",
                 "date": "8/3/2026"
               }
             ],
@@ -9131,6 +9445,16 @@ const PROGRAM_DATA = {
       "Dave Ehlers": {
         "offPremNew": [
           {
+            "customer": "Bottle & Cork",
+            "products": [
+              {
+                "product": "Woodchuck Hard Cider Amber 4/6/12 oz Can",
+                "date": "9/23/2026"
+              }
+            ],
+            "date": "9/23/2026"
+          },
+          {
             "customer": "New Milford Liquors",
             "products": [
               {
@@ -9141,8 +9465,8 @@ const PROGRAM_DATA = {
             "date": "9/18/2026"
           }
         ],
-        "offPremNewCount": 1,
-        "offPremReorderCount": 5,
+        "offPremNewCount": 2,
+        "offPremReorderCount": 6,
         "offPremTargets": [
           {
             "customer": "Shop Rite Liq (A)Englewd",
@@ -9238,22 +9562,26 @@ const PROGRAM_DATA = {
         "draftTargetCount": 1,
         "draftAccounts": [],
         "draftAccountsQualified": 0,
-        "caseVolume": 41.0,
+        "caseVolume": 56.0,
         "caseVolumeByAccount": [
           {
             "customer": "Total Wine & More (River Edge)",
-            "cases": 26.0
+            "cases": 31.0
           },
           {
             "customer": "Total Wine & More (Totowa)",
-            "cases": 14.0
+            "cases": 23.0
+          },
+          {
+            "customer": "Bottle & Cork",
+            "cases": 1.0
           },
           {
             "customer": "New Milford Liquors",
             "cases": 1.0
           }
         ],
-        "totalNewPlacements": 1,
+        "totalNewPlacements": 2,
         "draftChannelOk": true
       },
       "Derrick Laws": {
@@ -9371,6 +9699,46 @@ const PROGRAM_DATA = {
       "Dylan Rubino": {
         "offPremNew": [
           {
+            "customer": "Paulino Liquors",
+            "products": [
+              {
+                "product": "Woodchuck Hard Cider Amber 4/6/12 oz Btl",
+                "date": "9/23/2026"
+              }
+            ],
+            "date": "9/23/2026"
+          },
+          {
+            "customer": "Paulino Liquors",
+            "products": [
+              {
+                "product": "Woodchuck Spiced Apple 4/6/12 oz Can",
+                "date": "9/23/2026"
+              }
+            ],
+            "date": "9/23/2026"
+          },
+          {
+            "customer": "Paulino Liquors",
+            "products": [
+              {
+                "product": "Woodchuck Granny Smith 4/6/12 oz Can",
+                "date": "9/23/2026"
+              }
+            ],
+            "date": "9/23/2026"
+          },
+          {
+            "customer": "Paulino Liquors",
+            "products": [
+              {
+                "product": "Woodchuck Pearsecco 4/6/12 oz Can",
+                "date": "9/23/2026"
+              }
+            ],
+            "date": "9/23/2026"
+          },
+          {
             "customer": "Pastore's Wine & Liquor",
             "products": [
               {
@@ -9395,7 +9763,7 @@ const PROGRAM_DATA = {
             "date": "8/19/2026"
           }
         ],
-        "offPremNewCount": 2,
+        "offPremNewCount": 6,
         "offPremReorderCount": 2,
         "offPremTargets": [
           {
@@ -9479,7 +9847,7 @@ const PROGRAM_DATA = {
             "cases2026": 579.0
           }
         ],
-        "offPremTargetCount": 130,
+        "offPremTargetCount": 129,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -9568,30 +9936,34 @@ const PROGRAM_DATA = {
         "draftTargetCount": 25,
         "draftAccounts": [],
         "draftAccountsQualified": 0,
-        "caseVolume": 15.0,
+        "caseVolume": 26.0,
         "caseVolumeByAccount": [
           {
             "customer": "Dublin Yard",
-            "cases": 6.0
+            "cases": 11.0
+          },
+          {
+            "customer": "Paulino Liquors",
+            "cases": 5.0
           },
           {
             "customer": "Liberty Wine (P) & Deli",
             "cases": 4.0
           },
           {
-            "customer": "New Town Liquors (P)",
+            "customer": "Light Horse Tavern (A)",
             "cases": 3.0
           },
           {
-            "customer": "Light Horse Tavern (A)",
-            "cases": 2.0
+            "customer": "New Town Liquors (P)",
+            "cases": 3.0
           },
           {
             "customer": "Pastore's Wine & Liquor",
             "cases": 1.0
           }
         ],
-        "totalNewPlacements": 2,
+        "totalNewPlacements": 6,
         "draftChannelOk": true
       },
       "Hakan Sadik": {
@@ -9610,7 +9982,7 @@ const PROGRAM_DATA = {
             "customer": "Bloomfield Buyrite",
             "products": [
               {
-                "product": "Woodchuck Hard Cider Amber 4/6/12 oz Can",
+                "product": "Woodchuck Pearsecco 4/6/12 oz Can",
                 "date": "8/11/2026"
               }
             ],
@@ -9630,7 +10002,7 @@ const PROGRAM_DATA = {
             "customer": "Bloomfield Buyrite",
             "products": [
               {
-                "product": "Woodchuck Pearsecco 4/6/12 oz Can",
+                "product": "Woodchuck Hard Cider Amber 4/6/12 oz Can",
                 "date": "8/11/2026"
               }
             ],
@@ -9638,7 +10010,7 @@ const PROGRAM_DATA = {
           }
         ],
         "offPremNewCount": 4,
-        "offPremReorderCount": 5,
+        "offPremReorderCount": 6,
         "offPremTargets": [
           {
             "customer": "Liquorland (South Orange)",
@@ -9778,11 +10150,15 @@ const PROGRAM_DATA = {
         "draftTargetCount": 12,
         "draftAccounts": [],
         "draftAccountsQualified": 0,
-        "caseVolume": 30.0,
+        "caseVolume": 40.0,
         "caseVolumeByAccount": [
           {
             "customer": "Buy Rite Wine & Liquor",
-            "cases": 15.0
+            "cases": 20.0
+          },
+          {
+            "customer": "Wine Barrel (P)",
+            "cases": 8.0
           },
           {
             "customer": "Pub At Njit",
@@ -9794,10 +10170,6 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Gaslight Brewery & Rest.",
-            "cases": 3.0
-          },
-          {
-            "customer": "Wine Barrel (P)",
             "cases": 3.0
           },
           {
@@ -9994,11 +10366,11 @@ const PROGRAM_DATA = {
         "draftTargetCount": 64,
         "draftAccounts": [],
         "draftAccountsQualified": 0,
-        "caseVolume": 11.0,
+        "caseVolume": 12.0,
         "caseVolumeByAccount": [
           {
             "customer": "The Hoboken Biergarten",
-            "cases": 6.0
+            "cases": 7.0
           },
           {
             "customer": "Acme Markets (Hoboken)",
@@ -10139,6 +10511,26 @@ const PROGRAM_DATA = {
       "Jayson Romine": {
         "offPremNew": [
           {
+            "customer": "Buy Rite Liquors Franklin",
+            "products": [
+              {
+                "product": "Woodchuck Spiced Apple 4/6/12 oz Can",
+                "date": "9/23/2026"
+              }
+            ],
+            "date": "9/23/2026"
+          },
+          {
+            "customer": "Patricks Wine Barn",
+            "products": [
+              {
+                "product": "Woodchuck Spiced Apple 4/6/12 oz Can",
+                "date": "9/22/2026"
+              }
+            ],
+            "date": "9/22/2026"
+          },
+          {
             "customer": "Fredon Liquor (Fredon Deli)",
             "products": [
               {
@@ -10159,8 +10551,8 @@ const PROGRAM_DATA = {
             "date": "8/18/2026"
           }
         ],
-        "offPremNewCount": 2,
-        "offPremReorderCount": 8,
+        "offPremNewCount": 4,
+        "offPremReorderCount": 9,
         "offPremTargets": [
           {
             "customer": "Liquor Factory III Sparta",
@@ -10251,8 +10643,16 @@ const PROGRAM_DATA = {
         "draftTargetCount": 0,
         "draftAccounts": [],
         "draftAccountsQualified": 0,
-        "caseVolume": 23.0,
+        "caseVolume": 34.0,
         "caseVolumeByAccount": [
+          {
+            "customer": "Patricks Wine Barn",
+            "cases": 10.0
+          },
+          {
+            "customer": "Buy Rite Liquors Franklin",
+            "cases": 6.0
+          },
           {
             "customer": "Kent's Liquors",
             "cases": 5.0
@@ -10266,15 +10666,11 @@ const PROGRAM_DATA = {
             "cases": 5.0
           },
           {
-            "customer": "Patricks Wine Barn",
-            "cases": 5.0
-          },
-          {
             "customer": "Fredon Liquor (Fredon Deli)",
             "cases": 3.0
           }
         ],
-        "totalNewPlacements": 2,
+        "totalNewPlacements": 4,
         "draftChannelOk": false
       },
       "Jim Heaney": {
@@ -10400,14 +10796,14 @@ const PROGRAM_DATA = {
       "John O'Donoghue": {
         "offPremNew": [
           {
-            "customer": "Shop Rite Liquors",
+            "customer": "The Village Liquor Store_2",
             "products": [
               {
-                "product": "Woodchuck Great Gathering Variety 2/12/12 oz Can",
-                "date": "9/11/2026"
+                "product": "Woodchuck Spiced Apple 4/6/12 oz Can",
+                "date": "9/24/2026"
               }
             ],
-            "date": "9/11/2026"
+            "date": "9/24/2026"
           },
           {
             "customer": "Shop Rite Liquors",
@@ -10420,40 +10816,20 @@ const PROGRAM_DATA = {
             "date": "9/11/2026"
           },
           {
-            "customer": "Main St Wines & Liq",
+            "customer": "Shop Rite Liquors",
             "products": [
               {
-                "product": "Woodchuck Granny Smith 4/6/12 oz Can",
-                "date": "8/7/2026"
+                "product": "Woodchuck Great Gathering Variety 2/12/12 oz Can",
+                "date": "9/11/2026"
               }
             ],
-            "date": "8/7/2026"
+            "date": "9/11/2026"
           },
           {
             "customer": "Main St Wines & Liq",
             "products": [
               {
                 "product": "Woodchuck Nature's Nectar 6/4/16 oz Can",
-                "date": "8/7/2026"
-              }
-            ],
-            "date": "8/7/2026"
-          },
-          {
-            "customer": "Main St Wines & Liq",
-            "products": [
-              {
-                "product": "Woodchuck Blueberry 4/6/12 oz Can",
-                "date": "8/7/2026"
-              }
-            ],
-            "date": "8/7/2026"
-          },
-          {
-            "customer": "Main St Wines & Liq",
-            "products": [
-              {
-                "product": "Woodchuck Pearsecco 4/6/12 oz Can",
                 "date": "8/7/2026"
               }
             ],
@@ -10473,6 +10849,36 @@ const PROGRAM_DATA = {
             "customer": "Main St Wines & Liq",
             "products": [
               {
+                "product": "Woodchuck Blueberry 4/6/12 oz Can",
+                "date": "8/7/2026"
+              }
+            ],
+            "date": "8/7/2026"
+          },
+          {
+            "customer": "Main St Wines & Liq",
+            "products": [
+              {
+                "product": "Woodchuck Granny Smith 4/6/12 oz Can",
+                "date": "8/7/2026"
+              }
+            ],
+            "date": "8/7/2026"
+          },
+          {
+            "customer": "Main St Wines & Liq",
+            "products": [
+              {
+                "product": "Woodchuck Pearsecco 4/6/12 oz Can",
+                "date": "8/7/2026"
+              }
+            ],
+            "date": "8/7/2026"
+          },
+          {
+            "customer": "Main St Wines & Liq",
+            "products": [
+              {
                 "product": "Woodchuck Hard Cider Amber 4/6/12 oz Can",
                 "date": "8/7/2026"
               }
@@ -10480,8 +10886,8 @@ const PROGRAM_DATA = {
             "date": "8/7/2026"
           }
         ],
-        "offPremNewCount": 8,
-        "offPremReorderCount": 11,
+        "offPremNewCount": 9,
+        "offPremReorderCount": 14,
         "offPremTargets": [
           {
             "customer": "Bottle King Morris Plains",
@@ -10653,11 +11059,15 @@ const PROGRAM_DATA = {
         "draftTargetCount": 42,
         "draftAccounts": [],
         "draftAccountsQualified": 0,
-        "caseVolume": 31.0,
+        "caseVolume": 48.0,
         "caseVolumeByAccount": [
           {
             "customer": "The Village Liquor Store_2",
-            "cases": 11.0
+            "cases": 21.0
+          },
+          {
+            "customer": "Wegmans",
+            "cases": 10.0
           },
           {
             "customer": "Shop Rite Liquors",
@@ -10668,48 +11078,88 @@ const PROGRAM_DATA = {
             "cases": 6.0
           },
           {
-            "customer": "Wegmans",
-            "cases": 3.0
-          },
-          {
             "customer": "Shop Rite W & S Chester",
             "cases": 2.0
           }
         ],
-        "totalNewPlacements": 8,
+        "totalNewPlacements": 9,
         "draftChannelOk": true
       },
       "Klejdi Lamo": {
         "offPremNew": [
           {
-            "customer": "Midtown Liq",
+            "customer": "Shop Rite Wine & Spirits Stanhope",
             "products": [
               {
-                "product": "Woodchuck Deck Days Variety 2/12/12 oz Can",
-                "date": "9/21/2026"
+                "product": "Woodchuck Hard Cider Variety 2/12/12 oz Can",
+                "date": "9/23/2026"
+              },
+              {
+                "product": "Woodchuck Hard Cider Variety 2/12/12 oz Can",
+                "date": "8/13/2026"
               }
             ],
-            "date": "9/21/2026"
+            "date": "9/23/2026"
           },
           {
-            "customer": "Midtown Liq",
+            "customer": "Shop Rite Wine & Spirits Stanhope",
             "products": [
               {
-                "product": "Woodchuck Great Gathering Variety 2/12/12 oz Can",
-                "date": "9/21/2026"
+                "product": "Woodchuck Spiced Apple 4/6/12 oz Can",
+                "date": "9/23/2026"
               }
             ],
-            "date": "9/21/2026"
+            "date": "9/23/2026"
+          },
+          {
+            "customer": "Shop Rite Wine & Spirits Stanhope",
+            "products": [
+              {
+                "product": "Woodchuck Nature's Nectar 6/4/16 oz Can",
+                "date": "9/23/2026"
+              }
+            ],
+            "date": "9/23/2026"
+          },
+          {
+            "customer": "Shop Rite Wine & Spirits Stanhope",
+            "products": [
+              {
+                "product": "Woodchuck Blueberry 4/6/12 oz Can",
+                "date": "9/23/2026"
+              }
+            ],
+            "date": "9/23/2026"
           },
           {
             "customer": "Midtown Liq",
             "products": [
               {
                 "product": "Woodchuck Chuck's Imperials Variety 4/6/12 oz Can",
-                "date": "9/21/2026"
+                "date": "9/22/2026"
               }
             ],
-            "date": "9/21/2026"
+            "date": "9/22/2026"
+          },
+          {
+            "customer": "Midtown Liq",
+            "products": [
+              {
+                "product": "Woodchuck Deck Days Variety 2/12/12 oz Can",
+                "date": "9/22/2026"
+              }
+            ],
+            "date": "9/22/2026"
+          },
+          {
+            "customer": "Midtown Liq",
+            "products": [
+              {
+                "product": "Woodchuck Great Gathering Variety 2/12/12 oz Can",
+                "date": "9/22/2026"
+              }
+            ],
+            "date": "9/22/2026"
           },
           {
             "customer": "Liquor Outlet",
@@ -10720,16 +11170,6 @@ const PROGRAM_DATA = {
               }
             ],
             "date": "8/19/2026"
-          },
-          {
-            "customer": "Shop Rite Wine & Spirits Stanhope",
-            "products": [
-              {
-                "product": "Woodchuck Hard Cider Variety 2/12/12 oz Can",
-                "date": "8/13/2026"
-              }
-            ],
-            "date": "8/13/2026"
           },
           {
             "customer": "Shop Rite Wine & Spirits Stanhope",
@@ -10762,7 +11202,7 @@ const PROGRAM_DATA = {
             "date": "8/13/2026"
           }
         ],
-        "offPremNewCount": 8,
+        "offPremNewCount": 11,
         "offPremReorderCount": 7,
         "offPremTargets": [
           {
@@ -10859,11 +11299,11 @@ const PROGRAM_DATA = {
         "draftTargetCount": 1,
         "draftAccounts": [],
         "draftAccountsQualified": 0,
-        "caseVolume": 28.0,
+        "caseVolume": 33.0,
         "caseVolumeByAccount": [
           {
             "customer": "Shop Rite Wine & Spirits Stanhope",
-            "cases": 7.0
+            "cases": 12.0
           },
           {
             "customer": "Liquor Outlet",
@@ -10882,7 +11322,7 @@ const PROGRAM_DATA = {
             "cases": 5.0
           }
         ],
-        "totalNewPlacements": 8,
+        "totalNewPlacements": 11,
         "draftChannelOk": true
       },
       "Matt Powierski": {
@@ -11092,6 +11532,16 @@ const PROGRAM_DATA = {
       "Michael Harboy": {
         "offPremNew": [
           {
+            "customer": "Verona Wine Cellar",
+            "products": [
+              {
+                "product": "Woodchuck Spiced Apple 4/6/12 oz Can",
+                "date": "9/23/2026"
+              }
+            ],
+            "date": "9/23/2026"
+          },
+          {
             "customer": "Fairchilds Market Place",
             "products": [
               {
@@ -11102,8 +11552,8 @@ const PROGRAM_DATA = {
             "date": "9/18/2026"
           }
         ],
-        "offPremNewCount": 1,
-        "offPremReorderCount": 7,
+        "offPremNewCount": 2,
+        "offPremReorderCount": 9,
         "offPremTargets": [
           {
             "customer": "Kinnelon Country Wine & Liquor",
@@ -11275,28 +11725,36 @@ const PROGRAM_DATA = {
         "draftTargetCount": 22,
         "draftAccounts": [],
         "draftAccountsQualified": 0,
-        "caseVolume": 11.0,
+        "caseVolume": 21.0,
         "caseVolumeByAccount": [
+          {
+            "customer": "ShopRite of West Caldwell",
+            "cases": 6.0
+          },
+          {
+            "customer": "Grove Liquors",
+            "cases": 5.0
+          },
           {
             "customer": "Total Wine & More (West Orange)",
             "cases": 5.0
           },
           {
-            "customer": "ShopRite of West Caldwell",
-            "cases": 4.0
+            "customer": "Verona Wine Cellar",
+            "cases": 3.0
           },
           {
             "customer": "Shay's Liquors",
             "cases": 3.0
           }
         ],
-        "totalNewPlacements": 1,
+        "totalNewPlacements": 2,
         "draftChannelOk": true
       },
       "Mike Ast": {
         "offPremNew": [],
         "offPremNewCount": 0,
-        "offPremReorderCount": 1,
+        "offPremReorderCount": 2,
         "offPremTargets": [
           {
             "customer": "Bottle King (A) Wayne",
@@ -11428,8 +11886,12 @@ const PROGRAM_DATA = {
         "draftTargetCount": 10,
         "draftAccounts": [],
         "draftAccountsQualified": 0,
-        "caseVolume": 1.0,
+        "caseVolume": 4.0,
         "caseVolumeByAccount": [
+          {
+            "customer": "Ridgewood Super Cellar",
+            "cases": 3.0
+          },
           {
             "customer": "Wine & Spirit World(W)",
             "cases": 1.0
@@ -11542,7 +12004,7 @@ const PROGRAM_DATA = {
         "draftAccounts": [
           {
             "customer": "Yard House 8390",
-            "cumulativeBbl": 3.0,
+            "cumulativeBbl": 3.5,
             "qualifies": true
           },
           {
@@ -11552,11 +12014,11 @@ const PROGRAM_DATA = {
           }
         ],
         "draftAccountsQualified": 1,
-        "caseVolume": 6.0,
+        "caseVolume": 7.0,
         "caseVolumeByAccount": [
           {
             "customer": "Yard House 8390",
-            "cases": 6.0
+            "cases": 7.0
           }
         ],
         "totalNewPlacements": 0,
@@ -11802,26 +12264,6 @@ const PROGRAM_DATA = {
       "Phil Ernst": {
         "offPremNew": [
           {
-            "customer": "USA Wine Traders Paramus",
-            "products": [
-              {
-                "product": "Woodchuck Hard Cider Variety 2/12/12 oz Can",
-                "date": "9/30/2026"
-              }
-            ],
-            "date": "9/30/2026"
-          },
-          {
-            "customer": "USA Wine Traders Paramus",
-            "products": [
-              {
-                "product": "Woodchuck Hard Cider Amber 4/6/12 oz Can",
-                "date": "9/30/2026"
-              }
-            ],
-            "date": "9/30/2026"
-          },
-          {
             "customer": "Stew Leonard's Wines & Spirits of Clifton",
             "products": [
               {
@@ -11842,7 +12284,7 @@ const PROGRAM_DATA = {
             "date": "9/11/2026"
           }
         ],
-        "offPremNewCount": 4,
+        "offPremNewCount": 2,
         "offPremReorderCount": 7,
         "offPremTargets": [
           {
@@ -11935,11 +12377,15 @@ const PROGRAM_DATA = {
         "draftTargetCount": 1,
         "draftAccounts": [],
         "draftAccountsQualified": 0,
-        "caseVolume": 18.0,
+        "caseVolume": 17.0,
         "caseVolumeByAccount": [
           {
             "customer": "Bottle King (A) Glen Rock",
             "cases": 4.0
+          },
+          {
+            "customer": "Whole Foods Market (Paramus)",
+            "cases": 3.0
           },
           {
             "customer": "Stew Leonard's Wines & Spirits of Clifton",
@@ -11948,14 +12394,6 @@ const PROGRAM_DATA = {
           {
             "customer": "Shop Rite Liq (Paramus)",
             "cases": 3.0
-          },
-          {
-            "customer": "USA Wine Traders Paramus",
-            "cases": 2.0
-          },
-          {
-            "customer": "Whole Foods Market (Paramus)",
-            "cases": 2.0
           },
           {
             "customer": "Shop Rite Liq(A) Fair Lwn",
@@ -11970,7 +12408,7 @@ const PROGRAM_DATA = {
             "cases": 1.0
           }
         ],
-        "totalNewPlacements": 4,
+        "totalNewPlacements": 2,
         "draftChannelOk": true
       },
       "Robin Feldman": {
@@ -12193,81 +12631,81 @@ const PROGRAM_DATA = {
     },
     "leaderboard": [
       {
-        "rep": "John O'Donoghue",
-        "newPlacements": 8,
-        "caseVolume": 31.0,
+        "rep": "Klejdi Lamo",
+        "newPlacements": 11,
+        "caseVolume": 33.0,
         "rank": 1
       },
       {
-        "rep": "Klejdi Lamo",
-        "newPlacements": 8,
-        "caseVolume": 28.0,
+        "rep": "John O'Donoghue",
+        "newPlacements": 9,
+        "caseVolume": 48.0,
         "rank": 2
+      },
+      {
+        "rep": "Dylan Rubino",
+        "newPlacements": 6,
+        "caseVolume": 26.0,
+        "rank": 3
       },
       {
         "rep": "Anthony Palmisano",
         "newPlacements": 5,
         "caseVolume": 10.0,
-        "rank": 3
+        "rank": 4
       },
       {
         "rep": "Matt Powierski",
         "newPlacements": 5,
         "caseVolume": 7.0,
-        "rank": 4
+        "rank": 5
       },
       {
         "rep": "Hakan Sadik",
         "newPlacements": 4,
-        "caseVolume": 30.0,
-        "rank": 5
+        "caseVolume": 40.0,
+        "rank": 6
       },
       {
-        "rep": "Phil Ernst",
+        "rep": "Jayson Romine",
         "newPlacements": 4,
-        "caseVolume": 18.0,
-        "rank": 6
+        "caseVolume": 34.0,
+        "rank": 7
+      },
+      {
+        "rep": "Andrew Lundy",
+        "newPlacements": 3,
+        "caseVolume": 39.0,
+        "rank": 8
       },
       {
         "rep": "Chris Payton",
         "newPlacements": 3,
         "caseVolume": 5.0,
-        "rank": 7
-      },
-      {
-        "rep": "Andrew Lundy",
-        "newPlacements": 2,
-        "caseVolume": 34.0,
-        "rank": 8
-      },
-      {
-        "rep": "Jayson Romine",
-        "newPlacements": 2,
-        "caseVolume": 23.0,
         "rank": 9
       },
       {
-        "rep": "Dylan Rubino",
+        "rep": "Dave Ehlers",
         "newPlacements": 2,
-        "caseVolume": 15.0,
+        "caseVolume": 56.0,
         "rank": 10
       },
       {
-        "rep": "Dave Ehlers",
-        "newPlacements": 1,
-        "caseVolume": 41.0,
+        "rep": "Michael Harboy",
+        "newPlacements": 2,
+        "caseVolume": 21.0,
         "rank": 11
+      },
+      {
+        "rep": "Phil Ernst",
+        "newPlacements": 2,
+        "caseVolume": 17.0,
+        "rank": 12
       },
       {
         "rep": "Jaime Colonna",
         "newPlacements": 1,
-        "caseVolume": 11.0,
-        "rank": 12
-      },
-      {
-        "rep": "Michael Harboy",
-        "newPlacements": 1,
-        "caseVolume": 11.0,
+        "caseVolume": 12.0,
         "rank": 13
       },
       {
@@ -12285,7 +12723,7 @@ const PROGRAM_DATA = {
       {
         "rep": "Nick Melissari",
         "newPlacements": 0,
-        "caseVolume": 6.0,
+        "caseVolume": 7.0,
         "rank": 16
       },
       {
@@ -12309,7 +12747,7 @@ const PROGRAM_DATA = {
       {
         "rep": "Mike Ast",
         "newPlacements": 0,
-        "caseVolume": 1.0,
+        "caseVolume": 4.0,
         "rank": 20
       },
       {
@@ -12605,7 +13043,7 @@ const PROGRAM_DATA = {
         ],
         "targets24ozCount": 65,
         "caseVolume24oz": 4.0,
-        "caseVolumeOther": 42.0,
+        "caseVolumeOther": 44.0,
         "caseVolume24ozByAccount": [
           {
             "customer": "City Discount Liquors",
@@ -12640,6 +13078,10 @@ const PROGRAM_DATA = {
           {
             "customer": "Buy-Rite Liquors",
             "cases": 3.0
+          },
+          {
+            "customer": "Iron Bound Wines & Spirit",
+            "cases": 2.0
           }
         ],
         "qualifies": false
@@ -12775,7 +13217,7 @@ const PROGRAM_DATA = {
         ],
         "targets24ozCount": 56,
         "caseVolume24oz": 26.0,
-        "caseVolumeOther": 121.0,
+        "caseVolumeOther": 231.0,
         "caseVolume24ozByAccount": [
           {
             "customer": "Pointe Grande Liquor",
@@ -12805,7 +13247,7 @@ const PROGRAM_DATA = {
         "caseVolumeOtherByAccount": [
           {
             "customer": "Denny's Liquors",
-            "cases": 50.0
+            "cases": 160.0
           },
           {
             "customer": "La Bamba",
@@ -13510,7 +13952,7 @@ const PROGRAM_DATA = {
         ],
         "targets24ozCount": 129,
         "caseVolume24oz": 11.0,
-        "caseVolumeOther": 85.0,
+        "caseVolumeOther": 90.0,
         "caseVolume24ozByAccount": [
           {
             "customer": "J & L Liquors (P)",
@@ -13543,6 +13985,10 @@ const PROGRAM_DATA = {
             "cases": 10.0
           },
           {
+            "customer": "International Liqs (P)",
+            "cases": 9.0
+          },
+          {
             "customer": "Universal Liquors (A)",
             "cases": 9.0
           },
@@ -13555,11 +14001,11 @@ const PROGRAM_DATA = {
             "cases": 5.0
           },
           {
-            "customer": "Heights Liquors",
+            "customer": "Bergenline Liquor (Z)",
             "cases": 5.0
           },
           {
-            "customer": "Bergenline Liquor (Z)",
+            "customer": "Heights Liquors",
             "cases": 5.0
           },
           {
@@ -13569,10 +14015,6 @@ const PROGRAM_DATA = {
           {
             "customer": "Los Padrinos",
             "cases": 5.0
-          },
-          {
-            "customer": "International Liqs (P)",
-            "cases": 4.0
           },
           {
             "customer": "STOP & GO LIQUORS",
@@ -14098,12 +14540,16 @@ const PROGRAM_DATA = {
         ],
         "targets24ozCount": 43,
         "caseVolume24oz": 0.0,
-        "caseVolumeOther": 6.0,
+        "caseVolumeOther": 7.0,
         "caseVolume24ozByAccount": [],
         "caseVolumeOtherByAccount": [
           {
             "customer": "Lexington Liquors (Z)",
             "cases": 5.0
+          },
+          {
+            "customer": "Lyndhurst Liquors (P)",
+            "cases": 1.0
           },
           {
             "customer": "Krauszers Food",
@@ -14939,12 +15385,12 @@ const PROGRAM_DATA = {
         ],
         "targets24ozCount": 29,
         "caseVolume24oz": 0.0,
-        "caseVolumeOther": 1.0,
+        "caseVolumeOther": 2.0,
         "caseVolume24ozByAccount": [],
         "caseVolumeOtherByAccount": [
           {
             "customer": "Westwood Wine and Liquors",
-            "cases": 1.0
+            "cases": 2.0
           }
         ],
         "qualifies": false
@@ -32121,6 +32567,26 @@ const PROGRAM_DATA = {
       "Anthony Palmisano": {
         "buyingAccounts": [
           {
+            "customer": "Empire Wine & Liquor",
+            "date": "9/23/2026",
+            "skus": 3
+          },
+          {
+            "customer": "Country Convenience Store",
+            "date": "9/23/2026",
+            "skus": 3
+          },
+          {
+            "customer": "Home Wine and Liquors",
+            "date": "9/22/2026",
+            "skus": 3
+          },
+          {
+            "customer": "Roserne Pkg Store South",
+            "date": "9/22/2026",
+            "skus": 3
+          },
+          {
             "customer": "Roserne Liquors North",
             "date": "9/1/2026",
             "skus": 6
@@ -32131,14 +32597,14 @@ const PROGRAM_DATA = {
             "skus": 6
           },
           {
-            "customer": "Usa Wine Traders (Wanaque)",
-            "date": "8/6/2026",
-            "skus": 3
-          },
-          {
             "customer": "Ringwood W&L",
             "date": "8/6/2026",
             "skus": 6
+          },
+          {
+            "customer": "Usa Wine Traders (Wanaque)",
+            "date": "8/6/2026",
+            "skus": 3
           },
           {
             "customer": "Shoppers Disc(A)Pompton",
@@ -32146,12 +32612,12 @@ const PROGRAM_DATA = {
             "skus": 6
           }
         ],
-        "buyingAccountCount": 5,
+        "buyingAccountCount": 9,
         "eligibleAccountCount": 27,
-        "caseVolume": 21.0,
-        "penetrationPct": 18.5,
-        "tier": null,
-        "rate": 0.0,
+        "caseVolume": 33.0,
+        "penetrationPct": 33.3,
+        "tier": "Gettin' Lytt",
+        "rate": 0.5,
         "whitespaceAccounts": [
           {
             "customer": "Highland Wine&Liquor Inc",
@@ -32194,10 +32660,6 @@ const PROGRAM_DATA = {
             "cases2026": 6769.0
           },
           {
-            "customer": "Roserne Pkg Store South",
-            "cases2026": 6401.3
-          },
-          {
             "customer": "B & B Wine&Liq",
             "cases2026": 5581.0
           },
@@ -32208,14 +32670,6 @@ const PROGRAM_DATA = {
           {
             "customer": "Wine 2 Spirits (P)",
             "cases2026": 4669.0
-          },
-          {
-            "customer": "Country Convenience Store",
-            "cases2026": 4174.0
-          },
-          {
-            "customer": "Empire Wine & Liquor",
-            "cases2026": 3100.0
           },
           {
             "customer": "Bloomingdale Discount Liq",
@@ -32236,10 +32690,6 @@ const PROGRAM_DATA = {
           {
             "customer": "Hootch Hut (P)",
             "cases2026": 1837.0
-          },
-          {
-            "customer": "Home Wine and Liquors",
-            "cases2026": 1542.0
           }
         ],
         "partialAccounts": [],
@@ -32294,14 +32744,14 @@ const PROGRAM_DATA = {
             "skus": 6
           },
           {
-            "customer": "J R W & Liq (A)",
-            "date": "8/25/2026",
-            "skus": 6
-          },
-          {
             "customer": "Clifton Disc Liq (A)",
             "date": "8/25/2026",
             "skus": 3
+          },
+          {
+            "customer": "J R W & Liq (A)",
+            "date": "8/25/2026",
+            "skus": 6
           },
           {
             "customer": "Ridgefield Deli & Liq",
@@ -32334,12 +32784,12 @@ const PROGRAM_DATA = {
             "skus": 3
           },
           {
-            "customer": "Exquisite W & L (A)",
+            "customer": "46 Discount Liquor Store",
             "date": "8/13/2026",
             "skus": 3
           },
           {
-            "customer": "46 Discount Liquor Store",
+            "customer": "Exquisite W & L (A)",
             "date": "8/13/2026",
             "skus": 3
           },
@@ -32513,7 +32963,7 @@ const PROGRAM_DATA = {
             "skus": 6
           },
           {
-            "customer": "Linwood Wine-Linwood Plaza",
+            "customer": "Boulevard Liq.(Fairview)",
             "date": "8/5/2026",
             "skus": 6
           },
@@ -32523,7 +32973,7 @@ const PROGRAM_DATA = {
             "skus": 6
           },
           {
-            "customer": "Boulevard Liq.(Fairview)",
+            "customer": "Linwood Wine-Linwood Plaza",
             "date": "8/5/2026",
             "skus": 6
           },
@@ -32719,7 +33169,7 @@ const PROGRAM_DATA = {
             "skus": 3
           },
           {
-            "customer": "Joes Beer Wine & Spirits",
+            "customer": "Simple Simon's (Z)",
             "date": "8/7/2026",
             "skus": 6
           },
@@ -32729,17 +33179,12 @@ const PROGRAM_DATA = {
             "skus": 6
           },
           {
-            "customer": "Simple Simon's (Z)",
+            "customer": "Joes Beer Wine & Spirits",
             "date": "8/7/2026",
             "skus": 6
           },
           {
             "customer": "Teaneck Discount Liquor",
-            "date": "8/6/2026",
-            "skus": 3
-          },
-          {
-            "customer": "W E Beverage (A)",
             "date": "8/6/2026",
             "skus": 3
           },
@@ -32750,6 +33195,11 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Teaneck Liquors",
+            "date": "8/6/2026",
+            "skus": 3
+          },
+          {
+            "customer": "W E Beverage (A)",
             "date": "8/6/2026",
             "skus": 3
           }
@@ -32854,8 +33304,33 @@ const PROGRAM_DATA = {
       "Derrick Laws": {
         "buyingAccounts": [
           {
+            "customer": "Broadway Liq (A)",
+            "date": "9/23/2026",
+            "skus": 3
+          },
+          {
+            "customer": "Dorta Liquor (A)",
+            "date": "9/23/2026",
+            "skus": 3
+          },
+          {
             "customer": "Shop Rite Liq (A)Littlefl",
             "date": "8/27/2026",
+            "skus": 3
+          },
+          {
+            "customer": "Shop Rite Wines/Spirits",
+            "date": "8/7/2026",
+            "skus": 6
+          },
+          {
+            "customer": "C Town (A)",
+            "date": "8/7/2026",
+            "skus": 3
+          },
+          {
+            "customer": "Hiciano Liquor Store",
+            "date": "8/7/2026",
             "skus": 3
           },
           {
@@ -32864,19 +33339,9 @@ const PROGRAM_DATA = {
             "skus": 6
           },
           {
-            "customer": "Shop Rite Wines/Spirits",
-            "date": "8/7/2026",
+            "customer": "Quis Queya Liquor(P)",
+            "date": "8/6/2026",
             "skus": 6
-          },
-          {
-            "customer": "Hiciano Liquor Store",
-            "date": "8/7/2026",
-            "skus": 3
-          },
-          {
-            "customer": "C Town (A)",
-            "date": "8/7/2026",
-            "skus": 3
           },
           {
             "customer": "El Oasis",
@@ -32884,8 +33349,18 @@ const PROGRAM_DATA = {
             "skus": 6
           },
           {
-            "customer": "Quis Queya Liquor(P)",
-            "date": "8/6/2026",
+            "customer": "Raphael & Angel Liq (A)",
+            "date": "8/5/2026",
+            "skus": 6
+          },
+          {
+            "customer": "Liquor Gallery (Paterson)",
+            "date": "8/5/2026",
+            "skus": 6
+          },
+          {
+            "customer": "Mercer Bar & Liquors",
+            "date": "8/5/2026",
             "skus": 6
           },
           {
@@ -32897,27 +33372,12 @@ const PROGRAM_DATA = {
             "customer": "Ferraro's Liquor",
             "date": "8/5/2026",
             "skus": 6
-          },
-          {
-            "customer": "Mercer Bar & Liquors",
-            "date": "8/5/2026",
-            "skus": 6
-          },
-          {
-            "customer": "Liquor Gallery (Paterson)",
-            "date": "8/5/2026",
-            "skus": 6
-          },
-          {
-            "customer": "Raphael & Angel Liq (A)",
-            "date": "8/5/2026",
-            "skus": 6
           }
         ],
-        "buyingAccountCount": 12,
+        "buyingAccountCount": 14,
         "eligibleAccountCount": 32,
-        "caseVolume": 72.0,
-        "penetrationPct": 37.5,
+        "caseVolume": 78.0,
+        "penetrationPct": 43.8,
         "tier": "Gettin' Lytt",
         "rate": 0.5,
         "whitespaceAccounts": [
@@ -32962,20 +33422,12 @@ const PROGRAM_DATA = {
             "cases2026": 9584.0
           },
           {
-            "customer": "Dorta Liquor (A)",
-            "cases2026": 9141.0
-          },
-          {
             "customer": "10th Ave Liq & Food (P)",
             "cases2026": 7024.0
           },
           {
             "customer": "M & R Disc (A) Liqs.",
             "cases2026": 6575.0
-          },
-          {
-            "customer": "Broadway Liq (A)",
-            "cases2026": 6375.5
           },
           {
             "customer": "Moya E.Bar&Liq.(Z)",
@@ -33078,11 +33530,6 @@ const PROGRAM_DATA = {
             "skus": 6
           },
           {
-            "customer": "Segundo's (P)",
-            "date": "8/6/2026",
-            "skus": 6
-          },
-          {
             "customer": "Farm Boy",
             "date": "8/6/2026",
             "skus": 6
@@ -33091,6 +33538,11 @@ const PROGRAM_DATA = {
             "customer": "Belmont Liqrs (P)",
             "date": "8/6/2026",
             "skus": 3
+          },
+          {
+            "customer": "Segundo's (P)",
+            "date": "8/6/2026",
+            "skus": 6
           },
           {
             "customer": "Paruta's (A)",
@@ -33235,7 +33687,7 @@ const PROGRAM_DATA = {
             "skus": 3
           },
           {
-            "customer": "ShopRite Wines & Spirits of Sparta",
+            "customer": "ShopRite Wines & Spirits of Franklin",
             "date": "8/5/2026",
             "skus": 6
           },
@@ -33245,9 +33697,9 @@ const PROGRAM_DATA = {
             "skus": 6
           },
           {
-            "customer": "ShopRite Wines & Spirits of Franklin",
+            "customer": "Mac & Lindy's W & S (A)",
             "date": "8/5/2026",
-            "skus": 6
+            "skus": 3
           },
           {
             "customer": "Liquor Factory II Jefferson",
@@ -33255,13 +33707,8 @@ const PROGRAM_DATA = {
             "skus": 6
           },
           {
-            "customer": "Mac & Lindy's W & S (A)",
+            "customer": "ShopRite Wines & Spirits of Sparta",
             "date": "8/5/2026",
-            "skus": 3
-          },
-          {
-            "customer": "ShopRite Wine & Spirits of Newton#830",
-            "date": "8/4/2026",
             "skus": 6
           },
           {
@@ -33271,6 +33718,11 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Patricks Wine Barn",
+            "date": "8/4/2026",
+            "skus": 6
+          },
+          {
+            "customer": "ShopRite Wine & Spirits of Newton#830",
             "date": "8/4/2026",
             "skus": 6
           }
@@ -33608,24 +34060,24 @@ const PROGRAM_DATA = {
       "Klejdi Lamo": {
         "buyingAccounts": [
           {
-            "customer": "Wharton Liquor Store",
-            "date": "8/27/2026",
-            "skus": 3
-          },
-          {
             "customer": "Main Street Liquor",
             "date": "8/27/2026",
             "skus": 3
           },
           {
-            "customer": "3 IN 1 LIQUORS INC",
-            "date": "8/26/2026",
+            "customer": "Wharton Liquor Store",
+            "date": "8/27/2026",
             "skus": 3
           },
           {
             "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
             "date": "8/26/2026",
             "skus": 6
+          },
+          {
+            "customer": "3 IN 1 LIQUORS INC",
+            "date": "8/26/2026",
+            "skus": 3
           },
           {
             "customer": "Shop Rite Wine & Spirits Stanhope",
@@ -33754,13 +34206,18 @@ const PROGRAM_DATA = {
             "skus": 6
           },
           {
+            "customer": "King Liquors",
+            "date": "8/12/2026",
+            "skus": 6
+          },
+          {
             "customer": "Riverview Liquors & Bar",
             "date": "8/12/2026",
             "skus": 6
           },
           {
-            "customer": "King Liquors",
-            "date": "8/12/2026",
+            "customer": "Shop Rite Of Wallington",
+            "date": "8/11/2026",
             "skus": 6
           },
           {
@@ -33774,17 +34231,12 @@ const PROGRAM_DATA = {
             "skus": 6
           },
           {
-            "customer": "Shop Rite Of Wallington",
-            "date": "8/11/2026",
-            "skus": 6
-          },
-          {
-            "customer": "Wine Grand (Carlstadt)",
+            "customer": "Metro Liquors (East Rutherford)",
             "date": "8/6/2026",
             "skus": 6
           },
           {
-            "customer": "Metro Liquors (East Rutherford)",
+            "customer": "Wine Grand (Carlstadt)",
             "date": "8/6/2026",
             "skus": 6
           },
@@ -33957,7 +34409,7 @@ const PROGRAM_DATA = {
         "buyingAccounts": [
           {
             "customer": "Franklin Lake Liq",
-            "date": "9/2/2026",
+            "date": "9/23/2026",
             "skus": 3
           },
           {
@@ -33976,19 +34428,19 @@ const PROGRAM_DATA = {
             "skus": 6
           },
           {
-            "customer": "Goffle Road Wine and More",
-            "date": "8/4/2026",
-            "skus": 6
-          },
-          {
             "customer": "Diamond Liquor",
             "date": "8/4/2026",
             "skus": 3
+          },
+          {
+            "customer": "Goffle Road Wine and More",
+            "date": "8/4/2026",
+            "skus": 6
           }
         ],
         "buyingAccountCount": 6,
         "eligibleAccountCount": 31,
-        "caseVolume": 31.0,
+        "caseVolume": 28.0,
         "penetrationPct": 19.4,
         "tier": null,
         "rate": 0.0,
@@ -34290,17 +34742,17 @@ const PROGRAM_DATA = {
       "Phil Ernst": {
         "buyingAccounts": [
           {
-            "customer": "USA Wine Traders Paramus",
-            "date": "9/30/2026",
-            "skus": 6
+            "customer": "City Supermarket",
+            "date": "9/22/2026",
+            "skus": 3
           },
           {
-            "customer": "Stew Leonard's Wines & Spirits of Clifton",
+            "customer": "Stew Leonard's(A) Paramus Wine",
             "date": "9/10/2026",
             "skus": 6
           },
           {
-            "customer": "Stew Leonard's(A) Paramus Wine",
+            "customer": "Stew Leonard's Wines & Spirits of Clifton",
             "date": "9/10/2026",
             "skus": 6
           },
@@ -34338,17 +34790,12 @@ const PROGRAM_DATA = {
             "customer": "Palisades Wine And Liquor",
             "date": "8/4/2026",
             "skus": 6
-          },
-          {
-            "customer": "City Supermarket",
-            "date": "8/4/2026",
-            "skus": 3
           }
         ],
-        "buyingAccountCount": 11,
+        "buyingAccountCount": 10,
         "eligibleAccountCount": 25,
-        "caseVolume": 60.0,
-        "penetrationPct": 44.0,
+        "caseVolume": 57.0,
+        "penetrationPct": 40.0,
         "tier": "Gettin' Lytt",
         "rate": 0.5,
         "whitespaceAccounts": [
@@ -34471,12 +34918,12 @@ const PROGRAM_DATA = {
             "skus": 6
           },
           {
-            "customer": "Coasters Liquors",
+            "customer": "Montvale Wines & Spirits",
             "date": "8/7/2026",
             "skus": 6
           },
           {
-            "customer": "Montvale Wines & Spirits",
+            "customer": "Coasters Liquors",
             "date": "8/7/2026",
             "skus": 6
           },
@@ -34486,14 +34933,14 @@ const PROGRAM_DATA = {
             "skus": 6
           },
           {
-            "customer": "Royal Wine & Spirits II",
-            "date": "8/5/2026",
-            "skus": 3
-          },
-          {
             "customer": "Winemart Discount",
             "date": "8/5/2026",
             "skus": 6
+          },
+          {
+            "customer": "Royal Wine & Spirits II",
+            "date": "8/5/2026",
+            "skus": 3
           }
         ],
         "buyingAccountCount": 9,
@@ -34595,18 +35042,18 @@ const PROGRAM_DATA = {
     },
     "leaderboard": [
       {
-        "rep": "Phil Ernst",
-        "penetrationPct": 44.0,
+        "rep": "Derrick Laws",
+        "penetrationPct": 43.8,
         "rank": 1
+      },
+      {
+        "rep": "Phil Ernst",
+        "penetrationPct": 40.0,
+        "rank": 2
       },
       {
         "rep": "Dave Ehlers",
         "penetrationPct": 39.4,
-        "rank": 2
-      },
-      {
-        "rep": "Derrick Laws",
-        "penetrationPct": 37.5,
         "rank": 3
       },
       {
@@ -34625,48 +35072,48 @@ const PROGRAM_DATA = {
         "rank": 6
       },
       {
-        "rep": "Michael Harboy",
+        "rep": "Anthony Palmisano",
         "penetrationPct": 33.3,
         "rank": 7
       },
       {
+        "rep": "Michael Harboy",
+        "penetrationPct": 33.3,
+        "rank": 8
+      },
+      {
         "rep": "Matt Powierski",
         "penetrationPct": 31.4,
-        "rank": 8
+        "rank": 9
       },
       {
         "rep": "Shane Barreca",
         "penetrationPct": 31.0,
-        "rank": 9
+        "rank": 10
       },
       {
         "rep": "Klejdi Lamo",
         "penetrationPct": 25.9,
-        "rank": 10
+        "rank": 11
       },
       {
         "rep": "Dan Lagala",
         "penetrationPct": 24.4,
-        "rank": 11
+        "rank": 12
       },
       {
         "rep": "Pablo Lopez",
         "penetrationPct": 23.1,
-        "rank": 12
+        "rank": 13
       },
       {
         "rep": "Javier Melo",
         "penetrationPct": 21.4,
-        "rank": 13
+        "rank": 14
       },
       {
         "rep": "Mike Ast",
         "penetrationPct": 19.4,
-        "rank": 14
-      },
-      {
-        "rep": "Anthony Palmisano",
-        "penetrationPct": 18.5,
         "rank": 15
       },
       {
@@ -154660,5 +155107,5 @@ const PROGRAM_DATA_2026_09 = {
     }
   }
 };
-const PROGRAM_DATA_REFRESHED = "Sep 23, 2026, 9:33 AM ET";
-const PROGRAM_DATA_REFRESHED_AT = "2026-09-23T13:33:57Z";
+const PROGRAM_DATA_REFRESHED = "Sep 23, 2026, 9:42 AM ET";
+const PROGRAM_DATA_REFRESHED_AT = "2026-09-23T13:42:10Z";
