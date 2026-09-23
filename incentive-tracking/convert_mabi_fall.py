@@ -34,7 +34,21 @@ is what scores a rep.
 
 Writes a third CSV, mabi_retention_fall_brand_goals.csv, with the workbook's
 per-(rep, brand) base and goal -- see parse_goals().
-Run: python3 convert_mabi_fall.py <actuals.csv> <goals.xlsx> [--dry-run]
+THE GOALS FILE IS THE SOURCE OF THE GOALS (Gavin, 2026-09-23: "the file
+for mabi contains the goal in the 90% of Placement Count GOAL column" --
+make the dashboard match it). This reverses the 2026-09-21 rule that let the
+actuals export's own goal column win: that column broke the 90% rule on four
+brand rows (Chris Payton / Mike's Harder 77 on a base of 49, Dave Ehlers /
+Mike's Hard Dirty Lemonade 5 on 2, ...), while every one of the goals file's
+948 rows is exactly round-half-up(0.9 x base). The export's goals are now a
+CROSS-CHECK only: every value that disagrees is printed, nothing is applied.
+The goals file may be the original XLSX tree or the flat CSV export
+("MABI_Fall_2026_Retention_Goals.csv": rep / brand / product columns, first
+row of a rep block = rep total, first row of a brand block = brand subtotal).
+
+Run: python3 convert_mabi_fall.py <actuals.csv> <goals.xlsx|goals.csv> [--dry-run]
+     python3 convert_mabi_fall.py --goals-only <goals.xlsx|goals.csv> [--dry-run]
+       (rewrites only the two goals CSVs; the actuals CSV is left as published)
 """
 import csv
 import re
@@ -122,10 +136,12 @@ def parse_goals(path):
     BRAND-LEVEL GOALS (added 2026-09-21, per Gavin: show MABI's goals per
     brand family the way Constellation / Yuengling / Molson Coors show
     theirs). The workbook carries a base and a 90% goal on every brand row
-    under every rep; they are lifted here and then OVERRIDDEN by the export's
-    own goal column wherever it carries one (main()). Each level rounds on
+    under every rep; they are lifted here and, since 2026-09-23, are FINAL --
+    the export's goal column is only cross-checked against them (main()). Each level rounds on
     its own, so a rep's brand goals need not sum to the rep goal (the
     docstring above); the BASES do sum, and that is checked."""
+    if str(path).lower().endswith(".csv"):
+        return _parse_goals_csv(path)
     ws = openpyxl.load_workbook(path, data_only=True).worksheets[0]
     rows = [(str(r[0]).strip(), r[1], r[2])
             for r in ws.iter_rows(min_row=2, values_only=True) if r[0] is not None]
@@ -163,11 +179,97 @@ def parse_goals(path):
     return rep_goals, house, problems, nprod, brand_goals
 
 
+def _parse_goals_csv(path):
+    """The flat CSV shape of the goals report (first seen 2026-09-23): three
+    real label columns, levels implied by position exactly like the actuals
+    export -- first row of a rep block is the rep total, first row of each
+    brand block its subtotal. Same return shape and the same checks as the
+    XLSX path: 90% rule on every row, products sum to their brand subtotal,
+    brands to their rep total. It carries NO house Total row, so the house
+    is the sum of rep bases and round-half-up(0.9 x that)."""
+    rows = list(csv.DictReader(open(path, newline="", encoding="utf-8-sig")))
+    if not rows:
+        sys.exit("goals: file is empty")
+    bcol = next((c for c in rows[0] if c.startswith("Placement Count")), None)
+    gcol = next((c for c in rows[0] if "GOAL" in c.upper()), None)
+    if not bcol or not gcol:
+        sys.exit("goals: need a 'Placement Count' and a '... GOAL' column -- wrong export?")
+    recs = [(r["Sales Rep Assigned"].strip(), r["Brand Family"].strip(),
+             r["Product Num & Name"].strip(), num(r[bcol]), num(r[gcol]))
+            for r in rows if (r.get("Sales Rep Assigned") or "").strip()]
+    rep_goals, brand_goals, problems, nprod = {}, {}, [], 0
+    for rep, bf, prod, base, goal in recs:
+        if int(base * 0.9 + 0.5) != int(goal):
+            problems.append(f"  {rep} / {bf} / {prod}: goal {goal:g} != round(0.9 x {base:g})")
+    i = 0
+    while i < len(recs):
+        rep = recs[i][0]
+        j = i
+        while j < len(recs) and recs[j][0] == rep:
+            j += 1
+        block = recs[i:j]
+        rep_goals[rep] = (block[0][3], block[0][4])
+        body, k, brand_sum = block[1:], 0, 0.0
+        while k < len(body):
+            bf = body[k][1]
+            m = k
+            while m < len(body) and body[m][1] == bf:
+                m += 1
+            run = body[k:m]
+            brand_goals[(rep, bf)] = (run[0][3], run[0][4])
+            got = sum(x[3] for x in run[1:])
+            nprod += len(run) - 1
+            if run[1:] and abs(run[0][3] - got) > 1e-6:
+                problems.append(f"  {rep} / {bf}: subtotal {run[0][3]:g} != products {got:g}")
+            brand_sum += run[0][3]
+            k = m
+        if abs(block[0][3] - brand_sum) > 1e-6:
+            problems.append(f"  {rep}: rep base {block[0][3]:g} != brands {brand_sum:g}")
+        i = j
+    hb = sum(b for b, _ in rep_goals.values())
+    return rep_goals, (hb, float(int(hb * 0.9 + 0.5))), problems, nprod, brand_goals
+
+
+def _write_goals(rep_goals, house, brand_goals):
+    with open(DATA / "mabi_retention_fall_goals.csv", "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["Sales Rep Name", "Base Placements", "Goal"])
+        for rep in sorted(rep_goals):
+            b, g = rep_goals[rep]
+            w.writerow([rep, "" if b is None else f"{b:g}", f"{g:g}"])
+        w.writerow(["Total", f"{house[0]:g}", f"{house[1]:g}"])
+    with open(DATA / "mabi_retention_fall_brand_goals.csv", "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["Sales Rep Name", "Brand Family", "Base Placements", "Goal"])
+        for (rep, brand) in sorted(brand_goals):
+            b, g = brand_goals[(rep, brand)]
+            w.writerow([rep, brand, "" if b is None else f"{b:g}", f"{g:g}"])
+
+
 def main():
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     dry = "--dry-run" in sys.argv
+    if "--goals-only" in sys.argv:
+        if len(args) != 1:
+            sys.exit("usage: python3 convert_mabi_fall.py --goals-only <goals.xlsx|goals.csv> [--dry-run]")
+        rep_goals, house, gp, nprod, brand_goals = parse_goals(args[0])
+        print(f"goals:   {len(rep_goals)} reps, {len(brand_goals)} brand rows, {nprod} product rows, "
+              f"house base {house[0]:g} / goal {house[1]:g}")
+        if gp:
+            print("\nRECONCILIATION FAILED -- refusing to write:")
+            for p in gp[:20]:
+                print(p)
+            sys.exit(1)
+        print("reconciliation: every brand subtotal and rep total adds up; every goal is round(0.9 x base)")
+        if dry:
+            print("\n--dry-run: nothing written")
+            return
+        _write_goals(rep_goals, house, brand_goals)
+        print("\nwrote data/mabi_retention_fall_goals.csv and data/mabi_retention_fall_brand_goals.csv "
+              "(actuals untouched). Now run: python3 generate.py")
+        return
     if len(args) != 2:
-        sys.exit(__doc__.strip().splitlines()[-1])
+        sys.exit("usage: python3 convert_mabi_fall.py <actuals.csv> <goals.xlsx|goals.csv> [--dry-run]")
     actuals_path, goals_path = args
 
     products, rep_totals, ap, vcol, export_goals = parse_actuals(actuals_path)
@@ -194,31 +296,24 @@ def main():
     if only_goal:
         print(f"  goal but no 9/1-11/30 activity yet: {', '.join(only_goal)}")
 
-    # THE EXPORT'S GOALS WIN (Gavin, 2026-09-21: "use the export's goals for
-    # mabi, not the workbook"). Where the "w/ Goals" export carries a goal --
-    # on its rep-total and brand-subtotal rows -- that number replaces the
-    # workbook's, at both levels, so the rep goal and its brand goals come
-    # from one file and agree. The workbook still supplies what the export
-    # cannot: the BASE columns, the house Total row, and the goal of any rep
-    # the export leaves out (a goal with no 9/1-11/30 activity yet). Every
-    # replacement is printed so a drift shows in the build log.
+    # THE GOALS FILE WINS (Gavin, 2026-09-23 -- reverses 2026-09-21's "use
+    # the export's goals"). The "w/ Goals" export's goal column is only a
+    # cross-check now: every value that disagrees with the goals file is
+    # printed, none is applied. A rep the goals file lacks but the export
+    # goals is the one exception -- that goal is taken, and printed.
     if export_goals:
-        changed = []
+        diffs = []
         for (rep, brand), g in sorted(export_goals.items(), key=lambda kv: (kv[0][0], kv[0][1] or "")):
-            if brand is None:
-                b, wb = rep_goals.get(rep, (None, None))
-                if wb is None or abs(wb - g) > 1e-6:
-                    changed.append(f"    {rep}: rep goal workbook {wb if wb is None else f'{wb:g}'} -> export {g:g}")
-                rep_goals[rep] = (b, g)
-            else:
-                b, wb = brand_goals.get((rep, brand), (None, None))
-                if wb is None or abs(wb - g) > 1e-6:
-                    changed.append(f"    {rep} / {brand}: workbook {wb if wb is None else f'{wb:g}'} -> export {g:g}")
-                brand_goals[(rep, brand)] = (b, g)
-        nb = sum(1 for k in export_goals if k[1] is not None)
-        print(f"  goals from the EXPORT: {len(export_goals) - nb} rep goals + {nb} brand goals applied; "
-              f"{len(changed)} differ from the workbook (workbook keeps bases, the house Total and any rep not in the export)")
-        for line in changed:
+            src = rep_goals if brand is None else brand_goals
+            key = rep if brand is None else (rep, brand)
+            b, wb = src.get(key, (None, None))
+            if wb is None:
+                src[key] = (b, g)
+                diffs.append(f"    {rep}{'' if brand is None else ' / ' + brand}: not in the goals file -> export's {g:g} TAKEN")
+            elif abs(wb - g) > 1e-6:
+                diffs.append(f"    {rep}{'' if brand is None else ' / ' + brand}: goals file {wb:g} KEPT (export says {g:g})")
+        print(f"  export goal column cross-check: {len(export_goals)} goals, {len(diffs)} disagree with the goals file")
+        for line in diffs:
             print(line)
 
     if dry:
@@ -230,19 +325,7 @@ def main():
                                           "Product Num Name", "Placements"])
         w.writeheader()
         w.writerows(products)
-    with open(DATA / "mabi_retention_fall_goals.csv", "w", newline="", encoding="utf-8") as f:
-        w = csv.writer(f)
-        w.writerow(["Sales Rep Name", "Base Placements", "Goal"])
-        for rep in sorted(rep_goals):
-            b, g = rep_goals[rep]
-            w.writerow([rep, "" if b is None else f"{b:g}", f"{g:g}"])
-        w.writerow(["Total", f"{house[0]:g}", f"{house[1]:g}"])
-    with open(DATA / "mabi_retention_fall_brand_goals.csv", "w", newline="", encoding="utf-8") as f:
-        w = csv.writer(f)
-        w.writerow(["Sales Rep Name", "Brand Family", "Base Placements", "Goal"])
-        for (rep, brand) in sorted(brand_goals):
-            b, g = brand_goals[(rep, brand)]
-            w.writerow([rep, brand, "" if b is None else f"{b:g}", f"{g:g}"])
+    _write_goals(rep_goals, house, brand_goals)
 
     print("\nwrote data/mabi_retention_fall.csv, data/mabi_retention_fall_goals.csv and data/mabi_retention_fall_brand_goals.csv")
     print("These are CLEAN (no subtotal rows). Now run: python3 generate.py")
