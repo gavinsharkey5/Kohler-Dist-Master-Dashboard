@@ -4096,6 +4096,33 @@ ahead of a 9/21 pull -- kept, as every future-dated row has been.
              3 at bonus, $855.
 Hub cache tag bumped (20260921b) for the new program_data.js.
 
+2026-09-23 THIRD REFRESH -- Garage Beer, Touchdowns Tea, Evil Genius (+ Le Grand Noir, unchanged)
+  python3 generate.py
+Diffed row by row first. Le Grand Noir (_17) is identical to the published
+file -- nothing to do. Garage Beer President comparison restated in place:
+house 8,231.01 -> 8,483.04 CE of 9,305; every rep up except Phil Ernst
+346.00 -> 343.67 (a restatement, not a drop in rows). Dave Ehlers flips from
+-11.66 to +11.34 over last year. Touchdowns Tea OFF 4,099 -> 4,228 rows
+(+134 / -5: Phil Ernst's four 9/30 USA Wine Traders rows -- the month-end
+order that left every RDE export today -- and Jim Heaney's Clifton Commons
+Twisted Tea 9/21 row, restated 12 -> 11 cases, still there). Touchdowns Tea
+ON 2,320 -> 2,389 (+89 / -20: all 20 are Brian Sengebush's #191504 renamed
+"Jefferson House (A)" -> "The Jefferson House", same rows). Evil Genius
+348 -> 360 (+12, none removed). Only these three programs changed.
+  Touchdowns Tea  93 -> 103 new off-prem 12pk placements, on-prem cases
+              1,241 -> 1,447, trackable $2,636 -> $2,992. Dave Ehlers new
+              24 -> 28, Jayson Romine 8 -> 11, Matt Powierski 2 -> 4, Derrick
+              Laws, Jim Heaney, Mike Ast, Shane Barreca +1 each; Phil Ernst
+              11 -> 8 (the 9/30 order). On-prem: Allison Scott 339 -> 420 cases,
+              Anthony Palmisano 204 -> 239, Nick Melissari 117 -> 145, Paul
+              Mclaughlin 189 -> 216, Brian Sengebush 215 -> 233, Robin Feldman
+              112 -> 129.
+  Evil Genius 7 -> 13 new placements, 1 -> 2 reps past the 3-placement
+              qualifier: PHIL ERNST 0 -> 4 new off-prem (qualified, $45);
+              Brian Sengebush 4 new draft lines, 2 qualifying (1 short of the
+              qualifier). CE 73 -> 89 vs 98 last September, bonus CE 19 -> 27.
+Hub cache tag bumped (20260923c) for the new program_data.js.
+
 2026-09-23 SECOND REFRESH -- 1911, Woodchuck, Tona, Lytt (+ Keystone, unchanged)
   python3 generate.py
 Diffed row by row first. The Keystone export (_28) is byte-identical to the
