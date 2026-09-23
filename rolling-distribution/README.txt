@@ -61,6 +61,9 @@ conversations, using the same step 1 filters and period choice:
      verdict (Broader distribution works: rebuy >= 60% and cases per
      placement holding; Be selective: rebuy < 40%, or points +10% with
      cases growing less than half as fast; < 50 judged = Small sample).
+  Every table on both tabs sorts by any column: click a header (first
+  click = greatest to least, again to flip; first column A-Z). The
+  Trends tables re-render sorted; the Quality tables re-order in place.
   9. Print one-pager -- prints / saves the tab as a PDF (light theme,
      filters and buttons hidden) for the supplier meeting.
 Limitations stated on the tab: shipments net of credits are a proxy for

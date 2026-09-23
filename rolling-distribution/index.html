@@ -144,6 +144,9 @@
   td:not(:first-child){text-align:center}
   th.sub.m-buyers{color:var(--buyers)}th.sub.m-placements{color:var(--placements)}th.sub.m-cases{color:var(--cases)}th.sub.m-cpp{color:var(--cpp)}
   th.sorted{text-decoration:underline;text-underline-offset:4px;color:var(--ink)}
+  table[data-qs] th{cursor:pointer;user-select:none}
+  table[data-qs] th.sorted::after{content:" \25BC";font-size:11px;color:var(--gold)}
+  table[data-qs] th.sorted.asc::after{content:" \25B2"}
   thead tr:first-child th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:var(--namecol);z-index:1;padding-left:12px;border-right:2px solid var(--line);overflow:hidden;text-overflow:ellipsis}
   thead tr:first-child th:first-child{z-index:3;background:var(--surface2)}
   td.pg0{background:var(--pg0)}td.pg1{background:var(--pg1)}
@@ -286,7 +289,7 @@
 </div>
 <div class="tip" id="tip"></div>
 <script src="data/logos.js?v=2"></script>
-<script src="data/dist_data.js?v=38"></script>
+<script src="data/dist_data.js?v=39"></script>
 <script>
 (function(){
   var D = window.DIST_DATA;
@@ -987,10 +990,25 @@
   function pctS(a,b){ return b ? Math.round(a/b*100)+'%' : '—'; }
   function median(arr){ if(!arr.length) return 0; var a=arr.slice().sort(function(x,y){return x-y;}); var m=a.length>>1; return a.length%2 ? a[m] : (a[m-1]+a[m])/2; }
   function qtable(id, headers, rows, note){
-    var h=['<div class="tbl-wrap qt"><table id="'+id+'"><thead><tr>'+headers.map(function(x,i){ return '<th class="sub'+(i===0?' namehd':'')+'">'+x+'</th>'; }).join('')+'</tr></thead><tbody>'];
+    var h=['<div class="tbl-wrap qt"><table id="'+id+'" data-qs="1"><thead><tr>'+headers.map(function(x,i){ return '<th class="sub'+(i===0?' namehd':'')+'" title="Click to sort">'+x+'</th>'; }).join('')+'</tr></thead><tbody>'];
     rows.forEach(function(r){ h.push('<tr class="'+(r.cls||'')+'">'+r.cells.map(function(c,i){ return '<td'+(i===0?' style="text-align:left"':'')+'>'+c+'</td>'; }).join('')+'</tr>'); });
     h.push('</tbody></table></div>'+(note?'<p class="note">'+note+'</p>':''));
     return h.join('');
+  }
+  // Sort a quality table in place by the clicked column: numbers greatest-to-least first (click again to flip),
+  // the first column A-Z. The number is read from the cell text ("390 (26%)" sorts by 390, "—" / n/a go last).
+  function qsort(th){
+    var tbl=th.closest('table'), tb=tbl.tBodies[0]; if(!tb) return;
+    var ci=Array.prototype.indexOf.call(th.parentNode.children, th), isName=(ci===0);
+    var asc = th.classList.contains('sorted') ? !th.classList.contains('asc') : isName;
+    var rows=Array.prototype.slice.call(tb.rows);
+    function key(tr){ var td=tr.cells[ci]; var t=td?td.textContent.trim():''; if(isName) return t.toLowerCase(); var m=t.replace(/,/g,'').match(/-?\d+(\.\d+)?/); return m? parseFloat(m[0]) : null; }
+    var keyed=rows.map(function(tr,i){ return {tr:tr,k:key(tr),i:i}; });
+    keyed.sort(function(a,b){ if(a.k===null&&b.k===null) return a.i-b.i; if(a.k===null) return 1; if(b.k===null) return -1;
+      var c = typeof a.k==='number' ? a.k-b.k : String(a.k).localeCompare(String(b.k)); if(c===0) return a.i-b.i; return asc? c : -c; });
+    keyed.forEach(function(x){ tb.appendChild(x.tr); });
+    Array.prototype.forEach.call(th.parentNode.children, function(x){ x.classList.remove('sorted','asc'); });
+    th.classList.add('sorted'); if(asc) th.classList.add('asc');
   }
   var QCTX={scope:'',period:'',plural:'',label:''};
   // Plain-language introductions, one per section: what it shows / why it matters / how to read it.
@@ -1415,6 +1433,7 @@
     var pv=el('prev'); if(pv) pv.addEventListener('click', function(){ if(HIST.length<2) return; HIST.pop(); var prev=JSON.parse(HIST[HIST.length-1]); Object.keys(prev).forEach(function(k){ S[k]=prev[k]; }); restoring=true; render(); });
     var rs2=el('reset2'); if(rs2) rs2.addEventListener('click', function(){ S.bm=S.sup=S.fam=S.brand=S.prod=-1; S.pkg='all'; S.prem='all'; S.dm=S.rep=S.area=S.county=S.cust=-1; S.rows='brand'; S.tab='children'; S.sort=''; S.q=''; render(); });
     var rs=el('reset'); if(rs) rs.addEventListener('click', function(){ S.bm=S.sup=S.fam=S.brand=S.prod=-1; S.pkg='all'; S.prem='all'; S.dm=S.rep=S.area=S.county=S.cust=-1; S.rows='brand'; S.tab='children'; S.sort=''; S.q=''; render(); });
+    app.querySelectorAll('table[data-qs] th').forEach(function(th){ th.addEventListener('click', function(){ qsort(th); }); });
     app.querySelectorAll('th[data-sort]').forEach(function(th){ th.addEventListener('click', function(){ var k=th.dataset.sort; if(S.sort===k) S.dir=-S.dir; else { S.sort=k; S.dir = k.indexOf('name')===0||k.indexOf('rep')===0 ? 1 : -1; } render(); }); });
     app.querySelectorAll('tr.drill').forEach(function(tr){ tr.querySelector('td').addEventListener('click', function(){
       if(tr.dataset.bm!==undefined){ S.bm=+tr.dataset.bm; S.sup=S.fam=S.brand=S.prod=-1; S.rows='brand'; S.view='compare'; S.sort=''; render(); return; }
