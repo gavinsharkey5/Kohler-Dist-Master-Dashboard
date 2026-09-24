@@ -84,6 +84,14 @@ Detailed (the sections):
   Every table on both tabs sorts by any column: click a header (first
   click = greatest to least, again to flip; first column A-Z). The
   Trends tables re-render sorted; the Quality tables re-order in place.
+  Out of code (from data/master/adjust/, Fusion's internal account 8):
+  cases Kohler destroyed, per product per month. Section 1 shows it as a
+  tile (cases and % of what the scope sold in the period) and a takeaway
+  line, the "fewest Thin points" table carries it per family / brand /
+  product, the verdict table per child, and the simple card 1 has a
+  tile. It is warehouse-level: it follows the product-side filters
+  (supplier / family / brand / product / package) but NOT account, rep,
+  area, county or premise, and it can never be tied to a placement.
   Account size (deciles, from Gavin's Supplier_Deciles workbook): every
   account carries a size tag (Top 10% / Top 20% / Top 30% / Decile 4-7 /
   Bottom 30%, plus industry class A/B/C) on the account tables in

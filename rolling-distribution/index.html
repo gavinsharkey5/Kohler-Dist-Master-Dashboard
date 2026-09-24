@@ -325,7 +325,7 @@
 </div>
 <div class="tip" id="tip"></div>
 <script src="data/logos.js?v=2"></script>
-<script src="data/dist_data.js?v=47"></script>
+<script src="data/dist_data.js?v=48"></script>
 <script>
 (function(){
   var D = window.DIST_DATA;
@@ -380,6 +380,12 @@
     return Object.keys(o).map(Number);
   }
   var TERR_EXCL = 0, COUNTY_OK = null, AREA_OK = null;
+  // ---- out-of-code cases per product per month (Fusion internal account 8; no customer, so customer filters never apply)
+  var OOC = new Float32Array(products.length*M), HAS_OOC = !!(D.ooc && D.ooc.length);
+  (D.ooc||[]).forEach(function(t){ OOC[t[0]*M+t[1]] += t[2]; });
+  function pct1(a,b){ if(!b) return '—'; var v=a/b*100; return (v>=10?Math.round(v):(Math.round(v*10)/10))+'%'; }
+  function oocProd(pi, s, e){ var t=0, b=pi*M; for(var k=Math.max(0,s);k<=e;k++) t+=OOC[b+k]; return t; }
+  function oocScope(pm, s, e){ var t=0; for(var i=0;i<products.length;i++){ if(pm[i]) t+=oocProd(i,s,e); } return t; }
   // ---- account size deciles (Supplier_Deciles workbook): DEC[c] = [decile 1-10 (0 = not ranked), class 0=A 1=B 2=C, dist pts, stops]
   var DEC = D.decile||[], SDEC = D.sdecile||{};
   var HAS_DEC = DEC.some(function(d){ return d[0]>0; });
@@ -1083,7 +1089,7 @@
                           ['Why it matters',[
                             'Suppliers count every placement as a point of distribution, no matter how little it sells.',
                             'A Thin point still counts on their scoreboard, but the account is not really a customer of the brand.',
-                            'Thin product sits, goes out of code, and Kohler picks it up and destroys it at our cost.']],
+                            'Thin product sits, goes out of code, and Kohler picks it up and destroys it at our cost.'].concat(HAS_OOC?['<b>Out of code</b> is Fusion\u2019s own write-off line: cases Kohler destroyed, by product and month. It is warehouse-level, so it follows the brand filters but not the account, rep or area filters.']:[])],
                           ['How to read it',[
                             'Compare the two bars: share of placements vs share of cases.',
                             'Thin taking a big slice of placements but a sliver of cases = points that never became sales.',
@@ -1172,6 +1178,7 @@
     var tiers = periods.map(function(p,j){ var t=[0,0,0], tc=[0,0,0], tf=tierFn(pm,cm,ps,j,p.len); if(j===tj) tfT=tf; for(var i=0;i<NP;i++){ if(!pm[PP[i]]||!cm[PC[i]]) continue; var v=ps.sum[i*ps.P+j]; if(!(v>0)) continue; var k=tf(i,v); t[k]++; tc[k]+=v; } return {p:p,t:t,tc:tc,pl:t[0]+t[1]+t[2],cs:tc[0]+tc[1]+tc[2]}; });
     var cur=tiers[tj];
     QS={T:T, len:len, li:li, yy:yy, s1:{cur:cur, al:[]}, s2:null, s4:null};
+    var oocT = HAS_OOC ? oocScope(pm, T.s, T.e) : 0, oocPct = cur.cs ? oocT/cur.cs : 0; QS.s1.ooc = oocT; QS.s1.oocPct = oocPct;
     h.push('<div class="card qcard">'+qhead(1,'Are the points real? · '+esc(scopeName())+' · '+esc(pLabel(T)),
       'Every placement (one product at one account) sorted by what it sells per month. Core ≥ '+S.tcore+' cases a month, Thin under '+S.tthin+'. A point of distribution that sells under a case a month is a point on a scoresheet, not a customer.',
       '<span class="tbtns"><button class="btn primary" id="q-print" title="Print or save as PDF">🖨 Print one-pager</button></span>'));
@@ -1189,11 +1196,13 @@
         '<span class="up">The best '+fmtN(c.t[0])+' placements ('+Math.round(coreP*100)+'%)</span> sold <b>'+Math.round(coreC*100)+'% of the cases</b>, about '+fmt1(corePm)+' cases a month each.',
         '<span class="down">The slowest '+fmtN(c.t[2])+' placements ('+Math.round(thinP*100)+'%)</span> sold <b>'+Math.round(thinC*100)+'% of the cases</b>, about '+fmt1(thinPm)+' cases a month each. Those '+fmtN(c.t[2])+' points are on the supplier’s scoreboard but barely move.'
       ];
+      if(HAS_OOC && oocT>0) lines.push('<span class="down">Kohler destroyed '+fmtC(oocT)+' cases</span> of '+esc(scopeName())+' out of code in '+esc(pLabel(T))+', '+pct1(oocT,c.cs)+' of what it sold. Product that sits is product we pay to throw away.');
       if(prev && prev.pl){ var pt=prev.t[2]/prev.pl; var d=thinP-pt; lines.push('Thin share was '+Math.round(pt*100)+'% in '+esc(pLabel(prev.p))+' and is '+Math.round(thinP*100)+'% now ('+(d>0.005?'<span class="down">getting worse</span>':(d<-0.005?'<span class="up">improving</span>':'flat'))+').'); }
       var quote='“Of your '+fmtN(n)+' points '+scopeWord()+', '+fmtN(c.t[2])+' sell about '+fmt1(thinPm)+' cases a month and add up to '+Math.round(thinC*100)+'% of the volume. More points like those don’t sell cases. The '+fmtN(c.t[0])+' that do '+Math.round(coreC*100)+'% of the volume are the accounts we should be protecting and cloning.”';
       h.push(takeaway('The takeaway · '+esc(scopeName()), lines, quote));
     })();
     h.push('<div class="kpis">');
+    if(HAS_OOC) h.push('<div class="kpi '+(oocPct>=0.02?'m-bad':'')+'" style="grid-column:1/-1"><span class="kpi-p">'+esc(pLabel(T))+'</span><div class="l">Out of code · destroyed by Kohler</div><div class="v">'+fmtC(oocT)+' <span style="font-size:18px;font-weight:600;color:var(--ink-soft)">cases</span></div><div class="d"><span>'+pct1(oocT,cur.cs)+' of the '+fmtC(cur.cs)+' cases '+esc(scopeName())+' sold in the period</span><span>warehouse write-offs by product; account, rep and area filters do not apply to this number</span></div></div>');
     for(var k=0;k<3;k++){ h.push('<div class="kpi tier'+k+'"><span class="kpi-p">'+esc(pLabel(T))+'</span><div class="l"><span class="dot" style="background:'+TIERC[k]+'"></span>'+TIERN[k]+' placements</div><div class="v">'+fmtN(cur.t[k])+'</div><div class="d"><span>'+pctS(cur.t[k],cur.pl)+' of placements · <b>'+pctS(cur.tc[k],cur.cs)+' of cases</b></span><span>'+(cur.t[k]?fmt1(cur.tc[k]/cur.t[k]/len):'—')+' cases / placement / month</span></div></div>'); }
     h.push('</div>');
     function bar(label, vals){ var tot=vals.reduce(function(a,b){return a+b;},0)||1; return '<div class="qbar"><span class="qbl">'+label+'</span><div class="qtrack">'+vals.map(function(v,k){ var w=v/tot*100; return '<span class="qseg" style="width:'+w+'%;background:'+TIERC[k]+'" title="'+TIERN[k]+': '+fmtN(v)+' ('+Math.round(w)+'%)">'+(w>=7?Math.round(w)+'%':'')+'</span>'; }).join('')+'</div></div>'; }
@@ -1221,6 +1230,9 @@
         g.n++; g.t[t]++; g.cs+=v; if(t===2) g.tcs+=v; if(v/len<1) g.u1++;
         if(t===0){ var c=PC[i], a=acct.get(c); if(!a){ a={c:c,n:0,cs:0,all:0,prods:[]}; acct.set(c,a); } a.n++; a.cs+=v; a.prods.push({p:PP[i],v:v}); }
       }
+      // out-of-code per group: product-side groups only (it has no customer)
+      var oocG=new Map();
+      if(HAS_OOC && TK[tt]){ for(var pi2=0;pi2<products.length;pi2++){ if(!pm[pi2]) continue; var ov=oocProd(pi2,T.s,T.e); if(!ov) continue; var gid=tt==='family'?products[pi2][3]:(tt==='brand'?products[pi2][4]:pi2); oocG.set(gid,(oocG.get(gid)||0)+ov); } }
       // every product this account buys in scope (for cases/month), not just the Core ones
       for(var i2=0;i2<NP;i2++){ if(!pm[PP[i2]]||!cm[PC[i2]]) continue; var v2=ps.sum[i2*ps.P+tj]; if(!(v2>0)) continue; var a2=acct.get(PC[i2]); if(a2) a2.all+=v2; }
       var MINP = TK[tt] ? 200 : 10;   // brand-side rows need a real footprint before their Thin share means anything
@@ -1233,8 +1245,9 @@
         ? 'In Relative mode every brand family is about '+S.tq+'% Thin by definition, so compare the <b>brands or products inside a family</b>, or use the <b>Under 1 case / mo</b> column, which holds every brand to the same bar.'
         : 'Fixed rule: the same case bar for every brand, so families compare directly.')+(TK[tt] ? ' Only '+tabLabel(tt)+' with more than 200 placements are listed'+(dropped?' ('+fmtN(dropped)+' smaller ones left out)':'')+'.' : ' Groups under 10 placements sit at the bottom.')+'</p>');
       h.push('<p class="help" style="margin:6px 0 4px">Break it down by:</p><div class="tabs">'+ttabs.map(function(x){ return '<button data-ttab="'+x[0]+'" class="'+(tt===x[0]?'on':'')+'">'+x[1]+'</button>'; }).join('')+'</div>');
-      h.push(qtable('q-thin', [kf.col,'Placements','Core','Steady','Thin','Thin share','Thin share of cases','Under 1 case / mo','Cases / placement / mo'],
-        (TK[tt]?rows:rows.slice(0,80)).map(function(g){ return {cells:[esc(g.name)+(TK[tt]?'':small(g.n,10)), fmtN(g.n), fmtN(g.t[0]), fmtN(g.t[1]), fmtN(g.t[2]), '<b class="'+(g.thin<=0.2?'up':(g.thin>=0.35?'down':''))+'">'+pctS(g.t[2],g.n)+'</b>', pctS(g.tcs,g.cs), fmtN(g.u1)+' <span class="muted">('+pctS(g.u1,g.n)+')</span>', fmt1(g.cs/g.n/len)]}; }),
+      var oocCol = HAS_OOC && TK[tt];
+      h.push(qtable('q-thin', [kf.col,'Placements','Core','Steady','Thin','Thin share','Thin share of cases','Under 1 case / mo','Cases / placement / mo'].concat(oocCol?['Out of code (cases · % of sold)']:[]),
+        (TK[tt]?rows:rows.slice(0,80)).map(function(g){ var ov=oocCol?(oocG.get(g.id)||0):0; return {cells:[esc(g.name)+(TK[tt]?'':small(g.n,10)), fmtN(g.n), fmtN(g.t[0]), fmtN(g.t[1]), fmtN(g.t[2]), '<b class="'+(g.thin<=0.2?'up':(g.thin>=0.35?'down':''))+'">'+pctS(g.t[2],g.n)+'</b>', pctS(g.tcs,g.cs), fmtN(g.u1)+' <span class="muted">('+pctS(g.u1,g.n)+')</span>', fmt1(g.cs/g.n/len)].concat(oocCol?[ov?('<b class="'+(g.cs&&ov/g.cs>=0.05?'down':'')+'">'+fmtC(ov)+'</b> <span class="muted">('+pct1(ov,g.cs)+')</span>'):'<span class="muted">0</span>']:[])}; }),
         (!TK[tt]&&rows.length>80?'Top 80 of '+fmtN(rows.length)+' rows. ':'')+'Click any column header to re-sort.'));
       h.push('<div class="tbtns" style="margin-top:8px"><button class="btn small" data-csv="q-thin">CSV</button></div>');
       // accounts behind the Core placements
@@ -1506,8 +1519,9 @@
     QS.s8={vlist:vlist};
     h.push('<div class="card qcard">'+qhead(8,'Broad or selective? · '+esc(LEVELS[li].plural.toLowerCase())+' under '+esc(scopeName()),
       'The test of "more points = more sales": for each row, how placements and cases moved against the same period a year ago, whether cases per placement held, and how well its new points rebuy. <b>Broader distribution works</b> = 6-month rebuy 60%+ and cases per placement holding. <b>Be selective</b> = rebuy under 40%, or points grew 10%+ while cases grew less than half as fast. Rows with under 50 judged placements get no verdict.'));
-    h.push(qtable('q-verdict', [LEVELS[li].label,'Placements · '+esc(pLabel(T)),'Placements vs prior yr','Cases vs prior yr','Cases / placement vs prior yr','Rebuy 6 mo','Repeat cases / mo','Verdict'],
-      vlist.slice(0,80).map(function(g){ function ch(v){ return v===null?'<span class="muted">—</span>':'<span class="'+(v>0.02?'up':(v<-0.02?'down':'flat'))+'">'+(v>0?'+':'')+Math.round(v*100)+'%</span>'; } return {cells:[esc(g.name), fmtN(g.plT), ch(g.dp), ch(g.dc), ch(g.dcpp), '<b>'+pctN(g.sm.r6)+'</b> <span class="muted">('+fmtN(g.sm.j6)+')</span>', g.sm.repeat!==null?fmt1(g.sm.repeat):'—', '<span class="verdict '+g.verdict[1]+'">'+g.verdict[0]+'</span>']}; }),
+    var oocV=new Map(); if(HAS_OOC){ for(var pi5=0;pi5<products.length;pi5++){ if(!pm[pi5]) continue; var ov5=oocProd(pi5,T.s,T.e); if(ov5) oocV.set(entityOf(li,pi5),(oocV.get(entityOf(li,pi5))||0)+ov5); } }
+    h.push(qtable('q-verdict', [LEVELS[li].label,'Placements · '+esc(pLabel(T)),'Placements vs prior yr','Cases vs prior yr','Cases / placement vs prior yr','Rebuy 6 mo','Repeat cases / mo'].concat(HAS_OOC?['Out of code · '+esc(pLabel(T))]:[]).concat(['Verdict']),
+      vlist.slice(0,80).map(function(g){ function ch(v){ return v===null?'<span class="muted">—</span>':'<span class="'+(v>0.02?'up':(v<-0.02?'down':'flat'))+'">'+(v>0?'+':'')+Math.round(v*100)+'%</span>'; } var ov=oocV.get(g.id)||0; return {cells:[esc(g.name), fmtN(g.plT), ch(g.dp), ch(g.dc), ch(g.dcpp), '<b>'+pctN(g.sm.r6)+'</b> <span class="muted">('+fmtN(g.sm.j6)+')</span>', g.sm.repeat!==null?fmt1(g.sm.repeat):'—'].concat(HAS_OOC?[ov?('<b class="'+(g.csT&&ov/g.csT>=0.05?'down':'')+'">'+fmtC(ov)+'</b> <span class="muted">('+pct1(ov,g.csT)+')</span>'):'<span class="muted">0</span>']:[]).concat(['<span class="verdict '+g.verdict[1]+'">'+g.verdict[0]+'</span>'])}; }),
       'Sorted by placements. A row that grew points, lost cases per placement and rebuys poorly is the supplier’s drive showing up as thin points.'));
     h.push('<div class="tbtns" style="margin-top:8px"><button class="btn small" data-csv="q-verdict">CSV</button></div></div>');
     return h.join('');
@@ -1532,7 +1546,8 @@
       var b1=head('<b>'+fmtN(n)+' placements</b> of '+name+' in '+per+'. <span class="up">The best '+fmtN(c.t[0])+' ('+Math.round(coreP*100)+'%)</span> sell <b>'+Math.round(coreC*100)+'% of the cases</b>. <span class="down">The slowest '+fmtN(c.t[2])+' ('+Math.round(thinP*100)+'%)</span> sell just <b>'+Math.round(thinC*100)+'%</b>.')
         +'<div class="sbigs">'+big(fmtN(c.t[0]),'Core placements · '+Math.round(coreC*100)+'% of cases · '+(c.t[0]?fmt1(c.tc[0]/c.t[0]/len):'—')+' cases a month each','good')
         +big(fmtN(c.t[1]),'Steady placements · '+Math.round(c.tc[1]/(c.cs||1)*100)+'% of cases','mid')
-        +big(fmtN(c.t[2]),'Thin placements · '+Math.round(thinC*100)+'% of cases · '+(c.t[2]?fmt1(c.tc[2]/c.t[2]/len):'—')+' cases a month each','bad')+'</div>'
+        +big(fmtN(c.t[2]),'Thin placements · '+Math.round(thinC*100)+'% of cases · '+(c.t[2]?fmt1(c.tc[2]/c.t[2]/len):'—')+' cases a month each','bad')
+        +(HAS_OOC?big(fmtC(Q.s1.ooc||0),'cases destroyed out of code · '+pct1(Q.s1.ooc||0,c.cs)+' of what '+name+' sold', (Q.s1.oocPct||0)>=0.02?'bad':''):'')+'</div>'
         +'<div class="qbars">'+(Q.bar1||'')+'</div>'
         +(Q.s1.al.length?'<p class="sline"><b>Best accounts:</b> '+Q.s1.al.slice(0,5).map(function(a){ return esc(customers[a.c][1]); }).join(', ')+(Q.s1.al.length>5?' and '+fmtN(Q.s1.al.length-5)+' more':'')+'.</p>':'')
         +act('Protect the '+fmtN(c.t[0])+' Core accounts. When the supplier asks for more points, the '+fmtN(c.t[2])+' Thin ones are the proof that a point is not a sale: they are '+Math.round(thinP*100)+'% of the points and '+Math.round(thinC*100)+'% of the cases.');

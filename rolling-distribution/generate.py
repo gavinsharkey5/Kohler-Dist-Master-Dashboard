@@ -696,6 +696,20 @@ def build(products, customers, sources, suppliers=None, territory=None):
         print('DECILES  %d of %d accounts ranked; supplier deciles for %s' % (sum(1 for d in dec if d[0]), len(used_c), ', '.join(supplier_names[i] for i in sorted(sdec))))
         if unmatched:
             print('NOTE: decile suppliers not in the data (spelling?): %s' % ', '.join(unmatched))
+    # out-of-code cases per product per month (internal account 8 in data/master/adjust/) as [productIdx, monthIdx, cases] triples
+    ooc = []
+    if os.path.isdir(ADJUST_DIR):
+        for mk in months:
+            ap = os.path.join(ADJUST_DIR, mk + '.csv')
+            if not os.path.exists(ap):
+                continue
+            with open(ap, newline='', encoding='utf-8') as fh:
+                for r in csv.DictReader(fh):
+                    if r['account'] == '8' and r['product_num'] in pidx and float(r['cases']) != 0:
+                        ooc.append([pidx[r['product_num']], midx[mk], float(r['cases'])])
+        if ooc:
+            print('OOC      %d product-months of out-of-code cases (%s cases) from %s' % (len(ooc), format(round(sum(x[2] for x in ooc)), ','), os.path.relpath(ADJUST_DIR, HERE)))
+    out.append('"ooc":[%s],' % ','.join('[%d,%d,%s]' % (a, b, fmt(c)) for a, b, c in ooc))
     out.append('"decile":%s,' % json.dumps(dec, separators=(',', ':')))
     out.append('"sdecile":%s,' % json.dumps({str(k): v for k, v in sdec.items()}, separators=(',', ':')))
     out.append('"sell":%s,' % json.dumps(sell, separators=(',', ':')))
