@@ -15,6 +15,14 @@ To refresh with a new export:
   2. Run: python3 generate.py
   3. Commit and push.
 
+Manager passcode (2026-09-24): this page is gated -- reps must not see
+supplier budgets, spend or billback. index.html shows a passcode prompt
+and renders nothing until the typed passcode's SHA-256 matches GATE_HASH
+(the script at the very end of index.html). It is the same passcode as
+the root directory page, remembered per device. generate.py only
+replaces the DATA line, so refreshing does not touch the gate. To change
+the passcode see CLAUDE.md ("Reps see ONE dashboard").
+
 IMPORTANT — budgets are not in expenses.csv:
 Per-supplier budget targets live on a separate "Budget" tab of the workbook
 that isn't part of this export. They're hardcoded in SUPPLIER_BUDGETS at the

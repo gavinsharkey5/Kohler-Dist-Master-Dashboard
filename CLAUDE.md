@@ -295,6 +295,16 @@ browser's localStorage (key `kd_trackers_gate`); "Lock this page on
 this device" in the footer forgets it. It is a deterrent for a static
 GitHub Pages site, not real authentication: the tile markup is still
 in the page source for anyone who views it, and the group listing pages
-above are reachable by typing their URL. To change the passcode, run
+above are reachable by typing their URL.
+
+`supplier-budget/index.html` carries the SAME gate (Gavin, 2026-09-24:
+reps must not see the supplier budget sheet). Its markup sits in a
+`<template>` and its app script is wrapped in `startApp()`, which only
+runs after the passcode matches; `generate.py` still only rewrites the
+`const DATA = {...};` line, so a refresh keeps the gate. Both pages share
+one passcode and one localStorage key, so unlocking either unlocks both.
+To change the passcode, run
 `python3 -c "import hashlib;print(hashlib.sha256(b'NEW-PASSCODE').hexdigest())"`
-and paste the result into `GATE_HASH`; everyone is re-prompted once.
+and paste the result into `GATE_HASH` in BOTH `index.html` and
+`supplier-budget/index.html`; everyone is re-prompted once. Any other
+dashboard that reps must not open gets the same treatment.
