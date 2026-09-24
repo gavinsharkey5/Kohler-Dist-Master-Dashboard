@@ -8,12 +8,16 @@
 -- Safe to run more than once.
 
 create table if not exists public.allowed_users (
-  email    text primary key,
-  name     text,
-  phone    text,
-  role     text not null default 'rep' check (role in ('rep', 'manager')),
-  added_at timestamptz not null default now()
+  email      text primary key,
+  name       text,
+  phone      text,
+  role       text not null default 'rep' check (role in ('rep', 'manager')),
+  title      text,   -- Encompass role as exported (Sales, Sales Manager, ...)
+  reports_to text,   -- Encompass "Manager 1"
+  added_at   timestamptz not null default now()
 );
+alter table public.allowed_users add column if not exists title text;
+alter table public.allowed_users add column if not exists reports_to text;
 
 comment on table public.allowed_users is
   'Sign-in allow list for kohlerdisthub.com. role: rep or manager.';
@@ -64,8 +68,8 @@ $$;
 revoke all on function public.is_allowed(text) from public;
 grant execute on function public.is_allowed(text) to anon, authenticated;
 
--- First managers. Add reps in the Table Editor or with more rows here.
-insert into public.allowed_users (email, name, role) values
-  ('gavinsharkey711@gmail.com', 'Gavin Sharkey', 'manager'),
-  ('gavinsharkey36@gmail.com',  'Gavin Sharkey', 'manager')
+-- First manager, so the list is never empty. Everyone else comes from
+-- the Encompass users export via import_allowed_users.py.
+insert into public.allowed_users (email, name, role, title) values
+  ('g.sharkey@kohlerdist.com', 'Gavin Sharkey', 'manager', 'Sales Manager+')
 on conflict (email) do nothing;
