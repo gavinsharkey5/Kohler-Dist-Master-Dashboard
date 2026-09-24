@@ -269,3 +269,32 @@ link, remembered in localStorage. Simple renders `simpleView()` from the `QS` nu
 full `qualityView()` / `rebuyView()` stash as they run, so the two can
 never disagree; keep it that way (never recompute in the simple view)
 and keep Gavin's full layout untouched -- he uses it himself.
+
+## Reps see ONE dashboard; the root homepage is gated (2026-09-24)
+
+Gavin's rule: a rep who is sent a dashboard link sees that dashboard
+and nothing else. So NO dashboard carries a link up to the root
+directory (`/index.html`) or to a supplier / group listing page
+(`heineken/`, `isellbeer/`, `MPOs/`, `bostonbeer/`, `molsoncoors/`).
+Every "← All trackers" back-link was removed and every breadcrumb's
+"Kohler Dashboard" / "MPO Tracker" / "iSellBeer" segment is now plain
+text. Do NOT add back-links, "home" links, logo links to `../` or
+breadcrumb links to a parent page on any dashboard or in `hub/hub.js`.
+Links between two specific sibling dashboards (e.g. the Keystone Ice
+footnote in `incentive-tracking/programs.js`, the exec overview's link to
+the tap tracker) were left alone: they open one named dashboard, not a
+list. Check with:
+`grep -rn --include=*.html --include=*.js -E 'href="(\.\./)+(index\.html)?"' .`
+-- it should print nothing.
+
+The root `index.html` (the directory of every dashboard) now sits
+behind a manager passcode: the tile list lives in a `<template>` and is
+only put on the page once the typed passcode's SHA-256 matches
+`GATE_HASH` in the page's script. A correct entry is remembered in that
+browser's localStorage (key `kd_trackers_gate`); "Lock this page on
+this device" in the footer forgets it. It is a deterrent for a static
+GitHub Pages site, not real authentication: the tile markup is still
+in the page source for anyone who views it, and the group listing pages
+above are reachable by typing their URL. To change the passcode, run
+`python3 -c "import hashlib;print(hashlib.sha256(b'NEW-PASSCODE').hexdigest())"`
+and paste the result into `GATE_HASH`; everyone is re-prompted once.
