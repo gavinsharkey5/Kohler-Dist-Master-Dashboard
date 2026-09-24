@@ -698,6 +698,7 @@ function topbar(){
   const rep = state.rep;
   const onRep = state.view==='rep' || state.view==='detail';
   return `<div class="topbar">
+    <div class="crumb"><a href="#" data-act="home">Incentives &amp; MPO Hub</a></div>
     <div class="hero-banner nj-hero"><div class="nj-hero-inner">
       <div class="nj-hero-kicker">Distributing the Best Beverages to</div>
       <div class="nj-hero-row"><img class="hero-logo-badge" src="../assets/kohler-logo-badge.png" alt="Kohler Distributing Company"><span class="nj-hero-script">Northern NJ</span></div>
@@ -2466,7 +2467,7 @@ function render(){
   else if(state.view==='program') body = screenProgram();
   document.body.classList.toggle('is-home', state.view==='home');
   root.innerHTML = topbar() + `<main class="wrap">${body}</main>`;
-  document.title = state.view==='rep' && state.rep ? `${possessive(state.rep)} Incentives & MPOs` : 'Incentives & MPO Hub';
+  document.title = state.view==='rep' && state.rep ? `${possessive(state.rep)} Incentives & MPOs | Kohler` : 'Incentives & MPO Hub | Kohler Distributing';
   // Kick off any MPO month this screen needs, then re-render once it lands.
   let needed = [];
   if(state.view==='rep') needed = PROGRAMS.filter(p=>inCategory(p, state.cat||'all')
