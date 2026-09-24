@@ -54,6 +54,14 @@ runtime. GitHub Pages is NOT turned off; both serve `main` until Gavin
 retires Pages. Next planned steps: custom domain, then a Supabase Auth
 login gate via Vercel middleware, then live data in Supabase.
 
+## Commit author: use the gavinsharkey5 noreply address (2026-09-24)
+
+Author commits as `Gavin Sharkey <240726853+gavinsharkey5@users.noreply.github.com>`.
+Do NOT use gavinsharkey36@gmail.com -- GitHub has that email on a
+different account (gavinsharkey-nfl), so commits authored with it show up
+on GitHub and on every Vercel deployment as that account. The repo owner
+and the account Vercel is linked to is gavinsharkey5.
+
 ## Weekly partial exports merge onto published data (2026-08-20)
 
 Gavin pulls only the CURRENT WEEK from iSellBeer for the display
