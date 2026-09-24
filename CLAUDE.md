@@ -60,6 +60,30 @@ kohlerdisthub.com, not the github.io address. The Vercel project is on
 the Hobby plan for now. Next planned steps: a Supabase Auth login gate
 via Vercel middleware, then live data in Supabase.
 
+## Login gate: Supabase Auth + Vercel Edge Middleware (2026-09-24)
+
+kohlerdisthub.com is behind a magic-link login. `middleware.js` at the
+repo root runs on every request except `/login/`, `/assets/` and
+favicons: it reads the `kdh_at` cookie (a Supabase access token) and
+lets the request through only if `GET /rest/v1/allowed_users` with that
+token returns the caller's own row (row-level security), cached per token
+for 5 minutes. Otherwise a page load is redirected to
+`/login/?next=...&why=...` and a data fetch gets a 401. The middleware
+also answers `/shared/auth-config.js` from Vercel's `SUPABASE_URL` /
+`SUPABASE_PUBLISHABLE_KEY` env vars so the sign-in page needs nothing
+hard-coded. `login/index.html` uses supabase-js (CDN, implicit flow),
+calls `is_allowed(email)` before sending a link so unlisted emails are
+refused up front, sets the cookie on sign-in and bounces to `next`.
+Schema is `supabase/migrations/20260924150000_allowed_users.sql`
+(idempotent; run in the SQL Editor). `supabase/README.txt` has the
+operating notes: adding people (Table Editor -> allowed_users),
+`supabase/import_allowed_users.py` for the Encompass users export (its
+output goes to git-ignored `supabase/data/` -- the repo is PUBLIC, never
+commit emails/phones), custom SMTP before rollout, JWT expiry.
+Everyone on the list sees everything for now; `role` (rep/manager) is
+stored for the next step, rep-vs-manager page routing. GitHub Pages
+still serves the same files with no login until Gavin retires it.
+
 ## Commit author: use the gavinsharkey5 noreply address (2026-09-24)
 
 Author commits as `Gavin Sharkey <240726853+gavinsharkey5@users.noreply.github.com>`.

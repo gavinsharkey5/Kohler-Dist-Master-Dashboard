@@ -8,3 +8,7 @@ __pycache__/
 # only: git history is the durable backup (the previous CSVs are in the last
 # commit), so there is no reason to carry ~7 MB of duplicates in the repo.
 wine-spirits/backups/
+
+# Sign-in allow list built from the Encompass users export -- personal
+# emails and phone numbers. The repo is public: never commit this.
+supabase/data/
