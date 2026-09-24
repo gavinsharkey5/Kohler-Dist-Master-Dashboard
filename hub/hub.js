@@ -698,7 +698,7 @@ function topbar(){
   const rep = state.rep;
   const onRep = state.view==='rep' || state.view==='detail';
   return `<div class="topbar">
-    <div class="crumb"><a href="../index.html">Kohler Dashboard</a> &nbsp;/&nbsp; <a href="#" data-act="home">Incentives &amp; MPO Hub</a></div>
+    <div class="crumb"><a href="#" data-act="home">Incentives &amp; MPO Hub</a></div>
     <div class="hero-banner nj-hero"><div class="nj-hero-inner">
       <div class="nj-hero-kicker">Distributing the Best Beverages to</div>
       <div class="nj-hero-row"><img class="hero-logo-badge" src="../assets/kohler-logo-badge.png" alt="Kohler Distributing Company"><span class="nj-hero-script">Northern NJ</span></div>
