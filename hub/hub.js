@@ -698,7 +698,7 @@ function topbar(){
   const rep = state.rep;
   const onRep = state.view==='rep' || state.view==='detail';
   return `<div class="topbar">
-    <div class="crumb"><a href="../index.html">Kohler Dashboard</a> &nbsp;/&nbsp; <a href="#" data-act="home">Incentives &amp; MPO Hub</a></div>
+    <div class="crumb"><a href="#" data-act="home">Incentives &amp; MPO Hub</a></div>
     <div class="hero-banner nj-hero"><div class="nj-hero-inner">
       <div class="nj-hero-kicker">Distributing the Best Beverages to</div>
       <div class="nj-hero-row"><img class="hero-logo-badge" src="../assets/kohler-logo-badge.png" alt="Kohler Distributing Company"><span class="nj-hero-script">Northern NJ</span></div>
@@ -1263,7 +1263,7 @@ const SELL_ASK = {
   'inc:yuengling_retention':'Keep Yuengling Lager and Flight placed.', 'inc:sun_cruiser':'Sell more Sun Cruiser than last year.',
   'inc:yave':'Open a new YaVe account.', 'inc:mollys':"Place Molly's 1.75L.", 'inc:path_to_victory':'Sell Victory Monkey 6-packs.', 'inc:path_to_victory_sd':'Open a new Victory Monkey 6-pack POD.', 'inc:fall_seasonal_sd':'Sell Fall Seasonal packages and kegs.',
   'inc:boston_beer':'Place an Angry Orchard or Dogfish Head tap.', 'inc:new_belgium':'Place a Juicy Haze or Two Hearted tap.',
-  'inc:sam_adams':'Sell more Sam Adams than last August.', 'inc:new_belgium_distribution':"Sell more Bell's, Kirin and Voodoo.",
+  'inc:sam_adams':'Sell more Octoberfest than last Aug–Sep.', 'inc:new_belgium_distribution':"Sell more Bell's, Kirin and Voodoo.",
   'on:carbliss':'Open a new Carbliss account.', 'on:fever_tree':'Place Fever Tree.', 'on:bardstown_menu':'Get Bardstown or Green River on the menu.',
   'on:husa_xx_draft':'Place a Dos Equis tap.', 'on:angry_orchard':'Place an Angry Orchard tap.', 'on:molson_coors':'Place Peroni and Coors Banquet.',
   'on:wine_spirits':'Place YaVe and Leyenda.', 'on:sapporo_na':'Place Sapporo NA.',

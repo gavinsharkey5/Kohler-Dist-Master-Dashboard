@@ -56,3 +56,7 @@ To refresh:
      PRIOR_COL/JULY_COL at the top of generate.py to match).
   2. Run: python3 generate.py
   3. Commit and push.
+
+No link back to the root index (2026-09-24, per Gavin): reps get this
+page as a direct link and must not be able to browse to the main page
+that lists every dashboard. Do not add a "back" / breadcrumb link to ../

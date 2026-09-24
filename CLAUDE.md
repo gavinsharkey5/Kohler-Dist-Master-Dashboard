@@ -42,6 +42,32 @@ each dashboard's index.html) reflects whatever `main` last had
 actually completing -- there's no run status to confirm that from here
 anymore, only what the live site shows.
 
+## Vercel hosting alongside GitHub Pages (2026-09-24)
+
+`vercel.json` + `.vercelignore` at the root let the repo be imported into
+Vercel (Pro plan, GitHub-connected) as a plain static site: no framework,
+no build step, the folders are served as-is with `trailingSlash: true` so
+every page's relative `data/...` and `../` links resolve exactly as they
+do on Pages. `.vercelignore` drops only files no page fetches (Python,
+xlsx, READMEs, the workflow). CSVs stay -- several pages fetch them at
+runtime. GitHub Pages is NOT turned off; both serve `main` until Gavin
+retires Pages.
+
+The Vercel site is live at https://kohlerdisthub.com (Gavin's own
+domain, bought through Vercel on 2026-09-24; kohlerdistributing.co is
+Kohler's IT-controlled site and is NOT involved). Point reps at
+kohlerdisthub.com, not the github.io address. The Vercel project is on
+the Hobby plan for now. Next planned steps: a Supabase Auth login gate
+via Vercel middleware, then live data in Supabase.
+
+## Commit author: use the gavinsharkey5 noreply address (2026-09-24)
+
+Author commits as `Gavin Sharkey <240726853+gavinsharkey5@users.noreply.github.com>`.
+Do NOT use gavinsharkey36@gmail.com -- GitHub has that email on a
+different account (gavinsharkey-nfl), so commits authored with it show up
+on GitHub and on every Vercel deployment as that account. The repo owner
+and the account Vercel is linked to is gavinsharkey5.
+
 ## Weekly partial exports merge onto published data (2026-08-20)
 
 Gavin pulls only the CURRENT WEEK from iSellBeer for the display

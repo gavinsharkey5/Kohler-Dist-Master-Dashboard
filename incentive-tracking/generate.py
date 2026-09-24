@@ -490,91 +490,89 @@ def build_path_to_victory():
     return {"byRep": by_rep}
 
 
+SAM_ADAMS_FILE = "sam_adams_octoberfest_fast_start.csv"
+
+
 def build_sam_adams():
-    """Sam Adams Octoberfest Fast Start. Unlike the other programs, this
-    file compares the SAME August window year-over-year (8/1-8/31 2025
-    vs 8/1-8/31 2026), not a 90-day-non-buy base period -- find_period_cols
-    still works since it just sorts the two dated columns chronologically.
-    Per Gavin, 2026-08-05: the "double commission if positive" piece has
-    no available per-case commission rate to calculate from, so it's
-    tracked as a positive/negative flag only, not a dollar figure."""
-    rows = read_rows("sam_adams_octoberfest.csv")
-    fieldnames = rows[0].keys() if rows else []
-    units_last_col, units_this_col = find_period_cols(fieldnames, "Units")
+    """Sam Adams Octoberfest Fast Start -- AUG 1 - SEP 30 (Gavin, 2026-09-23:
+    "this is a 2 month program from august to september"). It was built as an
+    August-only program on an account-level August export; it is now read from
+    the RDE "SAM ADAMS OCTOBERFEST FAST START AUGUST - SEPTEMBER" comparison:
+    Brand Family / Sales Rep Assigned / Product Num & Name with Cases for
+    8/1-9/30/2025 and 8/1-9/30/2026.
+
+    Two legs on the deck:
+      1. $1 per case of Octoberfest over last year (Aug-Sep 2025 vs 2026) --
+         SCORED here: payout = max(0, growth) per rep.
+      2. Double commission on ALL Sam Adams if positive -- NOT in this export
+         (it carries Octoberfest SKUs only), so allSku* / isPositive are None
+         and the card says so. Needs an all-Samuel-Adams Aug-Sep comparison.
+
+    THE EXPORT IS A FLATTENED TREE: its first data row is the house total and
+    the first row of every rep block is that rep's total, each borrowing a
+    product label. Both are peeled off positionally and RECONCILED -- every
+    rep's product rows must sum to its total row, and the rep totals to the
+    house row -- and the build stops on a mismatch. No account detail."""
+    rows = read_rows(SAM_ADAMS_FILE)
+    cols = list(rows[0].keys()) if rows else []
+    last_col, this_col = find_period_cols(cols, "Cases")
+    house, body = rows[0], rows[1:]
+    blocks, i = [], 0
+    while i < len(body):
+        rep = (body[i]["Sales Rep Assigned"] or "").strip()
+        j = i
+        while j < len(body) and (body[j]["Sales Rep Assigned"] or "").strip() == rep:
+            j += 1
+        blk = body[i:j]
+        tot, prods = blk[0], blk[1:]
+        for col in (last_col, this_col):
+            got = sum(to_num(r[col]) for r in prods)
+            if abs(got - to_num(tot[col])) > 1e-6:
+                raise SystemExit(f"{SAM_ADAMS_FILE}: {rep} products {got:g} != rep total {to_num(tot[col]):g} ({col}) -- export shape changed?")
+        blocks.append((rep, tot, prods))
+        i = j
+    for col in (last_col, this_col):
+        got = sum(to_num(t[col]) for _, t, _ in blocks)
+        if abs(got - to_num(house[col])) > 1e-6:
+            raise SystemExit(f"{SAM_ADAMS_FILE}: rep totals {got:g} != house row {to_num(house[col]):g} ({col})")
 
     by_rep = {rep: {
-        "allSkuUnitsLastYear": 0.0, "allSkuUnitsThisYear": 0.0, "isPositive": False,
+        "allSkuUnitsLastYear": None, "allSkuUnitsThisYear": None, "isPositive": None,
         "octoberfestUnitsLastYear": 0.0, "octoberfestUnitsThisYear": 0.0, "octoberfestGrowth": 0.0,
-        "octoberfestByAccount": [],
-        "octoberfestByProduct": [],
+        "octoberfestByAccount": [], "octoberfestByProduct": [], "payout": 0,
     } for rep in ROSTER}
-
-    octoberfest_by_account = {}  # (rep, cust_num) -> {"customer":..., "thisYear":0, "lastYear":0}
-    # (rep, product name) -> {"thisYear","lastYear","accounts":{cust_num:{...}}} --
-    # per Gavin, 2026-08-18 (request 7): the card is organized by product,
-    # each product expandable to the accounts driving its YoY number.
-    octoberfest_by_product = {}
-    for row in rows:
-        rep = row["Sales Rep Assigned"]
+    off_roster = []
+    for rep, tot, prods in blocks:
         if rep not in by_rep:
+            off_roster.append(rep)
             continue
-        last = to_num(row[units_last_col])
-        cur = to_num(row[units_this_col])
-        by_rep[rep]["allSkuUnitsLastYear"] += last
-        by_rep[rep]["allSkuUnitsThisYear"] += cur
-        if "Octoberfest" in row["Product Name"]:
-            by_rep[rep]["octoberfestUnitsLastYear"] += last
-            by_rep[rep]["octoberfestUnitsThisYear"] += cur
-            if cur > 0 or last > 0:
-                acct_key = (rep, row["Customer Num"])
-                entry = octoberfest_by_account.setdefault(acct_key, {"customer": row["Customer Name"], "thisYear": 0.0, "lastYear": 0.0})
-                entry["thisYear"] += cur
-                entry["lastYear"] += last
-                pkey = (rep, row["Product Name"])
-                pentry = octoberfest_by_product.setdefault(pkey, {"thisYear": 0.0, "lastYear": 0.0, "accounts": {}})
-                pentry["thisYear"] += cur
-                pentry["lastYear"] += last
-                pacct = pentry["accounts"].setdefault(row["Customer Num"], {"customer": row["Customer Name"], "thisYear": 0.0, "lastYear": 0.0})
-                pacct["thisYear"] += cur
-                pacct["lastYear"] += last
-
-    for (rep, _cust), info in octoberfest_by_account.items():
-        if rep not in by_rep:
-            continue
-        by_rep[rep]["octoberfestByAccount"].append({
-            "customer": info["customer"],
-            "unitsThisYear": round(info["thisYear"], 2),
-            "unitsLastYear": round(info["lastYear"], 2),
-            "growth": round(info["thisYear"] - info["lastYear"], 2),
-        })
-
-    for (rep, product), info in octoberfest_by_product.items():
-        if rep not in by_rep:
-            continue
-        accounts = [{
-            "customer": a["customer"],
-            "unitsThisYear": round(a["thisYear"], 2),
-            "unitsLastYear": round(a["lastYear"], 2),
-            "growth": round(a["thisYear"] - a["lastYear"], 2),
-        } for a in info["accounts"].values()]
-        accounts.sort(key=lambda a: -a["unitsThisYear"])
-        by_rep[rep]["octoberfestByProduct"].append({
-            "product": product,
-            "unitsThisYear": round(info["thisYear"], 2),
-            "unitsLastYear": round(info["lastYear"], 2),
-            "growth": round(info["thisYear"] - info["lastYear"], 2),
-            "accounts": accounts,
-        })
-
-    for rep, d in by_rep.items():
-        d["isPositive"] = d["allSkuUnitsThisYear"] > d["allSkuUnitsLastYear"]
+        d = by_rep[rep]
+        d["octoberfestUnitsLastYear"] = to_num(tot[last_col])
+        d["octoberfestUnitsThisYear"] = to_num(tot[this_col])
+        merged = {}
+        for r in prods:
+            name = (r["Product Num & Name"] or "").strip()
+            m = merged.setdefault(name, [0.0, 0.0])
+            m[0] += to_num(r[last_col]); m[1] += to_num(r[this_col])
+        d["octoberfestByProduct"] = sorted(({
+            "product": name, "unitsLastYear": round(a, 2), "unitsThisYear": round(b, 2),
+            "growth": round(b - a, 2), "accounts": []} for name, (a, b) in merged.items()),
+            key=lambda x: (-x["unitsThisYear"], -x["unitsLastYear"]))
+    for d in by_rep.values():
         d["octoberfestGrowth"] = round(d["octoberfestUnitsThisYear"] - d["octoberfestUnitsLastYear"], 2)
-        for k in ("allSkuUnitsLastYear", "allSkuUnitsThisYear", "octoberfestUnitsLastYear", "octoberfestUnitsThisYear"):
-            d[k] = round(d[k], 2)
-        d["octoberfestByAccount"].sort(key=lambda a: -a["unitsThisYear"])
-        d["octoberfestByProduct"].sort(key=lambda p: -p["unitsThisYear"])
+        d["octoberfestUnitsLastYear"] = round(d["octoberfestUnitsLastYear"], 2)
+        d["octoberfestUnitsThisYear"] = round(d["octoberfestUnitsThisYear"], 2)
+        d["payout"] = int(max(0, d["octoberfestGrowth"]))
 
-    return {"byRep": by_rep}
+    today = datetime.date.today()
+    start, end = datetime.date(2026, 8, 1), datetime.date(2026, 9, 30)
+    span = (end - start).days + 1
+    elapsed = min(max((today - start).days + 1, 0), span)
+    return {"byRep": by_rep, "meta": {
+        "startDate": "8/1/2026", "endDate": "9/30/2026",
+        "compareLabel": "Aug–Sep 2025", "daysElapsed": elapsed, "periodDays": span,
+        "houseLastYear": to_num(house[last_col]), "houseThisYear": to_num(house[this_col]),
+        "allSkuTracked": False, "offRoster": off_roster}}
 
 
 def build_boston_beer():
@@ -4674,8 +4672,12 @@ def main():
     print(f"tona: {sum(d['new24ozCount'] for d in data['tona']['byRep'].values())} total new 24oz placements")
     print(f"path_to_victory: {sum(d['sixPackAccountCount'] for d in data['path_to_victory']['byRep'].values())} accounts w/ 6pk activity, "
           f"{sum(d['nineteenTwoAccountCount'] for d in data['path_to_victory']['byRep'].values())} accounts w/ 19.2oz activity")
-    print(f"sam_adams: {sum(1 for d in data['sam_adams']['byRep'].values() if d['isPositive'])} reps positive YoY, "
-          f"{sum(d['octoberfestGrowth'] for d in data['sam_adams']['byRep'].values() if d['octoberfestGrowth']>0):.0f} total positive Octoberfest case growth")
+    _sa = data["sam_adams"]
+    print(f"sam_adams (Aug-Sep, Octoberfest only): house {_sa['meta']['houseThisYear']:,.0f} vs "
+          f"{_sa['meta']['houseLastYear']:,.0f} cases last year | "
+          f"{sum(1 for d in _sa['byRep'].values() if d['octoberfestGrowth']>0)} reps ahead, "
+          f"${sum(d['payout'] for d in _sa['byRep'].values()):,} earned | all-Sam-Adams leg not in export"
+          + (f" | off-roster: {', '.join(_sa['meta']['offRoster'])}" if _sa['meta']['offRoster'] else ""))
     print(f"boston_beer: {sum(d['draftNewCount'] for d in data['boston_beer']['byRep'].values())} new draft PODs, "
           f"{sum(d['draftRebuyCount'] for d in data['boston_beer']['byRep'].values())} draft rebuys, "
           f"{sum(d['packageNewCount'] for d in data['boston_beer']['byRep'].values())} new package placements")
