@@ -253,6 +253,19 @@ never per account or per placement. Not on the page yet; Gavin was
 asked whether to add it (recommended: yes, as a per-product series on
 the quality tab, independent of the money hold).
 
+Account size deciles (2026-09-24): Gavin's Supplier_Deciles workbook
+(every account ranked into deciles by 2026 gross profit, and again within
+each of 12 suppliers, plus industry class A/B/C, stops and distribution
+points) is ingested by `generate.py` (recognised by sheet names) into
+`data/master/deciles/` and emitted as `decile` / `sdecile` in
+dist_data.js -- deciles, class, stops, points only; the gross dollars are
+deliberately NOT emitted while the money hold stands. The page uses them
+as size tags on account tables, an "Account size" filter and breakdown,
+and section 4's "biggest accounts that under-buy" list (top-30% accounts
+not buying the scope, or 3+ deciles lower with the supplier than their
+size decile). Supplier sheets are matched to Fusion supplier names by
+prefix; all 12 matched on 2026-09-24.
+
 The page has a second tab, DISTRIBUTION QUALITY (page=quality in the
 link), built for pushing back on "more points = more sales": placement
 tiers by cases/month, new-point survival, fit map, look-alike targets,

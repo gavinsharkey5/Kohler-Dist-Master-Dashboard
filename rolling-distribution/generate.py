@@ -48,6 +48,15 @@ Every file is auto-detected by its header:
            REPLACES data/master/adjust/YYYY-MM.csv. The "Total" row is
            skipped, zero cells dropped, (1.00) read as -1. No customer in
            this file: out-of-code is known per PRODUCT, never per account.
+  DECILES  Gavin's Supplier_Deciles workbook (.xlsx with sheets Report,
+           Sheet2, Universe and one sheet per supplier). Every account
+           ranked by 2026 gross profit into deciles (1 = top 10%), the
+           same again within each of the listed suppliers, plus industry
+           class A/B/C, stop count and distribution points.
+           -> data/master/deciles/universe.csv + supplier.csv (the file
+           is the whole set: it replaces both). The page gets the
+           deciles, class, stops and points; the gross dollars stay in
+           the master until the money build goes live.
 
 Dimension attributes (names, supplier, family, brand, premise, area, rep,
 DM, package) are "latest file wins": the attributes of a product or account
@@ -76,6 +85,9 @@ SUPPLIER_FIELDS = ['supplier', 'supplier_id', 'brand_manager']
 TERRITORY_CSV = os.path.join(MASTER, 'territory.csv')
 MONEY_DIR = os.path.join(MASTER, 'money')
 ADJUST_DIR = os.path.join(MASTER, 'adjust')
+DECILES_DIR = os.path.join(MASTER, 'deciles')
+UNIVERSE_FIELDS = ['customer_num', 'class', 'gross_2026', 'stops_2026', 'dist_pts', 'rank', 'decile']
+SUPDEC_FIELDS = ['supplier', 'customer_num', 'gross_2026', 'dist_pts', 'rank', 'decile', 'universe_decile']
 ADJUST_RE = re.compile(r'^Cases\s+(\d{4})\s+(\d{1,2})$')
 MONEY_RE = re.compile(r'^(Laid-In Cost|\$Vol|Gross)\s+(\d{4})/(\d{1,2})$')
 TERRITORY_FIELDS = ['family', 'territory', 'can_sell', 'cant_sell', 'source']
@@ -432,6 +444,80 @@ def ingest_money(path, customers, sources):
     print('MONEY    %s  rows=%d  months=%s..%s' % (os.path.basename(path), nrows, months[0], months[-1]))
 
 
+def ingest_deciles(path):
+    """The Supplier_Deciles workbook -> deciles/universe.csv + deciles/supplier.csv."""
+    try:
+        import openpyxl
+    except ImportError:
+        die('%s: reading .xlsx needs openpyxl (pip install openpyxl)' % path)
+    wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
+    need = {'Report', 'Sheet2', 'Universe'}
+    if not need.issubset(set(wb.sheetnames)):
+        die('%s: expected sheets %s' % (path, sorted(need)))
+
+    def acct_rows(ws):
+        return [r for r in ws.iter_rows(values_only=True) if r and r[0] and str(r[0]).strip()[:1].isdigit()]
+
+    def cnum(v):
+        return str(v).strip().split(' ', 1)[0]
+
+    report = {}
+    for r in acct_rows(wb['Report']):        # account, class, gross, stops, decile
+        report[cnum(r[0])] = {'class': (r[1] or '').strip(), 'stops': int(r[3] or 0)}
+    universe = {}
+    for r in acct_rows(wb['Universe']):      # account, class, gross, dist pts, rank, decile
+        cn = cnum(r[0])
+        universe[cn] = {'customer_num': cn, 'class': (r[1] or report.get(cn, {}).get('class', '') or '').strip(),
+                        'gross_2026': '%.2f' % float(r[2] or 0), 'stops_2026': report.get(cn, {}).get('stops', ''),
+                        'dist_pts': int(r[3] or 0), 'rank': int(r[4] or 0), 'decile': int(r[5] or 0)}
+    for cn, x in report.items():             # accounts ranked in the report but outside the universe: class + stops only
+        if cn not in universe:
+            universe[cn] = {'customer_num': cn, 'class': x['class'], 'gross_2026': '', 'stops_2026': x['stops'],
+                            'dist_pts': '', 'rank': '', 'decile': ''}
+    # supplier sheets carry short names; Sheet2 has Fusion's full supplier names -> match by prefix
+    full = sorted({(r[2] or '').strip() for r in wb['Sheet2'].iter_rows(values_only=True) if r and r[2] and r[2] != 'Supplier'})
+    skip = need | {'Sheet1'}
+    sup_rows = []
+    for name in wb.sheetnames:
+        if name in skip:
+            continue
+        key = name.lower().replace(' ', '')
+        matches = [f for f in full if f.lower().replace(' ', '').startswith(key)] or [f for f in full if key in f.lower().replace(' ', '')]
+        if len(matches) != 1:
+            die('%s: sheet %r matches %s in Sheet2 supplier names' % (path, name, matches or 'nothing'))
+        rows = acct_rows(wb[name])           # account, class, supplier gross, dist pts, rank, supplier decile, universe decile
+        for r in rows:
+            sup_rows.append({'supplier': matches[0], 'customer_num': cnum(r[0]), 'gross_2026': '%.2f' % float(r[2] or 0),
+                             'dist_pts': int(r[3] or 0), 'rank': int(r[4] or 0), 'decile': int(r[5] or 0), 'universe_decile': int(r[6] or 0)})
+        print('DECILES  %-30s %4d accounts' % (matches[0], len(rows)))
+    os.makedirs(DECILES_DIR, exist_ok=True)
+    with open(os.path.join(DECILES_DIR, 'universe.csv'), 'w', newline='', encoding='utf-8') as fh:
+        w = csv.DictWriter(fh, fieldnames=UNIVERSE_FIELDS); w.writeheader()
+        for cn in sorted(universe, key=lambda s: (len(s), s)):
+            w.writerow(universe[cn])
+    with open(os.path.join(DECILES_DIR, 'supplier.csv'), 'w', newline='', encoding='utf-8') as fh:
+        w = csv.DictWriter(fh, fieldnames=SUPDEC_FIELDS); w.writeheader()
+        for r in sorted(sup_rows, key=lambda r: (r['supplier'], len(r['customer_num']), r['customer_num'])):
+            w.writerow(r)
+    ranked = sum(1 for x in universe.values() if x['decile'] != '')
+    print('DECILES  %s  universe=%d ranked accounts (+%d with class/stops only)  suppliers=%d' % (os.path.basename(path), ranked, len(universe) - ranked, len({r['supplier'] for r in sup_rows})))
+
+
+def load_deciles():
+    uni, sup = {}, {}
+    p = os.path.join(DECILES_DIR, 'universe.csv')
+    if os.path.exists(p):
+        with open(p, newline='', encoding='utf-8') as fh:
+            for r in csv.DictReader(fh):
+                uni[r['customer_num']] = r
+    p = os.path.join(DECILES_DIR, 'supplier.csv')
+    if os.path.exists(p):
+        with open(p, newline='', encoding='utf-8') as fh:
+            for r in csv.DictReader(fh):
+                sup.setdefault(r['supplier'], {})[r['customer_num']] = r
+    return uni, sup
+
+
 def ingest_adjust(path, sources):
     exported = export_date(path)
     with open(path, newline='', encoding='utf-8-sig') as fh:
@@ -592,6 +678,26 @@ def build(products, customers, sources, suppliers=None, territory=None):
         off = [a for i, a in enumerate(areas) if i not in rule_areas]
         if off:
             print('NOTE: areas in the data with no territory column (matched by county on the page): %s' % ', '.join(off))
+    # account size deciles (Gavin's Supplier_Deciles workbook): per account [decile 1-10 or 0, class 0=A 1=B 2=C -1=none, dist pts, stops],
+    # per listed supplier {customerIdx: [supplier decile, dist pts]} -- gross dollars deliberately not emitted (money hold)
+    uni, supdec = load_deciles()
+    CLS = {'A': 0, 'B': 1, 'C': 2}
+    dec = []
+    for c in used_c:
+        u = uni.get(c)
+        dec.append([int(u['decile'] or 0), CLS.get(u['class'], -1), int(u['dist_pts'] or 0), int(u['stops_2026'] or 0)] if u else [0, -1, 0, 0])
+    sdec = {}
+    unmatched = []
+    for sname, accts in supdec.items():
+        if sname not in si:
+            unmatched.append(sname); continue
+        sdec[si[sname]] = {cidx[c]: [int(r['decile'] or 0), int(r['dist_pts'] or 0)] for c, r in accts.items() if c in cidx}
+    if uni:
+        print('DECILES  %d of %d accounts ranked; supplier deciles for %s' % (sum(1 for d in dec if d[0]), len(used_c), ', '.join(supplier_names[i] for i in sorted(sdec))))
+        if unmatched:
+            print('NOTE: decile suppliers not in the data (spelling?): %s' % ', '.join(unmatched))
+    out.append('"decile":%s,' % json.dumps(dec, separators=(',', ':')))
+    out.append('"sdecile":%s,' % json.dumps({str(k): v for k, v in sdec.items()}, separators=(',', ':')))
     out.append('"sell":%s,' % json.dumps(sell, separators=(',', ':')))
     out.append('"territory":%s,' % json.dumps(terr_label))
     out.append('"rule_areas":%s,' % json.dumps(sorted(rule_areas)))
@@ -653,11 +759,18 @@ def main(argv):
     typed = []
     for f in files:
         if f.lower().endswith('.xlsx'):
+            try:
+                import openpyxl
+                names = set(openpyxl.load_workbook(f, read_only=True).sheetnames)
+            except ImportError:
+                names = set()
+            if {'Report', 'Sheet2', 'Universe'}.issubset(names):
+                typed.append(('deciles', f)); continue
             typed.append((detect(read_rows(f)[0]), f))
             continue
         with open(f, newline='', encoding='utf-8-sig') as fh:
             typed.append((detect(next(csv.reader(fh))), f))
-    for kind, f in sorted(typed, key=lambda t: {'detail': 0, 'product': 1, 'customer': 2, 'supplier': 3, 'territory': 4, 'money': 5, 'adjust': 6}[t[0]]):
+    for kind, f in sorted(typed, key=lambda t: {'detail': 0, 'product': 1, 'customer': 2, 'supplier': 3, 'territory': 4, 'money': 5, 'adjust': 6, 'deciles': 7}[t[0]]):
         if kind == 'detail':
             ingest_detail(f, products, customers, sources, complete)
         elif kind == 'product':
@@ -670,6 +783,8 @@ def main(argv):
             ingest_money(f, customers, sources)
         elif kind == 'adjust':
             ingest_adjust(f, sources)
+        elif kind == 'deciles':
+            ingest_deciles(f)
         else:
             territory = {}   # the territory file is the whole rule set, never a top-up
             ingest_territory(f, territory)

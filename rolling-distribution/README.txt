@@ -84,6 +84,16 @@ Detailed (the sections):
   Every table on both tabs sorts by any column: click a header (first
   click = greatest to least, again to flip; first column A-Z). The
   Trends tables re-render sorted; the Quality tables re-order in place.
+  Account size (deciles, from Gavin's Supplier_Deciles workbook): every
+  account carries a size tag (Top 10% / Top 20% / Top 30% / Decile 4-7 /
+  Bottom 30%, plus industry class A/B/C) on the account tables in
+  sections 1, 4 and 7 and on the simple cards; "Account size" is a filter
+  under Customer and a breakdown on every "Break it down by" row; and
+  section 4 gains "The biggest accounts that under-buy <scope>": top-30%
+  accounts in territory that are not buying the scope, or (for the 12
+  ranked suppliers) rank 3+ deciles lower with that supplier than their
+  size decile -- the sharpest targeting list on the tab. The look-alike
+  score's size term now uses the decile when the account has one.
   9. Print one-pager -- prints / saves the tab as a PDF (light theme,
      filters and buttons hidden) for the supplier meeting.
 Limitations stated on the tab: shipments net of credits are a proxy for
@@ -138,6 +148,12 @@ WHERE THE DATA LIVES
   data/master/suppliers.csv        supplier -> supplier_id, brand_manager
   data/master/territory.csv        brand family -> territory label, areas
                                    it can / can't be sold in
+  data/master/deciles/universe.csv  customer_num -> industry class A/B/C,
+                                   2026 gross, stops, distribution points,
+                                   rank and DECILE (1 = top 10% of accounts
+                                   by 2026 gross profit with Kohler)
+  data/master/deciles/supplier.csv  the same ranking within each of the 12
+                                   suppliers in Gavin's workbook
   data/master/adjust/YYYY-MM.csv   account (8 = Out Of Code, 7 = Breakage, 5 =
                                    Inventory Adjustment, 9 = Fifo, 25 = Repack,
                                    6 / 120022 = Samples), product_num, cases --
@@ -223,6 +239,15 @@ REFRESH STEPS
       reads as -1. Out-of-code cases per product per month is the part
       the quality tab can use; breakage is warehouse handling, repack
       is negative by nature (it creates cases), samples are selling cost.
+
+   i) DECILES (when Gavin re-cuts it): the Supplier_Deciles workbook
+      (sheets Report, Sheet2, Universe + one per supplier). Pass the
+      .xlsx to generate.py; it is recognised by its sheet names and
+      REPLACES data/master/deciles/. Supplier sheets are matched to
+      Fusion's supplier names by prefix (the build dies on an ambiguous
+      one and prints any that match no supplier in the data). The page
+      gets deciles, class, stops and points; the gross dollars stay in
+      the master until the money build goes live.
 
    e) LOGOS (optional): the Fusion "Suppliers" and "Brand Families"
       workbooks that carry a logo picture per row (xlsx, not csv). Run
