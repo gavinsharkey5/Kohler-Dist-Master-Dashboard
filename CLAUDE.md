@@ -51,8 +51,14 @@ every page's relative `data/...` and `../` links resolve exactly as they
 do on Pages. `.vercelignore` drops only files no page fetches (Python,
 xlsx, READMEs, the workflow). CSVs stay -- several pages fetch them at
 runtime. GitHub Pages is NOT turned off; both serve `main` until Gavin
-retires Pages. Next planned steps: custom domain, then a Supabase Auth
-login gate via Vercel middleware, then live data in Supabase.
+retires Pages.
+
+The Vercel site is live at https://kohlerdisthub.com (Gavin's own
+domain, bought through Vercel on 2026-09-24; kohlerdistributing.co is
+Kohler's IT-controlled site and is NOT involved). Point reps at
+kohlerdisthub.com, not the github.io address. The Vercel project is on
+the Hobby plan for now. Next planned steps: a Supabase Auth login gate
+via Vercel middleware, then live data in Supabase.
 
 ## Commit author: use the gavinsharkey5 noreply address (2026-09-24)
 
