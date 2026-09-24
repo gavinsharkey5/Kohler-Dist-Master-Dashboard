@@ -2466,7 +2466,7 @@ function render(){
   else if(state.view==='program') body = screenProgram();
   document.body.classList.toggle('is-home', state.view==='home');
   root.innerHTML = topbar() + `<main class="wrap">${body}</main>`;
-  document.title = state.view==='rep' && state.rep ? `${possessive(state.rep)} Incentives & MPOs | Kohler` : 'Incentives & MPO Hub | Kohler Distributing';
+  document.title = state.view==='rep' && state.rep ? `${possessive(state.rep)} Incentives & MPOs` : 'Incentives & MPO Hub';
   // Kick off any MPO month this screen needs, then re-render once it lands.
   let needed = [];
   if(state.view==='rep') needed = PROGRAMS.filter(p=>inCategory(p, state.cat||'all')
