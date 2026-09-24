@@ -1,0 +1,10 @@
+# Files the dashboards never load in the browser. Everything else in the
+# repo (HTML, JS, CSS, CSV, JSON, images) is served as-is.
+.github/
+.claude/
+*.py
+*.xlsx
+*.sh
+*.md
+README*
+CLAUDE.md

@@ -42,6 +42,18 @@ each dashboard's index.html) reflects whatever `main` last had
 actually completing -- there's no run status to confirm that from here
 anymore, only what the live site shows.
 
+## Vercel hosting alongside GitHub Pages (2026-09-24)
+
+`vercel.json` + `.vercelignore` at the root let the repo be imported into
+Vercel (Pro plan, GitHub-connected) as a plain static site: no framework,
+no build step, the folders are served as-is with `trailingSlash: true` so
+every page's relative `data/...` and `../` links resolve exactly as they
+do on Pages. `.vercelignore` drops only files no page fetches (Python,
+xlsx, READMEs, the workflow). CSVs stay -- several pages fetch them at
+runtime. GitHub Pages is NOT turned off; both serve `main` until Gavin
+retires Pages. Next planned steps: custom domain, then a Supabase Auth
+login gate via Vercel middleware, then live data in Supabase.
+
 ## Weekly partial exports merge onto published data (2026-08-20)
 
 Gavin pulls only the CURRENT WEEK from iSellBeer for the display
