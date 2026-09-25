@@ -35,8 +35,11 @@ One-time setup (done 2026-09-24 unless noted)
   Supabase -> Authentication -> URL Configuration:
     Site URL       https://kohlerdisthub.com
     Redirect URLs  https://kohlerdisthub.com/**  and  https://*.vercel.app/**
-  Supabase -> SQL Editor: paste and run migrations/20260924150000_allowed_users.sql
-    (TODO: run this once -- it creates the table and seeds Gavin as manager)
+  Supabase -> SQL Editor: migrations/20260924150000_allowed_users.sql (run 2026-09-25)
+    then the roster SQL from import_allowed_users.py (49 people, 2026-09-25)
+  Supabase -> Authentication -> Emails -> SMTP Settings: Resend, sender
+    signin@kohlerdisthub.com, host smtp.resend.com:465, user resend,
+    password = Resend API key (2026-09-25). Rate limit raised to 100/hour.
 
 Adding / removing people
 ------------------------
@@ -49,10 +52,10 @@ Adding / removing people
 
 Things to know
 --------------
-  * Supabase's built-in email sender is for testing only: a few emails
-    an hour, and they can land in spam. Before rolling out to reps, set
-    up custom SMTP (Authentication -> Emails -> SMTP Settings). Resend's
-    free tier is plenty and takes ten minutes.
+  * Mail goes through Resend (free tier: 3,000/month, 100/day) from
+    signin@kohlerdisthub.com. The domain's DKIM/SPF records live in
+    Vercel's DNS for kohlerdisthub.com. Kohler's MxGuardDog quarantine
+    let this through where Supabase's built-in sender was held.
   * Sessions last an hour by default, then the middleware bounces the
     person through /login/ which silently refreshes and sends them back.
     To make that rarer, raise "JWT expiry" under Authentication ->

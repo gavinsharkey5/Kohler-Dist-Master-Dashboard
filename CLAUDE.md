@@ -84,6 +84,16 @@ Everyone on the list sees everything for now; `role` (rep/manager) is
 stored for the next step, rep-vs-manager page routing. GitHub Pages
 still serves the same files with no login until Gavin retires it.
 
+Mail (2026-09-25): sign-in links go out through Resend as
+signin@kohlerdisthub.com (domain verified via Resend's Vercel
+auto-configure; Supabase Auth -> Emails -> SMTP Settings holds the
+Resend key). Supabase's built-in mailer capped at a couple of messages
+an hour and Kohler's MxGuardDog quarantine held it; signed mail from the
+real domain reached g.sharkey@kohlerdist.com immediately. The allow list
+was loaded from the Encompass users export on 2026-09-25 (49 people:
+Sales / Sales/Delivery -> rep, every other title -> manager) plus
+gavinsharkey711@gmail.com for testing.
+
 ## Commit author: use the gavinsharkey5 noreply address (2026-09-24)
 
 Author commits as `Gavin Sharkey <240726853+gavinsharkey5@users.noreply.github.com>`.
