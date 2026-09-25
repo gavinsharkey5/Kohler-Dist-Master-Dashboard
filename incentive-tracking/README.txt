@@ -539,6 +539,26 @@ what you would guess from the summer program:
      row ("Goal: 105 (your 3/1/2026 - 5/31/2026)"), so nobody has to remember
      which is which.
 
+OFF-PREMISE GOALS ARE FROZEN TOO (2026-09-25, per Gavin: "freeze the off prem
+goals now"). data/constellation_fall_off_goals.csv holds one row per rep x
+category x SKU (bare product name, base placements, base window), written once
+by `python3 generate.py --freeze-constellation-fall-off-goals` from the
+aggregated exports committed that morning, and build_constellation_fall()
+reads goals ONLY from it. A category goal is the sum of its SKU rows; the
+overrides file still replaces a rep's category goal on top. An export's own
+base column, while it carries one, is only diffed against the file and printed
+as drift, never applied. Do NOT re-freeze from a later pull (a rep who has
+since lost a SKU would lose the goal to win it back); the freeze refuses to
+overwrite. The reader (_cf_off_rep_product) takes BOTH export shapes: the
+aggregated rep/product/subtotal file (how Corona Gaintain still arrives) and
+the account-level RDE file (rep / Customer Num Name / Product Num Name / two
+1-or-blank placement columns, one row per customer x product, no subtotals --
+Impact, Modelo Gaintain and Innovation since 2026-09-25). A placement is a
+customer x product with the flag set, so per SKU it is the count of flagged
+rows; the product number the account file prefixes is stripped so the SKU
+matches the frozen row. A raw export that drops the base column entirely
+still builds -- the goals do not depend on it any more.
+
 CONSTELLATION FALL -- ON-PREMISE PACKAGES AND DRAFT (built 2026-09-09). The
 card now has three sections -- off-premise categories, on-premise packages,
 on-premise draft -- and the leaderboard ranks on overallPct across all of
@@ -4329,6 +4349,44 @@ Only these four programs changed in PROGRAM_DATA.
               the 9/30 order). Mike Ast's three Franklin Lake rows are -1 case
               returns and don't change his count.
 Hub cache tag bumped (20260923b) for the new program_data.js.
+
+2026-09-25 FIFTH REFRESH -- Constellation Fall: OFF-PREM GOALS FROZEN, then Packages ON,
+Draft ON, Impact / Modelo Gaintain / Innovation OFF in the new account-level shape
+  python3 generate.py --freeze-constellation-fall-off-goals   (once, BEFORE the new files)
+  python3 generate.py
+Gavin asked whether moving the Constellation exports to a raw shape would move
+the hub goals. On-prem was already frozen (9/9); off-prem re-read its goals
+from the base column every run, so they were frozen first: 706 rep x SKU rows
+(Corona Gaintain 97 / 1,628 base placements, Modelo Gaintain 141 / 2,415,
+Impact 314 / 3,487, Innovation 154 / 1,421) from the aggregated files
+committed this morning. Rebuilt on those same files afterwards: the
+constellation_fall payload was byte-identical apart from meta -- the freeze
+changed no number. See "OFF-PREMISE GOALS ARE FROZEN TOO" above for the rules.
+Then the five new files. Impact, Modelo Gaintain and Innovation now arrive
+ACCOUNT-LEVEL (one row per customer x product, both windows as 1/blank flags,
+no subtotal rows, product number prefixed on the name; Modelo's columns are
+in a different order, which DictReader does not care about). Every rep x SKU
+base count in all three matched the frozen goals exactly -- "no drift" on the
+build line -- so the two shapes count the same thing. Corona Gaintain stays on
+this morning's aggregated file (no new pull). Packages ON 10,756 -> 11,036
+rows (+280, none removed), Draft ON 1,891 -> 1,918 (+27, none removed); both
+still carry the spring columns, drift 0. GOALS UNCHANGED FOR EVERY REP.
+  Off-prem    Corona Gaintain 1,182/1,610 (unchanged) · Modelo Gaintain
+              1,974 -> 2,038/2,395 · Impact 2,720 -> 2,815/3,452 · Innovation
+              545 -> 582/1,400. Still 0 of 22 reps holding every category.
+              Matt Powierski Modelo 184 -> 196, Jim Heaney Modelo 168 -> 177
+              and Impact 278 -> 293, Mike Ast Modelo 88 -> 97, Chris Payton
+              Impact 229 -> 243, Dan Lagala Innovation 27 -> 38 (3 -> 1 lost
+              SKUs), Derrick Laws Modelo 132 -> 136 (last lost SKU back),
+              Michael Harboy Impact 46 -> 49 (lost SKU back; Modelo 31 of 27
+              still over). Dave Ehlers Modelo 174 of 176, Impact 249 of 250.
+  On-prem     packages 1,195 -> 1,257 of 2,107 buyers (Brian Sengebush
+              142 -> 158, Robin Feldman 134 -> 144, Allison Scott 187 -> 196;
+              CHRIS PAYTON holds his first family); draft 157 -> 165 of 381
+              (Allison Scott 46 -> 50, 31 -> 28 empty-keg pickups excluded).
+              Still 5 of 20 reps holding every packages family, 0 of 12 on
+              draft, 0 of 24 overall.
+Hub cache tag bumped (20260925e) for the new program_data.js.
 
 2026-09-25 FOURTH REFRESH -- Montauk, 2XO, Other Half ON + OFF
   python3 generate.py

@@ -12,6 +12,7 @@ import datetime
 import math
 import json
 import re
+import sys
 from collections import defaultdict
 from pathlib import Path
 
@@ -2369,6 +2370,170 @@ CONSTELLATION_FALL_ON_BASE_WINDOW = "3/1/2026 - 5/31/2026"
 # key), Goal. Missing file = no overrides.
 CONSTELLATION_FALL_GOAL_OVERRIDES = "constellation_fall_goal_overrides.csv"
 
+# OFF-PREMISE GOALS ARE FROZEN (2026-09-25, per Gavin: "freeze the off prem
+# goals now"). Until today each category's goal was re-read on every run from
+# the base column of the same export, per rep and per SKU. Gavin is moving the
+# Constellation exports to a raw account-level shape, and a shape that drops
+# the prior-window column would have wiped the goals on the next run. So the
+# base columns of the aggregated exports committed on 2026-09-25 (the 9/23
+# pull for Corona Gaintain, Modelo Gaintain, Impact and Innovation) were
+# written ONCE to CONSTELLATION_FALL_OFF_GOALS -- one row per rep x category x
+# SKU, the bare product name, the base placements and the window they came
+# from -- by `python3 generate.py --freeze-constellation-fall-off-goals`, and
+# build_constellation_fall() reads goals ONLY from that file. A category goal
+# is the sum of its SKU goals (the same number the base column's subtotal row
+# gave, reconciled at freeze time). CONSTELLATION_FALL_GOAL_OVERRIDES still
+# replaces a rep's category goal on top. The export's own base column, when
+# it still carries one, is only compared against the frozen file and any
+# difference is printed as drift -- never applied. Do NOT re-freeze from a
+# later pull: the rep who has since lost a SKU would lose the goal to win it
+# back. The freeze refuses to overwrite an existing file for that reason.
+CONSTELLATION_FALL_OFF_GOALS = "constellation_fall_off_goals.csv"
+# The window every off-prem category is scored on; the export's "current"
+# column is the one carrying it, whatever else the file carries.
+CONSTELLATION_FALL_CURRENT_WINDOW = "9/1/2026 - 11/30/2026"
+_CF_PRODUCT_NUM = re.compile(r"^\d+\s+")
+
+
+def _cf_product_name(name):
+    """'2416 Corona Familiar 1/12/32 oz Btl' -> 'Corona Familiar 1/12/32 oz
+    Btl'. The aggregated exports carry the bare name; the account-level RDE
+    exports prefix the product number. The frozen goals file, the card and
+    the drift check all use the bare name."""
+    return _CF_PRODUCT_NUM.sub("", (name or "").strip())
+
+
+def _cf_off_rep_product(cat):
+    """One off-premise category export, in EITHER shape, reduced to
+    {(rep, bare product): [base, current]} placements.
+
+      aggregated   Sales Rep Assigned / Product Name / two windowed placement
+                   columns, flattened rep subtotal rows (the 2026-09-08 shape;
+                   still how Corona Gaintain arrives). Subtotals are
+                   reconciled against the product rows on every column
+                   present and then dropped, exactly as before the freeze.
+      account      Sales Rep Assigned / Customer Num Name / Product Num Name /
+                   two windowed 1-or-blank columns, one row per customer x
+                   product, no subtotals (the 2026-09-25 RDE shape; Impact,
+                   Modelo Gaintain and Innovation). A placement IS a customer x
+                   product with the flag set, so per product it is the count
+                   of flagged rows -- which is what the aggregated file's
+                   product row was. Verified on the first pull: every rep x
+                   SKU base count matched the frozen goals exactly across all
+                   three files (3,487 / 2,415 / 1,421).
+
+    Returns (agg, has_base, export_goals): has_base says the file still
+    carries the base window column (used only for drift); export_goals is
+    {rep: goal} when the file is the "( ... ) Goals" shape of 2026-09-18,
+    else None."""
+    rows = read_rows(cat["file"])
+    fieldnames = list(rows[0].keys()) if rows else []
+    cols = [f for f in fieldnames if f.startswith(cat["prefix"])]
+    val_col = next((f for f in cols if CONSTELLATION_FALL_CURRENT_WINDOW in f), None)
+    if val_col is None:
+        raise SystemExit(f"{cat['file']}: no '{cat['prefix']}' column for the current window "
+                         f"{CONSTELLATION_FALL_CURRENT_WINDOW} -- got {cols}")
+    base_col = next((f for f in cols if f != val_col and cat["baseWindow"] in f), None)
+    goal_col = next((f for f in fieldnames
+                     if f.lstrip().startswith("(") and cat["prefix"] in f
+                     and f.rstrip().endswith("Goals")), None)
+    prod_col = next((c for c in ("Product Name", "Product Num Name", "Product Num & Name") if c in fieldnames), None)
+    if prod_col is None:
+        raise SystemExit(f"{cat['file']}: no product column in {fieldnames}")
+    agg = defaultdict(lambda: [0.0, 0.0])
+    export_goals = None
+    if "Customer Num Name" in fieldnames or "Customer Num & Company" in fieldnames:
+        # account shape: no subtotal rows, one row per customer x product
+        for r in rows:
+            rep = (r["Sales Rep Assigned"] or "").strip()
+            k = (rep, _cf_product_name(r[prod_col]))
+            agg[k][0] += to_num(r[base_col]) if base_col else 0.0
+            agg[k][1] += to_num(r[val_col])
+        return agg, base_col is not None, None
+    totals, detail = _split_report_subtotals(rows, "Sales Rep Assigned")
+    sums = defaultdict(lambda: [0.0, 0.0])
+    for r in detail:
+        rep = (r["Sales Rep Assigned"] or "").strip()
+        b = to_num(r[base_col]) if base_col else 0.0
+        n = to_num(r[val_col])
+        sums[rep][0] += b
+        sums[rep][1] += n
+        k = (rep, _cf_product_name(r[prod_col]))
+        agg[k][0] += b
+        agg[k][1] += n
+    for rep, trow in totals.items():
+        b, v = sums.get(rep, [0.0, 0.0])
+        tb = to_num(trow[base_col]) if base_col else 0.0
+        if abs(tb - b) > 1e-6 or abs(to_num(trow[val_col]) - v) > 1e-6:
+            raise SystemExit(
+                f"{cat['file']}: {rep}'s total row does not equal its product rows "
+                f"({tb:g}/{to_num(trow[val_col]):g} vs {b:g}/{v:g}) "
+                f"-- the export's subtotal layout has changed, refusing to publish.")
+    if goal_col is not None:
+        export_goals = {}
+        for rep, trow in totals.items():
+            g = to_num(trow[goal_col])
+            if g > 0:
+                export_goals[rep] = g
+    return agg, base_col is not None, export_goals
+
+
+def _constellation_fall_off_goals():
+    """{(rep, category key): {bare product: goal}} from the FROZEN
+    CONSTELLATION_FALL_OFF_GOALS file. Refuses to run without it."""
+    path = DATA_DIR / CONSTELLATION_FALL_OFF_GOALS
+    if not path.exists():
+        raise SystemExit(f"{CONSTELLATION_FALL_OFF_GOALS} is missing -- the off-premise Constellation Fall goals "
+                         f"are frozen there (see README). It is written once by "
+                         f"`python3 generate.py --freeze-constellation-fall-off-goals` from aggregated exports "
+                         f"that still carry the base window; do not rebuild it from a later pull.")
+    keys = {c["key"] for c in CONSTELLATION_FALL_CATEGORIES}
+    out = defaultdict(dict)
+    for r in read_rows(CONSTELLATION_FALL_OFF_GOALS):
+        rep = (r.get("Sales Rep Assigned") or "").strip()
+        cat = (r.get("Category") or "").strip()
+        prod = _cf_product_name(r.get("Product Name"))
+        if not rep and not cat and not prod:
+            continue
+        if cat not in keys:
+            raise SystemExit(f"{CONSTELLATION_FALL_OFF_GOALS}: unknown category {cat!r}")
+        goal = to_num(r.get("Goal"))
+        if goal <= 0 or not prod:
+            raise SystemExit(f"{CONSTELLATION_FALL_OFF_GOALS}: {rep} / {cat} / {prod!r} needs a goal > 0")
+        if prod in out[(rep, cat)]:
+            raise SystemExit(f"{CONSTELLATION_FALL_OFF_GOALS}: duplicate row {rep} / {cat} / {prod}")
+        out[(rep, cat)][prod] = int(round(goal))
+    return out
+
+
+def freeze_constellation_fall_off_goals():
+    """Write CONSTELLATION_FALL_OFF_GOALS from the four off-premise exports'
+    BASE columns: one row per rep x category x SKU with base placements > 0.
+    Every export must still carry its base window. Refuses to overwrite."""
+    path = DATA_DIR / CONSTELLATION_FALL_OFF_GOALS
+    if path.exists():
+        raise SystemExit(f"{CONSTELLATION_FALL_OFF_GOALS} already exists -- the goals are frozen. "
+                         f"Delete it by hand first if you really mean to re-freeze (see README).")
+    out = []
+    for cat in CONSTELLATION_FALL_CATEGORIES:
+        agg, has_base, _ = _cf_off_rep_product(cat)
+        if not has_base:
+            raise SystemExit(f"{cat['file']}: no base window column {cat['baseWindow']} -- cannot freeze goals from it")
+        n_rows = n_base = 0
+        for (rep, prod), (b, _v) in sorted(agg.items()):
+            if b > 0:
+                out.append({"Sales Rep Assigned": rep, "Category": cat["key"], "Product Name": prod,
+                            "Goal": round(b), "Base window": cat["baseWindow"],
+                            "Frozen": datetime.date.today().isoformat(), "Source": cat["file"]})
+                n_rows += 1
+                n_base += round(b)
+        print(f"freeze: {cat['key']} -> {n_rows} rep x SKU goal rows, {n_base} base placements ({cat['baseWindow']})")
+    with open(path, "w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=list(out[0].keys()))
+        w.writeheader()
+        w.writerows(out)
+    print(f"freeze: wrote {len(out)} rows to data/{CONSTELLATION_FALL_OFF_GOALS}")
+
 
 def _constellation_fall_goal_overrides():
     """{(rep, category key): goal} from CONSTELLATION_FALL_GOAL_OVERRIDES.
@@ -2547,84 +2712,35 @@ def build_constellation_fall():
     span = (CONSTELLATION_FALL_END - CONSTELLATION_FALL_START).days + 1
     elapsed = min(max((today - CONSTELLATION_FALL_START).days + 1, 0), span)
 
+    frozen = _constellation_fall_off_goals()
+    off_drift = {}
     for cat in CONSTELLATION_FALL_CATEGORIES:
-        rows = read_rows(cat["file"])
-        fieldnames = list(rows[0].keys()) if rows else []
-        cols = [f for f in fieldnames if f.startswith(cat["prefix"])]
-        prod_col = "Product Name" if "Product Name" in fieldnames else "Product Num Name"
-        # TWO SHAPES (2026-09-18, per Gavin, Impact first). The original
-        # fall files carry two windowed placement columns and the BASE is
-        # the goal. The "w/ Goals" shape carries ONE placement column ("the
-        # distribution") plus an explicit "( ... ) Goals" column whose value
-        # sits on the rep's subtotal row only -- that number IS the goal,
-        # and the per-SKU rows beneath it have no goal of their own.
-        goal_col = next((f for f in fieldnames
-                         if f.lstrip().startswith("(") and cat["prefix"] in f
-                         and f.rstrip().endswith("Goals")), None)
-        if goal_col is not None:
-            if len(cols) != 1:
-                raise SystemExit(f"{cat['file']}: goals shape expects 1 '{cat['prefix']}' column, got {len(cols)}")
-            val_col, base_col = cols[0], None
-            goal_label = "Fall 2026 goal"
-        else:
-            if len(cols) != 2:
-                raise SystemExit(f"{cat['file']}: expected 2 '{cat['prefix']}' columns, got {len(cols)}")
-            base_col = next((f for f in cols if cat["baseWindow"] in f), None)
-            if base_col is None:
-                raise SystemExit(f"{cat['file']}: no column for base window {cat['baseWindow']}")
-            val_col = next(f for f in cols if f != base_col)
-            goal_label = cat["baseWindow"]
+        agg, has_base, export_goals = _cf_off_rep_product(cat)
+        fg_cat = {rep: g for (rep, key), g in frozen.items() if key == cat["key"]}
 
-        totals, detail = _split_report_subtotals(rows, "Sales Rep Assigned")
+        # DRIFT, never applied: while an export still carries the base
+        # window, compare it with the frozen goals rep x SKU and print.
+        drift = []
+        if has_base:
+            reps = {r for r, _ in agg} | set(fg_cat)
+            for rep in sorted(reps):
+                prods = {p for (r, p) in agg if r == rep} | set(fg_cat.get(rep, {}))
+                for prod in sorted(prods):
+                    eb = round(agg.get((rep, prod), [0.0, 0.0])[0])
+                    fb = fg_cat.get(rep, {}).get(prod, 0)
+                    if eb != fb:
+                        drift.append((rep, prod, fb, eb))
+        off_drift[cat["key"]] = drift
+        if drift:
+            print(f"constellation_fall: {cat['label']} export base differs from the frozen goals on "
+                  f"{len(drift)} rep x SKU rows (frozen wins), e.g. "
+                  + "; ".join(f"{r} / {p}: frozen {fb} vs export {eb}" for r, p, fb, eb in drift[:3]))
 
-        # Reconcile: a rep's total row must equal the sum of its product rows
-        # on BOTH columns, or the subtotal layout has changed under us.
-        sums = defaultdict(lambda: [0.0, 0.0])
-        prods = defaultdict(list)
-        for r in detail:
-            rep = r["Sales Rep Assigned"]
-            b = to_num(r[base_col]) if base_col else 0.0
-            n = to_num(r[val_col])
-            sums[rep][0] += b
-            sums[rep][1] += n
-            # PER-SKU GOALS (2026-09-11, per Gavin: show the products inside a
-            # category with their own current/goal). The base column is the
-            # goal at the SKU grain exactly as it is at the category grain, so
-            # every product row carries its own bar.
-            #
-            # KEEP THE BASE-ONLY ROWS. This list was filtered on
-            # `placements > 0` until now, which hid the one thing a retention
-            # rep most needs: a SKU that placed in the base window and has NOT
-            # been reordered this period is distribution already LOST, and it
-            # is the whole of the category's shortfall. 129 such rows exist
-            # across the four fall files on the 9/11 pull.
-            if n > 0 or b > 0:
-                goal, placed = round(b), round(n)
-                prods[rep].append({
-                    "product": r[prod_col].strip(),
-                    "placements": placed,
-                    "base": goal,                      # original key, unchanged
-                    "goal": goal or None,
-                    "pct": round(placed / goal * 100, 1) if goal else None,
-                    # 100% of the SKU's own base, matching the category bar --
-                    # deliberately not the 90% other retention programs use.
-                    "retained": bool(goal and placed >= goal),
-                    "toGo": max(0, goal - placed) if goal else 0,
-                    "lost": bool(goal and placed == 0),
-                })
-        for rep, trow in totals.items():
-            b, v = sums.get(rep, [0.0, 0.0])
-            tb = to_num(trow[base_col]) if base_col else 0.0
-            if abs(tb - b) > 1e-6 or abs(to_num(trow[val_col]) - v) > 1e-6:
-                raise SystemExit(
-                    f"{cat['file']}: {rep}'s total row does not equal its product rows "
-                    f"({tb:g}/{to_num(trow[val_col]):g} vs {b:g}/{v:g}) "
-                    f"-- the export's subtotal layout has changed, refusing to publish.")
-
+        reps_in_export = {r for r, _ in agg} | set(export_goals or {})
         house_total = house_goal = 0.0
         for rep in ROSTER:
-            trow = totals.get(rep)
-            if trow is None:
+            fg = fg_cat.get(rep, {})
+            if rep not in reps_in_export and not fg:
                 by_rep[rep]["offCategories"].append({
                     "key": cat["key"], "label": cat["label"], "placements": 0,
                     "goal": None, "pct": None, "retained": False,
@@ -2634,37 +2750,52 @@ def build_constellation_fall():
                 })
                 continue
             by_rep[rep]["inReport"] = True
-            placements = to_num(trow[val_col])
-            base = to_num(trow[base_col]) if base_col else None
-            # Goals shape: the subtotal row's Goals cell is the goal (empty =
-            # no goal, e.g. an off-roster rep). Base shape: the base is.
-            goal = to_num(trow[goal_col]) if goal_col else base
-            if goal is not None and goal <= 0:
-                goal = None
-            # A goal Gavin set by hand replaces the base (see
+            cur = {p: v[1] for (r, p), v in agg.items() if r == rep}
+            placements = sum(cur.values())
+            # THE GOAL IS THE FROZEN BASE, at 100%: the rep's own prior
+            # placements of the category, summed from the frozen SKU rows.
+            base = float(sum(fg.values())) if fg else None
+            goal = base
+            # A goal Gavin set by hand replaces the frozen base (see
             # CONSTELLATION_FALL_GOAL_OVERRIDES); the base is kept on the row
-            # so the card can say what it replaced. When the export itself
-            # carries a Goals column, THAT number wins (Gavin, 2026-09-18)
-            # and a differing override is only reported, never applied.
+            # so the card can say what it replaced.
             override = overrides.get((rep, cat["key"]))
             if override is not None:
                 overrides_used.add((rep, cat["key"]))
-                if goal_col is None:
-                    goal = override
-                    overrides_applied.add((rep, cat["key"]))
-                elif goal is None or abs(goal - override) > 1e-6:
-                    print(f"constellation_fall: NOTE {rep} {cat['key']} export goal {goal} "
-                          f"wins over the override {override:g}")
-                else:
-                    print(f"constellation_fall: {rep} {cat['key']} export goal {goal:g} matches the override")
+                overrides_applied.add((rep, cat["key"]))
+                goal = override
+            if export_goals and rep in export_goals and (goal is None or abs(export_goals[rep] - goal) > 1e-6):
+                print(f"constellation_fall: NOTE {rep} {cat['key']} export Goals column says "
+                      f"{export_goals[rep]:g}; the frozen goal {goal} stands")
             house_total += placements
             house_goal += goal or 0
+            # PER-SKU GOALS (2026-09-11, per Gavin): every SKU with a frozen
+            # base or a current placement gets a row. KEEP THE BASE-ONLY
+            # ROWS: a SKU that placed in the base window and has NOT been
+            # reordered is distribution already LOST, and with the goals
+            # frozen it shows even when the export no longer carries it.
+            plist = []
+            for prod in set(cur) | set(fg):
+                g, placed = fg.get(prod, 0), round(cur.get(prod, 0.0))
+                if placed > 0 or g > 0:
+                    plist.append({
+                        "product": prod,
+                        "placements": placed,
+                        "base": g,                         # original key, unchanged
+                        "goal": g or None,
+                        "pct": round(placed / g * 100, 1) if g else None,
+                        # 100% of the SKU's own base, matching the category
+                        # bar -- deliberately not the 90% other retention
+                        # programs use.
+                        "retained": bool(g and placed >= g),
+                        "toGo": max(0, g - placed) if g else 0,
+                        "lost": bool(g and placed == 0),
+                    })
             # SKUs short of their own goal first, biggest gap first, so what
             # needs a call this week sits at the top; held SKUs follow, and
             # SKUs with no base (new distribution this period) come last.
-            plist = sorted(prods.get(rep, []),
-                           key=lambda p: (p["goal"] is None, p["retained"],
-                                          -p["toGo"], -p["placements"], p["product"]))
+            plist.sort(key=lambda p: (p["goal"] is None, p["retained"],
+                                      -p["toGo"], -p["placements"], p["product"]))
             goaled_skus = [p for p in plist if p["goal"]]
             by_rep[rep]["offCategories"].append({
                 "key": cat["key"], "label": cat["label"], "placements": round(placements),
@@ -2673,8 +2804,8 @@ def build_constellation_fall():
                 # 100% of the base, per Gavin -- deliberately not the 90% bar.
                 "retained": bool(goal and placements >= goal),
                 "toGo": round(goal - placements) if goal and placements < goal else 0,
-                "inReport": True, "products": plist, "baseWindow": goal_label,
-                "goalOverride": override is not None and goal_col is None,
+                "inReport": True, "products": plist, "baseWindow": cat["baseWindow"],
+                "goalOverride": override is not None,
                 "baseGoal": round(base) if base else None,
                 "skusTotal": len(goaled_skus),
                 "skusHeld": sum(1 for p in goaled_skus if p["retained"]),
@@ -2687,7 +2818,7 @@ def build_constellation_fall():
                       "total": round(house_total), "goal": round(house_goal),
                       "met": house_total >= house_goal,
                       "short": max(0, round(house_goal - house_total)),
-                      "baseWindow": goal_label})
+                      "baseWindow": cat["baseWindow"]})
 
     unused = set(overrides) - overrides_used
     if unused:
@@ -2742,7 +2873,8 @@ def build_constellation_fall():
             "periodEnd": CONSTELLATION_FALL_END.isoformat(),
             "periodDays": span, "daysElapsed": elapsed,
             "pacePct": round(elapsed / span * 100, 1) if span else 0,
-            "meta": {"onPrem": on_meta, "onBaseWindow": CONSTELLATION_FALL_ON_BASE_WINDOW}}
+            "meta": {"onPrem": on_meta, "onBaseWindow": CONSTELLATION_FALL_ON_BASE_WINDOW,
+                     "offGoalsFrozen": True, "offGoalDrift": {k: len(v) for k, v in off_drift.items()}}}
 
 
 # ---------------------------------------------------------------------------
@@ -4323,7 +4455,9 @@ def check_registry_metrics(html, data, data_09):
         f"{h['label']} {h['total']}/{h['goal']}" for h in cf["house"])
         + f" | {sum(1 for d in cf['byRep'].values() if d['offGoalsTotal'] and d['offGoalsRetained']==d['offGoalsTotal'])}"
         + f" of {sum(1 for d in cf['byRep'].values() if d['offGoalsTotal'])} reps holding every off-prem category"
-        + f" | day {cf['daysElapsed']} of {cf['periodDays']}")
+        + f" | day {cf['daysElapsed']} of {cf['periodDays']}"
+        + " | off-prem goals FROZEN (data/" + CONSTELLATION_FALL_OFF_GOALS + ")"
+        + (f"; export base drift vs frozen: {cf['meta']['offGoalDrift']}" if any(cf['meta']['offGoalDrift'].values()) else "; no drift"))
     for ch in ("packages", "draft"):
         hs = cf["houseOn"][ch]; m = cf["meta"]["onPrem"][ch]
         print(f"constellation_fall on-prem {ch}: house {sum(h['total'] for h in hs)}/{sum(h['goal'] for h in hs)} buyers "
@@ -4568,6 +4702,9 @@ def build_sam_adams_conversion():
 
 
 def main():
+    if "--freeze-constellation-fall-off-goals" in sys.argv:
+        freeze_constellation_fall_off_goals()
+        return
     data = {
         "1911": build_1911_or_woodchuck("1911_rewards.csv", bbl_threshold=2.0),
         "woodchuck": build_1911_or_woodchuck("woodchuck_rewards.csv", bbl_threshold=3.0),
