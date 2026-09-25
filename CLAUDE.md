@@ -106,8 +106,13 @@ to last month with an amber note, or a muted "No programs loaded yet"),
 Red Bull reads `period.json` for the period and days left. Tap Tracker
 and Carbliss embed their data in multi-MB HTML, so no status. Fonts are
 Oswald (headings) + Source Sans 3 (body) -- Gavin's pick ("option C") --
-on the rep page, the manager page and /login/. The manager page still
-uses the dark `shared/home.css` theme.
+on the rep page, the manager page and /login/. The rep page has a light/dark toggle (sun/moon button in the top bar;
+`data-theme` on <html>, remembered in localStorage `kdh_theme`, applied
+by an inline head script before first paint; with no choice saved it
+follows the device's prefers-color-scheme). The dark palette lives in
+rep.css under `:root[data-theme="dark"]` and the matching media query --
+change both together. The manager page still uses the dark
+`shared/home.css` theme.
 Both landing pages share
 `shared/home.css` (Kohler theme: denim/navy canvas and cards, Kohler
 blue accents; a hero band under the header -- the building photo
