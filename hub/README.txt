@@ -930,3 +930,12 @@ TIMESTAMPS AND THE "SO FAR" FIGURE (2026-09-21, per Gavin)
   give Still Needed (.ifig.open .if-v), and the detail hero's big number
   gets the same colour (.dhero-big.sofar). Cache tag 20260921i.
 
+
+Write-back (2026-09-25): on kohlerdisthub.com every target list a rep
+  sees (incentive "Potential Accounts", MPO card lists, the detail page's
+  numbered plan) carries Done / Follow up / Not now + a note per account.
+  Saved to Supabase table rep_actions (migration in supabase/migrations/,
+  RLS: own rows for reps, read-all for managers). Follow-ups float to the
+  top, Done / Not now fold away under the list and leave the counts.
+  A manager looking at a rep (or previewing as them) sees chips only.
+  Nothing renders on github.io (no auth). Cache tag 20260925h.

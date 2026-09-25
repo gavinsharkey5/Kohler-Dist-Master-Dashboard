@@ -1,0 +1,17 @@
+{
+  "name": "Kohler Dist Hub",
+  "short_name": "Dist Hub",
+  "description": "Kohler Distributing sales dashboards: incentives, MPOs, tap tracker, Red Bull and Carbliss targets.",
+  "id": "./rep/",
+  "start_url": "./rep/",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#12275F",
+  "theme_color": "#12275F",
+  "icons": [
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

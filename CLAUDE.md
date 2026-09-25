@@ -180,6 +180,51 @@ was loaded from the Encompass users export on 2026-09-25 (49 people:
 Sales / Sales/Delivery -> rep, every other title -> manager) plus
 gavinsharkey711@gmail.com for testing.
 
+## Build tracker: ROADMAP.md (2026-09-25)
+
+`ROADMAP.md` at the root is Gavin's checklist for the website/app: what
+needs him (dashboard settings, device tests), what to build next, ideas
+kept handy, what is tabled, what is done. KEEP IT CURRENT: when work
+lands, move its line to Done with the date and add any step Gavin must
+take to make it live. No names / emails / phones in it (public repo).
+
+## Home-screen install + sign-in code (2026-09-25)
+
+`manifest.webmanifest` at the root (start_url `./rep/`, standalone,
+Kohler icons in `assets/icon-192.png` / `icon-512.png` /
+`apple-touch-icon.png`, rendered from the badge by a Playwright script)
+plus `<link rel="manifest">` + apple-mobile-web-app tags after the
+`<title>` of every rep-facing page (rep/, root, login/, hub/, both MPOs,
+tap tracker, Red Bull, Carbliss). The middleware matcher exempts the
+manifest like favicons. An installed iOS web app has its OWN cookie jar
+and the emailed magic link opens in Safari, so /login/ also takes the
+6-digit code (`verifyOtp`, `#codeForm` shown after a link is sent) --
+which only appears in the mail once Gavin adds `{{ .Token }}` to the
+Supabase Magic Link / Confirm sign up templates (supabase/README.txt).
+
+## Hub write-back: rep_actions (2026-09-25)
+
+The first thing reps TELL the site. Every target list the hub renders for
+a rep (incentive rows' "Potential Accounts", MPO cards' list, the detail
+page's numbered plan) carries Done / Follow up / Not now + an optional
+note per account. `RA` in `hub/hub.js` writes straight to Supabase
+PostgREST (`rep_actions`, migration
+`supabase/migrations/20260925180000_rep_actions.sql`) with the `kdh_at`
+cookie as bearer and the publishable key from `/shared/auth-config.js`
+(now also loaded by hub/index.html; 404 on github.io = feature off, no
+buttons). RLS: a rep touches only their own rows, managers read all;
+rep_email / rep_name are stamped by a trigger from the token and
+allowed_users, never trusted from the page. Ordering is applied by
+`raSplit()`: follow-ups first, untouched next, Not now and Done in
+`<details class="plan-fold">` at the foot and out of every count
+(`raLive()` feeds the section titles, seclink counts and Show-all
+toggles). `acctList(key, cols, rows, {prog, rep})` is the switch --
+without opts it renders exactly as before (Manager Mode tabs, credited
+lists). Editing is only for the signed-in rep on their own list
+(`RA.canEdit`); a manager viewing or previewing a rep gets read-only
+chips (a preview write would be stamped with the manager's name).
+Bump hub.js / hub.css `?v=` tags on change (now 20260925h).
+
 ## Commit author: use the gavinsharkey5 noreply address (2026-09-24)
 
 Author commits as `Gavin Sharkey <240726853+gavinsharkey5@users.noreply.github.com>`.

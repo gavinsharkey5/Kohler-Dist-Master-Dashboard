@@ -19,7 +19,7 @@ export const config = {
   // Everything except the sign-in page, the shared logo assets, and
   // favicons. (/shared/auth-config.js is NOT excluded: it has no file
   // behind it, the middleware itself answers it below.)
-  matcher: ['/((?!login|assets/|favicon).*)'],
+  matcher: ['/((?!login|assets/|favicon|manifest\\.webmanifest).*)'],
 };
 
 const COOKIE = 'kdh_at';

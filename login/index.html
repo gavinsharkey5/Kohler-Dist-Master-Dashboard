@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
 <title>Sign in — Kohler Dist Hub</title>
+<!-- Home-screen install (iPad / iPhone "Add to Home Screen", Android/Chrome "Install"): the
+     app opens full-screen at /rep/ with the Kohler icon. -->
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Dist Hub">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -24,8 +33,9 @@
   h1{font-family:"Oswald";font-weight:700;letter-spacing:-.02em;font-size:24px;line-height:1.1;margin:2px 0 0}
   p{margin:0 0 14px;color:var(--ink-soft);font-size:14.5px}
   label{display:block;font-family:"Oswald";font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 6px}
-  input[type=email]{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--canvas);border:1px solid var(--line);border-radius:10px;padding:12px 14px;outline:none}
-  input[type=email]:focus{border-color:var(--accent)}
+  input[type=email],input[type=text]{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--canvas);border:1px solid var(--line);border-radius:10px;padding:12px 14px;outline:none}
+  input[type=email]:focus,input[type=text]:focus{border-color:var(--accent)}
+  input[type=text]{letter-spacing:.3em;font-variant-numeric:tabular-nums;text-align:center;font-size:22px}
   button{width:100%;margin-top:12px;font-family:"Oswald";font-weight:700;font-size:15px;letter-spacing:.02em;color:#141414;background:var(--accent);border:0;border-radius:10px;padding:13px 16px;cursor:pointer}
   button:disabled{opacity:.55;cursor:default}
   .msg{margin:14px 0 0;padding:12px 14px;border-radius:10px;font-size:14px;border:1px solid var(--line);background:var(--canvas);display:none}
@@ -58,6 +68,18 @@
     <label for="email">Email</label>
     <input id="email" type="email" name="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required>
     <button id="send" type="submit">Email me a sign-in link</button>
+  </form>
+
+  <!-- The same email also carries a 6-digit code. Typing it here signs in
+       INSIDE whatever opened this page -- which matters when the site is
+       installed on the home screen (an iPad opens the emailed link in
+       Safari, not in the installed app, so the app itself never sees that
+       session; the code does). Needs {{ .Token }} in the Supabase Magic
+       Link email template -- see supabase/README.txt. -->
+  <form id="codeForm" class="hidden" autocomplete="off">
+    <label for="code">Or type the 6-digit code from that email</label>
+    <input id="code" type="text" name="code" inputmode="numeric" pattern="[0-9]{6,8}" maxlength="8" autocomplete="one-time-code" placeholder="123456">
+    <button id="verify" type="submit">Sign in with the code</button>
   </form>
 
   <div id="msg" class="msg" role="status" aria-live="polite"></div>
@@ -188,11 +210,28 @@
         return sb.auth.signInWithOtp({ email: email, options: { emailRedirectTo: back } }).then(function (r) {
           $('send').disabled = false;
           if (r.error) { say('bad', 'Couldn&rsquo;t send the link: ' + escapeHtml(r.error.message)); return; }
-          say('good', 'Check <b>' + escapeHtml(email) + '</b> for a message from Kohler Dist Hub and tap the link in it. It works on this phone or any other device.');
+          say('good', 'Check <b>' + escapeHtml(email) + '</b> for a message from Kohler Dist Hub. Tap the link in it, or type the code from it below.');
+          pendingEmail = email;
+          $('codeForm').classList.remove('hidden');
+          $('code').focus();
         });
       });
     });
+    $('codeForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var code = $('code').value.replace(/\D/g, '');
+      var email = pendingEmail || $('email').value.trim().toLowerCase();
+      if (!code || !email) return;
+      $('verify').disabled = true;
+      say('info', 'Checking the code&hellip;');
+      sb.auth.verifyOtp({ email: email, token: code, type: 'email' }).then(function (r) {
+        $('verify').disabled = false;
+        if (r.error) { say('bad', 'That code didn&rsquo;t work: ' + escapeHtml(r.error.message) + '. Codes expire after a few minutes &mdash; request a new email if needed.'); return; }
+        // onAuthStateChange picks the new session up and calls enter().
+      });
+    });
   }
+  var pendingEmail = '';
   wireForm();
 
   function escapeHtml(s) {

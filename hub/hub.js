@@ -608,6 +608,126 @@ const state = {mode:'rep', view:'home', rep:null, main:null, cat:null, month:nul
 // Vercel middleware, not here -- this is only what the page shows.
 const KDH_USER = (()=>{ try{ if(window.kdhUser) return window.kdhUser(); const m = document.cookie.match(/(?:^|;\s*)kdh_user=([^;]*)/); return m ? JSON.parse(decodeURIComponent(m[1])) : null; }catch(e){ return null; } })();
 const LOCKED_REP = (KDH_USER && KDH_USER.role !== 'manager' && KDH_USER.name && HUB_ROSTER.includes(KDH_USER.name)) ? KDH_USER.name : null;
+
+/* ---- Write-back: Done / Follow up / Not now on the visit list (2026-09-25)
+   The first thing a rep TELLS the hub instead of only reading it. Each
+   target row on a Rep Mode visit list carries three buttons plus a note;
+   a press writes one row to Supabase's rep_actions table (PostgREST,
+   straight from the browser with the rep's own token -- the `kdh_at`
+   cookie /login/ sets -- and the publishable key the middleware serves as
+   /shared/auth-config.js). Row-level security scopes it: a rep touches
+   only their own rows, a manager reads everyone's, so a DM opening a rep's
+   programs (or previewing as them) sees the same marks, read-only.
+   Follow-ups float to the top of the list, Done and Not now fold away at
+   the bottom and stop counting as "to visit". Off kohlerdisthub.com
+   (github.io has no auth-config.js, no cookie) none of this renders. */
+const RA = (()=>{
+  const cfg = window.KDH_AUTH || null;
+  const token = (()=>{ try{ const m = document.cookie.match(/(?:^|;\s*)kdh_at=([^;]*)/); return m ? decodeURIComponent(m[1]) : ''; }catch(e){ return ''; } })();
+  const on = !!(cfg && cfg.url && cfg.key && token);
+  const map = new Map();      // program_id|account_num -> {status, note, updated_at}
+  let loadedFor = null, loading = false, err = '';
+  const num = a => a && a.n!=null ? String(a.n) : 'name:'+HubAccounts.norm(a ? a.name : '');
+  const key = (pid, a) => pid+'|'+num(a);
+  const base = () => cfg.url.replace(/\/$/,'')+'/rest/v1/rep_actions';
+  const hdr = extra => Object.assign({apikey:cfg.key, authorization:'Bearer '+token, accept:'application/json'}, extra||{});
+  // Only the signed-in person edits their own list. A manager previewing
+  // or viewing a rep sees the marks but cannot press (their token would
+  // stamp the rows with the manager's own name).
+  const canEdit = rep => on && KDH_USER && !KDH_USER.preview && !!rep && KDH_USER.name === rep;
+  const canShow = rep => on && !!rep;
+  async function load(rep){
+    if(!on || !rep || loading || loadedFor===rep) return;
+    loading = true; err = '';
+    try{
+      const q = base()+'?select=program_id,account_num,status,note,updated_at&rep_name=eq.'+encodeURIComponent(rep)+'&order=updated_at.desc&limit=2000';
+      const res = await fetch(q, {headers: hdr()});
+      if(!res.ok) throw new Error('HTTP '+res.status);
+      const rows = await res.json();
+      map.clear();
+      rows.forEach(r=>map.set(r.program_id+'|'+r.account_num, {status:r.status, note:r.note||'', updated_at:r.updated_at}));
+      loadedFor = rep;
+    }catch(e){ err = 'Couldn’t load your marks ('+(e.message||e)+').'; loadedFor = rep; }
+    loading = false; render();
+  }
+  async function set(pid, a, status, note){
+    if(!on) return;
+    const cur = map.get(key(pid, a)) || {};
+    const row = {rep_email: KDH_USER.email||'', program_id: pid, account_num: num(a), account_name: a.name||'', status: status || cur.status || 'follow', note: note==null ? (cur.note||'') : note};
+    map.set(key(pid, a), {status: row.status, note: row.note, updated_at: new Date().toISOString(), saving:true}); err = ''; render();
+    try{
+      const res = await fetch(base()+'?on_conflict=rep_email,program_id,account_num', {method:'POST',
+        headers: hdr({'content-type':'application/json', prefer:'resolution=merge-duplicates,return=representation'}), body: JSON.stringify(row)});
+      if(!res.ok) throw new Error('HTTP '+res.status);
+      const back = await res.json(); const r = Array.isArray(back) ? back[0] : null;
+      map.set(key(pid, a), {status: r ? r.status : row.status, note: r ? (r.note||'') : row.note, updated_at: r ? r.updated_at : new Date().toISOString()});
+    }catch(e){ if(cur.status) map.set(key(pid, a), cur); else map.delete(key(pid, a)); err = 'Couldn’t save that ('+(e.message||e)+'). Check your connection and try again.'; }
+    render();
+  }
+  async function clear(pid, a){
+    if(!on) return;
+    const cur = map.get(key(pid, a)); if(!cur) return;
+    map.delete(key(pid, a)); err = ''; render();
+    try{
+      const res = await fetch(base()+'?program_id=eq.'+encodeURIComponent(pid)+'&account_num=eq.'+encodeURIComponent(num(a)), {method:'DELETE', headers: hdr()});
+      if(!res.ok) throw new Error('HTTP '+res.status);
+    }catch(e){ map.set(key(pid, a), cur); err = 'Couldn’t clear that ('+(e.message||e)+').'; }
+    render();
+  }
+  return {on, canEdit, canShow, load, set, clear, num,
+    get: (pid, a) => map.get(key(pid, a)) || null,
+    error: () => err, isLoading: () => loading, loadedFor: () => loadedFor};
+})();
+const RA_LABEL = {done:'Done', follow:'Follow up', skip:'Not now'};
+const RA_MARK  = {done:'✓', follow:'⚑', skip:'–'};
+let raEdit = null;   // "program|acct" whose note box is open
+const raFoldOpen = new Set();   // "program|status" folds the rep opened (re-renders keep them open)
+document.addEventListener('toggle', e=>{ const d = e.target; if(!(d instanceof HTMLDetailsElement) || !d.dataset.fold) return; if(d.open) raFoldOpen.add(d.dataset.fold); else raFoldOpen.delete(d.dataset.fold); }, true);
+const raDay = iso => { const d = iso ? new Date(iso) : null; return d && !isNaN(d) ? fmtDay(d) : ''; };
+// Rows split by the rep's marks: follow-ups first, untouched next (that is
+// the live list), Not now and Done set aside.
+function raSplit(p, rep, rows){
+  rows = rows || [];
+  const show = RA.canShow(rep);
+  if(!show) return {on:false, edit:false, show:false, live:rows, follow:[], open:rows, later:[], done:[]};
+  const st = a => RA.get(p.id, a);
+  const follow = rows.filter(a=>{ const x = st(a); return x && x.status==='follow'; });
+  const open = rows.filter(a=>!st(a));
+  const later = rows.filter(a=>{ const x = st(a); return x && x.status==='skip'; });
+  const done = rows.filter(a=>{ const x = st(a); return x && x.status==='done'; });
+  return {on:true, edit:RA.canEdit(rep), show, live:follow.concat(open), follow, open, later, done};
+}
+// The control strip under one account: three buttons + note box for the
+// signed-in rep, a read-only chip for a manager looking on.
+function raStrip(p, a, edit, show){
+  const st = show ? RA.get(p.id, a) : null;
+  const k = p.id+'|'+RA.num(a);
+  const note = st && st.note ? `<div class="ra-note">${E(st.note)}</div>` : '';
+  if(edit){
+    const b = (k2, l) => `<button type="button" class="ra-b ${k2}${st && st.status===k2 ? ' on' : ''}" data-act="ra-set" data-prog="${E(p.id)}" data-n="${E(RA.num(a))}" data-status="${k2}" aria-pressed="${st && st.status===k2 ? 'true' : 'false'}">${RA_MARK[k2]} ${l}</button>`;
+    return note + (raEdit===k
+      ? `<form class="ra-edit" data-prog="${E(p.id)}" data-n="${E(RA.num(a))}"><input type="text" maxlength="200" placeholder="Note (who you spoke to, what they said…)" value="${E(st ? st.note : '')}" autocomplete="off"><button type="submit" class="ra-b on">Save</button><button type="button" class="ra-b" data-act="ra-cancel">Cancel</button></form>`
+      : `<div class="ra">${b('done','Done')}${b('follow','Follow up')}${b('skip','Not now')}<button type="button" class="ra-b note" data-act="ra-note" data-prog="${E(p.id)}" data-n="${E(RA.num(a))}">${st && st.note ? 'Edit note' : '+ Note'}</button>${st && st.saving ? '<span class="ra-saving">Saving…</span>' : ''}</div>`);
+  }
+  if(st) return note + `<div class="ra"><span class="ra-chip ${st.status}">${RA_MARK[st.status]} ${RA_LABEL[st.status]}${raDay(st.updated_at) ? ' · '+raDay(st.updated_at) : ''}</span></div>`;
+  return '';
+}
+const raTag = (p, a, edit, show) => { const st = show ? RA.get(p.id, a) : null; return st && edit ? `<span class="ra-tag ${st.status}">${RA_MARK[st.status]} ${RA_LABEL[st.status]}</span>` : ''; };
+const raRowCls = (p, a, show) => { const st = show ? RA.get(p.id, a) : null; return st ? ' ra-'+st.status : ''; };
+const raNotes = (show, edit, rows, marks) => (show && RA.error() ? `<div class="ra-err">${E(RA.error())}</div>` : '')
+  + (edit && rows.length && !marks ? `<div class="ra-hint">Tap <b>Done</b>, <b>Follow up</b> or <b>Not now</b> under an account to keep track — your manager sees your marks too.</div>` : '');
+// One visit-list row. `edit` = the signed-in rep on their own list.
+function planRowHtml(p, a, edit, show){
+  const meta = E([a.city, a.area].filter(Boolean).join(' · ')) + (a.cases>0 ? ` · ${E(fmtCases(a.cases))}/yr` : '');
+  const strip = raStrip(p, a, edit, show);
+  return `<li class="plan-row${a.warm?' warm':''}${raRowCls(p, a, show)}"><div class="plan-name">${E(a.name)}${raTag(p, a, edit, show)}</div><div class="plan-meta">${meta}</div>${strip ? `<div class="plan-act">${strip}</div>` : ''}</li>`;
+}
+// Folded group at the foot of the list for what the rep set aside.
+function planFold(p, rows, status, edit, show){
+  if(!rows.length) return '';
+  const fk = p.id+'|'+status;
+  return `<details class="plan-fold ${status}" data-fold="${E(fk)}"${raFoldOpen.has(fk)?' open':''}><summary>${RA_MARK[status]} ${E(RA_LABEL[status])} · ${rows.length}</summary><ol class="plan-list">${rows.map(a=>planRowHtml(p, a, edit, show)).join('')}</ol></details>`;
+}
 function lockState(){
   if(!LOCKED_REP) return;
   state.rep = LOCKED_REP; state.mode = 'rep'; state.peek = null;
@@ -891,7 +1011,7 @@ function incRowHtml(p, r, b, rep){
   const bar = N ? `<div class="ibar ${b.cls}"><div class="ibar-fill" style="width:${pct}%"></div></div>` : '';
   const off = r.status==='unavailable' || r.soon;
   const dist = off ? [] : distFor(p, rep);
-  const counts = {dist: dist.length || null, targets: off ? null : targets.length};
+  const counts = {dist: dist.length || null, targets: off ? null : raLive(p, rep, targets).length};
 
   return `<div class="irow b${b.band}${sec?' open':''}" id="card-${E(p.id)}">
     <div class="irow-head">
@@ -929,14 +1049,14 @@ function incRowDetail(p, r, rep, targets, dist, which){
   }
   const table = !targets.length
     ? `<div class="it-note">No potential accounts currently identified.</div>`
-    : acctList(key, ACCT_COLS.targets, targets);
+    : acctList(key, ACCT_COLS.targets, targets, {prog:p, rep});
   if(BG.length){
     return sec('Your brand goals', brandGoalsHtml(BG, {noTitle:true, oneGoal: p.key==='mabi_retention_fall' ? (r.goal||'goal') : ''}))
-      + sec(`Accounts to hold${targets.length?' · '+targets.length:''}`, table, listMore(key, targets))
+      + sec(`Accounts to hold${targets.length?' · '+raLive(p, rep, targets).length:''}`, table, listMore(key, raLive(p, rep, targets)))
       + sec('How it is scored', repRulesHtml(p, 'ibul'))
       + full;
   }
-  return sec(`Potential accounts${targets.length?' · '+targets.length:''}`, table, listMore(key, targets))
+  return sec(`Potential accounts${targets.length?' · '+raLive(p, rep, targets).length:''}`, table, listMore(key, raLive(p, rep, targets)))
     + sec('What to sell', `<div class="itext">${E(ask)}${(fams && fams.length)?` <span class="iquiet">Pays on: ${E(fams.join(' · '))}.</span>`:''}</div>`)
     + sec('How it is scored', repRulesHtml(p, 'ibul'))
     + (r.next ? sec('Next step', `<div class="itext">${nextNoMoney(r.next)}</div>`) : '')
@@ -1589,25 +1709,39 @@ function moreBtn(act, key, all, n, word){
 function listMore(key, rows){
   return rows.length > SHOW_FIRST ? moreBtn('sec-more', key, !!secMore[key], rows.length, rows.length===1?'account':'accounts') : '';
 }
-function acctList(key, cols, rows){
+// opts {prog, rep}: a target list the signed-in rep may mark (write-back,
+// 2026-09-25) -- follow-ups float up, Done / Not now fold away below, and
+// every row carries the control strip as an extra full-width cell.
+function acctList(key, cols, rows, opts){
   if(!rows.length) return '';
+  const T = opts && opts.prog ? raSplit(opts.prog, opts.rep, rows) : null;
+  const wb = !!(T && T.on);
+  const live = wb ? T.live : rows;
   // A column every row leaves blank is noise -- "Date: —" on every card of a
   // program the tracker publishes no dates for. Drop it, on both layouts.
   cols = cols.filter((c,i)=>i===0 || rows.some(rw=>{ const v=c.get(rw); return v!=null && v!==''; }));
   const all = !!secMore[key];
-  const shown = all ? rows : rows.slice(0, SHOW_FIRST);
+  const shown = all ? live : live.slice(0, SHOW_FIRST);
   const head = `<li class="ar ar-h">${cols.map(c=>`<span class="ar-c${c.num?' num':''}">${E(c.label)}</span>`).join('')}</li>`;
-  const body = shown.map(rw=>`<li class="ar">${cols.map((c,i)=>{
+  const row = rw => `<li class="ar${wb ? raRowCls(opts.prog, rw, T.show) : ''}">${cols.map((c,i)=>{
       const v = c.get(rw);
       const inner = (v==null||v==='') ? '—' : (c.raw ? v : E(v));
       return i===0
-        ? `<span class="ar-c ar-name">${inner}</span>`
+        ? `<span class="ar-c ar-name">${inner}${wb ? raTag(opts.prog, rw, T.edit, T.show) : ''}</span>`
         : `<span class="ar-c${c.num?' num':''}${c.cls?' '+c.cls:''}" data-l="${E(c.short==null?c.label:c.short)}">${inner}</span>`;
-    }).join('')}</li>`).join('');
+    }).join('')}${wb ? (()=>{ const st = raStrip(opts.prog, rw, T.edit, T.show); return st ? `<span class="ar-c ar-act" data-l="">${st}</span>` : ''; })() : ''}</li>`;
   // Track widths ride on the element so a 4-, 5- or 6-column list all line up.
   // The Show all / Show fewer toggle is listMore(), placed by the caller.
-  return `<ul class="alist" style="--cols:${cols.map(c=>c.w||'minmax(120px,1fr)').join(' ')}">${head}${body}</ul>`;
+  const style = `--cols:${cols.map(c=>c.w||'minmax(120px,1fr)').join(' ')}`;
+  const list = (rs, withHead) => rs.length ? `<ul class="alist" style="${style}">${withHead?head:''}${rs.map(row).join('')}</ul>` : '';
+  if(!wb) return list(shown, true);
+  const fold = (rs, status) => { if(!rs.length) return ''; const fk = opts.prog.id+'|'+key+'|'+status;
+    return `<details class="plan-fold ${status}" data-fold="${E(fk)}"${raFoldOpen.has(fk)?' open':''}><summary>${RA_MARK[status]} ${E(RA_LABEL[status])} · ${rs.length}</summary>${list(rs, false)}</details>`; };
+  const none = live.length ? '' : `<div class="aempty">${T.done.length===rows.length ? 'Every account here is marked done.' : 'Every account here is marked done or set aside — reopen one below if plans change.'}</div>`;
+  return raNotes(T.show, T.edit, rows, T.follow.length+T.later.length+T.done.length) + list(shown, true) + none + fold(T.later, 'skip') + fold(T.done, 'done');
 }
+// How many of a target list are still open once the rep's marks are applied.
+const raLive = (p, rep, rows) => rows ? raSplit(p, rep, rows).live : rows;
 const ACCT_COLS = {
   targets: [
     {label:'Account',          w:'minmax(150px,1.7fr)', get:x=>x.name},
@@ -1801,7 +1935,7 @@ function planParts(p, r, rep, opts){
   opts = opts || {};
   const done = r.status==='complete' || r.status==='exceeded';
   if(p.type==='MPO' && !mpoMonthLoaded(p.source, p.monthKey)) return {loading:true, sell:sellAsk(p), go:'Loading…', step:'', n:0, total:0, hold:false, list:''};
-  const plan = nextAccounts(p, rep);
+  let plan = nextAccounts(p, rep);
   const BG = brandGoals(p, rep);
   if(BG.length){
     // A brand-goal program: the "where to go" answer is the goal list itself.
@@ -1814,12 +1948,26 @@ function planParts(p, r, rep, opts){
   const needN = parseInt(String(r.remain||'').replace(/,/g,''), 10);
   const LIMIT = opts.limit || (needN>0 ? Math.max(5, Math.min(10, needN*2)) : 10);
   const key = p.id+'|plan'; const all = !!planMore[key];
+  // The rep's own marks reorder the list: follow-ups first, untouched
+  // accounts next; Done and Not now fold away below and stop counting.
+  const show = RA.canShow(rep), edit = RA.canEdit(rep);
+  const stOf = a => show ? RA.get(p.id, a) : null;
+  const allRows = plan.rows;
+  const follow = allRows.filter(a=>{ const s = stOf(a); return s && s.status==='follow'; });
+  const openRows = allRows.filter(a=>!stOf(a));
+  const laterRows = allRows.filter(a=>{ const s = stOf(a); return s && s.status==='skip'; });
+  const doneRows = allRows.filter(a=>{ const s = stOf(a); return s && s.status==='done'; });
+  const live = follow.concat(openRows);
+  plan = Object.assign({}, plan, {rows: live});
   const rows = all ? plan.rows : plan.rows.slice(0, LIMIT);
   const n = Math.min(plan.rows.length, LIMIT);
   let go, step;
-  if(!plan.rows.length && isSupport(rep)){
+  if(!allRows.length && isSupport(rep)){
     go = 'No assigned route — any account you place it in counts.';
     step = done ? 'Keep it up.' : 'Submit the menu photo in iSellBeer.';
+  } else if(!plan.rows.length && allRows.length){
+    go = doneRows.length===allRows.length ? 'Every account on this list is marked done.' : 'Every account on this list is marked done or set aside.';
+    step = done ? 'Keep it up.' : 'Reopen one below if plans change.';
   } else if(!plan.rows.length){
     go = plan.hold ? 'No account list for this one.' : (plan.A.universe===0 ? 'No eligible accounts.' : 'Every eligible account already buys it.');
     step = plan.hold ? 'Hold every brand goal.' : (done ? 'Keep it up.' : 'Check with your manager.');
@@ -1832,8 +1980,9 @@ function planParts(p, r, rep, opts){
   // carries the Show all / Show fewer toggle, top right (never under the list).
   const head = plan.rows.length>LIMIT
     ? `<div class="plan-top lhead"><span>${all ? plw(plan.rows.length,'account') : `Top ${n} of ${plan.rows.length} accounts`}</span>${moreBtn('plan-more', key, all, plan.rows.length)}</div>` : '';
-  const list = !plan.rows.length ? '' : `${head}<ol class="plan-list">${rows.map(a=>`<li class="plan-row${a.warm?' warm':''}"><div class="plan-name">${E(a.name)}</div><div class="plan-meta">${E([a.city, a.area].filter(Boolean).join(' · '))}${a.cases>0?` · ${E(fmtCases(a.cases))}/yr`:''}</div></li>`).join('')}</ol>`;
-  return {loading:false, sell:sellAsk(p), go, step, n, total:plan.rows.length, hold:plan.hold, list};
+  const folds = planFold(p, laterRows, 'skip', edit, show) + planFold(p, doneRows, 'done', edit, show);
+  const list = !allRows.length ? '' : `${raNotes(show, edit, allRows, follow.length+laterRows.length+doneRows.length)}${head}${plan.rows.length ? `<ol class="plan-list">${rows.map(a=>planRowHtml(p, a, edit, show)).join('')}</ol>` : ''}${folds}`;
+  return {loading:false, sell:sellAsk(p), go, step, n, total:plan.rows.length, hold:plan.hold, list, marks:{follow:follow.length, later:laterRows.length, done:doneRows.length}};
 }
 // The two big tabs inside an opened card: the visit list, and the log of
 // what the tracker already credits.
@@ -2015,7 +2164,7 @@ function mpoRepCard(p, r, rep){
   // collapsed sections. No inline preview -- it made the card tall and
   // duplicated the section a tap away (per Gavin, 2026-09-11).
   const dist = distFor(p, rep);
-  const counts = {dist: dist.length || null, targets: targets===null ? null : targets.length};
+  const counts = {dist: dist.length || null, targets: targets===null ? null : raLive(p, rep, targets).length};
   const loading = targets===null ? `<div class="mt-note">Loading accounts…</div>` : '';
 
   return `<article class="mcard${sec?' open':''}${met?' met':''}" id="card-${E(p.id)}">
@@ -2044,10 +2193,10 @@ function mpoRepCardDetail(p, r, rep, targets, dist, which){
       `<div class="recon${rc.ok?' ok':''}">${rc.t}</div>` + acctList(key, ACCT_COLS.dist, dist), listMore(key, dist)) + tail;
   }
   if(which==='targets'){
-    return sec(`Potential accounts${(targets&&targets.length)?' · '+targets.length:''}`,
-      (targets && targets.length) ? acctList(key, ACCT_COLS.targets, targets)
+    return sec(`Potential accounts${(targets&&targets.length)?' · '+raLive(p, rep, targets).length:''}`,
+      (targets && targets.length) ? acctList(key, ACCT_COLS.targets, targets, {prog:p, rep})
         : `<div class="mt-note">No potential accounts currently identified.</div>`,
-      listMore(key, targets||[])) + tail;
+      listMore(key, raLive(p, rep, targets||[]))) + tail;
   }
   const counts = A ? `<ul class="mkv">
       <li><span>In your book, this premise</span><span>${A.universe}</span></li>
@@ -2486,6 +2635,7 @@ function screenProgram(){
 /* ---- main render ---- */
 function render(){
   acctCache.clear();
+  if(RA.on && state.rep && RA.loadedFor()!==state.rep) RA.load(state.rep);
   const root = app();
   let body;
   if(state.view==='home') body = screenHome();
@@ -2508,6 +2658,17 @@ function render(){
 let renderToken = 0;
 
 /* ---- events ---- */
+function raAccount(pid, n){
+  const p = PROGRAMS.find(x=>x.id===pid); if(!p || !state.rep) return null;
+  const plan = nextAccounts(p, state.rep);
+  return plan.rows.find(a=>RA.num(a)===n) || null;
+}
+document.addEventListener('submit', e=>{
+  const f = e.target.closest('form.ra-edit'); if(!f) return;
+  e.preventDefault();
+  const a = raAccount(f.dataset.prog, f.dataset.n); raEdit = null;
+  if(a) RA.set(f.dataset.prog, a, null, f.querySelector('input').value.trim()); else render();
+});
 document.addEventListener('click', e=>{
   const t = e.target.closest('[data-act]'); if(!t) return;
   const act = t.dataset.act;
@@ -2538,6 +2699,12 @@ document.addEventListener('click', e=>{
     case 'acct-more': acctMore[t.dataset.key] = !acctMore[t.dataset.key]; render(); break;
     case 'plan-more': planMore[t.dataset.key] = !planMore[t.dataset.key]; render(); break;
     case 'card-tab': cardTab[t.dataset.prog] = t.dataset.tab; render(); break;
+    case 'ra-set': { const a = raAccount(t.dataset.prog, t.dataset.n); if(!a) break;
+      const cur = RA.get(t.dataset.prog, a);
+      if(cur && cur.status===t.dataset.status) RA.clear(t.dataset.prog, a); else RA.set(t.dataset.prog, a, t.dataset.status); break; }
+    case 'ra-note': raEdit = t.dataset.prog+'|'+t.dataset.n; render();
+      { const el = document.querySelector('.ra-edit input'); if(el){ el.focus(); el.setSelectionRange(el.value.length, el.value.length); } } break;
+    case 'ra-cancel': raEdit = null; render(); break;
     case 'log-more': logMore[t.dataset.key] = !logMore[t.dataset.key]; render(); break;
     case 'set-mode': if(LOCKED_REP) break; state.mode = (t.dataset.mode==='manager' && !isMobile()) ? 'manager' : 'rep'; persist(); history.replaceState(null, '', hashOf()); render(); break;
     case 'reset-all': try{ localStorage.removeItem(LS_KEY); sessionStorage.removeItem(TAB_KEY); }catch(e){} openCards.clear(); state.showEnded = false; state.peek = null; state.prog = null; state.rep = null; state.cat = null; state.main = null;

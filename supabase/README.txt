@@ -23,7 +23,10 @@ Pieces
                               the page they wanted (?next=...).
                               /login/?signout=1 signs out.
   migrations/*.sql            The allowed_users table, its row-level
-                              security, and the is_allowed() check.
+                              security, and the is_allowed() check
+                              (20260924...); the rep_actions table the
+                              hub's Done / Follow up / Not now buttons
+                              write to (20260925...).
   import_allowed_users.py     Encompass users export -> SQL upsert for
                               the table. Output goes to data/ (ignored).
 
@@ -69,3 +72,31 @@ Things to know
     rep/index.html.
   * GitHub Pages (github.io) still serves the same files with NO login.
     Retire it once reps are on kohlerdisthub.com.
+
+Sign-in CODE (needed for the home-screen app, 2026-09-25)
+---------------------------------------------------------
+  An iPad opens the emailed link in Safari, never inside a web app that
+  was added to the home screen -- so the installed app would stay on the
+  sign-in page forever. /login/ therefore also accepts the 6-digit code
+  Supabase puts in the same email: the person types it into the app.
+  For the code to APPEAR in the email, the template must print it:
+    Supabase -> Authentication -> Emails -> Magic Link (and Confirm sign
+    up, which Supabase uses for a first-ever sign-in). Subject "Sign in
+    to Kohler Dist Hub". Body keeps the {{ .ConfirmationURL }} link and
+    adds a line such as:
+      <p>Or type this code on the sign-in page: <b>{{ .Token }}</b></p>
+  Codes expire with "Email OTP expiration" (Authentication -> Providers
+  -> Email; default 1 hour, keep it >= 10 minutes). Nothing else changes:
+  the link keeps working for people signing in through Safari.
+
+Rep write-back: rep_actions (2026-09-25)
+----------------------------------------
+  Run migrations/20260925180000_rep_actions.sql in the SQL Editor once.
+  One row per rep x program x account: status done / follow / skip and
+  an optional note. The hub writes it straight from the browser with the
+  rep's own token (PostgREST at <SUPABASE_URL>/rest/v1/rep_actions); the
+  table's row-level security lets a rep touch only their own rows and
+  lets managers read everyone's. rep_email / rep_name are stamped from
+  the token and allowed_users by a trigger, never trusted from the page.
+  Table Editor -> rep_actions shows the whole log; filter rep_name to
+  see one rep, or updated_at to see today's.
