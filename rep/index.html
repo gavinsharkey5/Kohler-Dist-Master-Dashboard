@@ -14,7 +14,8 @@
   // Apply the saved theme before first paint so there is no flash.
   try { var t = localStorage.getItem('kdh_theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
 </script>
-<link rel="stylesheet" href="rep.css?v=20260925d">
+<link rel="stylesheet" href="rep.css?v=20260925e">
+<script src="../shared/kdh-user.js?v=20260925e"></script>
 </head>
 <body>
 <div class="topbar"><div class="in">
@@ -37,9 +38,10 @@
       <h1 id="repName">Your workspace</h1>
       <div class="meta" id="meta"><span class="muted">Loading territory…</span></div>
     </div>
-    <label class="switch" id="switch" hidden>Viewing as
-      <select id="repSelect" aria-label="Choose a rep to view"></select>
-    </label>
+    <div class="switch" id="switch" hidden>
+      <label>Viewing as <select id="repSelect" aria-label="Choose a rep to view"></select></label>
+      <button class="btn outline" id="previewBtn" type="button" title="Every page will show exactly what this rep sees on this device until you exit">Preview as this rep</button>
+    </div>
   </header>
 
   <section class="section">
@@ -105,7 +107,7 @@
 
   /* ---- who is signed in (kdh_user cookie, set by /login/) ---- */
   var user = null;
-  try { var m = document.cookie.match(/(?:^|;\s*)kdh_user=([^;]*)/); user = m && JSON.parse(decodeURIComponent(m[1])); } catch (e) {}
+  try { user = window.kdhUser ? window.kdhUser() : null; } catch (e) {}
   var isManager = !!(user && user.role === 'manager');
   var viewRep = (user && user.name) || '';
   if (user && user.name) {
@@ -159,6 +161,7 @@
     var pick = names.indexOf(saved) >= 0 ? saved : (names.indexOf(viewRep) >= 0 ? viewRep : names[0]);
     sel.value = pick; $('switch').hidden = false;
     sel.addEventListener('change', function(){ try { localStorage.setItem('kdh_rep_view', sel.value); } catch (e) {} showRep(sel.value); });
+    $('previewBtn').addEventListener('click', function(){ if (window.kdhSetPreview) { kdhSetPreview(sel.value); location.reload(); } });
     showRep(pick);
   }
   showRep(viewRep);

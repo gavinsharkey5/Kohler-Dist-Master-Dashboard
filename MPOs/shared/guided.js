@@ -82,6 +82,7 @@ var LS_KEY = 'kohler-mpo-guided';
    enforced by the Vercel middleware; this only decides what is shown. */
 var KDH_USER = (function(){
   try{
+    if(global.kdhUser) return global.kdhUser();
     var m = document.cookie.match(/(?:^|;\s*)kdh_user=([^;]*)/);
     return m ? JSON.parse(decodeURIComponent(m[1])) : null;
   }catch(e){ return null; }

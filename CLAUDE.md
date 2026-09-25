@@ -138,9 +138,20 @@ Lagala", "James Heaney" / "Jim Heaney", curly apostrophes), so the tap
 lock matches by canonical first name + surname (all 21 surveyed reps
 match); a rep with no surveyed accounts gets a plain notice instead of
 everyone's routes. The tap generator only replaces the data <script>, so
-these edits survive a refresh. Managers, and any name not on a page's
-roster, get every page unchanged. Beyond that nothing reads the cookie;
-access is decided only by the middleware. If a rep needs another page,
+these edits survive a refresh. `redbull/index.html` (setRep pinned, chips hidden, a rep with no buying
+accounts this period gets a note) and `carbliss-onprem-targets/index.html`
+(state.rep pinned, rep filter hidden, stats + goal bar recomputed for the
+rep's own book, note when they have no target accounts) are locked the
+same way. All of these read identity through `shared/kdh-user.js`
+(`kdhUser()`), which also implements PREVIEW MODE: a manager sets
+`kdh_preview=<rep name>` (the "Preview as this rep" button beside the
+"Viewing as" switcher on /rep/) and every page then behaves as if that
+rep signed in, with a fixed "Previewing as X -- Exit preview" bar at the
+bottom (`kdhPreviewBar()`); Exit clears the cookie and reloads, and
+signing out clears it too. Preview changes only what pages SHOW -- the
+middleware still sees a manager, so manager URLs still open. Managers,
+and any name not on a page's roster, get every page unchanged. Beyond
+that nothing reads the cookie; access is decided only by the middleware. If a rep needs another page,
 add its prefix to REP_PATHS (plus whatever it loads) and to rep/index.html.
 GitHub Pages still serves the same files with no login until Gavin
 retires it.

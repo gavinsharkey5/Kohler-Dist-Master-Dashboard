@@ -151,6 +151,7 @@
   <div id="body"></div>
   <footer><hr><p id="foot"></p></footer>
 </div></div>
+<script src="../shared/kdh-user.js?v=20260925e"></script>
 <script>
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const num=x=>{const v=parseFloat(String(x).replace(/[^0-9.\-]/g,""));return isNaN(v)?0:v;};
@@ -188,6 +189,7 @@ const blankAcct=()=>{const o={};CAT_KEYS.forEach(k=>o[k]=false);return o;};
 const isComplete=a=>CAT_KEYS.every(k=>a[k]);
 const missingFor=a=>CATS.filter(c=>!a[c.key]);
 let REPS={}, GOAL={Core:155,'Core+':84,Overall:239}, activeRep="ALL";
+const LOCK_REP=(()=>{try{const u=window.kdhUser?window.kdhUser():null;return (u&&u.role!=="manager"&&u.name)?u.name:null;}catch(e){return null;}})();
 
 function ingestData(text){
   const rows=parseCSV(text); if(rows.length<2) return;
@@ -315,7 +317,7 @@ function render(){
       `<div class="shead"><h2>Progress vs team goal</h2><span class="meta">tap a category for accounts</span></div>`+cards;
   }
 }
-function setRep(v){activeRep=v;document.querySelectorAll("#chips .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.v===activeRep));render();window.scrollTo({top:0,behavior:"smooth"});}
+function setRep(v){if(LOCK_REP&&v!==LOCK_REP)v=LOCK_REP;activeRep=v;document.querySelectorAll("#chips .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.v===activeRep));render();window.scrollTo({top:0,behavior:"smooth"});}
 function renderChips(){const reps=Object.keys(REPS).sort();
   document.getElementById("chips").innerHTML=["ALL",...reps].map(v=>`<button class="chip" aria-pressed="${v===activeRep}" data-v="${esc(v)}">${v==="ALL"?"All reps":esc(v)}</button>`).join("");
   document.querySelectorAll("#chips .chip").forEach(b=>b.addEventListener("click",()=>setRep(b.dataset.v)));}
@@ -331,7 +333,16 @@ async function boot(){
   if(!dText){showEmpty("Upload <code>data.csv</code> (Customer Name, Category, Sales Rep, Bought) and <code>goals.csv</code> next to this page.");return;}
   ingestData(dText); if(gText)ingestGoals(gText);
   if(!Object.keys(REPS).length){showEmpty("Couldn't read the data file — check it has Customer Name, Category and Sales Rep columns.");return;}
-  renderChips();render();
+  renderChips();
+  // Signed-in rep lock (kohlerdisthub.com, 2026-09-25): a rep sees only
+  // their own accounts. Chips are hidden and any attempt to switch is
+  // ignored (setRep). A rep with no buying accounts this period gets a
+  // note instead of the team leaderboard. Managers: unchanged.
+  if(LOCK_REP){
+    document.querySelector(".seg").style.display="none";
+    if(REPS[LOCK_REP]){ setRep(LOCK_REP); }
+    else { document.getElementById("body").innerHTML=`<div class="empty"><h2>No Red Bull buying accounts on your route yet</h2><p>${esc(LOCK_REP)}: none of your accounts have bought Red Bull in this period. Accounts appear here once they buy.</p></div>`; }
+  } else { render(); }
   // Lede and footer are built from goals.csv so adding a goal there (e.g. Free)
   // shows up without editing this file.
   const goalParts=TIERS.filter(c=>GOAL[c.key]>0).map(c=>`<b>${GOAL[c.key]} ${c.label}</b>`);

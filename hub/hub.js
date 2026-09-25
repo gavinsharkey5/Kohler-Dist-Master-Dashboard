@@ -604,7 +604,7 @@ const state = {mode:'rep', view:'home', rep:null, main:null, cat:null, month:nul
 // rep, no Manager Mode. Managers, and anyone whose name is not on the
 // roster, get the hub exactly as before. Access itself is enforced by the
 // Vercel middleware, not here -- this is only what the page shows.
-const KDH_USER = (()=>{ try{ const m = document.cookie.match(/(?:^|;\s*)kdh_user=([^;]*)/); return m ? JSON.parse(decodeURIComponent(m[1])) : null; }catch(e){ return null; } })();
+const KDH_USER = (()=>{ try{ if(window.kdhUser) return window.kdhUser(); const m = document.cookie.match(/(?:^|;\s*)kdh_user=([^;]*)/); return m ? JSON.parse(decodeURIComponent(m[1])) : null; }catch(e){ return null; } })();
 const LOCKED_REP = (KDH_USER && KDH_USER.role !== 'manager' && KDH_USER.name && HUB_ROSTER.includes(KDH_USER.name)) ? KDH_USER.name : null;
 function lockState(){
   if(!LOCKED_REP) return;
