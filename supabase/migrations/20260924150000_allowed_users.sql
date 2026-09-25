@@ -23,11 +23,13 @@ comment on table public.allowed_users is
   'Sign-in allow list for kohlerdisthub.com. role: rep or manager.';
 
 -- Emails compare case-insensitively everywhere, so store them lower-case
--- and trimmed no matter how they are typed in.
+-- and trimmed no matter how they are typed in. Same for role, so typing
+-- "Manager" in the Table Editor works.
 create or replace function public.allowed_users_normalize()
 returns trigger language plpgsql as $$
 begin
   new.email := lower(trim(new.email));
+  new.role  := lower(trim(coalesce(new.role, 'rep')));
   return new;
 end $$;
 
