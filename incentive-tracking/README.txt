@@ -4330,6 +4330,48 @@ Only these four programs changed in PROGRAM_DATA.
               returns and don't change his count.
 Hub cache tag bumped (20260923b) for the new program_data.js.
 
+2026-09-25 SECOND REFRESH -- Keystone, 1911, Woodchuck, Tona, Lytt
+  python3 generate.py
+Diffed row by row first. EVERY 9/24-DATED ROW IS GONE FROM THREE EXPORTS AND
+NOTHING REPLACED IT: Keystone _30 is the _29 pull published this morning MINUS
+its eight 9/24 rows (248 -> 240, 0 added); 1911 lost its nine 9/24 rows (Andrew
+Lundy / Buyrite, John O'Donoghue / Village Liquor Store x5, Phil Ernst / Stew
+Leonard's Clifton x3) and Woodchuck all eight of its (John O'Donoghue / Village
+Liquor Store x6, Michael Harboy / ShopRite West Caldwell, Phil Ernst / Whole
+Foods Paramus). None of them re-dated -- the 9/25 rows in Keystone were
+already in _29. Lytt and Tona never had a 9/24 row. The export is the record,
+so all three drop, but this is one day's load sheets vanishing across every
+RDE pull at once, not a rep's order moving: OPEN WITH GAVIN -- if the 9/24
+deliveries were real, the next pull should bring them back. Other moves: 1911
+1,849 -> 1,855 (+19 / -13; the four Alisa Acciardi #170205 rows only renamed
+"Buy-Rite Liquors" -> "BuyRite Liquors - Kearny", same in Tona's five),
+Woodchuck 584 -> 581 (+5 / -8), Tona 344 -> 344 (rename only), Lytt
+754 -> 762 (+8, none removed). New rows are dated 9/25.
+  Keystone    198 -> 190 accounts house-wide; still 8 qualified, 6 -> 5 at
+              bonus, $1,260 -> $1,135. CHRIS PAYTON 20 -> 19 of 40 falls back
+              off bonus (Maywood Wine & Liq); Klejdi Lamo 15 -> 14 (Sam's,
+              still bonus); -1 each Javier Melo (Seguidilla 56), Jayson Romine
+              (ShopRite Sparta), Dave Ehlers (Teaneck Discount), Jim Heaney
+              (Metro N. Arlington), Anthony Palmisano (Highland), Mike Ast
+              (Waldwick). Same 240-row file onto keystone-ice/actuals.csv and
+              MPOs/off-prem/keystone_ice_24oz.csv (sync rule); both rebuilt.
+  1911        320 -> 326 new placements. John O'Donoghue 33 -> 38 (Main St
+              Wines x4, Sandy's Flanders -- the Village Liquor Store 9/24
+              rows out), Mike Ast 29 -> 33 (Hawthorne Liq x4); Phil Ernst
+              28 -> 25 (Stew Leonard's out; his Bottle King 9/25 rows are
+              reorders). Andrew Lundy's ShopRite Westfield rows and Hakan
+              Sadik's Wine Barrel are reorders.
+  Woodchuck   58 -> 57 new placements. John O'Donoghue 9 -> 8 (Village
+              Liquor Store out, Shop Rite Chester in); Michael Harboy and
+              Phil Ernst lose a reorder each; Dylan Rubino's Liberty Wine
+              rows are reorders.
+  Tona        holds at 14 new 24 oz placements.
+  Lytt        146 -> 148 buying accounts of 477. DERRICK LAWS 14 -> 16
+              (Pal's Liquor, The Liquor Shop -- 43.8% -> 50.0%, Gettin' Lytt
+              -> LYTTY CITY, the first rep there). Dave Ehlers' Burgundy
+              Convenience rows add cases only.
+Hub cache tag bumped (20260925b) for the new program_data.js.
+
 2026-09-25 REFRESH -- Keystone + Corona Gaintain, riding the off-prem MPO refresh
   python3 generate.py
 Only the two shared exports moved (diffed row by row first): Keystone

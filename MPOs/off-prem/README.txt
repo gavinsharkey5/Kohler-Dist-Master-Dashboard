@@ -928,6 +928,17 @@ on both boards: dated tables, Details toggles with photo links (cooler
 doors, Bardstown), Adam Badalamenti's Bardstown detail, no horizontal scroll
 at 390px, and the hub's off-prem tab still renders.
 
+2026-09-25 THIRD REFRESH -- Keystone only (sync rule, riding the incentive refresh)
+    python3 generate_2026-09.py
+The Keystone _30 export Gavin sent for the hub is this morning's 248-row pull
+MINUS ITS EIGHT 9/24 ROWS, nothing added -- and the 1911 / Woodchuck pulls of
+the same hour lost their 9/24 rows too (see incentive-tracking/README.txt).
+Export is the record: 198 -> 190 distinct buying accounts, still 9 reps at
+40%. -1 each Anthony Palmisano, Chris Payton, Dave Ehlers, Javier Melo, Jayson
+Romine, Jim Heaney, Klejdi Lamo, Mike Ast; Keystone target list 296 -> 303.
+Nothing else on this board was re-pulled and nothing else changed. Hub cache
+tag bumped (20260925b).
+
 2026-09-25 SECOND REFRESH -- all four RDE exports (Promos_Report_32 re-sent, unchanged)
     python3 generate_2026-09.py
 Gavin re-sent Report_32 with this pull; it is byte-identical to the one merged
