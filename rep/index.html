@@ -50,8 +50,8 @@
     <div class="section-h"><h2>Programs</h2><p>Incentives and this month’s MPOs</p></div>
     <div class="grid">
       <a class="card" id="c-hub" href="../hub/">
-        <div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span><h3>Incentives &amp; MPO Hub</h3></div>
-        <p>Every incentive and MPO you’re in: where you stand and what you still need.</p>
+        <div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span><h3>Incentive Hub</h3></div>
+        <p>Every incentive you’re in: where you stand and what you still need.</p>
         <div class="foot"><span class="status" id="s-hub"></span><span class="open">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
       </a>
       <a class="card" id="c-off" href="../MPOs/off-prem/index.html#view=program">
@@ -152,7 +152,8 @@
     $('repName').textContent = name || 'Your workspace';
     territory(name);
     // Deep-link the hub to this rep so it opens on their page.
-    $('c-hub').href = '../hub/' + (name ? '#view=rep&rep=' + encodeURIComponent(name) : '');
+    // Incentives only: the two MPO tiles beside it cover the MPO tabs.
+    $('c-hub').href = '../hub/#' + (name ? 'view=rep&rep=' + encodeURIComponent(name) + '&cat=inc&' : '') + 'only=inc';
   }
   function setupSwitcher(){
     var A = accountsFile(); if (!isManager || !A || !A.reps) return;

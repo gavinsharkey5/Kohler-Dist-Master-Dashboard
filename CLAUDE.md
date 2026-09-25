@@ -155,7 +155,13 @@ for a signed-in rep on every dashboard except /rep/: "Back" (history.back)
 when the referrer is one of our pages, otherwise "My dashboards" ->
 `<root>/rep/`, root derived from the script's own src so it also works
 under a github.io sub-path. The hub's own "Dashboards" button was
-removed in favour of it. The rep workspace shows the Northern NJ banner
+removed in favour of it. The workspace's first tile is "Incentive Hub"
+(Gavin, 2026-09-25): it links `hub/#view=rep&rep=<name>&cat=inc&only=inc`
+and the hub's `only=inc` mode (`state.only`, kept in the hash) shows the
+Incentives tab alone -- the On/Off-Premise MPO tabs are the two tiles
+beside it. `boot()` now honours an explicit deep link (`rep=` on the
+roster, or `only=`) instead of always starting on the picker; a bare
+reload still does. The rep workspace shows the Northern NJ banner
 under its header again (Gavin: keep the theme); `--hero` rules in
 rep.css, full aspect on phones. Managers,
 and any name not on a page's roster, get every page unchanged. Beyond

@@ -598,7 +598,9 @@ function sortedForRep(rep, cat){
 const openCards = new Set();   // program ids expanded in place on the rep page
 const acctTabs = {};           // program id -> active account tab
 const acctMore = {};           // program id|tab -> show every row
-const state = {mode:'rep', view:'home', rep:null, main:null, cat:null, month:null, prog:null, from:null, peek:null, filters:{type:'all', chan:'all', sup:'all', month:'active'}, showEnded:false};
+const state = {mode:'rep', view:'home', rep:null, main:null, cat:null, month:null, prog:null, from:null, peek:null, filters:{type:'all', chan:'all', sup:'all', month:'active'}, showEnded:false, only:null};
+// only:'inc' (from the rep workspace's Incentive Hub tile, `only=inc` in the
+// hash) shows the Incentives tab alone -- the MPO tabs are their own tiles.
 // Signed-in identity (the `kdh_user` cookie /login/ sets on kohlerdisthub.com).
 // A rep is LOCKED to their own name: no name picker, no peeking at another
 // rep, no Manager Mode. Managers, and anyone whose name is not on the
@@ -614,6 +616,10 @@ function lockState(){
     if(!state.cat) state.cat = isSupport(LOCKED_REP) ? 'on' : lastTab();
     state.main = tabOf(state.cat);
   }
+  applyOnly();
+}
+function applyOnly(){
+  if(state.only && tabOf(state.cat)!==state.only){ state.cat = state.only; state.main = tabOf(state.cat); }
 }
 function persist(){ try{ localStorage.setItem(LS_KEY, JSON.stringify({rep:state.rep, cat:state.cat, mode:state.mode})); }catch(e){} }
 // Manager Mode is desktop-only: a phone or tablet (touch pointer, or a
@@ -633,6 +639,7 @@ function hashOf(){
   if(state.from && state.view==='detail') p.push('from='+state.from);
   if(state.peek && state.view==='detail') p.push('who='+encodeURIComponent(state.peek));
   if(isMgr()) p.push('mode=manager');
+  if(state.only) p.push('only='+state.only);
   return p.length ? '#'+p.join('&') : '#';
 }
 function readHash(){
@@ -661,10 +668,13 @@ function applyHash(){
   state.main = tabOf(state.cat);
   if((state.view==='detail' || state.view==='program') && !state.prog) state.view = state.rep ? 'rep' : 'programs';
   if(isMobile() && (state.view==='programs' || state.view==='program')) state.view = state.rep ? 'rep' : 'home';
+  state.only = TAB_KEYS.includes(h.only) ? h.only : null;
+  applyOnly();
   lockState();
 }
 function go(next, replace){
   Object.assign(state, next);
+  applyOnly();
   lockState();
   persist();
   const h = hashOf();
@@ -1027,7 +1037,7 @@ function subStat(rep, sub){
 // already on the page -- no extra screen, no menu, no confirm.
 function tabbar(rep, cat){
   const cur = tabOf(cat);
-  return `<div class="tabbar" role="tablist">${TABS.map(m=>{
+  return `<div class="tabbar" role="tablist">${TABS.filter(m=>!state.only || m.key===state.only).map(m=>{
     const on = m.key===cur, n = tabCount(rep, m.key);
     return `<button class="tab${on?' active':''}" data-act="set-cat" data-cat="${m.key}" role="tab" aria-selected="${on?'true':'false'}">
       <span class="tab-ic">${m.ic}</span><span class="tab-l">${E(m.label)}</span>${n===null?'':`<span class="tab-n">${n}</span>`}</button>`;
@@ -2510,7 +2520,7 @@ document.addEventListener('click', e=>{
       go({view:'rep', rep:who, cat:tab, main:tabOf(tab), month:null, prog:null, peek:null, from:null}); break; }
     case 'back-home': go({view:'home', prog:null, peek:null, from:null}); break;
     case 'my-programs': if(state.rep) go({view:'rep', cat: state.cat || lastTab(), main: tabOf(state.cat || lastTab()), prog:null, from:null, peek:null}); else go({view:'home'}); break;
-    case 'set-cat': openCards.clear(); rememberTab(t.dataset.cat); go({cat:t.dataset.cat, main:tabOf(t.dataset.cat), view:'rep'}, true); break;
+    case 'set-cat': if(state.only && tabOf(t.dataset.cat)!==state.only) break; openCards.clear(); rememberTab(t.dataset.cat); go({cat:t.dataset.cat, main:tabOf(t.dataset.cat), view:'rep'}, true); break;
     case 'set-month': openCards.clear(); state.showEnded = false; go({month:t.dataset.month, view:'rep'}, true); break;
     case 'toggle-sup': { const k = t.dataset.sup; if(openSups.has(k)) openSups.delete(k); else openSups.add(k); render(); break; }
     case 'toggle-ended': state.showEnded = !state.showEnded; render(); break;
@@ -2575,8 +2585,13 @@ function boot(){
   // Gavin, 2026-09-10) -- whatever the URL hash or the last visit said. The
   // hash is still written during a visit so the Back button works.
   state.view = 'home'; state.rep = null; state.main = null; state.cat = null; state.month = null; state.prog = null; state.peek = null; state.from = null;
+  // ...except an explicit deep link: the rep workspace's tiles send
+  // `rep=<name>` (a manager previewing someone) and/or `only=inc` (the
+  // Incentive Hub tile). Those land where they say.
+  const deep = readHash();
+  if((deep.rep && ROSTER.includes(deep.rep)) || TAB_KEYS.includes(deep.only)){ applyHash(); if(state.rep && state.view==='home'){ state.view = 'rep'; state.cat = state.cat || lastTab(); state.main = tabOf(state.cat); applyOnly(); } }
   lockState();                     // a signed-in rep opens straight on their own page
-  history.replaceState(null, '', LOCKED_REP ? hashOf() : '#');
+  history.replaceState(null, '', (LOCKED_REP || state.rep || state.only) ? hashOf() : '#');
   render();
   // Warm the active MPO months in the background so the first tap is instant.
   Object.keys(MPO_SCOPES).forEach(scope=>{
