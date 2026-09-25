@@ -74,6 +74,42 @@ var sortMode = 'progress';    // 'progress' | 'name' | 'remaining'
 
 var LS_KEY = 'kohler-mpo-guided';
 
+/* ---- Signed-in rep lock (kohlerdisthub.com, 2026-09-25) ---------------
+   /login/ leaves a readable `kdh_user` cookie ({name, role}). A rep is
+   pinned to their own name: no picker, no View by Program, no other
+   rep's page via the URL. Managers, and anyone whose name is not on this
+   scope's roster, get the page exactly as before. Access itself is
+   enforced by the Vercel middleware; this only decides what is shown. */
+var KDH_USER = (function(){
+  try{
+    var m = document.cookie.match(/(?:^|;\s*)kdh_user=([^;]*)/);
+    return m ? JSON.parse(decodeURIComponent(m[1])) : null;
+  }catch(e){ return null; }
+})();
+function lockedRep(){
+  return (KDH_USER && KDH_USER.role !== 'manager' && KDH_USER.name && H && H.roster.indexOf(KDH_USER.name) >= 0)
+    ? KDH_USER.name : null;
+}
+function applyLock(){
+  var L = lockedRep();
+  if(!L) return false;
+  view = 'rep'; activeRep = L; openProgram = null;
+  return true;
+}
+function decorateLock(){
+  if(!lockedRep()) return;
+  var root = document.documentElement;
+  if(root.classList.contains('g-locked')) return;
+  root.classList.add('g-locked');
+  var st = document.createElement('style');
+  st.textContent = '.g-locked .g-viewbar,.g-locked .js-back,.g-locked .js-startover{display:none!important}';
+  document.head.appendChild(st);
+  // The breadcrumb's "MPO Tracker" index is a managers' page; send a rep
+  // back to their own dashboards instead.
+  var crumbs = document.querySelectorAll('.crumb a');
+  for(var i=0;i<crumbs.length;i++){ crumbs[i].setAttribute('href','../../rep/'); crumbs[i].textContent = 'Dashboards'; }
+}
+
 /* Remembering the rep is a convenience, not a claim: a rep who has left
    the roster (or a month that never had them) must not wedge the page on
    an empty screen, so every restore is validated against the live
@@ -129,6 +165,7 @@ function go(next, opts){
   if('view' in next) view = next.view;
   if('rep' in next) activeRep = next.rep;
   if('program' in next) openProgram = next.program;
+  applyLock();
   if(!opts || !opts.silent) pushState();
   render();
   if(!opts || opts.scroll !== false) scrollToTop();
@@ -541,6 +578,7 @@ function programBody(o){
    ================================================================== */
 function render(){
   if(!mount) return;
+  applyLock(); decorateLock();
   var html;
   if(view==='program') html = screenProgram();
   else if(activeRep && H.roster.indexOf(activeRep)>=0) html = screenRepDetail();
@@ -614,6 +652,7 @@ function wire(){
     view = s.view==='program' ? 'program' : 'rep';
     activeRep = (s.rep && H.roster.indexOf(s.rep)>=0) ? s.rep : null;
     openProgram = s.program || null;
+    applyLock();
     if(s.month && H.monthKey && s.month !== H.monthKey() && H.loadMonth){
       H.loadMonth(s.month);   // re-renders through refresh() when it lands
       return;
@@ -641,6 +680,7 @@ var API = {
         activeRep = saved.rep || null;
       }
     }
+    applyLock();
     wire();
     return API;
   },

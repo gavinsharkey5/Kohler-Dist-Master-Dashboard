@@ -126,7 +126,20 @@ Gavin pruned the manager page on 2026-09-25: Heineken, Molson Coors,
 Customer Reset Tracking, Garage Beer, Boston Beer, Constellation,
 Yuengling, Carbliss New Buyers, Carbliss Rep Scorecard, Supplier Budget
 Tracker and Mark Anthony (setup pending) are no longer linked (folders
-kept). Nothing else reads the cookie;
+kept). The same cookie now also locks the other rep pages (2026-09-25):
+`MPOs/shared/guided.js` pins a signed-in rep to their own name on both
+MPO trackers (`lockedRep()` / `applyLock()`: view=rep, no picker, no
+View by Program, no back-to-picker, a rep in the URL is overridden, the
+breadcrumb becomes "Dashboards" -> /rep/), and
+`isellbeer/tap-survey-tracking/index.html` sets `state.rep` to the rep's
+route and hides the DM/rep pills and filters (Reset keeps the rep). iSellBeer
+spells some names differently from Encompass ("Daniel La Gala" / "Dan
+Lagala", "James Heaney" / "Jim Heaney", curly apostrophes), so the tap
+lock matches by canonical first name + surname (all 21 surveyed reps
+match); a rep with no surveyed accounts gets a plain notice instead of
+everyone's routes. The tap generator only replaces the data <script>, so
+these edits survive a refresh. Managers, and any name not on a page's
+roster, get every page unchanged. Beyond that nothing reads the cookie;
 access is decided only by the middleware. If a rep needs another page,
 add its prefix to REP_PATHS (plus whatever it loads) and to rep/index.html.
 GitHub Pages still serves the same files with no login until Gavin

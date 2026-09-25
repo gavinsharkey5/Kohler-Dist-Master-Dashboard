@@ -1200,6 +1200,7 @@ footer{font-size:13px}
 
   function resetAll(){
     state.search=''; state.rep=''; state.county=''; state.status=''; state.dm=''; state.segment='';
+    if(LOCK_NAME) state.rep = LOCK_MATCH || LOCK_NAME;   // a signed-in rep stays on their own route
     state.drill=null; state.drillParam=null; state.fComp=''; state.fPlace=''; state.fMin=0; state.fRun=false;
     state.tOn=[]; state.tMiss=[]; state.tMin=0; state.tZero=false; state.tRes=false; state.tPick=null;
     state.ttOpen=false; state.acctFilter=null;
@@ -2280,6 +2281,41 @@ footer{font-size:13px}
     render();
   });
   document.getElementById('fabReset').addEventListener('click', resetAll);
+
+  /* ---- Signed-in rep lock (kohlerdisthub.com, 2026-09-25) -------------
+     /login/ leaves a readable `kdh_user` cookie. A rep is pinned to their
+     own route: the DM / rep pills and filters are hidden and Reset keeps
+     the rep. iSellBeer spells some names differently from Encompass
+     ("Daniel La Gala" vs "Dan Lagala"), so the match is by canonical first
+     name + surname; a rep with no surveyed accounts gets a plain notice.
+     Managers get the page as before. Access itself is the middleware's. */
+  var LOCK_NAME = null, LOCK_MATCH = null;
+  (function(){
+    var u = null;
+    try{ var m = document.cookie.match(/(?:^|;\s*)kdh_user=([^;]*)/); u = m ? JSON.parse(decodeURIComponent(m[1])) : null; }catch(e){}
+    if(!u || u.role === 'manager' || !u.name) return;
+    LOCK_NAME = u.name;
+    var NICK = {daniel:'dan',james:'jim',matthew:'matt',nicholas:'nick',michael:'mike',christopher:'chris',robert:'rob',william:'bill',joseph:'joe',jonathan:'jon',kenneth:'ken',timothy:'tim',thomas:'tom',richard:'rich',edward:'ed',andrew:'andy'};
+    function key(n){
+      n = String(n).replace(/[\u2018\u2019]/g, "'").toLowerCase().replace(/[^a-z ]/g,'').trim();
+      var p = n.split(/\s+/); if(!p[0]) return ['',''];
+      return [NICK[p[0]] || p[0], p.slice(1).join('')];
+    }
+    var want = key(LOCK_NAME), reps = DATA.reps || [];
+    for(var i=0;i<reps.length;i++){ var k = key(reps[i]); if(k[0]===want[0] && k[1]===want[1]){ LOCK_MATCH = reps[i]; break; } }
+    if(!LOCK_MATCH){ var bySurname = reps.filter(function(r){ return key(r)[1]===want[1]; }); if(bySurname.length===1) LOCK_MATCH = bySurname[0]; }
+    state.rep = LOCK_MATCH || LOCK_NAME;
+    var st = document.createElement('style');
+    st.textContent = '#dmPills,#repPills,.tgroup:has(#dmFilter),.tgroup:has(#repFilter){display:none!important}';
+    document.head.appendChild(st);
+    if(!LOCK_MATCH){
+      var note = document.createElement('div');
+      note.className = 'g-note tt-lock-note';
+      note.style.cssText = 'margin:0 0 14px;padding:12px 14px;border:1px solid var(--line,#2A2E38);border-radius:12px;color:var(--ink-soft,#9AA1B0);font-size:14px';
+      note.textContent = 'No surveyed accounts on your route yet. Tap surveys submitted in iSellBeer for your accounts will show here.';
+      var anchor = document.querySelector('.cc-h'); if(anchor) anchor.parentNode.insertBefore(note, anchor);
+    }
+  })();
 
   populateSelects();
   render();
