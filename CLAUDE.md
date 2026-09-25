@@ -90,7 +90,14 @@ files they load -- and is sent to `/rep/` for anything else (403 for a
 data fetch). /login/ also sets a readable `kdh_user` cookie ({name, role,
 email}); `hub/hub.js` uses it to LOCK a rep to their own name (no picker,
 no peek, no Manager Mode; `LOCKED_REP`), and /rep/ and the root index
-greet by name and carry a Sign out link. Nothing else reads the cookie;
+greet by name and carry a Sign out link. Both landing pages share
+`shared/home.css` (card grid, sections: reps' daily tools / sales
+performance / warehouse / planning & finance / field & team on the
+manager page; your programs / trackers & targets on the rep page).
+Gavin pruned the manager page on 2026-09-25: Heineken, Molson Coors,
+Customer Reset Tracking, Garage Beer, Boston Beer, Constellation,
+Yuengling, Carbliss New Buyers and Carbliss Rep Scorecard are no longer
+linked (folders kept). Nothing else reads the cookie;
 access is decided only by the middleware. If a rep needs another page,
 add its prefix to REP_PATHS (plus whatever it loads) and to rep/index.html.
 GitHub Pages still serves the same files with no login until Gavin
