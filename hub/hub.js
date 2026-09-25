@@ -599,6 +599,22 @@ const openCards = new Set();   // program ids expanded in place on the rep page
 const acctTabs = {};           // program id -> active account tab
 const acctMore = {};           // program id|tab -> show every row
 const state = {mode:'rep', view:'home', rep:null, main:null, cat:null, month:null, prog:null, from:null, peek:null, filters:{type:'all', chan:'all', sup:'all', month:'active'}, showEnded:false};
+// Signed-in identity (the `kdh_user` cookie /login/ sets on kohlerdisthub.com).
+// A rep is LOCKED to their own name: no name picker, no peeking at another
+// rep, no Manager Mode. Managers, and anyone whose name is not on the
+// roster, get the hub exactly as before. Access itself is enforced by the
+// Vercel middleware, not here -- this is only what the page shows.
+const KDH_USER = (()=>{ try{ const m = document.cookie.match(/(?:^|;\s*)kdh_user=([^;]*)/); return m ? JSON.parse(decodeURIComponent(m[1])) : null; }catch(e){ return null; } })();
+const LOCKED_REP = (KDH_USER && KDH_USER.role !== 'manager' && KDH_USER.name && HUB_ROSTER.includes(KDH_USER.name)) ? KDH_USER.name : null;
+function lockState(){
+  if(!LOCKED_REP) return;
+  state.rep = LOCKED_REP; state.mode = 'rep'; state.peek = null;
+  if(state.view==='home' || state.view==='programs' || state.view==='program'){
+    state.view = 'rep'; state.prog = null; state.from = null;
+    if(!state.cat) state.cat = isSupport(LOCKED_REP) ? 'on' : lastTab();
+    state.main = tabOf(state.cat);
+  }
+}
 function persist(){ try{ localStorage.setItem(LS_KEY, JSON.stringify({rep:state.rep, cat:state.cat, mode:state.mode})); }catch(e){} }
 // Manager Mode is desktop-only: a phone or tablet (touch pointer, or a
 // narrow window) always gets Rep Mode, and a mode=manager link opened there
@@ -645,9 +661,11 @@ function applyHash(){
   state.main = tabOf(state.cat);
   if((state.view==='detail' || state.view==='program') && !state.prog) state.view = state.rep ? 'rep' : 'programs';
   if(isMobile() && (state.view==='programs' || state.view==='program')) state.view = state.rep ? 'rep' : 'home';
+  lockState();
 }
 function go(next, replace){
   Object.assign(state, next);
+  lockState();
   persist();
   const h = hashOf();
   if(replace) history.replaceState(null, '', h); else history.pushState(null, '', h);
@@ -706,10 +724,11 @@ function topbar(){
     ${state.view!=='home' ? `<div class="navrow">
       <div class="navl">${rep && onRep ? `<span class="nav-rep">👤 ${E(state.peek && state.view==='detail' ? state.peek : rep)}</span>` : ''}</div>
       <div class="navr">
+        ${LOCKED_REP ? `<a class="nbtn quiet" href="../rep/">Dashboards</a>` : ''}
         <button class="nbtn home" data-act="home">🏠 Home</button>
         ${rep && state.view!=='rep' ? `<button class="nbtn" data-act="my-programs">My programs</button>` : ''}
         ${isMgr() && !(state.view==='programs' || state.view==='program') ? `<button class="nbtn quiet" data-act="programs">Program view</button>` : ''}
-        ${isMobile() ? '' : `<span class="modeseg" role="group" aria-label="View mode"><button class="mseg${isMgr()?'':' active'}" data-act="set-mode" data-mode="rep">Rep</button><button class="mseg${isMgr()?' active':''}" data-act="set-mode" data-mode="manager">Manager</button></span>`}
+        ${isMobile() || LOCKED_REP ? '' : `<span class="modeseg" role="group" aria-label="View mode"><button class="mseg${isMgr()?'':' active'}" data-act="set-mode" data-mode="rep">Rep</button><button class="mseg${isMgr()?' active':''}" data-act="set-mode" data-mode="manager">Manager</button></span>`}
       </div>
     </div>` : ''}
   </div>`;
@@ -2487,7 +2506,7 @@ document.addEventListener('click', e=>{
   switch(act){
     case 'home': openCards.clear(); state.showEnded = false; go({view:'home', rep:null, main:null, cat:null, prog:null, peek:null, from:null}); break;
     // Picking a name IS the whole landing step: open that rep's dashboard.
-    case 'pick-rep': { const who = t.dataset.rep, tab = isSupport(who) ? 'on' : lastTab();   // support lands on the on-prem MPO
+    case 'pick-rep': { const who = LOCKED_REP || t.dataset.rep, tab = isSupport(who) ? 'on' : lastTab();   // support lands on the on-prem MPO
       openCards.clear(); state.showEnded = false;
       go({view:'rep', rep:who, cat:tab, main:tabOf(tab), month:null, prog:null, peek:null, from:null}); break; }
     case 'back-home': go({view:'home', prog:null, peek:null, from:null}); break;
@@ -2511,7 +2530,7 @@ document.addEventListener('click', e=>{
     case 'plan-more': planMore[t.dataset.key] = !planMore[t.dataset.key]; render(); break;
     case 'card-tab': cardTab[t.dataset.prog] = t.dataset.tab; render(); break;
     case 'log-more': logMore[t.dataset.key] = !logMore[t.dataset.key]; render(); break;
-    case 'set-mode': state.mode = (t.dataset.mode==='manager' && !isMobile()) ? 'manager' : 'rep'; persist(); history.replaceState(null, '', hashOf()); render(); break;
+    case 'set-mode': if(LOCKED_REP) break; state.mode = (t.dataset.mode==='manager' && !isMobile()) ? 'manager' : 'rep'; persist(); history.replaceState(null, '', hashOf()); render(); break;
     case 'reset-all': try{ localStorage.removeItem(LS_KEY); sessionStorage.removeItem(TAB_KEY); }catch(e){} openCards.clear(); state.showEnded = false; state.peek = null; state.prog = null; state.rep = null; state.cat = null; state.main = null;
       go({view:'home'}, true); break;
     case 'open': go({view:'detail', prog:t.dataset.prog, from:null, peek:null}); break;
@@ -2557,8 +2576,8 @@ function boot(){
   // Gavin, 2026-09-10) -- whatever the URL hash or the last visit said. The
   // hash is still written during a visit so the Back button works.
   state.view = 'home'; state.rep = null; state.main = null; state.cat = null; state.month = null; state.prog = null; state.peek = null; state.from = null;
- 
-  history.replaceState(null, '', '#');
+  lockState();                     // a signed-in rep opens straight on their own page
+  history.replaceState(null, '', LOCKED_REP ? hashOf() : '#');
   render();
   // Warm the active MPO months in the background so the first tap is instant.
   Object.keys(MPO_SCOPES).forEach(scope=>{

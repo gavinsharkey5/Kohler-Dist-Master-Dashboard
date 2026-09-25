@@ -80,9 +80,21 @@ operating notes: adding people (Table Editor -> allowed_users),
 `supabase/import_allowed_users.py` for the Encompass users export (its
 output goes to git-ignored `supabase/data/` -- the repo is PUBLIC, never
 commit emails/phones), custom SMTP before rollout, JWT expiry.
-Everyone on the list sees everything for now; `role` (rep/manager) is
-stored for the next step, rep-vs-manager page routing. GitHub Pages
-still serves the same files with no login until Gavin retires it.
+Rep vs manager (2026-09-25): the middleware reads `role` from the same
+allowed_users row. A manager may open everything (the root index is the
+managers' page). A REP may open only the paths in `REP_PATHS` in
+middleware.js -- `/rep/` (their landing page: hub, off/on-prem MPOs for
+the current month, tap tracker, Red Bull, Carbliss on-prem targets, per
+Gavin's list of what reps actually use), those six dashboards, and the
+files they load -- and is sent to `/rep/` for anything else (403 for a
+data fetch). /login/ also sets a readable `kdh_user` cookie ({name, role,
+email}); `hub/hub.js` uses it to LOCK a rep to their own name (no picker,
+no peek, no Manager Mode; `LOCKED_REP`), and /rep/ and the root index
+greet by name and carry a Sign out link. Nothing else reads the cookie;
+access is decided only by the middleware. If a rep needs another page,
+add its prefix to REP_PATHS (plus whatever it loads) and to rep/index.html.
+GitHub Pages still serves the same files with no login until Gavin
+retires it.
 
 Mail (2026-09-25): sign-in links go out through Resend as
 signin@kohlerdisthub.com (domain verified via Resend's Vercel

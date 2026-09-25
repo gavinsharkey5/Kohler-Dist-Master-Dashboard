@@ -26,6 +26,29 @@ const COOKIE = 'kdh_at';
 const CACHE_TTL_MS = 5 * 60 * 1000;
 const cache = new Map(); // token -> { ok, email, role, until }
 
+// What a REP may open (managers may open everything). Each entry is a
+// path prefix; anything else sends a rep back to their landing page.
+// Keep this in step with what those pages load (see supabase/README.txt).
+const REP_PATHS = [
+  '/rep/',                              // the rep landing page
+  '/hub/',                              // Incentives & MPO Hub
+  '/isellbeer/tap-survey-tracking/',    // Tap Tracker
+  '/MPOs/off-prem/',                    // Off-Premise MPOs
+  '/MPOs/on-prem/',                     // On-Premise MPOs
+  '/MPOs/shared/',                      // guided.js / guided.css the MPO pages and hub load
+  '/redbull/',                          // Red Bull Distribution Tracker
+  '/carbliss-onprem-targets/',          // Carbliss On-Premise Targets
+  '/incentive-tracking/programs.js',    // the hub's program library ...
+  '/incentive-tracking/data/program_data.js', // ... and its data
+  '/shared/',                           // auth-config.js
+];
+const REP_HOME = '/rep/';
+
+function repMayOpen(pathname) {
+  const p = pathname.split('?')[0];
+  return REP_PATHS.some((pre) => p.startsWith(pre) || p + '/' === pre || p === pre.replace(/\/$/, '') + '/index.html');
+}
+
 export default async function middleware(request) {
   const url = new URL(request.url);
   const supabaseUrl = process.env.SUPABASE_URL;
@@ -51,7 +74,22 @@ export default async function middleware(request) {
   const token = readCookie(request.headers.get('cookie') || '', COOKIE);
   const verdict = token ? await check(token, supabaseUrl, publishableKey) : { ok: false };
 
-  if (verdict.ok) return passThrough();
+  if (verdict.ok) {
+    if (verdict.role === 'manager') return passThrough();
+    // A rep: only the rep pages. The root index is the managers' page, so
+    // a rep asking for "/" lands on /rep/ instead.
+    if (repMayOpen(url.pathname)) return passThrough();
+    const isDoc =
+      request.headers.get('sec-fetch-dest') === 'document' ||
+      (request.headers.get('accept') || '').includes('text/html');
+    if (!isDoc) {
+      return new Response(JSON.stringify({ error: 'not available to reps' }), {
+        status: 403,
+        headers: { 'content-type': 'application/json', 'cache-control': 'no-store' },
+      });
+    }
+    return Response.redirect(new URL(REP_HOME, url).toString(), 302);
+  }
 
   // A page load goes to the sign-in screen and comes back afterwards. A
   // data fetch from a page whose token expired gets a plain 401 so the

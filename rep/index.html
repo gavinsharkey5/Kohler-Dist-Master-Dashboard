@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Kohler Dist Hub — Your Dashboards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--canvas:#0E1014;--card:#181B22;--card-h:#1F232C;--ink:#FFFFFF;--ink-soft:#9AA1B0;--line:#2A2E38;--shadow:0 1px 2px rgba(0,0,0,.4),0 18px 50px rgba(0,0,0,.45);}
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5;padding:0 20px env(safe-area-inset-bottom);}
+  .wrap{max-width:720px;margin:0 auto}
+  header{padding:36px 0 8px}
+  .brand{display:flex;align-items:center;gap:12px;margin:0 0 18px}
+  .brand img{width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:#fff;object-fit:contain}
+  .eyebrow{font-family:"Space Grotesk";letter-spacing:.22em;text-transform:uppercase;font-size:12px;font-weight:600;color:var(--ink-soft);margin:0}
+  h1{font-family:"Space Grotesk";font-weight:700;letter-spacing:-.02em;font-size:clamp(30px,8vw,44px);line-height:1.0;margin:0}
+  .sub{color:var(--ink-soft);margin:14px 0 0;max-width:48ch;font-size:15px}
+  .grid{display:grid;gap:14px;margin:26px 0 0}
+  a.tile{display:block;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 52px 20px 22px;position:relative;overflow:hidden;transition:transform .15s ease,background .15s ease,border-color .15s ease}
+  a.tile:hover{transform:translateY(-3px);background:var(--card-h);border-color:#3A3F4C}
+  a.tile:focus-visible{outline:3px solid #5B8DEF;outline-offset:3px}
+  .tile .accentbar{position:absolute;left:0;top:0;bottom:0;width:5px}
+  .tile .label{font-family:"Space Grotesk";font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 7px}
+  .tile h2{font-family:"Space Grotesk";font-weight:700;font-size:21px;margin:0 0 5px;letter-spacing:-.01em}
+  .tile p{margin:0;color:var(--ink-soft);font-size:14px;max-width:46ch}
+  .tile .go{position:absolute;right:22px;top:50%;transform:translateY(-50%);color:var(--ink-soft);font-size:24px;transition:transform .15s ease,color .15s ease}
+  a.tile:hover .go{transform:translateY(-50%) translateX(4px);color:var(--ink)}
+  a.tile.feature{background:linear-gradient(135deg,#241E0E,#15130D);border-color:#5A4A1E}
+  a.tile.feature:hover{border-color:#8A7330}
+  footer{color:var(--ink-soft);font-size:12.5px;margin:40px 0 48px;border-top:1px solid var(--line);padding-top:16px;line-height:1.8}
+  footer a{color:var(--ink-soft)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <img src="../assets/kohler-logo-badge.png" alt="">
+      <p class="eyebrow">Kohler Distributing</p>
+    </div>
+    <h1 id="hi">Your dashboards</h1>
+    <p class="sub">Everything you need for the month, in one place. Tap one to open it.</p>
+  </header>
+
+  <nav class="grid">
+    <a class="tile feature" href="../hub/">
+      <span class="accentbar" style="background:linear-gradient(180deg,#F2C14E,#8A6A18)"></span>
+      <p class="label">Start here</p>
+      <h2>Incentives &amp; MPO Hub</h2>
+      <p>Every incentive and MPO you're in: where you stand, what you still need, and where to go next.</p>
+      <span class="go">&rsaquo;</span>
+    </a>
+    <a class="tile" id="offprem" href="../MPOs/off-prem/index.html#view=program">
+      <span class="accentbar" style="background:linear-gradient(180deg,#5B9DF9,#1B2A45)"></span>
+      <p class="label">This month</p>
+      <h2>Off-Premise MPOs</h2>
+      <p>This month's off-premise programs, by program.</p>
+      <span class="go">&rsaquo;</span>
+    </a>
+    <a class="tile" id="onprem" href="../MPOs/on-prem/index.html#view=program">
+      <span class="accentbar" style="background:linear-gradient(180deg,#6BCB77,#1E4D2B)"></span>
+      <p class="label">This month</p>
+      <h2>On-Premise MPOs</h2>
+      <p>This month's on-premise programs, by program.</p>
+      <span class="go">&rsaquo;</span>
+    </a>
+    <a class="tile" href="../isellbeer/tap-survey-tracking/">
+      <span class="accentbar" style="background:linear-gradient(180deg,#C9A227,#4A3A0E)"></span>
+      <p class="label">Draft</p>
+      <h2>Tap Tracker</h2>
+      <p>What's on tap at every surveyed account, ours and theirs, from the latest iSellBeer survey.</p>
+      <span class="go">&rsaquo;</span>
+    </a>
+    <a class="tile" href="../redbull/">
+      <span class="accentbar" style="background:linear-gradient(180deg,#E63946,#1D3557)"></span>
+      <p class="label">Distribution tracker</p>
+      <h2>Red Bull</h2>
+      <p>Red Bull placements by rep against goal for the current period.</p>
+      <span class="go">&rsaquo;</span>
+    </a>
+    <a class="tile" href="../carbliss-onprem-targets/">
+      <span class="accentbar" style="background:linear-gradient(180deg,#E5197D,#8E2DE2)"></span>
+      <p class="label">Sales pitch generator</p>
+      <h2>Carbliss On-Premise Targets</h2>
+      <p>On-premise accounts with strong Sun Cruiser and White Claw volume, matched with the flavor gap Carbliss can fill.</p>
+      <span class="go">&rsaquo;</span>
+    </a>
+  </nav>
+
+  <footer>Internal use. These pages show customer and account detail — please don't share the link outside the team.<br>
+    <span id="who"></span><a href="../login/?signout=1">Sign out</a></footer>
+</div>
+<script>
+(function(){
+  // Greet by name (the kdh_user cookie /login/ sets) and point the MPO
+  // tiles at the current calendar month, the way Gavin's links do.
+  try{
+    var m = document.cookie.match(/(?:^|;\s*)kdh_user=([^;]*)/);
+    var u = m && JSON.parse(decodeURIComponent(m[1]));
+    if(u && u.name){
+      var first = String(u.name).trim().split(/\s+/)[0];
+      document.getElementById('hi').textContent = 'Hi, ' + first;
+      document.getElementById('who').textContent = 'Signed in as ' + u.name + ' · ';
+    }
+  }catch(e){}
+  var d = new Date(), month = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0');
+  ['offprem','onprem'].forEach(function(id){ var a = document.getElementById(id); a.href += '&month=' + month; });
+})();
+</script>
+</body>
+</html>

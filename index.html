@@ -36,6 +36,7 @@
   a.tile.soon .go{display:none}
   .section-label{font-family:"Space Grotesk";font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin:30px 0 0}
   footer{color:var(--ink-soft);font-size:12.5px;margin:40px 0 48px;border-top:1px solid var(--line);padding-top:16px}
+  footer a{color:var(--ink-soft)} footer .who{display:block;margin-top:8px;display:inline}
 </style>
 </head>
 <body>
@@ -221,7 +222,12 @@
     <a class="tile soon" href="markanthony/"><span class="accentbar" style="background:linear-gradient(180deg,#2BB7B3,#1A6E7E)"></span><p class="label">Supplier</p><h2>Mark Anthony</h2><p>White Claw, Mike's — tracking by rep.</p><span class="pill">Setup pending</span></a>
   </nav>
 
-  <footer>Internal use. These dashboards show customer and account detail — please don't share the link outside the team.</footer>
+  <footer>Internal use. These dashboards show customer and account detail — please don't share the link outside the team.
+    <span class="who" id="who"></span> · <a href="rep/">Rep view</a> · <a href="login/?signout=1">Sign out</a></footer>
+  <script>
+    (function(){ try{ var m=document.cookie.match(/(?:^|;\s*)kdh_user=([^;]*)/); var u=m&&JSON.parse(decodeURIComponent(m[1]));
+      if(u&&u.name) document.getElementById('who').textContent='Signed in as '+u.name; }catch(e){} })();
+  </script>
 </div>
 </body>
 </html>

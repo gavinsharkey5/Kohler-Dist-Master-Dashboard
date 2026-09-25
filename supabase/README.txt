@@ -60,8 +60,12 @@ Things to know
     person through /login/ which silently refreshes and sends them back.
     To make that rarer, raise "JWT expiry" under Authentication ->
     Sessions (max 1 week).
-  * Everyone on the list sees everything for now. role is stored so the
-    next step -- reps land on the hub and see only their own pages,
-    managers see the index -- has what it needs.
+  * role decides what a person can open. manager: everything. rep: only
+    the paths in REP_PATHS in middleware.js (the /rep/ landing page and
+    the six rep dashboards plus the files they load); anything else
+    bounces to /rep/. The hub locks a rep to their own name via the
+    kdh_user cookie /login/ sets. To give reps another page: add its
+    prefix (and whatever it fetches) to REP_PATHS and a tile to
+    rep/index.html.
   * GitHub Pages (github.io) still serves the same files with NO login.
     Retire it once reps are on kohlerdisthub.com.

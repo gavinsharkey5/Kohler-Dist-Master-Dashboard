@@ -82,7 +82,10 @@
   function setCookie(token) {
     document.cookie = COOKIE + '=' + encodeURIComponent(token) + '; Path=/; Max-Age=2592000; Secure; SameSite=Lax';
   }
-  function clearCookie() { document.cookie = COOKIE + '=; Path=/; Max-Age=0; Secure; SameSite=Lax'; }
+  function clearCookie() {
+    document.cookie = COOKIE + '=; Path=/; Max-Age=0; Secure; SameSite=Lax';
+    document.cookie = 'kdh_user=; Path=/; Max-Age=0; Secure; SameSite=Lax';
+  }
 
   var cfg = window.KDH_AUTH || {};
   if (!cfg.url || !cfg.key || !window.supabase) {
@@ -147,9 +150,15 @@
         });
         return;
       }
+      var me = res.data[0];
+      // Who is signed in, for the pages (the hub locks a rep to their own
+      // name; the landing pages greet by name). Not used for access
+      // decisions -- the middleware asks Supabase for the role itself.
+      document.cookie = 'kdh_user=' + encodeURIComponent(JSON.stringify({ name: me.name || '', role: me.role || 'rep', email: me.email })) +
+        '; Path=/; Max-Age=2592000; Secure; SameSite=Lax';
       $('signout').classList.remove('hidden');
-      say('good', 'Signed in as <b>' + escapeHtml(res.data[0].name || session.user.email) + '</b>. Opening&hellip;');
-      location.replace(next);
+      say('good', 'Signed in as <b>' + escapeHtml(me.name || session.user.email) + '</b>. Opening&hellip;');
+      location.replace(next === '/' && me.role !== 'manager' ? '/rep/' : next);
     });
   }
 
