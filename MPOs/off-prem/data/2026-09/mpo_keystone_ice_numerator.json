@@ -500,6 +500,15 @@
     "BRAND_FAMILY": "Keystone Ice",
     "CUSTOMER_NUM": 49031,
     "CUSTOMER_NAME": "Top Shelf Liquors",
+    "DATE": "9/25/2026",
+    "CASES": 2.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 49031,
+    "CUSTOMER_NAME": "Top Shelf Liquors",
     "DATE": "9/18/2026",
     "CASES": 2.0
   },
@@ -619,6 +628,15 @@
     "CUSTOMER_NAME": "Hackensack Liquors",
     "DATE": "8/4/2026",
     "CASES": 5.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 40004,
+    "CUSTOMER_NAME": "Simple Simon's (Z)",
+    "DATE": "9/25/2026",
+    "CASES": 2.0
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -752,6 +770,15 @@
     "BRAND_FAMILY": "Keystone Ice",
     "CUSTOMER_NUM": 20040,
     "CUSTOMER_NAME": "Hiciano Liquor Store",
+    "DATE": "9/25/2026",
+    "CASES": 5.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 20040,
+    "CUSTOMER_NAME": "Hiciano Liquor Store",
     "DATE": "9/18/2026",
     "CASES": 2.0
   },
@@ -817,6 +844,15 @@
     "CUSTOMER_NAME": "Moca Liquors Ii",
     "DATE": "9/10/2026",
     "CASES": 5.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 15012,
+    "CUSTOMER_NAME": "Pal's Liquor",
+    "DATE": "9/25/2026",
+    "CASES": 1.0
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -1317,15 +1353,6 @@
     "SALES_REP_ASSIGNED": "Jim Heaney",
     "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
     "BRAND_FAMILY": "Keystone Ice",
-    "CUSTOMER_NUM": 28007,
-    "CUSTOMER_NAME": "Metro Liquors (North Arlington)",
-    "DATE": "9/24/2026",
-    "CASES": 2.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
-    "BRAND_FAMILY": "Keystone Ice",
     "CUSTOMER_NUM": 29009,
     "CUSTOMER_NAME": "Quick Buy",
     "DATE": "9/23/2026",
@@ -1427,6 +1454,15 @@
     "BRAND_FAMILY": "Keystone Ice",
     "CUSTOMER_NUM": 190208,
     "CUSTOMER_NAME": "Boonton Liquor Locker",
+    "DATE": "9/25/2026",
+    "CASES": 2.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 190208,
+    "CUSTOMER_NAME": "Boonton Liquor Locker",
     "DATE": "9/18/2026",
     "CASES": 2.0
   },
@@ -1437,6 +1473,15 @@
     "CUSTOMER_NUM": 190208,
     "CUSTOMER_NAME": "Boonton Liquor Locker",
     "DATE": "9/4/2026",
+    "CASES": 2.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 190216,
+    "CUSTOMER_NAME": "House of Wine & Liquor - Boonton",
+    "DATE": "9/25/2026",
     "CASES": 2.0
   },
   {
@@ -1616,6 +1661,15 @@
     "BRAND_FAMILY": "Keystone Ice",
     "CUSTOMER_NUM": 77016,
     "CUSTOMER_NAME": "Metro Liquor (Elmwood Park)",
+    "DATE": "9/25/2026",
+    "CASES": 6.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 77016,
+    "CUSTOMER_NAME": "Metro Liquor (Elmwood Park)",
     "DATE": "9/18/2026",
     "CASES": 4.0
   },
@@ -1708,15 +1762,6 @@
     "CUSTOMER_NAME": "Nico's Wine & Spirits",
     "DATE": "8/13/2026",
     "CASES": 1.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
-    "BRAND_FAMILY": "Keystone Ice",
-    "CUSTOMER_NUM": 88005,
-    "CUSTOMER_NAME": "Waldwick Wine/Spirits",
-    "DATE": "9/24/2026",
-    "CASES": 2.0
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -1906,6 +1951,15 @@
     "CUSTOMER_NAME": "Schulman's (P) Deli",
     "DATE": "8/4/2026",
     "CASES": 5.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 20029,
+    "CUSTOMER_NAME": "Star Liquor Store",
+    "DATE": "9/25/2026",
+    "CASES": 2.0
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",

@@ -928,6 +928,75 @@ on both boards: dated tables, Details toggles with photo links (cooler
 doors, Bardstown), Adam Badalamenti's Bardstown detail, no horizontal scroll
 at 390px, and the hub's off-prem tab still renders.
 
+2026-09-25 THIRD REFRESH -- Keystone only (sync rule, riding the incentive refresh)
+    python3 generate_2026-09.py
+The Keystone _30 export Gavin sent for the hub is this morning's 248-row pull
+MINUS ITS EIGHT 9/24 ROWS, nothing added -- and the 1911 / Woodchuck pulls of
+the same hour lost their 9/24 rows too (see incentive-tracking/README.txt).
+Export is the record: 198 -> 190 distinct buying accounts, still 9 reps at
+40%. -1 each Anthony Palmisano, Chris Payton, Dave Ehlers, Javier Melo, Jayson
+Romine, Jim Heaney, Klejdi Lamo, Mike Ast; Keystone target list 296 -> 303.
+Nothing else on this board was re-pulled and nothing else changed. Hub cache
+tag bumped (20260925b).
+
+2026-09-25 SECOND REFRESH -- all four RDE exports (Promos_Report_32 re-sent, unchanged)
+    python3 generate_2026-09.py
+Gavin re-sent Report_32 with this pull; it is byte-identical to the one merged
+this morning, so no --merge-cooler-doors run (archive holds at 86 rows / 73
+stickers). Row counts: Constellation 123 -> 123 (restated in place, 44 rows
+moved, every one upward), Keystone 234 -> 248 (+14, none removed), Fever Tree
+2,232 -> 2,253 (+23 / -2), Wine & Spirits 2,845 -> 2,907 (+70 / -8). Diffed row
+by row before the run. THE TWO FEVER TREE ROWS THAT LEFT are Derrick Laws' 9/25
+Shop Rite Wines/Spirits Ginger Beer 500 mL and Elderflower 200 mL, which had
+scored (the Ginger Beer as NEW) on the 9/23 pull -- the export is the record,
+so he drops 11 -> 10 (still at goal). The eight W&S rows that left are six
+ON-PREMISE Green River rows (Allison Scott, Robin Feldman -- never scored here)
+and the Default / 120002 PICNIC Chateau Diana pair RE-DATED 9/23 -> 9/24 (still
+counted, still under Default). 11 of the 70 new W&S rows are on-premise and
+skipped as always. New RDE rows are dated 9/24-9/25.
+  Constellation   1,154 -> 1,190 placements this fall against 1,628 last fall;
+                  still 23 of 24 reps at 30%. Chris Payton 84 -> 88, Dan Lagala
+                  75 -> 79, Matt Powierski 113 -> 117, Mike Ast 47 -> 51,
+                  Derrick Laws 100 -> 103, Javier Melo 90 -> 93, Jayson Romine
+                  65 -> 68, Phil Ernst 85 -> 88, +2 Anthony Palmisano and
+                  Klejdi Lamo, +1 Dave Ehlers, Jim Heaney, Michael Harboy,
+                  Pablo Lopez.
+  Keystone Ice    188 -> 198 distinct buying accounts, still 9 reps at 40%:
+                  Dave Ehlers 10 -> 12, Klejdi Lamo 13 -> 15, +1 each Anthony
+                  Palmisano, Chris Payton, Derrick Laws, Javier Melo, Jayson
+                  Romine, Pablo Lopez. Matt Powierski (Metro Elmwood Park) and
+                  Dan Lagala (Top Shelf) are repeats. Same 248-row export onto
+                  keystone-ice/actuals.csv (sync rule); keystone-ice rebuilt,
+                  then this board, then incentive-tracking.
+  Fever Tree      147 -> 154 new placements, still 8 reps at 10: Jayson Romine
+                  14 -> 17 (ShopRite Newton x2, ShopRite Sparta), Chris Payton
+                  16 -> 18 (Wine Rack Hasbrouck Hts), Dave Ehlers 6 -> 8
+                  (Teaneck Discount), Dan Lagala 11 -> 12 (Top Shelf); Derrick
+                  Laws 11 -> 10 (above).
+  Wine & Spirits  323 -> 348 new placements, still 23 reps at 5: Jayson Romine
+                  18 -> 24, Hakan Sadik 39 -> 44, Alex Rodriguez 9 -> 13, Chris
+                  Payton 12 -> 15, Javier Melo 6 -> 9, +1 Derrick Laws, Jaime
+                  Colonna, Mike Ast, Shane Barreca.
+  POS stickers    unchanged at 73 / 7 reps at 5 (this morning's merge).
+  Target lists    Keystone 305 -> 296; Fever Tree 339 -> 338.
+The Corona Gaintain export also went onto
+incentive-tracking/data/constellation_fall_corona_gaintain_off.csv (sync
+rule). Hub cache tag bumped (20260925a) for the new program_data.js.
+
+2026-09-25 REFRESH -- Promos_Report_32 only (no RDE exports this pull)
+    python3 generate_2026-09.py --merge-cooler-doors Promos_Report_32.xlsx
+Gavin sent Report_32 alongside the on-prem RDE pull; its Filters sheet says
+Elements = Cooler Door Wrap (window 9/1-9/25), so it is this board's. 86 rows,
+all Cooler Door Wrap: 15 new, 71 already published -> archive 86 rows. The
+four RDE datasets were rebuilt from the unchanged 9/23 exports and came out
+byte-identical (only mpo_pos_cooler_doors.json and sync_meta.json moved).
+  POS stickers    60 -> 73 distinct, 6 -> 7 reps at 5: PHIL ERNST 0 -> 12,
+                  new at goal, all dated 9/23 (Super Wine Warehouse Paterson
+                  x3, ShopRite Paramus x6, ShopRite Fair Lawn, Food Universe
+                  Glen Rock, Prime Wine Cellar Paramus); Pablo Lopez 16 -> 17
+                  (Costambar, Paterson, 9/23). Everyone else where the 9/23
+                  note left them.
+
 2026-09-23 REFRESH -- all four exports plus Promos_Report_31
     python3 generate_2026-09.py --merge-cooler-doors Promos_Report_31.xlsx
 Row counts: Constellation 123 -> 123 (restated in place, every rep up or flat),

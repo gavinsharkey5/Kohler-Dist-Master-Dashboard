@@ -259,10 +259,46 @@ Four objectives at 25% each:
   3. Spirits - Carbliss (10) New On Premise Buying Accounts
   4. HUSA - (1) New XX Draft Line
 
-All four are data-backed. Numbers as of the 2026-09-23 refresh (RDE exports run
-through 9/23, a few load-sheet rows dated 9/24-9/25): Bardstown 15 menu
-placements, Fever Tree 21 new placements, Carbliss 50 new buying accounts,
-HUSA 1 new draft line.
+All four are data-backed. Numbers as of the 2026-09-25 refresh (RDE exports run
+through 9/25): Bardstown 16 menu placements, Fever Tree 23 new placements,
+Carbliss 69 new buying accounts, HUSA 2 new draft lines.
+
+2026-09-25 REFRESH -- Fever Tree, Carbliss, HUSA exports + Promos_Report_33
+  python3 generate_2026-09.py --merge-bardstown Promos_Report_33.xlsx
+Two Promos_Reports came with this pull: Report_32 is the OFF-PREM cooler door
+wrap pull (86 rows, all Cooler Door Wrap, zero Bardstown -- merged on the
+off-prem board, see its README) and Report_33 is this board's. Diffed row by
+row before the run. Fever Tree 570 -> 594 (+24, none removed), Carbliss
+321 -> 342 (+22, ONE ROW GONE: Robin Feldman's 32020 Il Villaggio Rest, 9/23,
+which had scored as NEW on the 9/23 pull -- the export is the record, so it
+drops), HUSA 89 -> 91 CSV rows (89 written). New rows are dated 9/24-9/25.
+CARBLISS 50 -> 69 (+20 new accounts, -1 above): Anthony Palmisano 2 -> 6,
+Allison Scott 8 -> 11, Nick Melissari 4 -> 6, Paul Mclaughlin 8 -> 10 (AT
+GOAL, joins Robin Feldman), Pablo Lopez 0 -> 2, Mike Ast 3 -> 4, Dan Lagala
+2 -> 3, Brian Sengebush 8 -> 9, and first accounts for Chris Payton (Golden
+Pub), Derrick Laws (Krystal Bar) and Matt Powierski (Dp's Pub). Robin Feldman
+holds at 15 (Courtyard Marriott Mt Arlington in, Il Villaggio out). The other
+new Carbliss rows (Colonial Bar, Hyde-Away, Applebee's Totowa's second row)
+are repeats.
+FEVER TREE 21 -> 23: Nick Melissari 1 -> 2 (Morton's Hackensack, Pink
+Grapefruit 200 mL, 9/24) and Paul Mclaughlin 6 -> 7 (Marriott Park Ridge,
+Tonic Water 150 mL can, 9/25). The other 22 new rows are account+SKU pairs
+already bought in the base window. Note on the drill-down: emit() flags the
+FIRST current-period row in export order and the export is newest-first, so a
+new account+SKU that buys again shows its NEWEST date (Marriott's Ginger Beer
+and Pink Grapefruit cans now read 9/25, not 9/8) -- the count is unchanged.
+HUSA 1 -> 2: Allison Scott's first draft line, 17003 D'Carbon Bar and Grill
+(Haledon), a 20 L keg on 9/24. Her Dave & Buster's 9/24 row is a repeat.
+BARDSTOWN 15 -> 16: Adam Badalamenti 5 -> 6 (230126 Hudson Farm Club, Origins
+Single Barrel, 9/24, a "Promo Event Activation" with a blank Elements cell --
+counted like every other brand mention). Report_33 held 20 rows (15
+Bardstown, 4 Yave and 1 Pabst skipped): 1 new, 14 already published, archive
+16 -> 17 rows. Its weekday-gap warning (nothing 9/17-9/23) is a quiet stretch,
+not a missing pull -- the report's own window is 9/1-9/25. TWO ARCHIVE ROWS
+ARE NOT IN REPORT_33: Robin Feldman's 9/2 Hilton Hasbrouck Heights table tent
+(Foursquare + Goose Island, from the brand-filtered 9/2 pull). The archive
+keeps them (merge never drops), so she still reads 2 -- OPEN WITH GAVIN
+whether that submission was deleted in iSellBeer.
 
 2026-09-23 REFRESH -- Fever Tree, Carbliss, HUSA exports (no Promos_Report)
   python3 generate_2026-09.py

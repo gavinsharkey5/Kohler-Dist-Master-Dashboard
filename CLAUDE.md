@@ -299,9 +299,24 @@ with a space) is ingested into `data/master/adjust/YYYY-MM.csv`; Jan 2025
 signal -- 69k cases over 20 months, 0.6% of sales overall but 14% for
 Colt 45 and 26% for Pabst Light -- and it is per PRODUCT only (no
 customer in the file), so it can be shown by brand / product / period,
-never per account or per placement. Not on the page yet; Gavin was
-asked whether to add it (recommended: yes, as a per-product series on
-the quality tab, independent of the money hold).
+never per account or per placement. On the page since 2026-09-24:
+`build()` emits it as `ooc` triples (productIdx, monthIdx, cases); the
+quality tab shows it as a section-1 tile, a takeaway line, a column on
+the fewest-Thin and verdict tables and a simple-card tile, always by
+product and never subject to the customer-side filters.
+
+Account size deciles (2026-09-24): Gavin's Supplier_Deciles workbook
+(every account ranked into deciles by 2026 gross profit, and again within
+each of 12 suppliers, plus industry class A/B/C, stops and distribution
+points) is ingested by `generate.py` (recognised by sheet names) into
+`data/master/deciles/` and emitted as `decile` / `sdecile` in
+dist_data.js -- deciles, class, stops, points only; the gross dollars are
+deliberately NOT emitted while the money hold stands. The page uses them
+as size tags on account tables, an "Account size" filter and breakdown,
+and section 4's "biggest accounts that under-buy" list (top-30% accounts
+not buying the scope, or 3+ deciles lower with the supplier than their
+size decile). Supplier sheets are matched to Fusion supplier names by
+prefix; all 12 matched on 2026-09-24.
 
 The page has a second tab, DISTRIBUTION QUALITY (page=quality in the
 link), built for pushing back on "more points = more sales": placement
@@ -311,8 +326,9 @@ the first month of history are excluded; a window is judged only once
 fully observed), county fit score, retain / one-and-done / expand
 lists, and a broad-vs-selective verdict per brand. All of it is
 computed in the browser from the same product x account months; the
-README lists every definition. Returns / out-of-code / destruction
-data are NOT loaded -- the "return signal" is a net-negative month.
+README lists every definition. Out-of-code cases are loaded (see
+Adjustments above); returns per account are still only the "return
+signal" (a net-negative month).
 The tab opens in SIMPLE mode (the DEFAULT, for managers) with DETAILED
 beside it -- a gold "How much detail?" bar, `qview=simple|full` in the
 link, remembered in localStorage. Simple renders `simpleView()` from the `QS` numbers the

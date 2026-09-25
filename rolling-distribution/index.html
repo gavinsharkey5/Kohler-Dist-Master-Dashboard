@@ -146,6 +146,11 @@
   th.sorted{text-decoration:underline;text-underline-offset:4px;color:var(--ink)}
   table[data-qs] th{cursor:pointer;user-select:none}
   a.acct{color:var(--accent-hi);text-decoration:underline;cursor:pointer}
+  .dtag{display:inline-block;padding:2px 9px;border-radius:999px;font-size:13px;font-weight:700;white-space:nowrap;border:1px solid var(--line);color:var(--ink-soft);background:var(--input)}
+  .dtag.d1{background:var(--gold-soft);color:var(--gold);border-color:var(--gold)}
+  .dtag.d2,.dtag.d3{background:var(--good-bg);color:var(--good);border-color:transparent}
+  .dtag.dlo{color:var(--ink-dim)}
+  .sh4{font-family:"Archivo",Arial,sans-serif;font-size:19px;margin:14px 0 4px}
   .wrapcell{display:block;white-space:normal;text-align:left;min-width:240px;max-width:400px;line-height:1.3;font-size:15px}
   table[data-qs] th.sorted::after{content:" \25BC";font-size:11px;color:var(--gold)}
   table[data-qs] th.sorted.asc::after{content:" \25B2"}
@@ -320,7 +325,7 @@
 </div>
 <div class="tip" id="tip"></div>
 <script src="data/logos.js?v=2"></script>
-<script src="data/dist_data.js?v=46"></script>
+<script src="data/dist_data.js?v=48"></script>
 <script>
 (function(){
   var D = window.DIST_DATA;
@@ -375,6 +380,21 @@
     return Object.keys(o).map(Number);
   }
   var TERR_EXCL = 0, COUNTY_OK = null, AREA_OK = null;
+  // ---- out-of-code cases per product per month (Fusion internal account 8; no customer, so customer filters never apply)
+  var OOC = new Float32Array(products.length*M), HAS_OOC = !!(D.ooc && D.ooc.length);
+  (D.ooc||[]).forEach(function(t){ OOC[t[0]*M+t[1]] += t[2]; });
+  function pct1(a,b){ if(!b) return '—'; var v=a/b*100; return (v>=10?Math.round(v):(Math.round(v*10)/10))+'%'; }
+  function oocProd(pi, s, e){ var t=0, b=pi*M; for(var k=Math.max(0,s);k<=e;k++) t+=OOC[b+k]; return t; }
+  function oocScope(pm, s, e){ var t=0; for(var i=0;i<products.length;i++){ if(pm[i]) t+=oocProd(i,s,e); } return t; }
+  // ---- account size deciles (Supplier_Deciles workbook): DEC[c] = [decile 1-10 (0 = not ranked), class 0=A 1=B 2=C, dist pts, stops]
+  var DEC = D.decile||[], SDEC = D.sdecile||{};
+  var HAS_DEC = DEC.some(function(d){ return d[0]>0; });
+  function decOf(c){ var d=DEC[c]; return d ? d[0] : 0; }
+  function clsOf(c){ var d=DEC[c]; return d && d[1]>=0 ? 'ABC'[d[1]] : ''; }
+  function decLabel(d){ return d===0 ? 'Not ranked' : (d<=3 ? 'Top '+(d*10)+'%' : (d>=8 ? 'Bottom '+((11-d)*10)+'%' : 'Decile '+d)); }
+  function decTag(c){ var d=decOf(c); if(!d) return ''; var cl=clsOf(c); return '<span class="dtag d'+(d<=3?d:(d>=8?'lo':'mid'))+'" title="Size decile '+d+' of 10 by 2026 gross profit'+(cl?', industry class '+cl:'')+'">'+decLabel(d)+(cl?' · '+cl:'')+'</span>'; }
+  function scopeSupDec(){ return (S.sup>=0 && SDEC[S.sup]) ? SDEC[S.sup] : null; }   // supplier deciles for the supplier in scope, if it is one of the ranked ones
+  function inDecFilter(c){ var d=decOf(c); switch(S.dec){ case '1': return d===1; case '2': return d>=1&&d<=2; case '3': return d>=1&&d<=3; case 'm': return d>=4&&d<=7; case 'b': return d>=8; case 'n': return d===0; default: return true; } }
   var LEVELS = [
     {key:'supplier', label:'Supplier', plural:'Suppliers', names:D.suppliers, idx:2},
     {key:'family',   label:'Brand family', plural:'Brand families', names:D.families, idx:3},
@@ -398,7 +418,7 @@
   // ---------------------------------------------------------------- state
   var S = {page:'tracker',bm:-1,sup:-1,fam:-1,brand:-1,prod:-1,pkg:'all',prem:'all',dm:-1,rep:-1,area:-1,county:-1,cust:-1,rows:'brand',
            len:3, n:3, end:M-1, view:'compare', focus:M-1, yoy:1, raw:0, metric:'all', tab:'children',
-           sort:'', dir:-1, cmetric:'cases', q:'', more:0, chart:0, pmode:'roll', cp:'', cols:'buyers', tcore:5, tthin:1, tmode:'rel', tq:25, gain:'', terr:'on', ttab:'', qview:'simple', qtab:'children', ftab:'area', rtab:'children', gtab:'county'};
+           sort:'', dir:-1, cmetric:'cases', q:'', more:0, chart:0, pmode:'roll', cp:'', cols:'buyers', tcore:5, tthin:1, tmode:'rel', tq:25, gain:'', terr:'on', ttab:'', qview:'simple', dec:'all', qtab:'children', ftab:'area', rtab:'children', gtab:'county'};
   var DEFAULTS = JSON.parse(JSON.stringify(S));
   // Filters travel in the URL by NAME (product by its number), never by list position,
   // so a bookmarked link still points at the same thing after a data refresh adds rows.
@@ -539,6 +559,7 @@
       if(S.area>=0 && c[3]!==S.area) continue;
       if(S.county>=0 && (c[6]||'(unknown)')!==COUNTIES[S.county]) continue;
       if(S.cust>=0 && i!==S.cust) continue;
+      if(S.dec!=='all' && !inDecFilter(i)) continue;
       m[i]=1;
     }
     return m;
@@ -729,6 +750,7 @@
     h.push('<label>Distribution area<select id="f-area" class="'+(S.area>=0?'active':'')+'">'+opt(-1,'All areas',S.area<0)+D.areas.map(function(n,i){ return (!AREA_OK || AREA_OK[i] || S.area===i) ? opt(i,n,S.area===i) : ''; }).join('')+'</select></label>');
     h.push('<label>County<select id="f-county" class="'+(S.county>=0?'active':'')+'">'+opt(-1,'All counties',S.county<0)+COUNTIES.map(function(n,i){ return (!AREA_OK || COUNTY_OK[n] || S.county===i) ? opt(i,n,S.county===i) : ''; }).join('')+'</select></label>');
     if(HAS_TERR) h.push('<label>Territory<select id="f-terr" class="'+(S.terr==='off'?'active':'')+'">'+opt('on','Only where the brand can be sold',S.terr!=='off')+opt('off','All areas (ignore territory)',S.terr==='off')+'</select></label>');
+    if(HAS_DEC) h.push('<label>Account size<select id="f-dec" class="'+(S.dec!=='all'?'active':'')+'">'+[['all','All sizes'],['1','Top 10% (decile 1)'],['2','Top 20% (deciles 1–2)'],['3','Top 30% (deciles 1–3)'],['m','Middle (deciles 4–7)'],['b','Bottom 30% (deciles 8–10)'],['n','Not ranked']].map(function(o){ return opt(o[0],o[1],S.dec===o[0]); }).join('')+'</select></label>');
     h.push('<label class="wide">One account (type a name or number)<input type="search" id="f-cust" list="custlist" class="'+(S.cust>=0?'active':'')+'" placeholder="All accounts" value="'+(S.cust>=0?esc(customers[S.cust][0]+' '+customers[S.cust][1]):'')+'"><datalist id="custlist">'+customers.map(function(c){ return '<option value="'+esc(c[0]+' '+c[1])+'">'; }).join('')+'</datalist></label>');
     h.push('</div></div>');
     h.push('<div class="group"><div class="gtitle">Rep / Manager</div><div class="ctl">');
@@ -793,6 +815,7 @@
     if(S.dm>=0) chips.push(chip('DM: '+D.dms[S.dm],'dm'));
     if(S.rep>=0) chips.push(chip('Rep: '+D.reps[S.rep],'rep'));
     if(S.area>=0) chips.push(chip('Area: '+D.areas[S.area],'area'));
+    if(S.dec!=='all') chips.push(chip('Size: '+{'1':'Top 10%','2':'Top 20%','3':'Top 30%','m':'Middle','b':'Bottom 30%','n':'Not ranked'}[S.dec],'dec'));
     if(S.county>=0) chips.push(chip(COUNTIES[S.county]+' County','county'));
     if(S.cust>=0) chips.push(chip(customers[S.cust][0]+' '+customers[S.cust][1],'cust'));
     if(!chips.length) return '';
@@ -881,10 +904,11 @@
     area:   {label:function(){ return 'Distribution areas'; }, col:function(){ return 'Distribution area'; }, key:function(i){ return customers[PC[i]][3]; }, name:function(id){ return D.areas[id]; }},
     county: {label:function(){ return 'Counties'; }, col:function(){ return 'County'; }, key:function(i){ return countyIdx[customers[PC[i]][6]||'(unknown)']; }, name:function(id){ return COUNTIES[id]; }},
     premise:{label:function(){ return 'Premise'; }, col:function(){ return 'Premise'; }, key:function(i){ return customers[PC[i]][2]; }, name:function(id){ return id?'On premise':'Off premise'; }},
+    decile: {label:function(){ return 'Account size'; }, col:function(){ return 'Account size (decile)'; }, key:function(i){ return decOf(PC[i]); }, name:function(id){ return id ? (id>=4&&id<=7 ? 'Decile '+id : decLabel(id)+' (decile '+id+')') : 'Not ranked'; }},
     account:{label:function(){ return 'Accounts'; }, col:function(){ return 'Account'; }, key:function(i){ return PC[i]; }, name:function(id){ var c=customers[id]; return c[0]+' '+c[1]; }, sub:function(id){ var c=customers[id]; return D.reps[c[4]]+' · '+(c[2]?'On premise':'Off premise'); }}
   };
   function rowTabs(cur, li){
-    var tabs=[['brand',LEVELS[li].plural],['bm','Brand managers'],['rep','Sales reps'],['dm','District managers'],['area','Areas'],['county','Counties'],['premise','Premise'],['account','Accounts']];
+    var tabs=[['brand',LEVELS[li].plural],['bm','Brand managers'],['rep','Sales reps'],['dm','District managers'],['area','Areas'],['county','Counties'],['premise','Premise']].concat(HAS_DEC?[['decile','Account size']]:[]).concat([['account','Accounts']]);
     return '<div class="tabs">'+tabs.map(function(t){ return '<button data-rows="'+t[0]+'" class="'+(cur===t[0]?'on':'')+'">'+t[1]+'</button>'; }).join('')+'</div>';
   }
   // ---------------------------------------------------------------- compare table
@@ -965,7 +989,7 @@
     h.push('<div class="kpi"><div class="l">Cases per buyer</div><div class="v">'+(total.buyers[0]?fmtC(total.cases[0]/total.buyers[0]):'—')+'</div><div class="d">'+(pr&&total.buyers[1]?deltaHtml(total.cases[0]/(total.buyers[0]||1), total.cases[1]/total.buyers[1],'vs prior'):'')+'</div></div>');
     h.push('<div class="kpi"><div class="l">Placements per buyer</div><div class="v">'+(total.buyers[0]?(total.placements[0]/total.buyers[0]).toFixed(1):'—')+'</div><div class="d">'+(pr&&total.buyers[1]?deltaHtml(total.placements[0]/(total.buyers[0]||1), total.placements[1]/total.buyers[1],'vs prior'):'')+'</div></div>');
     h.push('</div>');
-    var tabs=[['children',LEVELS[li].plural],['bm','Brand managers'],['rep','Sales reps'],['dm','District managers'],['area','Areas'],['county','Counties'],['premise','Premise'],['accounts','Accounts']];
+    var tabs=[['children',LEVELS[li].plural],['bm','Brand managers'],['rep','Sales reps'],['dm','District managers'],['area','Areas'],['county','Counties'],['premise','Premise']].concat(HAS_DEC?[['decile','Account size']]:[]).concat([['accounts','Accounts']]);
     h.push('<div class="tabs">'+tabs.map(function(t){ return '<button data-tab="'+t[0]+'" class="'+(S.tab===t[0]?'on':'')+'">'+t[1]+'</button>'; }).join('')+'</div>');
     var list=[], nameOf, drill=false;
     if(S.tab==='children'){ rows.forEach(function(e){ e.name=levelName(li,e.id); list.push(e); }); drill = li<3; }
@@ -1065,7 +1089,7 @@
                           ['Why it matters',[
                             'Suppliers count every placement as a point of distribution, no matter how little it sells.',
                             'A Thin point still counts on their scoreboard, but the account is not really a customer of the brand.',
-                            'Thin product sits, goes out of code, and Kohler picks it up and destroys it at our cost.']],
+                            'Thin product sits, goes out of code, and Kohler picks it up and destroys it at our cost.'].concat(HAS_OOC?['<b>Out of code</b> is Fusion\u2019s own write-off line: cases Kohler destroyed, by product and month. It is warehouse-level, so it follows the brand filters but not the account, rep or area filters.']:[])],
                           ['How to read it',[
                             'Compare the two bars: share of placements vs share of cases.',
                             'Thin taking a big slice of placements but a sliver of cases = points that never became sales.',
@@ -1097,7 +1121,7 @@
                             'This is the counter-offer to a blanket points target: these accounts, not any account that will take a case.']],
                           ['How to read it',[
                             '"Carries 9 of the 10 core brands" = the account already stocks what this brand’s best buyers stock.',
-                            '<b>Lapsed</b> = bought it before and stopped. Usually the easiest wins.']]]; },
+                            '<b>Lapsed</b> = bought it before and stopped. Usually the easiest wins.'].concat(HAS_DEC?['<b>Account size</b> = decile by 2026 gross profit with Kohler (Top 10% = decile 1). The second table is the biggest accounts that are not buying, or buy far less of this supplier than their size says.']:[])]]; },
     5:function(){ return [['What it shows',[
                             'Of every '+QCTX.scope+' placement started in the history: how many reordered within 3 and 6 months.',
                             'How fast they reordered, how steadily, and how many cases they sold after the first drop.']],
@@ -1154,6 +1178,7 @@
     var tiers = periods.map(function(p,j){ var t=[0,0,0], tc=[0,0,0], tf=tierFn(pm,cm,ps,j,p.len); if(j===tj) tfT=tf; for(var i=0;i<NP;i++){ if(!pm[PP[i]]||!cm[PC[i]]) continue; var v=ps.sum[i*ps.P+j]; if(!(v>0)) continue; var k=tf(i,v); t[k]++; tc[k]+=v; } return {p:p,t:t,tc:tc,pl:t[0]+t[1]+t[2],cs:tc[0]+tc[1]+tc[2]}; });
     var cur=tiers[tj];
     QS={T:T, len:len, li:li, yy:yy, s1:{cur:cur, al:[]}, s2:null, s4:null};
+    var oocT = HAS_OOC ? oocScope(pm, T.s, T.e) : 0, oocPct = cur.cs ? oocT/cur.cs : 0; QS.s1.ooc = oocT; QS.s1.oocPct = oocPct;
     h.push('<div class="card qcard">'+qhead(1,'Are the points real? · '+esc(scopeName())+' · '+esc(pLabel(T)),
       'Every placement (one product at one account) sorted by what it sells per month. Core ≥ '+S.tcore+' cases a month, Thin under '+S.tthin+'. A point of distribution that sells under a case a month is a point on a scoresheet, not a customer.',
       '<span class="tbtns"><button class="btn primary" id="q-print" title="Print or save as PDF">🖨 Print one-pager</button></span>'));
@@ -1171,11 +1196,13 @@
         '<span class="up">The best '+fmtN(c.t[0])+' placements ('+Math.round(coreP*100)+'%)</span> sold <b>'+Math.round(coreC*100)+'% of the cases</b>, about '+fmt1(corePm)+' cases a month each.',
         '<span class="down">The slowest '+fmtN(c.t[2])+' placements ('+Math.round(thinP*100)+'%)</span> sold <b>'+Math.round(thinC*100)+'% of the cases</b>, about '+fmt1(thinPm)+' cases a month each. Those '+fmtN(c.t[2])+' points are on the supplier’s scoreboard but barely move.'
       ];
+      if(HAS_OOC && oocT>0) lines.push('<span class="down">Kohler destroyed '+fmtC(oocT)+' cases</span> of '+esc(scopeName())+' out of code in '+esc(pLabel(T))+', '+pct1(oocT,c.cs)+' of what it sold. Product that sits is product we pay to throw away.');
       if(prev && prev.pl){ var pt=prev.t[2]/prev.pl; var d=thinP-pt; lines.push('Thin share was '+Math.round(pt*100)+'% in '+esc(pLabel(prev.p))+' and is '+Math.round(thinP*100)+'% now ('+(d>0.005?'<span class="down">getting worse</span>':(d<-0.005?'<span class="up">improving</span>':'flat'))+').'); }
       var quote='“Of your '+fmtN(n)+' points '+scopeWord()+', '+fmtN(c.t[2])+' sell about '+fmt1(thinPm)+' cases a month and add up to '+Math.round(thinC*100)+'% of the volume. More points like those don’t sell cases. The '+fmtN(c.t[0])+' that do '+Math.round(coreC*100)+'% of the volume are the accounts we should be protecting and cloning.”';
       h.push(takeaway('The takeaway · '+esc(scopeName()), lines, quote));
     })();
     h.push('<div class="kpis">');
+    if(HAS_OOC) h.push('<div class="kpi '+(oocPct>=0.02?'m-bad':'')+'" style="grid-column:1/-1"><span class="kpi-p">'+esc(pLabel(T))+'</span><div class="l">Out of code · destroyed by Kohler</div><div class="v">'+fmtC(oocT)+' <span style="font-size:18px;font-weight:600;color:var(--ink-soft)">cases</span></div><div class="d"><span>'+pct1(oocT,cur.cs)+' of the '+fmtC(cur.cs)+' cases '+esc(scopeName())+' sold in the period</span><span>warehouse write-offs by product; account, rep and area filters do not apply to this number</span></div></div>');
     for(var k=0;k<3;k++){ h.push('<div class="kpi tier'+k+'"><span class="kpi-p">'+esc(pLabel(T))+'</span><div class="l"><span class="dot" style="background:'+TIERC[k]+'"></span>'+TIERN[k]+' placements</div><div class="v">'+fmtN(cur.t[k])+'</div><div class="d"><span>'+pctS(cur.t[k],cur.pl)+' of placements · <b>'+pctS(cur.tc[k],cur.cs)+' of cases</b></span><span>'+(cur.t[k]?fmt1(cur.tc[k]/cur.t[k]/len):'—')+' cases / placement / month</span></div></div>'); }
     h.push('</div>');
     function bar(label, vals){ var tot=vals.reduce(function(a,b){return a+b;},0)||1; return '<div class="qbar"><span class="qbl">'+label+'</span><div class="qtrack">'+vals.map(function(v,k){ var w=v/tot*100; return '<span class="qseg" style="width:'+w+'%;background:'+TIERC[k]+'" title="'+TIERN[k]+': '+fmtN(v)+' ('+Math.round(w)+'%)">'+(w>=7?Math.round(w)+'%':'')+'</span>'; }).join('')+'</div></div>'; }
@@ -1203,29 +1230,33 @@
         g.n++; g.t[t]++; g.cs+=v; if(t===2) g.tcs+=v; if(v/len<1) g.u1++;
         if(t===0){ var c=PC[i], a=acct.get(c); if(!a){ a={c:c,n:0,cs:0,all:0,prods:[]}; acct.set(c,a); } a.n++; a.cs+=v; a.prods.push({p:PP[i],v:v}); }
       }
+      // out-of-code per group: product-side groups only (it has no customer)
+      var oocG=new Map();
+      if(HAS_OOC && TK[tt]){ for(var pi2=0;pi2<products.length;pi2++){ if(!pm[pi2]) continue; var ov=oocProd(pi2,T.s,T.e); if(!ov) continue; var gid=tt==='family'?products[pi2][3]:(tt==='brand'?products[pi2][4]:pi2); oocG.set(gid,(oocG.get(gid)||0)+ov); } }
       // every product this account buys in scope (for cases/month), not just the Core ones
       for(var i2=0;i2<NP;i2++){ if(!pm[PP[i2]]||!cm[PC[i2]]) continue; var v2=ps.sum[i2*ps.P+tj]; if(!(v2>0)) continue; var a2=acct.get(PC[i2]); if(a2) a2.all+=v2; }
       var MINP = TK[tt] ? 200 : 10;   // brand-side rows need a real footprint before their Thin share means anything
       var rows=[], dropped=0; grp.forEach(function(g){ if(g.n<=MINP && TK[tt]){ dropped++; return; } g.name=kf.name(g.id); g.thin=g.t[2]/g.n; rows.push(g); });
       rows.sort(function(a,b){ var sa=a.n<10, sb=b.n<10; if(sa!==sb) return sa?1:-1; if(a.thin!==b.thin) return a.thin-b.thin; return b.n-a.n; });
-      var ttabs=[['family','Brand families'],['brand','Brands'],['product','Products'],['rep','Sales reps'],['dm','District managers'],['area','Areas'],['county','Counties'],['premise','Premise']];
+      var ttabs=[['family','Brand families'],['brand','Brands'],['product','Products'],['rep','Sales reps'],['dm','District managers'],['area','Areas'],['county','Counties'],['premise','Premise']].concat(HAS_DEC?[['decile','Account size']]:[]);
       function tabLabel(k){ return ttabs.filter(function(x){ return x[0]===k; })[0][1].toLowerCase(); }
       h.push('<h3 class="qsub">Who has the fewest Thin points · '+esc(scopeName())+' · '+esc(pLabel(T))+'</h3>');
       h.push('<p class="help" style="margin:0 0 6px">Least Thin at the top. '+(S.tmode==='rel'
         ? 'In Relative mode every brand family is about '+S.tq+'% Thin by definition, so compare the <b>brands or products inside a family</b>, or use the <b>Under 1 case / mo</b> column, which holds every brand to the same bar.'
         : 'Fixed rule: the same case bar for every brand, so families compare directly.')+(TK[tt] ? ' Only '+tabLabel(tt)+' with more than 200 placements are listed'+(dropped?' ('+fmtN(dropped)+' smaller ones left out)':'')+'.' : ' Groups under 10 placements sit at the bottom.')+'</p>');
       h.push('<p class="help" style="margin:6px 0 4px">Break it down by:</p><div class="tabs">'+ttabs.map(function(x){ return '<button data-ttab="'+x[0]+'" class="'+(tt===x[0]?'on':'')+'">'+x[1]+'</button>'; }).join('')+'</div>');
-      h.push(qtable('q-thin', [kf.col,'Placements','Core','Steady','Thin','Thin share','Thin share of cases','Under 1 case / mo','Cases / placement / mo'],
-        (TK[tt]?rows:rows.slice(0,80)).map(function(g){ return {cells:[esc(g.name)+(TK[tt]?'':small(g.n,10)), fmtN(g.n), fmtN(g.t[0]), fmtN(g.t[1]), fmtN(g.t[2]), '<b class="'+(g.thin<=0.2?'up':(g.thin>=0.35?'down':''))+'">'+pctS(g.t[2],g.n)+'</b>', pctS(g.tcs,g.cs), fmtN(g.u1)+' <span class="muted">('+pctS(g.u1,g.n)+')</span>', fmt1(g.cs/g.n/len)]}; }),
+      var oocCol = HAS_OOC && TK[tt];
+      h.push(qtable('q-thin', [kf.col,'Placements','Core','Steady','Thin','Thin share','Thin share of cases','Under 1 case / mo','Cases / placement / mo'].concat(oocCol?['Out of code (cases · % of sold)']:[]),
+        (TK[tt]?rows:rows.slice(0,80)).map(function(g){ var ov=oocCol?(oocG.get(g.id)||0):0; return {cells:[esc(g.name)+(TK[tt]?'':small(g.n,10)), fmtN(g.n), fmtN(g.t[0]), fmtN(g.t[1]), fmtN(g.t[2]), '<b class="'+(g.thin<=0.2?'up':(g.thin>=0.35?'down':''))+'">'+pctS(g.t[2],g.n)+'</b>', pctS(g.tcs,g.cs), fmtN(g.u1)+' <span class="muted">('+pctS(g.u1,g.n)+')</span>', fmt1(g.cs/g.n/len)].concat(oocCol?[ov?('<b class="'+(g.cs&&ov/g.cs>=0.05?'down':'')+'">'+fmtC(ov)+'</b> <span class="muted">('+pct1(ov,g.cs)+')</span>'):'<span class="muted">0</span>']:[])}; }),
         (!TK[tt]&&rows.length>80?'Top 80 of '+fmtN(rows.length)+' rows. ':'')+'Click any column header to re-sort.'));
       h.push('<div class="tbtns" style="margin-top:8px"><button class="btn small" data-csv="q-thin">CSV</button></div>');
       // accounts behind the Core placements
       var al=[]; acct.forEach(function(a){ al.push(a); }); al.sort(function(a,b){ return b.cs-a.cs; }); QS.s1.al=al;
       h.push('<h3 class="qsub">The accounts behind the Core placements · '+esc(scopeName())+'</h3>');
       h.push('<p class="help" style="margin:0 0 8px"><b>'+fmtN(al.length)+' accounts</b> hold the '+fmtN(cur.t[0])+' Core placements. These are the accounts where '+esc(scopeName())+' is already working: protect them, and use them as the model for where it should go next. <b>Section 4</b> lists the accounts that look most like these but are not buying '+esc(scopeName())+' yet. Click an account to open it on the Trends tab.</p>');
-      h.push(qtable('q-coreacct', ['Account','Rep · Premise · Area','Core placements','Core cases / mo','All '+esc(scopeName())+' cases / mo','Core products'],
+      h.push(qtable('q-coreacct', ['Account','Rep · Premise · Area'].concat(HAS_DEC?['Account size']:[]).concat(['Core placements','Core cases / mo','All '+esc(scopeName())+' cases / mo','Core products']),
         al.slice(0,60).map(function(a){ var cu=customers[a.c]; a.prods.sort(function(x,y){ return y.v-x.v; }); var pl=a.prods.slice(0,3).map(function(x){ return esc(products[x.p][1]); }).join(', ')+(a.prods.length>3?' +'+(a.prods.length-3)+' more':'');
-          return {cells:['<a class="acct" data-acct="'+a.c+'">'+esc(cu[0]+' '+cu[1])+'</a>', esc(D.reps[cu[4]])+' · '+(cu[2]?'On':'Off')+' · '+esc(D.areas[cu[3]]), fmtN(a.n), fmt1(a.cs/len), fmt1(a.all/len), '<span class="wrapcell muted">'+pl+'</span>']}; }),
+          return {cells:['<a class="acct" data-acct="'+a.c+'">'+esc(cu[0]+' '+cu[1])+'</a>', esc(D.reps[cu[4]])+' · '+(cu[2]?'On':'Off')+' · '+esc(D.areas[cu[3]])].concat(HAS_DEC?[decTag(a.c)||'<span class="muted">—</span>']:[]).concat([fmtN(a.n), fmt1(a.cs/len), fmt1(a.all/len), '<span class="wrapcell muted">'+pl+'</span>'])}; }),
         (al.length>60?'Top 60 of '+fmtN(al.length)+' accounts by Core cases. ':'')+'Sorted by Core cases a month; click a header to re-sort.'));
       h.push('<div class="tbtns" style="margin-top:8px"><button class="btn small" data-csv="q-coreacct">CSV</button></div>');
     })();
@@ -1272,7 +1303,7 @@
         ], '“Last time we added '+fmtN(all.n)+' points '+scopeWord()+', '+fmtN(lost)+' of them were gone within '+(laters.length*len)+' months. Show us which accounts the next batch will be, or let us pick them.”'));
       }
       QS.s2={G:G, laters:laters, all:all, gsel:gsel, measure:measure};
-      var qtabs=[['children',LEVELS[li].plural],['bm','Brand managers'],['rep','Sales reps'],['dm','District managers'],['area','Areas'],['county','Counties'],['premise','Premise']];
+      var qtabs=[['children',LEVELS[li].plural],['bm','Brand managers'],['rep','Sales reps'],['dm','District managers'],['area','Areas'],['county','Counties'],['premise','Premise']].concat(HAS_DEC?[['decile','Account size']]:[]);
       h.push('<p class="help" style="margin:10px 0 4px">Break it down by:</p><div class="tabs">'+qtabs.map(function(t){ return '<button data-qtab="'+t[0]+'" class="'+(S.qtab===t[0]?'on':'')+'">'+t[1]+'</button>'; }).join('')+'</div>');
       var rows=[]; rmap.forEach(function(r){ r.name=nameFn(r.id); rows.push(r); }); rows.sort(function(a,b){ return b.n-a.n; });
       var hdr=[S.qtab==='children'?LEVELS[li].label:qtabs.filter(function(t){return t[0]===S.qtab;})[0][1],'Gained','Median cases','Under 3 cases'].concat(laters.map(function(w,q){ return 'Still buying +'+(q+1)+'<br><span class="muted">'+esc(pLabel(w))+'</span>'; }));
@@ -1330,20 +1361,38 @@
         var cu=customers[c4], fs=acctFam[c4]||{}; var ov=topF.filter(function(f){ return fs[f]; }).length;
         var premS = cu[2] ? prem1/core.length : 1-prem1/core.length;
         var areaS = (areaN[cu[3]]||0)/maxArea;
-        var sizeS = maxLog? Math.log(1+anyCases[c4])/maxLog : 0;
+        var sizeS = decOf(c4) ? (11-decOf(c4))/10 : (maxLog? Math.log(1+anyCases[c4])/maxLog : 0);
         var score = 0.25*premS + 0.2*areaS + 0.4*(ov/10) + 0.15*sizeS;
         var status = (scopePr[c4]>0||scopeYY[c4]>0) ? 'Lapsed' : 'Never bought';
         cands.push({c:c4,score:score,ov:ov,status:status});
       }
       cands.sort(function(a,b){ return b.score-a.score; });
-      QS.s4={cands:cands, core:core, coreLbl:coreLbl};
+      // the biggest accounts that under-buy this supplier: size decile 1-3, and either not buying the scope at all or
+      // ranked 3+ deciles worse with this supplier than their size says they should be
+      var SD=scopeSupDec(), under=[];
+      if(HAS_DEC){ for(var c5=0;c5<NC;c5++){ if(!cm[c5]||!anyT[c5]) continue; var ud=decOf(c5); if(!ud||ud>3) continue; var sd=SD?SD[c5]:null, sdd=sd?sd[0]:0;
+          if(scopeT[c5]<=0) under.push({c:c5,ud:ud,sd:sdd,gap:sdd?sdd-ud:10,status:(scopePr[c5]>0||scopeYY[c5]>0)?'Lapsed':'Not buying'});
+          else if(SD && sdd && sdd-ud>=3) under.push({c:c5,ud:ud,sd:sdd,gap:sdd-ud,status:'Under-buying'}); }
+        under.sort(function(a,b){ return a.ud-b.ud || b.gap-a.gap || anyCases[b.c]-anyCases[a.c]; }); }
+      QS.s4={cands:cands, core:core, coreLbl:coreLbl, under:under, SD:!!SD};
       h.push(qhead(4,'Which accounts to target next · '+esc(scopeName()),
         'Accounts buying from us this period that look most like the '+coreLbl.toLowerCase()+' of '+esc(scopeName())+' (same premise and areas, and they carry the other brands those buyers carry) but are not buying it. This is the counter-offer to a blanket points target: these accounts, not any accounts.'
         +' Core profile: '+fmtN(core.length)+' accounts, '+pctS(prem1,core.length)+' on premise, strongest in '+esc(Object.keys(areaN).sort(function(a,b){return areaN[b]-areaN[a];}).slice(0,3).map(function(k){ return D.areas[k]; }).join(', '))+'. Brands they also carry: '+esc(topF.map(function(f){ return D.families[f]; }).join(', '))+'.'));
-      h.push(qtable('q-targets', ['Account','Rep · Premise · Area','Why it fits','Cases (all brands)','Status'],
-        cands.slice(0,40).map(function(x){ var cu=customers[x.c]; return {cells:['<span class="n1">'+esc(cu[0]+' '+cu[1])+'</span>', esc(D.reps[cu[4]])+' · '+(cu[2]?'On':'Off')+' · '+esc(D.areas[cu[3]]), 'carries '+x.ov+' of the 10 core brands · match '+Math.round(x.score*100)+'%', fmtC(anyCases[x.c]), '<span class="tag '+(x.status==='Lapsed'?'lost':'new')+'">'+x.status+'</span>']}; }),
+      h.push(qtable('q-targets', ['Account','Rep · Premise · Area'].concat(HAS_DEC?['Account size']:[]).concat(['Why it fits','Cases (all brands)','Status']),
+        cands.slice(0,40).map(function(x){ var cu=customers[x.c]; return {cells:['<span class="n1">'+esc(cu[0]+' '+cu[1])+'</span>', esc(D.reps[cu[4]])+' · '+(cu[2]?'On':'Off')+' · '+esc(D.areas[cu[3]])].concat(HAS_DEC?[decTag(x.c)||'<span class="muted">—</span>']:[]).concat(['carries '+x.ov+' of the 10 core brands · match '+Math.round(x.score*100)+'%', fmtC(anyCases[x.c]), '<span class="tag '+(x.status==='Lapsed'?'lost':'new')+'">'+x.status+'</span>'])}; }),
         'Top 40 of '+fmtN(cands.length)+' candidates. "Lapsed" bought '+esc(scopeName())+' in the prior period or a year ago and stopped; those are usually the easiest wins.'));
-      h.push('<div class="tbtns" style="margin-top:8px"><button class="btn small" data-csv="q-targets">CSV</button></div></div>');
+      h.push('<div class="tbtns" style="margin-top:8px"><button class="btn small" data-csv="q-targets">CSV</button></div>');
+      if(HAS_DEC){
+        var supName = S.sup>=0 ? D.suppliers[S.sup] : '';
+        h.push('<h3 class="qsub">The biggest accounts that under-buy '+esc(scopeName())+'</h3>');
+        h.push('<p class="help" style="margin:0 0 8px">Every account is ranked into ten equal groups by its 2026 gross profit with Kohler: <b>decile 1 = the top 10% of accounts</b>'+(SD?', and again by what it buys from '+esc(supName)+' alone. An account in the top 30% overall that ranks 3+ deciles lower with '+esc(supName)+' is <b>under-buying</b>: it has the traffic, it is just not buying this from us':'')+'. Listed: top-30% accounts that are <b>not buying '+esc(scopeName())+'</b>'+(SD?' or under-buying '+esc(supName):'')+', biggest first. Industry class A / B / C is the account\u2019s size in the market as a whole.</p>');
+        if(!under.length) h.push('<p class="help">None: every top-30% account in territory already buys '+esc(scopeName())+(SD?' in line with its size':'')+'.</p>');
+        else h.push(qtable('q-under', ['Account','Rep · Premise · Area','Account size'].concat(SD?[esc(supName)+' decile','Gap']:[]).concat(['Status','Cases (all brands)']),
+          under.slice(0,40).map(function(x){ var cu=customers[x.c]; return {cells:['<span class="n1">'+esc(cu[0]+' '+cu[1])+'</span>', esc(D.reps[cu[4]])+' · '+(cu[2]?'On':'Off')+' · '+esc(D.areas[cu[3]]), decTag(x.c)].concat(SD?[x.sd?('<b>'+x.sd+'</b> <span class="muted">of 10</span>'):'<span class="muted">not buying</span>', x.sd?('<span class="down">'+x.gap+' lower</span>'):'<span class="muted">—</span>']:[]).concat(['<span class="tag '+(x.status==='Under-buying'?'part':(x.status==='Lapsed'?'lost':'new'))+'">'+x.status+'</span>', fmtC(anyCases[x.c])])}; }),
+          'Top 40 of '+fmtN(under.length)+'. '+(SD?'Deciles from the Supplier Deciles workbook (2026). ':'')+'Sorted by account size, then by the size of the gap.'));
+        if(under.length) h.push('<div class="tbtns" style="margin-top:8px"><button class="btn small" data-csv="q-under">CSV</button></div>');
+      }
+      h.push('</div>');
     }
     h.push(rebuyView(pm, cm, periods, li, ps));
     return h.join('');
@@ -1400,7 +1449,7 @@
         (all.repeat!==null && all.firstMed!==null ? (all.repeat*T.len>all.firstMed ? 'Repeat volume beats the first drop: where this brand lands, it grows.' : 'The first drop is bigger than what follows: the launch order is the high point for most accounts.') : '')
       ].filter(Boolean), '“One in '+(all.ood>0?Math.round(1/all.ood):0)+' placements '+scopeWord()+' never reorders. Before we add points, let’s agree which accounts look like the '+pctN(all.r6)+' that do.”'));
     }
-    var rtabs=[['children',LEVELS[li].plural],['bm','Brand managers'],['rep','Sales reps'],['dm','District managers'],['area','Areas'],['county','Counties'],['premise','Premise']];
+    var rtabs=[['children',LEVELS[li].plural],['bm','Brand managers'],['rep','Sales reps'],['dm','District managers'],['area','Areas'],['county','Counties'],['premise','Premise']].concat(HAS_DEC?[['decile','Account size']]:[]);
     h.push('<p class="help" style="margin:10px 0 4px">Break it down by:</p><div class="tabs">'+rtabs.map(function(t){ return '<button data-rtab="'+t[0]+'" class="'+((S.rtab||'children')===t[0]?'on':'')+'">'+t[1]+'</button>'; }).join('')+'</div>');
     var rt=S.rtab||'children', keyFn = rt==='children' ? function(i){ return entityOf(li,PP[i]); } : ROWKEYS[rt].key, nameFn = rt==='children' ? function(id){ return levelName(li,id); } : ROWKEYS[rt].name;
     var groups=new Map(); recs.forEach(function(r){ var id=keyFn(r.i); var g=groups.get(id); if(!g){ g=[]; groups.set(id,g); } g.push(r); });
@@ -1445,8 +1494,8 @@
     h.push('<div class="card qcard">'+qhead(7,'Protect, fix, expand · '+esc(scopeName()),
       'Three lists from the same data: accounts with sustained demand to protect, placements that never reordered (the out-of-code and pickup risk), and where selective expansion is likely to pay.'));
     h.push('<h3 class="qsub"><span class="dot" style="background:var(--good)"></span>Retain · sustained demand · '+fmtN(retain.length)+' accounts bought in 4+ of the last 6 months</h3>');
-    h.push(qtable('q-retain', ['Account','Rep · Premise · County','Active months (of '+L6n+')','Products','Cases, last 6 mo','Cases / month','Last 3 vs prior 3'],
-      retain.slice(0,30).map(function(a){ var cu=customers[a.c]; var d=a.prev3? (a.last3-a.prev3)/a.prev3 : null; return {cells:['<span class="n1">'+esc(cu[0]+' '+cu[1])+'</span>', esc(D.reps[cu[4]])+' · '+(cu[2]?'On':'Off')+' · '+esc(cu[6]||'—'), a.active, a.pl, fmtC(a.cases6), fmt1(a.cases6/L6n), d===null?'<span class="muted">new</span>':'<span class="'+(d>0.05?'up':(d<-0.05?'down':'flat'))+'">'+(d>0?'+':'')+Math.round(d*100)+'%</span>']}; }),
+    h.push(qtable('q-retain', ['Account','Rep · Premise · County'].concat(HAS_DEC?['Account size']:[]).concat(['Active months (of '+L6n+')','Products','Cases, last 6 mo','Cases / month','Last 3 vs prior 3']),
+      retain.slice(0,30).map(function(a){ var cu=customers[a.c]; var d=a.prev3? (a.last3-a.prev3)/a.prev3 : null; return {cells:['<span class="n1">'+esc(cu[0]+' '+cu[1])+'</span>', esc(D.reps[cu[4]])+' · '+(cu[2]?'On':'Off')+' · '+esc(cu[6]||'—')].concat(HAS_DEC?[decTag(a.c)||'<span class="muted">—</span>']:[]).concat([a.active, a.pl, fmtC(a.cases6), fmt1(a.cases6/L6n), d===null?'<span class="muted">new</span>':'<span class="'+(d>0.05?'up':(d<-0.05?'down':'flat'))+'">'+(d>0?'+':'')+Math.round(d*100)+'%</span>'])}; }),
       'Top 30 by volume. These are the accounts a supplier’s drive should never distract a rep from.'));
     h.push('<div class="tbtns" style="margin:6px 0 14px"><button class="btn small" data-csv="q-retain">CSV</button></div>');
     h.push('<h3 class="qsub"><span class="dot" style="background:var(--bad)"></span>One-and-done · '+fmtN(ood.length)+' placements never reordered in 6 months · '+fmtC(oodCases)+' cases dropped once</h3>');
@@ -1470,8 +1519,9 @@
     QS.s8={vlist:vlist};
     h.push('<div class="card qcard">'+qhead(8,'Broad or selective? · '+esc(LEVELS[li].plural.toLowerCase())+' under '+esc(scopeName()),
       'The test of "more points = more sales": for each row, how placements and cases moved against the same period a year ago, whether cases per placement held, and how well its new points rebuy. <b>Broader distribution works</b> = 6-month rebuy 60%+ and cases per placement holding. <b>Be selective</b> = rebuy under 40%, or points grew 10%+ while cases grew less than half as fast. Rows with under 50 judged placements get no verdict.'));
-    h.push(qtable('q-verdict', [LEVELS[li].label,'Placements · '+esc(pLabel(T)),'Placements vs prior yr','Cases vs prior yr','Cases / placement vs prior yr','Rebuy 6 mo','Repeat cases / mo','Verdict'],
-      vlist.slice(0,80).map(function(g){ function ch(v){ return v===null?'<span class="muted">—</span>':'<span class="'+(v>0.02?'up':(v<-0.02?'down':'flat'))+'">'+(v>0?'+':'')+Math.round(v*100)+'%</span>'; } return {cells:[esc(g.name), fmtN(g.plT), ch(g.dp), ch(g.dc), ch(g.dcpp), '<b>'+pctN(g.sm.r6)+'</b> <span class="muted">('+fmtN(g.sm.j6)+')</span>', g.sm.repeat!==null?fmt1(g.sm.repeat):'—', '<span class="verdict '+g.verdict[1]+'">'+g.verdict[0]+'</span>']}; }),
+    var oocV=new Map(); if(HAS_OOC){ for(var pi5=0;pi5<products.length;pi5++){ if(!pm[pi5]) continue; var ov5=oocProd(pi5,T.s,T.e); if(ov5) oocV.set(entityOf(li,pi5),(oocV.get(entityOf(li,pi5))||0)+ov5); } }
+    h.push(qtable('q-verdict', [LEVELS[li].label,'Placements · '+esc(pLabel(T)),'Placements vs prior yr','Cases vs prior yr','Cases / placement vs prior yr','Rebuy 6 mo','Repeat cases / mo'].concat(HAS_OOC?['Out of code · '+esc(pLabel(T))]:[]).concat(['Verdict']),
+      vlist.slice(0,80).map(function(g){ function ch(v){ return v===null?'<span class="muted">—</span>':'<span class="'+(v>0.02?'up':(v<-0.02?'down':'flat'))+'">'+(v>0?'+':'')+Math.round(v*100)+'%</span>'; } var ov=oocV.get(g.id)||0; return {cells:[esc(g.name), fmtN(g.plT), ch(g.dp), ch(g.dc), ch(g.dcpp), '<b>'+pctN(g.sm.r6)+'</b> <span class="muted">('+fmtN(g.sm.j6)+')</span>', g.sm.repeat!==null?fmt1(g.sm.repeat):'—'].concat(HAS_OOC?[ov?('<b class="'+(g.csT&&ov/g.csT>=0.05?'down':'')+'">'+fmtC(ov)+'</b> <span class="muted">('+pct1(ov,g.csT)+')</span>'):'<span class="muted">0</span>']:[]).concat(['<span class="verdict '+g.verdict[1]+'">'+g.verdict[0]+'</span>'])}; }),
       'Sorted by placements. A row that grew points, lost cases per placement and rebuys poorly is the supplier’s drive showing up as thin points.'));
     h.push('<div class="tbtns" style="margin-top:8px"><button class="btn small" data-csv="q-verdict">CSV</button></div></div>');
     return h.join('');
@@ -1486,7 +1536,7 @@
     function act(t){ return '<p class="sact"><span class="sact-l">What to do</span>'+t+'</p>'; }
     function splitbar(parts){ var tot=0; parts.forEach(function(p){ tot+=p.v; }); tot=tot||1;
       return '<div class="qtrack sbar">'+parts.map(function(p){ var w=p.v/tot*100; return '<span class="qseg" style="width:'+w+'%;background:'+p.color+'" title="'+p.label+'">'+(w>=8?Math.round(w)+'%':'')+'</span>'; }).join('')+'</div><div class="qlegend" style="margin-left:0">'+parts.map(function(p){ return '<span><i style="background:'+p.color+'"></i>'+p.label+': '+fmtN(p.v)+'</span>'; }).join('')+'</div>'; }
-    function acctLine(c){ var cu=customers[c]; return '<b>'+esc(cu[0]+' '+cu[1])+'</b> <span class="muted">'+esc(D.reps[cu[4]])+' · '+(cu[2]?'On':'Off')+' · '+esc(D.areas[cu[3]])+'</span>'; }
+    function acctLine(c){ var cu=customers[c]; return '<b>'+esc(cu[0]+' '+cu[1])+'</b> <span class="muted">'+esc(D.reps[cu[4]])+' · '+(cu[2]?'On':'Off')+' · '+esc(D.areas[cu[3]])+'</span>'+(HAS_DEC&&decOf(c)?' '+decTag(c):''); }
     function inN(r){ return r>0 ? Math.max(2,Math.round(1/r)) : 0; }
     // 1. are the points real
     var c=Q.s1.cur, n=c.pl;
@@ -1496,7 +1546,8 @@
       var b1=head('<b>'+fmtN(n)+' placements</b> of '+name+' in '+per+'. <span class="up">The best '+fmtN(c.t[0])+' ('+Math.round(coreP*100)+'%)</span> sell <b>'+Math.round(coreC*100)+'% of the cases</b>. <span class="down">The slowest '+fmtN(c.t[2])+' ('+Math.round(thinP*100)+'%)</span> sell just <b>'+Math.round(thinC*100)+'%</b>.')
         +'<div class="sbigs">'+big(fmtN(c.t[0]),'Core placements · '+Math.round(coreC*100)+'% of cases · '+(c.t[0]?fmt1(c.tc[0]/c.t[0]/len):'—')+' cases a month each','good')
         +big(fmtN(c.t[1]),'Steady placements · '+Math.round(c.tc[1]/(c.cs||1)*100)+'% of cases','mid')
-        +big(fmtN(c.t[2]),'Thin placements · '+Math.round(thinC*100)+'% of cases · '+(c.t[2]?fmt1(c.tc[2]/c.t[2]/len):'—')+' cases a month each','bad')+'</div>'
+        +big(fmtN(c.t[2]),'Thin placements · '+Math.round(thinC*100)+'% of cases · '+(c.t[2]?fmt1(c.tc[2]/c.t[2]/len):'—')+' cases a month each','bad')
+        +(HAS_OOC?big(fmtC(Q.s1.ooc||0),'cases destroyed out of code · '+pct1(Q.s1.ooc||0,c.cs)+' of what '+name+' sold', (Q.s1.oocPct||0)>=0.02?'bad':''):'')+'</div>'
         +'<div class="qbars">'+(Q.bar1||'')+'</div>'
         +(Q.s1.al.length?'<p class="sline"><b>Best accounts:</b> '+Q.s1.al.slice(0,5).map(function(a){ return esc(customers[a.c][1]); }).join(', ')+(Q.s1.al.length>5?' and '+fmtN(Q.s1.al.length-5)+' more':'')+'.</p>':'')
         +act('Protect the '+fmtN(c.t[0])+' Core accounts. When the supplier asks for more points, the '+fmtN(c.t[2])+' Thin ones are the proof that a point is not a sale: they are '+Math.round(thinP*100)+'% of the points and '+Math.round(thinC*100)+'% of the cases.');
@@ -1518,7 +1569,8 @@
       h.push(card(4,'Where to go next · '+name,
         head('<b>'+fmtN(s4.cands.length)+' accounts</b> look like '+name+'\u2019s best buyers (same premise and areas, carrying the same other brands) but are not buying it. <b>'+fmtN(lap)+'</b> bought it before and stopped: those are the easiest wins.')
         +'<ol class="slist">'+s4.cands.slice(0,10).map(function(x){ return '<li>'+acctLine(x.c)+' <span class="tag '+(x.status==='Lapsed'?'lost':'new')+'">'+x.status+'</span></li>'; }).join('')+'</ol>'
-        +act('Start with the Lapsed accounts, then the top of this list. Hand the supplier this list instead of a points target.')));
+        +(HAS_DEC && s4.under && s4.under.length ? '<h4 class="sh4">The biggest accounts that under-buy '+name+'</h4><p class="sline muted" style="margin:0 0 4px">Top-30% accounts by 2026 gross profit that are not buying '+name+(s4.SD?' or buy far less of '+esc(D.suppliers[S.sup])+' than their size says they should':'')+'. '+fmtN(s4.under.length)+' in all.</p><ol class="slist">'+s4.under.slice(0,10).map(function(x){ return '<li>'+acctLine(x.c)+' <span class="tag '+(x.status==='Under-buying'?'part':(x.status==='Lapsed'?'lost':'new'))+'">'+x.status+(x.sd?' · '+esc(D.suppliers[S.sup])+' decile '+x.sd:'')+'</span></li>'; }).join('')+'</ol>' : '')
+        +act('Start with the Lapsed accounts, then the biggest ones. Hand the supplier this list instead of a points target.')));
     }
     // 5. do they reorder
     var a5=Q.s5;
@@ -1583,6 +1635,7 @@
     on('f-rep', function(e){ S.rep=+e.target.value; if(S.rep>=0 && S.dm<0){ var c=customers.filter(function(c){return c[4]===S.rep;})[0]; S.dm=c[5]; } render(); });
     on('f-area', function(e){ S.area=+e.target.value; render(); });
     on('f-terr', function(e){ S.terr=e.target.value; render(); });
+    on('f-dec', function(e){ S.dec=e.target.value; S.sort=''; render(); });
     var tb=el('terr-toggle'); if(tb) tb.addEventListener('click', function(){ S.terr = S.terr==='off' ? 'on' : 'off'; render(); });
     on('f-county', function(e){ S.county=+e.target.value; render(); });
     var fc=el('f-cust'); if(fc){ fc.addEventListener('change', function(){ var v=fc.value.trim(); if(!v){ S.cust=-1; render(); return; } var num=v.split(' ')[0]; var ci=-1; for(var j=0;j<customers.length;j++) if(customers[j][0]===num || (customers[j][0]+' '+customers[j][1]).toLowerCase()===v.toLowerCase()){ ci=j; break; } if(ci<0){ fc.value=''; S.cust=-1; } else S.cust=ci; render(); }); }

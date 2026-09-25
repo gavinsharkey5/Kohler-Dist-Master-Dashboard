@@ -98,6 +98,28 @@ the two boards were cross-checked per rep afterwards (101 accounts each, zero
 differences). Whenever this file changes, change that one to match in the same
 commit.
 
+2026-09-25 SECOND REFRESH: actuals.csv onto the 240-row export -- the morning's
+  248-row pull MINUS ITS EIGHT 9/24 ROWS, nothing added (diffed before the run).
+  Every 9/24 load sheet vanished from the 1911 and Woodchuck RDE pulls of the
+  same hour too, so this is one day dropping out of RDE, not eight orders
+  cancelling -- OPEN WITH GAVIN; a re-pull that carries 9/24 restores them.
+  The export is the record meanwhile: 198 -> 190 distinct accounts house-wide;
+  still 8 qualified, 6 -> 5 at bonus, $1,260 -> $1,135. Chris Payton 20 -> 19
+  of 40 (back off bonus), Klejdi Lamo 15 -> 14 (still bonus), -1 each Javier
+  Melo, Jayson Romine, Dave Ehlers, Jim Heaney, Anthony Palmisano, Mike Ast.
+  Same file onto MPOs/off-prem/keystone_ice_24oz.csv (sync rule); off-prem
+  MPO and incentive-tracking rebuilt after this board.
+
+2026-09-25 REFRESH: actuals.csv onto the 248-row export (14 new rows, none
+  removed -- diffed before the run, all dated 9/24-9/25). 188 -> 198 distinct
+  accounts house-wide; still 8 qualified, 4 -> 6 at bonus, $1,040 -> $1,260
+  projected. KLEJDI LAMO 13 -> 15 of 27 (BONUS: Boonton Liquor Locker, House
+  of Wine Boonton, Sam's) and CHRIS PAYTON 19 -> 20 of 40 (BONUS: Maywood
+  Wine & Liq) both cross to bonus; Dave Ehlers 10 -> 12 (Simple Simon's,
+  Teaneck Discount), +1 each Pablo Lopez, Derrick Laws, Javier Melo, Jayson
+  Romine, Anthony Palmisano. Same file onto MPOs/off-prem/keystone_ice_24oz.csv
+  (sync rule); off-prem MPO and incentive-tracking rebuilt after this board.
+
 2026-09-23 REFRESH: actuals.csv onto the 234-row export (21 new rows; ONE
   removed -- Phil Ernst's 9/30 USA Wine Traders Paramus row flagged 9/18, whose
   month-end order left every RDE export). 173 -> 188 distinct accounts

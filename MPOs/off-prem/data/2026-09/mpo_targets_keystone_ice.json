@@ -523,12 +523,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 40004,
-    "CUSTOMER_NAME": "Simple Simon's (Z)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 51018,
     "CUSTOMER_NAME": "Teaneck Discount Liquor",
     "AREA": "Bergen"
@@ -633,12 +627,6 @@
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 20060,
     "CUSTOMER_NAME": "Moya E.Bar&Liq.(Z)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 15012,
-    "CUSTOMER_NAME": "Pal's Liquor",
     "AREA": "Passaic"
   },
   {
@@ -985,6 +973,12 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
+    "CUSTOMER_NUM": 28007,
+    "CUSTOMER_NAME": "Metro Liquors (North Arlington)",
+    "AREA": "Bergen"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
     "CUSTOMER_NUM": 13017,
     "CUSTOMER_NAME": "On The Rocks",
     "AREA": "Passaic"
@@ -1143,12 +1137,6 @@
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 190603,
     "CUSTOMER_NAME": "Denville W & L",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 190216,
-    "CUSTOMER_NAME": "House of Wine & Liquor",
     "AREA": "Morris 1"
   },
   {
@@ -1531,6 +1519,12 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
+    "CUSTOMER_NUM": 88005,
+    "CUSTOMER_NAME": "Waldwick Wine/Spirits",
+    "AREA": "Bergen"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 201099,
     "CUSTOMER_NAME": "Whole Foods #10106 (Ridgewood)",
     "AREA": "Bergen"
@@ -1599,12 +1593,6 @@
     "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 20114,
     "CUSTOMER_NAME": "Ronny's Liqrs (Z)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 20029,
-    "CUSTOMER_NAME": "Star Liquor Store",
     "AREA": "Passaic"
   },
   {

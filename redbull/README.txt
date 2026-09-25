@@ -119,6 +119,30 @@ accounts / Core 71 / Core+ 38. Gavin the same day: "make this start in
 july ignore june my apologies" -- July 1 it is, and June rows are dropped
 on every build from here.
 
+2026-09-25 REFRESH -- RDE_Red_Bull_Tracker_June_1_Start_2.csv (926 rows,
+7/1 through 9/25 -- starts July 1, nothing dropped; July 345 and August 293
+rows match every build since 9/17, September 261 -> 288). One account joined,
+none left: buying accounts 167 -> 168, Regular 158 -> 161, Free 75 -> 78,
+Flavor 49 -> 52. Core 67 -> 72 of 155, CORE+ 40 -> 43 of 84.
+  Newly Core+ (all 3):
+    Paul Mclaughlin    International Bar/Rest  new, straight to all 3
+    Paul Mclaughlin    Hearth & Tap Co.        Regular only -> all 3
+    Paul Mclaughlin    The Cornerstone (P)     Free only -> all 3
+    Anthony Palmisano  Doc's Place (P)         Core -> all 3 (+ Flavor)
+  ONE ACCOUNT LOST A CATEGORY: Anthony Palmisano / The Lamp Post Inn read
+  all 3 on 9/23 on a 9/24-dated Flavor load sheet; that row is not in this
+  export (its 9/24 Sugar Free row still is), so it is back to Core. The
+  export is the record -- a scheduled line that did not ship. It is the
+  same day's rows that left several other RDE pulls today (see
+  incentive-tracking/README.txt, 2026-09-25 SECOND refresh); if the load
+  is real it will come back on the next pull.
+  Other moves: Allison Scott / Bardis (P) Free -> Core (+ Regular), Paul
+  Mclaughlin / QB's Bar and Grill Regular -> Core (+ Free).
+Rows dated 9/25 are the day of the pull; all inside the window. Core+
+leaderboard: Paul Mclaughlin 11 -> 14, Allison Scott 8, Nick Melissari 6,
+Brian Sengebush 6, Robin Feldman 4, Anthony Palmisano 4 (one in, one out),
+Dan Lagala 1.
+
 2026-09-23 REFRESH -- RDE_Red_Bull_Tracker_June_1_Start_1.csv (899 rows,
 7/1 through 9/24 -- starts July 1 again, nothing dropped). Four accounts
 joined, none left, and no account lost a category: buying accounts

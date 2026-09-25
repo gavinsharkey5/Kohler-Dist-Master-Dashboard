@@ -1,15 +1,28 @@
 [
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12057,
-    "CUSTOMER_NAME": "YARD HOUSE 8384",
+    "CUSTOMER_NUM": 12034,
+    "CUSTOMER_NAME": "Dave & Buster's Nj, Inc",
     "BRAND_FAMILY": "Dos Equis",
     "PRODUCT_NAME": "",
-    "DATE": "2026-09-22",
+    "DATE": "2026-09-24",
     "PERIOD": "current",
     "BUYER_COUNT": 1.0,
     "NEW_PLACEMENT": 0,
     "PACKAGE": "15.5 Gal Keg",
+    "UNITS": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 17003,
+    "CUSTOMER_NAME": "D'CARBON BAR AND GRILL haledon",
+    "BRAND_FAMILY": "Dos Equis",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-24",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PACKAGE": "20 L Keg",
     "UNITS": 1.0
   },
   {
@@ -23,6 +36,19 @@
     "BUYER_COUNT": 1.0,
     "NEW_PLACEMENT": 0,
     "PACKAGE": "20 L Keg",
+    "UNITS": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12057,
+    "CUSTOMER_NAME": "YARD HOUSE 8384",
+    "BRAND_FAMILY": "Dos Equis",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-22",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1.0,
+    "NEW_PLACEMENT": 0,
+    "PACKAGE": "15.5 Gal Keg",
     "UNITS": 1.0
   },
   {
@@ -78,19 +104,6 @@
     "UNITS": 1.0
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 78017,
-    "CUSTOMER_NAME": "El Asadero Mexican Grill (Rochelle Park)",
-    "BRAND_FAMILY": "Dos Equis",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-03",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1.0,
-    "NEW_PLACEMENT": 0,
-    "PACKAGE": "15.5 Gal Keg",
-    "UNITS": 1.0
-  },
-  {
     "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 25077,
     "CUSTOMER_NAME": "Chevy's Fresh Mex (A)Clif",
@@ -104,9 +117,35 @@
     "UNITS": 1.0
   },
   {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 78017,
+    "CUSTOMER_NAME": "El Asadero Mexican Grill (Rochelle Park)",
+    "BRAND_FAMILY": "Dos Equis",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-03",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1.0,
+    "NEW_PLACEMENT": 0,
+    "PACKAGE": "15.5 Gal Keg",
+    "UNITS": 1.0
+  },
+  {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 14002,
-    "CUSTOMER_NAME": "Applebee's (Totowa) (A)",
+    "CUSTOMER_NUM": 12057,
+    "CUSTOMER_NAME": "YARD HOUSE 8384",
+    "BRAND_FAMILY": "Dos Equis",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-01",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1.0,
+    "NEW_PLACEMENT": 0,
+    "PACKAGE": "15.5 Gal Keg",
+    "UNITS": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 78017,
+    "CUSTOMER_NAME": "El Asadero Mexican Grill (Rochelle Park)",
     "BRAND_FAMILY": "Dos Equis",
     "PRODUCT_NAME": "",
     "DATE": "2026-09-01",
@@ -118,8 +157,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 78017,
-    "CUSTOMER_NAME": "El Asadero Mexican Grill (Rochelle Park)",
+    "CUSTOMER_NUM": 49022,
+    "CUSTOMER_NAME": "El asadero Mexican Grill (Fort Lee)",
     "BRAND_FAMILY": "Dos Equis",
     "PRODUCT_NAME": "",
     "DATE": "2026-09-01",
@@ -144,8 +183,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12057,
-    "CUSTOMER_NAME": "YARD HOUSE 8384",
+    "CUSTOMER_NUM": 24031,
+    "CUSTOMER_NAME": "Tommy's Tavern & Tap (Clifton)",
     "BRAND_FAMILY": "Dos Equis",
     "PRODUCT_NAME": "",
     "DATE": "2026-09-01",
@@ -153,7 +192,7 @@
     "BUYER_COUNT": 1.0,
     "NEW_PLACEMENT": 0,
     "PACKAGE": "15.5 Gal Keg",
-    "UNITS": 1.0
+    "UNITS": 0.0
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -169,9 +208,9 @@
     "UNITS": 1.0
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 49022,
-    "CUSTOMER_NAME": "El asadero Mexican Grill (Fort Lee)",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 14002,
+    "CUSTOMER_NAME": "Applebee's (Totowa) (A)",
     "BRAND_FAMILY": "Dos Equis",
     "PRODUCT_NAME": "",
     "DATE": "2026-09-01",
@@ -182,22 +221,9 @@
     "UNITS": 0.0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24031,
-    "CUSTOMER_NAME": "Tommy's Tavern & Tap (Clifton)",
-    "BRAND_FAMILY": "Dos Equis",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-01",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1.0,
-    "NEW_PLACEMENT": 0,
-    "PACKAGE": "15.5 Gal Keg",
-    "UNITS": 0.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24031,
-    "CUSTOMER_NAME": "Tommy's Tavern & Tap (Clifton)",
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 60004,
+    "CUSTOMER_NAME": "La Taberna Steak House",
     "BRAND_FAMILY": "Dos Equis",
     "PRODUCT_NAME": "",
     "DATE": "2026-08-25",
@@ -208,9 +234,9 @@
     "UNITS": 1.0
   },
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 60004,
-    "CUSTOMER_NAME": "La Taberna Steak House",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 24031,
+    "CUSTOMER_NAME": "Tommy's Tavern & Tap (Clifton)",
     "BRAND_FAMILY": "Dos Equis",
     "PRODUCT_NAME": "",
     "DATE": "2026-08-25",
@@ -325,22 +351,9 @@
     "UNITS": 1.0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12034,
-    "CUSTOMER_NAME": "Dave & Buster's Nj, Inc",
-    "BRAND_FAMILY": "Dos Equis",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-08-03",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1.0,
-    "NEW_PLACEMENT": 0,
-    "PACKAGE": "15.5 Gal Keg",
-    "UNITS": 0.0
-  },
-  {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 36014,
-    "CUSTOMER_NAME": "Viva Margarita Wallington",
+    "CUSTOMER_NUM": 80018,
+    "CUSTOMER_NAME": "Millers Paramus Ale House",
     "BRAND_FAMILY": "Dos Equis",
     "PRODUCT_NAME": "",
     "DATE": "2026-08-03",
@@ -364,9 +377,9 @@
     "UNITS": 0.0
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31039,
-    "CUSTOMER_NAME": "Yard House 8390",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12057,
+    "CUSTOMER_NAME": "YARD HOUSE 8384",
     "BRAND_FAMILY": "Dos Equis",
     "PRODUCT_NAME": "",
     "DATE": "2026-08-03",
@@ -380,32 +393,6 @@
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 74001,
     "CUSTOMER_NAME": "Lolitas Mexican Cantina",
-    "BRAND_FAMILY": "Dos Equis",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-08-03",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1.0,
-    "NEW_PLACEMENT": 0,
-    "PACKAGE": "15.5 Gal Keg",
-    "UNITS": 0.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 25077,
-    "CUSTOMER_NAME": "Chevy's Fresh Mex (A)Clif",
-    "BRAND_FAMILY": "Dos Equis",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-08-03",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1.0,
-    "NEW_PLACEMENT": 0,
-    "PACKAGE": "15.5 Gal Keg",
-    "UNITS": 0.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 80018,
-    "CUSTOMER_NAME": "Millers Paramus Ale House",
     "BRAND_FAMILY": "Dos Equis",
     "PRODUCT_NAME": "",
     "DATE": "2026-08-03",
@@ -443,6 +430,19 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 31039,
+    "CUSTOMER_NAME": "Yard House 8390",
+    "BRAND_FAMILY": "Dos Equis",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-08-03",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1.0,
+    "NEW_PLACEMENT": 0,
+    "PACKAGE": "15.5 Gal Keg",
+    "UNITS": 0.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 78017,
     "CUSTOMER_NAME": "El Asadero Mexican Grill (Rochelle Park)",
     "BRAND_FAMILY": "Dos Equis",
@@ -456,8 +456,34 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12057,
-    "CUSTOMER_NAME": "YARD HOUSE 8384",
+    "CUSTOMER_NUM": 12034,
+    "CUSTOMER_NAME": "Dave & Buster's Nj, Inc",
+    "BRAND_FAMILY": "Dos Equis",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-08-03",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1.0,
+    "NEW_PLACEMENT": 0,
+    "PACKAGE": "15.5 Gal Keg",
+    "UNITS": 0.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 36014,
+    "CUSTOMER_NAME": "Viva Margarita Wallington",
+    "BRAND_FAMILY": "Dos Equis",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-08-03",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1.0,
+    "NEW_PLACEMENT": 0,
+    "PACKAGE": "15.5 Gal Keg",
+    "UNITS": 0.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 25077,
+    "CUSTOMER_NAME": "Chevy's Fresh Mex (A)Clif",
     "BRAND_FAMILY": "Dos Equis",
     "PRODUCT_NAME": "",
     "DATE": "2026-08-03",
@@ -508,8 +534,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 49085,
-    "CUSTOMER_NAME": "Tommy's Tavern + Tap (Edgewater)",
+    "CUSTOMER_NUM": 31039,
+    "CUSTOMER_NAME": "Yard House 8390",
     "BRAND_FAMILY": "Dos Equis",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-14",
@@ -521,8 +547,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31039,
-    "CUSTOMER_NAME": "Yard House 8390",
+    "CUSTOMER_NUM": 49085,
+    "CUSTOMER_NAME": "Tommy's Tavern + Tap (Edgewater)",
     "BRAND_FAMILY": "Dos Equis",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-14",
@@ -572,9 +598,9 @@
     "UNITS": 1.0
   },
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 50029,
-    "CUSTOMER_NAME": "La Tequilera Restaurant",
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 36014,
+    "CUSTOMER_NAME": "Viva Margarita Wallington",
     "BRAND_FAMILY": "Dos Equis",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-07",
@@ -611,9 +637,9 @@
     "UNITS": 1.0
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 36014,
-    "CUSTOMER_NAME": "Viva Margarita Wallington",
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 50029,
+    "CUSTOMER_NAME": "La Tequilera Restaurant",
     "BRAND_FAMILY": "Dos Equis",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-07",
@@ -637,58 +663,6 @@
     "UNITS": 1.0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12034,
-    "CUSTOMER_NAME": "Dave & Buster's Nj, Inc",
-    "BRAND_FAMILY": "Dos Equis",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-01",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1.0,
-    "NEW_PLACEMENT": 0,
-    "PACKAGE": "15.5 Gal Keg",
-    "UNITS": 0.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 36014,
-    "CUSTOMER_NAME": "Viva Margarita Wallington",
-    "BRAND_FAMILY": "Dos Equis",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-01",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1.0,
-    "NEW_PLACEMENT": 0,
-    "PACKAGE": "15.5 Gal Keg",
-    "UNITS": 0.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24031,
-    "CUSTOMER_NAME": "Tommy's Tavern & Tap (Clifton)",
-    "BRAND_FAMILY": "Dos Equis",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-01",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1.0,
-    "NEW_PLACEMENT": 0,
-    "PACKAGE": "15.5 Gal Keg",
-    "UNITS": 0.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 83009,
-    "CUSTOMER_NAME": "Jalapeno Mex. Grille(A)",
-    "BRAND_FAMILY": "Dos Equis",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-01",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1.0,
-    "NEW_PLACEMENT": 0,
-    "PACKAGE": "20 L Keg",
-    "UNITS": 0.0
-  },
-  {
     "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 49085,
     "CUSTOMER_NAME": "Tommy's Tavern + Tap (Edgewater)",
@@ -703,8 +677,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 49022,
-    "CUSTOMER_NAME": "El asadero Mexican Grill (Fort Lee)",
+    "CUSTOMER_NUM": 31043,
+    "CUSTOMER_NAME": "House of Que (East Rutherford)",
     "BRAND_FAMILY": "Dos Equis",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-01",
@@ -712,12 +686,25 @@
     "BUYER_COUNT": 1.0,
     "NEW_PLACEMENT": 0,
     "PACKAGE": "15.5 Gal Keg",
-    "UNITS": 1.0
+    "UNITS": 0.0
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31043,
-    "CUSTOMER_NAME": "House of Que (East Rutherford)",
+    "CUSTOMER_NUM": 31039,
+    "CUSTOMER_NAME": "Yard House 8390",
+    "BRAND_FAMILY": "Dos Equis",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-01",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1.0,
+    "NEW_PLACEMENT": 0,
+    "PACKAGE": "15.5 Gal Keg",
+    "UNITS": 0.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 80018,
+    "CUSTOMER_NAME": "Millers Paramus Ale House",
     "BRAND_FAMILY": "Dos Equis",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-01",
@@ -738,6 +725,32 @@
     "BUYER_COUNT": 1.0,
     "NEW_PLACEMENT": 0,
     "PACKAGE": "15.5 Gal Keg",
+    "UNITS": 0.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12034,
+    "CUSTOMER_NAME": "Dave & Buster's Nj, Inc",
+    "BRAND_FAMILY": "Dos Equis",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-01",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1.0,
+    "NEW_PLACEMENT": 0,
+    "PACKAGE": "15.5 Gal Keg",
+    "UNITS": 0.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "CUSTOMER_NUM": 83009,
+    "CUSTOMER_NAME": "Jalapeno Mex. Grille(A)",
+    "BRAND_FAMILY": "Dos Equis",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-01",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1.0,
+    "NEW_PLACEMENT": 0,
+    "PACKAGE": "20 L Keg",
     "UNITS": 0.0
   },
   {
@@ -767,9 +780,9 @@
     "UNITS": 1.0
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31039,
-    "CUSTOMER_NAME": "Yard House 8390",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 24031,
+    "CUSTOMER_NAME": "Tommy's Tavern & Tap (Clifton)",
     "BRAND_FAMILY": "Dos Equis",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-01",
@@ -781,8 +794,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 80018,
-    "CUSTOMER_NAME": "Millers Paramus Ale House",
+    "CUSTOMER_NUM": 36014,
+    "CUSTOMER_NAME": "Viva Margarita Wallington",
     "BRAND_FAMILY": "Dos Equis",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-01",
@@ -791,6 +804,19 @@
     "NEW_PLACEMENT": 0,
     "PACKAGE": "15.5 Gal Keg",
     "UNITS": 0.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 49022,
+    "CUSTOMER_NAME": "El asadero Mexican Grill (Fort Lee)",
+    "BRAND_FAMILY": "Dos Equis",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-01",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1.0,
+    "NEW_PLACEMENT": 0,
+    "PACKAGE": "15.5 Gal Keg",
+    "UNITS": 1.0
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -898,8 +924,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 78017,
-    "CUSTOMER_NAME": "El Asadero Mexican Grill (Rochelle Park)",
+    "CUSTOMER_NUM": 31043,
+    "CUSTOMER_NAME": "House of Que (East Rutherford)",
     "BRAND_FAMILY": "Dos Equis",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-11",
@@ -911,8 +937,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31043,
-    "CUSTOMER_NAME": "House of Que (East Rutherford)",
+    "CUSTOMER_NUM": 78017,
+    "CUSTOMER_NAME": "El Asadero Mexican Grill (Rochelle Park)",
     "BRAND_FAMILY": "Dos Equis",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-11",
@@ -975,19 +1001,6 @@
     "UNITS": 1.0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24031,
-    "CUSTOMER_NAME": "Tommy's Tavern & Tap (Clifton)",
-    "BRAND_FAMILY": "Dos Equis",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-02",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1.0,
-    "NEW_PLACEMENT": 0,
-    "PACKAGE": "15.5 Gal Keg",
-    "UNITS": 1.0
-  },
-  {
     "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 49085,
     "CUSTOMER_NAME": "Tommy's Tavern + Tap (Edgewater)",
@@ -1002,73 +1015,21 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 25077,
-    "CUSTOMER_NAME": "Chevy's Fresh Mex (A)Clif",
+    "CUSTOMER_NUM": 24031,
+    "CUSTOMER_NAME": "Tommy's Tavern & Tap (Clifton)",
     "BRAND_FAMILY": "Dos Equis",
     "PRODUCT_NAME": "",
-    "DATE": "2026-06-01",
+    "DATE": "2026-06-02",
     "PERIOD": "base",
     "BUYER_COUNT": 1.0,
     "NEW_PLACEMENT": 0,
     "PACKAGE": "15.5 Gal Keg",
-    "UNITS": 0.0
+    "UNITS": 1.0
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 14002,
     "CUSTOMER_NAME": "Applebee's (Totowa) (A)",
-    "BRAND_FAMILY": "Dos Equis",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-01",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1.0,
-    "NEW_PLACEMENT": 0,
-    "PACKAGE": "15.5 Gal Keg",
-    "UNITS": 0.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31023,
-    "CUSTOMER_NAME": "Applebee's Garfield (A)",
-    "BRAND_FAMILY": "Dos Equis",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-01",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1.0,
-    "NEW_PLACEMENT": 0,
-    "PACKAGE": "15.5 Gal Keg",
-    "UNITS": 0.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 78017,
-    "CUSTOMER_NAME": "El Asadero Mexican Grill (Rochelle Park)",
-    "BRAND_FAMILY": "Dos Equis",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-01",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1.0,
-    "NEW_PLACEMENT": 0,
-    "PACKAGE": "15.5 Gal Keg",
-    "UNITS": 0.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 83009,
-    "CUSTOMER_NAME": "Jalapeno Mex. Grille(A)",
-    "BRAND_FAMILY": "Dos Equis",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-01",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1.0,
-    "NEW_PLACEMENT": 0,
-    "PACKAGE": "20 L Keg",
-    "UNITS": 0.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 80018,
-    "CUSTOMER_NAME": "Millers Paramus Ale House",
     "BRAND_FAMILY": "Dos Equis",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-01",
@@ -1093,8 +1054,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12065,
-    "CUSTOMER_NAME": "Buffalo Wild Wings - Wayne, NJ",
+    "CUSTOMER_NUM": 25077,
+    "CUSTOMER_NAME": "Chevy's Fresh Mex (A)Clif",
     "BRAND_FAMILY": "Dos Equis",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-01",
@@ -1128,6 +1089,71 @@
     "BUYER_COUNT": 1.0,
     "NEW_PLACEMENT": 0,
     "PACKAGE": "15.5 Gal Keg",
+    "UNITS": 0.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 31023,
+    "CUSTOMER_NAME": "Applebee's Garfield (A)",
+    "BRAND_FAMILY": "Dos Equis",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-01",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1.0,
+    "NEW_PLACEMENT": 0,
+    "PACKAGE": "15.5 Gal Keg",
+    "UNITS": 0.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 80018,
+    "CUSTOMER_NAME": "Millers Paramus Ale House",
+    "BRAND_FAMILY": "Dos Equis",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-01",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1.0,
+    "NEW_PLACEMENT": 0,
+    "PACKAGE": "15.5 Gal Keg",
+    "UNITS": 0.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12065,
+    "CUSTOMER_NAME": "Buffalo Wild Wings - Wayne, NJ",
+    "BRAND_FAMILY": "Dos Equis",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-01",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1.0,
+    "NEW_PLACEMENT": 0,
+    "PACKAGE": "15.5 Gal Keg",
+    "UNITS": 0.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 78017,
+    "CUSTOMER_NAME": "El Asadero Mexican Grill (Rochelle Park)",
+    "BRAND_FAMILY": "Dos Equis",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-01",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1.0,
+    "NEW_PLACEMENT": 0,
+    "PACKAGE": "15.5 Gal Keg",
+    "UNITS": 0.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "CUSTOMER_NUM": 83009,
+    "CUSTOMER_NAME": "Jalapeno Mex. Grille(A)",
+    "BRAND_FAMILY": "Dos Equis",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-01",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1.0,
+    "NEW_PLACEMENT": 0,
+    "PACKAGE": "20 L Keg",
     "UNITS": 0.0
   }
 ]

@@ -11,7 +11,7 @@ const PROGRAM_DATA = {
             "customer": "Kings Super Markets",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Honey Crisp 6/4/16 oz Can",
                 "date": "8/7/2026"
               }
             ],
@@ -21,7 +21,7 @@ const PROGRAM_DATA = {
             "customer": "Kings Super Markets",
             "products": [
               {
-                "product": "1911 Honey Crisp 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/7/2026"
               }
             ],
@@ -207,6 +207,16 @@ const PROGRAM_DATA = {
             "customer": "Belleville Liquors",
             "products": [
               {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "8/20/2026"
+              }
+            ],
+            "date": "8/20/2026"
+          },
+          {
+            "customer": "Belleville Liquors",
+            "products": [
+              {
                 "product": "1911 Honey Crisp 6/4/16 oz Can",
                 "date": "8/20/2026"
               }
@@ -224,26 +234,6 @@ const PROGRAM_DATA = {
             "date": "8/20/2026"
           },
           {
-            "customer": "Belleville Liquors",
-            "products": [
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "8/20/2026"
-              }
-            ],
-            "date": "8/20/2026"
-          },
-          {
-            "customer": "ShopRite Wines & Spirits of Bayonne",
-            "products": [
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "8/19/2026"
-              }
-            ],
-            "date": "8/19/2026"
-          },
-          {
             "customer": "Shop Rite Wine & Spirits Kearny",
             "products": [
               {
@@ -258,6 +248,16 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "8/19/2026"
+              }
+            ],
+            "date": "8/19/2026"
+          },
+          {
+            "customer": "ShopRite Wines & Spirits of Bayonne",
+            "products": [
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/19/2026"
               }
             ],
@@ -287,7 +287,17 @@ const PROGRAM_DATA = {
             "customer": "Nutley Wine Shop",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Black Cherry 6/4/16 oz Can",
+                "date": "8/13/2026"
+              }
+            ],
+            "date": "8/13/2026"
+          },
+          {
+            "customer": "Nutley Wine Shop",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/13/2026"
               }
             ],
@@ -307,17 +317,7 @@ const PROGRAM_DATA = {
             "customer": "Nutley Wine Shop",
             "products": [
               {
-                "product": "1911 Black Cherry 6/4/16 oz Can",
-                "date": "8/13/2026"
-              }
-            ],
-            "date": "8/13/2026"
-          },
-          {
-            "customer": "Nutley Wine Shop",
-            "products": [
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/13/2026"
               }
             ],
@@ -552,7 +552,7 @@ const PROGRAM_DATA = {
             "cases": 2.0
           },
           {
-            "customer": "Buy-Rite Liquors",
+            "customer": "BuyRite Liquors - Kearny",
             "cases": 2.0
           },
           {
@@ -774,20 +774,6 @@ const PROGRAM_DATA = {
             "date": "9/8/2026"
           },
           {
-            "customer": "Buyrite Liquors",
-            "products": [
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "9/24/2026"
-              },
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "8/13/2026"
-              }
-            ],
-            "date": "9/24/2026"
-          },
-          {
             "customer": "Best Cellars (Summit)",
             "products": [
               {
@@ -855,6 +841,20 @@ const PROGRAM_DATA = {
             "customer": "Jersey Fine Wines",
             "products": [
               {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "9/15/2026"
+              },
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "8/19/2026"
+              }
+            ],
+            "date": "9/15/2026"
+          },
+          {
+            "customer": "Jersey Fine Wines",
+            "products": [
+              {
                 "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "9/15/2026"
               },
@@ -876,20 +876,6 @@ const PROGRAM_DATA = {
             "date": "9/15/2026"
           },
           {
-            "customer": "Jersey Fine Wines",
-            "products": [
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "9/15/2026"
-              },
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "8/19/2026"
-              }
-            ],
-            "date": "9/15/2026"
-          },
-          {
             "customer": "The Wine Rack Millburn",
             "products": [
               {
@@ -903,7 +889,7 @@ const PROGRAM_DATA = {
             "customer": "Wine Anthology (A)",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/5/2026"
               }
             ],
@@ -913,7 +899,7 @@ const PROGRAM_DATA = {
             "customer": "Wine Anthology (A)",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/5/2026"
               }
             ],
@@ -923,7 +909,17 @@ const PROGRAM_DATA = {
             "customer": "Dittrick's W&L (A)",
             "products": [
               {
-                "product": "1911 Original 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "8/28/2026"
+              }
+            ],
+            "date": "8/28/2026"
+          },
+          {
+            "customer": "Buy Rite Liq (A)",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/28/2026"
               }
             ],
@@ -943,7 +939,7 @@ const PROGRAM_DATA = {
             "customer": "Dittrick's W&L (A)",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/28/2026"
               }
             ],
@@ -954,26 +950,6 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "8/28/2026"
-              }
-            ],
-            "date": "8/28/2026"
-          },
-          {
-            "customer": "Buy Rite Liq (A)",
-            "products": [
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "8/28/2026"
-              }
-            ],
-            "date": "8/28/2026"
-          },
-          {
-            "customer": "Dittrick's W&L (A)",
-            "products": [
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/28/2026"
               }
             ],
@@ -984,6 +960,16 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "1911 Black Cherry 6/4/16 oz Can",
+                "date": "8/28/2026"
+              }
+            ],
+            "date": "8/28/2026"
+          },
+          {
+            "customer": "Dittrick's W&L (A)",
+            "products": [
+              {
+                "product": "1911 Original 6/4/16 oz Can",
                 "date": "8/28/2026"
               }
             ],
@@ -1003,20 +989,6 @@ const PROGRAM_DATA = {
             "customer": "Buyrite Liquors",
             "products": [
               {
-                "product": "1911 Half & Half 6/4/16 oz Can",
-                "date": "8/21/2026"
-              },
-              {
-                "product": "1911 Half & Half 6/4/16 oz Can",
-                "date": "8/20/2026"
-              }
-            ],
-            "date": "8/21/2026"
-          },
-          {
-            "customer": "Buyrite Liquors",
-            "products": [
-              {
                 "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/21/2026"
               },
@@ -1032,60 +1004,24 @@ const PROGRAM_DATA = {
             "date": "8/21/2026"
           },
           {
-            "customer": "Metro Liquor (Linden)",
+            "customer": "Buyrite Liquors",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Half & Half 6/4/16 oz Can",
+                "date": "8/21/2026"
+              },
+              {
+                "product": "1911 Half & Half 6/4/16 oz Can",
                 "date": "8/20/2026"
               }
             ],
-            "date": "8/20/2026"
-          },
-          {
-            "customer": "House of Wine & Liquor Westfield",
-            "products": [
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "8/20/2026"
-              }
-            ],
-            "date": "8/20/2026"
+            "date": "8/21/2026"
           },
           {
             "customer": "Metro Liquor (Linden)",
             "products": [
               {
                 "product": "1911 Variety 3/8/12 oz Can",
-                "date": "8/20/2026"
-              }
-            ],
-            "date": "8/20/2026"
-          },
-          {
-            "customer": "House of Wine & Liquor Westfield",
-            "products": [
-              {
-                "product": "1911 Original 6/4/16 oz Can",
-                "date": "8/20/2026"
-              }
-            ],
-            "date": "8/20/2026"
-          },
-          {
-            "customer": "Metro Liquor (Linden)",
-            "products": [
-              {
-                "product": "1911 Black Cherry 6/4/16 oz Can",
-                "date": "8/20/2026"
-              }
-            ],
-            "date": "8/20/2026"
-          },
-          {
-            "customer": "House of Wine & Liquor Westfield",
-            "products": [
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/20/2026"
               }
             ],
@@ -1105,6 +1041,16 @@ const PROGRAM_DATA = {
             "customer": "Metro Liquor (Linden)",
             "products": [
               {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "8/20/2026"
+              }
+            ],
+            "date": "8/20/2026"
+          },
+          {
+            "customer": "House of Wine & Liquor Westfield",
+            "products": [
+              {
                 "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/20/2026"
               }
@@ -1112,10 +1058,50 @@ const PROGRAM_DATA = {
             "date": "8/20/2026"
           },
           {
-            "customer": "M & M Liquors",
+            "customer": "House of Wine & Liquor Westfield",
+            "products": [
+              {
+                "product": "1911 Original 6/4/16 oz Can",
+                "date": "8/20/2026"
+              }
+            ],
+            "date": "8/20/2026"
+          },
+          {
+            "customer": "House of Wine & Liquor Westfield",
+            "products": [
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "8/20/2026"
+              }
+            ],
+            "date": "8/20/2026"
+          },
+          {
+            "customer": "Metro Liquor (Linden)",
             "products": [
               {
                 "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "8/20/2026"
+              }
+            ],
+            "date": "8/20/2026"
+          },
+          {
+            "customer": "Metro Liquor (Linden)",
+            "products": [
+              {
+                "product": "1911 Black Cherry 6/4/16 oz Can",
+                "date": "8/20/2026"
+              }
+            ],
+            "date": "8/20/2026"
+          },
+          {
+            "customer": "Jersey Fine Wines",
+            "products": [
+              {
+                "product": "1911 Honey Crisp 6/4/16 oz Can",
                 "date": "8/19/2026"
               }
             ],
@@ -1135,17 +1121,17 @@ const PROGRAM_DATA = {
             "customer": "Jersey Fine Wines",
             "products": [
               {
-                "product": "1911 Honey Crisp 6/4/16 oz Can",
+                "product": "1911 Black Cherry 6/4/16 oz Can",
                 "date": "8/19/2026"
               }
             ],
             "date": "8/19/2026"
           },
           {
-            "customer": "Drinq Linq The Liquor Store",
+            "customer": "M & M Liquors",
             "products": [
               {
-                "product": "1911 Original 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/19/2026"
               }
             ],
@@ -1162,16 +1148,6 @@ const PROGRAM_DATA = {
             "date": "8/19/2026"
           },
           {
-            "customer": "Jersey Fine Wines",
-            "products": [
-              {
-                "product": "1911 Black Cherry 6/4/16 oz Can",
-                "date": "8/19/2026"
-              }
-            ],
-            "date": "8/19/2026"
-          },
-          {
             "customer": "Drinq Linq The Liquor Store",
             "products": [
               {
@@ -1182,14 +1158,14 @@ const PROGRAM_DATA = {
             "date": "8/19/2026"
           },
           {
-            "customer": "Shop Rite of Westfield",
+            "customer": "Drinq Linq The Liquor Store",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "8/14/2026"
+                "product": "1911 Original 6/4/16 oz Can",
+                "date": "8/19/2026"
               }
             ],
-            "date": "8/14/2026"
+            "date": "8/19/2026"
           },
           {
             "customer": "Shop Rite of Westfield",
@@ -1202,7 +1178,17 @@ const PROGRAM_DATA = {
             "date": "8/14/2026"
           },
           {
-            "customer": "Witty's Fine Wine & Spirt",
+            "customer": "Shop Rite of Westfield",
+            "products": [
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "8/14/2026"
+              }
+            ],
+            "date": "8/14/2026"
+          },
+          {
+            "customer": "Buyrite Liquors",
             "products": [
               {
                 "product": "1911 Cider Donut 6/4/16 oz Can",
@@ -1220,10 +1206,20 @@ const PROGRAM_DATA = {
               }
             ],
             "date": "8/13/2026"
+          },
+          {
+            "customer": "Witty's Fine Wine & Spirt",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "8/13/2026"
+              }
+            ],
+            "date": "8/13/2026"
           }
         ],
         "offPremNewCount": 43,
-        "offPremReorderCount": 20,
+        "offPremReorderCount": 22,
         "offPremTargets": [
           {
             "customer": "Shoppers Paradise Liq",
@@ -1371,7 +1367,7 @@ const PROGRAM_DATA = {
         "draftTargetCount": 14,
         "draftAccounts": [],
         "draftAccountsQualified": 0,
-        "caseVolume": 96.0,
+        "caseVolume": 98.0,
         "caseVolumeByAccount": [
           {
             "customer": "Trader Joes Westfield",
@@ -1386,19 +1382,19 @@ const PROGRAM_DATA = {
             "cases": 10.0
           },
           {
-            "customer": "Total Wine & More (Union)",
+            "customer": "Shop Rite of Westfield",
             "cases": 9.0
           },
           {
-            "customer": "Buyrite Liquors",
-            "cases": 7.0
+            "customer": "Total Wine & More (Union)",
+            "cases": 9.0
           },
           {
             "customer": "Park Beverage",
             "cases": 7.0
           },
           {
-            "customer": "Shop Rite of Westfield",
+            "customer": "Buyrite Liquors",
             "cases": 6.0
           },
           {
@@ -1493,7 +1489,7 @@ const PROGRAM_DATA = {
             "customer": "Usa Wine Traders (Wanaque)",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "9/17/2026"
               }
             ],
@@ -1503,7 +1499,7 @@ const PROGRAM_DATA = {
             "customer": "Usa Wine Traders (Wanaque)",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "9/17/2026"
               }
             ],
@@ -1533,7 +1529,7 @@ const PROGRAM_DATA = {
             "customer": "Ringwood W&L",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/13/2026"
               }
             ],
@@ -1543,7 +1539,7 @@ const PROGRAM_DATA = {
             "customer": "Ringwood W&L",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/13/2026"
               }
             ],
@@ -1553,7 +1549,7 @@ const PROGRAM_DATA = {
             "customer": "Roserne Pkg Store South",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/11/2026"
               }
             ],
@@ -1563,7 +1559,7 @@ const PROGRAM_DATA = {
             "customer": "Roserne Pkg Store South",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/11/2026"
               }
             ],
@@ -1981,7 +1977,7 @@ const PROGRAM_DATA = {
             "customer": "Wineland",
             "products": [
               {
-                "product": "1911 Raspberry 6/4/16 oz Can",
+                "product": "1911 Black Cherry 1/12/19.2oz Can",
                 "date": "9/11/2026"
               }
             ],
@@ -1991,21 +1987,11 @@ const PROGRAM_DATA = {
             "customer": "Wineland",
             "products": [
               {
-                "product": "1911 Black Cherry 1/12/19.2oz Can",
+                "product": "1911 Raspberry 6/4/16 oz Can",
                 "date": "9/11/2026"
               }
             ],
             "date": "9/11/2026"
-          },
-          {
-            "customer": "Buy Rite Of Main St Lodi",
-            "products": [
-              {
-                "product": "1911 Tropical Pineapple Mango 6/4/16 oz Can",
-                "date": "8/4/2026"
-              }
-            ],
-            "date": "8/4/2026"
           },
           {
             "customer": "Buy Rite Of Main St Lodi",
@@ -2028,6 +2014,16 @@ const PROGRAM_DATA = {
             "date": "8/4/2026"
           },
           {
+            "customer": "Buy Rite Of Main St Lodi",
+            "products": [
+              {
+                "product": "1911 Tropical Pineapple Mango 6/4/16 oz Can",
+                "date": "8/4/2026"
+              }
+            ],
+            "date": "8/4/2026"
+          },
+          {
             "customer": "Buy Rite Discount Liquor",
             "products": [
               {
@@ -2041,7 +2037,7 @@ const PROGRAM_DATA = {
             "customer": "Usa Wine Traders Club (Saddle Brook)",
             "products": [
               {
-                "product": "1911 Black Cherry 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/14/2026"
               }
             ],
@@ -2061,7 +2057,7 @@ const PROGRAM_DATA = {
             "customer": "Usa Wine Traders Club (Saddle Brook)",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/14/2026"
               }
             ],
@@ -2071,7 +2067,7 @@ const PROGRAM_DATA = {
             "customer": "Usa Wine Traders Club (Saddle Brook)",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Black Cherry 6/4/16 oz Can",
                 "date": "8/14/2026"
               }
             ],
@@ -3066,6 +3062,20 @@ const PROGRAM_DATA = {
       "Hakan Sadik": {
         "offPremNew": [
           {
+            "customer": "Wine Barrel (P)",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "9/25/2026"
+              },
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "8/13/2026"
+              }
+            ],
+            "date": "9/25/2026"
+          },
+          {
             "customer": "Bloomfield Buyrite",
             "products": [
               {
@@ -3084,42 +3094,22 @@ const PROGRAM_DATA = {
               }
             ],
             "date": "8/25/2026"
+          },
+          {
+            "customer": "Joe Canals",
+            "products": [
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "8/20/2026"
+              }
+            ],
+            "date": "8/20/2026"
           },
           {
             "customer": "Joe Canals",
             "products": [
               {
                 "product": "1911 Rose 6/4/16 oz Can",
-                "date": "8/20/2026"
-              }
-            ],
-            "date": "8/20/2026"
-          },
-          {
-            "customer": "Joe Canals",
-            "products": [
-              {
-                "product": "1911 Black Cherry 6/4/16 oz Can",
-                "date": "8/20/2026"
-              }
-            ],
-            "date": "8/20/2026"
-          },
-          {
-            "customer": "Joe Canals",
-            "products": [
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "8/20/2026"
-              }
-            ],
-            "date": "8/20/2026"
-          },
-          {
-            "customer": "Joe Canals",
-            "products": [
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/20/2026"
               }
             ],
@@ -3136,6 +3126,26 @@ const PROGRAM_DATA = {
             "date": "8/20/2026"
           },
           {
+            "customer": "Joe Canals",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "8/20/2026"
+              }
+            ],
+            "date": "8/20/2026"
+          },
+          {
+            "customer": "Joe Canals",
+            "products": [
+              {
+                "product": "1911 Black Cherry 6/4/16 oz Can",
+                "date": "8/20/2026"
+              }
+            ],
+            "date": "8/20/2026"
+          },
+          {
             "customer": "Buy Rite Wine & Liquor",
             "products": [
               {
@@ -3144,16 +3154,6 @@ const PROGRAM_DATA = {
               }
             ],
             "date": "8/18/2026"
-          },
-          {
-            "customer": "Wine Barrel (P)",
-            "products": [
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "8/13/2026"
-              }
-            ],
-            "date": "8/13/2026"
           },
           {
             "customer": "Bottle King Livingston",
@@ -3307,7 +3307,7 @@ const PROGRAM_DATA = {
         "draftTargetCount": 12,
         "draftAccounts": [],
         "draftAccountsQualified": 0,
-        "caseVolume": 34.0,
+        "caseVolume": 35.0,
         "caseVolumeByAccount": [
           {
             "customer": "Buy Rite Wine & Liquor",
@@ -3318,11 +3318,11 @@ const PROGRAM_DATA = {
             "cases": 8.0
           },
           {
-            "customer": "Joe Canals",
-            "cases": 5.0
+            "customer": "Wine Barrel (P)",
+            "cases": 6.0
           },
           {
-            "customer": "Wine Barrel (P)",
+            "customer": "Joe Canals",
             "cases": 5.0
           },
           {
@@ -3339,6 +3339,20 @@ const PROGRAM_DATA = {
       },
       "Jaime Colonna": {
         "offPremNew": [
+          {
+            "customer": "Central Ave Liquors",
+            "products": [
+              {
+                "product": "1911 Rose 6/4/16 oz Can",
+                "date": "9/22/2026"
+              },
+              {
+                "product": "1911 Rose 6/4/16 oz Can",
+                "date": "8/7/2026"
+              }
+            ],
+            "date": "9/22/2026"
+          },
           {
             "customer": "Central Ave Liquors",
             "products": [
@@ -3364,24 +3378,10 @@ const PROGRAM_DATA = {
             "date": "9/22/2026"
           },
           {
-            "customer": "Central Ave Liquors",
+            "customer": "Sparrow's Wine & Liq(P) (1224 Hoboken)",
             "products": [
               {
-                "product": "1911 Rose 6/4/16 oz Can",
-                "date": "9/22/2026"
-              },
-              {
-                "product": "1911 Rose 6/4/16 oz Can",
-                "date": "8/7/2026"
-              }
-            ],
-            "date": "9/22/2026"
-          },
-          {
-            "customer": "Shop Rite/Metro Plaza",
-            "products": [
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/5/2026"
               }
             ],
@@ -3408,10 +3408,10 @@ const PROGRAM_DATA = {
             "date": "8/5/2026"
           },
           {
-            "customer": "Sparrow's Wine & Liq(P) (1224 Hoboken)",
+            "customer": "Shop Rite/Metro Plaza",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/5/2026"
               }
             ],
@@ -3451,7 +3451,7 @@ const PROGRAM_DATA = {
             "customer": "ShopRite Wines & Spirits of Hoboken",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Rose 6/4/16 oz Can",
                 "date": "8/12/2026"
               }
             ],
@@ -3471,7 +3471,7 @@ const PROGRAM_DATA = {
             "customer": "ShopRite Wines & Spirits of Hoboken",
             "products": [
               {
-                "product": "1911 Rose 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/12/2026"
               }
             ],
@@ -3845,7 +3845,7 @@ const PROGRAM_DATA = {
             "customer": "Liquor Factory I Landing",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "9/22/2026"
               }
             ],
@@ -3855,11 +3855,29 @@ const PROGRAM_DATA = {
             "customer": "Liquor Factory I Landing",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "9/22/2026"
               }
             ],
             "date": "9/22/2026"
+          },
+          {
+            "customer": "Liquor Factory VI Byram",
+            "products": [
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "9/21/2026"
+              },
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "8/3/2026"
+              },
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "8/24/2026"
+              }
+            ],
+            "date": "9/21/2026"
           },
           {
             "customer": "Liquor Factory VI Byram",
@@ -3889,24 +3907,6 @@ const PROGRAM_DATA = {
               {
                 "product": "1911 Raspberry 6/4/16 oz Can",
                 "date": "8/31/2026"
-              }
-            ],
-            "date": "9/21/2026"
-          },
-          {
-            "customer": "Liquor Factory VI Byram",
-            "products": [
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "9/21/2026"
-              },
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "8/3/2026"
-              },
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "8/24/2026"
               }
             ],
             "date": "9/21/2026"
@@ -3955,6 +3955,16 @@ const PROGRAM_DATA = {
             "customer": "Liquor Factory V Andover",
             "products": [
               {
+                "product": "1911 Original 6/4/16 oz Can",
+                "date": "8/31/2026"
+              }
+            ],
+            "date": "8/31/2026"
+          },
+          {
+            "customer": "Liquor Factory V Andover",
+            "products": [
+              {
                 "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/31/2026"
               }
@@ -3966,16 +3976,6 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "8/31/2026"
-              }
-            ],
-            "date": "8/31/2026"
-          },
-          {
-            "customer": "Liquor Factory V Andover",
-            "products": [
-              {
-                "product": "1911 Original 6/4/16 oz Can",
                 "date": "8/31/2026"
               }
             ],
@@ -3996,6 +3996,16 @@ const PROGRAM_DATA = {
             "date": "8/3/2026"
           },
           {
+            "customer": "Liquor Factory I Landing",
+            "products": [
+              {
+                "product": "1911 Tropical Pineapple Mango 6/4/16 oz Can",
+                "date": "8/3/2026"
+              }
+            ],
+            "date": "8/3/2026"
+          },
+          {
             "customer": "ShopRite Wines & Spirits of Sparta",
             "products": [
               {
@@ -4010,16 +4020,6 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "1911 Black Cherry 6/4/16 oz Can",
-                "date": "8/3/2026"
-              }
-            ],
-            "date": "8/3/2026"
-          },
-          {
-            "customer": "Liquor Factory I Landing",
-            "products": [
-              {
-                "product": "1911 Tropical Pineapple Mango 6/4/16 oz Can",
                 "date": "8/3/2026"
               }
             ],
@@ -4066,7 +4066,7 @@ const PROGRAM_DATA = {
             "date": "8/25/2026"
           },
           {
-            "customer": "Liquor Factory IV Hopatcong",
+            "customer": "Liquor Factory III Sparta",
             "products": [
               {
                 "product": "1911 Haunted Hayride 6/4/16 oz Can",
@@ -4086,7 +4086,7 @@ const PROGRAM_DATA = {
             "date": "8/17/2026"
           },
           {
-            "customer": "Liquor Factory III Sparta",
+            "customer": "Liquor Factory IV Hopatcong",
             "products": [
               {
                 "product": "1911 Haunted Hayride 6/4/16 oz Can",
@@ -4246,8 +4246,12 @@ const PROGRAM_DATA = {
             "customer": "Clifton Commons S & W",
             "products": [
               {
-                "product": "1911 Black Cherry 1/12/19.2oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/31/2026"
+              },
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "8/10/2026"
               }
             ],
             "date": "8/31/2026"
@@ -4256,12 +4260,8 @@ const PROGRAM_DATA = {
             "customer": "Clifton Commons S & W",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Black Cherry 1/12/19.2oz Can",
                 "date": "8/31/2026"
-              },
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "8/10/2026"
               }
             ],
             "date": "8/31/2026"
@@ -4394,7 +4394,7 @@ const PROGRAM_DATA = {
             "customer": "Sandy's Wine & Spirits (Flanders)",
             "products": [
               {
-                "product": "1911 Tropical Pineapple Mango 6/4/16 oz Can",
+                "product": "1911 Black Cherry 6/4/16 oz Can",
                 "date": "9/9/2026"
               }
             ],
@@ -4404,7 +4404,7 @@ const PROGRAM_DATA = {
             "customer": "Sandy's Wine & Spirits (Flanders)",
             "products": [
               {
-                "product": "1911 Black Cherry 6/4/16 oz Can",
+                "product": "1911 Tropical Pineapple Mango 6/4/16 oz Can",
                 "date": "9/9/2026"
               }
             ],
@@ -4424,7 +4424,7 @@ const PROGRAM_DATA = {
             "customer": "Shop Rite W & S Chester",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "9/4/2026"
               }
             ],
@@ -4434,51 +4434,81 @@ const PROGRAM_DATA = {
             "customer": "Shop Rite W & S Chester",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "9/4/2026"
               }
             ],
             "date": "9/4/2026"
           },
           {
-            "customer": "The Village Liquor Store_2",
+            "customer": "Main St Wines & Liq",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "9/24/2026"
-              },
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "9/17/2026"
-              },
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "8/6/2026"
+                "product": "1911 Honey Crisp 6/4/16 oz Can",
+                "date": "9/25/2026"
               }
             ],
-            "date": "9/24/2026"
+            "date": "9/25/2026"
           },
           {
-            "customer": "The Village Liquor Store_2",
+            "customer": "Main St Wines & Liq",
             "products": [
               {
                 "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "9/24/2026"
-              },
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "9/17/2026"
-              },
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "8/6/2026"
-              },
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "8/28/2026"
+                "date": "9/25/2026"
               }
             ],
-            "date": "9/24/2026"
+            "date": "9/25/2026"
+          },
+          {
+            "customer": "Sandy's Wine & Spirits (Flanders)",
+            "products": [
+              {
+                "product": "1911 Honey Crisp 6/4/16 oz Can",
+                "date": "9/25/2026"
+              }
+            ],
+            "date": "9/25/2026"
+          },
+          {
+            "customer": "Main St Wines & Liq",
+            "products": [
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "9/25/2026"
+              }
+            ],
+            "date": "9/25/2026"
+          },
+          {
+            "customer": "Main St Wines & Liq",
+            "products": [
+              {
+                "product": "1911 Rose 6/4/16 oz Can",
+                "date": "9/25/2026"
+              }
+            ],
+            "date": "9/25/2026"
+          },
+          {
+            "customer": "Joe Canal's Disc Liq",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "9/18/2026"
+              }
+            ],
+            "date": "9/18/2026"
+          },
+          {
+            "customer": "Partners Discount Liquors",
+            "products": [
+              {
+                "product": "1911 Variety 3/8/12 oz Can",
+                "date": "9/18/2026"
+              }
+            ],
+            "date": "9/18/2026"
           },
           {
             "customer": "Partners Discount Liquors",
@@ -4495,11 +4525,15 @@ const PROGRAM_DATA = {
             "date": "9/18/2026"
           },
           {
-            "customer": "Joe Canal's Disc Liq",
+            "customer": "Florham Park Liquors",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Rose 6/4/16 oz Can",
                 "date": "9/18/2026"
+              },
+              {
+                "product": "1911 Rose 6/4/16 oz Can",
+                "date": "9/1/2026"
               }
             ],
             "date": "9/18/2026"
@@ -4525,30 +4559,6 @@ const PROGRAM_DATA = {
             "date": "9/18/2026"
           },
           {
-            "customer": "Partners Discount Liquors",
-            "products": [
-              {
-                "product": "1911 Variety 3/8/12 oz Can",
-                "date": "9/18/2026"
-              }
-            ],
-            "date": "9/18/2026"
-          },
-          {
-            "customer": "Florham Park Liquors",
-            "products": [
-              {
-                "product": "1911 Rose 6/4/16 oz Can",
-                "date": "9/18/2026"
-              },
-              {
-                "product": "1911 Rose 6/4/16 oz Can",
-                "date": "9/1/2026"
-              }
-            ],
-            "date": "9/18/2026"
-          },
-          {
             "customer": "Bottle King Morris Plains",
             "products": [
               {
@@ -4558,6 +4568,38 @@ const PROGRAM_DATA = {
               {
                 "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/20/2026"
+              }
+            ],
+            "date": "9/17/2026"
+          },
+          {
+            "customer": "The Village Liquor Store_2",
+            "products": [
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "9/17/2026"
+              },
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "8/6/2026"
+              }
+            ],
+            "date": "9/17/2026"
+          },
+          {
+            "customer": "The Village Liquor Store_2",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "9/17/2026"
+              },
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "8/6/2026"
+              },
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "8/28/2026"
               }
             ],
             "date": "9/17/2026"
@@ -4624,7 +4666,7 @@ const PROGRAM_DATA = {
             "customer": "Sandy's Wine & Spirits (Flanders)",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/7/2026"
               }
             ],
@@ -4634,7 +4676,7 @@ const PROGRAM_DATA = {
             "customer": "Sandy's Wine & Spirits (Flanders)",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/7/2026"
               }
             ],
@@ -4711,16 +4753,6 @@ const PROGRAM_DATA = {
             "date": "8/26/2026"
           },
           {
-            "customer": "Partners Discount Liquors",
-            "products": [
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "8/13/2026"
-              }
-            ],
-            "date": "8/13/2026"
-          },
-          {
             "customer": "Bottle King (A) Ledgewood",
             "products": [
               {
@@ -4735,6 +4767,16 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "8/13/2026"
+              }
+            ],
+            "date": "8/13/2026"
+          },
+          {
+            "customer": "Partners Discount Liquors",
+            "products": [
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/13/2026"
               }
             ],
@@ -4761,7 +4803,7 @@ const PROGRAM_DATA = {
             "date": "8/12/2026"
           }
         ],
-        "offPremNewCount": 33,
+        "offPremNewCount": 38,
         "offPremReorderCount": 45,
         "offPremTargets": [
           {
@@ -4805,10 +4847,6 @@ const PROGRAM_DATA = {
             "cases2026": 226.0
           },
           {
-            "customer": "Main St Wines & Liq",
-            "cases2026": 218.0
-          },
-          {
             "customer": "Four Seasons Wine & Liq",
             "cases2026": 193.0
           },
@@ -4843,9 +4881,13 @@ const PROGRAM_DATA = {
           {
             "customer": "Gillette Liquor",
             "cases2026": 115.0
+          },
+          {
+            "customer": "Green Hill Liquors (A)",
+            "cases2026": 110.0
           }
         ],
-        "offPremTargetCount": 33,
+        "offPremTargetCount": 32,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -4934,12 +4976,8 @@ const PROGRAM_DATA = {
         "draftTargetCount": 42,
         "draftAccounts": [],
         "draftAccountsQualified": 0,
-        "caseVolume": 148.0,
+        "caseVolume": 150.0,
         "caseVolumeByAccount": [
-          {
-            "customer": "The Village Liquor Store_2",
-            "cases": 24.0
-          },
           {
             "customer": "Wegmans",
             "cases": 23.0
@@ -4947,6 +4985,14 @@ const PROGRAM_DATA = {
           {
             "customer": "Shop Rite Liquors",
             "cases": 20.0
+          },
+          {
+            "customer": "The Village Liquor Store_2",
+            "cases": 17.0
+          },
+          {
+            "customer": "Sandy's Wine & Spirits (Flanders)",
+            "cases": 13.0
           },
           {
             "customer": "Partners Discount Liquors",
@@ -4961,12 +5007,12 @@ const PROGRAM_DATA = {
             "cases": 10.0
           },
           {
-            "customer": "Sandy's Wine & Spirits (Flanders)",
-            "cases": 10.0
-          },
-          {
             "customer": "Shop Rite Wines & Spirits of Roxbury#832",
             "cases": 7.0
+          },
+          {
+            "customer": "Main St Wines & Liq",
+            "cases": 6.0
           },
           {
             "customer": "Bottle King (Z) Chatham",
@@ -5001,7 +5047,7 @@ const PROGRAM_DATA = {
             "cases": 2.0
           }
         ],
-        "totalNewPlacements": 33,
+        "totalNewPlacements": 38,
         "draftChannelOk": true
       },
       "Klejdi Lamo": {
@@ -5031,16 +5077,6 @@ const PROGRAM_DATA = {
             "date": "9/3/2026"
           },
           {
-            "customer": "Shop Rite Wine & Spirits Stanhope",
-            "products": [
-              {
-                "product": "1911 Rose 6/4/16 oz Can",
-                "date": "9/23/2026"
-              }
-            ],
-            "date": "9/23/2026"
-          },
-          {
             "customer": "Montville Wine & Spirits",
             "products": [
               {
@@ -5055,6 +5091,16 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "1911 Black Cherry 6/4/16 oz Can",
+                "date": "9/23/2026"
+              }
+            ],
+            "date": "9/23/2026"
+          },
+          {
+            "customer": "Shop Rite Wine & Spirits Stanhope",
+            "products": [
+              {
+                "product": "1911 Rose 6/4/16 oz Can",
                 "date": "9/23/2026"
               }
             ],
@@ -5122,7 +5168,7 @@ const PROGRAM_DATA = {
             "customer": "Liquor Outlet",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/26/2026"
               }
             ],
@@ -5142,11 +5188,21 @@ const PROGRAM_DATA = {
             "customer": "Liquor Outlet",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/26/2026"
               }
             ],
             "date": "8/26/2026"
+          },
+          {
+            "customer": "Shoppers Disc Liquor",
+            "products": [
+              {
+                "product": "1911 Black Cherry 1/12/19.2oz Can",
+                "date": "8/25/2026"
+              }
+            ],
+            "date": "8/25/2026"
           },
           {
             "customer": "Shoppers Disc Liquor",
@@ -5169,20 +5225,10 @@ const PROGRAM_DATA = {
             "date": "8/25/2026"
           },
           {
-            "customer": "Shoppers Disc Liquor",
-            "products": [
-              {
-                "product": "1911 Black Cherry 1/12/19.2oz Can",
-                "date": "8/25/2026"
-              }
-            ],
-            "date": "8/25/2026"
-          },
-          {
             "customer": "Midtown Liq",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/17/2026"
               }
             ],
@@ -5192,7 +5238,7 @@ const PROGRAM_DATA = {
             "customer": "Midtown Liq",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/17/2026"
               }
             ],
@@ -5313,11 +5359,11 @@ const PROGRAM_DATA = {
             "cases": 17.0
           },
           {
-            "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
+            "customer": "Liquor Outlet",
             "cases": 16.0
           },
           {
-            "customer": "Liquor Outlet",
+            "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
             "cases": 16.0
           },
           {
@@ -5520,11 +5566,11 @@ const PROGRAM_DATA = {
             "customer": "Shoprite Wine & Spirits",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "9/23/2026"
               },
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/5/2026"
               }
             ],
@@ -5548,11 +5594,11 @@ const PROGRAM_DATA = {
             "customer": "Shoprite Wine & Spirits",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "9/23/2026"
               },
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/5/2026"
               }
             ],
@@ -5592,16 +5638,6 @@ const PROGRAM_DATA = {
             "customer": "Shays Liquors",
             "products": [
               {
-                "product": "1911 Black Cherry 6/4/16 oz Can",
-                "date": "9/15/2026"
-              }
-            ],
-            "date": "9/15/2026"
-          },
-          {
-            "customer": "Shays Liquors",
-            "products": [
-              {
                 "product": "1911 Sugar Plum 6/4/16 oz Can",
                 "date": "9/15/2026"
               }
@@ -5622,6 +5658,16 @@ const PROGRAM_DATA = {
             "customer": "Shays Liquors",
             "products": [
               {
+                "product": "1911 Black Cherry 6/4/16 oz Can",
+                "date": "9/15/2026"
+              }
+            ],
+            "date": "9/15/2026"
+          },
+          {
+            "customer": "Shays Liquors",
+            "products": [
+              {
                 "product": "1911 Honey Crisp 6/4/16 oz Can",
                 "date": "9/15/2026"
               }
@@ -5632,7 +5678,7 @@ const PROGRAM_DATA = {
             "customer": "B & B Liquors (West Orange)",
             "products": [
               {
-                "product": "1911 Honey Crisp 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/6/2026"
               }
             ],
@@ -5662,17 +5708,7 @@ const PROGRAM_DATA = {
             "customer": "B & B Liquors (West Orange)",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "8/6/2026"
-              }
-            ],
-            "date": "8/6/2026"
-          },
-          {
-            "customer": "B & B Liquors (West Orange)",
-            "products": [
-              {
-                "product": "1911 Black Cherry 6/4/16 oz Can",
+                "product": "1911 Honey Crisp 6/4/16 oz Can",
                 "date": "8/6/2026"
               }
             ],
@@ -5683,6 +5719,16 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "1911 Variety 3/8/12 oz Can",
+                "date": "8/6/2026"
+              }
+            ],
+            "date": "8/6/2026"
+          },
+          {
+            "customer": "B & B Liquors (West Orange)",
+            "products": [
+              {
+                "product": "1911 Black Cherry 6/4/16 oz Can",
                 "date": "8/6/2026"
               }
             ],
@@ -5722,27 +5768,7 @@ const PROGRAM_DATA = {
             "customer": "Krauser's Liquor Locker",
             "products": [
               {
-                "product": "1911 Black Cherry 6/4/16 oz Can",
-                "date": "8/19/2026"
-              }
-            ],
-            "date": "8/19/2026"
-          },
-          {
-            "customer": "Krauser's Liquor Locker",
-            "products": [
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "8/19/2026"
-              }
-            ],
-            "date": "8/19/2026"
-          },
-          {
-            "customer": "Verona Wine Cellar",
-            "products": [
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Honey Crisp 6/4/16 oz Can",
                 "date": "8/19/2026"
               }
             ],
@@ -5772,7 +5798,7 @@ const PROGRAM_DATA = {
             "customer": "Krauser's Liquor Locker",
             "products": [
               {
-                "product": "1911 Honey Crisp 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/19/2026"
               }
             ],
@@ -5780,6 +5806,26 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Krauser's Liquor Locker",
+            "products": [
+              {
+                "product": "1911 Black Cherry 6/4/16 oz Can",
+                "date": "8/19/2026"
+              }
+            ],
+            "date": "8/19/2026"
+          },
+          {
+            "customer": "Krauser's Liquor Locker",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "8/19/2026"
+              }
+            ],
+            "date": "8/19/2026"
+          },
+          {
+            "customer": "Verona Wine Cellar",
             "products": [
               {
                 "product": "1911 Cider Donut 6/4/16 oz Can",
@@ -6047,6 +6093,46 @@ const PROGRAM_DATA = {
             "date": "9/4/2026"
           },
           {
+            "customer": "Hawthorne Liq (A)",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "9/25/2026"
+              }
+            ],
+            "date": "9/25/2026"
+          },
+          {
+            "customer": "Hawthorne Liq (A)",
+            "products": [
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "9/25/2026"
+              }
+            ],
+            "date": "9/25/2026"
+          },
+          {
+            "customer": "Hawthorne Liq (A)",
+            "products": [
+              {
+                "product": "1911 Black Cherry 6/4/16 oz Can",
+                "date": "9/25/2026"
+              }
+            ],
+            "date": "9/25/2026"
+          },
+          {
+            "customer": "Hawthorne Liq (A)",
+            "products": [
+              {
+                "product": "1911 Honey Crisp 6/4/16 oz Can",
+                "date": "9/25/2026"
+              }
+            ],
+            "date": "9/25/2026"
+          },
+          {
             "customer": "Wine & Spirit World(W)",
             "products": [
               {
@@ -6092,7 +6178,7 @@ const PROGRAM_DATA = {
             "customer": "Fair Lawn Wine & Spirits",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Honey Crisp 6/4/16 oz Can",
                 "date": "9/18/2026"
               }
             ],
@@ -6102,7 +6188,7 @@ const PROGRAM_DATA = {
             "customer": "Fair Lawn Wine & Spirits",
             "products": [
               {
-                "product": "1911 Honey Crisp 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "9/18/2026"
               }
             ],
@@ -6122,7 +6208,7 @@ const PROGRAM_DATA = {
             "customer": "Waldwick Wine/Spirits",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/7/2026"
               }
             ],
@@ -6132,7 +6218,7 @@ const PROGRAM_DATA = {
             "customer": "Waldwick Wine/Spirits",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/7/2026"
               }
             ],
@@ -6142,7 +6228,7 @@ const PROGRAM_DATA = {
             "customer": "Lincoln Park Fine Wines & Spirits",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/4/2026"
               }
             ],
@@ -6152,7 +6238,7 @@ const PROGRAM_DATA = {
             "customer": "Lincoln Park Fine Wines & Spirits",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/4/2026"
               }
             ],
@@ -6172,15 +6258,15 @@ const PROGRAM_DATA = {
             "customer": "Franklin Lake Liq",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Honey Crisp 6/4/16 oz Can",
                 "date": "8/25/2026"
               },
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Honey Crisp 6/4/16 oz Can",
                 "date": "8/20/2026"
               },
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Honey Crisp 6/4/16 oz Can",
                 "date": "8/19/2026"
               }
             ],
@@ -6208,25 +6294,35 @@ const PROGRAM_DATA = {
             "customer": "Franklin Lake Liq",
             "products": [
               {
-                "product": "1911 Honey Crisp 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/25/2026"
               },
               {
-                "product": "1911 Honey Crisp 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/20/2026"
               },
               {
-                "product": "1911 Honey Crisp 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/19/2026"
               }
             ],
             "date": "8/25/2026"
+          },
+          {
+            "customer": "Oakland Wine (A)",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "8/21/2026"
+              }
+            ],
+            "date": "8/21/2026"
           },
           {
             "customer": "Waldwick Wine/Spirits",
             "products": [
               {
-                "product": "1911 Tropical Pineapple Mango 6/4/16 oz Can",
+                "product": "1911 Variety 3/8/12 oz Can",
                 "date": "8/21/2026"
               }
             ],
@@ -6236,7 +6332,7 @@ const PROGRAM_DATA = {
             "customer": "Oakland Wine (A)",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/21/2026"
               }
             ],
@@ -6256,7 +6352,7 @@ const PROGRAM_DATA = {
             "customer": "Waldwick Wine/Spirits",
             "products": [
               {
-                "product": "1911 Variety 3/8/12 oz Can",
+                "product": "1911 Tropical Pineapple Mango 6/4/16 oz Can",
                 "date": "8/21/2026"
               }
             ],
@@ -6267,16 +6363,6 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "1911 Raspberry 6/4/16 oz Can",
-                "date": "8/21/2026"
-              }
-            ],
-            "date": "8/21/2026"
-          },
-          {
-            "customer": "Oakland Wine (A)",
-            "products": [
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/21/2026"
               }
             ],
@@ -6320,7 +6406,7 @@ const PROGRAM_DATA = {
             "customer": "Ridgewood Super Cellar",
             "products": [
               {
-                "product": "1911 Black Cherry 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/19/2026"
               }
             ],
@@ -6340,7 +6426,7 @@ const PROGRAM_DATA = {
             "customer": "Ridgewood Super Cellar",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Black Cherry 6/4/16 oz Can",
                 "date": "8/19/2026"
               }
             ],
@@ -6367,13 +6453,9 @@ const PROGRAM_DATA = {
             "date": "8/13/2026"
           }
         ],
-        "offPremNewCount": 29,
+        "offPremNewCount": 33,
         "offPremReorderCount": 10,
         "offPremTargets": [
-          {
-            "customer": "Hawthorne Liq (A)",
-            "cases2026": 15329.4
-          },
           {
             "customer": "Frank's Fine Wine & Foods",
             "cases2026": 14291.0
@@ -6451,7 +6533,7 @@ const PROGRAM_DATA = {
             "cases2026": 339.3
           }
         ],
-        "offPremTargetCount": 20,
+        "offPremTargetCount": 19,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -6500,7 +6582,7 @@ const PROGRAM_DATA = {
         "draftTargetCount": 10,
         "draftAccounts": [],
         "draftAccountsQualified": 0,
-        "caseVolume": 81.0,
+        "caseVolume": 85.0,
         "caseVolumeByAccount": [
           {
             "customer": "Wine & Spirit World(W)",
@@ -6539,6 +6621,10 @@ const PROGRAM_DATA = {
             "cases": 5.0
           },
           {
+            "customer": "Hawthorne Liq (A)",
+            "cases": 4.0
+          },
+          {
             "customer": "Oakland Wine (A)",
             "cases": 3.0
           },
@@ -6551,7 +6637,7 @@ const PROGRAM_DATA = {
             "cases": 1.0
           }
         ],
-        "totalNewPlacements": 29,
+        "totalNewPlacements": 33,
         "draftChannelOk": true
       },
       "Nick Melissari": {
@@ -7017,46 +7103,6 @@ const PROGRAM_DATA = {
             "date": "9/3/2026"
           },
           {
-            "customer": "Stew Leonard's Wines & Spirits of Clifton",
-            "products": [
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "9/24/2026"
-              }
-            ],
-            "date": "9/24/2026"
-          },
-          {
-            "customer": "Stew Leonard's Wines & Spirits of Clifton",
-            "products": [
-              {
-                "product": "1911 Tropical Pineapple Mango 6/4/16 oz Can",
-                "date": "9/24/2026"
-              }
-            ],
-            "date": "9/24/2026"
-          },
-          {
-            "customer": "Stew Leonard's Wines & Spirits of Clifton",
-            "products": [
-              {
-                "product": "1911 Half & Half 6/4/16 oz Can",
-                "date": "9/24/2026"
-              }
-            ],
-            "date": "9/24/2026"
-          },
-          {
-            "customer": "City Supermarket",
-            "products": [
-              {
-                "product": "1911 Honey Crisp 6/4/16 oz Can",
-                "date": "9/22/2026"
-              }
-            ],
-            "date": "9/22/2026"
-          },
-          {
             "customer": "Stew Leonard's(A) Paramus Wine",
             "products": [
               {
@@ -7066,6 +7112,36 @@ const PROGRAM_DATA = {
               {
                 "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "9/17/2026"
+              }
+            ],
+            "date": "9/22/2026"
+          },
+          {
+            "customer": "Shop-Rite Liq Lyndhurst",
+            "products": [
+              {
+                "product": "1911 Original 6/4/16 oz Can",
+                "date": "9/22/2026"
+              }
+            ],
+            "date": "9/22/2026"
+          },
+          {
+            "customer": "Shop-Rite Liq Lyndhurst",
+            "products": [
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "9/22/2026"
+              }
+            ],
+            "date": "9/22/2026"
+          },
+          {
+            "customer": "City Supermarket",
+            "products": [
+              {
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "date": "9/22/2026"
               }
             ],
             "date": "9/22/2026"
@@ -7084,7 +7160,7 @@ const PROGRAM_DATA = {
             "customer": "City Supermarket",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Black Cherry 6/4/16 oz Can",
                 "date": "9/22/2026"
               }
             ],
@@ -7094,27 +7170,7 @@ const PROGRAM_DATA = {
             "customer": "City Supermarket",
             "products": [
               {
-                "product": "1911 Black Cherry 6/4/16 oz Can",
-                "date": "9/22/2026"
-              }
-            ],
-            "date": "9/22/2026"
-          },
-          {
-            "customer": "Shop-Rite Liq Lyndhurst",
-            "products": [
-              {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
-                "date": "9/22/2026"
-              }
-            ],
-            "date": "9/22/2026"
-          },
-          {
-            "customer": "Shop-Rite Liq Lyndhurst",
-            "products": [
-              {
-                "product": "1911 Original 6/4/16 oz Can",
+                "product": "1911 Honey Crisp 6/4/16 oz Can",
                 "date": "9/22/2026"
               }
             ],
@@ -7162,7 +7218,7 @@ const PROGRAM_DATA = {
             "customer": "PRIME WINE CELLAR Liquor & Beer",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Original 6/4/16 oz Can",
                 "date": "8/5/2026"
               }
             ],
@@ -7172,7 +7228,7 @@ const PROGRAM_DATA = {
             "customer": "PRIME WINE CELLAR Liquor & Beer",
             "products": [
               {
-                "product": "1911 Original 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/5/2026"
               }
             ],
@@ -7213,6 +7269,16 @@ const PROGRAM_DATA = {
             "date": "8/24/2026"
           },
           {
+            "customer": "Shop Rite Liq (Paramus)",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "8/20/2026"
+              }
+            ],
+            "date": "8/20/2026"
+          },
+          {
             "customer": "Stew Leonard's(A) Paramus Wine",
             "products": [
               {
@@ -7233,16 +7299,6 @@ const PROGRAM_DATA = {
             "date": "8/20/2026"
           },
           {
-            "customer": "Shop Rite Liq (Paramus)",
-            "products": [
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "8/20/2026"
-              }
-            ],
-            "date": "8/20/2026"
-          },
-          {
             "customer": "Shop Rite Liq(A) Fair Lwn",
             "products": [
               {
@@ -7256,7 +7312,7 @@ const PROGRAM_DATA = {
             "customer": "Bottle King (A) Glen Rock",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/13/2026"
               }
             ],
@@ -7266,11 +7322,21 @@ const PROGRAM_DATA = {
             "customer": "Bottle King (A) Glen Rock",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/13/2026"
               }
             ],
             "date": "8/13/2026"
+          },
+          {
+            "customer": "Food Universe Marketplace",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "8/10/2026"
+              }
+            ],
+            "date": "8/10/2026"
           },
           {
             "customer": "Food Universe Marketplace",
@@ -7291,20 +7357,10 @@ const PROGRAM_DATA = {
               }
             ],
             "date": "8/10/2026"
-          },
-          {
-            "customer": "Food Universe Marketplace",
-            "products": [
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
-                "date": "8/10/2026"
-              }
-            ],
-            "date": "8/10/2026"
           }
         ],
-        "offPremNewCount": 28,
-        "offPremReorderCount": 12,
+        "offPremNewCount": 25,
+        "offPremReorderCount": 13,
         "offPremTargets": [
           {
             "customer": "Agave Liquor, Wine & Spirits",
@@ -7384,15 +7440,15 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Stew Leonard's Wines & Spirits of Clifton",
-            "cases": 22.0
+            "cases": 19.0
+          },
+          {
+            "customer": "Bottle King (A) Glen Rock",
+            "cases": 12.0
           },
           {
             "customer": "Food Universe Marketplace",
             "cases": 11.0
-          },
-          {
-            "customer": "Bottle King (A) Glen Rock",
-            "cases": 9.0
           },
           {
             "customer": "Shop Rite Liq(A) Fair Lwn",
@@ -7407,11 +7463,11 @@ const PROGRAM_DATA = {
             "cases": 4.0
           },
           {
-            "customer": "City Supermarket",
+            "customer": "Shop-Rite Liq Lyndhurst",
             "cases": 3.0
           },
           {
-            "customer": "Shop-Rite Liq Lyndhurst",
+            "customer": "City Supermarket",
             "cases": 3.0
           },
           {
@@ -7423,7 +7479,7 @@ const PROGRAM_DATA = {
             "cases": 2.0
           }
         ],
-        "totalNewPlacements": 28,
+        "totalNewPlacements": 25,
         "draftChannelOk": true
       },
       "Robin Feldman": {
@@ -7619,6 +7675,16 @@ const PROGRAM_DATA = {
             "date": "9/17/2026"
           },
           {
+            "customer": "Gary's Wine & Marketplace (Closter)",
+            "products": [
+              {
+                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "date": "9/15/2026"
+              }
+            ],
+            "date": "9/15/2026"
+          },
+          {
             "customer": "Montvale Wine/Liq & Beer",
             "products": [
               {
@@ -7637,16 +7703,6 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "1911 Original 6/4/16 oz Can",
-                "date": "9/15/2026"
-              }
-            ],
-            "date": "9/15/2026"
-          },
-          {
-            "customer": "Gary's Wine & Marketplace (Closter)",
-            "products": [
-              {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "9/15/2026"
               }
             ],
@@ -7716,16 +7772,6 @@ const PROGRAM_DATA = {
             "customer": "Shop Rite Liq (A)Hillsdal",
             "products": [
               {
-                "product": "1911 Original 6/4/16 oz Can",
-                "date": "8/18/2026"
-              }
-            ],
-            "date": "8/18/2026"
-          },
-          {
-            "customer": "Shop Rite Liq (A)Hillsdal",
-            "products": [
-              {
                 "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/18/2026"
               }
@@ -7743,10 +7789,20 @@ const PROGRAM_DATA = {
             "date": "8/18/2026"
           },
           {
+            "customer": "Shop Rite Liq (A)Hillsdal",
+            "products": [
+              {
+                "product": "1911 Original 6/4/16 oz Can",
+                "date": "8/18/2026"
+              }
+            ],
+            "date": "8/18/2026"
+          },
+          {
             "customer": "Bottle King (A) Dumont",
             "products": [
               {
-                "product": "1911 Cider Donut 6/4/16 oz Can",
+                "product": "1911 Haunted Hayride 6/4/16 oz Can",
                 "date": "8/13/2026"
               }
             ],
@@ -7756,7 +7812,7 @@ const PROGRAM_DATA = {
             "customer": "Bottle King (A) Dumont",
             "products": [
               {
-                "product": "1911 Haunted Hayride 6/4/16 oz Can",
+                "product": "1911 Cider Donut 6/4/16 oz Can",
                 "date": "8/13/2026"
               }
             ],
@@ -7900,31 +7956,31 @@ const PROGRAM_DATA = {
       {
         "rep": "Andrew Lundy",
         "newPlacements": 43,
-        "caseVolume": 96.0,
+        "caseVolume": 98.0,
         "rank": 1
       },
       {
         "rep": "John O'Donoghue",
-        "newPlacements": 33,
-        "caseVolume": 148.0,
+        "newPlacements": 38,
+        "caseVolume": 150.0,
         "rank": 2
       },
       {
         "rep": "Mike Ast",
-        "newPlacements": 29,
-        "caseVolume": 81.0,
+        "newPlacements": 33,
+        "caseVolume": 85.0,
         "rank": 3
-      },
-      {
-        "rep": "Phil Ernst",
-        "newPlacements": 28,
-        "caseVolume": 95.0,
-        "rank": 4
       },
       {
         "rep": "Michael Harboy",
         "newPlacements": 26,
         "caseVolume": 74.0,
+        "rank": 4
+      },
+      {
+        "rep": "Phil Ernst",
+        "newPlacements": 25,
+        "caseVolume": 95.0,
         "rank": 5
       },
       {
@@ -7972,7 +8028,7 @@ const PROGRAM_DATA = {
       {
         "rep": "Hakan Sadik",
         "newPlacements": 10,
-        "caseVolume": 34.0,
+        "caseVolume": 35.0,
         "rank": 13
       },
       {
@@ -8715,6 +8771,16 @@ const PROGRAM_DATA = {
             "customer": "Best Cellars (Wanaque)",
             "products": [
               {
+                "product": "Woodchuck Blueberry 4/6/12 oz Can",
+                "date": "8/3/2026"
+              }
+            ],
+            "date": "8/3/2026"
+          },
+          {
+            "customer": "Best Cellars (Wanaque)",
+            "products": [
+              {
                 "product": "Woodchuck Hard Cider Variety 2/12/12 oz Can",
                 "date": "8/3/2026"
               }
@@ -8726,16 +8792,6 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Woodchuck Great Gathering Variety 2/12/12 oz Can",
-                "date": "8/3/2026"
-              }
-            ],
-            "date": "8/3/2026"
-          },
-          {
-            "customer": "Best Cellars (Wanaque)",
-            "products": [
-              {
-                "product": "Woodchuck Blueberry 4/6/12 oz Can",
                 "date": "8/3/2026"
               }
             ],
@@ -9076,8 +9132,12 @@ const PROGRAM_DATA = {
             "customer": "Welsh Farms",
             "products": [
               {
-                "product": "Woodchuck Granny Smith 4/6/12 oz Can",
+                "product": "Woodchuck Blueberry 4/6/12 oz Can",
                 "date": "8/21/2026"
+              },
+              {
+                "product": "Woodchuck Blueberry 4/6/12 oz Can",
+                "date": "8/14/2026"
               }
             ],
             "date": "8/21/2026"
@@ -9086,12 +9146,8 @@ const PROGRAM_DATA = {
             "customer": "Welsh Farms",
             "products": [
               {
-                "product": "Woodchuck Blueberry 4/6/12 oz Can",
+                "product": "Woodchuck Granny Smith 4/6/12 oz Can",
                 "date": "8/21/2026"
-              },
-              {
-                "product": "Woodchuck Blueberry 4/6/12 oz Can",
-                "date": "8/14/2026"
               }
             ],
             "date": "8/21/2026"
@@ -9702,17 +9758,7 @@ const PROGRAM_DATA = {
             "customer": "Paulino Liquors",
             "products": [
               {
-                "product": "Woodchuck Hard Cider Amber 4/6/12 oz Btl",
-                "date": "9/23/2026"
-              }
-            ],
-            "date": "9/23/2026"
-          },
-          {
-            "customer": "Paulino Liquors",
-            "products": [
-              {
-                "product": "Woodchuck Spiced Apple 4/6/12 oz Can",
+                "product": "Woodchuck Pearsecco 4/6/12 oz Can",
                 "date": "9/23/2026"
               }
             ],
@@ -9732,7 +9778,17 @@ const PROGRAM_DATA = {
             "customer": "Paulino Liquors",
             "products": [
               {
-                "product": "Woodchuck Pearsecco 4/6/12 oz Can",
+                "product": "Woodchuck Spiced Apple 4/6/12 oz Can",
+                "date": "9/23/2026"
+              }
+            ],
+            "date": "9/23/2026"
+          },
+          {
+            "customer": "Paulino Liquors",
+            "products": [
+              {
+                "product": "Woodchuck Hard Cider Amber 4/6/12 oz Btl",
                 "date": "9/23/2026"
               }
             ],
@@ -9764,7 +9820,7 @@ const PROGRAM_DATA = {
           }
         ],
         "offPremNewCount": 6,
-        "offPremReorderCount": 2,
+        "offPremReorderCount": 3,
         "offPremTargets": [
           {
             "customer": "Wine Spot",
@@ -9936,19 +9992,19 @@ const PROGRAM_DATA = {
         "draftTargetCount": 25,
         "draftAccounts": [],
         "draftAccountsQualified": 0,
-        "caseVolume": 26.0,
+        "caseVolume": 31.0,
         "caseVolumeByAccount": [
           {
             "customer": "Dublin Yard",
             "cases": 11.0
           },
           {
-            "customer": "Paulino Liquors",
-            "cases": 5.0
+            "customer": "Liberty Wine (P) & Deli",
+            "cases": 9.0
           },
           {
-            "customer": "Liberty Wine (P) & Deli",
-            "cases": 4.0
+            "customer": "Paulino Liquors",
+            "cases": 5.0
           },
           {
             "customer": "Light Horse Tavern (A)",
@@ -9982,7 +10038,7 @@ const PROGRAM_DATA = {
             "customer": "Bloomfield Buyrite",
             "products": [
               {
-                "product": "Woodchuck Pearsecco 4/6/12 oz Can",
+                "product": "Woodchuck Blueberry 4/6/12 oz Can",
                 "date": "8/11/2026"
               }
             ],
@@ -9992,7 +10048,7 @@ const PROGRAM_DATA = {
             "customer": "Bloomfield Buyrite",
             "products": [
               {
-                "product": "Woodchuck Blueberry 4/6/12 oz Can",
+                "product": "Woodchuck Pearsecco 4/6/12 oz Can",
                 "date": "8/11/2026"
               }
             ],
@@ -10796,16 +10852,6 @@ const PROGRAM_DATA = {
       "John O'Donoghue": {
         "offPremNew": [
           {
-            "customer": "The Village Liquor Store_2",
-            "products": [
-              {
-                "product": "Woodchuck Spiced Apple 4/6/12 oz Can",
-                "date": "9/24/2026"
-              }
-            ],
-            "date": "9/24/2026"
-          },
-          {
             "customer": "Shop Rite Liquors",
             "products": [
               {
@@ -10829,7 +10875,7 @@ const PROGRAM_DATA = {
             "customer": "Main St Wines & Liq",
             "products": [
               {
-                "product": "Woodchuck Nature's Nectar 6/4/16 oz Can",
+                "product": "Woodchuck Granny Smith 4/6/12 oz Can",
                 "date": "8/7/2026"
               }
             ],
@@ -10859,7 +10905,7 @@ const PROGRAM_DATA = {
             "customer": "Main St Wines & Liq",
             "products": [
               {
-                "product": "Woodchuck Granny Smith 4/6/12 oz Can",
+                "product": "Woodchuck Nature's Nectar 6/4/16 oz Can",
                 "date": "8/7/2026"
               }
             ],
@@ -10886,7 +10932,7 @@ const PROGRAM_DATA = {
             "date": "8/7/2026"
           }
         ],
-        "offPremNewCount": 9,
+        "offPremNewCount": 8,
         "offPremReorderCount": 14,
         "offPremTargets": [
           {
@@ -11059,11 +11105,11 @@ const PROGRAM_DATA = {
         "draftTargetCount": 42,
         "draftAccounts": [],
         "draftAccountsQualified": 0,
-        "caseVolume": 48.0,
+        "caseVolume": 41.0,
         "caseVolumeByAccount": [
           {
             "customer": "The Village Liquor Store_2",
-            "cases": 21.0
+            "cases": 11.0
           },
           {
             "customer": "Wegmans",
@@ -11079,10 +11125,10 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Shop Rite W & S Chester",
-            "cases": 2.0
+            "cases": 5.0
           }
         ],
-        "totalNewPlacements": 9,
+        "totalNewPlacements": 8,
         "draftChannelOk": true
       },
       "Klejdi Lamo": {
@@ -11091,12 +11137,8 @@ const PROGRAM_DATA = {
             "customer": "Shop Rite Wine & Spirits Stanhope",
             "products": [
               {
-                "product": "Woodchuck Hard Cider Variety 2/12/12 oz Can",
+                "product": "Woodchuck Nature's Nectar 6/4/16 oz Can",
                 "date": "9/23/2026"
-              },
-              {
-                "product": "Woodchuck Hard Cider Variety 2/12/12 oz Can",
-                "date": "8/13/2026"
               }
             ],
             "date": "9/23/2026"
@@ -11115,8 +11157,12 @@ const PROGRAM_DATA = {
             "customer": "Shop Rite Wine & Spirits Stanhope",
             "products": [
               {
-                "product": "Woodchuck Nature's Nectar 6/4/16 oz Can",
+                "product": "Woodchuck Hard Cider Variety 2/12/12 oz Can",
                 "date": "9/23/2026"
+              },
+              {
+                "product": "Woodchuck Hard Cider Variety 2/12/12 oz Can",
+                "date": "8/13/2026"
               }
             ],
             "date": "9/23/2026"
@@ -11175,16 +11221,6 @@ const PROGRAM_DATA = {
             "customer": "Shop Rite Wine & Spirits Stanhope",
             "products": [
               {
-                "product": "Woodchuck Great Gathering Variety 2/12/12 oz Can",
-                "date": "8/13/2026"
-              }
-            ],
-            "date": "8/13/2026"
-          },
-          {
-            "customer": "Shop Rite Wine & Spirits Stanhope",
-            "products": [
-              {
                 "product": "Woodchuck Pearsecco 4/6/12 oz Can",
                 "date": "8/13/2026"
               }
@@ -11196,6 +11232,16 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Woodchuck Hard Cider Amber 4/6/12 oz Can",
+                "date": "8/13/2026"
+              }
+            ],
+            "date": "8/13/2026"
+          },
+          {
+            "customer": "Shop Rite Wine & Spirits Stanhope",
+            "products": [
+              {
+                "product": "Woodchuck Great Gathering Variety 2/12/12 oz Can",
                 "date": "8/13/2026"
               }
             ],
@@ -11328,20 +11374,20 @@ const PROGRAM_DATA = {
       "Matt Powierski": {
         "offPremNew": [
           {
-            "customer": "Metro Wine And Liq(A)",
+            "customer": "M & M Wine & Spirits",
             "products": [
               {
-                "product": "Woodchuck Spiced Apple 4/6/12 oz Can",
+                "product": "Woodchuck Hard Cider Amber 4/6/12 oz Can",
                 "date": "9/18/2026"
               }
             ],
             "date": "9/18/2026"
           },
           {
-            "customer": "M & M Wine & Spirits",
+            "customer": "Metro Wine And Liq(A)",
             "products": [
               {
-                "product": "Woodchuck Hard Cider Amber 4/6/12 oz Can",
+                "product": "Woodchuck Spiced Apple 4/6/12 oz Can",
                 "date": "9/18/2026"
               }
             ],
@@ -11553,7 +11599,7 @@ const PROGRAM_DATA = {
           }
         ],
         "offPremNewCount": 2,
-        "offPremReorderCount": 9,
+        "offPremReorderCount": 8,
         "offPremTargets": [
           {
             "customer": "Kinnelon Country Wine & Liquor",
@@ -11725,12 +11771,8 @@ const PROGRAM_DATA = {
         "draftTargetCount": 22,
         "draftAccounts": [],
         "draftAccountsQualified": 0,
-        "caseVolume": 21.0,
+        "caseVolume": 19.0,
         "caseVolumeByAccount": [
-          {
-            "customer": "ShopRite of West Caldwell",
-            "cases": 6.0
-          },
           {
             "customer": "Grove Liquors",
             "cases": 5.0
@@ -11738,6 +11780,10 @@ const PROGRAM_DATA = {
           {
             "customer": "Total Wine & More (West Orange)",
             "cases": 5.0
+          },
+          {
+            "customer": "ShopRite of West Caldwell",
+            "cases": 4.0
           },
           {
             "customer": "Verona Wine Cellar",
@@ -12384,10 +12430,6 @@ const PROGRAM_DATA = {
             "cases": 4.0
           },
           {
-            "customer": "Whole Foods Market (Paramus)",
-            "cases": 3.0
-          },
-          {
             "customer": "Stew Leonard's Wines & Spirits of Clifton",
             "cases": 3.0
           },
@@ -12396,15 +12438,19 @@ const PROGRAM_DATA = {
             "cases": 3.0
           },
           {
+            "customer": "Acme Markets (Midland Park)",
+            "cases": 2.0
+          },
+          {
+            "customer": "Whole Foods Market (Paramus)",
+            "cases": 2.0
+          },
+          {
             "customer": "Shop Rite Liq(A) Fair Lwn",
             "cases": 2.0
           },
           {
             "customer": "Saddle Brook Liquor & Bar",
-            "cases": 1.0
-          },
-          {
-            "customer": "Acme Markets (Midland Park)",
             "cases": 1.0
           }
         ],
@@ -12638,14 +12684,14 @@ const PROGRAM_DATA = {
       },
       {
         "rep": "John O'Donoghue",
-        "newPlacements": 9,
-        "caseVolume": 48.0,
+        "newPlacements": 8,
+        "caseVolume": 41.0,
         "rank": 2
       },
       {
         "rep": "Dylan Rubino",
         "newPlacements": 6,
-        "caseVolume": 26.0,
+        "caseVolume": 31.0,
         "rank": 3
       },
       {
@@ -12693,7 +12739,7 @@ const PROGRAM_DATA = {
       {
         "rep": "Michael Harboy",
         "newPlacements": 2,
-        "caseVolume": 21.0,
+        "caseVolume": 19.0,
         "rank": 11
       },
       {
@@ -13076,7 +13122,7 @@ const PROGRAM_DATA = {
             "cases": 5.0
           },
           {
-            "customer": "Buy-Rite Liquors",
+            "customer": "BuyRite Liquors - Kearny",
             "cases": 3.0
           },
           {
@@ -14001,11 +14047,11 @@ const PROGRAM_DATA = {
             "cases": 5.0
           },
           {
-            "customer": "Bergenline Liquor (Z)",
+            "customer": "Heights Liquors",
             "cases": 5.0
           },
           {
-            "customer": "Heights Liquors",
+            "customer": "Bergenline Liquor (Z)",
             "cases": 5.0
           },
           {
@@ -16455,21 +16501,16 @@ const PROGRAM_DATA = {
   "sam_adams": {
     "byRep": {
       "Alex Rodriguez": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 0.0,
         "octoberfestUnitsThisYear": 0.0,
         "octoberfestGrowth": 0.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [],
-        "payout": 0,
         "territoryEligible": false
       },
       "Alisa Acciardi": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 5.0,
         "octoberfestUnitsThisYear": 0.0,
         "octoberfestGrowth": -5.0,
@@ -16490,30 +16531,27 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Allison Scott": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 228.0,
-        "octoberfestUnitsThisYear": 180.0,
-        "octoberfestGrowth": -48.0,
+        "octoberfestUnitsThisYear": 186.0,
+        "octoberfestGrowth": -42.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3813 Sam Adams Octoberfest 15.5 Gal Keg",
             "unitsLastYear": 153.0,
-            "unitsThisYear": 132.0,
-            "growth": -21.0,
+            "unitsThisYear": 136.0,
+            "growth": -17.0,
             "accounts": []
           },
           {
             "product": "3862 Sam Adams Octoberfest 5.2 Gal Keg",
             "unitsLastYear": 43.0,
-            "unitsThisYear": 29.0,
-            "growth": -14.0,
+            "unitsThisYear": 31.0,
+            "growth": -12.0,
             "accounts": []
           },
           {
@@ -16531,42 +16569,36 @@ const PROGRAM_DATA = {
             "accounts": []
           },
           {
-            "product": "4056 Sam Adamas Octoberfest Non-Alcoholic 4/6/12 oz Can",
+            "product": "4056 Sam Adams Octoberfest Non-Alcoholic 4/6/12 oz Can",
             "unitsLastYear": 0.0,
             "unitsThisYear": 4.0,
             "growth": 4.0,
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Andrew Lundy": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 0.0,
         "octoberfestUnitsThisYear": 0.0,
         "octoberfestGrowth": 0.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [],
-        "payout": 0,
         "territoryEligible": false
       },
       "Anthony Palmisano": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 1002.0,
-        "octoberfestUnitsThisYear": 705.0,
-        "octoberfestGrowth": -297.0,
+        "octoberfestUnitsThisYear": 709.0,
+        "octoberfestGrowth": -293.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3919 Sam Adams Octoberfest 4/6/12 oz Btl",
             "unitsLastYear": 353.0,
-            "unitsThisYear": 257.0,
-            "growth": -96.0,
+            "unitsThisYear": 259.0,
+            "growth": -94.0,
             "accounts": []
           },
           {
@@ -16586,8 +16618,8 @@ const PROGRAM_DATA = {
           {
             "product": "3813 Sam Adams Octoberfest 15.5 Gal Keg",
             "unitsLastYear": 47.0,
-            "unitsThisYear": 55.0,
-            "growth": 8.0,
+            "unitsThisYear": 57.0,
+            "growth": 10.0,
             "accounts": []
           },
           {
@@ -16598,7 +16630,7 @@ const PROGRAM_DATA = {
             "accounts": []
           },
           {
-            "product": "4056 Sam Adamas Octoberfest Non-Alcoholic 4/6/12 oz Can",
+            "product": "4056 Sam Adams Octoberfest Non-Alcoholic 4/6/12 oz Can",
             "unitsLastYear": 0.0,
             "unitsThisYear": 7.0,
             "growth": 7.0,
@@ -16612,37 +16644,34 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Brian Sengebush": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 268.0,
-        "octoberfestUnitsThisYear": 235.0,
-        "octoberfestGrowth": -33.0,
+        "octoberfestUnitsThisYear": 245.0,
+        "octoberfestGrowth": -23.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3813 Sam Adams Octoberfest 15.5 Gal Keg",
             "unitsLastYear": 91.0,
-            "unitsThisYear": 91.0,
-            "growth": 0.0,
+            "unitsThisYear": 94.0,
+            "growth": 3.0,
             "accounts": []
           },
           {
             "product": "3862 Sam Adams Octoberfest 5.2 Gal Keg",
             "unitsLastYear": 74.0,
-            "unitsThisYear": 63.0,
-            "growth": -11.0,
+            "unitsThisYear": 66.0,
+            "growth": -8.0,
             "accounts": []
           },
           {
             "product": "3919 Sam Adams Octoberfest 4/6/12 oz Btl",
             "unitsLastYear": 78.0,
-            "unitsThisYear": 60.0,
-            "growth": -18.0,
+            "unitsThisYear": 64.0,
+            "growth": -14.0,
             "accounts": []
           },
           {
@@ -16660,37 +16689,34 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Chris Payton": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 587.0,
-        "octoberfestUnitsThisYear": 377.0,
-        "octoberfestGrowth": -210.0,
+        "octoberfestUnitsThisYear": 395.0,
+        "octoberfestGrowth": -192.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3919 Sam Adams Octoberfest 4/6/12 oz Btl",
             "unitsLastYear": 349.0,
-            "unitsThisYear": 230.0,
-            "growth": -119.0,
+            "unitsThisYear": 243.0,
+            "growth": -106.0,
             "accounts": []
           },
           {
             "product": "3918 Sam Adams Octoberfest 2/12/12 oz Btl",
             "unitsLastYear": 174.0,
-            "unitsThisYear": 109.0,
-            "growth": -65.0,
+            "unitsThisYear": 112.0,
+            "growth": -62.0,
             "accounts": []
           },
           {
             "product": "3921 Sam Adams Octoberfest 2/12/12 oz Can",
             "unitsLastYear": 39.0,
-            "unitsThisYear": 28.0,
-            "growth": -11.0,
+            "unitsThisYear": 30.0,
+            "growth": -9.0,
             "accounts": []
           },
           {
@@ -16701,7 +16727,7 @@ const PROGRAM_DATA = {
             "accounts": []
           },
           {
-            "product": "4056 Sam Adamas Octoberfest Non-Alcoholic 4/6/12 oz Can",
+            "product": "4056 Sam Adams Octoberfest Non-Alcoholic 4/6/12 oz Can",
             "unitsLastYear": 0.0,
             "unitsThisYear": 3.0,
             "growth": 3.0,
@@ -16722,23 +16748,20 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Dan Lagala": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 241.0,
-        "octoberfestUnitsThisYear": 164.0,
-        "octoberfestGrowth": -77.0,
+        "octoberfestUnitsThisYear": 174.0,
+        "octoberfestGrowth": -67.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3919 Sam Adams Octoberfest 4/6/12 oz Btl",
             "unitsLastYear": 192.0,
-            "unitsThisYear": 124.0,
-            "growth": -68.0,
+            "unitsThisYear": 134.0,
+            "growth": -58.0,
             "accounts": []
           },
           {
@@ -16763,7 +16786,7 @@ const PROGRAM_DATA = {
             "accounts": []
           },
           {
-            "product": "4056 Sam Adamas Octoberfest Non-Alcoholic 4/6/12 oz Can",
+            "product": "4056 Sam Adams Octoberfest Non-Alcoholic 4/6/12 oz Can",
             "unitsLastYear": 0.0,
             "unitsThisYear": 4.0,
             "growth": 4.0,
@@ -16777,23 +16800,20 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Dave Ehlers": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 1040.0,
-        "octoberfestUnitsThisYear": 818.0,
-        "octoberfestGrowth": -222.0,
+        "octoberfestUnitsThisYear": 820.0,
+        "octoberfestGrowth": -220.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3919 Sam Adams Octoberfest 4/6/12 oz Btl",
             "unitsLastYear": 326.0,
-            "unitsThisYear": 259.0,
-            "growth": -67.0,
+            "unitsThisYear": 261.0,
+            "growth": -65.0,
             "accounts": []
           },
           {
@@ -16811,7 +16831,7 @@ const PROGRAM_DATA = {
             "accounts": []
           },
           {
-            "product": "4056 Sam Adamas Octoberfest Non-Alcoholic 4/6/12 oz Can",
+            "product": "4056 Sam Adams Octoberfest Non-Alcoholic 4/6/12 oz Can",
             "unitsLastYear": 0.0,
             "unitsThisYear": 64.0,
             "growth": 64.0,
@@ -16839,23 +16859,20 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Derrick Laws": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 229.0,
-        "octoberfestUnitsThisYear": 164.0,
-        "octoberfestGrowth": -65.0,
+        "octoberfestUnitsThisYear": 154.0,
+        "octoberfestGrowth": -75.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3919 Sam Adams Octoberfest 4/6/12 oz Btl",
             "unitsLastYear": 104.0,
-            "unitsThisYear": 74.0,
-            "growth": -30.0,
+            "unitsThisYear": 64.0,
+            "growth": -40.0,
             "accounts": []
           },
           {
@@ -16873,20 +16890,17 @@ const PROGRAM_DATA = {
             "accounts": []
           },
           {
-            "product": "4056 Sam Adamas Octoberfest Non-Alcoholic 4/6/12 oz Can",
+            "product": "4056 Sam Adams Octoberfest Non-Alcoholic 4/6/12 oz Can",
             "unitsLastYear": 0.0,
             "unitsThisYear": 5.0,
             "growth": 5.0,
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Dylan Rubino": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 2.0,
         "octoberfestUnitsThisYear": 2.0,
         "octoberfestGrowth": 0.0,
@@ -16900,25 +16914,19 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Hakan Sadik": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 0.0,
         "octoberfestUnitsThisYear": 0.0,
         "octoberfestGrowth": 0.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [],
-        "payout": 0,
         "territoryEligible": false
       },
       "Jaime Colonna": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 9.0,
         "octoberfestUnitsThisYear": 4.0,
         "octoberfestGrowth": -5.0,
@@ -16939,23 +16947,20 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Javier Melo": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 23.0,
-        "octoberfestUnitsThisYear": 18.0,
-        "octoberfestGrowth": -5.0,
+        "octoberfestUnitsThisYear": 22.0,
+        "octoberfestGrowth": -1.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3919 Sam Adams Octoberfest 4/6/12 oz Btl",
             "unitsLastYear": 18.0,
-            "unitsThisYear": 14.0,
-            "growth": -4.0,
+            "unitsThisYear": 18.0,
+            "growth": 0.0,
             "accounts": []
           },
           {
@@ -16973,13 +16978,10 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Jayson Romine": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 1901.0,
         "octoberfestUnitsThisYear": 1413.0,
         "octoberfestGrowth": -488.0,
@@ -17007,7 +17009,7 @@ const PROGRAM_DATA = {
             "accounts": []
           },
           {
-            "product": "4056 Sam Adamas Octoberfest Non-Alcoholic 4/6/12 oz Can",
+            "product": "4056 Sam Adams Octoberfest Non-Alcoholic 4/6/12 oz Can",
             "unitsLastYear": 0.0,
             "unitsThisYear": 34.0,
             "growth": 34.0,
@@ -17035,30 +17037,27 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Jim Heaney": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 683.0,
-        "octoberfestUnitsThisYear": 419.0,
-        "octoberfestGrowth": -264.0,
+        "octoberfestUnitsThisYear": 443.0,
+        "octoberfestGrowth": -240.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3919 Sam Adams Octoberfest 4/6/12 oz Btl",
             "unitsLastYear": 349.0,
-            "unitsThisYear": 216.0,
-            "growth": -133.0,
+            "unitsThisYear": 226.0,
+            "growth": -123.0,
             "accounts": []
           },
           {
             "product": "3918 Sam Adams Octoberfest 2/12/12 oz Btl",
             "unitsLastYear": 150.0,
-            "unitsThisYear": 99.0,
-            "growth": -51.0,
+            "unitsThisYear": 113.0,
+            "growth": -37.0,
             "accounts": []
           },
           {
@@ -17069,7 +17068,7 @@ const PROGRAM_DATA = {
             "accounts": []
           },
           {
-            "product": "4056 Sam Adamas Octoberfest Non-Alcoholic 4/6/12 oz Can",
+            "product": "4056 Sam Adams Octoberfest Non-Alcoholic 4/6/12 oz Can",
             "unitsLastYear": 0.0,
             "unitsThisYear": 12.0,
             "growth": 12.0,
@@ -17097,13 +17096,10 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "John O'Donoghue": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": true,
         "octoberfestUnitsLastYear": 1.0,
         "octoberfestUnitsThisYear": 3.0,
         "octoberfestGrowth": 2.0,
@@ -17117,41 +17113,38 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 2,
         "territoryEligible": true
       },
       "Klejdi Lamo": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 1892.0,
-        "octoberfestUnitsThisYear": 1061.0,
-        "octoberfestGrowth": -831.0,
+        "octoberfestUnitsThisYear": 1081.0,
+        "octoberfestGrowth": -811.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3918 Sam Adams Octoberfest 2/12/12 oz Btl",
             "unitsLastYear": 755.0,
-            "unitsThisYear": 369.0,
-            "growth": -386.0,
+            "unitsThisYear": 377.0,
+            "growth": -378.0,
             "accounts": []
           },
           {
             "product": "3919 Sam Adams Octoberfest 4/6/12 oz Btl",
             "unitsLastYear": 626.0,
-            "unitsThisYear": 338.0,
-            "growth": -288.0,
+            "unitsThisYear": 344.0,
+            "growth": -282.0,
             "accounts": []
           },
           {
             "product": "3921 Sam Adams Octoberfest 2/12/12 oz Can",
             "unitsLastYear": 451.0,
-            "unitsThisYear": 309.0,
-            "growth": -142.0,
+            "unitsThisYear": 315.0,
+            "growth": -136.0,
             "accounts": []
           },
           {
-            "product": "4056 Sam Adamas Octoberfest Non-Alcoholic 4/6/12 oz Can",
+            "product": "4056 Sam Adams Octoberfest Non-Alcoholic 4/6/12 oz Can",
             "unitsLastYear": 0.0,
             "unitsThisYear": 26.0,
             "growth": 26.0,
@@ -17186,23 +17179,20 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Matt Powierski": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 363.0,
-        "octoberfestUnitsThisYear": 319.0,
-        "octoberfestGrowth": -44.0,
+        "octoberfestUnitsThisYear": 346.0,
+        "octoberfestGrowth": -17.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3919 Sam Adams Octoberfest 4/6/12 oz Btl",
             "unitsLastYear": 231.0,
-            "unitsThisYear": 229.0,
-            "growth": -2.0,
+            "unitsThisYear": 244.0,
+            "growth": 13.0,
             "accounts": []
           },
           {
@@ -17215,26 +17205,26 @@ const PROGRAM_DATA = {
           {
             "product": "3921 Sam Adams Octoberfest 2/12/12 oz Can",
             "unitsLastYear": 30.0,
-            "unitsThisYear": 30.0,
-            "growth": 0.0,
+            "unitsThisYear": 40.0,
+            "growth": 10.0,
             "accounts": []
           },
           {
             "product": "3862 Sam Adams Octoberfest 5.2 Gal Keg",
             "unitsLastYear": 8.0,
-            "unitsThisYear": 5.0,
-            "growth": -3.0,
+            "unitsThisYear": 6.0,
+            "growth": -2.0,
             "accounts": []
           },
           {
             "product": "3813 Sam Adams Octoberfest 15.5 Gal Keg",
             "unitsLastYear": 0.0,
-            "unitsThisYear": 2.0,
-            "growth": 2.0,
+            "unitsThisYear": 3.0,
+            "growth": 3.0,
             "accounts": []
           },
           {
-            "product": "4056 Sam Adamas Octoberfest Non-Alcoholic 4/6/12 oz Can",
+            "product": "4056 Sam Adams Octoberfest Non-Alcoholic 4/6/12 oz Can",
             "unitsLastYear": 0.0,
             "unitsThisYear": 2.0,
             "growth": 2.0,
@@ -17248,16 +17238,13 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Michael Harboy": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 162.0,
-        "octoberfestUnitsThisYear": 103.0,
-        "octoberfestGrowth": -59.0,
+        "octoberfestUnitsThisYear": 108.0,
+        "octoberfestGrowth": -54.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
@@ -17270,42 +17257,39 @@ const PROGRAM_DATA = {
           {
             "product": "3921 Sam Adams Octoberfest 2/12/12 oz Can",
             "unitsLastYear": 30.0,
-            "unitsThisYear": 20.0,
-            "growth": -10.0,
+            "unitsThisYear": 23.0,
+            "growth": -7.0,
             "accounts": []
           },
           {
             "product": "3918 Sam Adams Octoberfest 2/12/12 oz Btl",
             "unitsLastYear": 40.0,
-            "unitsThisYear": 15.0,
-            "growth": -25.0,
+            "unitsThisYear": 17.0,
+            "growth": -23.0,
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Mike Ast": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 1175.0,
-        "octoberfestUnitsThisYear": 877.0,
-        "octoberfestGrowth": -298.0,
+        "octoberfestUnitsThisYear": 894.0,
+        "octoberfestGrowth": -281.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3919 Sam Adams Octoberfest 4/6/12 oz Btl",
             "unitsLastYear": 463.0,
-            "unitsThisYear": 289.0,
-            "growth": -174.0,
+            "unitsThisYear": 299.0,
+            "growth": -164.0,
             "accounts": []
           },
           {
             "product": "3918 Sam Adams Octoberfest 2/12/12 oz Btl",
             "unitsLastYear": 450.0,
-            "unitsThisYear": 282.0,
-            "growth": -168.0,
+            "unitsThisYear": 286.0,
+            "growth": -164.0,
             "accounts": []
           },
           {
@@ -17318,12 +17302,12 @@ const PROGRAM_DATA = {
           {
             "product": "3813 Sam Adams Octoberfest 15.5 Gal Keg",
             "unitsLastYear": 11.0,
-            "unitsThisYear": 11.0,
-            "growth": 0.0,
+            "unitsThisYear": 14.0,
+            "growth": 3.0,
             "accounts": []
           },
           {
-            "product": "4056 Sam Adamas Octoberfest Non-Alcoholic 4/6/12 oz Can",
+            "product": "4056 Sam Adams Octoberfest Non-Alcoholic 4/6/12 oz Can",
             "unitsLastYear": 0.0,
             "unitsThisYear": 8.0,
             "growth": 8.0,
@@ -17344,30 +17328,27 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Nick Melissari": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": true,
         "octoberfestUnitsLastYear": 308.0,
-        "octoberfestUnitsThisYear": 298.0,
-        "octoberfestGrowth": -10.0,
+        "octoberfestUnitsThisYear": 309.0,
+        "octoberfestGrowth": 1.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3813 Sam Adams Octoberfest 15.5 Gal Keg",
             "unitsLastYear": 169.0,
-            "unitsThisYear": 168.0,
-            "growth": -1.0,
+            "unitsThisYear": 176.0,
+            "growth": 7.0,
             "accounts": []
           },
           {
             "product": "3862 Sam Adams Octoberfest 5.2 Gal Keg",
             "unitsLastYear": 121.0,
-            "unitsThisYear": 113.0,
-            "growth": -8.0,
+            "unitsThisYear": 116.0,
+            "growth": -5.0,
             "accounts": []
           },
           {
@@ -17385,7 +17366,7 @@ const PROGRAM_DATA = {
             "accounts": []
           },
           {
-            "product": "4056 Sam Adamas Octoberfest Non-Alcoholic 4/6/12 oz Can",
+            "product": "4056 Sam Adams Octoberfest Non-Alcoholic 4/6/12 oz Can",
             "unitsLastYear": 0.0,
             "unitsThisYear": 3.0,
             "growth": 3.0,
@@ -17399,13 +17380,10 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Pablo Lopez": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": true,
         "octoberfestUnitsLastYear": 12.0,
         "octoberfestUnitsThisYear": 17.0,
         "octoberfestGrowth": 5.0,
@@ -17419,30 +17397,27 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 5,
         "territoryEligible": true
       },
       "Paul Mclaughlin": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 172.0,
-        "octoberfestUnitsThisYear": 152.0,
-        "octoberfestGrowth": -20.0,
+        "octoberfestUnitsThisYear": 160.0,
+        "octoberfestGrowth": -12.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3813 Sam Adams Octoberfest 15.5 Gal Keg",
             "unitsLastYear": 91.0,
-            "unitsThisYear": 90.0,
-            "growth": -1.0,
+            "unitsThisYear": 96.0,
+            "growth": 5.0,
             "accounts": []
           },
           {
             "product": "3862 Sam Adams Octoberfest 5.2 Gal Keg",
             "unitsLastYear": 56.0,
-            "unitsThisYear": 49.0,
-            "growth": -7.0,
+            "unitsThisYear": 51.0,
+            "growth": -5.0,
             "accounts": []
           },
           {
@@ -17460,41 +17435,38 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Phil Ernst": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 1132.0,
-        "octoberfestUnitsThisYear": 749.0,
-        "octoberfestGrowth": -383.0,
+        "octoberfestUnitsThisYear": 764.0,
+        "octoberfestGrowth": -368.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3918 Sam Adams Octoberfest 2/12/12 oz Btl",
             "unitsLastYear": 470.0,
-            "unitsThisYear": 278.0,
-            "growth": -192.0,
+            "unitsThisYear": 293.0,
+            "growth": -177.0,
             "accounts": []
           },
           {
             "product": "3919 Sam Adams Octoberfest 4/6/12 oz Btl",
             "unitsLastYear": 341.0,
-            "unitsThisYear": 272.0,
-            "growth": -69.0,
+            "unitsThisYear": 273.0,
+            "growth": -68.0,
             "accounts": []
           },
           {
             "product": "3921 Sam Adams Octoberfest 2/12/12 oz Can",
             "unitsLastYear": 304.0,
-            "unitsThisYear": 184.0,
-            "growth": -120.0,
+            "unitsThisYear": 183.0,
+            "growth": -121.0,
             "accounts": []
           },
           {
-            "product": "4056 Sam Adamas Octoberfest Non-Alcoholic 4/6/12 oz Can",
+            "product": "4056 Sam Adams Octoberfest Non-Alcoholic 4/6/12 oz Can",
             "unitsLastYear": 0.0,
             "unitsThisYear": 10.0,
             "growth": 10.0,
@@ -17522,16 +17494,13 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Robin Feldman": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": true,
         "octoberfestUnitsLastYear": 146.0,
-        "octoberfestUnitsThisYear": 143.0,
-        "octoberfestGrowth": -3.0,
+        "octoberfestUnitsThisYear": 148.0,
+        "octoberfestGrowth": 2.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
@@ -17542,17 +17511,17 @@ const PROGRAM_DATA = {
             "accounts": []
           },
           {
+            "product": "3918 Sam Adams Octoberfest 2/12/12 oz Btl",
+            "unitsLastYear": 15.0,
+            "unitsThisYear": 35.0,
+            "growth": 20.0,
+            "accounts": []
+          },
+          {
             "product": "3919 Sam Adams Octoberfest 4/6/12 oz Btl",
             "unitsLastYear": 63.0,
             "unitsThisYear": 34.0,
             "growth": -29.0,
-            "accounts": []
-          },
-          {
-            "product": "3918 Sam Adams Octoberfest 2/12/12 oz Btl",
-            "unitsLastYear": 15.0,
-            "unitsThisYear": 30.0,
-            "growth": 15.0,
             "accounts": []
           },
           {
@@ -17563,23 +17532,20 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Shane Barreca": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 1371.0,
-        "octoberfestUnitsThisYear": 952.0,
-        "octoberfestGrowth": -419.0,
+        "octoberfestUnitsThisYear": 987.0,
+        "octoberfestGrowth": -384.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3919 Sam Adams Octoberfest 4/6/12 oz Btl",
             "unitsLastYear": 548.0,
-            "unitsThisYear": 399.0,
-            "growth": -149.0,
+            "unitsThisYear": 411.0,
+            "growth": -137.0,
             "accounts": []
           },
           {
@@ -17592,8 +17558,8 @@ const PROGRAM_DATA = {
           {
             "product": "3918 Sam Adams Octoberfest 2/12/12 oz Btl",
             "unitsLastYear": 435.0,
-            "unitsThisYear": 228.0,
-            "growth": -207.0,
+            "unitsThisYear": 251.0,
+            "growth": -184.0,
             "accounts": []
           },
           {
@@ -17604,7 +17570,7 @@ const PROGRAM_DATA = {
             "accounts": []
           },
           {
-            "product": "4056 Sam Adamas Octoberfest Non-Alcoholic 4/6/12 oz Can",
+            "product": "4056 Sam Adams Octoberfest Non-Alcoholic 4/6/12 oz Can",
             "unitsLastYear": 0.0,
             "unitsThisYear": 18.0,
             "growth": 18.0,
@@ -17625,7 +17591,6 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       }
     },
@@ -17633,11 +17598,11 @@ const PROGRAM_DATA = {
       "startDate": "8/1/2026",
       "endDate": "9/30/2026",
       "compareLabel": "Aug\u2013Sep 2025",
-      "daysElapsed": 54,
+      "daysElapsed": 56,
       "periodDays": 61,
       "houseLastYear": 14956.0,
-      "houseThisYear": 10813.0,
-      "allSkuTracked": false,
+      "houseThisYear": 11024.0,
+      "reward": "Double commission on all Sam Adams if positive",
       "offRoster": [
         "John Neukum",
         "Default",
@@ -23284,22 +23249,22 @@ const PROGRAM_DATA = {
       "Anthony Palmisano": {
         "buyingAccounts": [
           {
-            "customer": "Empire Wine & Liquor",
-            "date": "9/23/2026",
-            "skus": 3
-          },
-          {
             "customer": "Country Convenience Store",
             "date": "9/23/2026",
             "skus": 3
           },
           {
-            "customer": "Home Wine and Liquors",
-            "date": "9/22/2026",
+            "customer": "Empire Wine & Liquor",
+            "date": "9/23/2026",
             "skus": 3
           },
           {
             "customer": "Roserne Pkg Store South",
+            "date": "9/22/2026",
+            "skus": 3
+          },
+          {
+            "customer": "Home Wine and Liquors",
             "date": "9/22/2026",
             "skus": 3
           },
@@ -23461,14 +23426,14 @@ const PROGRAM_DATA = {
             "skus": 6
           },
           {
-            "customer": "Clifton Disc Liq (A)",
-            "date": "8/25/2026",
-            "skus": 3
-          },
-          {
             "customer": "J R W & Liq (A)",
             "date": "8/25/2026",
             "skus": 6
+          },
+          {
+            "customer": "Clifton Disc Liq (A)",
+            "date": "8/25/2026",
+            "skus": 3
           },
           {
             "customer": "Ridgefield Deli & Liq",
@@ -23491,12 +23456,12 @@ const PROGRAM_DATA = {
             "skus": 3
           },
           {
-            "customer": "The Wine Rack Hasbrouck Hts",
+            "customer": "Welsh Farms",
             "date": "8/14/2026",
             "skus": 3
           },
           {
-            "customer": "Welsh Farms",
+            "customer": "The Wine Rack Hasbrouck Hts",
             "date": "8/14/2026",
             "skus": 3
           },
@@ -23670,23 +23635,13 @@ const PROGRAM_DATA = {
             "skus": 3
           },
           {
-            "customer": "Garden State Food&Liq (P)",
-            "date": "8/7/2026",
-            "skus": 6
-          },
-          {
             "customer": "Ridgefield Liq (Z)",
             "date": "8/7/2026",
             "skus": 6
           },
           {
-            "customer": "Boulevard Liq.(Fairview)",
-            "date": "8/5/2026",
-            "skus": 6
-          },
-          {
-            "customer": "Rome Liquors (Fairview)",
-            "date": "8/5/2026",
+            "customer": "Garden State Food&Liq (P)",
+            "date": "8/7/2026",
             "skus": 6
           },
           {
@@ -23695,9 +23650,19 @@ const PROGRAM_DATA = {
             "skus": 6
           },
           {
+            "customer": "Boulevard Liq.(Fairview)",
+            "date": "8/5/2026",
+            "skus": 6
+          },
+          {
             "customer": "Metro Liquor (Cliffside Park)",
             "date": "8/5/2026",
             "skus": 3
+          },
+          {
+            "customer": "Rome Liquors (Fairview)",
+            "date": "8/5/2026",
+            "skus": 6
           }
         ],
         "buyingAccountCount": 11,
@@ -23857,7 +23822,7 @@ const PROGRAM_DATA = {
         "buyingAccounts": [
           {
             "customer": "Burgundy Convenience Store",
-            "date": "9/4/2026",
+            "date": "9/25/2026",
             "skus": 4
           },
           {
@@ -23891,17 +23856,17 @@ const PROGRAM_DATA = {
             "skus": 6
           },
           {
-            "customer": "New Milford Liquors",
-            "date": "8/7/2026",
-            "skus": 6
-          },
-          {
             "customer": "Joes Beer Wine & Spirits",
             "date": "8/7/2026",
             "skus": 6
           },
           {
-            "customer": "Teaneck Discount Liquor",
+            "customer": "New Milford Liquors",
+            "date": "8/7/2026",
+            "skus": 6
+          },
+          {
+            "customer": "W E Beverage (A)",
             "date": "8/6/2026",
             "skus": 3
           },
@@ -23911,19 +23876,19 @@ const PROGRAM_DATA = {
             "skus": 6
           },
           {
-            "customer": "Teaneck Liquors",
+            "customer": "Teaneck Discount Liquor",
             "date": "8/6/2026",
             "skus": 3
           },
           {
-            "customer": "W E Beverage (A)",
+            "customer": "Teaneck Liquors",
             "date": "8/6/2026",
             "skus": 3
           }
         ],
         "buyingAccountCount": 13,
         "eligibleAccountCount": 33,
-        "caseVolume": 104.0,
+        "caseVolume": 106.0,
         "penetrationPct": 39.4,
         "tier": "Gettin' Lytt",
         "rate": 0.5,
@@ -24021,8 +23986,13 @@ const PROGRAM_DATA = {
       "Derrick Laws": {
         "buyingAccounts": [
           {
-            "customer": "Broadway Liq (A)",
-            "date": "9/23/2026",
+            "customer": "The Liquor Shop",
+            "date": "9/25/2026",
+            "skus": 3
+          },
+          {
+            "customer": "Pal's Liquor",
+            "date": "9/25/2026",
             "skus": 3
           },
           {
@@ -24031,9 +24001,19 @@ const PROGRAM_DATA = {
             "skus": 3
           },
           {
+            "customer": "Broadway Liq (A)",
+            "date": "9/23/2026",
+            "skus": 3
+          },
+          {
             "customer": "Shop Rite Liq (A)Littlefl",
             "date": "8/27/2026",
             "skus": 3
+          },
+          {
+            "customer": "Santana's Sport(P)Bella",
+            "date": "8/7/2026",
+            "skus": 6
           },
           {
             "customer": "Shop Rite Wines/Spirits",
@@ -24051,11 +24031,6 @@ const PROGRAM_DATA = {
             "skus": 3
           },
           {
-            "customer": "Santana's Sport(P)Bella",
-            "date": "8/7/2026",
-            "skus": 6
-          },
-          {
             "customer": "Quis Queya Liquor(P)",
             "date": "8/6/2026",
             "skus": 6
@@ -24066,17 +24041,12 @@ const PROGRAM_DATA = {
             "skus": 6
           },
           {
-            "customer": "Raphael & Angel Liq (A)",
-            "date": "8/5/2026",
-            "skus": 6
-          },
-          {
             "customer": "Liquor Gallery (Paterson)",
             "date": "8/5/2026",
             "skus": 6
           },
           {
-            "customer": "Mercer Bar & Liquors",
+            "customer": "Ferraro's Liquor",
             "date": "8/5/2026",
             "skus": 6
           },
@@ -24086,17 +24056,22 @@ const PROGRAM_DATA = {
             "skus": 6
           },
           {
-            "customer": "Ferraro's Liquor",
+            "customer": "Raphael & Angel Liq (A)",
+            "date": "8/5/2026",
+            "skus": 6
+          },
+          {
+            "customer": "Mercer Bar & Liquors",
             "date": "8/5/2026",
             "skus": 6
           }
         ],
-        "buyingAccountCount": 14,
+        "buyingAccountCount": 16,
         "eligibleAccountCount": 32,
-        "caseVolume": 78.0,
-        "penetrationPct": 43.8,
-        "tier": "Gettin' Lytt",
-        "rate": 0.5,
+        "caseVolume": 84.0,
+        "penetrationPct": 50.0,
+        "tier": "Lytty City",
+        "rate": 1.0,
         "whitespaceAccounts": [
           {
             "customer": "Scheps Discount Bar/Liq",
@@ -24111,20 +24086,12 @@ const PROGRAM_DATA = {
             "cases2026": 36092.8
           },
           {
-            "customer": "The Liquor Shop",
-            "cases2026": 27097.0
-          },
-          {
             "customer": "The Point Liquor & Bar",
             "cases2026": 21665.5
           },
           {
             "customer": "Economy Liquors",
             "cases2026": 18898.0
-          },
-          {
-            "customer": "Pal's Liquor",
-            "cases2026": 11623.0
           },
           {
             "customer": "La Sorpresa Liq (P)",
@@ -24252,14 +24219,14 @@ const PROGRAM_DATA = {
             "skus": 6
           },
           {
-            "customer": "Belmont Liqrs (P)",
-            "date": "8/6/2026",
-            "skus": 3
-          },
-          {
             "customer": "Segundo's (P)",
             "date": "8/6/2026",
             "skus": 6
+          },
+          {
+            "customer": "Belmont Liqrs (P)",
+            "date": "8/6/2026",
+            "skus": 3
           },
           {
             "customer": "Paruta's (A)",
@@ -24404,11 +24371,6 @@ const PROGRAM_DATA = {
             "skus": 3
           },
           {
-            "customer": "ShopRite Wines & Spirits of Franklin",
-            "date": "8/5/2026",
-            "skus": 6
-          },
-          {
             "customer": "The Right Bottle",
             "date": "8/5/2026",
             "skus": 6
@@ -24429,17 +24391,22 @@ const PROGRAM_DATA = {
             "skus": 6
           },
           {
+            "customer": "ShopRite Wines & Spirits of Franklin",
+            "date": "8/5/2026",
+            "skus": 6
+          },
+          {
             "customer": "USA Wine Traders Club Of Newton (A)",
             "date": "8/4/2026",
             "skus": 6
           },
           {
-            "customer": "Patricks Wine Barn",
+            "customer": "ShopRite Wine & Spirits of Newton#830",
             "date": "8/4/2026",
             "skus": 6
           },
           {
-            "customer": "ShopRite Wine & Spirits of Newton#830",
+            "customer": "Patricks Wine Barn",
             "date": "8/4/2026",
             "skus": 6
           }
@@ -24579,24 +24546,24 @@ const PROGRAM_DATA = {
             "skus": 3
           },
           {
-            "customer": "Rainbow Liquor (P)",
-            "date": "8/7/2026",
-            "skus": 6
-          },
-          {
             "customer": "Lucky 7 (A)",
             "date": "8/7/2026",
             "skus": 6
           },
           {
-            "customer": "Little Falls Liq(P)",
-            "date": "8/6/2026",
+            "customer": "Rainbow Liquor (P)",
+            "date": "8/7/2026",
             "skus": 6
           },
           {
             "customer": "Swizzle Stick Liq (A)",
             "date": "8/6/2026",
             "skus": 5
+          },
+          {
+            "customer": "Little Falls Liq(P)",
+            "date": "8/6/2026",
+            "skus": 6
           },
           {
             "customer": "Clifton Commons S & W",
@@ -24777,12 +24744,12 @@ const PROGRAM_DATA = {
       "Klejdi Lamo": {
         "buyingAccounts": [
           {
-            "customer": "Main Street Liquor",
+            "customer": "Wharton Liquor Store",
             "date": "8/27/2026",
             "skus": 3
           },
           {
-            "customer": "Wharton Liquor Store",
+            "customer": "Main Street Liquor",
             "date": "8/27/2026",
             "skus": 3
           },
@@ -24792,12 +24759,12 @@ const PROGRAM_DATA = {
             "skus": 6
           },
           {
-            "customer": "3 IN 1 LIQUORS INC",
+            "customer": "Shop Rite Wine & Spirits Stanhope",
             "date": "8/26/2026",
             "skus": 3
           },
           {
-            "customer": "Shop Rite Wine & Spirits Stanhope",
+            "customer": "3 IN 1 LIQUORS INC",
             "date": "8/26/2026",
             "skus": 3
           },
@@ -24913,22 +24880,22 @@ const PROGRAM_DATA = {
             "skus": 6
           },
           {
-            "customer": "Capri Deli&Liq (P)",
-            "date": "8/13/2026",
-            "skus": 6
-          },
-          {
             "customer": "Garfield Bar & Liq (P)",
             "date": "8/13/2026",
             "skus": 6
           },
           {
-            "customer": "King Liquors",
-            "date": "8/12/2026",
+            "customer": "Capri Deli&Liq (P)",
+            "date": "8/13/2026",
             "skus": 6
           },
           {
             "customer": "Riverview Liquors & Bar",
+            "date": "8/12/2026",
+            "skus": 6
+          },
+          {
+            "customer": "King Liquors",
             "date": "8/12/2026",
             "skus": 6
           },
@@ -25464,12 +25431,12 @@ const PROGRAM_DATA = {
             "skus": 3
           },
           {
-            "customer": "Stew Leonard's(A) Paramus Wine",
+            "customer": "Stew Leonard's Wines & Spirits of Clifton",
             "date": "9/10/2026",
             "skus": 6
           },
           {
-            "customer": "Stew Leonard's Wines & Spirits of Clifton",
+            "customer": "Stew Leonard's(A) Paramus Wine",
             "date": "9/10/2026",
             "skus": 6
           },
@@ -25494,12 +25461,12 @@ const PROGRAM_DATA = {
             "skus": 3
           },
           {
-            "customer": "THE BOTTLE SHOP",
+            "customer": "Shop Rite Liq (Paramus)",
             "date": "8/6/2026",
             "skus": 6
           },
           {
-            "customer": "Shop Rite Liq (Paramus)",
+            "customer": "THE BOTTLE SHOP",
             "date": "8/6/2026",
             "skus": 6
           },
@@ -25615,12 +25582,12 @@ const PROGRAM_DATA = {
       "Shane Barreca": {
         "buyingAccounts": [
           {
-            "customer": "Bottle King (A) Ramsey",
+            "customer": "Bottle King (A) Dumont",
             "date": "8/27/2026",
             "skus": 3
           },
           {
-            "customer": "Bottle King (A) Dumont",
+            "customer": "Bottle King (A) Ramsey",
             "date": "8/27/2026",
             "skus": 3
           },
@@ -25650,14 +25617,14 @@ const PROGRAM_DATA = {
             "skus": 6
           },
           {
-            "customer": "Winemart Discount",
-            "date": "8/5/2026",
-            "skus": 6
-          },
-          {
             "customer": "Royal Wine & Spirits II",
             "date": "8/5/2026",
             "skus": 3
+          },
+          {
+            "customer": "Winemart Discount",
+            "date": "8/5/2026",
+            "skus": 6
           }
         ],
         "buyingAccountCount": 9,
@@ -25760,7 +25727,7 @@ const PROGRAM_DATA = {
     "leaderboard": [
       {
         "rep": "Derrick Laws",
-        "penetrationPct": 43.8,
+        "penetrationPct": 50.0,
         "rank": 1
       },
       {
@@ -46683,16 +46650,16 @@ const PROGRAM_DATA = {
         "caseGrowthOverLastYear": 70.01
       },
       "Andrew Lundy": {
-        "caseGrowthOverLastYear": 163.66
+        "caseGrowthOverLastYear": 179.66
       },
       "Anthony Palmisano": {
-        "caseGrowthOverLastYear": 63.51
+        "caseGrowthOverLastYear": 73.51
       },
       "Brian Sengebush": {
         "caseGrowthOverLastYear": 104.21
       },
       "Chris Payton": {
-        "caseGrowthOverLastYear": 91.22
+        "caseGrowthOverLastYear": 93.22
       },
       "Dan Lagala": {
         "caseGrowthOverLastYear": 36.33
@@ -46710,31 +46677,31 @@ const PROGRAM_DATA = {
         "caseGrowthOverLastYear": 403.34
       },
       "Jaime Colonna": {
-        "caseGrowthOverLastYear": 103.24
+        "caseGrowthOverLastYear": 108.24
       },
       "Javier Melo": {
         "caseGrowthOverLastYear": 0.0
       },
       "Jayson Romine": {
-        "caseGrowthOverLastYear": 263.44
+        "caseGrowthOverLastYear": 275.33
       },
       "Jim Heaney": {
-        "caseGrowthOverLastYear": 63.67
+        "caseGrowthOverLastYear": 66.67
       },
       "John O'Donoghue": {
-        "caseGrowthOverLastYear": 318.04
+        "caseGrowthOverLastYear": 357.93
       },
       "Klejdi Lamo": {
-        "caseGrowthOverLastYear": 248.95
+        "caseGrowthOverLastYear": 253.95
       },
       "Matt Powierski": {
         "caseGrowthOverLastYear": 76.78
       },
       "Michael Harboy": {
-        "caseGrowthOverLastYear": 213.71
+        "caseGrowthOverLastYear": 229.04
       },
       "Mike Ast": {
-        "caseGrowthOverLastYear": 127.79
+        "caseGrowthOverLastYear": 134.46
       },
       "Nick Melissari": {
         "caseGrowthOverLastYear": 88.97
@@ -46743,19 +46710,19 @@ const PROGRAM_DATA = {
         "caseGrowthOverLastYear": 5.0
       },
       "Paul Mclaughlin": {
-        "caseGrowthOverLastYear": 203.75
+        "caseGrowthOverLastYear": 205.08
       },
       "Phil Ernst": {
-        "caseGrowthOverLastYear": 19.34
+        "caseGrowthOverLastYear": 34.34
       },
       "Robin Feldman": {
         "caseGrowthOverLastYear": 0.0
       },
       "Shane Barreca": {
-        "caseGrowthOverLastYear": 223.34
+        "caseGrowthOverLastYear": 238.34
       }
     },
-    "companyTotalThisYear": 8483.04,
+    "companyTotalThisYear": 8629.15,
     "houseGoal": 9305
   },
   "le_grand_noir": {
@@ -55209,9 +55176,9 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Coors Light",
-            "actual": 48,
+            "actual": 50,
             "goal": 44,
-            "pct": 109.1
+            "pct": 113.6
           },
           {
             "label": "Miller Lite",
@@ -55221,17 +55188,17 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Peroni",
-            "actual": 18,
+            "actual": 19,
             "goal": 18,
-            "pct": 100.0
+            "pct": 105.6
           }
         ],
-        "onActual": 179,
+        "onActual": 182,
         "onGoal": 163,
-        "onPct": 109.8,
+        "onPct": 111.7,
         "goalsTotal": 5,
         "goalsRetained": 4,
-        "overallPct": 109.8,
+        "overallPct": 111.7,
         "territoryEligible": true
       },
       "Andrew Lundy": {
@@ -55339,9 +55306,9 @@ const PROGRAM_DATA = {
         "onBrands": [
           {
             "label": "Blue Moon",
-            "actual": 40,
+            "actual": 41,
             "goal": 29,
-            "pct": 137.9
+            "pct": 141.4
           },
           {
             "label": "Coors Banquet",
@@ -55351,9 +55318,9 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Coors Light",
-            "actual": 30,
+            "actual": 31,
             "goal": 20,
-            "pct": 150.0
+            "pct": 155.0
           },
           {
             "label": "Miller Lite",
@@ -55368,38 +55335,38 @@ const PROGRAM_DATA = {
             "pct": 40.0
           }
         ],
-        "onActual": 126,
+        "onActual": 128,
         "onGoal": 103,
-        "onPct": 122.3,
+        "onPct": 124.3,
         "goalsTotal": 8,
         "goalsRetained": 4,
-        "overallPct": 102.2,
+        "overallPct": 103.6,
         "territoryEligible": true
       },
       "Chris Payton": {
         "offBrands": [
           {
             "label": "Coors",
-            "actual": 86,
+            "actual": 90,
             "goal": 85,
-            "pct": 101.2
+            "pct": 105.9
           },
           {
             "label": "Fever Tree",
-            "actual": 80,
+            "actual": 82,
             "goal": 60,
-            "pct": 133.3
+            "pct": 136.7
           },
           {
             "label": "Peroni",
-            "actual": 82,
+            "actual": 84,
             "goal": 85,
-            "pct": 96.5
+            "pct": 98.8
           }
         ],
-        "offActual": 248,
+        "offActual": 256,
         "offGoal": 230,
-        "offPct": 107.8,
+        "offPct": 111.3,
         "onBrands": [
           {
             "label": "Blue Moon",
@@ -55409,9 +55376,9 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Coors Light",
-            "actual": 2,
+            "actual": 3,
             "goal": 3,
-            "pct": 66.7
+            "pct": 100.0
           },
           {
             "label": "Miller Lite",
@@ -55426,12 +55393,12 @@ const PROGRAM_DATA = {
             "pct": 50.0
           }
         ],
-        "onActual": 5,
+        "onActual": 6,
         "onGoal": 14,
-        "onPct": 35.7,
+        "onPct": 42.9,
         "goalsTotal": 7,
-        "goalsRetained": 2,
-        "overallPct": 103.7,
+        "goalsRetained": 3,
+        "overallPct": 107.4,
         "territoryEligible": true
       },
       "Dan Lagala": {
@@ -55444,26 +55411,26 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Fever Tree",
-            "actual": 41,
+            "actual": 43,
             "goal": 36,
-            "pct": 113.9
+            "pct": 119.4
           },
           {
             "label": "Peroni",
-            "actual": 65,
+            "actual": 66,
             "goal": 90,
-            "pct": 72.2
+            "pct": 73.3
           }
         ],
-        "offActual": 153,
+        "offActual": 156,
         "offGoal": 176,
-        "offPct": 86.9,
+        "offPct": 88.6,
         "onBrands": [
           {
             "label": "Blue Moon",
-            "actual": 9,
+            "actual": 10,
             "goal": 18,
-            "pct": 50.0
+            "pct": 55.6
           },
           {
             "label": "Coors Light",
@@ -55484,12 +55451,12 @@ const PROGRAM_DATA = {
             "pct": 100.0
           }
         ],
-        "onActual": 18,
+        "onActual": 19,
         "onGoal": 34,
-        "onPct": 52.9,
+        "onPct": 55.9,
         "goalsTotal": 7,
         "goalsRetained": 2,
-        "overallPct": 81.4,
+        "overallPct": 83.3,
         "territoryEligible": true
       },
       "Dave Ehlers": {
@@ -55529,15 +55496,15 @@ const PROGRAM_DATA = {
         "offBrands": [
           {
             "label": "Coors",
-            "actual": 58,
+            "actual": 59,
             "goal": 54,
-            "pct": 107.4
+            "pct": 109.3
           },
           {
             "label": "Fever Tree",
-            "actual": 21,
+            "actual": 19,
             "goal": 15,
-            "pct": 140.0
+            "pct": 126.7
           },
           {
             "label": "Peroni",
@@ -55546,9 +55513,9 @@ const PROGRAM_DATA = {
             "pct": 106.9
           }
         ],
-        "offActual": 110,
+        "offActual": 109,
         "offGoal": 98,
-        "offPct": 112.2,
+        "offPct": 111.2,
         "onBrands": [
           {
             "label": "Coors Light",
@@ -55562,7 +55529,7 @@ const PROGRAM_DATA = {
         "onPct": 50.0,
         "goalsTotal": 4,
         "goalsRetained": 3,
-        "overallPct": 111.0,
+        "overallPct": 110.0,
         "territoryEligible": true
       },
       "Dylan Rubino": {
@@ -55670,9 +55637,9 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Fever Tree",
-            "actual": 88,
+            "actual": 92,
             "goal": 85,
-            "pct": 103.5
+            "pct": 108.2
           },
           {
             "label": "Peroni",
@@ -55681,25 +55648,25 @@ const PROGRAM_DATA = {
             "pct": 122.0
           }
         ],
-        "offActual": 313,
+        "offActual": 317,
         "offGoal": 283,
-        "offPct": 110.6,
+        "offPct": 112.0,
         "onBrands": [],
         "onActual": 0,
         "onGoal": 0,
         "onPct": null,
         "goalsTotal": 3,
         "goalsRetained": 3,
-        "overallPct": 110.6,
+        "overallPct": 112.0,
         "territoryEligible": true
       },
       "Jim Heaney": {
         "offBrands": [
           {
             "label": "Coors",
-            "actual": 91,
+            "actual": 92,
             "goal": 110,
-            "pct": 82.7
+            "pct": 83.6
           },
           {
             "label": "Fever Tree",
@@ -55709,21 +55676,21 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Peroni",
-            "actual": 79,
+            "actual": 81,
             "goal": 104,
-            "pct": 76.0
+            "pct": 77.9
           }
         ],
-        "offActual": 211,
+        "offActual": 214,
         "offGoal": 251,
-        "offPct": 84.1,
+        "offPct": 85.3,
         "onBrands": [],
         "onActual": 0,
         "onGoal": 0,
         "onPct": null,
         "goalsTotal": 3,
         "goalsRetained": 1,
-        "overallPct": 84.1,
+        "overallPct": 85.3,
         "territoryEligible": true
       },
       "John O'Donoghue": {
@@ -55769,21 +55736,21 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Peroni",
-            "actual": 60,
+            "actual": 63,
             "goal": 70,
-            "pct": 85.7
+            "pct": 90.0
           }
         ],
-        "offActual": 228,
+        "offActual": 231,
         "offGoal": 222,
-        "offPct": 102.7,
+        "offPct": 104.1,
         "onBrands": [],
         "onActual": 0,
         "onGoal": 0,
         "onPct": null,
         "goalsTotal": 3,
         "goalsRetained": 2,
-        "overallPct": 102.7,
+        "overallPct": 104.1,
         "territoryEligible": true
       },
       "Matt Powierski": {
@@ -55955,9 +55922,9 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Coors Banquet",
-            "actual": 2,
+            "actual": 3,
             "goal": 3,
-            "pct": 66.7
+            "pct": 100.0
           },
           {
             "label": "Coors Light",
@@ -55967,9 +55934,9 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Miller Lite",
-            "actual": 40,
+            "actual": 41,
             "goal": 50,
-            "pct": 80.0
+            "pct": 82.0
           },
           {
             "label": "Peroni",
@@ -55978,21 +55945,21 @@ const PROGRAM_DATA = {
             "pct": 60.0
           }
         ],
-        "onActual": 176,
+        "onActual": 178,
         "onGoal": 223,
-        "onPct": 78.9,
+        "onPct": 79.8,
         "goalsTotal": 5,
-        "goalsRetained": 0,
-        "overallPct": 78.9,
+        "goalsRetained": 1,
+        "overallPct": 79.8,
         "territoryEligible": true
       },
       "Pablo Lopez": {
         "offBrands": [
           {
             "label": "Coors",
-            "actual": 37,
+            "actual": 38,
             "goal": 31,
-            "pct": 119.4
+            "pct": 122.6
           },
           {
             "label": "Fever Tree",
@@ -56007,9 +55974,9 @@ const PROGRAM_DATA = {
             "pct": 58.8
           }
         ],
-        "offActual": 47,
+        "offActual": 48,
         "offGoal": 48,
-        "offPct": 97.9,
+        "offPct": 100.0,
         "onBrands": [
           {
             "label": "Blue Moon",
@@ -56029,7 +55996,7 @@ const PROGRAM_DATA = {
         "onPct": 133.3,
         "goalsTotal": 4,
         "goalsRetained": 3,
-        "overallPct": 100.0,
+        "overallPct": 102.0,
         "territoryEligible": true
       },
       "Paul Mclaughlin": {
@@ -56047,9 +56014,9 @@ const PROGRAM_DATA = {
         "onBrands": [
           {
             "label": "Blue Moon",
-            "actual": 38,
+            "actual": 39,
             "goal": 46,
-            "pct": 82.6
+            "pct": 84.8
           },
           {
             "label": "Coors Light",
@@ -56065,17 +56032,17 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Peroni",
-            "actual": 18,
+            "actual": 19,
             "goal": 16,
-            "pct": 112.5
+            "pct": 118.8
           }
         ],
-        "onActual": 95,
+        "onActual": 97,
         "onGoal": 110,
-        "onPct": 86.4,
+        "onPct": 88.2,
         "goalsTotal": 5,
         "goalsRetained": 1,
-        "overallPct": 82.8,
+        "overallPct": 84.5,
         "territoryEligible": true
       },
       "Phil Ernst": {
@@ -56138,15 +56105,15 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Coors Light",
-            "actual": 19,
+            "actual": 21,
             "goal": null,
             "pct": null
           },
           {
             "label": "Miller Lite",
-            "actual": 33,
+            "actual": 34,
             "goal": 30,
-            "pct": 110.0
+            "pct": 113.3
           },
           {
             "label": "Peroni",
@@ -56155,12 +56122,12 @@ const PROGRAM_DATA = {
             "pct": 75.0
           }
         ],
-        "onActual": 67,
+        "onActual": 68,
         "onGoal": 70,
-        "onPct": 95.7,
+        "onPct": 97.1,
         "goalsTotal": 4,
         "goalsRetained": 1,
-        "overallPct": 89.9,
+        "overallPct": 91.1,
         "territoryEligible": true
       },
       "Shane Barreca": {
@@ -56173,27 +56140,27 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Fever Tree",
-            "actual": 110,
+            "actual": 111,
             "goal": 115,
-            "pct": 95.7
+            "pct": 96.5
           },
           {
             "label": "Peroni",
-            "actual": 103,
+            "actual": 104,
             "goal": 101,
-            "pct": 102.0
+            "pct": 103.0
           }
         ],
-        "offActual": 314,
+        "offActual": 316,
         "offGoal": 311,
-        "offPct": 101.0,
+        "offPct": 101.6,
         "onBrands": [],
         "onActual": 0,
         "onGoal": 0,
         "onPct": null,
         "goalsTotal": 3,
         "goalsRetained": 2,
-        "overallPct": 101.0,
+        "overallPct": 101.6,
         "territoryEligible": true
       }
     }
@@ -93951,13 +93918,13 @@ const PROGRAM_DATA_2026_09 = {
         "base": 28,
         "qualifier": 12,
         "bonus": 14,
-        "accounts": 20,
-        "pct": 71,
+        "accounts": 21,
+        "pct": 75,
         "qualified": true,
         "bonusHit": true,
         "toQualifier": 0,
         "toBonus": 0,
-        "payout": 200,
+        "payout": 210,
         "accountList": [
           {
             "num": "27069",
@@ -93965,8 +93932,8 @@ const PROGRAM_DATA_2026_09 = {
             "date": "8/4/2026"
           },
           {
-            "num": "27021",
-            "name": "Johnny's Liqs (P)",
+            "num": "26014",
+            "name": "Regalado Liq",
             "date": "8/4/2026"
           },
           {
@@ -93975,13 +93942,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "8/4/2026"
           },
           {
-            "num": "21034",
-            "name": "Schulman's (P) Deli",
+            "num": "27021",
+            "name": "Johnny's Liqs (P)",
             "date": "8/4/2026"
           },
           {
-            "num": "26014",
-            "name": "Regalado Liq",
+            "num": "21034",
+            "name": "Schulman's (P) Deli",
             "date": "8/4/2026"
           },
           {
@@ -94005,8 +93972,8 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/1/2026"
           },
           {
-            "num": "15047",
-            "name": "Freddie's Corner",
+            "num": "20032",
+            "name": "Riverside Liquors (Paterson)",
             "date": "9/4/2026"
           },
           {
@@ -94015,8 +93982,8 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/4/2026"
           },
           {
-            "num": "20032",
-            "name": "Riverside Liquors (Paterson)",
+            "num": "15047",
+            "name": "Freddie's Corner",
             "date": "9/4/2026"
           },
           {
@@ -94030,13 +93997,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/15/2026"
           },
           {
-            "num": "27043",
-            "name": "Monroe Wine & Liq(P)",
+            "num": "20014",
+            "name": "Bombolon Liquor & Grocery",
             "date": "9/16/2026"
           },
           {
-            "num": "20014",
-            "name": "Bombolon Liquor & Grocery",
+            "num": "27043",
+            "name": "Monroe Wine & Liq(P)",
             "date": "9/16/2026"
           },
           {
@@ -94045,164 +94012,39 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/17/2026"
           },
           {
-            "num": "20051",
-            "name": "Costambar Bar & Liquor Corp.",
+            "num": "21024",
+            "name": "Altiero Liquors",
             "date": "9/18/2026"
           },
           {
-            "num": "21024",
-            "name": "Altiero Liquors",
+            "num": "20051",
+            "name": "Costambar Bar & Liquor Corp.",
             "date": "9/18/2026"
           },
           {
             "num": "27005",
             "name": "#1 Liqrs (P)",
             "date": "9/22/2026"
+          },
+          {
+            "num": "20029",
+            "name": "Star Liquor Store",
+            "date": "9/25/2026"
           }
         ],
         "rank": 1
-      },
-      "Dan Lagala": {
-        "base": 43,
-        "qualifier": 18,
-        "bonus": 22,
-        "accounts": 23,
-        "pct": 53,
-        "qualified": true,
-        "bonusHit": true,
-        "toQualifier": 0,
-        "toBonus": 0,
-        "payout": 230,
-        "accountList": [
-          {
-            "num": "49027",
-            "name": "Linwood Wine-Linwood Plaza",
-            "date": "8/19/2026"
-          },
-          {
-            "num": "46002",
-            "name": "Best Choice Liqrs (P)",
-            "date": "8/28/2026"
-          },
-          {
-            "num": "49031",
-            "name": "Top Shelf Liquors",
-            "date": "9/8/2026"
-          },
-          {
-            "num": "43006",
-            "name": "Fairview Liq & Groc.(A)",
-            "date": "9/8/2026"
-          },
-          {
-            "num": "49045",
-            "name": "Liquor World",
-            "date": "9/8/2026"
-          },
-          {
-            "num": "44052",
-            "name": "Minit Mart_2",
-            "date": "9/8/2026"
-          },
-          {
-            "num": "46012",
-            "name": "Jay Cee (P) Deli & Liq.",
-            "date": "9/8/2026"
-          },
-          {
-            "num": "43013",
-            "name": "Buy Rite Of Fairview",
-            "date": "9/8/2026"
-          },
-          {
-            "num": "44002",
-            "name": "Wine And Food Mart (Z)",
-            "date": "9/9/2026"
-          },
-          {
-            "num": "46011",
-            "name": "Han Mi Supermkt (A)",
-            "date": "9/9/2026"
-          },
-          {
-            "num": "44009",
-            "name": "Metro Liquor (Cliffside Park)",
-            "date": "9/9/2026"
-          },
-          {
-            "num": "43005",
-            "name": "Rome Liquors (Fairview)",
-            "date": "9/9/2026"
-          },
-          {
-            "num": "43004",
-            "name": "Boulevard Liq.(Fairview)",
-            "date": "9/9/2026"
-          },
-          {
-            "num": "45004",
-            "name": "Ridgefield Liq (Z)",
-            "date": "9/9/2026"
-          },
-          {
-            "num": "49033",
-            "name": "Banner Liquor Iii",
-            "date": "9/9/2026"
-          },
-          {
-            "num": "43015",
-            "name": "Kikos Liquors Ii",
-            "date": "9/9/2026"
-          },
-          {
-            "num": "49019",
-            "name": "Bp Gas Station",
-            "date": "9/9/2026"
-          },
-          {
-            "num": "44049",
-            "name": "Rome Liquor (Cliffside Park)",
-            "date": "9/10/2026"
-          },
-          {
-            "num": "44016",
-            "name": "Liquor City(A)Cliffside",
-            "date": "9/10/2026"
-          },
-          {
-            "num": "43007",
-            "name": "American Classic Liq",
-            "date": "9/11/2026"
-          },
-          {
-            "num": "44040",
-            "name": "Stop N Go Conven. (P)",
-            "date": "9/11/2026"
-          },
-          {
-            "num": "44014",
-            "name": "Campbell's Wines & Liquor",
-            "date": "9/16/2026"
-          },
-          {
-            "num": "54006",
-            "name": "Tenafly Fine Wine & Spirits",
-            "date": "9/17/2026"
-          }
-        ],
-        "rank": 2
       },
       "Derrick Laws": {
         "base": 32,
         "qualifier": 13,
         "bonus": 16,
-        "accounts": 17,
-        "pct": 53,
+        "accounts": 18,
+        "pct": 56,
         "qualified": true,
         "bonusHit": true,
         "toQualifier": 0,
         "toBonus": 0,
-        "payout": 170,
+        "payout": 180,
         "accountList": [
           {
             "num": "15020",
@@ -94288,9 +94130,229 @@ const PROGRAM_DATA_2026_09 = {
             "num": "21031",
             "name": "Broadway Liq (A)",
             "date": "9/23/2026"
+          },
+          {
+            "num": "15012",
+            "name": "Pal's Liquor",
+            "date": "9/25/2026"
+          }
+        ],
+        "rank": 2
+      },
+      "Dan Lagala": {
+        "base": 43,
+        "qualifier": 18,
+        "bonus": 22,
+        "accounts": 23,
+        "pct": 53,
+        "qualified": true,
+        "bonusHit": true,
+        "toQualifier": 0,
+        "toBonus": 0,
+        "payout": 230,
+        "accountList": [
+          {
+            "num": "49027",
+            "name": "Linwood Wine-Linwood Plaza",
+            "date": "8/19/2026"
+          },
+          {
+            "num": "46002",
+            "name": "Best Choice Liqrs (P)",
+            "date": "8/28/2026"
+          },
+          {
+            "num": "49031",
+            "name": "Top Shelf Liquors",
+            "date": "9/8/2026"
+          },
+          {
+            "num": "43013",
+            "name": "Buy Rite Of Fairview",
+            "date": "9/8/2026"
+          },
+          {
+            "num": "49045",
+            "name": "Liquor World",
+            "date": "9/8/2026"
+          },
+          {
+            "num": "46012",
+            "name": "Jay Cee (P) Deli & Liq.",
+            "date": "9/8/2026"
+          },
+          {
+            "num": "43006",
+            "name": "Fairview Liq & Groc.(A)",
+            "date": "9/8/2026"
+          },
+          {
+            "num": "44052",
+            "name": "Minit Mart_2",
+            "date": "9/8/2026"
+          },
+          {
+            "num": "43004",
+            "name": "Boulevard Liq.(Fairview)",
+            "date": "9/9/2026"
+          },
+          {
+            "num": "44009",
+            "name": "Metro Liquor (Cliffside Park)",
+            "date": "9/9/2026"
+          },
+          {
+            "num": "49033",
+            "name": "Banner Liquor Iii",
+            "date": "9/9/2026"
+          },
+          {
+            "num": "44002",
+            "name": "Wine And Food Mart (Z)",
+            "date": "9/9/2026"
+          },
+          {
+            "num": "49019",
+            "name": "Bp Gas Station",
+            "date": "9/9/2026"
+          },
+          {
+            "num": "43015",
+            "name": "Kikos Liquors Ii",
+            "date": "9/9/2026"
+          },
+          {
+            "num": "46011",
+            "name": "Han Mi Supermkt (A)",
+            "date": "9/9/2026"
+          },
+          {
+            "num": "43005",
+            "name": "Rome Liquors (Fairview)",
+            "date": "9/9/2026"
+          },
+          {
+            "num": "45004",
+            "name": "Ridgefield Liq (Z)",
+            "date": "9/9/2026"
+          },
+          {
+            "num": "44016",
+            "name": "Liquor City(A)Cliffside",
+            "date": "9/10/2026"
+          },
+          {
+            "num": "44049",
+            "name": "Rome Liquor (Cliffside Park)",
+            "date": "9/10/2026"
+          },
+          {
+            "num": "44040",
+            "name": "Stop N Go Conven. (P)",
+            "date": "9/11/2026"
+          },
+          {
+            "num": "43007",
+            "name": "American Classic Liq",
+            "date": "9/11/2026"
+          },
+          {
+            "num": "44014",
+            "name": "Campbell's Wines & Liquor",
+            "date": "9/16/2026"
+          },
+          {
+            "num": "54006",
+            "name": "Tenafly Fine Wine & Spirits",
+            "date": "9/17/2026"
           }
         ],
         "rank": 3
+      },
+      "Klejdi Lamo": {
+        "base": 27,
+        "qualifier": 11,
+        "bonus": 14,
+        "accounts": 14,
+        "pct": 52,
+        "qualified": true,
+        "bonusHit": true,
+        "toQualifier": 0,
+        "toBonus": 0,
+        "payout": 140,
+        "accountList": [
+          {
+            "num": "190917",
+            "name": "Shop Rite Liq (A)Wharton",
+            "date": "8/10/2026"
+          },
+          {
+            "num": "190804",
+            "name": "Midtown Liq",
+            "date": "8/17/2026"
+          },
+          {
+            "num": "190207",
+            "name": "Liquor Outlet",
+            "date": "9/2/2026"
+          },
+          {
+            "num": "191710",
+            "name": "Shop Rite Wine & Spirits Stanhope",
+            "date": "9/2/2026"
+          },
+          {
+            "num": "190907",
+            "name": "Wharton Liquor Store",
+            "date": "9/3/2026"
+          },
+          {
+            "num": "190913",
+            "name": "Main Street Liquor",
+            "date": "9/3/2026"
+          },
+          {
+            "num": "190208",
+            "name": "Boonton Liquor Locker",
+            "date": "9/4/2026"
+          },
+          {
+            "num": "191606",
+            "name": "Quick Check Liquor (A)",
+            "date": "9/9/2026"
+          },
+          {
+            "num": "191812",
+            "name": "Patel Liqr & Gro(P)",
+            "date": "9/15/2026"
+          },
+          {
+            "num": "191713",
+            "name": "Stanhope Liquors",
+            "date": "9/15/2026"
+          },
+          {
+            "num": "190302",
+            "name": "Basket Of Cheer Ii (Lake Hiawatha)",
+            "date": "9/15/2026"
+          },
+          {
+            "num": "191814",
+            "name": "Sandy's Wine & Spirit (P) (Budd Lake)",
+            "date": "9/16/2026"
+          },
+          {
+            "num": "191518",
+            "name": "3 IN 1 LIQUORS INC",
+            "date": "9/23/2026"
+          },
+          {
+            "num": "190216",
+            "name": "House of Wine & Liquor - Boonton",
+            "date": "9/25/2026"
+          }
+        ],
+        "rank": 4
       },
       "Phil Ernst": {
         "base": 27,
@@ -94320,11 +94382,6 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/15/2026"
           },
           {
-            "num": "43001",
-            "name": "City Supermarket",
-            "date": "9/15/2026"
-          },
-          {
             "num": "38018",
             "name": "THE BOTTLE SHOP",
             "date": "9/15/2026"
@@ -94335,23 +94392,18 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/15/2026"
           },
           {
+            "num": "43001",
+            "name": "City Supermarket",
+            "date": "9/15/2026"
+          },
+          {
             "num": "83001",
             "name": "Food Universe Marketplace",
             "date": "9/16/2026"
           },
           {
-            "num": "50009",
-            "name": "Riverview Liq (P)",
-            "date": "9/17/2026"
-          },
-          {
             "num": "25010",
             "name": "Stew Leonard's Wines & Spirits of Clifton",
-            "date": "9/17/2026"
-          },
-          {
-            "num": "80026",
-            "name": "Stew Leonard's(A) Paramus Wine",
             "date": "9/17/2026"
           },
           {
@@ -94360,8 +94412,18 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/17/2026"
           },
           {
+            "num": "80026",
+            "name": "Stew Leonard's(A) Paramus Wine",
+            "date": "9/17/2026"
+          },
+          {
             "num": "78008",
             "name": "Shop Rite Liq(A) Roch Pk",
+            "date": "9/17/2026"
+          },
+          {
+            "num": "50009",
+            "name": "Riverview Liq (P)",
             "date": "9/17/2026"
           },
           {
@@ -94375,7 +94437,7 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/22/2026"
           }
         ],
-        "rank": 4
+        "rank": 5
       },
       "Chris Payton": {
         "base": 40,
@@ -94415,6 +94477,11 @@ const PROGRAM_DATA_2026_09 = {
             "date": "8/24/2026"
           },
           {
+            "num": "38021",
+            "name": "Buy Rite Of Main St Lodi",
+            "date": "9/1/2026"
+          },
+          {
             "num": "76010",
             "name": "Usa Wine Traders Club (Saddle Brook)",
             "date": "9/1/2026"
@@ -94425,18 +94492,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/1/2026"
           },
           {
-            "num": "38021",
-            "name": "Buy Rite Of Main St Lodi",
-            "date": "9/1/2026"
+            "num": "35002",
+            "name": "Woodridge Wines & Liq(A)",
+            "date": "9/2/2026"
           },
           {
             "num": "50016",
             "name": "Teaneck Quickshop(P)Conv",
-            "date": "9/2/2026"
-          },
-          {
-            "num": "35002",
-            "name": "Woodridge Wines & Liq(A)",
             "date": "9/2/2026"
           },
           {
@@ -94482,86 +94544,6 @@ const PROGRAM_DATA_2026_09 = {
           {
             "num": "38008",
             "name": "Shop Rite Liq.(A)Lodi",
-            "date": "9/23/2026"
-          }
-        ],
-        "rank": 5
-      },
-      "Klejdi Lamo": {
-        "base": 27,
-        "qualifier": 11,
-        "bonus": 14,
-        "accounts": 13,
-        "pct": 48,
-        "qualified": true,
-        "bonusHit": false,
-        "toQualifier": 0,
-        "toBonus": 1,
-        "payout": 65,
-        "accountList": [
-          {
-            "num": "190917",
-            "name": "Shop Rite Liq (A)Wharton",
-            "date": "8/10/2026"
-          },
-          {
-            "num": "190804",
-            "name": "Midtown Liq",
-            "date": "8/17/2026"
-          },
-          {
-            "num": "191710",
-            "name": "Shop Rite Wine & Spirits Stanhope",
-            "date": "9/2/2026"
-          },
-          {
-            "num": "190207",
-            "name": "Liquor Outlet",
-            "date": "9/2/2026"
-          },
-          {
-            "num": "190907",
-            "name": "Wharton Liquor Store",
-            "date": "9/3/2026"
-          },
-          {
-            "num": "190913",
-            "name": "Main Street Liquor",
-            "date": "9/3/2026"
-          },
-          {
-            "num": "190208",
-            "name": "Boonton Liquor Locker",
-            "date": "9/4/2026"
-          },
-          {
-            "num": "191606",
-            "name": "Quick Check Liquor (A)",
-            "date": "9/9/2026"
-          },
-          {
-            "num": "191713",
-            "name": "Stanhope Liquors",
-            "date": "9/15/2026"
-          },
-          {
-            "num": "190302",
-            "name": "Basket Of Cheer Ii (Lake Hiawatha)",
-            "date": "9/15/2026"
-          },
-          {
-            "num": "191812",
-            "name": "Patel Liqr & Gro(P)",
-            "date": "9/15/2026"
-          },
-          {
-            "num": "191814",
-            "name": "Sandy's Wine & Spirit (P) (Budd Lake)",
-            "date": "9/16/2026"
-          },
-          {
-            "num": "191518",
-            "name": "3 IN 1 LIQUORS INC",
             "date": "9/23/2026"
           }
         ],
@@ -94690,6 +94672,11 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/21/2026"
           },
           {
+            "num": "230114",
+            "name": "Liquor Factory III Sparta",
+            "date": "9/21/2026"
+          },
+          {
             "num": "191408",
             "name": "Super Saver Liq",
             "date": "9/21/2026"
@@ -94705,23 +94692,18 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/21/2026"
           },
           {
-            "num": "230114",
-            "name": "Liquor Factory III Sparta",
-            "date": "9/21/2026"
-          },
-          {
             "num": "230431",
             "name": "Seplow's Liquors",
             "date": "9/22/2026"
           },
           {
-            "num": "230920",
-            "name": "Hamburg Liquor",
+            "num": "230427",
+            "name": "ShopRite Wine & Spirits of Newton#830",
             "date": "9/22/2026"
           },
           {
-            "num": "230427",
-            "name": "ShopRite Wine & Spirits of Newton#830",
+            "num": "230920",
+            "name": "Hamburg Liquor",
             "date": "9/22/2026"
           },
           {
@@ -94770,13 +94752,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/3/2026"
           },
           {
-            "num": "32017",
-            "name": "Wine Grand (Carlstadt)",
+            "num": "77009",
+            "name": "M & M Wine & Spirits",
             "date": "9/4/2026"
           },
           {
-            "num": "77009",
-            "name": "M & M Wine & Spirits",
+            "num": "32017",
+            "name": "Wine Grand (Carlstadt)",
             "date": "9/4/2026"
           },
           {
@@ -94790,18 +94772,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/11/2026"
           },
           {
-            "num": "36006",
-            "name": "Wallington Liquor and Wine",
-            "date": "9/15/2026"
-          },
-          {
-            "num": "36016",
-            "name": "King Liquors",
-            "date": "9/15/2026"
-          },
-          {
             "num": "77022",
             "name": "All Star Wine & Liquor",
+            "date": "9/15/2026"
+          },
+          {
+            "num": "36006",
+            "name": "Wallington Liquor and Wine",
             "date": "9/15/2026"
           },
           {
@@ -94810,13 +94787,18 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/15/2026"
           },
           {
-            "num": "27063",
-            "name": "Archies (P)",
-            "date": "9/16/2026"
+            "num": "36016",
+            "name": "King Liquors",
+            "date": "9/15/2026"
           },
           {
             "num": "31033",
             "name": "Capri Deli&Liq (P)",
+            "date": "9/16/2026"
+          },
+          {
+            "num": "27063",
+            "name": "Archies (P)",
             "date": "9/16/2026"
           },
           {
@@ -94827,16 +94809,86 @@ const PROGRAM_DATA_2026_09 = {
         ],
         "rank": 9
       },
+      "Dave Ehlers": {
+        "base": 35,
+        "qualifier": 14,
+        "bonus": 18,
+        "accounts": 11,
+        "pct": 31,
+        "qualified": false,
+        "bonusHit": false,
+        "toQualifier": 3,
+        "toBonus": 7,
+        "payout": 0,
+        "accountList": [
+          {
+            "num": "40010",
+            "name": "Hackensack Liquors",
+            "date": "8/4/2026"
+          },
+          {
+            "num": "41005",
+            "name": "George's Liq",
+            "date": "8/6/2026"
+          },
+          {
+            "num": "41012",
+            "name": "Deli Mart (A)",
+            "date": "9/1/2026"
+          },
+          {
+            "num": "39012",
+            "name": "Wine And Liq Depot(A)",
+            "date": "9/2/2026"
+          },
+          {
+            "num": "51013",
+            "name": "G & G Liquors & Bar",
+            "date": "9/2/2026"
+          },
+          {
+            "num": "51008",
+            "name": "H & R Disc. Liq (P)",
+            "date": "9/3/2026"
+          },
+          {
+            "num": "40001",
+            "name": "Bottle & Cork",
+            "date": "9/16/2026"
+          },
+          {
+            "num": "51012",
+            "name": "Teaneck Liquors",
+            "date": "9/16/2026"
+          },
+          {
+            "num": "40017",
+            "name": "Essex St Liquor and Wine",
+            "date": "9/18/2026"
+          },
+          {
+            "num": "56008",
+            "name": "Bergenfield Liq & Fw",
+            "date": "9/23/2026"
+          },
+          {
+            "num": "40004",
+            "name": "Simple Simon's (Z)",
+            "date": "9/25/2026"
+          }
+        ],
+        "rank": 10
+      },
       "Jim Heaney": {
         "base": 43,
         "qualifier": 18,
         "bonus": 22,
-        "accounts": 14,
-        "pct": 33,
+        "accounts": 13,
+        "pct": 30,
         "qualified": false,
         "bonusHit": false,
-        "toQualifier": 4,
-        "toBonus": 8,
+        "toQualifier": 5,
+        "toBonus": 9,
         "payout": 0,
         "accountList": [
           {
@@ -94903,76 +94955,6 @@ const PROGRAM_DATA_2026_09 = {
             "num": "29009",
             "name": "Quick Buy",
             "date": "9/23/2026"
-          },
-          {
-            "num": "28007",
-            "name": "Metro Liquors (North Arlington)",
-            "date": "9/24/2026"
-          }
-        ],
-        "rank": 10
-      },
-      "Dave Ehlers": {
-        "base": 35,
-        "qualifier": 14,
-        "bonus": 18,
-        "accounts": 10,
-        "pct": 29,
-        "qualified": false,
-        "bonusHit": false,
-        "toQualifier": 4,
-        "toBonus": 8,
-        "payout": 0,
-        "accountList": [
-          {
-            "num": "40010",
-            "name": "Hackensack Liquors",
-            "date": "8/4/2026"
-          },
-          {
-            "num": "41005",
-            "name": "George's Liq",
-            "date": "8/6/2026"
-          },
-          {
-            "num": "41012",
-            "name": "Deli Mart (A)",
-            "date": "9/1/2026"
-          },
-          {
-            "num": "39012",
-            "name": "Wine And Liq Depot(A)",
-            "date": "9/2/2026"
-          },
-          {
-            "num": "51013",
-            "name": "G & G Liquors & Bar",
-            "date": "9/2/2026"
-          },
-          {
-            "num": "51008",
-            "name": "H & R Disc. Liq (P)",
-            "date": "9/3/2026"
-          },
-          {
-            "num": "51012",
-            "name": "Teaneck Liquors",
-            "date": "9/16/2026"
-          },
-          {
-            "num": "40001",
-            "name": "Bottle & Cork",
-            "date": "9/16/2026"
-          },
-          {
-            "num": "40017",
-            "name": "Essex St Liquor and Wine",
-            "date": "9/18/2026"
-          },
-          {
-            "num": "56008",
-            "name": "Bergenfield Liq & Fw",
-            "date": "9/23/2026"
           }
         ],
         "rank": 11
@@ -94990,13 +94972,13 @@ const PROGRAM_DATA_2026_09 = {
         "payout": 0,
         "accountList": [
           {
-            "num": "8007",
-            "name": "Krauszer's Liquor Wine and Spirits",
+            "num": "8008",
+            "name": "Shoppers Disc(A)Pompton",
             "date": "9/1/2026"
           },
           {
-            "num": "8008",
-            "name": "Shoppers Disc(A)Pompton",
+            "num": "8007",
+            "name": "Krauszer's Liquor Wine and Spirits",
             "date": "9/1/2026"
           },
           {
@@ -95050,13 +95032,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/15/2026"
           },
           {
-            "num": "70003",
-            "name": "Montvale Wines & Spirits",
+            "num": "74009",
+            "name": "Westwood Wine and Liquors",
             "date": "9/16/2026"
           },
           {
-            "num": "74009",
-            "name": "Westwood Wine and Liquors",
+            "num": "70003",
+            "name": "Montvale Wines & Spirits",
             "date": "9/16/2026"
           }
         ],
@@ -95106,23 +95088,18 @@ const PROGRAM_DATA_2026_09 = {
         "base": 30,
         "qualifier": 12,
         "bonus": 15,
-        "accounts": 2,
-        "pct": 7,
+        "accounts": 1,
+        "pct": 3,
         "qualified": false,
         "bonusHit": false,
-        "toQualifier": 10,
-        "toBonus": 13,
+        "toQualifier": 11,
+        "toBonus": 14,
         "payout": 0,
         "accountList": [
           {
             "num": "17011",
             "name": "Nico's Wine & Spirits",
             "date": "8/13/2026"
-          },
-          {
-            "num": "88005",
-            "name": "Waldwick Wine/Spirits",
-            "date": "9/24/2026"
           }
         ],
         "rank": 16
@@ -95144,7 +95121,7 @@ const PROGRAM_DATA_2026_09 = {
     },
     "meta": {
       "window": "8/1/2026 \u2013 9/30/2026",
-      "houseAccounts": 188,
+      "houseAccounts": 190,
       "repCount": 17,
       "offRoster": [
         "John Neukum"
@@ -95365,19 +95342,19 @@ const PROGRAM_DATA_2026_09 = {
         "offPremNewCount": 0,
         "offPremReorderCount": 0,
         "offPremCases": 0.0,
-        "onPremCases": 420.0,
+        "onPremCases": 462.0,
         "onPremAccounts": [
           {
             "customer": "Thatcher Mc Ghees (A)",
             "cases": 75.0
           },
           {
-            "customer": "The Clif (P)",
-            "cases": 31.0
+            "customer": "Bardis (P)",
+            "cases": 39.0
           },
           {
-            "customer": "Bardis (P)",
-            "cases": 27.0
+            "customer": "The Clif (P)",
+            "cases": 31.0
           },
           {
             "customer": "Bask 46",
@@ -95392,6 +95369,22 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 18.0
           },
           {
+            "customer": "Blackjack Mulligan's Public House",
+            "cases": 17.0
+          },
+          {
+            "customer": "cherry's",
+            "cases": 16.0
+          },
+          {
+            "customer": "Shortways' Barn (A)",
+            "cases": 15.0
+          },
+          {
+            "customer": "The Celtic Knot",
+            "cases": 15.0
+          },
+          {
             "customer": "Celtic Corner",
             "cases": 15.0
           },
@@ -95400,16 +95393,8 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 15.0
           },
           {
-            "customer": "Blackjack Mulligan's Public House",
-            "cases": 15.0
-          },
-          {
             "customer": "Sharky's Wings(P)",
             "cases": 15.0
-          },
-          {
-            "customer": "cherry's",
-            "cases": 12.0
           },
           {
             "customer": "Kitchen & Beer Bar",
@@ -95422,10 +95407,6 @@ const PROGRAM_DATA_2026_09 = {
           {
             "customer": "Dingbatz (P)",
             "cases": 10.0
-          },
-          {
-            "customer": "The Celtic Knot",
-            "cases": 9.0
           },
           {
             "customer": "Packanack Golf (P)",
@@ -95448,7 +95429,11 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 7.0
           },
           {
-            "customer": "THE TIES",
+            "customer": "WAYNE ALE HOUSE & PIZZA",
+            "cases": 6.0
+          },
+          {
+            "customer": "Dave & Buster's Nj, Inc",
             "cases": 6.0
           },
           {
@@ -95460,7 +95445,11 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 6.0
           },
           {
-            "customer": "Dave & Buster's Nj, Inc",
+            "customer": "Celtic Crossings",
+            "cases": 5.0
+          },
+          {
+            "customer": "THE TIES",
             "cases": 5.0
           },
           {
@@ -95468,8 +95457,8 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 5.0
           },
           {
-            "customer": "Shortways' Barn (A)",
-            "cases": 5.0
+            "customer": "The Shannon Rose (A)",
+            "cases": 4.0
           },
           {
             "customer": "Sportzone B&G (P)",
@@ -95480,15 +95469,11 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 4.0
           },
           {
-            "customer": "WAYNE ALE HOUSE & PIZZA",
-            "cases": 4.0
-          },
-          {
-            "customer": "Celtic Crossings",
-            "cases": 4.0
-          },
-          {
             "customer": "River Terrace Inn(P)",
+            "cases": 3.0
+          },
+          {
+            "customer": "Breaker Billiards",
             "cases": 3.0
           },
           {
@@ -95516,12 +95501,12 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 2.0
           },
           {
-            "customer": "The Shannon Rose (A)",
+            "customer": "The Front Porch (Z)",
             "cases": 2.0
           },
           {
-            "customer": "The Front Porch (Z)",
-            "cases": 2.0
+            "customer": "Underdog Lounge(P)",
+            "cases": 1.0
           },
           {
             "customer": "T Bowl Tavern (Z)",
@@ -95540,18 +95525,14 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 1.0
           },
           {
-            "customer": "Breaker Billiards",
-            "cases": 1.0
-          },
-          {
             "customer": "Veterans Post (9)",
             "cases": 1.0
           }
         ],
-        "onPremAccountCount": 45,
+        "onPremAccountCount": 46,
         "placementPayout": 0,
-        "onPremCasePayout": 420,
-        "payout": 420,
+        "onPremCasePayout": 462,
+        "payout": 462,
         "byBrand": {
           "Sun Cruiser": 0,
           "Twisted Tea": 0
@@ -95767,9 +95748,9 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "offPremNewCount": 15,
-        "offPremReorderCount": 73,
-        "offPremCases": 582.0,
-        "onPremCases": 239.0,
+        "offPremReorderCount": 84,
+        "offPremCases": 640.0,
+        "onPremCases": 272.0,
         "onPremAccounts": [
           {
             "customer": "Airport Pub & Pkg",
@@ -95777,19 +95758,27 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Crystal Sprs/Wild Turkey",
-            "cases": 35.0
+            "cases": 40.0
           },
           {
             "customer": "The New Jessies Kettle(P)",
-            "cases": 16.0
+            "cases": 21.0
+          },
+          {
+            "customer": "The River Of Beer",
+            "cases": 20.0
+          },
+          {
+            "customer": "Old School Pub P)",
+            "cases": 19.0
           },
           {
             "customer": "Thirsty Farmer",
             "cases": 15.0
           },
           {
-            "customer": "Old School Pub P)",
-            "cases": 14.0
+            "customer": "Doc's Place (P)",
+            "cases": 12.0
           },
           {
             "customer": "Whiskey Wolf Tavern (P)",
@@ -95800,12 +95789,8 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 10.0
           },
           {
-            "customer": "Doc's Place (P)",
-            "cases": 10.0
-          },
-          {
-            "customer": "The River Of Beer",
-            "cases": 10.0
+            "customer": "Country Cottage Rest (P)",
+            "cases": 9.0
           },
           {
             "customer": "Great Gorge Golf (A) Club",
@@ -95816,7 +95801,7 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 8.0
           },
           {
-            "customer": "Whistle Stop (P)",
+            "customer": "Flip's Bar (P)",
             "cases": 7.0
           },
           {
@@ -95824,16 +95809,12 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 7.0
           },
           {
-            "customer": "D'Boathaus Restaurant",
+            "customer": "Whistle Stop (P)",
             "cases": 7.0
           },
           {
-            "customer": "Country Cottage Rest (P)",
-            "cases": 6.0
-          },
-          {
-            "customer": "Flip's Bar (P)",
-            "cases": 6.0
+            "customer": "D'Boathaus Restaurant",
+            "cases": 7.0
           },
           {
             "customer": "Stew N Dolly's Place",
@@ -95846,6 +95827,10 @@ const PROGRAM_DATA_2026_09 = {
           {
             "customer": "J & S Roadhouse",
             "cases": 4.0
+          },
+          {
+            "customer": "The Lamp Post Inn",
+            "cases": 2.0
           },
           {
             "customer": "Early American Tavern",
@@ -95868,10 +95853,10 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 1.0
           }
         ],
-        "onPremAccountCount": 24,
+        "onPremAccountCount": 25,
         "placementPayout": 225,
-        "onPremCasePayout": 239,
-        "payout": 464,
+        "onPremCasePayout": 272,
+        "payout": 497,
         "byBrand": {
           "Sun Cruiser": 3,
           "Twisted Tea": 12
@@ -95880,23 +95865,31 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargetCount": 0
       },
       "Brian Sengebush": {
-        "offPremNew": [],
-        "offPremNewCount": 0,
+        "offPremNew": [
+          {
+            "customer": "Swartswood",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/23/2026"
+          }
+        ],
+        "offPremNewCount": 1,
         "offPremReorderCount": 7,
-        "offPremCases": 55.0,
-        "onPremCases": 233.0,
+        "offPremCases": 57.0,
+        "onPremCases": 246.0,
         "onPremAccounts": [
           {
             "customer": "Charley's Tavern",
             "cases": 46.0
           },
           {
-            "customer": "Mason Street Grille",
+            "customer": "The Jefferson House",
             "cases": 34.0
           },
           {
-            "customer": "The Jefferson House",
-            "cases": 31.0
+            "customer": "Mason Street Grille",
+            "cases": 34.0
           },
           {
             "customer": "Thatcher Mcghee's (A)",
@@ -95915,20 +95908,24 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 10.0
           },
           {
+            "customer": "Fountain House (Z)",
+            "cases": 8.0
+          },
+          {
+            "customer": "Elks Post 782 (Z)",
+            "cases": 6.0
+          },
+          {
+            "customer": "Harrigan's Rest. (P)",
+            "cases": 6.0
+          },
+          {
             "customer": "AG Pizza and Restaurant (Branchville)",
             "cases": 6.0
           },
           {
             "customer": "Pavilion Lounge(Z)",
             "cases": 6.0
-          },
-          {
-            "customer": "Fountain House (Z)",
-            "cases": 5.0
-          },
-          {
-            "customer": "Harrigan's Rest. (P)",
-            "cases": 5.0
           },
           {
             "customer": "Gatwyns II (P)",
@@ -95955,6 +95952,10 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 3.0
           },
           {
+            "customer": "Sparta Lanes (Pino)",
+            "cases": 2.0
+          },
+          {
             "customer": "Pat's Bar (P)",
             "cases": 2.0
           },
@@ -95964,10 +95965,6 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Johnnie's Tavern",
-            "cases": 2.0
-          },
-          {
-            "customer": "Elks Post 782 (Z)",
             "cases": 2.0
           },
           {
@@ -95983,6 +95980,10 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 2.0
           },
           {
+            "customer": "Rustic Texmex & Sports Bar",
+            "cases": 1.0
+          },
+          {
             "customer": "Shakey Jake's (P)",
             "cases": 1.0
           },
@@ -95995,21 +95996,17 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 1.0
           },
           {
-            "customer": "Sparta Lanes (Pino)",
-            "cases": 1.0
-          },
-          {
             "customer": "Knotty Pine Pub (P)",
             "cases": -1.0
           }
         ],
-        "onPremAccountCount": 29,
-        "placementPayout": 0,
-        "onPremCasePayout": 233,
-        "payout": 233,
+        "onPremAccountCount": 30,
+        "placementPayout": 15,
+        "onPremCasePayout": 246,
+        "payout": 261,
         "byBrand": {
           "Sun Cruiser": 0,
-          "Twisted Tea": 0
+          "Twisted Tea": 1
         },
         "offPremTargets": [
           {
@@ -96022,6 +96019,27 @@ const PROGRAM_DATA_2026_09 = {
       "Chris Payton": {
         "offPremNew": [
           {
+            "customer": "The Wine Rack Hasbrouck Hts",
+            "brands": [
+              "Sun Cruiser"
+            ],
+            "date": "9/24/2026"
+          },
+          {
+            "customer": "The Wine Rack Hasbrouck Hts",
+            "brands": [
+              "Sun Cruiser"
+            ],
+            "date": "9/24/2026"
+          },
+          {
+            "customer": "The Wine Rack Hasbrouck Hts",
+            "brands": [
+              "Sun Cruiser"
+            ],
+            "date": "9/24/2026"
+          },
+          {
             "customer": "Woodridge Wines & Liq(A)",
             "brands": [
               "Sun Cruiser"
@@ -96029,6 +96047,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/21/2026"
           },
           {
+            "customer": "B & B Liquors (Fair Lawn)",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/2/2026"
+          },
+          {
             "customer": "Morlot W & L (A)",
             "brands": [
               "Twisted Tea"
@@ -96064,27 +96089,31 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/1/2026"
           }
         ],
-        "offPremNewCount": 6,
-        "offPremReorderCount": 32,
-        "offPremCases": 168.0,
-        "onPremCases": 22.0,
+        "offPremNewCount": 10,
+        "offPremReorderCount": 36,
+        "offPremCases": 196.0,
+        "onPremCases": 34.0,
         "onPremAccounts": [
           {
             "customer": "Ridgewood Country Club",
-            "cases": 12.0
+            "cases": 18.0
           },
           {
             "customer": "Colonial Bar",
-            "cases": 10.0
+            "cases": 15.0
+          },
+          {
+            "customer": "Hilton Garden Inn Ridgefield Park",
+            "cases": 1.0
           }
         ],
-        "onPremAccountCount": 2,
-        "placementPayout": 90,
-        "onPremCasePayout": 22,
-        "payout": 112,
+        "onPremAccountCount": 3,
+        "placementPayout": 150,
+        "onPremCasePayout": 34,
+        "payout": 184,
         "byBrand": {
-          "Sun Cruiser": 1,
-          "Twisted Tea": 5
+          "Sun Cruiser": 4,
+          "Twisted Tea": 6
         },
         "offPremTargets": [
           {
@@ -96125,8 +96154,8 @@ const PROGRAM_DATA_2026_09 = {
       "Dan Lagala": {
         "offPremNew": [],
         "offPremNewCount": 0,
-        "offPremReorderCount": 14,
-        "offPremCases": 76.0,
+        "offPremReorderCount": 19,
+        "offPremCases": 93.0,
         "onPremCases": 10.0,
         "onPremAccounts": [
           {
@@ -96243,21 +96272,7 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/4/2026"
           },
           {
-            "customer": "Simple Simon's (Z)",
-            "brands": [
-              "Twisted Tea"
-            ],
-            "date": "9/4/2026"
-          },
-          {
-            "customer": "Time Lounge And Liq (A)",
-            "brands": [
-              "Sun Cruiser"
-            ],
-            "date": "9/4/2026"
-          },
-          {
-            "customer": "New Milford Liquors",
+            "customer": "Burgundy Convenience Store",
             "brands": [
               "Twisted Tea"
             ],
@@ -96271,7 +96286,21 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/4/2026"
           },
           {
-            "customer": "Burgundy Convenience Store",
+            "customer": "New Milford Liquors",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/4/2026"
+          },
+          {
+            "customer": "Time Lounge And Liq (A)",
+            "brands": [
+              "Sun Cruiser"
+            ],
+            "date": "9/4/2026"
+          },
+          {
+            "customer": "Simple Simon's (Z)",
             "brands": [
               "Twisted Tea"
             ],
@@ -96285,6 +96314,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/4/2026"
           },
           {
+            "customer": "Fill Er Up Kosher Wine(P)",
+            "brands": [
+              "Sun Cruiser"
+            ],
+            "date": "9/3/2026"
+          },
+          {
             "customer": "VINEYARD",
             "brands": [
               "Twisted Tea"
@@ -96292,9 +96328,16 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/3/2026"
           },
           {
-            "customer": "Fill Er Up Kosher Wine(P)",
+            "customer": "VINEYARD",
             "brands": [
-              "Sun Cruiser"
+              "Twisted Tea"
+            ],
+            "date": "9/3/2026"
+          },
+          {
+            "customer": "VINEYARD",
+            "brands": [
+              "Twisted Tea"
             ],
             "date": "9/3/2026"
           },
@@ -96306,25 +96349,25 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/3/2026"
           },
           {
-            "customer": "VINEYARD",
+            "customer": "Wine & More (P)",
             "brands": [
-              "Twisted Tea"
+              "Sun Cruiser"
             ],
-            "date": "9/3/2026"
+            "date": "9/25/2026"
           },
           {
-            "customer": "VINEYARD",
+            "customer": "Englewood Liq (A)",
             "brands": [
-              "Twisted Tea"
+              "Sun Cruiser"
             ],
-            "date": "9/3/2026"
+            "date": "9/24/2026"
           },
           {
-            "customer": "Bergenfield Liq & Fw",
+            "customer": "Grand Liquor & Delicatesen",
             "brands": [
-              "Twisted Tea"
+              "Sun Cruiser"
             ],
-            "date": "9/23/2026"
+            "date": "9/24/2026"
           },
           {
             "customer": "Wine And Liq Depot(A)",
@@ -96335,6 +96378,13 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Bottle & Cork",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/23/2026"
+          },
+          {
+            "customer": "Bergenfield Liq & Fw",
             "brands": [
               "Twisted Tea"
             ],
@@ -96362,6 +96412,27 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/2/2026"
           },
           {
+            "customer": "G & G Liquors & Bar",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/2/2026"
+          },
+          {
+            "customer": "Wine And Liq Depot(A)",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/2/2026"
+          },
+          {
+            "customer": "Joes Beer Wine & Spirits",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/17/2026"
+          },
+          {
             "customer": "Hackensack Liquors",
             "brands": [
               "Twisted Tea"
@@ -96369,6 +96440,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/15/2026"
           },
           {
+            "customer": "George's Liq",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/14/2026"
+          },
+          {
             "customer": "River Edge Wine & Liquor",
             "brands": [
               "Sun Cruiser"
@@ -96381,6 +96459,13 @@ const PROGRAM_DATA_2026_09 = {
               "Sun Cruiser"
             ],
             "date": "9/14/2026"
+          },
+          {
+            "customer": "Time Lounge And Liq (A)",
+            "brands": [
+              "Sun Cruiser"
+            ],
+            "date": "9/11/2026"
           },
           {
             "customer": "New Milford Liquors",
@@ -96390,9 +96475,9 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/11/2026"
           },
           {
-            "customer": "Time Lounge And Liq (A)",
+            "customer": "Simple Simon's (Z)",
             "brands": [
-              "Sun Cruiser"
+              "Twisted Tea"
             ],
             "date": "9/11/2026"
           },
@@ -96425,18 +96510,18 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/1/2026"
           }
         ],
-        "offPremNewCount": 28,
-        "offPremReorderCount": 46,
-        "offPremCases": 323.0,
+        "offPremNewCount": 36,
+        "offPremReorderCount": 49,
+        "offPremCases": 342.0,
         "onPremCases": 0.0,
         "onPremAccounts": [],
         "onPremAccountCount": 0,
-        "placementPayout": 420,
+        "placementPayout": 540,
         "onPremCasePayout": 0,
-        "payout": 420,
+        "payout": 540,
         "byBrand": {
-          "Sun Cruiser": 7,
-          "Twisted Tea": 21
+          "Sun Cruiser": 10,
+          "Twisted Tea": 26
         },
         "offPremTargets": [
           {
@@ -96488,8 +96573,8 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "offPremNewCount": 2,
-        "offPremReorderCount": 7,
-        "offPremCases": 34.0,
+        "offPremReorderCount": 8,
+        "offPremCases": 39.0,
         "onPremCases": 0.0,
         "onPremAccounts": [],
         "onPremAccountCount": 0,
@@ -96892,8 +96977,8 @@ const PROGRAM_DATA_2026_09 = {
       "Javier Melo": {
         "offPremNew": [],
         "offPremNewCount": 0,
-        "offPremReorderCount": 1,
-        "offPremCases": 10.0,
+        "offPremReorderCount": 2,
+        "offPremCases": 17.0,
         "onPremCases": 0.0,
         "onPremAccounts": [],
         "onPremAccountCount": 0,
@@ -97069,8 +97154,8 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "offPremNewCount": 11,
-        "offPremReorderCount": 72,
-        "offPremCases": 551.0,
+        "offPremReorderCount": 78,
+        "offPremCases": 604.0,
         "onPremCases": 0.0,
         "onPremAccounts": [],
         "onPremAccountCount": 0,
@@ -97135,14 +97220,14 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/21/2026"
           },
           {
-            "customer": "Henry's Liquors",
+            "customer": "Quick Buy",
             "brands": [
               "Twisted Tea"
             ],
             "date": "9/18/2026"
           },
           {
-            "customer": "Quick Buy",
+            "customer": "Henry's Liquors",
             "brands": [
               "Twisted Tea"
             ],
@@ -97157,8 +97242,8 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "offPremNewCount": 8,
-        "offPremReorderCount": 37,
-        "offPremCases": 265.0,
+        "offPremReorderCount": 41,
+        "offPremCases": 277.0,
         "onPremCases": 0.0,
         "onPremAccounts": [],
         "onPremAccountCount": 0,
@@ -97342,6 +97427,20 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/9/2026"
           },
           {
+            "customer": "Boonton Liquor Locker",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/25/2026"
+          },
+          {
+            "customer": "Montville Wine & Spirits",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/23/2026"
+          },
+          {
             "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
             "brands": [
               "Sun Cruiser"
@@ -97398,9 +97497,9 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/14/2026"
           }
         ],
-        "offPremNewCount": 9,
-        "offPremReorderCount": 63,
-        "offPremCases": 570.0,
+        "offPremNewCount": 11,
+        "offPremReorderCount": 75,
+        "offPremCases": 635.0,
         "onPremCases": 5.0,
         "onPremAccounts": [
           {
@@ -97409,12 +97508,12 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "onPremAccountCount": 1,
-        "placementPayout": 135,
+        "placementPayout": 165,
         "onPremCasePayout": 5,
-        "payout": 140,
+        "payout": 170,
         "byBrand": {
           "Sun Cruiser": 6,
-          "Twisted Tea": 3
+          "Twisted Tea": 5
         },
         "offPremTargets": [
           {
@@ -97430,6 +97529,13 @@ const PROGRAM_DATA_2026_09 = {
       },
       "Matt Powierski": {
         "offPremNew": [
+          {
+            "customer": "Jay's Liquormart",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/24/2026"
+          },
           {
             "customer": "Garfield Discount Liquors",
             "brands": [
@@ -97459,9 +97565,9 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/11/2026"
           }
         ],
-        "offPremNewCount": 4,
-        "offPremReorderCount": 45,
-        "offPremCases": 225.0,
+        "offPremNewCount": 5,
+        "offPremReorderCount": 50,
+        "offPremCases": 255.0,
         "onPremCases": 6.0,
         "onPremAccounts": [
           {
@@ -97474,12 +97580,12 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "onPremAccountCount": 2,
-        "placementPayout": 60,
+        "placementPayout": 75,
         "onPremCasePayout": 6,
-        "payout": 66,
+        "payout": 81,
         "byBrand": {
           "Sun Cruiser": 2,
-          "Twisted Tea": 2
+          "Twisted Tea": 3
         },
         "offPremTargets": [
           {
@@ -97543,25 +97649,39 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/9/2026"
           },
           {
+            "customer": "Shays Liquors",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/9/2026"
+          },
+          {
             "customer": "Lincoln Center Liq",
             "brands": [
               "Twisted Tea"
             ],
             "date": "9/4/2026"
+          },
+          {
+            "customer": "Wayne Liquor Locker",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/24/2026"
           }
         ],
-        "offPremNewCount": 2,
-        "offPremReorderCount": 13,
-        "offPremCases": 121.0,
+        "offPremNewCount": 4,
+        "offPremReorderCount": 16,
+        "offPremCases": 148.0,
         "onPremCases": 0.0,
         "onPremAccounts": [],
         "onPremAccountCount": 0,
-        "placementPayout": 30,
+        "placementPayout": 60,
         "onPremCasePayout": 0,
-        "payout": 30,
+        "payout": 60,
         "byBrand": {
           "Sun Cruiser": 0,
-          "Twisted Tea": 2
+          "Twisted Tea": 4
         },
         "offPremTargets": [
           {
@@ -97658,8 +97778,8 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "offPremNewCount": 1,
-        "offPremReorderCount": 30,
-        "offPremCases": 274.0,
+        "offPremReorderCount": 32,
+        "offPremCases": 307.0,
         "onPremCases": 4.0,
         "onPremAccounts": [
           {
@@ -97724,7 +97844,7 @@ const PROGRAM_DATA_2026_09 = {
         "offPremNewCount": 0,
         "offPremReorderCount": 0,
         "offPremCases": 0.0,
-        "onPremCases": 145.0,
+        "onPremCases": 157.0,
         "onPremAccounts": [
           {
             "customer": "Ramsey Country Clb",
@@ -97747,6 +97867,10 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 12.0
           },
           {
+            "customer": "House of Que (East Rutherford)",
+            "cases": 10.0
+          },
+          {
             "customer": "Segovia Tavern",
             "cases": 10.0
           },
@@ -97755,11 +97879,15 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 9.0
           },
           {
-            "customer": "Mahwah B & G (A)",
+            "customer": "Mickey's Bar & Grill (Z)",
             "cases": 5.0
           },
           {
             "customer": "N Arlington Bowl O Drome",
+            "cases": 5.0
+          },
+          {
+            "customer": "Mahwah B & G (A)",
             "cases": 5.0
           },
           {
@@ -97771,15 +97899,11 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 4.0
           },
           {
-            "customer": "House of Que (East Rutherford)",
-            "cases": 4.0
-          },
-          {
-            "customer": "Blue Moon Mexican Cafe",
+            "customer": "City Lounge (P)",
             "cases": 3.0
           },
           {
-            "customer": "Mickey's Bar & Grill (Z)",
+            "customer": "Blue Moon Mexican Cafe",
             "cases": 3.0
           },
           {
@@ -97803,6 +97927,10 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 2.0
           },
           {
+            "customer": "Applebee's Garfield (A)",
+            "cases": 1.0
+          },
+          {
             "customer": "Rockafella's",
             "cases": 1.0
           },
@@ -97823,10 +97951,10 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 1.0
           }
         ],
-        "onPremAccountCount": 24,
+        "onPremAccountCount": 26,
         "placementPayout": 0,
-        "onPremCasePayout": 145,
-        "payout": 145,
+        "onPremCasePayout": 157,
+        "payout": 157,
         "byBrand": {
           "Sun Cruiser": 0,
           "Twisted Tea": 0
@@ -97849,6 +97977,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/15/2026"
           },
           {
+            "customer": "Legacy Bar & Liquor",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/1/2026"
+          },
+          {
             "customer": "Sunny's Liqs.(P)",
             "brands": [
               "Twisted Tea"
@@ -97863,18 +97998,18 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/1/2026"
           }
         ],
-        "offPremNewCount": 3,
+        "offPremNewCount": 4,
         "offPremReorderCount": 1,
-        "offPremCases": 21.0,
+        "offPremCases": 22.0,
         "onPremCases": 0.0,
         "onPremAccounts": [],
         "onPremAccountCount": 0,
-        "placementPayout": 45,
+        "placementPayout": 60,
         "onPremCasePayout": 0,
-        "payout": 45,
+        "payout": 60,
         "byBrand": {
           "Sun Cruiser": 0,
-          "Twisted Tea": 3
+          "Twisted Tea": 4
         },
         "offPremTargets": [
           {
@@ -97961,11 +98096,11 @@ const PROGRAM_DATA_2026_09 = {
         "offPremNewCount": 0,
         "offPremReorderCount": 0,
         "offPremCases": 0.0,
-        "onPremCases": 216.0,
+        "onPremCases": 253.0,
         "onPremAccounts": [
           {
             "customer": "Straphanger Saloon (A)",
-            "cases": 40.0
+            "cases": 52.0
           },
           {
             "customer": "The Cornerstone (P)",
@@ -97980,8 +98115,16 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 21.0
           },
           {
+            "customer": "Davey's Locker (A)",
+            "cases": 20.0
+          },
+          {
             "customer": "Cozy Tavern (P)",
-            "cases": 13.0
+            "cases": 16.0
+          },
+          {
+            "customer": "Stosh's Craft Bar (Z)",
+            "cases": 10.0
           },
           {
             "customer": "White Beeches Golf Club",
@@ -97989,10 +98132,6 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Hearth & Tap Co.",
-            "cases": 10.0
-          },
-          {
-            "customer": "Davey's Locker (A)",
             "cases": 10.0
           },
           {
@@ -98004,6 +98143,10 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 8.0
           },
           {
+            "customer": "Lenoras Bar (P)",
+            "cases": 7.0
+          },
+          {
             "customer": "Edgewood Country Club",
             "cases": 6.0
           },
@@ -98012,11 +98155,7 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 5.0
           },
           {
-            "customer": "Stosh's Craft Bar (Z)",
-            "cases": 5.0
-          },
-          {
-            "customer": "Lenoras Bar (P)",
+            "customer": "The Rockleigh C C (P)",
             "cases": 4.0
           },
           {
@@ -98044,10 +98183,10 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 1.0
           }
         ],
-        "onPremAccountCount": 20,
+        "onPremAccountCount": 21,
         "placementPayout": 0,
-        "onPremCasePayout": 216,
-        "payout": 216,
+        "onPremCasePayout": 253,
+        "payout": 253,
         "byBrand": {
           "Sun Cruiser": 0,
           "Twisted Tea": 0
@@ -98074,11 +98213,11 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/3/2026"
           },
           {
-            "customer": "Stew Leonard's(A) Paramus Wine",
+            "customer": "Palisades Wine And Liquor",
             "brands": [
-              "Sun Cruiser"
+              "Twisted Tea"
             ],
-            "date": "9/24/2026"
+            "date": "9/25/2026"
           },
           {
             "customer": "Home Wines & Liq 75 (A) (South Hackensack)",
@@ -98124,22 +98263,22 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "offPremNewCount": 8,
-        "offPremReorderCount": 26,
-        "offPremCases": 156.0,
-        "onPremCases": 18.0,
+        "offPremReorderCount": 34,
+        "offPremCases": 198.0,
+        "onPremCases": 57.0,
         "onPremAccounts": [
           {
             "customer": "Saddle Brook Liquor & Bar",
-            "cases": 18.0
+            "cases": 57.0
           }
         ],
         "onPremAccountCount": 1,
         "placementPayout": 120,
-        "onPremCasePayout": 18,
-        "payout": 138,
+        "onPremCasePayout": 57,
+        "payout": 177,
         "byBrand": {
-          "Sun Cruiser": 6,
-          "Twisted Tea": 2
+          "Sun Cruiser": 5,
+          "Twisted Tea": 3
         },
         "offPremTargets": [
           {
@@ -98186,7 +98325,7 @@ const PROGRAM_DATA_2026_09 = {
         "offPremNewCount": 0,
         "offPremReorderCount": 0,
         "offPremCases": 0.0,
-        "onPremCases": 129.0,
+        "onPremCases": 133.0,
         "onPremAccounts": [
           {
             "customer": "Elks Post 1562",
@@ -98195,6 +98334,10 @@ const PROGRAM_DATA_2026_09 = {
           {
             "customer": "Berkshire Valley Gc",
             "cases": 13.0
+          },
+          {
+            "customer": "Lake Mohawk (P) Golf Club",
+            "cases": 12.0
           },
           {
             "customer": "American Lgn 174 Wayne",
@@ -98210,10 +98353,6 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Elks Post 1477",
-            "cases": 8.0
-          },
-          {
-            "customer": "Lake Mohawk (P) Golf Club",
             "cases": 8.0
           },
           {
@@ -98249,7 +98388,7 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 3.0
           },
           {
-            "customer": "Elks Post (P)",
+            "customer": "Elks Post 2290 (Z)",
             "cases": 2.0
           },
           {
@@ -98257,7 +98396,7 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 2.0
           },
           {
-            "customer": "Elks Post 2290 (Z)",
+            "customer": "Elks Post (P)",
             "cases": 2.0
           },
           {
@@ -98299,8 +98438,8 @@ const PROGRAM_DATA_2026_09 = {
         ],
         "onPremAccountCount": 27,
         "placementPayout": 0,
-        "onPremCasePayout": 129,
-        "payout": 129,
+        "onPremCasePayout": 133,
+        "payout": 133,
         "byBrand": {
           "Sun Cruiser": 0,
           "Twisted Tea": 0
@@ -98321,6 +98460,13 @@ const PROGRAM_DATA_2026_09 = {
               "Twisted Tea"
             ],
             "date": "9/4/2026"
+          },
+          {
+            "customer": "Montvale Wine/Liq & Beer",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/22/2026"
           },
           {
             "customer": "Montvale Wine/Liq & Beer",
@@ -98351,18 +98497,18 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/1/2026"
           }
         ],
-        "offPremNewCount": 5,
-        "offPremReorderCount": 31,
-        "offPremCases": 238.0,
+        "offPremNewCount": 6,
+        "offPremReorderCount": 39,
+        "offPremCases": 300.0,
         "onPremCases": 0.0,
         "onPremAccounts": [],
         "onPremAccountCount": 0,
-        "placementPayout": 75,
+        "placementPayout": 90,
         "onPremCasePayout": 0,
-        "payout": 75,
+        "payout": 90,
         "byBrand": {
           "Sun Cruiser": 0,
-          "Twisted Tea": 5
+          "Twisted Tea": 6
         },
         "offPremTargets": [
           {
@@ -98399,103 +98545,103 @@ const PROGRAM_DATA_2026_09 = {
     },
     "leaderboard": [
       {
-        "rep": "Anthony Palmisano",
-        "payout": 464,
-        "newPlacements": 15,
+        "rep": "Dave Ehlers",
+        "payout": 540,
+        "newPlacements": 36,
         "rank": 1
       },
       {
-        "rep": "Dave Ehlers",
-        "payout": 420,
-        "newPlacements": 28,
+        "rep": "Anthony Palmisano",
+        "payout": 497,
+        "newPlacements": 15,
         "rank": 2
       },
       {
         "rep": "Allison Scott",
-        "payout": 420,
+        "payout": 462,
         "newPlacements": 0,
         "rank": 3
       },
       {
         "rep": "Brian Sengebush",
-        "payout": 233,
-        "newPlacements": 0,
+        "payout": 261,
+        "newPlacements": 1,
         "rank": 4
       },
       {
         "rep": "Paul Mclaughlin",
-        "payout": 216,
+        "payout": 253,
         "newPlacements": 0,
         "rank": 5
+      },
+      {
+        "rep": "Chris Payton",
+        "payout": 184,
+        "newPlacements": 10,
+        "rank": 6
+      },
+      {
+        "rep": "Phil Ernst",
+        "payout": 177,
+        "newPlacements": 8,
+        "rank": 7
+      },
+      {
+        "rep": "Klejdi Lamo",
+        "payout": 170,
+        "newPlacements": 11,
+        "rank": 8
       },
       {
         "rep": "Jayson Romine",
         "payout": 165,
         "newPlacements": 11,
-        "rank": 6
-      },
-      {
-        "rep": "Nick Melissari",
-        "payout": 145,
-        "newPlacements": 0,
-        "rank": 7
-      },
-      {
-        "rep": "Klejdi Lamo",
-        "payout": 140,
-        "newPlacements": 9,
-        "rank": 8
-      },
-      {
-        "rep": "Phil Ernst",
-        "payout": 138,
-        "newPlacements": 8,
         "rank": 9
       },
       {
-        "rep": "Robin Feldman",
-        "payout": 129,
+        "rep": "Nick Melissari",
+        "payout": 157,
         "newPlacements": 0,
         "rank": 10
+      },
+      {
+        "rep": "Robin Feldman",
+        "payout": 133,
+        "newPlacements": 0,
+        "rank": 11
       },
       {
         "rep": "Jim Heaney",
         "payout": 120,
         "newPlacements": 8,
-        "rank": 11
-      },
-      {
-        "rep": "Chris Payton",
-        "payout": 112,
-        "newPlacements": 6,
         "rank": 12
       },
       {
         "rep": "Shane Barreca",
-        "payout": 75,
-        "newPlacements": 5,
+        "payout": 90,
+        "newPlacements": 6,
         "rank": 13
       },
       {
         "rep": "Matt Powierski",
-        "payout": 66,
-        "newPlacements": 4,
+        "payout": 81,
+        "newPlacements": 5,
         "rank": 14
       },
       {
-        "rep": "Pablo Lopez",
-        "payout": 45,
-        "newPlacements": 3,
+        "rep": "Michael Harboy",
+        "payout": 60,
+        "newPlacements": 4,
         "rank": 15
       },
       {
-        "rep": "Derrick Laws",
-        "payout": 30,
-        "newPlacements": 2,
+        "rep": "Pablo Lopez",
+        "payout": 60,
+        "newPlacements": 4,
         "rank": 16
       },
       {
-        "rep": "Michael Harboy",
+        "rep": "Derrick Laws",
         "payout": 30,
         "newPlacements": 2,
         "rank": 17
@@ -98813,13 +98959,13 @@ const PROGRAM_DATA_2026_09 = {
             "status": "reorder"
           },
           {
-            "customer": "Blackjack Mulligans (Hawthorne)",
+            "customer": "The Yard",
             "bbl": 0.0,
             "qualifies": false,
             "status": "lapsed"
           },
           {
-            "customer": "The Yard",
+            "customer": "Blackjack Mulligans (Hawthorne)",
             "bbl": 0.0,
             "qualifies": false,
             "status": "lapsed"
@@ -99079,6 +99225,12 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/29/2026"
           },
           {
+            "customer": "Harrigan's Rest. (P)",
+            "bbl": 0.5,
+            "qualifies": true,
+            "date": "9/24/2026"
+          },
+          {
             "customer": "Industry",
             "bbl": 0.333,
             "qualifies": false,
@@ -99097,9 +99249,9 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/22/2026"
           }
         ],
-        "draftNewCount": 4,
+        "draftNewCount": 5,
         "draftReorderCount": 5,
-        "draftQualifiedCount": 2,
+        "draftQualifiedCount": 3,
         "draftAccounts": [
           {
             "customer": "Gyp's Tavern",
@@ -99115,6 +99267,12 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "The Exchange",
+            "bbl": 0.5,
+            "qualifies": true,
+            "status": "new"
+          },
+          {
+            "customer": "Harrigan's Rest. (P)",
             "bbl": 0.5,
             "qualifies": true,
             "status": "new"
@@ -99162,14 +99320,14 @@ const PROGRAM_DATA_2026_09 = {
             "status": "lapsed"
           }
         ],
-        "totalNewPlacements": 2,
-        "qualified": false,
-        "toQualifier": 1,
-        "caseVolume": 14.0,
+        "totalNewPlacements": 3,
+        "qualified": true,
+        "toQualifier": 0,
+        "caseVolume": 15.0,
         "casesBaseline": 15.0,
         "bonusCe": 0.0,
         "bonusPayout": 0,
-        "payout": 0,
+        "payout": 300,
         "draftChannelOk": true,
         "offPremTargets": [
           {
@@ -100297,7 +100455,7 @@ const PROGRAM_DATA_2026_09 = {
       "John O'Donoghue": {
         "offPremNew": [],
         "offPremNewCount": 0,
-        "offPremReorderCount": 3,
+        "offPremReorderCount": 4,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 1,
@@ -100319,9 +100477,9 @@ const PROGRAM_DATA_2026_09 = {
         "totalNewPlacements": 0,
         "qualified": false,
         "toQualifier": 3,
-        "caseVolume": 12.0,
+        "caseVolume": 14.0,
         "casesBaseline": 9.0,
-        "bonusCe": 3.0,
+        "bonusCe": 5.0,
         "bonusPayout": 0,
         "payout": 0,
         "draftChannelOk": true,
@@ -100618,14 +100776,14 @@ const PROGRAM_DATA_2026_09 = {
           {
             "customer": "Shays Liquors",
             "products": [
-              "Evil Genius Stacy's Mom Citra IPA 4/6/12 oz Can"
+              "Evil Genius Stacy's Mom Citra IPA 1/12/19.2 oz Can"
             ],
             "date": "9/15/2026"
           },
           {
             "customer": "Shays Liquors",
             "products": [
-              "Evil Genius Stacy's Mom Citra IPA 1/12/19.2 oz Can"
+              "Evil Genius Stacy's Mom Citra IPA 4/6/12 oz Can"
             ],
             "date": "9/15/2026"
           }
@@ -100746,7 +100904,7 @@ const PROGRAM_DATA_2026_09 = {
       "Mike Ast": {
         "offPremNew": [],
         "offPremNewCount": 0,
-        "offPremReorderCount": 0,
+        "offPremReorderCount": 1,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -100755,7 +100913,7 @@ const PROGRAM_DATA_2026_09 = {
         "totalNewPlacements": 0,
         "qualified": false,
         "toQualifier": 3,
-        "caseVolume": 0.0,
+        "caseVolume": 2.0,
         "casesBaseline": 3.0,
         "bonusCe": 0.0,
         "bonusPayout": 0,
@@ -100856,7 +101014,7 @@ const PROGRAM_DATA_2026_09 = {
         "draftAccounts": [
           {
             "customer": "House of Que (East Rutherford)",
-            "bbl": 1.0,
+            "bbl": 1.5,
             "qualifies": true,
             "status": "reorder"
           },
@@ -100876,7 +101034,7 @@ const PROGRAM_DATA_2026_09 = {
         "totalNewPlacements": 0,
         "qualified": false,
         "toQualifier": 3,
-        "caseVolume": 4.0,
+        "caseVolume": 5.0,
         "casesBaseline": 13.0,
         "bonusCe": 0.0,
         "bonusPayout": 0,
@@ -101000,11 +101158,24 @@ const PROGRAM_DATA_2026_09 = {
         "offPremNew": [],
         "offPremNewCount": 0,
         "offPremReorderCount": 0,
-        "draftNew": [],
-        "draftNewCount": 0,
+        "draftNew": [
+          {
+            "customer": "Eleven Central",
+            "bbl": 0.5,
+            "qualifies": true,
+            "date": "9/24/2026"
+          }
+        ],
+        "draftNewCount": 1,
         "draftReorderCount": 1,
-        "draftQualifiedCount": 0,
+        "draftQualifiedCount": 1,
         "draftAccounts": [
+          {
+            "customer": "Eleven Central",
+            "bbl": 0.5,
+            "qualifies": true,
+            "status": "new"
+          },
           {
             "customer": "101 Pub (A)",
             "bbl": 0.0,
@@ -101018,10 +101189,10 @@ const PROGRAM_DATA_2026_09 = {
             "status": "lapsed"
           }
         ],
-        "totalNewPlacements": 0,
+        "totalNewPlacements": 1,
         "qualified": false,
-        "toQualifier": 3,
-        "caseVolume": 0.0,
+        "toQualifier": 2,
+        "caseVolume": 1.0,
         "casesBaseline": 1.0,
         "bonusCe": 0.0,
         "bonusPayout": 0,
@@ -101044,26 +101215,26 @@ const PROGRAM_DATA_2026_09 = {
           {
             "customer": "Shop-Rite Liq Lyndhurst",
             "products": [
-              "Evil Genius Stacy's Mom Citra IPA 4/6/12 oz Can"
-            ],
-            "date": "9/22/2026"
-          },
-          {
-            "customer": "City Supermarket",
-            "products": [
-              "Evil Genius Stacy's Mom Citra IPA 4/6/12 oz Can"
-            ],
-            "date": "9/22/2026"
-          },
-          {
-            "customer": "City Supermarket",
-            "products": [
               "Evil Genius 867-5309 Jenny 4/6/12 oz Can"
             ],
             "date": "9/22/2026"
           },
           {
             "customer": "Shop-Rite Liq Lyndhurst",
+            "products": [
+              "Evil Genius Stacy's Mom Citra IPA 4/6/12 oz Can"
+            ],
+            "date": "9/22/2026"
+          },
+          {
+            "customer": "City Supermarket",
+            "products": [
+              "Evil Genius Stacy's Mom Citra IPA 4/6/12 oz Can"
+            ],
+            "date": "9/22/2026"
+          },
+          {
+            "customer": "City Supermarket",
             "products": [
               "Evil Genius 867-5309 Jenny 4/6/12 oz Can"
             ],
@@ -101333,8 +101504,8 @@ const PROGRAM_DATA_2026_09 = {
       },
       {
         "rep": "Brian Sengebush",
-        "newPlacements": 2,
-        "payout": 0,
+        "newPlacements": 3,
+        "payout": 300,
         "rank": 3
       },
       {
@@ -101350,121 +101521,121 @@ const PROGRAM_DATA_2026_09 = {
         "rank": 5
       },
       {
-        "rep": "Alex Rodriguez",
-        "newPlacements": 0,
+        "rep": "Paul Mclaughlin",
+        "newPlacements": 1,
         "payout": 0,
         "rank": 6
       },
       {
-        "rep": "Alisa Acciardi",
+        "rep": "Alex Rodriguez",
         "newPlacements": 0,
         "payout": 0,
         "rank": 7
       },
       {
-        "rep": "Allison Scott",
+        "rep": "Alisa Acciardi",
         "newPlacements": 0,
         "payout": 0,
         "rank": 8
       },
       {
-        "rep": "Andrew Lundy",
+        "rep": "Allison Scott",
         "newPlacements": 0,
         "payout": 0,
         "rank": 9
       },
       {
-        "rep": "Anthony Palmisano",
+        "rep": "Andrew Lundy",
         "newPlacements": 0,
         "payout": 0,
         "rank": 10
       },
       {
-        "rep": "Chris Payton",
+        "rep": "Anthony Palmisano",
         "newPlacements": 0,
         "payout": 0,
         "rank": 11
       },
       {
-        "rep": "Dan Lagala",
+        "rep": "Chris Payton",
         "newPlacements": 0,
         "payout": 0,
         "rank": 12
       },
       {
-        "rep": "Derrick Laws",
+        "rep": "Dan Lagala",
         "newPlacements": 0,
         "payout": 0,
         "rank": 13
       },
       {
-        "rep": "Dylan Rubino",
+        "rep": "Derrick Laws",
         "newPlacements": 0,
         "payout": 0,
         "rank": 14
       },
       {
-        "rep": "Hakan Sadik",
+        "rep": "Dylan Rubino",
         "newPlacements": 0,
         "payout": 0,
         "rank": 15
       },
       {
-        "rep": "Jaime Colonna",
+        "rep": "Hakan Sadik",
         "newPlacements": 0,
         "payout": 0,
         "rank": 16
       },
       {
-        "rep": "Javier Melo",
+        "rep": "Jaime Colonna",
         "newPlacements": 0,
         "payout": 0,
         "rank": 17
       },
       {
-        "rep": "Jim Heaney",
+        "rep": "Javier Melo",
         "newPlacements": 0,
         "payout": 0,
         "rank": 18
       },
       {
-        "rep": "John O'Donoghue",
+        "rep": "Jim Heaney",
         "newPlacements": 0,
         "payout": 0,
         "rank": 19
       },
       {
-        "rep": "Klejdi Lamo",
+        "rep": "John O'Donoghue",
         "newPlacements": 0,
         "payout": 0,
         "rank": 20
       },
       {
-        "rep": "Matt Powierski",
+        "rep": "Klejdi Lamo",
         "newPlacements": 0,
         "payout": 0,
         "rank": 21
       },
       {
-        "rep": "Mike Ast",
+        "rep": "Matt Powierski",
         "newPlacements": 0,
         "payout": 0,
         "rank": 22
       },
       {
-        "rep": "Nick Melissari",
+        "rep": "Mike Ast",
         "newPlacements": 0,
         "payout": 0,
         "rank": 23
       },
       {
-        "rep": "Pablo Lopez",
+        "rep": "Nick Melissari",
         "newPlacements": 0,
         "payout": 0,
         "rank": 24
       },
       {
-        "rep": "Paul Mclaughlin",
+        "rep": "Pablo Lopez",
         "newPlacements": 0,
         "payout": 0,
         "rank": 25
@@ -101607,11 +101778,11 @@ const PROGRAM_DATA_2026_09 = {
             "customer": "Brookdale W & S (A)",
             "tier": "19.2oz cans",
             "rate": 15,
-            "date": "9/10/2026"
+            "date": "9/24/2026"
           }
         ],
         "offPremNewCount": 1,
-        "offPremReorderCount": 8,
+        "offPremReorderCount": 9,
         "newAccounts": 0,
         "byTier": {
           "sixpack": 0,
@@ -101667,7 +101838,7 @@ const PROGRAM_DATA_2026_09 = {
             "status": "lapsed"
           }
         ],
-        "caseVolume": 23.0,
+        "caseVolume": 33.0,
         "packagePayout": 15,
         "draftPayout": 0,
         "payout": 15,
@@ -101779,13 +101950,13 @@ const PROGRAM_DATA_2026_09 = {
             "status": "reorder"
           },
           {
-            "customer": "Anthonys CF Pizza (Wayne)",
-            "bbl": 0.167,
+            "customer": "The Little Falls Tavern",
+            "bbl": 0.333,
             "qualifies": false,
             "status": "reorder"
           },
           {
-            "customer": "The Little Falls Tavern",
+            "customer": "Anthonys CF Pizza (Wayne)",
             "bbl": 0.167,
             "qualifies": false,
             "status": "reorder"
@@ -101803,7 +101974,7 @@ const PROGRAM_DATA_2026_09 = {
             "status": "lapsed"
           }
         ],
-        "caseVolume": 3.0,
+        "caseVolume": 4.0,
         "packagePayout": 0,
         "draftPayout": 0,
         "payout": 0,
@@ -101822,7 +101993,7 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "offPremNewCount": 1,
-        "offPremReorderCount": 7,
+        "offPremReorderCount": 9,
         "newAccounts": 0,
         "byTier": {
           "sixpack": 0,
@@ -101834,7 +102005,7 @@ const PROGRAM_DATA_2026_09 = {
         "draftReorderCount": 0,
         "draftQualifiedCount": 0,
         "draftAccounts": [],
-        "caseVolume": 17.0,
+        "caseVolume": 23.0,
         "packagePayout": 15,
         "draftPayout": 0,
         "payout": 15,
@@ -102065,18 +102236,42 @@ const PROGRAM_DATA_2026_09 = {
         },
         "draftNew": [
           {
+            "customer": "Lena y Carbon VII Parsippany",
+            "bbl": 0.5,
+            "qualifies": true,
+            "date": "9/25/2026"
+          },
+          {
             "customer": "Industry",
+            "bbl": 0.333,
+            "qualifies": false,
+            "date": "9/24/2026"
+          },
+          {
+            "customer": "O'reilly Pub (P)",
             "bbl": 0.333,
             "qualifies": false,
             "date": "9/24/2026"
           }
         ],
-        "draftNewCount": 1,
+        "draftNewCount": 3,
         "draftReorderCount": 1,
-        "draftQualifiedCount": 0,
+        "draftQualifiedCount": 1,
         "draftAccounts": [
           {
+            "customer": "Lena y Carbon VII Parsippany",
+            "bbl": 0.5,
+            "qualifies": true,
+            "status": "new"
+          },
+          {
             "customer": "Industry",
+            "bbl": 0.333,
+            "qualifies": false,
+            "status": "new"
+          },
+          {
+            "customer": "O'reilly Pub (P)",
             "bbl": 0.333,
             "qualifies": false,
             "status": "new"
@@ -102100,6 +102295,12 @@ const PROGRAM_DATA_2026_09 = {
             "status": "lapsed"
           },
           {
+            "customer": "The Exchange",
+            "bbl": 0.0,
+            "qualifies": false,
+            "status": "lapsed"
+          },
+          {
             "customer": "Thatcher Mcghee's (A)",
             "bbl": 0.0,
             "qualifies": false,
@@ -102110,19 +102311,13 @@ const PROGRAM_DATA_2026_09 = {
             "bbl": 0.0,
             "qualifies": false,
             "status": "lapsed"
-          },
-          {
-            "customer": "The Exchange",
-            "bbl": 0.0,
-            "qualifies": false,
-            "status": "lapsed"
           }
         ],
-        "caseVolume": 3.0,
+        "caseVolume": 6.0,
         "packagePayout": 0,
-        "draftPayout": 0,
-        "payout": 0,
-        "totalNewPlacements": 0,
+        "draftPayout": 100,
+        "payout": 100,
+        "totalNewPlacements": 1,
         "draftChannelOk": true,
         "offPremTargets": [
           {
@@ -102278,13 +102473,19 @@ const PROGRAM_DATA_2026_09 = {
             "tier": "6pk cans",
             "rate": 10,
             "date": "9/22/2026"
+          },
+          {
+            "customer": "Boulevard Food Store",
+            "tier": "6pk cans",
+            "rate": 10,
+            "date": "9/25/2026"
           }
         ],
-        "offPremNewCount": 1,
-        "offPremReorderCount": 3,
-        "newAccounts": 1,
+        "offPremNewCount": 2,
+        "offPremReorderCount": 4,
+        "newAccounts": 2,
         "byTier": {
-          "sixpack": 1,
+          "sixpack": 2,
           "twelvepack": 0,
           "nineteen2": 0
         },
@@ -102312,11 +102513,11 @@ const PROGRAM_DATA_2026_09 = {
             "status": "lapsed"
           }
         ],
-        "caseVolume": 13.0,
-        "packagePayout": 10,
+        "caseVolume": 17.0,
+        "packagePayout": 20,
         "draftPayout": 0,
-        "payout": 10,
-        "totalNewPlacements": 1,
+        "payout": 20,
+        "totalNewPlacements": 2,
         "draftChannelOk": true,
         "offPremTargets": [
           {
@@ -102400,7 +102601,7 @@ const PROGRAM_DATA_2026_09 = {
             "cases2026": 3338.3
           }
         ],
-        "offPremTargetCount": 36
+        "offPremTargetCount": 35
       },
       "Dave Ehlers": {
         "offPremNew": [
@@ -102622,7 +102823,7 @@ const PROGRAM_DATA_2026_09 = {
       "Dylan Rubino": {
         "offPremNew": [],
         "offPremNewCount": 0,
-        "offPremReorderCount": 9,
+        "offPremReorderCount": 12,
         "newAccounts": 0,
         "byTier": {
           "sixpack": 0,
@@ -102635,15 +102836,15 @@ const PROGRAM_DATA_2026_09 = {
         "draftQualifiedCount": 0,
         "draftAccounts": [
           {
-            "customer": "Light Horse Tavern (A)",
-            "bbl": 0.5,
+            "customer": "Greene Hook Resturant",
+            "bbl": 0.667,
             "qualifies": true,
             "status": "reorder"
           },
           {
-            "customer": "Greene Hook Resturant",
-            "bbl": 0.333,
-            "qualifies": false,
+            "customer": "Light Horse Tavern (A)",
+            "bbl": 0.5,
+            "qualifies": true,
             "status": "reorder"
           },
           {
@@ -102659,7 +102860,7 @@ const PROGRAM_DATA_2026_09 = {
             "status": "lapsed"
           }
         ],
-        "caseVolume": 29.0,
+        "caseVolume": 44.0,
         "packagePayout": 0,
         "draftPayout": 0,
         "payout": 0,
@@ -102790,7 +102991,7 @@ const PROGRAM_DATA_2026_09 = {
             "status": "lapsed"
           }
         ],
-        "caseVolume": 15.0,
+        "caseVolume": 16.0,
         "packagePayout": 25,
         "draftPayout": 0,
         "payout": 25,
@@ -102909,6 +103110,12 @@ const PROGRAM_DATA_2026_09 = {
         "draftQualifiedCount": 0,
         "draftAccounts": [
           {
+            "customer": "The Highwood",
+            "bbl": 1.0,
+            "qualifies": true,
+            "status": "reorder"
+          },
+          {
             "customer": "Urban Coal House",
             "bbl": 1.0,
             "qualifies": true,
@@ -102928,12 +103135,6 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Finnegans",
-            "bbl": 0.5,
-            "qualifies": true,
-            "status": "reorder"
-          },
-          {
-            "customer": "The Highwood",
             "bbl": 0.5,
             "qualifies": true,
             "status": "reorder"
@@ -102969,7 +103170,7 @@ const PROGRAM_DATA_2026_09 = {
             "status": "lapsed"
           }
         ],
-        "caseVolume": 88.0,
+        "caseVolume": 93.0,
         "packagePayout": 20,
         "draftPayout": 0,
         "payout": 20,
@@ -103354,7 +103555,7 @@ const PROGRAM_DATA_2026_09 = {
       "John O'Donoghue": {
         "offPremNew": [],
         "offPremNewCount": 0,
-        "offPremReorderCount": 16,
+        "offPremReorderCount": 17,
         "newAccounts": 0,
         "byTier": {
           "sixpack": 0,
@@ -103373,7 +103574,7 @@ const PROGRAM_DATA_2026_09 = {
             "status": "lapsed"
           }
         ],
-        "caseVolume": 48.0,
+        "caseVolume": 51.0,
         "packagePayout": 0,
         "draftPayout": 0,
         "payout": 0,
@@ -103478,7 +103679,7 @@ const PROGRAM_DATA_2026_09 = {
         "draftReorderCount": 0,
         "draftQualifiedCount": 0,
         "draftAccounts": [],
-        "caseVolume": 5.0,
+        "caseVolume": 7.0,
         "packagePayout": 0,
         "draftPayout": 0,
         "payout": 0,
@@ -103683,7 +103884,7 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "offPremNewCount": 1,
-        "offPremReorderCount": 9,
+        "offPremReorderCount": 11,
         "newAccounts": 0,
         "byTier": {
           "sixpack": 0,
@@ -103714,7 +103915,7 @@ const PROGRAM_DATA_2026_09 = {
             "status": "lapsed"
           }
         ],
-        "caseVolume": 28.0,
+        "caseVolume": 42.0,
         "packagePayout": 15,
         "draftPayout": 0,
         "payout": 15,
@@ -103820,7 +104021,7 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "offPremNewCount": 2,
-        "offPremReorderCount": 5,
+        "offPremReorderCount": 7,
         "newAccounts": 2,
         "byTier": {
           "sixpack": 1,
@@ -103839,7 +104040,7 @@ const PROGRAM_DATA_2026_09 = {
             "status": "reorder"
           }
         ],
-        "caseVolume": 24.0,
+        "caseVolume": 28.0,
         "packagePayout": 25,
         "draftPayout": 0,
         "payout": 25,
@@ -103956,13 +104157,13 @@ const PROGRAM_DATA_2026_09 = {
             "status": "reorder"
           },
           {
-            "customer": "H Mart Inc (Space A103)",
+            "customer": "Victor's Maywood Inn",
             "bbl": 0.0,
             "qualifies": false,
             "status": "reorder"
           },
           {
-            "customer": "Victor's Maywood Inn",
+            "customer": "H Mart Inc (Space A103)",
             "bbl": 0.0,
             "qualifies": false,
             "status": "reorder"
@@ -103992,13 +104193,13 @@ const PROGRAM_DATA_2026_09 = {
             "status": "lapsed"
           },
           {
-            "customer": "The Game Room",
+            "customer": "Mason Jar Restaurant",
             "bbl": 0.0,
             "qualifies": false,
             "status": "lapsed"
           },
           {
-            "customer": "Mason Jar Restaurant",
+            "customer": "The Game Room",
             "bbl": 0.0,
             "qualifies": false,
             "status": "lapsed"
@@ -104174,16 +104375,22 @@ const PROGRAM_DATA_2026_09 = {
             "status": "reorder"
           },
           {
+            "customer": "The Cornerstone (P)",
+            "bbl": 0.5,
+            "qualifies": true,
+            "status": "reorder"
+          },
+          {
+            "customer": "Stern And Bow",
+            "bbl": 0.5,
+            "qualifies": true,
+            "status": "reorder"
+          },
+          {
             "customer": "Grant Street Cafe (A)",
             "bbl": 0.5,
             "qualifies": true,
             "status": "new"
-          },
-          {
-            "customer": "Stern And Bow",
-            "bbl": 0.333,
-            "qualifies": false,
-            "status": "reorder"
           },
           {
             "customer": "Rivervale Country Club",
@@ -104198,12 +104405,6 @@ const PROGRAM_DATA_2026_09 = {
             "status": "new"
           },
           {
-            "customer": "The Cornerstone (P)",
-            "bbl": 0.0,
-            "qualifies": false,
-            "status": "reorder"
-          },
-          {
             "customer": "Lenoras Bar (P)",
             "bbl": 0.0,
             "qualifies": false,
@@ -104216,25 +104417,25 @@ const PROGRAM_DATA_2026_09 = {
             "status": "lapsed"
           },
           {
-            "customer": "Emerson Hotel",
-            "bbl": 0.0,
-            "qualifies": false,
-            "status": "lapsed"
-          },
-          {
             "customer": "Midland Brewhouse (A)",
             "bbl": 0.0,
             "qualifies": false,
             "status": "lapsed"
           },
           {
-            "customer": "Marriott (P) Park Ridge",
+            "customer": "Emerson Hotel",
             "bbl": 0.0,
             "qualifies": false,
             "status": "lapsed"
           },
           {
             "customer": "101 Pub (A)",
+            "bbl": 0.0,
+            "qualifies": false,
+            "status": "lapsed"
+          },
+          {
+            "customer": "Marriott (P) Park Ridge",
             "bbl": 0.0,
             "qualifies": false,
             "status": "lapsed"
@@ -104252,7 +104453,7 @@ const PROGRAM_DATA_2026_09 = {
             "status": "lapsed"
           }
         ],
-        "caseVolume": 15.0,
+        "caseVolume": 17.0,
         "packagePayout": 0,
         "draftPayout": 100,
         "payout": 100,
@@ -104273,6 +104474,24 @@ const PROGRAM_DATA_2026_09 = {
       "Phil Ernst": {
         "offPremNew": [
           {
+            "customer": "Budy's Wine & Liq (A)",
+            "tier": "19.2oz cans",
+            "rate": 15,
+            "date": "9/15/2026"
+          },
+          {
+            "customer": "City Supermarket",
+            "tier": "12pk cans",
+            "rate": 15,
+            "date": "9/15/2026"
+          },
+          {
+            "customer": "Shop-Rite Liq Lyndhurst",
+            "tier": "19.2oz cans",
+            "rate": 15,
+            "date": "9/15/2026"
+          },
+          {
             "customer": "City Supermarket",
             "tier": "19.2oz cans",
             "rate": 15,
@@ -104291,56 +104510,20 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/15/2026"
           },
           {
-            "customer": "Shop-Rite Liq Lyndhurst",
-            "tier": "19.2oz cans",
-            "rate": 15,
-            "date": "9/15/2026"
-          },
-          {
-            "customer": "Budy's Wine & Liq (A)",
-            "tier": "19.2oz cans",
-            "rate": 15,
-            "date": "9/15/2026"
-          },
-          {
-            "customer": "City Supermarket",
-            "tier": "12pk cans",
-            "rate": 15,
-            "date": "9/15/2026"
-          },
-          {
-            "customer": "Shop Rite Liq(A) Roch Pk",
-            "tier": "19.2oz cans",
-            "rate": 15,
-            "date": "9/17/2026"
-          },
-          {
-            "customer": "Megha Liquor & Grocery",
-            "tier": "19.2oz cans",
-            "rate": 15,
-            "date": "9/17/2026"
-          },
-          {
             "customer": "Stew Leonard's Wines & Spirits of Clifton",
             "tier": "19.2oz cans",
             "rate": 15,
             "date": "9/17/2026"
           },
           {
-            "customer": "Stew Leonard's(A) Paramus Wine",
+            "customer": "Megha Liquor & Grocery",
             "tier": "19.2oz cans",
             "rate": 15,
             "date": "9/17/2026"
           },
           {
-            "customer": "Megha Liquor & Grocery",
-            "tier": "12pk cans",
-            "rate": 15,
-            "date": "9/17/2026"
-          },
-          {
             "customer": "Stew Leonard's(A) Paramus Wine",
-            "tier": "12pk cans",
+            "tier": "19.2oz cans",
             "rate": 15,
             "date": "9/17/2026"
           },
@@ -104353,6 +104536,24 @@ const PROGRAM_DATA_2026_09 = {
           {
             "customer": "Shop Rite Liq(A) Roch Pk",
             "tier": "12pk cans",
+            "rate": 15,
+            "date": "9/17/2026"
+          },
+          {
+            "customer": "Stew Leonard's(A) Paramus Wine",
+            "tier": "12pk cans",
+            "rate": 15,
+            "date": "9/17/2026"
+          },
+          {
+            "customer": "Megha Liquor & Grocery",
+            "tier": "12pk cans",
+            "rate": 15,
+            "date": "9/17/2026"
+          },
+          {
+            "customer": "Shop Rite Liq(A) Roch Pk",
+            "tier": "19.2oz cans",
             "rate": 15,
             "date": "9/17/2026"
           },
@@ -104381,13 +104582,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/17/2026"
           },
           {
-            "customer": "Riverview Liq (P)",
+            "customer": "Shop Rite Liq(A) Roch Pk",
             "tier": "6pk cans",
             "rate": 10,
             "date": "9/17/2026"
           },
           {
-            "customer": "Shop Rite Liq(A) Roch Pk",
+            "customer": "Riverview Liq (P)",
             "tier": "6pk cans",
             "rate": 10,
             "date": "9/17/2026"
@@ -104412,7 +104613,7 @@ const PROGRAM_DATA_2026_09 = {
         "draftReorderCount": 0,
         "draftQualifiedCount": 0,
         "draftAccounts": [],
-        "caseVolume": 53.0,
+        "caseVolume": 56.0,
         "packagePayout": 295,
         "draftPayout": 0,
         "payout": 295,
@@ -104548,7 +104749,7 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "offPremNewCount": 4,
-        "offPremReorderCount": 15,
+        "offPremReorderCount": 16,
         "newAccounts": 1,
         "byTier": {
           "sixpack": 1,
@@ -104560,7 +104761,7 @@ const PROGRAM_DATA_2026_09 = {
         "draftReorderCount": 0,
         "draftQualifiedCount": 0,
         "draftAccounts": [],
-        "caseVolume": 60.0,
+        "caseVolume": 66.0,
         "packagePayout": 55,
         "draftPayout": 0,
         "payout": 55,
@@ -104633,79 +104834,79 @@ const PROGRAM_DATA_2026_09 = {
         "rank": 4
       },
       {
-        "rep": "Jaime Colonna",
+        "rep": "Dan Lagala",
         "newPlacements": 2,
         "payout": 20,
         "rank": 5
       },
       {
-        "rep": "Jim Heaney",
+        "rep": "Jaime Colonna",
         "newPlacements": 2,
         "payout": 20,
         "rank": 6
       },
       {
-        "rep": "Anthony Palmisano",
-        "newPlacements": 1,
-        "payout": 100,
+        "rep": "Jim Heaney",
+        "newPlacements": 2,
+        "payout": 20,
         "rank": 7
       },
       {
-        "rep": "Paul Mclaughlin",
+        "rep": "Anthony Palmisano",
         "newPlacements": 1,
         "payout": 100,
         "rank": 8
       },
       {
-        "rep": "Alisa Acciardi",
+        "rep": "Brian Sengebush",
         "newPlacements": 1,
-        "payout": 15,
+        "payout": 100,
         "rank": 9
       },
       {
-        "rep": "Andrew Lundy",
+        "rep": "Paul Mclaughlin",
         "newPlacements": 1,
-        "payout": 15,
+        "payout": 100,
         "rank": 10
       },
       {
-        "rep": "Michael Harboy",
+        "rep": "Alisa Acciardi",
         "newPlacements": 1,
         "payout": 15,
         "rank": 11
       },
       {
-        "rep": "Chris Payton",
+        "rep": "Andrew Lundy",
         "newPlacements": 1,
-        "payout": 10,
+        "payout": 15,
         "rank": 12
       },
       {
-        "rep": "Dan Lagala",
+        "rep": "Michael Harboy",
         "newPlacements": 1,
-        "payout": 10,
+        "payout": 15,
         "rank": 13
       },
       {
-        "rep": "Dave Ehlers",
+        "rep": "Chris Payton",
         "newPlacements": 1,
         "payout": 10,
         "rank": 14
       },
       {
-        "rep": "Alex Rodriguez",
-        "newPlacements": 0,
-        "payout": 0,
+        "rep": "Dave Ehlers",
+        "newPlacements": 1,
+        "payout": 10,
         "rank": 15
       },
       {
-        "rep": "Allison Scott",
+        "rep": "Alex Rodriguez",
         "newPlacements": 0,
         "payout": 0,
         "rank": 16
       },
       {
-        "rep": "Brian Sengebush",
+        "rep": "Allison Scott",
         "newPlacements": 0,
         "payout": 0,
         "rank": 17
@@ -104863,7 +105064,15 @@ const PROGRAM_DATA_2026_09 = {
       },
       "Chris Payton": {
         "offPremNew": [],
-        "offPremSingles": [],
+        "offPremSingles": [
+          {
+            "customer": "Usa Wine Traders Club (Saddle Brook)",
+            "products": [
+              "White Oak Rye"
+            ],
+            "date": "9/25/2026"
+          }
+        ],
         "offPremNewCount": 0,
         "offPremReorderCount": 0,
         "onPremNew": [],
@@ -104953,9 +105162,20 @@ const PROGRAM_DATA_2026_09 = {
         "payout": 0
       },
       "Javier Melo": {
-        "offPremNew": [],
+        "offPremNew": [
+          {
+            "customer": "Mariana's Liquors",
+            "products": [
+              "American Oak",
+              "French Oak",
+              "White Oak Rye"
+            ],
+            "payout": 75,
+            "date": "9/24/2026"
+          }
+        ],
         "offPremSingles": [],
-        "offPremNewCount": 0,
+        "offPremNewCount": 1,
         "offPremReorderCount": 0,
         "onPremNew": [],
         "onPremBuilding": [],
@@ -104963,7 +105183,7 @@ const PROGRAM_DATA_2026_09 = {
         "onPremReorderCount": 0,
         "onPremUnits": 0.0,
         "onPremPayout": 0,
-        "payout": 0
+        "payout": 75
       },
       "Jayson Romine": {
         "offPremNew": [],
@@ -105109,8 +105329,8 @@ const PROGRAM_DATA_2026_09 = {
         "onPremNew": [],
         "onPremBuilding": [],
         "onPremNewCount": 0,
-        "onPremReorderCount": 1,
-        "onPremUnits": 6.0,
+        "onPremReorderCount": 2,
+        "onPremUnits": 8.0,
         "onPremPayout": 0,
         "payout": 0
       },
@@ -105167,97 +105387,97 @@ const PROGRAM_DATA_2026_09 = {
     },
     "leaderboard": [
       {
-        "rep": "Jim Heaney",
+        "rep": "Javier Melo",
         "payout": 75,
         "newPlacements": 1,
         "rank": 1
       },
       {
-        "rep": "Phil Ernst",
+        "rep": "Jim Heaney",
         "payout": 75,
         "newPlacements": 1,
         "rank": 2
       },
       {
-        "rep": "Alex Rodriguez",
-        "payout": 0,
-        "newPlacements": 0,
+        "rep": "Phil Ernst",
+        "payout": 75,
+        "newPlacements": 1,
         "rank": 3
       },
       {
-        "rep": "Alisa Acciardi",
+        "rep": "Alex Rodriguez",
         "payout": 0,
         "newPlacements": 0,
         "rank": 4
       },
       {
-        "rep": "Allison Scott",
+        "rep": "Alisa Acciardi",
         "payout": 0,
         "newPlacements": 0,
         "rank": 5
       },
       {
-        "rep": "Andrew Lundy",
+        "rep": "Allison Scott",
         "payout": 0,
         "newPlacements": 0,
         "rank": 6
       },
       {
-        "rep": "Anthony Palmisano",
+        "rep": "Andrew Lundy",
         "payout": 0,
         "newPlacements": 0,
         "rank": 7
       },
       {
-        "rep": "Brian Sengebush",
+        "rep": "Anthony Palmisano",
         "payout": 0,
         "newPlacements": 0,
         "rank": 8
       },
       {
-        "rep": "Chris Payton",
+        "rep": "Brian Sengebush",
         "payout": 0,
         "newPlacements": 0,
         "rank": 9
       },
       {
-        "rep": "Dan Lagala",
+        "rep": "Chris Payton",
         "payout": 0,
         "newPlacements": 0,
         "rank": 10
       },
       {
-        "rep": "Dave Ehlers",
+        "rep": "Dan Lagala",
         "payout": 0,
         "newPlacements": 0,
         "rank": 11
       },
       {
-        "rep": "Derrick Laws",
+        "rep": "Dave Ehlers",
         "payout": 0,
         "newPlacements": 0,
         "rank": 12
       },
       {
-        "rep": "Dylan Rubino",
+        "rep": "Derrick Laws",
         "payout": 0,
         "newPlacements": 0,
         "rank": 13
       },
       {
-        "rep": "Hakan Sadik",
+        "rep": "Dylan Rubino",
         "payout": 0,
         "newPlacements": 0,
         "rank": 14
       },
       {
-        "rep": "Jaime Colonna",
+        "rep": "Hakan Sadik",
         "payout": 0,
         "newPlacements": 0,
         "rank": 15
       },
       {
-        "rep": "Javier Melo",
+        "rep": "Jaime Colonna",
         "payout": 0,
         "newPlacements": 0,
         "rank": 16
@@ -105371,32 +105591,8 @@ const PROGRAM_DATA_2026_09 = {
       "Alisa Acciardi": {
         "offPremNew": [
           {
-            "customer": "Buy-Rite Liquors",
-            "skuCount": 5,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Cordes Wine & Liquor",
+            "customer": "Brookdale W & S (A)",
             "skuCount": 3,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Cottage Liquors",
-            "skuCount": 5,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Bridgeview Liquors",
-            "skuCount": 4,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Kearny Wine & Liquor",
-            "skuCount": 2,
             "southern": true,
             "payout": 50
           },
@@ -105413,8 +105609,14 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Kearny Plaza Discount Liq",
-            "skuCount": 2,
+            "customer": "Shop Rite Wine & Spirits Kearny",
+            "skuCount": 1,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Cottage Liquors",
+            "skuCount": 5,
             "southern": true,
             "payout": 50
           },
@@ -105425,14 +105627,20 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Shop Rite Wine & Spirits Kearny",
-            "skuCount": 1,
+            "customer": "BuyRite Liquors - Kearny",
+            "skuCount": 5,
             "southern": true,
             "payout": 50
           },
           {
-            "customer": "Brookdale W & S (A)",
-            "skuCount": 3,
+            "customer": "Bridgeview Liquors",
+            "skuCount": 4,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Massarelli's Liquors",
+            "skuCount": 2,
             "southern": true,
             "payout": 50
           },
@@ -105449,7 +105657,19 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Massarelli's Liquors",
+            "customer": "Cordes Wine & Liquor",
+            "skuCount": 3,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Kearny Wine & Liquor",
+            "skuCount": 2,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Kearny Plaza Discount Liq",
             "skuCount": 2,
             "southern": true,
             "payout": 50
@@ -105459,12 +105679,12 @@ const PROGRAM_DATA_2026_09 = {
         "offPremPayout": 700,
         "onPremSeptember": [
           {
-            "customer": "Fitzgerald 1928",
+            "customer": "Six Points Pub",
             "bbl": 0.5,
             "qualifies": true
           },
           {
-            "customer": "Six Points Pub",
+            "customer": "Fitzgerald 1928",
             "bbl": 0.5,
             "qualifies": true
           },
@@ -105498,12 +105718,12 @@ const PROGRAM_DATA_2026_09 = {
             "qualifies": true
           },
           {
-            "customer": "The Front Porch (Z)",
+            "customer": "Blackjack Mulligans (Hawthorne)",
             "bbl": 0.417,
             "qualifies": true
           },
           {
-            "customer": "Blackjack Mulligans (Hawthorne)",
+            "customer": "The Front Porch (Z)",
             "bbl": 0.417,
             "qualifies": true
           },
@@ -105513,12 +105733,12 @@ const PROGRAM_DATA_2026_09 = {
             "qualifies": false
           },
           {
-            "customer": "Uno Chicago Grl (A)Clifto",
+            "customer": "cherry's",
             "bbl": 0.25,
             "qualifies": false
           },
           {
-            "customer": "cherry's",
+            "customer": "Uno Chicago Grl (A)Clifto",
             "bbl": 0.25,
             "qualifies": false
           },
@@ -105534,8 +105754,8 @@ const PROGRAM_DATA_2026_09 = {
       "Andrew Lundy": {
         "offPremNew": [
           {
-            "customer": "Total Wine & More (Union)",
-            "skuCount": 2,
+            "customer": "Dittrick's W&L (A)",
+            "skuCount": 3,
             "southern": true,
             "payout": 50
           },
@@ -105546,20 +105766,26 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
+            "customer": "The Wine Rack Millburn",
+            "skuCount": 5,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Total Wine & More (Union)",
+            "skuCount": 2,
+            "southern": true,
+            "payout": 50
+          },
+          {
             "customer": "Park Beverage",
             "skuCount": 5,
             "southern": true,
             "payout": 50
           },
           {
-            "customer": "Wine Anthology (A)",
-            "skuCount": 5,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Metro Liquor (Linden)",
-            "skuCount": 4,
+            "customer": "Providence Liquors",
+            "skuCount": 3,
             "southern": true,
             "payout": 50
           },
@@ -105570,26 +105796,8 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Trader Joes Westfield",
-            "skuCount": 1,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Dittrick's W&L (A)",
-            "skuCount": 3,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Drinq Linq The Liquor Store",
+            "customer": "Best Cellars (Summit)",
             "skuCount": 2,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "M & M Liquors",
-            "skuCount": 3,
             "southern": true,
             "payout": 50
           },
@@ -105606,20 +105814,38 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Providence Liquors",
+            "customer": "Trader Joes Westfield",
+            "skuCount": 1,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Metro Liquor (Linden)",
+            "skuCount": 4,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Wine Anthology (A)",
+            "skuCount": 5,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "M & M Liquors",
             "skuCount": 3,
             "southern": true,
             "payout": 50
           },
           {
-            "customer": "Best Cellars (Summit)",
+            "customer": "Drinq Linq The Liquor Store",
             "skuCount": 2,
             "southern": true,
             "payout": 50
           }
         ],
-        "offPremNewCount": 14,
-        "offPremPayout": 700,
+        "offPremNewCount": 15,
+        "offPremPayout": 750,
         "onPremSeptember": [
           {
             "customer": "The Station Bar & Grill",
@@ -105633,7 +105859,7 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "onPremQualifyingCount": 0,
-        "payout": 700
+        "payout": 750
       },
       "Anthony Palmisano": {
         "offPremNew": [
@@ -105644,13 +105870,13 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 70
           },
           {
-            "customer": "Usa Wine Traders (Wanaque)",
+            "customer": "Highland Wine&Liquor Inc",
             "skuCount": 5,
             "southern": false,
             "payout": 60
           },
           {
-            "customer": "Highland Wine&Liquor Inc",
+            "customer": "Usa Wine Traders (Wanaque)",
             "skuCount": 5,
             "southern": false,
             "payout": 60
@@ -105668,18 +105894,18 @@ const PROGRAM_DATA_2026_09 = {
         "offPremPayout": 0,
         "onPremSeptember": [
           {
-            "customer": "St.Moritz Grill & Bar",
-            "bbl": 0.5,
-            "qualifies": true
-          },
-          {
             "customer": "Polo's Bar And Grill",
             "bbl": 0.5,
             "qualifies": true
           },
           {
+            "customer": "St.Moritz Grill & Bar",
+            "bbl": 0.5,
+            "qualifies": true
+          },
+          {
             "customer": "Hyde-Away Rest & Tap Room",
-            "bbl": 0.167,
+            "bbl": 0.333,
             "qualifies": false
           }
         ],
@@ -105689,13 +105915,13 @@ const PROGRAM_DATA_2026_09 = {
       "Chris Payton": {
         "offPremNew": [
           {
-            "customer": "Exquisite W & L (A)",
+            "customer": "Shop Rite Liq.(A)Lodi",
             "skuCount": 5,
             "southern": false,
             "payout": 60
           },
           {
-            "customer": "Shop Rite Liq.(A)Lodi",
+            "customer": "Exquisite W & L (A)",
             "skuCount": 5,
             "southern": false,
             "payout": 60
@@ -105722,13 +105948,13 @@ const PROGRAM_DATA_2026_09 = {
       "Dan Lagala": {
         "offPremNew": [
           {
-            "customer": "Tenafly Fine Wine & Spirits",
+            "customer": "Linwood Wine-Linwood Plaza",
             "skuCount": 6,
             "southern": false,
             "payout": 70
           },
           {
-            "customer": "Linwood Wine-Linwood Plaza",
+            "customer": "Tenafly Fine Wine & Spirits",
             "skuCount": 6,
             "southern": false,
             "payout": 70
@@ -105746,13 +105972,13 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Stop N Go Conven. (P)",
+            "customer": "Edgewater Liquor (A)",
             "skuCount": 3,
             "southern": false,
             "payout": 40
           },
           {
-            "customer": "Edgewater Liquor (A)",
+            "customer": "Stop N Go Conven. (P)",
             "skuCount": 3,
             "southern": false,
             "payout": 40
@@ -105767,25 +105993,25 @@ const PROGRAM_DATA_2026_09 = {
       "Dave Ehlers": {
         "offPremNew": [
           {
-            "customer": "Joes Beer Wine & Spirits",
-            "skuCount": 6,
-            "southern": false,
-            "payout": 70
-          },
-          {
             "customer": "Total Wine & More (River Edge)",
             "skuCount": 6,
             "southern": false,
             "payout": 70
           },
           {
-            "customer": "Buy Rite Of Hackensack",
+            "customer": "Joes Beer Wine & Spirits",
+            "skuCount": 6,
+            "southern": false,
+            "payout": 70
+          },
+          {
+            "customer": "Total Wine & More (Totowa)",
             "skuCount": 5,
             "southern": false,
             "payout": 60
           },
           {
-            "customer": "Total Wine & More (Totowa)",
+            "customer": "Buy Rite Of Hackensack",
             "skuCount": 5,
             "southern": false,
             "payout": 60
@@ -105797,13 +106023,19 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
+            "customer": "Simple Simon's (Z)",
+            "skuCount": 4,
+            "southern": false,
+            "payout": 50
+          },
+          {
             "customer": "Bottle & Cork",
             "skuCount": 3,
             "southern": false,
             "payout": 40
           },
           {
-            "customer": "Barrel & Brew Bar & Liq",
+            "customer": "Deli Mart (A)",
             "skuCount": 3,
             "southern": false,
             "payout": 40
@@ -105813,13 +106045,25 @@ const PROGRAM_DATA_2026_09 = {
             "skuCount": 3,
             "southern": false,
             "payout": 40
+          },
+          {
+            "customer": "New Milford Liquors",
+            "skuCount": 3,
+            "southern": false,
+            "payout": 40
+          },
+          {
+            "customer": "Barrel & Brew Bar & Liq",
+            "skuCount": 3,
+            "southern": false,
+            "payout": 40
           }
         ],
-        "offPremNewCount": 8,
-        "offPremPayout": 430,
+        "offPremNewCount": 11,
+        "offPremPayout": 560,
         "onPremSeptember": [],
         "onPremQualifyingCount": 0,
-        "payout": 430
+        "payout": 560
       },
       "Derrick Laws": {
         "offPremNew": [
@@ -105839,7 +106083,7 @@ const PROGRAM_DATA_2026_09 = {
       "Dylan Rubino": {
         "offPremNew": [
           {
-            "customer": "Waterfront Wine & Liq(P)",
+            "customer": "Jersey Wine & Spirits",
             "skuCount": 6,
             "southern": true,
             "payout": 50
@@ -105851,7 +106095,13 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Refined Wine and Spirits",
+            "customer": "Webster Liquors",
+            "skuCount": 5,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Waterfront Wine & Liq(P)",
             "skuCount": 6,
             "southern": true,
             "payout": 50
@@ -105863,8 +106113,8 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Webster Liquors",
-            "skuCount": 5,
+            "customer": "Refined Wine and Spirits",
+            "skuCount": 6,
             "southern": true,
             "payout": 50
           },
@@ -105875,20 +106125,14 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Cool Vines",
-            "skuCount": 3,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Jersey Wine & Spirits",
-            "skuCount": 1,
-            "southern": true,
-            "payout": 50
-          },
-          {
             "customer": "Communipaw Liqs (P)",
             "skuCount": 1,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Cool Vines",
+            "skuCount": 3,
             "southern": true,
             "payout": 50
           }
@@ -105913,8 +106157,8 @@ const PROGRAM_DATA_2026_09 = {
       "Hakan Sadik": {
         "offPremNew": [
           {
-            "customer": "Wine Barrel (P)",
-            "skuCount": 7,
+            "customer": "Maplewood Wine & Liquor",
+            "skuCount": 5,
             "southern": true,
             "payout": 50
           },
@@ -105925,14 +106169,14 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Maplewood Wine & Liquor",
-            "skuCount": 4,
+            "customer": "Bottle King Livingston",
+            "skuCount": 5,
             "southern": true,
             "payout": 50
           },
           {
-            "customer": "Bottle King Livingston",
-            "skuCount": 5,
+            "customer": "Wine Barrel (P)",
+            "skuCount": 7,
             "southern": true,
             "payout": 50
           },
@@ -105943,13 +106187,13 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Liquor Cave",
+            "customer": "Joe Canals",
             "skuCount": 3,
             "southern": true,
             "payout": 50
           },
           {
-            "customer": "Joe Canals",
+            "customer": "Liquor Cave",
             "skuCount": 3,
             "southern": true,
             "payout": 50
@@ -105970,6 +106214,36 @@ const PROGRAM_DATA_2026_09 = {
       "Jaime Colonna": {
         "offPremNew": [
           {
+            "customer": "Garden Wine & Liq (P)",
+            "skuCount": 2,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Wine Dad's Jersey City",
+            "skuCount": 5,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Hoboken Vine",
+            "skuCount": 4,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "ShopRite Wines & Spirits of Hoboken",
+            "skuCount": 6,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Wine Dad's - Summit Ave Jersey City",
+            "skuCount": 3,
+            "southern": true,
+            "payout": 50
+          },
+          {
             "customer": "Jersey City Buy Rite (A)",
             "skuCount": 6,
             "southern": true,
@@ -105982,20 +106256,14 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "ShopRite Wines & Spirits of Hoboken",
-            "skuCount": 6,
+            "customer": "Cork Wines & Spirits (Harrison)",
+            "skuCount": 2,
             "southern": true,
             "payout": 50
           },
           {
-            "customer": "Hoboken Vine",
-            "skuCount": 4,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Wine Dad's Jersey City",
-            "skuCount": 5,
+            "customer": "Delite Market",
+            "skuCount": 1,
             "southern": true,
             "payout": 50
           },
@@ -106006,37 +106274,13 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Cork Wines & Spirits (Harrison)",
-            "skuCount": 2,
+            "customer": "Village Wine & Liquors Ii",
+            "skuCount": 4,
             "southern": true,
             "payout": 50
           },
           {
             "customer": "The Thirsty Quaker (P)",
-            "skuCount": 1,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Wine Dad's - Summit Ave Jersey City",
-            "skuCount": 3,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Garden Wine & Liq (P)",
-            "skuCount": 2,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Village Wine & Liquors Ii",
-            "skuCount": 3,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Delite Market",
             "skuCount": 1,
             "southern": true,
             "payout": 50
@@ -106093,13 +106337,13 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 60
           },
           {
-            "customer": "Liquor Factory VI Byram",
+            "customer": "Liquor Factory III Sparta",
             "skuCount": 5,
             "southern": false,
             "payout": 60
           },
           {
-            "customer": "Liquor Factory III Sparta",
+            "customer": "Liquor Factory VI Byram",
             "skuCount": 5,
             "southern": false,
             "payout": 60
@@ -106117,13 +106361,13 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Super Saver Liq",
+            "customer": "Mac & Lindy's W & S (A)",
             "skuCount": 4,
             "southern": false,
             "payout": 50
           },
           {
-            "customer": "ShopRite Wine & Spirits of Newton#830",
+            "customer": "Super Saver Liq",
             "skuCount": 4,
             "southern": false,
             "payout": 50
@@ -106135,25 +106379,19 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Mac & Lindy's W & S (A)",
+            "customer": "ShopRite Wine & Spirits of Newton#830",
             "skuCount": 4,
             "southern": false,
             "payout": 50
           },
           {
-            "customer": "The George Inn",
-            "skuCount": 3,
-            "southern": false,
-            "payout": 40
-          },
-          {
-            "customer": "Burkes",
-            "skuCount": 3,
-            "southern": false,
-            "payout": 40
-          },
-          {
             "customer": "Wine Country Newton",
+            "skuCount": 3,
+            "southern": false,
+            "payout": 40
+          },
+          {
+            "customer": "ShopRite Wines & Spirits of Sparta",
             "skuCount": 3,
             "southern": false,
             "payout": 40
@@ -106165,7 +106403,13 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 40
           },
           {
-            "customer": "ShopRite Wines & Spirits of Sparta",
+            "customer": "Burkes",
+            "skuCount": 3,
+            "southern": false,
+            "payout": 40
+          },
+          {
+            "customer": "The George Inn",
             "skuCount": 3,
             "southern": false,
             "payout": 40
@@ -106186,7 +106430,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Liquor Shed",
+            "customer": "Clifton Commons S & W",
             "skuCount": 4,
             "southern": false,
             "payout": 50
@@ -106198,16 +106442,10 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Clifton Commons S & W",
+            "customer": "Liquor Shed",
             "skuCount": 4,
             "southern": false,
             "payout": 50
-          },
-          {
-            "customer": "Broad Liquors (A)",
-            "skuCount": 3,
-            "southern": false,
-            "payout": 40
           },
           {
             "customer": "Shoppers Vineyard (A)",
@@ -106217,6 +106455,12 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Village Wine (P)",
+            "skuCount": 3,
+            "southern": false,
+            "payout": 40
+          },
+          {
+            "customer": "Broad Liquors (A)",
             "skuCount": 3,
             "southern": false,
             "payout": 40
@@ -106231,13 +106475,13 @@ const PROGRAM_DATA_2026_09 = {
       "John O'Donoghue": {
         "offPremNew": [
           {
-            "customer": "Midtown Wine Merchant(A)",
+            "customer": "Bottle King (Z) Chatham",
             "skuCount": 6,
             "southern": false,
             "payout": 70
           },
           {
-            "customer": "Bottle King (Z) Chatham",
+            "customer": "Midtown Wine Merchant(A)",
             "skuCount": 6,
             "southern": false,
             "payout": 70
@@ -106249,13 +106493,13 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 70
           },
           {
-            "customer": "Gary's Wine & Marketplace (Madison)",
+            "customer": "Village Wine & Liquors",
             "skuCount": 5,
             "southern": false,
             "payout": 60
           },
           {
-            "customer": "Village Wine & Liquors",
+            "customer": "Gary's Wine & Marketplace (Madison)",
             "skuCount": 5,
             "southern": false,
             "payout": 60
@@ -106273,7 +106517,25 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 60
           },
           {
+            "customer": "Fairfield Wine Cellar",
+            "skuCount": 4,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Partners Discount Liquors",
+            "skuCount": 4,
+            "southern": false,
+            "payout": 50
+          },
+          {
             "customer": "Mansfield Bottle King",
+            "skuCount": 4,
+            "southern": false,
+            "payout": 50
+          },
+          {
+            "customer": "Shop Rite Liquors",
             "skuCount": 4,
             "southern": false,
             "payout": 50
@@ -106285,27 +106547,15 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Fairfield Wine Cellar",
-            "skuCount": 4,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Shop Rite Liquors",
-            "skuCount": 4,
-            "southern": false,
-            "payout": 50
-          },
-          {
-            "customer": "Partners Discount Liquors",
-            "skuCount": 4,
-            "southern": false,
-            "payout": 50
-          },
-          {
             "customer": "Vine Republic (Berkeley Height)",
             "skuCount": 4,
             "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Bottle King Morris Plains",
+            "skuCount": 4,
+            "southern": false,
             "payout": 50
           },
           {
@@ -106315,7 +106565,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 40
           },
           {
-            "customer": "Bottle King Morris Plains",
+            "customer": "Buyrite Of Chatham",
             "skuCount": 3,
             "southern": false,
             "payout": 40
@@ -106325,20 +106575,19 @@ const PROGRAM_DATA_2026_09 = {
             "skuCount": 3,
             "southern": false,
             "payout": 40
-          },
-          {
-            "customer": "Buyrite Of Chatham",
-            "skuCount": 3,
-            "southern": false,
-            "payout": 40
           }
         ],
         "offPremNewCount": 17,
-        "offPremPayout": 910,
+        "offPremPayout": 920,
         "onPremSeptember": [
           {
             "customer": "Toby Grill and Bar",
             "bbl": 1.0,
+            "qualifies": true
+          },
+          {
+            "customer": "54 Main Cafe",
+            "bbl": 0.5,
             "qualifies": true
           },
           {
@@ -106347,8 +106596,8 @@ const PROGRAM_DATA_2026_09 = {
             "qualifies": false
           }
         ],
-        "onPremQualifyingCount": 1,
-        "payout": 910
+        "onPremQualifyingCount": 2,
+        "payout": 920
       },
       "Klejdi Lamo": {
         "offPremNew": [
@@ -106365,12 +106614,6 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 60
           },
           {
-            "customer": "Shop Rite Liq (A)Wharton",
-            "skuCount": 4,
-            "southern": false,
-            "payout": 50
-          },
-          {
             "customer": "Kingston Liquors",
             "skuCount": 4,
             "southern": false,
@@ -106383,10 +106626,10 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "3 IN 1 LIQUORS INC",
-            "skuCount": 3,
+            "customer": "Shop Rite Liq (A)Wharton",
+            "skuCount": 4,
             "southern": false,
-            "payout": 40
+            "payout": 50
           },
           {
             "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
@@ -106395,7 +106638,19 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 40
           },
           {
-            "customer": "Patel Liqr & Gro(P)",
+            "customer": "3 IN 1 LIQUORS INC",
+            "skuCount": 3,
+            "southern": false,
+            "payout": 40
+          },
+          {
+            "customer": "House of Wine & Liquor - Boonton",
+            "skuCount": 3,
+            "southern": false,
+            "payout": 40
+          },
+          {
+            "customer": "Island Of Spirits (P)",
             "skuCount": 3,
             "southern": false,
             "payout": 40
@@ -106407,35 +106662,71 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 40
           },
           {
-            "customer": "Island Of Spirits (P)",
+            "customer": "Patel Liqr & Gro(P)",
             "skuCount": 3,
             "southern": false,
             "payout": 40
           }
         ],
-        "offPremNewCount": 10,
-        "offPremPayout": 510,
+        "offPremNewCount": 11,
+        "offPremPayout": 550,
         "onPremSeptember": [],
         "onPremQualifyingCount": 0,
-        "payout": 510
+        "payout": 550
       },
       "Matt Powierski": {
         "offPremNew": [
           {
+            "customer": "Shop Rite Of Wallington",
+            "skuCount": 4,
+            "southern": false,
+            "payout": 50
+          },
+          {
             "customer": "Bottle Republic (Rutherford)",
+            "skuCount": 4,
+            "southern": false,
+            "payout": 50
+          },
+          {
+            "customer": "Wine Grand (Carlstadt)",
             "skuCount": 3,
             "southern": false,
             "payout": 40
           }
         ],
-        "offPremNewCount": 1,
-        "offPremPayout": 40,
+        "offPremNewCount": 3,
+        "offPremPayout": 140,
         "onPremSeptember": [],
         "onPremQualifyingCount": 0,
-        "payout": 40
+        "payout": 140
       },
       "Michael Harboy": {
         "offPremNew": [
+          {
+            "customer": "Wayne Liquor Locker",
+            "skuCount": 4,
+            "southern": false,
+            "payout": 50
+          },
+          {
+            "customer": "Total Wine & More (West Orange)",
+            "skuCount": 2,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Krauser's Liquor Locker",
+            "skuCount": 3,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Verona Wine Cellar",
+            "skuCount": 3,
+            "southern": true,
+            "payout": 50
+          },
           {
             "customer": "Wine Village",
             "skuCount": 3,
@@ -106443,8 +106734,14 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "B & B Liquors (West Orange)",
-            "skuCount": 2,
+            "customer": "ShopRite of West Caldwell",
+            "skuCount": 3,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Angelbeck's",
+            "skuCount": 5,
             "southern": true,
             "payout": 50
           },
@@ -106461,32 +106758,8 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Total Wine & More (West Orange)",
-            "skuCount": 2,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Krauser's Liquor Locker",
-            "skuCount": 3,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Angelbeck's",
-            "skuCount": 5,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "Lincoln Center Liq",
+            "customer": "Grove Liquors",
             "skuCount": 4,
-            "southern": false,
-            "payout": 50
-          },
-          {
-            "customer": "Verona Wine Cellar",
-            "skuCount": 3,
             "southern": true,
             "payout": 50
           },
@@ -106497,15 +106770,27 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Grove Liquors",
+            "customer": "Merit (P)",
             "skuCount": 4,
             "southern": true,
             "payout": 50
           },
           {
-            "customer": "Merit (P)",
-            "skuCount": 4,
+            "customer": "The Bottle Stop (Caldwell)",
+            "skuCount": 3,
             "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "B & B Liquors (West Orange)",
+            "skuCount": 2,
+            "southern": true,
+            "payout": 50
+          },
+          {
+            "customer": "Lincoln Center Liq",
+            "skuCount": 4,
+            "southern": false,
             "payout": 50
           },
           {
@@ -106521,14 +106806,8 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "ShopRite of West Caldwell",
-            "skuCount": 3,
-            "southern": true,
-            "payout": 50
-          },
-          {
-            "customer": "The Bottle Stop (Caldwell)",
-            "skuCount": 3,
+            "customer": "Cedar Grove Wine Cellar",
+            "skuCount": 4,
             "southern": true,
             "payout": 50
           },
@@ -106539,8 +106818,8 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 40
           }
         ],
-        "offPremNewCount": 17,
-        "offPremPayout": 840,
+        "offPremNewCount": 19,
+        "offPremPayout": 940,
         "onPremSeptember": [
           {
             "customer": "Avenue Bistro",
@@ -106559,7 +106838,7 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "onPremQualifyingCount": 1,
-        "payout": 840
+        "payout": 940
       },
       "Mike Ast": {
         "offPremNew": [
@@ -106576,19 +106855,19 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 60
           },
           {
-            "customer": "Fair Lawn Wine & Spirits",
-            "skuCount": 4,
-            "southern": false,
-            "payout": 50
-          },
-          {
             "customer": "Long Hill Liquors (A)",
             "skuCount": 4,
             "southern": false,
             "payout": 50
           },
           {
-            "customer": "Frank's Fine Wine & Foods",
+            "customer": "Ridgewood Super Cellar",
+            "skuCount": 4,
+            "southern": false,
+            "payout": 50
+          },
+          {
+            "customer": "Fair Lawn Wine & Spirits",
             "skuCount": 4,
             "southern": false,
             "payout": 50
@@ -106600,7 +106879,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50
           },
           {
-            "customer": "Ridgewood Super Cellar",
+            "customer": "Frank's Fine Wine & Foods",
             "skuCount": 4,
             "southern": false,
             "payout": 50
@@ -106628,10 +106907,16 @@ const PROGRAM_DATA_2026_09 = {
             "skuCount": 3,
             "southern": false,
             "payout": 40
+          },
+          {
+            "customer": "Wine & Spirits World (Hohokus)",
+            "skuCount": 3,
+            "southern": false,
+            "payout": 40
           }
         ],
-        "offPremNewCount": 11,
-        "offPremPayout": 540,
+        "offPremNewCount": 12,
+        "offPremPayout": 580,
         "onPremSeptember": [
           {
             "customer": "Steel Wheel Tavern",
@@ -106655,7 +106940,7 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "onPremQualifyingCount": 2,
-        "payout": 540
+        "payout": 580
       },
       "Nick Melissari": {
         "offPremNew": [],
@@ -106673,7 +106958,7 @@ const PROGRAM_DATA_2026_09 = {
             "qualifies": true
           },
           {
-            "customer": "Biagio's",
+            "customer": "Dream Bar",
             "bbl": 0.5,
             "qualifies": true
           },
@@ -106683,7 +106968,7 @@ const PROGRAM_DATA_2026_09 = {
             "qualifies": true
           },
           {
-            "customer": "Tommy's Tavern + Tap (Edgewater)",
+            "customer": "Biagio's",
             "bbl": 0.5,
             "qualifies": true
           },
@@ -106693,12 +106978,12 @@ const PROGRAM_DATA_2026_09 = {
             "qualifies": true
           },
           {
-            "customer": "Dream Bar",
+            "customer": "Lodi Lanes (A)",
             "bbl": 0.5,
             "qualifies": true
           },
           {
-            "customer": "Lodi Lanes (A)",
+            "customer": "Tommy's Tavern + Tap (Edgewater)",
             "bbl": 0.5,
             "qualifies": true
           },
@@ -106735,17 +107020,17 @@ const PROGRAM_DATA_2026_09 = {
             "qualifies": true
           },
           {
-            "customer": "Rivervale Country Club",
-            "bbl": 0.5,
-            "qualifies": true
-          },
-          {
             "customer": "The Cornerstone (P)",
             "bbl": 0.5,
             "qualifies": true
           },
           {
             "customer": "101 Pub (A)",
+            "bbl": 0.5,
+            "qualifies": true
+          },
+          {
+            "customer": "Rivervale Country Club",
             "bbl": 0.5,
             "qualifies": true
           },
@@ -106777,19 +107062,25 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 70
           },
           {
-            "customer": "Stew Leonard's(A) Paramus Wine",
-            "skuCount": 4,
-            "southern": false,
-            "payout": 50
-          },
-          {
             "customer": "City Supermarket",
             "skuCount": 4,
             "southern": false,
             "payout": 50
           },
           {
-            "customer": "Food Universe Marketplace",
+            "customer": "Shop Rite Liq (Paramus)",
+            "skuCount": 4,
+            "southern": false,
+            "payout": 50
+          },
+          {
+            "customer": "Stew Leonard's(A) Paramus Wine",
+            "skuCount": 4,
+            "southern": false,
+            "payout": 50
+          },
+          {
+            "customer": "Riverview Liq (P)",
             "skuCount": 3,
             "southern": false,
             "payout": 40
@@ -106805,13 +107096,25 @@ const PROGRAM_DATA_2026_09 = {
             "skuCount": 3,
             "southern": false,
             "payout": 40
+          },
+          {
+            "customer": "Food Universe Marketplace",
+            "skuCount": 3,
+            "southern": false,
+            "payout": 40
+          },
+          {
+            "customer": "Shop Rite Liq(A) Fair Lwn",
+            "skuCount": 3,
+            "southern": false,
+            "payout": 40
           }
         ],
-        "offPremNewCount": 6,
-        "offPremPayout": 290,
+        "offPremNewCount": 9,
+        "offPremPayout": 420,
         "onPremSeptember": [],
         "onPremQualifyingCount": 0,
-        "payout": 290
+        "payout": 420
       },
       "Robin Feldman": {
         "offPremNew": [],
@@ -106854,47 +107157,53 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 60
           },
           {
-            "customer": "Bottle King (A) Ramsey",
-            "skuCount": 4,
-            "southern": false,
-            "payout": 50
-          },
-          {
             "customer": "Beverage Barn (A)",
             "skuCount": 4,
             "southern": false,
             "payout": 50
           },
           {
-            "customer": "Shop Rite Liq (A)Hillsdal",
-            "skuCount": 3,
+            "customer": "Bottle King (A) Dumont",
+            "skuCount": 4,
             "southern": false,
-            "payout": 40
+            "payout": 50
+          },
+          {
+            "customer": "Bottle King (A) Ramsey",
+            "skuCount": 4,
+            "southern": false,
+            "payout": 50
           },
           {
             "customer": "Cork & Keg (A)",
             "skuCount": 3,
             "southern": false,
             "payout": 40
+          },
+          {
+            "customer": "Shop Rite Liq (A)Hillsdal",
+            "skuCount": 3,
+            "southern": false,
+            "payout": 40
           }
         ],
-        "offPremNewCount": 9,
-        "offPremPayout": 500,
+        "offPremNewCount": 10,
+        "offPremPayout": 550,
         "onPremSeptember": [],
         "onPremQualifyingCount": 0,
-        "payout": 500
+        "payout": 550
       }
     },
     "leaderboard": [
       {
-        "rep": "John O'Donoghue",
-        "payout": 910,
-        "newPlacements": 17,
+        "rep": "Michael Harboy",
+        "payout": 940,
+        "newPlacements": 19,
         "rank": 1
       },
       {
-        "rep": "Michael Harboy",
-        "payout": 840,
+        "rep": "John O'Donoghue",
+        "payout": 920,
         "newPlacements": 17,
         "rank": 2
       },
@@ -106905,13 +107214,13 @@ const PROGRAM_DATA_2026_09 = {
         "rank": 3
       },
       {
-        "rep": "Alisa Acciardi",
-        "payout": 700,
-        "newPlacements": 14,
+        "rep": "Andrew Lundy",
+        "payout": 750,
+        "newPlacements": 15,
         "rank": 4
       },
       {
-        "rep": "Andrew Lundy",
+        "rep": "Alisa Acciardi",
         "payout": 700,
         "newPlacements": 14,
         "rank": 5
@@ -106924,56 +107233,56 @@ const PROGRAM_DATA_2026_09 = {
       },
       {
         "rep": "Mike Ast",
-        "payout": 540,
-        "newPlacements": 11,
+        "payout": 580,
+        "newPlacements": 12,
         "rank": 7
       },
       {
-        "rep": "Klejdi Lamo",
-        "payout": 510,
-        "newPlacements": 10,
+        "rep": "Dave Ehlers",
+        "payout": 560,
+        "newPlacements": 11,
         "rank": 8
       },
       {
-        "rep": "Shane Barreca",
-        "payout": 500,
-        "newPlacements": 9,
+        "rep": "Klejdi Lamo",
+        "payout": 550,
+        "newPlacements": 11,
         "rank": 9
+      },
+      {
+        "rep": "Shane Barreca",
+        "payout": 550,
+        "newPlacements": 10,
+        "rank": 10
       },
       {
         "rep": "Dylan Rubino",
         "payout": 450,
         "newPlacements": 9,
-        "rank": 10
+        "rank": 11
       },
       {
-        "rep": "Dave Ehlers",
-        "payout": 430,
-        "newPlacements": 8,
-        "rank": 11
+        "rep": "Phil Ernst",
+        "payout": 420,
+        "newPlacements": 9,
+        "rank": 12
       },
       {
         "rep": "Hakan Sadik",
         "payout": 350,
         "newPlacements": 7,
-        "rank": 12
+        "rank": 13
       },
       {
         "rep": "Dan Lagala",
         "payout": 330,
         "newPlacements": 6,
-        "rank": 13
+        "rank": 14
       },
       {
         "rep": "Jim Heaney",
         "payout": 320,
         "newPlacements": 7,
-        "rank": 14
-      },
-      {
-        "rep": "Phil Ernst",
-        "payout": 290,
-        "newPlacements": 6,
         "rank": 15
       },
       {
@@ -106995,14 +107304,14 @@ const PROGRAM_DATA_2026_09 = {
         "rank": 18
       },
       {
-        "rep": "Derrick Laws",
-        "payout": 70,
-        "newPlacements": 1,
+        "rep": "Matt Powierski",
+        "payout": 140,
+        "newPlacements": 3,
         "rank": 19
       },
       {
-        "rep": "Matt Powierski",
-        "payout": 40,
+        "rep": "Derrick Laws",
+        "payout": 70,
         "newPlacements": 1,
         "rank": 20
       },
@@ -107087,7 +107396,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 17,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 59.3,
+        "pctOfPace": 54.6,
         "products": [
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -107145,42 +107454,47 @@ const PROGRAM_DATA_2026_09 = {
         "skusHeld": 3
       },
       "Allison Scott": {
-        "placements": 44,
+        "placements": 53,
         "base": 91,
         "goal": 82,
-        "pct": 53.7,
-        "toGo": 38,
+        "pct": 64.6,
+        "toGo": 29,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 212.5,
+        "pctOfPace": 235.1,
         "products": [
+          {
+            "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 15
+          },
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
             "brand": "White Claw",
             "placements": 11
           },
           {
-            "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 11
-          },
-          {
             "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
             "brand": "White Claw",
-            "placements": 6
+            "placements": 7
           },
           {
             "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 3
+            "placements": 4
           },
           {
             "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 2
+            "placements": 3
           },
           {
             "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 3
+          },
+          {
+            "product": "8582 White Claw Hard Seltzer Ruby Grapefruit 4/6/12 oz Can",
             "brand": "White Claw",
             "placements": 2
           },
@@ -107210,11 +107524,6 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 1
           },
           {
-            "product": "8582 White Claw Hard Seltzer Ruby Grapefruit 4/6/12 oz Can",
-            "brand": "White Claw",
-            "placements": 1
-          },
-          {
             "product": "8639 White Claw Pineapple 4/6/12 oz Can",
             "brand": "White Claw",
             "placements": 1
@@ -107224,12 +107533,12 @@ const PROGRAM_DATA_2026_09 = {
           {
             "brand": "White Claw",
             "label": "White Claw",
-            "placements": 41,
-            "actual": 41,
+            "placements": 50,
+            "actual": 50,
             "base": 88,
             "goal": 79,
-            "pct": 51.9,
-            "toGo": 38,
+            "pct": 63.3,
+            "toGo": 29,
             "retained": false
           },
           {
@@ -107275,19 +107584,29 @@ const PROGRAM_DATA_2026_09 = {
         "skusHeld": 0
       },
       "Anthony Palmisano": {
-        "placements": 354,
+        "placements": 388,
         "base": 666,
         "goal": 599,
-        "pct": 59.1,
-        "toGo": 245,
+        "pct": 64.8,
+        "toGo": 211,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 233.8,
+        "pctOfPace": 235.9,
         "products": [
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 27
+            "placements": 30
+          },
+          {
+            "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 24
+          },
+          {
+            "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 23
           },
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -107295,14 +107614,24 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 22
           },
           {
-            "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
+            "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 21
+            "placements": 17
           },
           {
-            "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+            "product": "8586 White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
             "brand": "White Claw",
-            "placements": 21
+            "placements": 17
+          },
+          {
+            "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 17
+          },
+          {
+            "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 17
           },
           {
             "product": "8619 White Claw Blackberry 4/6/12 oz Can",
@@ -107310,24 +107639,9 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 17
           },
           {
-            "product": "8586 White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+            "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 16
-          },
-          {
-            "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 16
-          },
-          {
-            "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 15
-          },
-          {
-            "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 15
+            "placements": 13
           },
           {
             "product": "8639 White Claw Pineapple 4/6/12 oz Can",
@@ -107345,19 +107659,29 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 11
           },
           {
-            "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 11
-          },
-          {
             "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
             "brand": "Cayman Jack",
-            "placements": 10
+            "placements": 11
           },
           {
             "product": "8577 White Claw Hard Seltzer Surge Variety #1 2/12/12 oz Can",
             "brand": "White Claw",
+            "placements": 11
+          },
+          {
+            "product": "8623 White Claw Surge 8% Blood Orange 19.2 oz Can",
+            "brand": "White Claw",
             "placements": 10
+          },
+          {
+            "product": "8632 White Claw Surge Blueberry 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 10
+          },
+          {
+            "product": "8410 Mikes Hard Lemonade 4/6/11.2 oz Btl",
+            "brand": "Mike's Hard Lemonade",
+            "placements": 9
           },
           {
             "product": "8626 White Claw Blackberry 1/12/19.2 oz Can",
@@ -107365,18 +107689,13 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 9
           },
           {
-            "product": "8632 White Claw Surge Blueberry 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 9
-          },
-          {
-            "product": "8623 White Claw Surge 8% Blood Orange 19.2 oz Can",
-            "brand": "White Claw",
+            "product": "86004 Mike's Hard Pink Lemonade 4/6/12 oz Can",
+            "brand": "Mike's Hard Lemonade",
             "placements": 8
           },
           {
-            "product": "8410 Mikes Hard Lemonade 4/6/11.2 oz Btl",
-            "brand": "Mike's Hard Lemonade",
+            "product": "8481 Mikes Harder Lemonade 1/12/23.5 oz Can",
+            "brand": "Mike's Harder",
             "placements": 7
           },
           {
@@ -107385,8 +107704,8 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 7
           },
           {
-            "product": "8481 Mikes Harder Lemonade 1/12/23.5 oz Can",
-            "brand": "Mike's Harder",
+            "product": "8628 White Claw Surge Variety #2 2/12/12 oz Can",
+            "brand": "White Claw",
             "placements": 6
           },
           {
@@ -107395,13 +107714,18 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 5
           },
           {
-            "product": "86004 Mike's Hard Pink Lemonade 4/6/12 oz Can",
-            "brand": "Mike's Hard Lemonade",
+            "product": "8559 Cayman Jack Margarita Variety 2/12/12 oz Can",
+            "brand": "Cayman Jack",
             "placements": 5
           },
           {
-            "product": "8628 White Claw Surge Variety #2 2/12/12 oz Can",
+            "product": "8596 White Claw Hard Seltzer Variety 1/24/12 oz Loose Can",
             "brand": "White Claw",
+            "placements": 5
+          },
+          {
+            "product": "86006 Mike's Hard Strawberry Lemonade 4/6/12 oz Can",
+            "brand": "Mike's Hard Lemonade",
             "placements": 5
           },
           {
@@ -107420,13 +107744,8 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 4
           },
           {
-            "product": "8559 Cayman Jack Margarita Variety 2/12/12 oz Can",
-            "brand": "Cayman Jack",
-            "placements": 4
-          },
-          {
-            "product": "8596 White Claw Hard Seltzer Variety 1/24/12 oz Loose Can",
-            "brand": "White Claw",
+            "product": "86002 Mike's Hard Black Cherry Lemonade 4/6/12 oz Can",
+            "brand": "Mike's Hard Lemonade",
             "placements": 4
           },
           {
@@ -107455,12 +107774,7 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 3
           },
           {
-            "product": "86002 Mike's Hard Black Cherry Lemonade 4/6/12 oz Can",
-            "brand": "Mike's Hard Lemonade",
-            "placements": 3
-          },
-          {
-            "product": "86006 Mike's Hard Strawberry Lemonade 4/6/12 oz Can",
+            "product": "86001 Mike's Hard Lemonade 4/6/12 oz Can",
             "brand": "Mike's Hard Lemonade",
             "placements": 3
           },
@@ -107477,11 +107791,6 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "8530 Cayman Jack Sweet Heat Margarita Variety 2/12/12 oz Can",
             "brand": "Cayman Jack",
-            "placements": 2
-          },
-          {
-            "product": "86001 Mike's Hard Lemonade 4/6/12 oz Can",
-            "brand": "Mike's Hard Lemonade",
             "placements": 2
           },
           {
@@ -107514,45 +107823,45 @@ const PROGRAM_DATA_2026_09 = {
           {
             "brand": "White Claw",
             "label": "White Claw",
-            "placements": 268,
-            "actual": 268,
+            "placements": 290,
+            "actual": 290,
             "base": 451,
             "goal": 406,
-            "pct": 66.0,
-            "toGo": 138,
+            "pct": 71.4,
+            "toGo": 116,
             "retained": false
           },
           {
             "brand": "Cayman Jack",
             "label": "Cayman Jack",
-            "placements": 39,
-            "actual": 39,
+            "placements": 41,
+            "actual": 41,
             "base": 89,
             "goal": 80,
-            "pct": 48.8,
-            "toGo": 41,
+            "pct": 51.2,
+            "toGo": 39,
             "retained": false
           },
           {
             "brand": "Mike's Hard Lemonade",
             "label": "Mike's Hard Lemonade",
-            "placements": 24,
-            "actual": 24,
+            "placements": 33,
+            "actual": 33,
             "base": 68,
             "goal": 61,
-            "pct": 39.3,
-            "toGo": 37,
+            "pct": 54.1,
+            "toGo": 28,
             "retained": false
           },
           {
             "brand": "Mike's Harder",
             "label": "Mike's Harder",
-            "placements": 22,
-            "actual": 22,
+            "placements": 23,
+            "actual": 23,
             "base": 53,
             "goal": 48,
-            "pct": 45.8,
-            "toGo": 26,
+            "pct": 47.9,
+            "toGo": 25,
             "retained": false
           },
           {
@@ -107572,24 +107881,24 @@ const PROGRAM_DATA_2026_09 = {
         "skusHeld": 45
       },
       "Brian Sengebush": {
-        "placements": 70,
+        "placements": 77,
         "base": 137,
         "goal": 123,
-        "pct": 56.9,
-        "toGo": 53,
+        "pct": 62.6,
+        "toGo": 46,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 225.1,
+        "pctOfPace": 227.9,
         "products": [
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 22
+            "placements": 25
           },
           {
             "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
             "brand": "White Claw",
-            "placements": 9
+            "placements": 10
           },
           {
             "product": "8619 White Claw Blackberry 4/6/12 oz Can",
@@ -107597,13 +107906,18 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 8
           },
           {
+            "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 4
+          },
+          {
             "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
             "brand": "White Claw",
             "placements": 4
           },
           {
-            "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
-            "brand": "White Claw",
+            "product": "8410 Mikes Hard Lemonade 4/6/11.2 oz Btl",
+            "brand": "Mike's Hard Lemonade",
             "placements": 3
           },
           {
@@ -107622,8 +107936,8 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 3
           },
           {
-            "product": "8410 Mikes Hard Lemonade 4/6/11.2 oz Btl",
-            "brand": "Mike's Hard Lemonade",
+            "product": "8577 White Claw Hard Seltzer Surge Variety #1 2/12/12 oz Can",
+            "brand": "White Claw",
             "placements": 2
           },
           {
@@ -107640,11 +107954,6 @@ const PROGRAM_DATA_2026_09 = {
             "product": "8626 White Claw Blackberry 1/12/19.2 oz Can",
             "brand": "White Claw",
             "placements": 2
-          },
-          {
-            "product": "8577 White Claw Hard Seltzer Surge Variety #1 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 1
           },
           {
             "product": "8582 White Claw Hard Seltzer Ruby Grapefruit 4/6/12 oz Can",
@@ -107681,23 +107990,23 @@ const PROGRAM_DATA_2026_09 = {
           {
             "brand": "White Claw",
             "label": "White Claw",
-            "placements": 68,
-            "actual": 68,
+            "placements": 74,
+            "actual": 74,
             "base": 121,
             "goal": 109,
-            "pct": 62.4,
-            "toGo": 41,
+            "pct": 67.9,
+            "toGo": 35,
             "retained": false
           },
           {
             "brand": "Mike's Hard Lemonade",
             "label": "Mike's Hard Lemonade",
-            "placements": 2,
-            "actual": 2,
+            "placements": 3,
+            "actual": 3,
             "base": 8,
             "goal": 7,
-            "pct": 28.6,
-            "toGo": 5,
+            "pct": 42.9,
+            "toGo": 4,
             "retained": false
           },
           {
@@ -107728,64 +108037,64 @@ const PROGRAM_DATA_2026_09 = {
         "skusHeld": 19
       },
       "Chris Payton": {
-        "placements": 303,
+        "placements": 352,
         "base": 685,
         "goal": 617,
-        "pct": 49.1,
-        "toGo": 314,
+        "pct": 57.1,
+        "toGo": 265,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 194.3,
+        "pctOfPace": 207.8,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
             "brand": "White Claw",
-            "placements": 23
+            "placements": 26
           },
           {
             "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
             "brand": "White Claw",
-            "placements": 21
+            "placements": 24
           },
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
             "brand": "White Claw",
-            "placements": 15
-          },
-          {
-            "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 15
-          },
-          {
-            "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
-            "brand": "Cayman Jack",
-            "placements": 14
-          },
-          {
-            "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 14
-          },
-          {
-            "product": "8586 White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 13
-          },
-          {
-            "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 13
+            "placements": 18
           },
           {
             "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 12
+            "placements": 18
+          },
+          {
+            "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 18
+          },
+          {
+            "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 18
+          },
+          {
+            "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 17
+          },
+          {
+            "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
+            "brand": "Cayman Jack",
+            "placements": 15
+          },
+          {
+            "product": "8586 White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 14
           },
           {
             "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
             "brand": "Cayman Jack",
-            "placements": 11
+            "placements": 12
           },
           {
             "product": "8546 Cayman Jack Mango Margarita 4/6/12 oz Btl",
@@ -107798,19 +108107,24 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 11
           },
           {
-            "product": "8481 Mikes Harder Lemonade 1/12/23.5 oz Can",
-            "brand": "Mike's Harder",
-            "placements": 10
-          },
-          {
             "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
             "brand": "White Claw",
-            "placements": 9
+            "placements": 11
           },
           {
             "product": "86006 Mike's Hard Strawberry Lemonade 4/6/12 oz Can",
             "brand": "Mike's Hard Lemonade",
-            "placements": 9
+            "placements": 11
+          },
+          {
+            "product": "8410 Mikes Hard Lemonade 4/6/11.2 oz Btl",
+            "brand": "Mike's Hard Lemonade",
+            "placements": 10
+          },
+          {
+            "product": "8481 Mikes Harder Lemonade 1/12/23.5 oz Can",
+            "brand": "Mike's Harder",
+            "placements": 10
           },
           {
             "product": "8624 White Claw Surge 8% Cranberry 19.2 oz Can",
@@ -107818,7 +108132,7 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 8
           },
           {
-            "product": "8410 Mikes Hard Lemonade 4/6/11.2 oz Btl",
+            "product": "86002 Mike's Hard Black Cherry Lemonade 4/6/12 oz Can",
             "brand": "Mike's Hard Lemonade",
             "placements": 7
           },
@@ -107828,22 +108142,32 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 7
           },
           {
+            "product": "8639 White Claw Pineapple 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 7
+          },
+          {
+            "product": "8582 White Claw Hard Seltzer Ruby Grapefruit 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 6
+          },
+          {
             "product": "8454 Mikes Hard Party Kit Variety 2/12/11.2 oz Btl",
             "brand": "Mike's Hard Lemonade",
             "placements": 5
           },
           {
-            "product": "8582 White Claw Hard Seltzer Ruby Grapefruit 4/6/12 oz Can",
+            "product": "8577 White Claw Hard Seltzer Surge Variety #1 2/12/12 oz Can",
             "brand": "White Claw",
             "placements": 5
           },
           {
-            "product": "86002 Mike's Hard Black Cherry Lemonade 4/6/12 oz Can",
-            "brand": "Mike's Hard Lemonade",
+            "product": "8623 White Claw Surge 8% Blood Orange 19.2 oz Can",
+            "brand": "White Claw",
             "placements": 5
           },
           {
-            "product": "8623 White Claw Surge 8% Blood Orange 19.2 oz Can",
+            "product": "8637 White Claw Clawtails Variety 2/12/12 oz Can",
             "brand": "White Claw",
             "placements": 5
           },
@@ -107868,17 +108192,22 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 4
           },
           {
+            "product": "86004 Mike's Hard Pink Lemonade 4/6/12 oz Can",
+            "brand": "Mike's Hard Lemonade",
+            "placements": 4
+          },
+          {
+            "product": "8628 White Claw Surge Variety #2 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 4
+          },
+          {
             "product": "8631 White Claw Peach 1/12/19.2 oz Can",
             "brand": "White Claw",
             "placements": 4
           },
           {
-            "product": "8637 White Claw Clawtails Variety 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 4
-          },
-          {
-            "product": "8639 White Claw Pineapple 4/6/12 oz Can",
+            "product": "8632 White Claw Surge Blueberry 1/12/19.2 oz Can",
             "brand": "White Claw",
             "placements": 4
           },
@@ -107893,23 +108222,8 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 3
           },
           {
-            "product": "8577 White Claw Hard Seltzer Surge Variety #1 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 3
-          },
-          {
             "product": "86001 Mike's Hard Lemonade 4/6/12 oz Can",
             "brand": "Mike's Hard Lemonade",
-            "placements": 3
-          },
-          {
-            "product": "8628 White Claw Surge Variety #2 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 3
-          },
-          {
-            "product": "8632 White Claw Surge Blueberry 1/12/19.2 oz Can",
-            "brand": "White Claw",
             "placements": 3
           },
           {
@@ -107925,11 +108239,6 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "8537 Cayman Jacked Margarita 1/12/19.2 oz Can",
             "brand": "Cayman Jack",
-            "placements": 2
-          },
-          {
-            "product": "86004 Mike's Hard Pink Lemonade 4/6/12 oz Can",
-            "brand": "Mike's Hard Lemonade",
             "placements": 2
           },
           {
@@ -107962,34 +108271,34 @@ const PROGRAM_DATA_2026_09 = {
           {
             "brand": "White Claw",
             "label": "White Claw",
-            "placements": 188,
-            "actual": 188,
+            "placements": 226,
+            "actual": 226,
             "base": 428,
             "goal": 385,
-            "pct": 48.8,
-            "toGo": 197,
+            "pct": 58.7,
+            "toGo": 159,
             "retained": false
           },
           {
             "brand": "Cayman Jack",
             "label": "Cayman Jack",
-            "placements": 62,
-            "actual": 62,
+            "placements": 64,
+            "actual": 64,
             "base": 133,
             "goal": 120,
-            "pct": 51.7,
-            "toGo": 58,
+            "pct": 53.3,
+            "toGo": 56,
             "retained": false
           },
           {
             "brand": "Mike's Hard Lemonade",
             "label": "Mike's Hard Lemonade",
-            "placements": 31,
-            "actual": 31,
+            "placements": 40,
+            "actual": 40,
             "base": 71,
             "goal": 64,
-            "pct": 48.4,
-            "toGo": 33,
+            "pct": 62.5,
+            "toGo": 24,
             "retained": false
           },
           {
@@ -108020,29 +108329,29 @@ const PROGRAM_DATA_2026_09 = {
         "skusHeld": 44
       },
       "Dan Lagala": {
-        "placements": 138,
+        "placements": 153,
         "base": 404,
         "goal": 364,
-        "pct": 37.9,
-        "toGo": 226,
+        "pct": 42.0,
+        "toGo": 211,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 150.0,
+        "pctOfPace": 152.9,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
             "brand": "White Claw",
-            "placements": 14
+            "placements": 16
           },
           {
             "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 13
+            "placements": 14
           },
           {
             "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
             "brand": "White Claw",
-            "placements": 12
+            "placements": 14
           },
           {
             "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
@@ -108055,14 +108364,19 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 9
           },
           {
+            "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 9
+          },
+          {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
             "brand": "White Claw",
             "placements": 8
           },
           {
-            "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
+            "product": "8628 White Claw Surge Variety #2 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 8
+            "placements": 7
           },
           {
             "product": "8577 White Claw Hard Seltzer Surge Variety #1 2/12/12 oz Can",
@@ -108085,11 +108399,6 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 6
           },
           {
-            "product": "8628 White Claw Surge Variety #2 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 6
-          },
-          {
             "product": "8631 White Claw Peach 1/12/19.2 oz Can",
             "brand": "White Claw",
             "placements": 5
@@ -108097,11 +108406,16 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "8624 White Claw Surge 8% Cranberry 19.2 oz Can",
             "brand": "White Claw",
-            "placements": 3
+            "placements": 4
           },
           {
             "product": "8626 White Claw Blackberry 1/12/19.2 oz Can",
             "brand": "White Claw",
+            "placements": 4
+          },
+          {
+            "product": "86001 Mike's Hard Lemonade 4/6/12 oz Can",
+            "brand": "Mike's Hard Lemonade",
             "placements": 3
           },
           {
@@ -108110,17 +108424,37 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 3
           },
           {
+            "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
+            "brand": "Cayman Jack",
+            "placements": 2
+          },
+          {
             "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
             "brand": "Cayman Jack",
             "placements": 2
           },
           {
-            "product": "86001 Mike's Hard Lemonade 4/6/12 oz Can",
+            "product": "86002 Mike's Hard Black Cherry Lemonade 4/6/12 oz Can",
             "brand": "Mike's Hard Lemonade",
             "placements": 2
           },
           {
+            "product": "8619 White Claw Blackberry 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 2
+          },
+          {
+            "product": "8623 White Claw Surge 8% Blood Orange 19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 2
+          },
+          {
             "product": "8632 White Claw Surge Blueberry 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 2
+          },
+          {
+            "product": "8634 White Claw Hard Seltzer Peach 2/12/12 oz Can",
             "brand": "White Claw",
             "placements": 2
           },
@@ -108132,11 +108466,6 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "8410 Mikes Hard Lemonade 4/6/11.2 oz Btl",
             "brand": "Mike's Hard Lemonade",
-            "placements": 1
-          },
-          {
-            "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
-            "brand": "Cayman Jack",
             "placements": 1
           },
           {
@@ -108160,28 +108489,8 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 1
           },
           {
-            "product": "86002 Mike's Hard Black Cherry Lemonade 4/6/12 oz Can",
-            "brand": "Mike's Hard Lemonade",
-            "placements": 1
-          },
-          {
             "product": "86011 Mikes Hard Dirty Lemonade Variety 2/12/12 oz Can",
             "brand": "Mike's Hard Dirty Lemonade",
-            "placements": 1
-          },
-          {
-            "product": "8619 White Claw Blackberry 4/6/12 oz Can",
-            "brand": "White Claw",
-            "placements": 1
-          },
-          {
-            "product": "8623 White Claw Surge 8% Blood Orange 19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 1
-          },
-          {
-            "product": "8634 White Claw Hard Seltzer Peach 2/12/12 oz Can",
-            "brand": "White Claw",
             "placements": 1
           },
           {
@@ -108194,34 +108503,34 @@ const PROGRAM_DATA_2026_09 = {
           {
             "brand": "White Claw",
             "label": "White Claw",
-            "placements": 127,
-            "actual": 127,
+            "placements": 139,
+            "actual": 139,
             "base": 307,
             "goal": 276,
-            "pct": 46.0,
-            "toGo": 149,
+            "pct": 50.4,
+            "toGo": 137,
             "retained": false
           },
           {
             "brand": "Cayman Jack",
             "label": "Cayman Jack",
-            "placements": 6,
-            "actual": 6,
+            "placements": 7,
+            "actual": 7,
             "base": 34,
             "goal": 31,
-            "pct": 19.4,
-            "toGo": 25,
+            "pct": 22.6,
+            "toGo": 24,
             "retained": false
           },
           {
             "brand": "Mike's Hard Lemonade",
             "label": "Mike's Hard Lemonade",
-            "placements": 4,
-            "actual": 4,
+            "placements": 6,
+            "actual": 6,
             "base": 48,
             "goal": 43,
-            "pct": 9.3,
-            "toGo": 39,
+            "pct": 14.0,
+            "toGo": 37,
             "retained": false
           },
           {
@@ -108252,72 +108561,97 @@ const PROGRAM_DATA_2026_09 = {
         "skusHeld": 32
       },
       "Dave Ehlers": {
-        "placements": 382,
+        "placements": 441,
         "base": 645,
         "goal": 581,
-        "pct": 65.7,
-        "toGo": 199,
+        "pct": 75.9,
+        "toGo": 140,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 259.9,
+        "pctOfPace": 276.3,
         "products": [
           {
             "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
             "brand": "Cayman Jack",
-            "placements": 19
-          },
-          {
-            "product": "8546 Cayman Jack Mango Margarita 4/6/12 oz Btl",
-            "brand": "Cayman Jack",
-            "placements": 16
-          },
-          {
-            "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
-            "brand": "White Claw",
-            "placements": 16
-          },
-          {
-            "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 15
-          },
-          {
-            "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 15
+            "placements": 20
           },
           {
             "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
             "brand": "Cayman Jack",
-            "placements": 14
+            "placements": 18
+          },
+          {
+            "product": "8546 Cayman Jack Mango Margarita 4/6/12 oz Btl",
+            "brand": "Cayman Jack",
+            "placements": 18
+          },
+          {
+            "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 18
+          },
+          {
+            "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 18
+          },
+          {
+            "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 17
           },
           {
             "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 14
+            "placements": 15
           },
           {
             "product": "8623 White Claw Surge 8% Blood Orange 19.2 oz Can",
             "brand": "White Claw",
-            "placements": 14
+            "placements": 15
           },
           {
             "product": "8410 Mikes Hard Lemonade 4/6/11.2 oz Btl",
             "brand": "Mike's Hard Lemonade",
-            "placements": 12
+            "placements": 14
+          },
+          {
+            "product": "8582 White Claw Hard Seltzer Ruby Grapefruit 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 14
+          },
+          {
+            "product": "8586 White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 13
           },
           {
             "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 12
+            "placements": 13
+          },
+          {
+            "product": "86006 Mike's Hard Strawberry Lemonade 4/6/12 oz Can",
+            "brand": "Mike's Hard Lemonade",
+            "placements": 13
           },
           {
             "product": "8632 White Claw Surge Blueberry 1/12/19.2 oz Can",
             "brand": "White Claw",
+            "placements": 13
+          },
+          {
+            "product": "8624 White Claw Surge 8% Cranberry 19.2 oz Can",
+            "brand": "White Claw",
             "placements": 12
           },
           {
-            "product": "8582 White Claw Hard Seltzer Ruby Grapefruit 4/6/12 oz Can",
+            "product": "8409 Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+            "brand": "Mike's Harder",
+            "placements": 11
+          },
+          {
+            "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
             "brand": "White Claw",
             "placements": 11
           },
@@ -108327,14 +108661,9 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 11
           },
           {
-            "product": "86006 Mike's Hard Strawberry Lemonade 4/6/12 oz Can",
-            "brand": "Mike's Hard Lemonade",
+            "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+            "brand": "White Claw",
             "placements": 11
-          },
-          {
-            "product": "8409 Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
-            "brand": "Mike's Harder",
-            "placements": 10
           },
           {
             "product": "8577 White Claw Hard Seltzer Surge Variety #1 2/12/12 oz Can",
@@ -108342,38 +108671,28 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 10
           },
           {
-            "product": "8586 White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 10
-          },
-          {
-            "product": "8624 White Claw Surge 8% Cranberry 19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 10
-          },
-          {
-            "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
-            "brand": "White Claw",
-            "placements": 9
-          },
-          {
             "product": "86004 Mike's Hard Pink Lemonade 4/6/12 oz Can",
             "brand": "Mike's Hard Lemonade",
-            "placements": 9
+            "placements": 10
           },
           {
             "product": "8481 Mikes Harder Lemonade 1/12/23.5 oz Can",
             "brand": "Mike's Harder",
-            "placements": 8
+            "placements": 9
           },
           {
             "product": "8619 White Claw Blackberry 4/6/12 oz Can",
             "brand": "White Claw",
-            "placements": 8
+            "placements": 9
           },
           {
             "product": "8626 White Claw Blackberry 1/12/19.2 oz Can",
             "brand": "White Claw",
+            "placements": 9
+          },
+          {
+            "product": "8559 Cayman Jack Margarita Variety 2/12/12 oz Can",
+            "brand": "Cayman Jack",
             "placements": 8
           },
           {
@@ -108382,13 +108701,18 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 8
           },
           {
-            "product": "8559 Cayman Jack Margarita Variety 2/12/12 oz Can",
-            "brand": "Cayman Jack",
-            "placements": 7
+            "product": "8638 White Claw Surge Grape 1/12/19.2oz Can",
+            "brand": "White Claw",
+            "placements": 8
           },
           {
-            "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+            "product": "8639 White Claw Pineapple 4/6/12 oz Can",
             "brand": "White Claw",
+            "placements": 8
+          },
+          {
+            "product": "86002 Mike's Hard Black Cherry Lemonade 4/6/12 oz Can",
+            "brand": "Mike's Hard Lemonade",
             "placements": 7
           },
           {
@@ -108397,9 +108721,14 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 7
           },
           {
-            "product": "8639 White Claw Pineapple 4/6/12 oz Can",
+            "product": "8637 White Claw Clawtails Variety 2/12/12 oz Can",
             "brand": "White Claw",
             "placements": 7
+          },
+          {
+            "product": "8458 Mikes Harder Black Cherry 1/12/23.5 oz Can",
+            "brand": "Mike's Harder",
+            "placements": 6
           },
           {
             "product": "8466 Mikes Harder Mango 1/12/23.5 oz Can",
@@ -108407,48 +108736,33 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 6
           },
           {
-            "product": "86002 Mike's Hard Black Cherry Lemonade 4/6/12 oz Can",
-            "brand": "Mike's Hard Lemonade",
-            "placements": 6
-          },
-          {
-            "product": "8637 White Claw Clawtails Variety 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 6
-          },
-          {
-            "product": "8638 White Claw Surge Grape 1/12/19.2oz Can",
-            "brand": "White Claw",
-            "placements": 6
-          },
-          {
-            "product": "8458 Mikes Harder Black Cherry 1/12/23.5 oz Can",
-            "brand": "Mike's Harder",
-            "placements": 5
-          },
-          {
-            "product": "86001 Mike's Hard Lemonade 4/6/12 oz Can",
-            "brand": "Mike's Hard Lemonade",
-            "placements": 5
-          },
-          {
-            "product": "8454 Mikes Hard Party Kit Variety 2/12/11.2 oz Btl",
-            "brand": "Mike's Hard Lemonade",
-            "placements": 4
-          },
-          {
             "product": "8537 Cayman Jacked Margarita 1/12/19.2 oz Can",
             "brand": "Cayman Jack",
-            "placements": 4
+            "placements": 6
           },
           {
             "product": "8538 Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
             "brand": "Cayman Jack",
-            "placements": 4
+            "placements": 6
+          },
+          {
+            "product": "86001 Mike's Hard Lemonade 4/6/12 oz Can",
+            "brand": "Mike's Hard Lemonade",
+            "placements": 6
+          },
+          {
+            "product": "8454 Mikes Hard Party Kit Variety 2/12/11.2 oz Btl",
+            "brand": "Mike's Hard Lemonade",
+            "placements": 5
           },
           {
             "product": "8551 Cayman Jack Margarita 2/12/12 oz Can",
             "brand": "Cayman Jack",
+            "placements": 5
+          },
+          {
+            "product": "8427 Mikes Harder Variety 2/12/12 oz Can",
+            "brand": "Mike's Harder",
             "placements": 4
           },
           {
@@ -108457,9 +108771,9 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 4
           },
           {
-            "product": "8427 Mikes Harder Variety 2/12/12 oz Can",
-            "brand": "Mike's Harder",
-            "placements": 3
+            "product": "9083 White Claw 0% Alc Variety Pack 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 4
           },
           {
             "product": "86011 Mikes Hard Dirty Lemonade Variety 2/12/12 oz Can",
@@ -108468,6 +108782,11 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "product": "8460 Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
+            "brand": "Mike's Harder",
+            "placements": 2
+          },
+          {
+            "product": "8480 Mikes Harder Cranberry 1/12/23.5 oz Can",
             "brand": "Mike's Harder",
             "placements": 2
           },
@@ -108487,16 +108806,6 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 2
           },
           {
-            "product": "9083 White Claw 0% Alc Variety Pack 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 2
-          },
-          {
-            "product": "8480 Mikes Harder Cranberry 1/12/23.5 oz Can",
-            "brand": "Mike's Harder",
-            "placements": 1
-          },
-          {
             "product": "8523 MXD Margarita 6/4/12 oz Can",
             "brand": "Mxd Cocktails",
             "placements": 1
@@ -108506,46 +108815,46 @@ const PROGRAM_DATA_2026_09 = {
           {
             "brand": "White Claw",
             "label": "White Claw",
-            "placements": 224,
-            "actual": 224,
+            "placements": 257,
+            "actual": 257,
             "base": 392,
             "goal": 353,
-            "pct": 63.5,
-            "toGo": 129,
+            "pct": 72.8,
+            "toGo": 96,
             "retained": false
           },
           {
             "brand": "Cayman Jack",
             "label": "Cayman Jack",
-            "placements": 72,
-            "actual": 72,
+            "placements": 85,
+            "actual": 85,
             "base": 125,
             "goal": 113,
-            "pct": 63.7,
-            "toGo": 41,
-            "retained": false
-          },
-          {
-            "brand": "Mike's Hard Lemonade",
-            "label": "Mike's Hard Lemonade",
-            "placements": 47,
-            "actual": 47,
-            "base": 55,
-            "goal": 50,
-            "pct": 94.0,
-            "toGo": 3,
+            "pct": 75.2,
+            "toGo": 28,
             "retained": false
           },
           {
             "brand": "Mike's Harder",
             "label": "Mike's Harder",
-            "placements": 35,
-            "actual": 35,
+            "placements": 40,
+            "actual": 40,
             "base": 71,
             "goal": 64,
-            "pct": 54.7,
-            "toGo": 29,
+            "pct": 62.5,
+            "toGo": 24,
             "retained": false
+          },
+          {
+            "brand": "Mike's Hard Lemonade",
+            "label": "Mike's Hard Lemonade",
+            "placements": 55,
+            "actual": 55,
+            "base": 55,
+            "goal": 50,
+            "pct": 110.0,
+            "toGo": 0,
+            "retained": true
           },
           {
             "brand": "Mike's Hard Dirty Lemonade",
@@ -108571,18 +108880,18 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "brandGoalsTotal": 5,
-        "brandGoalsRetained": 1,
+        "brandGoalsRetained": 2,
         "skusHeld": 48
       },
       "Derrick Laws": {
-        "placements": 153,
+        "placements": 168,
         "base": 321,
         "goal": 289,
-        "pct": 52.9,
-        "toGo": 136,
+        "pct": 58.1,
+        "toGo": 121,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 209.3,
+        "pctOfPace": 211.5,
         "products": [
           {
             "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
@@ -108592,7 +108901,12 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
             "brand": "Cayman Jack",
-            "placements": 10
+            "placements": 11
+          },
+          {
+            "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 9
           },
           {
             "product": "8546 Cayman Jack Mango Margarita 4/6/12 oz Btl",
@@ -108600,9 +108914,14 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 8
           },
           {
-            "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
+            "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 7
+            "placements": 8
+          },
+          {
+            "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 8
           },
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -108620,12 +108939,7 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 6
           },
           {
-            "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 6
-          },
-          {
-            "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
+            "product": "8631 White Claw Peach 1/12/19.2 oz Can",
             "brand": "White Claw",
             "placements": 6
           },
@@ -108641,11 +108955,6 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "product": "8624 White Claw Surge 8% Cranberry 19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 5
-          },
-          {
-            "product": "8631 White Claw Peach 1/12/19.2 oz Can",
             "brand": "White Claw",
             "placements": 5
           },
@@ -108680,6 +108989,21 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 3
           },
           {
+            "product": "8454 Mikes Hard Party Kit Variety 2/12/11.2 oz Btl",
+            "brand": "Mike's Hard Lemonade",
+            "placements": 3
+          },
+          {
+            "product": "8522 MXD Long Island Iced Tea 6/4/12 oz Can",
+            "brand": "Mxd Cocktails",
+            "placements": 3
+          },
+          {
+            "product": "8537 Cayman Jacked Margarita 1/12/19.2 oz Can",
+            "brand": "Cayman Jack",
+            "placements": 3
+          },
+          {
             "product": "8559 Cayman Jack Margarita Variety 2/12/12 oz Can",
             "brand": "Cayman Jack",
             "placements": 3
@@ -108705,27 +109029,22 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 2
           },
           {
-            "product": "8454 Mikes Hard Party Kit Variety 2/12/11.2 oz Btl",
-            "brand": "Mike's Hard Lemonade",
-            "placements": 2
-          },
-          {
             "product": "8460 Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
             "brand": "Mike's Harder",
             "placements": 2
           },
           {
-            "product": "8522 MXD Long Island Iced Tea 6/4/12 oz Can",
+            "product": "8521 MXD Blue Hawaiian 6/4/12 oz Can",
             "brand": "Mxd Cocktails",
             "placements": 2
           },
           {
-            "product": "8537 Cayman Jacked Margarita 1/12/19.2 oz Can",
-            "brand": "Cayman Jack",
+            "product": "8586 White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+            "brand": "White Claw",
             "placements": 2
           },
           {
-            "product": "8586 White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+            "product": "8596 White Claw Hard Seltzer Variety 1/24/12 oz Loose Can",
             "brand": "White Claw",
             "placements": 2
           },
@@ -108750,7 +109069,7 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 1
           },
           {
-            "product": "8521 MXD Blue Hawaiian 6/4/12 oz Can",
+            "product": "8523 MXD Margarita 6/4/12 oz Can",
             "brand": "Mxd Cocktails",
             "placements": 1
           },
@@ -108765,17 +109084,17 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 1
           },
           {
+            "product": "8551 Cayman Jack Margarita 2/12/12 oz Can",
+            "brand": "Cayman Jack",
+            "placements": 1
+          },
+          {
             "product": "8577 White Claw Hard Seltzer Surge Variety #1 2/12/12 oz Can",
             "brand": "White Claw",
             "placements": 1
           },
           {
             "product": "8582 White Claw Hard Seltzer Ruby Grapefruit 4/6/12 oz Can",
-            "brand": "White Claw",
-            "placements": 1
-          },
-          {
-            "product": "8596 White Claw Hard Seltzer Variety 1/24/12 oz Loose Can",
             "brand": "White Claw",
             "placements": 1
           },
@@ -108809,34 +109128,34 @@ const PROGRAM_DATA_2026_09 = {
           {
             "brand": "White Claw",
             "label": "White Claw",
-            "placements": 78,
-            "actual": 78,
+            "placements": 86,
+            "actual": 86,
             "base": 150,
             "goal": 135,
-            "pct": 57.8,
-            "toGo": 57,
+            "pct": 63.7,
+            "toGo": 49,
             "retained": false
           },
           {
             "brand": "Cayman Jack",
             "label": "Cayman Jack",
-            "placements": 41,
-            "actual": 41,
+            "placements": 44,
+            "actual": 44,
             "base": 90,
             "goal": 81,
-            "pct": 50.6,
-            "toGo": 40,
+            "pct": 54.3,
+            "toGo": 37,
             "retained": false
           },
           {
             "brand": "Mike's Hard Lemonade",
             "label": "Mike's Hard Lemonade",
-            "placements": 21,
-            "actual": 21,
+            "placements": 22,
+            "actual": 22,
             "base": 44,
             "goal": 40,
-            "pct": 52.5,
-            "toGo": 19,
+            "pct": 55.0,
+            "toGo": 18,
             "retained": false
           },
           {
@@ -108853,18 +109172,18 @@ const PROGRAM_DATA_2026_09 = {
           {
             "brand": "Mxd Cocktails",
             "label": "Mxd Cocktails",
-            "placements": 3,
-            "actual": 3,
+            "placements": 6,
+            "actual": 6,
             "base": 4,
             "goal": 4,
-            "pct": 75.0,
-            "toGo": 1,
-            "retained": false
+            "pct": 150.0,
+            "toGo": 0,
+            "retained": true
           }
         ],
         "brandGoalsTotal": 5,
-        "brandGoalsRetained": 0,
-        "skusHeld": 44
+        "brandGoalsRetained": 1,
+        "skusHeld": 46
       },
       "Dylan Rubino": {
         "placements": 0,
@@ -108938,7 +109257,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 6,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 212.9,
+        "pctOfPace": 195.8,
         "products": [
           {
             "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
@@ -109005,33 +109324,38 @@ const PROGRAM_DATA_2026_09 = {
         "skusHeld": 7
       },
       "Javier Melo": {
-        "placements": 109,
+        "placements": 138,
         "base": 270,
         "goal": 243,
-        "pct": 44.9,
-        "toGo": 134,
+        "pct": 56.8,
+        "toGo": 105,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 177.6,
+        "pctOfPace": 206.8,
         "products": [
           {
             "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
             "brand": "Cayman Jack",
-            "placements": 11
+            "placements": 14
           },
           {
             "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
             "brand": "Cayman Jack",
-            "placements": 11
-          },
-          {
-            "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 10
+            "placements": 14
           },
           {
             "product": "8546 Cayman Jack Mango Margarita 4/6/12 oz Btl",
             "brand": "Cayman Jack",
+            "placements": 12
+          },
+          {
+            "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 11
+          },
+          {
+            "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+            "brand": "White Claw",
             "placements": 8
           },
           {
@@ -109040,28 +109364,43 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 7
           },
           {
-            "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+            "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 6
+            "placements": 7
           },
           {
             "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 6
+            "placements": 7
           },
           {
             "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 6
-          },
-          {
-            "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 5
+            "placements": 7
           },
           {
             "product": "8538 Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
             "brand": "Cayman Jack",
+            "placements": 6
+          },
+          {
+            "product": "8537 Cayman Jacked Margarita 1/12/19.2 oz Can",
+            "brand": "Cayman Jack",
+            "placements": 4
+          },
+          {
+            "product": "8454 Mikes Hard Party Kit Variety 2/12/11.2 oz Btl",
+            "brand": "Mike's Hard Lemonade",
+            "placements": 3
+          },
+          {
+            "product": "8559 Cayman Jack Margarita Variety 2/12/12 oz Can",
+            "brand": "Cayman Jack",
+            "placements": 3
+          },
+          {
+            "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
+            "brand": "White Claw",
             "placements": 3
           },
           {
@@ -109070,9 +109409,9 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 3
           },
           {
-            "product": "8454 Mikes Hard Party Kit Variety 2/12/11.2 oz Btl",
-            "brand": "Mike's Hard Lemonade",
-            "placements": 2
+            "product": "8624 White Claw Surge 8% Cranberry 19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 3
           },
           {
             "product": "8481 Mikes Harder Lemonade 1/12/23.5 oz Can",
@@ -109085,27 +109424,22 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 2
           },
           {
-            "product": "8537 Cayman Jacked Margarita 1/12/19.2 oz Can",
-            "brand": "Cayman Jack",
-            "placements": 2
-          },
-          {
-            "product": "8559 Cayman Jack Margarita Variety 2/12/12 oz Can",
-            "brand": "Cayman Jack",
-            "placements": 2
-          },
-          {
-            "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
-            "brand": "White Claw",
-            "placements": 2
-          },
-          {
-            "product": "8624 White Claw Surge 8% Cranberry 19.2 oz Can",
+            "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
             "brand": "White Claw",
             "placements": 2
           },
           {
             "product": "8628 White Claw Surge Variety #2 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 2
+          },
+          {
+            "product": "8631 White Claw Peach 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 2
+          },
+          {
+            "product": "8639 White Claw Pineapple 4/6/12 oz Can",
             "brand": "White Claw",
             "placements": 2
           },
@@ -109131,11 +109465,6 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "product": "8577 White Claw Hard Seltzer Surge Variety #1 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 1
-          },
-          {
-            "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
             "brand": "White Claw",
             "placements": 1
           },
@@ -109170,22 +109499,12 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 1
           },
           {
-            "product": "8631 White Claw Peach 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 1
-          },
-          {
             "product": "8632 White Claw Surge Blueberry 1/12/19.2 oz Can",
             "brand": "White Claw",
             "placements": 1
           },
           {
             "product": "8638 White Claw Surge Grape 1/12/19.2oz Can",
-            "brand": "White Claw",
-            "placements": 1
-          },
-          {
-            "product": "8639 White Claw Pineapple 4/6/12 oz Can",
             "brand": "White Claw",
             "placements": 1
           },
@@ -109199,34 +109518,34 @@ const PROGRAM_DATA_2026_09 = {
           {
             "brand": "White Claw",
             "label": "White Claw",
-            "placements": 53,
-            "actual": 53,
+            "placements": 65,
+            "actual": 65,
             "base": 127,
             "goal": 114,
-            "pct": 46.5,
-            "toGo": 61,
+            "pct": 57.0,
+            "toGo": 49,
             "retained": false
           },
           {
             "brand": "Cayman Jack",
             "label": "Cayman Jack",
-            "placements": 39,
-            "actual": 39,
+            "placements": 55,
+            "actual": 55,
             "base": 94,
             "goal": 85,
-            "pct": 45.9,
-            "toGo": 46,
+            "pct": 64.7,
+            "toGo": 30,
             "retained": false
           },
           {
             "brand": "Mike's Hard Lemonade",
             "label": "Mike's Hard Lemonade",
-            "placements": 11,
-            "actual": 11,
+            "placements": 12,
+            "actual": 12,
             "base": 24,
             "goal": 22,
-            "pct": 50.0,
-            "toGo": 11,
+            "pct": 54.5,
+            "toGo": 10,
             "retained": false
           },
           {
@@ -109268,29 +109587,34 @@ const PROGRAM_DATA_2026_09 = {
         "skusHeld": 36
       },
       "Jayson Romine": {
-        "placements": 384,
+        "placements": 437,
         "base": 766,
         "goal": 689,
-        "pct": 55.7,
-        "toGo": 305,
+        "pct": 63.4,
+        "toGo": 252,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 220.4,
+        "pctOfPace": 230.8,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
             "brand": "White Claw",
-            "placements": 26
+            "placements": 28
+          },
+          {
+            "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 25
           },
           {
             "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
             "brand": "White Claw",
-            "placements": 21
+            "placements": 23
           },
           {
             "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 21
+            "placements": 22
           },
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
@@ -109298,27 +109622,37 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 21
           },
           {
-            "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
+            "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 20
+            "placements": 18
+          },
+          {
+            "product": "8481 Mikes Harder Lemonade 1/12/23.5 oz Can",
+            "brand": "Mike's Harder",
+            "placements": 17
           },
           {
             "product": "8623 White Claw Surge 8% Blood Orange 19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 17
+          },
+          {
+            "product": "8619 White Claw Blackberry 4/6/12 oz Can",
             "brand": "White Claw",
             "placements": 16
           },
           {
-            "product": "8481 Mikes Harder Lemonade 1/12/23.5 oz Can",
-            "brand": "Mike's Harder",
-            "placements": 15
-          },
-          {
-            "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
+            "product": "8577 White Claw Hard Seltzer Surge Variety #1 2/12/12 oz Can",
             "brand": "White Claw",
             "placements": 15
           },
           {
             "product": "8586 White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 15
+          },
+          {
+            "product": "8582 White Claw Hard Seltzer Ruby Grapefruit 4/6/12 oz Can",
             "brand": "White Claw",
             "placements": 14
           },
@@ -109328,34 +109662,24 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 14
           },
           {
-            "product": "8577 White Claw Hard Seltzer Surge Variety #1 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 13
-          },
-          {
             "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 13
-          },
-          {
-            "product": "8619 White Claw Blackberry 4/6/12 oz Can",
-            "brand": "White Claw",
-            "placements": 13
-          },
-          {
-            "product": "8582 White Claw Hard Seltzer Ruby Grapefruit 4/6/12 oz Can",
-            "brand": "White Claw",
-            "placements": 12
+            "placements": 14
           },
           {
             "product": "8410 Mikes Hard Lemonade 4/6/11.2 oz Btl",
             "brand": "Mike's Hard Lemonade",
-            "placements": 11
+            "placements": 13
           },
           {
             "product": "8458 Mikes Harder Black Cherry 1/12/23.5 oz Can",
             "brand": "Mike's Harder",
-            "placements": 10
+            "placements": 11
+          },
+          {
+            "product": "8637 White Claw Clawtails Variety 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 11
           },
           {
             "product": "8596 White Claw Hard Seltzer Variety 1/24/12 oz Loose Can",
@@ -109363,9 +109687,24 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 10
           },
           {
-            "product": "8637 White Claw Clawtails Variety 2/12/12 oz Can",
+            "product": "8628 White Claw Surge Variety #2 2/12/12 oz Can",
             "brand": "White Claw",
             "placements": 10
+          },
+          {
+            "product": "8639 White Claw Pineapple 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 10
+          },
+          {
+            "product": "8480 Mikes Harder Cranberry 1/12/23.5 oz Can",
+            "brand": "Mike's Harder",
+            "placements": 9
+          },
+          {
+            "product": "86006 Mike's Hard Strawberry Lemonade 4/6/12 oz Can",
+            "brand": "Mike's Hard Lemonade",
+            "placements": 9
           },
           {
             "product": "8624 White Claw Surge 8% Cranberry 19.2 oz Can",
@@ -109373,48 +109712,38 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 9
           },
           {
-            "product": "8628 White Claw Surge Variety #2 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 9
-          },
-          {
-            "product": "8480 Mikes Harder Cranberry 1/12/23.5 oz Can",
+            "product": "8466 Mikes Harder Mango 1/12/23.5 oz Can",
             "brand": "Mike's Harder",
-            "placements": 8
-          },
-          {
-            "product": "8639 White Claw Pineapple 4/6/12 oz Can",
-            "brand": "White Claw",
             "placements": 8
           },
           {
             "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
             "brand": "Cayman Jack",
-            "placements": 7
-          },
-          {
-            "product": "86006 Mike's Hard Strawberry Lemonade 4/6/12 oz Can",
-            "brand": "Mike's Hard Lemonade",
-            "placements": 7
+            "placements": 8
           },
           {
             "product": "8409 Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
             "brand": "Mike's Harder",
-            "placements": 6
+            "placements": 7
           },
           {
             "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
             "brand": "Cayman Jack",
-            "placements": 6
+            "placements": 7
+          },
+          {
+            "product": "86004 Mike's Hard Pink Lemonade 4/6/12 oz Can",
+            "brand": "Mike's Hard Lemonade",
+            "placements": 7
           },
           {
             "product": "8632 White Claw Surge Blueberry 1/12/19.2 oz Can",
             "brand": "White Claw",
-            "placements": 6
+            "placements": 7
           },
           {
-            "product": "8466 Mikes Harder Mango 1/12/23.5 oz Can",
-            "brand": "Mike's Harder",
+            "product": "8454 Mikes Hard Party Kit Variety 2/12/11.2 oz Btl",
+            "brand": "Mike's Hard Lemonade",
             "placements": 5
           },
           {
@@ -109423,18 +109752,23 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 5
           },
           {
-            "product": "86004 Mike's Hard Pink Lemonade 4/6/12 oz Can",
-            "brand": "Mike's Hard Lemonade",
+            "product": "8634 White Claw Hard Seltzer Peach 2/12/12 oz Can",
+            "brand": "White Claw",
             "placements": 5
           },
           {
-            "product": "8454 Mikes Hard Party Kit Variety 2/12/11.2 oz Btl",
-            "brand": "Mike's Hard Lemonade",
+            "product": "8460 Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
+            "brand": "Mike's Harder",
             "placements": 4
           },
           {
-            "product": "8634 White Claw Hard Seltzer Peach 2/12/12 oz Can",
-            "brand": "White Claw",
+            "product": "8539 Cayman Jack Zero Sugar Margarita Variety 2/12/12 oz Can",
+            "brand": "Cayman Jack",
+            "placements": 4
+          },
+          {
+            "product": "8551 Cayman Jack Margarita 2/12/12 oz Can",
+            "brand": "Cayman Jack",
             "placements": 4
           },
           {
@@ -109443,12 +109777,7 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 4
           },
           {
-            "product": "8539 Cayman Jack Zero Sugar Margarita Variety 2/12/12 oz Can",
-            "brand": "Cayman Jack",
-            "placements": 3
-          },
-          {
-            "product": "8551 Cayman Jack Margarita 2/12/12 oz Can",
+            "product": "8559 Cayman Jack Margarita Variety 2/12/12 oz Can",
             "brand": "Cayman Jack",
             "placements": 3
           },
@@ -109458,13 +109787,8 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 3
           },
           {
-            "product": "8460 Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
-            "brand": "Mike's Harder",
-            "placements": 2
-          },
-          {
-            "product": "8559 Cayman Jack Margarita Variety 2/12/12 oz Can",
-            "brand": "Cayman Jack",
+            "product": "86002 Mike's Hard Black Cherry Lemonade 4/6/12 oz Can",
+            "brand": "Mike's Hard Lemonade",
             "placements": 2
           },
           {
@@ -109475,349 +109799,57 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "8530 Cayman Jack Sweet Heat Margarita Variety 2/12/12 oz Can",
             "brand": "Cayman Jack",
-            "placements": 1
-          },
-          {
-            "product": "86002 Mike's Hard Black Cherry Lemonade 4/6/12 oz Can",
-            "brand": "Mike's Hard Lemonade",
-            "placements": 1
-          }
-        ],
-        "brands": [
-          {
-            "brand": "White Claw",
-            "label": "White Claw",
-            "placements": 282,
-            "actual": 282,
-            "base": 475,
-            "goal": 428,
-            "pct": 65.9,
-            "toGo": 146,
-            "retained": false
-          },
-          {
-            "brand": "Mike's Harder",
-            "label": "Mike's Harder",
-            "placements": 47,
-            "actual": 47,
-            "base": 94,
-            "goal": 85,
-            "pct": 55.3,
-            "toGo": 38,
-            "retained": false
-          },
-          {
-            "brand": "Mike's Hard Lemonade",
-            "label": "Mike's Hard Lemonade",
-            "placements": 28,
-            "actual": 28,
-            "base": 82,
-            "goal": 74,
-            "pct": 37.8,
-            "toGo": 46,
-            "retained": false
-          },
-          {
-            "brand": "Cayman Jack",
-            "label": "Cayman Jack",
-            "placements": 27,
-            "actual": 27,
-            "base": 108,
-            "goal": 97,
-            "pct": 27.8,
-            "toGo": 70,
-            "retained": false
-          },
-          {
-            "brand": "Mike's Hard Dirty Lemonade",
-            "label": "Mike's Hard Dirty Lemonade",
-            "placements": 0,
-            "actual": 0,
-            "base": 7,
-            "goal": 6,
-            "pct": 0.0,
-            "toGo": 6,
-            "retained": false
-          }
-        ],
-        "brandGoalsTotal": 5,
-        "brandGoalsRetained": 0,
-        "skusHeld": 41
-      },
-      "Jim Heaney": {
-        "placements": 328,
-        "base": 684,
-        "goal": 616,
-        "pct": 53.2,
-        "toGo": 288,
-        "retained": false,
-        "hasGoal": true,
-        "pctOfPace": 210.5,
-        "products": [
-          {
-            "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 23
-          },
-          {
-            "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 23
-          },
-          {
-            "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 21
-          },
-          {
-            "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
-            "brand": "White Claw",
-            "placements": 17
-          },
-          {
-            "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 17
-          },
-          {
-            "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 17
-          },
-          {
-            "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
-            "brand": "Cayman Jack",
-            "placements": 14
-          },
-          {
-            "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
-            "brand": "White Claw",
-            "placements": 14
-          },
-          {
-            "product": "8546 Cayman Jack Mango Margarita 4/6/12 oz Btl",
-            "brand": "Cayman Jack",
-            "placements": 13
-          },
-          {
-            "product": "8559 Cayman Jack Margarita Variety 2/12/12 oz Can",
-            "brand": "Cayman Jack",
-            "placements": 13
-          },
-          {
-            "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
-            "brand": "Cayman Jack",
-            "placements": 12
-          },
-          {
-            "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 12
-          },
-          {
-            "product": "8624 White Claw Surge 8% Cranberry 19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 10
-          },
-          {
-            "product": "8577 White Claw Hard Seltzer Surge Variety #1 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 9
-          },
-          {
-            "product": "8623 White Claw Surge 8% Blood Orange 19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 9
-          },
-          {
-            "product": "8586 White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 8
-          },
-          {
-            "product": "8639 White Claw Pineapple 4/6/12 oz Can",
-            "brand": "White Claw",
-            "placements": 8
-          },
-          {
-            "product": "8410 Mikes Hard Lemonade 4/6/11.2 oz Btl",
-            "brand": "Mike's Hard Lemonade",
-            "placements": 7
-          },
-          {
-            "product": "8582 White Claw Hard Seltzer Ruby Grapefruit 4/6/12 oz Can",
-            "brand": "White Claw",
-            "placements": 7
-          },
-          {
-            "product": "8628 White Claw Surge Variety #2 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 7
-          },
-          {
-            "product": "8537 Cayman Jacked Margarita 1/12/19.2 oz Can",
-            "brand": "Cayman Jack",
-            "placements": 5
-          },
-          {
-            "product": "8551 Cayman Jack Margarita 2/12/12 oz Can",
-            "brand": "Cayman Jack",
-            "placements": 5
-          },
-          {
-            "product": "8626 White Claw Blackberry 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 5
-          },
-          {
-            "product": "8638 White Claw Surge Grape 1/12/19.2oz Can",
-            "brand": "White Claw",
-            "placements": 5
-          },
-          {
-            "product": "8530 Cayman Jack Sweet Heat Margarita Variety 2/12/12 oz Can",
-            "brand": "Cayman Jack",
-            "placements": 4
-          },
-          {
-            "product": "8538 Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
-            "brand": "Cayman Jack",
-            "placements": 4
-          },
-          {
-            "product": "86006 Mike's Hard Strawberry Lemonade 4/6/12 oz Can",
-            "brand": "Mike's Hard Lemonade",
-            "placements": 4
-          },
-          {
-            "product": "8631 White Claw Peach 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 4
-          },
-          {
-            "product": "8427 Mikes Harder Variety 2/12/12 oz Can",
-            "brand": "Mike's Harder",
-            "placements": 3
-          },
-          {
-            "product": "8481 Mikes Harder Lemonade 1/12/23.5 oz Can",
-            "brand": "Mike's Harder",
-            "placements": 3
-          },
-          {
-            "product": "8539 Cayman Jack Zero Sugar Margarita Variety 2/12/12 oz Can",
-            "brand": "Cayman Jack",
-            "placements": 3
-          },
-          {
-            "product": "8619 White Claw Blackberry 4/6/12 oz Can",
-            "brand": "White Claw",
-            "placements": 3
-          },
-          {
-            "product": "8454 Mikes Hard Party Kit Variety 2/12/11.2 oz Btl",
-            "brand": "Mike's Hard Lemonade",
-            "placements": 2
-          },
-          {
-            "product": "8458 Mikes Harder Black Cherry 1/12/23.5 oz Can",
-            "brand": "Mike's Harder",
-            "placements": 2
-          },
-          {
-            "product": "8480 Mikes Harder Cranberry 1/12/23.5 oz Can",
-            "brand": "Mike's Harder",
-            "placements": 2
-          },
-          {
-            "product": "8596 White Claw Hard Seltzer Variety 1/24/12 oz Loose Can",
-            "brand": "White Claw",
-            "placements": 2
-          },
-          {
-            "product": "86004 Mike's Hard Pink Lemonade 4/6/12 oz Can",
-            "brand": "Mike's Hard Lemonade",
-            "placements": 2
-          },
-          {
-            "product": "8634 White Claw Hard Seltzer Peach 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 2
-          },
-          {
-            "product": "8637 White Claw Clawtails Variety 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 2
-          },
-          {
-            "product": "8460 Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
-            "brand": "Mike's Harder",
-            "placements": 1
-          },
-          {
-            "product": "8466 Mikes Harder Mango 1/12/23.5 oz Can",
-            "brand": "Mike's Harder",
-            "placements": 1
-          },
-          {
-            "product": "86002 Mike's Hard Black Cherry Lemonade 4/6/12 oz Can",
-            "brand": "Mike's Hard Lemonade",
             "placements": 1
           },
           {
             "product": "86011 Mikes Hard Dirty Lemonade Variety 2/12/12 oz Can",
             "brand": "Mike's Hard Dirty Lemonade",
             "placements": 1
-          },
-          {
-            "product": "8632 White Claw Surge Blueberry 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 1
           }
         ],
         "brands": [
           {
             "brand": "White Claw",
             "label": "White Claw",
-            "placements": 226,
-            "actual": 226,
-            "base": 444,
-            "goal": 400,
-            "pct": 56.5,
-            "toGo": 174,
-            "retained": false
-          },
-          {
-            "brand": "Cayman Jack",
-            "label": "Cayman Jack",
-            "placements": 73,
-            "actual": 73,
-            "base": 145,
-            "goal": 131,
-            "pct": 55.7,
-            "toGo": 58,
-            "retained": false
-          },
-          {
-            "brand": "Mike's Hard Lemonade",
-            "label": "Mike's Hard Lemonade",
-            "placements": 16,
-            "actual": 16,
-            "base": 50,
-            "goal": 45,
-            "pct": 35.6,
-            "toGo": 29,
+            "placements": 311,
+            "actual": 311,
+            "base": 475,
+            "goal": 428,
+            "pct": 72.7,
+            "toGo": 117,
             "retained": false
           },
           {
             "brand": "Mike's Harder",
             "label": "Mike's Harder",
-            "placements": 12,
-            "actual": 12,
-            "base": 39,
-            "goal": 35,
-            "pct": 34.3,
-            "toGo": 23,
+            "placements": 57,
+            "actual": 57,
+            "base": 94,
+            "goal": 85,
+            "pct": 67.1,
+            "toGo": 28,
+            "retained": false
+          },
+          {
+            "brand": "Mike's Hard Lemonade",
+            "label": "Mike's Hard Lemonade",
+            "placements": 36,
+            "actual": 36,
+            "base": 82,
+            "goal": 74,
+            "pct": 48.6,
+            "toGo": 38,
+            "retained": false
+          },
+          {
+            "brand": "Cayman Jack",
+            "label": "Cayman Jack",
+            "placements": 32,
+            "actual": 32,
+            "base": 108,
+            "goal": 97,
+            "pct": 33.0,
+            "toGo": 65,
             "retained": false
           },
           {
@@ -109825,10 +109857,302 @@ const PROGRAM_DATA_2026_09 = {
             "label": "Mike's Hard Dirty Lemonade",
             "placements": 1,
             "actual": 1,
+            "base": 7,
+            "goal": 6,
+            "pct": 16.7,
+            "toGo": 5,
+            "retained": false
+          }
+        ],
+        "brandGoalsTotal": 5,
+        "brandGoalsRetained": 0,
+        "skusHeld": 42
+      },
+      "Jim Heaney": {
+        "placements": 371,
+        "base": 684,
+        "goal": 616,
+        "pct": 60.2,
+        "toGo": 245,
+        "retained": false,
+        "hasGoal": true,
+        "pctOfPace": 219.1,
+        "products": [
+          {
+            "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 27
+          },
+          {
+            "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 25
+          },
+          {
+            "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 24
+          },
+          {
+            "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 19
+          },
+          {
+            "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 19
+          },
+          {
+            "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 17
+          },
+          {
+            "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 16
+          },
+          {
+            "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
+            "brand": "Cayman Jack",
+            "placements": 15
+          },
+          {
+            "product": "8546 Cayman Jack Mango Margarita 4/6/12 oz Btl",
+            "brand": "Cayman Jack",
+            "placements": 15
+          },
+          {
+            "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
+            "brand": "Cayman Jack",
+            "placements": 15
+          },
+          {
+            "product": "8559 Cayman Jack Margarita Variety 2/12/12 oz Can",
+            "brand": "Cayman Jack",
+            "placements": 13
+          },
+          {
+            "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 13
+          },
+          {
+            "product": "8577 White Claw Hard Seltzer Surge Variety #1 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 11
+          },
+          {
+            "product": "8624 White Claw Surge 8% Cranberry 19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 11
+          },
+          {
+            "product": "8586 White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 10
+          },
+          {
+            "product": "8623 White Claw Surge 8% Blood Orange 19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 10
+          },
+          {
+            "product": "8410 Mikes Hard Lemonade 4/6/11.2 oz Btl",
+            "brand": "Mike's Hard Lemonade",
+            "placements": 9
+          },
+          {
+            "product": "8628 White Claw Surge Variety #2 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 9
+          },
+          {
+            "product": "8639 White Claw Pineapple 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 8
+          },
+          {
+            "product": "8582 White Claw Hard Seltzer Ruby Grapefruit 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 7
+          },
+          {
+            "product": "8626 White Claw Blackberry 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 7
+          },
+          {
+            "product": "8537 Cayman Jacked Margarita 1/12/19.2 oz Can",
+            "brand": "Cayman Jack",
+            "placements": 6
+          },
+          {
+            "product": "8551 Cayman Jack Margarita 2/12/12 oz Can",
+            "brand": "Cayman Jack",
+            "placements": 6
+          },
+          {
+            "product": "8638 White Claw Surge Grape 1/12/19.2oz Can",
+            "brand": "White Claw",
+            "placements": 6
+          },
+          {
+            "product": "8538 Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
+            "brand": "Cayman Jack",
+            "placements": 5
+          },
+          {
+            "product": "8631 White Claw Peach 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 5
+          },
+          {
+            "product": "8530 Cayman Jack Sweet Heat Margarita Variety 2/12/12 oz Can",
+            "brand": "Cayman Jack",
+            "placements": 4
+          },
+          {
+            "product": "86006 Mike's Hard Strawberry Lemonade 4/6/12 oz Can",
+            "brand": "Mike's Hard Lemonade",
+            "placements": 4
+          },
+          {
+            "product": "8619 White Claw Blackberry 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 4
+          },
+          {
+            "product": "8427 Mikes Harder Variety 2/12/12 oz Can",
+            "brand": "Mike's Harder",
+            "placements": 3
+          },
+          {
+            "product": "8454 Mikes Hard Party Kit Variety 2/12/11.2 oz Btl",
+            "brand": "Mike's Hard Lemonade",
+            "placements": 3
+          },
+          {
+            "product": "8458 Mikes Harder Black Cherry 1/12/23.5 oz Can",
+            "brand": "Mike's Harder",
+            "placements": 3
+          },
+          {
+            "product": "8481 Mikes Harder Lemonade 1/12/23.5 oz Can",
+            "brand": "Mike's Harder",
+            "placements": 3
+          },
+          {
+            "product": "8539 Cayman Jack Zero Sugar Margarita Variety 2/12/12 oz Can",
+            "brand": "Cayman Jack",
+            "placements": 3
+          },
+          {
+            "product": "8480 Mikes Harder Cranberry 1/12/23.5 oz Can",
+            "brand": "Mike's Harder",
+            "placements": 2
+          },
+          {
+            "product": "8596 White Claw Hard Seltzer Variety 1/24/12 oz Loose Can",
+            "brand": "White Claw",
+            "placements": 2
+          },
+          {
+            "product": "86004 Mike's Hard Pink Lemonade 4/6/12 oz Can",
+            "brand": "Mike's Hard Lemonade",
+            "placements": 2
+          },
+          {
+            "product": "86011 Mikes Hard Dirty Lemonade Variety 2/12/12 oz Can",
+            "brand": "Mike's Hard Dirty Lemonade",
+            "placements": 2
+          },
+          {
+            "product": "8634 White Claw Hard Seltzer Peach 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 2
+          },
+          {
+            "product": "8637 White Claw Clawtails Variety 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 2
+          },
+          {
+            "product": "8460 Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
+            "brand": "Mike's Harder",
+            "placements": 1
+          },
+          {
+            "product": "8466 Mikes Harder Mango 1/12/23.5 oz Can",
+            "brand": "Mike's Harder",
+            "placements": 1
+          },
+          {
+            "product": "86002 Mike's Hard Black Cherry Lemonade 4/6/12 oz Can",
+            "brand": "Mike's Hard Lemonade",
+            "placements": 1
+          },
+          {
+            "product": "8632 White Claw Surge Blueberry 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 1
+          }
+        ],
+        "brands": [
+          {
+            "brand": "White Claw",
+            "label": "White Claw",
+            "placements": 255,
+            "actual": 255,
+            "base": 444,
+            "goal": 400,
+            "pct": 63.7,
+            "toGo": 145,
+            "retained": false
+          },
+          {
+            "brand": "Cayman Jack",
+            "label": "Cayman Jack",
+            "placements": 82,
+            "actual": 82,
+            "base": 145,
+            "goal": 131,
+            "pct": 62.6,
+            "toGo": 49,
+            "retained": false
+          },
+          {
+            "brand": "Mike's Hard Lemonade",
+            "label": "Mike's Hard Lemonade",
+            "placements": 19,
+            "actual": 19,
+            "base": 50,
+            "goal": 45,
+            "pct": 42.2,
+            "toGo": 26,
+            "retained": false
+          },
+          {
+            "brand": "Mike's Harder",
+            "label": "Mike's Harder",
+            "placements": 13,
+            "actual": 13,
+            "base": 39,
+            "goal": 35,
+            "pct": 37.1,
+            "toGo": 22,
+            "retained": false
+          },
+          {
+            "brand": "Mike's Hard Dirty Lemonade",
+            "label": "Mike's Hard Dirty Lemonade",
+            "placements": 2,
+            "actual": 2,
             "base": 6,
             "goal": 5,
-            "pct": 20.0,
-            "toGo": 4,
+            "pct": 40.0,
+            "toGo": 3,
             "retained": false
           }
         ],
@@ -109886,19 +110210,39 @@ const PROGRAM_DATA_2026_09 = {
         "skusHeld": 0
       },
       "Klejdi Lamo": {
-        "placements": 370,
+        "placements": 436,
         "base": 692,
         "goal": 623,
-        "pct": 59.4,
-        "toGo": 253,
+        "pct": 70.0,
+        "toGo": 187,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 235.0,
+        "pctOfPace": 254.8,
         "products": [
           {
             "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
             "brand": "White Claw",
+            "placements": 21
+          },
+          {
+            "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+            "brand": "White Claw",
             "placements": 20
+          },
+          {
+            "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 19
+          },
+          {
+            "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 19
+          },
+          {
+            "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 18
           },
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -109906,104 +110250,104 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 18
           },
           {
-            "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
-            "brand": "White Claw",
-            "placements": 17
-          },
-          {
-            "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 17
-          },
-          {
-            "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 16
-          },
-          {
             "product": "8577 White Claw Hard Seltzer Surge Variety #1 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 15
-          },
-          {
-            "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 15
+            "placements": 17
           },
           {
             "product": "8628 White Claw Surge Variety #2 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 15
-          },
-          {
-            "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 14
+            "placements": 17
           },
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 13
+            "placements": 16
           },
           {
-            "product": "8619 White Claw Blackberry 4/6/12 oz Can",
+            "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 13
+            "placements": 15
           },
           {
             "product": "86004 Mike's Hard Pink Lemonade 4/6/12 oz Can",
             "brand": "Mike's Hard Lemonade",
-            "placements": 12
+            "placements": 15
+          },
+          {
+            "product": "8619 White Claw Blackberry 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 15
           },
           {
             "product": "8623 White Claw Surge 8% Blood Orange 19.2 oz Can",
             "brand": "White Claw",
-            "placements": 12
+            "placements": 15
           },
           {
             "product": "8410 Mikes Hard Lemonade 4/6/11.2 oz Btl",
             "brand": "Mike's Hard Lemonade",
-            "placements": 11
-          },
-          {
-            "product": "8582 White Claw Hard Seltzer Ruby Grapefruit 4/6/12 oz Can",
-            "brand": "White Claw",
-            "placements": 11
-          },
-          {
-            "product": "8409 Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
-            "brand": "Mike's Harder",
-            "placements": 10
+            "placements": 14
           },
           {
             "product": "8481 Mikes Harder Lemonade 1/12/23.5 oz Can",
             "brand": "Mike's Harder",
-            "placements": 10
+            "placements": 13
+          },
+          {
+            "product": "8582 White Claw Hard Seltzer Ruby Grapefruit 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 13
           },
           {
             "product": "86006 Mike's Hard Strawberry Lemonade 4/6/12 oz Can",
             "brand": "Mike's Hard Lemonade",
-            "placements": 10
+            "placements": 13
+          },
+          {
+            "product": "8409 Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+            "brand": "Mike's Harder",
+            "placements": 11
           },
           {
             "product": "8624 White Claw Surge 8% Cranberry 19.2 oz Can",
             "brand": "White Claw",
-            "placements": 10
+            "placements": 11
           },
           {
             "product": "8626 White Claw Blackberry 1/12/19.2 oz Can",
             "brand": "White Claw",
-            "placements": 9
-          },
-          {
-            "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
-            "brand": "Cayman Jack",
-            "placements": 8
+            "placements": 11
           },
           {
             "product": "8638 White Claw Surge Grape 1/12/19.2oz Can",
             "brand": "White Claw",
+            "placements": 11
+          },
+          {
+            "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
+            "brand": "Cayman Jack",
+            "placements": 9
+          },
+          {
+            "product": "8637 White Claw Clawtails Variety 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 9
+          },
+          {
+            "product": "8639 White Claw Pineapple 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 9
+          },
+          {
+            "product": "8458 Mikes Harder Black Cherry 1/12/23.5 oz Can",
+            "brand": "Mike's Harder",
             "placements": 8
+          },
+          {
+            "product": "8427 Mikes Harder Variety 2/12/12 oz Can",
+            "brand": "Mike's Harder",
+            "placements": 7
           },
           {
             "product": "8546 Cayman Jack Mango Margarita 4/6/12 oz Btl",
@@ -110011,19 +110355,24 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 7
           },
           {
-            "product": "8637 White Claw Clawtails Variety 2/12/12 oz Can",
+            "product": "8631 White Claw Peach 1/12/19.2 oz Can",
             "brand": "White Claw",
             "placements": 7
           },
           {
-            "product": "8639 White Claw Pineapple 4/6/12 oz Can",
+            "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
+            "brand": "Cayman Jack",
+            "placements": 6
+          },
+          {
+            "product": "8596 White Claw Hard Seltzer Variety 1/24/12 oz Loose Can",
             "brand": "White Claw",
             "placements": 6
           },
           {
-            "product": "8427 Mikes Harder Variety 2/12/12 oz Can",
-            "brand": "Mike's Harder",
-            "placements": 5
+            "product": "8632 White Claw Surge Blueberry 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 6
           },
           {
             "product": "8466 Mikes Harder Mango 1/12/23.5 oz Can",
@@ -110031,8 +110380,8 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 5
           },
           {
-            "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
-            "brand": "Cayman Jack",
+            "product": "8480 Mikes Harder Cranberry 1/12/23.5 oz Can",
+            "brand": "Mike's Harder",
             "placements": 5
           },
           {
@@ -110041,34 +110390,14 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 5
           },
           {
-            "product": "8596 White Claw Hard Seltzer Variety 1/24/12 oz Loose Can",
-            "brand": "White Claw",
-            "placements": 5
-          },
-          {
-            "product": "8631 White Claw Peach 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 5
-          },
-          {
-            "product": "8632 White Claw Surge Blueberry 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 5
-          },
-          {
-            "product": "8458 Mikes Harder Black Cherry 1/12/23.5 oz Can",
-            "brand": "Mike's Harder",
-            "placements": 4
-          },
-          {
-            "product": "8480 Mikes Harder Cranberry 1/12/23.5 oz Can",
-            "brand": "Mike's Harder",
-            "placements": 4
-          },
-          {
             "product": "8559 Cayman Jack Margarita Variety 2/12/12 oz Can",
             "brand": "Cayman Jack",
             "placements": 4
+          },
+          {
+            "product": "8551 Cayman Jack Margarita 2/12/12 oz Can",
+            "brand": "Cayman Jack",
+            "placements": 3
           },
           {
             "product": "8460 Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
@@ -110081,12 +110410,12 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 2
           },
           {
-            "product": "8539 Cayman Jack Zero Sugar Margarita Variety 2/12/12 oz Can",
+            "product": "8538 Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
             "brand": "Cayman Jack",
             "placements": 2
           },
           {
-            "product": "8551 Cayman Jack Margarita 2/12/12 oz Can",
+            "product": "8539 Cayman Jack Zero Sugar Margarita Variety 2/12/12 oz Can",
             "brand": "Cayman Jack",
             "placements": 2
           },
@@ -110116,11 +110445,6 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 1
           },
           {
-            "product": "8538 Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
-            "brand": "Cayman Jack",
-            "placements": 1
-          },
-          {
             "product": "86001 Mike's Hard Lemonade 4/6/12 oz Can",
             "brand": "Mike's Hard Lemonade",
             "placements": 1
@@ -110140,45 +110464,45 @@ const PROGRAM_DATA_2026_09 = {
           {
             "brand": "White Claw",
             "label": "White Claw",
-            "placements": 259,
-            "actual": 259,
+            "placements": 301,
+            "actual": 301,
             "base": 454,
             "goal": 409,
-            "pct": 63.3,
-            "toGo": 150,
+            "pct": 73.6,
+            "toGo": 108,
             "retained": false
           },
           {
             "brand": "Mike's Harder",
             "label": "Mike's Harder",
-            "placements": 40,
-            "actual": 40,
+            "placements": 51,
+            "actual": 51,
             "base": 86,
             "goal": 77,
-            "pct": 51.9,
-            "toGo": 37,
+            "pct": 66.2,
+            "toGo": 26,
             "retained": false
           },
           {
             "brand": "Mike's Hard Lemonade",
             "label": "Mike's Hard Lemonade",
-            "placements": 37,
-            "actual": 37,
+            "placements": 46,
+            "actual": 46,
             "base": 56,
             "goal": 50,
-            "pct": 74.0,
-            "toGo": 13,
+            "pct": 92.0,
+            "toGo": 4,
             "retained": false
           },
           {
             "brand": "Cayman Jack",
             "label": "Cayman Jack",
-            "placements": 31,
-            "actual": 31,
+            "placements": 35,
+            "actual": 35,
             "base": 89,
             "goal": 80,
-            "pct": 38.8,
-            "toGo": 49,
+            "pct": 43.8,
+            "toGo": 45,
             "retained": false
           },
           {
@@ -110209,54 +110533,79 @@ const PROGRAM_DATA_2026_09 = {
         "skusHeld": 48
       },
       "Matt Powierski": {
-        "placements": 347,
+        "placements": 417,
         "base": 707,
         "goal": 636,
-        "pct": 54.6,
-        "toGo": 289,
+        "pct": 65.6,
+        "toGo": 219,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 216.0,
+        "pctOfPace": 238.8,
         "products": [
+          {
+            "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 23
+          },
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
             "brand": "White Claw",
-            "placements": 20
+            "placements": 23
           },
           {
             "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
             "brand": "White Claw",
-            "placements": 18
-          },
-          {
-            "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 17
-          },
-          {
-            "product": "8586 White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 14
-          },
-          {
-            "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 14
+            "placements": 21
           },
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
             "brand": "White Claw",
-            "placements": 13
+            "placements": 18
+          },
+          {
+            "product": "8586 White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 18
+          },
+          {
+            "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 18
           },
           {
             "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 13
+            "placements": 17
+          },
+          {
+            "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 15
+          },
+          {
+            "product": "8582 White Claw Hard Seltzer Ruby Grapefruit 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 15
           },
           {
             "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
             "brand": "Cayman Jack",
+            "placements": 14
+          },
+          {
+            "product": "8631 White Claw Peach 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 14
+          },
+          {
+            "product": "8619 White Claw Blackberry 4/6/12 oz Can",
+            "brand": "White Claw",
             "placements": 12
+          },
+          {
+            "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
+            "brand": "Cayman Jack",
+            "placements": 11
           },
           {
             "product": "8559 Cayman Jack Margarita Variety 2/12/12 oz Can",
@@ -110264,17 +110613,12 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 11
           },
           {
-            "product": "8631 White Claw Peach 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 11
-          },
-          {
-            "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
-            "brand": "White Claw",
+            "product": "8546 Cayman Jack Mango Margarita 4/6/12 oz Btl",
+            "brand": "Cayman Jack",
             "placements": 10
           },
           {
-            "product": "8582 White Claw Hard Seltzer Ruby Grapefruit 4/6/12 oz Can",
+            "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
             "brand": "White Claw",
             "placements": 10
           },
@@ -110284,24 +110628,14 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 10
           },
           {
-            "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
-            "brand": "Cayman Jack",
-            "placements": 9
-          },
-          {
-            "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 9
-          },
-          {
             "product": "86006 Mike's Hard Strawberry Lemonade 4/6/12 oz Can",
             "brand": "Mike's Hard Lemonade",
             "placements": 9
           },
           {
-            "product": "8546 Cayman Jack Mango Margarita 4/6/12 oz Btl",
-            "brand": "Cayman Jack",
-            "placements": 8
+            "product": "8639 White Claw Pineapple 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 9
           },
           {
             "product": "8577 White Claw Hard Seltzer Surge Variety #1 2/12/12 oz Can",
@@ -110309,12 +110643,12 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 8
           },
           {
-            "product": "8619 White Claw Blackberry 4/6/12 oz Can",
+            "product": "8623 White Claw Surge 8% Blood Orange 19.2 oz Can",
             "brand": "White Claw",
             "placements": 8
           },
           {
-            "product": "8623 White Claw Surge 8% Blood Orange 19.2 oz Can",
+            "product": "8624 White Claw Surge 8% Cranberry 19.2 oz Can",
             "brand": "White Claw",
             "placements": 8
           },
@@ -110334,29 +110668,34 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 7
           },
           {
-            "product": "8624 White Claw Surge 8% Cranberry 19.2 oz Can",
+            "product": "8628 White Claw Surge Variety #2 2/12/12 oz Can",
             "brand": "White Claw",
             "placements": 7
           },
           {
-            "product": "86001 Mike's Hard Lemonade 4/6/12 oz Can",
+            "product": "8638 White Claw Surge Grape 1/12/19.2oz Can",
+            "brand": "White Claw",
+            "placements": 7
+          },
+          {
+            "product": "8410 Mikes Hard Lemonade 4/6/11.2 oz Btl",
             "brand": "Mike's Hard Lemonade",
-            "placements": 6
-          },
-          {
-            "product": "8628 White Claw Surge Variety #2 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 6
-          },
-          {
-            "product": "8639 White Claw Pineapple 4/6/12 oz Can",
-            "brand": "White Claw",
             "placements": 6
           },
           {
             "product": "8454 Mikes Hard Party Kit Variety 2/12/11.2 oz Btl",
             "brand": "Mike's Hard Lemonade",
-            "placements": 5
+            "placements": 6
+          },
+          {
+            "product": "8539 Cayman Jack Zero Sugar Margarita Variety 2/12/12 oz Can",
+            "brand": "Cayman Jack",
+            "placements": 6
+          },
+          {
+            "product": "86001 Mike's Hard Lemonade 4/6/12 oz Can",
+            "brand": "Mike's Hard Lemonade",
+            "placements": 6
           },
           {
             "product": "8458 Mikes Harder Black Cherry 1/12/23.5 oz Can",
@@ -110369,14 +110708,19 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 5
           },
           {
-            "product": "8638 White Claw Surge Grape 1/12/19.2oz Can",
+            "product": "8551 Cayman Jack Margarita 2/12/12 oz Can",
+            "brand": "Cayman Jack",
+            "placements": 5
+          },
+          {
+            "product": "8632 White Claw Surge Blueberry 1/12/19.2 oz Can",
             "brand": "White Claw",
             "placements": 5
           },
           {
-            "product": "8410 Mikes Hard Lemonade 4/6/11.2 oz Btl",
-            "brand": "Mike's Hard Lemonade",
-            "placements": 4
+            "product": "8637 White Claw Clawtails Variety 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 5
           },
           {
             "product": "8460 Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
@@ -110399,16 +110743,6 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 4
           },
           {
-            "product": "8539 Cayman Jack Zero Sugar Margarita Variety 2/12/12 oz Can",
-            "brand": "Cayman Jack",
-            "placements": 4
-          },
-          {
-            "product": "8632 White Claw Surge Blueberry 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 4
-          },
-          {
             "product": "8409 Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
             "brand": "Mike's Harder",
             "placements": 3
@@ -110416,16 +110750,6 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "8466 Mikes Harder Mango 1/12/23.5 oz Can",
             "brand": "Mike's Harder",
-            "placements": 3
-          },
-          {
-            "product": "8551 Cayman Jack Margarita 2/12/12 oz Can",
-            "brand": "Cayman Jack",
-            "placements": 3
-          },
-          {
-            "product": "8637 White Claw Clawtails Variety 2/12/12 oz Can",
-            "brand": "White Claw",
             "placements": 3
           },
           {
@@ -110463,34 +110787,34 @@ const PROGRAM_DATA_2026_09 = {
           {
             "brand": "White Claw",
             "label": "White Claw",
-            "placements": 218,
-            "actual": 218,
+            "placements": 275,
+            "actual": 275,
             "base": 437,
             "goal": 393,
-            "pct": 55.5,
-            "toGo": 175,
+            "pct": 70.0,
+            "toGo": 118,
             "retained": false
           },
           {
             "brand": "Cayman Jack",
             "label": "Cayman Jack",
-            "placements": 63,
-            "actual": 63,
+            "placements": 73,
+            "actual": 73,
             "base": 142,
             "goal": 128,
-            "pct": 49.2,
-            "toGo": 65,
+            "pct": 57.0,
+            "toGo": 55,
             "retained": false
           },
           {
             "brand": "Mike's Hard Lemonade",
             "label": "Mike's Hard Lemonade",
-            "placements": 38,
-            "actual": 38,
+            "placements": 41,
+            "actual": 41,
             "base": 63,
             "goal": 57,
-            "pct": 66.7,
-            "toGo": 19,
+            "pct": 71.9,
+            "toGo": 16,
             "retained": false
           },
           {
@@ -110532,23 +110856,38 @@ const PROGRAM_DATA_2026_09 = {
         "skusHeld": 48
       },
       "Michael Harboy": {
-        "placements": 73,
+        "placements": 89,
         "base": 129,
         "goal": 116,
-        "pct": 62.9,
-        "toGo": 43,
+        "pct": 76.7,
+        "toGo": 27,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 248.9,
+        "pctOfPace": 279.2,
         "products": [
+          {
+            "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 5
+          },
+          {
+            "product": "8639 White Claw Pineapple 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 5
+          },
           {
             "product": "8410 Mikes Hard Lemonade 4/6/11.2 oz Btl",
             "brand": "Mike's Hard Lemonade",
             "placements": 4
           },
           {
-            "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
-            "brand": "White Claw",
+            "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
+            "brand": "Cayman Jack",
+            "placements": 4
+          },
+          {
+            "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
+            "brand": "Cayman Jack",
             "placements": 4
           },
           {
@@ -110557,7 +110896,7 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 4
           },
           {
-            "product": "8639 White Claw Pineapple 4/6/12 oz Can",
+            "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
             "brand": "White Claw",
             "placements": 4
           },
@@ -110572,12 +110911,27 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 3
           },
           {
+            "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 3
+          },
+          {
             "product": "8586 White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
             "brand": "White Claw",
             "placements": 3
           },
           {
-            "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+            "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 3
+          },
+          {
+            "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 3
+          },
+          {
+            "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
             "brand": "White Claw",
             "placements": 3
           },
@@ -110612,37 +110966,27 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 2
           },
           {
-            "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
+            "product": "8481 Mikes Harder Lemonade 1/12/23.5 oz Can",
+            "brand": "Mike's Harder",
+            "placements": 2
+          },
+          {
+            "product": "8546 Cayman Jack Mango Margarita 4/6/12 oz Btl",
             "brand": "Cayman Jack",
             "placements": 2
           },
           {
-            "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
+            "product": "8551 Cayman Jack Margarita 2/12/12 oz Can",
+            "brand": "Cayman Jack",
+            "placements": 2
+          },
+          {
+            "product": "8559 Cayman Jack Margarita Variety 2/12/12 oz Can",
             "brand": "Cayman Jack",
             "placements": 2
           },
           {
             "product": "8577 White Claw Hard Seltzer Surge Variety #1 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 2
-          },
-          {
-            "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 2
-          },
-          {
-            "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 2
-          },
-          {
-            "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 2
-          },
-          {
-            "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
             "brand": "White Claw",
             "placements": 2
           },
@@ -110682,21 +111026,6 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 1
           },
           {
-            "product": "8481 Mikes Harder Lemonade 1/12/23.5 oz Can",
-            "brand": "Mike's Harder",
-            "placements": 1
-          },
-          {
-            "product": "8546 Cayman Jack Mango Margarita 4/6/12 oz Btl",
-            "brand": "Cayman Jack",
-            "placements": 1
-          },
-          {
-            "product": "8559 Cayman Jack Margarita Variety 2/12/12 oz Can",
-            "brand": "Cayman Jack",
-            "placements": 1
-          },
-          {
             "product": "86004 Mike's Hard Pink Lemonade 4/6/12 oz Can",
             "brand": "Mike's Hard Lemonade",
             "placements": 1
@@ -110711,12 +111040,12 @@ const PROGRAM_DATA_2026_09 = {
           {
             "brand": "White Claw",
             "label": "White Claw",
-            "placements": 51,
-            "actual": 51,
+            "placements": 58,
+            "actual": 58,
             "base": 91,
             "goal": 82,
-            "pct": 62.2,
-            "toGo": 31,
+            "pct": 70.7,
+            "toGo": 24,
             "retained": false
           },
           {
@@ -110733,102 +111062,117 @@ const PROGRAM_DATA_2026_09 = {
           {
             "brand": "Cayman Jack",
             "label": "Cayman Jack",
-            "placements": 6,
-            "actual": 6,
+            "placements": 14,
+            "actual": 14,
             "base": 15,
             "goal": 14,
-            "pct": 42.9,
-            "toGo": 8,
-            "retained": false
+            "pct": 100.0,
+            "toGo": 0,
+            "retained": true
           },
           {
             "brand": "Mike's Harder",
             "label": "Mike's Harder",
-            "placements": 7,
-            "actual": 7,
+            "placements": 8,
+            "actual": 8,
             "base": 8,
             "goal": 7,
-            "pct": 100.0,
+            "pct": 114.3,
             "toGo": 0,
             "retained": true
           }
         ],
         "brandGoalsTotal": 4,
-        "brandGoalsRetained": 1,
-        "skusHeld": 33
+        "brandGoalsRetained": 2,
+        "skusHeld": 34
       },
       "Mike Ast": {
-        "placements": 219,
+        "placements": 252,
         "base": 444,
         "goal": 400,
-        "pct": 54.8,
-        "toGo": 181,
+        "pct": 63.0,
+        "toGo": 148,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 216.8,
+        "pctOfPace": 229.3,
         "products": [
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
             "brand": "White Claw",
-            "placements": 15
-          },
-          {
-            "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 15
+            "placements": 17
           },
           {
             "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
             "brand": "White Claw",
-            "placements": 14
+            "placements": 16
           },
           {
-            "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
+            "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 14
+            "placements": 16
           },
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
             "brand": "White Claw",
-            "placements": 13
+            "placements": 15
+          },
+          {
+            "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 15
           },
           {
             "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 12
+            "placements": 14
           },
           {
             "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
             "brand": "White Claw",
+            "placements": 12
+          },
+          {
+            "product": "8410 Mikes Hard Lemonade 4/6/11.2 oz Btl",
+            "brand": "Mike's Hard Lemonade",
             "placements": 11
           },
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 9
+            "placements": 10
           },
           {
-            "product": "8410 Mikes Hard Lemonade 4/6/11.2 oz Btl",
-            "brand": "Mike's Hard Lemonade",
-            "placements": 8
+            "product": "8586 White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 9
           },
           {
             "product": "8577 White Claw Hard Seltzer Surge Variety #1 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 7
+            "placements": 8
+          },
+          {
+            "product": "8632 White Claw Surge Blueberry 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 8
           },
           {
             "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
             "brand": "Cayman Jack",
-            "placements": 6
+            "placements": 7
+          },
+          {
+            "product": "86004 Mike's Hard Pink Lemonade 4/6/12 oz Can",
+            "brand": "Mike's Hard Lemonade",
+            "placements": 7
+          },
+          {
+            "product": "8623 White Claw Surge 8% Blood Orange 19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 7
           },
           {
             "product": "8582 White Claw Hard Seltzer Ruby Grapefruit 4/6/12 oz Can",
-            "brand": "White Claw",
-            "placements": 6
-          },
-          {
-            "product": "8586 White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
             "brand": "White Claw",
             "placements": 6
           },
@@ -110838,22 +111182,22 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 6
           },
           {
-            "product": "86004 Mike's Hard Pink Lemonade 4/6/12 oz Can",
-            "brand": "Mike's Hard Lemonade",
-            "placements": 6
-          },
-          {
-            "product": "8632 White Claw Surge Blueberry 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 6
-          },
-          {
             "product": "86006 Mike's Hard Strawberry Lemonade 4/6/12 oz Can",
             "brand": "Mike's Hard Lemonade",
+            "placements": 6
+          },
+          {
+            "product": "8624 White Claw Surge 8% Cranberry 19.2 oz Can",
+            "brand": "White Claw",
             "placements": 5
           },
           {
-            "product": "8623 White Claw Surge 8% Blood Orange 19.2 oz Can",
+            "product": "8628 White Claw Surge Variety #2 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 5
+          },
+          {
+            "product": "8638 White Claw Surge Grape 1/12/19.2oz Can",
             "brand": "White Claw",
             "placements": 5
           },
@@ -110873,12 +111217,7 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 4
           },
           {
-            "product": "8628 White Claw Surge Variety #2 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 4
-          },
-          {
-            "product": "8638 White Claw Surge Grape 1/12/19.2oz Can",
+            "product": "8637 White Claw Clawtails Variety 2/12/12 oz Can",
             "brand": "White Claw",
             "placements": 4
           },
@@ -110893,17 +111232,12 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 3
           },
           {
+            "product": "8596 White Claw Hard Seltzer Variety 1/24/12 oz Loose Can",
+            "brand": "White Claw",
+            "placements": 3
+          },
+          {
             "product": "8619 White Claw Blackberry 4/6/12 oz Can",
-            "brand": "White Claw",
-            "placements": 3
-          },
-          {
-            "product": "8624 White Claw Surge 8% Cranberry 19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 3
-          },
-          {
-            "product": "8637 White Claw Clawtails Variety 2/12/12 oz Can",
             "brand": "White Claw",
             "placements": 3
           },
@@ -110918,8 +111252,8 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 2
           },
           {
-            "product": "8596 White Claw Hard Seltzer Variety 1/24/12 oz Loose Can",
-            "brand": "White Claw",
+            "product": "8559 Cayman Jack Margarita Variety 2/12/12 oz Can",
+            "brand": "Cayman Jack",
             "placements": 2
           },
           {
@@ -110958,11 +111292,6 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 1
           },
           {
-            "product": "8559 Cayman Jack Margarita Variety 2/12/12 oz Can",
-            "brand": "Cayman Jack",
-            "placements": 1
-          },
-          {
             "product": "86001 Mike's Hard Lemonade 4/6/12 oz Can",
             "brand": "Mike's Hard Lemonade",
             "placements": 1
@@ -110987,34 +111316,34 @@ const PROGRAM_DATA_2026_09 = {
           {
             "brand": "White Claw",
             "label": "White Claw",
-            "placements": 157,
-            "actual": 157,
+            "placements": 183,
+            "actual": 183,
             "base": 301,
             "goal": 271,
-            "pct": 57.9,
-            "toGo": 114,
+            "pct": 67.5,
+            "toGo": 88,
             "retained": false
           },
           {
             "brand": "Mike's Hard Lemonade",
             "label": "Mike's Hard Lemonade",
-            "placements": 27,
-            "actual": 27,
+            "placements": 32,
+            "actual": 32,
             "base": 55,
             "goal": 50,
-            "pct": 54.0,
-            "toGo": 23,
+            "pct": 64.0,
+            "toGo": 18,
             "retained": false
           },
           {
             "brand": "Cayman Jack",
             "label": "Cayman Jack",
-            "placements": 18,
-            "actual": 18,
+            "placements": 20,
+            "actual": 20,
             "base": 55,
             "goal": 50,
-            "pct": 36.0,
-            "toGo": 32,
+            "pct": 40.0,
+            "toGo": 30,
             "retained": false
           },
           {
@@ -111045,19 +111374,19 @@ const PROGRAM_DATA_2026_09 = {
         "skusHeld": 43
       },
       "Nick Melissari": {
-        "placements": 29,
+        "placements": 32,
         "base": 78,
         "goal": 70,
-        "pct": 41.4,
-        "toGo": 41,
+        "pct": 45.7,
+        "toGo": 38,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 163.8,
+        "pctOfPace": 166.3,
         "products": [
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
             "brand": "White Claw",
-            "placements": 18
+            "placements": 19
           },
           {
             "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
@@ -111072,10 +111401,15 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "8410 Mikes Hard Lemonade 4/6/11.2 oz Btl",
             "brand": "Mike's Hard Lemonade",
-            "placements": 1
+            "placements": 2
           },
           {
             "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 1
+          },
+          {
+            "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
             "brand": "White Claw",
             "placements": 1
           },
@@ -111089,23 +111423,12 @@ const PROGRAM_DATA_2026_09 = {
           {
             "brand": "White Claw",
             "label": "White Claw",
-            "placements": 28,
-            "actual": 28,
+            "placements": 30,
+            "actual": 30,
             "base": 75,
             "goal": 68,
-            "pct": 41.2,
-            "toGo": 40,
-            "retained": false
-          },
-          {
-            "brand": "Mike's Hard Lemonade",
-            "label": "Mike's Hard Lemonade",
-            "placements": 1,
-            "actual": 1,
-            "base": 2,
-            "goal": 2,
-            "pct": 50.0,
-            "toGo": 1,
+            "pct": 44.1,
+            "toGo": 38,
             "retained": false
           },
           {
@@ -111118,29 +111441,45 @@ const PROGRAM_DATA_2026_09 = {
             "pct": 0.0,
             "toGo": 1,
             "retained": false
+          },
+          {
+            "brand": "Mike's Hard Lemonade",
+            "label": "Mike's Hard Lemonade",
+            "placements": 2,
+            "actual": 2,
+            "base": 2,
+            "goal": 2,
+            "pct": 100.0,
+            "toGo": 0,
+            "retained": true
           }
         ],
         "brandGoalsTotal": 3,
-        "brandGoalsRetained": 0,
-        "skusHeld": 6
+        "brandGoalsRetained": 1,
+        "skusHeld": 7
       },
       "Pablo Lopez": {
-        "placements": 103,
+        "placements": 119,
         "base": 237,
         "goal": 213,
-        "pct": 48.4,
-        "toGo": 110,
+        "pct": 55.9,
+        "toGo": 94,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 191.5,
+        "pctOfPace": 203.5,
         "products": [
           {
             "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
             "brand": "Cayman Jack",
-            "placements": 11
+            "placements": 12
           },
           {
             "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
+            "brand": "Cayman Jack",
+            "placements": 11
+          },
+          {
+            "product": "8546 Cayman Jack Mango Margarita 4/6/12 oz Btl",
             "brand": "Cayman Jack",
             "placements": 10
           },
@@ -111152,10 +111491,15 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
             "brand": "White Claw",
+            "placements": 8
+          },
+          {
+            "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
+            "brand": "White Claw",
             "placements": 7
           },
           {
-            "product": "8546 Cayman Jack Mango Margarita 4/6/12 oz Btl",
+            "product": "8559 Cayman Jack Margarita Variety 2/12/12 oz Can",
             "brand": "Cayman Jack",
             "placements": 6
           },
@@ -111165,13 +111509,13 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 6
           },
           {
-            "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 6
+            "product": "8410 Mikes Hard Lemonade 4/6/11.2 oz Btl",
+            "brand": "Mike's Hard Lemonade",
+            "placements": 5
           },
           {
-            "product": "8559 Cayman Jack Margarita Variety 2/12/12 oz Can",
-            "brand": "Cayman Jack",
+            "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
+            "brand": "White Claw",
             "placements": 5
           },
           {
@@ -111180,24 +111524,24 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 5
           },
           {
-            "product": "8410 Mikes Hard Lemonade 4/6/11.2 oz Btl",
-            "brand": "Mike's Hard Lemonade",
-            "placements": 4
-          },
-          {
-            "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 4
-          },
-          {
             "product": "86006 Mike's Hard Strawberry Lemonade 4/6/12 oz Can",
             "brand": "Mike's Hard Lemonade",
-            "placements": 4
+            "placements": 5
           },
           {
             "product": "8454 Mikes Hard Party Kit Variety 2/12/11.2 oz Btl",
             "brand": "Mike's Hard Lemonade",
             "placements": 3
+          },
+          {
+            "product": "8530 Cayman Jack Sweet Heat Margarita Variety 2/12/12 oz Can",
+            "brand": "Cayman Jack",
+            "placements": 2
+          },
+          {
+            "product": "8551 Cayman Jack Margarita 2/12/12 oz Can",
+            "brand": "Cayman Jack",
+            "placements": 2
           },
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -111240,8 +111584,8 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 1
           },
           {
-            "product": "8530 Cayman Jack Sweet Heat Margarita Variety 2/12/12 oz Can",
-            "brand": "Cayman Jack",
+            "product": "8481 Mikes Harder Lemonade 1/12/23.5 oz Can",
+            "brand": "Mike's Harder",
             "placements": 1
           },
           {
@@ -111251,11 +111595,6 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "product": "8538 Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
-            "brand": "Cayman Jack",
-            "placements": 1
-          },
-          {
-            "product": "8551 Cayman Jack Margarita 2/12/12 oz Can",
             "brand": "Cayman Jack",
             "placements": 1
           },
@@ -111285,6 +111624,11 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 1
           },
           {
+            "product": "8632 White Claw Surge Blueberry 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 1
+          },
+          {
             "product": "8639 White Claw Pineapple 4/6/12 oz Can",
             "brand": "White Claw",
             "placements": 1
@@ -111294,69 +111638,79 @@ const PROGRAM_DATA_2026_09 = {
           {
             "brand": "White Claw",
             "label": "White Claw",
-            "placements": 47,
-            "actual": 47,
+            "placements": 51,
+            "actual": 51,
             "base": 115,
             "goal": 104,
-            "pct": 45.2,
-            "toGo": 57,
+            "pct": 49.0,
+            "toGo": 53,
             "retained": false
           },
           {
             "brand": "Cayman Jack",
             "label": "Cayman Jack",
-            "placements": 36,
-            "actual": 36,
+            "placements": 45,
+            "actual": 45,
             "base": 84,
             "goal": 76,
-            "pct": 47.4,
-            "toGo": 40,
+            "pct": 59.2,
+            "toGo": 31,
             "retained": false
           },
           {
             "brand": "Mike's Hard Lemonade",
             "label": "Mike's Hard Lemonade",
-            "placements": 17,
-            "actual": 17,
+            "placements": 19,
+            "actual": 19,
             "base": 24,
             "goal": 22,
-            "pct": 77.3,
-            "toGo": 5,
+            "pct": 86.4,
+            "toGo": 3,
             "retained": false
           },
           {
             "brand": "Mike's Harder",
             "label": "Mike's Harder",
-            "placements": 3,
-            "actual": 3,
+            "placements": 4,
+            "actual": 4,
             "base": 14,
             "goal": 13,
-            "pct": 23.1,
-            "toGo": 10,
+            "pct": 30.8,
+            "toGo": 9,
             "retained": false
           }
         ],
         "brandGoalsTotal": 4,
         "brandGoalsRetained": 0,
-        "skusHeld": 31
+        "skusHeld": 33
       },
       "Paul Mclaughlin": {
-        "placements": 20,
+        "placements": 26,
         "base": 51,
         "goal": 46,
-        "pct": 43.5,
-        "toGo": 26,
+        "pct": 56.5,
+        "toGo": 20,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 172.1,
+        "pctOfPace": 205.7,
         "products": [
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 14
+            "placements": 17
           },
           {
             "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 3
+          },
+          {
+            "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 2
+          },
+          {
+            "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
             "brand": "White Claw",
             "placements": 2
           },
@@ -111366,16 +111720,6 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 1
           },
           {
-            "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 1
-          },
-          {
-            "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 1
-          },
-          {
             "product": "8639 White Claw Pineapple 4/6/12 oz Can",
             "brand": "White Claw",
             "placements": 1
@@ -111385,12 +111729,12 @@ const PROGRAM_DATA_2026_09 = {
           {
             "brand": "White Claw",
             "label": "White Claw",
-            "placements": 20,
-            "actual": 20,
+            "placements": 26,
+            "actual": 26,
             "base": 49,
             "goal": 44,
-            "pct": 45.5,
-            "toGo": 24,
+            "pct": 59.1,
+            "toGo": 18,
             "retained": false
           },
           {
@@ -111410,72 +111754,92 @@ const PROGRAM_DATA_2026_09 = {
         "skusHeld": 6
       },
       "Phil Ernst": {
-        "placements": 289,
+        "placements": 337,
         "base": 499,
         "goal": 449,
-        "pct": 64.4,
-        "toGo": 160,
+        "pct": 75.1,
+        "toGo": 112,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 254.8,
+        "pctOfPace": 273.4,
         "products": [
           {
             "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 20
-          },
-          {
-            "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 18
+            "placements": 21
           },
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
             "brand": "White Claw",
-            "placements": 17
+            "placements": 19
+          },
+          {
+            "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 19
           },
           {
             "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 17
-          },
-          {
-            "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 14
-          },
-          {
-            "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 13
-          },
-          {
-            "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
-            "brand": "Cayman Jack",
-            "placements": 12
+            "placements": 19
           },
           {
             "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
             "brand": "White Claw",
-            "placements": 12
+            "placements": 16
+          },
+          {
+            "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 16
+          },
+          {
+            "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 15
+          },
+          {
+            "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
+            "brand": "Cayman Jack",
+            "placements": 14
           },
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 12
+            "placements": 13
           },
           {
             "product": "8577 White Claw Hard Seltzer Surge Variety #1 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 11
+            "placements": 12
           },
           {
             "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
             "brand": "Cayman Jack",
+            "placements": 11
+          },
+          {
+            "product": "8582 White Claw Hard Seltzer Ruby Grapefruit 4/6/12 oz Can",
+            "brand": "White Claw",
             "placements": 10
           },
           {
             "product": "8586 White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 10
+          },
+          {
+            "product": "8628 White Claw Surge Variety #2 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 10
+          },
+          {
+            "product": "8637 White Claw Clawtails Variety 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 10
+          },
+          {
+            "product": "8619 White Claw Blackberry 4/6/12 oz Can",
             "brand": "White Claw",
             "placements": 9
           },
@@ -111485,22 +111849,7 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 8
           },
           {
-            "product": "8582 White Claw Hard Seltzer Ruby Grapefruit 4/6/12 oz Can",
-            "brand": "White Claw",
-            "placements": 8
-          },
-          {
-            "product": "8619 White Claw Blackberry 4/6/12 oz Can",
-            "brand": "White Claw",
-            "placements": 8
-          },
-          {
-            "product": "8628 White Claw Surge Variety #2 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 8
-          },
-          {
-            "product": "8637 White Claw Clawtails Variety 2/12/12 oz Can",
+            "product": "8596 White Claw Hard Seltzer Variety 1/24/12 oz Loose Can",
             "brand": "White Claw",
             "placements": 8
           },
@@ -111515,14 +111864,44 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 7
           },
           {
-            "product": "8596 White Claw Hard Seltzer Variety 1/24/12 oz Loose Can",
+            "product": "8631 White Claw Peach 1/12/19.2 oz Can",
             "brand": "White Claw",
             "placements": 7
+          },
+          {
+            "product": "86004 Mike's Hard Pink Lemonade 4/6/12 oz Can",
+            "brand": "Mike's Hard Lemonade",
+            "placements": 6
+          },
+          {
+            "product": "8410 Mikes Hard Lemonade 4/6/11.2 oz Btl",
+            "brand": "Mike's Hard Lemonade",
+            "placements": 5
           },
           {
             "product": "8458 Mikes Harder Black Cherry 1/12/23.5 oz Can",
             "brand": "Mike's Harder",
             "placements": 5
+          },
+          {
+            "product": "8623 White Claw Surge 8% Blood Orange 19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 5
+          },
+          {
+            "product": "8624 White Claw Surge 8% Cranberry 19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 5
+          },
+          {
+            "product": "8626 White Claw Blackberry 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 5
+          },
+          {
+            "product": "8454 Mikes Hard Party Kit Variety 2/12/11.2 oz Btl",
+            "brand": "Mike's Hard Lemonade",
+            "placements": 4
           },
           {
             "product": "8530 Cayman Jack Sweet Heat Margarita Variety 2/12/12 oz Can",
@@ -111535,23 +111914,8 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 4
           },
           {
-            "product": "86004 Mike's Hard Pink Lemonade 4/6/12 oz Can",
+            "product": "86006 Mike's Hard Strawberry Lemonade 4/6/12 oz Can",
             "brand": "Mike's Hard Lemonade",
-            "placements": 4
-          },
-          {
-            "product": "8623 White Claw Surge 8% Blood Orange 19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 4
-          },
-          {
-            "product": "8624 White Claw Surge 8% Cranberry 19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 4
-          },
-          {
-            "product": "8631 White Claw Peach 1/12/19.2 oz Can",
-            "brand": "White Claw",
             "placements": 4
           },
           {
@@ -111560,19 +111924,14 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 3
           },
           {
-            "product": "8410 Mikes Hard Lemonade 4/6/11.2 oz Btl",
+            "product": "86001 Mike's Hard Lemonade 4/6/12 oz Can",
             "brand": "Mike's Hard Lemonade",
             "placements": 3
           },
           {
-            "product": "8626 White Claw Blackberry 1/12/19.2 oz Can",
-            "brand": "White Claw",
+            "product": "86011 Mikes Hard Dirty Lemonade Variety 2/12/12 oz Can",
+            "brand": "Mike's Hard Dirty Lemonade",
             "placements": 3
-          },
-          {
-            "product": "8454 Mikes Hard Party Kit Variety 2/12/11.2 oz Btl",
-            "brand": "Mike's Hard Lemonade",
-            "placements": 2
           },
           {
             "product": "8460 Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
@@ -111585,18 +111944,18 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 2
           },
           {
+            "product": "8538 Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
+            "brand": "Cayman Jack",
+            "placements": 2
+          },
+          {
             "product": "8539 Cayman Jack Zero Sugar Margarita Variety 2/12/12 oz Can",
             "brand": "Cayman Jack",
             "placements": 2
           },
           {
-            "product": "86001 Mike's Hard Lemonade 4/6/12 oz Can",
+            "product": "86002 Mike's Hard Black Cherry Lemonade 4/6/12 oz Can",
             "brand": "Mike's Hard Lemonade",
-            "placements": 2
-          },
-          {
-            "product": "86011 Mikes Hard Dirty Lemonade Variety 2/12/12 oz Can",
-            "brand": "Mike's Hard Dirty Lemonade",
             "placements": 2
           },
           {
@@ -111620,23 +111979,8 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 1
           },
           {
-            "product": "8538 Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
-            "brand": "Cayman Jack",
-            "placements": 1
-          },
-          {
             "product": "8551 Cayman Jack Margarita 2/12/12 oz Can",
             "brand": "Cayman Jack",
-            "placements": 1
-          },
-          {
-            "product": "86002 Mike's Hard Black Cherry Lemonade 4/6/12 oz Can",
-            "brand": "Mike's Hard Lemonade",
-            "placements": 1
-          },
-          {
-            "product": "86006 Mike's Hard Strawberry Lemonade 4/6/12 oz Can",
-            "brand": "Mike's Hard Lemonade",
             "placements": 1
           },
           {
@@ -111659,23 +112003,34 @@ const PROGRAM_DATA_2026_09 = {
           {
             "brand": "White Claw",
             "label": "White Claw",
-            "placements": 210,
-            "actual": 210,
+            "placements": 242,
+            "actual": 242,
             "base": 316,
             "goal": 284,
-            "pct": 73.9,
-            "toGo": 74,
+            "pct": 85.2,
+            "toGo": 42,
             "retained": false
           },
           {
             "brand": "Cayman Jack",
             "label": "Cayman Jack",
-            "placements": 42,
-            "actual": 42,
+            "placements": 46,
+            "actual": 46,
             "base": 80,
             "goal": 72,
-            "pct": 58.3,
-            "toGo": 30,
+            "pct": 63.9,
+            "toGo": 26,
+            "retained": false
+          },
+          {
+            "brand": "Mike's Hard Lemonade",
+            "label": "Mike's Hard Lemonade",
+            "placements": 24,
+            "actual": 24,
+            "base": 53,
+            "goal": 48,
+            "pct": 50.0,
+            "toGo": 24,
             "retained": false
           },
           {
@@ -111690,25 +112045,14 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false
           },
           {
-            "brand": "Mike's Hard Lemonade",
-            "label": "Mike's Hard Lemonade",
-            "placements": 13,
-            "actual": 13,
-            "base": 53,
-            "goal": 48,
-            "pct": 27.1,
-            "toGo": 35,
-            "retained": false
-          },
-          {
             "brand": "Mike's Hard Dirty Lemonade",
             "label": "Mike's Hard Dirty Lemonade",
-            "placements": 2,
-            "actual": 2,
+            "placements": 3,
+            "actual": 3,
             "base": 8,
             "goal": 7,
-            "pct": 28.6,
-            "toGo": 5,
+            "pct": 42.9,
+            "toGo": 4,
             "retained": false
           },
           {
@@ -111728,15 +112072,115 @@ const PROGRAM_DATA_2026_09 = {
         "skusHeld": 47
       },
       "Robin Feldman": {
-        "placements": 34,
+        "placements": 43,
         "base": 95,
         "goal": 86,
-        "pct": 39.5,
-        "toGo": 52,
+        "pct": 50.0,
+        "toGo": 43,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 156.3,
+        "pctOfPace": 182.0,
         "products": [
+          {
+            "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 15
+          },
+          {
+            "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 6
+          },
+          {
+            "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 6
+          },
+          {
+            "product": "8619 White Claw Blackberry 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 5
+          },
+          {
+            "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 4
+          },
+          {
+            "product": "8410 Mikes Hard Lemonade 4/6/11.2 oz Btl",
+            "brand": "Mike's Hard Lemonade",
+            "placements": 3
+          },
+          {
+            "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 2
+          },
+          {
+            "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
+            "brand": "Cayman Jack",
+            "placements": 1
+          },
+          {
+            "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 1
+          }
+        ],
+        "brands": [
+          {
+            "brand": "White Claw",
+            "label": "White Claw",
+            "placements": 39,
+            "actual": 39,
+            "base": 93,
+            "goal": 84,
+            "pct": 46.4,
+            "toGo": 45,
+            "retained": false
+          },
+          {
+            "brand": "Mike's Hard Lemonade",
+            "label": "Mike's Hard Lemonade",
+            "placements": 3,
+            "actual": 3,
+            "base": 2,
+            "goal": 2,
+            "pct": 150.0,
+            "toGo": 0,
+            "retained": true
+          },
+          {
+            "brand": "Cayman Jack",
+            "label": "Cayman Jack",
+            "placements": 1,
+            "actual": 1,
+            "base": null,
+            "goal": null,
+            "pct": null,
+            "toGo": 0,
+            "retained": false
+          }
+        ],
+        "brandGoalsTotal": 2,
+        "brandGoalsRetained": 1,
+        "skusHeld": 9
+      },
+      "Shane Barreca": {
+        "placements": 227,
+        "base": 471,
+        "goal": 424,
+        "pct": 53.5,
+        "toGo": 197,
+        "retained": false,
+        "hasGoal": true,
+        "pctOfPace": 194.7,
+        "products": [
+          {
+            "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 17
+          },
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
             "brand": "White Claw",
@@ -111745,121 +112189,57 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 5
-          },
-          {
-            "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
-            "brand": "White Claw",
-            "placements": 4
-          },
-          {
-            "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 4
-          },
-          {
-            "product": "8619 White Claw Blackberry 4/6/12 oz Can",
-            "brand": "White Claw",
-            "placements": 4
-          },
-          {
-            "product": "8410 Mikes Hard Lemonade 4/6/11.2 oz Btl",
-            "brand": "Mike's Hard Lemonade",
-            "placements": 2
-          },
-          {
-            "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 2
-          }
-        ],
-        "brands": [
-          {
-            "brand": "White Claw",
-            "label": "White Claw",
-            "placements": 32,
-            "actual": 32,
-            "base": 93,
-            "goal": 84,
-            "pct": 38.1,
-            "toGo": 52,
-            "retained": false
-          },
-          {
-            "brand": "Mike's Hard Lemonade",
-            "label": "Mike's Hard Lemonade",
-            "placements": 2,
-            "actual": 2,
-            "base": 2,
-            "goal": 2,
-            "pct": 100.0,
-            "toGo": 0,
-            "retained": true
-          }
-        ],
-        "brandGoalsTotal": 2,
-        "brandGoalsRetained": 1,
-        "skusHeld": 7
-      },
-      "Shane Barreca": {
-        "placements": 198,
-        "base": 471,
-        "goal": 424,
-        "pct": 46.7,
-        "toGo": 226,
-        "retained": false,
-        "hasGoal": true,
-        "pctOfPace": 184.8,
-        "products": [
-          {
-            "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 17
-          },
-          {
-            "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 12
-          },
-          {
-            "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
-            "brand": "White Claw",
-            "placements": 11
+            "placements": 13
           },
           {
             "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
             "brand": "White Claw",
+            "placements": 13
+          },
+          {
+            "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
+            "brand": "White Claw",
             "placements": 11
           },
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 10
+            "placements": 11
           },
           {
             "product": "8481 Mikes Harder Lemonade 1/12/23.5 oz Can",
             "brand": "Mike's Harder",
-            "placements": 9
+            "placements": 10
           },
           {
             "product": "8410 Mikes Hard Lemonade 4/6/11.2 oz Btl",
             "brand": "Mike's Hard Lemonade",
-            "placements": 8
-          },
-          {
-            "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
-            "brand": "White Claw",
-            "placements": 8
+            "placements": 9
           },
           {
             "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 8
+            "placements": 9
           },
           {
             "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
             "brand": "Cayman Jack",
-            "placements": 7
+            "placements": 8
+          },
+          {
+            "product": "8586 White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 8
+          },
+          {
+            "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 8
+          },
+          {
+            "product": "8623 White Claw Surge 8% Blood Orange 19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 8
           },
           {
             "product": "8582 White Claw Hard Seltzer Ruby Grapefruit 4/6/12 oz Can",
@@ -111867,29 +112247,14 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 7
           },
           {
-            "product": "8586 White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 7
-          },
-          {
             "product": "8619 White Claw Blackberry 4/6/12 oz Can",
             "brand": "White Claw",
             "placements": 7
           },
           {
-            "product": "8623 White Claw Surge 8% Blood Orange 19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 7
-          },
-          {
-            "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 6
-          },
-          {
             "product": "8624 White Claw Surge 8% Cranberry 19.2 oz Can",
             "brand": "White Claw",
-            "placements": 6
+            "placements": 7
           },
           {
             "product": "8632 White Claw Surge Blueberry 1/12/19.2 oz Can",
@@ -111904,7 +112269,7 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "86004 Mike's Hard Pink Lemonade 4/6/12 oz Can",
             "brand": "Mike's Hard Lemonade",
-            "placements": 4
+            "placements": 5
           },
           {
             "product": "86006 Mike's Hard Strawberry Lemonade 4/6/12 oz Can",
@@ -111917,8 +112282,38 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 4
           },
           {
+            "product": "8458 Mikes Harder Black Cherry 1/12/23.5 oz Can",
+            "brand": "Mike's Harder",
+            "placements": 3
+          },
+          {
+            "product": "8466 Mikes Harder Mango 1/12/23.5 oz Can",
+            "brand": "Mike's Harder",
+            "placements": 3
+          },
+          {
             "product": "8480 Mikes Harder Cranberry 1/12/23.5 oz Can",
             "brand": "Mike's Harder",
+            "placements": 3
+          },
+          {
+            "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
+            "brand": "Cayman Jack",
+            "placements": 3
+          },
+          {
+            "product": "8546 Cayman Jack Mango Margarita 4/6/12 oz Btl",
+            "brand": "Cayman Jack",
+            "placements": 3
+          },
+          {
+            "product": "8551 Cayman Jack Margarita 2/12/12 oz Can",
+            "brand": "Cayman Jack",
+            "placements": 3
+          },
+          {
+            "product": "8559 Cayman Jack Margarita Variety 2/12/12 oz Can",
+            "brand": "Cayman Jack",
             "placements": 3
           },
           {
@@ -111942,23 +112337,13 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 3
           },
           {
-            "product": "8458 Mikes Harder Black Cherry 1/12/23.5 oz Can",
+            "product": "8427 Mikes Harder Variety 2/12/12 oz Can",
             "brand": "Mike's Harder",
             "placements": 2
           },
           {
-            "product": "8466 Mikes Harder Mango 1/12/23.5 oz Can",
-            "brand": "Mike's Harder",
-            "placements": 2
-          },
-          {
-            "product": "8551 Cayman Jack Margarita 2/12/12 oz Can",
-            "brand": "Cayman Jack",
-            "placements": 2
-          },
-          {
-            "product": "8559 Cayman Jack Margarita Variety 2/12/12 oz Can",
-            "brand": "Cayman Jack",
+            "product": "8454 Mikes Hard Party Kit Variety 2/12/11.2 oz Btl",
+            "brand": "Mike's Hard Lemonade",
             "placements": 2
           },
           {
@@ -111972,28 +112357,8 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 2
           },
           {
-            "product": "8427 Mikes Harder Variety 2/12/12 oz Can",
-            "brand": "Mike's Harder",
-            "placements": 1
-          },
-          {
-            "product": "8454 Mikes Hard Party Kit Variety 2/12/11.2 oz Btl",
-            "brand": "Mike's Hard Lemonade",
-            "placements": 1
-          },
-          {
             "product": "8460 Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
             "brand": "Mike's Harder",
-            "placements": 1
-          },
-          {
-            "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
-            "brand": "Cayman Jack",
-            "placements": 1
-          },
-          {
-            "product": "8546 Cayman Jack Mango Margarita 4/6/12 oz Btl",
-            "brand": "Cayman Jack",
             "placements": 1
           },
           {
@@ -112011,45 +112376,45 @@ const PROGRAM_DATA_2026_09 = {
           {
             "brand": "White Claw",
             "label": "White Claw",
-            "placements": 147,
-            "actual": 147,
+            "placements": 162,
+            "actual": 162,
             "base": 314,
             "goal": 283,
-            "pct": 51.9,
-            "toGo": 136,
-            "retained": false
-          },
-          {
-            "brand": "Mike's Hard Lemonade",
-            "label": "Mike's Hard Lemonade",
-            "placements": 18,
-            "actual": 18,
-            "base": 50,
-            "goal": 45,
-            "pct": 40.0,
-            "toGo": 27,
+            "pct": 57.2,
+            "toGo": 121,
             "retained": false
           },
           {
             "brand": "Mike's Harder",
             "label": "Mike's Harder",
-            "placements": 18,
-            "actual": 18,
+            "placements": 22,
+            "actual": 22,
             "base": 44,
             "goal": 40,
-            "pct": 45.0,
-            "toGo": 22,
+            "pct": 55.0,
+            "toGo": 18,
+            "retained": false
+          },
+          {
+            "brand": "Mike's Hard Lemonade",
+            "label": "Mike's Hard Lemonade",
+            "placements": 21,
+            "actual": 21,
+            "base": 50,
+            "goal": 45,
+            "pct": 46.7,
+            "toGo": 24,
             "retained": false
           },
           {
             "brand": "Cayman Jack",
             "label": "Cayman Jack",
-            "placements": 13,
-            "actual": 13,
+            "placements": 20,
+            "actual": 20,
             "base": 58,
             "goal": 52,
-            "pct": 25.0,
-            "toGo": 39,
+            "pct": 38.5,
+            "toGo": 32,
             "retained": false
           },
           {
@@ -112069,17 +112434,17 @@ const PROGRAM_DATA_2026_09 = {
         "skusHeld": 39
       }
     },
-    "houseTotal": 3957,
+    "houseTotal": 4566,
     "houseGoal": 7326,
     "houseBase": 8140,
-    "housePct": 54.0,
+    "housePct": 62.3,
     "repsRetained": 0,
     "repsWithGoal": 24,
     "periodStart": "2026-09-01",
     "periodEnd": "2026-11-30",
     "periodDays": 91,
-    "daysElapsed": 23,
-    "pacePct": 25.3,
+    "daysElapsed": 25,
+    "pacePct": 27.5,
     "meta": {
       "offRoster": [
         "Default",
@@ -112348,11 +112713,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 4,
+            "placements": 5,
             "goal": 17,
-            "pct": 23.5,
+            "pct": 29.4,
             "retained": false,
-            "toGo": 13,
+            "toGo": 12,
             "inReport": true,
             "products": [
               {
@@ -112366,17 +112731,17 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": true
               },
               {
-                "product": "Victoria 2/12/12 oz Can",
-                "placements": 0,
+                "product": "Corona Extra 1/12/24 oz Can",
+                "placements": 1,
                 "base": 2,
                 "goal": 2,
-                "pct": 0.0,
+                "pct": 50.0,
                 "retained": false,
-                "toGo": 2,
-                "lost": true
+                "toGo": 1,
+                "lost": false
               },
               {
-                "product": "Corona Extra 1/12/24 oz Can",
+                "product": "Victoria 2/12/12 oz Can",
                 "placements": 1,
                 "base": 2,
                 "goal": 2,
@@ -112501,18 +112866,18 @@ const PROGRAM_DATA_2026_09 = {
             "baseGoal": 17,
             "skusTotal": 14,
             "skusHeld": 3,
-            "skusLost": 10,
+            "skusLost": 9,
             "skusShort": 11,
             "skusNew": 0
           },
           {
             "key": "innovation",
             "label": "Innovation",
-            "placements": 0,
+            "placements": 1,
             "goal": 4,
-            "pct": 0.0,
+            "pct": 25.0,
             "retained": false,
-            "toGo": 4,
+            "toGo": 3,
             "inReport": true,
             "products": [
               {
@@ -112547,32 +112912,32 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Can",
-                "placements": 0,
+                "placements": 1,
                 "base": 1,
                 "goal": 1,
-                "pct": 0.0,
-                "retained": false,
-                "toGo": 1,
-                "lost": true
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
             "baseWindow": "3/1/2026 - 5/31/2026",
             "goalOverride": false,
             "baseGoal": 4,
             "skusTotal": 4,
-            "skusHeld": 0,
-            "skusLost": 4,
-            "skusShort": 4,
+            "skusHeld": 1,
+            "skusLost": 3,
+            "skusShort": 3,
             "skusNew": 0
           }
         ],
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 1,
-        "offPlacements": 17,
+        "offPlacements": 19,
         "offGoal": 37,
-        "offPct": 45.9,
-        "offToGo": 20,
+        "offPct": 51.4,
+        "offToGo": 18,
         "on_packages": {
           "families": [
             {
@@ -112642,10 +113007,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 6,
         "goalsRetained": 3,
-        "overallHeld": 19,
+        "overallHeld": 21,
         "overallGoal": 39,
-        "overallPct": 48.7,
-        "overallToGo": 20,
+        "overallPct": 53.8,
+        "overallToGo": 18,
         "hasAnyGoal": true
       },
       "Allison Scott": {
@@ -112727,11 +113092,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_extra",
               "label": "Corona Extra",
-              "buyers": 94,
+              "buyers": 97,
               "goal": 108,
-              "pct": 87.0,
+              "pct": 89.8,
               "retained": false,
-              "toGo": 14,
+              "toGo": 11,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -112745,10 +113110,50 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Applebee's Clifton",
+                  "num": "24022",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2404 Coronita Extra 4/6/7 oz Btl",
+                    "2405 Coronita Extra 1/24/7 oz Btl",
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "WAYNE ALE HOUSE & PIZZA",
                   "num": "12026",
                   "units": null,
-                  "lastDate": "2026-09-18",
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Las Maravillas Restaurant",
+                  "num": "19011",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2405 Coronita Extra 1/24/7 oz Btl",
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "D'Carbon Restaurant Hawthorne",
+                  "num": "19028",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2404 Coronita Extra 4/6/7 oz Btl",
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Dave & Buster's Nj, Inc",
+                  "num": "12034",
+                  "units": null,
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -112772,6 +113177,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Cheesecake Fact (A)Wayne",
+                  "num": "12041",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
                   "customer": "Maggie's Town Tav.(P)",
                   "num": "13003",
                   "units": null,
@@ -112781,10 +113195,29 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Applebee's (Totowa) (A)",
+                  "num": "14002",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2405 Coronita Extra 1/24/7 oz Btl",
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Murph's Bar & Liquor",
                   "num": "14003",
                   "units": null,
                   "lastDate": "2026-09-22",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Blackjack Mulligan's Public House",
+                  "num": "15004",
+                  "units": null,
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -112800,31 +113233,31 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Jimmy Geez (P)",
-                  "num": "17009",
+                  "customer": "Bask 46",
+                  "num": "15074",
                   "units": null,
-                  "lastDate": "2026-09-23",
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
-                  "customer": "Las Maravillas Restaurant",
-                  "num": "19011",
+                  "customer": "D'CARBON BAR AND GRILL haledon",
+                  "num": "17003",
                   "units": null,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-24",
                   "products": [
+                    "2404 Coronita Extra 4/6/7 oz Btl",
                     "2405 Coronita Extra 1/24/7 oz Btl",
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
-                  "customer": "D'Carbon Restaurant Hawthorne",
-                  "num": "19028",
+                  "customer": "Jimmy Geez (P)",
+                  "num": "17009",
                   "units": null,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-23",
                   "products": [
-                    "2404 Coronita Extra 4/6/7 oz Btl",
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
@@ -112838,13 +113271,30 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Applebee's Clifton",
-                  "num": "24022",
+                  "customer": "Bogey's Sport Bar",
+                  "num": "23001",
                   "units": null,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-25",
                   "products": [
-                    "2404 Coronita Extra 4/6/7 oz Btl",
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Clifton City Tavern(P)",
+                  "num": "23020",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
                     "2405 Coronita Extra 1/24/7 oz Btl",
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Rock Bar",
+                  "num": "24026",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
@@ -112897,6 +113347,42 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "The Celtic Knot",
+                  "num": "3002",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "cherry's",
+                  "num": "10001",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Bardis (P)",
+                  "num": "10007",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Grasshopper Irish Pub (A)",
+                  "num": "1005",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Sunset Pub & Grill(Z)",
                   "num": "11011",
                   "units": null,
@@ -112906,47 +113392,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Dave & Buster's Nj, Inc",
-                  "num": "12034",
-                  "units": null,
-                  "lastDate": "2026-09-17",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Cheesecake Fact (A)Wayne",
-                  "num": "12041",
-                  "units": null,
-                  "lastDate": "2026-09-17",
-                  "products": [
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
                   "customer": "Chili's Little Falls",
                   "num": "13018",
                   "units": null,
                   "lastDate": "2026-09-22",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Applebee's (Totowa) (A)",
-                  "num": "14002",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2405 Coronita Extra 1/24/7 oz Btl",
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Blackjack Mulligan's Public House",
-                  "num": "15004",
-                  "units": null,
-                  "lastDate": "2026-09-17",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -112961,38 +113410,19 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Bask 46",
-                  "num": "15074",
+                  "customer": "Neighbors",
+                  "num": "22004",
                   "units": null,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
-                  "customer": "Bogey's Sport Bar",
-                  "num": "23001",
+                  "customer": "Vfw 7165 (P)",
+                  "num": "23013",
                   "units": null,
-                  "lastDate": "2026-09-18",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Clifton City Tavern(P)",
-                  "num": "23020",
-                  "units": null,
-                  "lastDate": "2026-09-17",
-                  "products": [
-                    "2405 Coronita Extra 1/24/7 oz Btl",
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Rock Bar",
-                  "num": "24026",
-                  "units": null,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -113034,10 +113464,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "The Celtic Knot",
-                  "num": "3002",
+                  "customer": "Celtic Crossings",
+                  "num": "5008",
                   "units": null,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -113065,33 +113495,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "8004",
                   "units": null,
                   "lastDate": "2026-09-23",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "cherry's",
-                  "num": "10001",
-                  "units": null,
-                  "lastDate": "2026-09-18",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Bardis (P)",
-                  "num": "10007",
-                  "units": null,
-                  "lastDate": "2026-09-18",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Grasshopper Irish Pub (A)",
-                  "num": "1005",
-                  "units": null,
-                  "lastDate": "2026-09-18",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -113199,6 +113602,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "The Little Falls Tavern",
+                  "num": "13002",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Sear",
                   "num": "13005",
                   "units": null,
@@ -113226,6 +113638,24 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "46 Lounge (P)",
+                  "num": "14006",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "The Barnyard and Carriage House",
+                  "num": "14008",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Uncorked (P)",
                   "num": "14010",
                   "units": null,
@@ -113235,13 +113665,12 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "D'CARBON BAR AND GRILL haledon",
-                  "num": "17003",
+                  "customer": "Underdog Lounge(P)",
+                  "num": "17001",
                   "units": null,
-                  "lastDate": "2026-09-09",
+                  "lastDate": "2026-09-25",
                   "products": [
-                    "2405 Coronita Extra 1/24/7 oz Btl",
-                    "2410 Corona Extra 4/6/12 oz Btl"
+                    "2418 Corona Extra 1/18/12 oz Btl"
                   ]
                 },
                 {
@@ -113272,19 +113701,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Neighbors",
-                  "num": "22004",
+                  "customer": "Breaker Billiards",
+                  "num": "24061",
                   "units": null,
-                  "lastDate": "2026-09-14",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Vfw 7165 (P)",
-                  "num": "23013",
-                  "units": null,
-                  "lastDate": "2026-09-23",
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -113294,15 +113714,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "3007",
                   "units": null,
                   "lastDate": "2026-09-25",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Celtic Crossings",
-                  "num": "5008",
-                  "units": null,
-                  "lastDate": "2026-09-17",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -113408,42 +113819,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "The Little Falls Tavern",
-                  "num": "13002",
-                  "units": null,
-                  "lastDate": "2026-09-02",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "46 Lounge (P)",
-                  "num": "14006",
-                  "units": null,
-                  "lastDate": "2026-09-11",
-                  "products": [
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "The Barnyard and Carriage House",
-                  "num": "14008",
-                  "units": null,
-                  "lastDate": "2026-09-04",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Underdog Lounge(P)",
-                  "num": "17001",
-                  "units": null,
-                  "lastDate": "2026-09-11",
-                  "products": [
-                    "2418 Corona Extra 1/18/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Shortways' Barn (A)",
                   "num": "19004",
                   "units": null,
@@ -113516,19 +113891,28 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Veterans Post (9)",
-                  "num": "24039",
+                  "customer": "Mario's Rest",
+                  "num": "24027",
                   "units": null,
-                  "lastDate": "2026-09-23",
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
-                  "customer": "Breaker Billiards",
-                  "num": "24061",
+                  "customer": "J. Alexander's Restaurant",
+                  "num": "24038",
                   "units": null,
-                  "lastDate": "2026-09-10",
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Veterans Post (9)",
+                  "num": "24039",
+                  "units": null,
+                  "lastDate": "2026-09-23",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -113549,6 +113933,15 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-10",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Chevy's Fresh Mex (A)Clif",
+                  "num": "25077",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2405 Coronita Extra 1/24/7 oz Btl"
                   ]
                 },
                 {
@@ -113602,11 +113995,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_light",
               "label": "Corona Light",
-              "buyers": 34,
+              "buyers": 35,
               "goal": 49,
-              "pct": 69.4,
+              "pct": 71.4,
               "retained": false,
-              "toGo": 15,
+              "toGo": 14,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -113614,6 +114007,33 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "13003",
                   "units": null,
                   "lastDate": "2026-09-21",
+                  "products": [
+                    "2510 Corona Light 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Rock Bar",
+                  "num": "24026",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2510 Corona Light 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Bardis (P)",
+                  "num": "10007",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2510 Corona Light 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Grasshopper Irish Pub (A)",
+                  "num": "1005",
+                  "units": null,
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2510 Corona Light 4/6/12 oz Btl"
                   ]
@@ -113637,15 +114057,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Rock Bar",
-                  "num": "24026",
-                  "units": null,
-                  "lastDate": "2026-09-17",
-                  "products": [
-                    "2510 Corona Light 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Tommy's Tavern & Tap (Clifton)",
                   "num": "24031",
                   "units": null,
@@ -113657,24 +114068,6 @@ const PROGRAM_DATA_2026_09 = {
                 {
                   "customer": "cherry's",
                   "num": "10001",
-                  "units": null,
-                  "lastDate": "2026-09-18",
-                  "products": [
-                    "2510 Corona Light 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Bardis (P)",
-                  "num": "10007",
-                  "units": null,
-                  "lastDate": "2026-09-18",
-                  "products": [
-                    "2510 Corona Light 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Grasshopper Irish Pub (A)",
-                  "num": "1005",
                   "units": null,
                   "lastDate": "2026-09-18",
                   "products": [
@@ -113822,6 +114215,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "17009",
                   "units": null,
                   "lastDate": "2026-09-09",
+                  "products": [
+                    "2510 Corona Light 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Shortways' Barn (A)",
+                  "num": "19004",
+                  "units": null,
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2510 Corona Light 4/6/12 oz Btl"
                   ]
@@ -114059,11 +114461,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "modelo_especial",
               "label": "Modelo Especial",
-              "buyers": 44,
+              "buyers": 48,
               "goal": 68,
-              "pct": 64.7,
+              "pct": 70.6,
               "retained": false,
-              "toGo": 24,
+              "toGo": 20,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -114095,6 +114497,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "WAYNE ALE HOUSE & PIZZA",
+                  "num": "12026",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Maggies Town Tavern Ii",
                   "num": "12037",
                   "units": null,
@@ -114108,6 +114519,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "13002",
                   "units": null,
                   "lastDate": "2026-09-15",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Naxos Estiatorio",
+                  "num": "15067",
+                  "units": null,
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -114131,6 +114551,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Bogey's Sport Bar",
+                  "num": "23001",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "The Side Door (P)",
                   "num": "8004",
                   "units": null,
@@ -114149,19 +114578,19 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "WAYNE ALE HOUSE & PIZZA",
-                  "num": "12026",
+                  "customer": "Casa Don Manuel",
+                  "num": "12032",
                   "units": null,
-                  "lastDate": "2026-09-21",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
                 },
                 {
-                  "customer": "Casa Don Manuel",
-                  "num": "12032",
+                  "customer": "Cheesecake Fact (A)Wayne",
+                  "num": "12041",
                   "units": null,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -114185,10 +114614,19 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Naxos Estiatorio",
-                  "num": "15067",
+                  "customer": "D'CARBON BAR AND GRILL haledon",
+                  "num": "17003",
                   "units": null,
-                  "lastDate": "2026-09-18",
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "D'Carbon Restaurant Hawthorne",
+                  "num": "19028",
+                  "units": null,
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -114198,15 +114636,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "22004",
                   "units": null,
                   "lastDate": "2026-09-14",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Bogey's Sport Bar",
-                  "num": "23001",
-                  "units": null,
-                  "lastDate": "2026-09-11",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -114266,6 +114695,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "cherry's",
+                  "num": "10001",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Sunset Valley G C (A)",
                   "num": "10010",
                   "units": null,
@@ -114302,19 +114740,19 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Cheesecake Fact (A)Wayne",
-                  "num": "12041",
+                  "customer": "Applebee's (Totowa) (A)",
+                  "num": "14002",
                   "units": null,
-                  "lastDate": "2026-09-03",
+                  "lastDate": "2026-09-10",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
                 },
                 {
-                  "customer": "Applebee's (Totowa) (A)",
-                  "num": "14002",
+                  "customer": "46 Lounge (P)",
+                  "num": "14006",
                   "units": null,
-                  "lastDate": "2026-09-10",
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -114356,15 +114794,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "D'CARBON BAR AND GRILL haledon",
-                  "num": "17003",
-                  "units": null,
-                  "lastDate": "2026-09-09",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Blackjack Mulligans (Hawthorne)",
                   "num": "19006",
                   "units": null,
@@ -114392,10 +114821,19 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "D'Carbon Restaurant Hawthorne",
-                  "num": "19028",
+                  "customer": "Vfw 7165 (P)",
+                  "num": "23013",
                   "units": null,
-                  "lastDate": "2026-09-03",
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Mario's Rest",
+                  "num": "24027",
+                  "units": null,
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -114480,9 +114918,10 @@ const PROGRAM_DATA_2026_09 = {
                   "customer": "Bask 46",
                   "num": "15074",
                   "units": null,
-                  "lastDate": "2026-09-16",
+                  "lastDate": "2026-09-25",
                   "products": [
-                    "2832 Modelo Oro 2/12/12 oz Can"
+                    "2832 Modelo Oro 2/12/12 oz Can",
+                    "2837 Modelo Oro 1/24/12 oz Loose Can"
                   ]
                 }
               ],
@@ -114491,13 +114930,22 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "pacifico",
               "label": "Pacifico",
-              "buyers": 3,
+              "buyers": 4,
               "goal": 10,
-              "pct": 30.0,
+              "pct": 40.0,
               "retained": false,
-              "toGo": 7,
+              "toGo": 6,
               "emptyPickups": 0,
               "accounts": [
+                {
+                  "customer": "Las Maravillas Restaurant",
+                  "num": "19011",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2610 Pacifico 4/6/12 oz Btl"
+                  ]
+                },
                 {
                   "customer": "Casa Don Manuel",
                   "num": "12032",
@@ -114508,19 +114956,19 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Las Maravillas Restaurant",
-                  "num": "19011",
+                  "customer": "Clifton City Tavern(P)",
+                  "num": "23020",
                   "units": null,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2610 Pacifico 4/6/12 oz Btl"
                   ]
                 },
                 {
-                  "customer": "Clifton City Tavern(P)",
-                  "num": "23020",
+                  "customer": "Dave & Buster's Nj, Inc",
+                  "num": "12034",
                   "units": null,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2610 Pacifico 4/6/12 oz Btl"
                   ]
@@ -114531,11 +114979,11 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "goalsTotal": 8,
           "goalsRetained": 0,
-          "buyers": 187,
-          "held": 187,
+          "buyers": 196,
+          "held": 196,
           "goal": 274,
-          "pct": 68.2,
-          "toGo": 87,
+          "pct": 71.5,
+          "toGo": 78,
           "emptyPickups": 0
         },
         "on_draft": {
@@ -114543,13 +114991,23 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_light",
               "label": "Corona Light",
-              "buyers": 0,
+              "buyers": 1,
               "goal": 11,
-              "pct": 0.0,
+              "pct": 9.1,
               "retained": false,
-              "toGo": 11,
-              "emptyPickups": 2,
-              "accounts": [],
+              "toGo": 10,
+              "emptyPickups": 1,
+              "accounts": [
+                {
+                  "customer": "Chevy's Fresh Mex (A)Clif",
+                  "num": "25077",
+                  "units": 1.0,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2516 Corona Light 15.5 Gal Keg"
+                  ]
+                }
+              ],
               "baseWindow": "3/1/2026 - 5/31/2026"
             },
             {
@@ -114586,12 +115044,12 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "modelo_especial",
               "label": "Modelo Especial",
-              "buyers": 41,
+              "buyers": 43,
               "goal": 63,
-              "pct": 65.1,
+              "pct": 68.3,
               "retained": false,
-              "toGo": 22,
-              "emptyPickups": 6,
+              "toGo": 20,
+              "emptyPickups": 4,
               "accounts": [
                 {
                   "customer": "Sharky's Wings(P)",
@@ -114621,12 +115079,40 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Johnny A's (P) Hitchn Pos",
+                  "num": "22016",
+                  "units": 4.0,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2802 Modelo Especial 15.5 Gal Keg"
+                  ]
+                },
+                {
+                  "customer": "Dave & Buster's Nj, Inc",
+                  "num": "12034",
+                  "units": 3.0,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2802 Modelo Especial 15.5 Gal Keg"
+                  ]
+                },
+                {
                   "customer": "YARD HOUSE 8384",
                   "num": "12057",
                   "units": 3.0,
                   "lastDate": "2026-09-15",
                   "products": [
                     "2802 Modelo Especial 15.5 Gal Keg"
+                  ]
+                },
+                {
+                  "customer": "Bask 46",
+                  "num": "15074",
+                  "units": 3.0,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2802 Modelo Especial 15.5 Gal Keg",
+                    "2804 Modelo Especial 7.75 Gal Keg"
                   ]
                 },
                 {
@@ -114639,19 +115125,19 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Johnny A's (P) Hitchn Pos",
-                  "num": "22016",
+                  "customer": "Rock Bar",
+                  "num": "24026",
                   "units": 3.0,
-                  "lastDate": "2026-09-18",
+                  "lastDate": "2026-09-17",
                   "products": [
                     "2802 Modelo Especial 15.5 Gal Keg"
                   ]
                 },
                 {
-                  "customer": "Rock Bar",
-                  "num": "24026",
+                  "customer": "Chevy's Fresh Mex (A)Clif",
+                  "num": "25077",
                   "units": 3.0,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2802 Modelo Especial 15.5 Gal Keg"
                   ]
@@ -114675,15 +115161,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Dave & Buster's Nj, Inc",
-                  "num": "12034",
-                  "units": 2.0,
-                  "lastDate": "2026-09-17",
-                  "products": [
-                    "2802 Modelo Especial 15.5 Gal Keg"
-                  ]
-                },
-                {
                   "customer": "Tommy's Tavern + Tap (Wayne)",
                   "num": "12038",
                   "units": 2.0,
@@ -114699,6 +115176,15 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-18",
                   "products": [
                     "2802 Modelo Especial 15.5 Gal Keg"
+                  ]
+                },
+                {
+                  "customer": "Applebee's (Totowa) (A)",
+                  "num": "14002",
+                  "units": 2.0,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2804 Modelo Especial 7.75 Gal Keg"
                   ]
                 },
                 {
@@ -114720,20 +115206,19 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Bask 46",
-                  "num": "15074",
-                  "units": 2.0,
-                  "lastDate": "2026-09-16",
-                  "products": [
-                    "2802 Modelo Especial 15.5 Gal Keg",
-                    "2804 Modelo Especial 7.75 Gal Keg"
-                  ]
-                },
-                {
                   "customer": "Jimmy Geez (P)",
                   "num": "17009",
                   "units": 2.0,
                   "lastDate": "2026-09-15",
+                  "products": [
+                    "2802 Modelo Especial 15.5 Gal Keg"
+                  ]
+                },
+                {
+                  "customer": "Shortways' Barn (A)",
+                  "num": "19004",
+                  "units": 2.0,
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2802 Modelo Especial 15.5 Gal Keg"
                   ]
@@ -114757,10 +115242,19 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Chevy's Fresh Mex (A)Clif",
-                  "num": "25077",
+                  "customer": "Breaker Billiards",
+                  "num": "24061",
                   "units": 2.0,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2802 Modelo Especial 15.5 Gal Keg"
+                  ]
+                },
+                {
+                  "customer": "The Celtic Knot",
+                  "num": "3002",
+                  "units": 2.0,
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2802 Modelo Especial 15.5 Gal Keg"
                   ]
@@ -114847,15 +115341,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Applebee's (Totowa) (A)",
-                  "num": "14002",
-                  "units": 1.0,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2804 Modelo Especial 7.75 Gal Keg"
-                  ]
-                },
-                {
                   "customer": "Sushi Lounge",
                   "num": "14004",
                   "units": 1.0,
@@ -114865,19 +115350,28 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "D'CARBON BAR AND GRILL haledon",
-                  "num": "17003",
+                  "customer": "Brownstone House",
+                  "num": "15070",
                   "units": 1.0,
-                  "lastDate": "2026-09-09",
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2802 Modelo Especial 15.5 Gal Keg"
                   ]
                 },
                 {
-                  "customer": "Shortways' Barn (A)",
-                  "num": "19004",
+                  "customer": "Underdog Lounge(P)",
+                  "num": "17001",
                   "units": 1.0,
-                  "lastDate": "2026-09-03",
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2804 Modelo Especial 7.75 Gal Keg"
+                  ]
+                },
+                {
+                  "customer": "D'CARBON BAR AND GRILL haledon",
+                  "num": "17003",
+                  "units": 1.0,
+                  "lastDate": "2026-09-09",
                   "products": [
                     "2802 Modelo Especial 15.5 Gal Keg"
                   ]
@@ -114905,24 +115399,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "24048",
                   "units": 1.0,
                   "lastDate": "2026-09-11",
-                  "products": [
-                    "2802 Modelo Especial 15.5 Gal Keg"
-                  ]
-                },
-                {
-                  "customer": "Breaker Billiards",
-                  "num": "24061",
-                  "units": 1.0,
-                  "lastDate": "2026-09-03",
-                  "products": [
-                    "2802 Modelo Especial 15.5 Gal Keg"
-                  ]
-                },
-                {
-                  "customer": "The Celtic Knot",
-                  "num": "3002",
-                  "units": 1.0,
-                  "lastDate": "2026-09-03",
                   "products": [
                     "2802 Modelo Especial 15.5 Gal Keg"
                   ]
@@ -114969,13 +115445,23 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "modelo_negra",
               "label": "Modelo Negra",
-              "buyers": 0,
+              "buyers": 1,
               "goal": 4,
-              "pct": 0.0,
+              "pct": 25.0,
               "retained": false,
-              "toGo": 4,
+              "toGo": 3,
               "emptyPickups": 0,
-              "accounts": [],
+              "accounts": [
+                {
+                  "customer": "Las Maravillas Restaurant",
+                  "num": "19011",
+                  "units": 1.0,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2803 Modelo Negra 7.75 Gal Keg"
+                  ]
+                }
+              ],
               "baseWindow": "3/1/2026 - 5/31/2026"
             },
             {
@@ -114989,21 +115475,21 @@ const PROGRAM_DATA_2026_09 = {
               "emptyPickups": 0,
               "accounts": [
                 {
+                  "customer": "Rock Bar",
+                  "num": "24026",
+                  "units": 2.0,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2602 Pacifico 7.75 Gal Keg"
+                  ]
+                },
+                {
                   "customer": "YARD HOUSE 8384",
                   "num": "12057",
                   "units": 1.0,
                   "lastDate": "2026-09-01",
                   "products": [
                     "2601 Pacifico 15.5 Gal Keg"
-                  ]
-                },
-                {
-                  "customer": "Rock Bar",
-                  "num": "24026",
-                  "units": 1.0,
-                  "lastDate": "2026-09-08",
-                  "products": [
-                    "2602 Pacifico 7.75 Gal Keg"
                   ]
                 },
                 {
@@ -115021,19 +115507,19 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "goalsTotal": 5,
           "goalsRetained": 0,
-          "buyers": 46,
-          "held": 46,
+          "buyers": 50,
+          "held": 50,
           "goal": 92,
-          "pct": 50.0,
-          "toGo": 46,
-          "emptyPickups": 8
+          "pct": 54.3,
+          "toGo": 42,
+          "emptyPickups": 5
         },
         "goalsTotal": 13,
         "goalsRetained": 0,
-        "overallHeld": 233,
+        "overallHeld": 246,
         "overallGoal": 366,
-        "overallPct": 63.7,
-        "overallToGo": 133,
+        "overallPct": 67.2,
+        "overallToGo": 120,
         "hasAnyGoal": true
       },
       "Andrew Lundy": {
@@ -115145,31 +115631,31 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 39,
+            "placements": 41,
             "goal": 80,
-            "pct": 48.8,
+            "pct": 51.2,
             "retained": false,
-            "toGo": 41,
+            "toGo": 39,
             "inReport": true,
             "products": [
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 13,
+                "placements": 14,
                 "base": 26,
                 "goal": 26,
-                "pct": 50.0,
+                "pct": 53.8,
                 "retained": false,
-                "toGo": 13,
+                "toGo": 12,
                 "lost": false
               },
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 13,
+                "placements": 14,
                 "base": 24,
                 "goal": 24,
-                "pct": 54.2,
+                "pct": 58.3,
                 "retained": false,
-                "toGo": 11,
+                "toGo": 10,
                 "lost": false
               },
               {
@@ -115215,11 +115701,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 97,
+            "placements": 98,
             "goal": 125,
-            "pct": 77.6,
+            "pct": 78.4,
             "retained": false,
-            "toGo": 28,
+            "toGo": 27,
             "inReport": true,
             "products": [
               {
@@ -115243,16 +115729,6 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 19,
-                "base": 25,
-                "goal": 25,
-                "pct": 76.0,
-                "retained": false,
-                "toGo": 6,
-                "lost": false
-              },
-              {
                 "product": "Modelo Especial 2/12/12 oz Btl",
                 "placements": 18,
                 "base": 24,
@@ -115260,6 +115736,16 @@ const PROGRAM_DATA_2026_09 = {
                 "pct": 75.0,
                 "retained": false,
                 "toGo": 6,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 2/12/12 oz Can",
+                "placements": 20,
+                "base": 25,
+                "goal": 25,
+                "pct": 80.0,
+                "retained": false,
+                "toGo": 5,
                 "lost": false
               },
               {
@@ -115305,23 +115791,13 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 160,
+            "placements": 164,
             "goal": 200,
-            "pct": 80.0,
+            "pct": 82.0,
             "retained": false,
-            "toGo": 40,
+            "toGo": 36,
             "inReport": true,
             "products": [
-              {
-                "product": "Pacifico 2/12/12 oz Can",
-                "placements": 13,
-                "base": 20,
-                "goal": 20,
-                "pct": 65.0,
-                "retained": false,
-                "toGo": 7,
-                "lost": false
-              },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
                 "placements": 4,
@@ -115333,13 +115809,23 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 17,
-                "base": 23,
-                "goal": 23,
-                "pct": 73.9,
+                "product": "Pacifico 2/12/12 oz Can",
+                "placements": 14,
+                "base": 20,
+                "goal": 20,
+                "pct": 70.0,
                 "retained": false,
                 "toGo": 6,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
+                "placements": 18,
+                "base": 23,
+                "goal": 23,
+                "pct": 78.3,
+                "retained": false,
+                "toGo": 5,
                 "lost": false
               },
               {
@@ -115434,10 +115920,10 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 11,
+                "placements": 12,
                 "base": 10,
                 "goal": 10,
-                "pct": 110.0,
+                "pct": 120.0,
                 "retained": true,
                 "toGo": 0,
                 "lost": false
@@ -115448,6 +115934,16 @@ const PROGRAM_DATA_2026_09 = {
                 "base": 10,
                 "goal": 10,
                 "pct": 110.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada 2/12/12 oz Can",
+                "placements": 4,
+                "base": 1,
+                "goal": 1,
+                "pct": 400.0,
                 "retained": true,
                 "toGo": 0,
                 "lost": false
@@ -115464,16 +115960,6 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 3,
-                "base": 1,
-                "goal": 1,
-                "pct": 300.0,
-                "retained": true,
-                "toGo": 0,
-                "lost": false
-              },
-              {
-                "product": "Modelo Chelada 2/12/12 oz Can",
                 "placements": 3,
                 "base": 1,
                 "goal": 1,
@@ -115505,23 +115991,13 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "innovation",
             "label": "Innovation",
-            "placements": 29,
+            "placements": 30,
             "goal": 79,
-            "pct": 36.7,
+            "pct": 38.0,
             "retained": false,
-            "toGo": 50,
+            "toGo": 49,
             "inReport": true,
             "products": [
-              {
-                "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 8,
-                "base": 19,
-                "goal": 19,
-                "pct": 42.1,
-                "retained": false,
-                "toGo": 11,
-                "lost": false
-              },
               {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
                 "placements": 0,
@@ -115531,6 +116007,16 @@ const PROGRAM_DATA_2026_09 = {
                 "retained": false,
                 "toGo": 11,
                 "lost": true
+              },
+              {
+                "product": "Corona Sunbrew 4/6/12 oz Btl",
+                "placements": 9,
+                "base": 19,
+                "goal": 19,
+                "pct": 47.4,
+                "retained": false,
+                "toGo": 10,
+                "lost": false
               },
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
@@ -115626,20 +116112,20 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 325,
+        "offPlacements": 333,
         "offGoal": 484,
-        "offPct": 67.1,
-        "offToGo": 159,
+        "offPct": 68.8,
+        "offToGo": 151,
         "on_packages": {
           "families": [
             {
               "key": "corona_extra",
               "label": "Corona Extra",
-              "buyers": 37,
+              "buyers": 39,
               "goal": 43,
-              "pct": 86.0,
+              "pct": 90.7,
               "retained": false,
-              "toGo": 6,
+              "toGo": 4,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -115694,12 +116180,40 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "The Lamp Post Inn",
+                  "num": "231304",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2403 Coronita Extra 2/12/7 oz Btl",
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Karls Stumble Inn",
                   "num": "4007",
                   "units": null,
                   "lastDate": "2026-09-23",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl",
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Country Cottage Rest (P)",
+                  "num": "1002",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Old School Pub P)",
+                  "num": "1035",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
@@ -115732,24 +116246,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "The Lamp Post Inn",
-                  "num": "231304",
-                  "units": null,
-                  "lastDate": "2026-09-16",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Country Cottage Rest (P)",
-                  "num": "1002",
-                  "units": null,
-                  "lastDate": "2026-09-18",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Jimmy Geez(North)Bar/Gril",
                   "num": "1010",
                   "units": null,
@@ -115774,15 +116270,6 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-09",
                   "products": [
                     "2425 Corona Extra 1/24/12 oz Loose Can"
-                  ]
-                },
-                {
-                  "customer": "Old School Pub P)",
-                  "num": "1035",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -115819,6 +116306,25 @@ const PROGRAM_DATA_2026_09 = {
                   "units": null,
                   "lastDate": "2026-09-16",
                   "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Flip's Bar (P)",
+                  "num": "3011",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Cinco De Mayo (Z)",
+                  "num": "4003",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2405 Coronita Extra 1/24/7 oz Btl",
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
@@ -115904,6 +116410,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Atlantic Man Rodozio Stk",
+                  "num": "231001",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Vfw 8441 Vernon",
                   "num": "231206",
                   "units": null,
@@ -115935,15 +116450,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "231302",
                   "units": null,
                   "lastDate": "2026-09-09",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Flip's Bar (P)",
-                  "num": "3011",
-                  "units": null,
-                  "lastDate": "2026-09-10",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -116007,6 +116513,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Flip's Bar (P)",
+                  "num": "3011",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2510 Corona Light 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "The New Jessies Kettle(P)",
                   "num": "1023",
                   "units": null,
@@ -116016,10 +116531,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Flip's Bar (P)",
-                  "num": "3011",
+                  "customer": "Old School Pub P)",
+                  "num": "1035",
                   "units": null,
-                  "lastDate": "2026-09-10",
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2510 Corona Light 4/6/12 oz Btl"
                   ]
@@ -116067,15 +116582,6 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-09",
                   "products": [
                     "2511 Corona Light 1/24/12 oz Loose Can"
-                  ]
-                },
-                {
-                  "customer": "Old School Pub P)",
-                  "num": "1035",
-                  "units": null,
-                  "lastDate": "2026-09-03",
-                  "products": [
-                    "2510 Corona Light 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -116229,11 +116735,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "modelo_especial",
               "label": "Modelo Especial",
-              "buyers": 8,
+              "buyers": 10,
               "goal": 18,
-              "pct": 44.4,
+              "pct": 55.6,
               "retained": false,
-              "toGo": 10,
+              "toGo": 8,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -116250,6 +116756,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "The New Jessies Kettle(P)",
+                  "num": "1023",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2811 Modelo Especial 2/12/12 oz Can"
+                  ]
+                },
+                {
                   "customer": "Brick & Brew",
                   "num": "230930",
                   "units": null,
@@ -116259,21 +116774,21 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "The New Jessies Kettle(P)",
-                  "num": "1023",
-                  "units": null,
-                  "lastDate": "2026-09-17",
-                  "products": [
-                    "2811 Modelo Especial 2/12/12 oz Can"
-                  ]
-                },
-                {
                   "customer": "Flip's Bar (P)",
                   "num": "3011",
                   "units": null,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Crystal Sprs/Wild Turkey",
+                  "num": "230915",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2809 Modelo Especial 1/24/12 oz Loose Can"
                   ]
                 },
                 {
@@ -116286,12 +116801,12 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Crystal Sprs/Wild Turkey",
-                  "num": "230915",
+                  "customer": "Daily Planet (A)",
+                  "num": "191207",
                   "units": null,
-                  "lastDate": "2026-09-11",
+                  "lastDate": "2026-09-25",
                   "products": [
-                    "2809 Modelo Especial 1/24/12 oz Loose Can"
+                    "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -116310,6 +116825,15 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-14",
                   "products": [
                     "2808 Modelo Especial 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Cinco De Mayo (Z)",
+                  "num": "4003",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
                 }
               ],
@@ -116350,11 +116874,11 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "goalsTotal": 7,
           "goalsRetained": 0,
-          "buyers": 68,
-          "held": 68,
+          "buyers": 72,
+          "held": 72,
           "goal": 122,
-          "pct": 55.7,
-          "toGo": 54,
+          "pct": 59.0,
+          "toGo": 50,
           "emptyPickups": 0
         },
         "on_draft": {
@@ -116415,10 +116939,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 13,
         "goalsRetained": 0,
-        "overallHeld": 395,
+        "overallHeld": 407,
         "overallGoal": 616,
-        "overallPct": 64.1,
-        "overallToGo": 221,
+        "overallPct": 66.1,
+        "overallToGo": 209,
         "hasAnyGoal": true
       },
       "Brian Sengebush": {
@@ -116706,13 +117230,22 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_extra",
               "label": "Corona Extra",
-              "buyers": 81,
+              "buyers": 85,
               "goal": 99,
-              "pct": 81.8,
+              "pct": 85.9,
               "retained": false,
-              "toGo": 18,
+              "toGo": 14,
               "emptyPickups": 0,
               "accounts": [
+                {
+                  "customer": "O'reilly Pub (P)",
+                  "num": "230428",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
                 {
                   "customer": "Applebee's Grill(A)Newton",
                   "num": "230430",
@@ -116734,12 +117267,31 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Lena y Carbon VII Parsippany",
+                  "num": "190306",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2405 Coronita Extra 1/24/7 oz Btl",
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Elevengreen",
                   "num": "190905",
                   "units": null,
                   "lastDate": "2026-09-22",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Knotty Pine Pub (P)",
+                  "num": "190923",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -116752,6 +117304,24 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Stonewood Tavern",
+                  "num": "191704",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "American Lgn Stanhope",
+                  "num": "191719",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
                   "customer": "Sheridan Lodge (P)",
                   "num": "230405",
                   "units": null,
@@ -116761,10 +117331,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "O'reilly Pub (P)",
-                  "num": "230428",
+                  "customer": "Lakeside Pub (P)",
+                  "num": "231710",
                   "units": null,
-                  "lastDate": "2026-09-18",
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -116803,15 +117373,6 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-17",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Knotty Pine Pub (P)",
-                  "num": "190923",
-                  "units": null,
-                  "lastDate": "2026-09-18",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -116871,21 +117432,12 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Stonewood Tavern",
-                  "num": "191704",
+                  "customer": "Polo's Bar And Grill",
+                  "num": "191618",
                   "units": null,
-                  "lastDate": "2026-09-18",
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "American Lgn Stanhope",
-                  "num": "191719",
-                  "units": null,
-                  "lastDate": "2026-09-17",
-                  "products": [
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
                 },
                 {
@@ -116907,12 +117459,39 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Lakeside Pub (P)",
-                  "num": "231710",
+                  "customer": "Fountain House (Z)",
+                  "num": "230407",
                   "units": null,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "The Lafayette House",
+                  "num": "231606",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Lake Valhalla Club (P)",
+                  "num": "190102",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Black Rabbit Saloon LLC",
+                  "num": "190104",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
                 },
                 {
@@ -116940,16 +117519,6 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-17",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Lena y Carbon VII Parsippany",
-                  "num": "190306",
-                  "units": null,
-                  "lastDate": "2026-09-18",
-                  "products": [
-                    "2405 Coronita Extra 1/24/7 oz Btl",
-                    "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -117025,15 +117594,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Polo's Bar And Grill",
-                  "num": "191618",
-                  "units": null,
-                  "lastDate": "2026-09-17",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Shakey Jake's (P)",
                   "num": "191715",
                   "units": null,
@@ -117080,15 +117640,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Fountain House (Z)",
-                  "num": "230407",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Farmstead Golf (P)",
                   "num": "231601",
                   "units": null,
@@ -117096,15 +117647,6 @@ const PROGRAM_DATA_2026_09 = {
                   "products": [
                     "2407 Corona Extra 2/12/12 oz Can",
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "The Lafayette House",
-                  "num": "231606",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -117145,24 +117687,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Lake Valhalla Club (P)",
-                  "num": "190102",
-                  "units": null,
-                  "lastDate": "2026-09-03",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Black Rabbit Saloon LLC",
-                  "num": "190104",
-                  "units": null,
-                  "lastDate": "2026-09-03",
-                  "products": [
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
                   "customer": "Reservoir Tavern(A)",
                   "num": "190220",
                   "units": null,
@@ -117190,6 +117714,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Muldoon's Steak & Pub",
+                  "num": "190723",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "The Club (NAFIB4-22-A-0036)",
                   "num": "190807",
                   "units": null,
@@ -117205,6 +117738,15 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-10",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Colossal Restaurant",
+                  "num": "190914",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -117275,6 +117817,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "191521",
                   "units": null,
                   "lastDate": "2026-09-02",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Rustic Texmex & Sports Bar",
+                  "num": "191523",
+                  "units": null,
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -117406,6 +117957,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Hyde-Away Rest & Tap Room",
+                  "num": "230702",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "AG Pizza and Restaurant (Branchville)",
                   "num": "231703",
                   "units": null,
@@ -117456,11 +118016,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_light",
               "label": "Corona Light",
-              "buyers": 28,
+              "buyers": 32,
               "goal": 56,
-              "pct": 50.0,
+              "pct": 57.1,
               "retained": false,
-              "toGo": 28,
+              "toGo": 24,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -117470,6 +118030,15 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-22",
                   "products": [
                     "2509 Corona Light 1/24/12 oz Loose Btl",
+                    "2510 Corona Light 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "The Jefferson House",
+                  "num": "191504",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
                     "2510 Corona Light 4/6/12 oz Btl"
                   ]
                 },
@@ -117487,15 +118056,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "191009",
                   "units": null,
                   "lastDate": "2026-09-22",
-                  "products": [
-                    "2510 Corona Light 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "The Jefferson House",
-                  "num": "191504",
-                  "units": null,
-                  "lastDate": "2026-09-17",
                   "products": [
                     "2510 Corona Light 4/6/12 oz Btl"
                   ]
@@ -117566,6 +118126,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Reservoir Tavern(A)",
+                  "num": "190220",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2509 Corona Light 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
                   "customer": "Peace Pipe Cc (P)",
                   "num": "190606",
                   "units": null,
@@ -117597,6 +118166,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "190910",
                   "units": null,
                   "lastDate": "2026-09-10",
+                  "products": [
+                    "2510 Corona Light 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Colossal Restaurant",
+                  "num": "190914",
+                  "units": null,
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2510 Corona Light 4/6/12 oz Btl"
                   ]
@@ -117651,6 +118229,24 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "191521",
                   "units": null,
                   "lastDate": "2026-09-02",
+                  "products": [
+                    "2510 Corona Light 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Rustic Texmex & Sports Bar",
+                  "num": "191523",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2510 Corona Light 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Polo's Bar And Grill",
+                  "num": "191618",
+                  "units": null,
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2510 Corona Light 4/6/12 oz Btl"
                   ]
@@ -117724,11 +118320,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_na",
               "label": "Corona NA",
-              "buyers": 2,
+              "buyers": 3,
               "goal": 8,
-              "pct": 25.0,
+              "pct": 37.5,
               "retained": false,
-              "toGo": 6,
+              "toGo": 5,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -117748,6 +118344,15 @@ const PROGRAM_DATA_2026_09 = {
                   "products": [
                     "9053 Corona Non-Alcoholic 4/6/12 oz Btl"
                   ]
+                },
+                {
+                  "customer": "Rustic Texmex & Sports Bar",
+                  "num": "191523",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "9053 Corona Non-Alcoholic 4/6/12 oz Btl"
+                  ]
                 }
               ],
               "baseWindow": "3/1/2026 - 5/31/2026"
@@ -117755,11 +118360,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_premier",
               "label": "Corona Premier",
-              "buyers": 6,
+              "buyers": 7,
               "goal": 12,
-              "pct": 50.0,
+              "pct": 58.3,
               "retained": false,
-              "toGo": 6,
+              "toGo": 5,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -117776,6 +118381,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "190615",
                   "units": null,
                   "lastDate": "2026-09-17",
+                  "products": [
+                    "2440 Corona Premier 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "O'reilly Pub (P)",
+                  "num": "230428",
+                  "units": null,
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2440 Corona Premier 4/6/12 oz Btl"
                   ]
@@ -117808,10 +118422,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "O'reilly Pub (P)",
-                  "num": "230428",
+                  "customer": "Fountain House (Z)",
+                  "num": "230407",
                   "units": null,
-                  "lastDate": "2026-09-15",
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2440 Corona Premier 4/6/12 oz Btl"
                   ]
@@ -117834,11 +118448,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "modelo_especial",
               "label": "Modelo Especial",
-              "buyers": 23,
+              "buyers": 29,
               "goal": 41,
-              "pct": 56.1,
+              "pct": 70.7,
               "retained": false,
-              "toGo": 18,
+              "toGo": 12,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -117878,10 +118492,28 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Stoll Street Tavern",
+                  "num": "191601",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "The Cheesecake Factory",
                   "num": "1022",
                   "units": null,
                   "lastDate": "2026-09-24",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Lena y Carbon VII Parsippany",
+                  "num": "190306",
+                  "units": null,
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -117932,15 +118564,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Stoll Street Tavern",
-                  "num": "191601",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "E & D Liquors (P)",
                   "num": "191802",
                   "units": null,
@@ -117960,10 +118583,19 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Lena y Carbon VII Parsippany",
-                  "num": "190306",
+                  "customer": "Hyde-Away Rest & Tap Room",
+                  "num": "230702",
                   "units": null,
-                  "lastDate": "2026-09-18",
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Buffalo Wild Wings (Rockaway)",
+                  "num": "1024",
+                  "units": null,
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -117978,12 +118610,30 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Colossal Restaurant",
+                  "num": "190914",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Elks Post 782 (Z)",
                   "num": "191508",
                   "units": null,
                   "lastDate": "2026-09-11",
                   "products": [
                     "2808 Modelo Especial 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Rustic Texmex & Sports Bar",
+                  "num": "191523",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -118014,10 +118664,28 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "La Mezcalita",
+                  "num": "191808",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Mc Q's Pub (P)",
                   "num": "230304",
                   "units": null,
                   "lastDate": "2026-09-02",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Bella Italio Rest.(P)",
+                  "num": "230402",
+                  "units": null,
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -118032,21 +118700,21 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Hyde-Away Rest & Tap Room",
-                  "num": "230702",
-                  "units": null,
-                  "lastDate": "2026-09-03",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "AG Pizza and Restaurant (Branchville)",
                   "num": "231703",
                   "units": null,
                   "lastDate": "2026-09-16",
                   "products": [
                     "2811 Modelo Especial 2/12/12 oz Can"
+                  ]
+                },
+                {
+                  "customer": "Flatbrook Tap House (P)",
+                  "num": "231713",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
                 }
               ],
@@ -118086,11 +118754,11 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "goalsTotal": 7,
           "goalsRetained": 0,
-          "buyers": 142,
-          "held": 142,
+          "buyers": 158,
+          "held": 158,
           "goal": 230,
-          "pct": 61.7,
-          "toGo": 88,
+          "pct": 68.7,
+          "toGo": 72,
           "emptyPickups": 0
         },
         "on_draft": {
@@ -118098,11 +118766,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_light",
               "label": "Corona Light",
-              "buyers": 1,
+              "buyers": 2,
               "goal": 11,
-              "pct": 9.1,
+              "pct": 18.2,
               "retained": false,
-              "toGo": 10,
+              "toGo": 9,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -118112,6 +118780,15 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-11",
                   "products": [
                     "2516 Corona Light 15.5 Gal Keg"
+                  ]
+                },
+                {
+                  "customer": "La Mezcalita",
+                  "num": "191808",
+                  "units": 1.0,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2517 Corona Light 7.75 Gal Keg"
                   ]
                 }
               ],
@@ -118128,21 +118805,21 @@ const PROGRAM_DATA_2026_09 = {
               "emptyPickups": 2,
               "accounts": [
                 {
+                  "customer": "La Mezcalita",
+                  "num": "191808",
+                  "units": 5.0,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2804 Modelo Especial 7.75 Gal Keg"
+                  ]
+                },
+                {
                   "customer": "Lola's Restaurant",
                   "num": "191510",
                   "units": 4.0,
                   "lastDate": "2026-09-11",
                   "products": [
                     "2802 Modelo Especial 15.5 Gal Keg"
-                  ]
-                },
-                {
-                  "customer": "La Mezcalita",
-                  "num": "191808",
-                  "units": 3.0,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2804 Modelo Especial 7.75 Gal Keg"
                   ]
                 },
                 {
@@ -118272,11 +118949,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "pacifico",
               "label": "Pacifico",
-              "buyers": 3,
+              "buyers": 4,
               "goal": 10,
-              "pct": 30.0,
+              "pct": 40.0,
               "retained": false,
-              "toGo": 7,
+              "toGo": 6,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -118305,6 +118982,15 @@ const PROGRAM_DATA_2026_09 = {
                   "products": [
                     "2601 Pacifico 15.5 Gal Keg"
                   ]
+                },
+                {
+                  "customer": "La Mezcalita",
+                  "num": "191808",
+                  "units": 1.0,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2602 Pacifico 7.75 Gal Keg"
+                  ]
                 }
               ],
               "baseWindow": "3/1/2026 - 5/31/2026"
@@ -118312,19 +118998,19 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "goalsTotal": 4,
           "goalsRetained": 0,
-          "buyers": 18,
-          "held": 18,
+          "buyers": 20,
+          "held": 20,
           "goal": 55,
-          "pct": 32.7,
-          "toGo": 37,
+          "pct": 36.4,
+          "toGo": 35,
           "emptyPickups": 2
         },
         "goalsTotal": 15,
         "goalsRetained": 0,
-        "overallHeld": 180,
+        "overallHeld": 198,
         "overallGoal": 319,
-        "overallPct": 56.4,
-        "overallToGo": 139,
+        "overallPct": 62.1,
+        "overallToGo": 121,
         "hasAnyGoal": true
       },
       "Chris Payton": {
@@ -118332,31 +119018,31 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 84,
+            "placements": 88,
             "goal": 133,
-            "pct": 63.2,
+            "pct": 66.2,
             "retained": false,
-            "toGo": 49,
+            "toGo": 45,
             "inReport": true,
             "products": [
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 21,
+                "placements": 22,
                 "base": 37,
                 "goal": 37,
-                "pct": 56.8,
+                "pct": 59.5,
                 "retained": false,
-                "toGo": 16,
+                "toGo": 15,
                 "lost": false
               },
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 21,
+                "placements": 22,
                 "base": 33,
                 "goal": 33,
-                "pct": 63.6,
+                "pct": 66.7,
                 "retained": false,
-                "toGo": 12,
+                "toGo": 11,
                 "lost": false
               },
               {
@@ -118381,12 +119067,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 20,
+                "placements": 22,
                 "base": 23,
                 "goal": 23,
-                "pct": 87.0,
+                "pct": 95.7,
                 "retained": false,
-                "toGo": 3,
+                "toGo": 1,
                 "lost": false
               }
             ],
@@ -118402,31 +119088,31 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 167,
+            "placements": 173,
             "goal": 210,
-            "pct": 79.5,
+            "pct": 82.4,
             "retained": false,
-            "toGo": 43,
+            "toGo": 37,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 25,
+                "placements": 26,
                 "base": 36,
                 "goal": 36,
-                "pct": 69.4,
+                "pct": 72.2,
                 "retained": false,
-                "toGo": 11,
+                "toGo": 10,
                 "lost": false
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
-                "placements": 8,
+                "placements": 9,
                 "base": 16,
                 "goal": 16,
-                "pct": 50.0,
+                "pct": 56.2,
                 "retained": false,
-                "toGo": 8,
+                "toGo": 7,
                 "lost": false
               },
               {
@@ -118440,23 +119126,23 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 18,
-                "base": 24,
-                "goal": 24,
-                "pct": 75.0,
+                "product": "Modelo Especial 4/6/12 oz Btl",
+                "placements": 34,
+                "base": 38,
+                "goal": 38,
+                "pct": 89.5,
                 "retained": false,
-                "toGo": 6,
+                "toGo": 4,
                 "lost": false
               },
               {
-                "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 33,
-                "base": 38,
-                "goal": 38,
-                "pct": 86.8,
+                "product": "Modelo Especial 1/24/12 oz Loose Btl",
+                "placements": 20,
+                "base": 24,
+                "goal": 24,
+                "pct": 83.3,
                 "retained": false,
-                "toGo": 5,
+                "toGo": 4,
                 "lost": false
               },
               {
@@ -118471,12 +119157,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 35,
+                "placements": 36,
                 "base": 38,
                 "goal": 38,
-                "pct": 92.1,
+                "pct": 94.7,
                 "retained": false,
-                "toGo": 3,
+                "toGo": 2,
                 "lost": false
               }
             ],
@@ -118492,21 +119178,21 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 229,
+            "placements": 243,
             "goal": 312,
-            "pct": 73.4,
+            "pct": 77.9,
             "retained": false,
-            "toGo": 83,
+            "toGo": 69,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 14,
+                "placements": 17,
                 "base": 25,
                 "goal": 25,
-                "pct": 56.0,
+                "pct": 68.0,
                 "retained": false,
-                "toGo": 11,
+                "toGo": 8,
                 "lost": false
               },
               {
@@ -118517,16 +119203,6 @@ const PROGRAM_DATA_2026_09 = {
                 "pct": 50.0,
                 "retained": false,
                 "toGo": 8,
-                "lost": false
-              },
-              {
-                "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 19,
-                "base": 26,
-                "goal": 26,
-                "pct": 73.1,
-                "retained": false,
-                "toGo": 7,
                 "lost": false
               },
               {
@@ -118560,11 +119236,11 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 33,
-                "base": 38,
-                "goal": 38,
-                "pct": 86.8,
+                "product": "Modelo Especial 1/12/32 oz Btl",
+                "placements": 21,
+                "base": 26,
+                "goal": 26,
+                "pct": 80.8,
                 "retained": false,
                 "toGo": 5,
                 "lost": false
@@ -118577,26 +119253,6 @@ const PROGRAM_DATA_2026_09 = {
                 "pct": 66.7,
                 "retained": false,
                 "toGo": 5,
-                "lost": false
-              },
-              {
-                "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 20,
-                "base": 24,
-                "goal": 24,
-                "pct": 83.3,
-                "retained": false,
-                "toGo": 4,
-                "lost": false
-              },
-              {
-                "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 12,
-                "base": 16,
-                "goal": 16,
-                "pct": 75.0,
-                "retained": false,
-                "toGo": 4,
                 "lost": false
               },
               {
@@ -118620,11 +119276,31 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
+                "product": "Corona Extra 1/12/24 oz Can",
+                "placements": 35,
+                "base": 38,
+                "goal": 38,
+                "pct": 92.1,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
+              },
+              {
                 "product": "Corona Familiar 1/12/32 oz Btl",
                 "placements": 20,
                 "base": 23,
                 "goal": 23,
                 "pct": 87.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Coronita Extra 2/12/7 oz Btl",
+                "placements": 13,
+                "base": 16,
+                "goal": 16,
+                "pct": 81.2,
                 "retained": false,
                 "toGo": 3,
                 "lost": false
@@ -118640,26 +119316,6 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 34,
-                "base": 36,
-                "goal": 36,
-                "pct": 94.4,
-                "retained": false,
-                "toGo": 2,
-                "lost": false
-              },
-              {
-                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 19,
-                "base": 21,
-                "goal": 21,
-                "pct": 90.5,
-                "retained": false,
-                "toGo": 2,
-                "lost": false
-              },
-              {
                 "product": "Corona Premier 1/24/12 oz Loose Can",
                 "placements": 1,
                 "base": 3,
@@ -118667,6 +119323,26 @@ const PROGRAM_DATA_2026_09 = {
                 "pct": 33.3,
                 "retained": false,
                 "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Modelito Especial 1/24/7 oz Loose Btl",
+                "placements": 23,
+                "base": 24,
+                "goal": 24,
+                "pct": 95.8,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
+                "placements": 20,
+                "base": 21,
+                "goal": 21,
+                "pct": 95.2,
+                "retained": false,
+                "toGo": 1,
                 "lost": false
               },
               {
@@ -118678,45 +119354,55 @@ const PROGRAM_DATA_2026_09 = {
                 "retained": false,
                 "toGo": 1,
                 "lost": true
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
+                "placements": 36,
+                "base": 36,
+                "goal": 36,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
             "goalOverride": false,
             "baseGoal": 312,
             "skusTotal": 18,
-            "skusHeld": 0,
+            "skusHeld": 1,
             "skusLost": 1,
-            "skusShort": 18,
+            "skusShort": 17,
             "skusNew": 0
           },
           {
             "key": "innovation",
             "label": "Innovation",
-            "placements": 34,
+            "placements": 39,
             "goal": 120,
-            "pct": 28.3,
+            "pct": 32.5,
             "retained": false,
-            "toGo": 86,
+            "toGo": 81,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 1,
+                "placements": 3,
                 "base": 25,
                 "goal": 25,
-                "pct": 4.0,
+                "pct": 12.0,
                 "retained": false,
-                "toGo": 24,
+                "toGo": 22,
                 "lost": false
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 2,
+                "placements": 3,
                 "base": 24,
                 "goal": 24,
-                "pct": 8.3,
+                "pct": 12.5,
                 "retained": false,
-                "toGo": 22,
+                "toGo": 21,
                 "lost": false
               },
               {
@@ -118731,22 +119417,22 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 11,
+                "placements": 12,
                 "base": 22,
                 "goal": 22,
-                "pct": 50.0,
+                "pct": 54.5,
                 "retained": false,
-                "toGo": 11,
+                "toGo": 10,
                 "lost": false
               },
               {
                 "product": "Pacifico 1/24/7 oz Btl",
-                "placements": 3,
+                "placements": 4,
                 "base": 8,
                 "goal": 8,
-                "pct": 37.5,
+                "pct": 50.0,
                 "retained": false,
-                "toGo": 5,
+                "toGo": 4,
                 "lost": false
               },
               {
@@ -118823,20 +119509,20 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 514,
+        "offPlacements": 543,
         "offGoal": 775,
-        "offPct": 66.3,
-        "offToGo": 261,
+        "offPct": 70.1,
+        "offToGo": 232,
         "on_packages": {
           "families": [
             {
               "key": "corona_extra",
               "label": "Corona Extra",
-              "buyers": 11,
+              "buyers": 15,
               "goal": 18,
-              "pct": 61.1,
+              "pct": 83.3,
               "retained": false,
-              "toGo": 7,
+              "toGo": 3,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -118853,7 +119539,7 @@ const PROGRAM_DATA_2026_09 = {
                   "customer": "Colonial Bar",
                   "num": "45005",
                   "units": null,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
@@ -118865,6 +119551,15 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-21",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Golden Pub (P)",
+                  "num": "76001",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -118886,6 +119581,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Colombia Bakery Factory & Restaurant",
+                  "num": "38028",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Westside Village (A)",
                   "num": "47017",
                   "units": null,
@@ -118895,12 +119599,21 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Golden Pub (P)",
-                  "num": "76001",
+                  "customer": "Hilton Garden Inn Ridgefield Park",
+                  "num": "47019",
                   "units": null,
-                  "lastDate": "2026-09-03",
+                  "lastDate": "2026-09-25",
                   "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Excelsior (Z)",
+                  "num": "76012",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
                 },
                 {
@@ -118919,6 +119632,15 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-09",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "El Cid",
+                  "num": "80028",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
                 },
                 {
@@ -119051,18 +119773,18 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "modelo_especial",
               "label": "Modelo Especial",
-              "buyers": 8,
+              "buyers": 10,
               "goal": 10,
-              "pct": 80.0,
-              "retained": false,
-              "toGo": 2,
+              "pct": 100.0,
+              "retained": true,
+              "toGo": 0,
               "emptyPickups": 0,
               "accounts": [
                 {
                   "customer": "Colonial Bar",
                   "num": "45005",
                   "units": null,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2808 Modelo Especial 1/24/12 oz Loose Btl"
                   ]
@@ -119086,6 +119808,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Colombia Bakery Factory & Restaurant",
+                  "num": "38028",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Mk Valencia Rest & Lg(P)",
                   "num": "47003",
                   "units": null,
@@ -119101,6 +119832,15 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-18",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Excelsior (Z)",
+                  "num": "76012",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
                   ]
                 },
                 {
@@ -119166,12 +119906,12 @@ const PROGRAM_DATA_2026_09 = {
             }
           ],
           "goalsTotal": 7,
-          "goalsRetained": 0,
-          "buyers": 27,
-          "held": 27,
+          "goalsRetained": 1,
+          "buyers": 33,
+          "held": 33,
           "goal": 62,
-          "pct": 43.5,
-          "toGo": 35,
+          "pct": 53.2,
+          "toGo": 29,
           "emptyPickups": 0
         },
         "on_draft": {
@@ -119243,11 +119983,11 @@ const PROGRAM_DATA_2026_09 = {
           "emptyPickups": 1
         },
         "goalsTotal": 14,
-        "goalsRetained": 0,
-        "overallHeld": 543,
+        "goalsRetained": 1,
+        "overallHeld": 578,
         "overallGoal": 849,
-        "overallPct": 64.0,
-        "overallToGo": 306,
+        "overallPct": 68.1,
+        "overallToGo": 271,
         "hasAnyGoal": true
       },
       "Dan Lagala": {
@@ -119255,31 +119995,31 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 75,
+            "placements": 79,
             "goal": 126,
-            "pct": 59.5,
+            "pct": 62.7,
             "retained": false,
-            "toGo": 51,
+            "toGo": 47,
             "inReport": true,
             "products": [
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 25,
+                "placements": 27,
                 "base": 42,
                 "goal": 42,
-                "pct": 59.5,
+                "pct": 64.3,
                 "retained": false,
-                "toGo": 17,
+                "toGo": 15,
                 "lost": false
               },
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 22,
+                "placements": 24,
                 "base": 38,
                 "goal": 38,
-                "pct": 57.9,
+                "pct": 63.2,
                 "retained": false,
-                "toGo": 16,
+                "toGo": 14,
                 "lost": false
               },
               {
@@ -119325,11 +120065,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 176,
+            "placements": 177,
             "goal": 206,
-            "pct": 85.4,
+            "pct": 85.9,
             "retained": false,
-            "toGo": 30,
+            "toGo": 29,
             "inReport": true,
             "products": [
               {
@@ -119384,12 +120124,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 8,
+                "placements": 9,
                 "base": 10,
                 "goal": 10,
-                "pct": 80.0,
+                "pct": 90.0,
                 "retained": false,
-                "toGo": 2,
+                "toGo": 1,
                 "lost": false
               },
               {
@@ -119415,41 +120155,31 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 168,
+            "placements": 175,
             "goal": 206,
-            "pct": 81.6,
+            "pct": 85.0,
             "retained": false,
-            "toGo": 38,
+            "toGo": 31,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 15,
+                "placements": 17,
                 "base": 26,
                 "goal": 26,
-                "pct": 57.7,
+                "pct": 65.4,
                 "retained": false,
-                "toGo": 11,
+                "toGo": 9,
                 "lost": false
               },
               {
                 "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 13,
+                "placements": 14,
                 "base": 21,
                 "goal": 21,
-                "pct": 61.9,
+                "pct": 66.7,
                 "retained": false,
-                "toGo": 8,
-                "lost": false
-              },
-              {
-                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 31,
-                "base": 36,
-                "goal": 36,
-                "pct": 86.1,
-                "retained": false,
-                "toGo": 5,
+                "toGo": 7,
                 "lost": false
               },
               {
@@ -119463,13 +120193,13 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Pacifico 2/12/12 oz Can",
-                "placements": 2,
-                "base": 5,
-                "goal": 5,
-                "pct": 40.0,
+                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
+                "placements": 32,
+                "base": 36,
+                "goal": 36,
+                "pct": 88.9,
                 "retained": false,
-                "toGo": 3,
+                "toGo": 4,
                 "lost": false
               },
               {
@@ -119483,16 +120213,6 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 23,
-                "base": 25,
-                "goal": 25,
-                "pct": 92.0,
-                "retained": false,
-                "toGo": 2,
-                "lost": false
-              },
-              {
                 "product": "Pacifico 2/12/12 oz Btl",
                 "placements": 3,
                 "base": 5,
@@ -119500,6 +120220,26 @@ const PROGRAM_DATA_2026_09 = {
                 "pct": 60.0,
                 "retained": false,
                 "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Pacifico 2/12/12 oz Can",
+                "placements": 3,
+                "base": 5,
+                "goal": 5,
+                "pct": 60.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/12/32 oz Btl",
+                "placements": 24,
+                "base": 25,
+                "goal": 25,
+                "pct": 96.0,
+                "retained": false,
+                "toGo": 1,
                 "lost": false
               },
               {
@@ -119574,10 +120314,10 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 4,
+                "placements": 5,
                 "base": 1,
                 "goal": 1,
-                "pct": 400.0,
+                "pct": 500.0,
                 "retained": true,
                 "toGo": 0,
                 "lost": false
@@ -119605,82 +120345,72 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "innovation",
             "label": "Innovation",
-            "placements": 27,
+            "placements": 38,
             "goal": 130,
-            "pct": 20.8,
+            "pct": 29.2,
             "retained": false,
-            "toGo": 103,
+            "toGo": 92,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 4,
+                "placements": 5,
                 "base": 30,
                 "goal": 30,
-                "pct": 13.3,
+                "pct": 16.7,
                 "retained": false,
-                "toGo": 26,
+                "toGo": 25,
                 "lost": false
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 11,
+                "placements": 12,
                 "base": 33,
                 "goal": 33,
-                "pct": 33.3,
+                "pct": 36.4,
                 "retained": false,
-                "toGo": 22,
+                "toGo": 21,
                 "lost": false
               },
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 3,
+                "placements": 5,
                 "base": 20,
                 "goal": 20,
-                "pct": 15.0,
+                "pct": 25.0,
                 "retained": false,
-                "toGo": 17,
+                "toGo": 15,
+                "lost": false
+              },
+              {
+                "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
+                "placements": 8,
+                "base": 16,
+                "goal": 16,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 8,
                 "lost": false
               },
               {
                 "product": "Corona Sunbrew 1/12/24 oz Can",
-                "placements": 0,
+                "placements": 3,
                 "base": 11,
                 "goal": 11,
-                "pct": 0.0,
+                "pct": 27.3,
                 "retained": false,
-                "toGo": 11,
-                "lost": true
-              },
-              {
-                "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 6,
-                "base": 16,
-                "goal": 16,
-                "pct": 37.5,
-                "retained": false,
-                "toGo": 10,
+                "toGo": 8,
                 "lost": false
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Btl",
-                "placements": 1,
+                "placements": 2,
                 "base": 6,
                 "goal": 6,
-                "pct": 16.7,
+                "pct": 33.3,
                 "retained": false,
-                "toGo": 5,
+                "toGo": 4,
                 "lost": false
-              },
-              {
-                "product": "Corona Sunbrew 2/12/12 oz Can",
-                "placements": 0,
-                "base": 5,
-                "goal": 5,
-                "pct": 0.0,
-                "retained": false,
-                "toGo": 5,
-                "lost": true
               },
               {
                 "product": "Victoria Vicky Mango 1/12/24 oz Can",
@@ -119688,6 +120418,16 @@ const PROGRAM_DATA_2026_09 = {
                 "base": 6,
                 "goal": 6,
                 "pct": 33.3,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 2/12/12 oz Can",
+                "placements": 1,
+                "base": 5,
+                "goal": 5,
+                "pct": 20.0,
                 "retained": false,
                 "toGo": 4,
                 "lost": false
@@ -119708,7 +120448,7 @@ const PROGRAM_DATA_2026_09 = {
             "baseGoal": 130,
             "skusTotal": 9,
             "skusHeld": 0,
-            "skusLost": 3,
+            "skusLost": 1,
             "skusShort": 9,
             "skusNew": 0
           }
@@ -119716,20 +120456,20 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 446,
+        "offPlacements": 469,
         "offGoal": 668,
-        "offPct": 66.8,
-        "offToGo": 222,
+        "offPct": 70.2,
+        "offToGo": 199,
         "on_packages": {
           "families": [
             {
               "key": "corona_extra",
               "label": "Corona Extra",
-              "buyers": 24,
+              "buyers": 26,
               "goal": 43,
-              "pct": 55.8,
+              "pct": 60.5,
               "retained": false,
-              "toGo": 19,
+              "toGo": 17,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -119763,7 +120503,53 @@ const PROGRAM_DATA_2026_09 = {
                   "customer": "690 Park",
                   "num": "44012",
                   "units": null,
-                  "lastDate": "2026-09-11",
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "River Palm (A)",
+                  "num": "49048",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Double Tree Hotel Ft Lee",
+                  "num": "49061",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl",
+                    "2425 Corona Extra 1/24/12 oz Loose Can"
+                  ]
+                },
+                {
+                  "customer": "Haven Rest/Bar (A)",
+                  "num": "49065",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "JJ Dak",
+                  "num": "49072",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Raku Izakaya (Z)",
+                  "num": "49076",
+                  "units": null,
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -119778,47 +120564,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "River Palm (A)",
-                  "num": "49048",
+                  "customer": "Ventana's Restaurant",
+                  "num": "49024",
                   "units": null,
-                  "lastDate": "2026-09-11",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Double Tree Hotel Ft Lee",
-                  "num": "49061",
-                  "units": null,
-                  "lastDate": "2026-09-15",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl",
-                    "2425 Corona Extra 1/24/12 oz Loose Can"
-                  ]
-                },
-                {
-                  "customer": "Haven Rest/Bar (A)",
-                  "num": "49065",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "JJ Dak",
-                  "num": "49072",
-                  "units": null,
-                  "lastDate": "2026-09-18",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Raku Izakaya (Z)",
-                  "num": "49076",
-                  "units": null,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -119914,10 +120663,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Ventana's Restaurant",
-                  "num": "49024",
+                  "customer": "Elks Post 2475 (Z)",
+                  "num": "46030",
                   "units": null,
-                  "lastDate": "2026-09-11",
+                  "lastDate": "2026-09-28",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -119929,6 +120678,15 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-23",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Courtyard By Marriott Edgewater",
+                  "num": "49083",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -120097,10 +120855,28 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "690 Park",
+                  "num": "44012",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Sedona Tap House",
                   "num": "44047",
                   "units": null,
                   "lastDate": "2026-09-17",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Ventana's Restaurant",
+                  "num": "49024",
+                  "units": null,
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -120124,15 +120900,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "690 Park",
-                  "num": "44012",
-                  "units": null,
-                  "lastDate": "2026-09-04",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Mythos Greek Taverna",
                   "num": "44043",
                   "units": null,
@@ -120146,15 +120913,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "49018",
                   "units": null,
                   "lastDate": "2026-09-15",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Ventana's Restaurant",
-                  "num": "49024",
-                  "units": null,
-                  "lastDate": "2026-09-11",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -120204,11 +120962,11 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "goalsTotal": 7,
           "goalsRetained": 0,
-          "buyers": 43,
-          "held": 43,
+          "buyers": 45,
+          "held": 45,
           "goal": 116,
-          "pct": 37.1,
-          "toGo": 73,
+          "pct": 38.8,
+          "toGo": 71,
           "emptyPickups": 0
         },
         "on_draft": {
@@ -120280,10 +121038,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 14,
         "goalsRetained": 0,
-        "overallHeld": 491,
+        "overallHeld": 516,
         "overallGoal": 791,
-        "overallPct": 62.1,
-        "overallToGo": 300,
+        "overallPct": 65.2,
+        "overallToGo": 275,
         "hasAnyGoal": true
       },
       "Dave Ehlers": {
@@ -120291,9 +121049,9 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 116,
+            "placements": 117,
             "goal": 115,
-            "pct": 100.9,
+            "pct": 101.7,
             "retained": true,
             "toGo": 0,
             "inReport": true,
@@ -120309,16 +121067,6 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 30,
-                "base": 33,
-                "goal": 33,
-                "pct": 90.9,
-                "retained": false,
-                "toGo": 3,
-                "lost": false
-              },
-              {
                 "product": "Corona Extra 2/12/12 oz Btl",
                 "placements": 28,
                 "base": 31,
@@ -120326,6 +121074,16 @@ const PROGRAM_DATA_2026_09 = {
                 "pct": 90.3,
                 "retained": false,
                 "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 4/6/12 oz Btl",
+                "placements": 31,
+                "base": 33,
+                "goal": 33,
+                "pct": 93.9,
+                "retained": false,
+                "toGo": 2,
                 "lost": false
               },
               {
@@ -120361,11 +121119,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 171,
+            "placements": 174,
             "goal": 176,
-            "pct": 97.2,
+            "pct": 98.9,
             "retained": false,
-            "toGo": 5,
+            "toGo": 2,
             "inReport": true,
             "products": [
               {
@@ -120400,12 +121158,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 30,
+                "placements": 31,
                 "base": 32,
                 "goal": 32,
-                "pct": 93.8,
+                "pct": 96.9,
                 "retained": false,
-                "toGo": 2,
+                "toGo": 1,
                 "lost": false
               },
               {
@@ -120420,22 +121178,22 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 19,
+                "placements": 20,
                 "base": 20,
                 "goal": 20,
-                "pct": 95.0,
-                "retained": false,
-                "toGo": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
                 "lost": false
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 16,
+                "placements": 17,
                 "base": 17,
                 "goal": 17,
-                "pct": 94.1,
-                "retained": false,
-                "toGo": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
                 "lost": false
               }
             ],
@@ -120443,19 +121201,19 @@ const PROGRAM_DATA_2026_09 = {
             "goalOverride": true,
             "baseGoal": 186,
             "skusTotal": 7,
-            "skusHeld": 0,
+            "skusHeld": 2,
             "skusLost": 0,
-            "skusShort": 7,
+            "skusShort": 5,
             "skusNew": 0
           },
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 241,
+            "placements": 249,
             "goal": 250,
-            "pct": 96.4,
+            "pct": 99.6,
             "retained": false,
-            "toGo": 9,
+            "toGo": 1,
             "inReport": true,
             "products": [
               {
@@ -120466,16 +121224,6 @@ const PROGRAM_DATA_2026_09 = {
                 "pct": 50.0,
                 "retained": false,
                 "toGo": 7,
-                "lost": false
-              },
-              {
-                "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 25,
-                "base": 31,
-                "goal": 31,
-                "pct": 80.6,
-                "retained": false,
-                "toGo": 6,
                 "lost": false
               },
               {
@@ -120499,6 +121247,16 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
+                "product": "Corona Extra 1/12/24 oz Can",
+                "placements": 27,
+                "base": 31,
+                "goal": 31,
+                "pct": 87.1,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
+              },
+              {
                 "product": "Victoria 2/12/12 oz Can",
                 "placements": 6,
                 "base": 10,
@@ -120514,26 +121272,6 @@ const PROGRAM_DATA_2026_09 = {
                 "base": 24,
                 "goal": 24,
                 "pct": 87.5,
-                "retained": false,
-                "toGo": 3,
-                "lost": false
-              },
-              {
-                "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 19,
-                "base": 22,
-                "goal": 22,
-                "pct": 86.4,
-                "retained": false,
-                "toGo": 3,
-                "lost": false
-              },
-              {
-                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 17,
-                "base": 20,
-                "goal": 20,
-                "pct": 85.0,
                 "retained": false,
                 "toGo": 3,
                 "lost": false
@@ -120559,11 +121297,11 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 21,
-                "base": 23,
-                "goal": 23,
-                "pct": 91.3,
+                "product": "Modelo Especial 1/12/32 oz Btl",
+                "placements": 20,
+                "base": 22,
+                "goal": 22,
+                "pct": 90.9,
                 "retained": false,
                 "toGo": 2,
                 "lost": false
@@ -120589,6 +121327,26 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
+                "product": "Corona Familiar 1/12/32 oz Btl",
+                "placements": 22,
+                "base": 23,
+                "goal": 23,
+                "pct": 95.7,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
+                "placements": 20,
+                "base": 20,
+                "goal": 20,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
                 "placements": 20,
                 "base": 19,
@@ -120600,10 +121358,10 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Victoria 1/12/32 oz Btl",
-                "placements": 17,
+                "placements": 18,
                 "base": 14,
                 "goal": 14,
-                "pct": 121.4,
+                "pct": 128.6,
                 "retained": true,
                 "toGo": 0,
                 "lost": false
@@ -120653,19 +121411,19 @@ const PROGRAM_DATA_2026_09 = {
             "goalOverride": true,
             "baseGoal": 276,
             "skusTotal": 19,
-            "skusHeld": 6,
+            "skusHeld": 7,
             "skusLost": 0,
-            "skusShort": 13,
+            "skusShort": 12,
             "skusNew": 0
           },
           {
             "key": "innovation",
             "label": "Innovation",
-            "placements": 70,
+            "placements": 71,
             "goal": 86,
-            "pct": 81.4,
+            "pct": 82.6,
             "retained": false,
-            "toGo": 16,
+            "toGo": 15,
             "inReport": true,
             "products": [
               {
@@ -120680,12 +121438,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 14,
+                "placements": 15,
                 "base": 24,
                 "goal": 24,
-                "pct": 58.3,
+                "pct": 62.5,
                 "retained": false,
-                "toGo": 10,
+                "toGo": 9,
                 "lost": false
               },
               {
@@ -120792,10 +121550,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 1,
-        "offPlacements": 598,
+        "offPlacements": 611,
         "offGoal": 627,
-        "offPct": 95.4,
-        "offToGo": 29,
+        "offPct": 97.4,
+        "offToGo": 16,
         "on_packages": {
           "families": [
             {
@@ -120855,10 +121613,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 6,
         "goalsRetained": 2,
-        "overallHeld": 599,
+        "overallHeld": 612,
         "overallGoal": 629,
-        "overallPct": 95.2,
-        "overallToGo": 30,
+        "overallPct": 97.3,
+        "overallToGo": 17,
         "hasAnyGoal": true
       },
       "Derrick Laws": {
@@ -120866,33 +121624,13 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 100,
+            "placements": 103,
             "goal": 123,
-            "pct": 81.3,
+            "pct": 83.7,
             "retained": false,
-            "toGo": 23,
+            "toGo": 20,
             "inReport": true,
             "products": [
-              {
-                "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 22,
-                "base": 28,
-                "goal": 28,
-                "pct": 78.6,
-                "retained": false,
-                "toGo": 6,
-                "lost": false
-              },
-              {
-                "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 20,
-                "base": 26,
-                "goal": 26,
-                "pct": 76.9,
-                "retained": false,
-                "toGo": 6,
-                "lost": false
-              },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
                 "placements": 8,
@@ -120904,13 +121642,33 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Corona Extra 4/6/12 oz Btl",
+                "product": "Corona Extra 1/24/12 oz Loose Btl",
                 "placements": 23,
                 "base": 28,
                 "goal": 28,
                 "pct": 82.1,
                 "retained": false,
                 "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 2/12/12 oz Btl",
+                "placements": 21,
+                "base": 26,
+                "goal": 26,
+                "pct": 80.8,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 4/6/12 oz Btl",
+                "placements": 24,
+                "base": 28,
+                "goal": 28,
+                "pct": 85.7,
+                "retained": false,
+                "toGo": 4,
                 "lost": false
               },
               {
@@ -120936,11 +121694,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 132,
+            "placements": 136,
             "goal": 156,
-            "pct": 84.6,
+            "pct": 87.2,
             "retained": false,
-            "toGo": 24,
+            "toGo": 20,
             "inReport": true,
             "products": [
               {
@@ -120965,30 +121723,20 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
-                "placements": 0,
+                "placements": 1,
                 "base": 4,
                 "goal": 4,
-                "pct": 0.0,
-                "retained": false,
-                "toGo": 4,
-                "lost": true
-              },
-              {
-                "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 26,
-                "base": 29,
-                "goal": 29,
-                "pct": 89.7,
+                "pct": 25.0,
                 "retained": false,
                 "toGo": 3,
                 "lost": false
               },
               {
-                "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 25,
-                "base": 27,
-                "goal": 27,
-                "pct": 92.6,
+                "product": "Modelo Especial 4/6/12 oz Btl",
+                "placements": 27,
+                "base": 29,
+                "goal": 29,
+                "pct": 93.1,
                 "retained": false,
                 "toGo": 2,
                 "lost": false
@@ -121012,25 +121760,35 @@ const PROGRAM_DATA_2026_09 = {
                 "retained": false,
                 "toGo": 1,
                 "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/12/24 oz Can",
+                "placements": 27,
+                "base": 27,
+                "goal": 27,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
             "goalOverride": false,
             "baseGoal": 156,
             "skusTotal": 7,
-            "skusHeld": 0,
-            "skusLost": 1,
-            "skusShort": 7,
+            "skusHeld": 1,
+            "skusLost": 0,
+            "skusShort": 6,
             "skusNew": 0
           },
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 227,
+            "placements": 235,
             "goal": 272,
-            "pct": 83.5,
+            "pct": 86.4,
             "retained": false,
-            "toGo": 45,
+            "toGo": 37,
             "inReport": true,
             "products": [
               {
@@ -121054,26 +121812,6 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 24,
-                "base": 29,
-                "goal": 29,
-                "pct": 82.8,
-                "retained": false,
-                "toGo": 5,
-                "lost": false
-              },
-              {
-                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 19,
-                "base": 24,
-                "goal": 24,
-                "pct": 79.2,
-                "retained": false,
-                "toGo": 5,
-                "lost": false
-              },
-              {
                 "product": "Corona Extra 1/12/24 oz Can",
                 "placements": 25,
                 "base": 29,
@@ -121084,13 +121822,23 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Victoria 2/12/12 oz Can",
-                "placements": 7,
-                "base": 11,
-                "goal": 11,
-                "pct": 63.6,
+                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
+                "placements": 20,
+                "base": 24,
+                "goal": 24,
+                "pct": 83.3,
                 "retained": false,
                 "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
+                "placements": 26,
+                "base": 29,
+                "goal": 29,
+                "pct": 89.7,
+                "retained": false,
+                "toGo": 3,
                 "lost": false
               },
               {
@@ -121104,11 +121852,11 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Victoria 1/12/32 oz Btl",
-                "placements": 14,
-                "base": 17,
-                "goal": 17,
-                "pct": 82.4,
+                "product": "Victoria 2/12/12 oz Can",
+                "placements": 8,
+                "base": 11,
+                "goal": 11,
+                "pct": 72.7,
                 "retained": false,
                 "toGo": 3,
                 "lost": false
@@ -121134,11 +121882,11 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Pacifico 2/12/12 oz Can",
-                "placements": 4,
-                "base": 6,
-                "goal": 6,
-                "pct": 66.7,
+                "product": "Victoria 1/12/32 oz Btl",
+                "placements": 15,
+                "base": 17,
+                "goal": 17,
+                "pct": 88.2,
                 "retained": false,
                 "toGo": 2,
                 "lost": false
@@ -121149,6 +121897,16 @@ const PROGRAM_DATA_2026_09 = {
                 "base": 7,
                 "goal": 7,
                 "pct": 85.7,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Pacifico 2/12/12 oz Can",
+                "placements": 5,
+                "base": 6,
+                "goal": 6,
+                "pct": 83.3,
                 "retained": false,
                 "toGo": 1,
                 "lost": false
@@ -121185,10 +121943,10 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 17,
+                "placements": 19,
                 "base": 17,
                 "goal": 17,
-                "pct": 100.0,
+                "pct": 111.8,
                 "retained": true,
                 "toGo": 0,
                 "lost": false
@@ -121236,11 +121994,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "innovation",
             "label": "Innovation",
-            "placements": 28,
+            "placements": 30,
             "goal": 91,
-            "pct": 30.8,
+            "pct": 33.0,
             "retained": false,
-            "toGo": 63,
+            "toGo": 61,
             "inReport": true,
             "products": [
               {
@@ -121255,12 +122013,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 4,
+                "placements": 5,
                 "base": 20,
                 "goal": 20,
-                "pct": 20.0,
+                "pct": 25.0,
                 "retained": false,
-                "toGo": 16,
+                "toGo": 15,
                 "lost": false
               },
               {
@@ -121295,12 +122053,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Victoria Vicky Mango 1/12/24 oz Can",
-                "placements": 2,
+                "placements": 3,
                 "base": 8,
                 "goal": 8,
-                "pct": 25.0,
+                "pct": 37.5,
                 "retained": false,
-                "toGo": 6,
+                "toGo": 5,
                 "lost": false
               },
               {
@@ -121357,10 +122115,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 487,
+        "offPlacements": 504,
         "offGoal": 642,
-        "offPct": 75.9,
-        "offToGo": 155,
+        "offPct": 78.5,
+        "offToGo": 138,
         "on_packages": {
           "families": [
             {
@@ -121377,13 +122135,26 @@ const PROGRAM_DATA_2026_09 = {
                   "customer": "Krystal Bar(P) & Liqs.",
                   "num": "20058",
                   "units": null,
-                  "lastDate": "2026-09-18",
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2405 Coronita Extra 1/24/7 oz Btl",
                     "2409 Corona Extra 1/24/12 oz Loose Btl",
                     "2414 Corona Extra 1/12/24 oz Btl",
                     "2415 Corona Extra 1/12/24 oz Can",
                     "2425 Corona Extra 1/24/12 oz Loose Can"
+                  ]
+                },
+                {
+                  "customer": "El Fogon Rest",
+                  "num": "20131",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2404 Coronita Extra 4/6/7 oz Btl",
+                    "2405 Coronita Extra 1/24/7 oz Btl",
+                    "2409 Corona Extra 1/24/12 oz Loose Btl",
+                    "2410 Corona Extra 4/6/12 oz Btl",
+                    "2412 Corona Extra 2/12/12 oz Btl"
                   ]
                 },
                 {
@@ -121397,16 +122168,12 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "El Fogon Rest",
-                  "num": "20131",
+                  "customer": "Downtown Cafe (P)",
+                  "num": "20048",
                   "units": null,
-                  "lastDate": "2026-09-10",
+                  "lastDate": "2026-09-24",
                   "products": [
-                    "2404 Coronita Extra 4/6/7 oz Btl",
-                    "2405 Coronita Extra 1/24/7 oz Btl",
-                    "2409 Corona Extra 1/24/12 oz Loose Btl",
-                    "2410 Corona Extra 4/6/12 oz Btl",
-                    "2412 Corona Extra 2/12/12 oz Btl"
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
                 },
                 {
@@ -121424,15 +122191,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "20028",
                   "units": null,
                   "lastDate": "2026-09-04",
-                  "products": [
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Downtown Cafe (P)",
-                  "num": "20048",
-                  "units": null,
-                  "lastDate": "2026-09-10",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
@@ -121495,18 +122253,27 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_premier",
               "label": "Corona Premier",
-              "buyers": 1,
+              "buyers": 2,
               "goal": 4,
-              "pct": 25.0,
+              "pct": 50.0,
               "retained": false,
-              "toGo": 3,
+              "toGo": 2,
               "emptyPickups": 0,
               "accounts": [
                 {
                   "customer": "Krystal Bar(P) & Liqs.",
                   "num": "20058",
                   "units": null,
-                  "lastDate": "2026-09-18",
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2440 Corona Premier 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "El Fogon Rest",
+                  "num": "20131",
+                  "units": null,
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2440 Corona Premier 4/6/12 oz Btl"
                   ]
@@ -121529,29 +122296,18 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "modelo_especial",
               "label": "Modelo Especial",
-              "buyers": 8,
+              "buyers": 9,
               "goal": 11,
-              "pct": 72.7,
+              "pct": 81.8,
               "retained": false,
-              "toGo": 3,
+              "toGo": 2,
               "emptyPickups": 0,
               "accounts": [
-                {
-                  "customer": "Krystal Bar(P) & Liqs.",
-                  "num": "20058",
-                  "units": null,
-                  "lastDate": "2026-09-18",
-                  "products": [
-                    "2807 Modelito Especial 1/24/7 oz Loose Btl",
-                    "2808 Modelo Especial 1/24/12 oz Loose Btl",
-                    "2809 Modelo Especial 1/24/12 oz Loose Can"
-                  ]
-                },
                 {
                   "customer": "El Fogon Rest",
                   "num": "20131",
                   "units": null,
-                  "lastDate": "2026-09-18",
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2807 Modelito Especial 1/24/7 oz Loose Btl",
                     "2808 Modelo Especial 1/24/12 oz Loose Btl",
@@ -121559,6 +122315,17 @@ const PROGRAM_DATA_2026_09 = {
                     "2814 Modelo Especial 4/6/12 oz Btl",
                     "2815 Modelo Especial 2/12/12 oz Btl",
                     "2816 Modelo Especial 1/12/24 oz Can"
+                  ]
+                },
+                {
+                  "customer": "Krystal Bar(P) & Liqs.",
+                  "num": "20058",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2807 Modelito Especial 1/24/7 oz Loose Btl",
+                    "2808 Modelo Especial 1/24/12 oz Loose Btl",
+                    "2809 Modelo Especial 1/24/12 oz Loose Can"
                   ]
                 },
                 {
@@ -121584,6 +122351,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "20028",
                   "units": null,
                   "lastDate": "2026-09-04",
+                  "products": [
+                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Downtown Cafe (P)",
+                  "num": "20048",
+                  "units": null,
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2808 Modelo Especial 1/24/12 oz Loose Btl"
                   ]
@@ -121664,11 +122440,11 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "goalsTotal": 8,
           "goalsRetained": 0,
-          "buyers": 20,
-          "held": 20,
+          "buyers": 22,
+          "held": 22,
           "goal": 55,
-          "pct": 36.4,
-          "toGo": 35,
+          "pct": 40.0,
+          "toGo": 33,
           "emptyPickups": 0
         },
         "on_draft": {
@@ -121684,10 +122460,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 12,
         "goalsRetained": 0,
-        "overallHeld": 507,
+        "overallHeld": 526,
         "overallGoal": 697,
-        "overallPct": 72.7,
-        "overallToGo": 190,
+        "overallPct": 75.5,
+        "overallToGo": 171,
         "hasAnyGoal": true
       },
       "Dylan Rubino": {
@@ -122360,11 +123136,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 90,
+            "placements": 93,
             "goal": 117,
-            "pct": 76.9,
+            "pct": 79.5,
             "retained": false,
-            "toGo": 27,
+            "toGo": 24,
             "inReport": true,
             "products": [
               {
@@ -122379,32 +123155,32 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 17,
+                "placements": 18,
                 "base": 24,
                 "goal": 24,
-                "pct": 70.8,
-                "retained": false,
-                "toGo": 7,
-                "lost": false
-              },
-              {
-                "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 22,
-                "base": 28,
-                "goal": 28,
-                "pct": 78.6,
+                "pct": 75.0,
                 "retained": false,
                 "toGo": 6,
                 "lost": false
               },
               {
-                "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 21,
-                "base": 26,
-                "goal": 26,
-                "pct": 80.8,
+                "product": "Corona Extra 2/12/12 oz Btl",
+                "placements": 23,
+                "base": 28,
+                "goal": 28,
+                "pct": 82.1,
                 "retained": false,
                 "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 4/6/12 oz Btl",
+                "placements": 22,
+                "base": 26,
+                "goal": 26,
+                "pct": 84.6,
+                "retained": false,
+                "toGo": 4,
                 "lost": false
               },
               {
@@ -122430,11 +123206,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 134,
+            "placements": 135,
             "goal": 158,
-            "pct": 84.8,
+            "pct": 85.4,
             "retained": false,
-            "toGo": 24,
+            "toGo": 23,
             "inReport": true,
             "products": [
               {
@@ -122499,12 +123275,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 24,
+                "placements": 25,
                 "base": 25,
                 "goal": 25,
-                "pct": 96.0,
-                "retained": false,
-                "toGo": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
                 "lost": false
               }
             ],
@@ -122512,19 +123288,19 @@ const PROGRAM_DATA_2026_09 = {
             "goalOverride": false,
             "baseGoal": 158,
             "skusTotal": 7,
-            "skusHeld": 0,
+            "skusHeld": 1,
             "skusLost": 0,
-            "skusShort": 7,
+            "skusShort": 6,
             "skusNew": 0
           },
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 239,
+            "placements": 247,
             "goal": 298,
-            "pct": 80.2,
+            "pct": 82.9,
             "retained": false,
-            "toGo": 59,
+            "toGo": 51,
             "inReport": true,
             "products": [
               {
@@ -122548,26 +123324,6 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 24,
-                "base": 29,
-                "goal": 29,
-                "pct": 82.8,
-                "retained": false,
-                "toGo": 5,
-                "lost": false
-              },
-              {
-                "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 23,
-                "base": 28,
-                "goal": 28,
-                "pct": 82.1,
-                "retained": false,
-                "toGo": 5,
-                "lost": false
-              },
-              {
                 "product": "Modelo Negra 2/12/12 oz Btl",
                 "placements": 10,
                 "base": 15,
@@ -122578,31 +123334,21 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 22,
-                "base": 26,
-                "goal": 26,
-                "pct": 84.6,
+                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
+                "placements": 25,
+                "base": 29,
+                "goal": 29,
+                "pct": 86.2,
                 "retained": false,
                 "toGo": 4,
                 "lost": false
               },
               {
-                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 19,
-                "base": 23,
-                "goal": 23,
-                "pct": 82.6,
-                "retained": false,
-                "toGo": 4,
-                "lost": false
-              },
-              {
-                "product": "Victoria 1/12/32 oz Btl",
-                "placements": 15,
-                "base": 19,
-                "goal": 19,
-                "pct": 78.9,
+                "product": "Corona Extra 1/12/24 oz Can",
+                "placements": 24,
+                "base": 28,
+                "goal": 28,
+                "pct": 85.7,
                 "retained": false,
                 "toGo": 4,
                 "lost": false
@@ -122628,21 +123374,41 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
+                "product": "Corona Familiar 1/12/32 oz Btl",
+                "placements": 23,
+                "base": 26,
+                "goal": 26,
+                "pct": 88.5,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
+                "placements": 20,
+                "base": 23,
+                "goal": 23,
+                "pct": 87.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Victoria 1/12/32 oz Btl",
+                "placements": 16,
+                "base": 19,
+                "goal": 19,
+                "pct": 84.2,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
+              },
+              {
                 "product": "Modelito Especial 1/24/7 oz Loose Btl",
                 "placements": 25,
                 "base": 27,
                 "goal": 27,
                 "pct": 92.6,
-                "retained": false,
-                "toGo": 2,
-                "lost": false
-              },
-              {
-                "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 18,
-                "base": 20,
-                "goal": 20,
-                "pct": 90.0,
                 "retained": false,
                 "toGo": 2,
                 "lost": false
@@ -122678,11 +123444,11 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 16,
-                "base": 17,
-                "goal": 17,
-                "pct": 94.1,
+                "product": "Coronita Extra 2/12/7 oz Btl",
+                "placements": 19,
+                "base": 20,
+                "goal": 20,
+                "pct": 95.0,
                 "retained": false,
                 "toGo": 1,
                 "lost": false
@@ -122696,25 +123462,35 @@ const PROGRAM_DATA_2026_09 = {
                 "retained": false,
                 "toGo": 1,
                 "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
+                "placements": 18,
+                "base": 17,
+                "goal": 17,
+                "pct": 105.9,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
             "goalOverride": false,
             "baseGoal": 298,
             "skusTotal": 17,
-            "skusHeld": 0,
+            "skusHeld": 1,
             "skusLost": 2,
-            "skusShort": 17,
+            "skusShort": 16,
             "skusNew": 0
           },
           {
             "key": "innovation",
             "label": "Innovation",
-            "placements": 44,
+            "placements": 45,
             "goal": 84,
-            "pct": 52.4,
+            "pct": 53.6,
             "retained": false,
-            "toGo": 40,
+            "toGo": 39,
             "inReport": true,
             "products": [
               {
@@ -122748,16 +123524,6 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 8,
-                "base": 12,
-                "goal": 12,
-                "pct": 66.7,
-                "retained": false,
-                "toGo": 4,
-                "lost": false
-              },
-              {
                 "product": "Corona Sunbrew 1/12/24 oz Can",
                 "placements": 1,
                 "base": 5,
@@ -122765,6 +123531,16 @@ const PROGRAM_DATA_2026_09 = {
                 "pct": 20.0,
                 "retained": false,
                 "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
+                "placements": 9,
+                "base": 12,
+                "goal": 12,
+                "pct": 75.0,
+                "retained": false,
+                "toGo": 3,
                 "lost": false
               },
               {
@@ -122831,20 +123607,20 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 507,
+        "offPlacements": 520,
         "offGoal": 657,
-        "offPct": 77.2,
-        "offToGo": 150,
+        "offPct": 79.1,
+        "offToGo": 137,
         "on_packages": {
           "families": [
             {
               "key": "corona_extra",
               "label": "Corona Extra",
-              "buyers": 26,
+              "buyers": 27,
               "goal": 31,
-              "pct": 83.9,
+              "pct": 87.1,
               "retained": false,
-              "toGo": 5,
+              "toGo": 4,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -122867,10 +123643,11 @@ const PROGRAM_DATA_2026_09 = {
                   "customer": "Seguidilla 56 Lounge & Liquors",
                   "num": "20061",
                   "units": null,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2405 Coronita Extra 1/24/7 oz Btl",
                     "2409 Corona Extra 1/24/12 oz Loose Btl",
+                    "2415 Corona Extra 1/12/24 oz Can",
                     "2425 Corona Extra 1/24/12 oz Loose Can"
                   ]
                 },
@@ -122887,10 +123664,40 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "La Fortaleza (Carlstadt)",
+                  "num": "32011",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2405 Coronita Extra 1/24/7 oz Btl",
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "La Fortaleza (Lodi)",
+                  "num": "38046",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2405 Coronita Extra 1/24/7 oz Btl",
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
                   "customer": "La Fortaleza (Clifton)",
                   "num": "24034",
                   "units": null,
                   "lastDate": "2026-09-22",
+                  "products": [
+                    "2405 Coronita Extra 1/24/7 oz Btl",
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "La Fortaleza (Garfield)",
+                  "num": "37066",
+                  "units": null,
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2405 Coronita Extra 1/24/7 oz Btl",
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
@@ -122906,40 +123713,46 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "La Fortaleza (Carlstadt)",
-                  "num": "32011",
-                  "units": null,
-                  "lastDate": "2026-09-17",
-                  "products": [
-                    "2405 Coronita Extra 1/24/7 oz Btl",
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "La Fortaleza (Garfield)",
-                  "num": "37066",
-                  "units": null,
-                  "lastDate": "2026-09-17",
-                  "products": [
-                    "2405 Coronita Extra 1/24/7 oz Btl",
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "La Fortaleza (Lodi)",
-                  "num": "38046",
-                  "units": null,
-                  "lastDate": "2026-09-18",
-                  "products": [
-                    "2405 Coronita Extra 1/24/7 oz Btl",
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
                   "customer": "Los Arcos (P) Rest.",
                   "num": "27108",
                   "units": null,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Mambo Lounge (P)",
+                  "num": "22065",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "La Bonita",
+                  "num": "24051",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Club Sq (A)",
+                  "num": "27095",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "La Posada",
+                  "num": "27106",
+                  "units": null,
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
@@ -122955,19 +123768,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Mambo Lounge (P)",
-                  "num": "22065",
+                  "customer": "Lamayoria Bar Restaurant",
+                  "num": "25053",
                   "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "La Bonita",
-                  "num": "24051",
-                  "units": null,
-                  "lastDate": "2026-09-18",
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
@@ -122992,30 +123796,12 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Club Sq (A)",
-                  "num": "27095",
-                  "units": null,
-                  "lastDate": "2026-09-17",
-                  "products": [
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
                   "customer": "Fragancia Sports Bar",
                   "num": "27102",
                   "units": null,
                   "lastDate": "2026-09-18",
                   "products": [
                     "2405 Coronita Extra 1/24/7 oz Btl",
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "La Posada",
-                  "num": "27106",
-                  "units": null,
-                  "lastDate": "2026-09-18",
-                  "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
                 },
@@ -123042,15 +123828,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "24042",
                   "units": null,
                   "lastDate": "2026-09-22",
-                  "products": [
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Lamayoria Bar Restaurant",
-                  "num": "25053",
-                  "units": null,
-                  "lastDate": "2026-09-11",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
@@ -123096,6 +123873,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "27085",
                   "units": null,
                   "lastDate": "2026-09-09",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Agave Cocina Mexicana",
+                  "num": "36026",
+                  "units": null,
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
@@ -123182,11 +123968,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "modelo_especial",
               "label": "Modelo Especial",
-              "buyers": 28,
+              "buyers": 29,
               "goal": 32,
-              "pct": 87.5,
+              "pct": 90.6,
               "retained": false,
-              "toGo": 4,
+              "toGo": 3,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -123208,7 +123994,7 @@ const PROGRAM_DATA_2026_09 = {
                   "customer": "Seguidilla 56 Lounge & Liquors",
                   "num": "20061",
                   "units": null,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2807 Modelito Especial 1/24/7 oz Loose Btl",
                     "2808 Modelo Especial 1/24/12 oz Loose Btl",
@@ -123263,7 +124049,7 @@ const PROGRAM_DATA_2026_09 = {
                   "customer": "Los Arcos (P) Rest.",
                   "num": "27108",
                   "units": null,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -123272,8 +124058,64 @@ const PROGRAM_DATA_2026_09 = {
                   "customer": "La Fortaleza (Garfield)",
                   "num": "37066",
                   "units": null,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-24",
                   "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Mambo Lounge (P)",
+                  "num": "22065",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "La Bonita",
+                  "num": "24051",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2808 Modelo Especial 1/24/12 oz Loose Btl",
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Club Sq (A)",
+                  "num": "27095",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "La Posada",
+                  "num": "27106",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "La Fortaleza (Carlstadt)",
+                  "num": "32011",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "La Fortaleza (Lodi)",
+                  "num": "38046",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2807 Modelito Especial 1/24/7 oz Loose Btl",
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
                 },
@@ -123287,19 +124129,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Mambo Lounge (P)",
-                  "num": "22065",
+                  "customer": "Lamayoria Bar Restaurant",
+                  "num": "25053",
                   "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "La Bonita",
-                  "num": "24051",
-                  "units": null,
-                  "lastDate": "2026-09-18",
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2808 Modelo Especial 1/24/12 oz Loose Btl",
                     "2814 Modelo Especial 4/6/12 oz Btl"
@@ -123316,48 +124149,12 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Club Sq (A)",
-                  "num": "27095",
-                  "units": null,
-                  "lastDate": "2026-09-17",
-                  "products": [
-                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "La Posada",
-                  "num": "27106",
-                  "units": null,
-                  "lastDate": "2026-09-18",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "El Camaron Mazatleco",
                   "num": "27110",
                   "units": null,
                   "lastDate": "2026-09-24",
                   "products": [
                     "2808 Modelo Especial 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "La Fortaleza (Carlstadt)",
-                  "num": "32011",
-                  "units": null,
-                  "lastDate": "2026-09-17",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "La Fortaleza (Lodi)",
-                  "num": "38046",
-                  "units": null,
-                  "lastDate": "2026-09-18",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -123383,15 +124180,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "24042",
                   "units": null,
                   "lastDate": "2026-09-22",
-                  "products": [
-                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Lamayoria Bar Restaurant",
-                  "num": "25053",
-                  "units": null,
-                  "lastDate": "2026-09-11",
                   "products": [
                     "2808 Modelo Especial 1/24/12 oz Loose Btl"
                   ]
@@ -123458,6 +124246,15 @@ const PROGRAM_DATA_2026_09 = {
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
+                },
+                {
+                  "customer": "Agave Cocina Mexicana",
+                  "num": "36026",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
                 }
               ],
               "baseWindow": "3/1/2026 - 5/31/2026"
@@ -123498,7 +124295,7 @@ const PROGRAM_DATA_2026_09 = {
                   "customer": "Los Arcos (P) Rest.",
                   "num": "27108",
                   "units": null,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2610 Pacifico 4/6/12 oz Btl"
                   ]
@@ -123507,7 +124304,7 @@ const PROGRAM_DATA_2026_09 = {
                   "customer": "La Posada",
                   "num": "27106",
                   "units": null,
-                  "lastDate": "2026-09-18",
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2610 Pacifico 4/6/12 oz Btl"
                   ]
@@ -123519,6 +124316,15 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-24",
                   "products": [
                     "2611 Pacifico 2/12/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "La Fortaleza (Carlstadt)",
+                  "num": "32011",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2610 Pacifico 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -123549,15 +124355,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "La Fortaleza (Carlstadt)",
-                  "num": "32011",
-                  "units": null,
-                  "lastDate": "2026-09-17",
-                  "products": [
-                    "2610 Pacifico 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "La Fortaleza (Garfield)",
                   "num": "37066",
                   "units": null,
@@ -123581,11 +124378,11 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "goalsTotal": 8,
           "goalsRetained": 0,
-          "buyers": 67,
-          "held": 67,
+          "buyers": 69,
+          "held": 69,
           "goal": 126,
-          "pct": 53.2,
-          "toGo": 59,
+          "pct": 54.8,
+          "toGo": 57,
           "emptyPickups": 0
         },
         "on_draft": {
@@ -123626,10 +124423,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 14,
         "goalsRetained": 0,
-        "overallHeld": 574,
+        "overallHeld": 589,
         "overallGoal": 785,
-        "overallPct": 73.1,
-        "overallToGo": 211,
+        "overallPct": 75.0,
+        "overallToGo": 196,
         "hasAnyGoal": true
       },
       "Jayson Romine": {
@@ -123637,21 +124434,21 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 65,
+            "placements": 68,
             "goal": 94,
-            "pct": 69.1,
+            "pct": 72.3,
             "retained": false,
-            "toGo": 29,
+            "toGo": 26,
             "inReport": true,
             "products": [
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 20,
+                "placements": 21,
                 "base": 30,
                 "goal": 30,
-                "pct": 66.7,
+                "pct": 70.0,
                 "retained": false,
-                "toGo": 10,
+                "toGo": 9,
                 "lost": false
               },
               {
@@ -123676,12 +124473,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 7,
+                "placements": 9,
                 "base": 11,
                 "goal": 11,
-                "pct": 63.6,
+                "pct": 81.8,
                 "retained": false,
-                "toGo": 4,
+                "toGo": 2,
                 "lost": false
               },
               {
@@ -123707,31 +124504,31 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 103,
+            "placements": 107,
             "goal": 136,
-            "pct": 75.7,
+            "pct": 78.7,
             "retained": false,
-            "toGo": 33,
+            "toGo": 29,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 22,
+                "placements": 23,
                 "base": 31,
                 "goal": 31,
-                "pct": 71.0,
+                "pct": 74.2,
                 "retained": false,
-                "toGo": 9,
+                "toGo": 8,
                 "lost": false
               },
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 18,
+                "placements": 20,
                 "base": 27,
                 "goal": 27,
-                "pct": 66.7,
+                "pct": 74.1,
                 "retained": false,
-                "toGo": 9,
+                "toGo": 7,
                 "lost": false
               },
               {
@@ -123756,12 +124553,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 5,
+                "placements": 6,
                 "base": 8,
                 "goal": 8,
-                "pct": 62.5,
+                "pct": 75.0,
                 "retained": false,
-                "toGo": 3,
+                "toGo": 2,
                 "lost": false
               },
               {
@@ -124007,11 +124804,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "innovation",
             "label": "Innovation",
-            "placements": 20,
+            "placements": 21,
             "goal": 69,
-            "pct": 29.0,
+            "pct": 30.4,
             "retained": false,
-            "toGo": 49,
+            "toGo": 48,
             "inReport": true,
             "products": [
               {
@@ -124036,13 +124833,13 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 0,
+                "placements": 1,
                 "base": 7,
                 "goal": 7,
-                "pct": 0.0,
+                "pct": 14.3,
                 "retained": false,
-                "toGo": 7,
-                "lost": true
+                "toGo": 6,
+                "lost": false
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Btl",
@@ -124120,7 +124917,7 @@ const PROGRAM_DATA_2026_09 = {
             "baseGoal": 69,
             "skusTotal": 9,
             "skusHeld": 0,
-            "skusLost": 5,
+            "skusLost": 4,
             "skusShort": 9,
             "skusNew": 1
           }
@@ -124128,10 +124925,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 282,
+        "offPlacements": 290,
         "offGoal": 443,
-        "offPct": 63.7,
-        "offToGo": 161,
+        "offPct": 65.5,
+        "offToGo": 153,
         "on_packages": {
           "families": [],
           "goalsTotal": 0,
@@ -124156,10 +124953,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 4,
         "goalsRetained": 0,
-        "overallHeld": 282,
+        "overallHeld": 290,
         "overallGoal": 443,
-        "overallPct": 63.7,
-        "overallToGo": 161,
+        "overallPct": 65.5,
+        "overallToGo": 153,
         "hasAnyGoal": true
       },
       "Jim Heaney": {
@@ -124167,11 +124964,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 85,
+            "placements": 86,
             "goal": 148,
-            "pct": 57.4,
+            "pct": 58.1,
             "retained": false,
-            "toGo": 63,
+            "toGo": 62,
             "inReport": true,
             "products": [
               {
@@ -124216,12 +125013,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 24,
+                "placements": 25,
                 "base": 31,
                 "goal": 31,
-                "pct": 77.4,
+                "pct": 80.6,
                 "retained": false,
-                "toGo": 7,
+                "toGo": 6,
                 "lost": false
               }
             ],
@@ -124237,71 +125034,71 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 168,
+            "placements": 177,
             "goal": 233,
-            "pct": 72.1,
+            "pct": 76.0,
             "retained": false,
-            "toGo": 65,
+            "toGo": 56,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 15,
+                "placements": 16,
                 "base": 28,
                 "goal": 28,
-                "pct": 53.6,
-                "retained": false,
-                "toGo": 13,
-                "lost": false
-              },
-              {
-                "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 29,
-                "base": 41,
-                "goal": 41,
-                "pct": 70.7,
+                "pct": 57.1,
                 "retained": false,
                 "toGo": 12,
                 "lost": false
               },
               {
-                "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 33,
-                "base": 42,
-                "goal": 42,
-                "pct": 78.6,
+                "product": "Modelo Especial 2/12/12 oz Can",
+                "placements": 31,
+                "base": 41,
+                "goal": 41,
+                "pct": 75.6,
                 "retained": false,
-                "toGo": 9,
+                "toGo": 10,
                 "lost": false
               },
               {
-                "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 17,
-                "base": 26,
-                "goal": 26,
-                "pct": 65.4,
+                "product": "Modelo Especial 2/12/12 oz Btl",
+                "placements": 34,
+                "base": 42,
+                "goal": 42,
+                "pct": 81.0,
                 "retained": false,
-                "toGo": 9,
+                "toGo": 8,
                 "lost": false
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
-                "placements": 3,
+                "placements": 4,
                 "base": 12,
                 "goal": 12,
-                "pct": 25.0,
+                "pct": 33.3,
                 "retained": false,
-                "toGo": 9,
+                "toGo": 8,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/24/12 oz Loose Can",
+                "placements": 19,
+                "base": 26,
+                "goal": 26,
+                "pct": 73.1,
+                "retained": false,
+                "toGo": 7,
                 "lost": false
               },
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 35,
+                "placements": 37,
                 "base": 43,
                 "goal": 43,
-                "pct": 81.4,
+                "pct": 86.0,
                 "retained": false,
-                "toGo": 8,
+                "toGo": 6,
                 "lost": false
               },
               {
@@ -124327,31 +125124,31 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 278,
+            "placements": 293,
             "goal": 393,
-            "pct": 70.7,
+            "pct": 74.6,
             "retained": false,
-            "toGo": 115,
+            "toGo": 100,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 15,
+                "placements": 17,
                 "base": 31,
                 "goal": 31,
-                "pct": 48.4,
+                "pct": 54.8,
                 "retained": false,
-                "toGo": 16,
+                "toGo": 14,
                 "lost": false
               },
               {
                 "product": "Pacifico 2/12/12 oz Btl",
-                "placements": 13,
+                "placements": 14,
                 "base": 25,
                 "goal": 25,
-                "pct": 52.0,
+                "pct": 56.0,
                 "retained": false,
-                "toGo": 12,
+                "toGo": 11,
                 "lost": false
               },
               {
@@ -124385,53 +125182,43 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
+                "product": "Corona Extra 1/12/24 oz Can",
+                "placements": 33,
+                "base": 39,
+                "goal": 39,
+                "pct": 84.6,
+                "retained": false,
+                "toGo": 6,
+                "lost": false
+              },
+              {
                 "product": "Victoria 1/12/32 oz Btl",
-                "placements": 15,
+                "placements": 17,
                 "base": 23,
                 "goal": 23,
-                "pct": 65.2,
+                "pct": 73.9,
                 "retained": false,
-                "toGo": 8,
+                "toGo": 6,
                 "lost": false
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
-                "placements": 11,
+                "placements": 13,
                 "base": 19,
                 "goal": 19,
-                "pct": 57.9,
+                "pct": 68.4,
                 "retained": false,
-                "toGo": 8,
-                "lost": false
-              },
-              {
-                "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 32,
-                "base": 39,
-                "goal": 39,
-                "pct": 82.1,
-                "retained": false,
-                "toGo": 7,
+                "toGo": 6,
                 "lost": false
               },
               {
                 "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 25,
+                "placements": 27,
                 "base": 32,
                 "goal": 32,
-                "pct": 78.1,
+                "pct": 84.4,
                 "retained": false,
-                "toGo": 7,
-                "lost": false
-              },
-              {
-                "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 25,
-                "base": 31,
-                "goal": 31,
-                "pct": 80.6,
-                "retained": false,
-                "toGo": 6,
+                "toGo": 5,
                 "lost": false
               },
               {
@@ -124445,11 +125232,11 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Pacifico 2/12/12 oz Can",
-                "placements": 18,
-                "base": 22,
-                "goal": 22,
-                "pct": 81.8,
+                "product": "Corona Familiar 1/12/32 oz Btl",
+                "placements": 27,
+                "base": 31,
+                "goal": 31,
+                "pct": 87.1,
                 "retained": false,
                 "toGo": 4,
                 "lost": false
@@ -124465,11 +125252,11 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Victoria 2/12/12 oz Btl",
-                "placements": 14,
-                "base": 17,
-                "goal": 17,
-                "pct": 82.4,
+                "product": "Pacifico 2/12/12 oz Can",
+                "placements": 19,
+                "base": 22,
+                "goal": 22,
+                "pct": 86.4,
                 "retained": false,
                 "toGo": 3,
                 "lost": false
@@ -124482,6 +125269,16 @@ const PROGRAM_DATA_2026_09 = {
                 "pct": 25.0,
                 "retained": false,
                 "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Victoria 2/12/12 oz Btl",
+                "placements": 15,
+                "base": 17,
+                "goal": 17,
+                "pct": 88.2,
+                "retained": false,
+                "toGo": 2,
                 "lost": false
               },
               {
@@ -124516,10 +125313,10 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 15,
+                "placements": 16,
                 "base": 13,
                 "goal": 13,
-                "pct": 115.4,
+                "pct": 123.1,
                 "retained": true,
                 "toGo": 0,
                 "lost": false
@@ -124537,11 +125334,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "innovation",
             "label": "Innovation",
-            "placements": 42,
+            "placements": 43,
             "goal": 118,
-            "pct": 35.6,
+            "pct": 36.4,
             "retained": false,
-            "toGo": 76,
+            "toGo": 75,
             "inReport": true,
             "products": [
               {
@@ -124576,12 +125373,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 7,
+                "placements": 8,
                 "base": 17,
                 "goal": 17,
-                "pct": 41.2,
+                "pct": 47.1,
                 "retained": false,
-                "toGo": 10,
+                "toGo": 9,
                 "lost": false
               },
               {
@@ -124668,10 +125465,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 573,
+        "offPlacements": 599,
         "offGoal": 892,
-        "offPct": 64.2,
-        "offToGo": 319,
+        "offPct": 67.2,
+        "offToGo": 293,
         "on_packages": {
           "families": [
             {
@@ -124741,10 +125538,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 6,
         "goalsRetained": 2,
-        "overallHeld": 575,
+        "overallHeld": 601,
         "overallGoal": 894,
-        "overallPct": 64.3,
-        "overallToGo": 319,
+        "overallPct": 67.2,
+        "overallToGo": 293,
         "hasAnyGoal": true
       },
       "John O'Donoghue": {
@@ -125035,11 +125832,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 79,
+            "placements": 81,
             "goal": 98,
-            "pct": 80.6,
+            "pct": 82.7,
             "retained": false,
-            "toGo": 19,
+            "toGo": 17,
             "inReport": true,
             "products": [
               {
@@ -125064,22 +125861,22 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 23,
+                "placements": 24,
                 "base": 26,
                 "goal": 26,
-                "pct": 88.5,
+                "pct": 92.3,
                 "retained": false,
-                "toGo": 3,
+                "toGo": 2,
                 "lost": false
               },
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 23,
+                "placements": 24,
                 "base": 26,
                 "goal": 26,
-                "pct": 88.5,
+                "pct": 92.3,
                 "retained": false,
-                "toGo": 3,
+                "toGo": 2,
                 "lost": false
               },
               {
@@ -125105,23 +125902,13 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 134,
+            "placements": 137,
             "goal": 150,
-            "pct": 89.3,
+            "pct": 91.3,
             "retained": false,
-            "toGo": 16,
+            "toGo": 13,
             "inReport": true,
             "products": [
-              {
-                "product": "Modelo Especial 1/18/12 oz Can",
-                "placements": 9,
-                "base": 14,
-                "goal": 14,
-                "pct": 64.3,
-                "retained": false,
-                "toGo": 5,
-                "lost": false
-              },
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
                 "placements": 22,
@@ -125133,13 +125920,13 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 16,
-                "base": 19,
-                "goal": 19,
-                "pct": 84.2,
+                "product": "Modelo Especial 1/18/12 oz Can",
+                "placements": 10,
+                "base": 14,
+                "goal": 14,
+                "pct": 71.4,
                 "retained": false,
-                "toGo": 3,
+                "toGo": 4,
                 "lost": false
               },
               {
@@ -125153,13 +125940,23 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 24,
-                "base": 26,
-                "goal": 26,
-                "pct": 92.3,
+                "product": "Modelo Especial 1/24/12 oz Loose Can",
+                "placements": 17,
+                "base": 19,
+                "goal": 19,
+                "pct": 89.5,
                 "retained": false,
                 "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 2/12/12 oz Can",
+                "placements": 25,
+                "base": 26,
+                "goal": 26,
+                "pct": 96.2,
+                "retained": false,
+                "toGo": 1,
                 "lost": false
               },
               {
@@ -125195,11 +125992,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 185,
+            "placements": 189,
             "goal": 212,
-            "pct": 87.3,
+            "pct": 89.2,
             "retained": false,
-            "toGo": 27,
+            "toGo": 23,
             "inReport": true,
             "products": [
               {
@@ -125218,16 +126015,6 @@ const PROGRAM_DATA_2026_09 = {
                 "base": 20,
                 "goal": 20,
                 "pct": 75.0,
-                "retained": false,
-                "toGo": 5,
-                "lost": false
-              },
-              {
-                "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 12,
-                "base": 17,
-                "goal": 17,
-                "pct": 70.6,
                 "retained": false,
                 "toGo": 5,
                 "lost": false
@@ -125263,11 +126050,11 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 21,
-                "base": 24,
-                "goal": 24,
-                "pct": 87.5,
+                "product": "Corona Familiar 1/12/32 oz Btl",
+                "placements": 14,
+                "base": 17,
+                "goal": 17,
+                "pct": 82.4,
                 "retained": false,
                 "toGo": 3,
                 "lost": false
@@ -125280,6 +126067,16 @@ const PROGRAM_DATA_2026_09 = {
                 "pct": 81.2,
                 "retained": false,
                 "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 1/12/24 oz Can",
+                "placements": 22,
+                "base": 24,
+                "goal": 24,
+                "pct": 91.7,
+                "retained": false,
+                "toGo": 2,
                 "lost": false
               },
               {
@@ -125354,10 +126151,10 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Victoria 1/12/32 oz Btl",
-                "placements": 9,
+                "placements": 10,
                 "base": 9,
                 "goal": 9,
-                "pct": 100.0,
+                "pct": 111.1,
                 "retained": true,
                 "toGo": 0,
                 "lost": false
@@ -125536,10 +126333,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 443,
+        "offPlacements": 452,
         "offGoal": 566,
-        "offPct": 78.3,
-        "offToGo": 123,
+        "offPct": 79.9,
+        "offToGo": 114,
         "on_packages": {
           "families": [
             {
@@ -125634,10 +126431,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 6,
         "goalsRetained": 2,
-        "overallHeld": 445,
+        "overallHeld": 454,
         "overallGoal": 568,
-        "overallPct": 78.3,
-        "overallToGo": 123,
+        "overallPct": 79.9,
+        "overallToGo": 114,
         "hasAnyGoal": true
       },
       "Matt Powierski": {
@@ -125645,31 +126442,21 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 113,
+            "placements": 117,
             "goal": 153,
-            "pct": 73.9,
+            "pct": 76.5,
             "retained": false,
-            "toGo": 40,
+            "toGo": 36,
             "inReport": true,
             "products": [
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 21,
+                "placements": 22,
                 "base": 32,
                 "goal": 32,
-                "pct": 65.6,
+                "pct": 68.8,
                 "retained": false,
-                "toGo": 11,
-                "lost": false
-              },
-              {
-                "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 28,
-                "base": 37,
-                "goal": 37,
-                "pct": 75.7,
-                "retained": false,
-                "toGo": 9,
+                "toGo": 10,
                 "lost": false
               },
               {
@@ -125683,13 +126470,23 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
+                "product": "Corona Extra 2/12/12 oz Btl",
+                "placements": 29,
+                "base": 37,
+                "goal": 37,
+                "pct": 78.4,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
+              },
+              {
                 "product": "Corona Extra 1/18/12 oz Btl",
-                "placements": 12,
+                "placements": 14,
                 "base": 19,
                 "goal": 19,
-                "pct": 63.2,
+                "pct": 73.7,
                 "retained": false,
-                "toGo": 7,
+                "toGo": 5,
                 "lost": false
               },
               {
@@ -125715,59 +126512,49 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 184,
+            "placements": 196,
             "goal": 223,
-            "pct": 82.5,
+            "pct": 87.9,
             "retained": false,
-            "toGo": 39,
+            "toGo": 27,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 20,
+                "placements": 23,
                 "base": 30,
                 "goal": 30,
-                "pct": 66.7,
-                "retained": false,
-                "toGo": 10,
-                "lost": false
-              },
-              {
-                "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 22,
-                "base": 29,
-                "goal": 29,
-                "pct": 75.9,
+                "pct": 76.7,
                 "retained": false,
                 "toGo": 7,
                 "lost": false
               },
               {
-                "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 25,
-                "base": 31,
-                "goal": 31,
-                "pct": 80.6,
+                "product": "Modelo Especial 1/24/12 oz Loose Can",
+                "placements": 24,
+                "base": 29,
+                "goal": 29,
+                "pct": 82.8,
                 "retained": false,
-                "toGo": 6,
+                "toGo": 5,
                 "lost": false
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
-                "placements": 21,
+                "placements": 22,
                 "base": 27,
                 "goal": 27,
-                "pct": 77.8,
+                "pct": 81.5,
                 "retained": false,
-                "toGo": 6,
+                "toGo": 5,
                 "lost": false
               },
               {
-                "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 32,
-                "base": 36,
-                "goal": 36,
-                "pct": 88.9,
+                "product": "Modelo Especial 2/12/12 oz Can",
+                "placements": 27,
+                "base": 31,
+                "goal": 31,
+                "pct": 87.1,
                 "retained": false,
                 "toGo": 4,
                 "lost": false
@@ -125783,13 +126570,23 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
+                "product": "Modelo Especial 4/6/12 oz Btl",
+                "placements": 34,
+                "base": 36,
+                "goal": 36,
+                "pct": 94.4,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
+              },
+              {
                 "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 32,
+                "placements": 34,
                 "base": 35,
                 "goal": 35,
-                "pct": 91.4,
+                "pct": 97.1,
                 "retained": false,
-                "toGo": 3,
+                "toGo": 1,
                 "lost": false
               }
             ],
@@ -125805,11 +126602,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 269,
+            "placements": 273,
             "goal": 344,
-            "pct": 78.2,
+            "pct": 79.4,
             "retained": false,
-            "toGo": 75,
+            "toGo": 71,
             "inReport": true,
             "products": [
               {
@@ -125824,12 +126621,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Pacifico 2/12/12 oz Btl",
-                "placements": 12,
+                "placements": 13,
                 "base": 21,
                 "goal": 21,
-                "pct": 57.1,
+                "pct": 61.9,
                 "retained": false,
-                "toGo": 9,
+                "toGo": 8,
                 "lost": false
               },
               {
@@ -125840,16 +126637,6 @@ const PROGRAM_DATA_2026_09 = {
                 "pct": 55.6,
                 "retained": false,
                 "toGo": 8,
-                "lost": false
-              },
-              {
-                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 15,
-                "base": 22,
-                "goal": 22,
-                "pct": 68.2,
-                "retained": false,
-                "toGo": 7,
                 "lost": false
               },
               {
@@ -125883,21 +126670,21 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
+                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
+                "placements": 16,
+                "base": 22,
+                "goal": 22,
+                "pct": 72.7,
+                "retained": false,
+                "toGo": 6,
+                "lost": false
+              },
+              {
                 "product": "Corona Extra 1/12/24 oz Can",
                 "placements": 29,
                 "base": 34,
                 "goal": 34,
                 "pct": 85.3,
-                "retained": false,
-                "toGo": 5,
-                "lost": false
-              },
-              {
-                "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 18,
-                "base": 23,
-                "goal": 23,
-                "pct": 78.3,
                 "retained": false,
                 "toGo": 5,
                 "lost": false
@@ -125920,6 +126707,16 @@ const PROGRAM_DATA_2026_09 = {
                 "pct": 70.6,
                 "retained": false,
                 "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Corona Familiar 1/12/32 oz Btl",
+                "placements": 19,
+                "base": 23,
+                "goal": 23,
+                "pct": 82.6,
+                "retained": false,
+                "toGo": 4,
                 "lost": false
               },
               {
@@ -125994,7 +126791,7 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Can",
-                "placements": 1,
+                "placements": 2,
                 "base": 0,
                 "goal": null,
                 "pct": null,
@@ -126015,11 +126812,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "innovation",
             "label": "Innovation",
-            "placements": 58,
+            "placements": 65,
             "goal": 164,
-            "pct": 35.4,
+            "pct": 39.6,
             "retained": false,
-            "toGo": 106,
+            "toGo": 99,
             "inReport": true,
             "products": [
               {
@@ -126044,12 +126841,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 12,
+                "placements": 13,
                 "base": 25,
                 "goal": 25,
-                "pct": 48.0,
+                "pct": 52.0,
                 "retained": false,
-                "toGo": 13,
+                "toGo": 12,
                 "lost": false
               },
               {
@@ -126074,42 +126871,42 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Can",
-                "placements": 2,
-                "base": 9,
-                "goal": 9,
-                "pct": 22.2,
-                "retained": false,
-                "toGo": 7,
-                "lost": false
-              },
-              {
-                "product": "Corona Sunbrew 1/12/24 oz Can",
-                "placements": 3,
-                "base": 9,
-                "goal": 9,
-                "pct": 33.3,
-                "retained": false,
-                "toGo": 6,
-                "lost": false
-              },
-              {
-                "product": "Corona Sunbrew 2/12/12 oz Btl",
-                "placements": 6,
-                "base": 11,
-                "goal": 11,
-                "pct": 54.5,
-                "retained": false,
-                "toGo": 5,
-                "lost": false
-              },
-              {
-                "product": "Victoria Vicky Mango 1/12/24 oz Can",
                 "placements": 4,
                 "base": 9,
                 "goal": 9,
                 "pct": 44.4,
                 "retained": false,
                 "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 2/12/12 oz Btl",
+                "placements": 7,
+                "base": 11,
+                "goal": 11,
+                "pct": 63.6,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 1/12/24 oz Can",
+                "placements": 5,
+                "base": 9,
+                "goal": 9,
+                "pct": 55.6,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Victoria Vicky Mango 1/12/24 oz Can",
+                "placements": 5,
+                "base": 9,
+                "goal": 9,
+                "pct": 55.6,
+                "retained": false,
+                "toGo": 4,
                 "lost": false
               },
               {
@@ -126146,10 +126943,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 624,
+        "offPlacements": 651,
         "offGoal": 884,
-        "offPct": 70.6,
-        "offToGo": 260,
+        "offPct": 73.6,
+        "offToGo": 233,
         "on_packages": {
           "families": [
             {
@@ -126166,7 +126963,16 @@ const PROGRAM_DATA_2026_09 = {
                   "customer": "Blvd Bar & Grill (Z)",
                   "num": "77014",
                   "units": null,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Asu Mare Peru Restobar",
+                  "num": "77011",
+                  "units": null,
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -126185,15 +126991,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "42017",
                   "units": null,
                   "lastDate": "2026-09-23",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Asu Mare Peru Restobar",
-                  "num": "77011",
-                  "units": null,
-                  "lastDate": "2026-09-16",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -126420,23 +127217,33 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "pacifico",
               "label": "Pacifico",
-              "buyers": 0,
+              "buyers": 1,
               "goal": 3,
-              "pct": 0.0,
+              "pct": 33.3,
               "retained": false,
-              "toGo": 3,
+              "toGo": 2,
               "emptyPickups": 0,
-              "accounts": [],
+              "accounts": [
+                {
+                  "customer": "Blvd Bar & Grill (Z)",
+                  "num": "77014",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2610 Pacifico 4/6/12 oz Btl"
+                  ]
+                }
+              ],
               "baseWindow": "3/1/2026 - 5/31/2026"
             }
           ],
           "goalsTotal": 7,
           "goalsRetained": 0,
-          "buyers": 21,
-          "held": 21,
+          "buyers": 22,
+          "held": 22,
           "goal": 42,
-          "pct": 50.0,
-          "toGo": 21,
+          "pct": 52.4,
+          "toGo": 20,
           "emptyPickups": 0
         },
         "on_draft": {
@@ -126465,10 +127272,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 12,
         "goalsRetained": 0,
-        "overallHeld": 645,
+        "overallHeld": 673,
         "overallGoal": 929,
-        "overallPct": 69.4,
-        "overallToGo": 284,
+        "overallPct": 72.4,
+        "overallToGo": 256,
         "hasAnyGoal": true
       },
       "Michael Harboy": {
@@ -126476,21 +127283,21 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 14,
+            "placements": 15,
             "goal": 18,
-            "pct": 77.8,
+            "pct": 83.3,
             "retained": false,
-            "toGo": 4,
+            "toGo": 3,
             "inReport": true,
             "products": [
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 4,
+                "placements": 5,
                 "base": 6,
                 "goal": 6,
-                "pct": 66.7,
+                "pct": 83.3,
                 "retained": false,
-                "toGo": 2,
+                "toGo": 1,
                 "lost": false
               },
               {
@@ -126546,21 +127353,21 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 30,
+            "placements": 31,
             "goal": 27,
-            "pct": 111.1,
+            "pct": 114.8,
             "retained": true,
             "toGo": 0,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 5,
+                "placements": 6,
                 "base": 6,
                 "goal": 6,
-                "pct": 83.3,
-                "retained": false,
-                "toGo": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
                 "lost": false
               },
               {
@@ -126628,19 +127435,19 @@ const PROGRAM_DATA_2026_09 = {
             "goalOverride": false,
             "baseGoal": 27,
             "skusTotal": 7,
-            "skusHeld": 6,
+            "skusHeld": 7,
             "skusLost": 0,
-            "skusShort": 1,
+            "skusShort": 0,
             "skusNew": 0
           },
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 46,
+            "placements": 49,
             "goal": 50,
-            "pct": 92.0,
+            "pct": 98.0,
             "retained": false,
-            "toGo": 4,
+            "toGo": 1,
             "inReport": true,
             "products": [
               {
@@ -126654,27 +127461,17 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Victoria 2/12/12 oz Can",
-                "placements": 1,
+                "product": "Victoria 1/12/32 oz Btl",
+                "placements": 2,
                 "base": 3,
                 "goal": 3,
-                "pct": 33.3,
-                "retained": false,
-                "toGo": 2,
-                "lost": false
-              },
-              {
-                "product": "Pacifico 2/12/12 oz Can",
-                "placements": 3,
-                "base": 4,
-                "goal": 4,
-                "pct": 75.0,
+                "pct": 66.7,
                 "retained": false,
                 "toGo": 1,
                 "lost": false
               },
               {
-                "product": "Victoria 1/12/32 oz Btl",
+                "product": "Victoria 2/12/12 oz Can",
                 "placements": 2,
                 "base": 3,
                 "goal": 3,
@@ -126692,16 +127489,6 @@ const PROGRAM_DATA_2026_09 = {
                 "retained": false,
                 "toGo": 1,
                 "lost": false
-              },
-              {
-                "product": "Corona Light 1/24/12 oz Loose Can",
-                "placements": 0,
-                "base": 1,
-                "goal": 1,
-                "pct": 0.0,
-                "retained": false,
-                "toGo": 1,
-                "lost": true
               },
               {
                 "product": "Corona Extra 1/12/24 oz Can",
@@ -126745,6 +127532,16 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Especial 1/12/32 oz Btl",
+                "placements": 4,
+                "base": 4,
+                "goal": 4,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Pacifico 2/12/12 oz Can",
                 "placements": 4,
                 "base": 4,
                 "goal": 4,
@@ -126804,6 +127601,16 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
+                "product": "Corona Light 1/24/12 oz Loose Can",
+                "placements": 1,
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
                 "product": "Coronita Extra 2/12/7 oz Btl",
                 "placements": 1,
                 "base": 1,
@@ -126828,9 +127635,9 @@ const PROGRAM_DATA_2026_09 = {
             "goalOverride": false,
             "baseGoal": 50,
             "skusTotal": 18,
-            "skusHeld": 12,
-            "skusLost": 1,
-            "skusShort": 6,
+            "skusHeld": 14,
+            "skusLost": 0,
+            "skusShort": 4,
             "skusNew": 0
           },
           {
@@ -126907,10 +127714,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 1,
-        "offPlacements": 99,
+        "offPlacements": 104,
         "offGoal": 111,
-        "offPct": 89.2,
-        "offToGo": 12,
+        "offPct": 93.7,
+        "offToGo": 7,
         "on_packages": {
           "families": [
             {
@@ -126927,7 +127734,7 @@ const PROGRAM_DATA_2026_09 = {
                   "customer": "Whole Foods Market (Wayne)",
                   "num": "12003",
                   "units": null,
-                  "lastDate": "2026-09-15",
+                  "lastDate": "2026-09-24",
                   "products": [
                     "9053 Corona Non-Alcoholic 4/6/12 oz Btl"
                   ]
@@ -126958,10 +127765,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 5,
         "goalsRetained": 2,
-        "overallHeld": 100,
+        "overallHeld": 105,
         "overallGoal": 112,
-        "overallPct": 89.3,
-        "overallToGo": 12,
+        "overallPct": 93.8,
+        "overallToGo": 7,
         "hasAnyGoal": true
       },
       "Mike Ast": {
@@ -126969,31 +127776,21 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 47,
+            "placements": 51,
             "goal": 85,
-            "pct": 55.3,
+            "pct": 60.0,
             "retained": false,
-            "toGo": 38,
+            "toGo": 34,
             "inReport": true,
             "products": [
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 16,
+                "placements": 18,
                 "base": 28,
                 "goal": 28,
-                "pct": 57.1,
+                "pct": 64.3,
                 "retained": false,
-                "toGo": 12,
-                "lost": false
-              },
-              {
-                "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 16,
-                "base": 25,
-                "goal": 25,
-                "pct": 64.0,
-                "retained": false,
-                "toGo": 9,
+                "toGo": 10,
                 "lost": false
               },
               {
@@ -127007,13 +127804,23 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
+                "product": "Corona Extra 2/12/12 oz Btl",
+                "placements": 17,
+                "base": 25,
+                "goal": 25,
+                "pct": 68.0,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
+              },
+              {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 6,
+                "placements": 7,
                 "base": 13,
                 "goal": 13,
-                "pct": 46.2,
+                "pct": 53.8,
                 "retained": false,
-                "toGo": 7,
+                "toGo": 6,
                 "lost": false
               },
               {
@@ -127039,41 +127846,31 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 88,
+            "placements": 97,
             "goal": 134,
-            "pct": 65.7,
+            "pct": 72.4,
             "retained": false,
-            "toGo": 46,
+            "toGo": 37,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 16,
+                "placements": 17,
                 "base": 28,
                 "goal": 28,
-                "pct": 57.1,
+                "pct": 60.7,
                 "retained": false,
-                "toGo": 12,
+                "toGo": 11,
                 "lost": false
               },
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 20,
+                "placements": 23,
                 "base": 29,
                 "goal": 29,
-                "pct": 69.0,
+                "pct": 79.3,
                 "retained": false,
-                "toGo": 9,
-                "lost": false
-              },
-              {
-                "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 15,
-                "base": 23,
-                "goal": 23,
-                "pct": 65.2,
-                "retained": false,
-                "toGo": 8,
+                "toGo": 6,
                 "lost": false
               },
               {
@@ -127097,6 +127894,16 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
+                "product": "Modelo Especial 2/12/12 oz Btl",
+                "placements": 19,
+                "base": 23,
+                "goal": 23,
+                "pct": 82.6,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
+              },
+              {
                 "product": "Modelo Especial 1/18/12 oz Can",
                 "placements": 1,
                 "base": 5,
@@ -127108,12 +127915,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 24,
+                "placements": 25,
                 "base": 26,
                 "goal": 26,
-                "pct": 92.3,
+                "pct": 96.2,
                 "retained": false,
-                "toGo": 2,
+                "toGo": 1,
                 "lost": false
               }
             ],
@@ -127129,11 +127936,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 95,
+            "placements": 100,
             "goal": 142,
-            "pct": 66.9,
+            "pct": 70.4,
             "retained": false,
-            "toGo": 47,
+            "toGo": 42,
             "inReport": true,
             "products": [
               {
@@ -127177,16 +127984,6 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Pacifico 2/12/12 oz Btl",
-                "placements": 6,
-                "base": 11,
-                "goal": 11,
-                "pct": 54.5,
-                "retained": false,
-                "toGo": 5,
-                "lost": false
-              },
-              {
                 "product": "Modelo Oro 2/12/12 oz Can",
                 "placements": 1,
                 "base": 6,
@@ -127197,13 +127994,13 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 18,
-                "base": 21,
-                "goal": 21,
-                "pct": 85.7,
+                "product": "Pacifico 2/12/12 oz Btl",
+                "placements": 7,
+                "base": 11,
+                "goal": 11,
+                "pct": 63.6,
                 "retained": false,
-                "toGo": 3,
+                "toGo": 4,
                 "lost": false
               },
               {
@@ -127217,23 +128014,13 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 3,
-                "base": 6,
-                "goal": 6,
-                "pct": 50.0,
+                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
+                "placements": 19,
+                "base": 21,
+                "goal": 21,
+                "pct": 90.5,
                 "retained": false,
-                "toGo": 3,
-                "lost": false
-              },
-              {
-                "product": "Victoria 1/12/32 oz Btl",
-                "placements": 1,
-                "base": 4,
-                "goal": 4,
-                "pct": 25.0,
-                "retained": false,
-                "toGo": 3,
+                "toGo": 2,
                 "lost": false
               },
               {
@@ -127257,11 +128044,31 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
+                "product": "Victoria 1/12/32 oz Btl",
+                "placements": 2,
+                "base": 4,
+                "goal": 4,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
+              },
+              {
                 "product": "Modelito Especial 1/24/7 oz Loose Btl",
                 "placements": 9,
                 "base": 10,
                 "goal": 10,
                 "pct": 90.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Corona Familiar 1/12/32 oz Btl",
+                "placements": 5,
+                "base": 6,
+                "goal": 6,
+                "pct": 83.3,
                 "retained": false,
                 "toGo": 1,
                 "lost": false
@@ -127460,10 +128267,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 251,
+        "offPlacements": 269,
         "offGoal": 434,
-        "offPct": 57.8,
-        "offToGo": 183,
+        "offPct": 62.0,
+        "offToGo": 165,
         "on_packages": {
           "families": [
             {
@@ -127838,10 +128645,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 15,
         "goalsRetained": 2,
-        "overallHeld": 274,
+        "overallHeld": 292,
         "overallGoal": 483,
-        "overallPct": 56.7,
-        "overallToGo": 209,
+        "overallPct": 60.5,
+        "overallToGo": 191,
         "hasAnyGoal": true
       },
       "Nick Melissari": {
@@ -128005,13 +128812,23 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_extra",
               "label": "Corona Extra",
-              "buyers": 107,
+              "buyers": 110,
               "goal": 147,
-              "pct": 72.8,
+              "pct": 74.8,
               "retained": false,
-              "toGo": 40,
+              "toGo": 37,
               "emptyPickups": 0,
               "accounts": [
+                {
+                  "customer": "Applebee's Garfield (A)",
+                  "num": "31023",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2404 Coronita Extra 4/6/7 oz Btl",
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
                 {
                   "customer": "BJ Polonia",
                   "num": "37019",
@@ -128051,6 +128868,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Simulcast",
+                  "num": "30026",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Eros Cafe",
                   "num": "31036",
                   "units": null,
@@ -128070,12 +128896,30 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Jojo's Bar & Grill",
+                  "num": "37063",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Viva Margarita Hackensack",
                   "num": "41013",
                   "units": null,
                   "lastDate": "2026-09-22",
                   "products": [
                     "2404 Coronita Extra 4/6/7 oz Btl",
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Cheesecake Fact (A)Hacken",
+                  "num": "41016",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
@@ -128144,6 +128988,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "The Brick House (P)",
+                  "num": "96005",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Blue Moon Mexican Cafe",
                   "num": "96006",
                   "units": null,
@@ -128162,10 +129015,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Simulcast",
-                  "num": "30026",
+                  "customer": "Mickey's Bar & Grill (Z)",
+                  "num": "29019",
                   "units": null,
-                  "lastDate": "2026-09-18",
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -128186,16 +129039,6 @@ const PROGRAM_DATA_2026_09 = {
                   "units": null,
                   "lastDate": "2026-09-23",
                   "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Applebee's Garfield (A)",
-                  "num": "31023",
-                  "units": null,
-                  "lastDate": "2026-09-17",
-                  "products": [
-                    "2404 Coronita Extra 4/6/7 oz Btl",
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
@@ -128228,15 +129071,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Jojo's Bar & Grill",
-                  "num": "37063",
-                  "units": null,
-                  "lastDate": "2026-09-18",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Texas Roadhouse",
                   "num": "39018",
                   "units": null,
@@ -128246,11 +129080,12 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Cheesecake Fact (A)Hacken",
-                  "num": "41016",
+                  "customer": "Applebee's (A) Hackensack",
+                  "num": "41033",
                   "units": null,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-25",
                   "products": [
+                    "2404 Coronita Extra 4/6/7 oz Btl",
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
@@ -128300,15 +129135,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "The Brick House (P)",
-                  "num": "96005",
-                  "units": null,
-                  "lastDate": "2026-09-16",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Penelope's Pizzeria & Sports Bar",
                   "num": "28013",
                   "units": null,
@@ -128345,10 +129171,19 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Mickey's Bar & Grill (Z)",
-                  "num": "29019",
+                  "customer": "Marty Gra's (A)",
+                  "num": "29035",
                   "units": null,
-                  "lastDate": "2026-09-11",
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Chili's B & G E Rutherfor",
+                  "num": "31020",
+                  "units": null,
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -128399,6 +129234,24 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Rebar (Z)",
+                  "num": "38025",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Rosa Mexicano (A)",
+                  "num": "41017",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Amc- Shops @ Riverside P",
                   "num": "41026",
                   "units": null,
@@ -128408,20 +129261,19 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Applebee's (A) Hackensack",
-                  "num": "41033",
-                  "units": null,
-                  "lastDate": "2026-09-17",
-                  "products": [
-                    "2404 Coronita Extra 4/6/7 oz Btl",
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Cantina 46",
                   "num": "45007",
                   "units": null,
                   "lastDate": "2026-09-17",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Legends (P)",
+                  "num": "46028",
+                  "units": null,
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -128486,6 +129338,33 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "80012",
                   "units": null,
                   "lastDate": "2026-09-15",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Season's 52",
+                  "num": "80017",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Applebee's Paramus",
+                  "num": "80024",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Olive Garden Paramus",
+                  "num": "80042",
+                  "units": null,
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -128563,10 +129442,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Marty Gra's (A)",
-                  "num": "29035",
+                  "customer": "City Lounge (P)",
+                  "num": "29030",
                   "units": null,
-                  "lastDate": "2026-09-10",
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -128590,15 +129469,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Chili's B & G E Rutherfor",
-                  "num": "31020",
-                  "units": null,
-                  "lastDate": "2026-09-15",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Castle Billiards (Z)",
                   "num": "31024",
                   "units": null,
@@ -128612,6 +129482,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "31028",
                   "units": null,
                   "lastDate": "2026-09-09",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Al-Di-La' (P)",
+                  "num": "31030",
+                  "units": null,
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -128743,15 +129622,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Rebar (Z)",
-                  "num": "38025",
-                  "units": null,
-                  "lastDate": "2026-09-09",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Hilltop Tav.(Z)",
                   "num": "38039",
                   "units": null,
@@ -128770,10 +129640,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Rosa Mexicano (A)",
-                  "num": "41017",
+                  "customer": "Maggiano's Little(A)Italy",
+                  "num": "40024",
                   "units": null,
-                  "lastDate": "2026-09-09",
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -128783,15 +129653,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "45020",
                   "units": null,
                   "lastDate": "2026-09-18",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Legends (P)",
-                  "num": "46028",
-                  "units": null,
-                  "lastDate": "2026-09-14",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -128878,24 +129739,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Season's 52",
-                  "num": "80017",
-                  "units": null,
-                  "lastDate": "2026-09-01",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Applebee's Paramus",
-                  "num": "80024",
-                  "units": null,
-                  "lastDate": "2026-09-03",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Grand Lux Cafe (A)",
                   "num": "80031",
                   "units": null,
@@ -128911,15 +129754,6 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-17",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Olive Garden Paramus",
-                  "num": "80042",
-                  "units": null,
-                  "lastDate": "2026-09-16",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -129367,18 +130201,36 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "modelo_especial",
               "label": "Modelo Especial",
-              "buyers": 57,
+              "buyers": 59,
               "goal": 88,
-              "pct": 64.8,
+              "pct": 67.0,
               "retained": false,
-              "toGo": 31,
+              "toGo": 29,
               "emptyPickups": 0,
               "accounts": [
                 {
                   "customer": "Applebee's Garfield (A)",
                   "num": "31023",
                   "units": null,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Jojo's Bar & Grill",
+                  "num": "37063",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Blue 42 Restaurant & Bar",
+                  "num": "77003",
+                  "units": null,
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -129388,24 +130240,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "36014",
                   "units": null,
                   "lastDate": "2026-09-17",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Jojo's Bar & Grill",
-                  "num": "37063",
-                  "units": null,
-                  "lastDate": "2026-09-18",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Blue 42 Restaurant & Bar",
-                  "num": "77003",
-                  "units": null,
-                  "lastDate": "2026-09-15",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -129520,6 +130354,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Blackjack Mulligans(P) (Garfield)",
+                  "num": "37034",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Lodi Lanes (A)",
                   "num": "38020",
                   "units": null,
@@ -129529,10 +130372,28 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Pf Changs China Bis(A) (Hackensack)",
+                  "num": "40025",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Viva Margarita Hackensack",
                   "num": "41013",
                   "units": null,
                   "lastDate": "2026-09-15",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Rosa Mexicano (A)",
+                  "num": "41017",
+                  "units": null,
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -129646,6 +130507,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Al-Di-La' (P)",
+                  "num": "31030",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Eros Cafe",
                   "num": "31036",
                   "units": null,
@@ -129700,15 +130570,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Blackjack Mulligans(P) (Garfield)",
-                  "num": "37034",
-                  "units": null,
-                  "lastDate": "2026-09-18",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Los Cantaritos Cantina",
                   "num": "37045",
                   "units": null,
@@ -129733,24 +130594,6 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-18",
                   "products": [
                     "2807 Modelito Especial 1/24/7 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Pf Changs China Bis(A) (Hackensack)",
-                  "num": "40025",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Rosa Mexicano (A)",
-                  "num": "41017",
-                  "units": null,
-                  "lastDate": "2026-09-09",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -129785,6 +130628,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "49059",
                   "units": null,
                   "lastDate": "2026-09-17",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "COV",
+                  "num": "49063",
+                  "units": null,
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -129938,6 +130790,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Rosa Mexicano (A)",
+                  "num": "41017",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2610 Pacifico 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Dino's Bar & Grill",
                   "num": "49004",
                   "units": null,
@@ -129974,15 +130835,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Rosa Mexicano (A)",
-                  "num": "41017",
-                  "units": null,
-                  "lastDate": "2026-09-09",
-                  "products": [
-                    "2610 Pacifico 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Amc- Shops @ Riverside P",
                   "num": "41026",
                   "units": null,
@@ -130006,11 +130858,11 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "goalsTotal": 7,
           "goalsRetained": 0,
-          "buyers": 211,
-          "held": 211,
+          "buyers": 216,
+          "held": 216,
           "goal": 376,
-          "pct": 56.1,
-          "toGo": 165,
+          "pct": 57.4,
+          "toGo": 160,
           "emptyPickups": 0
         },
         "on_draft": {
@@ -130098,8 +130950,8 @@ const PROGRAM_DATA_2026_09 = {
                 {
                   "customer": "Blue Moon Mexican Cafe",
                   "num": "96006",
-                  "units": 6.0,
-                  "lastDate": "2026-09-22",
+                  "units": 7.0,
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2804 Modelo Especial 7.75 Gal Keg"
                   ]
@@ -130136,6 +130988,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "37019",
                   "units": 3.0,
                   "lastDate": "2026-09-15",
+                  "products": [
+                    "2804 Modelo Especial 7.75 Gal Keg"
+                  ]
+                },
+                {
+                  "customer": "Rebar (Z)",
+                  "num": "38025",
+                  "units": 3.0,
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2804 Modelo Especial 7.75 Gal Keg"
                   ]
@@ -130220,15 +131081,6 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-10",
                   "products": [
                     "2802 Modelo Especial 15.5 Gal Keg"
-                  ]
-                },
-                {
-                  "customer": "Rebar (Z)",
-                  "num": "38025",
-                  "units": 2.0,
-                  "lastDate": "2026-09-18",
-                  "products": [
-                    "2804 Modelo Especial 7.75 Gal Keg"
                   ]
                 },
                 {
@@ -130500,10 +131352,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 15,
         "goalsRetained": 1,
-        "overallHeld": 260,
+        "overallHeld": 265,
         "overallGoal": 469,
-        "overallPct": 55.4,
-        "overallToGo": 209,
+        "overallPct": 56.5,
+        "overallToGo": 204,
         "hasAnyGoal": true
       },
       "Pablo Lopez": {
@@ -130511,11 +131363,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 65,
+            "placements": 66,
             "goal": 98,
-            "pct": 66.3,
+            "pct": 67.3,
             "retained": false,
-            "toGo": 33,
+            "toGo": 32,
             "inReport": true,
             "products": [
               {
@@ -130529,17 +131381,17 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 13,
+                "product": "Corona Extra 1/24/12 oz Loose Btl",
+                "placements": 14,
                 "base": 23,
                 "goal": 23,
-                "pct": 56.5,
+                "pct": 60.9,
                 "retained": false,
-                "toGo": 10,
+                "toGo": 9,
                 "lost": false
               },
               {
-                "product": "Corona Extra 1/24/12 oz Loose Btl",
+                "product": "Corona Extra 4/6/12 oz Btl",
                 "placements": 14,
                 "base": 23,
                 "goal": 23,
@@ -130581,11 +131433,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 101,
+            "placements": 102,
             "goal": 130,
-            "pct": 77.7,
+            "pct": 78.5,
             "retained": false,
-            "toGo": 29,
+            "toGo": 28,
             "inReport": true,
             "products": [
               {
@@ -130640,12 +131492,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 18,
+                "placements": 19,
                 "base": 20,
                 "goal": 20,
-                "pct": 90.0,
+                "pct": 95.0,
                 "retained": false,
-                "toGo": 2,
+                "toGo": 1,
                 "lost": false
               },
               {
@@ -130671,23 +131523,13 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 178,
+            "placements": 186,
             "goal": 220,
-            "pct": 80.9,
+            "pct": 84.5,
             "retained": false,
-            "toGo": 42,
+            "toGo": 34,
             "inReport": true,
             "products": [
-              {
-                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 13,
-                "base": 19,
-                "goal": 19,
-                "pct": 68.4,
-                "retained": false,
-                "toGo": 6,
-                "lost": false
-              },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
                 "placements": 7,
@@ -130700,22 +131542,22 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 17,
+                "placements": 18,
                 "base": 22,
                 "goal": 22,
-                "pct": 77.3,
+                "pct": 81.8,
                 "retained": false,
-                "toGo": 5,
+                "toGo": 4,
                 "lost": false
               },
               {
-                "product": "Pacifico 2/12/12 oz Btl",
-                "placements": 4,
-                "base": 9,
-                "goal": 9,
-                "pct": 44.4,
+                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
+                "placements": 15,
+                "base": 19,
+                "goal": 19,
+                "pct": 78.9,
                 "retained": false,
-                "toGo": 5,
+                "toGo": 4,
                 "lost": false
               },
               {
@@ -130729,11 +131571,11 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 16,
-                "base": 19,
-                "goal": 19,
-                "pct": 84.2,
+                "product": "Pacifico 2/12/12 oz Btl",
+                "placements": 6,
+                "base": 9,
+                "goal": 9,
+                "pct": 66.7,
                 "retained": false,
                 "toGo": 3,
                 "lost": false
@@ -130746,6 +131588,16 @@ const PROGRAM_DATA_2026_09 = {
                 "pct": 25.0,
                 "retained": false,
                 "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 1/12/24 oz Can",
+                "placements": 17,
+                "base": 19,
+                "goal": 19,
+                "pct": 89.5,
+                "retained": false,
+                "toGo": 2,
                 "lost": false
               },
               {
@@ -130764,16 +131616,6 @@ const PROGRAM_DATA_2026_09 = {
                 "base": 15,
                 "goal": 15,
                 "pct": 86.7,
-                "retained": false,
-                "toGo": 2,
-                "lost": false
-              },
-              {
-                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 9,
-                "base": 11,
-                "goal": 11,
-                "pct": 81.8,
                 "retained": false,
                 "toGo": 2,
                 "lost": false
@@ -130819,11 +131661,11 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Victoria 2/12/12 oz Btl",
-                "placements": 13,
-                "base": 14,
-                "goal": 14,
-                "pct": 92.9,
+                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
+                "placements": 10,
+                "base": 11,
+                "goal": 11,
+                "pct": 90.9,
                 "retained": false,
                 "toGo": 1,
                 "lost": false
@@ -130849,6 +131691,16 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
+                "product": "Victoria 2/12/12 oz Btl",
+                "placements": 14,
+                "base": 14,
+                "goal": 14,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
                 "product": "Corona Premier 1/24/12 oz Loose Can",
                 "placements": 3,
                 "base": 0,
@@ -130863,19 +131715,19 @@ const PROGRAM_DATA_2026_09 = {
             "goalOverride": false,
             "baseGoal": 220,
             "skusTotal": 17,
-            "skusHeld": 1,
+            "skusHeld": 2,
             "skusLost": 2,
-            "skusShort": 16,
+            "skusShort": 15,
             "skusNew": 1
           },
           {
             "key": "innovation",
             "label": "Innovation",
-            "placements": 30,
+            "placements": 33,
             "goal": 76,
-            "pct": 39.5,
+            "pct": 43.4,
             "retained": false,
-            "toGo": 46,
+            "toGo": 43,
             "inReport": true,
             "products": [
               {
@@ -130900,12 +131752,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 7,
+                "placements": 9,
                 "base": 14,
                 "goal": 14,
-                "pct": 50.0,
+                "pct": 64.3,
                 "retained": false,
-                "toGo": 7,
+                "toGo": 5,
                 "lost": false
               },
               {
@@ -130967,6 +131819,16 @@ const PROGRAM_DATA_2026_09 = {
                 "retained": false,
                 "toGo": 0,
                 "lost": false
+              },
+              {
+                "product": "Corona Non-Alcohol 2/12/12 oz Btl",
+                "placements": 1,
+                "base": 0,
+                "goal": null,
+                "pct": null,
+                "retained": false,
+                "toGo": 0,
+                "lost": false
               }
             ],
             "baseWindow": "3/1/2026 - 5/31/2026",
@@ -130976,16 +131838,16 @@ const PROGRAM_DATA_2026_09 = {
             "skusHeld": 0,
             "skusLost": 0,
             "skusShort": 8,
-            "skusNew": 1
+            "skusNew": 2
           }
         ],
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 374,
+        "offPlacements": 387,
         "offGoal": 524,
-        "offPct": 71.4,
-        "offToGo": 150,
+        "offPct": 73.9,
+        "offToGo": 137,
         "on_packages": {
           "families": [
             {
@@ -130999,6 +131861,16 @@ const PROGRAM_DATA_2026_09 = {
               "emptyPickups": 0,
               "accounts": [
                 {
+                  "customer": "Noches De Colombia (S. Hackensack))",
+                  "num": "39004",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2405 Coronita Extra 1/24/7 oz Btl",
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
                   "customer": "Noches De Colombia(Englewood))",
                   "num": "52005",
                   "units": null,
@@ -131010,10 +131882,20 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Noches De Colombia (S. Hackensack))",
-                  "num": "39004",
+                  "customer": "Noches De Colombia (Hackensack)",
+                  "num": "41008",
                   "units": null,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2405 Coronita Extra 1/24/7 oz Btl",
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Lena Y Carbon Restaurant",
+                  "num": "22001",
+                  "units": null,
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2405 Coronita Extra 1/24/7 oz Btl",
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
@@ -131030,10 +131912,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Noches De Colombia (Hackensack)",
-                  "num": "41008",
+                  "customer": "Lena y Carbon Restaurant & Bar (Passaic)",
+                  "num": "27142",
                   "units": null,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2405 Coronita Extra 1/24/7 oz Btl",
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
@@ -131049,22 +131931,50 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Lena Y Carbon Restaurant",
-                  "num": "22001",
+                  "customer": "Circle Cafe (A)",
+                  "num": "20046",
                   "units": null,
-                  "lastDate": "2026-09-18",
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2418 Corona Extra 1/18/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Ranchito Mi Peru",
+                  "num": "21014",
+                  "units": null,
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2405 Coronita Extra 1/24/7 oz Btl",
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
                 },
                 {
-                  "customer": "Circle Cafe (A)",
-                  "num": "20046",
+                  "customer": "Arepa Express",
+                  "num": "27118",
                   "units": null,
-                  "lastDate": "2026-09-18",
+                  "lastDate": "2026-09-25",
                   "products": [
-                    "2418 Corona Extra 1/18/12 oz Btl"
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Colombia Kaliente",
+                  "num": "52037",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2405 Coronita Extra 1/24/7 oz Btl",
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Bocaditos Bistro",
+                  "num": "20004",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
                 },
                 {
@@ -131078,13 +131988,12 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Ranchito Mi Peru",
-                  "num": "21014",
+                  "customer": "Freddie's Dugout",
+                  "num": "21038",
                   "units": null,
-                  "lastDate": "2026-09-18",
+                  "lastDate": "2026-09-24",
                   "products": [
-                    "2405 Coronita Extra 1/24/7 oz Btl",
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                    "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -131107,37 +132016,20 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Arepa Express",
-                  "num": "27118",
+                  "customer": "Noches De Colombia (Passaic)",
+                  "num": "27073",
                   "units": null,
-                  "lastDate": "2026-09-16",
+                  "lastDate": "2026-09-24",
                   "products": [
+                    "2405 Coronita Extra 1/24/7 oz Btl",
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
                 },
                 {
-                  "customer": "Lena y Carbon Restaurant & Bar (Passaic)",
-                  "num": "27142",
+                  "customer": "Diana's Bar (Z)",
+                  "num": "15018",
                   "units": null,
-                  "lastDate": "2026-09-18",
-                  "products": [
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Colombia Kaliente",
-                  "num": "52037",
-                  "units": null,
-                  "lastDate": "2026-09-21",
-                  "products": [
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Bocaditos Bistro",
-                  "num": "20004",
-                  "units": null,
-                  "lastDate": "2026-09-11",
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
@@ -131153,12 +132045,30 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Freddie's Dugout",
-                  "num": "21038",
+                  "customer": "Super Korona (Z) Bar",
+                  "num": "22021",
                   "units": null,
-                  "lastDate": "2026-09-10",
+                  "lastDate": "2026-09-25",
                   "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Los Cristales (Z)",
+                  "num": "22044",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Palenque Bar & Grill(A)",
+                  "num": "25040",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
                 },
                 {
@@ -131176,25 +132086,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "27070",
                   "units": null,
                   "lastDate": "2026-09-16",
-                  "products": [
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Noches De Colombia (Passaic)",
-                  "num": "27073",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2405 Coronita Extra 1/24/7 oz Btl",
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Diana's Bar (Z)",
-                  "num": "15018",
-                  "units": null,
-                  "lastDate": "2026-09-10",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
@@ -131218,37 +132109,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Super Korona (Z) Bar",
-                  "num": "22021",
-                  "units": null,
-                  "lastDate": "2026-09-04",
-                  "products": [
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
                   "customer": "Roxxie's (P)",
                   "num": "22031",
                   "units": null,
                   "lastDate": "2026-09-23",
-                  "products": [
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Los Cristales (Z)",
-                  "num": "22044",
-                  "units": null,
-                  "lastDate": "2026-09-04",
-                  "products": [
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Palenque Bar & Grill(A)",
-                  "num": "25040",
-                  "units": null,
-                  "lastDate": "2026-09-11",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
@@ -131444,10 +132308,55 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Circle Cafe (A)",
+                  "num": "20046",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2815 Modelo Especial 2/12/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Lena Y Carbon Restaurant",
+                  "num": "22001",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
                   "customer": "Noches De Colombia (Clifton)",
                   "num": "24063",
                   "units": null,
                   "lastDate": "2026-09-23",
+                  "products": [
+                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Arepa Express",
+                  "num": "27118",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Noches De Colombia (S. Hackensack))",
+                  "num": "39004",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Noches De Colombia (Hackensack)",
+                  "num": "41008",
+                  "units": null,
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2808 Modelo Especial 1/24/12 oz Loose Btl"
                   ]
@@ -131462,21 +132371,30 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Circle Cafe (A)",
-                  "num": "20046",
+                  "customer": "Colombia Kaliente",
+                  "num": "52037",
                   "units": null,
-                  "lastDate": "2026-09-18",
+                  "lastDate": "2026-09-25",
                   "products": [
-                    "2815 Modelo Especial 2/12/12 oz Btl"
+                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
                   ]
                 },
                 {
-                  "customer": "Lena Y Carbon Restaurant",
-                  "num": "22001",
+                  "customer": "Bocaditos Bistro",
+                  "num": "20004",
                   "units": null,
-                  "lastDate": "2026-09-18",
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2808 Modelo Especial 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Freddie's Dugout",
+                  "num": "21038",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -131490,15 +132408,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Arepa Express",
-                  "num": "27118",
-                  "units": null,
-                  "lastDate": "2026-09-16",
-                  "products": [
-                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
                   "customer": "Lena y Carbon Restaurant & Bar (Passaic)",
                   "num": "27142",
                   "units": null,
@@ -131508,37 +132417,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Noches De Colombia (S. Hackensack))",
-                  "num": "39004",
+                  "customer": "Diana's Bar (Z)",
+                  "num": "15018",
                   "units": null,
-                  "lastDate": "2026-09-17",
-                  "products": [
-                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Noches De Colombia (Hackensack)",
-                  "num": "41008",
-                  "units": null,
-                  "lastDate": "2026-09-17",
-                  "products": [
-                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Colombia Kaliente",
-                  "num": "52037",
-                  "units": null,
-                  "lastDate": "2026-09-21",
-                  "products": [
-                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Bocaditos Bistro",
-                  "num": "20004",
-                  "units": null,
-                  "lastDate": "2026-09-11",
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2808 Modelo Especial 1/24/12 oz Loose Btl"
                   ]
@@ -131550,15 +132432,6 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-17",
                   "products": [
                     "2808 Modelo Especial 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Freddie's Dugout",
-                  "num": "21038",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -131580,10 +132453,19 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Diana's Bar (Z)",
-                  "num": "15018",
+                  "customer": "Los Cristales (Z)",
+                  "num": "22044",
                   "units": null,
-                  "lastDate": "2026-09-10",
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Palenque Bar & Grill(A)",
+                  "num": "25040",
+                  "units": null,
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2808 Modelo Especial 1/24/12 oz Loose Btl"
                   ]
@@ -131647,24 +132529,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "22031",
                   "units": null,
                   "lastDate": "2026-09-23",
-                  "products": [
-                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Los Cristales (Z)",
-                  "num": "22044",
-                  "units": null,
-                  "lastDate": "2026-09-04",
-                  "products": [
-                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Palenque Bar & Grill(A)",
-                  "num": "25040",
-                  "units": null,
-                  "lastDate": "2026-09-11",
                   "products": [
                     "2808 Modelo Especial 1/24/12 oz Loose Btl"
                   ]
@@ -131912,10 +132776,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 15,
         "goalsRetained": 2,
-        "overallHeld": 457,
+        "overallHeld": 470,
         "overallGoal": 676,
-        "overallPct": 67.6,
-        "overallToGo": 219,
+        "overallPct": 69.5,
+        "overallToGo": 206,
         "hasAnyGoal": true
       },
       "Paul Mclaughlin": {
@@ -131997,13 +132861,32 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_extra",
               "label": "Corona Extra",
-              "buyers": 85,
+              "buyers": 87,
               "goal": 105,
-              "pct": 81.0,
+              "pct": 82.9,
               "retained": false,
-              "toGo": 20,
+              "toGo": 18,
               "emptyPickups": 0,
               "accounts": [
+                {
+                  "customer": "International Bar/Rest",
+                  "num": "56011",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2405 Coronita Extra 1/24/7 oz Btl",
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Lenoras Bar (P)",
+                  "num": "41010",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
                 {
                   "customer": "The Whiskey Priest (Hackensack)",
                   "num": "41023",
@@ -132014,6 +132897,35 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Cozy Tavern (P)",
+                  "num": "50006",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Blue Akai",
+                  "num": "52033",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2404 Coronita Extra 4/6/7 oz Btl",
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Jack E Pooh's",
+                  "num": "56004",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl",
+                    "2412 Corona Extra 2/12/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "White Beeches Golf Club",
                   "num": "61003",
                   "units": null,
@@ -132021,6 +132933,16 @@ const PROGRAM_DATA_2026_09 = {
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl",
                     "2425 Corona Extra 1/24/12 oz Loose Can"
+                  ]
+                },
+                {
+                  "customer": "The Rockleigh C C (P)",
+                  "num": "67014",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2405 Coronita Extra 1/24/7 oz Btl",
+                    "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -132044,10 +132966,38 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Hearth & Tap Co.",
+                  "num": "70008",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl",
+                    "2425 Corona Extra 1/24/12 oz Loose Can"
+                  ]
+                },
+                {
                   "customer": "Lou's",
                   "num": "73001",
                   "units": null,
                   "lastDate": "2026-09-23",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "The Cornerstone (P)",
+                  "num": "73002",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Side Bar",
+                  "num": "40032",
+                  "units": null,
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -132062,48 +133012,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Lenoras Bar (P)",
-                  "num": "41010",
-                  "units": null,
-                  "lastDate": "2026-09-17",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Cozy Tavern (P)",
-                  "num": "50006",
-                  "units": null,
-                  "lastDate": "2026-09-18",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Vida Garden",
                   "num": "52036",
                   "units": null,
                   "lastDate": "2026-09-24",
-                  "products": [
-                    "2405 Coronita Extra 1/24/7 oz Btl",
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Jack E Pooh's",
-                  "num": "56004",
-                  "units": null,
-                  "lastDate": "2026-09-17",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl",
-                    "2412 Corona Extra 2/12/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "International Bar/Rest",
-                  "num": "56011",
-                  "units": null,
-                  "lastDate": "2026-09-18",
                   "products": [
                     "2405 Coronita Extra 1/24/7 oz Btl",
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
@@ -132146,30 +133058,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "The Rockleigh C C (P)",
-                  "num": "67014",
+                  "customer": "Eleven Central",
+                  "num": "85001",
                   "units": null,
-                  "lastDate": "2026-09-17",
-                  "products": [
-                    "2405 Coronita Extra 1/24/7 oz Btl",
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Hearth & Tap Co.",
-                  "num": "70008",
-                  "units": null,
-                  "lastDate": "2026-09-18",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl",
-                    "2425 Corona Extra 1/24/12 oz Loose Can"
-                  ]
-                },
-                {
-                  "customer": "The Cornerstone (P)",
-                  "num": "73002",
-                  "units": null,
-                  "lastDate": "2026-09-18",
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -132202,21 +133094,21 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Lazy Lanigans (A)",
+                  "num": "40005",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
                   "customer": "Brooklyn's (A)",
                   "num": "40026",
                   "units": null,
                   "lastDate": "2026-09-22",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Side Bar",
-                  "num": "40032",
-                  "units": null,
-                  "lastDate": "2026-09-16",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -132247,21 +133139,20 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Sofia",
-                  "num": "52030",
+                  "customer": "Cassies (A)",
+                  "num": "52003",
                   "units": null,
-                  "lastDate": "2026-09-18",
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
-                  "customer": "Blue Akai",
-                  "num": "52033",
+                  "customer": "Sofia",
+                  "num": "52030",
                   "units": null,
-                  "lastDate": "2026-09-09",
+                  "lastDate": "2026-09-18",
                   "products": [
-                    "2404 Coronita Extra 4/6/7 oz Btl",
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
@@ -132350,6 +133241,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "P J Finnegan's",
+                  "num": "74004",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Fair Lawn Lanes (P)",
                   "num": "81003",
                   "units": null,
@@ -132368,15 +133268,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Eleven Central",
-                  "num": "85001",
-                  "units": null,
-                  "lastDate": "2026-09-16",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Fat Bastard & Sons",
                   "num": "39006",
                   "units": null,
@@ -132390,15 +133281,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "39010",
                   "units": null,
                   "lastDate": "2026-09-08",
-                  "products": [
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Lazy Lanigans (A)",
-                  "num": "40005",
-                  "units": null,
-                  "lastDate": "2026-09-16",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
                   ]
@@ -132491,15 +133373,6 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-18",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Cassies (A)",
-                  "num": "52003",
-                  "units": null,
-                  "lastDate": "2026-09-11",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -132692,6 +133565,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Green Point Restaurant",
+                  "num": "69011",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2407 Corona Extra 2/12/12 oz Can"
+                  ]
+                },
+                {
                   "customer": "449 Prime @ Edgewood Country Club",
                   "num": "69012",
                   "units": null,
@@ -132719,10 +133601,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "P J Finnegan's",
-                  "num": "74004",
+                  "customer": "Bareburger (Woodcliff Lake)",
+                  "num": "72002",
                   "units": null,
-                  "lastDate": "2026-09-09",
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -132787,11 +133669,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_light",
               "label": "Corona Light",
-              "buyers": 25,
+              "buyers": 26,
               "goal": 40,
-              "pct": 62.5,
+              "pct": 65.0,
               "retained": false,
-              "toGo": 15,
+              "toGo": 14,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -132802,6 +133684,15 @@ const PROGRAM_DATA_2026_09 = {
                   "products": [
                     "2507 Corona Light 2/12/12 oz Can",
                     "2511 Corona Light 1/24/12 oz Loose Can"
+                  ]
+                },
+                {
+                  "customer": "Lenoras Bar (P)",
+                  "num": "41010",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2510 Corona Light 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -132832,6 +133723,24 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Blue Akai",
+                  "num": "52033",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2510 Corona Light 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Knickerbocker Golf (P)",
+                  "num": "54011",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2511 Corona Light 1/24/12 oz Loose Can"
+                  ]
+                },
+                {
                   "customer": "QB's Bar and Grill",
                   "num": "60002",
                   "units": null,
@@ -132841,10 +133750,19 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Lenoras Bar (P)",
-                  "num": "41010",
+                  "customer": "The Cornerstone (P)",
+                  "num": "73002",
                   "units": null,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2510 Corona Light 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Lazy Lanigans (A)",
+                  "num": "40005",
+                  "units": null,
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2510 Corona Light 4/6/12 oz Btl"
                   ]
@@ -132856,24 +133774,6 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-22",
                   "products": [
                     "2509 Corona Light 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "Blue Akai",
-                  "num": "52033",
-                  "units": null,
-                  "lastDate": "2026-09-09",
-                  "products": [
-                    "2510 Corona Light 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Knickerbocker Golf (P)",
-                  "num": "54011",
-                  "units": null,
-                  "lastDate": "2026-09-10",
-                  "products": [
-                    "2511 Corona Light 1/24/12 oz Loose Can"
                   ]
                 },
                 {
@@ -132982,15 +133882,6 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-16",
                   "products": [
                     "2509 Corona Light 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "The Cornerstone (P)",
-                  "num": "73002",
-                  "units": null,
-                  "lastDate": "2026-09-04",
-                  "products": [
-                    "2510 Corona Light 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -133109,11 +134000,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "modelo_especial",
               "label": "Modelo Especial",
-              "buyers": 39,
+              "buyers": 40,
               "goal": 57,
-              "pct": 68.4,
+              "pct": 70.2,
               "retained": false,
-              "toGo": 18,
+              "toGo": 17,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -133147,6 +134038,24 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Stosh's Craft Bar (Z)",
+                  "num": "81004",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2815 Modelo Especial 2/12/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Side Bar",
+                  "num": "40032",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "QB's Bar and Grill",
                   "num": "60002",
                   "units": null,
@@ -133165,15 +134074,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Stosh's Craft Bar (Z)",
-                  "num": "81004",
-                  "units": null,
-                  "lastDate": "2026-09-18",
-                  "products": [
-                    "2815 Modelo Especial 2/12/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Club Flamingo (A)",
                   "num": "39007",
                   "units": null,
@@ -133183,10 +134083,10 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Side Bar",
-                  "num": "40032",
+                  "customer": "Lenoras Bar (P)",
+                  "num": "41010",
                   "units": null,
-                  "lastDate": "2026-09-16",
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -133207,6 +134107,33 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-18",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Blue Akai",
+                  "num": "52033",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "International Bar/Rest",
+                  "num": "56011",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Marriott (P) Park Ridge",
+                  "num": "71011",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
                   ]
                 },
                 {
@@ -133264,15 +134191,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Lenoras Bar (P)",
-                  "num": "41010",
-                  "units": null,
-                  "lastDate": "2026-09-03",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Bistro Taino",
                   "num": "50004",
                   "units": null,
@@ -133309,15 +134227,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Blue Akai",
-                  "num": "52033",
-                  "units": null,
-                  "lastDate": "2026-09-09",
-                  "products": [
-                    "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
                   "customer": "Vida Garden",
                   "num": "52036",
                   "units": null,
@@ -133338,15 +134247,6 @@ const PROGRAM_DATA_2026_09 = {
                 {
                   "customer": "Tony's Italian Cuisine",
                   "num": "56001",
-                  "units": null,
-                  "lastDate": "2026-09-11",
-                  "products": [
-                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
-                  "customer": "International Bar/Rest",
-                  "num": "56011",
                   "units": null,
                   "lastDate": "2026-09-11",
                   "products": [
@@ -133453,21 +134353,21 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Green Point Restaurant",
+                  "num": "69011",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2811 Modelo Especial 2/12/12 oz Can"
+                  ]
+                },
+                {
                   "customer": "Peppercorn's",
                   "num": "71001",
                   "units": null,
                   "lastDate": "2026-09-11",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Marriott (P) Park Ridge",
-                  "num": "71011",
-                  "units": null,
-                  "lastDate": "2026-09-08",
-                  "products": [
-                    "2808 Modelo Especial 1/24/12 oz Loose Btl"
                   ]
                 }
               ],
@@ -133498,11 +134398,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "pacifico",
               "label": "Pacifico",
-              "buyers": 6,
+              "buyers": 7,
               "goal": 16,
-              "pct": 37.5,
+              "pct": 43.8,
               "retained": false,
-              "toGo": 10,
+              "toGo": 9,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -133542,6 +134442,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "International Bar/Rest",
+                  "num": "56011",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2611 Pacifico 2/12/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Chapala Grill - Bergenfield",
                   "num": "56016",
                   "units": null,
@@ -133565,11 +134474,11 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "goalsTotal": 8,
           "goalsRetained": 1,
-          "buyers": 161,
-          "held": 161,
+          "buyers": 166,
+          "held": 166,
           "goal": 258,
-          "pct": 62.4,
-          "toGo": 97,
+          "pct": 64.3,
+          "toGo": 92,
           "emptyPickups": 0
         },
         "on_draft": {
@@ -133618,6 +134527,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Blue Akai",
+                  "num": "52033",
+                  "units": 4.0,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2802 Modelo Especial 15.5 Gal Keg"
+                  ]
+                },
+                {
                   "customer": "Rivervale Country Club",
                   "num": "69009",
                   "units": 4.0,
@@ -133631,6 +134549,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "41023",
                   "units": 3.0,
                   "lastDate": "2026-09-22",
+                  "products": [
+                    "2802 Modelo Especial 15.5 Gal Keg"
+                  ]
+                },
+                {
+                  "customer": "Davey's Locker (A)",
+                  "num": "70004",
+                  "units": 3.0,
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2802 Modelo Especial 15.5 Gal Keg"
                   ]
@@ -133672,28 +134599,19 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Straphanger Saloon (A)",
+                  "num": "41006",
+                  "units": 2.0,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2802 Modelo Especial 15.5 Gal Keg"
+                  ]
+                },
+                {
                   "customer": "101 Pub (A)",
                   "num": "50008",
                   "units": 2.0,
                   "lastDate": "2026-09-21",
-                  "products": [
-                    "2802 Modelo Especial 15.5 Gal Keg"
-                  ]
-                },
-                {
-                  "customer": "Blue Akai",
-                  "num": "52033",
-                  "units": 2.0,
-                  "lastDate": "2026-09-09",
-                  "products": [
-                    "2802 Modelo Especial 15.5 Gal Keg"
-                  ]
-                },
-                {
-                  "customer": "Davey's Locker (A)",
-                  "num": "70004",
-                  "units": 2.0,
-                  "lastDate": "2026-09-10",
                   "products": [
                     "2802 Modelo Especial 15.5 Gal Keg"
                   ]
@@ -133721,15 +134639,6 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "81003",
                   "units": 2.0,
                   "lastDate": "2026-09-16",
-                  "products": [
-                    "2802 Modelo Especial 15.5 Gal Keg"
-                  ]
-                },
-                {
-                  "customer": "Straphanger Saloon (A)",
-                  "num": "41006",
-                  "units": 1.0,
-                  "lastDate": "2026-09-04",
                   "products": [
                     "2802 Modelo Especial 15.5 Gal Keg"
                   ]
@@ -133883,10 +134792,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 13,
         "goalsRetained": 1,
-        "overallHeld": 187,
+        "overallHeld": 192,
         "overallGoal": 332,
-        "overallPct": 56.3,
-        "overallToGo": 145,
+        "overallPct": 57.8,
+        "overallToGo": 140,
         "hasAnyGoal": true
       },
       "Phil Ernst": {
@@ -133894,11 +134803,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 85,
+            "placements": 88,
             "goal": 109,
-            "pct": 78.0,
+            "pct": 80.7,
             "retained": false,
-            "toGo": 24,
+            "toGo": 21,
             "inReport": true,
             "products": [
               {
@@ -133912,16 +134821,6 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 21,
-                "base": 26,
-                "goal": 26,
-                "pct": 80.8,
-                "retained": false,
-                "toGo": 5,
-                "lost": false
-              },
-              {
                 "product": "Corona Extra 2/12/12 oz Btl",
                 "placements": 20,
                 "base": 25,
@@ -133932,23 +134831,33 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 18,
-                "base": 22,
-                "goal": 22,
-                "pct": 81.8,
+                "product": "Corona Extra 4/6/12 oz Btl",
+                "placements": 22,
+                "base": 26,
+                "goal": 26,
+                "pct": 84.6,
                 "retained": false,
                 "toGo": 4,
                 "lost": false
               },
               {
-                "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 20,
+                "product": "Corona Extra 1/24/12 oz Loose Btl",
+                "placements": 19,
                 "base": 22,
                 "goal": 22,
-                "pct": 90.9,
+                "pct": 86.4,
                 "retained": false,
-                "toGo": 2,
+                "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Coronita Extra 1/24/7 oz Btl",
+                "placements": 21,
+                "base": 22,
+                "goal": 22,
+                "pct": 95.5,
+                "retained": false,
+                "toGo": 1,
                 "lost": false
               }
             ],
@@ -133964,35 +134873,15 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 128,
+            "placements": 133,
             "goal": 138,
-            "pct": 92.8,
+            "pct": 96.4,
             "retained": false,
-            "toGo": 10,
+            "toGo": 5,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 22,
-                "base": 26,
-                "goal": 26,
-                "pct": 84.6,
-                "retained": false,
-                "toGo": 4,
-                "lost": false
-              },
-              {
-                "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 11,
-                "base": 15,
-                "goal": 15,
-                "pct": 73.3,
-                "retained": false,
-                "toGo": 4,
-                "lost": false
-              },
-              {
-                "product": "Modelo Especial 2/12/12 oz Btl",
                 "placements": 23,
                 "base": 26,
                 "goal": 26,
@@ -134012,11 +134901,31 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
+                "product": "Modelo Especial 1/24/12 oz Loose Can",
+                "placements": 12,
+                "base": 15,
+                "goal": 15,
+                "pct": 80.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 2/12/12 oz Btl",
+                "placements": 24,
+                "base": 26,
+                "goal": 26,
+                "pct": 92.3,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
+              },
+              {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 25,
+                "placements": 26,
                 "base": 23,
                 "goal": 23,
-                "pct": 108.7,
+                "pct": 113.0,
                 "retained": true,
                 "toGo": 0,
                 "lost": false
@@ -134033,10 +134942,10 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
-                "placements": 11,
+                "placements": 12,
                 "base": 9,
                 "goal": 9,
-                "pct": 122.2,
+                "pct": 133.3,
                 "retained": true,
                 "toGo": 0,
                 "lost": false
@@ -134054,21 +134963,21 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 147,
+            "placements": 151,
             "goal": 194,
-            "pct": 75.8,
+            "pct": 77.8,
             "retained": false,
-            "toGo": 47,
+            "toGo": 43,
             "inReport": true,
             "products": [
               {
                 "product": "Pacifico 2/12/12 oz Can",
-                "placements": 8,
+                "placements": 9,
                 "base": 18,
                 "goal": 18,
-                "pct": 44.4,
+                "pct": 50.0,
                 "retained": false,
-                "toGo": 10,
+                "toGo": 9,
                 "lost": false
               },
               {
@@ -134132,16 +135041,6 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 19,
-                "base": 21,
-                "goal": 21,
-                "pct": 90.5,
-                "retained": false,
-                "toGo": 2,
-                "lost": false
-              },
-              {
                 "product": "Corona Light 1/24/12 oz Loose Btl",
                 "placements": 4,
                 "base": 6,
@@ -134149,6 +135048,16 @@ const PROGRAM_DATA_2026_09 = {
                 "pct": 66.7,
                 "retained": false,
                 "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Modelito Especial 1/24/7 oz Loose Btl",
+                "placements": 20,
+                "base": 21,
+                "goal": 21,
+                "pct": 95.2,
+                "retained": false,
+                "toGo": 1,
                 "lost": false
               },
               {
@@ -134193,10 +135102,10 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 16,
+                "placements": 18,
                 "base": 16,
                 "goal": 16,
-                "pct": 100.0,
+                "pct": 112.5,
                 "retained": true,
                 "toGo": 0,
                 "lost": false
@@ -134264,11 +135173,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "innovation",
             "label": "Innovation",
-            "placements": 43,
+            "placements": 44,
             "goal": 102,
-            "pct": 42.2,
+            "pct": 43.1,
             "retained": false,
-            "toGo": 59,
+            "toGo": 58,
             "inReport": true,
             "products": [
               {
@@ -134283,12 +135192,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 2,
+                "placements": 3,
                 "base": 13,
                 "goal": 13,
-                "pct": 15.4,
+                "pct": 23.1,
                 "retained": false,
-                "toGo": 11,
+                "toGo": 10,
                 "lost": false
               },
               {
@@ -134395,10 +135304,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 403,
+        "offPlacements": 416,
         "offGoal": 543,
-        "offPct": 74.2,
-        "offToGo": 140,
+        "offPct": 76.6,
+        "offToGo": 127,
         "on_packages": {
           "families": [
             {
@@ -134415,7 +135324,7 @@ const PROGRAM_DATA_2026_09 = {
                   "customer": "Saddle Brook Liquor & Bar",
                   "num": "76021",
                   "units": null,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2403 Coronita Extra 2/12/7 oz Btl",
                     "2405 Coronita Extra 1/24/7 oz Btl",
@@ -134522,8 +135431,9 @@ const PROGRAM_DATA_2026_09 = {
                   "customer": "Saddle Brook Liquor & Bar",
                   "num": "76021",
                   "units": null,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-25",
                   "products": [
+                    "2807 Modelito Especial 1/24/7 oz Loose Btl",
                     "2808 Modelo Especial 1/24/12 oz Loose Btl",
                     "2809 Modelo Especial 1/24/12 oz Loose Can",
                     "2811 Modelo Especial 2/12/12 oz Can",
@@ -134603,10 +135513,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 11,
         "goalsRetained": 6,
-        "overallHeld": 409,
+        "overallHeld": 422,
         "overallGoal": 550,
-        "overallPct": 74.4,
-        "overallToGo": 141,
+        "overallPct": 76.7,
+        "overallToGo": 128,
         "hasAnyGoal": true
       },
       "Robin Feldman": {
@@ -134726,11 +135636,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_extra",
               "label": "Corona Extra",
-              "buyers": 83,
+              "buyers": 91,
               "goal": 145,
-              "pct": 57.2,
+              "pct": 62.8,
               "retained": false,
-              "toGo": 62,
+              "toGo": 54,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -134768,6 +135678,26 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-22",
                   "products": [
                     "2425 Corona Extra 1/24/12 oz Loose Can"
+                  ]
+                },
+                {
+                  "customer": "Courtyard Marriott Mt Arl",
+                  "num": "191406",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl",
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Frungillo Caterers",
+                  "num": "2009",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl",
+                    "2412 Corona Extra 2/12/12 oz Btl"
                   ]
                 },
                 {
@@ -134847,22 +135777,13 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "Courtyard Marriott Mt Arl",
-                  "num": "191406",
+                  "customer": "North Shore House",
+                  "num": "230807",
                   "units": null,
-                  "lastDate": "2026-09-17",
+                  "lastDate": "2026-09-24",
                   "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl",
                     "2410 Corona Extra 4/6/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "Frungillo Caterers",
-                  "num": "2009",
-                  "units": null,
-                  "lastDate": "2026-09-17",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl",
-                    "2412 Corona Extra 2/12/12 oz Btl"
                   ]
                 },
                 {
@@ -134985,10 +135906,37 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "William J. Mulligan VFW Post 281",
+                  "num": "77013",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
                   "customer": "Kiku Restaurant",
                   "num": "80019",
                   "units": null,
                   "lastDate": "2026-09-17",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "American Legion Post 289 (A) West Milford",
+                  "num": "1026",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Arca",
+                  "num": "11004",
+                  "units": null,
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
                   ]
@@ -135120,21 +136068,21 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Crossed Keys Inn",
+                  "num": "230303",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
                   "customer": "Chun Bo (P) Restaurant",
                   "num": "230429",
                   "units": null,
                   "lastDate": "2026-09-15",
                   "products": [
                     "2412 Corona Extra 2/12/12 oz Btl"
-                  ]
-                },
-                {
-                  "customer": "North Shore House",
-                  "num": "230807",
-                  "units": null,
-                  "lastDate": "2026-09-11",
-                  "products": [
-                    "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -135162,6 +136110,15 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-15",
                   "products": [
                     "2412 Corona Extra 2/12/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Elks Post 1992 (Z)",
+                  "num": "28026",
+                  "units": null,
+                  "lastDate": "2026-09-25",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
                   ]
                 },
                 {
@@ -135246,6 +136203,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Costillas Colombian Bar & Grill",
+                  "num": "34010",
+                  "units": null,
+                  "lastDate": "2026-09-26",
+                  "products": [
+                    "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
                   "customer": "Vfw Hasbrouck (A)",
                   "num": "34016",
                   "units": null,
@@ -135297,6 +136263,15 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-22",
                   "products": [
                     "2409 Corona Extra 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "K Of C 2229 (Z)",
+                  "num": "47014",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2425 Corona Extra 1/24/12 oz Loose Can"
                   ]
                 },
                 {
@@ -135399,15 +136374,6 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
-                  "customer": "William J. Mulligan VFW Post 281",
-                  "num": "77013",
-                  "units": null,
-                  "lastDate": "2026-09-09",
-                  "products": [
-                    "2409 Corona Extra 1/24/12 oz Loose Btl"
-                  ]
-                },
-                {
                   "customer": "Parkway Diner (Z)",
                   "num": "77025",
                   "units": null,
@@ -135432,6 +136398,15 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-18",
                   "products": [
                     "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Elks Pompton Lakes",
+                  "num": "8016",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2404 Coronita Extra 4/6/7 oz Btl"
                   ]
                 },
                 {
@@ -135480,6 +136455,15 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "Courtyard Mahwah",
+                  "num": "93018",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2410 Corona Extra 4/6/12 oz Btl"
+                  ]
+                },
+                {
                   "customer": "Elks Post 2167",
                   "num": "94011",
                   "units": null,
@@ -135494,11 +136478,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "corona_light",
               "label": "Corona Light",
-              "buyers": 12,
+              "buyers": 13,
               "goal": 29,
-              "pct": 41.4,
+              "pct": 44.8,
               "retained": false,
-              "toGo": 17,
+              "toGo": 16,
               "emptyPickups": 0,
               "accounts": [
                 {
@@ -135545,6 +136529,15 @@ const PROGRAM_DATA_2026_09 = {
                   "lastDate": "2026-09-16",
                   "products": [
                     "2509 Corona Light 1/24/12 oz Loose Btl"
+                  ]
+                },
+                {
+                  "customer": "Papa Joe's (Z)",
+                  "num": "18008",
+                  "units": null,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2512 Corona Light 2/12/12 oz Btl"
                   ]
                 },
                 {
@@ -135708,18 +136701,18 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "modelo_especial",
               "label": "Modelo Especial",
-              "buyers": 33,
+              "buyers": 34,
               "goal": 50,
-              "pct": 66.0,
+              "pct": 68.0,
               "retained": false,
-              "toGo": 17,
+              "toGo": 16,
               "emptyPickups": 0,
               "accounts": [
                 {
                   "customer": "Macaluso's (P)",
                   "num": "19014",
                   "units": null,
-                  "lastDate": "2026-09-09",
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2808 Modelo Especial 1/24/12 oz Loose Btl"
                   ]
@@ -135756,6 +136749,15 @@ const PROGRAM_DATA_2026_09 = {
                   "num": "42009",
                   "units": null,
                   "lastDate": "2026-09-10",
+                  "products": [
+                    "2814 Modelo Especial 4/6/12 oz Btl"
+                  ]
+                },
+                {
+                  "customer": "Arca",
+                  "num": "11004",
+                  "units": null,
+                  "lastDate": "2026-09-25",
                   "products": [
                     "2814 Modelo Especial 4/6/12 oz Btl"
                   ]
@@ -136030,11 +137032,11 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "goalsTotal": 7,
           "goalsRetained": 0,
-          "buyers": 134,
-          "held": 134,
+          "buyers": 144,
+          "held": 144,
           "goal": 238,
-          "pct": 56.3,
-          "toGo": 104,
+          "pct": 60.5,
+          "toGo": 94,
           "emptyPickups": 0
         },
         "on_draft": {
@@ -136076,11 +137078,11 @@ const PROGRAM_DATA_2026_09 = {
             {
               "key": "modelo_especial",
               "label": "Modelo Especial",
-              "buyers": 5,
+              "buyers": 7,
               "goal": 21,
-              "pct": 23.8,
+              "pct": 33.3,
               "retained": false,
-              "toGo": 16,
+              "toGo": 14,
               "emptyPickups": 3,
               "accounts": [
                 {
@@ -136120,10 +137122,28 @@ const PROGRAM_DATA_2026_09 = {
                   ]
                 },
                 {
+                  "customer": "William J. Mulligan VFW Post 281",
+                  "num": "77013",
+                  "units": 1.0,
+                  "lastDate": "2026-09-24",
+                  "products": [
+                    "2802 Modelo Especial 15.5 Gal Keg"
+                  ]
+                },
+                {
                   "customer": "K Of C W Bergen",
                   "num": "81023",
                   "units": 1.0,
                   "lastDate": "2026-09-01",
+                  "products": [
+                    "2804 Modelo Especial 7.75 Gal Keg"
+                  ]
+                },
+                {
+                  "customer": "Courtyard Mahwah",
+                  "num": "93018",
+                  "units": 1.0,
+                  "lastDate": "2026-09-24",
                   "products": [
                     "2804 Modelo Especial 7.75 Gal Keg"
                   ]
@@ -136177,19 +137197,19 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "goalsTotal": 5,
           "goalsRetained": 0,
-          "buyers": 8,
-          "held": 8,
+          "buyers": 10,
+          "held": 10,
           "goal": 29,
-          "pct": 27.6,
-          "toGo": 21,
+          "pct": 34.5,
+          "toGo": 19,
           "emptyPickups": 3
         },
         "goalsTotal": 14,
         "goalsRetained": 0,
-        "overallHeld": 145,
+        "overallHeld": 157,
         "overallGoal": 272,
-        "overallPct": 53.3,
-        "overallToGo": 127,
+        "overallPct": 57.7,
+        "overallToGo": 115,
         "hasAnyGoal": true
       },
       "Shane Barreca": {
@@ -136267,29 +137287,19 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
-            "placements": 125,
+            "placements": 129,
             "goal": 145,
-            "pct": 86.2,
+            "pct": 89.0,
             "retained": false,
-            "toGo": 20,
+            "toGo": 16,
             "inReport": true,
             "products": [
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 24,
+                "placements": 25,
                 "base": 29,
                 "goal": 29,
-                "pct": 82.8,
-                "retained": false,
-                "toGo": 5,
-                "lost": false
-              },
-              {
-                "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 24,
-                "base": 28,
-                "goal": 28,
-                "pct": 85.7,
+                "pct": 86.2,
                 "retained": false,
                 "toGo": 4,
                 "lost": false
@@ -136315,13 +137325,23 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 13,
-                "base": 16,
-                "goal": 16,
-                "pct": 81.2,
+                "product": "Modelo Especial 2/12/12 oz Can",
+                "placements": 25,
+                "base": 28,
+                "goal": 28,
+                "pct": 89.3,
                 "retained": false,
                 "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/24/12 oz Loose Can",
+                "placements": 15,
+                "base": 16,
+                "goal": 16,
+                "pct": 93.8,
+                "retained": false,
+                "toGo": 1,
                 "lost": false
               },
               {
@@ -136357,11 +137377,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "impact",
             "label": "Impact",
-            "placements": 145,
+            "placements": 147,
             "goal": 174,
-            "pct": 83.3,
+            "pct": 84.5,
             "retained": false,
-            "toGo": 29,
+            "toGo": 27,
             "inReport": true,
             "products": [
               {
@@ -136385,16 +137405,6 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 12,
-                "base": 17,
-                "goal": 17,
-                "pct": 70.6,
-                "retained": false,
-                "toGo": 5,
-                "lost": false
-              },
-              {
                 "product": "Pacifico 2/12/12 oz Can",
                 "placements": 10,
                 "base": 15,
@@ -136402,6 +137412,16 @@ const PROGRAM_DATA_2026_09 = {
                 "pct": 66.7,
                 "retained": false,
                 "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
+                "placements": 13,
+                "base": 17,
+                "goal": 17,
+                "pct": 76.5,
+                "retained": false,
+                "toGo": 4,
                 "lost": false
               },
               {
@@ -136456,12 +137476,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
-                "placements": 4,
+                "placements": 5,
                 "base": 6,
                 "goal": 6,
-                "pct": 66.7,
+                "pct": 83.3,
                 "retained": false,
-                "toGo": 2,
+                "toGo": 1,
                 "lost": false
               },
               {
@@ -136567,11 +137587,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "innovation",
             "label": "Innovation",
-            "placements": 41,
+            "placements": 43,
             "goal": 78,
-            "pct": 52.6,
+            "pct": 55.1,
             "retained": false,
-            "toGo": 37,
+            "toGo": 35,
             "inReport": true,
             "products": [
               {
@@ -136625,16 +137645,6 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Victoria Vicky Mango 1/12/24 oz Can",
-                "placements": 0,
-                "base": 2,
-                "goal": 2,
-                "pct": 0.0,
-                "retained": false,
-                "toGo": 2,
-                "lost": true
-              },
-              {
                 "product": "Corona Sunbrew 1/12/24 oz Can",
                 "placements": 2,
                 "base": 3,
@@ -136645,17 +137655,17 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Modelo Negra 2/12/12 oz Can",
-                "placements": 2,
-                "base": 3,
-                "goal": 3,
-                "pct": 66.7,
+                "product": "Corona Non-Alcohol 2/12/12 oz Btl",
+                "placements": 1,
+                "base": 2,
+                "goal": 2,
+                "pct": 50.0,
                 "retained": false,
                 "toGo": 1,
                 "lost": false
               },
               {
-                "product": "Corona Non-Alcohol 2/12/12 oz Btl",
+                "product": "Victoria Vicky Mango 1/12/24 oz Can",
                 "placements": 1,
                 "base": 2,
                 "goal": 2,
@@ -136683,25 +137693,35 @@ const PROGRAM_DATA_2026_09 = {
                 "retained": true,
                 "toGo": 0,
                 "lost": false
+              },
+              {
+                "product": "Modelo Negra 2/12/12 oz Can",
+                "placements": 3,
+                "base": 3,
+                "goal": 3,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
             "baseWindow": "3/1/2026 - 5/31/2026",
             "goalOverride": false,
             "baseGoal": 78,
             "skusTotal": 11,
-            "skusHeld": 1,
-            "skusLost": 2,
-            "skusShort": 10,
+            "skusHeld": 2,
+            "skusLost": 1,
+            "skusShort": 9,
             "skusNew": 0
           }
         ],
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 378,
+        "offPlacements": 386,
         "offGoal": 482,
-        "offPct": 78.4,
-        "offToGo": 104,
+        "offPct": 80.1,
+        "offToGo": 96,
         "on_packages": {
           "families": [],
           "goalsTotal": 0,
@@ -136726,10 +137746,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 4,
         "goalsRetained": 0,
-        "overallHeld": 378,
+        "overallHeld": 386,
         "overallGoal": 482,
-        "overallPct": 78.4,
-        "overallToGo": 104,
+        "overallPct": 80.1,
+        "overallToGo": 96,
         "hasAnyGoal": true
       }
     },
@@ -136737,37 +137757,37 @@ const PROGRAM_DATA_2026_09 = {
       {
         "key": "corona_gaintain",
         "label": "Corona Gaintain",
-        "total": 1146,
+        "total": 1182,
         "goal": 1610,
         "met": false,
-        "short": 464,
+        "short": 428,
         "baseWindow": "9/1/2025 - 11/30/2025"
       },
       {
         "key": "modelo_gaintain",
         "label": "Modelo Gaintain",
-        "total": 1974,
+        "total": 2038,
         "goal": 2395,
         "met": false,
-        "short": 421,
+        "short": 357,
         "baseWindow": "9/1/2025 - 11/30/2025"
       },
       {
         "key": "impact",
         "label": "Impact",
-        "total": 2720,
+        "total": 2815,
         "goal": 3452,
         "met": false,
-        "short": 732,
+        "short": 637,
         "baseWindow": "9/1/2025 - 11/30/2025"
       },
       {
         "key": "innovation",
         "label": "Innovation",
-        "total": 545,
+        "total": 582,
         "goal": 1400,
         "met": false,
-        "short": 855,
+        "short": 818,
         "baseWindow": "3/1/2026 - 5/31/2026"
       }
     ],
@@ -136776,28 +137796,28 @@ const PROGRAM_DATA_2026_09 = {
         {
           "key": "corona_extra",
           "label": "Corona Extra",
-          "total": 620,
+          "total": 649,
           "goal": 836,
           "met": false,
-          "short": 216,
+          "short": 187,
           "baseWindow": "3/1/2026 - 5/31/2026"
         },
         {
           "key": "modelo_especial",
           "label": "Modelo Especial",
-          "total": 309,
+          "total": 329,
           "goal": 471,
           "met": false,
-          "short": 162,
+          "short": 142,
           "baseWindow": "3/1/2026 - 5/31/2026"
         },
         {
           "key": "corona_light",
           "label": "Corona Light",
-          "total": 158,
+          "total": 165,
           "goal": 306,
           "met": false,
-          "short": 148,
+          "short": 141,
           "baseWindow": "3/1/2026 - 5/31/2026"
         },
         {
@@ -136812,28 +137832,28 @@ const PROGRAM_DATA_2026_09 = {
         {
           "key": "corona_na",
           "label": "Corona NA",
-          "total": 29,
+          "total": 30,
           "goal": 127,
           "met": false,
-          "short": 98,
+          "short": 97,
           "baseWindow": "3/1/2026 - 5/31/2026"
         },
         {
           "key": "pacifico",
           "label": "Pacifico",
-          "total": 44,
+          "total": 47,
           "goal": 123,
           "met": false,
-          "short": 79,
+          "short": 76,
           "baseWindow": "3/1/2026 - 5/31/2026"
         },
         {
           "key": "corona_premier",
           "label": "Corona Premier",
-          "total": 30,
+          "total": 32,
           "goal": 81,
           "met": false,
-          "short": 51,
+          "short": 49,
           "baseWindow": "3/1/2026 - 5/31/2026"
         },
         {
@@ -136850,37 +137870,37 @@ const PROGRAM_DATA_2026_09 = {
         {
           "key": "modelo_especial",
           "label": "Modelo Especial",
-          "total": 129,
+          "total": 133,
           "goal": 240,
           "met": false,
-          "short": 111,
+          "short": 107,
           "baseWindow": "3/1/2026 - 5/31/2026"
         },
         {
           "key": "pacifico",
           "label": "Pacifico",
-          "total": 16,
+          "total": 17,
           "goal": 58,
           "met": false,
-          "short": 42,
+          "short": 41,
           "baseWindow": "3/1/2026 - 5/31/2026"
         },
         {
           "key": "corona_light",
           "label": "Corona Light",
-          "total": 2,
+          "total": 4,
           "goal": 50,
           "met": false,
-          "short": 48,
+          "short": 46,
           "baseWindow": "3/1/2026 - 5/31/2026"
         },
         {
           "key": "modelo_negra",
           "label": "Modelo Negra",
-          "total": 4,
+          "total": 5,
           "goal": 18,
           "met": false,
-          "short": 14,
+          "short": 13,
           "baseWindow": "3/1/2026 - 5/31/2026"
         },
         {
@@ -136894,14 +137914,14 @@ const PROGRAM_DATA_2026_09 = {
         }
       ]
     },
-    "houseTotal": 6385,
+    "houseTotal": 6617,
     "houseGoal": 8857,
     "retainThresholdPct": 100,
     "periodStart": "2026-09-01",
     "periodEnd": "2026-11-30",
     "periodDays": 91,
-    "daysElapsed": 23,
-    "pacePct": 25.3,
+    "daysElapsed": 25,
+    "pacePct": 27.5,
     "meta": {
       "onPrem": {
         "packages": {
@@ -136920,10 +137940,17 @@ const PROGRAM_DATA_2026_09 = {
           ],
           "drift": [],
           "detailCarriesGoalColumns": true,
-          "emptyPickups": 31
+          "emptyPickups": 28
         }
       },
-      "onBaseWindow": "3/1/2026 - 5/31/2026"
+      "onBaseWindow": "3/1/2026 - 5/31/2026",
+      "offGoalsFrozen": true,
+      "offGoalDrift": {
+        "corona_gaintain": 0,
+        "modelo_gaintain": 0,
+        "impact": 0,
+        "innovation": 0
+      }
     }
   },
   "yuengling_retention_fall": {
@@ -136948,16 +137975,16 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Lager",
             "base": 28,
-            "actual": 12,
+            "actual": 13,
             "goal": 27,
-            "pct": 44.4,
+            "pct": 48.1,
             "held": false,
-            "toGo": 15
+            "toGo": 14
           }
         ],
-        "packagesActual": 12,
+        "packagesActual": 13,
         "packagesGoal": 28,
-        "packagesPct": 42.9,
+        "packagesPct": 46.4,
         "packagesGoalsTotal": 2,
         "packagesGoalsRetained": 0,
         "draftBrands": [
@@ -136984,7 +138011,7 @@ const PROGRAM_DATA_2026_09 = {
             "label": "Yuengling Lager",
             "base": 60,
             "actual": 31,
-            "summaryActual": 49,
+            "summaryActual": 50,
             "emptyPickups": 13,
             "accounts": [
               {
@@ -137381,9 +138408,9 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 0,
         "hasAnyGoal": true,
         "overallGoal": 86,
-        "overallHeld": 43,
-        "overallToGo": 43,
-        "overallPct": 50.0
+        "overallHeld": 44,
+        "overallToGo": 42,
+        "overallPct": 51.2
       },
       "Anthony Palmisano": {
         "offBrands": [
@@ -137450,7 +138477,7 @@ const PROGRAM_DATA_2026_09 = {
             "label": "Yuengling Lager",
             "base": 27,
             "actual": 15,
-            "summaryActual": 24,
+            "summaryActual": 25,
             "emptyPickups": 3,
             "accounts": [
               {
@@ -137667,16 +138694,16 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Lager",
             "base": 55,
-            "actual": 41,
+            "actual": 44,
             "goal": 53,
-            "pct": 77.4,
+            "pct": 83.0,
             "held": false,
-            "toGo": 12
+            "toGo": 9
           }
         ],
-        "packagesActual": 41,
+        "packagesActual": 44,
         "packagesGoal": 54,
-        "packagesPct": 75.9,
+        "packagesPct": 81.5,
         "packagesGoalsTotal": 2,
         "packagesGoalsRetained": 0,
         "draftBrands": [
@@ -138154,29 +139181,29 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 0,
         "hasAnyGoal": true,
         "overallGoal": 123,
-        "overallHeld": 86,
-        "overallToGo": 37,
-        "overallPct": 69.9
+        "overallHeld": 89,
+        "overallToGo": 34,
+        "overallPct": 72.4
       },
       "Chris Payton": {
         "offBrands": [
           {
             "label": "Yuengling Flight",
             "base": 8,
-            "actual": 4,
+            "actual": 5,
             "goal": 8,
-            "pct": 50.0,
+            "pct": 62.5,
             "held": false,
-            "toGo": 4
+            "toGo": 3
           },
           {
             "label": "Yuengling Lager",
             "base": 36,
-            "actual": 28,
+            "actual": 29,
             "goal": 35,
-            "pct": 80.0,
+            "pct": 82.9,
             "held": false,
-            "toGo": 7
+            "toGo": 6
           },
           {
             "label": "Yuengling Light Lager",
@@ -138188,9 +139215,9 @@ const PROGRAM_DATA_2026_09 = {
             "toGo": 7
           }
         ],
-        "offActual": 32,
+        "offActual": 34,
         "offGoal": 50,
-        "offPct": 64.0,
+        "offPct": 68.0,
         "offGoalsTotal": 3,
         "offGoalsRetained": 0,
         "packagesBrands": [],
@@ -138209,9 +139236,9 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 0,
         "hasAnyGoal": true,
         "overallGoal": 50,
-        "overallHeld": 32,
-        "overallToGo": 18,
-        "overallPct": 64.0
+        "overallHeld": 34,
+        "overallToGo": 16,
+        "overallPct": 68.0
       },
       "Dan Lagala": {
         "offBrands": [
@@ -138227,11 +139254,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Lager",
             "base": 30,
-            "actual": 19,
+            "actual": 21,
             "goal": 29,
-            "pct": 65.5,
+            "pct": 72.4,
             "held": false,
-            "toGo": 10
+            "toGo": 8
           },
           {
             "label": "Yuengling Light Lager",
@@ -138243,9 +139270,9 @@ const PROGRAM_DATA_2026_09 = {
             "toGo": 1
           }
         ],
-        "offActual": 22,
+        "offActual": 24,
         "offGoal": 37,
-        "offPct": 59.5,
+        "offPct": 64.9,
         "offGoalsTotal": 3,
         "offGoalsRetained": 0,
         "packagesBrands": [],
@@ -138264,9 +139291,9 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 0,
         "hasAnyGoal": true,
         "overallGoal": 37,
-        "overallHeld": 22,
-        "overallToGo": 15,
-        "overallPct": 59.5
+        "overallHeld": 24,
+        "overallToGo": 13,
+        "overallPct": 64.9
       },
       "Dave Ehlers": {
         "offBrands": [
@@ -138342,15 +139369,6 @@ const PROGRAM_DATA_2026_09 = {
             "pct": 54.5,
             "held": false,
             "toGo": 5
-          },
-          {
-            "label": "Yuengling Light Lager",
-            "base": 0,
-            "actual": 1,
-            "goal": null,
-            "pct": null,
-            "held": false,
-            "toGo": 0
           }
         ],
         "offActual": 7,
@@ -138438,34 +139456,34 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Flight",
             "base": 11,
-            "actual": 9,
+            "actual": 10,
             "goal": 11,
-            "pct": 81.8,
+            "pct": 90.9,
             "held": false,
-            "toGo": 2
+            "toGo": 1
           },
           {
             "label": "Yuengling Lager",
             "base": 40,
-            "actual": 30,
+            "actual": 32,
             "goal": 38,
-            "pct": 78.9,
+            "pct": 84.2,
             "held": false,
-            "toGo": 8
+            "toGo": 6
           },
           {
             "label": "Yuengling Light Lager",
             "base": 9,
-            "actual": 6,
+            "actual": 7,
             "goal": 9,
-            "pct": 66.7,
+            "pct": 77.8,
             "held": false,
-            "toGo": 3
+            "toGo": 2
           }
         ],
-        "offActual": 45,
+        "offActual": 49,
         "offGoal": 58,
-        "offPct": 77.6,
+        "offPct": 84.5,
         "offGoalsTotal": 3,
         "offGoalsRetained": 0,
         "packagesBrands": [],
@@ -138484,9 +139502,9 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 0,
         "hasAnyGoal": true,
         "overallGoal": 58,
-        "overallHeld": 45,
-        "overallToGo": 13,
-        "overallPct": 77.6
+        "overallHeld": 49,
+        "overallToGo": 9,
+        "overallPct": 84.5
       },
       "Klejdi Lamo": {
         "offBrands": [
@@ -138667,25 +139685,25 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Lager",
             "base": 27,
-            "actual": 23,
+            "actual": 24,
             "goal": 26,
-            "pct": 88.5,
+            "pct": 92.3,
             "held": false,
-            "toGo": 3
+            "toGo": 2
           },
           {
             "label": "Yuengling Light Lager",
             "base": 14,
-            "actual": 6,
+            "actual": 7,
             "goal": 14,
-            "pct": 42.9,
+            "pct": 50.0,
             "held": false,
-            "toGo": 8
+            "toGo": 7
           }
         ],
-        "offActual": 38,
+        "offActual": 40,
         "offGoal": 52,
-        "offPct": 73.1,
+        "offPct": 76.9,
         "offGoalsTotal": 3,
         "offGoalsRetained": 0,
         "packagesBrands": [],
@@ -138704,9 +139722,9 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 0,
         "hasAnyGoal": true,
         "overallGoal": 52,
-        "overallHeld": 38,
-        "overallToGo": 14,
-        "overallPct": 73.1
+        "overallHeld": 40,
+        "overallToGo": 12,
+        "overallPct": 76.9
       },
       "Nick Melissari": {
         "offBrands": [],
@@ -138719,16 +139737,16 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Lager",
             "base": 34,
-            "actual": 19,
+            "actual": 20,
             "goal": 33,
-            "pct": 57.6,
+            "pct": 60.6,
             "held": false,
-            "toGo": 14
+            "toGo": 13
           }
         ],
-        "packagesActual": 19,
+        "packagesActual": 20,
         "packagesGoal": 33,
-        "packagesPct": 57.6,
+        "packagesPct": 60.6,
         "packagesGoalsTotal": 1,
         "packagesGoalsRetained": 0,
         "draftBrands": [
@@ -138767,7 +139785,7 @@ const PROGRAM_DATA_2026_09 = {
             "label": "Yuengling Lager",
             "base": 69,
             "actual": 31,
-            "summaryActual": 51,
+            "summaryActual": 52,
             "emptyPickups": 14,
             "accounts": [
               {
@@ -139206,9 +140224,9 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 0,
         "hasAnyGoal": true,
         "overallGoal": 102,
-        "overallHeld": 51,
-        "overallToGo": 51,
-        "overallPct": 50.0
+        "overallHeld": 52,
+        "overallToGo": 50,
+        "overallPct": 51.0
       },
       "Paul Mclaughlin": {
         "offBrands": [],
@@ -139221,16 +140239,16 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Lager",
             "base": 21,
-            "actual": 13,
+            "actual": 14,
             "goal": 20,
-            "pct": 65.0,
+            "pct": 70.0,
             "held": false,
-            "toGo": 7
+            "toGo": 6
           }
         ],
-        "packagesActual": 13,
+        "packagesActual": 14,
         "packagesGoal": 20,
-        "packagesPct": 65.0,
+        "packagesPct": 70.0,
         "packagesGoalsTotal": 1,
         "packagesGoalsRetained": 0,
         "draftBrands": [
@@ -139238,7 +140256,7 @@ const PROGRAM_DATA_2026_09 = {
             "label": "Yuengling Lager",
             "base": 38,
             "actual": 15,
-            "summaryActual": 30,
+            "summaryActual": 31,
             "emptyPickups": 8,
             "accounts": [
               {
@@ -139491,9 +140509,9 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 0,
         "hasAnyGoal": true,
         "overallGoal": 57,
-        "overallHeld": 28,
-        "overallToGo": 29,
-        "overallPct": 49.1
+        "overallHeld": 29,
+        "overallToGo": 28,
+        "overallPct": 50.9
       },
       "Phil Ernst": {
         "offBrands": [
@@ -139570,16 +140588,16 @@ const PROGRAM_DATA_2026_09 = {
           {
             "label": "Yuengling Lager",
             "base": 101,
-            "actual": 58,
+            "actual": 62,
             "goal": 96,
-            "pct": 60.4,
+            "pct": 64.6,
             "held": false,
-            "toGo": 38
+            "toGo": 34
           }
         ],
-        "packagesActual": 59,
+        "packagesActual": 63,
         "packagesGoal": 99,
-        "packagesPct": 59.6,
+        "packagesPct": 63.6,
         "packagesGoalsTotal": 2,
         "packagesGoalsRetained": 0,
         "draftBrands": [
@@ -139883,9 +140901,9 @@ const PROGRAM_DATA_2026_09 = {
         "goalsRetained": 1,
         "hasAnyGoal": true,
         "overallGoal": 140,
-        "overallHeld": 74,
-        "overallToGo": 66,
-        "overallPct": 52.9
+        "overallHeld": 78,
+        "overallToGo": 62,
+        "overallPct": 55.7
       },
       "Shane Barreca": {
         "offBrands": [
@@ -139969,30 +140987,30 @@ const PROGRAM_DATA_2026_09 = {
         "label": "Yuengling Flight",
         "base": 153,
         "goal": 152,
-        "actual": 106,
+        "actual": 108,
         "repsHeld": 1,
         "repsWithGoal": 13,
-        "pct": 69.7
+        "pct": 71.1
       },
       {
         "side": "off",
         "label": "Yuengling Lager",
         "base": 350,
         "goal": 338,
-        "actual": 280,
+        "actual": 286,
         "repsHeld": 4,
         "repsWithGoal": 13,
-        "pct": 82.8
+        "pct": 84.6
       },
       {
         "side": "off",
         "label": "Yuengling Light Lager",
         "base": 135,
         "goal": 134,
-        "actual": 72,
+        "actual": 73,
         "repsHeld": 0,
         "repsWithGoal": 12,
-        "pct": 53.7
+        "pct": 54.5
       },
       {
         "side": "packages",
@@ -140009,10 +141027,10 @@ const PROGRAM_DATA_2026_09 = {
         "label": "Yuengling Lager",
         "base": 269,
         "goal": 258,
-        "actual": 169,
+        "actual": 179,
         "repsHeld": 0,
         "repsWithGoal": 6,
-        "pct": 65.5
+        "pct": 69.4
       }
     ],
     "retainThresholdPct": 95,
@@ -140037,8 +141055,8 @@ const PROGRAM_DATA_2026_09 = {
     "periodStart": "2026-09-01",
     "periodEnd": "2026-11-30",
     "periodDays": 91,
-    "daysElapsed": 23,
-    "pacePct": 25.3,
+    "daysElapsed": 25,
+    "pacePct": 27.5,
     "meta": {
       "offRoster": []
     }
@@ -144400,8 +145418,8 @@ const PROGRAM_DATA_2026_09 = {
     "periodStart": "2026-07-20",
     "periodEnd": "2026-09-30",
     "periodDays": 73,
-    "daysElapsed": 66,
-    "pacePct": 90.4,
+    "daysElapsed": 68,
+    "pacePct": 93.2,
     "meta": {
       "source": "Boston Beer Seasonal Conversion Fall workbook",
       "officialAsOf": "2026-09-08",
@@ -144423,15 +145441,15 @@ const PROGRAM_DATA_2026_09 = {
   },
   "path_to_victory_sd": {
     "byRep": {
-      "Dylan Rubino": {
+      "Alex Rodriguez": {
         "team": "Mike Kennedy",
         "window": "8/1/2026 - 9/30/2026",
         "packages": {
           "sixPack": {
-            "pods": 59.0,
-            "newPods": 27.0,
-            "units": 128.0,
-            "payout": 270.0
+            "pods": 4.0,
+            "newPods": 2.0,
+            "units": 7.0,
+            "payout": 20.0
           },
           "nineteenTwo": {
             "pods": 0.0,
@@ -144442,118 +145460,42 @@ const PROGRAM_DATA_2026_09 = {
         },
         "products": [
           {
-            "product": "11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can",
+            "product": "4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can",
             "package": "4/6/12oz Can",
             "bucket": "sixPack",
-            "pods": 10.0,
-            "newPods": 8.0,
-            "units": 17.0
+            "pods": 1.0,
+            "newPods": 1.0,
+            "units": 2.0
           },
           {
             "product": "4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can",
             "package": "4/6/12oz Can",
             "bucket": "sixPack",
-            "pods": 19.0,
-            "newPods": 6.0,
-            "units": 46.0
-          },
-          {
-            "product": "4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 17.0,
-            "newPods": 6.0,
-            "units": 44.0
+            "pods": 1.0,
+            "newPods": 1.0,
+            "units": 1.0
           },
           {
             "product": "11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can",
             "package": "4/6/12oz Can",
             "bucket": "sixPack",
-            "pods": 12.0,
-            "newPods": 6.0,
-            "units": 21.0
+            "pods": 2.0,
+            "newPods": 0.0,
+            "units": 4.0
           },
           {
-            "product": "11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can",
+            "product": "11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can",
             "package": "4/6/12oz Can",
             "bucket": "sixPack",
-            "pods": 1.0,
-            "newPods": 1.0,
+            "pods": 0.0,
+            "newPods": 0.0,
             "units": 0.0
           }
         ],
-        "payout": 270.0,
-        "sixPackPods": 59.0,
-        "sixPackNewPods": 27.0,
-        "sixPackUnits": 128.0,
-        "nineteenTwoPods": 0.0,
-        "nineteenTwoNewPods": 0.0,
-        "nineteenTwoUnits": 0.0,
-        "has192": false
-      },
-      "Jaime Colonna": {
-        "team": "Mike Kennedy",
-        "window": "8/1/2026 - 9/30/2026",
-        "packages": {
-          "sixPack": {
-            "pods": 37.0,
-            "newPods": 16.0,
-            "units": 113.0,
-            "payout": 160.0
-          },
-          "nineteenTwo": {
-            "pods": 0.0,
-            "newPods": 0.0,
-            "units": 0.0,
-            "payout": 0.0
-          }
-        },
-        "products": [
-          {
-            "product": "4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 14.0,
-            "newPods": 5.0,
-            "units": 51.0
-          },
-          {
-            "product": "4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 11.0,
-            "newPods": 4.0,
-            "units": 31.0
-          },
-          {
-            "product": "11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 8.0,
-            "newPods": 4.0,
-            "units": 19.0
-          },
-          {
-            "product": "11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 3.0,
-            "newPods": 2.0,
-            "units": 9.0
-          },
-          {
-            "product": "11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 1.0,
-            "newPods": 1.0,
-            "units": 3.0
-          }
-        ],
-        "payout": 160.0,
-        "sixPackPods": 37.0,
-        "sixPackNewPods": 16.0,
-        "sixPackUnits": 113.0,
+        "payout": 20.0,
+        "sixPackPods": 4.0,
+        "sixPackNewPods": 2.0,
+        "sixPackUnits": 7.0,
         "nineteenTwoPods": 0.0,
         "nineteenTwoNewPods": 0.0,
         "nineteenTwoUnits": 0.0,
@@ -144564,9 +145506,9 @@ const PROGRAM_DATA_2026_09 = {
         "window": "8/1/2026 - 9/30/2026",
         "packages": {
           "sixPack": {
-            "pods": 59.0,
+            "pods": 60.0,
             "newPods": 14.0,
-            "units": 167.0,
+            "units": 168.0,
             "payout": 140.0
           },
           "nineteenTwo": {
@@ -144589,9 +145531,9 @@ const PROGRAM_DATA_2026_09 = {
             "product": "4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can",
             "package": "4/6/12oz Can",
             "bucket": "sixPack",
-            "pods": 18.0,
+            "pods": 19.0,
             "newPods": 4.0,
-            "units": 46.0
+            "units": 47.0
           },
           {
             "product": "11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can",
@@ -144619,9 +145561,137 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "payout": 140.0,
-        "sixPackPods": 59.0,
+        "sixPackPods": 60.0,
         "sixPackNewPods": 14.0,
-        "sixPackUnits": 167.0,
+        "sixPackUnits": 168.0,
+        "nineteenTwoPods": 0.0,
+        "nineteenTwoNewPods": 0.0,
+        "nineteenTwoUnits": 0.0,
+        "has192": false
+      },
+      "Andrew Lundy": {
+        "team": "Mike Kennedy",
+        "window": "8/1/2026 - 9/30/2026",
+        "packages": {
+          "sixPack": {
+            "pods": 4.0,
+            "newPods": 4.0,
+            "units": 4.0,
+            "payout": 40.0
+          },
+          "nineteenTwo": {
+            "pods": 0.0,
+            "newPods": 0.0,
+            "units": 0.0,
+            "payout": 0.0
+          }
+        },
+        "products": [
+          {
+            "product": "11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 1.0,
+            "newPods": 1.0,
+            "units": 1.0
+          },
+          {
+            "product": "11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 1.0,
+            "newPods": 1.0,
+            "units": 1.0
+          },
+          {
+            "product": "4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 1.0,
+            "newPods": 1.0,
+            "units": 1.0
+          },
+          {
+            "product": "4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 1.0,
+            "newPods": 1.0,
+            "units": 1.0
+          }
+        ],
+        "payout": 40.0,
+        "sixPackPods": 4.0,
+        "sixPackNewPods": 4.0,
+        "sixPackUnits": 4.0,
+        "nineteenTwoPods": 0.0,
+        "nineteenTwoNewPods": 0.0,
+        "nineteenTwoUnits": 0.0,
+        "has192": false
+      },
+      "Dylan Rubino": {
+        "team": "Mike Kennedy",
+        "window": "8/1/2026 - 9/30/2026",
+        "packages": {
+          "sixPack": {
+            "pods": 63.0,
+            "newPods": 31.0,
+            "units": 137.0,
+            "payout": 310.0
+          },
+          "nineteenTwo": {
+            "pods": 0.0,
+            "newPods": 0.0,
+            "units": 0.0,
+            "payout": 0.0
+          }
+        },
+        "products": [
+          {
+            "product": "11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 11.0,
+            "newPods": 9.0,
+            "units": 18.0
+          },
+          {
+            "product": "4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 19.0,
+            "newPods": 8.0,
+            "units": 49.0
+          },
+          {
+            "product": "4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 20.0,
+            "newPods": 7.0,
+            "units": 49.0
+          },
+          {
+            "product": "11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 12.0,
+            "newPods": 6.0,
+            "units": 21.0
+          },
+          {
+            "product": "11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 1.0,
+            "newPods": 1.0,
+            "units": 0.0
+          }
+        ],
+        "payout": 310.0,
+        "sixPackPods": 63.0,
+        "sixPackNewPods": 31.0,
+        "sixPackUnits": 137.0,
         "nineteenTwoPods": 0.0,
         "nineteenTwoNewPods": 0.0,
         "nineteenTwoUnits": 0.0,
@@ -144634,7 +145704,7 @@ const PROGRAM_DATA_2026_09 = {
           "sixPack": {
             "pods": 39.0,
             "newPods": 7.0,
-            "units": 107.0,
+            "units": 109.0,
             "payout": 70.0
           },
           "nineteenTwo": {
@@ -144651,7 +145721,7 @@ const PROGRAM_DATA_2026_09 = {
             "bucket": "sixPack",
             "pods": 8.0,
             "newPods": 2.0,
-            "units": 20.0
+            "units": 21.0
           },
           {
             "product": "11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can",
@@ -144683,13 +145753,141 @@ const PROGRAM_DATA_2026_09 = {
             "bucket": "sixPack",
             "pods": 4.0,
             "newPods": 1.0,
-            "units": 6.0
+            "units": 7.0
           }
         ],
         "payout": 70.0,
         "sixPackPods": 39.0,
         "sixPackNewPods": 7.0,
-        "sixPackUnits": 107.0,
+        "sixPackUnits": 109.0,
+        "nineteenTwoPods": 0.0,
+        "nineteenTwoNewPods": 0.0,
+        "nineteenTwoUnits": 0.0,
+        "has192": false
+      },
+      "Jaime Colonna": {
+        "team": "Mike Kennedy",
+        "window": "8/1/2026 - 9/30/2026",
+        "packages": {
+          "sixPack": {
+            "pods": 39.0,
+            "newPods": 17.0,
+            "units": 118.0,
+            "payout": 170.0
+          },
+          "nineteenTwo": {
+            "pods": 0.0,
+            "newPods": 0.0,
+            "units": 0.0,
+            "payout": 0.0
+          }
+        },
+        "products": [
+          {
+            "product": "4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 14.0,
+            "newPods": 5.0,
+            "units": 51.0
+          },
+          {
+            "product": "4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 11.0,
+            "newPods": 4.0,
+            "units": 33.0
+          },
+          {
+            "product": "11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 8.0,
+            "newPods": 4.0,
+            "units": 19.0
+          },
+          {
+            "product": "11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 4.0,
+            "newPods": 3.0,
+            "units": 10.0
+          },
+          {
+            "product": "11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 2.0,
+            "newPods": 1.0,
+            "units": 5.0
+          }
+        ],
+        "payout": 170.0,
+        "sixPackPods": 39.0,
+        "sixPackNewPods": 17.0,
+        "sixPackUnits": 118.0,
+        "nineteenTwoPods": 0.0,
+        "nineteenTwoNewPods": 0.0,
+        "nineteenTwoUnits": 0.0,
+        "has192": false
+      },
+      "John O'Donoghue": {
+        "team": "Mike Kennedy",
+        "window": "8/1/2026 - 9/30/2026",
+        "packages": {
+          "sixPack": {
+            "pods": 3.0,
+            "newPods": 1.0,
+            "units": 8.0,
+            "payout": 10.0
+          },
+          "nineteenTwo": {
+            "pods": 0.0,
+            "newPods": 0.0,
+            "units": 0.0,
+            "payout": 0.0
+          }
+        },
+        "products": [
+          {
+            "product": "11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 1.0,
+            "newPods": 1.0,
+            "units": 1.0
+          },
+          {
+            "product": "4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 1.0,
+            "newPods": 0.0,
+            "units": 3.0
+          },
+          {
+            "product": "4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 1.0,
+            "newPods": 0.0,
+            "units": 4.0
+          },
+          {
+            "product": "11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 0.0,
+            "newPods": 0.0,
+            "units": 0.0
+          }
+        ],
+        "payout": 10.0,
+        "sixPackPods": 3.0,
+        "sixPackNewPods": 1.0,
+        "sixPackUnits": 8.0,
         "nineteenTwoPods": 0.0,
         "nineteenTwoNewPods": 0.0,
         "nineteenTwoUnits": 0.0,
@@ -144762,134 +145960,12 @@ const PROGRAM_DATA_2026_09 = {
         "nineteenTwoNewPods": 0.0,
         "nineteenTwoUnits": 0.0,
         "has192": false
-      },
-      "Alex Rodriguez": {
-        "team": "Mike Kennedy",
-        "window": "8/1/2026 - 9/30/2026",
-        "packages": {
-          "sixPack": {
-            "pods": 4.0,
-            "newPods": 2.0,
-            "units": 7.0,
-            "payout": 20.0
-          },
-          "nineteenTwo": {
-            "pods": 0.0,
-            "newPods": 0.0,
-            "units": 0.0,
-            "payout": 0.0
-          }
-        },
-        "products": [
-          {
-            "product": "4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 1.0,
-            "newPods": 1.0,
-            "units": 2.0
-          },
-          {
-            "product": "4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 1.0,
-            "newPods": 1.0,
-            "units": 1.0
-          },
-          {
-            "product": "11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 2.0,
-            "newPods": 0.0,
-            "units": 4.0
-          },
-          {
-            "product": "11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 0.0,
-            "newPods": 0.0,
-            "units": 0.0
-          }
-        ],
-        "payout": 20.0,
-        "sixPackPods": 4.0,
-        "sixPackNewPods": 2.0,
-        "sixPackUnits": 7.0,
-        "nineteenTwoPods": 0.0,
-        "nineteenTwoNewPods": 0.0,
-        "nineteenTwoUnits": 0.0,
-        "has192": false
-      },
-      "John O'Donoghue": {
-        "team": "Mike Kennedy",
-        "window": "8/1/2026 - 9/30/2026",
-        "packages": {
-          "sixPack": {
-            "pods": 3.0,
-            "newPods": 1.0,
-            "units": 8.0,
-            "payout": 10.0
-          },
-          "nineteenTwo": {
-            "pods": 0.0,
-            "newPods": 0.0,
-            "units": 0.0,
-            "payout": 0.0
-          }
-        },
-        "products": [
-          {
-            "product": "11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 1.0,
-            "newPods": 1.0,
-            "units": 1.0
-          },
-          {
-            "product": "4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 1.0,
-            "newPods": 0.0,
-            "units": 3.0
-          },
-          {
-            "product": "4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 1.0,
-            "newPods": 0.0,
-            "units": 4.0
-          },
-          {
-            "product": "11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 0.0,
-            "newPods": 0.0,
-            "units": 0.0
-          }
-        ],
-        "payout": 10.0,
-        "sixPackPods": 3.0,
-        "sixPackNewPods": 1.0,
-        "sixPackUnits": 8.0,
-        "nineteenTwoPods": 0.0,
-        "nineteenTwoNewPods": 0.0,
-        "nineteenTwoUnits": 0.0,
-        "has192": false
       }
     },
     "meta": {
       "team": "Mike Kennedy",
       "window": "8/1/2026 - 9/30/2026",
-      "notInExport": [
-        "Andrew Lundy"
-      ],
+      "notInExport": [],
       "has192": false
     }
   },
@@ -144898,27 +145974,27 @@ const PROGRAM_DATA_2026_09 = {
       "Jaime Colonna": {
         "team": "Mike Kennedy",
         "window": "8/1/2026 - 9/30/2026",
-        "packageCases": 1103.0,
-        "packageCE": 1150.64,
-        "packagePayout": 575.32,
+        "packageCases": 1117.0,
+        "packageCE": 1164.37,
+        "packagePayout": 582.18,
         "packages": [
           {
             "product": "5949 Shipyard Pumpkin Head 4/6/12 oz Btl",
             "type": "Case Beer",
-            "cases": 244.0,
-            "ce": 244.0,
+            "cases": 250.0,
+            "ce": 250.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 122.0
+            "payout": 125.0
           },
           {
             "product": "674 Montauk Pumpkin Ale 4/6/12 oz Can",
             "type": "Case Beer",
-            "cases": 142.0,
-            "ce": 142.0,
+            "cases": 146.0,
+            "ce": 146.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 71.0
+            "payout": 73.0
           },
           {
             "product": "4376 Southern Tier Pumking Imperial Pumpkin Ale 6/4/12 oz Btl",
@@ -144941,11 +146017,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "3320 Hofbrau Oktoberfest 4/6/11.2 oz Btl",
             "type": "Case Beer",
-            "cases": 73.0,
-            "ce": 68.13,
+            "cases": 74.0,
+            "ce": 69.06,
             "ceEach": 0.9333,
             "ceExact": true,
-            "payout": 34.07
+            "payout": 34.53
           },
           {
             "product": "11682 Southern Tier Pumqueen 6/4/16 oz Can",
@@ -144975,6 +146051,15 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 21.33
           },
           {
+            "product": "10417 Paulaner Oktoberfest Marzen 4/6/11.2 oz Btl",
+            "type": "Case Beer",
+            "cases": 39.0,
+            "ce": 36.4,
+            "ceEach": 0.9333,
+            "ceExact": true,
+            "payout": 18.2
+          },
+          {
             "product": "7552 Saranac Pumpkin Ale 4/6/12 oz Btl",
             "type": "Case Beer",
             "cases": 35.0,
@@ -144982,15 +146067,6 @@ const PROGRAM_DATA_2026_09 = {
             "ceEach": 1.0,
             "ceExact": true,
             "payout": 17.5
-          },
-          {
-            "product": "10417 Paulaner Oktoberfest Marzen 4/6/11.2 oz Btl",
-            "type": "Case Beer",
-            "cases": 37.0,
-            "ce": 34.53,
-            "ceEach": 0.9333,
-            "ceExact": true,
-            "payout": 17.27
           },
           {
             "product": "10404 Hacker-Pschorr Oktoberfest 4/6/11.2 oz Btl",
@@ -145004,11 +146080,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "10522 Weihenstephan Festbier 4/6/11.2 oz Btl",
             "type": "Case Beer",
-            "cases": 25.0,
-            "ce": 23.33,
+            "cases": 26.0,
+            "ce": 24.27,
             "ceEach": 0.9333,
             "ceExact": true,
-            "payout": 11.67
+            "payout": 12.13
           },
           {
             "product": "10444 Paulaner Oktoberfest Bier 6/4/16.9 oz Can",
@@ -145029,7 +146105,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 10.0
           },
           {
-            "product": "11640 Victory FestBier 4/6/12 oz Can",
+            "product": "11665 Southern Tier Maple Warlock Imperial Pumpkin Stout 6/4/12 oz Btl",
             "type": "Case Beer",
             "cases": 19.0,
             "ce": 19.0,
@@ -145038,7 +146114,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 9.5
           },
           {
-            "product": "11665 Southern Tier Maple Warlock Imperial Pumpkin Stout 6/4/12 oz Btl",
+            "product": "11640 Victory FestBier 4/6/12 oz Can",
             "type": "Case Beer",
             "cases": 19.0,
             "ce": 19.0,
@@ -145092,7 +146168,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 5.5
           },
           {
-            "product": "7766 Evil Genius Trick or Treat Chocolate Pumpkin Porter 4/6/12 oz Can",
+            "product": "7641 Long Trail Harvest Ale 4/6/12 oz Btl",
             "type": "Case Beer",
             "cases": 6.0,
             "ce": 6.0,
@@ -145101,7 +146177,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 3.0
           },
           {
-            "product": "7641 Long Trail Harvest Ale 4/6/12 oz Btl",
+            "product": "7766 Evil Genius Trick or Treat Chocolate Pumpkin Porter 4/6/12 oz Can",
             "type": "Case Beer",
             "cases": 6.0,
             "ce": 6.0,
@@ -145183,16 +146259,16 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "ceEstimatedLines": 0,
-        "sixtelCount": 27.0,
+        "sixtelCount": 30.0,
         "halfKegCount": 44.0,
-        "otherKegCount": 72.0,
-        "kegPayout": 575.0,
+        "otherKegCount": 73.0,
+        "kegPayout": 590.0,
         "kegs": [
           {
             "product": "3304 Hofbrau Oktoberfest 13.2 Gal Keg",
             "type": "Keg Beer",
-            "kegs": 44.0,
-            "bbl": 18.74,
+            "kegs": 45.0,
+            "bbl": 19.16,
             "tier": "other size",
             "payout": 0.0
           },
@@ -145215,10 +146291,10 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "5948 Shipyard Pumpkin Head 5.2 Gal Keg",
             "type": "Keg Beer",
-            "kegs": 11.0,
-            "bbl": 1.83,
+            "kegs": 12.0,
+            "bbl": 2.0,
             "tier": "sixtel",
-            "payout": 55.0
+            "payout": 60.0
           },
           {
             "product": "4378 Southern Tier Pumking Imperial Pumpkin Ale 5.2 Gal Keg",
@@ -145229,20 +146305,20 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 50.0
           },
           {
-            "product": "675 Montauk Pumpkin Ale 15.5 Gal Keg",
-            "type": "Keg Beer",
-            "kegs": 7.0,
-            "bbl": 3.5,
-            "tier": "half-keg",
-            "payout": 70.0
-          },
-          {
             "product": "5805 Point Whole Hog Pumpkin Ale 7.75 Gal Keg",
             "type": "Keg Beer",
             "kegs": 7.0,
             "bbl": 1.75,
             "tier": "other size",
             "payout": 0.0
+          },
+          {
+            "product": "675 Montauk Pumpkin Ale 15.5 Gal Keg",
+            "type": "Keg Beer",
+            "kegs": 7.0,
+            "bbl": 3.5,
+            "tier": "half-keg",
+            "payout": 70.0
           },
           {
             "product": "5213 Great Lakes Oktoberfest Keg 15.5 Gal Keg",
@@ -145261,6 +146337,14 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 0.0
           },
           {
+            "product": "5214 Great Lakes Oktoberfest 5.2 Gal Keg",
+            "type": "Keg Beer",
+            "kegs": 4.0,
+            "bbl": 0.67,
+            "tier": "sixtel",
+            "payout": 20.0
+          },
+          {
             "product": "5947 Shipyard Pumpkin Head Keg 15.5 Gal Keg",
             "type": "Keg Beer",
             "kegs": 3.0,
@@ -145269,7 +146353,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 30.0
           },
           {
-            "product": "5214 Great Lakes Oktoberfest 5.2 Gal Keg",
+            "product": "676 Montauk Pumpkin Ale 5.2 Gal Keg",
             "type": "Keg Beer",
             "kegs": 2.0,
             "bbl": 0.33,
@@ -145285,15 +146369,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 0.0
           },
           {
-            "product": "676 Montauk Pumpkin Ale 5.2 Gal Keg",
-            "type": "Keg Beer",
-            "kegs": 2.0,
-            "bbl": 0.33,
-            "tier": "sixtel",
-            "payout": 10.0
-          },
-          {
-            "product": "11667 Southern Tier Maple Warlock Imperial Pumpkin Stout 5.2 Gal Keg",
+            "product": "7709 Evil Genius Trick Or Treat Chocolate Pumpkin Porter 5.2 Gal Keg",
             "type": "Keg Beer",
             "kegs": 1.0,
             "bbl": 0.17,
@@ -145301,7 +146377,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 5.0
           },
           {
-            "product": "7709 Evil Genius Trick Or Treat Chocolate Pumpkin Porter 5.2 Gal Keg",
+            "product": "11667 Southern Tier Maple Warlock Imperial Pumpkin Stout 5.2 Gal Keg",
             "type": "Keg Beer",
             "kegs": 1.0,
             "bbl": 0.17,
@@ -145317,23 +146393,23 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 10.0
           }
         ],
-        "spiritsCases": 3.0,
-        "spiritsPayout": 15.0,
+        "spiritsCases": 6.0,
+        "spiritsPayout": 30.0,
         "spirits": [
           {
             "product": "200517 Southern Tier Pumking Whiskey 6/750 mL Btl",
-            "cases": 3.0,
-            "payout": 15.0
+            "cases": 6.0,
+            "payout": 30.0
           }
         ],
-        "payout": 1165.32
+        "payout": 1202.18
       },
       "Michael Harboy": {
         "team": "Mike Kennedy",
         "window": "8/1/2026 - 9/30/2026",
-        "packageCases": 961.0,
-        "packageCE": 984.57,
-        "packagePayout": 492.28,
+        "packageCases": 966.0,
+        "packageCE": 989.5,
+        "packagePayout": 494.75,
         "packages": [
           {
             "product": "5949 Shipyard Pumpkin Head 4/6/12 oz Btl",
@@ -145374,11 +146450,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "10404 Hacker-Pschorr Oktoberfest 4/6/11.2 oz Btl",
             "type": "Case Beer",
-            "cases": 59.0,
-            "ce": 55.06,
+            "cases": 60.0,
+            "ce": 56.0,
             "ceEach": 0.9333,
             "ceExact": true,
-            "payout": 27.53
+            "payout": 28.0
           },
           {
             "product": "8235 Doc's Pumpkin Cider (Fall) 6/4/16 oz Can",
@@ -145390,15 +146466,6 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 26.0
           },
           {
-            "product": "674 Montauk Pumpkin Ale 4/6/12 oz Can",
-            "type": "Case Beer",
-            "cases": 49.0,
-            "ce": 49.0,
-            "ceEach": 1.0,
-            "ceExact": true,
-            "payout": 24.5
-          },
-          {
             "product": "10417 Paulaner Oktoberfest Marzen 4/6/11.2 oz Btl",
             "type": "Case Beer",
             "cases": 52.0,
@@ -145406,6 +146473,15 @@ const PROGRAM_DATA_2026_09 = {
             "ceEach": 0.9333,
             "ceExact": true,
             "payout": 24.27
+          },
+          {
+            "product": "674 Montauk Pumpkin Ale 4/6/12 oz Can",
+            "type": "Case Beer",
+            "cases": 48.0,
+            "ce": 48.0,
+            "ceEach": 1.0,
+            "ceExact": true,
+            "payout": 24.0
           },
           {
             "product": "3953 Sam Adams Jack-O Pumpkin Ale 4/6/12 oz Btl",
@@ -145507,6 +146583,15 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 7.5
           },
           {
+            "product": "3854 Sam Adams Fall Legends Variety 2/12/12 oz Can",
+            "type": "Case Beer",
+            "cases": 15.0,
+            "ce": 15.0,
+            "ceEach": 1.0,
+            "ceExact": true,
+            "payout": 7.5
+          },
+          {
             "product": "10522 Weihenstephan Festbier 4/6/11.2 oz Btl",
             "type": "Case Beer",
             "cases": 16.0,
@@ -145543,16 +146628,16 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 6.5
           },
           {
-            "product": "3854 Sam Adams Fall Legends Variety 2/12/12 oz Can",
+            "product": "11236 Flying Dog The Fear 4/6/12 oz Btl",
             "type": "Case Beer",
-            "cases": 12.0,
-            "ce": 12.0,
+            "cases": 11.0,
+            "ce": 11.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 6.0
+            "payout": 5.5
           },
           {
-            "product": "11236 Flying Dog The Fear 4/6/12 oz Btl",
+            "product": "4038 Sam Adams Jack-O Pumpkin 2/12/12 oz Can",
             "type": "Case Beer",
             "cases": 11.0,
             "ce": 11.0,
@@ -145577,15 +146662,6 @@ const PROGRAM_DATA_2026_09 = {
             "ceEach": 1.0,
             "ceExact": true,
             "payout": 5.0
-          },
-          {
-            "product": "4038 Sam Adams Jack-O Pumpkin 2/12/12 oz Can",
-            "type": "Case Beer",
-            "cases": 9.0,
-            "ce": 9.0,
-            "ceEach": 1.0,
-            "ceExact": true,
-            "payout": 4.5
           },
           {
             "product": "12142 Dogfish Head Punkin Ale 4/6/12 oz Can",
@@ -145669,7 +146745,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 2.5
           },
           {
-            "product": "930 Leinenkugel Oktoberfest 4/6/12 oz Btl",
+            "product": "12130 Dogfish Head Fall Variety 2/12/12 oz Can",
             "type": "Case Beer",
             "cases": 4.0,
             "ce": 4.0,
@@ -145678,7 +146754,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 2.0
           },
           {
-            "product": "12130 Dogfish Head Fall Variety 2/12/12 oz Can",
+            "product": "930 Leinenkugel Oktoberfest 4/6/12 oz Btl",
             "type": "Case Beer",
             "cases": 4.0,
             "ce": 4.0,
@@ -145833,14 +146909,14 @@ const PROGRAM_DATA_2026_09 = {
         "spiritsCases": 0.0,
         "spiritsPayout": 0.0,
         "spirits": [],
-        "payout": 552.28
+        "payout": 554.75
       },
       "John O'Donoghue": {
         "team": "Mike Kennedy",
         "window": "8/1/2026 - 9/30/2026",
-        "packageCases": 815.0,
-        "packageCE": 862.96,
-        "packagePayout": 431.48,
+        "packageCases": 830.0,
+        "packageCE": 880.29,
+        "packagePayout": 440.15,
         "packages": [
           {
             "product": "5830 Point Whole Hog Pumpkin Ale 4/6/12 oz Btl",
@@ -145854,20 +146930,20 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "3320 Hofbrau Oktoberfest 4/6/11.2 oz Btl",
             "type": "Case Beer",
-            "cases": 177.0,
-            "ce": 165.19,
+            "cases": 182.0,
+            "ce": 169.86,
             "ceEach": 0.9333,
             "ceExact": true,
-            "payout": 82.6
+            "payout": 84.93
           },
           {
             "product": "674 Montauk Pumpkin Ale 4/6/12 oz Can",
             "type": "Case Beer",
-            "cases": 78.0,
-            "ce": 78.0,
+            "cases": 80.0,
+            "ce": 80.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 39.0
+            "payout": 40.0
           },
           {
             "product": "3336 Hofbrau Oktoberfest 6/4/16.9 oz Can",
@@ -145890,11 +146966,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "9125 1911 Cider Donut 6/4/16 oz Can",
             "type": "Case Cider",
-            "cases": 37.0,
-            "ce": 49.33,
+            "cases": 39.0,
+            "ce": 52.0,
             "ceEach": 1.3333,
             "ceExact": true,
-            "payout": 24.67
+            "payout": 26.0
           },
           {
             "product": "7559 Saranac 12 Beers of October 2/12/12 oz Btl",
@@ -145902,6 +146978,15 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 44.0,
             "ce": 44.0,
             "ceEach": 1.0,
+            "ceExact": true,
+            "payout": 22.0
+          },
+          {
+            "product": "8235 Doc's Pumpkin Cider (Fall) 6/4/16 oz Can",
+            "type": "Case Cider",
+            "cases": 33.0,
+            "ce": 44.0,
+            "ceEach": 1.3333,
             "ceExact": true,
             "payout": 22.0
           },
@@ -145915,22 +147000,13 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 20.5
           },
           {
-            "product": "8235 Doc's Pumpkin Cider (Fall) 6/4/16 oz Can",
-            "type": "Case Cider",
-            "cases": 29.0,
-            "ce": 38.67,
-            "ceEach": 1.3333,
-            "ceExact": true,
-            "payout": 19.33
-          },
-          {
             "product": "9161 1911 Haunted Hayride 6/4/16 oz Can",
             "type": "Case Cider",
-            "cases": 24.0,
-            "ce": 32.0,
+            "cases": 26.0,
+            "ce": 34.67,
             "ceEach": 1.3333,
             "ceExact": true,
-            "payout": 16.0
+            "payout": 17.33
           },
           {
             "product": "7552 Saranac Pumpkin Ale 4/6/12 oz Btl",
@@ -146024,16 +147100,24 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "ceEstimatedLines": 0,
-        "sixtelCount": 17.0,
+        "sixtelCount": 19.0,
         "halfKegCount": 8.0,
         "otherKegCount": 20.0,
-        "kegPayout": 165.0,
+        "kegPayout": 175.0,
         "kegs": [
           {
             "product": "5805 Point Whole Hog Pumpkin Ale 7.75 Gal Keg",
             "type": "Keg Beer",
             "kegs": 11.0,
             "bbl": 2.75,
+            "tier": "other size",
+            "payout": 0.0
+          },
+          {
+            "product": "3304 Hofbrau Oktoberfest 13.2 Gal Keg",
+            "type": "Keg Beer",
+            "kegs": 9.0,
+            "bbl": 3.83,
             "tier": "other size",
             "payout": 0.0
           },
@@ -146046,12 +147130,12 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 45.0
           },
           {
-            "product": "3304 Hofbrau Oktoberfest 13.2 Gal Keg",
+            "product": "676 Montauk Pumpkin Ale 5.2 Gal Keg",
             "type": "Keg Beer",
-            "kegs": 9.0,
-            "bbl": 3.83,
-            "tier": "other size",
-            "payout": 0.0
+            "kegs": 5.0,
+            "bbl": 0.83,
+            "tier": "sixtel",
+            "payout": 25.0
           },
           {
             "product": "5213 Great Lakes Oktoberfest Keg 15.5 Gal Keg",
@@ -146060,14 +147144,6 @@ const PROGRAM_DATA_2026_09 = {
             "bbl": 2.0,
             "tier": "half-keg",
             "payout": 40.0
-          },
-          {
-            "product": "676 Montauk Pumpkin Ale 5.2 Gal Keg",
-            "type": "Keg Beer",
-            "kegs": 3.0,
-            "bbl": 0.5,
-            "tier": "sixtel",
-            "payout": 15.0
           },
           {
             "product": "8222 Doc's Pumpkin 15.5 Gal Keg",
@@ -146105,14 +147181,14 @@ const PROGRAM_DATA_2026_09 = {
         "spiritsCases": 0.0,
         "spiritsPayout": 0.0,
         "spirits": [],
-        "payout": 596.48
+        "payout": 615.15
       },
       "Alisa Acciardi": {
         "team": "Mike Kennedy",
         "window": "8/1/2026 - 9/30/2026",
-        "packageCases": 608.0,
-        "packageCE": 623.78,
-        "packagePayout": 311.89,
+        "packageCases": 610.0,
+        "packageCE": 625.78,
+        "packagePayout": 312.89,
         "packages": [
           {
             "product": "5949 Shipyard Pumpkin Head 4/6/12 oz Btl",
@@ -146162,11 +147238,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "674 Montauk Pumpkin Ale 4/6/12 oz Can",
             "type": "Case Beer",
-            "cases": 38.0,
-            "ce": 38.0,
+            "cases": 40.0,
+            "ce": 40.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 19.0
+            "payout": 20.0
           },
           {
             "product": "3320 Hofbrau Oktoberfest 4/6/11.2 oz Btl",
@@ -146259,7 +147335,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 6.0
           },
           {
-            "product": "11236 Flying Dog The Fear 4/6/12 oz Btl",
+            "product": "7559 Saranac 12 Beers of October 2/12/12 oz Btl",
             "type": "Case Beer",
             "cases": 11.0,
             "ce": 11.0,
@@ -146268,7 +147344,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 5.5
           },
           {
-            "product": "7559 Saranac 12 Beers of October 2/12/12 oz Btl",
+            "product": "11236 Flying Dog The Fear 4/6/12 oz Btl",
             "type": "Case Beer",
             "cases": 11.0,
             "ce": 11.0,
@@ -146340,7 +147416,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 1.5
           },
           {
-            "product": "5344 Great Lakes Biergarten Party Pack 2/12/12 oz Can",
+            "product": "7641 Long Trail Harvest Ale 4/6/12 oz Btl",
             "type": "Case Beer",
             "cases": 3.0,
             "ce": 3.0,
@@ -146349,7 +147425,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 1.5
           },
           {
-            "product": "7641 Long Trail Harvest Ale 4/6/12 oz Btl",
+            "product": "5344 Great Lakes Biergarten Party Pack 2/12/12 oz Can",
             "type": "Case Beer",
             "cases": 3.0,
             "ce": 3.0,
@@ -146408,14 +147484,14 @@ const PROGRAM_DATA_2026_09 = {
         "spiritsCases": 0.0,
         "spiritsPayout": 0.0,
         "spirits": [],
-        "payout": 346.89
+        "payout": 347.89
       },
       "Andrew Lundy": {
         "team": "Mike Kennedy",
         "window": "8/1/2026 - 9/30/2026",
-        "packageCases": 544.0,
-        "packageCE": 578.07,
-        "packagePayout": 289.03,
+        "packageCases": 558.0,
+        "packageCE": 592.07,
+        "packagePayout": 296.03,
         "packages": [
           {
             "product": "3330 Hofbrau Oktoberfest 2/5 L Keg Can",
@@ -146438,20 +147514,29 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "5830 Point Whole Hog Pumpkin Ale 4/6/12 oz Btl",
             "type": "Case Beer",
-            "cases": 71.0,
-            "ce": 71.0,
+            "cases": 76.0,
+            "ce": 76.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 35.5
+            "payout": 38.0
           },
           {
             "product": "674 Montauk Pumpkin Ale 4/6/12 oz Can",
             "type": "Case Beer",
-            "cases": 48.0,
-            "ce": 48.0,
+            "cases": 51.0,
+            "ce": 51.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 24.0
+            "payout": 25.5
+          },
+          {
+            "product": "7552 Saranac Pumpkin Ale 4/6/12 oz Btl",
+            "type": "Case Beer",
+            "cases": 35.0,
+            "ce": 35.0,
+            "ceEach": 1.0,
+            "ceExact": true,
+            "payout": 17.5
           },
           {
             "product": "3336 Hofbrau Oktoberfest 6/4/16.9 oz Can",
@@ -146470,15 +147555,6 @@ const PROGRAM_DATA_2026_09 = {
             "ceEach": 1.3333,
             "ceExact": true,
             "payout": 16.0
-          },
-          {
-            "product": "7552 Saranac Pumpkin Ale 4/6/12 oz Btl",
-            "type": "Case Beer",
-            "cases": 29.0,
-            "ce": 29.0,
-            "ceEach": 1.0,
-            "ceExact": true,
-            "payout": 14.5
           },
           {
             "product": "7559 Saranac 12 Beers of October 2/12/12 oz Btl",
@@ -146556,14 +147632,14 @@ const PROGRAM_DATA_2026_09 = {
         "ceEstimatedLines": 0,
         "sixtelCount": 1.0,
         "halfKegCount": 1.0,
-        "otherKegCount": 6.0,
+        "otherKegCount": 7.0,
         "kegPayout": 15.0,
         "kegs": [
           {
             "product": "10403 Hacker-Pschorr Oktoberfest 13.2 Gal Keg",
             "type": "Keg Beer",
-            "kegs": 4.0,
-            "bbl": 1.7,
+            "kegs": 5.0,
+            "bbl": 2.13,
             "tier": "other size",
             "payout": 0.0
           },
@@ -146595,14 +147671,14 @@ const PROGRAM_DATA_2026_09 = {
         "spiritsCases": 0.0,
         "spiritsPayout": 0.0,
         "spirits": [],
-        "payout": 304.03
+        "payout": 311.03
       },
       "Dylan Rubino": {
         "team": "Mike Kennedy",
         "window": "8/1/2026 - 9/30/2026",
-        "packageCases": 341.0,
-        "packageCE": 345.88,
-        "packagePayout": 172.94,
+        "packageCases": 350.0,
+        "packageCE": 354.55,
+        "packagePayout": 177.28,
         "packages": [
           {
             "product": "5949 Shipyard Pumpkin Head 4/6/12 oz Btl",
@@ -146625,38 +147701,38 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "674 Montauk Pumpkin Ale 4/6/12 oz Can",
             "type": "Case Beer",
-            "cases": 35.0,
-            "ce": 35.0,
+            "cases": 38.0,
+            "ce": 38.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 17.5
+            "payout": 19.0
           },
           {
             "product": "3320 Hofbrau Oktoberfest 4/6/11.2 oz Btl",
             "type": "Case Beer",
-            "cases": 23.0,
-            "ce": 21.47,
+            "cases": 27.0,
+            "ce": 25.2,
             "ceEach": 0.9333,
             "ceExact": true,
-            "payout": 10.73
+            "payout": 12.6
           },
           {
             "product": "10417 Paulaner Oktoberfest Marzen 4/6/11.2 oz Btl",
             "type": "Case Beer",
-            "cases": 21.0,
-            "ce": 19.6,
+            "cases": 22.0,
+            "ce": 20.53,
             "ceEach": 0.9333,
             "ceExact": true,
-            "payout": 9.8
+            "payout": 10.27
           },
           {
             "product": "5830 Point Whole Hog Pumpkin Ale 4/6/12 oz Btl",
             "type": "Case Beer",
-            "cases": 18.0,
-            "ce": 18.0,
+            "cases": 19.0,
+            "ce": 19.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 9.0
+            "payout": 9.5
           },
           {
             "product": "10522 Weihenstephan Festbier 4/6/11.2 oz Btl",
@@ -146713,7 +147789,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 2.82
           },
           {
-            "product": "11640 Victory FestBier 4/6/12 oz Can",
+            "product": "11665 Southern Tier Maple Warlock Imperial Pumpkin Stout 6/4/12 oz Btl",
             "type": "Case Beer",
             "cases": 4.0,
             "ce": 4.0,
@@ -146722,7 +147798,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 2.0
           },
           {
-            "product": "11665 Southern Tier Maple Warlock Imperial Pumpkin Stout 6/4/12 oz Btl",
+            "product": "11640 Victory FestBier 4/6/12 oz Can",
             "type": "Case Beer",
             "cases": 4.0,
             "ce": 4.0,
@@ -146843,14 +147919,14 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 5.0
           }
         ],
-        "payout": 182.94
+        "payout": 187.28
       },
       "Hakan Sadik": {
         "team": "Mike Kennedy",
         "window": "8/1/2026 - 9/30/2026",
-        "packageCases": 242.0,
-        "packageCE": 244.4,
-        "packagePayout": 122.2,
+        "packageCases": 254.0,
+        "packageCE": 256.13,
+        "packagePayout": 128.07,
         "packages": [
           {
             "product": "5949 Shipyard Pumpkin Head 4/6/12 oz Btl",
@@ -146864,11 +147940,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "4376 Southern Tier Pumking Imperial Pumpkin Ale 6/4/12 oz Btl",
             "type": "Case Beer",
-            "cases": 34.0,
-            "ce": 34.0,
+            "cases": 35.0,
+            "ce": 35.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 17.0
+            "payout": 17.5
           },
           {
             "product": "5830 Point Whole Hog Pumpkin Ale 4/6/12 oz Btl",
@@ -146889,31 +147965,40 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 9.8
           },
           {
-            "product": "10417 Paulaner Oktoberfest Marzen 4/6/11.2 oz Btl",
-            "type": "Case Beer",
-            "cases": 17.0,
-            "ce": 15.87,
-            "ceEach": 0.9333,
-            "ceExact": true,
-            "payout": 7.93
-          },
-          {
             "product": "3320 Hofbrau Oktoberfest 4/6/11.2 oz Btl",
             "type": "Case Beer",
-            "cases": 17.0,
-            "ce": 15.87,
+            "cases": 20.0,
+            "ce": 18.67,
             "ceEach": 0.9333,
             "ceExact": true,
-            "payout": 7.93
+            "payout": 9.33
+          },
+          {
+            "product": "10417 Paulaner Oktoberfest Marzen 4/6/11.2 oz Btl",
+            "type": "Case Beer",
+            "cases": 18.0,
+            "ce": 16.8,
+            "ceEach": 0.9333,
+            "ceExact": true,
+            "payout": 8.4
           },
           {
             "product": "674 Montauk Pumpkin Ale 4/6/12 oz Can",
             "type": "Case Beer",
-            "cases": 14.0,
-            "ce": 14.0,
+            "cases": 15.0,
+            "ce": 15.0,
             "ceEach": 1.0,
             "ceExact": true,
-            "payout": 7.0
+            "payout": 7.5
+          },
+          {
+            "product": "10522 Weihenstephan Festbier 4/6/11.2 oz Btl",
+            "type": "Case Beer",
+            "cases": 12.0,
+            "ce": 11.2,
+            "ceEach": 0.9333,
+            "ceExact": true,
+            "payout": 5.6
           },
           {
             "product": "10405 Hacker-Pschorr Oktoberfest 2/12/11.2 oz Btl",
@@ -146936,20 +148021,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "9125 1911 Cider Donut 6/4/16 oz Can",
             "type": "Case Cider",
-            "cases": 5.0,
-            "ce": 6.67,
+            "cases": 6.0,
+            "ce": 8.0,
             "ceEach": 1.3333,
             "ceExact": true,
-            "payout": 3.33
-          },
-          {
-            "product": "10522 Weihenstephan Festbier 4/6/11.2 oz Btl",
-            "type": "Case Beer",
-            "cases": 7.0,
-            "ce": 6.53,
-            "ceEach": 0.9333,
-            "ceExact": true,
-            "payout": 3.27
+            "payout": 4.0
           },
           {
             "product": "11665 Southern Tier Maple Warlock Imperial Pumpkin Stout 6/4/12 oz Btl",
@@ -147024,15 +148100,6 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 2.0
           },
           {
-            "product": "11684 Southern Tier Nitro Warlock 6/4/16 oz Can",
-            "type": "Case Beer",
-            "cases": 2.0,
-            "ce": 2.67,
-            "ceEach": 1.3333,
-            "ceExact": true,
-            "payout": 1.33
-          },
-          {
             "product": "11682 Southern Tier Pumqueen 6/4/16 oz Can",
             "type": "Case Beer",
             "cases": 2.0,
@@ -147042,7 +148109,16 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 1.33
           },
           {
-            "product": "11639 Southern Tier Harvest Autumn IPA 4/6/12 oz Can",
+            "product": "11684 Southern Tier Nitro Warlock 6/4/16 oz Can",
+            "type": "Case Beer",
+            "cases": 2.0,
+            "ce": 2.67,
+            "ceEach": 1.3333,
+            "ceExact": true,
+            "payout": 1.33
+          },
+          {
+            "product": "7641 Long Trail Harvest Ale 4/6/12 oz Btl",
             "type": "Case Beer",
             "cases": 1.0,
             "ce": 1.0,
@@ -147060,7 +148136,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 0.5
           },
           {
-            "product": "7641 Long Trail Harvest Ale 4/6/12 oz Btl",
+            "product": "11639 Southern Tier Harvest Autumn IPA 4/6/12 oz Can",
             "type": "Case Beer",
             "cases": 1.0,
             "ce": 1.0,
@@ -147134,7 +148210,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 5.0
           }
         ],
-        "payout": 217.2
+        "payout": 223.07
       },
       "Alex Rodriguez": {
         "team": "Mike Kennedy",
@@ -147162,15 +148238,6 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 2.0
           },
           {
-            "product": "10404 Hacker-Pschorr Oktoberfest 4/6/11.2 oz Btl",
-            "type": "Case Beer",
-            "cases": 4.0,
-            "ce": 3.73,
-            "ceEach": 0.9333,
-            "ceExact": true,
-            "payout": 1.87
-          },
-          {
             "product": "10417 Paulaner Oktoberfest Marzen 4/6/11.2 oz Btl",
             "type": "Case Beer",
             "cases": 4.0,
@@ -147180,7 +148247,16 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 1.87
           },
           {
-            "product": "7559 Saranac 12 Beers of October 2/12/12 oz Btl",
+            "product": "10404 Hacker-Pschorr Oktoberfest 4/6/11.2 oz Btl",
+            "type": "Case Beer",
+            "cases": 4.0,
+            "ce": 3.73,
+            "ceEach": 0.9333,
+            "ceExact": true,
+            "payout": 1.87
+          },
+          {
+            "product": "4376 Southern Tier Pumking Imperial Pumpkin Ale 6/4/12 oz Btl",
             "type": "Case Beer",
             "cases": 3.0,
             "ce": 3.0,
@@ -147189,7 +148265,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 1.5
           },
           {
-            "product": "4376 Southern Tier Pumking Imperial Pumpkin Ale 6/4/12 oz Btl",
+            "product": "7559 Saranac 12 Beers of October 2/12/12 oz Btl",
             "type": "Case Beer",
             "cases": 3.0,
             "ce": 3.0,
@@ -147207,7 +148283,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 1.33
           },
           {
-            "product": "11640 Victory FestBier 4/6/12 oz Can",
+            "product": "5949 Shipyard Pumpkin Head 4/6/12 oz Btl",
             "type": "Case Beer",
             "cases": 2.0,
             "ce": 2.0,
@@ -147216,7 +148292,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 1.0
           },
           {
-            "product": "5949 Shipyard Pumpkin Head 4/6/12 oz Btl",
+            "product": "11640 Victory FestBier 4/6/12 oz Can",
             "type": "Case Beer",
             "cases": 2.0,
             "ce": 2.0,
@@ -147253,5 +148329,5 @@ const PROGRAM_DATA_2026_09 = {
     }
   }
 };
-const PROGRAM_DATA_REFRESHED = "Sep 23, 2026, 2:12 PM ET";
-const PROGRAM_DATA_REFRESHED_AT = "2026-09-23T18:12:34Z";
+const PROGRAM_DATA_REFRESHED = "Sep 25, 2026, 9:07 AM ET";
+const PROGRAM_DATA_REFRESHED_AT = "2026-09-25T13:07:01Z";

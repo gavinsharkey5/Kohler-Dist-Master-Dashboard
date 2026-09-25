@@ -539,6 +539,26 @@ what you would guess from the summer program:
      row ("Goal: 105 (your 3/1/2026 - 5/31/2026)"), so nobody has to remember
      which is which.
 
+OFF-PREMISE GOALS ARE FROZEN TOO (2026-09-25, per Gavin: "freeze the off prem
+goals now"). data/constellation_fall_off_goals.csv holds one row per rep x
+category x SKU (bare product name, base placements, base window), written once
+by `python3 generate.py --freeze-constellation-fall-off-goals` from the
+aggregated exports committed that morning, and build_constellation_fall()
+reads goals ONLY from it. A category goal is the sum of its SKU rows; the
+overrides file still replaces a rep's category goal on top. An export's own
+base column, while it carries one, is only diffed against the file and printed
+as drift, never applied. Do NOT re-freeze from a later pull (a rep who has
+since lost a SKU would lose the goal to win it back); the freeze refuses to
+overwrite. The reader (_cf_off_rep_product) takes BOTH export shapes: the
+aggregated rep/product/subtotal file (how Corona Gaintain still arrives) and
+the account-level RDE file (rep / Customer Num Name / Product Num Name / two
+1-or-blank placement columns, one row per customer x product, no subtotals --
+Impact, Modelo Gaintain and Innovation since 2026-09-25). A placement is a
+customer x product with the flag set, so per SKU it is the count of flagged
+rows; the product number the account file prefixes is stripped so the SKU
+matches the frozen row. A raw export that drops the base column entirely
+still builds -- the goals do not depend on it any more.
+
 CONSTELLATION FALL -- ON-PREMISE PACKAGES AND DRAFT (built 2026-09-09). The
 card now has three sections -- off-premise categories, on-premise packages,
 on-premise draft -- and the leaderboard ranks on overallPct across all of
@@ -4329,6 +4349,290 @@ Only these four programs changed in PROGRAM_DATA.
               the 9/30 order). Mike Ast's three Franklin Lake rows are -1 case
               returns and don't change his count.
 Hub cache tag bumped (20260923b) for the new program_data.js.
+
+2026-09-25 EIGHTH REFRESH -- Path to Victory (vSD _5), NOW ACCOUNT-LEVEL
+  python3 generate.py
+THE EXPORT CHANGED SHAPE. Every earlier vSD pull was aggregated (rep total
+row, a duplicate subtotal row, then one row per product, 47 rows). vSD_5 is
+ACCOUNT-LEVEL: 453 rows, one per customer x product (Customer Num Name),
+Placements / New Placements as 1-or-0 flags and Current Units per account, no
+subtotal rows. build_path_to_victory_sd() now detects the customer column and
+SUMS the flags per rep x package x product (a POD is an account x product
+pair, so the sum is what the aggregated product row was); the aggregated
+shape still reconciles as before. Cross-checked before trusting it: every
+rep's summed PODs / new PODs / units equal the 9/23 aggregated file plus two
+days of growth (Alex Rodriguez, Hakan Sadik, Michael Harboy, John O'Donoghue
+identical; Alisa Acciardi 59 -> 60 PODs; Dylan Rubino 59 -> 63; Jaime
+Colonna 37 -> 39). 204 of the 453 rows carry Placements 0 (an account with
+no net volume this window) and sum to nothing. Still 6pk cans only.
+  Path to Victory  70 -> 79 new 6pk PODs of 238 -> 249, $700 -> $790
+             trackable. ANDREW LUNDY IS IN THE EXPORT AT LAST: 4 new PODs
+             (one each of Juicy, Berry, Golden, Sour Monkey), $40 -- the
+             "not in export" list is empty for the first time. Dylan Rubino
+             27 -> 31 new ($270 -> $310: Golden Monkey 6 -> 8, Juicy 8 -> 9,
+             Sour 6 -> 7), Jaime Colonna 16 -> 17 ($170; Witty Monkey 2 -> 3).
+             Alisa Acciardi 59 -> 60 PODs (Golden Monkey, a repeat), Hakan
+             Sadik +2 units. Nobody down.
+Hub cache tag bumped (20260925h) for the new program_data.js.
+
+2026-09-25 SEVENTH REFRESH -- Yuengling Fall (off _6 / packages _8 / draft _8) + Southern District Fall Seasonal (vSD _4)
+  python3 generate.py
+All four flat CSVs straight over data/yuengling_retention_fall_off.csv /
+_packages_on.csv / _draft_on.csv and data/fall_seasonal_sd.csv, same headers.
+Diffed row by row first, then compared on the built output: 0 YUENGLING GOALS
+MOVED on all 58 brand rows, every count up or flat, nothing down. The off
+export is one row shorter (53 -> 52): Derrick Laws' no-base, no-goal Light
+Lager row from 9/23 (1 buyer, scored nothing) is gone, and his subtotal row
+now borrows the "Lager" label instead -- a layout shuffle, not a change.
+  Yuengling  still 6 / 58 brand goals held, 0 reps holding every goal, day
+             25 of 91. Off Lager 280 -> 286/338, Flight 106 -> 108/152, Light
+             Lager 72 -> 73/134; packages Lager 169 -> 179/258. Jim Heaney off
+             45 -> 49 of 58 (84.5%: Lager 30 -> 32, Flight 9 -> 10 of 11,
+             Light Lager 6 -> 7), Mike Ast off Lager 23 -> 24 of 26 (92.3%),
+             Chris Payton off 32 -> 34, Dan Lagala off Lager 19 -> 21; packages
+             Robin Feldman 58 -> 62 of 96, Brian Sengebush 41 -> 44 of 53
+             (83.0%), Allison Scott 12 -> 13, Nick Melissari 19 -> 20, Paul
+             Mclaughlin 13 -> 14.
+             DRAFT STILL READS THE 9/10 ACCOUNT SHEET (rule 6): 150/293 Lager,
+             3/7 Flight unchanged. The draft SUMMARY moved (Allison Scott
+             49 -> 50, Anthony Palmisano 24 -> 25, Nick Melissari 51 -> 52,
+             Paul Mclaughlin 30 -> 31) and the CSV carries it as summaryActual,
+             but the page counts draft from
+             yuengling_retention_fall_draft_on_detail.csv, not re-sent.
+  Fall Seasonal (vSD)  290 rows, 54 restated in place (no product lines
+             added or dropped); 4,823 -> 4,896 package CE, $3,382 -> $3,458
+             trackable. Jaime Colonna $1,165 -> $1,202 (1,103 -> 1,117 cases,
+             27 -> 30 sixtels, Pumking Whiskey 3 -> 6 cases), John O'Donoghue
+             $596 -> $615 (17 -> 19 sixtels), Andrew Lundy $304 -> $311 (a
+             7th half-keg-class keg), Hakan Sadik $217 -> $223, Dylan Rubino
+             $183 -> $187, Michael Harboy $552 -> $555, Alisa Acciardi
+             $347 -> $348. Nobody down. Path to Victory was not re-sent.
+Hub cache tag bumped (20260925g) for the new program_data.js.
+
+2026-09-25 SIXTH REFRESH -- Molson Coors retention (on + off, grouped workbooks _6) + MABI Fall actuals _11
+  python3 convert_mc_retention.py <On_Premise ... w Goals_6.xlsx> <Off_Premise ... w Goals_6.xlsx>
+  python3 convert_mabi_fall.py MABI_Fall_2026_Retention_11.csv data/mabi_retention_fall_goals_source.csv
+  python3 generate.py
+MABI GOALS: Gavin asked to "freeze mabi goal for reps if it is not already
+frozen". IT ALREADY IS, since the 2026-09-23 SIXTH refresh: the goals come
+ONLY from data/mabi_retention_fall_goals_source.csv (the RDE goals report,
+FINAL), the actuals export's goal column is a printed cross-check that is
+never applied, and today's actuals export (the plain Retention_11 shape) has
+no goal column at all. Proof on this run: data/mabi_retention_fall_goals.csv
+and data/mabi_retention_fall_brand_goals.csv came out of the converter
+BYTE-IDENTICAL to the committed copies, and the rebuilt payload moved 0 rep
+goals and 0 brand goals across 24 reps. Nothing to freeze; nothing changed
+in the code. The one thing that would move a MABI goal is replacing the
+_goals_source.csv file -- don't, unless Gavin reissues goals.
+MABI actuals (first re-pull since 9/21): 687 -> 697 product rows, house
+3,961 -> 4,571 raw / 3,957 -> 4,566 of 7,326 on the roster (54.0% -> 62.3%).
+Every product row moved up or held, NONE down -- the converter reconciled
+every brand subtotal and rep total. Still 0 of 24 reps at their 90% goal, day
+25 of 91. Brand goals held 7 -> 11: DAVE EHLERS Mike's Hard Lemonade 47 -> 55
+of 50, DERRICK LAWS Mxd Cocktails 3 -> 6 of 4, MICHAEL HARBOY Cayman Jack
+6 -> 14 of 14, NICK MELISSARI Mike's Hard Lemonade 1 -> 2 of 2. Biggest
+moves: Klejdi Lamo 370 -> 436 (70.0%), Matt Powierski 347 -> 417, Dave Ehlers
+382 -> 441 (75.9%, the top), Jayson Romine 384 -> 437, Chris Payton 303 -> 352,
+Phil Ernst 289 -> 337 (75.1%), Jim Heaney 328 -> 371, Anthony Palmisano
+354 -> 388, Mike Ast 219 -> 252, Javier Melo 109 -> 138, Shane Barreca
+198 -> 227. The White Claw core cans (Variety #1, Black Cherry, Lime, Ruby
+Grapefruit) carry most of it.
+MOLSON COORS: both grouped workbooks converted (sheets matched by premise --
+the report tabs are now "Molson Coors Fall 2026 On Prem" / "... Off Pre";
+same 07/27-10/31 window); every rep, DM and report total reconciled, 0 (rep,
+brand) pairs added or dropped, and 0 GOALS MOVED on all 107 brand rows
+(checked per rep+brand against the page). Off 2,872 -> 2,895 of 2,912
+placements, on 749 -> 761 of 840 buyers; brand goals retained 42 -> 44:
+  newly retained  CHRIS PAYTON on-prem Coors Light 2 -> 3 of 3 (2 -> 3 goals;
+                  103.7% -> 107.4% overall, Coors 86 -> 90 of 85), NICK
+                  MELISSARI on-prem Coors Banquet 2 -> 3 of 3 (his first;
+                  Miller Lite 40 -> 41 of 50).
+  other           Jayson Romine Fever Tree 88 -> 92 of 85, Klejdi Lamo Peroni
+                  60 -> 63 of 70, Dan Lagala Fever Tree 41 -> 43, Jim Heaney
+                  Coors 91 -> 92 and Peroni 79 -> 81, Allison Scott on-prem
+                  Coors Light 48 -> 50, Robin Feldman Miller Lite 33 -> 34 of
+                  30, Paul Mclaughlin Blue Moon 38 -> 39 of 46, +1 to +2 for
+                  Brian Sengebush, Pablo Lopez, Shane Barreca.
+  down            Derrick Laws Fever Tree 21 -> 19 of 15 (still held).
+Hub cache tag bumped (20260925f) for the new program_data.js.
+
+2026-09-25 FIFTH REFRESH -- Constellation Fall: OFF-PREM GOALS FROZEN, then Packages ON,
+Draft ON, Impact / Modelo Gaintain / Innovation OFF in the new account-level shape
+  python3 generate.py --freeze-constellation-fall-off-goals   (once, BEFORE the new files)
+  python3 generate.py
+Gavin asked whether moving the Constellation exports to a raw shape would move
+the hub goals. On-prem was already frozen (9/9); off-prem re-read its goals
+from the base column every run, so they were frozen first: 706 rep x SKU rows
+(Corona Gaintain 97 / 1,628 base placements, Modelo Gaintain 141 / 2,415,
+Impact 314 / 3,487, Innovation 154 / 1,421) from the aggregated files
+committed this morning. Rebuilt on those same files afterwards: the
+constellation_fall payload was byte-identical apart from meta -- the freeze
+changed no number. See "OFF-PREMISE GOALS ARE FROZEN TOO" above for the rules.
+Then the five new files. Impact, Modelo Gaintain and Innovation now arrive
+ACCOUNT-LEVEL (one row per customer x product, both windows as 1/blank flags,
+no subtotal rows, product number prefixed on the name; Modelo's columns are
+in a different order, which DictReader does not care about). Every rep x SKU
+base count in all three matched the frozen goals exactly -- "no drift" on the
+build line -- so the two shapes count the same thing. Corona Gaintain stays on
+this morning's aggregated file (no new pull). Packages ON 10,756 -> 11,036
+rows (+280, none removed), Draft ON 1,891 -> 1,918 (+27, none removed); both
+still carry the spring columns, drift 0. GOALS UNCHANGED FOR EVERY REP.
+  Off-prem    Corona Gaintain 1,182/1,610 (unchanged) · Modelo Gaintain
+              1,974 -> 2,038/2,395 · Impact 2,720 -> 2,815/3,452 · Innovation
+              545 -> 582/1,400. Still 0 of 22 reps holding every category.
+              Matt Powierski Modelo 184 -> 196, Jim Heaney Modelo 168 -> 177
+              and Impact 278 -> 293, Mike Ast Modelo 88 -> 97, Chris Payton
+              Impact 229 -> 243, Dan Lagala Innovation 27 -> 38 (3 -> 1 lost
+              SKUs), Derrick Laws Modelo 132 -> 136 (last lost SKU back),
+              Michael Harboy Impact 46 -> 49 (lost SKU back; Modelo 31 of 27
+              still over). Dave Ehlers Modelo 174 of 176, Impact 249 of 250.
+  On-prem     packages 1,195 -> 1,257 of 2,107 buyers (Brian Sengebush
+              142 -> 158, Robin Feldman 134 -> 144, Allison Scott 187 -> 196;
+              CHRIS PAYTON holds his first family); draft 157 -> 165 of 381
+              (Allison Scott 46 -> 50, 31 -> 28 empty-keg pickups excluded).
+              Still 5 of 20 reps holding every packages family, 0 of 12 on
+              draft, 0 of 24 overall.
+Hub cache tag bumped (20260925e) for the new program_data.js.
+
+2026-09-25 FOURTH REFRESH -- Montauk, 2XO, Other Half ON + OFF
+  python3 generate.py
+Diffed row by row first (the Montauk export came twice, byte-identical).
+Montauk 1,400 -> 1,438 (+44 / -6: five are Alisa Acciardi's #170205 rows
+renamed "Buy-Rite Liquors" -> "BuyRite Liquors - Kearny", the sixth is
+MICHAEL HARBOY'S 9/24 SHOPRITE WEST CALDWELL ROW -- the same 9/24 drop the
+SECOND refresh above flagged, a repeat here so nothing scored moves). 2XO
+81 -> 86 (+5, none removed). Other Half ON 66 -> 68 (+2, none removed); OFF
+852 -> 926 (+80 / -6: the same five renames, plus Jaime Colonna's Wine Dad's
+Jersey City All Citra 9/23 row -- a repeat SKU at an account already counted,
+so his 12 accounts hold). New rows are dated 9/24-9/25; Phil Ernst's 10/2 USA
+Wine Traders rows are still in 2XO and Other Half OFF. Only these three
+programs changed.
+  Montauk     41 -> 43 new placements, $715 -> $825. BRIAN SENGEBUSH's third
+              draft line (Lena y Carbon VII, 9/25) is his first QUALIFYING
+              one ($100); Dan Lagala 1 -> 2 new off-prem ($20). Andrew Lundy,
+              Dylan Rubino, Michael Harboy, Mike Ast +2 reorders each.
+  2XO         2 -> 3 off-prem pairs, $150 -> $225: JAVIER MELO's Mariana's
+              Liquors took American, French and White Oak Rye on 9/24 (a
+              pair, $75). Chris Payton's White Oak Rye at USA Wine Traders
+              Saddle Brook is a single-oak open, not paid (pair rule). Paul
+              Mclaughlin on-prem units 6 -> 8 (Marriott Park Ridge, still a
+              reorder).
+  Other Half  off-prem accounts 175 -> 189, $8,960 -> $9,610. Dave Ehlers
+              8 -> 11, Phil Ernst 6 -> 9, Matt Powierski 1 -> 3, Michael
+              Harboy 17 -> 19, +1 Andrew Lundy, Klejdi Lamo, Mike Ast, Shane
+              Barreca. On-prem 49 -> 50 accounts active (32 -> 33 at the 1/3
+              bbl floor): John O'Donoghue 1 -> 2 qualifying (54 Main Cafe,
+              Broccoli half-barrel, 9/24).
+Hub cache tag bumped (20260925d) for the new program_data.js.
+
+2026-09-25 THIRD REFRESH -- Garage Beer, Touchdowns Tea, Evil Genius, SAM ADAMS RE-SCORED
+  python3 generate.py
+SAM ADAMS OCTOBERFEST FAST START IS "DOUBLE COMMISSION ON ALL SAM ADAMS IF
+POSITIVE" -- NOTHING ELSE (Gavin, 2026-09-25: "the program for the file
+attached is simply: Double Commission on all Sam Adams if positive. their goal
+is to get above the cases they sold from Cases 8/1/2025 - 9/30/2025"). The
+2026-09-23 EIGHTH note below scored a "$1 per case over last year" leg; that
+leg never existed and is GONE: build_sam_adams() no longer emits payout /
+allSku*, isPositive is now growth > 0 on the RDE Aug-Sep comparison, and the
+card, rules, summary and hub SELL_ASK all say double commission. Exactly level
+is not positive. A rep with no 2025 base is positive on the first case.
+DO NOT CONFUSE IT with sam_adams_conversion, the ON-PREMISE Summer Ale ->
+Octoberfest draft conversion (Boston Beer's scoreboard) -- Gavin's words. To
+keep the two apart on the hub the shortTitles are now "Sam Adams Fast Start"
+and "Sam Adams: Summer Ale to Octoberfest conversion" (per Gavin, same day).
+Diffed row by row first. Garage Beer President restated in place: house
+8,483.04 -> 8,629.15 CE of 9,305, every rep up. Touchdowns Tea OFF
+4,228 -> 4,589 (+364 / -3: Dave Ehlers' Total Wine Totowa 9/23, Jayson
+Romine's USA Wine Traders Newton 9/23 and Phil Ernst's Stew Leonard's Paramus
+9/24 Sun Cruiser rows -- another day's rows leaving, see the SECOND refresh
+above); ON 2,389 -> 2,460 (+74 / -3: Allison Scott's The Ties and Anthony
+Palmisano's two Airport Pub rows, all 9/23). Evil Genius 360 -> 365 (+5, none
+removed). Sam Adams restated in place (157 rows, 72 values moved), house
+10,813 -> 11,024 of 14,956.
+  Sam Adams   2 -> 4 reps positive (commission doubled): NICK MELISSARI
+              298 -> 309 vs 308 (+1) and ROBIN FELDMAN 143 -> 148 vs 146 (+2)
+              cross over; Pablo Lopez 17 vs 12 and John O'Donoghue 3 vs 1
+              still positive. Javier Melo 22 vs 23 is one case short, Paul
+              Mclaughlin 12 behind, Matt Powierski 17. Derrick Laws 164 -> 154
+              (a restatement down). Biggest gaps still Klejdi Lamo -811,
+              Shane Barreca -384, Phil Ernst -368.
+  Garage Beer John O'Donoghue +318 -> +358 over last year, Michael Harboy
+              +214 -> +229, Andrew Lundy +164 -> +180, Phil Ernst +19 -> +34,
+              Shane Barreca +223 -> +238, Jayson Romine +263 -> +275.
+  Touchdowns Tea  103 -> 123 new off-prem 12pk placements, on-prem cases
+              1,447 -> 1,639, trackable $2,992 -> $3,484. Dave Ehlers new
+              28 -> 36, Chris Payton 6 -> 10, Klejdi Lamo 9 -> 11, Michael
+              Harboy 2 -> 4, +1 Brian Sengebush (his first), Matt Powierski,
+              Pablo Lopez, Shane Barreca. On-prem: Allison Scott 420 -> 462
+              cases, Paul Mclaughlin 216 -> 253, Phil Ernst 18 -> 57, Anthony
+              Palmisano 239 -> 272, Brian Sengebush 233 -> 246, Nick
+              Melissari 145 -> 157.
+  Evil Genius 13 -> 15 new placements, 2 -> 3 reps past the qualifier: BRIAN
+              SENGEBUSH's fifth draft line (third qualifying) QUALIFIES him
+              ($300); Paul Mclaughlin's first qualifying draft line. CE
+              89 -> 96 vs 98 last September, bonus CE 27 -> 29.
+Hub cache tags bumped (20260925c) for program_data.js, programs.js and hub.js.
+Verified headless: tracker and hub load with no page errors; the Sam Adams
+card reads "Positive -- commission doubled / 2x" for Nick Melissari and John
+O'Donoghue, "812 more cases to go positive / 1x" for Klejdi Lamo, territory
+block for Hakan Sadik; no "$1" or payout text anywhere on it.
+
+2026-09-25 SECOND REFRESH -- Keystone, 1911, Woodchuck, Tona, Lytt
+  python3 generate.py
+Diffed row by row first. EVERY 9/24-DATED ROW IS GONE FROM THREE EXPORTS AND
+NOTHING REPLACED IT: Keystone _30 is the _29 pull published this morning MINUS
+its eight 9/24 rows (248 -> 240, 0 added); 1911 lost its nine 9/24 rows (Andrew
+Lundy / Buyrite, John O'Donoghue / Village Liquor Store x5, Phil Ernst / Stew
+Leonard's Clifton x3) and Woodchuck all eight of its (John O'Donoghue / Village
+Liquor Store x6, Michael Harboy / ShopRite West Caldwell, Phil Ernst / Whole
+Foods Paramus). None of them re-dated -- the 9/25 rows in Keystone were
+already in _29. Lytt and Tona never had a 9/24 row. The export is the record,
+so all three drop, but this is one day's load sheets vanishing across every
+RDE pull at once, not a rep's order moving: OPEN WITH GAVIN -- if the 9/24
+deliveries were real, the next pull should bring them back. Other moves: 1911
+1,849 -> 1,855 (+19 / -13; the four Alisa Acciardi #170205 rows only renamed
+"Buy-Rite Liquors" -> "BuyRite Liquors - Kearny", same in Tona's five),
+Woodchuck 584 -> 581 (+5 / -8), Tona 344 -> 344 (rename only), Lytt
+754 -> 762 (+8, none removed). New rows are dated 9/25.
+  Keystone    198 -> 190 accounts house-wide; still 8 qualified, 6 -> 5 at
+              bonus, $1,260 -> $1,135. CHRIS PAYTON 20 -> 19 of 40 falls back
+              off bonus (Maywood Wine & Liq); Klejdi Lamo 15 -> 14 (Sam's,
+              still bonus); -1 each Javier Melo (Seguidilla 56), Jayson Romine
+              (ShopRite Sparta), Dave Ehlers (Teaneck Discount), Jim Heaney
+              (Metro N. Arlington), Anthony Palmisano (Highland), Mike Ast
+              (Waldwick). Same 240-row file onto keystone-ice/actuals.csv and
+              MPOs/off-prem/keystone_ice_24oz.csv (sync rule); both rebuilt.
+  1911        320 -> 326 new placements. John O'Donoghue 33 -> 38 (Main St
+              Wines x4, Sandy's Flanders -- the Village Liquor Store 9/24
+              rows out), Mike Ast 29 -> 33 (Hawthorne Liq x4); Phil Ernst
+              28 -> 25 (Stew Leonard's out; his Bottle King 9/25 rows are
+              reorders). Andrew Lundy's ShopRite Westfield rows and Hakan
+              Sadik's Wine Barrel are reorders.
+  Woodchuck   58 -> 57 new placements. John O'Donoghue 9 -> 8 (Village
+              Liquor Store out, Shop Rite Chester in); Michael Harboy and
+              Phil Ernst lose a reorder each; Dylan Rubino's Liberty Wine
+              rows are reorders.
+  Tona        holds at 14 new 24 oz placements.
+  Lytt        146 -> 148 buying accounts of 477. DERRICK LAWS 14 -> 16
+              (Pal's Liquor, The Liquor Shop -- 43.8% -> 50.0%, Gettin' Lytt
+              -> LYTTY CITY, the first rep there). Dave Ehlers' Burgundy
+              Convenience rows add cases only.
+Hub cache tag bumped (20260925b) for the new program_data.js.
+
+2026-09-25 REFRESH -- Keystone + Corona Gaintain, riding the off-prem MPO refresh
+  python3 generate.py
+Only the two shared exports moved (diffed row by row first): Keystone
+234 -> 248 (+14, none removed), Corona Gaintain restated in place, 44 values
+moved, all upward. Everything else in PROGRAM_DATA_2026_09 changed only by
+days-elapsed / pace.
+  Keystone    188 -> 198 accounts house-wide; still 8 qualified, 4 -> 6 at
+              bonus, $1,040 -> $1,260. Klejdi Lamo 13 -> 15 of 27 (BONUS),
+              Chris Payton 19 -> 20 of 40 (BONUS), Dave Ehlers 10 -> 12, +1
+              each Pablo Lopez, Derrick Laws, Javier Melo, Jayson Romine,
+              Anthony Palmisano.
+  Constellation Fall   Corona Gaintain house off-prem 1,146 -> 1,182 of 1,610.
+              Still 0 of 22 reps holding every off-prem category, day 25 of 91.
+Hub cache tag bumped (20260925a) for the new program_data.js.
 
 2026-09-23 REFRESH -- Keystone + Corona Gaintain, riding the off-prem MPO refresh
   python3 generate.py

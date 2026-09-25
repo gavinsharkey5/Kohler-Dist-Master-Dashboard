@@ -1393,15 +1393,27 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "1162 Fever Tree Tonic Water 3/8/150 mL Can",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 34009,
+    "CUSTOMER_NAME": "The Wine Rack Hasbrouck Hts",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/24/2026",
+    "LAST_DATE": "9/24/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
     "PRODUCT_NAME": "1165 Fever Tree Tonic Water Light 3/8/150 mL Can",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 34009,
     "CUSTOMER_NAME": "The Wine Rack Hasbrouck Hts",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/24/2026",
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1426,6 +1438,18 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "1179 Fever Tree Classic Margarita Mix 6/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 34009,
+    "CUSTOMER_NAME": "The Wine Rack Hasbrouck Hts",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/24/2026",
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1653,7 +1677,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/15/2026",
-    "LAST_DATE": "9/15/2026"
+    "LAST_DATE": "9/25/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1770,10 +1794,10 @@
     "CUSTOMER_NUM": 50020,
     "CUSTOMER_NAME": "Wineland",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/24/2026",
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1794,10 +1818,10 @@
     "CUSTOMER_NUM": 50020,
     "CUSTOMER_NAME": "Wineland",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/24/2026",
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1809,7 +1833,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/4/2026",
-    "LAST_DATE": "9/4/2026"
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -2454,10 +2478,10 @@
     "CUSTOMER_NUM": 49031,
     "CUSTOMER_NAME": "Top Shelf Liquors",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/25/2026",
+    "LAST_DATE": "9/25/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -2470,6 +2494,18 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "1179 Fever Tree Classic Margarita Mix 6/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 49031,
+    "CUSTOMER_NAME": "Top Shelf Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/25/2026",
+    "LAST_DATE": "9/25/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -3085,6 +3121,30 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "1166 Fever Tree Elderflower Tonic Water 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 51018,
+    "CUSTOMER_NAME": "Teaneck Discount Liquor",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/24/2026",
+    "LAST_DATE": "9/24/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "1176 Fever Tree Sicilian Lemonade 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 51018,
+    "CUSTOMER_NAME": "Teaneck Discount Liquor",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/24/2026",
+    "LAST_DATE": "9/24/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "PRODUCT_NAME": "1151 Fever Tree Ginger Beer 6/4/200 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 51012,
@@ -3421,18 +3481,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
-    "PRODUCT_NAME": "1154 Fever Tree Ginger Beer 8/500 mL Btl",
-    "BRAND_FAMILY": "",
-    "CUSTOMER_NUM": 23004,
-    "CUSTOMER_NAME": "Shop Rite Wines/Spirits",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/25/2026",
-    "LAST_DATE": "9/25/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
     "PRODUCT_NAME": "1155 Fever Tree Ginger Beer 3/8/150 mL Can",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 23004,
@@ -3498,10 +3546,10 @@
     "CUSTOMER_NUM": 23004,
     "CUSTOMER_NAME": "Shop Rite Wines/Spirits",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 1.0,
+    "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "9/25/2026",
-    "LAST_DATE": "9/25/2026"
+    "PLACED_DATE": "",
+    "LAST_DATE": ""
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -4537,6 +4585,18 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "1154 Fever Tree Ginger Beer 8/500 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 230427,
+    "CUSTOMER_NAME": "ShopRite Wine & Spirits of Newton#830",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/24/2026",
+    "LAST_DATE": "9/24/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
     "PRODUCT_NAME": "1157 Fever Tree Club Soda 6/4/200 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 230427,
@@ -4549,15 +4609,27 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "1158 Fever Tree Club Soda 8/500 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 230427,
+    "CUSTOMER_NAME": "ShopRite Wine & Spirits of Newton#830",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/24/2026",
+    "LAST_DATE": "9/24/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
     "PRODUCT_NAME": "1160 Fever Tree Tonic Water 6/4/200 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 230427,
     "CUSTOMER_NAME": "ShopRite Wine & Spirits of Newton#830",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/24/2026",
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -4581,7 +4653,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/17/2026",
-    "LAST_DATE": "9/17/2026"
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -4638,10 +4710,10 @@
     "CUSTOMER_NUM": 230427,
     "CUSTOMER_NAME": "ShopRite Wine & Spirits of Newton#830",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/24/2026",
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -5014,6 +5086,18 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "1181 Fever Tree Classic Bloody Mary Mix 6/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 230105,
+    "CUSTOMER_NAME": "ShopRite Wines & Spirits of Sparta",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/24/2026",
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -10509,7 +10593,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/3/2026",
-    "LAST_DATE": "9/17/2026"
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -11145,7 +11229,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 1,
     "PLACED_DATE": "9/10/2026",
-    "LAST_DATE": "9/10/2026"
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -11154,10 +11238,10 @@
     "CUSTOMER_NUM": 73003,
     "CUSTOMER_NAME": "Bottle King (A) Hillsdale",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/24/2026",
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -11193,7 +11277,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/10/2026",
-    "LAST_DATE": "9/10/2026"
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -11214,10 +11298,10 @@
     "CUSTOMER_NUM": 73003,
     "CUSTOMER_NAME": "Bottle King (A) Hillsdale",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/24/2026",
+    "LAST_DATE": "9/24/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -12102,10 +12186,10 @@
     "CUSTOMER_NUM": 73008,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Hillsdal",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/25/2026",
+    "LAST_DATE": "9/25/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
