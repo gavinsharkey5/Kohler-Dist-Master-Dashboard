@@ -4330,6 +4330,37 @@ Only these four programs changed in PROGRAM_DATA.
               returns and don't change his count.
 Hub cache tag bumped (20260923b) for the new program_data.js.
 
+2026-09-25 FOURTH REFRESH -- Montauk, 2XO, Other Half ON + OFF
+  python3 generate.py
+Diffed row by row first (the Montauk export came twice, byte-identical).
+Montauk 1,400 -> 1,438 (+44 / -6: five are Alisa Acciardi's #170205 rows
+renamed "Buy-Rite Liquors" -> "BuyRite Liquors - Kearny", the sixth is
+MICHAEL HARBOY'S 9/24 SHOPRITE WEST CALDWELL ROW -- the same 9/24 drop the
+SECOND refresh above flagged, a repeat here so nothing scored moves). 2XO
+81 -> 86 (+5, none removed). Other Half ON 66 -> 68 (+2, none removed); OFF
+852 -> 926 (+80 / -6: the same five renames, plus Jaime Colonna's Wine Dad's
+Jersey City All Citra 9/23 row -- a repeat SKU at an account already counted,
+so his 12 accounts hold). New rows are dated 9/24-9/25; Phil Ernst's 10/2 USA
+Wine Traders rows are still in 2XO and Other Half OFF. Only these three
+programs changed.
+  Montauk     41 -> 43 new placements, $715 -> $825. BRIAN SENGEBUSH's third
+              draft line (Lena y Carbon VII, 9/25) is his first QUALIFYING
+              one ($100); Dan Lagala 1 -> 2 new off-prem ($20). Andrew Lundy,
+              Dylan Rubino, Michael Harboy, Mike Ast +2 reorders each.
+  2XO         2 -> 3 off-prem pairs, $150 -> $225: JAVIER MELO's Mariana's
+              Liquors took American, French and White Oak Rye on 9/24 (a
+              pair, $75). Chris Payton's White Oak Rye at USA Wine Traders
+              Saddle Brook is a single-oak open, not paid (pair rule). Paul
+              Mclaughlin on-prem units 6 -> 8 (Marriott Park Ridge, still a
+              reorder).
+  Other Half  off-prem accounts 175 -> 189, $8,960 -> $9,610. Dave Ehlers
+              8 -> 11, Phil Ernst 6 -> 9, Matt Powierski 1 -> 3, Michael
+              Harboy 17 -> 19, +1 Andrew Lundy, Klejdi Lamo, Mike Ast, Shane
+              Barreca. On-prem 49 -> 50 accounts active (32 -> 33 at the 1/3
+              bbl floor): John O'Donoghue 1 -> 2 qualifying (54 Main Cafe,
+              Broccoli half-barrel, 9/24).
+Hub cache tag bumped (20260925d) for the new program_data.js.
+
 2026-09-25 THIRD REFRESH -- Garage Beer, Touchdowns Tea, Evil Genius, SAM ADAMS RE-SCORED
   python3 generate.py
 SAM ADAMS OCTOBERFEST FAST START IS "DOUBLE COMMISSION ON ALL SAM ADAMS IF
