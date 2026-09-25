@@ -96,8 +96,8 @@ performance / warehouse / planning & finance / field & team on the
 manager page; your programs / trackers & targets on the rep page).
 Gavin pruned the manager page on 2026-09-25: Heineken, Molson Coors,
 Customer Reset Tracking, Garage Beer, Boston Beer, Constellation,
-Yuengling, Carbliss New Buyers and Carbliss Rep Scorecard are no longer
-linked (folders kept). Nothing else reads the cookie;
+Yuengling, Carbliss New Buyers, Carbliss Rep Scorecard and Supplier
+Budget Tracker are no longer linked (folders kept). Nothing else reads the cookie;
 access is decided only by the middleware. If a rep needs another page,
 add its prefix to REP_PATHS (plus whatever it loads) and to rep/index.html.
 GitHub Pages still serves the same files with no login until Gavin
