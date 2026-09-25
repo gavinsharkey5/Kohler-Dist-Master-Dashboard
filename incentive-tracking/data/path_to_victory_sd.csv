@@ -1,48 +1,454 @@
-Sales Rep Name,Brand Family,Package,Product Num Name,Placements,New Placements,Current Units
-Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,59,27,128
-Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,59,27,128
-Dylan Rubino,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,10,8,17
-Dylan Rubino,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,12,6,21
-Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,17,6,44
-Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,19,6,46
-Dylan Rubino,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,1,1,0
-Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,37,16,113
-Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,37,16,113
-Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,14,5,51
-Jaime Colonna,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,8,4,19
-Jaime Colonna,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,11,4,31
-Jaime Colonna,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,3,2,9
-Jaime Colonna,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,1,1,3
-Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,59,14,167
-Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,59,14,167
-Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,20,6,60
-Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,18,4,46
-Alisa Acciardi,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,11,3,38
-Alisa Acciardi,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,7,1,19
-Alisa Acciardi,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,3,0,4
-Hakan Sadik,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,39,7,107
-Hakan Sadik,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,39,7,107
-Hakan Sadik,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,8,2,20
-Hakan Sadik,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,4,2,5
-Hakan Sadik,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,4,1,6
-Hakan Sadik,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,12,1,36
-Hakan Sadik,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,11,1,40
-Michael Harboy,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,37,3,108
-Michael Harboy,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,37,3,108
-Michael Harboy,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,12,2,39
-Michael Harboy,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,15,1,50
-Michael Harboy,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,7,0,12
-Michael Harboy,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,3,0,7
-Michael Harboy,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,0,0,0
-Alex Rodriguez,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,4,2,7
-Alex Rodriguez,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,4,2,7
-Alex Rodriguez,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,1,1,2
-Alex Rodriguez,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,1,1,1
-Alex Rodriguez,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,0,0,0
-Alex Rodriguez,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,2,0,4
-John O'Donoghue,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,3,1,8
-John O'Donoghue,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,3,1,8
-John O'Donoghue,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,1,1,1
-John O'Donoghue,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,0,0,0
-John O'Donoghue,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,1,0,3
-John O'Donoghue,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,1,0,4
+Sales Rep Name,Brand Family,Package,Product Num Name,Customer Num Name,Placements,New Placements,Current Units
+Alex Rodriguez,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150012 Kings Super Markets,1,1,2
+Alex Rodriguez,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150012 Kings Super Markets,1,1,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,150400 Liquor City,1,1,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,170004 Liquor Warehouse,1,1,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,171318 Kearny Plaza Discount Liq,1,1,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,170004 Liquor Warehouse,1,1,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150129 White Oaks Liquors,1,1,4
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150400 Liquor City,1,1,4
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170056 Golden Beer & Liquor,1,1,2
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170210 Eddy's Wine & Liq,1,1,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150129 White Oaks Liquors,1,1,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150171 21 Plaza Wine & Liquor,1,1,3
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150400 Liquor City,1,1,5
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170004 Liquor Warehouse,1,1,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170056 Golden Beer & Liquor,1,1,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,171304 Sun Liquors & Grocery,1,1,2
+Andrew Lundy,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,150133 The Wine Rack Millburn,1,1,1
+Andrew Lundy,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,150133 The Wine Rack Millburn,1,1,1
+Andrew Lundy,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150133 The Wine Rack Millburn,1,1,1
+Andrew Lundy,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150133 The Wine Rack Millburn,1,1,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,170012 Wine Outlet,1,1,3
+Dylan Rubino,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,170046 Palisade Wine & Liquor,1,1,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,170062 Sparrow Hill Market &Liq (Jersey City),1,1,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,170191 Wine Warehouse (P) (Union City),1,1,4
+Dylan Rubino,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,170211 Pavan Liquors (P),1,1,2
+Dylan Rubino,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,17027 FOOD BAZAAR,1,1,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,171320 Figi Wine & Liq (P),1,1,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,178000 Wine Spot,1,1,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,178020 STOP & GO LIQUORS,1,1,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,170024 Manhatten Liquors,1,1,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,170030 International Liqs (P),1,1,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,170046 Palisade Wine & Liquor,1,1,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,170169 Buy Rite North Bergen,1,1,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,171320 Figi Wine & Liq (P),1,1,3
+Dylan Rubino,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,178020 STOP & GO LIQUORS,1,1,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,178000 Wine Spot,1,1,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170013 Universal Liquors (A),1,1,2
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170046 Palisade Wine & Liquor,1,1,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170062 Sparrow Hill Market &Liq (Jersey City),1,1,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170107 Central Wine And Liquors,1,1,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170151 Cool Vines,1,1,2
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170212 Empire Liq (P),1,1,3
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,171405 Waterfront Wine & Liq(P),1,1,2
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,178005 Best Liquors & Deli,1,1,4
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170023 Corks & Bottles (P),1,1,5
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170024 Manhatten Liquors,1,1,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170034 Metro Liquors (1212 Jersey City),1,1,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170046 Palisade Wine & Liquor,1,1,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170212 Empire Liq (P),1,1,2
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,178005 Best Liquors & Deli,1,1,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,178020 STOP & GO LIQUORS,1,1,1
+Hakan Sadik,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,150654 Joe Canals,1,1,1
+Hakan Sadik,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,150011 Kingdom Liquors (A),1,1,1
+Hakan Sadik,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,150654 Joe Canals,1,1,1
+Hakan Sadik,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,150173 Bloomfield Buyrite,1,1,1
+Hakan Sadik,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,150182 Liquor Cave,1,1,1
+Hakan Sadik,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150011 Kingdom Liquors (A),1,1,2
+Hakan Sadik,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150654 Joe Canals,1,1,3
+Jaime Colonna,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,170021 Jersey City Buy Rite (A),1,1,3
+Jaime Colonna,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,170179 Shop Rite/Metro Plaza,1,1,3
+Jaime Colonna,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,17026 Wine Dad's Jersey City,1,1,3
+Jaime Colonna,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,171014 Giannone Wines & Liq.(P),1,1,2
+Jaime Colonna,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,172015 Daniels Wine And Liq,1,1,2
+Jaime Colonna,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,170258 Village Wine & Liquors Ii,1,1,1
+Jaime Colonna,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,17026 Wine Dad's Jersey City,1,1,6
+Jaime Colonna,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,172015 Daniels Wine And Liq,1,1,2
+Jaime Colonna,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170037 Willow Grocery Liq.,1,1,2
+Jaime Colonna,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,17026 Wine Dad's Jersey City,1,1,9
+Jaime Colonna,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,171014 Giannone Wines & Liq.(P),1,1,1
+Jaime Colonna,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,172015 Daniels Wine And Liq,1,1,2
+Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,17026 Wine Dad's Jersey City,1,1,9
+Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170468 The Ferryman On 1st,1,1,5
+Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,171014 Giannone Wines & Liq.(P),1,1,2
+Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,172015 Daniels Wine And Liq,1,1,2
+Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,173056 Garden Wine & Liq (P),1,1,1
+John O'Donoghue,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,150031 Fairfield Wine Cellar,1,1,1
+Michael Harboy,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150203 B & B Liquors (West Orange),1,1,1
+Michael Harboy,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150040 Krauser's Liquor Locker,1,1,2
+Michael Harboy,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150203 B & B Liquors (West Orange),1,1,2
+Alex Rodriguez,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,150012 Kings Super Markets,0,0,0
+Alex Rodriguez,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,150012 Kings Super Markets,1,0,2
+Alex Rodriguez,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,150155 L Town Liquors,1,0,2
+Alex Rodriguez,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150153 Wine Depot Of Livingston,0,0,0
+Alex Rodriguez,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150155 L Town Liquors,0,0,0
+Alex Rodriguez,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150155 L Town Liquors,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,121004 Harry's Wine Cellar,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,150016 Nutley Wine Shop,1,0,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,150021 Town House Liq (A)& Wine,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,150052 Bottle King Glen Ridge,1,0,24
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,150060 Belleville Liquors,1,0,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,150090 Olshins Pharmacy,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,150109 Kelly's Liquors,1,0,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,150131 Lbv Cellars,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,150146 Bello's,1,0,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,152039 Cottage Liquors,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,170056 Golden Beer & Liquor,1,0,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,170101 High Spirits Of Bayonne,1,0,5
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,170205 BuyRite Liquors - Kearny,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,170210 Eddy's Wine & Liq,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,170239 Brothers Supermarket,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,171332 Seabra Liquor,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,171341 Irv's Wines & Liquors(P),0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,171403 ShopRite Wines & Spirits of Bayonne,1,0,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,121004 Harry's Wine Cellar,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,150016 Nutley Wine Shop,1,0,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,150052 Bottle King Glen Ridge,1,0,10
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,150060 Belleville Liquors,1,0,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,150109 Kelly's Liquors,1,0,3
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,150128 C & I Liquors(Superfresh),0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,150131 Lbv Cellars,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,150157 Plaza Wine & Liquor,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,150229 City Discount Liquors,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,170205 BuyRite Liquors - Kearny,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,171016 Wine Warehouse (P) (Bayonne),0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,171312 Shop Rite Wine & Spirits Kearny,1,0,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,171318 Kearny Plaza Discount Liq,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,171403 ShopRite Wines & Spirits of Bayonne,1,0,2
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,121004 Harry's Wine Cellar,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,150023 Brookdale W & S (A),0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,150052 Bottle King Glen Ridge,1,0,2
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,150109 Kelly's Liquors,1,0,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,150131 Lbv Cellars,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,150157 Plaza Wine & Liquor,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,171001 Bridgeview Liquors,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,171016 Wine Warehouse (P) (Bayonne),1,0,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,171318 Kearny Plaza Discount Liq,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,171341 Irv's Wines & Liquors(P),0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,171403 ShopRite Wines & Spirits of Bayonne,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,121004 Harry's Wine Cellar,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150016 Nutley Wine Shop,1,0,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150023 Brookdale W & S (A),1,0,2
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150038 Pioneer Wine's & Liquors,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150052 Bottle King Glen Ridge,1,0,11
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150060 Belleville Liquors,1,0,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150109 Kelly's Liquors,1,0,2
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150128 C & I Liquors(Superfresh),0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150146 Bello's,1,0,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150152 Krauszer Food & Liquor,1,0,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,152039 Cottage Liquors,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170038 Harrison Discount Liq(P),0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170101 High Spirits Of Bayonne,1,0,2
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170205 BuyRite Liquors - Kearny,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170239 Brothers Supermarket,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,171001 Bridgeview Liquors,1,0,3
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,171016 Wine Warehouse (P) (Bayonne),1,0,2
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,171304 Sun Liquors & Grocery,1,0,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,171305 Liquoram Of Kearny,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,171312 Shop Rite Wine & Spirits Kearny,1,0,3
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,171318 Kearny Plaza Discount Liq,1,0,2
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,171328 Kearny Wine & Liquor,1,0,3
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,171332 Seabra Liquor,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,171341 Irv's Wines & Liquors(P),0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,171403 ShopRite Wines & Spirits of Bayonne,1,0,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,121004 Harry's Wine Cellar,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150016 Nutley Wine Shop,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150023 Brookdale W & S (A),1,0,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150038 Pioneer Wine's & Liquors,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150052 Bottle King Glen Ridge,1,0,2
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150060 Belleville Liquors,1,0,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150109 Kelly's Liquors,1,0,4
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150128 C & I Liquors(Superfresh),0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150146 Bello's,1,0,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150152 Krauszer Food & Liquor,1,0,2
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150157 Plaza Wine & Liquor,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150229 City Discount Liquors,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,152039 Cottage Liquors,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,152040 Top Shelf Wine & Liquor,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170038 Harrison Discount Liq(P),0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170101 High Spirits Of Bayonne,1,0,4
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170205 BuyRite Liquors - Kearny,1,0,3
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,171001 Bridgeview Liquors,1,0,5
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,171016 Wine Warehouse (P) (Bayonne),1,0,2
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,171305 Liquoram Of Kearny,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,171312 Shop Rite Wine & Spirits Kearny,1,0,7
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,171318 Kearny Plaza Discount Liq,1,0,1
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,171328 Kearny Wine & Liquor,1,0,13
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,171332 Seabra Liquor,0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,171341 Irv's Wines & Liquors(P),0,0,0
+Alisa Acciardi,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,171403 ShopRite Wines & Spirits of Bayonne,1,0,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,170015 Twin City Liquors (A),0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,170024 Manhatten Liquors,1,0,2
+Dylan Rubino,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,170087 Liquor Mart (Jersey City),0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,170097 Discount Liquor,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,170144 Hudson Wine Co (P),1,0,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,170163 Buy Rite Union City,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,170181 Power Liquors,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,170195 Pena Liquor (P),0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,170203 Town Beverage,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,170233 Five Star Liquors,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,170252 Baldwin W & L,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,170909 A2Z Wine Club,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,172051 WNY Liquors,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,173062 Liberty Liquors,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,173077 Podewitz Liquor & Deli,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,178014 Best Liquors (P),0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,179014 Krauszers (Secaucus),0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,170029 Hollywood Liqs (P),0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,170087 Liquor Mart (Jersey City),0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,170088 Sip Discount Liq (A),1,0,4
+Dylan Rubino,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,170097 Discount Liquor,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,170151 Cool Vines,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,170181 Power Liquors,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,170195 Pena Liquor (P),0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,170199 H & H Discount Liq (P),1,0,4
+Dylan Rubino,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,170203 Town Beverage,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,170252 Baldwin W & L,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,17027 FOOD BAZAAR,1,0,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,170310 Buy & Savings Ii (P),1,0,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,170909 A2Z Wine Club,1,0,2
+Dylan Rubino,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,172048 Cragie On Park,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,172051 WNY Liquors,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,173062 Liberty Liquors,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,173077 Podewitz Liquor & Deli,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,178000 Wine Spot,1,0,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,178009 Heaven Liquors,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,170233 Five Star Liquors,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,170909 A2Z Wine Club,0,0,-1
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170012 Wine Outlet,1,0,6
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170015 Twin City Liquors (A),0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170023 Corks & Bottles (P),0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170029 Hollywood Liqs (P),0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170030 International Liqs (P),1,0,3
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170034 Metro Liquors (1212 Jersey City),1,0,5
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170043 Communipaw Liqs (P),1,0,2
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170077 Moon Liquors (P),0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170087 Liquor Mart (Jersey City),0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170088 Sip Discount Liq (A),1,0,5
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170097 Discount Liquor,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170144 Hudson Wine Co (P),0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170160 Home Wines & Liquors (North Bergen),0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170163 Buy Rite Union City,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170169 Buy Rite North Bergen,1,0,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170181 Power Liquors,1,0,5
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170185 Pastore's Wine & Liquor,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170194 Overlook Wine & Spirits,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170195 Pena Liquor (P),0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170199 H & H Discount Liq (P),0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170203 Town Beverage,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170211 Pavan Liquors (P),0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170233 Five Star Liquors,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170252 Baldwin W & L,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,17027 FOOD BAZAAR,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170310 Buy & Savings Ii (P),1,0,2
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170364 Red Feast W & L (A),0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170909 A2Z Wine Club,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,171323 Union Liquors,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,171402 Liberty Wine (P) & Deli,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,172048 Cragie On Park,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,172051 WNY Liquors,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,173062 Liberty Liquors,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,173077 Podewitz Liquor & Deli,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,174102 The Galaxy Drug Store,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,178000 Wine Spot,1,0,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,178014 Best Liquors (P),1,0,2
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,179014 Krauszers (Secaucus),0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,28006 J B Liquors_2,1,0,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170012 Wine Outlet,1,0,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170043 Communipaw Liqs (P),1,0,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170087 Liquor Mart (Jersey City),0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170088 Sip Discount Liq (A),1,0,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170144 Hudson Wine Co (P),0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170151 Cool Vines,1,0,9
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170160 Home Wines & Liquors (North Bergen),0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170163 Buy Rite Union City,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170169 Buy Rite North Bergen,1,0,2
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170181 Power Liquors,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170185 Pastore's Wine & Liquor,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170194 Overlook Wine & Spirits,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170195 Pena Liquor (P),0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170199 H & H Discount Liq (P),1,0,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170203 Town Beverage,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170211 Pavan Liquors (P),1,0,3
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170252 Baldwin W & L,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170261 Bela Wine & Spirits_2,1,0,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170310 Buy & Savings Ii (P),1,0,2
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170364 Red Feast W & L (A),0,0,-1
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170909 A2Z Wine Club,1,0,2
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,171320 Figi Wine & Liq (P),1,0,1
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,171348 Los Laureles Liq (Z),0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,171402 Liberty Wine (P) & Deli,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,171405 Waterfront Wine & Liq(P),1,0,8
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,172048 Cragie On Park,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,172051 WNY Liquors,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,173062 Liberty Liquors,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,173077 Podewitz Liquor & Deli,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,178000 Wine Spot,0,0,0
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,179014 Krauszers (Secaucus),1,0,6
+Dylan Rubino,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,28006 J B Liquors_2,0,0,0
+Hakan Sadik,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,150055 Bottle King Livingston,0,0,0
+Hakan Sadik,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,150132 Boot Leggers W/L,0,0,0
+Hakan Sadik,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,150135 Home Liquors(520 East Orange),0,0,0
+Hakan Sadik,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,150154 Toast Of The Town,1,0,1
+Hakan Sadik,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,150173 Bloomfield Buyrite,1,0,4
+Hakan Sadik,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,150182 Liquor Cave,0,0,0
+Hakan Sadik,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,150624 Wine Barrel (P),1,0,1
+Hakan Sadik,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,150668 Chancellor Irvington,0,0,0
+Hakan Sadik,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,150055 Bottle King Livingston,1,0,4
+Hakan Sadik,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,150089 Buy Rite Wine & Liquor,1,0,4
+Hakan Sadik,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,150132 Boot Leggers W/L,0,0,0
+Hakan Sadik,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,150135 Home Liquors(520 East Orange),0,0,0
+Hakan Sadik,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,150145 Wine 2 Spirits,0,0,0
+Hakan Sadik,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,150173 Bloomfield Buyrite,1,0,3
+Hakan Sadik,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,150182 Liquor Cave,1,0,3
+Hakan Sadik,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,150615 Home Liquors(1277 Irvington),1,0,4
+Hakan Sadik,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,150624 Wine Barrel (P),0,0,0
+Hakan Sadik,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,150633 Wine Warehouse (Newark),1,0,1
+Hakan Sadik,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,150055 Bottle King Livingston,1,0,2
+Hakan Sadik,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,150089 Buy Rite Wine & Liquor,1,0,1
+Hakan Sadik,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150044 South Orange Fine Wine & Spirits,0,0,0
+Hakan Sadik,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150055 Bottle King Livingston,1,0,1
+Hakan Sadik,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150089 Buy Rite Wine & Liquor,1,0,4
+Hakan Sadik,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150132 Boot Leggers W/L,1,0,5
+Hakan Sadik,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150135 Home Liquors(520 East Orange),1,0,5
+Hakan Sadik,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150154 Toast Of The Town,1,0,1
+Hakan Sadik,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150173 Bloomfield Buyrite,1,0,4
+Hakan Sadik,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150182 Liquor Cave,1,0,4
+Hakan Sadik,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150185 Redds Biergarten,0,0,0
+Hakan Sadik,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150402 Coolvines Newark,1,0,1
+Hakan Sadik,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150602 Extra Wine & Liquor,1,0,5
+Hakan Sadik,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150615 Home Liquors(1277 Irvington),0,0,0
+Hakan Sadik,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150624 Wine Barrel (P),1,0,1
+Hakan Sadik,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150633 Wine Warehouse (Newark),0,0,0
+Hakan Sadik,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150654 Joe Canals,1,0,3
+Hakan Sadik,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150668 Chancellor Irvington,0,0,0
+Hakan Sadik,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150044 South Orange Fine Wine & Spirits,0,0,0
+Hakan Sadik,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150055 Bottle King Livingston,1,0,4
+Hakan Sadik,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150089 Buy Rite Wine & Liquor,1,0,6
+Hakan Sadik,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150132 Boot Leggers W/L,1,0,5
+Hakan Sadik,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150145 Wine 2 Spirits,1,0,4
+Hakan Sadik,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150154 Toast Of The Town,1,0,3
+Hakan Sadik,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150173 Bloomfield Buyrite,1,0,3
+Hakan Sadik,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150182 Liquor Cave,1,0,4
+Hakan Sadik,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150615 Home Liquors(1277 Irvington),1,0,4
+Hakan Sadik,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150624 Wine Barrel (P),1,0,1
+Hakan Sadik,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150633 Wine Warehouse (Newark),1,0,3
+Hakan Sadik,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150668 Chancellor Irvington,0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,170002 Alvins W&L (P),0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,170037 Willow Grocery Liq.,0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,170258 Village Wine & Liquors Ii,1,0,2
+Jaime Colonna,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,173041 Blue Ribbon Wine/Liq/Groc,0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,170018 ShopRite Wines & Spirits of Hoboken,1,0,3
+Jaime Colonna,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,170021 Jersey City Buy Rite (A),1,0,2
+Jaime Colonna,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,170037 Willow Grocery Liq.,0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,170137 Giannone Wine & Liq(#2),0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,170158 Sunset wine & spirits,1,0,2
+Jaime Colonna,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,171015 Uncorked Wines & Spirits - Hoboken NJ,1,0,2
+Jaime Colonna,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,171117 Delite Market,0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,173041 Blue Ribbon Wine/Liq/Groc,0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,173061 City Line Liquors (Hoboken),0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,170002 Alvins W&L (P),0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,170021 Jersey City Buy Rite (A),1,0,1
+Jaime Colonna,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,170050 Acme Markets (Hoboken),0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,170248 Coolvines Powerhouse,0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,171119 Wine Dads Hoboken,0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170002 Alvins W&L (P),0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170018 ShopRite Wines & Spirits of Hoboken,1,0,2
+Jaime Colonna,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170020 Hoboken Beer & Soda,0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170021 Jersey City Buy Rite (A),1,0,3
+Jaime Colonna,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170036 Cork Wines & Spirits (Harrison),1,0,1
+Jaime Colonna,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170050 Acme Markets (Hoboken),0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170125 Hudson Vine (A),0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170137 Giannone Wine & Liq(#2),0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170179 Shop Rite/Metro Plaza,0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170220 Sprove Marketplace,1,0,4
+Jaime Colonna,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170255 Liquor House,0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,170258 Village Wine & Liquors Ii,1,0,5
+Jaime Colonna,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,17029 Wine Dad's - Summit Ave Jersey City,0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,171015 Uncorked Wines & Spirits - Hoboken NJ,0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,171117 Delite Market,0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,171119 Wine Dads Hoboken,0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,173031 Sparrow's Wine & Liq(P) (1224 Hoboken),1,0,2
+Jaime Colonna,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,173032 Sparrows Wine & Liq (P) (126 Hoboken),0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,173041 Blue Ribbon Wine/Liq/Groc,0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,173055 Hoboken Vine,1,0,2
+Jaime Colonna,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,173058 Ottomanelli's Liquor Store,0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,173061 City Line Liquors (Hoboken),0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170018 ShopRite Wines & Spirits of Hoboken,1,0,5
+Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170021 Jersey City Buy Rite (A),1,0,6
+Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170037 Willow Grocery Liq.,0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170050 Acme Markets (Hoboken),1,0,2
+Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170090 Bauers Wine & Liquor,0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170125 Hudson Vine (A),0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170137 Giannone Wine & Liq(#2),0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170158 Sunset wine & spirits,1,0,3
+Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170179 Shop Rite/Metro Plaza,1,0,3
+Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170220 Sprove Marketplace,1,0,5
+Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170255 Liquor House,0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170258 Village Wine & Liquors Ii,0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,170282 The Hoboken Biergarten,1,0,1
+Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,17029 Wine Dad's - Summit Ave Jersey City,0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,171015 Uncorked Wines & Spirits - Hoboken NJ,0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,171117 Delite Market,0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,171119 Wine Dads Hoboken,0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,173031 Sparrow's Wine & Liq(P) (1224 Hoboken),1,0,5
+Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,173032 Sparrows Wine & Liq (P) (126 Hoboken),0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,173041 Blue Ribbon Wine/Liq/Groc,0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,173055 Hoboken Vine,1,0,2
+Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,173058 Ottomanelli's Liquor Store,0,0,0
+Jaime Colonna,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,173061 City Line Liquors (Hoboken),0,0,0
+John O'Donoghue,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,150031 Fairfield Wine Cellar,0,0,0
+John O'Donoghue,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150031 Fairfield Wine Cellar,1,0,3
+John O'Donoghue,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150031 Fairfield Wine Cellar,1,0,4
+Michael Harboy,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,11014 Wayne Liquor Locker,1,0,3
+Michael Harboy,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,12017 Shays Liquors,0,0,0
+Michael Harboy,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,150002 Shoprite Wine & Spirits,1,0,1
+Michael Harboy,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,150004 Merit (P),1,0,2
+Michael Harboy,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,150008 Total Wine & More (West Orange),1,0,2
+Michael Harboy,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,150040 Krauser's Liquor Locker,1,0,1
+Michael Harboy,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,150103 Jacks Supermarket,1,0,2
+Michael Harboy,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,151023 Grove Liquors,1,0,1
+Michael Harboy,Monkey Family,4/6/12oz Can,11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,201048 ShopRite of West Caldwell,0,0,0
+Michael Harboy,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,12005 Shay's Liquors,0,0,0
+Michael Harboy,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,150004 Merit (P),1,0,2
+Michael Harboy,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,150008 Total Wine & More (West Orange),0,0,0
+Michael Harboy,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,150048 Cedar Grove Wine Cellar,1,0,1
+Michael Harboy,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,150190 Quick Stop Liquors,1,0,4
+Michael Harboy,Monkey Family,4/6/12oz Can,11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,150248 The Wine Rack North Caldwell,0,0,0
+Michael Harboy,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,150008 Total Wine & More (West Orange),0,0,0
+Michael Harboy,Monkey Family,4/6/12oz Can,11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,150048 Cedar Grove Wine Cellar,0,0,0
+Michael Harboy,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,11014 Wayne Liquor Locker,1,0,3
+Michael Harboy,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,12005 Shay's Liquors,0,0,0
+Michael Harboy,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,12017 Shays Liquors,1,0,2
+Michael Harboy,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150001 Verona Wine Cellar,1,0,5
+Michael Harboy,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150002 Shoprite Wine & Spirits,1,0,3
+Michael Harboy,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150004 Merit (P),1,0,4
+Michael Harboy,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150008 Total Wine & More (West Orange),1,0,4
+Michael Harboy,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150040 Krauser's Liquor Locker,1,0,3
+Michael Harboy,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150048 Cedar Grove Wine Cellar,0,0,0
+Michael Harboy,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150053 Pilgrim Liquor,0,0,0
+Michael Harboy,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150081 Lucky 7 Wine & Liq (A),1,0,3
+Michael Harboy,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150100 Angelbeck's,1,0,1
+Michael Harboy,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150103 Jacks Supermarket,1,0,6
+Michael Harboy,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150190 Quick Stop Liquors,1,0,3
+Michael Harboy,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150192 South End Liquors,0,0,0
+Michael Harboy,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150248 The Wine Rack North Caldwell,1,0,3
+Michael Harboy,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,150451 Wine Village,0,0,0
+Michael Harboy,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,151023 Grove Liquors,1,0,2
+Michael Harboy,Monkey Family,4/6/12oz Can,4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,201048 ShopRite of West Caldwell,1,0,7
+Michael Harboy,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,11014 Wayne Liquor Locker,1,0,4
+Michael Harboy,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,12017 Shays Liquors,1,0,2
+Michael Harboy,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150001 Verona Wine Cellar,1,0,4
+Michael Harboy,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150002 Shoprite Wine & Spirits,1,0,5
+Michael Harboy,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150004 Merit (P),1,0,5
+Michael Harboy,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150008 Total Wine & More (West Orange),1,0,3
+Michael Harboy,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150048 Cedar Grove Wine Cellar,0,0,0
+Michael Harboy,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150100 Angelbeck's,0,0,0
+Michael Harboy,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150103 Jacks Supermarket,0,0,0
+Michael Harboy,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150190 Quick Stop Liquors,1,0,3
+Michael Harboy,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150192 South End Liquors,1,0,5
+Michael Harboy,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150248 The Wine Rack North Caldwell,0,0,0
+Michael Harboy,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,150451 Wine Village,0,0,0
+Michael Harboy,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,151023 Grove Liquors,1,0,2
+Michael Harboy,Monkey Family,4/6/12oz Can,4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can,201048 ShopRite of West Caldwell,1,0,2

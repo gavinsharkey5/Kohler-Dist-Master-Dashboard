@@ -145441,15 +145441,15 @@ const PROGRAM_DATA_2026_09 = {
   },
   "path_to_victory_sd": {
     "byRep": {
-      "Dylan Rubino": {
+      "Alex Rodriguez": {
         "team": "Mike Kennedy",
         "window": "8/1/2026 - 9/30/2026",
         "packages": {
           "sixPack": {
-            "pods": 59.0,
-            "newPods": 27.0,
-            "units": 128.0,
-            "payout": 270.0
+            "pods": 4.0,
+            "newPods": 2.0,
+            "units": 7.0,
+            "payout": 20.0
           },
           "nineteenTwo": {
             "pods": 0.0,
@@ -145460,118 +145460,42 @@ const PROGRAM_DATA_2026_09 = {
         },
         "products": [
           {
-            "product": "11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can",
+            "product": "4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can",
             "package": "4/6/12oz Can",
             "bucket": "sixPack",
-            "pods": 10.0,
-            "newPods": 8.0,
-            "units": 17.0
+            "pods": 1.0,
+            "newPods": 1.0,
+            "units": 2.0
           },
           {
             "product": "4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can",
             "package": "4/6/12oz Can",
             "bucket": "sixPack",
-            "pods": 19.0,
-            "newPods": 6.0,
-            "units": 46.0
-          },
-          {
-            "product": "4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 17.0,
-            "newPods": 6.0,
-            "units": 44.0
+            "pods": 1.0,
+            "newPods": 1.0,
+            "units": 1.0
           },
           {
             "product": "11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can",
             "package": "4/6/12oz Can",
             "bucket": "sixPack",
-            "pods": 12.0,
-            "newPods": 6.0,
-            "units": 21.0
+            "pods": 2.0,
+            "newPods": 0.0,
+            "units": 4.0
           },
           {
-            "product": "11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can",
+            "product": "11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can",
             "package": "4/6/12oz Can",
             "bucket": "sixPack",
-            "pods": 1.0,
-            "newPods": 1.0,
+            "pods": 0.0,
+            "newPods": 0.0,
             "units": 0.0
           }
         ],
-        "payout": 270.0,
-        "sixPackPods": 59.0,
-        "sixPackNewPods": 27.0,
-        "sixPackUnits": 128.0,
-        "nineteenTwoPods": 0.0,
-        "nineteenTwoNewPods": 0.0,
-        "nineteenTwoUnits": 0.0,
-        "has192": false
-      },
-      "Jaime Colonna": {
-        "team": "Mike Kennedy",
-        "window": "8/1/2026 - 9/30/2026",
-        "packages": {
-          "sixPack": {
-            "pods": 37.0,
-            "newPods": 16.0,
-            "units": 113.0,
-            "payout": 160.0
-          },
-          "nineteenTwo": {
-            "pods": 0.0,
-            "newPods": 0.0,
-            "units": 0.0,
-            "payout": 0.0
-          }
-        },
-        "products": [
-          {
-            "product": "4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 14.0,
-            "newPods": 5.0,
-            "units": 51.0
-          },
-          {
-            "product": "4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 11.0,
-            "newPods": 4.0,
-            "units": 31.0
-          },
-          {
-            "product": "11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 8.0,
-            "newPods": 4.0,
-            "units": 19.0
-          },
-          {
-            "product": "11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 3.0,
-            "newPods": 2.0,
-            "units": 9.0
-          },
-          {
-            "product": "11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 1.0,
-            "newPods": 1.0,
-            "units": 3.0
-          }
-        ],
-        "payout": 160.0,
-        "sixPackPods": 37.0,
-        "sixPackNewPods": 16.0,
-        "sixPackUnits": 113.0,
+        "payout": 20.0,
+        "sixPackPods": 4.0,
+        "sixPackNewPods": 2.0,
+        "sixPackUnits": 7.0,
         "nineteenTwoPods": 0.0,
         "nineteenTwoNewPods": 0.0,
         "nineteenTwoUnits": 0.0,
@@ -145582,9 +145506,9 @@ const PROGRAM_DATA_2026_09 = {
         "window": "8/1/2026 - 9/30/2026",
         "packages": {
           "sixPack": {
-            "pods": 59.0,
+            "pods": 60.0,
             "newPods": 14.0,
-            "units": 167.0,
+            "units": 168.0,
             "payout": 140.0
           },
           "nineteenTwo": {
@@ -145607,9 +145531,9 @@ const PROGRAM_DATA_2026_09 = {
             "product": "4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can",
             "package": "4/6/12oz Can",
             "bucket": "sixPack",
-            "pods": 18.0,
+            "pods": 19.0,
             "newPods": 4.0,
-            "units": 46.0
+            "units": 47.0
           },
           {
             "product": "11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can",
@@ -145637,9 +145561,137 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "payout": 140.0,
-        "sixPackPods": 59.0,
+        "sixPackPods": 60.0,
         "sixPackNewPods": 14.0,
-        "sixPackUnits": 167.0,
+        "sixPackUnits": 168.0,
+        "nineteenTwoPods": 0.0,
+        "nineteenTwoNewPods": 0.0,
+        "nineteenTwoUnits": 0.0,
+        "has192": false
+      },
+      "Andrew Lundy": {
+        "team": "Mike Kennedy",
+        "window": "8/1/2026 - 9/30/2026",
+        "packages": {
+          "sixPack": {
+            "pods": 4.0,
+            "newPods": 4.0,
+            "units": 4.0,
+            "payout": 40.0
+          },
+          "nineteenTwo": {
+            "pods": 0.0,
+            "newPods": 0.0,
+            "units": 0.0,
+            "payout": 0.0
+          }
+        },
+        "products": [
+          {
+            "product": "11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 1.0,
+            "newPods": 1.0,
+            "units": 1.0
+          },
+          {
+            "product": "11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 1.0,
+            "newPods": 1.0,
+            "units": 1.0
+          },
+          {
+            "product": "4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 1.0,
+            "newPods": 1.0,
+            "units": 1.0
+          },
+          {
+            "product": "4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 1.0,
+            "newPods": 1.0,
+            "units": 1.0
+          }
+        ],
+        "payout": 40.0,
+        "sixPackPods": 4.0,
+        "sixPackNewPods": 4.0,
+        "sixPackUnits": 4.0,
+        "nineteenTwoPods": 0.0,
+        "nineteenTwoNewPods": 0.0,
+        "nineteenTwoUnits": 0.0,
+        "has192": false
+      },
+      "Dylan Rubino": {
+        "team": "Mike Kennedy",
+        "window": "8/1/2026 - 9/30/2026",
+        "packages": {
+          "sixPack": {
+            "pods": 63.0,
+            "newPods": 31.0,
+            "units": 137.0,
+            "payout": 310.0
+          },
+          "nineteenTwo": {
+            "pods": 0.0,
+            "newPods": 0.0,
+            "units": 0.0,
+            "payout": 0.0
+          }
+        },
+        "products": [
+          {
+            "product": "11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 11.0,
+            "newPods": 9.0,
+            "units": 18.0
+          },
+          {
+            "product": "4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 19.0,
+            "newPods": 8.0,
+            "units": 49.0
+          },
+          {
+            "product": "4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 20.0,
+            "newPods": 7.0,
+            "units": 49.0
+          },
+          {
+            "product": "11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 12.0,
+            "newPods": 6.0,
+            "units": 21.0
+          },
+          {
+            "product": "11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 1.0,
+            "newPods": 1.0,
+            "units": 0.0
+          }
+        ],
+        "payout": 310.0,
+        "sixPackPods": 63.0,
+        "sixPackNewPods": 31.0,
+        "sixPackUnits": 137.0,
         "nineteenTwoPods": 0.0,
         "nineteenTwoNewPods": 0.0,
         "nineteenTwoUnits": 0.0,
@@ -145652,7 +145704,7 @@ const PROGRAM_DATA_2026_09 = {
           "sixPack": {
             "pods": 39.0,
             "newPods": 7.0,
-            "units": 107.0,
+            "units": 109.0,
             "payout": 70.0
           },
           "nineteenTwo": {
@@ -145669,7 +145721,7 @@ const PROGRAM_DATA_2026_09 = {
             "bucket": "sixPack",
             "pods": 8.0,
             "newPods": 2.0,
-            "units": 20.0
+            "units": 21.0
           },
           {
             "product": "11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can",
@@ -145701,13 +145753,141 @@ const PROGRAM_DATA_2026_09 = {
             "bucket": "sixPack",
             "pods": 4.0,
             "newPods": 1.0,
-            "units": 6.0
+            "units": 7.0
           }
         ],
         "payout": 70.0,
         "sixPackPods": 39.0,
         "sixPackNewPods": 7.0,
-        "sixPackUnits": 107.0,
+        "sixPackUnits": 109.0,
+        "nineteenTwoPods": 0.0,
+        "nineteenTwoNewPods": 0.0,
+        "nineteenTwoUnits": 0.0,
+        "has192": false
+      },
+      "Jaime Colonna": {
+        "team": "Mike Kennedy",
+        "window": "8/1/2026 - 9/30/2026",
+        "packages": {
+          "sixPack": {
+            "pods": 39.0,
+            "newPods": 17.0,
+            "units": 118.0,
+            "payout": 170.0
+          },
+          "nineteenTwo": {
+            "pods": 0.0,
+            "newPods": 0.0,
+            "units": 0.0,
+            "payout": 0.0
+          }
+        },
+        "products": [
+          {
+            "product": "4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 14.0,
+            "newPods": 5.0,
+            "units": 51.0
+          },
+          {
+            "product": "4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 11.0,
+            "newPods": 4.0,
+            "units": 33.0
+          },
+          {
+            "product": "11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 8.0,
+            "newPods": 4.0,
+            "units": 19.0
+          },
+          {
+            "product": "11810 Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 4.0,
+            "newPods": 3.0,
+            "units": 10.0
+          },
+          {
+            "product": "11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 2.0,
+            "newPods": 1.0,
+            "units": 5.0
+          }
+        ],
+        "payout": 170.0,
+        "sixPackPods": 39.0,
+        "sixPackNewPods": 17.0,
+        "sixPackUnits": 118.0,
+        "nineteenTwoPods": 0.0,
+        "nineteenTwoNewPods": 0.0,
+        "nineteenTwoUnits": 0.0,
+        "has192": false
+      },
+      "John O'Donoghue": {
+        "team": "Mike Kennedy",
+        "window": "8/1/2026 - 9/30/2026",
+        "packages": {
+          "sixPack": {
+            "pods": 3.0,
+            "newPods": 1.0,
+            "units": 8.0,
+            "payout": 10.0
+          },
+          "nineteenTwo": {
+            "pods": 0.0,
+            "newPods": 0.0,
+            "units": 0.0,
+            "payout": 0.0
+          }
+        },
+        "products": [
+          {
+            "product": "11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 1.0,
+            "newPods": 1.0,
+            "units": 1.0
+          },
+          {
+            "product": "4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 1.0,
+            "newPods": 0.0,
+            "units": 3.0
+          },
+          {
+            "product": "4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 1.0,
+            "newPods": 0.0,
+            "units": 4.0
+          },
+          {
+            "product": "11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can",
+            "package": "4/6/12oz Can",
+            "bucket": "sixPack",
+            "pods": 0.0,
+            "newPods": 0.0,
+            "units": 0.0
+          }
+        ],
+        "payout": 10.0,
+        "sixPackPods": 3.0,
+        "sixPackNewPods": 1.0,
+        "sixPackUnits": 8.0,
         "nineteenTwoPods": 0.0,
         "nineteenTwoNewPods": 0.0,
         "nineteenTwoUnits": 0.0,
@@ -145780,134 +145960,12 @@ const PROGRAM_DATA_2026_09 = {
         "nineteenTwoNewPods": 0.0,
         "nineteenTwoUnits": 0.0,
         "has192": false
-      },
-      "Alex Rodriguez": {
-        "team": "Mike Kennedy",
-        "window": "8/1/2026 - 9/30/2026",
-        "packages": {
-          "sixPack": {
-            "pods": 4.0,
-            "newPods": 2.0,
-            "units": 7.0,
-            "payout": 20.0
-          },
-          "nineteenTwo": {
-            "pods": 0.0,
-            "newPods": 0.0,
-            "units": 0.0,
-            "payout": 0.0
-          }
-        },
-        "products": [
-          {
-            "product": "4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 1.0,
-            "newPods": 1.0,
-            "units": 2.0
-          },
-          {
-            "product": "4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 1.0,
-            "newPods": 1.0,
-            "units": 1.0
-          },
-          {
-            "product": "11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 2.0,
-            "newPods": 0.0,
-            "units": 4.0
-          },
-          {
-            "product": "11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 0.0,
-            "newPods": 0.0,
-            "units": 0.0
-          }
-        ],
-        "payout": 20.0,
-        "sixPackPods": 4.0,
-        "sixPackNewPods": 2.0,
-        "sixPackUnits": 7.0,
-        "nineteenTwoPods": 0.0,
-        "nineteenTwoNewPods": 0.0,
-        "nineteenTwoUnits": 0.0,
-        "has192": false
-      },
-      "John O'Donoghue": {
-        "team": "Mike Kennedy",
-        "window": "8/1/2026 - 9/30/2026",
-        "packages": {
-          "sixPack": {
-            "pods": 3.0,
-            "newPods": 1.0,
-            "units": 8.0,
-            "payout": 10.0
-          },
-          "nineteenTwo": {
-            "pods": 0.0,
-            "newPods": 0.0,
-            "units": 0.0,
-            "payout": 0.0
-          }
-        },
-        "products": [
-          {
-            "product": "11634 Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 1.0,
-            "newPods": 1.0,
-            "units": 1.0
-          },
-          {
-            "product": "4914 Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 1.0,
-            "newPods": 0.0,
-            "units": 3.0
-          },
-          {
-            "product": "4919 Victory Sour Monkey Sour Tripel 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 1.0,
-            "newPods": 0.0,
-            "units": 4.0
-          },
-          {
-            "product": "11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can",
-            "package": "4/6/12oz Can",
-            "bucket": "sixPack",
-            "pods": 0.0,
-            "newPods": 0.0,
-            "units": 0.0
-          }
-        ],
-        "payout": 10.0,
-        "sixPackPods": 3.0,
-        "sixPackNewPods": 1.0,
-        "sixPackUnits": 8.0,
-        "nineteenTwoPods": 0.0,
-        "nineteenTwoNewPods": 0.0,
-        "nineteenTwoUnits": 0.0,
-        "has192": false
       }
     },
     "meta": {
       "team": "Mike Kennedy",
       "window": "8/1/2026 - 9/30/2026",
-      "notInExport": [
-        "Andrew Lundy"
-      ],
+      "notInExport": [],
       "has192": false
     }
   },
@@ -148271,5 +148329,5 @@ const PROGRAM_DATA_2026_09 = {
     }
   }
 };
-const PROGRAM_DATA_REFRESHED = "Sep 25, 2026, 9:03 AM ET";
-const PROGRAM_DATA_REFRESHED_AT = "2026-09-25T13:03:46Z";
+const PROGRAM_DATA_REFRESHED = "Sep 25, 2026, 9:07 AM ET";
+const PROGRAM_DATA_REFRESHED_AT = "2026-09-25T13:07:01Z";

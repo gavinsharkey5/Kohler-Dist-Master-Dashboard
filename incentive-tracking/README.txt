@@ -4350,6 +4350,31 @@ Only these four programs changed in PROGRAM_DATA.
               returns and don't change his count.
 Hub cache tag bumped (20260923b) for the new program_data.js.
 
+2026-09-25 EIGHTH REFRESH -- Path to Victory (vSD _5), NOW ACCOUNT-LEVEL
+  python3 generate.py
+THE EXPORT CHANGED SHAPE. Every earlier vSD pull was aggregated (rep total
+row, a duplicate subtotal row, then one row per product, 47 rows). vSD_5 is
+ACCOUNT-LEVEL: 453 rows, one per customer x product (Customer Num Name),
+Placements / New Placements as 1-or-0 flags and Current Units per account, no
+subtotal rows. build_path_to_victory_sd() now detects the customer column and
+SUMS the flags per rep x package x product (a POD is an account x product
+pair, so the sum is what the aggregated product row was); the aggregated
+shape still reconciles as before. Cross-checked before trusting it: every
+rep's summed PODs / new PODs / units equal the 9/23 aggregated file plus two
+days of growth (Alex Rodriguez, Hakan Sadik, Michael Harboy, John O'Donoghue
+identical; Alisa Acciardi 59 -> 60 PODs; Dylan Rubino 59 -> 63; Jaime
+Colonna 37 -> 39). 204 of the 453 rows carry Placements 0 (an account with
+no net volume this window) and sum to nothing. Still 6pk cans only.
+  Path to Victory  70 -> 79 new 6pk PODs of 238 -> 249, $700 -> $790
+             trackable. ANDREW LUNDY IS IN THE EXPORT AT LAST: 4 new PODs
+             (one each of Juicy, Berry, Golden, Sour Monkey), $40 -- the
+             "not in export" list is empty for the first time. Dylan Rubino
+             27 -> 31 new ($270 -> $310: Golden Monkey 6 -> 8, Juicy 8 -> 9,
+             Sour 6 -> 7), Jaime Colonna 16 -> 17 ($170; Witty Monkey 2 -> 3).
+             Alisa Acciardi 59 -> 60 PODs (Golden Monkey, a repeat), Hakan
+             Sadik +2 units. Nobody down.
+Hub cache tag bumped (20260925h) for the new program_data.js.
+
 2026-09-25 SEVENTH REFRESH -- Yuengling Fall (off _6 / packages _8 / draft _8) + Southern District Fall Seasonal (vSD _4)
   python3 generate.py
 All four flat CSVs straight over data/yuengling_retention_fall_off.csv /

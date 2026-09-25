@@ -1127,21 +1127,45 @@ def build_path_to_victory_sd():
     the August program)."""
     rows = read_rows("path_to_victory_sd.csv")
     order, by_rep_rows = _grouped_by_rep(rows, "Sales Rep Name")
+    cols = ("Placements", "New Placements", "Current Units")
+    # TWO SHAPES (2026-09-25, vSD_5). Until now the export was aggregated:
+    # rep total row, a duplicate subtotal row, then one row per product,
+    # reconciled below. It now arrives ACCOUNT-LEVEL: one row per customer x
+    # product (Customer Num Name), Placements / New Placements as 1-or-0
+    # flags and Current Units per account, NO subtotal rows. A POD is an
+    # account x product pair, so per product it is the SUM of the flags --
+    # verified on the first pull: every rep's sums matched the 9/23
+    # aggregated file plus two days of growth (Alisa Acciardi 59 -> 60 PODs,
+    # Dylan Rubino 59 -> 63, Jaime Colonna 37 -> 39, the rest identical).
+    # Rows with Placements 0 (an account with no net volume) sum to nothing.
+    account_level = "Customer Num Name" in (rows[0].keys() if rows else [])
+    if account_level:
+        print("path_to_victory_sd: account-level export (one row per customer x product) -- summing flags per product")
     by_rep = {}
     for rep in order:
         if rep not in MIKE_KENNEDY_TEAM:
             print(f"path_to_victory_sd: {rep} is not on Mike Kennedy's team -- skipped")
             continue
         block = by_rep_rows[rep]
-        if len(block) < 3:
-            raise SystemExit(f"path_to_victory_sd: {rep} has {len(block)} rows -- expected total + subtotal + products")
-        total, subtotal, products = block[0], block[1], block[2:]
-        cols = ("Placements", "New Placements", "Current Units")
-        for c in cols:
-            if not _close(to_num(total[c]), to_num(subtotal[c])):
-                raise SystemExit(f"path_to_victory_sd: {rep} rows 1-2 differ on {c} -- export layout changed, refusing to build")
-            if not _close(sum(to_num(r[c]) for r in products), to_num(total[c])):
-                raise SystemExit(f"path_to_victory_sd: {rep} products sum to {sum(to_num(r[c]) for r in products)} on {c}, total row says {to_num(total[c])}")
+        if account_level:
+            merged = {}
+            for r in block:
+                key = ((r.get("Package") or "").strip(), (r.get("Product Num Name") or "").strip())
+                m = merged.setdefault(key, {"Package": key[0], "Product Num Name": key[1],
+                                            "Placements": 0.0, "New Placements": 0.0, "Current Units": 0.0})
+                for c in cols:
+                    m[c] += to_num(r[c])
+            # to_num() below expects the cell text, as from the CSV
+            products = [{**m, **{c: str(m[c]) for c in cols}} for m in merged.values()]
+        else:
+            if len(block) < 3:
+                raise SystemExit(f"path_to_victory_sd: {rep} has {len(block)} rows -- expected total + subtotal + products")
+            total, subtotal, products = block[0], block[1], block[2:]
+            for c in cols:
+                if not _close(to_num(total[c]), to_num(subtotal[c])):
+                    raise SystemExit(f"path_to_victory_sd: {rep} rows 1-2 differ on {c} -- export layout changed, refusing to build")
+                if not _close(sum(to_num(r[c]) for r in products), to_num(total[c])):
+                    raise SystemExit(f"path_to_victory_sd: {rep} products sum to {sum(to_num(r[c]) for r in products)} on {c}, total row says {to_num(total[c])}")
         d = {"team": "Mike Kennedy", "window": SD_WINDOW, "packages": {}, "products": [], "payout": 0.0}
         for k in PTV_SD_PACKAGES.values():
             d["packages"][k] = {"pods": 0.0, "newPods": 0.0, "units": 0.0, "payout": 0.0}
