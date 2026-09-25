@@ -16501,21 +16501,16 @@ const PROGRAM_DATA = {
   "sam_adams": {
     "byRep": {
       "Alex Rodriguez": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 0.0,
         "octoberfestUnitsThisYear": 0.0,
         "octoberfestGrowth": 0.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [],
-        "payout": 0,
         "territoryEligible": false
       },
       "Alisa Acciardi": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 5.0,
         "octoberfestUnitsThisYear": 0.0,
         "octoberfestGrowth": -5.0,
@@ -16536,30 +16531,27 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Allison Scott": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 228.0,
-        "octoberfestUnitsThisYear": 180.0,
-        "octoberfestGrowth": -48.0,
+        "octoberfestUnitsThisYear": 186.0,
+        "octoberfestGrowth": -42.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3813 Sam Adams Octoberfest 15.5 Gal Keg",
             "unitsLastYear": 153.0,
-            "unitsThisYear": 132.0,
-            "growth": -21.0,
+            "unitsThisYear": 136.0,
+            "growth": -17.0,
             "accounts": []
           },
           {
             "product": "3862 Sam Adams Octoberfest 5.2 Gal Keg",
             "unitsLastYear": 43.0,
-            "unitsThisYear": 29.0,
-            "growth": -14.0,
+            "unitsThisYear": 31.0,
+            "growth": -12.0,
             "accounts": []
           },
           {
@@ -16577,42 +16569,36 @@ const PROGRAM_DATA = {
             "accounts": []
           },
           {
-            "product": "4056 Sam Adamas Octoberfest Non-Alcoholic 4/6/12 oz Can",
+            "product": "4056 Sam Adams Octoberfest Non-Alcoholic 4/6/12 oz Can",
             "unitsLastYear": 0.0,
             "unitsThisYear": 4.0,
             "growth": 4.0,
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Andrew Lundy": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 0.0,
         "octoberfestUnitsThisYear": 0.0,
         "octoberfestGrowth": 0.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [],
-        "payout": 0,
         "territoryEligible": false
       },
       "Anthony Palmisano": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 1002.0,
-        "octoberfestUnitsThisYear": 705.0,
-        "octoberfestGrowth": -297.0,
+        "octoberfestUnitsThisYear": 709.0,
+        "octoberfestGrowth": -293.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3919 Sam Adams Octoberfest 4/6/12 oz Btl",
             "unitsLastYear": 353.0,
-            "unitsThisYear": 257.0,
-            "growth": -96.0,
+            "unitsThisYear": 259.0,
+            "growth": -94.0,
             "accounts": []
           },
           {
@@ -16632,8 +16618,8 @@ const PROGRAM_DATA = {
           {
             "product": "3813 Sam Adams Octoberfest 15.5 Gal Keg",
             "unitsLastYear": 47.0,
-            "unitsThisYear": 55.0,
-            "growth": 8.0,
+            "unitsThisYear": 57.0,
+            "growth": 10.0,
             "accounts": []
           },
           {
@@ -16644,7 +16630,7 @@ const PROGRAM_DATA = {
             "accounts": []
           },
           {
-            "product": "4056 Sam Adamas Octoberfest Non-Alcoholic 4/6/12 oz Can",
+            "product": "4056 Sam Adams Octoberfest Non-Alcoholic 4/6/12 oz Can",
             "unitsLastYear": 0.0,
             "unitsThisYear": 7.0,
             "growth": 7.0,
@@ -16658,37 +16644,34 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Brian Sengebush": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 268.0,
-        "octoberfestUnitsThisYear": 235.0,
-        "octoberfestGrowth": -33.0,
+        "octoberfestUnitsThisYear": 245.0,
+        "octoberfestGrowth": -23.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3813 Sam Adams Octoberfest 15.5 Gal Keg",
             "unitsLastYear": 91.0,
-            "unitsThisYear": 91.0,
-            "growth": 0.0,
+            "unitsThisYear": 94.0,
+            "growth": 3.0,
             "accounts": []
           },
           {
             "product": "3862 Sam Adams Octoberfest 5.2 Gal Keg",
             "unitsLastYear": 74.0,
-            "unitsThisYear": 63.0,
-            "growth": -11.0,
+            "unitsThisYear": 66.0,
+            "growth": -8.0,
             "accounts": []
           },
           {
             "product": "3919 Sam Adams Octoberfest 4/6/12 oz Btl",
             "unitsLastYear": 78.0,
-            "unitsThisYear": 60.0,
-            "growth": -18.0,
+            "unitsThisYear": 64.0,
+            "growth": -14.0,
             "accounts": []
           },
           {
@@ -16706,37 +16689,34 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Chris Payton": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 587.0,
-        "octoberfestUnitsThisYear": 377.0,
-        "octoberfestGrowth": -210.0,
+        "octoberfestUnitsThisYear": 395.0,
+        "octoberfestGrowth": -192.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3919 Sam Adams Octoberfest 4/6/12 oz Btl",
             "unitsLastYear": 349.0,
-            "unitsThisYear": 230.0,
-            "growth": -119.0,
+            "unitsThisYear": 243.0,
+            "growth": -106.0,
             "accounts": []
           },
           {
             "product": "3918 Sam Adams Octoberfest 2/12/12 oz Btl",
             "unitsLastYear": 174.0,
-            "unitsThisYear": 109.0,
-            "growth": -65.0,
+            "unitsThisYear": 112.0,
+            "growth": -62.0,
             "accounts": []
           },
           {
             "product": "3921 Sam Adams Octoberfest 2/12/12 oz Can",
             "unitsLastYear": 39.0,
-            "unitsThisYear": 28.0,
-            "growth": -11.0,
+            "unitsThisYear": 30.0,
+            "growth": -9.0,
             "accounts": []
           },
           {
@@ -16747,7 +16727,7 @@ const PROGRAM_DATA = {
             "accounts": []
           },
           {
-            "product": "4056 Sam Adamas Octoberfest Non-Alcoholic 4/6/12 oz Can",
+            "product": "4056 Sam Adams Octoberfest Non-Alcoholic 4/6/12 oz Can",
             "unitsLastYear": 0.0,
             "unitsThisYear": 3.0,
             "growth": 3.0,
@@ -16768,23 +16748,20 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Dan Lagala": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 241.0,
-        "octoberfestUnitsThisYear": 164.0,
-        "octoberfestGrowth": -77.0,
+        "octoberfestUnitsThisYear": 174.0,
+        "octoberfestGrowth": -67.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3919 Sam Adams Octoberfest 4/6/12 oz Btl",
             "unitsLastYear": 192.0,
-            "unitsThisYear": 124.0,
-            "growth": -68.0,
+            "unitsThisYear": 134.0,
+            "growth": -58.0,
             "accounts": []
           },
           {
@@ -16809,7 +16786,7 @@ const PROGRAM_DATA = {
             "accounts": []
           },
           {
-            "product": "4056 Sam Adamas Octoberfest Non-Alcoholic 4/6/12 oz Can",
+            "product": "4056 Sam Adams Octoberfest Non-Alcoholic 4/6/12 oz Can",
             "unitsLastYear": 0.0,
             "unitsThisYear": 4.0,
             "growth": 4.0,
@@ -16823,23 +16800,20 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Dave Ehlers": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 1040.0,
-        "octoberfestUnitsThisYear": 818.0,
-        "octoberfestGrowth": -222.0,
+        "octoberfestUnitsThisYear": 820.0,
+        "octoberfestGrowth": -220.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3919 Sam Adams Octoberfest 4/6/12 oz Btl",
             "unitsLastYear": 326.0,
-            "unitsThisYear": 259.0,
-            "growth": -67.0,
+            "unitsThisYear": 261.0,
+            "growth": -65.0,
             "accounts": []
           },
           {
@@ -16857,7 +16831,7 @@ const PROGRAM_DATA = {
             "accounts": []
           },
           {
-            "product": "4056 Sam Adamas Octoberfest Non-Alcoholic 4/6/12 oz Can",
+            "product": "4056 Sam Adams Octoberfest Non-Alcoholic 4/6/12 oz Can",
             "unitsLastYear": 0.0,
             "unitsThisYear": 64.0,
             "growth": 64.0,
@@ -16885,23 +16859,20 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Derrick Laws": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 229.0,
-        "octoberfestUnitsThisYear": 164.0,
-        "octoberfestGrowth": -65.0,
+        "octoberfestUnitsThisYear": 154.0,
+        "octoberfestGrowth": -75.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3919 Sam Adams Octoberfest 4/6/12 oz Btl",
             "unitsLastYear": 104.0,
-            "unitsThisYear": 74.0,
-            "growth": -30.0,
+            "unitsThisYear": 64.0,
+            "growth": -40.0,
             "accounts": []
           },
           {
@@ -16919,20 +16890,17 @@ const PROGRAM_DATA = {
             "accounts": []
           },
           {
-            "product": "4056 Sam Adamas Octoberfest Non-Alcoholic 4/6/12 oz Can",
+            "product": "4056 Sam Adams Octoberfest Non-Alcoholic 4/6/12 oz Can",
             "unitsLastYear": 0.0,
             "unitsThisYear": 5.0,
             "growth": 5.0,
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Dylan Rubino": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 2.0,
         "octoberfestUnitsThisYear": 2.0,
         "octoberfestGrowth": 0.0,
@@ -16946,25 +16914,19 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Hakan Sadik": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 0.0,
         "octoberfestUnitsThisYear": 0.0,
         "octoberfestGrowth": 0.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [],
-        "payout": 0,
         "territoryEligible": false
       },
       "Jaime Colonna": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 9.0,
         "octoberfestUnitsThisYear": 4.0,
         "octoberfestGrowth": -5.0,
@@ -16985,23 +16947,20 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Javier Melo": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 23.0,
-        "octoberfestUnitsThisYear": 18.0,
-        "octoberfestGrowth": -5.0,
+        "octoberfestUnitsThisYear": 22.0,
+        "octoberfestGrowth": -1.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3919 Sam Adams Octoberfest 4/6/12 oz Btl",
             "unitsLastYear": 18.0,
-            "unitsThisYear": 14.0,
-            "growth": -4.0,
+            "unitsThisYear": 18.0,
+            "growth": 0.0,
             "accounts": []
           },
           {
@@ -17019,13 +16978,10 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Jayson Romine": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 1901.0,
         "octoberfestUnitsThisYear": 1413.0,
         "octoberfestGrowth": -488.0,
@@ -17053,7 +17009,7 @@ const PROGRAM_DATA = {
             "accounts": []
           },
           {
-            "product": "4056 Sam Adamas Octoberfest Non-Alcoholic 4/6/12 oz Can",
+            "product": "4056 Sam Adams Octoberfest Non-Alcoholic 4/6/12 oz Can",
             "unitsLastYear": 0.0,
             "unitsThisYear": 34.0,
             "growth": 34.0,
@@ -17081,30 +17037,27 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Jim Heaney": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 683.0,
-        "octoberfestUnitsThisYear": 419.0,
-        "octoberfestGrowth": -264.0,
+        "octoberfestUnitsThisYear": 443.0,
+        "octoberfestGrowth": -240.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3919 Sam Adams Octoberfest 4/6/12 oz Btl",
             "unitsLastYear": 349.0,
-            "unitsThisYear": 216.0,
-            "growth": -133.0,
+            "unitsThisYear": 226.0,
+            "growth": -123.0,
             "accounts": []
           },
           {
             "product": "3918 Sam Adams Octoberfest 2/12/12 oz Btl",
             "unitsLastYear": 150.0,
-            "unitsThisYear": 99.0,
-            "growth": -51.0,
+            "unitsThisYear": 113.0,
+            "growth": -37.0,
             "accounts": []
           },
           {
@@ -17115,7 +17068,7 @@ const PROGRAM_DATA = {
             "accounts": []
           },
           {
-            "product": "4056 Sam Adamas Octoberfest Non-Alcoholic 4/6/12 oz Can",
+            "product": "4056 Sam Adams Octoberfest Non-Alcoholic 4/6/12 oz Can",
             "unitsLastYear": 0.0,
             "unitsThisYear": 12.0,
             "growth": 12.0,
@@ -17143,13 +17096,10 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "John O'Donoghue": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": true,
         "octoberfestUnitsLastYear": 1.0,
         "octoberfestUnitsThisYear": 3.0,
         "octoberfestGrowth": 2.0,
@@ -17163,41 +17113,38 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 2,
         "territoryEligible": true
       },
       "Klejdi Lamo": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 1892.0,
-        "octoberfestUnitsThisYear": 1061.0,
-        "octoberfestGrowth": -831.0,
+        "octoberfestUnitsThisYear": 1081.0,
+        "octoberfestGrowth": -811.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3918 Sam Adams Octoberfest 2/12/12 oz Btl",
             "unitsLastYear": 755.0,
-            "unitsThisYear": 369.0,
-            "growth": -386.0,
+            "unitsThisYear": 377.0,
+            "growth": -378.0,
             "accounts": []
           },
           {
             "product": "3919 Sam Adams Octoberfest 4/6/12 oz Btl",
             "unitsLastYear": 626.0,
-            "unitsThisYear": 338.0,
-            "growth": -288.0,
+            "unitsThisYear": 344.0,
+            "growth": -282.0,
             "accounts": []
           },
           {
             "product": "3921 Sam Adams Octoberfest 2/12/12 oz Can",
             "unitsLastYear": 451.0,
-            "unitsThisYear": 309.0,
-            "growth": -142.0,
+            "unitsThisYear": 315.0,
+            "growth": -136.0,
             "accounts": []
           },
           {
-            "product": "4056 Sam Adamas Octoberfest Non-Alcoholic 4/6/12 oz Can",
+            "product": "4056 Sam Adams Octoberfest Non-Alcoholic 4/6/12 oz Can",
             "unitsLastYear": 0.0,
             "unitsThisYear": 26.0,
             "growth": 26.0,
@@ -17232,23 +17179,20 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Matt Powierski": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 363.0,
-        "octoberfestUnitsThisYear": 319.0,
-        "octoberfestGrowth": -44.0,
+        "octoberfestUnitsThisYear": 346.0,
+        "octoberfestGrowth": -17.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3919 Sam Adams Octoberfest 4/6/12 oz Btl",
             "unitsLastYear": 231.0,
-            "unitsThisYear": 229.0,
-            "growth": -2.0,
+            "unitsThisYear": 244.0,
+            "growth": 13.0,
             "accounts": []
           },
           {
@@ -17261,26 +17205,26 @@ const PROGRAM_DATA = {
           {
             "product": "3921 Sam Adams Octoberfest 2/12/12 oz Can",
             "unitsLastYear": 30.0,
-            "unitsThisYear": 30.0,
-            "growth": 0.0,
+            "unitsThisYear": 40.0,
+            "growth": 10.0,
             "accounts": []
           },
           {
             "product": "3862 Sam Adams Octoberfest 5.2 Gal Keg",
             "unitsLastYear": 8.0,
-            "unitsThisYear": 5.0,
-            "growth": -3.0,
+            "unitsThisYear": 6.0,
+            "growth": -2.0,
             "accounts": []
           },
           {
             "product": "3813 Sam Adams Octoberfest 15.5 Gal Keg",
             "unitsLastYear": 0.0,
-            "unitsThisYear": 2.0,
-            "growth": 2.0,
+            "unitsThisYear": 3.0,
+            "growth": 3.0,
             "accounts": []
           },
           {
-            "product": "4056 Sam Adamas Octoberfest Non-Alcoholic 4/6/12 oz Can",
+            "product": "4056 Sam Adams Octoberfest Non-Alcoholic 4/6/12 oz Can",
             "unitsLastYear": 0.0,
             "unitsThisYear": 2.0,
             "growth": 2.0,
@@ -17294,16 +17238,13 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Michael Harboy": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 162.0,
-        "octoberfestUnitsThisYear": 103.0,
-        "octoberfestGrowth": -59.0,
+        "octoberfestUnitsThisYear": 108.0,
+        "octoberfestGrowth": -54.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
@@ -17316,42 +17257,39 @@ const PROGRAM_DATA = {
           {
             "product": "3921 Sam Adams Octoberfest 2/12/12 oz Can",
             "unitsLastYear": 30.0,
-            "unitsThisYear": 20.0,
-            "growth": -10.0,
+            "unitsThisYear": 23.0,
+            "growth": -7.0,
             "accounts": []
           },
           {
             "product": "3918 Sam Adams Octoberfest 2/12/12 oz Btl",
             "unitsLastYear": 40.0,
-            "unitsThisYear": 15.0,
-            "growth": -25.0,
+            "unitsThisYear": 17.0,
+            "growth": -23.0,
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Mike Ast": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 1175.0,
-        "octoberfestUnitsThisYear": 877.0,
-        "octoberfestGrowth": -298.0,
+        "octoberfestUnitsThisYear": 894.0,
+        "octoberfestGrowth": -281.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3919 Sam Adams Octoberfest 4/6/12 oz Btl",
             "unitsLastYear": 463.0,
-            "unitsThisYear": 289.0,
-            "growth": -174.0,
+            "unitsThisYear": 299.0,
+            "growth": -164.0,
             "accounts": []
           },
           {
             "product": "3918 Sam Adams Octoberfest 2/12/12 oz Btl",
             "unitsLastYear": 450.0,
-            "unitsThisYear": 282.0,
-            "growth": -168.0,
+            "unitsThisYear": 286.0,
+            "growth": -164.0,
             "accounts": []
           },
           {
@@ -17364,12 +17302,12 @@ const PROGRAM_DATA = {
           {
             "product": "3813 Sam Adams Octoberfest 15.5 Gal Keg",
             "unitsLastYear": 11.0,
-            "unitsThisYear": 11.0,
-            "growth": 0.0,
+            "unitsThisYear": 14.0,
+            "growth": 3.0,
             "accounts": []
           },
           {
-            "product": "4056 Sam Adamas Octoberfest Non-Alcoholic 4/6/12 oz Can",
+            "product": "4056 Sam Adams Octoberfest Non-Alcoholic 4/6/12 oz Can",
             "unitsLastYear": 0.0,
             "unitsThisYear": 8.0,
             "growth": 8.0,
@@ -17390,30 +17328,27 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Nick Melissari": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": true,
         "octoberfestUnitsLastYear": 308.0,
-        "octoberfestUnitsThisYear": 298.0,
-        "octoberfestGrowth": -10.0,
+        "octoberfestUnitsThisYear": 309.0,
+        "octoberfestGrowth": 1.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3813 Sam Adams Octoberfest 15.5 Gal Keg",
             "unitsLastYear": 169.0,
-            "unitsThisYear": 168.0,
-            "growth": -1.0,
+            "unitsThisYear": 176.0,
+            "growth": 7.0,
             "accounts": []
           },
           {
             "product": "3862 Sam Adams Octoberfest 5.2 Gal Keg",
             "unitsLastYear": 121.0,
-            "unitsThisYear": 113.0,
-            "growth": -8.0,
+            "unitsThisYear": 116.0,
+            "growth": -5.0,
             "accounts": []
           },
           {
@@ -17431,7 +17366,7 @@ const PROGRAM_DATA = {
             "accounts": []
           },
           {
-            "product": "4056 Sam Adamas Octoberfest Non-Alcoholic 4/6/12 oz Can",
+            "product": "4056 Sam Adams Octoberfest Non-Alcoholic 4/6/12 oz Can",
             "unitsLastYear": 0.0,
             "unitsThisYear": 3.0,
             "growth": 3.0,
@@ -17445,13 +17380,10 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Pablo Lopez": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": true,
         "octoberfestUnitsLastYear": 12.0,
         "octoberfestUnitsThisYear": 17.0,
         "octoberfestGrowth": 5.0,
@@ -17465,30 +17397,27 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 5,
         "territoryEligible": true
       },
       "Paul Mclaughlin": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 172.0,
-        "octoberfestUnitsThisYear": 152.0,
-        "octoberfestGrowth": -20.0,
+        "octoberfestUnitsThisYear": 160.0,
+        "octoberfestGrowth": -12.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3813 Sam Adams Octoberfest 15.5 Gal Keg",
             "unitsLastYear": 91.0,
-            "unitsThisYear": 90.0,
-            "growth": -1.0,
+            "unitsThisYear": 96.0,
+            "growth": 5.0,
             "accounts": []
           },
           {
             "product": "3862 Sam Adams Octoberfest 5.2 Gal Keg",
             "unitsLastYear": 56.0,
-            "unitsThisYear": 49.0,
-            "growth": -7.0,
+            "unitsThisYear": 51.0,
+            "growth": -5.0,
             "accounts": []
           },
           {
@@ -17506,41 +17435,38 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Phil Ernst": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 1132.0,
-        "octoberfestUnitsThisYear": 749.0,
-        "octoberfestGrowth": -383.0,
+        "octoberfestUnitsThisYear": 764.0,
+        "octoberfestGrowth": -368.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3918 Sam Adams Octoberfest 2/12/12 oz Btl",
             "unitsLastYear": 470.0,
-            "unitsThisYear": 278.0,
-            "growth": -192.0,
+            "unitsThisYear": 293.0,
+            "growth": -177.0,
             "accounts": []
           },
           {
             "product": "3919 Sam Adams Octoberfest 4/6/12 oz Btl",
             "unitsLastYear": 341.0,
-            "unitsThisYear": 272.0,
-            "growth": -69.0,
+            "unitsThisYear": 273.0,
+            "growth": -68.0,
             "accounts": []
           },
           {
             "product": "3921 Sam Adams Octoberfest 2/12/12 oz Can",
             "unitsLastYear": 304.0,
-            "unitsThisYear": 184.0,
-            "growth": -120.0,
+            "unitsThisYear": 183.0,
+            "growth": -121.0,
             "accounts": []
           },
           {
-            "product": "4056 Sam Adamas Octoberfest Non-Alcoholic 4/6/12 oz Can",
+            "product": "4056 Sam Adams Octoberfest Non-Alcoholic 4/6/12 oz Can",
             "unitsLastYear": 0.0,
             "unitsThisYear": 10.0,
             "growth": 10.0,
@@ -17568,16 +17494,13 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Robin Feldman": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": true,
         "octoberfestUnitsLastYear": 146.0,
-        "octoberfestUnitsThisYear": 143.0,
-        "octoberfestGrowth": -3.0,
+        "octoberfestUnitsThisYear": 148.0,
+        "octoberfestGrowth": 2.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
@@ -17588,17 +17511,17 @@ const PROGRAM_DATA = {
             "accounts": []
           },
           {
+            "product": "3918 Sam Adams Octoberfest 2/12/12 oz Btl",
+            "unitsLastYear": 15.0,
+            "unitsThisYear": 35.0,
+            "growth": 20.0,
+            "accounts": []
+          },
+          {
             "product": "3919 Sam Adams Octoberfest 4/6/12 oz Btl",
             "unitsLastYear": 63.0,
             "unitsThisYear": 34.0,
             "growth": -29.0,
-            "accounts": []
-          },
-          {
-            "product": "3918 Sam Adams Octoberfest 2/12/12 oz Btl",
-            "unitsLastYear": 15.0,
-            "unitsThisYear": 30.0,
-            "growth": 15.0,
             "accounts": []
           },
           {
@@ -17609,23 +17532,20 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       },
       "Shane Barreca": {
-        "allSkuUnitsLastYear": null,
-        "allSkuUnitsThisYear": null,
-        "isPositive": null,
+        "isPositive": false,
         "octoberfestUnitsLastYear": 1371.0,
-        "octoberfestUnitsThisYear": 952.0,
-        "octoberfestGrowth": -419.0,
+        "octoberfestUnitsThisYear": 987.0,
+        "octoberfestGrowth": -384.0,
         "octoberfestByAccount": [],
         "octoberfestByProduct": [
           {
             "product": "3919 Sam Adams Octoberfest 4/6/12 oz Btl",
             "unitsLastYear": 548.0,
-            "unitsThisYear": 399.0,
-            "growth": -149.0,
+            "unitsThisYear": 411.0,
+            "growth": -137.0,
             "accounts": []
           },
           {
@@ -17638,8 +17558,8 @@ const PROGRAM_DATA = {
           {
             "product": "3918 Sam Adams Octoberfest 2/12/12 oz Btl",
             "unitsLastYear": 435.0,
-            "unitsThisYear": 228.0,
-            "growth": -207.0,
+            "unitsThisYear": 251.0,
+            "growth": -184.0,
             "accounts": []
           },
           {
@@ -17650,7 +17570,7 @@ const PROGRAM_DATA = {
             "accounts": []
           },
           {
-            "product": "4056 Sam Adamas Octoberfest Non-Alcoholic 4/6/12 oz Can",
+            "product": "4056 Sam Adams Octoberfest Non-Alcoholic 4/6/12 oz Can",
             "unitsLastYear": 0.0,
             "unitsThisYear": 18.0,
             "growth": 18.0,
@@ -17671,7 +17591,6 @@ const PROGRAM_DATA = {
             "accounts": []
           }
         ],
-        "payout": 0,
         "territoryEligible": true
       }
     },
@@ -17682,8 +17601,8 @@ const PROGRAM_DATA = {
       "daysElapsed": 56,
       "periodDays": 61,
       "houseLastYear": 14956.0,
-      "houseThisYear": 10813.0,
-      "allSkuTracked": false,
+      "houseThisYear": 11024.0,
+      "reward": "Double commission on all Sam Adams if positive",
       "offRoster": [
         "John Neukum",
         "Default",
@@ -46731,16 +46650,16 @@ const PROGRAM_DATA = {
         "caseGrowthOverLastYear": 70.01
       },
       "Andrew Lundy": {
-        "caseGrowthOverLastYear": 163.66
+        "caseGrowthOverLastYear": 179.66
       },
       "Anthony Palmisano": {
-        "caseGrowthOverLastYear": 63.51
+        "caseGrowthOverLastYear": 73.51
       },
       "Brian Sengebush": {
         "caseGrowthOverLastYear": 104.21
       },
       "Chris Payton": {
-        "caseGrowthOverLastYear": 91.22
+        "caseGrowthOverLastYear": 93.22
       },
       "Dan Lagala": {
         "caseGrowthOverLastYear": 36.33
@@ -46758,31 +46677,31 @@ const PROGRAM_DATA = {
         "caseGrowthOverLastYear": 403.34
       },
       "Jaime Colonna": {
-        "caseGrowthOverLastYear": 103.24
+        "caseGrowthOverLastYear": 108.24
       },
       "Javier Melo": {
         "caseGrowthOverLastYear": 0.0
       },
       "Jayson Romine": {
-        "caseGrowthOverLastYear": 263.44
+        "caseGrowthOverLastYear": 275.33
       },
       "Jim Heaney": {
-        "caseGrowthOverLastYear": 63.67
+        "caseGrowthOverLastYear": 66.67
       },
       "John O'Donoghue": {
-        "caseGrowthOverLastYear": 318.04
+        "caseGrowthOverLastYear": 357.93
       },
       "Klejdi Lamo": {
-        "caseGrowthOverLastYear": 248.95
+        "caseGrowthOverLastYear": 253.95
       },
       "Matt Powierski": {
         "caseGrowthOverLastYear": 76.78
       },
       "Michael Harboy": {
-        "caseGrowthOverLastYear": 213.71
+        "caseGrowthOverLastYear": 229.04
       },
       "Mike Ast": {
-        "caseGrowthOverLastYear": 127.79
+        "caseGrowthOverLastYear": 134.46
       },
       "Nick Melissari": {
         "caseGrowthOverLastYear": 88.97
@@ -46791,19 +46710,19 @@ const PROGRAM_DATA = {
         "caseGrowthOverLastYear": 5.0
       },
       "Paul Mclaughlin": {
-        "caseGrowthOverLastYear": 203.75
+        "caseGrowthOverLastYear": 205.08
       },
       "Phil Ernst": {
-        "caseGrowthOverLastYear": 19.34
+        "caseGrowthOverLastYear": 34.34
       },
       "Robin Feldman": {
         "caseGrowthOverLastYear": 0.0
       },
       "Shane Barreca": {
-        "caseGrowthOverLastYear": 223.34
+        "caseGrowthOverLastYear": 238.34
       }
     },
-    "companyTotalThisYear": 8483.04,
+    "companyTotalThisYear": 8629.15,
     "houseGoal": 9305
   },
   "le_grand_noir": {
@@ -95423,19 +95342,19 @@ const PROGRAM_DATA_2026_09 = {
         "offPremNewCount": 0,
         "offPremReorderCount": 0,
         "offPremCases": 0.0,
-        "onPremCases": 420.0,
+        "onPremCases": 462.0,
         "onPremAccounts": [
           {
             "customer": "Thatcher Mc Ghees (A)",
             "cases": 75.0
           },
           {
-            "customer": "The Clif (P)",
-            "cases": 31.0
+            "customer": "Bardis (P)",
+            "cases": 39.0
           },
           {
-            "customer": "Bardis (P)",
-            "cases": 27.0
+            "customer": "The Clif (P)",
+            "cases": 31.0
           },
           {
             "customer": "Bask 46",
@@ -95450,6 +95369,22 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 18.0
           },
           {
+            "customer": "Blackjack Mulligan's Public House",
+            "cases": 17.0
+          },
+          {
+            "customer": "cherry's",
+            "cases": 16.0
+          },
+          {
+            "customer": "Shortways' Barn (A)",
+            "cases": 15.0
+          },
+          {
+            "customer": "The Celtic Knot",
+            "cases": 15.0
+          },
+          {
             "customer": "Celtic Corner",
             "cases": 15.0
           },
@@ -95458,16 +95393,8 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 15.0
           },
           {
-            "customer": "Blackjack Mulligan's Public House",
-            "cases": 15.0
-          },
-          {
             "customer": "Sharky's Wings(P)",
             "cases": 15.0
-          },
-          {
-            "customer": "cherry's",
-            "cases": 12.0
           },
           {
             "customer": "Kitchen & Beer Bar",
@@ -95480,10 +95407,6 @@ const PROGRAM_DATA_2026_09 = {
           {
             "customer": "Dingbatz (P)",
             "cases": 10.0
-          },
-          {
-            "customer": "The Celtic Knot",
-            "cases": 9.0
           },
           {
             "customer": "Packanack Golf (P)",
@@ -95506,7 +95429,11 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 7.0
           },
           {
-            "customer": "THE TIES",
+            "customer": "WAYNE ALE HOUSE & PIZZA",
+            "cases": 6.0
+          },
+          {
+            "customer": "Dave & Buster's Nj, Inc",
             "cases": 6.0
           },
           {
@@ -95518,7 +95445,11 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 6.0
           },
           {
-            "customer": "Dave & Buster's Nj, Inc",
+            "customer": "Celtic Crossings",
+            "cases": 5.0
+          },
+          {
+            "customer": "THE TIES",
             "cases": 5.0
           },
           {
@@ -95526,8 +95457,8 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 5.0
           },
           {
-            "customer": "Shortways' Barn (A)",
-            "cases": 5.0
+            "customer": "The Shannon Rose (A)",
+            "cases": 4.0
           },
           {
             "customer": "Sportzone B&G (P)",
@@ -95538,15 +95469,11 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 4.0
           },
           {
-            "customer": "WAYNE ALE HOUSE & PIZZA",
-            "cases": 4.0
-          },
-          {
-            "customer": "Celtic Crossings",
-            "cases": 4.0
-          },
-          {
             "customer": "River Terrace Inn(P)",
+            "cases": 3.0
+          },
+          {
+            "customer": "Breaker Billiards",
             "cases": 3.0
           },
           {
@@ -95574,12 +95501,12 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 2.0
           },
           {
-            "customer": "The Shannon Rose (A)",
+            "customer": "The Front Porch (Z)",
             "cases": 2.0
           },
           {
-            "customer": "The Front Porch (Z)",
-            "cases": 2.0
+            "customer": "Underdog Lounge(P)",
+            "cases": 1.0
           },
           {
             "customer": "T Bowl Tavern (Z)",
@@ -95598,18 +95525,14 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 1.0
           },
           {
-            "customer": "Breaker Billiards",
-            "cases": 1.0
-          },
-          {
             "customer": "Veterans Post (9)",
             "cases": 1.0
           }
         ],
-        "onPremAccountCount": 45,
+        "onPremAccountCount": 46,
         "placementPayout": 0,
-        "onPremCasePayout": 420,
-        "payout": 420,
+        "onPremCasePayout": 462,
+        "payout": 462,
         "byBrand": {
           "Sun Cruiser": 0,
           "Twisted Tea": 0
@@ -95825,9 +95748,9 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "offPremNewCount": 15,
-        "offPremReorderCount": 73,
-        "offPremCases": 582.0,
-        "onPremCases": 239.0,
+        "offPremReorderCount": 84,
+        "offPremCases": 640.0,
+        "onPremCases": 272.0,
         "onPremAccounts": [
           {
             "customer": "Airport Pub & Pkg",
@@ -95835,19 +95758,27 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Crystal Sprs/Wild Turkey",
-            "cases": 35.0
+            "cases": 40.0
           },
           {
             "customer": "The New Jessies Kettle(P)",
-            "cases": 16.0
+            "cases": 21.0
+          },
+          {
+            "customer": "The River Of Beer",
+            "cases": 20.0
+          },
+          {
+            "customer": "Old School Pub P)",
+            "cases": 19.0
           },
           {
             "customer": "Thirsty Farmer",
             "cases": 15.0
           },
           {
-            "customer": "Old School Pub P)",
-            "cases": 14.0
+            "customer": "Doc's Place (P)",
+            "cases": 12.0
           },
           {
             "customer": "Whiskey Wolf Tavern (P)",
@@ -95858,12 +95789,8 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 10.0
           },
           {
-            "customer": "Doc's Place (P)",
-            "cases": 10.0
-          },
-          {
-            "customer": "The River Of Beer",
-            "cases": 10.0
+            "customer": "Country Cottage Rest (P)",
+            "cases": 9.0
           },
           {
             "customer": "Great Gorge Golf (A) Club",
@@ -95874,7 +95801,7 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 8.0
           },
           {
-            "customer": "Whistle Stop (P)",
+            "customer": "Flip's Bar (P)",
             "cases": 7.0
           },
           {
@@ -95882,16 +95809,12 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 7.0
           },
           {
-            "customer": "D'Boathaus Restaurant",
+            "customer": "Whistle Stop (P)",
             "cases": 7.0
           },
           {
-            "customer": "Country Cottage Rest (P)",
-            "cases": 6.0
-          },
-          {
-            "customer": "Flip's Bar (P)",
-            "cases": 6.0
+            "customer": "D'Boathaus Restaurant",
+            "cases": 7.0
           },
           {
             "customer": "Stew N Dolly's Place",
@@ -95904,6 +95827,10 @@ const PROGRAM_DATA_2026_09 = {
           {
             "customer": "J & S Roadhouse",
             "cases": 4.0
+          },
+          {
+            "customer": "The Lamp Post Inn",
+            "cases": 2.0
           },
           {
             "customer": "Early American Tavern",
@@ -95926,10 +95853,10 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 1.0
           }
         ],
-        "onPremAccountCount": 24,
+        "onPremAccountCount": 25,
         "placementPayout": 225,
-        "onPremCasePayout": 239,
-        "payout": 464,
+        "onPremCasePayout": 272,
+        "payout": 497,
         "byBrand": {
           "Sun Cruiser": 3,
           "Twisted Tea": 12
@@ -95938,23 +95865,31 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargetCount": 0
       },
       "Brian Sengebush": {
-        "offPremNew": [],
-        "offPremNewCount": 0,
+        "offPremNew": [
+          {
+            "customer": "Swartswood",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/23/2026"
+          }
+        ],
+        "offPremNewCount": 1,
         "offPremReorderCount": 7,
-        "offPremCases": 55.0,
-        "onPremCases": 233.0,
+        "offPremCases": 57.0,
+        "onPremCases": 246.0,
         "onPremAccounts": [
           {
             "customer": "Charley's Tavern",
             "cases": 46.0
           },
           {
-            "customer": "Mason Street Grille",
+            "customer": "The Jefferson House",
             "cases": 34.0
           },
           {
-            "customer": "The Jefferson House",
-            "cases": 31.0
+            "customer": "Mason Street Grille",
+            "cases": 34.0
           },
           {
             "customer": "Thatcher Mcghee's (A)",
@@ -95973,20 +95908,24 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 10.0
           },
           {
+            "customer": "Fountain House (Z)",
+            "cases": 8.0
+          },
+          {
+            "customer": "Elks Post 782 (Z)",
+            "cases": 6.0
+          },
+          {
+            "customer": "Harrigan's Rest. (P)",
+            "cases": 6.0
+          },
+          {
             "customer": "AG Pizza and Restaurant (Branchville)",
             "cases": 6.0
           },
           {
             "customer": "Pavilion Lounge(Z)",
             "cases": 6.0
-          },
-          {
-            "customer": "Fountain House (Z)",
-            "cases": 5.0
-          },
-          {
-            "customer": "Harrigan's Rest. (P)",
-            "cases": 5.0
           },
           {
             "customer": "Gatwyns II (P)",
@@ -96013,6 +95952,10 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 3.0
           },
           {
+            "customer": "Sparta Lanes (Pino)",
+            "cases": 2.0
+          },
+          {
             "customer": "Pat's Bar (P)",
             "cases": 2.0
           },
@@ -96022,10 +95965,6 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Johnnie's Tavern",
-            "cases": 2.0
-          },
-          {
-            "customer": "Elks Post 782 (Z)",
             "cases": 2.0
           },
           {
@@ -96041,6 +95980,10 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 2.0
           },
           {
+            "customer": "Rustic Texmex & Sports Bar",
+            "cases": 1.0
+          },
+          {
             "customer": "Shakey Jake's (P)",
             "cases": 1.0
           },
@@ -96053,21 +95996,17 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 1.0
           },
           {
-            "customer": "Sparta Lanes (Pino)",
-            "cases": 1.0
-          },
-          {
             "customer": "Knotty Pine Pub (P)",
             "cases": -1.0
           }
         ],
-        "onPremAccountCount": 29,
-        "placementPayout": 0,
-        "onPremCasePayout": 233,
-        "payout": 233,
+        "onPremAccountCount": 30,
+        "placementPayout": 15,
+        "onPremCasePayout": 246,
+        "payout": 261,
         "byBrand": {
           "Sun Cruiser": 0,
-          "Twisted Tea": 0
+          "Twisted Tea": 1
         },
         "offPremTargets": [
           {
@@ -96080,6 +96019,27 @@ const PROGRAM_DATA_2026_09 = {
       "Chris Payton": {
         "offPremNew": [
           {
+            "customer": "The Wine Rack Hasbrouck Hts",
+            "brands": [
+              "Sun Cruiser"
+            ],
+            "date": "9/24/2026"
+          },
+          {
+            "customer": "The Wine Rack Hasbrouck Hts",
+            "brands": [
+              "Sun Cruiser"
+            ],
+            "date": "9/24/2026"
+          },
+          {
+            "customer": "The Wine Rack Hasbrouck Hts",
+            "brands": [
+              "Sun Cruiser"
+            ],
+            "date": "9/24/2026"
+          },
+          {
             "customer": "Woodridge Wines & Liq(A)",
             "brands": [
               "Sun Cruiser"
@@ -96087,6 +96047,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/21/2026"
           },
           {
+            "customer": "B & B Liquors (Fair Lawn)",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/2/2026"
+          },
+          {
             "customer": "Morlot W & L (A)",
             "brands": [
               "Twisted Tea"
@@ -96122,27 +96089,31 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/1/2026"
           }
         ],
-        "offPremNewCount": 6,
-        "offPremReorderCount": 32,
-        "offPremCases": 168.0,
-        "onPremCases": 22.0,
+        "offPremNewCount": 10,
+        "offPremReorderCount": 36,
+        "offPremCases": 196.0,
+        "onPremCases": 34.0,
         "onPremAccounts": [
           {
             "customer": "Ridgewood Country Club",
-            "cases": 12.0
+            "cases": 18.0
           },
           {
             "customer": "Colonial Bar",
-            "cases": 10.0
+            "cases": 15.0
+          },
+          {
+            "customer": "Hilton Garden Inn Ridgefield Park",
+            "cases": 1.0
           }
         ],
-        "onPremAccountCount": 2,
-        "placementPayout": 90,
-        "onPremCasePayout": 22,
-        "payout": 112,
+        "onPremAccountCount": 3,
+        "placementPayout": 150,
+        "onPremCasePayout": 34,
+        "payout": 184,
         "byBrand": {
-          "Sun Cruiser": 1,
-          "Twisted Tea": 5
+          "Sun Cruiser": 4,
+          "Twisted Tea": 6
         },
         "offPremTargets": [
           {
@@ -96183,8 +96154,8 @@ const PROGRAM_DATA_2026_09 = {
       "Dan Lagala": {
         "offPremNew": [],
         "offPremNewCount": 0,
-        "offPremReorderCount": 14,
-        "offPremCases": 76.0,
+        "offPremReorderCount": 19,
+        "offPremCases": 93.0,
         "onPremCases": 10.0,
         "onPremAccounts": [
           {
@@ -96301,21 +96272,7 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/4/2026"
           },
           {
-            "customer": "Simple Simon's (Z)",
-            "brands": [
-              "Twisted Tea"
-            ],
-            "date": "9/4/2026"
-          },
-          {
-            "customer": "Time Lounge And Liq (A)",
-            "brands": [
-              "Sun Cruiser"
-            ],
-            "date": "9/4/2026"
-          },
-          {
-            "customer": "New Milford Liquors",
+            "customer": "Burgundy Convenience Store",
             "brands": [
               "Twisted Tea"
             ],
@@ -96329,7 +96286,21 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/4/2026"
           },
           {
-            "customer": "Burgundy Convenience Store",
+            "customer": "New Milford Liquors",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/4/2026"
+          },
+          {
+            "customer": "Time Lounge And Liq (A)",
+            "brands": [
+              "Sun Cruiser"
+            ],
+            "date": "9/4/2026"
+          },
+          {
+            "customer": "Simple Simon's (Z)",
             "brands": [
               "Twisted Tea"
             ],
@@ -96343,6 +96314,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/4/2026"
           },
           {
+            "customer": "Fill Er Up Kosher Wine(P)",
+            "brands": [
+              "Sun Cruiser"
+            ],
+            "date": "9/3/2026"
+          },
+          {
             "customer": "VINEYARD",
             "brands": [
               "Twisted Tea"
@@ -96350,9 +96328,16 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/3/2026"
           },
           {
-            "customer": "Fill Er Up Kosher Wine(P)",
+            "customer": "VINEYARD",
             "brands": [
-              "Sun Cruiser"
+              "Twisted Tea"
+            ],
+            "date": "9/3/2026"
+          },
+          {
+            "customer": "VINEYARD",
+            "brands": [
+              "Twisted Tea"
             ],
             "date": "9/3/2026"
           },
@@ -96364,25 +96349,25 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/3/2026"
           },
           {
-            "customer": "VINEYARD",
+            "customer": "Wine & More (P)",
             "brands": [
-              "Twisted Tea"
+              "Sun Cruiser"
             ],
-            "date": "9/3/2026"
+            "date": "9/25/2026"
           },
           {
-            "customer": "VINEYARD",
+            "customer": "Englewood Liq (A)",
             "brands": [
-              "Twisted Tea"
+              "Sun Cruiser"
             ],
-            "date": "9/3/2026"
+            "date": "9/24/2026"
           },
           {
-            "customer": "Bergenfield Liq & Fw",
+            "customer": "Grand Liquor & Delicatesen",
             "brands": [
-              "Twisted Tea"
+              "Sun Cruiser"
             ],
-            "date": "9/23/2026"
+            "date": "9/24/2026"
           },
           {
             "customer": "Wine And Liq Depot(A)",
@@ -96393,6 +96378,13 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Bottle & Cork",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/23/2026"
+          },
+          {
+            "customer": "Bergenfield Liq & Fw",
             "brands": [
               "Twisted Tea"
             ],
@@ -96420,6 +96412,27 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/2/2026"
           },
           {
+            "customer": "G & G Liquors & Bar",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/2/2026"
+          },
+          {
+            "customer": "Wine And Liq Depot(A)",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/2/2026"
+          },
+          {
+            "customer": "Joes Beer Wine & Spirits",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/17/2026"
+          },
+          {
             "customer": "Hackensack Liquors",
             "brands": [
               "Twisted Tea"
@@ -96427,6 +96440,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/15/2026"
           },
           {
+            "customer": "George's Liq",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/14/2026"
+          },
+          {
             "customer": "River Edge Wine & Liquor",
             "brands": [
               "Sun Cruiser"
@@ -96439,6 +96459,13 @@ const PROGRAM_DATA_2026_09 = {
               "Sun Cruiser"
             ],
             "date": "9/14/2026"
+          },
+          {
+            "customer": "Time Lounge And Liq (A)",
+            "brands": [
+              "Sun Cruiser"
+            ],
+            "date": "9/11/2026"
           },
           {
             "customer": "New Milford Liquors",
@@ -96448,9 +96475,9 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/11/2026"
           },
           {
-            "customer": "Time Lounge And Liq (A)",
+            "customer": "Simple Simon's (Z)",
             "brands": [
-              "Sun Cruiser"
+              "Twisted Tea"
             ],
             "date": "9/11/2026"
           },
@@ -96483,18 +96510,18 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/1/2026"
           }
         ],
-        "offPremNewCount": 28,
-        "offPremReorderCount": 46,
-        "offPremCases": 323.0,
+        "offPremNewCount": 36,
+        "offPremReorderCount": 49,
+        "offPremCases": 342.0,
         "onPremCases": 0.0,
         "onPremAccounts": [],
         "onPremAccountCount": 0,
-        "placementPayout": 420,
+        "placementPayout": 540,
         "onPremCasePayout": 0,
-        "payout": 420,
+        "payout": 540,
         "byBrand": {
-          "Sun Cruiser": 7,
-          "Twisted Tea": 21
+          "Sun Cruiser": 10,
+          "Twisted Tea": 26
         },
         "offPremTargets": [
           {
@@ -96546,8 +96573,8 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "offPremNewCount": 2,
-        "offPremReorderCount": 7,
-        "offPremCases": 34.0,
+        "offPremReorderCount": 8,
+        "offPremCases": 39.0,
         "onPremCases": 0.0,
         "onPremAccounts": [],
         "onPremAccountCount": 0,
@@ -96950,8 +96977,8 @@ const PROGRAM_DATA_2026_09 = {
       "Javier Melo": {
         "offPremNew": [],
         "offPremNewCount": 0,
-        "offPremReorderCount": 1,
-        "offPremCases": 10.0,
+        "offPremReorderCount": 2,
+        "offPremCases": 17.0,
         "onPremCases": 0.0,
         "onPremAccounts": [],
         "onPremAccountCount": 0,
@@ -97127,8 +97154,8 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "offPremNewCount": 11,
-        "offPremReorderCount": 72,
-        "offPremCases": 551.0,
+        "offPremReorderCount": 78,
+        "offPremCases": 604.0,
         "onPremCases": 0.0,
         "onPremAccounts": [],
         "onPremAccountCount": 0,
@@ -97193,14 +97220,14 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/21/2026"
           },
           {
-            "customer": "Henry's Liquors",
+            "customer": "Quick Buy",
             "brands": [
               "Twisted Tea"
             ],
             "date": "9/18/2026"
           },
           {
-            "customer": "Quick Buy",
+            "customer": "Henry's Liquors",
             "brands": [
               "Twisted Tea"
             ],
@@ -97215,8 +97242,8 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "offPremNewCount": 8,
-        "offPremReorderCount": 37,
-        "offPremCases": 265.0,
+        "offPremReorderCount": 41,
+        "offPremCases": 277.0,
         "onPremCases": 0.0,
         "onPremAccounts": [],
         "onPremAccountCount": 0,
@@ -97400,6 +97427,20 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/9/2026"
           },
           {
+            "customer": "Boonton Liquor Locker",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/25/2026"
+          },
+          {
+            "customer": "Montville Wine & Spirits",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/23/2026"
+          },
+          {
             "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
             "brands": [
               "Sun Cruiser"
@@ -97456,9 +97497,9 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/14/2026"
           }
         ],
-        "offPremNewCount": 9,
-        "offPremReorderCount": 63,
-        "offPremCases": 570.0,
+        "offPremNewCount": 11,
+        "offPremReorderCount": 75,
+        "offPremCases": 635.0,
         "onPremCases": 5.0,
         "onPremAccounts": [
           {
@@ -97467,12 +97508,12 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "onPremAccountCount": 1,
-        "placementPayout": 135,
+        "placementPayout": 165,
         "onPremCasePayout": 5,
-        "payout": 140,
+        "payout": 170,
         "byBrand": {
           "Sun Cruiser": 6,
-          "Twisted Tea": 3
+          "Twisted Tea": 5
         },
         "offPremTargets": [
           {
@@ -97488,6 +97529,13 @@ const PROGRAM_DATA_2026_09 = {
       },
       "Matt Powierski": {
         "offPremNew": [
+          {
+            "customer": "Jay's Liquormart",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/24/2026"
+          },
           {
             "customer": "Garfield Discount Liquors",
             "brands": [
@@ -97517,9 +97565,9 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/11/2026"
           }
         ],
-        "offPremNewCount": 4,
-        "offPremReorderCount": 45,
-        "offPremCases": 225.0,
+        "offPremNewCount": 5,
+        "offPremReorderCount": 50,
+        "offPremCases": 255.0,
         "onPremCases": 6.0,
         "onPremAccounts": [
           {
@@ -97532,12 +97580,12 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "onPremAccountCount": 2,
-        "placementPayout": 60,
+        "placementPayout": 75,
         "onPremCasePayout": 6,
-        "payout": 66,
+        "payout": 81,
         "byBrand": {
           "Sun Cruiser": 2,
-          "Twisted Tea": 2
+          "Twisted Tea": 3
         },
         "offPremTargets": [
           {
@@ -97601,25 +97649,39 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/9/2026"
           },
           {
+            "customer": "Shays Liquors",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/9/2026"
+          },
+          {
             "customer": "Lincoln Center Liq",
             "brands": [
               "Twisted Tea"
             ],
             "date": "9/4/2026"
+          },
+          {
+            "customer": "Wayne Liquor Locker",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/24/2026"
           }
         ],
-        "offPremNewCount": 2,
-        "offPremReorderCount": 13,
-        "offPremCases": 121.0,
+        "offPremNewCount": 4,
+        "offPremReorderCount": 16,
+        "offPremCases": 148.0,
         "onPremCases": 0.0,
         "onPremAccounts": [],
         "onPremAccountCount": 0,
-        "placementPayout": 30,
+        "placementPayout": 60,
         "onPremCasePayout": 0,
-        "payout": 30,
+        "payout": 60,
         "byBrand": {
           "Sun Cruiser": 0,
-          "Twisted Tea": 2
+          "Twisted Tea": 4
         },
         "offPremTargets": [
           {
@@ -97716,8 +97778,8 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "offPremNewCount": 1,
-        "offPremReorderCount": 30,
-        "offPremCases": 274.0,
+        "offPremReorderCount": 32,
+        "offPremCases": 307.0,
         "onPremCases": 4.0,
         "onPremAccounts": [
           {
@@ -97782,7 +97844,7 @@ const PROGRAM_DATA_2026_09 = {
         "offPremNewCount": 0,
         "offPremReorderCount": 0,
         "offPremCases": 0.0,
-        "onPremCases": 145.0,
+        "onPremCases": 157.0,
         "onPremAccounts": [
           {
             "customer": "Ramsey Country Clb",
@@ -97805,6 +97867,10 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 12.0
           },
           {
+            "customer": "House of Que (East Rutherford)",
+            "cases": 10.0
+          },
+          {
             "customer": "Segovia Tavern",
             "cases": 10.0
           },
@@ -97813,11 +97879,15 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 9.0
           },
           {
-            "customer": "Mahwah B & G (A)",
+            "customer": "Mickey's Bar & Grill (Z)",
             "cases": 5.0
           },
           {
             "customer": "N Arlington Bowl O Drome",
+            "cases": 5.0
+          },
+          {
+            "customer": "Mahwah B & G (A)",
             "cases": 5.0
           },
           {
@@ -97829,15 +97899,11 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 4.0
           },
           {
-            "customer": "House of Que (East Rutherford)",
-            "cases": 4.0
-          },
-          {
-            "customer": "Blue Moon Mexican Cafe",
+            "customer": "City Lounge (P)",
             "cases": 3.0
           },
           {
-            "customer": "Mickey's Bar & Grill (Z)",
+            "customer": "Blue Moon Mexican Cafe",
             "cases": 3.0
           },
           {
@@ -97861,6 +97927,10 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 2.0
           },
           {
+            "customer": "Applebee's Garfield (A)",
+            "cases": 1.0
+          },
+          {
             "customer": "Rockafella's",
             "cases": 1.0
           },
@@ -97881,10 +97951,10 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 1.0
           }
         ],
-        "onPremAccountCount": 24,
+        "onPremAccountCount": 26,
         "placementPayout": 0,
-        "onPremCasePayout": 145,
-        "payout": 145,
+        "onPremCasePayout": 157,
+        "payout": 157,
         "byBrand": {
           "Sun Cruiser": 0,
           "Twisted Tea": 0
@@ -97907,6 +97977,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/15/2026"
           },
           {
+            "customer": "Legacy Bar & Liquor",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/1/2026"
+          },
+          {
             "customer": "Sunny's Liqs.(P)",
             "brands": [
               "Twisted Tea"
@@ -97921,18 +97998,18 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/1/2026"
           }
         ],
-        "offPremNewCount": 3,
+        "offPremNewCount": 4,
         "offPremReorderCount": 1,
-        "offPremCases": 21.0,
+        "offPremCases": 22.0,
         "onPremCases": 0.0,
         "onPremAccounts": [],
         "onPremAccountCount": 0,
-        "placementPayout": 45,
+        "placementPayout": 60,
         "onPremCasePayout": 0,
-        "payout": 45,
+        "payout": 60,
         "byBrand": {
           "Sun Cruiser": 0,
-          "Twisted Tea": 3
+          "Twisted Tea": 4
         },
         "offPremTargets": [
           {
@@ -98019,11 +98096,11 @@ const PROGRAM_DATA_2026_09 = {
         "offPremNewCount": 0,
         "offPremReorderCount": 0,
         "offPremCases": 0.0,
-        "onPremCases": 216.0,
+        "onPremCases": 253.0,
         "onPremAccounts": [
           {
             "customer": "Straphanger Saloon (A)",
-            "cases": 40.0
+            "cases": 52.0
           },
           {
             "customer": "The Cornerstone (P)",
@@ -98038,8 +98115,16 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 21.0
           },
           {
+            "customer": "Davey's Locker (A)",
+            "cases": 20.0
+          },
+          {
             "customer": "Cozy Tavern (P)",
-            "cases": 13.0
+            "cases": 16.0
+          },
+          {
+            "customer": "Stosh's Craft Bar (Z)",
+            "cases": 10.0
           },
           {
             "customer": "White Beeches Golf Club",
@@ -98047,10 +98132,6 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Hearth & Tap Co.",
-            "cases": 10.0
-          },
-          {
-            "customer": "Davey's Locker (A)",
             "cases": 10.0
           },
           {
@@ -98062,6 +98143,10 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 8.0
           },
           {
+            "customer": "Lenoras Bar (P)",
+            "cases": 7.0
+          },
+          {
             "customer": "Edgewood Country Club",
             "cases": 6.0
           },
@@ -98070,11 +98155,7 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 5.0
           },
           {
-            "customer": "Stosh's Craft Bar (Z)",
-            "cases": 5.0
-          },
-          {
-            "customer": "Lenoras Bar (P)",
+            "customer": "The Rockleigh C C (P)",
             "cases": 4.0
           },
           {
@@ -98102,10 +98183,10 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 1.0
           }
         ],
-        "onPremAccountCount": 20,
+        "onPremAccountCount": 21,
         "placementPayout": 0,
-        "onPremCasePayout": 216,
-        "payout": 216,
+        "onPremCasePayout": 253,
+        "payout": 253,
         "byBrand": {
           "Sun Cruiser": 0,
           "Twisted Tea": 0
@@ -98132,11 +98213,11 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/3/2026"
           },
           {
-            "customer": "Stew Leonard's(A) Paramus Wine",
+            "customer": "Palisades Wine And Liquor",
             "brands": [
-              "Sun Cruiser"
+              "Twisted Tea"
             ],
-            "date": "9/24/2026"
+            "date": "9/25/2026"
           },
           {
             "customer": "Home Wines & Liq 75 (A) (South Hackensack)",
@@ -98182,22 +98263,22 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "offPremNewCount": 8,
-        "offPremReorderCount": 26,
-        "offPremCases": 156.0,
-        "onPremCases": 18.0,
+        "offPremReorderCount": 34,
+        "offPremCases": 198.0,
+        "onPremCases": 57.0,
         "onPremAccounts": [
           {
             "customer": "Saddle Brook Liquor & Bar",
-            "cases": 18.0
+            "cases": 57.0
           }
         ],
         "onPremAccountCount": 1,
         "placementPayout": 120,
-        "onPremCasePayout": 18,
-        "payout": 138,
+        "onPremCasePayout": 57,
+        "payout": 177,
         "byBrand": {
-          "Sun Cruiser": 6,
-          "Twisted Tea": 2
+          "Sun Cruiser": 5,
+          "Twisted Tea": 3
         },
         "offPremTargets": [
           {
@@ -98244,7 +98325,7 @@ const PROGRAM_DATA_2026_09 = {
         "offPremNewCount": 0,
         "offPremReorderCount": 0,
         "offPremCases": 0.0,
-        "onPremCases": 129.0,
+        "onPremCases": 133.0,
         "onPremAccounts": [
           {
             "customer": "Elks Post 1562",
@@ -98253,6 +98334,10 @@ const PROGRAM_DATA_2026_09 = {
           {
             "customer": "Berkshire Valley Gc",
             "cases": 13.0
+          },
+          {
+            "customer": "Lake Mohawk (P) Golf Club",
+            "cases": 12.0
           },
           {
             "customer": "American Lgn 174 Wayne",
@@ -98268,10 +98353,6 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Elks Post 1477",
-            "cases": 8.0
-          },
-          {
-            "customer": "Lake Mohawk (P) Golf Club",
             "cases": 8.0
           },
           {
@@ -98307,7 +98388,7 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 3.0
           },
           {
-            "customer": "Elks Post (P)",
+            "customer": "Elks Post 2290 (Z)",
             "cases": 2.0
           },
           {
@@ -98315,7 +98396,7 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 2.0
           },
           {
-            "customer": "Elks Post 2290 (Z)",
+            "customer": "Elks Post (P)",
             "cases": 2.0
           },
           {
@@ -98357,8 +98438,8 @@ const PROGRAM_DATA_2026_09 = {
         ],
         "onPremAccountCount": 27,
         "placementPayout": 0,
-        "onPremCasePayout": 129,
-        "payout": 129,
+        "onPremCasePayout": 133,
+        "payout": 133,
         "byBrand": {
           "Sun Cruiser": 0,
           "Twisted Tea": 0
@@ -98379,6 +98460,13 @@ const PROGRAM_DATA_2026_09 = {
               "Twisted Tea"
             ],
             "date": "9/4/2026"
+          },
+          {
+            "customer": "Montvale Wine/Liq & Beer",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/22/2026"
           },
           {
             "customer": "Montvale Wine/Liq & Beer",
@@ -98409,18 +98497,18 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/1/2026"
           }
         ],
-        "offPremNewCount": 5,
-        "offPremReorderCount": 31,
-        "offPremCases": 238.0,
+        "offPremNewCount": 6,
+        "offPremReorderCount": 39,
+        "offPremCases": 300.0,
         "onPremCases": 0.0,
         "onPremAccounts": [],
         "onPremAccountCount": 0,
-        "placementPayout": 75,
+        "placementPayout": 90,
         "onPremCasePayout": 0,
-        "payout": 75,
+        "payout": 90,
         "byBrand": {
           "Sun Cruiser": 0,
-          "Twisted Tea": 5
+          "Twisted Tea": 6
         },
         "offPremTargets": [
           {
@@ -98457,103 +98545,103 @@ const PROGRAM_DATA_2026_09 = {
     },
     "leaderboard": [
       {
-        "rep": "Anthony Palmisano",
-        "payout": 464,
-        "newPlacements": 15,
+        "rep": "Dave Ehlers",
+        "payout": 540,
+        "newPlacements": 36,
         "rank": 1
       },
       {
-        "rep": "Dave Ehlers",
-        "payout": 420,
-        "newPlacements": 28,
+        "rep": "Anthony Palmisano",
+        "payout": 497,
+        "newPlacements": 15,
         "rank": 2
       },
       {
         "rep": "Allison Scott",
-        "payout": 420,
+        "payout": 462,
         "newPlacements": 0,
         "rank": 3
       },
       {
         "rep": "Brian Sengebush",
-        "payout": 233,
-        "newPlacements": 0,
+        "payout": 261,
+        "newPlacements": 1,
         "rank": 4
       },
       {
         "rep": "Paul Mclaughlin",
-        "payout": 216,
+        "payout": 253,
         "newPlacements": 0,
         "rank": 5
+      },
+      {
+        "rep": "Chris Payton",
+        "payout": 184,
+        "newPlacements": 10,
+        "rank": 6
+      },
+      {
+        "rep": "Phil Ernst",
+        "payout": 177,
+        "newPlacements": 8,
+        "rank": 7
+      },
+      {
+        "rep": "Klejdi Lamo",
+        "payout": 170,
+        "newPlacements": 11,
+        "rank": 8
       },
       {
         "rep": "Jayson Romine",
         "payout": 165,
         "newPlacements": 11,
-        "rank": 6
-      },
-      {
-        "rep": "Nick Melissari",
-        "payout": 145,
-        "newPlacements": 0,
-        "rank": 7
-      },
-      {
-        "rep": "Klejdi Lamo",
-        "payout": 140,
-        "newPlacements": 9,
-        "rank": 8
-      },
-      {
-        "rep": "Phil Ernst",
-        "payout": 138,
-        "newPlacements": 8,
         "rank": 9
       },
       {
-        "rep": "Robin Feldman",
-        "payout": 129,
+        "rep": "Nick Melissari",
+        "payout": 157,
         "newPlacements": 0,
         "rank": 10
+      },
+      {
+        "rep": "Robin Feldman",
+        "payout": 133,
+        "newPlacements": 0,
+        "rank": 11
       },
       {
         "rep": "Jim Heaney",
         "payout": 120,
         "newPlacements": 8,
-        "rank": 11
-      },
-      {
-        "rep": "Chris Payton",
-        "payout": 112,
-        "newPlacements": 6,
         "rank": 12
       },
       {
         "rep": "Shane Barreca",
-        "payout": 75,
-        "newPlacements": 5,
+        "payout": 90,
+        "newPlacements": 6,
         "rank": 13
       },
       {
         "rep": "Matt Powierski",
-        "payout": 66,
-        "newPlacements": 4,
+        "payout": 81,
+        "newPlacements": 5,
         "rank": 14
       },
       {
-        "rep": "Pablo Lopez",
-        "payout": 45,
-        "newPlacements": 3,
+        "rep": "Michael Harboy",
+        "payout": 60,
+        "newPlacements": 4,
         "rank": 15
       },
       {
-        "rep": "Derrick Laws",
-        "payout": 30,
-        "newPlacements": 2,
+        "rep": "Pablo Lopez",
+        "payout": 60,
+        "newPlacements": 4,
         "rank": 16
       },
       {
-        "rep": "Michael Harboy",
+        "rep": "Derrick Laws",
         "payout": 30,
         "newPlacements": 2,
         "rank": 17
@@ -98871,13 +98959,13 @@ const PROGRAM_DATA_2026_09 = {
             "status": "reorder"
           },
           {
-            "customer": "Blackjack Mulligans (Hawthorne)",
+            "customer": "The Yard",
             "bbl": 0.0,
             "qualifies": false,
             "status": "lapsed"
           },
           {
-            "customer": "The Yard",
+            "customer": "Blackjack Mulligans (Hawthorne)",
             "bbl": 0.0,
             "qualifies": false,
             "status": "lapsed"
@@ -99137,6 +99225,12 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/29/2026"
           },
           {
+            "customer": "Harrigan's Rest. (P)",
+            "bbl": 0.5,
+            "qualifies": true,
+            "date": "9/24/2026"
+          },
+          {
             "customer": "Industry",
             "bbl": 0.333,
             "qualifies": false,
@@ -99155,9 +99249,9 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/22/2026"
           }
         ],
-        "draftNewCount": 4,
+        "draftNewCount": 5,
         "draftReorderCount": 5,
-        "draftQualifiedCount": 2,
+        "draftQualifiedCount": 3,
         "draftAccounts": [
           {
             "customer": "Gyp's Tavern",
@@ -99173,6 +99267,12 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "The Exchange",
+            "bbl": 0.5,
+            "qualifies": true,
+            "status": "new"
+          },
+          {
+            "customer": "Harrigan's Rest. (P)",
             "bbl": 0.5,
             "qualifies": true,
             "status": "new"
@@ -99220,14 +99320,14 @@ const PROGRAM_DATA_2026_09 = {
             "status": "lapsed"
           }
         ],
-        "totalNewPlacements": 2,
-        "qualified": false,
-        "toQualifier": 1,
-        "caseVolume": 14.0,
+        "totalNewPlacements": 3,
+        "qualified": true,
+        "toQualifier": 0,
+        "caseVolume": 15.0,
         "casesBaseline": 15.0,
         "bonusCe": 0.0,
         "bonusPayout": 0,
-        "payout": 0,
+        "payout": 300,
         "draftChannelOk": true,
         "offPremTargets": [
           {
@@ -100355,7 +100455,7 @@ const PROGRAM_DATA_2026_09 = {
       "John O'Donoghue": {
         "offPremNew": [],
         "offPremNewCount": 0,
-        "offPremReorderCount": 3,
+        "offPremReorderCount": 4,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 1,
@@ -100377,9 +100477,9 @@ const PROGRAM_DATA_2026_09 = {
         "totalNewPlacements": 0,
         "qualified": false,
         "toQualifier": 3,
-        "caseVolume": 12.0,
+        "caseVolume": 14.0,
         "casesBaseline": 9.0,
-        "bonusCe": 3.0,
+        "bonusCe": 5.0,
         "bonusPayout": 0,
         "payout": 0,
         "draftChannelOk": true,
@@ -100676,14 +100776,14 @@ const PROGRAM_DATA_2026_09 = {
           {
             "customer": "Shays Liquors",
             "products": [
-              "Evil Genius Stacy's Mom Citra IPA 4/6/12 oz Can"
+              "Evil Genius Stacy's Mom Citra IPA 1/12/19.2 oz Can"
             ],
             "date": "9/15/2026"
           },
           {
             "customer": "Shays Liquors",
             "products": [
-              "Evil Genius Stacy's Mom Citra IPA 1/12/19.2 oz Can"
+              "Evil Genius Stacy's Mom Citra IPA 4/6/12 oz Can"
             ],
             "date": "9/15/2026"
           }
@@ -100804,7 +100904,7 @@ const PROGRAM_DATA_2026_09 = {
       "Mike Ast": {
         "offPremNew": [],
         "offPremNewCount": 0,
-        "offPremReorderCount": 0,
+        "offPremReorderCount": 1,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -100813,7 +100913,7 @@ const PROGRAM_DATA_2026_09 = {
         "totalNewPlacements": 0,
         "qualified": false,
         "toQualifier": 3,
-        "caseVolume": 0.0,
+        "caseVolume": 2.0,
         "casesBaseline": 3.0,
         "bonusCe": 0.0,
         "bonusPayout": 0,
@@ -100914,7 +101014,7 @@ const PROGRAM_DATA_2026_09 = {
         "draftAccounts": [
           {
             "customer": "House of Que (East Rutherford)",
-            "bbl": 1.0,
+            "bbl": 1.5,
             "qualifies": true,
             "status": "reorder"
           },
@@ -100934,7 +101034,7 @@ const PROGRAM_DATA_2026_09 = {
         "totalNewPlacements": 0,
         "qualified": false,
         "toQualifier": 3,
-        "caseVolume": 4.0,
+        "caseVolume": 5.0,
         "casesBaseline": 13.0,
         "bonusCe": 0.0,
         "bonusPayout": 0,
@@ -101058,11 +101158,24 @@ const PROGRAM_DATA_2026_09 = {
         "offPremNew": [],
         "offPremNewCount": 0,
         "offPremReorderCount": 0,
-        "draftNew": [],
-        "draftNewCount": 0,
+        "draftNew": [
+          {
+            "customer": "Eleven Central",
+            "bbl": 0.5,
+            "qualifies": true,
+            "date": "9/24/2026"
+          }
+        ],
+        "draftNewCount": 1,
         "draftReorderCount": 1,
-        "draftQualifiedCount": 0,
+        "draftQualifiedCount": 1,
         "draftAccounts": [
+          {
+            "customer": "Eleven Central",
+            "bbl": 0.5,
+            "qualifies": true,
+            "status": "new"
+          },
           {
             "customer": "101 Pub (A)",
             "bbl": 0.0,
@@ -101076,10 +101189,10 @@ const PROGRAM_DATA_2026_09 = {
             "status": "lapsed"
           }
         ],
-        "totalNewPlacements": 0,
+        "totalNewPlacements": 1,
         "qualified": false,
-        "toQualifier": 3,
-        "caseVolume": 0.0,
+        "toQualifier": 2,
+        "caseVolume": 1.0,
         "casesBaseline": 1.0,
         "bonusCe": 0.0,
         "bonusPayout": 0,
@@ -101102,26 +101215,26 @@ const PROGRAM_DATA_2026_09 = {
           {
             "customer": "Shop-Rite Liq Lyndhurst",
             "products": [
-              "Evil Genius Stacy's Mom Citra IPA 4/6/12 oz Can"
-            ],
-            "date": "9/22/2026"
-          },
-          {
-            "customer": "City Supermarket",
-            "products": [
-              "Evil Genius Stacy's Mom Citra IPA 4/6/12 oz Can"
-            ],
-            "date": "9/22/2026"
-          },
-          {
-            "customer": "City Supermarket",
-            "products": [
               "Evil Genius 867-5309 Jenny 4/6/12 oz Can"
             ],
             "date": "9/22/2026"
           },
           {
             "customer": "Shop-Rite Liq Lyndhurst",
+            "products": [
+              "Evil Genius Stacy's Mom Citra IPA 4/6/12 oz Can"
+            ],
+            "date": "9/22/2026"
+          },
+          {
+            "customer": "City Supermarket",
+            "products": [
+              "Evil Genius Stacy's Mom Citra IPA 4/6/12 oz Can"
+            ],
+            "date": "9/22/2026"
+          },
+          {
+            "customer": "City Supermarket",
             "products": [
               "Evil Genius 867-5309 Jenny 4/6/12 oz Can"
             ],
@@ -101391,8 +101504,8 @@ const PROGRAM_DATA_2026_09 = {
       },
       {
         "rep": "Brian Sengebush",
-        "newPlacements": 2,
-        "payout": 0,
+        "newPlacements": 3,
+        "payout": 300,
         "rank": 3
       },
       {
@@ -101408,121 +101521,121 @@ const PROGRAM_DATA_2026_09 = {
         "rank": 5
       },
       {
-        "rep": "Alex Rodriguez",
-        "newPlacements": 0,
+        "rep": "Paul Mclaughlin",
+        "newPlacements": 1,
         "payout": 0,
         "rank": 6
       },
       {
-        "rep": "Alisa Acciardi",
+        "rep": "Alex Rodriguez",
         "newPlacements": 0,
         "payout": 0,
         "rank": 7
       },
       {
-        "rep": "Allison Scott",
+        "rep": "Alisa Acciardi",
         "newPlacements": 0,
         "payout": 0,
         "rank": 8
       },
       {
-        "rep": "Andrew Lundy",
+        "rep": "Allison Scott",
         "newPlacements": 0,
         "payout": 0,
         "rank": 9
       },
       {
-        "rep": "Anthony Palmisano",
+        "rep": "Andrew Lundy",
         "newPlacements": 0,
         "payout": 0,
         "rank": 10
       },
       {
-        "rep": "Chris Payton",
+        "rep": "Anthony Palmisano",
         "newPlacements": 0,
         "payout": 0,
         "rank": 11
       },
       {
-        "rep": "Dan Lagala",
+        "rep": "Chris Payton",
         "newPlacements": 0,
         "payout": 0,
         "rank": 12
       },
       {
-        "rep": "Derrick Laws",
+        "rep": "Dan Lagala",
         "newPlacements": 0,
         "payout": 0,
         "rank": 13
       },
       {
-        "rep": "Dylan Rubino",
+        "rep": "Derrick Laws",
         "newPlacements": 0,
         "payout": 0,
         "rank": 14
       },
       {
-        "rep": "Hakan Sadik",
+        "rep": "Dylan Rubino",
         "newPlacements": 0,
         "payout": 0,
         "rank": 15
       },
       {
-        "rep": "Jaime Colonna",
+        "rep": "Hakan Sadik",
         "newPlacements": 0,
         "payout": 0,
         "rank": 16
       },
       {
-        "rep": "Javier Melo",
+        "rep": "Jaime Colonna",
         "newPlacements": 0,
         "payout": 0,
         "rank": 17
       },
       {
-        "rep": "Jim Heaney",
+        "rep": "Javier Melo",
         "newPlacements": 0,
         "payout": 0,
         "rank": 18
       },
       {
-        "rep": "John O'Donoghue",
+        "rep": "Jim Heaney",
         "newPlacements": 0,
         "payout": 0,
         "rank": 19
       },
       {
-        "rep": "Klejdi Lamo",
+        "rep": "John O'Donoghue",
         "newPlacements": 0,
         "payout": 0,
         "rank": 20
       },
       {
-        "rep": "Matt Powierski",
+        "rep": "Klejdi Lamo",
         "newPlacements": 0,
         "payout": 0,
         "rank": 21
       },
       {
-        "rep": "Mike Ast",
+        "rep": "Matt Powierski",
         "newPlacements": 0,
         "payout": 0,
         "rank": 22
       },
       {
-        "rep": "Nick Melissari",
+        "rep": "Mike Ast",
         "newPlacements": 0,
         "payout": 0,
         "rank": 23
       },
       {
-        "rep": "Pablo Lopez",
+        "rep": "Nick Melissari",
         "newPlacements": 0,
         "payout": 0,
         "rank": 24
       },
       {
-        "rep": "Paul Mclaughlin",
+        "rep": "Pablo Lopez",
         "newPlacements": 0,
         "payout": 0,
         "rank": 25
@@ -147311,5 +147424,5 @@ const PROGRAM_DATA_2026_09 = {
     }
   }
 };
-const PROGRAM_DATA_REFRESHED = "Sep 25, 2026, 8:08 AM ET";
-const PROGRAM_DATA_REFRESHED_AT = "2026-09-25T12:08:13Z";
+const PROGRAM_DATA_REFRESHED = "Sep 25, 2026, 8:16 AM ET";
+const PROGRAM_DATA_REFRESHED_AT = "2026-09-25T12:16:19Z";

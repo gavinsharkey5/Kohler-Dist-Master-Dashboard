@@ -501,12 +501,14 @@ def build_sam_adams():
     Brand Family / Sales Rep Assigned / Product Num & Name with Cases for
     8/1-9/30/2025 and 8/1-9/30/2026.
 
-    Two legs on the deck:
-      1. $1 per case of Octoberfest over last year (Aug-Sep 2025 vs 2026) --
-         SCORED here: payout = max(0, growth) per rep.
-      2. Double commission on ALL Sam Adams if positive -- NOT in this export
-         (it carries Octoberfest SKUs only), so allSku* / isPositive are None
-         and the card says so. Needs an all-Samuel-Adams Aug-Sep comparison.
+    THE PROGRAM (Gavin, 2026-09-25): "Double Commission on all Sam Adams if
+    positive. Their goal is to get above the cases they sold from Cases
+    8/1/2025 - 9/30/2025." That is the whole program -- there is NO $1-per-case
+    leg (the 2026-09-23 build scored one; it was wrong and is gone). A rep is
+    isPositive when this export's 2026 cases exceed the 2025 column, and that
+    is what earns; no dollar figure is computed. Do NOT confuse this with the
+    ON-PREMISE Summer Ale -> Octoberfest draft conversion (sam_adams_conversion),
+    which is a different Boston Beer program with its own scoreboard.
 
     THE EXPORT IS A FLATTENED TREE: its first data row is the house total and
     the first row of every rep block is that rep's total, each borrowing a
@@ -537,9 +539,9 @@ def build_sam_adams():
             raise SystemExit(f"{SAM_ADAMS_FILE}: rep totals {got:g} != house row {to_num(house[col]):g} ({col})")
 
     by_rep = {rep: {
-        "allSkuUnitsLastYear": None, "allSkuUnitsThisYear": None, "isPositive": None,
+        "isPositive": False,
         "octoberfestUnitsLastYear": 0.0, "octoberfestUnitsThisYear": 0.0, "octoberfestGrowth": 0.0,
-        "octoberfestByAccount": [], "octoberfestByProduct": [], "payout": 0,
+        "octoberfestByAccount": [], "octoberfestByProduct": [],
     } for rep in ROSTER}
     off_roster = []
     for rep, tot, prods in blocks:
@@ -562,7 +564,9 @@ def build_sam_adams():
         d["octoberfestGrowth"] = round(d["octoberfestUnitsThisYear"] - d["octoberfestUnitsLastYear"], 2)
         d["octoberfestUnitsLastYear"] = round(d["octoberfestUnitsLastYear"], 2)
         d["octoberfestUnitsThisYear"] = round(d["octoberfestUnitsThisYear"], 2)
-        d["payout"] = int(max(0, d["octoberfestGrowth"]))
+        # Positive vs last Aug-Sep = commission doubled on all Sam Adams.
+        # Exactly level is NOT positive.
+        d["isPositive"] = d["octoberfestGrowth"] > 0
 
     today = datetime.date.today()
     start, end = datetime.date(2026, 8, 1), datetime.date(2026, 9, 30)
@@ -572,7 +576,7 @@ def build_sam_adams():
         "startDate": "8/1/2026", "endDate": "9/30/2026",
         "compareLabel": "Aug–Sep 2025", "daysElapsed": elapsed, "periodDays": span,
         "houseLastYear": to_num(house[last_col]), "houseThisYear": to_num(house[this_col]),
-        "allSkuTracked": False, "offRoster": off_roster}}
+        "reward": "Double commission on all Sam Adams if positive", "offRoster": off_roster}}
 
 
 def build_boston_beer():
@@ -4673,10 +4677,9 @@ def main():
     print(f"path_to_victory: {sum(d['sixPackAccountCount'] for d in data['path_to_victory']['byRep'].values())} accounts w/ 6pk activity, "
           f"{sum(d['nineteenTwoAccountCount'] for d in data['path_to_victory']['byRep'].values())} accounts w/ 19.2oz activity")
     _sa = data["sam_adams"]
-    print(f"sam_adams (Aug-Sep, Octoberfest only): house {_sa['meta']['houseThisYear']:,.0f} vs "
+    print(f"sam_adams (Aug-Sep, double commission if positive): house {_sa['meta']['houseThisYear']:,.0f} vs "
           f"{_sa['meta']['houseLastYear']:,.0f} cases last year | "
-          f"{sum(1 for d in _sa['byRep'].values() if d['octoberfestGrowth']>0)} reps ahead, "
-          f"${sum(d['payout'] for d in _sa['byRep'].values()):,} earned | all-Sam-Adams leg not in export"
+          f"{sum(1 for d in _sa['byRep'].values() if d['isPositive'])} reps positive (commission doubled)"
           + (f" | off-roster: {', '.join(_sa['meta']['offRoster'])}" if _sa['meta']['offRoster'] else ""))
     print(f"boston_beer: {sum(d['draftNewCount'] for d in data['boston_beer']['byRep'].values())} new draft PODs, "
           f"{sum(d['draftRebuyCount'] for d in data['boston_beer']['byRep'].values())} draft rebuys, "

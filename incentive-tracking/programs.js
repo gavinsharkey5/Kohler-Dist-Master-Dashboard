@@ -184,8 +184,8 @@ const PROGRAM_LIST_2026_08 = [
    pitch:`Track your accounts buying Victory Monkey Family 6pk and 19.2oz cans this month.`,
    getRep:rep=>(PROGRAM_DATA['path_to_victory']||{}).byRep?.[rep],
    metric:d=>d.sixPackAccountCount+d.nineteenTwoAccountCount, metricLabel:'accounts active', fmt:v=>v.toFixed(0)},
-  {key:'sam_adams', group:'new', title:'Sam Adams Octoberfest Fast Start', shortTitle:'Sam Adams', tag:'Aug–Sept',
-   pitch:`Beat last year’s Aug–Sep Octoberfest cases — every case over pays $1.`,
+  {key:'sam_adams', group:'new', title:'Sam Adams Octoberfest Fast Start', shortTitle:'Sam Adams Fast Start', tag:'Aug–Sept',
+   pitch:`Beat last year’s Aug–Sep Sam Adams cases and your commission on all Sam Adams doubles.`,
    getRep:rep=>(PROGRAM_DATA['sam_adams']||{}).byRep?.[rep],
    metric:d=>d.octoberfestGrowth, metricLabel:'case growth', fmt:v=>(v>0?'+':'')+v.toFixed(0)},
   {key:'boston_beer', group:'new', title:'Boston Beer August Draft Blitz', shortTitle:'Boston Beer', tag:'August',
@@ -318,7 +318,7 @@ const PROGRAM_LIST_2026_09 = [
   // with a 79-line one. A rep with no row on that scoreboard has no score and
   // stays off the leaderboard; the card explains why and still shows their
   // Encompass keg activity.
-  {key:'sam_adams_conversion', group:'new', title:'Sam Adams Summer Ale → Octoberfest Draft Conversion', shortTitle:'Sam Adams Octoberfest', tag:'Jul 20–Sep 30',
+  {key:'sam_adams_conversion', group:'new', title:'Sam Adams Summer Ale → Octoberfest Draft Conversion', shortTitle:'Sam Adams: Summer Ale to Octoberfest conversion', tag:'Jul 20–Sep 30',
    pitch:`Every handle that poured Summer Ale this spring is a handle to switch to Octoberfest before September ends.`,
    getRep:sept('sam_adams_conversion'),
    metric:d=>d.hasBase ? d.convertedPct : null, metricLabel:'% of Summer Ale lines converted (Boston Beer scoreboard)', fmt:v=>v.toFixed(0)+'%'},
@@ -340,8 +340,8 @@ const PROGRAM_LIST_2026_09 = [
   // --- Ongoing: live on both tabs, same data as August ------------------
   // Sam Adams Octoberfest Fast Start is Aug 1 - Sep 30 (Gavin, 2026-09-23),
   // so it rides September like the other two-month programs, same dataset.
-  {key:'sam_adams', group:'ongoing', title:'Sam Adams Octoberfest Fast Start', shortTitle:'Sam Adams', tag:'Aug–Sept',
-   pitch:`Beat last year’s Aug–Sep Octoberfest cases — every case over pays $1.`,
+  {key:'sam_adams', group:'ongoing', title:'Sam Adams Octoberfest Fast Start', shortTitle:'Sam Adams Fast Start', tag:'Aug–Sept',
+   pitch:`Beat last year’s Aug–Sep Sam Adams cases and your commission on all Sam Adams doubles.`,
    getRep:rep=>(PROGRAM_DATA['sam_adams']||{}).byRep?.[rep],
    metric:d=>d.octoberfestGrowth, metricLabel:'Octoberfest case growth', fmt:v=>(v>0?'+':'')+v.toFixed(0)},
   {key:'1911', group:'ongoing', title:'Beak & Skiff 1911 Rewards', shortTitle:'1911', tag:'Aug–Sept',
@@ -1623,22 +1623,20 @@ function cardPathToVictory(rep){
 }
 
 function cardSamAdams(rep){
-  // Aug 1 - Sep 30 (Gavin, 2026-09-23). Read from the RDE Octoberfest-only
-  // Aug-Sep comparison, so only the $1/case leg is scored; the "double
-  // commission on ALL Sam Adams" leg needs an all-SKU export (allSku* null).
+  // Aug 1 - Sep 30. The program (Gavin, 2026-09-25): double commission on
+  // ALL Sam Adams if positive -- the goal is last year's Aug-Sep cases from
+  // the RDE comparison, nothing per case. Not the on-premise Summer Ale ->
+  // Octoberfest draft conversion, which is sam_adams_conversion.
   const P = PROGRAM_DATA['sam_adams']||{};
   const d = P.byRep?.[rep];
   if(!d) return '';
   if(d.territoryEligible===false) return territoryBlockedCard('sam_adams','Sam Adams Octoberfest Fast Start','Aug–Sept','Samuel Adams');
   const M = P.meta||{};
-  const allTracked = d.allSkuUnitsThisYear!=null && d.allSkuUnitsLastYear!=null;
-  const allDiff = allTracked ? d.allSkuUnitsThisYear - d.allSkuUnitsLastYear : null;
+  const gap = Math.round(d.octoberfestUnitsLastYear) - Math.round(d.octoberfestUnitsThisYear);
   const board = statBoard([
-    {num:signedFmt(d.octoberfestGrowth), label:'Octoberfest vs Aug–Sep 2025', status:d.octoberfestGrowth>0?'good':(d.octoberfestGrowth<0?'bad':null),
-     sub:d.payout>0?`$${d.payout} earned so far`:'$1 per case over last year'},
-    allTracked
-      ? {num:signedFmt(allDiff), label:'All Sam Adams vs last year', status:d.isPositive?'good':'bad', sub:d.isPositive?'Commission doubled':'Go positive to double commission'}
-      : {num:'—', label:'All Sam Adams vs last year', sub:'Not in this export — double commission not tracked here'},
+    {num:signedFmt(d.octoberfestGrowth), label:'Sam Adams vs Aug–Sep 2025', status:d.isPositive?'good':(d.octoberfestGrowth<0?'bad':null),
+     sub:d.isPositive?'Positive — commission doubled':(d.octoberfestUnitsLastYear>0?`${gap+1} more case${gap+1===1?'':'s'} to go positive`:'No 2025 base — any case is positive')},
+    {num:d.isPositive?'2×':'1×', label:'Commission on all Sam Adams', status:d.isPositive?'good':null, sub:d.isPositive?'Doubled while you stay positive':'Doubles the day you pass last year'},
   ]);
 
   const products = productAccordion({
@@ -1654,9 +1652,9 @@ function cardSamAdams(rep){
 
   const behind = (d.octoberfestByProduct||[]).filter(p=>p.growth<0 && p.unitsLastYear>0).sort((a,b)=>a.growth-b.growth);
   const octoberfestBlock = earnBlock({
-    icon:'🍁', title:'Octoberfest vs Last Year (Aug–Sep)',
-    rate:'EARN $1', rateNote:'per case of Octoberfest over what you sold Aug 1 – Sep 30 last year. The data compares this year to date against ALL of last Aug–Sep, so the gap closes as September finishes.',
-    whatToDo:'Beat your own Aug–Sep Octoberfest number from last year. Every case over pays $1.',
+    icon:'🍁', title:'Sam Adams vs Last Year (Aug–Sep)',
+    rate:'2× COMMISSION', rateNote:'on all Sam Adams if you finish Aug 1 – Sep 30 above the cases you sold in the same window last year. The data compares this year to date against ALL of last Aug–Sep, so the gap closes as September finishes.',
+    whatToDo:'Beat your own Aug–Sep Sam Adams case number from last year. Finish positive and your commission on all Sam Adams doubles.',
     stats:[
       {num:d.octoberfestUnitsLastYear.toFixed(0), label:'Aug–Sep 2025 Cases', dim:true},
       {num:d.octoberfestUnitsThisYear.toFixed(0), label:'Aug–Sep 2026 Cases'},
@@ -1679,7 +1677,7 @@ function cardSamAdams(rep){
     </div>
     <div class="prog-body">
       ${board}
-      <div class="empty-note">Two-month program, Aug 1 – Sep 30. This compares 2026 to date against ALL of Aug–Sep 2025, so red here usually shrinks late in September.${allTracked?'':' The “double commission on all Sam Adams if positive” leg is not in this export, so it is not scored here.'}</div>
+      <div class="empty-note">Two-month program, Aug 1 – Sep 30: double commission on all Sam Adams if you finish positive vs. last Aug–Sep. This compares 2026 to date against ALL of Aug–Sep 2025, so red here usually shrinks late in September.</div>
       ${octoberfestBlock}
     </div>
   </div>`;
@@ -3610,18 +3608,20 @@ const PROGRAM_SUMMARY = {
   fall_seasonal_sd:(d)=>({goal:false, now:d.packageCE, unit:'CE',
     label:`${d.packageCE.toFixed(1)} package CE`, sub:`${d.sixtelCount+d.halfKegCount} kegs · ${money(d.payout)} earned`,
     next:`Sell every Fall Seasonal package, sixtel, half-keg and case of Pumking Whiskey — each one pays: <strong>$0.50</strong> a CE, <strong>$5</strong> a sixtel, <strong>$10</strong> a half-keg, <strong>$5</strong> a spirits case.`}),
-  // Aug 1 - Sep 30, Octoberfest only (2026-09-23): the goal is last year's
-  // Aug-Sep Octoberfest cases; every case past it pays $1. A rep with no 2025
-  // base has no bar to beat, so the card is an open count, never "done".
+  // Aug 1 - Sep 30 (Gavin, 2026-09-25): the goal is last year's Aug-Sep Sam
+  // Adams cases; finishing above it doubles commission on all Sam Adams.
+  // Nothing per case. Exactly level reads "close", not earned. A rep with no
+  // 2025 base is positive on the first case.
   sam_adams:(d)=>{
     const ly = Math.round(d.octoberfestUnitsLastYear), ty = Math.round(d.octoberfestUnitsThisYear), gap = ly - ty;
     return ly>0 ? {goal:true, now:ty, target:ly, unit:'cases', statusOverride:gap===0?'close':undefined,
-      label:`${ty} vs ${ly} Octoberfest cases last Aug–Sep`,
+      label:`${ty} vs ${ly} Sam Adams cases last Aug–Sep`,
       remain:gap>0?`${gap} cases behind`:null,
-      next:gap>=0 ? `Sell <strong>${gap+1} more Octoberfest case${gap+1===1?'':'s'}</strong> by Sep 30 to pass last year — every case after that pays $1.`
-        : `You are ${-gap} case${-gap===1?'':'s'} past last year — <strong>$${d.payout}</strong> earned, and every extra case pays $1.`}
-    : {goal:false, now:ty, unit:'cases', label:`${ty} Octoberfest cases`,
-      next:`Every Octoberfest case you sell by Sep 30 counts — you had none last Aug–Sep, so each one is over.`};
+      next:gap>=0 ? `Sell <strong>${gap+1} more case${gap+1===1?'':'s'}</strong> by Sep 30 to pass last year — finish positive and your commission on all Sam Adams doubles.`
+        : `You are ${-gap} case${-gap===1?'':'s'} past last year — <strong>commission doubled</strong> on all Sam Adams as long as you stay positive.`}
+    : {goal:true, now:ty, target:1, unit:'cases', label:`${ty} Sam Adams cases (none last Aug–Sep)`,
+      remain:ty>0?null:'1 case to go positive',
+      next:ty>0 ? `You had no Sam Adams last Aug–Sep, so you are positive — <strong>commission doubled</strong>.` : `One Sam Adams case by Sep 30 puts you positive and doubles your commission.`};
   },
   boston_beer:(d)=>({goal:false, now:d.points, unit:'points',
     label:`${d.points} trip points`, sub:`${pl(d.draftNewCount,'new draft POD')}`,
@@ -3843,9 +3843,10 @@ const PROGRAM_RULES = {
     'Submit through iSellBeer to get paid',
   ],
   'sam_adams': [
-    '$1 per case of Octoberfest over last year (Aug 1 – Sep 30, 2025 vs 2026)',
-    'Double commission on all Sam Adams if positive — not in this export, so not scored here',
+    'Double commission on all Sam Adams if positive',
+    'Positive = more cases Aug 1 – Sep 30, 2026 than you sold Aug 1 – Sep 30, 2025',
     'Compares 2026 to date vs. ALL of last Aug–Sep — the gap closes as September finishes',
+    'Not the on-premise Summer Ale → Octoberfest draft conversion — that is a separate program',
     'Core Market counties only',
   ],
   'boston_beer': [
@@ -4189,11 +4190,11 @@ const PROGRAM_BOARD = {
   },
   'sam_adams': d=>({
     metrics:[
-      {num:signedFmt(d.octoberfestGrowth), label:'Octoberfest vs last Aug–Sep', cls:deltaCls(d.octoberfestGrowth)||'dim'},
-      {num:'$'+(d.payout||0), label:'earned', cls:d.payout>0?'good':'dim'},
+      {num:signedFmt(d.octoberfestGrowth), label:'Sam Adams vs last Aug–Sep', cls:deltaCls(d.octoberfestGrowth)||'dim'},
+      {num:d.isPositive?'2×':'1×', label:'commission', cls:d.isPositive?'good':'dim'},
     ],
-    status: d.octoberfestGrowth>0 ? {cls:'good', label:`✅ $${d.payout} earned`}
-      : (d.octoberfestUnitsLastYear>0 ? {cls:'warn', label:`${Math.ceil(-d.octoberfestGrowth)+1} cases to pass last year`} : {cls:'gray', label:'No 2025 base'}),
+    status: d.isPositive ? {cls:'good', label:'✅ Positive — commission doubled'}
+      : (d.octoberfestUnitsLastYear>0 ? {cls:'warn', label:`${Math.ceil(-d.octoberfestGrowth)+1} cases to pass last year`} : {cls:'gray', label:'No 2025 base — first case goes positive'}),
   }),
   'boston_beer': d=>({
     metrics:[

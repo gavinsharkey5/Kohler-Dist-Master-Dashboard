@@ -4330,6 +4330,58 @@ Only these four programs changed in PROGRAM_DATA.
               returns and don't change his count.
 Hub cache tag bumped (20260923b) for the new program_data.js.
 
+2026-09-25 THIRD REFRESH -- Garage Beer, Touchdowns Tea, Evil Genius, SAM ADAMS RE-SCORED
+  python3 generate.py
+SAM ADAMS OCTOBERFEST FAST START IS "DOUBLE COMMISSION ON ALL SAM ADAMS IF
+POSITIVE" -- NOTHING ELSE (Gavin, 2026-09-25: "the program for the file
+attached is simply: Double Commission on all Sam Adams if positive. their goal
+is to get above the cases they sold from Cases 8/1/2025 - 9/30/2025"). The
+2026-09-23 EIGHTH note below scored a "$1 per case over last year" leg; that
+leg never existed and is GONE: build_sam_adams() no longer emits payout /
+allSku*, isPositive is now growth > 0 on the RDE Aug-Sep comparison, and the
+card, rules, summary and hub SELL_ASK all say double commission. Exactly level
+is not positive. A rep with no 2025 base is positive on the first case.
+DO NOT CONFUSE IT with sam_adams_conversion, the ON-PREMISE Summer Ale ->
+Octoberfest draft conversion (Boston Beer's scoreboard) -- Gavin's words. To
+keep the two apart on the hub the shortTitles are now "Sam Adams Fast Start"
+and "Sam Adams: Summer Ale to Octoberfest conversion" (per Gavin, same day).
+Diffed row by row first. Garage Beer President restated in place: house
+8,483.04 -> 8,629.15 CE of 9,305, every rep up. Touchdowns Tea OFF
+4,228 -> 4,589 (+364 / -3: Dave Ehlers' Total Wine Totowa 9/23, Jayson
+Romine's USA Wine Traders Newton 9/23 and Phil Ernst's Stew Leonard's Paramus
+9/24 Sun Cruiser rows -- another day's rows leaving, see the SECOND refresh
+above); ON 2,389 -> 2,460 (+74 / -3: Allison Scott's The Ties and Anthony
+Palmisano's two Airport Pub rows, all 9/23). Evil Genius 360 -> 365 (+5, none
+removed). Sam Adams restated in place (157 rows, 72 values moved), house
+10,813 -> 11,024 of 14,956.
+  Sam Adams   2 -> 4 reps positive (commission doubled): NICK MELISSARI
+              298 -> 309 vs 308 (+1) and ROBIN FELDMAN 143 -> 148 vs 146 (+2)
+              cross over; Pablo Lopez 17 vs 12 and John O'Donoghue 3 vs 1
+              still positive. Javier Melo 22 vs 23 is one case short, Paul
+              Mclaughlin 12 behind, Matt Powierski 17. Derrick Laws 164 -> 154
+              (a restatement down). Biggest gaps still Klejdi Lamo -811,
+              Shane Barreca -384, Phil Ernst -368.
+  Garage Beer John O'Donoghue +318 -> +358 over last year, Michael Harboy
+              +214 -> +229, Andrew Lundy +164 -> +180, Phil Ernst +19 -> +34,
+              Shane Barreca +223 -> +238, Jayson Romine +263 -> +275.
+  Touchdowns Tea  103 -> 123 new off-prem 12pk placements, on-prem cases
+              1,447 -> 1,639, trackable $2,992 -> $3,484. Dave Ehlers new
+              28 -> 36, Chris Payton 6 -> 10, Klejdi Lamo 9 -> 11, Michael
+              Harboy 2 -> 4, +1 Brian Sengebush (his first), Matt Powierski,
+              Pablo Lopez, Shane Barreca. On-prem: Allison Scott 420 -> 462
+              cases, Paul Mclaughlin 216 -> 253, Phil Ernst 18 -> 57, Anthony
+              Palmisano 239 -> 272, Brian Sengebush 233 -> 246, Nick
+              Melissari 145 -> 157.
+  Evil Genius 13 -> 15 new placements, 2 -> 3 reps past the qualifier: BRIAN
+              SENGEBUSH's fifth draft line (third qualifying) QUALIFIES him
+              ($300); Paul Mclaughlin's first qualifying draft line. CE
+              89 -> 96 vs 98 last September, bonus CE 27 -> 29.
+Hub cache tags bumped (20260925c) for program_data.js, programs.js and hub.js.
+Verified headless: tracker and hub load with no page errors; the Sam Adams
+card reads "Positive -- commission doubled / 2x" for Nick Melissari and John
+O'Donoghue, "812 more cases to go positive / 1x" for Klejdi Lamo, territory
+block for Hakan Sadik; no "$1" or payout text anywhere on it.
+
 2026-09-25 SECOND REFRESH -- Keystone, 1911, Woodchuck, Tona, Lytt
   python3 generate.py
 Diffed row by row first. EVERY 9/24-DATED ROW IS GONE FROM THREE EXPORTS AND
