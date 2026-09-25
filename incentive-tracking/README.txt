@@ -4350,6 +4350,40 @@ Only these four programs changed in PROGRAM_DATA.
               returns and don't change his count.
 Hub cache tag bumped (20260923b) for the new program_data.js.
 
+2026-09-25 SEVENTH REFRESH -- Yuengling Fall (off _6 / packages _8 / draft _8) + Southern District Fall Seasonal (vSD _4)
+  python3 generate.py
+All four flat CSVs straight over data/yuengling_retention_fall_off.csv /
+_packages_on.csv / _draft_on.csv and data/fall_seasonal_sd.csv, same headers.
+Diffed row by row first, then compared on the built output: 0 YUENGLING GOALS
+MOVED on all 58 brand rows, every count up or flat, nothing down. The off
+export is one row shorter (53 -> 52): Derrick Laws' no-base, no-goal Light
+Lager row from 9/23 (1 buyer, scored nothing) is gone, and his subtotal row
+now borrows the "Lager" label instead -- a layout shuffle, not a change.
+  Yuengling  still 6 / 58 brand goals held, 0 reps holding every goal, day
+             25 of 91. Off Lager 280 -> 286/338, Flight 106 -> 108/152, Light
+             Lager 72 -> 73/134; packages Lager 169 -> 179/258. Jim Heaney off
+             45 -> 49 of 58 (84.5%: Lager 30 -> 32, Flight 9 -> 10 of 11,
+             Light Lager 6 -> 7), Mike Ast off Lager 23 -> 24 of 26 (92.3%),
+             Chris Payton off 32 -> 34, Dan Lagala off Lager 19 -> 21; packages
+             Robin Feldman 58 -> 62 of 96, Brian Sengebush 41 -> 44 of 53
+             (83.0%), Allison Scott 12 -> 13, Nick Melissari 19 -> 20, Paul
+             Mclaughlin 13 -> 14.
+             DRAFT STILL READS THE 9/10 ACCOUNT SHEET (rule 6): 150/293 Lager,
+             3/7 Flight unchanged. The draft SUMMARY moved (Allison Scott
+             49 -> 50, Anthony Palmisano 24 -> 25, Nick Melissari 51 -> 52,
+             Paul Mclaughlin 30 -> 31) and the CSV carries it as summaryActual,
+             but the page counts draft from
+             yuengling_retention_fall_draft_on_detail.csv, not re-sent.
+  Fall Seasonal (vSD)  290 rows, 54 restated in place (no product lines
+             added or dropped); 4,823 -> 4,896 package CE, $3,382 -> $3,458
+             trackable. Jaime Colonna $1,165 -> $1,202 (1,103 -> 1,117 cases,
+             27 -> 30 sixtels, Pumking Whiskey 3 -> 6 cases), John O'Donoghue
+             $596 -> $615 (17 -> 19 sixtels), Andrew Lundy $304 -> $311 (a
+             7th half-keg-class keg), Hakan Sadik $217 -> $223, Dylan Rubino
+             $183 -> $187, Michael Harboy $552 -> $555, Alisa Acciardi
+             $347 -> $348. Nobody down. Path to Victory was not re-sent.
+Hub cache tag bumped (20260925g) for the new program_data.js.
+
 2026-09-25 SIXTH REFRESH -- Molson Coors retention (on + off, grouped workbooks _6) + MABI Fall actuals _11
   python3 convert_mc_retention.py <On_Premise ... w Goals_6.xlsx> <Off_Premise ... w Goals_6.xlsx>
   python3 convert_mabi_fall.py MABI_Fall_2026_Retention_11.csv data/mabi_retention_fall_goals_source.csv
