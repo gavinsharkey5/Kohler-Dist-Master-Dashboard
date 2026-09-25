@@ -1,14 +1,18 @@
 /* Kohler Dist Hub -- landing pages (index.html for managers, rep/ for reps).
    One stylesheet so both pages look the same; only the sections differ. */
 :root{
-  --canvas:#0E1014;--card:#171A21;--card-h:#1D2129;--ink:#F3F4F6;--ink-soft:#9AA1B0;--ink-dim:#6B7280;
-  --line:#262A34;--line-h:#3A404D;--focus:#5B8DEF;
-  --gold:#F2C14E;--blue:#5B9DF9;--green:#5FCB8C;--violet:#A78BFA;--teal:#4FD1C5;--red:#F06A6A;
+  /* Kohler palette, taken from the "Northern NJ" banner: denim canvas,
+     navy cards, Kohler blue accents, beer gold for the reps' tools. */
+  --canvas:#0B1120;--card:#131B30;--card-h:#182238;--ink:#F3F5FA;--ink-soft:#A3ADC4;--ink-dim:#6F7A94;
+  --line:#22304F;--line-h:#35477A;--focus:#6D9BFF;
+  --kohler:#3B6FD3;--navy:#12275F;
+  --gold:#F2C14E;--blue:#5B8DEF;--green:#5FCB8C;--violet:#A78BFA;--teal:#4FD1C5;--red:#F06A6A;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5;
-  padding:0 16px env(safe-area-inset-bottom)}
+  padding:0 16px env(safe-area-inset-bottom);
+  background-image:radial-gradient(90% 50% at 50% -10%,rgba(59,111,211,.28),transparent 70%);background-repeat:no-repeat}
 .wrap{max-width:1120px;margin:0 auto}
 
 /* header */
@@ -22,6 +26,12 @@ h1{font-family:"Space Grotesk",sans-serif;font-weight:700;letter-spacing:-.02em;
 .me a{color:var(--ink-soft);text-decoration:none;padding:6px 10px;border-radius:999px;border:1px solid transparent}
 .me a:hover{color:var(--ink);border-color:var(--line-h);background:var(--card)}
 .intro{color:var(--ink-soft);font-size:14.5px;margin:6px 0 0;max-width:60ch}
+
+/* hero band: the Kohler banner under the header */
+.hero{position:relative;margin:16px 0 0;border-radius:16px;overflow:hidden;border:1px solid var(--line-h);background:var(--navy);box-shadow:0 18px 50px rgba(0,0,0,.45)}
+.hero img{display:block;width:100%;height:var(--hero-h,clamp(140px,20vw,230px));object-fit:cover;object-position:var(--focus-x,50%) var(--focus-y,50%)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,17,32,0) 60%,rgba(11,17,32,.55));pointer-events:none}
+.hero .cap{position:absolute;left:18px;bottom:12px;font-family:"Space Grotesk",sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.85);text-shadow:0 1px 8px rgba(0,0,0,.6)}
 
 /* sections */
 .group{margin:28px 0 0}
@@ -54,6 +64,8 @@ footer a{color:var(--ink-soft)}
 
 @media (max-width:600px){
   .top{padding-top:20px}
+  .hero{margin-top:12px;border-radius:12px}
+  .hero img{height:auto;max-height:190px;aspect-ratio:1445/544}
   .group-head{flex-direction:column;align-items:flex-start;gap:2px}
   .brand img{width:40px;height:40px}
   .me{width:100%;padding-top:2px}

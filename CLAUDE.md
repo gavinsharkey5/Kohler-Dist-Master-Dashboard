@@ -91,7 +91,12 @@ data fetch). /login/ also sets a readable `kdh_user` cookie ({name, role,
 email}); `hub/hub.js` uses it to LOCK a rep to their own name (no picker,
 no peek, no Manager Mode; `LOCKED_REP`), and /rep/ and the root index
 greet by name and carry a Sign out link. Both landing pages share
-`shared/home.css` (card grid, sections: reps' daily tools / sales
+`shared/home.css` (Kohler theme: denim/navy canvas and cards, Kohler
+blue accents; a hero band under the header -- the building photo
+`assets/hero-banner.jpg` on the manager page, the "Distributing the best
+beverages to Northern NJ" graphic `assets/nj-banner.webp` on the rep
+page and on top of the /login/ card; per-page `--hero-h` / `--focus-x` /
+`--focus-y` control the crop) (card grid, sections: reps' daily tools / sales
 performance / warehouse / planning & finance / field & team on the
 manager page; your programs / trackers & targets on the rep page).
 Gavin pruned the manager page on 2026-09-25: Heineken, Molson Coors,
