@@ -98,6 +98,16 @@ the two boards were cross-checked per rep afterwards (101 accounts each, zero
 differences). Whenever this file changes, change that one to match in the same
 commit.
 
+2026-09-25 REFRESH: actuals.csv onto the 248-row export (14 new rows, none
+  removed -- diffed before the run, all dated 9/24-9/25). 188 -> 198 distinct
+  accounts house-wide; still 8 qualified, 4 -> 6 at bonus, $1,040 -> $1,260
+  projected. KLEJDI LAMO 13 -> 15 of 27 (BONUS: Boonton Liquor Locker, House
+  of Wine Boonton, Sam's) and CHRIS PAYTON 19 -> 20 of 40 (BONUS: Maywood
+  Wine & Liq) both cross to bonus; Dave Ehlers 10 -> 12 (Simple Simon's,
+  Teaneck Discount), +1 each Pablo Lopez, Derrick Laws, Javier Melo, Jayson
+  Romine, Anthony Palmisano. Same file onto MPOs/off-prem/keystone_ice_24oz.csv
+  (sync rule); off-prem MPO and incentive-tracking rebuilt after this board.
+
 2026-09-23 REFRESH: actuals.csv onto the 234-row export (21 new rows; ONE
   removed -- Phil Ernst's 9/30 USA Wine Traders Paramus row flagged 9/18, whose
   month-end order left every RDE export). 173 -> 188 distinct accounts

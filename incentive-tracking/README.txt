@@ -4330,6 +4330,21 @@ Only these four programs changed in PROGRAM_DATA.
               returns and don't change his count.
 Hub cache tag bumped (20260923b) for the new program_data.js.
 
+2026-09-25 REFRESH -- Keystone + Corona Gaintain, riding the off-prem MPO refresh
+  python3 generate.py
+Only the two shared exports moved (diffed row by row first): Keystone
+234 -> 248 (+14, none removed), Corona Gaintain restated in place, 44 values
+moved, all upward. Everything else in PROGRAM_DATA_2026_09 changed only by
+days-elapsed / pace.
+  Keystone    188 -> 198 accounts house-wide; still 8 qualified, 4 -> 6 at
+              bonus, $1,040 -> $1,260. Klejdi Lamo 13 -> 15 of 27 (BONUS),
+              Chris Payton 19 -> 20 of 40 (BONUS), Dave Ehlers 10 -> 12, +1
+              each Pablo Lopez, Derrick Laws, Javier Melo, Jayson Romine,
+              Anthony Palmisano.
+  Constellation Fall   Corona Gaintain house off-prem 1,146 -> 1,182 of 1,610.
+              Still 0 of 22 reps holding every off-prem category, day 25 of 91.
+Hub cache tag bumped (20260925a) for the new program_data.js.
+
 2026-09-23 REFRESH -- Keystone + Corona Gaintain, riding the off-prem MPO refresh
   python3 generate.py
 Only the two shared exports moved (diffed row by row first): Keystone
