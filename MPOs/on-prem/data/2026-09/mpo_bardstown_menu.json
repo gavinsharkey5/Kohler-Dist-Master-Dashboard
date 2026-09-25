@@ -1,5 +1,18 @@
 [
   {
+    "SALES_REP_ASSIGNED": "Adam Badalamenti",
+    "CUSTOMER_NUM": 230126,
+    "CUSTOMER_NAME": "HUDSON FARM CLUB",
+    "BRAND_FAMILY": "BARDSTOWN ORIGINS SINGLE BARREL",
+    "PRODUCT_NAME": "BARDSTOWN ORIGINS SINGLE BARREL",
+    "DATE": "2026-09-24",
+    "PERIOD": "current",
+    "PROMOTION_TYPE": "Promo Event Activation",
+    "ELEMENTS": "",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/88720aa0-f9f1-477b-9be5-ed1ecfd98353/",
+    "NEW_PLACEMENT": 1
+  },
+  {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
     "CUSTOMER_NUM": 230122,
     "CUSTOMER_NAME": "KROGH'S RESTAURANT & BREW PUB",

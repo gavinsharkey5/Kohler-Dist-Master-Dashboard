@@ -928,6 +928,20 @@ on both boards: dated tables, Details toggles with photo links (cooler
 doors, Bardstown), Adam Badalamenti's Bardstown detail, no horizontal scroll
 at 390px, and the hub's off-prem tab still renders.
 
+2026-09-25 REFRESH -- Promos_Report_32 only (no RDE exports this pull)
+    python3 generate_2026-09.py --merge-cooler-doors Promos_Report_32.xlsx
+Gavin sent Report_32 alongside the on-prem RDE pull; its Filters sheet says
+Elements = Cooler Door Wrap (window 9/1-9/25), so it is this board's. 86 rows,
+all Cooler Door Wrap: 15 new, 71 already published -> archive 86 rows. The
+four RDE datasets were rebuilt from the unchanged 9/23 exports and came out
+byte-identical (only mpo_pos_cooler_doors.json and sync_meta.json moved).
+  POS stickers    60 -> 73 distinct, 6 -> 7 reps at 5: PHIL ERNST 0 -> 12,
+                  new at goal, all dated 9/23 (Super Wine Warehouse Paterson
+                  x3, ShopRite Paramus x6, ShopRite Fair Lawn, Food Universe
+                  Glen Rock, Prime Wine Cellar Paramus); Pablo Lopez 16 -> 17
+                  (Costambar, Paterson, 9/23). Everyone else where the 9/23
+                  note left them.
+
 2026-09-23 REFRESH -- all four exports plus Promos_Report_31
     python3 generate_2026-09.py --merge-cooler-doors Promos_Report_31.xlsx
 Row counts: Constellation 123 -> 123 (restated in place, every rep up or flat),
