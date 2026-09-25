@@ -4350,6 +4350,53 @@ Only these four programs changed in PROGRAM_DATA.
               returns and don't change his count.
 Hub cache tag bumped (20260923b) for the new program_data.js.
 
+2026-09-25 SIXTH REFRESH -- Molson Coors retention (on + off, grouped workbooks _6) + MABI Fall actuals _11
+  python3 convert_mc_retention.py <On_Premise ... w Goals_6.xlsx> <Off_Premise ... w Goals_6.xlsx>
+  python3 convert_mabi_fall.py MABI_Fall_2026_Retention_11.csv data/mabi_retention_fall_goals_source.csv
+  python3 generate.py
+MABI GOALS: Gavin asked to "freeze mabi goal for reps if it is not already
+frozen". IT ALREADY IS, since the 2026-09-23 SIXTH refresh: the goals come
+ONLY from data/mabi_retention_fall_goals_source.csv (the RDE goals report,
+FINAL), the actuals export's goal column is a printed cross-check that is
+never applied, and today's actuals export (the plain Retention_11 shape) has
+no goal column at all. Proof on this run: data/mabi_retention_fall_goals.csv
+and data/mabi_retention_fall_brand_goals.csv came out of the converter
+BYTE-IDENTICAL to the committed copies, and the rebuilt payload moved 0 rep
+goals and 0 brand goals across 24 reps. Nothing to freeze; nothing changed
+in the code. The one thing that would move a MABI goal is replacing the
+_goals_source.csv file -- don't, unless Gavin reissues goals.
+MABI actuals (first re-pull since 9/21): 687 -> 697 product rows, house
+3,961 -> 4,571 raw / 3,957 -> 4,566 of 7,326 on the roster (54.0% -> 62.3%).
+Every product row moved up or held, NONE down -- the converter reconciled
+every brand subtotal and rep total. Still 0 of 24 reps at their 90% goal, day
+25 of 91. Brand goals held 7 -> 11: DAVE EHLERS Mike's Hard Lemonade 47 -> 55
+of 50, DERRICK LAWS Mxd Cocktails 3 -> 6 of 4, MICHAEL HARBOY Cayman Jack
+6 -> 14 of 14, NICK MELISSARI Mike's Hard Lemonade 1 -> 2 of 2. Biggest
+moves: Klejdi Lamo 370 -> 436 (70.0%), Matt Powierski 347 -> 417, Dave Ehlers
+382 -> 441 (75.9%, the top), Jayson Romine 384 -> 437, Chris Payton 303 -> 352,
+Phil Ernst 289 -> 337 (75.1%), Jim Heaney 328 -> 371, Anthony Palmisano
+354 -> 388, Mike Ast 219 -> 252, Javier Melo 109 -> 138, Shane Barreca
+198 -> 227. The White Claw core cans (Variety #1, Black Cherry, Lime, Ruby
+Grapefruit) carry most of it.
+MOLSON COORS: both grouped workbooks converted (sheets matched by premise --
+the report tabs are now "Molson Coors Fall 2026 On Prem" / "... Off Pre";
+same 07/27-10/31 window); every rep, DM and report total reconciled, 0 (rep,
+brand) pairs added or dropped, and 0 GOALS MOVED on all 107 brand rows
+(checked per rep+brand against the page). Off 2,872 -> 2,895 of 2,912
+placements, on 749 -> 761 of 840 buyers; brand goals retained 42 -> 44:
+  newly retained  CHRIS PAYTON on-prem Coors Light 2 -> 3 of 3 (2 -> 3 goals;
+                  103.7% -> 107.4% overall, Coors 86 -> 90 of 85), NICK
+                  MELISSARI on-prem Coors Banquet 2 -> 3 of 3 (his first;
+                  Miller Lite 40 -> 41 of 50).
+  other           Jayson Romine Fever Tree 88 -> 92 of 85, Klejdi Lamo Peroni
+                  60 -> 63 of 70, Dan Lagala Fever Tree 41 -> 43, Jim Heaney
+                  Coors 91 -> 92 and Peroni 79 -> 81, Allison Scott on-prem
+                  Coors Light 48 -> 50, Robin Feldman Miller Lite 33 -> 34 of
+                  30, Paul Mclaughlin Blue Moon 38 -> 39 of 46, +1 to +2 for
+                  Brian Sengebush, Pablo Lopez, Shane Barreca.
+  down            Derrick Laws Fever Tree 21 -> 19 of 15 (still held).
+Hub cache tag bumped (20260925f) for the new program_data.js.
+
 2026-09-25 FIFTH REFRESH -- Constellation Fall: OFF-PREM GOALS FROZEN, then Packages ON,
 Draft ON, Impact / Modelo Gaintain / Innovation OFF in the new account-level shape
   python3 generate.py --freeze-constellation-fall-off-goals   (once, BEFORE the new files)
