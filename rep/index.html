@@ -4,80 +4,175 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
-<title>Kohler Dist Hub — Your Dashboards</title>
+<meta name="theme-color" content="#F6F7F9">
+<title>Kohler Dist Hub — Workspace</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../shared/home.css?v=20260925b">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="rep.css?v=20260925c">
 </head>
 <body>
-<div class="wrap">
-  <header class="top">
-    <div class="brand">
-      <img src="../assets/kohler-logo-badge.png" alt="">
-      <div>
-        <p class="eyebrow">Kohler Distributing</p>
-        <h1 id="hi">Your dashboards</h1>
-      </div>
+<div class="topbar"><div class="in">
+  <a class="logo" href="./"><img src="../assets/kohler-logo-badge.png" alt="">Kohler Dist Hub<small>Sales</small></a>
+  <div class="actions">
+    <a class="btn hide-sm" id="mgrLink" href="../" hidden>Manager page</a>
+    <span class="btn" id="userChip"><span class="avatar" id="avatar">–</span><span id="userName">Signed in</span></span>
+    <a class="btn outline" href="../login/?signout=1">Sign out</a>
+  </div>
+</div></div>
+
+<main class="wrap">
+  <header class="ws">
+    <div class="id">
+      <p class="kicker" id="kicker">Sales rep workspace</p>
+      <h1 id="repName">Your workspace</h1>
+      <div class="meta" id="meta"><span class="muted">Loading territory…</span></div>
     </div>
-    <div class="me">
-      <span class="who" id="who">Signed in</span>
-      <a href="../login/?signout=1">Sign out</a>
-    </div>
+    <label class="switch" id="switch" hidden>Viewing as
+      <select id="repSelect" aria-label="Choose a rep to view"></select>
+    </label>
   </header>
-  <div class="hero" style="--focus-x:60%;--focus-y:35%;--hero-h:clamp(140px,32vw,340px)"><img src="../assets/nj-banner.webp" alt="Distributing the best beverages to Northern NJ"></div>
-  <p class="intro">Everything you need for the month. Tap a card to open it.</p>
 
-  <section class="group" style="--c:var(--gold)">
-    <div class="group-head"><h2>Your programs</h2><p>Incentives and this month’s MPOs</p></div>
-    <div class="cards">
-      <a class="card" href="../hub/" style="--c:var(--gold)">
-        <p class="tag">Start here</p><h3>Incentives &amp; MPO Hub</h3>
-        <p>Every incentive and MPO you’re in: where you stand, what you still need, and where to go next.</p><span class="go">›</span>
+  <section class="section">
+    <div class="section-h"><h2>Programs</h2><p>Incentives and this month’s MPOs</p></div>
+    <div class="grid">
+      <a class="card" id="c-hub" href="../hub/">
+        <div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span><h3>Incentives &amp; MPO Hub</h3></div>
+        <p>Every incentive and MPO you’re in: where you stand and what you still need.</p>
+        <div class="foot"><span class="status" id="s-hub"></span><span class="open">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
       </a>
-      <a class="card" id="offprem" href="../MPOs/off-prem/index.html#view=program" style="--c:var(--gold)">
-        <p class="tag">This month</p><h3>Off-Premise MPOs</h3>
-        <p>This month’s off-premise programs, by program.</p><span class="go">›</span>
+      <a class="card" id="c-off" href="../MPOs/off-prem/index.html#view=program">
+        <div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M4 9v11h16V9"/><path d="M9 20v-6h6v6"/></svg></span><h3>Off-Premise MPOs</h3></div>
+        <p>Package and liquor store programs for the month, by program.</p>
+        <div class="foot"><span class="status" id="s-off"><span class="dot"></span>Checking…</span><span class="open">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
       </a>
-      <a class="card" id="onprem" href="../MPOs/on-prem/index.html#view=program" style="--c:var(--gold)">
-        <p class="tag">This month</p><h3>On-Premise MPOs</h3>
-        <p>This month’s on-premise programs, by program.</p><span class="go">›</span>
+      <a class="card" id="c-on" href="../MPOs/on-prem/index.html#view=program">
+        <div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 11h1a3 3 0 0 1 0 6h-1"/><path d="M5 8h12v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M9 12v5M13 12v5"/><path d="M6 8a3 3 0 0 1 5-2.2A3 3 0 0 1 16 8"/></svg></span><h3>On-Premise MPOs</h3></div>
+        <p>Bar and restaurant programs for the month, by program.</p>
+        <div class="foot"><span class="status" id="s-on"><span class="dot"></span>Checking…</span><span class="open">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
       </a>
     </div>
   </section>
 
-  <section class="group" style="--c:var(--blue)">
-    <div class="group-head"><h2>Trackers &amp; targets</h2><p>Where to look before a call</p></div>
-    <div class="cards">
-      <a class="card" href="../isellbeer/tap-survey-tracking/" style="--c:var(--blue)">
-        <p class="tag">Draft</p><h3>Tap Tracker</h3>
-        <p>What’s on tap at every surveyed account, ours and theirs, from the latest iSellBeer survey.</p><span class="go">›</span>
+  <section class="section">
+    <div class="section-h"><h2>Trackers</h2><p>What to check before a call</p></div>
+    <div class="grid">
+      <a class="card" id="c-tap" href="../isellbeer/tap-survey-tracking/">
+        <div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 6.5 9a6.5 6.5 0 1 0 11 0z"/></svg></span><h3>Tap Tracker</h3></div>
+        <p>What’s on tap at every surveyed account, ours and theirs.</p>
+        <div class="foot"><span class="status" id="s-tap"></span><span class="open">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
       </a>
-      <a class="card" href="../redbull/" style="--c:var(--blue)">
-        <p class="tag">Distribution tracker</p><h3>Red Bull</h3>
-        <p>Red Bull placements against goal for the current period.</p><span class="go">›</span>
+      <a class="card" id="c-rb" href="../redbull/">
+        <div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span><h3>Red Bull</h3></div>
+        <p>Red Bull placements against goal for the current period.</p>
+        <div class="foot"><span class="status" id="s-rb"><span class="dot"></span>Checking…</span><span class="open">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
       </a>
-      <a class="card" href="../carbliss-onprem-targets/" style="--c:var(--blue)">
-        <p class="tag">Sales pitch generator</p><h3>Carbliss On-Premise Targets</h3>
-        <p>On-premise accounts with strong Sun Cruiser and White Claw volume, matched with the flavor gap Carbliss can fill.</p><span class="go">›</span>
+      <a class="card" id="c-cb" href="../carbliss-onprem-targets/">
+        <div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></span><h3>Carbliss On-Premise Targets</h3></div>
+        <p>Accounts with strong Sun Cruiser and White Claw volume, and the flavor gap to pitch.</p>
+        <div class="foot"><span class="status" id="s-cb"></span><span class="open">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
       </a>
     </div>
   </section>
+</main>
 
-  <footer>Internal use. These pages show customer and account detail — please don’t share the link outside the team.</footer>
-</div>
+<footer>Internal use. These pages show customer and account detail — please don’t share the link outside the team.</footer>
+
+<script src="../hub/data/accounts.js?v=20260923h" defer></script>
 <script>
 (function(){
-  try{
-    var m = document.cookie.match(/(?:^|;\s*)kdh_user=([^;]*)/);
-    var u = m && JSON.parse(decodeURIComponent(m[1]));
-    if(u && u.name){
-      document.getElementById('hi').textContent = 'Hi, ' + String(u.name).trim().split(/\s+/)[0];
-      document.getElementById('who').textContent = u.name;
+  var $ = function(id){ return document.getElementById(id); };
+  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var MONTHS_LONG = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+  /* ---- who is signed in (kdh_user cookie, set by /login/) ---- */
+  var user = null;
+  try { var m = document.cookie.match(/(?:^|;\s*)kdh_user=([^;]*)/); user = m && JSON.parse(decodeURIComponent(m[1])); } catch (e) {}
+  var isManager = !!(user && user.role === 'manager');
+  var viewRep = (user && user.name) || '';
+  if (user && user.name) {
+    $('userName').textContent = user.name;
+    $('avatar').textContent = initials(user.name);
+  }
+  if (isManager) { $('mgrLink').hidden = false; $('kicker').textContent = 'Rep workspace · manager preview'; }
+
+  function initials(n){ return String(n).trim().split(/\s+/).map(function(w){ return w[0]; }).slice(0,2).join('').toUpperCase(); }
+  function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+
+  /* ---- territory line: accounts and areas from the hub's account file ---- */
+  // accounts.js declares `const HUB_ACCOUNTS`, which is global but NOT a
+  // window property, so look it up by name.
+  function accountsFile(){ try { return typeof HUB_ACCOUNTS !== 'undefined' ? HUB_ACCOUNTS : null; } catch (e) { return null; } }
+  function territory(name){
+    var out = [];
+    // Title and manager come from the signed-in person's own row, so they
+    // only belong on their own workspace, not on a manager's preview of
+    // someone else.
+    var own = user && user.name === name;
+    if (own && user.title) out.push(esc(user.title));
+    if (own && user.dm) out.push('Reports to ' + esc(user.dm));
+    var A = accountsFile(); var accts = (A && A.reps && A.reps[name]) || null;
+    if (accts && accts.length) {
+      var on = 0, areas = {};
+      accts.forEach(function(a){ if (a.prem === 'On') on++; areas[a.area || a.county || '?'] = (areas[a.area || a.county || '?'] || 0) + 1; });
+      var top = Object.keys(areas).sort(function(a,b){ return areas[b] - areas[a]; }).slice(0,3);
+      out.push(accts.length + ' accounts <span class="muted">&nbsp;(' + on + ' on · ' + (accts.length - on) + ' off)</span>');
+      if (top.length) out.push(esc(top.join(', ')) + (Object.keys(areas).length > 3 ? ' <span class="muted">+' + (Object.keys(areas).length - 3) + '</span>' : ''));
+    } else if (A) {
+      out.push('<span class="muted">No account list on file</span>');
     }
-  }catch(e){}
-  var d = new Date(), month = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0');
-  ['offprem','onprem'].forEach(function(id){ var a = document.getElementById(id); if(a) a.href += '&month=' + month; });
+    $('meta').innerHTML = out.length ? out.join('<span class="sep">·</span>') : '<span class="muted">Signed in</span>';
+  }
+
+  /* ---- the workspace: a rep sees their own; a manager can pick one ---- */
+  function showRep(name){
+    viewRep = name;
+    $('repName').textContent = name || 'Your workspace';
+    territory(name);
+    // Deep-link the hub to this rep so it opens on their page.
+    $('c-hub').href = '../hub/' + (name ? '#view=rep&rep=' + encodeURIComponent(name) : '');
+  }
+  function setupSwitcher(){
+    var A = accountsFile(); if (!isManager || !A || !A.reps) return;
+    var names = Object.keys(A.reps).sort();
+    var sel = $('repSelect'); sel.innerHTML = '';
+    names.forEach(function(n){ var o = document.createElement('option'); o.value = n; o.textContent = n; sel.appendChild(o); });
+    var saved = ''; try { saved = localStorage.getItem('kdh_rep_view') || ''; } catch (e) {}
+    var pick = names.indexOf(saved) >= 0 ? saved : (names.indexOf(viewRep) >= 0 ? viewRep : names[0]);
+    sel.value = pick; $('switch').hidden = false;
+    sel.addEventListener('change', function(){ try { localStorage.setItem('kdh_rep_view', sel.value); } catch (e) {} showRep(sel.value); });
+    showRep(pick);
+  }
+  showRep(viewRep);
+  function whenAccounts(fn){ if (accountsFile()) return fn(); var t = setInterval(function(){ if (accountsFile()) { clearInterval(t); fn(); } }, 60); setTimeout(function(){ clearInterval(t); }, 8000); }
+  whenAccounts(function(){ if (isManager) setupSwitcher(); else territory(viewRep); });
+
+  /* ---- live status where real data exists ---- */
+  function status(id, cls, text){ var el = $(id); el.className = 'status' + (cls ? ' ' + cls : ''); el.innerHTML = '<span class="dot"></span>' + text; }
+  function ymd(d){ return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0'); }
+  function fmtDay(iso){ var d = new Date(iso); return isNaN(d) ? '' : MONTHS[d.getMonth()] + ' ' + d.getDate(); }
+  function getJson(url){ return fetch(url, {cache:'no-store'}).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }); }
+
+  // MPO pages: this month's data if loaded, else the newest month that is.
+  var now = new Date(), thisM = ymd(now), prevM = ymd(new Date(now.getFullYear(), now.getMonth()-1, 1));
+  [['off','c-off','s-off'],['on','c-on','s-on']].forEach(function(t){
+    var base = '../MPOs/' + t[0] + '-prem/', card = $(t[1]);
+    getJson(base + 'data/' + thisM + '/sync_meta.json').then(function(meta){
+      if (meta) { card.href = base + 'index.html#view=program&month=' + thisM; status(t[2], 'ok', MONTHS_LONG[now.getMonth()] + (meta.synced_at ? ' · updated ' + fmtDay(meta.synced_at) : '')); return; }
+      return getJson(base + 'data/' + prevM + '/sync_meta.json').then(function(pm){
+        if (pm) { card.href = base + 'index.html#view=program&month=' + prevM; status(t[2], 'warn', MONTHS_LONG[now.getMonth()] + ' not loaded yet · showing ' + MONTHS_LONG[(now.getMonth()+11)%12]); }
+        else { card.classList.add('muted'); status(t[2], '', 'No programs loaded yet'); }
+      });
+    });
+  });
+
+  // Red Bull: the tracked period and how long is left in it.
+  getJson('../redbull/period.json').then(function(p){
+    if (!p || !p.end) { status('s-rb', '', ''); return; }
+    var end = new Date(p.end + 'T23:59:59'), days = Math.ceil((end - now) / 86400000);
+    if (days < 0) status('s-rb', '', (p.label || 'Period') + ' · ended');
+    else status('s-rb', days <= 7 ? 'warn' : 'ok', (p.label || 'Current period') + ' · ' + (days === 0 ? 'last day' : days + ' day' + (days === 1 ? '' : 's') + ' left'));
+  });
 })();
 </script>
 </body>

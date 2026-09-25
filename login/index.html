@@ -7,12 +7,12 @@
 <title>Sign in — Kohler Dist Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{--canvas:#0B1120;--card:#131B30;--ink:#F3F5FA;--ink-soft:#A3ADC4;--line:#22304F;--accent:#F2C14E;--good:#5fdc8c;--bad:#ff7b7b}
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
-  body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5;
+  body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;font-family:"Source Sans 3",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5;
     display:flex;align-items:center;justify-content:center;padding:24px 16px env(safe-area-inset-bottom);
     background-image:radial-gradient(90% 50% at 50% -10%,rgba(59,111,211,.28),transparent 70%);background-repeat:no-repeat}
   .card{width:100%;max-width:440px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:0 24px 24px;overflow:hidden;
@@ -20,13 +20,13 @@
   .banner{display:block;width:calc(100% + 48px);margin:0 -24px 18px;height:auto;aspect-ratio:1445/544;object-fit:cover;object-position:60% center;border-bottom:1px solid var(--line)}
   .brand{display:flex;align-items:center;gap:12px;margin:0 0 18px}
   .brand img{width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:#fff;object-fit:contain}
-  .eyebrow{font-family:"Space Grotesk";letter-spacing:.2em;text-transform:uppercase;font-size:11px;font-weight:600;color:var(--ink-soft);margin:0}
-  h1{font-family:"Space Grotesk";font-weight:700;letter-spacing:-.02em;font-size:24px;line-height:1.1;margin:2px 0 0}
+  .eyebrow{font-family:"Oswald";letter-spacing:.2em;text-transform:uppercase;font-size:11px;font-weight:600;color:var(--ink-soft);margin:0}
+  h1{font-family:"Oswald";font-weight:700;letter-spacing:-.02em;font-size:24px;line-height:1.1;margin:2px 0 0}
   p{margin:0 0 14px;color:var(--ink-soft);font-size:14.5px}
-  label{display:block;font-family:"Space Grotesk";font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 6px}
+  label{display:block;font-family:"Oswald";font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 6px}
   input[type=email]{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--canvas);border:1px solid var(--line);border-radius:10px;padding:12px 14px;outline:none}
   input[type=email]:focus{border-color:var(--accent)}
-  button{width:100%;margin-top:12px;font-family:"Space Grotesk";font-weight:700;font-size:15px;letter-spacing:.02em;color:#141414;background:var(--accent);border:0;border-radius:10px;padding:13px 16px;cursor:pointer}
+  button{width:100%;margin-top:12px;font-family:"Oswald";font-weight:700;font-size:15px;letter-spacing:.02em;color:#141414;background:var(--accent);border:0;border-radius:10px;padding:13px 16px;cursor:pointer}
   button:disabled{opacity:.55;cursor:default}
   .msg{margin:14px 0 0;padding:12px 14px;border-radius:10px;font-size:14px;border:1px solid var(--line);background:var(--canvas);display:none}
   .msg.show{display:block}
@@ -140,7 +140,7 @@
 
   function enter(session) {
     setCookie(session.access_token);
-    sb.from('allowed_users').select('email,name,role').limit(1).then(function (res) {
+    sb.from('allowed_users').select('email,name,role,title,reports_to').limit(1).then(function (res) {
       if (res.error) {
         entered = false; showForm();
         say('bad', 'Couldn&rsquo;t check the access list: ' + escapeHtml(res.error.message));
@@ -157,7 +157,7 @@
       // Who is signed in, for the pages (the hub locks a rep to their own
       // name; the landing pages greet by name). Not used for access
       // decisions -- the middleware asks Supabase for the role itself.
-      document.cookie = 'kdh_user=' + encodeURIComponent(JSON.stringify({ name: me.name || '', role: me.role || 'rep', email: me.email })) +
+      document.cookie = 'kdh_user=' + encodeURIComponent(JSON.stringify({ name: me.name || '', role: me.role || 'rep', email: me.email, title: me.title || '', dm: me.reports_to || '' })) +
         '; Path=/; Max-Age=2592000; Secure; SameSite=Lax';
       $('signout').classList.remove('hidden');
       say('good', 'Signed in as <b>' + escapeHtml(me.name || session.user.email) + '</b>. Opening&hellip;');

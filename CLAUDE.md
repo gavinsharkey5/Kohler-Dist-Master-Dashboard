@@ -90,7 +90,25 @@ files they load -- and is sent to `/rep/` for anything else (403 for a
 data fetch). /login/ also sets a readable `kdh_user` cookie ({name, role,
 email}); `hub/hub.js` uses it to LOCK a rep to their own name (no picker,
 no peek, no Manager Mode; `LOCKED_REP`), and /rep/ and the root index
-greet by name and carry a Sign out link. Both landing pages share
+greet by name and carry a Sign out link. The REP page (`rep/index.html` + `rep/rep.css`, 2026-09-25) is a light
+"sales app" workspace, styled after shadcn's dashboard: compact sticky
+top bar (wordmark, avatar chip, Sign out; "Manager page" for managers),
+a workspace header with the rep's name, title, "Reports to <DM>" (both
+from the kdh_user cookie, which /login/ fills from allowed_users.title /
+reports_to), and account count + on/off split + top areas computed from
+`hub/data/accounts.js` (loaded deferred). Managers get a "Viewing as"
+rep switcher (roster = accounts.js reps; remembered in localStorage
+`kdh_rep_view`) and the hub card deep-links `#view=rep&rep=<name>`. Cards
+are one component (icon, title, 2-line description, footer status +
+"Open"); status is shown ONLY where cheap real data exists: MPO cards
+fetch `data/<YYYY-MM>/sync_meta.json` for the current month (fall back
+to last month with an amber note, or a muted "No programs loaded yet"),
+Red Bull reads `period.json` for the period and days left. Tap Tracker
+and Carbliss embed their data in multi-MB HTML, so no status. Fonts are
+Oswald (headings) + Source Sans 3 (body) -- Gavin's pick ("option C") --
+on the rep page, the manager page and /login/. The manager page still
+uses the dark `shared/home.css` theme.
+Both landing pages share
 `shared/home.css` (Kohler theme: denim/navy canvas and cards, Kohler
 blue accents; a hero band under the header -- the building photo
 `assets/hero-banner.jpg` on the manager page, the "Distributing the best

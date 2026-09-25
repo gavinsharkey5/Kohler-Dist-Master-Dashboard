@@ -10,7 +10,7 @@
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5;
+body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;font-family:"Source Sans 3",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5;
   padding:0 16px env(safe-area-inset-bottom);
   background-image:radial-gradient(90% 50% at 50% -10%,rgba(59,111,211,.28),transparent 70%);background-repeat:no-repeat}
 .wrap{max-width:1120px;margin:0 auto}
@@ -19,8 +19,8 @@ body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;font-fa
 .top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:28px 0 6px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:14px;min-width:0}
 .brand img{width:48px;height:48px;border-radius:12px;border:1px solid var(--line);background:#fff;object-fit:contain;flex:none}
-.eyebrow{font-family:"Space Grotesk",sans-serif;letter-spacing:.2em;text-transform:uppercase;font-size:11px;font-weight:600;color:var(--ink-soft);margin:0 0 2px}
-h1{font-family:"Space Grotesk",sans-serif;font-weight:700;letter-spacing:-.02em;font-size:clamp(24px,4.5vw,32px);line-height:1.05;margin:0}
+.eyebrow{font-family:"Oswald",sans-serif;letter-spacing:.2em;text-transform:uppercase;font-size:11px;font-weight:600;color:var(--ink-soft);margin:0 0 2px}
+h1{font-family:"Oswald",sans-serif;font-weight:600;letter-spacing:.01em;text-transform:uppercase;font-size:clamp(24px,4.5vw,32px);line-height:1.05;margin:0}
 .me{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:13px;color:var(--ink-soft);padding-top:8px}
 .me .who{padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:var(--card)}
 .me a{color:var(--ink-soft);text-decoration:none;padding:6px 10px;border-radius:999px;border:1px solid transparent}
@@ -31,12 +31,12 @@ h1{font-family:"Space Grotesk",sans-serif;font-weight:700;letter-spacing:-.02em;
 .hero{position:relative;margin:16px 0 0;border-radius:16px;overflow:hidden;border:1px solid var(--line-h);background:var(--navy);box-shadow:0 18px 50px rgba(0,0,0,.45)}
 .hero img{display:block;width:100%;height:var(--hero-h,clamp(140px,20vw,230px));object-fit:cover;object-position:var(--focus-x,50%) var(--focus-y,50%)}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,17,32,0) 60%,rgba(11,17,32,.55));pointer-events:none}
-.hero .cap{position:absolute;left:18px;bottom:12px;font-family:"Space Grotesk",sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.85);text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.hero .cap{position:absolute;left:18px;bottom:12px;font-family:"Oswald",sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.85);text-shadow:0 1px 8px rgba(0,0,0,.6)}
 
 /* sections */
 .group{margin:28px 0 0}
 .group-head{display:flex;align-items:baseline;gap:12px;margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
-.group-head h2{font-family:"Space Grotesk",sans-serif;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin:0;color:var(--ink)}
+.group-head h2{font-family:"Oswald",sans-serif;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin:0;color:var(--ink)}
 .group-head h2::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--c,var(--ink-soft));margin:0 10px 1px 0;vertical-align:middle}
 .group-head p{margin:0;font-size:13px;color:var(--ink-dim)}
 
@@ -48,14 +48,14 @@ a.card{position:relative;display:flex;flex-direction:column;gap:6px;min-height:1
 a.card::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--c,var(--ink-soft));opacity:.9}
 a.card:hover{transform:translateY(-2px);background:var(--card-h);border-color:var(--line-h)}
 a.card:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
-.card .tag{font-family:"Space Grotesk",sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:0}
-.card h3{font-family:"Space Grotesk",sans-serif;font-size:16.5px;font-weight:600;letter-spacing:-.01em;margin:0;line-height:1.25;padding-right:22px}
+.card .tag{font-family:"Oswald",sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:0}
+.card h3{font-family:"Oswald",sans-serif;font-size:19px;font-weight:500;letter-spacing:.01em;margin:0;line-height:1.25;padding-right:22px}
 .card p{margin:0;font-size:13px;color:var(--ink-soft);line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .card .go{position:absolute;right:14px;top:14px;color:var(--ink-dim);font-size:20px;line-height:1;transition:transform .14s ease,color .14s ease}
 a.card:hover .go{transform:translateX(3px);color:var(--ink)}
 a.card.soon{opacity:.55}
 a.card.soon:hover{transform:none;background:var(--card);border-color:var(--line)}
-.card .pill{position:absolute;right:14px;top:12px;font-family:"Space Grotesk",sans-serif;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+.card .pill{position:absolute;right:14px;top:12px;font-family:"Oswald",sans-serif;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
   color:var(--ink-soft);border:1px solid var(--line-h);border-radius:999px;padding:3px 8px}
 a.card.soon .go{display:none}
 
