@@ -724,7 +724,6 @@ function topbar(){
     ${state.view!=='home' ? `<div class="navrow">
       <div class="navl">${rep && onRep ? `<span class="nav-rep">👤 ${E(state.peek && state.view==='detail' ? state.peek : rep)}</span>` : ''}</div>
       <div class="navr">
-        ${LOCKED_REP ? `<a class="nbtn quiet" href="../rep/">Dashboards</a>` : ''}
         <button class="nbtn home" data-act="home">🏠 Home</button>
         ${rep && state.view!=='rep' ? `<button class="nbtn" data-act="my-programs">My programs</button>` : ''}
         ${isMgr() && !(state.view==='programs' || state.view==='program') ? `<button class="nbtn quiet" data-act="programs">Program view</button>` : ''}

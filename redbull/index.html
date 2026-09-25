@@ -151,7 +151,7 @@
   <div id="body"></div>
   <footer><hr><p id="foot"></p></footer>
 </div></div>
-<script src="../shared/kdh-user.js?v=20260925e"></script>
+<script src="../shared/kdh-user.js?v=20260925f"></script>
 <script>
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const num=x=>{const v=parseFloat(String(x).replace(/[^0-9.\-]/g,""));return isNaN(v)?0:v;};
@@ -351,6 +351,7 @@ async function boot(){
   const rule=`<b>${TOP.label}</b> is the all-three account — two out of three doesn't count.`;
   const periodPhrase=period&&period.label?`Buying period <b>${esc(period.label)}</b> — only orders in that window count.`:"";
   document.getElementById("lede").innerHTML=`${periodPhrase} ${goalPhrase} ${key} ${rule} Tap your name to see your accounts.`;
+  if(LOCK_REP){const l=document.getElementById("lede");l.innerHTML=l.innerHTML.replace(/\s*Tap your name to see your accounts\.?/,"");}
   document.getElementById("period").innerHTML=period&&period.label?`<span class="lbl">Buying period</span><b>${esc(period.label)}</b>`:"";
   document.getElementById("updated").innerHTML=lastMod?`<span class="dot"></span><span class="lbl">Data updated</span><b>${esc(new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}))}</b>`:"";
   const catKey=CATS.map(c=>`<b>${c.label}</b> = ${c.blurb}`).join(", ")+".";

@@ -75,6 +75,11 @@ html[data-theme="dark"] .btn.icon .sun{display:none} html[data-theme="dark"] .bt
   -webkit-appearance:none;appearance:none;font:inherit;font-size:13.5px;font-weight:500;color:var(--text);min-width:200px;cursor:pointer}
 .switch select:hover{border-color:var(--border-2)}
 
+/* Kohler banner under the workspace header */
+.hero{margin:2px 0 18px;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--border);background:#2f5fc4;box-shadow:var(--shadow)}
+.hero img{display:block;width:100%;height:clamp(120px,28vw,300px);object-fit:cover;object-position:60% 30%}
+@media (max-width:599px){.hero{margin-bottom:14px}.hero img{height:auto;aspect-ratio:1445/544}}
+
 /* sections */
 .section{margin:10px 0 0;padding:0 0 22px}
 .section-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 10px}

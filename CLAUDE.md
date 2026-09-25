@@ -149,7 +149,15 @@ same way. All of these read identity through `shared/kdh-user.js`
 rep signed in, with a fixed "Previewing as X -- Exit preview" bar at the
 bottom (`kdhPreviewBar()`); Exit clears the cookie and reloads, and
 signing out clears it too. Preview changes only what pages SHOW -- the
-middleware still sees a manager, so manager URLs still open. Managers,
+middleware still sees a manager, so manager URLs still open. The same
+helper injects a sticky BACK BAR (`kdhBackBar()`, navy, top of the page)
+for a signed-in rep on every dashboard except /rep/: "Back" (history.back)
+when the referrer is one of our pages, otherwise "My dashboards" ->
+`<root>/rep/`, root derived from the script's own src so it also works
+under a github.io sub-path. The hub's own "Dashboards" button was
+removed in favour of it. The rep workspace shows the Northern NJ banner
+under its header again (Gavin: keep the theme); `--hero` rules in
+rep.css, full aspect on phones. Managers,
 and any name not on a page's roster, get every page unchanged. Beyond
 that nothing reads the cookie; access is decided only by the middleware. If a rep needs another page,
 add its prefix to REP_PATHS (plus whatever it loads) and to rep/index.html.
