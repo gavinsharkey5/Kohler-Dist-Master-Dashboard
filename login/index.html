@@ -111,9 +111,9 @@
     <form id="codeForm" class="hidden" autocomplete="off" novalidate>
       <button type="button" class="back" id="change"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Use a different email</button>
       <h1>Check your email</h1>
-      <p class="lead">We sent a sign-in email to <b id="sentTo"></b>. Tap the link in it, or enter the code below.</p>
+      <p class="lead">We sent a sign-in email to <b id="sentTo"></b> <span id="sentAt"></span>. Type the code from <b>that</b> email below, or tap its link.</p>
       <label for="code">Enter code</label>
-      <input id="code" class="field code" type="text" name="code" inputmode="numeric" pattern="[0-9]*" maxlength="8" autocomplete="one-time-code" placeholder="00000000" aria-label="Sign-in code from the email">
+      <input id="code" class="field code" type="text" name="code" inputmode="numeric" pattern="[0-9]*" maxlength="8" autocomplete="one-time-code" placeholder="000000" aria-label="Sign-in code from the email">
       <button id="verify" class="btn" type="submit">Sign in</button>
       <p class="help">Didn&rsquo;t get it? Check spam or quarantine, then <button type="button" class="link" id="resend">send it again</button><span id="resendIn"></span>.</p>
       <p class="help">Use the link <i>or</i> the code, not both &mdash; they are the same one-time key, good for an hour.</p>
@@ -135,6 +135,11 @@
   var next = safeNext(params.get('next'));
   var pendingEmail = '';
   var resendTimer = null;
+  var PENDING = 'kdh_pending';   // {email, at} -- the code we are waiting for
+  function loadPending(){ try { var p = JSON.parse(localStorage.getItem(PENDING) || 'null'); return (p && p.email && Date.now() - p.at < 55 * 60 * 1000) ? p : null; } catch (e) { return null; } }
+  function savePending(email){ try { localStorage.setItem(PENDING, JSON.stringify({ email: email, at: Date.now() })); } catch (e) {} }
+  function clearPending(){ try { localStorage.removeItem(PENDING); } catch (e) {} }
+  function clock(t){ var d = new Date(t); var h = d.getHours(), m = d.getMinutes(); return ((h % 12) || 12) + ':' + (m < 10 ? '0' : '') + m + (h < 12 ? ' AM' : ' PM'); }
 
   function safeNext(v) {
     if (!v || v.charAt(0) !== '/' || v.charAt(1) === '/' || v.indexOf('/login') === 0) return '/';
@@ -184,6 +189,7 @@
   });
 
   if (params.get('signout')) {
+    clearPending();
     sb.auth.signOut().then(function () {
       clearCookie();
       history.replaceState(null, '', '/login/');
@@ -206,13 +212,18 @@
   sb.auth.onAuthStateChange(function (event, session) {
     if (session && !entered) { entered = true; enter(session); return; }
     if (!session && event === 'INITIAL_SESSION') {
-      showForm();
-      if (whyText) say('info', whyText);
+      // A code is already on its way (the page was reloaded -- an iPad does
+      // that to a home-screen app when you come back from Mail): go straight
+      // to the code step instead of asking for the email and sending again.
+      var p = loadPending();
+      if (p) { showCodeStep(p.email, p.at, false); }
+      else { showForm(); if (whyText) say('info', whyText); }
     }
     if (event === 'SIGNED_OUT') clearCookie();
   });
 
   function enter(session) {
+    clearPending();
     setCookie(session.access_token);
     show('working'); hush();
     sb.from('allowed_users').select('email,name,role,title,reports_to').limit(1).then(function (res) {
@@ -240,8 +251,18 @@
     });
   }
 
-  function startResendClock() {
-    var left = 30;
+  function showCodeStep(email, at, fresh) {
+    pendingEmail = email;
+    $('sentTo').textContent = email;
+    $('sentAt').textContent = at ? 'at ' + clock(at) : '';
+    show('code');
+    $('code').value = '';
+    $('code').focus();
+    var left = Math.max(0, 30 - Math.round((Date.now() - (at || Date.now())) / 1000));
+    if (fresh || left > 0) startResendClock(left || 30);
+  }
+  function startResendClock(seconds) {
+    var left = seconds || 30;
     $('resend').disabled = true;
     $('resendIn').textContent = ' (' + left + 's)';
     clearInterval(resendTimer);
@@ -253,16 +274,21 @@
   }
 
   function sendLink(email, again) {
+    // One email per request: if a code went out for this address in the
+    // last two minutes, reuse it -- a second request would cancel it.
+    var p = loadPending();
+    if (!again && p && p.email === email && Date.now() - p.at < 2 * 60 * 1000) {
+      showCodeStep(email, p.at, false);
+      say('info', 'We already sent a code to this address at ' + clock(p.at) + '. Use that one.');
+      return Promise.resolve(true);
+    }
     var back = location.origin + '/login/' + (next !== '/' ? '?next=' + encodeURIComponent(next) : '');
     return sb.auth.signInWithOtp({ email: email, options: { emailRedirectTo: back } }).then(function (r) {
       if (r.error) { say('bad', 'Couldn&rsquo;t send the email: ' + escapeHtml(r.error.message)); return false; }
-      pendingEmail = email;
-      $('sentTo').textContent = email;
-      show('code');
-      if (again) say('good', 'Sent again. The newest email is the one that counts.'); else hush();
-      $('code').value = '';
-      $('code').focus();
-      startResendClock();
+      var at = Date.now();
+      savePending(email);
+      showCodeStep(email, at, true);
+      if (again) say('good', 'Sent again at ' + clock(at) + '. Older codes no longer work &mdash; use the newest email.'); else hush();
       return true;
     });
   }
@@ -313,12 +339,13 @@
         // onAuthStateChange picks the new session up and calls enter().
       });
     });
+    var codeTimer = null;
     $('code').addEventListener('input', function () {
-      // Supabase's code is 6 to 8 digits (a project setting; this one
-      // sends 8). Submit by itself once 8 are in; a shorter code still
-      // goes through the Sign in button.
+      // Supabase's code is 6 to 8 digits (a project setting). Submit by
+      // itself a moment after the last digit, whatever the length.
       this.value = this.value.replace(/\D/g, '').slice(0, 8);
-      if (this.value.length === 8) $('codeForm').requestSubmit ? $('codeForm').requestSubmit() : $('verify').click();
+      clearTimeout(codeTimer);
+      if (this.value.length >= 6) codeTimer = setTimeout(function () { $('codeForm').requestSubmit ? $('codeForm').requestSubmit() : $('verify').click(); }, this.value.length === 8 ? 0 : 900);
     });
     $('resend').addEventListener('click', function () {
       if (!pendingEmail) return;
@@ -326,7 +353,7 @@
       sendLink(pendingEmail, true);
     });
     $('change').addEventListener('click', function () {
-      clearInterval(resendTimer);
+      clearInterval(resendTimer); clearPending();
       hush(); show('email'); $('email').focus();
     });
   }
