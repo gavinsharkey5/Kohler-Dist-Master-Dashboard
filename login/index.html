@@ -50,8 +50,8 @@
   .field{width:100%;font-family:var(--body);font-size:17px;color:var(--ink);background:var(--field);border:1.5px solid var(--line);border-radius:12px;padding:13px 14px;outline:none;transition:border-color .12s,box-shadow .12s;-webkit-appearance:none;appearance:none}
   .field::placeholder{color:var(--ink-3)}
   .field:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(31,79,216,.14);background:#fff}
-  .code{font-family:var(--head);font-weight:600;font-size:34px;letter-spacing:.42em;text-indent:.42em;text-align:center;padding:12px 8px;font-variant-numeric:tabular-nums}
-  .code::placeholder{font-weight:500;color:#CBD5E1;letter-spacing:.42em}
+  .code{font-family:var(--head);font-weight:600;font-size:32px;letter-spacing:.3em;text-indent:.3em;text-align:center;padding:12px 8px;font-variant-numeric:tabular-nums}
+  .code::placeholder{font-weight:500;color:#CBD5E1;letter-spacing:.3em}
   .btn{width:100%;margin-top:14px;font-family:var(--head);font-weight:600;font-size:16px;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--blue);border:0;border-radius:12px;padding:14px 16px;min-height:50px;cursor:pointer;transition:background .12s,transform .06s}
   .btn:hover{background:var(--blue-deep)} .btn:active{transform:translateY(1px)}
   .btn:disabled{opacity:.55;cursor:default;transform:none}
@@ -76,7 +76,7 @@
   @keyframes spin{to{transform:rotate(360deg)}}
   .tag{display:inline-block;font-family:var(--head);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--ink-3);margin-top:22px}
   .hidden{display:none!important}
-  @media (max-width:420px){ .body{padding:20px 20px 22px} h1{font-size:24px} .code{font-size:30px} }
+  @media (max-width:420px){ .body{padding:20px 20px 22px} h1{font-size:24px} .code{font-size:27px;letter-spacing:.22em;text-indent:.22em} }
 </style>
 </head>
 <body>
@@ -112,8 +112,8 @@
       <button type="button" class="back" id="change"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Use a different email</button>
       <h1>Check your email</h1>
       <p class="lead">We sent a sign-in email to <b id="sentTo"></b>. Tap the link in it, or enter the code below.</p>
-      <label for="code">6-digit code</label>
-      <input id="code" class="field code" type="text" name="code" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="one-time-code" placeholder="000000" aria-label="6-digit code from the email">
+      <label for="code">Sign-in code</label>
+      <input id="code" class="field code" type="text" name="code" inputmode="numeric" pattern="[0-9]*" maxlength="8" autocomplete="one-time-code" placeholder="00000000" aria-label="Sign-in code from the email">
       <button id="verify" class="btn" type="submit">Sign in</button>
       <p class="help">Didn&rsquo;t get it? Check spam or quarantine, then <button type="button" class="link" id="resend">send it again</button><span id="resendIn"></span>.</p>
       <p class="help">The link and the code both work for one hour.</p>
@@ -293,7 +293,7 @@
       var code = $('code').value.replace(/\D/g, '');
       var email = pendingEmail || $('email').value.trim().toLowerCase();
       if (!email) { show('email'); return; }
-      if (code.length < 6) { say('bad', 'Enter the 6-digit code from the email.'); $('code').focus(); return; }
+      if (code.length < 6) { say('bad', 'Enter the code from the email (6 to 8 digits).'); $('code').focus(); return; }
       $('verify').disabled = true;
       say('info', 'Checking the code&hellip;');
       sb.auth.verifyOtp({ email: email, token: code, type: 'email' }).then(function (r) {
@@ -307,8 +307,11 @@
       });
     });
     $('code').addEventListener('input', function () {
-      this.value = this.value.replace(/\D/g, '').slice(0, 6);
-      if (this.value.length === 6) $('codeForm').requestSubmit ? $('codeForm').requestSubmit() : $('verify').click();
+      // Supabase's code is 6 to 8 digits (a project setting; this one
+      // sends 8). Submit by itself once 8 are in; a shorter code still
+      // goes through the Sign in button.
+      this.value = this.value.replace(/\D/g, '').slice(0, 8);
+      if (this.value.length === 8) $('codeForm').requestSubmit ? $('codeForm').requestSubmit() : $('verify').click();
     });
     $('resend').addEventListener('click', function () {
       if (!pendingEmail) return;

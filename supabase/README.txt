@@ -77,8 +77,8 @@ Sign-in CODE (needed for the home-screen app, 2026-09-25)
 ---------------------------------------------------------
   An iPad opens the emailed link in Safari, never inside a web app that
   was added to the home screen -- so the installed app would stay on the
-  sign-in page forever. /login/ therefore also accepts the 6-digit code
-  Supabase puts in the same email: the person types it into the app.
+  sign-in page forever. /login/ therefore also accepts the code (8 digits on this
+  project) Supabase puts in the same email: the person types it into the app.
   For the code to APPEAR in the email, the template must print it:
     Supabase -> Authentication -> Emails -> Magic Link (and Confirm sign
     up, which Supabase uses for a first-ever sign-in). Subject "Sign in
