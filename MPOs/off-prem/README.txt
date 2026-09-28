@@ -928,6 +928,66 @@ on both boards: dated tables, Details toggles with photo links (cooler
 doors, Bardstown), Adam Badalamenti's Bardstown detail, no horizontal scroll
 at 390px, and the hub's off-prem tab still renders.
 
+2026-09-28 REFRESH -- all four exports plus Promos_Report_37
+    python3 generate_2026-09.py --merge-cooler-doors Promos_Report_37.xlsx
+Row counts: Constellation 123 -> 123 (restated in place, every rep up or
+flat), Keystone 240 -> 254 (+14, none removed), Fever Tree 2,253 -> 2,282
+(+29, none removed), Wine & Spirits 2,907 -> 2,938 (+32/-1). Diffed row by
+row before the run. THE ONE W&S ROW THAT LEFT is Hakan Sadik's 9/25 New
+Owl Liquors Pride & Clarke Vodka order (152025), which had scored as NEW
+on the prior pull -- the export is the record, so it drops; he still
+holds well above goal on his other accounts.
+Promos_Report_37 held 97 rows, all Cooler Door Wrap (window through
+9/28): 11 new, 86 already published -> archive 97 rows. WEEKDAY-GAP
+WARNING: nothing published between the last row (9/23) and this export's
+first new one (9/28) -- 9/24 and 9/25 have no rows. Worth a glance if
+that wasn't simply a quiet couple of days (Gavin sent on-prem's
+Promos_Report_36 over that same window with no off-prem report attached,
+so it may just be that no cooler-door photos were taken those two days).
+ONE PHOTO TAKER MATCHES NOBODY ON THE ROSTER: "patrick infante" (Sales
+Associate, reports to Denise Montes / Ashley Furman per the export) shot
+one cooler door at 24011 Shoppers Vineyard (A), Modelo Especial, 9/28 --
+it is in the archive but scores on no card, the same class of gap as
+on-prem's Chris Politano/Adam Badalamenti names before they were
+resolved. ASK GAVIN whether he should be added to ROSTER.
+  Constellation   1,190 -> 1,236 placements this fall against 1,628 last
+                  fall; still 23 of 24 reps at 30% of their own goal (a
+                  three-month program, restated in full on every pull --
+                  see the objective note above). Dan Lagala 79 -> 89, Jim
+                  Heaney 86 -> 94, Matt Powierski 117 -> 121, Javier Melo
+                  93 -> 98, Chris Payton 88 -> 93, Phil Ernst 88 -> 91,
+                  smaller moves elsewhere.
+  Keystone Ice    190 -> 202 distinct buying accounts, still 9 of 26 reps
+                  at 40% penetration (no rep newly crossed the line):
+                  Jayson Romine 15 -> 17, Mike Ast 1 -> 3, +1 each Anthony
+                  Palmisano, Chris Payton, Dave Ehlers, Derrick Laws,
+                  Javier Melo, Jim Heaney, Klejdi Lamo. Same 254-row
+                  export onto keystone-ice/actuals.csv (sync rule);
+                  keystone-ice rebuilt, then this board, then
+                  incentive-tracking.
+  Fever Tree      154 -> 167 new placements, 8 -> 9 reps at 10: PABLO
+                  LOPEZ 3 -> 10 (new at goal -- Legacy Bar & Liquor and
+                  Regalado Liq each opened with 3-4 SKUs, 9/28-9/29).
+                  Michael Harboy opens Shays Liquors with 4 SKUs at once
+                  (0 -> 4, 9/30). Jayson Romine 17 -> 18, Anthony
+                  Palmisano 3 -> 4.
+  Wine & Spirits  348 -> 360 new placements, still 23 reps at 5: Javier
+                  Melo 9 -> 16 (Bottle Liquor (P) opened with five 2XO/
+                  Pride & Clarke SKUs at once, plus Parker Liquors (Z)),
+                  Nick Melissari 7 -> 10 (Annabella's House Of Mozz opened
+                  with three Bardstown Origin Series SKUs), Chris Payton
+                  15 -> 16, Default (unassigned) 2 -> 3.
+  POS stickers    73 -> 84 distinct, 7 -> 10 reps at 5: DAVE EHLERS 0 -> 6
+                  (new at goal, all 9/28 -- Deli Mart, George's Liq x2,
+                  Wine and Liq Depot x2, one photo per stop), DAN LAGALA
+                  4 -> 5 (new at goal, Buy Rite of Fairview, 9/28), MATT
+                  POWIERSKI 4 -> 5 (new at goal, Luigi's Liquor, 9/28);
+                  Phil Ernst 12 -> 14.
+  Target lists    Keystone 303 -> 292; Fever Tree 338 -> 334.
+The Corona Gaintain export also went onto
+incentive-tracking/data/constellation_fall_corona_gaintain_off.csv (sync
+rule). Hub cache tag bumped (20260928a) for the new program_data.js.
+
 2026-09-25 THIRD REFRESH -- Keystone only (sync rule, riding the incentive refresh)
     python3 generate_2026-09.py
 The Keystone _30 export Gavin sent for the hub is this morning's 248-row pull

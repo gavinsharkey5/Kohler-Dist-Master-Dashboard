@@ -98,6 +98,15 @@ the two boards were cross-checked per rep afterwards (101 accounts each, zero
 differences). Whenever this file changes, change that one to match in the same
 commit.
 
+2026-09-28 REFRESH: actuals.csv onto the 254-row export (14 new rows, none
+  removed -- diffed before the run, all dated 9/28-9/30). 190 -> 202 distinct
+  accounts house-wide; still 8 qualified, 5 -> 6 at bonus, $1,135 -> $1,285
+  projected. CHRIS PAYTON 19 -> 20 of 20 (crosses to BONUS: Maywood Wine&Liq
+  (A), 9/24). Jayson Romine 15 -> 17, Mike Ast 1 -> 3, +1 each Anthony
+  Palmisano, Dave Ehlers, Derrick Laws, Javier Melo, Jim Heaney, Klejdi Lamo.
+  Same file onto MPOs/off-prem/keystone_ice_24oz.csv (sync rule); off-prem
+  MPO and incentive-tracking rebuilt after this board.
+
 2026-09-25 SECOND REFRESH: actuals.csv onto the 240-row export -- the morning's
   248-row pull MINUS ITS EIGHT 9/24 ROWS, nothing added (diffed before the run).
   Every 9/24 load sheet vanished from the 1911 and Woodchuck RDE pulls of the

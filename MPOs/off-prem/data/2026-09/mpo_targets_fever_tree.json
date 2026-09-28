@@ -91,12 +91,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 6002,
-    "CUSTOMER_NAME": "Roserne Liquors North",
-    "AREA": "Morris 3"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "CUSTOMER_NUM": 4005,
     "CUSTOMER_NAME": "Turnpike Discount Liquors",
     "AREA": "Passaic"
@@ -1561,12 +1555,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
-    "CUSTOMER_NUM": 12017,
-    "CUSTOMER_NAME": "Shays Liquors",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Michael Harboy",
     "CUSTOMER_NUM": 11014,
     "CUSTOMER_NAME": "Wayne Liquor Locker",
     "AREA": "Passaic"
@@ -1789,12 +1777,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 15040,
-    "CUSTOMER_NAME": "Legacy Bar & Liquor",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 25015,
     "CUSTOMER_NAME": "Limonta Liqs (A)",
     "AREA": "Passaic"
@@ -1815,12 +1797,6 @@
     "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 27072,
     "CUSTOMER_NAME": "Passaic Discount Liquors",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 26014,
-    "CUSTOMER_NAME": "Regalado Liq",
     "AREA": "Passaic"
   },
   {

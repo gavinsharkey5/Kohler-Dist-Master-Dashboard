@@ -4619,6 +4619,22 @@ Woodchuck 584 -> 581 (+5 / -8), Tona 344 -> 344 (rename only), Lytt
               Convenience rows add cases only.
 Hub cache tag bumped (20260925b) for the new program_data.js.
 
+2026-09-28 REFRESH -- Keystone + Corona Gaintain, riding the off-prem MPO refresh
+  python3 generate.py
+Only the two shared exports moved (diffed row by row first): Keystone
+240 -> 254 (+14, none removed), Corona Gaintain restated in place, every
+rep up or flat. Everything else in PROGRAM_DATA_2026_09 changed only by
+days-elapsed / pace.
+  Keystone    190 -> 202 accounts house-wide; still 8 qualified, 5 -> 6 at
+              bonus, $1,135 -> $1,285. CHRIS PAYTON 19 -> 20 of 20 (BONUS),
+              Jayson Romine 15 -> 17, Mike Ast 1 -> 3, +1 each Anthony
+              Palmisano, Dave Ehlers, Derrick Laws, Javier Melo, Jim
+              Heaney, Klejdi Lamo.
+  Constellation Fall   Corona Gaintain house off-prem 1,182 -> 1,228 of
+              1,610. Still 0 of 22 reps holding every off-prem category,
+              day 28 of 91.
+Hub cache tag bumped (20260928a) for the new program_data.js.
+
 2026-09-25 REFRESH -- Keystone + Corona Gaintain, riding the off-prem MPO refresh
   python3 generate.py
 Only the two shared exports moved (diffed row by row first): Keystone
