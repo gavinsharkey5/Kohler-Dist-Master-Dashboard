@@ -12,11 +12,10 @@
 <link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
 <link rel="preload" href="../assets/fonts/oswald.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../shared/fonts.css?v=20260928a">
 <script>
   try { var t = localStorage.getItem('kdh_theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
 </script>
-<link rel="stylesheet" href="../rep/rep.css?v=20260928a">
+<link rel="stylesheet" href="../rep/rep.css?v=20260928b">
 <link rel="stylesheet" href="team.css?v=20260928b">
 <script src="../shared/kdh-user.js?v=20260925f"></script>
 </head>
@@ -33,16 +32,16 @@
   stub data, since only the names are needed). Reps cannot open this page:
   /team/ is not in the middleware's REP_PATHS.
 -->
-<div class="topbar"><div class="in">
-  <a class="logo" href="../"><img src="../assets/kohler-logo-badge.png" alt="">Kohler Dist Hub<small>Team</small></a>
-  <div class="actions">
-    <a class="btn hide-sm" href="../">Manager page</a>
-    <a class="btn hide-sm" href="../rep/">Rep workspace</a>
-    <button class="btn icon" id="themeBtn" type="button" aria-label="Switch between light and dark mode" title="Light / dark mode">
+<div class="kdh-bar"><div class="kdh-bar-in">
+  <a class="kdh-logo" href="../"><img src="../assets/kohler-logo-badge.png" alt="">Kohler Dist Hub<small>Team</small></a>
+  <div class="kdh-acts">
+    <a class="kdh-b kdh-hide-sm" href="../">Manager page</a>
+    <a class="kdh-b kdh-hide-sm" href="../rep/">Rep workspace</a>
+    <button class="kdh-b kdh-icon" id="themeBtn" type="button" aria-label="Switch between light and dark mode" title="Light / dark mode">
       <svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
       <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     </button>
-    <a class="btn" href="../login/?signout=1">Sign out</a>
+    <a class="kdh-b kdh-outline" href="../login/?signout=1">Sign out</a>
   </div>
 </div></div>
 

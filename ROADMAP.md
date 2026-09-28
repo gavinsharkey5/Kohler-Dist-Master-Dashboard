@@ -63,6 +63,11 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-09-28 Site-wide design system: one token set (light + dark),
+  one top bar on every page (logo, page name, back to dashboards, Team,
+  theme, who is signed in, Sign out), Oswald + Source Sans 3 everywhere,
+  the 18 dashboards re-skinned through `shared/kdh-skin.css` with their
+  data and logic untouched. Notes in `shared/README.txt`.
 - [x] 2026-09-28 Manager page rebuilt on the rep workspace design: same
   top bar (Team activity, Rep workspace, light/dark, name chip), building
   photo, five sections of the one card component with live MPO / Red Bull

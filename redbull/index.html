@@ -11,8 +11,6 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Dist Hub">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --canvas:#0C0D11; --card:#15171E; --card2:#1B1E27; --ink:#F6F7F9; --ink-soft:#ABB2C2;
@@ -147,7 +145,11 @@
     .brow{flex-direction:column;align-items:flex-start;gap:5px}
     .brow .tags{justify-content:flex-start}
   }
-</style></head><body>
+</style><script>try{var t=localStorage.getItem('kdh_theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<meta name="kdh-page" content="Red Bull">
+<!-- Site design system: maps this page's variables + fonts onto shared/kdh.css. Keep it LAST in <head>. -->
+<link rel="stylesheet" href="../shared/kdh-skin.css?v=20260928a">
+</head><body>
 <div class="gx-head"><div class="wrap">
   <p class="eyebrow"><span class="pulse"></span> Kohler Distributing · Red Bull · 2026</p>
   <h1>Distribution Tracker</h1>
@@ -160,7 +162,7 @@
   <div id="body"></div>
   <footer><hr><p id="foot"></p></footer>
 </div></div>
-<script src="../shared/kdh-user.js?v=20260925f"></script>
+<script src="../shared/kdh-user.js?v=20260928a"></script>
 <script>
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const num=x=>{const v=parseFloat(String(x).replace(/[^0-9.\-]/g,""));return isNaN(v)?0:v;};
