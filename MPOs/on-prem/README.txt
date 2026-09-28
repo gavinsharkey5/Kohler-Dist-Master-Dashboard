@@ -259,9 +259,53 @@ Four objectives at 25% each:
   3. Spirits - Carbliss (10) New On Premise Buying Accounts
   4. HUSA - (1) New XX Draft Line
 
-All four are data-backed. Numbers as of the 2026-09-25 refresh (RDE exports run
-through 9/25): Bardstown 16 menu placements, Fever Tree 23 new placements,
-Carbliss 69 new buying accounts, HUSA 2 new draft lines.
+All four are data-backed. Numbers as of the 2026-09-28 refresh (RDE exports run
+through 9/29): Bardstown 23 menu placements, Fever Tree 25 new placements,
+Carbliss 76 new buying accounts, HUSA 3 new draft lines.
+
+2026-09-28 REFRESH -- Fever Tree, Carbliss, HUSA exports + Promos_Report_36
+  python3 generate_2026-09.py --merge-bardstown Promos_Report_36.xlsx
+Diffed row by row before the run. Fever Tree 594 -> 599 (+5, none removed),
+Carbliss 342 -> 351 (+10, ONE ROW GONE: Derrick Laws' 20058 Krystal Bar(P) &
+Liqs., dated 9/25, which had scored as his first Carbliss account on the
+9/25 pull -- the export is the record, so it drops and he reads 0 again),
+HUSA 91 -> 92 CSV rows (90 written after the usual off-premise exclusion).
+New rows are dated 9/28-9/29 (a few weeks ahead of the 9/25 pull's own
+window, i.e. genuinely new load sheets, not future-dated ones).
+
+CARBLISS 69 -> 76 (+7, -1 above): Nick Melissari 6 -> 12 (Kinchley's,
+Oakland Diner, Penelope's Pizzeria & Sports Bar, The Firehouse, The
+Roosevelt, Tommy's Tavern + Tap (Edgewater), all 9/28-9/29) -- AT GOAL,
+joins Paul Mclaughlin and Robin Feldman. Allison Scott 11 -> 12 (Maggie's
+Town Tav.(P), 9/25). Javier Melo opens his account (Cazadores Bar (Z) LLC,
+9/29). Paul Mclaughlin's 101 Pub (A) row simply moved from a 9/1 load
+sheet date to 9/28 -- same account, already counted, no change to his
+total (holds at 10, AT GOAL). Robin Feldman holds at 15.
+
+FEVER TREE 23 -> 25: Nick Melissari 2 -> 3 (The Roosevelt, Ginger Beer
+6/4/200 mL, 9/29) -- AT GOAL, joins Paul Mclaughlin, Allison Scott, Robin
+Feldman and Brian Sengebush. Chris Payton opens his account (Ridgewood
+Country Club, Elderflower Tonic Water, 9/29). The other three new rows are
+account+SKU pairs already bought in the base window.
+
+HUSA 2 -> 3: Nick Melissari's first draft line, The Roosevelt, a 20 L keg
+on 9/29 -- AT GOAL, joins Allison Scott and Paul Mclaughlin.
+
+BARDSTOWN 16 -> 23: Adam Badalamenti 6 -> 8 (71005 Park Steakhouse, 9/25,
+a "Promo Event Activation" carrying two Bardstown brands on one
+submission -- Origins Single Barrel and Green River Kentucky Straight
+Wheated Bourbon Whiskey -- two mentions, same as every other multi-brand
+promo). Allison Scott 2 -> 6 (Duffy's Tavern (Z) twice -- a Table Tent at
+8:46 PM and a separate Weekday Promo at 8:36 PM, same account, same brand,
+same day, ten minutes apart, both Green River Honey Finished Bourbon, kept
+as two placements per the existing "different submission times are
+different placements" rule -- plus Bask 46 and Thatcher Mc Ghees (A), both
+9/25, also Green River Honey Finished) -- AT GOAL, joins Adam Badalamenti
+and Brian Sengebush. Nick Melissari 1 -> 2 (Biagio's, Origin Bourbon,
+9/28). Report_36 held 27 rows: 22 Bardstown, 4 Yave and 1 Pabst (Jack
+Daniels Bolder Variety Pack) skipped by is_bardstown(). 7 new, 15 already
+published: archive 17 -> 24 rows (23 score after the Red Bull Vending
+Machine exclusion). No weekday-gap warning.
 
 2026-09-25 REFRESH -- Fever Tree, Carbliss, HUSA exports + Promos_Report_33
   python3 generate_2026-09.py --merge-bardstown Promos_Report_33.xlsx
