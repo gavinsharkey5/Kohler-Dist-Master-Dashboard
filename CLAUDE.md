@@ -228,9 +228,12 @@ for tokens, top bar and the dark palette, plus `shared/fonts.css`). It
 fetches every rep_actions row with the manager's token (RLS lets
 managers read all) and `POST /rest/v1/rpc/kdh_team` (migration
 `supabase/migrations/20260928120000_team.sql`: name/role/title/reports_to
-for everyone, managers only, no emails) to split "My team" (reports_to
-== the signed-in manager's name, case-insensitive) from Everyone; a 404
-on the RPC or no matching reps falls back to Everyone with a note. The
+for everyone, managers only, no emails) to build the pills: "My team" (reps whose reports_to chain -- rep ->
+DM -> ... -- reaches the signed-in manager, so a VP sees every DM's
+reps; hidden when nobody rolls up to you), Everyone, and one pill per
+DM (`dm:<name>`); a 404 on the RPC leaves Everyone alone with a note.
+Live since 2026-09-28: the DMs report to Frank Politano, Gavin has no
+direct reps and uses Everyone / the DM pills. The
 roster is the union of `hub/data/accounts.js` reps and kdh_team reps, so
 a rep with no marks still shows as "No marks yet". Program names come
 from the trackers' registries loaded with STUB data (`PROGRAM_DATA={}`

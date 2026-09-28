@@ -17,7 +17,7 @@
   try { var t = localStorage.getItem('kdh_theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
 </script>
 <link rel="stylesheet" href="../rep/rep.css?v=20260925f">
-<link rel="stylesheet" href="team.css?v=20260928a">
+<link rel="stylesheet" href="team.css?v=20260928b">
 <script src="../shared/kdh-user.js?v=20260925f"></script>
 </head>
 <body>
@@ -53,10 +53,7 @@
       <h1>Team activity</h1>
       <p>What your reps have marked in the Incentive Hub — <b>Done</b>, <b>Follow up</b>, <b>Not now</b> — the moment they tap it. Open a rep for the accounts behind the numbers.</p>
     </div>
-    <div class="pills" id="pills" hidden>
-      <button class="pill on" type="button" data-scope="mine">My team<span class="n" id="nMine"></span></button>
-      <button class="pill" type="button" data-scope="all">Everyone<span class="n" id="nAll"></span></button>
-    </div>
+    <div class="pills" id="pills" hidden></div>
   </div>
 
   <div id="notes"></div>
@@ -171,18 +168,34 @@
       else if(r.status==='done'){ R.doneAll++; if(t >= WEEK) R.done7++; }
       else if(r.status==='skip') R.skip++;
     });
-    var mine = Object.keys(reps).filter(function(k){ return ci(reps[k].dm)===ci(user.name); });
-    var haveTeam = !!team && mine.length > 0;
-    $('pills').hidden = !haveTeam;
-    $('nMine').textContent = haveTeam ? mine.length : '';
-    $('nAll').textContent = Object.keys(reps).length;
-    scope = haveTeam ? 'mine' : 'all';
-    if(team && !mine.length) note('No one in the allow list reports to <b>'+esc(user.name)+'</b> yet (allowed_users → reports_to), so this shows everyone.');
+    // "My team" rolls up: a rep reports to me, or to a manager who reports
+    // to me (and so on) -- so a VP whose DMs report to them sees every rep.
+    under = {};
+    if(team){
+      var mgrOf = {}; team.forEach(function(t){ mgrOf[ci(t.name)] = ci(t.reports_to); });
+      Object.keys(reps).forEach(function(k){
+        var cur = ci(reps[k].dm), hops = 0;
+        while(cur && hops < 6){ if(cur===ci(user.name)){ under[k] = true; break; } cur = mgrOf[cur] || ''; hops++; }
+      });
+    }
+    var mine = Object.keys(under);
+    // One pill per DM (anyone a rep reports to), most reps first.
+    dms = {};
+    Object.keys(reps).forEach(function(k){ var d = reps[k].dm; if(d){ var dk = ci(d); dms[dk] = dms[dk] || {name:d, n:0}; dms[dk].n++; } });
+    var dmList = Object.keys(dms).map(function(k){ return dms[k]; }).sort(function(a,b){ return b.n-a.n || a.name.localeCompare(b.name); });
+    var html = '';
+    if(mine.length) html += '<button class="pill" type="button" data-scope="mine">My team<span class="n">'+mine.length+'</span></button>';
+    html += '<button class="pill" type="button" data-scope="all">Everyone<span class="n">'+Object.keys(reps).length+'</span></button>';
+    dmList.forEach(function(d){ if(ci(d.name)!==ci(user.name)) html += '<button class="pill" type="button" data-scope="dm:'+esc(ci(d.name))+'">'+esc(d.name.split(' ')[0]+' '+(d.name.split(' ')[1]||'').charAt(0))+'<span class="n">'+d.n+'</span></button>'; });
+    $('pills').innerHTML = html; $('pills').hidden = false;
+    scope = mine.length ? 'mine' : 'all';
     render();
   }
+  var under = {}, dms = {};
   function visible(){
     var list = Object.keys(reps).map(function(k){ return reps[k]; });
-    if(scope==='mine') list = list.filter(function(R){ return ci(R.dm)===ci(user.name); });
+    if(scope==='mine') list = list.filter(function(R){ return !!under[ci(R.name)]; });
+    else if(scope.indexOf('dm:')===0){ var d = scope.slice(3); list = list.filter(function(R){ return ci(R.dm)===d; }); }
     list.sort(function(a,b){ return (b.last||0)-(a.last||0) || a.name.localeCompare(b.name); });
     return list;
   }
@@ -195,7 +208,7 @@
     $('tiles').hidden = false;
     $('tActive').textContent = active; $('tActiveS').textContent = 'of ' + list.length + ' rep' + (list.length===1?'':'s');
     $('tFollow').textContent = follow; $('tDone').textContent = done7; $('tSkip').textContent = skip;
-    var showDm = scope==='all' && !!team;
+    var showDm = scope!=='mine' && scope.indexOf('dm:')!==0 && !!team;
     var html = '<div class="hrow'+(showDm?' dm':'')+'"><span>Rep</span>'+(showDm?'<span>Reports to</span>':'')+'<span>Follow-ups</span><span>Done · 7d</span><span>Not now</span><span>Last activity</span><span></span></div>';
     if(!list.length) html += '<div class="note" style="margin:0;border:0;border-radius:0">No reps to show.</div>';
     list.forEach(function(R){
