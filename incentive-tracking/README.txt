@@ -4619,6 +4619,17 @@ Woodchuck 584 -> 581 (+5 / -8), Tona 344 -> 344 (rename only), Lytt
               Convenience rows add cases only.
 Hub cache tag bumped (20260925b) for the new program_data.js.
 
+2026-09-28 SECOND -- Keystone goal edit only (no new export), Dan Lagala's
+Whole Foods #10102 excluded
+  python3 generate.py
+Not a data refresh -- keystone-ice/goals.csv changed (Dan Lagala's base
+43 -> 42, Whole Foods #10102/Edgewater out of his Keystone denominator
+only, per Gavin, same scope as Shane Barreca's existing exclusion). Ran
+this board to pick up keystone-ice's rebuilt JSON: his qualifier/bonus
+recompute (18/22 -> 17/21), buyer count and BONUS status unchanged. See
+MPOs/off-prem/README.txt and keystone-ice/README.txt for the full
+writeup. Hub cache tag bumped for the new program_data.js.
+
 2026-09-28 REFRESH -- Keystone + Corona Gaintain, riding the off-prem MPO refresh
   python3 generate.py
 Only the two shared exports moved (diffed row by row first): Keystone

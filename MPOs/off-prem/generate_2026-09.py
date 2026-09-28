@@ -189,10 +189,16 @@ LYTT_POS_PY = HERE / "generate_lytt_pos.py"
 # Tree Target Accounts list, because the ask named Keystone. If they should be
 # out of the core book altogether, that is a different (and bigger) change --
 # widen it here only on an explicit ask.
+#
+# Dan Lagala's Whole Foods #10102 (Edgewater) added 2026-09-28, per Gavin,
+# same scope: Keystone only, nowhere else. goals.csv in keystone-ice/ was
+# recomputed the same way as Shane's row (base 43 -> 42, qualifier/bonus at
+# the same 40%/50%) -- see that folder's README.
 KEYSTONE_BASE_EXCLUDED = {
     # (rep, customer num): why
     ("Shane Barreca", "201097"): "Whole Foods #10381 (Closter)",
     ("Shane Barreca", "201098"): "Whole Foods #8407 (Woodcliff Lake)",
+    ("Dan Lagala", "201096"): "Whole Foods #10102 (Edgewater)",
 }
 
 

@@ -875,6 +875,21 @@ is NOT protected against a refresh -- re-extracting goals.csv from a reissued
 goals.xlsx silently restores 29. See keystone-ice/README.txt. Keep the two
 halves in step: they are one decision expressed in two places.
 
+A THIRD ACCOUNT WAS ADDED 2026-09-28, per Gavin: "remove account 10102 from
+Dan Lagala's account universe" -- Whole Foods #10102 (Edgewater, customer
+201096), same scope as Shane's two, Keystone only. His denominator goes
+43 -> 42; he carries no Keystone buy at that account (or any Whole Foods),
+so only the denominator moves and his own count (23) and BONUS status are
+unaffected. Nobody else's base changed and reps at 40% held at 9 of 26.
+KEYSTONE_BASE_EXCLUDED now carries ("Dan Lagala", "201096"), and his
+keystone-ice/goals.csv row was recomputed the same way as Shane's:
+43 / 17.2 / 21.5 -> 42 / 16.8 / 21.0. Keystone's own Target Accounts went
+291 (down 1 -- Whole Foods #10102 dropped off his prospect list). Gavin's
+ask named Keystone specifically, so Whole Foods #10102 is untouched
+everywhere else: hub/data/accounts.js, Fever Tree targets, and every other
+board that reads sales_reps_customer_base.csv or its own copy of the
+Sales Reps Customer Base export still carry it in Dan's book.
+
 KEYSTONE EXPORT IS SHARED WITH TWO OTHER DASHBOARDS (2026-09-08)
 keystone_ice_24oz.csv is the SAME RDE export as keystone-ice/actuals.csv, and
 incentive-tracking reads keystone-ice's published JSON in turn. All three must

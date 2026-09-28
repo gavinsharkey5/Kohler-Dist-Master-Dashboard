@@ -37,6 +37,19 @@ Scoped to Keystone. Both accounts remain in Shane's book everywhere
 else, including his Fever Tree Target Accounts list on the off-prem
 board -- the ask named Keystone and nothing else.
 
+A SECOND EXCLUSION WAS ADDED 2026-09-28, per Gavin: "remove account 10102
+from Dan Lagala's account universe." DAN LAGALA'S BASE IS 42 IN goals.csv
+AND 43 IN goals.xlsx -- Whole Foods #10102 (Edgewater, 201096) came out
+of his Keystone account base the same way as Shane's two: recomputed at
+the same 40%/50%, 42 / 16.8 / 21.0 (was 43 / 17.2 / 21.5), which ceil to
+a qualifier of 17 and a bonus of 21 (was 18 and 22). He carries no
+Keystone buy at that account, so his buyer count (23, BONUS) is
+unaffected -- only the denominator moves. Same re-extract trap as
+Shane's row: reapply this after any goals.csv re-extract. Same scope
+too -- Whole Foods #10102 stays in Dan's book everywhere else. See
+MPOs/off-prem/README.txt's "KEYSTONE-ONLY ACCOUNT-BASE EXCLUSIONS" for
+the code half (KEYSTONE_BASE_EXCLUDED now carries both reps).
+
 WHOLE NUMBERS EVERYWHERE (per Gavin, 2026-08-31: "make the rep goals and
 all other decimals whole numbers... easier on the eyes for a rep on
 their iPad"). Kohler's goals arrive fractional -- 40% of a 43-account

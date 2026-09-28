@@ -94240,11 +94240,11 @@ const PROGRAM_DATA_2026_09 = {
         "rank": 3
       },
       "Dan Lagala": {
-        "base": 43,
-        "qualifier": 18,
-        "bonus": 22,
+        "base": 42,
+        "qualifier": 17,
+        "bonus": 21,
         "accounts": 23,
-        "pct": 53,
+        "pct": 55,
         "qualified": true,
         "bonusHit": true,
         "toQualifier": 0,
@@ -148389,5 +148389,5 @@ const PROGRAM_DATA_2026_09 = {
     }
   }
 };
-const PROGRAM_DATA_REFRESHED = "Sep 28, 2026, 1:25 PM ET";
-const PROGRAM_DATA_REFRESHED_AT = "2026-09-28T17:25:19Z";
+const PROGRAM_DATA_REFRESHED = "Sep 28, 2026, 1:31 PM ET";
+const PROGRAM_DATA_REFRESHED_AT = "2026-09-28T17:31:22Z";
