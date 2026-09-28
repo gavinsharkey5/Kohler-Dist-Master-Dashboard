@@ -91,7 +91,48 @@
   }
   // Kept for the pages that call it by the old name.
   function backBar() { chrome(); }
+  // NAME MATCHING (2026-09-28): the allow list spells a rep the way
+  // Encompass does; a tracker may spell them the way iSellBeer or a
+  // workbook does ("Daniel La Gala" / "Dan Lagala", "James Heaney" /
+  // "Jim Heaney"). Match on canonical first name + surname so a rep is
+  // still locked to their own data; return the ROSTER's spelling.
+  var NICK = {daniel:'dan',james:'jim',matthew:'matt',nicholas:'nick',michael:'mike',christopher:'chris',robert:'rob',william:'bill',joseph:'joe',jonathan:'jon',kenneth:'ken',timothy:'tim',thomas:'tom',richard:'rich',edward:'ed',andrew:'andy',anthony:'tony',steven:'steve',stephen:'steve',benjamin:'ben',samuel:'sam',alexander:'alex',patrick:'pat',gregory:'greg',jeffrey:'jeff',joshua:'josh',zachary:'zach',charles:'chuck',frederick:'fred',ronald:'ron',donald:'don',douglas:'doug',kevin:'kev',katherine:'kate',elizabeth:'liz',jennifer:'jen',jessica:'jess',rebecca:'becky',danielle:'dani',nicole:'nikki',alexandra:'alex',victoria:'vicky'};
+  function nameKey(n) {
+    var parts = String(n || '').toLowerCase().replace(/[^a-z\s]/g, ' ').replace(/\s+/g, ' ').trim().split(' ');
+    if (!parts.length || !parts[0]) return '';
+    var first = NICK[parts[0]] || parts[0];
+    var last = parts.length > 1 ? parts.slice(1).join('') : '';
+    return first + '|' + last;
+  }
+  function matchName(name, roster) {
+    if (!name || !roster || !roster.length) return null;
+    if (roster.indexOf(name) >= 0) return name;
+    var k = nameKey(name); if (!k) return null;
+    for (var i = 0; i < roster.length; i++) if (nameKey(roster[i]) === k) return roster[i];
+    // last resort: surname + first initial (one candidate only)
+    var fi = k.charAt(0), ln = k.split('|')[1], hits = [];
+    if (ln) for (var j = 0; j < roster.length; j++) { var rk = nameKey(roster[j]); if (rk.split('|')[1] === ln && rk.charAt(0) === fi) hits.push(roster[j]); }
+    return hits.length === 1 ? hits[0] : null;
+  }
+  // A rep whose name is on no roster of this page must NOT see everyone's
+  // data. Cover the page with a plain notice and a way back.
+  function noRoster(pageName) {
+    if (document.getElementById('kdhNoRoster')) return;
+    var u = user();
+    var d = document.createElement('div');
+    d.id = 'kdhNoRoster';
+    d.style.cssText = 'position:fixed;inset:0;z-index:99990;background:var(--kdh-bg,#F3F5F8);color:var(--kdh-text,#0F172A);display:flex;align-items:center;justify-content:center;padding:24px;font-family:var(--kdh-body,system-ui,sans-serif)';
+    d.innerHTML = '<div style="max-width:460px;background:var(--kdh-surface,#fff);border:1px solid var(--kdh-border,#E2E8F0);border-radius:14px;padding:26px 24px;box-shadow:0 4px 12px rgba(15,23,42,.08)">' +
+      '<p style="margin:0 0 6px;font-family:var(--kdh-head,system-ui);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--kdh-text-3,#64748B)">' + esc(pageName || 'This page') + '</p>' +
+      '<h1 style="margin:0 0 10px;font-family:var(--kdh-head,system-ui);font-weight:600;font-size:24px;line-height:1.15">We couldn\u2019t find your name here</h1>' +
+      '<p style="margin:0 0 14px;font-size:16px;line-height:1.5;color:var(--kdh-text-2,#475569)">You\u2019re signed in as <b>' + esc(u && u.name || '') + '</b>, but this page\u2019s list of reps doesn\u2019t include that name yet, so it can\u2019t show your accounts. Ask Gavin to check the spelling on the access list.</p>' +
+      '<a href="' + REP_HOME + '" style="display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:8px;background:var(--kdh-brand,#2F5FC4);color:#fff;text-decoration:none;font-weight:600">My dashboards</a></div>';
+    (document.body || document.documentElement).appendChild(d);
+  }
   global.kdhUser = user;
+  global.kdhMatchName = matchName;
+  global.kdhNameKey = nameKey;
+  global.kdhNoRoster = noRoster;
   global.kdhSetPreview = setPreview;
   global.kdhPreviewBar = bar;
   global.kdhBackBar = backBar;

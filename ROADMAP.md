@@ -26,9 +26,6 @@ device, a decision).
   JWT expiry 604800 (one week) so reps are not asked to sign in daily.
 - [ ] **Roll out to reps** (Gavin): send the kohlerdisthub.com link (or the
   home-screen steps) to the reps; DMs get the same link and see everything.
-- [ ] **Retire GitHub Pages** (Gavin) once reps are on kohlerdisthub.com:
-  repo Settings -> Pages -> Source: None. Until then github.io serves the
-  same pages with no login.
 - [ ] **Vercel plan** (Gavin): Hobby is for non-commercial use; move the
   project to Pro when it is clearly in company use.
 
@@ -63,6 +60,10 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-09-28 GitHub Pages unpublished; kohlerdisthub.com is the only
+  copy. Rep lock hardened: names matched forgivingly (Michael/Mike,
+  Daniel/Dan ...) and a rep whose name matches no roster sees a notice
+  instead of everyone's data; Team Activity flags such names.
 - [x] 2026-09-28 Site-wide design system: one token set (light + dark),
   one top bar on every page (logo, page name, back to dashboards, Team,
   theme, who is signed in, Sign out), Oswald + Source Sans 3 everywhere,

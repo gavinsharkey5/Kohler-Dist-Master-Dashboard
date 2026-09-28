@@ -607,7 +607,16 @@ const state = {mode:'rep', view:'home', rep:null, main:null, cat:null, month:nul
 // roster, get the hub exactly as before. Access itself is enforced by the
 // Vercel middleware, not here -- this is only what the page shows.
 const KDH_USER = (()=>{ try{ if(window.kdhUser) return window.kdhUser(); const m = document.cookie.match(/(?:^|;\s*)kdh_user=([^;]*)/); return m ? JSON.parse(decodeURIComponent(m[1])) : null; }catch(e){ return null; } })();
-const LOCKED_REP = (KDH_USER && KDH_USER.role !== 'manager' && KDH_USER.name && HUB_ROSTER.includes(KDH_USER.name)) ? KDH_USER.name : null;
+// A signed-in rep is locked to THEIR roster entry -- matched forgivingly
+// on first name + surname (kdhMatchName), so "Michael Ast" on the allow
+// list still lands on "Mike Ast" here. No match at all = fail closed: the
+// page is covered with a notice instead of showing everyone (2026-09-28).
+const LOCKED_REP = (()=>{
+  if(!(KDH_USER && KDH_USER.role !== 'manager' && KDH_USER.name)) return null;
+  const m = window.kdhMatchName ? window.kdhMatchName(KDH_USER.name, HUB_ROSTER) : (HUB_ROSTER.includes(KDH_USER.name) ? KDH_USER.name : null);
+  if(!m && window.kdhNoRoster){ document.addEventListener('DOMContentLoaded', ()=>window.kdhNoRoster('Incentive Hub')); if(document.readyState!=='loading') window.kdhNoRoster('Incentive Hub'); }
+  return m;
+})();
 
 /* ---- Write-back: Done / Follow up / Not now on the visit list (2026-09-25)
    The first thing a rep TELLS the hub instead of only reading it. Each
