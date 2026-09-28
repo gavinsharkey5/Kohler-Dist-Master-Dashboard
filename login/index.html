@@ -21,9 +21,11 @@
 <style>
   /* Sign-in (2026-09-28 redesign): a white card on the navy canvas, the
      Northern NJ banner across its top, Oswald headings + Source Sans 3
-     body -- the same type the rep workspace uses. Two steps: your email,
-     then the emailed link OR the 6-digit code (the code is what an
-     installed home-screen app needs, see supabase/README.txt). */
+     body -- the same type the rep workspace uses. Steps: your email, then
+     your PASSWORD if you have one; the first time (or after "Forgot
+     password") the emailed link OR the 6-digit code, then "create a
+     password". The code is what an installed home-screen app needs, see
+     supabase/README.txt. */
   :root{
     --canvas:#0B1120; --card:#FFFFFF; --ink:#0F172A; --ink-2:#475569; --ink-3:#94A3B8;
     --line:#E2E8F0; --field:#F8FAFC; --blue:#1F4FD8; --blue-deep:#173FB0; --navy:#12275F;
@@ -75,6 +77,13 @@
   .spin{width:20px;height:20px;border-radius:50%;border:2.5px solid var(--line);border-top-color:var(--blue);animation:spin .8s linear infinite;flex:0 0 auto}
   @keyframes spin{to{transform:rotate(360deg)}}
   .tag{display:inline-block;font-family:var(--head);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--ink-3);margin-top:22px}
+  .pwwrap{position:relative}
+  .pwwrap .field{padding-right:70px}
+  .eye{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:0;font-family:var(--head);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);cursor:pointer;padding:8px 8px;border-radius:8px;min-height:36px}
+  .eye:hover{background:var(--info-bg)}
+  .rules{margin:8px 0 0;font-size:13.5px;color:var(--ink-3)}
+  .links{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:16px 0 0;font-size:14.5px}
+  .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;padding:0;margin:-1px}
   .hidden{display:none!important}
   @media (max-width:420px){ .body{padding:20px 20px 22px} h1{font-size:24px} .code{font-size:27px;letter-spacing:.22em;text-indent:.22em} }
 </style>
@@ -97,26 +106,60 @@
     <!-- Step 1: email. -->
     <form id="form" class="hidden" autocomplete="on" novalidate>
       <h1>Sign in</h1>
-      <p class="lead">Use your work email. We&rsquo;ll send you a sign-in link and a code &mdash; no password to remember.</p>
+      <p class="lead">Use your work email. First time here? We&rsquo;ll email you a code, then you&rsquo;ll create a password for next time.</p>
       <label for="email">Work email</label>
-      <input id="email" class="field" type="email" name="email" inputmode="email" autocomplete="email" placeholder="you@kohlerdist.com" required>
+      <input id="email" class="field" type="email" name="email" inputmode="email" autocomplete="username" placeholder="you@kohlerdist.com" required>
       <button id="send" class="btn" type="submit">Continue</button>
     </form>
 
-    <!-- Step 2: the emailed link, or the 6-digit code. Typing the code
-         signs in INSIDE whatever opened this page, which matters when the
-         site is installed on the home screen (the emailed link opens in
-         Safari, not in the app). Needs {{ .Token }} in the Supabase Magic
-         Link email template -- see supabase/README.txt. -->
+    <!-- Step 2a: the password (anyone who has created one). -->
+    <form id="pwForm" class="hidden" autocomplete="on" novalidate>
+      <button type="button" class="back" id="pwChange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Use a different email</button>
+      <h1>Welcome back</h1>
+      <p class="lead">Signing in as <b id="pwTo"></b>.</p>
+      <input id="pwEmail" class="vh" type="email" name="email" autocomplete="username" tabindex="-1" aria-hidden="true" readonly>
+      <label for="pw">Password</label>
+      <div class="pwwrap">
+        <input id="pw" class="field" type="password" name="password" autocomplete="current-password" placeholder="Your password" required>
+        <button type="button" class="eye" data-for="pw" aria-label="Show password">Show</button>
+      </div>
+      <button id="pwGo" class="btn" type="submit">Sign in</button>
+      <p class="links"><button type="button" class="link" id="forgot">Forgot password? Email me a code</button></p>
+    </form>
+
+    <!-- Step 2b: the emailed link, or the 6-digit code -- the first sign-in,
+         and "Forgot password". Typing the code signs in INSIDE whatever
+         opened this page, which matters when the site is installed on the
+         home screen (the emailed link opens in Safari, not in the app).
+         Needs {{ .Token }} in the Supabase Magic Link email template -- see
+         supabase/README.txt. -->
     <form id="codeForm" class="hidden" autocomplete="off" novalidate>
       <button type="button" class="back" id="change"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Use a different email</button>
       <h1>Check your email</h1>
       <p class="lead">We sent a sign-in email to <b id="sentTo"></b> <span id="sentAt"></span>. Type the code from <b>that</b> email below, or tap its link.</p>
       <label for="code">Enter code</label>
       <input id="code" class="field code" type="text" name="code" inputmode="numeric" pattern="[0-9]*" maxlength="8" autocomplete="one-time-code" placeholder="000000" aria-label="Sign-in code from the email">
-      <button id="verify" class="btn" type="submit">Sign in</button>
+      <button id="verify" class="btn" type="submit">Continue</button>
       <p class="help">Didn&rsquo;t get it? Check spam or quarantine, then <button type="button" class="link" id="resend">send it again</button><span id="resendIn"></span>.</p>
+      <p class="help" id="codeNext">Next you&rsquo;ll create a password, so you won&rsquo;t need a code again.</p>
       <p class="help">Use the link <i>or</i> the code, not both &mdash; they are the same one-time key, good for an hour.</p>
+    </form>
+
+    <!-- Step 3: create (or replace) the password, right after a code or link
+         sign-in. Saved with the signed-in session (auth.updateUser), so the
+         next visit is email + password with no email to wait for. -->
+    <form id="setForm" class="hidden" autocomplete="on" novalidate>
+      <h1 id="setTitle">Create your password</h1>
+      <p class="lead" id="setLead">You&rsquo;re signed in as <b id="setTo"></b>. Choose a password to use from now on &mdash; no more waiting for a code.</p>
+      <input id="setEmail" class="vh" type="email" name="email" autocomplete="username" tabindex="-1" aria-hidden="true" readonly>
+      <label for="newpw">New password</label>
+      <div class="pwwrap">
+        <input id="newpw" class="field" type="password" name="new-password" autocomplete="new-password" placeholder="At least 8 characters" required minlength="8">
+        <button type="button" class="eye" data-for="newpw" aria-label="Show password">Show</button>
+      </div>
+      <p class="rules">At least 8 characters. Tap <b>Show</b> to check it before you save.</p>
+      <button id="setGo" class="btn" type="submit">Save and continue</button>
+      <p class="links"><span></span><a class="link" href="/login/?signout=1">Not you? Sign out</a></p>
     </form>
 
     <div id="msg" class="msg" role="status" aria-live="polite"></div>
@@ -137,9 +180,11 @@
   var resendTimer = null;
   var verifying = false;
   var lastFailed = '';
-  var PENDING = 'kdh_pending';   // {email, at} -- the code we are waiting for
+  var reset = false;             // "Forgot password": after the code, ask for a new one
+  var current = null;            // {session, me} while the create-password step is up
+  var PENDING = 'kdh_pending';   // {email, at, reset} -- the code we are waiting for
   function loadPending(){ try { var p = JSON.parse(localStorage.getItem(PENDING) || 'null'); return (p && p.email && Date.now() - p.at < 55 * 60 * 1000) ? p : null; } catch (e) { return null; } }
-  function savePending(email){ try { localStorage.setItem(PENDING, JSON.stringify({ email: email, at: Date.now() })); } catch (e) {} }
+  function savePending(email, isReset){ try { localStorage.setItem(PENDING, JSON.stringify({ email: email, at: Date.now(), reset: !!isReset })); } catch (e) {} }
   function clearPending(){ try { localStorage.removeItem(PENDING); } catch (e) {} }
   function clock(t){ var d = new Date(t); var h = d.getHours(), m = d.getMinutes(); return ((h % 12) || 12) + ':' + (m < 10 ? '0' : '') + m + (h < 12 ? ' AM' : ' PM'); }
 
@@ -151,10 +196,13 @@
     var m = $('msg'); m.className = 'msg show ' + kind; m.innerHTML = html;
   }
   function hush() { var m = $('msg'); m.className = 'msg'; m.innerHTML = ''; }
-  function show(step) {   // 'working' | 'email' | 'code'
+  function detail(text) { return '<br><span style="font-size:12.5px;opacity:.75">' + text + '</span>'; }
+  function show(step) {   // 'working' | 'email' | 'password' | 'code' | 'setpw'
     $('working').classList.toggle('hidden', step !== 'working');
     $('form').classList.toggle('hidden', step !== 'email');
+    $('pwForm').classList.toggle('hidden', step !== 'password');
     $('codeForm').classList.toggle('hidden', step !== 'code');
+    $('setForm').classList.toggle('hidden', step !== 'setpw');
   }
   function showForm() { show('email'); }
   function setCookie(token) {
@@ -169,6 +217,11 @@
     return String(s).replace(/[&<>"']/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
     });
+  }
+  // PostgREST's "no such function" -- the password migration has not been
+  // run yet. The page then behaves exactly as before passwords existed.
+  function fnMissing(err) {
+    return !!err && (err.code === 'PGRST202' || err.status === 404 || /could not find the function/i.test(err.message || ''));
   }
 
   var cfg = window.KDH_AUTH || {};
@@ -218,15 +271,15 @@
       // that to a home-screen app when you come back from Mail): go straight
       // to the code step instead of asking for the email and sending again.
       var p = loadPending();
-      if (p) { showCodeStep(p.email, p.at, false); }
+      if (p) { reset = !!p.reset; showCodeStep(p.email, p.at, false); }
       else { showForm(); if (whyText) say('info', whyText); }
     }
     if (event === 'SIGNED_OUT') clearCookie();
   });
 
+  // Signed in (password, code or link). Check the allow list, then either
+  // ask for a password (first sign-in, or "Forgot password") or go in.
   function enter(session) {
-    clearPending();
-    setCookie(session.access_token);
     show('working'); hush();
     sb.from('allowed_users').select('email,name,role,title,reports_to').limit(1).then(function (res) {
       if (res.error) {
@@ -236,27 +289,65 @@
       }
       if (!res.data || !res.data.length) {
         sb.auth.signOut().then(function () {
-          clearCookie(); entered = false; showForm();
+          clearCookie(); clearPending(); entered = false; showForm();
           say('bad', 'Signed in as <b>' + escapeHtml(session.user.email) + '</b>, but that email isn&rsquo;t on the access list. Ask Gavin to add it.');
         });
         return;
       }
       var me = res.data[0];
-      // Who is signed in, for the pages (the hub locks a rep to their own
-      // name; the landing pages greet by name). Not used for access
-      // decisions -- the middleware asks Supabase for the role itself.
-      document.cookie = 'kdh_user=' + encodeURIComponent(JSON.stringify({ name: me.name || '', role: me.role || 'rep', email: me.email, title: me.title || '', dm: me.reports_to || '' })) +
-        '; Path=/; Max-Age=2592000; Secure; SameSite=Lax';
-      $('signout').classList.remove('hidden');
-      $('working').innerHTML = '<span class="spin"></span><span>Signed in as <b>' + escapeHtml(me.name || session.user.email) + '</b>. Opening&hellip;</span>';
-      location.replace(next === '/' && me.role !== 'manager' ? '/rep/' : next);
+      var email = String(session.user.email || me.email || '').toLowerCase();
+      var p = loadPending();
+      if (reset || (p && p.reset && p.email === email)) { showSetStep(session, me, true); return; }
+      sb.rpc('kdh_signin_mode', { p_email: email }).then(function (r) {
+        if (!r.error && r.data === 'code') showSetStep(session, me, false);   // no password yet
+        else finish(session, me);                                             // has one (or the migration isn't in yet)
+      });
     });
+  }
+
+  // The cookies the middleware and the pages read, then the page they wanted.
+  function finish(session, me) {
+    clearPending(); reset = false; current = null;
+    setCookie(session.access_token);
+    // Who is signed in, for the pages (the hub locks a rep to their own
+    // name; the landing pages greet by name). Not used for access
+    // decisions -- the middleware asks Supabase for the role itself.
+    document.cookie = 'kdh_user=' + encodeURIComponent(JSON.stringify({ name: me.name || '', role: me.role || 'rep', email: me.email, title: me.title || '', dm: me.reports_to || '' })) +
+      '; Path=/; Max-Age=2592000; Secure; SameSite=Lax';
+    $('signout').classList.remove('hidden');
+    show('working'); hush();
+    $('working').innerHTML = '<span class="spin"></span><span>Signed in as <b>' + escapeHtml(me.name || session.user.email) + '</b>. Opening&hellip;</span>';
+    location.replace(next === '/' && me.role !== 'manager' ? '/rep/' : next);
+  }
+
+  function showSetStep(session, me, isReset) {
+    current = { session: session, me: me };
+    var email = String(session.user.email || me.email || '');
+    $('setEmail').value = email;
+    $('setTitle').textContent = isReset ? 'Choose a new password' : 'Create your password';
+    $('setLead').innerHTML = 'You&rsquo;re signed in as <b id="setTo"></b>. ' + (isReset
+      ? 'Choose a new password &mdash; it replaces the old one.'
+      : 'Choose a password to use from now on &mdash; no more waiting for a code.');
+    $('setTo').textContent = email;
+    $('newpw').value = '';
+    show('setpw'); hush();
+    $('newpw').focus();
+  }
+
+  function showPasswordStep(email) {
+    pendingEmail = email;
+    $('pwTo').textContent = email;
+    $('pwEmail').value = email;
+    $('pw').value = '';
+    show('password'); hush();
+    $('pw').focus();
   }
 
   function showCodeStep(email, at, fresh) {
     pendingEmail = email;
     $('sentTo').textContent = email;
     $('sentAt').textContent = at ? 'at ' + clock(at) : '';
+    $('codeNext').textContent = reset ? 'Next you’ll choose a new password.' : 'Next you’ll create a password, so you won’t need a code again.';
     show('code');
     $('code').value = '';
     $('code').focus();
@@ -280,6 +371,7 @@
     // last two minutes, reuse it -- a second request would cancel it.
     var p = loadPending();
     if (!again && p && p.email === email && Date.now() - p.at < 2 * 60 * 1000) {
+      if (reset && !p.reset) { try { localStorage.setItem(PENDING, JSON.stringify({ email: p.email, at: p.at, reset: true })); } catch (e) {} }
       showCodeStep(email, p.at, false);
       say('info', 'We already sent a code to this address at ' + clock(p.at) + '. Use that one.');
       return Promise.resolve(true);
@@ -289,10 +381,22 @@
       if (r.error) { say('bad', 'Couldn&rsquo;t send the email: ' + escapeHtml(r.error.message)); return false; }
       var at = Date.now();
       lastFailed = '';
-      savePending(email);
+      savePending(email, reset);
       showCodeStep(email, at, true);
       if (again) say('good', 'Sent again at ' + clock(at) + '. Older codes no longer work &mdash; use the newest email.'); else hush();
       return true;
+    });
+  }
+
+  // 'no' (not listed) / 'code' (no password yet) / 'password'. Before the
+  // migration is run, the old is_allowed() check decides listed-or-not and
+  // everyone goes the code route.
+  function signinMode(email) {
+    return sb.rpc('kdh_signin_mode', { p_email: email }).then(function (res) {
+      if (res.error && fnMissing(res.error)) {
+        return sb.rpc('is_allowed', { p_email: email }).then(function (r) { return r.error ? r : { data: r.data ? 'code' : 'no' }; });
+      }
+      return res;
     });
   }
 
@@ -303,20 +407,73 @@
       if (!email || email.indexOf('@') < 1) { say('bad', 'Enter your work email address.'); $('email').focus(); return; }
       $('send').disabled = true;
       say('info', 'Checking&hellip;');
-      sb.rpc('is_allowed', { p_email: email }).then(function (res) {
+      signinMode(email).then(function (res) {
         if (res.error) {
           $('send').disabled = false;
           say('bad', 'Couldn&rsquo;t check the access list: ' + escapeHtml(res.error.message));
           return;
         }
-        if (!res.data) {
+        if (res.data === 'no') {
           $('send').disabled = false;
           say('bad', '<b>' + escapeHtml(email) + '</b> isn&rsquo;t on the access list. Ask Gavin to add it.');
           return;
         }
+        reset = false;
+        if (res.data === 'password') { $('send').disabled = false; showPasswordStep(email); return; }
         return sendLink(email, false).then(function () { $('send').disabled = false; });
       });
     });
+
+    $('pwForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = pendingEmail || $('pwEmail').value.trim().toLowerCase();
+      var pw = $('pw').value;
+      if (!email) { show('email'); return; }
+      if (!pw) { say('bad', 'Enter your password, or tap <b>Forgot password</b> to get a code.'); $('pw').focus(); return; }
+      $('pwGo').disabled = true;
+      say('info', 'Signing in&hellip;');
+      sb.auth.signInWithPassword({ email: email, password: pw }).then(function (r) {
+        $('pwGo').disabled = false;
+        if (r.error) {
+          say('bad', 'That password didn&rsquo;t match. Try again, or tap <b>Forgot password</b> and we&rsquo;ll email you a code.' +
+            detail('Supabase said: ' + escapeHtml(r.error.message) + ' for ' + escapeHtml(email)));
+          $('pw').select();
+        }
+        // onAuthStateChange picks the new session up and calls enter().
+      });
+    });
+    $('forgot').addEventListener('click', function () {
+      if (!pendingEmail) { show('email'); return; }
+      reset = true;
+      $('forgot').disabled = true;
+      sendLink(pendingEmail, false).then(function () { $('forgot').disabled = false; });
+    });
+    $('pwChange').addEventListener('click', function () {
+      reset = false; hush(); show('email'); $('email').focus();
+    });
+
+    $('setForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var pw = $('newpw').value;
+      if (pw.length < 8) { say('bad', 'Make the password at least 8 characters.'); $('newpw').focus(); return; }
+      if (!current) { show('email'); return; }
+      $('setGo').disabled = true;
+      say('info', 'Saving your password&hellip;');
+      sb.auth.updateUser({ password: pw }).then(function (r) {
+        if (r.error) {
+          $('setGo').disabled = false;
+          say('bad', 'Couldn&rsquo;t save that password. ' + escapeHtml(r.error.message) + '.' + detail('Try a longer or less common one, then tap <b>Save and continue</b> again.'));
+          $('newpw').focus();
+          return;
+        }
+        // Use the freshest token (updateUser can rotate it), then go in.
+        return sb.auth.getSession().then(function (g) {
+          var sess = (g && g.data && g.data.session) || current.session;
+          finish(sess, current.me);
+        });
+      });
+    });
+
     $('codeForm').addEventListener('submit', function (e) {
       e.preventDefault();
       var code = $('code').value.replace(/\D/g, '');
@@ -354,8 +511,8 @@
             lastFailed = code;
             var p = loadPending();
             say('bad', 'That code didn&rsquo;t work. A code is good once and only from the <b>newest</b> email &mdash; and if its link was already tapped, the code is used up. Tap <b>send it again</b> and type the new code without opening the link.' +
-              '<br><span style="font-size:12.5px;opacity:.75">Supabase said: ' + escapeHtml(r.error.message) + ' (' + escapeHtml(tried.join(', ')) + ') for ' + escapeHtml(email) +
-              (p ? ' &middot; code requested ' + Math.round((Date.now() - p.at) / 1000) + 's ago' : '') + (params.get('why') ? ' &middot; came here because: ' + escapeHtml(params.get('why')) : '') + '</span>');
+              detail('Supabase said: ' + escapeHtml(r.error.message) + ' (' + escapeHtml(tried.join(', ')) + ') for ' + escapeHtml(email) +
+              (p ? ' &middot; code requested ' + Math.round((Date.now() - p.at) / 1000) + 's ago' : '') + (params.get('why') ? ' &middot; came here because: ' + escapeHtml(params.get('why')) : '')));
             $('code').select();
           });
         }
@@ -376,8 +533,20 @@
       sendLink(pendingEmail, true);
     });
     $('change').addEventListener('click', function () {
-      clearInterval(resendTimer); clearPending();
+      clearInterval(resendTimer); clearPending(); reset = false;
       hush(); show('email'); $('email').focus();
+    });
+
+    // Show / hide a password field (one tap beats a "confirm" box on a phone).
+    Array.prototype.forEach.call(document.querySelectorAll('.eye'), function (b) {
+      b.addEventListener('click', function () {
+        var f = $(b.getAttribute('data-for'));
+        var showing = f.type === 'text';
+        f.type = showing ? 'password' : 'text';
+        b.textContent = showing ? 'Show' : 'Hide';
+        b.setAttribute('aria-label', showing ? 'Show password' : 'Hide password');
+        f.focus();
+      });
     });
   }
   wireForm();

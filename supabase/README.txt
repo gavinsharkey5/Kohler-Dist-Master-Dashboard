@@ -3,10 +3,14 @@ Kohler Dist Hub -- sign-in (Supabase Auth + Vercel Edge Middleware)
 
 What it does
 ------------
-Every page on kohlerdisthub.com is behind a login. A person types their
-email on /login/, gets a "magic link" by email, taps it, and is in.
-There are no passwords. Only emails in the allow list
-(public.allowed_users in Supabase) can request a link or get through.
+Every page on kohlerdisthub.com is behind a login. The FIRST time, a
+person types their work email on /login/, gets a code (and a link) by
+email, types the code, and creates a password. Every time after that
+it is email + password -- no email to wait for. "Forgot password" sends
+a code again and asks for a new password. Only emails in the allow
+list (public.allowed_users in Supabase) can request a code, set a
+password or get through. (Passwords since 2026-09-28; before that it
+was the code every time.)
 
 Pieces
 ------
@@ -26,7 +30,10 @@ Pieces
                               security, and the is_allowed() check
                               (20260924...); the rep_actions table the
                               hub's Done / Follow up / Not now buttons
-                              write to (20260925...).
+                              write to (20260925...); kdh_team() for the
+                              Team Activity page (20260928120000);
+                              kdh_signin_mode() for passwords
+                              (20260928180000).
   import_allowed_users.py     Encompass users export -> SQL upsert for
                               the table. Output goes to data/ (ignored).
 
@@ -70,8 +77,8 @@ Things to know
     kdh_user cookie /login/ sets. To give reps another page: add its
     prefix (and whatever it fetches) to REP_PATHS and a tile to
     rep/index.html.
-  * GitHub Pages (github.io) still serves the same files with NO login.
-    Retire it once reps are on kohlerdisthub.com.
+  * GitHub Pages was unpublished on 2026-09-28: kohlerdisthub.com is
+    the only copy.
 
 Sign-in CODE (needed for the home-screen app, 2026-09-25)
 ---------------------------------------------------------
@@ -95,6 +102,38 @@ Sign-in CODE (needed for the home-screen app, 2026-09-25)
   newest code sent -- the sign-in page shows the time it sent the email
   for exactly this reason. Nothing else changes:
   the link keeps working for people signing in through Safari.
+
+Passwords (2026-09-28)
+----------------------
+  Run migrations/20260928180000_password.sql in the SQL Editor once. It
+  adds kdh_signin_mode(email), which tells the sign-in page one of three
+  things about the address just typed: not listed / listed but no
+  password yet / has a password. (Supabase keeps "has a password" in
+  auth.users, which the page cannot read itself.) Until the migration
+  is run the page behaves exactly as before: code every time.
+  How it flows:
+    first sign-in   email -> code (or link) -> "Create your password"
+                    -> in. Everyone who signed in before 2026-09-28 is
+                    asked for a password on their next sign-in, once.
+    every time after  email -> password -> in. No email is sent.
+    forgot password   the "Forgot password? Email me a code" link on the
+                    password step -> code -> "Choose a new password".
+  The password is saved with the person's own signed-in session
+  (auth.updateUser), so nothing here needs the secret key and nothing
+  new is stored in our tables. Settings that matter, all under
+  Supabase -> Authentication -> Sign In / Providers -> Email:
+    Enable Email provider   on (it is; passwords use the same provider)
+    Minimum password length  the page insists on 8; set the project to 8
+                            too so nothing shorter can be set elsewhere.
+    Secure password change   leave OFF -- with it on, Supabase wants a
+                            fresh sign-in before a password can be set,
+                            which the code step already is, but a
+                            reloaded home-screen app may not count.
+  Optional, Pro plan: "Leaked password protection" refuses passwords
+  found in known breaches; the page shows Supabase's reason if it does.
+  To reset someone's password by hand: Authentication -> Users -> the
+  person -> "Send password recovery" is NOT wired to our page; instead
+  tell them to use "Forgot password" on /login/, which is.
 
 Rep write-back: rep_actions (2026-09-25)
 ----------------------------------------
