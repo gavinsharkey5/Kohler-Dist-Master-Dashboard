@@ -23666,11 +23666,11 @@ const PROGRAM_DATA = {
           }
         ],
         "buyingAccountCount": 11,
-        "eligibleAccountCount": 45,
+        "eligibleAccountCount": 44,
         "caseVolume": 60.0,
-        "penetrationPct": 24.4,
-        "tier": null,
-        "rate": 0.0,
+        "penetrationPct": 25.0,
+        "tier": "Gettin' Lytt",
+        "rate": 0.5,
         "whitespaceAccounts": [
           {
             "customer": "Garden St. Wine & Liquor",
@@ -23791,10 +23791,6 @@ const PROGRAM_DATA = {
           {
             "customer": "Hmart Fresh (P)",
             "cases2026": 1060.0
-          },
-          {
-            "customer": "Whole Foods #10102 (Edgewater)",
-            "cases2026": 718.0
           },
           {
             "customer": "Leonia Wine & Spirits",
@@ -25782,7 +25778,7 @@ const PROGRAM_DATA = {
       },
       {
         "rep": "Dan Lagala",
-        "penetrationPct": 24.4,
+        "penetrationPct": 25.0,
         "rank": 12
       },
       {
@@ -148389,5 +148385,5 @@ const PROGRAM_DATA_2026_09 = {
     }
   }
 };
-const PROGRAM_DATA_REFRESHED = "Sep 28, 2026, 1:31 PM ET";
-const PROGRAM_DATA_REFRESHED_AT = "2026-09-28T17:31:22Z";
+const PROGRAM_DATA_REFRESHED = "Sep 28, 2026, 3:10 PM ET";
+const PROGRAM_DATA_REFRESHED_AT = "2026-09-28T19:10:15Z";

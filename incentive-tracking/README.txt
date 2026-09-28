@@ -4619,6 +4619,25 @@ Woodchuck 584 -> 581 (+5 / -8), Tona 344 -> 344 (rename only), Lytt
               Convenience rows add cases only.
 Hub cache tag bumped (20260925b) for the new program_data.js.
 
+2026-09-28 THIRD -- Lytt Launch account-base edit, Dan Lagala's Whole Foods
+#10102 excluded (per Gavin: "remove the account from the lytt incentive as
+well for dan lagala. account # 10102")
+  python3 generate.py
+Not a data refresh -- a code-level exclusion, LYTT_BASE_EXCLUDED next to
+LYTT_TIERS/LYTT_MIN_SKUS in generate.py, same shape as MPOs/off-prem's
+KEYSTONE_BASE_EXCLUDED but scoped inside build_lytt_launch() rather than
+in the shared load_customer_base_full() cache -- filtering that cache
+would have pulled the account out of every off-prem program's whitespace
+and target lists, not just Lytt. He has no Lytt buy at that account, so
+only the denominator moves: eligibleAccountCount 45 -> 44, buyingAccountCount
+holds at 11. THIS CROSSES A TIER: penetration 24.4% -> 25.0%, which is
+exactly the "Gettin' Lytt" line -- he goes from no tier to $0.50/case,
+retroactive to Aug 1 per the "once a tier is hit, payout continues" rule
+above. Flagging plainly since it is a real payout change, not a cosmetic
+one: confirm with Gavin that a denominator correction alone should trigger
+the tier, same as any other rep's tier crossing. Hub cache tag bumped for
+the new program_data.js.
+
 2026-09-28 SECOND -- Keystone goal edit only (no new export), Dan Lagala's
 Whole Foods #10102 excluded
   python3 generate.py

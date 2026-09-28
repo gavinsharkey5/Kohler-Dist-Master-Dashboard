@@ -834,6 +834,21 @@ LYTT_TIERS = [(0.75, 2.00, "Lytt-Faced"), (0.50, 1.00, "Lytty City"), (0.25, 0.5
 # Distinct Product Num, not rows: the same SKU reordered three times is one SKU.
 LYTT_MIN_SKUS = 3
 
+# LYTT-ONLY ACCOUNT-BASE EXCLUSION (2026-09-28, per Gavin: "remove the
+# account from the lytt incentive as well for dan lagala. account # 10102").
+# Same account, same reasoning as MPOs/off-prem's KEYSTONE_BASE_EXCLUDED --
+# Whole Foods #10102 (Edgewater, customer 201096) comes out of Dan Lagala's
+# eligible-account DENOMINATOR for Lytt only, not the shared
+# load_customer_base_full() cache every other program reads (that would
+# silently pull the account out of every off-prem program's whitespace and
+# target lists too). He has no Lytt buy at that account, so only the
+# denominator moves. Scoped to Lytt deliberately -- widen only on an
+# explicit ask.
+LYTT_BASE_EXCLUDED = {
+    # (rep, customer num): why
+    ("Dan Lagala", "201096"): "Whole Foods #10102 (Edgewater)",
+}
+
 
 def build_lytt_launch():
     """Lytt Launch penetration tracking. Per Gavin, 2026-08-1x: the
@@ -851,13 +866,20 @@ def build_lytt_launch():
     # customer_base_off_prem.csv on 2026-08-18 -- same six-county universe,
     # fresher pull, one consistent source).
     eligible_by_rep = {}
+    lytt_excluded_count = 0
     for rep, accounts in load_customer_base_full().items():
         for cust_num, info in accounts.items():
             if info["premise"] == "Off Premise" and info["core"]:
+                if (rep, str(cust_num).strip()) in LYTT_BASE_EXCLUDED:
+                    lytt_excluded_count += 1
+                    continue
                 eligible_by_rep.setdefault(rep, {})[cust_num] = {
                     "customer": info["customer"],
                     "cases2026": info["cases2026"],
                 }
+    if lytt_excluded_count:
+        print(f"  Lytt Launch: {lytt_excluded_count} account(s) excluded from the eligible base -- "
+              + ", ".join(f"{rep}/{name}" for (rep, _), name in LYTT_BASE_EXCLUDED.items()))
 
     by_rep = {rep: {
         "buyingAccounts": [], "buyingAccountCount": 0,
