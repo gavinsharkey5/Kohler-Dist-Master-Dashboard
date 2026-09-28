@@ -10,9 +10,6 @@
 <meta name="theme-color" content="#0E1014">
 <link rel="manifest" href="manifest.webmanifest">
 <title>MetLife Beer Audit — Kohler Distributing</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --canvas:#0E1014;--card:#181B22;--card-h:#1F232C;--card-2:#12151B;--ink:#FFFFFF;--ink-soft:#9AA1B0;--ink-mute:#6B7280;
@@ -261,6 +258,11 @@
     .card{box-shadow:none;break-inside:avoid}
   }
 </style>
+<script src="../shared/kdh-user.js?v=20260928a"></script>
+<script>try{var t=localStorage.getItem('kdh_theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<meta name="kdh-page" content="MetLife Beer Audit">
+<!-- Site design system: maps this page's variables + fonts onto shared/kdh.css. Keep it LAST in <head>. -->
+<link rel="stylesheet" href="../shared/kdh-skin.css?v=20260928a">
 </head>
 <body>
 
@@ -606,8 +608,9 @@ let toastT;
 function toast(msg){ const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), 1800); }
 
 /* ---------- theme ---------- */
-function applyTheme(t){ if (t==='light') document.documentElement.setAttribute('data-theme','light'); else document.documentElement.removeAttribute('data-theme'); $('#themebtn').textContent = t==='light' ? '🌙' : '☀️'; $('meta[name=theme-color]').content = t==='light' ? '#F4F5F7' : '#0E1014'; }
-applyTheme(Settings.get().theme || 'dark');
+function applyTheme(t){ document.documentElement.setAttribute('data-theme', t==='light' ? 'light' : 'dark'); $('#themebtn').textContent = t==='light' ? '🌙' : '☀️'; $('meta[name=theme-color]').content = t==='light' ? '#F4F5F7' : '#0E1014'; }
+// Theme follows the site (kdh_theme from the site bar), not this page's own setting.
+applyTheme((function(){ try{ var k=localStorage.getItem('kdh_theme'); if(k) return k; }catch(e){} return (window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'; })());
 $('#themebtn').onclick = () => { const t = Settings.get().theme==='light' ? 'dark' : 'light'; Settings.set({theme:t}); applyTheme(t); if (currentView==='dash') renderDashboard(); };
 
 /* =====================================================================

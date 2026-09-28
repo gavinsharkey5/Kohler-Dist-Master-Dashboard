@@ -42,29 +42,61 @@
     try { var src = (document.currentScript && document.currentScript.src) || ''; var i = src.indexOf('shared/kdh-user.js'); return i > 0 ? src.slice(0, i) : ''; } catch (e) { return ''; }
   })();
   var REP_HOME = ROOT + 'rep/';
-  // A clear way back for reps on every dashboard: Back returns to the page
-  // they came from when that was one of ours (hub -> MPO page, say), and
-  // to their dashboards page otherwise. Managers don't get it.
-  function backBar() {
-    var u = user();
-    if (!u || u.role === 'manager' || document.getElementById('kdhBackBar')) return;
-    if (location.pathname.replace(/index\.html$/, '').indexOf('/rep/') >= 0) return;
-    var cameFromUs = document.referrer && document.referrer.indexOf(location.origin) === 0 && document.referrer.indexOf('/login/') < 0 && history.length > 1;
-    var b = document.createElement('div');
-    b.id = 'kdhBackBar';
-    b.style.cssText = 'position:sticky;top:0;z-index:99998;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 14px;height:44px;background:#12275F;color:#fff;font:600 14px/1 system-ui,-apple-system,sans-serif;box-shadow:0 2px 10px rgba(0,0,0,.25)';
-    b.innerHTML = '<a href="' + REP_HOME + '" style="color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:8px;height:44px;padding-right:8px">' +
-      '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>' +
-      '<span>' + (cameFromUs ? 'Back' : 'My dashboards') + '</span></a>' +
-      '<a href="' + REP_HOME + '" style="color:rgba(255,255,255,.8);text-decoration:none;font-weight:500;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">' + esc(u.name) + ' · Dashboards</a>';
-    var back = b.firstChild;
-    back.addEventListener('click', function (e) { if (cameFromUs) { e.preventDefault(); history.back(); } });
-    document.body.insertBefore(b, document.body.firstChild);
+
+  // Theme: applied as early as this script runs so a dark-mode page does not
+  // flash light (the landing pages also do this inline in <head>).
+  function applyTheme() { try { var t = localStorage.getItem('kdh_theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {} }
+  function toggleTheme() {
+    var root = document.documentElement;
+    var current = root.getAttribute('data-theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    var next = current === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('kdh_theme', next); } catch (e) {}
   }
+  applyTheme();
+
+  // THE SITE CHROME (2026-09-28): one top bar on every dashboard, the same
+  // one the rep workspace, manager page and team page carry in their own
+  // markup (shared/kdh.css, .kdh-bar). Logo -> the person's landing page,
+  // the page's name, a "Dashboards" link back, the light/dark toggle, who
+  // is signed in, Sign out. Skipped on pages that already have a .kdh-bar.
+  // Without a sign-in (github.io) it still shows the logo, name and toggle.
+  function pageName() {
+    var m = document.querySelector('meta[name="kdh-page"]'); if (m && m.content) return m.content;
+    var h = document.querySelector('h1'); if (h && h.textContent.trim()) return h.textContent.replace(/\s+/g, ' ').trim();
+    return (document.title || '').split(/\s+[|\u2014\u00b7-]\s+/)[0].trim();
+  }
+  function initials(n) { return String(n || '').trim().split(/\s+/).map(function (w) { return w[0] || ''; }).slice(0, 2).join('').toUpperCase(); }
+  var SUN = '<svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+  var MOON = '<svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+  var BACK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>';
+  function chrome() {
+    if (document.querySelector('.kdh-bar') || document.getElementById('kdhBar')) return;
+    var u = user();
+    var isMgr = !!(u && u.role === 'manager');
+    var home = u ? (isMgr ? ROOT : REP_HOME) : ROOT;
+    var b = document.createElement('div');
+    b.id = 'kdhBar'; b.className = 'kdh-bar';
+    var acts = '';
+    acts += '<a class="kdh-b kdh-back" href="' + home + '">' + BACK + '<span>' + (isMgr ? 'Dashboards' : (u ? 'My dashboards' : 'Dashboards')) + '</span></a>';
+    if (isMgr) acts += '<a class="kdh-b kdh-hide-sm" href="' + ROOT + 'team/">Team</a>';
+    acts += '<button type="button" class="kdh-b kdh-icon" id="kdhTheme" aria-label="Switch between light and dark mode" title="Light / dark mode">' + SUN + MOON + '</button>';
+    if (u && u.name) acts += '<span class="kdh-b kdh-user"><span class="kdh-av">' + esc(initials(u.name)) + '</span><span class="kdh-name">' + esc(u.name) + '</span></span>';
+    if (u) acts += '<a class="kdh-b kdh-outline kdh-hide-sm" href="' + ROOT + 'login/?signout=1">Sign out</a>';
+    b.innerHTML = '<div class="kdh-bar-in">' +
+      '<a class="kdh-logo" href="' + home + '"><img src="' + ROOT + 'assets/kohler-logo-badge.png" alt="">Kohler Dist Hub<small>' + esc(pageName()) + '</small></a>' +
+      '<div class="kdh-acts">' + acts + '</div></div>';
+    document.body.insertBefore(b, document.body.firstChild);
+    var t = document.getElementById('kdhTheme'); if (t) t.addEventListener('click', toggleTheme);
+  }
+  // Kept for the pages that call it by the old name.
+  function backBar() { chrome(); }
   global.kdhUser = user;
   global.kdhSetPreview = setPreview;
   global.kdhPreviewBar = bar;
   global.kdhBackBar = backBar;
-  function boot() { backBar(); bar(); }
+  global.kdhChrome = chrome;
+  global.kdhToggleTheme = toggleTheme;
+  function boot() { chrome(); bar(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
 })(window);

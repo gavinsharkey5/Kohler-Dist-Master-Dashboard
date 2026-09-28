@@ -263,6 +263,27 @@ cookie. Linked from the manager index ("Team Activity" card, Field &
 team) and the rep workspace top bar (`#teamLink`, managers only). A
 manager in preview mode is treated as themselves here.
 
+## Site-wide design system (2026-09-28)
+
+`shared/kdh.css` (tokens light+dark, the `.kdh-bar` top bar, generic
+components), `shared/kdh-skin.css` (loaded LAST on every dashboard:
+maps each page's own variables onto the tokens, aliases Space Grotesk /
+Inter / Archivo / Calibri / Georgia to Oswald + Source Sans 3 via
+@font-face, hides old back links, page fixes at the bottom) and
+`shared/kdh-user.js` (identity + the injected top bar + theme) give the
+whole site one look. Read `shared/README.txt` before touching any
+page's styling: add a dashboard by adding the skin link, the
+`<meta name="kdh-page">` and the early theme snippet, never by editing
+its own CSS; fix a page by adding a rule at the bottom of the skin. The
+old navy back bar is gone (`kdhBackBar()` now calls `kdhChrome()`);
+tests look for `#kdhBar`. Google Fonts links were removed from all 18
+dashboards. rolling-distribution and metlife had their own theme
+switches -- they now read/write `kdh_theme` and their buttons are
+hidden. rep/rep.css tokens are aliases of the kdh tokens (`@import`).
+Hub, MPO, tap, Red Bull, Carbliss, Rolling, Cockpit, Summer, W&S,
+Bardstown, Keystone, three inventory pages, 2027 planning, iSellBeer
+and MetLife were all screenshot-checked light/dark/phone on 2026-09-28.
+
 ## Manager page on the workspace design (2026-09-28)
 
 The root `index.html` now links `rep/rep.css` (tokens, top bar, `.ws`

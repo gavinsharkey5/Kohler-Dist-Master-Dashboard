@@ -4,9 +4,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Rolling Distribution Trends</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Archivo:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{--canvas:#060A16;--card:#0F1729;--card-h:#182540;--ink:#F8FAFF;--ink-soft:#CCD6EA;--ink-dim:#8F9CB8;--line:#2A3A5C;--line-soft:#1D2946;
         --accent:#3D8BFF;--accent-hi:#6FB1FF;--accent-soft:#14264D;--accent-line:#3B78E0;--gold:#FFB13D;--gold-soft:#3B2A0A;--gold-line:#9A6A12;
@@ -298,6 +295,11 @@
   footer{color:var(--ink-dim);font-size:16.5px;padding:20px 0 40px;line-height:1.6}
   @media (max-width:700px){body{padding:0 12px}.card{padding:14px 12px}.kpi .v{font-size:30px}th,td{padding:8px 10px}.seg button{padding:10px 12px}.back{margin-left:0}}
 </style>
+<script src="../shared/kdh-user.js?v=20260928a"></script>
+<script>try{var t=localStorage.getItem('kdh_theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<meta name="kdh-page" content="Rolling Distribution Trends">
+<!-- Site design system: maps this page's variables + fonts onto shared/kdh.css. Keep it LAST in <head>. -->
+<link rel="stylesheet" href="../shared/kdh-skin.css?v=20260928a">
 </head>
 <body>
 <div class="wrap">
@@ -459,8 +461,9 @@
   readHash();
   try{ var qv0=localStorage.getItem('rdt-qview'); if(qv0 && !/[?&#]qview=/.test(location.hash)) S.qview=qv0; }catch(e){}
   try{ S.chart = +(localStorage.getItem('rdt-chart')||0); S.more = +(localStorage.getItem('rdt-more')||0); var sc=localStorage.getItem('rdt-cols'); if(sc && !/[?&#]cols=/.test(location.hash)) S.cols=sc; }catch(e){}
-  function setTheme(t){ document.documentElement.setAttribute('data-theme', t); try{ localStorage.setItem('rdt-theme', t); }catch(e){} var i=document.getElementById('theme-ico'), l=document.getElementById('theme-lbl'); if(i){ i.textContent = t==='light' ? '☾' : '☀'; l.textContent = t==='light' ? 'Dark mode' : 'Light mode'; } }
-  (function(){ var t='dark'; try{ t=localStorage.getItem('rdt-theme')||'dark'; }catch(e){} setTheme(t); })();
+  function setTheme(t){ document.documentElement.setAttribute('data-theme', t); try{ localStorage.setItem('kdh_theme', t); }catch(e){} var i=document.getElementById('theme-ico'), l=document.getElementById('theme-lbl'); if(i){ i.textContent = t==='light' ? '☾' : '☀'; l.textContent = t==='light' ? 'Dark mode' : 'Light mode'; } }
+  // Theme follows the site (kdh_theme, set by the site bar), not this page's old rdt-theme.
+  (function(){ var t=''; try{ t=localStorage.getItem('kdh_theme')||''; }catch(e){} if(!t) t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'; setTheme(t); })();
   var themeBeforePrint=null;
   window.addEventListener('beforeprint', function(){ themeBeforePrint=document.documentElement.getAttribute('data-theme'); document.documentElement.setAttribute('data-theme','light'); });
   window.addEventListener('afterprint', function(){ if(themeBeforePrint) document.documentElement.setAttribute('data-theme', themeBeforePrint); });
