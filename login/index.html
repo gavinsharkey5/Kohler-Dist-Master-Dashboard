@@ -136,6 +136,7 @@
   var pendingEmail = '';
   var resendTimer = null;
   var verifying = false;
+  var lastFailed = '';
   var PENDING = 'kdh_pending';   // {email, at} -- the code we are waiting for
   function loadPending(){ try { var p = JSON.parse(localStorage.getItem(PENDING) || 'null'); return (p && p.email && Date.now() - p.at < 55 * 60 * 1000) ? p : null; } catch (e) { return null; } }
   function savePending(email){ try { localStorage.setItem(PENDING, JSON.stringify({ email: email, at: Date.now() })); } catch (e) {} }
@@ -287,6 +288,7 @@
     return sb.auth.signInWithOtp({ email: email, options: { emailRedirectTo: back } }).then(function (r) {
       if (r.error) { say('bad', 'Couldn&rsquo;t send the email: ' + escapeHtml(r.error.message)); return false; }
       var at = Date.now();
+      lastFailed = '';
       savePending(email);
       showCodeStep(email, at, true);
       if (again) say('good', 'Sent again at ' + clock(at) + '. Older codes no longer work &mdash; use the newest email.'); else hush();
@@ -322,6 +324,7 @@
       if (!email) { show('email'); return; }
       if (code.length < 6) { say('bad', 'Enter the code from the email (6 to 8 digits).'); $('code').focus(); return; }
       if (verifying) return;                 // one check at a time (a double submit would burn the code)
+      if (code === lastFailed) { say('bad', 'That code was already refused. Check the newest email &mdash; it may have arrived after you started typing &mdash; or tap <b>send it again</b>.'); $('code').select(); return; }
       verifying = true;
       $('verify').disabled = true;
       say('info', 'Checking the code&hellip;');
@@ -348,6 +351,7 @@
           return sb.auth.getSession().then(function (g) {
             var sess = g && g.data && g.data.session;
             if (sess && !entered) { entered = true; enter(sess); return; }
+            lastFailed = code;
             var p = loadPending();
             say('bad', 'That code didn&rsquo;t work. A code is good once and only from the <b>newest</b> email &mdash; and if its link was already tapped, the code is used up. Tap <b>send it again</b> and type the new code without opening the link.' +
               '<br><span style="font-size:12.5px;opacity:.75">Supabase said: ' + escapeHtml(r.error.message) + ' (' + escapeHtml(tried.join(', ')) + ') for ' + escapeHtml(email) +

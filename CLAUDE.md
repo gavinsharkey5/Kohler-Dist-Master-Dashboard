@@ -220,6 +220,25 @@ the Supabase templates; the live one is a one-liner as of 2026-09-28).
 The rep_actions migration was run and the write-back verified live on
 2026-09-28.
 
+## Sign-in code on a home-screen app: what went wrong and what holds it (2026-09-28)
+
+Gavin's iPhone install failed "Token has expired or is invalid" on
+several tries while Safari worked. Auth logs showed no server fault:
+each failure followed an extra `/otp` request (the iPad reloads a
+home-screen web app when you come back from Mail, and the page then
+asked for the email again; a Sign out + retry also re-requested), and
+the code typed was from the email already superseded, since a new email
+lands 10-30 s after the request. `login/index.html` therefore: keeps the
+pending request in localStorage `kdh_pending` (55 min) and lands on the
+code step after a reload showing "at h:mm"; refuses a second request for
+the same address within 2 minutes; runs one check at a time and refuses
+to resubmit a code that just failed; tries token types email, magiclink,
+signup; after a failed check calls `getSession()` and proceeds if a
+session exists; prints the Supabase error code(s), the address and
+"requested Ns ago" under the friendly message. Email OTP Expiration is
+3600 s and OTP length 6 on the project. Don't "simplify" any of this
+away -- each guard maps to a failure that was observed.
+
 ## Team Activity page: team/ (2026-09-28)
 
 `team/index.html` + `team/team.css` is the manager's read of the
@@ -243,6 +262,72 @@ by the middleware (not in REP_PATHS); the page also refuses a rep
 cookie. Linked from the manager index ("Team Activity" card, Field &
 team) and the rep workspace top bar (`#teamLink`, managers only). A
 manager in preview mode is treated as themselves here.
+
+## Rep pages simplified: one Back button, no repeats, stacked headers (2026-09-28)
+
+Gavin's second brief. `kdh-user.js` sets `html.kdh-rep` / `html.kdh-mgr`
+and the site bar's back link is now a filled button, "Back to My
+Dashboards" (reps) / "Back to Dashboards" (managers), 40px tall on
+phones, where the wordmark collapses to the badge to make room. In rep
+mode `kdh-skin.css` hides every page's hero photo / NJ banner, crumb,
+eyebrow, long lede, the MPO pages' own <header> (title, sub, stamp)
+and the hub's name row + Home button -- the bar says where you are and
+how to get back. MPO rep screen (`repHead()` in guided.js): "Dave's MPO
+Progress" then Off-Premise / Sales manager / role / data stamp each on
+its own line, no "Step 2" badge; month pills sit just above. Objective
+cards (guided.js `repObjectiveCard` AND hub.js `mpoQuickHtml`, kept in
+step): weight tag + ONE pill that carries the credit ("Goal achieved ·
+credit earned" / "In progress · credit not yet earned"), three facts
+(My goal / Where I am / Still needed, "None" when met), no duplicate
+"Goal:" tag, no "Credit earned" column. Hub: no tab bar when only one
+tab (incentives-only mode) and the refreshed line names only the feeds
+on screen. Red Bull h1 says "Red Bull Distribution Tracker"; its
+generate.py footer is hidden for reps. Tap: a rep with no surveys gets
+the notice alone, not an empty 0% board. Workspace banner is slimmer
+(clamp 84-150px). Tests updated (hubonly, back, ui). Rep sweep:
+scratchpad rep_sweep.mjs at 390 / 1366.
+
+## GitHub Pages is OFF; reps are locked by a forgiving name match (2026-09-28)
+
+Gavin unpublished the github.io site on 2026-09-28: kohlerdisthub.com
+(Vercel, main) is the only copy. Everything above that says "github.io
+still serves..." is history; the code paths that tolerate a missing
+auth-config.js stay (they cost nothing).
+
+A signed-in rep is locked to their own data on every rep page by
+`kdhMatchName(name, roster)` in shared/kdh-user.js: exact match first,
+then canonical first name (nickname map: Michael->Mike, Daniel->Dan,
+James->Jim ...) + surname with punctuation stripped, then surname +
+first initial when that is unique. The hub (`LOCKED_REP`), both MPO
+pages (`lockedRep()` in guided.js), Red Bull (`LOCK_REP` re-matched
+against the export's reps once loaded) and Carbliss (matched against
+DATA.accounts reps) all use it; the tap tracker keeps its own older
+matcher. NO MATCH = FAIL CLOSED: `kdhNoRoster(page)` covers the page
+with a "We couldn't find your name here" notice and a link to /rep/,
+never everyone's data. The Team Activity page lists allow-list reps
+whose name matches nothing in the account base so Gavin can fix the
+spelling in allowed_users. Managers are unaffected (picker, Preview).
+
+## Site-wide design system (2026-09-28)
+
+`shared/kdh.css` (tokens light+dark, the `.kdh-bar` top bar, generic
+components), `shared/kdh-skin.css` (loaded LAST on every dashboard:
+maps each page's own variables onto the tokens, aliases Space Grotesk /
+Inter / Archivo / Calibri / Georgia to Oswald + Source Sans 3 via
+@font-face, hides old back links, page fixes at the bottom) and
+`shared/kdh-user.js` (identity + the injected top bar + theme) give the
+whole site one look. Read `shared/README.txt` before touching any
+page's styling: add a dashboard by adding the skin link, the
+`<meta name="kdh-page">` and the early theme snippet, never by editing
+its own CSS; fix a page by adding a rule at the bottom of the skin. The
+old navy back bar is gone (`kdhBackBar()` now calls `kdhChrome()`);
+tests look for `#kdhBar`. Google Fonts links were removed from all 18
+dashboards. rolling-distribution and metlife had their own theme
+switches -- they now read/write `kdh_theme` and their buttons are
+hidden. rep/rep.css tokens are aliases of the kdh tokens (`@import`).
+Hub, MPO, tap, Red Bull, Carbliss, Rolling, Cockpit, Summer, W&S,
+Bardstown, Keystone, three inventory pages, 2027 planning, iSellBeer
+and MetLife were all screenshot-checked light/dark/phone on 2026-09-28.
 
 ## Manager page on the workspace design (2026-09-28)
 

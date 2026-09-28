@@ -87,8 +87,13 @@ Sign-in CODE (needed for the home-screen app, 2026-09-25)
     button, big code) is supabase/email/magic-link.html -- paste it whole
     into the template's Source view, both templates. (Done with a one-line
     version on 2026-09-28; swap in the designed one any time.)
-  Codes expire with "Email OTP expiration" (Authentication -> Providers
-  -> Email; default 1 hour, keep it >= 10 minutes). Nothing else changes:
+  Codes expire with "Email OTP Expiration" (Authentication -> Sign In /
+  Providers -> Email). The field is in SECONDS: leave it at 3600 (one
+  hour). Email OTP Length is 6 on this project (2026-09-28).
+  A new request REPLACES the previous code, and a new email can take
+  10-30 s to arrive, so the newest email in the inbox is not always the
+  newest code sent -- the sign-in page shows the time it sent the email
+  for exactly this reason. Nothing else changes:
   the link keeps working for people signing in through Safari.
 
 Rep write-back: rep_actions (2026-09-25)

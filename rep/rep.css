@@ -1,38 +1,18 @@
-/* Kohler Dist Hub -- rep workspace (/rep/). Light, compact, one accent. */
+/* Kohler Dist Hub -- rep workspace (/rep/), team page and manager page.
+   Tokens come from shared/kdh.css (the design system: light + dark,
+   fonts, top bar). The short names below are aliases kept so this
+   file's rules and the pages' inline styles stay readable. */
+@import url("../shared/kdh.css?v=20260928c");
 :root{
-  --bg:#F6F7F9;--surface:#FFFFFF;--surface-2:#F1F3F6;
-  --text:#0F172A;--text-2:#475569;--text-3:#64748B;--text-4:#94A3B8;
-  --border:#E2E8F0;--border-2:#CBD5E1;
-  --brand:#2F5FC4;--brand-2:#244C9E;--brand-soft:#EAF0FB;--ring:rgba(47,95,196,.35);
-  --ok:#15803D;--warn:#B45309;
-  --r:8px;--r-lg:10px;
-  --shadow:0 1px 2px rgba(15,23,42,.04);--shadow-h:0 4px 12px rgba(15,23,42,.08);
-  --head:"Oswald",system-ui,sans-serif;--body:"Source Sans 3",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --bg:var(--kdh-bg);--surface:var(--kdh-surface);--surface-2:var(--kdh-surface-2);
+  --text:var(--kdh-text);--text-2:var(--kdh-text-2);--text-3:var(--kdh-text-3);--text-4:var(--kdh-text-4);
+  --border:var(--kdh-border);--border-2:var(--kdh-border-2);
+  --brand:var(--kdh-brand);--brand-2:var(--kdh-brand-2);--brand-soft:var(--kdh-brand-soft);--ring:var(--kdh-ring);
+  --ok:var(--kdh-ok);--warn:var(--kdh-warn);
+  --r:var(--kdh-r);--r-lg:var(--kdh-r-lg);
+  --shadow:var(--kdh-shadow);--shadow-h:var(--kdh-shadow-h);
+  --head:var(--kdh-head);--body:var(--kdh-body);
 }
-/* Dark palette: same structure, swapped values. Chosen with the toggle in
-   the top bar (data-theme on <html>, remembered in localStorage kdh_theme),
-   or by the device setting when the rep hasn't picked. */
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --bg:#0F1523;--surface:#161D2E;--surface-2:#1C2437;
-    --text:#EEF2F8;--text-2:#B4BDD0;--text-3:#8D98B2;--text-4:#66718C;
-    --border:#263049;--border-2:#36447A;
-    --brand:#6C93E8;--brand-2:#8AA9F0;--brand-soft:#1E2C4D;--ring:rgba(108,147,232,.45);
-    --ok:#4ADE80;--warn:#F5B84C;
-    --shadow:0 1px 2px rgba(0,0,0,.3);--shadow-h:0 6px 16px rgba(0,0,0,.4);
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#0F1523;--surface:#161D2E;--surface-2:#1C2437;
-  --text:#EEF2F8;--text-2:#B4BDD0;--text-3:#8D98B2;--text-4:#66718C;
-  --border:#263049;--border-2:#36447A;
-  --brand:#6C93E8;--brand-2:#8AA9F0;--brand-soft:#1E2C4D;--ring:rgba(108,147,232,.45);
-  --ok:#4ADE80;--warn:#F5B84C;
-  --shadow:0 1px 2px rgba(0,0,0,.3);--shadow-h:0 6px 16px rgba(0,0,0,.4);
-}
-html{color-scheme:light}
-@media (prefers-color-scheme:dark){ html:not([data-theme="light"]){color-scheme:dark} }
-html[data-theme="dark"]{color-scheme:dark}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%}
@@ -40,25 +20,11 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);fon
 a{color:inherit}
 :focus-visible{outline:2px solid var(--brand);outline-offset:2px;border-radius:var(--r)}
 
-/* top bar */
-.topbar{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid var(--border)}
-.topbar .in{max-width:1120px;margin:0 auto;padding:0 20px;height:52px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-family:var(--head);font-size:17px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;min-width:0}
-.logo img{width:28px;height:28px;border-radius:6px;border:1px solid var(--border);background:#fff;object-fit:contain}
-.logo small{font-family:var(--body);font-weight:500;color:var(--text-3);text-transform:none;letter-spacing:0;font-size:13px;margin-left:2px}
-.actions{display:flex;align-items:center;gap:4px}
+/* the page's own small buttons (the top bar itself is .kdh-bar from kdh.css) */
 .btn{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;border-radius:6px;border:1px solid transparent;background:transparent;color:var(--text-2);font:inherit;font-size:13.5px;font-weight:500;text-decoration:none;cursor:pointer;white-space:nowrap}
 .btn:hover{background:var(--surface-2);color:var(--text)}
 .btn.outline{border-color:var(--border);background:var(--surface)}
 .btn.outline:hover{border-color:var(--border-2)}
-.avatar{width:26px;height:26px;border-radius:50%;background:var(--brand);color:#fff;font-family:var(--head);font-size:11.5px;font-weight:600;letter-spacing:.04em;display:inline-flex;align-items:center;justify-content:center;flex:none}
-
-/* theme toggle */
-.btn.icon{width:32px;padding:0;justify-content:center;border-color:var(--border);background:var(--surface)}
-.btn.icon svg{width:16px;height:16px}
-.btn.icon .moon{display:none}
-html[data-theme="dark"] .btn.icon .sun{display:none} html[data-theme="dark"] .btn.icon .moon{display:block}
-@media (prefers-color-scheme:dark){ html:not([data-theme="light"]) .btn.icon .sun{display:none} html:not([data-theme="light"]) .btn.icon .moon{display:block} }
 
 /* workspace header */
 .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
@@ -77,7 +43,7 @@ html[data-theme="dark"] .btn.icon .sun{display:none} html[data-theme="dark"] .bt
 
 /* Kohler banner under the workspace header */
 .hero{margin:2px 0 18px;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--border);background:#2f5fc4;box-shadow:var(--shadow)}
-.hero img{display:block;width:100%;height:clamp(120px,28vw,300px);object-fit:cover;object-position:60% 30%}
+.hero img{display:block;width:100%;height:clamp(84px,16vw,150px);object-fit:cover;object-position:60% 35%}
 @media (max-width:599px){.hero{margin-bottom:14px}.hero img{height:auto;aspect-ratio:1445/544}}
 
 /* sections */
@@ -134,16 +100,11 @@ footer{max-width:1120px;margin:0 auto;padding:12px 20px 36px;border-top:1px soli
 footer a{color:var(--text-3)}
 
 @media (max-width:599px){
-  .topbar .in{padding:0 16px;height:50px}
-  .logo{font-size:15px;gap:8px}
-  .logo small{display:none}
-  #userChip{padding:0 4px} #userName{display:none}
   .meta .muted{display:none}
   .wrap{padding:0 16px}
   .ws{padding:16px 0 12px}
   .ws h1{font-size:24px}
   .switch{width:100%} .switch select{flex:1}
   a.card{min-height:0;padding:14px 14px 12px}
-  .btn.hide-sm{display:none}
   footer{padding:12px 16px 32px}
 }
