@@ -220,6 +220,27 @@ the Supabase templates; the live one is a one-liner as of 2026-09-28).
 The rep_actions migration was run and the write-back verified live on
 2026-09-28.
 
+## Team Activity page: team/ (2026-09-28)
+
+`team/index.html` + `team/team.css` is the manager's read of the
+write-back, in the rep workspace's light design (it links `rep/rep.css`
+for tokens, top bar and the dark palette, plus `shared/fonts.css`). It
+fetches every rep_actions row with the manager's token (RLS lets
+managers read all) and `POST /rest/v1/rpc/kdh_team` (migration
+`supabase/migrations/20260928120000_team.sql`: name/role/title/reports_to
+for everyone, managers only, no emails) to split "My team" (reports_to
+== the signed-in manager's name, case-insensitive) from Everyone; a 404
+on the RPC or no matching reps falls back to Everyone with a note. The
+roster is the union of `hub/data/accounts.js` reps and kdh_team reps, so
+a rep with no marks still shows as "No marks yet". Program names come
+from the trackers' registries loaded with STUB data (`PROGRAM_DATA={}`
+etc. before `incentive-tracking/programs.js`; the two MPO programs.js
+need no data) -- never load the 4 MB program_data.js here. Managers-only
+by the middleware (not in REP_PATHS); the page also refuses a rep
+cookie. Linked from the manager index ("Team Activity" card, Field &
+team) and the rep workspace top bar (`#teamLink`, managers only). A
+manager in preview mode is treated as themselves here.
+
 ## Hub write-back: rep_actions (2026-09-25)
 
 The first thing reps TELL the site. Every target list the hub renders for

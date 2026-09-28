@@ -11,6 +11,12 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
+- [~] **Run the team migration** (Gavin): Supabase -> SQL Editor -> paste
+  `supabase/migrations/20260928120000_team.sql` -> Run. Until then the
+  Team Activity page shows everyone instead of "My team" (it says so on
+  the page). It also needs `reports_to` filled in on allowed_users to
+  match each DM's `name` exactly -- the Encompass import set it from
+  "Manager 1"; check a few rows in the Table Editor. (2026-09-28)
 - [ ] **Designed sign-in email** (Gavin, optional): paste
   `supabase/email/magic-link.html` whole into Supabase -> Authentication
   -> Emails -> Magic Link (Source view) and again into Confirm sign up,
@@ -34,10 +40,6 @@ device, a decision).
 
 ## Next -- to build (in order)
 
-- [ ] **DM team view**: a manager's landing shows their own reps (from
-  `reports_to`) with each rep's open follow-ups, Done counts this week, and
-  the last time they marked anything -- the "are they using it" read.
-  Needs nothing new in Supabase: managers already read all of rep_actions.
 - [ ] **Weekly rep email** (Monday, Resend): where you stand in every
   program you are in, what ends this month, your open follow-ups. Sent
   from a scheduled job (Vercel cron or Supabase edge function); the copy
@@ -72,6 +74,12 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-09-28 Team Activity page (/team/, managers only): one row per
+  rep with open follow-ups, Done this week, Not now and last activity;
+  open a rep for the follow-ups with notes and their recent marks;
+  "My team" (via kdh_team RPC + reports_to) or Everyone; Open their hub /
+  Preview as rep links. Linked from the manager page and the rep
+  workspace top bar.
 - [x] 2026-09-28 Sign-in page redesigned: white card, two clear steps
   (email, then link-or-code) with a big code box that submits itself,
   resend with a 30 s clock, "use a different email". Oswald + Source

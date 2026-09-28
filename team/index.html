@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F6F7F9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1523" media="(prefers-color-scheme: dark)">
+<title>Team activity — Kohler Dist Hub</title>
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="preload" href="../assets/fonts/oswald.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../shared/fonts.css?v=20260928a">
+<script>
+  try { var t = localStorage.getItem('kdh_theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+<link rel="stylesheet" href="../rep/rep.css?v=20260925f">
+<link rel="stylesheet" href="team.css?v=20260928a">
+<script src="../shared/kdh-user.js?v=20260925f"></script>
+</head>
+<body>
+<!--
+  Team activity (2026-09-28) -- the manager's read of the hub write-back.
+  One row per rep: open follow-ups, Done this week, Not now, last activity;
+  open a row for the follow-ups themselves (account, program, note) and the
+  rep's recent marks. "My team" = reps whose allowed_users.reports_to is
+  the signed-in manager (via the kdh_team() RPC; without that migration the
+  page shows Everyone and says so). Data: rep_actions through PostgREST
+  with the manager's own token -- RLS lets managers read every rep's rows.
+  Program names come from the trackers' own registries (loaded below with
+  stub data, since only the names are needed). Reps cannot open this page:
+  /team/ is not in the middleware's REP_PATHS.
+-->
+<div class="topbar"><div class="in">
+  <a class="logo" href="../"><img src="../assets/kohler-logo-badge.png" alt="">Kohler Dist Hub<small>Team</small></a>
+  <div class="actions">
+    <a class="btn hide-sm" href="../">Manager page</a>
+    <a class="btn hide-sm" href="../rep/">Rep workspace</a>
+    <button class="btn icon" id="themeBtn" type="button" aria-label="Switch between light and dark mode" title="Light / dark mode">
+      <svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <a class="btn" href="../login/?signout=1">Sign out</a>
+  </div>
+</div></div>
+
+<main class="wrap">
+  <div class="head">
+    <div>
+      <p class="kicker" id="kicker">Manager view</p>
+      <h1>Team activity</h1>
+      <p>What your reps have marked in the Incentive Hub — <b>Done</b>, <b>Follow up</b>, <b>Not now</b> — the moment they tap it. Open a rep for the accounts behind the numbers.</p>
+    </div>
+    <div class="pills" id="pills" hidden>
+      <button class="pill on" type="button" data-scope="mine">My team<span class="n" id="nMine"></span></button>
+      <button class="pill" type="button" data-scope="all">Everyone<span class="n" id="nAll"></span></button>
+    </div>
+  </div>
+
+  <div id="notes"></div>
+
+  <div class="tiles" id="tiles" hidden>
+    <div class="tile"><p class="l">Active this week</p><div class="v" id="tActive">–</div><div class="s" id="tActiveS"></div></div>
+    <div class="tile follow"><p class="l">Open follow-ups</p><div class="v" id="tFollow">–</div><div class="s">across the team</div></div>
+    <div class="tile done"><p class="l">Done this week</p><div class="v" id="tDone">–</div><div class="s">accounts marked done</div></div>
+    <div class="tile"><p class="l">Set aside</p><div class="v" id="tSkip">–</div><div class="s">marked Not now</div></div>
+  </div>
+
+  <div class="list" id="list"><div class="note" style="margin:0;border:0;border-radius:0">Loading…</div></div>
+  <p class="foot">"This week" = the last 7 days. Times are when the rep tapped. A rep's marks stay until they change them; Done and Not now accounts sit folded at the bottom of their own lists.</p>
+</main>
+
+<script src="../shared/auth-config.js"></script>
+<!-- Program names only: the incentive registry expects the data blobs to
+     exist before it loads, so give it empty ones instead of the 4 MB file. -->
+<script>var PROGRAM_DATA={},CORE_MARKET_PROGRAM_KEYS=[],PROGRAM_DATA_2026_09={},PROGRAM_DATA_REFRESHED='',PROGRAM_DATA_REFRESHED_AT='';</script>
+<script src="../incentive-tracking/programs.js?v=20260925c"></script>
+<script src="../MPOs/on-prem/programs.js?v=20260923h"></script>
+<script src="../MPOs/off-prem/programs.js?v=20260923h"></script>
+<script src="../hub/data/accounts.js?v=20260923h" defer></script>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function initials(n){ return String(n||'').trim().split(/\s+/).map(function(w){ return w[0]||''; }).slice(0,2).join('').toUpperCase(); }
+  function cookie(name){ var m = document.cookie.match(new RegExp('(?:^|;\\s*)' + name + '=([^;]*)')); return m ? decodeURIComponent(m[1]) : ''; }
+  function ci(s){ return String(s||'').trim().toLowerCase().replace(/\s+/g,' '); }
+
+  /* ---- theme toggle, same as the rep workspace ---- */
+  function setTheme(t){ try{ if(t) localStorage.setItem('kdh_theme', t); else localStorage.removeItem('kdh_theme'); }catch(e){} if(t) document.documentElement.setAttribute('data-theme', t); else document.documentElement.removeAttribute('data-theme'); }
+  $('themeBtn').addEventListener('click', function(){
+    var cur = document.documentElement.getAttribute('data-theme');
+    var dark = cur ? cur==='dark' : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    setTheme(dark ? 'light' : 'dark');
+  });
+
+  var user = null; try{ user = window.kdhUser ? window.kdhUser() : null; }catch(e){}
+  // A manager previewing a rep is still the manager here.
+  if(user && user.preview) user = {name:user.manager, role:'manager', email:user.email};
+  var cfg = window.KDH_AUTH || {}; var token = cookie('kdh_at');
+  var notes = [];
+  function note(html, bad){ notes.push('<div class="note'+(bad?' bad':'')+'">'+html+'</div>'); $('notes').innerHTML = notes.join(''); }
+
+  if(!user || user.role!=='manager'){ $('list').innerHTML=''; note('This page is for managers. <a href="../rep/">Go to your workspace</a>.', true); return; }
+  $('kicker').textContent = 'Manager view · ' + user.name;
+  if(!cfg.url || !cfg.key || !token){ $('list').innerHTML=''; note('Not signed in on kohlerdisthub.com — activity is only available there. <a href="../login/">Sign in</a>.', true); return; }
+
+  /* ---- program names from the trackers' registries ---- */
+  function progName(id){
+    try{
+      if(id.indexOf('inc:')===0){
+        var key = id.slice(4), hit = null;
+        (typeof MONTHS!=='undefined' ? MONTHS : []).slice().reverse().some(function(m){ return (m.programs||[]).some(function(p){ if(p.key===key){ hit = p; return true; } }); });
+        return hit ? (hit.shortTitle || hit.title || key) : key;
+      }
+      var parts = id.split(':'); var scope = parts[0], month = parts[1], key = parts[2];
+      var mod = scope==='off' ? window.OffPremMPO : window.OnPremMPO;
+      var m = mod && (mod.MONTHS||[]).filter(function(x){ return x.key===month; })[0];
+      var o = m && (m.objectives||[]).filter(function(x){ return x.key===key; })[0];
+      var when = m && m.label ? m.label : month;
+      return (o ? (o.shortName || o.name) : key) + ' · ' + (scope==='off' ? 'Off-Prem' : 'On-Prem') + ' MPO, ' + when;
+    }catch(e){ return id; }
+  }
+  function ago(iso){
+    var d = new Date(iso); if(isNaN(d)) return '';
+    var s = (Date.now()-d.getTime())/1000;
+    if(s < 90) return 'just now';
+    if(s < 3600) return Math.round(s/60)+' min ago';
+    if(s < 86400*1.5 && new Date().getDate()===d.getDate()) return Math.round(s/3600)+' h ago';
+    var days = Math.round(s/86400);
+    if(days <= 1) return 'yesterday';
+    if(days < 7) return days+' days ago';
+    return d.toLocaleDateString('en-US',{month:'short',day:'numeric'});
+  }
+
+  /* ---- data ---- */
+  var hdr = {apikey:cfg.key, authorization:'Bearer '+token, accept:'application/json'};
+  function get(path){ return fetch(cfg.url.replace(/\/$/,'')+'/rest/v1/'+path, {headers:hdr}); }
+  var rows = [], team = null, scope = 'all', openRep = null;
+  var WEEK = Date.now() - 7*86400*1000;
+
+  Promise.all([
+    get('rep_actions?select=rep_name,program_id,account_num,account_name,status,note,updated_at,created_at&order=updated_at.desc&limit=5000').then(function(r){ if(!r.ok) throw new Error('rep_actions HTTP '+r.status); return r.json(); }),
+    fetch(cfg.url.replace(/\/$/,'')+'/rest/v1/rpc/kdh_team', {method:'POST', headers:Object.assign({'content-type':'application/json'}, hdr), body:'{}'})
+      .then(function(r){ return r.ok ? r.json() : null; }, function(){ return null; })
+  ]).then(function(res){
+    rows = res[0] || []; team = res[1];
+    if(!team) note('Grouping by manager needs one more Supabase step (run <code>supabase/migrations/20260928120000_team.sql</code>). Showing everyone for now.');
+    build();
+  }).catch(function(e){ $('list').innerHTML=''; note('Couldn’t load activity: '+esc(e.message)+'. Reload, or sign in again.', true); });
+
+  /* ---- roster + per-rep summaries ---- */
+  var reps = {};   // name -> {name, dm, title, rows:[], follow:[], done7:0, doneAll:0, skip:0, last:null}
+  function build(){
+    reps = {};
+    var HA = null; try{ HA = typeof HUB_ACCOUNTS!=='undefined' ? HUB_ACCOUNTS : null; }catch(e){}
+    var byName = {};
+    (team||[]).forEach(function(t){ byName[ci(t.name)] = t; });
+    function ensure(name){ var k = ci(name); if(!reps[k]){ var t = byName[k]||{}; reps[k] = {name:name, dm:t.reports_to||'', title:t.title||'', rows:[], follow:[], done7:0, doneAll:0, skip:0, last:null}; } return reps[k]; }
+    // Everyone with a customer base is a rep, marks or not.
+    if(HA && HA.reps) Object.keys(HA.reps).forEach(function(n){ ensure(n); });
+    if(team) team.forEach(function(t){ if(t.role==='rep' && t.name) ensure(t.name); });
+    rows.forEach(function(r){
+      if(!r.rep_name) return;
+      var R = ensure(r.rep_name); R.rows.push(r);
+      var t = new Date(r.updated_at).getTime();
+      if(!R.last || t > R.last) R.last = t;
+      if(r.status==='follow') R.follow.push(r);
+      else if(r.status==='done'){ R.doneAll++; if(t >= WEEK) R.done7++; }
+      else if(r.status==='skip') R.skip++;
+    });
+    var mine = Object.keys(reps).filter(function(k){ return ci(reps[k].dm)===ci(user.name); });
+    var haveTeam = !!team && mine.length > 0;
+    $('pills').hidden = !haveTeam;
+    $('nMine').textContent = haveTeam ? mine.length : '';
+    $('nAll').textContent = Object.keys(reps).length;
+    scope = haveTeam ? 'mine' : 'all';
+    if(team && !mine.length) note('No one in the allow list reports to <b>'+esc(user.name)+'</b> yet (allowed_users → reports_to), so this shows everyone.');
+    render();
+  }
+  function visible(){
+    var list = Object.keys(reps).map(function(k){ return reps[k]; });
+    if(scope==='mine') list = list.filter(function(R){ return ci(R.dm)===ci(user.name); });
+    list.sort(function(a,b){ return (b.last||0)-(a.last||0) || a.name.localeCompare(b.name); });
+    return list;
+  }
+  function render(){
+    var list = visible();
+    document.querySelectorAll('.pill').forEach(function(p){ p.classList.toggle('on', p.dataset.scope===scope); });
+    var active = list.filter(function(R){ return R.last && R.last >= WEEK; }).length;
+    var follow = 0, done7 = 0, skip = 0;
+    list.forEach(function(R){ follow += R.follow.length; done7 += R.done7; skip += R.skip; });
+    $('tiles').hidden = false;
+    $('tActive').textContent = active; $('tActiveS').textContent = 'of ' + list.length + ' rep' + (list.length===1?'':'s');
+    $('tFollow').textContent = follow; $('tDone').textContent = done7; $('tSkip').textContent = skip;
+    var showDm = scope==='all' && !!team;
+    var html = '<div class="hrow'+(showDm?' dm':'')+'"><span>Rep</span>'+(showDm?'<span>Reports to</span>':'')+'<span>Follow-ups</span><span>Done · 7d</span><span>Not now</span><span>Last activity</span><span></span></div>';
+    if(!list.length) html += '<div class="note" style="margin:0;border:0;border-radius:0">No reps to show.</div>';
+    list.forEach(function(R){
+      var open = openRep===ci(R.name);
+      var stale = !R.last || R.last < Date.now()-10*86400*1000;
+      html += '<button type="button" class="row'+(showDm?' dm':'')+(open?' open':'')+'" data-rep="'+esc(ci(R.name))+'" aria-expanded="'+(open?'true':'false')+'">'
+        + '<span class="name"><i class="av">'+esc(initials(R.name))+'</i><span>'+esc(R.name)+'</span></span>'
+        + (showDm ? '<span class="dmcell">'+esc(R.dm||'—')+'</span>' : '')
+        + '<span class="stats">'
+        + '<span class="num'+(R.follow.length?' follow':' zero')+'">'+R.follow.length+'<small>follow-up'+(R.follow.length===1?'':'s')+'</small></span>'
+        + '<span class="num'+(R.done7?' done':' zero')+'">'+R.done7+'<small>done</small></span>'
+        + '<span class="num'+(R.skip?'':' zero')+'">'+R.skip+'<small>not now</small></span>'
+        + '<span class="when'+(R.last?(stale?' stale':''):' none')+'">'+(R.last ? esc(ago(new Date(R.last).toISOString())) : 'No marks yet')+'</span>'
+        + '</span><span class="chev">›</span></button>';
+      if(open) html += panel(R);
+    });
+    $('list').innerHTML = html;
+  }
+  function item(r, withChip){
+    return '<li>'+(withChip?'<span class="chip '+esc(r.status)+'">'+({done:'Done',follow:'Follow up',skip:'Not now'}[r.status]||r.status)+'</span>':'')
+      + '<span class="acct">'+esc(r.account_name || ('Account #'+r.account_num))+'</span>'
+      + '<div class="prog">'+esc(progName(r.program_id))+'</div>'
+      + (r.note ? '<div class="memo">“'+esc(r.note)+'”</div>' : '')
+      + '<div class="ago">'+esc(ago(r.updated_at))+'</div></li>';
+  }
+  function panel(R){
+    var follow = R.follow.slice().sort(function(a,b){ return new Date(b.updated_at)-new Date(a.updated_at); });
+    var recent = R.rows.slice(0, 8);
+    var hub = '../hub/#view=rep&rep='+encodeURIComponent(R.name)+'&cat=inc&only=inc';
+    return '<div class="panel">'
+      + '<div><h3>Open follow-ups · '+follow.length+'</h3>'+(follow.length ? '<ul>'+follow.map(function(r){ return item(r,false); }).join('')+'</ul>' : '<p class="empty">Nothing waiting on a follow-up.</p>')+'</div>'
+      + '<div><h3>Recent marks</h3>'+(recent.length ? '<ul>'+recent.map(function(r){ return item(r,true); }).join('')+'</ul>' : '<p class="empty">'+esc(R.name)+' hasn’t marked anything yet.</p>')+'</div>'
+      + '<div class="links"><a href="'+hub+'">Open their hub ›</a><button type="button" data-preview="'+esc(R.name)+'">Preview as '+esc(R.name.split(' ')[0])+' ›</button></div>'
+      + '</div>';
+  }
+  document.addEventListener('click', function(e){
+    var p = e.target.closest('.pill'); if(p){ scope = p.dataset.scope; openRep = null; render(); return; }
+    var pv = e.target.closest('[data-preview]'); if(pv){ if(window.kdhSetPreview){ kdhSetPreview(pv.dataset.preview); location.href = '../rep/'; } return; }
+    var row = e.target.closest('.row'); if(row){ openRep = openRep===row.dataset.rep ? null : row.dataset.rep; render(); }
+  });
+  // accounts.js is deferred: once it lands, fold its roster in.
+  window.addEventListener('load', function(){ if(rows.length || team) build(); });
+})();
+</script>
+</body>
+</html>
