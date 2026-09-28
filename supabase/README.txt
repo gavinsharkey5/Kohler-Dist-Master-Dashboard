@@ -83,8 +83,10 @@ Sign-in CODE (needed for the home-screen app, 2026-09-25)
     Supabase -> Authentication -> Emails -> Magic Link (and Confirm sign
     up, which Supabase uses for a first-ever sign-in). Subject "Sign in
     to Kohler Dist Hub". Body keeps the {{ .ConfirmationURL }} link and
-    adds a line such as:
-      <p>Or type this code on the sign-in page: <b>{{ .Token }}</b></p>
+    prints {{ .Token }}. The designed version (navy header, Sign in
+    button, big code) is supabase/email/magic-link.html -- paste it whole
+    into the template's Source view, both templates. (Done with a one-line
+    version on 2026-09-28; swap in the designed one any time.)
   Codes expire with "Email OTP expiration" (Authentication -> Providers
   -> Email; default 1 hour, keep it >= 10 minutes). Nothing else changes:
   the link keeps working for people signing in through Safari.

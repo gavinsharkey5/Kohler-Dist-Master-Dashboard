@@ -202,6 +202,24 @@ and the emailed magic link opens in Safari, so /login/ also takes the
 which only appears in the mail once Gavin adds `{{ .Token }}` to the
 Supabase Magic Link / Confirm sign up templates (supabase/README.txt).
 
+## Sign-in page v2 + self-hosted fonts (2026-09-28)
+
+`login/index.html` is a white card on the navy canvas with the NJ banner
+on top: step 1 email ("Continue"), step 2 "Check your email" with a
+large 6-digit code box (`#code`, digits only, submits itself at six),
+"send it again" on a 30-second clock, "Use a different email" back
+link; `show('working'|'email'|'code')` switches steps and `say()` /
+`hush()` drive the one message box. Logic is unchanged (is_allowed
+check, signInWithOtp, verifyOtp, cookies, ?signout=1, ?why=). Oswald +
+Source Sans 3 are now served from the repo: `shared/fonts.css` (two
+variable woff2 files in `assets/fonts/`, latin subset) replaces the
+Google Fonts link on login/, rep/ and the root index -- the hub and
+other dashboards still use their own Google links. The designed
+sign-in email is `supabase/email/magic-link.html` (Gavin pastes it into
+the Supabase templates; the live one is a one-liner as of 2026-09-28).
+The rep_actions migration was run and the write-back verified live on
+2026-09-28.
+
 ## Hub write-back: rep_actions (2026-09-25)
 
 The first thing reps TELL the site. Every target list the hub renders for

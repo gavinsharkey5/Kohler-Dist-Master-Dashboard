@@ -11,16 +11,11 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
-- [~] **Run the write-back migration** (Gavin): Supabase -> SQL Editor ->
-  paste `supabase/migrations/20260925180000_rep_actions.sql` -> Run.
-  Until then the hub's Done / Follow up / Not now buttons show but every
-  press reports "Couldn't save that". (2026-09-25)
-- [~] **Put the 6-digit code in the sign-in email** (Gavin): Supabase ->
-  Authentication -> Emails -> "Magic Link" AND "Confirm sign up": subject
-  "Sign in to Kohler Dist Hub", keep the link, add
-  `<p>Or type this code on the sign-in page: <b>{{ .Token }}</b></p>`.
-  Without it the home-screen app cannot sign in (the emailed link opens
-  Safari, not the app). Details: `supabase/README.txt`. (2026-09-25)
+- [ ] **Designed sign-in email** (Gavin, optional): paste
+  `supabase/email/magic-link.html` whole into Supabase -> Authentication
+  -> Emails -> Magic Link (Source view) and again into Confirm sign up,
+  replacing the one-line version. Navy header, Sign in button, the code
+  in big type. (2026-09-28)
 - [~] **Try "Add to Home Screen" on one iPad** (Gavin): open
   kohlerdisthub.com/rep/ in Safari -> Share -> Add to Home Screen -> open
   the "Dist Hub" icon -> sign in with the emailed code. Confirm it opens
@@ -77,6 +72,14 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-09-28 Sign-in page redesigned: white card, two clear steps
+  (email, then link-or-code) with a big code box that submits itself,
+  resend with a 30 s clock, "use a different email". Oswald + Source
+  Sans 3 now served from the site (`shared/fonts.css`, `assets/fonts/`)
+  on the sign-in, rep and manager pages, so type no longer depends on
+  Google Fonts. Designed email template written.
+- [x] 2026-09-28 Gavin ran the rep_actions migration, added the code to
+  the sign-in email, and confirmed the buttons save and show for a DM.
 - [x] 2026-09-25 Hub write-back: Done / Follow up / Not now + note on every
   target list (incentive rows, MPO cards, detail page), saved to Supabase
   `rep_actions`, follow-ups float up, Done / Not now fold away and stop

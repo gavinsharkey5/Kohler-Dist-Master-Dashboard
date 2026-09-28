@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B1120">
 <title>Sign in — Kohler Dist Hub</title>
 <!-- Home-screen install (iPad / iPhone "Add to Home Screen", Android/Chrome "Install"): the
      app opens full-screen at /rep/ with the Kohler icon. -->
@@ -14,77 +15,114 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Dist Hub">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="../assets/fonts/oswald.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../shared/fonts.css?v=20260928a">
 <style>
-  :root{--canvas:#0B1120;--card:#131B30;--ink:#F3F5FA;--ink-soft:#A3ADC4;--line:#22304F;--accent:#F2C14E;--good:#5fdc8c;--bad:#ff7b7b}
+  /* Sign-in (2026-09-28 redesign): a white card on the navy canvas, the
+     Northern NJ banner across its top, Oswald headings + Source Sans 3
+     body -- the same type the rep workspace uses. Two steps: your email,
+     then the emailed link OR the 6-digit code (the code is what an
+     installed home-screen app needs, see supabase/README.txt). */
+  :root{
+    --canvas:#0B1120; --card:#FFFFFF; --ink:#0F172A; --ink-2:#475569; --ink-3:#94A3B8;
+    --line:#E2E8F0; --field:#F8FAFC; --blue:#1F4FD8; --blue-deep:#173FB0; --navy:#12275F;
+    --gold:#F2C14E; --good:#15803D; --good-bg:#ECFDF3; --bad:#B42318; --bad-bg:#FEF3F2; --info-bg:#EFF4FF;
+    --head:"Oswald",system-ui,sans-serif; --body:"Source Sans 3",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
-  body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;font-family:"Source Sans 3",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5;
-    display:flex;align-items:center;justify-content:center;padding:24px 16px env(safe-area-inset-bottom);
-    background-image:radial-gradient(90% 50% at 50% -10%,rgba(59,111,211,.28),transparent 70%);background-repeat:no-repeat}
-  .card{width:100%;max-width:440px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:0 24px 24px;overflow:hidden;
-    box-shadow:0 1px 2px rgba(0,0,0,.4),0 18px 50px rgba(0,0,0,.45)}
-  .banner{display:block;width:calc(100% + 48px);margin:0 -24px 18px;height:auto;aspect-ratio:1445/544;object-fit:cover;object-position:60% center;border-bottom:1px solid var(--line)}
-  .brand{display:flex;align-items:center;gap:12px;margin:0 0 18px}
-  .brand img{width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:#fff;object-fit:contain}
-  .eyebrow{font-family:"Oswald";letter-spacing:.2em;text-transform:uppercase;font-size:11px;font-weight:600;color:var(--ink-soft);margin:0}
-  h1{font-family:"Oswald";font-weight:700;letter-spacing:-.02em;font-size:24px;line-height:1.1;margin:2px 0 0}
-  p{margin:0 0 14px;color:var(--ink-soft);font-size:14.5px}
-  label{display:block;font-family:"Oswald";font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 6px}
-  input[type=email],input[type=text]{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--canvas);border:1px solid var(--line);border-radius:10px;padding:12px 14px;outline:none}
-  input[type=email]:focus,input[type=text]:focus{border-color:var(--accent)}
-  input[type=text]{letter-spacing:.3em;font-variant-numeric:tabular-nums;text-align:center;font-size:22px}
-  button{width:100%;margin-top:12px;font-family:"Oswald";font-weight:700;font-size:15px;letter-spacing:.02em;color:#141414;background:var(--accent);border:0;border-radius:10px;padding:13px 16px;cursor:pointer}
-  button:disabled{opacity:.55;cursor:default}
-  .msg{margin:14px 0 0;padding:12px 14px;border-radius:10px;font-size:14px;border:1px solid var(--line);background:var(--canvas);display:none}
+  body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;font-family:var(--body);font-size:16px;line-height:1.5;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 16px calc(28px + env(safe-area-inset-bottom));
+    background-image:radial-gradient(80% 55% at 50% -5%,rgba(31,79,216,.35),transparent 70%);background-repeat:no-repeat}
+  .card{width:100%;max-width:420px;background:var(--card);border-radius:20px;overflow:hidden;
+    box-shadow:0 1px 2px rgba(0,0,0,.35),0 24px 60px rgba(0,0,0,.5)}
+  .banner{display:block;width:100%;height:auto;aspect-ratio:1445/544;object-fit:cover;object-position:60% center}
+  .body{padding:22px 26px 24px}
+  .brand{display:flex;align-items:center;gap:12px;margin:0 0 20px}
+  .brand img{width:42px;height:42px;border-radius:10px;border:1px solid var(--line);background:#fff;object-fit:contain;flex:0 0 auto}
+  .eyebrow{font-family:var(--head);letter-spacing:.18em;text-transform:uppercase;font-size:11px;font-weight:600;color:var(--ink-3);margin:0;line-height:1.2}
+  .wordmark{font-family:var(--head);font-weight:700;font-size:20px;letter-spacing:-.01em;line-height:1.15;color:var(--navy);margin:0}
+  h1{font-family:var(--head);font-weight:600;letter-spacing:-.01em;font-size:26px;line-height:1.15;margin:0 0 6px;color:var(--ink)}
+  .lead{margin:0 0 18px;color:var(--ink-2);font-size:16px}
+  .lead b{color:var(--ink);font-weight:600}
+  label{display:block;font-family:var(--head);font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin:0 0 7px}
+  .field{width:100%;font-family:var(--body);font-size:17px;color:var(--ink);background:var(--field);border:1.5px solid var(--line);border-radius:12px;padding:13px 14px;outline:none;transition:border-color .12s,box-shadow .12s;-webkit-appearance:none;appearance:none}
+  .field::placeholder{color:var(--ink-3)}
+  .field:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(31,79,216,.14);background:#fff}
+  .code{font-family:var(--head);font-weight:600;font-size:34px;letter-spacing:.42em;text-indent:.42em;text-align:center;padding:12px 8px;font-variant-numeric:tabular-nums}
+  .code::placeholder{font-weight:500;color:#CBD5E1;letter-spacing:.42em}
+  .btn{width:100%;margin-top:14px;font-family:var(--head);font-weight:600;font-size:16px;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--blue);border:0;border-radius:12px;padding:14px 16px;min-height:50px;cursor:pointer;transition:background .12s,transform .06s}
+  .btn:hover{background:var(--blue-deep)} .btn:active{transform:translateY(1px)}
+  .btn:disabled{opacity:.55;cursor:default;transform:none}
+  .link{background:none;border:0;padding:0;margin:0;font:inherit;color:var(--blue);font-weight:600;cursor:pointer;text-decoration:none;min-height:0;width:auto;text-transform:none;letter-spacing:0}
+  .link:hover{text-decoration:underline} .link:disabled{color:var(--ink-3);text-decoration:none;cursor:default}
+  .back{display:inline-flex;align-items:center;gap:6px;color:var(--ink-2);font-weight:600;font-size:14.5px;margin:0 0 14px;background:none;border:0;padding:0;cursor:pointer;font-family:var(--body)}
+  .back:hover{color:var(--ink)}
+  .back svg{width:16px;height:16px}
+  .msg{margin:14px 0 0;padding:11px 14px;border-radius:10px;font-size:15px;line-height:1.45;display:none;border:1px solid transparent}
   .msg.show{display:block}
-  .msg.good{border-color:#245834;color:var(--good)}
-  .msg.bad{border-color:#5a2a2a;color:var(--bad)}
-  .msg.info{color:var(--ink)}
-  .foot{margin:18px 0 0;font-size:12.5px;color:var(--ink-soft);border-top:1px solid var(--line);padding-top:12px}
-  .foot a{color:var(--ink-soft)}
-  .hidden{display:none}
+  .msg.good{background:var(--good-bg);color:var(--good);border-color:#ABEFC6}
+  .msg.bad{background:var(--bad-bg);color:var(--bad);border-color:#FECDCA}
+  .msg.info{background:var(--info-bg);color:var(--navy);border-color:#C7D7FE}
+  .help{margin:16px 0 0;font-size:14px;color:var(--ink-2);line-height:1.5}
+  .help + .help{margin-top:6px}
+  .divider{display:flex;align-items:center;gap:12px;margin:18px 0 14px;color:var(--ink-3);font-family:var(--head);font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+  .divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line)}
+  .foot{margin:22px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:13.5px;color:var(--ink-3);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .foot a{color:var(--ink-2);font-weight:600;text-decoration:none} .foot a:hover{text-decoration:underline}
+  .working{display:flex;align-items:center;gap:12px;color:var(--ink-2);font-size:16px;padding:6px 0 2px}
+  .spin{width:20px;height:20px;border-radius:50%;border:2.5px solid var(--line);border-top-color:var(--blue);animation:spin .8s linear infinite;flex:0 0 auto}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .tag{display:inline-block;font-family:var(--head);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--ink-3);margin-top:22px}
+  .hidden{display:none!important}
+  @media (max-width:420px){ .body{padding:20px 20px 22px} h1{font-size:24px} .code{font-size:30px} }
 </style>
 </head>
 <body>
 <main class="card">
   <img class="banner" src="/assets/nj-banner.webp" alt="">
-  <div class="brand">
-    <img src="/assets/kohler-logo-badge.png" alt="">
-    <div>
-      <p class="eyebrow">Kohler Distributing</p>
-      <h1>Kohler Dist Hub</h1>
+  <div class="body">
+    <div class="brand">
+      <img src="/assets/kohler-logo-badge.png" alt="">
+      <div>
+        <p class="eyebrow">Kohler Distributing</p>
+        <p class="wordmark">Kohler Dist Hub</p>
+      </div>
     </div>
+
+    <!-- Step 0: a session is being checked (arriving from an emailed link). -->
+    <div id="working" class="working"><span class="spin"></span><span>Checking your sign-in&hellip;</span></div>
+
+    <!-- Step 1: email. -->
+    <form id="form" class="hidden" autocomplete="on" novalidate>
+      <h1>Sign in</h1>
+      <p class="lead">Use your work email. We&rsquo;ll send you a sign-in link and a code &mdash; no password to remember.</p>
+      <label for="email">Work email</label>
+      <input id="email" class="field" type="email" name="email" inputmode="email" autocomplete="email" placeholder="you@kohlerdist.com" required>
+      <button id="send" class="btn" type="submit">Continue</button>
+    </form>
+
+    <!-- Step 2: the emailed link, or the 6-digit code. Typing the code
+         signs in INSIDE whatever opened this page, which matters when the
+         site is installed on the home screen (the emailed link opens in
+         Safari, not in the app). Needs {{ .Token }} in the Supabase Magic
+         Link email template -- see supabase/README.txt. -->
+    <form id="codeForm" class="hidden" autocomplete="off" novalidate>
+      <button type="button" class="back" id="change"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Use a different email</button>
+      <h1>Check your email</h1>
+      <p class="lead">We sent a sign-in email to <b id="sentTo"></b>. Tap the link in it, or enter the code below.</p>
+      <label for="code">6-digit code</label>
+      <input id="code" class="field code" type="text" name="code" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="one-time-code" placeholder="000000" aria-label="6-digit code from the email">
+      <button id="verify" class="btn" type="submit">Sign in</button>
+      <p class="help">Didn&rsquo;t get it? Check spam or quarantine, then <button type="button" class="link" id="resend">send it again</button><span id="resendIn"></span>.</p>
+      <p class="help">The link and the code both work for one hour.</p>
+    </form>
+
+    <div id="msg" class="msg" role="status" aria-live="polite"></div>
+
+    <p class="foot"><span>Not on the list? Ask Gavin to add your email.</span><a id="signout" class="hidden" href="/login/?signout=1">Sign out</a></p>
   </div>
-
-  <div id="working">
-    <p>Checking your sign-in&hellip;</p>
-  </div>
-
-  <form id="form" class="hidden" autocomplete="on">
-    <p>Enter your email and we&rsquo;ll send you a link that signs you in. No password needed.</p>
-    <label for="email">Email</label>
-    <input id="email" type="email" name="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required>
-    <button id="send" type="submit">Email me a sign-in link</button>
-  </form>
-
-  <!-- The same email also carries a 6-digit code. Typing it here signs in
-       INSIDE whatever opened this page -- which matters when the site is
-       installed on the home screen (an iPad opens the emailed link in
-       Safari, not in the installed app, so the app itself never sees that
-       session; the code does). Needs {{ .Token }} in the Supabase Magic
-       Link email template -- see supabase/README.txt. -->
-  <form id="codeForm" class="hidden" autocomplete="off">
-    <label for="code">Or type the 6-digit code from that email</label>
-    <input id="code" type="text" name="code" inputmode="numeric" pattern="[0-9]{6,8}" maxlength="8" autocomplete="one-time-code" placeholder="123456">
-    <button id="verify" type="submit">Sign in with the code</button>
-  </form>
-
-  <div id="msg" class="msg" role="status" aria-live="polite"></div>
-
-  <p class="foot">Not on the list? Ask Gavin to add your email. <a id="signout" class="hidden" href="/login/?signout=1">Sign out</a></p>
 </main>
 
 <script src="/shared/auth-config.js"></script>
@@ -95,6 +133,8 @@
   var $ = function (id) { return document.getElementById(id); };
   var params = new URLSearchParams(location.search);
   var next = safeNext(params.get('next'));
+  var pendingEmail = '';
+  var resendTimer = null;
 
   function safeNext(v) {
     if (!v || v.charAt(0) !== '/' || v.charAt(1) === '/' || v.indexOf('/login') === 0) return '/';
@@ -103,7 +143,13 @@
   function say(kind, html) {
     var m = $('msg'); m.className = 'msg show ' + kind; m.innerHTML = html;
   }
-  function showForm() { $('working').classList.add('hidden'); $('form').classList.remove('hidden'); }
+  function hush() { var m = $('msg'); m.className = 'msg'; m.innerHTML = ''; }
+  function show(step) {   // 'working' | 'email' | 'code'
+    $('working').classList.toggle('hidden', step !== 'working');
+    $('form').classList.toggle('hidden', step !== 'email');
+    $('codeForm').classList.toggle('hidden', step !== 'code');
+  }
+  function showForm() { show('email'); }
   function setCookie(token) {
     document.cookie = COOKIE + '=' + encodeURIComponent(token) + '; Path=/; Max-Age=2592000; Secure; SameSite=Lax';
   }
@@ -112,11 +158,16 @@
     document.cookie = 'kdh_user=; Path=/; Max-Age=0; Secure; SameSite=Lax';
     document.cookie = 'kdh_preview=; Path=/; Max-Age=0; Secure; SameSite=Lax';
   }
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
 
   var cfg = window.KDH_AUTH || {};
-  if (!cfg.url || !cfg.key || !window.supabase) {
+  if (!cfg.url || !cfg.key) {
     showForm(); $('send').disabled = true;
-    say('bad', 'Sign-in isn&rsquo;t configured on this deployment yet (SUPABASE_URL / SUPABASE_PUBLISHABLE_KEY missing in Vercel).');
+    say('bad', 'Sign-in isn&rsquo;t configured on this site yet.');
     return;
   }
 
@@ -163,6 +214,7 @@
 
   function enter(session) {
     setCookie(session.access_token);
+    show('working'); hush();
     sb.from('allowed_users').select('email,name,role,title,reports_to').limit(1).then(function (res) {
       if (res.error) {
         entered = false; showForm();
@@ -183,8 +235,35 @@
       document.cookie = 'kdh_user=' + encodeURIComponent(JSON.stringify({ name: me.name || '', role: me.role || 'rep', email: me.email, title: me.title || '', dm: me.reports_to || '' })) +
         '; Path=/; Max-Age=2592000; Secure; SameSite=Lax';
       $('signout').classList.remove('hidden');
-      say('good', 'Signed in as <b>' + escapeHtml(me.name || session.user.email) + '</b>. Opening&hellip;');
+      $('working').innerHTML = '<span class="spin"></span><span>Signed in as <b>' + escapeHtml(me.name || session.user.email) + '</b>. Opening&hellip;</span>';
       location.replace(next === '/' && me.role !== 'manager' ? '/rep/' : next);
+    });
+  }
+
+  function startResendClock() {
+    var left = 30;
+    $('resend').disabled = true;
+    $('resendIn').textContent = ' (' + left + 's)';
+    clearInterval(resendTimer);
+    resendTimer = setInterval(function () {
+      left -= 1;
+      if (left <= 0) { clearInterval(resendTimer); $('resend').disabled = false; $('resendIn').textContent = ''; return; }
+      $('resendIn').textContent = ' (' + left + 's)';
+    }, 1000);
+  }
+
+  function sendLink(email, again) {
+    var back = location.origin + '/login/' + (next !== '/' ? '?next=' + encodeURIComponent(next) : '');
+    return sb.auth.signInWithOtp({ email: email, options: { emailRedirectTo: back } }).then(function (r) {
+      if (r.error) { say('bad', 'Couldn&rsquo;t send the email: ' + escapeHtml(r.error.message)); return false; }
+      pendingEmail = email;
+      $('sentTo').textContent = email;
+      show('code');
+      if (again) say('good', 'Sent again. The newest email is the one that counts.'); else hush();
+      $('code').value = '';
+      $('code').focus();
+      startResendClock();
+      return true;
     });
   }
 
@@ -192,7 +271,7 @@
     $('form').addEventListener('submit', function (e) {
       e.preventDefault();
       var email = $('email').value.trim().toLowerCase();
-      if (!email) return;
+      if (!email || email.indexOf('@') < 1) { say('bad', 'Enter your work email address.'); $('email').focus(); return; }
       $('send').disabled = true;
       say('info', 'Checking&hellip;');
       sb.rpc('is_allowed', { p_email: email }).then(function (res) {
@@ -206,39 +285,42 @@
           say('bad', '<b>' + escapeHtml(email) + '</b> isn&rsquo;t on the access list. Ask Gavin to add it.');
           return;
         }
-        var back = location.origin + '/login/' + (next !== '/' ? '?next=' + encodeURIComponent(next) : '');
-        return sb.auth.signInWithOtp({ email: email, options: { emailRedirectTo: back } }).then(function (r) {
-          $('send').disabled = false;
-          if (r.error) { say('bad', 'Couldn&rsquo;t send the link: ' + escapeHtml(r.error.message)); return; }
-          say('good', 'Check <b>' + escapeHtml(email) + '</b> for a message from Kohler Dist Hub. Tap the link in it, or type the code from it below.');
-          pendingEmail = email;
-          $('codeForm').classList.remove('hidden');
-          $('code').focus();
-        });
+        return sendLink(email, false).then(function () { $('send').disabled = false; });
       });
     });
     $('codeForm').addEventListener('submit', function (e) {
       e.preventDefault();
       var code = $('code').value.replace(/\D/g, '');
       var email = pendingEmail || $('email').value.trim().toLowerCase();
-      if (!code || !email) return;
+      if (!email) { show('email'); return; }
+      if (code.length < 6) { say('bad', 'Enter the 6-digit code from the email.'); $('code').focus(); return; }
       $('verify').disabled = true;
       say('info', 'Checking the code&hellip;');
       sb.auth.verifyOtp({ email: email, token: code, type: 'email' }).then(function (r) {
         $('verify').disabled = false;
-        if (r.error) { say('bad', 'That code didn&rsquo;t work: ' + escapeHtml(r.error.message) + '. Codes expire after a few minutes &mdash; request a new email if needed.'); return; }
+        if (r.error) {
+          say('bad', 'That code didn&rsquo;t work. Check the digits, or send a new email &mdash; only the newest code is valid.');
+          $('code').select();
+          return;
+        }
         // onAuthStateChange picks the new session up and calls enter().
       });
     });
-  }
-  var pendingEmail = '';
-  wireForm();
-
-  function escapeHtml(s) {
-    return String(s).replace(/[&<>"']/g, function (c) {
-      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    $('code').addEventListener('input', function () {
+      this.value = this.value.replace(/\D/g, '').slice(0, 6);
+      if (this.value.length === 6) $('codeForm').requestSubmit ? $('codeForm').requestSubmit() : $('verify').click();
+    });
+    $('resend').addEventListener('click', function () {
+      if (!pendingEmail) return;
+      $('resend').disabled = true;
+      sendLink(pendingEmail, true);
+    });
+    $('change').addEventListener('click', function () {
+      clearInterval(resendTimer);
+      hush(); show('email'); $('email').focus();
     });
   }
+  wireForm();
 })();
 </script>
 </body>
