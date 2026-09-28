@@ -244,6 +244,21 @@ cookie. Linked from the manager index ("Team Activity" card, Field &
 team) and the rep workspace top bar (`#teamLink`, managers only). A
 manager in preview mode is treated as themselves here.
 
+## Manager page on the workspace design (2026-09-28)
+
+The root `index.html` now links `rep/rep.css` (tokens, top bar, `.ws`
+header, `.section` / `.grid` / `a.card` component, light/dark palette)
+plus a few inline rules for the building-photo hero and its caption.
+`shared/home.css` is DELETED -- nothing uses it; the "dark Kohler theme"
+notes above about the manager page are history. The page is generated
+markup (19 cards in five sections, an inline SVG icon each) with the
+same MPO sync_meta / Red Bull period.json status logic as the rep page;
+it greets the signed-in manager by name (a manager in preview mode is
+still shown as themselves). Top bar: Team activity, Rep workspace, theme
+toggle, name chip, Sign out. Test: scratchpad mgr_test.mjs pattern --
+19 cards, every href resolves, month on the MPO links, no horizontal
+scroll at 390 / 820 / 1366.
+
 ## Rep workspace: "Your follow-ups" strip (2026-09-28)
 
 `rep/index.html` has a `#fuSec` section between the banner and Programs:

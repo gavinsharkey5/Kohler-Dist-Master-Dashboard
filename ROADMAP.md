@@ -38,8 +38,6 @@ device, a decision).
   program you are in, what ends this month, your open follow-ups. Sent
   from a scheduled job (Vercel cron or Supabase edge function); the copy
   comes from the same summaries the hub renders.
-- [ ] **Manager page in the light workspace design**: port the root index
-  to the /rep/ look (top bar, sections, one card component, light/dark).
 - [ ] **Write-back on the other rep pages** where it fits: Carbliss
   on-prem targets and Red Bull buying accounts could carry the same
   Done / Follow up / Not now strip, reading the same table.
@@ -65,6 +63,10 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-09-28 Manager page rebuilt on the rep workspace design: same
+  top bar (Team activity, Rep workspace, light/dark, name chip), building
+  photo, five sections of the one card component with live MPO / Red Bull
+  status; all 19 dashboards carried over. The old dark home.css retired.
 - [x] 2026-09-28 "Your follow-ups" strip on the rep workspace: count,
   done-this-week, the three newest flagged accounts with program and
   note, each linking into the hub; a nudge line when nothing is flagged;
