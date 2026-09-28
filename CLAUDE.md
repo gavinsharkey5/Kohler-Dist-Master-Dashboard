@@ -220,6 +220,25 @@ the Supabase templates; the live one is a one-liner as of 2026-09-28).
 The rep_actions migration was run and the write-back verified live on
 2026-09-28.
 
+## Sign-in code on a home-screen app: what went wrong and what holds it (2026-09-28)
+
+Gavin's iPhone install failed "Token has expired or is invalid" on
+several tries while Safari worked. Auth logs showed no server fault:
+each failure followed an extra `/otp` request (the iPad reloads a
+home-screen web app when you come back from Mail, and the page then
+asked for the email again; a Sign out + retry also re-requested), and
+the code typed was from the email already superseded, since a new email
+lands 10-30 s after the request. `login/index.html` therefore: keeps the
+pending request in localStorage `kdh_pending` (55 min) and lands on the
+code step after a reload showing "at h:mm"; refuses a second request for
+the same address within 2 minutes; runs one check at a time and refuses
+to resubmit a code that just failed; tries token types email, magiclink,
+signup; after a failed check calls `getSession()` and proceeds if a
+session exists; prints the Supabase error code(s), the address and
+"requested Ns ago" under the friendly message. Email OTP Expiration is
+3600 s and OTP length 6 on the project. Don't "simplify" any of this
+away -- each guard maps to a failure that was observed.
+
 ## Team Activity page: team/ (2026-09-28)
 
 `team/index.html` + `team/team.css` is the manager's read of the
