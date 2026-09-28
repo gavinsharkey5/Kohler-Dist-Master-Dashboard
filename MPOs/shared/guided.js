@@ -232,12 +232,24 @@ var STATUS_TEXT = {achieved:'Goal Achieved', inprogress:'In Progress',
   notstarted:'Not Started', nodata:'Not tracked yet'};
 var STATUS_MARK = {achieved:'✓', inprogress:'●', notstarted:'○', nodata:'—'};
 
+// The status pill also says whether the credit is earned, so the card
+// needs no separate "Credit earned" column.
+var CREDIT_TEXT = {achieved:'Goal achieved · credit earned', inprogress:'In progress · credit not yet earned', notstarted:'Not started', nodata:'Not tracked yet'};
+function creditPill(status){
+  return '<span class="g-pill '+status+'">'+STATUS_MARK[status]+' '+(CREDIT_TEXT[status]||STATUS_TEXT[status])+'</span>';
+}
 function pillHtml(status){
   return '<span class="g-pill '+status+'">'+STATUS_MARK[status]+' '+STATUS_TEXT[status]+'</span>';
 }
 function barHtml(pct, status){
   return '<div class="g-bar"><div class="g-bar-fill '+status+'" style="width:'+
     Math.max(0,Math.min(100,pct||0))+'%"></div></div>';
+}
+function repHead(title, lines){
+  return '<div class="g-step-head g-rephead">'+
+    '<div class="g-title">'+title+'</div>'+
+    '<div class="g-sub g-stack">'+lines.filter(Boolean).map(function(l){ return '<div>'+l+'</div>'; }).join('')+'</div>'+
+  '</div>';
 }
 function stepHead(step, title, sub){
   return '<div class="g-step-head">'+
@@ -339,10 +351,15 @@ function screenRepDetail(){
       '<button class="g-back js-back"><span class="ar">&#8592;</span>Back to Reps</button>'+
       '<button class="g-back js-startover"><span class="ar">&#8635;</span>Start Over</button>'+
     '</div>'+
-    stepHead(2, esc(first)+'’s MPO Progress',
-      esc(H.scope)+' · '+esc(H.monthLabel())+
-      (dmOf(rep)?' · Sales manager: '+esc(dmOf(rep)):'')+
-      (roleOf(rep)?' · '+esc(roleOf(rep)):''))+
+    // One stacked header, no step badge (2026-09-28, Gavin): the name, then
+    // the scope, the manager and the role each on its own line, then the
+    // data stamp. The month is the selected pill just above, not repeated.
+    repHead(esc(first)+'’s MPO Progress', [
+      esc(H.scope),
+      dmOf(rep) ? 'Sales manager: '+esc(dmOf(rep)) : '',
+      roleOf(rep) ? esc(roleOf(rep)) : '',
+      (function(){ var u = document.getElementById('updated-line'); return u && u.textContent.trim() ? '<span class="g-stamp">'+esc(u.textContent.trim())+'</span>' : ''; })()
+    ])+
     '<div class="g-sum-grid">'+sums.map(function(k){
       return '<div class="g-sum"><div class="g-sum-l">'+k.l+'</div>'+
         '<div class="g-sum-n '+k.cls+'">'+k.n+'</div>'+
@@ -374,17 +391,18 @@ function repObjectiveCard(o, rep){
   }
 
   var st = m.status;
+  // Three facts, each said once (2026-09-28): the goal, where the rep is,
+  // what is still needed. Whether credit is earned rides on the status
+  // pill ("Goal achieved · credit earned") instead of a fourth column that
+  // repeated it, and a met goal reads "None" under Still needed.
   var facts =
-    '<div class="g-facts">'+
+    '<div class="g-facts g-facts-3">'+
       '<div><div class="g-fact-l">My Goal</div><div class="g-fact-v">'+esc(m.goalText)+'</div></div>'+
       '<div><div class="g-fact-l">Where I Am</div><div class="g-fact-v'+
         (st==='achieved'?' good':'')+'">'+esc(m.valueText)+'</div></div>'+
       '<div><div class="g-fact-l">Still Needed</div><div class="g-fact-v'+
         (m.remaining<=0?' good':'')+'">'+
-        (m.remaining<=0?'Goal met':esc(m.remainText||String(m.remaining)))+'</div></div>'+
-      '<div><div class="g-fact-l">Credit Earned</div><div class="g-fact-v'+
-        (st==='achieved'?' good':' mute')+'">'+
-        (st==='achieved'?'Yes':'Not yet')+'</div></div>'+
+        (m.remaining<=0?'None':esc(m.remainText||String(m.remaining)))+'</div></div>'+
     '</div>';
 
   var subsHtml = '';
@@ -409,10 +427,7 @@ function repObjectiveCard(o, rep){
   return '<div class="g-obj '+st+'">'+
     (o.supplier?'<div class="g-obj-sup">'+esc(o.supplier)+'</div>':'')+
     '<div class="g-obj-name">'+esc(o.name)+'</div>'+
-    '<div class="g-tags">'+weightTag+
-      '<span class="g-tag">Goal: '+esc(m.goalText)+'</span>'+
-      pillHtml(st)+
-    '</div>'+
+    '<div class="g-tags">'+weightTag+creditPill(st)+'</div>'+
     facts+
     barHtml(m.pct, st)+
     // The four facts above already state where the rep is, so the bar

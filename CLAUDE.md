@@ -263,6 +263,30 @@ cookie. Linked from the manager index ("Team Activity" card, Field &
 team) and the rep workspace top bar (`#teamLink`, managers only). A
 manager in preview mode is treated as themselves here.
 
+## Rep pages simplified: one Back button, no repeats, stacked headers (2026-09-28)
+
+Gavin's second brief. `kdh-user.js` sets `html.kdh-rep` / `html.kdh-mgr`
+and the site bar's back link is now a filled button, "Back to My
+Dashboards" (reps) / "Back to Dashboards" (managers), 40px tall on
+phones, where the wordmark collapses to the badge to make room. In rep
+mode `kdh-skin.css` hides every page's hero photo / NJ banner, crumb,
+eyebrow, long lede, the MPO pages' own <header> (title, sub, stamp)
+and the hub's name row + Home button -- the bar says where you are and
+how to get back. MPO rep screen (`repHead()` in guided.js): "Dave's MPO
+Progress" then Off-Premise / Sales manager / role / data stamp each on
+its own line, no "Step 2" badge; month pills sit just above. Objective
+cards (guided.js `repObjectiveCard` AND hub.js `mpoQuickHtml`, kept in
+step): weight tag + ONE pill that carries the credit ("Goal achieved ·
+credit earned" / "In progress · credit not yet earned"), three facts
+(My goal / Where I am / Still needed, "None" when met), no duplicate
+"Goal:" tag, no "Credit earned" column. Hub: no tab bar when only one
+tab (incentives-only mode) and the refreshed line names only the feeds
+on screen. Red Bull h1 says "Red Bull Distribution Tracker"; its
+generate.py footer is hidden for reps. Tap: a rep with no surveys gets
+the notice alone, not an empty 0% board. Workspace banner is slimmer
+(clamp 84-150px). Tests updated (hubonly, back, ui). Rep sweep:
+scratchpad rep_sweep.mjs at 390 / 1366.
+
 ## GitHub Pages is OFF; reps are locked by a forgiving name match (2026-09-28)
 
 Gavin unpublished the github.io site on 2026-09-28: kohlerdisthub.com

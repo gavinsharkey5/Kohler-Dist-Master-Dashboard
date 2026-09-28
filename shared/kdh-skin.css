@@ -18,7 +18,7 @@
 
    Page-specific fixes live at the bottom, grouped by page. Keep the
    variable map alphabetical-ish so a new dashboard is easy to add. */
-@import url("kdh.css?v=20260928a");
+@import url("kdh.css?v=20260928c");
 
 /* ---- 2. fonts: every family a dashboard asks for is one of ours ---- */
 @font-face{font-family:"Space Grotesk";font-style:normal;font-weight:200 700;font-display:swap;src:url(../assets/fonts/oswald.woff2) format("woff2")}
@@ -93,6 +93,34 @@ h1{background:none;-webkit-text-fill-color:currentColor}
 thead th{background:var(--kdh-surface-2)!important;color:var(--kdh-text-3)!important;border-bottom:1px solid var(--kdh-border)}
 /* selected tab: filled brand */
 [role="tab"][aria-selected="true"],.chip[aria-pressed="true"],button[aria-pressed="true"].chip{background:var(--kdh-brand)!important;color:var(--kdh-brand-ink)!important;border-color:var(--kdh-brand)!important}
+
+/* ---- REP MODE (html.kdh-rep, set by kdh-user.js): what a rep sees is the
+   work, not the wrapper. Hero photos, long "how this page works" ledes,
+   breadcrumbs and step badges go; the top bar says where they are and how
+   to get back. (2026-09-28) ---- */
+html.kdh-rep .hero-banner,html.kdh-rep .topbar .hero-banner,html.kdh-rep .nj-hero,html.kdh-rep .crumb,
+html.kdh-rep .gx-head .lede,html.kdh-rep .gx-head .eyebrow,html.kdh-rep header .sub,html.kdh-rep .g-eyebrow,
+html.kdh-rep .nbtn.home{display:none!important}
+/* MPO trackers: the page's own title block repeats what the rep card says; the month pills stay */
+html.kdh-rep body > header{display:none!important}
+html.kdh-rep .monthbar{margin-top:14px}
+html.kdh-rep .g-actions:empty{display:none}
+/* tighter top on every rep page */
+html.kdh-rep .gx-head{padding-top:8px}
+html.kdh-rep .gx-head h1,html.kdh-rep .wrap > h1{font-size:clamp(24px,5vw,32px)}
+/* hub in rep mode: the name row + Home button are covered by the top bar */
+html.kdh-rep .navrow{margin-top:0}
+html.kdh-rep .nav-rep{display:none}
+html.kdh-rep .topbar{background:transparent!important;border-bottom:0;padding-top:0}
+/* MPO trackers: the wrapper that held the crumb + photo is empty now */
+html.kdh-rep .topbar:not(:has(.navrow)){display:none!important}
+/* summary tiles two-up on phones instead of a tall stack */
+@media (max-width:700px){ html.kdh-rep .g-sum-grid{grid-template-columns:repeat(2,minmax(0,1fr))} html.kdh-rep .g-sum-n{font-size:28px} }
+
+/* Red Bull: the footer explains how managers refresh the export -- not for reps */
+html.kdh-rep #foot,html.kdh-rep footer hr{display:none!important}
+/* Carbliss: stat tiles fill the phone width */
+@media (max-width:600px){ #stats > *{flex:1 1 100%;width:auto} }
 
 /* ---- page-specific fixes (added as screenshots showed the need) ---- */
 /* Inventory Overview: gradient-filled title -> plain text */

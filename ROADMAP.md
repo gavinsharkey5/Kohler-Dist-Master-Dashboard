@@ -60,6 +60,10 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-09-28 Rep pages simplified: one "Back to My Dashboards" button
+  on every page, hero photos / crumbs / long intros gone for reps, MPO
+  header stacked (name, premise, manager) with no Step badge, objective
+  cards down to one status pill + three facts, hub without a lone tab.
 - [x] 2026-09-28 GitHub Pages unpublished; kohlerdisthub.com is the only
   copy. Rep lock hardened: names matched forgivingly (Michael/Mike,
   Daniel/Dan ...) and a rep whose name matches no roster sees a notice
