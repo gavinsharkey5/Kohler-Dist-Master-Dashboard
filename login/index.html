@@ -135,6 +135,7 @@
   var next = safeNext(params.get('next'));
   var pendingEmail = '';
   var resendTimer = null;
+  var verifying = false;
   var PENDING = 'kdh_pending';   // {email, at} -- the code we are waiting for
   function loadPending(){ try { var p = JSON.parse(localStorage.getItem(PENDING) || 'null'); return (p && p.email && Date.now() - p.at < 55 * 60 * 1000) ? p : null; } catch (e) { return null; } }
   function savePending(email){ try { localStorage.setItem(PENDING, JSON.stringify({ email: email, at: Date.now() })); } catch (e) {} }
@@ -320,19 +321,28 @@
       var email = pendingEmail || $('email').value.trim().toLowerCase();
       if (!email) { show('email'); return; }
       if (code.length < 6) { say('bad', 'Enter the code from the email (6 to 8 digits).'); $('code').focus(); return; }
+      if (verifying) return;                 // one check at a time (a double submit would burn the code)
+      verifying = true;
       $('verify').disabled = true;
       say('info', 'Checking the code&hellip;');
       // The link and the code in one email are the SAME one-time token:
       // tapping the link uses it up, and requesting another email replaces
-      // it. Try the two token types Supabase accepts, then say exactly why.
-      sb.auth.verifyOtp({ email: email, token: code, type: 'email' }).then(function (r) {
-        if (!r.error) return r;
-        return sb.auth.verifyOtp({ email: email, token: code, type: 'magiclink' });
-      }).then(function (r) {
+      // it. Try every token type Supabase accepts, then say exactly why.
+      var tried = [];
+      function attempt(type) {
+        return sb.auth.verifyOtp({ email: email, token: code, type: type }).then(function (r) {
+          tried.push(type + ': ' + (r.error ? (r.error.code || r.error.status || 'error') : 'ok'));
+          return r;
+        });
+      }
+      attempt('email').then(function (r) { return r.error ? attempt('magiclink') : r; })
+        .then(function (r) { return r.error ? attempt('signup') : r; })
+        .then(function (r) {
+        verifying = false;
         $('verify').disabled = false;
         if (r.error) {
           say('bad', 'That code didn&rsquo;t work. A code is good once and only from the <b>newest</b> email &mdash; and if its link was already tapped, the code is used up. Tap <b>send it again</b> and type the new code without opening the link.' +
-            '<br><span style="font-size:12.5px;opacity:.75">Supabase said: ' + escapeHtml(r.error.message) + '</span>');
+            '<br><span style="font-size:12.5px;opacity:.75">Supabase said: ' + escapeHtml(r.error.message) + ' (' + escapeHtml(tried.join(', ')) + ') for ' + escapeHtml(email) + '</span>');
           $('code').select();
           return;
         }
