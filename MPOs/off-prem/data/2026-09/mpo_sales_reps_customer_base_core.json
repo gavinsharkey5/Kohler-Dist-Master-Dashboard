@@ -1151,16 +1151,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 201096,
-    "CUSTOMER_NAME": "Whole Foods #10102 (Edgewater)",
-    "SHIPPING_ADDRESS": "905 River Rd",
-    "CITY": "Edgewater",
-    "AREA": "Bergen",
-    "COUNTY": "Bergen",
-    "CASES": 718.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 44002,
     "CUSTOMER_NAME": "Wine And Food Mart (Z)",
     "SHIPPING_ADDRESS": "589 Anderson Ave",

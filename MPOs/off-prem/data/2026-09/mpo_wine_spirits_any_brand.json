@@ -1686,10 +1686,10 @@
     "CUSTOMER_NUM": 8006,
     "CUSTOMER_NAME": "pompton crafthouse",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/29/2026",
+    "LAST_DATE": "9/29/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -3018,10 +3018,10 @@
     "CUSTOMER_NUM": 38019,
     "CUSTOMER_NAME": "Circle Liquors",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/28/2026",
+    "LAST_DATE": "9/28/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -3561,7 +3561,19 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 1,
     "PLACED_DATE": "9/23/2026",
-    "LAST_DATE": "9/23/2026"
+    "LAST_DATE": "9/28/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl",
+    "BRAND_FAMILY": "Leyenda 1925",
+    "CUSTOMER_NUM": 80027,
+    "CUSTOMER_NAME": "Ridgewood Country Club",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/28/2026",
+    "LAST_DATE": "9/28/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -3573,7 +3585,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 1,
     "PLACED_DATE": "9/23/2026",
-    "LAST_DATE": "9/23/2026"
+    "LAST_DATE": "9/28/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -5244,6 +5256,18 @@
     "LAST_DATE": "9/24/2026"
   },
   {
+    "SALES_REP_ASSIGNED": "Default",
+    "PRODUCT_NAME": "200737 Lou Lou Bubbly Semi Sweet Rose 1/12/12 oz Can",
+    "BRAND_FAMILY": "Caravella",
+    "CUSTOMER_NUM": 120002,
+    "CUSTOMER_NAME": "PICNIC",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/29/2026",
+    "LAST_DATE": "9/29/2026"
+  },
+  {
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "PRODUCT_NAME": "200310 Pride & Clarke Vodka 6/1.75 L Btl",
     "BRAND_FAMILY": "Pride & Clarke",
@@ -5961,7 +5985,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/9/2026",
-    "LAST_DATE": "9/9/2026"
+    "LAST_DATE": "9/28/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -5973,7 +5997,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/9/2026",
-    "LAST_DATE": "9/9/2026"
+    "LAST_DATE": "9/28/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -11046,10 +11070,10 @@
     "CUSTOMER_NUM": 152025,
     "CUSTOMER_NAME": "New Owl Liquors",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 1.0,
+    "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "9/25/2026",
-    "LAST_DATE": "9/25/2026"
+    "PLACED_DATE": "",
+    "LAST_DATE": ""
   },
   {
     "SALES_REP_ASSIGNED": "Hakan Sadik",
@@ -12865,6 +12889,78 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "100961 2XO American Oak 1/750 mL Btl",
+    "BRAND_FAMILY": "2XO",
+    "CUSTOMER_NUM": 25012,
+    "CUSTOMER_NAME": "Bottle Liquor (P)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/28/2026",
+    "LAST_DATE": "9/28/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "100962 2XO French Oak 1/750 mL Btl",
+    "BRAND_FAMILY": "2XO",
+    "CUSTOMER_NUM": 25012,
+    "CUSTOMER_NAME": "Bottle Liquor (P)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/28/2026",
+    "LAST_DATE": "9/28/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "100965 2XO White Oak Rye 1/750 ML Btl",
+    "BRAND_FAMILY": "2XO",
+    "CUSTOMER_NUM": 25012,
+    "CUSTOMER_NAME": "Bottle Liquor (P)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/28/2026",
+    "LAST_DATE": "9/28/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "200310 Pride & Clarke Vodka 6/1.75 L Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 25012,
+    "CUSTOMER_NAME": "Bottle Liquor (P)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/28/2026",
+    "LAST_DATE": "9/28/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "200313 Pride & Clarke Vodka 24/375 mL Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 25012,
+    "CUSTOMER_NAME": "Bottle Liquor (P)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/28/2026",
+    "LAST_DATE": "9/28/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "200314 Pride & Clarke Vodka 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 25012,
+    "CUSTOMER_NAME": "Bottle Liquor (P)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/28/2026",
+    "LAST_DATE": "9/28/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
     "PRODUCT_NAME": "200402 Travelers Club Vodka 24/375 mL Btl",
     "BRAND_FAMILY": "Travelers Club",
     "CUSTOMER_NUM": 25012,
@@ -12897,7 +12993,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/8/2026",
-    "LAST_DATE": "9/8/2026"
+    "LAST_DATE": "9/28/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -12909,7 +13005,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/8/2026",
-    "LAST_DATE": "9/8/2026"
+    "LAST_DATE": "9/28/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -13417,6 +13513,18 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "101091 Lo Secco Prosecco 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Lo Secco",
+    "CUSTOMER_NUM": 25047,
+    "CUSTOMER_NAME": "Parker Liquors (Z)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/28/2026",
+    "LAST_DATE": "9/28/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
     "PRODUCT_NAME": "200312 Pride & Clarke Vodka 48/200 mL Btl",
     "BRAND_FAMILY": "Pride & Clarke",
     "CUSTOMER_NUM": 25047,
@@ -13506,10 +13614,10 @@
     "CUSTOMER_NUM": 15031,
     "CUSTOMER_NAME": "Pete's Family Liqs",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/28/2026",
+    "LAST_DATE": "9/28/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -15738,10 +15846,10 @@
     "CUSTOMER_NUM": 23002,
     "CUSTOMER_NAME": "Valley Liquors (A)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/28/2026",
+    "LAST_DATE": "9/28/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -15762,10 +15870,10 @@
     "CUSTOMER_NUM": 23002,
     "CUSTOMER_NAME": "Valley Liquors (A)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/28/2026",
+    "LAST_DATE": "9/28/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -16641,7 +16749,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/1/2026",
-    "LAST_DATE": "9/1/2026"
+    "LAST_DATE": "9/29/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -18738,10 +18846,10 @@
     "CUSTOMER_NUM": 17010,
     "CUSTOMER_NAME": "Frank's Fine Wine & Foods",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/29/2026",
+    "LAST_DATE": "9/29/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -19705,6 +19813,42 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
+    "PRODUCT_NAME": "201055 Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 31029,
+    "CUSTOMER_NAME": "Annabella's House Of Mozz",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/29/2026",
+    "LAST_DATE": "9/29/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "PRODUCT_NAME": "201057 Bardstown Origin Series Double Barrel Rye 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 31029,
+    "CUSTOMER_NAME": "Annabella's House Of Mozz",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/29/2026",
+    "LAST_DATE": "9/29/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "PRODUCT_NAME": "201058 Bardstown Origin Series High Wheat 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 31029,
+    "CUSTOMER_NAME": "Annabella's House Of Mozz",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/29/2026",
+    "LAST_DATE": "9/29/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
     "PRODUCT_NAME": "14132 BJ'S Prickly Pear Hard Lemonade Keg 15.5 Gal Keg",
     "BRAND_FAMILY": "BJ'S Private Label Brewa",
     "CUSTOMER_NUM": 39017,
@@ -19902,10 +20046,10 @@
     "CUSTOMER_NUM": 78007,
     "CUSTOMER_NAME": "Woodstone Pizza B & G",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/29/2026",
+    "LAST_DATE": "9/29/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -23358,10 +23502,10 @@
     "CUSTOMER_NUM": 92011,
     "CUSTOMER_NAME": "Bottle King (A) Ramsey",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/28/2026",
+    "LAST_DATE": "9/28/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -23373,7 +23517,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/14/2026",
-    "LAST_DATE": "9/14/2026"
+    "LAST_DATE": "9/28/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -23409,7 +23553,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/10/2026",
-    "LAST_DATE": "9/10/2026"
+    "LAST_DATE": "9/28/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -23649,7 +23793,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 1,
     "PLACED_DATE": "9/8/2026",
-    "LAST_DATE": "9/8/2026"
+    "LAST_DATE": "9/28/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -23661,7 +23805,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/8/2026",
-    "LAST_DATE": "9/8/2026"
+    "LAST_DATE": "9/28/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -23685,7 +23829,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/8/2026",
-    "LAST_DATE": "9/8/2026"
+    "LAST_DATE": "9/28/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
