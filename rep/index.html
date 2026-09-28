@@ -23,7 +23,7 @@
   // Apply the saved theme before first paint so there is no flash.
   try { var t = localStorage.getItem('kdh_theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
 </script>
-<link rel="stylesheet" href="rep.css?v=20260925f">
+<link rel="stylesheet" href="rep.css?v=20260928a">
 <script src="../shared/kdh-user.js?v=20260925f"></script>
 </head>
 <body>
@@ -55,6 +55,16 @@
   </header>
 
   <div class="hero" aria-hidden="true"><img src="../assets/nj-banner.webp" alt=""></div>
+
+  <!-- Your follow-ups (2026-09-28): the accounts this rep flagged in the
+       hub, read from Supabase rep_actions with the signed-in token. Hidden
+       until the fetch answers; off kohlerdisthub.com there is no auth
+       config, so it never shows. A manager "Viewing as" a rep sees that
+       rep's list (managers read every rep's rows). -->
+  <section class="section fu" id="fuSec" hidden>
+    <div class="section-h"><h2>Your follow-ups</h2><p id="fuSub"></p></div>
+    <div class="fu-box" id="fuBox"></div>
+  </section>
 
   <section class="section">
     <div class="section-h"><h2>Programs</h2><p>Incentives and this month’s MPOs</p></div>
@@ -102,6 +112,14 @@
 <footer>Internal use. These pages show customer and account detail — please don’t share the link outside the team.</footer>
 
 <script src="../hub/data/accounts.js?v=20260923h" defer></script>
+<!-- Follow-ups: where Supabase lives (served by the middleware; 404 on
+     github.io) and the trackers' registries for program NAMES only -- the
+     incentive one wants the data blobs defined first, so give it empty ones. -->
+<script src="../shared/auth-config.js"></script>
+<script>var PROGRAM_DATA={},CORE_MARKET_PROGRAM_KEYS=[],PROGRAM_DATA_2026_09={},PROGRAM_DATA_REFRESHED='',PROGRAM_DATA_REFRESHED_AT='';</script>
+<script src="../incentive-tracking/programs.js?v=20260925c" defer></script>
+<script src="../MPOs/on-prem/programs.js?v=20260923h" defer></script>
+<script src="../MPOs/off-prem/programs.js?v=20260923h" defer></script>
 <script>
 (function(){
   var $ = function(id){ return document.getElementById(id); };
@@ -114,7 +132,9 @@
     root.setAttribute('data-theme', next);
     try { localStorage.setItem('kdh_theme', next); } catch (e) {}
   });
-  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  // MON, not MONTHS: the incentive registry (programs.js, deferred) declares a
+  // global `const MONTHS`, which progName() below reads for program names.
+  var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var MONTHS_LONG = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
   /* ---- who is signed in (kdh_user cookie, set by /login/) ---- */
@@ -164,7 +184,71 @@
     // Deep-link the hub to this rep so it opens on their page.
     // Incentives only: the two MPO tiles beside it cover the MPO tabs.
     $('c-hub').href = '../hub/#' + (name ? 'view=rep&rep=' + encodeURIComponent(name) + '&cat=inc&' : '') + 'only=inc';
+    followUps(name);
   }
+
+  /* ---- Your follow-ups: what this rep flagged in the hub ---- */
+  function cookie(n){ var m = document.cookie.match(new RegExp('(?:^|;\\s*)' + n + '=([^;]*)')); return m ? decodeURIComponent(m[1]) : ''; }
+  function progName(id){
+    try{
+      if (id.indexOf('inc:') === 0) {
+        var key = id.slice(4), hit = null;
+        var reg = (typeof MONTHS !== 'undefined' && MONTHS.length && MONTHS[0].programs) ? MONTHS : [];
+        reg.slice().reverse().some(function(m){ return (m.programs||[]).some(function(p){ if (p.key === key) { hit = p; return true; } }); });
+        return hit ? (hit.shortTitle || hit.title || key) : key;
+      }
+      var parts = id.split(':'), mod = parts[0] === 'off' ? window.OffPremMPO : window.OnPremMPO;
+      var m = mod && (mod.MONTHS||[]).filter(function(x){ return x.key === parts[1]; })[0];
+      var o = m && (m.objectives||[]).filter(function(x){ return x.key === parts[2]; })[0];
+      return (o ? (o.shortName || o.name) : parts[2]) + ' · ' + (parts[0] === 'off' ? 'Off-Prem' : 'On-Prem') + ' MPO';
+    } catch (e) { return id; }
+  }
+  function ago(iso){
+    var d = new Date(iso); if (isNaN(d)) return '';
+    var days = Math.round((Date.now() - d.getTime()) / 86400000);
+    if (days <= 0) return 'today'; if (days === 1) return 'yesterday'; if (days < 7) return days + ' days ago';
+    return MON[d.getMonth()] + ' ' + d.getDate();
+  }
+  var fuFor = '';
+  function followUps(name){
+    var cfg = window.KDH_AUTH || {}, token = cookie('kdh_at');
+    var sec = $('fuSec');
+    if (!name || !cfg.url || !cfg.key || !token) { sec.hidden = true; return; }
+    fuFor = name;
+    var url = cfg.url.replace(/\/$/, '') + '/rest/v1/rep_actions?select=program_id,account_name,account_num,status,note,updated_at&rep_name=eq.' + encodeURIComponent(name) + '&order=updated_at.desc&limit=500';
+    fetch(url, { headers: { apikey: cfg.key, authorization: 'Bearer ' + token, accept: 'application/json' } })
+      .then(function(r){ return r.ok ? r.json() : null; }, function(){ return null; })
+      .then(function(rows){
+        if (fuFor !== name) return;            // the manager switched reps meanwhile
+        if (!rows) { sec.hidden = true; return; }
+        var week = Date.now() - 7 * 86400000;
+        var follow = rows.filter(function(r){ return r.status === 'follow'; });
+        var done7 = rows.filter(function(r){ return r.status === 'done' && new Date(r.updated_at).getTime() >= week; }).length;
+        var hub = '../hub/#view=rep&rep=' + encodeURIComponent(name) + '&cat=';
+        var catOf = function(id){ return id.indexOf('inc:') === 0 ? 'inc&only=inc' : (id.indexOf('off:') === 0 ? 'off' : 'on'); };
+        var sub = follow.length ? follow.length + ' account' + (follow.length === 1 ? '' : 's') + ' to get back to' : 'Nothing flagged right now';
+        if (done7) sub += ' · ' + done7 + ' done this week';
+        $('fuSub').textContent = sub;
+        var html;
+        if (!follow.length) {
+          html = '<p class="fu-empty">Tap <b>Follow up</b> under an account in the hub and it shows up here, with your note.</p>';
+        } else {
+          html = '<ul class="fu-list">' + follow.slice(0, 3).map(function(r){
+            return '<li><a href="' + hub + catOf(r.program_id) + '">' +
+              '<span class="fu-main"><span class="fu-acct">' + esc(r.account_name || ('Account #' + r.account_num)) + '</span>' +
+              '<span class="fu-prog">' + esc(progName(r.program_id)) + '</span>' +
+              (r.note ? '<span class="fu-note">' + esc(r.note) + '</span>' : '') + '</span>' +
+              '<span class="fu-when">' + esc(ago(r.updated_at)) + '</span>' +
+              '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></a></li>';
+          }).join('') + '</ul>';
+          if (follow.length > 3) html += '<a class="fu-more" href="' + hub + 'inc&only=inc">All ' + follow.length + ' follow-ups in the hub ›</a>';
+        }
+        $('fuBox').innerHTML = html;
+        sec.hidden = false;
+      });
+  }
+  // The registries load deferred; once they are in, program names fill in.
+  window.addEventListener('load', function(){ if (fuFor) followUps(fuFor); });
   function setupSwitcher(){
     var A = accountsFile(); if (!isManager || !A || !A.reps) return;
     var names = Object.keys(A.reps).sort();
@@ -184,7 +268,7 @@
   /* ---- live status where real data exists ---- */
   function status(id, cls, text){ var el = $(id); el.className = 'status' + (cls ? ' ' + cls : ''); el.innerHTML = '<span class="dot"></span>' + text; }
   function ymd(d){ return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0'); }
-  function fmtDay(iso){ var d = new Date(iso); return isNaN(d) ? '' : MONTHS[d.getMonth()] + ' ' + d.getDate(); }
+  function fmtDay(iso){ var d = new Date(iso); return isNaN(d) ? '' : MON[d.getMonth()] + ' ' + d.getDate(); }
   function getJson(url){ return fetch(url, {cache:'no-store'}).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }); }
 
   // MPO pages: this month's data if loaded, else the newest month that is.

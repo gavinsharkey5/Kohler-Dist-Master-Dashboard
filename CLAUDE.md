@@ -244,6 +244,22 @@ cookie. Linked from the manager index ("Team Activity" card, Field &
 team) and the rep workspace top bar (`#teamLink`, managers only). A
 manager in preview mode is treated as themselves here.
 
+## Rep workspace: "Your follow-ups" strip (2026-09-28)
+
+`rep/index.html` has a `#fuSec` section between the banner and Programs:
+`followUps(name)` (called from `showRep`, so a manager's "Viewing as"
+switch refreshes it) fetches the rep's rep_actions rows with the
+`kdh_at` token and `window.KDH_AUTH`, shows "N accounts to get back to ·
+M done this week", the three newest follow-ups (account, program name,
+note, when) linking to the hub tab the program lives on (`cat=inc&
+only=inc` / `off` / `on`), an "All N follow-ups" link past three, or a
+one-line nudge when nothing is flagged. Hidden when there is no auth
+config or token (github.io). Program names come from the trackers'
+registries loaded DEFERRED with stub data (same trick as team/); the
+page's own month-name array is `MON`, not `MONTHS`, because the
+incentive registry's global `const MONTHS` is what `progName()` reads
+-- keep it that way. rep.css tag is now 20260928a (team/ links it too).
+
 ## Hub write-back: rep_actions (2026-09-25)
 
 The first thing reps TELL the site. Every target list the hub renders for

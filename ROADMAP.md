@@ -40,9 +40,6 @@ device, a decision).
   comes from the same summaries the hub renders.
 - [ ] **Manager page in the light workspace design**: port the root index
   to the /rep/ look (top bar, sections, one card component, light/dark).
-- [ ] **Follow-ups on the rep workspace**: a small "Your follow-ups" strip
-  on /rep/ (count + the next three) so the marks are visible before a
-  rep opens the hub.
 - [ ] **Write-back on the other rep pages** where it fits: Carbliss
   on-prem targets and Red Bull buying accounts could carry the same
   Done / Follow up / Not now strip, reading the same table.
@@ -68,6 +65,10 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-09-28 "Your follow-ups" strip on the rep workspace: count,
+  done-this-week, the three newest flagged accounts with program and
+  note, each linking into the hub; a nudge line when nothing is flagged;
+  follows the manager's "Viewing as" switcher.
 - [x] 2026-09-28 Team Activity page (/team/, managers only): one row per
   rep with open follow-ups, Done this week, Not now and last activity;
   open a rep for the follow-ups with notes and their recent marks;
