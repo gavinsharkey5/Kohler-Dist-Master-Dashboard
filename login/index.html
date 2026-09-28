@@ -341,10 +341,19 @@
         verifying = false;
         $('verify').disabled = false;
         if (r.error) {
-          say('bad', 'That code didn&rsquo;t work. A code is good once and only from the <b>newest</b> email &mdash; and if its link was already tapped, the code is used up. Tap <b>send it again</b> and type the new code without opening the link.' +
-            '<br><span style="font-size:12.5px;opacity:.75">Supabase said: ' + escapeHtml(r.error.message) + ' (' + escapeHtml(tried.join(', ')) + ') for ' + escapeHtml(email) + '</span>');
-          $('code').select();
-          return;
+          // A home-screen app can end up signed in even when the check
+          // reported an error (a second check on an already-used code, a
+          // request cut off while the app was in the background). If a
+          // session exists now, use it instead of complaining.
+          return sb.auth.getSession().then(function (g) {
+            var sess = g && g.data && g.data.session;
+            if (sess && !entered) { entered = true; enter(sess); return; }
+            var p = loadPending();
+            say('bad', 'That code didn&rsquo;t work. A code is good once and only from the <b>newest</b> email &mdash; and if its link was already tapped, the code is used up. Tap <b>send it again</b> and type the new code without opening the link.' +
+              '<br><span style="font-size:12.5px;opacity:.75">Supabase said: ' + escapeHtml(r.error.message) + ' (' + escapeHtml(tried.join(', ')) + ') for ' + escapeHtml(email) +
+              (p ? ' &middot; code requested ' + Math.round((Date.now() - p.at) / 1000) + 's ago' : '') + (params.get('why') ? ' &middot; came here because: ' + escapeHtml(params.get('why')) : '') + '</span>');
+            $('code').select();
+          });
         }
         // onAuthStateChange picks the new session up and calls enter().
       });
