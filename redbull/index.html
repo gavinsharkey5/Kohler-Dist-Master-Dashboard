@@ -162,7 +162,7 @@
   <div id="body"></div>
   <footer><hr><p id="foot"></p></footer>
 </div></div>
-<script src="../shared/kdh-user.js?v=20260928a"></script>
+<script src="../shared/kdh-user.js?v=20260928b"></script>
 <script>
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const num=x=>{const v=parseFloat(String(x).replace(/[^0-9.\-]/g,""));return isNaN(v)?0:v;};
@@ -200,7 +200,7 @@ const blankAcct=()=>{const o={};CAT_KEYS.forEach(k=>o[k]=false);return o;};
 const isComplete=a=>CAT_KEYS.every(k=>a[k]);
 const missingFor=a=>CATS.filter(c=>!a[c.key]);
 let REPS={}, GOAL={Core:155,'Core+':84,Overall:239}, activeRep="ALL";
-const LOCK_REP=(()=>{try{const u=window.kdhUser?window.kdhUser():null;return (u&&u.role!=="manager"&&u.name)?u.name:null;}catch(e){return null;}})();
+let LOCK_REP=(()=>{try{const u=window.kdhUser?window.kdhUser():null;return (u&&u.role!=="manager"&&u.name)?u.name:null;}catch(e){return null;}})();
 
 function ingestData(text){
   const rows=parseCSV(text); if(rows.length<2) return;
@@ -350,6 +350,8 @@ async function boot(){
   // ignored (setRep). A rep with no buying accounts this period gets a
   // note instead of the team leaderboard. Managers: unchanged.
   if(LOCK_REP){
+    // the allow list may spell the rep differently from the export: match forgivingly
+    if(!REPS[LOCK_REP] && window.kdhMatchName){ const m=window.kdhMatchName(LOCK_REP, Object.keys(REPS)); if(m) LOCK_REP=m; }
     document.querySelector(".seg").style.display="none";
     if(REPS[LOCK_REP]){ setRep(LOCK_REP); }
     else { document.getElementById("body").innerHTML=`<div class="empty"><h2>No Red Bull buying accounts on your route yet</h2><p>${esc(LOCK_REP)}: none of your accounts have bought Red Bull in this period. Accounts appear here once they buy.</p></div>`; }

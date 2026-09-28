@@ -17,7 +17,7 @@
 </script>
 <link rel="stylesheet" href="../rep/rep.css?v=20260928b">
 <link rel="stylesheet" href="team.css?v=20260928b">
-<script src="../shared/kdh-user.js?v=20260925f"></script>
+<script src="../shared/kdh-user.js?v=20260928b"></script>
 </head>
 <body>
 <!--
@@ -176,6 +176,13 @@
         var cur = ci(reps[k].dm), hops = 0;
         while(cur && hops < 6){ if(cur===ci(user.name)){ under[k] = true; break; } cur = mgrOf[cur] || ''; hops++; }
       });
+    }
+    // Reps on the allow list whose name matches nothing in the account base
+    // would see an empty hub: say so here, where Gavin can fix the spelling.
+    if(team && HA && HA.reps){
+      var roster = Object.keys(HA.reps), lost = [];
+      team.forEach(function(t){ if(t.role==='rep' && t.name && !(window.kdhMatchName && window.kdhMatchName(t.name, roster))) lost.push(t.name); });
+      if(lost.length) note('<b>'+lost.length+' name'+(lost.length===1?'':'s')+' on the access list match no rep in the account base:</b> '+lost.map(esc).join(', ')+'. They will see a "we couldn\u2019t find your name" notice instead of their data until the spelling in allowed_users matches the trackers.');
     }
     var mine = Object.keys(under);
     // One pill per DM (anyone a rep reports to), most reps first.

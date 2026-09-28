@@ -263,6 +263,27 @@ cookie. Linked from the manager index ("Team Activity" card, Field &
 team) and the rep workspace top bar (`#teamLink`, managers only). A
 manager in preview mode is treated as themselves here.
 
+## GitHub Pages is OFF; reps are locked by a forgiving name match (2026-09-28)
+
+Gavin unpublished the github.io site on 2026-09-28: kohlerdisthub.com
+(Vercel, main) is the only copy. Everything above that says "github.io
+still serves..." is history; the code paths that tolerate a missing
+auth-config.js stay (they cost nothing).
+
+A signed-in rep is locked to their own data on every rep page by
+`kdhMatchName(name, roster)` in shared/kdh-user.js: exact match first,
+then canonical first name (nickname map: Michael->Mike, Daniel->Dan,
+James->Jim ...) + surname with punctuation stripped, then surname +
+first initial when that is unique. The hub (`LOCKED_REP`), both MPO
+pages (`lockedRep()` in guided.js), Red Bull (`LOCK_REP` re-matched
+against the export's reps once loaded) and Carbliss (matched against
+DATA.accounts reps) all use it; the tap tracker keeps its own older
+matcher. NO MATCH = FAIL CLOSED: `kdhNoRoster(page)` covers the page
+with a "We couldn't find your name here" notice and a link to /rep/,
+never everyone's data. The Team Activity page lists allow-list reps
+whose name matches nothing in the account base so Gavin can fix the
+spelling in allowed_users. Managers are unaffected (picker, Preview).
+
 ## Site-wide design system (2026-09-28)
 
 `shared/kdh.css` (tokens light+dark, the `.kdh-bar` top bar, generic

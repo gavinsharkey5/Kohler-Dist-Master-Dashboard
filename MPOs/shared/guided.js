@@ -88,8 +88,12 @@ var KDH_USER = (function(){
   }catch(e){ return null; }
 })();
 function lockedRep(){
-  return (KDH_USER && KDH_USER.role !== 'manager' && KDH_USER.name && H && H.roster.indexOf(KDH_USER.name) >= 0)
-    ? KDH_USER.name : null;
+  if(!(KDH_USER && KDH_USER.role !== 'manager' && KDH_USER.name && H && H.roster)) return null;
+  // Forgiving match (first name + surname) so an allow-list spelling still
+  // lands on this tracker's spelling; no match = fail closed with a notice.
+  var m = window.kdhMatchName ? window.kdhMatchName(KDH_USER.name, H.roster) : (H.roster.indexOf(KDH_USER.name) >= 0 ? KDH_USER.name : null);
+  if(!m && window.kdhNoRoster) window.kdhNoRoster(document.title.split(/\s+[|\u2014\u00b7-]\s+/)[0] || 'MPO tracker');
+  return m;
 }
 function applyLock(){
   var L = lockedRep();
