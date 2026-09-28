@@ -877,8 +877,10 @@ function topbar(){
 // month; a scope with nothing loaded yet says so instead of vanishing.
 // hub.css lays the three out inline on desktop and stacked on phones.
 function refreshedLine(){
+  // Only the feeds this screen shows: incentives-only mode (the workspace's
+  // Incentive Hub tile) says nothing about the MPO boards (2026-09-28).
   const lines = [['Incentives', incRefreshed()]];
-  ['off','on'].forEach(s=>{
+  (state.only==='inc' ? [] : ['off','on']).forEach(s=>{
     const st = mpoState[s]||{}; const mk = mpoRepMonth(s);
     const iso = (st[mk] && st[mk].syncedAt) || Object.keys(st).map(k=>st[k].syncedAt).filter(Boolean).sort().pop();
     lines.push([MPO_SCOPES[s].label, iso ? fmtSynced(iso) : 'loading…']);
@@ -1166,7 +1168,9 @@ function subStat(rep, sub){
 // already on the page -- no extra screen, no menu, no confirm.
 function tabbar(rep, cat){
   const cur = tabOf(cat);
-  return `<div class="tabbar" role="tablist">${TABS.filter(m=>!state.only || m.key===state.only).map(m=>{
+  const tabs = TABS.filter(m=>!state.only || m.key===state.only);
+  if(tabs.length < 2) return '';     // one tab is not a choice (incentives-only mode, 2026-09-28)
+  return `<div class="tabbar" role="tablist">${tabs.map(m=>{
     const on = m.key===cur, n = tabCount(rep, m.key);
     return `<button class="tab${on?' active':''}" data-act="set-cat" data-cat="${m.key}" role="tab" aria-selected="${on?'true':'false'}">
       <span class="tab-ic">${m.ic}</span><span class="tab-l">${E(m.label)}</span>${n===null?'':`<span class="tab-n">${n}</span>`}</button>`;
@@ -2055,16 +2059,17 @@ const gStatusOf = r => (r.status==='complete'||r.status==='exceeded') ? 'achieve
 function mpoQuickHtml(p, r){
   const st = gStatusOf(r), done = st==='achieved';
   const weight = r.weight!=null ? r.weight : Math.round((p.objective.weight||0)*100);
+  // Same shape as guided.js's repObjectiveCard (2026-09-28): the pill says
+  // whether credit is earned, three facts, no duplicate Goal tag.
+  const CREDIT = {achieved:'Goal achieved · credit earned', inprogress:'In progress · credit not yet earned', notstarted:'Not started'};
   return `<div class="g-tags mpo-tags">
       <span class="g-tag weight">${weight}% of MPO</span>
-      ${r.goal?`<span class="g-tag">Goal: ${E(r.goal)}</span>`:''}
-      <span class="g-pill ${st}">${G_STATUS_MARK[st]} ${G_STATUS_TEXT[st]}</span>
+      <span class="g-pill ${st}">${G_STATUS_MARK[st]} ${CREDIT[st]||G_STATUS_TEXT[st]}</span>
     </div>
-    <div class="g-facts">
+    <div class="g-facts g-facts-3">
       <div><div class="g-fact-l">My Goal</div><div class="g-fact-v">${E(r.goal||'\u2014')}</div></div>
       <div><div class="g-fact-l">Where I Am</div><div class="g-fact-v${done?' good':''}">${E(r.now||'\u2014')}</div></div>
-      <div><div class="g-fact-l">Still Needed</div><div class="g-fact-v${r.remain?'':' good'}">${E(r.remain || 'Goal met')}</div></div>
-      <div><div class="g-fact-l">Credit Earned</div><div class="g-fact-v${done?' good':' mute'}">${done?'Yes':'Not yet'}</div></div>
+      <div><div class="g-fact-l">Still Needed</div><div class="g-fact-v${r.remain?'':' good'}">${E(r.remain || 'None')}</div></div>
     </div>
     <div class="g-bar"><div class="g-bar-fill ${st}" style="width:${Math.max(0,Math.min(100,r.pct||0))}%"></div></div>
     <div class="g-barcap"><span>${Math.round(r.pct||0)}% of goal</span></div>
