@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F6F7F9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1523" media="(prefers-color-scheme: dark)">
+<title>Accounts | Kohler Dist Hub</title>
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Dist Hub">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="preload" href="../assets/fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin>
+<script>try{var t=localStorage.getItem('kdh_theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="stylesheet" href="../rep/rep.css?v=20260930a">
+<link rel="stylesheet" href="accounts.css?v=20260930a">
+<meta name="kdh-page" content="Accounts">
+<script src="../shared/kdh-user.js?v=20260930b"></script>
+</head>
+<body>
+<!--
+  ACCOUNTS (2026-09-30): the Accounts tab and the one Account page.
+
+  "What should I do at this account today?" A rep sees their own assigned
+  accounts (the middleware serves them only their slice of the customer
+  base -- see middleware.js and generate.py); a manager sees their team's,
+  with the rep named on every row. One account page answers the question
+  with up to three supported actions first (open follow-up, overdue tap
+  survey, a program this account can still qualify for, a regular product
+  that may be due), then the supporting sections: Sales & Reorders,
+  Programs, Products to discuss, Notes & Follow-ups, Taps & Visits.
+
+  Nothing here is computed from scratch: program eligibility, targets and
+  credit come from the hub's own adapters (hub.js loaded in LIBRARY MODE --
+  no #app on this page, so it renders nothing and exposes window.KohlerHub);
+  sales history is the Rolling Distribution master, taps are the Tap
+  Tracker's own survey, notes are the hub's rep_actions rows. See README.txt.
+-->
+<main class="wrap home" id="acctApp"><div class="kdh-state loading">Loading your accounts…</div></main>
+
+<footer>Internal use. These pages show customer and account detail — please don’t share the link outside the team.</footer>
+
+<!-- the hub's program libraries + account layer, exactly as hub/index.html loads them -->
+<script src="../incentive-tracking/data/program_data.js?v=20260928c"></script>
+<script src="../incentive-tracking/programs.js?v=20260925c"></script>
+<script src="../MPOs/on-prem/programs.js?v=20260923h"></script>
+<script src="../MPOs/off-prem/programs.js?v=20260923h"></script>
+<script src="../hub/data/accounts.js?v=20260923h"></script>
+<script src="../hub/accounts.js?v=20260923h"></script>
+<script src="../shared/auth-config.js"></script>
+<script src="../hub/hub.js?v=20260930a"></script>
+<script src="accounts.js?v=20260930a"></script>
+</body>
+</html>

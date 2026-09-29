@@ -32,7 +32,7 @@
 <!-- The top bar is injected by shared/kdh-user.js (badge, Previewing chip, account menu with "View as rep"). kdh-home = no Back button. -->
 <meta name="kdh-page" content="Manager home">
 <meta name="kdh-home" content="manager">
-<script src="shared/kdh-user.js?v=20260930a"></script>
+<script src="shared/kdh-user.js?v=20260930b"></script>
 </head>
 <body>
 
@@ -41,7 +41,7 @@
     <div class="id">
       <p class="kicker">Manager dashboards</p>
       <h1 id="who">Kohler Dist Hub</h1>
-      <div class="meta" id="meta"><span>19 dashboards</span><span class="sep">·</span><span>5 sections</span><span class="sep">·</span><span class="muted">Pick a section, open a card</span></div>
+      <div class="meta" id="meta"><span>20 dashboards</span><span class="sep">·</span><span>5 sections</span><span class="sep">·</span><span class="muted">Pick a section, open a card</span></div>
     </div>
     <!-- View as rep (2026-09-30): the searchable rep picker from shared/kdh-user.js.
          The whole site then shows what that rep sees until "Exit" on the chip. -->
@@ -58,6 +58,11 @@
   <section class="section">
     <div class="section-h"><h2>Reps’ daily tools</h2><p>What the sales team sees when they sign in</p></div>
     <div class="grid">
+      <a class="card" href="accounts/">
+        <div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/><path d="M3 12h18"/></svg></span><h3>Accounts</h3></div>
+        <p>Your team’s accounts with what needs attention at each: follow-ups, program leads, reorder checks, overdue surveys. Filter by rep, open an account for the full picture.</p>
+        <div class="foot"><span class="status">Team · by account</span><span class="open">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      </a>
       <a class="card" href="hub/">
         <div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span><h3>Incentives &amp; MPO Hub</h3></div>
         <p>Every incentive and MPO a rep is in: where they stand, what they still need, and where to go next.</p>
@@ -197,7 +202,7 @@
     var meta = [];
     if (user.title) meta.push(esc(user.title));
     if (user.dm) meta.push('Reports to ' + esc(user.dm));
-    meta.push('19 dashboards', '5 sections');
+    meta.push('20 dashboards', '5 sections');
     $('meta').innerHTML = meta.map(function(m){ return '<span>' + m + '</span>'; }).join('<span class="sep">·</span>');
   }
   // ---- the manager switcher: Gavin's account only ----

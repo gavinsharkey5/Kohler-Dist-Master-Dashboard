@@ -174,10 +174,12 @@
     if (isMgr) {
       items += '<button type="button" class="kdh-menu-i" id="kdhViewAsRep">' + (u.preview && u.role !== 'manager' ? 'Change rep' : 'View as rep') + '<small>See the site as one rep does</small></button>';
       if (u.preview) items += '<button type="button" class="kdh-menu-i" id="kdhExitPreview2">Exit preview<small>Back to your own pages</small></button>';
+      items += '<a class="kdh-menu-i" href="' + ROOT + 'accounts/">Accounts<small>Your team, by account</small></a>';
       items += '<a class="kdh-menu-i" href="' + ROOT + '">Manager home</a>';
       items += '<a class="kdh-menu-i" href="' + ROOT + 'team/">Team activity</a>';
       items += '<a class="kdh-menu-i" href="' + REP_HOME + '">Rep workspace</a>';
     } else {
+      items += '<a class="kdh-menu-i" href="' + ROOT + 'accounts/">My accounts</a>';
       items += '<a class="kdh-menu-i" href="' + REP_HOME + '">Rep home</a>';
     }
     items += '<button type="button" class="kdh-menu-i" id="kdhTheme">' + SUN + MOON + '<span id="kdhThemeLabel">Dark mode</span></button>';

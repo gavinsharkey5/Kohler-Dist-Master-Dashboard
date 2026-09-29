@@ -633,6 +633,55 @@ banners or colours). What holds now:
   ui_test / mgr_test / lock_test2 / team_test / dm_test updated for the
   menu and chip, mgr_desktop.mjs (Manager Mode unchanged).
 
+## Accounts tab + Account page (2026-09-30)
+
+`accounts/` is the "what should I do at this account today?" page: a
+searchable list of the signed-in rep's assigned accounts (a manager: their
+team's, rep named per row, rep + "needs attention" filters) and ONE
+account page opened from the list, the rep home's follow-ups, the hub's
+account screen ("Full account page") and the Tap Tracker's account cards
+(`.acct-page-link`; the tracker now honours `#q=<name>` to land on an
+account). `accounts/README.txt` has every rule; `REPORTING_REQUEST.md` is
+the consolidated ask to Gavin. Key facts:
+- DATA IS PER REP. `accounts/generate.py` writes `data/book/<key>.js`,
+  `data/reps/<key>.json`, `data/sales/<key>/<n>.json` from the customer
+  base, the Rolling Distribution master (product x account x month, Jan
+  2025 -> last loaded month), products.csv / customers.csv, the deciles
+  file and the Tap Tracker's embedded survey. `<key>` = name key
+  (mike-ast). RUN IT after hub/generate.py, a rolling month, or a tap
+  rebuild. 45 MB of generated JSON is git-tracked (one file per account).
+- ENFORCED IN THE MIDDLEWARE: for a rep, `/hub/data/accounts.js` is
+  REWRITTEN (`x-middleware-rewrite`) to their own `data/book/<key>.js`,
+  and any `data/{book,reps,sales}/<other key>` request is 403. `check()`
+  now keeps `name` from allowed_users; `nameKey()` there mirrors
+  kdh-user.js (nickname map). '/accounts/' is in REP_PATHS. Managers pass
+  through; a DM's team scope stays client-side (kdhTeam), as everywhere.
+  scratchpad mw_test.mjs exercises this with a stubbed Supabase; the
+  rewrite header itself needs one live check on Vercel (ROADMAP). The
+  other rep-page datasets (program_data.js, MPO month JSON, tap HTML)
+  still carry every rep -- the pre-existing gap, stated in the README.
+- hub.js has a LIBRARY MODE: with no `#app` on the page (`LIB`), it builds
+  PROGRAMS and exposes `window.KohlerHub` (loadFor, nextAccounts, distFor,
+  accountsFor, progFacts, sellAsk, endsLabel, isActive, availability,
+  supportAllows, isDollarProgram, mpoRepMonth, incRows, RA, roster,
+  dmGroups) and does nothing else -- no render, no popstate/resize
+  handlers, no noRoster cover. The accounts page never uses `data-act`
+  (the hub's click handler is still registered).
+- FOCUS (max 3, fixed order): newest open follow-up; overdue tap survey
+  (>60 days); program LEADS = the trackers' warm opportunity lists
+  (`a.warm` from nextAccounts), cold eligibility only when the program
+  ends within 14 days; possible reorder gaps (regular product: 4+ of the
+  last 12 months, median gap <= 3, not bought >= 2 months and >= 2x the
+  gap; identical in generate.py and accounts.js `reorderGaps()`). List
+  chips count warm leads only; "needs attention" = follow-ups + leads +
+  surveys (reorder checks have their own filter).
+- Notes are READ here (rep_actions via PostgREST with the signed-in
+  token) and edited only in the hub; preview says saving is off.
+- Entry points: rep home "My accounts" row (`#c-acct`) + follow-ups now
+  open the account page (`from`/`fl` carry the return); manager home
+  "Accounts" card (20 dashboards now); account menu "My accounts" /
+  "Accounts". Tests: scratchpad acct_test.mjs, mw_test.mjs.
+
 ## Responsive formatting cleanup: Tap Tracker panels and friends (2026-09-30)
 
 Gavin's targeted brief (keep the design; fix the formatting). Tap tracker

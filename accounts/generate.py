@@ -1,0 +1,196 @@
+#!/usr/bin/env python3
+"""
+Accounts tab + Account page -- per-rep data slices (2026-09-30).
+
+Reads what the site already has and writes ONE small file per rep, so a
+rep's browser only ever receives their own accounts (the Vercel
+middleware maps a rep to their slice by name key and refuses every other
+slice -- see middleware.js):
+
+  hub/data/accounts.js                      each rep's assigned customer base
+                                            (Sales Reps' Customer Base report)
+  rolling-distribution/data/master/         Fusion product x account x month
+      months/YYYY-MM.csv                    cases (net of returns), Jan 2025 ->
+      products.csv, customers.csv           product master, addresses
+      deciles/universe.csv                  account size decile (gross 2026)
+  isellbeer/tap-survey-tracking/index.html  the current tap survey per account
+                                            (the embedded tap-data JSON)
+
+Outputs (all git-tracked, all generated -- never edit by hand):
+
+  data/index.json          months list, source dates, the rep keys
+  data/book/<key>.js       `const HUB_ACCOUNTS/HUB_BRANDS` for ONE rep -- what
+                           the middleware serves a rep who asks for
+                           hub/data/accounts.js
+  data/reps/<key>.json     the rep's accounts with a one-line summary each
+                           (last purchase month, months bought of the last
+                           12, taps + last survey) -- the Accounts list
+  data/sales/<key>/<n>.json  one account's product x month case history
+                           (n = Encompass customer number) -- loaded when
+                           that Account page opens; per-rep folder so the
+                           middleware's path check is one prefix
+
+<key> = kdhNameKey(rep): canonical first name (Michael -> mike) + '-' +
+surname without spaces/punctuation, exactly as shared/kdh-user.js and the
+middleware compute it, so "Michael Ast" on the allow list and "Mike Ast"
+in the customer base meet at mike-ast.
+
+Refresh: run this after hub/generate.py, after a rolling-distribution
+month lands, or after the tap tracker is rebuilt. Idempotent.
+"""
+import csv, json, re, sys
+from pathlib import Path
+from collections import defaultdict
+
+HERE = Path(__file__).resolve().parent
+ROOT = HERE.parent
+OUT = HERE / "data"
+MASTER = ROOT / "rolling-distribution" / "data" / "master"
+
+NICK = {'daniel':'dan','james':'jim','matthew':'matt','nicholas':'nick','michael':'mike','christopher':'chris','robert':'rob','william':'bill','joseph':'joe','jonathan':'jon','kenneth':'ken','timothy':'tim','thomas':'tom','richard':'rich','edward':'ed','andrew':'andy','anthony':'tony','steven':'steve','stephen':'steve','benjamin':'ben','samuel':'sam','alexander':'alex','patrick':'pat','gregory':'greg','jeffrey':'jeff','joshua':'josh','zachary':'zach','charles':'chuck','frederick':'fred','ronald':'ron','donald':'don','douglas':'doug','kevin':'kev','katherine':'kate','elizabeth':'liz','jennifer':'jen','jessica':'jess','rebecca':'becky','danielle':'dani','nicole':'nikki','alexandra':'alex','victoria':'vicky'}
+NOT_REPS = {'default', 'office tell sell'}
+
+def name_key(n):
+    parts = re.sub(r'\s+', ' ', re.sub(r'[^a-z\s]', ' ', str(n or '').lower())).strip().split(' ')
+    if not parts or not parts[0]: return ''
+    first = NICK.get(parts[0], parts[0])
+    last = ''.join(parts[1:])
+    return first + ('-' + last if last else '')
+
+def load_book():
+    s = (ROOT / "hub" / "data" / "accounts.js").read_text()
+    parts = dict(re.findall(r'const (\w+) = (\{.*?\});\n', s, re.S))
+    return json.loads(parts['HUB_ACCOUNTS']), parts['HUB_BRANDS']
+
+def load_master():
+    months = sorted(p.stem for p in (MASTER / "months").glob("*.csv"))
+    idx = {m: i for i, m in enumerate(months)}
+    sales = defaultdict(lambda: defaultdict(lambda: [0.0] * len(months)))   # cust -> prod -> [cases per month]
+    for m in months:
+        with open(MASTER / "months" / f"{m}.csv", newline='') as f:
+            for row in csv.DictReader(f):
+                c = float(row['cases'] or 0)
+                if c == 0: continue
+                sales[row['customer_num']][row['product_num']][idx[m]] += c
+    products = {r['product_num']: r for r in csv.DictReader(open(MASTER / "products.csv", newline=''))}
+    customers = {r['customer_num']: r for r in csv.DictReader(open(MASTER / "customers.csv", newline=''))}
+    deciles = {}
+    p = MASTER / "deciles" / "universe.csv"
+    if p.exists():
+        for r in csv.DictReader(open(p, newline='')):
+            deciles[r['customer_num']] = {'decile': int(r['decile']) if r.get('decile') else None, 'class': r.get('class') or ''}
+    sources = json.loads((MASTER / "sources.json").read_text()) if (MASTER / "sources.json").exists() else {}
+    return months, sales, products, customers, deciles, sources
+
+def load_taps():
+    html = (ROOT / "isellbeer" / "tap-survey-tracking" / "index.html").read_text()
+    m = re.search(r'<script id="tap-data" type="application/json">(.*?)</script>', html, re.S)
+    if not m: return {}, ''
+    d = json.loads(m.group(1))
+    out = defaultdict(lambda: {'last': '', 'lastDisplay': '', 'ours': 0, 'them': 0, 'unv': 0, 'brands': [], 'rep': '', 'passes': 0})
+    for r in d.get('records', []):
+        a = out[str(r.get('account', ''))]
+        if r.get('visited', '') > a['last']:
+            a['last'] = r['visited']; a['lastDisplay'] = r.get('visitedDisplay', '')
+        st = r.get('status')
+        if st == 'US': a['ours'] += r.get('taps', 0) or 0
+        elif st == 'THEM': a['them'] += r.get('taps', 0) or 0
+        else: a['unv'] += r.get('taps', 0) or 0
+        a['brands'].append({'b': r.get('brand', ''), 'f': r.get('brandFamily', ''), 's': 'ours' if st == 'US' else ('theirs' if st == 'THEM' else 'unverified'), 'n': r.get('taps', 0) or 0})
+        a['rep'] = r.get('rep', '')
+    # superseded passes: {account: [{visited, display, taps, us, them, ...}]}
+    hist = d.get('history') or {}
+    hist_list = {}
+    for k, a in out.items():
+        prev = hist.get(k, []) if isinstance(hist, dict) else []
+        a['passes'] = 1 + len(prev)
+        a['history'] = [{'visited': (p.get('visited') or '')[:10], 'display': p.get('display', ''), 'taps': p.get('taps', 0), 'ours': p.get('us', 0), 'them': p.get('them', 0)} for p in prev]
+        a['brands'].sort(key=lambda x: (-x['n'], x['b']))
+    return dict(out), d.get('generatedAt', '')
+
+def main():
+    book, brands_src = load_book()
+    months, sales, products, customers, deciles, sources = load_master()
+    taps, taps_asof = load_taps()
+    last_month = months[-1] if months else ''
+    sales_loaded = max((v.get('loaded', '') for v in sources.values()), default='')
+    for sub in ('book', 'reps', 'sales'):
+        (OUT / sub).mkdir(parents=True, exist_ok=True)
+    keys = {}
+    n_months = len(months)
+    for rep, accts in book['reps'].items():
+        if rep.strip().lower() in NOT_REPS: continue
+        key = name_key(rep)
+        if key in keys.values():
+            sys.exit(f"two reps share the key {key}: {rep} and {[r for r, k in keys.items() if k == key]}")
+        keys[rep] = key
+        rows, sale_rows = [], {}
+        for a in sorted(accts, key=lambda x: x['name'].lower()):
+            n = str(a['n'])
+            cust = customers.get(n, {})
+            prods = sales.get(n, {})
+            series = [0.0] * n_months
+            plist = []
+            for pn, arr in prods.items():
+                if not any(arr): continue
+                for i, c in enumerate(arr): series[i] += c
+                pr = products.get(pn, {})
+                plist.append([pn, pr.get('name', pn), pr.get('family', ''), pr.get('supplier', ''), pr.get('package', ''), [round(c, 1) for c in arr]])
+            plist.sort(key=lambda p: -sum(p[5][-12:]))
+            bought = [i for i, c in enumerate(series) if c > 0]
+            last_i = bought[-1] if bought else None
+            t = taps.get(n)
+            # POSSIBLE REORDER GAP (documented in README.txt): a REGULAR product --
+            # bought in 4+ of the last 12 months, usually no more than 3 months
+            # apart (median gap between buying months) -- whose months since the
+            # last purchase is at least 2 and at least twice that usual gap.
+            # Monthly grain, net of returns, data through the last loaded month
+            # -- a possibility to check, never a confirmed need. accounts.js
+            # applies the identical rule (reorderGaps()).
+            gaps = 0
+            for p in plist:
+                arr = p[5]; idxs = [i for i, c in enumerate(arr) if c > 0]
+                recent = [i for i in idxs if i >= n_months - 12]
+                if len(recent) < 4: continue
+                ints = sorted(b - a2 for a2, b in zip(idxs, idxs[1:]))
+                med = ints[len(ints) // 2] if ints else 1
+                if med > 3: continue
+                since = (n_months - 1) - idxs[-1]
+                if since >= 2 and since >= 2 * med: gaps += 1
+            row = {
+                'n': a['n'], 'name': a['name'], 'city': a.get('city', ''), 'county': a.get('county', ''), 'area': a.get('area') or a.get('rawArea', ''),
+                'prem': a.get('prem', ''), 'address': cust.get('address', ''), 'cases2026': a.get('cases'),
+                'decile': (deciles.get(n) or {}).get('decile'), 'sizeClass': (deciles.get(n) or {}).get('class', ''),
+                'last': months[last_i] if last_i is not None else None,
+                'buy12': sum(1 for i in bought if i >= n_months - 12),
+                'products12': sum(1 for p in plist if any(p[5][-12:])),
+                'cases3': round(sum(series[-3:]), 1), 'casesPrior3': round(sum(series[-6:-3]), 1), 'casesLy3': round(sum(series[-15:-12]), 1) if n_months >= 15 else None,
+                'inMaster': n in customers, 'gaps': gaps,
+            }
+            if t: row['taps'] = {'last': t['last'][:10], 'lastDisplay': t['lastDisplay'], 'ours': t['ours'], 'them': t['them'], 'unv': t['unv'], 'passes': t['passes']}
+            rows.append(row)
+            sale_rows[n] = {'series': [round(c, 1) for c in series], 'products': plist, 'taps': (t['brands'] if t else None), 'tapHistory': (t['history'] if t else None)}
+        meta = {'rep': rep, 'key': key, 'generated': __import__('datetime').datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
+                'book': {'asOf': book.get('asOf', '')}, 'sales': {'months': months, 'through': last_month, 'loaded': sales_loaded},
+                'taps': {'asOf': taps_asof}}
+        (OUT / "reps" / f"{key}.json").write_text(json.dumps(dict(meta, accounts=rows), separators=(',', ':')))
+        d = OUT / "sales" / key
+        d.mkdir(parents=True, exist_ok=True)
+        for old in d.glob('*.json'): old.unlink()
+        for n, sr in sale_rows.items():
+            (d / f"{n}.json").write_text(json.dumps(dict(sr, n=int(n), months=months), separators=(',', ':')))
+        slice_book = {'asOf': book.get('asOf', ''), 'areas': book.get('areas', []), 'reps': {rep: accts}}
+        (OUT / "book" / f"{key}.js").write_text(
+            "// GENERATED by accounts/generate.py -- one rep's slice of hub/data/accounts.js (the middleware serves this to that rep).\n"
+            f"const HUB_ACCOUNTS = {json.dumps(slice_book, separators=(',', ':'))};\n"
+            f"const HUB_BRANDS = {brands_src};\n")
+    (OUT / "index.json").write_text(json.dumps({'generated': __import__('datetime').datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
+        'months': months, 'salesThrough': last_month, 'salesLoaded': sales_loaded, 'tapsAsOf': taps_asof, 'bookAsOf': book.get('asOf', ''),
+        'reps': [{'rep': r, 'key': k} for r, k in sorted(keys.items())]}, indent=1))
+    tot = sum(f.stat().st_size for f in OUT.rglob('*.js*'))
+    print(f"{len(keys)} reps, {n_months} months through {last_month}, taps as of {taps_asof}; {tot/1e6:.1f} MB written to {OUT}")
+    big = sorted(((f.stat().st_size, f.parent.name + '/' + f.name) for f in (OUT / 'sales').glob('*/*.json')), reverse=True)[:3]
+    print("largest account files:", [(round(s/1e3), n) for s, n in big])
+
+if __name__ == '__main__':
+    main()

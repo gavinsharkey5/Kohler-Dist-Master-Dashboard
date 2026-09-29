@@ -43,6 +43,11 @@ const HUB_ROSTER_SCOPED = HUB_TEAM ? HUB_ROSTER.filter(r=>HUB_TEAM.reps.includes
 const HUB_DM_GROUPS_SCOPED = HUB_TEAM ? HUB_DM_GROUPS.filter(g=>g.dm===HUB_TEAM.dm || g.under===HUB_TEAM.dm) : HUB_DM_GROUPS;
 (function(ROSTER, DM_GROUPS){
 'use strict';
+// LIBRARY MODE (2026-09-30): the Accounts page loads this file for its
+// adapters -- programs(), nextAccounts(), distFor(), progFacts() ... --
+// with no #app on the page. Then nothing here renders, routes or covers
+// the page; the API on window.KohlerHub is the whole contract.
+const LIB = !document.getElementById('app');
 // A support rep is in the hub for a named set of on-prem objectives only.
 const isSupport = rep => Object.prototype.hasOwnProperty.call(HUB_SUPPORT, rep);
 const supportAllows = (rep, p) => !isSupport(rep) || (p.type==='MPO' && p.source==='on' && HUB_SUPPORT[rep].objectives.includes(p.key));
@@ -629,7 +634,7 @@ const KDH_USER = (()=>{ try{ if(window.kdhUser) return window.kdhUser(); const m
 const LOCKED_REP = (()=>{
   if(!(KDH_USER && KDH_USER.role !== 'manager' && KDH_USER.name)) return null;
   const m = window.kdhMatchName ? window.kdhMatchName(KDH_USER.name, HUB_ROSTER) : (HUB_ROSTER.includes(KDH_USER.name) ? KDH_USER.name : null);
-  if(!m && window.kdhNoRoster){ document.addEventListener('DOMContentLoaded', ()=>window.kdhNoRoster('Incentive Hub')); if(document.readyState!=='loading') window.kdhNoRoster('Incentive Hub'); }
+  if(!m && window.kdhNoRoster && !LIB){ document.addEventListener('DOMContentLoaded', ()=>window.kdhNoRoster('Incentive Hub')); if(document.readyState!=='loading') window.kdhNoRoster('Incentive Hub'); }
   return m;
 })();
 
@@ -778,7 +783,7 @@ function persist(){ try{ localStorage.setItem(LS_KEY, JSON.stringify({rep:state.
 // is rewritten to Rep Mode.
 const isMobile = () => window.innerWidth < 760 || (window.matchMedia('(pointer:coarse)').matches && window.innerWidth < 1100) || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 const isMgr = () => state.mode==='manager' && !isMobile();
-window.addEventListener('resize', ()=>{ if(state.mode==='manager') render(); });
+window.addEventListener('resize', ()=>{ if(!LIB && state.mode==='manager') render(); });
 function restore(){ try{ const s = JSON.parse(localStorage.getItem(LS_KEY)||'{}'); if(s.mode==='manager' && !isMobile()) state.mode = 'manager'; }catch(e){} }
 function hashOf(){
   const p = [];
@@ -844,7 +849,7 @@ function go(next, replace){
   render();
   if(next.view!==undefined) window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
 }
-window.addEventListener('popstate', ()=>{ applyHash(); const h = hashOf(); if(h!==(location.hash||'#')) history.replaceState(null, '', h); render();
+window.addEventListener('popstate', ()=>{ if(LIB) return; applyHash(); const h = hashOf(); if(h!==(location.hash||'#')) history.replaceState(null, '', h); render();
   // Back restores where the list was scrolled to (2026-09-30).
   const y = scrollMem[location.hash||'#']; if(typeof y==='number') requestAnimationFrame(()=>window.scrollTo(0, y)); });
 
@@ -3010,6 +3015,7 @@ function screenAccount(){
   return `<div class="hview">
     ${returnLink('back-accts', LISTS[list]||'Accounts')}
     <div class="hhead"><h1>${E(a.name)}</h1><p class="hsub">${E(meta)}</p></div>
+    <p class="hnote" style="margin-top:-4px"><a href="../accounts/#acct=${encodeURIComponent(a.n!=null ? a.n : '')}${(KDH_USER && KDH_USER.role==='manager') ? '&rep='+encodeURIComponent(rep) : ''}&from=${encodeURIComponent(location.pathname+location.hash)}&fl=${encodeURIComponent('Incentive Hub')}" style="color:var(--accent);font-weight:600;text-decoration:none">Full account page — purchases, programs, notes, taps ›</a></p>
     <div class="hcard">
       ${kv('Program', E(p.shortName||p.name) + ' · ' + E(p.supplier))}
       ${kv('What to sell', E(sellAsk(p)))}
@@ -3029,6 +3035,7 @@ function screenAccount(){
 
 /* ---- main render ---- */
 function render(){
+  if(LIB){ acctCache.clear(); return; }
   acctCache.clear();
   if(RA.on && state.rep && RA.loadedFor()!==state.rep) RA.load(state.rep);
   const root = app();
@@ -3168,6 +3175,7 @@ document.addEventListener('click', e=>{
 /* ---- boot ---- */
 function boot(){
   buildPrograms();
+  if(LIB) return;                  // the Accounts page drives the rest itself
   restore();                       // only the Rep / Manager mode survives a reload
   // A reload ALWAYS starts over on the home screen with an empty picker (per
   // Gavin, 2026-09-10) -- whatever the URL hash or the last visit said. The
@@ -3191,6 +3199,9 @@ function boot(){
     MPO_SCOPES[scope].mod.MONTHS.forEach(m=>{ if(mpoMonthActive(scope, m)) ensureMpoMonth(scope, m.key).then(()=>{ if(state.view!=='home') render(); }); });
   });
 }
-window.KohlerHub = {state, programs:()=>PROGRAMS, sortedForRep, programStats, render, buyingFor, accountsFor, nextAccounts, closedFor};
+window.KohlerHub = {state, programs:()=>PROGRAMS, sortedForRep, programStats, render, buyingFor, accountsFor, nextAccounts, closedFor,
+  // library surface for the Accounts page (2026-09-30)
+  lib:LIB, loadFor, distFor, progFacts, sellAsk, endsLabel, periodLabel, isActive, incBand, isDollarProgram, availability, supportAllows, isSupport,
+  mpoRepMonth, mpoMonthLoaded, scopes:MPO_SCOPES, incRows, RA, lockedRep:LOCKED_REP, roster:ROSTER, dmGroups:DM_GROUPS};
 boot();
 })(HUB_ROSTER_SCOPED, HUB_DM_GROUPS_SCOPED);

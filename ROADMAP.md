@@ -11,6 +11,17 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
+- [ ] **Accounts: one live check on Vercel** (Gavin): signed in as a rep,
+  open kohlerdisthub.com/accounts/ and confirm the list shows only that
+  rep's accounts, then open kohlerdisthub.com/hub/data/accounts.js in the
+  same browser and confirm it shows ONE rep (the middleware rewrite). If
+  it shows everyone, tell Claude: the rewrite header needs the
+  @vercel/edge form. (2026-09-30)
+- [ ] **Accounts: the reporting request** (Gavin): `accounts/REPORTING_REQUEST.md`
+  -- daily invoice history and a customer master with active status are
+  the two essentials; rep/manager IDs, a rep-safe inventory feed, pitches
+  and sell sheets follow. Say how a shared account should behave if
+  Encompass can assign two reps. (2026-09-30)
 - [ ] **Try "View as rep" from your phone** (Gavin): manager home -> View
   as rep -> pick a rep -> walk Incentives -> a supplier -> a program ->
   Potential accounts -> an account -> Back all the way -> Exit. Anything
@@ -49,6 +60,16 @@ device, a decision).
 
 ## Later -- ideas kept handy
 
+- Per-rep slices of the OTHER rep-page datasets (program_data.js, the MPO
+  month JSON, the tap survey embedded in the Tap Tracker) through the same
+  middleware rewrite the account slices use, so a rep's browser never
+  receives another rep's rows anywhere. Today only the account data is
+  enforced server-side; the trackers still scope on the page.
+- Accounts page, once the invoice-level history and customer status land
+  (`accounts/REPORTING_REQUEST.md`): reorder cadence in weeks, "last
+  ordered on <date>", closed accounts hidden, inventory "in stock as of"
+  and approved pitches on Products to discuss.
+
 - Home-screen icon badge / push notifications (needs a service worker
   and, on iOS, the installed app; only worth it once reps live in the app).
 - Per-rep "usual order day" from daily-grain invoice history, so a rep's
@@ -68,6 +89,18 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-09-30 Accounts tab + Account page (`accounts/`): a rep's assigned
+  accounts as a searchable list with what needs attention (follow-ups,
+  program leads, reorder checks, survey due); managers see their team with
+  the rep on every row and rep / attention filters; one account page that
+  leads with up to three supported actions and then Sales & reorders
+  (Fusion monthly history), Programs (this account's credit / lead /
+  could-qualify status), Products to discuss, Notes & follow-ups (read
+  here, edited in the hub), Taps & visits. Opened from the rep home,
+  the hub's account screen and the Tap Tracker; Back returns with
+  filters and position. A rep's browser receives only their own account
+  slices (middleware rewrite + 403 on other reps' slices). Verified at
+  375 / 390 / 430 / 820 / 1366, as rep, DM, manager and preview.
 - [x] 2026-09-30 Responsive cleanup, no redesign: Tap Tracker drill panels
   stack on phones (title and count, description at full width, actions,
   then one labelled row per account with Ours / Theirs in words, visit

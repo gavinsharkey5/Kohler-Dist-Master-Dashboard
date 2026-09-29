@@ -31,6 +31,7 @@ const cache = new Map(); // token -> { ok, email, role, until }
 // Keep this in step with what those pages load (see supabase/README.txt).
 const REP_PATHS = [
   '/rep/',                              // the rep landing page
+  '/accounts/',                         // Accounts tab + Account page (data slices checked below)
   '/hub/',                              // Incentives & MPO Hub
   '/isellbeer/tap-survey-tracking/',    // Tap Tracker
   '/MPOs/off-prem/',                    // Off-Premise MPOs
@@ -43,6 +44,30 @@ const REP_PATHS = [
   '/shared/',                           // auth-config.js
 ];
 const REP_HOME = '/rep/';
+
+// ACCOUNT DATA IS SERVED PER REP (2026-09-30). accounts/generate.py writes one
+// slice per rep under /accounts/data/{book,reps,sales}/<key>..., where <key>
+// is the rep's name key (canonical first name + surname, the same rule
+// shared/kdh-user.js uses). A rep asking for the whole customer base
+// (/hub/data/accounts.js) is rewritten to their own slice, and a request
+// for another rep's slice is refused here -- so a rep's browser never
+// receives another rep's accounts, whatever the page asks for. Managers
+// pass through (their team scope is applied on the page, as before).
+const NICK = {daniel:'dan',james:'jim',matthew:'matt',nicholas:'nick',michael:'mike',christopher:'chris',robert:'rob',william:'bill',joseph:'joe',jonathan:'jon',kenneth:'ken',timothy:'tim',thomas:'tom',richard:'rich',edward:'ed',andrew:'andy',anthony:'tony',steven:'steve',stephen:'steve',benjamin:'ben',samuel:'sam',alexander:'alex',patrick:'pat',gregory:'greg',jeffrey:'jeff',joshua:'josh',zachary:'zach',charles:'chuck',frederick:'fred',ronald:'ron',donald:'don',douglas:'doug',kevin:'kev',katherine:'kate',elizabeth:'liz',jennifer:'jen',jessica:'jess',rebecca:'becky',danielle:'dani',nicole:'nikki',alexandra:'alex',victoria:'vicky'};
+function nameKey(n) {
+  const parts = String(n || '').toLowerCase().replace(/[^a-z\s]/g, ' ').replace(/\s+/g, ' ').trim().split(' ');
+  if (!parts.length || !parts[0]) return '';
+  const first = NICK[parts[0]] || parts[0];
+  const last = parts.slice(1).join('');
+  return first + (last ? '-' + last : '');
+}
+const ACCOUNT_DATA = /^\/accounts\/data\/(book|reps|sales)\/([a-z0-9-]+)(\.js|\.json|\/[0-9a-z_-]+\.json)$/;
+function accountDataVerdict(pathname, name) {
+  if (pathname === '/accounts/data/index.json') return 'ok';
+  const m = pathname.match(ACCOUNT_DATA);
+  if (!m) return 'ok';                                  // not a data slice
+  return m[2] === nameKey(name) && nameKey(name) ? 'ok' : 'deny';
+}
 
 function repMayOpen(pathname) {
   const p = pathname.split('?')[0];
@@ -76,7 +101,19 @@ export default async function middleware(request) {
 
   if (verdict.ok) {
     if (verdict.role === 'manager') return passThrough();
-    // A rep: only the rep pages. The root index is the managers' page, so
+    // A rep: their own account slice, never anyone else's.
+    if (url.pathname === '/hub/data/accounts.js') {
+      const key = nameKey(verdict.name);
+      if (!key) return new Response('{}', { status: 403, headers: { 'content-type': 'application/json', 'cache-control': 'no-store' } });
+      return rewrite(new URL(`/accounts/data/book/${key}.js`, url));
+    }
+    if (accountDataVerdict(url.pathname, verdict.name) === 'deny') {
+      return new Response(JSON.stringify({ error: 'not your accounts' }), {
+        status: 403,
+        headers: { 'content-type': 'application/json', 'cache-control': 'no-store' },
+      });
+    }
+    // Only the rep pages. The root index is the managers' page, so
     // a rep asking for "/" lands on /rep/ instead.
     if (repMayOpen(url.pathname)) return passThrough();
     const isDoc =
@@ -113,6 +150,10 @@ export default async function middleware(request) {
 // Continue to the static file. This is what @vercel/edge's next() does.
 function passThrough() {
   return new Response(null, { headers: { 'x-middleware-next': '1' } });
+}
+// Serve a different static file for this request (what @vercel/edge's rewrite() does).
+function rewrite(absUrl) {
+  return new Response(null, { headers: { 'x-middleware-rewrite': absUrl.toString(), 'cache-control': 'no-store' } });
 }
 
 function readCookie(header, name) {
@@ -165,7 +206,7 @@ async function check(token, supabaseUrl, publishableKey) {
   if (!row) return remember(token, { ok: false, reason: 'notlisted' }, now + 60 * 1000);
 
   const until = Math.min(exp, now + CACHE_TTL_MS);
-  return remember(token, { ok: true, email: row.email, role: row.role || 'rep' }, until);
+  return remember(token, { ok: true, email: row.email, name: row.name || '', role: row.role || 'rep' }, until);
 }
 
 function remember(token, verdict, until) {
