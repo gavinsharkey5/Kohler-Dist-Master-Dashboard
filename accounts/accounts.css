@@ -100,3 +100,6 @@ details.fold[open] > summary::after{content:'\25B4'}
   .kv > span:last-child{text-align:left}
 }
 .btn.more{width:100%;justify-content:center;min-height:44px;margin:10px 0 0;font-size:15px}
+/* every inline link is a 40px tap target on touch screens (mobile audit, 2026-09-30) */
+.fitem .fn a,.pitem .pa a,.kv a{display:inline-flex;align-items:center;min-height:40px;padding:0 4px;margin-left:-4px}
+.fitem .fn{margin-top:2px}
