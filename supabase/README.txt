@@ -108,14 +108,23 @@ Sign-in CODE (needed for the home-screen app, 2026-09-25)
 
 Passwords (2026-09-29)
 ----------------------
-  Run migrations/20260929090000_password_signup.sql in the SQL Editor
-  once (it replaces the 2026-09-28 version). It gives the page
+  Run migrations/20260929090000_password_signup.sql and then
+  migrations/20260929120000_password_fix.sql in the SQL Editor once each
+  (they replace the 2026-09-28 version). They give the page
   kdh_signin_mode(email) -- one of four answers about the address just
   typed: no (not listed) / new (listed, no account yet) / code (an
-  account from before passwords, no password yet) / password -- and a
-  BEFORE INSERT trigger on auth.users so only allow-listed emails can
+  account from before passwords, no real password yet) / password -- and
+  a BEFORE INSERT trigger on auth.users so only allow-listed emails can
   become accounts, whatever calls the sign-up API (this also applies to
   Authentication -> Users -> Add user: list the person first).
+  "Real password": an account made by emailed code carries a bcrypt hash
+  of the EMPTY password in auth.users.encrypted_password, which is why
+  the first version showed Gavin "Welcome back" -- kdh_real_password()
+  (pgcrypto crypt('') against the stored salt) tells the two apart.
+  Verified on 2026-09-29 against a local Postgres 16: stranger -> no,
+  never signed in -> new, empty-password hash -> code, real bcrypt ->
+  password, non-bcrypt hash -> password, stranger insert refused by the
+  trigger, anon may call kdh_signin_mode but not the helper.
   How it flows:
     first sign-in   email -> "Create your password" -> in (auth.signUp;
                     the reply carries the session, no email is sent).

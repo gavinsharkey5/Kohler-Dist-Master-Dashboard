@@ -261,7 +261,17 @@ a stranger who knows a listed email could register it first; the
 owner recovers with Forgot password (the code goes to the real inbox).
 If the RPC is missing (`fnMissing`) the page falls back to
 `is_allowed` + code, so it can deploy before the SQL is run. The
-middleware is untouched. Tests: scratchpad login_pw_test.mjs (new,
+middleware is untouched. GOTCHA (2026-09-29): an account made by
+emailed code has a bcrypt hash of the EMPTY password in
+auth.users.encrypted_password, not NULL/'' -- so "has a password" must
+be `kdh_real_password(hash)` (migration
+`20260929120000_password_fix.sql`: pgcrypto `crypt('', hash) <> hash`),
+never a plain non-empty test; Gavin saw "Welcome back" before that.
+Deleting such accounts in bulk from a migration was refused by the
+tooling; Gavin removes his own under Authentication -> Users if he
+wants 'new' instead of one last code. `#setForm` has a Confirm box
+(`#newpw2`), both must match. The SQL was verified against a local
+Postgres 16 (see supabase/README.txt). Tests: scratchpad login_pw_test.mjs (new,
 legacy code, returning, wrong password, forgot with reload, Confirm
 email still on, already registered, migration missing) + login_test.mjs.
 

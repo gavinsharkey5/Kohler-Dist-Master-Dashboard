@@ -159,7 +159,12 @@
         <input id="newpw" class="field" type="password" name="new-password" autocomplete="new-password" placeholder="At least 8 characters" required minlength="8">
         <button type="button" class="eye" data-for="newpw" aria-label="Show password">Show</button>
       </div>
-      <p class="rules">At least 8 characters. Tap <b>Show</b> to check it before you save.</p>
+      <label for="newpw2" style="margin-top:12px">Confirm password</label>
+      <div class="pwwrap">
+        <input id="newpw2" class="field" type="password" name="confirm-password" autocomplete="new-password" placeholder="Type it again" required minlength="8">
+        <button type="button" class="eye" data-for="newpw2" aria-label="Show password">Show</button>
+      </div>
+      <p class="rules">At least 8 characters. Both boxes must match.</p>
       <button id="setGo" class="btn" type="submit">Save and continue</button>
       <p class="links"><span></span><a class="link" id="setNotYou" href="/login/?signout=1">Not you? Sign out</a></p>
     </form>
@@ -339,7 +344,7 @@
     $('setTo').textContent = email;
     $('setNotYou').textContent = mode === 'new' ? 'Use a different email' : 'Not you? Sign out';
     $('setNotYou').setAttribute('href', mode === 'new' ? '#' : '/login/?signout=1');
-    $('newpw').value = '';
+    $('newpw').value = ''; $('newpw2').value = '';
     show('setpw'); hush();
     $('newpw').focus();
   }
@@ -468,6 +473,7 @@
       e.preventDefault();
       var pw = $('newpw').value;
       if (pw.length < 8) { say('bad', 'Make the password at least 8 characters.'); $('newpw').focus(); return; }
+      if ($('newpw2').value !== pw) { say('bad', 'The two passwords don&rsquo;t match. Type the same one in both boxes.'); $('newpw2').select(); return; }
       $('setGo').disabled = true;
       if (!current) {
         // No account yet: create it with this password. With "Confirm

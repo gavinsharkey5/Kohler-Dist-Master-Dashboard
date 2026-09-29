@@ -11,15 +11,17 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
-- [ ] **Passwords without a code: run the new SQL + one switch** (Gavin):
-  Supabase -> SQL Editor -> paste
-  `supabase/migrations/20260929090000_password_signup.sql` whole -> Run
-  ("Success. No rows returned."). Then Authentication -> Sign In /
-  Providers -> Email -> "Confirm email" OFF -> Save. After both, a new
-  person's first sign-in is "Create your password" with no email at all,
-  and every later sign-in is email + password. Accounts that signed in
-  by code before today get the code once more, then a password (or
-  delete them under Authentication -> Users to skip that). (2026-09-29)
+- [ ] **Passwords without a code: run the fix SQL** (Gavin): Supabase ->
+  SQL Editor -> paste `supabase/migrations/20260929120000_password_fix.sql`
+  whole -> Run ("Success. No rows returned."). It corrects the check that
+  showed "Welcome back" to an account that had never created a password.
+  Also confirm Authentication -> Sign In / Providers -> Email -> "Confirm
+  email" is OFF. After that, a new person's first sign-in is "Create your
+  password" (with a Confirm box) and no email at all; every later sign-in
+  is email + password. Your own account, made by code before today, gets
+  the code ONE more time and then "Create your password" -- or delete it
+  under Authentication -> Users -> your email -> Delete user, and sign in
+  fresh as a new account. (2026-09-29)
 
 - [ ] **Designed sign-in email** (Gavin, optional): paste
   `supabase/email/magic-link.html` whole into Supabase -> Authentication
