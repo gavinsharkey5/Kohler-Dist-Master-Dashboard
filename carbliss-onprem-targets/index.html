@@ -89,6 +89,8 @@ main{max-width:1200px;margin:20px auto 60px;padding:0 16px}
 /* ---- table ---- */
 .table-panel{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:22px}
 .table-scroll{overflow-x:auto}
+/* a signed-in rep's page: every row is theirs, so the Rep column says nothing (2026-09-30) */
+html.kdh-rep .col-rep{display:none}
 table{width:100%;min-width:820px;border-collapse:collapse;font-size:13px}
 thead th{position:sticky;top:0;background:#191B23;text-align:left;padding:9px 10px;font-size:10px;text-transform:uppercase;
   letter-spacing:.04em;color:var(--ink-soft);border-bottom:1px solid var(--line);cursor:pointer;white-space:nowrap;user-select:none;z-index:2}
@@ -145,8 +147,16 @@ footer b{color:var(--ink)}
 
 @media(max-width:620px){
   .toolbar{padding:12px}
-  .tgroup input[type=search], .tgroup input[type=text]{min-width:160px}
+  /* phones (2026-09-30): tiles two-up across the full width, filters full width */
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stats > .stat:nth-child(3):last-child{grid-column:1 / -1}
+  .tgroup{flex:1 1 100%;width:100%}
+  .tgroup input[type=search], .tgroup input[type=text], .tgroup select, .tgroup input[type=number]{min-width:0;width:100%}
   .pitch-row td{padding:14px}
+  /* the account name stays put while the numbers scroll sideways */
+  .table-scroll th:first-child,.table-scroll td:first-child{position:sticky;left:0;z-index:1;background:var(--card);min-width:150px;max-width:190px;box-shadow:2px 0 0 var(--line)}
+  .table-scroll thead th:first-child{z-index:2}
+  .pitch-row td:first-child{position:static;min-width:0;max-width:none;box-shadow:none}
 }
 </style>
 <script>try{var t=localStorage.getItem('kdh_theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
@@ -199,7 +209,7 @@ footer b{color:var(--ink)}
     <table id="acctTable">
       <thead><tr>
         <th data-key="name">Account</th>
-        <th data-key="rep">Rep</th>
+        <th data-key="rep" class="col-rep">Rep</th>
         <th data-key="city">Town</th>
         <th data-key="sc" class="num-cell">Sun Cruiser (cs)</th>
         <th data-key="wc" class="num-cell">White Claw (cs)</th>
@@ -353,7 +363,7 @@ function renderTable(){
     if(a.lapsed) badges.push('<span class="badge lapsed">No SC/WC in 2026</span>');
     const mainRow = `<tr class="${state.openPitch===rowId?'is-open':''}">
       <td>${esc(a.name)}${badges.length?' '+badges.join(' '):''}</td>
-      <td>${esc(a.rep)}</td>
+      <td class="col-rep">${esc(a.rep)}</td>
       <td>${esc(a.city||'—')}</td>
       <td class="num-cell">${fmt(a.sunCruiser.cases26)}</td>
       <td class="num-cell">${fmt(a.whiteClaw.cases26)}</td>

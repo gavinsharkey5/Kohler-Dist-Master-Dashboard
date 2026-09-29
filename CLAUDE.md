@@ -633,6 +633,38 @@ banners or colours). What holds now:
   ui_test / mgr_test / lock_test2 / team_test / dm_test updated for the
   menu and chip, mgr_desktop.mjs (Manager Mode unchanged).
 
+## Responsive formatting cleanup: Tap Tracker panels and friends (2026-09-30)
+
+Gavin's targeted brief (keep the design; fix the formatting). Tap tracker
+(`isellbeer/tap-survey-tracking/index.html`; the generator only replaces
+the data script, so these survive a refresh):
+- The drill panels ("Accounts needing a resurvey", "Taps the iSellBeer
+  app has on the wrong side", every other `renderDrill` / `brandListDrill`
+  panel) have a two-part head: `.drill-text` (title + count, the
+  description at full width, one "Tap an account to open it" hint) and
+  `.drill-acts` (Show in list, Close). One row on desktop; stacked on
+  phones (≤760px). Never the description squeezed beside the buttons.
+- On phones the drill table renders as one labelled row per account:
+  the cells carry `data-l` ("Ours", "Theirs", the extra column's label,
+  the competitor-brands label, "Visited") and CSS shows them as lines;
+  the mix bar is hidden there (the numbers say it). A panel with 9+ rows
+  gets class `long` and scrolls inside (70vh); a short one sizes itself.
+- Wording: resurvey sub = "Overdue or due within 7 days of the 60-day
+  resurvey deadline. Most overdue first."; the "Click a row..." tail
+  moved to the hint line.
+- The floating phone Reset (`.fab-reset`) is hidden for good -- the
+  toolbar's Reset All is the control; the Expand all / Collapse all
+  buttons share one row; county chips fill the row (`.cgroups .cgroup`
+  full width, chips two-up); brand names wrap instead of clipping; each
+  account row says "N ours · M theirs" in words (`.acct-ot`) beside the
+  bar; the long explanatory footer is a folded "How to read this page".
+Carbliss: stat tiles two-up across the phone, filters full width, the
+Rep column (`.col-rep`) hidden for a signed-in rep, the account column
+sticky while the table scrolls sideways on phones.
+Checks: scratchpad tap_shots.mjs (both panels at 375/390/430, rep preview
+and manager), sweep.mjs / pager.mjs (viewport-by-viewport screenshots of
+the rep pages), plus the usual suites and mobile_audit.mjs.
+
 ## Rep workspace: "Your follow-ups" strip (2026-09-28)
 
 `rep/index.html` has a `#fuSec` section between the banner and Programs:

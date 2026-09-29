@@ -68,6 +68,15 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-09-30 Responsive cleanup, no redesign: Tap Tracker drill panels
+  stack on phones (title and count, description at full width, actions,
+  then one labelled row per account with Ours / Theirs in words, visit
+  date with its due badge, corrected-tap count); the floating Reset is
+  gone (the toolbar's Reset All stays); county chips and brand names
+  use the full width; the explanatory footer folds. Carbliss tiles and
+  filters fill the phone, the Rep column is hidden for a rep, and the
+  account name stays pinned while the table scrolls. Checked at 375,
+  390, 430, iPad and desktop as a rep and in manager preview.
 - [x] 2026-09-30 Mobile rep experience rebuilt on the Encompass pattern:
   rep home is a short identity line, a "Follow-ups (N)" row that opens
   in place, and compact tool rows; the hub runs Incentives -> supplier ->

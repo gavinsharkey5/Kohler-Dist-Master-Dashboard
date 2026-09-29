@@ -185,9 +185,12 @@ h1{font-family:"Space Grotesk";font-weight:700;font-size:26px;margin:0}
 
 /* ---- tile drill-down panel ---- */
 .drill{background:var(--card);border:1px solid var(--accent);border-radius:14px;margin:12px 0 6px;box-shadow:var(--shadow);overflow:hidden}
-.drill-head{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.drill-head{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.drill-text{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;text-align:left}
+.drill-acts{display:flex;gap:8px;flex:none;align-items:center}
 .drill-head .t{font-family:"Space Grotesk";font-weight:700;font-size:14px}
-.drill-head .s{font-size:11.5px;color:var(--ink-soft);flex:1}
+.drill-head .s{font-size:11.5px;color:var(--ink-soft);line-height:1.45}
+.drill-head .hint{font-size:11.5px;color:var(--ink-soft);opacity:.85}
 .drill-close{background:none;border:1px solid var(--line);color:var(--ink-soft);border-radius:8px;padding:4px 10px;
   font-family:"Space Grotesk";font-size:11px;font-weight:600;cursor:pointer}
 .drill-close:hover{color:var(--ink);border-color:var(--accent)}
@@ -205,7 +208,33 @@ h1{font-family:"Space Grotesk";font-weight:700;font-size:26px;margin:0}
 .drill .d-acct .sub{display:block;font-size:10.5px;color:var(--ink-soft);margin-top:1px}
 .drill .d-mix{width:76px}
 .drill .muted-note{padding:18px;text-align:center;color:var(--ink-soft);font-size:12.5px}
-@media (max-width:760px){.drill .hide-sm{display:none}}
+@media (max-width:760px){.drill .hide-sm{display:none}
+  /* PHONES (2026-09-30): the head stacks -- title and count, description at
+     full width, hint, then the actions -- and the account table becomes one
+     labelled row per account: name + place, Ours / Theirs / extra counts with
+     their labels, the competitor brands, then Visited with its due badge. */
+  .drill-head{flex-direction:column;align-items:stretch;gap:10px;padding:14px 14px 12px}
+  .drill-acts{width:100%;flex-wrap:wrap}
+  .drill-acts .drill-close{min-height:42px;padding:8px 14px;font-size:14px;flex:1 1 auto}
+  .drill-body{max-height:none;overflow:visible}
+  /* a short list sizes the panel; a long one (9+ accounts) scrolls inside it */
+  .drill.long .drill-body{max-height:70vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+  .drill table,.drill tbody,.drill tr,.drill td{display:block;width:auto}
+  .drill thead{display:none}
+  .drill tr.d-row{padding:12px 14px;border-bottom:1px solid var(--line-soft)}
+  .drill tr.d-row:last-child{border-bottom:0}
+  .drill tr td,.drill tr.d-row td{border:0;padding:0;background:none!important}
+  .drill tr.d-row:hover td{background:none}
+  .drill td.d-acct{margin-bottom:4px}
+  .drill td.d-acct .sub{font-size:13px;margin-top:2px}
+  .drill td.num-cell{display:inline-block;text-align:left;font-size:14px;margin:0 14px 2px 0;white-space:nowrap}
+  .drill td[data-l]::before{content:attr(data-l) " ";font-family:inherit;font-weight:500;color:var(--ink-soft)}
+  .drill td.us-cell,.drill td.them-cell{font-weight:700}
+  .drill td.d-ctx,.drill td.d-visit{display:block;font-size:13.5px;color:var(--ink);margin-top:2px;line-height:1.45}
+  .drill td.d-visit br{display:none}
+  .drill td.d-visit .refresh-badge{margin-left:6px}
+}
+@media (min-width:761px){.drill td.d-ctx{color:var(--ink-soft)} .drill td.d-visit{white-space:nowrap}}
 
 .tabs{display:flex;gap:8px;margin:0 0 14px}
 .tabbtn{font-family:"Space Grotesk";font-weight:600;font-size:13.5px;padding:9px 16px;border-radius:10px;cursor:pointer;
@@ -278,6 +307,9 @@ a:has(>.acct-photo){flex:none;display:block;line-height:0;cursor:pointer}
 .mix-bar .m-us{background:var(--us)} .mix-bar .m-them{background:var(--them)} .mix-bar .m-unv{background:var(--unv)}
 .acct-taps{width:56px;flex:none;text-align:right;font-family:"Space Grotesk";font-weight:700;font-size:14px}
 .acct-taps small{display:block;font-family:"Inter";font-weight:400;font-size:9.5px;color:var(--ink-soft);text-transform:uppercase}
+/* Ours / Theirs in words beside the bar (2026-09-30): the colours alone never carry the meaning */
+.acct-ot{display:block;font-family:"Inter";font-weight:400;font-size:11.5px;color:var(--ink-soft);white-space:nowrap;margin-top:2px}
+.acct-ot .o{color:var(--us);font-weight:600} .acct-ot .t{color:var(--them);font-weight:600}
 .acct-visited{width:96px;flex:none;text-align:right;font-size:11px;color:var(--ink-soft)}
 .acct-visited .l{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.05em}
 .refresh-badge{display:inline-block;font-family:"Space Grotesk";font-size:9px;font-weight:700;letter-spacing:.03em;
@@ -372,6 +404,8 @@ footer{margin:22px 0 46px;color:var(--ink-soft);font-size:12px}
 footer hr{border:none;border-top:1px solid var(--line);margin:0 0 13px}
 footer b{color:var(--ink)}
 footer p{margin:0 0 8px}
+.foot-how > summary{font-size:14px;color:var(--ink)}
+.foot-how[open] > summary{margin-bottom:6px}
 
 /* ---- Michelob Bounty Program tab (added 2026-08-19) ---- */
 /* The program's front door: a big amber banner-pill at the very top of
@@ -569,7 +603,8 @@ footer{font-size:13px}
   /* 16px inputs stop iOS Safari's zoom-on-focus */
   .tgroup input,.tgroup select{font-size:16px;padding:11px 12px;min-width:0;width:100%;min-height:44px}
   .tgroup input[type=search]{min-width:0}
-  .tbtn{padding:11px 14px;min-height:44px;font-size:14px;flex:1}
+  .tbtn{padding:11px 14px;min-height:44px;font-size:14px;flex:1 1 45%;white-space:nowrap}
+  .toolbar .tgroup:has(#segmentFilter){flex:1 1 100%}
   .result-count{margin-left:0;flex-basis:100%}
   .finder .tgroup{flex:1 1 100%}
   .finder .tgroup input{min-width:0;width:100%}
@@ -594,14 +629,23 @@ footer{font-size:13px}
   .acct-sub{font-size:13px;white-space:normal}
   .acct-mix{order:5;flex:1 1 40%;width:auto}
   .acct-taps{order:6;width:auto;text-align:left;font-size:16px}
+  .acct-ot{font-size:12.5px}
   .acct-visited{order:7;display:block;width:auto;flex:1;text-align:right;font-size:12.5px}
   .acct-brands{padding:8px 10px 12px}
   .acct-brands table{font-size:14px}
   .drill table{font-size:14px}
   .drill td{padding:10px 8px}
+  /* phones (2026-09-30): county chips fill the row instead of leaving a
+     lone 96px box in white space; brand names wrap instead of clipping */
+  .cgroups .cgroup{flex:1 1 100%}
+  .cchip{flex:1 1 calc(50% - 4px);min-width:0}
+  .cgroup.allg .cchip{flex:1 1 100%}
+  .brow .br-name,.bd-row .bd-name{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.3}
   .rep-stats{display:flex;gap:12px}
   .reset-big{flex:1 1 100%;font-size:16px;padding:13px 20px}
-  .fab-reset{display:flex;position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:60;
+  /* the floating Reset covered account rows and the toolbar's own Reset All
+     (2026-09-30); it stays hidden -- Reset All in the filter toolbar is the control */
+  .fab-reset{display:none;position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:60;
     background:var(--card3);color:var(--ink);border:1px solid var(--accent);border-radius:999px;padding:13px 18px;
     font-family:"Space Grotesk";font-weight:700;font-size:14px;box-shadow:var(--shadow);cursor:pointer;
     align-items:center;gap:6px}
@@ -705,6 +749,8 @@ footer{font-size:13px}
 
   <footer>
     <hr>
+    <!-- The explanations stay, folded (2026-09-30): on a phone they ran five screens long under the account list. -->
+    <details class="kdh-details foot-how"><summary>How to read this page</summary>
     <p><b>How to read this:</b> each rep card shows a pie of their book's tap handles &mdash; Ours vs. Competitor (by <b># of Taps</b>, not just row count, so an account with 3 handles of the same brand counts as 3). Expand a rep to see their accounts &mdash; sorted by tap count by default, or flip that rep&rsquo;s list to most-recent-visit-first with the <b>Sort</b> buttons; expand an account to see its individual brands, each tagged Ours or Competitor.</p>
     <p><b>By Brand tab:</b> the same tap handles, regrouped by brand family instead of rep &mdash; ranked by total taps surveyed. Expand a brand to see its distribution by County/Area, Rep, and City, each with the same Ours-vs-Competitor mix. Use the search box to jump straight to a brand instead of scrolling; any other filter set above (rep, county, status) narrows this view too, so you can e.g. see one rep's distribution of a single brand.</p>
     <p><b>60-day resurvey warning:</b> reps are expected to resurvey every account within 60 days. An account's "Visited" date turns into <span class="refresh-badge soon" style="cursor:default">Due in Nd</span> starting 7 days out, and <span class="refresh-badge overdue" style="cursor:default">Overdue Nd</span> once past 60 &mdash; both shown on the account row, rolled up as a count on each rep's card, and totaled in the "60-Day Resurvey" tile above. This is computed live against today's date in your browser, not baked into the data export, so it stays accurate between refreshes even if the underlying survey data doesn't change.</p>
@@ -712,6 +758,7 @@ footer{font-size:13px}
     <p id="photoNote"><b>Photos:</b> shown per account using the real photo link behind each survey's "Photos" cell &mdash; a plain CSV export of this same report flattens that link to text, so a future refresh from a .csv (instead of the full mediator workbook) would lose photos again.</p>
     <p><b>What&rsquo;s on tap now, not everything ever surveyed:</b> an account can be surveyed more than once, and every number here &mdash; each account&rsquo;s handles, the rep and brand rollups, the tiles and target lists &mdash; counts only its <b>most recent</b> survey pass. Earlier passes are never added on top, so a brand poured at both visits counts once, and a brand since taken off the wall doesn&rsquo;t count at all. <b id="resurveyNote"></b></p>
     <p><b>Survey history:</b> an account surveyed more than once carries a <span class="hist-badge" style="cursor:default">&#8635; N passes</span> badge on its row. Expand the account and open <b>Survey history</b> to page through every pass on record, see each one&rsquo;s own lineup and handle count, and read what changed &mdash; brands added, removed, and retained &mdash; between the previous pass and today&rsquo;s. Nothing in that section feeds any total on this page.</p>
+    </details>
   </footer>
 
 </div>
@@ -1032,7 +1079,7 @@ footer{font-size:13px}
     targets:  { title:'Accounts to target', sub:'3+ competitor handles and no more than 1 of ours — the biggest walls to go take.' },
     flips:    { title:'One handle from majority', sub:'Converting a single competitor handle makes these accounts majority-Kohler.' },
     warm:     { title:'Warm accounts — we already pour here', sub:'Competitor handles at accounts where Kohler already has at least one line. The door is open.' },
-    resurvey: { title:'Accounts needing a resurvey', sub:'Past (or within 7 days of) the 60-day resurvey window, most overdue first.' },
+    resurvey: { title:'Accounts needing a resurvey', sub:'Overdue or due within 7 days of the 60-day resurvey deadline. Most overdue first.' },
     zeroUs:   { title:'Accounts with zero Kohler handles', sub:'Every surveyed handle here is a competitor’s. Nowhere to go but up.' },
     noPhoto:  { title:'Accounts with no photo on file', sub:'No tap photo to review before walking in — worth snapping one on the next visit.' },
   };
@@ -1057,11 +1104,11 @@ footer{font-size:13px}
         return '<tr class="d-row" data-goto="'+esc(a.dba)+'" title="Show this account in the list below">'+
           '<td class="d-acct"><b>'+esc(a.dba)+'</b><span class="sub">'+esc(a.county)+(a.city?' · '+esc(a.city):'')+(showRep?' · '+esc(a.rep):'')+(a.photo?'':' · ⚠ no photo')+'</span></td>'+
           '<td class="d-mix hide-sm">'+mix+'</td>'+
-          '<td class="num-cell us-cell">'+ce0(a.us)+'</td>'+
-          '<td class="num-cell them-cell">'+ce0(a.them)+'</td>'+
-          (brandCol? '<td class="num-cell">'+brandCol.fn(a)+'</td>':'')+
-          '<td class="hide-sm">'+((opts.contextFn? opts.contextFn(a) : esc(a.topThem))||'—')+'</td>'+
-          '<td style="white-space:nowrap">'+esc(a.visitedDisplay)+(a.refresh?'<br>'+refreshBadge(a.refresh):'')+'</td>'+
+          '<td class="num-cell us-cell" data-l="Ours">'+ce0(a.us)+'</td>'+
+          '<td class="num-cell them-cell" data-l="Theirs">'+ce0(a.them)+'</td>'+
+          (brandCol? '<td class="num-cell d-extra" data-l="'+esc(brandCol.label)+'">'+brandCol.fn(a)+'</td>':'')+
+          '<td class="d-ctx" data-l="'+esc((opts.contextLabel||'Top competitor brands').replace(/ \(handles\)$/,''))+'">'+((opts.contextFn? opts.contextFn(a) : esc(a.topThem))||'—')+'</td>'+
+          '<td class="d-visit" data-l="Visited">'+esc(a.visitedDisplay)+(a.refresh?'<br>'+refreshBadge(a.refresh):'')+'</td>'+
         '</tr>';
       }).join('')+'</tbody></table>';
   }
@@ -1112,7 +1159,7 @@ footer{font-size:13px}
           var b=a.rightsBrands||{}; return esc(Object.keys(b).sort(function(x,y){return b[y]-b[x];}).slice(0,2).map(function(f){return f+' ('+b[f]+')';}).join(', ')); } } };
     }
     if(k==='appWrong'){
-      return { title:'Taps the iSellBeer app has on the wrong side', sub:'The audit corrected these against the product catalog and territory rules — what the app shows at these accounts isn’t the real score.',
+      return { title:'Taps the iSellBeer app has on the wrong side', sub:'Corrected by the audit against the product catalog and territory rules. The app’s score at these accounts isn’t the real one.',
         rows:cc.appWrong, opts:{ brandCol:{label:'Corrected taps', fn:function(a){ return ce0(a.flippedTaps); }} } };
     }
     if(k==='segEdge' && cc.segEdge){
@@ -1126,8 +1173,8 @@ footer{font-size:13px}
   }
 
   function brandListDrill(el, title, sub, rows, cols){
-    el.innerHTML = '<div class="drill"><div class="drill-head"><span class="t">'+title+' ('+ce0(rows.length)+')</span>'+
-      '<span class="s">'+sub+'</span><button class="drill-close" type="button">✕ Close</button></div>'+
+    el.innerHTML = '<div class="drill"><div class="drill-head"><div class="drill-text"><span class="t">'+title+' ('+ce0(rows.length)+')</span>'+
+      '<span class="s">'+sub+'</span></div><div class="drill-acts"><button class="drill-close" type="button">✕ Close</button></div></div>'+
       '<div class="drill-body"><table><thead><tr>'+cols.map(function(c){return '<th'+(c.num?' class="num-cell"':'')+'>'+c.label+'</th>';}).join('')+'</tr></thead><tbody>'+
       rows.map(function(r){ return '<tr>'+cols.map(function(c){ return '<td'+(c.num?' class="num-cell"':'')+'>'+c.fn(r)+'</td>'; }).join('')+'</tr>'; }).join('')+
       '</tbody></table></div></div>';
@@ -1152,9 +1199,9 @@ footer{font-size:13px}
     }
     if(state.drill==='untapped'){
       var el0 = document.getElementById('drill');
-      el0.innerHTML = '<div class="drill"><div class="drill-head"><span class="t">Authorized but not pouring ('+ce0(cc.untapped.length)+')</span>'+
-        '<span class="s">Kohler brand families with sell rights in a county in scope, and zero surveyed handles anywhere in scope — distribution white space the survey proves.</span>'+
-        '<button class="drill-close" type="button">✕ Close</button></div>'+
+      el0.innerHTML = '<div class="drill"><div class="drill-head"><div class="drill-text"><span class="t">Authorized but not pouring ('+ce0(cc.untapped.length)+')</span>'+
+        '<span class="s">Kohler brand families with sell rights in a county in scope, and zero surveyed handles anywhere in scope — distribution white space the survey proves.</span></div>'+
+        '<div class="drill-acts"><button class="drill-close" type="button">✕ Close</button></div></div>'+
         '<div class="drill-body"><table><thead><tr><th>Brand</th><th class="hide-sm">Can sell in</th></tr></thead><tbody>'+
         cc.untapped.map(function(c){ return '<tr><td class="d-acct"><b>'+esc(c.name)+'</b></td><td class="hide-sm" style="color:var(--ink-soft)">'+esc(c.counties.join(', '))+'</td></tr>'; }).join('')+
         '</tbody></table></div></div>';
@@ -1168,9 +1215,13 @@ footer{font-size:13px}
     // ("tap an insight -> see the accounts", per Gavin 2026-08-18) -- same
     // account-filter mechanism the 🎯 target builder uses.
     var listBtn = d.rows.length ? '<button class="drill-close tolist" id="drillToList" type="button" title="Filter the account list below to just these accounts">📋 Show in list</button>' : '';
-    el.innerHTML = '<div class="drill">'+
-      '<div class="drill-head"><span class="t">'+d.title+' ('+ce0(d.rows.length)+')</span><span class="s">'+d.sub+' Click a row to jump to that account.</span>'+
-      listBtn+'<button class="drill-close" type="button">✕ Close</button></div>'+
+    // Head (2026-09-30): title + count, the description on its own line at
+    // full width, one short hint, then the actions -- stacked on phones,
+    // one row on a desktop. Never the description squeezed beside buttons.
+    el.innerHTML = '<div class="drill'+(d.rows.length>8?' long':'')+'">'+
+      '<div class="drill-head"><div class="drill-text"><span class="t">'+d.title+' ('+ce0(d.rows.length)+')</span><span class="s">'+d.sub+'</span>'+
+      (d.rows.length ? '<span class="hint">Tap an account to open it in the list below.</span>' : '')+'</div>'+
+      '<div class="drill-acts">'+listBtn+'<button class="drill-close" type="button">✕ Close</button></div></div>'+
       '<div class="drill-body">'+acctTableHtml(d.rows, d.opts)+'</div></div>';
     el.querySelector('.drill-close:not(.tolist)').addEventListener('click', function(){ state.drill=null; state.drillParam=null; render(); });
     var tl = document.getElementById('drillToList');
@@ -1970,7 +2021,7 @@ footer{font-size:13px}
       photoHtml(a.photo, a.dba)+
       '<div class="acct-info"><div class="acct-name">'+esc(a.dba)+'</div><div class="acct-sub">'+esc(a.county)+(a.city?' &middot; '+esc(a.city):'')+'</div></div>'+
       '<div class="acct-mix">'+mixHtml+'</div>'+
-      '<div class="acct-taps">'+ce0(a.taps)+'<small>taps</small></div>'+
+      '<div class="acct-taps">'+ce0(a.taps)+'<small>taps</small><span class="acct-ot"><b class="o">'+ce0(a.us)+' ours</b> · <b class="t">'+ce0(a.them)+' theirs</b></span></div>'+
       '<div class="acct-visited"><span class="l">Visited</span>'+esc(a.visitedDisplay)+refreshBadge(a.refresh)+histBadge(a)+'</div>'+
     '</div>';
     var body = '';
@@ -2134,7 +2185,7 @@ footer{font-size:13px}
   function renderRepsTab(container, records){
     var reps = groupByRep(records);
     var acctCount = 0; reps.forEach(function(r){ acctCount += r.accountsList.length; });
-    document.getElementById('resultCount').textContent = ce0(tapsIn(records))+' taps across '+ce0(acctCount)+' accounts, '+ce0(reps.length)+' reps';
+    document.getElementById('resultCount').textContent = ce0(tapsIn(records))+' taps across '+ce0(acctCount)+(acctCount===1?' account, ':' accounts, ')+ce0(reps.length)+(reps.length===1?' rep':' reps');
 
     if(!reps.length){
       container.innerHTML = '<div class="empty-note">No taps match these filters.</div>';
