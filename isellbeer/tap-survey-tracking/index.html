@@ -677,11 +677,9 @@ footer{font-size:13px}
 
 <div class="wrap" style="padding-top:20px">
 
-  <button class="mb-banner" id="michBanner" type="button" title="Open the Michelob Ultra Bounty Program target lists">
-    <span class="mb-banner-main">🎯 Michelob Bounty Program</span>
-    <span class="mb-banner-sub" id="michBannerSub"></span>
-    <span class="mb-banner-cta" id="michBannerCta">View my targets →</span>
-  </button>
+  <!-- The Michelob Bounty Program banner was removed here on 2026-09-30 (per Gavin). The tab's
+       renderer and its embedded data (generate_michelob.py) stay in the file, unreachable, so a
+       future banner or link can bring the view back without a rebuild. -->
 
   <div class="cc-h"><span class="t" id="ccTitle">Kohler Tap Business</span><span class="s" id="ccHint"></span></div>
   <div class="rep-pills" id="dmPills"></div>
@@ -2304,8 +2302,8 @@ footer{font-size:13px}
     state.tab = tab;
     document.getElementById('tabRep').setAttribute('aria-pressed', tab==='rep');
     document.getElementById('tabBrand').setAttribute('aria-pressed', tab==='brand');
-    document.getElementById('michBanner').classList.toggle('active', tab==='mich');
-    document.getElementById('michBannerCta').textContent = tab==='mich' ? '✕ Back to tap survey' : 'View my targets →';
+    var mb = document.getElementById('michBanner');   // no banner since 2026-09-30
+    if(mb){ mb.classList.toggle('active', tab==='mich'); document.getElementById('michBannerCta').textContent = tab==='mich' ? '✕ Back to tap survey' : 'View my targets →'; }
     document.getElementById('expandAll').textContent = tab==='brand' ? 'Expand all brands' : 'Expand all reps';
     render();
   }
@@ -2315,7 +2313,7 @@ footer{font-size:13px}
   // The bounty program's big top-of-page banner is its front door: click
   // toggles the bounty view (and jumps to it), click again returns to the
   // By Rep survey view.
-  document.getElementById('michBanner').addEventListener('click', function(){
+  if(document.getElementById('michBanner')) document.getElementById('michBanner').addEventListener('click', function(){
     if(state.tab === 'mich'){ setTab('rep'); return; }
     setTab('mich');
     var el = document.getElementById('michelob');
@@ -2323,6 +2321,7 @@ footer{font-size:13px}
   });
   (function(){
     var subEl = document.getElementById('michBannerSub');
+    if(!subEl) return;
     var n = (MICH.accounts||[]).length;
     if(!n){ subEl.textContent = ''; return; }
     var tops = (MICH.accounts||[]).filter(function(a){ return a.top; }).length;

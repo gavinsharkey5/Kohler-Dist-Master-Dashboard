@@ -661,6 +661,9 @@ the data script, so these survive a refresh):
 Carbliss: stat tiles two-up across the phone, filters full width, the
 Rep column (`.col-rep`) hidden for a signed-in rep, the account column
 sticky while the table scrolls sideways on phones.
+The Michelob Bounty Program banner (`#michBanner`) is REMOVED (Gavin,
+2026-09-30); the tab's renderer and embedded data stay, unreachable, and
+every reference is null-guarded, so generate_michelob.py still runs clean.
 Checks: scratchpad tap_shots.mjs (both panels at 375/390/430, rep preview
 and manager), sweep.mjs / pager.mjs (viewport-by-viewport screenshots of
 the rep pages), plus the usual suites and mobile_audit.mjs.
