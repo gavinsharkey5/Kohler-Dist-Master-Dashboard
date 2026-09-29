@@ -522,10 +522,21 @@ back). What changed, and the rules that now hold:
   Half") instead of first-word fragments.
 - REP WORKSPACE: MPO tiles carry `rep=` for a manager viewing a rep
   (`setMpoHref`), so the tracker opens on that rep.
+- AS-REP MODE (2026-09-29, Gavin: "on rep view the rep can only see
+  their data"): a MANAGER who arrives at an MPO tracker or the hub with
+  `rep=` in the hash (the workspace tiles) sees that rep's page exactly
+  as the rep would -- guided.js `asRep` (+ `html.g-asrep` hides
+  .g-viewbar / .js-back / .js-startover, view forced to rep) and hub
+  `state.asRep` (Rep mode forced; no "Choose another rep", "By program"
+  or Rep/Manager toggle). The only way out is the top-bar chip's
+  "Change" (now a BUTTON: `kdhViewing(name, fn)`), which returns to the
+  picker with the manager tools back; a rep picked from the picker keeps
+  them (that is the "unless otherwise stated"). `.kdh-b.kdh-back` is now
+  a solid brand button, 40px (44px on phones). Test: asrep_test.mjs.
 Screens: scratchpad smoke.mjs (14 pages x desktop/phone x light/dark,
 console errors + horizontal overflow). Tags: kdh.css/skin/rep.css
-20260929a, kdh-user.js 20260929d, hub.js/css 20260929b, guided.js/css
-20260929c.
+20260929b (kdh.css) / 20260929a, kdh-user.js 20260929e, hub.js 20260929c, guided.js
+20260929d.
 
 ## Rep workspace: "Your follow-ups" strip (2026-09-28)
 

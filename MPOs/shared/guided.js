@@ -69,6 +69,20 @@ var uid = 0;
    tracker's v3 flow uses. */
 var view = 'rep';             // 'rep' | 'program'
 var activeRep = null;
+// AS-REP (2026-09-29, per Gavin): a manager who opens the tracker FOR one
+// rep (the workspace's tiles, the hub) sees exactly that rep's page -- no
+// View by Rep / View by Program bar, no Back to Reps, no Start Over, no
+// other reps. The "Viewing <rep> · Change" chip in the top bar is the one
+// way out; Change (or the picker) turns the manager tools back on.
+var asRep = false;
+function decorateAsRep(){
+  var root = document.documentElement;
+  root.classList.toggle('g-asrep', !!asRep);
+  if(document.getElementById('g-asrep-style')) return;
+  var st = document.createElement('style'); st.id = 'g-asrep-style';
+  st.textContent = '.g-asrep .g-viewbar,.g-asrep .js-back,.g-asrep .js-startover{display:none!important}';
+  document.head.appendChild(st);
+}
 var openProgram = null;
 var sortMode = 'progress';    // 'progress' | 'name' | 'remaining'
 
@@ -168,7 +182,7 @@ function pushState(){
 
 function go(next, opts){
   if('view' in next) view = next.view;
-  if('rep' in next) activeRep = next.rep;
+  if('rep' in next){ activeRep = next.rep; if(!next.rep){ asRep = false; decorateAsRep(); } }
   if('program' in next) openProgram = next.program;
   applyLock();
   if(!opts || !opts.silent) pushState();
@@ -592,7 +606,7 @@ function programBody(o){
    ================================================================== */
 function render(){
   if(!mount) return;
-  try{ if(window.kdhViewing) window.kdhViewing(view==='rep' && activeRep && !lockedRep() ? activeRep : '', '#view=rep'); }catch(e){}
+  try{ if(window.kdhViewing) window.kdhViewing(view==='rep' && activeRep && !lockedRep() ? activeRep : '', function(){ asRep = false; decorateAsRep(); go({view:'rep', rep:null, program:null}); }); }catch(e){}
   applyLock(); decorateLock();
   var html;
   if(view==='program') html = screenProgram();
@@ -709,6 +723,9 @@ var API = {
     // to a rep's programs (2026-09-29, per Gavin) -- unless the link names
     // a rep or a program. View by Program is still a tap away.
     if(T && !activeRep && !openProgram) view = 'rep';
+    // A manager sent here for ONE rep sees that rep's page and nothing else.
+    if(!lockedRep() && KDH_USER && KDH_USER.role === 'manager' && s.rep){ asRep = true; view = 'rep'; openProgram = null; }
+    decorateAsRep();
     applyLock();
     wire();
     return API;

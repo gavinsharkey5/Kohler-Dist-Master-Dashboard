@@ -91,6 +91,9 @@ device, a decision).
   who report to you) or Everyone or one pill per DM; Open their hub /
   Preview as rep links. Linked from the manager page and the rep
   workspace top bar. Migration run and reports_to verified live.
+- [x] 2026-09-29 A manager opening a tracker or the hub for one rep sees
+  exactly that rep's page (no view bar, no other reps); the "Viewing
+  <rep> · Change" chip is the way out. Bigger, solid Back button.
 - [x] 2026-09-29 UI + navigation overhaul: one readable font (no
   condensed type, no all-caps), light default, banners off every working
   screen, Back buttons that name where they go, a "Viewing <rep>" chip

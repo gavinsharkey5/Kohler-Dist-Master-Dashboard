@@ -99,8 +99,8 @@ html[data-theme="dark"] .kdh-chip.kdh-preview{color:var(--kdh-gold)}
 .kdh-b.kdh-user{cursor:default}
 .kdh-b.kdh-user:hover{background:transparent}
 .kdh-b svg{width:16px;height:16px;flex:none}
-.kdh-b.kdh-back{height:36px;padding:0 12px 0 8px;font-weight:600;color:var(--kdh-brand);border-color:var(--kdh-brand-soft);background:var(--kdh-brand-soft)}
-.kdh-b.kdh-back:hover{background:var(--kdh-brand);color:var(--kdh-brand-ink);border-color:var(--kdh-brand)}
+.kdh-b.kdh-back{height:40px;padding:0 14px 0 10px;font-size:14.5px;font-weight:700;color:var(--kdh-brand-ink);border-color:var(--kdh-brand);background:var(--kdh-brand);box-shadow:var(--kdh-shadow)}
+.kdh-b.kdh-back:hover{background:var(--kdh-brand-2);border-color:var(--kdh-brand-2);color:var(--kdh-brand-ink)}
 .kdh-b.kdh-back svg{margin-left:-2px;width:18px;height:18px}
 @media (max-width:599px){
   .kdh-bar-in{padding:0 14px;height:50px;gap:8px}
@@ -110,7 +110,7 @@ html[data-theme="dark"] .kdh-chip.kdh-preview{color:var(--kdh-gold)}
   .kdh-chip{font-size:12.5px;padding:0 8px;height:30px}
   .kdh-b.kdh-hide-sm{display:none}
   .kdh-b{padding:0 8px;font-size:13px}
-  .kdh-b.kdh-back{height:40px;padding:0 12px 0 8px;font-size:14px}
+  .kdh-b.kdh-back{height:44px;padding:0 12px 0 8px;font-size:14.5px}
   .kdh-b.kdh-back span{white-space:nowrap}
   /* with a Back button in the bar, the wordmark gives way to the badge alone */
   .kdh-bar:has(.kdh-back) .kdh-logo{font-size:0;gap:0}

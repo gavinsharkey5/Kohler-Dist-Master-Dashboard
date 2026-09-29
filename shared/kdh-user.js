@@ -149,12 +149,14 @@
   // "Viewing <rep>" in the top bar: a manager looking at one rep's page
   // says so next to the way back. changeHref (optional) is where "Change"
   // goes -- the page's own picker. Pass '' to clear.
-  function viewing(name, changeHref) {
+  function viewing(name, change) {
     var slot = document.getElementById('kdhViewing');
     if (!slot) return;
     var u = user();
     if (!name || !u || u.role !== 'manager' || u.preview) { slot.innerHTML = ''; return; }
-    slot.innerHTML = '<span class="kdh-chip">Viewing <b>' + esc(name) + '</b>' + (changeHref ? '<a href="' + esc(changeHref) + '">Change</a>' : '') + '</span>';
+    var ctl = typeof change === 'function' ? '<button type="button" id="kdhViewingChange">Change</button>' : (change ? '<a href="' + esc(change) + '">Change</a>' : '');
+    slot.innerHTML = '<span class="kdh-chip">Viewing <b>' + esc(name) + '</b>' + ctl + '</span>';
+    if (typeof change === 'function') { var b = document.getElementById('kdhViewingChange'); if (b) b.addEventListener('click', change); }
   }
   // Kept for the pages that call it by the old name.
   function backBar() { chrome(); }

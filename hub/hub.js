@@ -870,10 +870,10 @@ function topbar(){
     ${state.view!=='home' ? `<div class="navrow">
       <div class="navl">${rep && onRep ? `<span class="nav-rep">👤 ${E(state.peek && state.view==='detail' ? state.peek : rep)}</span>` : ''}</div>
       <div class="navr">
-        ${rep && state.view!=='rep' ? `<button class="nbtn" data-act="my-programs">${LOCKED_REP ? 'My programs' : 'All of ' + E(rep.split(' ')[0]) + '’s programs'}</button>` : ''}
-        ${!LOCKED_REP && state.view!=='home' ? `<button class="nbtn quiet" data-act="home">Choose another rep</button>` : ''}
-        ${isMgr() && !(state.view==='programs' || state.view==='program') ? `<button class="nbtn quiet" data-act="programs">By program</button>` : ''}
-        ${isMobile() || LOCKED_REP ? '' : `<span class="modeseg" role="group" aria-label="How much detail"><button class="mseg${isMgr()?'':' active'}" data-act="set-mode" data-mode="rep">Rep view</button><button class="mseg${isMgr()?' active':''}" data-act="set-mode" data-mode="manager">Manager view</button></span>`}
+        ${rep && state.view!=='rep' ? `<button class="nbtn" data-act="my-programs">${(LOCKED_REP || state.asRep) ? 'All programs' : 'All of ' + E(rep.split(' ')[0]) + '’s programs'}</button>` : ''}
+        ${!LOCKED_REP && !state.asRep && state.view!=='home' ? `<button class="nbtn quiet" data-act="home">Choose another rep</button>` : ''}
+        ${isMgr() && !state.asRep && !(state.view==='programs' || state.view==='program') ? `<button class="nbtn quiet" data-act="programs">By program</button>` : ''}
+        ${isMobile() || LOCKED_REP || state.asRep ? '' : `<span class="modeseg" role="group" aria-label="How much detail"><button class="mseg${isMgr()?'':' active'}" data-act="set-mode" data-mode="rep">Rep view</button><button class="mseg${isMgr()?' active':''}" data-act="set-mode" data-mode="manager">Manager view</button></span>`}
       </div>
     </div>` : ''}
   </div>`;
@@ -2724,7 +2724,7 @@ function render(){
   document.body.classList.toggle('is-home', state.view==='home');
   root.innerHTML = topbar() + `<main class="wrap">${body}</main>`;
   // The top bar says whose page this is (a manager on a rep's screen).
-  try{ if(window.kdhViewing) window.kdhViewing((state.view==='rep'||state.view==='detail') && !LOCKED_REP ? (state.peek && state.view==='detail' ? state.peek : state.rep) : '', '#'); }catch(e){}
+  try{ if(window.kdhViewing) window.kdhViewing((state.view==='rep'||state.view==='detail') && !LOCKED_REP ? (state.peek && state.view==='detail' ? state.peek : state.rep) : '', function(){ openCards.clear(); state.showEnded = false; state.asRep = false; go({view:'home', rep:null, main:null, cat:null, prog:null, peek:null, from:null}); }); }catch(e){}
   document.title = state.view==='rep' && state.rep ? `${possessive(state.rep)} Incentives & MPOs | Kohler` : 'Incentives & MPO Hub | Kohler Distributing';
   // Kick off any MPO month this screen needs, then re-render once it lands.
   let needed = [];
@@ -2754,9 +2754,9 @@ document.addEventListener('click', e=>{
   const act = t.dataset.act;
   if(t.tagName==='A') e.preventDefault();
   switch(act){
-    case 'home': openCards.clear(); state.showEnded = false; go({view:'home', rep:null, main:null, cat:null, prog:null, peek:null, from:null}); break;
+    case 'home': openCards.clear(); state.showEnded = false; state.asRep = false; go({view:'home', rep:null, main:null, cat:null, prog:null, peek:null, from:null}); break;
     // Picking a name IS the whole landing step: open that rep's dashboard.
-    case 'pick-rep': { const who = LOCKED_REP || t.dataset.rep, tab = isSupport(who) ? 'on' : lastTab();   // support lands on the on-prem MPO
+    case 'pick-rep': { state.asRep = false; const who = LOCKED_REP || t.dataset.rep, tab = isSupport(who) ? 'on' : lastTab();   // support lands on the on-prem MPO
       openCards.clear(); state.showEnded = false;
       go({view:'rep', rep:who, cat:tab, main:tabOf(tab), month:null, prog:null, peek:null, from:null}); break; }
     case 'back-home': go({view:'home', prog:null, peek:null, from:null}); break;
@@ -2792,7 +2792,7 @@ document.addEventListener('click', e=>{
       { const el = document.querySelector('.ra-edit input'); if(el){ el.focus(); el.setSelectionRange(el.value.length, el.value.length); } } break;
     case 'ra-cancel': raEdit = null; render(); break;
     case 'log-more': logMore[t.dataset.key] = !logMore[t.dataset.key]; render(); break;
-    case 'set-mode': if(LOCKED_REP) break; state.mode = (t.dataset.mode==='manager' && !isMobile()) ? 'manager' : 'rep'; persist(); history.replaceState(null, '', hashOf()); render(); break;
+    case 'set-mode': if(LOCKED_REP || state.asRep) break; state.mode = (t.dataset.mode==='manager' && !isMobile()) ? 'manager' : 'rep'; persist(); history.replaceState(null, '', hashOf()); render(); break;
     case 'reset-all': try{ localStorage.removeItem(LS_KEY); sessionStorage.removeItem(TAB_KEY); }catch(e){} openCards.clear(); state.showEnded = false; state.peek = null; state.prog = null; state.rep = null; state.cat = null; state.main = null;
       go({view:'home'}, true); break;
     case 'open': go({view:'detail', prog:t.dataset.prog, from:null, peek:null}); break;
@@ -2842,6 +2842,11 @@ function boot(){
   // `rep=<name>` (a manager previewing someone) and/or `only=inc` (the
   // Incentive Hub tile). Those land where they say.
   const deep = readHash();
+  // A manager sent here for ONE rep (the workspace tiles) gets that rep's
+  // page as the rep sees it: Rep view, no picker/program/mode controls
+  // (2026-09-29, per Gavin). The "Viewing <rep> · Change" chip is the way out.
+  state.asRep = !!(deep.rep && ROSTER.includes(deep.rep) && !LOCKED_REP && KDH_USER && KDH_USER.role === 'manager');
+  if(state.asRep) state.mode = 'rep';
   if((deep.rep && ROSTER.includes(deep.rep)) || TAB_KEYS.includes(deep.only)){ applyHash(); if(state.rep && state.view==='home'){ state.view = 'rep'; state.cat = state.cat || lastTab(); state.main = tabOf(state.cat); applyOnly(); } }
   lockState();                     // a signed-in rep opens straight on their own page
   history.replaceState(null, '', (LOCKED_REP || state.rep || state.only) ? hashOf() : '#');

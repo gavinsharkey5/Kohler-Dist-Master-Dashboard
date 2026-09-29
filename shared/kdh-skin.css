@@ -20,7 +20,7 @@
 
    Page-specific fixes live at the bottom, grouped by page. Keep the
    variable map alphabetical-ish so a new dashboard is easy to add. */
-@import url("kdh.css?v=20260929a");
+@import url("kdh.css?v=20260929b");
 
 /* ---- 2. fonts: every family a dashboard asks for is one of ours ---- */
 @font-face{font-family:"Space Grotesk";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-sans-3.woff2) format("woff2")}
@@ -120,7 +120,8 @@ html.kdh-rep .crumb,
 html.kdh-rep .gx-head .lede,html.kdh-rep .gx-head .eyebrow,html.kdh-rep header .sub,html.kdh-rep .g-eyebrow,
 .nbtn.home{display:none!important}
 /* MPO trackers: the page's own title block repeats what the rep card says; the month pills stay */
-html.kdh-rep body > header{display:none!important}
+html.kdh-rep body > header,html.g-asrep body > header{display:none!important}
+html.g-asrep .monthbar{margin-top:14px}
 html.kdh-rep .monthbar{margin-top:14px}
 html.kdh-rep .g-actions:empty{display:none}
 /* tighter top on every rep page */
