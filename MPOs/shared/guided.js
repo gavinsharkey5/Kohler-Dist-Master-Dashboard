@@ -710,6 +710,10 @@ var API = {
         activeRep = saved.rep || null;
       }
     }
+    // A district manager starts BY REP (their team's picker), then drills
+    // to a rep's programs (2026-09-29, per Gavin) -- unless the link names
+    // a rep or a program. View by Program is still a tap away.
+    if(T && !activeRep && !openProgram) view = 'rep';
     applyLock();
     wire();
     return API;

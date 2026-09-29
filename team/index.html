@@ -17,7 +17,7 @@
 </script>
 <link rel="stylesheet" href="../rep/rep.css?v=20260928c">
 <link rel="stylesheet" href="team.css?v=20260928c">
-<script src="../shared/kdh-user.js?v=20260929a"></script>
+<script src="../shared/kdh-user.js?v=20260929b"></script>
 </head>
 <body>
 <!--
@@ -158,7 +158,7 @@
     (team||[]).forEach(function(t){ byName[ci(t.name)] = t; });
     function ensure(name){ var k = ci(name); if(!reps[k]){ var t = byName[k]||{}; reps[k] = {name:name, dm:t.reports_to||'', title:t.title||'', rows:[], follow:[], done7:0, doneAll:0, skip:0, last:null}; } return reps[k]; }
     // Everyone with a customer base is a rep, marks or not.
-    if(HA && HA.reps) Object.keys(HA.reps).forEach(function(n){ ensure(n); });
+    if(HA && HA.reps) Object.keys(HA.reps).forEach(function(n){ if(!window.kdhIsRep || window.kdhIsRep(n)) ensure(n); });
     if(team) team.forEach(function(t){ if(t.role==='rep' && t.name) ensure(t.name); });
     rows.forEach(function(r){
       if(!r.rep_name) return;

@@ -427,8 +427,18 @@ team" pill; the tap tracker pins `state.dm` to the DM matched against
 DATA.districtManagers (`kdhDmName`) and hides the DM pills/select
 (rep pills within the district stay). Red Bull and Carbliss have no
 DM concept and are unchanged. Test: scratchpad dm_test.mjs (DM, VP and
-Gavin-previewing-a-DM on every page). Tags: hub.js / guided.js /
-kdh-user.js 20260929a.
+Gavin-previewing-a-DM on every page). Tags: hub.js 20260929a, guided.js /
+kdh-user.js 20260929b.
+Two follow-ups the same day: (1) a DM on either MPO tracker always
+STARTS BY REP (their team's picker, then a rep's programs) -- guided.js
+`init` forces view='rep' for a DM unless the link names a rep or a
+program, which is why the landing pages' `#view=program` links still
+open the picker for them; a VP / Gavin still gets Program View. (2)
+`kdhIsRep(name)` in kdh-user.js drops the Encompass house "reps"
+"Default" and "Office Tell Sell" (they are in hub/data/accounts.js as
+reps) from the rep workspace switcher, the Team Activity roster and the
+Carbliss rep filter; accounts.js itself is untouched so the account
+layer still knows those accounts.
 
 ## Rep workspace: "Your follow-ups" strip (2026-09-28)
 

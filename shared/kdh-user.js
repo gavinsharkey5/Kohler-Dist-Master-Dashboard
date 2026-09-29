@@ -173,6 +173,11 @@
     if (!u || u.role !== 'manager' || !u.name || !dmNames || !dmNames.length) return null;
     return matchName(u.name, dmNames);
   }
+  // Encompass "reps" that are house accounts, not people (2026-09-29, per
+  // Gavin): never offered in a rep list.
+  var NOT_REPS = ['default', 'office tell sell'];
+  function isRep(name) { return NOT_REPS.indexOf(String(name || '').trim().toLowerCase()) < 0; }
+  global.kdhIsRep = isRep;
   global.kdhTeam = team;
   global.kdhDmName = dmName;
   global.kdhSetPreview = setPreview;

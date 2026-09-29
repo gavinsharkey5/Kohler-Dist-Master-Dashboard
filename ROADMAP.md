@@ -91,6 +91,9 @@ device, a decision).
   who report to you) or Everyone or one pill per DM; Open their hub /
   Preview as rep links. Linked from the manager page and the rep
   workspace top bar. Migration run and reports_to verified live.
+- [x] 2026-09-29 DMs open both MPO trackers by rep (their team's picker,
+  then the rep's programs); "Default" and "Office Tell Sell" no longer
+  appear in any rep list.
 - [x] 2026-09-29 District managers see only their own team: the hub
   picker, both MPO trackers, the rep workspace switcher, Team Activity
   and the tap tracker are scoped to their reps; VPs and Gavin still see
