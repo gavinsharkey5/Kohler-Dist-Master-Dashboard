@@ -69,9 +69,14 @@ html[data-theme="dark"]{color-scheme:dark}
    </div></div> */
 .kdh-bar{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--kdh-surface) 92%,transparent);backdrop-filter:saturate(1.2) blur(8px);-webkit-backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid var(--kdh-border);font-family:var(--kdh-body);font-size:15px;line-height:1.4;color:var(--kdh-text)}
 .kdh-bar *{box-sizing:border-box}
-.kdh-bar-in{max-width:var(--kdh-max);margin:0 auto;padding:0 20px;height:52px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.kdh-bar-in{max-width:var(--kdh-max);margin:0 auto;padding:0 20px;height:52px;display:flex;align-items:center;justify-content:flex-end;gap:12px}
+.kdh-bar-in > .kdh-logo{margin-right:auto}
+/* the Viewing / Previewing chip is its own child of the bar (not inside the
+   actions), so on a phone it can take a full row of its own */
+#kdhViewing:empty{display:none}
+#kdhViewing,#kdhPreviewChip{order:1} .kdh-bar-in > .kdh-acts{order:2}
 .kdh-bar.wide .kdh-bar-in{max-width:none}
-.kdh-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--kdh-text);font-family:var(--kdh-head);font-size:16px;font-weight:700;letter-spacing:0;text-transform:none;white-space:nowrap;min-width:0}
+.kdh-logo{display:flex;align-items:center;gap:10px;min-height:40px;text-decoration:none;color:var(--kdh-text);font-family:var(--kdh-head);font-size:16px;font-weight:700;letter-spacing:0;text-transform:none;white-space:nowrap;min-width:0}
 .kdh-logo img{width:28px;height:28px;border-radius:6px;border:1px solid var(--kdh-border);background:#fff;object-fit:contain;flex:none}
 .kdh-logo small{font-family:var(--kdh-body);font-weight:500;color:var(--kdh-text-3);text-transform:none;letter-spacing:0;font-size:13.5px;margin-left:2px;overflow:hidden;text-overflow:ellipsis}
 .kdh-logo small::before{content:"/";color:var(--kdh-border-2);margin-right:8px}
@@ -82,7 +87,7 @@ html[data-theme="dark"]{color-scheme:dark}
 .kdh-b.kdh-outline:hover{border-color:var(--kdh-border-2)}
 .kdh-b.kdh-primary{background:var(--kdh-brand);color:var(--kdh-brand-ink);border-color:var(--kdh-brand)}
 .kdh-b.kdh-primary:hover{background:var(--kdh-brand-2);border-color:var(--kdh-brand-2)}
-.kdh-b.kdh-icon{width:32px;padding:0;justify-content:center;border-color:var(--kdh-border);background:var(--kdh-surface)}
+.kdh-b.kdh-icon{width:36px;height:36px;padding:0;justify-content:center;border-color:var(--kdh-border);background:var(--kdh-surface)}
 .kdh-b.kdh-icon svg{width:16px;height:16px}
 .kdh-b.kdh-icon .moon{display:none}
 html[data-theme="dark"] .kdh-b.kdh-icon .sun{display:none} html[data-theme="dark"] .kdh-b.kdh-icon .moon{display:block}
@@ -91,7 +96,7 @@ html[data-theme="dark"] .kdh-b.kdh-icon .sun{display:none} html[data-theme="dark
 /* who is being viewed (a manager on a rep's page) -- distinct from who is signed in */
 .kdh-chip{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px 0 8px;border-radius:999px;background:var(--kdh-brand-soft);color:var(--kdh-brand);font-size:13.5px;font-weight:600;white-space:nowrap;border:1px solid transparent}
 .kdh-chip b{font-weight:700}
-.kdh-chip a,.kdh-chip button{font:inherit;font-weight:600;color:var(--kdh-brand);background:none;border:0;padding:0 0 0 6px;margin:0;cursor:pointer;text-decoration:underline;text-underline-offset:2px;border-left:1px solid var(--kdh-border-2);margin-left:2px}
+.kdh-chip a,.kdh-chip button{display:inline-flex;align-items:center;min-height:36px;font:inherit;font-weight:600;color:var(--kdh-brand);background:none;border:0;padding:0 2px 0 8px;margin:0 -4px 0 2px;cursor:pointer;text-decoration:underline;text-underline-offset:2px;border-left:1px solid var(--kdh-border-2)}
 .kdh-chip.kdh-preview{background:var(--kdh-gold-soft);color:#7A5A0C}
 html[data-theme="dark"] .kdh-chip.kdh-preview{color:var(--kdh-gold)}
 .kdh-chip.kdh-preview a,.kdh-chip.kdh-preview button{color:inherit}
@@ -107,7 +112,13 @@ html[data-theme="dark"] .kdh-chip.kdh-preview{color:var(--kdh-gold)}
   .kdh-logo{font-size:15px;gap:8px}
   .kdh-logo small{display:none}
   .kdh-b.kdh-user{padding:0 4px} .kdh-name{display:none}
-  .kdh-chip{font-size:12.5px;padding:0 8px;height:30px}
+  /* phones: the Viewing / Previewing chip gets its own full-width row under the bar */
+  .kdh-chip{font-size:14px;padding:0 4px 0 12px;height:40px;width:100%;justify-content:space-between;border-radius:10px}
+  .kdh-bar-in{flex-wrap:wrap;height:auto;min-height:50px;padding-top:0;padding-bottom:0;row-gap:0}
+  .kdh-bar-in > .kdh-logo,.kdh-bar-in > .kdh-acts{height:50px}
+  #kdhViewing:not(:empty),#kdhPreviewChip{flex:1 1 100%;order:3;display:flex;padding:0 0 8px;height:auto;margin:0}
+  .kdh-chip a,.kdh-chip button{min-height:40px;padding:0 10px}
+  .kdh-b.kdh-icon{width:40px;height:40px}
   .kdh-b.kdh-hide-sm{display:none}
   .kdh-b{padding:0 8px;font-size:13px}
   .kdh-b.kdh-back{height:44px;padding:0 12px 0 8px;font-size:14.5px}

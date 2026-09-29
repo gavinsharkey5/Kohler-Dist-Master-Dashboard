@@ -91,6 +91,11 @@ device, a decision).
   who report to you) or Everyone or one pill per DM; Open their hub /
   Preview as rep links. Linked from the manager page and the rep
   workspace top bar. Migration run and reports_to verified live.
+- [x] 2026-09-29 Mobile-first pass: every page audited on iPhone and iPad
+  (portrait and landscape) as manager, rep and preview; top bar fits with
+  the Viewing / Previewing chip on its own row, no text under 12.5px
+  anywhere, tap targets at least 36-44px, Carbliss pitch readable without
+  sideways scrolling. Rep view can be simulated from a phone.
 - [x] 2026-09-29 A manager opening a tracker or the hub for one rep sees
   exactly that rep's page (no view bar, no other reps); the "Viewing
   <rep> · Change" chip is the way out. Bigger, solid Back button.

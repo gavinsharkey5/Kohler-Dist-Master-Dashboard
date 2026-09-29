@@ -533,8 +533,26 @@ back). What changed, and the rules that now hold:
   picker with the manager tools back; a rep picked from the picker keeps
   them (that is the "unless otherwise stated"). `.kdh-b.kdh-back` is now
   a solid brand button, 40px (44px on phones). Test: asrep_test.mjs.
+MOBILE FIRST (2026-09-29, Gavin: the site is used mostly on iPad and
+iPhone -- update mobile first, then desktop): scratchpad mobile_audit.mjs
+loads 20 page/role combinations (manager, rep, manager-in-preview) at
+390x844, 820x1180 and 1180x820 with touch emulation and flags horizontal
+overflow, a top bar wider than the screen, visible text under 11.5px and
+tap targets under 34px. Rules that came out of it: the Viewing /
+Previewing chip is a DIRECT CHILD of .kdh-bar-in (kdh-user.js chrome()
+builds `chips` beside `.kdh-acts`) so below 600px it takes a full row of
+its own under badge + Back + theme + avatar; theme button 36px (40px on
+phones), chip Change / Exit preview 36-40px tall, Back 44px on phones;
+kdh-skin.css lifts the pages' 10-11px captions (Carbliss labels/th,
+tap .ct/.gl/.f-lbl/.lbl, Red Bull .lbl/.lab/.l/.rk/.tag.*) to 12.5px and
+gives every button/select/pill min-height 36px (40px under 820px); the
+Carbliss pitch panel is position:sticky inside the sideways-scrolling
+table so it reads without scrolling; and kdh-user.js `liftSmallType()`
+(+ a MutationObserver) sets font-size 12.5px !important on any visible
+text element that computes smaller, on every dashboard, after every
+re-render -- so no page can ship a caption a rep cannot read in a store.
 Screens: scratchpad smoke.mjs (14 pages x desktop/phone x light/dark,
-console errors + horizontal overflow). Tags: kdh.css/skin/rep.css
+console errors + horizontal overflow) and mobile_audit.mjs. Tags: kdh.css/skin/rep.css
 20260929b (kdh.css) / 20260929a, kdh-user.js 20260929e, hub.js 20260929c, guided.js
 20260929d.
 

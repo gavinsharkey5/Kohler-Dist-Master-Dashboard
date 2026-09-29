@@ -20,7 +20,7 @@
 
    Page-specific fixes live at the bottom, grouped by page. Keep the
    variable map alphabetical-ish so a new dashboard is easy to add. */
-@import url("kdh.css?v=20260929b");
+@import url("kdh.css?v=20260929c");
 
 /* ---- 2. fonts: every family a dashboard asks for is one of ours ---- */
 @font-face{font-family:"Space Grotesk";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-sans-3.woff2) format("woff2")}
@@ -149,6 +149,18 @@ html.kdh-rep #foot,html.kdh-rep footer hr{display:none!important}
 body > .wrap > header > h1{color:var(--kdh-text)}
 /* MetLife: its own theme button (the site bar has one); its brandmark logo repeats ours */
 #themebtn,.topbar .brandmark img{display:none!important}
+/* Phones and iPads first (2026-09-29): no label under 12.5px, no tap target
+   under 36px (40px on touch widths), on any rep page. */
+.tgroup label,#acctTable th,.stat-label,.goalbar-label,.legend,.brandcell .bl,.pitch-label,.status-badge,.gap-pill,.ftag,.copy-btn{font-size:12.5px!important}
+.tgroup label.check{min-height:40px;display:inline-flex;align-items:center;gap:8px}
+.tgroup input[type="checkbox"]{width:24px;height:24px}
+.ct,.gl,.f-lbl,.lbl,.lab,.l,.rk,.tag.core,.tag.free,.tag.plus,.tag.roll,.tag.off,.kpi-x,.tip{font-size:12.5px!important}
+.kpi-x{min-width:36px;min-height:36px;display:inline-flex;align-items:center;justify-content:center}
+button,.btn,.rpill,.chip,.mpill,.tab,.pill,select,input[type="search"],input[type="text"],input[type="number"]{min-height:36px}
+@media (max-width:820px){ button:not(.kdh-b):not(.eye):not(.kdh-chip button),.btn,.rpill,.chip,.mpill,.tab,.pill,select{min-height:40px} }
+/* Carbliss on a phone: the pitch panel lives inside the sideways-scrolling
+   table; pin it to the left edge so the pitch reads without scrolling */
+@media (max-width:820px){ .pitch-row td{padding-left:0!important;padding-right:0!important} .pitch-box{position:sticky;left:12px;width:calc(100vw - 56px);max-width:none;box-sizing:border-box} }
 /* Sales Rep Cockpit: bar text */
 .brandmark{color:var(--kdh-text)}
 /* Wine & Spirits: its header band and tab strip are navy in both themes (white type sits on them) */

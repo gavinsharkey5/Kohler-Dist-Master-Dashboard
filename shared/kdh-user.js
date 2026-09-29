@@ -129,9 +129,11 @@
     b.id = 'kdhBar'; b.className = 'kdh-bar';
     var acts = '';
     acts += '<a class="kdh-b kdh-outline kdh-back" href="' + esc(back.href) + '">' + BACK + '<span>' + esc(back.label) + '</span></a>';
-    acts += '<span id="kdhViewing"></span>';
+    // The Viewing / Previewing chip is a direct child of the bar (beside the
+    // actions, not inside them) so a phone can give it a full row of its own.
+    var chips = '<span id="kdhViewing"></span>';
     if (u && u.preview) {
-      acts += '<span class="kdh-chip kdh-preview" id="kdhPreviewChip">Previewing <b>' + esc(u.name) + '</b>' + (u.role === 'manager' ? ' (manager)' : '') + '<button type="button" id="kdhExitPreview">Exit preview</button></span>';
+      chips += '<span class="kdh-chip kdh-preview" id="kdhPreviewChip">Previewing <b>' + esc(u.name) + '</b>' + (u.role === 'manager' ? ' (manager)' : '') + '<button type="button" id="kdhExitPreview">Exit preview</button></span>';
     }
     if (isMgr) acts += '<a class="kdh-b kdh-hide-sm" href="' + ROOT + 'team/">Team</a>';
     acts += '<button type="button" class="kdh-b kdh-icon" id="kdhTheme" aria-label="Switch between light and dark mode" title="Light / dark mode">' + SUN + MOON + '</button>';
@@ -141,6 +143,7 @@
     if (u) acts += '<a class="kdh-b kdh-outline kdh-hide-sm" href="' + ROOT + 'login/?signout=1">Sign out</a>';
     b.innerHTML = '<div class="kdh-bar-in">' +
       '<a class="kdh-logo" href="' + home + '"><img src="' + ROOT + 'assets/kohler-logo-badge.png" alt="">Kohler Dist Hub<small>' + esc(pageName()) + '</small></a>' +
+      chips +
       '<div class="kdh-acts">' + acts + '</div></div>';
     document.body.insertBefore(b, document.body.firstChild);
     var t = document.getElementById('kdhTheme'); if (t) t.addEventListener('click', toggleTheme);
@@ -238,6 +241,33 @@
   global.kdhReturnTarget = returnTarget;
   global.kdhChrome = chrome;
   global.kdhToggleTheme = toggleTheme;
-  function boot() { chrome(); bar(); }
+  // READABLE ON A PHONE (2026-09-29): nothing on any page renders below
+  // 12.5px. The dashboards were written for desktops with 10-11px captions;
+  // rather than chase every class, lift any visible text that computes
+  // smaller, and keep doing so as pages re-render.
+  var MIN_PX = 12.5;
+  function liftSmallType(root) {
+    try {
+      var els = (root || document.body).querySelectorAll('body *:not(script):not(style):not(svg):not(svg *)');
+      for (var i = 0; i < els.length; i++) {
+        var el = els[i];
+        if (el.__kdhLifted) continue;
+        var hasText = false;
+        for (var c = el.firstChild; c; c = c.nextSibling) { if (c.nodeType === 3 && c.nodeValue.trim().length > 1) { hasText = true; break; } }
+        if (!hasText) continue;
+        var fs = parseFloat(getComputedStyle(el).fontSize);
+        if (fs && fs < MIN_PX) { el.style.setProperty('font-size', MIN_PX + 'px', 'important'); }
+        el.__kdhLifted = true;
+      }
+    } catch (e) {}
+  }
+  var liftTimer = null;
+  function watchType() {
+    liftSmallType();
+    if (!window.MutationObserver) return;
+    new MutationObserver(function () { clearTimeout(liftTimer); liftTimer = setTimeout(function () { liftSmallType(); }, 80); })
+      .observe(document.body, { childList: true, subtree: true });
+  }
+  function boot() { chrome(); bar(); watchType(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
 })(window);

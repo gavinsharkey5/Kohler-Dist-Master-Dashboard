@@ -2,7 +2,7 @@
    Tokens come from shared/kdh.css (the design system: light + dark,
    fonts, top bar). The short names below are aliases kept so this
    file's rules and the pages' inline styles stay readable. */
-@import url("../shared/kdh.css?v=20260929b");
+@import url("../shared/kdh.css?v=20260929c");
 :root{
   --bg:var(--kdh-bg);--surface:var(--kdh-surface);--surface-2:var(--kdh-surface-2);
   --text:var(--kdh-text);--text-2:var(--kdh-text-2);--text-3:var(--kdh-text-3);--text-4:var(--kdh-text-4);
