@@ -469,12 +469,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 58004,
-    "CUSTOMER_NAME": "Country Wine & Liquors",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 41012,
     "CUSTOMER_NAME": "Deli Mart (A)",
     "AREA": "Bergen"
@@ -541,12 +535,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 58002,
-    "CUSTOMER_NAME": "River Edge Wine & Liquor",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52029,
     "CUSTOMER_NAME": "Santa Barbara",
     "AREA": "Bergen"
@@ -555,12 +543,6 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 40004,
     "CUSTOMER_NAME": "Simple Simon's (Z)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 56013,
-    "CUSTOMER_NAME": "Time Lounge And Liq (A)",
     "AREA": "Bergen"
   },
   {
@@ -585,12 +567,6 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 50013,
     "CUSTOMER_NAME": "Wine & More (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 39012,
-    "CUSTOMER_NAME": "Wine And Liq Depot(A)",
     "AREA": "Bergen"
   },
   {
@@ -891,12 +867,6 @@
     "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 21021,
     "CUSTOMER_NAME": "Park Avenue Liquors",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 25047,
-    "CUSTOMER_NAME": "Parker Liquors (Z)",
     "AREA": "Passaic"
   },
   {
@@ -1329,12 +1299,6 @@
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 191812,
     "CUSTOMER_NAME": "Patel Liqr & Gro(P)",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 191606,
-    "CUSTOMER_NAME": "Quick Check Liquor (A)",
     "AREA": "Morris 1"
   },
   {

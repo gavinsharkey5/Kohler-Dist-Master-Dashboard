@@ -2,6 +2,28 @@
   {
     "REP": "Phil Ernst",
     "SOURCE": "Promo",
+    "CUSTOMER_NAME": "BOTTLE KING (A) GLEN ROCK",
+    "CITY": "GLEN ROCK",
+    "BRAND": "KEYSTONE ICE",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "09/29/2026 12:30 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/8d674793-63ce-41b7-84a9-c3d7b52883a0/"
+  },
+  {
+    "REP": "Phil Ernst",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "SUPER WINE WAREHSE(P)PATE",
+    "CITY": "PATERSON",
+    "BRAND": "KEYSTONE ICE",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "09/28/2026 02:29 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/2798498d-1657-4193-a627-9efd2a5a4ca6/"
+  },
+  {
+    "REP": "Phil Ernst",
+    "SOURCE": "Promo",
     "CUSTOMER_NAME": "CITY SUPERMARKET",
     "CITY": "FAIRVIEW",
     "BRAND": "KEYSTONE ICE",
