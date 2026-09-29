@@ -11,18 +11,9 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
-- [ ] **Passwords without a code: run the fix SQL** (Gavin): Supabase ->
-  SQL Editor -> paste `supabase/migrations/20260929120000_password_fix.sql`
-  whole -> Run ("Success. No rows returned."). It corrects the check that
-  showed "Welcome back" to an account that had never created a password.
-  Also confirm Authentication -> Sign In / Providers -> Email -> "Confirm
-  email" is OFF. After that, a new person's first sign-in is "Create your
-  password" (with a Confirm box) and no email at all; every later sign-in
-  is email + password. Your own account, made by code before today, gets
-  the code ONE more time and then "Create your password" -- or delete it
-  under Authentication -> Users -> your email -> Delete user, and sign in
-  fresh as a new account. (2026-09-29)
-
+- [ ] **Check "Confirm email" is OFF** (Gavin): Supabase -> Authentication ->
+  Sign In / Providers -> Email. With it on, a new person's first sign-in
+  mails a link instead of signing them in. (2026-09-29)
 - [ ] **Designed sign-in email** (Gavin, optional): paste
   `supabase/email/magic-link.html` whole into Supabase -> Authentication
   -> Emails -> Magic Link (Source view) and again into Confirm sign up,
@@ -100,6 +91,9 @@ device, a decision).
   who report to you) or Everyone or one pill per DM; Open their hub /
   Preview as rep links. Linked from the manager page and the rep
   workspace top bar. Migration run and reports_to verified live.
+- [x] 2026-09-29 Password migrations run in Supabase (both the sign-up
+  version and the placeholder-hash fix); one manager's password set by
+  hand at her request.
 - [x] 2026-09-29 Passwords from the start: a new person creates their
   password on the first sign-in (no code), then uses it every time;
   "Forgot password" goes code -> new password; only allow-listed emails
