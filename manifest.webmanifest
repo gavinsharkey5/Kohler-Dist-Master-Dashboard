@@ -3,7 +3,7 @@
   "short_name": "Dist Hub",
   "description": "Kohler Distributing sales dashboards: incentives, MPOs, tap tracker, Red Bull and Carbliss targets.",
   "id": "./rep/",
-  "start_url": "./rep/",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",

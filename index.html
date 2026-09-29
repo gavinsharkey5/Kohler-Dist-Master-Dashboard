@@ -32,7 +32,8 @@
   .hero .cap{position:absolute;right:10px;bottom:8px;font-family:var(--head);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:rgba(18,39,95,.7);padding:4px 8px;border-radius:6px}
   .card .status.tag{color:var(--text-3)}
 </style>
-<script src="shared/kdh-user.js?v=20260928c"></script>
+<script src="shared/auth-config.js"></script>
+<script src="shared/kdh-user.js?v=20260929a"></script>
 </head>
 <body>
 <div class="kdh-bar"><div class="kdh-bar-in">
@@ -54,7 +55,15 @@
     <div class="id">
       <p class="kicker">Manager dashboards</p>
       <h1 id="who">Kohler Dist Hub</h1>
-      <div class="meta"><span>19 dashboards</span><span class="sep">·</span><span>5 sections</span><span class="sep">·</span><span class="muted">Pick a section, open a card</span></div>
+      <div class="meta" id="meta"><span>19 dashboards</span><span class="sep">·</span><span>5 sections</span><span class="sep">·</span><span class="muted">Pick a section, open a card</span></div>
+    </div>
+    <!-- Manager workspace (Gavin only, 2026-09-29): pick any manager and the
+         whole site -- this page, Team Activity, the rep workspace -- shows
+         what THEY see, until "Exit preview" on the bar at the bottom. The
+         list comes from the kdh_team RPC (managers only). -->
+    <div class="switch" id="mgrSwitch" hidden>
+      <label>Viewing as <select id="mgrSelect" aria-label="Choose a manager to view as"></select></label>
+      <button class="btn outline" id="mgrPreviewBtn" type="button" title="Every page will show exactly what this manager sees on this device until you exit">Preview as this manager</button>
     </div>
   </header>
 
@@ -199,12 +208,46 @@
     try { localStorage.setItem('kdh_theme', next); } catch (e) {}
   });
   var user = null; try { user = window.kdhUser ? window.kdhUser() : null; } catch (e) {}
-  if (user && user.preview) user = { name: user.manager, role: 'manager' };
+  // Previewing a rep: still the manager here. Previewing another manager
+  // (Gavin's switcher below): this page is theirs.
+  if (user && user.preview && user.role !== 'manager') user = { name: user.manager, role: 'manager', email: user.email };
+  function esc(v){ return String(v).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
   if (user && user.name) {
     $('who').textContent = user.name;
     $('userName').textContent = user.name;
     $('avatar').textContent = String(user.name).trim().split(/\s+/).map(function(w){ return w[0]; }).slice(0,2).join('').toUpperCase();
+    var meta = [];
+    if (user.title) meta.push(esc(user.title));
+    if (user.dm) meta.push('Reports to ' + esc(user.dm));
+    meta.push('19 dashboards', '5 sections');
+    $('meta').innerHTML = meta.map(function(m){ return '<span>' + m + '</span>'; }).join('<span class="sep">·</span>');
   }
+  // ---- the manager switcher: Gavin's account only ----
+  var OWNER = 'g.sharkey@kohlerdist.com';
+  function ck(n){ var m = document.cookie.match(new RegExp('(?:^|;\\s*)' + n + '=([^;]*)')); return m ? decodeURIComponent(m[1]) : ''; }
+  (function managerSwitcher(){
+    var cfg = window.KDH_AUTH || {}, token = ck('kdh_at');
+    if (!user || String(user.email || '').toLowerCase() !== OWNER || !cfg.url || !cfg.key || !token) return;
+    fetch(cfg.url + '/rest/v1/rpc/kdh_team', { method: 'POST', headers: { apikey: cfg.key, Authorization: 'Bearer ' + token, 'Content-Type': 'application/json' }, body: '{}' })
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(team){
+        if (!team || !team.length) return;
+        var mgrs = team.filter(function(t){ return t.role === 'manager' && t.name; }).sort(function(a,b){ return a.name.localeCompare(b.name); });
+        if (!mgrs.length) return;
+        var sel = $('mgrSelect'); sel.innerHTML = '';
+        mgrs.forEach(function(m){ var o = document.createElement('option'); o.value = m.name; o.textContent = m.name + (m.title ? ' · ' + m.title : ''); o.dataset.title = m.title || ''; o.dataset.dm = m.reports_to || ''; sel.appendChild(o); });
+        var cur = user.name; if (mgrs.some(function(m){ return m.name === cur; })) sel.value = cur;
+        $('mgrSwitch').hidden = false;
+        $('mgrPreviewBtn').addEventListener('click', function(){
+          if (!window.kdhSetPreview) return;
+          var o = sel.options[sel.selectedIndex];
+          // Picking yourself = leave preview.
+          if (user.preview ? o.value === user.manager : o.value === user.name) kdhSetPreview('');
+          else kdhSetPreview({ name: o.value, role: 'manager', title: o.dataset.title, dm: o.dataset.dm });
+          location.reload();
+        });
+      }).catch(function(){});
+  })();
   var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var MONTHS_LONG = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   function status(id, cls, text){ var el = $(id); if(!el) return; el.className = 'status' + (cls ? ' ' + cls : ''); el.innerHTML = '<span class="dot"></span>' + text; }

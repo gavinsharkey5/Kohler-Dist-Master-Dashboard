@@ -91,6 +91,10 @@ device, a decision).
   who report to you) or Everyone or one pill per DM; Open their hub /
   Preview as rep links. Linked from the manager page and the rep
   workspace top bar. Migration run and reports_to verified live.
+- [x] 2026-09-29 Managers open to the manager page (the home-screen app
+  starts at the site root now; reinstall the icon once to pick that up)
+  and Gavin's account has a "Viewing as" manager switcher there: preview
+  the whole site as any manager, Team Activity included.
 - [x] 2026-09-29 Password migrations run in Supabase (both the sign-up
   version and the placeholder-hash fix); one manager's password set by
   hand at her request.

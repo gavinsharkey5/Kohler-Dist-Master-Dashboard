@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#0F1523" media="(prefers-color-scheme: dark)">
 <title>Kohler Dist Hub — Workspace</title>
 <!-- Home-screen install (iPad / iPhone "Add to Home Screen", Android/Chrome "Install"): the
-     app opens full-screen at /rep/ with the Kohler icon. -->
+     app opens full-screen at the site root (reps land on /rep/, managers on the manager page). -->
 <link rel="manifest" href="../manifest.webmanifest">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
@@ -23,7 +23,7 @@
   try { var t = localStorage.getItem('kdh_theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
 </script>
 <link rel="stylesheet" href="rep.css?v=20260928c">
-<script src="../shared/kdh-user.js?v=20260928c"></script>
+<script src="../shared/kdh-user.js?v=20260929a"></script>
 </head>
 <body>
 <div class="kdh-bar"><div class="kdh-bar-in">
@@ -146,6 +146,13 @@
     $('avatar').textContent = initials(user.name);
   }
   if (isManager) { $('mgrLink').hidden = false; $('teamLink').hidden = false; $('kicker').textContent = 'Rep workspace · manager preview'; }
+  // A manager's opening page is the manager page. Home-screen apps
+  // installed before 2026-09-29 still start here: send a manager on, but
+  // only on a plain app launch (standalone, no link, no reload, no referrer).
+  try {
+    var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+    if (isManager && window.matchMedia('(display-mode: standalone)').matches && !location.hash && !location.search && !document.referrer && (!nav || nav.type === 'navigate')) location.replace('../');
+  } catch (e) {}
 
   function initials(n){ return String(n).trim().split(/\s+/).map(function(w){ return w[0]; }).slice(0,2).join('').toUpperCase(); }
   function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }

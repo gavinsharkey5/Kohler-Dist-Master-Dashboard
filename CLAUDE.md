@@ -190,7 +190,10 @@ take to make it live. No names / emails / phones in it (public repo).
 
 ## Home-screen install + sign-in code (2026-09-25)
 
-`manifest.webmanifest` at the root (start_url `./rep/`, standalone,
+`manifest.webmanifest` at the root (start_url `./` since 2026-09-29 --
+the middleware sends a rep to /rep/ and a manager gets the manager page;
+it was `./rep/` before, and rep/index.html still forwards a manager on a
+plain standalone launch for icons installed earlier -- standalone,
 Kohler icons in `assets/icon-192.png` / `icon-512.png` /
 `apple-touch-icon.png`, rendered from the badge by a Playwright script)
 plus `<link rel="manifest">` + apple-mobile-web-app tags after the
@@ -384,6 +387,25 @@ still shown as themselves). Top bar: Team activity, Rep workspace, theme
 toggle, name chip, Sign out. Test: scratchpad mgr_test.mjs pattern --
 19 cards, every href resolves, month on the MPO links, no horizontal
 scroll at 390 / 820 / 1366.
+
+## Manager workspace: preview as a manager, Gavin only (2026-09-29)
+
+The manager page (root index.html) is every manager's opening page (app
+start_url is the root now). For Gavin's account only (`OWNER` =
+g.sharkey@kohlerdist.com, matched against the real signed-in email in
+the kdh_user cookie) it also carries a "Viewing as" switcher of every
+manager from the kdh_team RPC (the page now loads shared/auth-config.js
+and posts the RPC with the kdh_at token) and a "Preview as this manager"
+button: `kdhSetPreview({name, role:'manager', title, dm})` writes the
+kdh_preview cookie as JSON, and `kdhUser()` then returns that manager
+(role manager, preview true, manager = Gavin) on every page, so the
+manager page greets them, Team Activity computes "My team" for them and
+the rep workspace behaves as a manager's. A bare-name cookie is still a
+rep preview. Pages that used to collapse any preview to the real manager
+now do so only for a rep preview (index.html, team/). Picking yourself
+exits. The header's meta line shows title + "Reports to" from the
+cookie. Test: mgr_test.mjs (owner switcher, managers only, preview,
+team page follows, non-owner has none). kdh-user.js tag 20260929a.
 
 ## Rep workspace: "Your follow-ups" strip (2026-09-28)
 
