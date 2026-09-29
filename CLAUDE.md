@@ -278,7 +278,14 @@ Continue plus the code box's 900 ms auto-submit checked the same code
 TWICE; the first signed in, the second got otp_expired and its error
 printed over the create-password screen. The submit handler now clears
 `codeTimer`, returns when `entered`, and a failed check that finds a
-session stays silent. The SQL was verified against a local
+session stays silent. Third gotcha (2026-09-29): a correct password left
+the page on "Signing in..." until a refresh -- the page waited for the
+library's SIGNED_IN event, which did not always arrive. Both
+`signInWithPassword` and `verifyOtp` now call `enter()` with the session
+in their own reply (`r.data.session`), with `getSession()` as the
+fallback; `onAuthStateChange` remains only for a link arrival and a
+persisted session on reload. login_pw_test's stub returns a session
+WITHOUT firing the event to pin this. The SQL was verified against a local
 Postgres 16 (see supabase/README.txt). Tests: scratchpad login_pw_test.mjs (new,
 legacy code, returning, wrong password, forgot with reload, Confirm
 email still on, already registered, migration missing) + login_test.mjs.
@@ -439,6 +446,14 @@ open the picker for them; a VP / Gavin still gets Program View. (2)
 reps) from the rep workspace switcher, the Team Activity roster and the
 Carbliss rep filter; accounts.js itself is untouched so the account
 layer still knows those accounts.
+Carbliss is scoped for a DM too (2026-09-29, "apply to carbliss only" --
+Red Bull stays company-wide): it loads `shared/dm-groups.js`
+(`window.KDH_DM_GROUPS`, a MIRROR of the trackers' DM_GROUPS for pages
+that load no registry; dm_test.mjs fails if it drifts from
+incentive-tracking/programs.js) and `LOCK_TEAM` (kdhTeam + kdhMatchName
+against the reps in the file) filters `filteredRows()`, the rep select,
+and swaps renderStats / renderGoal for a team book, the same way
+LOCK_REP does for one rep.
 
 ## Rep workspace: "Your follow-ups" strip (2026-09-28)
 

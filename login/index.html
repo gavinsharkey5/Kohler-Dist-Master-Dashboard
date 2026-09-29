@@ -455,8 +455,15 @@
           say('bad', 'That password didn&rsquo;t match. Try again, or tap <b>Forgot password</b> and we&rsquo;ll email you a code.' +
             detail('Supabase said: ' + escapeHtml(r.error.message) + ' for ' + escapeHtml(email)));
           $('pw').select();
+          return;
         }
-        // onAuthStateChange picks the new session up and calls enter().
+        // Go in on the session this call returned. Waiting for the
+        // library's SIGNED_IN event instead left the page on "Signing in..."
+        // until a refresh (Gavin, 2026-09-29); the event does not always
+        // reach a page that is already listening.
+        var sess = r.data && r.data.session;
+        if (sess && !entered) { entered = true; enter(sess); return; }
+        if (!sess) sb.auth.getSession().then(function (g) { var s2 = g && g.data && g.data.session; if (s2 && !entered) { entered = true; enter(s2); } });
       });
     });
     $('forgot').addEventListener('click', function () {
@@ -553,6 +560,12 @@
         .then(function (r) {
         verifying = false;
         $('verify').disabled = false;
+        if (!r.error) {
+          // Same rule as the password path: go in on the returned session.
+          var ok = r.data && r.data.session;
+          if (ok && !entered) { entered = true; enter(ok); }
+          return;
+        }
         if (r.error) {
           // A home-screen app can end up signed in even when the check
           // reported an error (a second check on an already-used code, a

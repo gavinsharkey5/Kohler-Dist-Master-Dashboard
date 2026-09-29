@@ -91,6 +91,9 @@ device, a decision).
   who report to you) or Everyone or one pill per DM; Open their hub /
   Preview as rep links. Linked from the manager page and the rep
   workspace top bar. Migration run and reports_to verified live.
+- [x] 2026-09-29 Password sign-in no longer stalls on "Signing in..."
+  (the page now uses the session the sign-in call returns). Carbliss
+  on-premise targets scoped to a district manager's team.
 - [x] 2026-09-29 DMs open both MPO trackers by rep (their team's picker,
   then the rep's programs); "Default" and "Office Tell Sell" no longer
   appear in any rep list.
