@@ -15,9 +15,10 @@
 <script>
   try { var t = localStorage.getItem('kdh_theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
 </script>
-<link rel="stylesheet" href="../rep/rep.css?v=20260929a">
+<link rel="stylesheet" href="../rep/rep.css?v=20260930a">
 <link rel="stylesheet" href="team.css?v=20260928c">
-<script src="../shared/kdh-user.js?v=20260929f"></script>
+<meta name="kdh-page" content="Team activity">
+<script src="../shared/kdh-user.js?v=20260930a"></script>
 </head>
 <body>
 <!--
@@ -32,18 +33,6 @@
   stub data, since only the names are needed). Reps cannot open this page:
   /team/ is not in the middleware's REP_PATHS.
 -->
-<div class="kdh-bar"><div class="kdh-bar-in">
-  <a class="kdh-logo" href="../"><img src="../assets/kohler-logo-badge.png" alt="">Kohler Dist Hub<small>Team</small></a>
-  <div class="kdh-acts">
-    <a class="kdh-b kdh-hide-sm" href="../">Manager page</a>
-    <a class="kdh-b kdh-hide-sm" href="../rep/">Rep workspace</a>
-    <button class="kdh-b kdh-icon" id="themeBtn" type="button" aria-label="Switch between light and dark mode" title="Light / dark mode">
-      <svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-      <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-    </button>
-    <a class="kdh-b kdh-outline" href="../login/?signout=1">Sign out</a>
-  </div>
-</div></div>
 
 <main class="wrap">
   <div class="head">
@@ -84,13 +73,6 @@
   function cookie(name){ var m = document.cookie.match(new RegExp('(?:^|;\\s*)' + name + '=([^;]*)')); return m ? decodeURIComponent(m[1]) : ''; }
   function ci(s){ return String(s||'').trim().toLowerCase().replace(/\s+/g,' '); }
 
-  /* ---- theme toggle, same as the rep workspace ---- */
-  function setTheme(t){ try{ if(t) localStorage.setItem('kdh_theme', t); else localStorage.removeItem('kdh_theme'); }catch(e){} if(t) document.documentElement.setAttribute('data-theme', t); else document.documentElement.removeAttribute('data-theme'); }
-  $('themeBtn').addEventListener('click', function(){
-    var cur = document.documentElement.getAttribute('data-theme');
-    var dark = cur ? cur==='dark' : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    setTheme(dark ? 'light' : 'dark');
-  });
 
   var user = null; try{ user = window.kdhUser ? window.kdhUser() : null; }catch(e){}
   // A manager previewing a rep is still the manager here; previewing

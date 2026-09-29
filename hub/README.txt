@@ -939,3 +939,42 @@ Write-back (2026-09-25): on kohlerdisthub.com every target list a rep
   top, Done / Not now fold away under the list and leave the counts.
   A manager looking at a rep (or previewing as them) sees chips only.
   Nothing renders on github.io (no auth). Cache tag 20260925h.
+
+REP-MODE FLOW ON THE ENCOMPASS PATTERN (2026-09-30, per Gavin)
+Reps liked the Encompass incentive dashboards' plain organisation, so the
+rep side of the hub is now separate screens instead of one long page:
+  Incentives            one row per supplier (logo, name, status dots,
+                        "N programs · M need attention"); a supplier with
+                        one program opens that program directly
+  Supplier              one row per program: name + small status tag,
+                        channel · deadline (once), "6 of 8 accounts · 2
+                        more accounts needed", a thin bar
+  Program               ONE summary block (supplier line, name, status +
+                        deadline, "Qualifies: ...", the main figure, what
+                        remains, the bar, the goal rule in small type),
+                        then rows Potential accounts / Credited accounts /
+                        Follow-ups with counts, brand goals for retention
+                        programs, "How it is scored" and "Progress so far"
+                        as folds. No "Next" panel (it repeated the
+                        remaining requirement).
+  Accounts              searchable list: name, town · territory, one
+                        opportunity or credited line, the rep's own mark
+                        as a small tag; Done and Not now as folds at the
+                        foot. Back restores the scroll position and the
+                        search text.
+  Account               facts (program, what to sell, opportunity, last
+                        activity, 2026 volume), what the tracker credits
+                        to it, and the rep's Done / Follow up / Not now +
+                        note. In preview (a manager as the rep) the
+                        buttons are disabled with a note; nothing saves.
+The MPO tabs list objectives as the same program rows; both kinds open
+the same program screen. Hash keys: view=rep|sup|detail|accts|acct with
+sup=, list=targets|dist|follow|done|skip, n=<account number>.
+progFacts() in hub.js is the single source of the progress wording (unit
+from the goal text, MPO unit from the objective; a percent goal such as
+Lytt is stated in accounts from the tracker's buyingAccountCount /
+eligibleAccountCount, goal = ceil(tier x eligible) -- never from the
+rounded percentage -- with "Current account coverage 19.4% · Target 25%"
+under it). Manager Mode (desktop) still has every old screen: supplier
+sections with expanding rows, objective cards with account tabs, Program
+View, the full detail page with rankings.

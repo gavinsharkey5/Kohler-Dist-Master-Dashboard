@@ -2,7 +2,7 @@
    Tokens come from shared/kdh.css (the design system: light + dark,
    fonts, top bar). The short names below are aliases kept so this
    file's rules and the pages' inline styles stay readable. */
-@import url("../shared/kdh.css?v=20260929c");
+@import url("../shared/kdh.css?v=20260930a");
 :root{
   --bg:var(--kdh-bg);--surface:var(--kdh-surface);--surface-2:var(--kdh-surface-2);
   --text:var(--kdh-text);--text-2:var(--kdh-text-2);--text-3:var(--kdh-text-3);--text-4:var(--kdh-text-4);
@@ -25,6 +25,8 @@ a{color:inherit}
 .btn:hover{background:var(--surface-2);color:var(--text)}
 .btn.outline{border-color:var(--border);background:var(--surface)}
 .btn.outline:hover{border-color:var(--border-2)}
+.btn.primary{background:var(--brand);color:var(--kdh-brand-ink);border-color:var(--brand);min-height:40px;font-weight:600}
+.btn.primary:hover{background:var(--brand-2);border-color:var(--brand-2);color:var(--kdh-brand-ink)}
 
 /* workspace header */
 .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
@@ -45,6 +47,7 @@ a{color:inherit}
 
 /* sections */
 .section{margin:10px 0 0;padding:0 0 22px}
+.section > h2{font-family:var(--head);font-size:14px;font-weight:600;margin:0 0 6px;color:var(--text-3)}
 .section-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 10px}
 .section-h h2{font-family:var(--head);font-size:17px;font-weight:700;margin:0;color:var(--text)}
 .section-h p{margin:0;font-size:13px;color:var(--text-3)}
@@ -91,7 +94,7 @@ a.card.muted h3{color:var(--text-2)}
 .fu-empty{margin:0;padding:12px 14px;font-size:13.5px;color:var(--text-3)}
 .fu-empty b{color:var(--text-2)}
 .fu .section-h h2{white-space:nowrap}
-@media (max-width:599px){ .fu .section-h{flex-direction:column;align-items:flex-start;gap:2px} }
+@media (max-width:599px){ .section-h{flex-direction:column;align-items:flex-start;gap:2px} }
 
 footer{max-width:1120px;margin:0 auto;padding:12px 20px 36px;border-top:1px solid var(--border);font-size:12.5px;color:var(--text-4);line-height:1.6}
 footer a{color:var(--text-3)}
@@ -104,4 +107,44 @@ footer a{color:var(--text-3)}
   .switch{width:100%} .switch select{flex:1}
   a.card{min-height:0;padding:14px 14px 12px}
   footer{padding:12px 16px 32px}
+}
+
+/* ---- REP HOME (2026-09-30): compact rows, not tall cards. One list per
+   section; each row is title + one optional status line + a chevron and is
+   tappable end to end. Cards (.grid / a.card) stay for the manager page. ---- */
+.home .ws{padding:14px 0 10px;align-items:center}
+.home .ws h1{font-size:24px}
+.home .section{padding:0 0 16px}
+.rows{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--shadow);overflow:hidden}
+.row{display:flex;align-items:center;gap:12px;min-height:60px;padding:10px 12px 10px 14px;text-decoration:none;color:inherit;background:none;border:0;border-top:1px solid var(--border);font:inherit;text-align:left;width:100%;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.rows .row:first-child{border-top:0}
+.row:hover{background:var(--surface-2)}
+.row:active{background:var(--surface-3)}
+.row:focus-visible{outline:2px solid var(--brand);outline-offset:-2px}
+.row .ico{width:34px;height:34px;border-radius:8px;background:var(--brand-soft);color:var(--brand);display:inline-flex;align-items:center;justify-content:center;flex:none}
+.row .ico svg{width:18px;height:18px}
+.row-main{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
+.row h3{font-family:var(--head);font-size:16.5px;font-weight:600;margin:0;line-height:1.25;color:var(--text)}
+.row-s{font-size:13.5px;line-height:1.35;color:var(--text-3);display:flex;align-items:center;gap:6px;min-width:0}
+.row-s .dot{width:6px;height:6px;border-radius:50%;background:var(--text-4);flex:none}
+.row-s.ok .dot{background:var(--ok)} .row-s.warn .dot{background:var(--warn)}
+.row .chev{width:18px;height:18px;color:var(--text-4);flex:none}
+.row.muted .ico{background:var(--border);color:var(--text-3)}
+.row.muted h3{color:var(--text-2)}
+/* follow-ups: the row opens the list under it */
+.fu .fu-row{border:1px solid var(--border);border-radius:var(--r-lg);background:var(--surface);box-shadow:var(--shadow)}
+.fu.open .fu-row{border-radius:var(--r-lg) var(--r-lg) 0 0}
+.fu .fu-row .ico{background:var(--kdh-warn-soft);color:var(--warn)}
+.fu .chev.fold{transition:transform .15s ease}
+.fu.open .chev.fold{transform:rotate(180deg)}
+.fu .fu-box{border-top:0;border-radius:0 0 var(--r-lg) var(--r-lg)}
+.fu-list a{min-height:52px;padding:10px 14px}
+.fu-prog i{color:var(--text-2)}
+@media (max-width:599px){
+  .home .ws{padding:12px 0 8px}
+  .home .ws h1{font-size:22px}
+  .switch{gap:8px}
+  .switch label{flex:1 1 100%}
+  .switch select{width:100%;min-width:0;min-height:40px}
+  .switch .btn{width:100%;justify-content:center}
 }

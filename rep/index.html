@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#F6F7F9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F1523" media="(prefers-color-scheme: dark)">
-<title>Kohler Dist Hub — Workspace</title>
+<title>Kohler Dist Hub — Rep home</title>
 <!-- Home-screen install (iPad / iPhone "Add to Home Screen", Android/Chrome "Install"): the
      app opens full-screen at the site root (reps land on /rep/, managers on the manager page). -->
 <link rel="manifest" href="../manifest.webmanifest">
@@ -16,91 +16,92 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Dist Hub">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<link rel="preload" href="../assets/fonts/oswald.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin>
 <script>
   // Apply the saved theme before first paint so there is no flash.
   try { var t = localStorage.getItem('kdh_theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
 </script>
-<link rel="stylesheet" href="rep.css?v=20260929a">
-<script src="../shared/kdh-user.js?v=20260929f"></script>
+<link rel="stylesheet" href="rep.css?v=20260930a">
+<!-- The top bar is injected by shared/kdh-user.js (badge, Previewing chip,
+     account menu). kdh-home = this is a landing page: no Back button. -->
+<meta name="kdh-page" content="Rep home">
+<meta name="kdh-home" content="rep">
+<script src="../shared/kdh-user.js?v=20260930a"></script>
 </head>
 <body>
-<div class="kdh-bar"><div class="kdh-bar-in">
-  <a class="kdh-logo" href="./"><img src="../assets/kohler-logo-badge.png" alt="">Kohler Dist Hub<small>Sales</small></a>
-  <div class="kdh-acts">
-    <a class="kdh-b kdh-hide-sm" id="teamLink" href="../team/" hidden>Team activity</a>
-    <a class="kdh-b kdh-hide-sm" id="mgrLink" href="../" hidden>Manager page</a>
-    <button class="kdh-b kdh-icon" id="themeBtn" type="button" aria-label="Switch between light and dark mode" title="Light / dark mode">
-      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-      <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-    </button>
-    <span class="kdh-b kdh-user" id="userChip"><span class="kdh-av" id="avatar">–</span><span class="kdh-name" id="userName">Signed in</span></span>
-    <a class="kdh-b kdh-outline" href="../login/?signout=1">Sign out</a>
-  </div>
-</div></div>
-
-<main class="wrap">
+<!--
+  REP HOME (2026-09-30): the phone-first opening page for a sales rep.
+  A short identity line, a one-row follow-ups summary, then the tools as
+  compact rows -- a title, one optional status line, a chevron. Nothing
+  explains itself at length here; each page does that once you are in it.
+  A manager sees the same page for the rep they are viewing; "View as rep"
+  (account menu, or the button below) previews the whole site as that rep.
+-->
+<main class="wrap home">
   <header class="ws">
     <div class="id">
-      <p class="kicker" id="kicker">Sales rep workspace</p>
+      <p class="kicker" id="kicker">Rep home</p>
       <h1 id="repName">Your workspace</h1>
-      <div class="meta" id="meta"><span class="muted">Loading territory…</span></div>
+      <div class="meta" id="meta"><span class="muted">Loading…</span></div>
     </div>
+    <!-- Managers only (not in preview): pick whose tools the rows below open,
+         or preview the whole site as that rep. -->
     <div class="switch" id="switch" hidden>
       <label>Viewing as <select id="repSelect" aria-label="Choose a rep to view"></select></label>
-      <button class="btn outline" id="previewBtn" type="button" title="Every page will show exactly what this rep sees on this device until you exit">Preview as this rep</button>
+      <button class="btn primary" id="previewBtn" type="button" title="Every page will show exactly what this rep sees on this device until you exit">Preview as this rep</button>
     </div>
   </header>
 
-  <!-- Your follow-ups (2026-09-28): the accounts this rep flagged in the
-       hub, read from Supabase rep_actions with the signed-in token. Hidden
-       until the fetch answers; off kohlerdisthub.com there is no auth
-       config, so it never shows. A manager "Viewing as" a rep sees that
-       rep's list (managers read every rep's rows). -->
+  <!-- Follow-ups (2026-09-30): one row that says how many, and opens the
+       list in place. Read from Supabase rep_actions with the signed-in
+       token; hidden when there is no auth config (github.io) or no rows. -->
   <section class="section fu" id="fuSec" hidden>
-    <div class="section-h"><h2>Your follow-ups</h2><p id="fuSub"></p></div>
-    <div class="fu-box" id="fuBox"></div>
+    <button class="row fu-row" id="fuRow" type="button" aria-expanded="false" aria-controls="fuList">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V4"/><path d="M4 4h12l-2 4 2 4H4"/></svg></span>
+      <span class="row-main"><h3 id="fuTitle">Follow-ups</h3><span class="row-s" id="fuSub"></span></span>
+      <svg class="chev fold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+    <div class="fu-box" id="fuList" hidden></div>
   </section>
 
   <section class="section">
-    <div class="section-h"><h2>Programs</h2><p>Incentives and this month’s MPOs</p></div>
-    <div class="grid">
-      <a class="card" id="c-hub" href="../hub/">
-        <div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span><h3>Incentive Hub</h3></div>
-        <p>Every incentive you’re in: where you stand and what you still need.</p>
-        <div class="foot"><span class="status" id="s-hub"></span><span class="open">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+    <h2>Programs</h2>
+    <div class="rows">
+      <a class="row" id="c-hub" href="../hub/">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+        <span class="row-main"><h3>Incentive Hub</h3><span class="row-s" id="s-hub">Every incentive you’re in, by supplier</span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
       </a>
-      <a class="card" id="c-off" href="../MPOs/off-prem/index.html#view=program">
-        <div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M4 9v11h16V9"/><path d="M9 20v-6h6v6"/></svg></span><h3>Off-Premise MPOs</h3></div>
-        <p>Package and liquor store programs for the month, by program.</p>
-        <div class="foot"><span class="status" id="s-off"><span class="dot"></span>Checking…</span><span class="open">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      <a class="row" id="c-off" href="../MPOs/off-prem/index.html#view=program">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M4 9v11h16V9"/><path d="M9 20v-6h6v6"/></svg></span>
+        <span class="row-main"><h3>Off-Premise MPOs</h3><span class="row-s status" id="s-off"><span class="dot"></span>Checking…</span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
       </a>
-      <a class="card" id="c-on" href="../MPOs/on-prem/index.html#view=program">
-        <div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 11h1a3 3 0 0 1 0 6h-1"/><path d="M5 8h12v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M9 12v5M13 12v5"/><path d="M6 8a3 3 0 0 1 5-2.2A3 3 0 0 1 16 8"/></svg></span><h3>On-Premise MPOs</h3></div>
-        <p>Bar and restaurant programs for the month, by program.</p>
-        <div class="foot"><span class="status" id="s-on"><span class="dot"></span>Checking…</span><span class="open">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      <a class="row" id="c-on" href="../MPOs/on-prem/index.html#view=program">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 11h1a3 3 0 0 1 0 6h-1"/><path d="M5 8h12v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M9 12v5M13 12v5"/><path d="M6 8a3 3 0 0 1 5-2.2A3 3 0 0 1 16 8"/></svg></span>
+        <span class="row-main"><h3>On-Premise MPOs</h3><span class="row-s status" id="s-on"><span class="dot"></span>Checking…</span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
       </a>
     </div>
   </section>
 
   <section class="section">
-    <div class="section-h"><h2>Trackers</h2><p>What to check before a call</p></div>
-    <div class="grid">
-      <a class="card" id="c-tap" href="../isellbeer/tap-survey-tracking/">
-        <div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 6.5 9a6.5 6.5 0 1 0 11 0z"/></svg></span><h3>Tap Tracker</h3></div>
-        <p>What’s on tap at every surveyed account, ours and theirs.</p>
-        <div class="foot"><span class="status" id="s-tap"></span><span class="open">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+    <h2>Trackers</h2>
+    <div class="rows">
+      <a class="row" id="c-tap" href="../isellbeer/tap-survey-tracking/">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 6.5 9a6.5 6.5 0 1 0 11 0z"/></svg></span>
+        <span class="row-main"><h3>Tap Tracker</h3><span class="row-s" id="s-tap">What’s on tap at your surveyed accounts</span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
       </a>
-      <a class="card" id="c-rb" href="../redbull/">
-        <div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span><h3>Red Bull</h3></div>
-        <p>Red Bull placements against goal for the current period.</p>
-        <div class="foot"><span class="status" id="s-rb"><span class="dot"></span>Checking…</span><span class="open">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      <a class="row" id="c-rb" href="../redbull/">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
+        <span class="row-main"><h3>Red Bull</h3><span class="row-s status" id="s-rb"><span class="dot"></span>Checking…</span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
       </a>
-      <a class="card" id="c-cb" href="../carbliss-onprem-targets/">
-        <div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></span><h3>Carbliss On-Premise Targets</h3></div>
-        <p>Accounts with strong Sun Cruiser and White Claw volume, and the flavor gap to pitch.</p>
-        <div class="foot"><span class="status" id="s-cb"></span><span class="open">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      <a class="row" id="c-cb" href="../carbliss-onprem-targets/">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></span>
+        <span class="row-main"><h3>Carbliss On-Premise Targets</h3><span class="row-s" id="s-cb">Accounts to pitch, with the flavor gap</span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
       </a>
     </div>
   </section>
@@ -120,15 +121,6 @@
 <script>
 (function(){
   var $ = function(id){ return document.getElementById(id); };
-
-  /* ---- light / dark: the button flips it; the choice is kept on this device ---- */
-  $('themeBtn').addEventListener('click', function(){
-    var root = document.documentElement;
-    var current = root.getAttribute('data-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    var next = current === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    try { localStorage.setItem('kdh_theme', next); } catch (e) {}
-  });
   // MON, not MONTHS: the incentive registry (programs.js, deferred) declares a
   // global `const MONTHS`, which progName() below reads for program names.
   var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -139,11 +131,7 @@
   try { user = window.kdhUser ? window.kdhUser() : null; } catch (e) {}
   var isManager = !!(user && user.role === 'manager');
   var viewRep = (user && user.name) || '';
-  if (user && user.name) {
-    $('userName').textContent = user.name;
-    $('avatar').textContent = initials(user.name);
-  }
-  if (isManager) { $('mgrLink').hidden = false; $('teamLink').hidden = false; $('kicker').textContent = 'Rep workspace · you are viewing a rep'; }
+  if (isManager) $('kicker').textContent = 'Rep home · you are viewing a rep';
   // A manager's opening page is the manager page. Home-screen apps
   // installed before 2026-09-29 still start here: send a manager on, but
   // only on a plain app launch (standalone, no link, no reload, no referrer).
@@ -152,47 +140,44 @@
     if (isManager && window.matchMedia('(display-mode: standalone)').matches && !location.hash && !location.search && !document.referrer && (!nav || nav.type === 'navigate')) location.replace('../');
   } catch (e) {}
 
-  function initials(n){ return String(n).trim().split(/\s+/).map(function(w){ return w[0]; }).slice(0,2).join('').toUpperCase(); }
   function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
-  /* ---- territory line: accounts and areas from the hub's account file ---- */
+  /* ---- identity line: title, manager, accounts and areas ---- */
   // accounts.js declares `const HUB_ACCOUNTS`, which is global but NOT a
   // window property, so look it up by name.
   function accountsFile(){ try { return typeof HUB_ACCOUNTS !== 'undefined' ? HUB_ACCOUNTS : null; } catch (e) { return null; } }
   function territory(name){
     var out = [];
     // Title and manager come from the signed-in person's own row, so they
-    // only belong on their own workspace, not on a manager's preview of
-    // someone else.
+    // only belong on their own page, not on a manager's view of someone else.
     var own = user && user.name === name;
     if (own && user.title) out.push(esc(user.title));
     if (own && user.dm) out.push('Reports to ' + esc(user.dm));
     var A = accountsFile(); var accts = (A && A.reps && A.reps[name]) || null;
     if (accts && accts.length) {
-      var on = 0, areas = {};
-      accts.forEach(function(a){ if (a.prem === 'On') on++; areas[a.area || a.county || '?'] = (areas[a.area || a.county || '?'] || 0) + 1; });
-      var top = Object.keys(areas).sort(function(a,b){ return areas[b] - areas[a]; }).slice(0,3);
-      out.push(accts.length + ' accounts <span class="muted">&nbsp;(' + on + ' on · ' + (accts.length - on) + ' off)</span>');
-      if (top.length) out.push(esc(top.join(', ')) + (Object.keys(areas).length > 3 ? ' <span class="muted">+' + (Object.keys(areas).length - 3) + '</span>' : ''));
+      var areas = {};
+      accts.forEach(function(a){ areas[a.area || a.county || '?'] = (areas[a.area || a.county || '?'] || 0) + 1; });
+      var top = Object.keys(areas).sort(function(a,b){ return areas[b] - areas[a]; }).slice(0,2);
+      out.push(accts.length + ' accounts' + (top.length ? ' · ' + esc(top.join(', ')) : ''));
     } else if (A) {
       out.push('<span class="muted">No account list on file</span>');
     }
     $('meta').innerHTML = out.length ? out.join('<span class="sep">·</span>') : '<span class="muted">Signed in</span>';
   }
 
-  /* ---- the workspace: a rep sees their own; a manager can pick one ---- */
+  /* ---- the page: a rep sees their own; a manager can pick one ---- */
   function showRep(name){
     viewRep = name;
     $('repName').textContent = name || 'Your workspace';
     territory(name);
     // Deep-link the hub to this rep so it opens on their page.
-    // Incentives only: the two MPO tiles beside it cover the MPO tabs.
+    // Incentives only: the two MPO rows beside it cover the MPO tabs.
     $('c-hub').href = '../hub/#' + (name ? 'view=rep&rep=' + encodeURIComponent(name) + '&cat=inc&' : '') + 'only=inc';
     setMpoHref($('c-off')); setMpoHref($('c-on'));
     followUps(name);
   }
-  // The MPO tiles keep the rep a manager is viewing (2026-09-29): the tracker
-  // opens on that rep's page instead of asking again. A rep's own tile opens
+  // The MPO rows keep the rep a manager is viewing (2026-09-29): the tracker
+  // opens on that rep's page instead of asking again. A rep's own row opens
   // by program and the tracker locks to them anyway.
   function setMpoHref(card){
     if (!card || !card.dataset.base) return;
@@ -200,7 +185,7 @@
     card.href = card.dataset.base + 'index.html#' + (isManager && viewRep ? 'view=rep&rep=' + encodeURIComponent(viewRep) + '&' : 'view=program&') + (m ? 'month=' + m : '');
   }
 
-  /* ---- Your follow-ups: what this rep flagged in the hub ---- */
+  /* ---- Follow-ups: what this rep flagged in the hub ---- */
   function cookie(n){ var m = document.cookie.match(new RegExp('(?:^|;\\s*)' + n + '=([^;]*)')); return m ? decodeURIComponent(m[1]) : ''; }
   function progName(id){
     try{
@@ -223,6 +208,9 @@
     return MON[d.getMonth()] + ' ' + d.getDate();
   }
   var fuFor = '';
+  $('fuRow').addEventListener('click', function(){
+    var open = $('fuList').hidden; $('fuList').hidden = !open; $('fuRow').setAttribute('aria-expanded', open ? 'true' : 'false'); $('fuSec').classList.toggle('open', open);
+  });
   function followUps(name){
     var cfg = window.KDH_AUTH || {}, token = cookie('kdh_at');
     var sec = $('fuSec');
@@ -237,26 +225,25 @@
         var week = Date.now() - 7 * 86400000;
         var follow = rows.filter(function(r){ return r.status === 'follow'; });
         var done7 = rows.filter(function(r){ return r.status === 'done' && new Date(r.updated_at).getTime() >= week; }).length;
-        var hub = '../hub/#view=rep&rep=' + encodeURIComponent(name) + '&cat=';
-        var catOf = function(id){ return id.indexOf('inc:') === 0 ? 'inc&only=inc' : (id.indexOf('off:') === 0 ? 'off' : 'on'); };
+        // The hub's account screen for this program, on this account.
+        var hub = function(r){ return '../hub/#view=acct&rep=' + encodeURIComponent(name) + '&prog=' + encodeURIComponent(r.program_id) + '&n=' + encodeURIComponent(r.account_num || '') + '&list=follow'; };
+        $('fuTitle').textContent = 'Follow-ups (' + follow.length + ')';
         var sub = follow.length ? follow.length + ' account' + (follow.length === 1 ? '' : 's') + ' to get back to' : 'Nothing flagged right now';
         if (done7) sub += ' · ' + done7 + ' done this week';
         $('fuSub').textContent = sub;
         var html;
         if (!follow.length) {
-          html = '<p class="fu-empty">Tap <b>Follow up</b> under an account in the hub and it shows up here, with your note.</p>';
+          html = '<p class="fu-empty">Tap <b>Follow up</b> on an account in the hub and it shows up here, with your note.</p>';
         } else {
-          html = '<ul class="fu-list">' + follow.slice(0, 3).map(function(r){
-            return '<li><a href="' + hub + catOf(r.program_id) + '">' +
+          html = '<ul class="fu-list">' + follow.map(function(r){
+            return '<li><a href="' + hub(r) + '">' +
               '<span class="fu-main"><span class="fu-acct">' + esc(r.account_name || ('Account #' + r.account_num)) + '</span>' +
-              '<span class="fu-prog">' + esc(progName(r.program_id)) + '</span>' +
-              (r.note ? '<span class="fu-note">' + esc(r.note) + '</span>' : '') + '</span>' +
+              '<span class="fu-prog">' + esc(progName(r.program_id)) + (r.note ? ' · <i>' + esc(r.note) + '</i>' : '') + '</span></span>' +
               '<span class="fu-when">' + esc(ago(r.updated_at)) + '</span>' +
               '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></a></li>';
           }).join('') + '</ul>';
-          if (follow.length > 3) html += '<a class="fu-more" href="' + hub + 'inc&only=inc">All ' + follow.length + ' follow-ups in the hub ›</a>';
         }
-        $('fuBox').innerHTML = html;
+        $('fuList').innerHTML = html;
         sec.hidden = false;
       });
   }
@@ -270,7 +257,7 @@
     var T = window.kdhTeam && dmGroupsFile() ? window.kdhTeam(dmGroupsFile()) : null;
     if (T) {
       var mine = names.filter(function(n){ return T.reps.indexOf(n) >= 0 || (window.kdhMatchName && !!window.kdhMatchName(n, T.reps)); });
-      if (mine.length) { names = mine; $('kicker').textContent = 'Rep workspace · your team'; }
+      if (mine.length) { names = mine; $('kicker').textContent = 'Rep home · your team'; }
     }
     var sel = $('repSelect'); sel.innerHTML = '';
     names.forEach(function(n){ var o = document.createElement('option'); o.value = n; o.textContent = n; sel.appendChild(o); });
@@ -282,14 +269,13 @@
     showRep(pick);
   }
   showRep(viewRep);
-  function whenAccounts(fn){ if (accountsFile()) return fn(); var t = setInterval(function(){ if (accountsFile()) { clearInterval(t); fn(); } }, 60); setTimeout(function(){ clearInterval(t); }, 8000); }
   // The registries (DM_GROUPS) load deferred after accounts.js: a manager's
   // switcher waits for both so a DM's list can be cut to their team.
   function whenReady(fn){ var ok = function(){ return accountsFile() && (!isManager || dmGroupsFile()); }; if (ok()) return fn(); var t = setInterval(function(){ if (ok()) { clearInterval(t); fn(); } }, 60); setTimeout(function(){ clearInterval(t); if (!ok() && accountsFile()) fn(); }, 8000); }
   whenReady(function(){ if (isManager) setupSwitcher(); else territory(viewRep); });
 
   /* ---- live status where real data exists ---- */
-  function status(id, cls, text){ var el = $(id); el.className = 'status' + (cls ? ' ' + cls : ''); el.innerHTML = '<span class="dot"></span>' + text; }
+  function status(id, cls, text){ var el = $(id); el.className = 'row-s status' + (cls ? ' ' + cls : ''); el.innerHTML = '<span class="dot"></span>' + text; }
   function ymd(d){ return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0'); }
   function fmtDay(iso){ var d = new Date(iso); return isNaN(d) ? '' : MON[d.getMonth()] + ' ' + d.getDate(); }
   function getJson(url){ return fetch(url, {cache:'no-store'}).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }); }
@@ -310,7 +296,7 @@
 
   // Red Bull: the tracked period and how long is left in it.
   getJson('../redbull/period.json').then(function(p){
-    if (!p || !p.end) { status('s-rb', '', ''); return; }
+    if (!p || !p.end) { status('s-rb', '', 'Placements against goal'); return; }
     var end = new Date(p.end + 'T23:59:59'), days = Math.ceil((end - now) / 86400000);
     if (days < 0) status('s-rb', '', (p.label || 'Period') + ' · ended');
     else status('s-rb', days <= 7 ? 'warn' : 'ok', (p.label || 'Current period') + ' · ' + (days === 0 ? 'last day' : days + ' day' + (days === 1 ? '' : 's') + ' left'));

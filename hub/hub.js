@@ -605,7 +605,15 @@ function sortedForRep(rep, cat){
 const openCards = new Set();   // program ids expanded in place on the rep page
 const acctTabs = {};           // program id -> active account tab
 const acctMore = {};           // program id|tab -> show every row
-const state = {mode:'rep', view:'home', rep:null, main:null, cat:null, month:null, prog:null, from:null, peek:null, filters:{type:'all', chan:'all', sup:'all', month:'active'}, showEnded:false, only:null};
+const state = {mode:'rep', view:'home', rep:null, main:null, cat:null, month:null, prog:null, from:null, peek:null, filters:{type:'all', chan:'all', sup:'all', month:'active'}, showEnded:false, only:null, sup:null, list:null, n:null};
+// REP-MODE FLOW (2026-09-30, Gavin's Encompass brief): Incentives (one row
+// per supplier) -> a supplier's programs -> ONE program's summary -> an
+// account list (potential / credited / follow-ups, searchable) -> one
+// account (details, credited lines, the rep's own marks). Views: rep, sup,
+// detail, accts, acct. Manager Mode (desktop) keeps its own screens.
+const LISTS = {targets:'Potential accounts', dist:'Credited accounts', follow:'Follow-ups', done:'Done', skip:'Not now', hold:'Accounts to hold'};
+const scrollMem = {};          // hash -> scrollY, so Back lands where the list was
+const acctQ = {};              // account-list search text, per program|list
 // only:'inc' (from the rep workspace's Incentive Hub tile, `only=inc` in the
 // hash) shows the Incentives tab alone -- the MPO tabs are their own tiles.
 // Signed-in identity (the `kdh_user` cookie /login/ sets on kohlerdisthub.com).
@@ -652,6 +660,9 @@ const RA = (()=>{
   // stamp the rows with the manager's own name).
   const canEdit = rep => on && KDH_USER && !KDH_USER.preview && !!rep && KDH_USER.name === rep;
   const canShow = rep => on && !!rep;
+  // A manager previewing a rep sees the rep's own controls, disabled, with a
+  // note -- never a live button that would stamp the manager's name (2026-09-30).
+  const previewOf = rep => on && !!(KDH_USER && KDH_USER.preview && KDH_USER.role !== 'manager' && !!rep && KDH_USER.name === rep);
   async function load(rep){
     if(!on || !rep || loading || loadedFor===rep) return;
     loading = true; err = '';
@@ -690,7 +701,7 @@ const RA = (()=>{
     }catch(e){ map.set(key(pid, a), cur); err = 'Couldn’t clear that ('+(e.message||e)+').'; }
     render();
   }
-  return {on, canEdit, canShow, load, set, clear, num,
+  return {on, canEdit, canShow, previewOf, load, set, clear, num,
     get: (pid, a) => map.get(key(pid, a)) || null,
     error: () => err, isLoading: () => loading, loadedFor: () => loadedFor};
 })();
@@ -724,6 +735,10 @@ function raStrip(p, a, edit, show){
     return note + (raEdit===k
       ? `<form class="ra-edit" data-prog="${E(p.id)}" data-n="${E(RA.num(a))}"><input type="text" maxlength="200" placeholder="Note (who you spoke to, what they said…)" value="${E(st ? st.note : '')}" autocomplete="off"><button type="submit" class="ra-b on">Save</button><button type="button" class="ra-b" data-act="ra-cancel">Cancel</button></form>`
       : `<div class="ra">${b('done','Done')}${b('follow','Follow up')}${b('skip','Not now')}<button type="button" class="ra-b note" data-act="ra-note" data-prog="${E(p.id)}" data-n="${E(RA.num(a))}">${st && st.note ? 'Edit note' : '+ Note'}</button>${st && st.saving ? '<span class="ra-saving">Saving…</span>' : ''}</div>`);
+  }
+  if(RA.previewOf(state.rep)){
+    const b = (k2, l) => `<button type="button" class="ra-b ${k2}${st && st.status===k2 ? ' on' : ''}" disabled aria-disabled="true">${RA_MARK[k2]} ${l}</button>`;
+    return note + `<div class="ra ra-off">${b('done','Done')}${b('follow','Follow up')}${b('skip','Not now')}</div><div class="ra-pv">Saving is off in preview — these are ${E(first(state.rep))}’s own marks.</div>`;
   }
   if(st) return note + `<div class="ra"><span class="ra-chip ${st.status}">${RA_MARK[st.status]} ${RA_LABEL[st.status]}${raDay(st.updated_at) ? ' · '+raDay(st.updated_at) : ''}</span></div>`;
   return '';
@@ -769,9 +784,12 @@ function hashOf(){
   const p = [];
   if(state.view!=='home') p.push('view='+state.view);
   if(state.rep && state.view!=='programs' && state.view!=='program') p.push('rep='+encodeURIComponent(state.rep));
-  if(state.cat && (state.view==='rep' || state.view==='detail')) p.push('cat='+state.cat);
+  if(state.cat && (state.view==='rep' || state.view==='detail' || state.view==='sup' || state.view==='accts' || state.view==='acct')) p.push('cat='+state.cat);
+  if(state.sup && state.view==='sup') p.push('sup='+encodeURIComponent(state.sup));
+  if(state.list && (state.view==='accts' || state.view==='acct')) p.push('list='+state.list);
+  if(state.n!=null && state.view==='acct') p.push('n='+encodeURIComponent(state.n));
   if(state.month && state.view==='rep') p.push('month='+state.month);
-  if(state.prog && (state.view==='detail' || state.view==='program')) p.push('prog='+encodeURIComponent(state.prog));
+  if(state.prog && (state.view==='detail' || state.view==='program' || state.view==='accts' || state.view==='acct')) p.push('prog='+encodeURIComponent(state.prog));
   if(state.from && state.view==='detail') p.push('from='+state.from);
   if(state.peek && state.view==='detail') p.push('who='+encodeURIComponent(state.peek));
   if(isMgr()) p.push('mode=manager');
@@ -796,10 +814,17 @@ function applyHash(){
   const v = h.view;
   // view=pick was the old "what are you looking for?" / supplier step -- an
   // old link now lands straight on the rep's dashboard with that tab open.
-  if(v==='programs' || v==='program' || v==='rep' || v==='detail' || v==='home') state.view = v;
+  state.sup = h.sup && PROGRAMS.some(p=>p.supplier===h.sup) ? h.sup : null;
+  state.list = LISTS[h.list] ? h.list : null;
+  state.n = h.n!=null && h.n!=='' ? String(h.n) : null;
+  if(v==='programs' || v==='program' || v==='rep' || v==='detail' || v==='home' || v==='sup' || v==='accts' || v==='acct') state.view = v;
   else if(v==='pick'){ state.view = 'rep'; state.cat = (h.main ? tabOf(h.main) : null) || state.cat || lastTab(); }
   else state.view = 'home';
-  if((state.view==='rep' || state.view==='detail') && !state.rep) state.view = 'home';
+  if((state.view==='rep' || state.view==='detail' || state.view==='sup' || state.view==='accts' || state.view==='acct') && !state.rep) state.view = 'home';
+  if(state.view==='sup' && !state.sup) state.view = 'rep';
+  if((state.view==='accts' || state.view==='acct') && !state.prog) state.view = 'rep';
+  if(state.view==='accts' && !state.list) state.list = 'targets';
+  if(state.view==='acct' && state.n==null) state.view = 'accts';
   if(state.view==='rep' && !state.cat){ state.cat = lastTab(); }
   state.main = tabOf(state.cat);
   if((state.view==='detail' || state.view==='program') && !state.prog) state.view = state.rep ? 'rep' : 'programs';
@@ -809,6 +834,7 @@ function applyHash(){
   lockState();
 }
 function go(next, replace){
+  try{ scrollMem[location.hash||'#'] = window.scrollY; }catch(e){}
   Object.assign(state, next);
   applyOnly();
   lockState();
@@ -818,7 +844,9 @@ function go(next, replace){
   render();
   if(next.view!==undefined) window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
 }
-window.addEventListener('popstate', ()=>{ applyHash(); const h = hashOf(); if(h!==(location.hash||'#')) history.replaceState(null, '', h); render(); });
+window.addEventListener('popstate', ()=>{ applyHash(); const h = hashOf(); if(h!==(location.hash||'#')) history.replaceState(null, '', h); render();
+  // Back restores where the list was scrolled to (2026-09-30).
+  const y = scrollMem[location.hash||'#']; if(typeof y==='number') requestAnimationFrame(()=>window.scrollTo(0, y)); });
 
 /* ====================================================================
    RENDERING
@@ -870,7 +898,7 @@ function topbar(){
     ${state.view!=='home' ? `<div class="navrow">
       <div class="navl">${rep && onRep ? `<span class="nav-rep">👤 ${E(state.peek && state.view==='detail' ? state.peek : rep)}</span>` : ''}</div>
       <div class="navr">
-        ${rep && state.view!=='rep' ? `<button class="nbtn" data-act="my-programs">${(LOCKED_REP || state.asRep) ? 'All programs' : 'All of ' + E(rep.split(' ')[0]) + '’s programs'}</button>` : ''}
+        ${rep && state.view!=='rep' && isMgr() ? `<button class="nbtn" data-act="my-programs">All of ${E(rep.split(' ')[0])}’s programs</button>` : ''}
         ${!LOCKED_REP && !state.asRep && state.view!=='home' ? `<button class="nbtn quiet" data-act="home">Choose another rep</button>` : ''}
         ${isMgr() && !state.asRep && !(state.view==='programs' || state.view==='program') ? `<button class="nbtn quiet" data-act="programs">By program</button>` : ''}
         ${isMobile() || LOCKED_REP || state.asRep ? '' : `<span class="modeseg" role="group" aria-label="How much detail"><button class="mseg${isMgr()?'':' active'}" data-act="set-mode" data-mode="rep">Rep view</button><button class="mseg${isMgr()?' active':''}" data-act="set-mode" data-mode="manager">Manager view</button></span>`}
@@ -1018,7 +1046,9 @@ function cmpKey(a, b){
 function unitOf(r){
   // "16 cases to go", "9,305 CE to unlock", "3 placements", "40% of base" -> cases / CE / placements / ''
   const grab = t => { const m = String(t||'').replace(/,/g,'').match(/^\s*[\d.]+\s*([A-Za-z][A-Za-z' -]*?)(?:\s+(?:to go|to unlock|to earn|more|needed|remaining|left))?\s*$/); if(!m) return ''; const u = m[1].trim(); return /^(of|more|to)\b/i.test(u) ? '' : u; };
-  return grab(r.remain) || grab(r.goal) || grab(r.now) || '';
+  // The goal text first (2026-09-30): "281 cases behind" and "2 lines still
+  // on Summer Ale" are the remaining text, not the unit.
+  return grab(r.goal) || grab(r.now) || grab(r.remain) || '';
 }
 const plural = (n, u) => u ? (n===1 && /s$/.test(u) ? u.replace(/s$/,'') : u) : '';
 // "4 of 20 cases sold · 16 cases remaining · Ends Sep 30"
@@ -1116,6 +1146,7 @@ function incRows(rep){
   return rows;
 }
 function screenRepIncentives(rep){
+  if(!isMgr()) return screenSuppliers(rep);
   const rows = incRows(rep);
   const sups = new Map();
   rows.forEach(x=>{ const k = x.p.supplier;
@@ -1327,7 +1358,7 @@ function screenRep(){
     return `<div class="repview">${html}</div>`;
   }
   html += renderGroups(rows, rep, {quiet: bySup || isMpoCat});
-  return `<div class="repview${bySup?' single':''}">${html}</div>`;
+  return `<div class="repview${bySup?' single':''}${isMgr()?'':' hview'}">${html}</div>`;
 }
 function mpoMonthLabel(scope){ const mk = mpoViewMonth(scope); const m = MPO_SCOPES[scope].mod.MONTHS.find(x=>x.key===mk); return m ? m.label : mk; }
 function renderGroups(rows, rep, opts){
@@ -1351,7 +1382,7 @@ function renderGroups(rows, rep, opts){
       }
     }
     if(x.g===8 && !state.showEnded) return;
-    if(!open){ html += '<div class="cards">'; open = true; }
+    if(!open){ html += isMgr() ? '<div class="cards">' : '<div class="hlist">'; open = true; }
     html += programCard(x.p, x.r, rep);
   });
   if(open) html += '</div>';
@@ -2290,9 +2321,9 @@ function mpoRepCardDetail(p, r, rep, targets, dist, which){
 }
 
 function programCard(p, r, rep){
-  // Rep Mode MPO cards are the streamlined worklist card above. Manager Mode
-  // keeps the dashboards' objective card, and incentives are untouched.
-  if(p.type==='MPO' && !isMgr()) return mpoRepCard(p, r, rep);
+  // Rep Mode: every program is one tappable row that opens its own screen
+  // (2026-09-30). Manager Mode keeps the dashboards' objective card.
+  if(!isMgr()) return progRowHtml(p, r, rep);
   const bySup = String(state.cat||'').startsWith('sup:');
   const kind = p.type==='MPO' ? E(p.channelLabel)+' MPO' : ({new:'New', ongoing:'Ongoing', retention:'Retention'}[p.group]||'')+' incentive';
   const sup = bySup ? kind : `${E(p.supplier)} · ${kind}`;
@@ -2413,7 +2444,7 @@ function screenDetail(){
   if(!av.ok || r.status==='unavailable') return `<div class="detail">${back}<div class="dhero st-unavailable"><div class="dhero-top">${logoStrip(p,'lg')}</div><div class="dhero-sup">${E(p.supplier)}</div><h1 class="dhero-name">${E(p.name)}</h1>
     <div class="dhero-line">${statusChip({status:'unavailable'})}</div><p class="dhero-pitch">${E(r.sub || av.sub || 'The brand can’t be sold at any account on your route.')} Shown for awareness only — not counted in your goals.</p></div>
     <section class="dsec"><h2 class="dsec-h">How it pays</h2><ul class="rules">${p.rules.map(x=>`<li>${p.type==='Incentive' ? ruleHl(x) : E(x)}</li>`).join('')}</ul></section></div>`;
-  if(!isMgr()) return screenDetailRep(p, r, rep, back);
+  if(!isMgr()) return screenProgramRep(p, r, rep);
   const big = soon ? '—' : (r.openEnded ? r.now : Math.round(r.pct)+'%');
   const cap = soon ? (r.loading ? 'Loading…' : 'Not being tracked yet') : (r.openEnded ? (r.sub || 'So far this period') : 'Complete');
   const tl = soon ? null : p.timeline(rep);
@@ -2710,6 +2741,292 @@ function screenProgram(){
   </div>`;
 }
 
+
+/* ====================================================================
+   REP-MODE SCREENS (2026-09-30) -- Incentives > Supplier > Program >
+   Accounts > Account. Built from the same p.forRep() / nextAccounts() /
+   distFor() / RA the page already had; nothing is recomputed here.
+   ==================================================================== */
+const CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>';
+const BACKI = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>';
+const uPl = (n, u) => { u = String(u||'').trim(); if(!u) return ''; if(n===1) return /s$/.test(u) && !/ss$/.test(u) ? u.replace(/s$/,'') : u; return /s$/.test(u) ? u : u+'s'; };
+const returnLink = (act, label, extra) => `<button class="hreturn" data-act="${act}"${extra||''}>${BACKI}<span>${E(label)}</span></button>`;
+// ONE READ OF A PROGRAM'S PROGRESS, used by every row and the program
+// screen: {main "6 of 8 accounts", need "2 more accounts needed" | "Goal met",
+// pct, cls met|ontrack|attn|open|na, label, rule (the supporting goal text)}.
+function progFacts(p, r, rep){
+  if(!r) return null;
+  if(r.status==='unavailable') return {main:'Not in your territory', need:'', pct:null, cls:'na', label:'Not in your territory', rule:r.sub||''};
+  if(r.soon) return {main: r.loading ? 'Loading…' : (p.manual ? 'Verified by hand from iSellBeer photos' : 'Awaiting the first export'), need:'', pct:null, cls:'na', label: r.loading ? 'Loading' : 'Awaiting data', rule:''};
+  if(p.type==='MPO'){
+    const N = mpoNums(r); const unit = (p.objective && p.objective.unit) || '';
+    const st = gStatusOf(r); const cls = st==='achieved' ? 'met' : st==='inprogress' ? 'ontrack' : 'open';
+    const label = st==='achieved' ? 'Goal met' : st==='inprogress' ? 'In progress' : 'Not started';
+    if(!N) return {main:E(r.now||'—'), need:E(r.remain||''), pct:r.pct, cls, label, rule:r.goal||''};
+    const main = unit ? `${fmtN(N.cur)} of ${fmtN(N.goal)} ${uPl(N.goal, unit)}` : `${E(r.now||fmtN(N.cur))} of ${E(r.goal||fmtN(N.goal))}`;
+    const need = N.need<=0 ? 'Goal met' : (unit ? `${fmtN(N.need)} more ${uPl(N.need, unit)} needed` : `${E(r.remain||fmtN(N.need)+' more needed')}`);
+    // The tracker's own goal text carries the rule ("40% of my account base (13 of 31)").
+    const rule = r.goal && !/^\d[\d,.]*\s/.test(String(r.goal)) ? 'Goal is '+String(r.goal).replace(/^my /,'your ').replace(/ my /,' your ') : '';
+    return {main, need, pct:Math.max(0,Math.min(100,r.pct||0)), cls, label, rule, segments:r.segments||null};
+  }
+  const b = incBand(p, r) || {cls:'open', label:''};
+  if(r.openEnded) return {main:E(r.now||'—'), need:'Every one pays — no goal to count down', pct:null, cls:'open', label:b.label, rule:''};
+  const N = incNums(r);
+  if(!N) return {main:E(r.now||'—'), need:E(r.remain||''), pct:r.pct, cls:b.cls, label:b.label, rule:''};
+  // A percentage goal (Lytt: "25% of your accounts"): say it in accounts
+  // when the tracker gives the counts, never inferred from a rounded %.
+  if(/%/.test(String(r.goal||'')) && p.source==='inc'){
+    const d = p.entry.getRep(rep) || {};
+    const buying = Number(d.buyingAccountCount), elig = Number(d.eligibleAccountCount), tier = Number(N.goal);
+    const cov = Number(N.cur);
+    if(isFinite(buying) && isFinite(elig) && elig>0 && isFinite(tier)){
+      const goalN = Math.ceil(tier/100*elig - 1e-9), needN = Math.max(0, goalN - buying);
+      const rule = `Current account coverage ${fmtN(cov)}% · Target ${fmtN(tier)}% (${fmtN(goalN)} of your ${fmtN(elig)} eligible accounts)`;
+      return {main:`${fmtN(buying)} of ${fmtN(goalN)} accounts`, need: needN<=0 ? (tier>=100 ? 'Top tier reached' : 'Goal met') : `${fmtN(needN)} more ${uPl(needN,'account')} needed`, pct:Math.max(0,Math.min(100,r.pct||0)), cls:b.cls, label:b.label, rule};
+    }
+    const pts = Math.max(0, N.goal - N.cur);
+    return {main:`Current account coverage ${fmtN(N.cur)}%`, need: pts<=0 ? 'Goal met' : `Target ${fmtN(N.goal)}% · ${fmtN(pts)} percentage points remaining`, pct:Math.max(0,Math.min(100,r.pct||0)), cls:b.cls, label:b.label, rule:''};
+  }
+  const u = unitOf(r);
+  const house = r.house ? ' (house goal)' : '';
+  if(u){
+    // The tracker's own headline stays as the supporting line when it says
+    // more than the count ("894 vs 1175 Sam Adams cases last Aug–Sep").
+    const plain = new RegExp('^[\\d,.]+ of [\\d,.]+ '+u.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'$','i').test(String(r.now||'').trim());
+    const rule = [r.house ? subNoMoney(r.sub) : '', (!plain && r.now && !/\$/.test(r.now)) ? r.now : ''].filter(Boolean).join(' · ');
+    return {main:`${fmtN(N.cur)} of ${fmtN(N.goal)} ${E(uPl(N.goal,u))}${house}`, need: N.need<=0 ? 'Goal met' : `${fmtN(N.need)} more ${E(uPl(N.need,u))} needed${r.house?' company-wide':''}`, pct:Math.max(0,Math.min(100,(N.cur/N.goal)*100)), cls:b.cls, label:b.label, rule};
+  }
+  return {main:E(r.now||`${fmtN(N.cur)} of ${fmtN(N.goal)}`), need: N.need<=0 ? 'Goal met' : E(r.remain||`${fmtN(N.need)} more needed`), pct:Math.max(0,Math.min(100,(N.cur/N.goal)*100)), cls:b.cls, label:b.label, rule:''};
+}
+const htag = f => f && f.label ? `<span class="htag ${f.cls}">${E(f.label)}</span>` : '';
+const hbar = f => (f && f.pct!=null) ? `<div class="hbar ${f.cls}"><div class="hbar-fill" style="width:${Math.round(f.pct)}%"></div></div>` : '';
+// One program as a row: name + status, supplier/channel and the deadline
+// once, one progress line, a thin bar. Tap opens the program.
+function progRowHtml(p, r, rep){
+  const f = progFacts(p, r, rep) || {main:'', need:'', cls:'open', label:''};
+  const meta = [state.view==='sup' ? p.channelLabel : `${p.supplier} · ${p.channelLabel}`, endsLabel(p.period)].filter(Boolean).join(' · ');
+  const off = r.status==='unavailable' || r.soon;
+  return `<button class="hrow prog${off?' off':''}" data-act="open" data-prog="${E(p.id)}" id="card-${E(p.id)}">
+    <span class="hrow-main">
+      <span class="hrow-t"><span>${E(p.type==='MPO' ? (p.shortName||p.name) : (p.shortName||p.name))}</span>${htag(f)}</span>
+      <span class="hrow-s">${E(meta)}</span>
+      ${f.main ? `<span class="hrow-p"><b>${f.main}</b>${f.need && f.need!==f.label ? ` · ${f.need}` : ''}</span>` : ''}
+      ${off ? '' : hbar(f)}
+    </span>${CHEV}</button>`;
+}
+// Incentives grouped by supplier, sorted the way the old page sorted them.
+function supProgs(rep){
+  const rows = incRows(rep);
+  const sups = new Map();
+  rows.forEach(x=>{ const k = x.p.supplier; if(!sups.has(k)) sups.set(k, []); sups.get(k).push(x); });
+  sups.forEach(list=>list.sort((a,b)=>cmpKey(incSortKey(a), incSortKey(b))));
+  return sups;
+}
+function supOrder(sups){
+  const groups = [...sups.entries()].map(([name, list])=>({name, list,
+    top: Math.max(...list.map(x=>{ const v = incPctDone(x); return v==null ? -1 : v; })),
+    band: Math.min(...list.map(x=>x.b.band))}));
+  groups.sort((a,b)=> b.top-a.top || a.band-b.band || a.name.localeCompare(b.name));
+  return groups;
+}
+function endedHtml(rep){
+  const ended = [];
+  PROGRAMS.forEach(p=>{
+    if(p.type!=='Incentive' || isActive(p) || !supportAllows(rep, p)) return;
+    if(daysLeft(p.period.end) < -120) return;
+    const r = p.forRep(rep); if(!r || r.status==='unavailable' || isDollarProgram(r)) return;
+    ended.push({p, r});
+  });
+  ended.sort((a,b)=>b.p.period.end - a.p.period.end);
+  if(!ended.length) return '';
+  return `<details class="iended"${state.showEnded?' open':''}>
+      <summary>Ended programs <span class="iended-n">${ended.length}</span><span class="iended-s">Finished in the last four months</span></summary>
+      <div class="iended-list">${ended.map(x=>{ const f = progFacts(x.p, x.r, rep);
+        const okd = x.r.status==='complete'||x.r.status==='exceeded';
+        return `<div class="iended-row"><span class="iended-name">${E(x.p.shortName||x.p.name)}<span class="iended-sup">${E(x.p.supplier)}</span></span><span class="iended-fin${okd?' ok':''}">${okd?'Goal met · ':''}${f.main}</span><span class="iended-when">Ended ${E(shortEnds(x.p.period).replace(/^Ends /,''))}</span></div>`; }).join('')}</div>
+    </details>`;
+}
+/* ---- Incentives: one row per supplier ---- */
+function screenSuppliers(rep){
+  const sups = supProgs(rep); const groups = supOrder(sups);
+  const rows = [...sups.values()].flat();
+  const met = rows.filter(x=>x.b.band===2).length, onTrack = rows.filter(x=>x.b.band===1).length, attn = rows.filter(x=>x.b.band===0).length;
+  const list = groups.map(g=>{
+    const logo = (g.list[0] && g.list[0].p.supplierLogo) || '';
+    const a = g.list.filter(x=>x.b.band===0).length;
+    const one = g.list.length===1 ? g.list[0] : null;
+    const oneName = one ? (one.p.shortName||one.p.name) : '';
+    const sub = one ? [oneName.toLowerCase()===g.name.toLowerCase() ? '1 program' : oneName, endsLabel(one.p.period)].join(' · ') : [plw(g.list.length,'program'), a?`${a} need${a===1?'s':''} attention`:''].filter(Boolean).join(' · ');
+    return `<button class="hrow sup" data-act="open-sup" data-sup="${E(g.name)}">
+      ${supLogoHtml(g.name, logo)}
+      <span class="hrow-main"><span class="hrow-t"><span>${E(g.name)}</span>${incDotsHtml(g.list)}</span><span class="hrow-s">${E(sub)}</span></span>${CHEV}</button>`;
+  }).join('');
+  return `<div class="hview">
+    <div class="rep-head">
+      <div class="rep-title"><h1>${E(possessive(rep))} Incentives</h1>
+        ${roleLine(rep)}${tapShareLink(rep)}
+        <div class="rep-sub">${plw(rows.length,'program')} across ${plw(groups.length,'supplier')} · ${rows.length ? `<span class="hs met">${met} met</span> · <span class="hs ontrack">${onTrack} on track</span> · <span class="hs attn">${attn} need${attn===1?'s':''} attention</span>` : ''}</div>
+        ${refreshedLine()}</div>
+      ${tabbar(rep, 'inc')}
+    </div>
+    ${rows.length ? `<div class="hlist">${list}</div>` : `<div class="kdh-state empty"><b>No incentives apply to you right now.</b></div>`}
+    ${endedHtml(rep)}
+  </div>`;
+}
+/* ---- one supplier's programs ---- */
+function screenSupplier(){
+  const rep = state.rep, name = state.sup;
+  const list = supProgs(rep).get(name) || [];
+  const logo = (list[0] && list[0].p.supplierLogo) || '';
+  return `<div class="hview">
+    ${returnLink('back-list', 'Incentives')}
+    <div class="hhead"><div class="hhead-row">${supLogoHtml(name, logo, 'lg')}<div><h1>${E(name)}</h1><p class="hsub">${plw(list.length,'program')} for ${E(first(rep))}</p></div></div></div>
+    ${list.length ? `<div class="hlist">${list.map(x=>progRowHtml(x.p, x.r, rep)).join('')}</div>` : `<div class="kdh-state empty"><b>Nothing here right now.</b></div>`}
+  </div>`;
+}
+/* ---- one program: the summary, then the account lists ---- */
+function backForProgram(p){
+  if(p.type==='MPO') return returnLink('back-list', `${p.channelLabel} MPOs`);
+  const sups = supProgs(state.rep); const k = p.supplier;
+  if(sups.has(k) && sups.get(k).length>1) return returnLink('back-sup', p.supplier);
+  return returnLink('back-list', 'Incentives');
+}
+function listCounts(p, r, rep){
+  const off = r.status==='unavailable' || r.soon;
+  const loading = p.type==='MPO' && !mpoMonthLoaded(p.source, p.monthKey);
+  if(off || loading) return {loading, targets:null, dist:null, follow:null, hold:false};
+  const plan = nextAccounts(p, rep);
+  const T = raSplit(p, rep, plan.rows.filter(a=>!a.foreign));
+  return {loading:false, hold:plan.hold, targets:T.live.length, done:T.done.length, skip:T.later.length, dist:distFor(p, rep).length, follow:T.on ? T.follow.length : null};
+}
+function screenProgramRep(p, r, rep){
+  const f = progFacts(p, r, rep);
+  const off = r.status==='unavailable' || r.soon;
+  const C = listCounts(p, r, rep);
+  const BG = off ? [] : brandGoals(p, rep);
+  const fams = HubAccounts.PROGRAM_BRANDS[HubAccounts.brandKey(p)];
+  const row = (list, label, n, sub) => n==null ? '' : `<button class="hrow" data-act="accts" data-prog="${E(p.id)}" data-list="${list}"><span class="hrow-main"><span class="hrow-t"><span>${E(label)}</span></span>${sub?`<span class="hrow-s">${E(sub)}</span>`:''}</span><span class="hcount">${n}</span>${CHEV}</button>`;
+  const lists = C.loading ? `<div class="kdh-state loading">Loading this month’s accounts…</div>` : off ? '' : `<div class="hlist">
+      ${BG.length ? '' : row('targets', C.hold ? LISTS.hold : LISTS.targets, C.targets, C.hold ? 'Keep these ordering' : (C.targets ? 'Where to go next' : 'Every eligible account already buys it'))}
+      ${row('dist', LISTS.dist, C.dist, C.dist ? `Credited in ${periodLabel(p.period)}` : 'Nothing credited yet')}
+      ${C.follow ? row('follow', LISTS.follow, C.follow, 'Accounts you flagged to get back to') : ''}
+    </div>`;
+  const weight = p.type==='MPO' ? `${p.shortName && p.shortName!==p.name ? `<li>${E(p.name)}</li>` : ''}<li>Worth ${E(String(r.weight||Math.round((p.objective.weight||0)*100)))}% of the ${E(p.monthLabel)} ${E(p.channelLabel)} MPO.</li>` : '';
+  const rules = repRulesHtml(p, 'ibul');
+  const tl = off ? null : p.timeline(rep);
+  return `<div class="hview">
+    ${backForProgram(p)}
+    <div class="px">
+      <div class="px-sup">${E(p.supplier)} · ${E(p.channelLabel)}${p.type==='MPO' ? ' · '+E(p.monthLabel)+' MPO' : ''}</div>
+      <h1 class="px-name">${E(p.type==='MPO' ? (p.shortName||p.name) : p.name)}</h1>
+      <div class="px-meta">${htag(f)}<span class="px-ends">${E(endsLabel(p.period))}</span></div>
+      ${off ? `<div class="kdh-state ${r.status==='unavailable'?'unavailable':'empty'}"><b>${f.main}</b>${f.rule?`<span>${E(f.rule)}</span>`:''}</div>` : `
+      <p class="px-qual"><span>Qualifies</span>${E(sellAsk(p))}</p>
+      <div class="px-prog">
+        <div class="px-main">${f.main}</div>
+        <div class="px-need ${f.cls}">${f.need}</div>
+        ${hbar(f)}
+        ${f.rule ? `<div class="px-rule">${f.rule}</div>` : ''}
+        ${f.segments && f.segments.length ? `<div class="px-segs">${f.segments.map(g=>`<div class="px-seg"><span>${E(g.label)}</span><b>${E(g.valueText)}</b></div>`).join('')}</div>` : ''}
+      </div>`}
+    </div>
+    ${lists}
+    ${BG.length ? `<section class="hsec"><h2>Your brand goals</h2>${brandGoalsHtml(BG, {noTitle:true, oneGoal: p.key==='mabi_retention_fall' ? (r.goal||'goal') : ''})}</section>` : ''}
+    <details class="hdet"><summary>How it is scored</summary>
+      ${rules ? rules.replace('<ul class="ibul">', '<ul class="ibul">'+weight) : `<ul class="ibul">${weight}</ul>`}
+      ${(fams && fams.length) ? `<p class="hnote">Pays on ${E(fams.join(' · '))}.</p>` : ''}
+      <p class="hnote">Runs ${E(p.period.label)} · numbers as of ${E(p.refreshed||'—')}</p>
+    </details>
+    ${tl && tl.length ? `<details class="hdet"><summary>Progress so far</summary>${chartHtml(tl, p, r)}</details>` : ''}
+  </div>`;
+}
+/* ---- account lists ---- */
+function acctRowsFor(p, rep, list){
+  const plan = nextAccounts(p, rep); const rows = plan.rows.filter(a=>!a.foreign);
+  const T = raSplit(p, rep, rows);
+  if(list==='dist') return distFor(p, rep).map(x=>Object.assign({}, x, {line:[x.what, x.date].filter(Boolean).join(' · ')}));
+  const withLine = a => Object.assign({}, a, {line: plan.hold ? 'Keep ordering' : (a.why||'')});
+  if(list==='follow') return T.follow.map(withLine);
+  if(list==='done') return T.done.map(withLine);
+  if(list==='skip') return T.later.map(withLine);
+  return (T.on ? T.live : rows).map(withLine);
+}
+function acctRowsHtml(key){
+  const [pid, list] = key.split('|'); const p = PROGRAMS.find(x=>x.id===pid); const rep = state.rep;
+  if(!p) return '';
+  const q = String(acctQ[key]||'').trim().toLowerCase();
+  const rows = acctRowsFor(p, rep, list).filter(a=>!q || String(a.name||'').toLowerCase().includes(q) || String(a.city||'').toLowerCase().includes(q));
+  if(!rows.length) return `<div class="kdh-state empty"><b>${q ? 'No account matches “'+E(q)+'”.' : 'Nothing here yet.'}</b></div>`;
+  const show = RA.canShow(rep), edit = RA.canEdit(rep);
+  return rows.map(a=>{
+    const st = show && list!=='dist' ? RA.get(p.id, a) : null;
+    const town = [a.city, a.area || a.rawArea].filter(Boolean).join(' · ');
+    return `<button class="hrow acct${st?' ra-'+st.status:''}" data-act="open-acct" data-n="${E(RA.num(a))}" data-list="${list}">
+      <span class="hrow-main"><span class="hrow-t"><span>${E(a.name)}</span>${st && list!=='follow' ? `<span class="ra-tag ${st.status}">${RA_MARK[st.status]} ${RA_LABEL[st.status]}</span>` : ''}</span>
+        ${town ? `<span class="hrow-s">${E(town)}</span>` : ''}
+        ${a.line ? `<span class="hrow-p">${E(a.line)}${list==='follow' && st && st.note ? ` · <i>${E(st.note)}</i>` : ''}</span>` : ''}</span>${CHEV}</button>`;
+  }).join('');
+}
+function screenAccounts(){
+  const p = PROGRAMS.find(x=>x.id===state.prog); const rep = state.rep; const list = state.list || 'targets';
+  if(!p) return `<div class="empty">That program is not on the board.</div>`;
+  const r = p.forRep(rep);
+  if(p.type==='MPO' && !mpoMonthLoaded(p.source, p.monthKey)) return `<div class="hview">${returnLink('back-prog', p.shortName||p.name)}<div class="kdh-state loading">Loading this month’s accounts…</div></div>`;
+  const plan = nextAccounts(p, rep);
+  const key = p.id+'|'+list;
+  const rows = acctRowsFor(p, rep, list);
+  const T = raSplit(p, rep, plan.rows.filter(a=>!a.foreign));
+  const title = list==='targets' && plan.hold ? LISTS.hold : LISTS[list];
+  const sub = list==='dist' ? (r ? reconLine(p, r, rows).t : '') : list==='targets' ? (plan.hold ? 'Accounts already buying — keep them ordering.' : 'In your book, in territory, not buying it yet. Warm leads first.') : list==='follow' ? 'Accounts you flagged to get back to.' : '';
+  const q = acctQ[key]||'';
+  const folds = list==='targets' && T.on ? [['done', T.done.length], ['skip', T.later.length]].filter(x=>x[1]).map(([k,n])=>`<button class="hrow fold" data-act="accts" data-prog="${E(p.id)}" data-list="${k}"><span class="hrow-main"><span class="hrow-t"><span>${RA_MARK[k]} ${E(LISTS[k])}</span></span></span><span class="hcount">${n}</span>${CHEV}</button>`).join('') : '';
+  const pv = RA.previewOf(rep) ? `<p class="hnote">Marks are ${E(first(rep))}’s own. Saving is off while you preview.</p>` : '';
+  return `<div class="hview">
+    ${returnLink('back-prog', p.shortName||p.name)}
+    <div class="hhead"><h1>${E(title)}</h1><p class="hsub">${rows.length} ${rows.length===1?'account':'accounts'} · ${E(p.shortName||p.name)}${sub ? ' · '+E(sub) : ''}</p></div>
+    ${rows.length>6 ? `<div class="hsearch"><input type="search" class="kdh-field" placeholder="Search accounts" value="${E(q)}" data-key="${E(key)}" autocomplete="off" aria-label="Search accounts"></div>` : ''}
+    ${pv}
+    <div class="hlist" id="acctRows">${acctRowsHtml(key)}</div>
+    ${folds ? `<div class="hlist hfolds">${folds}</div>` : ''}
+  </div>`;
+}
+/* ---- one account ---- */
+function screenAccount(){
+  const p = PROGRAMS.find(x=>x.id===state.prog); const rep = state.rep; const list = state.list || 'targets';
+  if(!p) return `<div class="empty">That program is not on the board.</div>`;
+  if(p.type==='MPO' && !mpoMonthLoaded(p.source, p.monthKey)) return `<div class="hview">${returnLink('back-accts', LISTS[list]||'Accounts')}<div class="kdh-state loading">Loading…</div></div>`;
+  const n = String(state.n);
+  const plan = nextAccounts(p, rep);
+  let a = plan.rows.find(x=>RA.num(x)===n) || null;
+  const credited = distFor(p, rep).filter(x=>RA.num(x)===n || (a && HubAccounts.norm(x.name)===HubAccounts.norm(a.name)));
+  if(!a){ const d = credited[0]; const book = bookIndex(rep).get(n); a = book ? Object.assign({}, book) : (d ? {name:d.name, n:d.n, city:d.city, area:d.area} : null); }
+  if(!a) return `<div class="hview">${returnLink('back-accts', LISTS[list]||'Accounts')}<div class="kdh-state empty"><b>That account is not on this list.</b></div></div>`;
+  const show = RA.canShow(rep), edit = RA.canEdit(rep);
+  const st = show ? RA.get(p.id, a) : null;
+  const kv = (k, v) => v ? `<div class="hkv"><span>${E(k)}</span><span>${v}</span></div>` : '';
+  const meta = [a.n!=null ? 'Account #'+a.n : '', a.city, a.area || a.rawArea, a.prem ? a.prem+'-premise' : ''].filter(Boolean).join(' · ');
+  const strip = show ? raStrip(p, a, edit, show) : '';
+  const onList = plan.rows.some(x=>RA.num(x)===n);
+  return `<div class="hview">
+    ${returnLink('back-accts', LISTS[list]||'Accounts')}
+    <div class="hhead"><h1>${E(a.name)}</h1><p class="hsub">${E(meta)}</p></div>
+    <div class="hcard">
+      ${kv('Program', E(p.shortName||p.name) + ' · ' + E(p.supplier))}
+      ${kv('What to sell', E(sellAsk(p)))}
+      ${onList ? kv(plan.hold ? 'Status' : 'Opportunity', E(a.why || (plan.hold ? 'Keep ordering' : 'Never bought it'))) : ''}
+      ${a.note ? kv('Last activity', E(a.note)) : ''}
+      ${a.cases>0 ? kv('2026 volume', E(fmtCases(a.cases))+' a year, all brands') : ''}
+    </div>
+    <section class="hsec"><h2>Credited for this program</h2>
+      ${credited.length ? `<div class="hcard">${credited.map(x=>`<div class="hkv"><span>${E(x.date||'—')}</span><span>${E([x.what, x.note && x.note!=='photo' ? x.note : ''].filter(Boolean).join(' · ')||'Credited')}${x.photo ? ` · <a href="${E(x.photo)}" target="_blank" rel="noopener">View photo ›</a>` : ''}</span></div>`).join('')}</div>` : `<p class="hnote">Nothing credited to this account yet. Credit comes only from sales data.</p>`}
+    </section>
+    ${show ? `<section class="hsec"><h2>Your notes</h2>
+      <div class="hcard hra">${strip || `<div class="ra"><span class="ra-chip">No mark yet</span></div>`}${RA.error() ? `<div class="ra-err">${E(RA.error())}</div>` : ''}
+      ${edit ? `<p class="hnote">Done, Follow up and Not now are your own planning notes. They don’t change credit.</p>` : ''}</div>
+    </section>` : ''}
+  </div>`;
+}
+
 /* ---- main render ---- */
 function render(){
   acctCache.clear();
@@ -2719,19 +3036,23 @@ function render(){
   if(state.view==='home') body = screenHome();
   else if(state.view==='rep') body = screenRep();
   else if(state.view==='detail') body = screenDetail();
+  else if(state.view==='sup') body = screenSupplier();
+  else if(state.view==='accts') body = screenAccounts();
+  else if(state.view==='acct') body = screenAccount();
   else if(state.view==='programs') body = screenPrograms();
   else if(state.view==='program') body = screenProgram();
   document.body.classList.toggle('is-home', state.view==='home');
   root.innerHTML = topbar() + `<main class="wrap">${body}</main>`;
   // The top bar says whose page this is (a manager on a rep's screen).
-  try{ if(window.kdhViewing) window.kdhViewing((state.view==='rep'||state.view==='detail') && !LOCKED_REP ? (state.peek && state.view==='detail' ? state.peek : state.rep) : '', function(){ openCards.clear(); state.showEnded = false; state.asRep = false; go({view:'home', rep:null, main:null, cat:null, prog:null, peek:null, from:null}); }); }catch(e){}
+  try{ if(window.kdhViewing) window.kdhViewing((state.view==='rep'||state.view==='detail'||state.view==='sup'||state.view==='accts'||state.view==='acct') && !LOCKED_REP ? (state.peek && state.view==='detail' ? state.peek : state.rep) : '', function(){ openCards.clear(); state.showEnded = false; state.asRep = false; go({view:'home', rep:null, main:null, cat:null, prog:null, peek:null, from:null}); }); }catch(e){}
   document.title = state.view==='rep' && state.rep ? `${possessive(state.rep)} Incentives & MPOs | Kohler` : 'Incentives & MPO Hub | Kohler Distributing';
   // Kick off any MPO month this screen needs, then re-render once it lands.
   let needed = [];
   if(state.view==='rep') needed = PROGRAMS.filter(p=>inCategory(p, state.cat||'all')
     && (p.type==='MPO' ? p.monthKey===mpoViewMonth(p.source) : (isActive(p) || state.showEnded)));
   else if(state.view==='home') needed = PROGRAMS.filter(p=>p.type==='MPO' && p.monthKey===mpoRepMonth(p.source));   // for the refreshed stamps
-  else if(state.view==='detail' || state.view==='program'){ const p = PROGRAMS.find(x=>x.id===state.prog); if(p) needed=[p]; }
+  else if(state.view==='detail' || state.view==='program' || state.view==='accts' || state.view==='acct'){ const p = PROGRAMS.find(x=>x.id===state.prog); if(p) needed=[p]; }
+  else if(state.view==='sup') needed = PROGRAMS.filter(p=>p.type==='MPO' && p.monthKey===mpoRepMonth(p.source));
   else if(state.view==='programs'){ const f=state.filters; needed = PROGRAMS.filter(p=>p.type==='MPO' && (f.month==='all' ? true : f.month==='active' ? isActive(p) : p.monthKey===f.month)); }
   if(needed.length){ const token = ++renderToken; loadFor(needed).then(did=>{ if(did && token===renderToken) render(); }); }
 }
@@ -2796,6 +3117,15 @@ document.addEventListener('click', e=>{
     case 'reset-all': try{ localStorage.removeItem(LS_KEY); sessionStorage.removeItem(TAB_KEY); }catch(e){} openCards.clear(); state.showEnded = false; state.peek = null; state.prog = null; state.rep = null; state.cat = null; state.main = null;
       go({view:'home'}, true); break;
     case 'open': go({view:'detail', prog:t.dataset.prog, from:null, peek:null}); break;
+    case 'open-sup': { const name = t.dataset.sup; const one = supProgs(state.rep).get(name) || [];
+      // One program only: skip the supplier screen (2026-09-30).
+      if(one.length===1) go({view:'detail', prog:one[0].p.id, sup:name, from:null, peek:null}); else go({view:'sup', sup:name}); break; }
+    case 'back-list': { openCards.clear(); go({view:'rep', cat: state.cat || lastTab(), main: tabOf(state.cat || lastTab()), prog:null, sup:null, list:null, n:null, from:null, peek:null}); break; }
+    case 'back-sup': { if(state.sup && supProgs(state.rep).has(state.sup) && supProgs(state.rep).get(state.sup).length>1) go({view:'sup', prog:null, list:null, n:null}); else go({view:'rep', prog:null, sup:null, list:null, n:null}); break; }
+    case 'accts': go({view:'accts', prog:t.dataset.prog || state.prog, list:t.dataset.list || 'targets', n:null}); break;
+    case 'open-acct': go({view:'acct', n:t.dataset.n, list:t.dataset.list || state.list || 'targets'}); break;
+    case 'back-prog': go({view:'detail', list:null, n:null}); break;
+    case 'back-accts': go({view:'accts', n:null}); break;
     case 'open-for-rep': {
       const who = t.dataset.rep;
       // A manager (or a curious rep) opening someone else's row peeks at
@@ -2811,6 +3141,11 @@ document.addEventListener('keydown', e=>{
   if(e.key!=='Enter' && e.key!==' ') return;
   const t = e.target.closest('article[data-act]'); if(!t) return;
   e.preventDefault(); t.click();
+});
+document.addEventListener('input', e=>{
+  const t = e.target.closest('.hsearch input'); if(!t) return;
+  acctQ[t.dataset.key] = t.value;
+  const list = document.getElementById('acctRows'); if(list) list.innerHTML = acctRowsHtml(t.dataset.key);
 });
 document.addEventListener('change', e=>{
   const t = e.target.closest('.fsel'); if(!t) return;

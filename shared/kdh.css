@@ -96,13 +96,17 @@ html[data-theme="dark"] .kdh-b.kdh-icon .sun{display:none} html[data-theme="dark
 /* who is being viewed (a manager on a rep's page) -- distinct from who is signed in */
 .kdh-chip{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px 0 8px;border-radius:999px;background:var(--kdh-brand-soft);color:var(--kdh-brand);font-size:13.5px;font-weight:600;white-space:nowrap;border:1px solid transparent}
 .kdh-chip b{font-weight:700}
+.kdh-chip > span{min-width:0;overflow:hidden;text-overflow:ellipsis}
 .kdh-chip a,.kdh-chip button{display:inline-flex;align-items:center;min-height:36px;font:inherit;font-weight:600;color:var(--kdh-brand);background:none;border:0;padding:0 2px 0 8px;margin:0 -4px 0 2px;cursor:pointer;text-decoration:underline;text-underline-offset:2px;border-left:1px solid var(--kdh-border-2)}
 .kdh-chip.kdh-preview{background:var(--kdh-gold-soft);color:#7A5A0C}
 html[data-theme="dark"] .kdh-chip.kdh-preview{color:var(--kdh-gold)}
 .kdh-chip.kdh-preview a,.kdh-chip.kdh-preview button{color:inherit}
 .kdh-chip svg{width:14px;height:14px}
-.kdh-b.kdh-user{cursor:default}
-.kdh-b.kdh-user:hover{background:transparent}
+/* the account button (2026-09-30): avatar + name + caret, opens the account menu */
+.kdh-b.kdh-user{cursor:pointer;height:36px;padding:0 8px 0 4px;gap:8px;border-color:var(--kdh-border);background:var(--kdh-surface)}
+.kdh-b.kdh-user:hover{background:var(--kdh-surface-2)}
+.kdh-b.kdh-user > svg{width:14px;height:14px;color:var(--kdh-text-3)}
+.kdh-b.kdh-user[aria-expanded="true"]{background:var(--kdh-surface-2);border-color:var(--kdh-border-2)}
 .kdh-b svg{width:16px;height:16px;flex:none}
 .kdh-b.kdh-back{height:40px;padding:0 14px 0 10px;font-size:14.5px;font-weight:700;color:var(--kdh-brand-ink);border-color:var(--kdh-brand);background:var(--kdh-brand);box-shadow:var(--kdh-shadow)}
 .kdh-b.kdh-back:hover{background:var(--kdh-brand-2);border-color:var(--kdh-brand-2);color:var(--kdh-brand-ink)}
@@ -111,7 +115,8 @@ html[data-theme="dark"] .kdh-chip.kdh-preview{color:var(--kdh-gold)}
   .kdh-bar-in{padding:0 14px;height:50px;gap:8px}
   .kdh-logo{font-size:15px;gap:8px}
   .kdh-logo small{display:none}
-  .kdh-b.kdh-user{padding:0 4px} .kdh-name{display:none}
+  .kdh-b.kdh-user{padding:0 6px 0 4px;height:40px;gap:4px} .kdh-name{display:none}
+  .kdh-menu{right:8px;left:auto;width:min(300px,calc(100vw - 16px))}
   /* phones: the Viewing / Previewing chip gets its own full-width row under the bar */
   .kdh-chip{font-size:14px;padding:0 4px 0 12px;height:40px;width:100%;justify-content:space-between;border-radius:10px}
   .kdh-bar-in{flex-wrap:wrap;height:auto;min-height:50px;padding-top:0;padding-bottom:0;row-gap:0}
@@ -127,8 +132,38 @@ html[data-theme="dark"] .kdh-chip.kdh-preview{color:var(--kdh-gold)}
   .kdh-bar:has(.kdh-back) .kdh-logo{font-size:0;gap:0}
   .kdh-bar:has(.kdh-back) .kdh-logo img{width:30px;height:30px}
 }
-/* the preview-as-rep bar sits under the top bar on every page */
-#kdhPreviewBar{font-family:var(--kdh-body)!important}
+/* ---- the account menu (2026-09-30): under the avatar, right-aligned ---- */
+.kdh-bar{position:sticky}
+.kdh-menu{position:absolute;top:calc(100% + 6px);right:max(12px,calc((100% - var(--kdh-max)) / 2 + 20px));width:264px;z-index:60;background:var(--kdh-surface);border:1px solid var(--kdh-border);border-radius:12px;box-shadow:var(--kdh-shadow-h);padding:6px;display:flex;flex-direction:column}
+.kdh-menu[hidden]{display:none}
+.kdh-menu-h{display:flex;flex-direction:column;gap:2px;padding:10px 12px 9px;border-bottom:1px solid var(--kdh-border);margin-bottom:6px;min-width:0}
+.kdh-menu-h b{font-size:15px;font-weight:700;color:var(--kdh-text)}
+.kdh-menu-h span{font-size:12.5px;color:var(--kdh-text-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kdh-menu-i{display:flex;align-items:center;flex-wrap:wrap;gap:0 10px;min-height:44px;padding:8px 12px;border:0;border-radius:8px;background:none;font:inherit;font-size:15px;font-weight:500;line-height:1.3;color:var(--kdh-text);text-decoration:none;text-align:left;cursor:pointer;width:100%}
+.kdh-menu-i:hover{background:var(--kdh-surface-2)}
+.kdh-menu-i small{flex-basis:100%;font-size:12.5px;color:var(--kdh-text-3);font-weight:400}
+.kdh-menu-i svg{width:16px;height:16px;color:var(--kdh-text-3);flex:none}
+#kdhViewAsRep{color:var(--kdh-brand);font-weight:600}
+#kdhTheme.kdh-menu-i .moon{display:none}
+html[data-theme="dark"] #kdhTheme.kdh-menu-i .sun{display:none} html[data-theme="dark"] #kdhTheme.kdh-menu-i .moon{display:block}
+/* ---- "View as rep": the searchable rep sheet (phone: bottom sheet; desktop: centred dialog) ---- */
+.kdh-sheet-wrap{position:fixed;inset:0;z-index:1000;font-family:var(--kdh-body);color:var(--kdh-text)}
+.kdh-sheet-wrap[hidden]{display:none}
+.kdh-sheet-back{position:absolute;inset:0;background:rgba(15,23,42,.45)}
+.kdh-sheet{position:absolute;left:0;right:0;bottom:0;max-height:88vh;background:var(--kdh-surface);border-radius:16px 16px 0 0;box-shadow:0 -8px 30px rgba(0,0,0,.25);display:flex;flex-direction:column;padding:14px 16px calc(14px + env(safe-area-inset-bottom));box-sizing:border-box}
+@media (min-width:700px){ .kdh-sheet{left:50%;right:auto;top:50%;bottom:auto;transform:translate(-50%,-50%);width:440px;max-height:80vh;border-radius:16px} }
+.kdh-sheet-h{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.kdh-sheet-h b{font-size:18px;font-weight:700}
+.kdh-sheet-x{min-height:40px;padding:0 12px;border:1px solid var(--kdh-border);background:var(--kdh-surface);border-radius:8px;font:inherit;font-size:14px;font-weight:600;color:var(--kdh-text-2);cursor:pointer}
+.kdh-sheet-p{margin:6px 0 10px;font-size:14px;color:var(--kdh-text-2);line-height:1.45}
+.kdh-sheet .kdh-field{font-size:16px;min-height:44px}
+.kdh-sheet-list{overflow:auto;margin-top:8px;flex:1;min-height:140px;-webkit-overflow-scrolling:touch}
+.kdh-sheet-dm{font-size:13px;font-weight:600;color:var(--kdh-text-3);padding:10px 4px 4px}
+.kdh-sheet-i{display:flex;align-items:center;gap:10px;width:100%;min-height:48px;padding:6px 8px;border:0;border-radius:10px;background:none;font:inherit;font-size:16px;font-weight:500;color:var(--kdh-text);text-align:left;cursor:pointer}
+.kdh-sheet-i:hover{background:var(--kdh-surface-2)}
+.kdh-sheet-i.on{background:var(--kdh-brand-soft)}
+.kdh-sheet-i small{margin-left:auto;font-size:12.5px;color:var(--kdh-brand);font-weight:600;white-space:nowrap}
+.kdh-sheet-empty{padding:16px 8px;color:var(--kdh-text-3)}
 
 /* ---- generic components (kdh- prefixed; dashboards keep their own
    class names and get these looks through kdh-skin.css) ---- */

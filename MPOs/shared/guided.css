@@ -258,3 +258,21 @@
 .g-stack .g-stamp{font-size:13px;color:var(--text-mute);margin-top:4px;display:inline-block;}
 .g-facts.g-facts-3{grid-template-columns:repeat(3,minmax(0,1fr));}
 @media (max-width:520px){ .g-facts.g-facts-3{grid-template-columns:1fr 1fr;} .g-facts.g-facts-3 > div:last-child{grid-column:1 / -1;} }
+
+/* ---- 2026-09-30: the compact objective card (guided.js repObjectiveCard).
+   Short name, credit pill, "3 of 13 buying accounts", "10 more ... needed",
+   one bar, the goal rule quietly under it, then Details. ---- */
+.g-obj-v2 .g-obj-name{font-size:19px;line-height:1.25;}
+.g-obj-v2 .g-tags{margin:6px 0 10px;}
+.g-main{font-size:24px;font-weight:700;line-height:1.2;font-variant-numeric:tabular-nums;color:var(--text,inherit);}
+.g-need{margin-top:3px;font-size:16px;font-weight:600;color:var(--accent,#2F5FC4);}
+.g-need.good{color:var(--good,#15803D);}
+.g-obj-v2 .g-bar{margin-top:10px;}
+.g-rule{margin-top:8px;font-size:13.5px;line-height:1.45;color:var(--text-mute,#64748B);}
+.g-subs{margin-top:10px;display:flex;flex-direction:column;gap:4px;}
+.g-subrow{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:var(--text-dim,#475569);}
+.g-subrow strong{color:var(--text,inherit);}
+.g-rules{margin:10px 0 12px;padding-left:18px;font-size:13.5px;line-height:1.55;color:var(--text-dim,#475569);}
+.g-obj-v2 .g-more{margin-top:12px;}
+.g-obj-v2 .g-more{background:none;border:1px solid var(--border,#E2E8F0);color:var(--accent,#2F5FC4);min-height:44px;box-shadow:none;}
+.g-obj-v2 .g-more:hover{background:var(--accent-soft,#EAF0FB);}

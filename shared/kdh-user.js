@@ -33,18 +33,29 @@
     document.cookie = 'kdh_preview=' + encodeURIComponent(val) + '; Path=/; Max-Age=' + (val ? 86400 : 0) + '; Secure; SameSite=Lax';
   }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  // THE PREVIEW INDICATOR (2026-09-30): one small chip in the top bar --
+  // "Previewing Mike Ast · Exit" -- on every page, phone and desktop. The
+  // old fixed bar along the bottom of the screen is gone (it doubled the
+  // chip and covered the page). bar() only makes sure a page that carries
+  // its own .kdh-bar-in markup gets the chip too.
   function bar() {
     var u = user();
-    if (!u || !u.preview || document.getElementById('kdhPreviewBar')) return;
-    var b = document.createElement('div');
-    b.id = 'kdhPreviewBar';
-    b.style.cssText = 'position:fixed;left:0;right:0;bottom:0;z-index:99999;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:#12275F;color:#fff;font:600 13.5px/1.3 system-ui,-apple-system,sans-serif;box-shadow:0 -4px 16px rgba(0,0,0,.35)';
-    b.innerHTML = '<span>Preview: you are seeing the site as <b>' + esc(u.name) + '</b>' + (u.role === 'manager' ? ' (manager)' : '') + '</span>' +
-      '<button type="button" style="font:inherit;font-weight:600;background:#F2C14E;color:#141414;border:0;border-radius:8px;padding:7px 12px;cursor:pointer;min-height:36px">Exit preview</button>';
-    b.querySelector('button').addEventListener('click', function () { setPreview(''); location.reload(); });
-    document.body.appendChild(b);
-    document.body.style.paddingBottom = '64px';
+    if (!u || !u.preview) return;
+    if (document.getElementById('kdhPreviewChip')) return;
+    var host = document.querySelector('.kdh-bar-in'); if (!host) return;
+    var s = document.createElement('span'); s.id = 'kdhPreviewChip'; s.className = 'kdh-chip kdh-preview';
+    s.innerHTML = previewChipHtml(u);
+    var acts = host.querySelector('.kdh-acts');
+    host.insertBefore(s, acts || null);
+    wireExit();
   }
+  function previewChipHtml(u) {
+    return '<span>Previewing <b>' + esc(u.name) + '</b>' + (u.role === 'manager' ? ' (manager)' : '') + '</span><button type="button" id="kdhExitPreview">Exit</button>';
+  }
+  // Leaving preview puts the manager back on their own home page: their
+  // identity and permissions never changed, only what the pages showed.
+  function exitPreview() { setPreview(''); location.href = ROOT || '/'; }
+  function wireExit() { var x = document.getElementById('kdhExitPreview'); if (x && !x.__kdh) { x.__kdh = 1; x.addEventListener('click', exitPreview); } }
   // Site root, worked out from where this script was loaded (../shared/ or
   // ../../shared/), so the same file works on kohlerdisthub.com and github.io.
   var ROOT = (function () {
@@ -118,36 +129,129 @@
     try { sessionStorage.setItem(key, JSON.stringify(t)); } catch (e) {}
     return t;
   }
+  // THE TOP BAR (2026-09-30): badge, the page name, the Viewing / Previewing
+  // chip, a Back button that names where it goes, and ONE account button
+  // (avatar) that opens the account menu -- View as rep, Manager home,
+  // Team activity, Rep home, light/dark, Sign out. Theme and sign-out left
+  // the bar itself so a phone shows the badge, Back and the avatar and
+  // nothing fights for the width. A landing page marks itself
+  // <meta name="kdh-home"> and gets no Back button.
+  var CARET = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
+  function isHomePage() { return !!document.querySelector('meta[name="kdh-home"]'); }
   function chrome() {
     markViewer();
     if (document.querySelector('.kdh-bar') || document.getElementById('kdhBar')) return;
     var u = user();
     var isMgr = !!(u && u.role === 'manager');
     var home = u ? (isMgr ? ROOT : REP_HOME) : ROOT;
-    var back = returnTarget();
     var b = document.createElement('div');
     b.id = 'kdhBar'; b.className = 'kdh-bar';
     var acts = '';
-    acts += '<a class="kdh-b kdh-outline kdh-back" href="' + esc(back.href) + '">' + BACK + '<span>' + esc(back.label) + '</span></a>';
+    if (!isHomePage()) { var back = returnTarget(); acts += '<a class="kdh-b kdh-outline kdh-back" href="' + esc(back.href) + '">' + BACK + '<span>' + esc(back.label) + '</span></a>'; }
     // The Viewing / Previewing chip is a direct child of the bar (beside the
     // actions, not inside them) so a phone can give it a full row of its own.
     var chips = '<span id="kdhViewing"></span>';
-    if (u && u.preview) {
-      chips += '<span class="kdh-chip kdh-preview" id="kdhPreviewChip">Previewing <b>' + esc(u.name) + '</b>' + (u.role === 'manager' ? ' (manager)' : '') + '<button type="button" id="kdhExitPreview">Exit preview</button></span>';
-    }
-    if (isMgr) acts += '<a class="kdh-b kdh-hide-sm" href="' + ROOT + 'team/">Team</a>';
-    acts += '<button type="button" class="kdh-b kdh-icon" id="kdhTheme" aria-label="Switch between light and dark mode" title="Light / dark mode">' + SUN + MOON + '</button>';
-    // the chip is always the SIGNED-IN person, never the one being previewed
+    if (u && u.preview) chips += '<span class="kdh-chip kdh-preview" id="kdhPreviewChip">' + previewChipHtml(u) + '</span>';
+    // the account button is always the SIGNED-IN person, never the one being previewed
     var who = u ? (u.preview ? u.manager : u.name) : '';
-    if (who) acts += '<span class="kdh-b kdh-user" title="Signed in as ' + esc(who) + '"><span class="kdh-av">' + esc(initials(who)) + '</span><span class="kdh-name">' + esc(who) + '</span></span>';
-    if (u) acts += '<a class="kdh-b kdh-outline kdh-hide-sm" href="' + ROOT + 'login/?signout=1">Sign out</a>';
+    if (who) acts += '<button type="button" class="kdh-b kdh-user" id="kdhMenuBtn" aria-haspopup="true" aria-expanded="false" aria-label="Account menu, signed in as ' + esc(who) + '"><span class="kdh-av">' + esc(initials(who)) + '</span><span class="kdh-name">' + esc(who) + '</span>' + CARET + '</button>';
+    else acts += '<button type="button" class="kdh-b kdh-icon" id="kdhTheme" aria-label="Switch between light and dark mode" title="Light / dark mode">' + SUN + MOON + '</button>';
     b.innerHTML = '<div class="kdh-bar-in">' +
       '<a class="kdh-logo" href="' + home + '"><img src="' + ROOT + 'assets/kohler-logo-badge.png" alt="">Kohler Dist Hub<small>' + esc(pageName()) + '</small></a>' +
       chips +
-      '<div class="kdh-acts">' + acts + '</div></div>';
+      '<div class="kdh-acts">' + acts + '</div></div>' +
+      (who ? menuHtml(u, isMgr) : '');
     document.body.insertBefore(b, document.body.firstChild);
-    var t = document.getElementById('kdhTheme'); if (t) t.addEventListener('click', toggleTheme);
-    var x = document.getElementById('kdhExitPreview'); if (x) x.addEventListener('click', function () { setPreview(''); location.reload(); });
+    var t = document.getElementById('kdhTheme'); if (t) t.addEventListener('click', function () { toggleTheme(); themeLabel(); });
+    wireExit();
+    wireMenu();
+  }
+  // ---- the account menu ----
+  function menuHtml(u, isMgr) {
+    var who = u.preview ? u.manager : u.name;
+    var role = isMgr ? 'Manager' : 'Sales rep';
+    var items = '';
+    if (isMgr) {
+      items += '<button type="button" class="kdh-menu-i" id="kdhViewAsRep">' + (u.preview && u.role !== 'manager' ? 'Change rep' : 'View as rep') + '<small>See the site as one rep does</small></button>';
+      if (u.preview) items += '<button type="button" class="kdh-menu-i" id="kdhExitPreview2">Exit preview<small>Back to your own pages</small></button>';
+      items += '<a class="kdh-menu-i" href="' + ROOT + '">Manager home</a>';
+      items += '<a class="kdh-menu-i" href="' + ROOT + 'team/">Team activity</a>';
+      items += '<a class="kdh-menu-i" href="' + REP_HOME + '">Rep workspace</a>';
+    } else {
+      items += '<a class="kdh-menu-i" href="' + REP_HOME + '">Rep home</a>';
+    }
+    items += '<button type="button" class="kdh-menu-i" id="kdhTheme">' + SUN + MOON + '<span id="kdhThemeLabel">Dark mode</span></button>';
+    items += '<a class="kdh-menu-i" href="' + ROOT + 'login/?signout=1">Sign out</a>';
+    return '<div class="kdh-menu" id="kdhMenu" hidden role="menu"><div class="kdh-menu-h"><b>' + esc(who) + '</b><span>' + role + (u.email ? ' · ' + esc(u.email) : '') + '</span></div>' + items + '</div>';
+  }
+  function themeLabel() { var l = document.getElementById('kdhThemeLabel'); if (l) l.textContent = document.documentElement.getAttribute('data-theme') === 'dark' ? 'Light mode' : 'Dark mode'; }
+  function openMenu(on) {
+    var m = document.getElementById('kdhMenu'), btn = document.getElementById('kdhMenuBtn'); if (!m || !btn) return;
+    m.hidden = !on; btn.setAttribute('aria-expanded', on ? 'true' : 'false');
+    if (on) themeLabel();
+  }
+  function wireMenu() {
+    var btn = document.getElementById('kdhMenuBtn'); if (!btn || btn.__kdh) return; btn.__kdh = 1;
+    btn.addEventListener('click', function (e) { e.stopPropagation(); var m = document.getElementById('kdhMenu'); openMenu(!!(m && m.hidden)); });
+    document.addEventListener('click', function (e) { var m = document.getElementById('kdhMenu'); if (m && !m.hidden && !m.contains(e.target)) openMenu(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { openMenu(false); closePicker(); } });
+    var v = document.getElementById('kdhViewAsRep'); if (v) v.addEventListener('click', function () { openMenu(false); viewAsRep(); });
+    var x2 = document.getElementById('kdhExitPreview2'); if (x2) x2.addEventListener('click', exitPreview);
+    themeLabel();
+  }
+  // ---- "View as rep": a searchable rep picker (2026-09-30) ----
+  // A manager picks a rep and the whole site shows what that rep sees
+  // (the kdh_preview cookie), starting on the rep's home page. The roster
+  // is the DM groups file (shared/dm-groups.js, loaded on demand); a
+  // district manager only sees their own team. Reads on the page are the
+  // rep's own -- writes (Done / Follow up / Not now) stay off in preview.
+  function loadGroups(cb) {
+    if (global.KDH_DM_GROUPS) return cb(global.KDH_DM_GROUPS);
+    var s = document.createElement('script'); s.src = ROOT + 'shared/dm-groups.js';
+    s.onload = function () { cb(global.KDH_DM_GROUPS || []); }; s.onerror = function () { cb([]); };
+    document.head.appendChild(s);
+  }
+  function closePicker() { var p = document.getElementById('kdhPicker'); if (p) p.hidden = true; }
+  function viewAsRep() {
+    var u = user(); if (!u || u.role !== 'manager') return;
+    var p = document.getElementById('kdhPicker');
+    if (!p) {
+      p = document.createElement('div'); p.id = 'kdhPicker'; p.className = 'kdh-sheet-wrap';
+      p.innerHTML = '<div class="kdh-sheet-back"></div><div class="kdh-sheet" role="dialog" aria-modal="true" aria-labelledby="kdhPickerTitle">' +
+        '<div class="kdh-sheet-h"><b id="kdhPickerTitle">View as rep</b><button type="button" class="kdh-sheet-x" aria-label="Close">Close</button></div>' +
+        '<p class="kdh-sheet-p">Every page will show exactly what this rep sees. Their notes and follow-ups stay read-only while you preview.</p>' +
+        '<input type="search" id="kdhPickerSearch" class="kdh-field" placeholder="Search reps" autocomplete="off" aria-label="Search reps">' +
+        '<div id="kdhPickerList" class="kdh-sheet-list"><div class="kdh-sheet-empty">Loading reps…</div></div></div>';
+      document.body.appendChild(p);
+      p.querySelector('.kdh-sheet-back').addEventListener('click', closePicker);
+      p.querySelector('.kdh-sheet-x').addEventListener('click', closePicker);
+      p.addEventListener('click', function (e) { var b = e.target.closest('[data-rep]'); if (!b) return; setPreview(b.getAttribute('data-rep')); location.href = REP_HOME; });
+      document.getElementById('kdhPickerSearch').addEventListener('input', function () { renderPicker(this.value); });
+    }
+    p.hidden = false;
+    var inp = document.getElementById('kdhPickerSearch'); inp.value = '';
+    loadGroups(function (groups) {
+      var T = team(groups);
+      pickerGroups = (T ? groups.filter(function (g) { return g.dm === T.dm || g.under === T.dm; }) : groups)
+        .map(function (g) { return { dm: g.dm, reps: (g.reps || []).filter(isRep).slice().sort() }; }).filter(function (g) { return g.reps.length; });
+      renderPicker('');
+      if (window.innerWidth >= 700) setTimeout(function () { inp.focus(); }, 50);
+    });
+  }
+  var pickerGroups = [];
+  function renderPicker(q) {
+    var list = document.getElementById('kdhPickerList'); if (!list) return;
+    var cur = user(); var now = cur && cur.preview && cur.role !== 'manager' ? cur.name : '';
+    q = String(q || '').trim().toLowerCase();
+    var html = '';
+    pickerGroups.forEach(function (g) {
+      var reps = g.reps.filter(function (r) { return !q || r.toLowerCase().indexOf(q) >= 0 || g.dm.toLowerCase().indexOf(q) >= 0; });
+      if (!reps.length) return;
+      html += '<div class="kdh-sheet-dm">' + esc(g.dm) + '</div>' + reps.map(function (r) {
+        return '<button type="button" class="kdh-sheet-i' + (r === now ? ' on' : '') + '" data-rep="' + esc(r) + '"><span class="kdh-av">' + esc(initials(r)) + '</span><span>' + esc(r) + '</span>' + (r === now ? '<small>Previewing now</small>' : '') + '</button>';
+      }).join('');
+    });
+    list.innerHTML = html || '<div class="kdh-sheet-empty">No rep matches “' + esc(q) + '”.</div>';
   }
   // "Viewing <rep>" in the top bar: a manager looking at one rep's page
   // says so next to the way back. changeHref (optional) is where "Change"
@@ -158,7 +262,7 @@
     var u = user();
     if (!name || !u || u.role !== 'manager' || u.preview) { slot.innerHTML = ''; return; }
     var ctl = typeof change === 'function' ? '<button type="button" id="kdhViewingChange">Change</button>' : (change ? '<a href="' + esc(change) + '">Change</a>' : '');
-    slot.innerHTML = '<span class="kdh-chip">Viewing <b>' + esc(name) + '</b>' + ctl + '</span>';
+    slot.innerHTML = '<span class="kdh-chip"><span>Viewing <b>' + esc(name) + '</b></span>' + ctl + '</span>';
     if (typeof change === 'function') { var b = document.getElementById('kdhViewingChange'); if (b) b.addEventListener('click', change); }
   }
   // Kept for the pages that call it by the old name.
@@ -238,6 +342,8 @@
   global.kdhPreviewBar = bar;
   global.kdhBackBar = backBar;
   global.kdhViewing = viewing;
+  global.kdhViewAsRep = viewAsRep;
+  global.kdhExitPreview = exitPreview;
   global.kdhReturnTarget = returnTarget;
   global.kdhChrome = chrome;
   global.kdhToggleTheme = toggleTheme;

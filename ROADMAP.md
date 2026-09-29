@@ -11,6 +11,11 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
+- [ ] **Try "View as rep" from your phone** (Gavin): manager home -> View
+  as rep -> pick a rep -> walk Incentives -> a supplier -> a program ->
+  Potential accounts -> an account -> Back all the way -> Exit. Anything
+  that still feels cramped: a screenshot points straight at it.
+  (2026-09-30)
 - [ ] **Check "Confirm email" is OFF** (Gavin): Supabase -> Authentication ->
   Sign In / Providers -> Email. With it on, a new person's first sign-in
   mails a link instead of signing them in. (2026-09-29)
@@ -63,6 +68,22 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-09-30 Mobile rep experience rebuilt on the Encompass pattern:
+  rep home is a short identity line, a "Follow-ups (N)" row that opens
+  in place, and compact tool rows; the hub runs Incentives -> supplier ->
+  program -> account list -> account as separate screens (one program
+  only skips the supplier step), each program a short summary (name,
+  deadline, what qualifies, "6 of 8 accounts", "2 more accounts needed",
+  one bar, the goal rule in small type, scoring and history folded);
+  account lists are searchable rows (name, town, one opportunity line)
+  and Back restores the list, its search and scroll position. Percent
+  goals read as account counts from the tracker's own eligible base.
+  MPO tracker cards use the same summary. "View as rep" (account menu
+  and a button on the manager home) opens a searchable rep picker; one
+  small "Previewing <rep> · Exit" chip on every page; a preview shows the
+  rep's own marks with saving switched off; Exit returns to the manager
+  home. Theme and Sign out moved into the account menu. Verified at 375,
+  390, 430 and iPad against a real rep sign-in, screen for screen.
 - [x] 2026-09-28 Rep pages simplified: one "Back to My Dashboards" button
   on every page, hero photos / crumbs / long intros gone for reps, MPO
   header stacked (name, premise, manager) with no Step badge, objective

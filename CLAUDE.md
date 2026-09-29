@@ -556,6 +556,83 @@ console errors + horizontal overflow) and mobile_audit.mjs. Tags: kdh.css/skin/r
 20260929b (kdh.css) / 20260929a, kdh-user.js 20260929e, hub.js 20260929c, guided.js
 20260929d.
 
+## Mobile rep experience on the Encompass pattern + reliable "View as rep" (2026-09-30)
+
+Gavin's brief, with the Encompass incentive dashboards as the reference
+(their simple supplier tiles and program lists; NOT their MPO sections,
+banners or colours). What holds now:
+- CHROME (shared/kdh-user.js, tag 20260930a; kdh.css 20260930a): the top
+  bar is badge + page name, the Viewing / Previewing chip, the Back
+  button, and ONE account button (avatar + caret, `#kdhMenuBtn`) that
+  opens the account menu `#kdhMenu`: View as rep / Change rep + Exit
+  preview (managers), Manager home, Team activity, Rep workspace (or Rep
+  home), Dark mode / Light mode (`#kdhTheme`, now inside the menu), Sign
+  out. Theme and Sign out are no longer in the bar. A landing page carries
+  `<meta name="kdh-home">` and gets no Back button. The three landing
+  pages (root index.html, rep/index.html, team/index.html) no longer
+  carry their own static bar -- kdh-user.js injects the same one
+  everywhere. The old fixed bottom preview bar (`#kdhPreviewBar`) is GONE:
+  the only indicator is the small chip `#kdhPreviewChip` ("Previewing
+  Mike Ast · Exit"), full-width row under the bar on phones.
+- VIEW AS REP: `kdhViewAsRep()` opens `#kdhPicker`, a bottom sheet (centred
+  dialog on desktop) with a search box (`#kdhPickerSearch`) and the reps
+  grouped by DM from `shared/dm-groups.js` (loaded on demand), scoped by
+  kdhTeam for a DM, house "reps" dropped. Picking a rep writes the
+  kdh_preview cookie and goes to /rep/. Exit (`kdhExitPreview`) clears the
+  cookie and goes to the MANAGER HOME (root), never a reload in place. The
+  manager home also has a "View as rep" button (`#viewAsRepBtn`) in its
+  header; the rep home keeps the "Viewing as" select + "Preview as this
+  rep" for managers.
+- PREVIEW IS READ-ONLY: `RA.previewOf(rep)` in hub.js -- a manager
+  previewing a rep sees the rep's own Done / Follow up / Not now buttons
+  DISABLED with "Saving is off in preview — these are Mike's own marks";
+  the account list says so once. Never a live button that would stamp the
+  manager's name. ra_test.mjs checks nothing is POSTed.
+- REP HOME (rep/index.html, rep.css 20260930a): identity line (accounts +
+  top areas; own title / Reports to only on the rep's own page), a
+  "Follow-ups (N)" row (`#fuRow`) that opens the full list in place
+  (`#fuList`; each row links to that account's screen in the hub,
+  `#view=acct&prog=&n=&list=follow`), then Programs and Trackers as
+  compact rows (`.rows .row`: icon, h3, one status line, chevron; the
+  `c-*` / `s-*` ids and the status logic are unchanged). Cards (`.grid
+  a.card`) remain for the manager home.
+- HUB REP-MODE FLOW (hub.js / hub.css 20260930a): views `rep` (Incentives
+  = one `.hrow.sup` per supplier; MPO tabs = one `.hrow.prog` per
+  objective), `sup` (a supplier's programs), `detail` (the program
+  summary `screenProgramRep`: supplier line, name, status tag + deadline
+  once, "Qualifies: <sellAsk>", the `progFacts()` read -- main "6 of 8
+  accounts", need "2 more accounts needed" / "Goal met", one bar, the
+  goal rule in small type -- then rows Potential accounts / Credited
+  accounts / Follow-ups with counts, brand goals for retention programs,
+  "How it is scored" and "Progress so far" as folds), `accts` (searchable
+  list; rows = name, town · territory, one opportunity / credited line;
+  Done and Not now as folds at the foot) and `acct` (one account: facts,
+  credited lines, the rep's marks). Hash carries `sup=`, `list=`, `n=`.
+  A supplier with ONE program skips the supplier screen. `scrollMem`
+  restores the scroll position on Back; `acctQ` keeps the search text.
+  Manager Mode (desktop, `isMgr()`) keeps every old screen untouched; the
+  old rep detail page (`screenDetailRep`) is no longer reachable.
+  `progFacts()` is THE one place progress wording comes from: unit from
+  the goal text first (`unitOf`), MPO units from the objective, a
+  percent goal (Lytt) read as accounts from the tracker's
+  `buyingAccountCount` / `eligibleAccountCount` (goal = ceil(tier x
+  eligible)), never inferred from a rounded %, with "Current account
+  coverage 19.4% · Target 25%" as the rule line; house goals say so.
+- MPO TRACKERS (guided.js / guided.css 20260930a): `repObjectiveCard` is
+  the same summary -- short name, credit pill, "3 of 13 buying accounts",
+  "10 more buying accounts needed", one bar, "Goal is 40% of your
+  account base (13 of 31)", then a quiet Details fold with the full name,
+  the weight and the tracker's own drill-down. m.value / m.goal /
+  m.remaining are untouched.
+- TESTS: scratchpad preview_flow.mjs (the brief's checklist at 375 / 390 /
+  430 / 820: View as rep -> Mike Ast -> Incentives -> Boston Beer -> Lytt
+  -> Potential accounts -> Fair Lawn, Back keeps rep / list / scroll /
+  search, reload keeps the rep, Exit restores the manager, preview ==
+  real rep sign-in screen for screen, light + dark with folds open),
+  ra_test.mjs (rewritten for the account screen), fu_test / back_test /
+  ui_test / mgr_test / lock_test2 / team_test / dm_test updated for the
+  menu and chip, mgr_desktop.mjs (Manager Mode unchanged).
+
 ## Rep workspace: "Your follow-ups" strip (2026-09-28)
 
 `rep/index.html` has a `#fuSec` section between the banner and Programs:

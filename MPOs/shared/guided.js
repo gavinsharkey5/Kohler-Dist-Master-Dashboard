@@ -405,48 +405,49 @@ function repObjectiveCard(o, rep){
   }
 
   var st = m.status;
-  // Three facts, each said once (2026-09-28): the goal, where the rep is,
-  // what is still needed. Whether credit is earned rides on the status
-  // pill ("Goal achieved · credit earned") instead of a fourth column that
-  // repeated it, and a met goal reads "None" under Still needed.
-  var facts =
-    '<div class="g-facts g-facts-3">'+
-      '<div><div class="g-fact-l">My Goal</div><div class="g-fact-v">'+esc(m.goalText)+'</div></div>'+
-      '<div><div class="g-fact-l">Where I Am</div><div class="g-fact-v'+
-        (st==='achieved'?' good':'')+'">'+esc(m.valueText)+'</div></div>'+
-      '<div><div class="g-fact-l">Still Needed</div><div class="g-fact-v'+
-        (m.remaining<=0?' good':'')+'">'+
-        (m.remaining<=0?'None':esc(m.remainText||String(m.remaining)))+'</div></div>'+
-    '</div>';
+  // ONE SHORT SUMMARY (2026-09-30, Gavin's Encompass brief): the objective's
+  // short name, "3 of 13 buying accounts", "10 more buying accounts needed",
+  // one bar, and the goal rule as a quiet supporting line. The weight and
+  // the full objective name sit in the Details fold with the tracker's own
+  // drill-down; nothing about the calculation changed -- m.value / m.goal /
+  // m.remaining are the metric's own numbers.
+  var unit = o.unit || '';
+  var uPl = function(n, u){ u = String(u||'').trim(); if(!u) return ''; if(n===1) return /s$/.test(u) && !/ss$/.test(u) ? u.replace(/s$/,'') : u; return /s$/.test(u) ? u : u+'s'; };
+  var fmtN = function(v){ var n = Number(v); if(!isFinite(n)) return '\u2014'; return (Math.round(n*10)/10).toLocaleString('en-US'); };
+  var hasNums = isFinite(Number(m.value)) && isFinite(Number(m.goal)) && Number(m.goal) > 0;
+  var main = hasNums
+    ? (unit ? fmtN(m.value)+' of '+fmtN(m.goal)+' '+uPl(Number(m.goal), unit) : esc(m.valueText)+' of '+esc(m.goalText))
+    : esc(m.valueText);
+  var need = m.remaining<=0 ? 'Goal met'
+    : (hasNums && unit ? fmtN(m.remaining)+' more '+uPl(Number(m.remaining), unit)+' needed' : esc(m.remainText||String(m.remaining))+' more needed');
+  // the rule line only when the goal text says more than the count itself
+  var plainGoal = new RegExp('^[\\d,.]+\\s*'+(unit?unit.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'s?':'')+'$','i').test(String(m.goalText||'').trim());
+  var rule = (m.goalText && !plainGoal) ? 'Goal is '+esc(String(m.goalText).replace(/^my /,'your ').replace(/ my /,' your ')) : '';
 
   var subsHtml = '';
   if(m.subs && m.subs.length){
-    subsHtml = '<div style="margin-bottom:14px">'+m.subs.map(function(s){
-      return '<div style="margin-bottom:10px">'+
-        '<div class="g-barcap"><span>'+esc(s.label)+'</span>'+
-          '<strong>'+esc(s.valueText)+'</strong></div>'+
-        barHtml(s.pct, s.status)+
-      '</div>';
+    subsHtml = '<div class="g-subs">'+m.subs.map(function(s){
+      return '<div class="g-subrow"><span>'+esc(s.label)+'</span><strong>'+esc(s.valueText)+'</strong></div>';
     }).join('')+'</div>';
   }
 
   var detail = H.detailHtml(o, rep) || '';
   var mid = 'gm'+(uid++);
-  var moreHtml = detail
-    ? '<button class="g-more js-more" data-target="'+mid+'" aria-expanded="false">'+
-        'See My Progress<span class="ar">&#9656;</span></button>'+
-      '<div class="g-more-body" id="'+mid+'">'+detail+'</div>'
-    : '';
+  var moreHtml =
+      '<button class="g-more js-more" data-target="'+mid+'" aria-expanded="false">'+
+        'Details<span class="ar">&#9656;</span></button>'+
+      '<div class="g-more-body" id="'+mid+'">'+
+        '<ul class="g-rules"><li>'+esc(o.name)+'</li><li>Worth '+Math.round(o.weight*100)+'% of this month\u2019s MPO.</li>'+
+        (m.goalText ? '<li>Goal: '+esc(m.goalText)+'</li>' : '')+'</ul>'+detail+'</div>';
 
-  return '<div class="g-obj '+st+'">'+
+  return '<div class="g-obj g-obj-v2 '+st+'">'+
     (o.supplier?'<div class="g-obj-sup">'+esc(o.supplier)+'</div>':'')+
-    '<div class="g-obj-name">'+esc(o.name)+'</div>'+
-    '<div class="g-tags">'+weightTag+creditPill(st)+'</div>'+
-    facts+
+    '<div class="g-obj-name">'+esc(o.shortName||o.name)+'</div>'+
+    '<div class="g-tags">'+creditPill(st)+'</div>'+
+    '<div class="g-main">'+main+'</div>'+
+    '<div class="g-need'+(m.remaining<=0?' good':'')+'">'+need+'</div>'+
     barHtml(m.pct, st)+
-    // The four facts above already state where the rep is, so the bar
-    // carries only the one thing they don't: how far along that is.
-    '<div class="g-barcap"><span>'+Math.round(m.pct)+'% of goal</span></div>'+
+    (rule?'<div class="g-rule">'+rule+'</div>':'')+
     subsHtml+
     moreHtml+
   '</div>';

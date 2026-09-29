@@ -22,15 +22,19 @@ One look for every page on kohlerdisthub.com. Three files do it:
 
   kdh-user.js    IDENTITY + CHROME. kdhUser() (who is signed in, preview
                  mode), the injected site top bar (logo -> landing page,
-                 page name from <meta name="kdh-page">, "Dashboards" /
-                 "My dashboards" back link, Team for managers, the
-                 light/dark toggle, name chip, Sign out), the preview
-                 bar. Applies the saved theme as soon as it runs.
+                 page name from <meta name="kdh-page">, the Viewing /
+                 Previewing chip, a Back button that names where it
+                 goes, and the ACCOUNT BUTTON -- avatar + caret -- whose
+                 menu holds View as rep, Manager home, Team activity,
+                 Rep home, Dark / Light mode and Sign out), the "View as
+                 rep" picker sheet (kdhViewAsRep). Applies the saved
+                 theme as soon as it runs.
 
-The rep workspace (rep/), team page (team/), manager page (index.html)
-and sign-in page carry the .kdh-bar markup themselves and link
-rep/rep.css, whose short token names (--bg, --surface, --brand ...) are
-aliases of the kdh tokens.
+Every page, the landing pages included (rep/, team/, index.html), gets
+the bar from kdh-user.js; a landing page adds <meta name="kdh-home"> and
+gets no Back button. Only the sign-in page draws its own header. The
+landing pages link rep/rep.css, whose short token names (--bg,
+--surface, --brand ...) are aliases of the kdh tokens.
 
 Adding a dashboard
 ------------------
@@ -73,3 +77,19 @@ button names its destination (kdh-user.js returnTarget()); a page that
 shows one rep to a manager calls kdhViewing(name, changeHref). Mark
 maintenance text (filenames, refresh steps) class="kdh-maint" so reps
 never see it.
+
+
+2026-09-30 -- the account menu, the rep picker, one preview chip
+-----------------------------------------------------------------
+The bar is badge + page name, chip, Back, avatar. Everything else is in
+the account menu (#kdhMenu, opened by #kdhMenuBtn): View as rep /
+Change rep + Exit preview for managers, Manager home, Team activity, Rep
+workspace (Rep home for a rep), Dark mode / Light mode (#kdhTheme lives
+here now), Sign out. "View as rep" opens #kdhPicker -- a bottom sheet on
+phones, a centred dialog on desktop -- with a search box and the reps by
+DM from shared/dm-groups.js (loaded on demand; a DM sees their team
+only); a pick sets the kdh_preview cookie and opens /rep/. The ONLY
+preview indicator is the chip #kdhPreviewChip ("Previewing <rep> ·
+Exit"), a full-width row under the bar on phones; the fixed bottom bar
+is gone. Exit clears the cookie and goes to the manager home. New
+pieces in kdh.css: .kdh-menu / .kdh-menu-i, .kdh-sheet-* .
