@@ -22,10 +22,10 @@
   /* Sign-in (2026-09-28 redesign): a white card on the navy canvas, the
      Northern NJ banner across its top, Oswald headings + Source Sans 3
      body -- the same type the rep workspace uses. Steps: your email, then
-     your PASSWORD if you have one; the first time (or after "Forgot
-     password") the emailed link OR the 6-digit code, then "create a
-     password". The code is what an installed home-screen app needs, see
-     supabase/README.txt. */
+     your PASSWORD if you have one, or "Create your password" the first
+     time (no code: Gavin's call, 2026-09-29). The emailed link / 6-digit
+     code remains for "Forgot password" and for accounts made before
+     passwords existed. See supabase/README.txt. */
   :root{
     --canvas:#0B1120; --card:#FFFFFF; --ink:#0F172A; --ink-2:#475569; --ink-3:#94A3B8;
     --line:#E2E8F0; --field:#F8FAFC; --blue:#1F4FD8; --blue-deep:#173FB0; --navy:#12275F;
@@ -106,7 +106,7 @@
     <!-- Step 1: email. -->
     <form id="form" class="hidden" autocomplete="on" novalidate>
       <h1>Sign in</h1>
-      <p class="lead">Use your work email. First time here? We&rsquo;ll email you a code, then you&rsquo;ll create a password for next time.</p>
+      <p class="lead">Use your work email. First time here? You&rsquo;ll create a password and use it every time after.</p>
       <label for="email">Work email</label>
       <input id="email" class="field" type="email" name="email" inputmode="email" autocomplete="username" placeholder="you@kohlerdist.com" required>
       <button id="send" class="btn" type="submit">Continue</button>
@@ -145,9 +145,11 @@
       <p class="help">Use the link <i>or</i> the code, not both &mdash; they are the same one-time key, good for an hour.</p>
     </form>
 
-    <!-- Step 3: create (or replace) the password, right after a code or link
-         sign-in. Saved with the signed-in session (auth.updateUser), so the
-         next visit is email + password with no email to wait for. -->
+    <!-- Step 3: create (or replace) the password. Three ways in: a NEW
+         address (no account yet) creates the account with this password
+         (auth.signUp, signs in at once -- needs "Confirm email" OFF in
+         Supabase); "Forgot password" or a code-only account arrives here
+         signed in and saves it with auth.updateUser. -->
     <form id="setForm" class="hidden" autocomplete="on" novalidate>
       <h1 id="setTitle">Create your password</h1>
       <p class="lead" id="setLead">You&rsquo;re signed in as <b id="setTo"></b>. Choose a password to use from now on &mdash; no more waiting for a code.</p>
@@ -159,7 +161,7 @@
       </div>
       <p class="rules">At least 8 characters. Tap <b>Show</b> to check it before you save.</p>
       <button id="setGo" class="btn" type="submit">Save and continue</button>
-      <p class="links"><span></span><a class="link" href="/login/?signout=1">Not you? Sign out</a></p>
+      <p class="links"><span></span><a class="link" id="setNotYou" href="/login/?signout=1">Not you? Sign out</a></p>
     </form>
 
     <div id="msg" class="msg" role="status" aria-live="polite"></div>
@@ -297,10 +299,10 @@
       var me = res.data[0];
       var email = String(session.user.email || me.email || '').toLowerCase();
       var p = loadPending();
-      if (reset || (p && p.reset && p.email === email)) { showSetStep(session, me, true); return; }
+      if (reset || (p && p.reset && p.email === email)) { showSetStep(session, me, 'reset'); return; }
       sb.rpc('kdh_signin_mode', { p_email: email }).then(function (r) {
-        if (!r.error && r.data === 'code') showSetStep(session, me, false);   // no password yet
-        else finish(session, me);                                             // has one (or the migration isn't in yet)
+        if (!r.error && r.data === 'code') showSetStep(session, me, 'first');   // account without a password yet
+        else finish(session, me);                                               // has one (or the migration isn't in yet)
       });
     });
   }
@@ -320,15 +322,23 @@
     location.replace(next === '/' && me.role !== 'manager' ? '/rep/' : next);
   }
 
-  function showSetStep(session, me, isReset) {
-    current = { session: session, me: me };
-    var email = String(session.user.email || me.email || '');
+  // mode: 'new' (no account yet: sign up with this password), 'reset'
+  // (Forgot password), 'first' (account exists, no password yet).
+  function showSetStep(session, me, mode) {
+    current = session ? { session: session, me: me } : null;
+    var email = String((session && session.user.email) || (me && me.email) || pendingEmail || '');
+    pendingEmail = email;
     $('setEmail').value = email;
-    $('setTitle').textContent = isReset ? 'Choose a new password' : 'Create your password';
-    $('setLead').innerHTML = 'You&rsquo;re signed in as <b id="setTo"></b>. ' + (isReset
-      ? 'Choose a new password &mdash; it replaces the old one.'
-      : 'Choose a password to use from now on &mdash; no more waiting for a code.');
+    $('setTitle').textContent = mode === 'reset' ? 'Choose a new password' : 'Create your password';
+    $('setGo').textContent = mode === 'new' ? 'Create password and sign in' : 'Save and continue';
+    $('setLead').innerHTML = mode === 'new'
+      ? 'First time here. Choose a password for <b id="setTo"></b> &mdash; you&rsquo;ll use it every time you sign in.'
+      : 'You&rsquo;re signed in as <b id="setTo"></b>. ' + (mode === 'reset'
+        ? 'Choose a new password &mdash; it replaces the old one.'
+        : 'Choose a password to use from now on &mdash; no more waiting for a code.');
     $('setTo').textContent = email;
+    $('setNotYou').textContent = mode === 'new' ? 'Use a different email' : 'Not you? Sign out';
+    $('setNotYou').setAttribute('href', mode === 'new' ? '#' : '/login/?signout=1');
     $('newpw').value = '';
     show('setpw'); hush();
     $('newpw').focus();
@@ -347,7 +357,7 @@
     pendingEmail = email;
     $('sentTo').textContent = email;
     $('sentAt').textContent = at ? 'at ' + clock(at) : '';
-    $('codeNext').textContent = reset ? 'Next you’ll choose a new password.' : 'Next you’ll create a password, so you won’t need a code again.';
+    $('codeNext').textContent = reset ? 'Next you’ll choose a new password.' : 'One-time step for your account: next you’ll create a password, so you won’t need a code again.';
     show('code');
     $('code').value = '';
     $('code').focus();
@@ -419,8 +429,10 @@
           return;
         }
         reset = false;
-        if (res.data === 'password') { $('send').disabled = false; showPasswordStep(email); return; }
-        return sendLink(email, false).then(function () { $('send').disabled = false; });
+        $('send').disabled = false;
+        if (res.data === 'password') { showPasswordStep(email); return; }
+        if (res.data === 'new') { pendingEmail = email; showSetStep(null, null, 'new'); return; }
+        return sendLink(email, false);   // 'code': an account from before passwords -- verify by code once
       });
     });
 
@@ -456,8 +468,38 @@
       e.preventDefault();
       var pw = $('newpw').value;
       if (pw.length < 8) { say('bad', 'Make the password at least 8 characters.'); $('newpw').focus(); return; }
-      if (!current) { show('email'); return; }
       $('setGo').disabled = true;
+      if (!current) {
+        // No account yet: create it with this password. With "Confirm
+        // email" off in Supabase the reply carries a session and
+        // onAuthStateChange -> enter() -> finish() takes it from here.
+        var email = pendingEmail || $('setEmail').value.trim().toLowerCase();
+        if (!email) { $('setGo').disabled = false; show('email'); return; }
+        say('info', 'Creating your account&hellip;');
+        sb.auth.signUp({ email: email, password: pw }).then(function (r) {
+          $('setGo').disabled = false;
+          if (r.error) {
+            if (/already registered|already exists/i.test(r.error.message || '')) {
+              showPasswordStep(email);
+              say('info', 'This email already has a password. Sign in with it, or tap <b>Forgot password</b>.');
+              return;
+            }
+            say('bad', 'Couldn&rsquo;t create the account. ' + escapeHtml(r.error.message) + '.' +
+              detail(/database error/i.test(r.error.message || '') ? 'Is this email on the access list? Ask Gavin.' : 'Try a longer or less common password, then tap the button again.'));
+            $('newpw').focus();
+            return;
+          }
+          var sess = r.data && r.data.session;
+          if (!sess) {
+            // "Confirm email" is still on: Supabase mailed a link instead of signing in.
+            say('info', 'Almost there. We sent a confirmation email to <b>' + escapeHtml(email) + '</b>. Tap its link, then sign in with your new password.' +
+              detail('Gavin: Supabase -> Authentication -> Sign In / Providers -> Email -> "Confirm email" should be OFF so this step signs people in at once.'));
+            return;
+          }
+          if (!entered) { entered = true; enter(sess); }
+        });
+        return;
+      }
       say('info', 'Saving your password&hellip;');
       sb.auth.updateUser({ password: pw }).then(function (r) {
         if (r.error) {
@@ -535,6 +577,11 @@
     $('change').addEventListener('click', function () {
       clearInterval(resendTimer); clearPending(); reset = false;
       hush(); show('email'); $('email').focus();
+    });
+
+    $('setNotYou').addEventListener('click', function (e) {
+      if (this.getAttribute('href') !== '#') return;     // "Not you? Sign out" is a real link
+      e.preventDefault(); current = null; hush(); show('email'); $('email').focus();
     });
 
     // Show / hide a password field (one tap beats a "confirm" box on a phone).

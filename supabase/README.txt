@@ -4,13 +4,14 @@ Kohler Dist Hub -- sign-in (Supabase Auth + Vercel Edge Middleware)
 What it does
 ------------
 Every page on kohlerdisthub.com is behind a login. The FIRST time, a
-person types their work email on /login/, gets a code (and a link) by
-email, types the code, and creates a password. Every time after that
-it is email + password -- no email to wait for. "Forgot password" sends
-a code again and asks for a new password. Only emails in the allow
-list (public.allowed_users in Supabase) can request a code, set a
-password or get through. (Passwords since 2026-09-28; before that it
-was the code every time.)
+person types their work email on /login/ and creates a password -- no
+code, no email to wait for (Gavin's call, 2026-09-29). Every time after
+that it is email + password. "Forgot password" emails a code and then
+asks for a new password. Only emails in the allow list
+(public.allowed_users in Supabase) can create an account, set a
+password or get through -- the page checks, and a database trigger on
+auth.users refuses everyone else. (Code-every-time until 2026-09-28,
+code-then-password for a day, passwords from the start since 2026-09-29.)
 
 Pieces
 ------
@@ -32,8 +33,10 @@ Pieces
                               hub's Done / Follow up / Not now buttons
                               write to (20260925...); kdh_team() for the
                               Team Activity page (20260928120000);
-                              kdh_signin_mode() for passwords
-                              (20260928180000).
+                              kdh_signin_mode() + the allow-list
+                              trigger on auth.users for passwords
+                              (20260929090000; 20260928180000 was the
+                              first version, superseded).
   import_allowed_users.py     Encompass users export -> SQL upsert for
                               the table. Output goes to data/ (ignored).
 
@@ -103,32 +106,44 @@ Sign-in CODE (needed for the home-screen app, 2026-09-25)
   for exactly this reason. Nothing else changes:
   the link keeps working for people signing in through Safari.
 
-Passwords (2026-09-28)
+Passwords (2026-09-29)
 ----------------------
-  Run migrations/20260928180000_password.sql in the SQL Editor once. It
-  adds kdh_signin_mode(email), which tells the sign-in page one of three
-  things about the address just typed: not listed / listed but no
-  password yet / has a password. (Supabase keeps "has a password" in
-  auth.users, which the page cannot read itself.) Until the migration
-  is run the page behaves exactly as before: code every time.
+  Run migrations/20260929090000_password_signup.sql in the SQL Editor
+  once (it replaces the 2026-09-28 version). It gives the page
+  kdh_signin_mode(email) -- one of four answers about the address just
+  typed: no (not listed) / new (listed, no account yet) / code (an
+  account from before passwords, no password yet) / password -- and a
+  BEFORE INSERT trigger on auth.users so only allow-listed emails can
+  become accounts, whatever calls the sign-up API (this also applies to
+  Authentication -> Users -> Add user: list the person first).
   How it flows:
-    first sign-in   email -> code (or link) -> "Create your password"
-                    -> in. Everyone who signed in before 2026-09-28 is
-                    asked for a password on their next sign-in, once.
-    every time after  email -> password -> in. No email is sent.
+    first sign-in   email -> "Create your password" -> in (auth.signUp;
+                    the reply carries the session, no email is sent).
+    every time after  email -> password -> in.
     forgot password   the "Forgot password? Email me a code" link on the
                     password step -> code -> "Choose a new password".
-  The password is saved with the person's own signed-in session
-  (auth.updateUser), so nothing here needs the secret key and nothing
-  new is stored in our tables. Settings that matter, all under
-  Supabase -> Authentication -> Sign In / Providers -> Email:
-    Enable Email provider   on (it is; passwords use the same provider)
-    Minimum password length  the page insists on 8; set the project to 8
-                            too so nothing shorter can be set elsewhere.
-    Secure password change   leave OFF -- with it on, Supabase wants a
-                            fresh sign-in before a password can be set,
-                            which the code step already is, but a
-                            reloaded home-screen app may not count.
+                    This is also how the real owner takes an address
+                    back if someone else registered it first: the code
+                    only reaches the Kohler inbox.
+    old accounts    someone who signed in by code before 2026-09-29 has
+                    an account without a password: the page sends the
+                    code ONE more time, then "Create your password".
+                    To skip that for a person, delete them under
+                    Authentication -> Users and they sign up fresh.
+  Nothing here needs the secret key and nothing new is stored in our
+  tables. Settings that matter, all under Supabase -> Authentication ->
+  Sign In / Providers -> Email:
+    Enable Email provider    on (it is)
+    Confirm email            OFF (required). With it on, sign-up mails a
+                             confirmation link instead of signing the
+                             person in; the page detects this and says
+                             so, but that is the wait this removes.
+    Minimum password length  8 (the page insists on 8 too).
+    Secure password change   OFF -- with it on, Supabase wants a fresh
+                             sign-in before a password can be set.
+  Authentication -> Sign In / Providers, top: "Allow new users to sign
+  up" must stay ON (the trigger, not this switch, is what keeps
+  strangers out).
   Optional, Pro plan: "Leaked password protection" refuses passwords
   found in known breaches; the page shows Supabase's reason if it does.
   To reset someone's password by hand: Authentication -> Users -> the

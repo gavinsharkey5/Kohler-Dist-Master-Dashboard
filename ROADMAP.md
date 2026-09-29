@@ -11,14 +11,15 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
-- [ ] **Passwords: run the migration** (Gavin): Supabase -> SQL Editor ->
-  paste `supabase/migrations/20260928180000_password.sql` whole -> Run
+- [ ] **Passwords without a code: run the new SQL + one switch** (Gavin):
+  Supabase -> SQL Editor -> paste
+  `supabase/migrations/20260929090000_password_signup.sql` whole -> Run
   ("Success. No rows returned."). Then Authentication -> Sign In /
-  Providers -> Email -> Minimum password length 8 -> Save. Until the SQL
-  is run, sign-in stays code-every-time; after it, the first sign-in is
-  the code and then "Create your password", and every later sign-in is
-  email + password. You will be asked for a password on your own next
-  sign-in. (2026-09-28)
+  Providers -> Email -> "Confirm email" OFF -> Save. After both, a new
+  person's first sign-in is "Create your password" with no email at all,
+  and every later sign-in is email + password. Accounts that signed in
+  by code before today get the code once more, then a password (or
+  delete them under Authentication -> Users to skip that). (2026-09-29)
 
 - [ ] **Designed sign-in email** (Gavin, optional): paste
   `supabase/email/magic-link.html` whole into Supabase -> Authentication
@@ -97,10 +98,12 @@ device, a decision).
   who report to you) or Everyone or one pill per DM; Open their hub /
   Preview as rep links. Linked from the manager page and the rep
   workspace top bar. Migration run and reports_to verified live.
-- [x] 2026-09-28 Passwords: first sign-in with the emailed code, then a
-  password every time; "Forgot password" goes code -> new password.
-  Home-screen apps no longer wait for an email after the first day.
-  Migration `20260928180000_password.sql` (see Now).
+- [x] 2026-09-29 Passwords from the start: a new person creates their
+  password on the first sign-in (no code), then uses it every time;
+  "Forgot password" goes code -> new password; only allow-listed emails
+  can register (database trigger). Migration
+  `20260929090000_password_signup.sql` (see Now). Supersedes the
+  2026-09-28 code-then-password version.
 - [x] 2026-09-28 Sign-in page redesigned: white card, two clear steps
   (email, then link-or-code) with a big code box that submits itself,
   resend with a 30 s clock, "use a different email". Oswald + Source

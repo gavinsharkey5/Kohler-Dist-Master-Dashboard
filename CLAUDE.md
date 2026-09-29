@@ -239,26 +239,31 @@ session exists; prints the Supabase error code(s), the address and
 3600 s and OTP length 6 on the project. Don't "simplify" any of this
 away -- each guard maps to a failure that was observed.
 
-## Passwords: code once, then a password (2026-09-28)
+## Passwords: create one on the first sign-in, use it every time (2026-09-29)
 
-Gavin's ask: reps should not wait for an email every visit. `login/`
-now has five steps (`show()`): email -> `kdh_signin_mode(email)` (RPC,
-migration `supabase/migrations/20260928180000_password.sql`, security
-definer reading auth.users.encrypted_password; returns 'no' / 'code' /
-'password'; anon may call it, it reveals only that for a typed address)
--> `#pwForm` (Welcome back, `signInWithPassword`, "Forgot password?
-Email me a code") or the code step -> after ANY code/link sign-in,
-`enter()` asks the RPC again and shows `#setForm` ("Create your
-password", `auth.updateUser({password})`, min 8, Show/Hide toggle) when
-the person has none, or when `reset` / `kdh_pending.reset` says they
-came through Forgot ("Choose a new password"). Cookies are set only in
-`finish()`, after the password is saved. If the RPC is missing
-(`fnMissing`: PGRST202 / 404) the page falls back to `is_allowed` and
-the old code-every-time flow, so the page can deploy before the SQL is
-run. Everyone who signed in before this is asked for a password once.
-The middleware is untouched (a password session is the same JWT).
-Tests: scratchpad login_pw_test.mjs (first sign-in, returning, wrong
-password, forgot with reload, migration missing) + login_test.mjs.
+Gavin's decision, twice stated: NO code on the first sign-in. `login/`
+steps (`show()`): email -> `kdh_signin_mode(email)` (RPC, migration
+`supabase/migrations/20260929090000_password_signup.sql`, security
+definer over auth.users; returns 'no' / 'new' / 'code' / 'password';
+anon may call it) -> `#pwForm` ("Welcome back", `signInWithPassword`,
+"Forgot password? Email me a code") for 'password'; `#setForm` in mode
+'new' ("Create your password", `auth.signUp({email,password})`, the
+reply's session goes to `enter()`) for 'new'; the code step only for
+'code' (an account made by code before 2026-09-29, no password yet:
+verify once, then `#setForm` mode 'first' via `auth.updateUser`).
+Forgot = code -> `#setForm` mode 'reset'. Cookies are set only in
+`finish()`. The same migration adds a BEFORE INSERT trigger on
+auth.users refusing emails not in allowed_users, so the page's check is
+not the only lock; Supabase "Confirm email" must be OFF (the page
+detects a session-less sign-up reply and says so). The trade-off Gavin
+accepted: ownership of the address is not proven on first sign-in, so
+a stranger who knows a listed email could register it first; the
+owner recovers with Forgot password (the code goes to the real inbox).
+If the RPC is missing (`fnMissing`) the page falls back to
+`is_allowed` + code, so it can deploy before the SQL is run. The
+middleware is untouched. Tests: scratchpad login_pw_test.mjs (new,
+legacy code, returning, wrong password, forgot with reload, Confirm
+email still on, already registered, migration missing) + login_test.mjs.
 
 ## Team Activity page: team/ (2026-09-28)
 
