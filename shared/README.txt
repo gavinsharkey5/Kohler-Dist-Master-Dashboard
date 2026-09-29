@@ -58,3 +58,18 @@ Rules
   * Every page has the same top bar; nothing else navigates between
     dashboards. Filters are pills, tabs are pills, expanders are
     <details> with a caret.
+
+
+2026-09-29 -- the application look
+-----------------------------------
+One font (Source Sans 3) for everything; NO text-transform:uppercase and
+NO letter-spacing anywhere (the skin enforces it site-wide). Light is the
+default; dark is a choice. No hero photos or banners on working screens:
+the badge in the top bar is the branding. New shared pieces in kdh.css:
+.kdh-chip (Viewing / Previewing), .kdh-state (loading, empty, error,
+unavailable, stale), .kdh-progress + .kdh-prog-line (always name the
+unit), .kdh-tag.stale, .kdh-page-head + .kdh-return. The top bar's Back
+button names its destination (kdh-user.js returnTarget()); a page that
+shows one rep to a manager calls kdhViewing(name, changeHref). Mark
+maintenance text (filenames, refresh steps) class="kdh-maint" so reps
+never see it.

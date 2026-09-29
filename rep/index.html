@@ -22,8 +22,8 @@
   // Apply the saved theme before first paint so there is no flash.
   try { var t = localStorage.getItem('kdh_theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
 </script>
-<link rel="stylesheet" href="rep.css?v=20260928c">
-<script src="../shared/kdh-user.js?v=20260929b"></script>
+<link rel="stylesheet" href="rep.css?v=20260929a">
+<script src="../shared/kdh-user.js?v=20260929d"></script>
 </head>
 <body>
 <div class="kdh-bar"><div class="kdh-bar-in">
@@ -52,8 +52,6 @@
       <button class="btn outline" id="previewBtn" type="button" title="Every page will show exactly what this rep sees on this device until you exit">Preview as this rep</button>
     </div>
   </header>
-
-  <div class="hero" aria-hidden="true"><img src="../assets/nj-banner.webp" alt=""></div>
 
   <!-- Your follow-ups (2026-09-28): the accounts this rep flagged in the
        hub, read from Supabase rep_actions with the signed-in token. Hidden
@@ -145,7 +143,7 @@
     $('userName').textContent = user.name;
     $('avatar').textContent = initials(user.name);
   }
-  if (isManager) { $('mgrLink').hidden = false; $('teamLink').hidden = false; $('kicker').textContent = 'Rep workspace · manager preview'; }
+  if (isManager) { $('mgrLink').hidden = false; $('teamLink').hidden = false; $('kicker').textContent = 'Rep workspace · you are viewing a rep'; }
   // A manager's opening page is the manager page. Home-screen apps
   // installed before 2026-09-29 still start here: send a manager on, but
   // only on a plain app launch (standalone, no link, no reload, no referrer).
@@ -190,7 +188,16 @@
     // Deep-link the hub to this rep so it opens on their page.
     // Incentives only: the two MPO tiles beside it cover the MPO tabs.
     $('c-hub').href = '../hub/#' + (name ? 'view=rep&rep=' + encodeURIComponent(name) + '&cat=inc&' : '') + 'only=inc';
+    setMpoHref($('c-off')); setMpoHref($('c-on'));
     followUps(name);
+  }
+  // The MPO tiles keep the rep a manager is viewing (2026-09-29): the tracker
+  // opens on that rep's page instead of asking again. A rep's own tile opens
+  // by program and the tracker locks to them anyway.
+  function setMpoHref(card){
+    if (!card || !card.dataset.base) return;
+    var m = card.dataset.month || '';
+    card.href = card.dataset.base + 'index.html#' + (isManager && viewRep ? 'view=rep&rep=' + encodeURIComponent(viewRep) + '&' : 'view=program&') + (m ? 'month=' + m : '');
   }
 
   /* ---- Your follow-ups: what this rep flagged in the hub ---- */
@@ -291,10 +298,11 @@
   var now = new Date(), thisM = ymd(now), prevM = ymd(new Date(now.getFullYear(), now.getMonth()-1, 1));
   [['off','c-off','s-off'],['on','c-on','s-on']].forEach(function(t){
     var base = '../MPOs/' + t[0] + '-prem/', card = $(t[1]);
+    card.dataset.base = base;
     getJson(base + 'data/' + thisM + '/sync_meta.json').then(function(meta){
-      if (meta) { card.href = base + 'index.html#view=program&month=' + thisM; status(t[2], 'ok', MONTHS_LONG[now.getMonth()] + (meta.synced_at ? ' · updated ' + fmtDay(meta.synced_at) : '')); return; }
+      if (meta) { card.dataset.month = thisM; setMpoHref(card); status(t[2], 'ok', MONTHS_LONG[now.getMonth()] + (meta.synced_at ? ' · updated ' + fmtDay(meta.synced_at) : '')); return; }
       return getJson(base + 'data/' + prevM + '/sync_meta.json').then(function(pm){
-        if (pm) { card.href = base + 'index.html#view=program&month=' + prevM; status(t[2], 'warn', MONTHS_LONG[now.getMonth()] + ' not loaded yet · showing ' + MONTHS_LONG[(now.getMonth()+11)%12]); }
+        if (pm) { card.dataset.month = prevM; setMpoHref(card); status(t[2], 'warn', MONTHS_LONG[now.getMonth()] + ' not loaded yet · showing ' + MONTHS_LONG[(now.getMonth()+11)%12]); }
         else { card.classList.add('muted'); status(t[2], '', 'No programs loaded yet'); }
       });
     });

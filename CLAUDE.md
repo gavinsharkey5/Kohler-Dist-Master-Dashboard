@@ -455,6 +455,78 @@ against the reps in the file) filters `filteredRows()`, the rep select,
 and swaps renderStats / renderGoal for a team book, the same way
 LOCK_REP does for one rep.
 
+## UI + navigation overhaul: one light application look (2026-09-29)
+
+Gavin's brief (Catalyst layout, shadcn cards/controls, Tabler progress,
+Linear alignment, Carbon navigation; busy reps must always know where
+they are, whose data, what period, what needs attention, what next, how
+back). What changed, and the rules that now hold:
+- TYPE: one face, Source Sans 3, headings and body (`--kdh-head` ==
+  `--kdh-body`); the skin aliases every display family (incl. Oswald) to
+  it, and `body,body *{text-transform:none!important;letter-spacing:0}`
+  in kdh-skin.css kills all-caps everywhere. rep.css / team.css / login
+  carry no uppercase or tracking either. Don't reintroduce either.
+- THEME: light is the default for everyone; dark only when chosen
+  (`data-theme="dark"`). No device auto-switch (kdh.css, kdh-user.js).
+- BANNERS: none on working screens. The skin hides `.hero-banner`,
+  `.nj-hero`, hero images/badges for everyone (rep AND manager), turns
+  Rolling's `.hero` into a plain header, hides every `.eyebrow`. The
+  manager home and rep workspace markup lost their hero blocks.
+- CHROME (kdh-user.js): the Back button names its destination --
+  `returnTarget()`: same-origin referrer -> "Back to Rep Home" /
+  "Back to Manager Home" / "Back to Incentive Hub" (hash kept) / "Back
+  to Team Activity", remembered per page in sessionStorage
+  (`kdh_from:<path>`) so reloads keep it; no history -> the person's own
+  home. `kdhViewing(name, changeHref)` puts a "Viewing <rep> · Change"
+  chip in the bar (hub render(), guided.js render()); the user chip is
+  ALWAYS the signed-in person -- in preview a gold "Previewing <name> ·
+  Exit preview" chip sits beside it. `.kdh-state` (loading / empty /
+  error / unavailable / stale), `.kdh-progress` + `.kdh-prog-line`,
+  `.kdh-tag.stale`, `.kdh-page-head` / `.kdh-return` are the shared
+  components for new work.
+- HUB: internal Home button gone (logo = home); "Choose another rep",
+  "All of Mike's programs", "By program", "Rep view / Manager view".
+  Incentive rows follow the program pattern: name + status, channel ·
+  deadline, "Qualifies: <sellAsk>", `incProgLine()` "4 of 20 cases ·
+  16 cases remaining · Ends Sep 30" (unit read back from the tracker's
+  own strings by `unitOf()`; never a bare number), bar, "Next: ..."
+  (`r.next`), then labelled links to Potential / Credited accounts.
+  The expanded body is accounts (+ a note that Done/Follow up/Not now
+  are the rep's own notes, credit comes from sales data), "Pays on",
+  "How it is scored", full details -- "What to sell"/"Next step" moved
+  UP, not duplicated. The summary strip totals Still needed BY UNIT
+  (never mixed). Closed suppliers list every program on one line
+  (`.imini`, action `open-prog` expands the supplier and opens its
+  accounts). "Ended programs" `<details>` lists incentives finished in
+  the last 120 days. Manager picker says "Choose a rep".
+- MPO Program View: two summary tiles (overall weighted, programs every
+  rep has reached); per-program "reps at goal" appears once, on its
+  card. A DM/manager on a rep's page gets the Viewing chip.
+- ROLLING: short intro; `controlsHtml()` shows Supplier / Brand family /
+  Premise / District manager / Sales rep + the period pickers; the rest
+  (brand, product, package, brand manager, area, county, territory,
+  size, one account, compare/focus, custom months, YoY, buyer rule) is
+  under "More filters", auto-open when any of those is active. Footer
+  no longer names generate.py.
+- CARBLISS: `.pitch-row td` and the `tr.is-open` row use the page's own
+  tokens (no hard-coded #12141A); labels Town (was Territory),
+  Opportunity (cases) / Opportunity accounts / Opportunities only (was
+  Gap Size / Gap accounts), "Carries Carbliss", "SC + WC cases (2026)";
+  the source/refresh paragraph is `class="kdh-maint"` (hidden by the
+  skin for everyone -- the README has it).
+- INVENTORY (/inventory/, managers only -- not in REP_PATHS, so it does
+  NOT appear on the rep workspace): "Inventory as of <asOf>", "page
+  built <generatedAt>", a `.kdh-tag.stale` "Snapshot is N days old"
+  past 7 days; no "live"/"right now" wording; brand labels are two
+  words when the data supports it ("Sun Cruiser", "White Claw", "Other
+  Half") instead of first-word fragments.
+- REP WORKSPACE: MPO tiles carry `rep=` for a manager viewing a rep
+  (`setMpoHref`), so the tracker opens on that rep.
+Screens: scratchpad smoke.mjs (14 pages x desktop/phone x light/dark,
+console errors + horizontal overflow). Tags: kdh.css/skin/rep.css
+20260929a, kdh-user.js 20260929d, hub.js/css 20260929b, guided.js/css
+20260929c.
+
 ## Rep workspace: "Your follow-ups" strip (2026-09-28)
 
 `rep/index.html` has a `#fuSec` section between the banner and Programs:

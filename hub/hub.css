@@ -1312,3 +1312,46 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
 .taplink:hover{background:var(--accent);color:#fff;}
 .taplink .ar{font-size:14px;line-height:1;}
 .rep-role + .taplink{margin-left:8px;}
+
+/* ---- 2026-09-29 overhaul: the program row reads top-down -- name and
+   deadline, what qualifies, progress WITH ITS UNIT, the next action, then
+   the account lists behind a labelled link. ---- */
+.iline{display:flex;gap:10px;align-items:baseline;margin-top:10px;font-size:14.5px;line-height:1.45;color:var(--text)}
+.iline-l{flex:none;font-weight:700;color:var(--text-dim);min-width:64px}
+.iline.next .iline-l{color:var(--accent)}
+.iline-t{min-width:0}
+.iprog{margin:12px 0 0;font-size:15px;color:var(--text-dim);font-variant-numeric:tabular-nums;line-height:1.45}
+.iprog b{color:var(--text);font-weight:700;font-size:17px}
+.iprog .ok{color:var(--good);font-weight:700}
+.it-note.quiet{margin-top:8px;font-size:12.5px;color:var(--text-mute);background:none;border:0;padding:0}
+.isum-i.units{white-space:normal}
+.isum-k{font-weight:700;color:var(--text);margin-right:2px}
+.isum-i.units b{font-size:15px}
+.isum-sep{margin:0 6px;color:var(--text-mute)}
+/* closed suppliers still list their programs, one line each */
+.imini-list{display:flex;flex-direction:column;margin:2px 0 0 0;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--card)}
+.imini{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr) minmax(0,1fr) auto;align-items:center;gap:8px 14px;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--line-soft);padding:10px 14px;font:inherit;color:inherit;cursor:pointer;min-height:44px}
+.imini:first-child{border-top:0}
+.imini:hover{background:var(--card-alt)}
+.imini-n{font-weight:600;font-size:14.5px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.imini-s{font-size:13px;color:var(--text-dim);display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.imini-s.met{color:var(--good)} .imini-s.attn{color:var(--amber)} .imini-s.ontrack{color:var(--accent)}
+.imini-p{font-size:13.5px;color:var(--text-dim);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.imini-go{font-size:13px;font-weight:700;color:var(--accent);white-space:nowrap}
+@media (max-width:640px){ .imini{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"n go" "s go" "p go"} .imini-n{grid-area:n} .imini-s{grid-area:s} .imini-p{grid-area:p} .imini-go{grid-area:go} }
+/* ended programs: history, closed by default */
+.iended{margin:22px 0 0;border:1px solid var(--border);border-radius:10px;background:var(--card)}
+.iended>summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;padding:12px 14px;font-weight:700;font-size:14.5px;min-height:44px}
+.iended>summary::-webkit-details-marker{display:none}
+.iended>summary::before{content:'\25B8';color:var(--text-mute)} .iended[open]>summary::before{content:'\25BE'}
+.iended-n{font-weight:600;font-size:12.5px;color:var(--text-dim);background:var(--card-alt);border-radius:999px;padding:1px 8px}
+.iended-s{font-weight:400;font-size:13px;color:var(--text-mute)}
+.iended-list{border-top:1px solid var(--line-soft)}
+.iended-row{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) auto;gap:6px 14px;padding:10px 14px;border-top:1px solid var(--line-soft);font-size:14px;align-items:baseline}
+.iended-row:first-child{border-top:0}
+.iended-name{font-weight:600} .iended-sup{display:block;font-weight:400;font-size:12.5px;color:var(--text-mute)}
+.iended-fin{color:var(--text-dim);font-variant-numeric:tabular-nums} .iended-fin.ok{color:var(--good)}
+.iended-when{font-size:12.5px;color:var(--text-mute);white-space:nowrap}
+@media (max-width:640px){ .iended-row{grid-template-columns:1fr} }
+/* the incentive row's own uppercase meta becomes plain */
+.irow-meta{text-transform:none;letter-spacing:0;font-weight:500;font-size:13px}

@@ -870,10 +870,10 @@ function topbar(){
     ${state.view!=='home' ? `<div class="navrow">
       <div class="navl">${rep && onRep ? `<span class="nav-rep">👤 ${E(state.peek && state.view==='detail' ? state.peek : rep)}</span>` : ''}</div>
       <div class="navr">
-        <button class="nbtn home" data-act="home">🏠 Home</button>
-        ${rep && state.view!=='rep' ? `<button class="nbtn" data-act="my-programs">My programs</button>` : ''}
-        ${isMgr() && !(state.view==='programs' || state.view==='program') ? `<button class="nbtn quiet" data-act="programs">Program view</button>` : ''}
-        ${isMobile() || LOCKED_REP ? '' : `<span class="modeseg" role="group" aria-label="View mode"><button class="mseg${isMgr()?'':' active'}" data-act="set-mode" data-mode="rep">Rep</button><button class="mseg${isMgr()?' active':''}" data-act="set-mode" data-mode="manager">Manager</button></span>`}
+        ${rep && state.view!=='rep' ? `<button class="nbtn" data-act="my-programs">${LOCKED_REP ? 'My programs' : 'All of ' + E(rep.split(' ')[0]) + '’s programs'}</button>` : ''}
+        ${!LOCKED_REP && state.view!=='home' ? `<button class="nbtn quiet" data-act="home">Choose another rep</button>` : ''}
+        ${isMgr() && !(state.view==='programs' || state.view==='program') ? `<button class="nbtn quiet" data-act="programs">By program</button>` : ''}
+        ${isMobile() || LOCKED_REP ? '' : `<span class="modeseg" role="group" aria-label="How much detail"><button class="mseg${isMgr()?'':' active'}" data-act="set-mode" data-mode="rep">Rep view</button><button class="mseg${isMgr()?' active':''}" data-act="set-mode" data-mode="manager">Manager view</button></span>`}
       </div>
     </div>` : ''}
   </div>`;
@@ -903,10 +903,12 @@ function refreshedLine(){
 // way: a left-aligned title, one label per District Manager, and a grid of
 // names. No card wrapper and no search box -- every name is on screen.
 function screenHome(){
+  // A manager is choosing someone else's page; a rep is finding their own (2026-09-29).
+  const mgrPicker = !LOCKED_REP && !!(KDH_USER && KDH_USER.role === 'manager');
   return `<div class="homeview">
     <div class="home-head">
-      <h1>Choose your name</h1>
-      <p class="home-sub">Tap your name to see your incentives and MPOs.</p>
+      <h1>${mgrPicker ? 'Choose a rep' : 'Choose your name'}</h1>
+      <p class="home-sub">${mgrPicker ? 'Tap a name to see that rep’s incentives and MPOs.' : 'Tap your name to see your incentives and MPOs.'}</p>
       ${refreshedLine()}
     </div>
     <div id="repList" class="replist">${repListHtml()}</div>
@@ -1009,6 +1011,23 @@ function cmpKey(a, b){
   for(let i=0;i<a.length;i++){ if(a[i]<b[i]) return -1; if(a[i]>b[i]) return 1; }
   return 0;
 }
+// THE UNIT (2026-09-29): a number on its own ("22 still needed") is not
+// an instruction. The tracker's own strings carry the unit ("16 cases to
+// go", "2 accounts to go", "20 placements"); read it back out so every
+// progress line and every total says cases, accounts, placements, buyers.
+function unitOf(r){
+  // "16 cases to go", "9,305 CE to unlock", "3 placements", "40% of base" -> cases / CE / placements / ''
+  const grab = t => { const m = String(t||'').replace(/,/g,'').match(/^\s*[\d.]+\s*([A-Za-z][A-Za-z' -]*?)(?:\s+(?:to go|to unlock|to earn|more|needed|remaining|left))?\s*$/); if(!m) return ''; const u = m[1].trim(); return /^(of|more|to)\b/i.test(u) ? '' : u; };
+  return grab(r.remain) || grab(r.goal) || grab(r.now) || '';
+}
+const plural = (n, u) => u ? (n===1 && /s$/.test(u) ? u.replace(/s$/,'') : u) : '';
+// "4 of 20 cases sold · 16 cases remaining · Ends Sep 30"
+function incProgLine(p, r, N){
+  const u = unitOf(r);
+  const ends = endsLabel(p.period);
+  if(!u) return `<p class="iprog"><b>${E(r.now||fmtN(N.cur))}</b> of <b>${E(r.goal||fmtN(N.goal))}</b> · ${N.need<=0 ? '<span class="ok">Goal met</span>' : E(r.remain||fmtN(N.need)+' still needed')} · ${E(ends)}</p>`;
+  return `<p class="iprog"><b>${fmtN(N.cur)} of ${fmtN(N.goal)} ${E(u)}</b>${r.house?' <span class="iquiet">(house goal)</span>':''} · ${N.need<=0 ? '<span class="ok">Goal met</span>' : `${fmtN(N.need)} ${E(plural(N.need,u))} remaining`} · ${E(ends)}</p>`;
+}
 function incRowHtml(p, r, b, rep){
   const sec = cardSec[p.id] || null;
   const N = incNums(r);
@@ -1017,17 +1036,17 @@ function incRowHtml(p, r, b, rep){
   const meta = [p.channelLabel, endsLabel(p.period)].filter(Boolean).join(' · ');
 
   const figures = N
-    ? `<div class="ifig">
-        <span class="if"><span class="if-k">Current</span><span class="if-v">${fmtN(N.cur)}</span></span>
-        <span class="if"><span class="if-k">Goal</span><span class="if-v">${fmtN(N.goal)}</span></span>
-        <span class="if need${N.need<=0?' met':r.house?' house':''}"><span class="if-k">Still Needed</span><span class="if-v">${N.need<=0?'0':fmtN(N.need)}</span>
-          ${r.house?`<span class="if-tag">house goal</span>`:''}</span>
-      </div>`
+    ? incProgLine(p, r, N)
     : `<div class="ifig open"><span class="if"><span class="if-k">${r.soon?'Status':'So far'}</span><span class="if-v">${E(r.now || (r.soon ? 'Awaiting data' : '—'))}</span></span>
-        ${r.openEnded?`<span class="if-note">Open-ended — every one pays, no goal to count down</span>`:''}</div>`;
+        ${r.openEnded?`<span class="if-note">Open-ended — every one pays, no goal to count down${p.period && p.period.end ? ' · '+E(endsLabel(p.period)) : ''}</span>`:''}</div>`;
 
   const bar = N ? `<div class="ibar ${b.cls}"><div class="ibar-fill" style="width:${pct}%"></div></div>` : '';
   const off = r.status==='unavailable' || r.soon;
+  // What qualifies (one sentence) and the next useful action live on the
+  // summary itself (2026-09-29) -- nobody should have to open the account
+  // list to learn what to sell.
+  const qual = off ? '' : `<div class="iline qual"><span class="iline-l">Qualifies</span><span class="iline-t">${E(sellAsk(p))}</span></div>`;
+  const next = (off || !r.next) ? '' : `<div class="iline next"><span class="iline-l">Next</span><span class="iline-t">${nextNoMoney(r.next)}</span></div>`;
   const dist = off ? [] : distFor(p, rep);
   const counts = {dist: dist.length || null, targets: off ? null : raLive(p, rep, targets).length};
 
@@ -1035,9 +1054,10 @@ function incRowHtml(p, r, b, rep){
     <div class="irow-head">
       <span class="irow-top"><span class="irow-name">${E(p.shortName||p.name)}</span><span class="ist ${b.cls}">${b.band<=2?`<i class="idot ${b.cls}"></i>`:''}${E(b.label)}</span></span>
       <span class="irow-meta">${E(meta)}</span>
+      ${qual}
       ${figures}
       ${bar}
-      ${N?`<div class="irow-foot"><span class="ipct">${Math.round(pct)}% of goal</span></div>`:''}
+      ${next}
       ${secLinks(p, sec, counts)}
     </div>
     ${sec ? `<div class="irow-body">${incRowDetail(p, r, rep, targets, dist, sec)}</div>` : ''}
@@ -1074,10 +1094,10 @@ function incRowDetail(p, r, rep, targets, dist, which){
       + sec('How it is scored', repRulesHtml(p, 'ibul'))
       + full;
   }
-  return sec(`Potential accounts${targets.length?' · '+raLive(p, rep, targets).length:''}`, table, listMore(key, raLive(p, rep, targets)))
-    + sec('What to sell', `<div class="itext">${E(ask)}${(fams && fams.length)?` <span class="iquiet">Pays on: ${E(fams.join(' · '))}.</span>`:''}</div>`)
+  const marksNote = (RA.canShow && targets.length) ? `<div class="it-note quiet">Done, Follow up and Not now are your own notes for planning visits. Credit for this program comes only from sales data — see "${E(SEC_LABEL.dist)}".</div>` : '';
+  return sec(`Potential accounts${targets.length?' · '+raLive(p, rep, targets).length:''}`, table + marksNote, listMore(key, raLive(p, rep, targets)))
+    + ((fams && fams.length) ? sec('Pays on', `<div class="itext">${E(fams.join(' · '))}</div>`) : '')
     + sec('How it is scored', repRulesHtml(p, 'ibul'))
-    + (r.next ? sec('Next step', `<div class="itext">${nextNoMoney(r.next)}</div>`) : '')
     + full;
 }
 // One entry per incentive the rep is actually in -- the incentive page's
@@ -1124,13 +1144,18 @@ function screenRepIncentives(rep){
   const counts = x => { const N = incNums(x.r);
     return (N && !x.r.house && !/%/.test(String(x.r.goal||''))) ? N : null; };
   const counted = rows.filter(x=>counts(x));
-  const stillNeeded = counted.reduce((t,x)=>t + counts(x).need, 0);
-
+  // Still needed, BY UNIT (2026-09-29): cases, accounts and placements are
+  // never added into one number. Programs whose unit cannot be read from
+  // the tracker's own text are counted as goals, not summed.
+  const byUnit = new Map(); let unitless = 0;
+  counted.forEach(x=>{ const u = unitOf(x.r); const N = counts(x); if(N.need<=0) return; if(!u){ unitless++; return; } byUnit.set(u, (byUnit.get(u)||0) + N.need); });
+  const unitBits = [...byUnit.entries()].sort((a,b)=>b[1]-a[1]).map(([u,n])=>`<b>${fmtN(n)}</b> ${E(plural(n,u))}`);
+  if(unitless) unitBits.push(`<b>${unitless}</b> ${unitless===1?'goal':'goals'} measured another way`);
   const summary = `<div class="isum">
-      <span class="isum-i met"><b>${met}</b> Goals Met</span>
-      <span class="isum-i ontrack"><b>${onTrack}</b> On Track</span>
-      <span class="isum-i attn"><b>${attn}</b> Need Attention</span>
-      <span class="isum-i"><b>${fmtN(stillNeeded)}</b> Still Needed<span class="isum-s">across ${plw(counted.length,'goal')} of your own</span></span>
+      <span class="isum-i met"><b>${met}</b> ${met===1?'goal':'goals'} met</span>
+      <span class="isum-i ontrack"><b>${onTrack}</b> on track</span>
+      <span class="isum-i attn"><b>${attn}</b> need${attn===1?'s':''} attention</span>
+      ${unitBits.length ? `<span class="isum-i units"><span class="isum-k">Still needed</span> ${unitBits.join('<span class="isum-sep">·</span>')}</span>` : ''}
     </div>`;
 
   const body = groups.map(g=>{
@@ -1139,13 +1164,44 @@ function screenRepIncentives(rep){
     const expanded = openSups.has(key);          // default CLOSED, per Gavin 2026-09-11
     const a = g.list.filter(x=>x.b.band===0).length;
     const note = [plw(g.list.length,'program'), a?`${a} need${a===1?'s':''} attention`:''].filter(Boolean).join(' · ');
+    // Closed: every program still shows its name, status and progress on one
+    // line, with a direct way to its accounts (2026-09-29) -- nobody expands
+    // fourteen suppliers to find out what needs attention.
+    const mini = expanded ? '' : `<div class="imini-list">${g.list.map(x=>{
+      const N = incNums(x.r); const u = N ? unitOf(x.r) : '';
+      const prog = !N ? E(x.r.now || (x.r.soon ? 'Awaiting data' : x.r.openEnded ? 'Every one pays' : '')) : (u ? `${fmtN(N.cur)} of ${fmtN(N.goal)} ${E(u)}` : `${E(x.r.now||fmtN(N.cur))} of ${E(x.r.goal||fmtN(N.goal))}`);
+      return `<button class="imini" data-act="open-prog" data-sup="${E(key)}" data-prog="${E(x.p.id)}">
+        <span class="imini-n">${E(x.p.shortName||x.p.name)}</span>
+        <span class="imini-s ${x.b.cls}">${x.b.band<=2?`<i class="idot ${x.b.cls}"></i>`:''}${E(x.b.label)}</span>
+        <span class="imini-p">${prog}</span>
+        <span class="imini-go">${x.b.band<=2 ? 'Accounts ›' : 'Open ›'}</span>
+      </button>`; }).join('')}</div>`;
     return `<section class="isup${expanded?'':' collapsed'}">
       <button class="isup-h" data-act="toggle-sup" data-sup="${E(key)}" aria-expanded="${expanded?'true':'false'}">
         ${supLogoHtml(g.name, logo)}<span class="isup-n">${E(g.name)}</span>${incDotsHtml(g.list)}<span class="isup-s">${E(note)}</span><span class="isup-ar">${expanded?'–':'+'}</span>
       </button>
+      ${mini}
       ${expanded ? `<div class="isup-b">${g.list.map(x=>incRowHtml(x.p, x.r, x.b, rep)).join('')}</div>` : ''}
     </section>`;
   }).join('');
+
+  // Programs that ended in the last four months, for the record -- closed
+  // by default so they never compete with live work.
+  const ended = [];
+  PROGRAMS.forEach(p=>{
+    if(p.type!=='Incentive' || isActive(p) || !supportAllows(rep, p)) return;
+    if(daysLeft(p.period.end) < -120) return;
+    const r = p.forRep(rep); if(!r || r.status==='unavailable' || isDollarProgram(r)) return;
+    ended.push({p, r});
+  });
+  ended.sort((a,b)=>b.p.period.end - a.p.period.end);
+  const endedHtml = ended.length ? `<details class="iended"${state.showEnded?' open':''}>
+      <summary>Ended programs <span class="iended-n">${ended.length}</span><span class="iended-s">Finished in the last four months</span></summary>
+      <div class="iended-list">${ended.map(x=>{ const N = incNums(x.r); const u = N ? unitOf(x.r) : '';
+        const fin = N ? (u ? `${fmtN(N.cur)} of ${fmtN(N.goal)} ${E(u)}` : `${E(x.r.now||'')} of ${E(x.r.goal||'')}`) : E(x.r.now||'');
+        const okd = x.r.status==='complete'||x.r.status==='exceeded';
+        return `<div class="iended-row"><span class="iended-name">${E(x.p.shortName||x.p.name)}<span class="iended-sup">${E(x.p.supplier)}</span></span><span class="iended-fin${okd?' ok':''}">${okd?'Goal met · ':''}${fin}</span><span class="iended-when">Ended ${E(shortEnds(x.p.period).replace(/^Ends /,''))}</span></div>`; }).join('')}</div>
+    </details>` : '';
 
   return `<div class="repview iview">
     <div class="rep-head">
@@ -1157,6 +1213,7 @@ function screenRepIncentives(rep){
       ${summary}
     </div>
     ${rows.length ? body : `<div class="empty">No incentives apply to you right now.</div>`}
+    ${endedHtml}
   </div>`;
 }
 
@@ -1790,7 +1847,7 @@ const ACCT_COLS = {
 };
 // The two expanders every rep-mode card carries, collapsed until asked.
 const cardSec = {};   // program id -> 'dist' | 'targets' (one open at a time)
-const SEC_LABEL = {dist:'Current-Period Distribution', targets:'Potential Accounts'};
+const SEC_LABEL = {dist:'Credited accounts', targets:'Potential accounts'};
 function secLinks(p, sec, counts){
   const btn = (k, n)=>n==null ? '' :
     `<button class="seclink${sec===k?' on':''}" data-act="card-sec" data-prog="${E(p.id)}" data-sec="${k}" aria-expanded="${sec===k?'true':'false'}">${sec===k?'Hide':'View'} ${E(SEC_LABEL[k])}${n?` <span class="seclink-n">${n}</span>`:''}<span class="seclink-ar">${sec===k?'▴':'▾'}</span></button>`;
@@ -2666,6 +2723,8 @@ function render(){
   else if(state.view==='program') body = screenProgram();
   document.body.classList.toggle('is-home', state.view==='home');
   root.innerHTML = topbar() + `<main class="wrap">${body}</main>`;
+  // The top bar says whose page this is (a manager on a rep's screen).
+  try{ if(window.kdhViewing) window.kdhViewing((state.view==='rep'||state.view==='detail') && !LOCKED_REP ? (state.peek && state.view==='detail' ? state.peek : state.rep) : '', '#'); }catch(e){}
   document.title = state.view==='rep' && state.rep ? `${possessive(state.rep)} Incentives & MPOs | Kohler` : 'Incentives & MPO Hub | Kohler Distributing';
   // Kick off any MPO month this screen needs, then re-render once it lands.
   let needed = [];
@@ -2705,6 +2764,12 @@ document.addEventListener('click', e=>{
     case 'set-cat': if(state.only && tabOf(t.dataset.cat)!==state.only) break; openCards.clear(); rememberTab(t.dataset.cat); go({cat:t.dataset.cat, main:tabOf(t.dataset.cat), view:'rep'}, true); break;
     case 'set-month': openCards.clear(); state.showEnded = false; go({month:t.dataset.month, view:'rep'}, true); break;
     case 'toggle-sup': { const k = t.dataset.sup; if(openSups.has(k)) openSups.delete(k); else openSups.add(k); render(); break; }
+    case 'open-prog': { openSups.add(t.dataset.sup); const id = t.dataset.prog;
+      if(!cardSec[id]) cardSec[id] = 'targets';
+      render();
+      const el = document.getElementById('card-'+id);
+      if(el){ const y = el.getBoundingClientRect().top + window.pageYOffset - 64; window.scrollTo({top:y, behavior:'smooth'}); }
+      break; }
     case 'toggle-ended': state.showEnded = !state.showEnded; render(); break;
     case 'card-sec': { const id = t.dataset.prog, k = t.dataset.sec;
       // One section at a time per card, so a phone never stacks two long lists.

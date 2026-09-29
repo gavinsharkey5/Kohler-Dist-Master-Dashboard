@@ -107,19 +107,18 @@
     table{font-size:14.5px;}
   }
 </style>
-<script src="../shared/kdh-user.js?v=20260929b"></script>
+<script src="../shared/kdh-user.js?v=20260929d"></script>
 <script>try{var t=localStorage.getItem('kdh_theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="kdh-page" content="What Can I Sell">
 <!-- Site design system: maps this page's variables + fonts onto shared/kdh.css. Keep it LAST in <head>. -->
-<link rel="stylesheet" href="../shared/kdh-skin.css?v=20260928c">
+<link rel="stylesheet" href="../shared/kdh-skin.css?v=20260929a">
 </head>
 <body>
 <div class="wrap">
   <header>
     <h1>What Can I Sell</h1>
-    <p class="sub">Live sellable inventory &mdash; what is available right now, what is running low, and what just
-      landed. Search a product, or filter by supplier, brand or pack.</p>
-    <p class="updated"><span class="livedot"></span> <span id="asOf"></span></p>
+    <p class="sub">Sellable inventory from the latest Encompass snapshot: what is available, what is running low and what just landed. Search a product, or filter by supplier, brand or pack.</p>
+    <p class="updated"><span id="asOf"></span> <span id="stale"></span></p>
   </header>
 
   <div class="kpis" id="kpis"></div>
@@ -173,15 +172,24 @@ const ST = {
   unknown:{label:'No sales rate',color:'var(--text-mute)'},
 };
 
-document.getElementById('asOf').textContent =
-  `As of ${dstr(DATA.asOf)} · ${n0(S.productsAvailable)} products available across ${n0(S.suppliers)} suppliers`;
+// Honest freshness (2026-09-29): the figures are a SNAPSHOT with its own
+// effective date, which is not the date this page was built or opened.
+// Older than a week is flagged so nobody sells from stale stock numbers.
+document.getElementById('asOf').innerHTML =
+  `<b>Inventory as of ${dstr(DATA.asOf)}</b> · ${n0(S.productsAvailable)} products available across ${n0(S.suppliers)} suppliers`
+  + (DATA.generatedAt ? ` · <span style="color:var(--text-mute)">page built ${new Date(DATA.generatedAt).toLocaleDateString('en-US')}</span>` : '');
+(function(){
+  var age = DATA.asOf ? Math.floor((Date.now() - new Date(DATA.asOf+'T00:00:00').getTime())/86400000) : null;
+  var el = document.getElementById('stale');
+  if(age!=null && age > 7) el.innerHTML = `<span class="kdh-tag stale" title="These numbers are ${age} days old; check Encompass before promising stock">Snapshot is ${age} days old</span>`;
+})();
 
 const C = S.counts||{};
 document.getElementById('kpis').innerHTML = [
   {cls:'', num:n0(S.available), label:'Units available to sell',
    sub:`across ${n0(S.productsAvailable)} products`},
   {cls:'bad', num:n0(C.out), label:'Out of stock',
-   sub:`nothing available to sell right now`},
+   sub:`none available in this snapshot`},
   {cls:'warn', num:n0(C.low), label:`Running low (≤${DATA.lowDoi}d)`,
    sub:`two weeks of cover or less — sell or reorder`},
   {cls:'info', num:n0(S.justInUnits), label:`Arrived last ${DATA.justInDays} days`,
@@ -198,6 +206,23 @@ function fill(sel, label, values){
     + values.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('');
 }
 fill(supEl,'All suppliers',[...new Set(PRODUCTS.map(p=>p.supplier))].sort());
+/* Brand is derived from the product name (no export carries one), and a
+   first word alone reads as a fragment ("Sun", "White", "Other"). Where
+   every product sharing that first word also shares the second, the brand
+   is both words ("Sun Cruiser", "White Claw", "Other Half"); where a
+   generic first word splits into several second words, each two-word
+   pair is its own brand. (2026-09-29) */
+(function(){
+  const GENERIC = new Set(['sun','white','other','new','red','blue','big','little','old','black','gold','green','twisted','high','angry','long','wild','two','three','four','sam','samuel','mikes',"mike's",'bud','coors','miller','south','north','east','west','saint','st.','st','mt','mt.','dos','la','el','the','fort','ft','lake','cape','sea','stone','iron','flying','white','blue']);
+  const w2 = name => String(name||'').trim().split(/\s+/).slice(0,2);
+  const byFirst = {};
+  PRODUCTS.forEach(p=>{ const [a,b]=w2(p.name); const k=(a||'').toLowerCase(); (byFirst[k]=byFirst[k]||new Set()).add((b||'').toLowerCase()); });
+  PRODUCTS.forEach(p=>{
+    const [a,b]=w2(p.name); if(!a) return; const k=a.toLowerCase();
+    const seconds=byFirst[k];
+    if(b && (seconds.size===1 || GENERIC.has(k))) p.brand = a+' '+b; else p.brand = a;
+  });
+})();
 fill(brEl,'All brands',[...new Set(PRODUCTS.map(p=>p.brand))].sort());
 fill(pkEl,'All packs',[...new Set(PRODUCTS.map(p=>p.pack).filter(Boolean))].sort());
 
@@ -309,7 +334,7 @@ document.getElementById('notes').innerHTML = `<ul>
   <li><b>Days of cover</b> is how long the available stock lasts at that product&rsquo;s current rate of sale, on
     ${n0(PRODUCTS.filter(p=>p.doi!=null).length)} of the ${n0(PRODUCTS.length)} products listed. Where there is no
     rate the status reads &ldquo;no sales rate&rdquo; rather than guessing one.</li>
-  <li><b>Brand and pack are derived from the product name</b> — no export carries them as real fields. Supplier is
+  <li><b>Brand and pack are read from the product name</b> — no export carries them as real fields. Supplier is
     the dependable grouping; treat brand and pack as convenience filters.</li>
   <li><b>&ldquo;On the way&rdquo; only counts orders with a future arrival date.</b> The source also lists
     ${n0(S.staleOrderUnits)} units across ${n0(S.staleOrderProducts)} products against arrival dates already in the

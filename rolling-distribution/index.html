@@ -295,11 +295,11 @@
   footer{color:var(--ink-dim);font-size:16.5px;padding:20px 0 40px;line-height:1.6}
   @media (max-width:700px){body{padding:0 12px}.card{padding:14px 12px}.kpi .v{font-size:30px}th,td{padding:8px 10px}.seg button{padding:10px 12px}.back{margin-left:0}}
 </style>
-<script src="../shared/kdh-user.js?v=20260929b"></script>
+<script src="../shared/kdh-user.js?v=20260929d"></script>
 <script>try{var t=localStorage.getItem('kdh_theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="kdh-page" content="Rolling Distribution Trends">
 <!-- Site design system: maps this page's variables + fonts onto shared/kdh.css. Keep it LAST in <head>. -->
-<link rel="stylesheet" href="../shared/kdh-skin.css?v=20260928c">
+<link rel="stylesheet" href="../shared/kdh-skin.css?v=20260929a">
 </head>
 <body>
 <div class="wrap">
@@ -314,7 +314,7 @@
       </div>
       <button class="theme-btn" id="theme-btn" title="Switch between light and dark mode" aria-label="Switch between light and dark mode"><span id="theme-ico">☀</span> <span id="theme-lbl">Light mode</span></button>
     </div>
-    <p class="sub">Buyers, placements and cases for every supplier, brand family, brand and product, in rolling periods that advance one calendar month at a time. Filter by rep, district manager, area and premise; drill from supplier down to the SKU; compare periods side by side or focus on one to see who bought, who is new and who was lost.</p>
+    <p class="sub">Buyers, placements and cases by supplier, brand and product across rolling periods. Pick a supplier, rep or manager to narrow it; open <b>More filters</b> for area, county, account size and product.</p>
     <div class="pills" id="pills"></div>
   </header>
 
@@ -322,7 +322,7 @@
 
   <footer>
     <div><b>How things are counted.</b> One row in the source is one product at one account for one month. A <b>buyer</b> is an account whose net cases in the period are above zero, counted once per row of the table (an account buying three Blue Moon packages is 1 Blue Moon buyer, 3 placements). A <b>placement</b> is one product at one account with net cases above zero in the period. <b>Cases</b> are net of returns and credits. "Any invoice activity" switches buyers and placements to Fusion's own flag, which also counts accounts whose period nets to zero or negative.</div>
-    <div style="margin-top:6px">Periods are whole calendar months. Rep and district manager are the current assignment applied to all history. "Prior period" is the previous non-overlapping window of the same length; "prior year" is the same months one year earlier. Source: Fusion product &times; account exports merged by <code>rolling-distribution/generate.py</code>.</div>
+    <div style="margin-top:6px">Periods are whole calendar months. Rep and district manager are the current assignment applied to all history. "Prior period" is the previous non-overlapping window of the same length; "prior year" is the same months one year earlier. Source: Fusion product &times; account exports.</div>
   </footer>
 </div>
 <div class="tip" id="tip"></div>
@@ -727,47 +727,39 @@
       +'<span class="muted qmode-h">'+(simple?'One plain-language card per question. "See the detail" on any card opens the detailed version.':'Every table and control. Switch to Simple for the short version.')+'</span>'
       +(simple?'<button class="btn primary" id="q-print" title="Print or save as PDF" style="margin-left:auto">🖨 Print</button>':'')+'</div>';
   }
+  // FILTERS (2026-09-29 overhaul): results show at once for everything;
+  // the five filters people reach for most (supplier, brand family,
+  // premise, district manager, rep) and the period pickers sit in the open;
+  // everything else -- brand, product, package, area, county, territory,
+  // account size, one account, brand manager, the compare/focus and custom
+  // month modes, year-over-year, the buyer definition -- is under "More
+  // filters", which opens itself whenever one of those is in use.
   function controlsHtml(){
     var h = [pageTabs(), qmodeBar(), '<div class="card filters">'];
-    h.push('<div class="step"><span class="num">1</span>Pick what to look at</div><p class="help stephelp">Leave a box on "All" to include everything.</p>');
-    h.push('<div class="groups">');
-    h.push('<div class="group"><div class="gtitle">Product</div><div class="ctl">');
     var sups = D.suppliers.map(function(_,i){return i;}).filter(function(i){ return S.bm<0 || D.supplier_bm[i]===S.bm; });
-    h.push('<label>Supplier<select id="f-sup" class="'+(S.sup>=0?'active':'')+'">'+opt(-1, S.bm<0?'All suppliers':'All '+sups.length+' of their suppliers',S.sup<0)+sups.map(function(i){ return opt(i,D.suppliers[i],S.sup===i); }).join('')+'</select></label>');
     var fams = S.sup>=0 ? Object.keys(famBySup[S.sup]||{}).map(Number) : D.families.map(function(_,i){return i;});
     fams.sort(function(a,b){ return D.families[a].localeCompare(D.families[b]); });
-    h.push('<label>Brand family<select id="f-fam" class="'+(S.fam>=0?'active':'')+'">'+opt(-1,'All brand families',S.fam<0)+fams.map(function(i){ return opt(i,D.families[i],S.fam===i); }).join('')+'</select></label>');
     var brands = S.fam>=0 ? Object.keys(brandByFam[S.fam]||{}).map(Number) : (S.sup>=0 ? fams.reduce(function(a,f){ return a.concat(Object.keys(brandByFam[f]||{}).map(Number)); },[]) : D.brands.map(function(_,i){return i;}));
     brands.sort(function(a,b){ return D.brands[a].localeCompare(D.brands[b]); });
-    h.push('<label>Brand<select id="f-brand" class="'+(S.brand>=0?'active':'')+'">'+opt(-1,'All brands',S.brand<0)+brands.map(function(i){ return opt(i,D.brands[i],S.brand===i); }).join('')+'</select></label>');
     var prods = [];
     if(S.brand>=0) prods = Object.keys(prodByBrand[S.brand]||{}).map(Number);
     else if(S.fam>=0) brands.forEach(function(b){ prods=prods.concat(Object.keys(prodByBrand[b]||{}).map(Number)); });
     else if(S.sup>=0) products.forEach(function(p,i){ if(p[2]===S.sup) prods.push(i); });
     prods.sort(function(a,b){ return products[a][1].localeCompare(products[b][1]); });
-    h.push('<label>Product<select id="f-prod" class="'+(S.prod>=0?'active':'')+'"'+(prods.length?'':' disabled')+'>'+opt(-1, prods.length?'All products ('+prods.length+')':'Pick a supplier first',S.prod<0)+prods.map(function(i){ return opt(i,products[i][0]+' '+products[i][1],S.prod===i); }).join('')+'</select></label>');
-    h.push('<label>Draft or package<select id="f-pkg" class="'+(S.pkg!=='all'?'active':'')+'">'+opt('all','Draft + package',S.pkg==='all')+opt('draft','Draft only',S.pkg==='draft')+opt('package','Package only',S.pkg==='package')+'</select></label>');
-    h.push('</div></div>');
-    h.push('<div class="group"><div class="gtitle">Customer</div><div class="ctl">');
-    h.push('<label>Premise<select id="f-prem" class="'+(S.prem!=='all'?'active':'')+'">'+opt('all','On + off premise',S.prem==='all')+opt('on','On premise only',S.prem==='on')+opt('off','Off premise only',S.prem==='off')+'</select></label>');
-    h.push('<label>Distribution area<select id="f-area" class="'+(S.area>=0?'active':'')+'">'+opt(-1,'All areas',S.area<0)+D.areas.map(function(n,i){ return (!AREA_OK || AREA_OK[i] || S.area===i) ? opt(i,n,S.area===i) : ''; }).join('')+'</select></label>');
-    h.push('<label>County<select id="f-county" class="'+(S.county>=0?'active':'')+'">'+opt(-1,'All counties',S.county<0)+COUNTIES.map(function(n,i){ return (!AREA_OK || COUNTY_OK[n] || S.county===i) ? opt(i,n,S.county===i) : ''; }).join('')+'</select></label>');
-    if(HAS_TERR) h.push('<label>Territory<select id="f-terr" class="'+(S.terr==='off'?'active':'')+'">'+opt('on','Only where the brand can be sold',S.terr!=='off')+opt('off','All areas (ignore territory)',S.terr==='off')+'</select></label>');
-    if(HAS_DEC) h.push('<label>Account size<select id="f-dec" class="'+(S.dec!=='all'?'active':'')+'">'+[['all','All sizes'],['1','Top 10% (decile 1)'],['2','Top 20% (deciles 1–2)'],['3','Top 30% (deciles 1–3)'],['m','Middle (deciles 4–7)'],['b','Bottom 30% (deciles 8–10)'],['n','Not ranked']].map(function(o){ return opt(o[0],o[1],S.dec===o[0]); }).join('')+'</select></label>');
-    h.push('<label class="wide">One account (type a name or number)<input type="search" id="f-cust" list="custlist" class="'+(S.cust>=0?'active':'')+'" placeholder="All accounts" value="'+(S.cust>=0?esc(customers[S.cust][0]+' '+customers[S.cust][1]):'')+'"><datalist id="custlist">'+customers.map(function(c){ return '<option value="'+esc(c[0]+' '+c[1])+'">'; }).join('')+'</datalist></label>');
-    h.push('</div></div>');
-    h.push('<div class="group"><div class="gtitle">Rep / Manager</div><div class="ctl">');
-    h.push('<label>Brand manager<select id="f-bm" class="'+(S.bm>=0?'active':'')+'">'+opt(-1,'All brand managers',S.bm<0)+D.bms.map(function(n,i){ return opt(i,n,S.bm===i); }).join('')+'</select></label>');
-    h.push('<label>District manager<select id="f-dm" class="'+(S.dm>=0?'active':'')+'">'+opt(-1,'All district managers',S.dm<0)+D.dms.map(function(n,i){ return opt(i,n,S.dm===i); }).join('')+'</select></label>');
     var reps = S.dm>=0 ? Object.keys(repsByDm[S.dm]||{}).map(Number) : D.reps.map(function(_,i){return i;});
     reps.sort(function(a,b){ return D.reps[a].localeCompare(D.reps[b]); });
+
+    // --- the common filters, always visible
+    h.push('<div class="step">Filters</div>');
+    h.push('<div class="row common">');
+    h.push('<label>Supplier<select id="f-sup" class="'+(S.sup>=0?'active':'')+'">'+opt(-1, S.bm<0?'All suppliers':'All '+sups.length+' of their suppliers',S.sup<0)+sups.map(function(i){ return opt(i,D.suppliers[i],S.sup===i); }).join('')+'</select></label>');
+    h.push('<label>Brand family<select id="f-fam" class="'+(S.fam>=0?'active':'')+'">'+opt(-1,'All brand families',S.fam<0)+fams.map(function(i){ return opt(i,D.families[i],S.fam===i); }).join('')+'</select></label>');
+    h.push('<label>Premise<select id="f-prem" class="'+(S.prem!=='all'?'active':'')+'">'+opt('all','On + off premise',S.prem==='all')+opt('on','On premise only',S.prem==='on')+opt('off','Off premise only',S.prem==='off')+'</select></label>');
+    h.push('<label>District manager<select id="f-dm" class="'+(S.dm>=0?'active':'')+'">'+opt(-1,'All district managers',S.dm<0)+D.dms.map(function(n,i){ return opt(i,n,S.dm===i); }).join('')+'</select></label>');
     h.push('<label>Sales rep<select id="f-rep" class="'+(S.rep>=0?'active':'')+'">'+opt(-1,'All reps',S.rep<0)+reps.map(function(i){ return opt(i,D.reps[i],S.rep===i); }).join('')+'</select></label>');
-    h.push('</div></div>');
     h.push('</div>');
-    h.push(showingHtml());
-    h.push('<div class="step step2"><span class="num">2</span>Pick the time periods</div><div class="row">');
-    if(S.page==='tracker') h.push('<label>How to view it<span class="seg"><button data-view="compare" class="'+(S.view==='compare'?'on':'')+'">Multiple periods</button><button data-view="focus" class="'+(S.view==='focus'?'on':'')+'">One period</button></span></label>');
-    h.push('<label>Which months<span class="seg"><button data-pmode="roll" class="'+(S.pmode==='roll'?'on':'')+'">Rolling (automatic)</button><button data-pmode="custom" class="'+(S.pmode==='custom'?'on':'')+'">Pick my own months</button></span></label>');
+    // --- the periods
+    h.push('<div class="step step2">Time periods</div><div class="row">');
     if(S.pmode==='roll'){
       var lens=[]; for(var ln=1;ln<=M;ln++) lens.push(ln);
       h.push('<label>Months in each period<select id="f-len">'+lens.map(function(n){ return opt(n, n===1?'1 month':n+' months'+(n===3?' (default)':n===12?' (a year)':''), S.len===n); }).join('')+'</select></label>');
@@ -779,7 +771,36 @@
       }else{
         h.push('<label>Which period<select id="f-focus">'+monthOpts(S.focus)+'</select></label>');
       }
+    } else {
+      h.push('<p class="help" style="margin:0">Custom months are set under More filters.</p>');
     }
+    h.push('</div>');
+    h.push(showingHtml());
+    // --- everything else
+    var advOn = S.brand>=0 || S.prod>=0 || S.pkg!=='all' || S.area>=0 || S.county>=0 || S.terr==='off' || S.dec!=='all' || S.cust>=0 || S.bm>=0 || S.pmode==='custom' || S.view==='focus' || S.raw || !S.yoy;
+    h.push('<details class="more"'+((S.more||advOn)?' open':'')+'><summary>More filters</summary>');
+    h.push('<div class="groups">');
+    h.push('<div class="group"><div class="gtitle">Product</div><div class="ctl">');
+    h.push('<label>Brand<select id="f-brand" class="'+(S.brand>=0?'active':'')+'">'+opt(-1,'All brands',S.brand<0)+brands.map(function(i){ return opt(i,D.brands[i],S.brand===i); }).join('')+'</select></label>');
+    h.push('<label>Product<select id="f-prod" class="'+(S.prod>=0?'active':'')+'"'+(prods.length?'':' disabled')+'>'+opt(-1, prods.length?'All products ('+prods.length+')':'Pick a supplier first',S.prod<0)+prods.map(function(i){ return opt(i,products[i][0]+' '+products[i][1],S.prod===i); }).join('')+'</select></label>');
+    h.push('<label>Draft or package<select id="f-pkg" class="'+(S.pkg!=='all'?'active':'')+'">'+opt('all','Draft + package',S.pkg==='all')+opt('draft','Draft only',S.pkg==='draft')+opt('package','Package only',S.pkg==='package')+'</select></label>');
+    h.push('<label>Brand manager<select id="f-bm" class="'+(S.bm>=0?'active':'')+'">'+opt(-1,'All brand managers',S.bm<0)+D.bms.map(function(n,i){ return opt(i,n,S.bm===i); }).join('')+'</select></label>');
+    h.push('</div></div>');
+    h.push('<div class="group"><div class="gtitle">Customer</div><div class="ctl">');
+    h.push('<label>Distribution area<select id="f-area" class="'+(S.area>=0?'active':'')+'">'+opt(-1,'All areas',S.area<0)+D.areas.map(function(n,i){ return (!AREA_OK || AREA_OK[i] || S.area===i) ? opt(i,n,S.area===i) : ''; }).join('')+'</select></label>');
+    h.push('<label>County<select id="f-county" class="'+(S.county>=0?'active':'')+'">'+opt(-1,'All counties',S.county<0)+COUNTIES.map(function(n,i){ return (!AREA_OK || COUNTY_OK[n] || S.county===i) ? opt(i,n,S.county===i) : ''; }).join('')+'</select></label>');
+    if(HAS_TERR) h.push('<label>Territory<select id="f-terr" class="'+(S.terr==='off'?'active':'')+'">'+opt('on','Only where the brand can be sold',S.terr!=='off')+opt('off','All areas (ignore territory)',S.terr==='off')+'</select></label>');
+    if(HAS_DEC) h.push('<label>Account size<select id="f-dec" class="'+(S.dec!=='all'?'active':'')+'">'+[['all','All sizes'],['1','Top 10% (decile 1)'],['2','Top 20% (deciles 1–2)'],['3','Top 30% (deciles 1–3)'],['m','Middle (deciles 4–7)'],['b','Bottom 30% (deciles 8–10)'],['n','Not ranked']].map(function(x){ return opt(x[0],x[1],S.dec===x[0]); }).join('')+'</select></label>');
+    h.push('<label class="wide">One account (type a name or number)<input type="search" id="f-cust" list="custlist" class="'+(S.cust>=0?'active':'')+'" placeholder="All accounts" value="'+(S.cust>=0?esc(customers[S.cust][0]+' '+customers[S.cust][1]):'')+'"><datalist id="custlist">'+customers.map(function(c){ return '<option value="'+esc(c[0]+' '+c[1])+'">'; }).join('')+'</datalist></label>');
+    h.push('</div></div>');
+    h.push('<div class="group"><div class="gtitle">How to view it</div><div class="ctl">');
+    if(S.page==='tracker') h.push('<label>Periods<span class="seg"><button data-view="compare" class="'+(S.view==='compare'?'on':'')+'">Multiple periods</button><button data-view="focus" class="'+(S.view==='focus'?'on':'')+'">One period</button></span></label>');
+    h.push('<label>Which months<span class="seg"><button data-pmode="roll" class="'+(S.pmode==='roll'?'on':'')+'">Rolling (automatic)</button><button data-pmode="custom" class="'+(S.pmode==='custom'?'on':'')+'">Pick my own months</button></span></label>');
+    if(S.view!=='focus'){
+      h.push('<label>Change vs. same period last year<span class="seg"><button data-yoy="1" class="'+(S.yoy?'on':'')+'">Show</button><button data-yoy="0" class="'+(!S.yoy?'on':'')+'">Hide</button></span></label>');
+    }
+    h.push('<label>Who counts as a buyer<span class="seg"><button data-raw="0" class="'+(!S.raw?'on':'')+'">Net cases above zero</button><button data-raw="1" class="'+(S.raw?'on':'')+'">Any invoice activity</button></span></label>');
+    h.push('</div></div>');
     h.push('</div>');
     if(S.pmode==='custom'){
       var full=customList(), rows=full.map(function(p,i){ return {p:p,i:i}; });
@@ -796,12 +817,7 @@
       h.push('<p class="help">Whole calendar months only. Periods can be different lengths; the newest one is highlighted as the latest.</p>');
       h.push('</div>');
     }
-    h.push('<details class="more"'+(S.more?' open':'')+'><summary>More options</summary><div class="row">');
-    if(S.view!=='focus'){
-      h.push('<label>Change vs. same period last year<span class="seg"><button data-yoy="1" class="'+(S.yoy?'on':'')+'">Show</button><button data-yoy="0" class="'+(!S.yoy?'on':'')+'">Hide</button></span></label>');
-    }
-    h.push('<label>Who counts as a buyer<span class="seg"><button data-raw="0" class="'+(!S.raw?'on':'')+'">Net cases above zero</button><button data-raw="1" class="'+(S.raw?'on':'')+'">Any invoice activity</button></span></label>');
-    h.push('</div></details>');
+    h.push('</details>');
     h.push('</div>');
     return h.join('');
   }

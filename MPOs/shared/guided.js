@@ -445,26 +445,20 @@ function screenProgram(){
   var objs = H.objectives();
   var weighted = objs.reduce(function(s,o){return s + o.weight * H.programPct(o);},0);
 
-  var sums = [{l:'Overall Weighted MPO', n:Math.round(weighted)+'%',
+  // ONE overall summary (2026-09-29): the weighted score and how many
+  // programs the whole team has finished. Each program's own "reps at goal"
+  // is printed once, on its card below -- not here as well.
+  var tracked = objs.filter(function(o){ return !!H.atGoal(o); });
+  var allDone = tracked.filter(function(o){ var g = H.atGoal(o); return g.total && g.n===g.total; }).length;
+  var sums = [{l:'Overall weighted MPO', n:Math.round(weighted)+'%',
     cls: weighted>=90?'good':(weighted>=50?'accent':''),
-    s:'across all '+objs.length+' objectives'}];
-  objs.forEach(function(o){
-    var g = H.atGoal(o);
-    if(!g){
-      sums.push({l:esc(o.shortName||o.name), n:'—', cls:'mute', s:'not tracked yet'});
-      return;
-    }
-    // An objective may carry its own headline KPI (New Belgium leads with
-    // the company distribution percentage, reps-at-goal underneath) -- the
-    // same figures the old KPI strip printed.
-    sums.push({l:esc(o.shortName||o.name)+(g.headline?'':' – Reps at Goal'),
-      n: g.headline || (g.n+' / '+g.total),
-      cls: g.cls || (g.total && g.n===g.total ? 'good' : (g.n?'accent':'mute')),
-      s: g.sub || o.goalLabel || ''});
-  });
+    s:'across all '+objs.length+' objectives'},
+    {l:'Programs every rep has reached', n: tracked.length ? allDone+' of '+tracked.length : '—',
+    cls: tracked.length && allDone===tracked.length ? 'good' : (allDone ? 'accent' : 'mute'),
+    s: tracked.length===objs.length ? 'tracked with data' : (objs.length-tracked.length)+' not tracked with data yet'}];
 
   return '<div class="g g-fade">'+
-    stepHead(null,'Program Results',
+    stepHead(null,'Program results',
       esc(H.scope)+' · '+esc(H.monthLabel())+
       ' · tap a program to see every rep’s result.')+
     '<div class="g-sum-grid">'+sums.map(function(k){
@@ -598,6 +592,7 @@ function programBody(o){
    ================================================================== */
 function render(){
   if(!mount) return;
+  try{ if(window.kdhViewing) window.kdhViewing(view==='rep' && activeRep && !lockedRep() ? activeRep : '', '#view=rep'); }catch(e){}
   applyLock(); decorateLock();
   var html;
   if(view==='program') html = screenProgram();

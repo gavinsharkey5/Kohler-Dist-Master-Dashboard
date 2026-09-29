@@ -91,6 +91,15 @@ device, a decision).
   who report to you) or Everyone or one pill per DM; Open their hub /
   Preview as rep links. Linked from the manager page and the rep
   workspace top bar. Migration run and reports_to verified live.
+- [x] 2026-09-29 UI + navigation overhaul: one readable font (no
+  condensed type, no all-caps), light default, banners off every working
+  screen, Back buttons that name where they go, a "Viewing <rep>" chip
+  for managers, hub program rows that read qualifies / progress with
+  units / next step, still-needed totals by unit, closed suppliers still
+  scannable, ended programs in a history section, MPO Program View
+  without repeated tiles, Rolling with results first and "More filters",
+  Carbliss expanded rows in-theme with plain labels, inventory freshness
+  stated honestly.
 - [x] 2026-09-29 Password sign-in no longer stalls on "Signing in..."
   (the page now uses the session the sign-in call returns). Carbliss
   on-premise targets scoped to a district manager's team.

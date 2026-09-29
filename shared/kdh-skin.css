@@ -9,27 +9,30 @@
       dark without editing its rules.
    2. Aliases the fonts the dashboards were written with (Space Grotesk,
       Inter, Archivo, Public Sans, Calibri, Georgia ...) to the site's
-      Oswald + Source Sans 3 through @font-face, so every existing
-      font-family rule renders the site type. The Google Fonts <link>s
-      are removed from the pages; nothing else fetches those families.
+      ONE face, Source Sans 3, through @font-face, so every existing
+      font-family rule renders the site type (2026-09-29: the condensed
+      Oswald headings are gone -- one readable application font). The
+      Google Fonts <link>s are removed from the pages; nothing else
+      fetches those families.
    3. Normalises the bits every page shares -- the old back links and
       crumbs (the injected top bar replaces them), form controls,
       focus rings, tables' header type.
 
    Page-specific fixes live at the bottom, grouped by page. Keep the
    variable map alphabetical-ish so a new dashboard is easy to add. */
-@import url("kdh.css?v=20260928c");
+@import url("kdh.css?v=20260929a");
 
 /* ---- 2. fonts: every family a dashboard asks for is one of ours ---- */
-@font-face{font-family:"Space Grotesk";font-style:normal;font-weight:200 700;font-display:swap;src:url(../assets/fonts/oswald.woff2) format("woff2")}
-@font-face{font-family:"Archivo";font-style:normal;font-weight:200 700;font-display:swap;src:url(../assets/fonts/oswald.woff2) format("woff2")}
-@font-face{font-family:"Bungee";font-style:normal;font-weight:200 700;font-display:swap;src:url(../assets/fonts/oswald.woff2) format("woff2")}
+@font-face{font-family:"Space Grotesk";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-sans-3.woff2) format("woff2")}
+@font-face{font-family:"Archivo";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-sans-3.woff2) format("woff2")}
+@font-face{font-family:"Bungee";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-sans-3.woff2) format("woff2")}
+@font-face{font-family:"Oswald";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-sans-3.woff2) format("woff2")}
 @font-face{font-family:"Inter";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-sans-3.woff2) format("woff2")}
 @font-face{font-family:"Public Sans";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-sans-3.woff2) format("woff2")}
 @font-face{font-family:"Calibri";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-sans-3.woff2) format("woff2")}
 @font-face{font-family:"Carlito";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-sans-3.woff2) format("woff2")}
-@font-face{font-family:"Georgia";font-style:normal;font-weight:200 700;font-display:swap;src:url(../assets/fonts/oswald.woff2) format("woff2")}
-@font-face{font-family:"Pacifico";font-style:normal;font-weight:200 700;font-display:swap;src:url(../assets/fonts/oswald.woff2) format("woff2")}
+@font-face{font-family:"Georgia";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-sans-3.woff2) format("woff2")}
+@font-face{font-family:"Pacifico";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-sans-3.woff2) format("woff2")}
 
 /* ---- 1. the variable map (also under the pages' own [data-theme] blocks, which
    would otherwise out-rank a plain :root) ---- */
@@ -68,6 +71,20 @@
 /* ---- 3. shared normalisation ---- */
 html{-webkit-text-size-adjust:100%}
 body{background:var(--kdh-bg);color:var(--kdh-text);font-family:var(--kdh-body)}
+/* no all-caps, no tracking, anywhere (2026-09-29): sentence case is
+   faster to read on a phone in a store. Text authored in capitals in a
+   page's own markup is left alone. */
+body,body *{text-transform:none!important;letter-spacing:0!important}
+/* banners and hero photos are off every working screen (2026-09-29):
+   the badge in the top bar is the branding; cards and results move up */
+.hero-banner,.nj-hero,.topbar .hero-banner,.hero-img,.hero-shade,.hero-badge,.hero > img{display:none!important}
+.hero{min-height:0!important;box-shadow:none!important;border:0!important;border-radius:0!important;background:none!important;padding:0!important;margin:0!important}
+.hero-text{position:static!important;padding:14px 0 0!important;max-width:none!important}
+.hero h1,.hero .eyebrow,.hero .eyebrow a{background:none!important;-webkit-text-fill-color:currentColor!important;color:var(--kdh-text)!important}
+.hero .eyebrow,.hero .eyebrow a{color:var(--kdh-text-3)!important}
+/* filenames, scripts and refresh instructions are for the person who
+   rebuilds a page, not the person selling from it */
+.kdh-maint,code.kdh-maint{display:none!important}
 button,input,select,textarea{font-family:inherit}
 :focus-visible{outline:2px solid var(--kdh-brand);outline-offset:2px}
 ::selection{background:var(--kdh-brand-soft)}
@@ -84,9 +101,10 @@ body{font-size:15px}
 /* images the dark themes shaded */
 
 
-/* headings: the display face everywhere */
-h1,h2{font-family:var(--kdh-head)}
-h1{background:none;-webkit-text-fill-color:currentColor}
+/* headings: the same face as the body, heavier; sized for reading, not display */
+h1,h2,h3{font-family:var(--kdh-head)}
+h1{background:none;-webkit-text-fill-color:currentColor;font-weight:700;font-size:clamp(22px,3vw,28px);line-height:1.2}
+h2{font-weight:700}
 /* a page's own sticky bar (cockpit, MetLife) sits under the site bar, in surface colours */
 .topbar{background:var(--kdh-surface)!important;border-bottom:1px solid var(--kdh-border);top:52px}
 /* table headers: the system's look, whatever colour a page hard-coded */
@@ -98,9 +116,9 @@ thead th{background:var(--kdh-surface-2)!important;color:var(--kdh-text-3)!impor
    work, not the wrapper. Hero photos, long "how this page works" ledes,
    breadcrumbs and step badges go; the top bar says where they are and how
    to get back. (2026-09-28) ---- */
-html.kdh-rep .hero-banner,html.kdh-rep .topbar .hero-banner,html.kdh-rep .nj-hero,html.kdh-rep .crumb,
+html.kdh-rep .crumb,
 html.kdh-rep .gx-head .lede,html.kdh-rep .gx-head .eyebrow,html.kdh-rep header .sub,html.kdh-rep .g-eyebrow,
-html.kdh-rep .nbtn.home{display:none!important}
+.nbtn.home{display:none!important}
 /* MPO trackers: the page's own title block repeats what the rep card says; the month pills stay */
 html.kdh-rep body > header{display:none!important}
 html.kdh-rep .monthbar{margin-top:14px}
@@ -112,8 +130,11 @@ html.kdh-rep .gx-head h1,html.kdh-rep .wrap > h1{font-size:clamp(24px,5vw,32px)}
 html.kdh-rep .navrow{margin-top:0}
 html.kdh-rep .nav-rep{display:none}
 html.kdh-rep .topbar{background:transparent!important;border-bottom:0;padding-top:0}
-/* MPO trackers: the wrapper that held the crumb + photo is empty now */
-html.kdh-rep .topbar:not(:has(.navrow)){display:none!important}
+/* MPO trackers + hub: the wrapper that held the crumb + photo is empty now (everyone) */
+.topbar:not(:has(.navrow)){display:none!important}
+.topbar{background:transparent!important;border-bottom:0;padding-top:0}
+/* managers: page ledes shorter, eyebrows gone -- the top bar names the page */
+.gx-head .eyebrow,.g-eyebrow,.eyebrow,.hero .eyebrow{display:none!important}
 /* summary tiles two-up on phones instead of a tall stack */
 @media (max-width:700px){ html.kdh-rep .g-sum-grid{grid-template-columns:repeat(2,minmax(0,1fr))} html.kdh-rep .g-sum-n{font-size:28px} }
 

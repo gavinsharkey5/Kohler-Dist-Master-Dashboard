@@ -39,8 +39,8 @@
     var b = document.createElement('div');
     b.id = 'kdhPreviewBar';
     b.style.cssText = 'position:fixed;left:0;right:0;bottom:0;z-index:99999;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:#12275F;color:#fff;font:600 13.5px/1.3 system-ui,-apple-system,sans-serif;box-shadow:0 -4px 16px rgba(0,0,0,.35)';
-    b.innerHTML = '<span>Previewing as <b>' + esc(u.name) + '</b>' + (u.role === 'manager' ? ' (manager)' : '') + ' — this is what they see</span>' +
-      '<button type="button" style="font:inherit;background:#F2C14E;color:#141414;border:0;border-radius:8px;padding:7px 12px;cursor:pointer">Exit preview</button>';
+    b.innerHTML = '<span>Preview: you are seeing the site as <b>' + esc(u.name) + '</b>' + (u.role === 'manager' ? ' (manager)' : '') + '</span>' +
+      '<button type="button" style="font:inherit;font-weight:600;background:#F2C14E;color:#141414;border:0;border-radius:8px;padding:7px 12px;cursor:pointer;min-height:36px">Exit preview</button>';
     b.querySelector('button').addEventListener('click', function () { setPreview(''); location.reload(); });
     document.body.appendChild(b);
     document.body.style.paddingBottom = '64px';
@@ -57,7 +57,7 @@
   function applyTheme() { try { var t = localStorage.getItem('kdh_theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {} }
   function toggleTheme() {
     var root = document.documentElement;
-    var current = root.getAttribute('data-theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    var current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';   // light unless chosen (2026-09-29)
     var next = current === 'dark' ? 'light' : 'dark';
     root.setAttribute('data-theme', next);
     try { localStorage.setItem('kdh_theme', next); } catch (e) {}
@@ -87,25 +87,74 @@
     root.classList.toggle('kdh-mgr', !!(u && u.role === 'manager'));
   }
   markViewer();
+  // WHERE "BACK" GOES (2026-09-29): the place the person came from, named.
+  // A manager who reached a dashboard from the rep workspace goes back to
+  // the rep workspace, not to the manager home; from the hub, back to the
+  // hub (its hash -- the rep and tab -- intact). Remembered per page in
+  // sessionStorage so a reload or a direct link keeps the same way back;
+  // with no history at all, the person's own home.
+  function returnTarget() {
+    var u = user();
+    var isMgr = !!(u && u.role === 'manager');
+    var own = { label: isMgr ? 'Back to Manager Home' : 'Back to Rep Home', href: isMgr ? ROOT : REP_HOME };
+    var key = 'kdh_from:' + location.pathname;
+    var saved = null; try { saved = JSON.parse(sessionStorage.getItem(key) || 'null'); } catch (e) {}
+    var t = null;
+    try {
+      var r = document.referrer ? new URL(document.referrer) : null;
+      if (r && r.origin === location.origin && r.pathname !== location.pathname) {
+        var rel = ROOT ? r.href.replace(new URL(ROOT, location.href).href, '') : r.pathname.replace(/^\//, '');
+        var path = r.pathname;
+        if (/\/rep\/?$/.test(path)) t = { label: 'Back to Rep Home', href: REP_HOME };
+        else if (path === '/' || /\/index\.html$/.test(path) && path.split('/').length <= 2) t = { label: 'Back to Manager Home', href: ROOT };
+        else if (/\/hub\/?/.test(path)) t = { label: 'Back to Incentive Hub', href: r.href };
+        else if (/\/team\/?/.test(path)) t = { label: 'Back to Team Activity', href: r.href };
+      }
+    } catch (e) {}
+    // A fresh arrival from one of our pages decides; a reload or a direct
+    // link falls back to what this page remembered, then to the own home.
+    if (!t && saved && saved.href && saved.label) t = saved;
+    if (!t) t = own;
+    try { sessionStorage.setItem(key, JSON.stringify(t)); } catch (e) {}
+    return t;
+  }
   function chrome() {
     markViewer();
     if (document.querySelector('.kdh-bar') || document.getElementById('kdhBar')) return;
     var u = user();
     var isMgr = !!(u && u.role === 'manager');
     var home = u ? (isMgr ? ROOT : REP_HOME) : ROOT;
+    var back = returnTarget();
     var b = document.createElement('div');
     b.id = 'kdhBar'; b.className = 'kdh-bar';
     var acts = '';
-    acts += '<a class="kdh-b kdh-outline kdh-back" href="' + home + '">' + BACK + '<span>' + (isMgr ? 'Back to Dashboards' : 'Back to My Dashboards') + '</span></a>';
+    acts += '<a class="kdh-b kdh-outline kdh-back" href="' + esc(back.href) + '">' + BACK + '<span>' + esc(back.label) + '</span></a>';
+    acts += '<span id="kdhViewing"></span>';
+    if (u && u.preview) {
+      acts += '<span class="kdh-chip kdh-preview" id="kdhPreviewChip">Previewing <b>' + esc(u.name) + '</b>' + (u.role === 'manager' ? ' (manager)' : '') + '<button type="button" id="kdhExitPreview">Exit preview</button></span>';
+    }
     if (isMgr) acts += '<a class="kdh-b kdh-hide-sm" href="' + ROOT + 'team/">Team</a>';
     acts += '<button type="button" class="kdh-b kdh-icon" id="kdhTheme" aria-label="Switch between light and dark mode" title="Light / dark mode">' + SUN + MOON + '</button>';
-    if (u && u.name) acts += '<span class="kdh-b kdh-user"><span class="kdh-av">' + esc(initials(u.name)) + '</span><span class="kdh-name">' + esc(u.name) + '</span></span>';
+    // the chip is always the SIGNED-IN person, never the one being previewed
+    var who = u ? (u.preview ? u.manager : u.name) : '';
+    if (who) acts += '<span class="kdh-b kdh-user" title="Signed in as ' + esc(who) + '"><span class="kdh-av">' + esc(initials(who)) + '</span><span class="kdh-name">' + esc(who) + '</span></span>';
     if (u) acts += '<a class="kdh-b kdh-outline kdh-hide-sm" href="' + ROOT + 'login/?signout=1">Sign out</a>';
     b.innerHTML = '<div class="kdh-bar-in">' +
       '<a class="kdh-logo" href="' + home + '"><img src="' + ROOT + 'assets/kohler-logo-badge.png" alt="">Kohler Dist Hub<small>' + esc(pageName()) + '</small></a>' +
       '<div class="kdh-acts">' + acts + '</div></div>';
     document.body.insertBefore(b, document.body.firstChild);
     var t = document.getElementById('kdhTheme'); if (t) t.addEventListener('click', toggleTheme);
+    var x = document.getElementById('kdhExitPreview'); if (x) x.addEventListener('click', function () { setPreview(''); location.reload(); });
+  }
+  // "Viewing <rep>" in the top bar: a manager looking at one rep's page
+  // says so next to the way back. changeHref (optional) is where "Change"
+  // goes -- the page's own picker. Pass '' to clear.
+  function viewing(name, changeHref) {
+    var slot = document.getElementById('kdhViewing');
+    if (!slot) return;
+    var u = user();
+    if (!name || !u || u.role !== 'manager' || u.preview) { slot.innerHTML = ''; return; }
+    slot.innerHTML = '<span class="kdh-chip">Viewing <b>' + esc(name) + '</b>' + (changeHref ? '<a href="' + esc(changeHref) + '">Change</a>' : '') + '</span>';
   }
   // Kept for the pages that call it by the old name.
   function backBar() { chrome(); }
@@ -183,6 +232,8 @@
   global.kdhSetPreview = setPreview;
   global.kdhPreviewBar = bar;
   global.kdhBackBar = backBar;
+  global.kdhViewing = viewing;
+  global.kdhReturnTarget = returnTarget;
   global.kdhChrome = chrome;
   global.kdhToggleTheme = toggleTheme;
   function boot() { chrome(); bar(); }
