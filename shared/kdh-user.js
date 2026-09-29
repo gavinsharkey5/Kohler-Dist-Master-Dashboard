@@ -151,6 +151,30 @@
   global.kdhMatchName = matchName;
   global.kdhNameKey = nameKey;
   global.kdhNoRoster = noRoster;
+  // TEAM SCOPE (2026-09-29, Gavin): a district manager sees only their own
+  // reps. Given a page's DM groups ([{dm, reps, under?}]), returns {dm, reps}
+  // when the signed-in manager (or the manager being previewed) IS one of
+  // those DMs -- their reps plus any group filed `under` them (sales
+  // support) -- or null for everyone else (a rep, a VP, Gavin), who keep
+  // the whole roster. Names match the forgiving way (Michael -> Mike).
+  function team(dmGroups) {
+    var u = user();
+    if (!u || u.role !== 'manager' || !u.name || !dmGroups || !dmGroups.length) return null;
+    var me = matchName(u.name, dmGroups.map(function (g) { return g.dm; }));
+    if (!me) return null;
+    var reps = [];
+    dmGroups.forEach(function (g) { if (g.dm === me || g.under === me) reps = reps.concat(g.reps || []); });
+    return { dm: me, reps: reps };
+  }
+  // The same question for a page that only has DM names (the tap tracker):
+  // the matching DM name, or null.
+  function dmName(dmNames) {
+    var u = user();
+    if (!u || u.role !== 'manager' || !u.name || !dmNames || !dmNames.length) return null;
+    return matchName(u.name, dmNames);
+  }
+  global.kdhTeam = team;
+  global.kdhDmName = dmName;
   global.kdhSetPreview = setPreview;
   global.kdhPreviewBar = bar;
   global.kdhBackBar = backBar;

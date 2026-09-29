@@ -34,6 +34,13 @@
 const HUB_SUPPORT = (window.OnPremMPO && window.OnPremMPO.SUPPORT_REPS) || {};
 const HUB_ROSTER = ROSTER.concat(Object.keys(HUB_SUPPORT).filter(r=>!ROSTER.includes(r)));
 const HUB_DM_GROUPS = DM_GROUPS.concat(((window.OnPremMPO && window.OnPremMPO.DM_GROUPS) || []).filter(g=>g.under && !DM_GROUPS.some(x=>x.dm===g.dm)));
+// A DISTRICT MANAGER sees only their team (2026-09-29, per Gavin): the
+// roster and the picker's groups are cut down before the page runs, so the
+// picker, Program View and every deep link only know their reps. Anyone
+// else who is a manager (a VP, Gavin) keeps everyone.
+const HUB_TEAM = window.kdhTeam ? window.kdhTeam(HUB_DM_GROUPS) : null;
+const HUB_ROSTER_SCOPED = HUB_TEAM ? HUB_ROSTER.filter(r=>HUB_TEAM.reps.includes(r)) : HUB_ROSTER;
+const HUB_DM_GROUPS_SCOPED = HUB_TEAM ? HUB_DM_GROUPS.filter(g=>g.dm===HUB_TEAM.dm || g.under===HUB_TEAM.dm) : HUB_DM_GROUPS;
 (function(ROSTER, DM_GROUPS){
 'use strict';
 // A support rep is in the hub for a named set of on-prem objectives only.
@@ -2781,4 +2788,4 @@ function boot(){
 }
 window.KohlerHub = {state, programs:()=>PROGRAMS, sortedForRep, programStats, render, buyingFor, accountsFor, nextAccounts, closedFor};
 boot();
-})(HUB_ROSTER, HUB_DM_GROUPS);
+})(HUB_ROSTER_SCOPED, HUB_DM_GROUPS_SCOPED);

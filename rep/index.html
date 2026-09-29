@@ -255,9 +255,16 @@
   }
   // The registries load deferred; once they are in, program names fill in.
   window.addEventListener('load', function(){ if (fuFor) followUps(fuFor); });
+  function dmGroupsFile(){ try { return typeof DM_GROUPS !== 'undefined' ? DM_GROUPS : null; } catch (e) { return null; } }
   function setupSwitcher(){
     var A = accountsFile(); if (!isManager || !A || !A.reps) return;
     var names = Object.keys(A.reps).sort();
+    // A district manager's list is their own reps only (2026-09-29).
+    var T = window.kdhTeam && dmGroupsFile() ? window.kdhTeam(dmGroupsFile()) : null;
+    if (T) {
+      var mine = names.filter(function(n){ return T.reps.indexOf(n) >= 0 || (window.kdhMatchName && !!window.kdhMatchName(n, T.reps)); });
+      if (mine.length) { names = mine; $('kicker').textContent = 'Rep workspace · your team'; }
+    }
     var sel = $('repSelect'); sel.innerHTML = '';
     names.forEach(function(n){ var o = document.createElement('option'); o.value = n; o.textContent = n; sel.appendChild(o); });
     var saved = ''; try { saved = localStorage.getItem('kdh_rep_view') || ''; } catch (e) {}
@@ -269,7 +276,10 @@
   }
   showRep(viewRep);
   function whenAccounts(fn){ if (accountsFile()) return fn(); var t = setInterval(function(){ if (accountsFile()) { clearInterval(t); fn(); } }, 60); setTimeout(function(){ clearInterval(t); }, 8000); }
-  whenAccounts(function(){ if (isManager) setupSwitcher(); else territory(viewRep); });
+  // The registries (DM_GROUPS) load deferred after accounts.js: a manager's
+  // switcher waits for both so a DM's list can be cut to their team.
+  function whenReady(fn){ var ok = function(){ return accountsFile() && (!isManager || dmGroupsFile()); }; if (ok()) return fn(); var t = setInterval(function(){ if (ok()) { clearInterval(t); fn(); } }, 60); setTimeout(function(){ clearInterval(t); if (!ok() && accountsFile()) fn(); }, 8000); }
+  whenReady(function(){ if (isManager) setupSwitcher(); else territory(viewRep); });
 
   /* ---- live status where real data exists ---- */
   function status(id, cls, text){ var el = $(id); el.className = 'status' + (cls ? ' ' + cls : ''); el.innerHTML = '<span class="dot"></span>' + text; }

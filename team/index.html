@@ -187,6 +187,15 @@
       if(lost.length) note('<b>'+lost.length+' name'+(lost.length===1?'':'s')+' on the access list match no rep in the account base:</b> '+lost.map(esc).join(', ')+'. They will see a "we couldn\u2019t find your name" notice instead of their data until the spelling in allowed_users matches the trackers.');
     }
     var mine = Object.keys(under);
+    // A district manager (reps report to them directly, no managers do)
+    // sees only their team (2026-09-29): one pill, no Everyone, no other DMs.
+    var isDm = team && mine.length && !team.some(function(t){ return t.role==='manager' && ci(t.reports_to)===ci(user.name); });
+    if(isDm){
+      $('pills').innerHTML = '<button class="pill" type="button" data-scope="mine">My team<span class="n">'+mine.length+'</span></button>';
+      $('pills').hidden = false; scope = 'mine';
+      $('kicker').textContent = 'Manager view · ' + user.name + ' · your team';
+      dms = {}; render(); return;
+    }
     // One pill per DM (anyone a rep reports to), most reps first.
     dms = {};
     Object.keys(reps).forEach(function(k){ var d = reps[k].dm; if(d){ var dk = ci(d); dms[dk] = dms[dk] || {name:d, n:0}; dms[dk].n++; } });

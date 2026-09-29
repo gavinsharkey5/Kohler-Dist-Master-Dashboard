@@ -684,6 +684,16 @@ function wire(){
 var API = {
   init: function(host){
     H = host;
+    // A district manager sees only their team (2026-09-29): the roster and
+    // the picker's groups are cut down here, so Step 1, Program View and
+    // a rep in the URL only know their reps.
+    var T = window.kdhTeam ? window.kdhTeam(host.dmGroups || []) : null;
+    if(T){
+      H = Object.assign({}, host, {
+        roster: (host.roster || []).filter(function(r){ return T.reps.indexOf(r) >= 0; }),
+        dmGroups: (host.dmGroups || []).filter(function(g){ return g.dm === T.dm || g.under === T.dm; })
+      });
+    }
     mount = host.mount;
 
     // The URL wins over the remembered state -- a shared link should land

@@ -1213,6 +1213,7 @@ footer{font-size:13px}
   function resetAll(){
     state.search=''; state.rep=''; state.county=''; state.status=''; state.dm=''; state.segment='';
     if(LOCK_NAME) state.rep = LOCK_MATCH || LOCK_NAME;   // a signed-in rep stays on their own route
+    if(LOCK_DM) state.dm = LOCK_DM;                       // a district manager stays on their district
     state.drill=null; state.drillParam=null; state.fComp=''; state.fPlace=''; state.fMin=0; state.fRun=false;
     state.tOn=[]; state.tMiss=[]; state.tMin=0; state.tZero=false; state.tRes=false; state.tPick=null;
     state.ttOpen=false; state.acctFilter=null;
@@ -2301,11 +2302,22 @@ footer{font-size:13px}
      ("Daniel La Gala" vs "Dan Lagala"), so the match is by canonical first
      name + surname; a rep with no surveyed accounts gets a plain notice.
      Managers get the page as before. Access itself is the middleware's. */
-  var LOCK_NAME = null, LOCK_MATCH = null;
+  var LOCK_NAME = null, LOCK_MATCH = null, LOCK_DM = null;
   (function(){
     var u = null;
     try{ if(window.kdhUser) u = window.kdhUser(); else { var m = document.cookie.match(/(?:^|;\s*)kdh_user=([^;]*)/); u = m ? JSON.parse(decodeURIComponent(m[1])) : null; } }catch(e){}
-    if(!u || u.role === 'manager' || !u.name) return;
+    if(!u || !u.name) return;
+    if(u.role === 'manager'){
+      // A district manager sees only their district (2026-09-29): pinned to
+      // their DM filter, the DM pills and select hidden; the rep pills
+      // inside the district and "Whole team" stay.
+      var dm = window.kdhDmName ? window.kdhDmName(DATA.districtManagers || []) : null;
+      if(dm){
+        LOCK_DM = dm; state.dm = dm;
+        var sd = document.createElement('style'); sd.textContent = '#dmPills,.tgroup:has(#dmFilter){display:none!important}'; document.head.appendChild(sd);
+      }
+      return;
+    }
     LOCK_NAME = u.name;
     var NICK = {daniel:'dan',james:'jim',matthew:'matt',nicholas:'nick',michael:'mike',christopher:'chris',robert:'rob',william:'bill',joseph:'joe',jonathan:'jon',kenneth:'ken',timothy:'tim',thomas:'tom',richard:'rich',edward:'ed',andrew:'andy'};
     function key(n){

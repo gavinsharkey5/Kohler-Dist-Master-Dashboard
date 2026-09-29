@@ -407,6 +407,29 @@ exits. The header's meta line shows title + "Reports to" from the
 cookie. Test: mgr_test.mjs (owner switcher, managers only, preview,
 team page follows, non-owner has none). kdh-user.js tag 20260929a.
 
+## District managers see only their team (2026-09-29)
+
+Gavin's ask, from the hub picker screenshot. `kdhTeam(dmGroups)` in
+shared/kdh-user.js: when the signed-in manager (or the manager Gavin is
+previewing) matches one of the page's DM group names
+(`kdhMatchName`, so Encompass "Michael Engel" finds the trackers'
+"Mike Engel"), it returns {dm, reps} = that group plus any group filed
+`under` them (sales support); otherwise null = everyone (a VP, Gavin,
+any manager who is not a DM). Applied: hub.js cuts HUB_ROSTER /
+HUB_DM_GROUPS before the page IIFE (`HUB_ROSTER_SCOPED`, so the picker,
+Program View and deep links only know the team; a `rep=` outside it
+falls back to the picker); guided.js `init` replaces H.roster /
+H.dmGroups the same way for both MPO trackers; rep/index.html filters
+the "Viewing as" switcher (waits for DM_GROUPS from the deferred
+registries, kicker "Rep workspace · your team"); team/index.html shows a
+DM (reps report to them directly and no manager does) only the "My
+team" pill; the tap tracker pins `state.dm` to the DM matched against
+DATA.districtManagers (`kdhDmName`) and hides the DM pills/select
+(rep pills within the district stay). Red Bull and Carbliss have no
+DM concept and are unchanged. Test: scratchpad dm_test.mjs (DM, VP and
+Gavin-previewing-a-DM on every page). Tags: hub.js / guided.js /
+kdh-user.js 20260929a.
+
 ## Rep workspace: "Your follow-ups" strip (2026-09-28)
 
 `rep/index.html` has a `#fuSec` section between the banner and Programs:
