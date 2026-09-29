@@ -522,8 +522,13 @@
       });
     });
 
+    var codeTimer = null;                    // the code box's own auto-submit
     $('codeForm').addEventListener('submit', function (e) {
       e.preventDefault();
+      clearTimeout(codeTimer);               // a tap on Continue cancels the pending auto-submit (2026-09-29: the
+                                             // two together checked the same code twice; the second check failed
+                                             // and its error printed over the next screen)
+      if (entered) return;                   // already signed in -- nothing left to check
       var code = $('code').value.replace(/\D/g, '');
       var email = pendingEmail || $('email').value.trim().toLowerCase();
       if (!email) { show('email'); return; }
@@ -555,7 +560,7 @@
           // session exists now, use it instead of complaining.
           return sb.auth.getSession().then(function (g) {
             var sess = g && g.data && g.data.session;
-            if (sess && !entered) { entered = true; enter(sess); return; }
+            if (sess) { if (!entered) { entered = true; enter(sess); } return; }   // signed in: no complaint
             lastFailed = code;
             var p = loadPending();
             say('bad', 'That code didn&rsquo;t work. A code is good once and only from the <b>newest</b> email &mdash; and if its link was already tapped, the code is used up. Tap <b>send it again</b> and type the new code without opening the link.' +
@@ -567,7 +572,6 @@
         // onAuthStateChange picks the new session up and calls enter().
       });
     });
-    var codeTimer = null;
     $('code').addEventListener('input', function () {
       // Supabase's code is 6 to 8 digits (a project setting). Submit by
       // itself a moment after the last digit, whatever the length.

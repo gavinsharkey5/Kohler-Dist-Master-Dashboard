@@ -270,7 +270,12 @@ never a plain non-empty test; Gavin saw "Welcome back" before that.
 Deleting such accounts in bulk from a migration was refused by the
 tooling; Gavin removes his own under Authentication -> Users if he
 wants 'new' instead of one last code. `#setForm` has a Confirm box
-(`#newpw2`), both must match. The SQL was verified against a local
+(`#newpw2`), both must match. Second gotcha (2026-09-29): a tap on
+Continue plus the code box's 900 ms auto-submit checked the same code
+TWICE; the first signed in, the second got otp_expired and its error
+printed over the create-password screen. The submit handler now clears
+`codeTimer`, returns when `entered`, and a failed check that finds a
+session stays silent. The SQL was verified against a local
 Postgres 16 (see supabase/README.txt). Tests: scratchpad login_pw_test.mjs (new,
 legacy code, returning, wrong password, forgot with reload, Confirm
 email still on, already registered, migration missing) + login_test.mjs.
