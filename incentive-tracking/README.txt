@@ -3638,6 +3638,21 @@ The off-premise MPO "Constellation - 30% Corona Gaintain Distro"
 (MPOs/off-prem) is a different program with its own 30%-of-last-fall goal
 and is NOT changed by this file.
 
+2026-09-30 -- TOUCHDOWNS & TEA HEADLINE IS DISTRIBUTION, NOT DOLLARS (Gavin)
+Gavin asked why Touchdowns & Tea was not under Boston Beer on the hub's
+incentive tab. Its summary adapter (SUMMARY.touchdowns_tea in programs.js)
+led with the payout ("$497 earned"), and the hub's Rep Mode drops any
+program whose headline / goal / still-needed carries a dollar figure
+(hub.js isDollarProgram, per Gavin's 2026-09-11 "no dollars on the rep
+page") -- so it was the one program on the site that rule removed. Per
+Gavin ("put it under Boston Beer incentives, do not include the payout
+amounts, only the distribution/placement data") the adapter now reads
+"15 new 12pk placements · 272 on-prem cases" (now = offPremNewCount, unit
+placements, no set goal) with a money-free sub and next line. The tracker's
+own card (cardTouchdownsTea) and leaderboard still show every payout leg
+-- only the shared summary changed. programs.js tag bumped to 20260930a
+on hub/, accounts/, rep/ and team/.
+
 2026-09-30 REFRESH -- Corona Gaintain + Keystone sync only (riding the off-prem refresh)
 The 9/30 off-prem batch's Corona Gaintain export (123 rows, restated in
 place, only Jayson Romine up) and 274-row Keystone export went here per the

@@ -3511,9 +3511,15 @@ const PROGRAM_SUMMARY = {
                     : `You are earning $5 an account. <strong>${pl(d.toBonus,'more account')}</strong> doubles it to $10 on every one.`)
       : `Sell Keystone Ice 24oz into <strong>${pl(d.toQualifier,'more account')}</strong> to switch your payout on.`}),
 
-  touchdowns_tea:(d)=>({goal:false, now:d.payout, unit:'$',
-    label:money(d.payout)+' earned', sub:`${pl(d.offPremNewCount,'new 12pk placement')} · ${Math.round(d.onPremCases)} on-prem cases`,
-    next:`Every new 12pk placement pays <strong>$15</strong> and every on-premise case pays <strong>$1</strong>.`}),
+  // Headline is DISTRIBUTION, not money (Gavin, 2026-09-30: "put it under
+  // Boston Beer incentives, do not include the payout amounts, only the
+  // distribution/placement data"). A dollar headline made the hub's Rep Mode
+  // drop the whole program (isDollarProgram); the payout stays on this
+  // tracker's own card and leaderboard.
+  touchdowns_tea:(d)=>({goal:false, now:d.offPremNewCount, unit:'placements',
+    label:`${pl(d.offPremNewCount,'new 12pk placement')} · ${Math.round(d.onPremCases)} on-prem cases`,
+    sub:`Sun Cruiser and Twisted Tea 12-packs off-premise, cases on-premise`,
+    next:`Place Sun Cruiser or Twisted Tea 12-packs off-premise and keep the cases moving on-premise — every one counts.`}),
 
   evil_genius:(d,m)=>({goal:true, now:d.totalNewPlacements, target:(m&&m.qualifier)||3, unit:'placements',
     label:`${d.totalNewPlacements} of ${(m&&m.qualifier)||3} placements`,

@@ -696,6 +696,19 @@ the consolidated ask to Gavin. Key facts:
   "Accounts" card (20 dashboards now); account menu "My accounts" /
   "Accounts". Tests: scratchpad acct_test.mjs, mw_test.mjs.
 
+## A program's summary headline must be a field metric, never dollars (2026-09-30)
+
+Touchdowns & Tea vanished from the hub's Boston Beer list because its
+summary adapter led with "$497 earned" and hub.js `isDollarProgram`
+drops any program whose headline / goal / still-needed carries a `$`
+(Gavin's 2026-09-11 rule: no dollars on the rep page). Gavin's call:
+keep it listed, show only distribution -- the adapter now reads "15 new
+12pk placements · 272 on-prem cases" and the payout lives only on the
+tracker's own card. When adding a program to `SUMMARY` in
+incentive-tracking/programs.js, put placements / accounts / cases in
+`now` / `label` and keep money out of `now`, `goal` and `remain` (a sub
+line is scrubbed by `subNoMoney`), or the hub will hide the program.
+
 ## Theme follows the device until chosen; the switch is in the bar (2026-09-30)
 
 Gavin's brief replaced the 2026-09-29 "light for everyone" rule: with no
