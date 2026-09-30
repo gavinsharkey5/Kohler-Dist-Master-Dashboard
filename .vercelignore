@@ -9,3 +9,6 @@
 README*
 CLAUDE.md
 supabase/
+
+# Scripts run from a laptop against a deployment, never loaded by a page.
+tools/

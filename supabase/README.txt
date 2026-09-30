@@ -170,3 +170,20 @@ Rep write-back: rep_actions (2026-09-25)
   the token and allowed_users by a trigger, never trusted from the page.
   Table Editor -> rep_actions shows the whole log; filter rep_name to
   see one rep, or updated_at to see today's.
+
+Account assistant usage ledger (2026-09-30)
+--------------------------------------------
+  Run migrations/20260930210000_assistant_usage.sql once in the SQL
+  Editor before turning the assistant on. It creates public.assistant_usage
+  (one row per answer: tokens, rounds, latency, model, estimated USD --
+  no question text, no answers, no account names; who asked is stamped
+  from the token) and kdh_assistant_quota(), which api/chat.js reads before
+  every call to enforce KDH_CHAT_USER_DAILY (requests per person per UTC
+  day) and KDH_CHAT_DAILY_USD (everyone's estimated spend per UTC day).
+  A person reads their own rows, a manager everyone's; nothing is updated
+  or deleted. Without the migration the assistant answers 503 on purpose.
+  Verified on 2026-09-30 against a local Postgres 16: the trigger overrode
+  a forged user_email, the other rep saw 0 rows and a 0 quota, the manager
+  saw all rows, update / delete / anon were refused, and the migration
+  applied twice cleanly. The spend query is at the foot of the file.
+

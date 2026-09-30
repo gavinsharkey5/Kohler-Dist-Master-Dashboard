@@ -917,34 +917,84 @@ route." Two asks, both judged achievable:
    Started 2026-09-30 (see the next section) on the exports we have;
    Snowflake later improves freshness. Gavin started with the chatbot.
 
-## Account assistant: My Accounts -> Ask (2026-09-30)
+## Account assistant: My Accounts -> Ask (2026-09-30; v2 hardened the same day)
 
 The first piece of the product direction above. `api/chat.js` is a Vercel
 Edge Function (raw fetch to the Claude Messages API -- no SDK because the
-site has no build/install step; model `claude-opus-5-5`, streaming, effort
-low, `fallbacks: "default"` under beta `server-side-fallback-2026-07-01`,
-prompt caching on the stable instructions and on the account packet). The
-Account page's fifth section "Ask" (`accounts/assistant.js`, mounted by
-accounts.js with `buildPacket()`) posts a CONTEXT PACKET of what the page
-already shows (identity, reference month, monthly cases, top products +
-last 12 months, alerts with evidence, patterns, program status for this
-account, notes, taps, warehouse availability, `notInData`) plus the
-conversation; the function re-checks the kdh_at cookie against
-allowed_users, caps packet / turns / rate, wraps the packet in the Kohler
-prompt (only the packet, always the period, alerts are possibilities,
-no dollars, say what is not in the data, short) and streams text back as
-SSE. Modes: ask, pitch (Claude plays the buyer, grounded in the account's
-history, invented details = practice) and feedback (coaching after a
-pitch). Transcripts live in sessionStorage per account; nothing is
-written to Supabase; managers and previews get the same read-only tool.
-'/api/chat' is in REP_PATHS. GAVIN'S STEP: add ANTHROPIC_API_KEY to
-Vercel (server-only, never in the repo) -- until then the section shows
-"not configured yet". RULES: the function never reads data on its own
-(no widening of access); every number must be traceable to the packet;
-never claim to catch stock depletion or confirm a need. Docs:
-api/README.txt. Tests: scratchpad chat_api_test.mjs (handler under Node
-with stubs), assistant_test.mjs (UI with the route stubbed). Tags:
-accounts.js 20260930d, assistant.js 20260930a, accounts.css 20260930e.
+site has no build/install step). api/README.txt is the full contract; the
+rules that hold:
+- THE BROWSER IS NOT TRUSTED. The page (`accounts/assistant.js`, v2) posts
+  only `{v:2, mode, account:<customer #>, rep, page:{programs, warehouse,
+  warehouseAsOf}, messages}`. The function re-checks kdh_at against
+  allowed_users, then AUTHORIZES THE ACCOUNT: a rep may ask only about a
+  customer number on `/accounts/data/reps/<own key>.json` (key = the
+  middleware's nameKey of allowed_users.name -- NICK + nameKey are a
+  byte-for-byte MIRROR of middleware.js, pinned by chat_api_test.mjs); a
+  district manager only about reps in their shared/dm-groups.js group; any
+  other manager about any rep. Wrong rep / number -> 403. The route and
+  sales files are fetched from the deployment's own origin WITH the
+  caller's cookies, so the middleware's per-rep 403s hold underneath.
+  Preview changes only a label; a manager is a manager.
+- THE RECORD IS SERVER-BUILT from reps/<key>.json + sales/<key>/<n>.json +
+  rep_actions (caller's token), with a COVERAGE object (every product,
+  cases per month, Jan 2025 -> reference month; how many products are
+  inline vs behind the tools; load date; notInData). The page's program
+  status + warehouse availability travel as a separate PAGE CONTEXT block
+  the prompt must quote as "the tracker shows", never as fact.
+- THREE TOOLS compute on the FULL record on the server (product_history,
+  period_totals, list_products; MAX_ROUNDS 4; thinking blocks replayed
+  verbatim between rounds). Sums are code, not model arithmetic. The model
+  may say a product was never bought only after product_history found no
+  match.
+- ANSWER FOOTER (UI): "Monthly sales record through Aug 2026, loaded Sep
+  22, 2026 · checked the full record (product history) · Check: Purchase
+  history · Alerts · Patterns · Programs" (data-go links). Prompt: period
+  on every number, OBSERVED apart from INFERRED, alerts are possibilities,
+  no dollars, say when history is too short or data is missing.
+- PITCH: buyer facts only from the record; mood / space / competitor visit
+  = SIMULATED objections; never invent prices, margins, deals, inventory,
+  competitor facts, supplier promises or customer quotes; approved product
+  info = record + PAGE CONTEXT. FEEDBACK marks the invented objections as
+  simulated and rewrites one opener from the record only.
+- TRANSCRIPTS: sessionStorage of the tab under
+  `kdh_ask:<hash(email|preview)>:<n>`; `KdhAssistant.forget()` /
+  `forgetAsk()` clear `kdh_ask:*` in kdh-user.js setPreview (enter AND
+  exit preview) and in /login/ on sign-out, switch account and sign-in.
+  "Delete this conversation" (confirm) empties one. Nothing in Supabase
+  but the ledger. Cross-device saving = an authenticated table with RLS,
+  not Snowflake.
+- MODEL: `claude-opus-5-5` (verified ID; $4/$20 per MTok, cache read
+  $0.20), effort low, streaming, `fallbacks:"default"` under beta
+  `server-side-fallback-2026-07-01` = a classifier refusal (HTTP 200,
+  stop_reason refusal) is re-run server-side on Anthropic's recommended
+  model for that category; message_start names the model that served, so
+  `usage.fellBack` and the ledger record it. KDH_CHAT_MODEL / KDH_CHAT_EFFORT
+  configure; a MANAGER may pass body.model from the allowlist (opus 5.5,
+  sonnet 5.5) for comparisons; a rep gets 403; an unknown model 503.
+- COST CONTROL: every answer -> public.assistant_usage (migration
+  20260930210000_assistant_usage.sql, verified on local Postgres 16:
+  trigger stamps the caller, RLS own/manager, no update/delete);
+  kdh_assistant_quota() enforces KDH_CHAT_USER_DAILY (60) and
+  KDH_CHAT_DAILY_USD (20) before each call; missing migration -> 503
+  (KDH_CHAT_NO_LEDGER=1 only on a throwaway preview). KDH_CHAT_USERS =
+  pilot email list. Cost is an ESTIMATE ($0.05-0.07 first question at
+  list price) until the ledger and tools/assistant-eval/run.mjs measure it.
+- NOT VERIFIED (no key in the build environment): a live call, real
+  tokens / latency, the Opus-vs-Sonnet comparison, self-origin fetch and
+  POST /api/chat under trailingSlash on a live deployment. Pilot steps
+  (Preview-only key, KDH_CHAT_USERS = Gavin, run.mjs, then 2-3 reps) are
+  in api/README.txt; tools/ is in .vercelignore.
+- DATA SOURCE INTERFACE: `StaticExportSource` (dmGroups, repIndex, route,
+  account, notes) is the only place the function reads data; a Snowflake /
+  Postgres source implements the same five methods. Route-wide or
+  comparable-account questions need a permission rule first, not a
+  connector.
+- PRE-EXISTING GAP, unchanged: program_data.js, MPO month JSON, tap HTML,
+  redbull/data.csv and Carbliss rows still carry every rep to any rep.
+Tags: accounts.js 20260930e, assistant.js 20260930b, accounts.css
+20260930f, kdh-user.js 20260930d. Tests: scratchpad chat_api_test.mjs (60
+checks, self-origin reads through the real middleware.js),
+assistant_test.mjs, mw_test.mjs.
 
 ## Hub Incentives: "Previous months" August / September toggle (2026-09-30)
 

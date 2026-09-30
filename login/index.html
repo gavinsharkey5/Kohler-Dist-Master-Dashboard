@@ -256,7 +256,9 @@
   function forgetStoredSession() {
     try { Object.keys(localStorage).forEach(function (k) { if (k.indexOf('sb-') === 0) localStorage.removeItem(k); }); } catch (e) {}
   }
+  function forgetAsk() { try { Object.keys(sessionStorage).filter(function (k) { return k.indexOf('kdh_ask:') === 0; }).forEach(function (k) { sessionStorage.removeItem(k); }); } catch (e) {} }
   function clearCookie() {
+    forgetAsk();   // the account assistant's transcripts belong to the person signing out
     document.cookie = COOKIE + '=; Path=/; Max-Age=0; Secure; SameSite=Lax';
     document.cookie = 'kdh_user=; Path=/; Max-Age=0; Secure; SameSite=Lax';
     document.cookie = 'kdh_preview=; Path=/; Max-Age=0; Secure; SameSite=Lax';
@@ -355,7 +357,7 @@
 
   // The cookies the middleware and the pages read, then the page they wanted.
   function finish(session, me) {
-    clearPending(); reset = false; current = null;
+    clearPending(); reset = false; current = null; forgetAsk();
     rememberEmail(me.email || session.user.email);
     var keep = remembering();
     try { localStorage.setItem(REMEMBER, keep ? '1' : '0'); } catch (e) {}

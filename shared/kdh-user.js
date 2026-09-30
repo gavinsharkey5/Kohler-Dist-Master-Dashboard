@@ -28,7 +28,12 @@
     } catch (e) { return null; }
   }
   // setPreview('Mike Ast') for a rep; setPreview({name, role:'manager', title, dm}) for a manager; setPreview('') to exit.
+  // The account assistant keeps its transcripts in sessionStorage under
+  // kdh_ask:<viewer>:<account>; a change of who we are looking as drops them
+  // all so the next person (or the manager back in their own shoes) starts clean.
+  function forgetAsk() { try { Object.keys(sessionStorage).filter(function (k) { return k.indexOf('kdh_ask:') === 0; }).forEach(function (k) { sessionStorage.removeItem(k); }); } catch (e) {} }
   function setPreview(v) {
+    forgetAsk();
     var val = v && typeof v === 'object' ? JSON.stringify(v) : (v || '');
     document.cookie = 'kdh_preview=' + encodeURIComponent(val) + '; Path=/; Max-Age=' + (val ? 86400 : 0) + '; Secure; SameSite=Lax';
   }

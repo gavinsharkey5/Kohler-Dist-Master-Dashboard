@@ -187,6 +187,11 @@ h3.note small{font-weight:400;color:var(--text-4)}
 .msg.ai .msg-b{border-bottom-left-radius:4px}
 .msg-b p{margin:0 0 6px} .msg-b p:last-child{margin-bottom:0}
 .msg-b ul{margin:4px 0 6px;padding-left:18px} .msg-b li{margin:2px 0}
+/* per-answer footer: period + data load date + lookups run + links into the page */
+.msg.ai{flex-direction:column;align-items:flex-start}
+.msg-f{max-width:88%;margin:4px 0 0 4px;font-size:12px;line-height:1.5;color:var(--text-4)}
+.msg-f .msg-links{display:block}
+.msg-f a{color:var(--text-3);text-decoration:underline;text-underline-offset:2px}
 .ask-status{margin:6px 0 0;font-size:14px;color:var(--text-3)}
 .ask-status .kdh-state.slim{margin:4px 0}
 .dots{display:inline-flex;gap:3px;vertical-align:middle;margin-right:6px}

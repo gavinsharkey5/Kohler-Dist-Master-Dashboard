@@ -130,20 +130,33 @@ THE ACCOUNT PAGE: FOUR SECTIONS (2026-09-30, Gavin's Encompass brief)
               account link yet (REPORTING_REQUEST.md section 5). Nothing is
               drawn as a button that does not work.
 
-  ASK THE ASSISTANT (fifth tab, 2026-09-30)
-    assistant.js + api/chat.js (see api/README.txt). Ask = questions about
-              this account answered from a CONTEXT PACKET of what the page
-              shows (buildPacket in accounts.js: identity, reference month,
-              monthly cases, top products + last 12 months, alerts with
-              evidence, patterns, program status here, notes, taps, warehouse
-              availability, notInData); the model is told to use only the
-              packet, state the period, treat alerts as possibilities, keep
-              dollars out and say what is not in the data. Practice a pitch =
-              the assistant plays this account's buyer from its real history
-              (invented details are practice); Get feedback ends it with
-              coaching. Transcripts: sessionStorage per account, two per
-              account (ask / pitch), Clear button. Managers and previews get
-              the same read-only tool. Needs ANTHROPIC_API_KEY on Vercel.
+  ASK THE ASSISTANT (fifth tab, 2026-09-30; v2 the same day)
+    assistant.js + api/chat.js (api/README.txt has the whole contract).
+    The browser sends ONLY the customer number, the rep, the page's program
+    status list + warehouse availability (labelled "what the app shows" on
+    the server) and the conversation. The server checks the caller may see
+    that account (a rep: on their own route file; a DM: a rep on their
+    team; another manager: any rep), builds the record itself from
+    accounts/data/reps + sales + rep_actions, and gives the model three
+    tools that compute on the FULL record (product_history, period_totals,
+    list_products) so sums are code, not model arithmetic. Every answer
+    carries a footer: "Monthly sales record through <ref>, loaded <date>",
+    the lookups run, and links to Purchase history / Alerts / Patterns /
+    Programs on this page. Practice a pitch = the assistant plays this
+    account's buyer from its real history; objections are simulated and
+    it may not invent prices, stock, competitor facts or customer quotes;
+    Get feedback ends it with coaching that marks the simulated parts.
+    TRANSCRIPTS: sessionStorage of this browser tab only, key
+    kdh_ask:<hash of signed-in email + preview identity>:<account>, two
+    per account (ask / pitch); "Delete this conversation" (confirmed)
+    empties one; kdh-user.js drops them all on any preview change and
+    /login/ on sign-out, switch account and sign-in, so nobody sees
+    another person's conversation on a shared device. Nothing is stored
+    in Supabase except the usage ledger (tokens, no text). Cross-device
+    saved conversations would need an authenticated table with RLS, not
+    Snowflake. Managers and previews get the same read-only tool.
+    Needs ANTHROPIC_API_KEY + the assistant_usage migration; api/README.txt
+    has the pilot steps and the spend limits.
 
 FOCUS + SECTION RULES (unchanged from the first build)
   Focus      up to three, in this fixed order, each saying why and what next:

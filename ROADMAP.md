@@ -11,14 +11,20 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
-- [ ] **Turn the account assistant on** (Gavin): add `ANTHROPIC_API_KEY`
-  (console.anthropic.com -> API keys) to Vercel -> Settings -> Environment
-  Variables for Production and Preview, redeploy, then open an account ->
-  Ask and try "What may be due for a reorder right now?". Until then the
-  section says the assistant is not configured. Budget about $0.05 a
-  question (api/README.txt has the maths); the Anthropic console's Usage
-  page shows real spend. Then tell me what reps ask that it cannot answer
-  -- that list drives the next data pull.
+- [ ] **Account assistant: controlled pilot** (Gavin; api/README.txt
+  "CONTROLLED PILOT" has the exact clicks). (1) Supabase SQL Editor: run
+  `supabase/migrations/20260930210000_assistant_usage.sql`. (2) Anthropic
+  console: a dedicated key with its own spend limit. (3) Vercel env:
+  `ANTHROPIC_API_KEY` + `KDH_CHAT_USERS=<your email>` on PREVIEW only.
+  (4) Open a preview deployment, sign in, My Accounts -> account -> Ask.
+  (5) `node tools/assistant-eval/run.mjs --base <preview> --cookie
+  "kdh_at=..." --rep "Mike Ast" --account 81006` and read the report
+  (answers, tokens, latency, est. USD, numbers not found in the record).
+  (6) Same with `--models claude-opus-5-5,claude-sonnet-5-5` to pick the
+  model. (7) Production: key + 2-3 reps in KDH_CHAT_USERS +
+  `KDH_CHAT_DAILY_USD=10`; watch the ledger a week. (8) Clear
+  KDH_CHAT_USERS. Cost per question is an estimate ($0.05-0.07) until the
+  ledger says otherwise. Tell me anything the report flags.
 - [ ] **Friday: September recap on the hub** -- remove the `note` / `sub`
   from the September entry of INC_MONTHS in hub/hub.js so the September
   programs list under Previous months (they are "ended" from Oct 1), then
@@ -137,10 +143,19 @@ device, a decision).
   when orders reduce it, how allocations / holds / receipts move it, and
   the refresh delay before any alert is promised. Alerts never reserve
   stock.
-- **Account-aware assistant + mock pitch** -- v1 built 2026-09-30 on today's exports (see Done); Snowflake later adds freshness and cross-account questions.
+- **Account-aware assistant + mock pitch** -- built 2026-09-30 and hardened the same day (server-side account authorization, server-built record, tools on the full record, ledger + spend limits); waiting on the pilot above. Snowflake later adds freshness (daily grain, invoices, inventory); route-wide / comparable-account questions need a permission rule first.
 
 ## Done
 
+- [x] 2026-09-30 Account assistant v2: the server authorizes every question
+  against the rep's route (or the DM's team), builds the record itself,
+  answers arithmetic through three server tools on the full record, prints
+  period + load date + lookups + links under every answer, keeps pitch
+  practice grounded (simulated objections labelled, no invented prices /
+  stock / competitor facts), separates transcripts per viewer and forgets
+  them on preview change / sign-out, logs every answer to a usage ledger
+  with per-person and everyone daily limits, and takes the model from env.
+  Live pilot still needs Gavin's key (Now).
 - [x] 2026-09-30 Account assistant: My Accounts -> Ask. Questions about one
   account's buying, alerts, patterns, programs, notes and taps, answered
   from the page's own data with the period stated; Practice a pitch (the

@@ -241,3 +241,44 @@ workflow and provides the documentation:
   same-period prior year.
 - Receivables, backorders, allocations, schedule: open items / current week
   only, refreshed daily.
+
+## 8. What the account assistant needs -- one consolidated list (2026-09-30)
+
+The Ask tab answers today from the monthly sales master, patterns.py, the
+rep's notes and the tap survey, with program status and warehouse
+availability quoted from the page. Everything below would let it answer
+questions it now has to decline, in priority order. Items marked (E)/(O)
+are the same exports as sections 2-3; nothing new is invented here.
+
+1. **Invoice history with line items and dates** (E3) -- days between
+   orders, order counts, "when did they last order X" by date rather than
+   by month, and the fresher grain the pitch mode needs to react to a
+   recent order. Quarterly slices under the export cap; same per-rep
+   slicing as the sales files.
+2. **Accounts receivable** (E4) -- "what do they owe / is anything past
+   due" is the question the assistant refuses most often. Money is shown
+   only to the roles Gavin names; the assistant would keep the same rule.
+3. **Sellable inventory with a timestamp** (the /inventory/ RDE, daily or
+   better) -- so "can I sell 25 cases of X" is answered from the warehouse
+   report's date, and so starred products / alerts (product direction)
+   become possible. Confirm the field and the refresh delay first (§4).
+4. **Customer master: contacts, hours, delivery instructions, next
+   delivery date** (E1) -- private folder or Supabase, never the repo.
+5. **Route schedule** (E2) -- "when am I there next", stop sequence.
+6. **Approved product information for pitch practice**: the Encompass
+   Brands export with sell-sheet URLs for EVERY supplier (today only
+   Carbliss has them), plus a product master with description / ABV /
+   pack / status (O1). Without it the buyer role can only name products
+   and packages.
+7. **Backorders, pre-orders, allocations** (E5) -- so the assistant can
+   say "on backorder since <date>" instead of "not in the data".
+8. **Documented customer preferences / notes from Encompass** ("Customer
+   Information", tasks, survey answers -- O6): the assistant should quote a
+   preference the company recorded, not infer one.
+9. **Pricing, deals, promotions** (O2) -- ONLY if the dollars policy
+   allows; until then the assistant keeps money off the page.
+
+Definitions the assistant depends on (all in §4): Next Available Date,
+invoice statuses, Close Dated / Stagnant / Distribution void / Quantity
+Reduced, account suffixes, AR signs, shared accounts.
+
