@@ -94,3 +94,19 @@ says plainly; the share is there for that reason. House "reps"
 Data date: generate.py now writes meta.generatedAt (the build date) and
 the page's header says "Page built <date> from the RDE exports" -- it
 used to print today's date on every load, which was not a data date.
+
+2026-09-30 REFRESH -- Eval _10 + Price/Vol _10 exports
+  python3 generate.py
+accounts.csv 2,897 -> 3,115 rows, price_vol.csv 4,305 -> 4,656. Target
+accounts 584 -> 611 (27 joined, none left), accounts carrying Carbliss
+181 -> 265 (84 newly carrying, none dropped), SC + WC 2026 cases 22,182 ->
+27,731 (2025 restated 24,024 -> 28,556 -- the export widened with the new
+accounts). Biggest movers on the leaderboard: Robin Feldman 41 -> 54,
+Allison Scott 28 -> 41, Nick Melissari 24 -> 35, Brian Sengebush 24 -> 33,
+Paul Mclaughlin 18 -> 26, Anthony Palmisano 22 -> 28; Pablo Lopez 0 -> 6 and
+Matt Powierski 0 -> 5 open their accounts. Gavin also sent an "RDE Carbliss
+Buyers (ON) L90 vs Start" export (rolling-90 buyers) and a Brands workbook
+with Carbliss flavor sell-sheet URLs for two new features (rolling-90 /
+YTD buyer status with a fell-off alert, sell-sheet picker in the pitch);
+the L90 file arrived EMPTY (header only), so those wait on a re-export --
+see the 2026-09-30 conversation notes in CLAUDE.md.
