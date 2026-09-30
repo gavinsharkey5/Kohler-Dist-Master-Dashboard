@@ -3758,6 +3758,31 @@ own card (cardTouchdownsTea) and leaderboard still show every payout leg
 -- only the shared summary changed. programs.js tag bumped to 20260930a
 on hub/, accounts/, rep/ and team/.
 
+2026-09-30 SEVENTH REFRESH -- Yuengling Fall (off _7 / packages _9 / draft _9) + Southern District (Path to Victory vSD _1, Fall Seasonal vSD _5)
+  python3 generate.py
+Five flat CSVs straight over data/yuengling_retention_fall_off.csv /
+_packages_on.csv / _draft_on.csv, path_to_victory_sd.csv and
+fall_seasonal_sd.csv, same headers. 0 YUENGLING GOALS MOVED (goal column
+identical row for row in all three). Day 30 of 91, still 6 / 58 brand goals
+held across 18 reps, 0 reps holding every goal.
+  Yuengling  off Lager 286 -> 291/338, Flight 108 -> 117/152, Light Lager 73
+             -> 81/134; packages Lager 179 -> 190/258, Flight 2/6.
+             DRAFT STILL READS THE ACCOUNT SHEET (rule 6): 150/293 Lager and
+             3/7 Flight did NOT move because yuengling_retention_fall_draft_
+             on_detail.csv was not re-sent; the _9 summary is stored but the
+             page counts draft from the detail file. OPEN WITH GAVIN: send the
+             draft account-level export to refresh the draft numbers.
+  Path to Victory (vSD)  84 new 6pk PODs of 257 (was 79 of 249), $840
+             trackable, 684 units: Dylan Rubino 31, Alisa Acciardi 18, Jaime
+             Colonna 18, Hakan Sadik 7, Andrew Lundy 4, Michael Harboy 3, Alex
+             Rodriguez 2, John O'Donoghue 1.
+  Fall Seasonal (vSD)  4,894 cases -> 5,076.8 package CE (was 4,896 CE
+             before the 9/25 pull), 65 sixtels, 70 half-kegs, 159 other kegs,
+             $3,603 trackable: Jaime Colonna 1,227 CE, Michael Harboy 1,026,
+             John O'Donoghue 895, Alisa Acciardi 651, Andrew Lundy 627, Dylan
+             Rubino 360, Hakan Sadik 256, Alex Rodriguez 33.
+Hub cache tag bumped (20260930h).
+
 2026-09-30 SIXTH REFRESH -- Molson Coors retention (on + off, grouped workbooks _7) + MABI Fall actuals _12
   python3 convert_mc_retention.py <On_Premise ... w Goals_7.xlsx> <Off_Premise ... w Goals_7.xlsx>
   python3 convert_mabi_fall.py MABI_Fall_2026_Retention_12.csv data/mabi_retention_fall_goals_source.csv
