@@ -32,6 +32,8 @@
 .sec > h2 small{font-weight:400;font-size:12.5px;color:var(--text-4)}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:2px 14px}
 .card > p{margin:10px 0;font-size:14.5px;line-height:1.5;color:var(--text-2)}
+/* rep.css clamps .card p to two lines for the home tiles; these cards are prose */
+.card p,.card .note{display:block;-webkit-line-clamp:unset;overflow:visible}
 /* Focus: one block per action -- what, why, next */
 .focus{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--shadow);overflow:hidden}
 .fitem{display:flex;gap:12px;padding:12px 14px;border-top:1px solid var(--border);align-items:flex-start}
@@ -103,3 +105,23 @@ details.fold[open] > summary::after{content:'\25B4'}
 /* every inline link is a 40px tap target on touch screens (mobile audit, 2026-09-30) */
 .fitem .fn a,.pitem .pa a,.kv a{display:inline-flex;align-items:center;min-height:40px;padding:0 4px;margin-left:-4px}
 .fitem .fn{margin-top:2px}
+/* Buying alerts + patterns (2026-09-30): the evidence line under a list row,
+   the reason select, More filters, alert tags in the sales table */
+.row .row-ev{display:block;font-size:13px;color:var(--text-3);margin-top:3px;line-height:1.4}
+.filters .more-filters{flex:1 1 100%;border:1px solid var(--border);border-radius:var(--r);background:var(--surface);padding:0 12px}
+.filters .more-filters > summary{cursor:pointer;list-style:none;min-height:40px;display:flex;align-items:center;font-size:14.5px;font-weight:600;color:var(--text-2)}
+.filters .more-filters > summary::-webkit-details-marker{display:none}
+.filters .more-filters > summary::after{content:'\25BE';margin-left:auto;color:var(--text-4)}
+.filters .more-filters[open] > summary::after{content:'\25B4'}
+.filters .mf-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:2px 0 8px}
+.filters .mf-row label{font-size:14px;color:var(--text-3);flex:0 0 auto}
+.filters .mf-row select{flex:1 1 200px}
+.filters .mf-row .btn{min-height:42px}
+.filters .more-filters .note{margin:0 0 10px}
+.note.legend{margin:-4px 0 12px}
+.tag.reorder{background:var(--brand-soft);color:var(--brand);border-color:transparent}
+.tag.lapsed{background:var(--kdh-bad-soft);color:var(--kdh-bad);border-color:transparent}
+.tag.slower{background:var(--kdh-warn-soft);color:var(--warn);border-color:transparent}
+.tbl.alerts td .tag{margin:0 4px 2px 0;vertical-align:middle}
+.sec > h2 #alerts,.sec > h2 small{font-weight:400}
+h3.note small{font-weight:400;color:var(--text-4)}

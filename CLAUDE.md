@@ -696,6 +696,48 @@ the consolidated ask to Gavin. Key facts:
   "Accounts" card (20 dashboards now); account menu "My accounts" /
   "Accounts". Tests: scratchpad acct_test.mjs, mw_test.mjs.
 
+## Buying alerts + patterns on My Accounts (2026-09-30)
+
+Reorder / lapsed-buyer / buying-less-often alerts and a Buying patterns
+section, added to the EXISTING Accounts list and Account page (no new
+tab; managers see them across their team). `accounts/patterns.py` is
+THE rule engine: `generate.py` runs it per account and writes
+`alerts` / `summary` / `families` / `alertProducts` on each list row
+and `findings` (alerts with evidence + patterns) on the sales file;
+`accounts.js` only renders (the old JS `reorderGaps()` copy is gone --
+never re-derive a rule on the page). Every threshold is named in
+patterns.py's docstring and accounts/README.txt ("BUYING ALERTS &
+PATTERNS"): monthly grain (buying MONTHS, intervals in months -- there
+are no invoice dates), reference month = last non-partial month in the
+rolling master's sources.json (Aug 2026; nothing grows more overdue
+than the data), recurring = 6+ buying months in 18, regular = median
+gap <= 3, possible reorder = at least a month PAST the usual gap,
+lapsed = past max(2I, I+2) and within 3 months of that mark (older =
+"no longer bought", history not alert), buying less often = 5+ buying
+months in the prior 6 and 3+ fewer in the recent 6 (only on products
+with no other alert), seasonal / irregular / one-time / occasional
+never alert, "family still bought: <product>, <month>" marks a likely
+switch. `accounts/backtest.py` runs the engine with the reference
+month moved back and reports how often flagged products were bought
+again within 3 months (2026-09-30: reorder 72-85%, lapsed 52-69%,
+baseline 95%); the thresholds were tuned on it (RECUR_MIN 4 -> 6 cut
+flagged accounts from 80% to 51%). Re-run it after each rolling month.
+List: All accounts / Needs attention / Follow-ups, a reason select
+under Needs attention (`kind=`), brand family under More filters
+(`fam=`), evidence lines under rows, header counts accounts with an
+alert and product alerts separately; Back keeps every filter. Account
+page: Focus takes the two strongest alerts with evidence, Sales &
+reorders has the alerts table (8 + fold) and rule note, Buying
+patterns has buying months / order size / volume (equal-length,
+labelled periods, % only on a 10+ case base), product mix, consistent
+products, and folds for top products, families, new placements
+(repeat vs one-time), size changes, switches, no-longer-bought,
+seasonal. No resolve / snooze state in v1 (README says what it would
+need; a completed follow-up must never close a sales gap). Wording:
+never "lost", never a confirmed need. Tests: scratchpad
+alerts_test.mjs + acct_test.mjs; rep.css's `.card p` two-line clamp is
+undone in accounts.css for these prose cards.
+
 ## Responsive formatting cleanup: Tap Tracker panels and friends (2026-09-30)
 
 Gavin's targeted brief (keep the design; fix the formatting). Tap tracker

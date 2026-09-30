@@ -24,11 +24,14 @@ Outputs (all git-tracked, all generated -- never edit by hand):
                            hub/data/accounts.js
   data/reps/<key>.json     the rep's accounts with a one-line summary each
                            (last purchase month, months bought of the last
-                           12, taps + last survey) -- the Accounts list
+                           12, taps + last survey, alert counts + the
+                           evidence lines from patterns.py) -- the Accounts list
   data/sales/<key>/<n>.json  one account's product x month case history
                            (n = Encompass customer number) -- loaded when
                            that Account page opens; per-rep folder so the
-                           middleware's path check is one prefix
+                           middleware's path check is one prefix; carries
+                           `findings` (alerts with evidence + buying
+                           patterns) from patterns.py
 
 <key> = kdhNameKey(rep): canonical first name (Michael -> mike) + '-' +
 surname without spaces/punctuation, exactly as shared/kdh-user.js and the
@@ -41,6 +44,8 @@ month lands, or after the tap tracker is rebuilt. Idempotent.
 import csv, json, re, sys
 from pathlib import Path
 from collections import defaultdict
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from patterns import analyze, summary_lines
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
@@ -113,6 +118,11 @@ def main():
     months, sales, products, customers, deciles, sources = load_master()
     taps, taps_asof = load_taps()
     last_month = months[-1] if months else ''
+    # reference month: the last month NOT flagged partial in sources.json
+    ref_i = len(months) - 1
+    while ref_i > 0 and (sources.get(months[ref_i]) or {}).get('partial'):
+        ref_i -= 1
+    ref_month = months[ref_i] if months else ''
     sales_loaded = max((v.get('loaded', '') for v in sources.values()), default='')
     for sub in ('book', 'reps', 'sales'):
         (OUT / sub).mkdir(parents=True, exist_ok=True)
@@ -140,23 +150,11 @@ def main():
             bought = [i for i, c in enumerate(series) if c > 0]
             last_i = bought[-1] if bought else None
             t = taps.get(n)
-            # POSSIBLE REORDER GAP (documented in README.txt): a REGULAR product --
-            # bought in 4+ of the last 12 months, usually no more than 3 months
-            # apart (median gap between buying months) -- whose months since the
-            # last purchase is at least 2 and at least twice that usual gap.
-            # Monthly grain, net of returns, data through the last loaded month
-            # -- a possibility to check, never a confirmed need. accounts.js
-            # applies the identical rule (reorderGaps()).
-            gaps = 0
-            for p in plist:
-                arr = p[5]; idxs = [i for i, c in enumerate(arr) if c > 0]
-                recent = [i for i in idxs if i >= n_months - 12]
-                if len(recent) < 4: continue
-                ints = sorted(b - a2 for a2, b in zip(idxs, idxs[1:]))
-                med = ints[len(ints) // 2] if ints else 1
-                if med > 3: continue
-                since = (n_months - 1) - idxs[-1]
-                if since >= 2 and since >= 2 * med: gaps += 1
+            # BUYING PATTERNS + ALERTS (patterns.py is the one rule engine; the
+            # page only renders what is written here). Reference month = the
+            # last COMPLETE loaded month (never a partial one, never today).
+            res = analyze(plist, months, ref_i)
+            cnt = res.get('counts') or {'reorder': 0, 'lapsed': 0, 'slower': 0}
             row = {
                 'n': a['n'], 'name': a['name'], 'city': a.get('city', ''), 'county': a.get('county', ''), 'area': a.get('area') or a.get('rawArea', ''),
                 'prem': a.get('prem', ''), 'address': cust.get('address', ''), 'cases2026': a.get('cases'),
@@ -165,13 +163,17 @@ def main():
                 'buy12': sum(1 for i in bought if i >= n_months - 12),
                 'products12': sum(1 for p in plist if any(p[5][-12:])),
                 'cases3': round(sum(series[-3:]), 1), 'casesPrior3': round(sum(series[-6:-3]), 1), 'casesLy3': round(sum(series[-15:-12]), 1) if n_months >= 15 else None,
-                'inMaster': n in customers, 'gaps': gaps,
+                'inMaster': n in customers, 'gaps': cnt['reorder'],
+                'alerts': cnt, 'lessOften': bool(res['patterns'] and res['patterns']['lessOften']),
+                'summary': summary_lines(res), 'families': (res['patterns'] or {}).get('families', []),
+                'alertProducts': [{'t': x['type'], 'p': x['product'], 'f': x['family']} for x in res['alerts'][:12]],
             }
             if t: row['taps'] = {'last': t['last'][:10], 'lastDisplay': t['lastDisplay'], 'ours': t['ours'], 'them': t['them'], 'unv': t['unv'], 'passes': t['passes']}
             rows.append(row)
-            sale_rows[n] = {'series': [round(c, 1) for c in series], 'products': plist, 'taps': (t['brands'] if t else None), 'tapHistory': (t['history'] if t else None)}
+            sale_rows[n] = {'series': [round(c, 1) for c in series], 'products': plist, 'taps': (t['brands'] if t else None), 'tapHistory': (t['history'] if t else None),
+                            'findings': {'ref': res['ref'], 'alerts': res['alerts'], 'counts': cnt, 'patterns': res['patterns']}}
         meta = {'rep': rep, 'key': key, 'generated': __import__('datetime').datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
-                'book': {'asOf': book.get('asOf', '')}, 'sales': {'months': months, 'through': last_month, 'loaded': sales_loaded},
+                'book': {'asOf': book.get('asOf', '')}, 'sales': {'months': months, 'through': last_month, 'ref': ref_month, 'loaded': sales_loaded},
                 'taps': {'asOf': taps_asof}}
         (OUT / "reps" / f"{key}.json").write_text(json.dumps(dict(meta, accounts=rows), separators=(',', ':')))
         d = OUT / "sales" / key
@@ -185,7 +187,7 @@ def main():
             f"const HUB_ACCOUNTS = {json.dumps(slice_book, separators=(',', ':'))};\n"
             f"const HUB_BRANDS = {brands_src};\n")
     (OUT / "index.json").write_text(json.dumps({'generated': __import__('datetime').datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
-        'months': months, 'salesThrough': last_month, 'salesLoaded': sales_loaded, 'tapsAsOf': taps_asof, 'bookAsOf': book.get('asOf', ''),
+        'months': months, 'salesThrough': last_month, 'salesRef': ref_month, 'salesLoaded': sales_loaded, 'tapsAsOf': taps_asof, 'bookAsOf': book.get('asOf', ''),
         'reps': [{'rep': r, 'key': k} for r, k in sorted(keys.items())]}, indent=1))
     tot = sum(f.stat().st_size for f in OUT.rglob('*.js*'))
     print(f"{len(keys)} reps, {n_months} months through {last_month}, taps as of {taps_asof}; {tot/1e6:.1f} MB written to {OUT}")

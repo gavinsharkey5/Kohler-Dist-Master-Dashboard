@@ -17,6 +17,10 @@ device, a decision).
   same browser and confirm it shows ONE rep (the middleware rewrite). If
   it shows everyone, tell Claude: the rewrite header needs the
   @vercel/edge form. (2026-09-30)
+- [ ] **Accounts: re-run the backtest after each rolling month** (Claude, when
+  a month lands): `python3 accounts/backtest.py` after `accounts/generate.py`;
+  if lapsed buyers drift toward the baseline or reorders fall under ~60%,
+  retune the thresholds in `accounts/patterns.py` (README says which).
 - [ ] **Accounts: the reporting request** (Gavin): `accounts/REPORTING_REQUEST.md`
   -- daily invoice history and a customer master with active status are
   the two essentials; rep/manager IDs, a rep-safe inventory feed, pitches
@@ -88,6 +92,18 @@ device, a decision).
   Drive), a Stops export without the invoice join, and a Brands sample.
 
 ## Done
+
+- [x] 2026-09-30 Buying alerts + patterns on My Accounts: possible reorder,
+  lapsed buyer and buying-less-often alerts per product from each account's
+  own history (monthly grain, last complete month as today, thresholds
+  documented and backtested: reorder flags bought again 72-85% of the time,
+  lapsed 52-69% vs a 95% baseline), evidence lines and reason / brand family
+  filters on the list, Focus + alerts table + a Buying patterns section on
+  the account page (frequency, order size, volume in labelled equal-length
+  periods, new placements repeat vs one-time, switches within a family,
+  seasonal / no-longer-bought). `accounts/patterns.py` + `backtest.py`;
+  reporting request updated (invoice dates, product status / supersession,
+  seasonal flag). No resolve / snooze state yet.
 
 - [x] 2026-09-30 "Remember me on this device" on both password steps of
   the sign-in page, checked by default: stay signed in for 30 days, or

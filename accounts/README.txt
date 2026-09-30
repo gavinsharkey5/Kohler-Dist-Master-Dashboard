@@ -6,7 +6,8 @@ accounts, one page per account that leads with up to three supported
 actions, then the supporting detail. Managers see their team's accounts
 with the rep named on every row and open the same page.
 
-URL: /accounts/            the list      (#q=..., #rep=<name>, #need=any|follow|prog|gap|tap)
+URL: /accounts/            the list      (#q=..., #rep=<name>, #need=any|follow, #kind=reorder|slower|
+                                          lapsed|follow|prog|tap (with need=any), #fam=<brand family>)
      /accounts/#acct=<n>   one account   (n = Encompass customer number; managers add &rep=<name>;
                                           &from=<url>&fl=<label> make the Back link return there)
 
@@ -65,20 +66,40 @@ THE ACCOUNT PAGE, TOP TO BOTTOM
                ("1 SKU short", "still on Summer Ale", "missing <product>"), warm first,
                soonest deadline first; a cold eligible target only when its program
                ends within 14 days                                            (up to 2)
-             4 possible REORDER GAPS, largest usual order first                   (up to 2)
+             4 BUYING ALERTS from patterns.py: lapsed buyer before possible reorder,
+               biggest usual order first, each with its evidence (months bought, usual
+               gap, last month, months since, usual order, "family still bought: ..."),
+               and "Purchasing less frequently" for the account when nothing else  (up to 2)
              Nothing invented: no urgency, no potential, no deadline that is not the
              program's own. No item -> a plain "Nothing flagged" line.
-  Sales & reorders (Fusion master, monthly, net of returns, through the last loaded month)
+  Sales & reorders (Fusion master, monthly, net of returns, through the REFERENCE month)
              last purchase month; the last 3 months vs the 3 before vs the same 3 last year
              (labelled with their months); products bought in the last 12 months;
-             POSSIBLE REORDER GAPS -- a regular product (bought in 4+ of the last 12 months,
-             usually <= 3 months apart by median gap) not bought for >= 2 months and >= twice
-             its usual gap. Shown as "usually every N months · last bought <month> · typical
-             order X cases". A possibility to check, never a confirmed need; a month equal to
-             the export's own date may be partial (sources.json says so). Recent purchases
-             (top products of the last 3 months) and the full product history fold.
-             MINIMUM HISTORY: 4 buying months for a gap; 15 loaded months for the
+             BUYING ALERTS -- the account's reorder / lapsed / buying-less-often products
+             from patterns.py (see BUYING ALERTS & PATTERNS below), 8 shown with a fold for
+             the rest, each row: type tag, product, family · package · "13 of the last 18
+             months · 3 months since · <family> still bought: <product>, <month>", usually
+             every N months, last bought, usual order; a note under the table restates the
+             three rules. Then recent purchases (top products of the last 3 months) and the
+             full product history fold. MINIMUM HISTORY: 15 loaded months for the
              same-period-last-year comparison (otherwise it is omitted, not zeroed).
+  Buying patterns (patterns.py, Jan 2025 -> the reference month)
+             Buying months: the account's distinct buying months, recent 6 vs the 6 before,
+             both labelled ("6 of 6 months in Mar–Aug 2026 · 6 of 6 in Sep 2025–Feb 2026"),
+             a Less often / More often tag when they differ by the rule. Order size: median
+             cases per buying month, last 6 buying months vs the 6 before (abs + %).
+             Volume: last 3 months vs the 3 before vs the same 3 a year ago (abs + %).
+             Product mix: N regular · N bought 9+ of the last 12 · N occasional · N one-time ·
+             N seasonal · N no longer bought. Consistent: the products bought 9+ of the last
+             12 months. Folds: top products (12 months: months bought, cases, pattern),
+             top brand families, NEW PLACEMENTS (first bought in the last 6 months, with
+             6+ months of history before it: Repeated = 2+ buying months, "One-time so
+             far" = one month and 2+ months since), order size changed (>= 25% and >= 2
+             cases per product), possible switches within a family (an alerted product
+             whose family kept selling through another product), recurring products no
+             longer bought (history, not alerts), seasonal or irregular (never alerted).
+             Percentages appear only on a base of 10+ cases. Frequency and size are never
+             combined into one number.
   Programs   the rep's active incentives + this month's MPOs, judged for THIS ACCOUNT:
              Credited (the tracker's own credited line, product · date) / Lead (warm) /
              Already buying open; "Could still qualify" (eligible, not buying) and "Other
@@ -100,13 +121,113 @@ THE ACCOUNT PAGE, TOP TO BOTTOM
 
 LIST
   Rows: name; town · premise (· rep for managers); chips: N follow-ups, N program leads,
-  N reorders to check, survey overdue Nd / due in Nd. "Needs attention" = follow-ups,
-  leads and surveys (reorder checks have their own filter -- with sales through the last
-  loaded month most accounts have one). Search matches name, number, town (and rep for
-  managers). Long lists page 120 at a time. Back from an account restores the list, its
-  filters and scroll.
+  survey overdue Nd / due in Nd; then the EVIDENCE LINE from patterns.py (max 3 items):
+  "2 possible reorders · 3 lapsed products · Purchasing less frequently" / "N products
+  bought less often" / "Volume up|down vs prior 3 months" (>= 25% on a 10+ case base).
+  Filters: All accounts / Needs attention / Follow-ups; under Needs attention a REASON
+  select (Any / Possible reorder / Buying less often / Lapsed buyer / Open follow-up /
+  Program lead / Survey due or overdue); "More filters" holds the BRAND FAMILY select
+  (families bought in the last 12 months by the accounts on screen, or with an alert):
+  alone it keeps accounts that buy the family or have an alert on it; with a reason it
+  keeps only accounts whose alert of that type is on that family. "Needs attention" =
+  follow-ups + leads + surveys + buying alerts + purchasing less frequently. The header
+  counts "N need attention" and, separately, "N with a buying alert (M product alerts)"
+  -- accounts and product alerts are never added together. Search matches name, number,
+  town (and rep for managers). Long lists page 120 at a time. Back from an account
+  restores the list, its filters (need / reason / family / rep / search) and scroll, via
+  the hash + sessionStorage.
+
+BUYING ALERTS & PATTERNS (accounts/patterns.py -- THE rule engine; accounts.js renders)
+  Grain    Fusion product x account x MONTH, net cases (returns netted; a net-negative month
+           is a credit, not a purchase). So every "purchase date" is a BUYING MONTH (net
+           cases > 0), intervals are in months, and days-between-orders is impossible until
+           invoice-level history arrives (REPORTING_REQUEST.md). Invoice dates would let the
+           same code run in days.
+  Today    the REFERENCE month = the last loaded month NOT flagged partial in
+           rolling-distribution/data/master/sources.json (Aug 2026 on 2026-09-30). Nothing
+           grows more overdue than the data: "3 months since" is counted to that month, and
+           the page says "data through <month>" wherever an alert appears.
+  Per product (and again per brand family)
+    window          the last 18 months ending at the reference month
+    buying months   months in the window with net cases > 0
+    recurring       6+ buying months in the window   (4 was backtested first: it flagged 80%
+                    of accounts and 12k "reorders"; 6 halves that at a better hit rate)
+    interval I      median gap in months between consecutive buying months; regular = I <= 3
+    irregular       longest gap >= 3 x I and >= 4 months: patterns reported, NEVER alerted;
+                    seasonal = irregular and bought in two calendar years (reported as such)
+    since           months from the last buying month to the reference month
+    one-time        exactly one buying month in the whole history (never an alert)
+    occasional      2-5 buying months in the window (never an alert)
+    consistent      bought in 9+ of the last 12 months
+  Alerts (recurring, regular products only)
+    Possible reorder    I + 1 <= since < lapse_at   -- at least a month PAST the usual gap;
+                        at the usual gap is not an alert
+    Lapsed buyer        lapse_at <= since < lapse_at + 3,  lapse_at = max(2I, I + 2)
+                        (monthly product: lapsed from 3 months; every 2: from 4; every 3: from 6)
+    stopped             since >= lapse_at + 3: "recurring products no longer bought" in the
+                        patterns section -- history, not an alert (too old to chase)
+    Buying less often   no reorder / lapsed alert on the product, 5+ buying months in the
+                        prior 6 and at least 3 fewer in the recent 6 (equal-length periods)
+    Order size change   median cases per buying month, last 6 buying months vs the 6 before,
+                        changed >= 25% and >= 2 cases (patterns section only, no alert)
+    Switching           an alerted product whose family was still bought AFTER the product's
+                        last month -> the alert keeps its type but says "family still
+                        bought: <product>, <month>" (the likely story is a switch, not a loss)
+    Purchasing less frequently (account)   the account's own buying months, recent 6 vs
+                        prior 6, by the same 5 / -3 rule. Product-level slowdowns are counted
+                        separately ("N products bought less often"), never rolled up.
+    Order              lapsed, then possible reorder, then less often; within a type the
+                       bigger usual order first (usual = median cases per buying month).
+  Wording  "Possible reorder" / "Lapsed buyer" / "Buying less often" / "No recent purchase
+           of <product>" -- never "lost", never a confirmed need; one-time placements are
+           never "recurring"; "not bought in the window" and "never bought in the history"
+           are different statements (Products to discuss keeps that distinction too).
+  Handled  returns / credits (netted by Fusion; a net-negative month is not a purchase);
+           an inactive or closed account (looks like lapsed buyers -- the customer base has
+           no status flag, see REPORTING_REQUEST.md); seasonal products (never alerted);
+           substitutions within a family (the "still bought" line); territory (a product
+           the account buys is by definition sellable there; program leads keep the
+           territory rules); missing months (a month absent from the master is simply not
+           a buying month; the reference month skips partial months); discontinued
+           products (NOT knowable -- there is no product status, so a discontinued SKU
+           bought monthly will show as lapsed until it passes lapse_at + 3; the request
+           asks for the flag).
+  Backtest accounts/backtest.py runs the same engine with the reference month moved back
+           (default: -3 and -6 months) and reports, per alert type, how often the product
+           was bought again within the next 3 months, against the baseline of regular
+           products bought in the reference month itself. 2026-09-30, data Jan 2025-Aug 2026:
+             ref May 2026: possible reorder 2,489 flagged, 72% bought again (1.31 buying
+             months of the next 3); lapsed 2,900, 52% (0.88); buying less often 1,122, 92%
+             (1.99 -- still buyers, as the rule intends); baseline 41,304, 95.5% (2.31);
+             stopped 1,326, 26%. 51% of accounts with sales carried at least one alert.
+             ref Feb 2026: reorder 5,216 / 85%; lapsed 2,907 / 69%; less often 1,024 / 92%;
+             baseline 95%. (A February reference flags more and recovers more: winter is the
+             low season, so the spring rebound catches many "gaps".)
+           Reading: a reorder flag is a fair nudge (most come back, so asking is cheap and
+           usually right); a lapsed flag is a real signal (half do not come back vs 95%).
+           Re-run after every rolling month; if lapsed drifts toward the baseline, raise
+           RECUR_MIN or lapse_at; if reorder falls under ~60%, raise REORDER_PAST.
+  Reliability  the rules need 6+ buying months in 18 -> a product first bought this spring
+           cannot alert yet; an account new to the route inherits its history (Fusion has
+           no history of who held it). Accounts with hundreds of SKUs carry many alerts
+           (Bottle King: 23 lapsed of 919 products); the list shows counts, the page shows
+           8 with a fold, Focus takes the two biggest by usual order.
+  States   none in v1. Marking an alert resolved / completed / snoozed / dismissed needs a
+           table (rep_actions is per program x account; alerts are per product x account
+           x reference month) with RLS like rep_actions and a "resolved by whom, until
+           when" column, plus a rule for what re-opens it (a new reference month with the
+           gap still open). A completed FOLLOW-UP never resolves a sales gap: the alert
+           stands until the sales data shows a purchase. Not built until Gavin wants it.
+  Payload  generate.py writes, per account, `alerts` counts + `summary` lines + `families`
+           + `alertProducts` (type, product, family) on the list row, and `findings`
+           (alerts with evidence, counts, patterns) on the sales file -- 55 MB total for
+           2,323 accounts, one file per account, per-rep folders the middleware enforces.
 
 TESTS  scratchpad acct_test.mjs (rep scope from the allow-list spelling, direct link to
        another rep's account fails closed, search cannot reach it, manager filters + Back,
        DM team only, preview == rep list, entry points from rep home / hub / Tap Tracker,
-       375 / 390 / 430 / 820 / 1366), mw_test.mjs (the middleware's slice enforcement).
+       375 / 390 / 430 / 820 / 1366), alerts_test.mjs (evidence lines, Needs attention +
+       reason + family filters match the data file exactly, Back keeps them, the account
+       page's alerts table + patterns section + labelled periods, never "lost", preview ==
+       rep, manager counts / rep filter, 375 / 390 / 430 / 820 / 1366), mw_test.mjs (the
+       middleware's slice enforcement), accounts/backtest.py (the thresholds).

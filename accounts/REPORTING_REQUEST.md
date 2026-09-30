@@ -21,6 +21,15 @@ emails or phone numbers in exports that get committed.
 
 - Sales are **monthly**, not by invoice, and run **through August 2026**. A
   "reorder gap" can only be judged in whole months and cannot see September.
+  The reorder / lapsed / buying-less-often alerts (added 2026-09-30) therefore
+  count **buying months** and **months since**, never days between orders,
+  and use August 2026 as "today". Products bought several times a month
+  look identical to products bought once a month.
+- No **product status** is loaded: a discontinued or out-of-stock SKU that an
+  account bought every month shows as a lapsed buyer until it ages out.
+- No **substitution / supersession** list (old ProductID -> new): a pack
+  change reads as one product lapsing and another starting. The page infers
+  "family still bought: <product>" from the data, which is a hint, not a fact.
 - Case equivalents: the master carries `cases` as Fusion exports them; no
   separate CE conversion is loaded, so comparisons are in cases.
 - Active/inactive status is not in the customer base report; an account that
@@ -37,6 +46,10 @@ emails or phone numbers in exports that get committed.
    usual order day and cadence in weeks instead of months, September and the
    current month on the page, returns shown separately. One export can
    REPLACE the monthly rolling pulls (the monthly master is derivable from it).
+   For the buying alerts specifically it turns "3 months since" into "42 days
+   since, usually every 14", lets a product bought twice a month be judged on
+   its own cadence, and adds September and the current month, so an alert
+   raised today reflects this week's orders.
 2. **Customer master with status**: CustomerID, name, address, town, county,
    Encompass area, premise, **active / inactive flag and last activity
    date**, assigned rep **and the rep's Encompass user ID**. Enables: hiding
@@ -44,6 +57,16 @@ emails or phone numbers in exports that get committed.
    so the middleware can key slices on an ID instead of a name.
 
 ### Important
+
+2a. **Product master with status and supersession**: ProductID, name, brand
+   family, supplier, package, **active / discontinued flag with date**, and
+   the replacement ProductID when a pack or SKU was superseded. Enables:
+   no lapsed-buyer alert on a discontinued SKU; a pack change shown as one
+   continuing product instead of a lapse plus a new placement.
+2b. **Seasonal flag per product** (or per brand): if Encompass/Fusion holds
+   one. Enables: seasonal products excluded from alerts by rule instead of
+   inferred from two winters of gaps (which needs 18+ months and misses a
+   product in its first season).
 
 3. **Rep <-> manager assignment by ID**: each sales rep's Encompass user ID
    with their district manager's ID (the Users export you already gave for
@@ -75,6 +98,8 @@ should treat it: show it to both, or to the primary only.
 ## History recommended
 
 - Reorder analysis: at least **12 months of invoice-level history**, 18 to
-  see seasonality once.
+  see seasonality once; the current alerts already need 18 months of monthly
+  history (recurring = 6+ buying months in 18, with the same 6 months before
+  the recent 6 for the less-often comparison).
 - Comparable periods: **24 months**, so any 3-month window has its
   same-period prior year.

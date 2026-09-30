@@ -41,7 +41,7 @@ if(U && !isMgr){
 }
 
 /* ---------------- state + hash ---------------- */
-const state = {view:'list', q:'', rep:'', need:'', n:null, acctRep:null, from:null, fl:'', limit:120};
+const state = {view:'list', q:'', rep:'', need:'', kind:'', fam:'', n:null, acctRep:null, from:null, fl:'', limit:120};
 function readHash(){
   const h = (location.hash||'').replace(/^#/,''); const o = {};
   h.split('&').filter(Boolean).forEach(kv=>{ const i = kv.indexOf('='); if(i<0) return; o[kv.slice(0,i)] = decodeURIComponent(kv.slice(i+1)); });
@@ -50,6 +50,7 @@ function readHash(){
 function applyHash(){
   const h = readHash();
   state.q = h.q || ''; state.rep = h.rep && SCOPE.includes(h.rep) ? h.rep : ''; state.need = h.need || '';
+  state.kind = h.kind || ''; state.fam = h.fam || '';
   state.from = h.from || null; state.fl = h.fl || '';
   if(h.acct){ state.view = 'acct'; state.n = String(h.acct); } else { state.view = 'list'; state.n = null; }
 }
@@ -58,6 +59,8 @@ function listHash(){
   if(state.q) p.push('q='+encodeURIComponent(state.q));
   if(state.rep) p.push('rep='+encodeURIComponent(state.rep));
   if(state.need) p.push('need='+state.need);
+  if(state.kind) p.push('kind='+state.kind);
+  if(state.fam) p.push('fam='+encodeURIComponent(state.fam));
   return '#'+p.join('&');
 }
 function acctHash(n, rep){ return '#acct='+encodeURIComponent(n)+(rep && isMgr ? '&rep='+encodeURIComponent(rep) : ''); }
@@ -118,25 +121,13 @@ async function indexPrograms(rep){
 }
 // 60-day resurvey rule, the Tap Tracker's own: overdue past 60 days, due soon from 53.
 function tapDue(t){ if(!t || !t.last) return null; const d = daysAgo(t.last); if(d==null) return null; if(d>60) return {level:'overdue', days:d}; if(d>=53) return {level:'soon', days:d}; return {level:'ok', days:d}; }
-// POSSIBLE REORDER GAP -- the same rule generate.py applies (see README):
-// a regular product (bought in 4+ of the last 12 months, usually <= 3 months
-// apart) not bought for >= 2 months and >= twice its usual gap.
-function reorderGaps(sales){
-  if(!sales) return [];
-  const N = sales.months.length, out = [];
-  sales.products.forEach(p=>{
-    const arr = p[5]; const idxs = []; arr.forEach((c,i)=>{ if(c>0) idxs.push(i); });
-    const recent = idxs.filter(i=>i>=N-12); if(recent.length<4) return;
-    const ints = idxs.slice(1).map((b,i)=>b-idxs[i]).sort((a,b)=>a-b); const med = ints.length ? ints[Math.floor(ints.length/2)] : 1;
-    if(med>3) return;
-    const since = (N-1)-idxs[-1+idxs.length];
-    if(since>=2 && since>=2*med){
-      const usual = recent.reduce((s,i)=>s+arr[i],0)/recent.length;
-      out.push({p, since, med, last: sales.months[idxs[idxs.length-1]], bought12: recent.length, usual});
-    }
-  });
-  return out.sort((a,b)=>b.usual-a.usual);
-}
+// Reorder / lapsed / buying-less-often alerts and the buying patterns are
+// computed ONCE, in accounts/patterns.py (run by generate.py) and written
+// into the data files: a.alerts / a.summary / a.alertProducts on each list
+// row, sales.findings on the account file. This page renders them; it
+// never re-derives a rule, so the list and the page can't disagree.
+const KIND = {reorder:'Possible reorder', lapsed:'Lapsed buyer', slower:'Buying less often'};
+const every = I => I===1 ? 'every month' : 'every '+I+' months';
 
 /* ---------------- list ---------------- */
 function needOf(a, rep){
@@ -147,59 +138,94 @@ function needOf(a, rep){
   // shown on the account page, not counted as attention.
   const progs = idx ? (idx.targets.get(k)||[]).filter(t=>t.warm).length : null;
   const due = tapDue(a.taps);
-  return {follow, progs, gaps: a.gaps||0, tap: due && due.level!=='ok' ? due : null};
+  const al = a.alerts || {reorder:0, lapsed:0, slower:0};
+  return {follow, progs, reorder: al.reorder||0, lapsed: al.lapsed||0, slower: al.slower||0, lessOften: !!a.lessOften, tap: due && due.level!=='ok' ? due : null,
+          products: (al.reorder||0)+(al.lapsed||0)+(al.slower||0)};
 }
 function chipsHtml(nd){
   const c = [];
   if(nd.follow) c.push(`<span class="chip follow">⚑ ${plural(nd.follow,'follow-up')}</span>`);
   if(nd.progs) c.push(`<span class="chip prog">${plural(nd.progs,'program lead')}</span>`);
-  if(nd.gaps) c.push(`<span class="chip gap">${plural(nd.gaps,'reorder')} to check</span>`);
   if(nd.tap) c.push(`<span class="chip tap${nd.tap.level==='soon'?' soon':''}">${nd.tap.level==='overdue' ? 'Survey overdue '+nd.tap.days+'d' : 'Survey due in '+(60-nd.tap.days)+'d'}</span>`);
   return c.length ? `<span class="chips">${c.join('')}</span>` : '';
 }
-function matchesNeed(nd, need){
-  if(!need) return true;
-  if(need==='any') return !!(nd.follow || nd.progs || nd.tap);   // reorder checks have their own filter
-  if(need==='follow') return nd.follow>0; if(need==='prog') return nd.progs>0; if(need==='gap') return nd.gaps>0; if(need==='tap') return !!nd.tap;
+// the evidence line under an account: what the sales history says, in words
+function evidenceHtml(a){
+  const lines = a.summary || [];
+  return lines.length ? `<span class="row-ev">${lines.map(E).join(' · ')}</span>` : '';
+}
+function hasKind(nd, kind){
+  if(kind==='reorder') return nd.reorder>0; if(kind==='lapsed') return nd.lapsed>0; if(kind==='slower') return nd.slower>0 || nd.lessOften;
+  if(kind==='follow') return nd.follow>0; if(kind==='prog') return nd.progs>0; if(kind==='tap') return !!nd.tap;
+  return false;
+}
+function matchesNeed(a, nd, need, kind, fam){
+  if(fam){
+    // brand family: the account buys it (last 12 months) or has an alert on it
+    const buys = (a.families||[]).includes(fam) || (a.alertProducts||[]).some(x=>x.f===fam);
+    if(!buys) return false;
+  }
+  if(need==='follow') return nd.follow>0;
+  if(need==='any'){
+    if(kind){
+      if(fam && (kind==='reorder' || kind==='lapsed' || kind==='slower')) return (a.alertProducts||[]).some(x=>x.t===kind && x.f===fam);
+      return hasKind(nd, kind);
+    }
+    return !!(nd.follow || nd.progs || nd.tap || nd.products || nd.lessOften);
+  }
   return true;
 }
 function renderList(){
   const reps = state.rep ? [state.rep] : SCOPE;
   const rows = [];
-  reps.forEach(rep=>{ const d = repData.get(rep); if(!d) return; d.accounts.forEach(a=>rows.push({a, rep})); });
+  reps.forEach(rep=>{ const d = repData.get(rep); if(!d) return; d.accounts.forEach(a=>rows.push({a, rep, nd: needOf(a, rep)})); });
   rows.sort((x,y)=>x.a.name.localeCompare(y.a.name));
   const q = state.q.trim().toLowerCase();
-  const shown = rows.filter(({a, rep})=>{
+  const shown = rows.filter(({a, rep, nd})=>{
     if(q && !(a.name.toLowerCase().includes(q) || String(a.n).includes(q) || (a.city||'').toLowerCase().includes(q) || (isMgr && rep.toLowerCase().includes(q)))) return false;
-    return matchesNeed(needOf(a, rep), state.need);
+    return matchesNeed(a, nd, state.need, state.kind, state.fam);
   });
-  const attention = rows.filter(({a, rep})=>matchesNeed(needOf(a, rep), 'any')).length;
+  const attention = rows.filter(({a, nd})=>matchesNeed(a, nd, 'any', '', '')).length;
+  const flagged = rows.filter(({nd})=>nd.products || nd.lessOften).length;
+  const productAlerts = rows.reduce((t,{nd})=>t+nd.products, 0);
+  const fams = Array.from(new Set(rows.flatMap(({a})=>(a.families||[]).concat((a.alertProducts||[]).map(x=>x.f))))).filter(Boolean).sort();
   const missing = reps.filter(r=>!repData.get(r));
   const who = !isMgr ? '' : (SCOPE.length===rosterAll.length ? 'Every rep' : 'Your team');
   const title = isMgr ? 'Team accounts' : 'My accounts';
-  const sub = isMgr ? `${plural(rows.length,'account')} · ${plural(SCOPE.length,'rep')} · ${who}` : `${plural(rows.length,'account')} on your route`;
+  const sub = isMgr ? (state.rep ? `${plural(rows.length,'account')} · ${E(state.rep)}` : `${plural(rows.length,'account')} · ${plural(SCOPE.length,'rep')} · ${who}`) : `${plural(rows.length,'account')} on your route`;
   const first = repData.get(reps[0]);
-  const fresh = first ? `Book as of ${E(first.book.asOf)} · sales through ${E(monLabel(first.sales.through))} · taps as of ${E((first.taps.asOf||'').slice(0,10))}` : '';
-  app.innerHTML = `<header class="ws"><div class="id"><p class="kicker">Accounts</p><h1>${title}</h1><p class="idline">${sub}${attention ? ` · <b>${attention}</b> need attention` : ''}</p><p class="fresh">${fresh}</p></div></header>
+  const ref = first && first.sales.ref ? first.sales.ref : (first ? first.sales.through : '');
+  const fresh = first ? `Book as of ${E(first.book.asOf)} · sales through ${E(monLabel(ref))} · taps as of ${E((first.taps.asOf||'').slice(0,10))}` : '';
+  const kindOpts = [['', 'Any reason'], ['reorder', 'Possible reorder'], ['slower', 'Buying less often'], ['lapsed', 'Lapsed buyer'], ['follow', 'Open follow-up'], ['prog', 'Program lead'], ['tap', 'Survey due or overdue']];
+  const active = state.need==='any';
+  app.innerHTML = `<header class="ws"><div class="id"><p class="kicker">Accounts</p><h1>${title}</h1><p class="idline">${sub}${attention ? ` · <b>${attention}</b> need attention` : ''}${flagged ? ` · <b>${flagged}</b> with a buying alert (${plural(productAlerts,'product alert')})` : ''}</p><p class="fresh">${fresh}</p></div></header>
     <div class="filters">
       <input type="search" class="kdh-field" id="q" placeholder="Search accounts${isMgr?' or reps':''}" value="${E(state.q)}" autocomplete="off" aria-label="Search accounts">
       ${isMgr ? `<select id="repSel" aria-label="Rep"><option value="">All my reps</option>${SCOPE.map(r=>`<option value="${E(r)}"${r===state.rep?' selected':''}>${E(r)}</option>`).join('')}</select>` : ''}
-      <select id="needSel" aria-label="Needs attention"><option value="">All accounts</option><option value="any"${state.need==='any'?' selected':''}>Needs attention (follow-ups, leads, surveys)</option><option value="follow"${state.need==='follow'?' selected':''}>Open follow-ups</option><option value="prog"${state.need==='prog'?' selected':''}>Program lead</option><option value="gap"${state.need==='gap'?' selected':''}>Reorder to check</option><option value="tap"${state.need==='tap'?' selected':''}>Survey due or overdue</option></select>
+      <select id="needSel" aria-label="Show"><option value="">All accounts</option><option value="any"${active?' selected':''}>Needs attention</option><option value="follow"${state.need==='follow'?' selected':''}>Follow-ups</option></select>
+      ${active ? `<select id="kindSel" aria-label="Reason">${kindOpts.map(([v,l])=>`<option value="${v}"${state.kind===v?' selected':''}>${l}</option>`).join('')}</select>` : ''}
+      <details class="more-filters"${state.fam ? ' open' : ''}><summary>More filters${state.fam ? ' · '+E(state.fam) : ''}</summary>
+        <div class="mf-row"><label for="famSel">Brand family</label><select id="famSel" aria-label="Brand family"><option value="">Any brand family</option>${fams.map(f=>`<option value="${E(f)}"${f===state.fam?' selected':''}>${E(f)}</option>`).join('')}</select>${state.fam ? `<button type="button" class="btn outline" id="famClear">Clear</button>` : ''}</div>
+        <p class="note">A brand family matches accounts that bought it in the last 12 months or have an alert on one of its products. Combined with a reason, only alerts on that family count.</p>
+      </details>
     </div>
+    ${active && !state.kind ? `<p class="note legend">Needs attention = an open follow-up, a program lead, a survey due, or a buying alert from the sales history: <b>possible reorder</b> (a regular product past its usual gap), <b>buying less often</b> (fewer buying months than the six before), <b>lapsed buyer</b> (no recent purchase of a recurring product). Alerts are read from Fusion through ${E(monLabel(ref))} — a possibility to check, not a confirmed need.</p>` : ''}
     ${missing.length ? `<div class="kdh-state unavailable"><b>No account list on file for ${E(missing.join(', '))}.</b><span>The customer base report has no accounts under that name, or the data slice has not been generated.</span></div>` : ''}
     ${!SCOPE.length ? `<div class="kdh-state unavailable"><b>We couldn’t find your name on the customer base.</b><span>You’re signed in as ${E(U ? U.name : '')}. Ask Gavin to check the spelling on the access list.</span></div>` : ''}
-    <p class="count">${shown.length===rows.length ? '' : `${shown.length} of `}${plural(rows.length,'account')}${state.need ? ' · filtered' : ''}</p>
-    <div class="rows" id="rows">${shown.slice(0, state.limit).map(({a, rep})=>{
-      const nd = needOf(a, rep);
+    <p class="count">${shown.length===rows.length ? '' : `${shown.length} of `}${plural(rows.length,'account')}${state.need || state.fam ? ' · filtered' : ''}</p>
+    <div class="rows" id="rows">${shown.slice(0, state.limit).map(({a, rep, nd})=>{
       return `<a class="row" href="${acctHash(a.n, rep)}" data-n="${E(a.n)}" data-rep="${E(rep)}">
-        <span class="row-main"><h3>${E(a.name)}</h3><span class="row-s">${E([a.city, premWord(a.prem)].filter(Boolean).join(' · '))}${isMgr ? ` · <span class="rep">${E(rep)}</span>` : ''}</span>${chipsHtml(nd)}</span>
+        <span class="row-main"><h3>${E(a.name)}</h3><span class="row-s">${E([a.city, premWord(a.prem)].filter(Boolean).join(' · '))}${isMgr ? ` · <span class="rep">${E(rep)}</span>` : ''}</span>${chipsHtml(nd)}${evidenceHtml(a)}</span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></a>`; }).join('')}
       ${!shown.length && rows.length ? `<div class="kdh-state empty"><b>No account matches.</b></div>` : ''}</div>
     ${shown.length>state.limit ? `<button class="btn outline more" id="more" type="button">Show ${Math.min(120, shown.length-state.limit)} more of ${shown.length}</button>` : ''}`;
   const mb = $('#more'); if(mb) mb.addEventListener('click', ()=>{ state.limit += 120; const y = window.scrollY; renderList(); window.scrollTo(0, y); });
   $('#q').addEventListener('input', e=>{ state.q = e.target.value; history.replaceState(null,'',listHash()); const list = $('#rows'); if(list) renderListRowsOnly(); });
   const rs = $('#repSel'); if(rs) rs.addEventListener('change', e=>{ state.rep = e.target.value; history.replaceState(null,'',listHash()); render(); });
-  $('#needSel').addEventListener('change', e=>{ state.need = e.target.value; history.replaceState(null,'',listHash()); render(); });
+  $('#needSel').addEventListener('change', e=>{ state.need = e.target.value; if(state.need!=='any') state.kind = ''; history.replaceState(null,'',listHash()); render(); });
+  const ks = $('#kindSel'); if(ks) ks.addEventListener('change', e=>{ state.kind = e.target.value; history.replaceState(null,'',listHash()); render(); });
+  $('#famSel').addEventListener('change', e=>{ state.fam = e.target.value; history.replaceState(null,'',listHash()); render(); });
+  const fc = $('#famClear'); if(fc) fc.addEventListener('click', ()=>{ state.fam = ''; history.replaceState(null,'',listHash()); render(); });
 }
 function renderListRowsOnly(){ const y = window.scrollY; renderList(); const q = $('#q'); q.focus(); q.setSelectionRange(q.value.length, q.value.length); window.scrollTo(0, y); }
 
@@ -213,7 +239,7 @@ function progLink(p, rep){ return HUB+'#view=detail&rep='+encodeURIComponent(rep
 function hubAcctLink(p, rep, n, list){ return HUB+'#view=acct&rep='+encodeURIComponent(rep)+'&cat='+(p ? (p.type==='MPO' ? p.source : 'inc') : 'inc')+(p ? '&prog='+encodeURIComponent(p.id) : '')+'&n='+encodeURIComponent(n)+'&list='+(list||'targets'); }
 function progName(id){ const p = H.programs().find(x=>x.id===id); return p ? (p.shortName||p.name)+(p.type==='MPO' ? ' · '+p.channelLabel+' MPO' : '') : id; }
 function sumRange(arr, from, to){ let s = 0; for(let i=from;i<to;i++) s += arr[i]||0; return s; }
-function rangeLabel(months, from, to){ return monShort(months[from])+'–'+monLabel(months[to-1]); }
+function rangeLabel(months, from, to){ const a = months[from], b = months[to-1]; return (a.slice(0,4)===b.slice(0,4) ? monShort(a) : monLabel(a))+'–'+monLabel(b); }
 
 async function renderAccount(){
   const hit = findAccount(state.n);
@@ -238,10 +264,28 @@ async function renderAccount(){
   const follows = rows.filter(r=>r.status==='follow');
   const targets = idx.targets.get(k) || [];
   const credited = idx.credited.get(k) || [];
-  const gaps = reorderGaps(sales);
   const due = tapDue(a.taps);
   const months = sales ? sales.months : (d.sales.months||[]);
   const N = months.length;
+  const F = (sales && sales.findings) || {alerts:[], counts:{reorder:0,lapsed:0,slower:0}, patterns:null};
+  const alerts = F.alerts || [];
+  const refKey = F.ref || d.sales.ref || months[N-1];
+  const R = months.indexOf(refKey) >= 0 ? months.indexOf(refKey) : N-1;   // reference = last complete month
+  // one alert, explained: what, the pattern, the gap, the supporting numbers
+  const alertShort = x => {
+    const bits = [`${x.buying} of the last 18 months`, `${plural(x.since,'month')} since`];
+    if(x.type==='slower') bits.push(`${x.recent6} of 6 months in ${rangeLabel(months, R-5, R+1)} vs ${x.prior6} in ${rangeLabel(months, R-11, R-5)}`);
+    if(x.switch) bits.push(`${x.family} still bought: ${x.switch.product}, ${monLabel(x.switch.month)}`);
+    return bits.join(' · ');
+  };
+  const alertWhy = x => {
+    const bits = [`bought in ${x.buying} of the last 18 months, usually ${every(x.interval)}`, `last in ${monLabel(x.last)} (${plural(x.since,'month')} ago in the data)`];
+    if(x.type==='lapsed') bits.push(`past the ${x.lapseAt}-month mark that counts as lapsed for a product bought ${every(x.interval)}`);
+    if(x.type==='slower') bits.push(`${x.recent6} buying ${x.recent6===1?'month':'months'} in ${rangeLabel(months, R-5, R+1)} vs ${x.prior6} in ${rangeLabel(months, R-11, R-5)}`);
+    if(x.usual) bits.push(`usual order ${fmtN(x.usual)} cs`);
+    if(x.switch) bits.push(`${x.family} still bought: ${x.switch.product} in ${monLabel(x.switch.month)}`);
+    return bits.join(' · ');
+  };
 
   /* ---- Focus: up to three supported actions, in a fixed order ---- */
   const focus = [];
@@ -251,7 +295,9 @@ async function renderAccount(){
     const f = H.progFacts(t.p, t.r, rep);
     focus.push({kind: t.warm ? 'Program lead' : 'Program ending soon', t:E(H.sellAsk(t.p)), w:`${E(t.p.shortName||t.p.name)} (${E(t.p.supplier)}) · ${E(t.why || 'this account is eligible and not buying it yet')} · ${E(H.endsLabel(t.p.period))}.`, n:`You are at ${f.main}${f.need && f.need!=='Goal met' ? ' — '+f.need : ''}.`, href:progLink(t.p, rep), hl:'Program details'});
   });
-  gaps.slice(0,2).forEach(g=>focus.push({kind:'Reorder to check', t:`Ask about ${E(g.p[1])}`, w:`Bought in ${g.bought12} of the last 12 months, usually every ${g.med===1?'month':g.med+' months'}; last in ${E(monLabel(g.last))}, ${g.since} months ago in the data.`, n:'Check whether they need a reorder — a gap in the data, not a confirmed need.', href:'#sales', hl:'See purchases'}));
+  // strongest buying alerts: lapsed before possible reorder, biggest usual order first (patterns.py's order)
+  alerts.filter(x=>x.type!=='slower').slice(0,2).forEach(x=>focus.push({kind: KIND[x.type], t: x.type==='lapsed' ? `No recent purchase of ${E(x.product)}` : `Ask about ${E(x.product)}`, w: E(alertWhy(x))+'.', n: x.type==='lapsed' ? 'Find out whether they stopped or switched — the data shows the gap, not the reason.' : 'Check whether they need a reorder — a gap in the data, not a confirmed need.', href:'#alerts', hl:'See the alert'}));
+  if(F.patterns && F.patterns.lessOften && !alerts.length) focus.push({kind:'Buying less often', t:'Purchasing less frequently', w:`${F.patterns.freq.recent6} buying ${F.patterns.freq.recent6===1?'month':'months'} in ${E(rangeLabel(months, R-5, R+1))} vs ${F.patterns.freq.prior6} in ${E(rangeLabel(months, R-11, R-5))}.`, n:'Ask what changed — a slower pattern in the data, not a confirmed problem.', href:'#patterns', hl:'See buying patterns'});
   const top = focus.slice(0,3);
 
   /* ---- Sales & reorders ---- */
@@ -265,16 +311,57 @@ async function renderAccount(){
     const recent = sales.products.filter(p=>sumRange(p[5], N-3, N)>0).slice(0, 8);
     const recentRows = recent.map(p=>{ const li = (()=>{ for(let i=N-1;i>=0;i--) if(p[5][i]>0) return i; return -1; })();
       return `<tr><td><b>${E(p[1])}</b><span class="sub">${E([p[2], p[4]].filter(Boolean).join(' · '))}</span></td><td class="num" data-l="${E(rangeLabel(months,N-3,N))}">${fmtN(sumRange(p[5],N-3,N))}</td><td class="num" data-l="${E(rangeLabel(months,N-6,N-3))}">${fmtN(sumRange(p[5],N-6,N-3))}</td><td class="num" data-l="Last bought">${li>=0 ? E(monLabel(months[li])) : '—'}</td></tr>`; }).join('');
-    const gapRows = gaps.slice(0, 6).map(g=>`<tr><td><b>${E(g.p[1])}</b><span class="sub">${E(g.p[2])}</span></td><td class="num" data-l="Usually">every ${g.med===1?'month':g.med+' mo'}</td><td class="num" data-l="Last bought">${E(monLabel(g.last))}</td><td class="num" data-l="Typical order">${fmtN(g.usual)} cs</td></tr>`).join('');
+    const tagOf = t => `<span class="tag ${t}">${KIND[t]}</span>`;
+    const alertRows = alerts.slice(0, 8).map(x=>`<tr><td>${tagOf(x.type)} <b>${E(x.product)}</b><span class="sub">${E([x.family, x.pkg].filter(Boolean).join(' · '))} · ${E(alertShort(x))}</span></td><td class="num" data-l="Usually">${E(every(x.interval))}</td><td class="num" data-l="Last bought">${E(monLabel(x.last))}</td><td class="num" data-l="Usual order">${fmtN(x.usual)} cs</td></tr>`).join('');
+    const cnt = F.counts || {};
+    const alertHead = [cnt.reorder ? plural(cnt.reorder,'possible reorder') : '', cnt.lapsed ? plural(cnt.lapsed,'lapsed product') : '', cnt.slower ? cnt.slower+' bought less often' : ''].filter(Boolean).join(' · ');
     const hist = sales.products.slice(0, 40).map(p=>`<div class="hist"><b>${E(p[1])}</b> · ${p[5].map((c,i)=>c>0 ? monShort(months[i])+' '+fmtN(c) : '').filter(Boolean).join(' · ') || 'no cases'}</div>`).join('');
     salesHtml = `<div class="card">
       <div class="kv"><span>Last purchase</span><span>${lastIdx>=0 ? E(monLabel(months[lastIdx])) : 'none in the data'}</span></div>
       <div class="kv"><span>${E(rangeLabel(months,N-3,N))}</span><span><b>${fmtN(last3)} cases</b> · ${E(rangeLabel(months,N-6,N-3))}: ${fmtN(prior3)}${ly3!=null ? ' · '+E(rangeLabel(months,N-15,N-12))+': '+fmtN(ly3) : ''}</span></div>
       <div class="kv"><span>Products</span><span>${plural(sales.products.filter(p=>sumRange(p[5],N-12,N)>0).length,'product')} bought in the last 12 months</span></div>
-      ${gaps.length ? `<h3 class="note" style="margin-top:12px"><b>Possible reorder gaps</b> · ${gaps.length} regular ${gaps.length===1?'product':'products'} not bought recently</h3><table class="tbl"><thead><tr><th>Product</th><th class="num">Usually</th><th class="num">Last bought</th><th class="num">Typical order</th></tr></thead><tbody>${gapRows}</tbody></table>${gaps.length>6 ? `<p class="note">${gaps.length-6} more in the purchase history below.</p>` : ''}` : `<p class="note">No regular product is overdue against its usual pattern in the data.</p>`}
+      <h3 class="note" id="alerts" style="margin-top:12px"><b>Buying alerts</b> · ${alerts.length ? alertHead : 'none'} <small>· data through ${E(monLabel(refKey))}</small></h3>
+      ${alerts.length ? `<table class="tbl alerts"><thead><tr><th>Product</th><th class="num">Usually</th><th class="num">Last bought</th><th class="num">Usual order</th></tr></thead><tbody>${alertRows}</tbody></table>${alerts.length>8 ? `<details class="fold"><summary>${alerts.length-8} more alerts</summary><table class="tbl alerts"><tbody>${alerts.slice(8).map(x=>`<tr><td>${tagOf(x.type)} <b>${E(x.product)}</b><span class="sub">${E(alertShort(x))}</span></td><td class="num" data-l="Usually">${E(every(x.interval))}</td><td class="num" data-l="Last bought">${E(monLabel(x.last))}</td><td class="num" data-l="Usual order">${fmtN(x.usual)} cs</td></tr>`).join('')}</tbody></table></details>` : ''}<p class="note">A <b>possible reorder</b> is a regular product (6+ of the last 18 months, usually ≤3 months apart) at least a month past its usual gap; <b>lapsed</b> is the same product past ${'twice'} its gap (never sooner than 3 months); <b>buying less often</b> is a product still being bought, but in 3+ fewer months than the six before. Each is a possibility to check — the data has no shelf stock, sell-through or reason.</p>` : `<p class="note">No regular product is past its usual gap in the data, and none is being bought noticeably less often.</p>`}
       <h3 class="note" style="margin-top:6px"><b>Recent purchases</b> · top products of ${E(rangeLabel(months,N-3,N))}</h3>
       ${recent.length ? `<table class="tbl"><thead><tr><th>Product</th><th class="num">${E(rangeLabel(months,N-3,N))}</th><th class="num">${E(rangeLabel(months,N-6,N-3))}</th><th class="num">Last bought</th></tr></thead><tbody>${recentRows}</tbody></table>` : `<p class="note">Nothing bought in ${E(rangeLabel(months,N-3,N))}.</p>`}
       <details class="fold" id="sales"><summary>Purchase history by product (${plural(sales.products.length,'product')}, ${E(monLabel(months[0]))} – ${E(monLabel(months[N-1]))})</summary>${hist}${sales.products.length>40 ? `<p class="note">Showing the 40 biggest products of the last 12 months.</p>` : ''}</details>
+    </div>`;
+  }
+
+  /* ---- Buying patterns: the account's own history, in fair equal-length comparisons ---- */
+  let patHtml = '';
+  if(F.patterns){
+    const P = F.patterns, v = P.volume, fq = P.freq, os = P.orderSize;
+    const pct = (now, before) => (before && before >= 10) ? ` (${now>=before?'+':''}${Math.round((now-before)/before*100)}%)` : '';
+    const kv = (l, v) => `<div class="kv"><span>${l}</span><span>${v}</span></div>`;
+    const lab3 = rangeLabel(months, R-2, R+1), labP3 = R>=5 ? rangeLabel(months, R-5, R-2) : '', labLy = R>=14 ? rangeLabel(months, R-14, R-11) : '';
+    const lab6 = rangeLabel(months, R-5, R+1), labP6 = rangeLabel(months, R-11, R-5);
+    const list = xs => xs.map(E).join(', ');
+    const top = P.topProducts.map(t=>`<div class="hist"><b>${E(t.product)}</b> · ${t.months12} of 12 months · ${fmtN(t.cases12)} cs · ${t.kind==='regular' ? every(t.interval) : t.kind==='one-time' ? 'one-time' : t.kind==='stopped' ? 'no longer bought' : E(t.kind)}</div>`).join('');
+    const famsHtml = P.topFamilies.map(f=>`<div class="hist"><b>${E(f.family)}</b> · ${fmtN(f.cases12)} cs in 12 months${f.last ? ' · last '+E(monLabel(f.last)) : ''}${f.kind==='regular' ? ' · '+every(f.interval) : ''}</div>`).join('');
+    const newPl = P.newPlacements.map(n=>`<div class="hist"><b>${E(n.product)}</b> · first ${E(monLabel(n.first))} · ${n.repeat ? `<span class="tag ok">Repeated</span> ${plural(n.buying,'buying month')}` : n.since>=2 ? `<span class="tag warn">One-time so far</span> not bought since` : 'one purchase so far'}</div>`).join('');
+    const sizes = P.sizeChanges.map(c=>`<div class="hist"><b>${E(c.product)}</b> · ${fmtN(c.prior)} → ${fmtN(c.recent)} cs per order (${c.dir})</div>`).join('');
+    const stopped = P.stopped.map(c=>`<div class="hist"><b>${E(c.product)}</b> · was ${every(c.interval)} · last ${E(monLabel(c.last))}</div>`).join('');
+    const seasonal = P.seasonal.map(c=>`<div class="hist"><b>${E(c.product)}</b> · last ${E(monLabel(c.last))}</div>`).join('');
+    const switching = alerts.filter(x=>x.switch).slice(0,5).map(x=>`<div class="hist"><b>${E(x.product)}</b> last ${E(monLabel(x.last))} → <b>${E(x.switch.product)}</b> ${E(monLabel(x.switch.month))} (${E(x.family)})</div>`).join('');
+    const freqLine = fq.prior6 ? `<b>${fq.recent6} of 6 months</b> in ${E(lab6)} · ${fq.prior6} of 6 in ${E(labP6)}${P.lessOften ? ' · <span class="tag warn">Less often</span>' : fq.recent6 > fq.prior6 ? ' · <span class="tag ok">More often</span>' : ''}` : `<b>${fq.recent6} of 6 months</b> in ${E(lab6)} · no purchases in ${E(labP6)}`;
+    const sizeLine = os.recent!=null ? `<b>${fmtN(os.recent)} cs</b> per buying month, last 6 buying months${os.prior!=null ? ` · ${fmtN(os.prior)} the 6 before${pct(os.recent, os.prior)}` : ' · not enough earlier months to compare'}` : 'fewer than 3 buying months on record';
+    const volLine = `<b>${fmtN(v.last3)} cs</b> in ${E(lab3)}${v.prior3!=null ? ` · ${fmtN(v.prior3)} in ${E(labP3)}${pct(v.last3, v.prior3)}` : ''}${v.ly3!=null ? ` · ${fmtN(v.ly3)} in ${E(labLy)}${pct(v.last3, v.ly3)}` : ''}`;
+    const mix = [P.recurringN ? plural(P.recurringN,'regular product') : '', P.consistentN ? P.consistentN+' bought 9+ of the last 12 months' : '', P.occasionalN ? P.occasionalN+' occasional' : '', P.oneTimeN ? P.oneTimeN+' one-time' : '', P.seasonalN ? P.seasonalN+' seasonal' : '', P.stoppedN ? P.stoppedN+' no longer bought' : ''].filter(Boolean).join(' · ');
+    patHtml = `<div class="card" id="patterns">
+      ${kv('Buying months', freqLine)}
+      ${kv('Order size', sizeLine)}
+      ${kv('Volume', volLine)}
+      ${kv('Product mix', mix || 'no products on record')}
+      ${P.consistent.length ? kv('Consistent', list(P.consistent)) : ''}
+      ${top ? `<details class="fold"><summary>Top products · last 12 months</summary>${top}</details>` : ''}
+      ${famsHtml ? `<details class="fold"><summary>Top brand families · last 12 months</summary>${famsHtml}</details>` : ''}
+      ${newPl ? `<details class="fold" open><summary>New placements · first bought in the last 6 months (${P.newPlacementsN}, ${P.newRepeatN} repeated)</summary>${newPl}${P.newPlacementsN>P.newPlacements.length ? `<p class="note">Newest ${P.newPlacements.length} of ${P.newPlacementsN}.</p>` : ''}</details>` : ''}
+      ${sizes ? `<details class="fold"><summary>Order size changed · ${P.sizeChanges.length} ${P.sizeChanges.length===1?'product':'products'}</summary>${sizes}<p class="note">Median cases per buying month, the last 6 buying months against the 6 before; shown only when the change is at least 25% and 2 cases.</p></details>` : ''}
+      ${switching ? `<details class="fold"><summary>Possible switches within a family · ${alerts.filter(x=>x.switch).length}</summary>${switching}<p class="note">A product on alert whose brand family kept selling through another product — a switch is the likely story, so ask before pitching the old one back.</p></details>` : ''}
+      ${stopped ? `<details class="fold"><summary>Recurring products no longer bought · ${P.stoppedN}</summary>${stopped}<p class="note">Were regular, not bought for well past their gap (${'lapsed mark + 3 months'}). History, not an alert.</p></details>` : ''}
+      ${seasonal ? `<details class="fold"><summary>Seasonal or irregular · ${P.seasonalN + P.irregularN}</summary>${seasonal}<p class="note">Bought in bursts with long gaps across more than one year — never alerted, since the gap is the pattern.</p></details>` : ''}
+      <p class="note">Periods are equal length and labelled; percentages appear only on a base of 10+ cases. Frequency (buying months) and order size are kept apart on purpose. Monthly data cannot show days between orders — see the reporting request.</p>
     </div>`;
   }
 
@@ -346,16 +433,17 @@ async function renderAccount(){
   }
 
   const focusHtml = top.length ? `<div class="focus">${top.map((f,i)=>`<div class="fitem"><span class="num">${i+1}</span><div class="fmain"><span class="fkind">${E(f.kind)}</span><div class="ft">${f.t}</div><p class="fw">${f.w}</p><p class="fn">${E(f.n)} <a href="${E(f.href)}">${E(f.hl)} ›</a></p></div></div>`).join('')}</div>`
-    : `<div class="kdh-state empty"><b>Nothing flagged for this account right now.</b><span>No open follow-up, no program target, no overdue survey and no regular product overdue in the data.</span></div>`;
+    : `<div class="kdh-state empty"><b>Nothing flagged for this account right now.</b><span>No open follow-up, no program target, no overdue survey and no buying alert in the data through ${E(monLabel(refKey))}.</span></div>`;
 
   app.innerHTML = back(fromLabel, fromHref) + `<div class="acct-head"><h1>${E(a.name)}</h1><p class="sub">${E([a.city, premWord(a.prem)].filter(Boolean).join(' · '))}</p><p class="sub2">Account #${E(a.n)}${a.address ? ' · '+E(a.address) : ''}${a.area ? ' · '+E(a.area) : ''}${a.sizeClass ? ' · Class '+E(a.sizeClass) : ''}${isMgr ? ' · Rep: '+E(rep) : ''}</p></div>
     <section class="sec"><h2>Focus for this account</h2>${focusHtml}</section>
-    <section class="sec"><h2>Sales &amp; reorders <small>Fusion, through ${E(monLabel(months[N-1]))}</small></h2>${salesHtml}</section>
+    <section class="sec"><h2>Sales &amp; reorders <small>Fusion, through ${E(monLabel(refKey))}</small></h2>${salesHtml}</section>
+    ${patHtml ? `<section class="sec"><h2>Buying patterns <small>${E(monLabel(months[0]))} – ${E(monLabel(refKey))}</small></h2>${patHtml}</section>` : ''}
     <section class="sec"><h2>Programs <small>${plural(idx.programs.length,'active program')} for ${E(rep.split(' ')[0])}</small></h2>${progHtml}</section>
     <section class="sec"><h2>Products to discuss</h2>${discussHtml}</section>
     <section class="sec"><h2>Notes &amp; follow-ups</h2>${notesHtml}</section>
     ${tapsHtml ? `<section class="sec"><h2>Taps &amp; visits <small>survey as of ${E((d.taps.asOf||'').slice(0,10))}</small></h2>${tapsHtml}</section>` : ''}
-    <p class="fresh-foot">Customer base as of ${E(d.book.asOf)} · sales master through ${E(monLabel(months[N-1]))} (loaded ${E((d.sales.loaded||'').slice(0,10))}, monthly, net of returns) · programs as refreshed in the hub · tap survey as of ${E((d.taps.asOf||'').slice(0,10))}. Reorder gaps: regular products (4+ of the last 12 months, usually ≤3 months apart) not bought for 2+ months and twice their usual gap — a possibility to check, not a confirmed need.</p>`;
+    <p class="fresh-foot">Customer base as of ${E(d.book.asOf)} · sales master through ${E(monLabel(months[N-1]))} (loaded ${E((d.sales.loaded||'').slice(0,10))}, monthly, net of returns) · programs as refreshed in the hub · tap survey as of ${E((d.taps.asOf||'').slice(0,10))}. Buying alerts use the last complete month (${E(monLabel(refKey))}) as today, so nothing grows more overdue than the data; rules and thresholds are in accounts/README.txt.</p>`;
   const y = scrollMem[location.hash]; if(typeof y==='number'){ requestAnimationFrame(()=>window.scrollTo(0,y)); delete scrollMem[location.hash]; }
 }
 
