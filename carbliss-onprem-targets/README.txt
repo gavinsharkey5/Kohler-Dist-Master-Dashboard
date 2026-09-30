@@ -110,3 +110,49 @@ with Carbliss flavor sell-sheet URLs for two new features (rolling-90 /
 YTD buyer status with a fell-off alert, sell-sheet picker in the pitch);
 the L90 file arrived EMPTY (header only), so those wait on a re-export --
 see the 2026-09-30 conversation notes in CLAUDE.md.
+
+YTD vs ROLLING-90 BUYERS + FELL-OFF ALERT, PITCH FIRST, SELL SHEETS (2026-09-30)
+Gavin: "Carbliss is tracking a rolling 90 day customer tracker ... include
+the ytd and rolling 90 buyers as well for reps to see, and provide an alert
+that the account fell off rolling 90 if they have bought YTD ... move pitch
+icon to the left most column and include the sell sheets. allow rep to
+choose which sell sheet they can show a customer."
+  carbliss_buyers_l90.csv   the RDE "Carbliss Buyers (ON) L90 vs Start" export:
+                            one row per Carbliss load sheet (rep, Customer Num &
+                            Company, Load Sheet Date, Buyers L90 2026, Buyers
+                            2026, Difference). Save the new export over it on
+                            every refresh, same as the two Eval files.
+  brands_sell_sheets.xlsx   the Encompass Brands export (Brand ID, Brand, Brand
+                            Family, Sell Sheet URL) -- one Carbliss flavor per
+                            row; only brand names and URLs, nothing personal.
+generate.py reads both (F3 / F4; either may be missing -- the page then just
+omits that feature). RULES: an ACCOUNT is a YTD buyer when any of its load
+sheets has Buyers 2026 = 1, a rolling-90 buyer when any has Buyers L90 = 1
+(the RDE decides the window; the page reports it from the data -- earliest
+L90 row to the latest load sheet, 7/2 - 9/30 on 2026-09-30), and FELL OFF
+ROLLING 90 = YTD buyer with no L90 row. 2026-09-30: 377 load sheets, 288 YTD
+buyers, 221 rolling-90, 67 fell off; 273 of the 288 are on the Sun Cruiser /
+White Claw target list, the other 15 buy Carbliss without SC/WC and appear
+only in the buyers card (marked "not on the SC/WC list below").
+PAGE: a "Carbliss buyers · YTD vs rolling 90" card under the goal bar with
+three tiles (Buyers YTD, Rolling-90 buyers with the % of YTD still buying,
+Fell off rolling 90) and a fold listing the fell-off accounts, most recent
+last buy first, with "last <date> · N days" (days counted to the export's
+own last load-sheet date, never today). Scope = the rep's own accounts, a
+DM's team, or -- for a manager -- everyone or the rep chosen in the Rep
+filter (rows then name the rep). Table rows carry a red "Fell off rolling
+90 · last <date>" badge or a green "Rolling 90" badge beside the account;
+"Fell off rolling 90 only" is a checkbox in the toolbar. The PITCH button
+is the LEFT-MOST column (sticky on phones, the account name sticky beside
+it). The pitch panel ends with SELL SHEETS: one button per Carbliss flavor
+from the workbook, the pitched flavors first and marked Recommended (in
+the pitch's own order), flavors already on the menu marked On menu, a
+flavor with no URL shown but not linkable ("No sheet yet" -- Pineapple on
+2026-09-30); a tap opens the sheet in a new tab. The rep picks whichever
+fits the customer -- nothing is auto-selected. The sheet links point at
+cdn.e8.co; whether they open without a login was not checked from here
+(Gavin: "do not worry about this for now").
+Tests: scratchpad carbliss_test.mjs (rep / manager / DM scope of the card,
+badges = data, filter, picker order + links, no leaks, 390 / 820 / 1366) +
+lb_test.mjs + mobile_audit ONLY=carbliss (the two 24px checkboxes are the
+known audit note).

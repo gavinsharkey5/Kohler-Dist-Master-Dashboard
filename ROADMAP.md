@@ -96,6 +96,12 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-09-30 Carbliss targets: YTD vs rolling-90 Carbliss buyers with a
+  "fell off rolling 90" alert and list (rep / team / company scope), Pitch as
+  the first column, and a sell-sheet picker per flavor in the pitch panel
+  (Pineapple has no sheet in the Brands file yet). Refresh needs the L90
+  export saved over `carbliss_buyers_l90.csv` alongside the two Eval files.
+
 - [x] 2026-09-30 Light / dark: follows the device until chosen, a labelled
   switch in the bar on every page (phone, iPad, desktop), choice saved per
   device, "Use device theme" to go back, no wrong-theme flash (every page

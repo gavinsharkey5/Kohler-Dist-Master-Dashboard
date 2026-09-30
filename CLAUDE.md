@@ -709,6 +709,25 @@ incentive-tracking/programs.js, put placements / accounts / cases in
 `now` / `label` and keep money out of `now`, `goal` and `remain` (a sub
 line is scrubbed by `subNoMoney`), or the hub will hide the program.
 
+## Carbliss targets: rolling-90 buyers, fell-off alert, pitch first, sell sheets (2026-09-30)
+
+`carbliss-onprem-targets/` gained two inputs: `carbliss_buyers_l90.csv`
+(the RDE "Carbliss Buyers (ON) L90 vs Start" export, one row per load
+sheet with Buyers L90 / Buyers 2026 flags) and `brands_sell_sheets.xlsx`
+(Encompass Brands export: a sell-sheet URL per Carbliss flavor). Rules
+in the README: YTD buyer = any load sheet with Buyers 2026 = 1, rolling-90
+buyer = any with Buyers L90 = 1, FELL OFF = YTD without L90; the window
+is read from the data, days are counted to the export's last date. The
+page shows a buyers card (YTD / rolling-90 / fell off + the fell-off
+list, scoped rep / DM team / manager or Rep filter), red / green badges on
+rows, a "Fell off rolling 90 only" filter, the Pitch button as the
+left-most (sticky) column, and a sell-sheet picker in the pitch panel
+(pitched flavors first and marked, on-menu marked, missing URL shown as
+"No sheet yet"; the rep chooses). Buyers outside the SC/WC target list
+are counted in the card and flagged, not added to the table. The
+generator tolerates either file missing. Test: scratchpad
+carbliss_test.mjs.
+
 ## Theme follows the device until chosen; the switch is in the bar (2026-09-30)
 
 Gavin's brief replaced the 2026-09-29 "light for everyone" rule: with no

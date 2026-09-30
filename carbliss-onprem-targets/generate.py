@@ -36,6 +36,12 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
 F1 = os.path.join(HERE, 'accounts.csv')
 F2 = os.path.join(HERE, 'price_vol.csv')
+# 2026-09-30: the rolling-90 buyer export ("RDE Carbliss Buyers (ON) L90 vs
+# Start": one row per Carbliss load sheet, with Buyers L90 = 1 when that load
+# sheet falls inside the last 90 days and Buyers 2026 = 1 for the year) and
+# the Brands workbook that carries a sell-sheet URL per Carbliss flavor.
+F3 = os.path.join(HERE, 'carbliss_buyers_l90.csv')
+F4 = os.path.join(HERE, 'brands_sell_sheets.xlsx')
 HTML = os.path.join(HERE, 'index.html')
 
 CARBLISS_FLAVORS = ['Black Cherry', 'Black Raspberry', 'Blood Orange', 'Cranberry', 'Grapefruit',
@@ -370,6 +376,68 @@ for cid, acct in accounts.items():
 for r in results:
     r['pitch_bullets'] = build_pitch(r)
 
+# ---------- carbliss_buyers_l90.csv: YTD vs rolling-90 buyers ----------
+# An ACCOUNT is a YTD buyer when any of its load sheets carries Buyers 2026 = 1
+# and a rolling-90 buyer when any carries Buyers L90 = 1. "Fell off rolling
+# 90" = YTD buyer with no load sheet inside the window -- the account bought
+# this year but not in the last 90 days. The RDE decides the window; the
+# page reports it from the data (latest load sheet date, earliest L90 row).
+buyers = {}
+buyers_meta = {'asOf': '', 'windowStart': '', 'rows': 0}
+def _d(s):
+    try:
+        m, d, y = s.strip().split('/'); return datetime.date(int(y), int(m), int(d))
+    except Exception:
+        return None
+if os.path.exists(F3):
+    with open(F3, encoding='utf-8') as f:
+        for r in csv.DictReader(f):
+            cc = (r.get('Customer Num & Company') or '').strip()
+            if not cc: continue
+            cid, _, cname = cc.partition(' ')
+            b = buyers.setdefault(cid, {'id': cid, 'name': cname.strip(), 'rep': r['Sales Rep Assigned'].strip(),
+                                        'ytd': False, 'l90': False, 'buys': 0, 'buysL90': 0, 'last': None, 'first': None})
+            dt = _d(r.get('Load Sheet Date') or '')
+            l90 = (r.get('Buyers L90   2026') or '').strip() == '1'
+            ytd = (r.get('Buyers   2026') or '').strip() == '1'
+            b['ytd'] |= ytd; b['l90'] |= l90; b['buys'] += 1; b['buysL90'] += 1 if l90 else 0
+            buyers_meta['rows'] += 1
+            if dt:
+                if not b['last'] or dt > b['last']: b['last'] = dt
+                if not b['first'] or dt < b['first']: b['first'] = dt
+                if not buyers_meta['asOf'] or dt > buyers_meta['asOf']: buyers_meta['asOf'] = dt
+                if l90 and (not buyers_meta['windowStart'] or dt < buyers_meta['windowStart']): buyers_meta['windowStart'] = dt
+    for b in buyers.values():
+        b['fell'] = bool(b['ytd'] and not b['l90'])
+        b['last'] = b['last'].isoformat() if b['last'] else None
+        b['first'] = b['first'].isoformat() if b['first'] else None
+    buyers_meta['asOf'] = buyers_meta['asOf'].isoformat() if buyers_meta['asOf'] else ''
+    buyers_meta['windowStart'] = buyers_meta['windowStart'].isoformat() if buyers_meta['windowStart'] else ''
+    buyers_meta['ytd'] = sum(1 for b in buyers.values() if b['ytd'])
+    buyers_meta['l90'] = sum(1 for b in buyers.values() if b['l90'])
+    buyers_meta['fell'] = sum(1 for b in buyers.values() if b['fell'])
+    print(f"Buyers: {buyers_meta['rows']} load sheets, {len(buyers)} accounts -- YTD {buyers_meta['ytd']}, rolling-90 {buyers_meta['l90']}, fell off {buyers_meta['fell']} (window {buyers_meta['windowStart']} .. {buyers_meta['asOf']})")
+else:
+    print("Buyers: carbliss_buyers_l90.csv not found -- YTD / rolling-90 status left off the page")
+
+# ---------- brands_sell_sheets.xlsx: one sell-sheet URL per Carbliss flavor ----------
+sell_sheets = []
+if os.path.exists(F4):
+    try:
+        import openpyxl
+        ws = openpyxl.load_workbook(F4, read_only=True, data_only=True).worksheets[0]
+        rows = list(ws.iter_rows(values_only=True)); hdr = [str(h or '').strip() for h in rows[0]]
+        bi, ui, fi = hdr.index('Brand'), hdr.index('Sell Sheet URL'), hdr.index('Brand Family')
+        for r in rows[1:]:
+            brand = str(r[bi] or '').strip(); fam = str(r[fi] or '').strip() if fi < len(r) else ''
+            if not brand or (fam and fam != 'Carbliss'): continue
+            url = str(r[ui] or '').strip() if ui < len(r) else ''
+            flavor = re.sub(r'^Carbliss\s+', '', brand)
+            sell_sheets.append({'flavor': flavor, 'brand': brand, 'url': url if url.startswith('http') else ''})
+        print(f"Sell sheets: {len(sell_sheets)} Carbliss flavors, {sum(1 for x in sell_sheets if x['url'])} with a URL" + (" -- missing: " + ", ".join(x['flavor'] for x in sell_sheets if not x['url']) if any(not x['url'] for x in sell_sheets) else ""))
+    except Exception as e:
+        print(f"Sell sheets: could not read brands_sell_sheets.xlsx ({e}) -- picker left off")
+
 final_accounts = []
 for r in results:
     sc = r['brands'].get('Sun Cruiser', {})
@@ -388,6 +456,8 @@ for r in results:
         'isNew': total25 == 0 and total26 > 0,
         'primaryFlavor': r['primary_flavor'], 'gapFlavors': r['gap_flavors'],
         'pitchBullets': r['pitch_bullets'],
+        # YTD / rolling-90 Carbliss buyer status from the L90 export (None = not a buyer this year)
+        'buyer': ({k: buyers[r['id']][k] for k in ('ytd', 'l90', 'fell', 'last', 'buys', 'buysL90')} if r['id'] in buyers else None),
     })
 final_accounts.sort(key=lambda a: -a['total26'])
 
@@ -402,9 +472,11 @@ meta = {
     # when this page was built from the exports (shown as the data date; the
     # exports themselves carry no report date)
     'generatedAt': datetime.datetime.utcnow().strftime('%Y-%m-%d'),
+    'buyers': buyers_meta,
+    'sellSheets': sell_sheets,
 }
 
-data_json = json.dumps({'meta': meta, 'accounts': final_accounts}, separators=(',', ':'))
+data_json = json.dumps({'meta': meta, 'accounts': final_accounts, 'buyers': sorted(buyers.values(), key=lambda b: (b['rep'], b['name']))}, separators=(',', ':'))
 
 html = open(HTML, encoding='utf-8').read()
 new_html, n = re.subn(
