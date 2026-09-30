@@ -203,7 +203,7 @@ const INC_CHANNEL = {
   keystone_ice:'off', lytt:'off', tona:'off', sun_cruiser:'off', path_to_victory:'off', path_to_victory_sd:'off', mollys:'off',
   display_auction:'off', mabi_retention:'off', mabi_retention_fall:'off',
   sam_adams_conversion:'on', printed_menu:'on', new_belgium:'on',
-  mabi_single_serve:'off', four_loko:'off', sam_adams_cold_snap:'on', touchdowns_tea_off:'off', touchdowns_tea_on:'on',
+  mabi_single_serve:'off', four_loko:'off', sam_adams_cold_snap:'on',
 };
 const CHANNEL_LABEL = {on:'On-Premise', off:'Off-Premise', both:'On & Off-Premise'};
 
@@ -275,6 +275,7 @@ function makeIncentive(entry, month){
       status, pace: openEnded ? (started?'earned':'notstarted') : s.status, pct, openEnded,
       now: s.label || '', sub: s.sub || '', goal: goalText, remain: s.remain || null, next: s.next || '',
       segments: s.segments || null, house: !!s.house, valueNum: s.now, goalNum: s.target,
+      legs: (s.legs && s.legs.length) ? s.legs : null,     // one card, two programs inside (Touchdowns & Tea)
     };
   };
   p.detailHtml = rep => withIncMonth(month, ()=>fixAssets(cardFor(entry.key, rep)));
@@ -1518,8 +1519,7 @@ function accountsPanel(p, rep){
 // What to sell, per program, in the words a rep would use on the floor.
 // Fallback (any program not listed): the mapped brand families + the unit.
 const SELL_ASK = {
-  'inc:keystone_ice':'Place Keystone Ice 24oz cans.', 'inc:touchdowns_tea':'Place Sun Cruiser or Twisted Tea 12-packs.',
-  'inc:touchdowns_tea_off':'Place Sun Cruiser or Twisted Tea 12-packs.', 'inc:touchdowns_tea_on':'Sell Sun Cruiser cases into bars and run a football feature.',
+  'inc:keystone_ice':'Place Keystone Ice 24oz cans.', 'inc:touchdowns_tea':'Place Sun Cruiser or Twisted Tea 12-packs in stores; sell cases into bars.',
   'inc:mabi_single_serve':'Sell in White Claw 19.2oz and Mike\'s Harder / Cayman Jack single serves.', 'inc:four_loko':'Place Four Loko Sour Apple or USA and sell cases.',
   'inc:lagunitas_sprint':"Place Lagunitas IPA or Little Sumpin' packages, or an IPA keg.", 'inc:famosa_oct':'Sell Famosa — every package.',
   'inc:sam_adams_cold_snap':'Convert the seasonal draft handle.', 'inc:industrial_arts':'Place 3 Industrial Arts SKUs, or a Wrench draft line.',
@@ -2928,15 +2928,31 @@ function screenProgramRep(p, r, rep){
       ${C.follow ? row('follow', LISTS.follow, C.follow, 'Accounts you flagged to get back to') : ''}
     </div>`;
   const weight = p.type==='MPO' ? `${p.shortName && p.shortName!==p.name ? `<li>${E(p.name)}</li>` : ''}<li>Worth ${E(String(r.weight||Math.round((p.objective.weight||0)*100)))}% of the ${E(p.monthLabel)} ${E(p.channelLabel)} MPO.</li>` : '';
-  const rules = repRulesHtml(p, 'ibul');
+  // A program with LEGS (Touchdowns & Tea, 2026-09-30): one card, and inside
+  // it one block per leg -- Off-Premise / On-Premise -- each with its own
+  // Qualifies line, big number, supporting line and what is still needed.
+  // "How it is scored" groups the rules the same way. No dollars reach the
+  // page: the leg's own lines carry none and its rules go through ruleNoMoney.
+  const legs = (!off && r.legs && r.legs.length) ? r.legs : null;
+  const legHtml = g => `<section class="px-leg" data-leg="${E(g.key||'')}">
+        <div class="px-leg-head"><span class="px-leg-badge">${E(g.label)}</span>${g.where?`<span class="px-leg-where">${E(g.where)}</span>`:''}</div>
+        ${g.ask?`<p class="px-qual"><span>Qualifies</span>${E(g.ask)}</p>`:''}
+        <div class="px-main">${E(g.big)} ${E(g.cap)}</div>
+        ${g.line?`<div class="px-rule">${E(g.line)}</div>`:''}
+        ${g.need?`<div class="px-need open">${E(g.need)}</div>`:''}
+      </section>`;
+  const legRules = legs ? legs.map(g=>{ const R = (g.rules||[]).map(ruleNoMoney).filter(Boolean);
+      return R.length ? `<div class="px-leg-badge sm">${E(g.label)}</div><ul class="ibul">${R.map(x=>`<li>${E(x)}</li>`).join('')}</ul>` : ''; }).join('') : '';
+  const rules = legRules || repRulesHtml(p, 'ibul');
   const tl = off ? null : p.timeline(rep);
   return `<div class="hview">
     ${backForProgram(p)}
-    <div class="px">
+    <div class="px${legs?' has-legs':''}">
       <div class="px-sup">${E(p.supplier)} · ${E(p.channelLabel)}${p.type==='MPO' ? ' · '+E(p.monthLabel)+' MPO' : ''}</div>
       <h1 class="px-name">${E(p.type==='MPO' ? (p.shortName||p.name) : p.name)}</h1>
       <div class="px-meta">${htag(f)}<span class="px-ends">${E(endsLabel(p.period))}</span></div>
-      ${off ? `<div class="kdh-state ${r.status==='unavailable'?'unavailable':'empty'}"><b>${f.main}</b>${f.rule?`<span>${E(f.rule)}</span>`:''}</div>` : `
+      ${off ? `<div class="kdh-state ${r.status==='unavailable'?'unavailable':'empty'}"><b>${f.main}</b>${f.rule?`<span>${E(f.rule)}</span>`:''}</div>` : legs ? `
+      <div class="px-legs">${legs.map(legHtml).join('')}</div>` : `
       <p class="px-qual"><span>Qualifies</span>${E(sellAsk(p))}</p>
       <div class="px-prog">
         <div class="px-main">${f.main}</div>
@@ -2949,7 +2965,7 @@ function screenProgramRep(p, r, rep){
     ${lists}
     ${BG.length ? `<section class="hsec"><h2>Your brand goals</h2>${brandGoalsHtml(BG, {noTitle:true, oneGoal: p.key==='mabi_retention_fall' ? (r.goal||'goal') : ''})}</section>` : ''}
     <details class="hdet"><summary>How it is scored</summary>
-      ${rules ? rules.replace('<ul class="ibul">', '<ul class="ibul">'+weight) : `<ul class="ibul">${weight}</ul>`}
+      ${legRules ? legRules : rules ? rules.replace('<ul class="ibul">', '<ul class="ibul">'+weight) : `<ul class="ibul">${weight}</ul>`}
       ${(fams && fams.length) ? `<p class="hnote">Pays on ${E(fams.join(' · '))}.</p>` : ''}
       <p class="hnote">Runs ${E(p.period.label)} · numbers as of ${E(p.refreshed||'—')}</p>
     </details>

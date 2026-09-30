@@ -715,20 +715,28 @@ the Oct 23 conversion deadline). `incBlob` checks the October blob
 first; rep/ and team/ stub `PROGRAM_DATA_2026_10={}`. Registry tag
 20260930b everywhere. Test: scratchpad oct_test.mjs.
 
-## Touchdowns & Tea split, hub hides data-less shapes, deck logos (2026-09-30)
+## Touchdowns & Tea: one card, two legs inside; hub hides data-less shapes; deck logos (2026-09-30)
 
-Touchdowns & Tea is two hub/tracker cards from the October tab
-(`touchdowns_tea_off` / `touchdowns_tea_on`): same dataset, each entry's
-`getRep` returns only its leg's fields and `dataKey:'touchdowns_tea'`
-points the hub at the blob (hub.js `incBlob(entry.dataKey||entry.key)`,
-programs.js `summarize` too). A registry entry with `hub:false` is
-skipped by the hub's buildPrograms (the September Touchdowns entry). The
-hub's `forRep` now returns null for a program with no data for anyone
-and no manual feed, so "Awaiting data" rows never reach a rep; the
-tracker still shows those shapes. Seven brand marks were cut from the
-October deck into incentive-tracking/assets/logos (Twisted Tea and
-Heineken still have none). Tags: programs.js 20260930c, hub.js
-20260930b, hub/accounts.js 20260930a.
+Gavin's final call after a first split into two cards: ONE "Touchdowns &
+Tea" card with the Off-Premise and On-Premise programs separated inside
+it. The October registry entry keeps key `touchdowns_tea` (same as
+September; the hub's buildPrograms lets the newest month win, so one
+card). PROGRAM_SUMMARY.touchdowns_tea returns `legs` (label, where, ask,
+big, cap, line, need, status, next, rules per leg); the tracker's
+progress screen draws a `.v3-leg` tile and a "What to do next" per leg,
+the hub's program screen (`screenProgramRep`) draws `.px-leg` blocks and
+groups "How it is scored" by leg through ruleNoMoney, and
+`cardTouchdownsTea` is one card with two `.leg` sections. `legs` is a
+general mechanism: any SUMMARY adapter may return it; keep dollars out
+of ask / big / cap / line / need. Still in place from the same day:
+`entry.dataKey` (hub.js `incBlob`, programs.js `summarize`) and
+`entry.hub===false` (skipped by buildPrograms) exist but no entry uses
+them now; the hub's `forRep` returns null for a program with no data for
+anyone and no manual feed, so "Awaiting data" rows never reach a rep
+(the tracker still shows those shapes); seven brand marks were cut from
+the October deck into incentive-tracking/assets/logos (Twisted Tea and
+Heineken still have none). Tags: programs.js 20260930d, hub.js
+20260930c, hub.css 20260930b, hub/accounts.js 20260930b.
 
 ## A program's summary headline must be a field metric, never dollars (2026-09-30)
 

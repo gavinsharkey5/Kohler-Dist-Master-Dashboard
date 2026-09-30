@@ -352,16 +352,23 @@ heineken_husa (Oct-Dec) and new_belgium_distribution_retain (Oct-Nov) as
 structure-only shapes again. A registry entry's `period` now overrides the
 blob's window in the hub (hub.js incPeriod) -- that is how an extended
 program keeps its September data and an October end date.
-TOUCHDOWNS & TEA IS TWO CARDS FROM OCTOBER (Gavin, 2026-09-30: "the current
-card feels overcrowded"): registry keys touchdowns_tea_off / touchdowns_tea_on
-on the October tab, each with `dataKey:'touchdowns_tea'` (the hub reads the
-period and meta from that blob) and a getRep (ttOff / ttOn in programs.js)
-that returns only that leg's fields from the one byRep record, so the hub's
-headline, account lists and leaderboard are per channel. Cards
-cardTouchdownsOff / cardTouchdownsOn reuse cardTouchdownsTea's blocks; the
-September entry carries `hub:false` so the hub shows the two split cards and
-not a third, September-dated one (the September tab still renders the
-original). generate.py is untouched -- one dataset, two views.
+TOUCHDOWNS & TEA IS ONE CARD WITH TWO LEGS INSIDE IT (Gavin, 2026-09-30,
+in two steps: first "the current card feels overcrowded", then "make it one
+card but then separate the on and off programs within that card"). The
+October tab carries one registry entry, key touchdowns_tea (same key as
+September, so the hub -- newest month wins -- shows one card). Its SUMMARY
+adapter returns `legs`: [{key:'off', label:'Off-Premise', where, ask, big,
+cap, line, need, status, next, rules}, {key:'on', ...}]. The tracker's
+progress screen (screenProgress in index.html) draws one `.v3-leg` tile per
+leg -- badge, Qualifies-style ask, the big number, a supporting line, what is
+still needed -- and one "What to do next" per leg; the hub's program screen
+(hub.js screenProgramRep) draws the same as `.px-leg` blocks and groups "How
+it is scored" by leg (rules pass through ruleNoMoney, so no dollars reach a
+rep). cardTouchdownsTea() is the full card: two `.leg` sections (Off-Premise
+stores / On-Premise bars), each with its own Where You Stand tiles,
+requirement block and photo-verified extra, then one tracked-earnings line.
+A program adds legs by returning `legs` from its SUMMARY adapter; keep
+dollars out of ask / big / cap / line / need. generate.py is untouched.
 HUB HIDES SHAPES WITHOUT DATA (same day): a registry entry with no byRep for
 anyone and no manual feed (Four Loko, the seasonal conversion, Heineken USA,
 New Belgium retain) returns null from forRep, so reps do not see "Awaiting

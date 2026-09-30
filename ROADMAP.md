@@ -107,8 +107,9 @@ device, a decision).
 
 ## Done
 
-- [x] 2026-09-30 Touchdowns & Tea split into Off-Premise and On-Premise
-  cards; programs still waiting on their first export no longer show on the
+- [x] 2026-09-30 Touchdowns & Tea is one card with the Off-Premise and
+  On-Premise programs separated inside it (progress screen, hub program
+  screen and the full card); programs still waiting on their first export no longer show on the
   rep hub; Lagunitas, Famosa, Industrial Arts, Four Loko, White Claw, Mike's
   Harder and Cayman Jack marks cut from the October deck. Still no Twisted
   Tea or Heineken artwork -- send a logo file if you want those chips.

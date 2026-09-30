@@ -20,7 +20,7 @@
      Every rule in guided.css is .g-* scoped and it only consumes variables
      hub.css already defines, so it cannot touch anything else here. -->
 <link rel="stylesheet" href="../MPOs/shared/guided.css?v=20260930a">
-<link rel="stylesheet" href="hub.css?v=20260930a">
+<link rel="stylesheet" href="hub.css?v=20260930b">
 <script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="kdh-page" content="Incentive Hub">
 <!-- Site design system: maps this page's variables + fonts onto shared/kdh.css. Keep it LAST in <head>. -->
@@ -54,16 +54,16 @@
 <div id="app"><main class="wrap"><div class="loading">Loading your programs…</div></main></div>
 
 <script src="../incentive-tracking/data/program_data.js?v=20260930b"></script>
-<script src="../incentive-tracking/programs.js?v=20260930c"></script>
+<script src="../incentive-tracking/programs.js?v=20260930d"></script>
 <script src="../MPOs/on-prem/programs.js?v=20260923h"></script>
 <script src="../MPOs/off-prem/programs.js?v=20260923h"></script>
 <script src="data/accounts.js?v=20260923h"></script>
-<script src="accounts.js?v=20260923h"></script>
+<script src="accounts.js?v=20260930b"></script>
 <script src="../shared/kdh-user.js?v=20260930c"></script>
 <!-- Served by the Vercel middleware (Supabase URL + publishable key) so the
      hub can save a rep's Done / Follow up / Not now marks. 404 on github.io,
      where the buttons simply do not render. -->
 <script src="../shared/auth-config.js"></script>
-<script src="hub.js?v=20260930b"></script>
+<script src="hub.js?v=20260930c"></script>
 </body>
 </html>
