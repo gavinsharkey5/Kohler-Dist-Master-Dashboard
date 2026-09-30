@@ -1353,6 +1353,14 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
 .iended-fin{color:var(--text-dim);font-variant-numeric:tabular-nums} .iended-fin.ok{color:var(--good)}
 .iended-when{font-size:12.5px;color:var(--text-mute);white-space:nowrap}
 @media (max-width:640px){ .iended-row{grid-template-columns:1fr} }
+/* Previous months (2026-09-30): the August / September toggle under the live incentives */
+.iprev{margin:22px 0 0;border:1px solid var(--border);border-radius:10px;background:var(--card);padding:12px 14px 0}
+.iprev-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.iprev-t{font-weight:700;font-size:14.5px;color:var(--text)}
+.iprev-s{font-size:13px;color:var(--text-mute)}
+.iprev .mstrip{margin:10px 0 12px}
+.iprev .iended-list{margin:0 -14px;border-top:1px solid var(--line-soft)}
+.iprev .kdh-state{margin:0 0 14px}
 /* the incentive row's own uppercase meta becomes plain */
 .irow-meta{text-transform:none;letter-spacing:0;font-weight:500;font-size:13px}
 

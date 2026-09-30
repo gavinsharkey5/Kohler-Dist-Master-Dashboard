@@ -11,6 +11,11 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
+- [ ] **Friday: September recap on the hub** -- remove the `note` / `sub`
+  from the September entry of INC_MONTHS in hub/hub.js so the September
+  programs list under Previous months (they are "ended" from Oct 1), then
+  bump the hub.js tag. If the recap needs a card per program rather than
+  the one-line rows, say so.
 - [ ] **My Accounts: Encompass exports + 14 definitions** (Gavin): read
   accounts/REPORTING_REQUEST.md. Essential: E1 customer master with
   contacts / hours / instructions (private folder or Supabase, never the
@@ -119,6 +124,9 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-09-30 Hub Incentives: "Previous months" toggle (August live,
+  September shows "September recap coming Friday") replaces the Ended
+  programs fold; the doubled "Ended Ended" date is fixed.
 - [x] 2026-09-30 My Accounts on the Encompass pattern: the Account page is
   four sections (Overview / Sales & Products / Invoices & Balances / Tasks &
   Resources) with Directions, service type, size and stops on the Overview,

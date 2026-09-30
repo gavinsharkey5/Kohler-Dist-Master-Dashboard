@@ -618,7 +618,15 @@ function sortedForRep(rep, cat){
 const openCards = new Set();   // program ids expanded in place on the rep page
 const acctTabs = {};           // program id -> active account tab
 const acctMore = {};           // program id|tab -> show every row
-const state = {mode:'rep', view:'home', rep:null, main:null, cat:null, month:null, prog:null, from:null, peek:null, filters:{type:'all', chan:'all', sup:'all', month:'active'}, showEnded:false, only:null, sup:null, list:null, n:null};
+const state = {mode:'rep', view:'home', rep:null, main:null, cat:null, month:null, prog:null, from:null, peek:null, filters:{type:'all', chan:'all', sup:'all', month:'active'}, showEnded:false, only:null, sup:null, list:null, n:null, im:'2026-08'};
+// PREVIOUS MONTHS on the Incentives screen (Gavin, 2026-09-30): a simple
+// August / September toggle under the live list so reps can review an
+// earlier month's incentives. August lists the programs that ended in
+// August; September shows a notice until the recap is added (Friday).
+const INC_MONTHS = [
+  {key:'2026-08', label:'August'},
+  {key:'2026-09', label:'September', note:'September recap coming Friday.', sub:'September’s incentives will be added here once the month closes.'},
+];
 // REP-MODE FLOW (2026-09-30, Gavin's Encompass brief): Incentives (one row
 // per supplier) -> a supplier's programs -> ONE program's summary -> an
 // account list (potential / credited / follow-ups, searchable) -> one
@@ -807,6 +815,7 @@ function hashOf(){
   if(state.peek && state.view==='detail') p.push('who='+encodeURIComponent(state.peek));
   if(isMgr()) p.push('mode=manager');
   if(state.only) p.push('only='+state.only);
+  if(state.im && state.im!==INC_MONTHS[0].key && (state.view==='rep' || state.view==='sup')) p.push('im='+state.im);
   return p.length ? '#'+p.join('&') : '#';
 }
 function readHash(){
@@ -843,6 +852,7 @@ function applyHash(){
   if((state.view==='detail' || state.view==='program') && !state.prog) state.view = state.rep ? 'rep' : 'programs';
   if(isMobile() && (state.view==='programs' || state.view==='program')) state.view = state.rep ? 'rep' : 'home';
   state.only = TAB_KEYS.includes(h.only) ? h.only : null;
+  state.im = INC_MONTHS.some(m=>m.key===h.im) ? h.im : INC_MONTHS[0].key;
   applyOnly();
   lockState();
 }
@@ -1229,23 +1239,7 @@ function screenRepIncentives(rep){
     </section>`;
   }).join('');
 
-  // Programs that ended in the last four months, for the record -- closed
-  // by default so they never compete with live work.
-  const ended = [];
-  PROGRAMS.forEach(p=>{
-    if(p.type!=='Incentive' || isActive(p) || !supportAllows(rep, p)) return;
-    if(daysLeft(p.period.end) < -120) return;
-    const r = p.forRep(rep); if(!r || r.status==='unavailable' || isDollarProgram(r)) return;
-    ended.push({p, r});
-  });
-  ended.sort((a,b)=>b.p.period.end - a.p.period.end);
-  const endedHtml = ended.length ? `<details class="iended"${state.showEnded?' open':''}>
-      <summary>Ended programs <span class="iended-n">${ended.length}</span><span class="iended-s">Finished in the last four months</span></summary>
-      <div class="iended-list">${ended.map(x=>{ const N = incNums(x.r); const u = N ? unitOf(x.r) : '';
-        const fin = N ? (u ? `${fmtN(N.cur)} of ${fmtN(N.goal)} ${E(u)}` : `${E(x.r.now||'')} of ${E(x.r.goal||'')}`) : E(x.r.now||'');
-        const okd = x.r.status==='complete'||x.r.status==='exceeded';
-        return `<div class="iended-row"><span class="iended-name">${E(x.p.shortName||x.p.name)}<span class="iended-sup">${E(x.p.supplier)}</span></span><span class="iended-fin${okd?' ok':''}">${okd?'Goal met · ':''}${fin}</span><span class="iended-when">Ended ${E(shortEnds(x.p.period).replace(/^Ends /,''))}</span></div>`; }).join('')}</div>
-    </details>` : '';
+  const endedHtml = prevMonthsHtml(rep);
 
   return `<div class="repview iview">
     <div class="rep-head">
@@ -2845,23 +2839,42 @@ function supOrder(sups){
   groups.sort((a,b)=> b.top-a.top || a.band-b.band || a.name.localeCompare(b.name));
   return groups;
 }
-function endedHtml(rep){
-  const ended = [];
+// Programs that ENDED in a given month (period end inside it), for the record.
+function endedIn(rep, key){
+  const out = [];
   PROGRAMS.forEach(p=>{
     if(p.type!=='Incentive' || isActive(p) || !supportAllows(rep, p)) return;
-    if(daysLeft(p.period.end) < -120) return;
+    const e = p.period.end; const k = e.getFullYear()+'-'+String(e.getMonth()+1).padStart(2,'0');
+    if(k!==key) return;
     const r = p.forRep(rep); if(!r || r.status==='unavailable' || isDollarProgram(r)) return;
-    ended.push({p, r});
+    out.push({p, r});
   });
-  ended.sort((a,b)=>b.p.period.end - a.p.period.end);
-  if(!ended.length) return '';
-  return `<details class="iended"${state.showEnded?' open':''}>
-      <summary>Ended programs <span class="iended-n">${ended.length}</span><span class="iended-s">Finished in the last four months</span></summary>
-      <div class="iended-list">${ended.map(x=>{ const f = progFacts(x.p, x.r, rep);
-        const okd = x.r.status==='complete'||x.r.status==='exceeded';
-        return `<div class="iended-row"><span class="iended-name">${E(x.p.shortName||x.p.name)}<span class="iended-sup">${E(x.p.supplier)}</span></span><span class="iended-fin${okd?' ok':''}">${okd?'Goal met · ':''}${f.main}</span><span class="iended-when">Ended ${E(shortEnds(x.p.period).replace(/^Ends /,''))}</span></div>`; }).join('')}</div>
-    </details>`;
+  out.sort((a,b)=>b.p.period.end - a.p.period.end || a.p.supplier.localeCompare(b.p.supplier));
+  return out;
 }
+// The "Previous months" block: August / September pills, then that month's
+// ended programs (name · supplier, the finish, the end date) or the notice
+// for a month whose recap is not in yet.
+function prevMonthsHtml(rep){
+  const cur = INC_MONTHS.find(m=>m.key===state.im) || INC_MONTHS[0];
+  const pills = INC_MONTHS.map(m=>`<button class="mpill${m.key===cur.key?' active':''}" data-act="set-inc-month" data-im="${E(m.key)}" role="tab" aria-selected="${m.key===cur.key?'true':'false'}">${E(m.label)}</button>`).join('');
+  let body;
+  if(cur.note){
+    body = `<div class="kdh-state empty"><b>${E(cur.note)}</b>${cur.sub ? `<span>${E(cur.sub)}</span>` : ''}</div>`;
+  } else {
+    const ended = endedIn(rep, cur.key);
+    body = ended.length ? `<div class="iended-list">${ended.map(x=>{ const f = progFacts(x.p, x.r, rep);
+        const okd = x.r.status==='complete'||x.r.status==='exceeded';
+        return `<div class="iended-row"><span class="iended-name">${E(x.p.shortName||x.p.name)}<span class="iended-sup">${E(x.p.supplier)}</span></span><span class="iended-fin${okd?' ok':''}">${okd?'Goal met · ':''}${f.main}</span><span class="iended-when">Ended ${E(fmtDay(x.p.period.end))}</span></div>`; }).join('')}</div>`
+      : `<div class="kdh-state empty"><b>No ${E(cur.label)} incentives on record for ${E(first(rep))}.</b></div>`;
+  }
+  return `<section class="iprev" aria-label="Previous months">
+      <div class="iprev-head"><span class="iprev-t">Previous months</span><span class="iprev-s">Review an earlier month’s incentives</span></div>
+      <div class="mstrip" role="tablist">${pills}</div>
+      ${body}
+    </section>`;
+}
+const endedHtml = rep => prevMonthsHtml(rep);
 /* ---- Incentives: one row per supplier ---- */
 function screenSuppliers(rep){
   const sups = supProgs(rep); const groups = supOrder(sups);
@@ -3126,6 +3139,7 @@ document.addEventListener('click', e=>{
       if(el){ const y = el.getBoundingClientRect().top + window.pageYOffset - 64; window.scrollTo({top:y, behavior:'smooth'}); }
       break; }
     case 'toggle-ended': state.showEnded = !state.showEnded; render(); break;
+    case 'set-inc-month': { const y = window.scrollY; state.im = INC_MONTHS.some(m=>m.key===t.dataset.im) ? t.dataset.im : INC_MONTHS[0].key; history.replaceState(null, '', hashOf()); render(); window.scrollTo(0, y); break; }
     case 'card-sec': { const id = t.dataset.prog, k = t.dataset.sec;
       // One section at a time per card, so a phone never stacks two long lists.
       if(cardSec[id]===k) delete cardSec[id]; else cardSec[id] = k;

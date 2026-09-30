@@ -885,6 +885,23 @@ never "lost", never a confirmed need. Tests: scratchpad
 alerts_test.mjs + acct_test.mjs; rep.css's `.card p` two-line clamp is
 undone in accounts.css for these prose cards.
 
+## Hub Incentives: "Previous months" August / September toggle (2026-09-30)
+
+Gavin: a month toggle so reps can review previous months' incentives;
+August live, September held until Friday's recap. hub.js: the "Ended
+programs" fold is replaced by `prevMonthsHtml(rep)` -- a `.iprev` block
+under the live Incentives list with `.mpill` pills from `INC_MONTHS`
+(`state.im`, hash `im=` when not August). August lists programs whose
+period END falls in that month (`endedIn`), "Ended Aug 31, 2026" once
+(the old fold printed "Ended Ended"); a month with a `note` (September)
+shows that notice instead of rows. TO ADD SEPTEMBER ON FRIDAY: drop the
+`note` / `sub` from the September entry in INC_MONTHS -- the ended
+September programs then list themselves (they end Sep 30 and are
+"ended" from Oct 1). Adding October later = one more INC_MONTHS entry.
+Both the new supplier screen and the older iview call the same renderer.
+Tags: hub.js 20260930d, hub.css 20260930c. Test: scratchpad
+incmonth_test.mjs.
+
 ## My Accounts on the Encompass pattern: a four-section Account page (2026-09-30)
 
 Gavin's brief with 13 Encompass screenshots (route list, customer page +
