@@ -12,13 +12,12 @@
 <link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
 <link rel="preload" href="../assets/fonts/oswald.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin>
-<script>
-  try { var t = localStorage.getItem('kdh_theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
-</script>
+<!-- Theme before first paint: the saved choice, else the device setting (2026-09-30). -->
+<script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <link rel="stylesheet" href="../rep/rep.css?v=20260930a">
 <link rel="stylesheet" href="team.css?v=20260928c">
 <meta name="kdh-page" content="Team activity">
-<script src="../shared/kdh-user.js?v=20260930b"></script>
+<script src="../shared/kdh-user.js?v=20260930c"></script>
 </head>
 <body>
 <!--

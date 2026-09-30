@@ -26,9 +26,12 @@ One look for every page on kohlerdisthub.com. Three files do it:
                  Previewing chip, a Back button that names where it
                  goes, and the ACCOUNT BUTTON -- avatar + caret -- whose
                  menu holds View as rep, Manager home, Team activity,
-                 Rep home, Dark / Light mode and Sign out), the "View as
-                 rep" picker sheet (kdhViewAsRep). Applies the saved
-                 theme as soon as it runs.
+                 Rep home, Dark / Light mode, Use device theme and Sign
+                 out), the THEME SWITCH in the bar (#kdhThemeBtn: icon +
+                 "Light" / "Dark", role=switch), the "View as rep" picker
+                 sheet (kdhViewAsRep). Applies the theme as soon as it
+                 runs: the saved choice (localStorage kdh_theme), else
+                 the DEVICE setting, followed live (window.kdhTheme).
 
 Every page, the landing pages included (rep/, team/, index.html), gets
 the bar from kdh-user.js; a landing page adds <meta name="kdh-home"> and
@@ -40,14 +43,19 @@ Adding a dashboard
 ------------------
   1. In <head>, after the page's own <style>/<link>:
        <meta name="kdh-page" content="Short Page Name">
-       <script>try{var t=localStorage.getItem('kdh_theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+       <script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+     (the saved choice, else the device setting -- set BEFORE first paint
+     so nothing flashes; data-theme is therefore always explicit and
+     every stylesheet keys on [data-theme="dark"] alone)
        <link rel="stylesheet" href="../shared/kdh-skin.css?v=...">
      and, if the page does not already load it, ../shared/kdh-user.js.
   2. Remove any Google Fonts <link>s -- the skin aliases those families.
   3. If the page invents a variable name the map does not know, add it
      to the map in kdh-skin.css (canvas/surface/text/line/accent/
-     semantic groups). If it has its own theme switch, make it read and
-     write localStorage kdh_theme (see rolling-distribution, metlife).
+     semantic groups). If it has its own theme switch, make it read
+     localStorage kdh_theme, WRITE it only on an explicit tap (never save
+     the device default as a choice) and listen for the 'kdh:theme'
+     event the bar's switch fires (see rolling-distribution, metlife).
   4. Screenshot light + dark at 1366 and 390 (scratchpad skin_sweep.mjs
      pattern) and add page fixes at the bottom of kdh-skin.css.
 
@@ -84,8 +92,10 @@ never see it.
 The bar is badge + page name, chip, Back, avatar. Everything else is in
 the account menu (#kdhMenu, opened by #kdhMenuBtn): View as rep /
 Change rep + Exit preview for managers, Manager home, Team activity, Rep
-workspace (Rep home for a rep), Dark mode / Light mode (#kdhTheme lives
-here now), Sign out. "View as rep" opens #kdhPicker -- a bottom sheet on
+workspace (Rep home for a rep), Dark mode / Light mode (#kdhTheme),
+"Use device theme" (#kdhThemeDevice, shown only while a choice is
+saved; clears it), Sign out. The bar itself carries the labelled theme
+switch (#kdhThemeBtn) beside the account button (2026-09-30). "View as rep" opens #kdhPicker -- a bottom sheet on
 phones, a centred dialog on desktop -- with a search box and the reps by
 DM from shared/dm-groups.js (loaded on demand; a DM sees their team
 only); a pick sets the kdh_preview cookie and opens /rep/. The ONLY

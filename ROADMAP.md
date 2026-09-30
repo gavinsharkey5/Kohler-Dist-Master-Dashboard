@@ -47,6 +47,9 @@ device, a decision).
   their MDM does the same thing on every iPad at once. (2026-09-25)
 - [ ] **Session length** (Gavin): Supabase -> Authentication -> Sessions ->
   JWT expiry 604800 (one week) so reps are not asked to sign in daily.
+  (Since 2026-09-30 an expired cookie recovers silently on /login/ when
+  "Remember me" was on -- the stored session refreshes and the cookies are
+  re-issued -- so a short JWT costs a redirect, not a password.)
 - [ ] **Roll out to reps** (Gavin): send the kohlerdisthub.com link (or the
   home-screen steps) to the reps; DMs get the same link and see everything.
 - [ ] **Vercel plan** (Gavin): Hobby is for non-commercial use; move the
@@ -92,6 +95,20 @@ device, a decision).
   Drive), a Stops export without the invoice join, and a Brands sample.
 
 ## Done
+
+- [x] 2026-09-30 Light / dark: follows the device until chosen, a labelled
+  switch in the bar on every page (phone, iPad, desktop), choice saved per
+  device, "Use device theme" to go back, no wrong-theme flash (every page
+  sets data-theme in <head> before paint).
+- [x] 2026-09-30 Sign-in remembers the email (prefilled next visit), keeps a
+  valid session when "Remember me" is on (no password until it lapses),
+  "Not you? Switch account" clears the identity for the next person; a
+  saved email never signs anyone in and no password is stored.
+- [x] 2026-09-30 Rep leaderboards on Red Bull (Core+ accounts, ties by total
+  buying accounts) and Carbliss (target accounts carrying Carbliss, ties by
+  share): rank, rep, result, period, data date, own row marked, ties shared,
+  aggregate counts only -- no other rep's accounts. Carbliss's header now
+  shows the build date from the data instead of today's date.
 
 - [x] 2026-09-30 Buying alerts + patterns on My Accounts: possible reorder,
   lapsed buyer and buying-less-often alerts per product from each account's

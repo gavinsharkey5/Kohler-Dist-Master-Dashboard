@@ -295,8 +295,8 @@
   footer{color:var(--ink-dim);font-size:16.5px;padding:20px 0 40px;line-height:1.6}
   @media (max-width:700px){body{padding:0 12px}.card{padding:14px 12px}.kpi .v{font-size:30px}th,td{padding:8px 10px}.seg button{padding:10px 12px}.back{margin-left:0}}
 </style>
-<script src="../shared/kdh-user.js?v=20260930b"></script>
-<script>try{var t=localStorage.getItem('kdh_theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<script src="../shared/kdh-user.js?v=20260930c"></script>
+<script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="kdh-page" content="Rolling Distribution Trends">
 <!-- Site design system: maps this page's variables + fonts onto shared/kdh.css. Keep it LAST in <head>. -->
 <link rel="stylesheet" href="../shared/kdh-skin.css?v=20260929c">
@@ -461,9 +461,11 @@
   readHash();
   try{ var qv0=localStorage.getItem('rdt-qview'); if(qv0 && !/[?&#]qview=/.test(location.hash)) S.qview=qv0; }catch(e){}
   try{ S.chart = +(localStorage.getItem('rdt-chart')||0); S.more = +(localStorage.getItem('rdt-more')||0); var sc=localStorage.getItem('rdt-cols'); if(sc && !/[?&#]cols=/.test(location.hash)) S.cols=sc; }catch(e){}
-  function setTheme(t){ document.documentElement.setAttribute('data-theme', t); try{ localStorage.setItem('kdh_theme', t); }catch(e){} var i=document.getElementById('theme-ico'), l=document.getElementById('theme-lbl'); if(i){ i.textContent = t==='light' ? '☾' : '☀'; l.textContent = t==='light' ? 'Dark mode' : 'Light mode'; } }
+  function setTheme(t, save){ document.documentElement.setAttribute('data-theme', t); if(save){ try{ localStorage.setItem('kdh_theme', t); }catch(e){} } var i=document.getElementById('theme-ico'), l=document.getElementById('theme-lbl'); if(i){ i.textContent = t==='light' ? '☾' : '☀'; l.textContent = t==='light' ? 'Dark mode' : 'Light mode'; } }
   // Theme follows the site (kdh_theme, set by the site bar), not this page's old rdt-theme.
-  (function(){ var t=''; try{ t=localStorage.getItem('kdh_theme')||''; }catch(e){} if(!t) t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'; setTheme(t); })();
+  // Applied without saving: a device-default theme is not the person's choice (2026-09-30). The site bar's switch fires kdh:theme.
+  (function(){ var t=''; try{ t=localStorage.getItem('kdh_theme')||''; }catch(e){} if(!t) t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'; setTheme(t, false); })();
+  document.addEventListener('kdh:theme', function(e){ setTheme(e.detail, false); });
   var themeBeforePrint=null;
   window.addEventListener('beforeprint', function(){ themeBeforePrint=document.documentElement.getAttribute('data-theme'); document.documentElement.setAttribute('data-theme','light'); });
   window.addEventListener('afterprint', function(){ if(themeBeforePrint) document.documentElement.setAttribute('data-theme', themeBeforePrint); });
@@ -1670,7 +1672,7 @@
     on('f-len', function(e){ S.len=+e.target.value; S.end=Math.max(S.len-1,S.end); S.focus=Math.max(S.len-1,S.focus); S.sort=''; render(); });
     on('f-n', function(e){ S.n=+e.target.value; S.sort=''; render(); });
     app.querySelectorAll('[data-col]').forEach(function(b){ b.addEventListener('click', function(){ var on=metricsShown(), m=b.dataset.col, i=on.indexOf(m); if(i>=0){ if(on.length===1) return; on.splice(i,1); } else on.push(m); S.cols=ALLM.filter(function(x){ return on.indexOf(x)>=0; }).join(','); try{ localStorage.setItem('rdt-cols', S.cols); }catch(e){} S.sort=''; render(); }); });
-    var tb=el('theme-btn'); if(tb) tb.addEventListener('click', function(){ setTheme(document.documentElement.getAttribute('data-theme')==='light'?'dark':'light'); });
+    var tb=el('theme-btn'); if(tb) tb.addEventListener('click', function(){ setTheme(document.documentElement.getAttribute('data-theme')==='light'?'dark':'light', true); });
     app.querySelectorAll('[data-yoy]').forEach(function(b){ b.addEventListener('click', function(){ S.yoy=+b.dataset.yoy; render(); }); });
     app.querySelectorAll('[data-raw]').forEach(function(b){ b.addEventListener('click', function(){ S.raw=+b.dataset.raw; render(); }); });
     app.querySelectorAll('[data-cmetric]').forEach(function(b){ b.addEventListener('click', function(){ S.cmetric=b.dataset.cmetric; render(); }); });

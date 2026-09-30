@@ -7,11 +7,11 @@
    onto these tokens and aliases its fonts.
 
    Tokens are namespaced --kdh-* so they never collide with a
-   dashboard's own --card / --accent / --line. LIGHT IS THE DEFAULT for
-   everyone (2026-09-29 overhaul: one light, neutral application look);
-   dark is an explicit choice (data-theme="dark" on <html>, remembered
-   in localStorage kdh_theme -- shared/kdh-user.js). Change light and
-   dark TOGETHER.
+   dashboard's own --card / --accent / --line. THEME (2026-09-30): the
+   person's saved choice (localStorage kdh_theme) wins; with none, the
+   DEVICE setting applies. data-theme is always set explicitly on <html>
+   (inline in every <head>, then shared/kdh-user.js), so every rule here
+   keys on [data-theme="dark"] alone. Change light and dark TOGETHER.
    Type (2026-09-29): ONE readable application face, Source Sans 3, for
    headings and body alike -- no condensed display type, no all-caps
    headings, no letter-spacing. Kohler shows through the badge and a
@@ -34,7 +34,7 @@
   --kdh-head:"Source Sans 3",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; --kdh-body:"Source Sans 3",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   --kdh-max:1120px;
 }
-/* dark: only when chosen (no device auto-switch -- one predictable look) */
+/* dark tokens (the media block is a belt-and-braces copy for a page that has not set data-theme yet) */
 @media (prefers-color-scheme:dark){
   :root[data-theme="dark"]{
     --kdh-bg:#0F1523; --kdh-surface:#161D2E; --kdh-surface-2:#1C2437; --kdh-surface-3:#243049;
@@ -91,7 +91,11 @@ html[data-theme="dark"]{color-scheme:dark}
 .kdh-b.kdh-icon svg{width:16px;height:16px}
 .kdh-b.kdh-icon .moon{display:none}
 html[data-theme="dark"] .kdh-b.kdh-icon .sun{display:none} html[data-theme="dark"] .kdh-b.kdh-icon .moon{display:block}
-@media (prefers-color-scheme:dark){ html:not([data-theme="light"]) .kdh-b.kdh-icon .sun{display:none} html:not([data-theme="light"]) .kdh-b.kdh-icon .moon{display:block} }
+/* the theme switch in the bar (2026-09-30): icon of the current mode + its name */
+.kdh-b.kdh-theme{height:36px;padding:0 10px 0 8px;gap:6px;cursor:pointer;font-weight:600}
+.kdh-b.kdh-theme .moon{display:none}
+html[data-theme="dark"] .kdh-b.kdh-theme .sun{display:none} html[data-theme="dark"] .kdh-b.kdh-theme .moon{display:block}
+.kdh-b.kdh-theme[aria-checked="true"]{border-color:var(--kdh-border-2)}
 .kdh-av{width:26px;height:26px;border-radius:50%;background:var(--kdh-brand);color:var(--kdh-brand-ink);font-family:var(--kdh-head);font-size:11.5px;font-weight:700;letter-spacing:0;display:inline-flex;align-items:center;justify-content:center;flex:none}
 /* who is being viewed (a manager on a rep's page) -- distinct from who is signed in */
 .kdh-chip{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px 0 8px;border-radius:999px;background:var(--kdh-brand-soft);color:var(--kdh-brand);font-size:13.5px;font-weight:600;white-space:nowrap;border:1px solid transparent}
@@ -124,6 +128,7 @@ html[data-theme="dark"] .kdh-chip.kdh-preview{color:var(--kdh-gold)}
   #kdhViewing:not(:empty),#kdhPreviewChip{flex:1 1 100%;order:3;display:flex;padding:0 0 8px;height:auto;margin:0}
   .kdh-chip a,.kdh-chip button{min-height:40px;padding:0 10px}
   .kdh-b.kdh-icon{width:40px;height:40px}
+  .kdh-b.kdh-theme{height:40px;padding:0 8px 0 7px;font-size:13px}
   .kdh-b.kdh-hide-sm{display:none}
   .kdh-b{padding:0 8px;font-size:13px}
   .kdh-b.kdh-back{height:44px;padding:0 12px 0 8px;font-size:14.5px}

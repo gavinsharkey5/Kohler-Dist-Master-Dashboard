@@ -113,6 +113,7 @@
       <label for="email">Work email</label>
       <input id="email" class="field" type="email" name="email" inputmode="email" autocomplete="username" placeholder="you@kohlerdist.com" required>
       <button id="send" class="btn" type="submit">Continue</button>
+      <p class="links hidden" id="switchRow"><span id="switchWho"></span><a class="link" id="switchAcct" href="#">Not you? Switch account</a></p>
     </form>
 
     <!-- Step 2a: the password (anyone who has created one). -->
@@ -198,6 +199,15 @@
   function loadPending(){ try { var p = JSON.parse(localStorage.getItem(PENDING) || 'null'); return (p && p.email && Date.now() - p.at < 55 * 60 * 1000) ? p : null; } catch (e) { return null; } }
   function savePending(email, isReset){ try { localStorage.setItem(PENDING, JSON.stringify({ email: email, at: Date.now(), reset: !!isReset })); } catch (e) {} }
   function clearPending(){ try { localStorage.removeItem(PENDING); } catch (e) {} }
+  // REMEMBERED EMAIL (2026-09-30): the address of the last successful sign-in
+  // on this device, prefilled on the next visit. It is a convenience only --
+  // it never signs anyone in; access still needs the password (or code) and
+  // the middleware's check. "Not you? Switch account" forgets it, ends any
+  // stored session and clears the cookies, so the next person starts clean.
+  var EMAIL_KEY = 'kdh_email';
+  function rememberedEmail(){ try { return String(localStorage.getItem(EMAIL_KEY) || ''); } catch (e) { return ''; } }
+  function rememberEmail(email){ try { if (email) localStorage.setItem(EMAIL_KEY, String(email).toLowerCase()); } catch (e) {} }
+  function forgetEmail(){ try { localStorage.removeItem(EMAIL_KEY); } catch (e) {} var r = $('switchRow'); if (r) r.classList.add('hidden'); }
   function clock(t){ var d = new Date(t); var h = d.getHours(), m = d.getMinutes(); return ((h % 12) || 12) + ':' + (m < 10 ? '0' : '') + m + (h < 12 ? ' AM' : ' PM'); }
 
   function safeNext(v) {
@@ -216,7 +226,12 @@
     $('codeForm').classList.toggle('hidden', step !== 'code');
     $('setForm').classList.toggle('hidden', step !== 'setpw');
   }
-  function showForm() { show('email'); }
+  function showForm() {
+    show('email');
+    var remembered = rememberedEmail(), f = $('email'), row = $('switchRow');
+    if (remembered && f && !f.value) f.value = remembered;
+    if (row) { row.classList.toggle('hidden', !remembered); $('switchWho').textContent = remembered ? 'Signing in as ' + remembered : ''; }
+  }
   // REMEMBER ME (2026-09-30): both password steps carry a "Remember me on
   // this device" box, checked by default and remembered in localStorage.
   // Checked: the cookies live 30 days and supabase-js keeps its session, so
@@ -341,6 +356,7 @@
   // The cookies the middleware and the pages read, then the page they wanted.
   function finish(session, me) {
     clearPending(); reset = false; current = null;
+    rememberEmail(me.email || session.user.email);
     var keep = remembering();
     try { localStorage.setItem(REMEMBER, keep ? '1' : '0'); } catch (e) {}
     life = keep ? '; Max-Age=2592000' : '';
@@ -504,7 +520,17 @@
       sendLink(pendingEmail, false).then(function () { $('forgot').disabled = false; });
     });
     $('pwChange').addEventListener('click', function () {
-      reset = false; hush(); show('email'); $('email').focus();
+      reset = false; hush(); forgetEmail(); $('email').value = ''; show('email'); $('email').focus();
+    });
+    // "Not you? Switch account": forget the remembered address, end any
+    // stored session and clear the cookies. The next person signs in fresh.
+    $('switchAcct').addEventListener('click', function (e) {
+      e.preventDefault();
+      forgetEmail(); clearPending(); clearCookie(); forgetStoredSession(); reset = false; current = null; pendingEmail = '';
+      $('email').value = ''; $('pw').value = '';
+      sb.auth.signOut().catch(function () {});
+      hush(); show('email'); $('email').focus();
+      say('info', 'Switched. Sign in with your own email.');
     });
 
     $('setForm').addEventListener('submit', function (e) {
@@ -630,12 +656,12 @@
     });
     $('change').addEventListener('click', function () {
       clearInterval(resendTimer); clearPending(); reset = false;
-      hush(); show('email'); $('email').focus();
+      hush(); forgetEmail(); $('email').value = ''; show('email'); $('email').focus();
     });
 
     $('setNotYou').addEventListener('click', function (e) {
       if (this.getAttribute('href') !== '#') return;     // "Not you? Sign out" is a real link
-      e.preventDefault(); current = null; hush(); show('email'); $('email').focus();
+      e.preventDefault(); current = null; hush(); forgetEmail(); $('email').value = ''; show('email'); $('email').focus();
     });
 
     // Show / hide a password field (one tap beats a "confirm" box on a phone).

@@ -696,6 +696,79 @@ the consolidated ask to Gavin. Key facts:
   "Accounts" card (20 dashboards now); account menu "My accounts" /
   "Accounts". Tests: scratchpad acct_test.mjs, mw_test.mjs.
 
+## Theme follows the device until chosen; the switch is in the bar (2026-09-30)
+
+Gavin's brief replaced the 2026-09-29 "light for everyone" rule: with no
+saved choice the site follows the DEVICE setting (prefers-color-scheme,
+live); a tap on the bar's switch saves the choice in localStorage
+`kdh_theme` and it persists on that device; "Use device theme" in the
+account menu clears it. `data-theme` is ALWAYS set explicitly on <html>:
+the inline head snippet on every page (shared/README.txt has the exact
+line -- saved choice, else matchMedia, before first paint, so nothing
+flashes) and `applyTheme()` in kdh-user.js do the same thing, so every
+stylesheet keys on `[data-theme="dark"]` alone through the kdh tokens.
+The bar carries `#kdhThemeBtn` (sun/moon + "Light"/"Dark", role=switch,
+aria-checked = dark) beside the account button on phones, iPads and
+desktop; the menu keeps Dark mode / Light mode and adds
+`#kdhThemeDevice`. `window.kdhTheme` (choose / toggle / saved / current)
+and the `kdh:theme` document event let a page with its own switch
+(rolling-distribution, metlife) follow -- and those pages no longer SAVE
+the device default as a choice on load (they did). Test: scratchpad
+theme_test.mjs (device dark/light with nothing saved on 9 pages before
+first paint, choice persists across pages and reload, device flip
+followed only without a choice, reset item, bar fits at 390/820 in both
+themes). Tags: kdh-user.js 20260930c, kdh.css 20260930b.
+
+## Sign-in remembers the email; sessions persist; "Not you? Switch account" (2026-09-30)
+
+`login/index.html` keeps the last successfully signed-in address in
+localStorage `kdh_email` (set in `finish()`), prefills the email step
+and shows "Signing in as <email> · Not you? Switch account"
+(`#switchRow` / `#switchAcct`). A remembered email grants NOTHING: the
+password (or code) and the middleware's allow-list check are unchanged,
+and the page never stores a password. Sessions were already preserved
+by supabase-js (`persistSession`, refresh tokens) whenever "Remember me
+on this device" is checked: a visit to /login/ with a valid stored
+session goes straight through `onAuthStateChange` -> `enter()` ->
+`finish()`, re-issues the kdh_at / kdh_user cookies and bounces to
+`next` -- that is also how an expired kdh_at cookie (the middleware's
+`?why=expired`) recovers without a password. With the box unchecked the
+stored session is dropped after sign-in, so nothing survives closing
+the browser. Switch account = forget the email, clearPending, clear the
+cookies, drop the stored session and sign out, then a clean email step;
+"Use a different email" (password step), "Use a different email" (code
+step) and the create-password step's back link forget the email too.
+Sign out (the menu's `/login/?signout=1`) ends the session but KEEPS the
+prefilled email, which is the shared-device trade-off: the next person
+taps Switch account. Test: scratchpad login_email_test.mjs (+ the
+existing remember_test / login_pw_test / login_test). Still on Gavin
+(ROADMAP): the Supabase JWT expiry, which decides how long kdh_at lives
+before the silent refresh has to happen.
+
+## Leaderboards on Red Bull and Carbliss (2026-09-30)
+
+Both trackers rank reps on the metric each page already used for one
+rep. RED BULL: `ranked()` = Core+ accounts (an account buying Regular +
+Free + Flavor in the buying period), tiebreak total buying accounts,
+then name; competition ranks (1, 2, 2, 4) marked "=". `boardHtml(me)`
+draws the same board for managers (rows tappable, as before) and at the
+foot of a locked rep's page (rows static, own row `.lrow.me` + "you",
+aria-current). CARBLISS: `renderBoard()` = accounts carrying Carbliss
+among the rep's on-premise Sun Cruiser / White Claw target accounts (the
+rep goal bar's number), tiebreak share of their own targets, then name;
+top 10 open, the rest fold (auto-open when the signed-in rep is below
+10). Both boards show the reporting period (Jul 1 – Sep 30, 2026 /
+2026 year to date), the data date (period.json export_last_date /
+meta.generatedAt, which generate.py now writes -- the header's fake
+"Updated <today>" is gone) and a plain "How the ranking works" note
+that says target lists / routes differ in size. Aggregate counts only:
+no account names, and a rep's own account table / filters stay pinned
+exactly as before; a DM's rep filter stays their team while the board
+is company-wide (aggregates are not account detail). Test: scratchpad
+lb_test.mjs (ranks recomputed from data.csv / the embedded data, ties,
+own-row mark, no other rep's account names in the visible text, period
++ date + note, manager rows still open a rep, 390/820/1366).
+
 ## Buying alerts + patterns on My Accounts (2026-09-30)
 
 Reorder / lapsed-buyer / buying-less-often alerts and a Buying patterns

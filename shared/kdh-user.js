@@ -63,17 +63,26 @@
   })();
   var REP_HOME = ROOT + 'rep/';
 
-  // Theme: applied as early as this script runs so a dark-mode page does not
-  // flash light (the landing pages also do this inline in <head>).
-  function applyTheme() { try { var t = localStorage.getItem('kdh_theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {} }
-  function toggleTheme() {
-    var root = document.documentElement;
-    var current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';   // light unless chosen (2026-09-29)
-    var next = current === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    try { localStorage.setItem('kdh_theme', next); } catch (e) {}
+  // THEME (2026-09-30): the saved choice (localStorage kdh_theme = 'dark' |
+  // 'light') wins; with no choice the DEVICE setting applies and the page
+  // follows it live. data-theme is ALWAYS set explicitly on <html>, so every
+  // stylesheet keys on [data-theme="dark"] alone (no prefers-color-scheme
+  // rules needed). Each page also runs the same logic inline in <head>
+  // before first paint (see shared/README.txt), so nothing flashes.
+  var MQ = (function () { try { return window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null; } catch (e) { return null; } })();
+  function savedTheme() { try { var t = localStorage.getItem('kdh_theme'); return (t === 'dark' || t === 'light') ? t : ''; } catch (e) { return ''; } }
+  function deviceTheme() { return MQ && MQ.matches ? 'dark' : 'light'; }
+  function setThemeAttr(t) { document.documentElement.setAttribute('data-theme', t); document.dispatchEvent(new CustomEvent('kdh:theme', { detail: t })); }
+  function applyTheme() { setThemeAttr(savedTheme() || deviceTheme()); }
+  // chooseTheme('dark'|'light') saves a choice; chooseTheme('') goes back to the device setting
+  function chooseTheme(t) {
+    try { if (t === 'dark' || t === 'light') localStorage.setItem('kdh_theme', t); else localStorage.removeItem('kdh_theme'); } catch (e) {}
+    applyTheme(); themeLabel();
   }
+  function toggleTheme() { chooseTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); }
   applyTheme();
+  if (MQ) { var onMq = function () { if (!savedTheme()) { applyTheme(); themeLabel(); } }; if (MQ.addEventListener) MQ.addEventListener('change', onMq); else if (MQ.addListener) MQ.addListener(onMq); }
+  window.kdhTheme = { choose: chooseTheme, toggle: toggleTheme, saved: savedTheme, current: function () { return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'; } };
 
   // THE SITE CHROME (2026-09-28): one top bar on every dashboard, the same
   // one the rep workspace, manager page and team page carry in their own
@@ -154,15 +163,19 @@
     if (u && u.preview) chips += '<span class="kdh-chip kdh-preview" id="kdhPreviewChip">' + previewChipHtml(u) + '</span>';
     // the account button is always the SIGNED-IN person, never the one being previewed
     var who = u ? (u.preview ? u.manager : u.name) : '';
+    // the theme switch: icon + the current mode's name, role=switch (on = dark)
+    acts += '<button type="button" class="kdh-b kdh-outline kdh-theme" id="kdhThemeBtn" role="switch" aria-checked="false" aria-label="Dark mode" title="Switch between light and dark">' + SUN + MOON + '<span id="kdhThemeText">Light</span></button>';
     if (who) acts += '<button type="button" class="kdh-b kdh-user" id="kdhMenuBtn" aria-haspopup="true" aria-expanded="false" aria-label="Account menu, signed in as ' + esc(who) + '"><span class="kdh-av">' + esc(initials(who)) + '</span><span class="kdh-name">' + esc(who) + '</span>' + CARET + '</button>';
-    else acts += '<button type="button" class="kdh-b kdh-icon" id="kdhTheme" aria-label="Switch between light and dark mode" title="Light / dark mode">' + SUN + MOON + '</button>';
     b.innerHTML = '<div class="kdh-bar-in">' +
       '<a class="kdh-logo" href="' + home + '"><img src="' + ROOT + 'assets/kohler-logo-badge.png" alt="">Kohler Dist Hub<small>' + esc(pageName()) + '</small></a>' +
       chips +
       '<div class="kdh-acts">' + acts + '</div></div>' +
       (who ? menuHtml(u, isMgr) : '');
     document.body.insertBefore(b, document.body.firstChild);
-    var t = document.getElementById('kdhTheme'); if (t) t.addEventListener('click', function () { toggleTheme(); themeLabel(); });
+    var t = document.getElementById('kdhTheme'); if (t) t.addEventListener('click', function () { toggleTheme(); });
+    var tb = document.getElementById('kdhThemeBtn'); if (tb) tb.addEventListener('click', toggleTheme);
+    var td = document.getElementById('kdhThemeDevice'); if (td) td.addEventListener('click', function () { chooseTheme(''); openMenu(false); });
+    themeLabel();
     wireExit();
     wireMenu();
   }
@@ -183,10 +196,17 @@
       items += '<a class="kdh-menu-i" href="' + REP_HOME + '">Rep home</a>';
     }
     items += '<button type="button" class="kdh-menu-i" id="kdhTheme">' + SUN + MOON + '<span id="kdhThemeLabel">Dark mode</span></button>';
+    items += '<button type="button" class="kdh-menu-i" id="kdhThemeDevice" hidden>Use device theme<small>Follow this device\'s light / dark setting</small></button>';
     items += '<a class="kdh-menu-i" href="' + ROOT + 'login/?signout=1">Sign out</a>';
     return '<div class="kdh-menu" id="kdhMenu" hidden role="menu"><div class="kdh-menu-h"><b>' + esc(who) + '</b><span>' + role + (u.email ? ' · ' + esc(u.email) : '') + '</span></div>' + items + '</div>';
   }
-  function themeLabel() { var l = document.getElementById('kdhThemeLabel'); if (l) l.textContent = document.documentElement.getAttribute('data-theme') === 'dark' ? 'Light mode' : 'Dark mode'; }
+  function themeLabel() {
+    var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    var l = document.getElementById('kdhThemeLabel'); if (l) l.textContent = dark ? 'Light mode' : 'Dark mode';
+    var b = document.getElementById('kdhThemeBtn'); if (b) { b.setAttribute('aria-checked', dark ? 'true' : 'false'); b.title = dark ? 'Dark mode is on. Switch to light' : 'Light mode is on. Switch to dark'; }
+    var x = document.getElementById('kdhThemeText'); if (x) x.textContent = dark ? 'Dark' : 'Light';
+    var d = document.getElementById('kdhThemeDevice'); if (d) d.hidden = !savedTheme();
+  }
   function openMenu(on) {
     var m = document.getElementById('kdhMenu'), btn = document.getElementById('kdhMenuBtn'); if (!m || !btn) return;
     m.hidden = !on; btn.setAttribute('aria-expanded', on ? 'true' : 'false');

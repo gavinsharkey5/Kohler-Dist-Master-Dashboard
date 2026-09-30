@@ -182,7 +182,7 @@
   }
 
 </style>
-<script>try{var t=localStorage.getItem('kdh_theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="kdh-page" content="Off-Premise MPOs">
 <!-- Site design system: maps this page's variables + fonts onto shared/kdh.css. Keep it LAST in <head>. -->
 <link rel="stylesheet" href="../../shared/kdh-skin.css?v=20260929c">
@@ -216,7 +216,7 @@
 <div id="g-anchor"></div>
 <main id="objectives"></main>
 
-<script src="../../shared/kdh-user.js?v=20260930b"></script>
+<script src="../../shared/kdh-user.js?v=20260930c"></script>
 <script src="../shared/guided.js?v=20260930a"></script>
 <script src="programs.js?v=20260917i"></script>
 <script>

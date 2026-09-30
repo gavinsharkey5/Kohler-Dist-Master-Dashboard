@@ -222,3 +222,20 @@ totals still appear as goal-less cards further down each rep's page.
 index.html's ingestData() only checks whether a (customer, category)
 row EXISTS for a rep, not the Bought column's value -- so Bought is
 always written as 1 by generate.py, matching the existing file.
+
+Rep leaderboard (2026-09-30)
+----------------------------
+Everyone sees the leaderboard -- managers at the top of the "All reps"
+view (as before), a signed-in rep at the foot of their own page, with
+their row marked "you". Rows carry aggregate counts only (Core+ of N
+buying accounts, the per-category tallies, the share bar), never account
+names, so a rep learns nothing about another rep's customers; a rep's
+rows are not tappable (setRep pins them anyway). One function, ranked()
+in index.html, orders everyone: Core+ accounts, then total buying
+accounts as the tiebreak, then name; reps still level share a rank
+(1, 2, 2, 4, marked "=" -- competition ranking, so a tie never pushes
+anyone down). The board names the buying period (period.json label) and
+the data date (period.json export_last_date, the last order date in the
+export; the header's "Data updated" is the file's last-modified time).
+The note under the board says how the ranking works and that routes
+differ in size, which is why the share bar is shown beside the count.

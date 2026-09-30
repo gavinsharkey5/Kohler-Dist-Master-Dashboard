@@ -80,6 +80,12 @@
   .lrow .track i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--gold))}
   .lrow .win{font-family:"Space Grotesk";font-weight:700;font-size:16px;text-align:right;white-space:nowrap}
   .lrow .win small{display:block;font-size:10.5px;color:var(--ink-soft);font-weight:500}
+  /* the leaderboard a rep sees: rows are not tappable; their own row is marked, quietly */
+  .lrow.static{cursor:default} .lrow.static:hover{background:transparent}
+  .lrow.me{background:color-mix(in srgb,var(--accent) 10%,transparent);box-shadow:inset 3px 0 0 var(--accent)}
+  .lrow .you{display:inline-block;font-size:10.5px;font-weight:600;color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 45%,transparent);border-radius:999px;padding:1px 7px;margin-left:6px;vertical-align:middle}
+  .lrow .medal small{font-size:10px;font-weight:500;color:var(--ink-soft);margin-left:1px}
+  .lbwhen{font-size:12.5px;color:var(--ink-soft);margin:-4px 2px 8px}
 
   .hero{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:16px;margin:0 0 14px;box-shadow:var(--shadow)}
   .hero .top{display:flex;align-items:center;gap:14px}
@@ -145,7 +151,7 @@
     .brow{flex-direction:column;align-items:flex-start;gap:5px}
     .brow .tags{justify-content:flex-start}
   }
-</style><script>try{var t=localStorage.getItem('kdh_theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</style><script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="kdh-page" content="Red Bull">
 <!-- Site design system: maps this page's variables + fonts onto shared/kdh.css. Keep it LAST in <head>. -->
 <link rel="stylesheet" href="../shared/kdh-skin.css?v=20260929c">
@@ -162,7 +168,7 @@
   <div id="body"></div>
   <footer><hr><p id="foot"></p></footer>
 </div></div>
-<script src="../shared/kdh-user.js?v=20260930b"></script>
+<script src="../shared/kdh-user.js?v=20260930c"></script>
 <script>
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const num=x=>{const v=parseFloat(String(x).replace(/[^0-9.\-]/g,""));return isNaN(v)?0:v;};
@@ -241,8 +247,36 @@ const catLine=s=>CATS.map(c=>`${s.by[c.key]} ${c.label}`).join(" · ");
 // Goal cards, tiers first. has() says whether one account counts for the card.
 const CARDS=[...TIERS.map(t=>({...t,has:a=>t.of.every(k=>a[k])})),
              ...CATS.map(c=>({...c,has:a=>a[c.key]}))];
-// Reps are ranked on complete accounts; total accounts only breaks ties.
-const byComplete=(a,b)=>b.complete-a.complete||b.total-a.total;
+// Reps are ranked on complete accounts; total buying accounts breaks a tie;
+// reps still level share the same rank (1, 2, 2, 4) and are listed by name.
+const byComplete=(a,b)=>b.complete-a.complete||b.total-a.total||a.rep.localeCompare(b.rep);
+function ranked(){
+  const rows=Object.keys(REPS).map(r=>({rep:r,...repStats(r)})).sort(byComplete);
+  let rank=0; rows.forEach((r,i)=>{ if(!i||r.complete!==rows[i-1].complete||r.total!==rows[i-1].total) rank=i+1; r.rank=rank; r.tied=false; });
+  rows.forEach((r,i)=>{ r.tied = (i>0 && rows[i-1].rank===r.rank) || (i<rows.length-1 && rows[i+1].rank===r.rank); });
+  return rows;
+}
+let PERIOD=null, DATA_DATE=null;   // set by boot() from period.json / the file
+const fmtDay=d=>d?new Date(d.length>10?d:d+"T00:00:00").toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):"";
+// The leaderboard everyone sees: rank, rep, Core+ accounts (the qualifying
+// result), share of their own buying accounts. Aggregate counts only -- no
+// account names -- so a rep may see it; only a manager's rows are tappable.
+function boardHtml(me){
+  const rows=ranked();
+  const items=rows.map(R=>{
+    const share=R.total? (R.complete/R.total*100):0;
+    const mine=me&&R.rep===me;
+    return `<div class="lrow${R.rank<=3&&!mine?' top':''}${mine?' me':''}${me?' static':''}" style="--mc:${medalColor(R.rank)}"${me?'':` role="button" tabindex="0" data-rep="${esc(R.rep)}"`}${mine?' aria-current="true"':''}>
+      <span class="medal ${R.rank<=3?'m'+R.rank:''}">${R.rank}${R.tied?'<small>=</small>':''}</span>
+      <span class="who"><b>${esc(R.rep)}${mine?' <span class="you">you</span>':''}</b><div class="sub">${R.complete} of ${R.total} buying accounts at ${TOP.label} · ${catLine(R)}</div>
+      <div class="track"><i style="width:${Math.min(share,100).toFixed(1)}%"></i></div></span>
+      <span class="win">${R.complete}<small>${TOP.label}</small></span></div>`;
+  }).join("");
+  const when=[PERIOD&&PERIOD.label?`period ${esc(PERIOD.label)}`:"", DATA_DATE?`data through ${esc(fmtDay(DATA_DATE))}`:""].filter(Boolean).join(" · ");
+  return `<div class="shead"><span class="tr">${TROPHY}</span><h2>Rep leaderboard</h2><span class="meta">${rows.length} reps · by ${TOP.label} accounts</span></div>
+    ${when?`<p class="lbwhen">${when}</p>`:""}<div class="board">${items}</div>
+    <p class="note"><b>How the ranking works:</b> reps are ordered by <b>${TOP.label}</b> accounts (an account buying all three: ${CAT_KEYS.join(", ")}) in the buying period; a tie is broken by total buying accounts, and reps still level share a rank (shown with =). The bar is the share of each rep's <b>own</b> buying accounts that reached ${TOP.label}. Routes differ in size and in how many accounts stock Red Bull, so a rep with few buying accounts has fewer to complete — compare the bar as well as the count.</p>`;
+}
 const tagStrip=CATS.map(c=>`<span class="tag ${c.cls}">${c.label}</span>`).join("");
 const COMPLETE_RULE=`<div class="rule"><span class="rk">How an account levels up</span>
   <span class="rt">There are three things to sell — ${tagStrip} — and an account climbs by stacking them:
@@ -263,22 +297,13 @@ function render(){
         +`<p class="v num">${t.by[t2.key]}${g?`<small>/${g}</small>`:""}</p></div>`;
     }).join("");
     const stats=`<div class="stats">${statTile("Buying Accounts",t.total,"")}${tierTiles}</div>`;
-    const ranked=reps.map(r=>({rep:r,...repStats(r)})).sort(byComplete).map((r,i)=>({...r,rank:i+1}));
-    const rows=ranked.map(R=>{
-      const share=R.total? (R.complete/R.total*100):0;   // this rep's own accounts that are complete
-      return `<div class="lrow${R.rank<=3?' top':''}" style="--mc:${medalColor(R.rank)}" role="button" tabindex="0" data-rep="${esc(R.rep)}">
-        <span class="medal ${R.rank<=3?'m'+R.rank:''}">${R.rank}</span>
-        <span class="who"><b>${esc(R.rep)}</b><div class="sub">${R.complete} of ${R.total} accounts at ${TOP.label} · ${catLine(R)}</div>
-        <div class="track"><i style="width:${Math.min(share,100).toFixed(1)}%"></i></div></span>
-        <span class="win">${R.complete}<small>${TOP.label}</small></span></div>`;
-    }).join("");
-    app.innerHTML=stats+COMPLETE_RULE+`<div class="shead"><span class="tr">${TROPHY}</span><h2>Rep leaderboard</h2><span class="meta">${ranked.length} reps · by ${TOP.label} accounts</span></div><div class="board">${rows}</div>`
-      +`<p class="note">Bar shows the share of each rep's own accounts that reached <b>${TOP.label}</b>. Team-wide, <b>${t.complete} of ${t.total}</b> buying accounts (${donePct.toFixed(0)}%) buy all three.</p>`;
+    app.innerHTML=stats+COMPLETE_RULE+boardHtml(null)
+      +`<p class="note">Team-wide, <b>${t.complete} of ${t.total}</b> buying accounts (${donePct.toFixed(0)}%) buy all three.</p>`;
     app.querySelectorAll(".lrow[data-rep]").forEach(el=>{const go=()=>setRep(el.dataset.rep);el.addEventListener("click",go);el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});});
   } else {
     const s=repStats(activeRep);
     const t=teamStats();
-    const rank=reps.map(r=>({rep:r,...repStats(r)})).sort(byComplete).map(x=>x.rep).indexOf(activeRep)+1;
+    const rrow=ranked().find(x=>x.rep===activeRep); const rank=rrow?rrow.rank:0;
     const hero=`<div class="hero"><div class="top"><div class="rankbox"><div class="big num">${rank||"–"}</div><div class="lab">Rank</div></div>
       <div class="nm">${esc(activeRep)}<small>${s.complete} of ${s.total} accounts at ${TOP.label} · ${catLine(s)}</small></div>
       <div class="win2"><div class="b num">${s.complete}</div><div class="l">${TOP.label}</div></div></div></div>`;
@@ -325,7 +350,8 @@ function render(){
       `<p class="note">A <span class="tag off" style="font-size:10.5px;padding:2px 7px;border-radius:999px">+ ${CATS[CATS.length-1].label}</span>-style tag is something that account has <b>not</b> bought yet. Sell it and the account climbs a tier.</p>`+
       `<div class="shead"><h2>${TOP.label} accounts</h2><span class="meta">${done.length} buying all three</span></div>`+
       group(done,`No ${TOP.label} accounts yet — one account needs ${CAT_KEYS.join(", ")} together.`)+
-      `<div class="shead"><h2>Progress vs team goal</h2><span class="meta">tap a category for accounts</span></div>`+cards;
+      `<div class="shead"><h2>Progress vs team goal</h2><span class="meta">tap a category for accounts</span></div>`+cards+
+      boardHtml(activeRep);
   }
 }
 function setRep(v){if(LOCK_REP&&v!==LOCK_REP)v=LOCK_REP;activeRep=v;document.querySelectorAll("#chips .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.v===activeRep));render();window.scrollTo({top:0,behavior:"smooth"});}
@@ -343,6 +369,7 @@ async function boot(){
   try{const r=await fetch("period.json",{cache:"no-store"});if(r.ok)period=await r.json();}catch(e){}
   if(!dText){showEmpty("Upload <code>data.csv</code> (Customer Name, Category, Sales Rep, Bought) and <code>goals.csv</code> next to this page.");return;}
   ingestData(dText); if(gText)ingestGoals(gText);
+  PERIOD=period; DATA_DATE=(period&&period.export_last_date)||lastMod||null;
   if(!Object.keys(REPS).length){showEmpty("Couldn't read the data file — check it has Customer Name, Category and Sales Rep columns.");return;}
   renderChips();
   // Signed-in rep lock (kohlerdisthub.com, 2026-09-25): a rep sees only

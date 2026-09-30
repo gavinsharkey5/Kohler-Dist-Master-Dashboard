@@ -17,10 +17,8 @@
 <meta name="apple-mobile-web-app-title" content="Dist Hub">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="preload" href="assets/fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin>
-<script>
-  // Apply the saved theme before first paint so there is no flash.
-  try { var t = localStorage.getItem('kdh_theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
-</script>
+<!-- Theme before first paint: the saved choice, else the device setting (2026-09-30). -->
+<script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <!-- The manager page wears the rep workspace's design (2026-09-28): same
      tokens, top bar, card component and light/dark palette, from rep.css.
      Only the hero photo and the section list are this page's own. -->
@@ -32,7 +30,7 @@
 <!-- The top bar is injected by shared/kdh-user.js (badge, Previewing chip, account menu with "View as rep"). kdh-home = no Back button. -->
 <meta name="kdh-page" content="Manager home">
 <meta name="kdh-home" content="manager">
-<script src="shared/kdh-user.js?v=20260930b"></script>
+<script src="shared/kdh-user.js?v=20260930c"></script>
 </head>
 <body>
 

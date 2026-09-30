@@ -29,7 +29,7 @@ for per-SKU flavor detection and pricing; accounts.csv stays the source for
 account-level brand totals (Sun Cruiser/White Claw/Carbliss cases by year) and
 now City.
 """
-import csv, json, re, os
+import csv, json, re, os, datetime
 from collections import defaultdict
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -399,6 +399,9 @@ meta = {
     'lapsed': sum(1 for a in final_accounts if a['lapsed']),
     'isNew': sum(1 for a in final_accounts if a['isNew']),
     'reps': sorted(set(a['rep'] for a in final_accounts)),
+    # when this page was built from the exports (shown as the data date; the
+    # exports themselves carry no report date)
+    'generatedAt': datetime.datetime.utcnow().strftime('%Y-%m-%d'),
 }
 
 data_json = json.dumps({'meta': meta, 'accounts': final_accounts}, separators=(',', ':'))

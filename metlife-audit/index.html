@@ -258,8 +258,8 @@
     .card{box-shadow:none;break-inside:avoid}
   }
 </style>
-<script src="../shared/kdh-user.js?v=20260930b"></script>
-<script>try{var t=localStorage.getItem('kdh_theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<script src="../shared/kdh-user.js?v=20260930c"></script>
+<script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="kdh-page" content="MetLife Beer Audit">
 <!-- Site design system: maps this page's variables + fonts onto shared/kdh.css. Keep it LAST in <head>. -->
 <link rel="stylesheet" href="../shared/kdh-skin.css?v=20260929c">
@@ -611,6 +611,7 @@ function toast(msg){ const t = $('#toast'); t.textContent = msg; t.classList.add
 function applyTheme(t){ document.documentElement.setAttribute('data-theme', t==='light' ? 'light' : 'dark'); $('#themebtn').textContent = t==='light' ? '🌙' : '☀️'; $('meta[name=theme-color]').content = t==='light' ? '#F4F5F7' : '#0E1014'; }
 // Theme follows the site (kdh_theme from the site bar), not this page's own setting.
 applyTheme((function(){ try{ var k=localStorage.getItem('kdh_theme'); if(k) return k; }catch(e){} return (window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'; })());
+document.addEventListener('kdh:theme', function(e){ applyTheme(e.detail); if (typeof currentView!=='undefined' && currentView==='dash') renderDashboard(); });
 $('#themebtn').onclick = () => { const t = Settings.get().theme==='light' ? 'dark' : 'light'; Settings.set({theme:t}); applyTheme(t); if (currentView==='dash') renderDashboard(); };
 
 /* =====================================================================

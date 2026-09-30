@@ -73,3 +73,24 @@ FLAVOR_FAMILY there if Carbliss's flavor lineup changes.
 No link back to the root index (2026-09-24, per Gavin): reps get this
 page as a direct link and must not be able to browse to the main page
 that lists every dashboard. Do not add a "back" / breadcrumb link to ../
+
+Rep leaderboard (2026-09-30)
+----------------------------
+renderBoard() in index.html draws a card under the goal bar for every
+signed-in person (rep, DM, manager alike): each rep ranked by the same
+number their own goal bar shows -- on-premise Sun Cruiser / White Claw
+target accounts that carry at least one Carbliss flavor in 2026 -- with
+"N of M target accounts · share%" and a bar. Ties on the count are
+broken by the share of that rep's own target list, then by name; reps
+still level share a rank (shown "=" -- 1, 2, 2, 4). The top 10 are open
+and the rest fold ("N more reps"; opened automatically when the signed-
+in rep is below the top 10). Aggregate counts only: no account names,
+so a rep sees nothing of another rep's customers (the rep filter and
+table stay pinned to their own route; a DM's filter stays their team).
+Target lists differ in size by route, which the note under the board
+says plainly; the share is there for that reason. House "reps"
+(Default, Office Tell Sell) are dropped with kdhIsRep.
+
+Data date: generate.py now writes meta.generatedAt (the build date) and
+the page's header says "Page built <date> from the RDE exports" -- it
+used to print today's date on every load, which was not a data date.
