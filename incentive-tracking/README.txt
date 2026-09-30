@@ -3758,6 +3758,18 @@ own card (cardTouchdownsTea) and leaderboard still show every payout leg
 -- only the shared summary changed. programs.js tag bumped to 20260930a
 on hub/, accounts/, rep/ and team/.
 
+2026-09-30 SECOND REFRESH -- 1911, Woodchuck, Tona, Lytt (Keystone re-sent, unchanged)
+  python3 generate.py
+Keystone _33 (274 rows) is the same multiset already on keystone-ice/actuals.csv
+and MPOs/off-prem/keystone_ice_24oz.csv -- left alone. The other four were
+diffed row by row first: 1911 1,855 -> 1,949 rows (+98 / -4; the four dropped
+rows are 9/25 lines: Allison Scott / Kitchen & Beer Bar x3, John O'Donoghue /
+Main St Wines x1), Woodchuck 581 -> 618 (+37), Tona 344 -> 356 (+12), Lytt
+762 -> 791 (+29). Headlines: 1911 326 -> 360 new placements across the roster,
+Woodchuck 57 -> 66, Tona 14 -> 15 new 24 oz placements, Lytt top penetration
+56.2% with 12 reps in a tier. Exports carry data through 9/30, the last day
+of the window. Hub cache tag bumped (20260930c) for program_data.js.
+
 2026-09-30 REFRESH -- Corona Gaintain + Keystone sync only (riding the off-prem refresh)
 The 9/30 off-prem batch's Corona Gaintain export (123 rows, restated in
 place, only Jayson Romine up) and 274-row Keystone export went here per the
