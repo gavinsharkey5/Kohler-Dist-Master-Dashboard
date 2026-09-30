@@ -1,0 +1,459 @@
+Sales Rep Assigned,Product Num & Name,Brand Family,Customer Num & Company,Date,Cases   10/1/2025 - 10/31/2025,Cases   10/1/2026 - 10/31/2026,Cases Unit Difference
+Shane Barreca,3722 Famosa 1/12/24 oz Can,Famosa,67004 Beverage Barn (A),10/2/2026,,-1.00,-1.00
+Phil Ernst,3722 Famosa 1/12/24 oz Can,Famosa,80004 USA Wine Traders Paramus,10/1/2026,,1.00,1.00
+John Neukum,3724 Famosa 2/12/12 oz Can,Famosa,201026 Sam's Club (Secaucus),10/1/2026,,12.00,12.00
+Javier Melo,3722 Famosa 1/12/24 oz Can,Famosa,27012 ESTEVEZ LIQUORS LLC,10/1/2026,,10.00,10.00
+Phil Ernst,3720 Famosa 4/6/12 oz Btl,Famosa,80004 USA Wine Traders Paramus,10/1/2026,,1.00,1.00
+Javier Melo,3732 Famosa Lager 1/12/32 oz Btl,Famosa,27012 ESTEVEZ LIQUORS LLC,10/1/2026,,15.00,15.00
+Javier Melo,3724 Famosa 2/12/12 oz Can,Famosa,27012 ESTEVEZ LIQUORS LLC,10/1/2026,,15.00,15.00
+Dan Lagala,3720 Famosa 4/6/12 oz Btl,Famosa,44044 Sonsonate Rest(P),10/1/2026,,5.00,5.00
+Matt Powierski,3720 Famosa 4/6/12 oz Btl,Famosa,36007 Shop Rite Of Wallington,10/31/2025,2.00,,-2.00
+Phil Ernst,3720 Famosa 4/6/12 oz Btl,Famosa,46019 Palisades Wine And Liquor,10/31/2025,1.00,,-1.00
+Matt Powierski,3724 Famosa 2/12/12 oz Can,Famosa,32017 Wine Grand (Carlstadt),10/31/2025,2.00,,-2.00
+Dylan Rubino,3723 Famosa 1/12/33.8 oz Btl,Famosa,170049 Cosmo Liquors & Grocery,10/31/2025,1.00,,-1.00
+Dan Lagala,3724 Famosa 2/12/12 oz Can,Famosa,44040 Stop N Go Conven. (P),10/31/2025,15.00,,-15.00
+Javier Melo,3722 Famosa 1/12/24 oz Can,Famosa,21044 Farm Boy,10/31/2025,2.00,,-2.00
+Dan Lagala,3720 Famosa 4/6/12 oz Btl,Famosa,46009 Banner Delicatessen,10/31/2025,15.00,,-15.00
+Dan Lagala,3722 Famosa 1/12/24 oz Can,Famosa,44040 Stop N Go Conven. (P),10/31/2025,5.00,,-5.00
+Javier Melo,3723 Famosa 1/12/33.8 oz Btl,Famosa,21044 Farm Boy,10/31/2025,2.00,,-2.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,170027 Discount Liquors West New York,10/31/2025,5.00,,-5.00
+Dan Lagala,3723 Famosa 1/12/33.8 oz Btl,Famosa,46009 Banner Delicatessen,10/31/2025,5.00,,-5.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,170077 Moon Liquors (P),10/31/2025,2.00,,-2.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,170049 Cosmo Liquors & Grocery,10/31/2025,2.00,,-2.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,170027 Discount Liquors West New York,10/31/2025,15.00,,-15.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,170049 Cosmo Liquors & Grocery,10/31/2025,2.00,,-2.00
+Javier Melo,3724 Famosa 2/12/12 oz Can,Famosa,21044 Farm Boy,10/31/2025,2.00,,-2.00
+Matt Powierski,3720 Famosa 4/6/12 oz Btl,Famosa,32017 Wine Grand (Carlstadt),10/31/2025,3.00,,-3.00
+Dan Lagala,3722 Famosa 1/12/24 oz Can,Famosa,46009 Banner Delicatessen,10/31/2025,5.00,,-5.00
+Alisa Acciardi,3722 Famosa 1/12/24 oz Can,Famosa,170210 Eddy's Wine & Liq,10/31/2025,10.00,,-10.00
+Dylan Rubino,3724 Famosa 2/12/12 oz Can,Famosa,170034 Metro Liquors (1212 Jersey City),10/31/2025,10.00,,-10.00
+Javier Melo,3720 Famosa 4/6/12 oz Btl,Famosa,21044 Farm Boy,10/31/2025,2.00,,-2.00
+Dylan Rubino,3724 Famosa 2/12/12 oz Can,Famosa,170027 Discount Liquors West New York,10/31/2025,5.00,,-5.00
+Dan Lagala,3724 Famosa 2/12/12 oz Can,Famosa,46011 Han Mi Supermkt (A),10/30/2025,10.00,,-10.00
+Dylan Rubino,3723 Famosa 1/12/33.8 oz Btl,Famosa,170102 L&T Liquors,10/30/2025,3.00,,-3.00
+Dan Lagala,3720 Famosa 4/6/12 oz Btl,Famosa,46011 Han Mi Supermkt (A),10/30/2025,10.00,,-10.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,170102 L&T Liquors,10/30/2025,7.00,,-7.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,170013 Universal Liquors (A),10/30/2025,6.00,,-6.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,170040 Los Padrinos,10/30/2025,10.00,,-10.00
+Dylan Rubino,3724 Famosa 2/12/12 oz Can,Famosa,170013 Universal Liquors (A),10/30/2025,4.00,,-4.00
+Shane Barreca,3720 Famosa 4/6/12 oz Btl,Famosa,73003 Bottle King (A) Hillsdale,10/30/2025,1.00,,-1.00
+Alisa Acciardi,3722 Famosa 1/12/24 oz Can,Famosa,170038 Harrison Discount Liq(P),10/30/2025,20.00,,-20.00
+Dylan Rubino,3724 Famosa 2/12/12 oz Can,Famosa,172051 WNY Liquors,10/30/2025,10.00,,-10.00
+Dan Lagala,3722 Famosa 1/12/24 oz Can,Famosa,46015 Mukeunji (Z),10/30/2025,20.00,,-20.00
+Dan Lagala,3722 Famosa 1/12/24 oz Can,Famosa,44016 Liquor City(A)Cliffside,10/30/2025,5.00,,-5.00
+Derrick Laws,3720 Famosa 4/6/12 oz Btl,Famosa,22032 Economy Liquors,10/30/2025,5.00,,-5.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,172051 WNY Liquors,10/30/2025,10.00,,-10.00
+Alisa Acciardi,3722 Famosa 1/12/24 oz Can,Famosa,150080 Berkeley Liquors,10/30/2025,9.00,,-9.00
+Dylan Rubino,3723 Famosa 1/12/33.8 oz Btl,Famosa,172051 WNY Liquors,10/30/2025,3.00,,-3.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,172051 WNY Liquors,10/30/2025,20.00,,-20.00
+Dan Lagala,3724 Famosa 2/12/12 oz Can,Famosa,44016 Liquor City(A)Cliffside,10/30/2025,15.00,,-15.00
+Andrew Lundy,3726 Famosa 2/12/12 oz Btl,Famosa,250442 Liquor Rangers,10/29/2025,2.00,,-2.00
+Dan Lagala,3720 Famosa 4/6/12 oz Btl,Famosa,43004 Boulevard Liq.(Fairview),10/29/2025,5.00,,-5.00
+Dylan Rubino,3724 Famosa 2/12/12 oz Can,Famosa,170119 Hudson Wine & Liq (P),10/29/2025,2.00,,-2.00
+Dan Lagala,3724 Famosa 2/12/12 oz Can,Famosa,43004 Boulevard Liq.(Fairview),10/29/2025,5.00,,-5.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,170212 Empire Liq (P),10/29/2025,14.00,,-14.00
+Dan Lagala,3720 Famosa 4/6/12 oz Btl,Famosa,49033 Banner Liquor Iii,10/29/2025,5.00,,-5.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,170119 Hudson Wine & Liq (P),10/29/2025,6.00,,-6.00
+Derrick Laws,3724 Famosa 2/12/12 oz Can,Famosa,23004 Shop Rite Wines/Spirits,10/29/2025,5.00,,-5.00
+John Neukum,3724 Famosa 2/12/12 oz Can,Famosa,31019 Bj's Warehouse E Rutherfo,10/29/2025,110.00,,-110.00
+Derrick Laws,3722 Famosa 1/12/24 oz Can,Famosa,23004 Shop Rite Wines/Spirits,10/29/2025,3.00,,-3.00
+Andrew Lundy,3722 Famosa 1/12/24 oz Can,Famosa,250442 Liquor Rangers,10/29/2025,3.00,,-3.00
+Shane Barreca,3720 Famosa 4/6/12 oz Btl,Famosa,67004 Beverage Barn (A),10/29/2025,7.00,,-7.00
+Alex Rodriguez,3723 Famosa 1/12/33.8 oz Btl,Famosa,250068 Jakob Liquors,10/29/2025,3.00,,-3.00
+Derrick Laws,3720 Famosa 4/6/12 oz Btl,Famosa,23004 Shop Rite Wines/Spirits,10/29/2025,25.00,,-25.00
+Javier Melo,3724 Famosa 2/12/12 oz Can,Famosa,27012 ESTEVEZ LIQUORS LLC,10/29/2025,20.00,,-20.00
+Shane Barreca,3722 Famosa 1/12/24 oz Can,Famosa,67004 Beverage Barn (A),10/29/2025,5.00,,-5.00
+Dylan Rubino,3723 Famosa 1/12/33.8 oz Btl,Famosa,170119 Hudson Wine & Liq (P),10/29/2025,2.00,,-2.00
+Derrick Laws,3723 Famosa 1/12/33.8 oz Btl,Famosa,23004 Shop Rite Wines/Spirits,10/29/2025,2.00,,-2.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,170119 Hudson Wine & Liq (P),10/29/2025,5.00,,-5.00
+Andrew Lundy,3724 Famosa 2/12/12 oz Can,Famosa,250442 Liquor Rangers,10/29/2025,5.00,,-5.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,170212 Empire Liq (P),10/29/2025,6.00,,-6.00
+Shane Barreca,3724 Famosa 2/12/12 oz Can,Famosa,67004 Beverage Barn (A),10/29/2025,10.00,,-10.00
+Andrew Lundy,3720 Famosa 4/6/12 oz Btl,Famosa,250442 Liquor Rangers,10/29/2025,5.00,,-5.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,178009 Heaven Liquors,10/29/2025,2.00,,-2.00
+Alisa Acciardi,3722 Famosa 1/12/24 oz Can,Famosa,171304 Sun Liquors & Grocery,10/29/2025,20.00,,-20.00
+Jaime Colonna,3722 Famosa 1/12/24 oz Can,Famosa,170021 Jersey City Buy Rite (A),10/28/2025,1.00,,-1.00
+Phil Ernst,3722 Famosa 1/12/24 oz Can,Famosa,40019 Budy's Wine & Liq (A),10/28/2025,10.00,,-10.00
+Andrew Lundy,3724 Famosa 2/12/12 oz Can,Famosa,250136 M & M Liquors,10/28/2025,10.00,,-10.00
+Phil Ernst,3724 Famosa 2/12/12 oz Can,Famosa,40019 Budy's Wine & Liq (A),10/28/2025,5.00,,-5.00
+Michael Harboy,3720 Famosa 4/6/12 oz Btl,Famosa,150126 Valley Liquors,10/28/2025,5.00,,-5.00
+Dylan Rubino,3724 Famosa 2/12/12 oz Can,Famosa,170163 Buy Rite Union City,10/28/2025,7.00,,-7.00
+Alisa Acciardi,3722 Famosa 1/12/24 oz Can,Famosa,152039 Cottage Liquors,10/28/2025,1.00,,-1.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,170163 Buy Rite Union City,10/28/2025,1.00,,-1.00
+Hakan Sadik,3724 Famosa 2/12/12 oz Can,Famosa,150221 Jonathan's Liquor Store,10/28/2025,10.00,,-10.00
+Michael Harboy,3722 Famosa 1/12/24 oz Can,Famosa,150126 Valley Liquors,10/28/2025,5.00,,-5.00
+Michael Harboy,3724 Famosa 2/12/12 oz Can,Famosa,150126 Valley Liquors,10/28/2025,20.00,,-20.00
+Alisa Acciardi,3724 Famosa 2/12/12 oz Can,Famosa,152039 Cottage Liquors,10/28/2025,5.00,,-5.00
+Phil Ernst,3720 Famosa 4/6/12 oz Btl,Famosa,40019 Budy's Wine & Liq (A),10/28/2025,5.00,,-5.00
+Michael Harboy,3722 Famosa 1/12/24 oz Can,Famosa,150162 Krauszer's Food & Liq,10/28/2025,10.00,,-10.00
+Hakan Sadik,3720 Famosa 4/6/12 oz Btl,Famosa,150221 Jonathan's Liquor Store,10/28/2025,5.00,,-5.00
+Hakan Sadik,3724 Famosa 2/12/12 oz Can,Famosa,150166 Liquor Zone,10/28/2025,10.00,,-10.00
+Hakan Sadik,3722 Famosa 1/12/24 oz Can,Famosa,150163 Colony Liquors,10/28/2025,8.00,,-8.00
+Hakan Sadik,3724 Famosa 2/12/12 oz Can,Famosa,150163 Colony Liquors,10/28/2025,12.00,,-12.00
+Alisa Acciardi,3723 Famosa 1/12/33.8 oz Btl,Famosa,152039 Cottage Liquors,10/28/2025,1.00,,-1.00
+Jaime Colonna,3724 Famosa 2/12/12 oz Can,Famosa,170021 Jersey City Buy Rite (A),10/28/2025,10.00,,-10.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,170163 Buy Rite Union City,10/28/2025,2.00,,-2.00
+Hakan Sadik,3722 Famosa 1/12/24 oz Can,Famosa,150221 Jonathan's Liquor Store,10/28/2025,5.00,,-5.00
+Shane Barreca,3722 Famosa 1/12/24 oz Can,Famosa,67004 Beverage Barn (A),10/27/2025,10.00,,-10.00
+Shane Barreca,3720 Famosa 4/6/12 oz Btl,Famosa,67004 Beverage Barn (A),10/27/2025,5.00,,-5.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,178001 Tonnelle Wine & Liq,10/27/2025,3.00,,-3.00
+Shane Barreca,3723 Famosa 1/12/33.8 oz Btl,Famosa,67004 Beverage Barn (A),10/27/2025,2.00,,-2.00
+Pablo Lopez,3723 Famosa 1/12/33.8 oz Btl,Famosa,26014 Regalado Liq,10/27/2025,5.00,,-5.00
+Alisa Acciardi,3722 Famosa 1/12/24 oz Can,Famosa,150098 Lisbon Wines & Liquors,10/27/2025,19.00,,-19.00
+Dylan Rubino,3726 Famosa 2/12/12 oz Btl,Famosa,178001 Tonnelle Wine & Liq,10/27/2025,1.00,,-1.00
+Dan Lagala,3720 Famosa 4/6/12 oz Btl,Famosa,43013 Buy Rite Of Fairview,10/27/2025,4.00,,-4.00
+Derrick Laws,3722 Famosa 1/12/24 oz Can,Famosa,20080 Raphael & Angel Liq (A),10/27/2025,7.00,,-7.00
+Dan Lagala,3724 Famosa 2/12/12 oz Can,Famosa,43013 Buy Rite Of Fairview,10/27/2025,7.00,,-7.00
+Dylan Rubino,3723 Famosa 1/12/33.8 oz Btl,Famosa,178001 Tonnelle Wine & Liq,10/27/2025,1.00,,-1.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,170049 Cosmo Liquors & Grocery,10/27/2025,1.00,,-1.00
+Dan Lagala,3722 Famosa 1/12/24 oz Can,Famosa,43013 Buy Rite Of Fairview,10/27/2025,10.00,,-10.00
+Dylan Rubino,3724 Famosa 2/12/12 oz Can,Famosa,178001 Tonnelle Wine & Liq,10/27/2025,5.00,,-5.00
+Shane Barreca,3724 Famosa 2/12/12 oz Can,Famosa,67004 Beverage Barn (A),10/27/2025,5.00,,-5.00
+Derrick Laws,3723 Famosa 1/12/33.8 oz Btl,Famosa,20080 Raphael & Angel Liq (A),10/27/2025,3.00,,-3.00
+Dan Lagala,3720 Famosa 4/6/12 oz Btl,Famosa,44005 Winston Wine & Liq,10/24/2025,1.00,,-1.00
+Alex Rodriguez,3724 Famosa 2/12/12 oz Can,Famosa,250082 Pickwick Liquor Shop,10/24/2025,4.00,,-4.00
+Pablo Lopez,3722 Famosa 1/12/24 oz Can,Famosa,26014 Regalado Liq,10/24/2025,10.00,,-10.00
+Andrew Lundy,3722 Famosa 1/12/24 oz Can,Famosa,250024 Best Cellars (Summit),10/24/2025,5.00,,-5.00
+Pablo Lopez,3723 Famosa 1/12/33.8 oz Btl,Famosa,26014 Regalado Liq,10/24/2025,7.00,,-7.00
+Hakan Sadik,3722 Famosa 1/12/24 oz Can,Famosa,150154 Toast Of The Town,10/24/2025,5.00,,-5.00
+Dan Lagala,3720 Famosa 4/6/12 oz Btl,Famosa,46002 Best Choice Liqrs (P),10/24/2025,10.00,,-10.00
+Andrew Lundy,3724 Famosa 2/12/12 oz Can,Famosa,250024 Best Cellars (Summit),10/24/2025,5.00,,-5.00
+Dan Lagala,3723 Famosa 1/12/33.8 oz Btl,Famosa,46002 Best Choice Liqrs (P),10/24/2025,1.00,,-1.00
+Andrew Lundy,3720 Famosa 4/6/12 oz Btl,Famosa,250024 Best Cellars (Summit),10/24/2025,10.00,,-10.00
+Hakan Sadik,3720 Famosa 4/6/12 oz Btl,Famosa,150154 Toast Of The Town,10/24/2025,6.00,,-6.00
+Dan Lagala,3724 Famosa 2/12/12 oz Can,Famosa,46002 Best Choice Liqrs (P),10/24/2025,5.00,,-5.00
+Dave Ehlers,3724 Famosa 2/12/12 oz Can,Famosa,56013 Time Lounge And Liq (A),10/24/2025,10.00,,-10.00
+Pablo Lopez,3720 Famosa 4/6/12 oz Btl,Famosa,26014 Regalado Liq,10/24/2025,3.00,,-3.00
+Hakan Sadik,3724 Famosa 2/12/12 oz Can,Famosa,150154 Toast Of The Town,10/24/2025,20.00,,-20.00
+Alex Rodriguez,3722 Famosa 1/12/24 oz Can,Famosa,250082 Pickwick Liquor Shop,10/24/2025,16.00,,-16.00
+Hakan Sadik,3722 Famosa 1/12/24 oz Can,Famosa,152013 C & D Liquors,10/23/2025,30.00,,-30.00
+Andrew Lundy,3724 Famosa 2/12/12 oz Can,Famosa,250066 Fenrose Wine & Liq,10/23/2025,20.00,,-20.00
+Dave Ehlers,3720 Famosa 4/6/12 oz Btl,Famosa,52019 W E Beverage (A),10/23/2025,2.00,,-2.00
+Andrew Lundy,3726 Famosa 2/12/12 oz Btl,Famosa,250133 Bayway World Of Liquor,10/23/2025,15.00,,-15.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,171322 Twin City Liquors,10/23/2025,5.00,,-5.00
+Dylan Rubino,3724 Famosa 2/12/12 oz Can,Famosa,171322 Twin City Liquors,10/23/2025,15.00,,-15.00
+Hakan Sadik,3722 Famosa 1/12/24 oz Can,Famosa,150211 Harmony Bar & Liquors,10/23/2025,15.00,,-15.00
+Dave Ehlers,3722 Famosa 1/12/24 oz Can,Famosa,52019 W E Beverage (A),10/23/2025,22.00,,-22.00
+Andrew Lundy,3723 Famosa 1/12/33.8 oz Btl,Famosa,250440 Metro Liquor (Linden),10/23/2025,5.00,,-5.00
+Andrew Lundy,3723 Famosa 1/12/33.8 oz Btl,Famosa,250066 Fenrose Wine & Liq,10/23/2025,5.00,,-5.00
+Hakan Sadik,3722 Famosa 1/12/24 oz Can,Famosa,150076 Rapp Beer & Soda (A),10/23/2025,60.00,,-60.00
+Alex Rodriguez,3723 Famosa 1/12/33.8 oz Btl,Famosa,250300 Jackson Liquors,10/23/2025,1.00,,-1.00
+Hakan Sadik,3724 Famosa 2/12/12 oz Can,Famosa,150211 Harmony Bar & Liquors,10/23/2025,3.00,,-3.00
+Hakan Sadik,3726 Famosa 2/12/12 oz Btl,Famosa,150211 Harmony Bar & Liquors,10/23/2025,2.00,,-2.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,170043 Communipaw Liqs (P),10/23/2025,3.00,,-3.00
+Andrew Lundy,3722 Famosa 1/12/24 oz Can,Famosa,250066 Fenrose Wine & Liq,10/23/2025,20.00,,-20.00
+Alisa Acciardi,3722 Famosa 1/12/24 oz Can,Famosa,150033 Discount Liquors Bloomfield,10/23/2025,20.00,,-20.00
+Dave Ehlers,3723 Famosa 1/12/33.8 oz Btl,Famosa,52019 W E Beverage (A),10/23/2025,1.00,,-1.00
+Hakan Sadik,3723 Famosa 1/12/33.8 oz Btl,Famosa,150614 International Liquor,10/22/2025,2.00,,-2.00
+Hakan Sadik,3722 Famosa 1/12/24 oz Can,Famosa,150614 International Liquor,10/22/2025,6.00,,-6.00
+Javier Melo,3724 Famosa 2/12/12 oz Can,Famosa,20021 Diamond Liquors (P),10/22/2025,10.00,,-10.00
+Alisa Acciardi,3720 Famosa 4/6/12 oz Btl,Famosa,171404 Massarelli's Liquors,10/22/2025,4.00,,-4.00
+Alex Rodriguez,3726 Famosa 2/12/12 oz Btl,Famosa,250141 Ben Franklin Liquor,10/22/2025,8.00,,-8.00
+Dave Ehlers,3722 Famosa 1/12/24 oz Can,Famosa,39012 Wine And Liq Depot(A),10/22/2025,10.00,,-10.00
+Alisa Acciardi,3726 Famosa 2/12/12 oz Btl,Famosa,171404 Massarelli's Liquors,10/22/2025,5.00,,-5.00
+Dave Ehlers,3722 Famosa 1/12/24 oz Can,Famosa,41005 George's Liq,10/22/2025,12.00,,-12.00
+Andrew Lundy,3722 Famosa 1/12/24 oz Can,Famosa,250032 Rotondo's Liquor,10/22/2025,2.00,,-2.00
+Dan Lagala,3722 Famosa 1/12/24 oz Can,Famosa,44002 Wine And Food Mart (Z),10/22/2025,10.00,,-10.00
+Alisa Acciardi,3724 Famosa 2/12/12 oz Can,Famosa,150020 Gallaghers Wine & Cheese,10/22/2025,10.00,,-10.00
+Dan Lagala,3720 Famosa 4/6/12 oz Btl,Famosa,44002 Wine And Food Mart (Z),10/22/2025,4.00,,-4.00
+Dan Lagala,3724 Famosa 2/12/12 oz Can,Famosa,44002 Wine And Food Mart (Z),10/22/2025,6.00,,-6.00
+Dan Lagala,3724 Famosa 2/12/12 oz Can,Famosa,43005 Rome Liquors (Fairview),10/22/2025,20.00,,-20.00
+Alex Rodriguez,3723 Famosa 1/12/33.8 oz Btl,Famosa,250141 Ben Franklin Liquor,10/22/2025,2.00,,-2.00
+Dan Lagala,3722 Famosa 1/12/24 oz Can,Famosa,43005 Rome Liquors (Fairview),10/22/2025,14.00,,-14.00
+Dave Ehlers,3726 Famosa 2/12/12 oz Btl,Famosa,41005 George's Liq,10/22/2025,6.00,,-6.00
+Derrick Laws,3720 Famosa 4/6/12 oz Btl,Famosa,21045 Dorta Liquor (A),10/22/2025,3.00,,-3.00
+Dave Ehlers,3724 Famosa 2/12/12 oz Can,Famosa,39012 Wine And Liq Depot(A),10/22/2025,10.00,,-10.00
+Alisa Acciardi,3724 Famosa 2/12/12 oz Can,Famosa,171404 Massarelli's Liquors,10/22/2025,10.00,,-10.00
+Jaime Colonna,3720 Famosa 4/6/12 oz Btl,Famosa,170020 Hoboken Beer & Soda,10/22/2025,15.00,,-15.00
+Dan Lagala,3722 Famosa 1/12/24 oz Can,Famosa,43006 Fairview Liq & Groc.(A),10/22/2025,40.00,,-40.00
+Alisa Acciardi,3722 Famosa 1/12/24 oz Can,Famosa,171404 Massarelli's Liquors,10/22/2025,2.00,,-2.00
+Derrick Laws,3724 Famosa 2/12/12 oz Can,Famosa,21045 Dorta Liquor (A),10/22/2025,12.00,,-12.00
+Dave Ehlers,3720 Famosa 4/6/12 oz Btl,Famosa,41005 George's Liq,10/22/2025,2.00,,-2.00
+Dan Lagala,3720 Famosa 4/6/12 oz Btl,Famosa,43005 Rome Liquors (Fairview),10/22/2025,6.00,,-6.00
+Hakan Sadik,3724 Famosa 2/12/12 oz Can,Famosa,150135 Home Liquors(520 East Orange),10/21/2025,15.00,,-15.00
+Andrew Lundy,3722 Famosa 1/12/24 oz Can,Famosa,250119 Pointe Grande Liquor,10/21/2025,19.00,,-19.00
+Hakan Sadik,3722 Famosa 1/12/24 oz Can,Famosa,150113 Express Two Liquors,10/21/2025,60.00,,-60.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,170163 Buy Rite Union City,10/21/2025,1.00,,-1.00
+Phil Ernst,3720 Famosa 4/6/12 oz Btl,Famosa,43001 City Supermarket,10/21/2025,5.00,,-5.00
+Andrew Lundy,3720 Famosa 4/6/12 oz Btl,Famosa,150133 The Wine Rack Millburn,10/21/2025,1.00,,-1.00
+Hakan Sadik,3726 Famosa 2/12/12 oz Btl,Famosa,150113 Express Two Liquors,10/21/2025,5.00,,-5.00
+Hakan Sadik,3720 Famosa 4/6/12 oz Btl,Famosa,150615 Home Liquors(1277 Irvington),10/21/2025,15.00,,-15.00
+Hakan Sadik,3720 Famosa 4/6/12 oz Btl,Famosa,150135 Home Liquors(520 East Orange),10/21/2025,3.00,,-3.00
+Hakan Sadik,3724 Famosa 2/12/12 oz Can,Famosa,150218 Lyons Discount,10/21/2025,5.00,,-5.00
+Phil Ernst,3724 Famosa 2/12/12 oz Can,Famosa,43001 City Supermarket,10/21/2025,10.00,,-10.00
+Hakan Sadik,3722 Famosa 1/12/24 oz Can,Famosa,150135 Home Liquors(520 East Orange),10/21/2025,5.00,,-5.00
+Jaime Colonna,3723 Famosa 1/12/33.8 oz Btl,Famosa,28001 One Stop Wine (A) & Liq,10/21/2025,1.00,,-1.00
+Hakan Sadik,3720 Famosa 4/6/12 oz Btl,Famosa,150113 Express Two Liquors,10/21/2025,10.00,,-10.00
+Phil Ernst,3722 Famosa 1/12/24 oz Can,Famosa,43001 City Supermarket,10/21/2025,5.00,,-5.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,170163 Buy Rite Union City,10/21/2025,2.00,,-2.00
+Hakan Sadik,3723 Famosa 1/12/33.8 oz Btl,Famosa,150135 Home Liquors(520 East Orange),10/21/2025,3.00,,-3.00
+Hakan Sadik,3724 Famosa 2/12/12 oz Can,Famosa,150113 Express Two Liquors,10/21/2025,5.00,,-5.00
+Jaime Colonna,3724 Famosa 2/12/12 oz Can,Famosa,170021 Jersey City Buy Rite (A),10/21/2025,10.00,,-10.00
+Hakan Sadik,3724 Famosa 2/12/12 oz Can,Famosa,150212 Home Wines & Liquors (Orange),10/21/2025,20.00,,-20.00
+Dylan Rubino,3724 Famosa 2/12/12 oz Can,Famosa,170163 Buy Rite Union City,10/21/2025,7.00,,-7.00
+Shane Barreca,3720 Famosa 4/6/12 oz Btl,Famosa,73003 Bottle King (A) Hillsdale,10/20/2025,1.00,,-1.00
+Dan Lagala,3722 Famosa 1/12/24 oz Can,Famosa,43007 American Classic Liq,10/20/2025,18.00,,-18.00
+Dan Lagala,3722 Famosa 1/12/24 oz Can,Famosa,43002 Checo Supermarket,10/20/2025,25.00,,-25.00
+Dan Lagala,3724 Famosa 2/12/12 oz Can,Famosa,43007 American Classic Liq,10/20/2025,2.00,,-2.00
+Hakan Sadik,3722 Famosa 1/12/24 oz Can,Famosa,150216 Brandy's Lounge And Liquors,10/17/2025,20.00,,-20.00
+Hakan Sadik,3724 Famosa 2/12/12 oz Can,Famosa,150132 Boot Leggers W/L,10/17/2025,10.00,,-10.00
+Dan Lagala,3722 Famosa 1/12/24 oz Can,Famosa,46003 Palisades Park Liq(P),10/17/2025,5.00,,-5.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,170208 Benny's Liq & Deli,10/17/2025,50.00,,-50.00
+Dylan Rubino,3723 Famosa 1/12/33.8 oz Btl,Famosa,170208 Benny's Liq & Deli,10/17/2025,10.00,,-10.00
+Hakan Sadik,3722 Famosa 1/12/24 oz Can,Famosa,152032 Avenue Liquors,10/17/2025,20.00,,-20.00
+Hakan Sadik,3723 Famosa 1/12/33.8 oz Btl,Famosa,150217 Galaxy Liquor,10/17/2025,2.00,,-2.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,170208 Benny's Liq & Deli,10/17/2025,15.00,,-15.00
+Hakan Sadik,3720 Famosa 4/6/12 oz Btl,Famosa,150217 Galaxy Liquor,10/17/2025,3.00,,-3.00
+Hakan Sadik,3720 Famosa 4/6/12 oz Btl,Famosa,150132 Boot Leggers W/L,10/17/2025,6.00,,-6.00
+Hakan Sadik,3722 Famosa 1/12/24 oz Can,Famosa,150217 Galaxy Liquor,10/17/2025,20.00,,-20.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,170107 Central Wine And Liquors,10/17/2025,-3.00,,3.00
+Dan Lagala,3720 Famosa 4/6/12 oz Btl,Famosa,46003 Palisades Park Liq(P),10/17/2025,5.00,,-5.00
+Pablo Lopez,3720 Famosa 4/6/12 oz Btl,Famosa,27043 Monroe Wine & Liq(P),10/17/2025,5.00,,-5.00
+Hakan Sadik,3722 Famosa 1/12/24 oz Can,Famosa,150132 Boot Leggers W/L,10/17/2025,4.00,,-4.00
+Andrew Lundy,3720 Famosa 4/6/12 oz Btl,Famosa,250071 Total Wine & More (Union),10/17/2025,1.00,,-1.00
+Hakan Sadik,3720 Famosa 4/6/12 oz Btl,Famosa,150184 Newark Discount Wine and Spirits,10/17/2025,15.00,,-15.00
+Dylan Rubino,3726 Famosa 2/12/12 oz Btl,Famosa,170208 Benny's Liq & Deli,10/17/2025,5.00,,-5.00
+Hakan Sadik,3720 Famosa 4/6/12 oz Btl,Famosa,150668 Chancellor Irvington,10/17/2025,5.00,,-5.00
+Hakan Sadik,3722 Famosa 1/12/24 oz Can,Famosa,150184 Newark Discount Wine and Spirits,10/17/2025,5.00,,-5.00
+Dan Lagala,3724 Famosa 2/12/12 oz Can,Famosa,46002 Best Choice Liqrs (P),10/17/2025,10.00,,-10.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,170077 Moon Liquors (P),10/17/2025,5.00,,-5.00
+Dylan Rubino,3724 Famosa 2/12/12 oz Can,Famosa,170107 Central Wine And Liquors,10/17/2025,-2.00,,2.00
+Hakan Sadik,3724 Famosa 2/12/12 oz Can,Famosa,150668 Chancellor Irvington,10/17/2025,10.00,,-10.00
+Dan Lagala,3724 Famosa 2/12/12 oz Can,Famosa,46003 Palisades Park Liq(P),10/17/2025,10.00,,-10.00
+Dylan Rubino,3724 Famosa 2/12/12 oz Can,Famosa,170208 Benny's Liq & Deli,10/17/2025,25.00,,-25.00
+Dan Lagala,3722 Famosa 1/12/24 oz Can,Famosa,46002 Best Choice Liqrs (P),10/17/2025,20.00,,-20.00
+Hakan Sadik,3724 Famosa 2/12/12 oz Can,Famosa,150217 Galaxy Liquor,10/17/2025,10.00,,-10.00
+Dylan Rubino,3723 Famosa 1/12/33.8 oz Btl,Famosa,171321 Kikos Liquor (P),10/16/2025,3.00,,-3.00
+Alex Rodriguez,3722 Famosa 1/12/24 oz Can,Famosa,250140 Station Liquors,10/16/2025,10.00,,-10.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,170146 Jenny's Liq,10/16/2025,20.00,,-20.00
+Dan Lagala,3720 Famosa 4/6/12 oz Btl,Famosa,43006 Fairview Liq & Groc.(A),10/16/2025,15.00,,-15.00
+Alex Rodriguez,3723 Famosa 1/12/33.8 oz Btl,Famosa,250140 Station Liquors,10/16/2025,1.00,,-1.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,171322 Twin City Liquors,10/16/2025,20.00,,-20.00
+Alex Rodriguez,3722 Famosa 1/12/24 oz Can,Famosa,250020 Rick's Wines & Liquors,10/16/2025,9.00,,-9.00
+Derrick Laws,3724 Famosa 2/12/12 oz Can,Famosa,20079 Limestone Liquors (A),10/16/2025,10.00,,-10.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,170191 Wine Warehouse (P) (Union City),10/16/2025,5.00,,-5.00
+Alex Rodriguez,3724 Famosa 2/12/12 oz Can,Famosa,250140 Station Liquors,10/16/2025,9.00,,-9.00
+Hakan Sadik,3724 Famosa 2/12/12 oz Can,Famosa,150166 Liquor Zone,10/16/2025,20.00,,-20.00
+Alex Rodriguez,3722 Famosa 1/12/24 oz Can,Famosa,250141 Ben Franklin Liquor,10/16/2025,10.00,,-10.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,172051 WNY Liquors,10/16/2025,10.00,,-10.00
+Dylan Rubino,3724 Famosa 2/12/12 oz Can,Famosa,172051 WNY Liquors,10/16/2025,10.00,,-10.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,171337 J & L Liquors (P),10/16/2025,16.00,,-16.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,170169 Buy Rite North Bergen,10/16/2025,20.00,,-20.00
+Dylan Rubino,3724 Famosa 2/12/12 oz Can,Famosa,170191 Wine Warehouse (P) (Union City),10/16/2025,15.00,,-15.00
+Dylan Rubino,3724 Famosa 2/12/12 oz Can,Famosa,171337 J & L Liquors (P),10/16/2025,50.00,,-50.00
+Dan Lagala,3723 Famosa 1/12/33.8 oz Btl,Famosa,43006 Fairview Liq & Groc.(A),10/16/2025,5.00,,-5.00
+Dan Lagala,3722 Famosa 1/12/24 oz Can,Famosa,43007 American Classic Liq,10/16/2025,15.00,,-15.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,171323 Union Liquors,10/16/2025,2.00,,-2.00
+Alex Rodriguez,3724 Famosa 2/12/12 oz Can,Famosa,250082 Pickwick Liquor Shop,10/16/2025,10.00,,-10.00
+Dan Lagala,3720 Famosa 4/6/12 oz Btl,Famosa,49027 Linwood Wine-Linwood Plaza,10/16/2025,15.00,,-15.00
+Alex Rodriguez,3726 Famosa 2/12/12 oz Btl,Famosa,250141 Ben Franklin Liquor,10/16/2025,3.00,,-3.00
+Dylan Rubino,3724 Famosa 2/12/12 oz Can,Famosa,171323 Union Liquors,10/16/2025,8.00,,-8.00
+Dan Lagala,3724 Famosa 2/12/12 oz Can,Famosa,43007 American Classic Liq,10/16/2025,3.00,,-3.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,170146 Jenny's Liq,10/16/2025,40.00,,-40.00
+Dylan Rubino,3723 Famosa 1/12/33.8 oz Btl,Famosa,170146 Jenny's Liq,10/16/2025,8.00,,-8.00
+Dylan Rubino,3724 Famosa 2/12/12 oz Can,Famosa,170146 Jenny's Liq,10/16/2025,20.00,,-20.00
+Dan Lagala,3720 Famosa 4/6/12 oz Btl,Famosa,43007 American Classic Liq,10/16/2025,2.00,,-2.00
+Dan Lagala,3723 Famosa 1/12/33.8 oz Btl,Famosa,44044 Sonsonate Rest(P),10/16/2025,5.00,,-5.00
+Alex Rodriguez,3726 Famosa 2/12/12 oz Btl,Famosa,250020 Rick's Wines & Liquors,10/16/2025,5.00,,-5.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,171321 Kikos Liquor (P),10/16/2025,3.00,,-3.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,172051 WNY Liquors,10/16/2025,20.00,,-20.00
+Alex Rodriguez,3723 Famosa 1/12/33.8 oz Btl,Famosa,250141 Ben Franklin Liquor,10/16/2025,1.00,,-1.00
+Hakan Sadik,3722 Famosa 1/12/24 oz Can,Famosa,150166 Liquor Zone,10/16/2025,5.00,,-5.00
+Alex Rodriguez,3720 Famosa 4/6/12 oz Btl,Famosa,250141 Ben Franklin Liquor,10/16/2025,2.00,,-2.00
+Hakan Sadik,3723 Famosa 1/12/33.8 oz Btl,Famosa,150166 Liquor Zone,10/16/2025,5.00,,-5.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,171321 Kikos Liquor (P),10/16/2025,14.00,,-14.00
+Alex Rodriguez,3720 Famosa 4/6/12 oz Btl,Famosa,250020 Rick's Wines & Liquors,10/16/2025,6.00,,-6.00
+Alex Rodriguez,3724 Famosa 2/12/12 oz Can,Famosa,250020 Rick's Wines & Liquors,10/16/2025,1.00,,-1.00
+Dan Lagala,3722 Famosa 1/12/24 oz Can,Famosa,49033 Banner Liquor Iii,10/16/2025,5.00,,-5.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,171337 J & L Liquors (P),10/16/2025,36.00,,-36.00
+Dylan Rubino,3723 Famosa 1/12/33.8 oz Btl,Famosa,171322 Twin City Liquors,10/16/2025,5.00,,-5.00
+Dan Lagala,3722 Famosa 1/12/24 oz Can,Famosa,49027 Linwood Wine-Linwood Plaza,10/16/2025,5.00,,-5.00
+Alex Rodriguez,3724 Famosa 2/12/12 oz Can,Famosa,250141 Ben Franklin Liquor,10/16/2025,5.00,,-5.00
+Dylan Rubino,3723 Famosa 1/12/33.8 oz Btl,Famosa,171337 J & L Liquors (P),10/16/2025,8.00,,-8.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,170127 Fragoso Liquors,10/15/2025,10.00,,-10.00
+Dylan Rubino,3726 Famosa 2/12/12 oz Btl,Famosa,170013 Universal Liquors (A),10/15/2025,5.00,,-5.00
+Dylan Rubino,3723 Famosa 1/12/33.8 oz Btl,Famosa,170218 HD Liquors,10/15/2025,6.00,,-6.00
+Andrew Lundy,3722 Famosa 1/12/24 oz Can,Famosa,250028 Beechwood Wine & Liq,10/15/2025,10.00,,-10.00
+Dylan Rubino,3723 Famosa 1/12/33.8 oz Btl,Famosa,170023 Corks & Bottles (P),10/15/2025,5.00,,-5.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,170023 Corks & Bottles (P),10/15/2025,20.00,,-20.00
+Dan Lagala,3724 Famosa 2/12/12 oz Can,Famosa,44052 Minit Mart_2,10/15/2025,2.00,,-2.00
+Dylan Rubino,3724 Famosa 2/12/12 oz Can,Famosa,170023 Corks & Bottles (P),10/15/2025,15.00,,-15.00
+Dan Lagala,3720 Famosa 4/6/12 oz Btl,Famosa,44052 Minit Mart_2,10/15/2025,9.00,,-9.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,178020 STOP & GO LIQUORS,10/15/2025,2.00,,-2.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,170218 HD Liquors,10/15/2025,20.00,,-20.00
+Dan Lagala,3723 Famosa 1/12/33.8 oz Btl,Famosa,44052 Minit Mart_2,10/15/2025,2.00,,-2.00
+Hakan Sadik,3722 Famosa 1/12/24 oz Can,Famosa,150113 Express Two Liquors,10/15/2025,15.00,,-15.00
+Dylan Rubino,3723 Famosa 1/12/33.8 oz Btl,Famosa,171320 Figi Wine & Liq (P),10/15/2025,4.00,,-4.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,170202 Golden Liquors (P),10/15/2025,10.00,,-10.00
+Dan Lagala,3722 Famosa 1/12/24 oz Can,Famosa,44052 Minit Mart_2,10/15/2025,7.00,,-7.00
+Alisa Acciardi,3720 Famosa 4/6/12 oz Btl,Famosa,150086 Cordes Wine & Liquor,10/15/2025,2.00,,-2.00
+Hakan Sadik,3720 Famosa 4/6/12 oz Btl,Famosa,150151 Maple Liquors,10/15/2025,5.00,,-5.00
+Hakan Sadik,3724 Famosa 2/12/12 oz Can,Famosa,150113 Express Two Liquors,10/15/2025,5.00,,-5.00
+Hakan Sadik,3724 Famosa 2/12/12 oz Can,Famosa,150151 Maple Liquors,10/15/2025,20.00,,-20.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,178100 Broadway Wine & Liquor,10/15/2025,10.00,,-10.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,170040 Los Padrinos,10/15/2025,30.00,,-30.00
+Dylan Rubino,3724 Famosa 2/12/12 oz Can,Famosa,178020 STOP & GO LIQUORS,10/15/2025,5.00,,-5.00
+Dylan Rubino,3723 Famosa 1/12/33.8 oz Btl,Famosa,170013 Universal Liquors (A),10/15/2025,5.00,,-5.00
+Dylan Rubino,3724 Famosa 2/12/12 oz Can,Famosa,171320 Figi Wine & Liq (P),10/15/2025,14.00,,-14.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,170023 Corks & Bottles (P),10/15/2025,10.00,,-10.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,170202 Golden Liquors (P),10/15/2025,10.00,,-10.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,170203 Town Beverage,10/15/2025,10.00,,-10.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,178020 STOP & GO LIQUORS,10/15/2025,3.00,,-3.00
+Dylan Rubino,3724 Famosa 2/12/12 oz Can,Famosa,170203 Town Beverage,10/15/2025,10.00,,-10.00
+Dylan Rubino,3723 Famosa 1/12/33.8 oz Btl,Famosa,170203 Town Beverage,10/15/2025,5.00,,-5.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,170013 Universal Liquors (A),10/15/2025,5.00,,-5.00
+Dylan Rubino,3724 Famosa 2/12/12 oz Can,Famosa,170040 Los Padrinos,10/15/2025,15.00,,-15.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,170203 Town Beverage,10/15/2025,10.00,,-10.00
+Hakan Sadik,3720 Famosa 4/6/12 oz Btl,Famosa,150156 Ivy Plaza Liquors,10/15/2025,5.00,,-5.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,170013 Universal Liquors (A),10/15/2025,25.00,,-25.00
+Alisa Acciardi,3722 Famosa 1/12/24 oz Can,Famosa,121004 Harry's Wine Cellar,10/15/2025,20.00,,-20.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,170218 HD Liquors,10/15/2025,5.00,,-5.00
+Dylan Rubino,3724 Famosa 2/12/12 oz Can,Famosa,170202 Golden Liquors (P),10/15/2025,10.00,,-10.00
+Alisa Acciardi,3726 Famosa 2/12/12 oz Btl,Famosa,150086 Cordes Wine & Liquor,10/15/2025,3.00,,-3.00
+Alisa Acciardi,3722 Famosa 1/12/24 oz Can,Famosa,150130 Seabra Liquors,10/14/2025,20.00,,-20.00
+Chris Payton,3724 Famosa 2/12/12 oz Can,Famosa,25034 Figlar's (P),10/14/2025,7.00,,-7.00
+Derrick Laws,3720 Famosa 4/6/12 oz Btl,Famosa,17002 Hillcrest Liqrs (A),10/14/2025,5.00,,-5.00
+Alisa Acciardi,3723 Famosa 1/12/33.8 oz Btl,Famosa,150130 Seabra Liquors,10/14/2025,3.00,,-3.00
+Chris Payton,3726 Famosa 2/12/12 oz Btl,Famosa,25034 Figlar's (P),10/14/2025,3.00,,-3.00
+Derrick Laws,3720 Famosa 4/6/12 oz Btl,Famosa,22032 Economy Liquors,10/14/2025,5.00,,-5.00
+Dan Lagala,3720 Famosa 4/6/12 oz Btl,Famosa,49031 Top Shelf Liquors,10/14/2025,2.00,,-2.00
+Hakan Sadik,3720 Famosa 4/6/12 oz Btl,Famosa,150225 Park Ave Wine & Liquors,10/10/2025,7.00,,-7.00
+Hakan Sadik,3720 Famosa 4/6/12 oz Btl,Famosa,150154 Toast Of The Town,10/10/2025,6.00,,-6.00
+Hakan Sadik,3722 Famosa 1/12/24 oz Can,Famosa,150154 Toast Of The Town,10/10/2025,10.00,,-10.00
+Alisa Acciardi,3720 Famosa 4/6/12 oz Btl,Famosa,150098 Lisbon Wines & Liquors,10/10/2025,2.00,,-2.00
+Hakan Sadik,3722 Famosa 1/12/24 oz Can,Famosa,150225 Park Ave Wine & Liquors,10/10/2025,2.00,,-2.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,170027 Discount Liquors West New York,10/10/2025,15.00,,-15.00
+Hakan Sadik,3724 Famosa 2/12/12 oz Can,Famosa,150154 Toast Of The Town,10/10/2025,20.00,,-20.00
+Hakan Sadik,3723 Famosa 1/12/33.8 oz Btl,Famosa,150225 Park Ave Wine & Liquors,10/10/2025,4.00,,-4.00
+Alisa Acciardi,3724 Famosa 2/12/12 oz Can,Famosa,150098 Lisbon Wines & Liquors,10/10/2025,8.00,,-8.00
+Jim Heaney,3722 Famosa 1/12/24 oz Can,Famosa,13017 On The Rocks,10/10/2025,1.00,,-1.00
+Pablo Lopez,3720 Famosa 4/6/12 oz Btl,Famosa,27072 Passaic Discount Liquors,10/10/2025,10.00,,-10.00
+Hakan Sadik,3724 Famosa 2/12/12 oz Can,Famosa,150225 Park Ave Wine & Liquors,10/10/2025,7.00,,-7.00
+Hakan Sadik,3724 Famosa 2/12/12 oz Can,Famosa,150164 Best Quality Liquor,10/10/2025,9.00,,-9.00
+Dylan Rubino,3724 Famosa 2/12/12 oz Can,Famosa,170027 Discount Liquors West New York,10/10/2025,5.00,,-5.00
+Hakan Sadik,3722 Famosa 1/12/24 oz Can,Famosa,150164 Best Quality Liquor,10/10/2025,16.00,,-16.00
+Alisa Acciardi,3720 Famosa 4/6/12 oz Btl,Famosa,150106 Iron Bound Wines & Spirit,10/10/2025,5.00,,-5.00
+Hakan Sadik,3722 Famosa 1/12/24 oz Can,Famosa,150066 New Home Liquor,10/10/2025,15.00,,-15.00
+Hakan Sadik,3724 Famosa 2/12/12 oz Can,Famosa,150066 New Home Liquor,10/10/2025,5.00,,-5.00
+Dave Ehlers,3722 Famosa 1/12/24 oz Can,Famosa,41005 George's Liq,10/10/2025,20.00,,-20.00
+Hakan Sadik,3720 Famosa 4/6/12 oz Btl,Famosa,150164 Best Quality Liquor,10/10/2025,2.00,,-2.00
+Dave Ehlers,3724 Famosa 2/12/12 oz Can,Famosa,52040 Burgundy Convenience Store,10/10/2025,1.00,,-1.00
+Pablo Lopez,3724 Famosa 2/12/12 oz Can,Famosa,26014 Regalado Liq,10/9/2025,15.00,,-15.00
+Shane Barreca,3726 Famosa 2/12/12 oz Btl,Famosa,67004 Beverage Barn (A),10/9/2025,12.00,,-12.00
+Dan Lagala,3724 Famosa 2/12/12 oz Can,Famosa,44016 Liquor City(A)Cliffside,10/9/2025,13.00,,-13.00
+Dan Lagala,3723 Famosa 1/12/33.8 oz Btl,Famosa,44016 Liquor City(A)Cliffside,10/9/2025,2.00,,-2.00
+Michael Harboy,3720 Famosa 4/6/12 oz Btl,Famosa,150008 Total Wine & More (West Orange),10/9/2025,5.00,,-5.00
+Alex Rodriguez,3723 Famosa 1/12/33.8 oz Btl,Famosa,250080 Crown Liquors,10/9/2025,2.00,,-2.00
+Shane Barreca,3724 Famosa 2/12/12 oz Can,Famosa,67004 Beverage Barn (A),10/9/2025,20.00,,-20.00
+Alex Rodriguez,3726 Famosa 2/12/12 oz Btl,Famosa,250080 Crown Liquors,10/9/2025,2.00,,-2.00
+Phil Ernst,3722 Famosa 1/12/24 oz Can,Famosa,43001 City Supermarket,10/9/2025,5.00,,-5.00
+Dan Lagala,3722 Famosa 1/12/24 oz Can,Famosa,44016 Liquor City(A)Cliffside,10/9/2025,5.00,,-5.00
+Dan Lagala,3720 Famosa 4/6/12 oz Btl,Famosa,44016 Liquor City(A)Cliffside,10/9/2025,5.00,,-5.00
+Dan Lagala,3722 Famosa 1/12/24 oz Can,Famosa,46015 Mukeunji (Z),10/9/2025,20.00,,-20.00
+Phil Ernst,3724 Famosa 2/12/12 oz Can,Famosa,43001 City Supermarket,10/9/2025,5.00,,-5.00
+Shane Barreca,3720 Famosa 4/6/12 oz Btl,Famosa,67004 Beverage Barn (A),10/9/2025,2.00,,-2.00
+Dan Lagala,3720 Famosa 4/6/12 oz Btl,Famosa,54006 Tenafly Fine Wine & Spirits,10/9/2025,5.00,,-5.00
+Alex Rodriguez,3720 Famosa 4/6/12 oz Btl,Famosa,250080 Crown Liquors,10/9/2025,1.00,,-1.00
+Andrew Lundy,3726 Famosa 2/12/12 oz Btl,Famosa,250142 Queen City Liquors,10/9/2025,10.00,,-10.00
+Alex Rodriguez,3720 Famosa 4/6/12 oz Btl,Famosa,250149 South Ave Liquors,10/9/2025,3.00,,-3.00
+Alex Rodriguez,3724 Famosa 2/12/12 oz Can,Famosa,250149 South Ave Liquors,10/9/2025,10.00,,-10.00
+Andrew Lundy,3724 Famosa 2/12/12 oz Can,Famosa,250142 Queen City Liquors,10/9/2025,15.00,,-15.00
+Pablo Lopez,3723 Famosa 1/12/33.8 oz Btl,Famosa,26014 Regalado Liq,10/9/2025,3.00,,-3.00
+Dan Lagala,3720 Famosa 4/6/12 oz Btl,Famosa,44002 Wine And Food Mart (Z),10/9/2025,5.00,,-5.00
+Andrew Lundy,3720 Famosa 4/6/12 oz Btl,Famosa,250075 Cap N Cork Liquors,10/9/2025,1.00,,-1.00
+Alex Rodriguez,3722 Famosa 1/12/24 oz Can,Famosa,250149 South Ave Liquors,10/9/2025,7.00,,-7.00
+Pablo Lopez,3720 Famosa 4/6/12 oz Btl,Famosa,26014 Regalado Liq,10/9/2025,3.00,,-3.00
+Derrick Laws,3724 Famosa 2/12/12 oz Can,Famosa,21045 Dorta Liquor (A),10/8/2025,5.00,,-5.00
+Hakan Sadik,3722 Famosa 1/12/24 oz Can,Famosa,150216 Brandy's Lounge And Liquors,10/8/2025,20.00,,-20.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,170013 Universal Liquors (A),10/8/2025,5.00,,-5.00
+Derrick Laws,3722 Famosa 1/12/24 oz Can,Famosa,21045 Dorta Liquor (A),10/8/2025,10.00,,-10.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,170212 Empire Liq (P),10/8/2025,15.00,,-15.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,170063 Boulevard Mart & Liq (A),10/8/2025,1.00,,-1.00
+Derrick Laws,3723 Famosa 1/12/33.8 oz Btl,Famosa,21045 Dorta Liquor (A),10/8/2025,3.00,,-3.00
+Javier Melo,3720 Famosa 4/6/12 oz Btl,Famosa,27077 Mojito Bar,10/8/2025,5.00,,-5.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,170212 Empire Liq (P),10/8/2025,5.00,,-5.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,170013 Universal Liquors (A),10/8/2025,5.00,,-5.00
+Hakan Sadik,3722 Famosa 1/12/24 oz Can,Famosa,150076 Rapp Beer & Soda (A),10/8/2025,15.00,,-15.00
+Hakan Sadik,3724 Famosa 2/12/12 oz Can,Famosa,150217 Galaxy Liquor,10/8/2025,2.00,,-2.00
+Dylan Rubino,3723 Famosa 1/12/33.8 oz Btl,Famosa,170310 Buy & Savings Ii (P),10/8/2025,2.00,,-2.00
+Derrick Laws,3720 Famosa 4/6/12 oz Btl,Famosa,21045 Dorta Liquor (A),10/8/2025,2.00,,-2.00
+Hakan Sadik,3720 Famosa 4/6/12 oz Btl,Famosa,150076 Rapp Beer & Soda (A),10/8/2025,5.00,,-5.00
+Hakan Sadik,3720 Famosa 4/6/12 oz Btl,Famosa,150217 Galaxy Liquor,10/8/2025,5.00,,-5.00
+Javier Melo,3722 Famosa 1/12/24 oz Can,Famosa,27046 New Eagle Liquors,10/8/2025,10.00,,-10.00
+Hakan Sadik,3722 Famosa 1/12/24 oz Can,Famosa,150217 Galaxy Liquor,10/8/2025,15.00,,-15.00
+Dylan Rubino,3724 Famosa 2/12/12 oz Can,Famosa,170023 Corks & Bottles (P),10/7/2025,7.00,,-7.00
+Dan Lagala,3720 Famosa 4/6/12 oz Btl,Famosa,43005 Rome Liquors (Fairview),10/7/2025,10.00,,-10.00
+Hakan Sadik,3724 Famosa 2/12/12 oz Can,Famosa,150134 Bell Liquor,10/7/2025,10.00,,-10.00
+Jaime Colonna,3720 Famosa 4/6/12 oz Btl,Famosa,170020 Hoboken Beer & Soda,10/7/2025,15.00,,-15.00
+Jaime Colonna,3720 Famosa 4/6/12 oz Btl,Famosa,170021 Jersey City Buy Rite (A),10/7/2025,13.00,,-13.00
+Jaime Colonna,3722 Famosa 1/12/24 oz Can,Famosa,170021 Jersey City Buy Rite (A),10/7/2025,2.00,,-2.00
+Javier Melo,3720 Famosa 4/6/12 oz Btl,Famosa,27034 Liquor Stop (Passaic),10/7/2025,-2.00,,2.00
+Dan Lagala,3720 Famosa 4/6/12 oz Btl,Famosa,43015 Kikos Liquors Ii,10/7/2025,10.00,,-10.00
+Dan Lagala,3724 Famosa 2/12/12 oz Can,Famosa,43015 Kikos Liquors Ii,10/7/2025,60.00,,-60.00
+Hakan Sadik,3720 Famosa 4/6/12 oz Btl,Famosa,150617 Irvington 876,10/7/2025,5.00,,-5.00
+Dan Lagala,3722 Famosa 1/12/24 oz Can,Famosa,43015 Kikos Liquors Ii,10/7/2025,60.00,,-60.00
+Javier Melo,3723 Famosa 1/12/33.8 oz Btl,Famosa,21044 Farm Boy,10/7/2025,1.00,,-1.00
+Hakan Sadik,3724 Famosa 2/12/12 oz Can,Famosa,150212 Home Wines & Liquors (Orange),10/7/2025,20.00,,-20.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,170023 Corks & Bottles (P),10/7/2025,10.00,,-10.00
+Dan Lagala,3723 Famosa 1/12/33.8 oz Btl,Famosa,43015 Kikos Liquors Ii,10/7/2025,10.00,,-10.00
+Dan Lagala,3724 Famosa 2/12/12 oz Can,Famosa,43005 Rome Liquors (Fairview),10/7/2025,90.00,,-90.00
+Dan Lagala,3726 Famosa 2/12/12 oz Btl,Famosa,43005 Rome Liquors (Fairview),10/7/2025,5.00,,-5.00
+Dan Lagala,3723 Famosa 1/12/33.8 oz Btl,Famosa,43005 Rome Liquors (Fairview),10/7/2025,10.00,,-10.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,170023 Corks & Bottles (P),10/7/2025,8.00,,-8.00
+Dan Lagala,3722 Famosa 1/12/24 oz Can,Famosa,43005 Rome Liquors (Fairview),10/7/2025,90.00,,-90.00
+Dan Lagala,3724 Famosa 2/12/12 oz Can,Famosa,46012 Jay Cee (P) Deli & Liq.,10/6/2025,10.00,,-10.00
+Shane Barreca,3723 Famosa 1/12/33.8 oz Btl,Famosa,67004 Beverage Barn (A),10/6/2025,3.00,,-3.00
+Shane Barreca,3724 Famosa 2/12/12 oz Can,Famosa,67004 Beverage Barn (A),10/6/2025,7.00,,-7.00
+Dan Lagala,3722 Famosa 1/12/24 oz Can,Famosa,46012 Jay Cee (P) Deli & Liq.,10/6/2025,25.00,,-25.00
+Dave Ehlers,3722 Famosa 1/12/24 oz Can,Famosa,52015 Shop Rite Liq (A)Englewd,10/6/2025,5.00,,-5.00
+Derrick Laws,3720 Famosa 4/6/12 oz Btl,Famosa,20127 Brothers A&C Pizza (P),10/6/2025,4.00,,-4.00
+Shane Barreca,3722 Famosa 1/12/24 oz Can,Famosa,67004 Beverage Barn (A),10/6/2025,10.00,,-10.00
+Dan Lagala,3720 Famosa 4/6/12 oz Btl,Famosa,46012 Jay Cee (P) Deli & Liq.,10/6/2025,10.00,,-10.00
+Paul Mclaughlin,3726 Famosa 2/12/12 oz Btl,Famosa,56011 International Bar/Rest,10/3/2025,3.00,,-3.00
+Andrew Lundy,3724 Famosa 2/12/12 oz Can,Famosa,250170 D&R Liquor,10/3/2025,10.00,,-10.00
+Chris Payton,3722 Famosa 1/12/24 oz Can,Famosa,25045 Clifton Disc Liq (A),10/3/2025,3.00,,-3.00
+Andrew Lundy,3724 Famosa 2/12/12 oz Can,Famosa,120079 U S 1 Buy Rite (A),10/3/2025,10.00,,-10.00
+Andrew Lundy,3720 Famosa 4/6/12 oz Btl,Famosa,250071 Total Wine & More (Union),10/3/2025,1.00,,-1.00
+Andrew Lundy,3720 Famosa 4/6/12 oz Btl,Famosa,250803 Witty's Fine Wine & Spirt,10/3/2025,10.00,,-10.00
+Alisa Acciardi,3722 Famosa 1/12/24 oz Can,Famosa,150098 Lisbon Wines & Liquors,10/3/2025,20.00,,-20.00
+Andrew Lundy,3724 Famosa 2/12/12 oz Can,Famosa,250803 Witty's Fine Wine & Spirt,10/3/2025,5.00,,-5.00
+Chris Payton,3722 Famosa 1/12/24 oz Can,Famosa,80025 Paramus Food Center,10/3/2025,2.00,,-2.00
+Alisa Acciardi,3724 Famosa 2/12/12 oz Can,Famosa,171333 Family Convenience & Liq_2,10/2/2025,5.00,,-5.00
+Dan Lagala,3724 Famosa 2/12/12 oz Can,Famosa,43006 Fairview Liq & Groc.(A),10/2/2025,15.00,,-15.00
+Dylan Rubino,3723 Famosa 1/12/33.8 oz Btl,Famosa,170203 Town Beverage,10/2/2025,5.00,,-5.00
+Dan Lagala,3722 Famosa 1/12/24 oz Can,Famosa,43006 Fairview Liq & Groc.(A),10/2/2025,13.00,,-13.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,170203 Town Beverage,10/2/2025,5.00,,-5.00
+Dan Lagala,3723 Famosa 1/12/33.8 oz Btl,Famosa,43006 Fairview Liq & Groc.(A),10/2/2025,4.00,,-4.00
+Alisa Acciardi,3720 Famosa 4/6/12 oz Btl,Famosa,171333 Family Convenience & Liq_2,10/2/2025,5.00,,-5.00
+Dan Lagala,3720 Famosa 4/6/12 oz Btl,Famosa,43006 Fairview Liq & Groc.(A),10/2/2025,8.00,,-8.00
+Alex Rodriguez,3720 Famosa 4/6/12 oz Btl,Famosa,253003 Tequila Club,10/2/2025,10.00,,-10.00
+Michael Harboy,3724 Famosa 2/12/12 oz Can,Famosa,150162 Krauszer's Food & Liq,10/2/2025,5.00,,-5.00
+Dan Lagala,3722 Famosa 1/12/24 oz Can,Famosa,46015 Mukeunji (Z),10/2/2025,20.00,,-20.00
+Alex Rodriguez,3724 Famosa 2/12/12 oz Can,Famosa,253003 Tequila Club,10/2/2025,10.00,,-10.00
+Hakan Sadik,3720 Famosa 4/6/12 oz Btl,Famosa,152032 Avenue Liquors,10/2/2025,10.00,,-10.00
+Andrew Lundy,3724 Famosa 2/12/12 oz Can,Famosa,250024 Best Cellars (Summit),10/2/2025,10.00,,-10.00
+Alex Rodriguez,3726 Famosa 2/12/12 oz Btl,Famosa,253003 Tequila Club,10/2/2025,9.00,,-9.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,170203 Town Beverage,10/2/2025,5.00,,-5.00
+Alex Rodriguez,3723 Famosa 1/12/33.8 oz Btl,Famosa,253003 Tequila Club,10/2/2025,5.00,,-5.00
+Michael Harboy,3722 Famosa 1/12/24 oz Can,Famosa,150162 Krauszer's Food & Liq,10/2/2025,15.00,,-15.00
+Alex Rodriguez,3722 Famosa 1/12/24 oz Can,Famosa,253003 Tequila Club,10/2/2025,5.00,,-5.00
+Dylan Rubino,3724 Famosa 2/12/12 oz Can,Famosa,170203 Town Beverage,10/2/2025,5.00,,-5.00
+Michael Harboy,3723 Famosa 1/12/33.8 oz Btl,Famosa,150126 Valley Liquors,10/2/2025,1.00,,-1.00
+Andrew Lundy,3726 Famosa 2/12/12 oz Btl,Famosa,250133 Bayway World Of Liquor,10/2/2025,10.00,,-10.00
+Dylan Rubino,3723 Famosa 1/12/33.8 oz Btl,Famosa,170251 Peckmans Pharmacy,10/1/2025,3.00,,-3.00
+Javier Melo,3723 Famosa 1/12/33.8 oz Btl,Famosa,21044 Farm Boy,10/1/2025,2.00,,-2.00
+Javier Melo,3720 Famosa 4/6/12 oz Btl,Famosa,20021 Diamond Liquors (P),10/1/2025,6.00,,-6.00
+Javier Melo,3724 Famosa 2/12/12 oz Can,Famosa,20021 Diamond Liquors (P),10/1/2025,4.00,,-4.00
+Dylan Rubino,3720 Famosa 4/6/12 oz Btl,Famosa,170251 Peckmans Pharmacy,10/1/2025,2.00,,-2.00
+Alisa Acciardi,3720 Famosa 4/6/12 oz Btl,Famosa,170101 High Spirits Of Bayonne,10/1/2025,5.00,,-5.00
+Javier Melo,3720 Famosa 4/6/12 oz Btl,Famosa,27046 New Eagle Liquors,10/1/2025,3.00,,-3.00
+Alex Rodriguez,3723 Famosa 1/12/33.8 oz Btl,Famosa,250020 Rick's Wines & Liquors,10/1/2025,-5.00,,5.00
+Pablo Lopez,3722 Famosa 1/12/24 oz Can,Famosa,27043 Monroe Wine & Liq(P),10/1/2025,5.00,,-5.00
+Dan Lagala,3724 Famosa 2/12/12 oz Can,Famosa,43007 American Classic Liq,10/1/2025,8.00,,-8.00
+Javier Melo,3724 Famosa 2/12/12 oz Can,Famosa,27046 New Eagle Liquors,10/1/2025,5.00,,-5.00
+Pablo Lopez,3723 Famosa 1/12/33.8 oz Btl,Famosa,27043 Monroe Wine & Liq(P),10/1/2025,15.00,,-15.00
+Andrew Lundy,3724 Famosa 2/12/12 oz Can,Famosa,250142 Queen City Liquors,10/1/2025,10.00,,-10.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,170251 Peckmans Pharmacy,10/1/2025,5.00,,-5.00
+Dan Lagala,3722 Famosa 1/12/24 oz Can,Famosa,43007 American Classic Liq,10/1/2025,12.00,,-12.00
+Dylan Rubino,3722 Famosa 1/12/24 oz Can,Famosa,170096 Union City Liquors,10/1/2025,10.00,,-10.00
+Javier Melo,3723 Famosa 1/12/33.8 oz Btl,Famosa,27046 New Eagle Liquors,10/1/2025,2.00,,-2.00

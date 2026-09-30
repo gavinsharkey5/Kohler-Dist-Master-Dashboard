@@ -50,6 +50,9 @@ const BARDSTOWN = ['Bardstown Bourbon','Bardstown Green River'];
 const PROGRAM_BRANDS = {
   // --- incentives (incentive-tracking/programs.js keys) ---
   'inc:keystone_ice':['Keystone'], 'inc:touchdowns_tea':['Sun Cruiser','Twisted Tea'], 'inc:evil_genius':['Evil Genius'],
+  // October 2026 -- Industrial Arts is not in the brand workbook yet (new brand): null = no territory rule
+  'inc:mabi_single_serve':['White Claw',"Mike's Harder",'Cayman Jack'], 'inc:four_loko':['Four Loko'], 'inc:lagunitas_sprint':['Lagunitas','Lagunitas Brewing Co'],
+  'inc:famosa_oct':['Famosa'], 'inc:sam_adams_cold_snap':['Samuel Adams'], 'inc:industrial_arts':null,
   'inc:other_half':['Other Half'], 'inc:montauk':['Montauk'], 'inc:sam_adams_conversion':['Samuel Adams'],
   'inc:printed_menu':BARDSTOWN, 'inc:bardstown_display':BARDSTOWN, 'inc:two_xo':['2XO'],
   'inc:1911':['1911 Hard Cider'], 'inc:woodchuck':['Woodchuck'], 'inc:tona':['Tona'], 'inc:lytt':['Lytt'],

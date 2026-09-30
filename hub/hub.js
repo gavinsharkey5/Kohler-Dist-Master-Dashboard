@@ -203,14 +203,17 @@ const INC_CHANNEL = {
   keystone_ice:'off', lytt:'off', tona:'off', sun_cruiser:'off', path_to_victory:'off', path_to_victory_sd:'off', mollys:'off',
   display_auction:'off', mabi_retention:'off', mabi_retention_fall:'off',
   sam_adams_conversion:'on', printed_menu:'on', new_belgium:'on',
+  mabi_single_serve:'off', four_loko:'off', sam_adams_cold_snap:'on',
 };
 const CHANNEL_LABEL = {on:'On-Premise', off:'Off-Premise', both:'On & Off-Premise'};
 
-function incBlob(key){ return PROGRAM_DATA_2026_09[key] || PROGRAM_DATA[key] || {}; }
+function incBlob(key){ return (typeof PROGRAM_DATA_2026_10!=='undefined' && PROGRAM_DATA_2026_10[key]) || PROGRAM_DATA_2026_09[key] || PROGRAM_DATA[key] || {}; }
 function incPeriod(entry, month){
   const P = incBlob(entry.key);
   const year = +month.key.slice(0,4);
-  let start = parseISO(P.periodStart), end = parseISO(P.periodEnd);
+  // a registry entry may carry its own window (2026-09-30: the October tab
+  // extends Touchdowns & Tea and Lytt past the window their data was built for)
+  let start = entry.period ? parseISO(entry.period.start) : parseISO(P.periodStart), end = entry.period ? parseISO(entry.period.end) : parseISO(P.periodEnd);
   if(!start && P.meta && P.meta.startDate) start = parseUS(P.meta.startDate);
   if(!end && P.meta && P.meta.endDate) end = parseUS(P.meta.endDate);
   if(!start || !end){
@@ -1512,6 +1515,9 @@ function accountsPanel(p, rep){
 // Fallback (any program not listed): the mapped brand families + the unit.
 const SELL_ASK = {
   'inc:keystone_ice':'Place Keystone Ice 24oz cans.', 'inc:touchdowns_tea':'Place Sun Cruiser or Twisted Tea 12-packs.',
+  'inc:mabi_single_serve':'Sell in White Claw 19.2oz and Mike\'s Harder / Cayman Jack single serves.', 'inc:four_loko':'Place Four Loko Sour Apple or USA and sell cases.',
+  'inc:lagunitas_sprint':"Place Lagunitas IPA or Little Sumpin' packages, or an IPA keg.", 'inc:famosa_oct':'Sell Famosa — every package.',
+  'inc:sam_adams_cold_snap':'Convert the seasonal draft handle.', 'inc:industrial_arts':'Place 3 Industrial Arts SKUs, or a Wrench draft line.',
   'inc:evil_genius':"Place Stacy's Mom, Adulting or 867-5309.", 'inc:other_half':'Place Other Half core draft, or 3+ SKUs in a store.',
   'inc:montauk':'Place Wave Chaser cans or a Wave Chaser tap.', 'inc:sam_adams_conversion':'Switch the Summer Ale handle to Octoberfest.',
   'inc:printed_menu':'Get Bardstown or Green River on a printed menu.', 'inc:bardstown_display':'Build a 3-case Bardstown or Green River stack.',

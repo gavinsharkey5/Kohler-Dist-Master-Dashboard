@@ -696,6 +696,25 @@ the consolidated ask to Gavin. Key facts:
   "Accounts" card (20 dashboards now); account menu "My accounts" /
   "Accounts". Tests: scratchpad acct_test.mjs, mw_test.mjs.
 
+## October 2026 tab on the Incentive Tracker + hub (2026-09-30)
+
+Third month: `PROGRAM_LIST_2026_10` / `PROGRAM_DATA_2026_10` (markers
+`/* PROGRAM_DATA_10_START */..END` in incentive-tracking/index.html,
+`oct()` getter, MONTHS entry, DEFAULT_MONTH_KEY = '2026-10'). Four new
+programs have builders and exports (`data/mabi_single_serve.csv`,
+`lagunitas_sprint.csv`, `famosa_october.csv`, `industrial_arts.csv`);
+Four Loko and the Sam Adams seasonal conversion are structure-only until
+Gavin sends their files. The tracker README's OCTOBER 2026 section lists
+every rule, the stated ASSUMPTIONS (rep needs 3 Lagunitas PODs before
+any pays; Industrial Arts = new brand so every account is a non-buy and
+every SKU core; Southern District rate on 1+ SKU; Touchdowns & Tea runs
+through Oct 31; the MABI export is M.A.D.E.-only) and the refresh step.
+A registry entry may carry `period:{start,end}`; hub.js `incPeriod`
+honours it before the blob's window (used for Touchdowns & Tea, Lytt and
+the Oct 23 conversion deadline). `incBlob` checks the October blob
+first; rep/ and team/ stub `PROGRAM_DATA_2026_10={}`. Registry tag
+20260930b everywhere. Test: scratchpad oct_test.mjs.
+
 ## A program's summary headline must be a field metric, never dollars (2026-09-30)
 
 Touchdowns & Tea vanished from the hub's Boston Beer list because its

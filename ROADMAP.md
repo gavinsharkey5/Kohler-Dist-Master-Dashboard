@@ -11,6 +11,17 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
+- [ ] **October incentives: two exports + four answers** (Gavin): send the
+  Four Loko export and the Sam Adams seasonal conversion scoreboard so
+  their October shapes switch on. Confirm: (1) the conversion direction --
+  the deck says "Cold Snap to Summer Ale", presumably Octoberfest -> Cold
+  Snap; (2) Lagunitas: does nothing pay until a rep has 3 PODs (as built),
+  or do the first PODs pay at $10; (3) Industrial Arts: every SKU treated as
+  core and every account as a non-buy -- send a core list / target list if
+  either is narrower; (4) Touchdowns & Tea is shown through Oct 31 -- give
+  the real end date. Also: is "Long Drink Intro" (deck title slide, no
+  slide) a program to add?
+
 - [ ] **Accounts: one live check on Vercel** (Gavin): signed in as a rep,
   open kohlerdisthub.com/accounts/ and confirm the list shows only that
   rep's accounts, then open kohlerdisthub.com/hub/data/accounts.js in the
@@ -95,6 +106,13 @@ device, a decision).
   Drive), a Stops export without the invoice join, and a Brands sample.
 
 ## Done
+
+- [x] 2026-09-30 October 2026 tab on the Incentive Tracker and the hub: MABI
+  Fall Single Serve, Lagunitas Sprint to the Finish, Push Famosa and
+  Industrial Arts Target Account Launch scored from their RDE exports; Four
+  Loko and the Sam Adams seasonal conversion as structure-only shapes; the
+  deck's continuing programs carried over with October windows. October is
+  the default tab.
 
 - [x] 2026-09-30 Carbliss targets: YTD vs rolling-90 Carbliss buyers with a
   "fell off rolling 90" alert and list (rep / team / company scope), Pitch as

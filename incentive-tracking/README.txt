@@ -289,6 +289,86 @@ Switching tabs keeps the selected rep (a rep wants their own next
 month's card, not the program grid) and clears any open program detail,
 since program keys differ between months.
 
+OCTOBER 2026 (added 2026-09-30, from the 2026 October Rewards Deck)
+==================================================================
+A third month tab (PROGRAM_LIST_2026_10 / PROGRAM_DATA_2026_10, marker pair
+/* PROGRAM_DATA_10_START */ .. _END in index.html, the `oct()` getter, an
+October entry in MONTHS). October is the DEFAULT tab as of 2026-09-30 --
+the September programs end that day. The hub picks the month up on its
+own (buildPrograms walks MONTHS newest-first; incBlob now checks the
+October blob first).
+
+NEW PROGRAMS (deck p2-p7) -- exports Gavin sent 2026-09-30, saved as:
+  data/mabi_single_serve.csv   "RDE MABI FALL SINGLE SERVE INCENTIVE OCT-NOV"
+  data/lagunitas_sprint.csv    "RDE LAGUNITAS SPRINT TO THE FINISH OCTOBER"
+  data/famosa_october.csv      "RDE FAMOSA OCTOBER 2026"
+  data/industrial_arts.csv     "RDE INDUSTRIAL ARTS TARGET ACCOUNT LAUNCH OCTOBER"
+Refresh = save the new export over the same name, python3 generate.py.
+  mabi_single_serve   build_mabi_single_serve(). A "package sold in" is one
+                      single-serve SKU at one account with a placement in
+                      the window (POD grain). 8+ White Claw = $15, 8+ Mike's
+                      Harder / Cayman Jack = $15, a leg pays $30 when every
+                      package counted is M.A.D.E. (deck list, matched on the
+                      product name). Window Sept 1 - Nov 30 per the deck.
+                      NOTE the export only carries the 16 M.A.D.E. SKUs, so
+                      the MADE test reads true for every row.
+  lagunitas_sprint    build_lagunitas_sprint(). Off-premise POD = (rep,
+                      customer, Product Num) with a placement 10/1-11/30/2026
+                      and none 10/1-11/30/2025, IPA + Little Sumpin' packages
+                      only; $10 a POD, $15 once the rep has 3 AND the house
+                      40. On-premise: a keg account with no keg placement
+                      last year = $100; a November keg rebuy = +$50 (counted
+                      when November rows exist). No premise column in the
+                      export -> premise from customer_base_full.csv, kegs
+                      are on-premise by nature. ASSUMED: nothing pays until
+                      the rep has 3 PODs.
+  famosa_oct          build_famosa_october(). Cases Oct 2026 vs Oct 2025 per
+                      rep; the rep must be positive to earn; $2 a case, $3
+                      on the 7oz (product name). Ranked on case growth.
+  industrial_arts     build_industrial_arts(). Off-premise: an account is
+                      OPENED at 3+ distinct SKUs with a placement in the
+                      window (10/1-12/31) -> $40 + $10 per SKU over 3;
+                      Southern District (MIKE_KENNEDY_TEAM) $50 per account
+                      opened (ASSUMED: 1+ SKU). On-premise: Wrench keg in
+                      October at the 1/3 bbl minimum = $100; Nov AND Dec =
+                      +$250 (counted when those months exist). ASSUMED: a
+                      new brand, so every account is a non-buy and every
+                      SKU is core (the deck names no core list).
+  four_loko           STRUCTURE ONLY (rules, zero-state card, awaiting note)
+                      until Gavin sends the export. Supplier "Four Loko"
+                      (Phusion Projects), no logo file.
+  sam_adams_cold_snap STRUCTURE ONLY. The deck slide reads "convert Cold
+                      Snap to Summer Ale by October 23" -- almost certainly
+                      a carry-over typo (Octoberfest -> Cold Snap is the
+                      seasonal move); the rules are shown as the deck words
+                      them, period 10/1-10/23 via a registry `period`.
+ONGOING on the October tab (same datasets as before): touchdowns_tea
+(registry `period` 9/1-10/31 -- the deck lists it as continuing with no
+end date; ASSUMED through October), lytt (`period` 8/1-12/31: the rate
+reached pays through Dec 31 per p20), other_half, le_grand_noir,
+printed_menu, bardstown_display, two_xo. RETENTION: mc_retention,
+constellation_fall, mabi_retention_fall, yuengling_retention_fall, plus
+heineken_husa (Oct-Dec) and new_belgium_distribution_retain (Oct-Nov) as
+structure-only shapes again. A registry entry's `period` now overrides the
+blob's window in the hub (hub.js incPeriod) -- that is how an extended
+program keeps its September data and an October end date.
+NOT ADDED: "Long Drink Intro" is on the deck's title slide but has no
+slide; the Peroni & Banquet target draft slide (p11) is the Feb-Apr program
+whose retention window ended in June.
+Cards: cardLagunitasSprint / cardFamosaOct / cardIndustrialArts /
+cardMabiSingleServe; boards in PROGRAM_BOARD; SUMMARY adapters lead with
+distribution (no dollars in a headline -- the hub drops dollar programs);
+rules in PROGRAM_RULES; suppliers lagunitas / famosa / industrial_arts /
+phusion / heineken added with no logo files (progLogo renders nothing).
+hub/accounts.js PROGRAM_BRANDS: Industrial Arts is null (not in the brand
+workbook yet). Tests: scratchpad oct_test.mjs (tabs, every October card,
+structure-only shapes, hub suppliers and screens, no dollars).
+First numbers (2026-09-30, two days of October): Lagunitas 7 new PODs
+house-wide (Phil Ernst 6), Famosa 46 vs 4,085 cases LY, Industrial Arts 5
+accounts opened (Michael Harboy 2, Anthony Palmisano, Shane Barreca, Mike
+Ast), single serve 1,480 PODs since Sept 1 (15 reps at 8+ White Claw, 12
+at 8+ Harder / Cayman).
+
 SEPTEMBER 2026 (structure only, from the September Rewards Deck)
 ================================================================
 Built 2026-08-31 as STRUCTURE ONLY -- no September RDE export existed
