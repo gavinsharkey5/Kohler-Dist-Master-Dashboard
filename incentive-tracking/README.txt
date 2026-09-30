@@ -3758,6 +3758,19 @@ own card (cardTouchdownsTea) and leaderboard still show every payout leg
 -- only the shared summary changed. programs.js tag bumped to 20260930a
 on hub/, accounts/, rep/ and team/.
 
+2026-09-30 THIRD REFRESH -- Garage Beer President, Touchdowns & Tea (off + on), Le Grand Noir, Sam Adams Fast Start
+  python3 generate.py
+All five diffed row by row first; nothing was removed except where a restated
+total moved. Garage Beer President restated in place: house 8,629.15 ->
+8,840.89 CE of 9,305, every rep up but Dylan Rubino (still -43 vs last year)
+and John Neukum. Touchdowns & Tea OFF 4,589 -> 4,698 rows (+109, none removed),
+ON 2,460 -> 2,544 (+84); off-prem 12pk placements 123 -> 140, on-prem cases
+1,639 -> 1,847. Le Grand Noir 32 -> 34 rows (+2: Mike Ast / Park West Tavern
+9/30, Shane Barreca / Wine & Whiskey 9/24), house 32 -> 34 of 70 cases. Sam
+Adams Fast Start restated in place (157 rows; house 11,024 -> 12,499 cases vs
+14,956 last year): 4 -> 6 reps positive (commission doubled). Hub cache tag
+bumped (20260930d) for program_data.js.
+
 2026-09-30 SECOND REFRESH -- 1911, Woodchuck, Tona, Lytt (Keystone re-sent, unchanged)
   python3 generate.py
 Keystone _33 (274 rows) is the same multiset already on keystone-ice/actuals.csv
