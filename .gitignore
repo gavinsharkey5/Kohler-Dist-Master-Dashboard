@@ -13,3 +13,4 @@ wine-spirits/backups/
 # emails and phone numbers. The repo is public: never commit this.
 supabase/data/
 shots/
+undefined/
