@@ -885,6 +885,67 @@ never "lost", never a confirmed need. Tests: scratchpad
 alerts_test.mjs + acct_test.mjs; rep.css's `.card p` two-line clamp is
 undone in accounts.css for these prose cards.
 
+## PRODUCT DIRECTION (Gavin, 2026-09-30): a knowledge expert in the rep's pocket
+
+Gavin asked for this to be remembered. The app is to become "a knowledge
+expert in your pocket that you can talk to about the accounts on your
+route." Two asks, both judged achievable:
+1. STARRED PRODUCTS + INVENTORY ALERTS. Reps want to star products (with
+   a quantity they need, e.g. 25 cases) and be pinged when available-to-
+   sell inventory drops below it, runs low, sells out or comes back --
+   because an order at another account can deplete stock while they are
+   writing theirs. Blocked on data, not code: there is no accurate
+   inventory RDE yet (the /inventory/ export is a stale snapshot) and no
+   Snowflake connector for live availability. Before building: confirm
+   which Encompass field is sellable inventory, when an order reduces it,
+   how allocations / holds / receipts move it, and the feed's refresh
+   delay (Snowflake ingestion does not by itself make it live). Without
+   live data: favourites + alerts on refreshed reports, labelled with the
+   update time, and never a claim to catch depletion mid-order. An alert
+   never reserves stock. Reps must not see other reps' customers or
+   orders through it.
+2. ACCOUNT-AWARE AI CHATBOT (+ MOCK PITCH). A chatbot on the Account page
+   that answers about that account's buying history and patterns
+   (seasonals, packages / brands that work in the area, what to pitch
+   that also finishes an incentive, the evidence), inheriting the
+   selected account and the rep / team permissions, showing the reporting
+   period behind each answer, explaining VERIFIED numbers rather than
+   computing from memory; comparable-account suggestions are evidence-
+   based, never guaranteed demand. Plus MOCK PITCH practice: the agent
+   plays the store owner with objections so the rep can refine a pitch
+   before walking in; invented objections are labelled as practice.
+   Started 2026-09-30 (see the next section) on the exports we have;
+   Snowflake later improves freshness. Gavin started with the chatbot.
+
+## Account assistant: My Accounts -> Ask (2026-09-30)
+
+The first piece of the product direction above. `api/chat.js` is a Vercel
+Edge Function (raw fetch to the Claude Messages API -- no SDK because the
+site has no build/install step; model `claude-opus-5-5`, streaming, effort
+low, `fallbacks: "default"` under beta `server-side-fallback-2026-07-01`,
+prompt caching on the stable instructions and on the account packet). The
+Account page's fifth section "Ask" (`accounts/assistant.js`, mounted by
+accounts.js with `buildPacket()`) posts a CONTEXT PACKET of what the page
+already shows (identity, reference month, monthly cases, top products +
+last 12 months, alerts with evidence, patterns, program status for this
+account, notes, taps, warehouse availability, `notInData`) plus the
+conversation; the function re-checks the kdh_at cookie against
+allowed_users, caps packet / turns / rate, wraps the packet in the Kohler
+prompt (only the packet, always the period, alerts are possibilities,
+no dollars, say what is not in the data, short) and streams text back as
+SSE. Modes: ask, pitch (Claude plays the buyer, grounded in the account's
+history, invented details = practice) and feedback (coaching after a
+pitch). Transcripts live in sessionStorage per account; nothing is
+written to Supabase; managers and previews get the same read-only tool.
+'/api/chat' is in REP_PATHS. GAVIN'S STEP: add ANTHROPIC_API_KEY to
+Vercel (server-only, never in the repo) -- until then the section shows
+"not configured yet". RULES: the function never reads data on its own
+(no widening of access); every number must be traceable to the packet;
+never claim to catch stock depletion or confirm a need. Docs:
+api/README.txt. Tests: scratchpad chat_api_test.mjs (handler under Node
+with stubs), assistant_test.mjs (UI with the route stubbed). Tags:
+accounts.js 20260930d, assistant.js 20260930a, accounts.css 20260930e.
+
 ## Hub Incentives: "Previous months" August / September toggle (2026-09-30)
 
 Gavin: a month toggle so reps can review previous months' incentives;

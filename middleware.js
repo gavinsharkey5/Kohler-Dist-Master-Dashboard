@@ -42,6 +42,7 @@ const REP_PATHS = [
   '/incentive-tracking/programs.js',    // the hub's program library ...
   '/incentive-tracking/data/program_data.js', // ... and its data
   '/shared/',                           // auth-config.js
+  '/api/chat',                          // the account assistant (api/chat.js re-checks the token itself)
 ];
 const REP_HOME = '/rep/';
 

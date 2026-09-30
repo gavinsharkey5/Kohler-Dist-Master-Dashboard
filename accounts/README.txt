@@ -130,6 +130,21 @@ THE ACCOUNT PAGE: FOUR SECTIONS (2026-09-30, Gavin's Encompass brief)
               account link yet (REPORTING_REQUEST.md section 5). Nothing is
               drawn as a button that does not work.
 
+  ASK THE ASSISTANT (fifth tab, 2026-09-30)
+    assistant.js + api/chat.js (see api/README.txt). Ask = questions about
+              this account answered from a CONTEXT PACKET of what the page
+              shows (buildPacket in accounts.js: identity, reference month,
+              monthly cases, top products + last 12 months, alerts with
+              evidence, patterns, program status here, notes, taps, warehouse
+              availability, notInData); the model is told to use only the
+              packet, state the period, treat alerts as possibilities, keep
+              dollars out and say what is not in the data. Practice a pitch =
+              the assistant plays this account's buyer from its real history
+              (invented details are practice); Get feedback ends it with
+              coaching. Transcripts: sessionStorage per account, two per
+              account (ask / pitch), Clear button. Managers and previews get
+              the same read-only tool. Needs ANTHROPIC_API_KEY on Vercel.
+
 FOCUS + SECTION RULES (unchanged from the first build)
   Focus      up to three, in this fixed order, each saying why and what next:
              1 the newest open follow-up on this account (rep_actions, status follow)

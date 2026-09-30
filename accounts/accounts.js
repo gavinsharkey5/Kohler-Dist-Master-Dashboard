@@ -46,7 +46,7 @@ const state = {view:'list', q:'', rep:'', need:'', kind:'', fam:'', n:null, acct
 // Overview / Sales & Products / Invoices & Balances / Tasks & Resources.
 // `sec=` in the hash remembers the open one; in-page links carry
 // data-go="<sec>:<element id>" so a Focus item can open its evidence.
-const SECS = [['over','Overview','Overview'],['sales','Sales & Products','Sales'],['inv','Invoices & Balances','Invoices'],['tasks','Tasks & Resources','Tasks']];
+const SECS = [['over','Overview','Overview'],['sales','Sales & Products','Sales'],['inv','Invoices & Balances','Invoices'],['tasks','Tasks & Resources','Tasks'],['ask','Ask the assistant','Ask']];
 // product list (Sales & Products): search, view, filters -- kept in memory per account
 const plist = {n:null, q:'', view:'bought', sup:'', fam:'', pkg:'', limit:40};
 let CATALOG = null;            // data/catalog.json (products + warehouse availability), loaded once
@@ -388,7 +388,7 @@ async function renderAccount(){
      Credited / warm lead / already buying stay open; plain eligibility ("could
      still qualify") and programs where the account is not on any list fold. ---- */
   const pitem = (p, tag, line, links) => `<div class="pitem"><div class="pt"><span>${E(p.shortName||p.name)}</span>${tag}</div><div class="ps">${E(p.supplier)} · ${E(p.channelLabel)}${p.type==='MPO' ? ' · '+E(p.monthLabel)+' MPO' : ''} · ${E(H.endsLabel(p.period))}</div>${line ? `<div class="pl">${line}</div>` : ''}<div class="pa">${links}</div></div>`;
-  const openItems = [], couldItems = [], otherItems = [];
+  const openItems = [], couldItems = [], otherItems = [], progList = [];
   idx.programs.forEach(p=>{
     const r = p.forRep(rep); if(!r) return;
     const cred = credited.filter(c=>c.p===p);
@@ -396,6 +396,11 @@ async function renderAccount(){
     const A = H.accountsFor(p, rep);
     const excl = (A.excluded||[]).concat(A.unknown||[]).find(x=>String(x.n)===k);
     const buying = (A.buying||[]).find(x=>String(x.n)===k);
+    { const f = H.progFacts(p, r, rep) || {};
+      progList.push({name:p.shortName||p.name, supplier:p.supplier, channel:p.channelLabel, type:p.type, ends:H.endsLabel(p.period), ask:H.sellAsk(p),
+        status: cred.length ? 'credited' : (tgt && tgt.warm) ? 'lead' : buying ? 'already buying' : tgt ? 'could qualify' : excl ? 'not sellable here' : r.soon ? 'awaiting data' : 'not on its lists',
+        why: tgt ? (tgt.why||'') : (excl ? (excl.why||'') : ''), credited: cred.map(c=>[c.what||'', c.date||''].filter(Boolean).join(' · ')),
+        repProgress: [f.main, f.need].filter(Boolean).join(' · ')}); }
     const links = `<a href="${E(progLink(p, rep))}">Program details ›</a>${(tgt||cred.length) ? `<a href="${E(hubAcctLink(p, rep, a.n, cred.length ? 'dist' : 'targets'))}">Account in the hub ›</a>` : ''}`;
     if(cred.length) openItems.push(pitem(p, '<span class="tag ok">Credited</span>', cred.map(c=>`<b>${E(c.what||'Credited')}</b>${c.date ? ' · '+E(c.date) : ''}`).join('<br>'), links));
     else if(tgt && tgt.warm) openItems.push(pitem(p, '<span class="tag go">Lead</span>', `<b>To qualify:</b> ${E(H.sellAsk(p))} · ${E(tgt.why)}`, links));
@@ -523,9 +528,13 @@ async function renderAccount(){
     <section class="sec" id="notes"><h2>Notes &amp; follow-ups</h2>${notesHtml}</section>
     ${tapsHtml ? `<section class="sec" id="taps"><h2>Taps &amp; visits <small>survey as of ${E((d.taps.asOf||'').slice(0,10))}</small></h2>${tapsHtml}</section>` : ''}
     <section class="sec" id="tools"><h2>Tools &amp; links</h2>${toolsHtml}</section>`)
+    + secHtml('ask', `
+    <section class="sec" id="ask"><h2>Ask about this account <small>data through ${E(monLabel(refKey))}</small></h2><div class="card ask" id="askCard"></div></section>`)
     + `<p class="fresh-foot">Customer base as of ${E(d.book.asOf)} · sales master through ${E(monLabel(months[N-1]))} (loaded ${E((d.sales.loaded||'').slice(0,10))}, monthly, net of returns) · warehouse availability as of ${E((CAT.inventory && CAT.inventory.asOf) || '—')} · programs as refreshed in the hub · tap survey as of ${E((d.taps.asOf||'').slice(0,10))}. Buying alerts use the last complete month (${E(monLabel(refKey))}) as today, so nothing grows more overdue than the data; rules and thresholds are in accounts/README.txt.</p>`;
   if(plist.n !== String(a.n)){ Object.assign(plist, {n:String(a.n), q:'', view: (sales && sales.products.length) ? 'bought' : 'all', sup:'', fam:'', pkg:'', limit:40}); }
   renderProducts(a, rep, sales, CAT, months, N, targets);
+  // the assistant gets a packet of what this page already shows -- nothing more
+  if(window.KdhAssistant){ const packet = buildPacket({a, rep, d, sales, months, N, R, refKey, F, alerts, rows, follows, targets, credited, due, CAT, progList}); window.KdhAssistant.mount(document.getElementById('askCard'), packet, {}); }
   const y = scrollMem[location.hash]; if(typeof y==='number'){ requestAnimationFrame(()=>window.scrollTo(0,y)); delete scrollMem[location.hash]; }
 }
 
@@ -608,6 +617,54 @@ function renderProducts(a, rep, sales, CAT, months, N, targets){
   box.querySelector('#ppkg').addEventListener('change', e=>{ plist.pkg = e.target.value; plist.limit = 40; rr(); });
   const pc = box.querySelector('#pclear'); if(pc) pc.addEventListener('click', ()=>{ plist.sup = plist.fam = plist.pkg = ''; rr(); });
   const pm = box.querySelector('#pmore'); if(pm) pm.addEventListener('click', ()=>{ plist.limit += 40; const y = window.scrollY; rr(); window.scrollTo(0, y); });
+}
+/* ---------------- the assistant's CONTEXT PACKET ----------------
+   Everything the Ask section may talk about, taken from the data already
+   loaded for this account: identity, the reference month, monthly cases,
+   the top products with their last 12 months, every alert with its
+   evidence, the buying patterns, this account's status on the rep's
+   programs, the rep's notes, the tap survey, warehouse availability for
+   the products it buys, and a plain list of what is NOT in the data. Kept
+   around 20-40 KB. No dollars anywhere in it. */
+function buildPacket(x){
+  const {a, rep, d, sales, months, N, R, refKey, F, alerts, rows, follows, targets, credited, due, CAT, progList} = x;
+  const P = F.patterns || null;
+  const last12 = arr => arr.slice(Math.max(0, N-12)).map(v=>Math.round(v*10)/10);
+  const lab12 = months.slice(Math.max(0, N-12));
+  const prodRows = (sales ? sales.products : []).map(p=>{ let li=-1; for(let i=N-1;i>=0;i--) if(p[5][i]>0){ li=i; break; } const c = CAT.byNum ? CAT.byNum.get(String(p[0])) : null;
+    return {num:String(p[0]), name:p[1], family:p[2], supplier:p[3], pkg:p[4], cases12: Math.round(sumRange(p[5], N-12, N)*10)/10, months12: p[5].slice(N-12).filter(v=>v>0).length, lastMonth: li>=0 ? months[li] : null, last12: last12(p[5]),
+      warehouseAvailable: c && c[5]!=null ? c[5] : null, warehouseStatus: c ? c[7] : null}; });
+  const alerted = new Set(alerts.map(al=>String(al.pn)));
+  const products = prodRows.filter((p,i)=>i<30 || alerted.has(p.num)).slice(0, 45);
+  const trim = (arr, n) => Array.isArray(arr) ? arr.slice(0, n) : arr;
+  const patterns = P ? Object.assign({}, P, {topProducts:trim(P.topProducts,15), topFamilies:trim(P.topFamilies,10), newPlacements:trim(P.newPlacements,10), sizeChanges:trim(P.sizeChanges,10), stopped:trim(P.stopped,15), seasonal:trim(P.seasonal,10), consistent:trim(P.consistent,15), families:undefined}) : null;
+  const taps = a.taps ? {lastSurvey:a.taps.lastDisplay||a.taps.last, daysSince: due ? due.days : null, resurvey: due ? due.level : null, handlesOurs:a.taps.ours, handlesTheirs:a.taps.them, unverified:a.taps.unv,
+      brands: ((sales && sales.taps) || []).slice(0, 25).map(b=>({brand:b.b, side:b.s, handles:b.n})), earlierSurveys: a.taps.passes>1 ? a.taps.passes-1 : 0} : (a.prem==='On' ? {note:'on-premise account with no tap survey on file'} : null);
+  return {
+    v:1, rep, viewer: U ? {name:U.name, role:U.role, preview:!!U.preview} : null,
+    account: {n:a.n, name:a.name, city:a.city, county:a.county, area:a.area, premise:premWord(a.prem), service:a.service||null, address:a.address||null, sizeClass:a.sizeClass||null, decile:a.decile||null, stops2026:a.stops2026, distributionPoints2026:a.distPts, cases2026:a.cases2026},
+    data: {salesThrough: months[N-1], referenceMonth: refKey, referenceMonthLabel: monLabel(refKey), monthsLoaded: months.length, bookAsOf: d.book.asOf, tapsAsOf: (d.taps.asOf||'').slice(0,10), warehouseAsOf: (CAT.inventory && CAT.inventory.asOf) || null,
+           grain: 'cases per product per calendar month, net of returns; no invoice dates, no dollars'},
+    monthlyCases: sales ? lab12.map((m,i)=>[m, last12(sales.series)[i]]) : [],
+    productsOnRecord: sales ? sales.products.length : 0,
+    products,
+    alerts: alerts.slice(0, 25),
+    alertCounts: F.counts || null,
+    patterns,
+    programs: progList,
+    notes: rows.map(r=>({status:r.status, program: progName(r.program_id), note:r.note||'', date:(r.updated_at||'').slice(0,10)})),
+    openFollowUps: follows.length,
+    taps,
+    notInData: [
+      'contact name, phone, email, business hours, delivery instructions, next delivery date (Encompass customer master -- requested)',
+      'invoices, invoice dates, dollar amounts, prices, deals, promotions, payouts',
+      'accounts receivable, balances, credits, aging',
+      'retailer shelf stock, backorders, pre-orders, customer allocations',
+      'other accounts, area-wide or comparable-account trends',
+      'days between orders (sales are monthly)',
+      'why an account stopped or slowed (the data shows the gap, not the reason)',
+    ],
+  };
 }
 // switch the open section in place (no re-render): hidden attribute + hash
 function showSec(k, toId){

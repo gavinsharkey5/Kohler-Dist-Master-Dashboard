@@ -11,6 +11,14 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
+- [ ] **Turn the account assistant on** (Gavin): add `ANTHROPIC_API_KEY`
+  (console.anthropic.com -> API keys) to Vercel -> Settings -> Environment
+  Variables for Production and Preview, redeploy, then open an account ->
+  Ask and try "What may be due for a reorder right now?". Until then the
+  section says the assistant is not configured. Budget about $0.05 a
+  question (api/README.txt has the maths); the Anthropic console's Usage
+  page shows real spend. Then tell me what reps ask that it cannot answer
+  -- that list drives the next data pull.
 - [ ] **Friday: September recap on the hub** -- remove the `note` / `sub`
   from the September entry of INC_MONTHS in hub/hub.js so the September
   programs list under Previous months (they are "ended" from Oct 1), then
@@ -122,8 +130,21 @@ device, a decision).
   reps set their own days. Needs daily-grain 2026 invoice history (Google
   Drive), a Stops export without the invoice join, and a Brands sample.
 
+## Product direction (Gavin, 2026-09-30)
+
+- **Starred products + inventory alerts** -- wait for an accurate
+  inventory feed (RDE or Snowflake). Confirm the sellable-inventory field,
+  when orders reduce it, how allocations / holds / receipts move it, and
+  the refresh delay before any alert is promised. Alerts never reserve
+  stock.
+- **Account-aware assistant + mock pitch** -- v1 built 2026-09-30 on today's exports (see Done); Snowflake later adds freshness and cross-account questions.
+
 ## Done
 
+- [x] 2026-09-30 Account assistant: My Accounts -> Ask. Questions about one
+  account's buying, alerts, patterns, programs, notes and taps, answered
+  from the page's own data with the period stated; Practice a pitch (the
+  assistant plays the buyer) with Get feedback. Needs the API key (above).
 - [x] 2026-09-30 Hub Incentives: "Previous months" toggle (August live,
   September shows "September recap coming Friday") replaces the Ended
   programs fold; the doubled "Ended Ended" date is fixed.
