@@ -3758,6 +3758,23 @@ own card (cardTouchdownsTea) and leaderboard still show every payout leg
 -- only the shared summary changed. programs.js tag bumped to 20260930a
 on hub/, accounts/, rep/ and team/.
 
+2026-09-30 SIXTH REFRESH -- Molson Coors retention (on + off, grouped workbooks _7) + MABI Fall actuals _12
+  python3 convert_mc_retention.py <On_Premise ... w Goals_7.xlsx> <Off_Premise ... w Goals_7.xlsx>
+  python3 convert_mabi_fall.py MABI_Fall_2026_Retention_12.csv data/mabi_retention_fall_goals_source.csv
+  python3 generate.py
+(openpyxl had to be pip-installed in this session's container first.)
+MABI: goals stay frozen -- mabi_retention_fall_goals.csv and
+mabi_retention_fall_brand_goals.csv came out of the converter unchanged, every
+brand subtotal / rep total reconciled. Actuals 697 -> 724 product rows, house
+4,566 -> 5,027 of 7,326 on the roster (62.3% -> 68.6%), still 0 of 24 reps at
+their 90% goal, day 30 of 91.
+MOLSON COORS: both workbooks converted (sheets matched by premise, same
+07/27-10/31 window); every rep, DM and report total reconciled, 0 (rep, brand)
+pairs added or dropped, and 0 of 121 goal values moved (37 off-prem and 8
+on-prem actuals did). OFF-PREM HOUSE NOW PAST ITS GOAL: 2,895 -> 2,988 of
+2,912 placements. On 761 -> 770 of 840 buyers. Brand goals retained 44 -> 46
+of 100. Hub cache tag bumped (20260930g).
+
 2026-09-30 FIFTH REFRESH -- Constellation Fall: Packages ON, Draft ON, Impact / Modelo Gaintain / Innovation OFF
   python3 generate.py
 Five exports (Corona Gaintain not re-pulled; it is on this morning's sync).
