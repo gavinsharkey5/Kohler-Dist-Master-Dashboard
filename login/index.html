@@ -81,6 +81,10 @@
   .eye{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:0;font-family:var(--head);font-size:12px;font-weight:600;color:var(--blue);cursor:pointer;padding:8px 8px;border-radius:8px;min-height:36px}
   .eye:hover{background:var(--info-bg)}
   .rules{margin:8px 0 0;font-size:13.5px;color:var(--ink-3)}
+  /* Remember me (2026-09-30): one box, 44px tall, on both password steps */
+  .remember{display:flex;align-items:center;gap:10px;margin:14px 0 0;min-height:44px;font-size:15px;color:var(--ink);cursor:pointer}
+  .remember input{width:22px;height:22px;margin:0;accent-color:var(--blue);flex:none}
+  .remember small{display:block;font-size:12.5px;color:var(--ink-3);margin-top:1px}
   .links{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:16px 0 0;font-size:14.5px}
   .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;padding:0;margin:-1px}
   .hidden{display:none!important}
@@ -122,6 +126,7 @@
         <input id="pw" class="field" type="password" name="password" autocomplete="current-password" placeholder="Your password" required>
         <button type="button" class="eye" data-for="pw" aria-label="Show password">Show</button>
       </div>
+      <label class="remember" for="rememberPw"><input type="checkbox" id="rememberPw" name="remember" checked><span>Remember me on this device<small>Stay signed in for 30 days &mdash; no password next time.</small></span></label>
       <button id="pwGo" class="btn" type="submit">Sign in</button>
       <p class="links"><button type="button" class="link" id="forgot">Forgot password? Email me a code</button></p>
     </form>
@@ -164,6 +169,7 @@
         <button type="button" class="eye" data-for="newpw2" aria-label="Show password">Show</button>
       </div>
       <p class="rules">At least 8 characters. Both boxes must match.</p>
+      <label class="remember" for="rememberNew"><input type="checkbox" id="rememberNew" name="remember" checked><span>Remember me on this device<small>Stay signed in for 30 days &mdash; no password next time.</small></span></label>
       <button id="setGo" class="btn" type="submit">Save and continue</button>
       <p class="links"><span></span><a class="link" id="setNotYou" href="/login/?signout=1">Not you? Sign out</a></p>
     </form>
@@ -211,8 +217,29 @@
     $('setForm').classList.toggle('hidden', step !== 'setpw');
   }
   function showForm() { show('email'); }
+  // REMEMBER ME (2026-09-30): both password steps carry a "Remember me on
+  // this device" box, checked by default and remembered in localStorage.
+  // Checked: the cookies live 30 days and supabase-js keeps its session, so
+  // the next visit needs no password. Unchecked: session cookies only and
+  // the stored Supabase session is dropped after sign-in, so closing the
+  // browser ends it. (The password itself is never stored by the page;
+  // the browser's own password manager may offer to save it.)
+  var REMEMBER = 'kdh_remember';
+  function rememberPref() { try { return localStorage.getItem(REMEMBER) !== '0'; } catch (e) { return true; } }
+  function remembering() {
+    var box = ['rememberNew', 'rememberPw'].map(function (id) { return $(id); }).filter(function (b) { return b && !b.closest('form').classList.contains('hidden'); })[0];
+    return box ? box.checked : rememberPref();
+  }
+  function initRemember() {
+    var on = rememberPref();
+    ['rememberNew', 'rememberPw'].forEach(function (id) { var b = $(id); if (!b) return; b.checked = on; b.addEventListener('change', function () { try { localStorage.setItem(REMEMBER, b.checked ? '1' : '0'); } catch (e) {} var o = $(id === 'rememberNew' ? 'rememberPw' : 'rememberNew'); if (o) o.checked = b.checked; }); });
+  }
+  var life = '; Max-Age=2592000';
   function setCookie(token) {
-    document.cookie = COOKIE + '=' + encodeURIComponent(token) + '; Path=/; Max-Age=2592000; Secure; SameSite=Lax';
+    document.cookie = COOKIE + '=' + encodeURIComponent(token) + '; Path=/' + life + '; Secure; SameSite=Lax';
+  }
+  function forgetStoredSession() {
+    try { Object.keys(localStorage).forEach(function (k) { if (k.indexOf('sb-') === 0) localStorage.removeItem(k); }); } catch (e) {}
   }
   function clearCookie() {
     document.cookie = COOKIE + '=; Path=/; Max-Age=0; Secure; SameSite=Lax';
@@ -314,12 +341,16 @@
   // The cookies the middleware and the pages read, then the page they wanted.
   function finish(session, me) {
     clearPending(); reset = false; current = null;
+    var keep = remembering();
+    try { localStorage.setItem(REMEMBER, keep ? '1' : '0'); } catch (e) {}
+    life = keep ? '; Max-Age=2592000' : '';
     setCookie(session.access_token);
+    if (!keep) forgetStoredSession();
     // Who is signed in, for the pages (the hub locks a rep to their own
     // name; the landing pages greet by name). Not used for access
     // decisions -- the middleware asks Supabase for the role itself.
     document.cookie = 'kdh_user=' + encodeURIComponent(JSON.stringify({ name: me.name || '', role: me.role || 'rep', email: me.email, title: me.title || '', dm: me.reports_to || '' })) +
-      '; Path=/; Max-Age=2592000; Secure; SameSite=Lax';
+      '; Path=/' + life + '; Secure; SameSite=Lax';
     $('signout').classList.remove('hidden');
     show('working'); hush();
     $('working').innerHTML = '<span class="spin"></span><span>Signed in as <b>' + escapeHtml(me.name || session.user.email) + '</b>. Opening&hellip;</span>';
@@ -415,6 +446,7 @@
   }
 
   function wireForm() {
+    initRemember();
     $('form').addEventListener('submit', function (e) {
       e.preventDefault();
       var email = $('email').value.trim().toLowerCase();

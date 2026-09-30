@@ -290,6 +290,20 @@ Postgres 16 (see supabase/README.txt). Tests: scratchpad login_pw_test.mjs (new,
 legacy code, returning, wrong password, forgot with reload, Confirm
 email still on, already registered, migration missing) + login_test.mjs.
 
+REMEMBER ME (2026-09-30, Gavin: "a box with Remember password after they
+enter their password for the 1st time"): both password steps (`#setForm`
+create-password and `#pwForm` Welcome back) carry "Remember me on this
+device" (`#rememberNew` / `#rememberPw`, checked by default, mirrored,
+the choice kept in localStorage `kdh_remember`). `finish()` reads it:
+checked = 30-day cookies (as before) and supabase-js keeps its session;
+unchecked = SESSION cookies (no Max-Age) and `forgetStoredSession()` drops
+the `sb-*` localStorage keys after sign-in, so closing the browser ends
+it. The page never stores the password itself -- the label says "remember
+me", not "remember password", for that reason; the browser's own manager
+offers to save it (autocomplete current-/new-password). Test: scratchpad
+remember_test.mjs (both steps, 30-day vs session cookies, storage
+dropped, choice sticks).
+
 ## Team Activity page: team/ (2026-09-28)
 
 `team/index.html` + `team/team.css` is the manager's read of the

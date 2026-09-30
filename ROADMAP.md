@@ -89,6 +89,10 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-09-30 "Remember me on this device" on both password steps of
+  the sign-in page, checked by default: stay signed in for 30 days, or
+  unchecked, signed out when the browser closes. The choice is
+  remembered per device.
 - [x] 2026-09-30 Accounts tab + Account page (`accounts/`): a rep's assigned
   accounts as a searchable list with what needs attention (follow-ups,
   program leads, reorder checks, survey due); managers see their team with
