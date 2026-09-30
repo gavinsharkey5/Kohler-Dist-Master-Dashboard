@@ -263,6 +263,22 @@ All four are data-backed. Numbers as of the 2026-09-28 refresh (RDE exports run
 through 9/29): Bardstown 23 menu placements, Fever Tree 25 new placements,
 Carbliss 76 new buying accounts, HUSA 3 new draft lines.
 
+2026-09-30 REFRESH -- Fever Tree, Carbliss, HUSA exports + Promos_Report_38
+  python3 generate_2026-09.py --merge-bardstown Promos_Report_38.xlsx
+Diffed row by row before the run. The three RDE exports (Fever Tree _17,
+Carbliss _16, HUSA _16) are IDENTICAL to the files the 2026-09-29 pull
+left in the repo -- 608 / 377 / 92 rows, nothing added, nothing removed --
+so Fever Tree 27, Carbliss 101 and HUSA 3 hold exactly as published.
+Report_38 held 43 rows: 31 for this archive, 12 for other objectives.
+2 new, 29 already published: archive 31 -> 33 rows. Both new rows are
+Chris Payton's 9/30 Feature Activations at USA Wine Traders Club
+(Saddle Brook) #76010 -- Green River Army 250th Anniversary and Green
+River Kentucky Straight Wheated Bourbon -- an OFF-PREMISE account, so
+the on-premise-only rule (Kohler, 2026-08-07) skips them and Bardstown
+holds at 30 menu placements (Adam Badalamenti 10, Allison Scott 7,
+Brian Sengebush 5, Paul Mclaughlin 3, Robin Feldman 3, Nick Melissari
+2). No rep's number moved; sync_meta.json re-stamped.
+
 2026-09-28 REFRESH -- Fever Tree, Carbliss, HUSA exports + Promos_Report_36
   python3 generate_2026-09.py --merge-bardstown Promos_Report_36.xlsx
 Diffed row by row before the run. Fever Tree 594 -> 599 (+5, none removed),
