@@ -943,6 +943,41 @@ on both boards: dated tables, Details toggles with photo links (cooler
 doors, Bardstown), Adam Badalamenti's Bardstown detail, no horizontal scroll
 at 390px, and the hub's off-prem tab still renders.
 
+2026-09-30 REFRESH -- all four exports plus Promos_Report_39
+    python3 generate_2026-09.py --merge-cooler-doors Promos_Report_39.xlsx
+Diffed row by row before the run. Keystone (274 rows) and Fever Tree (2,337
+rows) are IDENTICAL to the files the 2026-09-29 pull left in the repo, so
+those two objectives hold. Constellation 123 -> 123 rows, restated in place:
+only Jayson Romine moved (Coronita 7 oz 72 -> 73, Corona Extra 4/6 22 -> 23).
+Wine & Spirits 2,938 -> 2,984 (+47 / -1). THE ONE W&S ROW THAT LEFT is
+Allison Scott's 9/29 Southern Tier Pumking Whiskey order at pompton
+crafthouse (8006) -- the export is the record, so it drops; the same SKU
+now shows for Shane Barreca at Shop Rite Liq (A) Emerson instead.
+Promos_Report_39 held 100 rows, all Cooler Door Wrap: 1 new, 99 already
+published -> archive 100 rows. "patrick infante" still matches nobody on
+the roster (see the 2026-09-28 note).
+  Constellation   1,270 -> 1,271 placements this fall against 1,628 last
+                  fall; still 23 of 24 reps at 30% of their own goal.
+  Keystone Ice    unchanged: 216 distinct buying accounts, 11 of 26 reps at
+                  40% penetration. keystone-ice/actuals.csv was still on the
+                  9/28 254-row export (the 9/29 pull was never synced there)
+                  -- synced now to this same 274-row file and rebuilt (sync
+                  rule); see keystone-ice/README.txt.
+  Fever Tree      unchanged: 184 new placements.
+  Wine & Spirits  360 -> 381 new placements, 23 -> 24 reps at 5: BRIAN
+                  SENGEBUSH 2 -> 7 (new at goal -- Krogh's Restaurant & Brew
+                  Pub opened with Lochs of Jura and Discovery 2026, Stone
+                  Water with Green River Wheated and Origin High Wheat,
+                  9/29-9/30). Hakan Sadik 44 -> 48, Pablo Lopez 10 -> 14,
+                  Michael Harboy 12 -> 14, Mike Ast 14 -> 16, +1 each Alex
+                  Rodriguez, Jaime Colonna, Javier Melo, Paul Mclaughlin.
+  POS stickers    86 -> 87 distinct, still 10 reps at 5: Klejdi Lamo 0 -> 1
+                  (Sam's Liq Wine (P), Keystone Ice, 9/30).
+The Corona Gaintain export also went onto
+incentive-tracking/data/constellation_fall_corona_gaintain_off.csv (sync
+rule; it too was still on the 9/28 file) and incentive-tracking was
+rebuilt. Hub cache tag bumped (20260930a) for the new program_data.js.
+
 2026-09-28 REFRESH -- all four exports plus Promos_Report_37
     python3 generate_2026-09.py --merge-cooler-doors Promos_Report_37.xlsx
 Row counts: Constellation 123 -> 123 (restated in place, every rep up or

@@ -17598,7 +17598,7 @@ const PROGRAM_DATA = {
       "startDate": "8/1/2026",
       "endDate": "9/30/2026",
       "compareLabel": "Aug\u2013Sep 2025",
-      "daysElapsed": 59,
+      "daysElapsed": 61,
       "periodDays": 61,
       "houseLastYear": 14956.0,
       "houseThisYear": 11024.0,
@@ -93928,23 +93928,23 @@ const PROGRAM_DATA_2026_09 = {
             "date": "8/4/2026"
           },
           {
-            "num": "26014",
-            "name": "Regalado Liq",
-            "date": "8/4/2026"
-          },
-          {
             "num": "27021",
             "name": "Johnny's Liqs (P)",
             "date": "8/4/2026"
           },
           {
-            "num": "15016",
-            "name": "Gene's Liquor",
+            "num": "21034",
+            "name": "Schulman's (P) Deli",
             "date": "8/4/2026"
           },
           {
-            "num": "21034",
-            "name": "Schulman's (P) Deli",
+            "num": "26014",
+            "name": "Regalado Liq",
+            "date": "8/4/2026"
+          },
+          {
+            "num": "15016",
+            "name": "Gene's Liquor",
             "date": "8/4/2026"
           },
           {
@@ -93968,13 +93968,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/1/2026"
           },
           {
-            "num": "20032",
-            "name": "Riverside Liquors (Paterson)",
+            "num": "20068",
+            "name": "Florida Drugs (A)",
             "date": "9/4/2026"
           },
           {
-            "num": "20068",
-            "name": "Florida Drugs (A)",
+            "num": "20032",
+            "name": "Riverside Liquors (Paterson)",
             "date": "9/4/2026"
           },
           {
@@ -94008,13 +94008,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/17/2026"
           },
           {
-            "num": "21024",
-            "name": "Altiero Liquors",
+            "num": "20051",
+            "name": "Costambar Bar & Liquor Corp.",
             "date": "9/18/2026"
           },
           {
-            "num": "20051",
-            "name": "Costambar Bar & Liquor Corp.",
+            "num": "21024",
+            "name": "Altiero Liquors",
             "date": "9/18/2026"
           },
           {
@@ -94034,22 +94034,22 @@ const PROGRAM_DATA_2026_09 = {
         "base": 32,
         "qualifier": 13,
         "bonus": 16,
-        "accounts": 19,
-        "pct": 59,
+        "accounts": 21,
+        "pct": 66,
         "qualified": true,
         "bonusHit": true,
         "toQualifier": 0,
         "toBonus": 0,
-        "payout": 190,
+        "payout": 210,
         "accountList": [
-          {
-            "num": "15020",
-            "name": "Angel's Wine & Liquors",
-            "date": "8/5/2026"
-          },
           {
             "num": "20025",
             "name": "Mercer Bar & Liquors",
+            "date": "8/5/2026"
+          },
+          {
+            "num": "15020",
+            "name": "Angel's Wine & Liquors",
             "date": "8/5/2026"
           },
           {
@@ -94088,13 +94088,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "8/28/2026"
           },
           {
-            "num": "20027",
-            "name": "230 Liq & Groc.(A)",
+            "num": "21035",
+            "name": "M & R Disc (A) Liqs.",
             "date": "9/2/2026"
           },
           {
-            "num": "21035",
-            "name": "M & R Disc (A) Liqs.",
+            "num": "20027",
+            "name": "230 Liq & Groc.(A)",
             "date": "9/2/2026"
           },
           {
@@ -94136,6 +94136,16 @@ const PROGRAM_DATA_2026_09 = {
             "num": "20005",
             "name": "La Sorpresa Liq (P)",
             "date": "9/29/2026"
+          },
+          {
+            "num": "17002",
+            "name": "Hillcrest Liqrs (A)",
+            "date": "9/30/2026"
+          },
+          {
+            "num": "13001",
+            "name": "Shop Rite Liq (A)Littlefl",
+            "date": "9/30/2026"
           }
         ],
         "rank": 2
@@ -94144,13 +94154,13 @@ const PROGRAM_DATA_2026_09 = {
         "base": 27,
         "qualifier": 11,
         "bonus": 14,
-        "accounts": 16,
-        "pct": 59,
+        "accounts": 17,
+        "pct": 63,
         "qualified": true,
         "bonusHit": true,
         "toQualifier": 0,
         "toBonus": 0,
-        "payout": 160,
+        "payout": 170,
         "accountList": [
           {
             "num": "190917",
@@ -94228,6 +94238,11 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/25/2026"
           },
           {
+            "num": "190304",
+            "name": "Shoppers Disc Liquor",
+            "date": "9/29/2026"
+          },
+          {
             "num": "191210",
             "name": "Milton Inn",
             "date": "9/29/2026"
@@ -94263,6 +94278,21 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/8/2026"
           },
           {
+            "num": "44052",
+            "name": "Minit Mart_2",
+            "date": "9/8/2026"
+          },
+          {
+            "num": "46012",
+            "name": "Jay Cee (P) Deli & Liq.",
+            "date": "9/8/2026"
+          },
+          {
+            "num": "43013",
+            "name": "Buy Rite Of Fairview",
+            "date": "9/8/2026"
+          },
+          {
             "num": "43006",
             "name": "Fairview Liq & Groc.(A)",
             "date": "9/8/2026"
@@ -94273,58 +94303,8 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/8/2026"
           },
           {
-            "num": "46012",
-            "name": "Jay Cee (P) Deli & Liq.",
-            "date": "9/8/2026"
-          },
-          {
-            "num": "44052",
-            "name": "Minit Mart_2",
-            "date": "9/8/2026"
-          },
-          {
-            "num": "43013",
-            "name": "Buy Rite Of Fairview",
-            "date": "9/8/2026"
-          },
-          {
-            "num": "44002",
-            "name": "Wine And Food Mart (Z)",
-            "date": "9/9/2026"
-          },
-          {
             "num": "43005",
             "name": "Rome Liquors (Fairview)",
-            "date": "9/9/2026"
-          },
-          {
-            "num": "43015",
-            "name": "Kikos Liquors Ii",
-            "date": "9/9/2026"
-          },
-          {
-            "num": "49019",
-            "name": "Bp Gas Station",
-            "date": "9/9/2026"
-          },
-          {
-            "num": "49033",
-            "name": "Banner Liquor Iii",
-            "date": "9/9/2026"
-          },
-          {
-            "num": "45004",
-            "name": "Ridgefield Liq (Z)",
-            "date": "9/9/2026"
-          },
-          {
-            "num": "44009",
-            "name": "Metro Liquor (Cliffside Park)",
-            "date": "9/9/2026"
-          },
-          {
-            "num": "43004",
-            "name": "Boulevard Liq.(Fairview)",
             "date": "9/9/2026"
           },
           {
@@ -94333,9 +94313,39 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/9/2026"
           },
           {
-            "num": "44016",
-            "name": "Liquor City(A)Cliffside",
-            "date": "9/10/2026"
+            "num": "43015",
+            "name": "Kikos Liquors Ii",
+            "date": "9/9/2026"
+          },
+          {
+            "num": "49033",
+            "name": "Banner Liquor Iii",
+            "date": "9/9/2026"
+          },
+          {
+            "num": "49019",
+            "name": "Bp Gas Station",
+            "date": "9/9/2026"
+          },
+          {
+            "num": "44002",
+            "name": "Wine And Food Mart (Z)",
+            "date": "9/9/2026"
+          },
+          {
+            "num": "45004",
+            "name": "Ridgefield Liq (Z)",
+            "date": "9/9/2026"
+          },
+          {
+            "num": "43004",
+            "name": "Boulevard Liq.(Fairview)",
+            "date": "9/9/2026"
+          },
+          {
+            "num": "44009",
+            "name": "Metro Liquor (Cliffside Park)",
+            "date": "9/9/2026"
           },
           {
             "num": "44049",
@@ -94343,13 +94353,18 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/10/2026"
           },
           {
-            "num": "44040",
-            "name": "Stop N Go Conven. (P)",
-            "date": "9/11/2026"
+            "num": "44016",
+            "name": "Liquor City(A)Cliffside",
+            "date": "9/10/2026"
           },
           {
             "num": "43007",
             "name": "American Classic Liq",
+            "date": "9/11/2026"
+          },
+          {
+            "num": "44040",
+            "name": "Stop N Go Conven. (P)",
             "date": "9/11/2026"
           },
           {
@@ -94388,6 +94403,11 @@ const PROGRAM_DATA_2026_09 = {
             "date": "8/26/2026"
           },
           {
+            "num": "38018",
+            "name": "THE BOTTLE SHOP",
+            "date": "9/15/2026"
+          },
+          {
             "num": "29004",
             "name": "Shop-Rite Liq Lyndhurst",
             "date": "9/15/2026"
@@ -94403,23 +94423,18 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/15/2026"
           },
           {
-            "num": "38018",
-            "name": "THE BOTTLE SHOP",
-            "date": "9/15/2026"
-          },
-          {
             "num": "83001",
             "name": "Food Universe Marketplace",
             "date": "9/16/2026"
           },
           {
-            "num": "80026",
-            "name": "Stew Leonard's(A) Paramus Wine",
+            "num": "25010",
+            "name": "Stew Leonard's Wines & Spirits of Clifton",
             "date": "9/17/2026"
           },
           {
-            "num": "50009",
-            "name": "Riverview Liq (P)",
+            "num": "80026",
+            "name": "Stew Leonard's(A) Paramus Wine",
             "date": "9/17/2026"
           },
           {
@@ -94428,8 +94443,8 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/17/2026"
           },
           {
-            "num": "25010",
-            "name": "Stew Leonard's Wines & Spirits of Clifton",
+            "num": "50009",
+            "name": "Riverview Liq (P)",
             "date": "9/17/2026"
           },
           {
@@ -94449,6 +94464,111 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "rank": 5
+      },
+      "Jayson Romine": {
+        "base": 35,
+        "qualifier": 14,
+        "bonus": 18,
+        "accounts": 18,
+        "pct": 51,
+        "qualified": true,
+        "bonusHit": true,
+        "toQualifier": 0,
+        "toBonus": 0,
+        "payout": 180,
+        "accountList": [
+          {
+            "num": "230420",
+            "name": "Spring Street Liquors",
+            "date": "8/5/2026"
+          },
+          {
+            "num": "230905",
+            "name": "ShopRite Wines & Spirits of Franklin",
+            "date": "9/2/2026"
+          },
+          {
+            "num": "231316",
+            "name": "Patricks Wine Barn",
+            "date": "9/3/2026"
+          },
+          {
+            "num": "408",
+            "name": "Fredon Liquor (Fredon Deli)",
+            "date": "9/4/2026"
+          },
+          {
+            "num": "231315",
+            "name": "Woody's Liq Shop (A)",
+            "date": "9/16/2026"
+          },
+          {
+            "num": "230441",
+            "name": "Wine Country Newton",
+            "date": "9/21/2026"
+          },
+          {
+            "num": "191526",
+            "name": "Liquor Factory IV Hopatcong",
+            "date": "9/21/2026"
+          },
+          {
+            "num": "230114",
+            "name": "Liquor Factory III Sparta",
+            "date": "9/21/2026"
+          },
+          {
+            "num": "231308",
+            "name": "Wantage Plaza Liq Outlet",
+            "date": "9/21/2026"
+          },
+          {
+            "num": "191408",
+            "name": "Super Saver Liq",
+            "date": "9/21/2026"
+          },
+          {
+            "num": "230427",
+            "name": "ShopRite Wine & Spirits of Newton#830",
+            "date": "9/22/2026"
+          },
+          {
+            "num": "230920",
+            "name": "Hamburg Liquor",
+            "date": "9/22/2026"
+          },
+          {
+            "num": "230431",
+            "name": "Seplow's Liquors",
+            "date": "9/22/2026"
+          },
+          {
+            "num": "231215",
+            "name": "Mac & Lindy's W & S (A)",
+            "date": "9/23/2026"
+          },
+          {
+            "num": "230924",
+            "name": "Sussex Co.Discount Liq(P)",
+            "date": "9/23/2026"
+          },
+          {
+            "num": "230105",
+            "name": "ShopRite Wines & Spirits of Sparta",
+            "date": "9/24/2026"
+          },
+          {
+            "num": "230412",
+            "name": "USA Wine Traders Club Of Newton (A)",
+            "date": "9/28/2026"
+          },
+          {
+            "num": "230911",
+            "name": "The Right Bottle",
+            "date": "9/30/2026"
+          }
+        ],
+        "rank": 6
       },
       "Chris Payton": {
         "base": 40,
@@ -94488,8 +94608,8 @@ const PROGRAM_DATA_2026_09 = {
             "date": "8/24/2026"
           },
           {
-            "num": "76010",
-            "name": "Usa Wine Traders Club (Saddle Brook)",
+            "num": "38021",
+            "name": "Buy Rite Of Main St Lodi",
             "date": "9/1/2026"
           },
           {
@@ -94498,8 +94618,8 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/1/2026"
           },
           {
-            "num": "38021",
-            "name": "Buy Rite Of Main St Lodi",
+            "num": "76010",
+            "name": "Usa Wine Traders Club (Saddle Brook)",
             "date": "9/1/2026"
           },
           {
@@ -94538,13 +94658,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/16/2026"
           },
           {
-            "num": "47011",
-            "name": "Ridgefield Deli & Liq",
+            "num": "50020",
+            "name": "Wineland",
             "date": "9/17/2026"
           },
           {
-            "num": "50020",
-            "name": "Wineland",
+            "num": "47011",
+            "name": "Ridgefield Deli & Liq",
             "date": "9/17/2026"
           },
           {
@@ -94561,106 +94681,6 @@ const PROGRAM_DATA_2026_09 = {
             "num": "79005",
             "name": "Maywood Wine&Liq (A)",
             "date": "9/24/2026"
-          }
-        ],
-        "rank": 6
-      },
-      "Jayson Romine": {
-        "base": 35,
-        "qualifier": 14,
-        "bonus": 18,
-        "accounts": 17,
-        "pct": 49,
-        "qualified": true,
-        "bonusHit": false,
-        "toQualifier": 0,
-        "toBonus": 1,
-        "payout": 85,
-        "accountList": [
-          {
-            "num": "230420",
-            "name": "Spring Street Liquors",
-            "date": "8/5/2026"
-          },
-          {
-            "num": "230905",
-            "name": "ShopRite Wines & Spirits of Franklin",
-            "date": "9/2/2026"
-          },
-          {
-            "num": "231316",
-            "name": "Patricks Wine Barn",
-            "date": "9/3/2026"
-          },
-          {
-            "num": "408",
-            "name": "Fredon Liquor (Fredon Deli)",
-            "date": "9/4/2026"
-          },
-          {
-            "num": "231315",
-            "name": "Woody's Liq Shop (A)",
-            "date": "9/16/2026"
-          },
-          {
-            "num": "191526",
-            "name": "Liquor Factory IV Hopatcong",
-            "date": "9/21/2026"
-          },
-          {
-            "num": "230114",
-            "name": "Liquor Factory III Sparta",
-            "date": "9/21/2026"
-          },
-          {
-            "num": "231308",
-            "name": "Wantage Plaza Liq Outlet",
-            "date": "9/21/2026"
-          },
-          {
-            "num": "230441",
-            "name": "Wine Country Newton",
-            "date": "9/21/2026"
-          },
-          {
-            "num": "191408",
-            "name": "Super Saver Liq",
-            "date": "9/21/2026"
-          },
-          {
-            "num": "230427",
-            "name": "ShopRite Wine & Spirits of Newton#830",
-            "date": "9/22/2026"
-          },
-          {
-            "num": "230431",
-            "name": "Seplow's Liquors",
-            "date": "9/22/2026"
-          },
-          {
-            "num": "230920",
-            "name": "Hamburg Liquor",
-            "date": "9/22/2026"
-          },
-          {
-            "num": "231215",
-            "name": "Mac & Lindy's W & S (A)",
-            "date": "9/23/2026"
-          },
-          {
-            "num": "230924",
-            "name": "Sussex Co.Discount Liq(P)",
-            "date": "9/23/2026"
-          },
-          {
-            "num": "230105",
-            "name": "ShopRite Wines & Spirits of Sparta",
-            "date": "9/24/2026"
-          },
-          {
-            "num": "230412",
-            "name": "USA Wine Traders Club Of Newton (A)",
-            "date": "9/28/2026"
           }
         ],
         "rank": 7
@@ -94683,13 +94703,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "8/5/2026"
           },
           {
-            "num": "15014",
-            "name": "Deli Parchardo Liquors",
+            "num": "27008",
+            "name": "Bermuda Liquors (P)",
             "date": "8/7/2026"
           },
           {
-            "num": "27008",
-            "name": "Bermuda Liquors (P)",
+            "num": "15014",
+            "name": "Deli Parchardo Liquors",
             "date": "8/7/2026"
           },
           {
@@ -94750,6 +94770,171 @@ const PROGRAM_DATA_2026_09 = {
         ],
         "rank": 8
       },
+      "Dave Ehlers": {
+        "base": 35,
+        "qualifier": 14,
+        "bonus": 18,
+        "accounts": 16,
+        "pct": 46,
+        "qualified": true,
+        "bonusHit": false,
+        "toQualifier": 0,
+        "toBonus": 2,
+        "payout": 80,
+        "accountList": [
+          {
+            "num": "40010",
+            "name": "Hackensack Liquors",
+            "date": "8/4/2026"
+          },
+          {
+            "num": "41005",
+            "name": "George's Liq",
+            "date": "8/6/2026"
+          },
+          {
+            "num": "41012",
+            "name": "Deli Mart (A)",
+            "date": "9/1/2026"
+          },
+          {
+            "num": "39012",
+            "name": "Wine And Liq Depot(A)",
+            "date": "9/2/2026"
+          },
+          {
+            "num": "51013",
+            "name": "G & G Liquors & Bar",
+            "date": "9/2/2026"
+          },
+          {
+            "num": "51008",
+            "name": "H & R Disc. Liq (P)",
+            "date": "9/3/2026"
+          },
+          {
+            "num": "40001",
+            "name": "Bottle & Cork",
+            "date": "9/16/2026"
+          },
+          {
+            "num": "51012",
+            "name": "Teaneck Liquors",
+            "date": "9/16/2026"
+          },
+          {
+            "num": "40017",
+            "name": "Essex St Liquor and Wine",
+            "date": "9/18/2026"
+          },
+          {
+            "num": "56008",
+            "name": "Bergenfield Liq & Fw",
+            "date": "9/23/2026"
+          },
+          {
+            "num": "51018",
+            "name": "Teaneck Discount Liquor",
+            "date": "9/24/2026"
+          },
+          {
+            "num": "40004",
+            "name": "Simple Simon's (Z)",
+            "date": "9/25/2026"
+          },
+          {
+            "num": "56013",
+            "name": "Time Lounge And Liq (A)",
+            "date": "9/29/2026"
+          },
+          {
+            "num": "57003",
+            "name": "Joes Beer Wine & Spirits",
+            "date": "9/30/2026"
+          },
+          {
+            "num": "58002",
+            "name": "River Edge Wine & Liquor",
+            "date": "9/30/2026"
+          },
+          {
+            "num": "58004",
+            "name": "Country Wine & Liquors",
+            "date": "9/30/2026"
+          }
+        ],
+        "rank": 9
+      },
+      "Anthony Palmisano": {
+        "base": 27,
+        "qualifier": 11,
+        "bonus": 14,
+        "accounts": 11,
+        "pct": 41,
+        "qualified": true,
+        "bonusHit": false,
+        "toQualifier": 0,
+        "toBonus": 3,
+        "payout": 55,
+        "accountList": [
+          {
+            "num": "8008",
+            "name": "Shoppers Disc(A)Pompton",
+            "date": "9/1/2026"
+          },
+          {
+            "num": "8007",
+            "name": "Krauszer's Liquor Wine and Spirits",
+            "date": "9/1/2026"
+          },
+          {
+            "num": "5006",
+            "name": "Roserne Pkg Store South",
+            "date": "9/8/2026"
+          },
+          {
+            "num": "3005",
+            "name": "Usa Wine Traders (Wanaque)",
+            "date": "9/10/2026"
+          },
+          {
+            "num": "2002",
+            "name": "Ringwood Discount Liquors",
+            "date": "9/10/2026"
+          },
+          {
+            "num": "9003",
+            "name": "B & B Wine&Liq",
+            "date": "9/15/2026"
+          },
+          {
+            "num": "1031",
+            "name": "Highland Wine&Liquor Inc",
+            "date": "9/24/2026"
+          },
+          {
+            "num": "5001",
+            "name": "River Place Food Store",
+            "date": "9/29/2026"
+          },
+          {
+            "num": "231805",
+            "name": "Meloi Liquors",
+            "date": "9/30/2026"
+          },
+          {
+            "num": "3001",
+            "name": "Best Cellars (Wanaque)",
+            "date": "9/30/2026"
+          },
+          {
+            "num": "8002",
+            "name": "Country Convenience Store",
+            "date": "9/30/2026"
+          }
+        ],
+        "rank": 10
+      },
       "Matt Powierski": {
         "base": 40,
         "qualifier": 16,
@@ -94783,13 +94968,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/3/2026"
           },
           {
-            "num": "77009",
-            "name": "M & M Wine & Spirits",
+            "num": "32017",
+            "name": "Wine Grand (Carlstadt)",
             "date": "9/4/2026"
           },
           {
-            "num": "32017",
-            "name": "Wine Grand (Carlstadt)",
+            "num": "77009",
+            "name": "M & M Wine & Spirits",
             "date": "9/4/2026"
           },
           {
@@ -94801,6 +94986,11 @@ const PROGRAM_DATA_2026_09 = {
             "num": "36007",
             "name": "Shop Rite Of Wallington",
             "date": "9/11/2026"
+          },
+          {
+            "num": "36006",
+            "name": "Wallington Liquor and Wine",
+            "date": "9/15/2026"
           },
           {
             "num": "36016",
@@ -94818,18 +95008,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/15/2026"
           },
           {
-            "num": "36006",
-            "name": "Wallington Liquor and Wine",
-            "date": "9/15/2026"
+            "num": "27063",
+            "name": "Archies (P)",
+            "date": "9/16/2026"
           },
           {
             "num": "31033",
             "name": "Capri Deli&Liq (P)",
-            "date": "9/16/2026"
-          },
-          {
-            "num": "27063",
-            "name": "Archies (P)",
             "date": "9/16/2026"
           },
           {
@@ -94838,93 +95023,18 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/17/2026"
           }
         ],
-        "rank": 9
-      },
-      "Dave Ehlers": {
-        "base": 35,
-        "qualifier": 14,
-        "bonus": 18,
-        "accounts": 12,
-        "pct": 34,
-        "qualified": false,
-        "bonusHit": false,
-        "toQualifier": 2,
-        "toBonus": 6,
-        "payout": 0,
-        "accountList": [
-          {
-            "num": "40010",
-            "name": "Hackensack Liquors",
-            "date": "8/4/2026"
-          },
-          {
-            "num": "41005",
-            "name": "George's Liq",
-            "date": "8/6/2026"
-          },
-          {
-            "num": "41012",
-            "name": "Deli Mart (A)",
-            "date": "9/1/2026"
-          },
-          {
-            "num": "39012",
-            "name": "Wine And Liq Depot(A)",
-            "date": "9/2/2026"
-          },
-          {
-            "num": "51013",
-            "name": "G & G Liquors & Bar",
-            "date": "9/2/2026"
-          },
-          {
-            "num": "51008",
-            "name": "H & R Disc. Liq (P)",
-            "date": "9/3/2026"
-          },
-          {
-            "num": "51012",
-            "name": "Teaneck Liquors",
-            "date": "9/16/2026"
-          },
-          {
-            "num": "40001",
-            "name": "Bottle & Cork",
-            "date": "9/16/2026"
-          },
-          {
-            "num": "40017",
-            "name": "Essex St Liquor and Wine",
-            "date": "9/18/2026"
-          },
-          {
-            "num": "56008",
-            "name": "Bergenfield Liq & Fw",
-            "date": "9/23/2026"
-          },
-          {
-            "num": "51018",
-            "name": "Teaneck Discount Liquor",
-            "date": "9/24/2026"
-          },
-          {
-            "num": "40004",
-            "name": "Simple Simon's (Z)",
-            "date": "9/25/2026"
-          }
-        ],
-        "rank": 10
+        "rank": 11
       },
       "Jim Heaney": {
         "base": 43,
         "qualifier": 18,
         "bonus": 22,
-        "accounts": 14,
-        "pct": 33,
+        "accounts": 15,
+        "pct": 35,
         "qualified": false,
         "bonusHit": false,
-        "toQualifier": 4,
-        "toBonus": 8,
+        "toQualifier": 3,
+        "toBonus": 7,
         "payout": 0,
         "accountList": [
           {
@@ -94933,13 +95043,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "8/13/2026"
           },
           {
-            "num": "28011",
-            "name": "Liquor Mart (North Arlington)",
+            "num": "25017",
+            "name": "Savers Club Liquor Locker",
             "date": "8/14/2026"
           },
           {
-            "num": "25017",
-            "name": "Savers Club Liquor Locker",
+            "num": "28011",
+            "name": "Liquor Mart (North Arlington)",
             "date": "8/14/2026"
           },
           {
@@ -94973,13 +95083,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/10/2026"
           },
           {
-            "num": "24017",
-            "name": "Rainbow Liquor (P)",
+            "num": "27016",
+            "name": "Marina's Wine & Spirits",
             "date": "9/15/2026"
           },
           {
-            "num": "27016",
-            "name": "Marina's Wine & Spirits",
+            "num": "24017",
+            "name": "Rainbow Liquor (P)",
             "date": "9/15/2026"
           },
           {
@@ -94996,56 +95106,11 @@ const PROGRAM_DATA_2026_09 = {
             "num": "28007",
             "name": "Metro Liquors (North Arlington)",
             "date": "9/24/2026"
-          }
-        ],
-        "rank": 11
-      },
-      "Anthony Palmisano": {
-        "base": 27,
-        "qualifier": 11,
-        "bonus": 14,
-        "accounts": 7,
-        "pct": 26,
-        "qualified": false,
-        "bonusHit": false,
-        "toQualifier": 4,
-        "toBonus": 7,
-        "payout": 0,
-        "accountList": [
-          {
-            "num": "8007",
-            "name": "Krauszer's Liquor Wine and Spirits",
-            "date": "9/1/2026"
           },
           {
-            "num": "8008",
-            "name": "Shoppers Disc(A)Pompton",
-            "date": "9/1/2026"
-          },
-          {
-            "num": "5006",
-            "name": "Roserne Pkg Store South",
-            "date": "9/8/2026"
-          },
-          {
-            "num": "3005",
-            "name": "Usa Wine Traders (Wanaque)",
-            "date": "9/10/2026"
-          },
-          {
-            "num": "2002",
-            "name": "Ringwood Discount Liquors",
-            "date": "9/10/2026"
-          },
-          {
-            "num": "9003",
-            "name": "B & B Wine&Liq",
-            "date": "9/15/2026"
-          },
-          {
-            "num": "1031",
-            "name": "Highland Wine&Liquor Inc",
-            "date": "9/24/2026"
+            "num": "29003",
+            "name": "Liquor Shed",
+            "date": "9/30/2026"
           }
         ],
         "rank": 12
@@ -95054,12 +95119,12 @@ const PROGRAM_DATA_2026_09 = {
         "base": 27,
         "qualifier": 11,
         "bonus": 14,
-        "accounts": 5,
-        "pct": 19,
+        "accounts": 6,
+        "pct": 22,
         "qualified": false,
         "bonusHit": false,
-        "toQualifier": 6,
-        "toBonus": 9,
+        "toQualifier": 5,
+        "toBonus": 8,
         "payout": 0,
         "accountList": [
           {
@@ -95086,6 +95151,11 @@ const PROGRAM_DATA_2026_09 = {
             "num": "70003",
             "name": "Montvale Wines & Spirits",
             "date": "9/16/2026"
+          },
+          {
+            "num": "62006",
+            "name": "Murphy's Fine Wines & Liquors (UNI 4H Inc.)",
+            "date": "9/29/2026"
           }
         ],
         "rank": 13
@@ -95177,7 +95247,7 @@ const PROGRAM_DATA_2026_09 = {
     },
     "meta": {
       "window": "8/1/2026 \u2013 9/30/2026",
-      "houseAccounts": 202,
+      "houseAccounts": 216,
       "repCount": 17,
       "offRoster": [
         "John Neukum"
@@ -107452,7 +107522,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 17,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 48.8,
+        "pctOfPace": 45.5,
         "products": [
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -107517,7 +107587,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 29,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 209.9,
+        "pctOfPace": 196.0,
         "products": [
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
@@ -107647,7 +107717,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 211,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 210.6,
+        "pctOfPace": 196.6,
         "products": [
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
@@ -107944,7 +108014,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 46,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 203.4,
+        "pctOfPace": 189.9,
         "products": [
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
@@ -108100,7 +108170,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 265,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 185.6,
+        "pctOfPace": 173.2,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -108392,7 +108462,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 211,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 136.5,
+        "pctOfPace": 127.4,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -108624,7 +108694,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 140,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 246.7,
+        "pctOfPace": 230.2,
         "products": [
           {
             "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
@@ -108947,7 +109017,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 121,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 188.8,
+        "pctOfPace": 176.2,
         "products": [
           {
             "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
@@ -109313,7 +109383,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 6,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 174.8,
+        "pctOfPace": 163.2,
         "products": [
           {
             "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
@@ -109387,7 +109457,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 105,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 184.6,
+        "pctOfPace": 172.3,
         "products": [
           {
             "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
@@ -109650,7 +109720,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 252,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 206.0,
+        "pctOfPace": 192.3,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -109932,7 +110002,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 245,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 195.7,
+        "pctOfPace": 182.6,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -110273,7 +110343,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 187,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 227.5,
+        "pctOfPace": 212.3,
         "products": [
           {
             "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
@@ -110596,7 +110666,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 219,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 213.2,
+        "pctOfPace": 199.0,
         "products": [
           {
             "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
@@ -110919,7 +110989,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 27,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 249.3,
+        "pctOfPace": 232.7,
         "products": [
           {
             "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
@@ -111150,7 +111220,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 148,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 204.8,
+        "pctOfPace": 191.1,
         "products": [
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -111437,7 +111507,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 38,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 148.5,
+        "pctOfPace": 138.6,
         "products": [
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -111522,7 +111592,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 94,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 181.7,
+        "pctOfPace": 169.6,
         "products": [
           {
             "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
@@ -111748,7 +111818,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 20,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 183.6,
+        "pctOfPace": 171.4,
         "products": [
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
@@ -111817,7 +111887,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 112,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 244.1,
+        "pctOfPace": 227.8,
         "products": [
           {
             "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
@@ -112135,7 +112205,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 43,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 162.5,
+        "pctOfPace": 151.7,
         "products": [
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -112230,7 +112300,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 197,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 173.9,
+        "pctOfPace": 162.3,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -112499,8 +112569,8 @@ const PROGRAM_DATA_2026_09 = {
     "periodStart": "2026-09-01",
     "periodEnd": "2026-11-30",
     "periodDays": 91,
-    "daysElapsed": 28,
-    "pacePct": 30.8,
+    "daysElapsed": 30,
+    "pacePct": 33.0,
     "meta": {
       "offRoster": [
         "Default",
@@ -115687,21 +115757,21 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 42,
+            "placements": 44,
             "goal": 80,
-            "pct": 52.5,
+            "pct": 55.0,
             "retained": false,
-            "toGo": 38,
+            "toGo": 36,
             "inReport": true,
             "products": [
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 14,
+                "placements": 15,
                 "base": 26,
                 "goal": 26,
-                "pct": 53.8,
+                "pct": 57.7,
                 "retained": false,
-                "toGo": 12,
+                "toGo": 11,
                 "lost": false
               },
               {
@@ -115716,12 +115786,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
-                "placements": 1,
+                "placements": 2,
                 "base": 10,
                 "goal": 10,
-                "pct": 10.0,
+                "pct": 20.0,
                 "retained": false,
-                "toGo": 9,
+                "toGo": 8,
                 "lost": false
               },
               {
@@ -116168,10 +116238,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 334,
+        "offPlacements": 336,
         "offGoal": 484,
-        "offPct": 69.0,
-        "offToGo": 150,
+        "offPct": 69.4,
+        "offToGo": 148,
         "on_packages": {
           "families": [
             {
@@ -116995,10 +117065,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 13,
         "goalsRetained": 0,
-        "overallHeld": 408,
+        "overallHeld": 410,
         "overallGoal": 616,
-        "overallPct": 66.2,
-        "overallToGo": 208,
+        "overallPct": 66.6,
+        "overallToGo": 206,
         "hasAnyGoal": true
       },
       "Brian Sengebush": {
@@ -117006,25 +117076,15 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 6,
+            "placements": 8,
             "goal": 10,
-            "pct": 60.0,
+            "pct": 80.0,
             "retained": false,
-            "toGo": 4,
+            "toGo": 2,
             "inReport": true,
             "products": [
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 2,
-                "base": 4,
-                "goal": 4,
-                "pct": 50.0,
-                "retained": false,
-                "toGo": 2,
-                "lost": false
-              },
-              {
-                "product": "Corona Extra 4/6/12 oz Btl",
                 "placements": 3,
                 "base": 4,
                 "goal": 4,
@@ -117044,6 +117104,16 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": true
               },
               {
+                "product": "Corona Extra 4/6/12 oz Btl",
+                "placements": 4,
+                "base": 4,
+                "goal": 4,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
                 "product": "Coronita Extra 1/24/7 oz Btl",
                 "placements": 1,
                 "base": 1,
@@ -117058,9 +117128,9 @@ const PROGRAM_DATA_2026_09 = {
             "goalOverride": false,
             "baseGoal": 10,
             "skusTotal": 4,
-            "skusHeld": 1,
+            "skusHeld": 2,
             "skusLost": 1,
-            "skusShort": 3,
+            "skusShort": 2,
             "skusNew": 0
           },
           {
@@ -117277,10 +117347,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 20,
+        "offPlacements": 22,
         "offGoal": 34,
-        "offPct": 58.8,
-        "offToGo": 14,
+        "offPct": 64.7,
+        "offToGo": 12,
         "on_packages": {
           "families": [
             {
@@ -119063,10 +119133,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 15,
         "goalsRetained": 0,
-        "overallHeld": 198,
+        "overallHeld": 200,
         "overallGoal": 319,
-        "overallPct": 62.1,
-        "overallToGo": 121,
+        "overallPct": 62.7,
+        "overallToGo": 119,
         "hasAnyGoal": true
       },
       "Chris Payton": {
@@ -119074,11 +119144,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 93,
+            "placements": 94,
             "goal": 133,
-            "pct": 69.9,
+            "pct": 70.7,
             "retained": false,
-            "toGo": 40,
+            "toGo": 39,
             "inReport": true,
             "products": [
               {
@@ -119123,12 +119193,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 22,
+                "placements": 23,
                 "base": 23,
                 "goal": 23,
-                "pct": 95.7,
-                "retained": false,
-                "toGo": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
                 "lost": false
               }
             ],
@@ -119136,9 +119206,9 @@ const PROGRAM_DATA_2026_09 = {
             "goalOverride": false,
             "baseGoal": 133,
             "skusTotal": 5,
-            "skusHeld": 0,
+            "skusHeld": 1,
             "skusLost": 0,
-            "skusShort": 5,
+            "skusShort": 4,
             "skusNew": 0
           },
           {
@@ -119565,10 +119635,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 548,
+        "offPlacements": 549,
         "offGoal": 775,
-        "offPct": 70.7,
-        "offToGo": 227,
+        "offPct": 70.8,
+        "offToGo": 226,
         "on_packages": {
           "families": [
             {
@@ -120040,10 +120110,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 14,
         "goalsRetained": 1,
-        "overallHeld": 583,
+        "overallHeld": 584,
         "overallGoal": 849,
-        "overallPct": 68.7,
-        "overallToGo": 266,
+        "overallPct": 68.8,
+        "overallToGo": 265,
         "hasAnyGoal": true
       },
       "Dan Lagala": {
@@ -120051,21 +120121,21 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 89,
+            "placements": 96,
             "goal": 126,
-            "pct": 70.6,
+            "pct": 76.2,
             "retained": false,
-            "toGo": 37,
+            "toGo": 30,
             "inReport": true,
             "products": [
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 29,
+                "placements": 30,
                 "base": 42,
                 "goal": 42,
-                "pct": 69.0,
+                "pct": 71.4,
                 "retained": false,
-                "toGo": 13,
+                "toGo": 12,
                 "lost": false
               },
               {
@@ -120080,32 +120150,32 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 15,
+                "placements": 17,
                 "base": 20,
                 "goal": 20,
-                "pct": 75.0,
+                "pct": 85.0,
                 "retained": false,
-                "toGo": 5,
+                "toGo": 3,
                 "lost": false
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 12,
+                "placements": 13,
                 "base": 16,
                 "goal": 16,
-                "pct": 75.0,
+                "pct": 81.2,
                 "retained": false,
-                "toGo": 4,
+                "toGo": 3,
                 "lost": false
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
-                "placements": 7,
+                "placements": 10,
                 "base": 10,
                 "goal": 10,
-                "pct": 70.0,
-                "retained": false,
-                "toGo": 3,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
                 "lost": false
               }
             ],
@@ -120113,9 +120183,9 @@ const PROGRAM_DATA_2026_09 = {
             "goalOverride": false,
             "baseGoal": 126,
             "skusTotal": 5,
-            "skusHeld": 0,
+            "skusHeld": 1,
             "skusLost": 0,
-            "skusShort": 5,
+            "skusShort": 4,
             "skusNew": 0
           },
           {
@@ -120512,10 +120582,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 479,
+        "offPlacements": 486,
         "offGoal": 668,
-        "offPct": 71.7,
-        "offToGo": 189,
+        "offPct": 72.8,
+        "offToGo": 182,
         "on_packages": {
           "families": [
             {
@@ -121094,10 +121164,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 14,
         "goalsRetained": 0,
-        "overallHeld": 526,
+        "overallHeld": 533,
         "overallGoal": 791,
-        "overallPct": 66.5,
-        "overallToGo": 265,
+        "overallPct": 67.4,
+        "overallToGo": 258,
         "hasAnyGoal": true
       },
       "Dave Ehlers": {
@@ -121680,11 +121750,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 105,
+            "placements": 108,
             "goal": 123,
-            "pct": 85.4,
+            "pct": 87.8,
             "retained": false,
-            "toGo": 18,
+            "toGo": 15,
             "inReport": true,
             "products": [
               {
@@ -121699,32 +121769,32 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 23,
+                "placements": 24,
                 "base": 28,
                 "goal": 28,
-                "pct": 82.1,
-                "retained": false,
-                "toGo": 5,
-                "lost": false
-              },
-              {
-                "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 22,
-                "base": 26,
-                "goal": 26,
-                "pct": 84.6,
+                "pct": 85.7,
                 "retained": false,
                 "toGo": 4,
                 "lost": false
               },
               {
-                "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 25,
-                "base": 28,
-                "goal": 28,
-                "pct": 89.3,
+                "product": "Corona Extra 2/12/12 oz Btl",
+                "placements": 23,
+                "base": 26,
+                "goal": 26,
+                "pct": 88.5,
                 "retained": false,
                 "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 4/6/12 oz Btl",
+                "placements": 26,
+                "base": 28,
+                "goal": 28,
+                "pct": 92.9,
+                "retained": false,
+                "toGo": 2,
                 "lost": false
               },
               {
@@ -122171,10 +122241,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 506,
+        "offPlacements": 509,
         "offGoal": 642,
-        "offPct": 78.8,
-        "offToGo": 136,
+        "offPct": 79.3,
+        "offToGo": 133,
         "on_packages": {
           "families": [
             {
@@ -122516,10 +122586,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 12,
         "goalsRetained": 0,
-        "overallHeld": 528,
+        "overallHeld": 531,
         "overallGoal": 697,
-        "overallPct": 75.8,
-        "overallToGo": 169,
+        "overallPct": 76.2,
+        "overallToGo": 166,
         "hasAnyGoal": true
       },
       "Dylan Rubino": {
@@ -124490,31 +124560,31 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 70,
+            "placements": 73,
             "goal": 94,
-            "pct": 74.5,
+            "pct": 77.7,
             "retained": false,
-            "toGo": 24,
+            "toGo": 21,
             "inReport": true,
             "products": [
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 22,
+                "placements": 23,
                 "base": 30,
                 "goal": 30,
-                "pct": 73.3,
+                "pct": 76.7,
                 "retained": false,
-                "toGo": 8,
+                "toGo": 7,
                 "lost": false
               },
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 21,
+                "placements": 22,
                 "base": 28,
                 "goal": 28,
-                "pct": 75.0,
+                "pct": 78.6,
                 "retained": false,
-                "toGo": 7,
+                "toGo": 6,
                 "lost": false
               },
               {
@@ -124539,12 +124609,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
-                "placements": 5,
+                "placements": 6,
                 "base": 7,
                 "goal": 7,
-                "pct": 71.4,
+                "pct": 85.7,
                 "retained": false,
-                "toGo": 2,
+                "toGo": 1,
                 "lost": false
               }
             ],
@@ -124981,10 +125051,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 292,
+        "offPlacements": 295,
         "offGoal": 443,
-        "offPct": 65.9,
-        "offToGo": 151,
+        "offPct": 66.6,
+        "offToGo": 148,
         "on_packages": {
           "families": [],
           "goalsTotal": 0,
@@ -125009,10 +125079,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 4,
         "goalsRetained": 0,
-        "overallHeld": 292,
+        "overallHeld": 295,
         "overallGoal": 443,
-        "overallPct": 65.9,
-        "overallToGo": 151,
+        "overallPct": 66.6,
+        "overallToGo": 148,
         "hasAnyGoal": true
       },
       "Jim Heaney": {
@@ -125020,41 +125090,41 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 94,
+            "placements": 97,
             "goal": 148,
-            "pct": 63.5,
+            "pct": 65.5,
             "retained": false,
-            "toGo": 54,
+            "toGo": 51,
             "inReport": true,
             "products": [
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 15,
+                "placements": 16,
                 "base": 30,
                 "goal": 30,
-                "pct": 50.0,
+                "pct": 53.3,
                 "retained": false,
-                "toGo": 15,
+                "toGo": 14,
                 "lost": false
               },
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 25,
+                "placements": 26,
                 "base": 38,
                 "goal": 38,
-                "pct": 65.8,
+                "pct": 68.4,
                 "retained": false,
-                "toGo": 13,
+                "toGo": 12,
                 "lost": false
               },
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 27,
+                "placements": 28,
                 "base": 39,
                 "goal": 39,
-                "pct": 69.2,
+                "pct": 71.8,
                 "retained": false,
-                "toGo": 12,
+                "toGo": 11,
                 "lost": false
               },
               {
@@ -125521,10 +125591,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 607,
+        "offPlacements": 610,
         "offGoal": 892,
-        "offPct": 68.0,
-        "offToGo": 285,
+        "offPct": 68.4,
+        "offToGo": 282,
         "on_packages": {
           "families": [
             {
@@ -125594,10 +125664,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 6,
         "goalsRetained": 2,
-        "overallHeld": 609,
+        "overallHeld": 612,
         "overallGoal": 894,
-        "overallPct": 68.1,
-        "overallToGo": 285,
+        "overallPct": 68.5,
+        "overallToGo": 282,
         "hasAnyGoal": true
       },
       "John O'Donoghue": {
@@ -126498,29 +126568,29 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 121,
+            "placements": 124,
             "goal": 153,
-            "pct": 79.1,
+            "pct": 81.0,
             "retained": false,
-            "toGo": 32,
+            "toGo": 29,
             "inReport": true,
             "products": [
-              {
-                "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 23,
-                "base": 32,
-                "goal": 32,
-                "pct": 71.9,
-                "retained": false,
-                "toGo": 9,
-                "lost": false
-              },
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
                 "placements": 29,
                 "base": 37,
                 "goal": 37,
                 "pct": 78.4,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 1/24/12 oz Loose Btl",
+                "placements": 24,
+                "base": 32,
+                "goal": 32,
+                "pct": 75.0,
                 "retained": false,
                 "toGo": 8,
                 "lost": false
@@ -126547,12 +126617,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
-                "placements": 15,
+                "placements": 17,
                 "base": 19,
                 "goal": 19,
-                "pct": 78.9,
+                "pct": 89.5,
                 "retained": false,
-                "toGo": 4,
+                "toGo": 2,
                 "lost": false
               }
             ],
@@ -126999,10 +127069,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 655,
+        "offPlacements": 658,
         "offGoal": 884,
-        "offPct": 74.1,
-        "offToGo": 229,
+        "offPct": 74.4,
+        "offToGo": 226,
         "on_packages": {
           "families": [
             {
@@ -127328,10 +127398,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 12,
         "goalsRetained": 0,
-        "overallHeld": 677,
+        "overallHeld": 680,
         "overallGoal": 929,
-        "overallPct": 72.9,
-        "overallToGo": 252,
+        "overallPct": 73.2,
+        "overallToGo": 249,
         "hasAnyGoal": true
       },
       "Michael Harboy": {
@@ -127339,41 +127409,41 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 15,
+            "placements": 19,
             "goal": 18,
-            "pct": 83.3,
-            "retained": false,
-            "toGo": 3,
+            "pct": 105.6,
+            "retained": true,
+            "toGo": 0,
             "inReport": true,
             "products": [
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 5,
+                "placements": 6,
                 "base": 6,
                 "goal": 6,
-                "pct": 83.3,
-                "retained": false,
-                "toGo": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
                 "lost": false
               },
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 5,
+                "placements": 6,
                 "base": 6,
                 "goal": 6,
-                "pct": 83.3,
-                "retained": false,
-                "toGo": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
                 "lost": false
               },
               {
-                "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 1,
+                "product": "Coronita Extra 1/24/7 oz Btl",
+                "placements": 3,
                 "base": 2,
                 "goal": 2,
-                "pct": 50.0,
-                "retained": false,
-                "toGo": 1,
+                "pct": 150.0,
+                "retained": true,
+                "toGo": 0,
                 "lost": false
               },
               {
@@ -127387,7 +127457,7 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Coronita Extra 1/24/7 oz Btl",
+                "product": "Corona Extra 1/24/12 oz Loose Btl",
                 "placements": 2,
                 "base": 2,
                 "goal": 2,
@@ -127401,9 +127471,9 @@ const PROGRAM_DATA_2026_09 = {
             "goalOverride": false,
             "baseGoal": 18,
             "skusTotal": 5,
-            "skusHeld": 2,
+            "skusHeld": 5,
             "skusLost": 0,
-            "skusShort": 3,
+            "skusShort": 0,
             "skusNew": 0
           },
           {
@@ -127769,11 +127839,11 @@ const PROGRAM_DATA_2026_09 = {
         ],
         "inReport": true,
         "offGoalsTotal": 4,
-        "offGoalsRetained": 1,
-        "offPlacements": 104,
+        "offGoalsRetained": 2,
+        "offPlacements": 108,
         "offGoal": 111,
-        "offPct": 93.7,
-        "offToGo": 7,
+        "offPct": 97.3,
+        "offToGo": 3,
         "on_packages": {
           "families": [
             {
@@ -127820,11 +127890,11 @@ const PROGRAM_DATA_2026_09 = {
           "emptyPickups": 0
         },
         "goalsTotal": 5,
-        "goalsRetained": 2,
-        "overallHeld": 105,
+        "goalsRetained": 3,
+        "overallHeld": 109,
         "overallGoal": 112,
-        "overallPct": 93.8,
-        "overallToGo": 7,
+        "overallPct": 97.3,
+        "overallToGo": 3,
         "hasAnyGoal": true
       },
       "Mike Ast": {
@@ -127832,23 +127902,13 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 53,
+            "placements": 56,
             "goal": 85,
-            "pct": 62.4,
+            "pct": 65.9,
             "retained": false,
-            "toGo": 32,
+            "toGo": 29,
             "inReport": true,
             "products": [
-              {
-                "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 19,
-                "base": 28,
-                "goal": 28,
-                "pct": 67.9,
-                "retained": false,
-                "toGo": 9,
-                "lost": false
-              },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
                 "placements": 1,
@@ -127860,23 +127920,33 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
+                "product": "Corona Extra 4/6/12 oz Btl",
+                "placements": 20,
+                "base": 28,
+                "goal": 28,
+                "pct": 71.4,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
+              },
+              {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 18,
+                "placements": 19,
                 "base": 25,
                 "goal": 25,
-                "pct": 72.0,
+                "pct": 76.0,
                 "retained": false,
-                "toGo": 7,
+                "toGo": 6,
                 "lost": false
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 7,
+                "placements": 8,
                 "base": 13,
                 "goal": 13,
-                "pct": 53.8,
+                "pct": 61.5,
                 "retained": false,
-                "toGo": 6,
+                "toGo": 5,
                 "lost": false
               },
               {
@@ -128323,10 +128393,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 271,
+        "offPlacements": 274,
         "offGoal": 434,
-        "offPct": 62.4,
-        "offToGo": 163,
+        "offPct": 63.1,
+        "offToGo": 160,
         "on_packages": {
           "families": [
             {
@@ -128701,10 +128771,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 15,
         "goalsRetained": 2,
-        "overallHeld": 294,
+        "overallHeld": 297,
         "overallGoal": 483,
-        "overallPct": 60.9,
-        "overallToGo": 189,
+        "overallPct": 61.5,
+        "overallToGo": 186,
         "hasAnyGoal": true
       },
       "Nick Melissari": {
@@ -131419,11 +131489,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 69,
+            "placements": 70,
             "goal": 98,
-            "pct": 70.4,
+            "pct": 71.4,
             "retained": false,
-            "toGo": 29,
+            "toGo": 28,
             "inReport": true,
             "products": [
               {
@@ -131448,12 +131518,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 15,
+                "placements": 16,
                 "base": 23,
                 "goal": 23,
-                "pct": 65.2,
+                "pct": 69.6,
                 "retained": false,
-                "toGo": 8,
+                "toGo": 7,
                 "lost": false
               },
               {
@@ -131900,10 +131970,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 390,
+        "offPlacements": 391,
         "offGoal": 524,
-        "offPct": 74.4,
-        "offToGo": 134,
+        "offPct": 74.6,
+        "offToGo": 133,
         "on_packages": {
           "families": [
             {
@@ -132832,10 +132902,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 15,
         "goalsRetained": 2,
-        "overallHeld": 473,
+        "overallHeld": 474,
         "overallGoal": 676,
-        "overallPct": 70.0,
-        "overallToGo": 203,
+        "overallPct": 70.1,
+        "overallToGo": 202,
         "hasAnyGoal": true
       },
       "Paul Mclaughlin": {
@@ -134868,22 +134938,12 @@ const PROGRAM_DATA_2026_09 = {
             "products": [
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
-                "placements": 6,
+                "placements": 5,
                 "base": 14,
                 "goal": 14,
-                "pct": 42.9,
+                "pct": 35.7,
                 "retained": false,
-                "toGo": 8,
-                "lost": false
-              },
-              {
-                "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 21,
-                "base": 25,
-                "goal": 25,
-                "pct": 84.0,
-                "retained": false,
-                "toGo": 4,
+                "toGo": 9,
                 "lost": false
               },
               {
@@ -134892,6 +134952,16 @@ const PROGRAM_DATA_2026_09 = {
                 "base": 26,
                 "goal": 26,
                 "pct": 88.5,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 2/12/12 oz Btl",
+                "placements": 22,
+                "base": 25,
+                "goal": 25,
+                "pct": 88.0,
                 "retained": false,
                 "toGo": 3,
                 "lost": false
@@ -137273,29 +137343,19 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 68,
+            "placements": 71,
             "goal": 85,
-            "pct": 80.0,
+            "pct": 83.5,
             "retained": false,
-            "toGo": 17,
+            "toGo": 14,
             "inReport": true,
             "products": [
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 21,
+                "placements": 23,
                 "base": 27,
                 "goal": 27,
-                "pct": 77.8,
-                "retained": false,
-                "toGo": 6,
-                "lost": false
-              },
-              {
-                "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 22,
-                "base": 26,
-                "goal": 26,
-                "pct": 84.6,
+                "pct": 85.2,
                 "retained": false,
                 "toGo": 4,
                 "lost": false
@@ -137308,6 +137368,16 @@ const PROGRAM_DATA_2026_09 = {
                 "pct": 75.0,
                 "retained": false,
                 "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 4/6/12 oz Btl",
+                "placements": 23,
+                "base": 26,
+                "goal": 26,
+                "pct": 88.5,
+                "retained": false,
+                "toGo": 3,
                 "lost": false
               },
               {
@@ -137774,10 +137844,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 387,
+        "offPlacements": 390,
         "offGoal": 482,
-        "offPct": 80.3,
-        "offToGo": 95,
+        "offPct": 80.9,
+        "offToGo": 92,
         "on_packages": {
           "families": [],
           "goalsTotal": 0,
@@ -137802,10 +137872,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 4,
         "goalsRetained": 0,
-        "overallHeld": 387,
+        "overallHeld": 390,
         "overallGoal": 482,
-        "overallPct": 80.3,
-        "overallToGo": 95,
+        "overallPct": 80.9,
+        "overallToGo": 92,
         "hasAnyGoal": true
       }
     },
@@ -137813,10 +137883,10 @@ const PROGRAM_DATA_2026_09 = {
       {
         "key": "corona_gaintain",
         "label": "Corona Gaintain",
-        "total": 1228,
+        "total": 1263,
         "goal": 1610,
         "met": false,
-        "short": 382,
+        "short": 347,
         "baseWindow": "9/1/2025 - 11/30/2025"
       },
       {
@@ -137970,14 +138040,14 @@ const PROGRAM_DATA_2026_09 = {
         }
       ]
     },
-    "houseTotal": 6663,
+    "houseTotal": 6698,
     "houseGoal": 8857,
     "retainThresholdPct": 100,
     "periodStart": "2026-09-01",
     "periodEnd": "2026-11-30",
     "periodDays": 91,
-    "daysElapsed": 28,
-    "pacePct": 30.8,
+    "daysElapsed": 30,
+    "pacePct": 33.0,
     "meta": {
       "onPrem": {
         "packages": {
@@ -141111,8 +141181,8 @@ const PROGRAM_DATA_2026_09 = {
     "periodStart": "2026-09-01",
     "periodEnd": "2026-11-30",
     "periodDays": 91,
-    "daysElapsed": 28,
-    "pacePct": 30.8,
+    "daysElapsed": 30,
+    "pacePct": 33.0,
     "meta": {
       "offRoster": []
     }
@@ -145474,8 +145544,8 @@ const PROGRAM_DATA_2026_09 = {
     "periodStart": "2026-07-20",
     "periodEnd": "2026-09-30",
     "periodDays": 73,
-    "daysElapsed": 71,
-    "pacePct": 97.3,
+    "daysElapsed": 73,
+    "pacePct": 100.0,
     "meta": {
       "source": "Boston Beer Seasonal Conversion Fall workbook",
       "officialAsOf": "2026-09-08",
@@ -148385,5 +148455,5 @@ const PROGRAM_DATA_2026_09 = {
     }
   }
 };
-const PROGRAM_DATA_REFRESHED = "Sep 28, 2026, 3:10 PM ET";
-const PROGRAM_DATA_REFRESHED_AT = "2026-09-28T19:10:15Z";
+const PROGRAM_DATA_REFRESHED = "Sep 30, 2026, 10:22 AM ET";
+const PROGRAM_DATA_REFRESHED_AT = "2026-09-30T14:22:15Z";

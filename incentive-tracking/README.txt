@@ -3638,6 +3638,15 @@ The off-premise MPO "Constellation - 30% Corona Gaintain Distro"
 (MPOs/off-prem) is a different program with its own 30%-of-last-fall goal
 and is NOT changed by this file.
 
+2026-09-30 REFRESH -- Corona Gaintain + Keystone sync only (riding the off-prem refresh)
+The 9/30 off-prem batch's Corona Gaintain export (123 rows, restated in
+place, only Jayson Romine up) and 274-row Keystone export went here per the
+sync rules -- data/constellation_fall_corona_gaintain_off.csv had stayed on
+the 9/28 file and keystone-ice/actuals.csv on the 9/28 254-row pull, so
+both boards caught up to the 9/29-9/30 numbers in this run. Keystone 202 ->
+216 accounts, 8 -> 10 of 17 reps qualified. Nothing else re-pulled. Hub
+cache tag bumped (20260930a).
+
 2026-09-16 REFRESH -- Corona Gaintain + Keystone sync only (riding the off-prem refresh)
 The 9/16 off-prem batch carried a new "Constellation Corona Gaintain FALL 2026
 OFF w/ Goals" export (122 rows, restated in place, values only up) and a

@@ -330,10 +330,10 @@
     "CUSTOMER_NUM": 253000,
     "CUSTOMER_NAME": "Leland Liquor & Deli",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/30/2026",
+    "LAST_DATE": "9/30/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Alex Rodriguez",
@@ -402,10 +402,22 @@
     "CUSTOMER_NUM": 250131,
     "CUSTOMER_NAME": "Liquor Gallery (Elizabeth)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/30/2026",
+    "LAST_DATE": "9/30/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Alex Rodriguez",
+    "PRODUCT_NAME": "200314 Pride & Clarke Vodka 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 250131,
+    "CUSTOMER_NAME": "Liquor Gallery (Elizabeth)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/30/2026",
+    "LAST_DATE": "9/30/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Alex Rodriguez",
@@ -750,10 +762,10 @@
     "CUSTOMER_NUM": 171001,
     "CUSTOMER_NAME": "Bridgeview Liquors",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/30/2026",
+    "LAST_DATE": "9/30/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Alisa Acciardi",
@@ -1590,10 +1602,10 @@
     "CUSTOMER_NUM": 25083,
     "CUSTOMER_NAME": "Rutt's Hut (A)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/30/2026",
+    "LAST_DATE": "9/30/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -1686,10 +1698,10 @@
     "CUSTOMER_NUM": 8006,
     "CUSTOMER_NAME": "pompton crafthouse",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 1.0,
+    "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "9/29/2026",
-    "LAST_DATE": "9/29/2026"
+    "PLACED_DATE": "",
+    "LAST_DATE": ""
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -2241,7 +2253,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/8/2026",
-    "LAST_DATE": "9/8/2026"
+    "LAST_DATE": "9/29/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -2737,6 +2749,30 @@
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "PRODUCT_NAME": "201080 Bardstown Discovery 2026 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 230122,
+    "CUSTOMER_NAME": "Krogh's Restaurant & Brew Pub",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/30/2026",
+    "LAST_DATE": "9/30/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "PRODUCT_NAME": "201081 Bardstown Collaboration Series Lochs Of Jura 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 230122,
+    "CUSTOMER_NAME": "Krogh's Restaurant & Brew Pub",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/30/2026",
+    "LAST_DATE": "9/30/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
     "PRODUCT_NAME": "200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl",
     "BRAND_FAMILY": "Leyenda 1925",
     "CUSTOMER_NUM": 191510,
@@ -2818,6 +2854,42 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "PRODUCT_NAME": "201054 Green River Wheated 1/750 mL",
+    "BRAND_FAMILY": "Bardstown Green River",
+    "CUSTOMER_NUM": 191001,
+    "CUSTOMER_NAME": "Stone Water",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/29/2026",
+    "LAST_DATE": "9/29/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "PRODUCT_NAME": "201056 Bardstown Origin Series Bourbon 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 191001,
+    "CUSTOMER_NAME": "Stone Water",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/29/2026",
+    "LAST_DATE": "9/29/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "PRODUCT_NAME": "201058 Bardstown Origin Series High Wheat 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 191001,
+    "CUSTOMER_NAME": "Stone Water",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/29/2026",
+    "LAST_DATE": "9/29/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -4038,10 +4110,10 @@
     "CUSTOMER_NUM": 43006,
     "CUSTOMER_NAME": "Fairview Liq & Groc.(A)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/29/2026",
+    "LAST_DATE": "9/29/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -4758,10 +4830,10 @@
     "CUSTOMER_NUM": 57003,
     "CUSTOMER_NAME": "Joes Beer Wine & Spirits",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/30/2026",
+    "LAST_DATE": "9/30/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -5049,7 +5121,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/15/2026",
-    "LAST_DATE": "9/15/2026"
+    "LAST_DATE": "9/29/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -5325,7 +5397,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/9/2026",
-    "LAST_DATE": "9/9/2026"
+    "LAST_DATE": "9/30/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -5337,7 +5409,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/9/2026",
-    "LAST_DATE": "9/9/2026"
+    "LAST_DATE": "9/30/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -5565,7 +5637,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/11/2026",
-    "LAST_DATE": "9/25/2026"
+    "LAST_DATE": "9/29/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -6690,10 +6762,10 @@
     "CUSTOMER_NUM": 170252,
     "CUSTOMER_NAME": "Baldwin W & L",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/29/2026",
+    "LAST_DATE": "9/29/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Dylan Rubino",
@@ -6705,7 +6777,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/9/2026",
-    "LAST_DATE": "9/9/2026"
+    "LAST_DATE": "9/29/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Dylan Rubino",
@@ -9882,10 +9954,10 @@
     "CUSTOMER_NUM": 150211,
     "CUSTOMER_NAME": "Harmony Bar & Liquors",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/30/2026",
+    "LAST_DATE": "9/30/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Hakan Sadik",
@@ -10122,10 +10194,10 @@
     "CUSTOMER_NUM": 150618,
     "CUSTOMER_NAME": "Home Liquors(641 Newark)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/30/2026",
+    "LAST_DATE": "9/30/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Hakan Sadik",
@@ -10209,7 +10281,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/16/2026",
-    "LAST_DATE": "9/16/2026"
+    "LAST_DATE": "9/30/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Hakan Sadik",
@@ -11070,10 +11142,10 @@
     "CUSTOMER_NUM": 152025,
     "CUSTOMER_NAME": "New Owl Liquors",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/29/2026",
+    "LAST_DATE": "9/29/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Hakan Sadik",
@@ -12253,6 +12325,54 @@
   },
   {
     "SALES_REP_ASSIGNED": "Hakan Sadik",
+    "PRODUCT_NAME": "101021 Carinoso Durazno 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Carinoso",
+    "CUSTOMER_NUM": 150145,
+    "CUSTOMER_NAME": "Wine 2 Spirits",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/30/2026",
+    "LAST_DATE": "9/30/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Hakan Sadik",
+    "PRODUCT_NAME": "101022 Carinoso Manzana 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Carinoso",
+    "CUSTOMER_NUM": 150145,
+    "CUSTOMER_NAME": "Wine 2 Spirits",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/30/2026",
+    "LAST_DATE": "9/30/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Hakan Sadik",
+    "PRODUCT_NAME": "101023 Carinoso Manzana Rose 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Carinoso",
+    "CUSTOMER_NUM": 150145,
+    "CUSTOMER_NAME": "Wine 2 Spirits",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/30/2026",
+    "LAST_DATE": "9/30/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Hakan Sadik",
+    "PRODUCT_NAME": "101025 Carinoso Fiesta Sangria 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Carinoso",
+    "CUSTOMER_NUM": 150145,
+    "CUSTOMER_NAME": "Wine 2 Spirits",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/30/2026",
+    "LAST_DATE": "9/30/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Hakan Sadik",
     "PRODUCT_NAME": "200171 Chateau Diana Caberner Sauvigon 12/750 mL Btl",
     "BRAND_FAMILY": "Chateau Diana",
     "CUSTOMER_NUM": 150145,
@@ -12730,6 +12850,18 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jaime Colonna",
+    "PRODUCT_NAME": "101091 Lo Secco Prosecco 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Lo Secco",
+    "CUSTOMER_NUM": 173032,
+    "CUSTOMER_NAME": "Sparrows Wine & Liq (P) (126 Hoboken)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/30/2026",
+    "LAST_DATE": "9/30/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jaime Colonna",
@@ -13318,6 +13450,18 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "200402 Travelers Club Vodka 24/375 mL Btl",
+    "BRAND_FAMILY": "Travelers Club",
+    "CUSTOMER_NUM": 27034,
+    "CUSTOMER_NAME": "Liquor Stop (Passaic)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/29/2026",
+    "LAST_DATE": "9/29/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -18564,6 +18708,30 @@
     "LAST_DATE": ""
   },
   {
+    "SALES_REP_ASSIGNED": "Michael Harboy",
+    "PRODUCT_NAME": "201055 Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 11014,
+    "CUSTOMER_NAME": "Wayne Liquor Locker",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/30/2026",
+    "LAST_DATE": "9/30/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Michael Harboy",
+    "PRODUCT_NAME": "201058 Bardstown Origin Series High Wheat 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 11014,
+    "CUSTOMER_NAME": "Wayne Liquor Locker",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/30/2026",
+    "LAST_DATE": "9/30/2026"
+  },
+  {
     "SALES_REP_ASSIGNED": "Mike Ast",
     "PRODUCT_NAME": "200310 Pride & Clarke Vodka 6/1.75 L Btl",
     "BRAND_FAMILY": "Pride & Clarke",
@@ -19170,10 +19338,10 @@
     "CUSTOMER_NUM": 93003,
     "CUSTOMER_NAME": "Mahwah Liqrs (P)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/29/2026",
+    "LAST_DATE": "9/29/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -19249,6 +19417,18 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
+    "PRODUCT_NAME": "100121 Le Grand Noir Cabernet Sauvignon 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Le Grand Noir",
+    "CUSTOMER_NUM": 84022,
+    "CUSTOMER_NAME": "Park West Tavern",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/30/2026",
+    "LAST_DATE": "9/30/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
     "PRODUCT_NAME": "100912 OVO Vodka 1/12/750 mL Btl",
     "BRAND_FAMILY": "OVO Vodka",
     "CUSTOMER_NUM": 84022,
@@ -19305,7 +19485,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 1,
     "PLACED_DATE": "9/16/2026",
-    "LAST_DATE": "9/16/2026"
+    "LAST_DATE": "9/30/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -19650,10 +19830,10 @@
     "CUSTOMER_NUM": 96002,
     "CUSTOMER_NAME": "Wine & Spirit World(W)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/30/2026",
+    "LAST_DATE": "9/30/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -19714,6 +19894,18 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "9/2/2026",
     "LAST_DATE": "9/10/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "PRODUCT_NAME": "201051 Green River Bourbon 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Green River",
+    "CUSTOMER_NUM": 96002,
+    "CUSTOMER_NAME": "Wine & Spirit World(W)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/30/2026",
+    "LAST_DATE": "9/30/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -20245,6 +20437,18 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "200402 Travelers Club Vodka 24/375 mL Btl",
+    "BRAND_FAMILY": "Travelers Club",
+    "CUSTOMER_NUM": 27069,
+    "CUSTOMER_NAME": "Broadway W&L",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/29/2026",
+    "LAST_DATE": "9/29/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
     "PRODUCT_NAME": "200313 Pride & Clarke Vodka 24/375 mL Btl",
     "BRAND_FAMILY": "Pride & Clarke",
     "CUSTOMER_NUM": 20022,
@@ -20406,10 +20610,10 @@
     "CUSTOMER_NUM": 20068,
     "CUSTOMER_NAME": "Florida Drugs (A)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/30/2026",
+    "LAST_DATE": "9/30/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -20418,10 +20622,10 @@
     "CUSTOMER_NUM": 20068,
     "CUSTOMER_NAME": "Florida Drugs (A)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/30/2026",
+    "LAST_DATE": "9/30/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -20809,6 +21013,30 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "100962 2XO French Oak 1/750 mL Btl",
+    "BRAND_FAMILY": "2XO",
+    "CUSTOMER_NUM": 39004,
+    "CUSTOMER_NAME": "Noches De Colombia (S. Hackensack))",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/30/2026",
+    "LAST_DATE": "9/30/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "100966 2XO The Collectibles Hip Hop Blend 1/750 mL Btl",
+    "BRAND_FAMILY": "2XO",
+    "CUSTOMER_NUM": 39004,
+    "CUSTOMER_NAME": "Noches De Colombia (S. Hackensack))",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/30/2026",
+    "LAST_DATE": "9/30/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
     "PRODUCT_NAME": "200771 Desquite Artesanal 6/750 mL Btl",
     "BRAND_FAMILY": "Desquite",
     "CUSTOMER_NUM": 39004,
@@ -20826,10 +21054,22 @@
     "CUSTOMER_NUM": 39004,
     "CUSTOMER_NAME": "Noches De Colombia (S. Hackensack))",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/30/2026",
+    "LAST_DATE": "9/30/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "100966 2XO The Collectibles Hip Hop Blend 1/750 mL Btl",
+    "BRAND_FAMILY": "2XO",
+    "CUSTOMER_NUM": 52005,
+    "CUSTOMER_NAME": "Noches De Colombia(Englewood))",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/30/2026",
+    "LAST_DATE": "9/30/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -21102,10 +21342,10 @@
     "CUSTOMER_NUM": 61004,
     "CUSTOMER_NAME": "Andiamo",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/29/2026",
+    "LAST_DATE": "9/29/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -21114,10 +21354,10 @@
     "CUSTOMER_NUM": 61004,
     "CUSTOMER_NAME": "Andiamo",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/29/2026",
+    "LAST_DATE": "9/29/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -21298,6 +21538,18 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "PRODUCT_NAME": "201057 Bardstown Origin Series Double Barrel Rye 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 70012,
+    "CUSTOMER_NAME": "Fire & Oak (A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "9/30/2026",
+    "LAST_DATE": "9/30/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -24054,10 +24306,10 @@
     "CUSTOMER_NUM": 75002,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Emerson",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "9/29/2026",
+    "LAST_DATE": "9/29/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
