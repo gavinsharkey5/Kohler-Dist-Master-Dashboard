@@ -147,11 +147,15 @@ const PROGRAM_LOGOS = {
   'mabi_retention_fall': 'assets/logos/mark_anthony.png',
   'yuengling_retention_fall': 'assets/logos/yuengling.png',
   'new_belgium_distribution_retain': 'assets/logos/new_belgium.png',
-  // October 2026: no artwork on file yet for Lagunitas, Famosa, Industrial Arts
-  // or Four Loko (progLogo renders nothing for a missing key); the Mark
-  // Anthony and Boston Beer programs reuse their supplier marks.
-  'mabi_single_serve': 'assets/logos/mark_anthony.png',
+  // October 2026 marks cut from the 2026 October Rewards Deck (2026-09-30)
+  'mabi_single_serve': ['assets/logos/white_claw.png', 'assets/logos/mikes_harder.png', 'assets/logos/cayman_jack.png'],
   'sam_adams_cold_snap': ['assets/logos/boston_beer.png', 'assets/logos/sam_adams.png'],
+  'lagunitas_sprint': 'assets/logos/lagunitas.png',
+  'famosa_oct': 'assets/logos/famosa.png',
+  'industrial_arts': 'assets/logos/industrial_arts.png',
+  'four_loko': 'assets/logos/four_loko.png',
+  'touchdowns_tea_off': ['assets/logos/sun_cruiser.png', 'assets/logos/twisted_tea.png'],
+  'touchdowns_tea_on': ['assets/logos/sun_cruiser.png', 'assets/logos/twisted_tea.png'],
   // heineken_husa has NO logo on purpose: the September deck's HUSA slide is a
   // goals table with no Heineken artwork anywhere in the file, and progLogo()
   // renders no chip for an unmapped key. Drop a Heineken mark in here if one
@@ -277,6 +281,12 @@ const PROGRAM_LIST_2026_08 = [
 
 const sept = key => rep => (PROGRAM_DATA_2026_09[key]||{}).byRep?.[rep];
 const oct  = key => rep => (PROGRAM_DATA_2026_10[key]||{}).byRep?.[rep];
+// Touchdowns & Tea split views (October tab): each side sees only its own
+// leg's fields, so the hub's account lists and headlines stay per channel.
+const ttOff = rep => { const d = (PROGRAM_DATA_2026_09['touchdowns_tea']||{}).byRep?.[rep]; if(!d) return undefined;
+  return {offPremNewCount:d.offPremNewCount, offPremNew:d.offPremNew, byBrand:d.byBrand, offPremTargets:d.offPremTargets, offPremTargetCount:d.offPremTargetCount, placementPayout:d.placementPayout}; };
+const ttOn = rep => { const d = (PROGRAM_DATA_2026_09['touchdowns_tea']||{}).byRep?.[rep]; if(!d) return undefined;
+  return {onPremCases:d.onPremCases, onPremAccountCount:d.onPremAccountCount, onPremAccounts:d.onPremAccounts, onPremCasePayout:d.onPremCasePayout}; };
 
 const PROGRAM_LIST_2026_09 = [
   // --- New September programs -------------------------------------------
@@ -287,7 +297,10 @@ const PROGRAM_LIST_2026_09 = [
    pitch:`Get Keystone Ice 24oz cans on the shelf next to Busch and Bud Ice.`,
    getRep:sept('keystone_ice'),
    metric:d=>d.pct, metricLabel:'% of your account base', fmt:v=>v.toFixed(0)+'%'},
-  {key:'touchdowns_tea', group:'new', title:'Touchdowns & Tea', shortTitle:'Touchdowns & Tea', tag:'September',
+  // hub:false (2026-09-30): the hub shows the October tab's two split cards
+  // (touchdowns_tea_off / _on) instead of this September one; the tracker's
+  // September tab still renders it.
+  {key:'touchdowns_tea', group:'new', title:'Touchdowns & Tea', shortTitle:'Touchdowns & Tea', tag:'September', hub:false,
    pitch:`Own football season for Sun Cruiser and Twisted Tea — floor displays and bucket features both pay.`,
    getRep:sept('touchdowns_tea'),
    metric:d=>d.payout, metricLabel:'tracked $', fmt:v=>'$'+v.toLocaleString('en-US')},
@@ -452,11 +465,20 @@ const PROGRAM_LIST_2026_10 = [
    metric:d=>d.totalNew, metricLabel:'accounts opened + draft lines', fmt:v=>v.toFixed(0)},
 
   // --- Ongoing: the deck's continuing programs, same data as before -----
-  {key:'touchdowns_tea', group:'ongoing', title:'Touchdowns & Tea', shortTitle:'Touchdowns & Tea', tag:'Sept–Oct',
+  // Touchdowns & Tea is TWO cards from October (Gavin, 2026-09-30: the one
+  // card was overcrowded): the off-premise 12pk leg and the on-premise case
+  // leg, each reading its own slice of the same touchdowns_tea dataset
+  // (`dataKey` tells the hub which blob the card's period and meta live in).
+  {key:'touchdowns_tea_off', dataKey:'touchdowns_tea', group:'ongoing', title:'Touchdowns & Tea — Off-Premise', shortTitle:'Touchdowns & Tea · Off-Premise', tag:'Sept–Oct',
    period:{start:'2026-09-01', end:'2026-10-31'},
-   pitch:`Own football season for Sun Cruiser and Twisted Tea — floor displays and bucket features both pay.`,
-   getRep:sept('touchdowns_tea'),
+   pitch:`Get Sun Cruiser and Twisted Tea 12-packs into stores for football season — every new 12-pack placement pays, and a floor display with football POS pays on top.`,
+   getRep:ttOff,
    metric:d=>d.offPremNewCount, metricLabel:'new 12pk placements', fmt:v=>v.toFixed(0)},
+  {key:'touchdowns_tea_on', dataKey:'touchdowns_tea', group:'ongoing', title:'Touchdowns & Tea — On-Premise', shortTitle:'Touchdowns & Tea · On-Premise', tag:'Sept–Oct',
+   period:{start:'2026-09-01', end:'2026-10-31'},
+   pitch:`Make Sun Cruiser the lead football hard tea in your bars — every case sold pays, and a football feature pays on top.`,
+   getRep:ttOn,
+   metric:d=>d.onPremCases, metricLabel:'on-premise cases', fmt:v=>v.toFixed(0)},
   {key:'lytt', group:'ongoing', title:'Lytt Launch', shortTitle:'Lytt', tag:'Aug–Dec',
    period:{start:'2026-08-01', end:'2026-12-31'},
    pitch:`The more of your accounts that carry Lytt, the higher your per-case rate — the rate you reached pays through December.`,
@@ -546,7 +568,7 @@ const MONTHS = [
    programs:PROGRAM_LIST_2026_10,
    repCards:{
      new:['mabi_single_serve','lagunitas_sprint','industrial_arts','famosa_oct','four_loko','sam_adams_cold_snap'],
-     ongoing:['touchdowns_tea','lytt','other_half','le_grand_noir','printed_menu','bardstown_display','two_xo'],
+     ongoing:['touchdowns_tea_off','touchdowns_tea_on','lytt','other_half','le_grand_noir','printed_menu','bardstown_display','two_xo'],
      retention:['mc_retention','constellation_fall','mabi_retention_fall','yuengling_retention_fall','heineken_husa','new_belgium_distribution_retain'],
    }},
 ];
@@ -1133,6 +1155,50 @@ function cardOtherHalf(rep){
 }
 
 // ---- October 2026 cards ----
+// Touchdowns & Tea split into two cards (Gavin, 2026-09-30): the same
+// blocks cardTouchdownsTea() draws, one channel per card, each leading
+// with the two numbers that matter for that leg.
+function _ttHead(key, title){
+  return `<div class="prog-head"><div class="prog-name-row">${progLogo(key)}<span class="prog-name">${title}</span><span class="prog-tag">Sept–Oct</span>${terrTag(key)}</div>${progPitch(key)}</div>`;
+}
+function cardTouchdownsOff(rep){
+  const P = PROGRAM_DATA_2026_09['touchdowns_tea']||{}; const d = P.byRep?.[rep]; if(!d) return '';
+  const R = (P.meta||{}).rates||{};
+  const board = statBoard([
+    {num:d.offPremNewCount, label:'New 12pk Placements', status:cntStatus(d.offPremNewCount), sub:`$${R.placement||15} each`},
+    {num:d.byBrand?.['Sun Cruiser']||0, label:'Sun Cruiser', sub:'12pk placements'},
+    {num:d.byBrand?.['Twisted Tea']||0, label:'Twisted Tea', sub:'12pk placements'},
+    {num:`$${(d.placementPayout||0).toLocaleString('en-US')}`, label:'Earned On Placements', sub:'floor displays pay on top'},
+  ]);
+  const pkgBlock = earnBlock({
+    icon:'🏈', title:'New 12pk Placements', rate:`EARN $${R.placement||15}`,
+    rateNote:'per new 12pk SKU placement on Sun Cruiser or Twisted Tea. "New" = the store did not buy that 12pk SKU June–August. A second 12pk SKU at the same store counts again.',
+    steps:[{text:'Place a Sun Cruiser or Twisted Tea 12pk in a store that did not buy it over the summer', done:d.offPremNewCount>0}, {text:'Add the second brand’s 12pk at the same store — it counts again', done:(d.byBrand?.['Sun Cruiser']||0)>0 && (d.byBrand?.['Twisted Tea']||0)>0}],
+    detail:{label:'Your New 12pk Placements', items:(d.offPremNew||[]).map(a=>({name:a.customer, sub:(a.brands||[]).join(', '), stat:a.date||''})), emptyMsg:'No new 12pk placements yet.'},
+    opportunity:{label:'Stores To Target', count:d.offPremTargetCount, note:'Stores on your list with no Sun Cruiser or Twisted Tea 12pk since June — each one pays $15.', items:(d.offPremTargets||[]).map(a=>({name:a.customer, stat:casesStat(a.cases2026)})), moreCount:Math.max(0,(d.offPremTargetCount||0)-(d.offPremTargets||[]).length), emptyMsg:'No stores left to target on your list right now.'},
+  });
+  const display = earnBlock({icon:'📸', title:'Floor Displays With Football POS', rate:`$${R.floorCase||1} A CASE`, rateNote:'Photo verified in iSellBeer — not tracked on this page',
+    whatToDo:`A floor display with football POS pays $${R.floorCase||1} a case on a ${R.floorMinCases||25}-case minimum and cannot be co-branded. Take the picture in iSellBeer.`});
+  return `<div class="prog-card">${_ttHead('touchdowns_tea_off','Touchdowns &amp; Tea — Off-Premise')}<div class="prog-body">${board}${pkgBlock}${display}</div></div>`;
+}
+function cardTouchdownsOn(rep){
+  const P = PROGRAM_DATA_2026_09['touchdowns_tea']||{}; const d = P.byRep?.[rep]; if(!d) return '';
+  const R = (P.meta||{}).rates||{};
+  const board = statBoard([
+    {num:d.onPremCases.toFixed(0), label:'Cases Sold', status:cntStatus(d.onPremCases), sub:`$${R.onPremCase||1} a case`},
+    {num:d.onPremAccountCount, label:'Accounts Buying', sub:'bars & restaurants'},
+    {num:`$${(d.onPremCasePayout||0).toLocaleString('en-US')}`, label:'Earned On Cases', sub:'features pay on top'},
+  ]);
+  const onBlock = earnBlock({
+    icon:'🍻', title:'Cases Sold On-Premise', rate:`EARN $${R.onPremCase||1} A CASE`,
+    rateNote:'every Sun Cruiser or Twisted Tea case sold into a bar or restaurant, from case one. The goal is Sun Cruiser as the lead football hard tea.',
+    steps:[{text:'Sell Sun Cruiser into a bar or restaurant — the first case already pays', done:d.onPremCases>0}, {text:'Keep the cases coming through October', done:d.onPremCases>=10}],
+    detail:{label:'Your On-Premise Accounts', items:(d.onPremAccounts||[]).map(a=>({name:a.customer, stat:a.cases.toFixed(0)+' cs'})), emptyMsg:'No on-premise cases yet.'},
+  });
+  const feature = earnBlock({icon:'📸', title:'Football Features', rate:`$${R.feature||25} A FEATURE`, rateNote:'Photo verified in iSellBeer — not tracked on this page',
+    whatToDo:`Any account running a football feature pays $${R.feature||25}. It needs an iSellBeer menu or bucket picture, and the bucket special must be under $35 for 5 cans.`});
+  return `<div class="prog-card">${_ttHead('touchdowns_tea_on','Touchdowns &amp; Tea — On-Premise')}<div class="prog-body">${board}${onBlock}${feature}</div></div>`;
+}
 function cardLagunitasSprint(rep){
   const P = PROGRAM_DATA_2026_10['lagunitas_sprint']||{}; const d = P.byRep?.[rep]; if(!d) return '';
   const m = P.meta||{}, R = m.rates||{};
@@ -1238,6 +1304,7 @@ function cardMabiSingleServe(rep){
 }
 
 const PROGRAM_CARD_FN = {
+  'touchdowns_tea_off': cardTouchdownsOff, 'touchdowns_tea_on': cardTouchdownsOn,
   'lagunitas_sprint': cardLagunitasSprint, 'famosa_oct': cardFamosaOct, 'industrial_arts': cardIndustrialArts, 'mabi_single_serve': cardMabiSingleServe,
   '1911': card1911, 'woodchuck': cardWoodchuck, 'tona': cardTona,
   'path_to_victory': cardPathToVictory, 'sam_adams': cardSamAdams, 'boston_beer': cardBostonBeer,
@@ -3682,11 +3749,11 @@ const SUPPLIERS = {
   cruz:          {name:'YaVe Tequila',      rde:'Cruz Beverage',                logo:'assets/logos/yave.png'},
   mollys:        {name:"Molly's",           rde:"Molly's",                      logo:'assets/logos/mollys.png'},
   house:         {name:'Kohler House Programs', rde:'(multiple suppliers)',     logo:'../assets/kohler-logo-badge.png'},
-  // October 2026 (no logo files yet -- the hub shows the name)
-  lagunitas:     {name:'Lagunitas',         rde:'Lagunitas Brewing Co',         logo:''},
-  famosa:        {name:'Famosa',            rde:'Central Beer Import & Export',  logo:''},
-  industrial_arts:{name:'Industrial Arts',  rde:'Industrial Arts Brewing',      logo:''},
-  phusion:       {name:'Four Loko',         rde:'Phusion Projects',             logo:''},
+  // October 2026 (marks cut from the deck; Heineken has none)
+  lagunitas:     {name:'Lagunitas',         rde:'Lagunitas Brewing Co',         logo:'assets/logos/lagunitas.png'},
+  famosa:        {name:'Famosa',            rde:'Central Beer Import & Export',  logo:'assets/logos/famosa.png'},
+  industrial_arts:{name:'Industrial Arts',  rde:'Industrial Arts Brewing',      logo:'assets/logos/industrial_arts.png'},
+  phusion:       {name:'Four Loko',         rde:'Phusion Projects',             logo:'assets/logos/four_loko.png'},
   heineken:      {name:'Heineken USA',      rde:'Heineken USA',                 logo:''},
 };
 // Program -> supplier key. Programs spanning several suppliers (the fall
@@ -3709,6 +3776,7 @@ const PROGRAM_SUPPLIER = {
   path_to_victory_sd:'victory', fall_seasonal_sd:'house',
   mabi_single_serve:'mark_anthony', four_loko:'phusion', lagunitas_sprint:'lagunitas', famosa_oct:'famosa',
   sam_adams_cold_snap:'boston_beer', industrial_arts:'industrial_arts', heineken_husa:'heineken',
+  touchdowns_tea_off:'boston_beer', touchdowns_tea_on:'boston_beer',
 };
 function supplierOf(key){ return SUPPLIERS[PROGRAM_SUPPLIER[key]] || SUPPLIERS.house; }
 
@@ -3764,6 +3832,13 @@ const PROGRAM_SUMMARY = {
   // the count up top, the earnings in the sub, which the tracker and
   // Manager Mode still print and Rep Mode drops.
   // ---- October 2026 ----
+  touchdowns_tea_off:(d)=>({goal:false, now:d.offPremNewCount, unit:'placements',
+    label:`${pl(d.offPremNewCount,'new 12pk placement')}`,
+    sub:`${(d.byBrand||{})['Sun Cruiser']||0} Sun Cruiser · ${(d.byBrand||{})['Twisted Tea']||0} Twisted Tea`,
+    next:`Get Sun Cruiser or Twisted Tea 12-packs into stores that did not buy them over the summer — every new 12pk SKU placement counts. A floor display with football POS (25-case minimum, photo in iSellBeer) pays on top.`}),
+  touchdowns_tea_on:(d)=>({goal:false, now:Math.round(d.onPremCases||0), unit:'cases',
+    label:`${Math.round(d.onPremCases||0)} on-premise cases · ${pl(d.onPremAccountCount||0,'account')}`,
+    next:`Every Sun Cruiser or Twisted Tea case sold into a bar or restaurant counts from case one. A football feature (menu or bucket special, photo in iSellBeer) pays on top.`}),
   // open-ended (every POD pays once 3 are in), so no "% complete" -- the
   // qualifier reads as a remain line instead of a goal
   lagunitas_sprint:(d,m)=>({goal:false, now:d.podCount, unit:'PODs',
@@ -4057,7 +4132,8 @@ function summarize(entry, rep){
   if(!d || !fn) return {status:'soon', soon:true,
     next:entry.manual ? 'Submitted and verified by hand — nothing to track here yet.'
                       : 'Waiting on the first export for this program.'};
-  const P = (PROGRAM_DATA_2026_09[entry.key] || PROGRAM_DATA[entry.key] || {});
+  const dk = entry.dataKey || entry.key;
+  const P = ((typeof PROGRAM_DATA_2026_10!=='undefined' && PROGRAM_DATA_2026_10[dk]) || PROGRAM_DATA_2026_09[dk] || PROGRAM_DATA[dk] || {});
   const s = fn(d, P.meta, P) || {};
   let pct;
   if(s.pctOverride!=null) pct = s.pctOverride;
@@ -4079,6 +4155,18 @@ function summarize(entry, rep){
 // get the program in a few seconds). Adapted per incentive from the deck.
 const PROGRAM_RULES = {
   // ---- October 2026 (2026 October Rewards Deck) ----
+  'touchdowns_tea_off': [
+    'Off-premise, Sept 1 – Oct 31 — grow Sun Cruiser and Twisted Tea for football',
+    '$15 for every new 12pk placement of Sun Cruiser or Twisted Tea',
+    '$1 per case on a floor display with football POS — 25-case minimum, cannot be co-branded',
+    'Floor displays need an iSellBeer picture',
+  ],
+  'touchdowns_tea_on': [
+    'On-premise, Sept 1 – Oct 31 — make Sun Cruiser the lead football hard tea',
+    '$1 per case sold on-premise, from case one',
+    '$25 for any account running a football feature',
+    'Feature needs an iSellBeer menu or bucket picture; the bucket special must be under $35 for 5 cans',
+  ],
   'mabi_single_serve': [
     'Runs Oct 1 – Nov 30 (purchases Sept 1 – Nov 30 count)',
     '$15 for selling in 8 or more White Claw single-serve packages',
@@ -4373,6 +4461,22 @@ const PROGRAM_RULES = {
 // good (green) / warn (amber) / bad (red) / gray-dim (neutral).
 const PROGRAM_BOARD = {
   // ---- October 2026 ----
+  'touchdowns_tea_off': d=>({
+    metrics:[
+      {num:d.offPremNewCount, label:'new 12pks', cls:d.offPremNewCount>0?'good':'dim'},
+      {num:(d.byBrand||{})['Sun Cruiser']||0, label:'Sun Cruiser'},
+      {num:(d.byBrand||{})['Twisted Tea']||0, label:'Twisted Tea'},
+    ],
+    status: d.offPremNewCount>0 ? {cls:'good', label:`✓ $${(d.placementPayout||0).toLocaleString('en-US')} earned`} : {cls:'gray', label:'No new 12pks yet'},
+  }),
+  'touchdowns_tea_on': d=>({
+    metrics:[
+      {num:Math.round(d.onPremCases||0), label:'cases', cls:d.onPremCases>0?'good':'dim'},
+      {num:d.onPremAccountCount||0, label:'accounts'},
+      {num:`$${(d.onPremCasePayout||0).toLocaleString('en-US')}`, label:'earned', cls:d.onPremCasePayout?'good':'dim'},
+    ],
+    status: d.onPremCases>0 ? {cls:'good', label:'✓ Selling'} : {cls:'gray', label:'No on-premise cases yet'},
+  }),
   'lagunitas_sprint': d=>({
     metrics:[
       {num:d.podCount, label:'new PODs', cls:d.podCount>0?'good':'dim'},

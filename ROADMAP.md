@@ -107,6 +107,11 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-09-30 Touchdowns & Tea split into Off-Premise and On-Premise
+  cards; programs still waiting on their first export no longer show on the
+  rep hub; Lagunitas, Famosa, Industrial Arts, Four Loko, White Claw, Mike's
+  Harder and Cayman Jack marks cut from the October deck. Still no Twisted
+  Tea or Heineken artwork -- send a logo file if you want those chips.
 - [x] 2026-09-30 October 2026 tab on the Incentive Tracker and the hub: MABI
   Fall Single Serve, Lagunitas Sprint to the Finish, Push Famosa and
   Industrial Arts Target Account Launch scored from their RDE exports; Four

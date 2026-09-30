@@ -203,13 +203,13 @@ const INC_CHANNEL = {
   keystone_ice:'off', lytt:'off', tona:'off', sun_cruiser:'off', path_to_victory:'off', path_to_victory_sd:'off', mollys:'off',
   display_auction:'off', mabi_retention:'off', mabi_retention_fall:'off',
   sam_adams_conversion:'on', printed_menu:'on', new_belgium:'on',
-  mabi_single_serve:'off', four_loko:'off', sam_adams_cold_snap:'on',
+  mabi_single_serve:'off', four_loko:'off', sam_adams_cold_snap:'on', touchdowns_tea_off:'off', touchdowns_tea_on:'on',
 };
 const CHANNEL_LABEL = {on:'On-Premise', off:'Off-Premise', both:'On & Off-Premise'};
 
 function incBlob(key){ return (typeof PROGRAM_DATA_2026_10!=='undefined' && PROGRAM_DATA_2026_10[key]) || PROGRAM_DATA_2026_09[key] || PROGRAM_DATA[key] || {}; }
 function incPeriod(entry, month){
-  const P = incBlob(entry.key);
+  const P = incBlob(entry.dataKey||entry.key);
   const year = +month.key.slice(0,4);
   // a registry entry may carry its own window (2026-09-30: the October tab
   // extends Touchdowns & Tea and Lytt past the window their data was built for)
@@ -235,7 +235,7 @@ function makeIncentive(entry, month){
   const anyData = incHasAnyData(entry);
   const period = incPeriod(entry, month);
   const chan = INC_CHANNEL[entry.key] || 'both';
-  const P = incBlob(entry.key);
+  const P = incBlob(entry.dataKey||entry.key);
   const rules = PROGRAM_RULES[entry.key] || [];
   const p = {
     id: 'inc:'+entry.key, source:'inc', key: entry.key, monthKey: month.key, monthLabel: month.label,
@@ -248,6 +248,10 @@ function makeIncentive(entry, month){
     entry, month,
   };
   p.forRep = function(rep){
+    // A program with no data at all and no manual feed is a shape waiting on
+    // its first export -- it stays off every rep's list until then (Gavin,
+    // 2026-09-30: the awaiting rows were redundant). The tracker still shows it.
+    if(!anyData && !entry.manual) return null;
     const d = entry.getRep(rep);
     if(!d && anyData) return null;                       // program has data, none for this rep: not in it
     if(d && d.programEligible===false) return null;
@@ -466,7 +470,7 @@ function buildPrograms(){
   // (the six "ongoing" programs appear on both tabs pointing at one dataset).
   const seen = new Map();
   MONTHS.slice().reverse().forEach(month=>{
-    month.programs.forEach(entry=>{ if(!seen.has(entry.key)) seen.set(entry.key, makeIncentive(entry, month)); });
+    month.programs.forEach(entry=>{ if(entry.hub===false) return; if(!seen.has(entry.key)) seen.set(entry.key, makeIncentive(entry, month)); });
   });
   out.push(...seen.values());
   Object.keys(MPO_SCOPES).forEach(scope=>{
@@ -1515,6 +1519,7 @@ function accountsPanel(p, rep){
 // Fallback (any program not listed): the mapped brand families + the unit.
 const SELL_ASK = {
   'inc:keystone_ice':'Place Keystone Ice 24oz cans.', 'inc:touchdowns_tea':'Place Sun Cruiser or Twisted Tea 12-packs.',
+  'inc:touchdowns_tea_off':'Place Sun Cruiser or Twisted Tea 12-packs.', 'inc:touchdowns_tea_on':'Sell Sun Cruiser cases into bars and run a football feature.',
   'inc:mabi_single_serve':'Sell in White Claw 19.2oz and Mike\'s Harder / Cayman Jack single serves.', 'inc:four_loko':'Place Four Loko Sour Apple or USA and sell cases.',
   'inc:lagunitas_sprint':"Place Lagunitas IPA or Little Sumpin' packages, or an IPA keg.", 'inc:famosa_oct':'Sell Famosa — every package.',
   'inc:sam_adams_cold_snap':'Convert the seasonal draft handle.', 'inc:industrial_arts':'Place 3 Industrial Arts SKUs, or a Wrench draft line.',

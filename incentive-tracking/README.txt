@@ -352,6 +352,24 @@ heineken_husa (Oct-Dec) and new_belgium_distribution_retain (Oct-Nov) as
 structure-only shapes again. A registry entry's `period` now overrides the
 blob's window in the hub (hub.js incPeriod) -- that is how an extended
 program keeps its September data and an October end date.
+TOUCHDOWNS & TEA IS TWO CARDS FROM OCTOBER (Gavin, 2026-09-30: "the current
+card feels overcrowded"): registry keys touchdowns_tea_off / touchdowns_tea_on
+on the October tab, each with `dataKey:'touchdowns_tea'` (the hub reads the
+period and meta from that blob) and a getRep (ttOff / ttOn in programs.js)
+that returns only that leg's fields from the one byRep record, so the hub's
+headline, account lists and leaderboard are per channel. Cards
+cardTouchdownsOff / cardTouchdownsOn reuse cardTouchdownsTea's blocks; the
+September entry carries `hub:false` so the hub shows the two split cards and
+not a third, September-dated one (the September tab still renders the
+original). generate.py is untouched -- one dataset, two views.
+HUB HIDES SHAPES WITHOUT DATA (same day): a registry entry with no byRep for
+anyone and no manual feed (Four Loko, the seasonal conversion, Heineken USA,
+New Belgium retain) returns null from forRep, so reps do not see "Awaiting
+data" rows; the tracker keeps showing the shape with its rules.
+LOGOS cut from the deck (assets/logos/, <=200x75, opaque): lagunitas,
+famosa, industrial_arts, four_loko, white_claw, mikes_harder, cayman_jack.
+Still missing: twisted_tea.png (not in any deck) and a Heineken mark.
+
 NOT ADDED: "Long Drink Intro" is on the deck's title slide but has no
 slide; the Peroni & Banquet target draft slide (p11) is the Feb-Apr program
 whose retention window ended in June.
