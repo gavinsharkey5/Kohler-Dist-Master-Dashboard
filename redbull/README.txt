@@ -119,6 +119,24 @@ accounts / Core 71 / Core+ 38. Gavin the same day: "make this start in
 july ignore june my apologies" -- July 1 it is, and June rows are dropped
 on every build from here.
 
+2026-09-30 REFRESH -- RDE_Red_Bull_Tracker_June_1_Start_3.csv (977 rows,
+7/1 through 9/30 -- starts July 1, nothing dropped; the export's last rows
+are dated 9/30, the day of the pull and the last day of the buying period).
+Diffed against the 9/25 build. Buying accounts 168 -> 170
+(2 joined, 0 left), Regular 161 -> 162, Free 78 -> 82,
+Flavor 52 -> 56. Core 72 -> 75 of 162, CORE+ 43 -> 47 of 75.
+  Joined: Anthony Palmisano / The Stuffed Olive_2 (all 3); Nick Melissari / Woodstone Pizza B & G (Free only).
+  Left: none.
+  Newly Core+ (all 3):
+    Allison Scott      WAYNE ALE HOUSE & PIZZA            Core -> all 3
+    Anthony Palmisano  Tony's Pizza (P)                   Core -> all 3
+    Robin Feldman      Homewood Suites By Hilton          Regular only -> all 3
+  Other moves:
+    Allison Scott      Bottagra Rest (P)                  Regular only -> Core
+Core+ leaderboard: Paul Mclaughlin 14, Allison Scott 8 -> 9, Anthony Palmisano 4 -> 6, Brian Sengebush 6, Nick Melissari 6, Robin Feldman 4 -> 5, Dan Lagala 1.
+The page's leaderboard is now shown to signed-in reps too (2026-09-30,
+see the Rep leaderboard note below); nothing in this refresh changes that.
+
 2026-09-25 REFRESH -- RDE_Red_Bull_Tracker_June_1_Start_2.csv (926 rows,
 7/1 through 9/25 -- starts July 1, nothing dropped; July 345 and August 293
 rows match every build since 9/17, September 261 -> 288). One account joined,
