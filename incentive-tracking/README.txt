@@ -3758,6 +3758,23 @@ own card (cardTouchdownsTea) and leaderboard still show every payout leg
 -- only the shared summary changed. programs.js tag bumped to 20260930a
 on hub/, accounts/, rep/ and team/.
 
+2026-09-30 FIFTH REFRESH -- Constellation Fall: Packages ON, Draft ON, Impact / Modelo Gaintain / Innovation OFF
+  python3 generate.py
+Five exports (Corona Gaintain not re-pulled; it is on this morning's sync).
+Off-prem goals stay FROZEN (data/constellation_fall_off_goals.csv, Dave
+Ehlers' overrides re-applied); 0 goal drift on on-prem packages and draft.
+Day 30 of 91.
+  Off-prem house   Modelo Gaintain 2,038 -> 2,122 of 2,395, Impact 2,815 ->
+                   2,955 of 3,452, Innovation 582 -> 650 of 1,400, Corona
+                   Gaintain 1,263 of 1,610 (unchanged). Still 0 of 22 reps
+                   holding every off-prem category.
+  On-prem          Packages 1,257 -> 1,340 of 2,107 buyers (5 of 20 reps
+                   holding every family); Draft 165 -> 172 of 381 (0 of 12
+                   reps), 23 empty-keg pickups excluded.
+Rows: packages 11,036 -> 11,420 (+392 / -8), draft 1,918 -> 1,960 (+42),
+Impact 3,912 -> 3,944, Modelo Gaintain 2,529 -> 2,536, Innovation 1,524 ->
+1,548 (off-prem exports restate in place). Hub cache tag bumped (20260930f).
+
 2026-09-30 FOURTH REFRESH -- Evil Genius, Montauk, 2XO, Other Half (draft on-prem + off-prem)
   python3 generate.py
 Diffed row by row first. Evil Genius 365 -> 369 rows (+4, none removed): 15
