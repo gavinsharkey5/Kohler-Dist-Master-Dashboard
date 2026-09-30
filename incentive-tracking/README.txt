@@ -3758,6 +3758,20 @@ own card (cardTouchdownsTea) and leaderboard still show every payout leg
 -- only the shared summary changed. programs.js tag bumped to 20260930a
 on hub/, accounts/, rep/ and team/.
 
+2026-09-30 FOURTH REFRESH -- Evil Genius, Montauk, 2XO, Other Half (draft on-prem + off-prem)
+  python3 generate.py
+Diffed row by row first. Evil Genius 365 -> 369 rows (+4, none removed): 15
+placements still, CE 96 -> 105 vs 98 last September, 10 reps ahead, bonus CE
+29 -> 35. Montauk 1,438 -> 1,462 (+25 / -1): 43 -> 44 new placements (draft 3
+-> 4). 2XO 86 -> 92 rows (+9 / -3; includes Phil Ernst's three 10/1 rows at
+USA Wine Traders Paramus, the window runs through 10/31): off-premise pairs
+3 -> 4, on-premise 2+-unit PODs 0 -> 1, units 8 -> 11. Other Half off-prem
+926 -> 1,096 rows (+177 / -7): accounts opened 189 -> 208, 86 at the Southern
+District flat rate (unconfirmed reading, unchanged). Other Half draft on-prem
+68 -> 82 rows (+14): 58 accounts active in September (38 at the 1/3 bbl
+floor), still NOT paid -- needs October for the two-month hold. Hub cache tag
+bumped (20260930e) for program_data.js.
+
 2026-09-30 THIRD REFRESH -- Garage Beer President, Touchdowns & Tea (off + on), Le Grand Noir, Sam Adams Fast Start
   python3 generate.py
 All five diffed row by row first; nothing was removed except where a restated
