@@ -885,6 +885,42 @@ never "lost", never a confirmed need. Tests: scratchpad
 alerts_test.mjs + acct_test.mjs; rep.css's `.card p` two-line clamp is
 undone in accounts.css for these prose cards.
 
+## My Accounts on the Encompass pattern: a four-section Account page (2026-09-30)
+
+Gavin's brief with 13 Encompass screenshots (route list, customer page +
+tool menu, Invoice Edit, Products, Accounts Receivable, Shopping Cart):
+recreate the account-servicing workflow inside My Accounts, cleaner, and
+ask for the data we lack. The Account page (`accounts/accounts.js`) is now
+FOUR SECTIONS under a compact selector (`.secnav`, `sec=` in the hash,
+switched in place; `data-go="<sec>:<id>"` links open a section at a
+block): Overview (address + Directions via a Google Maps web URL, premise
++ Draft/Package service type, area, size class, "2026 so far" stops ·
+points · cases from the deciles workbook, one unavailable line for
+contact / hours / instructions; Focus; At-a-glance rows into the other
+sections), Sales & Products (the existing sales, alerts and patterns
+plus the PRODUCT LIST: Previously purchased by default, All eligible =
+`data/catalog.json` minus families the territory workbook blocks for the
+account's area, search by name / #, supplier -> family -> package
+filters, the warehouse's sellable units exactly as ../inventory/ computes
+them with the report date and a stale tag, Lead tags from the rep's warm
+program lists, Carbliss sell-sheet links), Invoices & Balances (the
+monthly purchase record labelled "not invoices" + ONE unavailable state
+for invoices / AR / backorders / allocations -- no zeros, no estimates,
+no dollars) and Tasks & Resources (Programs, Notes, Taps, then Tools &
+links that work + one line for the Encompass-only tools with no
+documented link). `accounts/generate.py` also writes the catalogue and
+adds `service`, `stops2026`, `distPts` per account; catalog.json has no
+customer data so the middleware lets a rep fetch it like index.json.
+`accounts/REPORTING_REQUEST.md` is the consolidated ask (have / essential
+E1-E6 / optional O1-O6 / 14 definitions to confirm / live-only
+integrations / where each file goes). RULES: never draw a control that
+does not work (no cart, order, payment, sync, iSellBeer buttons until the
+integration is documented); never invent an app URL scheme; never derive
+balances, stock-outs, allocations or expiry from sales; dollars stay off
+rep pages until Gavin says who sees them. Tags: accounts.css 20260930d,
+accounts.js 20260930c. Tests: scratchpad sections_test.mjs + acct_test /
+alerts_test / mw_test.
+
 ## Responsive formatting cleanup: Tap Tracker panels and friends (2026-09-30)
 
 Gavin's targeted brief (keep the design; fix the formatting). Tap tracker

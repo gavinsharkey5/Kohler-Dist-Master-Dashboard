@@ -125,3 +125,46 @@ details.fold[open] > summary::after{content:'\25B4'}
 .tbl.alerts td .tag{margin:0 4px 2px 0;vertical-align:middle}
 .sec > h2 #alerts,.sec > h2 small{font-weight:400}
 h3.note small{font-weight:400;color:var(--text-4)}
+/* ---- Four-section Account page (2026-09-30, the Encompass brief) ----
+   .secnav = the compact section selector under the account header (long
+   labels on wide screens, short ones under 480px; scrolls sideways rather
+   than wrapping); .secbody[hidden] hides the other three; .glance rows are
+   the Overview's index into the sections; .prow is one product in the
+   account-context product list; .kdh-state.slim is the one-line "not in
+   our data yet" state used instead of empty fields. */
+.secnav{display:flex;gap:4px;padding:3px;margin:8px 0 14px;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.secnav::-webkit-scrollbar{display:none}
+.sectab{flex:1 0 auto;display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:0 12px;border-radius:8px;font-size:14px;font-weight:600;color:var(--text-2);text-decoration:none;white-space:nowrap;-webkit-tap-highlight-color:transparent}
+.sectab:hover{color:var(--text)}
+.sectab.active{background:var(--surface);color:var(--brand);box-shadow:var(--shadow)}
+.sectab .short{display:none}
+@media (max-width:479px){ .sectab .long{display:none} .sectab .short{display:inline} .sectab{padding:0 8px} }
+.secbody[hidden]{display:none}
+.acct-head .sub2{color:var(--text-3)}
+.dim{color:var(--text-4)}
+.kdh-state.slim{margin:8px 0 10px;padding:10px 12px;font-size:14px}
+.kdh-state.slim b{font-size:14.5px}
+.glance .row{min-height:52px}
+.glance .row h3{font-size:15.5px}
+.glance .row-s{white-space:normal;display:block;line-height:1.4}
+/* product list */
+.pctl{display:flex;flex-direction:column;gap:8px;padding:12px 0 4px}
+.pseg{display:flex;gap:4px;padding:3px;background:var(--surface-2);border:1px solid var(--border);border-radius:9px}
+.pseg button{flex:1 1 0;min-height:36px;border:0;border-radius:7px;background:none;font:inherit;font-size:14px;font-weight:600;color:var(--text-2);cursor:pointer;padding:0 8px}
+.pseg button.active{background:var(--surface);color:var(--brand);box-shadow:var(--shadow)}
+.pctl .kdh-field{min-height:42px;font-size:16px}
+.pctl .more-filters{flex:none;border:1px solid var(--border);border-radius:var(--r);background:var(--surface);padding:0 12px}
+.pctl .more-filters > summary{cursor:pointer;list-style:none;min-height:40px;display:flex;align-items:center;font-size:14.5px;font-weight:600;color:var(--text-2)}
+.pctl .more-filters > summary::-webkit-details-marker{display:none}
+.pctl .more-filters > summary::after{content:'\25BE';margin-left:auto;color:var(--text-4)}
+.pctl .more-filters[open] > summary::after{content:'\25B4'}
+.pctl .mf-row{display:flex;flex-wrap:wrap;gap:8px;padding:2px 0 10px}
+.pctl .mf-row select{flex:1 1 160px;min-height:42px;font:inherit;font-size:15px;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:0 32px 0 12px;-webkit-appearance:none;appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238D98B2' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center}
+.prow{padding:10px 0;border-top:1px solid var(--border)}
+.prow .pt{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:15.5px;font-weight:600;line-height:1.3;color:var(--text);overflow-wrap:anywhere}
+.prow .ps{font-size:13px;color:var(--text-3);margin-top:2px}
+.prow .pl{font-size:14px;color:var(--text-2);margin-top:3px;line-height:1.45}
+.prow .pl a{color:var(--brand);font-weight:600;text-decoration:none}
+.prow .pl .tag{vertical-align:middle}
+#plistCard .count{margin:6px 0 0}

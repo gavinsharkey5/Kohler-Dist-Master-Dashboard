@@ -32,6 +32,18 @@ Outputs (all git-tracked, all generated -- never edit by hand):
                            middleware's path check is one prefix; carries
                            `findings` (alerts with evidence + buying
                            patterns) from patterns.py
+  data/catalog.json        the PRODUCT CATALOGUE the Account page's product
+                           list browses (2026-09-30): every product sold
+                           anywhere in the last 12 months or held in the
+                           warehouse, with supplier / family / package from
+                           products.csv, the warehouse's sellable units and
+                           days-of-cover status exactly as ../inventory/
+                           computes them (its embedded rep-data JSON, so the
+                           number a rep sees here is the number that page
+                           shows), and the sell-sheet URL where the Brands
+                           export carries one. Not per rep (no customer
+                           data in it) -- the middleware lets a rep fetch
+                           it like index.json.
 
 <key> = kdhNameKey(rep): canonical first name (Michael -> mike) + '-' +
 surname without spaces/punctuation, exactly as shared/kdh-user.js and the
@@ -83,9 +95,70 @@ def load_master():
     p = MASTER / "deciles" / "universe.csv"
     if p.exists():
         for r in csv.DictReader(open(p, newline='')):
-            deciles[r['customer_num']] = {'decile': int(r['decile']) if r.get('decile') else None, 'class': r.get('class') or ''}
+            deciles[r['customer_num']] = {'decile': int(r['decile']) if r.get('decile') else None, 'class': r.get('class') or '',
+                                          'stops': int(float(r['stops_2026'])) if r.get('stops_2026') else None, 'distPts': int(float(r['dist_pts'])) if r.get('dist_pts') else None}
     sources = json.loads((MASTER / "sources.json").read_text()) if (MASTER / "sources.json").exists() else {}
     return months, sales, products, customers, deciles, sources
+
+def load_catalog(products, months, sales):
+    """Product catalogue + warehouse availability for the Account page's
+    product list. Availability is taken from ../inventory/index.html's
+    embedded rep-data JSON (asOf, available units, days of cover, status,
+    next arrival, backordered) -- computed once there, never here."""
+    inv, inv_meta = {}, {}
+    p = ROOT / "inventory" / "index.html"
+    if p.exists():
+        m = re.search(r'<script id="rep-data" type="application/json">(.*?)</script>', p.read_text(), re.S)
+        if m:
+            d = json.loads(m.group(1))
+            inv_meta = {'asOf': d.get('asOf', ''), 'generatedAt': d.get('generatedAt', ''), 'lowDoi': d.get('lowDoi'), 'heavyDoi': d.get('heavyDoi')}
+            inv = {str(x['num']): x for x in d.get('products', [])}
+    sheets = {}
+    xl = ROOT / "carbliss-onprem-targets" / "brands_sell_sheets.xlsx"
+    if xl.exists():
+        try:
+            import openpyxl
+            ws = openpyxl.load_workbook(xl, read_only=True)[ 'Brands' ]
+            rows = list(ws.iter_rows(values_only=True))
+            hdr = [str(h or '').strip() for h in rows[0]]
+            bi, ui = hdr.index('Brand'), hdr.index('Sell Sheet URL')
+            for r in rows[1:]:
+                if r[bi] and r[ui]: sheets[str(r[bi]).strip()] = str(r[ui]).strip()
+        except Exception as e:
+            print("sell sheets not read:", e)
+    # sold anywhere in the last 12 loaded months
+    sold12 = set()
+    cut = len(months) - 12
+    for cust in sales.values():
+        for pn, arr in cust.items():
+            if any(c > 0 for c in arr[cut:]): sold12.add(pn)
+    out = []
+    for pn, pr in products.items():
+        if pr.get('supplier') == 'Misc' or pr.get('family') == 'Misc': continue
+        iv = inv.get(pn)
+        if pn not in sold12 and not iv: continue
+        out.append([pn, pr.get('name', pn), pr.get('supplier', ''), pr.get('family', ''), pr.get('package', ''),
+                    iv['available'] if iv else None, iv.get('doi') if iv else None, iv.get('status') if iv else None,
+                    iv.get('nextArrival') if iv else None, iv.get('backordered') if iv else None,
+                    sheets.get(pr.get('brand', '')) or None])
+    for pn, iv in inv.items():          # stocked products the sales master has never seen
+        if pn in products: continue
+        out.append([pn, iv.get('name', pn), iv.get('supplier', ''), '', iv.get('pack', ''), iv['available'], iv.get('doi'), iv.get('status'), iv.get('nextArrival'), iv.get('backordered'), None])
+    out.sort(key=lambda r: (r[2].lower(), r[1].lower()))
+    return {'products': out, 'inventory': inv_meta, 'sellSheets': {'file': xl.name if xl.exists() else '', 'brands': len(sheets)},
+            'columns': ['num', 'name', 'supplier', 'family', 'package', 'available', 'doi', 'status', 'nextArrival', 'backordered', 'sellSheet']}
+
+def load_service():
+    """Draft / package service type per account (the fuller customer base
+    export kept for the incentive trackers)."""
+    p = ROOT / "incentive-tracking" / "data" / "customer_base_full.csv"
+    if not p.exists(): return {}
+    out = {}
+    with open(p, newline='', encoding='utf-8-sig') as f:
+        for r in csv.DictReader(f):
+            v = re.sub(r'^\d+\)\s*', '', (r.get('Draft Package') or '').strip())
+            if r.get('Customer Num') and v: out[str(r['Customer Num']).strip()] = v
+    return out
 
 def load_taps():
     html = (ROOT / "isellbeer" / "tap-survey-tracking" / "index.html").read_text()
@@ -117,6 +190,11 @@ def main():
     book, brands_src = load_book()
     months, sales, products, customers, deciles, sources = load_master()
     taps, taps_asof = load_taps()
+    service = load_service()
+    catalog = load_catalog(products, months, sales)
+    (OUT).mkdir(parents=True, exist_ok=True)
+    (OUT / "catalog.json").write_text(json.dumps(dict(catalog, generated=__import__('datetime').datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')), separators=(',', ':')))
+    print(f"catalog: {len(catalog['products'])} products, warehouse as of {catalog['inventory'].get('asOf','?')}, {catalog['sellSheets']['brands']} sell sheets")
     last_month = months[-1] if months else ''
     # reference month: the last month NOT flagged partial in sources.json
     ref_i = len(months) - 1
@@ -159,6 +237,7 @@ def main():
                 'n': a['n'], 'name': a['name'], 'city': a.get('city', ''), 'county': a.get('county', ''), 'area': a.get('area') or a.get('rawArea', ''),
                 'prem': a.get('prem', ''), 'address': cust.get('address', ''), 'cases2026': a.get('cases'),
                 'decile': (deciles.get(n) or {}).get('decile'), 'sizeClass': (deciles.get(n) or {}).get('class', ''),
+                'stops2026': (deciles.get(n) or {}).get('stops'), 'distPts': (deciles.get(n) or {}).get('distPts'), 'service': service.get(n, ''),
                 'last': months[last_i] if last_i is not None else None,
                 'buy12': sum(1 for i in bought if i >= n_months - 12),
                 'products12': sum(1 for p in plist if any(p[5][-12:])),

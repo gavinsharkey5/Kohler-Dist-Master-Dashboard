@@ -11,6 +11,18 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
+- [ ] **My Accounts: Encompass exports + 14 definitions** (Gavin): read
+  accounts/REPORTING_REQUEST.md. Essential: E1 customer master with
+  contacts / hours / instructions (private folder or Supabase, never the
+  repo), E2 route schedule, E3 invoice history with lines (quarterly
+  slices under the 100k cap), E4 accounts receivable, E5 backorders /
+  pre-orders / allocations, E6 invoice PDFs or their URL format. Confirm
+  the definitions in section 4 (Next Available Date, "17 Wed", invoice
+  statuses, Close Dated / Stagnant / Distribution void, account suffixes
+  and the (HH) ledger, AR signs, Assets, Customer Users, license lookup,
+  stops_2026). Decide who may see dollars (receivables, prices) before
+  any appear on a rep page. Live integrations (orders, payments, sync,
+  iSellBeer, DSDLink, PayLink) wait for documentation.
 - [ ] **October incentives: two exports + four answers** (Gavin): send the
   Four Loko export and the Sam Adams seasonal conversion scoreboard so
   their October shapes switch on. Confirm: (1) the conversion direction --
@@ -107,6 +119,14 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-09-30 My Accounts on the Encompass pattern: the Account page is
+  four sections (Overview / Sales & Products / Invoices & Balances / Tasks &
+  Resources) with Directions, service type, size and stops on the Overview,
+  an account-context product list (previously purchased, all eligible by
+  territory, search, filters, warehouse availability with its date, program
+  lead tags, Carbliss sell sheets), a monthly purchase record and honest
+  unavailable states for invoices / AR / tools; CustomerID on list rows;
+  consolidated reporting request rewritten.
 - [x] 2026-09-30 Touchdowns & Tea is one card with the Off-Premise and
   On-Premise programs separated inside it (progress screen, hub program
   screen and the full card); programs still waiting on their first export no longer show on the

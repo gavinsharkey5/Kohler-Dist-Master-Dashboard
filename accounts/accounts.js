@@ -41,7 +41,15 @@ if(U && !isMgr){
 }
 
 /* ---------------- state + hash ---------------- */
-const state = {view:'list', q:'', rep:'', need:'', kind:'', fam:'', n:null, acctRep:null, from:null, fl:'', limit:120};
+const state = {view:'list', q:'', rep:'', need:'', kind:'', fam:'', n:null, acctRep:null, from:null, fl:'', limit:120, sec:'over'};
+// The Account page is FOUR SECTIONS (2026-09-30, Gavin's Encompass brief):
+// Overview / Sales & Products / Invoices & Balances / Tasks & Resources.
+// `sec=` in the hash remembers the open one; in-page links carry
+// data-go="<sec>:<element id>" so a Focus item can open its evidence.
+const SECS = [['over','Overview','Overview'],['sales','Sales & Products','Sales'],['inv','Invoices & Balances','Invoices'],['tasks','Tasks & Resources','Tasks']];
+// product list (Sales & Products): search, view, filters -- kept in memory per account
+const plist = {n:null, q:'', view:'bought', sup:'', fam:'', pkg:'', limit:40};
+let CATALOG = null;            // data/catalog.json (products + warehouse availability), loaded once
 function readHash(){
   const h = (location.hash||'').replace(/^#/,''); const o = {};
   h.split('&').filter(Boolean).forEach(kv=>{ const i = kv.indexOf('='); if(i<0) return; o[kv.slice(0,i)] = decodeURIComponent(kv.slice(i+1)); });
@@ -52,6 +60,7 @@ function applyHash(){
   state.q = h.q || ''; state.rep = h.rep && SCOPE.includes(h.rep) ? h.rep : ''; state.need = h.need || '';
   state.kind = h.kind || ''; state.fam = h.fam || '';
   state.from = h.from || null; state.fl = h.fl || '';
+  state.sec = SECS.some(x=>x[0]===h.sec) ? h.sec : 'over';
   if(h.acct){ state.view = 'acct'; state.n = String(h.acct); } else { state.view = 'list'; state.n = null; }
 }
 function listHash(){
@@ -63,7 +72,8 @@ function listHash(){
   if(state.fam) p.push('fam='+encodeURIComponent(state.fam));
   return '#'+p.join('&');
 }
-function acctHash(n, rep){ return '#acct='+encodeURIComponent(n)+(rep && isMgr ? '&rep='+encodeURIComponent(rep) : ''); }
+function acctHash(n, rep, sec){ return '#acct='+encodeURIComponent(n)+(rep && isMgr ? '&rep='+encodeURIComponent(rep) : '')+(sec && sec!=='over' ? '&sec='+sec : '')+(state.from ? '&from='+encodeURIComponent(state.from)+'&fl='+encodeURIComponent(state.fl||'') : ''); }
+const mapsHref = a => 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent([a.address, a.city, 'NJ'].filter(Boolean).join(', '));
 const scrollMem = {};
 
 /* ---------------- data ---------------- */
@@ -73,6 +83,13 @@ const marks = new Map();       // account_num -> rep_actions rows (all statuses)
 let marksLoaded = false, marksError = '';
 let progIdx = new Map();       // rep -> {targets: Map(n -> [{p, why, warm}]), credited: Map(n -> [rows]), programs:[p]}
 async function getJson(url){ const r = await fetch(url, {cache:'no-store'}); if(r.status===404 || r.status===403) return null; if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); }
+async function loadCatalog(){
+  if(CATALOG) return CATALOG;
+  const d = await getJson('data/catalog.json').catch(()=>null);
+  CATALOG = d && d.products ? d : {products:[], inventory:{}, sellSheets:{}};
+  CATALOG.byNum = new Map(CATALOG.products.map(r=>[String(r[0]), r]));
+  return CATALOG;
+}
 async function loadReps(names){
   await Promise.all(names.map(async n=>{ if(repData.has(n)) return; const d = await getJson('data/reps/'+repKey(n)+'.json').catch(()=>null); repData.set(n, d); }));
 }
@@ -215,7 +232,7 @@ function renderList(){
     <p class="count">${shown.length===rows.length ? '' : `${shown.length} of `}${plural(rows.length,'account')}${state.need || state.fam ? ' · filtered' : ''}</p>
     <div class="rows" id="rows">${shown.slice(0, state.limit).map(({a, rep, nd})=>{
       return `<a class="row" href="${acctHash(a.n, rep)}" data-n="${E(a.n)}" data-rep="${E(rep)}">
-        <span class="row-main"><h3>${E(a.name)}</h3><span class="row-s">${E([a.city, premWord(a.prem)].filter(Boolean).join(' · '))}${isMgr ? ` · <span class="rep">${E(rep)}</span>` : ''}</span>${chipsHtml(nd)}${evidenceHtml(a)}</span>
+        <span class="row-main"><h3>${E(a.name)}</h3><span class="row-s">${E([a.city, premWord(a.prem), '#'+a.n].filter(Boolean).join(' · '))}${isMgr ? ` · <span class="rep">${E(rep)}</span>` : ''}</span>${chipsHtml(nd)}${evidenceHtml(a)}</span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></a>`; }).join('')}
       ${!shown.length && rows.length ? `<div class="kdh-state empty"><b>No account matches.</b></div>` : ''}</div>
     ${shown.length>state.limit ? `<button class="btn outline more" id="more" type="button">Show ${Math.min(120, shown.length-state.limit)} more of ${shown.length}</button>` : ''}`;
@@ -250,13 +267,15 @@ async function renderAccount(){
     return;
   }
   const {a, rep, d} = hit;
-  app.innerHTML = back(fromLabel, fromHref) + `<div class="acct-head"><h1>${E(a.name)}</h1><p class="sub">${E([a.city, premWord(a.prem)].filter(Boolean).join(' · '))}</p><p class="sub2">Account #${E(a.n)}${a.address ? ' · '+E(a.address) : ''}${a.area ? ' · '+E(a.area) : ''}${isMgr ? ' · Rep: '+E(rep) : ''}</p></div><div class="kdh-state loading">Loading this account…</div>`;
+  const headHtml = `<div class="acct-head"><h1>${E(a.name)}</h1><p class="sub">${E([a.city, premWord(a.prem), 'Account #'+a.n].filter(Boolean).join(' · '))}</p>${isMgr ? `<p class="sub2">Rep: ${E(rep)}</p>` : ''}</div>`;
+  app.innerHTML = back(fromLabel, fromHref) + headHtml + `<div class="kdh-state loading">Loading this account…</div>`;
   // everything the page needs, in parallel
   const key = repKey(rep);
-  const [sales, idx] = await Promise.all([
+  const [sales, idx, , CAT] = await Promise.all([
     salesCache.has(String(a.n)) ? Promise.resolve(salesCache.get(String(a.n))) : getJson('data/sales/'+key+'/'+encodeURIComponent(a.n)+'.json').catch(()=>null).then(s=>{ salesCache.set(String(a.n), s); return s; }),
     indexPrograms(rep),
     loadMarks(SCOPE),
+    loadCatalog(),
   ]);
   if(state.view!=='acct' || String(state.n)!==String(a.n)) return;   // navigated away meanwhile
   const k = String(a.n);
@@ -296,8 +315,8 @@ async function renderAccount(){
     focus.push({kind: t.warm ? 'Program lead' : 'Program ending soon', t:E(H.sellAsk(t.p)), w:`${E(t.p.shortName||t.p.name)} (${E(t.p.supplier)}) · ${E(t.why || 'this account is eligible and not buying it yet')} · ${E(H.endsLabel(t.p.period))}.`, n:`You are at ${f.main}${f.need && f.need!=='Goal met' ? ' — '+f.need : ''}.`, href:progLink(t.p, rep), hl:'Program details'});
   });
   // strongest buying alerts: lapsed before possible reorder, biggest usual order first (patterns.py's order)
-  alerts.filter(x=>x.type!=='slower').slice(0,2).forEach(x=>focus.push({kind: KIND[x.type], t: x.type==='lapsed' ? `No recent purchase of ${E(x.product)}` : `Ask about ${E(x.product)}`, w: E(alertWhy(x))+'.', n: x.type==='lapsed' ? 'Find out whether they stopped or switched — the data shows the gap, not the reason.' : 'Check whether they need a reorder — a gap in the data, not a confirmed need.', href:'#alerts', hl:'See the alert'}));
-  if(F.patterns && F.patterns.lessOften && !alerts.length) focus.push({kind:'Buying less often', t:'Purchasing less frequently', w:`${F.patterns.freq.recent6} buying ${F.patterns.freq.recent6===1?'month':'months'} in ${E(rangeLabel(months, R-5, R+1))} vs ${F.patterns.freq.prior6} in ${E(rangeLabel(months, R-11, R-5))}.`, n:'Ask what changed — a slower pattern in the data, not a confirmed problem.', href:'#patterns', hl:'See buying patterns'});
+  alerts.filter(x=>x.type!=='slower').slice(0,2).forEach(x=>focus.push({kind: KIND[x.type], t: x.type==='lapsed' ? `No recent purchase of ${E(x.product)}` : `Ask about ${E(x.product)}`, w: E(alertWhy(x))+'.', n: x.type==='lapsed' ? 'Find out whether they stopped or switched — the data shows the gap, not the reason.' : 'Check whether they need a reorder — a gap in the data, not a confirmed need.', go:'sales:alerts', hl:'See the alert'}));
+  if(F.patterns && F.patterns.lessOften && !alerts.length) focus.push({kind:'Buying less often', t:'Purchasing less frequently', w:`${F.patterns.freq.recent6} buying ${F.patterns.freq.recent6===1?'month':'months'} in ${E(rangeLabel(months, R-5, R+1))} vs ${F.patterns.freq.prior6} in ${E(rangeLabel(months, R-11, R-5))}.`, n:'Ask what changed — a slower pattern in the data, not a confirmed problem.', go:'sales:patterns', hl:'See buying patterns'});
   const top = focus.slice(0,3);
 
   /* ---- Sales & reorders ---- */
@@ -405,8 +424,8 @@ async function renderAccount(){
     const fams = HubAccounts.PROGRAM_BRANDS[HubAccounts.brandKey(t.p)] || [];
     return `<div class="pitem"><div class="pt"><span>${E(H.sellAsk(t.p))}</span><span class="tag go">Lead</span></div><div class="ps">${E(t.p.shortName||t.p.name)} · ${E(t.p.supplier)} · ${E(H.endsLabel(t.p.period))}</div><div class="pl">${E(t.why)}${famStatus(fams) ? '<br>'+famStatus(fams) : ''}</div></div>`;
   }).join('');
-  const discussHtml = discuss ? `<div class="card">${discuss}<p class="note">Leads come from the trackers’ own opportunity lists. Sell sheets, approved pitches and inventory availability are not in the data yet (see README).</p></div>`
-    : `<div class="card"><p>No tracker lead for this account right now. Programs it could still qualify for are listed above; recent purchases show what it usually takes.</p></div>`;
+  const discussHtml = discuss ? `<div class="card">${discuss}<p class="note">Leads come from the trackers’ own opportunity lists. The product list below shows what is sellable here and what the warehouse has; approved pitches and pricing are not in the data yet (see REPORTING_REQUEST.md).</p></div>`
+    : `<div class="card"><p>No tracker lead for this account right now. Programs it could still qualify for are under Tasks &amp; Resources; the product list below shows what it usually takes.</p></div>`;
 
   /* ---- Notes & follow-ups (rep_actions, read here, edited in the hub) ---- */
   const LBL = {follow:'Follow up', done:'Done', skip:'Not now'};
@@ -432,25 +451,185 @@ async function renderAccount(){
     tapsHtml = `<div class="card"><p>No tap survey on file for this account in the current export (${E((d.taps.asOf||'').slice(0,10))}).</p></div>`;
   }
 
-  const focusHtml = top.length ? `<div class="focus">${top.map((f,i)=>`<div class="fitem"><span class="num">${i+1}</span><div class="fmain"><span class="fkind">${E(f.kind)}</span><div class="ft">${f.t}</div><p class="fw">${f.w}</p><p class="fn">${E(f.n)} <a href="${E(f.href)}">${E(f.hl)} ›</a></p></div></div>`).join('')}</div>`
+  const focusHtml = top.length ? `<div class="focus">${top.map((f,i)=>`<div class="fitem"><span class="num">${i+1}</span><div class="fmain"><span class="fkind">${E(f.kind)}</span><div class="ft">${f.t}</div><p class="fw">${f.w}</p><p class="fn">${E(f.n)} ${f.go ? `<a href="${E(acctHash(a.n, rep, f.go.split(':')[0]))}" data-go="${E(f.go)}">${E(f.hl)} ›</a>` : `<a href="${E(f.href)}">${E(f.hl)} ›</a>`}</p></div></div>`).join('')}</div>`
     : `<div class="kdh-state empty"><b>Nothing flagged for this account right now.</b><span>No open follow-up, no program target, no overdue survey and no buying alert in the data through ${E(monLabel(refKey))}.</span></div>`;
 
-  app.innerHTML = back(fromLabel, fromHref) + `<div class="acct-head"><h1>${E(a.name)}</h1><p class="sub">${E([a.city, premWord(a.prem)].filter(Boolean).join(' · '))}</p><p class="sub2">Account #${E(a.n)}${a.address ? ' · '+E(a.address) : ''}${a.area ? ' · '+E(a.area) : ''}${a.sizeClass ? ' · Class '+E(a.sizeClass) : ''}${isMgr ? ' · Rep: '+E(rep) : ''}</p></div>
-    <section class="sec"><h2>Focus for this account</h2>${focusHtml}</section>
+  /* ---- Overview: identity + servicing (what the exports carry), then the Focus, then an at-a-glance index ---- */
+  const kvl = (l, v) => v ? `<div class="kv"><span>${l}</span><span>${v}</span></div>` : '';
+  const sizeTxt = a.sizeClass ? `Class ${E(a.sizeClass)}${a.decile ? ` · decile ${a.decile} by 2026 gross` : ''}` : '';
+  const identHtml = `<div class="card">
+      ${kvl('Address', a.address ? `${E(a.address)}, ${E(a.city||'')} <a href="${E(mapsHref(a))}" target="_blank" rel="noopener">Directions ↗</a>` : `${E(a.city||'')}${a.city ? ' · ' : ''}<span class="dim">street address not in the customer base export</span>`)}
+      ${kvl('Premise', [premWord(a.prem), a.service].filter(Boolean).join(' · '))}
+      ${kvl('Area', [a.area, a.county ? a.county+' County' : ''].filter(Boolean).join(' · '))}
+      ${kvl('Size', sizeTxt)}
+      ${a.stops2026!=null ? kvl('2026 so far', `${plural(a.stops2026,'stop')}${a.distPts!=null ? ' · '+plural(a.distPts,'distribution point') : ''}${a.cases2026!=null ? ' · '+fmtN(a.cases2026)+' cases' : ''} <span class="dim">(deciles workbook)</span>`) : (a.cases2026!=null ? kvl('2026 so far', fmtN(a.cases2026)+' cases') : '')}
+      ${isMgr ? kvl('Rep', E(rep)) : ''}
+      <div class="kdh-state unavailable slim"><b>Contact, hours and delivery instructions are not in our exports yet.</b><span>Contact name, phone, email, business hours, service window and the next delivery date still live in Encompass — they are in the reporting request.</span></div>
+    </div>`;
+  // one line per section: the number that matters, and where it lives
+  const glance = [];
+  if(sales && sales.products.length){ const s2 = sales.series; const li = (()=>{ for(let i=N-1;i>=0;i--) if(s2[i]>0) return i; return -1; })();
+    glance.push(['sales','sales', 'Sales & products', `Last purchase ${li>=0 ? monLabel(months[li]) : '—'} · ${fmtN(sumRange(s2, N-3, N))} cases in ${rangeLabel(months,N-3,N)} · ${plural(sales.products.filter(p=>sumRange(p[5],N-12,N)>0).length,'product')} in 12 months`]);
+  } else glance.push(['sales','sales','Sales & products', a.inMaster===false ? 'No sales history for this account number' : 'No cases on record']);
+  const cnt0 = F.counts || {};
+  if(alerts.length || (F.patterns && F.patterns.lessOften)) glance.push(['sales','alerts','Buying alerts', [cnt0.reorder ? plural(cnt0.reorder,'possible reorder') : '', cnt0.lapsed ? plural(cnt0.lapsed,'lapsed product') : '', cnt0.slower ? cnt0.slower+' bought less often' : '', (F.patterns && F.patterns.lessOften) ? 'purchasing less frequently' : ''].filter(Boolean).join(' · ')]);
+  glance.push(['inv','inv','Invoices & balances', 'Monthly purchase record on file · invoices, receivables and backorders not connected yet']);
+  const openProg = idx.programs.filter(p=>{ const cred = credited.some(c=>c.p===p); const tg = targets.find(t=>t.p===p); return cred || (tg && tg.warm); }).length;
+  glance.push(['tasks','programs','Programs', `${plural(idx.programs.length,'active program')} for ${rep.split(' ')[0]}${openProg ? ` · ${openProg} credited or a lead here` : ''}${credited.length ? ` · ${plural(credited.length,'credit')}` : ''}`]);
+  glance.push(['tasks','notes','Notes & follow-ups', rows.length ? `${plural(follows.length,'open follow-up')} · ${plural(rows.length,'mark')} on this account` : 'None yet']);
+  if(a.taps) glance.push(['tasks','taps','Taps & visits', due ? (due.level==='overdue' ? `Resurvey overdue by ${due.days-60} days` : due.level==='soon' ? `Resurvey due in ${60-due.days} days` : `Surveyed ${due.days} days ago`)+` · ${a.taps.ours} ours · ${a.taps.them} theirs` : 'On file']);
+  else if(a.prem==='On') glance.push(['tasks','taps','Taps & visits', 'No tap survey on file']);
+  const glanceHtml = `<div class="rows glance">${glance.map(([sec, id, t, l])=>`<a class="row" href="${E(acctHash(a.n, rep, sec))}" data-go="${sec}:${id}"><span class="row-main"><h3>${E(t)}</h3><span class="row-s">${E(l)}</span></span>${CHEV}</a>`).join('')}</div>`;
+
+  /* ---- Invoices & Balances: what the data has (monthly cases) and, honestly, what it does not ---- */
+  let invHtml;
+  if(sales && sales.products.length){
+    const s2 = sales.series; const from = Math.max(0, N-12);
+    const monthRows = []; for(let i=N-1;i>=from;i--){ const c = s2[i]; const np = sales.products.filter(p=>p[5][i]>0).length; monthRows.push(`<tr><td><b>${E(monLabel(months[i]))}</b>${i>R ? '<span class="sub">partial month in the export</span>' : ''}</td><td class="num" data-l="Cases">${c>0 ? fmtN(c) : '—'}</td><td class="num" data-l="Products">${np || '—'}</td></tr>`); }
+    invHtml = `<div class="card"><h3 class="note" style="margin-top:10px"><b>Purchases on record</b> · monthly cases from Fusion, net of returns <small>· not invoices</small></h3>
+      <table class="tbl"><thead><tr><th>Month</th><th class="num">Cases</th><th class="num">Products</th></tr></thead><tbody>${monthRows.join('')}</tbody></table>
+      <p class="note">Fusion reports cases per product per month; there are no invoice numbers, dates, dollar amounts or returns lines in it. A month with a credit larger than its sales shows as a dash. The per-product history is under Sales &amp; Products.</p></div>`;
+  } else invHtml = `<div class="card"><p>No purchases on record for this account in the sales master.</p></div>`;
+  const invMissingHtml = `<div class="card">
+      <div class="kdh-state unavailable slim"><b>Invoices, credits and receivables are not connected yet.</b><span>Invoice history with line items and PDFs, accounts receivable (amount due, credits, total balance, aging), pre-orders, backorders and customer allocations need the Encompass exports in the reporting request. Nothing on this page is estimated from sales, so there are no balances to show until then.</span></div>
+    </div>`;
+
+  /* ---- Tasks & Resources: tools that exist, and the ones that do not, said once ---- */
+  const toolRows = [];
+  toolRows.push(`<a class="row" href="${E(HUB)}#view=rep&rep=${encodeURIComponent(rep)}&cat=inc&only=inc"><span class="row-main"><h3>Incentive Hub</h3><span class="row-s">${E(rep.split(' ')[0])}’s programs, with this account’s marks inside each one</span></span>${CHEV}</a>`);
+  if(a.taps || a.prem==='On') toolRows.push(`<a class="row" href="${TAP}#q=${encodeURIComponent(a.name)}"><span class="row-main"><h3>Tap Tracker</h3><span class="row-s">${a.taps ? 'This account’s handles and survey history' : 'Survey status for on-premise accounts'}</span></span>${CHEV}</a>`);
+  if(a.address) toolRows.push(`<a class="row" href="${E(mapsHref(a))}" target="_blank" rel="noopener"><span class="row-main"><h3>Directions</h3><span class="row-s">Opens Maps with the account’s address</span></span>${CHEV}</a>`);
+  const toolsHtml = `<div class="rows">${toolRows.join('')}</div>
+    <div class="card" style="margin-top:10px"><div class="kdh-state unavailable slim"><b>iSellBeer, DSDLink, PayLink, the license lookup, surveys, assets and documents stay in Encompass for now.</b><span>No account-specific link for them is documented to us yet; the reporting request asks for the link formats before anything here pretends to open them.</span></div></div>`;
+
+  /* ---- assemble: four sections, one open ---- */
+  const secnav = `<nav class="secnav" role="tablist" aria-label="Account sections">${SECS.map(([k, long, short])=>`<a role="tab" class="sectab${state.sec===k?' active':''}" aria-selected="${state.sec===k}" href="${E(acctHash(a.n, rep, k))}" data-sec="${k}"><span class="long">${E(long)}</span><span class="short">${E(short)}</span></a>`).join('')}</nav>`;
+  const secHtml = (k, inner) => `<div class="secbody" data-sec="${k}"${state.sec===k ? '' : ' hidden'}>${inner}</div>`;
+  app.innerHTML = back(fromLabel, fromHref) + headHtml + secnav
+    + secHtml('over', `
+    <section class="sec" id="overview"><h2>Account</h2>${identHtml}</section>
+    <section class="sec" id="focus"><h2>Focus for this account</h2>${focusHtml}</section>
+    <section class="sec" id="glance"><h2>At a glance</h2>${glanceHtml}</section>`)
+    + secHtml('sales', `
     <section class="sec"><h2>Sales &amp; reorders <small>Fusion, through ${E(monLabel(refKey))}</small></h2>${salesHtml}</section>
     ${patHtml ? `<section class="sec"><h2>Buying patterns <small>${E(monLabel(months[0]))} – ${E(monLabel(refKey))}</small></h2>${patHtml}</section>` : ''}
-    <section class="sec"><h2>Programs <small>${plural(idx.programs.length,'active program')} for ${E(rep.split(' ')[0])}</small></h2>${progHtml}</section>
-    <section class="sec"><h2>Products to discuss</h2>${discussHtml}</section>
-    <section class="sec"><h2>Notes &amp; follow-ups</h2>${notesHtml}</section>
-    ${tapsHtml ? `<section class="sec"><h2>Taps &amp; visits <small>survey as of ${E((d.taps.asOf||'').slice(0,10))}</small></h2>${tapsHtml}</section>` : ''}
-    <p class="fresh-foot">Customer base as of ${E(d.book.asOf)} · sales master through ${E(monLabel(months[N-1]))} (loaded ${E((d.sales.loaded||'').slice(0,10))}, monthly, net of returns) · programs as refreshed in the hub · tap survey as of ${E((d.taps.asOf||'').slice(0,10))}. Buying alerts use the last complete month (${E(monLabel(refKey))}) as today, so nothing grows more overdue than the data; rules and thresholds are in accounts/README.txt.</p>`;
+    <section class="sec" id="discuss"><h2>Products to discuss</h2>${discussHtml}</section>
+    <section class="sec" id="products"><h2>Products <small>${CAT.inventory && CAT.inventory.asOf ? 'warehouse as of '+E(CAT.inventory.asOf) : 'no warehouse data loaded'}</small></h2><div class="card" id="plistCard"></div></section>`)
+    + secHtml('inv', `
+    <section class="sec" id="inv"><h2>Purchases on record <small>Fusion, monthly</small></h2>${invHtml}</section>
+    <section class="sec" id="balances"><h2>Invoices, credits &amp; receivables</h2>${invMissingHtml}</section>`)
+    + secHtml('tasks', `
+    <section class="sec" id="programs"><h2>Programs <small>${plural(idx.programs.length,'active program')} for ${E(rep.split(' ')[0])}</small></h2>${progHtml}</section>
+    <section class="sec" id="notes"><h2>Notes &amp; follow-ups</h2>${notesHtml}</section>
+    ${tapsHtml ? `<section class="sec" id="taps"><h2>Taps &amp; visits <small>survey as of ${E((d.taps.asOf||'').slice(0,10))}</small></h2>${tapsHtml}</section>` : ''}
+    <section class="sec" id="tools"><h2>Tools &amp; links</h2>${toolsHtml}</section>`)
+    + `<p class="fresh-foot">Customer base as of ${E(d.book.asOf)} · sales master through ${E(monLabel(months[N-1]))} (loaded ${E((d.sales.loaded||'').slice(0,10))}, monthly, net of returns) · warehouse availability as of ${E((CAT.inventory && CAT.inventory.asOf) || '—')} · programs as refreshed in the hub · tap survey as of ${E((d.taps.asOf||'').slice(0,10))}. Buying alerts use the last complete month (${E(monLabel(refKey))}) as today, so nothing grows more overdue than the data; rules and thresholds are in accounts/README.txt.</p>`;
+  if(plist.n !== String(a.n)){ Object.assign(plist, {n:String(a.n), q:'', view: (sales && sales.products.length) ? 'bought' : 'all', sup:'', fam:'', pkg:'', limit:40}); }
+  renderProducts(a, rep, sales, CAT, months, N, targets);
   const y = scrollMem[location.hash]; if(typeof y==='number'){ requestAnimationFrame(()=>window.scrollTo(0,y)); delete scrollMem[location.hash]; }
+}
+
+/* ---------------- Products: the account-context product list ----------------
+   Previously purchased (this account's own history, all months) by default;
+   All eligible = the catalogue minus brand families the territory workbook
+   marks NOT IN TERRITORY / BLOCKED for this account's area. Each row:
+   name (wraps), package · supplier · #ProductID, this account's last
+   purchase + 12-month cases, the warehouse's sellable units with the
+   inventory report's date and days-of-cover status, a program lead tag when
+   the family is on one of this rep's warm lists for the account, and the
+   sell-sheet link when the Brands export carries one. Pricing, deals and
+   retailer stock are not in the data; the note says so once. */
+const CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>';
+const famKey = f => String(f||'').toLowerCase().replace(/[^a-z0-9]/g,'');
+function familyAllowed(fam, area){
+  const F = (typeof HUB_BRANDS!=='undefined' && HUB_BRANDS && HUB_BRANDS.families) || null;
+  if(!F || !fam || !area) return {ok:true, why:''};
+  let hit = F[fam]; if(!hit){ const k = famKey(fam); const name = Object.keys(F).find(x=>famKey(x)===k); hit = name ? F[name] : null; }
+  if(!hit || !hit.areas) return {ok:true, why:''};
+  const st = hit.areas[area];
+  if(st==='CAN SELL' || st==null) return {ok:true, why:''};
+  return {ok:false, why: st==='BLOCKED' ? 'blocked in '+area : 'not in territory for '+area};
+}
+function renderProducts(a, rep, sales, CAT, months, N, targets){
+  const box = document.getElementById('plistCard'); if(!box) return;
+  const inv = CAT.inventory || {};
+  const asOf = inv.asOf ? new Date(inv.asOf+'T00:00:00') : null; const invAge = asOf ? Math.round((TODAY-asOf)/86400000) : null;
+  // this account's own history, by product number
+  const mine = new Map(); (sales ? sales.products : []).forEach(p=>{ let li=-1; for(let i=N-1;i>=0;i--) if(p[5][i]>0){ li=i; break; } mine.set(String(p[0]), {li, cases12:sumRange(p[5], N-12, N), months12:p[5].slice(N-12).filter(c=>c>0).length, cases:sumRange(p[5],0,N), p}); });
+  // program leads by brand family (warm targets only)
+  const leadFams = new Map(); (targets||[]).filter(t=>t.warm).forEach(t=>{ const fams = HubAccounts.PROGRAM_BRANDS[HubAccounts.brandKey(t.p)] || []; fams.forEach(f=>{ if(!leadFams.has(famKey(f))) leadFams.set(famKey(f), t.p); }); });
+  // rows: purchased = own history (catalogue fills availability); all = catalogue within territory
+  let all;
+  if(plist.view==='bought'){
+    all = Array.from(mine.entries()).map(([num, m])=>{ const c = CAT.byNum.get(num); return {num, name:m.p[1], fam:m.p[2], sup:m.p[3], pkg:m.p[4], c, m}; });
+    all.sort((x,y)=> (y.m.li - x.m.li) || (y.m.cases12 - x.m.cases12));
+  } else {
+    all = CAT.products.map(r=>({num:String(r[0]), name:r[1], sup:r[2], fam:r[3], pkg:r[4], c:r, m:mine.get(String(r[0]))||null}))
+      .filter(x=>familyAllowed(x.fam, a.area).ok);
+    all.sort((x,y)=> ((y.m?1:0)-(x.m?1:0)) || x.sup.localeCompare(y.sup) || x.name.localeCompare(y.name));
+  }
+  const sups = Array.from(new Set(all.map(x=>x.sup).filter(Boolean))).sort();
+  const fams = Array.from(new Set(all.filter(x=>!plist.sup || x.sup===plist.sup).map(x=>x.fam).filter(Boolean))).sort();
+  const pkgs = Array.from(new Set(all.filter(x=>(!plist.sup || x.sup===plist.sup) && (!plist.fam || x.fam===plist.fam)).map(x=>x.pkg).filter(Boolean))).sort();
+  const q = plist.q.trim().toLowerCase();
+  const shown = all.filter(x=>(!plist.sup || x.sup===plist.sup) && (!plist.fam || x.fam===plist.fam) && (!plist.pkg || x.pkg===plist.pkg) && (!q || x.name.toLowerCase().includes(q) || x.num.includes(q)));
+  const availTxt = c => {
+    if(!c || c[5]==null) return `<span class="dim">no warehouse figure</span>`;
+    const st = c[7]; const tag = st==='out' ? '<span class="tag lapsed">Out at the warehouse</span>' : st==='low' ? '<span class="tag warn">Running low</span>' : '';
+    return `${fmtN(c[5])} units available${tag ? ' '+tag : ''}${c[8] ? ` · next arrival ${E(c[8])}` : ''}`;
+  };
+  const rowsHtml = shown.slice(0, plist.limit).map(x=>{
+    const lead = leadFams.get(famKey(x.fam));
+    const hist = x.m ? (x.m.li>=0 ? `Last bought ${monLabel(months[x.m.li])} · ${fmtN(x.m.cases12)} cs in 12 months (${x.m.months12} of 12 months)` : 'Bought before the loaded history') : `<span class="dim">never bought here in ${monLabel(months[0])}–${monLabel(months[N-1])}</span>`;
+    return `<div class="prow"><div class="pt"><span>${E(x.name)}</span>${lead ? `<span class="tag go">Lead · ${E(lead.shortName||lead.name)}</span>` : ''}</div>
+      <div class="ps">${E([x.pkg, x.sup].filter(Boolean).join(' · '))} · #${E(x.num)}</div>
+      <div class="pl">${hist}</div>
+      <div class="pl">${availTxt(x.c)}${x.c && x.c[10] ? ` · <a href="${E(x.c[10])}" target="_blank" rel="noopener">Sell sheet (PDF) ↗</a>` : ''}</div></div>`;
+  }).join('');
+  const nb = mine.size;
+  box.innerHTML = `<div class="pctl">
+      <div class="pseg" role="tablist"><button type="button" class="${plist.view==='bought'?'active':''}" data-pv="bought">Previously purchased (${nb})</button><button type="button" class="${plist.view==='all'?'active':''}" data-pv="all">All eligible products</button></div>
+      <input type="search" class="kdh-field" id="pq" placeholder="Search by product name or #" value="${E(plist.q)}" autocomplete="off" aria-label="Search products">
+      <details class="more-filters"${(plist.sup||plist.fam||plist.pkg)?' open':''}><summary>Filters${[plist.sup, plist.fam, plist.pkg].filter(Boolean).length ? ' · '+[plist.sup, plist.fam, plist.pkg].filter(Boolean).map(E).join(' · ') : ''}</summary>
+        <div class="mf-row"><select id="psup" aria-label="Supplier"><option value="">Any supplier</option>${sups.map(v=>`<option value="${E(v)}"${v===plist.sup?' selected':''}>${E(v)}</option>`).join('')}</select>
+        <select id="pfam" aria-label="Brand family"><option value="">Any brand family</option>${fams.map(v=>`<option value="${E(v)}"${v===plist.fam?' selected':''}>${E(v)}</option>`).join('')}</select>
+        <select id="ppkg" aria-label="Package"><option value="">Any package</option>${pkgs.map(v=>`<option value="${E(v)}"${v===plist.pkg?' selected':''}>${E(v)}</option>`).join('')}</select>
+        ${(plist.sup||plist.fam||plist.pkg) ? '<button type="button" class="btn outline" id="pclear">Clear</button>' : ''}</div></details>
+    </div>
+    <p class="count">${shown.length===all.length ? plural(all.length,'product') : shown.length+' of '+plural(all.length,'product')}${plist.view==='all' ? ' sellable in '+E(a.area||'this area') : ''}</p>
+    ${rowsHtml || `<div class="kdh-state empty"><b>${q ? 'No product matches “'+E(q)+'”.' : plist.view==='bought' ? 'No purchases on record for this account.' : 'No product matches these filters.'}</b></div>`}
+    ${shown.length>plist.limit ? `<button class="btn outline more" id="pmore" type="button">Show ${Math.min(40, shown.length-plist.limit)} more of ${shown.length}</button>` : ''}
+    <p class="note">Warehouse figures are Encompass’s sellable units as of ${E(inv.asOf||'—')}${invAge!=null && invAge>7 ? ` <span class="tag warn">Snapshot is ${invAge} days old</span>` : ''}; “running low” is under ${E(String(inv.lowDoi||14))} days of cover. Eligibility follows the brand territory workbook for ${E(a.area||'this area')}. Pricing, deals, promotions, retailer stock and close-dated lots are not in our data (see REPORTING_REQUEST.md). Sell sheets are on file for ${E(String((CAT.sellSheets&&CAT.sellSheets.brands)||0))} brands so far.</p>`;
+  const rr = ()=>renderProducts(a, rep, sales, CAT, months, N, targets);
+  box.querySelectorAll('[data-pv]').forEach(b=>b.addEventListener('click', ()=>{ plist.view = b.dataset.pv; plist.limit = 40; plist.sup = plist.fam = plist.pkg = ''; rr(); }));
+  const pq = box.querySelector('#pq'); pq.addEventListener('input', e=>{ plist.q = e.target.value; plist.limit = 40; const y = window.scrollY; rr(); const el = box.querySelector('#pq'); el.focus(); el.setSelectionRange(el.value.length, el.value.length); window.scrollTo(0, y); });
+  box.querySelector('#psup').addEventListener('change', e=>{ plist.sup = e.target.value; plist.fam = plist.pkg = ''; plist.limit = 40; rr(); });
+  box.querySelector('#pfam').addEventListener('change', e=>{ plist.fam = e.target.value; plist.pkg = ''; plist.limit = 40; rr(); });
+  box.querySelector('#ppkg').addEventListener('change', e=>{ plist.pkg = e.target.value; plist.limit = 40; rr(); });
+  const pc = box.querySelector('#pclear'); if(pc) pc.addEventListener('click', ()=>{ plist.sup = plist.fam = plist.pkg = ''; rr(); });
+  const pm = box.querySelector('#pmore'); if(pm) pm.addEventListener('click', ()=>{ plist.limit += 40; const y = window.scrollY; rr(); window.scrollTo(0, y); });
+}
+// switch the open section in place (no re-render): hidden attribute + hash
+function showSec(k, toId){
+  state.sec = SECS.some(x=>x[0]===k) ? k : 'over';
+  document.querySelectorAll('.secbody').forEach(el=>{ el.hidden = el.dataset.sec!==state.sec; });
+  document.querySelectorAll('.sectab').forEach(t=>{ const on = t.dataset.sec===state.sec; t.classList.toggle('active', on); t.setAttribute('aria-selected', String(on)); });
+  const hit = findAccount(state.n);
+  history.replaceState(null, '', acctHash(state.n, hit ? hit.rep : '', state.sec));
+  if(toId){ const el = document.getElementById(toId); if(el) requestAnimationFrame(()=>el.scrollIntoView({block:'start', behavior:'smooth'})); }
+  else window.scrollTo(0, 0);
 }
 
 /* ---------------- render + boot ---------------- */
 function render(){
   if(state.view==='acct') renderAccount(); else renderList();
 }
+document.addEventListener('click', e=>{
+  const t = e.target.closest('.sectab[data-sec], [data-go]'); if(!t || state.view!=='acct') return;
+  e.preventDefault();
+  if(t.dataset.go){ const [k, id] = t.dataset.go.split(':'); showSec(k, id); } else showSec(t.dataset.sec);
+});
+
 document.addEventListener('click', e=>{
   const a = e.target.closest('a.row[data-n]'); if(!a) return;
   // remember where the list was so Back lands here

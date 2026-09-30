@@ -50,14 +50,87 @@ DATA (all existing; generate.py builds the per-rep slices)
   it renders nothing and exposes window.KohlerHub): active programs, this
   account's target / credited / can't-sell status, what to sell, deadlines.
 
-  Outputs of generate.py (git-tracked, regenerate after hub/generate.py, a
-  rolling month, or a tap rebuild):
-    data/index.json, data/book/<key>.js, data/reps/<key>.json (list + one-line
-    summary per account), data/sales/<key>/<n>.json (one account's product x
-    month history + its tap brands and earlier surveys).
+  inventory/index.html (rep-data JSON)     the warehouse's sellable units, days of cover, next
+                                           arrival per product, as ../inventory/ computes them.
+  incentive-tracking/data/customer_base_full.csv   Draft / Package service type per account.
+  carbliss-onprem-targets/brands_sell_sheets.xlsx  sell-sheet URL per brand (Carbliss so far).
 
-THE ACCOUNT PAGE, TOP TO BOTTOM
-  Identity   name; town · premise; account #, address, area, size class; the rep (managers).
+  Outputs of generate.py (git-tracked, regenerate after hub/generate.py, a
+  rolling month, a tap rebuild or an inventory refresh):
+    data/index.json, data/book/<key>.js, data/reps/<key>.json (list + one-line
+    summary per account, service type, stops / points), data/sales/<key>/<n>.json
+    (one account's product x month history + its tap brands and earlier
+    surveys), data/catalog.json (the product catalogue with warehouse
+    availability -- no customer data, so a rep may fetch it as-is).
+
+THE ACCOUNT PAGE: FOUR SECTIONS (2026-09-30, Gavin's Encompass brief)
+  One page per account, a compact section selector under the name
+  (Overview / Sales & Products / Invoices & Balances / Tasks & Resources;
+  short labels under 480px; `sec=` in the hash remembers the open one; a
+  Focus link or an At-a-glance row carries data-go="<sec>:<id>" and opens
+  that section scrolled to the block). Sections switch in place -- no
+  re-render, no lost list position; Back still returns to the list with
+  its filters, or to the tracker that opened the account (`from` / `fl`,
+  which the section links keep in the hash).
+  Header  name; town · premise · Account #; the rep (managers).
+  OVERVIEW
+    Account   address + Directions (a Google Maps web URL from the address,
+              town, NJ -- no app scheme), premise + service type (Draft and
+              Package / Package Only from customer_base_full.csv), area +
+              county, size class + decile, "2026 so far" stops · distribution
+              points · cases (deciles workbook, definition to confirm), the
+              rep for managers; then ONE unavailable line: contact, phone,
+              email, hours, instructions and next delivery date are not in
+              our exports (REPORTING_REQUEST.md E1 / E2). No empty fields.
+    Focus     unchanged rules (below); alert links open Sales & Products.
+    At a glance   one row per section with the number that matters: last
+              purchase + 3-month cases + products in 12 months; the alert
+              counts; the invoices line (monthly record on file, the rest not
+              connected); programs (active, credited or a lead here); notes;
+              taps status. Each row opens its section.
+  SALES & PRODUCTS
+    Sales & reorders, Buying patterns, Products to discuss  -- as before
+              (rules below).
+    Products  the account-context product list. Default PREVIOUSLY PURCHASED:
+              every product in this account's own history (all loaded
+              months), newest purchase first: name (wraps), package ·
+              supplier · #ProductID, "Last bought <month> · N cs in 12 months
+              (M of 12 months)", the warehouse's sellable units ("N units
+              available", Out at the warehouse / Running low tags, next
+              arrival) with the inventory report's date, a "Lead · <program>"
+              tag when the brand family is on one of the rep's WARM lists for
+              this account, and "Sell sheet (PDF)" where the Brands export
+              has a URL. ALL ELIGIBLE PRODUCTS: the catalogue
+              (data/catalog.json: products sold anywhere in the last 12
+              months or held in the warehouse) minus brand families the
+              territory workbook marks NOT IN TERRITORY / BLOCKED for this
+              account's area (Bergen and Passaic: none; Essex: 131 families
+              out), bought-here first. Search by name or #, Filters fold
+              (supplier -> family -> package), 40 rows + Show more. One note
+              says what is NOT in the data: pricing, deals, promotions,
+              retailer stock, close-dated lots. Availability = Encompass's
+              `Available` exactly as ../inventory/ computes it (never
+              recomputed), tagged "Snapshot is N days old" past 7 days.
+  INVOICES & BALANCES
+    Purchases on record   the last 12 months as monthly cases + products
+              bought, labelled "not invoices" (Fusion has no invoice numbers,
+              dates or dollars); a month later than the reference month says
+              "partial month in the export".
+    Invoices, credits & receivables   ONE unavailable state: invoice history,
+              AR (amount due, credits, balance, aging), pre-orders,
+              backorders and allocations need the exports in
+              REPORTING_REQUEST.md (E3-E6). No zeros, no estimates from
+              sales -- and no dollars until Gavin says who may see them.
+  TASKS & RESOURCES
+    Programs, Notes & follow-ups, Taps & visits  -- as before.
+    Tools & links   rows that work today: Incentive Hub (the rep's programs),
+              Tap Tracker on this account (on-premise), Directions; then one
+              line: iSellBeer, DSDLink, PayLink, the license lookup, surveys,
+              assets and documents stay in Encompass -- no documented
+              account link yet (REPORTING_REQUEST.md section 5). Nothing is
+              drawn as a button that does not work.
+
+FOCUS + SECTION RULES (unchanged from the first build)
   Focus      up to three, in this fixed order, each saying why and what next:
              1 the newest open follow-up on this account (rep_actions, status follow)
              2 an overdue tap survey (last visit > 60 days ago -- the Tap Tracker's rule;
@@ -120,7 +193,7 @@ THE ACCOUNT PAGE, TOP TO BOTTOM
   Freshness  book asOf · sales through <month> (loaded <date>) · taps asOf, in the footer.
 
 LIST
-  Rows: name; town · premise (· rep for managers); chips: N follow-ups, N program leads,
+  Rows: name; town · premise · #CustomerID (· rep for managers); chips: N follow-ups, N program leads,
   survey overdue Nd / due in Nd; then the EVIDENCE LINE from patterns.py (max 3 items):
   "2 possible reorders · 3 lapsed products · Purchasing less frequently" / "N products
   bought less often" / "Volume up|down vs prior 3 months" (>= 25% on a 10+ case base).
@@ -223,7 +296,16 @@ BUYING ALERTS & PATTERNS (accounts/patterns.py -- THE rule engine; accounts.js r
            (alerts with evidence, counts, patterns) on the sales file -- 55 MB total for
            2,323 accounts, one file per account, per-rep folders the middleware enforces.
 
-TESTS  scratchpad acct_test.mjs (rep scope from the allow-list spelling, direct link to
+ROUTE / SERVICE DAY  not shown: the customer base carries no service day, stop
+       sequence, time window or route totals. When the schedule export (REPORTING_REQUEST.md
+       E2) lands, the list gets a Today / This week filter and scheduled stops apart from
+       the assigned book, in the export's stop order.
+
+TESTS  scratchpad sections_test.mjs (the brief's checklist: find an account by name / # /
+       town, Overview with Directions + the unavailable contact line, Focus, glance rows open
+       their section, product list default / search by # / All eligible with territory
+       exclusions / filters, Invoices section without dollars or zeros, Tools rows, deep link
+       sec=, Back keeps context, 375 / 390 / 430 / 820 / 1366), acct_test.mjs (rep scope from the allow-list spelling, direct link to
        another rep's account fails closed, search cannot reach it, manager filters + Back,
        DM team only, preview == rep list, entry points from rep home / hub / Tap Tracker,
        375 / 390 / 430 / 820 / 1366), alerts_test.mjs (evidence lines, Needs attention +
