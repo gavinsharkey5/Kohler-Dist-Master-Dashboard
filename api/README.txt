@@ -220,13 +220,11 @@ DATA SOURCE INTERFACE (Snowflake later, without depending on it)
   permission rule for which accounts a question may span, which does not
   exist yet and is not a connector question.
 
-KNOWN GAP, PRE-EXISTING: other rep-page datasets still carry every rep's
-data to any signed-in rep -- incentive-tracking/data/program_data.js (every
-rep's incentive detail incl. account names), MPOs/*/data/<month>/*.json,
-the Tap Tracker's embedded survey, redbull/data.csv, Carbliss's embedded
-rows. The assistant does not widen this (it reads only the per-rep slices)
-but does not close it either; closing it = per-rep slices + middleware
-rewrites for those files, as done for accounts/data.
+CLOSED 2026-10-01: every other rep-page dataset (program_data.js, the MPO
+month JSON, the Tap Tracker and Carbliss embedded data, redbull/data.csv) is
+now served per rep too (tools/rep_slices.py + middleware.js), and account
+SIZE (sizeClass, decile) lives in accounts/data/size.json, which only a
+manager may fetch -- src.size() merges it into the record for a manager.
 
 LOCAL / TESTS
   scratchpad chat_api_test.mjs (60 checks; the handler under Node with a

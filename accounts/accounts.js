@@ -90,8 +90,14 @@ async function loadCatalog(){
   CATALOG.byNum = new Map(CATALOG.products.map(r=>[String(r[0]), r]));
   return CATALOG;
 }
+// account size (class + gross-profit decile) lives in data/size.json, which
+// only a manager may fetch (2026-10-01); merged into the rows for a manager
+let SIZES = null;
 async function loadReps(names){
-  await Promise.all(names.map(async n=>{ if(repData.has(n)) return; const d = await getJson('data/reps/'+repKey(n)+'.json').catch(()=>null); repData.set(n, d); }));
+  if(isMgr && SIZES===null) SIZES = await getJson('data/size.json').catch(()=>null) || {};
+  await Promise.all(names.map(async n=>{ if(repData.has(n)) return; const d = await getJson('data/reps/'+repKey(n)+'.json').catch(()=>null);
+    if(d && SIZES) d.accounts.forEach(a=>{ const z = SIZES[String(a.n)]; if(z){ a.sizeClass = z.sizeClass; a.decile = z.decile; } });
+    repData.set(n, d); }));
 }
 function cookie(name){ const m = document.cookie.match(new RegExp('(?:^|;\\s*)'+name+'=([^;]*)')); return m ? decodeURIComponent(m[1]) : ''; }
 // Notes and follow-ups are the hub's rep_actions rows (Supabase, RLS: a rep

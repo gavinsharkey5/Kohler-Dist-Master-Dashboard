@@ -1318,7 +1318,10 @@ footer{font-size:13px}
     // zero on this rep's, sellable in their counties)
     cc.peerGap = [];
     if(level==='rep'){
-      var company = computeCC(RECORDS);
+      // a rep's copy of this page (tools/rep_slices.py) carries only their own
+      // records; the company tap totals per brand family come precomputed
+      var company = DATA.company ? { usBrandTotals: DATA.company.usBrandTotals,
+        usRanked: Object.keys(DATA.company.usBrandTotals).sort(function(x,y){ return DATA.company.usBrandTotals[y]-DATA.company.usBrandTotals[x]; }) } : computeCC(RECORDS);
       var repCtys = {};
       route.accounts.forEach(function(a){ repCtys[a.county]=1; });
       cc.peerGap = company.usRanked.filter(function(f){

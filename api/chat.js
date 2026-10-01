@@ -242,6 +242,8 @@ function StaticExportSource(request, env, token) {
     },
     async repIndex() { const idx = await file('/accounts/data/index.json', 'shared'); return idx && Array.isArray(idx.reps) ? idx : null; },
     async route(repKey) { return /^[a-z0-9-]+$/.test(repKey) ? file(`/accounts/data/reps/${repKey}.json`) : null; },
+    // account size (class + decile): a managers-only file since 2026-10-01; the middleware refuses it to a rep
+    async size() { return file('/accounts/data/size.json'); },
     async account(repKey, n) { return /^[a-z0-9-]+$/.test(repKey) && /^\d+$/.test(String(n)) ? file(`/accounts/data/sales/${repKey}/${n}.json`) : null; },
     async notes(n, repName) {
       try {
@@ -528,8 +530,13 @@ export default async function handler(request) {
   }
   const route = await src.route(repKey);
   if (!route || !Array.isArray(route.accounts)) return json(403, { error: 'We could not find that route in the account data.' });
-  const row = route.accounts.find(a => Number(a.n) === n);
+  let row = route.accounts.find(a => Number(a.n) === n);
   if (!row) return json(403, { error: 'That account is not on this route.' });
+  if (who.role === 'manager' && src.size) {
+    const sizes = await src.size();
+    const sz = sizes && sizes[String(n)];
+    if (sz) row = Object.assign({}, row, sz);
+  }
   const routeRep = route.rep || repName || who.name;
 
   // 4. the record and the caller's notes, from trusted sources

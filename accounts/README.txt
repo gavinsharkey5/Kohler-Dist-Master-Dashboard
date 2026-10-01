@@ -27,11 +27,11 @@ WHO SEES WHAT
             exactly as the hub and MPO trackers do today.
   Preview   a manager previewing a rep gets the rep's list and pages; notes
             are shown read-only ("Saving is off in preview").
-  KNOWN GAP the other datasets a rep page loads (program_data.js, the MPO
-            month JSON, the tap survey embedded in the Tap Tracker) still
-            carry every rep's rows, as they always have; only the account
-            slices are enforced per rep. Closing that needs per-rep slices
-            of those files too (same mechanism) -- listed in ROADMAP.md.
+  Every rep dataset is per rep since 2026-10-01 (tools/rep_slices.py; see
+            CLAUDE.md "Every rep dataset is served per rep"). Account SIZE
+            (sizeClass, decile) is NOT in data/reps/<key>.json: it is moved
+            into data/size.json (managers only; the middleware refuses it to a
+            rep) and accounts.js merges it into the rows for a manager.
 
 DATA (all existing; generate.py builds the per-rep slices)
   hub/data/accounts.js                     the customer base: rep -> accounts (n, name, town,

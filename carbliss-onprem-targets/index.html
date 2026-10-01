@@ -601,7 +601,11 @@ if(LOCK_TEAM){
 function renderBoard(){
   const el = document.getElementById('leaderboard'); if(!el) return;
   const reps = DATA.meta.reps.filter(r=>!window.kdhIsRep || window.kdhIsRep(r));
-  const rows = reps.map(r=>{ const mine = DATA.accounts.filter(a=>a.rep===r); const count = mine.filter(a=>a.existingCarbliss.length).length; return {rep:r, count, total:mine.length, share: mine.length ? count/mine.length : 0}; })
+  // a rep's copy of this page (tools/rep_slices.py) carries only their own
+  // accounts plus meta.board -- every rep's counts, no account names
+  const BOARD = DATA.meta.board ? new Map(DATA.meta.board.map(b=>[b.rep, b])) : null;
+  const rows = reps.map(r=>{ if(BOARD){ const b = BOARD.get(r) || {count:0, total:0}; return {rep:r, count:b.count, total:b.total, share: b.total ? b.count/b.total : 0}; }
+      const mine = DATA.accounts.filter(a=>a.rep===r); const count = mine.filter(a=>a.existingCarbliss.length).length; return {rep:r, count, total:mine.length, share: mine.length ? count/mine.length : 0}; })
     .filter(x=>x.total>0)
     .sort((a,b)=>b.count-a.count || b.share-a.share || a.rep.localeCompare(b.rep));
   let rank=0; rows.forEach((r,i)=>{ if(!i || r.count!==rows[i-1].count || r.share!==rows[i-1].share) rank=i+1; r.rank=rank; });
@@ -632,7 +636,7 @@ function renderBoard(){
 function renderBuyers(){
   const el = document.getElementById('buyers'); if(!el) return;
   const M = DATA.meta.buyers || {}; const all = DATA.buyers || [];
-  if(!all.length){ el.innerHTML=''; return; }
+  if(!all.length && !M.rows){ el.innerHTML=''; return; }   // a rep's copy holds only their buyers: zero is still a result
   const scopeRep = LOCK_REP || state.rep || '';
   const inScope = b => scopeRep ? b.rep===scopeRep : (LOCK_TEAM ? LOCK_TEAM.reps.has(b.rep) : true);
   const rows = all.filter(inScope);

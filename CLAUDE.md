@@ -1559,3 +1559,39 @@ and for a manager previewing a rep. The manager home's "Viewing as"
 switcher (Gavin only) lists NAMES ONLY; when a name appears twice the
 untitled entry is the personal test account, labelled "Gavin Sharkey
 (Personal)", and the work account is selected by default.
+
+## Every rep dataset is served per rep (2026-10-01)
+
+Gavin's rule: a rep sees only their own data -- now enforced on the wire,
+not just on screen. `tools/rep_slices.py` writes one copy per rep key
+(middleware.js `nameKey()`, nickname map READ from middleware.js) of:
+program_data.js -> `incentive-tracking/data/rep/<key>.js` (byRep cut to the
+rep, leaderboards dropped, program-level house / pace fields kept,
+`__anyData` per program -- hub.js `incHasAnyData(entry, month)` reads it);
+MPO month files -> `MPOs/<ch>-prem/data/<YYYY-MM>/rep/<key>/<file>.json`
+(rows by SALES_REP_ASSIGNED / SALES_REP_NAME / REP; ONE blanked row when the
+rep has none, because the builders read columns from the first row and
+return null on []); `redbull/rep/<key>/data.csv` (other reps' rows kept
+with the customer name replaced by "Account N", so ranked() / teamStats()
+are unchanged and no other account name ships); Carbliss and Tap Tracker
+pages -> `<dir>/rep/<key>/index.html` with the embedded data cut to the rep
+plus `meta.board` (Carbliss leaderboard counts, read by renderBoard) and
+`company.usBrandTotals` (Tap Peer Playbook, read in place of
+computeCC(RECORDS)). Account size moved to `accounts/data/size.json`
+(managers only; accounts.js `SIZES`, api/chat.js `src.size()`).
+middleware.js (rep branch): `repSlicePath()` rewrites the shared URL to the
+rep's copy (`_none` = empty copy for a name matching no key; the key list
+`SLICE_KEYS` between the markers is WRITTEN by the script), `repDenied()`
+403s direct requests for any copy, `size.json`, and raw .csv/.tsv/.xls(x)
+except redbull/goals.csv. REP_PATHS gained `/incentive-tracking/assets/`
+(logos: reps had been seeing initials). Managers get the full files.
+EVERY generator for these datasets runs the script at its end (a
+`__main__` block appended to each); `python3 tools/rep_slices.py --check`
+exits 1 if a copy is stale. If you add a dataset a rep page loads, add it
+to rep_slices.py AND repSlicePath(). Visible differences for a rep: the
+Carbliss town list shows only their own towns; Red Bull's "Data updated"
+is the export's last date (period.json), not the file timestamp. Tests:
+scratchpad slice_test.mjs (4 reps x 13 pages: identical visible text from
+the copy through the real middleware vs the full files; copies hold only
+the rep's rows) + mw_test.mjs (rewrites, denials, managers unchanged).
+Needs one live check on Vercel (ROADMAP "Now").

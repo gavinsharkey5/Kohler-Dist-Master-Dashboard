@@ -228,11 +228,19 @@ function withIncMonth(month, fn){
   PROGRAM_LIST = month.programs; activeMonth = month;
   try { return fn(); } finally { PROGRAM_LIST = pm; activeMonth = am; }
 }
-function incHasAnyData(entry){ return ROSTER.some(r=>!!entry.getRep(r)); }
+// A rep's browser gets a per-rep copy of the program data (tools/rep_slices.py,
+// 2026-10-01): other reps' rows are gone, so "anyone has data" is carried by
+// the copy's __anyData mark on each program instead of a roster scan.
+function incHasAnyData(entry, month){
+  if(ROSTER.some(r=>!!entry.getRep(r))) return true;
+  const k = entry.dataKey||entry.key;
+  const B = month && month.key==='2026-10' && typeof PROGRAM_DATA_2026_10!=='undefined' ? PROGRAM_DATA_2026_10 : month && month.key==='2026-09' ? PROGRAM_DATA_2026_09 : PROGRAM_DATA;
+  return !!((B && B[k] && B[k].__anyData) || incBlob(k).__anyData);
+}
 
 function makeIncentive(entry, month){
   const sup = supplierOf(entry.key);
-  const anyData = incHasAnyData(entry);
+  const anyData = incHasAnyData(entry, month);
   const period = incPeriod(entry, month);
   const chan = INC_CHANNEL[entry.key] || 'both';
   const P = incBlob(entry.dataKey||entry.key);

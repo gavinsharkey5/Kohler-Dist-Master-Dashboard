@@ -476,7 +476,10 @@ async function boot(){
   HOW_EXTRA=`${periodPhrase} ${goalPhrase}`; const hw=document.querySelector('.rb-how .rb-howin .note'); if(hw) render();
   if(LOCK_REP){const l=document.getElementById("lede");l.innerHTML=l.innerHTML.replace(/\s*Tap your name to see your accounts\.?/,"");}
   document.getElementById("period").innerHTML=period&&period.label?`<span class="lbl">Buying period</span><b>${esc(period.label)}</b>`:"";
-  document.getElementById("updated").innerHTML=lastMod?`<span class="dot"></span><span class="lbl">Data updated</span><b>${esc(new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}))}</b>`:"";
+  // the export's own last date (period.json), not the file's timestamp -- a
+  // rep's copy of data.csv is rewritten whenever the copies are rebuilt
+  const upd=(period&&period.export_last_date)?fmtDay(period.export_last_date):(lastMod?new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):"");
+  document.getElementById("updated").innerHTML=upd?`<span class="dot"></span><span class="lbl">Data updated</span><b>${esc(upd)}</b>`:"";
   const catKey=CATS.map(c=>`<b>${c.label}</b> = ${c.blurb}`).join(", ")+".";
   document.getElementById("foot").innerHTML=`${goalPhrase} ${catKey} ${key} ${rule} ${periodPhrase} Each tally is unique buying accounts, so an account buying two ${CATS[0].label} SKUs still counts once, and <b>${TOP.label}</b> accounts are a subset of <b>${TIERS[0].label}</b> — the two tiers don't add up. Reps are ranked by ${TOP.label} accounts. Refresh by re-exporting the RDE Red Bull Tracker report and running <b>generate.py</b> — see README.txt.`;
 }

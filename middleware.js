@@ -39,6 +39,7 @@ const REP_PATHS = [
   '/MPOs/shared/',                      // guided.js / guided.css the MPO pages and hub load
   '/redbull/',                          // Red Bull Distribution Tracker
   '/carbliss-onprem-targets/',          // Carbliss On-Premise Targets
+  '/incentive-tracking/assets/',       // supplier / brand logos the hub shows (reps saw initials before 2026-10-01)
   '/incentive-tracking/programs.js',    // the hub's program library ...
   '/incentive-tracking/data/program_data.js', // ... and its data
   '/shared/',                           // auth-config.js
@@ -68,6 +69,41 @@ function accountDataVerdict(pathname, name) {
   const m = pathname.match(ACCOUNT_DATA);
   if (!m) return 'ok';                                  // not a data slice
   return m[2] === nameKey(name) && nameKey(name) ? 'ok' : 'deny';
+}
+
+// EVERY REP DATASET IS SERVED PER REP (2026-10-01). tools/rep_slices.py
+// writes one copy per rep (only that rep's rows; leaderboards as counts with
+// no account names) of the incentive data, the MPO month files, Red Bull's
+// data.csv and the Tap Tracker / Carbliss pages (their data is embedded).
+// A rep asking for the shared file is rewritten to their own copy -- the
+// page's URL does not change -- and any direct request for a copy, or for a
+// raw CSV / workbook, is refused. A rep whose name matches no copy gets the
+// empty `_none` copy, so the page shows its own "nothing for you" note.
+// The key list below is WRITTEN BY tools/rep_slices.py -- do not edit it.
+/* SLICE_KEYS_START */
+const SLICE_KEYS = new Set(["adam-badalamenti", "alex-rodriguez", "alisa-acciardi", "allison-scott", "andy-lundy", "brian-sengebush", "chris-payton", "chris-politano", "dan-lagala", "dave-ehlers", "default", "derrick-laws", "dylan-rubino", "hakan-sadik", "jaime-colonna", "javier-melo", "jayson-romine", "jim-heaney", "john-neukum", "john-odonoghue", "klejdi-lamo", "matt-powierski", "mike-ast", "mike-harboy", "nick-melissari", "office-tellsell", "pablo-lopez", "pat-infante", "paul-mclaughlin", "phil-ernst", "robin-feldman", "shane-barreca", "tony-palmisano"]);
+/* SLICE_KEYS_END */
+const SLICE_DIRS = /^\/(incentive-tracking\/data\/rep\/|MPOs\/(off|on)-prem\/data\/\d{4}-\d{2}\/rep\/|redbull\/rep\/|carbliss-onprem-targets\/rep\/|isellbeer\/tap-survey-tracking\/rep\/)/;
+const MPO_FILE = /^\/MPOs\/(off|on)-prem\/data\/(\d{4}-\d{2})\/([A-Za-z0-9_.-]+\.json)$/;
+const RAW_FILE = /\.(csv|tsv|xlsx|xls)$/i;
+function sliceKey(name) { const k = nameKey(name); return SLICE_KEYS.has(k) ? k : '_none'; }
+// The URL a rep's request is served from instead (null = unchanged).
+function repSlicePath(pathname, name) {
+  const k = sliceKey(name);
+  if (pathname === '/incentive-tracking/data/program_data.js') return `/incentive-tracking/data/rep/${k}.js`;
+  const m = pathname.match(MPO_FILE);
+  if (m && m[3] !== 'sync_meta.json') return `/MPOs/${m[1]}-prem/data/${m[2]}/rep/${k}/${m[3]}`;
+  if (pathname === '/redbull/data.csv') return `/redbull/rep/${k}/data.csv`;
+  if (pathname === '/carbliss-onprem-targets/' || pathname === '/carbliss-onprem-targets/index.html') return `/carbliss-onprem-targets/rep/${k}/index.html`;
+  if (pathname === '/isellbeer/tap-survey-tracking/' || pathname === '/isellbeer/tap-survey-tracking/index.html') return `/isellbeer/tap-survey-tracking/rep/${k}/index.html`;
+  return null;
+}
+// What a rep may never fetch directly: another copy, a raw export, account size.
+function repDenied(pathname) {
+  if (SLICE_DIRS.test(pathname)) return true;
+  if (pathname === '/accounts/data/size.json') return true;
+  if (RAW_FILE.test(pathname) && pathname !== '/redbull/goals.csv') return true;
+  return false;
 }
 
 function repMayOpen(pathname) {
@@ -107,6 +143,14 @@ export default async function middleware(request) {
       const key = nameKey(verdict.name);
       if (!key) return new Response('{}', { status: 403, headers: { 'content-type': 'application/json', 'cache-control': 'no-store' } });
       return rewrite(new URL(`/accounts/data/book/${key}.js`, url));
+    }
+    const slice = repSlicePath(url.pathname, verdict.name);
+    if (slice) return rewrite(new URL(slice, url));
+    if (repDenied(url.pathname)) {
+      return new Response(JSON.stringify({ error: 'not available to reps' }), {
+        status: 403,
+        headers: { 'content-type': 'application/json', 'cache-control': 'no-store' },
+      });
     }
     if (accountDataVerdict(url.pathname, verdict.name) === 'deny') {
       return new Response(JSON.stringify({ error: 'not your accounts' }), {

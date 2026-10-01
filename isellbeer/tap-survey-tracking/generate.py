@@ -599,3 +599,11 @@ print(f"Segment resolution ({len(segments)} distinct values): "
       f"{segment_stats['isell']} rows from Brand Segments (iSell) only, "
       f"{segment_stats['none']} unclassified"
       + (f" (of {seg_total})" if seg_total else ""))
+
+# Per-rep copies (tools/rep_slices.py, 2026-10-01): a signed-in rep's browser
+# is served only their own rows, so the copies are rebuilt after every run.
+if __name__ == "__main__":
+    import subprocess as _sp, sys as _sys
+    from pathlib import Path as _P
+    _root = next(p for p in _P(__file__).resolve().parents if (p / "middleware.js").exists())
+    _sp.run([_sys.executable, str(_root / "tools" / "rep_slices.py")], check=True)

@@ -11,6 +11,12 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
+- [ ] **Per-rep data: one live check** (Gavin, 5 minutes, signed in as a rep
+  or with a rep's login on a spare device): open the Tap Tracker, Red Bull,
+  Carbliss, the Incentive Hub and an MPO tracker on kohlerdisthub.com and
+  confirm each shows that rep's page as before (not an error or a blank).
+  This confirms Vercel serves the per-rep copies the middleware points at.
+
 - [ ] **Account assistant: controlled pilot** (Gavin; api/README.txt
   "CONTROLLED PILOT" has the exact clicks). (1) Supabase SQL Editor: run
   `supabase/migrations/20260930210000_assistant_usage.sql`. (2) Anthropic
@@ -109,11 +115,6 @@ device, a decision).
 
 ## Later -- ideas kept handy
 
-- Per-rep slices of the OTHER rep-page datasets (program_data.js, the MPO
-  month JSON, the tap survey embedded in the Tap Tracker) through the same
-  middleware rewrite the account slices use, so a rep's browser never
-  receives another rep's rows anywhere. Today only the account data is
-  enforced server-side; the trackers still scope on the page.
 - Accounts page, once the invoice-level history and customer status land
   (`accounts/REPORTING_REQUEST.md`): reorder cadence in weeks, "last
   ordered on <date>", closed accounts hidden, inventory "in stock as of"
@@ -147,6 +148,13 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-10-01 Every rep dataset served per rep: a signed-in rep's browser now
+  receives only their own rows of the incentive data, the MPO month files,
+  the Tap Tracker, Red Bull and Carbliss (tools/rep_slices.py writes the
+  copies; middleware.js serves them; leaderboards and team totals stay as
+  counts with no account names). Raw CSV exports and account size are
+  refused to reps. Supplier logos now load for reps (they saw initials).
+  Live check for Gavin is in "Now" below.
 - [x] 2026-10-01 Account size (class / decile) shown to managers only; manager
   switcher shows names only, the personal account as "(Personal)".
 - [x] 2026-10-01 Visual refinement, third pass: Inter everywhere (self-hosted),
