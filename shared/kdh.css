@@ -256,8 +256,6 @@ html[data-theme="dark"] #kdhTheme.kdh-menu-i .sun{display:none} html[data-theme=
 @media (max-width:1099px){
   .kdh-logo .kdh-word{display:none}
   .kdh-logo small{display:none}
-  .kdh-b.kdh-theme #kdhThemeText{display:none}
-  .kdh-b.kdh-theme{width:36px;padding:0;justify-content:center}
 }
 .kdh-tabs{display:none}
 @media (max-width:759px){
@@ -265,11 +263,10 @@ html[data-theme="dark"] #kdhTheme.kdh-menu-i .sun{display:none} html[data-theme=
   .kdh-bar-in > .kdh-logo{margin-right:auto}
   /* phones show the page name beside the badge (the tab bar shows the section) */
   .kdh-logo .kdh-word{display:none}
-  .kdh-bar .kdh-logo small,.kdh-bar.kdh-has-cur .kdh-logo small{display:block;font-size:15px;font-weight:700;color:var(--kdh-text);margin:0;max-width:44vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .kdh-bar .kdh-logo small,.kdh-bar.kdh-has-cur .kdh-logo small{display:block;font-size:15px;font-weight:700;color:var(--kdh-text);margin:0;max-width:38vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .kdh-bar .kdh-logo small::before{display:none}
   .kdh-bar.kdh-bar:has(.kdh-back) .kdh-logo small{display:none}
   .kdh-b.kdh-back{height:40px;font-size:14px}
-  .kdh-b.kdh-theme{width:40px;height:40px}
   .kdh-tabs{display:block;position:fixed;left:0;right:0;bottom:0;z-index:55;background:color-mix(in srgb,var(--kdh-surface) 96%,transparent);backdrop-filter:saturate(1.2) blur(8px);-webkit-backdrop-filter:saturate(1.2) blur(8px);border-top:1px solid var(--kdh-border);padding-bottom:env(safe-area-inset-bottom);font-family:var(--kdh-body)}
   .kdh-tabs-in{display:flex;max-width:560px;margin:0 auto}
   .kdh-tab{flex:1 1 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:56px;padding:6px 4px 5px;color:var(--kdh-text-3);font-size:12.5px;font-weight:600;line-height:1.2;text-decoration:none;position:relative}
