@@ -632,7 +632,7 @@ const INC_MONTHS = [
 // account list (potential / credited / follow-ups, searchable) -> one
 // account (details, credited lines, the rep's own marks). Views: rep, sup,
 // detail, accts, acct. Manager Mode (desktop) keeps its own screens.
-const LISTS = {targets:'Potential accounts', dist:'Credited accounts', follow:'Follow-ups', done:'Done', skip:'Not now', hold:'Accounts to hold'};
+const LISTS = {targets:'Potential Accounts', dist:'Credited Accounts', follow:'Follow-ups', done:'Done', skip:'Not Now', hold:'Accounts to Hold'};
 const scrollMem = {};          // hash -> scrollY, so Back lands where the list was
 const acctQ = {};              // account-list search text, per program|list
 // only:'inc' (from the rep workspace's Incentive Hub tile, `only=inc` in the
@@ -922,7 +922,7 @@ function topbar(){
       <div class="navl">${rep && onRep ? `<span class="nav-rep">👤 ${E(state.peek && state.view==='detail' ? state.peek : rep)}</span>` : ''}</div>
       <div class="navr">
         ${rep && state.view!=='rep' && isMgr() ? `<button class="nbtn" data-act="my-programs">All of ${E(rep.split(' ')[0])}’s programs</button>` : ''}
-        ${!LOCKED_REP && !state.asRep && state.view!=='home' ? `<button class="nbtn quiet" data-act="home">Choose another rep</button>` : ''}
+        ${!LOCKED_REP && !state.asRep && state.view!=='home' ? `<button class="nbtn quiet" data-act="home">Choose Another Rep</button>` : ''}
         ${isMgr() && !state.asRep && !(state.view==='programs' || state.view==='program') ? `<button class="nbtn quiet" data-act="programs">By program</button>` : ''}
         ${isMobile() || LOCKED_REP || state.asRep ? '' : `<span class="modeseg" role="group" aria-label="How much detail"><button class="mseg${isMgr()?'':' active'}" data-act="set-mode" data-mode="rep">Rep view</button><button class="mseg${isMgr()?' active':''}" data-act="set-mode" data-mode="manager">Manager view</button></span>`}
       </div>
@@ -958,7 +958,7 @@ function screenHome(){
   const mgrPicker = !LOCKED_REP && !!(KDH_USER && KDH_USER.role === 'manager');
   return `<div class="homeview">
     <div class="home-head">
-      <h1>${mgrPicker ? 'Choose a rep' : 'Choose your name'}</h1>
+      <h1>${mgrPicker ? 'Choose a Rep' : 'Choose Your Name'}</h1>
       <p class="home-sub">${mgrPicker ? 'Tap a name to see that rep’s incentives and MPOs.' : 'Tap your name to see your incentives and MPOs.'}</p>
       ${refreshedLine()}
     </div>
@@ -2869,7 +2869,7 @@ function prevMonthsHtml(rep){
       : `<div class="kdh-state empty"><b>No ${E(cur.label)} incentives on record for ${E(first(rep))}.</b></div>`;
   }
   return `<section class="iprev" aria-label="Previous months">
-      <div class="iprev-head"><span class="iprev-t">Previous months</span><span class="iprev-s">Review an earlier month’s incentives</span></div>
+      <div class="iprev-head"><span class="iprev-t">Previous Months</span><span class="iprev-s">Review an earlier month’s incentives</span></div>
       <div class="mstrip" role="tablist">${pills}</div>
       ${body}
     </section>`;
@@ -2976,13 +2976,13 @@ function screenProgramRep(p, r, rep){
       </div>`}
     </div>
     ${lists}
-    ${BG.length ? `<section class="hsec"><h2>Your brand goals</h2>${brandGoalsHtml(BG, {noTitle:true, oneGoal: p.key==='mabi_retention_fall' ? (r.goal||'goal') : ''})}</section>` : ''}
-    <details class="hdet"><summary>How it is scored</summary>
+    ${BG.length ? `<section class="hsec"><h2>Your Brand Goals</h2>${brandGoalsHtml(BG, {noTitle:true, oneGoal: p.key==='mabi_retention_fall' ? (r.goal||'goal') : ''})}</section>` : ''}
+    <details class="hdet"><summary>How It Is Scored</summary>
       ${legRules ? legRules : rules ? rules.replace('<ul class="ibul">', '<ul class="ibul">'+weight) : `<ul class="ibul">${weight}</ul>`}
       ${(fams && fams.length) ? `<p class="hnote">Pays on ${E(fams.join(' · '))}.</p>` : ''}
       <p class="hnote">Runs ${E(p.period.label)} · numbers as of ${E(p.refreshed||'—')}</p>
     </details>
-    ${tl && tl.length ? `<details class="hdet"><summary>Progress so far</summary>${chartHtml(tl, p, r)}</details>` : ''}
+    ${tl && tl.length ? `<details class="hdet"><summary>Progress So Far</summary>${chartHtml(tl, p, r)}</details>` : ''}
   </div>`;
 }
 /* ---- account lists ---- */
@@ -3063,10 +3063,10 @@ function screenAccount(){
       ${a.note ? kv('Last activity', E(a.note)) : ''}
       ${a.cases>0 ? kv('2026 volume', E(fmtCases(a.cases))+' a year, all brands') : ''}
     </div>
-    <section class="hsec"><h2>Credited for this program</h2>
+    <section class="hsec"><h2>Credited for This Program</h2>
       ${credited.length ? `<div class="hcard">${credited.map(x=>`<div class="hkv"><span>${E(x.date||'—')}</span><span>${E([x.what, x.note && x.note!=='photo' ? x.note : ''].filter(Boolean).join(' · ')||'Credited')}${x.photo ? ` · <a href="${E(x.photo)}" target="_blank" rel="noopener">View photo ›</a>` : ''}</span></div>`).join('')}</div>` : `<p class="hnote">Nothing credited to this account yet. Credit comes only from sales data.</p>`}
     </section>
-    ${show ? `<section class="hsec"><h2>Your notes</h2>
+    ${show ? `<section class="hsec"><h2>Your Notes</h2>
       <div class="hcard hra">${strip || `<div class="ra"><span class="ra-chip">No mark yet</span></div>`}${RA.error() ? `<div class="ra-err">${E(RA.error())}</div>` : ''}
       ${edit ? `<p class="hnote">Done, Follow up and Not now are your own planning notes. They don’t change credit.</p>` : ''}</div>
     </section>` : ''}

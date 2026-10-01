@@ -6,18 +6,17 @@
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#F6F7F9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F1523" media="(prefers-color-scheme: dark)">
-<title>Team activity — Kohler Dist Hub</title>
+<title>Team Activity — Kohler Dist Hub</title>
 <link rel="manifest" href="../manifest.webmanifest">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
-<link rel="preload" href="../assets/fonts/oswald.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="../assets/fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 <!-- Theme before first paint: the saved choice, else the device setting (2026-09-30). -->
 <script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
-<link rel="stylesheet" href="../rep/rep.css?v=20261001b">
+<link rel="stylesheet" href="../rep/rep.css?v=20261001c">
 <link rel="stylesheet" href="team.css?v=20260928c">
-<meta name="kdh-page" content="Team activity">
-<script src="../shared/kdh-user.js?v=20261001a"></script>
+<meta name="kdh-page" content="Team Activity">
+<script src="../shared/kdh-user.js?v=20261001c"></script>
 </head>
 <body>
 <!--
@@ -36,8 +35,8 @@
 <main class="wrap">
   <div class="head">
     <div>
-      <p class="kicker" id="kicker">Manager view</p>
-      <h1>Team activity</h1>
+      <p class="kicker" id="kicker">Manager View</p>
+      <h1>Team Activity</h1>
       <p>What your reps have marked in the Incentive Hub — <b>Done</b>, <b>Follow up</b>, <b>Not now</b> — the moment they tap it. Open a rep for the accounts behind the numbers.</p>
     </div>
     <div class="pills" id="pills" hidden></div>
@@ -83,7 +82,7 @@
   function note(html, bad){ notes.push('<div class="note'+(bad?' bad':'')+'">'+html+'</div>'); $('notes').innerHTML = notes.join(''); }
 
   if(!user || user.role!=='manager'){ $('list').innerHTML=''; note('This page is for managers. <a href="../rep/">Go to your workspace</a>.', true); return; }
-  $('kicker').textContent = 'Manager view · ' + user.name;
+  $('kicker').textContent = 'Manager View · ' + user.name;
   if(!cfg.url || !cfg.key || !token){ $('list').innerHTML=''; note('Not signed in on kohlerdisthub.com — activity is only available there. <a href="../login/">Sign in</a>.', true); return; }
 
   /* ---- program names from the trackers' registries ---- */
@@ -172,9 +171,9 @@
     // sees only their team (2026-09-29): one pill, no Everyone, no other DMs.
     var isDm = team && mine.length && !team.some(function(t){ return t.role==='manager' && ci(t.reports_to)===ci(user.name); });
     if(isDm){
-      $('pills').innerHTML = '<button class="pill" type="button" data-scope="mine">My team<span class="n">'+mine.length+'</span></button>';
+      $('pills').innerHTML = '<button class="pill" type="button" data-scope="mine">My Team<span class="n">'+mine.length+'</span></button>';
       $('pills').hidden = false; scope = 'mine';
-      $('kicker').textContent = 'Manager view · ' + user.name + ' · your team';
+      $('kicker').textContent = 'Manager View · ' + user.name + ' · your team';
       dms = {}; render(); return;
     }
     // One pill per DM (anyone a rep reports to), most reps first.
@@ -182,7 +181,7 @@
     Object.keys(reps).forEach(function(k){ var d = reps[k].dm; if(d){ var dk = ci(d); dms[dk] = dms[dk] || {name:d, n:0}; dms[dk].n++; } });
     var dmList = Object.keys(dms).map(function(k){ return dms[k]; }).sort(function(a,b){ return b.n-a.n || a.name.localeCompare(b.name); });
     var html = '';
-    if(mine.length) html += '<button class="pill" type="button" data-scope="mine">My team<span class="n">'+mine.length+'</span></button>';
+    if(mine.length) html += '<button class="pill" type="button" data-scope="mine">My Team<span class="n">'+mine.length+'</span></button>';
     html += '<button class="pill" type="button" data-scope="all">Everyone<span class="n">'+Object.keys(reps).length+'</span></button>';
     dmList.forEach(function(d){ if(ci(d.name)!==ci(user.name)) html += '<button class="pill" type="button" data-scope="dm:'+esc(ci(d.name))+'">'+esc(d.name.split(' ')[0]+' '+(d.name.split(' ')[1]||'').charAt(0))+'<span class="n">'+d.n+'</span></button>'; });
     $('pills').innerHTML = html; $('pills').hidden = false;
@@ -237,9 +236,9 @@
     var recent = R.rows.slice(0, 8);
     var hub = '../hub/#view=rep&rep='+encodeURIComponent(R.name)+'&cat=inc&only=inc';
     return '<div class="panel">'
-      + '<div><h3>Open follow-ups · '+follow.length+'</h3>'+(follow.length ? '<ul>'+follow.map(function(r){ return item(r,false); }).join('')+'</ul>' : '<p class="empty">Nothing waiting on a follow-up.</p>')+'</div>'
-      + '<div><h3>Recent marks</h3>'+(recent.length ? '<ul>'+recent.map(function(r){ return item(r,true); }).join('')+'</ul>' : '<p class="empty">'+esc(R.name)+' hasn’t marked anything yet.</p>')+'</div>'
-      + '<div class="links"><a href="'+hub+'">Open their hub ›</a><button type="button" data-preview="'+esc(R.name)+'">Preview as '+esc(R.name.split(' ')[0])+' ›</button></div>'
+      + '<div><h3>Open Follow-ups · '+follow.length+'</h3>'+(follow.length ? '<ul>'+follow.map(function(r){ return item(r,false); }).join('')+'</ul>' : '<p class="empty">Nothing waiting on a follow-up.</p>')+'</div>'
+      + '<div><h3>Recent Marks</h3>'+(recent.length ? '<ul>'+recent.map(function(r){ return item(r,true); }).join('')+'</ul>' : '<p class="empty">'+esc(R.name)+' hasn’t marked anything yet.</p>')+'</div>'
+      + '<div class="links"><a href="'+hub+'">View in Incentive Hub ›</a><button type="button" data-preview="'+esc(R.name)+'">Preview as '+esc(R.name.split(' ')[0])+' ›</button></div>'
       + '</div>';
   }
   document.addEventListener('click', function(e){

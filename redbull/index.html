@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Red Bull — Distribution Tracker</title>
+<title>Red Bull Tracker — Kohler Dist Hub</title>
 <!-- Home-screen install (iPad / iPhone "Add to Home Screen", Android/Chrome "Install"): the
      app opens full-screen at /rep/ with the Kohler icon. -->
 <link rel="manifest" href="../manifest.webmanifest">
@@ -190,24 +190,47 @@
   .rb-fold[open] > .board{border-radius:0 0 15px 15px;border-top:0}
   .rb-howin{background:var(--card);border:1px solid var(--line);border-top:0;border-radius:0 0 15px 15px;padding:4px 14px 12px}
   .rb-howin .rule{margin-top:10px}
+  /* ==== 2026-10-01, third pass: compact plain header, solid bars, calm type ==== */
+  .gx-head::before{display:none}
+  .gx-head .wrap{padding:14px 18px 10px}
+  .gx-head h1{font-size:26px;font-weight:600;line-height:1.2}
+  .updated{margin:4px 14px 0 0;font-size:14px}
+  .updated b{font-size:14px;font-weight:500}
+  .updated .lbl{font-size:14px}
+  .bar i{background:var(--accent)}
+  .bar.done i{background:var(--good)}
+  .lrow .track i{background:var(--accent)}
+  .rb-prog{border-left:1px solid var(--line);border-radius:12px;box-shadow:none}
+  .rb-prog.done{border-left-color:var(--line)}
+  .rb-big{font-size:28px;font-weight:600}
+  .rb-need b{font-weight:600}
+  .rb-gh{font-size:15px;font-weight:600}
+  .rb-gh span,.rb-fold summary span{font-weight:500}
+  .rb-sell{font-size:15px;font-weight:500;color:var(--ink)}
+  .rb-fold > summary{font-weight:600;border-radius:10px}
+  .shead h2{font-size:17px;font-weight:600;white-space:nowrap}
+  .shead{flex-wrap:wrap;row-gap:2px}
+  .quest .sup{gap:12px}
+  .quest .sup .num{white-space:nowrap}
+  @media (max-width:599px){ .gx-head .wrap{padding:12px 16px 8px} .gx-head h1{font-size:24px} }
 </style><script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
-<meta name="kdh-page" content="Red Bull">
+<meta name="kdh-page" content="Red Bull Tracker">
 <!-- Site design system: maps this page's variables + fonts onto shared/kdh.css. Keep it LAST in <head>. -->
-<link rel="stylesheet" href="../shared/kdh-skin.css?v=20261001a">
+<link rel="stylesheet" href="../shared/kdh-skin.css?v=20261001c">
 </head><body>
 <div class="gx-head"><div class="wrap">
   <p class="eyebrow"><span class="pulse"></span> Kohler Distributing · Red Bull · 2026</p>
-  <h1>Red Bull Distribution Tracker</h1>
+  <h1>Red Bull Tracker</h1>
   <p class="updated" id="period"></p>
   <p class="updated" id="updated"></p>
   <p class="lede" id="lede"></p>
 </div></div>
 <div id="app"><div class="wrap">
-  <div class="seg"><p class="lbl">Pick a rep</p><div class="chips" id="chips"></div></div>
+  <div class="seg"><p class="lbl">Rep</p><div class="chips" id="chips"></div></div>
   <div id="body"></div>
   <footer><hr><p id="foot"></p></footer>
 </div></div>
-<script src="../shared/kdh-user.js?v=20261001a"></script>
+<script src="../shared/kdh-user.js?v=20261001c"></script>
 <script>
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const num=x=>{const v=parseFloat(String(x).replace(/[^0-9.\-]/g,""));return isNaN(v)?0:v;};
@@ -312,7 +335,7 @@ function boardHtml(me){
       <span class="win">${R.complete}<small>${TOP.label}</small></span></div>`;
   }).join("");
   const when=[PERIOD&&PERIOD.label?`period ${esc(PERIOD.label)}`:"", DATA_DATE?`data through ${esc(fmtDay(DATA_DATE))}`:""].filter(Boolean).join(" · ");
-  return `<div class="shead"><span class="tr">${TROPHY}</span><h2>Rep leaderboard</h2><span class="meta">${rows.length} reps · by ${TOP.label} accounts</span></div>
+  return `<div class="shead"><span class="tr">${TROPHY}</span><h2>Rep Leaderboard</h2><span class="meta">${rows.length} reps · by ${TOP.label} accounts</span></div>
     ${when?`<p class="lbwhen">${when}</p>`:""}<div class="board">${items}</div>
     <p class="note"><b>How the ranking works:</b> reps are ordered by <b>${TOP.label}</b> accounts (an account buying all three: ${CAT_KEYS.join(", ")}) in the buying period; a tie is broken by total buying accounts, and reps still level share a rank (shown with =). The bar is the share of each rep's <b>own</b> buying accounts that reached ${TOP.label}. Routes differ in size and in how many accounts stock Red Bull, so a rep with few buying accounts has fewer to complete — compare the bar as well as the count.</p>`;
 }
@@ -328,7 +351,7 @@ const COMPLETE_RULE=`<div class="rule"><span class="rk">How an account levels up
 let HOW_EXTRA='';
 function howHtml(){
   const catKey=CATS.map(c=>`<b>${c.label}</b> = ${esc(c.blurb)}`).join(' · ');
-  return `<details class="rb-fold rb-how"><summary>How it works</summary><div class="rb-howin">${COMPLETE_RULE}
+  return `<details class="rb-fold rb-how"><summary>How It Works</summary><div class="rb-howin">${COMPLETE_RULE}
     <p class="note">${catKey}. ${HOW_EXTRA}</p>
     <p class="note">Each tally is unique buying accounts, so an account buying two ${CATS[0].label} SKUs still counts once, and <b>${TOP.label}</b> accounts are a subset of <b>${TIERS[0].label}</b> — the two tiers don't add up.</p></div></details>`;
 }
@@ -385,10 +408,10 @@ function render(){
     const andJoin=a=>a.length<2?a.join(''):a.slice(0,-1).join(', ')+' and '+a[a.length-1];
     const nOne=todo.filter(([n,f])=>missingFor(f).length===1).length;
     const prog=`<div class="rb-prog${allDone?' done':''}">
-      <p class="rb-k">Your ${TOP.label} accounts <span>(buying all three)</span></p>
+      <p class="rb-k">Your ${TOP.label} Accounts <span>(buying all three)</span></p>
       <p class="rb-big num">${s.complete} <span>of ${s.total} buying accounts</span></p>
       <div class="bar ${allDone?'done':''}"><i style="width:${donePct.toFixed(1)}%"></i></div>
-      <p class="rb-need">${allDone?`Every buying account is ${TOP.label}.`:`<b>${todo.length} to finish</b>${nOne?` · ${nOne} need just one more product`:''}`}</p>
+      <p class="rb-need">${allDone?`Every buying account is ${TOP.label}.`:`<b>${todo.length} to complete</b>${nOne?` · ${nOne} need just one more product`:''}`}</p>
       <p class="rb-sub">Rank ${rank||'–'} of ${Object.keys(REPS).length} reps${PERIOD&&PERIOD.label?` · ${esc(PERIOD.label)}`:''}</p></div>`;
     // one row per account: the name, then WHAT TO SELL in words, then what it already buys
     const rowFor=([n,f])=>{
@@ -400,12 +423,12 @@ function render(){
     };
     const byName=(a,b)=>a[0].localeCompare(b[0]);
     const groups=[1,2].map(k=>({k, rows: todo.filter(([n,f])=>missingFor(f).length===k).sort(byName)})).filter(g=>g.rows.length);
-    const todoHtml=todo.length ? groups.map(g=>`<p class="rb-gh">${g.k===1?'One product away':'Two products away'} <span>${g.rows.length}</span></p><div class="board rb-list">${g.rows.map(rowFor).join("")}</div>`).join("")
+    const todoHtml=todo.length ? groups.map(g=>`<p class="rb-gh">${g.k===1?'1 Product Needed':'2 Products Needed'} <span>${g.rows.length}</span></p><div class="board rb-list">${g.rows.map(rowFor).join("")}</div>`).join("")
       : `<div class="board rb-list"><div class="brow">Every account is ${TOP.label} — nice.</div></div>`;
-    const doneHtml=`<details class="rb-fold"><summary>${TOP.label} accounts <span>${done.length}</span></summary><div class="board rb-list">${done.length?done.map(rowFor).join(""):`<div class="brow">No ${TOP.label} accounts yet — an account needs ${CAT_KEYS.join(", ")} together.</div>`}</div></details>`;
+    const doneHtml=`<details class="rb-fold"><summary>${TOP.label} Accounts <span>${done.length}</span></summary><div class="board rb-list">${done.length?done.map(rowFor).join(""):`<div class="brow">No ${TOP.label} accounts yet — an account needs ${CAT_KEYS.join(", ")} together.</div>`}</div></details>`;
     app.innerHTML=prog+
-      `<div class="shead"><h2>Still to finish</h2><span class="meta">closest first</span></div>`+todoHtml+doneHtml+
-      `<div class="shead"><h2>Progress vs team goal</h2><span class="meta">tap a category for accounts</span></div>`+cards+
+      `<div class="shead"><h2>Accounts to Complete</h2><span class="meta">closest first</span></div>`+todoHtml+doneHtml+
+      `<div class="shead"><h2>Progress vs. Team Goal</h2><span class="meta">tap a category for accounts</span></div>`+cards+
       boardHtml(activeRep)+howHtml();
   }
 }

@@ -16,34 +16,34 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Dist Hub">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<link rel="preload" href="assets/fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 <!-- Theme before first paint: the saved choice, else the device setting (2026-09-30). -->
 <script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <!-- The manager page wears the rep workspace's design (2026-09-28): same
      tokens, top bar, card component and light/dark palette, from rep.css.
      Only the hero photo and the section list are this page's own. -->
-<link rel="stylesheet" href="rep/rep.css?v=20261001b">
+<link rel="stylesheet" href="rep/rep.css?v=20261001c">
 <style>
   .card .status.tag{color:var(--text-3)}
 </style>
 <script src="shared/auth-config.js"></script>
 <!-- The top bar is injected by shared/kdh-user.js (badge, Previewing chip, account menu with "View as rep"). kdh-home = no Back button. -->
-<meta name="kdh-page" content="Manager home">
+<meta name="kdh-page" content="Manager Home">
 <meta name="kdh-home" content="manager">
-<script src="shared/kdh-user.js?v=20261001a"></script>
+<script src="shared/kdh-user.js?v=20261001c"></script>
 </head>
 <body>
 
 <main class="wrap">
   <header class="ws">
     <div class="id">
-      <p class="kicker">Manager dashboards</p>
+      <p class="kicker">Manager Dashboards</p>
       <h1 id="who">Kohler Dist Hub</h1>
       <div class="meta" id="meta"><span>20 dashboards</span><span class="sep">·</span><span>5 sections</span><span class="sep">·</span><span class="muted">Pick a section, open a card</span></div>
     </div>
     <!-- View as rep (2026-09-30): the searchable rep picker from shared/kdh-user.js.
          The whole site then shows what that rep sees until "Exit" on the chip. -->
-    <div class="switch" id="viewAs"><button class="btn primary" id="viewAsRepBtn" type="button">View as rep</button></div>
+    <div class="switch" id="viewAs"><button class="btn primary" id="viewAsRepBtn" type="button">View as Rep</button></div>
     <!-- Manager workspace (Gavin only, 2026-09-29): pick any manager and the
          whole site -- this page, Team Activity, the rep workspace -- shows
          what THEY see, until "Exit preview" on the bar at the bottom. The
@@ -54,7 +54,7 @@
     </div>
   </header>
   <section class="section">
-    <div class="section-h"><h2>Reps’ daily tools</h2><p>What the sales team sees when they sign in</p></div>
+    <div class="section-h"><h2>Reps’ Daily Tools</h2><p>What the sales team sees when they sign in</p></div>
     <div class="grid">
       <a class="card" href="accounts/">
         <div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/><path d="M3 12h18"/></svg></span><h3>Accounts</h3></div>
@@ -62,7 +62,7 @@
         <div class="foot"><span class="status">Team · by account</span><span class="open">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
       </a>
       <a class="card" href="hub/">
-        <div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span><h3>Incentives &amp; MPO Hub</h3></div>
+        <div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span><h3>Incentive Hub</h3></div>
         <p>Every incentive and MPO a rep is in: where they stand, what they still need, and where to go next.</p>
         <div class="foot"><span class="status">Reps · one link</span><span class="open">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
       </a>
@@ -82,7 +82,7 @@
         <div class="foot"><span class="status">Draft</span><span class="open">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
       </a>
       <a class="card" id="rb" href="redbull/">
-        <div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span><h3>Red Bull</h3></div>
+        <div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span><h3>Red Bull Tracker</h3></div>
         <p>Red Bull placements by rep against goal for the current period.</p>
         <div class="foot"><span class="status" id="s-rb"><span class="dot"></span>Checking…</span><span class="open">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
       </a>
@@ -95,7 +95,7 @@
   </section>
 
   <section class="section">
-    <div class="section-h"><h2>Sales performance</h2><p>Distribution, reps and supplier programs</p></div>
+    <div class="section-h"><h2>Sales Performance</h2><p>Distribution, reps and supplier programs</p></div>
     <div class="grid">
       <a class="card" href="rolling-distribution/">
         <div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span><h3>Rolling Distribution Trends</h3></div>
@@ -131,7 +131,7 @@
   </section>
 
   <section class="section">
-    <div class="section-h"><h2>Warehouse &amp; inventory</h2><p>What we hold, what is at risk, what is available</p></div>
+    <div class="section-h"><h2>Warehouse &amp; Inventory</h2><p>What we hold, what is at risk, what is available</p></div>
     <div class="grid">
       <a class="card" href="inventory-overview/">
         <div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/></svg></span><h3>Inventory Overview</h3></div>
@@ -152,7 +152,7 @@
   </section>
 
   <section class="section">
-    <div class="section-h"><h2>Planning &amp; finance</h2><p>Goals, projections and supplier money</p></div>
+    <div class="section-h"><h2>Planning &amp; Finance</h2><p>Goals, projections and supplier money</p></div>
     <div class="grid">
       <a class="card" href="2027-planning/">
         <div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><h3>2026 Mid-Year Review &amp; 2027 Planning</h3></div>
@@ -163,7 +163,7 @@
   </section>
 
   <section class="section">
-    <div class="section-h"><h2>Field &amp; team</h2><p>App usage and in-market audits</p></div>
+    <div class="section-h"><h2>Field &amp; Team</h2><p>App usage and in-market audits</p></div>
     <div class="grid">
       <a class="card" href="team/">
         <div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2 20a7 7 0 0 1 14 0"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.5a5.5 5.5 0 0 1 6 5.5"/></svg></span><h3>Team Activity</h3></div>

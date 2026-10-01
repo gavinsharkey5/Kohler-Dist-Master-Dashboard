@@ -322,7 +322,7 @@ function screenRepPicker(){
   }).join('');
 
   return '<div class="g g-fade">'+
-    stepHead(1,'Choose a rep',
+    stepHead(1,'Choose a Rep',
       'Tap a name to see that rep’s '+esc(H.monthLabel())+' '+esc(H.scope)+
       ' MPO progress.')+
     body+

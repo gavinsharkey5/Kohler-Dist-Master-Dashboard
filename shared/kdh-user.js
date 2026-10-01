@@ -95,8 +95,11 @@
   // the page's name, a "Dashboards" link back, the light/dark toggle, who
   // is signed in, Sign out. Skipped on pages that already have a .kdh-bar.
   // Without a sign-in (github.io) it still shows the logo, name and toggle.
-  function pageName() {
-    var m = document.querySelector('meta[name="kdh-page"]'); if (m && m.content) return m.content;
+  function pageName(u) {
+    var m = document.querySelector('meta[name="kdh-page"]');
+    // a page can name itself differently for a manager ("My Accounts" / "Accounts")
+    if (m && u && u.role === 'manager' && m.getAttribute('data-manager')) return m.getAttribute('data-manager');
+    if (m && m.content) return m.content;
     var h = document.querySelector('h1'); if (h && h.textContent.trim()) return h.textContent.replace(/\s+/g, ' ').trim();
     return (document.title || '').split(/\s+[|\u2014\u00b7-]\s+/)[0].trim();
   }
@@ -170,7 +173,7 @@
     var hub = ROOT + 'hub/' + (isMgr ? '' : '#view=rep&rep=' + encodeURIComponent(u.name) + '&cat=inc&only=inc');
     var items = [
       { key: 'home', label: 'Home', href: isMgr ? ROOT : REP_HOME },
-      { key: 'accounts', label: 'Accounts', href: ROOT + 'accounts/' },
+      { key: 'accounts', label: isMgr ? 'Accounts' : 'My Accounts', href: ROOT + 'accounts/' },
       { key: 'incentives', label: 'Incentives', href: hub }
     ];
     if (isMgr) items.push({ key: 'team', label: 'Team', href: ROOT + 'team/' });
@@ -233,7 +236,7 @@
     acts += '<button type="button" class="kdh-b kdh-outline kdh-theme" id="kdhThemeBtn" role="switch" aria-checked="false" aria-label="Dark mode" title="Switch between light and dark">' + SUN + MOON + '<span id="kdhThemeText">Light</span></button>';
     if (who) acts += '<button type="button" class="kdh-b kdh-user" id="kdhMenuBtn" aria-haspopup="true" aria-expanded="false" aria-label="Account menu, signed in as ' + esc(who) + '"><span class="kdh-av">' + esc(initials(who)) + '</span><span class="kdh-name">' + esc(who) + '</span>' + CARET + '</button>';
     b.innerHTML = '<div class="kdh-bar-in">' +
-      '<a class="kdh-logo" href="' + home + '"><img src="' + ROOT + 'assets/kohler-logo-badge.png" alt=""><span class="kdh-word">Kohler Dist Hub</span><small>' + esc(pageName()) + '</small></a>' +
+      '<a class="kdh-logo" href="' + home + '"><img src="' + ROOT + 'assets/kohler-logo-badge.png" alt=""><span class="kdh-word">Kohler Dist Hub</span><small>' + esc(pageName(u)) + '</small></a>' +
       (u ? '<nav class="kdh-nav" aria-label="Main">' + navHtml(u, 'kdh-nav-i') + '</nav>' : '') +
       chips +
       '<div class="kdh-acts">' + acts + '</div></div>' +
@@ -255,20 +258,20 @@
     var role = isMgr ? 'Manager' : 'Sales rep';
     var items = '';
     if (isMgr) {
-      items += '<button type="button" class="kdh-menu-i" id="kdhViewAsRep">' + (u.preview && u.role !== 'manager' ? 'Change rep' : 'View as rep') + '<small>See the site as one rep does</small></button>';
-      if (u.preview) items += '<button type="button" class="kdh-menu-i" id="kdhExitPreview2">Exit preview<small>Back to your own pages</small></button>';
+      items += '<button type="button" class="kdh-menu-i" id="kdhViewAsRep">' + (u.preview && u.role !== 'manager' ? 'Change Rep' : 'View as Rep') + '<small>See the site as one rep does</small></button>';
+      if (u.preview) items += '<button type="button" class="kdh-menu-i" id="kdhExitPreview2">Exit Preview<small>Back to your own pages</small></button>';
       // Home, Accounts, Incentives and Team are in the navigation; the menu
       // keeps only what is not: the rep workspace, preview, theme, sign out
-      items += '<a class="kdh-menu-i" href="' + REP_HOME + '">Rep workspace<small>A rep\'s home page, by rep</small></a>';
+      items += '<a class="kdh-menu-i" href="' + REP_HOME + '">Rep Workspace<small>A rep\'s home page, by rep</small></a>';
     }
-    items += '<button type="button" class="kdh-menu-i" id="kdhTheme">' + SUN + MOON + '<span id="kdhThemeLabel">Dark mode</span></button>';
-    items += '<button type="button" class="kdh-menu-i" id="kdhThemeDevice" hidden>Use device theme<small>Follow this device\'s light / dark setting</small></button>';
-    items += '<a class="kdh-menu-i" href="' + ROOT + 'login/?signout=1">Sign out</a>';
+    items += '<button type="button" class="kdh-menu-i" id="kdhTheme">' + SUN + MOON + '<span id="kdhThemeLabel">Dark Mode</span></button>';
+    items += '<button type="button" class="kdh-menu-i" id="kdhThemeDevice" hidden>Use Device Theme<small>Follow this device\'s light / dark setting</small></button>';
+    items += '<a class="kdh-menu-i" href="' + ROOT + 'login/?signout=1">Sign Out</a>';
     return '<div class="kdh-menu" id="kdhMenu" hidden role="menu"><div class="kdh-menu-h"><b>' + esc(who) + '</b><span>' + role + (u.email ? ' · ' + esc(u.email) : '') + '</span></div>' + items + '</div>';
   }
   function themeLabel() {
     var dark = document.documentElement.getAttribute('data-theme') === 'dark';
-    var l = document.getElementById('kdhThemeLabel'); if (l) l.textContent = dark ? 'Light mode' : 'Dark mode';
+    var l = document.getElementById('kdhThemeLabel'); if (l) l.textContent = dark ? 'Light Mode' : 'Dark Mode';
     var b = document.getElementById('kdhThemeBtn'); if (b) { b.setAttribute('aria-checked', dark ? 'true' : 'false'); b.title = dark ? 'Dark mode is on. Switch to light' : 'Light mode is on. Switch to dark'; }
     var x = document.getElementById('kdhThemeText'); if (x) x.textContent = dark ? 'Dark' : 'Light';
     var d = document.getElementById('kdhThemeDevice'); if (d) d.hidden = !savedTheme();
@@ -306,7 +309,7 @@
     if (!p) {
       p = document.createElement('div'); p.id = 'kdhPicker'; p.className = 'kdh-sheet-wrap';
       p.innerHTML = '<div class="kdh-sheet-back"></div><div class="kdh-sheet" role="dialog" aria-modal="true" aria-labelledby="kdhPickerTitle">' +
-        '<div class="kdh-sheet-h"><b id="kdhPickerTitle">View as rep</b><button type="button" class="kdh-sheet-x" aria-label="Close">Close</button></div>' +
+        '<div class="kdh-sheet-h"><b id="kdhPickerTitle">View as Rep</b><button type="button" class="kdh-sheet-x" aria-label="Close">Close</button></div>' +
         '<p class="kdh-sheet-p">Every page will show exactly what this rep sees. Their notes and follow-ups stay read-only while you preview.</p>' +
         '<input type="search" id="kdhPickerSearch" class="kdh-field" placeholder="Search reps" autocomplete="off" aria-label="Search reps">' +
         '<div id="kdhPickerList" class="kdh-sheet-list"><div class="kdh-sheet-empty">Loading reps…</div></div></div>';
@@ -449,8 +452,16 @@
         var hasText = false;
         for (var c = el.firstChild; c; c = c.nextSibling) { if (c.nodeType === 3 && c.nodeValue.trim().length > 1) { hasText = true; break; } }
         if (!hasText) continue;
-        var fs = parseFloat(getComputedStyle(el).fontSize);
-        if (fs && fs < MIN_PX) { el.style.setProperty('font-size', MIN_PX + 'px', 'important'); }
+        var cs = getComputedStyle(el), fs = parseFloat(cs.fontSize), fw = parseInt(cs.fontWeight, 10) || 400;
+        if (fs && fs < MIN_PX) { el.style.setProperty('font-size', MIN_PX + 'px', 'important'); fs = MIN_PX; }
+        // WEIGHT (2026-10-01): one restrained scale on every page. Titles,
+        // labels and values top out at 600; only a headline number drawn at
+        // 30px or more keeps 700. Pages wrote 700-800 almost everywhere.
+        // Small labels (under 14.5px: tags, captions, column heads) top out at
+        // 500 so the page does not read as bold everywhere.
+        if (fw >= 600 && fs < 14.5) el.style.setProperty('font-weight', '500', 'important');
+        else if (fw > 600 && fs < 30) el.style.setProperty('font-weight', '600', 'important');
+        else if (fw > 700) el.style.setProperty('font-weight', '700', 'important');
         el.__kdhLifted = true;
       }
     } catch (e) {}

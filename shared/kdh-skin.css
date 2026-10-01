@@ -9,7 +9,7 @@
       dark without editing its rules.
    2. Aliases the fonts the dashboards were written with (Space Grotesk,
       Inter, Archivo, Public Sans, Calibri, Georgia ...) to the site's
-      ONE face, Source Sans 3, through @font-face, so every existing
+      ONE face, Inter (2026-10-01; was Source Sans 3), through @font-face, so every existing
       font-family rule renders the site type (2026-09-29: the condensed
       Oswald headings are gone -- one readable application font). The
       Google Fonts <link>s are removed from the pages; nothing else
@@ -20,19 +20,20 @@
 
    Page-specific fixes live at the bottom, grouped by page. Keep the
    variable map alphabetical-ish so a new dashboard is easy to add. */
-@import url("kdh.css?v=20261001a");
+@import url("kdh.css?v=20261001c");
 
 /* ---- 2. fonts: every family a dashboard asks for is one of ours ---- */
-@font-face{font-family:"Space Grotesk";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-sans-3.woff2) format("woff2")}
-@font-face{font-family:"Archivo";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-sans-3.woff2) format("woff2")}
-@font-face{font-family:"Bungee";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-sans-3.woff2) format("woff2")}
-@font-face{font-family:"Oswald";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-sans-3.woff2) format("woff2")}
-@font-face{font-family:"Inter";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-sans-3.woff2) format("woff2")}
-@font-face{font-family:"Public Sans";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-sans-3.woff2) format("woff2")}
-@font-face{font-family:"Calibri";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-sans-3.woff2) format("woff2")}
-@font-face{font-family:"Carlito";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-sans-3.woff2) format("woff2")}
-@font-face{font-family:"Georgia";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-sans-3.woff2) format("woff2")}
-@font-face{font-family:"Pacifico";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-sans-3.woff2) format("woff2")}
+@font-face{font-family:"Space Grotesk";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/inter.woff2) format("woff2")}
+@font-face{font-family:"Archivo";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/inter.woff2) format("woff2")}
+@font-face{font-family:"Bungee";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/inter.woff2) format("woff2")}
+@font-face{font-family:"Oswald";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/inter.woff2) format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/inter.woff2) format("woff2")}
+@font-face{font-family:"Public Sans";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/inter.woff2) format("woff2")}
+@font-face{font-family:"Calibri";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/inter.woff2) format("woff2")}
+@font-face{font-family:"Carlito";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/inter.woff2) format("woff2")}
+@font-face{font-family:"Georgia";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/inter.woff2) format("woff2")}
+@font-face{font-family:"Source Sans 3";font-style:normal;font-weight:100 900;font-display:swap;src:url(../assets/fonts/inter.woff2) format("woff2")}
+@font-face{font-family:"Pacifico";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/inter.woff2) format("woff2")}
 
 /* ---- 1. the variable map (also under the pages' own [data-theme] blocks, which
    would otherwise out-rank a plain :root) ---- */
@@ -70,7 +71,10 @@
 
 /* ---- 3. shared normalisation ---- */
 html{-webkit-text-size-adjust:100%}
-body{background:var(--kdh-bg);color:var(--kdh-text);font-family:var(--kdh-body)}
+body{background:var(--kdh-bg);color:var(--kdh-text);font-family:var(--kdh-body);font-optical-sizing:auto}
+/* ONE family by name too (2026-10-01): every element on a dashboard renders
+   Inter, whatever family its own CSS asked for (code stays monospace) */
+body :not(code):not(pre):not(kbd):not(samp):not(svg):not(svg *){font-family:var(--kdh-body)!important}
 /* no all-caps, no tracking, anywhere (2026-09-29): sentence case is
    faster to read on a phone in a store. Text authored in capitals in a
    page's own markup is left alone. */
@@ -93,7 +97,7 @@ a.back,a.backlink,.gx-head .crumb,.topbar .crumb,.crumb a[href$="../"],.crumb a[
 /* a page's own sticky header sits under the site bar, never on top of it */
 .kdh-bar{z-index:1000}
 /* tables: one header style */
-table thead th,.thead,.ar-h .ar-c{font-family:var(--kdh-head);letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--kdh-text-3)}
+table thead th,.thead,.ar-h .ar-c{font-family:var(--kdh-head);font-size:13px;font-weight:500;color:var(--kdh-text-3)}
 /* form controls */
 select,input[type="search"],input[type="text"],input[type="number"],input[type="date"],input[type="email"]{color:var(--kdh-text);background:var(--kdh-surface);border-color:var(--kdh-border-2);border-radius:var(--kdh-r)}
 /* body copy a touch larger than the dashboards' 13px habit */
@@ -165,3 +169,20 @@ button,.btn,.rpill,.chip,.mpill,.tab,.pill,select,input[type="search"],input[typ
 .brandmark{color:var(--kdh-text)}
 /* Wine & Spirits: its header band and tab strip are navy in both themes (white type sits on them) */
 :root,:root[data-theme="light"],:root[data-theme="dark"]{--wine:var(--kdh-navy);--wine-dark:#0C1B45;--wine-light:#1B3B8F}
+
+/* ---- SOLID SURFACES (2026-10-01, third pass; Shopify's plain surfaces):
+   no decorative gradients behind headers, tiles or progress bars on any
+   dashboard -- one solid colour each. Status colour stays on the bar or the
+   left edge, never as a wash across the card. ---- */
+.gx-head::before{display:none!important}
+.gx-head h1{font-size:26px!important;font-weight:600!important;line-height:1.2!important}
+@media (max-width:599px){ .gx-head h1{font-size:24px!important} }
+.goalbar-fill{background:var(--kdh-ok)!important}
+.lb-track i,.lrow .track i{background:var(--kdh-brand)!important}
+.scard,.rep-hero,.mb-head,.mb-banner{background:var(--card)!important}
+.stat-tile.good,.stat-tile.warn,.stat-tile.bad{background:var(--card-alt)!important}
+.chanhead.on,.chanhead.off,.chanhead.inc,.bg-side.off,.bg-side.on,.bg-side.draft,.bg-side.any{background:var(--card)!important}
+.rank-hero{background:var(--kdh-surface)!important}
+/* Tap Tracker: Reset All Filters is a plain outline button, not a coloured block */
+.reset-big{background:var(--kdh-surface)!important;border:1px solid var(--kdh-border-2)!important;color:var(--kdh-text)!important;font-weight:500!important;box-shadow:none!important}
+.reset-big:hover{background:var(--kdh-surface-2)!important}

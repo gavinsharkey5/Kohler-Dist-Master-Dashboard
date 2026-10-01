@@ -1492,3 +1492,63 @@ link, remembered in localStorage. Simple renders `simpleView()` from the `QS` nu
 full `qualityView()` / `rebuyView()` stash as they run, so the two can
 never disagree; keep it that way (never recompute in the simple view)
 and keep Gavin's full layout untouched -- he uses it himself.
+
+## Visual refinement: Inter, Title Case, Shopify surfaces (2026-10-01, third pass)
+
+Gavin's brief: one professional look, no feature changes. References,
+each result's app verified on Mobbin (mobbin.com itself is blocked by the
+egress proxy, so only the tool's previews were readable): Shopify iOS
+customers home ee48860f-dbd6-4328-8625-6f75b3a42a22 and inventory rows
+fc0929f7-1961-4a38-9e43-d1f5ae64c410 (primary: list header, search,
+rows with metadata, plain surfaces); Jobber iOS request / job records
+fd3c5053-9fe6-42f0-9ea5-a5e1e1ef2df3, fb82e72d-18f7-41ae-9127-6ec221711f74
+(address + small Directions action); Pipedrive web organization page
+eec508ff-3536-4479-bd16-ebf8c5e46d16 (grouped detail sections, Focus);
+Todoist web (section headings, first pass). Square and HubSpot are NOT on
+Mobbin -- searches returned other apps. What holds now:
+- TYPE: Inter, self-hosted (`assets/fonts/inter.woff2`, variable 100-900,
+  latin, OFL in OFL-inter.txt). shared/fonts.css maps Inter AND the old
+  names (Source Sans 3, Oswald) to that one file; kdh-skin.css aliases
+  every display face to it and forces `--kdh-body` on all text except
+  code/svg. Scale: page titles 24-28px / 600, section headings 17px / 600,
+  record titles 16px / 600, body 16px, metadata 14px. Nothing above 600
+  under 30px; `liftSmallType()` in kdh-user.js also drops 600+ to 500
+  below 14.5px. Normal letter spacing, no text-transform anywhere.
+- TOKENS (kdh.css): neutral Shopify-like greys (bg #F1F2F4, surface #FFF,
+  text #1A1C1F), Kohler blue #2F5FC4 as the one accent, radius 8/12,
+  shadows near zero; dark palette under `[data-theme="dark"]`.
+- TITLE CASE for page names, nav, tabs, section headings, buttons that
+  name a destination ("View Follow-up", "View All Action Items", "View
+  Purchase History"); sentence case for explanations; done in the strings,
+  never with CSS. `<meta name="kdh-page" data-manager="...">` lets a page
+  name itself differently for a manager (accounts: "My Accounts" /
+  "Accounts"). Rep nav label is "My Accounts".
+- REP HOME: Needs Attention is a one-row strip of counts (`.tstats`,
+  Possible Reorders / Lapsed Products / Surveys Due, each a filtered list)
+  with "View All Action Items" in the section head.
+- MY ACCOUNTS: title + counts, search, the segmented views, then ONE row of
+  small labelled controls (`.fbar`): Reason (Needs Attention only), More
+  Filters (brand family), Data · <month> (dates + what counts as needing
+  attention). Ids kindSel / famSel / .more-filters / .legend unchanged.
+- ACCOUNT PAGE: "N Action Items" status, address with a small labelled
+  Directions button beside it (`.rec-loc`, `.btn.sm.rec-dir`); action rows
+  = kind, task, one evidence line with the caveat inline (`.cav`, "Not a
+  confirmed need"), the destination; the full evidence lives in Sales.
+  Sections: Next Actions, Buying Summary, Contact & Servicing, More for
+  This Account, Purchase History, Buying Patterns, ... Ask the Assistant.
+  Alert kinds: Possible Reorder / Lapsed Product / Buying Less Often (a
+  lapsed product never implies the account is lost).
+- RED BULL: plain compact header, solid bars, "Accounts to Complete",
+  "1 / 2 Products Needed", "Progress vs. Team Goal", "Rep Leaderboard",
+  "How It Works". kdh-skin.css "SOLID SURFACES" removes decorative
+  gradients sitewide (header glows, Carbliss goal / leaderboard bars, tap
+  cards, hub stat tiles and channel heads).
+- ASSISTANT: one-line intro, coverage under "What It Can Answer" /
+  "How Practice Works" folds; "Practice a Pitch", "Get Feedback",
+  "Delete Conversation". Behaviour unchanged.
+Audits: scratchpad font_audit.mjs (Inter file loaded, family, weights,
+tracking, transforms on 14 pages) and case_audit.mjs (lowercase words in
+headings / nav / tabs; h1/h2 size+weight). Tags: kdh-user.js 20261001c,
+kdh-skin.css 20261001c, kdh.css 20261001c, rep.css 20261001c,
+accounts.css / accounts.js 20261001c, assistant.js 20261001a, hub.js /
+hub.css 20261001a, guided.css / guided.js 20261001a.

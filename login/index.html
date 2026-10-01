@@ -15,8 +15,8 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Dist Hub">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<link rel="preload" href="../assets/fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../shared/fonts.css?v=20260928a">
+<link rel="preload" href="../assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../shared/fonts.css?v=20261001a">
 <style>
   /* Sign-in (2026-09-28 redesign): a white card on the navy canvas, the
      Northern NJ banner across its top, Oswald headings + Source Sans 3
@@ -29,7 +29,7 @@
     --canvas:#0B1120; --card:#FFFFFF; --ink:#0F172A; --ink-2:#475569; --ink-3:#94A3B8;
     --line:#E2E8F0; --field:#F8FAFC; --blue:#1F4FD8; --blue-deep:#173FB0; --navy:#12275F;
     --gold:#F2C14E; --good:#15803D; --good-bg:#ECFDF3; --bad:#B42318; --bad-bg:#FEF3F2; --info-bg:#EFF4FF;
-    --head:"Source Sans 3",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; --body:"Source Sans 3",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --head:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; --body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
@@ -43,8 +43,8 @@
   .brand{display:flex;align-items:center;gap:12px;margin:0 0 20px}
   .brand img{width:42px;height:42px;border-radius:10px;border:1px solid var(--line);background:#fff;object-fit:contain;flex:0 0 auto}
   .eyebrow{font-family:var(--head);font-size:12.5px;font-weight:600;color:var(--ink-3);margin:0;line-height:1.2}
-  .wordmark{font-family:var(--head);font-weight:700;font-size:20px;letter-spacing:-.01em;line-height:1.15;color:var(--navy);margin:0}
-  h1{font-family:var(--head);font-weight:600;letter-spacing:-.01em;font-size:26px;line-height:1.15;margin:0 0 6px;color:var(--ink)}
+  .wordmark{font-family:var(--head);font-weight:600;font-size:20px;letter-spacing:normal;line-height:1.15;color:var(--navy);margin:0}
+  h1{font-family:var(--head);font-weight:600;letter-spacing:normal;font-size:26px;line-height:1.15;margin:0 0 6px;color:var(--ink)}
   .lead{margin:0 0 18px;color:var(--ink-2);font-size:16px}
   .lead b{color:var(--ink);font-weight:600}
   label{display:block;font-family:var(--head);font-size:13.5px;font-weight:600;color:var(--ink-2);margin:0 0 7px}
@@ -53,7 +53,7 @@
   .field:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(31,79,216,.14);background:#fff}
   .code{font-family:var(--head);font-weight:600;font-size:32px;text-indent:.3em;text-align:center;padding:12px 8px;font-variant-numeric:tabular-nums}
   .code::placeholder{font-weight:500;color:#CBD5E1;}
-  .btn{width:100%;margin-top:14px;font-family:var(--head);font-weight:700;font-size:16px;color:#fff;background:var(--blue);border:0;border-radius:12px;padding:14px 16px;min-height:50px;cursor:pointer;transition:background .12s,transform .06s}
+  .btn{width:100%;margin-top:14px;font-family:var(--head);font-weight:600;font-size:16px;color:#fff;background:var(--blue);border:0;border-radius:12px;padding:14px 16px;min-height:50px;cursor:pointer;transition:background .12s,transform .06s}
   .btn:hover{background:var(--blue-deep)} .btn:active{transform:translateY(1px)}
   .btn:disabled{opacity:.55;cursor:default;transform:none}
   .link{background:none;border:0;padding:0;margin:0;font:inherit;color:var(--blue);font-weight:600;cursor:pointer;text-decoration:none;min-height:0;width:auto;text-transform:none;letter-spacing:0}

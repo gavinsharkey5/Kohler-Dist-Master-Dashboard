@@ -100,16 +100,16 @@ function mount(el, packet, opts){
     const chips = msgs.length ? '' : `<div class="ask-chips">${suggestions(packet, st.mode).map(q=>`<button type="button" class="ask-chip" data-q="${E(q)}">${E(q)}</button>`).join('')}</div>`;
     const log = msgs.map(m=>`<div class="msg ${m.role==='user'?'me':'ai'}"><div class="msg-b">${m.role==='user' ? E(m.content).replace(/\n/g,'<br>') : md(m.content)}</div>${m.role==='assistant' && st.mode==='ask' ? footer(m) : ''}</div>`).join('');
     const pitchBar = st.mode==='pitch' ? `<div class="ask-pitchbar">
-        <label for="askProd">Practising</label>
+        <label for="askProd">Product</label>
         <select id="askProd" aria-label="Product to pitch"><option value="">Any product (say it in your opening)</option>${(packet.products||[]).slice(0,40).map(p=>`<option value="${E(p.name)}"${p.name===st.product?' selected':''}>${E(p.name)}</option>`).join('')}</select>
-        ${msgs.length>=2 && !st.fed ? `<button type="button" class="btn outline" id="askFeedback">Get feedback</button>` : ''}
+        ${msgs.length>=2 && !st.fed ? `<button type="button" class="btn outline" id="askFeedback">Get Feedback</button>` : ''}
       </div>` : '';
     el.innerHTML = `
       <div class="ask-head">
-        <div class="pseg" role="tablist"><button type="button" class="${st.mode==='ask'?'active':''}" data-mode="ask">Ask</button><button type="button" class="${st.mode==='pitch'?'active':''}" data-mode="pitch">Practice a pitch</button></div>
-        <p class="note ask-intro">${st.mode==='pitch'
-          ? `The assistant plays the buyer at ${E(packet.account.name)}. What it says about this account’s buying comes from the sales record; its objections are simulated practice, and it will not invent prices, stock levels or competitor facts. Type your opening line, then work the conversation. <b>Get feedback</b> ends the role-play with coaching.`
-          : `Answers come from this account’s <b>monthly sales record</b> — every product, ${E(span || ('through '+ref))}${D.salesLoaded ? `, loaded ${E(fmtDate(D.salesLoaded))}` : ''} — plus its buying alerts and patterns, your notes and the tap survey. Program status and warehouse availability are quoted from what this page shows. Not in the data: contacts, hours, prices, invoices, balances, shelf stock, days between orders. It says so when a question needs them.`}</p>
+        <div class="pseg" role="tablist"><button type="button" class="${st.mode==='ask'?'active':''}" data-mode="ask">Ask</button><button type="button" class="${st.mode==='pitch'?'active':''}" data-mode="pitch">Practice a Pitch</button></div>
+        <div class="note ask-intro">${st.mode==='pitch'
+          ? `<p>The assistant plays the buyer at ${E(packet.account.name)}. Its objections are simulated practice.</p><details class="ask-more"><summary>How Practice Works</summary><p>What it says about this account’s buying comes from the sales record, and it will not invent prices, stock levels or competitor facts. Type your opening line, then work the conversation. <b>Get Feedback</b> ends the role-play with coaching.</p></details>`
+          : `<p>Answers come from this account’s <b>monthly sales record</b>, checked by code — not from memory.</p><details class="ask-more"><summary>What It Can Answer</summary><p>Every product, ${E(span || ('through '+ref))}${D.salesLoaded ? `, loaded ${E(fmtDate(D.salesLoaded))}` : ''} — plus its buying alerts and patterns, your notes and the tap survey. Program status and warehouse availability are quoted from what this page shows. Not in the data: contacts, hours, prices, invoices, balances, shelf stock, days between orders. It says so when a question needs them.</p></details>`}</div>
         ${pitchBar}
       </div>
       ${cfgOff ? `<div class="kdh-state unavailable slim"><b>The assistant needs kohlerdisthub.com.</b><span>It is not available on a local or unsigned copy of the site.</span></div>` : ''}
@@ -119,7 +119,7 @@ function mount(el, packet, opts){
         <textarea id="askIn" rows="1" placeholder="${st.mode==='pitch' ? 'Your opening line to the buyer…' : 'Ask about this account…'}" aria-label="Your message" maxlength="4000"${cfgOff?' disabled':''}></textarea>
         <button type="submit" class="btn primary" id="askSend"${cfgOff?' disabled':''}>Send</button>
       </form>
-      <div class="ask-foot">${msgs.length ? `<button type="button" class="btn" id="askClear">Delete this conversation</button> · ` : ''}<span>Kept only in this browser tab, for you, until you close it or sign out. Numbers come from the record, not from memory.</span></div>`;
+      <div class="ask-foot">${msgs.length ? `<button type="button" class="btn" id="askClear">Delete Conversation</button> · ` : ''}<span>Kept only in this browser tab, for you, until you close it or sign out. Numbers come from the record, not from memory.</span></div>`;
     el.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click', ()=>{ if(busy) return; st.mode = b.dataset.mode; save(n, st); render(); }));
     el.querySelectorAll('.ask-chip').forEach(b=>b.addEventListener('click', ()=>send(b.dataset.q)));
     const form = el.querySelector('#askForm'); const ta = el.querySelector('#askIn');

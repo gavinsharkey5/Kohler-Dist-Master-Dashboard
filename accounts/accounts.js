@@ -46,7 +46,7 @@ const state = {view:'list', q:'', rep:'', need:'', kind:'', fam:'', n:null, acct
 // Overview / Sales & Products / Invoices & Balances / Tasks & Resources.
 // `sec=` in the hash remembers the open one; in-page links carry
 // data-go="<sec>:<element id>" so a Focus item can open its evidence.
-const SECS = [['over','Overview','Overview'],['sales','Sales & Products','Sales'],['inv','Invoices & Balances','Invoices'],['tasks','Tasks & Resources','Tasks'],['ask','Ask the assistant','Ask']];
+const SECS = [['over','Overview','Overview'],['sales','Sales & Products','Sales'],['inv','Invoices & Balances','Invoices'],['tasks','Tasks & Resources','Tasks'],['ask','Ask the Assistant','Ask']];
 // product list (Sales & Products): search, view, filters -- kept in memory per account
 const plist = {n:null, q:'', view:'bought', sup:'', fam:'', pkg:'', limit:40};
 let CATALOG = null;            // data/catalog.json (products + warehouse availability), loaded once
@@ -143,7 +143,7 @@ function tapDue(t){ if(!t || !t.last) return null; const d = daysAgo(t.last); if
 // into the data files: a.alerts / a.summary / a.alertProducts on each list
 // row, sales.findings on the account file. This page renders them; it
 // never re-derives a rule, so the list and the page can't disagree.
-const KIND = {reorder:'Possible reorder', lapsed:'Lapsed buyer', slower:'Buying less often'};
+const KIND = {reorder:'Possible Reorder', lapsed:'Lapsed Product', slower:'Buying Less Often'};
 const every = I => I===1 ? 'every month' : 'every '+I+' months';
 
 /* ---------------- list ---------------- */
@@ -215,30 +215,40 @@ function renderList(){
   const fams = Array.from(new Set(rows.flatMap(({a})=>(a.families||[]).concat((a.alertProducts||[]).map(x=>x.f))))).filter(Boolean).sort();
   const missing = reps.filter(r=>!repData.get(r));
   const who = !isMgr ? '' : (SCOPE.length===rosterAll.length ? 'Every rep' : 'Your team');
-  const title = isMgr ? 'Team accounts' : 'My accounts';
+  const title = isMgr ? 'Team Accounts' : 'My Accounts';
   const sub = isMgr ? (state.rep ? `${plural(rows.length,'account')} · ${E(state.rep)}` : `${plural(rows.length,'account')} · ${plural(SCOPE.length,'rep')} · ${who}`) : `${plural(rows.length,'account')} on your route`;
   const first = repData.get(reps[0]);
   const ref = first && first.sales.ref ? first.sales.ref : (first ? first.sales.through : '');
-  const fresh = first ? `Book as of ${E(first.book.asOf)} · sales through ${E(monLabel(ref))} · taps as of ${E((first.taps.asOf||'').slice(0,10))}` : '';
+  const fresh = first ? `Customer base as of ${E(first.book.asOf)} · sales through ${E(monLabel(ref))} · tap surveys as of ${E((first.taps.asOf||'').slice(0,10))}` : '';
   const follows = rows.filter(({nd})=>nd.follow>0).length;
-  const kindOpts = [['', 'Any reason'], ['reorder', 'Possible reorder'], ['slower', 'Buying less often'], ['lapsed', 'Lapsed buyer'], ['follow', 'Open follow-up'], ['prog', 'Program lead'], ['tap', 'Survey due or overdue']];
+  const kindOpts = [['', 'Any reason'], ['reorder', 'Possible reorder'], ['slower', 'Buying less often'], ['lapsed', 'Lapsed product'], ['follow', 'Open follow-up'], ['prog', 'Program lead'], ['tap', 'Survey due or overdue']];
   const active = state.need==='any';
   // the three views as one segmented control (Shopify's filter tabs): the
   // selected one is filled, each says how many accounts it holds
-  const segs = [['', 'All', rows.length], ['any', 'Needs attention', attention], ['follow', 'Follow-ups', follows]];
+  const segs = [['', 'All', rows.length], ['any', 'Needs Attention', attention], ['follow', 'Follow-ups', follows]];
   const segHtml = `<div class="seg" id="needSeg" role="group" aria-label="Show">${segs.map(([v, l, c])=>`<button type="button" data-need="${v}" aria-pressed="${state.need===v}"${state.need===v ? ' class="on"' : ''}>${l}<span class="n">${c}</span></button>`).join('')}</div>`;
-  app.innerHTML = `<header class="ws lhead"><div class="id"><h1>${title}</h1><p class="idline">${sub}${flagged ? ` · ${plural(productAlerts,'product alert')} on ${plural(flagged,'account')}` : ''}</p><p class="fresh">${fresh}</p></div></header>
+  // COMPACT HEADER (2026-10-01, third pass; Shopify's list header): title and
+  // counts on one line, search, the three views, then one row of small
+  // labelled controls -- Reason (Needs Attention only), More Filters, Data --
+  // with the dates and the rule text inside them instead of above the list.
+  const dataLbl = first ? `Data · ${E(monLabel(ref))}` : 'Data';
+  app.innerHTML = `<header class="ws lhead"><div class="id"><h1>${title}</h1><p class="idline">${sub}${flagged ? ` · ${plural(productAlerts,'product alert')} on ${plural(flagged,'account')}` : ''}</p></div></header>
     <div class="filters">
       <input type="search" class="kdh-field" id="q" placeholder="Search by name, town or #${isMgr?' or rep':''}" value="${E(state.q)}" autocomplete="off" aria-label="Search accounts">
       ${isMgr ? `<select id="repSel" aria-label="Rep"><option value="">All my reps</option>${SCOPE.map(r=>`<option value="${E(r)}"${r===state.rep?' selected':''}>${E(r)}</option>`).join('')}</select>` : ''}
       ${segHtml}
-      ${active ? `<select id="kindSel" aria-label="Reason">${kindOpts.map(([v,l])=>`<option value="${v}"${state.kind===v?' selected':''}>${l}</option>`).join('')}</select>` : ''}
-      <details class="more-filters"${state.fam ? ' open' : ''}><summary>More filters${state.fam ? ' · '+E(state.fam) : ''}</summary>
-        <div class="mf-row"><label for="famSel">Brand family</label><select id="famSel" aria-label="Brand family"><option value="">Any brand family</option>${fams.map(f=>`<option value="${E(f)}"${f===state.fam?' selected':''}>${E(f)}</option>`).join('')}</select>${state.fam ? `<button type="button" class="btn outline" id="famClear">Clear</button>` : ''}</div>
-        <p class="note">A brand family matches accounts that bought it in the last 12 months or have an alert on one of its products. Combined with a reason, only alerts on that family count.</p>
-      </details>
+      <div class="fbar">
+        ${active ? `<label class="fsel"><span>Reason</span><select id="kindSel" aria-label="Reason">${kindOpts.map(([v,l])=>`<option value="${v}"${state.kind===v?' selected':''}>${l}</option>`).join('')}</select></label>` : ''}
+        <details class="more-filters fpop"${state.fam ? ' open' : ''}><summary>More Filters${state.fam ? ' · 1' : ''}</summary>
+          <div class="fpanel"><div class="mf-row"><label for="famSel">Brand family</label><select id="famSel" aria-label="Brand family"><option value="">Any brand family</option>${fams.map(f=>`<option value="${E(f)}"${f===state.fam?' selected':''}>${E(f)}</option>`).join('')}</select>${state.fam ? `<button type="button" class="btn outline" id="famClear">Clear</button>` : ''}</div>
+          <p class="note">Matches accounts that bought the family in the last 12 months or have an alert on one of its products. With a reason, only alerts on that family count.</p></div>
+        </details>
+        <details class="fpop fdata"><summary>${dataLbl}</summary>
+          <div class="fpanel"><p class="note">${fresh}</p>
+          <p class="note legend"><b>Needs Attention</b> = an open follow-up, a program lead, a tap survey due, or a buying alert: <b>possible reorder</b> (a regular product past its usual gap), <b>buying less often</b> (fewer buying months than the six before), <b>lapsed product</b> (no recent purchase of a recurring product). Alerts are read from Fusion through ${E(monLabel(ref))} — a possibility to check, not a confirmed need.</p></div>
+        </details>
+      </div>
     </div>
-    ${active && !state.kind ? `<details class="note legend"><summary>What counts as needing attention</summary>An open follow-up, a program lead, a survey due, or a buying alert from the sales history: <b>possible reorder</b> (a regular product past its usual gap), <b>buying less often</b> (fewer buying months than the six before), <b>lapsed buyer</b> (no recent purchase of a recurring product). Alerts are read from Fusion through ${E(monLabel(ref))} — a possibility to check, not a confirmed need.</details>` : ''}
     ${missing.length ? `<div class="kdh-state unavailable"><b>No account list on file for ${E(missing.join(', '))}.</b><span>The customer base report has no accounts under that name, or the data slice has not been generated.</span></div>` : ''}
     ${!SCOPE.length ? `<div class="kdh-state unavailable"><b>We couldn’t find your name on the customer base.</b><span>You’re signed in as ${E(U ? U.name : '')}. Ask Gavin to check the spelling on the access list.</span></div>` : ''}
     <p class="count">${shown.length===rows.length ? '' : `${shown.length} of `}${plural(rows.length,'account')}${state.need || state.fam ? ' · filtered' : ''}</p>
@@ -263,10 +273,10 @@ function rowHtml({a, rep, nd}){
 // Filtering is unchanged (matchesNeed); this only orders and labels.
 const GROUPS = [
   ['follow', 'Follow-ups', nd=>nd.follow>0],
-  ['tap', 'Tap survey due', nd=>!!nd.tap],
-  ['prog', 'Program leads', nd=>nd.progs>0],
-  ['alert', 'Possible reorders & lapsed buyers', nd=>nd.reorder>0 || nd.lapsed>0],
-  ['slower', 'Buying less often', nd=>nd.slower>0 || nd.lessOften],
+  ['tap', 'Tap Surveys Due', nd=>!!nd.tap],
+  ['prog', 'Program Leads', nd=>nd.progs>0],
+  ['alert', 'Possible Reorders & Lapsed Products', nd=>nd.reorder>0 || nd.lapsed>0],
+  ['slower', 'Buying Less Often', nd=>nd.slower>0 || nd.lessOften],
 ];
 function listBody(shown, rows){
   if(!shown.length) return rows.length ? `<div class="kdh-state empty"><b>No account matches.</b><span>Clear the search or pick another filter.</span></div>` : '';
@@ -295,7 +305,7 @@ function rangeLabel(months, from, to){ const a = months[from], b = months[to-1];
 async function renderAccount(){
   const hit = findAccount(state.n);
   const fromHref = state.from || (sessionStorage.getItem('kdh_acct_list') || './');
-  const fromLabel = state.fl || 'Accounts';
+  const fromLabel = state.fl || (isMgr ? 'Accounts' : 'My Accounts');
   if(!hit){
     app.innerHTML = back(fromLabel, fromHref) + `<div class="kdh-state unavailable"><b>That account is not on ${isMgr ? 'your team’s' : 'your'} list.</b><span>Accounts open only from the assigned route${isMgr ? 's of the reps you oversee' : ''}.</span></div>`;
     return;
@@ -342,15 +352,15 @@ async function renderAccount(){
 
   /* ---- Focus: up to three supported actions, in a fixed order ---- */
   const focus = [];
-  follows.slice(0,1).forEach(r=>focus.push({kind:'Follow-up', t:`Follow up on ${E(progName(r.program_id))}`, w:`You flagged this account ${E(fmtDay(new Date(r.updated_at)))}${r.note ? ' — “'+E(r.note)+'”' : ''}.`, n:`Pick the conversation back up, then mark it Done in the hub.`, href:hubAcctLink(H.programs().find(p=>p.id===r.program_id), rep, a.n, 'follow'), hl:'Open in the hub'}));
-  if(due && due.level==='overdue') focus.push({kind:'Tap survey', t:'Resurvey the taps', w:`Last surveyed ${E(a.taps.lastDisplay||a.taps.last)}, ${due.days} days ago — past the 60-day window.`, n:'Walk the taps and submit the survey in iSellBeer.', href:TAP+'#q='+encodeURIComponent(a.name), hl:'Open the Tap Tracker'});
+  follows.slice(0,1).forEach(r=>focus.push({kind:'Follow-up', ws:`Flagged ${E(fmtDay(new Date(r.updated_at)))}${r.note ? ' · “'+E(r.note)+'”' : ''}`, t:`Follow up on ${E(progName(r.program_id))}`, w:`You flagged this account ${E(fmtDay(new Date(r.updated_at)))}${r.note ? ' — “'+E(r.note)+'”' : ''}.`, n:`Pick the conversation back up, then mark it Done in the hub.`, href:hubAcctLink(H.programs().find(p=>p.id===r.program_id), rep, a.n, 'follow'), hl:'View Follow-up'}));
+  if(due && due.level==='overdue') focus.push({kind:'Tap Survey', ws:`Last surveyed ${E(a.taps.lastDisplay||a.taps.last)} · ${due.days} days ago`, t:'Resurvey the taps', w:`Last surveyed ${E(a.taps.lastDisplay||a.taps.last)}, ${due.days} days ago — past the 60-day window.`, n:'Walk the taps and submit the survey in iSellBeer.', href:TAP+'#q='+encodeURIComponent(a.name), hl:'View in Tap Tracker'});
   targets.filter(t=>t.p.period.end >= TODAY && (t.warm || (t.p.period.end - TODAY)/86400000 <= 14)).sort((x,y)=>(y.warm-x.warm) || (x.p.period.end-y.p.period.end)).slice(0, 2).forEach(t=>{
     const f = H.progFacts(t.p, t.r, rep);
-    focus.push({kind: t.warm ? 'Program lead' : 'Program ending soon', t:E(H.sellAsk(t.p)), w:`${E(t.p.shortName||t.p.name)} (${E(t.p.supplier)}) · ${E(t.why || 'this account is eligible and not buying it yet')} · ${E(H.endsLabel(t.p.period))}.`, n:`You are at ${f.main}${f.need && f.need!=='Goal met' ? ' — '+f.need : ''}.`, href:progLink(t.p, rep), hl:'Program details'});
+    focus.push({kind: t.warm ? 'Program Lead' : 'Program Ending Soon', ws:`${E(t.p.shortName||t.p.name)} · ${E(H.endsLabel(t.p.period))}`, t:E(H.sellAsk(t.p)), w:`${E(t.p.shortName||t.p.name)} (${E(t.p.supplier)}) · ${E(t.why || 'this account is eligible and not buying it yet')} · ${E(H.endsLabel(t.p.period))}.`, n:`You are at ${f.main}${f.need && f.need!=='Goal met' ? ' — '+f.need : ''}.`, href:progLink(t.p, rep), hl:'View Program'});
   });
   // strongest buying alerts: lapsed before possible reorder, biggest usual order first (patterns.py's order)
-  alerts.filter(x=>x.type!=='slower').slice(0,2).forEach(x=>focus.push({kind: KIND[x.type], t: x.type==='lapsed' ? `No recent purchase of ${E(x.product)}` : `Ask about ${E(x.product)}`, w: E(alertWhy(x))+'.', ws: `Last bought ${E(monLabel(x.last))} · usually ${E(every(x.interval))}${x.switch ? ` · ${E(x.family)} still bought` : ''}`, cs: x.type==='lapsed' ? 'A gap in the data, not a confirmed reason.' : 'A gap in the data, not a confirmed need.', caveat:1, n: x.type==='lapsed' ? 'Find out whether they stopped or switched — the data shows the gap, not the reason.' : 'Check whether they need a reorder — a gap in the data, not a confirmed need.', go:'sales:alerts', hl:'See purchase history'}));
-  if(F.patterns && F.patterns.lessOften && !alerts.length) focus.push({kind:'Buying less often', t:'Purchasing less frequently', w:`${F.patterns.freq.recent6} buying ${F.patterns.freq.recent6===1?'month':'months'} in ${E(rangeLabel(months, R-5, R+1))} vs ${F.patterns.freq.prior6} in ${E(rangeLabel(months, R-11, R-5))}.`, caveat:1, n:'Ask what changed — a slower pattern in the data, not a confirmed problem.', go:'sales:patterns', hl:'See buying patterns'});
+  alerts.filter(x=>x.type!=='slower').slice(0,2).forEach(x=>focus.push({kind: KIND[x.type], t: x.type==='lapsed' ? `No recent purchase of ${E(x.product)}` : `Ask about ${E(x.product)}`, w: E(alertWhy(x))+'.', ws: `Last bought ${E(monLabel(x.last))} · usually ${E(every(x.interval))}${x.switch ? ` · ${E(x.family)} still bought` : ''}`, cs: x.type==='lapsed' ? 'Not a confirmed reason' : 'Not a confirmed need', caveat:1, n: x.type==='lapsed' ? 'Find out whether they stopped or switched — the data shows the gap, not the reason.' : 'Check whether they need a reorder — a gap in the data, not a confirmed need.', go:'sales:alerts', hl:'View Purchase History'}));
+  if(F.patterns && F.patterns.lessOften && !alerts.length) focus.push({kind:'Buying Less Often', cs:'Not a confirmed problem', t:'Purchasing less frequently', w:`${F.patterns.freq.recent6} buying ${F.patterns.freq.recent6===1?'month':'months'} in ${E(rangeLabel(months, R-5, R+1))} vs ${F.patterns.freq.prior6} in ${E(rangeLabel(months, R-11, R-5))}.`, caveat:1, n:'Ask what changed — a slower pattern in the data, not a confirmed problem.', go:'sales:patterns', hl:'View Buying Patterns'});
   const top = focus.slice(0,3);
 
   /* ---- Sales & reorders ---- */
@@ -373,11 +383,11 @@ async function renderAccount(){
       <div class="kv"><span>Last purchase</span><span>${lastIdx>=0 ? E(monLabel(months[lastIdx])) : 'none in the data'}</span></div>
       <div class="kv"><span>${E(rangeLabel(months,N-3,N))}</span><span><b>${fmtN(last3)} cases</b> · ${E(rangeLabel(months,N-6,N-3))}: ${fmtN(prior3)}${ly3!=null ? ' · '+E(rangeLabel(months,N-15,N-12))+': '+fmtN(ly3) : ''}</span></div>
       <div class="kv"><span>Products</span><span>${plural(sales.products.filter(p=>sumRange(p[5],N-12,N)>0).length,'product')} bought in the last 12 months</span></div>
-      <h3 class="note" id="alerts" style="margin-top:12px"><b>Buying alerts</b> · ${alerts.length ? alertHead : 'none'} <small>· data through ${E(monLabel(refKey))}</small></h3>
-      ${alerts.length ? `<table class="tbl alerts"><thead><tr><th>Product</th><th class="num">Usually</th><th class="num">Last bought</th><th class="num">Usual order</th></tr></thead><tbody>${alertRows}</tbody></table>${alerts.length>8 ? `<details class="fold"><summary>${alerts.length-8} more alerts</summary><table class="tbl alerts"><tbody>${alerts.slice(8).map(x=>`<tr><td>${tagOf(x.type)} <b>${E(x.product)}</b><span class="sub">${E(alertShort(x))}</span></td><td class="num" data-l="Usually">${E(every(x.interval))}</td><td class="num" data-l="Last bought">${E(monLabel(x.last))}</td><td class="num" data-l="Usual order">${fmtN(x.usual)} cs</td></tr>`).join('')}</tbody></table></details>` : ''}<p class="note">A <b>possible reorder</b> is a regular product (6+ of the last 18 months, usually ≤3 months apart) at least a month past its usual gap; <b>lapsed</b> is the same product past ${'twice'} its gap (never sooner than 3 months); <b>buying less often</b> is a product still being bought, but in 3+ fewer months than the six before. Each is a possibility to check — the data has no shelf stock, sell-through or reason.</p>` : `<p class="note">No regular product is past its usual gap in the data, and none is being bought noticeably less often.</p>`}
+      <h3 class="note" id="alerts" style="margin-top:12px"><b>Buying Alerts</b> · ${alerts.length ? alertHead : 'none'} <small>· data through ${E(monLabel(refKey))}</small></h3>
+      ${alerts.length ? `<table class="tbl alerts"><thead><tr><th>Product</th><th class="num">Usually</th><th class="num">Last bought</th><th class="num">Usual order</th></tr></thead><tbody>${alertRows}</tbody></table>${alerts.length>8 ? `<details class="fold"><summary>Show ${alerts.length-8} More Alerts</summary><table class="tbl alerts"><tbody>${alerts.slice(8).map(x=>`<tr><td>${tagOf(x.type)} <b>${E(x.product)}</b><span class="sub">${E(alertShort(x))}</span></td><td class="num" data-l="Usually">${E(every(x.interval))}</td><td class="num" data-l="Last bought">${E(monLabel(x.last))}</td><td class="num" data-l="Usual order">${fmtN(x.usual)} cs</td></tr>`).join('')}</tbody></table></details>` : ''}<p class="note">A <b>possible reorder</b> is a regular product (6+ of the last 18 months, usually ≤3 months apart) at least a month past its usual gap; <b>lapsed</b> is the same product past ${'twice'} its gap (never sooner than 3 months); <b>buying less often</b> is a product still being bought, but in 3+ fewer months than the six before. Each is a possibility to check — the data has no shelf stock, sell-through or reason.</p>` : `<p class="note">No regular product is past its usual gap in the data, and none is being bought noticeably less often.</p>`}
       <h3 class="note" style="margin-top:6px"><b>Recent purchases</b> · top products of ${E(rangeLabel(months,N-3,N))}</h3>
       ${recent.length ? `<table class="tbl"><thead><tr><th>Product</th><th class="num">${E(rangeLabel(months,N-3,N))}</th><th class="num">${E(rangeLabel(months,N-6,N-3))}</th><th class="num">Last bought</th></tr></thead><tbody>${recentRows}</tbody></table>` : `<p class="note">Nothing bought in ${E(rangeLabel(months,N-3,N))}.</p>`}
-      <details class="fold" id="sales"><summary>Purchase history by product (${plural(sales.products.length,'product')}, ${E(monLabel(months[0]))} – ${E(monLabel(months[N-1]))})</summary>${hist}${sales.products.length>40 ? `<p class="note">Showing the 40 biggest products of the last 12 months.</p>` : ''}</details>
+      <details class="fold" id="sales"><summary>Purchase History by Product (${plural(sales.products.length,'product')}, ${E(monLabel(months[0]))} – ${E(monLabel(months[N-1]))})</summary>${hist}${sales.products.length>40 ? `<p class="note">Showing the 40 biggest products of the last 12 months.</p>` : ''}</details>
     </div>`;
   }
 
@@ -407,13 +417,13 @@ async function renderAccount(){
       ${kv('Volume', volLine)}
       ${kv('Product mix', mix || 'no products on record')}
       ${P.consistent.length ? kv('Consistent', list(P.consistent)) : ''}
-      ${top ? `<details class="fold"><summary>Top products · last 12 months</summary>${top}</details>` : ''}
-      ${famsHtml ? `<details class="fold"><summary>Top brand families · last 12 months</summary>${famsHtml}</details>` : ''}
-      ${newPl ? `<details class="fold" open><summary>New placements · first bought in the last 6 months (${P.newPlacementsN}, ${P.newRepeatN} repeated)</summary>${newPl}${P.newPlacementsN>P.newPlacements.length ? `<p class="note">Newest ${P.newPlacements.length} of ${P.newPlacementsN}.</p>` : ''}</details>` : ''}
-      ${sizes ? `<details class="fold"><summary>Order size changed · ${P.sizeChanges.length} ${P.sizeChanges.length===1?'product':'products'}</summary>${sizes}<p class="note">Median cases per buying month, the last 6 buying months against the 6 before; shown only when the change is at least 25% and 2 cases.</p></details>` : ''}
-      ${switching ? `<details class="fold"><summary>Possible switches within a family · ${alerts.filter(x=>x.switch).length}</summary>${switching}<p class="note">A product on alert whose brand family kept selling through another product — a switch is the likely story, so ask before pitching the old one back.</p></details>` : ''}
-      ${stopped ? `<details class="fold"><summary>Recurring products no longer bought · ${P.stoppedN}</summary>${stopped}<p class="note">Were regular, not bought for well past their gap (${'lapsed mark + 3 months'}). History, not an alert.</p></details>` : ''}
-      ${seasonal ? `<details class="fold"><summary>Seasonal or irregular · ${P.seasonalN + P.irregularN}</summary>${seasonal}<p class="note">Bought in bursts with long gaps across more than one year — never alerted, since the gap is the pattern.</p></details>` : ''}
+      ${top ? `<details class="fold"><summary>Top Products · Last 12 Months</summary>${top}</details>` : ''}
+      ${famsHtml ? `<details class="fold"><summary>Top Brand Families · Last 12 Months</summary>${famsHtml}</details>` : ''}
+      ${newPl ? `<details class="fold" open><summary>New Placements · First Bought in the Last 6 Months (${P.newPlacementsN}, ${P.newRepeatN} repeated)</summary>${newPl}${P.newPlacementsN>P.newPlacements.length ? `<p class="note">Newest ${P.newPlacements.length} of ${P.newPlacementsN}.</p>` : ''}</details>` : ''}
+      ${sizes ? `<details class="fold"><summary>Order Size Changed · ${P.sizeChanges.length} ${P.sizeChanges.length===1?'product':'products'}</summary>${sizes}<p class="note">Median cases per buying month, the last 6 buying months against the 6 before; shown only when the change is at least 25% and 2 cases.</p></details>` : ''}
+      ${switching ? `<details class="fold"><summary>Possible Switches Within a Family · ${alerts.filter(x=>x.switch).length}</summary>${switching}<p class="note">A product on alert whose brand family kept selling through another product — a switch is the likely story, so ask before pitching the old one back.</p></details>` : ''}
+      ${stopped ? `<details class="fold"><summary>Recurring Products No Longer Bought · ${P.stoppedN}</summary>${stopped}<p class="note">Were regular, not bought for well past their gap (${'lapsed mark + 3 months'}). History, not an alert.</p></details>` : ''}
+      ${seasonal ? `<details class="fold"><summary>Seasonal or Irregular · ${P.seasonalN + P.irregularN}</summary>${seasonal}<p class="note">Bought in bursts with long gaps across more than one year — never alerted, since the gap is the pattern.</p></details>` : ''}
       <p class="note">Periods are equal length and labelled; percentages appear only on a base of 10+ cases. Frequency (buying months) and order size are kept apart on purpose. Monthly data cannot show days between orders — see the reporting request.</p>
     </div>`;
   }
@@ -445,8 +455,8 @@ async function renderAccount(){
     else otherItems.push(pitem(p, '<span class="tag na">Not on its lists</span>', '', links));
   });
   const progHtml = idx.programs.length ? `<div class="card">${openItems.join('') || `<p>No credit, lead or current purchase for this account on an active program.</p>`}
-      ${couldItems.length ? `<details class="fold"><summary>Could still qualify · ${plural(couldItems.length,'program')}</summary>${couldItems.join('')}</details>` : ''}
-      ${otherItems.length ? `<details class="fold"><summary>Other active programs · ${otherItems.length}</summary>${otherItems.join('')}</details>` : ''}
+      ${couldItems.length ? `<details class="fold"><summary>Could Still Qualify · ${plural(couldItems.length,'program')}</summary>${couldItems.join('')}</details>` : ''}
+      ${otherItems.length ? `<details class="fold"><summary>Other Active Programs · ${otherItems.length}</summary>${otherItems.join('')}</details>` : ''}
     </div>` : `<div class="card"><p>No active incentive or MPO applies to ${E(rep.split(' ')[0])} right now.</p></div>`;
 
   /* ---- Products to discuss: program targets + what the sales history says ---- */
@@ -482,8 +492,8 @@ async function renderAccount(){
     tapsHtml = `<div class="card">
       <div class="kv"><span>Last survey</span><span>${E(t.lastDisplay||t.last)} ${dueTxt}</span></div>
       <div class="kv"><span>Handles</span><span><b>${t.ours} ours</b> · ${t.them} theirs${t.unv ? ' · '+t.unv+' unverified' : ''}</span></div>
-      ${brands.length ? `<details class="fold"><summary>What’s on tap (${plural(brands.length,'handle')})</summary>${brands.map(b=>`<div class="hist"><b>${E(b.b||'(unnamed)')}</b> · ${E(b.s)}${b.n>1 ? ' × '+b.n : ''}</div>`).join('')}</details>` : ''}
-      ${t.passes>1 && sales && sales.tapHistory && sales.tapHistory.length ? `<details class="fold"><summary>Earlier surveys (${t.passes-1})</summary>${sales.tapHistory.map(h=>`<div class="hist"><b>${E(h.display||h.visited)}</b> · ${h.ours} ours · ${h.them} theirs</div>`).join('')}</details>` : ''}
+      ${brands.length ? `<details class="fold"><summary>What’s on Tap (${plural(brands.length,'handle')})</summary>${brands.map(b=>`<div class="hist"><b>${E(b.b||'(unnamed)')}</b> · ${E(b.s)}${b.n>1 ? ' × '+b.n : ''}</div>`).join('')}</details>` : ''}
+      ${t.passes>1 && sales && sales.tapHistory && sales.tapHistory.length ? `<details class="fold"><summary>Earlier Surveys (${t.passes-1})</summary>${sales.tapHistory.map(h=>`<div class="hist"><b>${E(h.display||h.visited)}</b> · ${h.ours} ours · ${h.them} theirs</div>`).join('')}</details>` : ''}
       <div class="kv"><span></span><span><a href="${TAP}#q=${encodeURIComponent(a.name)}">Open in the Tap Tracker ›</a></span></div>
     </div>`;
   } else if(a.prem==='On'){
@@ -493,7 +503,7 @@ async function renderAccount(){
   // NEXT ACTIONS (2026-10-01, Jobber / Todoist rows): the whole row opens the
   // evidence; one short line says why; the full reasoning lives one tap away.
   const focusHtml = top.length ? `<div class="focus nexta">${top.map(f=>{ const href = f.go ? acctHash(a.n, rep, f.go.split(':')[0]) : f.href;
-      return `<a class="fitem" href="${E(href)}"${f.go ? ` data-go="${E(f.go)}"` : ''}><div class="fmain"><span class="fkind">${E(f.kind)}</span><div class="ft">${f.t}</div><p class="fw">${f.ws || f.w}</p>${f.caveat ? `<p class="fw cav">${E(f.cs || f.n)}</p>` : ''}<span class="fgo">${E(f.hl)}</span></div>${CHEV}</a>`; }).join('')}</div>`
+      return `<a class="fitem" href="${E(href)}"${f.go ? ` data-go="${E(f.go)}"` : ''}><div class="fmain"><span class="fkind">${E(f.kind)}</span><div class="ft">${f.t}</div><p class="fw">${f.ws || f.w}${f.caveat ? ` <span class="cav">· ${E(f.cs || f.n)}</span>` : ''}</p><span class="fgo">${E(f.hl)}</span></div>${CHEV}</a>`; }).join('')}</div>`
     : `<div class="kdh-state empty"><b>Nothing flagged for this account right now.</b><span>No open follow-up, no program target, no overdue survey and no buying alert in the data through ${E(monLabel(refKey))}.</span></div>`;
 
   /* ---- Buying at a glance (2026-10-01): three numbers, the alerts in one line, one way to the evidence ---- */
@@ -509,7 +519,7 @@ async function renderAccount(){
         <div><span>Cases ${E(rangeLabel(months,N-3,N))}</span><b>${fmtN(l3)}</b><small>${E(rangeLabel(months,N-6,N-3))}: ${fmtN(p3)}</small></div>
         <div><span>Products, 12 months</span><b>${sales.products.filter(p=>sumRange(p[5],N-12,N)>0).length}</b></div></div>
       ${al.length ? `<p class="buy-al"><b>Buying alerts:</b> ${E(al.join(' · '))}${big ? `. Largest: ${E(big.product)}.` : '.'}</p>` : `<p class="buy-al">No buying alerts in the data through ${E(monLabel(refKey))}.</p>`}
-      <a class="btn outline wide" href="${E(acctHash(a.n, rep, 'sales'))}" data-go="sales:sales">See purchase history &amp; alerts</a>
+      <a class="btn outline wide" href="${E(acctHash(a.n, rep, 'sales'))}" data-go="sales:sales">View Purchase History</a>
     </div>`;
   } else buyHtml = `<div class="card"><p>${a.inMaster===false ? 'This account number is not in the sales master, so there is no purchase history.' : 'No cases on record in the loaded months.'}</p></div>`;
 
@@ -533,12 +543,12 @@ async function renderAccount(){
   glance.push(['sales','products','Products', 'Previously purchased and everything you can sell here, with warehouse stock']);
   const cnt0 = F.counts || {};
   if(false) glance.push(['sales','alerts','Buying alerts', [cnt0.reorder ? plural(cnt0.reorder,'possible reorder') : '', cnt0.lapsed ? plural(cnt0.lapsed,'lapsed product') : '', cnt0.slower ? cnt0.slower+' bought less often' : '', (F.patterns && F.patterns.lessOften) ? 'purchasing less frequently' : ''].filter(Boolean).join(' · ')]);
-  glance.push(['inv','inv','Invoices & balances', 'Monthly purchase record on file · invoices, receivables and backorders not connected yet']);
+  glance.push(['inv','inv','Invoices & Balances', 'Monthly purchase record on file · invoices, receivables and backorders not connected yet']);
   const openProg = idx.programs.filter(p=>{ const cred = credited.some(c=>c.p===p); const tg = targets.find(t=>t.p===p); return cred || (tg && tg.warm); }).length;
   glance.push(['tasks','programs','Programs', `${plural(idx.programs.length,'active program')} for ${rep.split(' ')[0]}${openProg ? ` · ${openProg} credited or a lead here` : ''}${credited.length ? ` · ${plural(credited.length,'credit')}` : ''}`]);
-  glance.push(['tasks','notes','Notes & follow-ups', rows.length ? `${plural(follows.length,'open follow-up')} · ${plural(rows.length,'mark')} on this account` : 'None yet']);
-  if(a.taps) glance.push(['tasks','taps','Taps & visits', due ? (due.level==='overdue' ? `Resurvey overdue by ${due.days-60} days` : due.level==='soon' ? `Resurvey due in ${60-due.days} days` : `Surveyed ${due.days} days ago`)+` · ${a.taps.ours} ours · ${a.taps.them} theirs` : 'On file']);
-  else if(a.prem==='On') glance.push(['tasks','taps','Taps & visits', 'No tap survey on file']);
+  glance.push(['tasks','notes','Notes & Follow-ups', rows.length ? `${plural(follows.length,'open follow-up')} · ${plural(rows.length,'mark')} on this account` : 'None yet']);
+  if(a.taps) glance.push(['tasks','taps','Taps & Visits', due ? (due.level==='overdue' ? `Resurvey overdue by ${due.days-60} days` : due.level==='soon' ? `Resurvey due in ${60-due.days} days` : `Surveyed ${due.days} days ago`)+` · ${a.taps.ours} ours · ${a.taps.them} theirs` : 'On file']);
+  else if(a.prem==='On') glance.push(['tasks','taps','Taps & Visits', 'No tap survey on file']);
   const glanceHtml = `<div class="rows glance">${glance.map(([sec, id, t, l])=>`<a class="row" href="${E(acctHash(a.n, rep, sec))}" data-go="${sec}:${id}"><span class="row-main"><h3>${E(t)}</h3><span class="row-s">${E(l)}</span></span>${CHEV}</a>`).join('')}</div>`;
 
   /* ---- Invoices & Balances: what the data has (monthly cases) and, honestly, what it does not ---- */
@@ -565,10 +575,10 @@ async function renderAccount(){
   /* ---- record header (Jobber pattern): status, name, where, the main action ---- */
   const nAct = top.length;
   const headFull = `<div class="acct-head rec">
-      <p class="rec-st ${nAct ? 'att' : 'ok'}"><span class="dot"></span>${nAct ? `${plural(nAct,'thing')} to do here` : 'Nothing flagged right now'}</p>
+      <p class="rec-st ${nAct ? 'att' : 'ok'}"><span class="dot"></span>${nAct ? `${nAct} Action ${nAct===1 ? 'Item' : 'Items'}` : 'No Action Items'}</p>
       <h1>${E(a.name)}</h1>
       <p class="sub">${E([a.city, premWord(a.prem), 'Account #'+a.n].filter(Boolean).join(' · '))}${isMgr ? `<span class="sub2"> · Rep: ${E(rep)}</span>` : ''}</p>
-      ${a.address ? `<p class="rec-addr">${E(a.address)}, ${E(a.city||'')}</p><a class="btn outline wide dirbtn rec-dir" href="${E(mapsHref(a))}" target="_blank" rel="noopener">Directions</a>` : ''}
+      ${a.address ? `<div class="rec-loc"><p class="rec-addr">${E(a.address)}, ${E(a.city||'')}</p><a class="btn outline sm dirbtn rec-dir" href="${E(mapsHref(a))}" target="_blank" rel="noopener" aria-label="Directions to ${E(a.name)} (opens Maps)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Directions</a></div>` : ''}
     </div>`;
 
   /* ---- assemble: four sections, one open ---- */
@@ -576,26 +586,26 @@ async function renderAccount(){
   const secHtml = (k, inner) => `<div class="secbody" data-sec="${k}"${state.sec===k ? '' : ' hidden'}>${inner}</div>`;
   app.innerHTML = back(fromLabel, fromHref) + headFull + secnav
     + secHtml('over', `
-    <section class="sec" id="focus"><h2>Next actions</h2>${focusHtml}</section>
-    <section class="sec" id="buying"><h2>Buying <small>through ${E(monLabel(refKey))}</small></h2>${buyHtml}</section>
-    <section class="sec" id="overview"><h2>Contact &amp; servicing</h2>${identHtml}</section>
-    <section class="sec" id="glance"><h2>More for this account</h2>${glanceHtml}</section>`)
+    <section class="sec" id="focus"><h2>Next Actions</h2>${focusHtml}</section>
+    <section class="sec" id="buying"><h2>Buying Summary <small>through ${E(monLabel(refKey))}</small></h2>${buyHtml}</section>
+    <section class="sec" id="overview"><h2>Contact &amp; Servicing</h2>${identHtml}</section>
+    <section class="sec" id="glance"><h2>More for This Account</h2>${glanceHtml}</section>`)
     + secHtml('sales', `
-    <section class="sec"><h2>Sales &amp; reorders <small>Fusion, through ${E(monLabel(refKey))}</small></h2>${salesHtml}</section>
-    ${patHtml ? `<section class="sec"><h2>Buying patterns <small>${E(monLabel(months[0]))} – ${E(monLabel(refKey))}</small></h2>${patHtml}</section>` : ''}
-    <section class="sec" id="discuss"><h2>Products to discuss</h2>${discussHtml}</section>
+    <section class="sec"><h2>Purchase History <small>Fusion, through ${E(monLabel(refKey))}</small></h2>${salesHtml}</section>
+    ${patHtml ? `<section class="sec"><h2>Buying Patterns <small>${E(monLabel(months[0]))} – ${E(monLabel(refKey))}</small></h2>${patHtml}</section>` : ''}
+    <section class="sec" id="discuss"><h2>Products to Discuss</h2>${discussHtml}</section>
     <section class="sec" id="products"><h2>Products <small>${CAT.inventory && CAT.inventory.asOf ? 'warehouse as of '+E(CAT.inventory.asOf) : 'no warehouse data loaded'}</small></h2><div class="card" id="plistCard"></div></section>`)
     + secHtml('inv', `
-    <section class="sec" id="inv"><h2>Purchases on record <small>Fusion, monthly</small></h2>${invHtml}</section>
-    <section class="sec" id="balances"><h2>Invoices, credits &amp; receivables</h2>${invMissingHtml}</section>`)
+    <section class="sec" id="inv"><h2>Purchases on Record <small>Fusion, monthly</small></h2>${invHtml}</section>
+    <section class="sec" id="balances"><h2>Invoices, Credits &amp; Receivables</h2>${invMissingHtml}</section>`)
     + secHtml('tasks', `
     <section class="sec" id="programs"><h2>Programs <small>${plural(idx.programs.length,'active program')} for ${E(rep.split(' ')[0])}</small></h2>${progHtml}</section>
-    <section class="sec" id="notes"><h2>Notes &amp; follow-ups</h2>${notesHtml}</section>
-    ${tapsHtml ? `<section class="sec" id="taps"><h2>Taps &amp; visits <small>survey as of ${E((d.taps.asOf||'').slice(0,10))}</small></h2>${tapsHtml}</section>` : ''}
-    <section class="sec" id="tools"><h2>Tools &amp; links</h2>${toolsHtml}</section>`)
+    <section class="sec" id="notes"><h2>Notes &amp; Follow-ups</h2>${notesHtml}</section>
+    ${tapsHtml ? `<section class="sec" id="taps"><h2>Taps &amp; Visits <small>survey as of ${E((d.taps.asOf||'').slice(0,10))}</small></h2>${tapsHtml}</section>` : ''}
+    <section class="sec" id="tools"><h2>Tools &amp; Links</h2>${toolsHtml}</section>`)
     + secHtml('ask', `
-    <section class="sec" id="ask"><h2>Ask about this account <small>data through ${E(monLabel(refKey))}</small></h2><div class="card ask" id="askCard"></div></section>`)
-    + `<details class="about-data"><summary>About this data</summary><p class="fresh-foot">Customer base as of ${E(d.book.asOf)} · sales master through ${E(monLabel(months[N-1]))} (loaded ${E((d.sales.loaded||'').slice(0,10))}, monthly, net of returns) · warehouse availability as of ${E((CAT.inventory && CAT.inventory.asOf) || '—')} · programs as refreshed in the hub · tap survey as of ${E((d.taps.asOf||'').slice(0,10))}. Buying alerts use the last complete month (${E(monLabel(refKey))}) as today, so nothing grows more overdue than the data; rules and thresholds are in accounts/README.txt.</p></details>`;
+    <section class="sec" id="ask"><h2>Ask the Assistant <small>data through ${E(monLabel(refKey))}</small></h2><div class="card ask" id="askCard"></div></section>`)
+    + `<details class="about-data"><summary>About This Data</summary><p class="fresh-foot">Customer base as of ${E(d.book.asOf)} · sales master through ${E(monLabel(months[N-1]))} (loaded ${E((d.sales.loaded||'').slice(0,10))}, monthly, net of returns) · warehouse availability as of ${E((CAT.inventory && CAT.inventory.asOf) || '—')} · programs as refreshed in the hub · tap survey as of ${E((d.taps.asOf||'').slice(0,10))}. Buying alerts use the last complete month (${E(monLabel(refKey))}) as today, so nothing grows more overdue than the data; rules and thresholds are in accounts/README.txt.</p></details>`;
   if(plist.n !== String(a.n)){ Object.assign(plist, {n:String(a.n), q:'', view: (sales && sales.products.length) ? 'bought' : 'all', sup:'', fam:'', pkg:'', limit:40}); }
   renderProducts(a, rep, sales, CAT, months, N, targets);
   // the assistant gets a packet of what this page already shows -- nothing more

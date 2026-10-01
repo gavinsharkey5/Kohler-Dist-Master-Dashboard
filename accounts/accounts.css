@@ -21,15 +21,15 @@
 .chip.tap.soon{background:var(--kdh-warn-soft);color:var(--warn)}
 .row .rep{color:var(--text-3)}
 /* account page */
-.acct-head h1{font-size:24px;margin:0;line-height:1.2}
+.acct-head h1{font-size:24px;font-weight:600;margin:0;line-height:1.25}
 .acct-head .sub{margin:4px 0 0;font-size:15px;color:var(--text-2)}
 .acct-head .sub2{margin:2px 0 0;font-size:13.5px;color:var(--text-4)}
 .hreturn{display:inline-flex;align-items:center;gap:4px;min-height:40px;padding:0 10px 0 4px;margin:6px 0 4px -4px;border:0;background:none;color:var(--brand);font:inherit;font-size:14.5px;font-weight:600;cursor:pointer;border-radius:8px;text-decoration:none}
 .hreturn:hover{background:var(--brand-soft)}
 .hreturn svg{width:18px;height:18px}
 .sec{margin:0 0 16px}
-.sec > h2{font-family:var(--head);font-size:14px;font-weight:600;margin:0 0 6px;color:var(--text-3);display:flex;justify-content:space-between;align-items:baseline;gap:10px}
-.sec > h2 small{font-weight:400;font-size:12.5px;color:var(--text-4)}
+.sec > h2{font-family:var(--head);font-size:17px;font-weight:600;margin:0 0 8px;color:var(--text);display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.sec > h2 small{font-weight:400;font-size:14px;color:var(--text-3)}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:2px 14px}
 .card > p{margin:10px 0;font-size:14.5px;line-height:1.5;color:var(--text-2)}
 /* rep.css clamps .card p to two lines for the home tiles; these cards are prose */
@@ -38,7 +38,7 @@
 .focus{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--shadow);overflow:hidden}
 .fitem{display:flex;gap:12px;padding:12px 14px;border-top:1px solid var(--border);align-items:flex-start}
 .fitem:first-child{border-top:0}
-.fitem .num{flex:none;width:26px;height:26px;border-radius:50%;background:var(--brand);color:var(--kdh-brand-ink);font-weight:700;font-size:13.5px;display:inline-flex;align-items:center;justify-content:center;margin-top:1px}
+.fitem .num{flex:none;width:26px;height:26px;border-radius:50%;background:var(--brand);color:var(--kdh-brand-ink);font-weight:600;font-size:13.5px;display:inline-flex;align-items:center;justify-content:center;margin-top:1px}
 .fitem .fmain{min-width:0;flex:1}
 .fitem .ft{font-size:16px;font-weight:600;color:var(--text);line-height:1.3}
 .fitem .fw{margin:3px 0 0;font-size:14px;color:var(--text-2);line-height:1.45}
@@ -97,7 +97,7 @@ details.fold[open] > summary::after{content:'\25B4'}
 .ra-line small{color:var(--text-4)}
 .fresh-foot{font-size:12.5px;color:var(--text-4);line-height:1.6;margin:8px 0 24px}
 @media (max-width:599px){
-  .acct-head h1{font-size:22px}
+  .acct-head h1{font-size:24px}
   .kv{flex-direction:column;gap:2px}
   .kv > span:last-child{text-align:left}
 }
@@ -213,7 +213,7 @@ h3.note small{font-weight:400;color:var(--text-4)}
 .seg button{flex:1 1 auto;white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:38px;padding:0 8px;border:0;border-radius:7px;background:none;color:var(--text-2);font:inherit;font-size:14.5px;font-weight:600;cursor:pointer;line-height:1.15;text-align:center}
 .seg button:hover{color:var(--text)}
 .seg button.on{background:var(--surface);color:var(--brand);box-shadow:0 1px 2px rgba(15,23,42,.08),0 0 0 1px var(--border)}
-.seg .n{font-size:12.5px;font-weight:700;color:var(--text-3);font-variant-numeric:tabular-nums}
+.seg .n{font-size:12.5px;font-weight:600;color:var(--text-3);font-variant-numeric:tabular-nums}
 .seg button.on .n{color:var(--brand)}
 .seg button:focus-visible{outline:2px solid var(--brand);outline-offset:1px}
 @media (min-width:760px){ .filters .kdh-field{flex:2 1 280px} .seg{flex:1 1 380px} }
@@ -240,14 +240,14 @@ details.legend > summary{cursor:pointer;color:var(--text-3);font-weight:600;min-
 @media (max-width:599px){ .dgroup .kv > span:first-child{flex-basis:92px} }
 /* Focus: Todoist-style action rows -- a small coloured label, the task, why, the next step */
 .fitem{padding:12px 14px}
-.fkind{font-size:12.5px;color:var(--brand);font-weight:700;margin-bottom:1px}
+.fkind{font-size:12.5px;color:var(--brand);font-weight:600;margin-bottom:1px}
 .fitem .ft{font-size:16px}
 .fitem .fn{display:flex;flex-wrap:wrap;align-items:center;gap:0 8px;color:var(--text-2)}
 .fitem .fn a{margin-left:-4px}
 .fitem .fw.cav{color:var(--text-3);font-size:13.5px}
 /* ==== Account record (2026-10-01, Jobber pattern) ==== */
 .acct-head.rec{margin:0 0 12px}
-.rec-st{display:flex;align-items:center;gap:7px;margin:0 0 4px;font-size:13.5px;font-weight:700}
+.rec-st{display:flex;align-items:center;gap:7px;margin:0 0 4px;font-size:13.5px;font-weight:600}
 .rec-st .dot{width:8px;height:8px;border-radius:50%;flex:none}
 .rec-st.att{color:var(--warn)} .rec-st.att .dot{background:var(--warn)}
 .rec-st.ok{color:var(--ok)} .rec-st.ok .dot{background:var(--ok)}
@@ -265,7 +265,7 @@ details.legend > summary{cursor:pointer;color:var(--text-3);font-weight:600;min-
 .kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 .kpis > div{display:flex;flex-direction:column;gap:2px;min-width:0}
 .kpis span{font-size:12.5px;color:var(--text-3);line-height:1.3}
-.kpis b{font-size:19px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums}
+.kpis b{font-size:19px;font-weight:600;color:var(--text);font-variant-numeric:tabular-nums}
 .kpis small{font-size:12.5px;color:var(--text-3)}
 .card.buy .buy-al{margin:12px 0 0;font-size:14.5px;line-height:1.45;color:var(--text-2)}
 .card.buy .buy-al b{color:var(--text)}
@@ -275,11 +275,52 @@ details.about-data > summary{cursor:pointer;color:var(--text-3);font-size:14px;f
 details.about-data .fresh-foot{margin-top:4px}
 /* Needs attention, by reason (2026-10-01) */
 #rows > .rows + .lgroup{margin-top:16px}
-.lgroup{display:flex;align-items:center;gap:8px;margin:4px 2px 8px;font-size:15px;font-weight:700;color:var(--text)}
-.lgroup span{font-size:12.5px;font-weight:700;color:var(--text-3);background:var(--surface-2);border:1px solid var(--border);border-radius:999px;padding:0 8px}
+.lgroup{display:flex;align-items:center;gap:8px;margin:4px 2px 8px;font-size:15px;font-weight:600;color:var(--text)}
+.lgroup span{font-size:12.5px;font-weight:600;color:var(--text-3);background:var(--surface-2);border:1px solid var(--border);border-radius:999px;padding:0 8px}
 #rows .row{min-height:56px;padding-top:11px;padding-bottom:11px}
 /* the search and the three views stay in reach while the list scrolls */
 .filters{position:sticky;top:52px;z-index:5;background:var(--bg);padding:8px 0;margin-top:-8px}
 @media (max-width:759px){ .filters{top:50px} }
-.filters:has(.more-filters[open]){position:static}
+.filters:has(.fpop[open]){position:static}
 @media (max-width:599px){ html:has(#kdhPreviewChip) .filters, html:has(#kdhViewing:not(:empty)) .filters{top:100px} }
+
+/* ---- LIST HEADER, third pass (2026-10-01): one row of small labelled
+   controls under the views -- Reason, More Filters, Data. An open panel
+   takes the full row; nothing above the first account is taller than it
+   needs to be. ---- */
+.ws.lhead{padding:12px 0 6px}
+.ws.lhead .idline{margin-top:2px;font-size:14px}
+.fbar{flex:1 1 100%;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.fsel{display:inline-flex;align-items:center;gap:6px;min-width:0}
+.fsel > span{font-size:14px;color:var(--text-3)}
+.filters .fsel select{flex:none;min-height:36px;font-size:14px;padding:0 28px 0 10px;max-width:200px}
+.filters .fpop{flex:none;border:1px solid var(--border);border-radius:var(--r);background:var(--surface);padding:0}
+.filters .fpop > summary{min-height:36px;padding:0 10px;font-size:14px;font-weight:500;color:var(--text-2);gap:6px}
+.filters .fpop > summary::after{margin-left:4px}
+.filters .fpop[open]{flex:1 1 100%;order:5}
+.filters .fpop .fpanel{padding:4px 12px 10px;border-top:1px solid var(--border)}
+.filters .fpop .note{margin:6px 0 0;font-size:14px;color:var(--text-3);line-height:1.5}
+.filters .fpop .mf-row{padding:8px 0 0}
+@media (max-width:759px){ .filters .fsel select, .filters .fpop > summary{min-height:40px} }
+/* ---- ACCOUNT RECORD, third pass (2026-10-01): address and a small
+   labelled Directions button on one line; action rows = kind, task, one
+   evidence line (caveat inline), the destination. ---- */
+.rec-loc{display:flex;align-items:center;gap:10px 12px;flex-wrap:wrap;margin-top:8px}
+.rec-loc .rec-addr{margin:0;flex:1 1 200px;min-width:0;font-size:15px;color:var(--text-2)}
+.btn.sm.rec-dir{flex:none;min-height:36px;padding:0 12px;font-size:14px;font-weight:500;gap:6px;margin:0;width:auto}
+.btn.sm.rec-dir svg{width:16px;height:16px}
+@media (max-width:759px){ .btn.sm.rec-dir{min-height:40px} }
+.rec-st{font-weight:500}
+.fkind{font-weight:500}
+.fitem .fw .cav{color:var(--text-3)}
+.nexta .fgo{font-weight:500}
+/* assistant: one line of intro, the coverage one tap away (2026-10-01, third pass) */
+.ask-intro p{margin:0}
+.ask-more{margin-top:4px}
+.ask-more > summary{cursor:pointer;color:var(--brand);font-size:14px;font-weight:500;min-height:36px;display:inline-flex;align-items:center}
+.ask-more p{margin:2px 0 0;color:var(--text-3)}
+.pseg button{font-weight:500}
+.filters .fpop > summary{cursor:pointer;list-style:none;display:flex;align-items:center}
+.filters .fpop > summary::-webkit-details-marker{display:none}
+.filters .fpop > summary::after{content:'\25BE';margin-left:6px;color:var(--text-4)}
+.filters .fpop[open] > summary::after{content:'\25B4'}

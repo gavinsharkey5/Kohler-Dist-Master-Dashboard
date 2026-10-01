@@ -147,6 +147,14 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-10-01 Visual refinement, third pass: Inter everywhere (self-hosted),
+  one type scale, neutral Shopify-style surfaces with a single Kohler blue
+  accent, no decorative gradients, Title Case headings / nav / tabs, shorter
+  wording ("3 Action Items", "View Follow-up", "2 Products Needed",
+  "Accounts to Complete"), compact Needs Attention strip on Rep Home,
+  compact My Accounts header (Reason / More Filters / Data controls),
+  small Directions button beside the address, shorter assistant intro.
+  Nothing for Gavin to do; data, rules and permissions unchanged.
 - [x] 2026-10-01 Redesign, second pass (Jobber pattern): rep home opens on
   "Needs attention on your route" (reorders, lapsed buyers, surveys due,
   each opening the filtered list); Needs attention grouped by reason; the
