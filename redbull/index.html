@@ -151,6 +151,45 @@
     .brow{flex-direction:column;align-items:flex-start;gap:5px}
     .brow .tags{justify-content:flex-start}
   }
+
+  /* compact header: one quiet line for the period and the data date */
+  .gx-head h1{font-size:clamp(24px,6vw,32px);line-height:1.15}
+  .updated{display:inline-flex;margin:6px 14px 0 0;padding:0;border:0;background:none;box-shadow:none;font-size:13.5px;gap:6px}
+  .updated b{font-size:13.5px;color:var(--ink);font-weight:700}
+  .updated .lbl{font-size:13.5px;letter-spacing:0;text-transform:none}
+  .updated .dot{width:7px;height:7px;box-shadow:none}
+  #repPick{display:none}
+  @media (max-width:759px){
+    #chips{display:none}
+    #repPick{display:block;width:100%;min-height:44px;font:inherit;font-size:16px;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:0 12px}
+    .seg .lbl{margin-bottom:6px}
+  }
+  /* ==== 2026-10-01 layout: progress, accounts to finish, rules folded ==== */
+  #lede{display:none}
+  .rb-prog{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:15px;padding:14px 16px;margin:0 0 6px;box-shadow:var(--shadow)}
+  .rb-prog.done{border-left-color:var(--good)}
+  .rb-k{margin:0;font-size:14px;font-weight:600;color:var(--ink-soft)} .rb-k span{font-weight:400}
+  .rb-big{margin:2px 0 8px;font-size:30px;font-weight:700;color:var(--ink);line-height:1.15} .rb-big span{font-size:16px;font-weight:600;color:var(--ink-soft)}
+  .rb-need{margin:8px 0 0;font-size:15px;color:var(--ink)} .rb-need b{font-weight:700}
+  .rb-sub{margin:3px 0 0;font-size:13px;color:var(--ink-soft)}
+  .rb-gh{display:flex;align-items:center;gap:8px;margin:14px 2px 6px;font-size:14px;font-weight:700;color:var(--ink)}
+  .rb-gh span,.rb-fold summary span{font-size:12.5px;font-weight:700;color:var(--ink-soft);background:color-mix(in srgb,var(--ink) 8%,transparent);border-radius:999px;padding:1px 8px}
+  .rb-list{padding:2px 14px}
+  .brow.rb-row{flex-direction:column;align-items:flex-start;gap:3px;padding:10px 0}
+  .brow.rb-row > b{font-size:15.5px}
+  .rb-sell{font-size:14.5px;font-weight:700;color:var(--accent)}
+  .rb-has{justify-content:flex-start !important;align-items:center}
+  .rb-hl{font-size:12.5px;color:var(--ink-soft);margin-right:2px}
+  .rb-has .tag svg{width:11px;height:11px;vertical-align:-1px}
+  .rb-fold{margin:12px 0 0}
+  .rb-fold > summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;background:var(--card);border:1px solid var(--line);border-radius:12px;font-size:15px;font-weight:700;color:var(--ink)}
+  .rb-fold > summary::-webkit-details-marker{display:none}
+  .rb-fold > summary::after{content:'\25BE';margin-left:auto;color:var(--ink-soft)}
+  .rb-fold[open] > summary::after{content:'\25B4'}
+  .rb-fold[open] > summary{border-radius:12px 12px 0 0;border-bottom:0}
+  .rb-fold[open] > .board{border-radius:0 0 15px 15px;border-top:0}
+  .rb-howin{background:var(--card);border:1px solid var(--line);border-top:0;border-radius:0 0 15px 15px;padding:4px 14px 12px}
+  .rb-howin .rule{margin-top:10px}
 </style><script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="kdh-page" content="Red Bull">
 <!-- Site design system: maps this page's variables + fonts onto shared/kdh.css. Keep it LAST in <head>. -->
@@ -284,6 +323,15 @@ const COMPLETE_RULE=`<div class="rule"><span class="rk">How an account levels up
   <b>${TOP.label}</b> is the finish line: all three together. Two of the three is <b>not</b> ${TOP.label} —
   sell the missing one to finish the account.</span></div>`;
 
+// "How it works" (2026-10-01): every qualification rule in one fold, so the
+// page opens on progress and accounts instead of the explanation.
+let HOW_EXTRA='';
+function howHtml(){
+  const catKey=CATS.map(c=>`<b>${c.label}</b> = ${esc(c.blurb)}`).join(' · ');
+  return `<details class="rb-fold rb-how"><summary>How it works</summary><div class="rb-howin">${COMPLETE_RULE}
+    <p class="note">${catKey}. ${HOW_EXTRA}</p>
+    <p class="note">Each tally is unique buying accounts, so an account buying two ${CATS[0].label} SKUs still counts once, and <b>${TOP.label}</b> accounts are a subset of <b>${TIERS[0].label}</b> — the two tiers don't add up.</p></div></details>`;
+}
 function render(){
   const app=document.getElementById("body"); const reps=Object.keys(REPS);
   if(activeRep==="ALL"){
@@ -297,14 +345,13 @@ function render(){
         +`<p class="v num">${t.by[t2.key]}${g?`<small>/${g}</small>`:""}</p></div>`;
     }).join("");
     const stats=`<div class="stats">${statTile("Buying Accounts",t.total,"")}${tierTiles}</div>`;
-    app.innerHTML=stats+COMPLETE_RULE+boardHtml(null)
-      +`<p class="note">Team-wide, <b>${t.complete} of ${t.total}</b> buying accounts (${donePct.toFixed(0)}%) buy all three.</p>`;
+    app.innerHTML=stats+`<p class="note">Team-wide, <b>${t.complete} of ${t.total}</b> buying accounts (${donePct.toFixed(0)}%) buy all three.</p>`+boardHtml(null)+howHtml();
     app.querySelectorAll(".lrow[data-rep]").forEach(el=>{const go=()=>setRep(el.dataset.rep);el.addEventListener("click",go);el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});});
   } else {
     const s=repStats(activeRep);
     const t=teamStats();
     const rrow=ranked().find(x=>x.rep===activeRep); const rank=rrow?rrow.rank:0;
-    const hero=`<div class="hero"><div class="top"><div class="rankbox"><div class="big num">${rank||"–"}</div><div class="lab">Rank</div></div>
+    const hero=`<div class="hero" hidden><div class="top"><div class="rankbox"><div class="big num">${rank||"–"}</div><div class="lab">Rank</div></div>
       <div class="nm">${esc(activeRep)}<small>${s.complete} of ${s.total} accounts at ${TOP.label} · ${catLine(s)}</small></div>
       <div class="win2"><div class="b num">${s.complete}</div><div class="l">${TOP.label}</div></div></div></div>`;
 
@@ -322,42 +369,54 @@ function render(){
     }
     const cards=CARDS.map(catCard).join("");
 
-    // Headline card: complete accounts, the number that actually counts.
+    // 2026-10-01 layout (Gavin: progress and the accounts to finish BEFORE
+    // the long explanation; what each account is missing must be obvious).
+    // 1 progress  2 still to finish, grouped by how many products are
+    // missing, each row saying in words what to sell  3 finished accounts
+    // (fold)  4 team-goal cards  5 leaderboard  6 "How it works" (fold).
+    // Scoring is unchanged: isComplete / missingFor / repStats / ranked.
     const donePct=s.total? (s.complete/s.total*100):0;
     const allDone=s.total&&s.complete===s.total;
-    const doneCard=`<div class="quest head"><div class="sup"><span>My ${TOP.label} accounts${allDone?` <span style="color:var(--good)">${CHECK}</span>`:''}</span><span class="num">${s.complete} / ${s.total}</span></div>
-      <div class="qline"><span>Buying all three (${CAT_KEYS.join(" + ")})</span><span class="num">${donePct.toFixed(0)}%</span></div>
-      <div class="bar ${allDone?'done':''}"><i style="width:${donePct.toFixed(1)}%"></i></div></div>`;
-
-    // Account list, split by the rule: finished vs still missing something.
-    // Every row shows all three tags -- the ones an account hasn't bought read
-    // as "+ Free", so the rep sees exactly what's left to sell.
     const allAccts=Object.entries(REPS[activeRep]?REPS[activeRep].accounts:{});
-    const rowFor=([n,f])=>{
-      const done=isComplete(f);
-      const tags=CATS.map(c=>`<span class="tag ${f[c.key]?c.cls:'off'}">${f[c.key]?'':'+ '}${c.label}</span>`).join("");
-      return `<div class="brow${done?' done':''}"><b>${done?`<span class="chk">${CHECK}</span>`:''}${esc(n)}</b><span class="tags">${tags}</span></div>`;
-    };
     const done=allAccts.filter(([n,f])=>isComplete(f)).sort((a,b)=>a[0].localeCompare(b[0]));
-    // Closest to complete first -- one missing category is the easiest next sale.
-    const todo=allAccts.filter(([n,f])=>!isComplete(f))
-      .sort((a,b)=>missingFor(a[1]).length-missingFor(b[1]).length||a[0].localeCompare(b[0]));
-    const group=(rows,empty)=>`<div class="board" style="padding:6px 14px">${rows.length?rows.map(rowFor).join(""):`<div class="brow">${empty}</div>`}</div>`;
-
-    app.innerHTML=hero+COMPLETE_RULE+doneCard+
-      `<div class="shead"><h2>Still to finish</h2><span class="meta">${todo.length} account${todo.length===1?'':'s'} · closest first</span></div>`+
-      group(todo,`Every account is ${TOP.label} — nice.`)+
-      `<p class="note">A <span class="tag off" style="font-size:10.5px;padding:2px 7px;border-radius:999px">+ ${CATS[CATS.length-1].label}</span>-style tag is something that account has <b>not</b> bought yet. Sell it and the account climbs a tier.</p>`+
-      `<div class="shead"><h2>${TOP.label} accounts</h2><span class="meta">${done.length} buying all three</span></div>`+
-      group(done,`No ${TOP.label} accounts yet — one account needs ${CAT_KEYS.join(", ")} together.`)+
+    const todo=allAccts.filter(([n,f])=>!isComplete(f));
+    const WORD={Regular:'Regular (8.4 oz can)', Free:'Sugar Free', Flavor:'a flavor edition'};
+    const needLine=f=>missingFor(f).map(c=>WORD[c.key]||c.label);
+    const andJoin=a=>a.length<2?a.join(''):a.slice(0,-1).join(', ')+' and '+a[a.length-1];
+    const nOne=todo.filter(([n,f])=>missingFor(f).length===1).length;
+    const prog=`<div class="rb-prog${allDone?' done':''}">
+      <p class="rb-k">Your ${TOP.label} accounts <span>(buying all three)</span></p>
+      <p class="rb-big num">${s.complete} <span>of ${s.total} buying accounts</span></p>
+      <div class="bar ${allDone?'done':''}"><i style="width:${donePct.toFixed(1)}%"></i></div>
+      <p class="rb-need">${allDone?`Every buying account is ${TOP.label}.`:`<b>${todo.length} to finish</b>${nOne?` · ${nOne} need just one more product`:''}`}</p>
+      <p class="rb-sub">Rank ${rank||'–'} of ${Object.keys(REPS).length} reps${PERIOD&&PERIOD.label?` · ${esc(PERIOD.label)}`:''}</p></div>`;
+    // one row per account: the name, then WHAT TO SELL in words, then what it already buys
+    const rowFor=([n,f])=>{
+      const isDone=isComplete(f);
+      const has=CATS.filter(c=>f[c.key]).map(c=>`<span class="tag ${c.cls}">${CHECK} ${c.label}</span>`).join("");
+      return `<div class="brow rb-row${isDone?' done':''}"><b>${isDone?`<span class="chk">${CHECK}</span>`:''}${esc(n)}</b>`+
+        (isDone?'':`<span class="rb-sell">Sell ${andJoin(needLine(f))}</span>`)+
+        `<span class="tags rb-has">${isDone?'':'<span class="rb-hl">Buys</span>'}${has}</span></div>`;
+    };
+    const byName=(a,b)=>a[0].localeCompare(b[0]);
+    const groups=[1,2].map(k=>({k, rows: todo.filter(([n,f])=>missingFor(f).length===k).sort(byName)})).filter(g=>g.rows.length);
+    const todoHtml=todo.length ? groups.map(g=>`<p class="rb-gh">${g.k===1?'One product away':'Two products away'} <span>${g.rows.length}</span></p><div class="board rb-list">${g.rows.map(rowFor).join("")}</div>`).join("")
+      : `<div class="board rb-list"><div class="brow">Every account is ${TOP.label} — nice.</div></div>`;
+    const doneHtml=`<details class="rb-fold"><summary>${TOP.label} accounts <span>${done.length}</span></summary><div class="board rb-list">${done.length?done.map(rowFor).join(""):`<div class="brow">No ${TOP.label} accounts yet — an account needs ${CAT_KEYS.join(", ")} together.</div>`}</div></details>`;
+    app.innerHTML=prog+
+      `<div class="shead"><h2>Still to finish</h2><span class="meta">closest first</span></div>`+todoHtml+doneHtml+
       `<div class="shead"><h2>Progress vs team goal</h2><span class="meta">tap a category for accounts</span></div>`+cards+
-      boardHtml(activeRep);
+      boardHtml(activeRep)+howHtml();
   }
 }
-function setRep(v){if(LOCK_REP&&v!==LOCK_REP)v=LOCK_REP;activeRep=v;document.querySelectorAll("#chips .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.v===activeRep));render();window.scrollTo({top:0,behavior:"smooth"});}
+function setRep(v){if(LOCK_REP&&v!==LOCK_REP)v=LOCK_REP;activeRep=v;document.querySelectorAll("#chips .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.v===activeRep));{const rp=document.getElementById("repPick");if(rp)rp.value=activeRep;}render();window.scrollTo({top:0,behavior:"smooth"});}
 function renderChips(){const reps=Object.keys(REPS).sort();
   document.getElementById("chips").innerHTML=["ALL",...reps].map(v=>`<button class="chip" aria-pressed="${v===activeRep}" data-v="${esc(v)}">${v==="ALL"?"All reps":esc(v)}</button>`).join("");
-  document.querySelectorAll("#chips .chip").forEach(b=>b.addEventListener("click",()=>setRep(b.dataset.v)));}
+  document.querySelectorAll("#chips .chip").forEach(b=>b.addEventListener("click",()=>setRep(b.dataset.v)));
+  // phones: one labelled dropdown instead of a wall of chips (2026-10-01)
+  let sel=document.getElementById("repPick");
+  if(!sel){ sel=document.createElement("select"); sel.id="repPick"; sel.setAttribute("aria-label","Rep"); document.getElementById("chips").after(sel); sel.addEventListener("change",()=>setRep(sel.value)); }
+  sel.innerHTML=["ALL",...reps].map(v=>`<option value="${esc(v)}"${v===activeRep?' selected':''}>${v==="ALL"?"All reps":esc(v)}</option>`).join("");}
 function showEmpty(m){document.getElementById("app").innerHTML=`<div class="empty"><h2>No data yet</h2><p>${m}</p></div>`;}
 async function boot(){
   let dText=null,gText=null,lastMod=null,period=null;
@@ -391,6 +450,7 @@ async function boot(){
   const rule=`<b>${TOP.label}</b> is the all-three account — two out of three doesn't count.`;
   const periodPhrase=period&&period.label?`Buying period <b>${esc(period.label)}</b> — only orders in that window count.`:"";
   document.getElementById("lede").innerHTML=`${periodPhrase} ${goalPhrase} ${key} ${rule} Tap your name to see your accounts.`;
+  HOW_EXTRA=`${periodPhrase} ${goalPhrase}`; const hw=document.querySelector('.rb-how .rb-howin .note'); if(hw) render();
   if(LOCK_REP){const l=document.getElementById("lede");l.innerHTML=l.innerHTML.replace(/\s*Tap your name to see your accounts\.?/,"");}
   document.getElementById("period").innerHTML=period&&period.label?`<span class="lbl">Buying period</span><b>${esc(period.label)}</b>`:"";
   document.getElementById("updated").innerHTML=lastMod?`<span class="dot"></span><span class="lbl">Data updated</span><b>${esc(new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}))}</b>`:"";
