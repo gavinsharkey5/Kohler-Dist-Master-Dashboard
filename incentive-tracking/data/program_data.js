@@ -108456,7 +108456,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 17,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 45.5,
+        "pctOfPace": 44.0,
         "products": [
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -108521,7 +108521,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 27,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 203.5,
+        "pctOfPace": 197.0,
         "products": [
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
@@ -108651,7 +108651,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 166,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 219.3,
+        "pctOfPace": 212.2,
         "products": [
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
@@ -108953,7 +108953,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 40,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 204.8,
+        "pctOfPace": 198.1,
         "products": [
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
@@ -109109,7 +109109,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 232,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 189.3,
+        "pctOfPace": 183.2,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -109401,7 +109401,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 191,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 144.1,
+        "pctOfPace": 139.4,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -109658,7 +109658,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 83,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 260.0,
+        "pctOfPace": 251.6,
         "products": [
           {
             "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
@@ -109981,7 +109981,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 109,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 189.0,
+        "pctOfPace": 182.9,
         "products": [
           {
             "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
@@ -110288,7 +110288,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 8,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 33.7,
+        "pctOfPace": 32.6,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -110358,7 +110358,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 6,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 163.2,
+        "pctOfPace": 157.9,
         "products": [
           {
             "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
@@ -110432,7 +110432,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 98,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 181.1,
+        "pctOfPace": 175.2,
         "products": [
           {
             "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
@@ -110705,7 +110705,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 207,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 212.3,
+        "pctOfPace": 205.5,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -111002,7 +111002,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 213,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 198.4,
+        "pctOfPace": 192.0,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -111299,7 +111299,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 7,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 151.7,
+        "pctOfPace": 146.8,
         "products": [
           {
             "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
@@ -111384,7 +111384,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 148,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 231.1,
+        "pctOfPace": 223.7,
         "products": [
           {
             "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
@@ -111712,7 +111712,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 183,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 216.0,
+        "pctOfPace": 209.0,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -112035,7 +112035,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 15,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 264.2,
+        "pctOfPace": 255.7,
         "products": [
           {
             "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
@@ -112271,7 +112271,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 129,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 205.7,
+        "pctOfPace": 199.0,
         "products": [
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -112558,7 +112558,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 34,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 155.9,
+        "pctOfPace": 150.9,
         "products": [
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -112648,7 +112648,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 72,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 200.8,
+        "pctOfPace": 194.3,
         "products": [
           {
             "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
@@ -112884,7 +112884,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 18,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 184.7,
+        "pctOfPace": 178.8,
         "products": [
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
@@ -112953,7 +112953,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 87,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 244.5,
+        "pctOfPace": 236.6,
         "products": [
           {
             "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
@@ -113271,7 +113271,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 36,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 176.2,
+        "pctOfPace": 170.6,
         "products": [
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -113371,7 +113371,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 169,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 182.3,
+        "pctOfPace": 176.4,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -113640,8 +113640,8 @@ const PROGRAM_DATA_2026_09 = {
     "periodStart": "2026-09-01",
     "periodEnd": "2026-11-30",
     "periodDays": 91,
-    "daysElapsed": 30,
-    "pacePct": 33.0,
+    "daysElapsed": 31,
+    "pacePct": 34.1,
     "meta": {
       "offRoster": [
         "Default",
@@ -116939,33 +116939,13 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 44,
+            "placements": 52,
             "goal": 80,
-            "pct": 55.0,
+            "pct": 65.0,
             "retained": false,
-            "toGo": 36,
+            "toGo": 28,
             "inReport": true,
             "products": [
-              {
-                "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 15,
-                "base": 26,
-                "goal": 26,
-                "pct": 57.7,
-                "retained": false,
-                "toGo": 11,
-                "lost": false
-              },
-              {
-                "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 14,
-                "base": 24,
-                "goal": 24,
-                "pct": 58.3,
-                "retained": false,
-                "toGo": 10,
-                "lost": false
-              },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
                 "placements": 2,
@@ -116977,13 +116957,33 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
+                "product": "Corona Extra 2/12/12 oz Btl",
+                "placements": 19,
+                "base": 26,
+                "goal": 26,
+                "pct": 73.1,
+                "retained": false,
+                "toGo": 7,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 4/6/12 oz Btl",
+                "placements": 17,
+                "base": 24,
+                "goal": 24,
+                "pct": 70.8,
+                "retained": false,
+                "toGo": 7,
+                "lost": false
+              },
+              {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 7,
+                "placements": 8,
                 "base": 12,
                 "goal": 12,
-                "pct": 58.3,
+                "pct": 66.7,
                 "retained": false,
-                "toGo": 5,
+                "toGo": 4,
                 "lost": false
               },
               {
@@ -117420,10 +117420,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 362,
+        "offPlacements": 370,
         "offGoal": 484,
-        "offPct": 74.8,
-        "offToGo": 122,
+        "offPct": 76.4,
+        "offToGo": 114,
         "on_packages": {
           "families": [
             {
@@ -118303,10 +118303,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 13,
         "goalsRetained": 0,
-        "overallHeld": 442,
+        "overallHeld": 450,
         "overallGoal": 616,
-        "overallPct": 71.8,
-        "overallToGo": 174,
+        "overallPct": 73.1,
+        "overallToGo": 166,
         "hasAnyGoal": true
       },
       "Brian Sengebush": {
@@ -120463,31 +120463,21 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 94,
+            "placements": 98,
             "goal": 133,
-            "pct": 70.7,
+            "pct": 73.7,
             "retained": false,
-            "toGo": 39,
+            "toGo": 35,
             "inReport": true,
             "products": [
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 24,
+                "placements": 26,
                 "base": 37,
                 "goal": 37,
-                "pct": 64.9,
+                "pct": 70.3,
                 "retained": false,
-                "toGo": 13,
-                "lost": false
-              },
-              {
-                "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 24,
-                "base": 33,
-                "goal": 33,
-                "pct": 72.7,
-                "retained": false,
-                "toGo": 9,
+                "toGo": 11,
                 "lost": false
               },
               {
@@ -120508,6 +120498,16 @@ const PROGRAM_DATA_2026_09 = {
                 "pct": 42.9,
                 "retained": false,
                 "toGo": 8,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 2/12/12 oz Btl",
+                "placements": 26,
+                "base": 33,
+                "goal": 33,
+                "pct": 78.8,
+                "retained": false,
+                "toGo": 7,
                 "lost": false
               },
               {
@@ -120954,10 +120954,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 578,
+        "offPlacements": 582,
         "offGoal": 775,
-        "offPct": 74.6,
-        "offToGo": 197,
+        "offPct": 75.1,
+        "offToGo": 193,
         "on_packages": {
           "families": [
             {
@@ -121429,10 +121429,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 14,
         "goalsRetained": 1,
-        "overallHeld": 613,
+        "overallHeld": 617,
         "overallGoal": 849,
-        "overallPct": 72.2,
-        "overallToGo": 236,
+        "overallPct": 72.7,
+        "overallToGo": 232,
         "hasAnyGoal": true
       },
       "Dan Lagala": {
@@ -121440,11 +121440,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 96,
+            "placements": 97,
             "goal": 126,
-            "pct": 76.2,
+            "pct": 77.0,
             "retained": false,
-            "toGo": 30,
+            "toGo": 29,
             "inReport": true,
             "products": [
               {
@@ -121479,12 +121479,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 13,
+                "placements": 14,
                 "base": 16,
                 "goal": 16,
-                "pct": 81.2,
+                "pct": 87.5,
                 "retained": false,
-                "toGo": 3,
+                "toGo": 2,
                 "lost": false
               },
               {
@@ -121901,10 +121901,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 524,
+        "offPlacements": 525,
         "offGoal": 668,
-        "offPct": 78.4,
-        "offToGo": 144,
+        "offPct": 78.6,
+        "offToGo": 143,
         "on_packages": {
           "families": [
             {
@@ -122528,10 +122528,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 14,
         "goalsRetained": 0,
-        "overallHeld": 576,
+        "overallHeld": 577,
         "overallGoal": 791,
-        "overallPct": 72.8,
-        "overallToGo": 215,
+        "overallPct": 72.9,
+        "overallToGo": 214,
         "hasAnyGoal": true
       },
       "Dave Ehlers": {
@@ -123114,11 +123114,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 108,
+            "placements": 111,
             "goal": 123,
-            "pct": 87.8,
+            "pct": 90.2,
             "retained": false,
-            "toGo": 15,
+            "toGo": 12,
             "inReport": true,
             "products": [
               {
@@ -123133,32 +123133,32 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 24,
+                "placements": 25,
                 "base": 28,
                 "goal": 28,
-                "pct": 85.7,
-                "retained": false,
-                "toGo": 4,
-                "lost": false
-              },
-              {
-                "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 23,
-                "base": 26,
-                "goal": 26,
-                "pct": 88.5,
+                "pct": 89.3,
                 "retained": false,
                 "toGo": 3,
                 "lost": false
               },
               {
-                "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 26,
-                "base": 28,
-                "goal": 28,
-                "pct": 92.9,
+                "product": "Corona Extra 2/12/12 oz Btl",
+                "placements": 24,
+                "base": 26,
+                "goal": 26,
+                "pct": 92.3,
                 "retained": false,
                 "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 4/6/12 oz Btl",
+                "placements": 27,
+                "base": 28,
+                "goal": 28,
+                "pct": 96.4,
+                "retained": false,
+                "toGo": 1,
                 "lost": false
               },
               {
@@ -123605,10 +123605,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 528,
+        "offPlacements": 531,
         "offGoal": 642,
-        "offPct": 82.2,
-        "offToGo": 114,
+        "offPct": 82.7,
+        "offToGo": 111,
         "on_packages": {
           "families": [
             {
@@ -124007,10 +124007,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 12,
         "goalsRetained": 1,
-        "overallHeld": 556,
+        "overallHeld": 559,
         "overallGoal": 697,
-        "overallPct": 79.8,
-        "overallToGo": 141,
+        "overallPct": 80.2,
+        "overallToGo": 138,
         "hasAnyGoal": true
       },
       "Dylan Rubino": {
@@ -126012,11 +126012,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 73,
+            "placements": 74,
             "goal": 94,
-            "pct": 77.7,
+            "pct": 78.7,
             "retained": false,
-            "toGo": 21,
+            "toGo": 20,
             "inReport": true,
             "products": [
               {
@@ -126041,12 +126041,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 13,
+                "placements": 14,
                 "base": 18,
                 "goal": 18,
-                "pct": 72.2,
+                "pct": 77.8,
                 "retained": false,
-                "toGo": 5,
+                "toGo": 4,
                 "lost": false
               },
               {
@@ -126503,10 +126503,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 311,
+        "offPlacements": 312,
         "offGoal": 443,
-        "offPct": 70.2,
-        "offToGo": 132,
+        "offPct": 70.4,
+        "offToGo": 131,
         "on_packages": {
           "families": [],
           "goalsTotal": 0,
@@ -126531,10 +126531,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 4,
         "goalsRetained": 0,
-        "overallHeld": 311,
+        "overallHeld": 312,
         "overallGoal": 443,
-        "overallPct": 70.2,
-        "overallToGo": 132,
+        "overallPct": 70.4,
+        "overallToGo": 131,
         "hasAnyGoal": true
       },
       "Jim Heaney": {
@@ -126542,11 +126542,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 97,
+            "placements": 98,
             "goal": 148,
-            "pct": 65.5,
+            "pct": 66.2,
             "retained": false,
-            "toGo": 51,
+            "toGo": 50,
             "inReport": true,
             "products": [
               {
@@ -126581,12 +126581,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
-                "placements": 2,
+                "placements": 3,
                 "base": 10,
                 "goal": 10,
-                "pct": 20.0,
+                "pct": 30.0,
                 "retained": false,
-                "toGo": 8,
+                "toGo": 7,
                 "lost": false
               },
               {
@@ -127043,10 +127043,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 629,
+        "offPlacements": 630,
         "offGoal": 892,
-        "offPct": 70.5,
-        "offToGo": 263,
+        "offPct": 70.6,
+        "offToGo": 262,
         "on_packages": {
           "families": [
             {
@@ -127116,10 +127116,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 6,
         "goalsRetained": 2,
-        "overallHeld": 631,
+        "overallHeld": 632,
         "overallGoal": 894,
-        "overallPct": 70.6,
-        "overallToGo": 263,
+        "overallPct": 70.7,
+        "overallToGo": 262,
         "hasAnyGoal": true
       },
       "John O'Donoghue": {
@@ -127127,28 +127127,28 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 4,
+            "placements": 5,
             "goal": 4,
-            "pct": 100.0,
+            "pct": 125.0,
             "retained": true,
             "toGo": 0,
             "inReport": true,
             "products": [
               {
-                "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 0,
-                "base": 1,
-                "goal": 1,
-                "pct": 0.0,
-                "retained": false,
-                "toGo": 1,
-                "lost": true
-              },
-              {
                 "product": "Corona Extra 4/6/12 oz Btl",
                 "placements": 3,
                 "base": 3,
                 "goal": 3,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 2/12/12 oz Btl",
+                "placements": 1,
+                "base": 1,
+                "goal": 1,
                 "pct": 100.0,
                 "retained": true,
                 "toGo": 0,
@@ -127169,9 +127169,9 @@ const PROGRAM_DATA_2026_09 = {
             "goalOverride": false,
             "baseGoal": 4,
             "skusTotal": 2,
-            "skusHeld": 1,
-            "skusLost": 1,
-            "skusShort": 1,
+            "skusHeld": 2,
+            "skusLost": 0,
+            "skusShort": 0,
             "skusNew": 1
           },
           {
@@ -127348,9 +127348,9 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 3,
         "offGoalsRetained": 2,
-        "offPlacements": 17,
+        "offPlacements": 18,
         "offGoal": 15,
-        "offPct": 106.7,
+        "offPct": 113.3,
         "offToGo": 0,
         "on_packages": {
           "families": [
@@ -127399,9 +127399,9 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 3,
         "goalsRetained": 2,
-        "overallHeld": 16,
+        "overallHeld": 17,
         "overallGoal": 15,
-        "overallPct": 106.7,
+        "overallPct": 113.3,
         "overallToGo": 0,
         "hasAnyGoal": true
       },
@@ -127410,31 +127410,31 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 81,
+            "placements": 83,
             "goal": 98,
-            "pct": 82.7,
+            "pct": 84.7,
             "retained": false,
-            "toGo": 17,
+            "toGo": 15,
             "inReport": true,
             "products": [
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
-                "placements": 4,
+                "placements": 5,
                 "base": 11,
                 "goal": 11,
-                "pct": 36.4,
+                "pct": 45.5,
                 "retained": false,
-                "toGo": 7,
+                "toGo": 6,
                 "lost": false
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 16,
+                "placements": 17,
                 "base": 21,
                 "goal": 21,
-                "pct": 76.2,
+                "pct": 81.0,
                 "retained": false,
-                "toGo": 5,
+                "toGo": 4,
                 "lost": false
               },
               {
@@ -127911,10 +127911,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 464,
+        "offPlacements": 466,
         "offGoal": 566,
-        "offPct": 82.0,
-        "offToGo": 102,
+        "offPct": 82.3,
+        "offToGo": 100,
         "on_packages": {
           "families": [
             {
@@ -128009,10 +128009,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 6,
         "goalsRetained": 2,
-        "overallHeld": 466,
+        "overallHeld": 468,
         "overallGoal": 568,
-        "overallPct": 82.0,
-        "overallToGo": 102,
+        "overallPct": 82.4,
+        "overallToGo": 100,
         "hasAnyGoal": true
       },
       "Matt Powierski": {
@@ -128020,23 +128020,13 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 124,
+            "placements": 128,
             "goal": 153,
-            "pct": 81.0,
+            "pct": 83.7,
             "retained": false,
-            "toGo": 29,
+            "toGo": 25,
             "inReport": true,
             "products": [
-              {
-                "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 29,
-                "base": 37,
-                "goal": 37,
-                "pct": 78.4,
-                "retained": false,
-                "toGo": 8,
-                "lost": false
-              },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
                 "placements": 24,
@@ -128048,13 +128038,23 @@ const PROGRAM_DATA_2026_09 = {
                 "lost": false
               },
               {
-                "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 30,
+                "product": "Corona Extra 4/6/12 oz Btl",
+                "placements": 31,
                 "base": 37,
                 "goal": 37,
-                "pct": 81.1,
+                "pct": 83.8,
                 "retained": false,
-                "toGo": 7,
+                "toGo": 6,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 2/12/12 oz Btl",
+                "placements": 32,
+                "base": 37,
+                "goal": 37,
+                "pct": 86.5,
+                "retained": false,
+                "toGo": 5,
                 "lost": false
               },
               {
@@ -128521,10 +128521,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 687,
+        "offPlacements": 691,
         "offGoal": 884,
-        "offPct": 77.7,
-        "offToGo": 197,
+        "offPct": 78.2,
+        "offToGo": 193,
         "on_packages": {
           "families": [
             {
@@ -128878,10 +128878,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 12,
         "goalsRetained": 0,
-        "overallHeld": 712,
+        "overallHeld": 716,
         "overallGoal": 929,
-        "overallPct": 76.6,
-        "overallToGo": 217,
+        "overallPct": 77.1,
+        "overallToGo": 213,
         "hasAnyGoal": true
       },
       "Michael Harboy": {
@@ -129392,11 +129392,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 56,
+            "placements": 58,
             "goal": 85,
-            "pct": 65.9,
+            "pct": 68.2,
             "retained": false,
-            "toGo": 29,
+            "toGo": 27,
             "inReport": true,
             "products": [
               {
@@ -129411,22 +129411,22 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 20,
+                "placements": 21,
                 "base": 28,
                 "goal": 28,
-                "pct": 71.4,
+                "pct": 75.0,
                 "retained": false,
-                "toGo": 8,
+                "toGo": 7,
                 "lost": false
               },
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 19,
+                "placements": 20,
                 "base": 25,
                 "goal": 25,
-                "pct": 76.0,
+                "pct": 80.0,
                 "retained": false,
-                "toGo": 6,
+                "toGo": 5,
                 "lost": false
               },
               {
@@ -129883,10 +129883,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 293,
+        "offPlacements": 295,
         "offGoal": 434,
-        "offPct": 67.5,
-        "offToGo": 141,
+        "offPct": 68.0,
+        "offToGo": 139,
         "on_packages": {
           "families": [
             {
@@ -130270,10 +130270,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 15,
         "goalsRetained": 2,
-        "overallHeld": 317,
+        "overallHeld": 319,
         "overallGoal": 483,
-        "overallPct": 65.6,
-        "overallToGo": 166,
+        "overallPct": 66.0,
+        "overallToGo": 164,
         "hasAnyGoal": true
       },
       "Nick Melissari": {
@@ -133164,11 +133164,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 70,
+            "placements": 71,
             "goal": 98,
-            "pct": 71.4,
+            "pct": 72.4,
             "retained": false,
-            "toGo": 28,
+            "toGo": 27,
             "inReport": true,
             "products": [
               {
@@ -133183,12 +133183,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 15,
+                "placements": 16,
                 "base": 23,
                 "goal": 23,
-                "pct": 65.2,
+                "pct": 69.6,
                 "retained": false,
-                "toGo": 8,
+                "toGo": 7,
                 "lost": false
               },
               {
@@ -133645,10 +133645,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 398,
+        "offPlacements": 399,
         "offGoal": 524,
-        "offPct": 76.0,
-        "offToGo": 126,
+        "offPct": 76.1,
+        "offToGo": 125,
         "on_packages": {
           "families": [
             {
@@ -134633,10 +134633,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 15,
         "goalsRetained": 2,
-        "overallHeld": 486,
+        "overallHeld": 487,
         "overallGoal": 676,
-        "overallPct": 71.9,
-        "overallToGo": 190,
+        "overallPct": 72.0,
+        "overallToGo": 189,
         "hasAnyGoal": true
       },
       "Paul Mclaughlin": {
@@ -136754,11 +136754,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
-            "placements": 91,
+            "placements": 92,
             "goal": 109,
-            "pct": 83.5,
+            "pct": 84.4,
             "retained": false,
-            "toGo": 18,
+            "toGo": 17,
             "inReport": true,
             "products": [
               {
@@ -136783,12 +136783,12 @@ const PROGRAM_DATA_2026_09 = {
               },
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 22,
+                "placements": 23,
                 "base": 25,
                 "goal": 25,
-                "pct": 88.0,
+                "pct": 92.0,
                 "retained": false,
-                "toGo": 3,
+                "toGo": 2,
                 "lost": false
               },
               {
@@ -137255,10 +137255,10 @@ const PROGRAM_DATA_2026_09 = {
         "inReport": true,
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
-        "offPlacements": 434,
+        "offPlacements": 435,
         "offGoal": 543,
-        "offPct": 79.9,
-        "offToGo": 109,
+        "offPct": 80.1,
+        "offToGo": 108,
         "on_packages": {
           "families": [
             {
@@ -137464,10 +137464,10 @@ const PROGRAM_DATA_2026_09 = {
         },
         "goalsTotal": 11,
         "goalsRetained": 6,
-        "overallHeld": 440,
+        "overallHeld": 441,
         "overallGoal": 550,
-        "overallPct": 80.0,
-        "overallToGo": 110,
+        "overallPct": 80.2,
+        "overallToGo": 109,
         "hasAnyGoal": true
       },
       "Robin Feldman": {
@@ -139819,10 +139819,10 @@ const PROGRAM_DATA_2026_09 = {
       {
         "key": "corona_gaintain",
         "label": "Corona Gaintain",
-        "total": 1263,
+        "total": 1292,
         "goal": 1610,
         "met": false,
-        "short": 347,
+        "short": 318,
         "baseWindow": "9/1/2025 - 11/30/2025"
       },
       {
@@ -139976,14 +139976,14 @@ const PROGRAM_DATA_2026_09 = {
         }
       ]
     },
-    "houseTotal": 6990,
+    "houseTotal": 7019,
     "houseGoal": 8857,
     "retainThresholdPct": 100,
     "periodStart": "2026-09-01",
     "periodEnd": "2026-11-30",
     "periodDays": 91,
-    "daysElapsed": 30,
-    "pacePct": 33.0,
+    "daysElapsed": 31,
+    "pacePct": 34.1,
     "meta": {
       "onPrem": {
         "packages": {
@@ -143117,8 +143117,8 @@ const PROGRAM_DATA_2026_09 = {
     "periodStart": "2026-09-01",
     "periodEnd": "2026-11-30",
     "periodDays": 91,
-    "daysElapsed": 30,
-    "pacePct": 33.0,
+    "daysElapsed": 31,
+    "pacePct": 34.1,
     "meta": {
       "offRoster": []
     }
@@ -170851,5 +170851,5 @@ const PROGRAM_DATA_2026_10 = {
     }
   }
 };
-const PROGRAM_DATA_REFRESHED = "Sep 30, 2026, 3:44 PM ET";
-const PROGRAM_DATA_REFRESHED_AT = "2026-09-30T19:44:18Z";
+const PROGRAM_DATA_REFRESHED = "Oct 1, 2026, 10:34 AM ET";
+const PROGRAM_DATA_REFRESHED_AT = "2026-10-01T14:34:56Z";

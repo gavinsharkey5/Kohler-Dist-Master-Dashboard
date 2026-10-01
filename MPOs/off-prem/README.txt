@@ -943,6 +943,38 @@ on both boards: dated tables, Details toggles with photo links (cooler
 doors, Bardstown), Adam Badalamenti's Bardstown detail, no horizontal scroll
 at 390px, and the hub's off-prem tab still renders.
 
+2026-10-01 REFRESH -- all four exports plus Promos_Report_41 (final September pull)
+    python3 generate_2026-09.py --merge-cooler-doors Promos_Report_41.xlsx
+Diffed row by row before the run. Keystone (274 rows) is IDENTICAL to the
+9/30 file, so that objective holds (216 accounts, 11 of 26 reps at 40%);
+keystone-ice/actuals.csv already matched it, nothing to sync there.
+Constellation 123 -> 123 rows, restated in place, every move upward. Fever
+Tree 2,337 -> 2,335 and Wine & Spirits 2,984 -> 2,982: rows only REMOVED,
+none added -- the export is the record, so they drop:
+  Fever Tree      184 -> 182 new placements. JIM HEANEY 10 -> 8, FALLS
+                  BELOW GOAL: his 9/30 Lucky 7 (A) Ginger Beer and Club Soda
+                  500 mL rows are gone from this pull. 8 reps at 10 now.
+  Wine & Spirits  381 -> 379 new placements. Brian Sengebush 7 -> 5 (still
+                  at goal): his 9/30 Krogh's Restaurant & Brew Pub Bardstown
+                  Discovery 2026 and Lochs of Jura rows are gone.
+  Constellation   1,271 -> 1,300 placements this fall against 1,628 last
+                  fall; still 23 of 24 reps at 30%. Anthony Palmisano 44 ->
+                  52, Chris Payton 94 -> 98, Matt Powierski 124 -> 128,
+                  Derrick Laws 108 -> 111, +2 Klejdi Lamo, Mike Ast, +1 Dan
+                  Lagala, Jayson Romine, Jim Heaney, John O'Donoghue, Pablo
+                  Lopez, Phil Ernst.
+  POS stickers    Promos_Report_41 (window 9/1-9/30) held 104 rows, all
+                  Cooler Door Wrap: 5 new, 99 already published -> archive
+                  105 rows. 87 -> 92 distinct, 10 -> 12 reps at 5: KLEJDI
+                  LAMO 1 -> 5 (new at goal -- Boonton Liquor Locker, Main
+                  Street Liquor, Wharton Liquor Store x2, 9/30) and JIM
+                  HEANEY 4 -> 5 (new at goal -- Savers Club Liquor Locker,
+                  9/30). "patrick infante" still matches nobody on the roster.
+  Target lists    Keystone 277; Fever Tree 328.
+The Corona Gaintain export also went onto
+incentive-tracking/data/constellation_fall_corona_gaintain_off.csv (sync
+rule) and incentive-tracking was rebuilt. Hub cache tag bumped (20261001a).
+
 2026-09-30 REFRESH -- all four exports plus Promos_Report_39
     python3 generate_2026-09.py --merge-cooler-doors Promos_Report_39.xlsx
 Diffed row by row before the run. Keystone (274 rows) and Fever Tree (2,337
