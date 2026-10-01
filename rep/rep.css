@@ -173,3 +173,6 @@ html.kdh-rep #kicker{display:none}
   .tiles .row:only-child{display:flex}
   .tiles .row:only-child .row-main{display:flex}
 }
+/* Today rows: title, why, a count on the right (2026-10-01) */
+.today .trow{min-height:58px}
+.tcount{flex:none;min-width:32px;height:28px;padding:0 9px;border-radius:999px;background:var(--kdh-warn-soft);color:var(--warn);font-weight:700;font-size:14px;display:inline-flex;align-items:center;justify-content:center;font-variant-numeric:tabular-nums}

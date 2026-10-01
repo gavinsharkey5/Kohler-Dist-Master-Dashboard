@@ -242,11 +242,7 @@ function renderList(){
     ${missing.length ? `<div class="kdh-state unavailable"><b>No account list on file for ${E(missing.join(', '))}.</b><span>The customer base report has no accounts under that name, or the data slice has not been generated.</span></div>` : ''}
     ${!SCOPE.length ? `<div class="kdh-state unavailable"><b>We couldn’t find your name on the customer base.</b><span>You’re signed in as ${E(U ? U.name : '')}. Ask Gavin to check the spelling on the access list.</span></div>` : ''}
     <p class="count">${shown.length===rows.length ? '' : `${shown.length} of `}${plural(rows.length,'account')}${state.need || state.fam ? ' · filtered' : ''}</p>
-    <div class="rows" id="rows">${shown.slice(0, state.limit).map(({a, rep, nd})=>{
-      return `<a class="row" href="${acctHash(a.n, rep)}" data-n="${E(a.n)}" data-rep="${E(rep)}">
-        <span class="row-main"><h3>${E(a.name)}</h3><span class="row-s">${E([a.city, '#'+a.n, premWord(a.prem)].filter(Boolean).join(' · '))}${isMgr ? ` · <span class="rep">${E(rep)}</span>` : ''}</span>${attHtml(a, nd)}</span>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></a>`; }).join('')}
-      ${!shown.length && rows.length ? `<div class="kdh-state empty"><b>No account matches.</b></div>` : ''}</div>
+    <div id="rows">${listBody(shown, rows)}</div>
     ${shown.length>state.limit ? `<button class="btn outline more" id="more" type="button">Show ${Math.min(120, shown.length-state.limit)} more of ${shown.length}</button>` : ''}`;
   const mb = $('#more'); if(mb) mb.addEventListener('click', ()=>{ state.limit += 120; const y = window.scrollY; renderList(); window.scrollTo(0, y); });
   $('#q').addEventListener('input', e=>{ state.q = e.target.value; history.replaceState(null,'',listHash()); const list = $('#rows'); if(list) renderListRowsOnly(); });
@@ -255,6 +251,32 @@ function renderList(){
   const ks = $('#kindSel'); if(ks) ks.addEventListener('change', e=>{ state.kind = e.target.value; history.replaceState(null,'',listHash()); render(); });
   $('#famSel').addEventListener('change', e=>{ state.fam = e.target.value; history.replaceState(null,'',listHash()); render(); });
   const fc = $('#famClear'); if(fc) fc.addEventListener('click', ()=>{ state.fam = ''; history.replaceState(null,'',listHash()); render(); });
+}
+// One list row: name, town · # · premise (· rep), the attention block.
+function rowHtml({a, rep, nd}){
+  return `<a class="row" href="${acctHash(a.n, rep)}" data-n="${E(a.n)}" data-rep="${E(rep)}">
+        <span class="row-main"><h3>${E(a.name)}</h3><span class="row-s">${E([a.city, '#'+a.n, premWord(a.prem)].filter(Boolean).join(' · '))}${isMgr ? ` · <span class="rep">${E(rep)}</span>` : ''}</span>${attHtml(a, nd)}</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></a>`;
+}
+// NEEDS ATTENTION, BY REASON (2026-10-01, Todoist's Overdue / Today
+// sections): each account once, under its strongest reason, in this order.
+// Filtering is unchanged (matchesNeed); this only orders and labels.
+const GROUPS = [
+  ['follow', 'Follow-ups', nd=>nd.follow>0],
+  ['tap', 'Tap survey due', nd=>!!nd.tap],
+  ['prog', 'Program leads', nd=>nd.progs>0],
+  ['alert', 'Possible reorders & lapsed buyers', nd=>nd.reorder>0 || nd.lapsed>0],
+  ['slower', 'Buying less often', nd=>nd.slower>0 || nd.lessOften],
+];
+function listBody(shown, rows){
+  if(!shown.length) return rows.length ? `<div class="kdh-state empty"><b>No account matches.</b><span>Clear the search or pick another filter.</span></div>` : '';
+  const grouped = state.need==='any' && !state.kind;
+  if(!grouped) return `<div class="rows">${shown.slice(0, state.limit).map(rowHtml).join('')}</div>`;
+  const by = GROUPS.map(g=>({g, list: []}));
+  shown.forEach(x=>{ const i = GROUPS.findIndex(g=>g[2](x.nd)); (by[i>=0 ? i : by.length-1].list).push(x); });
+  let left = state.limit;
+  return by.filter(b=>b.list.length).map(b=>{ const take = b.list.slice(0, Math.max(0, left)); left -= take.length; if(!take.length) return '';
+    return `<h3 class="lgroup" data-g="${b.g[0]}">${E(b.g[1])} <span>${b.list.length}</span></h3><div class="rows">${take.map(rowHtml).join('')}</div>`; }).join('');
 }
 function renderListRowsOnly(){ const y = window.scrollY; renderList(); const q = $('#q'); q.focus(); q.setSelectionRange(q.value.length, q.value.length); window.scrollTo(0, y); }
 
@@ -327,7 +349,7 @@ async function renderAccount(){
     focus.push({kind: t.warm ? 'Program lead' : 'Program ending soon', t:E(H.sellAsk(t.p)), w:`${E(t.p.shortName||t.p.name)} (${E(t.p.supplier)}) · ${E(t.why || 'this account is eligible and not buying it yet')} · ${E(H.endsLabel(t.p.period))}.`, n:`You are at ${f.main}${f.need && f.need!=='Goal met' ? ' — '+f.need : ''}.`, href:progLink(t.p, rep), hl:'Program details'});
   });
   // strongest buying alerts: lapsed before possible reorder, biggest usual order first (patterns.py's order)
-  alerts.filter(x=>x.type!=='slower').slice(0,2).forEach(x=>focus.push({kind: KIND[x.type], t: x.type==='lapsed' ? `No recent purchase of ${E(x.product)}` : `Ask about ${E(x.product)}`, w: E(alertWhy(x))+'.', caveat:1, n: x.type==='lapsed' ? 'Find out whether they stopped or switched — the data shows the gap, not the reason.' : 'Check whether they need a reorder — a gap in the data, not a confirmed need.', go:'sales:alerts', hl:'See the alert'}));
+  alerts.filter(x=>x.type!=='slower').slice(0,2).forEach(x=>focus.push({kind: KIND[x.type], t: x.type==='lapsed' ? `No recent purchase of ${E(x.product)}` : `Ask about ${E(x.product)}`, w: E(alertWhy(x))+'.', ws: `Last bought ${E(monLabel(x.last))} · usually ${E(every(x.interval))}${x.switch ? ` · ${E(x.family)} still bought` : ''}`, cs: x.type==='lapsed' ? 'A gap in the data, not a confirmed reason.' : 'A gap in the data, not a confirmed need.', caveat:1, n: x.type==='lapsed' ? 'Find out whether they stopped or switched — the data shows the gap, not the reason.' : 'Check whether they need a reorder — a gap in the data, not a confirmed need.', go:'sales:alerts', hl:'See purchase history'}));
   if(F.patterns && F.patterns.lessOften && !alerts.length) focus.push({kind:'Buying less often', t:'Purchasing less frequently', w:`${F.patterns.freq.recent6} buying ${F.patterns.freq.recent6===1?'month':'months'} in ${E(rangeLabel(months, R-5, R+1))} vs ${F.patterns.freq.prior6} in ${E(rangeLabel(months, R-11, R-5))}.`, caveat:1, n:'Ask what changed — a slower pattern in the data, not a confirmed problem.', go:'sales:patterns', hl:'See buying patterns'});
   const top = focus.slice(0,3);
 
@@ -468,14 +490,34 @@ async function renderAccount(){
     tapsHtml = `<div class="card"><p>No tap survey on file for this account in the current export (${E((d.taps.asOf||'').slice(0,10))}).</p></div>`;
   }
 
-  const focusHtml = top.length ? `<div class="focus">${top.map((f,i)=>`<div class="fitem"><div class="fmain"><span class="fkind">${E(f.kind)}</span><div class="ft">${f.t}</div><p class="fw">${f.w}</p>${f.caveat ? `<p class="fw cav">${E(f.n)}</p>` : ''}<p class="fn">${f.go ? `<a href="${E(acctHash(a.n, rep, f.go.split(':')[0]))}" data-go="${E(f.go)}">${E(f.hl)} ›</a>` : `<a href="${E(f.href)}">${E(f.hl)} ›</a>`}</p></div></div>`).join('')}</div>`
+  // NEXT ACTIONS (2026-10-01, Jobber / Todoist rows): the whole row opens the
+  // evidence; one short line says why; the full reasoning lives one tap away.
+  const focusHtml = top.length ? `<div class="focus nexta">${top.map(f=>{ const href = f.go ? acctHash(a.n, rep, f.go.split(':')[0]) : f.href;
+      return `<a class="fitem" href="${E(href)}"${f.go ? ` data-go="${E(f.go)}"` : ''}><div class="fmain"><span class="fkind">${E(f.kind)}</span><div class="ft">${f.t}</div><p class="fw">${f.ws || f.w}</p>${f.caveat ? `<p class="fw cav">${E(f.cs || f.n)}</p>` : ''}<span class="fgo">${E(f.hl)}</span></div>${CHEV}</a>`; }).join('')}</div>`
     : `<div class="kdh-state empty"><b>Nothing flagged for this account right now.</b><span>No open follow-up, no program target, no overdue survey and no buying alert in the data through ${E(monLabel(refKey))}.</span></div>`;
+
+  /* ---- Buying at a glance (2026-10-01): three numbers, the alerts in one line, one way to the evidence ---- */
+  let buyHtml;
+  if(sales && sales.products.length){
+    const s2 = sales.series; const li = (()=>{ for(let i=N-1;i>=0;i--) if(s2[i]>0) return i; return -1; })();
+    const l3 = sumRange(s2, N-3, N), p3 = sumRange(s2, N-6, N-3);
+    const cnt1 = F.counts || {};
+    const al = [cnt1.reorder ? plural(cnt1.reorder,'possible reorder') : '', cnt1.lapsed ? plural(cnt1.lapsed,'lapsed product') : '', cnt1.slower ? cnt1.slower+' bought less often' : ''].filter(Boolean);
+    const big = alerts.filter(x=>x.type!=='slower')[0];
+    buyHtml = `<div class="card buy">
+      <div class="kpis"><div><span>Last purchase</span><b>${li>=0 ? E(monLabel(months[li])) : '—'}</b></div>
+        <div><span>Cases ${E(rangeLabel(months,N-3,N))}</span><b>${fmtN(l3)}</b><small>${E(rangeLabel(months,N-6,N-3))}: ${fmtN(p3)}</small></div>
+        <div><span>Products, 12 months</span><b>${sales.products.filter(p=>sumRange(p[5],N-12,N)>0).length}</b></div></div>
+      ${al.length ? `<p class="buy-al"><b>Buying alerts:</b> ${E(al.join(' · '))}${big ? `. Largest: ${E(big.product)}.` : '.'}</p>` : `<p class="buy-al">No buying alerts in the data through ${E(monLabel(refKey))}.</p>`}
+      <a class="btn outline wide" href="${E(acctHash(a.n, rep, 'sales'))}" data-go="sales:sales">See purchase history &amp; alerts</a>
+    </div>`;
+  } else buyHtml = `<div class="card"><p>${a.inMaster===false ? 'This account number is not in the sales master, so there is no purchase history.' : 'No cases on record in the loaded months.'}</p></div>`;
 
   /* ---- Overview: identity + servicing (what the exports carry), then the Focus, then an at-a-glance index ---- */
   const kvl = (l, v) => v ? `<div class="kv"><span>${l}</span><span>${v}</span></div>` : '';
   const sizeTxt = a.sizeClass ? `Class ${E(a.sizeClass)}${a.decile ? ` · decile ${a.decile} by 2026 gross` : ''}` : '';
   const identHtml = `<div class="card dgroup">
-      <div class="kv addr"><span>Address</span><span>${a.address ? `${E(a.address)}, ${E(a.city||'')}<a class="btn outline dirbtn" href="${E(mapsHref(a))}" target="_blank" rel="noopener">Directions</a>` : `${E(a.city||'')}${a.city ? ' · ' : ''}<span class="dim">street address not in the customer base export</span>`}</span></div>
+      ${a.address ? '' : `<div class="kv addr"><span>Address</span><span>${E(a.city||'')}${a.city ? ' · ' : ''}<span class="dim">street address not in the customer base export</span></span></div>`}
       ${kvl('Premise', [premWord(a.prem), a.service].filter(Boolean).join(' · '))}
       ${kvl('Area', [a.area, a.county ? a.county+' County' : ''].filter(Boolean).join(' · '))}
       ${kvl('Size', sizeTxt)}
@@ -485,11 +527,12 @@ async function renderAccount(){
     </div>`;
   // one line per section: the number that matters, and where it lives
   const glance = [];
-  if(sales && sales.products.length){ const s2 = sales.series; const li = (()=>{ for(let i=N-1;i>=0;i--) if(s2[i]>0) return i; return -1; })();
+  if(false){ const s2 = sales.series; const li = 0;
     glance.push(['sales','sales', 'Sales & products', `Last purchase ${li>=0 ? monLabel(months[li]) : '—'} · ${fmtN(sumRange(s2, N-3, N))} cases in ${rangeLabel(months,N-3,N)} · ${plural(sales.products.filter(p=>sumRange(p[5],N-12,N)>0).length,'product')} in 12 months`]);
-  } else glance.push(['sales','sales','Sales & products', a.inMaster===false ? 'No sales history for this account number' : 'No cases on record']);
+  }
+  glance.push(['sales','products','Products', 'Previously purchased and everything you can sell here, with warehouse stock']);
   const cnt0 = F.counts || {};
-  if(alerts.length || (F.patterns && F.patterns.lessOften)) glance.push(['sales','alerts','Buying alerts', [cnt0.reorder ? plural(cnt0.reorder,'possible reorder') : '', cnt0.lapsed ? plural(cnt0.lapsed,'lapsed product') : '', cnt0.slower ? cnt0.slower+' bought less often' : '', (F.patterns && F.patterns.lessOften) ? 'purchasing less frequently' : ''].filter(Boolean).join(' · ')]);
+  if(false) glance.push(['sales','alerts','Buying alerts', [cnt0.reorder ? plural(cnt0.reorder,'possible reorder') : '', cnt0.lapsed ? plural(cnt0.lapsed,'lapsed product') : '', cnt0.slower ? cnt0.slower+' bought less often' : '', (F.patterns && F.patterns.lessOften) ? 'purchasing less frequently' : ''].filter(Boolean).join(' · ')]);
   glance.push(['inv','inv','Invoices & balances', 'Monthly purchase record on file · invoices, receivables and backorders not connected yet']);
   const openProg = idx.programs.filter(p=>{ const cred = credited.some(c=>c.p===p); const tg = targets.find(t=>t.p===p); return cred || (tg && tg.warm); }).length;
   glance.push(['tasks','programs','Programs', `${plural(idx.programs.length,'active program')} for ${rep.split(' ')[0]}${openProg ? ` · ${openProg} credited or a lead here` : ''}${credited.length ? ` · ${plural(credited.length,'credit')}` : ''}`]);
@@ -519,14 +562,24 @@ async function renderAccount(){
   const toolsHtml = `<div class="rows">${toolRows.join('')}</div>
     <div class="card" style="margin-top:10px"><div class="kdh-state unavailable slim"><b>iSellBeer, DSDLink, PayLink, the license lookup, surveys, assets and documents stay in Encompass for now.</b><span>No account-specific link for them is documented to us yet; the reporting request asks for the link formats before anything here pretends to open them.</span></div></div>`;
 
+  /* ---- record header (Jobber pattern): status, name, where, the main action ---- */
+  const nAct = top.length;
+  const headFull = `<div class="acct-head rec">
+      <p class="rec-st ${nAct ? 'att' : 'ok'}"><span class="dot"></span>${nAct ? `${plural(nAct,'thing')} to do here` : 'Nothing flagged right now'}</p>
+      <h1>${E(a.name)}</h1>
+      <p class="sub">${E([a.city, premWord(a.prem), 'Account #'+a.n].filter(Boolean).join(' · '))}${isMgr ? `<span class="sub2"> · Rep: ${E(rep)}</span>` : ''}</p>
+      ${a.address ? `<p class="rec-addr">${E(a.address)}, ${E(a.city||'')}</p><a class="btn outline wide dirbtn rec-dir" href="${E(mapsHref(a))}" target="_blank" rel="noopener">Directions</a>` : ''}
+    </div>`;
+
   /* ---- assemble: four sections, one open ---- */
   const secnav = `<nav class="secnav" role="tablist" aria-label="Account sections">${SECS.map(([k, long, short])=>`<a role="tab" class="sectab${state.sec===k?' active':''}" aria-selected="${state.sec===k}" href="${E(acctHash(a.n, rep, k))}" data-sec="${k}"><span class="long">${E(long)}</span><span class="short">${E(short)}</span></a>`).join('')}</nav>`;
   const secHtml = (k, inner) => `<div class="secbody" data-sec="${k}"${state.sec===k ? '' : ' hidden'}>${inner}</div>`;
-  app.innerHTML = back(fromLabel, fromHref) + headHtml + secnav
+  app.innerHTML = back(fromLabel, fromHref) + headFull + secnav
     + secHtml('over', `
-    <section class="sec" id="focus"><h2>Focus for this account</h2>${focusHtml}</section>
-    <section class="sec" id="overview"><h2>Details &amp; servicing</h2>${identHtml}</section>
-    <section class="sec" id="glance"><h2>At a glance</h2>${glanceHtml}</section>`)
+    <section class="sec" id="focus"><h2>Next actions</h2>${focusHtml}</section>
+    <section class="sec" id="buying"><h2>Buying <small>through ${E(monLabel(refKey))}</small></h2>${buyHtml}</section>
+    <section class="sec" id="overview"><h2>Contact &amp; servicing</h2>${identHtml}</section>
+    <section class="sec" id="glance"><h2>More for this account</h2>${glanceHtml}</section>`)
     + secHtml('sales', `
     <section class="sec"><h2>Sales &amp; reorders <small>Fusion, through ${E(monLabel(refKey))}</small></h2>${salesHtml}</section>
     ${patHtml ? `<section class="sec"><h2>Buying patterns <small>${E(monLabel(months[0]))} – ${E(monLabel(refKey))}</small></h2>${patHtml}</section>` : ''}
@@ -542,7 +595,7 @@ async function renderAccount(){
     <section class="sec" id="tools"><h2>Tools &amp; links</h2>${toolsHtml}</section>`)
     + secHtml('ask', `
     <section class="sec" id="ask"><h2>Ask about this account <small>data through ${E(monLabel(refKey))}</small></h2><div class="card ask" id="askCard"></div></section>`)
-    + `<p class="fresh-foot">Customer base as of ${E(d.book.asOf)} · sales master through ${E(monLabel(months[N-1]))} (loaded ${E((d.sales.loaded||'').slice(0,10))}, monthly, net of returns) · warehouse availability as of ${E((CAT.inventory && CAT.inventory.asOf) || '—')} · programs as refreshed in the hub · tap survey as of ${E((d.taps.asOf||'').slice(0,10))}. Buying alerts use the last complete month (${E(monLabel(refKey))}) as today, so nothing grows more overdue than the data; rules and thresholds are in accounts/README.txt.</p>`;
+    + `<details class="about-data"><summary>About this data</summary><p class="fresh-foot">Customer base as of ${E(d.book.asOf)} · sales master through ${E(monLabel(months[N-1]))} (loaded ${E((d.sales.loaded||'').slice(0,10))}, monthly, net of returns) · warehouse availability as of ${E((CAT.inventory && CAT.inventory.asOf) || '—')} · programs as refreshed in the hub · tap survey as of ${E((d.taps.asOf||'').slice(0,10))}. Buying alerts use the last complete month (${E(monLabel(refKey))}) as today, so nothing grows more overdue than the data; rules and thresholds are in accounts/README.txt.</p></details>`;
   if(plist.n !== String(a.n)){ Object.assign(plist, {n:String(a.n), q:'', view: (sales && sales.products.length) ? 'bought' : 'all', sup:'', fam:'', pkg:'', limit:40}); }
   renderProducts(a, rep, sales, CAT, months, N, targets);
   // the assistant gets a packet of what this page already shows -- nothing more

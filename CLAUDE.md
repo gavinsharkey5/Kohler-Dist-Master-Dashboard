@@ -1151,6 +1151,57 @@ heading (e80e5692-9bdd-41ac-81df-25e8dd7e104a), Upcoming day sections
 Tags: kdh-user.js 20261001a, kdh.css / kdh-skin.css 20261001a, rep.css
 20261001a, accounts.css / accounts.js 20261001a.
 
+## Redesign on the Jobber pattern: Today, records, trackers (2026-10-01, second pass)
+
+Gavin's brief: the first pass kept too much of the old structure; this one
+restructures screens around the rep's loop -- find an account, see what
+needs attention, open the evidence, act, come back. ONE primary visual
+language: Jobber iOS (field service). Mobbin screens inspected: Jobber
+request record fd3c5053-9fe6-42f0-9ea5-a5e1e1ef2df3 (status line, title,
+address, full-width Directions, primary actions, tabs), Jobber job
+fb82e72d-18f7-41ae-9127-6ec221711f74 (sections with arrow rows), Jobber
+today's appointments f50ec472-c3f8-4bdc-8bd5-dbd856936025; ShopBack
+"Criteria to be met" 01cb698b-79fa-40a2-a23c-ee861b27ace0 (what is still
+missing, in words); Mesh timeline 9bb39df5-fb13-4cf5-b659-1df2e3e0d722;
+plus the Shopify / Todoist screens of the first pass. NOT on Mobbin:
+Square's seller app (only the consumer Square Go profile), Pipedrive,
+HubSpot. What holds now:
+- REP HOME (rep/index.html `today()`): "Needs attention on your route"
+  under the name -- Possible reorders, Lapsed buyers, Tap surveys due
+  (counts from the rep's own accounts/data/reps/<key>.json, the key looked
+  up in accounts/data/index.json via kdhMatchName -- kdhNameKey's format is
+  NOT the file key) and "Everything that needs attention"; each row opens
+  /accounts/ already filtered (`need=any&kind=...`, `rep=` for a manager).
+  Same rules as the list (patterns.py alerts, tap >= 53 days), so the
+  numbers match. Then tools as cards.
+- MY ACCOUNTS: Needs attention (no reason picked) is grouped into Todoist
+  sections -- Follow-ups, Tap survey due, Program leads, Possible reorders
+  & lapsed buyers, Buying less often -- each account ONCE under its
+  strongest reason (`GROUPS` / `listBody()`); matchesNeed is unchanged.
+  The search + segmented filter bar is sticky (not while More filters is
+  open). `rowHtml()` is the one row renderer.
+- ACCOUNT PAGE (record): header = status line ("3 things to do here" /
+  "Nothing flagged right now"), name, town · premise · #, street address,
+  a full-width labelled Directions button; then the section tabs.
+  Overview order: NEXT ACTIONS (rows that are links; alert items say
+  "Last bought <month> · usually every N months", with the one-line "a gap
+  in the data" caveat), BUYING (three numbers -- last purchase, cases in
+  the last 3 months vs the 3 before, products in 12 months -- the alert
+  counts and the largest alert in one line, and "See purchase history &
+  alerts" into Sales), CONTACT & SERVICING (address only when the export
+  lacks a street), MORE FOR THIS ACCOUNT (Products, Invoices, Programs,
+  Notes, Taps), and the data notes folded under "About this data".
+- RED BULL (redbull/index.html): rep view = progress card (Core+ of
+  buying accounts, N to finish, M one product away, rank + period), "Still
+  to finish" grouped One / Two products away with "Sell <missing>" in
+  words and the products it already buys, Core+ accounts folded, team-goal
+  cards, leaderboard, then "How it works" (the rule, the tag key, the goal
+  / period sentence from the old lede, the counting note). The lede is
+  hidden; period + data date are one quiet line. Managers on phones pick a
+  rep from `#repPick` (a select) instead of 13 chips. isComplete /
+  missingFor / repStats / ranked are untouched.
+- INCENTIVES (hub program screen) is the benchmark and is unchanged.
+
 ## Rep workspace: "Your follow-ups" strip (2026-09-28)
 
 `rep/index.html` has a `#fuSec` section between the banner and Programs:

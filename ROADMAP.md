@@ -147,6 +147,13 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-10-01 Redesign, second pass (Jobber pattern): rep home opens on
+  "Needs attention on your route" (reorders, lapsed buyers, surveys due,
+  each opening the filtered list); Needs attention grouped by reason; the
+  account page is a record -- status, address, Directions, Next actions,
+  a two-line buying summary with a way to the evidence, contact &
+  servicing, data notes folded; Red Bull opens on progress and the
+  accounts to finish with what to sell at each, rules under How it works.
 - [x] 2026-10-01 Navigation and readability pass (Shopify iOS + Todoist web
   references): labelled Home / Accounts / Incentives (+ Team for managers)
   in the top bar on iPad and desktop and as a bottom tab bar on phones, the

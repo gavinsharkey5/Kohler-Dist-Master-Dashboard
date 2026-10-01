@@ -19,7 +19,7 @@
 <link rel="preload" href="../assets/fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin>
 <!-- Theme before first paint: the saved choice, else the device setting (2026-09-30). -->
 <script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
-<link rel="stylesheet" href="rep.css?v=20261001a">
+<link rel="stylesheet" href="rep.css?v=20261001b">
 <!-- The top bar is injected by shared/kdh-user.js (badge, Previewing chip,
      account menu). kdh-home = this is a landing page: no Back button. -->
 <meta name="kdh-page" content="Rep home">
@@ -60,6 +60,15 @@
       <svg class="chev fold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
     </button>
     <div class="fu-box" id="fuList" hidden></div>
+  </section>
+
+  <!-- Today (2026-10-01, Jobber's "today" + Todoist's counts): what needs a
+       visit on this route, each row opening My Accounts already filtered.
+       Counts come from the rep's own account file (the same patterns.py
+       alerts and 60-day survey rule the list uses), so the numbers match. -->
+  <section class="section today" id="todaySec" hidden>
+    <h2>Needs attention on your route</h2>
+    <div class="rows" id="todayRows"></div>
   </section>
 
   <section class="section">
@@ -184,6 +193,42 @@
     $('c-hub').href = '../hub/#' + (name ? 'view=rep&rep=' + encodeURIComponent(name) + '&cat=inc&' : '') + 'only=inc';
     setMpoHref($('c-off')); setMpoHref($('c-on'));
     followUps(name);
+    today(name);
+  }
+  /* ---- Today: counts from the rep's account file, each row a filtered list ---- */
+  var todayFor = '';
+  function today(name){
+    var sec = $('todaySec'); todayFor = name;
+    if (!name) { sec.hidden = true; return; }
+    // the file key comes from the accounts index (rep name -> key), matched forgivingly
+    fetch('../accounts/data/index.json', { credentials: 'same-origin' })
+      .then(function(r){ return r.ok ? r.json() : null; }, function(){ return null; })
+      .then(function(ix){
+        var reps = (ix && ix.reps) || [], hit = reps.filter(function(x){ return x.rep === name; })[0];
+        if (!hit && window.kdhMatchName) { var m = window.kdhMatchName(name, reps.map(function(x){ return x.rep; })); hit = reps.filter(function(x){ return x.rep === m; })[0]; }
+        if (!hit) return null;
+        return fetch('../accounts/data/reps/' + encodeURIComponent(hit.key) + '.json', { credentials: 'same-origin' }).then(function(r){ return r.ok ? r.json() : null; }, function(){ return null; });
+      })
+      .then(function(d){
+        if (todayFor !== name) return;
+        if (!d || !d.accounts) { sec.hidden = true; return; }
+        var A = d.accounts, re = 0, la = 0, tp = 0, now = Date.now();
+        A.forEach(function(a){
+          var al = a.alerts || {}; if (al.reorder) re++; if (al.lapsed) la++;
+          if (a.taps && a.taps.last) { var days = Math.floor((now - new Date(a.taps.last + 'T12:00:00').getTime()) / 86400000); if (days >= 53) tp++; }
+        });
+        var base = '../accounts/#' + (isManager ? 'rep=' + encodeURIComponent(name) + '&' : '') + 'need=any';
+        var CH = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>';
+        var row = function(href, title, sub, n){ return '<a class="row trow" href="' + href + '"' + (n != null ? ' aria-label="' + title + ': ' + acc(n) + '"' : '') + '><span class="row-main"><h3>' + title + '</h3><span class="row-s">' + sub + '</span></span>' + (n != null ? '<span class="tcount" aria-hidden="true">' + n + '</span>' : '') + CH + '</a>'; };
+        var acc = function(n){ return n + ' account' + (n === 1 ? '' : 's'); };
+        var html = '';
+        if (re) html += row(base + '&kind=reorder', 'Possible reorders', 'A regular product past its usual gap', re);
+        if (la) html += row(base + '&kind=lapsed', 'Lapsed buyers', 'Stopped buying a regular product', la);
+        if (tp) html += row(base + '&kind=tap', 'Tap surveys due', 'Due or past the 60-day resurvey', tp);
+        html += row(base, 'Everything that needs attention', 'Follow-ups, program leads, surveys and buying alerts, by reason', null);
+        $('todayRows').innerHTML = html;
+        sec.hidden = false;
+      });
   }
   // The MPO rows keep the rep a manager is viewing (2026-09-29): the tracker
   // opens on that rep's page instead of asking again. A rep's own row opens
