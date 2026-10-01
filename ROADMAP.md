@@ -11,12 +11,6 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
-- [ ] **Per-rep data: one live check** (Gavin, 5 minutes, signed in as a rep
-  or with a rep's login on a spare device): open the Tap Tracker, Red Bull,
-  Carbliss, the Incentive Hub and an MPO tracker on kohlerdisthub.com and
-  confirm each shows that rep's page as before (not an error or a blank).
-  This confirms Vercel serves the per-rep copies the middleware points at.
-
 - [ ] **Account assistant: controlled pilot** (Gavin; api/README.txt
   "CONTROLLED PILOT" has the exact clicks). (1) Supabase SQL Editor: run
   `supabase/migrations/20260930210000_assistant_usage.sql`. (2) Anthropic
@@ -154,7 +148,7 @@ device, a decision).
   copies; middleware.js serves them; leaderboards and team totals stay as
   counts with no account names). Raw CSV exports and account size are
   refused to reps. Supplier logos now load for reps (they saw initials).
-  Live check for Gavin is in "Now" below.
+  Checked live by Gavin on 2026-10-01: rep pages work as before.
 - [x] 2026-10-01 Account size (class / decile) shown to managers only; manager
   switcher shows names only, the personal account as "(Personal)".
 - [x] 2026-10-01 Visual refinement, third pass: Inter everywhere (self-hosted),
