@@ -216,8 +216,13 @@
         var mgrs = team.filter(function(t){ return t.role === 'manager' && t.name; }).sort(function(a,b){ return a.name.localeCompare(b.name); });
         if (!mgrs.length) return;
         var sel = $('mgrSelect'); sel.innerHTML = '';
-        mgrs.forEach(function(m){ var o = document.createElement('option'); o.value = m.name; o.textContent = m.name + (m.title ? ' · ' + m.title : ''); o.dataset.title = m.title || ''; o.dataset.dm = m.reports_to || ''; sel.appendChild(o); });
-        var cur = user.name; if (mgrs.some(function(m){ return m.name === cur; })) sel.value = cur;
+        // names only (Gavin, 2026-10-01); when a name appears twice, the entry
+        // with no title is that person's personal (test) account
+        var seen = {}; mgrs.forEach(function(m){ seen[m.name] = (seen[m.name] || 0) + 1; });
+        var pick = -1;
+        mgrs.forEach(function(m, i){ var o = document.createElement('option'); o.value = m.name; o.textContent = m.name + (seen[m.name] > 1 && !m.title ? ' (Personal)' : ''); o.dataset.title = m.title || ''; o.dataset.dm = m.reports_to || ''; sel.appendChild(o);
+          if (m.name === user.name && (pick < 0 || m.title)) pick = i; });
+        if (pick >= 0) sel.selectedIndex = pick;
         $('mgrSwitch').hidden = false;
         $('mgrPreviewBtn').addEventListener('click', function(){
           if (!window.kdhSetPreview) return;

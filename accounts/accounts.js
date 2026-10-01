@@ -525,7 +525,8 @@ async function renderAccount(){
 
   /* ---- Overview: identity + servicing (what the exports carry), then the Focus, then an at-a-glance index ---- */
   const kvl = (l, v) => v ? `<div class="kv"><span>${l}</span><span>${v}</span></div>` : '';
-  const sizeTxt = a.sizeClass ? `Class ${E(a.sizeClass)}${a.decile ? ` · decile ${a.decile} by 2026 gross` : ''}` : '';
+  // account size (class + gross-profit decile) is for managers only (Gavin, 2026-10-01)
+  const sizeTxt = isMgr && a.sizeClass ? `Class ${E(a.sizeClass)}${a.decile ? ` · decile ${a.decile} by 2026 gross` : ''}` : '';
   const identHtml = `<div class="card dgroup">
       ${a.address ? '' : `<div class="kv addr"><span>Address</span><span>${E(a.city||'')}${a.city ? ' · ' : ''}<span class="dim">street address not in the customer base export</span></span></div>`}
       ${kvl('Premise', [premWord(a.prem), a.service].filter(Boolean).join(' · '))}
@@ -717,7 +718,7 @@ function buildPacket(x){
       brands: ((sales && sales.taps) || []).slice(0, 25).map(b=>({brand:b.b, side:b.s, handles:b.n})), earlierSurveys: a.taps.passes>1 ? a.taps.passes-1 : 0} : (a.prem==='On' ? {note:'on-premise account with no tap survey on file'} : null);
   return {
     v:1, rep, viewer: U ? {name:U.name, role:U.role, preview:!!U.preview} : null,
-    account: {n:a.n, name:a.name, city:a.city, county:a.county, area:a.area, premise:premWord(a.prem), service:a.service||null, address:a.address||null, sizeClass:a.sizeClass||null, decile:a.decile||null, stops2026:a.stops2026, distributionPoints2026:a.distPts, cases2026:a.cases2026},
+    account: {n:a.n, name:a.name, city:a.city, county:a.county, area:a.area, premise:premWord(a.prem), service:a.service||null, address:a.address||null, sizeClass:isMgr ? a.sizeClass||null : null, decile:isMgr ? a.decile||null : null, stops2026:a.stops2026, distributionPoints2026:a.distPts, cases2026:a.cases2026},
     data: {salesThrough: months[N-1], referenceMonth: refKey, referenceMonthLabel: monLabel(refKey), firstMonth: months[0], firstMonthLabel: monLabel(months[0]), monthsLoaded: months.length, salesLoaded: (d.sales && d.sales.loaded || '').slice(0,10), bookAsOf: d.book.asOf, tapsAsOf: (d.taps.asOf||'').slice(0,10), warehouseAsOf: (CAT.inventory && CAT.inventory.asOf) || null,
            grain: 'cases per product per calendar month, net of returns; no invoice dates, no dollars'},
     monthlyCases: sales ? lab12.map((m,i)=>[m, last12(sales.series)[i]]) : [],

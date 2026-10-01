@@ -1552,3 +1552,10 @@ headings / nav / tabs; h1/h2 size+weight). Tags: kdh-user.js 20261001c,
 kdh-skin.css 20261001c, kdh.css 20261001c, rep.css 20261001c,
 accounts.css / accounts.js 20261001c, assistant.js 20261001a, hub.js /
 hub.css 20261001a, guided.css / guided.js 20261001a.
+Follow-up the same day (Gavin): ACCOUNT SIZE (class + gross-profit decile)
+is MANAGERS ONLY -- the Account page's "Size" row and the assistant's
+packet (accounts.js `isMgr`, api/chat.js `viewer.role`) drop it for a rep
+and for a manager previewing a rep. The manager home's "Viewing as"
+switcher (Gavin only) lists NAMES ONLY; when a name appears twice the
+untitled entry is the personal test account, labelled "Gavin Sharkey
+(Personal)", and the work account is selected by default.

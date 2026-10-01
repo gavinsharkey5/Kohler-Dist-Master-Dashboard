@@ -147,6 +147,8 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-10-01 Account size (class / decile) shown to managers only; manager
+  switcher shows names only, the personal account as "(Personal)".
 - [x] 2026-10-01 Visual refinement, third pass: Inter everywhere (self-hosted),
   one type scale, neutral Shopify-style surfaces with a single Kohler blue
   accent, no decorative gradients, Title Case headings / nav / tabs, shorter

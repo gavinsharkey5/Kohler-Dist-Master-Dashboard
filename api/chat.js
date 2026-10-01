@@ -310,7 +310,7 @@ function packetFor(R, viewer, notes, meta) {
   const premise = row.prem === 'On' ? 'On-premise' : row.prem === 'Off' ? 'Off-premise' : '';
   return {
     v: 2, source: 'server-built from Kohler exports', rep: R.route.rep, viewer,
-    account: { n: row.n, name: row.name, city: row.city, county: row.county, area: row.area, premise, service: row.service || null, address: row.address || null, sizeClass: row.sizeClass || null, decile: row.decile || null, stops2026: row.stops2026, distributionPoints2026: row.distPts, cases2026: row.cases2026, inSalesRecord: !!(products.length) },
+    account: { n: row.n, name: row.name, city: row.city, county: row.county, area: row.area, premise, service: row.service || null, address: row.address || null, sizeClass: viewer.role === 'manager' ? row.sizeClass || null : null, decile: viewer.role === 'manager' ? row.decile || null : null, stops2026: row.stops2026, distributionPoints2026: row.distPts, cases2026: row.cases2026, inSalesRecord: !!(products.length) },
     coverage: {
       record: products.length ? `every product this account bought from Kohler, cases per calendar month, ${monLabel(months[0])} – ${monLabel(months[N - 1])} (${N} months), net of returns; ${products.length} products on record` : 'no sales rows for this account in the loaded months',
       inline: products.length ? `"products" below lists the ${inline.length} largest of the last 12 months (plus every product on alert); the other ${Math.max(0, products.length - inline.length)} are reachable only through the tools` : 'nothing inline',
