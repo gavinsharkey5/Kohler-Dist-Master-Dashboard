@@ -2,6 +2,61 @@
   {
     "REP": "Klejdi Lamo",
     "SOURCE": "Promo",
+    "CUSTOMER_NAME": "BOONTON LIQUOR LOCKER",
+    "CITY": "BOONTON",
+    "BRAND": "KEYSTONE ICE",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "09/30/2026 02:30 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/6d80e546-d397-4737-bcbf-1ee2f4495210/"
+  },
+  {
+    "REP": "Klejdi Lamo",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "MAIN STREET LIQUOR",
+    "CITY": "WHARTON",
+    "BRAND": "KEYSTONE ICE",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "09/30/2026 11:49 AM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/761b6c00-b83b-42d7-9b46-095475c401cc/"
+  },
+  {
+    "REP": "Jim Heaney",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "SAVERS CLUB LIQUOR LOCKER",
+    "CITY": "CLIFTON",
+    "BRAND": "TALKHOUSE ENCORE VARIETY PACK",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "09/30/2026 11:02 AM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/290aaf8f-a33e-4752-b597-812290eb9de1/"
+  },
+  {
+    "REP": "Klejdi Lamo",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "WHARTON LIQUOR STORE",
+    "CITY": "WHARTON",
+    "BRAND": "MONACO",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "09/30/2026 10:39 AM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/f436217a-2fb3-4153-8ba7-a3e1d49ab74c/"
+  },
+  {
+    "REP": "Klejdi Lamo",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "WHARTON LIQUOR STORE",
+    "CITY": "WHARTON",
+    "BRAND": "KEYSTONE ICE",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "09/30/2026 10:38 AM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/b1cc52fd-7d3a-4344-a4eb-c2e6541cb4d4/"
+  },
+  {
+    "REP": "Klejdi Lamo",
+    "SOURCE": "Promo",
     "CUSTOMER_NAME": "SAM'S LIQ WINE (P)",
     "CITY": "DOVER",
     "BRAND": "KEYSTONE ICE",

@@ -5665,18 +5665,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "1154 Fever Tree Ginger Beer 8/500 mL Btl",
-    "BRAND_FAMILY": "",
-    "CUSTOMER_NUM": 28012,
-    "CUSTOMER_NAME": "Lucky 7 (A)",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
     "PRODUCT_NAME": "1155 Fever Tree Ginger Beer 3/8/150 mL Can",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 28012,
@@ -5686,18 +5674,6 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "1158 Fever Tree Club Soda 8/500 mL Btl",
-    "BRAND_FAMILY": "",
-    "CUSTOMER_NUM": 28012,
-    "CUSTOMER_NAME": "Lucky 7 (A)",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",

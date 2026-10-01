@@ -3856,6 +3856,13 @@ Woodchuck 57 -> 66, Tona 14 -> 15 new 24 oz placements, Lytt top penetration
 56.2% with 12 reps in a tier. Exports carry data through 9/30, the last day
 of the window. Hub cache tag bumped (20260930c) for program_data.js.
 
+2026-10-01 REFRESH -- Corona Gaintain sync only (riding the off-prem refresh)
+The 10/1 off-prem batch's Corona Gaintain export (123 rows, restated in
+place, every rep up or flat) went onto
+data/constellation_fall_corona_gaintain_off.csv per the sync rule. The
+Keystone export was identical to the 9/30 file, so keystone-ice is
+unchanged. Nothing else re-pulled. Hub cache tag bumped (20261001a).
+
 2026-09-30 REFRESH -- Corona Gaintain + Keystone sync only (riding the off-prem refresh)
 The 9/30 off-prem batch's Corona Gaintain export (123 rows, restated in
 place, only Jayson Romine up) and 274-row Keystone export went here per the

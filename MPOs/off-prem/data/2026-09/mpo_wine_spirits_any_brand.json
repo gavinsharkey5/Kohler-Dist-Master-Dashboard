@@ -2749,30 +2749,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "PRODUCT_NAME": "201080 Bardstown Discovery 2026 1/750 mL Btl",
-    "BRAND_FAMILY": "Bardstown Bourbon",
-    "CUSTOMER_NUM": 230122,
-    "CUSTOMER_NAME": "Krogh's Restaurant & Brew Pub",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "PRODUCT_NAME": "201081 Bardstown Collaboration Series Lochs Of Jura 1/750 mL Btl",
-    "BRAND_FAMILY": "Bardstown Bourbon",
-    "CUSTOMER_NUM": 230122,
-    "CUSTOMER_NAME": "Krogh's Restaurant & Brew Pub",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1,
-    "PLACED_DATE": "9/30/2026",
-    "LAST_DATE": "9/30/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
     "PRODUCT_NAME": "200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl",
     "BRAND_FAMILY": "Leyenda 1925",
     "CUSTOMER_NUM": 191510,
