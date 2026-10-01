@@ -204,3 +204,44 @@ h3.note small{font-weight:400;color:var(--text-4)}
 .ask-form .btn.primary{min-height:44px;padding:0 16px}
 .ask-foot{margin-top:8px;font-size:12.5px;color:var(--text-4);line-height:1.5}
 .ask-foot .btn{height:auto;padding:0 4px;font-size:12.5px;color:var(--text-3)}
+/* ==== Refinement pass (2026-10-01): Shopify list + grouped details, Todoist emphasis ==== */
+/* list header: the nav says "Accounts", so no kicker; one line of counts, one of dates */
+.ws.lhead{padding:14px 0 10px}
+.ws.lhead .idline{margin-top:4px}
+/* segmented filter: All / Needs attention / Follow-ups, the selected one filled */
+.seg{flex:1 1 100%;display:flex;gap:4px;padding:3px;background:var(--surface-2);border:1px solid var(--border);border-radius:10px}
+.seg button{flex:1 1 auto;white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:38px;padding:0 8px;border:0;border-radius:7px;background:none;color:var(--text-2);font:inherit;font-size:14.5px;font-weight:600;cursor:pointer;line-height:1.15;text-align:center}
+.seg button:hover{color:var(--text)}
+.seg button.on{background:var(--surface);color:var(--brand);box-shadow:0 1px 2px rgba(15,23,42,.08),0 0 0 1px var(--border)}
+.seg .n{font-size:12.5px;font-weight:700;color:var(--text-3);font-variant-numeric:tabular-nums}
+.seg button.on .n{color:var(--brand)}
+.seg button:focus-visible{outline:2px solid var(--brand);outline-offset:1px}
+@media (min-width:760px){ .filters .kdh-field{flex:2 1 280px} .seg{flex:1 1 380px} }
+@media (max-width:389px){ .seg button{font-size:13.5px;padding:0 6px;gap:4px} }
+details.legend{margin:-4px 0 10px}
+details.legend > summary{cursor:pointer;color:var(--text-3);font-weight:600;min-height:32px;display:inline-flex;align-items:center}
+/* list rows: name, then town · # · premise, then ONE attention block */
+.row .row-att{display:flex;flex-direction:column;gap:3px;margin-top:4px}
+.row .row-att .chips{margin-top:0}
+.row .row-att .row-ev{margin-top:0}
+.rows#rows .row{min-height:56px;padding-top:11px;padding-bottom:11px}
+/* account header: compact, name first */
+.acct-head{margin:0 0 10px}
+.acct-head .sub{margin-top:3px}
+.acct-head .sub2{font-size:inherit;color:var(--text-3);margin:0}
+/* details & servicing: label beside value on every width (no tall stacked list) */
+.dgroup .kv{flex-direction:row;gap:12px}
+.dgroup .kv > span:first-child{flex:0 0 108px;min-width:0}
+.dgroup .kv > span:last-child{text-align:left;flex:1}
+.dgroup .kv .dim{color:var(--text-3)}
+.dgroup .kv.addr > span:last-child{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px}
+.btn.dirbtn{min-height:36px;height:auto;margin:0;padding:0 12px;color:var(--brand);font-weight:600}
+.btn.dirbtn::after{content:'\2197';font-size:13px}
+@media (max-width:599px){ .dgroup .kv > span:first-child{flex-basis:92px} }
+/* Focus: Todoist-style action rows -- a small coloured label, the task, why, the next step */
+.fitem{padding:12px 14px}
+.fkind{font-size:12.5px;color:var(--brand);font-weight:700;margin-bottom:1px}
+.fitem .ft{font-size:16px}
+.fitem .fn{display:flex;flex-wrap:wrap;align-items:center;gap:0 8px;color:var(--text-2)}
+.fitem .fn a{margin-left:-4px}
+.fitem .fw.cav{color:var(--text-3);font-size:13.5px}

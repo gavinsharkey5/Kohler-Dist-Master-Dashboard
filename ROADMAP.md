@@ -147,6 +147,16 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-10-01 Navigation and readability pass (Shopify iOS + Todoist web
+  references): labelled Home / Accounts / Incentives (+ Team for managers)
+  in the top bar on iPad and desktop and as a bottom tab bar on phones, the
+  current one marked; the big "Back to Rep Home" button replaced by a quiet
+  Back only where it adds a destination; account menu without duplicate
+  links; My Accounts filters as one segmented control with counts, one
+  attention block per account; Account page opens with Focus, then grouped
+  Details & servicing; rep home tools as compact cards. Fixed: an ended
+  program showing as "ending soon" in Focus. Gavin: try it on the iPhone and
+  iPad and say if any destination is missing from the tab bar.
 - [x] 2026-09-30 Account assistant v2: the server authorizes every question
   against the rep's route (or the DM's team), builds the record itself,
   answers arithmetic through three server tools on the full record, prints

@@ -2,7 +2,7 @@
    Tokens come from shared/kdh.css (the design system: light + dark,
    fonts, top bar). The short names below are aliases kept so this
    file's rules and the pages' inline styles stay readable. */
-@import url("../shared/kdh.css?v=20260930b");
+@import url("../shared/kdh.css?v=20261001a");
 :root{
   --bg:var(--kdh-bg);--surface:var(--kdh-surface);--surface-2:var(--kdh-surface-2);
   --text:var(--kdh-text);--text-2:var(--kdh-text-2);--text-3:var(--kdh-text-3);--text-4:var(--kdh-text-4);
@@ -147,4 +147,29 @@ footer a{color:var(--text-3)}
   .switch label{flex:1 1 100%}
   .switch select{width:100%;min-width:0;min-height:40px}
   .switch .btn{width:100%;justify-content:center}
+}
+/* ---- TOOL CARDS (2026-10-01): choosing a tool = compact cards in a grid
+   (Shopify's home tiles); browsing records stays in rows. Each card is one
+   link: icon, name, one status line. My accounts, alone in its section,
+   runs the full width as the main way in. ---- */
+.rows.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;background:none;border:0;box-shadow:none;overflow:visible}
+.tiles .row{flex-direction:column;align-items:flex-start;gap:8px;min-height:104px;padding:12px 14px;border:1px solid var(--border);border-radius:var(--r-lg);background:var(--surface);box-shadow:var(--shadow)}
+.tiles .row:hover{border-color:var(--border-2);background:var(--surface)}
+.tiles .row .chev{display:none}
+.tiles .row h3{font-size:16px}
+.tiles .row .row-s{align-items:flex-start}
+.tiles .row .row-s .dot{margin-top:6px}
+.tiles .row:only-child{grid-column:1 / -1;flex-direction:row;align-items:center;min-height:64px}
+.tiles .row:only-child .chev{display:block;margin-left:auto}
+@media (max-width:759px){ .rows.tiles{grid-template-columns:repeat(2,minmax(0,1fr))} .tiles .row{min-height:96px;padding:12px} }
+html.kdh-rep #kicker{display:none}
+@media (max-width:759px){
+  .tiles .row{display:grid;grid-template-columns:34px minmax(0,1fr);grid-template-areas:"ico title" "s s";column-gap:10px;row-gap:6px;align-items:center;min-height:0}
+  .tiles .row .ico{grid-area:ico}
+  .tiles .row .row-main{display:contents}
+  .tiles .row h3{grid-area:title}
+  .tiles .row .row-s{grid-area:s}
+  .tiles .row:first-child:nth-last-child(3){grid-column:1 / -1}
+  .tiles .row:only-child{display:flex}
+  .tiles .row:only-child .row-main{display:flex}
 }

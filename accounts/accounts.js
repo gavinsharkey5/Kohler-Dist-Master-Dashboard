@@ -166,6 +166,13 @@ function chipsHtml(nd){
   if(nd.tap) c.push(`<span class="chip tap${nd.tap.level==='soon'?' soon':''}">${nd.tap.level==='overdue' ? 'Survey overdue '+nd.tap.days+'d' : 'Survey due in '+(60-nd.tap.days)+'d'}</span>`);
   return c.length ? `<span class="chips">${c.join('')}</span>` : '';
 }
+// ONE attention block per account (2026-10-01): the action chips and the
+// sales-history findings together, grouped under the account -- nothing
+// when there is nothing to say, so unflagged accounts stay plain rows
+function attHtml(a, nd){
+  const chips = chipsHtml(nd), ev = evidenceHtml(a);
+  return chips || ev ? `<span class="row-att">${chips}${ev}</span>` : '';
+}
 // the evidence line under an account: what the sales history says, in words
 function evidenceHtml(a){
   const lines = a.summary || [];
@@ -213,33 +220,38 @@ function renderList(){
   const first = repData.get(reps[0]);
   const ref = first && first.sales.ref ? first.sales.ref : (first ? first.sales.through : '');
   const fresh = first ? `Book as of ${E(first.book.asOf)} · sales through ${E(monLabel(ref))} · taps as of ${E((first.taps.asOf||'').slice(0,10))}` : '';
+  const follows = rows.filter(({nd})=>nd.follow>0).length;
   const kindOpts = [['', 'Any reason'], ['reorder', 'Possible reorder'], ['slower', 'Buying less often'], ['lapsed', 'Lapsed buyer'], ['follow', 'Open follow-up'], ['prog', 'Program lead'], ['tap', 'Survey due or overdue']];
   const active = state.need==='any';
-  app.innerHTML = `<header class="ws"><div class="id"><p class="kicker">Accounts</p><h1>${title}</h1><p class="idline">${sub}${attention ? ` · <b>${attention}</b> need attention` : ''}${flagged ? ` · <b>${flagged}</b> with a buying alert (${plural(productAlerts,'product alert')})` : ''}</p><p class="fresh">${fresh}</p></div></header>
+  // the three views as one segmented control (Shopify's filter tabs): the
+  // selected one is filled, each says how many accounts it holds
+  const segs = [['', 'All', rows.length], ['any', 'Needs attention', attention], ['follow', 'Follow-ups', follows]];
+  const segHtml = `<div class="seg" id="needSeg" role="group" aria-label="Show">${segs.map(([v, l, c])=>`<button type="button" data-need="${v}" aria-pressed="${state.need===v}"${state.need===v ? ' class="on"' : ''}>${l}<span class="n">${c}</span></button>`).join('')}</div>`;
+  app.innerHTML = `<header class="ws lhead"><div class="id"><h1>${title}</h1><p class="idline">${sub}${flagged ? ` · ${plural(productAlerts,'product alert')} on ${plural(flagged,'account')}` : ''}</p><p class="fresh">${fresh}</p></div></header>
     <div class="filters">
-      <input type="search" class="kdh-field" id="q" placeholder="Search accounts${isMgr?' or reps':''}" value="${E(state.q)}" autocomplete="off" aria-label="Search accounts">
+      <input type="search" class="kdh-field" id="q" placeholder="Search by name, town or #${isMgr?' or rep':''}" value="${E(state.q)}" autocomplete="off" aria-label="Search accounts">
       ${isMgr ? `<select id="repSel" aria-label="Rep"><option value="">All my reps</option>${SCOPE.map(r=>`<option value="${E(r)}"${r===state.rep?' selected':''}>${E(r)}</option>`).join('')}</select>` : ''}
-      <select id="needSel" aria-label="Show"><option value="">All accounts</option><option value="any"${active?' selected':''}>Needs attention</option><option value="follow"${state.need==='follow'?' selected':''}>Follow-ups</option></select>
+      ${segHtml}
       ${active ? `<select id="kindSel" aria-label="Reason">${kindOpts.map(([v,l])=>`<option value="${v}"${state.kind===v?' selected':''}>${l}</option>`).join('')}</select>` : ''}
       <details class="more-filters"${state.fam ? ' open' : ''}><summary>More filters${state.fam ? ' · '+E(state.fam) : ''}</summary>
         <div class="mf-row"><label for="famSel">Brand family</label><select id="famSel" aria-label="Brand family"><option value="">Any brand family</option>${fams.map(f=>`<option value="${E(f)}"${f===state.fam?' selected':''}>${E(f)}</option>`).join('')}</select>${state.fam ? `<button type="button" class="btn outline" id="famClear">Clear</button>` : ''}</div>
         <p class="note">A brand family matches accounts that bought it in the last 12 months or have an alert on one of its products. Combined with a reason, only alerts on that family count.</p>
       </details>
     </div>
-    ${active && !state.kind ? `<p class="note legend">Needs attention = an open follow-up, a program lead, a survey due, or a buying alert from the sales history: <b>possible reorder</b> (a regular product past its usual gap), <b>buying less often</b> (fewer buying months than the six before), <b>lapsed buyer</b> (no recent purchase of a recurring product). Alerts are read from Fusion through ${E(monLabel(ref))} — a possibility to check, not a confirmed need.</p>` : ''}
+    ${active && !state.kind ? `<details class="note legend"><summary>What counts as needing attention</summary>An open follow-up, a program lead, a survey due, or a buying alert from the sales history: <b>possible reorder</b> (a regular product past its usual gap), <b>buying less often</b> (fewer buying months than the six before), <b>lapsed buyer</b> (no recent purchase of a recurring product). Alerts are read from Fusion through ${E(monLabel(ref))} — a possibility to check, not a confirmed need.</details>` : ''}
     ${missing.length ? `<div class="kdh-state unavailable"><b>No account list on file for ${E(missing.join(', '))}.</b><span>The customer base report has no accounts under that name, or the data slice has not been generated.</span></div>` : ''}
     ${!SCOPE.length ? `<div class="kdh-state unavailable"><b>We couldn’t find your name on the customer base.</b><span>You’re signed in as ${E(U ? U.name : '')}. Ask Gavin to check the spelling on the access list.</span></div>` : ''}
     <p class="count">${shown.length===rows.length ? '' : `${shown.length} of `}${plural(rows.length,'account')}${state.need || state.fam ? ' · filtered' : ''}</p>
     <div class="rows" id="rows">${shown.slice(0, state.limit).map(({a, rep, nd})=>{
       return `<a class="row" href="${acctHash(a.n, rep)}" data-n="${E(a.n)}" data-rep="${E(rep)}">
-        <span class="row-main"><h3>${E(a.name)}</h3><span class="row-s">${E([a.city, premWord(a.prem), '#'+a.n].filter(Boolean).join(' · '))}${isMgr ? ` · <span class="rep">${E(rep)}</span>` : ''}</span>${chipsHtml(nd)}${evidenceHtml(a)}</span>
+        <span class="row-main"><h3>${E(a.name)}</h3><span class="row-s">${E([a.city, '#'+a.n, premWord(a.prem)].filter(Boolean).join(' · '))}${isMgr ? ` · <span class="rep">${E(rep)}</span>` : ''}</span>${attHtml(a, nd)}</span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></a>`; }).join('')}
       ${!shown.length && rows.length ? `<div class="kdh-state empty"><b>No account matches.</b></div>` : ''}</div>
     ${shown.length>state.limit ? `<button class="btn outline more" id="more" type="button">Show ${Math.min(120, shown.length-state.limit)} more of ${shown.length}</button>` : ''}`;
   const mb = $('#more'); if(mb) mb.addEventListener('click', ()=>{ state.limit += 120; const y = window.scrollY; renderList(); window.scrollTo(0, y); });
   $('#q').addEventListener('input', e=>{ state.q = e.target.value; history.replaceState(null,'',listHash()); const list = $('#rows'); if(list) renderListRowsOnly(); });
   const rs = $('#repSel'); if(rs) rs.addEventListener('change', e=>{ state.rep = e.target.value; history.replaceState(null,'',listHash()); render(); });
-  $('#needSel').addEventListener('change', e=>{ state.need = e.target.value; if(state.need!=='any') state.kind = ''; history.replaceState(null,'',listHash()); render(); });
+  document.querySelectorAll('#needSeg [data-need]').forEach(b=>b.addEventListener('click', ()=>{ state.need = b.dataset.need; if(state.need!=='any') state.kind = ''; history.replaceState(null,'',listHash()); render(); }));
   const ks = $('#kindSel'); if(ks) ks.addEventListener('change', e=>{ state.kind = e.target.value; history.replaceState(null,'',listHash()); render(); });
   $('#famSel').addEventListener('change', e=>{ state.fam = e.target.value; history.replaceState(null,'',listHash()); render(); });
   const fc = $('#famClear'); if(fc) fc.addEventListener('click', ()=>{ state.fam = ''; history.replaceState(null,'',listHash()); render(); });
@@ -267,7 +279,7 @@ async function renderAccount(){
     return;
   }
   const {a, rep, d} = hit;
-  const headHtml = `<div class="acct-head"><h1>${E(a.name)}</h1><p class="sub">${E([a.city, premWord(a.prem), 'Account #'+a.n].filter(Boolean).join(' · '))}</p>${isMgr ? `<p class="sub2">Rep: ${E(rep)}</p>` : ''}</div>`;
+  const headHtml = `<div class="acct-head"><h1>${E(a.name)}</h1><p class="sub">${E([a.city, premWord(a.prem), 'Account #'+a.n].filter(Boolean).join(' · '))}${isMgr ? `<span class="sub2"> · Rep: ${E(rep)}</span>` : ''}</p></div>`;
   app.innerHTML = back(fromLabel, fromHref) + headHtml + `<div class="kdh-state loading">Loading this account…</div>`;
   // everything the page needs, in parallel
   const key = repKey(rep);
@@ -310,13 +322,13 @@ async function renderAccount(){
   const focus = [];
   follows.slice(0,1).forEach(r=>focus.push({kind:'Follow-up', t:`Follow up on ${E(progName(r.program_id))}`, w:`You flagged this account ${E(fmtDay(new Date(r.updated_at)))}${r.note ? ' — “'+E(r.note)+'”' : ''}.`, n:`Pick the conversation back up, then mark it Done in the hub.`, href:hubAcctLink(H.programs().find(p=>p.id===r.program_id), rep, a.n, 'follow'), hl:'Open in the hub'}));
   if(due && due.level==='overdue') focus.push({kind:'Tap survey', t:'Resurvey the taps', w:`Last surveyed ${E(a.taps.lastDisplay||a.taps.last)}, ${due.days} days ago — past the 60-day window.`, n:'Walk the taps and submit the survey in iSellBeer.', href:TAP+'#q='+encodeURIComponent(a.name), hl:'Open the Tap Tracker'});
-  targets.filter(t=>t.warm || (t.p.period.end - TODAY)/86400000 <= 14).sort((x,y)=>(y.warm-x.warm) || (x.p.period.end-y.p.period.end)).slice(0, 2).forEach(t=>{
+  targets.filter(t=>t.p.period.end >= TODAY && (t.warm || (t.p.period.end - TODAY)/86400000 <= 14)).sort((x,y)=>(y.warm-x.warm) || (x.p.period.end-y.p.period.end)).slice(0, 2).forEach(t=>{
     const f = H.progFacts(t.p, t.r, rep);
     focus.push({kind: t.warm ? 'Program lead' : 'Program ending soon', t:E(H.sellAsk(t.p)), w:`${E(t.p.shortName||t.p.name)} (${E(t.p.supplier)}) · ${E(t.why || 'this account is eligible and not buying it yet')} · ${E(H.endsLabel(t.p.period))}.`, n:`You are at ${f.main}${f.need && f.need!=='Goal met' ? ' — '+f.need : ''}.`, href:progLink(t.p, rep), hl:'Program details'});
   });
   // strongest buying alerts: lapsed before possible reorder, biggest usual order first (patterns.py's order)
-  alerts.filter(x=>x.type!=='slower').slice(0,2).forEach(x=>focus.push({kind: KIND[x.type], t: x.type==='lapsed' ? `No recent purchase of ${E(x.product)}` : `Ask about ${E(x.product)}`, w: E(alertWhy(x))+'.', n: x.type==='lapsed' ? 'Find out whether they stopped or switched — the data shows the gap, not the reason.' : 'Check whether they need a reorder — a gap in the data, not a confirmed need.', go:'sales:alerts', hl:'See the alert'}));
-  if(F.patterns && F.patterns.lessOften && !alerts.length) focus.push({kind:'Buying less often', t:'Purchasing less frequently', w:`${F.patterns.freq.recent6} buying ${F.patterns.freq.recent6===1?'month':'months'} in ${E(rangeLabel(months, R-5, R+1))} vs ${F.patterns.freq.prior6} in ${E(rangeLabel(months, R-11, R-5))}.`, n:'Ask what changed — a slower pattern in the data, not a confirmed problem.', go:'sales:patterns', hl:'See buying patterns'});
+  alerts.filter(x=>x.type!=='slower').slice(0,2).forEach(x=>focus.push({kind: KIND[x.type], t: x.type==='lapsed' ? `No recent purchase of ${E(x.product)}` : `Ask about ${E(x.product)}`, w: E(alertWhy(x))+'.', caveat:1, n: x.type==='lapsed' ? 'Find out whether they stopped or switched — the data shows the gap, not the reason.' : 'Check whether they need a reorder — a gap in the data, not a confirmed need.', go:'sales:alerts', hl:'See the alert'}));
+  if(F.patterns && F.patterns.lessOften && !alerts.length) focus.push({kind:'Buying less often', t:'Purchasing less frequently', w:`${F.patterns.freq.recent6} buying ${F.patterns.freq.recent6===1?'month':'months'} in ${E(rangeLabel(months, R-5, R+1))} vs ${F.patterns.freq.prior6} in ${E(rangeLabel(months, R-11, R-5))}.`, caveat:1, n:'Ask what changed — a slower pattern in the data, not a confirmed problem.', go:'sales:patterns', hl:'See buying patterns'});
   const top = focus.slice(0,3);
 
   /* ---- Sales & reorders ---- */
@@ -456,20 +468,20 @@ async function renderAccount(){
     tapsHtml = `<div class="card"><p>No tap survey on file for this account in the current export (${E((d.taps.asOf||'').slice(0,10))}).</p></div>`;
   }
 
-  const focusHtml = top.length ? `<div class="focus">${top.map((f,i)=>`<div class="fitem"><span class="num">${i+1}</span><div class="fmain"><span class="fkind">${E(f.kind)}</span><div class="ft">${f.t}</div><p class="fw">${f.w}</p><p class="fn">${E(f.n)} ${f.go ? `<a href="${E(acctHash(a.n, rep, f.go.split(':')[0]))}" data-go="${E(f.go)}">${E(f.hl)} ›</a>` : `<a href="${E(f.href)}">${E(f.hl)} ›</a>`}</p></div></div>`).join('')}</div>`
+  const focusHtml = top.length ? `<div class="focus">${top.map((f,i)=>`<div class="fitem"><div class="fmain"><span class="fkind">${E(f.kind)}</span><div class="ft">${f.t}</div><p class="fw">${f.w}</p>${f.caveat ? `<p class="fw cav">${E(f.n)}</p>` : ''}<p class="fn">${f.go ? `<a href="${E(acctHash(a.n, rep, f.go.split(':')[0]))}" data-go="${E(f.go)}">${E(f.hl)} ›</a>` : `<a href="${E(f.href)}">${E(f.hl)} ›</a>`}</p></div></div>`).join('')}</div>`
     : `<div class="kdh-state empty"><b>Nothing flagged for this account right now.</b><span>No open follow-up, no program target, no overdue survey and no buying alert in the data through ${E(monLabel(refKey))}.</span></div>`;
 
   /* ---- Overview: identity + servicing (what the exports carry), then the Focus, then an at-a-glance index ---- */
   const kvl = (l, v) => v ? `<div class="kv"><span>${l}</span><span>${v}</span></div>` : '';
   const sizeTxt = a.sizeClass ? `Class ${E(a.sizeClass)}${a.decile ? ` · decile ${a.decile} by 2026 gross` : ''}` : '';
-  const identHtml = `<div class="card">
-      ${kvl('Address', a.address ? `${E(a.address)}, ${E(a.city||'')} <a href="${E(mapsHref(a))}" target="_blank" rel="noopener">Directions ↗</a>` : `${E(a.city||'')}${a.city ? ' · ' : ''}<span class="dim">street address not in the customer base export</span>`)}
+  const identHtml = `<div class="card dgroup">
+      <div class="kv addr"><span>Address</span><span>${a.address ? `${E(a.address)}, ${E(a.city||'')}<a class="btn outline dirbtn" href="${E(mapsHref(a))}" target="_blank" rel="noopener">Directions</a>` : `${E(a.city||'')}${a.city ? ' · ' : ''}<span class="dim">street address not in the customer base export</span>`}</span></div>
       ${kvl('Premise', [premWord(a.prem), a.service].filter(Boolean).join(' · '))}
       ${kvl('Area', [a.area, a.county ? a.county+' County' : ''].filter(Boolean).join(' · '))}
       ${kvl('Size', sizeTxt)}
       ${a.stops2026!=null ? kvl('2026 so far', `${plural(a.stops2026,'stop')}${a.distPts!=null ? ' · '+plural(a.distPts,'distribution point') : ''}${a.cases2026!=null ? ' · '+fmtN(a.cases2026)+' cases' : ''} <span class="dim">(deciles workbook)</span>`) : (a.cases2026!=null ? kvl('2026 so far', fmtN(a.cases2026)+' cases') : '')}
       ${isMgr ? kvl('Rep', E(rep)) : ''}
-      <div class="kdh-state unavailable slim"><b>Contact, hours and delivery instructions are not in our exports yet.</b><span>Contact name, phone, email, business hours, service window and the next delivery date still live in Encompass — they are in the reporting request.</span></div>
+      <div class="kv"><span>Contact &amp; hours</span><span class="dim">Not in our exports yet — contact, phone, hours, delivery window and next delivery are in Encompass</span></div>
     </div>`;
   // one line per section: the number that matters, and where it lives
   const glance = [];
@@ -512,8 +524,8 @@ async function renderAccount(){
   const secHtml = (k, inner) => `<div class="secbody" data-sec="${k}"${state.sec===k ? '' : ' hidden'}>${inner}</div>`;
   app.innerHTML = back(fromLabel, fromHref) + headHtml + secnav
     + secHtml('over', `
-    <section class="sec" id="overview"><h2>Account</h2>${identHtml}</section>
     <section class="sec" id="focus"><h2>Focus for this account</h2>${focusHtml}</section>
+    <section class="sec" id="overview"><h2>Details &amp; servicing</h2>${identHtml}</section>
     <section class="sec" id="glance"><h2>At a glance</h2>${glanceHtml}</section>`)
     + secHtml('sales', `
     <section class="sec"><h2>Sales &amp; reorders <small>Fusion, through ${E(monLabel(refKey))}</small></h2>${salesHtml}</section>

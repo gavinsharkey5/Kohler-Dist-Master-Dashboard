@@ -152,6 +152,59 @@
   // <meta name="kdh-home"> and gets no Back button.
   var CARET = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
   function isHomePage() { return !!document.querySelector('meta[name="kdh-home"]'); }
+  // PRIMARY NAVIGATION (2026-10-01, after Todoist's labelled sidebar and
+  // Shopify's tab bar): the three or four places people go all day, always
+  // labelled, the current one marked. Tablets and desktop get them in the
+  // top bar; phones get a bottom tab bar (#kdhTabs). Reps: Home, Accounts,
+  // Incentives. Managers: Home, Accounts, Incentives, Team. Everything else
+  // (trackers, MPOs) opens from Home, so those pages mark Home as current.
+  var NAV_ICON = {
+    home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>',
+    accounts: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 4.5 4h15L21 9.5"/><path d="M3 9.5a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/><path d="M5 12v9h14v-9"/><path d="M10 21v-5h4v5"/></svg>',
+    incentives: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg>',
+    team: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8"/><path d="M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/></svg>'
+  };
+  function navItems(u) {
+    if (!u) return [];
+    var isMgr = u.role === 'manager';
+    var hub = ROOT + 'hub/' + (isMgr ? '' : '#view=rep&rep=' + encodeURIComponent(u.name) + '&cat=inc&only=inc');
+    var items = [
+      { key: 'home', label: 'Home', href: isMgr ? ROOT : REP_HOME },
+      { key: 'accounts', label: 'Accounts', href: ROOT + 'accounts/' },
+      { key: 'incentives', label: 'Incentives', href: hub }
+    ];
+    if (isMgr) items.push({ key: 'team', label: 'Team', href: ROOT + 'team/' });
+    return items;
+  }
+  function navCurrent(u) {
+    var p = location.pathname, isMgr = u && u.role === 'manager';
+    var rel = ROOT ? location.href.replace(new URL(ROOT, location.href).href, '') : p.replace(/^\//, '');
+    rel = rel.split(/[?#]/)[0];
+    if (/^accounts\//.test(rel)) return 'accounts';
+    if (/^hub\//.test(rel)) return 'incentives';
+    if (/^team\//.test(rel)) return 'team';
+    if (/^rep\//.test(rel)) return isMgr ? '' : 'home';
+    if (rel === '' || rel === 'index.html') return isMgr ? 'home' : '';
+    return 'home';   // a tracker or MPO page: it is opened from Home
+  }
+  function navHtml(u, cls) {
+    var cur = navCurrent(u);
+    return navItems(u).map(function (it) {
+      var on = it.key === cur;
+      return '<a class="' + cls + (on ? ' on' : '') + '" href="' + esc(it.href) + '" data-nav="' + it.key + '"' + (on ? ' aria-current="page"' : '') + '>' + NAV_ICON[it.key] + '<span>' + esc(it.label) + '</span></a>';
+    }).join('');
+  }
+  // the bottom tab bar on phones (CSS shows it under 760px); a page with its
+  // own bottom navigation opts out with <meta name="kdh-tabs" content="off">
+  function tabBar(u) {
+    if (!u || document.getElementById('kdhTabs')) return;
+    var off = document.querySelector('meta[name="kdh-tabs"]'); if (off && off.content === 'off') return;
+    var t = document.createElement('nav');
+    t.id = 'kdhTabs'; t.className = 'kdh-tabs'; t.setAttribute('aria-label', 'Main');
+    t.innerHTML = '<div class="kdh-tabs-in">' + navHtml(u, 'kdh-tab') + '</div>';
+    document.body.appendChild(t);
+    document.documentElement.classList.add('kdh-has-tabs');
+  }
   function chrome() {
     markViewer();
     if (document.querySelector('.kdh-bar') || document.getElementById('kdhBar')) return;
@@ -161,7 +214,15 @@
     var b = document.createElement('div');
     b.id = 'kdhBar'; b.className = 'kdh-bar';
     var acts = '';
-    if (!isHomePage()) { var back = returnTarget(); acts += '<a class="kdh-b kdh-outline kdh-back" href="' + esc(back.href) + '">' + BACK + '<span>' + esc(back.label) + '</span></a>'; }
+    // BACK (2026-10-01): concise and only when it adds a destination the
+    // navigation does not already show -- the Incentive Hub a tracker was
+    // opened from, Team activity, the rep workspace. Going back to your own
+    // home is the Home item, so no second button says the same thing.
+    if (!isHomePage()) {
+      var back = returnTarget();
+      var dup = u && (back.href === home || back.href === (isMgr ? ROOT : REP_HOME) || /Back to (Rep|Manager) Home/.test(back.label) && back.href === home);
+      if (!u || !dup) acts += '<a class="kdh-b kdh-outline kdh-back" href="' + esc(back.href) + '">' + BACK + '<span>' + esc(back.label.replace(/^Back to /, '')) + '</span></a>';
+    }
     // The Viewing / Previewing chip is a direct child of the bar (beside the
     // actions, not inside them) so a phone can give it a full row of its own.
     var chips = '<span id="kdhViewing"></span>';
@@ -172,11 +233,15 @@
     acts += '<button type="button" class="kdh-b kdh-outline kdh-theme" id="kdhThemeBtn" role="switch" aria-checked="false" aria-label="Dark mode" title="Switch between light and dark">' + SUN + MOON + '<span id="kdhThemeText">Light</span></button>';
     if (who) acts += '<button type="button" class="kdh-b kdh-user" id="kdhMenuBtn" aria-haspopup="true" aria-expanded="false" aria-label="Account menu, signed in as ' + esc(who) + '"><span class="kdh-av">' + esc(initials(who)) + '</span><span class="kdh-name">' + esc(who) + '</span>' + CARET + '</button>';
     b.innerHTML = '<div class="kdh-bar-in">' +
-      '<a class="kdh-logo" href="' + home + '"><img src="' + ROOT + 'assets/kohler-logo-badge.png" alt="">Kohler Dist Hub<small>' + esc(pageName()) + '</small></a>' +
+      '<a class="kdh-logo" href="' + home + '"><img src="' + ROOT + 'assets/kohler-logo-badge.png" alt=""><span class="kdh-word">Kohler Dist Hub</span><small>' + esc(pageName()) + '</small></a>' +
+      (u ? '<nav class="kdh-nav" aria-label="Main">' + navHtml(u, 'kdh-nav-i') + '</nav>' : '') +
       chips +
       '<div class="kdh-acts">' + acts + '</div></div>' +
       (who ? menuHtml(u, isMgr) : '');
     document.body.insertBefore(b, document.body.firstChild);
+    // the small page name is dropped only where the marked nav item IS this page
+    var cur = navCurrent(u); if (cur && (cur !== 'home' || isHomePage())) b.classList.add('kdh-has-cur');
+    tabBar(u);
     var t = document.getElementById('kdhTheme'); if (t) t.addEventListener('click', function () { toggleTheme(); });
     var tb = document.getElementById('kdhThemeBtn'); if (tb) tb.addEventListener('click', toggleTheme);
     var td = document.getElementById('kdhThemeDevice'); if (td) td.addEventListener('click', function () { chooseTheme(''); openMenu(false); });
@@ -192,13 +257,9 @@
     if (isMgr) {
       items += '<button type="button" class="kdh-menu-i" id="kdhViewAsRep">' + (u.preview && u.role !== 'manager' ? 'Change rep' : 'View as rep') + '<small>See the site as one rep does</small></button>';
       if (u.preview) items += '<button type="button" class="kdh-menu-i" id="kdhExitPreview2">Exit preview<small>Back to your own pages</small></button>';
-      items += '<a class="kdh-menu-i" href="' + ROOT + 'accounts/">Accounts<small>Your team, by account</small></a>';
-      items += '<a class="kdh-menu-i" href="' + ROOT + '">Manager home</a>';
-      items += '<a class="kdh-menu-i" href="' + ROOT + 'team/">Team activity</a>';
-      items += '<a class="kdh-menu-i" href="' + REP_HOME + '">Rep workspace</a>';
-    } else {
-      items += '<a class="kdh-menu-i" href="' + ROOT + 'accounts/">My accounts</a>';
-      items += '<a class="kdh-menu-i" href="' + REP_HOME + '">Rep home</a>';
+      // Home, Accounts, Incentives and Team are in the navigation; the menu
+      // keeps only what is not: the rep workspace, preview, theme, sign out
+      items += '<a class="kdh-menu-i" href="' + REP_HOME + '">Rep workspace<small>A rep\'s home page, by rep</small></a>';
     }
     items += '<button type="button" class="kdh-menu-i" id="kdhTheme">' + SUN + MOON + '<span id="kdhThemeLabel">Dark mode</span></button>';
     items += '<button type="button" class="kdh-menu-i" id="kdhThemeDevice" hidden>Use device theme<small>Follow this device\'s light / dark setting</small></button>';

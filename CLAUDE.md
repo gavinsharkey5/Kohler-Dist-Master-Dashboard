@@ -1084,6 +1084,73 @@ Checks: scratchpad tap_shots.mjs (both panels at 375/390/430, rep preview
 and manager), sweep.mjs / pager.mjs (viewport-by-viewport screenshots of
 the rep pages), plus the usual suites and mobile_audit.mjs.
 
+## Navigation + list/detail refinement after Shopify iOS and Todoist web (2026-10-01)
+
+Gavin's brief: calm, readable, easy to navigate; presentation only, every
+feature / calculation / permission kept. Mobbin references actually
+inspected: Shopify iOS customers home (screen ee48860f-dbd6-4328-8625-
+6f75b3a42a22), collections list with search + sort/filter (eab2fe5e-4828-
+4aeb-95fb-31806cd5fdbd), filter sheet (e55becd9-7b37-48d3-ace0-
+85af80d42e50), inventory rows with an "Available" column (fc0929f7-1961-
+4a38-9e43-d1f5ae64c410), grouped store details (fbb2d740-fac2-49f3-8714-
+2d201bf200aa), grouped notification sections (f5ea019f-8a43-4c42-9415-
+b184dc2f9f5d); Todoist web Today with the labelled sidebar and selected
+pill (fedfc0e2-73d1-42b6-853c-fb41ec5919f7, ff7aab78-...), Overdue section
+heading (e80e5692-9bdd-41ac-81df-25e8dd7e104a), Upcoming day sections
+(e563a772-95ea-4aea-abff-dabc5887026b). What holds now:
+- PRIMARY NAVIGATION (shared/kdh-user.js `navItems` / `navCurrent` /
+  `tabBar`, kdh.css "PRIMARY NAVIGATION"): reps Home / Accounts /
+  Incentives, managers Home / Accounts / Incentives / Team, always with
+  text labels. 760px and up: links in the top bar, the current one a tinted
+  pill (aria-current=page). Under 760px: a fixed bottom tab bar `#kdhTabs`
+  (icon over label, accent + top marker for the current one) and the page
+  gets bottom padding (`html.kdh-has-tabs`) so it never covers a record or
+  button. Trackers and MPO pages mark Home (they open from it); /rep/ marks
+  nothing for a manager (it is the rep workspace, in the menu). A page with
+  its own bottom tabs opts out: `<meta name="kdh-tabs" content="off">`
+  (metlife-audit). Phones show the page name beside the badge.
+- BACK: a quiet outline button, shown only when it adds a destination the
+  navigation does not carry ("‹ Incentive Hub", "‹ Team Activity", "‹ Rep
+  workspace"); returning to your own home is the Home item, so the old blue
+  "Back to Rep Home" button is gone. Pages' own contextual back links
+  (accounts "‹ Accounts" with filters kept, hub "‹ Boston Beer") stay.
+  returnTarget() and its sessionStorage memory are unchanged.
+- ACCOUNT MENU: only what the navigation does not carry -- View as rep /
+  Change rep / Exit preview, Rep workspace (managers), Dark / Light, Use
+  device theme, Sign out. No second copy of Home / Accounts / Team.
+- MY ACCOUNTS LIST: no kicker (the nav names the section); "All · Needs
+  attention · Follow-ups" is a segmented control `#needSeg` (buttons with
+  `data-need` "", any, follow, counts inside, aria-pressed) replacing the
+  old select; the reason select still appears under Needs attention; the
+  rule text is a folded "What counts as needing attention". Rows: name,
+  then "Town · #n · premise", then ONE `.row-att` block (chips + the
+  findings line) only when there is something to say.
+- ACCOUNT PAGE: header = name + "Town · premise · Account #n" (+ "Rep: X"
+  for managers) on one line; Overview opens with FOCUS (the most useful
+  next action), then "Details & servicing" (`.dgroup`: label beside value
+  at every width, Directions as a labelled button in the Address row,
+  one "Contact & hours" line saying it is in Encompass), then At a glance.
+  Focus rows: coloured kind label, the task, why, the link; buying-alert
+  items keep their "not a confirmed need" caveat (`.cav`); the rep's own
+  program progress is no longer repeated in Focus (it lives in Programs).
+  BUG FIXED: a program that had already ended (September MPO shown as the
+  fallback month) appeared as "Program ending soon"; Focus now requires
+  period.end >= today.
+- REP HOME: tools are compact CARDS (`.rows.tiles` grid: 3 across on
+  tablets/desktop, 2 on phones with the icon beside the name; the first of
+  three runs full width on phones; My accounts, alone in its section, is a
+  full-width row). Follow-ups stay a compact action list. Rep kicker
+  hidden for reps (the nav says Home). MPO fallback status reads "Showing
+  September · October not in yet".
+- AUDIT: scratchpad elong_audit.mjs loads 24 page/role combinations at 375
+  / 390 / 430 with every <details> open and flags page scroll, elongated
+  text (<34% wide, 4.5+ lines), squeezed title+button rows, clipped or
+  off-screen buttons, and a last control covered by the tab bar
+  (INJECT=1 proves the checks fire). ux_shots.mjs takes the before/after
+  set (OUT=before|after, THEME, W, PAGES).
+Tags: kdh-user.js 20261001a, kdh.css / kdh-skin.css 20261001a, rep.css
+20261001a, accounts.css / accounts.js 20261001a.
+
 ## Rep workspace: "Your follow-ups" strip (2026-09-28)
 
 `rep/index.html` has a `#fuSec` section between the banner and Programs:

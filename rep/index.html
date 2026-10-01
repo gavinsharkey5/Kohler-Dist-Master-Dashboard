@@ -19,12 +19,12 @@
 <link rel="preload" href="../assets/fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin>
 <!-- Theme before first paint: the saved choice, else the device setting (2026-09-30). -->
 <script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
-<link rel="stylesheet" href="rep.css?v=20260930a">
+<link rel="stylesheet" href="rep.css?v=20261001a">
 <!-- The top bar is injected by shared/kdh-user.js (badge, Previewing chip,
      account menu). kdh-home = this is a landing page: no Back button. -->
 <meta name="kdh-page" content="Rep home">
 <meta name="kdh-home" content="rep">
-<script src="../shared/kdh-user.js?v=20260930d"></script>
+<script src="../shared/kdh-user.js?v=20261001a"></script>
 </head>
 <body>
 <!--
@@ -64,7 +64,7 @@
 
   <section class="section">
     <h2>Accounts</h2>
-    <div class="rows">
+    <div class="rows tiles">
       <a class="row" id="c-acct" href="../accounts/">
         <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/><path d="M3 12h18"/></svg></span>
         <span class="row-main"><h3>My accounts</h3><span class="row-s" id="s-acct">What to do at each account today</span></span>
@@ -75,7 +75,7 @@
 
   <section class="section">
     <h2>Programs</h2>
-    <div class="rows">
+    <div class="rows tiles">
       <a class="row" id="c-hub" href="../hub/">
         <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
         <span class="row-main"><h3>Incentive Hub</h3><span class="row-s" id="s-hub">Every incentive you’re in, by supplier</span></span>
@@ -96,7 +96,7 @@
 
   <section class="section">
     <h2>Trackers</h2>
-    <div class="rows">
+    <div class="rows tiles">
       <a class="row" id="c-tap" href="../isellbeer/tap-survey-tracking/">
         <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 6.5 9a6.5 6.5 0 1 0 11 0z"/></svg></span>
         <span class="row-main"><h3>Tap Tracker</h3><span class="row-s" id="s-tap">What’s on tap at your surveyed accounts</span></span>
@@ -298,7 +298,7 @@
     getJson(base + 'data/' + thisM + '/sync_meta.json').then(function(meta){
       if (meta) { card.dataset.month = thisM; setMpoHref(card); status(t[2], 'ok', MONTHS_LONG[now.getMonth()] + (meta.synced_at ? ' · updated ' + fmtDay(meta.synced_at) : '')); return; }
       return getJson(base + 'data/' + prevM + '/sync_meta.json').then(function(pm){
-        if (pm) { card.dataset.month = prevM; setMpoHref(card); status(t[2], 'warn', MONTHS_LONG[now.getMonth()] + ' not loaded yet · showing ' + MONTHS_LONG[(now.getMonth()+11)%12]); }
+        if (pm) { card.dataset.month = prevM; setMpoHref(card); status(t[2], 'warn', 'Showing ' + MONTHS_LONG[(now.getMonth()+11)%12] + ' · ' + MONTHS_LONG[now.getMonth()] + ' not in yet'); }
         else { card.classList.add('muted'); status(t[2], '', 'No programs loaded yet'); }
       });
     });
@@ -308,7 +308,7 @@
   getJson('../redbull/period.json').then(function(p){
     if (!p || !p.end) { status('s-rb', '', 'Placements against goal'); return; }
     var end = new Date(p.end + 'T23:59:59'), days = Math.ceil((end - now) / 86400000);
-    if (days < 0) status('s-rb', '', (p.label || 'Period') + ' · ended');
+    if (end < now) status('s-rb', '', (p.label || 'Period') + ' · ended');   // not days < 0: ceil of a small negative is -0
     else status('s-rb', days <= 7 ? 'warn' : 'ok', (p.label || 'Current period') + ' · ' + (days === 0 ? 'last day' : days + ' day' + (days === 1 ? '' : 's') + ' left'));
   });
 })();

@@ -22,7 +22,7 @@
 <!-- The manager page wears the rep workspace's design (2026-09-28): same
      tokens, top bar, card component and light/dark palette, from rep.css.
      Only the hero photo and the section list are this page's own. -->
-<link rel="stylesheet" href="rep/rep.css?v=20260930a">
+<link rel="stylesheet" href="rep/rep.css?v=20261001a">
 <style>
   .card .status.tag{color:var(--text-3)}
 </style>
@@ -30,7 +30,7 @@
 <!-- The top bar is injected by shared/kdh-user.js (badge, Previewing chip, account menu with "View as rep"). kdh-home = no Back button. -->
 <meta name="kdh-page" content="Manager home">
 <meta name="kdh-home" content="manager">
-<script src="shared/kdh-user.js?v=20260930d"></script>
+<script src="shared/kdh-user.js?v=20261001a"></script>
 </head>
 <body>
 
@@ -251,7 +251,7 @@
   getJson('redbull/period.json').then(function(p){
     if (!p || !p.end) { status('s-rb', '', 'Distribution tracker'); return; }
     var end = new Date(p.end + 'T23:59:59'), days = Math.ceil((end - now) / 86400000);
-    if (days < 0) status('s-rb', '', (p.label || 'Period') + ' · ended');
+    if (end < now) status('s-rb', '', (p.label || 'Period') + ' · ended');   // not days < 0: ceil of a small negative is -0
     else status('s-rb', days <= 7 ? 'warn' : 'ok', (p.label || 'Current period') + ' · ' + (days === 0 ? 'last day' : days + ' day' + (days === 1 ? '' : 's') + ' left'));
   });
 })();
