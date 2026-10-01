@@ -276,3 +276,42 @@
 .g-obj-v2 .g-more{margin-top:12px;}
 .g-obj-v2 .g-more{background:none;border:1px solid var(--border,#E2E8F0);color:var(--accent,#2F5FC4);min-height:44px;box-shadow:none;}
 .g-obj-v2 .g-more:hover{background:var(--accent-soft,#EAF0FB);}
+
+/* ---- Compact MPO screens (2026-10-02) -------------------------------------
+   One summary card instead of four tiles; objective cards read like the hub's
+   program rows (name + pill, "3 of 13 ...", need, bar, rule); a quieter picker. */
+.g-summary{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin:0 0 16px}
+.g-summary-top{display:flex;align-items:baseline;gap:10px;margin-bottom:8px}
+.g-summary-n{font-size:28px;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
+.g-summary-n.good{color:var(--good)} .g-summary-n.accent{color:var(--accent)} .g-summary-n.mute{color:var(--text-mute)}
+.g-summary-l{font-size:15px;font-weight:500;color:var(--text)}
+.g-summary-facts{margin-top:10px;font-size:15px;color:var(--text)}
+.g-summary-facts b{font-weight:600}
+.g-summary-note{margin-top:4px;font-size:14px;line-height:1.45;color:var(--text-mute)}
+.g-obj.g-obj-v2{padding:14px 16px;border-radius:12px;margin-bottom:10px;border-left-width:1px}
+.g-obj-v2{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:10px;align-items:center}
+.g-obj-v2>*{grid-column:1 / -1}
+.g-obj-v2 .g-obj-name{grid-column:1;font-size:16px;line-height:1.3}
+.g-obj-v2 .g-tags{grid-column:2;margin:0;justify-self:end}
+.g-obj-v2 .g-main{font-size:15.5px;margin-top:6px}
+.g-obj-v2 .g-need{display:inline;font-size:15px;font-weight:500;margin:0}
+.g-obj-v2 .g-main{display:flex;flex-wrap:wrap;gap:0 6px;align-items:baseline}
+.g-obj-v2 .g-bar{margin-top:8px}
+.g-obj-v2 .g-rule{font-size:14px;margin-top:6px}
+.g-obj-v2 .g-more{width:auto;justify-self:start;min-height:36px;margin-top:8px;padding:0 4px;border:0;font-size:14.5px;font-weight:500}
+.g-obj-v2 .g-more:hover{background:none;text-decoration:underline}
+.g-obj-v2 .g-more-body{grid-column:1 / -1}
+.g-obj.achieved,.g-obj.inprogress,.g-obj.notstarted{border-left-width:1px}
+@media (max-width:420px){ .g-obj-v2 .g-tags{grid-column:1;justify-self:start;margin-top:6px} }
+.g-step-head .g-title{font-size:clamp(22px,4vw,26px);line-height:1.2}
+.g-rephead .g-title{font-size:clamp(22px,4vw,26px)}
+.g-step-head .g-sub{font-size:15px}
+.g-name{min-height:52px;padding:0 16px;font-size:16px;border-radius:10px;margin-bottom:8px}
+.g-name .ar{font-size:18px}
+.g-grid .g-name{margin-bottom:0}
+@media (min-width:700px){ .g-grid{gap:8px} }
+.monthbar{gap:6px}
+.monthtab{min-height:36px;padding:0 12px;font-size:14px}
+@media (max-width:520px){ .monthbar{flex-wrap:nowrap;overflow-x:auto} .monthtab{flex:none} }
+.g-obj-v2 .g-main b{font-weight:600}
+.g-obj-v2 .g-more{margin:2px 0 -6px}

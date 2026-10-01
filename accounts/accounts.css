@@ -324,3 +324,61 @@ details.about-data .fresh-foot{margin-top:4px}
 .filters .fpop > summary::-webkit-details-marker{display:none}
 .filters .fpop > summary::after{content:'\25BE';margin-left:6px;color:var(--text-4)}
 .filters .fpop[open] > summary::after{content:'\25B4'}
+
+/* ---- ACCOUNT ROWS (2026-10-02, Shopify All Customers 775ea206): name,
+   town · #CustomerID, then ONE leading action and how many more. ---- */
+.arow{min-height:64px}
+.arow .row-main{gap:2px}
+.row-lead{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px;margin-top:4px;font-size:14px;line-height:1.4;color:var(--text-2);min-width:0}
+.row-lead b{font-weight:600;color:var(--text)}
+.row-lead.k-follow b,.row-lead.k-tap b{color:var(--warn)}
+.row-lead.k-prog b{color:var(--brand)}
+.row-lead .ld{min-width:0;overflow-wrap:anywhere}
+.row-lead .lm{flex-basis:100%;color:var(--text-3);white-space:nowrap;font-size:13.5px}
+.row-lead.k-reorder b,.row-lead.k-lapsed b,.row-lead.k-less b{color:var(--text)}
+
+/* ---- ACCOUNT WORKSPACE (2026-10-02, Attio company record 070de66a) ----
+   Overview / Products / History / More as underline tabs (Attio's record
+   tabs, with counts), the same four labels on every width. Overview is the
+   work (Next Actions, Sales Context) beside the Account Details panel on
+   wide screens; More is a plain menu whose rows open a section in place. */
+.secnav{gap:0;padding:0;margin:10px 0 14px;background:none;border:0;border-bottom:1px solid var(--border);border-radius:0;overflow-x:auto}
+.sectab{flex:1 1 0;gap:6px;min-height:44px;padding:0 8px;border-radius:0;font-size:15px;font-weight:500;color:var(--text-2);border-bottom:2px solid transparent;margin-bottom:-1px}
+.sectab.active{background:none;box-shadow:none;color:var(--text);font-weight:600;border-bottom-color:var(--brand)}
+.sectab small{font-size:12.5px;font-weight:500;color:var(--text-3);background:var(--surface-2);border:1px solid var(--border);border-radius:999px;padding:0 6px;line-height:18px}
+@media (min-width:760px){ .sectab{flex:0 0 auto;padding:0 14px} }
+.over-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:0 20px}
+@media (min-width:1180px){ .over-grid{grid-template-columns:minmax(0,1fr) 340px;align-items:start} .over-side{position:sticky;top:70px} }
+.over-side .dgroup .kv{grid-template-columns:118px minmax(0,1fr)}
+.subback{display:inline-flex;align-items:center;gap:4px;min-height:40px;margin:-4px 0 4px;color:var(--brand);font-size:15px;font-weight:500;text-decoration:none}
+.subback svg{width:18px;height:18px}
+.mlist .row{min-height:60px}
+.hseg{margin:0 0 6px}
+.hseg button{font-size:14px}
+@media (max-width:420px){ .hseg button{font-size:13px;padding:0 4px} }
+/* products: Shopify Products 691c0f9f -- mode, search, filters, freshness, then rows */
+#plistCard{padding-top:12px}
+.phead{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.phead h2{margin:0;font-size:17px;font-weight:600}
+.phead .dim{font-size:14px}
+.pctl{padding:10px 0 2px}
+.pctl .fpop{align-self:flex-start}
+.inv-fresh{margin:8px 0 2px;padding:8px 10px;border-radius:8px;background:var(--surface-2);border:1px solid var(--border);font-size:14px;line-height:1.45;color:var(--text-2)}
+.inv-fresh b{font-weight:600;color:var(--text)}
+.inv-fresh.stale{background:var(--kdh-warn-soft);border-color:color-mix(in srgb,var(--warn) 30%,var(--border));color:var(--text)}
+.plist .prow:first-child{border-top:0}
+.prow .stk b{font-weight:600;color:var(--text)}
+.prow .pa{margin-top:4px}
+.prow .pa a{display:inline-flex;align-items:center;min-height:36px;color:var(--brand);font-size:14px;font-weight:500;text-decoration:none}
+.discuss-fold{margin:12px 0}
+.filters .fpop > summary::after,.pctl .fpop > summary::after{margin-left:8px}
+.filters .fbar{flex-wrap:nowrap}
+.filters .fsel select{max-width:160px}
+@media (max-width:420px){ .filters .fbar{gap:6px} .filters .fsel select{max-width:138px;padding:0 24px 0 8px} .filters .fpop > summary{padding:0 8px} }
+.filters .fbar:has(.fpop[open]){flex-wrap:wrap}
+.filters .fsel{flex:0 1 auto}
+.filters .fsel select{flex:none;width:150px;min-width:0}
+@media (max-width:420px){ .filters .fsel select{width:128px} }
+.filters .fsel{flex:none}
+@media (max-width:420px){ .filters .fbar .dl{display:none} }
+@media (max-width:440px){ .pctl .pseg .pl-long{display:none} }

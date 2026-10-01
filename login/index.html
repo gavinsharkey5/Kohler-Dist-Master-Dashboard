@@ -256,9 +256,9 @@
   function forgetStoredSession() {
     try { Object.keys(localStorage).forEach(function (k) { if (k.indexOf('sb-') === 0) localStorage.removeItem(k); }); } catch (e) {}
   }
-  function forgetAsk() { try { Object.keys(sessionStorage).filter(function (k) { return k.indexOf('kdh_ask:') === 0; }).forEach(function (k) { sessionStorage.removeItem(k); }); } catch (e) {} }
+  function forgetAsk() { try { Object.keys(sessionStorage).filter(function (k) { return k.indexOf('kdh_ask:') === 0 || k.indexOf('kdh_nav:') === 0 || k.indexOf('kdh_acct') === 0 || k.indexOf('kdh_from:') === 0; }).forEach(function (k) { sessionStorage.removeItem(k); }); } catch (e) {} }
   function clearCookie() {
-    forgetAsk();   // the account assistant's transcripts belong to the person signing out
+    forgetAsk();   // the assistant's transcripts and the remembered lists / sections belong to the person signing out
     document.cookie = COOKIE + '=; Path=/; Max-Age=0; Secure; SameSite=Lax';
     document.cookie = 'kdh_user=; Path=/; Max-Age=0; Secure; SameSite=Lax';
     document.cookie = 'kdh_preview=; Path=/; Max-Age=0; Secure; SameSite=Lax';

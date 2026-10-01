@@ -374,11 +374,17 @@ function screenRepDetail(){
       roleOf(rep) ? esc(roleOf(rep)) : '',
       (function(){ var u = document.getElementById('updated-line'); return u && u.textContent.trim() ? '<span class="g-stamp">'+esc(u.textContent.trim())+'</span>' : ''; })()
     ])+
-    '<div class="g-sum-grid">'+sums.map(function(k){
-      return '<div class="g-sum"><div class="g-sum-l">'+k.l+'</div>'+
-        '<div class="g-sum-n '+k.cls+'">'+k.n+'</div>'+
-        '<div class="g-sum-s">'+k.s+'</div></div>';
-    }).join('')+'</div>'+
+    // ONE SUMMARY CARD (2026-10-02) in place of four stat tiles: the weighted
+    // percent, one bar, the objective counts in a line, the partial-credit note.
+    // Same numbers as before (weightedForRep), only fewer boxes.
+    '<div class="g-summary">'+
+      '<div class="g-summary-top"><span class="g-summary-n '+sums[0].cls+'">'+sums[0].n+'</span>'+
+        '<span class="g-summary-l">Weighted MPO complete</span></div>'+
+      barHtml(w.earnedPct, w.earnedPct>=90?'achieved':(w.earnedPct>0?'inprogress':'notstarted'))+
+      '<div class="g-summary-facts"><b>'+w.achieved+' of '+w.scoredCount+'</b> objectives at goal · '+
+        w.inprogress+' in progress · '+w.notstarted+' not started</div>'+
+      '<div class="g-summary-note">'+sums[0].s+'</div>'+
+    '</div>'+
     cards+
   '</div>';
 }
@@ -444,8 +450,7 @@ function repObjectiveCard(o, rep){
     (o.supplier?'<div class="g-obj-sup">'+esc(o.supplier)+'</div>':'')+
     '<div class="g-obj-name">'+esc(o.shortName||o.name)+'</div>'+
     '<div class="g-tags">'+creditPill(st)+'</div>'+
-    '<div class="g-main">'+main+'</div>'+
-    '<div class="g-need'+(m.remaining<=0?' good':'')+'">'+need+'</div>'+
+    '<div class="g-main"><b>'+main+'</b><span class="g-need'+(m.remaining<=0?' good':'')+'">· '+need+'</span></div>'+
     barHtml(m.pct, st)+
     (rule?'<div class="g-rule">'+rule+'</div>':'')+
     subsHtml+

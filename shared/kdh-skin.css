@@ -20,7 +20,7 @@
 
    Page-specific fixes live at the bottom, grouped by page. Keep the
    variable map alphabetical-ish so a new dashboard is easy to add. */
-@import url("kdh.css?v=20261001c");
+@import url("kdh.css?v=20261002a");
 
 /* ---- 2. fonts: every family a dashboard asks for is one of ours ---- */
 @font-face{font-family:"Space Grotesk";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/inter.woff2) format("woff2")}
@@ -186,3 +186,71 @@ button,.btn,.rpill,.chip,.mpill,.tab,.pill,select,input[type="search"],input[typ
 /* Tap Tracker: Reset All Filters is a plain outline button, not a coloured block */
 .reset-big{background:var(--kdh-surface)!important;border:1px solid var(--kdh-border-2)!important;color:var(--kdh-text)!important;font-weight:500!important;box-shadow:none!important}
 .reset-big:hover{background:var(--kdh-surface-2)!important}
+
+/* ---- TAP TRACKER, account-first (2026-10-02) -------------------------------
+   Search + Resurvey + Reset on one row, the rest under More Filters (open from
+   760px, a fold on phones), a quiet results head, analytics folded below. */
+.tap-find .tabs{display:inline-flex;gap:2px;padding:3px;margin:0 0 12px;background:var(--kdh-surface-2);border:1px solid var(--kdh-border);border-radius:10px}
+.tap-find .tabbtn{flex:none!important;min-height:36px!important;padding:0 16px!important;font-size:14.5px!important;font-weight:500!important;border:0!important;border-radius:8px!important;background:none!important;color:var(--kdh-text-2)!important;box-shadow:none!important}
+.tap-find .tabbtn[aria-pressed="true"]{background:var(--kdh-surface)!important;color:var(--kdh-text)!important;font-weight:600!important;box-shadow:0 1px 2px rgba(0,0,0,.08)!important}
+.tap-find .toolbar{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 12px;padding:12px 14px;margin:0 0 12px}
+.tap-find .toolbar>.tgroup:has(#search){flex:2 1 260px}
+.tap-find .toolbar>.tgroup:has(#resFilter){flex:1 1 170px}
+.tap-find .toolbar .reset-big{flex:none;min-height:40px;padding:0 14px;font-size:14px;order:2}
+.tap-find .tap-more{flex:1 1 100%;order:3}
+.tap-find .tap-more>summary{display:none}
+.tap-find .tap-more-in{display:flex;flex-wrap:wrap;gap:10px 12px}
+.tap-find .tap-more-in .tgroup{flex:1 1 160px}
+.tap-res-head{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:0 0 10px}
+.tap-res-head .result-count{flex:1 1 auto;margin:0;font-size:14px;color:var(--kdh-text-2)}
+.tap-res-head .tbtn{flex:none;min-height:36px;padding:0 12px;font-size:13.5px}
+html.kdh-rep .tap-res-head .tbtn{display:none}
+.tap-analytics{margin:18px 0 16px;border:1px solid var(--kdh-border);border-radius:12px;background:var(--kdh-surface)}
+.tap-analytics>summary{list-style:none;cursor:pointer;display:flex;flex-direction:column;gap:2px;padding:14px 44px 14px 16px;position:relative;min-height:52px;justify-content:center}
+.tap-analytics>summary::-webkit-details-marker{display:none}
+.tap-analytics>summary::after{content:'';position:absolute;right:18px;top:50%;width:8px;height:8px;border-right:2px solid var(--kdh-text-3);border-bottom:2px solid var(--kdh-text-3);transform:translateY(-70%) rotate(45deg)}
+.tap-analytics[open]>summary::after{transform:translateY(-30%) rotate(-135deg)}
+.tap-analytics .ta-t{font-size:16px;font-weight:600;color:var(--kdh-text)}
+.tap-analytics .ta-s{font-size:14px;color:var(--kdh-text-2)}
+.tap-analytics[open]{padding:0 14px 14px}
+.tap-analytics[open]>summary{margin:0 -14px 10px;border-bottom:1px solid var(--kdh-border)}
+@media (max-width:759px){
+  .tap-find .tabs{display:flex}
+  .tap-find .tabbtn{flex:1 1 0!important}
+  .tap-find .toolbar{padding:12px}
+  .tap-find .toolbar>.tgroup:has(#search){flex:1 1 100%}
+  .tap-find .toolbar>.tgroup:has(#resFilter){flex:1 1 0}
+  .tap-find .toolbar .reset-big{align-self:flex-end;min-height:44px}
+  .tap-find .tap-more>summary{display:flex;align-items:center;gap:8px;min-height:40px;font-size:14.5px;font-weight:500;color:var(--kdh-brand);cursor:pointer;list-style:none}
+  .tap-find .tap-more>summary::-webkit-details-marker{display:none}
+  .tap-find .tap-more>summary::after{content:'';width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-2px)}
+  .tap-find .tap-more[open]>summary::after{transform:rotate(-135deg)}
+  .tap-find .tap-more-in .tgroup{flex:1 1 100%}
+  .tap-find .tgroup:first-child{flex-basis:100%}
+}
+.rep-card.solo>.rep-head{cursor:default}
+.rep-card.solo .rep-chev{display:none}
+@media (max-width:759px){
+  .rep-card.solo>.rep-head{grid-template-columns:44px minmax(0,1fr) auto!important;gap:10px!important;padding:12px!important}
+  .rep-card.solo .rep-pie{width:44px!important;height:44px!important}
+  .rep-card.solo .rep-pie svg{width:44px;height:44px}
+  .rep-card.solo .rep-name{font-size:16px!important}
+  .rep-card.solo .rep-meta{font-size:14px!important}
+  .rep-card.solo .rep-stats{gap:10px!important}
+  .rep-card.solo .rep-stats .n{font-size:17px!important}
+}
+/* one rep's accounts are the page: no inner scroll box */
+.rep-card.solo .rep-accounts{max-height:none!important;overflow:visible!important}
+/* phone account rows: name; "40 taps · 15 ours · 25 theirs"; "Visited Aug 19, 2026" + badges (2026-10-02) */
+@media (max-width:640px){
+  .acct-head{column-gap:10px!important;row-gap:6px!important}
+  .acct-chev{display:none}
+  .acct-mix{order:5;flex:1 1 100%!important;margin-left:62px}
+  .acct-taps{order:6;flex:1 1 100%!important;margin-left:62px;display:flex!important;flex-wrap:wrap;align-items:baseline;gap:0 6px;font-size:15px!important;font-weight:600!important}
+  .acct-taps small{display:inline!important;font-size:14px!important;color:var(--kdh-text-2)}
+  .acct-taps .acct-ot{display:inline!important;margin:0!important;font-size:14px!important}
+  .acct-taps .acct-ot::before{content:'· ';color:var(--kdh-text-3)}
+  .acct-visited{order:7;flex:1 1 100%!important;margin-left:62px;text-align:left!important;font-size:14px!important;display:flex!important;flex-wrap:wrap;align-items:center;gap:4px 8px}
+  .acct-visited .l{display:inline!important;font-size:14px!important}
+}
+.rpill.active,.rpill.active.all{color:var(--kdh-brand-ink)!important;border-style:solid!important}

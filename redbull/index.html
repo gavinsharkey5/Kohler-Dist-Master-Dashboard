@@ -213,10 +213,16 @@
   .quest .sup{gap:12px}
   .quest .sup .num{white-space:nowrap}
   @media (max-width:599px){ .gx-head .wrap{padding:12px 16px 8px} .gx-head h1{font-size:24px} }
+.ptag{display:inline-flex;align-items:center;margin-left:8px;padding:1px 8px;border-radius:999px;font-size:12.5px;font-weight:600;line-height:20px;vertical-align:middle}
+.ptag.ended{background:var(--kdh-surface-3,#ECEEF1);color:var(--kdh-text-2,#555)}
+.ptag.current{background:var(--kdh-brand-soft,#E8EEFA);color:var(--kdh-brand,#2F5FC4)}
+.ptag.upcoming{background:var(--kdh-surface-3,#ECEEF1);color:var(--kdh-text-2,#555)}
+.shead .ptag{margin-left:0}
+.rb-ended{margin:0 0 12px;padding:10px 12px;border:1px solid var(--kdh-border,#E1E3E6);border-radius:10px;background:var(--kdh-surface-2,#F6F7F8);font-size:14px;color:var(--kdh-text-2,#555)}
 </style><script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="kdh-page" content="Red Bull Tracker">
 <!-- Site design system: maps this page's variables + fonts onto shared/kdh.css. Keep it LAST in <head>. -->
-<link rel="stylesheet" href="../shared/kdh-skin.css?v=20261001c">
+<link rel="stylesheet" href="../shared/kdh-skin.css?v=20261002a">
 </head><body>
 <div class="gx-head"><div class="wrap">
   <p class="eyebrow"><span class="pulse"></span> Kohler Distributing · Red Bull · 2026</p>
@@ -230,7 +236,7 @@
   <div id="body"></div>
   <footer><hr><p id="foot"></p></footer>
 </div></div>
-<script src="../shared/kdh-user.js?v=20261001c"></script>
+<script src="../shared/kdh-user.js?v=20261002a"></script>
 <script>
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const num=x=>{const v=parseFloat(String(x).replace(/[^0-9.\-]/g,""));return isNaN(v)?0:v;};
@@ -334,7 +340,7 @@ function boardHtml(me){
       <div class="track"><i style="width:${Math.min(share,100).toFixed(1)}%"></i></div></span>
       <span class="win">${R.complete}<small>${TOP.label}</small></span></div>`;
   }).join("");
-  const when=[PERIOD&&PERIOD.label?`period ${esc(PERIOD.label)}`:"", DATA_DATE?`data through ${esc(fmtDay(DATA_DATE))}`:""].filter(Boolean).join(" · ");
+  const when=[PERIOD&&PERIOD.label?`period ${esc(PERIOD.label)}${periodState()&&periodState().k==='ended'?' (ended — final)':''}`:"", DATA_DATE?`data through ${esc(fmtDay(DATA_DATE))}`:""].filter(Boolean).join(" · ");
   return `<div class="shead"><span class="tr">${TROPHY}</span><h2>Rep Leaderboard</h2><span class="meta">${rows.length} reps · by ${TOP.label} accounts</span></div>
     ${when?`<p class="lbwhen">${when}</p>`:""}<div class="board">${items}</div>
     <p class="note"><b>How the ranking works:</b> reps are ordered by <b>${TOP.label}</b> accounts (an account buying all three: ${CAT_KEYS.join(", ")}) in the buying period; a tie is broken by total buying accounts, and reps still level share a rank (shown with =). The bar is the share of each rep's <b>own</b> buying accounts that reached ${TOP.label}. Routes differ in size and in how many accounts stock Red Bull, so a rep with few buying accounts has fewer to complete — compare the bar as well as the count.</p>`;
@@ -346,6 +352,17 @@ const COMPLETE_RULE=`<div class="rule"><span class="rk">How an account levels up
   <b>${TOP.label}</b> is the finish line: all three together. Two of the three is <b>not</b> ${TOP.label} —
   sell the missing one to finish the account.</span></div>`;
 
+// Ended vs current (2026-10-02): the buying window from period.json against today.
+function periodState(){
+  if(!PERIOD||!PERIOD.end) return null;
+  const today=new Date(); today.setHours(0,0,0,0);
+  const end=new Date(PERIOD.end+'T00:00:00'), start=PERIOD.start?new Date(PERIOD.start+'T00:00:00'):null;
+  if(today>end) return {k:'ended', tag:'Ended', line:`Ended ${fmtDay(PERIOD.end)} · final standings`};
+  if(start&&today<start) return {k:'upcoming', tag:'Upcoming', line:`Starts ${fmtDay(PERIOD.start)}`};
+  const left=Math.round((end-today)/86400000);
+  return {k:'current', tag:'Current', line:`Current period · ends ${fmtDay(PERIOD.end)} · ${left} day${left===1?'':'s'} left`};
+}
+function periodTag(){ const p=periodState(); return p?`<span class="ptag ${p.k}">${p.tag}</span>`:''; }
 // "How it works" (2026-10-01): every qualification rule in one fold, so the
 // page opens on progress and accounts instead of the explanation.
 let HOW_EXTRA='';
@@ -368,7 +385,7 @@ function render(){
         +`<p class="v num">${t.by[t2.key]}${g?`<small>/${g}</small>`:""}</p></div>`;
     }).join("");
     const stats=`<div class="stats">${statTile("Buying Accounts",t.total,"")}${tierTiles}</div>`;
-    app.innerHTML=stats+`<p class="note">Team-wide, <b>${t.complete} of ${t.total}</b> buying accounts (${donePct.toFixed(0)}%) buy all three.</p>`+boardHtml(null)+howHtml();
+    app.innerHTML=`<div class="shead"><h2>Team Progress</h2>${periodTag()}<span class="meta">${PERIOD&&PERIOD.label?esc(PERIOD.label):''}</span></div>`+stats+`<p class="note">Team-wide, <b>${t.complete} of ${t.total}</b> buying accounts (${donePct.toFixed(0)}%) buy all three.</p>`+boardHtml(null)+howHtml();
     app.querySelectorAll(".lrow[data-rep]").forEach(el=>{const go=()=>setRep(el.dataset.rep);el.addEventListener("click",go);el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});});
   } else {
     const s=repStats(activeRep);
@@ -426,9 +443,11 @@ function render(){
     const todoHtml=todo.length ? groups.map(g=>`<p class="rb-gh">${g.k===1?'1 Product Needed':'2 Products Needed'} <span>${g.rows.length}</span></p><div class="board rb-list">${g.rows.map(rowFor).join("")}</div>`).join("")
       : `<div class="board rb-list"><div class="brow">Every account is ${TOP.label} — nice.</div></div>`;
     const doneHtml=`<details class="rb-fold"><summary>${TOP.label} Accounts <span>${done.length}</span></summary><div class="board rb-list">${done.length?done.map(rowFor).join(""):`<div class="brow">No ${TOP.label} accounts yet — an account needs ${CAT_KEYS.join(", ")} together.</div>`}</div></details>`;
-    app.innerHTML=prog+
+    const ps=periodState();
+    app.innerHTML=`<div class="shead"><h2>Your Progress</h2>${periodTag()}<span class="meta">${PERIOD&&PERIOD.label?esc(PERIOD.label):''}</span></div>`+
+      (ps&&ps.k==='ended'?`<p class="rb-ended">This buying period ended ${esc(fmtDay(PERIOD.end))}. These are the final numbers; nothing more counts toward it.</p>`:'')+prog+
       `<div class="shead"><h2>Accounts to Complete</h2><span class="meta">closest first</span></div>`+todoHtml+doneHtml+
-      `<div class="shead"><h2>Progress vs. Team Goal</h2><span class="meta">tap a category for accounts</span></div>`+cards+
+      `<div class="shead"><h2>Team Progress</h2><span class="meta">Every rep's accounts vs. the team goal · tap a category for yours</span></div>`+cards+
       boardHtml(activeRep)+howHtml();
   }
 }
@@ -475,7 +494,7 @@ async function boot(){
   document.getElementById("lede").innerHTML=`${periodPhrase} ${goalPhrase} ${key} ${rule} Tap your name to see your accounts.`;
   HOW_EXTRA=`${periodPhrase} ${goalPhrase}`; const hw=document.querySelector('.rb-how .rb-howin .note'); if(hw) render();
   if(LOCK_REP){const l=document.getElementById("lede");l.innerHTML=l.innerHTML.replace(/\s*Tap your name to see your accounts\.?/,"");}
-  document.getElementById("period").innerHTML=period&&period.label?`<span class="lbl">Buying period</span><b>${esc(period.label)}</b>`:"";
+  document.getElementById("period").innerHTML=period&&period.label?`<span class="lbl">Buying period</span><b>${esc(period.label)}</b>${periodTag()}`:"";
   // the export's own last date (period.json), not the file's timestamp -- a
   // rep's copy of data.csv is rewritten whenever the copies are rebuilt
   const upd=(period&&period.export_last_date)?fmtDay(period.export_last_date):(lastMod?new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):"");

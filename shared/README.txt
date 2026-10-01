@@ -33,6 +33,28 @@ One look for every page on kohlerdisthub.com. Three files do it:
                  runs: the saved choice (localStorage kdh_theme), else
                  the DEVICE setting, followed live (window.kdhTheme).
 
+APP SHELL (2026-10-02) -- kdh-user.js + the "APP SHELL" block at the end of kdh.css
+  Below 1024px: a fixed bottom bar #kdhTabs -- reps Home / My Accounts / Programs /
+  More, managers Home / Accounts / Programs / Team / More -- with labels, 60px tall plus
+  the safe-area inset; pages get bottom padding so nothing hides behind it. More opens
+  the account menu as a sheet: the tools (Off/On-Premise MPOs, Tap Tracker, Red Bull,
+  Carbliss, Rep Workspace for managers), View as Rep / Exit Preview, theme, Sign Out.
+  From 1024px: a labelled left sidebar #kdhSide (240px) with the same destinations, a
+  Programs sub-list, Trackers and Manager groups, and the signed-in person at the foot
+  (#kdhMenuBtn) opening the same menu as a popover. The top bar keeps only the page
+  name, the Viewing / Previewing chip, a contextual Back and the theme switch.
+  `<meta name="kdh-tabs" content="off">` opts a page out (metlife-audit has its own).
+  WHERE AM I: where(u) maps the path to a nav item (home / accounts / programs / team)
+  or a tool; trackers mark More (phone) / their own sidebar row (desktop).
+  STATE MEMORY: kdhRemember(key, href) / kdhRecall(key) keep the last URL of a section
+  in sessionStorage under kdh_nav:<scope>:<key>, scope = signed-in email + preview
+  identity. Nav links carrying data-nav="accounts" / "programs" go to the recalled URL,
+  so My Accounts / Programs return to the list, filters, rep and section you left.
+  Entering or leaving preview (kdhSetPreview / kdhExitPreview) and signing in or out
+  clear kdh_nav:*, kdh_acct* and kdh_from:*.
+  The menu element is moved to <body> on load: inside the bar (backdrop-filter) a
+  position:fixed sheet is clipped to the bar.
+
 Every page, the landing pages included (rep/, team/, index.html), gets
 the bar from kdh-user.js; a landing page adds <meta name="kdh-home"> and
 gets no Back button. Only the sign-in page draws its own header. The

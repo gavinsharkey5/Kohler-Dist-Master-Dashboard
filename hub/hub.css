@@ -1474,3 +1474,31 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:600;letter-spacing:-.01em;
 }
 /* page titles 24-28px (2026-10-01, third pass) */
 .rep-title h1{font-size:clamp(24px,6.4vw,28px);font-weight:600}
+/* supplier sections with their programs beneath (2026-10-02) */
+.hsups{display:flex;flex-direction:column;gap:6px}
+.hsupg-h{display:flex;align-items:center;gap:10px;padding:6px 2px 8px}
+.hsupg-h .suplogo{width:28px;height:28px;flex:none}
+.hsupg-n{font-size:16px;font-weight:600;color:var(--text)}
+.hsupg-c{margin-left:auto;font-size:13.5px;color:var(--muted)}
+.hsupg .hlist{margin-bottom:8px}
+/* Programs tabs (2026-10-02): underline tabs like the account record, short labels on phones */
+.tabbar{gap:0;margin:14px 0 6px;border-bottom:1px solid var(--line-soft)}
+.tab{flex:0 0 auto;gap:6px;min-height:44px;padding:0 14px;border:0;border-bottom:2px solid transparent;border-radius:0;background:none;box-shadow:none;margin-bottom:-1px;font-size:15px;font-weight:500;color:var(--text-mute)}
+.tab:hover{border-color:transparent;color:var(--text)}
+.tab.active{background:none;border-color:transparent;border-bottom-color:var(--accent);box-shadow:none;color:var(--text);font-weight:600}
+.tab-n{font-size:12.5px;padding:0 6px}
+.tl-short{display:none}
+@media (max-width:520px){ .tab{flex:1 1 0;padding:0 4px;font-size:14px} .tab .tl-long{display:none} .tab .tl-short{display:inline} }
+.mstrip{gap:6px;margin:10px 0 8px}
+.mpill{min-height:36px;padding:0 12px;font-size:14px}
+@media (max-width:520px){ .mpill .tl-long{display:none} .mpill .tl-short{display:inline} }
+.updated .upd-lines{gap:0}
+.tabbar .tab[aria-selected="true"],.tabbar .tab.active{background:none!important;border-color:transparent!important;border-bottom-color:var(--accent)!important;color:var(--text)!important}
+.tabbar .tab[aria-selected="true"] .tab-n{background:var(--accent-soft);color:var(--accent);border-color:transparent}
+.mpill{flex:0 0 auto}
+.mstrip .mpill[aria-selected="true"],.mstrip .mpill.active,.mstrip .mpill[aria-pressed="true"]{background:var(--accent-soft)!important;color:var(--accent)!important;border-color:var(--accent)!important}
+/* Ended / unavailable group heads: a quiet row, not a section title (2026-10-02) */
+.ghead.toggle,.ghead.g-over{margin:18px 0 8px;padding:12px 0 0;gap:4px 8px;align-items:center}
+.ghead.toggle .ghead-t,.ghead.g-over .ghead-t{font-size:15px;font-weight:600}
+.ghead.toggle .ghead-s,.ghead.g-over .ghead-s{font-size:14px}
+.ghead.toggle .ghead-n{font-size:13px;margin-left:2px}

@@ -142,6 +142,14 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-10-02 Navigation + account workspace rebuild: bottom bar (Home /
+  My Accounts / Programs / More) on phones and iPads, a labelled sidebar on
+  desktop, Back and every list remembering where you were; My Accounts rows
+  lead with one action; the Account page is Overview / Products / History /
+  More; Products show Kohler warehouse stock "at last update"; Programs show
+  progress without drilling in; MPO pages, Tap Tracker (account search first)
+  and Red Bull (Your vs Team progress, period ended) cleaned up. Nothing for
+  Gavin to switch on -- check it on the phone once it deploys.
 - [x] 2026-10-01 Every rep dataset served per rep: a signed-in rep's browser now
   receives only their own rows of the incentive data, the MPO month files,
   the Tap Tracker, Red Bull and Carbliss (tools/rep_slices.py writes the

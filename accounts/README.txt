@@ -158,6 +158,36 @@ THE ACCOUNT PAGE: FOUR SECTIONS (2026-09-30, Gavin's Encompass brief)
     Needs ANTHROPIC_API_KEY + the assistant_usage migration; api/README.txt
     has the pilot steps and the spend limits.
 
+ACCOUNT WORKSPACE (2026-10-02, Attio's company record as the pattern)
+  Four sections under the header, `sec=` in the hash, switched in place:
+    Overview   Next Actions (the Focus rules below, max 3, each with why + a link),
+               Sales Context (last purchase, 3 vs 3 months, products in 12 months,
+               alert counts, "See purchase history & alerts"), Account Details (Customer
+               ID, address, premise, area, size -- managers only --, 2026 so far, rep for
+               managers, one "Contact & hours are in Encompass" line). From 1180px the
+               details sit in a sticky right column.
+    Products   the product list (below), and "Products to Discuss" folded under it.
+    History    three views (`sub=`): Sales & Alerts, Buying Patterns, Monthly Record
+               (the old Invoices & Balances: the monthly purchase record labelled "not
+               invoices" + the one unavailable line for invoices / AR / backorders).
+    More       a plain menu: Programs, Notes & Follow-ups, Taps & Visits, Tools & Links,
+               Ask the Assistant, About This Data. Each opens in place with "‹ More".
+  OLD LINKS STILL WORK: sec=sales -> History > Sales & Alerts, sec=inv -> History >
+  Monthly Record, sec=tasks -> More, sec=ask -> More > Ask; data-go keys like
+  "sales:alerts" / "tasks:notes" / "inv:inv" are translated by GO / goTarget() in
+  accounts.js, so links from the rep home, the hub, the tap tracker and the assistant's
+  answer footer land where they did. Tabs show counts (Products = products bought,
+  More = open follow-ups).
+  PRODUCT LIST: mode (Previously Purchased / All Eligible), search, Filters (supplier ->
+  family -> package) and the freshness line sit directly above the rows. Freshness:
+  "Kohler warehouse stock as of <date> · N days old · may have changed -- confirm in
+  Encompass" (tinted when 7+ days old). Each row: name (+ Lead tag), package · #num ·
+  supplier, last bought here, "Stock at last update: N units" (KOHLER'S WAREHOUSE, never
+  the retailer's shelf) with Out / Running low tags, "expected arrival <date>" marked
+  "(past estimate)" once that date has passed, Sell Sheet (PDF). 40 rows then "Show N
+  More of M". Mode, search, filters and how many are shown are kept per account in
+  sessionStorage, so Back / a reload return to the same list.
+
 FOCUS + SECTION RULES (unchanged from the first build)
   Focus      up to three, in this fixed order, each saying why and what next:
              1 the newest open follow-up on this account (rep_actions, status follow)
@@ -220,11 +250,31 @@ FOCUS + SECTION RULES (unchanged from the first build)
              opened on this account (#q=<name>). On-premise accounts without a survey say so.
   Freshness  book asOf · sales through <month> (loaded <date>) · taps asOf, in the footer.
 
-LIST
-  Rows: name; town · premise · #CustomerID (· rep for managers); chips: N follow-ups, N program leads,
-  survey overdue Nd / due in Nd; then the EVIDENCE LINE from patterns.py (max 3 items):
-  "2 possible reorders · 3 lapsed products · Purchasing less frequently" / "N products
-  bought less often" / "Volume up|down vs prior 3 months" (>= 25% on a 10+ case base).
+LIST (Shopify's customer list as the pattern, 2026-10-02)
+  Order: title + counts, search, All / Needs Attention / Follow-Ups, then one row of
+  secondary filters (Reason under Needs Attention, Filters = brand family, Data month),
+  then the rows. Row: name; town · #CustomerID · premise (· rep for managers); ONE
+  LEADING ACTION; "N More Items" when the account has more than one.
+  LEADING ACTION RULE (accounts.js leadOf(), first match wins):
+    1 Follow-Up           newest open rep_actions follow-up (program named)
+    2 Tap Survey Overdue  last survey > 60 days ago (days since)
+    3 Program Lead        a warm opportunity on the trackers' own lists, soonest-ending
+                          program first (program + its end)
+    4 Tap Survey Due      53-60 days since the survey (days left)
+    5 Possible Reorder    patterns.py reorder alert, biggest usual order first (product)
+    6 Lapsed Product      patterns.py lapsed alert (product)
+    7 Buying Less Often   patterns.py slower / less-often (product or the account line)
+  Why this order: the rep's own promise first, then dated obligations (survey, program
+  deadline), then sales signals by backtested reliability (accounts/backtest.py, 2026-09-30:
+  reorder 72-85% bought again within 3 months, lapsed 52-69%). "N More Items" counts every
+  other follow-up, lead, survey and buying alert on the account (each product alert is one
+  item). Under Needs Attention the list is grouped by the leading action (one section per
+  rule above), each account once. A possible reorder is never worded as a confirmed need.
+  MEMORY: the list's hash (search, need, reason, family, rep) is remembered per signed-in
+  user + preview (kdh-user.js kdhRemember('accounts', ...), sessionStorage
+  kdh_nav:<scope>:accounts) so My Accounts in the nav returns to the same list after
+  visiting another tool; the scroll position comes back with it. Entering or leaving
+  preview, or a different person signing in, starts clean.
   Filters: All accounts / Needs attention / Follow-ups; under Needs attention a REASON
   select (Any / Possible reorder / Buying less often / Lapsed buyer / Open follow-up /
   Program lead / Survey due or overdue); "More filters" holds the BRAND FAMILY select
@@ -232,8 +282,8 @@ LIST
   alone it keeps accounts that buy the family or have an alert on it; with a reason it
   keeps only accounts whose alert of that type is on that family. "Needs attention" =
   follow-ups + leads + surveys + buying alerts + purchasing less frequently. The header
-  counts "N need attention" and, separately, "N with a buying alert (M product alerts)"
-  -- accounts and product alerts are never added together. Search matches name, number,
+  counts accounts on the route and "N accounts with alerts" (accounts, never product
+  alerts added to accounts). Search matches name, number,
   town (and rep for managers). Long lists page 120 at a time. Back from an account
   restores the list, its filters (need / reason / family / rep / search) and scroll, via
   the hash + sessionStorage.

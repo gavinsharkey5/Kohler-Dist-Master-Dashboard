@@ -278,3 +278,87 @@ html[data-theme="dark"] #kdhTheme.kdh-menu-i .sun{display:none} html[data-theme=
   html.kdh-has-tabs #selectionSumBar{bottom:calc(76px + env(safe-area-inset-bottom)) !important}
 }
 @media print{ .kdh-tabs,.kdh-nav{display:none !important} }
+
+/* ==== APP SHELL (2026-10-02) =============================================
+   Shopify iOS (All Customers 775ea206): a small labelled bottom tab bar.
+   Todoist web (Today): a stable labelled sidebar, tinted selected item.
+   Under 1024px: bottom tabs (Home / My Accounts / Programs / [Team] / More),
+   More opens the one menu as a sheet above the bar. From 1024px: a fixed
+   240px sidebar with the same destinations spelled out and the account
+   button at its foot; the top bar becomes the page header (page name,
+   Back, Viewing / Previewing chip, theme). Content always clears both. */
+:root{--kdh-side-w:240px;--kdh-tabs-h:60px}
+.kdh-side{display:none}
+.kdh-tabs{display:block;position:fixed;left:0;right:0;bottom:0;z-index:55;background:color-mix(in srgb,var(--kdh-surface) 96%,transparent);backdrop-filter:saturate(1.2) blur(8px);-webkit-backdrop-filter:saturate(1.2) blur(8px);border-top:1px solid var(--kdh-border);padding-bottom:env(safe-area-inset-bottom);font-family:var(--kdh-body)}
+.kdh-tabs-in{display:flex;max-width:640px;margin:0 auto}
+.kdh-tab{flex:1 1 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:var(--kdh-tabs-h);padding:6px 2px 5px;color:var(--kdh-text-3);font:inherit;font-size:12.5px;font-weight:500;line-height:1.2;text-decoration:none;position:relative;background:none;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.kdh-tab svg{width:22px;height:22px}
+.kdh-tab.on{color:var(--kdh-brand);font-weight:600}
+.kdh-tab.on::before{content:'';position:absolute;top:0;left:26%;right:26%;height:2px;border-radius:0 0 2px 2px;background:var(--kdh-brand)}
+.kdh-tab:focus-visible{outline:2px solid var(--kdh-ring);outline-offset:-2px}
+html.kdh-has-tabs body{padding-bottom:calc(var(--kdh-tabs-h) + 12px + env(safe-area-inset-bottom)) !important}
+html.kdh-has-tabs #selectionSumBar{bottom:calc(var(--kdh-tabs-h) + 12px + env(safe-area-inset-bottom)) !important}
+.kdh-nav{display:none !important}
+/* the one menu: a sheet above the tab bar on phones / iPads */
+.kdh-menu{position:fixed;left:0;right:0;top:auto;bottom:calc(var(--kdh-tabs-h) + env(safe-area-inset-bottom));width:auto;max-height:calc(100vh - var(--kdh-tabs-h) - 60px);overflow:auto;z-index:70;border-radius:14px 14px 0 0;padding:6px 8px 10px;box-shadow:0 -10px 30px rgba(15,23,42,.18)}
+@media (min-width:640px){ .kdh-menu{left:auto;right:12px;width:340px;border-radius:14px;bottom:calc(var(--kdh-tabs-h) + 10px + env(safe-area-inset-bottom))} }
+.kdh-menu-h{flex-direction:row;flex-wrap:wrap;align-items:center;column-gap:10px}
+.kdh-menu-h b{flex:1 1 auto}
+.kdh-menu-h > span{flex-basis:100%;order:3}
+.kdh-menu-x{min-height:36px;padding:0 12px;border:1px solid var(--kdh-border);border-radius:8px;background:var(--kdh-surface);font:inherit;font-size:14px;font-weight:500;color:var(--kdh-text-2);cursor:pointer}
+.kdh-menu-g{font-size:13px;font-weight:500;color:var(--kdh-text-3);padding:10px 12px 2px}
+.kdh-menu-i{color:var(--kdh-text);text-decoration:none}
+.kdh-menu-i > span{flex:1 1 auto}
+.kdh-menu-i.on{background:var(--kdh-brand-soft);color:var(--kdh-brand)}
+.kdh-menu-i.on svg{color:var(--kdh-brand)}
+html.kdh-menu-open .kdh-tabs{z-index:71}
+/* the top bar on phones and iPads: badge + page name, Back, theme */
+.kdh-bar .kdh-logo .kdh-word{display:none}
+.kdh-bar .kdh-logo small{display:block;font-size:15px;font-weight:600;color:var(--kdh-text);margin:0;max-width:44vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kdh-bar .kdh-logo small::before{display:none}
+.kdh-bar-in > .kdh-logo{margin-right:auto}
+@media (max-width:599px){ .kdh-bar:has(.kdh-back) .kdh-logo small{display:none} }
+.kdh-b.kdh-back{height:36px;padding:0 12px 0 8px;font-size:14px;font-weight:500;color:var(--kdh-text);border-color:var(--kdh-border);background:var(--kdh-surface);box-shadow:none}
+.kdh-b.kdh-back:hover{background:var(--kdh-surface-2);border-color:var(--kdh-border-2);color:var(--kdh-text)}
+.kdh-b.kdh-back svg{width:16px;height:16px;color:var(--kdh-brand)}
+@media (max-width:599px){ .kdh-b.kdh-back{height:40px} }
+
+@media (min-width:1024px){
+  .kdh-tabs{display:none}
+  html.kdh-has-tabs body{padding-bottom:0 !important}
+  html.kdh-has-side body{padding-left:var(--kdh-side-w) !important}
+  .kdh-side{display:flex;flex-direction:column;position:fixed;left:0;top:0;bottom:0;width:var(--kdh-side-w);z-index:56;background:var(--kdh-surface-2);border-right:1px solid var(--kdh-border);font-family:var(--kdh-body);padding:12px 10px 10px;box-sizing:border-box}
+  .kdh-side *{box-sizing:border-box}
+  .kdh-side-logo{display:flex;align-items:center;gap:9px;height:40px;padding:0 8px;margin-bottom:10px;color:var(--kdh-text);font-size:15px;font-weight:600;text-decoration:none}
+  .kdh-side-logo img{width:28px;height:28px;border-radius:6px}
+  .kdh-side-nav{flex:1;overflow:auto;display:flex;flex-direction:column;gap:1px}
+  .kdh-side-i{display:flex;align-items:center;gap:10px;min-height:38px;padding:0 10px;border-radius:8px;color:var(--kdh-text-2);font-size:14.5px;font-weight:500;text-decoration:none}
+  .kdh-side-i svg{width:18px;height:18px;flex:none;color:var(--kdh-text-3)}
+  .kdh-side-i:hover{background:var(--kdh-surface-3);color:var(--kdh-text)}
+  .kdh-side-i.on{background:var(--kdh-brand-soft);color:var(--kdh-brand);font-weight:600}
+  .kdh-side-i.on svg{color:var(--kdh-brand)}
+  .kdh-side-i:focus-visible{outline:2px solid var(--kdh-ring);outline-offset:-2px}
+  .kdh-side-sub{display:flex;flex-direction:column;gap:1px;margin:1px 0 4px 18px;padding-left:10px;border-left:1px solid var(--kdh-border)}
+  .kdh-side-i.sub{min-height:34px;font-size:14px}
+  .kdh-side-i.sub svg{width:16px;height:16px}
+  .kdh-side-h{font-size:13px;font-weight:500;color:var(--kdh-text-3);padding:14px 10px 4px}
+  .kdh-side-foot{border-top:1px solid var(--kdh-border);padding-top:8px}
+  .kdh-side-user{display:flex;align-items:center;gap:10px;width:100%;min-height:48px;padding:6px 8px;border:0;border-radius:8px;background:none;font:inherit;color:var(--kdh-text);text-align:left;cursor:pointer}
+  .kdh-side-user:hover,.kdh-side-user[aria-expanded="true"]{background:var(--kdh-surface-3)}
+  .kdh-side-user > svg{width:14px;height:14px;color:var(--kdh-text-3);flex:none;transform:rotate(180deg)}
+  .kdh-side-who{display:flex;flex-direction:column;min-width:0;flex:1}
+  .kdh-side-who b{font-size:14px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .kdh-side-who small{font-size:12.5px;color:var(--kdh-text-3)}
+  /* the menu opens above the account button; tools are in the sidebar already */
+  .kdh-menu{left:10px;right:auto;top:auto;bottom:68px;width:280px;border-radius:12px;box-shadow:var(--kdh-shadow-h)}
+  .kdh-menu-tools{display:none}
+  .kdh-menu-x{display:none}
+  /* the top bar is the page header beside the sidebar */
+  .kdh-bar .kdh-logo img{display:none}
+  .kdh-bar .kdh-logo small{font-size:15px;max-width:none}
+  .kdh-bar-in{max-width:none;padding:0 24px}
+}
+@media print{ .kdh-tabs,.kdh-side,.kdh-menu{display:none !important} html.kdh-has-side body{padding-left:0 !important} }
+/* five tabs (a manager's bar) must fit a 375px phone: no tab may grow past its share */
+.kdh-tabs .kdh-tab{min-width:0;flex:1 1 0;padding-left:2px;padding-right:2px;margin:0;border:0;background:none;box-shadow:none}
+.kdh-tabs .kdh-tab span{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}

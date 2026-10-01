@@ -1595,3 +1595,60 @@ scratchpad slice_test.mjs (4 reps x 13 pages: identical visible text from
 the copy through the real middleware vs the full files; copies hold only
 the rep's rows) + mw_test.mjs (rewrites, denials, managers unchanged).
 Needs one live check on Vercel (ROADMAP "Now").
+
+## Rebuild around the account workspace: app shell, Shopify list, Attio record (2026-10-02)
+
+Gavin's brief: actions first, one professional system, every permission /
+preview safeguard / calculation / export path kept. References inspected on
+Mobbin: Shopify All Customers 775ea206 (list), Attio Company Detail 070de66a
+(record), Shopify Products 691c0f9f (product list), Todoist Today 75c4093b
+(sections, browse-level progress). What holds now:
+- APP SHELL (kdh-user.js, kdh.css "APP SHELL"; shared/README.txt has it all):
+  bottom bar under 1024px -- reps Home / My Accounts / Programs / More,
+  managers + Team -- with safe-area clearance; a labelled sidebar from 1024px
+  (Programs sub-list, Trackers, Manager groups, the person at the foot). More
+  / the foot open ONE menu (tools, View as Rep / Exit Preview, theme, Sign
+  Out); the menu is moved to <body> (a fixed sheet inside the blurred bar is
+  clipped). Trackers mark More. `kdh-tabs` meta opts out (metlife).
+- STATE: kdhRemember / kdhRecall keep each section's last URL in
+  sessionStorage `kdh_nav:<email|preview>:<key>`; nav links with data-nav
+  accounts / programs go back there. Preview changes and /login/ sign-out
+  clear kdh_nav:*, kdh_acct*, kdh_from:*. My Accounts also restores scroll.
+- MY ACCOUNTS: title, search, All / Needs Attention / Follow-Ups, one row of
+  secondary filters, then rows with ONE leading action + "N More Items".
+  The order (leadOf in accounts.js) is documented in accounts/README.txt
+  LIST -- follow-up, overdue survey, program lead, survey due, possible
+  reorder, lapsed product, buying less often. Needs Attention groups by it.
+- ACCOUNT PAGE: Overview / Products / History / More (`sec=`, `sub=`).
+  Old `sec=sales|inv|tasks|ask` and data-go keys (`sales:alerts` ...) are
+  translated by LEGACY_SEC / GO / goTarget() -- keep them; the rep home,
+  hub, tap tracker and assistant footer still emit the old keys.
+- PRODUCTS: mode / search / Filters / freshness directly above the rows;
+  "Stock at last update: N units" = KOHLER'S WAREHOUSE, never retail
+  shelf; a past arrival date says "(past estimate)"; 40 rows + Show More;
+  state per account in sessionStorage.
+- PROGRAMS: the hub's Incentives list is supplier sections with every
+  program's progress row beneath (no supplier tap needed; the sup screen
+  still exists for deep links). Tabs are underlined, short labels on
+  phones, the refreshed line names only the tab's own feed.
+- MPO TRACKERS (guided.js / .css): one summary card (weighted %, bar,
+  "4 of 5 objectives at goal · 1 in progress · 0 not started") instead
+  of four tiles; compact objective cards; smaller picker; Jul/Aug/Sep pills.
+- TAP TRACKER: account-first -- title + "Latest survey <date> · Data loaded
+  <date>", Accounts / Brands, search + Resurvey filter (`#res=due|over`,
+  state.res) + Reset, More Filters (a fold on phones), results, then the
+  analytics + target tools in `#tapAnalytics` (closed; remembered in
+  localStorage kdh_tap_analytics). A single rep's card is a plain header
+  (`.solo`), no inner scroll. Generator still replaces only the data.
+- RED BULL: "Your Progress" / "Team Progress" headings; periodState() tags
+  the buying window Ended / Current / Upcoming from period.json, with an
+  "ended -- final numbers" note.
+- Bug fixed: single-column `.grid` in rep.css used `1fr` (min-content), so
+  a card's nowrap status pushed the manager home to 389px on a 375 phone
+  and the fifth tab off-screen; it is `minmax(0,1fr)` now.
+Tests (scratchpad): journey_test.mjs (search -> account -> next action ->
+Products -> product search -> freshness -> History -> Back keeps search ->
+Programs -> My Accounts restores the list; 6 sizes x light/dark), and the
+updated sections / alerts / assistant / preview_flow / ra / oct / back /
+team / theme / hubonly / mgr_desktop. Tags 20261002a (kdh-user, kdh.css,
+skin, rep.css, accounts, guided, hub).

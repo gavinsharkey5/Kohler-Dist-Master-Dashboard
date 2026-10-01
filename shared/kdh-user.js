@@ -34,6 +34,7 @@
   function forgetAsk() { try { Object.keys(sessionStorage).filter(function (k) { return k.indexOf('kdh_ask:') === 0; }).forEach(function (k) { sessionStorage.removeItem(k); }); } catch (e) {} }
   function setPreview(v) {
     forgetAsk();
+    forgetNav();
     var val = v && typeof v === 'object' ? JSON.stringify(v) : (v || '');
     document.cookie = 'kdh_preview=' + encodeURIComponent(val) + '; Path=/; Max-Age=' + (val ? 86400 : 0) + '; Secure; SameSite=Lax';
   }
@@ -155,58 +156,144 @@
   // <meta name="kdh-home"> and gets no Back button.
   var CARET = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
   function isHomePage() { return !!document.querySelector('meta[name="kdh-home"]'); }
-  // PRIMARY NAVIGATION (2026-10-01, after Todoist's labelled sidebar and
-  // Shopify's tab bar): the three or four places people go all day, always
-  // labelled, the current one marked. Tablets and desktop get them in the
-  // top bar; phones get a bottom tab bar (#kdhTabs). Reps: Home, Accounts,
-  // Incentives. Managers: Home, Accounts, Incentives, Team. Everything else
-  // (trackers, MPOs) opens from Home, so those pages mark Home as current.
+  // ==== THE APP SHELL (2026-10-02, after Shopify iOS's tab bar and Todoist
+  // web's labelled sidebar) ====
+  // One set of destinations, two forms. Under 1024px a bottom tab bar with
+  // icon + label: reps Home / My Accounts / Programs / More, managers
+  // Home / Accounts / Programs / Team / More. From 1024px a fixed labelled
+  // sidebar with the same places spelled out (Programs' three experiences,
+  // the trackers, the manager's tools) and the account button at its foot.
+  // "More" opens the one account menu as a sheet: preview controls, the
+  // trackers, theme, sign out -- there is no second menu. Back stays in
+  // the top bar and only ever names a contextual destination.
+  // Every icon is the same 24px stroke family.
+  var I = function (d) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + d + '</svg>'; };
   var NAV_ICON = {
-    home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>',
-    accounts: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 4.5 4h15L21 9.5"/><path d="M3 9.5a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/><path d="M5 12v9h14v-9"/><path d="M10 21v-5h4v5"/></svg>',
-    incentives: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg>',
-    team: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8"/><path d="M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/></svg>'
+    home: I('<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/>'),
+    accounts: I('<path d="M3 9.5 4.5 4h15L21 9.5"/><path d="M3 9.5a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/><path d="M5 12v9h14v-9"/><path d="M10 21v-5h4v5"/>'),
+    programs: I('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/>'),
+    team: I('<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8"/><path d="M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/>'),
+    more: I('<circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/>'),
+    tap: I('<path d="M12 2.7 6.5 9a6.5 6.5 0 1 0 11 0z"/>'),
+    rb: I('<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>'),
+    cb: I('<circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>'),
+    off: I('<path d="M3 9l1.5-5h15L21 9"/><path d="M4 9v11h16V9"/><path d="M9 20v-6h6v6"/>'),
+    on: I('<path d="M17 11h1a3 3 0 0 1 0 6h-1"/><path d="M5 8h12v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M9 12v5M13 12v5"/>'),
+    inc: I('<path d="M12 15a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/><path d="M8.2 13.9 7 22l5-3 5 3-1.2-8.1"/>'),
+    ws: I('<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/>'),
+    eye: I('<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>'),
+    out: I('<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/>')
   };
+  // ---- remembered places, scoped to who is looking ----
+  // A list's search / filters / rep, the Programs tab and screen, are kept
+  // per tab in sessionStorage under kdh_nav:<scope>:<key>, where <scope> is
+  // the signed-in person plus the preview (if any). Coming back through the
+  // navigation lands where you left; another person, or another preview,
+  // never inherits it (setPreview drops them all).
+  function scopeId(u) { u = u || user(); if (!u) return ''; var me = u.preview ? (u.manager || '') + '/' + (u.email || '') : (u.email || u.name || ''); return me + '|' + (u.preview ? u.role + ':' + u.name : ''); }
+  function remember(key, href) { try { var sc = scopeId(); if (sc) sessionStorage.setItem('kdh_nav:' + sc + ':' + key, href); } catch (e) {} }
+  function recall(key) { try { var sc = scopeId(); return sc ? sessionStorage.getItem('kdh_nav:' + sc + ':' + key) : null; } catch (e) { return null; } }
+  function forgetNav() { try { Object.keys(sessionStorage).filter(function (k) { return k.indexOf('kdh_nav:') === 0 || k.indexOf('kdh_acct') === 0 || k.indexOf('kdh_from:') === 0; }).forEach(function (k) { sessionStorage.removeItem(k); }); } catch (e) {} }
+  function progDefault(u) { return ROOT + 'hub/' + (u.role === 'manager' ? '' : '#view=rep&rep=' + encodeURIComponent(u.name) + '&cat=inc'); }
   function navItems(u) {
     if (!u) return [];
     var isMgr = u.role === 'manager';
-    var hub = ROOT + 'hub/' + (isMgr ? '' : '#view=rep&rep=' + encodeURIComponent(u.name) + '&cat=inc&only=inc');
     var items = [
       { key: 'home', label: 'Home', href: isMgr ? ROOT : REP_HOME },
       { key: 'accounts', label: isMgr ? 'Accounts' : 'My Accounts', href: ROOT + 'accounts/' },
-      { key: 'incentives', label: 'Incentives', href: hub }
+      { key: 'programs', label: 'Programs', href: progDefault(u) }
     ];
     if (isMgr) items.push({ key: 'team', label: 'Team', href: ROOT + 'team/' });
     return items;
   }
-  function navCurrent(u) {
-    var p = location.pathname, isMgr = u && u.role === 'manager';
-    var rel = ROOT ? location.href.replace(new URL(ROOT, location.href).href, '') : p.replace(/^\//, '');
+  // the authorized tools that sit behind More (phones) / in the sidebar (desktop)
+  function toolItems(u) {
+    var isMgr = u.role === 'manager';
+    var t = [
+      { key: 'off', group: 'Programs', label: 'Off-Premise MPOs', href: ROOT + 'MPOs/off-prem/index.html' },
+      { key: 'on', group: 'Programs', label: 'On-Premise MPOs', href: ROOT + 'MPOs/on-prem/index.html' },
+      { key: 'tap', group: 'Trackers', label: 'Tap Tracker', href: ROOT + 'isellbeer/tap-survey-tracking/' },
+      { key: 'rb', group: 'Trackers', label: 'Red Bull Tracker', href: ROOT + 'redbull/' },
+      { key: 'cb', group: 'Trackers', label: 'Carbliss Targets', href: ROOT + 'carbliss-onprem-targets/' }
+    ];
+    if (isMgr) t.push({ key: 'ws', group: 'Manager', label: 'Rep Workspace', href: REP_HOME });
+    return t;
+  }
+  // where this page sits: {nav: primary key, tool: tool key or ''}
+  function where(u) {
+    var isMgr = u && u.role === 'manager';
+    var rel = ROOT ? location.href.replace(new URL(ROOT, location.href).href, '') : location.pathname.replace(/^\//, '');
     rel = rel.split(/[?#]/)[0];
-    if (/^accounts\//.test(rel)) return 'accounts';
-    if (/^hub\//.test(rel)) return 'incentives';
-    if (/^team\//.test(rel)) return 'team';
-    if (/^rep\//.test(rel)) return isMgr ? '' : 'home';
-    if (rel === '' || rel === 'index.html') return isMgr ? 'home' : '';
-    return 'home';   // a tracker or MPO page: it is opened from Home
+    if (/^accounts\//.test(rel)) return { nav: 'accounts', tool: '' };
+    if (/^hub\//.test(rel)) return { nav: 'programs', tool: 'inc' };
+    if (/^MPOs\/off-prem\//.test(rel)) return { nav: 'programs', tool: 'off' };
+    if (/^MPOs\/on-prem\//.test(rel)) return { nav: 'programs', tool: 'on' };
+    if (/^team\//.test(rel)) return { nav: 'team', tool: '' };
+    if (/^isellbeer\/tap-survey-tracking\//.test(rel)) return { nav: 'more', tool: 'tap' };
+    if (/^redbull\//.test(rel)) return { nav: 'more', tool: 'rb' };
+    if (/^carbliss-onprem-targets\//.test(rel)) return { nav: 'more', tool: 'cb' };
+    if (/^rep\//.test(rel)) return isMgr ? { nav: 'more', tool: 'ws' } : { nav: 'home', tool: '' };
+    if (rel === '' || rel === 'index.html') return { nav: isMgr ? 'home' : '', tool: '' };
+    return { nav: 'home', tool: '' };   // a manager dashboard: it opens from Manager Home
   }
-  function navHtml(u, cls) {
-    var cur = navCurrent(u);
-    return navItems(u).map(function (it) {
-      var on = it.key === cur;
-      return '<a class="' + cls + (on ? ' on' : '') + '" href="' + esc(it.href) + '" data-nav="' + it.key + '"' + (on ? ' aria-current="page"' : '') + '>' + NAV_ICON[it.key] + '<span>' + esc(it.label) + '</span></a>';
-    }).join('');
+  function navCurrent(u) { return where(u).nav; }
+  function link(cls, it, on, extra) {
+    return '<a class="' + cls + (on ? ' on' : '') + '" href="' + esc(it.href) + '" data-nav="' + it.key + '"' + (on ? ' aria-current="page"' : '') + (extra || '') + '>' + (NAV_ICON[it.key] || '') + '<span>' + esc(it.label) + '</span></a>';
   }
-  // the bottom tab bar on phones (CSS shows it under 760px); a page with its
-  // own bottom navigation opts out with <meta name="kdh-tabs" content="off">
+  function navHtml(u, cls) { var w = where(u); return navItems(u).map(function (it) { return link(cls, it, it.key === w.nav); }).join(''); }
+  // the bottom tab bar (CSS shows it under 1024px); a page with its own
+  // bottom navigation opts out with <meta name="kdh-tabs" content="off">
+  function shellOff() { var off = document.querySelector('meta[name="kdh-tabs"]'); return !!(off && off.content === 'off'); }
   function tabBar(u) {
-    if (!u || document.getElementById('kdhTabs')) return;
-    var off = document.querySelector('meta[name="kdh-tabs"]'); if (off && off.content === 'off') return;
+    if (!u || document.getElementById('kdhTabs') || shellOff()) return;
+    var w = where(u);
     var t = document.createElement('nav');
     t.id = 'kdhTabs'; t.className = 'kdh-tabs'; t.setAttribute('aria-label', 'Main');
-    t.innerHTML = '<div class="kdh-tabs-in">' + navHtml(u, 'kdh-tab') + '</div>';
+    t.innerHTML = '<div class="kdh-tabs-in">' + navHtml(u, 'kdh-tab') +
+      '<button type="button" class="kdh-tab' + (w.nav === 'more' ? ' on' : '') + '" id="kdhMoreBtn" aria-haspopup="true" aria-expanded="false"' + (w.nav === 'more' ? ' aria-current="page"' : '') + '>' + NAV_ICON.more + '<span>More</span></button></div>';
     document.body.appendChild(t);
     document.documentElement.classList.add('kdh-has-tabs');
+  }
+  // the desktop sidebar (CSS shows it from 1024px)
+  function sideBar(u, who) {
+    if (!u || document.getElementById('kdhSide') || shellOff()) return;
+    var w = where(u), isMgr = u.role === 'manager';
+    var home = isMgr ? ROOT : REP_HOME;
+    var groups = {}; toolItems(u).forEach(function (t) { (groups[t.group] = groups[t.group] || []).push(t); });
+    var html = '<a class="kdh-side-logo" href="' + home + '"><img src="' + ROOT + 'assets/kohler-logo-badge.png" alt=""><span>Kohler Dist Hub</span></a><nav class="kdh-side-nav" aria-label="Main">';
+    navItems(u).forEach(function (it) {
+      html += link('kdh-side-i', it, it.key === w.nav && (!w.tool || it.key !== 'programs' || w.tool === 'inc'));
+      if (it.key === 'programs') {
+        html += '<div class="kdh-side-sub">' + link('kdh-side-i sub', { key: 'inc', label: 'Incentives', href: progDefault(u) }, w.tool === 'inc', ' data-navto="programs"') +
+          (groups.Programs || []).map(function (t) { return link('kdh-side-i sub', t, w.tool === t.key); }).join('') + '</div>';
+      }
+    });
+    ['Trackers', 'Manager'].forEach(function (g) {
+      if (!groups[g]) return;
+      html += '<div class="kdh-side-h">' + g + '</div>' + groups[g].map(function (t) { return link('kdh-side-i', t, w.tool === t.key); }).join('');
+    });
+    html += '</nav>';
+    if (who) html += '<div class="kdh-side-foot"><button type="button" class="kdh-side-user" id="kdhMenuBtn" aria-haspopup="true" aria-expanded="false" aria-label="Account menu, signed in as ' + esc(who) + '"><span class="kdh-av">' + esc(initials(who)) + '</span><span class="kdh-side-who"><b>' + esc(who) + '</b><small>' + (isMgr || u.preview ? 'Manager' : 'Sales Rep') + '</small></span>' + CARET + '</button></div>';
+    var a = document.createElement('aside');
+    a.id = 'kdhSide'; a.className = 'kdh-side'; a.innerHTML = html;
+    document.body.insertBefore(a, document.body.firstChild);
+    document.documentElement.classList.add('kdh-has-side');
+  }
+  // a click on a destination resolves the remembered place at click time
+  // (an Account page's "My Accounts" goes back to the list as it was left)
+  function wireNav() {
+    if (document.__kdhNav) return; document.__kdhNav = 1;
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[data-nav]'); if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+      var key = a.getAttribute('data-navto') || a.getAttribute('data-nav');
+      if (key !== 'accounts' && key !== 'programs') return;
+      var r = recall(key); if (!r) return;
+      e.preventDefault();
+      // on the same page a hash change is enough; the page listens for it
+      var dest = new URL(r, location.href);
+      if (dest.pathname === location.pathname && dest.hash === location.hash && key === 'accounts') { location.hash = '#'; location.hash = dest.hash || '#'; return; }
+      location.href = dest.href;
+    });
   }
   function chrome() {
     markViewer();
@@ -217,33 +304,30 @@
     var b = document.createElement('div');
     b.id = 'kdhBar'; b.className = 'kdh-bar';
     var acts = '';
-    // BACK (2026-10-01): concise and only when it adds a destination the
-    // navigation does not already show -- the Incentive Hub a tracker was
-    // opened from, Team activity, the rep workspace. Going back to your own
-    // home is the Home item, so no second button says the same thing.
+    // BACK: concise, contextual, and only when it adds a destination the
+    // navigation does not already show (the Incentive Hub a tracker was
+    // opened from, Team Activity, the rep workspace).
     if (!isHomePage()) {
       var back = returnTarget();
       var dup = u && (back.href === home || back.href === (isMgr ? ROOT : REP_HOME) || /Back to (Rep|Manager) Home/.test(back.label) && back.href === home);
       if (!u || !dup) acts += '<a class="kdh-b kdh-outline kdh-back" href="' + esc(back.href) + '">' + BACK + '<span>' + esc(back.label.replace(/^Back to /, '')) + '</span></a>';
     }
-    // The Viewing / Previewing chip is a direct child of the bar (beside the
-    // actions, not inside them) so a phone can give it a full row of its own.
     var chips = '<span id="kdhViewing"></span>';
     if (u && u.preview) chips += '<span class="kdh-chip kdh-preview" id="kdhPreviewChip">' + previewChipHtml(u) + '</span>';
     // the account button is always the SIGNED-IN person, never the one being previewed
     var who = u ? (u.preview ? u.manager : u.name) : '';
-    // the theme switch: icon + the current mode's name, role=switch (on = dark)
     acts += '<button type="button" class="kdh-b kdh-outline kdh-theme" id="kdhThemeBtn" role="switch" aria-checked="false" aria-label="Dark mode" title="Switch between light and dark">' + SUN + MOON + '<span id="kdhThemeText">Light</span></button>';
-    if (who) acts += '<button type="button" class="kdh-b kdh-user" id="kdhMenuBtn" aria-haspopup="true" aria-expanded="false" aria-label="Account menu, signed in as ' + esc(who) + '"><span class="kdh-av">' + esc(initials(who)) + '</span><span class="kdh-name">' + esc(who) + '</span>' + CARET + '</button>';
+    // without a sign-in there is no shell, so the menu button stays in the bar
+    if (who && shellOff()) acts += '<button type="button" class="kdh-b kdh-user" id="kdhMenuBtn" aria-haspopup="true" aria-expanded="false" aria-label="Account menu, signed in as ' + esc(who) + '"><span class="kdh-av">' + esc(initials(who)) + '</span><span class="kdh-name">' + esc(who) + '</span>' + CARET + '</button>';
     b.innerHTML = '<div class="kdh-bar-in">' +
       '<a class="kdh-logo" href="' + home + '"><img src="' + ROOT + 'assets/kohler-logo-badge.png" alt=""><span class="kdh-word">Kohler Dist Hub</span><small>' + esc(pageName(u)) + '</small></a>' +
-      (u ? '<nav class="kdh-nav" aria-label="Main">' + navHtml(u, 'kdh-nav-i') + '</nav>' : '') +
       chips +
       '<div class="kdh-acts">' + acts + '</div></div>' +
       (who ? menuHtml(u, isMgr) : '');
     document.body.insertBefore(b, document.body.firstChild);
-    // the small page name is dropped only where the marked nav item IS this page
-    var cur = navCurrent(u); if (cur && (cur !== 'home' || isHomePage())) b.classList.add('kdh-has-cur');
+    // the menu lives on <body>: the bar's backdrop blur would trap a fixed sheet inside it
+    var mn = document.getElementById('kdhMenu'); if (mn) document.body.appendChild(mn);
+    sideBar(u, who);
     tabBar(u);
     var t = document.getElementById('kdhTheme'); if (t) t.addEventListener('click', function () { toggleTheme(); });
     var tb = document.getElementById('kdhThemeBtn'); if (tb) tb.addEventListener('click', toggleTheme);
@@ -251,23 +335,30 @@
     themeLabel();
     wireExit();
     wireMenu();
+    wireNav();
   }
-  // ---- the account menu ----
+  // ---- the ONE account menu: More on phones / iPads, the sidebar's account button on desktop ----
   function menuHtml(u, isMgr) {
     var who = u.preview ? u.manager : u.name;
-    var role = isMgr ? 'Manager' : 'Sales rep';
+    var role = isMgr || u.preview ? 'Manager' : 'Sales Rep';
+    var w = where(u);
     var items = '';
-    if (isMgr) {
-      items += '<button type="button" class="kdh-menu-i" id="kdhViewAsRep">' + (u.preview && u.role !== 'manager' ? 'Change Rep' : 'View as Rep') + '<small>See the site as one rep does</small></button>';
-      if (u.preview) items += '<button type="button" class="kdh-menu-i" id="kdhExitPreview2">Exit Preview<small>Back to your own pages</small></button>';
-      // Home, Accounts, Incentives and Team are in the navigation; the menu
-      // keeps only what is not: the rep workspace, preview, theme, sign out
-      items += '<a class="kdh-menu-i" href="' + REP_HOME + '">Rep Workspace<small>A rep\'s home page, by rep</small></a>';
+    if (isMgr || u.preview) {
+      items += '<button type="button" class="kdh-menu-i" id="kdhViewAsRep">' + NAV_ICON.eye + '<span>' + (u.preview && u.role !== 'manager' ? 'Change Rep' : 'View as Rep') + '</span><small>See the site as one rep does</small></button>';
+      if (u.preview) items += '<button type="button" class="kdh-menu-i" id="kdhExitPreview2">' + BACK + '<span>Exit Preview</span><small>Back to your own pages</small></button>';
     }
+    // the tools: listed here for phones and iPads; the desktop sidebar shows them itself
+    var tools = toolItems(u), groups = [];
+    tools.forEach(function (t) { if (groups.indexOf(t.group) < 0) groups.push(t.group); });
+    items += '<div class="kdh-menu-tools">' + groups.map(function (g) {
+      return '<div class="kdh-menu-g">' + g + '</div>' + tools.filter(function (t) { return t.group === g; }).map(function (t) {
+        return '<a class="kdh-menu-i' + (w.tool === t.key ? ' on' : '') + '" href="' + esc(t.href) + '"' + (w.tool === t.key ? ' aria-current="page"' : '') + '>' + (NAV_ICON[t.key] || '') + '<span>' + esc(t.label) + '</span></a>';
+      }).join('');
+    }).join('') + '<div class="kdh-menu-g">Settings</div></div>';
     items += '<button type="button" class="kdh-menu-i" id="kdhTheme">' + SUN + MOON + '<span id="kdhThemeLabel">Dark Mode</span></button>';
-    items += '<button type="button" class="kdh-menu-i" id="kdhThemeDevice" hidden>Use Device Theme<small>Follow this device\'s light / dark setting</small></button>';
-    items += '<a class="kdh-menu-i" href="' + ROOT + 'login/?signout=1">Sign Out</a>';
-    return '<div class="kdh-menu" id="kdhMenu" hidden role="menu"><div class="kdh-menu-h"><b>' + esc(who) + '</b><span>' + role + (u.email ? ' · ' + esc(u.email) : '') + '</span></div>' + items + '</div>';
+    items += '<button type="button" class="kdh-menu-i" id="kdhThemeDevice" hidden><span>Use Device Theme</span><small>Follow this device\'s light / dark setting</small></button>';
+    items += '<a class="kdh-menu-i" href="' + ROOT + 'login/?signout=1">' + NAV_ICON.out + '<span>Sign Out</span></a>';
+    return '<div class="kdh-menu" id="kdhMenu" hidden role="menu" aria-label="More"><div class="kdh-menu-h"><b>' + esc(who) + '</b><span>' + role + (u.email ? ' · ' + esc(u.email) : '') + '</span><button type="button" class="kdh-menu-x" id="kdhMenuClose">Close</button></div><div class="kdh-menu-body">' + items + '</div></div>';
   }
   function themeLabel() {
     var dark = document.documentElement.getAttribute('data-theme') === 'dark';
@@ -277,13 +368,18 @@
     var d = document.getElementById('kdhThemeDevice'); if (d) d.hidden = !savedTheme();
   }
   function openMenu(on) {
-    var m = document.getElementById('kdhMenu'), btn = document.getElementById('kdhMenuBtn'); if (!m || !btn) return;
-    m.hidden = !on; btn.setAttribute('aria-expanded', on ? 'true' : 'false');
+    var m = document.getElementById('kdhMenu'); if (!m) return;
+    m.hidden = !on;
+    ['kdhMenuBtn', 'kdhMoreBtn'].forEach(function (id) { var x = document.getElementById(id); if (x) x.setAttribute('aria-expanded', on ? 'true' : 'false'); });
+    document.documentElement.classList.toggle('kdh-menu-open', !!on);
     if (on) themeLabel();
   }
   function wireMenu() {
-    var btn = document.getElementById('kdhMenuBtn'); if (!btn || btn.__kdh) return; btn.__kdh = 1;
-    btn.addEventListener('click', function (e) { e.stopPropagation(); var m = document.getElementById('kdhMenu'); openMenu(!!(m && m.hidden)); });
+    var btns = ['kdhMenuBtn', 'kdhMoreBtn'].map(function (id) { return document.getElementById(id); }).filter(function (x) { return x && !x.__kdh; });
+    if (!btns.length) return;
+    btns.forEach(function (btn) { btn.__kdh = 1; btn.addEventListener('click', function (e) { e.stopPropagation(); var m = document.getElementById('kdhMenu'); openMenu(!!(m && m.hidden)); }); });
+    var mc = document.getElementById('kdhMenuClose'); if (mc) mc.addEventListener('click', function (e) { e.stopPropagation(); openMenu(false); });
+    if (document.__kdhMenuDoc) return; document.__kdhMenuDoc = 1;
     document.addEventListener('click', function (e) { var m = document.getElementById('kdhMenu'); if (m && !m.hidden && !m.contains(e.target)) openMenu(false); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { openMenu(false); closePicker(); } });
     var v = document.getElementById('kdhViewAsRep'); if (v) v.addEventListener('click', function () { openMenu(false); viewAsRep(); });
@@ -437,6 +533,9 @@
   global.kdhExitPreview = exitPreview;
   global.kdhReturnTarget = returnTarget;
   global.kdhChrome = chrome;
+  global.kdhRemember = remember;
+  global.kdhRecall = recall;
+  global.kdhScope = function () { return scopeId(); };
   global.kdhToggleTheme = toggleTheme;
   // READABLE ON A PHONE (2026-09-29): nothing on any page renders below
   // 12.5px. The dashboards were written for desktops with 10-11px captions;

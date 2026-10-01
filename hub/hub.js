@@ -945,8 +945,10 @@ function topbar(){
 function refreshedLine(){
   // Only the feeds this screen shows: incentives-only mode (the workspace's
   // Incentive Hub tile) says nothing about the MPO boards (2026-09-28).
-  const lines = [['Incentives', incRefreshed()]];
-  (state.only==='inc' ? [] : ['off','on']).forEach(s=>{
+  // and on a rep's tab only that tab's feed (2026-10-02): one quiet line, not three
+  const tabNow = (state.view==='rep' || state.view==='sup' || state.view==='detail') && ['inc','off','on'].includes(tabOf(state.cat)) ? tabOf(state.cat) : '';
+  const lines = tabNow && tabNow!=='inc' ? [] : [['Incentives', incRefreshed()]];
+  (state.only==='inc' || tabNow==='inc' ? [] : ['off','on'].filter(x=>!tabNow || x===tabNow)).forEach(s=>{
     const st = mpoState[s]||{}; const mk = mpoRepMonth(s);
     const iso = (st[mk] && st[mk].syncedAt) || Object.keys(st).map(k=>st[k].syncedAt).filter(Boolean).sort().pop();
     lines.push([MPO_SCOPES[s].label, iso ? fmtSynced(iso) : 'loading…']);
@@ -1283,7 +1285,7 @@ function tabbar(rep, cat){
   return `<div class="tabbar" role="tablist">${tabs.map(m=>{
     const on = m.key===cur, n = tabCount(rep, m.key);
     return `<button class="tab${on?' active':''}" data-act="set-cat" data-cat="${m.key}" role="tab" aria-selected="${on?'true':'false'}">
-      <span class="tab-ic">${m.ic}</span><span class="tab-l">${E(m.label)}</span>${n===null?'':`<span class="tab-n">${n}</span>`}</button>`;
+      <span class="tab-l"><span class="tl-long">${E(m.label)}</span><span class="tl-short">${E(m.label.replace(/ MPOs$/,''))}</span></span>${n===null?'':`<span class="tab-n">${n}</span>`}</button>`;
   }).join('')}</div>`;
 }
 // Programs behind a tab. Incentives counts what the incentive page itself
@@ -1300,7 +1302,7 @@ function monthStrip(scope){
   if(months.length < 2) return '';
   const cur = mpoViewMonth(scope), live = mpoRepMonth(scope);
   return `<div class="mstrip" role="tablist" aria-label="Month">${months.map(m=>
-    `<button class="mpill${m.key===cur?' active':''}" data-act="set-month" data-month="${E(m.key)}" role="tab" aria-selected="${m.key===cur?'true':'false'}">${E(m.label)}${m.key===live?'<span class="mpill-now">Now</span>':''}</button>`
+    `<button class="mpill${m.key===cur?' active':''}" data-act="set-month" data-month="${E(m.key)}" role="tab" aria-selected="${m.key===cur?'true':'false'}"><span class="tl-long">${E(m.label)}</span><span class="tl-short">${E(m.label.replace(/^(\w{3})\w*/,'$1'))}</span>${m.key===live?'<span class="mpill-now">Now</span>':''}</button>`
   ).join('')}</div>`;
 }
 // Incentives, grouped by supplier for the picker: suppliers with live
@@ -2820,9 +2822,9 @@ const htag = f => f && f.label ? `<span class="htag ${f.cls}">${E(f.label)}</spa
 const hbar = f => (f && f.pct!=null) ? `<div class="hbar ${f.cls}"><div class="hbar-fill" style="width:${Math.round(f.pct)}%"></div></div>` : '';
 // One program as a row: name + status, supplier/channel and the deadline
 // once, one progress line, a thin bar. Tap opens the program.
-function progRowHtml(p, r, rep){
+function progRowHtml(p, r, rep, noSup){
   const f = progFacts(p, r, rep) || {main:'', need:'', cls:'open', label:''};
-  const meta = [state.view==='sup' ? p.channelLabel : `${p.supplier} · ${p.channelLabel}`, endsLabel(p.period)].filter(Boolean).join(' · ');
+  const meta = [state.view==='sup' || noSup ? p.channelLabel : `${p.supplier} · ${p.channelLabel}`, endsLabel(p.period)].filter(Boolean).join(' · ');
   const off = r.status==='unavailable' || r.soon;
   return `<button class="hrow prog${off?' off':''}" data-act="open" data-prog="${E(p.id)}" id="card-${E(p.id)}">
     <span class="hrow-main">
@@ -2888,15 +2890,15 @@ function screenSuppliers(rep){
   const sups = supProgs(rep); const groups = supOrder(sups);
   const rows = [...sups.values()].flat();
   const met = rows.filter(x=>x.b.band===2).length, onTrack = rows.filter(x=>x.b.band===1).length, attn = rows.filter(x=>x.b.band===0).length;
+  // PROGRESS BEFORE DRILLING IN (2026-10-02, Todoist's sections): each
+  // supplier is a heading with its programs listed beneath it -- name,
+  // status, progress, what is left, deadline -- so nothing needs another
+  // tap just to see where a program stands. A row opens the program.
   const list = groups.map(g=>{
     const logo = (g.list[0] && g.list[0].p.supplierLogo) || '';
-    const a = g.list.filter(x=>x.b.band===0).length;
-    const one = g.list.length===1 ? g.list[0] : null;
-    const oneName = one ? (one.p.shortName||one.p.name) : '';
-    const sub = one ? [oneName.toLowerCase()===g.name.toLowerCase() ? '1 program' : oneName, endsLabel(one.p.period)].join(' · ') : [plw(g.list.length,'program'), a?`${a} need${a===1?'s':''} attention`:''].filter(Boolean).join(' · ');
-    return `<button class="hrow sup" data-act="open-sup" data-sup="${E(g.name)}">
-      ${supLogoHtml(g.name, logo)}
-      <span class="hrow-main"><span class="hrow-t"><span>${E(g.name)}</span>${incDotsHtml(g.list)}</span><span class="hrow-s">${E(sub)}</span></span>${CHEV}</button>`;
+    return `<section class="hsupg" aria-label="${E(g.name)}">
+      <div class="hsupg-h">${supLogoHtml(g.name, logo)}<span class="hsupg-n">${E(g.name)}</span><span class="hsupg-c">${plw(g.list.length,'program')}</span></div>
+      <div class="hlist">${g.list.map(x=>progRowHtml(x.p, x.r, rep, true)).join('')}</div></section>`;
   }).join('');
   return `<div class="hview">
     <div class="rep-head">
@@ -2906,7 +2908,7 @@ function screenSuppliers(rep){
         ${refreshedLine()}</div>
       ${tabbar(rep, 'inc')}
     </div>
-    ${rows.length ? `<div class="hlist">${list}</div>` : `<div class="kdh-state empty"><b>No incentives apply to you right now.</b></div>`}
+    ${rows.length ? `<div class="hsups">${list}</div>` : `<div class="kdh-state empty"><b>No incentives apply to you right now.</b></div>`}
     ${endedHtml(rep)}
   </div>`;
 }
