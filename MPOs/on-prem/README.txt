@@ -259,9 +259,25 @@ Four objectives at 25% each:
   3. Spirits - Carbliss (10) New On Premise Buying Accounts
   4. HUSA - (1) New XX Draft Line
 
-All four are data-backed. Numbers as of the 2026-09-28 refresh (RDE exports run
-through 9/29): Bardstown 23 menu placements, Fever Tree 25 new placements,
-Carbliss 76 new buying accounts, HUSA 3 new draft lines.
+All four are data-backed. Numbers as of the 2026-10-01 refresh (RDE exports run
+through 9/30): Bardstown 32 menu placements, Fever Tree 27 new placements,
+Carbliss 100 new buying accounts, HUSA 3 new draft lines.
+
+2026-10-01 REFRESH -- Fever Tree, Carbliss, HUSA exports + Promos_Report_42 (final September pull)
+  python3 generate_2026-09.py --merge-bardstown Promos_Report_42.xlsx
+Diffed row by row before the run. Fever Tree _18 (608 rows) and HUSA _17
+(92 rows) are IDENTICAL to the files already in the repo, so Fever Tree 27
+and HUSA 3 hold. Carbliss _17 377 -> 376: ONE ROW GONE, nothing added --
+Anthony Palmisano's 9/30 230917 Doc's Place (P), which had scored as new on
+the 9/30 pull. The export is the record, so it drops: Carbliss 101 -> 100,
+Anthony Palmisano 7 -> 6.
+Report_42 held 45 rows: 33 for this archive, 12 for other objectives.
+2 new, 31 already published: archive 33 -> 35 rows. Both new rows are
+Allison Scott's 9/30 Cocktail List Activations for Green River Honey
+Finished Bourbon at The Little Falls Tavern #13002 and Wayne Ale House &
+Pizza #12026 -- Bardstown 30 -> 32, Allison Scott 7 -> 9. Everyone else
+holds (Adam Badalamenti 10, Brian Sengebush 5, Paul Mclaughlin 3, Robin
+Feldman 3, Nick Melissari 2).
 
 2026-09-30 REFRESH -- Fever Tree, Carbliss, HUSA exports + Promos_Report_38
   python3 generate_2026-09.py --merge-bardstown Promos_Report_38.xlsx

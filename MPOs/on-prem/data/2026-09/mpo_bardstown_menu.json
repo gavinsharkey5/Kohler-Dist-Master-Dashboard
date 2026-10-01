@@ -1,5 +1,31 @@
 [
   {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 13002,
+    "CUSTOMER_NAME": "THE LITTLE FALLS TAVERN",
+    "BRAND_FAMILY": "GREEN RIVER HONEY FINISHED BOURBON",
+    "PRODUCT_NAME": "GREEN RIVER HONEY FINISHED BOURBON",
+    "DATE": "2026-09-30",
+    "PERIOD": "current",
+    "PROMOTION_TYPE": "Cocktail List Activation",
+    "ELEMENTS": "Menu",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/fa5db993-696e-4b35-bb3c-018a2c4ffc93/",
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12026,
+    "CUSTOMER_NAME": "WAYNE ALE HOUSE & PIZZA",
+    "BRAND_FAMILY": "GREEN RIVER HONEY FINISHED BOURBON",
+    "PRODUCT_NAME": "GREEN RIVER HONEY FINISHED BOURBON",
+    "DATE": "2026-09-30",
+    "PERIOD": "current",
+    "PROMOTION_TYPE": "Cocktail List Activation",
+    "ELEMENTS": "Menu",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/b3651f6e-679b-47ea-8615-9ef244fa4e32/",
+    "NEW_PLACEMENT": 1
+  },
+  {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 61004,
     "CUSTOMER_NAME": "ANDIAMO",
