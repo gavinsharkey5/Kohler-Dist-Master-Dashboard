@@ -47,3 +47,19 @@ NOT HERE, ON PURPOSE
 
 Filters (kept in the hash): rep=, q= (account, town, #, rep, note text),
 type=follow|tap|prog, due=over|7|14. Account groups load 25 at a time.
+
+GROUP BY + DATA SOURCES (2026-10-04)
+Group By: Rep (default -- each rep's accounts and program deadlines together,
+the rep with the most urgent item first), Type (one heading per exception
+type in priority order), Urgency (Overdue / Due Within 7 Days / Programs
+Ending Within 14 Days / Open 14+ Days, No Due Date), Account (one card per
+account, as before). `by=` in the link. Under Type and Urgency every heading
+shows its own first 25 rows, so a long Overdue list never hides the sections
+after it. Tap surveys say "Latest loaded survey <date>" and "based on the
+tap data loaded <date>": the 60-day rule runs on the survey data as loaded,
+not on surveys done since. The Data Sources fold (open when something is
+wrong) lists Follow-ups (live / not loaded / no due dates), Tap surveys
+(as-of date, stale after 7 days, reps whose account book did not load) and
+Program deadlines. An empty page says either "No exceptions right now" with
+every source loaded, or "No exceptions found in the data that loaded -- but
+not every source loaded" -- never a clean bill on missing data.

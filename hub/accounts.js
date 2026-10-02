@@ -51,7 +51,7 @@ const PROGRAM_BRANDS = {
   // --- incentives (incentive-tracking/programs.js keys) ---
   'inc:keystone_ice':['Keystone'], 'inc:touchdowns_tea':['Sun Cruiser','Twisted Tea'], 'inc:evil_genius':['Evil Genius'],
   // October 2026 -- Industrial Arts is not in the brand workbook yet (new brand): null = no territory rule
-  'inc:mabi_single_serve':['White Claw',"Mike's Harder",'Cayman Jack'], 'inc:four_loko':['Four Loko'], 'inc:lagunitas_sprint':['Lagunitas','Lagunitas Brewing Co'],
+  'inc:mabi_single_serve':['White Claw',"Mike's Harder",'Cayman Jack'], 'inc:four_loko':['Four Loko'], 'inc:lagunitas_sprint':['Lagunitas'],
   'inc:famosa_oct':['Famosa'], 'inc:sam_adams_cold_snap':['Samuel Adams'], 'inc:industrial_arts':null,
   'inc:other_half':['Other Half'], 'inc:montauk':['Montauk'], 'inc:sam_adams_conversion':['Samuel Adams'],
   'inc:printed_menu':BARDSTOWN, 'inc:bardstown_display':BARDSTOWN, 'inc:two_xo':['2XO'],
@@ -75,6 +75,36 @@ const PROGRAM_BRANDS = {
   'off:wine_spirits':['Le Grand Noir','Leyenda 1925','Bardstown Green River'], 'off:new_belgium':NEW_BELGIUM,
   'off:ws_2xo':['2XO'], 'off:sapporo_light':['Sapporo'], 'off:famosa':['Famosa'],
 };
+
+// PRODUCT-LEVEL ELIGIBILITY (2026-10-04): when a program pays on only SOME of a
+// brand family's products, the rule lives here once and every page uses it --
+// the Account page's opportunity cards and Products list, and the assistant's
+// page context (the trackers already count from their own exports). `re` is
+// tested against the catalogue product name. Each rule was checked against the
+// program export's own product list (`checked`); add one when a program names
+// specific products. Without a rule, a program's brand families are the list.
+const PROGRAM_PRODUCTS = {
+  'inc:lagunitas_sprint': {re:/^lagunitas (ipa|little sumpin)\b/i,
+    rule:'Lagunitas IPA and Little Sumpin’ packages and kegs — the 13 products in the program’s export',
+    // OPEN QUESTION (REPORTING_REQUEST 11.4): the tracker's draft bonus names IPA
+    // kegs only, but the export also lists the Little Sumpin 15.5 gal keg (#12920).
+    // The list follows the export until Gavin says otherwise.
+    // 'Lagunitas Brewing Co' was dropped from PROGRAM_BRANDS the same day: it is
+    // the SUPPLIER, not a family, and being "not on file" it switched the
+    // territory filter off (Union / Essex accounts, NOT IN TERRITORY, were listed
+    // as targets; none bought Lagunitas in Jan 2025 - Aug 2026).
+    checked:'2026-10-04: the 13 products in incentive-tracking/data/lagunitas_sprint.csv (IPA 6/12/24-pack cans + bottles, 19.2 oz, 15.5 + 7.75 gal kegs; Little Sumpin cans, bottles, 19.2 oz, 15.5 gal keg) -- not Daytime, Hazy, Maximus, Variety or other Lagunitas'},
+};
+// the products a program counts, from catalogue rows [num, name, supplier, family, package, ...]
+function eligibleProducts(p, rows, famKeyFn){
+  const r = PROGRAM_PRODUCTS[brandKey(p)];
+  if(r) return {rows: rows.filter(c=>r.re.test(String(c[1]||''))), rule: r.rule, byProduct: true};
+  const fams = PROGRAM_BRANDS[brandKey(p)];
+  if(!fams) return {rows: [], rule: '', byProduct: false, any: true};
+  const fk = famKeyFn || (f=>norm(f));
+  const set = new Set(fams.map(fk));
+  return {rows: rows.filter(c=>set.has(fk(c[3]))), rule: '', byProduct: false};
+}
 
 const norm = s => String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
 
@@ -166,6 +196,6 @@ function classify(p, rep, buying){
   return out;
 }
 
-global.HubAccounts = {PROGRAM_BRANDS, CORE_AREAS, norm, brandKey, familiesFor, classify,
+global.HubAccounts = {PROGRAM_BRANDS, PROGRAM_PRODUCTS, eligibleProducts, CORE_AREAS, norm, brandKey, familiesFor, classify,
   asOf: (typeof HUB_ACCOUNTS!=='undefined' && HUB_ACCOUNTS.asOf) || ''};
 })(window);

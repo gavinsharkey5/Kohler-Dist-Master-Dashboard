@@ -357,3 +357,62 @@ Drafts and upload recovery use the device's own storage (localStorage for a
 note, IndexedDB for a photo) scoped to the signed-in person; nothing new in
 Supabase. Opportunities use the trackers' existing lists and rules.
 Exceptions reads only data the site already has.
+
+## 11. Merchandising records, iSellBeer imports, eligibility and the assistant -- the one list to send (2026-10-04)
+
+The 2026-10-04 build added merchandising RECORDS (photos + product / brand
+lines + optional program), the iSellBeer import with a reconciliation and a
+review queue, the manager Merchandising recap (CSV + PDF), one shared
+program-product eligibility rule, the assistant's availability check, and
+the Exceptions grouping. This is the ONE consolidated request for that work.
+Items already above are referred to, not restated.
+
+### 11.1 Steps for Gavin (no data needed)
+
+| # | What | Why |
+|---|---|---|
+| S1 | Run `supabase/migrations/20261004090000_merchandising.sql` in the Supabase SQL Editor (paste the whole file, Run). Idempotent; verified on a local Postgres 16 (26 checks). | Creates merch_records / merch_lines / merch_record_photos / merch_import_batches / merch_review and the save / import / resolve functions. Until it runs, photos still save one per record and the pages say the update is needed. |
+| S2 | Merchandising -> Import From iSellBeer: add the Display, Raw Reports (tap survey) and Promos exports and any photo PDFs; check the reconciliation; match report pages by hand (or leave them for the Review Queue); Import. | Loads the history. Re-importing the same file restates, never duplicates. |
+| S3 | The assistant: if My Accounts -> Ask says "not set up", follow the "How to Set It Up" step it shows a manager -- Vercel -> Settings -> Environment Variables -> `ANTHROPIC_API_KEY` (from console.anthropic.com -> API Keys), Production, Save, then Redeploy the latest Production deployment. Never paste the key into chat, email or the code. | The function answered "ANTHROPIC_API_KEY is missing from this deployment"; the page now checks before taking a question and shows the step. |
+
+### 11.2 ESSENTIAL
+
+| # | Ask | Detail | Turns on |
+|---|---|---|---|
+| M1 | **Original iSellBeer images** | The workbooks link to `ep.cpgdata.com` (displays / promos) and S3 (tap surveys). From the build environment the S3 tap photo loaded; the ep.cpgdata.com links were blocked, so it is unknown whether they need an iSellBeer login. Ask iSellBeer: (a) do those links work for a signed-out browser, and for how long; (b) a bulk image export with Account #, Date/Time and the photo id in each file name. | Imported photos that show instead of "Photo Unavailable", and copies stored in our private bucket so they never expire. |
+| M2 | **Field definitions in the iSellBeer exports** | Promos: what Promo # identifies (it repeats across accounts, so it is NOT used as an ID), Promotion Type vs Theme vs Elements, and what "MBO" means (kept as text; never mapped to a Hub program). Display report: what the quantity counts (cases, units, facings?) -- imported as "unit not stated" until confirmed. Raw Reports: how US / THEM is decided at survey time. | Units shown instead of "unit not stated"; a documented Promotion Type -> category map. |
+| M3 | **PDF photo reports with a key per page** | The 7-page Promos PDF has no machine-readable link from a page to a row; pages were matched by reading them (none automatically -- position is never used). Ask for the PDF (or image ZIP) with Account # + Date/Time, or the photo id, on each page / file name. | Automatic page matching; today every page is matched by hand or waits in the Review Queue. |
+| M4 | **Qualifying products per program** (supersedes 10.3 B3) | program id, ProductIDs that count, and for which part of the program (off-premise POD, draft bonus...). Lagunitas Sprint is done from its own export (13 products) -- see 11.4 Q1. | The same rule on the opportunity cards, the Products list Lead tags, the assistant and (later) the trackers' target lists. |
+| M5 | **Evidence verification rules** | Does any supplier program require photo evidence? Who reviews it, against what (display size, days up, brands)? Nothing is invented: a saved photo is "evidence, not credit" and never completes a program. | A review status on records -- only once the rule is written down. |
+
+### 11.3 OPTIONAL
+
+| # | Ask | Turns on |
+|---|---|---|
+| O1 | Surveyor / photo-taker names in every iSellBeer export (= 10.3 B1) | "Photo taker" on imported tap surveys (the Display and Promos exports carry it; Raw Reports does not). |
+| O2 | A scheduled iSellBeer export (or API) of displays / promos / surveys (= 10.3 B2) | Imports without a manager uploading files; the parser already accepts the format. |
+| O3 | Sell sheets for every brand (= 10.2 A2) | Sell Sheet links in the opportunity Details fold for brands other than Carbliss. |
+
+### 11.4 Definitions / decisions to confirm
+
+1. **Lagunitas Sprint, the Little Sumpin' keg.** The program export lists 13 products, including Little Sumpin' IPA 15.5 gal keg (#12920); the tracker's draft-bonus text names only IPA 15.5 / 7.75 gal kegs. The shared list follows the export (13). Should #12920 count?
+2. **Lagunitas territory.** The Brand Permissions workbook says Lagunitas is NOT IN TERRITORY in Union, Essex, Hudson, Sussex and Morris 2 (BLOCKED in Morris 1); the sales master agrees (none of Alex Rodriguez's 61 Union / Essex accounts bought Lagunitas in Jan 2025 - Aug 2026). The Incentive Tracker's own "Stores To Target" list for Lagunitas Sprint still includes those accounts (its generator does not apply the workbook). The Hub, the Account page and the assistant now follow the workbook. Confirm the workbook is right, and the tracker's list will be fixed to match.
+3. "Feature Activation" promos with no elements are imported as Other Activation (not assumed to be a display). OK?
+4. Who may edit an imported record's labels: today nobody (read-only); a Hub record: only its author. Should a DM fix labels for their team?
+5. The printed recap holds 150 records (the CSV holds all). Raise or lower?
+
+### 11.5 Live integration (not built, on purpose)
+
+- **Writing back to iSellBeer**: not possible today and never claimed -- every
+  page says saving in the Hub does not change iSellBeer. It would need
+  iSellBeer's API documentation and credentials.
+- **Snowflake**: not implemented. The importer's parser (merchandising/isb-import.js)
+  is separate from the writer (kdh_merch_import), so a Snowflake feed can
+  produce the same payload later without changing the tables.
+
+### 11.6 What is NOT needed from anyone
+
+Record drafts use the device's own storage (IndexedDB, scoped to the
+signed-in person). The recap, the CSV and the counts read only what the
+records hold. The assistant's availability check reads the existing usage
+ledger and needs nothing new.

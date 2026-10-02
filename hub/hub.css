@@ -1520,3 +1520,18 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:600;letter-spacing:-.01em;
 .xopt{display:flex;align-items:center;gap:8px;padding:2px 10px;font-size:14px;color:var(--text);min-height:36px}
 .xopt input{width:18px;height:18px}
 .xnote{margin:6px 10px 4px;font-size:13px;color:var(--text-dim)}
+/* Explicit export buttons (2026-10-04): Download CSV + Export Recap, options in a small fold */
+.xbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;position:relative}
+.xbtn2{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:1px solid var(--border-2, var(--border));border-radius:10px;background:var(--card);color:var(--text);font:inherit;font-size:15px;cursor:pointer}
+.xbtn2 b{font-weight:600}
+.xbtn2 svg{width:18px;height:18px;flex:none}
+.xbtn2:hover{background:var(--card-alt)}
+.xbtn2:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.xbtn2[disabled]{color:var(--text-dim);cursor:progress}
+.xopts{position:relative}
+.xopts>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;min-height:44px;padding:0 10px;color:var(--accent);font-weight:500;font-size:14.5px;border-radius:10px}
+.xopts>summary::-webkit-details-marker{display:none}
+.xopts>summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.xopts .xpanel{padding:8px}
+@media (max-width:600px){ .xbar{width:100%} .xbtn2{flex:1 1 auto;justify-content:center} .xopts .xpanel{left:0;right:auto} }
+.pv-rep{background:var(--input-bg);border:1px solid var(--input-border);color:var(--text);border-radius:10px;padding:9px 12px;min-height:40px;font:inherit;font-size:14.5px;max-width:100%}

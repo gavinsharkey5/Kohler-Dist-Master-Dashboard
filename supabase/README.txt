@@ -209,6 +209,22 @@ program_id; a trigger keeps the account, file, author, premise, size and
 times as they were. Verified on a local Postgres 16 (scratchpad
 sql_notes_test.sh, 43 checks).
 
+MERCHANDISING RECORDS (2026-10-04)
+Run migrations/20261004090000_merchandising.sql after the photo labels file.
+Idempotent. account_photos: storage_path may be empty (an iSellBeer link with
+no stored copy), adds source / source_url (unique) / photo_kind (original or
+report_page) / photo_status (stored, link, unavailable), category also allows
+menu and other. New tables: merch_records (one observation at one account,
+source_key unique), merch_lines (product / brand lines; quantity NULL = not
+recorded, never 0; quantity_unit required with a quantity; US/THEM source and
+audited correction kept apart), merch_record_photos, merch_import_batches,
+merch_review (unmatched report pages). Functions: kdh_merch_save (Hub capture,
+retry-safe), kdh_merch_import (managers only; restates by source_key, dedupes
+photos by link / path), kdh_merch_resolve (attach a review item; the file must
+sit under that account). RLS through kdh_can_access_account; only the author
+edits or removes a Hub record. Verified on a local Postgres 16 (scratchpad
+sql_merch_test.sh, 26 checks). merchandising/README.txt has the rules.
+
 STAY SIGNED IN (2026-10-02)
 Reps stay signed in on a device until they sign out: the server keeps the
 refresh token in an HttpOnly cookie and middleware.js renews the access token

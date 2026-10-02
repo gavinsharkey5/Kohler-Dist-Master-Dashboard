@@ -98,10 +98,12 @@ How to answer
 - Say what is OBSERVED (bought / not bought, how many cases, which months) apart from what is INFERRED (a possible reorder, a likely switch, a pitch idea). A buying alert is a POSSIBILITY to check, never a confirmed need: "may be due", "worth asking about", never "needs" or "lost". The record marks likely switches within a brand family -- mention them.
 - When history is too short to judge (a product with one or two buying months, an account new in the record) say so instead of reading a pattern into it.
 - When something is not in the data, say so in one short sentence and, when coverage.notInData names where it lives (Encompass), say that. Never guess or fill in: no contacts, hours, prices, deals, invoices, balances, retailer shelf stock, delivery dates, reasons an account stopped, or other accounts' data.
+- You cannot see photos. Merchandising photos, displays, menus and tap walls are not in the record or the page context; never describe or infer what a photo shows. If asked, say photos are on the account's Photos & Merchandising page for the rep to look at.
 - No dollar figures. Kohler keeps money off rep pages; if asked, say prices and payouts are not on this page.
 - Program facts (credited, lead, eligible, deadline, what qualifies) come only from PAGE CONTEXT programs; the rep's overall progress is the tracker's number, do not recompute it.
 - Keep THIS ACCOUNT's standing in a program (credited here, a lead here, eligible here, or not on its lists) apart from the REP's overall progress on that program (the tracker's total across all their accounts). Never imply one account finishes a program unless PAGE CONTEXT says so.
 - When you suggest eligible products that could help an incentive or MPO, tie each to the program requirement PAGE CONTEXT gives ("what qualifies") and to this account's own history; say it is a suggestion.
+- The products that COUNT for a program are PAGE CONTEXT programs[].productsThatCount (with eligibleHere / eligibleExamples sellable in this area). Never suggest a product for a program outside that rule -- e.g. a variety pack for a program that counts only named styles.
 - Warehouse figures in PAGE CONTEXT are KOHLER'S WAREHOUSE stock at the report date, not the retailer's shelf and not live: give the date, and if it is more than 7 days old say it may have changed. Never claim a product is in stock now.
 - Kohler's sales to this account show what the ACCOUNT BOUGHT FROM KOHLER, not what consumers bought (sell-through) and not what is on the shelf today. Never claim either.
 - For seasonal questions use only the seasonal / irregular products the record's patterns name, with their months; with fewer than two years of a product's history, say the season cannot be confirmed yet.
@@ -481,13 +483,53 @@ async function ledger(env, token, row) {
 }
 
 // ================================================================ HANDLER
+// AVAILABILITY (2026-10-04): GET answers whether this caller can ask right
+// now, BEFORE the page accepts a question -- {ok, code, msg} plus, for a
+// manager only, `setup`: the exact step that fixes it. It never returns a
+// secret or any part of one, and it spends nothing (no model call).
+const SETUP = {
+  no_key: 'In Vercel: open the kohlerdisthub project → Settings → Environment Variables → Add New. Key: ANTHROPIC_API_KEY. Value: an API key from console.anthropic.com → API Keys (paste it only into Vercel — never into chat, email or the code). Environments: Production (and Preview if you test there). Save, then Deployments → the latest Production deployment → ⋯ → Redeploy. Environment variables only reach a deployment built after they are saved.',
+  no_auth: 'In Vercel → Settings → Environment Variables, SUPABASE_URL and SUPABASE_PUBLISHABLE_KEY must be set (the same ones the sign-in page uses), then Redeploy.',
+  bad_model: 'In Vercel → Settings → Environment Variables, set KDH_CHAT_MODEL to claude-opus-5-5 or claude-sonnet-5-5 (or delete it to use the default), then Redeploy.',
+  not_pilot: 'The assistant is limited to the emails in KDH_CHAT_USERS (Vercel → Settings → Environment Variables). Add this person’s email to that comma-separated list, or delete the variable to open it to everyone signed in, then Redeploy.',
+  no_ledger: 'Run supabase/migrations/20260930210000_assistant_usage.sql in Supabase → SQL Editor (paste the file, Run). It creates the usage ledger the daily limits read.',
+  ledger_down: 'The usage ledger (Supabase) did not answer. Check status.supabase.com; nothing to change in the app.',
+};
+async function availability(request, env) {
+  const out = (code, msg, extra) => ({ ok: !code, code: code || 'ok', msg, ...(extra || {}) });
+  // sign-in is checked FIRST, so a manager gets the setup step for a missing key
+  if (!env.supabaseUrl || !env.publishableKey) return { r: out('no_auth', 'The assistant is not set up on this site yet.') };
+  const token = readCookie(request.headers.get('cookie'), 'kdh_at');
+  const who = await whoIs(token, env.supabaseUrl, env.publishableKey);
+  if (!who) return { status: 401, r: out('signin', 'Sign in again to use the assistant.') };
+  if (!env.apiKey) return { who, r: out('no_key', 'The assistant is not set up on this site yet.') };
+  if (!MODELS[env.model]) return { who, r: out('bad_model', 'The assistant is not set up correctly on this site.') };
+  const email = String(who.email || '').toLowerCase();
+  if (env.users.length && !env.users.includes(email)) return { who, r: out('not_pilot', 'The assistant is in a pilot and your account is not in it yet.') };
+  if (env.noLedger) return { who, r: out('', 'Available.', { limits: false }) };
+  const q = await quota(env, token);
+  if (q.missing) return { who, r: out('no_ledger', 'The assistant is not set up on this site yet.') };
+  if (q.error) return { who, r: out('ledger_down', 'The assistant cannot check today’s usage right now. Try again in a minute.') };
+  const left = Math.max(0, env.userDaily - (q.user_requests_today || 0));
+  if (!left) return { who, r: out('limit', `You have reached today's limit of ${env.userDaily} questions.`, { left: 0 }) };
+  if ((Number(q.all_usd_today) || 0) >= env.dailyUsd) return { who, r: out('spend', 'The assistant has reached today\'s limit for everyone. It resets at midnight UTC.') };
+  return { who, r: out('', 'Available.', { left, perDay: env.userDaily }) };
+}
+
 export default async function handler(request) {
-  if (request.method !== 'POST') return json(405, { error: 'POST only' });
+  if (request.method !== 'POST' && request.method !== 'GET') return json(405, { error: 'GET or POST only' });
   const env = { apiKey: process.env.ANTHROPIC_API_KEY, supabaseUrl: process.env.SUPABASE_URL, publishableKey: process.env.SUPABASE_PUBLISHABLE_KEY,
     model: process.env.KDH_CHAT_MODEL || DEFAULT_MODEL, effort: process.env.KDH_CHAT_EFFORT || DEFAULT_EFFORT,
     users: String(process.env.KDH_CHAT_USERS || '').split(',').map(s => s.trim().toLowerCase()).filter(Boolean),
     userDaily: parseInt(process.env.KDH_CHAT_USER_DAILY, 10) || 60, dailyUsd: parseFloat(process.env.KDH_CHAT_DAILY_USD) || 20,
     noLedger: process.env.KDH_CHAT_NO_LEDGER === '1' };
+  if (request.method === 'GET') {
+    const a = await availability(request, env);
+    const body = Object.assign({}, a.r);
+    // the fix is shown to managers; with sign-in itself unconfigured nobody can be identified, and the step holds no secret
+    if (!a.r.ok && SETUP[a.r.code] && ((a.who && a.who.role === 'manager') || a.r.code === 'no_auth')) body.setup = SETUP[a.r.code];
+    return json(a.status || 200, body);
+  }
   if (!env.apiKey) return json(503, { error: 'The assistant is not configured yet (ANTHROPIC_API_KEY is missing from this deployment).' });
   if (!env.supabaseUrl || !env.publishableKey) return json(503, { error: 'Sign-in is not configured.' });
   if (!MODELS[env.model]) return json(503, { error: `KDH_CHAT_MODEL "${env.model}" is not in this function's model list.` });

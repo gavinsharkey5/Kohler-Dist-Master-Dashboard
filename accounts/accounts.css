@@ -607,7 +607,7 @@ html.asheet-open{overflow:hidden}
 .ph-cats{margin:0 0 8px}
 .ph-bar{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 8px}
 .ph-bar .kdh-field{flex:1 1 100%}
-.ph-bar .fsel{flex:1 1 0;min-width:0}
+.ph-bar .fsel{flex:1 1 calc(50% - 4px);min-width:0}
 .ph-bar .fsel select{width:100%;min-width:0;min-height:44px;font:inherit;font-size:15px;color:var(--text);background:var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23676C74' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 10px center;border:1px solid var(--border-2);border-radius:10px;padding:0 28px 0 10px;-webkit-appearance:none;appearance:none;text-overflow:ellipsis}
 .ph-bar .fsel select:focus-visible{outline:2px solid var(--brand);outline-offset:1px}
 @media (min-width:760px){ .ph-bar .kdh-field{flex:2 1 240px} .ph-bar .fsel{flex:1 1 140px} }
@@ -657,3 +657,93 @@ html.asheet-open{overflow:hidden}
 .op-other{margin-top:16px}
 .op-empty p{margin:0 0 4px}
 #opps > .btn.wide{margin-top:12px}
+
+/* ===== PHOTOS & MERCHANDISING (activity.js, 2026-10-04) ===== */
+.pf-opt.on{background:var(--brand-soft)}
+.pf-prog-note{margin:-4px 0 10px;font-size:14.5px;color:var(--text-2)}
+.pf-prog-note b{color:var(--text);font-weight:600}
+.pf-sub{margin:4px 0 8px;font-size:14px;color:var(--text-2);line-height:1.45}
+.linkbtn{border:0;background:none;color:var(--brand);font:inherit;font-size:14.5px;font-weight:500;padding:6px 4px;margin:-6px 0;min-height:36px;cursor:pointer}
+.linkbtn:focus-visible{outline:2px solid var(--brand);outline-offset:2px;border-radius:6px}
+/* capture: Apple Notes' one obvious shutter + thumbnail feedback */
+.cap-strip{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 8px}
+.cap-th{margin:0;width:96px;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--surface-2)}
+.cap-th img{display:block;width:96px;height:96px;object-fit:cover}
+.cap-th figcaption{display:flex;border-top:1px solid var(--border)}
+.cap-th figcaption button{flex:1 1 0;min-height:36px;border:0;background:var(--surface);color:var(--brand);font:inherit;font-size:13px;font-weight:500;cursor:pointer}
+.cap-th figcaption button + button{border-left:1px solid var(--border);color:var(--kdh-bad)}
+.cap-th figcaption button:focus-visible{outline:2px solid var(--brand);outline-offset:-2px}
+.cap-saved{flex:1;text-align:center;font-size:13px;font-weight:600;color:var(--kdh-ok);padding:8px 0}
+.cap-n,.cap-empty{flex:1 1 100%;margin:2px 0 0;font-size:14px;color:var(--text-2)}
+.cap-empty{padding:16px;border:2px dashed var(--border-2);border-radius:12px;text-align:center}
+.cap-acts{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;margin:4px 0 12px}
+.cap-acts .btn{min-height:52px;justify-content:center;gap:8px;font-size:16px}
+.cap-acts .btn svg{width:22px;height:22px}
+@media (max-width:380px){ .cap-acts{grid-template-columns:minmax(0,1fr)} }
+.cap-sub{margin:0 0 8px}
+.asheet-b .chips{display:flex;flex-wrap:wrap;gap:8px}
+.asheet-b .chip{min-height:40px;padding:0 14px;font-size:14.5px;font-weight:500;cursor:pointer;border:1px solid var(--border-2);background:var(--surface);color:var(--text);border-radius:999px}
+.asheet-b .chip[aria-pressed="true"]{background:var(--text);color:var(--surface);border-color:var(--text)}
+.asheet-b .chip:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.asheet-b input[type=text],.asheet-b input[type=number],.asheet-b select.kdh-field,.cap-line select{width:100%;min-height:44px;border:1px solid var(--border-2);border-radius:10px;padding:0 12px;background:var(--surface);color:var(--text);font:inherit;font-size:16px}
+.asheet-b input:focus-visible,.asheet-b select:focus-visible{outline:2px solid var(--brand);outline-offset:1px}
+#capSubNote{margin:0 0 8px}
+.tagrow{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 6px}
+.tagrow:empty{display:none}
+.tag2{display:inline-flex;align-items:center;gap:2px;padding:0 0 0 12px;min-height:36px;border-radius:999px;background:var(--brand-soft);color:var(--text);font-size:14.5px}
+.tag2 button{border:0;background:none;color:var(--text-2);font-size:20px;line-height:1;min-width:36px;min-height:36px;cursor:pointer;border-radius:999px}
+.tag2 button:focus-visible{outline:2px solid var(--brand)}
+.tagadd{display:flex;gap:8px;align-items:center}
+.tagadd input{flex:1 1 auto}
+.tagadd .btn{flex:none;min-height:44px}
+.cap-line{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:6px;padding:8px 0;border-top:1px solid var(--border);align-items:center}
+.cap-line [data-lf="brand"]{grid-column:1/-1}
+.cap-line .cap-lx{justify-self:end}
+@media (min-width:600px){ .cap-line{grid-template-columns:minmax(0,2fr) minmax(0,1.2fr) 90px minmax(0,1fr) 40px} .cap-line [data-lf="brand"]{grid-column:auto} }
+.cap-unit{font-size:15px;color:var(--text-2)}
+.cap-lx{width:40px;height:40px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--text-2);font-size:20px;cursor:pointer}
+/* gallery tiles: one per record */
+.pcell .pcount{position:absolute;top:6px;right:6px;padding:2px 8px;border-radius:999px;background:rgba(0,0,0,.66);color:#fff;font-size:12.5px;font-weight:600}
+.pcap{flex-wrap:wrap}
+.pcap i{flex:1 1 100%;font-style:normal;font-size:12.5px;opacity:.95;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pnone{display:flex;align-items:center;justify-content:center;width:100%;height:100%;min-height:80px;padding:8px;text-align:center;font-size:13.5px;font-weight:500;color:var(--text-2);background:var(--surface-2)}
+.act-thumbs{display:flex;gap:6px;align-items:center;margin:8px 0 2px;flex-wrap:wrap}
+.act-thumbs .act-thumb{margin:0;width:96px;height:72px}
+.act-more{font-size:14px;color:var(--text-2);font-weight:500;padding:0 4px}
+/* viewer: Google Photos -- the image, then a separate information panel */
+.rv-img{background:#111;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;max-height:60dvh;cursor:zoom-in;touch-action:pinch-zoom}
+.rv-img img{max-width:100%;max-height:60dvh;object-fit:contain;display:block}
+.rv-img.zoom{max-height:none;overflow:auto;cursor:zoom-out;display:block}
+.rv-img.zoom img{max-width:none;max-height:none;width:auto}
+.rv-img .pnone{min-height:200px;background:#222;color:#ddd}
+.rv-hint{margin:6px 0 0;font-size:13.5px;color:var(--text-2)}
+.rv-strip{display:flex;gap:6px;overflow-x:auto;margin:8px 0 0;padding-bottom:2px}
+.rv-th{flex:none;width:64px;height:64px;padding:0;border:2px solid transparent;border-radius:8px;overflow:hidden;background:var(--surface-2);cursor:pointer}
+.rv-th.on{border-color:var(--brand)}
+.rv-th img{width:100%;height:100%;object-fit:cover;display:block}
+.pv-sub{display:block;font-size:13.5px;color:var(--text-2);margin-top:2px;line-height:1.4}
+.rv-h{margin:14px 0 4px;font-size:15px;font-weight:600}
+.rv-lines{list-style:none;margin:0;padding:0}
+.rv-lines li{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 12px;padding:7px 0;border-top:1px solid var(--border);font-size:14.5px}
+.rv-lines li:first-child{border-top:0}
+.lv-w{font-weight:500;min-width:0;overflow-wrap:anywhere}
+.lv-q{color:var(--text-2)}
+.lv-own{flex:1 1 100%;font-size:13.5px;color:var(--text-2)}
+.sheet-b a.btn{display:inline-flex;align-items:center;text-decoration:none}
+
+/* PROGRAM OPPORTUNITIES + alert priority (2026-10-04) */
+.pprog{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:8px 0;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--brand-soft);font-size:14.5px;line-height:1.45}
+.pprog .btn{margin-left:auto}
+.prio-note{margin:8px 0 0}
+.tbl.alerts tr.hi td{background:var(--surface-2)}
+.op-kv dt{font-weight:600}
+.op-a .btn svg{width:18px;height:18px}
+/* assistant availability (2026-10-04) */
+.ask-avail{display:flex;align-items:center;gap:8px;margin:8px 0;font-size:14px;color:var(--text-2)}
+.ask-avail .dot{width:8px;height:8px;border-radius:50%;background:var(--kdh-ok);flex:none}
+.ask-avail.checking .dots{display:inline-flex;gap:3px}
+.ask-setup{margin:8px 0 0;font-size:14px}
+.ask-setup > summary{cursor:pointer;font-weight:600;min-height:40px;display:flex;align-items:center}
+.ask-setup p{margin:4px 0 0;line-height:1.5;color:var(--text)}
+#askAvail .kdh-state .btn{margin-top:8px;align-self:flex-start}
+.ask-chip[disabled]{opacity:1;color:var(--text-3);cursor:not-allowed}

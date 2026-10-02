@@ -23,6 +23,8 @@ const fmtDay = d => d ? d.toLocaleDateString('en-US',{month:'short',day:'numeric
 const daysAgo = iso => { const d = iso ? new Date(iso.length>10 ? iso : iso+'T00:00:00') : null; return d && !isNaN(d) ? Math.round((TODAY - d)/86400000) : null; };
 const repKey = n => (window.kdhNameKey ? window.kdhNameKey(n) : String(n).toLowerCase()).replace('|','-').replace(/-$/,'');
 // the account's premise, spelled out once
+// the hub's "no purchases" target reason (old and new wording)
+const NOBUY = /^(Never bought it|No purchases in the available history)/;
 const premWord = p => p==='On' ? 'On-premise' : p==='Off' ? 'Off-premise' : '';
 
 /* ---------------- who, and whose accounts ---------------- */
@@ -61,7 +63,7 @@ const GO = {'sales:sales':['history','sales','sales'], 'sales:alerts':['history'
   'tasks:programs':['more','programs','programs'], 'tasks:notes':['more','activity','activity'], 'tasks:taps':['more','taps','taps'], 'tasks:tools':['more','tools','tools'], 'ask:ask':['more','ask','ask']};
 function goTarget(go){ if(GO[go]) return GO[go]; const [sec, sub, id] = String(go).split(':'); return [sec, sub||'', id||'']; }
 // product list (Sales & Products): search, view, filters -- kept in memory per account
-const plist = {n:null, q:'', view:'bought', sup:'', fam:'', pkg:'', limit:40};
+const plist = {n:null, q:'', view:'bought', sup:'', fam:'', pkg:'', prog:'', limit:40};
 let CATALOG = null;            // data/catalog.json (products + warehouse availability), loaded once
 function readHash(){
   const h = (location.hash||'').replace(/^#/,''); const o = {};
@@ -217,11 +219,18 @@ function leadOf(a, nd){
   else if(nd.reorder){ const x = firstOf('reorder'); L = {k:'reorder', g:'reorder', label:'Possible Reorder', d: x ? x.p : plural(nd.reorder,'product')}; }
   else if(nd.lapsed){ const x = firstOf('lapsed'); L = {k:'lapsed', g:'lapsed', label:'Lapsed Product', d: x ? x.p : plural(nd.lapsed,'product')}; }
   else if(nd.slower || nd.lessOften){ const x = firstOf('slower'); L = {k:'slower', g:'slower', label:'Buying Less Often', d: x ? x.p : 'fewer buying months than the six before'}; }
+  // an alert lead states its kind's TOTAL once ("21 products · e.g. X"); "Also ..." then lists only the other kinds
+  if(L && (L.k==='reorder' || L.k==='lapsed' || L.k==='slower')){
+    const n = L.k==='reorder' ? nd.reorder : L.k==='lapsed' ? nd.lapsed : (nd.slower || (nd.lessOften ? 1 : 0));
+    const x = firstOf(L.k);
+    if(n > 1) L.d = plural(n,'product') + (x ? ' · e.g. '+x.p : '');
+    L.whole = true;
+  }
   if(L){
     L.more = Math.max(0, items-1);
     // what the other records ARE, in words (2026-10-02: "13 More Items" said nothing)
     const left = {follow:nd.follow, tap:nd.tap?1:0, prog:nd.warm.length, reorder:nd.reorder, lapsed:nd.lapsed, slower:nd.slower || (nd.lessOften?1:0)};
-    left[L.k] = Math.max(0, (left[L.k]||0)-1);
+    left[L.k] = L.whole ? 0 : Math.max(0, (left[L.k]||0)-1);
     const parts = MORE_WORDS.filter(([k])=>left[k]>0).map(([k, one, many])=>left[k]+' '+(left[k]===1 ? one : many));
     L.moreText = parts.length ? 'Also '+parts.join(' · ') : '';
   }
@@ -423,7 +432,7 @@ async function renderAccount(){
     focus.push({kind: t.warm ? 'Program Lead' : 'Program Ending Soon', ws:`${E(t.p.shortName||t.p.name)} · ${E(H.endsLabel(t.p.period))}`, t:E(H.sellAsk(t.p)), w:`${E(t.p.shortName||t.p.name)} (${E(t.p.supplier)}) · ${E(t.why || 'this account is eligible and not buying it yet')} · ${E(H.endsLabel(t.p.period))}.`, n:`You are at ${f.main}${f.need && f.need!=='Goal met' ? ' — '+f.need : ''}.`, href:progLink(t.p, rep), hl:'View Program'});
   });
   // strongest buying alerts: lapsed before possible reorder, biggest usual order first (patterns.py's order)
-  alerts.filter(x=>x.type!=='slower').slice(0,2).forEach(x=>focus.push({kind: KIND[x.type], t: x.type==='lapsed' ? `No recent purchase of ${E(x.product)}` : `Ask about ${E(x.product)}`, w: E(alertWhy(x))+'.', ws: `Last bought ${E(monLabel(x.last))} · usually ${E(every(x.interval))}${x.switch ? ` · ${E(x.family)} still bought` : ''}`, cs: x.type==='lapsed' ? 'Not a confirmed reason' : 'Not a confirmed need', caveat:1, n: x.type==='lapsed' ? 'Find out whether they stopped or switched — the data shows the gap, not the reason.' : 'Check whether they need a reorder — a gap in the data, not a confirmed need.', go:'sales:alerts', hl:'View Purchase History'}));
+  alerts.filter(x=>x.type!=='slower').slice(0,2).forEach(x=>focus.push({kind: KIND[x.type], t: x.type==='lapsed' ? `No recent purchase of ${E(x.product)}` : `Ask about ${E(x.product)}`, w: E(alertWhy(x))+'.', ws: `Last bought ${E(monLabel(x.last))} · usually ${E(every(x.interval))}${x.switch ? ` · ${E(x.family)} still bought` : ''}`, cs: x.type==='lapsed' ? 'Check with the buyer; ordering history does not explain the gap' : 'Not a confirmed need', caveat:1, n: x.type==='lapsed' ? 'Find out whether they stopped or switched — the data shows the gap, not the reason.' : 'Check whether they need a reorder — a gap in the data, not a confirmed need.', go:'sales:alerts', hl:'View Purchase History'}));
   if(F.patterns && F.patterns.lessOften && !alerts.length) focus.push({kind:'Buying Less Often', cs:'Not a confirmed problem', t:'Purchasing less frequently', w:`${F.patterns.freq.recent6} buying ${F.patterns.freq.recent6===1?'month':'months'} in ${E(rangeLabel(months, R-5, R+1))} vs ${F.patterns.freq.prior6} in ${E(rangeLabel(months, R-11, R-5))}.`, caveat:1, n:'Ask what changed — a slower pattern in the data, not a confirmed problem.', go:'sales:patterns', hl:'View Buying Patterns'});
   const top = focus.slice(0,3);
 
@@ -439,7 +448,8 @@ async function renderAccount(){
     const recentRows = recent.map(p=>{ const li = (()=>{ for(let i=N-1;i>=0;i--) if(p[5][i]>0) return i; return -1; })();
       return `<tr><td><b>${E(p[1])}</b><span class="sub">${E([p[2], p[4]].filter(Boolean).join(' · '))}</span></td><td class="num" data-l="${E(rangeLabel(months,N-3,N))}">${fmtN(sumRange(p[5],N-3,N))}</td><td class="num" data-l="${E(rangeLabel(months,N-6,N-3))}">${fmtN(sumRange(p[5],N-6,N-3))}</td><td class="num" data-l="Last bought">${li>=0 ? E(monLabel(months[li])) : '—'}</td></tr>`; }).join('');
     const tagOf = t => `<span class="tag ${t}">${KIND[t]}</span>`;
-    const alertRows = alerts.slice(0, 8).map(x=>`<tr><td>${tagOf(x.type)} <b>${E(x.product)}</b><span class="sub">${E([x.family, x.pkg].filter(Boolean).join(' · '))} · ${E(alertShort(x))}</span></td><td class="num" data-l="Usually">${E(every(x.interval))}</td><td class="num" data-l="Last bought">${E(monLabel(x.last))}</td><td class="num" data-l="Usual order">${fmtN(x.usual)} cs</td></tr>`).join('');
+    const onOver = new Set(alerts.filter(x=>x.type!=='slower').slice(0,2));
+    const alertRows = alerts.slice(0, 8).map(x=>`<tr${onOver.has(x) ? ' class="hi"' : ''}><td>${tagOf(x.type)}${onOver.has(x) ? ' <span class="tag go">In Next Actions</span>' : ''} <b>${E(x.product)}</b><span class="sub">${E([x.family, x.pkg].filter(Boolean).join(' · '))} · ${E(alertShort(x))}</span></td><td class="num" data-l="Usually">${E(every(x.interval))}</td><td class="num" data-l="Last bought">${E(monLabel(x.last))}</td><td class="num" data-l="Usual order">${fmtN(x.usual)} cs</td></tr>`).join('');
     const cnt = F.counts || {};
     const alertHead = [cnt.reorder ? plural(cnt.reorder,'possible reorder') : '', cnt.lapsed ? plural(cnt.lapsed,'lapsed product') : '', cnt.slower ? cnt.slower+' bought less often' : ''].filter(Boolean).join(' · ');
     const hist = sales.products.slice(0, 40).map(p=>`<div class="hist"><b>${E(p[1])}</b> · ${p[5].map((c,i)=>c>0 ? monShort(months[i])+' '+fmtN(c) : '').filter(Boolean).join(' · ') || 'no cases'}</div>`).join('');
@@ -448,7 +458,7 @@ async function renderAccount(){
       <div class="kv"><span>${E(rangeLabel(months,N-3,N))}</span><span><b>${fmtN(last3)} cases</b> · ${E(rangeLabel(months,N-6,N-3))}: ${fmtN(prior3)}${ly3!=null ? ' · '+E(rangeLabel(months,N-15,N-12))+': '+fmtN(ly3) : ''}</span></div>
       <div class="kv"><span>Products</span><span>${plural(sales.products.filter(p=>sumRange(p[5],N-12,N)>0).length,'product')} bought in the last 12 months</span></div>
       <h3 class="note" id="alerts" style="margin-top:12px"><b>Buying Alerts</b> · ${alerts.length ? alertHead : 'none'} <small>· data through ${E(monLabel(refKey))}</small></h3>
-      ${alerts.length ? `<table class="tbl alerts"><thead><tr><th>Product</th><th class="num">Usually</th><th class="num">Last bought</th><th class="num">Usual order</th></tr></thead><tbody>${alertRows}</tbody></table>${alerts.length>8 ? `<details class="fold"><summary>Show ${alerts.length-8} More Alerts</summary><table class="tbl alerts"><tbody>${alerts.slice(8).map(x=>`<tr><td>${tagOf(x.type)} <b>${E(x.product)}</b><span class="sub">${E(alertShort(x))}</span></td><td class="num" data-l="Usually">${E(every(x.interval))}</td><td class="num" data-l="Last bought">${E(monLabel(x.last))}</td><td class="num" data-l="Usual order">${fmtN(x.usual)} cs</td></tr>`).join('')}</tbody></table></details>` : ''}<p class="note">A <b>possible reorder</b> is a regular product (6+ of the last 18 months, usually ≤3 months apart) at least a month past its usual gap; <b>lapsed</b> is the same product past ${'twice'} its gap (never sooner than 3 months); <b>buying less often</b> is a product still being bought, but in 3+ fewer months than the six before. Each is a possibility to check — the data has no shelf stock, sell-through or reason.</p>` : `<p class="note">No regular product is past its usual gap in the data, and none is being bought noticeably less often.</p>`}
+      ${alerts.length ? `<table class="tbl alerts"><thead><tr><th>Product</th><th class="num">Usually</th><th class="num">Last bought</th><th class="num">Usual order</th></tr></thead><tbody>${alertRows}</tbody></table>${alerts.length>8 ? `<details class="fold"><summary>Show ${alerts.length-8} More Alerts</summary><table class="tbl alerts"><tbody>${alerts.slice(8).map(x=>`<tr><td>${tagOf(x.type)} <b>${E(x.product)}</b><span class="sub">${E(alertShort(x))}</span></td><td class="num" data-l="Usually">${E(every(x.interval))}</td><td class="num" data-l="Last bought">${E(monLabel(x.last))}</td><td class="num" data-l="Usual order">${fmtN(x.usual)} cs</td></tr>`).join('')}</tbody></table></details>` : ''}<p class="note">A <b>possible reorder</b> is a regular product (6+ of the last 18 months, usually ≤3 months apart) at least a month past its usual gap; <b>lapsed</b> is the same product past ${'twice'} its gap (never sooner than 3 months); <b>buying less often</b> is a product still being bought, but in 3+ fewer months than the six before. Each is a possibility to check — the data has no shelf stock, sell-through or reason. <b>Order:</b> lapsed first, then possible reorders, then buying less often; within each, the biggest usual order first. The top two (not “buying less often”) are the ones in Next Actions.</p>` : `<p class="note">No regular product is past its usual gap in the data, and none is being bought noticeably less often.</p>`}
       <h3 class="note" style="margin-top:6px"><b>Recent purchases</b> · top products of ${E(rangeLabel(months,N-3,N))}</h3>
       ${recent.length ? `<table class="tbl"><thead><tr><th>Product</th><th class="num">${E(rangeLabel(months,N-3,N))}</th><th class="num">${E(rangeLabel(months,N-6,N-3))}</th><th class="num">Last bought</th></tr></thead><tbody>${recentRows}</tbody></table>` : `<p class="note">Nothing bought in ${E(rangeLabel(months,N-3,N))}.</p>`}
       <details class="fold" id="sales"><summary>Purchase History by Product (${plural(sales.products.length,'product')}, ${E(monLabel(months[0]))} – ${E(monLabel(months[N-1]))})</summary>${hist}${sales.products.length>40 ? `<p class="note">Showing the 40 biggest products of the last 12 months.</p>` : ''}</details>
@@ -508,12 +518,17 @@ async function renderAccount(){
       progList.push({name:p.shortName||p.name, supplier:p.supplier, channel:p.channelLabel, type:p.type, ends:H.endsLabel(p.period), ask:H.sellAsk(p),
         status: cred.length ? 'credited' : (tgt && tgt.warm) ? 'lead' : buying ? 'already buying' : tgt ? 'could qualify' : excl ? 'not sellable here' : r.soon ? 'awaiting data' : 'not on its lists',
         why: tgt ? (tgt.why||'') : (excl ? (excl.why||'') : ''), credited: cred.map(c=>[c.what||'', c.date||''].filter(Boolean).join(' · ')),
-        repProgress: [f.main, f.need].filter(Boolean).join(' · ')}); }
+        repProgress: [f.main, f.need].filter(Boolean).join(' · '),
+        // the products that count -- the same rule as the opportunity cards and the Products list
+        ...(()=>{ const el = window.KdhOpps && CAT ? window.KdhOpps.eligibleFor(p, CAT, HubAccounts, famKey) : null; if(!el) return {};
+          const ok = el.rows.filter(c=>familyAllowed(c[3], a.area).ok);
+          return {productsThatCount: el.byProduct ? el.rule : (HubAccounts.PROGRAM_BRANDS[HubAccounts.brandKey(p)]||[]).join(' / ')+' (any product in the brand family)',
+            eligibleHere: ok.length, eligibleExamples: ok.slice(0, 8).map(c=>c[1])}; })()}); }
     const links = `<a href="${E(progLink(p, rep))}">Program details ›</a>${(tgt||cred.length) ? `<a href="${E(hubAcctLink(p, rep, a.n, cred.length ? 'dist' : 'targets'))}">Account in the hub ›</a>` : ''}`;
     if(cred.length) openItems.push(pitem(p, '<span class="tag ok">Credited</span>', cred.map(c=>`<b>${E(c.what||'Credited')}</b>${c.date ? ' · '+E(c.date) : ''}`).join('<br>'), links));
     else if(tgt && tgt.warm) openItems.push(pitem(p, '<span class="tag go">Lead</span>', `<b>To qualify:</b> ${E(H.sellAsk(p))} · ${E(tgt.why)}`, links));
     else if(buying) openItems.push(pitem(p, '<span class="tag">Already buying</span>', `Already on the brand${buying.note ? ' · '+E(buying.note) : ''} — no credit recorded for this account yet.`, links));
-    else if(tgt) couldItems.push(pitem(p, '<span class="tag go">Could qualify</span>', `<b>To qualify:</b> ${E(H.sellAsk(p))}${tgt.why && tgt.why!=='Never bought it' ? ' · '+E(tgt.why) : ' · not buying it yet'}`, links));
+    else if(tgt) couldItems.push(pitem(p, '<span class="tag go">Could qualify</span>', `<b>To qualify:</b> ${E(H.sellAsk(p))}${tgt.why && !NOBUY.test(tgt.why) ? ' · '+E(tgt.why) : ' · not buying it yet'}`, links));
     else if(excl) otherItems.push(pitem(p, '<span class="tag na">Not sellable here</span>', E(excl.why || 'The brand cannot be sold in this account’s area.'), links));
     else if(r.soon) otherItems.push(pitem(p, '<span class="tag na">Awaiting data</span>', '', links));
     else otherItems.push(pitem(p, '<span class="tag na">Not on its lists</span>', '', links));
@@ -527,7 +542,7 @@ async function renderAccount(){
   const famStatus = (fams)=>{
     if(!sales || !fams || !fams.length) return '';
     const hits = sales.products.filter(p=>fams.some(f=>{ const a2 = String(p[2]||'').toLowerCase(), b = String(f).toLowerCase(); return a2 && (a2.includes(b) || b.includes(a2)); }));
-    if(!hits.length) return `Never bought ${E(fams.slice(0,2).join(' or '))} in the available history (${E(monLabel(months[0]))} – ${E(monLabel(months[N-1]))}).`;
+    if(!hits.length) return `No purchases of ${E(fams.slice(0,2).join(' or '))} in the available history (${E(monLabel(months[0]))} – ${E(monLabel(months[N-1]))}).`;
     let li = -1; hits.forEach(p=>p[5].forEach((c,i)=>{ if(c>0 && i>li) li = i; }));
     const in12 = li>=N-12;
     return in12 ? `Bought ${E(fams.slice(0,2).join(' / '))} as recently as ${E(monLabel(months[li]))}.` : `Bought ${E(fams.slice(0,2).join(' / '))} before, last in ${E(monLabel(months[li]))} — not in the last 12 months.`;
@@ -560,6 +575,7 @@ async function renderAccount(){
   // evidence; one short line says why; the full reasoning lives one tap away.
   const focusHtml = top.length ? `<div class="focus nexta">${top.map(f=>{ const href = f.go ? acctHash(a.n, rep, f.go) : f.href;
       return `<a class="fitem" href="${E(href)}"${f.go ? ` data-go="${E(f.go)}"` : ''}><div class="fmain"><span class="fkind">${E(f.kind)}</span><div class="ft">${f.t}</div><p class="fw">${f.ws || f.w}${f.caveat ? ` <span class="cav">· ${E(f.cs || f.n)}</span>` : ''}</p><span class="fgo">${E(f.hl)}</span></div>${CHEV}</a>`; }).join('')}</div>`
+    + (focus.length>3 || alerts.length>2 ? `<p class="note prio-note">Showing the ${plural(top.length,'strongest item')}${focus.length>3 ? ` of ${focus.length}` : ''}. Order: an open follow-up, an overdue tap survey, program leads (soonest deadline first), then buying alerts — lapsed products before possible reorders, the biggest usual order first.${alerts.length>2 ? ` All ${plural(alerts.length,'buying alert')} are under History › Sales &amp; Alerts.` : ''}</p>` : '')
     : `<div class="kdh-state empty"><b>Nothing flagged for this account right now.</b><span>No open follow-up, no program target, no overdue survey and no buying alert in the data through ${E(monLabel(refKey))}.</span></div>`;
 
   /* ---- Buying at a glance (2026-10-01): three numbers, the alerts in one line, one way to the evidence ---- */
@@ -598,7 +614,7 @@ async function renderAccount(){
   const wide = window.matchMedia && window.matchMedia('(min-width: 1180px)').matches;
   const identHtml = `<div class="card dgroup">
       ${grp('Account', kvl('Customer ID', '#'+E(a.n)) + kvl('Premise', [premWord(a.prem) || '<span class="dim">not in the customer base</span>', a.service].filter(Boolean).join(' · ')) + kvl('Area', [a.area, a.county ? a.county+' County' : ''].filter(Boolean).join(' · ')) + (isMgr ? kvl('Rep', E(rep)) : '') + kvl('Size', sizeTxt))}
-      ${grp('Location', a.address ? `<div class="kv"><span>Address</span><span>${E(a.address)}, ${E(a.city||'')}<br><a href="${E(mapsHref(a))}" target="_blank" rel="noopener">Directions ›</a></span></div>` : kvl('Address', `${E(a.city||'')}${a.city ? ' · ' : ''}<span class="dim">street address not in the customer base export</span>`))}
+      ${a.address ? '' : grp('Location', kvl('Address', `${E(a.city||'')}${a.city ? ' · ' : ''}<span class="dim">street address not in the customer base export</span>`))}
       <details class="dmore"${wide ? ' open' : ''}><summary>Contact &amp; Servicing</summary>
         ${grp('Contact', contactBody)}
         ${grp('Servicing', serviceBody)}
@@ -636,9 +652,9 @@ async function renderAccount(){
       <div id="actQuick" class="act-quick"></div>
     </div>`;
 
-  /* ---- PROGRAMS THIS ACCOUNT COULD HELP COMPLETE (accounts/opps.js) ---- */
+  /* ---- PROGRAM OPPORTUNITIES (accounts/opps.js) ---- */
   const OPP = window.KdhOpps ? window.KdhOpps.build({a, rep, k, programs: idx.programs, credited, targets, H, HB: HubAccounts, CAT, famKey, familyAllowed, today: TODAY, whose: isMgr ? rep.split(' ')[0]+'’s' : 'Your'}) : null;
-  const oppLinks = {prog: o=>progLink(o.p, rep), acct: o=>hubAcctLink(o.p, rep, a.n, 'targets')};
+  const oppLinks = {prog: o=>progLink(o.p, rep), acct: o=>hubAcctLink(o.p, rep, a.n, 'targets'), prem: a.prem, evidence: !!(window.KdhActivity && window.KDH_AUTH && !(U && U.preview))};
   const oppOver = OPP ? window.KdhOpps.overviewHtml(OPP, oppLinks, acctHash(a.n, rep, 'more', 'programs')) : progHtml;
   const oppFull = OPP ? window.KdhOpps.fullHtml(OPP, oppLinks) : progHtml;
   /* ---- the activity timeline's non-Hub records: tap survey passes (iSellBeer)
@@ -655,9 +671,9 @@ async function renderAccount(){
   const openProg = idx.programs.filter(p=>{ const cred = credited.some(c=>c.p===p); const tg = targets.find(t=>t.p===p); return cred || (tg && tg.warm); }).length;
   const tapLine = a.taps ? (due ? (due.level==='overdue' ? `Resurvey overdue · ${due.days} days since the last survey` : due.level==='soon' ? `Resurvey due in ${plural(60-due.days,'day')}` : `Surveyed ${due.days} days ago`)+` · ${a.taps.ours} ours · ${a.taps.them} theirs` : 'Survey on file') : (a.prem==='On' ? 'No tap survey on file' : '');
   const moreItems = [
-    ['programs', 'Programs This Account Could Help Complete', OPP ? `${plural(OPP.list.length,'opportunity','opportunities')}${OPP.credited.length ? ` · ${OPP.credited.length} credited` : ''}` : `${plural(idx.programs.length,'active program')}${openProg ? ` · ${openProg} credited or a lead here` : ''}`],
+    ['programs', 'Program Opportunities', OPP ? `${plural(OPP.list.length,'opportunity','opportunities')}${OPP.credited.length ? ` · ${OPP.credited.length} credited` : ''}` : `${plural(idx.programs.length,'active program')}${openProg ? ` · ${openProg} credited or a lead here` : ''}`],
     ['activity', 'Account Activity', `Notes, follow-ups, photos, tap surveys and purchases${rows.length ? ` · ${plural(follows.length,'open follow-up')}` : ''}`],
-    ['photos', 'Photos', ACT && ACT.photos && ACT.photos.length ? `${plural(ACT.photos.length,'photo')} · latest ${E(fmtDay(new Date(ACT.photos[0].uploaded_at)))}` : 'Displays, windows, cooler doors, tap handles'],
+    ['photos', 'Photos & Merchandising', ACT && ACT.records && ACT.records.length ? `${plural(ACT.records.length,'record')} · ${plural(ACT.records.reduce((n, r)=>n + r.photos.length, 0),'photo')} · latest ${E(fmtDay(new Date(ACT.records[0].observed_at || ACT.records[0].created_at)))}` : 'Displays, windows, cooler doors, tap handles, menus'],
     tapLine ? ['taps', 'Taps & Visits', tapLine] : null,
     ['tools', 'Tools & Links', 'Incentive Hub, Tap Tracker, Directions'],
     ['ask', 'Ask About This Account', 'Questions about this account’s buying, or practice a pitch'],
@@ -677,12 +693,12 @@ async function renderAccount(){
   app.innerHTML = back(fromLabel, fromHref) + headFull + secnav
     + secHtml('over', `<div class="over-grid"><div class="over-main">
       <section class="sec" id="focus"><h2>Next Actions</h2>${focusHtml}</section>
-      <section class="sec" id="opps"><h2>Programs This Account Could Help Complete</h2>${oppOver}</section>
+      <section class="sec" id="opps"><h2>Program Opportunities</h2>${oppOver}</section>
       <section class="sec" id="activity"><h2>Account Activity</h2><div class="card actcard" id="actFeed"><div class="kdh-state loading slim">Loading activity…</div></div></section>
       <section class="sec" id="buying"><h2>Sales Context <small>through ${E(monLabel(refKey))}</small></h2>${buyHtml}</section>
     </div><aside class="over-side">
       <section class="sec" id="overview"><h2>Account Details</h2>${identHtml}</section>
-      <section class="sec" id="photos-side"><h2>Photos</h2><div class="card" id="actPhotos"></div></section>
+      <section class="sec" id="photos-side"><h2>Photos &amp; Merchandising</h2><div class="card" id="actPhotos"></div></section>
     </aside></div>`)
     + secHtml('products', `
     <section class="sec" id="products"><div class="card" id="plistCard"></div></section>
@@ -693,29 +709,32 @@ async function renderAccount(){
       + subHtml('history', 'record', `<section class="sec" id="inv"><h2>Monthly Record <small>Fusion, net of returns</small></h2>${invHtml}</section>
         <section class="sec" id="balances"><h2>Invoices, Credits &amp; Receivables</h2>${invMissingHtml}</section>`))
     + secHtml('more', subHtml('more', '', moreMenu)
-      + subHtml('more', 'programs', moreBack + `<section class="sec" id="programs"><h2>Programs This Account Could Help Complete <small>${plural(idx.programs.length,'active program')} for ${E(rep.split(' ')[0])}</small></h2>${oppFull}</section>`)
+      + subHtml('more', 'programs', moreBack + `<section class="sec" id="programs"><h2>Program Opportunities <small>${plural(idx.programs.length,'active program')} for ${E(rep.split(' ')[0])}</small></h2>${oppFull}</section>`)
       + subHtml('more', 'activity', moreBack + `<section class="sec" id="notes"><h2>Account Activity</h2><div class="card actcard" id="actAll"></div></section>`)
-      + subHtml('more', 'photos', moreBack + `<section class="sec" id="photos"><h2>Photos</h2><div class="card" id="actPhotosAll"></div></section>`)
+      + subHtml('more', 'photos', moreBack + `<section class="sec" id="photos"><h2>Photos &amp; Merchandising</h2><div class="card" id="actPhotosAll"></div></section>`)
       + subHtml('more', 'taps', moreBack + (tapsHtml ? `<section class="sec" id="taps"><h2>Taps &amp; Visits <small>survey as of ${E((d.taps.asOf||'').slice(0,10))}</small></h2>${tapsHtml}</section>` : `<div class="kdh-state empty"><b>No tap survey for this account.</b></div>`))
       + subHtml('more', 'tools', moreBack + `<section class="sec" id="tools"><h2>Tools &amp; Links</h2>${toolsHtml}</section>`)
       + subHtml('more', 'ask', `<a class="subback" href="${E(acctHash(a.n, rep, 'over'))}" data-go="over:"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>Back to Overview</a><section class="sec" id="ask"><h2>Ask About This Account</h2><p class="ask-for">${E(a.name)} · sales record ${E(monLabel(months[0]))} – ${E(monLabel(refKey))}</p><div class="card ask" id="askCard"></div></section>`)
       + subHtml('more', 'about', moreBack + `<section class="sec" id="about"><h2>About This Data</h2>${aboutHtml}</section>`));
   if(plist.n !== String(a.n)){
     let saved = null; try{ saved = JSON.parse(ss.get('plist:'+a.n) || 'null'); }catch(e){}
-    Object.assign(plist, {n:String(a.n), q:'', view: (sales && sales.products.length) ? 'bought' : 'all', sup:'', fam:'', pkg:'', limit:40}, saved || {});
+    Object.assign(plist, {n:String(a.n), q:'', view: (sales && sales.products.length) ? 'bought' : 'all', sup:'', fam:'', pkg:'', prog:'', limit:40}, saved || {});
   }
   renderProducts(a, rep, sales, CAT, months, N, targets);
   app.querySelectorAll('[data-pq]').forEach(b=>b.addEventListener('click', e=>{ e.preventDefault();
-    Object.assign(plist, {view:'all', q:b.dataset.pq||'', sup:'', fam:'', pkg:'', limit:40}); renderProducts(a, rep, sales, CAT, months, N, targets); showSec('products', ''); window.scrollTo(0, 0); }));
+    Object.assign(plist, {view:'all', q: b.dataset.pprog ? '' : (b.dataset.pq||''), prog: b.dataset.pprog || '', sup:'', fam:'', pkg:'', limit:40}); renderProducts(a, rep, sales, CAT, months, N, targets); showSec('products', ''); window.scrollTo(0, 0); }));
   if(window.KdhActivity){
     const real = (()=>{ try{ return JSON.parse(cookie('kdh_user')||'null'); }catch(e){ return null; } })();
     window.KdhActivity.attach({n:String(a.n), name:a.name, prem: a.prem==='On' || a.prem==='Off' ? a.prem : '', rep, me: real, isMgr,
       readOnly: !!(U && U.preview), readOnlyWhy: `Saving is off in preview — notes and photos belong to ${rep.split(' ')[0]} and the people on the route.`,
-      extra: {taps: tapPasses, purchases, opps: OPP ? OPP.list.concat(OPP.credited).map(o=>({id:o.id, name:o.name})) : []},
+      extra: {taps: tapPasses, purchases, families: a.families || [], opps: OPP ? OPP.list.concat(OPP.credited).map(o=>({id:o.id, name:o.name, fams:o.fams || []})) : []},
       progName, hubLink: r=>hubAcctLink(H.programs().find(p=>p.id===r.program_id), rep, a.n, r.status==='follow' ? 'follow' : r.status),
       openAsk: ()=>showSec('more', 'ask', 'ask'), showOverview: ()=>showSec('over', ''),
       onChange: ()=>{ const y = window.scrollY; renderAccount().then(()=>window.scrollTo(0, y)); }});
   }
+  // Add Evidence: the photo flow with the program and a category preselected (never in preview)
+  app.querySelectorAll('[data-evid]').forEach(b=>b.addEventListener('click', ()=>{
+    if(window.KdhActivity) window.KdhActivity.capture({program_id: b.dataset.evid, category: b.dataset.ecat || ''}); }));
   // the assistant gets a packet of what this page already shows -- nothing more
   if(window.KdhAssistant){ const packet = buildPacket({a, rep, d, sales, months, N, R, refKey, F, alerts, rows, follows, targets, credited, due, CAT, progList}); window.KdhAssistant.mount(document.getElementById('askCard'), packet, {}); }
   const y = scrollMem[location.hash]; if(typeof y==='number'){ requestAnimationFrame(()=>window.scrollTo(0,y)); delete scrollMem[location.hash]; }
@@ -748,8 +767,15 @@ function renderProducts(a, rep, sales, CAT, months, N, targets){
   const asOf = inv.asOf ? new Date(inv.asOf+'T00:00:00') : null; const invAge = asOf ? Math.round((TODAY-asOf)/86400000) : null;
   // this account's own history, by product number
   const mine = new Map(); (sales ? sales.products : []).forEach(p=>{ let li=-1; for(let i=N-1;i>=0;i--) if(p[5][i]>0){ li=i; break; } mine.set(String(p[0]), {li, cases12:sumRange(p[5], N-12, N), months12:p[5].slice(N-12).filter(c=>c>0).length, cases:sumRange(p[5],0,N), p}); });
-  // program leads by brand family (warm targets only)
-  const leadFams = new Map(); (targets||[]).filter(t=>t.warm).forEach(t=>{ const fams = HubAccounts.PROGRAM_BRANDS[HubAccounts.brandKey(t.p)] || []; fams.forEach(f=>{ if(!leadFams.has(famKey(f))) leadFams.set(famKey(f), t.p); }); });
+  // program leads (warm targets only), by the SAME product rule the opportunity
+  // cards use (hub/accounts.js eligibleProducts) -- a Lagunitas Sprint lead tags
+  // IPA and Little Sumpin', never the Variety pack
+  const elig = p => window.KdhOpps ? window.KdhOpps.eligibleFor(p, CAT, HubAccounts, famKey) : {rows: []};
+  const leadNums = new Map(); (targets||[]).filter(t=>t.warm).forEach(t=>elig(t.p).rows.forEach(c=>{ const k = String(c[0]); if(!leadNums.has(k)) leadNums.set(k, t.p); }));
+  // "View N Eligible Products" from an opportunity card: that program's list only
+  const progP = plist.prog ? H.programs().find(p=>p.id===plist.prog) : null;
+  const progNums = progP ? new Set(elig(progP).rows.map(c=>String(c[0]))) : null;
+  if(plist.prog && !progP) plist.prog = '';
   // rows: purchased = own history (catalogue fills availability); all = catalogue within territory
   let all;
   if(plist.view==='bought'){
@@ -764,7 +790,7 @@ function renderProducts(a, rep, sales, CAT, months, N, targets){
   const fams = Array.from(new Set(all.filter(x=>!plist.sup || x.sup===plist.sup).map(x=>x.fam).filter(Boolean))).sort();
   const pkgs = Array.from(new Set(all.filter(x=>(!plist.sup || x.sup===plist.sup) && (!plist.fam || x.fam===plist.fam)).map(x=>x.pkg).filter(Boolean))).sort();
   const q = plist.q.trim().toLowerCase();
-  const shown = all.filter(x=>(!plist.sup || x.sup===plist.sup) && (!plist.fam || x.fam===plist.fam) && (!plist.pkg || x.pkg===plist.pkg) && (!q || x.name.toLowerCase().includes(q) || x.num.includes(q)));
+  const shown = all.filter(x=>(!progNums || progNums.has(x.num)) && (!plist.sup || x.sup===plist.sup) && (!plist.fam || x.fam===plist.fam) && (!plist.pkg || x.pkg===plist.pkg) && (!q || x.name.toLowerCase().includes(q) || x.num.includes(q)));
   // STOCK AT LAST UPDATE (2026-10-02): the warehouse figure is a snapshot,
   // never live availability -- the date and its age sit on the list's own
   // heading, a past expected-arrival date is labelled as such, and Kohler's
@@ -779,7 +805,7 @@ function renderProducts(a, rep, sales, CAT, months, N, targets){
     return `<span class="stk">Stock at last update: <b>${fmtN(c[5])} ${Number(c[5])===1 ? 'unit' : 'units'}</b></span>${tag ? ' '+tag : ''}${arr ? ` · ${arr.past ? `expected arrival ${E(arr.txt)} <span class="dim">(past estimate)</span>` : `expected arrival ${E(arr.txt)}`}` : ''}`;
   };
   const rowsHtml = shown.slice(0, plist.limit).map(x=>{
-    const lead = leadFams.get(famKey(x.fam));
+    const lead = leadNums.get(x.num);
     const hist = x.m ? (x.m.li>=0 ? `Last bought here ${monLabel(months[x.m.li])} · ${fmtN(x.m.cases12)} cs in 12 months (${x.m.months12} of 12 months)` : 'Bought here before the loaded history') : `<span class="dim">Not bought here in ${monLabel(months[0])}–${monLabel(months[N-1])}</span>`;
     return `<div class="prow"><div class="pt"><span>${E(x.name)}</span>${lead ? `<span class="tag go">Lead · ${E(lead.shortName||lead.name)}</span>` : ''}</div>
       <div class="ps">${E(x.pkg||'')}${x.pkg ? ' · ' : ''}#${E(x.num)}${x.sup ? ' · '+E(x.sup) : ''}</div>
@@ -799,14 +825,16 @@ function renderProducts(a, rep, sales, CAT, months, N, targets){
         <select id="ppkg" aria-label="Package"><option value="">Any package</option>${pkgs.map(v=>`<option value="${E(v)}"${v===plist.pkg?' selected':''}>${E(v)}</option>`).join('')}</select>
         ${nf ? '<button type="button" class="btn outline" id="pclear">Clear</button>' : ''}</div></div></details>
     </div>
+    ${progP ? `<p class="pprog">Products that count for <b>${E(window.kdhTitle ? window.kdhTitle(progP.id, progP.shortName||progP.name) : (progP.shortName||progP.name))}</b>${(()=>{ const r = HubAccounts.PROGRAM_PRODUCTS && HubAccounts.PROGRAM_PRODUCTS[HubAccounts.brandKey(progP)]; return r ? ' — '+E(r.rule) : ''; })()} <button type="button" class="btn outline sm" id="pprogClear">Show All Products</button></p>` : ''}
     <p class="inv-fresh${stale ? ' stale' : ''}">${invDay ? `Kohler warehouse stock as of <b>${E(invDay)}</b>${invAge!=null ? ` · ${plural(invAge,'day')} old` : ''}${stale ? ' · may have changed — confirm in Encompass' : ''}` : 'No warehouse stock report loaded'}</p>
     <p class="count">${shown.length===all.length ? plural(all.length,'product') : shown.length+' of '+plural(all.length,'product')}${plist.view==='all' ? ' sellable in '+E(a.area||'this area') : ''}</p>
     <div class="plist">${rowsHtml || `<div class="kdh-state empty"><b>${q ? 'No product matches “'+E(q)+'”.' : plist.view==='bought' ? 'No purchases on record for this account.' : 'No product matches these filters.'}</b></div>`}</div>
     ${shown.length>plist.limit ? `<button class="btn outline more" id="pmore" type="button">Show ${Math.min(40, shown.length-plist.limit)} More of ${shown.length}</button>` : ''}
     <p class="note">Stock is Encompass’s sellable units in the Kohler warehouse at the report date, not the retailer’s shelf; “running low” is under ${E(String(inv.lowDoi||14))} days of cover. Eligibility follows the brand territory workbook for ${E(a.area||'this area')}. Pricing, deals, promotions and close-dated lots are not in our data (see REPORTING_REQUEST.md). Sell sheets are on file for ${E(String((CAT.sellSheets&&CAT.sellSheets.brands)||0))} brands so far.</p>`;
-  ss.set('plist:'+a.n, JSON.stringify({q:plist.q, view:plist.view, sup:plist.sup, fam:plist.fam, pkg:plist.pkg, limit:plist.limit}));
+  ss.set('plist:'+a.n, JSON.stringify({q:plist.q, view:plist.view, sup:plist.sup, fam:plist.fam, pkg:plist.pkg, prog:plist.prog, limit:plist.limit}));
   const rr = ()=>renderProducts(a, rep, sales, CAT, months, N, targets);
-  box.querySelectorAll('[data-pv]').forEach(b=>b.addEventListener('click', ()=>{ plist.view = b.dataset.pv; plist.limit = 40; plist.sup = plist.fam = plist.pkg = ''; rr(); }));
+  box.querySelectorAll('[data-pv]').forEach(b=>b.addEventListener('click', ()=>{ plist.view = b.dataset.pv; plist.limit = 40; plist.sup = plist.fam = plist.pkg = plist.prog = ''; rr(); }));
+  const ppc = box.querySelector('#pprogClear'); if(ppc) ppc.addEventListener('click', ()=>{ plist.prog = ''; plist.limit = 40; rr(); });
   const pq = box.querySelector('#pq'); pq.addEventListener('input', e=>{ plist.q = e.target.value; plist.limit = 40; const y = window.scrollY; rr(); const el = box.querySelector('#pq'); el.focus(); el.setSelectionRange(el.value.length, el.value.length); window.scrollTo(0, y); });
   box.querySelector('#psup').addEventListener('change', e=>{ plist.sup = e.target.value; plist.fam = plist.pkg = ''; plist.limit = 40; rr(); });
   box.querySelector('#pfam').addEventListener('change', e=>{ plist.fam = e.target.value; plist.pkg = ''; plist.limit = 40; rr(); });

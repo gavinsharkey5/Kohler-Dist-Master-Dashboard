@@ -176,6 +176,7 @@
     inventory: I('<path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5"/><path d="M12 13v8"/>'),
     exc: I('<path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4"/><path d="M12 17h.01"/>'),
     perf: I('<path d="M4 20V11"/><path d="M10 20V5"/><path d="M16 20v-6"/><path d="M21 20H3"/>'),
+    merch: I('<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>'),
     more: I('<circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/>'),
     tap: I('<path d="M12 2.7 6.5 9a6.5 6.5 0 1 0 11 0z"/>'),
     rb: I('<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>'),
@@ -224,6 +225,7 @@
     ];
     if (isMgr) t.push({ key: 'invm', group: 'Manager', label: 'Inventory', href: ROOT + 'inventory/', menuOnly: true });
     if (isMgr) t.push({ key: 'exc', group: 'Manager', label: 'Exceptions', href: ROOT + 'exceptions/' });
+    if (isMgr) t.push({ key: 'merch', group: 'Manager', label: 'Merchandising', href: ROOT + 'merchandising/' });
     if (isMgr) t.push({ key: 'perf', group: 'Manager', label: 'Incentive Performance', href: ROOT + 'performance/' });
     if (isMgr) t.push({ key: 'ws', group: 'Manager', label: 'Rep Workspace', href: REP_HOME });
     return t;
@@ -240,6 +242,7 @@
     if (/^team\//.test(rel)) return { nav: 'team', tool: '' };
     if (/^performance\//.test(rel)) return { nav: 'more', tool: 'perf' };
     if (/^exceptions\//.test(rel)) return { nav: 'more', tool: 'exc' };
+    if (/^merchandising\//.test(rel)) return { nav: 'more', tool: 'merch' };
     if (/^inventory\//.test(rel)) return { nav: 'inventory', tool: isMgr ? 'invm' : '' };
     if (/^isellbeer\/tap-survey-tracking\//.test(rel)) return { nav: 'more', tool: 'tap' };
     if (/^redbull\//.test(rel)) return { nav: 'more', tool: 'rb' };

@@ -1851,3 +1851,80 @@ isolation, offline Pending Upload, lost reply -> no duplicate, photo
 draft reload + Retry, Discard), notes_photos_test.mjs (updated),
 sql_notes_test.sh (43, incl. photo labels), exceptions_test.mjs. Tags
 20261003a (rep.css, accounts.*, activity, opps, kdh-user, exceptions).
+
+## Merchandising records, iSellBeer import, recap; one eligibility rule (2026-10-04)
+
+Gavin's brief (Mobbin refs: Apple Notes capture -> the capture sheet, Jobber
+Job Detail -> the record viewer's information panel, Google Photos info ->
+metadata outside the image, komoot Photos -> the gallery, Upwork Custom
+Export -> the recap filters). NOT built on purpose: Quick Visit Recap and
+Follow-Up From a Note. merchandising/README.txt has every rule; what holds:
+- RECORDS: a merchandising record = one observation at one account
+  (merch_records) with photos (merch_record_photos, a photo in ONE record),
+  product / brand lines (merch_lines: quantity NULL = not recorded, never 0;
+  a quantity always has a unit, "unspecified" = the source gave none; tap
+  lines keep iSellBeer's US/THEM and the Tap Tracker's audited side apart)
+  and an optional program. Migration
+  `supabase/migrations/20261004090000_merchandising.sql` (NOT YET RUN by
+  Gavin -- ROADMAP "Now"); until it runs, photos save one per record and the
+  pages say so (`merchSaveMissing`). Accounts, records, photos and lines are
+  counted separately everywhere; nothing is called a "placement".
+- TYPES: shared/merch-types.js (`KdhMerch`) is the one list -- Display,
+  Window, Cooler Door, Tap Handles, Menu Placement, Other Activation;
+  subtypes; premise defaults (Off: display / window / cooler_door / other;
+  On: tap_handle / menu / other); units; `qtyText()`. iSellBeer Promotion
+  Type / Theme / Elements stay as text on imported records; "MBO" is never
+  mapped to a program.
+- CAPTURE (accounts/activity.js `photoFlow`, `KdhActivity.capture`): Type ->
+  Photos -> Details -> Save Photos. Take Photo = `<input type=file
+  accept=image/* capture=environment>` (#capIn) -- no getUserMedia, no
+  video element, no microphone; Choose From Photos = #libIn (multiple);
+  Retake (#retakeIn) keeps everything else. JPEG re-encode, orientation from
+  the image, EXIF/GPS dropped, long edge 2560 (3200 for menu / other). Record
+  drafts in IndexedDB kdh-drafts v2 store "records" under the REAL signed-in
+  email; retry-safe ('hub:'+uuid key, storage 409 = exists). Add Evidence on
+  a Program Opportunities card preselects program + category (keg/draft ->
+  tap_handle, on-premise -> menu, else display). Evidence is NOT credit.
+- IMPORT (managers: merchandising/import/, `merchandising/isb-import.js`
+  `KdhIsb`, dependency-free xlsx + PDF readers): CustomerID-only matching,
+  stable keys (isb:display / isb:taps / isb:promo, never Promo #), hyperlink
+  TARGETS, PDF pages matched only by hand (else Review Queue, storage
+  `_review/`), reconciliation before Import, re-import restates. The export
+  files carry emails in photo URLs -- they stay out of the repo (public).
+- RECAP (managers: merchandising/, recap.js): filters account / rep (DM =
+  team) / dates / supplier-brand / category / program / source; four count
+  tiles; Download CSV (one row per line, filters + counts in header rows) and
+  Export Recap (print page, photos full width, first 150 records) use exactly
+  `view()`. Linked from the sidebar (Manager -> Merchandising, tool `merch`)
+  and the manager home (22 cards now).
+- ELIGIBILITY: hub/accounts.js `PROGRAM_PRODUCTS` + `eligibleProducts(p,
+  rows, famKey)` is the ONE product rule for a program; opps.js
+  (`KdhOpps.eligibleFor`), the Products list (Lead tags, `plist.prog` filter
+  from "View N Eligible Products") and the assistant packet
+  (`productsThatCount` / `eligibleHere` / `eligibleExamples`) all read it.
+  Lagunitas Sprint = the 13 products of incentive-tracking/data/lagunitas_sprint.csv.
+  PROGRAM_BRANDS holds brand FAMILIES only: "Lagunitas Brewing Co" (the
+  supplier) was removed because a not-on-file name switches the territory
+  filter off -- Union / Essex accounts were listed as targets. The Incentive
+  Tracker's own Lagunitas "Stores To Target" still ignores the workbook
+  (generate.py targets_from) -- open question 11.4 in REPORTING_REQUEST.md.
+- ACCOUNT PAGE: "Program Opportunities" (card: Program -> What to Sell ->
+  What Is Needed -> Deadline; Details fold for the rest); "No purchases in
+  the available history" (hub `NO_BUY`, the old string still matched);
+  "Check with the buyer; ordering history does not explain the gap"; one
+  address block (header); Next Actions + alerts table explain the order.
+- ASSISTANT: GET /api/chat = availability (codes, `setup` step for managers,
+  never a secret, never a model call); the page disables the box until it is
+  available; it does not look at photos (page + prompt).
+- MANAGERS: hub lands a signed-in manager on Program View (Manager Mode on a
+  computer) with a Rep filter (#pvRep); Rep Mode on Program View opens the
+  picker; Export = two buttons, Download CSV / Export Recap (+ Options).
+  Exceptions: Group By rep (default) / type / urgency / account (`by=`),
+  per-section caps, "based on the tap data loaded <date>", a Data Sources
+  fold, and an empty state that never calls missing data a clean bill.
+Tags: hub.js / hub.css / hub/accounts.js / accounts.* / opps / activity /
+assistant / exceptions.* 20261004a, kdh-user.js / kdh-data.js 20261004b.
+Tests (scratchpad): opp_elig_test, recap_test, merch_capture_test,
+isb_test, imp_test, sql_merch_test.sh, exceptions_test, chat_api_test (71),
+assistant_test, export_test, mgr_desktop, dm_test, notes_photos_test /
+drafts_test (ported to the new flow) + the existing suites.

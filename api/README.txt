@@ -252,3 +252,25 @@ renew / ask who is signed in, DELETE to sign out. Keeps the refresh token in
 the HttpOnly kdh_rt cookie; middleware.js renews kdh_at from it. Excluded
 from the middleware matcher; same-origin only. Env: SUPABASE_URL,
 SUPABASE_PUBLISHABLE_KEY (already set for the middleware).
+
+AVAILABILITY (2026-10-04)
+GET /api/chat answers before the page takes a question, and never calls the
+model: {ok, code, msg} plus left / perDay when available. Codes: no_auth,
+signin (401), no_key, bad_model, not_pilot, no_ledger, ledger_down, limit,
+spend. For a MANAGER (and for no_auth, where nobody can be identified) the
+reply adds `setup`: the exact step that fixes it -- for no_key: Vercel ->
+Settings -> Environment Variables -> ANTHROPIC_API_KEY (value from
+console.anthropic.com -> API Keys, pasted only into Vercel), Production,
+Save, then Redeploy. Nothing in a reply carries a secret. The page
+(accounts/assistant.js) shows "Checking whether the assistant is
+available...", then "Available · N of 60 questions left today", or the
+reason with the box, Send and starter questions disabled (a rep sees the
+reason; a manager also sees How to Set It Up) and a Check Again button; a
+503 / 429 / 403 on a question re-checks. The prompt now says the assistant
+cannot see photos, and the page says it does not look at them.
+Program products: PAGE CONTEXT programs[] carry productsThatCount /
+eligibleHere / eligibleExamples from hub/accounts.js eligibleProducts(), the
+same rule the opportunity cards and the Products list use; the prompt forbids
+suggesting a product for a program outside that rule.
+Tests: scratchpad chat_api_test.mjs (71 checks, incl. 10 availability) and
+assistant_test.mjs (not set up for a rep / a manager, available + count).

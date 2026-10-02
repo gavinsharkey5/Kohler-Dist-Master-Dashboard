@@ -21,6 +21,18 @@
 'use strict';
 const E = s => String(s==null?'':s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const ENDPOINT = '/api/chat';
+// AVAILABILITY (2026-10-04): GET /api/chat says whether this person can ask
+// now (key set, ledger there, pilot list, today's limit) before the box takes
+// a question; checked once per page load and again after a failed answer.
+let AVAIL = null;
+function checkAvail(force){
+  if(AVAIL && !force) return AVAIL;
+  AVAIL = fetch(ENDPOINT, {method:'GET', credentials:'same-origin', cache:'no-store'})
+    .then(r=>r.json().catch(()=>({})).then(j=>Object.assign({ok:false, code: r.status===404 ? 'no_function' : 'error', msg: r.status===404 ? 'The assistant is not deployed on this copy of the site.' : 'The assistant could not be reached.'}, j && typeof j==='object' && 'ok' in j ? j : {})))
+    .catch(()=>({ok:false, code:'offline', msg:'The assistant could not be reached. Check your connection.'}));
+  return AVAIL;
+}
+const isMgrCookie = () => { try{ const m = document.cookie.match(/(?:^|;\s*)kdh_user=([^;]*)/); return !!(m && JSON.parse(decodeURIComponent(m[1])).role==='manager'); }catch(e){ return false; } };
 const LIMIT_TURNS = 30;
 const cookie = n => { try{ const m = document.cookie.match(new RegExp('(?:^|;\\s*)'+n+'=([^;]*)')); return m ? decodeURIComponent(m[1]) : ''; }catch(e){ return ''; } };
 // who is looking: signed-in email + the preview identity (a manager in
@@ -84,6 +96,14 @@ function mount(el, packet, opts){
   const ref = D.referenceMonthLabel || '';
   const span = [D.firstMonthLabel, D.referenceMonthLabel].filter(Boolean).join(' – ');
   const cfgOff = !(window.KDH_AUTH && window.KDH_AUTH.url);
+  let avail = cfgOff ? {ok:false, code:'local'} : null;     // null = still checking
+  const off = () => cfgOff || !avail || !avail.ok;
+  const availHtml = () => {
+    if(cfgOff) return `<div class="kdh-state unavailable slim"><b>The assistant needs kohlerdisthub.com.</b><span>It is not available on a local or unsigned copy of the site.</span></div>`;
+    if(!avail) return `<p class="ask-avail checking" role="status"><span class="dots"><i></i><i></i><i></i></span> Checking whether the assistant is available…</p>`;
+    if(avail.ok) return `<p class="ask-avail ok" role="status"><span class="dot"></span>Available${avail.left!=null ? ` · ${avail.left} of ${avail.perDay} questions left today` : ''}</p>`;
+    return `<div class="kdh-state unavailable slim" role="status"><b>${E(avail.msg || 'The assistant is not available right now.')}</b>${avail.setup && isMgrCookie() ? `<details class="ask-setup" open><summary>How to Set It Up (Managers)</summary><p>${E(avail.setup)}</p></details>` : avail.code==='no_key' || avail.code==='no_ledger' || avail.code==='bad_model' ? `<span>A manager has been shown how to turn it on.</span>` : ''}<button type="button" class="btn outline sm" id="askRecheck">Check Again</button></div>`;
+  };
   const footer = m => {
     const meta = m.meta || {}; const parts = [];
     parts.push(`Monthly sales record through ${E(meta.refLabel||ref)}${meta.salesLoaded ? `, loaded ${E(fmtDate(meta.salesLoaded))}` : D.salesLoaded ? `, loaded ${E(fmtDate(D.salesLoaded))}` : ''}`);
@@ -95,7 +115,7 @@ function mount(el, packet, opts){
 
   function render(){
     const msgs = st[st.mode] || [];
-    const chips = msgs.length ? '' : `<div class="ask-chips">${suggestions(packet, st.mode).map(q=>`<button type="button" class="ask-chip" data-q="${E(q)}">${E(q)}</button>`).join('')}</div>`;
+    const chips = msgs.length ? '' : `<div class="ask-chips">${suggestions(packet, st.mode).map(q=>`<button type="button" class="ask-chip" data-q="${E(q)}"${off()?' disabled':''}>${E(q)}</button>`).join('')}</div>`;
     const log = msgs.map(m=>`<div class="msg ${m.role==='user'?'me':'ai'}"><div class="msg-b">${m.role==='user' ? E(m.content).replace(/\n/g,'<br>') : md(m.content)}</div>${m.role==='assistant' && st.mode==='ask' ? footer(m) : ''}</div>`).join('');
     const pitchBar = st.mode==='pitch' ? `<div class="ask-pitchbar">
         <label for="askProd">Product</label>
@@ -107,15 +127,15 @@ function mount(el, packet, opts){
         <div class="pseg" role="tablist"><button type="button" class="${st.mode==='ask'?'active':''}" data-mode="ask">Ask</button><button type="button" class="${st.mode==='pitch'?'active':''}" data-mode="pitch">Practice a Pitch</button></div>
         <div class="note ask-intro">${st.mode==='pitch'
           ? `<p>The assistant plays the buyer at ${E(packet.account.name)}. Its objections are simulated practice.</p><details class="ask-more"><summary>How Practice Works</summary><p>What it says about this account’s buying comes from the sales record, and it will not invent prices, stock levels or competitor facts. Type your opening line, then work the conversation. <b>Get Feedback</b> ends the role-play with coaching.</p></details>`
-          : `<p>Ask about <b>${E(packet.account.name)}</b>. Answers use its monthly sales record${span ? `, ${E(span)}` : ''}${D.salesLoaded ? ` (loaded ${E(fmtDate(D.salesLoaded))})` : ''}, checked by code.</p><details class="ask-more"><summary>What It Can Answer</summary><p>Every product, ${E(span || ('through '+ref))}${D.salesLoaded ? `, loaded ${E(fmtDate(D.salesLoaded))}` : ''} — plus its buying alerts and patterns, your notes and the tap survey. Program status and warehouse availability are quoted from what this page shows. Not in the data: contacts, hours, prices, invoices, balances, shelf stock, days between orders. It says so when a question needs them.</p></details>`}</div>
+          : `<p>Ask about <b>${E(packet.account.name)}</b>. Answers use its monthly sales record${span ? `, ${E(span)}` : ''}${D.salesLoaded ? ` (loaded ${E(fmtDate(D.salesLoaded))})` : ''}, checked by code.</p><details class="ask-more"><summary>What It Can Answer</summary><p>Every product, ${E(span || ('through '+ref))}${D.salesLoaded ? `, loaded ${E(fmtDate(D.salesLoaded))}` : ''} — plus its buying alerts and patterns, your notes and the tap survey. Program status and warehouse availability are quoted from what this page shows. Not in the data: contacts, hours, prices, invoices, balances, shelf stock, days between orders. It does not look at photos — it cannot see what a display, menu or tap wall shows. It says so when a question needs any of these.</p></details>`}</div>
         ${pitchBar}
       </div>
-      ${cfgOff ? `<div class="kdh-state unavailable slim"><b>The assistant needs kohlerdisthub.com.</b><span>It is not available on a local or unsigned copy of the site.</span></div>` : ''}
+      <div id="askAvail">${availHtml()}</div>
       <div class="ask-log" id="askLog" aria-live="polite">${chips}${log}</div>
       <div class="ask-status" id="askStatus" hidden></div>
       <form class="ask-form" id="askForm">
-        <textarea id="askIn" rows="1" placeholder="${st.mode==='pitch' ? 'Your opening line to the buyer…' : 'Ask about this account…'}" aria-label="Your message" maxlength="4000"${cfgOff?' disabled':''}></textarea>
-        <button type="submit" class="btn primary" id="askSend"${cfgOff?' disabled':''}>Send</button>
+        <textarea id="askIn" rows="1" placeholder="${st.mode==='pitch' ? 'Your opening line to the buyer…' : 'Ask about this account…'}" aria-label="Your message" maxlength="4000"${off()?' disabled':''}></textarea>
+        <button type="submit" class="btn primary" id="askSend"${off()?' disabled':''}>Send</button>
       </form>
       <div class="ask-foot">${msgs.length ? `<button type="button" class="btn ghost sm" id="askClear">Delete Conversation</button> · ` : ''}<span>Kept only in this browser tab, for you, until you close it or sign out. Numbers come from the record, not from memory.</span></div>`;
     el.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click', ()=>{ if(busy) return; st.mode = b.dataset.mode; save(n, st); render(); }));
@@ -127,11 +147,12 @@ function mount(el, packet, opts){
     const ps = el.querySelector('#askProd'); if(ps) ps.addEventListener('change', e=>{ st.product = e.target.value; save(n, st); });
     const fb = el.querySelector('#askFeedback'); if(fb) fb.addEventListener('click', ()=>send('Feedback, please — how did I do?', 'feedback'));
     const cl = el.querySelector('#askClear'); if(cl) cl.addEventListener('click', ()=>{ if(!window.confirm('Delete this conversation from this device?')) return; if(aborter) aborter.abort(); st[st.mode] = []; st.fed = false; save(n, st); render(); });
+    const rc = el.querySelector('#askRecheck'); if(rc) rc.addEventListener('click', ()=>{ avail = null; render(); checkAvail(true).then(a=>{ avail = a; render(); }); });
     const logEl = el.querySelector('#askLog'); logEl.scrollTop = logEl.scrollHeight;
   }
 
   async function send(text, modeOverride){
-    if(busy || cfgOff) return;
+    if(busy || off()) return;
     const mode = modeOverride || st.mode;
     const list = st[st.mode];
     let userText = text;
@@ -154,7 +175,7 @@ function mount(el, packet, opts){
         let msg = 'The assistant could not answer right now.';
         try{ const j = await r.json(); if(j && j.error) msg = j.error; }catch(e){}
         if(r.status===401) msg = 'Your sign-in has expired — sign in again to use the assistant.';
-        throw new Error(msg);
+        throw Object.assign(new Error(msg), {status: r.status});
       }
       const reader = r.body.getReader(); const dec = new TextDecoder(); let buf = '';
       status.textContent = '';
@@ -182,14 +203,17 @@ function mount(el, packet, opts){
       save(n, st); render();
       const st2 = el.querySelector('#askStatus'); st2.hidden = false; st2.innerHTML = `<div class="kdh-state error slim"><b>${E(e.message||'Something went wrong.')}</b></div>`;
       el.querySelector('#askIn').value = text;
+      // a refusal that is about setup / limits: re-check, so the box shows the state instead of a dead Send
+      if(e.status===503 || e.status===429 || e.status===403) checkAvail(true).then(a=>{ avail = a; if(!a.ok){ const t = el.querySelector('#askIn').value; render(); const ta = el.querySelector('#askIn'); if(ta) ta.value = t; } });
     }finally{
       busy = false; aborter = null;
       const s = el.querySelector('#askStatus'); if(s && !s.querySelector('.kdh-state')) s.hidden = true;
-      const b = el.querySelector('#askSend'); if(b) b.disabled = false;
+      const b = el.querySelector('#askSend'); if(b) b.disabled = off();
       if(out.trim()) render();
     }
   }
   render();
+  if(!cfgOff) checkAvail().then(a=>{ avail = a; const t = el.querySelector('#askIn') ? el.querySelector('#askIn').value : ''; render(); const ta = el.querySelector('#askIn'); if(ta && t) ta.value = t; });
 }
 window.KdhAssistant = {mount, md, forget, pageContext};
 })();

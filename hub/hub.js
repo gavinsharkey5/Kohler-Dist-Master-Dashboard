@@ -809,7 +809,11 @@ function persist(){ try{ localStorage.setItem(LS_KEY, JSON.stringify({rep:state.
 const isMobile = () => window.innerWidth < 760 || (window.matchMedia('(pointer:coarse)').matches && window.innerWidth < 1100) || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 const isMgr = () => state.mode==='manager' && !isMobile();
 window.addEventListener('resize', ()=>{ if(!LIB && state.mode==='manager') render(); });
-function restore(){ try{ const s = JSON.parse(localStorage.getItem(LS_KEY)||'{}'); if(s.mode==='manager' && !isMobile()) state.mode = 'manager'; }catch(e){} }
+// A signed-in manager on a computer starts in Manager Mode (2026-10-04, Gavin:
+// no repeated mode screens); a manager who switched to Rep Mode keeps it.
+const SIGNED_MGR = !!(KDH_USER && KDH_USER.role === 'manager' && !KDH_USER.preview);
+function restore(){ try{ const s = JSON.parse(localStorage.getItem(LS_KEY)||'{}');
+  if(!isMobile() && (s.mode==='manager' || (SIGNED_MGR && s.mode!=='rep'))) state.mode = 'manager'; }catch(e){ if(SIGNED_MGR && !isMobile()) state.mode = 'manager'; } }
 function hashOf(){
   const p = [];
   if(state.view!=='home') p.push('view='+state.view);
@@ -1558,6 +1562,11 @@ function sellAsk(p){
   if(fams && fams.length) return `Place ${fams.slice(0,3).join(', ')}${fams.length>3?' and more':''}.`;
   return 'See the program rules.';
 }
+// An eligible account with no purchase of the brand in the tracker's data.
+// Worded for what the data can show (2026-10-04): the history has a start
+// date, so it is never "never bought it".
+const NO_BUY = 'No purchases in the available history';
+const noBuyText = (why, p) => why===NO_BUY && p && p.refreshed ? `${NO_BUY} (tracker data refreshed ${p.refreshed})` : why;
 // The tracker's own opportunity lists for this rep -- warm leads that
 // should top the visit list: an account one SKU short, one oak short, a
 // handle still pouring Summer Ale, a big account that has never bought it.
@@ -1571,12 +1580,12 @@ function warmTargets(p, rep){
     (d.onPremBuilding||[]).forEach(it=>push(it.customer, 'Needs a 2nd bottle', true));
     (d.unconvertedAccounts||[]).forEach(it=>push(it.account, 'Still on Summer Ale', true));
     if(d.encompass) (d.encompass.notConvertedAccounts||[]).forEach(it=>push(it.customer, 'Still on Summer Ale', true));
-    Object.keys(d).forEach(k=>{ if(/Targets$|Whitespace$/.test(k) && Array.isArray(d[k])) d[k].forEach(it=>push(it.customer, 'Never bought it', false)); });
+    Object.keys(d).forEach(k=>{ if(/Targets$|Whitespace$/.test(k) && Array.isArray(d[k])) d[k].forEach(it=>push(it.customer, NO_BUY, false)); });
     return out;
   }
   const slot = mpoState[p.source] && mpoState[p.source][p.monthKey]; const D = slot && slot.DATA; const d = D && D[p.key]; if(!d) return out;
   const sets = d.subs ? d.subs : [d];
-  sets.forEach(sd=>{ const t = sd.targetsByRep && sd.targetsByRep[rep]; if(t) t.forEach(it=>push(it.customer, it.product ? `Missing ${it.product}` : 'Never bought it', false)); });
+  sets.forEach(sd=>{ const t = sd.targetsByRep && sd.targetsByRep[rep]; if(t) t.forEach(it=>push(it.customer, it.product ? `Missing ${it.product}` : NO_BUY, false)); });
   return out;
 }
 // Prioritised visit list: warm leads first, then the biggest eligible
@@ -1590,7 +1599,7 @@ function nextAccounts(p, rep){
   warm.filter(w=>w.warm).forEach(w=>{ const a = byKey.get(w.k); if(a && !seen.has(w.k)){ seen.add(w.k); rows.push(Object.assign({}, a, {why:w.why, warm:true})); } });
   const cold = new Map(); warm.filter(w=>!w.warm).forEach(w=>{ if(!cold.has(w.k)) cold.set(w.k, w.why); });
   A.eligible.forEach(a=>{ const k = HubAccounts.norm(a.name); if(seen.has(k)) return; seen.add(k);
-    rows.push(Object.assign({}, a, {why: cold.get(k) || 'Never bought it'})); });
+    rows.push(Object.assign({}, a, {why: cold.get(k) || NO_BUY})); });
   return {rows, hold:false, A};
 }
 /* ---- Closed / Completed: the placements the tracker already credits ---- */
@@ -2787,15 +2796,20 @@ ${sections || '<p class="na">No programs match these filters.</p>'}
   else downloadText(`kohler-program-recap-${st.file}.html`, html, 'text/html;charset=utf-8');
   return {programs: list.length, html};
 }
+// EXPORTS (2026-10-04, Gavin: explicit buttons, not a hidden menu). Both read
+// the COMPLETE filtered set for the authorized roster -- never just the page.
 function exportMenuHtml(onlyId){
   if(!isMgr() || LOCKED_REP || state.asRep || (KDH_USER && KDH_USER.preview)) return '';
   const pid = onlyId ? ` data-prog="${E(onlyId)}"` : '';
-  return `<details class="xmenu"><summary>Export</summary><div class="xpanel" role="menu">
-    <div class="xitem"><button type="button" class="xbtn" data-act="export-data"${pid} role="menuitem"><b>Export Data</b><span>Spreadsheet (CSV) of every program and rep in these filters — not just this page</span></button>
-      <label class="xopt"><input type="checkbox" id="xLines"> Include credited account lines</label></div>
-    <div class="xitem"><button type="button" class="xbtn" data-act="export-recap"${pid} role="menuitem"><b>Export Recap</b><span>Formatted report to print or save as PDF: team results, remaining work, deadlines, definitions</span></button>
-      <label class="xopt"><input type="checkbox" id="xAccts"> Include account detail</label></div>
-    <p class="xnote">${E(exportScopeText())} · tracker figures as published · no dollar figures</p></div></details>`;
+  const ico = d => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+  return `<div class="xbar" role="group" aria-label="Export">
+    <button type="button" class="xbtn2" data-act="export-data"${pid}>${ico('<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>')}<b>Download CSV</b></button>
+    <button type="button" class="xbtn2" data-act="export-recap"${pid}>${ico('<path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/>')}<b>Export Recap</b></button>
+    <details class="xopts"><summary>Options</summary><div class="xpanel">
+      <label class="xopt"><input type="checkbox" id="xLines"> CSV: include credited account lines</label>
+      <label class="xopt"><input type="checkbox" id="xAccts"> Recap: include account detail</label>
+      <p class="xnote">${E(exportScopeText())} · tracker figures as published · no dollar figures</p></div></details>
+  </div>`;
 }
 function screenPrograms(){
   const f = state.filters;
@@ -2818,6 +2832,7 @@ function screenPrograms(){
       <div class="fgrp"><span class="fl">Type</span>${['all','inc','mpo'].map(v=>`<button class="fpill${f.type===v?' active':''}" data-filter="type" data-v="${v}">${v==='all'?'All':v==='inc'?'Incentives':'MPOs'}</button>`).join('')}</div>
       <div class="fgrp"><span class="fl">Channel</span>${['all','on','off'].map(v=>`<button class="fpill${f.chan===v?' active':''}" data-filter="chan" data-v="${v}">${v==='all'?'All':v==='on'?'On-Premise':'Off-Premise'}</button>`).join('')}</div>
       <div class="fgrp"><span class="fl">Supplier</span>${sel('sup', [{v:'all',l:'All suppliers'}].concat(sups.map(s=>({v:s,l:s}))), f.sup)}</div>
+      <div class="fgrp"><span class="fl">Rep</span><select class="pv-rep" id="pvRep" aria-label="Open one rep’s programs"><option value="">All reps (${ROSTER.length})</option>${DM_GROUPS.map(g=>({dm:g.dm, reps:g.reps.filter(r=>ROSTER.includes(r))})).filter(g=>g.reps.length).map(g=>`<optgroup label="${E(g.dm)}">${g.reps.map(r=>`<option value="${E(r)}">${E(r)}</option>`).join('')}</optgroup>`).join('')}${(()=>{ const inG = new Set(DM_GROUPS.flatMap(g=>g.reps)); const o = ROSTER.filter(r=>!inG.has(r)); return o.length ? `<optgroup label="Other">${o.map(r=>`<option value="${E(r)}">${E(r)}</option>`).join('')}</optgroup>` : ''; })()}</select></div>
       <div class="fgrp"><span class="fl">Month</span>${sel('month', [{v:'active',l:'Active now'},{v:'all',l:'All months'}].concat(months.map(m=>({v:m,l:monthLabel(m)}))), f.month)}</div>
     </div>
   </div>`;
@@ -3219,7 +3234,7 @@ function screenAccount(){
     <div class="hcard">
       ${kv('Program', E(p.shortName||p.name) + ' · ' + E(p.supplier))}
       ${kv('What to sell', E(sellAsk(p)))}
-      ${onList ? kv(plan.hold ? 'Status' : 'Opportunity', E(a.why || (plan.hold ? 'Keep ordering' : 'Never bought it'))) : ''}
+      ${onList ? kv(plan.hold ? 'Status' : 'Opportunity', E(noBuyText(a.why || (plan.hold ? 'Keep ordering' : NO_BUY), p))) : ''}
       ${a.note ? kv('Last activity', E(a.note)) : ''}
       ${a.cases>0 ? kv('2026 volume', E(fmtCases(a.cases))+' a year, all brands') : ''}
     </div>
@@ -3321,7 +3336,10 @@ document.addEventListener('click', e=>{
       { const el = document.querySelector('.ra-edit input'); if(el){ el.focus(); el.setSelectionRange(el.value.length, el.value.length); } } break;
     case 'ra-cancel': raEdit = null; render(); break;
     case 'log-more': logMore[t.dataset.key] = !logMore[t.dataset.key]; render(); break;
-    case 'set-mode': if(LOCKED_REP || state.asRep) break; state.mode = (t.dataset.mode==='manager' && !isMobile()) ? 'manager' : 'rep'; persist(); history.replaceState(null, '', hashOf()); render(); break;
+    case 'set-mode': if(LOCKED_REP || state.asRep) break; state.mode = (t.dataset.mode==='manager' && !isMobile()) ? 'manager' : 'rep'; persist();
+      // Program View is a Manager Mode screen: switching to Rep Mode there opens the rep picker
+      if(state.mode==='rep' && (state.view==='programs' || state.view==='program')){ go({view:'home', prog:null, peek:null, from:null}); break; }
+      history.replaceState(null, '', hashOf()); render(); break;
     case 'reset-all': try{ localStorage.removeItem(LS_KEY); sessionStorage.removeItem(TAB_KEY); }catch(e){} openCards.clear(); state.showEnded = false; state.peek = null; state.prog = null; state.rep = null; state.cat = null; state.main = null;
       go({view:'home'}, true); break;
     case 'open': go({view:'detail', prog:t.dataset.prog, from:null, peek:null}); break;
@@ -3364,6 +3382,7 @@ document.addEventListener('input', e=>{
   const list = document.getElementById('acctRows'); if(list) list.innerHTML = acctRowsHtml(t.dataset.key);
 });
 document.addEventListener('change', e=>{
+  if(e.target.id==='pvRep'){ const who = e.target.value; if(who && ROSTER.includes(who)){ state.asRep = false; const tab = isSupport(who) ? 'on' : lastTab(); openCards.clear(); go({view:'rep', rep:who, cat:tab, main:tabOf(tab), month:null, prog:null, peek:null, from:null}); } return; }
   const t = e.target.closest('.fsel'); if(!t) return;
   state.filters[t.dataset.filter] = t.value; render();
 });
@@ -3401,14 +3420,17 @@ function boot(){
   if(state.asRep) state.mode = 'rep';
   if((deep.rep && ROSTER.includes(deep.rep)) || TAB_KEYS.includes(deep.only)){ applyHash(); if(state.rep && state.view==='home'){ state.view = 'rep'; state.cat = state.cat || lastTab(); state.main = tabOf(state.cat); applyOnly(); } }
   lockState();                     // a signed-in rep opens straight on their own page
-  history.replaceState(null, '', (LOCKED_REP || state.rep || state.only) ? hashOf() : '#');
+  // A manager in Manager Mode lands on the team / program overview (Program
+  // View, with its rep filter) instead of the name picker -- a deep link wins.
+  if(state.view==='home' && !state.rep && !state.only && !state.asRep && !LOCKED_REP && isMgr()) state.view = 'programs';
+  history.replaceState(null, '', (LOCKED_REP || state.rep || state.only || state.view==='programs') ? hashOf() : '#');
   render();
   // Warm the active MPO months in the background so the first tap is instant.
   Object.keys(MPO_SCOPES).forEach(scope=>{
     MPO_SCOPES[scope].mod.MONTHS.forEach(m=>{ if(mpoMonthActive(scope, m)) ensureMpoMonth(scope, m.key).then(()=>{ if(state.view!=='home') render(); }); });
   });
 }
-window.KohlerHub = {state, programs:()=>PROGRAMS, sortedForRep, programStats, render, buyingFor, accountsFor, nextAccounts, closedFor,
+window.KohlerHub = {NO_BUY, state, programs:()=>PROGRAMS, sortedForRep, programStats, render, buyingFor, accountsFor, nextAccounts, closedFor,
   // library surface for the Accounts page (2026-09-30)
   lib:LIB, loadFor, distFor, progFacts, sellAsk, endsLabel, periodLabel, isActive, incBand, isDollarProgram, availability, supportAllows, isSupport,
   mpoRepMonth, mpoMonthLoaded, scopes:MPO_SCOPES, incRows, RA, lockedRep:LOCKED_REP, roster:ROSTER, dmGroups:DM_GROUPS};

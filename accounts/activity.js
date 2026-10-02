@@ -44,9 +44,9 @@
 const E = s => String(s==null?'':s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const cookie = n => { try{ const m = document.cookie.match(new RegExp('(?:^|;\\s*)'+n+'=([^;]*)')); return m ? decodeURIComponent(m[1]) : ''; }catch(e){ return ''; } };
 const BUCKET = 'account-photos';
-const MAX_EDGE = 2048, JPEG_Q = 0.85;
-const CATS = {display:'Display', window:'Window', cooler_door:'Cooler Door', tap_handle:'Tap Handle'};
-const CAT_HELP = {display:'A floor or endcap display', window:'Window signage or a window display', cooler_door:'Cooler door clings or cooler sets', tap_handle:'The tap handles on the bar'};
+const JPEG_Q = 0.86;             // long edge 2560 px (3200 for menus / other, so menu text stays readable)
+const M = () => window.KdhMerch;  // shared/merch-types.js: categories, subtypes, units, labels
+const CATS = {}; (window.KdhMerch ? window.KdhMerch.CATS : []).forEach(c=>{ CATS[c.k] = c.label; });
 const UPDATE_SQL = 'supabase/migrations/20261002120000_account_notes_photos.sql';
 const fmtWhen = s => { if(!s) return ''; const d = new Date(s); if(isNaN(d)) return ''; return d.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'})+', '+d.toLocaleTimeString('en-US', {hour:'numeric', minute:'2-digit'}); };
 const fmtDay = s => { if(!s) return ''; const d = new Date(String(s).length===10 ? s+'T12:00:00' : s); return isNaN(d) ? '' : d.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'}); };
@@ -67,25 +67,47 @@ const denied = e => !!e && (e.status===401 || e.status===403 || e.code==='42501'
 
 /* ---------------- data ---------------- */
 const PHOTO_COLS = 'id,customer_num,category,premise,caption,storage_path,width,height,captured_at,uploaded_at,author_name';
-const cache = new Map();      // n -> {notes, photos, notesErr, photosErr, update}
+const MERCH_SQL = 'supabase/migrations/20261004090000_merchandising.sql';
+const REC_COLS = 'id,category,subtype,subtype_note,caption,location,brands,program_id,premise,source,source_kind,source_key,isb_promotion_type,isb_theme,isb_elements,source_author,source_author_role,observed_at,created_at,author_name,author_email,'
+  + 'merch_lines(line_no,supplier,brand_family,brand,package,quantity,quantity_unit,ownership_source,ownership_corrected,ownership_rule,source_line_ref),merch_record_photos(ord,photo_id)';
+const cache = new Map();      // n -> {notes, photos, records, notesErr, photosErr, update, merchMissing}
 async function load(n, force){
   if(!force && cache.has(n)) return cache.get(n);
-  const out = {notes:[], photos:[], notesErr:'', photosErr:'', update:false};
+  const out = {notes:[], photos:[], records:[], notesErr:'', photosErr:'', update:false, merchMissing:false};
   if(!cfg()){ out.notesErr = out.photosErr = 'off'; cache.set(n, out); return out; }
   const base = 'select=id,program_id,account_num,account_name,status,note,updated_at,created_at,rep_name';
+  let recs = [];
   await Promise.all([
     rest('rep_actions?'+base+',follow_on&account_num=eq.'+encodeURIComponent(n)+'&order=updated_at.desc&limit=200')
       .catch(e=>{ if(needsUpdate(e)){ out.update = true; return rest('rep_actions?'+base+'&account_num=eq.'+encodeURIComponent(n)+'&order=updated_at.desc&limit=200'); } throw e; })
       .then(rows=>{ out.notes = Array.isArray(rows) ? rows : []; })
       .catch(e=>{ out.notesErr = e.message || 'error'; }),
-    // brand / program_id arrive with 20261003090000_photo_labels.sql; before it, ask without them
-    rest('account_photos?select='+PHOTO_COLS+',brand,program_id&customer_num=eq.'+encodeURIComponent(n)+'&order=uploaded_at.desc&limit=500')
-      .catch(e=>{ if(colMissing(e)){ return rest('account_photos?select='+PHOTO_COLS+'&customer_num=eq.'+encodeURIComponent(n)+'&order=uploaded_at.desc&limit=500'); } throw e; })
-      .then(rows=>{ out.photos = Array.isArray(rows) ? rows.filter(r=>r && r.storage_path) : []; })
+    // newer columns arrive with each migration; before one is run, ask without its columns
+    rest('account_photos?select='+PHOTO_COLS+',brand,program_id,source,source_url,photo_kind,photo_status&customer_num=eq.'+encodeURIComponent(n)+'&order=uploaded_at.desc&limit=500')
+      .catch(e=>{ if(colMissing(e)) return rest('account_photos?select='+PHOTO_COLS+',brand,program_id&customer_num=eq.'+encodeURIComponent(n)+'&order=uploaded_at.desc&limit=500'); throw e; })
+      .catch(e=>{ if(colMissing(e)) return rest('account_photos?select='+PHOTO_COLS+'&customer_num=eq.'+encodeURIComponent(n)+'&order=uploaded_at.desc&limit=500'); throw e; })
+      .then(rows=>{ out.photos = Array.isArray(rows) ? rows.filter(r=>r && (r.storage_path || r.source_url)) : []; })
       .catch(e=>{ if(needsUpdate(e)){ out.update = true; out.photosErr = 'update'; } else out.photosErr = e.message || 'error'; }),
+    rest('merch_records?select='+REC_COLS+'&customer_num=eq.'+encodeURIComponent(n)+'&order=observed_at.desc.nullslast&limit=300')
+      .then(rows=>{ recs = Array.isArray(rows) ? rows : []; })
+      .catch(e=>{ out.merchMissing = true; }),
   ]);
+  out.records = buildRecords(recs, out.photos);
   cache.set(n, out);
   return out;
+}
+// one merchandising record per observation; a photo saved before records existed
+// (or while the merchandising update is not run) is its own one-photo record
+function buildRecords(recs, photos){
+  const byId = new Map(photos.map(p=>[p.id, p])); const used = new Set();
+  const out = recs.map(r=>{
+    const ph = (r.merch_record_photos||[]).slice().sort((a,b)=>a.ord-b.ord).map(x=>{ used.add(x.photo_id); return byId.get(x.photo_id); }).filter(Boolean);
+    return Object.assign({}, r, {rid:r.id, key:'mr:'+r.id, lines:(r.merch_lines||[]).slice().sort((a,b)=>a.line_no-b.line_no), photos:ph, legacy:false});
+  });
+  photos.forEach(p=>{ if(used.has(p.id)) return;
+    out.push({rid:null, key:'ph:'+p.id, legacy:true, id:p.id, category:p.category || null, subtype:null, caption:p.caption, location:null, brands:p.brand ? [p.brand] : [],
+      program_id:p.program_id || null, source:p.source || 'hub', observed_at:p.captured_at, created_at:p.uploaded_at, author_name:p.author_name, lines:[], photos:[p]}); });
+  return out.sort((a,b)=>String(b.observed_at||b.created_at).localeCompare(String(a.observed_at||a.created_at)));
 }
 const blobUrls = new Map();
 async function photoUrl(path){
@@ -128,7 +150,7 @@ async function exifTime(file){
   }catch(e){}
   return null;
 }
-async function toJpeg(source){
+async function toJpeg(source, maxEdge){
   // source: File/Blob or a canvas already drawn by the camera
   let w, h, draw;
   if(source instanceof HTMLCanvasElement){ w = source.width; h = source.height; draw = (ctx, W, H)=>ctx.drawImage(source, 0, 0, W, H); }
@@ -136,12 +158,12 @@ async function toJpeg(source){
     let bmp = null;
     try{ bmp = await createImageBitmap(source, {imageOrientation:'from-image'}); }catch(e){ bmp = null; }
     if(!bmp){
-      bmp = await new Promise((res, rej)=>{ const img = new Image(); img.onload = ()=>res(img); img.onerror = ()=>rej(new Error('That file is not an image this browser can open.')); img.src = URL.createObjectURL(source); });
+      bmp = await new Promise((res, rej)=>{ const img = new Image(); img.onload = ()=>res(img); img.onerror = ()=>rej(new Error(/heic|heif/i.test((source && (source.type || source.name)) || '') ? 'This browser can’t open HEIC photos. Take or choose the photo on the iPhone or iPad itself (Safari converts it), or pick a JPEG or PNG.' : 'That file is not a photo this browser can open. Pick a JPEG or PNG.')); img.src = URL.createObjectURL(source); });
     }
     w = bmp.width || bmp.naturalWidth; h = bmp.height || bmp.naturalHeight; draw = (ctx, W, H)=>ctx.drawImage(bmp, 0, 0, W, H);
   }
   if(!w || !h) throw new Error('That file is not an image this browser can open.');
-  const k = Math.min(1, MAX_EDGE / Math.max(w, h)); const W = Math.round(w*k), H = Math.round(h*k);
+  const k = Math.min(1, (maxEdge || 2560) / Math.max(w, h)); const W = Math.round(w*k), H = Math.round(h*k);
   const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
   draw(cv.getContext('2d'), W, H);
   const blob = await new Promise(res=>cv.toBlob(res, 'image/jpeg', JPEG_Q));
@@ -191,20 +213,32 @@ const IDB = {
     this.db = new Promise((res)=>{
       try{
         if(!window.indexedDB) return res(null);
-        const rq = indexedDB.open('kdh-drafts', 1);
-        rq.onupgradeneeded = ()=>{ const d = rq.result; if(!d.objectStoreNames.contains('photos')) d.createObjectStore('photos', {keyPath:'id'}); };
+        const rq = indexedDB.open('kdh-drafts', 2);
+        rq.onupgradeneeded = ()=>{ const d = rq.result;
+          if(!d.objectStoreNames.contains('photos')) d.createObjectStore('photos', {keyPath:'id'});      // single-photo drafts (2026-10-03)
+          if(!d.objectStoreNames.contains('records')) d.createObjectStore('records', {keyPath:'id'}); }; // record drafts (2026-10-04)
         rq.onsuccess = ()=>res(rq.result); rq.onerror = ()=>res(null); rq.onblocked = ()=>res(null);
       }catch(e){ res(null); }
     });
     return this.db;
   },
-  async tx(mode, fn){ const d = await this.open(); if(!d) return null; return new Promise(res=>{ try{ const t = d.transaction('photos', mode); const s = t.objectStore('photos'); const out = fn(s); t.oncomplete = ()=>res(out && 'result' in out ? out.result : true); t.onerror = ()=>res(null); t.onabort = ()=>res(null); }catch(e){ res(null); } }); },
-  put(rec){ return this.tx('readwrite', s=>s.put(rec)); },
-  del(id){ return this.tx('readwrite', s=>s.delete(id)); },
-  async list(owner, n){ const all = await this.tx('readonly', s=>s.getAll()); return (all||[]).filter(r=>r.owner===owner && String(r.n)===String(n)).sort((a,b)=>a.at-b.at); },
+  async tx(store, mode, fn){ const d = await this.open(); if(!d) return null; return new Promise(res=>{ try{ const t = d.transaction(store, mode); const s = t.objectStore(store); const out = fn(s); t.oncomplete = ()=>res(out && 'result' in out ? out.result : true); t.onerror = ()=>res(null); t.onabort = ()=>res(null); }catch(e){ res(null); } }); },
+  put(store, rec){ return this.tx(store, 'readwrite', s=>s.put(rec)); },
+  del(store, id){ return this.tx(store, 'readwrite', s=>s.delete(id)); },
+  async list(store, owner, n){ const all = await this.tx(store, 'readonly', s=>s.getAll()); return (all||[]).filter(r=>r.owner===owner && String(r.n)===String(n)).sort((a,b)=>a.at-b.at); },
 };
-let photoDrafts = [];          // this person's unsaved photos for the open account
-async function refreshDrafts(){ photoDrafts = ctx && !ctx.readOnly ? await IDB.list(ownerId(), ctx.n) : []; }
+let recDrafts = [];            // this person's unsaved records for the open account
+async function refreshDrafts(){
+  if(!ctx || ctx.readOnly){ recDrafts = []; return; }
+  // a single-photo draft kept by the 2026-10-03 build becomes a one-photo record draft (same file path: no duplicate)
+  const old = await IDB.list('photos', ownerId(), ctx.n);
+  for(const r of old){
+    await IDB.put('records', {id: r.id, owner: r.owner, n: r.n, name: r.name, prem: r.prem, category: r.type || '', subtype:'', subtype_note:'', caption: r.caption || '', location:'', brands: r.brand ? [r.brand] : [],
+      program_id: r.program || '', lines:[], photos:[{pid: r.id, blob: r.blob, width: r.width, height: r.height, capturedAt: r.capturedAt, path: r.path, uploaded: !!r.uploaded, rowSaved:false}], state: r.state==='uploading' ? 'pending' : (r.state || 'pending'), err: r.err || '', at: r.at});
+    await IDB.del('photos', r.id);
+  }
+  recDrafts = (await IDB.list('records', ownerId(), ctx.n)).map(d=>{ if(d.state==='uploading') d.state = 'pending'; return d; });
+}
 // sign-in still valid, and still the person who owns the draft: renew the token first
 async function authCheck(owner){
   if(window.kdhFreshToken){ try{ await window.kdhFreshToken(); }catch(e){} }
@@ -237,7 +271,7 @@ function quickHtml(){
   const why = off ? 'Notes and photos need a sign-in on kohlerdisthub.com' : ctx.readOnlyWhy;
   return `<div class="qacts" role="group" aria-label="Account actions">
     <button type="button" class="btn qa" data-qa="note"${ro?' disabled':''}${ro?` title="${E(why)}"`:''}>${ICON.note}<span>Add Note</span></button>
-    <button type="button" class="btn qa" data-qa="photo"${ro?' disabled':''}${ro?` title="${E(why)}"`:''}>${ICON.photo}<span>Add Photo</span></button>
+    <button type="button" class="btn qa" data-qa="photo"${ro?' disabled':''}${ro?` title="${E(why)}"`:''}>${ICON.photo}<span>Add Photos</span></button>
     <button type="button" class="btn qa" data-qa="ask">${ICON.ask}<span>Ask About This Account</span></button>
   </div>${ro && !off ? `<p class="qa-ro">${E(why)}</p>` : ''}`;
 }
@@ -259,14 +293,14 @@ function events(st){
       if(r.status==='done' && r.updated_at && r.created_at && r.updated_at !== r.created_at) add({id:'ra:'+r.id+':done', type:'follow', t:r.updated_at, r, sub:'done'});
     } else add({id:'ra:'+r.id, type:'mark', t:r.updated_at, r});
   });
-  st.photos.forEach(p=>add({id:'ph:'+p.id, type:'photo', t:p.captured_at || p.uploaded_at, p}));
+  (st.records||[]).forEach(r=>add({id:r.key, type:'photo', t:r.observed_at || r.created_at, rec:r}));
   const x = ctx.extra || {};
   (x.taps||[]).forEach(s=>add({id:'tap:'+s.visited, type:'tap', t:s.visited+'T12:00:00', s}));
   (x.purchases||[]).forEach(m=>{ const [y, mo] = m.month.split('-').map(Number); add({id:'buy:'+m.month, type:'buy', t:new Date(y, mo, 0, 12).toISOString(), m}); });
   return Array.from(ev.values()).sort((a,b)=>String(b.t).localeCompare(String(a.t)));
 }
 function evText(e){
-  if(e.type==='photo') return [catName(e.p.category), e.p.caption, e.p.brand, e.p.author_name].join(' ');
+  if(e.type==='photo'){ const r = e.rec; return [catName(r.category), r.caption, (r.brands||[]).join(' '), r.lines.map(l=>l.brand).join(' '), recAuthor(r), r.isb_elements].join(' '); }
   if(e.type==='tap') return 'tap survey '+(e.s.display||'');
   if(e.type==='buy') return 'purchase '+e.m.label+' '+(e.m.top||[]).map(t=>t.name).join(' ');
   return [e.r.note, e.r.rep_name, e.type==='mark' ? ctx.progName(e.r.program_id) : ''].join(' ');
@@ -274,12 +308,16 @@ function evText(e){
 function evHtml(e){
   const det = (inner, open) => inner ? `<details class="act-det"${open?' open':''}><summary>Details</summary><div class="act-dbody">${inner}</div></details>` : '';
   if(e.type==='photo'){
-    const p = e.p, both = p.captured_at && p.uploaded_at && Math.abs(new Date(p.uploaded_at) - new Date(p.captured_at)) > 5*60000;
+    const r = e.rec, hist = r.source==='isellbeer';
+    const sub = r.subtype ? ' · '+(M().SUB_LABEL[r.subtype]||r.subtype) : '';
+    const thumbs = r.photos.slice(0, 3).map(p=>`<button type="button" class="act-thumb" data-rec="${E(r.key)}" aria-label="Open the ${E(catName(r.category))} photos"><img alt="" ${thumbAttr(p)}></button>`).join('');
+    const brands = (r.brands||[]).length ? r.brands : Array.from(new Set(r.lines.map(l=>l.brand).filter(Boolean)));
     return `<li class="act k-photo" data-ev="${E(e.id)}"><span class="act-ic">${ICON.photo}</span><div class="act-b">
-      <p class="act-h"><b>Photo · ${E(catName(p.category))}</b>${p.brand ? ` <span class="act-p">${E(p.brand)}</span>` : ''}</p>
-      ${p.caption ? `<p class="act-t">${E(p.caption)}</p>` : ''}
-      <button type="button" class="act-thumb" data-photo="${E(p.id)}" aria-label="Open the ${E(catName(p.category))} photo"><img alt="" data-src="${E(p.storage_path)}"></button>
-      <p class="act-m">${E(p.author_name||'')} · ${p.captured_at ? 'Taken '+E(fmtWhen(p.captured_at)) : 'Uploaded '+E(fmtWhen(p.uploaded_at))}${both ? ` · uploaded ${E(fmtWhen(p.uploaded_at))}` : ''}</p></div></li>`;
+      <p class="act-h"><b>${E(catName(r.category))}${E(sub)}</b>${brands.length ? ` <span class="act-p">${E(brands.slice(0,3).join(', '))}${brands.length>3 ? ' +'+(brands.length-3) : ''}</span>` : ''}</p>
+      ${r.caption ? `<p class="act-t">${E(r.caption)}</p>` : ''}
+      ${thumbs ? `<div class="act-thumbs">${thumbs}${r.photos.length > 3 ? `<span class="act-more">+${r.photos.length-3}</span>` : ''}</div>` : ''}
+      ${r.lines.length ? `<details class="act-det"><summary>${r.lines.length} ${r.category==='tap_handle' ? (r.lines.length===1?'tap line':'tap lines') : (r.lines.length===1?'product line':'product lines')} · ${r.photos.length} ${r.photos.length===1?'photo':'photos'}</summary><div class="act-dbody"><ul class="rv-lines">${r.lines.map(lineHtml).join('')}</ul></div></details>` : ''}
+      <p class="act-m">${E(recAuthor(r))} · ${hist ? 'Last observed ' : (r.observed_at ? 'Taken ' : 'Saved ')}${E(fmtWhen(r.observed_at || r.created_at))}${hist ? ' · Imported From iSellBeer' : ''}</p></div></li>`;
   }
   if(e.type==='tap'){
     const s = e.s;
@@ -374,75 +412,109 @@ function stateChip(state, extra){
   return `<span class="dchip ${cls}">${E(DSTATE[state]||state)}</span>${extra ? ` <span class="dwhy">${E(extra)}</span>` : ''}`;
 }
 
-/* ---------------- photo drafts (not yet saved) ---------------- */
+/* ---------------- record drafts (not yet saved) ----------------
+   One draft = one merchandising record in progress: its type, details, product
+   lines and every photo (the resized JPEG). Kept in IndexedDB `kdh-drafts` /
+   `records`, tagged with the signed-in person and the account, from the first
+   photo until the record and every photo are saved. Retrying re-sends the SAME
+   record key and the SAME photo paths, so nothing is ever saved twice. */
 function draftsHtml(){
-  if(!photoDrafts.length) return '';
-  return `<div class="drafts" aria-label="Photos not yet saved"><p class="drafts-h">Not Yet Saved <span>· kept on this device</span></p>${photoDrafts.map(r=>`
-    <div class="dphoto" data-draft="${E(r.id)}"><img alt="" data-blob="${E(r.id)}">
-      <div class="dp-b"><p class="dp-h"><b>${E(catName(r.type))}</b>${r.caption ? ' · '+E(r.caption) : ''}</p>
-      <p class="dp-s">${stateChip(r.state==='uploading' ? 'pending' : r.state, r.err || (r.state==='pending' ? 'Tap Retry when you have signal.' : ''))}</p>
+  if(!recDrafts.length) return '';
+  return `<div class="drafts" aria-label="Evidence not yet saved"><p class="drafts-h">Not Yet Saved <span>· kept on this device</span></p>${recDrafts.map(d=>`
+    <div class="dphoto" data-draft="${E(d.id)}"><img alt="" data-dblob="${E(d.id)}">
+      <div class="dp-b"><p class="dp-h"><b>${E(catName(d.category))}</b> · ${d.photos.length} ${d.photos.length===1?'photo':'photos'}${d.caption ? ' · '+E(d.caption) : ''}</p>
+      <p class="dp-s">${stateChip(d.state==='uploading' ? 'pending' : d.state, d.err || (d.state==='pending' ? 'Tap Retry when you have signal.' : d.state==='draft' ? 'Open it to finish and save.' : ''))}</p>
       <div class="dp-p" hidden><div class="pf-bar"><i></i></div></div>
-      <div class="dp-a"><button type="button" class="btn primary sm" data-dretry="${E(r.id)}">Retry</button><button type="button" class="btn sm" data-ddiscard="${E(r.id)}">Discard</button></div></div>
+      <div class="dp-a">${d.state==='draft' ? `<button type="button" class="btn primary sm" data-dopen="${E(d.id)}">Continue</button>` : `<button type="button" class="btn primary sm" data-dretry="${E(d.id)}">Retry</button><button type="button" class="btn sm" data-dopen="${E(d.id)}">Edit</button>`}<button type="button" class="btn sm" data-ddiscard="${E(d.id)}">Discard</button></div></div>
     </div>`).join('')}</div>`;
 }
 const blobFor = new Map();
+const blobUrlOf = (key, blob) => { let u = blobFor.get(key); if(!u){ u = URL.createObjectURL(blob); blobFor.set(key, u); } return u; };
 function hydrateDrafts(root){
-  root.querySelectorAll('img[data-blob]').forEach(img=>{ const r = photoDrafts.find(x=>x.id===img.dataset.blob); if(!r || !r.blob) return; let u = blobFor.get(r.id); if(!u){ u = URL.createObjectURL(r.blob); blobFor.set(r.id, u); } img.src = u; });
+  root.querySelectorAll('img[data-dblob]').forEach(img=>{ const d = recDrafts.find(x=>x.id===img.dataset.dblob); const ph = d && d.photos[0]; if(ph && ph.blob) img.src = blobUrlOf(d.id+':'+ph.pid, ph.blob); });
   root.querySelectorAll('[data-dretry]').forEach(b=>b.addEventListener('click', async ()=>{
-    const r = photoDrafts.find(x=>x.id===b.dataset.dretry); if(!r) return;
-    const card = b.closest('.dphoto'), st = card.querySelector('.dp-s'), pb = card.querySelector('.dp-p'), bar = card.querySelector('.pf-bar i');
+    const d = recDrafts.find(x=>x.id===b.dataset.dretry); if(!d) return;
+    const card = b.closest('.dphoto'), sx = card.querySelector('.dp-s'), pb = card.querySelector('.dp-p'), bar = card.querySelector('.pf-bar i');
     card.querySelectorAll('button').forEach(x=>x.disabled = true); b.setAttribute('aria-busy', 'true');
-    st.innerHTML = stateChip('uploading'); pb.hidden = false;
-    const ok = await uploadPhoto(r, f=>{ bar.style.width = Math.round(f*100)+'%'; });
-    if(ok){ st.innerHTML = stateChip('saved'); toast(`${catName(r.type)} photo saved to ${ctx.name}`); const s2 = await load(ctx.n, true); await refreshDrafts(); paint(s2); }
-    else { b.removeAttribute('aria-busy'); card.querySelectorAll('button').forEach(x=>x.disabled = false); pb.hidden = true; st.innerHTML = stateChip(r.state, r.err); }
+    sx.innerHTML = stateChip('uploading'); pb.hidden = false;
+    const ok = await uploadRecord(d, f=>{ bar.style.width = Math.round(f*100)+'%'; });
+    if(ok){ sx.innerHTML = stateChip('saved'); toast(`${catName(d.category)} saved to ${ctx.name}`); const s2 = await load(ctx.n, true); await refreshDrafts(); paint(s2); }
+    else { b.removeAttribute('aria-busy'); card.querySelectorAll('button').forEach(x=>x.disabled = false); pb.hidden = true; sx.innerHTML = stateChip(d.state, d.err); }
   }));
+  root.querySelectorAll('[data-dopen]').forEach(b=>b.addEventListener('click', ()=>{ const d = recDrafts.find(x=>x.id===b.dataset.dopen); if(d) detailsStep(d); }));
   root.querySelectorAll('[data-ddiscard]').forEach(b=>b.addEventListener('click', async ()=>{
-    const r = photoDrafts.find(x=>x.id===b.dataset.ddiscard); if(!r) return;
-    if(!confirm('Discard this photo? It has not been saved to the account.')) return;
-    if(r.uploaded) await removeObject(r.path);
-    await IDB.del(r.id); const u = blobFor.get(r.id); if(u){ try{ URL.revokeObjectURL(u); }catch(e){} blobFor.delete(r.id); }
-    await refreshDrafts(); paint(cache.get(ctx.n) || await load(ctx.n));
+    const d = recDrafts.find(x=>x.id===b.dataset.ddiscard); if(!d) return;
+    if(!confirm('Discard this evidence and its photos? It has not been saved to the account.')) return;
+    await discardDraft(d); paint(cache.get(ctx.n) || await load(ctx.n));
   }));
 }
-// one upload attempt for a photo draft; true = saved (file + record), false = r.state/err updated
-async function uploadPhoto(r, onProgress){
-  const why = await authCheck(r.owner);
-  if(why){ r.state = 'failed'; r.err = why; await IDB.put(r); return false; }
-  if(!navigator.onLine){ r.state = 'pending'; r.err = 'No connection right now. Tap Retry when you have signal.'; await IDB.put(r); return false; }
-  r.state = 'uploading'; r.err = ''; await IDB.put(r);
+async function discardDraft(d){
+  for(const ph of d.photos) if(ph.uploaded && !ph.rowSaved) await removeObject(ph.path);
+  await IDB.del('records', d.id); d.photos.forEach(ph=>{ const u = blobFor.get(d.id+':'+ph.pid); if(u){ try{ URL.revokeObjectURL(u); }catch(e){} blobFor.delete(d.id+':'+ph.pid); } });
+  await refreshDrafts();
+}
+// one save attempt for a record draft: every photo file, every photo row, then the record
+// (kdh_merch_save, keyed by the draft id). true = all saved; false = d.state / d.err updated
+async function uploadRecord(d, onProgress){
+  const why = await authCheck(d.owner);
+  if(why){ d.state = 'failed'; d.err = why; await IDB.put('records', d); return false; }
+  if(!navigator.onLine){ d.state = 'pending'; d.err = 'No connection right now. Tap Retry when you have signal.'; await IDB.put('records', d); return false; }
+  d.state = 'uploading'; d.err = ''; await IDB.put('records', d);
+  const total = d.photos.reduce((a, p)=>a + (p.blob ? p.blob.size : 0), 0) || 1; let done = 0;
   try{
-    if(!r.uploaded){
-      try{ await uploadWithProgress(r.path, r.blob, onProgress || (()=>{})); }
-      catch(e){ if(!isDup(e)) throw e; }          // the file arrived on an earlier attempt
-      r.uploaded = true; await IDB.put(r);
+    for(const ph of d.photos){
+      if(!ph.uploaded){
+        try{ await uploadWithProgress(ph.path, ph.blob, f=>onProgress && onProgress((done + f*ph.blob.size)/total)); }
+        catch(e){ if(!isDup(e)) throw e; }                // the file arrived on an earlier attempt
+        ph.uploaded = true; await IDB.put('records', d);
+      }
+      done += ph.blob ? ph.blob.size : 0;
+      if(!ph.rowSaved){
+        const row = {customer_num:String(d.n), category:d.category, premise:d.prem||null, caption:(d.caption||'').trim()||null, storage_path:ph.path, width:ph.width, height:ph.height, captured_at:ph.capturedAt||null, author_email:'-'};
+        try{ await rest('account_photos', {method:'POST', headers:{'content-type':'application/json', prefer:'return=minimal'}, body: JSON.stringify(row)}); }
+        catch(e){
+          if(isDup(e)){ /* written on an earlier attempt */ }
+          else if(e.code==='23514' && /category/.test(e.message||'')){ row.category = null; try{ await rest('account_photos', {method:'POST', headers:{'content-type':'application/json', prefer:'return=minimal'}, body: JSON.stringify(row)}); }catch(e2){ if(!isDup(e2)) throw e2; } }
+          else throw e;
+        }
+        ph.rowSaved = true; await IDB.put('records', d);
+      }
     }
-    const row = {customer_num:String(r.n), category:r.type || null, premise:r.prem||null, caption:(r.caption||'').trim()||null, storage_path:r.path, width:r.width, height:r.height, captured_at:r.capturedAt||null, author_email:'-'};
-    if(r.brand) row.brand = r.brand; if(r.program) row.program_id = r.program;
-    const post = body => rest('account_photos', {method:'POST', headers:{'content-type':'application/json', prefer:'return=representation'}, body: JSON.stringify(body)});
-    try{ await post(row); }
-    catch(e){
-      if(isDup(e)){ /* the record was written on an earlier attempt */ }
-      else if(colMissing(e) && (row.brand || row.program_id)){ delete row.brand; delete row.program_id; try{ await post(row); }catch(e2){ if(!isDup(e2)) throw e2; } labelsMissing = true; }
+    const lines = (d.lines||[]).filter(l=>l.brand || l.package || (l.quantity!=='' && l.quantity!=null)).map(l=>({brand:l.brand||'', package:l.package||'', product_num:l.product_num||'',
+      quantity: l.quantity==='' || l.quantity==null ? null : Number(l.quantity), quantity_unit: l.quantity==='' || l.quantity==null ? null : (l.unit || 'unspecified')}));
+    try{
+      await rest('rpc/kdh_merch_save', {method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({p:{key:d.id, customer_num:String(d.n), category:d.category, subtype:d.subtype||'', subtype_note:d.subtype_note||'',
+        caption:d.caption||'', location:d.location||'', brands:d.brands||[], program_id:d.program_id||'', premise:d.prem||'', observed_at:(d.photos.find(p=>p.capturedAt)||{}).capturedAt || null,
+        photos:d.photos.map(p=>p.path), lines}})});
+    }catch(e){
+      // the merchandising update is not run yet: the photos are saved (as single photos); say what is missing
+      if(e.status===404 || e.code==='PGRST202' || e.code==='42883'){ merchSaveMissing = true; }
       else throw e;
     }
-    await IDB.del(r.id);
+    await IDB.del('records', d.id);
     return true;
   }catch(e){
-    r.state = 'failed';
-    r.err = needsUpdate(e) ? 'Photos need the one-time database update ('+UPDATE_SQL+').' : denied(e) ? 'This account is not on your route in the photo system (the account list in Supabase may need its refresh).' : (e.message || 'Something went wrong.');
-    await IDB.put(r);
+    d.state = 'failed';
+    d.err = needsUpdate(e) ? 'Photos need the one-time database update ('+UPDATE_SQL+').' : denied(e) ? 'This account is not on your route in the photo system (the account list in Supabase may need its refresh).' : (e.message || 'Something went wrong.');
+    await IDB.put('records', d);
     return false;
   }
 }
-let labelsMissing = false;
+let merchSaveMissing = false;
 
-/* ---------------- PHOTOS (komoot's Photos: category selection above an even grid) ---------------- */
-const pf = {cat:'all', q:'', author:'', brand:'', when:''};
-function catOrder(){ return ctx.prem==='On' ? ['tap_handle', 'display', 'window', 'cooler_door'] : ['display', 'window', 'cooler_door', 'tap_handle']; }
-function photosGrid(list, limit){
+/* ---------------- PHOTOS & MERCHANDISING (komoot's Photos: category selection above an
+   even grid; one tile per record -- its first photo, with the photo count) ---------------- */
+const pf = {cat:'all', q:'', author:'', brand:'', prog:'', when:''};
+function catOrder(){ const first = M().BY_PREMISE[ctx.prem] || []; return first.concat(M().CATS.map(c=>c.k).filter(k=>!first.includes(k))); }
+function recDate(r){ return r.observed_at || r.created_at; }
+function recAuthor(r){ return r.source==='isellbeer' ? (r.source_author || 'iSellBeer') : (r.author_name || ''); }
+function thumbAttr(ph){ return ph.storage_path ? `data-src="${E(ph.storage_path)}"` : ph.source_url ? `data-ext="${E(ph.source_url)}"` : ''; }
+function recGrid(list, limit){
   const show = limit ? list.slice(0, limit) : list;
-  return `<div class="pgrid">${show.map(p=>`<button type="button" class="pcell" data-photo="${E(p.id)}"><img alt="${E(catName(p.category))} photo${p.caption ? ': '+E(p.caption) : ''}" data-src="${E(p.storage_path)}"><span class="pcap"><b>${E(catName(p.category))}</b><span>${E(fmtDay(p.captured_at || p.uploaded_at))}</span></span></button>`).join('')}</div>`;
+  return `<div class="pgrid">${show.map(r=>{ const ph = r.photos[0];
+    return `<button type="button" class="pcell" data-rec="${E(r.key)}">${ph ? `<img alt="${E(catName(r.category))}${r.caption ? ': '+E(r.caption) : ''}" ${thumbAttr(ph)}>` : `<span class="pnone">No photo</span>`}
+      ${r.photos.length > 1 ? `<span class="pcount">${r.photos.length} photos</span>` : ''}
+      <span class="pcap"><b>${E(catName(r.category))}</b><span>${E(fmtDay(recDate(r)))}</span>${r.caption ? `<i>${E(r.caption)}</i>` : ''}</span></button>`; }).join('')}</div>`;
 }
 function photosErr(st){
   if(st.photosErr==='off') return `<p class="act-empty">Photos need a sign-in on kohlerdisthub.com.</p>`;
@@ -452,43 +524,59 @@ function photosErr(st){
 }
 function photosSide(st){
   const err = photosErr(st); if(err) return err;
-  if(!st.photos.length) return draftsHtml() + `<p class="act-empty">No photos yet.${ctx.readOnly ? '' : ' Use Add Photo to save a display, window, cooler door or tap handle.'}</p>`;
-  return draftsHtml() + photosGrid(st.photos, 4) + (st.photos.length > 4 ? `<a class="btn outline wide" href="#" data-go="more:photos">View All Photos · ${st.photos.length}</a>` : `<a class="btn outline wide" href="#" data-go="more:photos">Open Photos</a>`);
+  if(!st.records.length) return draftsHtml() + `<p class="act-empty">No photos or merchandising yet.${ctx.readOnly ? '' : ' Use Add Photo to document a display, window, cooler door, tap handles or a menu placement.'}</p>`;
+  return draftsHtml() + recGrid(st.records, 4) + `<a class="btn outline wide" href="#" data-go="more:photos">${st.records.length > 4 ? `View All · ${st.records.length} Records` : 'Open Photos & Merchandising'}</a>`;
 }
 function photosFull(st){
   const err = photosErr(st);
-  const add = ctx.readOnly || !cfg() ? '' : `<button type="button" class="btn primary" data-qa="photo">${ICON.photo} Add Photo</button>`;
+  const add = ctx.readOnly || !cfg() ? '' : `<button type="button" class="btn primary" data-qa="photo">${ICON.photo} Add Photos</button>`;
   if(err) return add + err;
-  const all = st.photos;
-  const counts = {}; all.forEach(p=>{ const k = p.category || 'none'; counts[k] = (counts[k]||0)+1; });
-  // the premise's own types first (komoot's category row), then any other type that has photos, then Uncategorized
-  const order = catOrder().filter((c, i)=>i===0 || counts[c] || (ctx.prem==='Off' && c!=='tap_handle'));
-  const chips = [['all', 'All', all.length]].concat(order.map(c=>[c, CATS[c], counts[c]||0])).concat(counts.none ? [['none', 'Uncategorized', counts.none]] : []);
-  const authors = Array.from(new Set(all.map(p=>p.author_name).filter(Boolean))).sort();
-  const brands = Array.from(new Set(all.map(p=>p.brand).filter(Boolean))).sort();
+  const all = st.records;
+  const counts = {}; all.forEach(r=>{ const k = r.category || 'none'; counts[k] = (counts[k]||0)+1; });
+  const first = M().BY_PREMISE[ctx.prem] || [];
+  const order = catOrder().filter(c=>first.includes(c) || counts[c]);
+  // a type with nothing in it gets no chip (unless it is the one selected)
+  const chips = [['all', 'All', all.length]].concat(order.filter(c=>counts[c] || pf.cat===c).map(c=>[c, M().catLabel(c), counts[c]||0])).concat(counts.none ? [['none', 'Uncategorized', counts.none]] : []);
+  const authors = Array.from(new Set(all.map(recAuthor).filter(Boolean))).sort();
+  const brands = Array.from(new Set(all.flatMap(r=>(r.brands||[]).concat(r.lines.map(l=>l.brand)).filter(Boolean)))).sort();
+  const progs = Array.from(new Set(all.map(r=>r.program_id).filter(Boolean)));
   const q = pf.q.trim().toLowerCase(), since = pf.when ? Date.now() - Number(pf.when)*86400000 : 0;
-  const shown = all.filter(p=>(pf.cat==='all' || (pf.cat==='none' ? !p.category : p.category===pf.cat))
-    && (!q || [p.caption, p.brand, p.author_name, catName(p.category)].join(' ').toLowerCase().includes(q))
-    && (!pf.author || p.author_name===pf.author) && (!pf.brand || p.brand===pf.brand)
-    && (!since || new Date(p.captured_at || p.uploaded_at).getTime() >= since));
+  const shown = all.filter(r=>(pf.cat==='all' || (pf.cat==='none' ? !r.category : r.category===pf.cat))
+    && (!q || [r.caption, r.location, (r.brands||[]).join(' '), r.lines.map(l=>[l.brand, l.package].join(' ')).join(' '), recAuthor(r), catName(r.category), r.isb_elements, r.isb_promotion_type].join(' ').toLowerCase().includes(q))
+    && (!pf.author || recAuthor(r)===pf.author) && (!pf.brand || (r.brands||[]).includes(pf.brand) || r.lines.some(l=>l.brand===pf.brand))
+    && (!pf.prog || r.program_id===pf.prog)
+    && (!since || new Date(recDate(r)).getTime() >= since));
+  const nPhotos = all.reduce((a, r)=>a + r.photos.length, 0);
   return `${add}${draftsHtml()}
-    <div class="ph-cats chips" role="group" aria-label="Photo type">${chips.map(([k, l, n])=>`<button type="button" class="chip" data-pc="${k}" aria-pressed="${pf.cat===k}">${E(l)} <span>${n}</span></button>`).join('')}</div>
+    ${st.merchMissing && all.length ? `<p class="note">Product lines and multi-photo records turn on after ${E(MERCH_SQL)} is run; photos show one per record until then.</p>` : ''}
+    <div class="ph-cats chips" role="group" aria-label="Evidence type">${chips.map(([k, l, n])=>`<button type="button" class="chip" data-pc="${k}" aria-pressed="${pf.cat===k}">${E(l)} <span>${n}</span></button>`).join('')}</div>
     <div class="ph-bar">
-      <input type="search" class="kdh-field" id="phq" placeholder="Search captions" value="${E(pf.q)}" aria-label="Search photo captions">
+      <input type="search" class="kdh-field" id="phq" placeholder="Search captions, brands, products" value="${E(pf.q)}" aria-label="Search photos and merchandising">
       <label class="fsel"><select id="phWhen" aria-label="Date"><option value="">Any date</option>${[['30','Last 30 days'],['90','Last 90 days'],['365','Last 12 months']].map(([v,l])=>`<option value="${v}"${pf.when===v?' selected':''}>${l}</option>`).join('')}</select></label>
-      ${authors.length > 1 ? `<label class="fsel"><select id="phAuthor" aria-label="Taken by"><option value="">Anyone</option>${authors.map(a=>`<option${pf.author===a?' selected':''}>${E(a)}</option>`).join('')}</select></label>` : ''}
       ${brands.length ? `<label class="fsel"><select id="phBrand" aria-label="Brand"><option value="">Any brand</option>${brands.map(b=>`<option${pf.brand===b?' selected':''}>${E(b)}</option>`).join('')}</select></label>` : ''}
+      ${progs.length ? `<label class="fsel"><select id="phProg" aria-label="Program"><option value="">Any program</option>${progs.map(p=>`<option value="${E(p)}"${pf.prog===p?' selected':''}>${E(ctx.progName(p))}</option>`).join('')}</select></label>` : ''}
+      ${authors.length > 1 ? `<label class="fsel"><select id="phAuthor" aria-label="Taken by"><option value="">Anyone</option>${authors.map(a=>`<option${pf.author===a?' selected':''}>${E(a)}</option>`).join('')}</select></label>` : ''}
     </div>
-    ${!all.length ? `<p class="act-empty">No photos yet.${ctx.readOnly ? '' : ' Use Add Photo to save a display, window, cooler door or tap handle.'}</p>`
-      : shown.length ? `<p class="tl-count">${shown.length===all.length ? `${all.length} ${all.length===1?'photo':'photos'}` : `Showing ${shown.length} of ${all.length} photos`} · newest first</p>${photosGrid(shown, 0)}`
-      : `<div class="kdh-state empty slim"><b>No photo matches.</b><span>Pick another type or clear the search.</span></div>`}
-    ${labelsMissing ? `<p class="note">Brand and program labels need the photo-labels update (supabase/migrations/20261003090000_photo_labels.sql); the photo itself was saved.</p>` : ''}`;
+    ${!all.length ? `<p class="act-empty">No photos or merchandising yet.${ctx.readOnly ? '' : ' Use Add Photos to document a display, window, cooler door, tap handles or a menu placement.'}</p>`
+      : shown.length ? `<p class="tl-count">${shown.length===all.length ? `${all.length} ${all.length===1?'record':'records'} · ${nPhotos} ${nPhotos===1?'photo':'photos'}` : `Showing ${shown.length} of ${all.length} records`} · newest first</p>${recGrid(shown, 0)}`
+      : `<div class="kdh-state empty slim"><b>Nothing matches.</b><span>Pick another type or clear the search.</span></div>`}
+    ${merchSaveMissing ? `<p class="note">Your photos were saved. Grouping them into one record with product lines needs ${E(MERCH_SQL)} in Supabase.</p>` : ''}`;
 }
+// stored photos load with the person's own token; an iSellBeer link loads straight from iSellBeer
+// (it may need an iSellBeer sign-in) -- when it does not load, the tile says Photo Unavailable
 function hydrateImages(root){
   root.querySelectorAll('img[data-src]').forEach(img=>{
     const path = img.dataset.src; img.removeAttribute('data-src');
-    photoUrl(path).then(u=>{ img.src = u; }).catch(()=>{ img.closest('button') && img.closest('button').classList.add('pmissing'); img.alt = 'Photo could not load'; });
+    photoUrl(path).then(u=>{ img.src = u; }).catch(()=>unavailable(img));
   });
+  root.querySelectorAll('img[data-ext]').forEach(img=>{
+    const u = img.dataset.ext; img.removeAttribute('data-ext'); img.referrerPolicy = 'no-referrer';
+    img.addEventListener('error', ()=>unavailable(img), {once:true}); img.src = u;
+  });
+}
+function unavailable(img){
+  const s = document.createElement('span'); s.className = 'pnone'; s.textContent = 'Photo Unavailable';
+  img.replaceWith(s);
 }
 
 async function attach(c){
@@ -517,7 +605,7 @@ function wirePhotoFilters(root, st){
   root.querySelectorAll('[data-pc]').forEach(b=>b.addEventListener('click', ()=>{ pf.cat = b.dataset.pc; repaintPhotos(root, st); }));
   const q = root.querySelector('#phq'); let t = 0;
   if(q) q.addEventListener('input', ()=>{ clearTimeout(t); t = setTimeout(()=>{ pf.q = q.value; repaintPhotos(root, st, true); }, 200); });
-  [['#phWhen','when'], ['#phAuthor','author'], ['#phBrand','brand']].forEach(([sel, k])=>{ const s = root.querySelector(sel); if(s) s.addEventListener('change', ()=>{ pf[k] = s.value; repaintPhotos(root, st); }); });
+  [['#phWhen','when'], ['#phAuthor','author'], ['#phBrand','brand'], ['#phProg','prog']].forEach(([sel, k])=>{ const s = root.querySelector(sel); if(s) s.addEventListener('change', ()=>{ pf[k] = s.value; repaintPhotos(root, st); }); });
 }
 function repaintPhotos(root, st, keepFocus){
   root.innerHTML = photosFull(st); wireQuick(root); wirePhotos(root, st); wirePhotoFilters(root, st);
@@ -541,7 +629,7 @@ function openComposer(){
 function expand(form){ form.querySelector('.ncomp-x').hidden = false; form.classList.add('open'); }
 function wireFeed(root, st){
   hydrateImages(root); hydrateDrafts(root);
-  root.querySelectorAll('[data-photo]').forEach(b=>b.addEventListener('click', ()=>viewer(st, b.dataset.photo)));
+  root.querySelectorAll('[data-rec]').forEach(b=>b.addEventListener('click', ()=>viewer(st, b.dataset.rec)));
   root.querySelectorAll('[data-done]').forEach(b=>b.addEventListener('click', async ()=>{
     b.disabled = true; b.setAttribute('aria-busy', 'true');
     try{ await rest('rep_actions?id=eq.'+encodeURIComponent(b.dataset.done), {method:'PATCH', headers:{'content-type':'application/json', prefer:'return=representation'}, body: JSON.stringify({status:'done'})});
@@ -612,7 +700,7 @@ function wireFeed(root, st){
 }
 function wirePhotos(root, st){
   hydrateImages(root); hydrateDrafts(root);
-  root.querySelectorAll('[data-photo]').forEach(b=>b.addEventListener('click', ()=>viewer(st, b.dataset.photo)));
+  root.querySelectorAll('[data-rec]').forEach(b=>b.addEventListener('click', ()=>viewer(st, b.dataset.rec)));
 }
 function toast(t){
   let el = document.getElementById('actToast');
@@ -636,175 +724,278 @@ function sheet(title, body, onClose){
 }
 function closeSheet(){ const w = document.getElementById('asheet'); if(w){ document.removeEventListener('keydown', w._esc); if(w._stop) w._stop(); w.remove(); } document.documentElement.classList.remove('asheet-open'); }
 
-function viewer(st, id){
-  const p = st.photos.find(x=>x.id===id); if(!p) return;
-  const mine = (p.author_name||'').toLowerCase() === String((ctx.me||{}).name||'').toLowerCase();
-  const prog = p.program_id ? ctx.progName(p.program_id) : '';
-  const w = sheet(`${E(catName(p.category))} · ${E(ctx.name)}`, `<div class="pview"><img alt="${E(catName(p.category))} photo" data-src="${E(p.storage_path)}"></div>
-    ${p.caption ? `<p class="pv-cap">${E(p.caption)}</p>` : ''}
-    <dl class="pv-meta"><dt>Account</dt><dd>${E(ctx.name)} · #${E(ctx.n)}</dd><dt>Type</dt><dd>${E(catName(p.category))}</dd>${p.brand ? `<dt>Brand</dt><dd>${E(p.brand)}</dd>` : ''}${prog ? `<dt>Program</dt><dd>${E(prog)}</dd>` : ''}<dt>Taken by</dt><dd>${E(p.author_name||'—')}</dd><dt>Taken</dt><dd>${p.captured_at ? E(fmtWhen(p.captured_at)) : 'Not recorded in the file'}</dd><dt>Uploaded</dt><dd>${E(fmtWhen(p.uploaded_at))}</dd></dl>
-    <p class="pv-ref">File reference ${E(p.storage_path)}</p>
-    ${mine && !ctx.readOnly ? `<div class="sheet-b"><button type="button" class="btn outline" id="pvEdit">Edit Labels</button><button type="button" class="btn outline danger" id="pvDel">Remove Photo</button></div>` : ''}`);
+/* ---------------- RECORD VIEWER (Google Photos' information panel: a large image,
+   then date, caption and storage status in a separate panel -- never printed on
+   the image). Historical evidence reads "Last observed": a photo shows what was
+   there on that date, not that it is still there today. ---------------- */
+function lineHtml(l){
+  const what = [l.brand || l.brand_family, l.package].filter(Boolean).join(' · ') || 'Product not named';
+  const own = l.ownership_source ? ` <span class="lv-own">iSellBeer: ${E(l.ownership_source)}${l.ownership_corrected ? (l.ownership_corrected===l.ownership_source ? ' · Tap Tracker agrees' : ` · Tap Tracker: ${E(l.ownership_corrected)}`) : ' · not audited'}</span>` : '';
+  return `<li><span class="lv-w">${E(what)}</span><span class="lv-q">${E(M().qtyText(l.quantity, l.quantity_unit))}</span>${own}</li>`;
+}
+function viewer(st, key, idx){
+  const r = st.records.find(x=>x.key===key); if(!r) return;
+  idx = Math.min(idx||0, Math.max(0, r.photos.length-1));
+  const ph = r.photos[idx];
+  const mineHub = r.source==='hub' && !r.legacy && ctx.me && r.author_email && String(r.author_email).toLowerCase()===String(ctx.me.email||'').toLowerCase();
+  const mineLegacy = r.legacy && (r.author_name||'').toLowerCase() === String((ctx.me||{}).name||'').toLowerCase();
+  const hist = r.source==='isellbeer' || (r.observed_at && Date.now() - new Date(r.observed_at) > 2*86400000);
+  const prog = r.program_id ? ctx.progName(r.program_id) : '';
+  const isb = [r.isb_promotion_type, r.isb_theme, r.isb_elements].filter(Boolean).join(' · ');
+  const title = `${E(catName(r.category))}${r.subtype ? ' · '+E(M().SUB_LABEL[r.subtype]||r.subtype) : ''}`;
+  const w = sheet(title, `
+    <div class="rv-img" id="rvImg">${ph ? `<img alt="${title} photo ${idx+1} of ${r.photos.length}" ${thumbAttr(ph)}>` : `<span class="pnone">No photo on this record</span>`}</div>
+    ${ph ? `<p class="rv-hint">${r.photos.length > 1 ? `Photo ${idx+1} of ${r.photos.length} · ` : ''}Tap the photo to zoom${ph.photo_kind==='report_page' ? ' · iSellBeer report page: the printed frame around a small copy of the photo' : ''}</p>` : ''}
+    ${r.photos.length > 1 ? `<div class="rv-strip">${r.photos.map((p, i)=>`<button type="button" class="rv-th${i===idx?' on':''}" data-ri="${i}" aria-label="Photo ${i+1}"><img alt="" ${thumbAttr(p)}></button>`).join('')}</div>` : ''}
+    ${r.caption ? `<p class="pv-cap">${E(r.caption)}</p>` : ''}
+    <dl class="pv-meta">
+      <dt>Account</dt><dd>${E(ctx.name)} · #${E(ctx.n)}</dd>
+      <dt>${hist ? 'Last Observed' : 'Observed'}</dt><dd>${r.observed_at ? E(fmtWhen(r.observed_at)) : 'Not recorded'}${hist ? '<span class="pv-sub">A photo shows what was there on that date, not that it is still there today.</span>' : ''}</dd>
+      ${r.source==='isellbeer' ? `<dt>Photo Taker</dt><dd>${E(r.source_author||'Not in the export')}${r.source_author_role ? ' · '+E(r.source_author_role) : ''}</dd><dt>Imported</dt><dd>${E(fmtWhen(r.created_at))}${r.author_name ? ' by '+E(r.author_name) : ''}</dd>`
+        : `<dt>Recorded By</dt><dd>${E(r.author_name||'—')}</dd><dt>Saved</dt><dd>${E(fmtWhen(r.created_at))}</dd>`}
+      <dt>Source</dt><dd>${E(M().SOURCE_LABEL[r.source]||r.source)}${isb ? `<span class="pv-sub">iSellBeer: ${E(isb)}</span>` : ''}</dd>
+      ${r.location ? `<dt>Location</dt><dd>${E(r.location)}</dd>` : ''}
+      ${(r.brands||[]).length ? `<dt>Brands</dt><dd>${E(r.brands.join(', '))}</dd>` : ''}
+      ${prog ? `<dt>Program</dt><dd>${E(prog)}<span class="pv-sub">Evidence only. Program credit still comes from the tracker’s sales data.</span></dd>` : ''}
+      <dt>Status</dt><dd>Saved${ph && ph.photo_status==='link' ? ' · photo is a link to iSellBeer' : ''}</dd>
+      ${ph && ph.captured_at ? `<dt>Photo Taken</dt><dd>${E(fmtWhen(ph.captured_at))}</dd>` : ''}
+    </dl>
+    ${r.lines.length ? `<h3 class="rv-h">${r.category==='tap_handle' ? 'Tap Lines' : 'Products'} · ${r.lines.length}</h3><ul class="rv-lines">${r.lines.map(lineHtml).join('')}</ul>` : ''}
+    <div class="sheet-b">
+      ${ph && ph.source_url ? `<a class="btn outline" href="${E(ph.source_url)}" target="_blank" rel="noopener noreferrer">Open in iSellBeer ↗</a>` : ''}
+      ${!ctx.readOnly && mineHub ? `<button type="button" class="btn outline" id="rvEdit">Edit Details</button><button type="button" class="btn outline danger" id="rvDel">Remove</button>` : ''}
+      ${!ctx.readOnly && mineLegacy ? `<button type="button" class="btn outline" id="pvEdit">Edit Labels</button><button type="button" class="btn outline danger" id="pvDel">Remove Photo</button>` : ''}
+    </div>`);
   hydrateImages(w);
-  const edit = w.querySelector('#pvEdit');
-  if(edit) edit.addEventListener('click', ()=>relabel(st, p));
-  const del = w.querySelector('#pvDel');
-  if(del) del.addEventListener('click', async ()=>{
+  const box = w.querySelector('#rvImg'); if(box) box.addEventListener('click', ()=>box.classList.toggle('zoom'));
+  w.querySelectorAll('[data-ri]').forEach(b=>b.addEventListener('click', ()=>viewer(st, key, +b.dataset.ri)));
+  const ed = w.querySelector('#rvEdit'); if(ed) ed.addEventListener('click', ()=>editRecord(st, r));
+  const rd = w.querySelector('#rvDel'); if(rd) rd.addEventListener('click', async ()=>{
+    if(!confirm(`Remove this ${catName(r.category).toLowerCase()} and its ${r.photos.length} ${r.photos.length===1?'photo':'photos'} from the account? This cannot be undone.`)) return;
+    rd.disabled = true; rd.setAttribute('aria-busy', 'true');
+    try{ await rest('merch_records?id=eq.'+encodeURIComponent(r.rid), {method:'DELETE', headers:{prefer:'return=minimal'}});
+      for(const p of r.photos){ if(p.storage_path){ try{ await rest('account_photos?id=eq.'+encodeURIComponent(p.id), {method:'DELETE', headers:{prefer:'return=minimal'}}); }catch(e){} await removeObject(p.storage_path); } }
+      closeSheet(); const s2 = await load(ctx.n, true); paint(s2); toast('Removed'); }
+    catch(e){ rd.disabled = false; rd.removeAttribute('aria-busy'); toast('Could not remove it: '+(e.message||'error')); }
+  });
+  const pe = w.querySelector('#pvEdit'); if(pe) pe.addEventListener('click', ()=>relabel(st, r));
+  const pd = w.querySelector('#pvDel'); if(pd) pd.addEventListener('click', async ()=>{
     if(!confirm('Remove this photo from the account? This cannot be undone.')) return;
-    del.disabled = true; del.setAttribute('aria-busy', 'true');
-    try{ await rest('account_photos?id=eq.'+encodeURIComponent(p.id), {method:'DELETE', headers:{prefer:'return=representation'}}); await removeObject(p.storage_path);
+    pd.disabled = true; pd.setAttribute('aria-busy', 'true');
+    try{ await rest('account_photos?id=eq.'+encodeURIComponent(ph.id), {method:'DELETE', headers:{prefer:'return=minimal'}}); await removeObject(ph.storage_path);
       closeSheet(); const s2 = await load(ctx.n, true); paint(s2); toast('Photo removed'); }
-    catch(e){ del.disabled = false; del.removeAttribute('aria-busy'); toast('Could not remove it: '+(e.message||'error')); }
+    catch(e){ pd.disabled = false; pd.removeAttribute('aria-busy'); toast('Could not remove it: '+(e.message||'error')); }
   });
 }
-function labelFields(cur){
-  const types = (photoTypes().length ? photoTypes() : Object.keys(CATS));
+function editRecord(st, r){
   const progs = (ctx.extra && ctx.extra.opps) || [];
-  return `<label class="pf-cap" for="plType">Photo type</label>
-    <select id="plType" class="kdh-field">${types.map(t=>`<option value="${t}"${cur.category===t?' selected':''}>${E(CATS[t])}</option>`).join('')}${cur.category && !types.includes(cur.category) ? `<option value="${E(cur.category)}" selected>${E(catName(cur.category))}</option>` : ''}${!cur.category ? '<option value="" selected>Uncategorized</option>' : ''}</select>
-    <label class="pf-cap" for="plBrand">Brand <span>(optional)</span></label>
-    <input type="text" id="plBrand" maxlength="120" placeholder="e.g. Lytt" value="${E(cur.brand||'')}" list="plBrands">
-    ${progs.length ? `<label class="pf-cap" for="plProg">Program <span>(optional)</span></label><select id="plProg" class="kdh-field"><option value="">None</option>${progs.map(p=>`<option value="${E(p.id)}"${cur.program_id===p.id?' selected':''}>${E(p.name)}</option>`).join('')}</select>` : ''}`;
+  const subs = M().SUBTYPES[r.category] || [];
+  const w = sheet('Edit Details', `<p class="pf-acct"><b>${E(ctx.name)}</b> · ${E(catName(r.category))}</p>
+    ${subs.length ? `<label class="pf-cap" for="edSub">Kind <span>(optional)</span></label><select id="edSub" class="kdh-field"><option value="">Not specified</option>${subs.map(([k,l])=>`<option value="${k}"${r.subtype===k?' selected':''}>${E(l)}</option>`).join('')}</select>` : ''}
+    <label class="pf-cap" for="edCap">Caption <span>(optional)</span></label><input type="text" id="edCap" maxlength="500" value="${E(r.caption||'')}">
+    <label class="pf-cap" for="edLoc">Location in the account <span>(optional)</span></label><input type="text" id="edLoc" maxlength="120" value="${E(r.location||'')}" list="capLocs">${locList()}
+    <label class="pf-cap" for="edBrands">Brands <span>(optional, separate with commas)</span></label><input type="text" id="edBrands" maxlength="500" value="${E((r.brands||[]).join(', '))}">
+    ${progs.length ? `<label class="pf-cap" for="edProg">Program <span>(optional)</span></label><select id="edProg" class="kdh-field"><option value="">None</option>${progs.map(p=>`<option value="${E(p.id)}"${r.program_id===p.id?' selected':''}>${E(p.name)}</option>`).join('')}</select>` : ''}
+    <p class="ncomp-msg" id="edMsg" hidden></p>
+    <div class="sheet-b"><button type="button" class="btn" id="edCancel">Cancel</button><button type="button" class="btn primary" id="edSave" data-first>Save Details</button></div>`);
+  w.querySelector('#edCancel').addEventListener('click', ()=>{ closeSheet(); viewer(st, r.key); });
+  w.querySelector('#edSave').addEventListener('click', async ()=>{
+    const b = w.querySelector('#edSave'); b.disabled = true; b.setAttribute('aria-busy', 'true');
+    const v = id => { const el = w.querySelector(id); return el ? el.value.trim() : ''; };
+    const body = {caption: v('#edCap') || null, location: v('#edLoc') || null, brands: v('#edBrands').split(',').map(s=>s.trim()).filter(Boolean).slice(0, 20)};
+    if(w.querySelector('#edSub')) body.subtype = v('#edSub') || null;
+    if(w.querySelector('#edProg')) body.program_id = v('#edProg') || null;
+    try{ await rest('merch_records?id=eq.'+encodeURIComponent(r.rid), {method:'PATCH', headers:{'content-type':'application/json', prefer:'return=minimal'}, body: JSON.stringify(body)});
+      closeSheet(); const s2 = await load(ctx.n, true); paint(s2); toast('Details saved'); }
+    catch(e){ b.disabled = false; b.removeAttribute('aria-busy'); const m = w.querySelector('#edMsg'); m.hidden = false; m.className = 'ncomp-msg err'; m.textContent = 'Not saved — '+(e.message||'error')+'.'; }
+  });
 }
-function relabel(st, p){
-  const w = sheet('Edit Labels', `<p class="pf-acct"><b>${E(ctx.name)}</b> · ${E(catName(p.category))}</p>${labelFields(p)}
+// a photo saved before records existed: its own labels, as before
+function relabel(st, r){
+  const p = r.photos[0];
+  const types = M().CATS.map(c=>c.k);
+  const w = sheet('Edit Labels', `<p class="pf-acct"><b>${E(ctx.name)}</b> · ${E(catName(p.category))}</p>
+    <label class="pf-cap" for="plType">Type</label><select id="plType" class="kdh-field">${!p.category ? '<option value="" selected>Uncategorized</option>' : ''}${types.map(t=>`<option value="${t}"${p.category===t?' selected':''}>${E(M().catLabel(t))}</option>`).join('')}</select>
+    <label class="pf-cap" for="plBrand">Brand <span>(optional)</span></label><input type="text" id="plBrand" maxlength="120" value="${E(p.brand||'')}">
     <label class="pf-cap" for="plCap">Caption <span>(optional)</span></label><input type="text" id="plCap" maxlength="500" value="${E(p.caption||'')}">
     <p class="ncomp-msg" id="plMsg" hidden></p>
     <div class="sheet-b"><button type="button" class="btn" id="plCancel">Cancel</button><button type="button" class="btn primary" id="plSave" data-first>Save Labels</button></div>`);
-  w.querySelector('#plCancel').addEventListener('click', ()=>{ closeSheet(); viewer(st, p.id); });
+  w.querySelector('#plCancel').addEventListener('click', ()=>{ closeSheet(); viewer(st, r.key); });
   w.querySelector('#plSave').addEventListener('click', async ()=>{
     const b = w.querySelector('#plSave'), msg = w.querySelector('#plMsg'); b.disabled = true; b.setAttribute('aria-busy', 'true');
     const body = {category: w.querySelector('#plType').value || null, caption: w.querySelector('#plCap').value.trim() || null, brand: w.querySelector('#plBrand').value.trim() || null};
-    const ps = w.querySelector('#plProg'); if(ps) body.program_id = ps.value || null;
-    try{ await rest('account_photos?id=eq.'+encodeURIComponent(p.id), {method:'PATCH', headers:{'content-type':'application/json', prefer:'return=representation'}, body: JSON.stringify(body)});
+    try{ await rest('account_photos?id=eq.'+encodeURIComponent(p.id), {method:'PATCH', headers:{'content-type':'application/json', prefer:'return=minimal'}, body: JSON.stringify(body)});
       closeSheet(); const s2 = await load(ctx.n, true); paint(s2); toast('Labels saved'); }
     catch(e){ b.disabled = false; b.removeAttribute('aria-busy'); msg.hidden = false; msg.className = 'ncomp-msg err';
-      msg.textContent = colMissing(e) || e.status===403 || denied(e) ? 'Editing labels needs the photo-labels update (supabase/migrations/20261003090000_photo_labels.sql).' : 'Not saved — '+(e.message||'error')+'.'; }
+      msg.textContent = colMissing(e) || denied(e) ? 'Editing labels needs the photo-labels update (supabase/migrations/20261003090000_photo_labels.sql).' : 'Not saved — '+(e.message||'error')+'.'; }
   });
 }
 
-/* ---------------- Add Photo: type -> source -> preview -> save ---------------- */
-function photoTypes(){
-  if(ctx.prem==='Off') return ['display', 'window', 'cooler_door'];
-  if(ctx.prem==='On') return ['tap_handle'];
-  return [];
+/* ---------------- ADD PHOTOS: Choose Type -> Take or Select Photos -> Review and Add
+   Details -> Save (Apple Notes' capture: one obvious shutter, thumbnail feedback,
+   clear cancel / confirm). Photos come from the device's own camera through an
+   image-only file input (capture="environment") -- no in-page video, no playback
+   controls, no microphone -- or from the photo library (several at once). The
+   account and the signed-in author are attached automatically. ---------------- */
+const LOCS = ['Front of store', 'Floor / aisle', 'End cap', 'Cooler', 'Register / checkout', 'Window', 'Bar', 'Back bar', 'Tables', 'Patio', 'Entrance'];
+function locList(){ return `<datalist id="capLocs">${LOCS.map(l=>`<option value="${E(l)}">`).join('')}</datalist>`; }
+function newDraft(opts){
+  opts = opts || {};
+  return {id: uuid(), owner: ownerId(), n: String(ctx.n), name: ctx.name, prem: ctx.prem || '', category: opts.category || '', subtype:'', subtype_note:'',
+    caption:'', location:'', brands: opts.brands || [], program_id: opts.program_id || '', lines:[], photos:[], state:'draft', err:'', at: Date.now(), fresh:true};
 }
-function photoFlow(){
+function photoFlow(opts){
   if(ctx.readOnly || !cfg()) return;
-  const types = photoTypes();
-  const head = `<p class="pf-acct"><b>${E(ctx.name)}</b> · #${E(ctx.n)}${ctx.prem ? ' · '+(ctx.prem==='On' ? 'On-premise' : 'Off-premise') : ''}</p>`;
-  if(!types.length){
-    sheet('Add Photo', head + `<div class="kdh-state unavailable slim"><b>We can’t tell whether this account is on- or off-premise.</b><span>The customer base has no premise for it, so we can’t offer the right photo types. Ask Gavin to check the account’s premise in Encompass.</span></div>`);
-    return;
-  }
-  if(types.length===1) return chooseSource(types[0]);
-  const w = sheet('Add Photo', head + `<p class="pf-step">Choose the photo type</p><div class="pf-list">${types.map((t,i)=>`<button type="button" class="pf-opt" data-type="${t}"${i===0?' data-first':''}><b>${E(CATS[t])}</b><span>${E(CAT_HELP[t])}</span></button>`).join('')}</div>`);
-  w.querySelectorAll('[data-type]').forEach(b=>b.addEventListener('click', ()=>chooseSource(b.dataset.type)));
+  const d = newDraft(opts);
+  if(d.category) return detailsStep(d);
+  typeStep(d);
 }
-function chooseSource(type, note){
-  const w = sheet('Add Photo', `<p class="pf-acct"><b>${E(ctx.name)}</b> · ${E(CATS[type])}</p>
-    ${note ? `<div class="kdh-state unavailable slim">${note}</div>` : ''}
-    <div class="pf-list">
-      <button type="button" class="pf-opt src" data-src="camera" data-first>${ICON.photo}<span><b>Take Photo</b><span>Use the camera now</span></span></button>
-      <button type="button" class="pf-opt src" data-src="library">${ICON.library}<span><b>Choose From Library</b><span>Pick a photo already on this device</span></span></button>
+function typeStep(d, showAll){
+  const first = M().BY_PREMISE[ctx.prem] || [];
+  const list = showAll || !first.length ? M().CATS.map(c=>c.k) : first;
+  const rest_ = M().CATS.map(c=>c.k).filter(k=>!list.includes(k));
+  const prog = d.program_id ? ctx.progName(d.program_id) : '';
+  const w = sheet('Add Photos', `<p class="pf-acct"><b>${E(ctx.name)}</b> · #${E(ctx.n)}${ctx.prem ? ' · '+(ctx.prem==='On' ? 'On-premise' : 'Off-premise') : ''}</p>
+    ${prog ? `<p class="pf-prog-note">For <b>${E(prog)}</b></p>` : ''}
+    <p class="pf-step">What are you documenting?</p>
+    <div class="pf-list">${list.map((k, i)=>{ const c = M().cat(k); return `<button type="button" class="pf-opt${d.category===k?' on':''}" data-type="${k}"${i===0?' data-first':''}><b>${E(c.label)}</b><span>${E(c.hint)}</span></button>`; }).join('')}</div>
+    ${rest_.length ? `<button type="button" class="btn ghost" id="pfMore">More Types · ${rest_.map(k=>M().catLabel(k)).join(', ')}</button>` : ''}`, ()=>keepIfStarted(d));
+  w.querySelectorAll('[data-type]').forEach(b=>b.addEventListener('click', ()=>{ d.category = b.dataset.type; if(!(M().SUBTYPES[d.category]||[]).some(s=>s[0]===d.subtype)) d.subtype = ''; detailsStep(d); }));
+  const more = w.querySelector('#pfMore'); if(more) more.addEventListener('click', ()=>typeStep(d, true));
+}
+// closing the sheet with photos in it keeps a draft (under "Not Yet Saved"); Cancel discards
+async function keepIfStarted(d){ if(d.photos.length && d.state!=='saved'){ await IDB.put('records', d); await refreshDrafts(); paint(cache.get(ctx.n) || await load(ctx.n)); toast('Kept on this device under Not Yet Saved'); } }
+const maxEdge = cat => (cat==='menu' || cat==='other') ? 3200 : 2560;
+async function addFiles(d, files, fromCamera, replaceIdx){
+  const out = [];
+  for(const f of files){
+    const img = await toJpeg(f, maxEdge(d.category));
+    const pid = uuid();
+    out.push({pid, blob: img.blob, width: img.width, height: img.height, capturedAt: (await exifTime(f)) || (fromCamera ? new Date().toISOString() : null),
+      path: String(ctx.n)+'/'+uuid()+'.jpg', uploaded:false, rowSaved:false});
+    try{ URL.revokeObjectURL(img.url); }catch(e){}
+  }
+  if(replaceIdx!=null){ const old = d.photos[replaceIdx]; if(old && old.uploaded && !old.rowSaved) removeObject(old.path); d.photos.splice(replaceIdx, 1, ...out); }
+  else d.photos.push(...out);
+}
+function detailsStep(d){
+  const c = M().cat(d.category) || {label:'Photos'};
+  const subs = M().SUBTYPES[d.category] || [];
+  const progs = (ctx.extra && ctx.extra.opps) || [];
+  const fams = (ctx.extra && ctx.extra.families) || [];
+  const lineMode = M().LINES[d.category] || '';
+  const w = sheet(`Add Photos · ${E(c.label)}`, `
+    <p class="pf-acct"><b>${E(ctx.name)}</b> · #${E(ctx.n)} · <b>${E(c.label)}</b> <button type="button" class="linkbtn" id="pfType">Change</button></p>
+    <div class="cap-strip" id="capStrip" aria-live="polite"></div>
+    <div class="cap-acts">
+      <button type="button" class="btn primary cap-shutter" id="capTake">${ICON.photo}<span>Take Photo</span></button>
+      <button type="button" class="btn outline" id="capLib">${ICON.library}<span>Choose From Photos</span></button>
     </div>
-    ${photoTypes().length > 1 ? `<button type="button" class="btn" id="pfBack">‹ Photo Type</button>` : ''}
-    <input type="file" accept="image/*" id="pfFile" hidden>
-    <input type="file" accept="image/*" capture="environment" id="pfCap" hidden>`);
-  const back = w.querySelector('#pfBack'); if(back) back.addEventListener('click', photoFlow);
-  const fileIn = w.querySelector('#pfFile'), capIn = w.querySelector('#pfCap');
-  const takeFile = async (inp, fromCamera)=>{ const f = inp.files && inp.files[0]; if(!f) return; preview(type, {file:f, capturedAt: (await exifTime(f)) || (fromCamera ? new Date().toISOString() : null)}); };
-  fileIn.addEventListener('change', ()=>takeFile(fileIn, false));
-  capIn.addEventListener('change', ()=>takeFile(capIn, true));
-  w.querySelector('[data-src="library"]').addEventListener('click', ()=>fileIn.click());
-  w.querySelector('[data-src="camera"]').addEventListener('click', ()=>{
-    if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.isSecureContext) camera(type);
-    else capIn.click();            // no in-page camera API: the device's own camera picker
-  });
-}
-async function camera(type){
-  const w = sheet(`Take Photo · ${E(CATS[type])}`, `<div class="cam"><video playsinline muted autoplay></video><div class="cam-msg" role="status">Asking for the camera…</div></div>
-    <div class="sheet-b"><button type="button" class="btn" id="camCancel">Cancel</button><button type="button" class="btn primary" id="camShot" disabled data-first>Take Photo</button></div>`);
-  const video = w.querySelector('video'), msg = w.querySelector('.cam-msg');
-  let stream = null;
-  w._stop = ()=>{ if(stream) stream.getTracks().forEach(t=>t.stop()); stream = null; };
-  w.querySelector('#camCancel').addEventListener('click', ()=>{ closeSheet(); chooseSource(type); });
-  try{
-    stream = await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'}, width:{ideal:2048}}, audio:false});
-  }catch(e){
-    closeSheet();
-    const deniedCam = e && (e.name==='NotAllowedError' || e.name==='SecurityError');
-    chooseSource(type, deniedCam ? `<b>Camera access is off for this site.</b><span>Choose From Library instead — or allow the camera for kohlerdisthub.com in your browser’s settings and try again.</span>`
-      : `<b>No camera is available here.</b><span>Choose From Library instead.</span>`);
-    return;
-  }
-  if(!document.getElementById('asheet')){ if(stream) stream.getTracks().forEach(t=>t.stop()); return; }
-  video.srcObject = stream; msg.textContent = ''; msg.hidden = true;
-  const shot = w.querySelector('#camShot'); shot.disabled = false;
-  shot.addEventListener('click', ()=>{
-    const cv = document.createElement('canvas'); cv.width = video.videoWidth; cv.height = video.videoHeight;
-    if(!cv.width){ return; }
-    cv.getContext('2d').drawImage(video, 0, 0);
-    const when = new Date().toISOString();
-    w._stop(); closeSheet();
-    preview(type, {canvas:cv, capturedAt:when, fromCamera:true});
-  });
-}
-async function preview(type, src, caption){
-  let img;
-  const w = sheet(`Preview · ${E(CATS[type])}`, `<div class="kdh-state loading slim">Preparing the photo…</div>`);
-  try{ img = await toJpeg(src.canvas || src.file); }
-  catch(e){ closeSheet(); chooseSource(type, `<b>${E(e.message || 'That photo could not be opened.')}</b><span>Try another photo.</span>`); return; }
-  w.querySelector('.asheet-b').innerHTML = `
-    <p class="pf-acct"><b>${E(ctx.name)}</b> · #${E(ctx.n)} · <b>${E(CATS[type])}</b></p>
-    <div class="pview"><img src="${img.url}" alt="Preview of the ${E(CATS[type])} photo"></div>
-    <p class="pf-time">${src.capturedAt ? 'Taken '+E(fmtWhen(src.capturedAt)) : 'No capture time in this file — the upload time will be recorded.'}</p>
-    <label class="pf-cap" for="pfCaption">Caption <span>(optional)</span></label>
-    <input type="text" id="pfCaption" maxlength="500" placeholder="What does this photo show?" value="${E(caption||'')}">
-    <details class="pf-more"><summary>Brand or Program <span>(optional)</span></summary>
-      <label class="pf-cap" for="pfBrand">Brand</label><input type="text" id="pfBrand" maxlength="120" placeholder="e.g. Lytt">
-      ${((ctx.extra && ctx.extra.opps) || []).length ? `<label class="pf-cap" for="pfProg">Program</label><select id="pfProg" class="kdh-field"><option value="">None</option>${ctx.extra.opps.map(p=>`<option value="${E(p.id)}">${E(p.name)}</option>`).join('')}</select>` : ''}
-    </details>
+    <p class="pf-time" id="capErr" role="alert" hidden></p>
+    <input type="file" accept="image/*" capture="environment" id="capIn" hidden>
+    <input type="file" accept="image/*" multiple id="libIn" hidden>
+    <input type="file" accept="image/*" capture="environment" id="retakeIn" hidden>
+    ${subs.length ? `<p class="pf-cap">Kind <span>(optional)</span></p><div class="chips cap-sub" role="group" aria-label="Kind">${subs.map(([k,l])=>`<button type="button" class="chip" data-msub="${k}" aria-pressed="${d.subtype===k}">${E(l)}</button>`).join('')}</div>
+      <input type="text" id="capSubNote" maxlength="120" placeholder="Describe it briefly" value="${E(d.subtype_note)}"${d.subtype==='other' ? '' : ' hidden'}>` : ''}
+    <label class="pf-cap" for="capCap">Caption <span>(optional)</span></label>
+    <input type="text" id="capCap" maxlength="500" placeholder="What does this show?" value="${E(d.caption)}">
+    <label class="pf-cap" for="capLoc">Location in the account <span>(optional)</span></label>
+    <input type="text" id="capLoc" maxlength="120" placeholder="e.g. Front of store" value="${E(d.location)}" list="capLocs">${locList()}
+    <p class="pf-cap">Brands <span>(optional)</span></p>
+    <div class="tagrow" id="capTags">${d.brands.map((b, i)=>`<span class="tag2">${E(b)}<button type="button" data-untag="${i}" aria-label="Remove ${E(b)}">&times;</button></span>`).join('')}</div>
+    <div class="tagadd"><input type="text" id="capBrand" maxlength="120" placeholder="Add a brand" list="capFams"><button type="button" class="btn sm" id="capBrandAdd">Add</button></div>
+    <datalist id="capFams">${fams.slice(0, 300).map(f=>`<option value="${E(f)}">`).join('')}</datalist>
+    ${progs.length ? `<label class="pf-cap" for="capProg">Program <span>(optional)</span></label><select id="capProg" class="kdh-field"><option value="">None</option>${progs.map(p=>`<option value="${E(p.id)}"${d.program_id===p.id?' selected':''}>${E(p.name)}</option>`).join('')}</select>
+      <p class="pf-sub">Saving evidence does not award program credit; credit comes from the tracker’s sales data.</p>` : ''}
+    ${lineMode ? `<details class="pf-more"${d.lines.length ? ' open' : ''}><summary>${lineMode==='taps' ? 'Tap Lines' : 'Products & Quantities'} <span>(optional)</span></summary>
+      <p class="pf-sub">${lineMode==='taps' ? 'One line per brand on tap, with how many handles.' : 'One line per product or package. A quantity needs its unit — say whether it is cases, bottles, facings or placements.'}</p>
+      <div id="capLines"></div><button type="button" class="btn sm" id="capLineAdd">Add ${lineMode==='taps' ? 'Tap Line' : 'Product'}</button></details>` : ''}
     <div class="pf-prog" hidden><div class="pf-bar"><i></i></div><p class="pf-st" role="status"></p></div>
     <div class="sheet-b pf-actions">
-      <button type="button" class="btn" id="pfRetake">${src.fromCamera ? 'Retake' : 'Choose Another'}</button>
-      <button type="button" class="btn outline" id="pfRemove">Remove</button>
-      <button type="button" class="btn primary" id="pfSave" data-first>Save Photo</button>
-    </div>`;
-  const discard = ()=>{ try{ URL.revokeObjectURL(img.url); }catch(e){} };
-  w.querySelector('#pfRetake').addEventListener('click', ()=>{ discard(); closeSheet(); if(src.fromCamera) camera(type); else chooseSource(type); });
-  w.querySelector('#pfRemove').addEventListener('click', ()=>{ discard(); closeSheet(); chooseSource(type); });
-  let rec = null;
-  w.querySelector('#pfSave').addEventListener('click', ()=>{
-    const v = id => { const el = w.querySelector(id); return el ? el.value.trim() : ''; };
-    if(!rec) rec = {id: uuid(), owner: ownerId(), n: String(ctx.n), name: ctx.name, prem: ctx.prem || '', type, caption: v('#pfCaption'), brand: v('#pfBrand'), program: v('#pfProg'),
-      capturedAt: src.capturedAt || null, blob: img.blob, width: img.width, height: img.height, path: String(ctx.n)+'/'+uuid()+'.jpg', state:'uploading', err:'', uploaded:false, at: Date.now()};
-    else { rec.caption = v('#pfCaption'); rec.brand = v('#pfBrand'); rec.program = v('#pfProg'); }
-    save(w, rec, img);
+      <button type="button" class="btn" id="capCancel">Cancel</button>
+      <button type="button" class="btn primary" id="capSave"${d.photos.length ? '' : ' disabled'} data-first>${d.state==='failed' || d.state==='pending' ? 'Retry' : 'Save Photos'}</button>
+    </div>`, ()=>keepIfStarted(d));
+  const $ = s => w.querySelector(s);
+  let t = 0; const persist = () => { clearTimeout(t); t = setTimeout(async ()=>{ if(d.photos.length){ d.at = Date.now(); await IDB.put('records', d); } }, 300); };
+  const strip = () => {
+    $('#capStrip').innerHTML = d.photos.length ? d.photos.map((p, i)=>`<figure class="cap-th"><img alt="Photo ${i+1}" src="${blobUrlOf(d.id+':'+p.pid, p.blob)}">
+      <figcaption>${p.rowSaved ? '<span class="cap-saved">Saved</span>' : `<button type="button" data-retake="${i}">Retake</button><button type="button" data-rm="${i}">Remove</button>`}</figcaption></figure>`).join('')
+      + `<p class="cap-n">${d.photos.length} ${d.photos.length===1?'photo':'photos'} · tap Take Photo or Choose From Photos to add another</p>`
+      : `<p class="cap-empty">No photos yet. Take a photo or choose from your photos — you can add several.</p>`;
+    $('#capSave').disabled = !d.photos.length;
+    w.querySelectorAll('[data-rm]').forEach(b=>b.addEventListener('click', ()=>{ const i = +b.dataset.rm; const p = d.photos[i]; if(p.uploaded) removeObject(p.path); d.photos.splice(i, 1); strip(); persist(); if(!d.photos.length) IDB.del('records', d.id); }));
+    w.querySelectorAll('[data-retake]').forEach(b=>b.addEventListener('click', ()=>{ retakeIdx = +b.dataset.retake; $('#retakeIn').click(); }));
+  };
+  let retakeIdx = null;
+  const err = m => { const e = $('#capErr'); e.hidden = !m; e.textContent = m || ''; };
+  const take = async (inp, fromCamera, replace) => {
+    const files = Array.from(inp.files || []); inp.value = ''; if(!files.length) return;
+    err(''); $('#capSave').disabled = true;
+    try{ await addFiles(d, files, fromCamera, replace); }catch(e){ err(e.message || 'That photo could not be opened.'); }
+    strip(); persist();
+  };
+  $('#capIn').addEventListener('change', ()=>take($('#capIn'), true));
+  $('#libIn').addEventListener('change', ()=>take($('#libIn'), false));
+  $('#retakeIn').addEventListener('change', ()=>{ const i = retakeIdx; retakeIdx = null; take($('#retakeIn'), true, i); });
+  $('#capTake').addEventListener('click', ()=>$('#capIn').click());
+  $('#capLib').addEventListener('click', ()=>$('#libIn').click());
+  $('#pfType').addEventListener('click', ()=>{ readForm(); typeStep(d, true); });
+  w.querySelectorAll('[data-msub]').forEach(b=>b.addEventListener('click', ()=>{ d.subtype = d.subtype===b.dataset.msub ? '' : b.dataset.msub;
+    w.querySelectorAll('[data-msub]').forEach(x=>x.setAttribute('aria-pressed', String(x.dataset.msub===d.subtype))); const n = $('#capSubNote'); if(n) n.hidden = d.subtype!=='other'; persist(); }));
+  const tags = () => { $('#capTags').innerHTML = d.brands.map((b, i)=>`<span class="tag2">${E(b)}<button type="button" data-untag="${i}" aria-label="Remove ${E(b)}">&times;</button></span>`).join('');
+    w.querySelectorAll('[data-untag]').forEach(b=>b.addEventListener('click', ()=>{ d.brands.splice(+b.dataset.untag, 1); tags(); persist(); })); };
+  tags();
+  const addTag = () => { const v = $('#capBrand').value.trim(); if(v && !d.brands.includes(v) && d.brands.length < 20){ d.brands.push(v); tags(); persist(); } $('#capBrand').value = ''; };
+  $('#capBrandAdd').addEventListener('click', addTag);
+  $('#capBrand').addEventListener('keydown', e=>{ if(e.key==='Enter'){ e.preventDefault(); addTag(); } });
+  // product / tap lines
+  const lines = () => {
+    const box = $('#capLines'); if(!box) return;
+    box.innerHTML = d.lines.map((l, i)=>`<div class="cap-line" data-li="${i}">
+      <input type="text" data-lf="brand" maxlength="120" placeholder="Brand or product" value="${E(l.brand||'')}" list="capFams" aria-label="Brand or product, line ${i+1}">
+      ${lineMode==='taps' ? '' : `<input type="text" data-lf="package" maxlength="60" placeholder="Package (e.g. 24 PK)" value="${E(l.package||'')}" aria-label="Package, line ${i+1}">`}
+      <input type="number" data-lf="quantity" min="0" step="1" inputmode="numeric" placeholder="${lineMode==='taps' ? 'Taps' : 'Qty'}" value="${E(l.quantity==null ? '' : l.quantity)}" aria-label="Quantity, line ${i+1}">
+      ${lineMode==='taps' ? '<span class="cap-unit">taps</span>' : `<select data-lf="unit" aria-label="What the quantity counts, line ${i+1}"><option value="">Unit…</option>${M().UNITS.filter(u=>u[0]!=='taps' && u[0]!=='unspecified').map(([k,lab])=>`<option value="${k}"${l.unit===k?' selected':''}>${E(lab)}</option>`).join('')}</select>`}
+      <button type="button" class="cap-lx" data-lrm="${i}" aria-label="Remove line ${i+1}">&times;</button></div>`).join('');
+    box.querySelectorAll('[data-lf]').forEach(inp=>inp.addEventListener(inp.tagName==='SELECT' ? 'change' : 'input', ()=>{ const i = +inp.closest('[data-li]').dataset.li; d.lines[i][inp.dataset.lf] = inp.value; persist(); }));
+    box.querySelectorAll('[data-lrm]').forEach(b=>b.addEventListener('click', ()=>{ d.lines.splice(+b.dataset.lrm, 1); lines(); persist(); }));
+  };
+  const la = $('#capLineAdd'); if(la) la.addEventListener('click', ()=>{ d.lines.push(lineMode==='taps' ? {brand:'', quantity:'', unit:'taps'} : {brand:'', package:'', quantity:'', unit:''}); lines(); persist(); });
+  lines();
+  const readForm = () => { d.caption = $('#capCap').value.trim(); d.location = $('#capLoc').value.trim(); const n = $('#capSubNote'); d.subtype_note = n ? n.value.trim() : ''; const p = $('#capProg'); if(p) d.program_id = p.value; };
+  ['#capCap', '#capLoc', '#capSubNote'].forEach(s=>{ const el = $(s); if(el) el.addEventListener('input', ()=>{ readForm(); persist(); }); });
+  const ps = $('#capProg'); if(ps) ps.addEventListener('change', ()=>{ readForm(); persist(); });
+  $('#capCancel').addEventListener('click', async ()=>{
+    if(d.photos.some(p=>!p.rowSaved) && !confirm('Discard these photos? They have not been saved to the account.')) return;
+    w._noKeep = true; await discardDraft(d); closeSheet(); paint(cache.get(ctx.n) || await load(ctx.n));
   });
-}
-// save from the preview sheet: keep a device copy first, then upload; on failure the
-// copy stays under "Not Yet Saved" with Retry -- same storage path, so no duplicate
-async function save(w, rec, img){
-  const prog = w.querySelector('.pf-prog'), bar = w.querySelector('.pf-bar i'), stx = w.querySelector('.pf-st');
-  const btns = w.querySelectorAll('.pf-actions button'); btns.forEach(b=>b.disabled = true);
-  const saveBtn = w.querySelector('#pfSave'); saveBtn.setAttribute('aria-busy', 'true');
-  prog.hidden = false; prog.classList.remove('err'); bar.style.width = '0%';
-  const kept = await IDB.put(rec);
-  stx.innerHTML = stateChip('uploading', '0%');
-  const ok = await uploadPhoto(rec, f=>{ const pct = Math.round(f*100); bar.style.width = pct+'%'; stx.innerHTML = stateChip('uploading', pct+'%'); });
-  if(ok){
-    bar.style.width = '100%'; stx.innerHTML = stateChip('saved');
-    try{ URL.revokeObjectURL(img.url); }catch(e){}
-    const s2 = await load(ctx.n, true); await refreshDrafts(); paint(s2);
-    setTimeout(()=>{ closeSheet(); toast(`${catName(rec.type)} photo saved to ${ctx.name}`); }, 500);
-    return;
-  }
-  prog.classList.add('err'); saveBtn.removeAttribute('aria-busy');
-  stx.innerHTML = stateChip(rec.state, rec.err) + `<br><span class="dwhy">${kept ? 'The photo is kept on this device under “Not Yet Saved” — retry now or later.' : 'This browser could not keep a copy on the device. Keep this window open and retry.'}</span>`;
-  btns.forEach(b=>b.disabled = false);
-  saveBtn.textContent = 'Retry';
-  if(kept){ await refreshDrafts(); paint(cache.get(ctx.n) || await load(ctx.n)); }
+  $('#capSave').addEventListener('click', async ()=>{
+    readForm();
+    if(!d.photos.length){ err('Add at least one photo.'); return; }
+    if(d.subtype==='other' && !d.subtype_note){ err('Describe the activation in a few words (Other).'); $('#capSubNote').focus(); return; }
+    const bad = d.lines.findIndex(l=>l.quantity!=='' && l.quantity!=null && lineMode!=='taps' && !l.unit);
+    if(bad >= 0){ err(`Line ${bad+1}: choose what the quantity counts (cases, bottles, facings…).`); return; }
+    err('');
+    const prog = w.querySelector('.pf-prog'), bar = w.querySelector('.pf-bar i'), stx = w.querySelector('.pf-st');
+    const btns = w.querySelectorAll('.sheet-b button, .cap-acts button'); btns.forEach(b=>b.disabled = true);
+    const save = $('#capSave'); save.setAttribute('aria-busy', 'true');
+    prog.hidden = false; prog.classList.remove('err'); bar.style.width = '0%';
+    d.fresh = false;
+    const kept = await IDB.put('records', d);
+    stx.innerHTML = stateChip('uploading', '0%');
+    const ok = await uploadRecord(d, f=>{ const pct = Math.round(f*100); bar.style.width = pct+'%'; stx.innerHTML = stateChip('uploading', pct+'%'); });
+    if(ok){
+      d.state = 'saved'; bar.style.width = '100%'; stx.innerHTML = stateChip('saved');
+      const s2 = await load(ctx.n, true); await refreshDrafts(); paint(s2); if(ctx.onChange) ctx.onChange(s2);
+      setTimeout(()=>{ w._noKeep = true; closeSheet(); toast(`${c.label} saved to ${ctx.name} · ${d.photos.length} ${d.photos.length===1?'photo':'photos'}`); }, 500);
+      return;
+    }
+    prog.classList.add('err'); save.removeAttribute('aria-busy');
+    stx.innerHTML = stateChip(d.state, d.err) + `<br><span class="dwhy">${kept ? 'Everything is kept on this device under “Not Yet Saved” — retry now or later.' : 'This browser could not keep a copy on the device. Keep this window open and retry.'}</span>`;
+    btns.forEach(b=>b.disabled = false); save.textContent = 'Retry';
+    if(kept){ await refreshDrafts(); paint(cache.get(ctx.n) || await load(ctx.n)); }
+  });
+  strip();
 }
 
 // drafts for the whole device: /login/ "Switch account" calls this so the next person sees none
@@ -812,5 +1003,5 @@ async function forgetDrafts(){
   try{ Object.keys(localStorage).filter(k=>k.indexOf('kdh_draft:')===0).forEach(k=>localStorage.removeItem(k)); }catch(e){}
   try{ if(window.indexedDB) indexedDB.deleteDatabase('kdh-drafts'); }catch(e){}
 }
-window.KdhActivity = {attach, load, openComposer, photoFlow, forgetDrafts, _exifTime: exifTime, _cats: CATS, _events: ()=>ctx ? events(cache.get(ctx.n) || {notes:[], photos:[]}) : []};
+window.KdhActivity = {attach, load, openComposer, photoFlow, capture: photoFlow, forgetDrafts, _exifTime: exifTime, _cats: CATS, _events: ()=>ctx ? events(cache.get(ctx.n) || {notes:[], photos:[], records:[]}) : []};
 })();

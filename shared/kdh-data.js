@@ -26,6 +26,9 @@
  *              date) and program marks. Live: read at page load.
  *   photos     Supabase account_photos -- photo records (labels, capture and
  *              upload times). Live.
+ *   merch      Supabase merch_records / merch_lines / merch_record_photos --
+ *              merchandising evidence (Hub captures + iSellBeer imports).
+ *              Live; imported rows carry their export's period in the batch.
  *   team       Supabase rpc kdh_team() -- names, roles, titles, reports_to,
  *              managers only. Live.
  *   programs   the trackers' registries + incentive-tracking/data/
@@ -103,5 +106,45 @@
   }
   function team() { return rest('rpc/kdh_team', { method: 'POST', body: {} }).then(function (r) { return r.ok ? r.data : null; }); }
 
-  global.KdhData = { ROOT: ROOT, signedIn: signedIn, json: json, rest: rest, repIndex: repIndex, repKeyFor: repKeyFor, repBook: repBook, catalog: catalog, actions: actions, team: team };
+  // Supabase RPC (security-definer functions decide access) -> data, or throws with .code
+  function rpc(name, body) {
+    return rest('rpc/' + name, { method: 'POST', body: body || {} }).then(function (r) {
+      if (r.ok) return r.data;
+      var e = new Error((r.data && (r.data.message || r.data.hint)) || r.error || ('HTTP ' + r.status)); e.status = r.status; e.code = r.data && r.data.code; throw e;
+    });
+  }
+  // private photo bucket: upload (x-upsert false; an existing file is "already there", not an error) and read back
+  var BUCKET = 'account-photos';
+  function objUrl(path) { return cfg().url.replace(/\/$/, '') + '/storage/v1/object/' + BUCKET + '/' + String(path).split('/').map(encodeURIComponent).join('/'); }
+  function upload(path, blob, onProgress, type) {
+    return new Promise(function (resolve, reject) {
+      if (!signedIn()) { reject(new Error('Sign in again to upload.')); return; }
+      var c = cfg(), x = new XMLHttpRequest();
+      x.open('POST', objUrl(path));
+      x.setRequestHeader('apikey', c.key); x.setRequestHeader('authorization', 'Bearer ' + token());
+      x.setRequestHeader('content-type', type || 'image/jpeg'); x.setRequestHeader('x-upsert', 'false');
+      if (x.upload && onProgress) x.upload.onprogress = function (e) { if (e.lengthComputable) onProgress(e.loaded / e.total); };
+      x.onload = function () {
+        if (x.status >= 200 && x.status < 300) return resolve({ path: path, existed: false });
+        var m = ''; try { var j = JSON.parse(x.responseText); m = j.message || j.error || ''; if (String(j.statusCode) === '409') return resolve({ path: path, existed: true }); } catch (e) {}
+        if (/already exists|duplicate/i.test(m)) return resolve({ path: path, existed: true });
+        var err = new Error(m || ('HTTP ' + x.status)); err.status = x.status; reject(err);
+      };
+      x.onerror = function () { reject(new Error('The connection dropped while uploading.')); };
+      x.timeout = 120000; x.ontimeout = function () { reject(new Error('The upload took too long.')); };
+      x.send(blob);
+    });
+  }
+  function objectBlob(path) {
+    if (!signedIn()) return Promise.resolve(null);
+    var c = cfg();
+    return fetch(cfg().url.replace(/\/$/, '') + '/storage/v1/object/authenticated/' + BUCKET + '/' + String(path).split('/').map(encodeURIComponent).join('/'),
+      { headers: { apikey: c.key, authorization: 'Bearer ' + token() } }).then(function (r) { return r.ok ? r.blob() : null; }, function () { return null; });
+  }
+  async function sha256hex(blob) {
+    var buf = await blob.arrayBuffer(); var h = await crypto.subtle.digest('SHA-256', buf);
+    return Array.from(new Uint8Array(h)).map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+  }
+
+  global.KdhData = { ROOT: ROOT, signedIn: signedIn, json: json, rest: rest, repIndex: repIndex, repKeyFor: repKeyFor, repBook: repBook, catalog: catalog, actions: actions, team: team, rpc: rpc, upload: upload, objectBlob: objectBlob, sha256hex: sha256hex };
 })(window);

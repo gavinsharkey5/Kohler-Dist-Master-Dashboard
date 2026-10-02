@@ -477,3 +477,34 @@ type chips, caption / brand search, date (30 / 90 / 365 days), taken by,
 brand. The author can Edit Labels later (needs
 supabase/migrations/20261003090000_photo_labels.sql; until it is run the
 page saves without brand / program and hides Edit Labels).
+
+PROGRAM OPPORTUNITIES + ONE ELIGIBILITY RULE (2026-10-04)
+The Overview section "Programs This Account Could Help Complete" is now
+"Program Opportunities". Each card reads Program -> What to Sell -> What Is
+Needed -> Deadline; why it is listed, credit at this account ("a saved photo
+or note is evidence, not credit"), the products that count, selling
+resources, the full program name and the rep's overall progress sit in one
+Details fold. Add Evidence opens the photo flow with the program and a
+category preselected (hidden in preview).
+Eligible products come from hub/accounts.js eligibleProducts(): a program's
+own product rule when it has one (PROGRAM_PRODUCTS -- Lagunitas Sprint counts
+the 13 products of its export, never the Variety pack, Hazy, Daytime or
+Maximus), otherwise its brand families (PROGRAM_BRANDS) narrowed to a size the
+program names; always only families sellable in the account's area. The SAME
+rule drives the card, "View N Eligible Products" (the Products list filtered
+to that program, with the rule as its heading and Show All Products), the
+Lead tags in the Products list, and the assistant's page context. Add a
+PROGRAM_PRODUCTS line whenever a program names specific products.
+PROGRAM_BRANDS lists brand FAMILIES only -- a supplier name there ("Lagunitas
+Brewing Co", removed 2026-10-04) is "not on file" and switches the territory
+filter off.
+Wording: "No purchases in the available history" (+ the period) replaces
+"Never bought"; a lapsed product's caveat reads "Check with the buyer;
+ordering history does not explain the gap". The address and Directions
+appear once (the record header); Account Details keeps only the "street
+address not in the export" note when there is no street. Next Actions says
+how its items are chosen when more exist; the alerts table marks the two that
+are in Next Actions and states the order (lapsed, then possible reorders,
+then buying less often; the biggest usual order first).
+Tests: scratchpad opp_elig_test.mjs (18), acct_test / sections_test /
+alerts_test.

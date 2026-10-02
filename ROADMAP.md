@@ -11,6 +11,36 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
+- [ ] **Merchandising: run the SQL** (Gavin): Supabase SQL Editor, paste and
+  run `supabase/migrations/20261004090000_merchandising.sql`. Turns photos
+  into records (several photos + product / brand lines + optional program
+  per record) and enables the iSellBeer import. Until then photos still save
+  one per record and the pages say the update is needed.
+- [ ] **Merchandising: import the iSellBeer exports** (Gavin, after the SQL):
+  Manager -> Merchandising -> Import From iSellBeer. Add the Display, Raw
+  Reports and Promos .xlsx files and the photo PDFs, read the
+  reconciliation, match the PDF pages by hand (or leave them for the Review
+  Queue), Import. Re-importing restates, never duplicates.
+- [ ] **Merchandising: real-device capture check** (Gavin): on the iPhone and
+  iPad, Account -> Add Photos -> Display -> Take Photo (the camera should
+  open with no video controls and no microphone prompt), take two, Retake
+  one, add a product line with a unit, Save Photos. Then a Menu Placement
+  and zoom into the saved photo to check the print is readable. Also try it
+  inside the Encompass app's built-in browser, and once with Airplane Mode
+  on (it should say Pending Upload and keep the draft). Built and tested in
+  desktop Chromium with phone emulation only.
+- [ ] **Assistant: turn it on if it says "not set up"** (Gavin): My Accounts
+  -> an account -> Ask. A manager now sees the exact step: Vercel ->
+  Settings -> Environment Variables -> `ANTHROPIC_API_KEY` (value from
+  console.anthropic.com -> API Keys, pasted only into Vercel), Production,
+  Save, then Redeploy the latest Production deployment. The pilot item below
+  still applies (ledger SQL, KDH_CHAT_USERS).
+- [ ] **Lagunitas Sprint: two decisions** (Gavin; REPORTING_REQUEST.md 11.4):
+  does the Little Sumpin' 15.5 gal keg (#12920) count, and is the
+  workbook's NOT IN TERRITORY for Union / Essex right? The Hub, Account page
+  and assistant now follow the workbook; the Incentive Tracker's own "Stores
+  To Target" list still includes those accounts until its generator is
+  fixed.
 - [x] **Photo labels: run one more SQL file** (Gavin, done 2026-10-02): Supabase SQL Editor,
   run `supabase/migrations/20261003090000_photo_labels.sql`. Lets a photo
   be Uncategorized, adds optional Brand / Program labels and Edit Labels on
@@ -177,6 +207,28 @@ device, a decision).
 
 ## Done
 
+- [x] **Merchandising records + iSellBeer import + recap** (2026-10-04):
+  photos attached to records (Display, Window, Cooler Door, Tap Handles,
+  Menu Placement, Other Activation; subtypes; premise defaults), fast
+  capture (native image capture, several photos, retake / remove, caption,
+  location, brand tags, program, product / tap lines with units), record
+  drafts + retry without duplicates, gallery with filters and a viewer (zoom,
+  information panel, Last Observed for imports), one Account Activity event
+  per record, Add Evidence from a program card (evidence, not credit); the
+  iSellBeer importer (CustomerID-only matching, stable keys, every line kept,
+  US/THEM + audited correction kept apart, hyperlink targets, PDF pages
+  matched by hand, reconciliation before writing, review queue); the manager
+  Merchandising recap (filters, separate counts, Download CSV, printable
+  recap with readable photos). Also: one shared program-product eligibility
+  rule (Lagunitas Sprint = its export's 13 products, territory respected),
+  "Program Opportunities" cards (Program -> What to Sell -> What Is Needed ->
+  Deadline, the rest in Details), "No purchases in the available history",
+  "Check with the buyer; ordering history does not explain the gap", one
+  address block, alert priority explained, the assistant's availability check
+  with the setup step for managers (and "it does not look at photos"),
+  managers land on Program View with a rep filter, explicit Download CSV /
+  Export Recap buttons in the hub, Exceptions grouped by rep / type /
+  urgency / account with a data-sources panel.
 - [x] **Account workspace, third build** (2026-10-03): Rep Home rebuilt
   (search, prominent My Accounts, labelled attention counts, consistent
   tool buttons); My Accounts toolbar (title + List/Map, accurate "Also N

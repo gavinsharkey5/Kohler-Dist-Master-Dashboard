@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Import Merchandising | Kohler Dist Hub</title>
+<link rel="icon" type="image/png" sizes="192x192" href="../../assets/icon-192.png">
+<link rel="preload" href="../../assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+<script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="stylesheet" href="../../rep/rep.css?v=20261004a">
+<link rel="stylesheet" href="../merch.css?v=20261004a">
+<meta name="kdh-page" content="Import Merchandising">
+<script src="../../shared/kdh-user.js?v=20261004b"></script>
+</head>
+<body>
+<!--
+  IMPORT FROM iSELLBEER (2026-10-04) -- managers only (/merchandising/ is not in
+  the middleware's REP_PATHS; the page also refuses a rep or a rep preview).
+  Add the display / tap survey / promotions exports and any "photos" PDFs;
+  the page groups rows into records (merchandising/isb-import.js), shows the
+  reconciliation, lets a manager match report pages to records BY HAND, and
+  only then calls kdh_merch_import. Nothing is written before "Import".
+  merchandising/README.txt has every rule.
+-->
+<main class="wrap" id="impApp"><div class="kdh-state loading">Loading…</div></main>
+<footer>Internal use. Managers only. Imports never change iSellBeer.</footer>
+<script src="../../hub/data/accounts.js?v=20260923h"></script>
+<script src="../../shared/auth-config.js"></script>
+<script src="../../shared/merch-types.js?v=20261004a"></script>
+<script src="../../shared/kdh-data.js?v=20261004b"></script>
+<script src="../isb-import.js?v=20261004a"></script>
+<script src="import.js?v=20261004a"></script>
+</body>
+</html>

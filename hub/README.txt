@@ -978,3 +978,17 @@ rounded percentage -- with "Current account coverage 19.4% · Target 25%"
 under it). Manager Mode (desktop) still has every old screen: supplier
 sections with expanding rows, objective cards with account tabs, Program
 View, the full detail page with rankings.
+
+MANAGER LANDING + EXPORT BUTTONS (2026-10-04)
+A signed-in manager on a computer starts in Manager Mode and lands on
+Program View (the team / program overview) instead of the name picker; a
+deep link still wins, and a manager who chose Rep Mode keeps it (switching to
+Rep Mode on Program View opens the picker). Phones keep the picker (Manager
+Mode is desktop-only). Program View has a Rep filter (team-scoped, grouped by
+DM) that opens that rep's programs. The Export menu is now two visible
+buttons, Download CSV and Export Recap, with an Options fold for credited
+lines / account detail; both still export the complete filtered set for the
+authorized roster. An eligible account with no purchase of the brand reads
+"No purchases in the available history" (NO_BUY; the account screen adds the
+tracker data's refresh date) instead of "Never bought it".
+Tests: scratchpad export_test / mgr_desktop / hubonly_test / dm_test.
