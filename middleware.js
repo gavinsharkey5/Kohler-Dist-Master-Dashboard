@@ -15,11 +15,15 @@
 //   SUPABASE_URL              https://<ref>.supabase.co
 //   SUPABASE_PUBLISHABLE_KEY  sb_publishable_...  (safe in the browser)
 
+import { parseRt, refreshSession, sessionCookies, clearedCookies, RENEW_BEFORE_MS } from './api/session.js';
+
 export const config = {
   // Everything except the sign-in page, the shared logo assets, and
   // favicons. (/shared/auth-config.js is NOT excluded: it has no file
   // behind it, the middleware itself answers it below.)
-  matcher: ['/((?!login|assets/|favicon|manifest\\.webmanifest).*)'],
+  // /api/session is excluded too: it is the sign-in hand-off itself and
+  // checks the session on its own (api/session.js).
+  matcher: ['/((?!login|assets/|favicon|manifest\\.webmanifest|api/session).*)'],
 };
 
 const COOKIE = 'kdh_at';
@@ -135,9 +139,35 @@ export default async function middleware(request) {
     );
   }
 
-  const token = readCookie(request.headers.get('cookie') || '', COOKIE);
+  // STAY SIGNED IN (2026-10-02): the refresh token lives in the HttpOnly
+  // kdh_rt cookie (set by api/session.js after sign-in). When the access
+  // token is missing or has under 10 minutes left, renew it here, before
+  // the check, and send the new cookies back with whatever this request
+  // gets -- so a rep is only asked to sign in after signing out.
+  const cookieHeader = request.headers.get('cookie') || '';
+  const rt = parseRt(readCookie(cookieHeader, 'kdh_rt'));
+  let token = readCookie(cookieHeader, COOKIE);
+  let renewed = null, dropRt = false;
+  if (rt && (!token || tokenExpiry(token) - Date.now() < RENEW_BEFORE_MS)) {
+    const r = await refreshSession(rt.token, supabaseUrl, publishableKey);
+    if (r.ok) { renewed = r.session; token = r.session.access_token; }
+    else if (r.reason === 'invalid') dropRt = true;
+  }
   const verdict = token ? await check(token, supabaseUrl, publishableKey) : { ok: false };
+  const res = route(request, url, verdict);
+  if (renewed && verdict.ok) {
+    const sets = sessionCookies(renewed, verdict, rt.keep);
+    // An API function reads the cookie from the request, so it gets the
+    // renewed token too (static files don't care).
+    const fwd = url.pathname.startsWith('/api/') ? requestWithCookies(request, cookieHeader, { [COOKIE]: renewed.access_token, kdh_rt: `k${rt.keep ? 1 : 0}.${renewed.refresh_token}` }) : null;
+    return withHeaders(res, sets, fwd);
+  }
+  if (renewed && !verdict.ok && verdict.reason === 'notlisted') return withHeaders(res, clearedCookies());
+  if (dropRt) return withHeaders(res, ['kdh_rt=; Path=/; Max-Age=0; Secure; SameSite=Lax; HttpOnly']);
+  return res;
+}
 
+function route(request, url, verdict) {
   if (verdict.ok) {
     if (verdict.role === 'manager') return passThrough();
     // A rep: their own account slice, never anyone else's.
@@ -172,7 +202,7 @@ export default async function middleware(request) {
         headers: { 'content-type': 'application/json', 'cache-control': 'no-store' },
       });
     }
-    return Response.redirect(new URL(REP_HOME, url).toString(), 302);
+    return redirect(new URL(REP_HOME, url).toString());
   }
 
   // A page load goes to the sign-in screen and comes back afterwards. A
@@ -191,7 +221,30 @@ export default async function middleware(request) {
   const login = new URL('/login/', url);
   if (next !== '/' && next !== '') login.searchParams.set('next', next);
   if (verdict.reason) login.searchParams.set('why', verdict.reason);
-  return Response.redirect(login.toString(), 302);
+  return redirect(login.toString());
+}
+
+function redirect(to) {
+  return new Response(null, { status: 302, headers: { location: to, 'cache-control': 'no-store' } });
+}
+// The same response plus Set-Cookie headers (and, for an API function, the
+// request's cookies replaced -- what @vercel/edge's next({request}) does).
+function withHeaders(res, setCookies, fwd) {
+  const h = new Headers(res.headers);
+  for (const c of setCookies || []) h.append('set-cookie', c);
+  if (fwd && (h.get('x-middleware-next') || h.get('x-middleware-rewrite'))) {
+    const names = [];
+    for (const [k, v] of fwd) { h.set('x-middleware-request-' + k, v); names.push(k); }
+    h.set('x-middleware-override-headers', names.join(','));
+  }
+  return new Response(res.body, { status: res.status, headers: h });
+}
+function requestWithCookies(request, cookieHeader, replace) {
+  const parts = cookieHeader.split(';').map((p) => p.trim()).filter(Boolean).filter((p) => !(p.split('=')[0] in replace));
+  for (const [k, v] of Object.entries(replace)) parts.push(`${k}=${encodeURIComponent(v)}`);
+  const h = new Headers(request.headers);
+  h.set('cookie', parts.join('; '));
+  return h;
 }
 
 // Continue to the static file. This is what @vercel/edge's next() does.
@@ -232,7 +285,7 @@ async function check(token, supabaseUrl, publishableKey) {
 
   let res;
   try {
-    res = await fetch(`${supabaseUrl}/rest/v1/allowed_users?select=email,name,role&limit=1`, {
+    res = await fetch(`${supabaseUrl}/rest/v1/allowed_users?select=email,name,role,title,reports_to&limit=1`, {
       headers: {
         apikey: publishableKey,
         authorization: `Bearer ${token}`,
@@ -253,7 +306,7 @@ async function check(token, supabaseUrl, publishableKey) {
   if (!row) return remember(token, { ok: false, reason: 'notlisted' }, now + 60 * 1000);
 
   const until = Math.min(exp, now + CACHE_TTL_MS);
-  return remember(token, { ok: true, email: row.email, name: row.name || '', role: row.role || 'rep' }, until);
+  return remember(token, { ok: true, email: row.email, name: row.name || '', role: row.role || 'rep', title: row.title || '', reports_to: row.reports_to || '' }, until);
 }
 
 function remember(token, verdict, until) {
