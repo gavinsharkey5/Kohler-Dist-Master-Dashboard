@@ -313,6 +313,12 @@ Fusion_..._YYYYMMDD_ filename, else the file's mtime) is flagged partial
 in sources.json and shown with a "partial" tag and hatched bar on the
 page. Pass --complete if you know the month was already closed.
 
+Fusion renames columns between pulls: the 2026-10-01 export said
+"Product Num Name" where every earlier one said "Product Num & Name".
+generate.py maps the known variants back (ALIASES / norm()); if a pull
+dies with "unrecognised header", add the new spelling there rather than
+editing the CSV.
+
 Dimension attributes (names, supplier / family / brand of a product,
 premise / area / rep / DM of an account, package) are "latest file wins"
 and apply to ALL of that product's or account's history. Rep and DM are
