@@ -585,6 +585,34 @@
     new MutationObserver(function () { clearTimeout(liftTimer); liftTimer = setTimeout(function () { liftSmallType(); }, 80); })
       .observe(document.body, { childList: true, subtree: true });
   }
-  function boot() { chrome(); bar(); watchType(); }
+  // STAY SIGNED IN (2026-10-02): pages call Supabase straight from the
+  // browser with the kdh_at token (notes, photos, the hub's marks). A page
+  // left open -- an iPhone app resumed hours later -- would hold an expired
+  // token, so renew it through /api/session (which uses the HttpOnly
+  // refresh cookie) when it has under 10 minutes left: on load, whenever
+  // the page comes back into view, and every 5 minutes while it is shown.
+  // window.kdhFreshToken() renews if needed and returns the current token.
+  var renewing = null, lastRenew = 0;
+  function atCookie() { try { var m = document.cookie.match(/(?:^|;\s*)kdh_at=([^;]*)/); return m ? decodeURIComponent(m[1]) : ''; } catch (e) { return ''; } }
+  function atLeft(t) { try { var p = JSON.parse(atob(t.split('.')[1].replace(/-/g, '+').replace(/_/g, '/'))); return p.exp * 1000 - Date.now(); } catch (e) { return -1; } }
+  function renew(force) {
+    if (!/^https?:/.test(location.protocol)) return Promise.resolve(atCookie());
+    var t = atCookie();
+    if (!force && t && atLeft(t) > 10 * 60 * 1000) return Promise.resolve(t);
+    if (renewing) return renewing;
+    if (!force && Date.now() - lastRenew < 60 * 1000) return Promise.resolve(t);
+    lastRenew = Date.now();
+    renewing = fetch((ROOT || '/') + 'api/session', { credentials: 'same-origin', cache: 'no-store' })
+      .catch(function () {}).then(function () { renewing = null; return atCookie(); });
+    return renewing;
+  }
+  window.kdhFreshToken = function () { return renew(true); };
+  function keepAlive() {
+    if (!user()) return;   // not signed in: nothing to keep
+    renew(false);
+    document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible') renew(false); });
+    setInterval(function () { if (document.visibilityState === 'visible') renew(false); }, 5 * 60 * 1000);
+  }
+  function boot() { chrome(); bar(); watchType(); keepAlive(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
 })(window);

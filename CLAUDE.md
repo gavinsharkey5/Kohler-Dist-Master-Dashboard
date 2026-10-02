@@ -1740,3 +1740,52 @@ Tags 20261002b (kdh-user, kdh.css, skin, rep.css, accounts, activity, map,
 assistant, hub, guided, team.css, program-titles, performance). Tests:
 map_test, notes_photos_test, sql_notes_test (local Postgres 16), export_test,
 contrast_audit + the existing suites.
+
+## Stay signed in: the server holds the session (2026-10-02)
+
+Gavin: every rep complained about typing email + password again and again.
+Cause: the only long-lived part of a sign-in (Supabase's refresh token) lived
+in /login/'s localStorage, so each hourly access-token expiry bounced the rep
+to /login/, and anything that lost that storage (Safari's 7-day cap on
+script-written cookies/storage, an iPhone home-screen app's own jar, an
+unticked "Remember me" that stuck) meant typing it all again. Now:
+- `api/session.js` (Edge function; excluded from the middleware matcher, does
+  its own checks, same-origin only): POST {refresh_token, remember} after
+  sign-in -> redeems it (Supabase rotates it; proves it), checks the allow
+  list, sets `kdh_rt` (HttpOnly, value `k1.<token>` = remember / `k0.` =
+  session only), `kdh_at` and `kdh_user` FROM THE SERVER (400-day Max-Age
+  when remembered, none otherwise). GET renews kdh_at if under 10 min left
+  and answers {ok, role, name} (401 = no session). DELETE revokes the
+  session at Supabase (`/auth/v1/logout?scope=local`) and clears every
+  cookie.
+- `middleware.js`: before the check, when kdh_at is missing or has under 10
+  minutes left and kdh_rt is present, it redeems kdh_rt
+  (`refreshSession`, deduped per isolate) and returns the normal response
+  plus the new Set-Cookies (re-issuing kdh_user from allowed_users -- check()
+  now also selects title / reports_to); an /api/* function gets the renewed
+  cookie in its request (x-middleware-override-headers). A dead refresh
+  token clears kdh_rt and falls through to /login/ as before; Supabase
+  unreachable keeps it. Redirects are built by hand (Response.redirect has
+  immutable headers).
+- `login/index.html`: finish() POSTs the session to /api/session and, on
+  success, drops supabase-js's stored copy (`sb-*`; the server rotated the
+  token). If the hand-off fails the stored session stays as the old-style
+  fallback. With no stored session the page first asks GET /api/session and
+  goes straight in when the server still has one; otherwise a REMEMBERED
+  EMAIL opens straight on the password box (focused, so iOS Keychain /
+  browser autofill fills it); first-timers get the email step. "Remember me
+  on this device" starts TICKED on every visit (`keepChoice`, an untick no
+  longer sticks) and reads "Stay signed in on this device until you sign
+  out. Untick on a shared device." Sign out and Switch account call DELETE.
+  The page still never stores a password.
+- `shared/kdh-user.js` keep-alive: on load, when the page comes back into
+  view and every 5 minutes, if kdh_at has under 10 minutes left it calls GET
+  /api/session; `window.kdhFreshToken()`. hub.js RA reads the cookie at each
+  request (`tok()`), not once at load; activity.js already did.
+- Lasts until Sign out on that device: Supabase refresh tokens do not
+  expire unless the project sets a session time-box / inactivity timeout
+  (Auth -> Sessions) -- leave those off. Tests: scratchpad session_test.mjs
+  (27 server checks: hand-off, rotation, cookie flags, CSRF, renewal in the
+  middleware, API cookie forwarding, revoked / down cases, GET, DELETE) and
+  stay_test.mjs (14 browser checks), plus the updated login_pw_test /
+  login_email_test / remember_test. Tags kdh-user.js / hub.js 20261002c.

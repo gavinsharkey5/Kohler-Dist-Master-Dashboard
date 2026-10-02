@@ -163,6 +163,13 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-10-02 Stay signed in: reps sign in once per device and stay signed
+  in until they tap Sign out (the server keeps the session in a protected
+  cookie and renews it; Safari / home-screen apps no longer lose it). A
+  remembered email opens straight on the password box so the phone's saved
+  password fills it. Nothing to switch on; each rep signs in one last time
+  after it deploys. Leave Supabase Auth -> Sessions time-box / inactivity
+  timeout OFF, or sessions will end on that schedule.
 - [x] 2026-10-02 Account map (List / Map in My Accounts, clustered pins, a
   sheet with Open Account + Directions, Use My Location only on tap); notes
   with follow-up dates and account photos by type (Display / Window /

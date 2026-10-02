@@ -676,14 +676,15 @@ const LOCKED_REP = (()=>{
    (github.io has no auth-config.js, no cookie) none of this renders. */
 const RA = (()=>{
   const cfg = window.KDH_AUTH || null;
-  const token = (()=>{ try{ const m = document.cookie.match(/(?:^|;\s*)kdh_at=([^;]*)/); return m ? decodeURIComponent(m[1]) : ''; }catch(e){ return ''; } })();
-  const on = !!(cfg && cfg.url && cfg.key && token);
+  // read at each request: the keep-alive (shared/kdh-user.js) renews the cookie while the page is open
+  const tok = ()=>{ try{ const m = document.cookie.match(/(?:^|;\s*)kdh_at=([^;]*)/); return m ? decodeURIComponent(m[1]) : ''; }catch(e){ return ''; } };
+  const on = !!(cfg && cfg.url && cfg.key && tok());
   const map = new Map();      // program_id|account_num -> {status, note, updated_at}
   let loadedFor = null, loading = false, err = '';
   const num = a => a && a.n!=null ? String(a.n) : 'name:'+HubAccounts.norm(a ? a.name : '');
   const key = (pid, a) => pid+'|'+num(a);
   const base = () => cfg.url.replace(/\/$/,'')+'/rest/v1/rep_actions';
-  const hdr = extra => Object.assign({apikey:cfg.key, authorization:'Bearer '+token, accept:'application/json'}, extra||{});
+  const hdr = extra => Object.assign({apikey:cfg.key, authorization:'Bearer '+tok(), accept:'application/json'}, extra||{});
   // Only the signed-in person edits their own list. A manager previewing
   // or viewing a rep sees the marks but cannot press (their token would
   // stamp the rows with the manager's own name).

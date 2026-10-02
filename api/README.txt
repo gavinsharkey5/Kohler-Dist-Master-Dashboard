@@ -245,3 +245,10 @@ Reasons: incomplete (no street / town), not found, ambiguous, not on this
 route. Accounts with validated coordinates (accounts/geo.csv) never reach
 this. Not verified live from the build environment (the Census host is
 blocked there): open My Accounts -> Map once after deploy.
+
+SESSION (2026-10-02): /api/session -- see the header of api/session.js.
+POST {refresh_token, remember} right after sign-in (from /login/), GET to
+renew / ask who is signed in, DELETE to sign out. Keeps the refresh token in
+the HttpOnly kdh_rt cookie; middleware.js renews kdh_at from it. Excluded
+from the middleware matcher; same-origin only. Env: SUPABASE_URL,
+SUPABASE_PUBLISHABLE_KEY (already set for the middleware).

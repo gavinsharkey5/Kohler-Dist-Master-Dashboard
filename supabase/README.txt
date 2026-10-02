@@ -200,3 +200,13 @@ read all). The seed is written by accounts/generate.py on every run --
 re-run it after any reassignment, or a rep's photo and note access will
 follow the old assignment. Both are idempotent. Verified on local Postgres
 16 (scratchpad sql_notes_test).
+
+STAY SIGNED IN (2026-10-02)
+Reps stay signed in on a device until they sign out: the server keeps the
+refresh token in an HttpOnly cookie and middleware.js renews the access token
+from it (api/session.js). No SQL. Settings that would end sessions early:
+Authentication -> Sessions "Time-box user sessions" and "Inactivity timeout"
+-- leave both off. JWT expiry (access token) can stay at the default hour;
+renewal is automatic. Refresh token rotation and its reuse interval (default
+10 s) stay as they are -- the middleware relies on the reuse interval when a
+page fires several requests at once.

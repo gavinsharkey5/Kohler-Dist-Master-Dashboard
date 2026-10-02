@@ -127,7 +127,7 @@
         <input id="pw" class="field" type="password" name="password" autocomplete="current-password" placeholder="Your password" required>
         <button type="button" class="eye" data-for="pw" aria-label="Show password">Show</button>
       </div>
-      <label class="remember" for="rememberPw"><input type="checkbox" id="rememberPw" name="remember" checked><span>Remember me on this device<small>Stay signed in for 30 days &mdash; no password next time.</small></span></label>
+      <label class="remember" for="rememberPw"><input type="checkbox" id="rememberPw" name="remember" checked><span>Remember me on this device<small>Stay signed in on this device until you sign out. Untick on a shared device.</small></span></label>
       <button id="pwGo" class="btn" type="submit">Sign in</button>
       <p class="links"><button type="button" class="link" id="forgot">Forgot password? Email me a code</button></p>
     </form>
@@ -170,7 +170,7 @@
         <button type="button" class="eye" data-for="newpw2" aria-label="Show password">Show</button>
       </div>
       <p class="rules">At least 8 characters. Both boxes must match.</p>
-      <label class="remember" for="rememberNew"><input type="checkbox" id="rememberNew" name="remember" checked><span>Remember me on this device<small>Stay signed in for 30 days &mdash; no password next time.</small></span></label>
+      <label class="remember" for="rememberNew"><input type="checkbox" id="rememberNew" name="remember" checked><span>Remember me on this device<small>Stay signed in on this device until you sign out. Untick on a shared device.</small></span></label>
       <button id="setGo" class="btn" type="submit">Save and continue</button>
       <p class="links"><span></span><a class="link" id="setNotYou" href="/login/?signout=1">Not you? Sign out</a></p>
     </form>
@@ -239,17 +239,22 @@
   // the stored Supabase session is dropped after sign-in, so closing the
   // browser ends it. (The password itself is never stored by the page;
   // the browser's own password manager may offer to save it.)
+  // 2026-10-02 (Gavin: reps kept having to sign in): the box starts TICKED on
+  // every visit -- an earlier untick no longer sticks. Unticking is a choice
+  // for that one sign-in on a shared device.
   var REMEMBER = 'kdh_remember';
-  function rememberPref() { try { return localStorage.getItem(REMEMBER) !== '0'; } catch (e) { return true; } }
+  var keepChoice = true;            // this visit's choice (the box), ticked to start
+  function rememberPref() { return keepChoice; }
   function remembering() {
     var box = ['rememberNew', 'rememberPw'].map(function (id) { return $(id); }).filter(function (b) { return b && !b.closest('form').classList.contains('hidden'); })[0];
     return box ? box.checked : rememberPref();
   }
   function initRemember() {
     var on = rememberPref();
-    ['rememberNew', 'rememberPw'].forEach(function (id) { var b = $(id); if (!b) return; b.checked = on; b.addEventListener('change', function () { try { localStorage.setItem(REMEMBER, b.checked ? '1' : '0'); } catch (e) {} var o = $(id === 'rememberNew' ? 'rememberPw' : 'rememberNew'); if (o) o.checked = b.checked; }); });
+    ['rememberNew', 'rememberPw'].forEach(function (id) { var b = $(id); if (!b) return; b.checked = on; b.addEventListener('change', function () { keepChoice = b.checked; try { localStorage.setItem(REMEMBER, b.checked ? '1' : '0'); } catch (e) {} var o = $(id === 'rememberNew' ? 'rememberPw' : 'rememberNew'); if (o) o.checked = b.checked; }); });
   }
-  var life = '; Max-Age=2592000';
+  var KEEP = '; Max-Age=34560000';   // 400 days, the longest a browser keeps a cookie
+  var life = KEEP;
   function setCookie(token) {
     document.cookie = COOKIE + '=' + encodeURIComponent(token) + '; Path=/' + life + '; Secure; SameSite=Lax';
   }
@@ -263,6 +268,17 @@
     document.cookie = 'kdh_user=; Path=/; Max-Age=0; Secure; SameSite=Lax';
     document.cookie = 'kdh_preview=; Path=/; Max-Age=0; Secure; SameSite=Lax';
   }
+  // STAY SIGNED IN (2026-10-02): the server holds the session (api/session.js
+  // sets an HttpOnly refresh-token cookie; middleware.js renews the access
+  // token from it), so a rep is not asked again until they sign out.
+  function serverSession(method, body) {
+    var ctl = window.AbortController ? new AbortController() : null;
+    var t = setTimeout(function () { if (ctl) ctl.abort(); }, 6000);
+    return fetch('/api/session', { method: method, credentials: 'same-origin', headers: body ? { 'content-type': 'application/json' } : {}, body: body ? JSON.stringify(body) : undefined, signal: ctl ? ctl.signal : undefined })
+      .then(function (r) { clearTimeout(t); return r.ok ? r.json().catch(function () { return { ok: true }; }) : null; })
+      .catch(function () { clearTimeout(t); return null; });
+  }
+  function homeFor(role) { return next === '/' && role !== 'manager' ? '/rep/' : next; }
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
@@ -295,7 +311,7 @@
 
   if (params.get('signout')) {
     clearPending();
-    sb.auth.signOut().then(function () {
+    serverSession('DELETE').then(function () { return sb.auth.signOut(); }).then(function () {
       clearCookie();
       history.replaceState(null, '', '/login/');
       showForm();
@@ -322,10 +338,32 @@
       // to the code step instead of asking for the email and sending again.
       var p = loadPending();
       if (p) { reset = !!p.reset; showCodeStep(p.email, p.at, false); }
-      else { showForm(); if (whyText) say('info', whyText); }
+      else resume();
     }
     if (event === 'SIGNED_OUT') clearCookie();
   });
+
+  // No session in this page: the server may still hold one (the cookie
+  // outlives this page's storage) -- then go straight in. Otherwise, with a
+  // remembered email, open on the password box so the phone's saved
+  // password fills it; first-timers get the email step.
+  function resume() {
+    show('working');
+    serverSession('GET').then(function (r) {
+      if (r && r.ok && !entered) {
+        entered = true;
+        $('working').innerHTML = '<span class="spin"></span><span>Signed in as <b>' + escapeHtml(r.name || '') + '</b>. Opening&hellip;</span>';
+        location.replace(homeFor(r.role));
+        return;
+      }
+      var remembered = rememberedEmail();
+      if (!remembered) { showForm(); if (whyText) say('info', whyText); return; }
+      signinMode(remembered).then(function (res) {
+        if (!res.error && res.data === 'password') showPasswordStep(remembered);
+        else { showForm(); if (whyText) say('info', whyText); }
+      }, function () { showForm(); });
+    });
+  }
 
   // Signed in (password, code or link). Check the allow list, then either
   // ask for a password (first sign-in, or "Forgot password") or go in.
@@ -361,7 +399,7 @@
     rememberEmail(me.email || session.user.email);
     var keep = remembering();
     try { localStorage.setItem(REMEMBER, keep ? '1' : '0'); } catch (e) {}
-    life = keep ? '; Max-Age=2592000' : '';
+    life = keep ? KEEP : '';
     setCookie(session.access_token);
     if (!keep) forgetStoredSession();
     // Who is signed in, for the pages (the hub locks a rep to their own
@@ -372,7 +410,16 @@
     $('signout').classList.remove('hidden');
     show('working'); hush();
     $('working').innerHTML = '<span class="spin"></span><span>Signed in as <b>' + escapeHtml(me.name || session.user.email) + '</b>. Opening&hellip;</span>';
-    location.replace(next === '/' && me.role !== 'manager' ? '/rep/' : next);
+    // Hand the session to the server (it keeps it in an HttpOnly cookie and
+    // renews it), then drop this page's copy: the server rotates the token,
+    // so the stored one would be stale. If the hand-off fails, keep the
+    // stored session -- the page renews it the old way next time.
+    var go = function () { location.replace(homeFor(me.role)); };
+    if (!session.refresh_token) { go(); return; }
+    serverSession('POST', { refresh_token: session.refresh_token, remember: keep }).then(function (r) {
+      if (r && r.ok) forgetStoredSession();
+      go();
+    });
   }
 
   // mode: 'new' (no account yet: sign up with this password), 'reset'
@@ -529,6 +576,7 @@
     $('switchAcct').addEventListener('click', function (e) {
       e.preventDefault();
       forgetEmail(); clearPending(); clearCookie(); forgetStoredSession(); reset = false; current = null; pendingEmail = '';
+      serverSession('DELETE');
       $('email').value = ''; $('pw').value = '';
       sb.auth.signOut().catch(function () {});
       hush(); show('email'); $('email').focus();
