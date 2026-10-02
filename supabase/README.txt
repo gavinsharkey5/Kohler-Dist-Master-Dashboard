@@ -201,6 +201,14 @@ re-run it after any reassignment, or a rep's photo and note access will
 follow the old assignment. Both are idempotent. Verified on local Postgres
 16 (scratchpad sql_notes_test).
 
+PHOTO LABELS (2026-10-03)
+Run migrations/20261003090000_photo_labels.sql after the notes + photos file.
+Idempotent. category may be empty (Uncategorized), adds brand / program_id
+(<= 120 chars), and lets ONLY the author update category, caption, brand,
+program_id; a trigger keeps the account, file, author, premise, size and
+times as they were. Verified on a local Postgres 16 (scratchpad
+sql_notes_test.sh, 43 checks).
+
 STAY SIGNED IN (2026-10-02)
 Reps stay signed in on a device until they sign out: the server keeps the
 refresh token in an HttpOnly cookie and middleware.js renews the access token

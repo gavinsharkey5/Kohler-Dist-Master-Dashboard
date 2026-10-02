@@ -117,7 +117,7 @@ function mount(el, packet, opts){
         <textarea id="askIn" rows="1" placeholder="${st.mode==='pitch' ? 'Your opening line to the buyer…' : 'Ask about this account…'}" aria-label="Your message" maxlength="4000"${cfgOff?' disabled':''}></textarea>
         <button type="submit" class="btn primary" id="askSend"${cfgOff?' disabled':''}>Send</button>
       </form>
-      <div class="ask-foot">${msgs.length ? `<button type="button" class="btn" id="askClear">Delete Conversation</button> · ` : ''}<span>Kept only in this browser tab, for you, until you close it or sign out. Numbers come from the record, not from memory.</span></div>`;
+      <div class="ask-foot">${msgs.length ? `<button type="button" class="btn ghost sm" id="askClear">Delete Conversation</button> · ` : ''}<span>Kept only in this browser tab, for you, until you close it or sign out. Numbers come from the record, not from memory.</span></div>`;
     el.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click', ()=>{ if(busy) return; st.mode = b.dataset.mode; save(n, st); render(); }));
     el.querySelectorAll('.ask-chip').forEach(b=>b.addEventListener('click', ()=>send(b.dataset.q)));
     const form = el.querySelector('#askForm'); const ta = el.querySelector('#askIn');

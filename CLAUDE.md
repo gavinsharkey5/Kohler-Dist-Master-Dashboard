@@ -1789,3 +1789,65 @@ unticked "Remember me" that stuck) meant typing it all again. Now:
   middleware, API cookie forwarding, revoked / down cases, GET, DELETE) and
   stay_test.mjs (14 browser checks), plus the updated login_pw_test /
   login_email_test / remember_test. Tags kdh-user.js / hub.js 20261002c.
+
+## Account workspace, third build: activity, opportunities, drafts, exceptions (2026-10-03)
+
+Gavin's brief (Mobbin refs: Shopify Home, Jobber client detail, HubSpot
+contact activities, komoot photos, Attio My Tasks). NOT built on purpose:
+Quick Visit Recap and Follow-Up From a Note (Gavin: not in this round). What
+holds now (accounts/README.txt has every rule):
+- BUTTONS: rep/rep.css "BUTTONS" -- 44px (.sm 40px), radius 10, visible
+  border, icon + label in one control, selected (aria-pressed) / pressed /
+  focus-visible / loading (aria-busy spinner) / disabled; spacing 8/12/16/24
+  (--sp-1..4). shared/README.txt "BUTTONS + DATA SOURCES".
+- REP HOME (rep/index.html): name header, account search (-> /accounts/#q=),
+  a prominent My Accounts row, "Needs Attention" rows with labelled counts
+  (Open Follow-Ups / Possible Reorders / Lapsed Products / Tap Surveys Due
+  -> filtered My Accounts), a quiet line when nothing is open, tools as one
+  card style; stale MPO months read "<Month> results · <Month> not yet
+  published". #fuRow / #fuList / .tstat are gone (.rh-arow rows).
+- MY ACCOUNTS: title + List/Map on one row, a count line only when filtered,
+  row "Also N possible reorders · M lapsed products" (L.moreText).
+- ACCOUNT ACTIVITY (accounts/activity.js): one timeline -- notes,
+  follow-ups (+ done), photos, program marks, tap survey passes, monthly
+  PURCHASE ACTIVITY (never "invoice", never "visit"); stable ids; Taken vs
+  Uploaded on photos; Overview shows 5 + View All; More -> Account Activity
+  (sub=activity; sub=notes and data-go tasks:notes map to it) has type
+  chips, search, Load Older.
+- OPPORTUNITIES (accounts/opps.js, KdhOpps): "Programs This Account Could
+  Help Complete" on the Overview (top 3) and More -> Programs (all +
+  credited + don't-apply). Only programs whose tracker lists the account,
+  not ended, sellable in the area; Selling Resources = requirement, NO
+  approved pitch (none exists -- never generate one), sell sheets (Carbliss
+  only), packages, warehouse units with the report date (snapshot, stale
+  tag > 7 days). Rep's overall progress on its own line ("Mike's" for a
+  manager). "View N Eligible Products" opens Products searched to the family.
+- DRAFTS: note -> localStorage kdh_draft:v1:<fnv(email)>:<n>:note, photo ->
+  IndexedDB kdh-drafts; owner = the REAL signed-in email (never preview).
+  States Draft — Saved on This Device / Pending Upload / Uploading / Saved
+  / Upload Failed — Retry; Retry is a tap (no background sync); a retry
+  re-checks the session + owner and cannot duplicate (note:<uuid> id and
+  storage_path unique -> 409/23505 = already saved). /login/ was NOT
+  changed: drafts are invisible to anyone else by the owner hash.
+- PHOTO LABELS: Uncategorized allowed; optional brand / program; filters
+  (type, search, date, taken by, brand); author-only Edit Labels. Needs
+  supabase/migrations/20261003090000_photo_labels.sql (Gavin to run;
+  verified locally; the page degrades without it).
+- EXCEPTIONS (exceptions/, managers only, not in REP_PATHS; refuses rep and
+  rep preview): overdue / due-soon / undated-14-day follow-ups, tap surveys
+  past or near 60 days, programs ending within 14 days with work left
+  (rep-level, with the tracker's leads). Grouped by account, account vs
+  exception counts, priority order printed on the page, 25 accounts at a
+  time, filters rep / search / type / due (hash). No checkboxes; no issue
+  source exists (says so). Sidebar Manager -> Exceptions + manager home card
+  (21 cards now). exceptions/README.txt.
+- DATA SOURCES: shared/kdh-data.js (KdhData) -- loaders + the dataset list
+  with freshness; access is still decided only by the middleware and RLS.
+- REQUEST: accounts/REPORTING_REQUEST.md section 10 (S1 SQL; essential A1
+  approved pitches, A2 sell sheets for all brands, A3 visit records, A4
+  issue log; optional B1-B5; three definitions).
+Tests (scratchpad): drafts_test.mjs (30: draft reload, other-person
+isolation, offline Pending Upload, lost reply -> no duplicate, photo
+draft reload + Retry, Discard), notes_photos_test.mjs (updated),
+sql_notes_test.sh (43, incl. photo labels), exceptions_test.mjs. Tags
+20261003a (rep.css, accounts.*, activity, opps, kdh-user, exceptions).

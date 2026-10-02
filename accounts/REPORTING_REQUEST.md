@@ -312,3 +312,48 @@ Confirm" (revenue, cost, Fusion's Gross, returns and credits, discounts,
 supplier funding, payout timing, participation, qualifying rules, baseline,
 overlap between programs, internal accounts). Qualifying-sales gross profit
 is never presented as profit caused by an incentive.
+
+## 10. Activity, opportunities, photos and exceptions -- the one list to send (2026-10-03)
+
+The 2026-10-03 build added the Account Activity timeline, "Programs This
+Account Could Help Complete" with selling resources, saved drafts, photo
+labels and the manager Exceptions page. This is the ONE consolidated request
+for that work. Items already above are referred to, not restated.
+
+### 10.1 One step for Gavin (no data, just SQL)
+
+| # | What | Why |
+|---|---|---|
+| S1 | Run `supabase/migrations/20261003090000_photo_labels.sql` in the Supabase SQL Editor (after the 2026-10-02 file, which is already run). | Lets a photo be Uncategorized, adds the optional brand / program labels and lets the author fix a label later. Until it runs, photos save without brand / program, relabelling is hidden and the page says so once. Verified on a local Postgres 16 (idempotent, author-only relabel, account / file / author / times locked). |
+
+### 10.2 ESSENTIAL (a feature is blocked or shown as unavailable without it)
+
+| # | Source | Fields | History | Refresh | Turns on |
+|---|---|---|---|---|---|
+| A1 | **Approved customer pitches per program** | program id, the approved one- or two-line pitch, who approved it, date, optional supplier source (deck / sell sheet name) | current programs | when a program is loaded | "Approved Quick Pitch" under Selling Resources. Today every card says no approved pitch is on file: the program sheets in the repo are rep-incentive summaries (with payouts), not customer copy, and nothing is generated in their place. A plain CSV `incentive-tracking/data/pitches.csv` (program_id,pitch,approved_by,approved_on) is enough. |
+| A2 | **Sell sheets for every brand** (beyond Carbliss) | brand family or ProductID, sell-sheet URL or PDF, valid-from / to | current | when a supplier sends a new one | "Sell Sheet" links on every opportunity card. Only Carbliss has them (the Encompass Brands export, `brands_sell_sheets.xlsx`); the same export for all brands is the simplest source. |
+| A3 | **Visit records** (= part of E2) | rep user ID, CustomerID, check-in / check-out time, source (Encompass, iSellBeer, GPS) | 12 months | daily | a real "Visit" event in Account Activity. Until then nothing on the page is called a visit: tap surveys, photos and notes are labelled as what they are, and Exceptions never infers a missed visit. |
+| A4 | **Account issue log** (complaints, service problems, equipment, out-of-stock reports) | issue id, CustomerID, type, opened / closed dates, owner, status, short text | open issues + 6 months closed | daily | "Unresolved Issues" on the Exceptions page and an Issue event in Account Activity. Exceptions says plainly that no issue source exists. |
+
+### 10.3 OPTIONAL (improves what is already on the page)
+
+| # | Source | Fields | Refresh | Turns on |
+|---|---|---|---|---|
+| B1 | **iSellBeer survey passes with the surveyor's name** | Account #, Date/Time, user | with each tap export | the author on tap-survey events (today: "iSellBeer" without a name). The workbook keeps passes (the Tap Tracker's history payload) but not who took them. |
+| B2 | **Display / photo records from iSellBeer** (= D1) | account, date, type, brand, image URL | daily | iSellBeer photos beside ours in Account Activity and Photos. |
+| B3 | **Program-to-package eligibility in data form** (= P4) | program id, eligible ProductIDs / packages | when a program is loaded | "Eligible" on each opportunity card read from the rule instead of from the brand family + an "N oz" size in the program name. |
+| B4 | **Reliable sellable inventory** (= I1 / 8.3) | ProductID, sellable units, timestamp | daily or better | the stock lines under Selling Resources stop carrying a "Snapshot is N days old" tag. They are always labelled as a snapshot at Kohler's warehouse, never live. |
+| B5 | **Rep ↔ manager by user ID** (= O5) | rep user ID, manager user ID | when teams change | Exceptions' "All My Reps" read from data instead of the trackers' DM groups + kdh_team names. |
+
+### 10.4 Definitions to confirm
+
+1. Tap survey "due": the Tap Tracker's 60-day resurvey rule on the latest pass. Should any on-premise account type be exempt (seasonal, closed, no draft)? 461 surveys are past 60 days in the 2026-09-23 export.
+2. Exceptions windows: program ending within 14 days; follow-up due soon within 7 days; an undated follow-up becomes an exception after 14 days. Change any of these?
+3. Who may relabel a photo: today only its author. Should a DM be able to fix labels on their team's photos?
+
+### 10.5 What is NOT needed from anyone
+
+Drafts and upload recovery use the device's own storage (localStorage for a
+note, IndexedDB for a photo) scoped to the signed-in person; nothing new in
+Supabase. Opportunities use the trackers' existing lists and rules.
+Exceptions reads only data the site already has.

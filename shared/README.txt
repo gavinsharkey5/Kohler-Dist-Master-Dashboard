@@ -138,3 +138,20 @@ NAV + TITLES (2026-10-02)
   in both themes; never dim text with opacity (it drops below 4.5:1) --
   use --kdh-text-3. Text on a filled accent uses --kdh-brand-ink.
   scratchpad contrast_audit.mjs is the measurement.
+
+BUTTONS + DATA SOURCES (2026-10-03)
+Buttons: rep/rep.css "BUTTONS" -- .btn is 44px tall (40px for .sm), 10px
+radius, a visible border, icon + label in one control; variants .primary,
+.outline, .ghost, .wide, .danger; states :hover, :active, :focus-visible,
+[aria-pressed="true"] (selected), [aria-busy="true"] (loading spinner),
+:disabled. Spacing steps --sp-1..4 = 8 / 12 / 16 / 24px. Use these on any
+new control; never a bare <a> styled as a button with its own sizes.
+
+shared/kdh-data.js (window.KdhData) is where a page asks for a dataset:
+repIndex, repBook(name), catalog, actions({reps, account, status}), team,
+plus json / rest helpers. The comment at its top lists every dataset, its
+source and its freshness field. It decides nothing about access (the
+middleware and Supabase RLS do). Exceptions uses it; the older pages still
+carry their own loaders in a separate "data" block (accounts.js, team/,
+rep/) -- move them over when they are next touched. A future Snowflake /
+Postgres feed replaces a loader there and nothing else.

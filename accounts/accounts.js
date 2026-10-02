@@ -53,12 +53,12 @@ const state = {view:'list', mode:'list', q:'', rep:'', need:'', kind:'', fam:'',
 // (sec=sales / inv / tasks / ask, data-go="sales:alerts" ...) translate.
 const SECS = [['over','Overview'],['products','Products'],['history','History'],['more','More']];
 const HSUBS = [['sales','Sales & Alerts'],['patterns','Buying Patterns'],['record','Monthly Record']];
-const MSUBS = ['programs','notes','photos','taps','tools','ask','about'];
+const MSUBS = ['programs','activity','notes','photos','taps','tools','ask','about'];
 const LEGACY_SEC = {sales:['history','sales'], inv:['history','record'], tasks:['more',''], ask:['more','ask']};
 // in-page destinations: key -> [section, sub-view, element id]
 const GO = {'sales:sales':['history','sales','sales'], 'sales:alerts':['history','sales','alerts'], 'sales:patterns':['history','patterns','patterns'],
   'sales:products':['products','','products'], 'sales:discuss':['products','','discuss'], 'inv:inv':['history','record','inv'], 'inv:balances':['history','record','balances'],
-  'tasks:programs':['more','programs','programs'], 'tasks:notes':['more','notes','notes'], 'tasks:taps':['more','taps','taps'], 'tasks:tools':['more','tools','tools'], 'ask:ask':['more','ask','ask']};
+  'tasks:programs':['more','programs','programs'], 'tasks:notes':['more','activity','activity'], 'tasks:taps':['more','taps','taps'], 'tasks:tools':['more','tools','tools'], 'ask:ask':['more','ask','ask']};
 function goTarget(go){ if(GO[go]) return GO[go]; const [sec, sub, id] = String(go).split(':'); return [sec, sub||'', id||'']; }
 // product list (Sales & Products): search, view, filters -- kept in memory per account
 const plist = {n:null, q:'', view:'bought', sup:'', fam:'', pkg:'', limit:40};
@@ -77,6 +77,7 @@ function applyHash(){
   else { state.sec = SECS.some(x=>x[0]===h.sec) ? h.sec : 'over'; state.sub = h.sub || ''; }
   if(state.sec==='history' && !HSUBS.some(x=>x[0]===state.sub)) state.sub = 'sales';
   if(state.sec==='more' && !MSUBS.includes(state.sub)) state.sub = '';
+  if(state.sec==='more' && state.sub==='notes') state.sub = 'activity';
   if(state.sec==='over' || state.sec==='products') state.sub = '';
   if(h.acct){ state.view = 'acct'; state.n = String(h.acct); } else { state.view = 'list'; state.n = null; }
 }
@@ -216,9 +217,17 @@ function leadOf(a, nd){
   else if(nd.reorder){ const x = firstOf('reorder'); L = {k:'reorder', g:'reorder', label:'Possible Reorder', d: x ? x.p : plural(nd.reorder,'product')}; }
   else if(nd.lapsed){ const x = firstOf('lapsed'); L = {k:'lapsed', g:'lapsed', label:'Lapsed Product', d: x ? x.p : plural(nd.lapsed,'product')}; }
   else if(nd.slower || nd.lessOften){ const x = firstOf('slower'); L = {k:'slower', g:'slower', label:'Buying Less Often', d: x ? x.p : 'fewer buying months than the six before'}; }
-  if(L) L.more = Math.max(0, items-1);
+  if(L){
+    L.more = Math.max(0, items-1);
+    // what the other records ARE, in words (2026-10-02: "13 More Items" said nothing)
+    const left = {follow:nd.follow, tap:nd.tap?1:0, prog:nd.warm.length, reorder:nd.reorder, lapsed:nd.lapsed, slower:nd.slower || (nd.lessOften?1:0)};
+    left[L.k] = Math.max(0, (left[L.k]||0)-1);
+    const parts = MORE_WORDS.filter(([k])=>left[k]>0).map(([k, one, many])=>left[k]+' '+(left[k]===1 ? one : many));
+    L.moreText = parts.length ? 'Also '+parts.join(' · ') : '';
+  }
   return L;
 }
+const MORE_WORDS = [['follow','follow-up','follow-ups'], ['tap','survey due','surveys due'], ['prog','program lead','program leads'], ['reorder','possible reorder','possible reorders'], ['lapsed','lapsed product','lapsed products'], ['slower','product bought less often','products bought less often']];
 function hasKind(nd, kind){
   if(kind==='reorder') return nd.reorder>0; if(kind==='lapsed') return nd.lapsed>0; if(kind==='slower') return nd.slower>0 || nd.lessOften;
   if(kind==='follow') return nd.follow>0; if(kind==='prog') return nd.progs>0; if(kind==='tap') return !!nd.tap;
@@ -257,7 +266,7 @@ function renderList(){
   const missing = reps.filter(r=>!repData.get(r));
   const who = !isMgr ? '' : (SCOPE.length===rosterAll.length ? 'Every rep' : 'Your team');
   const title = isMgr ? 'Team Accounts' : 'My Accounts';
-  const sub = isMgr ? (state.rep ? `${plural(rows.length,'account')} · ${E(state.rep)}` : `${plural(rows.length,'account')} · ${plural(SCOPE.length,'rep')} · ${who}`) : `${plural(rows.length,'account')} on your route`;
+  const sub = isMgr ? (state.rep ? E(state.rep) : `${plural(SCOPE.length,'rep')} · ${who}`) : 'Your route';
   const first = repData.get(reps[0]);
   const ref = first && first.sales.ref ? first.sales.ref : (first ? first.sales.through : '');
   const fresh = first ? `Customer base as of ${E(first.book.asOf)} · sales through ${E(monLabel(ref))} · tap surveys as of ${E((first.taps.asOf||'').slice(0,10))}` : '';
@@ -266,7 +275,7 @@ function renderList(){
   const active = state.need==='any';
   // the three views as one segmented control (Shopify's filter tabs): the
   // selected one is filled, each says how many accounts it holds
-  const segs = [['', 'All', rows.length], ['any', 'Needs Attention', attention], ['follow', 'Follow-ups', follows]];
+  const segs = [['', 'All', rows.length], ['any', 'Needs Attention', attention], ['follow', 'Follow-Ups', follows]];
   const segHtml = `<div class="seg" id="needSeg" role="group" aria-label="Show">${segs.map(([v, l, c])=>`<button type="button" data-need="${v}" aria-pressed="${state.need===v}"${state.need===v ? ' class="on"' : ''}>${l}<span class="n">${c}</span></button>`).join('')}</div>`;
   // COMPACT HEADER (2026-10-01, third pass; Shopify's list header): title and
   // counts on one line, search, the three views, then one row of small
@@ -276,7 +285,7 @@ function renderList(){
   // LIST / MAP (2026-10-02): one selector; the map draws exactly the rows the
   // list would show (same search, filters and authorized accounts)
   const viewSeg = `<div class="seg vseg" id="viewSeg" role="group" aria-label="View">${[['list','List'],['map','Map']].map(([v,l])=>`<button type="button" data-mode="${v}" aria-pressed="${state.mode===v}"${state.mode===v?' class="on"':''}>${l}</button>`).join('')}</div>`;
-  app.innerHTML = `<header class="ws lhead"><div class="id"><h1>${title}</h1><p class="idline">${sub}${flagged ? ` · ${plural(flagged,'account')} with alerts` : ''}</p></div>${viewSeg}</header>
+  app.innerHTML = `<header class="ws lhead"><div class="lh-top"><h1>${title}</h1>${viewSeg}</div><div class="id"><p class="idline">${sub}${flagged ? ` · ${plural(flagged,'account')} with buying alerts` : ''}${ref ? ` · sales through ${E(monLabel(ref))}` : ''}</p></div></header>
     <div class="filters">
       <input type="search" class="kdh-field" id="q" placeholder="Search by name, town or #${isMgr?' or rep':''}" value="${E(state.q)}" autocomplete="off" aria-label="Search accounts">
       ${isMgr ? `<select id="repSel" aria-label="Rep"><option value="">All my reps</option>${SCOPE.map(r=>`<option value="${E(r)}"${r===state.rep?' selected':''}>${E(r)}</option>`).join('')}</select>` : ''}
@@ -295,7 +304,7 @@ function renderList(){
     </div>
     ${missing.length ? `<div class="kdh-state unavailable"><b>No account list on file for ${E(missing.join(', '))}.</b><span>The customer base report has no accounts under that name, or the data slice has not been generated.</span></div>` : ''}
     ${!SCOPE.length ? `<div class="kdh-state unavailable"><b>We couldn’t find your name on the customer base.</b><span>You’re signed in as ${E(U ? U.name : '')}. Ask Gavin to check the spelling on the access list.</span></div>` : ''}
-    ${state.mode==='map' ? `<div id="mapSlot" class="mapslot"></div>` : `<p class="count">${shown.length===rows.length ? '' : `${shown.length} of `}${plural(rows.length,'account')}${state.need || state.fam ? ' · filtered' : ''}</p>
+    ${state.mode==='map' ? `<div id="mapSlot" class="mapslot"></div>` : `${shown.length!==rows.length || state.q ? `<p class="count">Showing ${shown.length} of ${plural(rows.length,'account')}</p>` : ''}
     <div id="rows">${listBody(shown, rows)}</div>
     ${shown.length>state.limit ? `<button class="btn outline more" id="more" type="button">Show ${Math.min(120, shown.length-state.limit)} more of ${shown.length}</button>` : ''}`}`;
   if(state.mode==='map' && window.KdhMap){
@@ -323,7 +332,7 @@ function renderList(){
 function rowHtml({a, rep, nd}){
   const L = leadOf(a, nd);
   return `<a class="row arow" href="${acctHash(a.n, rep)}" data-n="${E(a.n)}" data-rep="${E(rep)}">
-        <span class="row-main"><h3>${E(a.name)}</h3><span class="row-s">${E([a.city, '#'+a.n, premWord(a.prem)].filter(Boolean).join(' · '))}${isMgr ? ` · <span class="rep">${E(rep)}</span>` : ''}</span>${L ? `<span class="row-lead k-${L.k}"><b>${E(L.label)}</b><span class="ld">${E(L.d)}</span>${L.more ? `<span class="lm">${L.more} More ${L.more===1?'Item':'Items'}</span>` : ''}</span>` : ''}</span>
+        <span class="row-main"><h3>${E(a.name)}</h3><span class="row-s">${E([a.city, '#'+a.n, premWord(a.prem)].filter(Boolean).join(' · '))}${isMgr ? ` · <span class="rep">${E(rep)}</span>` : ''}</span>${L ? `<span class="row-lead k-${L.k}"><b>${E(L.label)}</b><span class="ld">${E(L.d)}</span>${L.moreText ? `<span class="lm">${E(L.moreText)}</span>` : ''}</span>` : ''}</span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></a>`;
 }
 // NEEDS ATTENTION, BY LEADING ACTION (Todoist's sections): each account once,
@@ -627,12 +636,27 @@ async function renderAccount(){
       <div id="actQuick" class="act-quick"></div>
     </div>`;
 
+  /* ---- PROGRAMS THIS ACCOUNT COULD HELP COMPLETE (accounts/opps.js) ---- */
+  const OPP = window.KdhOpps ? window.KdhOpps.build({a, rep, k, programs: idx.programs, credited, targets, H, HB: HubAccounts, CAT, famKey, familyAllowed, today: TODAY, whose: isMgr ? rep.split(' ')[0]+'’s' : 'Your'}) : null;
+  const oppLinks = {prog: o=>progLink(o.p, rep), acct: o=>hubAcctLink(o.p, rep, a.n, 'targets')};
+  const oppOver = OPP ? window.KdhOpps.overviewHtml(OPP, oppLinks, acctHash(a.n, rep, 'more', 'programs')) : progHtml;
+  const oppFull = OPP ? window.KdhOpps.fullHtml(OPP, oppLinks) : progHtml;
+  /* ---- the activity timeline's non-Hub records: tap survey passes (iSellBeer)
+     and monthly purchase activity (the sales record, never called invoices) ---- */
+  const tapPasses = [];
+  ((sales && sales.tapHistory) || []).forEach(t=>{ if(t && t.visited) tapPasses.push(t); });
+  if(a.taps && a.taps.last && !tapPasses.some(t=>t.visited===a.taps.last)) tapPasses.push({visited:a.taps.last, display:a.taps.lastDisplay||a.taps.last, taps:(a.taps.ours||0)+(a.taps.them||0), ours:a.taps.ours||0, them:a.taps.them||0});
+  const purchases = [];
+  if(sales){ for(let i=N-1;i>=0;i--){ const cs = sales.series[i]||0; if(cs<=0) continue;
+    const bought = sales.products.filter(p=>p[5][i]>0).sort((x,y)=>y[5][i]-x[5][i]);
+    purchases.push({month: months[i], label: monLabel(months[i]), cases: cs, products: bought.length, top: bought.slice(0, 5).map(p=>({name:p[1], cases:p[5][i]}))}); } }
+
   /* ---- More: one plain menu of the account's remaining sections ---- */
   const openProg = idx.programs.filter(p=>{ const cred = credited.some(c=>c.p===p); const tg = targets.find(t=>t.p===p); return cred || (tg && tg.warm); }).length;
   const tapLine = a.taps ? (due ? (due.level==='overdue' ? `Resurvey overdue · ${due.days} days since the last survey` : due.level==='soon' ? `Resurvey due in ${plural(60-due.days,'day')}` : `Surveyed ${due.days} days ago`)+` · ${a.taps.ours} ours · ${a.taps.them} theirs` : 'Survey on file') : (a.prem==='On' ? 'No tap survey on file' : '');
   const moreItems = [
-    ['programs', 'Programs', `${plural(idx.programs.length,'active program')}${openProg ? ` · ${openProg} credited or a lead here` : ''}`],
-    ['notes', 'Notes & Activity', rows.length ? `${plural(follows.length,'open follow-up')} · ${rows.length} ${rows.length===1?'entry':'entries'} in all` : 'None yet'],
+    ['programs', 'Programs This Account Could Help Complete', OPP ? `${plural(OPP.list.length,'opportunity','opportunities')}${OPP.credited.length ? ` · ${OPP.credited.length} credited` : ''}` : `${plural(idx.programs.length,'active program')}${openProg ? ` · ${openProg} credited or a lead here` : ''}`],
+    ['activity', 'Account Activity', `Notes, follow-ups, photos, tap surveys and purchases${rows.length ? ` · ${plural(follows.length,'open follow-up')}` : ''}`],
     ['photos', 'Photos', ACT && ACT.photos && ACT.photos.length ? `${plural(ACT.photos.length,'photo')} · latest ${E(fmtDay(new Date(ACT.photos[0].uploaded_at)))}` : 'Displays, windows, cooler doors, tap handles'],
     tapLine ? ['taps', 'Taps & Visits', tapLine] : null,
     ['tools', 'Tools & Links', 'Incentive Hub, Tap Tracker, Directions'],
@@ -653,7 +677,8 @@ async function renderAccount(){
   app.innerHTML = back(fromLabel, fromHref) + headFull + secnav
     + secHtml('over', `<div class="over-grid"><div class="over-main">
       <section class="sec" id="focus"><h2>Next Actions</h2>${focusHtml}</section>
-      <section class="sec" id="activity"><h2>Notes &amp; Activity</h2><div class="card actcard" id="actFeed"><div class="kdh-state loading slim">Loading notes…</div></div></section>
+      <section class="sec" id="opps"><h2>Programs This Account Could Help Complete</h2>${oppOver}</section>
+      <section class="sec" id="activity"><h2>Account Activity</h2><div class="card actcard" id="actFeed"><div class="kdh-state loading slim">Loading activity…</div></div></section>
       <section class="sec" id="buying"><h2>Sales Context <small>through ${E(monLabel(refKey))}</small></h2>${buyHtml}</section>
     </div><aside class="over-side">
       <section class="sec" id="overview"><h2>Account Details</h2>${identHtml}</section>
@@ -668,8 +693,8 @@ async function renderAccount(){
       + subHtml('history', 'record', `<section class="sec" id="inv"><h2>Monthly Record <small>Fusion, net of returns</small></h2>${invHtml}</section>
         <section class="sec" id="balances"><h2>Invoices, Credits &amp; Receivables</h2>${invMissingHtml}</section>`))
     + secHtml('more', subHtml('more', '', moreMenu)
-      + subHtml('more', 'programs', moreBack + `<section class="sec" id="programs"><h2>Programs <small>${plural(idx.programs.length,'active program')} for ${E(rep.split(' ')[0])}</small></h2>${progHtml}</section>`)
-      + subHtml('more', 'notes', moreBack + `<section class="sec" id="notes"><h2>Notes &amp; Activity</h2><div class="card actcard" id="actAll"></div></section>`)
+      + subHtml('more', 'programs', moreBack + `<section class="sec" id="programs"><h2>Programs This Account Could Help Complete <small>${plural(idx.programs.length,'active program')} for ${E(rep.split(' ')[0])}</small></h2>${oppFull}</section>`)
+      + subHtml('more', 'activity', moreBack + `<section class="sec" id="notes"><h2>Account Activity</h2><div class="card actcard" id="actAll"></div></section>`)
       + subHtml('more', 'photos', moreBack + `<section class="sec" id="photos"><h2>Photos</h2><div class="card" id="actPhotosAll"></div></section>`)
       + subHtml('more', 'taps', moreBack + (tapsHtml ? `<section class="sec" id="taps"><h2>Taps &amp; Visits <small>survey as of ${E((d.taps.asOf||'').slice(0,10))}</small></h2>${tapsHtml}</section>` : `<div class="kdh-state empty"><b>No tap survey for this account.</b></div>`))
       + subHtml('more', 'tools', moreBack + `<section class="sec" id="tools"><h2>Tools &amp; Links</h2>${toolsHtml}</section>`)
@@ -680,10 +705,13 @@ async function renderAccount(){
     Object.assign(plist, {n:String(a.n), q:'', view: (sales && sales.products.length) ? 'bought' : 'all', sup:'', fam:'', pkg:'', limit:40}, saved || {});
   }
   renderProducts(a, rep, sales, CAT, months, N, targets);
+  app.querySelectorAll('[data-pq]').forEach(b=>b.addEventListener('click', e=>{ e.preventDefault();
+    Object.assign(plist, {view:'all', q:b.dataset.pq||'', sup:'', fam:'', pkg:'', limit:40}); renderProducts(a, rep, sales, CAT, months, N, targets); showSec('products', ''); window.scrollTo(0, 0); }));
   if(window.KdhActivity){
     const real = (()=>{ try{ return JSON.parse(cookie('kdh_user')||'null'); }catch(e){ return null; } })();
     window.KdhActivity.attach({n:String(a.n), name:a.name, prem: a.prem==='On' || a.prem==='Off' ? a.prem : '', rep, me: real, isMgr,
       readOnly: !!(U && U.preview), readOnlyWhy: `Saving is off in preview — notes and photos belong to ${rep.split(' ')[0]} and the people on the route.`,
+      extra: {taps: tapPasses, purchases, opps: OPP ? OPP.list.concat(OPP.credited).map(o=>({id:o.id, name:o.name})) : []},
       progName, hubLink: r=>hubAcctLink(H.programs().find(p=>p.id===r.program_id), rep, a.n, r.status==='follow' ? 'follow' : r.status),
       openAsk: ()=>showSec('more', 'ask', 'ask'), showOverview: ()=>showSec('over', ''),
       onChange: ()=>{ const y = window.scrollY; renderAccount().then(()=>window.scrollTo(0, y)); }});

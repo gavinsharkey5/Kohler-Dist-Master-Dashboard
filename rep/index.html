@@ -19,12 +19,12 @@
 <link rel="preload" href="../assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 <!-- Theme before first paint: the saved choice, else the device setting (2026-09-30). -->
 <script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
-<link rel="stylesheet" href="rep.css?v=20261002b">
+<link rel="stylesheet" href="rep.css?v=20261003a">
 <!-- The top bar is injected by shared/kdh-user.js (badge, Previewing chip,
      account menu). kdh-home = this is a landing page: no Back button. -->
 <meta name="kdh-page" content="Rep Home">
 <meta name="kdh-home" content="rep">
-<script src="../shared/kdh-user.js?v=20261002c"></script>
+<script src="../shared/kdh-user.js?v=20261003a"></script>
 <script src="../shared/program-titles.js?v=20261002b"></script>
 </head>
 <body>
@@ -36,91 +36,80 @@
   A manager sees the same page for the rep they are viewing; "View as rep"
   (account menu, or the button below) previews the whole site as that rep.
 -->
-<main class="wrap home">
-  <header class="ws">
-    <div class="id">
+<main class="wrap home rh">
+  <!-- REP HOME (2026-10-02, third build; Shopify's Home: a compact header, one
+       prominent entry control, grouped actionable rows, then the tools as
+       equal-size cards). Every count says what it counts -- accounts or
+       products -- and opens the matching filtered list in My Accounts. -->
+  <header class="rh-head">
+    <div class="rh-id">
       <p class="kicker" id="kicker">Rep Home</p>
       <h1 id="repName">Your workspace</h1>
-      <div class="meta" id="meta"><span class="muted">Loading…</span></div>
+      <p class="rh-meta" id="meta"><span class="muted">Loading…</span></p>
     </div>
     <!-- Managers only (not in preview): pick whose tools the rows below open,
          or preview the whole site as that rep. -->
     <div class="switch" id="switch" hidden>
       <label>Viewing as <select id="repSelect" aria-label="Choose a rep to view"></select></label>
-      <button class="btn primary" id="previewBtn" type="button" title="Every page will show exactly what this rep sees on this device until you exit">Preview as this rep</button>
+      <button class="btn primary" id="previewBtn" type="button" title="Every page will show exactly what this rep sees on this device until you exit">Preview as This Rep</button>
     </div>
   </header>
 
-  <!-- Follow-ups (2026-09-30): one row that says how many, and opens the
-       list in place. Read from Supabase rep_actions with the signed-in
-       token; hidden when there is no auth config (github.io) or no rows. -->
-  <section class="section fu" id="fuSec" hidden>
-    <button class="row fu-row" id="fuRow" type="button" aria-expanded="false" aria-controls="fuList">
-      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V4"/><path d="M4 4h12l-2 4 2 4H4"/></svg></span>
-      <span class="row-main"><h3 id="fuTitle">Follow-ups</h3><span class="row-s" id="fuSub"></span></span>
-      <svg class="chev fold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-    </button>
-    <div class="fu-box" id="fuList" hidden></div>
+  <!-- the prominent entry: search straight into My Accounts, or open it -->
+  <section class="rh-entry" aria-label="My Accounts">
+    <form class="rh-search" id="rhSearch" role="search">
+      <svg class="rh-sico" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input type="search" id="rhQ" placeholder="Search accounts, towns or #" aria-label="Search my accounts" autocomplete="off" enterkeyhint="search">
+    </form>
+    <a class="rh-primary" id="c-acct" href="../accounts/" data-nav="accounts">
+      <span class="rh-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/><path d="M3 12h18"/></svg></span>
+      <span class="rh-tmain"><span class="rh-tt">My Accounts</span><span class="rh-ts" id="s-acct">Every account on your route</span></span>
+      <span class="rh-open">Open <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></span>
+    </a>
   </section>
 
-  <!-- Today (2026-10-01, Jobber's "today" + Todoist's counts): what needs a
-       visit on this route, each row opening My Accounts already filtered.
-       Counts come from the rep's own account file (the same patterns.py
-       alerts and 60-day survey rule the list uses), so the numbers match. -->
-  <section class="section today" id="todaySec" hidden>
-    <div class="section-h"><h2>Needs Attention</h2><a class="sec-link" id="todayAll" href="../accounts/#need=any">View All Action Items</a></div>
-    <div class="tstats" id="todayRows"></div>
+  <!-- NEEDS ATTENTION: one grouped card of rows (follow-ups, reorders,
+       lapsed products, surveys), each opening My Accounts already filtered.
+       Counts come from the rep's own account file and rep_actions -- the same
+       rules the list uses, so the numbers match. -->
+  <section class="rh-group" id="todaySec" hidden>
+    <div class="rh-gh"><h2>Needs Attention</h2><a class="btn ghost sm" id="todayAll" href="../accounts/#need=any">View All</a></div>
+    <div class="rh-card" id="todayRows"></div>
+    <p class="rh-quiet" id="fuQuiet" hidden></p>
   </section>
 
-  <section class="section">
-    <h2>My Accounts</h2>
-    <div class="rows tiles">
-      <a class="row" id="c-acct" href="../accounts/" data-nav="accounts">
-        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/><path d="M3 12h18"/></svg></span>
-        <span class="row-main"><h3>My Accounts</h3><span class="row-s" id="s-acct">What to do at each account today</span></span>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+  <section class="rh-group">
+    <div class="rh-gh"><h2>Programs</h2></div>
+    <div class="rh-tools">
+      <a class="rh-tool" id="c-hub" href="../hub/">
+        <span class="rh-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+        <span class="rh-tmain"><span class="rh-tt">Incentive Hub</span><span class="rh-ts" id="s-hub">Every incentive you’re in, by supplier</span></span>
+      </a>
+      <a class="rh-tool" id="c-off" href="../MPOs/off-prem/index.html#view=program">
+        <span class="rh-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M4 9v11h16V9"/><path d="M9 20v-6h6v6"/></svg></span>
+        <span class="rh-tmain"><span class="rh-tt">Off-Premise MPOs</span><span class="rh-ts status" id="s-off"><span class="dot"></span>Checking…</span></span>
+      </a>
+      <a class="rh-tool" id="c-on" href="../MPOs/on-prem/index.html#view=program">
+        <span class="rh-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 11h1a3 3 0 0 1 0 6h-1"/><path d="M5 8h12v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M9 12v5M13 12v5"/><path d="M6 8a3 3 0 0 1 5-2.2A3 3 0 0 1 16 8"/></svg></span>
+        <span class="rh-tmain"><span class="rh-tt">On-Premise MPOs</span><span class="rh-ts status" id="s-on"><span class="dot"></span>Checking…</span></span>
       </a>
     </div>
   </section>
 
-  <section class="section">
-    <h2>Programs</h2>
-    <div class="rows tiles">
-      <a class="row" id="c-hub" href="../hub/">
-        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
-        <span class="row-main"><h3>Incentive Hub</h3><span class="row-s" id="s-hub">Every incentive you’re in, by supplier</span></span>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+  <section class="rh-group">
+    <div class="rh-gh"><h2>Trackers</h2></div>
+    <div class="rh-tools">
+      <a class="rh-tool" id="c-tap" href="../isellbeer/tap-survey-tracking/">
+        <span class="rh-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 6.5 9a6.5 6.5 0 1 0 11 0z"/></svg></span>
+        <span class="rh-tmain"><span class="rh-tt">Tap Tracker</span><span class="rh-ts" id="s-tap">What’s on tap at your surveyed accounts</span></span>
       </a>
-      <a class="row" id="c-off" href="../MPOs/off-prem/index.html#view=program">
-        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M4 9v11h16V9"/><path d="M9 20v-6h6v6"/></svg></span>
-        <span class="row-main"><h3>Off-Premise MPOs</h3><span class="row-s status" id="s-off"><span class="dot"></span>Checking…</span></span>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      <a class="rh-tool" id="c-rb" href="../redbull/">
+        <span class="rh-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
+        <span class="rh-tmain"><span class="rh-tt">Red Bull Tracker</span><span class="rh-ts status" id="s-rb"><span class="dot"></span>Checking…</span></span>
       </a>
-      <a class="row" id="c-on" href="../MPOs/on-prem/index.html#view=program">
-        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 11h1a3 3 0 0 1 0 6h-1"/><path d="M5 8h12v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M9 12v5M13 12v5"/><path d="M6 8a3 3 0 0 1 5-2.2A3 3 0 0 1 16 8"/></svg></span>
-        <span class="row-main"><h3>On-Premise MPOs</h3><span class="row-s status" id="s-on"><span class="dot"></span>Checking…</span></span>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-      </a>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>Trackers</h2>
-    <div class="rows tiles">
-      <a class="row" id="c-tap" href="../isellbeer/tap-survey-tracking/">
-        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 6.5 9a6.5 6.5 0 1 0 11 0z"/></svg></span>
-        <span class="row-main"><h3>Tap Tracker</h3><span class="row-s" id="s-tap">What’s on tap at your surveyed accounts</span></span>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-      </a>
-      <a class="row" id="c-rb" href="../redbull/">
-        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
-        <span class="row-main"><h3>Red Bull Tracker</h3><span class="row-s status" id="s-rb"><span class="dot"></span>Checking…</span></span>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-      </a>
-      <a class="row" id="c-cb" href="../carbliss-onprem-targets/">
-        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></span>
-        <span class="row-main"><h3>Carbliss On-Premise Targets</h3><span class="row-s" id="s-cb">Accounts to pitch, with the flavor gap</span></span>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      <a class="rh-tool" id="c-cb" href="../carbliss-onprem-targets/">
+        <span class="rh-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></span>
+        <span class="rh-tmain"><span class="rh-tt">Carbliss Targets</span><span class="rh-ts" id="s-cb">On-premise accounts to pitch</span></span>
       </a>
     </div>
   </section>
@@ -141,7 +130,7 @@
 (function(){
   var $ = function(id){ return document.getElementById(id); };
   // MON, not MONTHS: the incentive registry (programs.js, deferred) declares a
-  // global `const MONTHS`, which progName() below reads for program names.
+  // global `const MONTHS` (it also supplies DM_GROUPS for the switcher).
   var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var MONTHS_LONG = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
@@ -177,12 +166,22 @@
       var areas = {};
       accts.forEach(function(a){ areas[a.area || a.county || '?'] = (areas[a.area || a.county || '?'] || 0) + 1; });
       var top = Object.keys(areas).sort(function(a,b){ return areas[b] - areas[a]; }).slice(0,2);
-      out.push(accts.length + ' accounts' + (top.length ? ' · ' + esc(top.join(', ')) : ''));
+      out.push(top.length ? esc(top.join(', ')) : '');
+      $('s-acct').textContent = accts.length + ' account' + (accts.length === 1 ? '' : 's') + ' on ' + (own ? 'your' : 'this') + ' route';
     } else if (A) {
-      out.push('<span class="muted">No account list on file</span>');
+      $('s-acct').textContent = 'No account list on file';
     }
-    $('meta').innerHTML = out.length ? out.join('<span class="sep">·</span>') : '<span class="muted">Signed in</span>';
+    out = out.filter(Boolean);
+    $('meta').innerHTML = out.length ? out.join('<span class="sep">·</span>') : '';
+    $('meta').hidden = !out.length;
   }
+
+  /* ---- the entry: search straight into My Accounts ---- */
+  $('rhSearch').addEventListener('submit', function(e){
+    e.preventDefault();
+    var q = $('rhQ').value.trim();
+    location.href = '../accounts/#' + [q ? 'q=' + encodeURIComponent(q) : '', isManager && viewRep ? 'rep=' + encodeURIComponent(viewRep) : ''].filter(Boolean).join('&');
+  });
 
   /* ---- the page: a rep sees their own; a manager can pick one ---- */
   function showRep(name){
@@ -193,15 +192,19 @@
     // Incentives only: the two MPO rows beside it cover the MPO tabs.
     $('c-hub').href = '../hub/#' + (name ? 'view=rep&rep=' + encodeURIComponent(name) + '&cat=inc&' : '') + 'only=inc';
     setMpoHref($('c-off')); setMpoHref($('c-on'));
+    $('c-acct').href = '../accounts/' + (isManager && name ? '#rep=' + encodeURIComponent(name) : '');
+    att = { name: name, acc: null, fu: null };
     followUps(name);
     today(name);
   }
-  /* ---- Today: counts from the rep's account file, each row a filtered list ---- */
-  var todayFor = '';
+  /* ---- NEEDS ATTENTION: one card of rows, each a filtered My Accounts list ----
+     acc = counts from the rep's account file (accounts with possible-reorder /
+     lapsed-product alerts and the product totals behind them; surveys due by
+     the list's own 53-day rule); fu = open follow-ups from rep_actions. */
+  var att = { name: '', acc: null, fu: null };
   function today(name){
-    var sec = $('todaySec'); todayFor = name;
+    var sec = $('todaySec');
     if (!name) { sec.hidden = true; return; }
-    // the file key comes from the accounts index (rep name -> key), matched forgivingly
     fetch('../accounts/data/index.json', { credentials: 'same-origin' })
       .then(function(r){ return r.ok ? r.json() : null; }, function(){ return null; })
       .then(function(ix){
@@ -211,26 +214,51 @@
         return fetch('../accounts/data/reps/' + encodeURIComponent(hit.key) + '.json', { credentials: 'same-origin' }).then(function(r){ return r.ok ? r.json() : null; }, function(){ return null; });
       })
       .then(function(d){
-        if (todayFor !== name) return;
-        if (!d || !d.accounts) { sec.hidden = true; return; }
-        var A = d.accounts, re = 0, la = 0, tp = 0, now = Date.now();
-        A.forEach(function(a){
-          var al = a.alerts || {}; if (al.reorder) re++; if (al.lapsed) la++;
-          if (a.taps && a.taps.last) { var days = Math.floor((now - new Date(a.taps.last + 'T12:00:00').getTime()) / 86400000); if (days >= 53) tp++; }
-        });
-        var base = '../accounts/#' + (isManager ? 'rep=' + encodeURIComponent(name) + '&' : '') + 'need=any';
-        // compact counts (2026-10-01, third pass): one stat per reason, the
-        // whole list behind "View All Action Items" in the section head
-        var stat = function(href, label, n){ return '<a class="tstat" href="' + href + '" aria-label="' + label + ': ' + n + ' account' + (n === 1 ? '' : 's') + '"><b>' + n + '</b><span>' + label + '</span></a>'; };
-        var html = '';
-        if (re) html += stat(base + '&kind=reorder', 'Possible Reorders', re);
-        if (la) html += stat(base + '&kind=lapsed', 'Lapsed Products', la);
-        if (tp) html += stat(base + '&kind=tap', 'Surveys Due', tp);
-        if (!html) html = '<p class="tnone">Nothing flagged from sales or surveys right now.</p>';
-        $('todayAll').href = base;
-        $('todayRows').innerHTML = html;
-        sec.hidden = false;
+        if (att.name !== name) return;
+        var c = { re: 0, reP: 0, la: 0, laP: 0, tp: 0, ok: !!(d && d.accounts) };
+        if (c.ok) {
+          var now = Date.now();
+          d.accounts.forEach(function(a){
+            var al = a.alerts || {};
+            if (al.reorder) { c.re++; c.reP += al.reorder; }
+            if (al.lapsed) { c.la++; c.laP += al.lapsed; }
+            if (a.taps && a.taps.last) { var days = Math.floor((now - new Date(a.taps.last + 'T12:00:00').getTime()) / 86400000); if (days >= 53) c.tp++; }
+          });
+        }
+        att.acc = c; drawAttention();
       });
+  }
+  var IC = {
+    follow: '<path d="M4 21V4"/><path d="M4 4h12l-2 4 2 4H4"/>',
+    reorder: '<path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/>',
+    lapsed: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    tap: '<path d="M12 2.7 6.5 9a6.5 6.5 0 1 0 11 0z"/>'
+  };
+  function plural(n, one, many){ return n + ' ' + (n === 1 ? one : (many || one + 's')); }
+  function drawAttention(){
+    var name = att.name, sec = $('todaySec');
+    if (!att.acc && !att.fu) return;
+    var base = '../accounts/#' + (isManager ? 'rep=' + encodeURIComponent(name) + '&' : '');
+    var row = function(href, icon, title, sub, n, unit){
+      return '<a class="rh-arow" href="' + href + '"><span class="rh-aico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + icon + '</svg></span>' +
+        '<span class="rh-tmain"><span class="rh-tt">' + title + '</span><span class="rh-ts">' + sub + '</span></span>' +
+        '<span class="rh-n"><b>' + n + '</b><small>' + unit + '</small></span>' +
+        '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>';
+    };
+    var html = '', fu = att.fu, c = att.acc;
+    if (fu && fu.accounts) html += row(base + 'need=follow', IC.follow, 'Open Follow-Ups', plural(fu.items, 'follow-up') + ' you flagged' + (fu.done7 ? ' · ' + fu.done7 + ' done this week' : ''), fu.accounts, fu.accounts === 1 ? 'account' : 'accounts');
+    if (c && c.re) html += row(base + 'need=any&kind=reorder', IC.reorder, 'Possible Reorders', plural(c.reP, 'product') + ' past their usual reorder gap', c.re, c.re === 1 ? 'account' : 'accounts');
+    if (c && c.la) html += row(base + 'need=any&kind=lapsed', IC.lapsed, 'Lapsed Products', plural(c.laP, 'product') + ' not bought for longer than usual', c.la, c.la === 1 ? 'account' : 'accounts');
+    if (c && c.tp) html += row(base + 'need=any&kind=tap', IC.tap, 'Tap Surveys Due', 'Last survey 53+ days ago (60-day cycle)', c.tp, c.tp === 1 ? 'account' : 'accounts');
+    var quiet = [];
+    if (fu && !fu.accounts) quiet.push('No open follow-ups' + (fu.done7 ? ' · ' + fu.done7 + ' done this week' : '') + '.');
+    if (c && c.ok && !c.re && !c.la && !c.tp) quiet.push('Nothing flagged from sales or tap surveys.');
+    $('todayRows').innerHTML = html;
+    $('todayRows').hidden = !html;
+    $('fuQuiet').textContent = quiet.join(' ');
+    $('fuQuiet').hidden = !quiet.length;
+    $('todayAll').href = base + 'need=any';
+    sec.hidden = !(html || quiet.length);
   }
   // The MPO rows keep the rep a manager is viewing (2026-09-29): the tracker
   // opens on that rep's page instead of asking again. A rep's own row opens
@@ -243,71 +271,22 @@
 
   /* ---- Follow-ups: what this rep flagged in the hub ---- */
   function cookie(n){ var m = document.cookie.match(new RegExp('(?:^|;\\s*)' + n + '=([^;]*)')); return m ? decodeURIComponent(m[1]) : ''; }
-  function progName(id){
-    try{
-      if (id.indexOf('note:') === 0) return 'Account Note';
-      if (id.indexOf('inc:') === 0 && window.kdhTitle && window.KDH_PROGRAM_TITLES && window.KDH_PROGRAM_TITLES[id]) return window.kdhTitle(id);
-      if (id.indexOf('inc:') === 0) {
-        var key = id.slice(4), hit = null;
-        var reg = (typeof MONTHS !== 'undefined' && MONTHS.length && MONTHS[0].programs) ? MONTHS : [];
-        reg.slice().reverse().some(function(m){ return (m.programs||[]).some(function(p){ if (p.key === key) { hit = p; return true; } }); });
-        return hit ? (hit.shortTitle || hit.title || key) : key;
-      }
-      var parts = id.split(':'), mod = parts[0] === 'off' ? window.OffPremMPO : window.OnPremMPO;
-      var m = mod && (mod.MONTHS||[]).filter(function(x){ return x.key === parts[1]; })[0];
-      var o = m && (m.objectives||[]).filter(function(x){ return x.key === parts[2]; })[0];
-      return (window.kdhTitle ? window.kdhTitle(id, o ? (o.shortName || o.name) : parts[2]) : (o ? (o.shortName || o.name) : parts[2])) + ' · ' + (parts[0] === 'off' ? 'Off-Prem' : 'On-Prem') + ' MPO';
-    } catch (e) { return id; }
-  }
-  function ago(iso){
-    var d = new Date(iso); if (isNaN(d)) return '';
-    var days = Math.round((Date.now() - d.getTime()) / 86400000);
-    if (days <= 0) return 'today'; if (days === 1) return 'yesterday'; if (days < 7) return days + ' days ago';
-    return MON[d.getMonth()] + ' ' + d.getDate();
-  }
-  var fuFor = '';
-  $('fuRow').addEventListener('click', function(){
-    var open = $('fuList').hidden; $('fuList').hidden = !open; $('fuRow').setAttribute('aria-expanded', open ? 'true' : 'false'); $('fuSec').classList.toggle('open', open);
-  });
   function followUps(name){
     var cfg = window.KDH_AUTH || {}, token = cookie('kdh_at');
-    var sec = $('fuSec');
-    if (!name || !cfg.url || !cfg.key || !token) { sec.hidden = true; return; }
-    fuFor = name;
-    var url = cfg.url.replace(/\/$/, '') + '/rest/v1/rep_actions?select=program_id,account_name,account_num,status,note,updated_at&rep_name=eq.' + encodeURIComponent(name) + '&order=updated_at.desc&limit=500';
+    if (!name || !cfg.url || !cfg.key || !token) return;
+    var url = cfg.url.replace(/\/$/, '') + '/rest/v1/rep_actions?select=program_id,account_num,status,updated_at&rep_name=eq.' + encodeURIComponent(name) + '&order=updated_at.desc&limit=1000';
     fetch(url, { headers: { apikey: cfg.key, authorization: 'Bearer ' + token, accept: 'application/json' } })
       .then(function(r){ return r.ok ? r.json() : null; }, function(){ return null; })
       .then(function(rows){
-        if (fuFor !== name) return;            // the manager switched reps meanwhile
-        if (!rows) { sec.hidden = true; return; }
-        var week = Date.now() - 7 * 86400000;
+        if (att.name !== name || !rows) return;          // the manager switched reps meanwhile, or no access
+        var week = Date.now() - 7 * 86400000, accts = {};
         var follow = rows.filter(function(r){ return r.status === 'follow'; });
-        var done7 = rows.filter(function(r){ return r.status === 'done' && new Date(r.updated_at).getTime() >= week; }).length;
-        // The hub's account screen for this program, on this account.
-        // a follow-up opens the account page (2026-09-30), which lists every mark and links back into the hub
-        var hub = function(r){ return '../accounts/#acct=' + encodeURIComponent(r.account_num || '') + (isManager ? '&rep=' + encodeURIComponent(name) : '') + '&from=' + encodeURIComponent('../rep/') + '&fl=' + encodeURIComponent('Rep Home'); };
-        $('fuTitle').textContent = 'Follow-ups (' + follow.length + ')';
-        var sub = follow.length ? follow.length + ' account' + (follow.length === 1 ? '' : 's') + ' to get back to' : 'Nothing flagged right now';
-        if (done7) sub += ' · ' + done7 + ' done this week';
-        $('fuSub').textContent = sub;
-        var html;
-        if (!follow.length) {
-          html = '<p class="fu-empty">Tap <b>Follow up</b> on an account in the hub and it shows up here, with your note.</p>';
-        } else {
-          html = '<ul class="fu-list">' + follow.map(function(r){
-            return '<li><a href="' + hub(r) + '">' +
-              '<span class="fu-main"><span class="fu-acct">' + esc(r.account_name || ('Account #' + r.account_num)) + '</span>' +
-              '<span class="fu-prog">' + esc(progName(r.program_id)) + (r.note ? ' · <i>' + esc(r.note) + '</i>' : '') + '</span></span>' +
-              '<span class="fu-when">' + esc(ago(r.updated_at)) + '</span>' +
-              '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></a></li>';
-          }).join('') + '</ul>';
-        }
-        $('fuList').innerHTML = html;
-        sec.hidden = false;
+        follow.forEach(function(r){ accts[r.account_num || r.program_id] = 1; });
+        att.fu = { items: follow.length, accounts: Object.keys(accts).length, done7: rows.filter(function(r){ return r.status === 'done' && new Date(r.updated_at).getTime() >= week; }).length };
+        drawAttention();
       });
   }
   // The registries load deferred; once they are in, program names fill in.
-  window.addEventListener('load', function(){ if (fuFor) followUps(fuFor); });
   function dmGroupsFile(){ try { return typeof DM_GROUPS !== 'undefined' ? DM_GROUPS : null; } catch (e) { return null; } }
   function setupSwitcher(){
     var A = accountsFile(); if (!isManager || !A || !A.reps) return;
@@ -334,7 +313,7 @@
   whenReady(function(){ if (isManager) setupSwitcher(); else territory(viewRep); });
 
   /* ---- live status where real data exists ---- */
-  function status(id, cls, text){ var el = $(id); el.className = 'row-s status' + (cls ? ' ' + cls : ''); el.innerHTML = '<span class="dot"></span>' + text; }
+  function status(id, cls, text){ var el = $(id); el.className = 'rh-ts status' + (cls ? ' ' + cls : ''); el.innerHTML = '<span class="dot"></span>' + text; }
   function ymd(d){ return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0'); }
   function fmtDay(iso){ var d = new Date(iso); return isNaN(d) ? '' : MON[d.getMonth()] + ' ' + d.getDate(); }
   function getJson(url){ return fetch(url, {cache:'no-store'}).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }); }
@@ -347,7 +326,7 @@
     getJson(base + 'data/' + thisM + '/sync_meta.json').then(function(meta){
       if (meta) { card.dataset.month = thisM; setMpoHref(card); status(t[2], 'ok', MONTHS_LONG[now.getMonth()] + (meta.synced_at ? ' · updated ' + fmtDay(meta.synced_at) : '')); return; }
       return getJson(base + 'data/' + prevM + '/sync_meta.json').then(function(pm){
-        if (pm) { card.dataset.month = prevM; setMpoHref(card); status(t[2], 'warn', 'Showing ' + MONTHS_LONG[(now.getMonth()+11)%12] + ' · ' + MONTHS_LONG[now.getMonth()] + ' not in yet'); }
+        if (pm) { card.dataset.month = prevM; setMpoHref(card); status(t[2], 'warn', MONTHS_LONG[(now.getMonth()+11)%12] + ' results · ' + MONTHS_LONG[now.getMonth()] + ' not yet published'); }
         else { card.classList.add('muted'); status(t[2], '', 'No programs loaded yet'); }
       });
     });
@@ -357,7 +336,7 @@
   getJson('../redbull/period.json').then(function(p){
     if (!p || !p.end) { status('s-rb', '', 'Placements against goal'); return; }
     var end = new Date(p.end + 'T23:59:59'), days = Math.ceil((end - now) / 86400000);
-    if (end < now) status('s-rb', '', (p.label || 'Period') + ' · ended');   // not days < 0: ceil of a small negative is -0
+    if (end < now) status('s-rb', '', (p.label || 'Period') + ' · period ended');   // not days < 0: ceil of a small negative is -0
     else status('s-rb', days <= 7 ? 'warn' : 'ok', (p.label || 'Current period') + ' · ' + (days === 0 ? 'last day' : days + ' day' + (days === 1 ? '' : 's') + ' left'));
   });
 })();

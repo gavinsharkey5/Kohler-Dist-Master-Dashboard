@@ -421,3 +421,59 @@ supabase/migrations/20261002120000_account_notes_photos.sql and the seed
 supabase/seed/account_assignments.sql, which generate.py rewrites on every
 run (re-run it in the SQL Editor after reassignments). Nothing is sent to
 iSellBeer.
+
+ACCOUNT ACTIVITY, OPPORTUNITIES, DRAFTS, PHOTO LABELS (2026-10-03)
+ACCOUNT ACTIVITY (activity.js). One timeline per account, newest first, from:
+notes / follow-ups / program marks (rep_actions), photos (account_photos),
+tap survey passes (the sales file's tapHistory + the book's latest pass)
+and monthly PURCHASE ACTIVITY (the Fusion sales record, one event per month
+with cases and the top five products -- labelled "not invoices, and not a
+visit"). There are no visit records, so nothing is called a visit. Every
+event has a stable id (ra:<row id>, ra:<id>:done, ph:<id>, tap:<date>,
+buy:<YYYY-MM>) so a reload never doubles an entry. Photos show "Taken"
+(EXIF capture time, when the file has one) apart from "Uploaded". The
+Overview shows the five latest non-purchase events + View All Activity; the
+full view (More -> Account Activity, sub=activity; old sub=notes links land
+there) has type chips, a search box and Load Older (15 at a time).
+
+PROGRAMS THIS ACCOUNT COULD HELP COMPLETE (opps.js, KdhOpps.build). A program
+appears only when its tracker lists THIS account for the rep (a warm lead,
+or eligible and not yet buying), it has not ended, and the brand is
+sellable in the account's area. Order: leads first, then soonest deadline.
+Each card: concise title, supplier / premise / deadline, Eligible (brand
+family products from data/catalog.json, narrowed by an "N oz" size when the
+program names one), To qualify (the hub's sellAsk), Credit here (not
+earned yet + what the tracker says is missing), Why it's here, Selling
+Resources (requirement + full program name; "No approved pitch on file"
+because no approved source exists -- see REPORTING_REQUEST.md 10, A1; sell
+sheets where the Brands export has them -- Carbliss only today; package
+options; warehouse units for the first three products with the inventory
+report date and a stale tag past 7 days -- a snapshot, never live), then
+Open Tracker / Account in the Hub. The rep's OVERALL progress is a separate
+grey line, never the account's qualification. Credited programs and
+programs that don't apply are listed separately on the full view. No
+dollars (isDollarProgram programs are already filtered out by the hub).
+
+DRAFTS AND UPLOAD RECOVERY. A note draft lives in localStorage
+kdh_draft:v1:<hash of the signed-in email>:<customer #>:note; a photo draft
+(the resized JPEG + its labels) in IndexedDB kdh-drafts / photos, tagged
+with the same owner hash and account. The hash is of the REAL signed-in
+person (kdh_user email), so another person on the same device never sees
+them, and preview never writes. States: Draft -- Saved on This Device,
+Pending Upload (offline), Uploading, Saved, Upload Failed -- Retry. Retry
+is always a tap: nothing syncs in the background. Before sending, the page
+renews the session (kdhFreshToken) and checks the draft's owner. Retries
+cannot duplicate: a note keeps its program_id (note:<uuid>) and the
+rep_actions unique key turns a repeat into 409/23505 = already saved; a
+photo keeps its storage path (an existing file = already uploaded) and
+account_photos.storage_path is unique. If the browser refuses storage
+(private mode, full) the page says "Not Saved on This Device -- keep this
+page open". KdhActivity.forgetDrafts() clears both stores.
+
+PHOTO LABELS. Display / Window / Cooler Door (off-premise) and Tap Handle
+(on-premise) by default; photos with no type show as Uncategorized. Optional
+Brand / Program on save (Program = this account's opportunities). Filters:
+type chips, caption / brand search, date (30 / 90 / 365 days), taken by,
+brand. The author can Edit Labels later (needs
+supabase/migrations/20261003090000_photo_labels.sql; until it is run the
+page saves without brand / program and hides Edit Labels).

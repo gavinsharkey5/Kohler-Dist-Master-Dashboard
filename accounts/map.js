@@ -97,7 +97,7 @@ function sheetHtml(it, opts){
     <h3>${E(a.name)}</h3>
     <p class="msheet-s">${E([a.city, opts.premWord(a.prem), '#'+a.n].filter(Boolean).join(' · '))}${it.showRep ? ' · '+E(it.rep) : ''}</p>
     <p class="msheet-a">${E([a.address, a.city].filter(Boolean).join(', '))}</p>
-    ${L ? `<p class="msheet-l"><b>${E(L.label)}</b> ${E(L.d)}${L.more ? ` <span class="lm">· ${L.more} More ${L.more===1?'Item':'Items'}</span>` : ''}</p>` : `<p class="msheet-l quiet">Nothing flagged right now</p>`}
+    ${L ? `<p class="msheet-l"><b>${E(L.label)}</b> ${E(L.d)}${L.moreText ? `<span class="lm">${E(L.moreText)}</span>` : ''}</p>` : `<p class="msheet-l quiet">Nothing flagged right now</p>`}
     <div class="msheet-b"><a class="btn primary" href="${E(opts.hrefFor(it))}" data-open="1">Open Account</a><a class="btn outline" href="${E(opts.mapsHref(a))}" target="_blank" rel="noopener">Directions</a></div>
   </div>`;
 }

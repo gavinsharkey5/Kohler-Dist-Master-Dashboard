@@ -1,0 +1,133 @@
+/* PROGRAMS THIS ACCOUNT COULD HELP COMPLETE (2026-10-03).
+   Account-level opportunities, kept apart from the rep's overall progress.
+
+   build() is the calculation; it reads only what the trackers and the hub
+   already decide -- no new rule is invented here:
+     * a program is an OPPORTUNITY at this account only when the tracker lists
+       the account as a target for the rep (hub targets: a WARM lead from the
+       tracker's own opportunity list, or eligible and not yet buying), the
+       program has not ended, and the brand is sellable in the account's area
+       (the territory workbook, familyAllowed);
+     * CREDITED = the tracker credited this account (credited lines) -- shown
+       as "already earned credit", never as an opportunity;
+     * every other active program is listed under "Doesn't apply here" with
+       the tracker's own reason (not sellable / already buying / not on its
+       lists / awaiting data).
+   Products = the catalogue rows in the program's brand families
+   (hub/accounts.js PROGRAM_BRANDS), narrowed to a size the program names
+   ("24 oz") when it names one, and to families sellable in the area.
+   Inventory is the warehouse SNAPSHOT in catalog.json with its date -- never
+   called live. Pitch: there is no approved customer pitch in the data (the
+   registries' `pitch` lines are rep-incentive summaries, some with payouts),
+   so none is shown -- the card says so.
+
+   render*() turn the result into HTML; nothing here fetches a file. */
+(function(){
+'use strict';
+const E = s => String(s==null?'':s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmtN = n => (Math.round(Number(n||0)*10)/10).toLocaleString('en-US');
+const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const dayLabel = iso => { if(!iso) return ''; const d = new Date(iso+'T12:00:00'); return isNaN(d) ? iso : MON[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear(); };
+
+// size a program names, e.g. "Keystone Ice 24 oz Cans" -> "24"
+function sizeOf(text){ const m = /(\d+(?:\.\d+)?)\s?(?:oz|ounce)/i.exec(String(text||'')); return m ? m[1] : ''; }
+
+function build(o){
+  const {a, rep, k, programs, credited, targets, H, HB, CAT, famKey, familyAllowed, today} = o;
+  const out = {list:[], credited:[], other:[]};
+  const inv = (CAT && CAT.inventory) || {};
+  const asOf = inv.asOf || '';
+  const ageDays = asOf ? Math.round((today - new Date(asOf+'T00:00:00'))/86400000) : null;
+  programs.forEach(p=>{
+    const r = p.forRep(rep); if(!r) return;
+    if(p.period && p.period.end && p.period.end < today) return;          // ended
+    const cred = credited.filter(c=>c.p===p);
+    const tgt = targets.find(t=>t.p===p);
+    const A = H.accountsFor(p, rep) || {};
+    const excl = (A.excluded||[]).concat(A.unknown||[]).find(x=>String(x.n)===k);
+    const buying = (A.buying||[]).find(x=>String(x.n)===k);
+    const fams = (HB && HB.PROGRAM_BRANDS && HB.PROGRAM_BRANDS[HB.brandKey(p)]) || [];
+    const ask = H.sellAsk(p);
+    const facts = H.progFacts(p, r, rep) || {};
+    const base = {id:p.id, p, name:p.shortName||p.name, full:p.name, supplier:p.supplier, channel:p.channelLabel, type:p.type, month:p.monthLabel||'',
+      ends:H.endsLabel(p.period), end:p.period && p.period.end, ask, fams,
+      repProgress:[facts.main, facts.need].filter(Boolean).join(' · '), whose:o.whose};
+    if(cred.length){ out.credited.push(Object.assign(base, {status:'credited', lines:cred.map(c=>[c.what||'Credited', c.date||''].filter(Boolean).join(' · '))})); return; }
+    if(!tgt){
+      out.other.push(Object.assign(base, {status: excl ? 'not sellable' : buying ? 'already buying' : r.soon ? 'awaiting data' : 'not on its lists',
+        why: excl ? (excl.why || 'The brand cannot be sold in this account’s area.') : buying ? 'Already buys the brand, so it is not a new placement for this program — no credit recorded here yet.' : r.soon ? 'The tracker has no data for this program yet.' : 'The tracker does not list this account for this program.'}));
+      return;
+    }
+    // eligible products: the program's brand families in the catalogue, sellable here
+    const famSet = new Set(fams.map(famKey));
+    let prods = (CAT && CAT.products || []).filter(c=>famSet.has(famKey(c[3])) && familyAllowed(c[3], a.area).ok);
+    const size = sizeOf(p.name+' '+ask);
+    let sizeNote = '';
+    if(size){ const re = new RegExp('(^|[^0-9.])'+size.replace('.', '\\.')+'\\s?oz', 'i'); const narrowed = prods.filter(c=>re.test(c[1]+' '+c[4])); if(narrowed.length){ prods = narrowed; sizeNote = size+' oz'; } }
+    prods.sort((x,y)=>(Number(y[5])||0)-(Number(x[5])||0) || String(x[1]).localeCompare(String(y[1])));
+    const pkgs = Array.from(new Set(prods.map(c=>c[4]).filter(Boolean)));
+    const sheets = prods.filter(c=>c[10]).map(c=>({name:c[1], url:c[10]}));
+    out.list.push(Object.assign(base, {status: tgt.warm ? 'lead' : 'eligible', warm: !!tgt.warm,
+      needs: tgt.why || '', products: prods.slice(0, 40), productCount: prods.length, sizeNote, packages: pkgs, sheets,
+      inventory: {asOf, ageDays, stale: ageDays!=null && ageDays > 7},
+      why: tgt.warm ? 'On the tracker’s own opportunity list for '+rep.split(' ')[0]+(tgt.why ? ' — '+tgt.why : '')+'.' : 'Eligible here: in the program’s territory and not buying the brand now'+(tgt.why && tgt.why!=='Never bought it' ? ' ('+tgt.why+')' : '')+'.'}));
+  });
+  // warm leads first, then the soonest deadline
+  out.list.sort((x,y)=>(y.warm - x.warm) || ((x.end||0) - (y.end||0)));
+  return out;
+}
+
+/* ---------------- render ---------------- */
+function statusTag(o){ return o.status==='lead' ? '<span class="tag go">Lead</span>' : o.status==='eligible' ? '<span class="tag">Eligible</span>' : o.status==='credited' ? '<span class="tag ok">Credit Earned</span>' : `<span class="tag na">${E(o.status.replace(/\b\w/g, c=>c.toUpperCase()))}</span>`; }
+function invLine(o, c){
+  const n = Number(c[5]);
+  const snap = o.inventory.asOf ? `warehouse snapshot ${dayLabel(o.inventory.asOf)}${o.inventory.ageDays!=null ? ' ('+o.inventory.ageDays+' days old)' : ''}` : 'warehouse snapshot, date unknown';
+  return `${isNaN(n) ? 'No stock figure' : `<b>${fmtN(n)} ${n===1?'unit':'units'}</b>`} · ${E(snap)}`;
+}
+function resourcesHtml(o, links){
+  const top = o.products.slice(0, 3);
+  const prodRows = top.map(c=>`<li><span class="op-pn">${E(c[1])}</span><span class="op-pi">${invLine(o, c)}</span></li>`).join('');
+  return `<details class="op-res"><summary>Selling Resources</summary><div class="op-rb">
+    <div class="op-r"><p class="op-rh">Program Requirement</p><p>${E(o.ask)}</p><p class="op-rs">Full program name: ${E(o.full)}</p></div>
+    <div class="op-r"><p class="op-rh">Approved Quick Pitch</p><p class="op-miss">No approved pitch on file for this program. The program sheets in the data are rep incentive summaries, not customer pitches.</p></div>
+    <div class="op-r"><p class="op-rh">Sell Sheet</p>${o.sheets.length ? `<ul class="op-links">${o.sheets.slice(0, 4).map(s=>`<li><a href="${E(s.url)}" target="_blank" rel="noopener">${E(s.name)} · Sell Sheet (PDF)</a></li>`).join('')}</ul>` : `<p class="op-miss">No sell sheet on file for ${E(o.fams.join(' / ') || 'this brand')}. Sell sheets are loaded for Carbliss only so far.</p>`}</div>
+    <div class="op-r"><p class="op-rh">Package Options</p>${o.packages.length ? `<p>${o.packages.slice(0, 8).map(E).join(' · ')}${o.packages.length>8 ? ` · ${o.packages.length-8} more` : ''}</p>` : `<p class="op-miss">No catalogue products mapped to this program’s brand.</p>`}</div>
+    <div class="op-r"><p class="op-rh">Stock at Kohler’s Warehouse</p>${top.length ? `<ul class="op-prods">${prodRows}</ul>${o.inventory.stale ? `<p class="op-rs"><span class="kdh-tag stale">Snapshot is ${o.inventory.ageDays} days old</span> Not live availability — check Encompass before promising quantities.</p>` : `<p class="op-rs">Snapshot, not live availability.</p>`}` : `<p class="op-miss">No eligible products in the catalogue.</p>`}</div>
+    ${o.productCount ? `<a class="btn outline sm" href="#" data-pq="${E(o.fams[0]||'')}">View ${o.productCount} Eligible ${o.productCount===1?'Product':'Products'}</a>` : ''}
+  </div></details>`;
+}
+function cardHtml(o, links){
+  if(o.status==='credited') return `<div class="op k-cred"><div class="op-h"><span class="op-t">${E(o.name)}</span>${statusTag(o)}</div>
+    <p class="op-m">${E(o.supplier)} · ${E(o.channel)}${o.type==='MPO' ? ' · '+E(o.month)+' MPO' : ''} · ${E(o.ends)}</p>
+    <p class="op-l">${o.lines.map(E).join('<br>')}</p>
+    <p class="op-a"><a href="${E(links.prog(o))}">Open Tracker ›</a></p></div>`;
+  if(o.status!=='lead' && o.status!=='eligible') return `<div class="op k-other"><div class="op-h"><span class="op-t">${E(o.name)}</span>${statusTag(o)}</div>
+    <p class="op-m">${E(o.supplier)} · ${E(o.ends)}</p><p class="op-l">${E(o.why)}</p></div>`;
+  return `<div class="op k-${o.status}">
+    <div class="op-h"><span class="op-t">${E(o.name)}</span>${statusTag(o)}</div>
+    <p class="op-m">${E(o.supplier)} · ${E(o.channel)}${o.type==='MPO' ? ' · '+E(o.month)+' MPO' : ''} · <b>${E(o.ends)}</b></p>
+    <dl class="op-kv">
+      <dt>Eligible</dt><dd>${o.productCount ? `${E(o.fams.join(' / '))}${o.sizeNote ? ' · '+E(o.sizeNote) : ''} — ${o.productCount} ${o.productCount===1?'product':'products'}${o.products[0] ? `, e.g. ${E(o.products[0][1])}` : ''}` : E(o.ask)}</dd>
+      <dt>To qualify</dt><dd>${E(o.ask)}</dd>
+      <dt>Credit here</dt><dd>Not earned yet${o.needs ? ' · '+E(o.needs) : ''}</dd>
+      <dt>Why it’s here</dt><dd>${E(o.why)}</dd>
+    </dl>
+    ${resourcesHtml(o, links)}
+    <p class="op-a"><a class="btn sm" href="${E(links.prog(o))}">Open Tracker</a>${links.acct ? `<a class="btn ghost sm" href="${E(links.acct(o))}">Account in the Hub</a>` : ''}</p>
+    ${o.repProgress ? `<p class="op-rep">${E(o.whose||'Your')} overall progress on this program (all accounts): ${E(o.repProgress)}</p>` : ''}
+  </div>`;
+}
+function overviewHtml(res, links, allHref){
+  const top = res.list.slice(0, 3);
+  if(!top.length) return `<div class="card op-empty"><p>No active program lists this account as an opportunity right now.${res.credited.length ? ` It has already earned credit on ${res.credited.length} ${res.credited.length===1?'program':'programs'}.` : ''}</p><a class="btn outline wide" href="${E(allHref)}" data-go="more:programs">View All Programs</a></div>`;
+  return `<div class="ops">${top.map(o=>cardHtml(o, links)).join('')}</div>
+    <a class="btn outline wide" href="${E(allHref)}" data-go="more:programs">View All Programs · ${res.list.length} ${res.list.length===1?'opportunity':'opportunities'}${res.credited.length ? ', '+res.credited.length+' credited' : ''}</a>`;
+}
+function fullHtml(res, links){
+  return `${res.list.length ? `<div class="ops">${res.list.map(o=>cardHtml(o, links)).join('')}</div>` : `<div class="kdh-state empty slim"><b>No program lists this account as an opportunity right now.</b></div>`}
+    ${res.credited.length ? `<h3 class="op-gh">Already Earned Credit · ${res.credited.length}</h3><div class="ops">${res.credited.map(o=>cardHtml(o, links)).join('')}</div>` : ''}
+    ${res.other.length ? `<details class="fold op-other"><summary>Programs That Don’t Apply Here · ${res.other.length}</summary><div class="ops">${res.other.map(o=>cardHtml(o, links)).join('')}</div></details>` : ''}
+    <p class="note">An opportunity is a program whose tracker lists this account for the rep (a lead from its opportunity list, or eligible and not yet buying), the brand is sellable in this area, and the program has not ended. The rep’s overall progress is shown separately on each card and is not this account’s qualification.</p>`;
+}
+window.KdhOpps = {build, overviewHtml, fullHtml, cardHtml, _sizeOf: sizeOf};
+})();

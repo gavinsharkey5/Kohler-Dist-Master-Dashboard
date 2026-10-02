@@ -11,7 +11,21 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
-- [ ] **Notes + photos: run the SQL** (Gavin): Supabase SQL Editor, run
+- [ ] **Photo labels: run one more SQL file** (Gavin): Supabase SQL Editor,
+  run `supabase/migrations/20261003090000_photo_labels.sql`. Lets a photo
+  be Uncategorized, adds optional Brand / Program labels and Edit Labels on
+  your own photos. Until then photos still save (without brand / program).
+- [ ] **Drafts + recovery: one device check** (Gavin): on the iPhone, write a
+  note, turn on Airplane Mode, Save (it should say Pending Upload), turn it
+  off, tap Retry. Same with a photo: it should sit under "Not Yet Saved"
+  until Retry. Built and tested in a desktop browser with the network cut;
+  not yet tried on a real phone or the home-screen app.
+- [ ] **Exceptions: look it over** (Gavin): Manager -> Exceptions. 461 tap
+  surveys are past the 60-day rule in the 2026-09-23 export -- decide
+  whether some on-premise accounts should be exempt (REPORTING_REQUEST.md
+  10.4). Approved pitches / sell sheets / visit records / an issue log are
+  the asks in section 10.
+- [x] **Notes + photos: run the SQL** (Gavin, done 2026-10-02): Supabase SQL Editor, run
   `supabase/migrations/20261002120000_account_notes_photos.sql`, then
   `supabase/seed/account_assignments.sql` (re-run the seed whenever
   accounts/generate.py runs after a reassignment). Until then the Account
@@ -162,6 +176,19 @@ device, a decision).
 - **Account-aware assistant + mock pitch** -- built 2026-09-30 and hardened the same day (server-side account authorization, server-built record, tools on the full record, ledger + spend limits); waiting on the pilot above. Snowflake later adds freshness (daily grain, invoices, inventory); route-wide / comparable-account questions need a permission rule first.
 
 ## Done
+
+- [x] **Account workspace, third build** (2026-10-03): Rep Home rebuilt
+  (search, prominent My Accounts, labelled attention counts, consistent
+  tool buttons); My Accounts toolbar (title + List/Map, accurate "Also N
+  ..." wording); Account Activity timeline (notes, follow-ups, photos,
+  program marks, tap surveys, monthly purchase activity -- never a
+  "visit"; type filters, search, Load Older); "Programs This Account Could
+  Help Complete" with Selling Resources (requirement, no-approved-pitch
+  notice, sell sheets, packages, dated warehouse snapshot); drafts +
+  upload recovery (Draft / Pending Upload / Uploading / Saved / Upload
+  Failed -- Retry, per person on the device, retry without duplicates);
+  photo labels + filters; manager Exceptions page; shared/kdh-data.js
+  data-source layer; one 44px button system.
 
 - [x] 2026-10-02 Stay signed in: reps sign in once per device and stay signed
   in until they tap Sign out (the server keeps the session in a protected

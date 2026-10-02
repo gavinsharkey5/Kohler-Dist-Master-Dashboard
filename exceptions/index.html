@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F6F7F9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1523" media="(prefers-color-scheme: dark)">
+<title>Exceptions | Kohler Dist Hub</title>
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="preload" href="../assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+<script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="stylesheet" href="../rep/rep.css?v=20261003a">
+<link rel="stylesheet" href="exceptions.css?v=20261003a">
+<meta name="kdh-page" content="Exceptions">
+<script src="../shared/kdh-user.js?v=20261003a"></script>
+<script src="../shared/program-titles.js?v=20261002b"></script>
+</head>
+<body>
+<!--
+  MANAGER EXCEPTIONS (2026-10-03) -- managers only: /exceptions/ is not in the
+  middleware's REP_PATHS (a rep is sent to /rep/), and the page refuses a rep
+  cookie or a rep preview. Attio's "My Tasks" pattern: one list grouped by
+  account, each row = what, why, due, next action. Sources: the reps' own
+  open follow-ups (rep_actions), the account books' tap survey dates, and the
+  hub's program progress for programs ending within 14 days. Nothing can be
+  ticked off here. Rules, priority and scope: exceptions/README.txt.
+-->
+<main class="wrap" id="excApp"><div class="kdh-state loading">Loading exceptions…</div></main>
+<footer>Internal use. Managers only.</footer>
+
+<script src="../incentive-tracking/data/program_data.js?v=20261001a"></script>
+<script src="../incentive-tracking/programs.js?v=20260930d"></script>
+<script src="../MPOs/on-prem/programs.js?v=20260923h"></script>
+<script src="../MPOs/off-prem/programs.js?v=20260923h"></script>
+<script src="../hub/data/accounts.js?v=20260923h"></script>
+<script src="../hub/accounts.js?v=20260930c"></script>
+<script src="../shared/auth-config.js"></script>
+<script src="../hub/hub.js?v=20261002c"></script>
+<script src="../shared/kdh-data.js?v=20261003a"></script>
+<script src="exceptions.js?v=20261003a"></script>
+</body>
+</html>

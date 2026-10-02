@@ -1,0 +1,59 @@
+/* Manager Exceptions (2026-10-03; Attio "My Tasks": grouped rows, what / why / due / next) */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.ws.exh{display:block}
+.exh h1{margin:0 0 4px}
+.exs-sum{margin:0;font-size:16px;color:var(--text)}
+.exs-sum b{font-weight:600}
+.exs-fresh{margin:4px 0 0;font-size:14px;color:var(--text-2)}
+.exbar{display:flex;flex-direction:column;gap:8px;margin:16px 0 12px}
+.exbar .kdh-field{width:100%;min-height:44px;border:1px solid var(--border-2);border-radius:10px;padding:0 12px;background:var(--surface);color:var(--text);font:inherit;font-size:16px}
+.exf{display:flex;gap:8px}
+.exf .fsel{flex:1 1 0;min-width:0;display:block}
+.exf select{width:100%;min-width:0;min-height:44px;font:inherit;font-size:15px;color:var(--text);background:var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23676C74' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 10px center;border:1px solid var(--border-2);border-radius:10px;padding:0 28px 0 10px;-webkit-appearance:none;appearance:none;text-overflow:ellipsis}
+.exf select:focus-visible,.exbar .kdh-field:focus-visible{outline:2px solid var(--brand);outline-offset:1px}
+.exbar .chips{display:flex;flex-wrap:wrap;gap:8px}
+.exbar .chip{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 12px;border:1px solid var(--border-2);border-radius:999px;background:var(--surface);color:var(--text);font:inherit;font-size:14px;font-weight:500;cursor:pointer}
+.exbar .chip span{color:var(--text-2)}
+.exbar .chip[aria-pressed="true"]{background:var(--text);color:var(--surface);border-color:var(--text)}
+.exbar .chip[aria-pressed="true"] span{color:inherit;opacity:.85}
+.exbar .chip:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+@media (min-width:760px){ .exbar{flex-direction:row;flex-wrap:wrap;align-items:center} .exbar .kdh-field{flex:2 1 280px;width:auto} .exf{flex:2 1 360px} .exbar .chips{flex:1 1 100%} }
+.exnote{margin:0 0 12px}
+.exsec{margin:20px 0 0}
+.exsec h2{margin:0 0 10px;font-size:17px;font-weight:600}
+.exsec h2 small{font-size:14px;font-weight:400;color:var(--text-2);margin-left:6px}
+.exa{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin:0 0 12px;overflow:hidden}
+.exa-h{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:10px 16px;border-bottom:1px solid var(--border)}
+.exa-h h3{margin:0;font-size:16px;font-weight:600;line-height:1.35}
+.exa-h h3 a{color:var(--text);text-decoration:none;display:inline-block;padding:8px 0;margin:-8px 0}
+.exa-h h3 a:hover{color:var(--brand);text-decoration:underline}
+.exa-m{margin:2px 0 0;font-size:14px;color:var(--text-2)}
+.exa-m b{color:var(--text);font-weight:500}
+.exa-h .kdh-tag{flex:none}
+.exs{list-style:none;margin:0;padding:0}
+.ex{padding:10px 16px;border-top:1px solid var(--border);border-left:4px solid transparent}
+.ex:first-child{border-top:0}
+.ex.k-fu{border-left-color:var(--kdh-warn)}
+.ex.k-tap{border-left-color:var(--kdh-bad)}
+.ex.k-prog{border-left-color:var(--brand)}
+.ex p{margin:0;font-size:15px;line-height:1.5}
+.ex-h{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:2px 12px}
+.ex-t{font-weight:600}
+.ex-due{font-size:14px;color:var(--text-2)}
+.ex-due.late{color:var(--kdh-bad);font-weight:600}
+.ex-w{margin-top:2px!important;overflow-wrap:anywhere}
+.ex-src{color:var(--text-2);font-size:14px}
+.ex-n{margin-top:2px!important;font-size:14px!important;line-height:1.5;color:var(--text-2);display:flex;flex-wrap:wrap;gap:0 16px}
+.ex-n b{color:var(--text);font-weight:600}
+.ex-n a{color:var(--brand);font-weight:500;display:inline-block;padding:8px 0;margin:-8px 0}
+.exhow{margin:20px 0 0}
+.exhow-b p{margin:0 0 10px;font-size:15px;line-height:1.55}
+.exhow-b b{font-weight:600}
+details.exhow{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:0 16px}
+details.exhow > summary{cursor:pointer;list-style:none;display:flex;align-items:center;min-height:48px;font-size:15px;font-weight:600}
+details.exhow > summary::-webkit-details-marker{display:none}
+details.exhow > summary::after{content:'';margin-left:auto;width:8px;height:8px;border-right:2px solid var(--text-3);border-bottom:2px solid var(--text-3);transform:rotate(45deg) translateY(-2px)}
+details.exhow[open] > summary::after{transform:rotate(-135deg)}
+details.exhow > summary:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.exhow-b{padding:0 0 6px}
+#exMore{margin-top:4px}
