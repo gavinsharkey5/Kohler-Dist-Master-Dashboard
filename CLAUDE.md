@@ -1831,8 +1831,8 @@ holds now (accounts/README.txt has every rule):
   changed: drafts are invisible to anyone else by the owner hash.
 - PHOTO LABELS: Uncategorized allowed; optional brand / program; filters
   (type, search, date, taken by, brand); author-only Edit Labels. Needs
-  supabase/migrations/20261003090000_photo_labels.sql (Gavin to run;
-  verified locally; the page degrades without it).
+  supabase/migrations/20261003090000_photo_labels.sql (run by Gavin
+  2026-10-02, no errors; verified locally first).
 - EXCEPTIONS (exceptions/, managers only, not in REP_PATHS; refuses rep and
   rep preview): overdue / due-soon / undated-14-day follow-ups, tap surveys
   past or near 60 days, programs ending within 14 days with work left

@@ -324,7 +324,7 @@ for that work. Items already above are referred to, not restated.
 
 | # | What | Why |
 |---|---|---|
-| S1 | Run `supabase/migrations/20261003090000_photo_labels.sql` in the Supabase SQL Editor (after the 2026-10-02 file, which is already run). | Lets a photo be Uncategorized, adds the optional brand / program labels and lets the author fix a label later. Until it runs, photos save without brand / program, relabelling is hidden and the page says so once. Verified on a local Postgres 16 (idempotent, author-only relabel, account / file / author / times locked). |
+| S1 | DONE 2026-10-02. Run `supabase/migrations/20261003090000_photo_labels.sql` in the Supabase SQL Editor (after the 2026-10-02 file, which is already run). | Lets a photo be Uncategorized, adds the optional brand / program labels and lets the author fix a label later. Until it runs, photos save without brand / program, relabelling is hidden and the page says so once. Verified on a local Postgres 16 (idempotent, author-only relabel, account / file / author / times locked). |
 
 ### 10.2 ESSENTIAL (a feature is blocked or shown as unavailable without it)
 

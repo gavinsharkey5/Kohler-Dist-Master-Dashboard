@@ -11,7 +11,7 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
-- [ ] **Photo labels: run one more SQL file** (Gavin): Supabase SQL Editor,
+- [x] **Photo labels: run one more SQL file** (Gavin, done 2026-10-02): Supabase SQL Editor,
   run `supabase/migrations/20261003090000_photo_labels.sql`. Lets a photo
   be Uncategorized, adds optional Brand / Program labels and Edit Labels on
   your own photos. Until then photos still save (without brand / program).
