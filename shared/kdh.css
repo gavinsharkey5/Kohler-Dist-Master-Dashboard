@@ -24,12 +24,12 @@
 :root{
   /* 2026-10-01: neutral canvas, white surfaces, quiet dividers (Shopify admin) */
   --kdh-bg:#F1F2F4; --kdh-surface:#FFFFFF; --kdh-surface-2:#F6F7F8; --kdh-surface-3:#ECEEF1;
-  --kdh-text:#1A1C1F; --kdh-text-2:#474B52; --kdh-text-3:#5F646C; --kdh-text-4:#8B9097;
+  --kdh-text:#1A1C1F; --kdh-text-2:#474B52; --kdh-text-3:#5F646C; --kdh-text-4:#676C74;
   --kdh-border:#E1E3E6; --kdh-border-2:#C9CDD2;
   --kdh-brand:#2F5FC4; --kdh-brand-2:#244C9E; --kdh-brand-soft:#EBF0FA; --kdh-brand-ink:#FFFFFF; --kdh-ring:rgba(47,95,196,.35);
   --kdh-navy:#12275F; --kdh-navy-ink:#FFFFFF;
-  --kdh-ok:#15803D; --kdh-ok-soft:#E6F4EA; --kdh-warn:#A35A06; --kdh-warn-soft:#FBF0DC; --kdh-bad:#B42318; --kdh-bad-soft:#FCEBEA;
-  --kdh-gold:#B07D10; --kdh-gold-soft:#F8EFD5;
+  --kdh-ok:#13733A; --kdh-ok-soft:#E6F4EA; --kdh-warn:#A35A06; --kdh-warn-soft:#FBF0DC; --kdh-bad:#B42318; --kdh-bad-soft:#FCEBEA;
+  --kdh-gold:#8A6100; --kdh-gold-soft:#F8EFD5;
   --kdh-r:8px; --kdh-r-lg:12px; --kdh-r-xl:14px;
   --kdh-shadow:0 1px 0 rgba(26,28,31,.06); --kdh-shadow-h:0 2px 8px rgba(26,28,31,.08);
   --kdh-head:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; --kdh-body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
@@ -39,7 +39,7 @@
 @media (prefers-color-scheme:dark){
   :root[data-theme="dark"]{
     --kdh-bg:#131416; --kdh-surface:#1C1D20; --kdh-surface-2:#232428; --kdh-surface-3:#2C2E33;
-    --kdh-text:#ECEDEF; --kdh-text-2:#B9BCC2; --kdh-text-3:#9497A0; --kdh-text-4:#6E717A;
+    --kdh-text:#ECEDEF; --kdh-text-2:#B9BCC2; --kdh-text-3:#9497A0; --kdh-text-4:#8F939C;
     --kdh-border:#2E3035; --kdh-border-2:#3E4148;
     --kdh-brand:#7EA2EE; --kdh-brand-2:#9AB6F2; --kdh-brand-soft:#1F2A40; --kdh-brand-ink:#0B1226; --kdh-ring:rgba(126,162,238,.45);
     --kdh-ok:#4ADE80; --kdh-ok-soft:#14301E; --kdh-warn:#F2B552; --kdh-warn-soft:#382A10; --kdh-bad:#F87171; --kdh-bad-soft:#3A1C1C;
@@ -49,7 +49,7 @@
 }
 :root[data-theme="dark"]{
   --kdh-bg:#131416; --kdh-surface:#1C1D20; --kdh-surface-2:#232428; --kdh-surface-3:#2C2E33;
-  --kdh-text:#ECEDEF; --kdh-text-2:#B9BCC2; --kdh-text-3:#9497A0; --kdh-text-4:#6E717A;
+  --kdh-text:#ECEDEF; --kdh-text-2:#B9BCC2; --kdh-text-3:#9497A0; --kdh-text-4:#8F939C;
   --kdh-border:#2E3035; --kdh-border-2:#3E4148;
   --kdh-brand:#7EA2EE; --kdh-brand-2:#9AB6F2; --kdh-brand-soft:#1F2A40; --kdh-brand-ink:#0B1226; --kdh-ring:rgba(126,162,238,.45);
   --kdh-ok:#4ADE80; --kdh-ok-soft:#14301E; --kdh-warn:#F2B552; --kdh-warn-soft:#382A10; --kdh-bad:#F87171; --kdh-bad-soft:#3A1C1C;
@@ -362,3 +362,6 @@ html.kdh-menu-open .kdh-tabs{z-index:71}
 /* five tabs (a manager's bar) must fit a 375px phone: no tab may grow past its share */
 .kdh-tabs .kdh-tab{min-width:0;flex:1 1 0;padding-left:2px;padding-right:2px;margin:0;border:0;background:none;box-shadow:none}
 .kdh-tabs .kdh-tab span{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* placeholders pass AA in both themes (contrast audit 2026-10-02) */
+::placeholder{color:var(--kdh-text-3);opacity:1}

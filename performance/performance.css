@@ -1,0 +1,24 @@
+/* Incentive Performance (2026-10-02; Mintlify: period controls, restrained metrics, records) */
+.pf-controls{display:flex;flex-wrap:wrap;gap:10px 16px;margin:4px 0 12px}
+.pf-controls label{display:flex;flex-direction:column;gap:4px;min-width:0;font-size:14px;font-weight:600;color:var(--text-2);flex:1 1 220px;max-width:420px}
+.pf-controls select{width:100%;max-width:100%;min-height:44px;border:1px solid var(--border);border-radius:8px;padding:0 10px;background:var(--surface);color:var(--text);font:inherit;font-size:15px;font-weight:400}
+.pf-prog{margin:0 0 12px;font-size:15px;color:var(--text)}
+.pf-prog span{font-size:14px;color:var(--text-2)}
+.pf-banner{margin:0 0 14px}
+.pf-metrics{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin:0 0 18px}
+.pf-m{border:1px solid var(--border);border-radius:12px;background:var(--surface);padding:12px 14px}
+.pf-mt{margin:0;font-size:14px;font-weight:600;color:var(--text-2)}
+.pf-mv{display:inline-block;margin:6px 0 6px;padding:2px 8px;border-radius:6px;background:var(--surface-2);font-size:13.5px;font-weight:600;color:var(--text)}
+.pf-md{margin:0;font-size:14px;color:var(--text-2);line-height:1.4}
+.pf-mw{margin:6px 0 0;font-size:13.5px;color:var(--text-2);line-height:1.4;border-top:1px solid var(--border);padding-top:6px}
+.pf-dl{display:grid;grid-template-columns:minmax(0,220px) 1fr;gap:8px 16px;margin:0}
+.pf-dl dt{font-weight:600}
+.pf-dl dd{margin:0;color:var(--text-2)}
+@media (max-width:640px){ .pf-dl{grid-template-columns:1fr} .pf-dl dd{margin-bottom:6px} }
+.pf-tbl{width:100%;font-size:14px}
+.pf-q,.pf-need{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font-size:15px;line-height:1.5}
+.pf-q b,.pf-need b{font-weight:600}
+@media (max-width:700px){ .pf-tbl thead{display:none} .pf-tbl tr{display:block;border-top:1px solid var(--border);padding:8px 0} .pf-tbl td{display:block;border:0;padding:2px 0} .pf-tbl td[data-l]::before{content:attr(data-l) ': ';color:var(--text-2)} }
+
+.pf-why{margin:-2px 0 10px;font-size:14.5px;color:var(--text-2);line-height:1.45}
+.pf-grp .pf-metrics{margin-bottom:6px}

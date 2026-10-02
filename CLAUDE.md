@@ -1652,3 +1652,91 @@ Programs -> My Accounts restores the list; 6 sizes x light/dark), and the
 updated sections / alerts / assistant / preview_flow / ra / oct / back /
 team / theme / hubonly / mgr_desktop. Tags 20261002a (kdh-user, kdh.css,
 skin, rep.css, accounts, guided, hub).
+
+## Account map, photos, notes, export, Incentive Performance (2026-10-02, second build)
+
+Gavin's 13-part brief. Mobbin references inspected and mapped (komoot map +
+place sheet -> accounts/map.js; Freeform photo source menu -> the photo
+flow; folk notes + Outseta activity -> Notes & Activity; Attio record ->
+Account Details; Amplitude export menu -> hub exports; Mintlify analytics ->
+performance/). What holds now:
+- MAP (accounts/map.js, `KdhMap.mount`): My Accounts has List / Map
+  (`mode=map`), same search, filters and authorized rows as the list. Pins
+  cluster (Leaflet 1.9.4 + markercluster 1.5.3 VENDORED in assets/vendor --
+  cdnjs is blocked; licences beside them); a selected pin opens a sheet:
+  name, town, address, ONE action (leadOf), Open Account, Directions.
+  Coordinates: `accounts/geo.csv` (customer_num,lat,lng,source; generate.py
+  refuses points outside northern NJ) -> device cache `kdh_geo:v1` ->
+  `api/geocode.js` (US Census batch; route authorized server-side exactly
+  like api/chat.js; reps' REP_PATHS include /api/geocode). Unplaceable
+  accounts stay listed under "Not on the map" with the reason. Location is
+  asked only on "Use My Location". Scope is "All Assigned Accounts" only:
+  there is NO schedule data, so no Today's Stops and no stop order (never
+  invent one). Tiles: OSM standard (TILE_URL is the one place to swap in a
+  commercial provider before heavy use). Census + tiles NOT verified live
+  from the build environment.
+- NOTES + PHOTOS (accounts/activity.js, `KdhActivity`): notes are
+  rep_actions rows (`program_id 'note:<uuid>'`, status note / follow with
+  optional `follow_on` date / done) -- the existing write-back, not a second
+  system; there were never device-only notes to migrate. Photos: Add Photo
+  -> type (Display / Window / Cooler Door off-premise, Tap Handle on) ->
+  Take Photo (getUserMedia asked only then; refusal -> library) / Choose From
+  Library -> Preview -> Save; resized to 2048px JPEG (drops GPS), uploaded to
+  private bucket `account-photos/<customer #>/<uuid>.jpg` with progress,
+  then the account_photos row; "Saved" only after both; failure -> Retry.
+  No iSellBeer sync claim anywhere. Preview is read-only (no composer, Add
+  Photo, Mark Done, Remove). Migration
+  `supabase/migrations/20261002120000_account_notes_photos.sql` (+
+  `supabase/seed/account_assignments.sql`, WRITTEN by accounts/generate.py
+  -- re-run it in the SQL Editor after reassignments) adds
+  account_assignments, `kdh_name_key` (SQL mirror of middleware nameKey --
+  sql_notes_test compares every name), `kdh_can_access_account`, the
+  note/follow_on columns + policies on rep_actions, account_photos + the
+  bucket policies. Until it is run the page says so (UPDATE_SQL) and the
+  hub's marks keep working.
+- ACCOUNT PAGE: header actions Add Note / Add Photo / Ask About This
+  Account; Overview = Next Actions (+ open follow-up notes), Notes &
+  Activity, Sales Context in the main column; Account Details (Account,
+  Location, Contact & Servicing fold, Rep for managers) and Photos in the
+  side column from 1024px, stacked on phones. More -> Photos sub. Ask sub
+  has "Back to Overview" and "<account> · sales record <period>".
+- ASSISTANT: six starter questions (accounts/assistant.js); api/chat.js
+  prompt adds: account qualification vs rep progress kept apart, eligible
+  products tied to the requirement, warehouse stock dated and labelled,
+  no sell-through claims, seasonal only from patterns. Mock pitch unchanged.
+- TITLES: `shared/program-titles.js` (`kdhTitle(id, fallback)`) maps every
+  program id to a concise title; supplier / premise are metadata; the full
+  source name stays on the program screen (`.px-full`, "Full program
+  name"). Labels only -- ids, rules, goals untouched. Add a line per new
+  program. Loaded by hub, accounts, rep, team, both MPO pages, performance.
+- NAV: reps Home / My Accounts / Programs / Inventory / More (Inventory =
+  /inventory/, now in REP_PATHS -- warehouse stock only, no customer data);
+  managers keep Home / Accounts / Programs / Team / More with Inventory in
+  the menu (`invm`) and Incentive Performance (`perf`) in the sidebar.
+- EXPORTS (hub.js MANAGER EXPORTS): Program View and a program's manager
+  screen have Export Data (CSV of the COMPLETE filtered set x authorized
+  roster, optional credited lines, header rows with filters, scope,
+  generated time, freshness) and Export Recap (print-ready, Save as PDF;
+  definitions + freshness; payout rule lines removed -- no dollars). DM
+  scope applies; reps and preview cannot export. Test: export_test.mjs.
+- INCENTIVE PERFORMANCE (performance/, managers only -- not in REP_PATHS,
+  and the page refuses a rep or preview cookie): period + program pickers,
+  metric groups that all read "Not Calculable With Current Data" with the
+  reason once per group, the sales-vs-qualifying-vs-credited distinction,
+  a data-coverage table (HEAD probes of the money / adjust / month files),
+  the 12 definitions Gavin must confirm, and What Is Needed (P1-P4 in
+  accounts/REPORTING_REQUEST.md section 9). NO financial number is computed
+  until Gavin confirms the definitions; qualifying-sales GP is never called
+  profit caused by an incentive.
+- CONTRAST: scratchpad contrast_audit.mjs measures every visible text
+  element and placeholder (WCAG AA 4.5 / 3 large) on 20 page/role views,
+  light + dark. Fixes: --kdh-text-4 #676C74 / dark #8F939C, --kdh-ok
+  #13733A, --kdh-gold #8A6100, `::placeholder` = text-3 (kdh.css + skin),
+  text on a filled accent uses --kdh-brand-ink (dark accent is light),
+  hub's unavailable rows dim by colour not opacity, Red Bull medals/tags and
+  Inventory status colours on tokens, login --ink-3 #64748B. 0 failures at
+  375 / 390 / 430 / 820 / 1180 / 1440. Don't dim text with opacity.
+Tags 20261002b (kdh-user, kdh.css, skin, rep.css, accounts, activity, map,
+assistant, hub, guided, team.css, program-titles, performance). Tests:
+map_test, notes_photos_test, sql_notes_test (local Postgres 16), export_test,
+contrast_audit + the existing suites.

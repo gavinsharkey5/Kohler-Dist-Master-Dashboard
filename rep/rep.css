@@ -2,7 +2,7 @@
    Tokens come from shared/kdh.css (the design system: light + dark,
    fonts, top bar). The short names below are aliases kept so this
    file's rules and the pages' inline styles stay readable. */
-@import url("../shared/kdh.css?v=20261002a");
+@import url("../shared/kdh.css?v=20261002b");
 :root{
   --bg:var(--kdh-bg);--surface:var(--kdh-surface);--surface-2:var(--kdh-surface-2);
   --text:var(--kdh-text);--text-2:var(--kdh-text-2);--text-3:var(--kdh-text-3);--text-4:var(--kdh-text-4);
@@ -35,7 +35,7 @@ a{color:inherit}
 .ws .kicker{font-family:var(--head);font-size:13px;font-weight:600;color:var(--text-3);margin:0 0 2px}
 .ws h1{font-family:var(--head);font-size:26px;font-weight:600;letter-spacing:normal;line-height:1.25;margin:0}
 .meta{display:flex;flex-wrap:wrap;align-items:center;gap:4px 0;margin:4px 0 0;font-size:14px;color:var(--text-2);min-height:20px}
-.meta .sep{color:var(--border-2);margin:0 8px}
+.meta .sep{color:var(--kdh-text-4);margin:0 8px}
 .meta .muted{color:var(--text-4)}
 .switch{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-3);flex-wrap:wrap}
 .switch label{display:flex;align-items:center;gap:8px}

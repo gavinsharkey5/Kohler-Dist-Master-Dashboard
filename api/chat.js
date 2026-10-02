@@ -100,6 +100,11 @@ How to answer
 - When something is not in the data, say so in one short sentence and, when coverage.notInData names where it lives (Encompass), say that. Never guess or fill in: no contacts, hours, prices, deals, invoices, balances, retailer shelf stock, delivery dates, reasons an account stopped, or other accounts' data.
 - No dollar figures. Kohler keeps money off rep pages; if asked, say prices and payouts are not on this page.
 - Program facts (credited, lead, eligible, deadline, what qualifies) come only from PAGE CONTEXT programs; the rep's overall progress is the tracker's number, do not recompute it.
+- Keep THIS ACCOUNT's standing in a program (credited here, a lead here, eligible here, or not on its lists) apart from the REP's overall progress on that program (the tracker's total across all their accounts). Never imply one account finishes a program unless PAGE CONTEXT says so.
+- When you suggest eligible products that could help an incentive or MPO, tie each to the program requirement PAGE CONTEXT gives ("what qualifies") and to this account's own history; say it is a suggestion.
+- Warehouse figures in PAGE CONTEXT are KOHLER'S WAREHOUSE stock at the report date, not the retailer's shelf and not live: give the date, and if it is more than 7 days old say it may have changed. Never claim a product is in stock now.
+- Kohler's sales to this account show what the ACCOUNT BOUGHT FROM KOHLER, not what consumers bought (sell-through) and not what is on the shelf today. Never claim either.
+- For seasonal questions use only the seasonal / irregular products the record's patterns name, with their months; with fewer than two years of a product's history, say the season cannot be confirmed yet.
 - Comparable accounts, area trends and seasonality across the market are not available; you can only speak to THIS account's history. Say so when asked.
 - Be brief and scannable for a phone in a store: lead with the answer, then 2-5 short bullets of evidence, then one concrete next step if there is one. Plain words, no headings, no tables, no preamble, no closing offer. Use product names as the record spells them. Do not repeat the period and data date at the end; the app prints them under every answer.
 - If the rep asks for a pitch, build it from what the account actually buys and what PAGE CONTEXT lists as a lead, and label anything you infer as a suggestion.`;
@@ -129,10 +134,10 @@ const TOOLS = [
 ];
 
 // ---------------------------------------------------------------- helpers
-function json(status, body) {
+export function json(status, body) {
   return new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json', 'cache-control': 'no-store' } });
 }
-function readCookie(header, name) {
+export function readCookie(header, name) {
   const m = String(header || '').match(new RegExp('(?:^|;\\s*)' + name + '=([^;]*)'));
   try { return m ? decodeURIComponent(m[1]) : ''; } catch { return ''; }
 }
@@ -145,7 +150,7 @@ function tokenExpiry(token) {
   } catch { return null; }
 }
 // Same check as middleware.js: the caller's own allowed_users row, or nothing.
-async function whoIs(token, supabaseUrl, publishableKey) {
+export async function whoIs(token, supabaseUrl, publishableKey) {
   if (!token) return null;
   const exp = tokenExpiry(token);
   if (!exp || exp <= Date.now()) return null;
@@ -185,7 +190,7 @@ function cleanMessages(list) {
 // MIRROR of middleware.js nameKey() (and shared/kdh-user.js): canonical first
 // name + surname. scratchpad chat_api_test.mjs fails if the two drift apart.
 const NICK = {daniel:'dan',james:'jim',matthew:'matt',nicholas:'nick',michael:'mike',christopher:'chris',robert:'rob',william:'bill',joseph:'joe',jonathan:'jon',kenneth:'ken',timothy:'tim',thomas:'tom',richard:'rich',edward:'ed',andrew:'andy',anthony:'tony',steven:'steve',stephen:'steve',benjamin:'ben',samuel:'sam',alexander:'alex',patrick:'pat',gregory:'greg',jeffrey:'jeff',joshua:'josh',zachary:'zach',charles:'chuck',frederick:'fred',ronald:'ron',donald:'don',douglas:'doug',kevin:'kev',katherine:'kate',elizabeth:'liz',jennifer:'jen',jessica:'jess',rebecca:'becky',danielle:'dani',nicole:'nikki',alexandra:'alex',victoria:'vicky'};
-function nameKey(n) {
+export function nameKey(n) {
   const parts = String(n || '').toLowerCase().replace(/[^a-z\s]/g, ' ').replace(/\s+/g, ' ').trim().split(' ');
   if (!parts.length || !parts[0]) return '';
   const first = NICK[parts[0]] || parts[0];
@@ -205,7 +210,7 @@ function nameKey(n) {
 //   notes(n, repName)             -> rep_actions rows for this account (caller's token)
 // Every read carries the caller's cookies / token so the middleware and
 // Supabase RLS keep enforcing their own rules underneath this one.
-function StaticExportSource(request, env, token) {
+export function StaticExportSource(request, env, token) {
   const origin = new URL(request.url).origin;
   const cookie = request.headers.get('cookie') || '';
   async function file(path, kind) {
@@ -259,7 +264,7 @@ function StaticExportSource(request, env, token) {
 
 // A district manager sees their own team (and groups filed under them);
 // every other manager sees everyone (null). Same rule as kdhTeam().
-function teamFor(managerName, groups) {
+export function teamFor(managerName, groups) {
   if (!Array.isArray(groups)) return null;
   const me = nameKey(managerName);
   const mine = groups.find(g => nameKey(g.dm) === me);

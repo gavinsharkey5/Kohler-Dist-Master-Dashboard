@@ -247,7 +247,7 @@ function makeIncentive(entry, month){
   const rules = PROGRAM_RULES[entry.key] || [];
   const p = {
     id: 'inc:'+entry.key, source:'inc', key: entry.key, monthKey: month.key, monthLabel: month.label,
-    name: entry.title, shortName: entry.shortTitle || entry.title, pitch: entry.pitch || '',
+    name: entry.title, shortName: (window.kdhTitle ? window.kdhTitle('inc:'+entry.key, entry.shortTitle || entry.title) : (entry.shortTitle || entry.title)), pitch: entry.pitch || '',
     type: 'Incentive', group: entry.group || 'new', supKey: PROGRAM_SUPPLIER[entry.key] || 'house', channel: chan, channelLabel: CHANNEL_LABEL[chan],
     supplier: sup.name, supplierLogo: assetPath(sup.logo), brandLogos: progLogos(entry.key).map(assetPath),
     period, refreshed: incRefreshed(), manual: !!entry.manual, awaitingNote: entry.awaitingNote || '',
@@ -398,7 +398,7 @@ function makeMpo(scope, month, o){
   const data = () => (mpoState[scope] && mpoState[scope][month.key]) || {};
   const p = {
     id: `${scope}:${month.key}:${o.key}`, source: scope, key: o.key, monthKey: month.key, monthLabel: month.label,
-    name: o.name, shortName: o.shortName || o.name, pitch: o.goalLabel ? `${o.goalLabel} — ${weightPct}% of the ${S.label} MPO.` : '',
+    name: o.name, shortName: (window.kdhTitle ? window.kdhTitle(`${scope}:${month.key}:${o.key}`, o.shortName || o.name) : (o.shortName || o.name)), pitch: o.goalLabel ? `${o.goalLabel} — ${weightPct}% of the ${S.label} MPO.` : '',
     type:'MPO', channel: S.channel, channelLabel: CHANNEL_LABEL[S.channel],
     supplier, supplierLogo: supLogo, brandLogos: brand ? [brand] : [],
     period, refreshed: '', manual: !o.hasData, awaitingNote: '',
@@ -2648,6 +2648,154 @@ function mpoSectionHtml(scope, mk, progs){
   </section>`;
 }
 
+/* ====================================================================
+   MANAGER EXPORTS (2026-10-02; Amplitude's export menu: data vs report)
+   EXPORT DATA = the COMPLETE filtered result set as CSV -- every program
+   the Program View filters keep, crossed with every rep on this manager's
+   authorized roster (ROSTER is already cut to a district manager's team),
+   not just what is drawn on screen. EXPORT RECAP = a print-ready report
+   (Save as PDF from the print dialog) of the same set: team results per
+   program, every rep's progress and what is left, deadlines, definitions
+   and data freshness; account lines only when asked for. Both reuse the
+   trackers' own numbers (p.forRep, progFacts, programStats, distFor) --
+   nothing is recalculated, nothing is narrated, and a lead or eligible
+   account is never shown as a result. Manager Mode only (reps never reach
+   Program View); preview cannot export.
+   ==================================================================== */
+const EXPORT_DEFS = [
+  ['Participating reps', 'Reps on this manager’s roster the program applies to and the tracker has data for (territory and support-rep rules applied).'],
+  ['Qualified / at goal', 'The tracker’s own status: an incentive marked complete or exceeded, or an MPO objective marked achieved.'],
+  ['Progress, goal, remaining', 'The tracker’s figures for that rep, in the program’s own unit; remaining = goal minus current, never below zero.'],
+  ['Credited lines', 'Placements or purchases the tracker credits to the rep (customer, product, date). Some trackers publish a total without lines.'],
+  ['Not included', 'Possible opportunities, eligible accounts and leads are not results and are not counted. No payout or dollar figures are in this export.'],
+];
+function exportFilterText(f){
+  const sup = f.sup==='all' ? 'All suppliers' : f.sup;
+  const mon = f.month==='active' ? 'Active now' : f.month==='all' ? 'All months' : f.month;
+  return `Type: ${f.type==='all'?'All':f.type==='inc'?'Incentives':'MPOs'} · Premise: ${f.chan==='all'?'All':f.chan==='on'?'On-Premise':'Off-Premise'} · Supplier: ${sup} · Month: ${mon}`;
+}
+function exportScopeText(){ return HUB_TEAM ? `${HUB_TEAM.dm}’s team (${ROSTER.length} reps)` : `Every rep (${ROSTER.length})`; }
+function programsForExport(onlyId){
+  if(onlyId){ const p = PROGRAMS.find(x=>x.id===onlyId); return p ? [p] : []; }
+  const f = state.filters;
+  return PROGRAMS.filter(p=>
+    (f.type==='all' || (f.type==='inc' ? p.type==='Incentive' : p.type==='MPO')) &&
+    (f.chan==='all' || p.channel===f.chan || (p.channel==='both')) &&
+    (f.sup==='all' || p.supplier===f.sup) &&
+    (f.month==='all' ? true : f.month==='active' ? isActive(p) : p.monthKey===f.month))
+    .sort((a,b)=> (isActive(b)-isActive(a)) || (a.period.end-b.period.end) || a.name.localeCompare(b.name));
+}
+const isoDay = d => d instanceof Date && !isNaN(d) ? new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,10) : '';
+function dataDateOf(p){ if(p.type!=='MPO') return p.refreshed || incRefreshed() || ''; const sl = (mpoState[p.source]||{})[p.monthKey]; return sl && sl.syncedAt ? fmtSynced(sl.syncedAt) : ''; }
+function qualifiedOf(p, r){ if(!r) return ''; if(p.type==='MPO') return gStatusOf(r)==='achieved' ? 'yes' : 'no'; return (r.status==='complete' || r.status==='exceeded') ? 'yes' : 'no'; }
+function exportRows(list, withLines){
+  const repDm = rep => { const g = DM_GROUPS.find(x=>x.reps.includes(rep)); return g ? g.dm : ''; };
+  const rows = [];
+  list.forEach(p=>{
+    const loaded = p.type!=='MPO' || mpoMonthLoaded(p.source, p.monthKey);
+    ROSTER.forEach(rep=>{
+      if(!supportAllows(rep, p)) return;
+      const r = loaded ? p.forRep(rep) : null; if(!r) return;
+      const f = progFacts(p, r, rep) || {};
+      const N = p.type==='MPO' ? mpoNums(r) : incNums(r);
+      const unit = p.type==='MPO' ? ((p.objective && p.objective.unit) || '') : (unitOf(r)||'');
+      const strip = v => String(v||'').replace(/<[^>]+>/g,'').replace(/&amp;/g,'&').replace(/&#39;/g,"'").replace(/&quot;/g,'"').replace(/&lt;/g,'<').replace(/&gt;/g,'>');
+      const base = {record:'rep_progress', program_id:p.id, program_title:p.shortName||p.name, program_source_name:p.name, type:p.type, supplier:p.supplier, premise:p.channelLabel, month:p.monthKey,
+        period_start:isoDay(p.period.start), period_end:isoDay(p.period.end), rep, district_manager:repDm(rep),
+        status: f.label || '', qualified: qualifiedOf(p, r), current: N ? N.cur : '', goal: N ? N.goal : '', remaining: N ? N.need : '', unit,
+        progress_text: strip(f.main), remaining_text: strip(f.need), pct: r.pct!=null ? Math.round(r.pct*10)/10 : '', data_as_of: dataDateOf(p),
+        account_num:'', account_name:'', product:'', credit_date:''};
+      rows.push(base);
+      if(withLines && r.status!=='unavailable' && !r.soon){
+        distFor(p, rep).forEach(x=>rows.push(Object.assign({}, base, {record:'credited_line', status:'', qualified:'', current:'', goal:'', remaining:'', progress_text:'', remaining_text:'', pct:'',
+          account_num: x.n || '', account_name: x.name || '', product: x.what || '', credit_date: x.date || ''})));
+      }
+    });
+  });
+  return rows;
+}
+const csvCell = v => { const t = String(v==null?'':v); return /[",\n\r]/.test(t) ? '"'+t.replace(/"/g,'""')+'"' : t; };
+function downloadText(name, text, type){
+  const blob = new Blob([text], {type});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name;
+  document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+}
+function exportStamp(){ const d = new Date(); return {iso: d.toISOString(), label: d.toLocaleString('en-US', {month:'short', day:'numeric', year:'numeric', hour:'numeric', minute:'2-digit'}), file: d.toISOString().slice(0,16).replace(/[:T]/g,'-')}; }
+async function ensureLoadedFor(list){ const need = neededMonths(list); if(need.length) await Promise.all(need.map(x=>ensureMpoMonth(x[0], x[1]))); }
+async function exportData(onlyId, withLines){
+  const list = programsForExport(onlyId);
+  await ensureLoadedFor(list);
+  const rows = exportRows(list, withLines);
+  const st = exportStamp();
+  const cols = ['record','program_id','program_title','program_source_name','type','supplier','premise','month','period_start','period_end','rep','district_manager','status','qualified','current','goal','remaining','unit','progress_text','remaining_text','pct','data_as_of','account_num','account_name','product','credit_date'];
+  const head = [
+    ['# Kohler Dist Hub — Program Data Export'], ['# Generated', st.label], ['# Filters', onlyId ? 'One program: '+(list[0] ? list[0].shortName||list[0].name : onlyId) : exportFilterText(state.filters)],
+    ['# Scope', exportScopeText()], ['# Programs', String(list.length)], ['# Rows', String(rows.length)+(withLines ? ' (rep progress + credited lines)' : ' (rep progress)')],
+    ['# Note', 'Tracker figures as published; leads and eligible accounts are not results; no dollar figures.'], []];
+  const text = head.map(r=>r.map(csvCell).join(',')).join('\r\n') + '\r\n' + cols.join(',') + '\r\n' + rows.map(r=>cols.map(c=>csvCell(r[c])).join(',')).join('\r\n') + '\r\n';
+  downloadText(`kohler-programs-${st.file}.csv`, '﻿'+text, 'text/csv;charset=utf-8');
+  return {rows: rows.length, programs: list.length};
+}
+async function exportRecap(onlyId, withAccounts){
+  const list = programsForExport(onlyId);
+  await ensureLoadedFor(list);
+  const st = exportStamp();
+  const esc = E;
+  const sections = list.map(p=>{
+    const loaded = p.type!=='MPO' || mpoMonthLoaded(p.source, p.monthKey);
+    const stt = loaded ? programStats(p) : null;
+    const reps = [];
+    if(loaded) ROSTER.forEach(rep=>{ if(!supportAllows(rep, p)) return; const r = p.forRep(rep); if(!r || r.soon) return; reps.push({rep, r, f: progFacts(p, r, rep) || {}}); });
+    reps.sort((a,b)=> (qualifiedOf(p,b.r)==='yes') - (qualifiedOf(p,a.r)==='yes') || ((b.r.pct||0)-(a.r.pct||0)) || a.rep.localeCompare(b.rep));
+    const repRows = reps.map(({rep, r, f})=>`<tr><td>${esc(rep)}</td><td>${f.main||'—'}</td><td>${f.need && f.need!==f.label ? f.need : (qualifiedOf(p,r)==='yes' ? 'Goal met' : '—')}</td><td>${esc(f.label||'')}</td></tr>${withAccounts ? (()=>{ const L = r.status==='unavailable' ? [] : distFor(p, rep); return L.length ? `<tr class="lines"><td></td><td colspan="3">${L.map(x=>`${esc(x.name)}${x.n ? ' #'+esc(x.n) : ''} · ${esc(x.what||'')}${x.date ? ' · '+esc(x.date) : ''}`).join('<br>')}</td></tr>` : ''; })() : ''}`).join('');
+    // the program's own requirement lines; payout terms ($) stay on the trackers, not in a performance recap
+    const rules = (p.rules||[]).map(x=>String(x).replace(/<[^>]+>/g,'')).filter(x=>!/\$\s?\d/.test(x)).slice(0,3).map(x=>`<li>${esc(x)}</li>`).join('');
+    return `<section class="prog"><h2>${esc(p.shortName||p.name)}</h2>
+      <p class="meta">${esc(p.supplier)} · ${esc(p.channelLabel)} · ${esc(p.type==='MPO' ? p.monthLabel+' MPO' : 'Incentive')} · ${esc(p.period.label)} · ${esc(endsLabel(p.period))}</p>
+      ${p.shortName && p.shortName!==p.name ? `<p class="full">Full program name: ${esc(p.name)}</p>` : ''}
+      ${rules ? `<ul class="rules">${rules}</ul>` : ''}
+      ${!loaded ? '<p class="na">Data not loaded for this month.</p>' : p.manual ? '<p class="na">Verified by hand from iSellBeer photos — no data feed, so no completion numbers.</p>' : !stt.participants ? '<p class="na">No export for this program yet.</p>' : `
+      <div class="kpis"><div><b>${stt.participants}</b><span>participating reps</span></div><div><b>${stt.complete}</b><span>at goal</span></div><div><b>${Math.round(stt.pctComplete)}%</b><span>of reps at goal</span></div>${stt.avg!=null ? `<div><b>${Math.round(stt.avg)}%</b><span>average progress</span></div>` : ''}</div>
+      <table><thead><tr><th>Rep</th><th>Current</th><th>Remaining</th><th>Status</th></tr></thead><tbody>${repRows}</tbody></table>`}
+      <p class="fresh">Data as of ${esc(dataDateOf(p) || 'not stated')}</p></section>`;
+  }).join('');
+  const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Program Recap · ${esc(st.label)}</title>
+<style>
+@page{size:letter;margin:14mm}
+body{font:14px/1.45 -apple-system,"Segoe UI",Inter,Arial,sans-serif;color:#1a1c1f;margin:24px;max-width:960px}
+h1{font-size:22px;margin:0 0 4px} h2{font-size:17px;margin:0 0 2px} .sub{color:#4a4f57;margin:0 0 2px}
+.bar{display:flex;gap:8px;margin:12px 0 18px} .bar button{font:inherit;padding:8px 14px;border-radius:8px;border:1px solid #2F5FC4;background:#2F5FC4;color:#fff;cursor:pointer}
+.prog{border-top:1px solid #d5d8dd;padding:14px 0 10px;break-inside:avoid-page} .meta,.full,.fresh{color:#4a4f57;margin:2px 0} .fresh{font-size:12.5px}
+.rules{margin:6px 0 8px;padding-left:18px;color:#33373d} .na{color:#4a4f57;font-style:italic}
+.kpis{display:flex;flex-wrap:wrap;gap:8px 22px;margin:8px 0} .kpis b{display:block;font-size:18px} .kpis span{color:#4a4f57;font-size:12.5px}
+table{width:100%;border-collapse:collapse;margin:6px 0} th,td{text-align:left;padding:5px 8px;border-bottom:1px solid #e3e5e8;vertical-align:top} th{font-size:12.5px;color:#4a4f57;font-weight:600}
+tr.lines td{font-size:12.5px;color:#33373d;border-bottom:1px solid #e3e5e8}
+dl{display:grid;grid-template-columns:200px 1fr;gap:4px 14px} dt{font-weight:600} dd{margin:0;color:#33373d}
+@media print{.bar{display:none} body{margin:0}}
+</style></head><body>
+<h1>Program Recap</h1>
+<p class="sub">Generated ${esc(st.label)} · ${esc(exportScopeText())}</p>
+<p class="sub">${esc(onlyId ? 'One program' : exportFilterText(state.filters))} · ${list.length} ${list.length===1?'program':'programs'}${withAccounts ? ' · with credited account lines' : ''}</p>
+<p class="sub">Incentive data refreshed ${esc(incRefreshed()||'—')}. MPO data dates are shown per program.</p>
+<div class="bar"><button onclick="window.print()">Print / Save as PDF</button></div>
+${sections || '<p class="na">No programs match these filters.</p>'}
+<section class="prog"><h2>Definitions</h2><dl>${EXPORT_DEFS.map(([a,b])=>`<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('')}</dl></section>
+</body></html>`;
+  const w = window.open('', '_blank');
+  if(w && w.document){ w.document.open(); w.document.write(html); w.document.close(); }
+  else downloadText(`kohler-program-recap-${st.file}.html`, html, 'text/html;charset=utf-8');
+  return {programs: list.length, html};
+}
+function exportMenuHtml(onlyId){
+  if(!isMgr() || LOCKED_REP || state.asRep || (KDH_USER && KDH_USER.preview)) return '';
+  const pid = onlyId ? ` data-prog="${E(onlyId)}"` : '';
+  return `<details class="xmenu"><summary>Export</summary><div class="xpanel" role="menu">
+    <div class="xitem"><button type="button" class="xbtn" data-act="export-data"${pid} role="menuitem"><b>Export Data</b><span>Spreadsheet (CSV) of every program and rep in these filters — not just this page</span></button>
+      <label class="xopt"><input type="checkbox" id="xLines"> Include credited account lines</label></div>
+    <div class="xitem"><button type="button" class="xbtn" data-act="export-recap"${pid} role="menuitem"><b>Export Recap</b><span>Formatted report to print or save as PDF: team results, remaining work, deadlines, definitions</span></button>
+      <label class="xopt"><input type="checkbox" id="xAccts"> Include account detail</label></div>
+    <p class="xnote">${E(exportScopeText())} · tracker figures as published · no dollar figures</p></div></details>`;
+}
 function screenPrograms(){
   const f = state.filters;
   const sups = [...new Set(PROGRAMS.map(p=>p.supplier))].sort((a,b)=>a.localeCompare(b));
@@ -2662,7 +2810,7 @@ function screenPrograms(){
   list.sort((a,b)=> (isActive(b)-isActive(a)) || (a.period.end-b.period.end) || a.name.localeCompare(b.name));
   const sel = (name, opts, val) => `<select class="fsel" data-filter="${name}">${opts.map(o=>`<option value="${E(o.v)}"${o.v===val?' selected':''}>${E(o.l)}</option>`).join('')}</select>`;
   let html = `<div class="pv-head">
-    <h1>Program View</h1>
+    <div class="pv-title"><h1>Program View</h1>${exportMenuHtml('')}</div>
     <p class="pv-sub">Every program on the board, by program instead of by rep — participation, completion and who is where.</p>
     ${refreshedLine()}
     <div class="filters">
@@ -2732,7 +2880,7 @@ function screenProgram(){
   const ag = (loaded && p.atGoal) ? p.atGoal() : null;
   const notIn = loaded ? ROSTER.filter(rep=>supportAllows(rep, p) && !p.forRep(rep)) : [];
   return `<div class="detail pdetail">
-    <button class="back" data-act="programs"><span class="ar">‹</span> Back to Program View</button>
+    <div class="pv-title"><button class="back" data-act="programs"><span class="ar">‹</span> Back to Program View</button>${exportMenuHtml(p.id)}</div>
     <div class="dhero">
       <div class="dhero-top">${logoStrip(p,'lg')}<div class="dhero-meta">${typeChips(p)}<span class="chip sup">${E(p.supplier)}</span>${p.territory?`<span class="chip terr">${E(p.territory)}</span>`:''}${isActive(p)?'':'<span class="chip over">Ended</span>'}</div></div>
       <div class="dhero-sup">${E(p.supplier)} · ${E(p.monthLabel)}</div>
@@ -2972,7 +3120,8 @@ function screenProgramRep(p, r, rep){
     ${backForProgram(p)}
     <div class="px${legs?' has-legs':''}">
       <div class="px-sup">${E(p.supplier)} · ${E(p.channelLabel)}${p.type==='MPO' ? ' · '+E(p.monthLabel)+' MPO' : ''}</div>
-      <h1 class="px-name">${E(p.type==='MPO' ? (p.shortName||p.name) : p.name)}</h1>
+      <h1 class="px-name">${E(p.shortName||p.name)}</h1>
+      ${p.shortName && p.shortName!==p.name ? `<p class="px-full"><span>Full program name</span>${E(p.name)}</p>` : ''}
       <div class="px-meta">${htag(f)}<span class="px-ends">${E(endsLabel(p.period))}</span></div>
       ${off ? `<div class="kdh-state ${r.status==='unavailable'?'unavailable':'empty'}"><b>${f.main}</b>${f.rule?`<span>${E(f.rule)}</span>`:''}</div>` : legs ? `
       <div class="px-legs">${legs.map(legHtml).join('')}</div>` : `
@@ -3175,6 +3324,14 @@ document.addEventListener('click', e=>{
     case 'reset-all': try{ localStorage.removeItem(LS_KEY); sessionStorage.removeItem(TAB_KEY); }catch(e){} openCards.clear(); state.showEnded = false; state.peek = null; state.prog = null; state.rep = null; state.cat = null; state.main = null;
       go({view:'home'}, true); break;
     case 'open': go({view:'detail', prog:t.dataset.prog, from:null, peek:null}); break;
+    case 'export-data': case 'export-recap': {
+      if(!isMgr() || (KDH_USER && KDH_USER.preview)) break;
+      const lines = !!(document.getElementById(t.dataset.act==='export-data' ? 'xLines' : 'xAccts')||{}).checked;
+      const lbl = t.querySelector('b'); const was = lbl.textContent; lbl.textContent = 'Preparing…'; t.disabled = true;
+      (t.dataset.act==='export-data' ? exportData(t.dataset.prog||'', lines) : exportRecap(t.dataset.prog||'', lines))
+        .catch(e=>{ alert('Export failed: '+(e && e.message || e)); })
+        .finally(()=>{ lbl.textContent = was; t.disabled = false; const d = t.closest('details'); if(d) d.open = false; });
+      break; }
     case 'open-sup': { const name = t.dataset.sup; const one = supProgs(state.rep).get(name) || [];
       // One program only: skip the supplier screen (2026-09-30).
       if(one.length===1) go({view:'detail', prog:one[0].p.id, sup:name, from:null, peek:null}); else go({view:'sup', sup:name}); break; }

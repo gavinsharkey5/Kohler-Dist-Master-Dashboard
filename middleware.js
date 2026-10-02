@@ -44,6 +44,8 @@ const REP_PATHS = [
   '/incentive-tracking/data/program_data.js', // ... and its data
   '/shared/',                           // auth-config.js
   '/api/chat',                          // the account assistant (api/chat.js re-checks the token itself)
+  '/api/geocode',                       // account map coordinates (api/geocode.js authorizes the route itself)
+  '/inventory/',                        // What Can I Sell (units only -- no cost, value or margin; 2026-10-02)
 ];
 const REP_HOME = '/rep/';
 

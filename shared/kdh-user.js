@@ -173,6 +173,8 @@
     accounts: I('<path d="M3 9.5 4.5 4h15L21 9.5"/><path d="M3 9.5a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/><path d="M5 12v9h14v-9"/><path d="M10 21v-5h4v5"/>'),
     programs: I('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/>'),
     team: I('<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8"/><path d="M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/>'),
+    inventory: I('<path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5"/><path d="M12 13v8"/>'),
+    perf: I('<path d="M4 20V11"/><path d="M10 20V5"/><path d="M16 20v-6"/><path d="M21 20H3"/>'),
     more: I('<circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/>'),
     tap: I('<path d="M12 2.7 6.5 9a6.5 6.5 0 1 0 11 0z"/>'),
     rb: I('<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>'),
@@ -184,6 +186,7 @@
     eye: I('<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>'),
     out: I('<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/>')
   };
+  NAV_ICON.invm = NAV_ICON.inventory;
   // ---- remembered places, scoped to who is looking ----
   // A list's search / filters / rep, the Programs tab and screen, are kept
   // per tab in sessionStorage under kdh_nav:<scope>:<key>, where <scope> is
@@ -201,7 +204,9 @@
     var items = [
       { key: 'home', label: 'Home', href: isMgr ? ROOT : REP_HOME },
       { key: 'accounts', label: isMgr ? 'Accounts' : 'My Accounts', href: ROOT + 'accounts/' },
-      { key: 'programs', label: 'Programs', href: progDefault(u) }
+      { key: 'programs', label: 'Programs', href: progDefault(u) },
+      // What Can I Sell (2026-10-02): units only, no cost / value / margin -- safe for reps
+      { key: 'inventory', label: 'Inventory', href: ROOT + 'inventory/' }
     ];
     if (isMgr) items.push({ key: 'team', label: 'Team', href: ROOT + 'team/' });
     return items;
@@ -216,6 +221,8 @@
       { key: 'rb', group: 'Trackers', label: 'Red Bull Tracker', href: ROOT + 'redbull/' },
       { key: 'cb', group: 'Trackers', label: 'Carbliss Targets', href: ROOT + 'carbliss-onprem-targets/' }
     ];
+    if (isMgr) t.push({ key: 'invm', group: 'Manager', label: 'Inventory', href: ROOT + 'inventory/', menuOnly: true });
+    if (isMgr) t.push({ key: 'perf', group: 'Manager', label: 'Incentive Performance', href: ROOT + 'performance/' });
     if (isMgr) t.push({ key: 'ws', group: 'Manager', label: 'Rep Workspace', href: REP_HOME });
     return t;
   }
@@ -229,6 +236,8 @@
     if (/^MPOs\/off-prem\//.test(rel)) return { nav: 'programs', tool: 'off' };
     if (/^MPOs\/on-prem\//.test(rel)) return { nav: 'programs', tool: 'on' };
     if (/^team\//.test(rel)) return { nav: 'team', tool: '' };
+    if (/^performance\//.test(rel)) return { nav: 'more', tool: 'perf' };
+    if (/^inventory\//.test(rel)) return { nav: 'inventory', tool: isMgr ? 'invm' : '' };
     if (/^isellbeer\/tap-survey-tracking\//.test(rel)) return { nav: 'more', tool: 'tap' };
     if (/^redbull\//.test(rel)) return { nav: 'more', tool: 'rb' };
     if (/^carbliss-onprem-targets\//.test(rel)) return { nav: 'more', tool: 'cb' };
@@ -249,7 +258,9 @@
     var w = where(u);
     var t = document.createElement('nav');
     t.id = 'kdhTabs'; t.className = 'kdh-tabs'; t.setAttribute('aria-label', 'Main');
-    t.innerHTML = '<div class="kdh-tabs-in">' + navHtml(u, 'kdh-tab') +
+    var isMgr = u.role === 'manager';
+    var tabs = navItems(u).filter(function (it) { return !(isMgr && it.key === 'inventory'); });
+    t.innerHTML = '<div class="kdh-tabs-in">' + tabs.map(function (it) { return link('kdh-tab', it, it.key === w.nav); }).join('') +
       '<button type="button" class="kdh-tab' + (w.nav === 'more' ? ' on' : '') + '" id="kdhMoreBtn" aria-haspopup="true" aria-expanded="false"' + (w.nav === 'more' ? ' aria-current="page"' : '') + '>' + NAV_ICON.more + '<span>More</span></button></div>';
     document.body.appendChild(t);
     document.documentElement.classList.add('kdh-has-tabs');
@@ -270,7 +281,9 @@
     });
     ['Trackers', 'Manager'].forEach(function (g) {
       if (!groups[g]) return;
-      html += '<div class="kdh-side-h">' + g + '</div>' + groups[g].map(function (t) { return link('kdh-side-i', t, w.tool === t.key); }).join('');
+      var list = groups[g].filter(function (t) { return !t.menuOnly; });
+      if (!list.length) return;
+      html += '<div class="kdh-side-h">' + g + '</div>' + list.map(function (t) { return link('kdh-side-i', t, w.tool === t.key); }).join('');
     });
     html += '</nav>';
     if (who) html += '<div class="kdh-side-foot"><button type="button" class="kdh-side-user" id="kdhMenuBtn" aria-haspopup="true" aria-expanded="false" aria-label="Account menu, signed in as ' + esc(who) + '"><span class="kdh-av">' + esc(initials(who)) + '</span><span class="kdh-side-who"><b>' + esc(who) + '</b><small>' + (isMgr || u.preview ? 'Manager' : 'Sales Rep') + '</small></span>' + CARET + '</button></div>';

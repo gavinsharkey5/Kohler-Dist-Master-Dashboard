@@ -41,7 +41,7 @@ if(U && !isMgr){
 }
 
 /* ---------------- state + hash ---------------- */
-const state = {view:'list', q:'', rep:'', need:'', kind:'', fam:'', n:null, acctRep:null, from:null, fl:'', limit:120, sec:'over', sub:''};
+const state = {view:'list', mode:'list', q:'', rep:'', need:'', kind:'', fam:'', n:null, acctRep:null, from:null, fl:'', limit:120, sec:'over', sub:''};
 // The Account page is FOUR SECTIONS (2026-09-30, Gavin's Encompass brief):
 // Overview / Sales & Products / Invoices & Balances / Tasks & Resources.
 // `sec=` in the hash remembers the open one; in-page links carry
@@ -53,7 +53,7 @@ const state = {view:'list', q:'', rep:'', need:'', kind:'', fam:'', n:null, acct
 // (sec=sales / inv / tasks / ask, data-go="sales:alerts" ...) translate.
 const SECS = [['over','Overview'],['products','Products'],['history','History'],['more','More']];
 const HSUBS = [['sales','Sales & Alerts'],['patterns','Buying Patterns'],['record','Monthly Record']];
-const MSUBS = ['programs','notes','taps','tools','ask','about'];
+const MSUBS = ['programs','notes','photos','taps','tools','ask','about'];
 const LEGACY_SEC = {sales:['history','sales'], inv:['history','record'], tasks:['more',''], ask:['more','ask']};
 // in-page destinations: key -> [section, sub-view, element id]
 const GO = {'sales:sales':['history','sales','sales'], 'sales:alerts':['history','sales','alerts'], 'sales:patterns':['history','patterns','patterns'],
@@ -71,7 +71,7 @@ function readHash(){
 function applyHash(){
   const h = readHash();
   state.q = h.q || ''; state.rep = h.rep && SCOPE.includes(h.rep) ? h.rep : ''; state.need = h.need || '';
-  state.kind = h.kind || ''; state.fam = h.fam || '';
+  state.kind = h.kind || ''; state.fam = h.fam || ''; state.mode = h.map==='1' ? 'map' : 'list';
   state.from = h.from || null; state.fl = h.fl || '';
   if(LEGACY_SEC[h.sec]){ state.sec = LEGACY_SEC[h.sec][0]; state.sub = h.sub || LEGACY_SEC[h.sec][1]; }
   else { state.sec = SECS.some(x=>x[0]===h.sec) ? h.sec : 'over'; state.sub = h.sub || ''; }
@@ -87,6 +87,7 @@ function listHash(){
   if(state.need) p.push('need='+state.need);
   if(state.kind) p.push('kind='+state.kind);
   if(state.fam) p.push('fam='+encodeURIComponent(state.fam));
+  if(state.mode==='map') p.push('map=1');
   return '#'+p.join('&');
 }
 function acctHash(n, rep, sec, sub){ if(sec && sec.includes(':')){ const g = goTarget(sec); sec = g[0]; sub = g[1]; } return '#acct='+encodeURIComponent(n)+(rep && isMgr ? '&rep='+encodeURIComponent(rep) : '')+(sec && sec!=='over' ? '&sec='+sec : '')+(sub ? '&sub='+sub : '')+(state.from ? '&from='+encodeURIComponent(state.from)+'&fl='+encodeURIComponent(state.fl||'') : ''); }
@@ -272,7 +273,10 @@ function renderList(){
   // labelled controls -- Reason (Needs Attention only), More Filters, Data --
   // with the dates and the rule text inside them instead of above the list.
   const dataLbl = first ? `<span class="dl">Data </span>${E(monLabel(ref))}` : 'Data';
-  app.innerHTML = `<header class="ws lhead"><div class="id"><h1>${title}</h1><p class="idline">${sub}${flagged ? ` · ${plural(flagged,'account')} with alerts` : ''}</p></div></header>
+  // LIST / MAP (2026-10-02): one selector; the map draws exactly the rows the
+  // list would show (same search, filters and authorized accounts)
+  const viewSeg = `<div class="seg vseg" id="viewSeg" role="group" aria-label="View">${[['list','List'],['map','Map']].map(([v,l])=>`<button type="button" data-mode="${v}" aria-pressed="${state.mode===v}"${state.mode===v?' class="on"':''}>${l}</button>`).join('')}</div>`;
+  app.innerHTML = `<header class="ws lhead"><div class="id"><h1>${title}</h1><p class="idline">${sub}${flagged ? ` · ${plural(flagged,'account')} with alerts` : ''}</p></div>${viewSeg}</header>
     <div class="filters">
       <input type="search" class="kdh-field" id="q" placeholder="Search by name, town or #${isMgr?' or rep':''}" value="${E(state.q)}" autocomplete="off" aria-label="Search accounts">
       ${isMgr ? `<select id="repSel" aria-label="Rep"><option value="">All my reps</option>${SCOPE.map(r=>`<option value="${E(r)}"${r===state.rep?' selected':''}>${E(r)}</option>`).join('')}</select>` : ''}
@@ -291,12 +295,22 @@ function renderList(){
     </div>
     ${missing.length ? `<div class="kdh-state unavailable"><b>No account list on file for ${E(missing.join(', '))}.</b><span>The customer base report has no accounts under that name, or the data slice has not been generated.</span></div>` : ''}
     ${!SCOPE.length ? `<div class="kdh-state unavailable"><b>We couldn’t find your name on the customer base.</b><span>You’re signed in as ${E(U ? U.name : '')}. Ask Gavin to check the spelling on the access list.</span></div>` : ''}
-    <p class="count">${shown.length===rows.length ? '' : `${shown.length} of `}${plural(rows.length,'account')}${state.need || state.fam ? ' · filtered' : ''}</p>
+    ${state.mode==='map' ? `<div id="mapSlot" class="mapslot"></div>` : `<p class="count">${shown.length===rows.length ? '' : `${shown.length} of `}${plural(rows.length,'account')}${state.need || state.fam ? ' · filtered' : ''}</p>
     <div id="rows">${listBody(shown, rows)}</div>
-    ${shown.length>state.limit ? `<button class="btn outline more" id="more" type="button">Show ${Math.min(120, shown.length-state.limit)} more of ${shown.length}</button>` : ''}`;
+    ${shown.length>state.limit ? `<button class="btn outline more" id="more" type="button">Show ${Math.min(120, shown.length-state.limit)} more of ${shown.length}</button>` : ''}`}`;
+  if(state.mode==='map' && window.KdhMap){
+    // "All Assigned Accounts": there is no route schedule in the data, so no
+    // Today's Stops view and no stop order (REPORTING_REQUEST.md asks for it)
+    const scopeLabel = isMgr ? (state.rep ? E(state.rep)+'’s Accounts' : 'Team Accounts') : 'All Assigned Accounts';
+    window.KdhMap.mount($('#mapSlot'), shown.map(x=>({a:x.a, rep:x.rep, lead:leadOf(x.a, x.nd), showRep:isMgr})),
+      {scopeLabel, hrefFor: it=>acctHash(it.a.n, it.rep), mapsHref, premWord, memKey: SK('map'), restoreView: !!ss.get('mapback')});
+    ss.set('mapback', '');
+  }
   rememberList();
   const mb = $('#more'); if(mb) mb.addEventListener('click', ()=>{ state.limit += 120; const y = window.scrollY; renderList(); window.scrollTo(0, y); });
-  $('#q').addEventListener('input', e=>{ state.q = e.target.value; history.replaceState(null,'',listHash()); const list = $('#rows'); if(list) renderListRowsOnly(); });
+  let qT = 0;
+  $('#q').addEventListener('input', e=>{ state.q = e.target.value; history.replaceState(null,'',listHash()); if(state.mode==='map'){ clearTimeout(qT); qT = setTimeout(renderListRowsOnly, 300); return; } const list = $('#rows'); if(list) renderListRowsOnly(); });
+  document.querySelectorAll('#viewSeg [data-mode]').forEach(b=>b.addEventListener('click', ()=>{ if(state.mode===b.dataset.mode) return; state.mode = b.dataset.mode; history.replaceState(null,'',listHash()); render(); }));
   const rs = $('#repSel'); if(rs) rs.addEventListener('change', e=>{ state.rep = e.target.value; history.replaceState(null,'',listHash()); render(); });
   document.querySelectorAll('#needSeg [data-need]').forEach(b=>b.addEventListener('click', ()=>{ state.need = b.dataset.need; if(state.need!=='any') state.kind = ''; history.replaceState(null,'',listHash()); render(); }));
   const ks = $('#kindSel'); if(ks) ks.addEventListener('change', e=>{ state.kind = e.target.value; history.replaceState(null,'',listHash()); render(); });
@@ -335,7 +349,7 @@ function findAccount(n){
 const back = (label, href) => `<a class="hreturn" href="${E(href)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg><span>${E(label)}</span></a>`;
 function progLink(p, rep){ return HUB+'#view=detail&rep='+encodeURIComponent(rep)+'&cat='+(p.type==='MPO' ? p.source : 'inc')+'&prog='+encodeURIComponent(p.id); }
 function hubAcctLink(p, rep, n, list){ return HUB+'#view=acct&rep='+encodeURIComponent(rep)+'&cat='+(p ? (p.type==='MPO' ? p.source : 'inc') : 'inc')+(p ? '&prog='+encodeURIComponent(p.id) : '')+'&n='+encodeURIComponent(n)+'&list='+(list||'targets'); }
-function progName(id){ const p = H.programs().find(x=>x.id===id); return p ? (p.shortName||p.name)+(p.type==='MPO' ? ' · '+p.channelLabel+' MPO' : '') : id; }
+function progName(id){ if(/^note:/.test(id||'')) return 'Account Note'; const p = H.programs().find(x=>x.id===id); return p ? (p.shortName||p.name)+(p.type==='MPO' ? ' · '+p.channelLabel+' MPO' : '') : id; }
 function sumRange(arr, from, to){ let s = 0; for(let i=from;i<to;i++) s += arr[i]||0; return s; }
 function rangeLabel(months, from, to){ const a = months[from], b = months[to-1]; return (a.slice(0,4)===b.slice(0,4) ? monShort(a) : monLabel(a))+'–'+monLabel(b); }
 
@@ -352,15 +366,19 @@ async function renderAccount(){
   app.innerHTML = back(fromLabel, fromHref) + headHtml + `<div class="kdh-state loading">Loading this account…</div>`;
   // everything the page needs, in parallel
   const key = repKey(rep);
-  const [sales, idx, , CAT] = await Promise.all([
+  const [sales, idx, , CAT, ACT] = await Promise.all([
     salesCache.has(String(a.n)) ? Promise.resolve(salesCache.get(String(a.n))) : getJson('data/sales/'+key+'/'+encodeURIComponent(a.n)+'.json').catch(()=>null).then(s=>{ salesCache.set(String(a.n), s); return s; }),
     indexPrograms(rep),
     loadMarks(SCOPE),
     loadCatalog(),
+    window.KdhActivity ? window.KdhActivity.load(String(a.n)).catch(()=>null) : Promise.resolve(null),
   ]);
   if(state.view!=='acct' || String(state.n)!==String(a.n)) return;   // navigated away meanwhile
   const k = String(a.n);
-  const rows = marks.get(k) || [];
+  // this account's rep_actions: the notes module's account-level read when it
+  // worked (every note the caller may see, with follow-up dates), else the
+  // route rep's own marks loaded with the list
+  const rows = (ACT && !ACT.notesErr && ACT.notes) ? ACT.notes : (marks.get(k) || []);
   const follows = rows.filter(r=>r.status==='follow');
   const targets = idx.targets.get(k) || [];
   const credited = idx.credited.get(k) || [];
@@ -389,7 +407,7 @@ async function renderAccount(){
 
   /* ---- Focus: up to three supported actions, in a fixed order ---- */
   const focus = [];
-  follows.slice(0,1).forEach(r=>focus.push({kind:'Follow-up', ws:`Flagged ${E(fmtDay(new Date(r.updated_at)))}${r.note ? ' · “'+E(r.note)+'”' : ''}`, t:`Follow up on ${E(progName(r.program_id))}`, w:`You flagged this account ${E(fmtDay(new Date(r.updated_at)))}${r.note ? ' — “'+E(r.note)+'”' : ''}.`, n:`Pick the conversation back up, then mark it Done in the hub.`, href:hubAcctLink(H.programs().find(p=>p.id===r.program_id), rep, a.n, 'follow'), hl:'View Follow-up'}));
+  follows.slice(0,1).forEach(r=>/^note:/.test(r.program_id||'') ? focus.push({kind:'Follow-Up', ws:`${r.follow_on ? (r.follow_on < new Date().toISOString().slice(0,10) ? 'Overdue · was due ' : 'Due ')+E(fmtDay(new Date(r.follow_on+'T12:00:00'))) : 'Added '+E(fmtDay(new Date(r.created_at||r.updated_at)))}${r.rep_name && isMgr ? ' · '+E(r.rep_name) : ''}`, t:E(r.note||'Follow up'), go:'over::activity', hl:'View Note'}) : focus.push({kind:'Follow-up', ws:`Flagged ${E(fmtDay(new Date(r.updated_at)))}${r.note ? ' · “'+E(r.note)+'”' : ''}`, t:`Follow up on ${E(progName(r.program_id))}`, w:`You flagged this account ${E(fmtDay(new Date(r.updated_at)))}${r.note ? ' — “'+E(r.note)+'”' : ''}.`, n:`Pick the conversation back up, then mark it Done in the hub.`, href:hubAcctLink(H.programs().find(p=>p.id===r.program_id), rep, a.n, 'follow'), hl:'View Follow-up'}));
   if(due && due.level==='overdue') focus.push({kind:'Tap Survey', ws:`Last surveyed ${E(a.taps.lastDisplay||a.taps.last)} · ${due.days} days ago`, t:'Resurvey the taps', w:`Last surveyed ${E(a.taps.lastDisplay||a.taps.last)}, ${due.days} days ago — past the 60-day window.`, n:'Walk the taps and submit the survey in iSellBeer.', href:TAP+'#q='+encodeURIComponent(a.name), hl:'View in Tap Tracker'});
   targets.filter(t=>t.p.period.end >= TODAY && (t.warm || (t.p.period.end - TODAY)/86400000 <= 14)).sort((x,y)=>(y.warm-x.warm) || (x.p.period.end-y.p.period.end)).slice(0, 2).forEach(t=>{
     const f = H.progFacts(t.p, t.r, rep);
@@ -513,14 +531,6 @@ async function renderAccount(){
   const discussHtml = discuss ? `<div class="card">${discuss}<p class="note">Leads come from the trackers’ own opportunity lists. The product list above shows what is sellable here and the warehouse stock at its last update; approved pitches and pricing are not in the data yet (see REPORTING_REQUEST.md).</p></div>`
     : `<div class="card"><p>No tracker lead for this account right now. Programs it could still qualify for are under More › Programs; the product list above shows what it usually takes.</p></div>`;
 
-  /* ---- Notes & follow-ups (rep_actions, read here, edited in the hub) ---- */
-  const LBL = {follow:'Follow up', done:'Done', skip:'Not now'};
-  const notesHtml = marksError==='off' ? `<div class="card"><p>Notes need a sign-in on kohlerdisthub.com.</p></div>`
-    : marksError ? `<div class="card"><p>Couldn’t load notes (${E(marksError)}).</p></div>`
-    : rows.length ? `<div class="card">${rows.map(r=>`<div class="pitem"><div class="ra-line"><span class="st ${E(r.status)}">${LBL[r.status]||r.status}</span><span>${E(progName(r.program_id))}</span><small>${E(fmtDay(new Date(r.updated_at)))}${isMgr ? ' · '+E(r.rep_name||rep) : ''}</small></div>${r.note ? `<div class="pl"><i>${E(r.note)}</i></div>` : ''}<div class="pa"><a href="${E(hubAcctLink(H.programs().find(p=>p.id===r.program_id), rep, a.n, r.status==='follow' ? 'follow' : r.status))}">${(!isMgr && !U.preview) ? 'Edit in the hub ›' : 'View in the hub ›'}</a></div></div>`).join('')}
-        <p class="note">${isMgr ? `These are ${E(rep.split(' ')[0])}’s own marks; only the rep can change them.` : U.preview ? 'Saving is off in preview — these are the rep’s own marks.' : 'Marks are made on the account inside a program in the hub, where they save.'}</p></div>`
-    : `<div class="card"><p>No notes or follow-ups on this account yet.${!isMgr && !U.preview ? ' Open a program in the hub and mark the account Follow up to start one.' : ''}</p></div>`;
-
   /* ---- Taps & visits (on-premise accounts the survey covers) ---- */
   let tapsHtml = '';
   if(a.taps){
@@ -564,15 +574,26 @@ async function renderAccount(){
   const kvl = (l, v) => v ? `<div class="kv"><span>${l}</span><span>${v}</span></div>` : '';
   // account size (class + gross-profit decile) is for managers only (Gavin, 2026-10-01)
   const sizeTxt = isMgr && a.sizeClass ? `Class ${E(a.sizeClass)}${a.decile ? ` · decile ${a.decile} by 2026 gross` : ''}` : '';
+  // ACCOUNT DETAILS (2026-10-02, folk's grouped contact card): who, where,
+  // contact, servicing. Fields the customer base does not carry are said
+  // once per group, never shown as empty rows. Contact / hours / servicing
+  // fields render when a future export supplies them (REPORTING_REQUEST.md).
+  const grp = (title, body) => body ? `<div class="dg"><h3 class="dg-h">${title}</h3>${body}</div>` : '';
+  const telHref = v => 'tel:'+String(v).replace(/[^\d+]/g,'');
+  const contactBody = (a.contact_name || a.phone || a.email)
+    ? kvl('Contact', E(a.contact_name||'')) + (a.phone ? `<div class="kv"><span>Phone</span><span><a href="${E(telHref(a.phone))}">${E(a.phone)}</a></span></div>` : '') + (a.email ? `<div class="kv"><span>Email</span><span><a href="mailto:${E(a.email)}">${E(a.email)}</a></span></div>` : '')
+    : `<p class="dg-na">Contact name, phone and email are not in our exports yet — they are in Encompass.</p>`;
+  const serviceBody = kvl('Service', E(a.service||'')) + (a.stops2026!=null ? kvl('2026 So Far', `${plural(a.stops2026,'stop')}${a.distPts!=null ? ' · '+plural(a.distPts,'distribution point') : ''}${a.cases2026!=null ? ' · '+fmtN(a.cases2026)+' cases' : ''}`) : (a.cases2026!=null ? kvl('2026 So Far', fmtN(a.cases2026)+' cases') : ''))
+    + (a.hours ? kvl('Hours', E(a.hours)) : '') + (a.instructions ? kvl('Instructions', E(a.instructions)) : '')
+    + (a.hours && a.instructions ? '' : `<p class="dg-na">Business hours, delivery days and servicing instructions are not in our exports yet.</p>`);
+  const wide = window.matchMedia && window.matchMedia('(min-width: 1180px)').matches;
   const identHtml = `<div class="card dgroup">
-      ${kvl('Customer ID', '#'+E(a.n))}
-      ${kvl('Address', a.address ? E(a.address)+', '+E(a.city||'') : `${E(a.city||'')}${a.city ? ' · ' : ''}<span class="dim">street address not in the customer base export</span>`)}
-      ${kvl('Premise', [premWord(a.prem), a.service].filter(Boolean).join(' · '))}
-      ${kvl('Area', [a.area, a.county ? a.county+' County' : ''].filter(Boolean).join(' · '))}
-      ${kvl('Size', sizeTxt)}
-      ${a.stops2026!=null ? kvl('2026 So Far', `${plural(a.stops2026,'stop')}${a.distPts!=null ? ' · '+plural(a.distPts,'distribution point') : ''}${a.cases2026!=null ? ' · '+fmtN(a.cases2026)+' cases' : ''}`) : (a.cases2026!=null ? kvl('2026 So Far', fmtN(a.cases2026)+' cases') : '')}
-      ${isMgr ? kvl('Rep', E(rep)) : ''}
-      <div class="kv"><span>Contact &amp; Hours</span><span class="dim">Not in our exports yet — contact, phone, hours, delivery window and next delivery are in Encompass</span></div>
+      ${grp('Account', kvl('Customer ID', '#'+E(a.n)) + kvl('Premise', [premWord(a.prem) || '<span class="dim">not in the customer base</span>', a.service].filter(Boolean).join(' · ')) + kvl('Area', [a.area, a.county ? a.county+' County' : ''].filter(Boolean).join(' · ')) + (isMgr ? kvl('Rep', E(rep)) : '') + kvl('Size', sizeTxt))}
+      ${grp('Location', a.address ? `<div class="kv"><span>Address</span><span>${E(a.address)}, ${E(a.city||'')}<br><a href="${E(mapsHref(a))}" target="_blank" rel="noopener">Directions ›</a></span></div>` : kvl('Address', `${E(a.city||'')}${a.city ? ' · ' : ''}<span class="dim">street address not in the customer base export</span>`))}
+      <details class="dmore"${wide ? ' open' : ''}><summary>Contact &amp; Servicing</summary>
+        ${grp('Contact', contactBody)}
+        ${grp('Servicing', serviceBody)}
+      </details>
     </div>`;
 
   /* ---- Invoices & Balances: what the data has (monthly cases) and, honestly, what it does not ---- */
@@ -603,6 +624,7 @@ async function renderAccount(){
       <h1>${E(a.name)}</h1>
       <p class="sub">${E([a.city, premWord(a.prem), 'Account #'+a.n].filter(Boolean).join(' · '))}${isMgr ? `<span class="sub2"> · Rep: ${E(rep)}</span>` : ''}</p>
       ${a.address ? `<div class="rec-loc"><p class="rec-addr">${E(a.address)}, ${E(a.city||'')}</p><a class="btn outline sm dirbtn rec-dir" href="${E(mapsHref(a))}" target="_blank" rel="noopener" aria-label="Directions to ${E(a.name)} (opens Maps)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="12" r="2.5"/></svg>Directions</a></div>` : ''}
+      <div id="actQuick" class="act-quick"></div>
     </div>`;
 
   /* ---- More: one plain menu of the account's remaining sections ---- */
@@ -610,10 +632,11 @@ async function renderAccount(){
   const tapLine = a.taps ? (due ? (due.level==='overdue' ? `Resurvey overdue · ${due.days} days since the last survey` : due.level==='soon' ? `Resurvey due in ${plural(60-due.days,'day')}` : `Surveyed ${due.days} days ago`)+` · ${a.taps.ours} ours · ${a.taps.them} theirs` : 'Survey on file') : (a.prem==='On' ? 'No tap survey on file' : '');
   const moreItems = [
     ['programs', 'Programs', `${plural(idx.programs.length,'active program')}${openProg ? ` · ${openProg} credited or a lead here` : ''}`],
-    ['notes', 'Notes & Follow-ups', rows.length ? `${plural(follows.length,'open follow-up')} · ${plural(rows.length,'note')} in all` : 'None yet'],
+    ['notes', 'Notes & Activity', rows.length ? `${plural(follows.length,'open follow-up')} · ${rows.length} ${rows.length===1?'entry':'entries'} in all` : 'None yet'],
+    ['photos', 'Photos', ACT && ACT.photos && ACT.photos.length ? `${plural(ACT.photos.length,'photo')} · latest ${E(fmtDay(new Date(ACT.photos[0].uploaded_at)))}` : 'Displays, windows, cooler doors, tap handles'],
     tapLine ? ['taps', 'Taps & Visits', tapLine] : null,
     ['tools', 'Tools & Links', 'Incentive Hub, Tap Tracker, Directions'],
-    ['ask', 'Ask the Assistant', 'Questions about this account’s buying, or practice a pitch'],
+    ['ask', 'Ask About This Account', 'Questions about this account’s buying, or practice a pitch'],
     ['about', 'About This Data', 'Sources and the date of each'],
   ].filter(Boolean);
   const moreMenu = `<div class="rows mlist">${moreItems.map(([k, t, l])=>`<a class="row" href="${E(acctHash(a.n, rep, 'more', k))}" data-go="more:${k}"><span class="row-main"><h3>${E(t)}</h3><span class="row-s">${E(l)}</span></span>${CHEV}</a>`).join('')}</div>`;
@@ -630,9 +653,11 @@ async function renderAccount(){
   app.innerHTML = back(fromLabel, fromHref) + headFull + secnav
     + secHtml('over', `<div class="over-grid"><div class="over-main">
       <section class="sec" id="focus"><h2>Next Actions</h2>${focusHtml}</section>
+      <section class="sec" id="activity"><h2>Notes &amp; Activity</h2><div class="card actcard" id="actFeed"><div class="kdh-state loading slim">Loading notes…</div></div></section>
       <section class="sec" id="buying"><h2>Sales Context <small>through ${E(monLabel(refKey))}</small></h2>${buyHtml}</section>
     </div><aside class="over-side">
       <section class="sec" id="overview"><h2>Account Details</h2>${identHtml}</section>
+      <section class="sec" id="photos-side"><h2>Photos</h2><div class="card" id="actPhotos"></div></section>
     </aside></div>`)
     + secHtml('products', `
     <section class="sec" id="products"><div class="card" id="plistCard"></div></section>
@@ -644,16 +669,25 @@ async function renderAccount(){
         <section class="sec" id="balances"><h2>Invoices, Credits &amp; Receivables</h2>${invMissingHtml}</section>`))
     + secHtml('more', subHtml('more', '', moreMenu)
       + subHtml('more', 'programs', moreBack + `<section class="sec" id="programs"><h2>Programs <small>${plural(idx.programs.length,'active program')} for ${E(rep.split(' ')[0])}</small></h2>${progHtml}</section>`)
-      + subHtml('more', 'notes', moreBack + `<section class="sec" id="notes"><h2>Notes &amp; Follow-ups</h2>${notesHtml}</section>`)
+      + subHtml('more', 'notes', moreBack + `<section class="sec" id="notes"><h2>Notes &amp; Activity</h2><div class="card actcard" id="actAll"></div></section>`)
+      + subHtml('more', 'photos', moreBack + `<section class="sec" id="photos"><h2>Photos</h2><div class="card" id="actPhotosAll"></div></section>`)
       + subHtml('more', 'taps', moreBack + (tapsHtml ? `<section class="sec" id="taps"><h2>Taps &amp; Visits <small>survey as of ${E((d.taps.asOf||'').slice(0,10))}</small></h2>${tapsHtml}</section>` : `<div class="kdh-state empty"><b>No tap survey for this account.</b></div>`))
       + subHtml('more', 'tools', moreBack + `<section class="sec" id="tools"><h2>Tools &amp; Links</h2>${toolsHtml}</section>`)
-      + subHtml('more', 'ask', moreBack + `<section class="sec" id="ask"><h2>Ask the Assistant <small>data through ${E(monLabel(refKey))}</small></h2><div class="card ask" id="askCard"></div></section>`)
+      + subHtml('more', 'ask', `<a class="subback" href="${E(acctHash(a.n, rep, 'over'))}" data-go="over:"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>Back to Overview</a><section class="sec" id="ask"><h2>Ask About This Account</h2><p class="ask-for">${E(a.name)} · sales record ${E(monLabel(months[0]))} – ${E(monLabel(refKey))}</p><div class="card ask" id="askCard"></div></section>`)
       + subHtml('more', 'about', moreBack + `<section class="sec" id="about"><h2>About This Data</h2>${aboutHtml}</section>`));
   if(plist.n !== String(a.n)){
     let saved = null; try{ saved = JSON.parse(ss.get('plist:'+a.n) || 'null'); }catch(e){}
     Object.assign(plist, {n:String(a.n), q:'', view: (sales && sales.products.length) ? 'bought' : 'all', sup:'', fam:'', pkg:'', limit:40}, saved || {});
   }
   renderProducts(a, rep, sales, CAT, months, N, targets);
+  if(window.KdhActivity){
+    const real = (()=>{ try{ return JSON.parse(cookie('kdh_user')||'null'); }catch(e){ return null; } })();
+    window.KdhActivity.attach({n:String(a.n), name:a.name, prem: a.prem==='On' || a.prem==='Off' ? a.prem : '', rep, me: real, isMgr,
+      readOnly: !!(U && U.preview), readOnlyWhy: `Saving is off in preview — notes and photos belong to ${rep.split(' ')[0]} and the people on the route.`,
+      progName, hubLink: r=>hubAcctLink(H.programs().find(p=>p.id===r.program_id), rep, a.n, r.status==='follow' ? 'follow' : r.status),
+      openAsk: ()=>showSec('more', 'ask', 'ask'), showOverview: ()=>showSec('over', ''),
+      onChange: ()=>{ const y = window.scrollY; renderAccount().then(()=>window.scrollTo(0, y)); }});
+  }
   // the assistant gets a packet of what this page already shows -- nothing more
   if(window.KdhAssistant){ const packet = buildPacket({a, rep, d, sales, months, N, R, refKey, F, alerts, rows, follows, targets, credited, due, CAT, progList}); window.KdhAssistant.mount(document.getElementById('askCard'), packet, {}); }
   const y = scrollMem[location.hash]; if(typeof y==='number'){ requestAnimationFrame(()=>window.scrollTo(0,y)); delete scrollMem[location.hash]; }
@@ -825,6 +859,7 @@ document.addEventListener('click', e=>{
 });
 
 document.addEventListener('click', e=>{
+  const om = e.target.closest('.msheet a[data-open]'); if(om){ rememberList(); ss.set('mapback', '1'); return; }
   const a = e.target.closest('a.row[data-n]'); if(!a) return;
   // remember where the list was so Back lands here
   rememberList(); ss.set('scroll', String(window.scrollY));

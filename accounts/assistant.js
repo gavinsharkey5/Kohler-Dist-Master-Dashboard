@@ -64,10 +64,8 @@ function suggestions(packet, mode){
     out.push('Play a buyer who says the cooler is full and see how I handle it.');
     return out.slice(0,4);
   }
-  const out = ['What does this account usually buy, and how often?', 'What may be due for a reorder right now?', 'What changed in the last three months compared with the three before?', 'What could I pitch here that also helps a program?'];
-  if(packet.taps) out.push('What is on tap, and when was it last surveyed?');
-  if((packet.patterns||{}).stoppedN) out.push('Which regular products did they stop buying?');
-  return out.slice(0,6);
+  // the six starter questions (2026-10-02 brief, Zalando's suggested questions)
+  return ['What does this account usually buy?', 'Which products may be due for a reorder?', 'How has its buying pattern changed?', 'What seasonal purchases appear in its history?', 'Which eligible products could help this account qualify for an incentive or MPO?', 'What should I discuss on my next visit?'];
 }
 
 // what the browser sends besides the conversation: identity + the page's own reading
@@ -109,7 +107,7 @@ function mount(el, packet, opts){
         <div class="pseg" role="tablist"><button type="button" class="${st.mode==='ask'?'active':''}" data-mode="ask">Ask</button><button type="button" class="${st.mode==='pitch'?'active':''}" data-mode="pitch">Practice a Pitch</button></div>
         <div class="note ask-intro">${st.mode==='pitch'
           ? `<p>The assistant plays the buyer at ${E(packet.account.name)}. Its objections are simulated practice.</p><details class="ask-more"><summary>How Practice Works</summary><p>What it says about this account’s buying comes from the sales record, and it will not invent prices, stock levels or competitor facts. Type your opening line, then work the conversation. <b>Get Feedback</b> ends the role-play with coaching.</p></details>`
-          : `<p>Answers come from this account’s <b>monthly sales record</b>, checked by code — not from memory.</p><details class="ask-more"><summary>What It Can Answer</summary><p>Every product, ${E(span || ('through '+ref))}${D.salesLoaded ? `, loaded ${E(fmtDate(D.salesLoaded))}` : ''} — plus its buying alerts and patterns, your notes and the tap survey. Program status and warehouse availability are quoted from what this page shows. Not in the data: contacts, hours, prices, invoices, balances, shelf stock, days between orders. It says so when a question needs them.</p></details>`}</div>
+          : `<p>Ask about <b>${E(packet.account.name)}</b>. Answers use its monthly sales record${span ? `, ${E(span)}` : ''}${D.salesLoaded ? ` (loaded ${E(fmtDate(D.salesLoaded))})` : ''}, checked by code.</p><details class="ask-more"><summary>What It Can Answer</summary><p>Every product, ${E(span || ('through '+ref))}${D.salesLoaded ? `, loaded ${E(fmtDate(D.salesLoaded))}` : ''} — plus its buying alerts and patterns, your notes and the tap survey. Program status and warehouse availability are quoted from what this page shows. Not in the data: contacts, hours, prices, invoices, balances, shelf stock, days between orders. It says so when a question needs them.</p></details>`}</div>
         ${pitchBar}
       </div>
       ${cfgOff ? `<div class="kdh-state unavailable slim"><b>The assistant needs kohlerdisthub.com.</b><span>It is not available on a local or unsigned copy of the site.</span></div>` : ''}

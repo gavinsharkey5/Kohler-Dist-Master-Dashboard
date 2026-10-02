@@ -391,3 +391,33 @@ TESTS  scratchpad sections_test.mjs (the brief's checklist: find an account by n
        page's alerts table + patterns section + labelled periods, never "lost", preview ==
        rep, manager counts / rep filter, 375 / 390 / 430 / 820 / 1366), mw_test.mjs (the
        middleware's slice enforcement), accounts/backtest.py (the thresholds).
+
+MAP, NOTES, PHOTOS (2026-10-02)
+-------------------------------
+MAP (map.js): List / Map in My Accounts (`mode=map` in the hash). The map
+draws exactly the rows the list would (same search, filters, authorized
+rows), clustered, with a sheet for the selected account (name, town,
+address, one action, Open Account, Directions). Coordinates come from
+accounts/geo.csv when present -- columns customer_num,lat,lng,source, WGS84
+decimals, one row per account; generate.py copies them into each list row
+as `geo` and refuses points outside northern NJ -- else the device cache
+(localStorage kdh_geo:v1, keyed by customer # + address), else
+/api/geocode (api/README.txt). Accounts that cannot be placed are listed
+under "Not on the map" with the reason, never dropped. Location is asked
+only on "Use My Location". The only scope is All Assigned Accounts: the
+repo has no route schedule, so there is no Today's Stops view and no stop
+order (REPORTING_REQUEST.md G2 / E2). Leaflet + markercluster are vendored
+in assets/vendor; tiles are OpenStreetMap's (map.js TILE_URL).
+
+NOTES + PHOTOS (activity.js): see the header comment. Notes are
+rep_actions rows (`note:<uuid>`, status note / follow + optional follow_on /
+done), shown on Overview under Notes & Activity with author and date,
+general notes and follow-ups labelled apart; open follow-ups also appear in
+Next Actions. Photos go to the private Storage bucket account-photos and
+the account_photos table; types Display / Window / Cooler Door
+(off-premise) and Tap Handle (on-premise). "Saved" appears only after the
+upload AND the row succeed. Preview is read-only. Needs the migration
+supabase/migrations/20261002120000_account_notes_photos.sql and the seed
+supabase/seed/account_assignments.sql, which generate.py rewrites on every
+run (re-run it in the SQL Editor after reassignments). Nothing is sent to
+iSellBeer.

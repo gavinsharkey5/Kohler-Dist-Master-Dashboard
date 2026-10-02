@@ -232,3 +232,16 @@ LOCAL / TESTS
   middleware.js), assistant_test.mjs (the UI with /api/chat stubbed),
   mw_test.mjs. The local python server has no /api, so the page's Ask
   section shows "needs kohlerdisthub.com" unless KDH_AUTH is stubbed.
+
+GEOCODE (2026-10-02): POST /api/geocode
+{rep, accounts:[customer #...]} -> {results:{n:{lat,lng,match}|{none:reason}}}.
+Same auth as /api/chat (kdh_at -> allowed_users) and the same route
+authorization (rep: own key; DM: their team; other managers: any rep). The
+route file is fetched from this deployment with the caller's cookies, so
+the middleware's per-rep slices hold. Only customer numbers on that route
+are geocoded, with the street + town from the route file (never an address
+from the browser), through the US Census batch geocoder (public, no key).
+Reasons: incomplete (no street / town), not found, ambiguous, not on this
+route. Accounts with validated coordinates (accounts/geo.csv) never reach
+this. Not verified live from the build environment (the Census host is
+blocked there): open My Accounts -> Map once after deploy.

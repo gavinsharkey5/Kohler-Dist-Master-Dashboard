@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Incentive Performance — Kohler Dist Hub</title>
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="preload" href="../assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+<script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="stylesheet" href="../rep/rep.css?v=20261002b">
+<link rel="stylesheet" href="performance.css?v=20261002b">
+<meta name="kdh-page" content="Incentive Performance">
+<script src="../shared/kdh-user.js?v=20261002b"></script>
+<script src="../shared/program-titles.js?v=20261002b"></script>
+</head>
+<body>
+<!--
+  INCENTIVE PERFORMANCE (2026-10-02) -- managers only (not in REP_PATHS, so the
+  middleware sends a rep to /rep/ and refuses any file here; the page also
+  refuses a rep cookie). Mintlify's analytics layout: reporting-period and
+  program controls, a few restrained metrics, then the supporting records.
+
+  FIRST VERSION ON PURPOSE: every financial figure says "Not Calculable With
+  Current Data" until (1) Gavin confirms the accounting definitions listed
+  under "Definitions to Confirm" and (2) line-level revenue / cost /
+  adjustment and incentive-cost data covering the program periods is loaded.
+  Nothing is estimated, no zero stands in for a missing number, and nothing
+  here calls qualifying-sales gross profit "profit caused by the incentive".
+  What the page CAN say today it measures: which program months have
+  Fusion's monthly money file (rolling-distribution/data/master/money/), the
+  adjustments file, and whether the tracker publishes credited lines.
+  accounts/REPORTING_REQUEST.md (P-series) is the data request.
+-->
+<main class="wrap" id="perfApp"><div class="kdh-state loading">Loading programs…</div></main>
+<footer>Internal use. Managers only. Financial results stay off rep pages.</footer>
+<script>window.PROGRAM_DATA = window.PROGRAM_DATA || null;</script>
+<script src="../incentive-tracking/data/program_data.js?v=20261001a"></script>
+<script src="../incentive-tracking/programs.js?v=20260930d"></script>
+<script src="../MPOs/on-prem/programs.js?v=20260923h"></script>
+<script src="../MPOs/off-prem/programs.js?v=20260923h"></script>
+<script src="../hub/data/accounts.js?v=20260923h"></script>
+<script src="../hub/accounts.js?v=20260930c"></script>
+<script src="../hub/hub.js?v=20261002b"></script>
+<script src="performance.js?v=20261002b"></script>
+</body>
+</html>

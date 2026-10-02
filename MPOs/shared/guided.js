@@ -389,6 +389,12 @@ function screenRepDetail(){
   '</div>';
 }
 
+// display title (shared/program-titles.js): concise label only; o.name stays the source name
+function titleOf(o){
+  var scope = /on-prem/.test(location.pathname) ? 'on' : 'off';
+  var mk = H.monthKey ? H.monthKey() : '';
+  return window.kdhTitle ? window.kdhTitle(scope+':'+mk+':'+o.key, o.shortName||o.name) : (o.shortName||o.name);
+}
 function repObjectiveCard(o, rep){
   var m = H.metric(o, rep);
   var weightTag = '<span class="g-tag weight">'+Math.round(o.weight*100)+'% of MPO</span>';
@@ -448,7 +454,7 @@ function repObjectiveCard(o, rep){
 
   return '<div class="g-obj g-obj-v2 '+st+'">'+
     (o.supplier?'<div class="g-obj-sup">'+esc(o.supplier)+'</div>':'')+
-    '<div class="g-obj-name">'+esc(o.shortName||o.name)+'</div>'+
+    '<div class="g-obj-name">'+esc(titleOf(o))+'</div>'+
     '<div class="g-tags">'+creditPill(st)+'</div>'+
     '<div class="g-main"><b>'+main+'</b><span class="g-need'+(m.remaining<=0?' good':'')+'">· '+need+'</span></div>'+
     barHtml(m.pct, st)+

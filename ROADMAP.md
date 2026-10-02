@@ -11,6 +11,27 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
+- [ ] **Notes + photos: run the SQL** (Gavin): Supabase SQL Editor, run
+  `supabase/migrations/20261002120000_account_notes_photos.sql`, then
+  `supabase/seed/account_assignments.sql` (re-run the seed whenever
+  accounts/generate.py runs after a reassignment). Until then the Account
+  page says notes / photos need the update and the hub's marks keep working.
+  Then on the phone: Add Note (with and without a follow-up date), Add
+  Photo -> Take Photo (allow the camera) -> Save, reload, see both; preview
+  as a rep and check nothing can be added.
+- [ ] **Map: one live check** (Gavin): My Accounts -> Map. Pins should load
+  (Census geocoder, first time a few seconds per 200 accounts). Accounts it
+  cannot place are listed under "Not on the map". If you can get validated
+  coordinates from Encompass, drop them in `accounts/geo.csv`
+  (customer_num,lat,lng,source) and re-run accounts/generate.py. Before
+  heavy use, decide on a tile provider (OSM's free tiles are for light use).
+- [ ] **Incentive Performance: confirm the 12 definitions** (Gavin): the
+  manager page /performance/ lists them under "Definitions to Confirm";
+  nothing financial is calculated until they are answered and P1-P4 in
+  accounts/REPORTING_REQUEST.md section 9 are available (money data covers
+  only Jan-Mar 2025 today).
+- [ ] **Breakage / out-of-code for September** (Gavin): the Fusion
+  Comparison export, when ready -- rolling-distribution/README has the step.
 - [ ] **Account assistant: controlled pilot** (Gavin; api/README.txt
   "CONTROLLED PILOT" has the exact clicks). (1) Supabase SQL Editor: run
   `supabase/migrations/20260930210000_assistant_usage.sql`. (2) Anthropic
@@ -142,6 +163,17 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-10-02 Account map (List / Map in My Accounts, clustered pins, a
+  sheet with Open Account + Directions, Use My Location only on tap); notes
+  with follow-up dates and account photos by type (Display / Window /
+  Cooler Door / Tap Handle) in shared storage, read-only in preview;
+  Account Details grouped with Add Note / Add Photo / Ask About This
+  Account up top; six starter questions in Ask; concise program titles
+  everywhere (full name kept on the program screen); Inventory in the rep
+  bottom bar; manager Export Data (CSV) + Export Recap (print / PDF);
+  manager-only Incentive Performance page (no numbers until definitions
+  are confirmed); measured AA contrast fixed in both themes; reporting
+  request section 9. Steps for Gavin are under Now.
 - [x] 2026-10-02 Navigation + account workspace rebuild: bottom bar (Home /
   My Accounts / Programs / More) on phones and iPads, a labelled sidebar on
   desktop, Back and every list remembering where you were; My Accounts rows

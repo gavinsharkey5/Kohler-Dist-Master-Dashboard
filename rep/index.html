@@ -19,12 +19,13 @@
 <link rel="preload" href="../assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 <!-- Theme before first paint: the saved choice, else the device setting (2026-09-30). -->
 <script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
-<link rel="stylesheet" href="rep.css?v=20261002a">
+<link rel="stylesheet" href="rep.css?v=20261002b">
 <!-- The top bar is injected by shared/kdh-user.js (badge, Previewing chip,
      account menu). kdh-home = this is a landing page: no Back button. -->
 <meta name="kdh-page" content="Rep Home">
 <meta name="kdh-home" content="rep">
-<script src="../shared/kdh-user.js?v=20261002a"></script>
+<script src="../shared/kdh-user.js?v=20261002b"></script>
+<script src="../shared/program-titles.js?v=20261002b"></script>
 </head>
 <body>
 <!--
@@ -244,6 +245,8 @@
   function cookie(n){ var m = document.cookie.match(new RegExp('(?:^|;\\s*)' + n + '=([^;]*)')); return m ? decodeURIComponent(m[1]) : ''; }
   function progName(id){
     try{
+      if (id.indexOf('note:') === 0) return 'Account Note';
+      if (id.indexOf('inc:') === 0 && window.kdhTitle && window.KDH_PROGRAM_TITLES && window.KDH_PROGRAM_TITLES[id]) return window.kdhTitle(id);
       if (id.indexOf('inc:') === 0) {
         var key = id.slice(4), hit = null;
         var reg = (typeof MONTHS !== 'undefined' && MONTHS.length && MONTHS[0].programs) ? MONTHS : [];
@@ -253,7 +256,7 @@
       var parts = id.split(':'), mod = parts[0] === 'off' ? window.OffPremMPO : window.OnPremMPO;
       var m = mod && (mod.MONTHS||[]).filter(function(x){ return x.key === parts[1]; })[0];
       var o = m && (m.objectives||[]).filter(function(x){ return x.key === parts[2]; })[0];
-      return (o ? (o.shortName || o.name) : parts[2]) + ' · ' + (parts[0] === 'off' ? 'Off-Prem' : 'On-Prem') + ' MPO';
+      return (window.kdhTitle ? window.kdhTitle(id, o ? (o.shortName || o.name) : parts[2]) : (o ? (o.shortName || o.name) : parts[2])) + ' · ' + (parts[0] === 'off' ? 'Off-Prem' : 'On-Prem') + ' MPO';
     } catch (e) { return id; }
   }
   function ago(iso){

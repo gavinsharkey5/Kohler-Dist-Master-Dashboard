@@ -16,7 +16,7 @@ repo (see "Where each file goes").
 | Customer + rep assignment | `hub/data/accounts.js` from the Encompass **Sales Reps' Customer Base** report (CustomerID, name, town, county, area, premise, 2026 cases, assigned rep); `rolling-distribution/data/master/customers.csv` adds the street address; `incentive-tracking/data/customer_base_full.csv` adds Draft / Package service type. Book as of 2026-09-10. | Overview identity, Directions (a Google Maps web URL built from the address), the middleware's per-rep slices |
 | Account size + activity | `deciles/universe.csv` from the Supplier_Deciles workbook: class, decile by 2026 gross, `stops_2026`, `dist_pts` | Overview "Size" and "2026 so far" (definition of stops / points to confirm, see 4) |
 | Manager -> reps | `allowed_users.reports_to` (Supabase) and the trackers' DM groups | "All my reps" scoped to a district manager's team |
-| Sales history | Rolling Distribution master: **Fusion product x account x month** cases, net of returns, Jan 2025 -> Aug 2026 | Sales & reorders, buying patterns, reorder / lapsed / less-often alerts, Previously purchased, the monthly purchase record under Invoices & Balances |
+| Sales history | Rolling Distribution master: **Fusion product x account x month** cases, net of returns, Jan 2025 -> Sep 2026 | Sales & reorders, buying patterns, reorder / lapsed / less-often alerts, Previously purchased, the monthly purchase record under Invoices & Balances |
 | Product master | `products.csv` (ProductID, name, supplier, brand family, brand, package) | product names, families and packages; the catalogue's rows |
 | Brand territory | `hub/data/accounts.js` HUB_BRANDS from the Brand_Sellable_Unsellable workbook (CAN SELL / NOT IN TERRITORY / BLOCKED per family and area) | which products "All eligible products" may show for an account's area |
 | Warehouse availability | `inventory-data/inventory_status.csv` + `inventory_projections.csv`, as computed by `inventory/generate.py` (sellable units, days of cover, next arrival, as-of date) -- copied into `accounts/data/catalog.json` | "N units available" per product with the report's date and a stale tag past 7 days |
@@ -282,3 +282,33 @@ Definitions the assistant depends on (all in §4): Next Available Date,
 invoice statuses, Close Dated / Stagnant / Distribution void / Quantity
 Reduced, account suffixes, AR signs, shared accounts.
 
+
+## 9. Map, photos, notes and Incentive Performance -- additions (2026-10-02)
+
+The 2026-10-02 build added an account map, account photos, notes with
+follow-up dates and a manager-only Incentive Performance page. Each needs
+data the repo does not have. Every item below lists essential vs optional,
+the fields, the history, the refresh, and what it turns on. Items that
+already exist above are referred to, not restated.
+
+| # | Source | Essential? | Fields | History | Refresh | Turns on |
+|---|---|---|---|---|---|---|
+| G1 | **Validated account coordinates** -- `accounts/geo.csv` | Optional (the map geocodes addresses through the US Census geocoder meanwhile) | `customer_num,lat,lng,source` (source = where the point came from, e.g. `encompass`, `gps`, `survey`); WGS84 decimal degrees; one row per CustomerID | current | when accounts open / move | exact pins instead of address matches; accounts the geocoder cannot place (no street, PO box, ambiguous) appear on the map instead of only in "Not on the map". `accounts/generate.py` refuses points outside northern NJ. |
+| G2 | **Route schedule with stop sequence** (= E2) | Essential for "Today's Stops" | Route ID, rep user ID, service date, stop sequence, CustomerID, planned window | current + next week | daily | the map's and list's Today's Stops scope, numbered in the scheduled order. Until it exists the map shows only "All Assigned Accounts" and there is no Today's Stops view -- no stop or order is inferred. |
+| G3 | **Contacts, hours, servicing instructions** (= E1) | Essential for the Contact & Servicing group | see E1 | current | weekly | phone / email / hours / delivery notes in Account Details. People's contact details: Supabase or git-ignored, never the repo. |
+| P1 | **Invoice-level sales with revenue and cost** (= E3 plus money) | Essential for Incentive Performance | invoice number, invoice date, CustomerID, ProductID, quantity + unit, net revenue, laid-in cost, discounts / allowances, returns and credits as their own lines | every program period (Jul 2026 on), ideally 24 months for baselines | weekly, or when a program closes | qualifying sales, cases, COGS, gross profit and margin per program. Fusion's monthly money file (only Jan-Mar 2025 loaded) cannot separate qualifying sales from the rest of a month. |
+| P2 | **Program payout records** | Essential for Incentive Costs | program, rep, amount, earned / approved / paid dates | each program | when payouts are approved | incentive cost per program, shown on its own line. |
+| P3 | **Supplier funding / reimbursements** | Essential for Supplier Reimbursements | program, supplier, amount, basis (per case / per placement / flat), date received | each program | monthly | supplier funding per program, shown on its own line. |
+| P4 | **Each program's qualifying rule in data form** | Essential for "qualifying" sales | program id, eligible ProductIDs / packages, account conditions (e.g. 90-day non-buy), start / end dates | each program | when a program is loaded | matching invoice lines to a program by rule rather than by hand. |
+| P5 | **Line-level adjustments** (returns, breakage, out of code by account) | Optional | as P1, with the reason code | as P1 | as P1 | returns netted against the sale they reverse. The Comparison export already gives out-of-code and breakage by product and month (Gavin is sending September). |
+| C1 | **Product unit conversions** (= O1) | Essential for any mixed-unit total | ProductID, units per case, case equivalents (2.25 gal / 24-12 oz), keg size | current | when products change | "Cases" on Incentive Performance and the exports summed in one unit with the conversion shown. |
+| I1 | **Reliable sellable inventory** (see 8.3) | Essential before any stock alert | ProductID, sellable units, as-of timestamp, holds / allocations | current | daily or better | the Inventory tab and Products' "Stock at last update" stay labelled with the report date; nothing claims live stock. |
+| D1 | **iSellBeer photo integration docs** | Optional | a supported API or upload path for photos per account, with its auth | -- | -- | sending account photos on to iSellBeer. Until then photos are stored only in this site's shared storage and the page says nothing about iSellBeer. |
+| D2 | **Encompass notes integration docs** | Optional | a supported way to read or write customer notes / tasks | -- | -- | showing Encompass's own notes beside ours. Today notes live only in Supabase `rep_actions`. |
+
+**Financial definitions to confirm** before any number appears on the
+Incentive Performance page are listed on that page under "Definitions to
+Confirm" (revenue, cost, Fusion's Gross, returns and credits, discounts,
+supplier funding, payout timing, participation, qualifying rules, baseline,
+overlap between programs, internal accounts). Qualifying-sales gross profit
+is never presented as profit caused by an incentive.

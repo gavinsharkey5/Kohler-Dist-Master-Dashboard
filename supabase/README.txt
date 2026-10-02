@@ -187,3 +187,16 @@ Account assistant usage ledger (2026-09-30)
   saw all rows, update / delete / anon were refused, and the migration
   applied twice cleanly. The spend query is at the foot of the file.
 
+
+NOTES + PHOTOS (2026-10-02)
+Run migrations/20261002120000_account_notes_photos.sql, then
+seed/account_assignments.sql, in the SQL Editor. The migration adds
+account_assignments (customer # -> rep key), kdh_name_key() (a mirror of
+middleware.js nameKey, nickname map included), kdh_can_access_account(),
+general notes + follow_on dates on rep_actions, the account_photos table,
+and the private account-photos bucket with policies (a rep reads / adds
+photos only on accounts assigned to them, removes only their own; managers
+read all). The seed is written by accounts/generate.py on every run --
+re-run it after any reassignment, or a rep's photo and note access will
+follow the old assignment. Both are idempotent. Verified on local Postgres
+16 (scratchpad sql_notes_test).

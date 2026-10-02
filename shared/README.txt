@@ -125,3 +125,16 @@ preview indicator is the chip #kdhPreviewChip ("Previewing <rep> ·
 Exit"), a full-width row under the bar on phones; the fixed bottom bar
 is gone. Exit clears the cookie and goes to the manager home. New
 pieces in kdh.css: .kdh-menu / .kdh-menu-i, .kdh-sheet-* .
+
+NAV + TITLES (2026-10-02)
+- Reps' bottom bar / sidebar: Home / My Accounts / Programs / Inventory /
+  More. Inventory is /inventory/ (warehouse stock, no customer data; in
+  REP_PATHS). Managers keep Home / Accounts / Programs / Team / More;
+  Inventory is in their menu (`invm`, menuOnly) and Incentive Performance
+  (`perf`) in their sidebar's Manager group.
+- shared/program-titles.js: `kdhTitle(id, fallback)` = the concise display
+  title for a program id. Labels only. Add a line for every new program.
+- Contrast: text tokens are tuned for WCAG AA on bg / surface / surface-2
+  in both themes; never dim text with opacity (it drops below 4.5:1) --
+  use --kdh-text-3. Text on a filled accent uses --kdh-brand-ink.
+  scratchpad contrast_audit.mjs is the measurement.

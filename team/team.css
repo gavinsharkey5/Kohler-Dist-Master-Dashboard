@@ -8,8 +8,8 @@
 .kicker{font-family:var(--head);font-size:13px;color:var(--text-3);margin:0 0 6px}
 .pills{display:flex;gap:6px;flex-wrap:wrap}
 .pill{font-family:var(--head);font-weight:600;font-size:13px;background:var(--surface);color:var(--text-2);border:1px solid var(--border);border-radius:999px;padding:8px 14px;min-height:38px;cursor:pointer}
-.pill.on{background:var(--brand);color:#fff;border-color:var(--brand)}
-.pill .n{opacity:.75;margin-left:6px;font-weight:500}
+.pill.on{background:var(--brand);color:var(--kdh-brand-ink);border-color:var(--brand)}
+.pill .n{margin-left:6px;font-weight:500}
 .tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:0 0 18px}
 .tile{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:14px 16px;box-shadow:var(--shadow)}
 .tile .l{font-family:var(--head);font-size:13px;color:var(--text-3);margin:0 0 4px}
