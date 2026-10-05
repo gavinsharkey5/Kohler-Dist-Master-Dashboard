@@ -378,12 +378,14 @@ function screenRepDetail(){
     // percent, one bar, the objective counts in a line, the partial-credit note.
     // Same numbers as before (weightedForRep), only fewer boxes.
     '<div class="g-summary">'+
-      '<div class="g-summary-top"><span class="g-summary-n '+sums[0].cls+'">'+sums[0].n+'</span>'+
-        '<span class="g-summary-l">Weighted MPO complete</span></div>'+
+      '<div class="g-summary-top"><span class="g-summary-n '+sums[0].cls+'">'+fmtNum(w.earnedPct/100*w.counted*100)+
+        '<span class="g-summary-of"> of '+fmtNum(w.counted*100)+' points</span></span></div>'+
+      '<div class="g-summary-l">MPO Points Earned</div>'+
       barHtml(w.earnedPct, w.earnedPct>=90?'achieved':(w.earnedPct>0?'inprogress':'notstarted'))+
-      '<div class="g-summary-facts"><b>'+w.achieved+' of '+w.scoredCount+'</b> objectives at goal · '+
+      '<div class="g-summary-facts"><b>'+w.achieved+' of '+w.scoredCount+'</b> objectives achieved · '+
         w.inprogress+' in progress · '+w.notstarted+' not started</div>'+
-      '<div class="g-summary-note">'+sums[0].s+'</div>'+
+      '<div class="g-summary-note">An objective earns its full weight once its requirement is met; progress short of the requirement earns no points yet.'+
+        (excluded.length?' <b>Partial result:</b> excludes '+excluded.join(' and ')+' ('+fmtNum(100-w.counted*100)+' points not counted).':'')+'</div>'+
     '</div>'+
     cards+
   '</div>';
@@ -394,6 +396,21 @@ function titleOf(o){
   var scope = /on-prem/.test(location.pathname) ? 'on' : 'off';
   var mk = H.monthKey ? H.monthKey() : '';
   return window.kdhTitle ? window.kdhTitle(scope+':'+mk+':'+o.key, o.shortName||o.name) : (o.shortName||o.name);
+}
+
+// Plural / unit helpers shared by the v3 cards (2026-10-05 brief).
+function uPlural(n, u){ u = String(u||'').trim(); if(!u) return ''; if(Number(n)===1) return u; return /s$/.test(u) ? u : u+'s'; }
+function titleCase(t){ return String(t||'').replace(/\b([a-z])/g, function(c){ return c.toUpperCase(); }); }
+function fmtNum(v){ var n = Number(v); if(!isFinite(n)) return '\u2014'; return (Math.round(n*10)/10).toLocaleString('en-US'); }
+function periodOf(o){ return o.periodText || (H.monthLabel ? H.monthLabel() : ''); }
+function supPeriod(o){ return [o.supplier, periodOf(o)].filter(Boolean).map(esc).join(' · '); }
+// "How This Goal Is Calculated": the metric's own explanation lines, else its goal text.
+function explainFold(o, m){
+  var lines = (m.explain && m.explain.length) ? m.explain : (m.goalText ? ['Goal: '+m.goalText] : []);
+  if(!lines.length) return '';
+  var id = 'gx'+(uid++);
+  return '<button class="g-more js-more" data-target="'+id+'" aria-expanded="false">How This Goal Is Calculated<span class="ar">&#9656;</span></button>'+
+    '<div class="g-more-body" id="'+id+'"><ul class="g-rules">'+lines.map(function(l){ return '<li>'+esc(l)+'</li>'; }).join('')+'</ul></div>';
 }
 function repObjectiveCard(o, rep){
   var m = H.metric(o, rep);
@@ -452,6 +469,21 @@ function repObjectiveCard(o, rep){
         '<ul class="g-rules"><li>'+esc(o.name)+'</li><li>Worth '+Math.round(o.weight*100)+'% of this month\u2019s MPO.</li>'+
         (m.goalText ? '<li>Goal: '+esc(m.goalText)+'</li>' : '')+'</ul>'+detail+'</div>';
 
+  if(hasNums){
+    var unitLbl = titleCase(uPlural(Number(m.goal), unit));
+    var met = m.remaining<=0;
+    return '<div class="g-obj g-obj-v3 '+st+'">'+
+      '<div class="g-obj-head"><div class="g-obj-name">'+esc(titleOf(o))+'</div>'+creditPill(st)+'</div>'+
+      '<div class="g-obj-sub">'+supPeriod(o)+'</div>'+
+      '<div class="g-fig"><span class="g-fig-n">'+fmtNum(m.value)+'</span><span class="g-fig-of"> of '+fmtNum(m.goal)+'</span>'+
+        '<span class="g-fig-u">Required '+esc(unitLbl)+'</span></div>'+
+      '<div class="g-need'+(met?' good':'')+'">'+(met ? 'Requirement Met' : fmtNum(m.remaining)+' More Needed')+'</div>'+
+      barHtml(m.pct, st)+
+      '<div class="g-bar-cap">Progress: '+Math.round(m.pct)+'% of this MPO requirement</div>'+
+      '<div class="g-meta">MPO Weight: '+Math.round(o.weight*100)+'%</div>'+
+      explainFold(o, m)+subsHtml+moreHtml+
+    '</div>';
+  }
   return '<div class="g-obj g-obj-v2 '+st+'">'+
     (o.supplier?'<div class="g-obj-sup">'+esc(o.supplier)+'</div>':'')+
     '<div class="g-obj-name">'+esc(titleOf(o))+'</div>'+
@@ -469,29 +501,40 @@ function repObjectiveCard(o, rep){
    ================================================================== */
 function screenProgram(){
   var objs = H.objectives();
-  var weighted = objs.reduce(function(s,o){return s + o.weight * H.programPct(o);},0);
-
-  // ONE overall summary (2026-09-29): the weighted score and how many
-  // programs the whole team has finished. Each program's own "reps at goal"
-  // is printed once, on its card below -- not here as well.
-  var tracked = objs.filter(function(o){ return !!H.atGoal(o); });
-  var allDone = tracked.filter(function(o){ var g = H.atGoal(o); return g.total && g.n===g.total; }).length;
-  var sums = [{l:'Overall weighted MPO', n:Math.round(weighted)+'%',
-    cls: weighted>=90?'good':(weighted>=50?'accent':''),
-    s:'across all '+objs.length+' objectives'},
-    {l:'Programs every rep has reached', n: tracked.length ? allDone+' of '+tracked.length : '—',
-    cls: tracked.length && allDone===tracked.length ? 'good' : (allDone ? 'accent' : 'mute'),
-    s: tracked.length===objs.length ? 'tracked with data' : (objs.length-tracked.length)+' not tracked with data yet'}];
+  // OVERALL RESULT (2026-10-05 brief): the team's average earned MPO, in points.
+  // Each objective is worth weight x 100 points; its contribution is those
+  // points x the share of eligible reps at goal. An objective with no data is
+  // NOT counted as zero and does not stay in the denominator -- it is listed as
+  // awaiting, and the result is labelled partial.
+  var tracked = [], missing = [], earned = 0, possible = 0;
+  objs.forEach(function(o){
+    var g = H.atGoal(o);
+    if(g && g.total){ var pts = o.weight*100; tracked.push({o:o, g:g, pts:pts, got:pts*g.n/g.total}); earned += pts*g.n/g.total; possible += pts; }
+    else missing.push(o);
+  });
+  var f1 = function(v){ return (Math.round(v*10)/10).toLocaleString('en-US'); };
+  var partial = missing.length > 0;
+  var contrib = tracked.map(function(t){
+    return '<li><span>'+esc(titleOf(t.o))+'</span><b>'+f1(t.got)+' of '+f1(t.pts)+'</b>'+
+      '<i>'+t.g.n+' of '+t.g.total+' reps at goal</i></li>';
+  }).join('')+missing.map(function(o){
+    return '<li class="miss"><span>'+esc(titleOf(o))+'</span><b>Not Counted</b><i>No data yet</i></li>';
+  }).join('');
 
   return '<div class="g g-fade">'+
     stepHead(null,'Program results',
       esc(H.scope)+' · '+esc(H.monthLabel())+
-      ' · tap a program to see every rep’s result.')+
-    '<div class="g-sum-grid">'+sums.map(function(k){
-      return '<div class="g-sum"><div class="g-sum-l">'+k.l+'</div>'+
-        '<div class="g-sum-n '+k.cls+'">'+k.n+'</div>'+
-        '<div class="g-sum-s">'+k.s+'</div></div>';
-    }).join('')+'</div>'+
+      ' · open a program to review each rep.')+
+    '<div class="g-summary">'+
+      '<div class="g-summary-top"><span class="g-summary-n '+(possible&&earned/possible>=.9?'good':(earned>0?'accent':'mute'))+'">'+f1(earned)+
+        '<span class="g-summary-of"> of '+f1(possible)+' points</span></span></div>'+
+      '<div class="g-summary-l">Average MPO Points Earned Per Rep</div>'+
+      barHtml(possible?earned/possible*100:0, earned>0?'inprogress':'notstarted')+
+      '<div class="g-summary-note">Each objective is worth its weight in points and counts in proportion to the share of reps at goal. '+
+        (partial ? '<b>Partial result:</b> '+pl(missing.length,'objective')+' ('+f1(100-possible)+' points) have no data yet and are not counted as zero.'
+                 : 'All objectives are included.')+'</div>'+
+      '<ul class="g-contrib">'+contrib+'</ul>'+
+    '</div>'+
     objs.map(programCard).join('')+
   '</div>';
 }
@@ -499,30 +542,24 @@ function screenProgram(){
 function programCard(o){
   var g = H.atGoal(o);
   var open = openProgram === o.key;
-  var pct = H.programPct(o);
-  var eligible = eligibleRoster(o).length;   // support reps off this objective do not count
+  var has = !!(g && g.total);
+  var share = has ? (g.n/g.total)*100 : 0;
 
   var head =
     '<button class="g-prog-head js-prog'+(open?' open':'')+'" data-key="'+esc(o.key)+'" '+
       'aria-expanded="'+(open?'true':'false')+'">'+
       '<div class="g-prog-top">'+
-        '<span class="g-prog-name">'+esc(o.name)+
-          (o.supplier?'<span class="g-reprow-dm">'+esc(o.supplier)+'</span>':'')+
+        '<span class="g-prog-name">'+esc(titleOf(o))+
+          '<span class="g-reprow-dm">'+supPeriod(o)+'</span>'+
         '</span>'+
-        '<span class="g-prog-right">'+
-          '<span><span class="g-prog-atgoal'+(g&&g.total&&g.n===g.total?' good':'')+'">'+
-            (g? g.n+' / '+g.total : '—')+'</span>'+
-            '<span class="g-prog-atgoal-l">reps at goal</span></span>'+
-          '<span class="g-chev">&#9656;</span>'+
-        '</span>'+
+        '<span class="g-chev">&#9656;</span>'+
       '</div>'+
-      '<div class="g-tags" style="margin:12px 0 0">'+
-        '<span class="g-tag weight">'+Math.round(o.weight*100)+'% of MPO</span>'+
-        (o.goalLabel?'<span class="g-tag">Goal: '+esc(o.goalLabel)+'</span>':'')+
-        '<span class="g-tag">'+pl(eligible,'eligible rep')+'</span>'+
-        (g?'<span class="g-tag">'+Math.round(g.total?(g.n/g.total)*100:0)+'% at goal</span>':'')+
-      '</div>'+
-      barHtml(pct, g && g.total && g.n===g.total ? 'achieved' : 'inprogress')+
+      (has
+        ? '<div class="g-fig"><span class="g-fig-n">'+g.n+'</span><span class="g-fig-of"> of '+g.total+'</span><span class="g-fig-u">Reps at Goal</span></div>'+
+          barHtml(share, g.n===g.total ? 'achieved' : (g.n>0?'inprogress':'notstarted'))+
+          '<div class="g-bar-cap">Team progress: '+Math.round(share)+'% of eligible reps at goal</div>'
+        : '<div class="g-need">No data yet \u2014 not counted</div>')+
+      '<div class="g-meta">MPO Weight: '+Math.round(o.weight*100)+'%<span class="g-review">'+(open?'Hide Reps':'Review Reps')+'</span></div>'+
     '</button>';
 
   var body = open ? '<div class="g-prog-body open">'+programBody(o)+'</div>' : '';
@@ -586,26 +623,23 @@ function programBody(o){
       '</div>';
     }
     var st = m.status;
-    // Program View detail (2026-09-17, per Gavin: managers should see the
-    // customer / product / date / photo lines without leaving this screen).
-    // The toggle renders the SAME drill-down Rep View puts behind "See My
-    // Progress" -- H.detailHtml() -- and fills it lazily on first open, so a
-    // 27-rep objective does not build 27 tables it may never show.
     var did = 'gd'+(uid++);
-    return '<div class="g-reprow '+st+'">'+
-      '<span class="g-reprow-name">'+esc(row.rep)+
-        '<span class="g-reprow-dm">'+esc(row.dm)+'</span></span>'+
-      '<span class="g-reprow-val'+(st==='notstarted'?' mute':'')+'">'+esc(m.valueText)+'</span>'+
-      '<span class="g-reprow-meta">'+
-        '<span class="g-reprow-bar"><span class="g-reprow-fill '+st+'" style="width:'+
-          Math.max(0,Math.min(100,m.pct))+'%"></span></span>'+
-        '<span class="g-reprow-remain">'+Math.round(m.pct)+'%'+
-          (m.remaining>0 && m.remainText ? ' · '+esc(m.remainText)+' to go' : '')+
-        '</span>'+
-      '</span>'+
-      pillHtml(st)+
+    var nums = isFinite(Number(m.value)) && isFinite(Number(m.goal)) && Number(m.goal)>0;
+    var uLbl = o.unit ? uPlural(Number(m.goal), o.unit) : '';
+    return '<div class="g-reprow g-reprow-v3 '+st+'">'+
+      '<div class="g-rr-id"><span class="g-reprow-name">'+esc(row.rep)+'</span>'+
+        (row.dm?'<span class="g-reprow-dm">Manager: '+esc(row.dm)+'</span>':'')+'</div>'+
+      '<div class="g-rr-fig"><span class="g-rr-l">Current / Required</span>'+
+        '<b>'+(nums ? fmtNum(m.value)+' / '+fmtNum(m.goal) : esc(m.valueText))+'</b>'+
+        (nums && uLbl ? '<span class="g-rr-u">'+esc(uLbl)+'</span>' : '')+'</div>'+
+      '<div class="g-rr-need"><span class="g-rr-l">Still Needed</span>'+
+        '<b>'+(m.remaining>0 ? (nums ? fmtNum(m.remaining) : esc(m.remainText||String(m.remaining))) : 'None')+'</b>'+
+        (m.remaining>0 && nums && uLbl ? '<span class="g-rr-u">'+esc(uPlural(m.remaining,o.unit))+'</span>' : '')+'</div>'+
+      '<div class="g-rr-bar"><span class="g-reprow-bar"><span class="g-reprow-fill '+st+'" style="width:'+
+        Math.max(0,Math.min(100,m.pct))+'%"></span></span><span class="g-rr-pct">'+Math.round(m.pct)+'% of requirement</span></div>'+
+      '<div class="g-rr-act">'+pillHtml(st)+
       '<button class="g-reprow-more js-repdetail" data-target="'+did+'" data-key="'+esc(o.key)+
-        '" data-rep="'+esc(row.rep)+'" aria-expanded="false">Details<span class="ar">&#9656;</span></button>'+
+        '" data-rep="'+esc(row.rep)+'" aria-expanded="false">View Account Details<span class="ar">&#9656;</span></button></div>'+
       '<div class="g-reprow-detail" id="'+did+'"></div>'+
     '</div>';
   }).join('');

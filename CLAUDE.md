@@ -2227,3 +2227,23 @@ newest first Octoberfest keg -- are dropped, a shortfall is filled with
 "Converted account (Boston Beer count)" lines). Dave Ehlers, Phil Ernst, Shane
 Barreca (no BB row) and route 90 stay on the RDE list. House total now 271 of 313.
 Refresh = rerun converter with `--oct` on the new pair, then both generators.
+
+## MPO cards v3: requirement-first (2026-10-05)
+
+Gavin's brief: cards say Current of Required, Still Needed, ONE bar toward the
+MPO requirement, weight as secondary, and "How This Goal Is Calculated".
+metricFor (MPOs/off-prem/programs.js) is the single source: pct_of_goal with
+assigned goals and pct_of_base now return goal = the REQUIREMENT (assigned goal
+x 75%, or eligible base x 50%, ROUNDED UP), pct = value / requirement, plus
+`requirement`, `underlying` and `explain` (lines shown in the fold; hub forRep
+passes them). Constellation: goal file reconciled (every rep's subtotal row =
+sum of product rows; window 9/1-11/30 for goal and results alike). The 100% goal
+is no longer the displayed headline (supersedes the 2026-10-05 "show 100%" note).
+UNVERIFIED, awaiting Gavin: rounding rule (ceil assumed, matters for 7
+fractional reps), the placement unit definition, Lytt 1+ SKU qualification.
+MPO credit is all-or-nothing per the docx (Achieved / Not Achieved x weight).
+Surfaces: guided.js (rep card, manager program card, rep rows, points summary --
+objectives with no data are "Not Counted" and the result is labelled partial),
+hub.js (rep program screen, mpoRepCard, manager card + summary), Lytt records
+(`lineTableLytt`: Qualifying Accounts, product name / package / date / cases,
+`Potential Accounts` wording). Tags 20261005e/g.

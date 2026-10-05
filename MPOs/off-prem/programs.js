@@ -120,9 +120,9 @@ const OBJECTIVES_2026_09 = [
 // POS cooler-door stickers carry over from September but stay awaiting-data
 // until October's iSellBeer Promos_Report is merged (generate_2026-10.py).
 const OBJECTIVES_2026_10 = [
-  {key:'constellation_innovation', name:'Constellation – 75% Corona Innovation Distro', shortName:'Corona Innovation', unit:'placement', weight:0.30, type:'pct_of_goal', hasData:true, goalLabel:'Your Corona Innovation goal \u2014 75% of it is Achieved', goalWord:'Corona Innovation goal', periodEnd:'2026-11-30',
+  {key:'constellation_innovation', name:'Constellation – 75% Corona Innovation Distro', shortName:'Corona Innovation', unit:'placement', weight:0.30, type:'pct_of_goal', hasData:true, periodText:'Sep 1 \u2013 Nov 30, 2026', goalLabel:'75% of your Corona Innovation goal', goalWord:'Corona Innovation goal', periodEnd:'2026-11-30',
    typeNote:'Your goal is the Corona Innovation distribution goal assigned to you. Reaching 75% of it counts as Achieved.'},
-  {key:'bbc_lytt', name:'BBC – 50% Buying Accounts Lytt', shortName:'Lytt', unit:'buying account', weight:0.30, type:'pct_of_base', hasData:true, goalLabel:'50% of account base', accountsLabel:'Buying Accounts', brandLabel:'Lytt'},
+  {key:'bbc_lytt', name:'BBC – 50% Buying Accounts Lytt', shortName:'Lytt Buying Accounts', unit:'buying account', weight:0.30, type:'pct_of_base', hasData:true, periodText:'Oct 1 \u2013 Oct 31, 2026', goalLabel:'50% of account base', accountsLabel:'Buying Accounts', brandLabel:'Lytt'},
   {key:'mollys', name:'Molly\u2019s – (2) New Placements (Spirits)', shortName:'Molly\u2019s', unit:'new placement', weight:0.15, type:'new_placements', hasData:true, goalLabel:'2 new Molly\u2019s placements each'},
   {key:'wine_new', name:'Wine – (1) New Placement', shortName:'Wine', unit:'new placement', weight:0.15, type:'new_placements', hasData:true, goalLabel:'1 new wine placement each'},
   {key:'pos_stickers', name:'POS – (5) Cooler Door Stickers, Any Brand in iSellBeer', shortName:'Cooler Door Stickers', unit:'cooler door sticker', weight:0.10, type:'photos', hasData:false, awaiting:true, awaitingNote:'Waiting on October\u2019s iSellBeer export.', goalLabel:'5 cooler door stickers each',
@@ -557,7 +557,8 @@ function groupTargetsByProduct(targets){
 // mirrors on-prem's Target Accounts treatment. Reuses the same
 // .tgt-county* classes for both grouping modes since the visual pattern
 // is identical, just the grouping key (product vs. county) differs.
-function targetsBlockHtml(targets, brandLabel){
+function targetsBlockHtml(targets, brandLabel, opts){
+  opts = opts || {};
   if(!targets || !targets.length) return '';
   const tid = 'tgt'+(uid++);
   const byProduct = targets.some(t=>t.product);
@@ -577,8 +578,9 @@ function targetsBlockHtml(targets, brandLabel){
   const hint = byProduct
     ? `— missing at least one ${brandLabel} product; expand a product below to see who`
     : `— don't carry ${brandLabel} yet, in your core territory`;
+  const ttl = opts.title ? `${opts.title} <b>${count}</b>` : `${count} Target Account${count===1?'':'s'}`;
   return `<div class="targets-block">
-    <div class="targets-toggle" data-target="${tid}"><span class="targets-chev">▶</span>${count} Target Account${count===1?'':'s'}<span class="targets-hint">${hint}</span></div>
+    <div class="targets-toggle" data-target="${tid}"><span class="targets-chev">▶</span>${ttl}<span class="targets-hint">${opts.hint||hint}</span></div>
     <div class="targets-table" id="${tid}">${groupsHtml}</div>
   </div>`;
 }
@@ -965,16 +967,17 @@ function existingAccountsBlockHtml(existing, hasProduct){
 // Accounts short of the bar are listed under their own heading with how many
 // more SKUs they need: they don't count yet, but they're the cheapest accounts
 // on a rep's list to convert, so burying them would waste the change.
+function splitPackage(p){
+  const m = String(p||'').match(/^(.*?)\s+(\d+\/[\d.\/]+\s*[A-Za-z].*)$/);
+  return m ? {name:m[1], pack:m[2]} : {name:String(p||''), pack:''};
+}
 function lineTableLytt(lines, minSkus, brandLabel){
   brandLabel = brandLabel || 'Lytt';
-  if(!lines || lines.length===0) return `<div class="no-lines">No ${brandLabel}-carrying accounts recorded this month.</div>`;
+  if(!lines || lines.length===0) return `<div class="no-lines">No ${brandLabel} purchases recorded in this period yet.</div>`;
   const min = minSkus||1;
-  // Since 2026-09-17 the numerator may carry a date and case count per
-  // purchase (Keystone Ice). When it does, each account's header reads its
-  // first and latest order and total cases, and the expanded table lists
-  // every load sheet (Product · Date · Cases) instead of a bare SKU list.
-  // Lytt's August numerator has neither, so it renders exactly as before.
   const hasDates = lines.some(l=>l.date);
+  const fmtC = c => c==null ? '\u2014' : (c%1 ? c.toFixed(2) : String(c));
+  const shortDate = d => { const t = parseDateMs(d); return t ? new Date(t).toLocaleDateString('en-US',{month:'short',day:'numeric'}) : (d||'\u2014'); };
   const byCustomer = new Map();
   lines.forEach(l=>{
     if(!byCustomer.has(l.customer)) byCustomer.set(l.customer, {skus:new Set(), rows:[]});
@@ -987,29 +990,31 @@ function lineTableLytt(lines, minSkus, brandLabel){
   const block = ([customer, products, rows], short)=>{
     const gid = 'tgtc'+(uid++);
     const need = min - products.length;
-    const tag = short ? `<span class="lytt-short">${need} more SKU${need===1?'':'s'} to qualify</span>` : '';
-    let meta = '', table;
-    if(hasDates){
-      const dated = rows.filter(r=>r.date).sort((a,b)=>parseDateMs(b.date)-parseDateMs(a.date));
-      const first = dated.length ? dated[dated.length-1].date : '', last = dated.length ? dated[0].date : '';
-      const cases = rows.reduce((s,r)=>s+(r.cases||0),0);
-      meta = `<span class="lytt-meta">${first===last ? first : `${first} – ${last}`}${cases?` · ${cases%1?cases.toFixed(2):cases} case${cases===1?'':'s'}`:''}</span>`;
-      table = `<table><thead><tr><th>Product</th><th>Date</th><th class="num">Cases</th></tr></thead><tbody>${
-        dated.concat(rows.filter(r=>!r.date)).map(r=>`<tr><td>${r.product}</td><td>${r.date||'—'}</td><td class="num">${r.cases==null?'—':r.cases}</td></tr>`).join('')}</tbody></table>`;
-    } else {
-      table = `<table><thead><tr><th>Product</th></tr></thead><tbody>${products.slice().sort().map(p=>`<tr><td>${p}</td></tr>`).join('')}</tbody></table>`;
-    }
-    return `<div class="tgt-county">
-      <div class="tgt-county-toggle" data-target="${gid}"><span class="tgt-county-chev">▶</span>${customer}${tag}${meta}<span class="tgt-county-count">${products.length}</span></div>
-      <div class="tgt-county-table" id="${gid}"><div class="rep-sub-inner" style="padding-left:2px">${table}</div></div>
+    const cases = rows.reduce((s,r)=>s+(r.cases||0),0);
+    const dated = rows.filter(r=>r.date).sort((a,b)=>parseDateMs(b.date)-parseDateMs(a.date));
+    const last = dated.length ? shortDate(dated[0].date) : '';
+    // One short qualification line: what the account bought, how much, when last.
+    const summary = short
+      ? `${need} more product${need===1?'':'s'} needed to qualify`
+      : [`${products.length} product${products.length===1?'':'s'}`, hasDates && cases ? `${fmtC(cases)} case${cases===1?'':'s'}` : '', last ? `last bought ${last}` : ''].filter(Boolean).join(' \u00b7 ');
+    const recs = (hasDates ? dated.concat(rows.filter(r=>!r.date)) : rows).map(r=>{
+      const pk = splitPackage(r.product);
+      return `<div class="lq-rec"><div class="lq-prod"><span class="lq-pn">${pk.name}</span>${pk.pack?`<span class="lq-pk">${pk.pack}</span>`:''}</div>`+
+        (hasDates ? `<div class="lq-f"><span class="lq-l">Purchase Date</span><span>${r.date||'\u2014'}</span></div>`+
+                    `<div class="lq-f"><span class="lq-l">Cases</span><span>${fmtC(r.cases)}</span></div>` : '')+`</div>`;
+    }).join('');
+    return `<div class="tgt-county lq-acct${short?' short':''}">
+      <div class="tgt-county-toggle lq-head" data-target="${gid}"><span class="tgt-county-chev">▶</span>
+        <span class="lq-name">${customer}</span><span class="lq-sum">${summary}</span></div>
+      <div class="tgt-county-table" id="${gid}"><div class="lq-recs">${recs}</div></div>
     </div>`;
   };
   const qualifying = customers.filter(([,p])=>p.length>=min);
   const short = customers.filter(([,p])=>p.length<min);
-  let html = qualifying.map(c=>block(c,false)).join('');
+  let html = `<div class="lq-title">Qualifying Accounts <b>${qualifying.length}</b></div>`+
+    (qualifying.length ? qualifying.map(c=>block(c,false)).join('') : `<div class="no-lines">No account has a qualifying ${brandLabel} purchase yet.</div>`);
   if(short.length){
-    html += `<div class="lytt-short-head">${short.length} account${short.length===1?'':'s'} carrying ${brandLabel} but under ${min} SKUs — not counted yet</div>`
-          + short.map(c=>block(c,true)).join('');
+    html += `<div class="lq-title">Not Yet Qualifying <b>${short.length}</b></div>` + short.map(c=>block(c,true)).join('');
   }
   return `<div class="rep-sub-inner" style="padding-left:2px">${html}</div>`;
 }
@@ -1162,12 +1167,23 @@ function metricFor(o, rep, DATA){
     if(!r) return {notScored:true};
     const pen = penetration(r), goalPen = d.pct*100;
     const remaining = Math.max(r.target - r.qualifying, 0);
+    const exact = r.base*d.pct, rounded = r.target;
+    const unitName = o.unit || 'account';
     return {
       value: r.qualifying, goal: r.target,
-      pct: goalPen ? Math.min(pen/goalPen,1)*100 : 0,
+      // Progress is toward the REQUIRED COUNT (target = base x pct, rounded up),
+      // so the bar, "N of R" and "still needed" can never disagree.
+      pct: r.target ? Math.min(r.qualifying/r.target,1)*100 : 0,
       remaining,
       valueText: fmtPen(pen),
       goalText: fmtPen(goalPen)+' of my account base ('+r.target+' of '+r.base+')',
+      requirement: r.target, underlying: r.base,
+      explain: [
+        'Requirement: '+fmtPen(goalPen)+' of your '+r.base+' eligible accounts = '+(Math.round(exact*100)/100)+
+          (exact===rounded ? '' : ', rounded up to '+rounded)+'.',
+        'An account counts once, however many products or cases it bought.',
+        'Current buying rate: '+fmtPen(pen)+' of eligible accounts ('+r.qualifying+' of '+r.base+').'
+      ],
       remainText: remaining>0 ? unitFor(o, remaining) : '',
       status: r.qualifying>=r.target ? 'achieved' : (r.qualifying>0 ? 'inprogress' : 'notstarted'),
       hasActivity: r.qualifying>0
@@ -1183,13 +1199,23 @@ function metricFor(o, rep, DATA){
     // `pct` of it (75%) is what counts as Achieved, so the bar fills toward the
     // 100% goal while status and "still needed" are read against the 75% bar.
     if(d.repGoal){
+      const exact = r.baseline*d.pct;
       return {
-        value: r.placements, goal: r.baseline,
-        pct: r.baseline ? Math.min(r.placements/r.baseline,1)*100 : 0,
+        // MPO REQUIREMENT first (2026-10-05 brief): value / goal / pct are all
+        // against the requirement (pct of the assigned goal, rounded up); the
+        // assigned program goal rides along as `underlying` and in `explain`.
+        value: r.placements, goal: r.target,
+        pct: r.target ? Math.min(r.placements/r.target,1)*100 : 0,
         remaining,
-        valueText: r.placements+' of '+r.baseline,
-        goalText: 'my '+(o.goalWord||'goal')+' of '+r.baseline+' \u00b7 Achieved at '+fmtPen(goalPen)+' ('+r.target+')',
-        needText: unitFor(o, r.target),     // what "Achieved" takes, for a rep who has not started
+        valueText: String(r.placements),
+        goalText: fmtPen(goalPen)+' of my '+r.baseline+'-'+(o.unit||'placement')+' program goal',
+        requirement: r.target, underlying: r.baseline,
+        explain: [
+          'Your '+(o.goalWord||'program goal')+': '+r.baseline+' '+(o.unit||'placement')+'s (Sep 1 \u2013 Nov 30, 2026).',
+          'This MPO requires '+fmtPen(goalPen)+' of it = '+(Math.round(exact*100)/100)+(exact===r.target?'':', rounded up to '+r.target)+'.',
+          'Current result: '+r.placements+' qualifying '+(o.unit||'placement')+'s in the same window as the goal.'
+        ],
+        needText: unitFor(o, r.target),
         remainText: remaining>0 ? unitFor(o, remaining) : '',
         status: r.hit ? 'achieved' : (r.placements>0 ? 'inprogress' : 'notstarted'),
         hasActivity: r.placements>0
@@ -1273,7 +1299,8 @@ function detailFor(o, rep, DATA, monthKey){
 
   if(o.type === 'pct_of_base'){
     if(!r) return '';
-    return lineTableLytt(r.lines, r.minSkus, o.brandLabel||o.shortName||o.name) + tgt();
+    return lineTableLytt(r.lines, r.minSkus, o.brandLabel||o.shortName||o.name) +
+      targetsBlockHtml((d.targetsByRep||{})[rep], o.brandLabel||o.shortName||o.name, {title:'Potential Accounts', hint:`\u2014 in your eligible base, no qualifying ${o.brandLabel||'brand'} purchase recorded in ${o.periodText||'this period'}`});
   }
   if(o.type === 'pct_of_goal') return r ? (d.repGoal ? lineTableProducts(r.lines) : lineTableGoal(r.lines)) : none;
   if(o.key === 'new_belgium') return r ? nbLineTable(r.lines) : none;

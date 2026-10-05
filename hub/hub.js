@@ -431,6 +431,7 @@ function makeMpo(scope, month, o){
       segments: m.subs ? m.subs.map(s=>({label:s.label, pct:s.pct, line:`${s.value} of ${s.goal}`,
                                          valueText:s.valueText || `${s.value} / ${s.goal}`, status:s.status})) : null,
       valueNum: m.value, goalNum: m.goal, needNum: m.needText ? m.remaining : undefined, weight: weightPct,
+      explain: m.explain || null, underlying: m.underlying,
     };
   };
   p.detailHtml = function(rep){
@@ -1608,7 +1609,7 @@ function nextAccounts(p, rep){
   warm.filter(w=>w.warm).forEach(w=>{ const a = byKey.get(w.k); if(a && !seen.has(w.k)){ seen.add(w.k); rows.push(Object.assign({}, a, {why:w.why, warm:true})); } });
   const cold = new Map(); warm.filter(w=>!w.warm).forEach(w=>{ if(!cold.has(w.k)) cold.set(w.k, w.why); });
   A.eligible.forEach(a=>{ const k = HubAccounts.norm(a.name); if(seen.has(k)) return; seen.add(k);
-    rows.push(Object.assign({}, a, {why: cold.get(k) || NO_BUY})); });
+    rows.push(Object.assign({}, a, {why: cold.get(k) || (p.type==='MPO' ? `No qualifying purchase in ${(p.objective&&p.objective.periodText)||'this period'}` : NO_BUY)})); });
   // FOLLOW-UP objectives score against the rep's own BASE list (a Summer Ale
   // account, a Q3 spirits placement, a core on-premise account), so only those
   // base accounts still to do are targets -- not every account the brand could
@@ -2318,13 +2319,13 @@ function mpoRepCard(p, r, rep){
 
   const figures = `<div class="mfig">
       <div class="mf"><div class="mf-l">Current</div><div class="mf-v">${N?fmtN(N.cur):E(r.now||'—')}</div></div>
-      <div class="mf"><div class="mf-l">Goal</div><div class="mf-v">${N?fmtN(N.goal):E(r.goal||'—')}</div></div>
+      <div class="mf"><div class="mf-l">Required</div><div class="mf-v">${N?fmtN(N.goal):E(r.goal||'—')}</div></div>
       <div class="mf need${met?' met':''}"><div class="mf-l">${met?'Status':'Still Needed'}</div>
         <div class="mf-v">${met?'Goal met':(N?fmtN(N.need):E(r.remain||'—'))}</div>
         ${!met && unit ? `<div class="mf-u">${E(unit)}</div>` : ''}</div>
     </div>`;
   const bar = `<div class="mbar"><div class="mbar-fill" style="width:${pct}%"></div></div>
-    <div class="mbar-cap"><span>${Math.round(pct)}% of goal</span>${o.goalLabel?`<span class="mbar-goal">${E(o.goalLabel)}</span>`:''}</div>`;
+    <div class="mbar-cap"><span>${Math.round(pct)}% of this MPO requirement</span><span class="mbar-goal">MPO Weight: ${Math.round((o.weight||0)*100)}%</span></div>`;
 
   // Collapsed: the first few accounts. Expanded: all of them, then the
   // supporting detail. Both come from the same list.
@@ -2340,8 +2341,8 @@ function mpoRepCard(p, r, rep){
 
   return `<article class="mcard${sec?' open':''}${met?' met':''}" id="card-${E(p.id)}">
     <div class="mcard-head">
-      <div class="mcard-name">${E(o.name)}</div>
-      <div class="mcard-sup">${sup}</div>
+      <div class="mcard-name">${E(p.shortName||o.name)}</div>
+      <div class="mcard-sup">${E(p.supplier)} · ${E(o.periodText||periodLabel(p.period))}</div>
       ${figures}
       ${bar}
       ${loading}
@@ -2634,23 +2635,18 @@ function mpoProgramCardHtml(p){
   const g = loaded ? p.atGoal() : null;
   const pct = loaded ? p.objPct() : 0;
   const all = !!(g && g.total && g.n === g.total);
+  const has = !!(g && g.total);
+  const share = has ? (g.n/g.total)*100 : 0;
   return `<div class="g-prog"><button class="g-prog-head" data-act="open-program" data-prog="${E(p.id)}">
       <div class="g-prog-top">
-        <span class="g-prog-name">${E(o.name)}${o.supplier?`<span class="g-reprow-dm">${E(o.supplier)}</span>`:''}</span>
-        <span class="g-prog-right">
-          <span><span class="g-prog-atgoal${all?' good':''}">${g ? g.n+' / '+g.total : '—'}</span>
-            <span class="g-prog-atgoal-l">reps at goal</span></span>
-          <span class="g-chev">&#9656;</span>
-        </span>
+        <span class="g-prog-name">${E(p.shortName||o.name)}<span class="g-reprow-dm">${E(o.supplier||p.supplier||'')}${(o.periodText||p.monthLabel)?' · '+E(o.periodText||p.monthLabel):''}</span></span>
+        <span class="g-chev">&#9656;</span>
       </div>
-      <div class="g-tags" style="margin:12px 0 0">
-        <span class="g-tag weight">${Math.round((o.weight||0)*100)}% of MPO</span>
-        ${o.goalLabel?`<span class="g-tag">Goal: ${E(o.goalLabel)}</span>`:''}
-        <span class="g-tag">${plw((M.rosterFor ? M.rosterFor(o.key) : M.ROSTER).length,'eligible rep')}</span>
-        ${g?`<span class="g-tag">${Math.round(g.total?(g.n/g.total)*100:0)}% at goal</span>`
-           :`<span class="g-tag">${loaded?'Not tracked with data':'Loading…'}</span>`}
-      </div>
-      <div class="g-bar"><div class="g-bar-fill ${all?'achieved':pct>0?'inprogress':'notstarted'}" style="width:${Math.max(0,Math.min(100,pct))}%"></div></div>
+      ${has ? `<div class="g-fig"><span class="g-fig-n">${g.n}</span><span class="g-fig-of"> of ${g.total}</span><span class="g-fig-u">Reps at Goal</span></div>
+        <div class="g-bar"><div class="g-bar-fill ${all?'achieved':g.n>0?'inprogress':'notstarted'}" style="width:${Math.round(share)}%"></div></div>
+        <div class="g-bar-cap">Team progress: ${Math.round(share)}% of eligible reps at goal</div>`
+        : `<div class="g-need">${loaded?'No data yet \u2014 not counted':'Loading…'}</div>`}
+      <div class="g-meta">MPO Weight: ${Math.round((o.weight||0)*100)}%<span class="g-review">Review Reps</span></div>
     </button></div>`;
 }
 
@@ -2666,10 +2662,15 @@ function mpoSectionHtml(scope, mk, progs){
   const D = mpoDataFor(scope, mk);
   const objPct = o => (D && o.hasData) ? M.objPct(o, D) : 0;
   const atGoal = o => (D && o.hasData) ? M.atGoalFor(o, D) : null;
-  const weighted = objs.reduce((t,o)=> t + (o.weight||0)*objPct(o), 0);
-  const sums = [{l:'Overall Weighted MPO', n:D?Math.round(weighted)+'%':'—',
-    cls: !D ? 'mute' : weighted>=90 ? 'good' : weighted>=50 ? 'accent' : '',
-    s:`across all ${objs.length} objective${objs.length===1?'':'s'}`}];
+  // Points: weight x 100 per objective x share of reps at goal; objectives with no
+  // data are listed as not counted (never zero) and the result is labelled partial.
+  let earnedPts = 0, possiblePts = 0, missingN = 0;
+  objs.forEach(o=>{ const g = (D && o.hasData) ? M.atGoalFor(o, D) : null;
+    if(g && g.total){ possiblePts += (o.weight||0)*100; earnedPts += (o.weight||0)*100*g.n/g.total; } else missingN++; });
+  const f1 = v => (Math.round(v*10)/10).toLocaleString('en-US');
+  const sums = [{l:'Average MPO Points Earned Per Rep', n:D?`${f1(earnedPts)} of ${f1(possiblePts)}`:'—',
+    cls: !D ? 'mute' : (possiblePts && earnedPts/possiblePts>=.9) ? 'good' : earnedPts>0 ? 'accent' : '',
+    s: missingN ? `Partial: ${missingN} objective${missingN===1?'':'s'} (${f1(100-possiblePts)} points) have no data yet and are not counted as zero.` : 'All objectives included; each counts its weight x share of reps at goal.'}];
   objs.forEach(o=>{
     const g = atGoal(o);
     if(!g){ sums.push({l:E(o.shortName||o.name), n:'—', cls:'mute', s:D?'not tracked yet':'loading…'}); return; }
@@ -2979,11 +2980,11 @@ function progFacts(p, r, rep){
     const st = gStatusOf(r); const cls = st==='achieved' ? 'met' : st==='inprogress' ? 'ontrack' : 'open';
     const label = st==='achieved' ? 'Goal met' : st==='inprogress' ? 'In progress' : 'Not started';
     if(!N) return {main:E(r.now||'—'), need:E(r.remain||''), pct:r.pct, cls, label, rule:r.goal||''};
-    const main = unit ? `${fmtN(N.cur)} of ${fmtN(N.goal)} ${uPl(N.goal, unit)}` : `${E(r.now||fmtN(N.cur))} of ${E(r.goal||fmtN(N.goal))}`;
-    const need = N.need<=0 ? 'Goal met' : (unit ? `${fmtN(N.need)} more ${uPl(N.need, unit)} needed` : `${E(r.remain||fmtN(N.need)+' more needed')}`);
+    const main = unit ? `${fmtN(N.cur)} of ${fmtN(N.goal)} required ${uPl(N.goal, unit)}` : `${E(r.now||fmtN(N.cur))} of ${E(r.goal||fmtN(N.goal))}`;
+    const need = N.need<=0 ? 'Requirement met' : (unit ? `${fmtN(N.need)} more ${uPl(N.need, unit)} needed` : `${E(r.remain||fmtN(N.need)+' more needed')}`);
     // The tracker's own goal text carries the rule ("40% of my account base (13 of 31)").
-    const rule = r.goal && !/^\d[\d,.]*\s/.test(String(r.goal)) ? 'Goal is '+String(r.goal).replace(/^my /,'your ').replace(/ my /,' your ') : '';
-    return {main, need, pct:Math.max(0,Math.min(100,r.pct||0)), cls, label, rule, segments:r.segments||null};
+    const rule = r.explain && r.explain.length ? r.explain[1] || r.explain[0] : (r.goal && !/^\d[\d,.]*\s/.test(String(r.goal)) ? 'Goal is '+String(r.goal).replace(/^my /,'your ').replace(/ my /,' your ') : '');
+    return {main, need, pct:Math.max(0,Math.min(100,r.pct||0)), cls, label, rule, segments:r.segments||null, explain:r.explain||null, weight:r.weight};
   }
   const b = incBand(p, r) || {cls:'open', label:''};
   if(r.openEnded) return {main:E(r.now||'—'), need:'Every one pays — no goal to count down', pct:null, cls:'open', label:b.label, rule:''};
@@ -3167,7 +3168,7 @@ function screenProgramRep(p, r, rep){
   return `<div class="hview">
     ${backForProgram(p)}
     <div class="px${legs?' has-legs':''}">
-      <div class="px-sup">${E(p.supplier)} · ${E(p.channelLabel)}${p.type==='MPO' ? ' · '+E(p.monthLabel)+' MPO' : ''}</div>
+      <div class="px-sup">${E(p.supplier)} · ${E(p.channelLabel)}${p.type==='MPO' ? ' · '+E((p.objective&&p.objective.periodText)||p.monthLabel)+' · MPO' : ''}</div>
       <h1 class="px-name">${E(p.shortName||p.name)}</h1>
       ${p.shortName && p.shortName!==p.name ? `<p class="px-full"><span>Full program name</span>${E(p.name)}</p>` : ''}
       <div class="px-meta">${htag(f)}<span class="px-ends">${E(endsLabel(p.period))}</span></div>
@@ -3178,7 +3179,8 @@ function screenProgramRep(p, r, rep){
         <div class="px-main">${f.main}</div>
         <div class="px-need ${f.cls}">${f.need}</div>
         ${hbar(f)}
-        ${f.rule ? `<div class="px-rule">${f.rule}</div>` : ''}
+        ${p.type==='MPO' && f.pct!=null ? `<div class="px-cap">Progress: ${Math.round(f.pct)}% of this MPO requirement</div><div class="px-cap dim">MPO Weight: ${Math.round((f.weight||0))}%</div>` : ''}
+        ${p.type==='MPO' && f.explain ? `<details class="hdet px-how"><summary>How This Goal Is Calculated</summary><ul class="ibul">${f.explain.map(x=>`<li>${E(x)}</li>`).join('')}</ul></details>` : (f.rule ? `<div class="px-rule">${f.rule}</div>` : '')}
         ${f.segments && f.segments.length ? `<div class="px-segs">${f.segments.map(g=>`<div class="px-seg"><span>${E(g.label)}</span><b>${E(g.valueText)}</b></div>`).join('')}</div>` : ''}
       </div>`}
     </div>

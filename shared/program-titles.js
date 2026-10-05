@@ -93,8 +93,8 @@ var T = {
   'on:2026-10:sam_adams_conversion': 'Oktoberfest Draft Conversion',
   'on:2026-10:spirits_followup': 'Spirits Follow-Up',
   'on:2026-10:isellbeer': 'iSellBeer Feature Photos',
-  'off:2026-10:constellation_innovation': 'Corona Innovation Distribution',
-  'off:2026-10:bbc_lytt': 'Lytt Distribution',
+  'off:2026-10:constellation_innovation': 'Corona Innovation',
+  'off:2026-10:bbc_lytt': 'Lytt Buying Accounts',
   'off:2026-10:mollys': 'Molly\u2019s New Placements',
   'off:2026-10:wine_new': 'Wine New Placements',
   'off:2026-10:pos_stickers': 'Cooler Door Stickers'
