@@ -2067,3 +2067,30 @@ Theirs on every named tap line. README "HUB TAP SURVEYS ON THIS PAGE" has the
 rules; tests: scratchpad tap_hub_test.mjs (+ tap_own_test, slice_test,
 lock_test2, dm_test). Still iSellBeer-only: MPO cooler doors / Lytt POS /
 Bardstown menus, Display Auction, Tier 1 recap, Executive Overview.
+
+## Add Photos redesigned for the phone: the type decides the form (2026-10-05)
+
+Gavin's brief (with iPhone screenshots of the old long form): never ask twice,
+never show a field that does not apply, mobile first. accounts/activity.js
+`typeStep` / `detailsStep` were rewritten (same drafts, same uploadRecord, same
+storage paths, same kdh_merch_save); `shared/merch-types.js ITEMS` is the one
+spec per type (pick sku / brand / either / tap, chip groups with codes, qty,
+price, record-level `rec` for tap location, `what` for Other) plus
+`itemText()` / `optLabel()` used by the sheet, the activity card, the viewer and
+the recap exports. Items are merch_lines rows: product / brand / family /
+supplier / package, quantity + unit (facings, taps), ownership (taps), and the
+two new columns `attrs` (jsonb codes) + `consumer_price` -- migration
+`supabase/migrations/20261005160000_capture_items.sql` (redefines kdh_merch_save
+once more; sql_items_test.sh). activity.js / recap.js read the new columns with a
+fallback to the old select until it is run. `sheet()` gained `{sub, foot, cls,
+noFocus}`: a footer that stays above the keyboard by sizing the overlay to
+window.visualViewport, and focused inputs are scrolled into view. The search
+panel (`pickPanel`) ranks this account's own products (ctx.extra.bought, from its
+sales file, most recent first) then catalog.json (ctx.extra.catalog) then the
+territory list's other brands. No generic Caption / Brands / Program /
+Location / Products block anywhere in capture -- don't add one back; a program
+comes only from Add Evidence. Tests (scratchpad): cap2_test.mjs (Gavin's
+acceptance script, 47 checks, 375/390/393/430 x light/dark: fit, tap targets,
+progressive reveal, totals, save / retry / double tap, keyboard stand-in),
+plus merch_capture_test / tap_own_test / notes_photos_test / drafts_test ported
+to the new flow, recap_test (Excel item columns).

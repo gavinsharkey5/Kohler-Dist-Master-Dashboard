@@ -727,7 +727,11 @@ async function renderAccount(){
     const real = (()=>{ try{ return JSON.parse(cookie('kdh_user')||'null'); }catch(e){ return null; } })();
     window.KdhActivity.attach({n:String(a.n), name:a.name, area:a.area||"", prem: a.prem==='On' || a.prem==='Off' ? a.prem : '', rep, me: real, isMgr,
       readOnly: !!(U && U.preview), readOnlyWhy: `Saving is off in preview — notes and photos belong to ${rep.split(' ')[0]} and the people on the route.`,
-      extra: {taps: tapPasses, purchases, families: a.families || [], opps: OPP ? OPP.list.concat(OPP.credited).map(o=>({id:o.id, name:o.name, fams:o.fams || []})) : []},
+      extra: {taps: tapPasses, purchases, families: a.families || [],
+        // the capture search: Kohler's catalogue + this account's own products, most recently bought first
+        catalog: CAT && CAT.products ? CAT.products : [],
+        bought: sales && sales.products ? sales.products.map(p=>[p[0], (p[5]||[]).slice(-6).reduce((x, y)=>x + (+y||0), 0), (p[5]||[]).reduce((x, y)=>x + (+y||0), 0)]).sort((x, y)=>(y[1]-x[1]) || (y[2]-x[2])).map(p=>p[0]) : [],
+        opps: OPP ? OPP.list.concat(OPP.credited).map(o=>({id:o.id, name:o.name, fams:o.fams || []})) : []},
       progName, hubLink: r=>hubAcctLink(H.programs().find(p=>p.id===r.program_id), rep, a.n, r.status==='follow' ? 'follow' : r.status),
       openAsk: ()=>showSec('more', 'ask', 'ask'), showOverview: ()=>showSec('over', ''),
       onChange: ()=>{ const y = window.scrollY; renderAccount().then(()=>window.scrollTo(0, y)); }});

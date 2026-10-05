@@ -11,11 +11,20 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
-- [ ] **Tap lines Ours / Theirs: run the SQL** (Gavin): Supabase SQL Editor,
+- [ ] **Redesigned Add Photos: run the SQL, then try it on a phone** (Gavin):
+  Supabase SQL Editor, run `supabase/migrations/20261005160000_capture_items.sql`
+  (after the tap file). Until then the new flow works but the POD type / shelf /
+  sticker / window / menu choices and the price to consumer are NOT stored (only
+  the brand / SKU, facings and taps are). Then on the iPhone: an off-premise
+  account -> Add Photos -> PODs -> photo -> Select SKU -> Shelf -> Eye Level -> 4
+  facings -> $19.99 -> + Add Another SKU -> Save; an on-premise one -> Tap
+  Handles -> Main Bar -> + Add Brand x2. Watch the keyboard: the price field and
+  Save should stay visible (tested in desktop Chromium only).
+- [x] **Tap lines Ours / Theirs: run the SQL** (Gavin, done 2026-10-05): Supabase SQL Editor,
   run `supabase/migrations/20261005140000_tap_us_them.sql` (after the PODs +
   Signage file). Until then tap lines save without their Ours / Theirs label.
   Idempotent.
-- [ ] **PODs + Signage photo types: run the SQL** (Gavin): Supabase SQL
+- [x] **PODs + Signage photo types: run the SQL** (Gavin, done 2026-10-05): Supabase SQL
   Editor, run `supabase/migrations/20261005120000_merch_pod_signage.sql`.
   Until then a rep who picks PODs or Signage gets a save error; the other
   types work. Idempotent.
@@ -236,6 +245,14 @@ device, a decision).
 - **Account-aware assistant + mock pitch** -- built 2026-09-30 and hardened the same day (server-side account authorization, server-built record, tools on the full record, ledger + spend limits); waiting on the pilot above. Snowflake later adds freshness (daily grain, invoices, inventory); route-wide / comparable-account questions need a permission rule first.
 
 ## Done
+
+- [x] 2026-10-05 **Add Photos redesigned for the phone**: the selected type
+  decides the form (POD / Display, Cooler Stickers, Windows, Signage, Menu
+  Placements, Tap Handles, Other); no generic Caption / Brands / Program /
+  Products; one decision at a time with chips, steppers, a $ keypad and a fast
+  SKU / brand search (this account's products first); several items under one
+  photo, folded into one-line rows; footer Save above the keyboard; activity
+  cards and exports show the items. Tested at 375 / 390 / 393 / 430 light + dark.
 
 - [x] 2026-10-05 **Tap Tracker reads Hub tap surveys**: the page merges the
   tap surveys reps take in the Hub (viewer's own sign-in, a rep gets only

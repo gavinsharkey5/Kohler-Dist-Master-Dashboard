@@ -72,7 +72,9 @@ const denied = e => !!e && (e.status===401 || e.status===403 || e.code==='42501'
 const PHOTO_COLS = 'id,customer_num,category,premise,caption,storage_path,width,height,captured_at,uploaded_at,author_name,author_email';
 const MERCH_SQL = 'supabase/migrations/20261004090000_merchandising.sql';
 const REC_COLS = 'id,category,subtype,subtype_note,caption,location,brands,program_id,premise,source,source_kind,source_key,isb_promotion_type,isb_theme,isb_elements,source_author,source_author_role,observed_at,created_at,author_name,author_email,'
-  + 'merch_lines(line_no,supplier,brand_family,brand,package,quantity,quantity_unit,ownership_source,ownership_corrected,ownership_rule,source_line_ref),merch_record_photos(ord,photo_id)';
+  + 'merch_lines(line_no,supplier,brand_family,brand,package,product_num,quantity,quantity_unit,ownership_source,ownership_corrected,ownership_rule,source_line_ref,attrs,consumer_price),merch_record_photos(ord,photo_id)';
+// before 20261005160000_capture_items.sql is run the two item columns do not exist yet
+const REC_COLS_OLD = REC_COLS.replace(',product_num', '').replace(',attrs,consumer_price', '');
 const cache = new Map();      // n -> {notes, photos, records, notesErr, photosErr, update, merchMissing, admin}
 // PHOTO ADMIN (2026-10-05): the database says whether this sign-in may remove ANY
 // photo / record (allowed_users.photo_admin, migration 20261005090000). Asked
@@ -102,6 +104,7 @@ async function load(n, force){
       .then(rows=>{ out.photos = Array.isArray(rows) ? rows.filter(r=>r && (r.storage_path || r.source_url)) : []; })
       .catch(e=>{ if(needsUpdate(e)){ out.update = true; out.photosErr = 'update'; } else out.photosErr = e.message || 'error'; }),
     rest('merch_records?select='+REC_COLS+'&customer_num=eq.'+encodeURIComponent(n)+'&order=observed_at.desc.nullslast&limit=300')
+      .catch(e=>{ if(colMissing(e) || e.status===400) return rest('merch_records?select='+REC_COLS_OLD+'&customer_num=eq.'+encodeURIComponent(n)+'&order=observed_at.desc.nullslast&limit=300'); throw e; })
       .then(rows=>{ recs = Array.isArray(rows) ? rows : []; })
       .catch(e=>{ out.merchMissing = true; }),
   ]);
@@ -289,6 +292,7 @@ const ICON = {
 };
 ICON.prog = ICON.mark;
 const catName = c => c ? (CATS[c] || c) : 'Uncategorized';
+const catOne = c => { const x = window.KdhMerch && window.KdhMerch.cat(c); return x ? (x.one || x.label) : catName(c); };
 
 function quickHtml(){
   const off = !cfg();
@@ -334,15 +338,34 @@ function evHtml(e){
   const det = (inner, open) => inner ? `<details class="act-det"${open?' open':''}><summary>Details</summary><div class="act-dbody">${inner}</div></details>` : '';
   if(e.type==='photo'){
     const r = e.rec, hist = r.source==='isellbeer';
-    const sub = r.subtype ? ' · '+(M().SUB_LABEL[r.subtype]||r.subtype) : '';
     const thumbs = r.photos.slice(0, 3).map(p=>`<button type="button" class="act-thumb" data-rec="${E(r.key)}" aria-label="Open the ${E(catName(r.category))} photos"><img alt="" ${thumbAttr(p)}></button>`).join('');
+    const meta = `<p class="act-m">${E(recAuthor(r))} · ${hist ? 'Last observed ' : (r.observed_at ? 'Taken ' : 'Saved ')}${E(fmtWhen(r.observed_at || r.created_at))}${hist ? ' · Imported From iSellBeer' : ''}</p>`;
+    // a record captured in the Hub reads as its items (2026-10-05): "Tap Handles · Main Bar", the photo,
+    // one line per item (3 shown, the rest folded), tap totals, who and when
+    if(!hist && r.lines.length){
+      const sp = M().ITEMS[r.category] || {}, taps = r.category==='tap_handle';
+      const noun = sp.noun==='SKU' ? ['SKU', 'SKUs'] : sp.noun==='Brand' ? ['brand', 'brands'] : ['placement', 'placements'];
+      const head = `${E(catOne(r.category))}${r.location ? ' · '+E(r.location) : ''}${!taps ? ` · <span class="act-p">${r.lines.length} ${r.lines.length===1 ? noun[0] : noun[1]}</span>` : ''}`;
+      const row = l => `<li class="ai"><span class="ai-n">${E(l.brand || l.brand_family || 'Not named')}${taps && l.ownership_source ? ` <i class="ai-own own-${(l.ownership_corrected||l.ownership_source)==='US'?'us':'them'}">${OWN_WORD[l.ownership_corrected||l.ownership_source]}</i>` : ''}</span>
+        <span class="ai-v">${E(taps ? M().qtyText(l.quantity, l.quantity_unit) : M().itemText(r.category, l))}</span></li>`;
+      const first = r.lines.slice(0, 3), rest = r.lines.slice(3);
+      const tot = taps ? (()=>{ const n = v => r.lines.filter(l=>(l.ownership_corrected||l.ownership_source)===v).reduce((a, l)=>a + (l.quantity==null ? 1 : +l.quantity||0), 0);
+        const all = r.lines.reduce((a, l)=>a + (l.quantity==null ? 1 : +l.quantity||0), 0); return `<p class="ai-tot">${all} ${all===1?'tap':'taps'} · ${n('US')} Kohler · ${n('THEM')} competitor</p>`; })() : '';
+      return `<li class="act k-photo" data-ev="${E(e.id)}"><span class="act-ic">${ICON.photo}</span><div class="act-b">
+        <p class="act-h"><b>${head}</b></p>
+        ${thumbs ? `<div class="act-thumbs">${thumbs}${r.photos.length > 3 ? `<span class="act-more">+${r.photos.length-3}</span>` : ''}</div>` : ''}
+        <ul class="ai-list">${first.map(row).join('')}</ul>
+        ${rest.length ? `<details class="act-det"><summary>${rest.length} more</summary><ul class="ai-list">${rest.map(row).join('')}</ul></details>` : ''}
+        ${tot}${r.caption ? `<p class="act-t">${E(r.caption)}</p>` : ''}${meta}</div></li>`;
+    }
+    const sub = r.subtype ? ' · '+(M().SUB_LABEL[r.subtype]||r.subtype) : '';
     const brands = (r.brands||[]).length ? r.brands : Array.from(new Set(r.lines.map(l=>l.brand).filter(Boolean)));
     return `<li class="act k-photo" data-ev="${E(e.id)}"><span class="act-ic">${ICON.photo}</span><div class="act-b">
       <p class="act-h"><b>${E(catName(r.category))}${E(sub)}</b>${brands.length ? ` <span class="act-p">${E(brands.slice(0,3).join(', '))}${brands.length>3 ? ' +'+(brands.length-3) : ''}</span>` : ''}</p>
       ${r.caption ? `<p class="act-t">${E(r.caption)}</p>` : ''}
       ${thumbs ? `<div class="act-thumbs">${thumbs}${r.photos.length > 3 ? `<span class="act-more">+${r.photos.length-3}</span>` : ''}</div>` : ''}
-      ${r.lines.length ? `<details class="act-det"><summary>${r.lines.length} ${r.category==='tap_handle' ? (r.lines.length===1?'tap line':'tap lines') : (r.lines.length===1?'product line':'product lines')}${ownSummary(r.lines)} · ${r.photos.length} ${r.photos.length===1?'photo':'photos'}</summary><div class="act-dbody"><ul class="rv-lines">${r.lines.map(lineHtml).join('')}</ul></div></details>` : ''}
-      <p class="act-m">${E(recAuthor(r))} · ${hist ? 'Last observed ' : (r.observed_at ? 'Taken ' : 'Saved ')}${E(fmtWhen(r.observed_at || r.created_at))}${hist ? ' · Imported From iSellBeer' : ''}</p></div></li>`;
+      ${r.lines.length ? `<details class="act-det"><summary>${r.lines.length} ${r.category==='tap_handle' ? (r.lines.length===1?'tap line':'tap lines') : (r.lines.length===1?'product line':'product lines')}${ownSummary(r.lines)} · ${r.photos.length} ${r.photos.length===1?'photo':'photos'}</summary><div class="act-dbody"><ul class="rv-lines">${r.lines.map(l=>lineHtml(l, r.category)).join('')}</ul></div></details>` : ''}
+      ${meta}</div></li>`;
   }
   if(e.type==='tap'){
     const s = e.s;
@@ -551,7 +574,9 @@ async function uploadRecord(d, onProgress){
         ph.rowSaved = true; await IDB.put('records', d);
       }
     }
-    const lines = (d.lines||[]).filter(l=>l.brand || l.package || (l.quantity!=='' && l.quantity!=null)).map(l=>({brand:l.brand||'', package:l.package||'', product_num:l.product_num||'',
+    const lines = (d.lines||[]).filter(l=>l.brand || l.product_num || l.package || (l.quantity!=='' && l.quantity!=null)).map(l=>({brand:l.brand||'', package:l.package||l.pkg||'', product_num:l.product_num||'',
+      supplier: l.sup || '', attrs: l.attrs && Object.keys(l.attrs).length ? l.attrs : null,
+      consumer_price: l.price!=='' && l.price!=null && /^\d{1,4}(\.\d{1,2})?$/.test(String(l.price)) ? Number(l.price).toFixed(2) : null,
       brand_family: l.fam || '', ownership_source: l.own==='US' || l.own==='THEM' ? l.own : '', ownership_rule: (l.own==='US' || l.own==='THEM') ? (l.ownRule || 'rep') : '',
       quantity: l.quantity==='' || l.quantity==null ? null : Number(l.quantity), quantity_unit: l.quantity==='' || l.quantity==null ? null : (l.unit || 'unspecified')}));
     try{
@@ -794,17 +819,25 @@ function toast(t){
 }
 
 /* ---------------- sheet (bottom sheet on phones, dialog on desktop) ---------------- */
-function sheet(title, body, onClose){
+function sheet(title, body, onClose, opts){
+  opts = opts || {};
   closeSheet();
   const wrap = document.createElement('div'); wrap.className = 'asheet-wrap'; wrap.id = 'asheet';
-  wrap.innerHTML = `<div class="asheet" role="dialog" aria-modal="true" aria-labelledby="asheetT"><div class="asheet-h"><h2 id="asheetT">${title}</h2><button type="button" class="asheet-x" aria-label="Close">&times;</button></div><div class="asheet-b">${body}</div></div>`;
+  wrap.innerHTML = `<div class="asheet${opts.foot ? ' has-foot' : ''}${opts.cls ? ' '+opts.cls : ''}" role="dialog" aria-modal="true" aria-labelledby="asheetT"><div class="asheet-h"><div class="asheet-ht"><h2 id="asheetT">${title}</h2>${opts.sub ? `<p class="asheet-sub">${opts.sub}</p>` : ''}</div><button type="button" class="asheet-x" aria-label="Close">&times;</button></div><div class="asheet-b">${body}</div>${opts.foot ? `<div class="asheet-f">${opts.foot}</div>` : ''}</div>`;
   document.body.appendChild(wrap);
   document.documentElement.classList.add('asheet-open');
   const close = ()=>{ closeSheet(); if(onClose) onClose(); };
   wrap.querySelector('.asheet-x').addEventListener('click', close);
   wrap.addEventListener('click', e=>{ if(e.target===wrap) close(); });
   wrap._esc = e=>{ if(e.key==='Escape') close(); }; document.addEventListener('keydown', wrap._esc);
-  setTimeout(()=>{ const f = wrap.querySelector('[data-first]') || wrap.querySelector('button, input, textarea'); if(f) f.focus(); }, 30);
+  // phone keyboard (2026-10-05): the sheet follows the VISIBLE viewport, so the footer (Save) sits above
+  // the keyboard and the field being typed in is scrolled into view, never trapped behind it
+  const vv = window.visualViewport;
+  if(vv){ const fit = ()=>{ wrap.style.height = vv.height+'px'; wrap.style.top = vv.offsetTop+'px'; };
+    fit(); vv.addEventListener('resize', fit); vv.addEventListener('scroll', fit);
+    wrap._stop = ()=>{ vv.removeEventListener('resize', fit); vv.removeEventListener('scroll', fit); }; }
+  wrap.addEventListener('focusin', e=>{ const t = e.target; if(t && t.matches && t.matches('input, textarea')) setTimeout(()=>{ try{ t.scrollIntoView({block:'center', behavior:'smooth'}); }catch(x){} }, 280); });
+  if(!opts.noFocus) setTimeout(()=>{ const f = wrap.querySelector('[data-first]') || wrap.querySelector('button, input, textarea'); if(f) f.focus({preventScroll:true}); }, 30);
   return wrap;
 }
 function closeSheet(){ const w = document.getElementById('asheet'); if(w){ document.removeEventListener('keydown', w._esc); if(w._stop) w._stop(); w.remove(); } document.documentElement.classList.remove('asheet-open'); }
@@ -844,10 +877,13 @@ function ownSummary(lines){
   const n = v => lines.filter(l=>(l.ownership_corrected || l.ownership_source)===v).reduce((a, l)=>a + (l.quantity==null ? 1 : Number(l.quantity)||0), 0);
   const us = n('US'), them = n('THEM'); return us || them ? ` · ${us} ours · ${them} theirs` : '';
 }
-function lineHtml(l){
+function lineHtml(l, cat){
   const what = [l.brand || l.brand_family, l.package].filter(Boolean).join(' · ') || 'Product not named';
+  // a structured item (2026-10-05): its own fields in one line ("Shelf · Eye Level · 4 facings · $19.99")
+  const item = (l.attrs && Object.keys(l.attrs).length) || l.consumer_price != null ? M().itemText(cat, l) : '';
   if(l.ownership_rule==='territory' || l.ownership_rule==='rep')
     return `<li><span class="lv-w">${E(what)}</span><span class="lv-q">${E(M().qtyText(l.quantity, l.quantity_unit))}</span> <span class="lv-own own-${l.ownership_source==='US'?'us':'them'}">${OWN_WORD[l.ownership_source]||''} · ${l.ownership_rule==='territory' ? 'territory list' : 'rep’s call'}</span></li>`;
+  if(item) return `<li><span class="lv-w">${E(l.brand || l.brand_family || 'Not named')}</span><span class="lv-q">${E(item)}</span></li>`;
   const own = l.ownership_source ? ` <span class="lv-own">iSellBeer: ${E(l.ownership_source)}${l.ownership_corrected ? (l.ownership_corrected===l.ownership_source ? ' · Tap Tracker agrees' : ` · Tap Tracker: ${E(l.ownership_corrected)}`) : ' · not audited'}</span>` : '';
   return `<li><span class="lv-w">${E(what)}</span><span class="lv-q">${E(M().qtyText(l.quantity, l.quantity_unit))}</span>${own}</li>`;
 }
@@ -884,7 +920,7 @@ function viewer(st, key, idx){
       <dt>Status</dt><dd>Saved${ph && ph.photo_status==='link' ? ' · photo is a link to iSellBeer' : ''}</dd>
       ${ph && ph.captured_at ? `<dt>Photo Taken</dt><dd>${E(fmtWhen(ph.captured_at))}</dd>` : ''}
     </dl>
-    ${r.lines.length ? `<h3 class="rv-h">${r.category==='tap_handle' ? 'Tap Lines' : 'Products'} · ${r.lines.length}</h3><ul class="rv-lines">${r.lines.map(lineHtml).join('')}</ul>` : ''}
+    ${r.lines.length ? `<h3 class="rv-h">${r.category==='tap_handle' ? 'Taps' : (M().ITEMS[r.category]||{}).noun==='SKU' ? 'SKUs' : 'Items'} · ${r.lines.length}</h3><ul class="rv-lines">${r.lines.map(l=>lineHtml(l, r.category)).join('')}</ul>` : ''}
     <div class="sheet-b">
       ${ph && ph.source_url ? `<a class="btn outline" href="${E(ph.source_url)}" target="_blank" rel="noopener noreferrer">Open in iSellBeer ↗</a>` : ''}
       ${!ctx.readOnly && mineHub ? `<button type="button" class="btn outline" id="rvEdit">Edit Details</button><button type="button" class="btn outline danger" id="rvDel">Remove</button>` : ''}
@@ -917,6 +953,8 @@ function viewer(st, key, idx){
     catch(e){ pd.disabled = false; pd.removeAttribute('aria-busy'); toast(e.notRemoved ? e.message : 'Could not remove it: '+(e.message||'error')); }
   });
 }
+const LOCS = ['Front of store', 'Floor / aisle', 'End cap', 'Cooler', 'Register / checkout', 'Window', 'Main Bar', 'Back Bar', 'Tables', 'Patio', 'Entrance'];
+function locList(){ return `<datalist id="capLocs">${LOCS.map(l=>`<option value="${E(l)}">`).join('')}</datalist>`; }
 function editRecord(st, r){
   const progs = (ctx.extra && ctx.extra.opps) || [];
   const subs = M().SUBTYPES[r.category] || [];
@@ -963,14 +1001,36 @@ function relabel(st, r){
   });
 }
 
-/* ---------------- ADD PHOTOS: Choose Type -> Take or Select Photos -> Review and Add
-   Details -> Save (Apple Notes' capture: one obvious shutter, thumbnail feedback,
-   clear cancel / confirm). Photos come from the device's own camera through an
-   image-only file input (capture="environment") -- no in-page video, no playback
-   controls, no microphone -- or from the photo library (several at once). The
-   account and the signed-in author are attached automatically. ---------------- */
-const LOCS = ['Front of store', 'Floor / aisle', 'End cap', 'Cooler', 'Register / checkout', 'Window', 'Bar', 'Back bar', 'Tables', 'Patio', 'Entrance'];
-function locList(){ return `<datalist id="capLocs">${LOCS.map(l=>`<option value="${E(l)}">`).join('')}</datalist>`; }
+/* ---------------- ADD PHOTOS, REDESIGNED FOR THE PHONE (2026-10-05) ----------------
+   Gavin's brief: the selected type decides the form. Type -> photo -> only that
+   type's fields -> Save. One record per photo set; what the photo shows is a list
+   of ITEMS (shared/merch-types.js ITEMS: a POD's SKU + POD type + shelf + facings +
+   price; a sticker's brand + type + cooler + placement; a window's brand + material
+   + window + theme; a menu placement's brand / SKU + placement + menu + price +
+   promotion; a tap's brand + handles, Ours / Theirs derived from the territory
+   list). Nothing is asked twice: no generic Caption / Brands / Program / Location /
+   Products block -- the record's brand tags are derived from the items, the note is
+   an optional "Add Note", a program comes only from Add Evidence on a program card.
+   Fields appear one decision at a time; a finished item folds into one line. The
+   sheet header is "Add <type>" + the account; Cancel / Save sit in a footer that
+   stays above the phone keyboard. Photos still come from the device's own camera
+   (an image-only file input, capture="environment") or the library; account,
+   author, time and premise are attached automatically. Drafts, retry and
+   duplicate-proof saving are unchanged (uploadRecord). */
+const TICON = {
+  display:'<path d="M4 20h16M6 20V9h12v11M9 9V5h6v4"/>',
+  pod:'<path d="M4 4h16v16H4zM4 10h16M4 15h16M9 4v6M15 10v5"/>',
+  cooler_door:'<path d="M6 3h12v18H6zM15 9v3"/><path d="M9 7h3"/>',
+  window:'<path d="M4 4h16v16H4zM12 4v16M4 12h16"/>',
+  signage:'<path d="M5 21V4h12l-2 4 2 4H5"/>',
+  tap_handle:'<path d="M10 3h4v7h-4zM8 10h8v3a4 4 0 0 1-8 0zM12 17v4"/>',
+  menu:'<path d="M6 3h12v18H6zM9 8h6M9 12h6M9 16h4"/>',
+  other:'<circle cx="6" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="18" cy="12" r="1.5"/>'
+};
+const ticon = k => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${TICON[k]||TICON.other}</svg>`;
+const SVG_SEARCH = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>';
+const SVG_RETAKE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>';
+const SVG_TRASH = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>';
 function newDraft(opts){
   opts = opts || {};
   return {id: uuid(), owner: ownerId(), n: String(ctx.n), name: ctx.name, prem: ctx.prem || '', category: opts.category || '', subtype:'', subtype_note:'',
@@ -987,12 +1047,15 @@ function typeStep(d, showAll){
   const list = showAll || !first.length ? M().CATS.map(c=>c.k) : first;
   const rest_ = M().CATS.map(c=>c.k).filter(k=>!list.includes(k));
   const prog = d.program_id ? ctx.progName(d.program_id) : '';
-  const w = sheet('Add Photos', `<p class="pf-acct"><b>${E(ctx.name)}</b> · #${E(ctx.n)}${ctx.prem ? ' · '+(ctx.prem==='On' ? 'On-premise' : 'Off-premise') : ''}</p>
+  const w = sheet('What are you documenting?', `
     ${prog ? `<p class="pf-prog-note">For <b>${E(prog)}</b></p>` : ''}
-    <p class="pf-step">What are you documenting?</p>
-    <div class="pf-list">${list.map((k, i)=>{ const c = M().cat(k); return `<button type="button" class="pf-opt${d.category===k?' on':''}" data-type="${k}"${i===0?' data-first':''}><b>${E(c.label)}</b><span>${E(c.hint)}</span></button>`; }).join('')}</div>
-    ${rest_.length ? `<button type="button" class="btn ghost pf-more-types" id="pfMore">More Types · ${rest_.slice(0,2).map(k=>M().catLabel(k)).join(', ')}${rest_.length>2 ? ` +${rest_.length-2}` : ''}</button>` : ''}`, ()=>keepIfStarted(d));
-  w.querySelectorAll('[data-type]').forEach(b=>b.addEventListener('click', ()=>{ d.category = b.dataset.type; if(!(M().SUBTYPES[d.category]||[]).some(s=>s[0]===d.subtype)) d.subtype = ''; detailsStep(d); }));
+    <div class="pf-list tp-list">${list.map((k, i)=>{ const c = M().cat(k); return `<button type="button" class="pf-opt src tp${d.category===k?' on':''}" data-type="${k}"${i===0?' data-first':''}><span class="tp-ic">${ticon(k)}</span><span><b>${E(c.label)}</b><span>${E(c.hint)}</span></span></button>`; }).join('')}</div>
+    ${rest_.length ? `<button type="button" class="btn ghost pf-more-types" id="pfMore">More Types · ${rest_.slice(0,2).map(k=>M().catLabel(k)).join(', ')}${rest_.length>2 ? ` +${rest_.length-2}` : ''}</button>` : ''}`,
+    ()=>keepIfStarted(d), {sub: E(ctx.name)});
+  w.querySelectorAll('[data-type]').forEach(b=>b.addEventListener('click', ()=>{
+    const was = d.category; d.category = b.dataset.type;
+    if(was && was!==d.category) d.lines = [];          // a different type asks different questions
+    detailsStep(d); }));
   const more = w.querySelector('#pfMore'); if(more) more.addEventListener('click', ()=>typeStep(d, true));
 }
 // closing the sheet with photos in it keeps a draft (under "Not Yet Saved"); Cancel discards
@@ -1010,158 +1073,266 @@ async function addFiles(d, files, fromCamera, replaceIdx){
   if(replaceIdx!=null){ const old = d.photos[replaceIdx]; if(old && old.uploaded && !old.rowSaved) removeObject(old.path); d.photos.splice(replaceIdx, 1, ...out); }
   else d.photos.push(...out);
 }
+
+/* ---- search sources: this account's own products first, then Kohler's catalogue, then other
+   brands (the territory list's brand names, which include competitors) ---- */
+let SRC = null;
+function sources(){
+  if(SRC && SRC.n===ctx.n) return SRC;
+  const ex = ctx.extra || {}, cat = ex.catalog || [], bought = ex.bought || [];
+  const brank = new Map(bought.map((num, i)=>[String(num), i]));
+  const products = cat.map(r=>{ const b = brank.has(String(r[0]));
+    return {kind:'sku', label:r[1], meta:[r[4], r[2]].filter(Boolean).join(' · '), hay:String(r[1]+' '+(r[3]||'')+' '+r[0]).toUpperCase(), rank: b ? 0 : 1, sub: b ? brank.get(String(r[0])) : 0, bought:b,
+      val:{brand:r[1], product_num:String(r[0]), fam:r[3]||'', sup:r[2]||'', pkg:r[4]||''}}; });
+  const boughtFams = new Set(cat.filter(r=>brank.has(String(r[0]))).map(r=>String(r[3]||'').toUpperCase()));
+  const famSeen = new Map();
+  cat.forEach(r=>{ const f = r[3]; if(!f) return; const k = f.toUpperCase(); if(!famSeen.has(k)) famSeen.set(k, {kind:'brand', label:f, meta:r[2]||'Kohler brand', hay:k+' '+String(r[2]||'').toUpperCase(),
+    rank: boughtFams.has(k) ? 0 : 1, sub:0, bought: boughtFams.has(k), val:{brand:f, fam:f, sup:r[2]||''}}); });
+  SRC = {n:ctx.n, products, brands:Array.from(famSeen.values()), others:null};
+  return SRC;
+}
+async function otherBrands(){
+  const S = sources(); if(S.others) return S.others;
+  const R = await tapRules(); const seen = new Set(S.brands.map(b=>b.label.toUpperCase()));
+  S.others = R ? R.brands.filter(([b])=>!seen.has(b.toUpperCase())).map(([b, f])=>({kind:'brand', label:b, meta:/^(no encompass match|not mapped)$/i.test(R.families[f]) ? '' : R.families[f], hay:b.toUpperCase(), rank:2, sub:0,
+    val:{brand:b, fam: /^(no encompass match|not mapped)$/i.test(R.families[f]) ? '' : R.families[f]}})) : [];
+  return S.others;
+}
+function rankSearch(list, q, max){
+  const toks = String(q||'').trim().toUpperCase().split(/\s+/).filter(Boolean);
+  let out = toks.length ? list.filter(x=>toks.every(t=>x.hay.includes(t))) : list.filter(x=>x.bought);
+  const t0 = toks[0] || '';
+  out.sort((a, b)=>(a.rank - b.rank) || (a.sub - b.sub) || ((a.hay.startsWith(t0) ? 0 : 1) - (b.hay.startsWith(t0) ? 0 : 1)) || (a.label.length - b.label.length));
+  return out.slice(0, max);
+}
+// a full-height search panel over the sheet: type a few letters, tap the result
+function pickPanel(w, mode, title, onPick){
+  const host = w.querySelector('.asheet');
+  const p = document.createElement('div'); p.className = 'cap-search'; p.setAttribute('role', 'dialog'); p.setAttribute('aria-label', title);
+  p.innerHTML = `<div class="cs-h"><button type="button" class="cs-back" aria-label="Back">&lsaquo;</button><label class="cs-in">${SVG_SEARCH}<input type="search" id="csQ" placeholder="${E(title)}" autocomplete="off" autocapitalize="none" spellcheck="false" enterkeyhint="search"></label></div><div class="cs-list" id="csList" role="listbox" aria-label="Results"></div>`;
+  host.appendChild(p);
+  const q = p.querySelector('#csQ'), listEl = p.querySelector('#csList');
+  let others = null;
+  const draw = () => {
+    const S = sources(), v = q.value.trim(); let rows = [];
+    if(mode==='sku' || mode==='either') rows = rows.concat(rankSearch(S.products, v, 40));
+    if(mode==='sku' && v) rows = rows.concat(rankSearch(others || [], v, 15));   // competitor brands (not in Kohler's catalogue)
+    if(mode==='brand' || mode==='either' || mode==='tap') rows = rows.concat(rankSearch(S.brands.concat(others || []), v, 40));
+    if(mode==='either') rows.sort((a, b)=>(a.rank - b.rank) || (a.kind==='brand' ? -1 : 1));
+    const head = !v ? `<p class="cs-cap">${rows.length ? 'Bought at this account' : (mode==='sku' ? 'Type part of the product name' : 'Type part of the brand name')}</p>` : '';
+    listEl.innerHTML = head + rows.slice(0, 50).map((r, i)=>`<button type="button" class="cs-row" data-ci="${i}" role="option"><b>${E(r.label)}</b><span>${r.bought ? '<i class="cs-here">Bought here</i>' : ''}${E(r.meta||'')}</span></button>`).join('')
+      + (v && !rows.some(r=>r.label.toUpperCase()===v.toUpperCase()) ? `<button type="button" class="cs-row cs-free" data-free="1" role="option"><b>Use “${E(v)}”</b><span>Not in the list</span></button>` : '')
+      + (v && !rows.length && !others ? '<p class="cs-cap">Loading more brands…</p>' : '');
+    listEl.querySelectorAll('[data-ci]').forEach(b=>b.addEventListener('click', ()=>{ done(rows[+b.dataset.ci].val); }));
+    const fr = listEl.querySelector('[data-free]'); if(fr) fr.addEventListener('click', ()=>done({brand:v}));
+  };
+  const done = val => { p.remove(); onPick(val); };
+  p.querySelector('.cs-back').addEventListener('click', ()=>{ p.remove(); onPick(null); });
+  q.addEventListener('input', draw);
+  draw(); setTimeout(()=>q.focus(), 30);
+  otherBrands().then(o=>{ others = o; if(p.isConnected) draw(); });
+}
+
 function detailsStep(d){
-  const c = M().cat(d.category) || {label:'Photos'};
-  const subs = M().SUBTYPES[d.category] || [];
-  const progs = (ctx.extra && ctx.extra.opps) || [];
-  const fams = (ctx.extra && ctx.extra.families) || [];
-  const lineMode = M().LINES[d.category] || '';
-  const w = sheet(`Add Photos · ${E(c.label)}`, `
-    <p class="pf-acct"><b>${E(ctx.name)}</b> · #${E(ctx.n)} · <b>${E(c.label)}</b> <button type="button" class="linkbtn" id="pfType">Change</button></p>
-    <div class="cap-strip" id="capStrip" aria-live="polite"></div>
-    <div class="cap-acts">
-      <button type="button" class="btn primary cap-shutter" id="capTake">${ICON.photo}<span>Take Photo</span></button>
-      <button type="button" class="btn outline" id="capLib">${ICON.library}<span>Choose From Photos</span></button>
-    </div>
-    <p class="pf-time" id="capErr" role="alert" hidden></p>
+  const c = M().cat(d.category) || {label:'Photos', one:'Photos'};
+  const spec = M().ITEMS[d.category] || M().ITEMS.other;
+  const taps = spec.pick==='tap';
+  if(taps && d.lines.length) d.lines.forEach(l=>{ if(l.unit!=='taps') l.unit = 'taps'; });
+  let editing = d.lines.findIndex(l=>!itemDone(l)); // the item whose fields are open (-1 = none)
+  let RULES = null;
+  const prog = d.program_id ? ctx.progName(d.program_id) : '';
+  const w = sheet(`Add ${E(c.one || c.label)}`, `<div id="capBody"></div>
     <input type="file" accept="image/*" capture="environment" id="capIn" hidden>
     <input type="file" accept="image/*" multiple id="libIn" hidden>
-    <input type="file" accept="image/*" capture="environment" id="retakeIn" hidden>
-    ${subs.length ? `<p class="pf-cap">Kind <span>(optional)</span></p><div class="chips cap-sub" role="group" aria-label="Kind">${subs.map(([k,l])=>`<button type="button" class="chip" data-msub="${k}" aria-pressed="${d.subtype===k}">${E(l)}</button>`).join('')}</div>
-      <input type="text" id="capSubNote" maxlength="120" placeholder="Describe it briefly" value="${E(d.subtype_note)}"${d.subtype==='other' ? '' : ' hidden'}>` : ''}
-    <label class="pf-cap" for="capCap">Caption <span>(optional)</span></label>
-    <input type="text" id="capCap" maxlength="500" placeholder="What does this show?" value="${E(d.caption)}">
-    <label class="pf-cap" for="capLoc">Location in the account <span>(optional)</span></label>
-    <input type="text" id="capLoc" maxlength="120" placeholder="e.g. Front of store" value="${E(d.location)}" list="capLocs">${locList()}
-    <p class="pf-cap">Brands <span>(optional)</span></p>
-    <div class="tagrow" id="capTags">${d.brands.map((b, i)=>`<span class="tag2">${E(b)}<button type="button" data-untag="${i}" aria-label="Remove ${E(b)}">&times;</button></span>`).join('')}</div>
-    <div class="tagadd"><input type="text" id="capBrand" maxlength="120" placeholder="Add a brand" list="capFams"><button type="button" class="btn sm" id="capBrandAdd">Add</button></div>
-    <datalist id="capFams">${fams.slice(0, 300).map(f=>`<option value="${E(f)}">`).join('')}</datalist>
-    ${progs.length ? `<label class="pf-cap" for="capProg">Program <span>(optional)</span></label><select id="capProg" class="kdh-field"><option value="">None</option>${progs.map(p=>`<option value="${E(p.id)}"${d.program_id===p.id?' selected':''}>${E(p.name)}</option>`).join('')}</select>
-      <p class="pf-sub">Saving evidence does not award program credit; credit comes from the tracker’s sales data.</p>` : ''}
-    ${lineMode ? `<details class="pf-more"${d.lines.length ? ' open' : ''}><summary>${lineMode==='taps' ? 'Tap Lines' : 'Products & Quantities'} <span>(optional)</span></summary>
-      <p class="pf-sub">${lineMode==='taps' ? 'One line per brand on tap, with how many handles. Ours or theirs comes from Kohler’s territory list for this account’s area.' : 'One line per product or package. A quantity needs its unit — say whether it is cases, bottles, facings or placements.'}</p>
-      <div id="capLines"></div><button type="button" class="btn sm" id="capLineAdd">Add ${lineMode==='taps' ? 'Tap Line' : 'Product'}</button></details>` : ''}
-    <div class="pf-prog" hidden><div class="pf-bar"><i></i></div><p class="pf-st" role="status"></p></div>
-    <div class="sheet-b pf-actions">
-      <button type="button" class="btn" id="capCancel">Cancel</button>
-      <button type="button" class="btn primary" id="capSave"${d.photos.length ? '' : ' disabled'} data-first>${d.state==='failed' || d.state==='pending' ? 'Retry' : 'Save Photos'}</button>
-    </div>`, ()=>keepIfStarted(d));
+    <input type="file" accept="image/*" capture="environment" id="retakeIn" hidden>`, ()=>keepIfStarted(d),
+    {cls:'cap-sheet', noFocus:true, sub:`${E(ctx.name)} · <button type="button" class="linkbtn" id="pfType">Change type</button>`,
+     foot:`<p class="cap-msg" id="capErr" role="alert" hidden></p>
+       <div class="cap-foot"><button type="button" class="btn" id="capCancel">Cancel</button>
+       <button type="button" class="btn primary" id="capSave"><span class="cs-lbl">${d.state==='failed' || d.state==='pending' ? 'Retry' : 'Save'}</span></button></div>`});
   const $ = s => w.querySelector(s);
   let t = 0; const persist = () => { clearTimeout(t); t = setTimeout(async ()=>{ if(d.photos.length){ d.at = Date.now(); await IDB.put('records', d); } }, 300); };
-  const strip = () => {
-    $('#capStrip').innerHTML = d.photos.length ? d.photos.map((p, i)=>`<figure class="cap-th"><img alt="Photo ${i+1}" src="${blobUrlOf(d.id+':'+p.pid, p.blob)}">
-      <figcaption>${p.rowSaved ? '<span class="cap-saved">Saved</span>' : `<button type="button" data-retake="${i}">Retake</button><button type="button" data-rm="${i}">Remove</button>`}</figcaption></figure>`).join('')
-      + `<p class="cap-n">${d.photos.length} ${d.photos.length===1?'photo':'photos'} · tap Take Photo or Choose From Photos to add another</p>`
-      : `<p class="cap-empty">No photos yet. Take a photo or choose from your photos — you can add several.</p>`;
-    $('#capSave').disabled = !d.photos.length;
-    w.querySelectorAll('[data-rm]').forEach(b=>b.addEventListener('click', ()=>{ const i = +b.dataset.rm; const p = d.photos[i]; if(p.uploaded) removeObject(p.path); d.photos.splice(i, 1); strip(); persist(); if(!d.photos.length) IDB.del('records', d.id); }));
-    w.querySelectorAll('[data-retake]').forEach(b=>b.addEventListener('click', ()=>{ retakeIdx = +b.dataset.retake; $('#retakeIn').click(); }));
-  };
-  let retakeIdx = null;
   const err = m => { const e = $('#capErr'); e.hidden = !m; e.textContent = m || ''; };
+  function itemDone(l){
+    if(!l || !(l.brand || l.product_num)) return false;
+    if(taps) return l.own==='US' || l.own==='THEM';
+    return (spec.groups||[]).every(g=>!g.req || (l.attrs && l.attrs[g.k]));
+  }
+  function newItem(){ const a = {}; (spec.groups||[]).forEach(g=>{ if(g.def) a[g.k] = g.def; });
+    return taps ? {brand:'', quantity:1, unit:'taps', attrs:{}} : {brand:'', product_num:'', fam:'', sup:'', pkg:'', quantity: spec.qty ? 1 : '', unit: spec.qty || '', price:'', attrs:a}; }
+  // ---- render ----
+  const photosHtml = () => !d.photos.length
+    ? `<div class="cap-first">
+        <button type="button" class="btn primary cap-shutter" id="capTake">${ICON.photo}<span>Take Photo</span></button>
+        <button type="button" class="btn outline cap-lib" id="capLib">${ICON.library}<span>Choose From Photos</span></button></div>`
+    : `<div class="cap-strip" id="capStrip">${d.photos.map((p, i)=>`<figure class="cap-th"><img alt="Photo ${i+1}" src="${blobUrlOf(d.id+':'+p.pid, p.blob)}">
+        ${p.rowSaved ? '<span class="cap-saved">Saved</span>' : `<figcaption><button type="button" data-retake="${i}" aria-label="Retake photo ${i+1}">${SVG_RETAKE}</button><button type="button" data-rm="${i}" aria-label="Remove photo ${i+1}">${SVG_TRASH}</button></figcaption>`}</figure>`).join('')}
+        <button type="button" class="cap-add" id="capTake" aria-label="Take another photo">${ICON.photo}<span>Photo</span></button>
+        <button type="button" class="cap-add" id="capLib" aria-label="Add from your photos">${ICON.library}<span>Library</span></button></div>`;
+  const chips = (g, val, i) => `<div class="cchips" role="group" aria-label="${E(g.l)}">${g.o.map(o=>`<button type="button" class="cchip" data-g="${g.k}" data-v="${E(o.k)}"${i!=null ? ` data-i="${i}"` : ''} aria-pressed="${val===o.k}">${E(o.l)}</button>`).join('')}</div>`;
+  const stepper = (i, val, unit) => `<div class="cstep" role="group" aria-label="${E(unit)}"><button type="button" data-step="-1" data-i="${i}" aria-label="One fewer"${(+val||0) <= (taps ? 1 : 0) ? ' disabled' : ''}>&minus;</button><output aria-live="polite">${E(val==='' || val==null ? 0 : val)}</output><button type="button" data-step="1" data-i="${i}" aria-label="One more">+</button></div>`;
+  const label = l => l.brand || l.fam || 'Not named';
+  const ownLine = (l, i) => {
+    if(l.ownRule==='territory') return `<span class="own-tag own-${l.own==='US'?'us':'them'}">${OWN_WORD[l.own]}</span><span class="own-why">${E(shortWhy(l.ownWhy))}</span>`;
+    return `<span class="own-why">Whose tap?</span><span class="own-pick" role="group" aria-label="Ours or theirs"><button type="button" class="cchip sm" data-ownset="${i}:US" aria-pressed="${l.own==='US'}">Ours</button><button type="button" class="cchip sm" data-ownset="${i}:THEM" aria-pressed="${l.own==='THEM'}">Theirs</button></span>`;
+  };
+  const shortWhy = why => !why ? '' : /doesn’t carry/.test(why) ? 'Not a Kohler brand' : /is ours in/.test(why) ? 'Kohler · '+String(why).split(' is ours in ')[1] : /is not ours in/.test(why) ? 'Not ours in '+String(why).split(' is not ours in ')[1] : why;
+  const tapRows = () => d.lines.map((l, i)=>`<div class="ctap" data-i="${i}">
+      <div class="ctap-n"><b>${E(label(l))}</b><span class="ctap-own">${ownLine(l, i)}</span></div>
+      ${stepper(i, l.quantity, 'Taps')}
+      <button type="button" class="ci-x" data-irm="${i}" aria-label="Remove ${E(label(l))}">&times;</button></div>`).join('');
+  const tapTotals = () => {
+    if(!d.lines.length) return '';
+    const n = v => d.lines.filter(l=>l.own===v).reduce((a, l)=>a + (+l.quantity||0), 0);
+    const all = d.lines.reduce((a, l)=>a + (+l.quantity||0), 0), open = d.lines.filter(l=>l.own!=='US' && l.own!=='THEM').length;
+    return `<p class="ctot"><b>${all} ${all===1?'tap':'taps'}</b> · ${n('US')} Kohler · ${n('THEM')} competitor${open ? ` · <span class="warn">${open} to answer</span>` : ''}</p>`;
+  };
+  const itemRow = (l, i) => `<div class="ci" data-i="${i}"><div class="ci-t"><b>${E(label(l))}</b><span>${E(M().itemText(d.category, {attrs:l.attrs, quantity: spec.qty ? (+l.quantity||0) : null, quantity_unit:l.unit, consumer_price: l.price===''||l.price==null ? null : l.price}) || 'Tap Edit to finish')}</span></div>
+      <button type="button" class="btn sm ghost" data-iedit="${i}">Edit</button><button type="button" class="ci-x" data-irm="${i}" aria-label="Remove ${E(label(l))}">&times;</button></div>`;
+  const editor = (l, i) => {
+    const picked = !!(l.brand || l.product_num);
+    let html = `<div class="ce" data-i="${i}">`;
+    html += picked
+      ? `<div class="ce-p"><div><b>${E(label(l))}</b>${l.pkg ? `<span>${E(l.pkg)}</span>` : ''}</div><button type="button" class="linkbtn" data-ipick="${i}">Change</button></div>`
+      : `<button type="button" class="ce-pick" data-ipick="${i}">${SVG_SEARCH}<span>Select ${E(spec.noun)}</span></button>`;
+    if(picked){
+      const gs = spec.groups || []; let open = true;
+      gs.forEach(g=>{ if(!open) return;
+        html += `<p class="ce-l">${E(g.l)}${g.opt ? ' <span>optional</span>' : ''}</p>${chips(g, (l.attrs||{})[g.k], i)}`;
+        if(g.k==='theme' && (l.attrs||{}).theme==='custom') html += `<input type="text" class="ce-in" data-ithemetext="${i}" maxlength="60" placeholder="Theme" value="${E((l.attrs||{}).theme_text||'')}">`;
+        if(g.req && !(l.attrs||{})[g.k]) open = false; });     // the next question appears once this one is answered
+      if(open){
+        if(spec.qty) html += `<p class="ce-l">${spec.qty==='facings' ? 'Facings' : 'Taps'}</p>${stepper(i, l.quantity, spec.qty)}`;
+        if(spec.price) html += `<p class="ce-l">Price to Consumer <span>optional</span></p><label class="cmoney"><span>$</span><input type="text" inputmode="decimal" data-iprice="${i}" placeholder="0.00" value="${E(l.price||'')}" aria-label="Price to consumer"></label>`;
+        html += `<div class="ce-acts"><button type="button" class="btn primary sm" data-idone="${i}">Done</button></div>`;
+      }
+    }
+    return html + `</div>`;
+  };
+  function render(focusSel){
+    const body = $('#capBody'); const y = body.closest('.asheet-b').scrollTop;
+    const rec = spec.rec;
+    let h = `<section class="cap-sec cap-photos">${photosHtml()}</section>`;
+    if(prog) h += `<p class="cap-prog">For <b>${E(prog)}</b> <button type="button" class="linkbtn" id="capProgX">Remove</button></p>`;
+    if(d.photos.length || d.lines.length || d.location){
+      if(rec){ const val = d.location; const isOther = val && !rec.o.some(o=>o.k===val && o.k!=='Other');
+        h += `<section class="cap-sec"><p class="ce-l">${E(rec.l)}</p><div class="cchips" role="group" aria-label="${E(rec.l)}">${rec.o.map(o=>`<button type="button" class="cchip" data-rec="${E(o.k)}" aria-pressed="${val===o.k || (o.k==='Other' && isOther)}">${E(o.l)}</button>`).join('')}</div>
+          ${isOther ? `<input type="text" class="ce-in" id="capRecOther" maxlength="60" placeholder="Where?" value="${E(val==='Other' ? '' : val)}">` : ''}</section>`; }
+      if(spec.what) h += `<section class="cap-sec"><p class="ce-l">What is it?</p><input type="text" class="ce-in" id="capWhat" maxlength="120" placeholder="e.g. Tasting, sampling event" value="${E(d.subtype_note)}"></section>`;
+      h += `<section class="cap-sec cap-items"><p class="ce-l">${taps ? 'Taps' : spec.what ? 'Brands <span>optional</span>' : (spec.noun==='SKU' ? 'SKUs' : spec.noun==='Brand' ? 'Brands' : 'Placements')}${d.lines.length ? ` <span class="cnum">${d.lines.length}</span>` : ''}</p>`;
+      if(taps) h += tapRows() + tapTotals();
+      else h += d.lines.map((l, i)=>i===editing ? editor(l, i) : itemRow(l, i)).join('');
+      if(!(editing>=0 && !taps)) h += `<button type="button" class="btn outline cap-addi" id="capAddItem">+ ${E(d.lines.length || taps ? spec.add : 'Select '+spec.noun)}</button>`;
+      h += `</section>`;
+      h += d.caption || d._noteOpen ? `<section class="cap-sec"><p class="ce-l">Note <span>optional</span></p><textarea id="capNote" rows="2" maxlength="500" placeholder="Anything worth knowing">${E(d.caption)}</textarea></section>`
+        : `<button type="button" class="linkbtn cap-notebtn" id="capNoteAdd">+ Add Note</button>`;
+    } else {
+      h += `<p class="cap-hint">Start with a photo. Then ${taps ? 'add the brands on tap' : 'say what it shows'}.</p>`;
+    }
+    body.innerHTML = h;
+    body.closest('.asheet-b').scrollTop = y;
+    wire();
+    if(focusSel){ const f = w.querySelector(focusSel); if(f){ f.focus({preventScroll:true}); try{ f.scrollIntoView({block:'nearest'}); }catch(e){} } }
+  }
+  function openPick(i){
+    const l = d.lines[i];
+    pickPanel(w, spec.pick, spec.pick==='sku' ? 'Search products' : spec.pick==='either' ? 'Search brands or products' : 'Search brands', val=>{
+      if(!val){ if(!(l.brand || l.product_num)){ d.lines.splice(i, 1); editing = -1; } render(); return; }
+      Object.assign(l, {brand: val.brand || '', product_num: val.product_num || '', fam: val.fam || '', sup: val.sup || '', pkg: val.pkg || ''});
+      if(taps){ relabel(l); editing = -1; }
+      persist(); render(taps ? null : `[data-i="${i}"] .cchip`);
+    });
+  }
+  function relabel(l){
+    const r = tapLabel(RULES, l.brand, ctx.area);
+    if(r && r.own && r.why!=='The territory list did not load'){ l.own = r.own; l.ownRule = 'territory'; l.ownWhy = r.why; if(r.fam) l.fam = r.fam; }
+    else { if(l.ownRule==='territory') l.own = ''; l.ownRule = l.own ? 'rep' : ''; l.ownWhy = r ? r.why : ''; }
+  }
+  function closeEditor(){
+    if(editing < 0) return true;
+    const l = d.lines[editing];
+    if(!(l.brand || l.product_num)){ d.lines.splice(editing, 1); editing = -1; return true; }
+    const miss = (spec.groups||[]).find(g=>g.req && !(l.attrs||{})[g.k]);
+    if(miss){ err(`${label(l)}: choose ${miss.l}.`); return false; }
+    if(l.price!=='' && l.price!=null && !/^\d{1,4}(\.\d{1,2})?$/.test(String(l.price))){ err(`${label(l)}: the price should look like 19.99.`); return false; }
+    editing = -1; err(''); return true;
+  }
+  function wire(){
+    const tk = $('#capTake'), lb = $('#capLib');
+    if(tk) tk.addEventListener('click', ()=>$('#capIn').click());
+    if(lb) lb.addEventListener('click', ()=>$('#libIn').click());
+    w.querySelectorAll('[data-rm]').forEach(b=>b.addEventListener('click', ()=>{ const i = +b.dataset.rm; const p = d.photos[i]; if(p.uploaded) removeObject(p.path); d.photos.splice(i, 1); render(); persist(); if(!d.photos.length) IDB.del('records', d.id); }));
+    w.querySelectorAll('[data-retake]').forEach(b=>b.addEventListener('click', ()=>{ retakeIdx = +b.dataset.retake; $('#retakeIn').click(); }));
+    w.querySelectorAll('[data-rec]').forEach(b=>b.addEventListener('click', ()=>{ d.location = b.dataset.rec; persist(); render(d.location==='Other' ? '#capRecOther' : null); }));
+    const ro = $('#capRecOther'); if(ro) ro.addEventListener('input', ()=>{ d.location = ro.value.trim() || 'Other'; persist(); });
+    const wh = $('#capWhat'); if(wh) wh.addEventListener('input', ()=>{ d.subtype_note = wh.value.trim(); d.subtype = 'other'; persist(); });
+    const nb = $('#capNoteAdd'); if(nb) nb.addEventListener('click', ()=>{ d._noteOpen = true; render('#capNote'); });
+    const nt = $('#capNote'); if(nt) nt.addEventListener('input', ()=>{ d.caption = nt.value; persist(); });
+    const px = $('#capProgX'); if(px) px.addEventListener('click', ()=>{ d.program_id = ''; persist(); detailsStep(d); });
+    const ai = $('#capAddItem'); if(ai) ai.addEventListener('click', ()=>{ if(!closeEditor()){ render(); return; } d.lines.push(newItem()); const i = d.lines.length-1; if(!taps) editing = i; render(); openPick(i); });
+    w.querySelectorAll('[data-ipick]').forEach(b=>b.addEventListener('click', ()=>openPick(+b.dataset.ipick)));
+    w.querySelectorAll('.cchip[data-g]').forEach(b=>b.addEventListener('click', ()=>{ const l = d.lines[+b.dataset.i]; l.attrs = l.attrs || {};
+      const g = b.dataset.g, v = b.dataset.v; l.attrs[g] = l.attrs[g]===v && (spec.groups.find(x=>x.k===g)||{}).opt ? '' : v; if(!l.attrs[g]) delete l.attrs[g];
+      persist(); render(`[data-i="${b.dataset.i}"] [data-g="${g}"][data-v="${CSS.escape(v)}"]`); }));
+    w.querySelectorAll('[data-ithemetext]').forEach(inp=>inp.addEventListener('input', ()=>{ const l = d.lines[+inp.dataset.ithemetext]; l.attrs.theme_text = inp.value.trim(); persist(); }));
+    w.querySelectorAll('[data-step]').forEach(b=>b.addEventListener('click', ()=>{ const l = d.lines[+b.dataset.i]; const min = taps ? 1 : 0;
+      l.quantity = Math.max(min, Math.min(99, (+l.quantity||0) + (+b.dataset.step))); persist();
+      const box = b.closest('.cstep'); box.querySelector('output').textContent = l.quantity; box.querySelector('[data-step="-1"]').disabled = l.quantity <= min;
+      if(taps){ const tt = w.querySelector('.ctot'); if(tt) tt.outerHTML = tapTotals(); } }));
+    w.querySelectorAll('[data-iprice]').forEach(inp=>inp.addEventListener('input', ()=>{ const v = inp.value.replace(/[^0-9.]/g, ''); if(v!==inp.value) inp.value = v; d.lines[+inp.dataset.iprice].price = v; persist(); }));
+    w.querySelectorAll('[data-idone]').forEach(b=>b.addEventListener('click', ()=>{ if(closeEditor()){ persist(); render(); } }));
+    w.querySelectorAll('[data-iedit]').forEach(b=>b.addEventListener('click', ()=>{ if(!closeEditor()){ render(); return; } editing = +b.dataset.iedit; render(`[data-i="${editing}"] .cchip`); }));
+    w.querySelectorAll('[data-irm]').forEach(b=>b.addEventListener('click', ()=>{ const i = +b.dataset.irm; d.lines.splice(i, 1); if(editing===i) editing = -1; else if(editing > i) editing--; persist(); render(); }));
+    w.querySelectorAll('[data-ownset]').forEach(b=>b.addEventListener('click', ()=>{ const [i, v] = b.dataset.ownset.split(':'); const l = d.lines[+i]; l.own = l.own===v ? '' : v; l.ownRule = l.own ? 'rep' : ''; persist(); render(); }));
+  }
+  let retakeIdx = null;
   const take = async (inp, fromCamera, replace) => {
     const files = Array.from(inp.files || []); inp.value = ''; if(!files.length) return;
     err(''); $('#capSave').disabled = true;
     try{ await addFiles(d, files, fromCamera, replace); }catch(e){ err(e.message || 'That photo could not be opened.'); }
-    strip(); persist();
+    $('#capSave').disabled = false; render(); persist();
   };
   $('#capIn').addEventListener('change', ()=>take($('#capIn'), true));
   $('#libIn').addEventListener('change', ()=>take($('#libIn'), false));
   $('#retakeIn').addEventListener('change', ()=>{ const i = retakeIdx; retakeIdx = null; take($('#retakeIn'), true, i); });
-  $('#capTake').addEventListener('click', ()=>$('#capIn').click());
-  $('#capLib').addEventListener('click', ()=>$('#libIn').click());
-  $('#pfType').addEventListener('click', ()=>{ readForm(); typeStep(d, true); });
-  w.querySelectorAll('[data-msub]').forEach(b=>b.addEventListener('click', ()=>{ d.subtype = d.subtype===b.dataset.msub ? '' : b.dataset.msub;
-    w.querySelectorAll('[data-msub]').forEach(x=>x.setAttribute('aria-pressed', String(x.dataset.msub===d.subtype))); const n = $('#capSubNote'); if(n) n.hidden = d.subtype!=='other'; persist(); }));
-  const tags = () => { $('#capTags').innerHTML = d.brands.map((b, i)=>`<span class="tag2">${E(b)}<button type="button" data-untag="${i}" aria-label="Remove ${E(b)}">&times;</button></span>`).join('');
-    w.querySelectorAll('[data-untag]').forEach(b=>b.addEventListener('click', ()=>{ d.brands.splice(+b.dataset.untag, 1); tags(); persist(); })); };
-  tags();
-  const addTag = () => { const v = $('#capBrand').value.trim(); if(v && !d.brands.includes(v) && d.brands.length < 20){ d.brands.push(v); tags(); persist(); } $('#capBrand').value = ''; };
-  $('#capBrandAdd').addEventListener('click', addTag);
-  $('#capBrand').addEventListener('keydown', e=>{ if(e.key==='Enter'){ e.preventDefault(); addTag(); } });
-  // product / tap lines
-  const lines = () => {
-    const box = $('#capLines'); if(!box) return;
-    box.innerHTML = d.lines.map((l, i)=>`<div class="cap-line${lineMode==='taps' ? ' taps' : ''}" data-li="${i}">
-      <input type="text" data-lf="brand" maxlength="120" placeholder="${lineMode==='taps' ? 'Brand on tap' : 'Brand or product'}" value="${E(l.brand||'')}" list="${lineMode==='taps' ? 'tapBrands' : 'capFams'}" autocomplete="off" aria-label="Brand${lineMode==='taps' ? ' on tap' : ' or product'}, line ${i+1}">
-      ${lineMode==='taps' ? '' : `<input type="text" data-lf="package" maxlength="60" placeholder="Package (e.g. 24 PK)" value="${E(l.package||'')}" aria-label="Package, line ${i+1}">`}
-      <input type="number" data-lf="quantity" min="0" step="1" inputmode="numeric" placeholder="${lineMode==='taps' ? 'Taps' : 'Qty'}" value="${E(l.quantity==null ? '' : l.quantity)}" aria-label="Quantity, line ${i+1}">
-      ${lineMode==='taps' ? '<span class="cap-unit">taps</span>' : `<select data-lf="unit" aria-label="What the quantity counts, line ${i+1}"><option value="">Unit…</option>${M().UNITS.filter(u=>u[0]!=='taps' && u[0]!=='unspecified').map(([k,lab])=>`<option value="${k}"${l.unit===k?' selected':''}>${E(lab)}</option>`).join('')}</select>`}
-      <button type="button" class="cap-lx" data-lrm="${i}" aria-label="Remove line ${i+1}">&times;</button>
-      ${lineMode==='taps' ? `<div class="cap-own" data-own="${i}" aria-live="polite">${ownHtml(l, i)}</div>` : ''}</div>`).join('')
-      + (lineMode==='taps' ? '<datalist id="tapBrands"></datalist>' : '');
-    box.querySelectorAll('[data-lf]').forEach(inp=>inp.addEventListener(inp.tagName==='SELECT' ? 'change' : 'input', ()=>{ const i = +inp.closest('[data-li]').dataset.li; d.lines[i][inp.dataset.lf] = inp.value;
-      if(lineMode==='taps' && inp.dataset.lf==='brand'){ suggest(inp.value); relabel(i); }
-      persist(); }));
-    if(lineMode==='taps') d.lines.forEach((l, i)=>relabel(i, true));
-    box.querySelectorAll('[data-lrm]').forEach(b=>b.addEventListener('click', ()=>{ d.lines.splice(+b.dataset.lrm, 1); lines(); persist(); }));
-  };
-  // taps: the label follows the brand; the rep answers only when the territory list is silent
-  let RULES = null;
-  function ownHtml(l, i){
-    if(!String(l.brand||'').trim()) return '<span class="own-hint">Ours or theirs is filled in from the brand</span>';
-    if(l.ownRule==='territory') return `<span class="own-tag own-${l.own==='US'?'us':'them'}">${OWN_WORD[l.own]}</span><span class="own-why">${E(l.ownWhy||'From the territory list')}</span>`;
-    return `<span class="own-why">${E(l.ownWhy||'Not in the territory list')} — whose tap is it?</span>
-      <span class="own-pick" role="group" aria-label="Ours or theirs, line ${i+1}"><button type="button" class="btn sm" data-ownset="${i}:US" aria-pressed="${l.own==='US'}">Ours</button><button type="button" class="btn sm" data-ownset="${i}:THEM" aria-pressed="${l.own==='THEM'}">Theirs</button></span>`;
-  }
-  function relabel(i, quiet){
-    const l = d.lines[i]; if(!l) return;
-    const t = tapLabel(RULES, l.brand, ctx.area);
-    if(t && t.own && (t.why!=='The territory list did not load')){ l.own = t.own; l.ownRule = 'territory'; l.ownWhy = t.why; l.fam = t.fam || ''; }
-    else { if(l.ownRule==='territory'){ l.own = ''; } l.ownRule = l.own ? 'rep' : ''; l.ownWhy = t ? t.why : ''; l.fam = t && t.fam || ''; }
-    const box = w.querySelector(`[data-own="${i}"]`); if(box){ box.innerHTML = ownHtml(l, i); wireOwn(box); }
-    if(!quiet) persist();
-  }
-  function wireOwn(root){ root.querySelectorAll('[data-ownset]').forEach(b=>b.addEventListener('click', ()=>{ const [i, v] = b.dataset.ownset.split(':'); const l = d.lines[+i];
-    l.own = l.own===v ? '' : v; l.ownRule = l.own ? 'rep' : ''; const box = w.querySelector(`[data-own="${i}"]`); box.innerHTML = ownHtml(l, +i); wireOwn(box); persist(); })); }
-  function suggest(q){
-    const dl = w.querySelector('#tapBrands'); if(!dl || !RULES) return;
-    const k = String(q||'').trim().toUpperCase(); if(k.length < 2){ dl.innerHTML = ''; return; }
-    const starts = [], has = [];
-    for(const [b] of RULES.brands){ const u = b.toUpperCase(); if(u.startsWith(k)) starts.push(b); else if(u.includes(k)) has.push(b); if(starts.length >= 30) break; }
-    dl.innerHTML = starts.concat(has).slice(0, 30).map(b=>`<option value="${E(b)}">`).join('');
-  }
-  if(lineMode==='taps') tapRules().then(R=>{ RULES = R; d.lines.forEach((l, i)=>relabel(i, true)); });
-  const la = $('#capLineAdd'); if(la) la.addEventListener('click', ()=>{ d.lines.push(lineMode==='taps' ? {brand:'', quantity:'', unit:'taps'} : {brand:'', package:'', quantity:'', unit:''}); lines(); persist(); });
-  lines();
-  const readForm = () => { d.caption = $('#capCap').value.trim(); d.location = $('#capLoc').value.trim(); const n = $('#capSubNote'); d.subtype_note = n ? n.value.trim() : ''; const p = $('#capProg'); if(p) d.program_id = p.value; };
-  ['#capCap', '#capLoc', '#capSubNote'].forEach(s=>{ const el = $(s); if(el) el.addEventListener('input', ()=>{ readForm(); persist(); }); });
-  const ps = $('#capProg'); if(ps) ps.addEventListener('change', ()=>{ readForm(); persist(); });
+  $('#pfType').addEventListener('click', ()=>typeStep(d, true));
   $('#capCancel').addEventListener('click', async ()=>{
-    if(d.photos.some(p=>!p.rowSaved) && !confirm('Discard these photos? They have not been saved to the account.')) return;
+    if(d.photos.some(p=>!p.rowSaved) && !confirm('Discard this? The photos have not been saved to the account.')) return;
     w._noKeep = true; await discardDraft(d); closeSheet(); paint(cache.get(ctx.n) || await load(ctx.n));
   });
-  $('#capSave').addEventListener('click', async ()=>{
-    readForm();
-    if(!d.photos.length){ err('Add at least one photo.'); return; }
-    if(d.subtype==='other' && !d.subtype_note){ err('Describe the activation in a few words (Other).'); $('#capSubNote').focus(); return; }
-    const bad = d.lines.findIndex(l=>l.quantity!=='' && l.quantity!=null && lineMode!=='taps' && !l.unit);
-    if(bad >= 0){ err(`Line ${bad+1}: choose what the quantity counts (cases, bottles, facings…).`); return; }
-    // the Tap Tracker counts these lines (2026-10-05): every named tap line needs Ours or Theirs
-    const unl = lineMode==='taps' ? d.lines.findIndex(l=>String(l.brand||'').trim() && l.own!=='US' && l.own!=='THEM') : -1;
-    if(unl >= 0){ err(`Line ${unl+1}: tap Ours or Theirs — that brand is not in the territory list.`); return; }
+  const saveBtn = $('#capSave'), lbl = saveBtn.querySelector('.cs-lbl');
+  saveBtn.addEventListener('click', async ()=>{
+    if(saveBtn.getAttribute('aria-busy')==='true') return;          // one save at a time
+    if(!d.photos.length){ err('Take or choose a photo first.'); return; }
+    if(!closeEditor()){ render(); return; }
+    if(spec.rec && spec.rec.req && !d.location){ err(`Choose the ${spec.rec.l.toLowerCase()}.`); return; }
+    if(spec.what && !d.subtype_note){ err('Say what it is in a few words.'); const x = $('#capWhat'); if(x) x.focus(); return; }
+    if(!spec.what && !d.lines.length){ err(taps ? 'Add the brands on tap.' : `Select at least one ${spec.noun==='Brand or SKU' ? 'brand or product' : spec.noun==='SKU' ? 'SKU' : 'brand'}.`); return; }
+    const unl = taps ? d.lines.findIndex(l=>l.own!=='US' && l.own!=='THEM') : -1;
+    if(unl >= 0){ err(`${label(d.lines[unl])}: tap Ours or Theirs.`); return; }
     err('');
-    const prog = w.querySelector('.pf-prog'), bar = w.querySelector('.pf-bar i'), stx = w.querySelector('.pf-st');
-    const btns = w.querySelectorAll('.sheet-b button, .cap-acts button'); btns.forEach(b=>b.disabled = true);
-    const save = $('#capSave'); save.setAttribute('aria-busy', 'true');
-    prog.hidden = false; prog.classList.remove('err'); bar.style.width = '0%';
+    if(spec.what) d.subtype = 'other';
+    d.brands = Array.from(new Set(d.lines.map(l=>l.fam || l.brand).filter(Boolean))).slice(0, 20);
+    d.lines.forEach(l=>{ if(!spec.qty && !taps){ l.quantity = ''; l.unit = ''; } });
+    saveBtn.setAttribute('aria-busy', 'true'); $('#capCancel').disabled = true; lbl.textContent = 'Saving…';
     d.fresh = false;
     const kept = await IDB.put('records', d);
-    stx.innerHTML = stateChip('uploading', '0%');
-    const ok = await uploadRecord(d, f=>{ const pct = Math.round(f*100); bar.style.width = pct+'%'; stx.innerHTML = stateChip('uploading', pct+'%'); });
+    const ok = await uploadRecord(d, f=>{ lbl.textContent = `Saving ${Math.round(f*100)}%`; });
     if(ok){
-      d.state = 'saved'; bar.style.width = '100%'; stx.innerHTML = stateChip('saved');
+      d.state = 'saved'; lbl.textContent = 'Saved';
       const s2 = await load(ctx.n, true); await refreshDrafts(); paint(s2); if(ctx.onChange) ctx.onChange(s2);
-      setTimeout(()=>{ w._noKeep = true; closeSheet(); toast(`${c.label} saved to ${ctx.name} · ${d.photos.length} ${d.photos.length===1?'photo':'photos'}`); }, 500);
+      w._noKeep = true; closeSheet();
+      const n = d.lines.length;
+      toast(`${c.one || c.label} saved${n ? ` · ${n} ${n===1 ? 'item' : 'items'}` : ''}`);
       return;
     }
-    prog.classList.add('err'); save.removeAttribute('aria-busy');
-    stx.innerHTML = stateChip(d.state, d.err) + `<br><span class="dwhy">${kept ? 'Everything is kept on this device under “Not Yet Saved” — retry now or later.' : 'This browser could not keep a copy on the device. Keep this window open and retry.'}</span>`;
-    btns.forEach(b=>b.disabled = false); save.textContent = 'Retry';
+    saveBtn.removeAttribute('aria-busy'); $('#capCancel').disabled = false; lbl.textContent = 'Retry';
+    err(`Not saved — ${d.err || 'something went wrong'}. ${kept ? 'Everything is kept on this device; tap Retry now or later.' : 'Keep this screen open and tap Retry.'}`);
     if(kept){ await refreshDrafts(); paint(cache.get(ctx.n) || await load(ctx.n)); }
   });
-  strip();
+  if(taps) tapRules().then(R=>{ RULES = R; d.lines.forEach(l=>{ if(l.ownRule!=='rep') relabel(l); }); if(w.isConnected) render(); });
+  render();
+  // an empty new record opens straight on the camera choice; a resumed draft keeps its place
+  setTimeout(()=>{ const f = w.querySelector('#capTake'); if(f && !d.photos.length) f.focus({preventScroll:true}); }, 40);
 }
 
 // drafts for the whole device: /login/ "Switch account" calls this so the next person sees none

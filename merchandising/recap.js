@@ -27,7 +27,9 @@ const inScope = rep => !TEAM || (rep && TEAM.reps.includes(rep));
 const ROSTER = Array.from(new Set(Array.from(ACCTS.values()).map(a=>a.rep))).filter(r=>(!window.kdhIsRep || window.kdhIsRep(r)) && inScope(r)).sort();
 
 const REC_COLS = 'id,customer_num,category,subtype,subtype_note,caption,location,brands,program_id,premise,source,source_kind,isb_promotion_type,isb_theme,isb_elements,source_author,observed_at,created_at,author_name,'
-  + 'merch_lines(line_no,supplier,brand_family,brand,package,product_num,quantity,quantity_unit,ownership_source,ownership_corrected,ownership_rule),merch_record_photos(ord,photo_id)';
+  + 'merch_lines(line_no,supplier,brand_family,brand,package,product_num,quantity,quantity_unit,ownership_source,ownership_corrected,ownership_rule,attrs,consumer_price),merch_record_photos(ord,photo_id)';
+// before 20261005160000_capture_items.sql is run the two item columns do not exist yet
+const REC_COLS_OLD = REC_COLS.replace(',attrs,consumer_price', '');
 const PH_COLS = 'id,customer_num,category,caption,storage_path,source,source_url,photo_kind,photo_status,captured_at,uploaded_at,author_name,brand,program_id';
 const PAGE_ROWS = 1000;
 async function all(path){ // PostgREST pages (Supabase caps a response at 1,000 rows)
@@ -45,7 +47,10 @@ async function load(){
   if(!D.signedIn()) throw Object.assign(new Error('Sign in on kohlerdisthub.com to read merchandising records.'), {off:true});
   let recs = [], merchMissing = false;
   try{ recs = await all('merch_records?select=' + REC_COLS + '&order=observed_at.desc.nullslast'); }
-  catch(e){ if(e.status===404 || e.code==='PGRST205' || e.code==='42P01') merchMissing = true; else throw e; }
+  catch(e){
+    if(e.status===404 || e.code==='PGRST205' || e.code==='42P01') merchMissing = true;
+    else if(e.status===400 || e.code==='42703' || e.code==='PGRST204'){ recs = await all('merch_records?select=' + REC_COLS_OLD + '&order=observed_at.desc.nullslast'); }
+    else throw e; }
   let photos = [];
   try{ photos = await all('account_photos?select=' + PH_COLS + '&order=uploaded_at.desc'); }
   catch(e){ photos = await all('account_photos?select=id,customer_num,category,caption,storage_path,captured_at,uploaded_at,author_name&order=uploaded_at.desc'); }
@@ -200,6 +205,9 @@ function wire(){
    7-day signed link (made with the manager's own sign-in, so only photos they can see); iSellBeer
    imports keep iSellBeer's own link. Exactly view() -- the filtered set on screen. ---- */
 const LINK_DAYS = 7, MAX_PHOTO_COLS = 6;
+// the capture items' details (shared/merch-types.js ITEMS, 2026-10-05): one column each
+const ATTR_COLS = [['pod_type','POD Type'],['shelf','Shelf Location'],['sticker','Sticker Type'],['cooler','Cooler'],['placement','Placement'],['material','Material'],['window','Window'],['theme','Theme'],['menu','Menu'],['promo','Promotion']];
+const attrVal = (cat, l, k) => { const a = l.attrs || {}; if(!a[k]) return ''; if(k==='theme' && a[k]==='custom') return a.theme_text || 'Custom'; return M.optLabel(cat, k, a[k]); };
 async function downloadXlsx(){
   const btn = document.getElementById('dlXlsx'); const label = btn ? btn.innerHTML : '';
   if(btn){ btn.disabled = true; btn.setAttribute('aria-busy', 'true'); btn.textContent = 'Preparing photo links…'; }
@@ -210,7 +218,7 @@ async function downloadXlsx(){
     const nPhotoCols = Math.min(MAX_PHOTO_COLS, Math.max(1, ...rows.map(r=>r.photos.length)));
     const hub = location.origin + location.pathname.replace(/merchandising\/.*$/, '');
     const head = ['Date', 'Account #', 'Account', 'Town', 'Premise', 'Rep', 'Category', 'Subtype', 'Supplier', 'Brand Family', 'Brand', 'Package', 'Product #',
-      'Quantity', 'Unit', 'US/THEM', 'US/THEM Basis', 'Tap Tracker Audit', 'Record Brands', 'Caption', 'Location', 'Program', 'Taken By', 'Source', 'Photos']
+      'Quantity', 'Unit', 'Price to Consumer'].concat(ATTR_COLS.map(c=>c[1]), ['US/THEM', 'US/THEM Basis', 'Tap Tracker Audit', 'Record Brands', 'Note', 'Location', 'Program', 'Taken By', 'Source', 'Photos'])
       .concat(Array.from({length:nPhotoCols}, (_, i)=>i ? 'Photo '+(i+1) : 'Photo'), ['Open in Hub', 'Record ID']);
     const photoCell = p => { const u = p.storage_path ? signed[p.storage_path] : p.source_url; return u ? {v: p.storage_path ? 'Open Photo' : 'Open in iSellBeer', link: u} : (p.storage_path ? 'Link unavailable' : ''); };
     const out = [head]; let unsigned = 0;
@@ -222,10 +230,11 @@ async function downloadXlsx(){
         r.program_id ? progName(r.program_id) : '', r.author_name || r.source_author || '', M.SOURCE_LABEL[r.source||'hub'], r.photos.length],
         Array.from({length:nPhotoCols}, (_, i)=>r.photos[i] ? photoCell(r.photos[i]) : ''),
         [{v:'Open in Hub', link: hub + 'accounts/#acct=' + encodeURIComponent(r.customer_num) + '&sec=more&sub=photos'}, r.key]);
-      if(!r.lines.length) out.push(base(['', '', '', '', '', '', '', '', '', '']));
+      if(!r.lines.length) out.push(base(Array(11 + ATTR_COLS.length).fill('')));
       else r.lines.forEach(l=>out.push(base([l.supplier||'', l.brand_family||'', l.brand||'', l.package||'', l.product_num||'',
-        l.quantity==null ? '' : Number(l.quantity), l.quantity==null ? '' : M.UNIT_LABEL[l.quantity_unit||'unspecified'] || l.quantity_unit, l.ownership_source||'',
-        !l.ownership_source ? '' : l.ownership_rule==='territory' ? 'Territory list' : l.ownership_rule==='rep' ? 'Rep’s call' : 'iSellBeer', l.ownership_corrected||''])));
+        l.quantity==null ? '' : Number(l.quantity), l.quantity==null ? '' : M.UNIT_LABEL[l.quantity_unit||'unspecified'] || l.quantity_unit,
+        l.consumer_price==null || l.consumer_price==='' ? '' : Number(l.consumer_price)].concat(ATTR_COLS.map(c=>attrVal(r.category, l, c[0])), [l.ownership_source||'',
+        !l.ownership_source ? '' : l.ownership_rule==='territory' ? 'Territory list' : l.ownership_rule==='rep' ? 'Rep’s call' : 'iSellBeer', l.ownership_corrected||'']))));
     });
     const about = [['Merchandising Export'], ['Generated', new Date().toLocaleString('en-US')], ['Filters', filterText()],
       ['Counts', `${c.accounts} accounts · ${c.records} records · ${c.photos} photos · ${c.lines} product / brand lines (counted separately)`],
@@ -233,7 +242,7 @@ async function downloadXlsx(){
       ['Photo links', `Photos saved in the Hub open through a link that works for ${LINK_DAYS} days (until ${new Date(Date.now()+LINK_DAYS*86400000).toLocaleDateString('en-US')}); download again for fresh links. “Open in Hub” always works for a signed-in manager. iSellBeer photos open iSellBeer's own link.`],
       ['Note', 'Evidence is not program credit. Nothing here changes iSellBeer.']];
     if(unsigned) about.push(['Unavailable', `${unsigned} stored photo(s) could not get a link (sign in again and retry).`]);
-    const blob = KdhXlsx.book([{name:'Records', rows:out, freeze:1, widths:[11,10,30,14,11,16,14,14,18,18,24,12,10,9,10,10,14,10,24,30,16,22,18,22,7].concat(Array(nPhotoCols).fill(16), [14, 22])},
+    const blob = KdhXlsx.book([{name:'Records', rows:out, freeze:1, widths:[11,10,30,14,11,16,14,14,18,18,24,12,10,9,10,10].concat(Array(ATTR_COLS.length).fill(14), [10,14,10,24,30,16,22,18,22,7]).concat(Array(nPhotoCols).fill(16), [14, 22])},
       {name:'About', rows:about, widths:[16, 110]}]);
     const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
     a.download = 'merchandising-export-' + new Date().toISOString().slice(0,10) + '.xlsx';
@@ -248,15 +257,15 @@ function csvCell(v){ const s = v==null ? '' : String(v); return /[",\n\r]/.test(
 function downloadCsv(){
   const rows = view(); const c = counts(rows);
   const head = ['record_id','source','account_num','account_name','town','rep','category','subtype','observed_or_taken','author','program','caption','location','record_brands','photo_count','photo_refs',
-    'line_no','supplier','brand_family','brand','package','product_num','quantity','quantity_unit','ownership_source','ownership_basis','ownership_audited'];
+    'line_no','supplier','brand_family','brand','package','product_num','quantity','quantity_unit','consumer_price','details','ownership_source','ownership_basis','ownership_audited'];
   const out = [['# Merchandising Recap'], ['# Generated', new Date().toISOString()], ['# Filters', filterText()],
     ['# Counts', `${c.accounts} accounts · ${c.records} records · ${c.photos} photos · ${c.lines} product/brand lines (counted separately)`],
     ['# Note', 'Evidence is not program credit. Quantities carry their unit; a blank quantity was not recorded. One row per line; a record with no lines has one row.'], head];
   rows.forEach(r=>{
     const base = [r.key, M.SOURCE_LABEL[r.source||'hub'], r.customer_num, r.acct, r.city, r.rep, M.catLabel(r.category), r.subtype ? (M.SUB_LABEL[r.subtype]||r.subtype) : '', r.when, r.author_name || r.source_author || '',
       progName(r.program_id), r.caption || '', r.location || '', (r.brands||[]).join('; '), r.photos.length, r.photos.map(p=>p.storage_path || p.source_url || '').filter(Boolean).join(' ')];
-    if(!r.lines.length) out.push(base.concat(['','','','','','','','','','','']));
-    else r.lines.forEach(l=>out.push(base.concat([l.line_no, l.supplier||'', l.brand_family||'', l.brand||'', l.package||'', l.product_num||'', l.quantity==null ? '' : l.quantity, l.quantity==null ? '' : (l.quantity_unit||'unspecified'), l.ownership_source||'',
+    if(!r.lines.length) out.push(base.concat(['','','','','','','','','','','','','']));
+    else r.lines.forEach(l=>out.push(base.concat([l.line_no, l.supplier||'', l.brand_family||'', l.brand||'', l.package||'', l.product_num||'', l.quantity==null ? '' : l.quantity, l.quantity==null ? '' : (l.quantity_unit||'unspecified'), l.consumer_price==null ? '' : l.consumer_price, M.itemText(r.category, Object.assign({}, l, {quantity:null, consumer_price:null})), l.ownership_source||'',
       !l.ownership_source ? '' : l.ownership_rule==='territory' ? 'territory list' : l.ownership_rule==='rep' ? 'rep' : 'isellbeer', l.ownership_corrected||''])));
   });
   const blob = new Blob(['﻿' + out.map(r=>r.map(csvCell).join(',')).join('\r\n')], {type:'text/csv;charset=utf-8'});

@@ -46,24 +46,49 @@ Elements are kept on the imported record as they were -- never rewritten
 into these categories, and an unfamiliar value (e.g. "MBO") is NOT mapped to
 a Hub program.
 
-Capture (Account page -> Add Photos, or Add Evidence on a program card)
---------------------------------------------------------------------
-Type -> Photos -> Details -> Save Photos. The account, the author and the
-time are attached automatically. Take Photo is the phone's own camera
-(<input type=file accept=image/* capture=environment>): image only, no video
-controls, no microphone, no in-page camera stream. Choose From Photos takes
-several at once. Each photo can be retaken (the others, the caption and the
-lines stay) or removed. Photos are re-encoded to JPEG with the orientation
-applied and EXIF / GPS dropped; long edge 2560 px (3200 px for menus and
-other activations, so small print stays readable). HEIC the browser cannot
-decode gets a plain message. Quantities are asked only for displays and tap
-handles, and a quantity is never saved without its unit. Cancel discards;
-closing the sheet keeps a draft.
-Add Evidence (on a Program Opportunities card) opens the same flow with the
-program and a likely category preselected (keg / draft -> Tap Handles,
-on-premise -> Menu Placement, otherwise Display). The card says plainly that
-saved evidence is not credit: credit comes only from the tracker's sales
-data, and no review / approval rule exists in the data to invent.
+Capture (Account page -> Add Photos, or Add Evidence on a program card) -- REDESIGNED 2026-10-05
+-------------------------------------------------------------------------------------------
+The selected type decides the form; nothing is asked twice and no field shows
+that does not apply. Flow: type -> photo -> that type's items -> Save. The sheet
+is "Add <type>" with the account underneath, a scrolling body, and a footer
+(Cancel / Save) that follows window.visualViewport so it stays above the phone
+keyboard. There is NO generic Caption / Brands / Program / Location / Products
+block: record brand tags are derived from the items, a note is the optional
+"+ Add Note", a program is set only by Add Evidence on a program card (shown as
+"For <program> · Remove").
+ITEMS (shared/merch-types.js ITEMS; one merch_lines row each; codes in
+merch_lines.attrs, price in merch_lines.consumer_price -- migration
+20261005160000_capture_items.sql):
+  PODs / Display    SKU (search) -> POD Type (Door / Shelf / Special; Display
+                    defaults to Special) -> Location (Top / Eye Level / Well) ->
+                    Facings (stepper) -> Price to Consumer (optional, $ keypad)
+  Cooler Stickers   Brand -> Sticker Type -> Cooler -> Placement
+  Windows           Brand -> Material -> Window -> Theme (optional, Custom = text)
+  Signage           Brand -> Signage kind -> Theme (optional)
+  Menu Placements   Brand or SKU -> Placement -> Menu -> Price (optional) ->
+                    Promotion (optional)
+  Tap Handles       Location once (Main Bar / Back Bar / Service Bar / Patio /
+                    Other) -> + Add Brand -> handles stepper; Ours / Theirs from
+                    the territory list (asked only for a brand it does not cover);
+                    totals "N taps · N Kohler · N competitor" calculated
+  Other Activation  What is it? (required) + optional brands
+Fields appear one decision at a time (the next chip group shows once the previous
+required one is answered); "Done" folds an item into one line ("Shelf · Eye Level
+· 4 facings · $19.99", Edit / ×); "+ Add Another SKU / Sticker / Placement / Brand"
+adds more items under the same photo. Search (a full-height panel) lists this
+account's own products first ("Bought here", from its sales file), then Kohler's
+catalogue (accounts/data/catalog.json), then other brands from the territory list
+(competitors), with "Use “…”" for anything else. Photos: Take Photo (native
+camera, image-only input) / Choose From Photos; thumbnails carry Retake and Remove;
++ Photo / Library tiles add more. Save shows progress in the button, refuses a
+second tap, and on failure keeps everything (draft) with the reason in the footer
+and Save -> Retry. Required: a photo; for every type but Other at least one item;
+each item's required groups; tap location and every tap's Ours / Theirs.
+Account Activity shows a Hub capture as its items ("POD · 2 SKUs", "Tap Handles ·
+Main Bar", one line each, 3 shown + "N more", tap totals); the viewer lists every
+item; the recap's Excel has Price to Consumer + one column per detail (POD Type,
+Shelf Location, Sticker Type, Cooler, Placement, Material, Window, Theme, Menu,
+Promotion), the CSV a consumer_price and a details column.
 
 Drafts and retries
 ------------------
