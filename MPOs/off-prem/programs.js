@@ -113,7 +113,7 @@ const OBJECTIVES_2026_09 = [
 // (RDE "Innovation SKUs Placements ... Goals", mpo_constellation_innovation_
 // goals.json) and the objective is 75% of it. Reps with no goal on that report
 // are not scored. Actuals are the export's own window (10/1-10/31).
-// BBC Lytt (50% buying accounts) is structure only until its data is loaded.
+// BBC Lytt is 'pct_of_base' at 50%, 1+ SKU, over the core base minus Whole Foods.
 // Molly's (2) and Wine (1) are 'new_placements' on the two-window export
 // (base 7/1-9/30 = the 90-day non-buy window, current 10/1-10/31).
 // POS cooler-door stickers carry over from September but stay awaiting-data
@@ -121,7 +121,7 @@ const OBJECTIVES_2026_09 = [
 const OBJECTIVES_2026_10 = [
   {key:'constellation_innovation', name:'Constellation – 75% Corona Innovation Distro', shortName:'Corona Innovation', unit:'placement', weight:0.30, type:'pct_of_goal', hasData:true, goalLabel:'75% of your Corona Innovation goal', goalWord:'Corona Innovation goal',
    typeNote:'Your target is 75% of the Corona Innovation distribution goal assigned to you.'},
-  {key:'bbc_lytt', name:'BBC – 50% Buying Accounts Lytt', shortName:'Lytt', unit:'buying account', weight:0.30, type:'pct_of_base', hasData:false, awaiting:true, awaitingNote:'Lytt data has not been loaded yet.', goalLabel:'50% of account base', accountsLabel:'Buying Accounts', brandLabel:'Lytt'},
+  {key:'bbc_lytt', name:'BBC – 50% Buying Accounts Lytt', shortName:'Lytt', unit:'buying account', weight:0.30, type:'pct_of_base', hasData:true, goalLabel:'50% of account base', accountsLabel:'Buying Accounts', brandLabel:'Lytt'},
   {key:'mollys', name:'Molly\u2019s – (2) New Placements (Spirits)', shortName:'Molly\u2019s', unit:'new placement', weight:0.15, type:'new_placements', hasData:true, goalLabel:'2 new Molly\u2019s placements each'},
   {key:'wine_new', name:'Wine – (1) New Placement', shortName:'Wine', unit:'new placement', weight:0.15, type:'new_placements', hasData:true, goalLabel:'1 new wine placement each'},
   {key:'pos_stickers', name:'POS – (5) Cooler Door Stickers, Any Brand in iSellBeer', shortName:'Cooler Door Stickers', unit:'cooler door sticker', weight:0.10, type:'photos', hasData:false, awaiting:true, awaitingNote:'Waiting on October\u2019s iSellBeer export.', goalLabel:'5 cooler door stickers each',
@@ -163,6 +163,8 @@ const MONTHS = [
   ]},
   {key:'2026-10', label:'October 2026', dir:'data/2026-10/', objectives: OBJECTIVES_2026_10, tables: [
     {objKey:'constellation_innovation', special:'pct_of_goal', file:'mpo_constellation_innovation.json', goalsFile:'mpo_constellation_innovation_goals.json', pct:0.75},
+    {objKey:'bbc_lytt', special:'pct_of_base', baseFile:'mpo_sales_reps_customer_base_core.json', numFile:'mpo_bbc_lytt_numerator.json', pct:0.5,
+      minSkus:1, targetsFile:'mpo_targets_bbc_lytt.json'},
     {objKey:'mollys', file:'mpo_mollys.json', target:2, builder:'new_placements'},
     {objKey:'wine_new', file:'mpo_wine_new_placements.json', target:1, builder:'new_placements'},
   ]},

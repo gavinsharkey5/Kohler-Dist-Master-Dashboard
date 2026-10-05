@@ -342,7 +342,7 @@ October_2026_MPO.docx: Constellation 75% Corona Innovation Distro (30%, 'pct_of_
 with an ASSIGNED per-rep goal: `constellation_innovation_goals.csv`, from Gavin's
 RDE "Goals" screenshot; reps with no goal are not scored; actuals = the export's
 10/1-10/31 window, so September/November are NOT counted unless a wider export is
-dropped in), BBC 50% Buying Accounts Lytt (30%, awaiting: hasData:false), Molly's
+dropped in), BBC 50% Buying Accounts Lytt (30%, 'pct_of_base' 0.5, 1+ SKU, built 2026-10-05 from lytt_october.csv over sales_reps_customer_base_core.csv MINUS Whole Foods -- they cannot sell alcohol; the removal is Lytt-only, Keystone / Fever Tree still read the shared file; Lytt buyers outside a rep's base are NOT counted and printed), Molly's
 (2) New Placements (15%) and Wine (1) New Placement (15%) as 'new_placements' on
 the two-window exports (base 7/1-9/30, current 10/1-10/31), POS (5) Cooler Door
 Stickers (10%, awaiting until October's iSellBeer Promos_Report is merged with
