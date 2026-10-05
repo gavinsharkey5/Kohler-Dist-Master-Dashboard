@@ -125,7 +125,7 @@ const OBJECTIVES_2026_10 = [
   {key:'bbc_lytt', name:'BBC – 50% Buying Accounts Lytt', shortName:'Lytt Buying Accounts', unit:'buying account', weight:0.30, type:'pct_of_base', hasData:true, periodText:'Oct 1 \u2013 Oct 31, 2026', goalLabel:'50% of account base (3+ SKUs each)', accountsLabel:'Buying Accounts', brandLabel:'Lytt'},
   {key:'mollys', name:'Molly\u2019s – (2) New Placements (Spirits)', shortName:'Molly\u2019s', unit:'new placement', weight:0.15, type:'new_placements', hasData:true, goalLabel:'2 new Molly\u2019s placements each'},
   {key:'wine_new', name:'Wine – (1) New Placement', shortName:'Wine', unit:'new placement', weight:0.15, type:'new_placements', hasData:true, goalLabel:'1 new wine placement each'},
-  {key:'pos_stickers', name:'POS – (5) Cooler Door Stickers, Any Brand in iSellBeer', shortName:'Cooler Door Stickers', unit:'cooler door sticker', weight:0.10, type:'photos', hasData:false, awaiting:true, awaitingNote:'Waiting on October\u2019s iSellBeer export.', goalLabel:'5 cooler door stickers each',
+  {key:'pos_stickers', name:'POS – (5) Cooler Door Stickers, Any Brand in iSellBeer', shortName:'Cooler Door Stickers', unit:'cooler door sticker', weight:0.10, type:'photos', hasData:true, goalLabel:'5 cooler door stickers each',
    photoUnit:'stickers', photoColLabel:'Stickers', photoItemsLabel:'Brands on the sticker', photoEmptyLabel:'cooler door stickers'},
 ];
 
@@ -168,6 +168,7 @@ const MONTHS = [
       minSkus:3, targetsFile:'mpo_targets_bbc_lytt.json'},
     {objKey:'mollys', file:'mpo_mollys.json', target:2, builder:'new_placements'},
     {objKey:'wine_new', file:'mpo_wine_new_placements.json', target:1, builder:'new_placements'},
+    {objKey:'pos_stickers', file:'mpo_pos_cooler_doors.json', target:5, builder:'photos'},
   ]},
 ];
 

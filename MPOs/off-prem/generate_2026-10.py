@@ -138,9 +138,25 @@ def build_lytt():
     return base, num, targets, removed, outside
 
 
+def build_cooler_doors():
+    """POS (5) Cooler Door Stickers: the cumulative iSellBeer archive
+    (pos_cooler_door_promos.xlsx, shared with September) cut to October-dated
+    cooler-door promos. Scored per DISTINCT PHOTO by the 'photos' builder."""
+    rows, photos, mentions, elements = gen09.build_pos_cooler_doors()
+    oct_rows = [r for r in rows if re.match(r"^10/\d{1,2}/2026", str(r.get("DATE") or ""))]
+    return oct_rows
+
+
 def main():
+    # Partial weekly iSellBeer pull: merge onto the archive first (README / repo CLAUDE.md),
+    # then rebuild. Usage: python3 generate_2026-10.py --merge-cooler-doors Promos_Report_NN.xlsx
+    if len(sys.argv) == 3 and sys.argv[1] == "--merge-cooler-doors":
+        gen09._lytt_pos().merge_export(gen09.COOLER_DOOR_XLSX, Path(sys.argv[2]),
+                                       date_col="Date/Time", volatile_cols=("Promo #",),
+                                       row_filter=gen09.is_cooler_door)
     month_dir = HERE / "data" / MONTH_KEY
     month_dir.mkdir(parents=True, exist_ok=True)
+    cooler = build_cooler_doors()
     const_rows, goals = build_constellation()
     mollys, m_new, m_keys, m_total, _ = gen09.build_new_placements(
         MOLLYS_CSV, product_col="Product Num & Name", base_start=BASE_START, current_start=CURRENT_START)
@@ -153,7 +169,8 @@ def main():
                        ("mpo_constellation_innovation.json", const_rows),
                        ("mpo_constellation_innovation_goals.json", goals),
                        ("mpo_mollys.json", mollys),
-                       ("mpo_wine_new_placements.json", wine)):
+                       ("mpo_wine_new_placements.json", wine),
+                       ("mpo_pos_cooler_doors.json", cooler)):
         (month_dir / name).write_text(json.dumps(data, indent=2))
     synced = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     (month_dir / "sync_meta.json").write_text(json.dumps({"synced_at": synced}, indent=2))
@@ -180,6 +197,11 @@ def main():
               "; ".join(sorted({f"{r['SALES_REP_ASSIGNED']} / {r['CUSTOMER_NUM']} {r['CUSTOMER_NAME']}" for r in loutside})))
     print(f"Molly's: {m_new:.0f} new placements across {m_keys} keys (of {m_total} exported)")
     print(f"Wine: {w_new:.0f} new placements across {w_keys} keys (of {w_total} exported)")
+    cp = defaultdict(set)
+    for r in cooler:
+        if r.get("PHOTO_URL"): cp[r["REP"]].add(r["PHOTO_URL"])
+    print(f"POS cooler doors (October): {sum(len(v) for v in cp.values())} distinct stickers, "
+          f"{sum(1 for v in cp.values() if len(v) >= 5)} rep(s) at 5 | " + ", ".join(f"{k} {len(v)}" for k, v in sorted(cp.items(), key=lambda kv: -len(kv[1]))))
     print(f"sync_meta.json timestamped {synced} in data/{MONTH_KEY}/")
 
 
