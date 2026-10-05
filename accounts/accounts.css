@@ -753,3 +753,15 @@ html.asheet-open{overflow:hidden}
 .act-grp > .acts{margin-top:8px;border-left:2px solid var(--border);padding-left:8px}
 
 .pf-more-types{white-space:normal;text-align:left;height:auto;min-height:40px}
+
+/* tap lines: ours vs theirs (2026-10-05) */
+.cap-own{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font-size:14px;color:var(--text-2);margin:2px 0 4px}
+.own-tag{display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;font-weight:600;font-size:13px}
+.own-tag.own-us,.lv-own.own-us{color:var(--kdh-ok,#13733A)}
+.own-tag.own-us{background:color-mix(in srgb,var(--kdh-ok,#13733A) 12%,transparent)}
+.own-tag.own-them{background:var(--surface-2);color:var(--text-2)}
+.own-pick{display:inline-flex;gap:6px}
+.own-pick .btn[aria-pressed="true"]{border-color:var(--kdh-brand,#2F5FC4);color:var(--kdh-brand,#2F5FC4);font-weight:600}
+.cap-line.taps{grid-template-columns:minmax(0,1fr) auto 40px}
+.cap-line.taps [data-lf="brand"]{grid-column:1/-1}
+@media (min-width:600px){ .cap-line.taps{grid-template-columns:minmax(0,3fr) 90px auto 40px} .cap-line.taps [data-lf="brand"]{grid-column:auto} }

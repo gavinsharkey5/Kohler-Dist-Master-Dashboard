@@ -639,3 +639,15 @@ four-surface ladder keeps its spacing; and two hardcoded #1A130C photo-tile
 backgrounds (.acct-photo / .acct-photo-ph) that are not driven by a
 variable at all -- they are now #0D1422. Grep for stray hex values, not
 just the :root block, if this palette is ever changed again.
+
+
+HUB TAP LINES: OURS vs THEIRS (2026-10-05)
+A rep who captures Tap Handles on an Account page (Add Photos) labels each tap
+line Ours or Theirs automatically from shared/data/tap-rules.json, which
+build_tap_rules.py writes from THIS workbook with audit_engine's own steps
+(brand -> Encompass family -> Master - US vs THEM for the account's
+distribution area). generate.py runs it at the end of every refresh; run it by
+hand after editing the workbook alone. Checked equal to the audit on all 6,870
+surveyed taps. A brand the workbook does not cover is the rep's call (saved as
+ownership_rule 'rep'); everything else is 'territory'. Hub tap lines are NOT
+yet read by this dashboard -- see ROADMAP "Decide: stop capturing in iSellBeer?".

@@ -725,7 +725,7 @@ async function renderAccount(){
     Object.assign(plist, {view:'all', q: b.dataset.pprog ? '' : (b.dataset.pq||''), prog: b.dataset.pprog || '', sup:'', fam:'', pkg:'', limit:40}); renderProducts(a, rep, sales, CAT, months, N, targets); showSec('products', ''); window.scrollTo(0, 0); }));
   if(window.KdhActivity){
     const real = (()=>{ try{ return JSON.parse(cookie('kdh_user')||'null'); }catch(e){ return null; } })();
-    window.KdhActivity.attach({n:String(a.n), name:a.name, prem: a.prem==='On' || a.prem==='Off' ? a.prem : '', rep, me: real, isMgr,
+    window.KdhActivity.attach({n:String(a.n), name:a.name, area:a.area||"", prem: a.prem==='On' || a.prem==='Off' ? a.prem : '', rep, me: real, isMgr,
       readOnly: !!(U && U.preview), readOnlyWhy: `Saving is off in preview — notes and photos belong to ${rep.split(' ')[0]} and the people on the route.`,
       extra: {taps: tapPasses, purchases, families: a.families || [], opps: OPP ? OPP.list.concat(OPP.credited).map(o=>({id:o.id, name:o.name, fams:o.fams || []})) : []},
       progName, hubLink: r=>hubAcctLink(H.programs().find(p=>p.id===r.program_id), rep, a.n, r.status==='follow' ? 'follow' : r.status),

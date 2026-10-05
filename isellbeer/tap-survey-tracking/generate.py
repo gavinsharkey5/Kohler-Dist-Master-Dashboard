@@ -607,3 +607,6 @@ if __name__ == "__main__":
     from pathlib import Path as _P
     _root = next(p for p in _P(__file__).resolve().parents if (p / "middleware.js").exists())
     _sp.run([_sys.executable, str(_root / "tools" / "rep_slices.py")], check=True)
+    # the Hub's tap-line Ours / Theirs rulebook (shared/data/tap-rules.json, 2026-10-05) is built from
+    # the same mediator workbook, so it is refreshed with every run
+    _sp.run([_sys.executable, str(_P(__file__).resolve().parent / "build_tap_rules.py")], check=True, cwd=str(_P(__file__).resolve().parent))

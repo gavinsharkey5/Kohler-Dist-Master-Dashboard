@@ -11,6 +11,10 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
+- [ ] **Tap lines Ours / Theirs: run the SQL** (Gavin): Supabase SQL Editor,
+  run `supabase/migrations/20261005140000_tap_us_them.sql` (after the PODs +
+  Signage file). Until then tap lines save without their Ours / Theirs label.
+  Idempotent.
 - [ ] **PODs + Signage photo types: run the SQL** (Gavin): Supabase SQL
   Editor, run `supabase/migrations/20261005120000_merch_pod_signage.sql`.
   Until then a rep who picks PODs or Signage gets a save error; the other
@@ -227,6 +231,13 @@ device, a decision).
 - **Account-aware assistant + mock pitch** -- built 2026-09-30 and hardened the same day (server-side account authorization, server-built record, tools on the full record, ledger + spend limits); waiting on the pilot above. Snowflake later adds freshness (daily grain, invoices, inventory); route-wide / comparable-account questions need a permission rule first.
 
 ## Done
+
+- [x] 2026-10-05 **Tap lines Ours / Theirs in the Hub**: a rep's Tap Handles
+  lines label themselves from Kohler's territory rulebook (the Tap Tracker's
+  US vs THEM workbook, shared/data/tap-rules.json -- equal to the audit on all
+  6,870 surveyed taps); only a brand the rulebook does not cover asks the rep.
+  Saved with its basis (territory list / rep's call), shown in the viewer,
+  Account Activity ("3 ours · 1 theirs") and the Excel export.
 
 - [x] 2026-10-05 **Merchandising: PODs + Signage, Excel export**: capture
   lists now match Gavin's (off-premise Display, PODs, Cooler Door, Window,

@@ -2029,3 +2029,24 @@ Auction, Tier 1 recap, Tap Tracker, Executive Overview) -- dropping iSellBeer
 means rewiring each to read Hub records. Hub tap captures have brand + handle
 count only, no ours/theirs, so they cannot feed the Tap Tracker yet.
 Tests: recap_test (Excel opened in openpyxl), merch_capture_test, opp_elig_test.
+
+## Hub tap lines label themselves Ours / Theirs (2026-10-05)
+
+Gavin: tap captures need US vs THEM, labelled correctly by territory. The
+rulebook already existed -- the Tap Tracker's
+`isellbeer/tap-survey-tracking/iSellBeer_TAPS_US_THEM_Mediator.xlsx` (Master -
+US vs THEM: brand family x distribution area). `build_tap_rules.py` (run at the
+end of the tap generate.py) writes `shared/data/tap-rules.json` with
+audit_engine's own resolution steps (families compared UPPER CASE, as the audit
+does); it was checked equal to `audit()` on all 6,870 surveyed taps.
+accounts/activity.js `tapLabel(rules, brand, ctx.area)` -- ctx.area is the
+account's `area` (a "Sales" account already carries its county; Morris 1/2/3
+kept) -- labels each tap line; a ruled brand is fixed (no override), an
+unknown one shows Ours / Theirs buttons (the rep's call). Saved as
+merch_lines.ownership_source + ownership_rule 'territory' | 'rep' through
+`supabase/migrations/20261005140000_tap_us_them.sql` (kdh_merch_save
+redefined, otherwise identical; sql_tap_test.sh). Shown in the viewer, the
+activity summary ("N ours · M theirs", handles counted) and the Excel / CSV
+exports (US/THEM + basis). The Tap Tracker itself does NOT read Hub tap lines
+yet. Test: scratchpad tap_own_test.mjs (Bergen Ours / Union Theirs / not
+carried / rep's call / save payload / viewer).

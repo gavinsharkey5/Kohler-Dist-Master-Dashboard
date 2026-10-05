@@ -341,7 +341,7 @@ function evHtml(e){
       <p class="act-h"><b>${E(catName(r.category))}${E(sub)}</b>${brands.length ? ` <span class="act-p">${E(brands.slice(0,3).join(', '))}${brands.length>3 ? ' +'+(brands.length-3) : ''}</span>` : ''}</p>
       ${r.caption ? `<p class="act-t">${E(r.caption)}</p>` : ''}
       ${thumbs ? `<div class="act-thumbs">${thumbs}${r.photos.length > 3 ? `<span class="act-more">+${r.photos.length-3}</span>` : ''}</div>` : ''}
-      ${r.lines.length ? `<details class="act-det"><summary>${r.lines.length} ${r.category==='tap_handle' ? (r.lines.length===1?'tap line':'tap lines') : (r.lines.length===1?'product line':'product lines')} · ${r.photos.length} ${r.photos.length===1?'photo':'photos'}</summary><div class="act-dbody"><ul class="rv-lines">${r.lines.map(lineHtml).join('')}</ul></div></details>` : ''}
+      ${r.lines.length ? `<details class="act-det"><summary>${r.lines.length} ${r.category==='tap_handle' ? (r.lines.length===1?'tap line':'tap lines') : (r.lines.length===1?'product line':'product lines')}${ownSummary(r.lines)} · ${r.photos.length} ${r.photos.length===1?'photo':'photos'}</summary><div class="act-dbody"><ul class="rv-lines">${r.lines.map(lineHtml).join('')}</ul></div></details>` : ''}
       <p class="act-m">${E(recAuthor(r))} · ${hist ? 'Last observed ' : (r.observed_at ? 'Taken ' : 'Saved ')}${E(fmtWhen(r.observed_at || r.created_at))}${hist ? ' · Imported From iSellBeer' : ''}</p></div></li>`;
   }
   if(e.type==='tap'){
@@ -552,6 +552,7 @@ async function uploadRecord(d, onProgress){
       }
     }
     const lines = (d.lines||[]).filter(l=>l.brand || l.package || (l.quantity!=='' && l.quantity!=null)).map(l=>({brand:l.brand||'', package:l.package||'', product_num:l.product_num||'',
+      brand_family: l.fam || '', ownership_source: l.own==='US' || l.own==='THEM' ? l.own : '', ownership_rule: (l.own==='US' || l.own==='THEM') ? (l.ownRule || 'rep') : '',
       quantity: l.quantity==='' || l.quantity==null ? null : Number(l.quantity), quantity_unit: l.quantity==='' || l.quantity==null ? null : (l.unit || 'unspecified')}));
     try{
       await rest('rpc/kdh_merch_save', {method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({p:{key:d.id, customer_num:String(d.n), category:d.category, subtype:d.subtype||'', subtype_note:d.subtype_note||'',
@@ -812,8 +813,41 @@ function closeSheet(){ const w = document.getElementById('asheet'); if(w){ docum
    then date, caption and storage status in a separate panel -- never printed on
    the image). Historical evidence reads "Last observed": a photo shows what was
    there on that date, not that it is still there today. ---------------- */
+/* ---------------- TAP LINES: OURS vs THEIRS (2026-10-05). The label comes from
+   Kohler's territory rulebook (shared/data/tap-rules.json, built from the same
+   workbook and steps as the Tap Tracker audit -- build_tap_rules.py; checked
+   equal on all 6,870 surveyed taps). Brand -> Encompass brand family -> the
+   family's ruling in this account's distribution area. Only a brand the
+   rulebook does not cover asks the rep; that answer is saved as the rep's call. ---------------- */
+let TAP_RULES = null;
+function tapRules(){
+  if(!TAP_RULES) TAP_RULES = fetch(new URL('../shared/data/tap-rules.json', location.href), {cache:'force-cache'})
+    .then(r=>r.ok ? r.json() : null).then(j=>j ? Object.assign(j, {by:new Map(j.brands.map(([b, f])=>[b.toUpperCase(), f]))}) : null).catch(()=>null);
+  return TAP_RULES;
+}
+function tapLabel(R, brand, area){
+  const b = String(brand||'').trim(); if(!b) return null;
+  if(/\(IN-HOUSE\)/i.test(b)) return {own:'US', why:'In-house brand'};
+  if(!R) return {own:'', why:'The territory list did not load'};
+  const f = R.by.get(b.toUpperCase());
+  if(f==null) return {own:'', why:'Not in the territory list'};
+  const fam = R.families[f];
+  if(/^no encompass match$/i.test(fam)) return {own:'THEM', why:'Kohler doesn’t carry this brand'};
+  if(/^not mapped$/i.test(fam)) return {own:'', why:'Not in the territory list'};
+  const v = (R.master[String(f)]||{})[String(area||'').toUpperCase()];
+  if(v) return {own:v, fam, why: v==='US' ? `${fam} is ours in ${area}` : `${fam} is not ours in ${area}`};
+  return {own:'', fam, why: area ? `No territory ruling for ${fam} in ${area}` : 'This account has no distribution area on file'};
+}
+const OWN_WORD = {US:'Ours', THEM:'Theirs'};
+// "· 5 ours · 3 theirs" (tap handles, counted from the lines' quantities when given)
+function ownSummary(lines){
+  const n = v => lines.filter(l=>(l.ownership_corrected || l.ownership_source)===v).reduce((a, l)=>a + (l.quantity==null ? 1 : Number(l.quantity)||0), 0);
+  const us = n('US'), them = n('THEM'); return us || them ? ` · ${us} ours · ${them} theirs` : '';
+}
 function lineHtml(l){
   const what = [l.brand || l.brand_family, l.package].filter(Boolean).join(' · ') || 'Product not named';
+  if(l.ownership_rule==='territory' || l.ownership_rule==='rep')
+    return `<li><span class="lv-w">${E(what)}</span><span class="lv-q">${E(M().qtyText(l.quantity, l.quantity_unit))}</span> <span class="lv-own own-${l.ownership_source==='US'?'us':'them'}">${OWN_WORD[l.ownership_source]||''} · ${l.ownership_rule==='territory' ? 'territory list' : 'rep’s call'}</span></li>`;
   const own = l.ownership_source ? ` <span class="lv-own">iSellBeer: ${E(l.ownership_source)}${l.ownership_corrected ? (l.ownership_corrected===l.ownership_source ? ' · Tap Tracker agrees' : ` · Tap Tracker: ${E(l.ownership_corrected)}`) : ' · not audited'}</span>` : '';
   return `<li><span class="lv-w">${E(what)}</span><span class="lv-q">${E(M().qtyText(l.quantity, l.quantity_unit))}</span>${own}</li>`;
 }
@@ -1006,7 +1040,7 @@ function detailsStep(d){
     ${progs.length ? `<label class="pf-cap" for="capProg">Program <span>(optional)</span></label><select id="capProg" class="kdh-field"><option value="">None</option>${progs.map(p=>`<option value="${E(p.id)}"${d.program_id===p.id?' selected':''}>${E(p.name)}</option>`).join('')}</select>
       <p class="pf-sub">Saving evidence does not award program credit; credit comes from the tracker’s sales data.</p>` : ''}
     ${lineMode ? `<details class="pf-more"${d.lines.length ? ' open' : ''}><summary>${lineMode==='taps' ? 'Tap Lines' : 'Products & Quantities'} <span>(optional)</span></summary>
-      <p class="pf-sub">${lineMode==='taps' ? 'One line per brand on tap, with how many handles.' : 'One line per product or package. A quantity needs its unit — say whether it is cases, bottles, facings or placements.'}</p>
+      <p class="pf-sub">${lineMode==='taps' ? 'One line per brand on tap, with how many handles. Ours or theirs comes from Kohler’s territory list for this account’s area.' : 'One line per product or package. A quantity needs its unit — say whether it is cases, bottles, facings or placements.'}</p>
       <div id="capLines"></div><button type="button" class="btn sm" id="capLineAdd">Add ${lineMode==='taps' ? 'Tap Line' : 'Product'}</button></details>` : ''}
     <div class="pf-prog" hidden><div class="pf-bar"><i></i></div><p class="pf-st" role="status"></p></div>
     <div class="sheet-b pf-actions">
@@ -1049,15 +1083,46 @@ function detailsStep(d){
   // product / tap lines
   const lines = () => {
     const box = $('#capLines'); if(!box) return;
-    box.innerHTML = d.lines.map((l, i)=>`<div class="cap-line" data-li="${i}">
-      <input type="text" data-lf="brand" maxlength="120" placeholder="Brand or product" value="${E(l.brand||'')}" list="capFams" aria-label="Brand or product, line ${i+1}">
+    box.innerHTML = d.lines.map((l, i)=>`<div class="cap-line${lineMode==='taps' ? ' taps' : ''}" data-li="${i}">
+      <input type="text" data-lf="brand" maxlength="120" placeholder="${lineMode==='taps' ? 'Brand on tap' : 'Brand or product'}" value="${E(l.brand||'')}" list="${lineMode==='taps' ? 'tapBrands' : 'capFams'}" autocomplete="off" aria-label="Brand${lineMode==='taps' ? ' on tap' : ' or product'}, line ${i+1}">
       ${lineMode==='taps' ? '' : `<input type="text" data-lf="package" maxlength="60" placeholder="Package (e.g. 24 PK)" value="${E(l.package||'')}" aria-label="Package, line ${i+1}">`}
       <input type="number" data-lf="quantity" min="0" step="1" inputmode="numeric" placeholder="${lineMode==='taps' ? 'Taps' : 'Qty'}" value="${E(l.quantity==null ? '' : l.quantity)}" aria-label="Quantity, line ${i+1}">
       ${lineMode==='taps' ? '<span class="cap-unit">taps</span>' : `<select data-lf="unit" aria-label="What the quantity counts, line ${i+1}"><option value="">Unit…</option>${M().UNITS.filter(u=>u[0]!=='taps' && u[0]!=='unspecified').map(([k,lab])=>`<option value="${k}"${l.unit===k?' selected':''}>${E(lab)}</option>`).join('')}</select>`}
-      <button type="button" class="cap-lx" data-lrm="${i}" aria-label="Remove line ${i+1}">&times;</button></div>`).join('');
-    box.querySelectorAll('[data-lf]').forEach(inp=>inp.addEventListener(inp.tagName==='SELECT' ? 'change' : 'input', ()=>{ const i = +inp.closest('[data-li]').dataset.li; d.lines[i][inp.dataset.lf] = inp.value; persist(); }));
+      <button type="button" class="cap-lx" data-lrm="${i}" aria-label="Remove line ${i+1}">&times;</button>
+      ${lineMode==='taps' ? `<div class="cap-own" data-own="${i}" aria-live="polite">${ownHtml(l, i)}</div>` : ''}</div>`).join('')
+      + (lineMode==='taps' ? '<datalist id="tapBrands"></datalist>' : '');
+    box.querySelectorAll('[data-lf]').forEach(inp=>inp.addEventListener(inp.tagName==='SELECT' ? 'change' : 'input', ()=>{ const i = +inp.closest('[data-li]').dataset.li; d.lines[i][inp.dataset.lf] = inp.value;
+      if(lineMode==='taps' && inp.dataset.lf==='brand'){ suggest(inp.value); relabel(i); }
+      persist(); }));
+    if(lineMode==='taps') d.lines.forEach((l, i)=>relabel(i, true));
     box.querySelectorAll('[data-lrm]').forEach(b=>b.addEventListener('click', ()=>{ d.lines.splice(+b.dataset.lrm, 1); lines(); persist(); }));
   };
+  // taps: the label follows the brand; the rep answers only when the territory list is silent
+  let RULES = null;
+  function ownHtml(l, i){
+    if(!String(l.brand||'').trim()) return '<span class="own-hint">Ours or theirs is filled in from the brand</span>';
+    if(l.ownRule==='territory') return `<span class="own-tag own-${l.own==='US'?'us':'them'}">${OWN_WORD[l.own]}</span><span class="own-why">${E(l.ownWhy||'From the territory list')}</span>`;
+    return `<span class="own-why">${E(l.ownWhy||'Not in the territory list')} — whose tap is it?</span>
+      <span class="own-pick" role="group" aria-label="Ours or theirs, line ${i+1}"><button type="button" class="btn sm" data-ownset="${i}:US" aria-pressed="${l.own==='US'}">Ours</button><button type="button" class="btn sm" data-ownset="${i}:THEM" aria-pressed="${l.own==='THEM'}">Theirs</button></span>`;
+  }
+  function relabel(i, quiet){
+    const l = d.lines[i]; if(!l) return;
+    const t = tapLabel(RULES, l.brand, ctx.area);
+    if(t && t.own && (t.why!=='The territory list did not load')){ l.own = t.own; l.ownRule = 'territory'; l.ownWhy = t.why; l.fam = t.fam || ''; }
+    else { if(l.ownRule==='territory'){ l.own = ''; } l.ownRule = l.own ? 'rep' : ''; l.ownWhy = t ? t.why : ''; l.fam = t && t.fam || ''; }
+    const box = w.querySelector(`[data-own="${i}"]`); if(box){ box.innerHTML = ownHtml(l, i); wireOwn(box); }
+    if(!quiet) persist();
+  }
+  function wireOwn(root){ root.querySelectorAll('[data-ownset]').forEach(b=>b.addEventListener('click', ()=>{ const [i, v] = b.dataset.ownset.split(':'); const l = d.lines[+i];
+    l.own = l.own===v ? '' : v; l.ownRule = l.own ? 'rep' : ''; const box = w.querySelector(`[data-own="${i}"]`); box.innerHTML = ownHtml(l, +i); wireOwn(box); persist(); })); }
+  function suggest(q){
+    const dl = w.querySelector('#tapBrands'); if(!dl || !RULES) return;
+    const k = String(q||'').trim().toUpperCase(); if(k.length < 2){ dl.innerHTML = ''; return; }
+    const starts = [], has = [];
+    for(const [b] of RULES.brands){ const u = b.toUpperCase(); if(u.startsWith(k)) starts.push(b); else if(u.includes(k)) has.push(b); if(starts.length >= 30) break; }
+    dl.innerHTML = starts.concat(has).slice(0, 30).map(b=>`<option value="${E(b)}">`).join('');
+  }
+  if(lineMode==='taps') tapRules().then(R=>{ RULES = R; d.lines.forEach((l, i)=>relabel(i, true)); });
   const la = $('#capLineAdd'); if(la) la.addEventListener('click', ()=>{ d.lines.push(lineMode==='taps' ? {brand:'', quantity:'', unit:'taps'} : {brand:'', package:'', quantity:'', unit:''}); lines(); persist(); });
   lines();
   const readForm = () => { d.caption = $('#capCap').value.trim(); d.location = $('#capLoc').value.trim(); const n = $('#capSubNote'); d.subtype_note = n ? n.value.trim() : ''; const p = $('#capProg'); if(p) d.program_id = p.value; };

@@ -33,7 +33,13 @@ Other Activation (PODs + Signage added 2026-10-05: migration
 20261005120000_merch_pod_signage.sql). Off-premise accounts see Display / PODs
 / Cooler Door / Window / Signage / Other first; on-premise accounts see Tap
 Handles / Menu Placement / Signage / Other first; every type is one tap away
-(More Types). Displays and PODs ask for product lines with a unit. Subtypes: Menu, Cocktail List, Spirit
+(More Types). Displays and PODs ask for product lines with a unit.
+Tap Handles ask for tap lines (brand + handles), each labelled Ours / Theirs
+from shared/data/tap-rules.json for the account's distribution area (built by
+isellbeer/tap-survey-tracking/build_tap_rules.py from the Tap Tracker's US vs
+THEM workbook; see that README). A brand the rulebook does not cover gets Ours
+/ Theirs buttons; saved as ownership_source + ownership_rule ('territory' or
+'rep') -- migration 20261005140000_tap_us_them.sql. Subtypes: Menu, Cocktail List, Spirit
 List, Table Tent (menu); Cooler Door Wrap; Tasting / Event and Other with a
 description (other activation). iSellBeer's own Promotion Type, Theme and
 Elements are kept on the imported record as they were -- never rewritten
