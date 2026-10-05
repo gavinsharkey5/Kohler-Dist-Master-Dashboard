@@ -120,8 +120,8 @@ const OBJECTIVES_2026_09 = [
 // POS cooler-door stickers carry over from September but stay awaiting-data
 // until October's iSellBeer Promos_Report is merged (generate_2026-10.py).
 const OBJECTIVES_2026_10 = [
-  {key:'constellation_innovation', name:'Constellation – 75% Corona Innovation Distro', shortName:'Corona Innovation', unit:'placement', weight:0.30, type:'pct_of_goal', hasData:true, goalLabel:'75% of your Corona Innovation goal', goalWord:'Corona Innovation goal', periodEnd:'2026-11-30',
-   typeNote:'Your target is 75% of the Corona Innovation distribution goal assigned to you.'},
+  {key:'constellation_innovation', name:'Constellation – 75% Corona Innovation Distro', shortName:'Corona Innovation', unit:'placement', weight:0.30, type:'pct_of_goal', hasData:true, goalLabel:'Your Corona Innovation goal \u2014 75% of it is Achieved', goalWord:'Corona Innovation goal', periodEnd:'2026-11-30',
+   typeNote:'Your goal is the Corona Innovation distribution goal assigned to you. Reaching 75% of it counts as Achieved.'},
   {key:'bbc_lytt', name:'BBC – 50% Buying Accounts Lytt', shortName:'Lytt', unit:'buying account', weight:0.30, type:'pct_of_base', hasData:true, goalLabel:'50% of account base', accountsLabel:'Buying Accounts', brandLabel:'Lytt'},
   {key:'mollys', name:'Molly\u2019s – (2) New Placements (Spirits)', shortName:'Molly\u2019s', unit:'new placement', weight:0.15, type:'new_placements', hasData:true, goalLabel:'2 new Molly\u2019s placements each'},
   {key:'wine_new', name:'Wine – (1) New Placement', shortName:'Wine', unit:'new placement', weight:0.15, type:'new_placements', hasData:true, goalLabel:'1 new wine placement each'},
@@ -1179,12 +1179,28 @@ function metricFor(o, rep, DATA){
     if(!r) return {notScored:true};
     const goalPen = d.pct*100;
     const remaining = Math.max(r.target - r.placements, 0);
+    // October (assigned goal): the GOAL shown is the full 100% one; reaching
+    // `pct` of it (75%) is what counts as Achieved, so the bar fills toward the
+    // 100% goal while status and "still needed" are read against the 75% bar.
+    if(d.repGoal){
+      return {
+        value: r.placements, goal: r.baseline,
+        pct: r.baseline ? Math.min(r.placements/r.baseline,1)*100 : 0,
+        remaining,
+        valueText: r.placements+' of '+r.baseline,
+        goalText: 'my '+(o.goalWord||'goal')+' of '+r.baseline+' \u00b7 Achieved at '+fmtPen(goalPen)+' ('+r.target+')',
+        needText: unitFor(o, r.target),     // what "Achieved" takes, for a rep who has not started
+        remainText: remaining>0 ? unitFor(o, remaining) : '',
+        status: r.hit ? 'achieved' : (r.placements>0 ? 'inprogress' : 'notstarted'),
+        hasActivity: r.placements>0
+      };
+    }
     return {
       value: r.placements, goal: r.target,
       pct: Math.min(r.pct, 100),
       remaining,
       valueText: fmtPen(r.share),
-      goalText: fmtPen(goalPen)+' of '+(d.repGoal ? 'my '+(o.goalWord||'goal') : 'last fall')+' ('+r.target+' of '+r.baseline+')',
+      goalText: fmtPen(goalPen)+' of last fall ('+r.target+' of '+r.baseline+')',
       remainText: remaining>0 ? unitFor(o, remaining) : '',
       status: r.hit ? 'achieved' : (r.placements>0 ? 'inprogress' : 'notstarted'),
       hasActivity: r.placements>0

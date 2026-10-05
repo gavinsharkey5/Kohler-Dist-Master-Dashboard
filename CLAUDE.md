@@ -343,7 +343,7 @@ with an ASSIGNED per-rep goal: the "( Innovation SKUs Placements 9/1/2026 - 11/3
 Goals" column of RDE's "Constellation Innovation Fall 2026 OFF w Goals" export
 (MPOs/off-prem/constellation_innovation_fall.csv) = 100% of the INCENTIVE goal; the MPO
 target is 75% of it (Gavin, 2026-10-05, corrected -- the first build used a one-month
-export and screenshot goals). Progress = the same export's 9/1-11/30 placements, so it
+export and screenshot goals). DISPLAY (Gavin, 2026-10-05): the goal shown is the FULL 100% Goals-column number ("77 of 86"); reaching 75% of it (65) is what makes the card "Achieved" -- the bar fills toward 100%, status / "still needed" read against the 75% bar (metricFor `needText` / hub `needNum`). Progress = the same export's 9/1-11/30 placements, so it
 runs through Nov 30 (periodEnd). Each rep's block starts with a SUBTOTAL row (first
 product's name, carries the goal) that is dropped when it equals the rest; reps with no
 goal (Alisa Acciardi, John Neukum, John O'Donoghue, Dylan Rubino) are not scored.

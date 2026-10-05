@@ -421,7 +421,7 @@ function makeMpo(scope, month, o){
       ? `You hit this objective — keep it there through <strong>${E(endTxt)}</strong>.`
       : started
         ? `You need <strong>${E(m.remainText||'')}</strong> more by ${E(endTxt)}.`
-        : `Nothing counted yet — you need <strong>${E(m.goalText||'')}</strong> by ${E(endTxt)}.`;
+        : `Nothing counted yet — you need <strong>${E(m.needText||m.goalText||'')}</strong> by ${E(endTxt)}.`;
     return {
       status, pace: paceFromPct(pct, done, started), pct, openEnded:false,
       now: m.valueText, sub: '', goal: m.goalText, remain: m.remainText || null, next,
@@ -430,7 +430,7 @@ function makeMpo(scope, month, o){
       // Spirits); `line` stays for the detail screen's existing renderer.
       segments: m.subs ? m.subs.map(s=>({label:s.label, pct:s.pct, line:`${s.value} of ${s.goal}`,
                                          valueText:s.valueText || `${s.value} / ${s.goal}`, status:s.status})) : null,
-      valueNum: m.value, goalNum: m.goal, weight: weightPct,
+      valueNum: m.value, goalNum: m.goal, needNum: m.needText ? m.remaining : undefined, weight: weightPct,
     };
   };
   p.detailHtml = function(rep){
@@ -2246,7 +2246,10 @@ const fmtN = v => { const n = Number(v); if(!isFinite(n)) return '—';
 function mpoNums(r){
   const cur = Number(r.valueNum), goal = Number(r.goalNum);
   if(!isFinite(cur) || !isFinite(goal) || goal<=0) return null;
-  return {cur, goal, need: Math.max(goal-cur, 0)};
+  // needNum: an objective whose "Achieved" bar is below the goal shown (Corona
+  // Innovation: goal 100%, Achieved at 75%) says what is still needed for THAT bar.
+  const need = isFinite(Number(r.needNum)) && r.needNum!==undefined && r.needNum!==null ? Number(r.needNum) : Math.max(goal-cur, 0);
+  return {cur, goal, need};
 }
 // The accounts that can close the gap. Same nextAccounts() the rest of the
 // hub uses, so territory and account-base rules are unchanged -- this only
