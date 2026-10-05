@@ -66,7 +66,10 @@ const needsUpdate = e => !!e && (e.code==='PGRST204' || e.code==='PGRST205' || e
 const denied = e => !!e && (e.status===401 || e.status===403 || e.code==='42501' || /row-level security/i.test(e.message||''));
 
 /* ---------------- data ---------------- */
-const PHOTO_COLS = 'id,customer_num,category,premise,caption,storage_path,width,height,captured_at,uploaded_at,author_name';
+// author_email is read so "your photo" means the SAME sign-in the database's
+// delete / relabel policies check (author_email = kdh_caller_email()), never
+// just the same display name (two sign-ins can share one name).
+const PHOTO_COLS = 'id,customer_num,category,premise,caption,storage_path,width,height,captured_at,uploaded_at,author_name,author_email';
 const MERCH_SQL = 'supabase/migrations/20261004090000_merchandising.sql';
 const REC_COLS = 'id,category,subtype,subtype_note,caption,location,brands,program_id,premise,source,source_kind,source_key,isb_promotion_type,isb_theme,isb_elements,source_author,source_author_role,observed_at,created_at,author_name,author_email,'
   + 'merch_lines(line_no,supplier,brand_family,brand,package,quantity,quantity_unit,ownership_source,ownership_corrected,ownership_rule,source_line_ref),merch_record_photos(ord,photo_id)';
@@ -106,7 +109,7 @@ function buildRecords(recs, photos){
   });
   photos.forEach(p=>{ if(used.has(p.id)) return;
     out.push({rid:null, key:'ph:'+p.id, legacy:true, id:p.id, category:p.category || null, subtype:null, caption:p.caption, location:null, brands:p.brand ? [p.brand] : [],
-      program_id:p.program_id || null, source:p.source || 'hub', observed_at:p.captured_at, created_at:p.uploaded_at, author_name:p.author_name, lines:[], photos:[p]}); });
+      program_id:p.program_id || null, source:p.source || 'hub', observed_at:p.captured_at, created_at:p.uploaded_at, author_name:p.author_name, author_email:p.author_email || null, lines:[], photos:[p]}); });
   return out.sort((a,b)=>String(b.observed_at||b.created_at).localeCompare(String(a.observed_at||a.created_at)));
 }
 const blobUrls = new Map();
@@ -184,6 +187,15 @@ function uploadWithProgress(path, blob, onProgress){
     x.timeout = 120000;
     x.send(blob);
   });
+}
+// DELETE that reports whether a row was really removed. Row-level security does
+// not error on a row you may not delete -- it deletes nothing and answers 204 --
+// so the reply's rows are counted. soft=true returns false instead of throwing.
+async function deleteRow(path, soft){
+  const rows = await rest(path, {method:'DELETE', headers:{prefer:'return=representation'}});
+  if(Array.isArray(rows) && rows.length) return true;
+  if(soft) return false;
+  throw Object.assign(new Error('Not removed — only the sign-in that saved it can remove it. Nothing was changed.'), {notRemoved:true});
 }
 async function removeObject(path){ const c = cfg(); if(!c) return; try{ await fetch(c.url+'/storage/v1/object/'+BUCKET+'/'+path.split('/').map(encodeURIComponent).join('/'), {method:'DELETE', headers:{apikey:c.key, authorization:'Bearer '+c.token}}); }catch(e){} }
 
@@ -738,7 +750,10 @@ function viewer(st, key, idx){
   idx = Math.min(idx||0, Math.max(0, r.photos.length-1));
   const ph = r.photos[idx];
   const mineHub = r.source==='hub' && !r.legacy && ctx.me && r.author_email && String(r.author_email).toLowerCase()===String(ctx.me.email||'').toLowerCase();
-  const mineLegacy = r.legacy && (r.author_name||'').toLowerCase() === String((ctx.me||{}).name||'').toLowerCase();
+  const myEmail = String((ctx.me||{}).email||'').toLowerCase();
+  const mineLegacy = r.legacy && !!r.author_email && !!myEmail && String(r.author_email).toLowerCase()===myEmail;
+  // same name, different sign-in: say why there is no Remove instead of offering one that cannot work
+  const otherSignIn = r.legacy && !mineLegacy && r.author_email && (r.author_name||'').toLowerCase()===String((ctx.me||{}).name||'').toLowerCase();
   const hist = r.source==='isellbeer' || (r.observed_at && Date.now() - new Date(r.observed_at) > 2*86400000);
   const prog = r.program_id ? ctx.progName(r.program_id) : '';
   const isb = [r.isb_promotion_type, r.isb_theme, r.isb_elements].filter(Boolean).join(' · ');
@@ -765,6 +780,7 @@ function viewer(st, key, idx){
       ${ph && ph.source_url ? `<a class="btn outline" href="${E(ph.source_url)}" target="_blank" rel="noopener noreferrer">Open in iSellBeer ↗</a>` : ''}
       ${!ctx.readOnly && mineHub ? `<button type="button" class="btn outline" id="rvEdit">Edit Details</button><button type="button" class="btn outline danger" id="rvDel">Remove</button>` : ''}
       ${!ctx.readOnly && mineLegacy ? `<button type="button" class="btn outline" id="pvEdit">Edit Labels</button><button type="button" class="btn outline danger" id="pvDel">Remove Photo</button>` : ''}
+      ${!ctx.readOnly && otherSignIn ? `<p class="pv-sub">Saved by another sign-in under the name ${E(r.author_name)}. Only that sign-in can edit or remove it.</p>` : ''}
     </div>`);
   hydrateImages(w);
   const box = w.querySelector('#rvImg'); if(box) box.addEventListener('click', ()=>box.classList.toggle('zoom'));
@@ -773,18 +789,18 @@ function viewer(st, key, idx){
   const rd = w.querySelector('#rvDel'); if(rd) rd.addEventListener('click', async ()=>{
     if(!confirm(`Remove this ${catName(r.category).toLowerCase()} and its ${r.photos.length} ${r.photos.length===1?'photo':'photos'} from the account? This cannot be undone.`)) return;
     rd.disabled = true; rd.setAttribute('aria-busy', 'true');
-    try{ await rest('merch_records?id=eq.'+encodeURIComponent(r.rid), {method:'DELETE', headers:{prefer:'return=minimal'}});
-      for(const p of r.photos){ if(p.storage_path){ try{ await rest('account_photos?id=eq.'+encodeURIComponent(p.id), {method:'DELETE', headers:{prefer:'return=minimal'}}); }catch(e){} await removeObject(p.storage_path); } }
+    try{ await deleteRow('merch_records?id=eq.'+encodeURIComponent(r.rid));
+      for(const p of r.photos){ if(p.storage_path){ let gone = false; try{ gone = await deleteRow('account_photos?id=eq.'+encodeURIComponent(p.id), true); }catch(e){} if(gone) await removeObject(p.storage_path); } }
       closeSheet(); const s2 = await load(ctx.n, true); paint(s2); toast('Removed'); }
-    catch(e){ rd.disabled = false; rd.removeAttribute('aria-busy'); toast('Could not remove it: '+(e.message||'error')); }
+    catch(e){ rd.disabled = false; rd.removeAttribute('aria-busy'); toast(e.notRemoved ? e.message : 'Could not remove it: '+(e.message||'error')); }
   });
   const pe = w.querySelector('#pvEdit'); if(pe) pe.addEventListener('click', ()=>relabel(st, r));
   const pd = w.querySelector('#pvDel'); if(pd) pd.addEventListener('click', async ()=>{
     if(!confirm('Remove this photo from the account? This cannot be undone.')) return;
     pd.disabled = true; pd.setAttribute('aria-busy', 'true');
-    try{ await rest('account_photos?id=eq.'+encodeURIComponent(ph.id), {method:'DELETE', headers:{prefer:'return=minimal'}}); await removeObject(ph.storage_path);
+    try{ await deleteRow('account_photos?id=eq.'+encodeURIComponent(ph.id)); await removeObject(ph.storage_path);
       closeSheet(); const s2 = await load(ctx.n, true); paint(s2); toast('Photo removed'); }
-    catch(e){ pd.disabled = false; pd.removeAttribute('aria-busy'); toast('Could not remove it: '+(e.message||'error')); }
+    catch(e){ pd.disabled = false; pd.removeAttribute('aria-busy'); toast(e.notRemoved ? e.message : 'Could not remove it: '+(e.message||'error')); }
   });
 }
 function editRecord(st, r){
@@ -805,7 +821,8 @@ function editRecord(st, r){
     const body = {caption: v('#edCap') || null, location: v('#edLoc') || null, brands: v('#edBrands').split(',').map(s=>s.trim()).filter(Boolean).slice(0, 20)};
     if(w.querySelector('#edSub')) body.subtype = v('#edSub') || null;
     if(w.querySelector('#edProg')) body.program_id = v('#edProg') || null;
-    try{ await rest('merch_records?id=eq.'+encodeURIComponent(r.rid), {method:'PATCH', headers:{'content-type':'application/json', prefer:'return=minimal'}, body: JSON.stringify(body)});
+    try{ { const rows = await rest('merch_records?id=eq.'+encodeURIComponent(r.rid), {method:'PATCH', headers:{'content-type':'application/json', prefer:'return=representation'}, body: JSON.stringify(body)});
+      if(!Array.isArray(rows) || !rows.length) throw new Error('Not saved — only the sign-in that saved it can change it.'); }
       closeSheet(); const s2 = await load(ctx.n, true); paint(s2); toast('Details saved'); }
     catch(e){ b.disabled = false; b.removeAttribute('aria-busy'); const m = w.querySelector('#edMsg'); m.hidden = false; m.className = 'ncomp-msg err'; m.textContent = 'Not saved — '+(e.message||'error')+'.'; }
   });
@@ -824,7 +841,8 @@ function relabel(st, r){
   w.querySelector('#plSave').addEventListener('click', async ()=>{
     const b = w.querySelector('#plSave'), msg = w.querySelector('#plMsg'); b.disabled = true; b.setAttribute('aria-busy', 'true');
     const body = {category: w.querySelector('#plType').value || null, caption: w.querySelector('#plCap').value.trim() || null, brand: w.querySelector('#plBrand').value.trim() || null};
-    try{ await rest('account_photos?id=eq.'+encodeURIComponent(p.id), {method:'PATCH', headers:{'content-type':'application/json', prefer:'return=minimal'}, body: JSON.stringify(body)});
+    try{ { const rows = await rest('account_photos?id=eq.'+encodeURIComponent(p.id), {method:'PATCH', headers:{'content-type':'application/json', prefer:'return=representation'}, body: JSON.stringify(body)});
+      if(!Array.isArray(rows) || !rows.length) throw new Error('Not saved — only the sign-in that saved it can change it.'); }
       closeSheet(); const s2 = await load(ctx.n, true); paint(s2); toast('Labels saved'); }
     catch(e){ b.disabled = false; b.removeAttribute('aria-busy'); msg.hidden = false; msg.className = 'ncomp-msg err';
       msg.textContent = colMissing(e) || denied(e) ? 'Editing labels needs the photo-labels update (supabase/migrations/20261003090000_photo_labels.sql).' : 'Not saved — '+(e.message||'error')+'.'; }

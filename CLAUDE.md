@@ -1928,3 +1928,21 @@ Tests (scratchpad): opp_elig_test, recap_test, merch_capture_test,
 isb_test, imp_test, sql_merch_test.sh, exceptions_test, chat_api_test (71),
 assistant_test, export_test, mgr_desktop, dm_test, notes_photos_test /
 drafts_test (ported to the new flow) + the existing suites.
+
+## Photo remove / edit: same sign-in, verified (2026-10-05)
+
+Gavin removed a photo, saw "Photo removed", and it stayed. Cause: the page
+offered Remove when the author's NAME matched, but the database policy
+("remove own photos": author_email = kdh_caller_email()) checks the
+SIGN-IN, and Gavin's work and personal accounts share one name; row-level
+security then deleted nothing and answered 204, which the page took as
+success. Now (accounts/activity.js, tag 20261005a): PHOTO_COLS reads
+author_email and "mine" = same email (`mineLegacy`); a same-name photo from
+another sign-in shows "Saved by another sign-in ... Only that sign-in can
+edit or remove it"; every DELETE goes through `deleteRow()` (prefer
+return=representation, 0 rows = "Not removed ...", the storage file is
+removed only after the row is gone) and every PATCH checks a row came back.
+Never trust a 2xx from PostgREST as proof a write under RLS happened.
+Tests: notes_photos_test (same name other sign-in, refused delete, own
+delete) with RLS-faithful stubs in it and merch_capture_test.
+
