@@ -22,7 +22,7 @@
 <!-- The manager page wears the rep workspace's design (2026-09-28): same
      tokens, top bar, card component and light/dark palette, from rep.css.
      Only the hero photo and the section list are this page's own. -->
-<link rel="stylesheet" href="rep/rep.css?v=20261003a">
+<link rel="stylesheet" href="rep/rep.css?v=20261005n">
 <style>
   .card .status.tag{color:var(--text-3)}
 </style>
@@ -43,14 +43,14 @@
     </div>
     <!-- View as rep (2026-09-30): the searchable rep picker from shared/kdh-user.js.
          The whole site then shows what that rep sees until "Exit" on the chip. -->
-    <div class="switch" id="viewAs"><button class="btn primary" id="viewAsRepBtn" type="button">View as Rep</button></div>
+    <div class="switch" id="viewAs"><button class="btn primary" id="viewAsRepBtn" type="button">View as Rep</button><button class="btn quiet" id="mgrToggle" type="button" hidden aria-expanded="false">Preview as a manager</button></div>
     <!-- Manager workspace (Gavin only, 2026-09-29): pick any manager and the
          whole site -- this page, Team Activity, the rep workspace -- shows
          what THEY see, until "Exit preview" on the bar at the bottom. The
          list comes from the kdh_team RPC (managers only). -->
     <div class="switch" id="mgrSwitch" hidden>
-      <label>Viewing as <select id="mgrSelect" aria-label="Choose a manager to view as"></select></label>
-      <button class="btn outline" id="mgrPreviewBtn" type="button" title="Every page will show exactly what this manager sees on this device until you exit">Preview as this manager</button>
+      <label>Preview as <select id="mgrSelect" aria-label="Choose a manager to view as"></select></label>
+      <button class="btn outline" id="mgrPreviewBtn" type="button" title="Every page will show exactly what this manager sees on this device until you exit">Preview</button>
     </div>
   </header>
   <section class="section">
@@ -233,7 +233,9 @@
         mgrs.forEach(function(m, i){ var o = document.createElement('option'); o.value = m.name; o.textContent = m.name + (seen[m.name] > 1 && !m.title ? ' (Personal)' : ''); o.dataset.title = m.title || ''; o.dataset.dm = m.reports_to || ''; sel.appendChild(o);
           if (m.name === user.name && (pick < 0 || m.title)) pick = i; });
         if (pick >= 0) sel.selectedIndex = pick;
-        $('mgrSwitch').hidden = false;
+        // one clear action up top (View as Rep); the manager preview is a quiet second step
+        var tg = $('mgrToggle'); tg.hidden = false;
+        tg.addEventListener('click', function(){ var sw = $('mgrSwitch'); sw.hidden = !sw.hidden; tg.setAttribute('aria-expanded', String(!sw.hidden)); });
         $('mgrPreviewBtn').addEventListener('click', function(){
           if (!window.kdhSetPreview) return;
           var o = sel.options[sel.selectedIndex];
