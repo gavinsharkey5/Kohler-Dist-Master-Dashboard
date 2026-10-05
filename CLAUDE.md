@@ -342,7 +342,7 @@ October_2026_MPO.docx: Constellation 75% Corona Innovation Distro (30%, 'pct_of_
 with an ASSIGNED per-rep goal: `constellation_innovation_goals.csv`, from Gavin's
 RDE "Goals" screenshot; reps with no goal are not scored; actuals = the export's
 10/1-10/31 window, so September/November are NOT counted unless a wider export is
-dropped in), BBC 50% Buying Accounts Lytt (30%, 'pct_of_base' 0.5, 1+ SKU, built 2026-10-05 from lytt_october.csv over sales_reps_customer_base_core.csv MINUS Whole Foods -- they cannot sell alcohol; the removal is Lytt-only, Keystone / Fever Tree still read the shared file; Lytt buyers outside a rep's base are NOT counted and printed; the core base was refreshed 2026-10-05 from RDE's "Entire Core Market Off Prem Accts" export with MPOs/off-prem/refresh_core_base_from_export.py -- 513 accounts, +25, 23 with the "Sales" area placeholder -- because territory-accounts/refresh_customer_bases.py refuses that export's extra Sales Route Num column and "Sales" rows; that script's two other targets (on-prem exclusion base, customer_base_full.csv) were NOT refreshed), Molly's
+dropped in), BBC 50% Buying Accounts Lytt (30%, 'pct_of_base' 0.5, 1+ SKU, built 2026-10-05 from lytt_october.csv over sales_reps_customer_base_core.csv MINUS Whole Foods -- they cannot sell alcohol; the removal is Lytt-only, Keystone / Fever Tree still read the shared file; Lytt buyers outside a rep's base are NOT counted and printed; see the CUSTOMER BASE REFRESH note below for the 2026-10-05 base), Molly's
 (2) New Placements (15%) and Wine (1) New Placement (15%) as 'new_placements' on
 the two-window exports (base 7/1-9/30, current 10/1-10/31), POS (5) Cooler Door
 Stickers (10%, awaiting until October's iSellBeer Promos_Report is merged with
@@ -353,6 +353,29 @@ OBJECTIVES_2026_10 + a MONTHS entry; objectives may carry `awaiting`/`awaitingNo
 objective NAME's prefix before " – " sets the hub supplier (SUPPLIER_ALIAS).
 On-Premise October (docx: Carbliss 40%, BBC Oktoberfest conversion, Spirits
 follow-up, iSellBeer 5 photos) is NOT built yet.
+
+## CUSTOMER BASE REFRESH, 2026-10-05 (REMEMBER THIS)
+
+Gavin sent RDE's "Entire Core Market Off Prem Accts" export (513 accounts: +25 vs the
+488 on file, 0 closed, no rep changes; 23 carry the "Sales" area placeholder, one extra
+column "Sales Route Num"). It was applied through territory-accounts/refresh_customer_bases.py
+-- saved over territory-accounts/core_market_off_prem.csv -- which now accepts "Sales" in
+THAT export only (CORE_OFF_AREAS) and no longer keeps an old out-of-scope row beside a
+fresh row with the same key. It updated ALL THREE bases: MPOs/off-prem/
+sales_reps_customer_base_core.csv (Lytt's / Keystone's denominator), MPOs/on-prem/
+sales_reps_customer_base.csv (on-prem off-premise exclusion) and incentive-tracking/data/
+customer_base_full.csv (+25 each; 31 accounts have a blank Draft Package, read as not
+draft-capable). Then re-run: MPOs/off-prem/generate_2026-10.py and incentive-tracking/
+generate.py (14 program blobs moved -- mostly refreshed 2026 case volumes on target lists
+plus the 25 new accounts). Closed months (Aug / Sep MPO files) were NOT rebuilt. The 25
+added: Chris Payton, Dan Lagala, Derrick Laws, Javier Melo, Klejdi Lamo, Robin Feldman 1
+each; Dave Ehlers, Pablo Lopez, Shane Barreca, Jayson Romine 2 each; Matt Powierski 5;
+Phil Ernst 5 (incl. USA Wine Traders Paramus 80004, a Lytt buyer); and 1 for the house
+"Default". RULE (Gavin): Whole Foods accounts are removed for the Lytt incentive ONLY
+(they cannot sell alcohol) -- done in MPOs/off-prem/generate_2026-10.py, not in the shared
+files. Next refresh: save the new export over territory-accounts/core_market_off_prem.csv,
+run `python3 territory-accounts/refresh_customer_bases.py --dry-run`, review, run it for
+real, then the two generators above.
 
 ## October 2026 On-Premise MPO tab + "latest month" defaults (2026-10-05)
 

@@ -98,6 +98,10 @@ base export states otherwise, rather than defaulting to a claim this
 data can't support. refresh_customer_bases.py prints how many new
 accounts got a blank Draft Package so that count stays visible.
 
+2026-10-05 NOTE: the Core Market Off Prem export now carries a "Sales Route Num"
+column (ignored) and some accounts whose Distribution Area is the "Sales" placeholder
+(23 of 513). refresh_customer_bases.py accepts "Sales" in core_market_off_prem.csv only.
+
 To refresh:
   1. Save fresh RDE pulls over the four CSVs in this folder (same column
      headers -- if a header changes shape, the script's own validation

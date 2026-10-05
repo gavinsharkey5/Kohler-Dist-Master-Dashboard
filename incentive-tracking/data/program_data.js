@@ -369,7 +369,7 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Paradise Liquors",
-            "cases2026": 19143.6
+            "cases2026": 21184.7
           },
           {
             "customer": "Bbb Liquors(Costco)",
@@ -377,7 +377,7 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Super K Food (A) Store",
-            "cases2026": 1534.0
+            "cases2026": 1763.0
           },
           {
             "customer": "Bridgeview Liquors",
@@ -1655,83 +1655,83 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Highland Wine&Liquor Inc",
-            "cases2026": 18415.2
+            "cases2026": 19996.2
           },
           {
             "customer": "River Place Food Store",
-            "cases2026": 10087.1
+            "cases2026": 11190.1
           },
           {
             "customer": "Greenwood Lake Disc.(P)",
-            "cases2026": 9370.3
-          },
-          {
-            "customer": "Krauszer's Liquor Wine and Spirits",
-            "cases2026": 8619.0
+            "cases2026": 10016.3
           },
           {
             "customer": "Turnpike Discount Liquors",
-            "cases2026": 8460.0
+            "cases2026": 9636.0
+          },
+          {
+            "customer": "Krauszer's Liquor Wine and Spirits",
+            "cases2026": 9270.0
           },
           {
             "customer": "Buy Rite W &L Pompton(P)",
-            "cases2026": 7904.0
+            "cases2026": 8805.0
           },
           {
             "customer": "George's Market (A)",
-            "cases2026": 6831.0
+            "cases2026": 7858.0
           },
           {
             "customer": "Appio's Liquors",
-            "cases2026": 6769.0
+            "cases2026": 7682.0
           },
           {
             "customer": "Shoppers Disc(A)Pompton",
-            "cases2026": 6109.5
+            "cases2026": 6840.5
           },
           {
             "customer": "Roserne Liquors North",
-            "cases2026": 5991.2
-          },
-          {
-            "customer": "B & B Wine&Liq",
-            "cases2026": 5581.0
+            "cases2026": 6600.2
           },
           {
             "customer": "Ringwood Discount Liquors",
-            "cases2026": 5493.0
+            "cases2026": 6293.0
+          },
+          {
+            "customer": "B & B Wine&Liq",
+            "cases2026": 6195.0
           },
           {
             "customer": "Wine 2 Spirits (P)",
-            "cases2026": 4669.0
+            "cases2026": 5204.0
           },
           {
             "customer": "Country Convenience Store",
-            "cases2026": 4174.0
+            "cases2026": 4697.0
           },
           {
             "customer": "Empire Wine & Liquor",
-            "cases2026": 3100.0
+            "cases2026": 3543.0
           },
           {
             "customer": "Bloomingdale Discount Liq",
-            "cases2026": 3091.0
+            "cases2026": 3317.0
           },
           {
             "customer": "Meloi Liquors",
-            "cases2026": 2687.0
+            "cases2026": 2932.0
           },
           {
             "customer": "Vault Liquors",
-            "cases2026": 2653.8
+            "cases2026": 2695.8
           },
           {
             "customer": "M & M Discount Liq",
-            "cases2026": 2159.0
+            "cases2026": 2461.0
           },
           {
             "customer": "Hootch Hut (P)",
-            "cases2026": 1837.0
+            "cases2026": 1886.0
           }
         ],
         "offPremTargetCount": 21,
@@ -1860,23 +1860,23 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Chabons Ii Liq/Bar (A)",
-            "cases2026": 7664.0
+            "cases2026": 8348.0
           },
           {
             "customer": "Culver Liquor and Bar",
-            "cases2026": 7273.0
+            "cases2026": 8034.0
           },
           {
             "customer": "The Greek's",
-            "cases2026": 1755.0
+            "cases2026": 2010.0
           },
           {
             "customer": "Picatinny Main Exch",
-            "cases2026": 742.0
+            "cases2026": 807.0
           },
           {
             "customer": "Swartswood",
-            "cases2026": 440.0
+            "cases2026": 531.0
           },
           {
             "customer": "Point 5 Lafayette",
@@ -2173,86 +2173,86 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Discount Lqr(A) Outlet",
-            "cases2026": 162859.9
+            "cases2026": 172824.5
           },
           {
             "customer": "Clifton Disc Liq (A)",
-            "cases2026": 34517.5
+            "cases2026": 38748.5
           },
           {
             "customer": "Garden Liquors (P)",
-            "cases2026": 19064.3
+            "cases2026": 21097.3
           },
           {
             "customer": "46 Discount Liquor Store",
-            "cases2026": 11594.0
-          },
-          {
-            "customer": "Westmont Liquors 64",
-            "cases2026": 11036.8
+            "cases2026": 12564.0
           },
           {
             "customer": "Exquisite W & L (A)",
-            "cases2026": 10812.5
+            "cases2026": 11863.5
+          },
+          {
+            "customer": "Westmont Liquors 64",
+            "cases2026": 11323.8
           },
           {
             "customer": "Figlar's (P)",
-            "cases2026": 8657.0
+            "cases2026": 9773.0
           },
           {
             "customer": "Shop Rite Liq.(A)Lodi",
-            "cases2026": 7318.0
-          },
-          {
-            "customer": "Circle Liquors",
-            "cases2026": 6790.7
+            "cases2026": 8214.0
           },
           {
             "customer": "Woodridge Wines & Liq(A)",
-            "cases2026": 6525.7
+            "cases2026": 7160.7
+          },
+          {
+            "customer": "Circle Liquors",
+            "cases2026": 7049.9
           },
           {
             "customer": "Teaneck Quickshop(P)Conv",
-            "cases2026": 5899.0
+            "cases2026": 6502.0
           },
           {
             "customer": "Lodi Liquor Store(P)",
-            "cases2026": 5552.0
-          },
-          {
-            "customer": "B & B Liquors (Fair Lawn)",
-            "cases2026": 4265.0
+            "cases2026": 6337.0
           },
           {
             "customer": "Discount Liq & Bar",
-            "cases2026": 4261.0
+            "cases2026": 4867.0
           },
           {
-            "customer": "Krauszer Liquor",
-            "cases2026": 4169.7
+            "customer": "B & B Liquors (Fair Lawn)",
+            "cases2026": 4738.0
           },
           {
             "customer": "Welsh Farms",
-            "cases2026": 4059.0
+            "cases2026": 4562.0
+          },
+          {
+            "customer": "Krauszer Liquor",
+            "cases2026": 4489.7
           },
           {
             "customer": "Quick Stop Food & Liq",
-            "cases2026": 3455.3
+            "cases2026": 3970.3
           },
           {
             "customer": "Maywood Wine&Liq (A)",
-            "cases2026": 3204.0
+            "cases2026": 3683.0
           },
           {
             "customer": "Liquor Masters (P)",
-            "cases2026": 3070.8
+            "cases2026": 3468.8
           },
           {
             "customer": "Hollywd Liq&Deli (A)",
-            "cases2026": 2897.7
+            "cases2026": 3223.7
           }
         ],
-        "offPremTargetCount": 34,
+        "offPremTargetCount": 35,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -2367,82 +2367,82 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Banner Delicatessen",
-            "cases2026": 77507.8
+            "cases2026": 80347.2
+          },
+          {
+            "customer": "Edgewater Liquor (A)",
+            "cases2026": 40565.5
           },
           {
             "customer": "Bella Wine & Liquor",
             "cases2026": 30851.4
           },
           {
-            "customer": "Edgewater Liquor (A)",
-            "cases2026": 29281.9
-          },
-          {
             "customer": "Liquor World",
-            "cases2026": 12473.0
+            "cases2026": 13951.0
           },
           {
             "customer": "Liquor City(A)Cliffside",
-            "cases2026": 11521.0
+            "cases2026": 13165.0
           },
           {
             "customer": "Rome Liquors (Fairview)",
-            "cases2026": 10396.7
-          },
-          {
-            "customer": "Winston Wine & Liq",
-            "cases2026": 10303.4
+            "cases2026": 11653.7
           },
           {
             "customer": "Fairview Liq & Groc.(A)",
-            "cases2026": 10173.0
+            "cases2026": 11169.0
           },
           {
             "customer": "Boulevard Liq.(Fairview)",
-            "cases2026": 10122.0
+            "cases2026": 11053.0
+          },
+          {
+            "customer": "Winston Wine & Liq",
+            "cases2026": 10459.4
           },
           {
             "customer": "Linwood Wine-Linwood Plaza",
-            "cases2026": 8416.8
+            "cases2026": 9059.8
           },
           {
             "customer": "Stop N Go Conven. (P)",
-            "cases2026": 7595.0
+            "cases2026": 8463.0
           },
           {
             "customer": "Kikos Liquors Ii",
-            "cases2026": 7101.0
-          },
-          {
-            "customer": "Jay Cee (P) Deli & Liq.",
-            "cases2026": 6022.0
+            "cases2026": 7809.0
           },
           {
             "customer": "Mukeunji (Z)",
-            "cases2026": 5854.0
+            "cases2026": 6730.0
+          },
+          {
+            "customer": "Metro Liquor (Cliffside Park)",
+            "cases2026": 6702.2
+          },
+          {
+            "customer": "Jay Cee (P) Deli & Liq.",
+            "cases2026": 6690.0
           },
           {
             "customer": "Linwood Wine-Hudson Light",
-            "cases2026": 5393.0
+            "cases2026": 6079.0
           },
           {
             "customer": "Garden State Food&Liq (P)",
-            "cases2026": 5339.0
+            "cases2026": 5995.0
           },
           {
             "customer": "Banner Liquor Iii",
-            "cases2026": 5145.0
+            "cases2026": 5848.0
           },
           {
             "customer": "American Classic Liq",
-            "cases2026": 4782.0
-          },
-          {
-            "customer": "Tenafly Fine Wine & Spirits",
-            "cases2026": 4589.3
+            "cases2026": 5371.0
           }
         ],
-        "offPremTargetCount": 43,
+        "offPremTargetCount": 44,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -2632,87 +2632,87 @@ const PROGRAM_DATA = {
         "offPremReorderCount": 14,
         "offPremTargets": [
           {
+            "customer": "Burgundy Convenience Store",
+            "cases2026": 31788.7
+          },
+          {
             "customer": "Shop Rite Liq (A)Englewd",
-            "cases2026": 28132.0
+            "cases2026": 31435.0
           },
           {
             "customer": "Barrel & Brew Bar & Liq",
-            "cases2026": 20580.2
+            "cases2026": 20995.2
           },
           {
             "customer": "Portland Wine & Liquor",
-            "cases2026": 17216.0
+            "cases2026": 18713.0
           },
           {
             "customer": "Wine And Liq Depot(A)",
-            "cases2026": 16879.0
+            "cases2026": 18647.7
           },
           {
             "customer": "Hackensack Liquors",
-            "cases2026": 15898.0
+            "cases2026": 17640.3
           },
           {
             "customer": "Wine & More (P)",
-            "cases2026": 14581.0
+            "cases2026": 15425.8
           },
           {
             "customer": "Bergenfield Liq & Fw",
-            "cases2026": 13371.3
+            "cases2026": 14827.3
           },
           {
             "customer": "W E Beverage (A)",
-            "cases2026": 8230.0
-          },
-          {
-            "customer": "Time Lounge And Liq (A)",
-            "cases2026": 8184.0
+            "cases2026": 9307.0
           },
           {
             "customer": "Simple Simon's (Z)",
-            "cases2026": 7858.0
+            "cases2026": 9148.0
+          },
+          {
+            "customer": "Time Lounge And Liq (A)",
+            "cases2026": 9042.0
           },
           {
             "customer": "Essex St Liquor and Wine",
-            "cases2026": 6703.0
+            "cases2026": 7558.0
           },
           {
             "customer": "George's Liq",
-            "cases2026": 6635.0
-          },
-          {
-            "customer": "H & R Disc. Liq (P)",
-            "cases2026": 6168.0
+            "cases2026": 7434.0
           },
           {
             "customer": "Deli Mart (A)",
-            "cases2026": 6098.0
+            "cases2026": 6928.0
           },
           {
-            "customer": "G & G Liquors & Bar",
-            "cases2026": 5370.0
+            "customer": "H & R Disc. Liq (P)",
+            "cases2026": 6879.0
+          },
+          {
+            "customer": "Country Wine & Liquors",
+            "cases2026": 6121.1
           },
           {
             "customer": "Joes Beer Wine & Spirits",
-            "cases2026": 5105.3
+            "cases2026": 5817.3
+          },
+          {
+            "customer": "G & G Liquors & Bar",
+            "cases2026": 5762.0
           },
           {
             "customer": "Englewood Wine and Spirits",
-            "cases2026": 3375.0
+            "cases2026": 3888.0
           },
           {
             "customer": "New Milford Liquors",
-            "cases2026": 3159.0
-          },
-          {
-            "customer": "Teaneck Discount Liquor",
-            "cases2026": 2846.2
-          },
-          {
-            "customer": "River Edge Wine & Liquor",
-            "cases2026": 2520.0
+            "cases2026": 3525.0
           }
         ],
-        "offPremTargetCount": 29,
+        "offPremTargetCount": 31,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -2805,82 +2805,82 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Ant's Bar & Liquors",
-            "cases2026": 80227.9
+            "cases2026": 86998.8
           },
           {
             "customer": "Gonzalez Liq & Bar(A)",
-            "cases2026": 36092.8
+            "cases2026": 36998.8
           },
           {
             "customer": "The Liquor Shop",
-            "cases2026": 27097.0
+            "cases2026": 31026.0
           },
           {
             "customer": "C Town (A)",
-            "cases2026": 26134.7
+            "cases2026": 26338.7
           },
           {
             "customer": "The Point Liquor & Bar",
-            "cases2026": 21665.5
+            "cases2026": 22427.5
           },
           {
             "customer": "Economy Liquors",
-            "cases2026": 18898.0
+            "cases2026": 21090.0
           },
           {
             "customer": "Quis Queya Liquor(P)",
-            "cases2026": 13567.0
+            "cases2026": 15689.0
           },
           {
             "customer": "Ferraro's Liquor",
-            "cases2026": 11999.5
+            "cases2026": 13231.7
           },
           {
             "customer": "Pal's Liquor",
-            "cases2026": 11623.0
+            "cases2026": 12978.0
           },
           {
             "customer": "La Sorpresa Liq (P)",
-            "cases2026": 11157.0
+            "cases2026": 12436.0
           },
           {
             "customer": "Limestone Liquors (A)",
-            "cases2026": 11133.0
+            "cases2026": 12335.0
           },
           {
             "customer": "Santana's Sport(P)Bella",
-            "cases2026": 10374.8
+            "cases2026": 11252.8
           },
           {
             "customer": "Raphael & Angel Liq (A)",
-            "cases2026": 9958.0
-          },
-          {
-            "customer": "El Oasis",
-            "cases2026": 9646.0
+            "cases2026": 11241.0
           },
           {
             "customer": "230 Liq & Groc.(A)",
-            "cases2026": 9584.0
+            "cases2026": 10604.0
+          },
+          {
+            "customer": "El Oasis",
+            "cases2026": 10500.0
           },
           {
             "customer": "Dorta Liquor (A)",
-            "cases2026": 9141.0
+            "cases2026": 10225.0
+          },
+          {
+            "customer": "Yaremy Liquors",
+            "cases2026": 9144.8
           },
           {
             "customer": "Mercer Bar & Liquors",
-            "cases2026": 7419.0
+            "cases2026": 8270.0
           },
           {
             "customer": "Liquor Gallery (Paterson)",
-            "cases2026": 7175.5
-          },
-          {
-            "customer": "10th Ave Liq & Food (P)",
-            "cases2026": 7024.0
+            "cases2026": 8121.5
           }
         ],
-        "offPremTargetCount": 30,
+        "offPremTargetCount": 31,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -3617,7 +3617,7 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "One Stop Wine (A) & Liq",
-            "cases2026": 1578.0
+            "cases2026": 1700.0
           },
           {
             "customer": "Giannone Wine & Liq(#2)",
@@ -3820,86 +3820,86 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Edwards (P) Wine & Liq",
-            "cases2026": 44151.2
+            "cases2026": 45969.9
           },
           {
             "customer": "D'bar Liquors (P)",
-            "cases2026": 37223.2
+            "cases2026": 38287.2
+          },
+          {
+            "customer": "El Cantaro Liquors",
+            "cases2026": 37195.6
           },
           {
             "customer": "President Liqrs (A)",
-            "cases2026": 19683.0
+            "cases2026": 21023.0
           },
           {
             "customer": "Farm Boy",
-            "cases2026": 14051.0
+            "cases2026": 15788.0
           },
           {
             "customer": "Bottle Liquor (P)",
-            "cases2026": 14010.0
+            "cases2026": 15510.0
           },
           {
             "customer": "New Eagle Liquors",
-            "cases2026": 13517.0
+            "cases2026": 15209.0
           },
           {
             "customer": "Parker Liquors (Z)",
-            "cases2026": 13256.0
+            "cases2026": 14710.0
           },
           {
             "customer": "Diamond Liquors (P)",
-            "cases2026": 11857.0
+            "cases2026": 13433.0
           },
           {
             "customer": "Danny's Liquor",
-            "cases2026": 11699.0
+            "cases2026": 13208.0
           },
           {
             "customer": "ESTEVEZ LIQUORS LLC",
-            "cases2026": 11618.0
+            "cases2026": 12883.0
           },
           {
             "customer": "Luna Liquors",
-            "cases2026": 11399.0
+            "cases2026": 12801.0
           },
           {
             "customer": "Shanik Liqs.(P)",
-            "cases2026": 11287.0
+            "cases2026": 12344.0
           },
           {
             "customer": "East Side Bar Liquors",
-            "cases2026": 9821.0
+            "cases2026": 11115.0
           },
           {
             "customer": "Bermuda Liquors (P)",
-            "cases2026": 9445.0
-          },
-          {
-            "customer": "C Town Supermarket(P)",
-            "cases2026": 7701.0
-          },
-          {
-            "customer": "Paulison Liquors (P)",
-            "cases2026": 7557.0
+            "cases2026": 10138.0
           },
           {
             "customer": "La Joya Liquors",
-            "cases2026": 7453.0
+            "cases2026": 8583.0
           },
           {
             "customer": "Segundo's (P)",
-            "cases2026": 7344.0
+            "cases2026": 8582.0
+          },
+          {
+            "customer": "Paulison Liquors (P)",
+            "cases2026": 8543.0
+          },
+          {
+            "customer": "C Town Supermarket(P)",
+            "cases2026": 8531.0
           },
           {
             "customer": "Liquor Stop (Passaic)",
-            "cases2026": 7124.0
-          },
-          {
-            "customer": "C & S Lucky Liquors (P)",
-            "cases2026": 6476.0
+            "cases2026": 8146.0
           }
         ],
-        "offPremTargetCount": 28,
+        "offPremTargetCount": 29,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -4263,86 +4263,86 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Patricks Wine Barn",
-            "cases2026": 22162.0
+            "cases2026": 24732.0
           },
           {
             "customer": "ShopRite Wine & Spirits of Newton#830",
-            "cases2026": 15804.0
+            "cases2026": 17503.0
           },
           {
             "customer": "Mac & Lindy's W & S (A)",
-            "cases2026": 14958.0
+            "cases2026": 16662.0
           },
           {
             "customer": "Buy Rite Liquors Franklin",
-            "cases2026": 14384.0
+            "cases2026": 15567.0
           },
           {
             "customer": "The George Inn",
-            "cases2026": 10126.0
-          },
-          {
-            "customer": "Wantage Plaza Liq Outlet",
-            "cases2026": 8658.0
+            "cases2026": 11148.0
           },
           {
             "customer": "Spring Street Liquors",
-            "cases2026": 8560.0
+            "cases2026": 10037.0
+          },
+          {
+            "customer": "Wantage Plaza Liq Outlet",
+            "cases2026": 9663.0
           },
           {
             "customer": "Super Saver Liq",
-            "cases2026": 6898.0
+            "cases2026": 7609.0
           },
           {
             "customer": "Wine Country Newton",
-            "cases2026": 6827.0
+            "cases2026": 7547.0
           },
           {
             "customer": "Seplow's Liquors",
-            "cases2026": 5939.0
+            "cases2026": 6609.0
           },
           {
             "customer": "Sussex Co.Discount Liq(P)",
-            "cases2026": 4983.0
+            "cases2026": 5425.0
           },
           {
             "customer": "Brix - Wine, Spirits, Beer (Fredon)",
-            "cases2026": 4173.0
-          },
-          {
-            "customer": "Highland General Store",
-            "cases2026": 4144.0
-          },
-          {
-            "customer": "Woody's Liq Shop (A)",
-            "cases2026": 4116.0
+            "cases2026": 4818.0
           },
           {
             "customer": "George's Wine & Spirits",
-            "cases2026": 3971.0
+            "cases2026": 4521.2
+          },
+          {
+            "customer": "Highland General Store",
+            "cases2026": 4512.0
+          },
+          {
+            "customer": "Woody's Liq Shop (A)",
+            "cases2026": 4438.0
           },
           {
             "customer": "Hamburg Liquor",
-            "cases2026": 3793.2
+            "cases2026": 4237.2
           },
           {
             "customer": "White Deer Inn",
-            "cases2026": 3769.0
+            "cases2026": 4105.0
           },
           {
             "customer": "Fredon Liquor (Fredon Deli)",
-            "cases2026": 3134.0
+            "cases2026": 3517.0
           },
           {
             "customer": "Kent's Liquors",
-            "cases2026": 1924.0
+            "cases2026": 2211.0
           },
           {
             "customer": "Burkes",
-            "cases2026": 1795.2
+            "cases2026": 2012.2
           }
         ],
-        "offPremTargetCount": 23,
+        "offPremTargetCount": 25,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -4456,7 +4456,7 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Shoppers Vineyard (A)",
-            "cases2026": 34288.0
+            "cases2026": 39124.0
           },
           {
             "customer": "Allwood Liquor Store",
@@ -4464,35 +4464,35 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "World of Wine & Liquor",
-            "cases2026": 28658.1
+            "cases2026": 29268.1
           },
           {
             "customer": "Lexington Liquors (Z)",
-            "cases2026": 17131.0
+            "cases2026": 19257.0
           },
           {
             "customer": "Broad Liquors (A)",
-            "cases2026": 12801.0
+            "cases2026": 14183.0
           },
           {
             "customer": "Lucky 7 (A)",
-            "cases2026": 11499.8
+            "cases2026": 12842.8
           },
           {
             "customer": "Rainbow Liquor (P)",
-            "cases2026": 11147.2
-          },
-          {
-            "customer": "Marina's Wine & Spirits",
-            "cases2026": 9272.9
+            "cases2026": 12415.2
           },
           {
             "customer": "Savers Club Liquor Locker",
-            "cases2026": 8772.0
+            "cases2026": 10398.0
+          },
+          {
+            "customer": "Marina's Wine & Spirits",
+            "cases2026": 10139.9
           },
           {
             "customer": "Little Falls Liq(P)",
-            "cases2026": 8533.2
+            "cases2026": 9762.2
           },
           {
             "customer": "Mason's Cellar (A)",
@@ -4500,35 +4500,35 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "US#1 Wine & Liquor",
-            "cases2026": 7041.0
-          },
-          {
-            "customer": "Rutherford Wine (A)",
-            "cases2026": 6507.9
+            "cases2026": 7746.0
           },
           {
             "customer": "Town Liquors",
-            "cases2026": 6162.0
+            "cases2026": 6932.0
+          },
+          {
+            "customer": "Rutherford Wine (A)",
+            "cases2026": 6791.9
           },
           {
             "customer": "Valley Liquors (A)",
-            "cases2026": 5542.0
+            "cases2026": 6199.0
           },
           {
             "customer": "Metro Liquors (North Arlington)",
-            "cases2026": 5366.0
+            "cases2026": 6003.0
           },
           {
             "customer": "Quik Stop Conv(Z)",
-            "cases2026": 5183.0
+            "cases2026": 5689.0
           },
           {
             "customer": "Liquor Shed",
-            "cases2026": 4902.5
+            "cases2026": 5477.5
           },
           {
-            "customer": "Dante's Liquor & Wine",
-            "cases2026": 4707.0
+            "customer": "West End Wine & Liq",
+            "cases2026": 5316.0
           }
         ],
         "offPremTargetCount": 41,
@@ -4994,7 +4994,7 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Charlie's Liquor and Convenience",
-            "cases2026": 876.0
+            "cases2026": 1044.0
           },
           {
             "customer": "Weis Market",
@@ -5022,11 +5022,11 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "X Plor Wine",
-            "cases2026": 232.0
+            "cases2026": 272.0
           },
           {
             "customer": "Haworth Fine Wine/Spirits",
-            "cases2026": 226.0
+            "cases2026": 268.0
           },
           {
             "customer": "Four Seasons Wine & Liq",
@@ -5462,62 +5462,66 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Mountain Lakes Wine & Liquor",
-            "cases2026": 28534.5
+            "cases2026": 28584.5
           },
           {
             "customer": "Milton Inn",
-            "cases2026": 19754.0
+            "cases2026": 21428.0
           },
           {
             "customer": "Rockaway W/L",
-            "cases2026": 9358.0
+            "cases2026": 10437.0
           },
           {
             "customer": "Nova Liquors",
-            "cases2026": 8813.9
-          },
-          {
-            "customer": "Island Of Spirits (P)",
-            "cases2026": 6551.0
+            "cases2026": 8876.9
           },
           {
             "customer": "Sam's Liq Wine (P)",
-            "cases2026": 6278.0
+            "cases2026": 7270.0
           },
           {
-            "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
-            "cases2026": 5589.0
+            "customer": "Island Of Spirits (P)",
+            "cases2026": 7154.0
           },
           {
             "customer": "Boonton Liquor Locker",
-            "cases2026": 5368.0
+            "cases2026": 6360.5
           },
           {
             "customer": "Wharton Liquor Store",
-            "cases2026": 5367.0
+            "cases2026": 6311.0
+          },
+          {
+            "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
+            "cases2026": 6220.0
           },
           {
             "customer": "Main Street Liquor",
-            "cases2026": 5024.3
+            "cases2026": 5864.3
           },
           {
             "customer": "Kingston Liquors",
-            "cases2026": 4571.0
+            "cases2026": 5264.0
           },
           {
             "customer": "Patel Liqr & Gro(P)",
-            "cases2026": 3922.3
+            "cases2026": 4295.3
           },
           {
             "customer": "Berkshire(P) Bot. Shop",
-            "cases2026": 1203.0
+            "cases2026": 1325.0
           },
           {
             "customer": "The Village Place",
-            "cases2026": 903.0
+            "cases2026": 971.0
+          },
+          {
+            "customer": "23 liquor & Tobacco",
+            "cases2026": 855.0
           }
         ],
-        "offPremTargetCount": 14,
+        "offPremTargetCount": 15,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -5630,86 +5634,86 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Home Wine Liquor (Passaic)",
-            "cases2026": 28031.0
-          },
-          {
-            "customer": "Wine And People",
-            "cases2026": 16899.4
-          },
-          {
-            "customer": "M & M Wine & Spirits",
-            "cases2026": 13826.2
-          },
-          {
-            "customer": "Capri Deli&Liq (P)",
-            "cases2026": 13231.4
-          },
-          {
-            "customer": "Whoopee Liq (A)",
-            "cases2026": 11335.3
-          },
-          {
-            "customer": "Metro Liquor (Elmwood Park)",
-            "cases2026": 11002.0
-          },
-          {
-            "customer": "Archies (P)",
-            "cases2026": 9268.0
+            "cases2026": 31807.0
           },
           {
             "customer": "Bottle Republic (Rutherford)",
-            "cases2026": 7676.0
+            "cases2026": 20042.6
+          },
+          {
+            "customer": "Wine And People",
+            "cases2026": 17078.4
+          },
+          {
+            "customer": "M & M Wine & Spirits",
+            "cases2026": 15449.2
+          },
+          {
+            "customer": "Capri Deli&Liq (P)",
+            "cases2026": 14122.4
+          },
+          {
+            "customer": "Metro Liquor (Elmwood Park)",
+            "cases2026": 12437.0
+          },
+          {
+            "customer": "Whoopee Liq (A)",
+            "cases2026": 12050.3
+          },
+          {
+            "customer": "Archies (P)",
+            "cases2026": 10185.0
           },
           {
             "customer": "Luigi's Liquor (A)",
-            "cases2026": 6710.0
-          },
-          {
-            "customer": "Birchwood Liq & Deli (Z)",
-            "cases2026": 5532.0
-          },
-          {
-            "customer": "All Star Wine & Liquor",
-            "cases2026": 5390.0
+            "cases2026": 7382.0
           },
           {
             "customer": "Metro Wine And Liq(A)",
-            "cases2026": 5373.7
+            "cases2026": 6140.7
+          },
+          {
+            "customer": "Birchwood Liq & Deli (Z)",
+            "cases2026": 6059.0
+          },
+          {
+            "customer": "All Star Wine & Liquor",
+            "cases2026": 5835.0
           },
           {
             "customer": "Wine Grand (Carlstadt)",
-            "cases2026": 5013.7
+            "cases2026": 5790.0
+          },
+          {
+            "customer": "Buzzzrite Liquors",
+            "cases2026": 5487.0
           },
           {
             "customer": "Moonachie Liquors",
-            "cases2026": 4732.0
+            "cases2026": 5232.0
           },
           {
             "customer": "Cobblestone Hill Deli",
-            "cases2026": 4481.0
+            "cases2026": 5192.0
           },
           {
             "customer": "River Drive Bar (P)",
-            "cases2026": 4371.0
+            "cases2026": 4928.0
           },
           {
             "customer": "Vinny's Disc Liq (P)",
-            "cases2026": 4159.0
+            "cases2026": 4744.0
           },
           {
             "customer": "Wine Land",
-            "cases2026": 3910.0
-          },
-          {
-            "customer": "King Liquors",
-            "cases2026": 3630.1
+            "cases2026": 4557.0
           },
           {
             "customer": "Garfield Discount Liquors",
-            "cases2026": 3415.0
+            "cases2026": 4098.0
           }
         ],
-        "offPremTargetCount": 33,
+        "offPremTargetCount": 38,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -6060,7 +6064,7 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Wolfson Market",
-            "cases2026": 4849.0
+            "cases2026": 5459.0
           },
           {
             "customer": "ShopRite of West Caldwell",
@@ -6686,79 +6690,79 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Frank's Fine Wine & Foods",
-            "cases2026": 14291.0
+            "cases2026": 15364.0
           },
           {
             "customer": "Nico's Wine & Spirits",
-            "cases2026": 11913.2
+            "cases2026": 13444.2
           },
           {
             "customer": "Goffle Road Wine and More",
-            "cases2026": 7496.8
+            "cases2026": 8225.8
           },
           {
             "customer": "Diamond Liquor",
-            "cases2026": 6522.0
+            "cases2026": 7229.0
           },
           {
             "customer": "Speedy Mart (P)",
-            "cases2026": 6117.0
+            "cases2026": 7164.0
           },
           {
             "customer": "Allendale Wine Shoppe",
-            "cases2026": 5962.0
+            "cases2026": 6886.0
           },
           {
             "customer": "Discount Liq (P)_2",
-            "cases2026": 4911.0
+            "cases2026": 5417.0
           },
           {
             "customer": "Scherer & Company",
-            "cases2026": 4449.0
+            "cases2026": 5114.0
           },
           {
             "customer": "Mahwah Wine & Liquor (A)",
-            "cases2026": 3651.0
+            "cases2026": 4098.0
           },
           {
             "customer": "Uncorked Wine & Spirits (Hohokus)",
-            "cases2026": 2493.0
+            "cases2026": 2834.0
           },
           {
             "customer": "Quick Stop Liquor & Wine",
-            "cases2026": 2177.7
+            "cases2026": 2525.7
           },
           {
             "customer": "Stop & Shop (A)Ridgewood",
-            "cases2026": 2137.0
+            "cases2026": 2476.0
           },
           {
             "customer": "Beekman's Wines and Liquors",
-            "cases2026": 1639.0
+            "cases2026": 1849.0
           },
           {
             "customer": "GREEN WAY MARKETS",
-            "cases2026": 1452.0
+            "cases2026": 1690.0
           },
           {
             "customer": "Garbo's Ital Deli&Liq(Z)",
-            "cases2026": 1071.4
+            "cases2026": 1477.6
           },
           {
             "customer": "The Wine Seller",
-            "cases2026": 518.0
+            "cases2026": 583.0
           },
           {
             "customer": "Public Ridgewood",
-            "cases2026": 459.0
+            "cases2026": 498.0
           },
           {
             "customer": "Whole Foods #10106 (Ridgewood)",
-            "cases2026": 452.0
+            "cases2026": 485.0
           },
           {
             "customer": "Wine & Spirits World (Hohokus)",
-            "cases2026": 339.3
+            "cases2026": 385.3
           }
         ],
         "offPremTargetCount": 19,
@@ -6875,11 +6879,11 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Port Imperial HOQ LLC",
-            "cases2026": 4139.9
+            "cases2026": 4192.9
           },
           {
             "customer": "H Mart Inc (Space A101-A)",
-            "cases2026": 873.0
+            "cases2026": 942.0
           }
         ],
         "offPremTargetCount": 2,
@@ -7019,23 +7023,23 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Bombolon Liquor & Grocery",
-            "cases2026": 110867.8
+            "cases2026": 135370.7
           },
           {
             "customer": "Altiero Liquors",
-            "cases2026": 63576.0
+            "cases2026": 69400.7
           },
           {
             "customer": "Caraballo's",
-            "cases2026": 51120.9
+            "cases2026": 52883.9
           },
           {
             "customer": "Midtown Liquors",
-            "cases2026": 38646.3
+            "cases2026": 39211.3
           },
           {
             "customer": "EL BOHEMIO 2 LIQUOR STORE & BAR",
-            "cases2026": 29864.4
+            "cases2026": 31837.4
           },
           {
             "customer": "Limonta Liqs (A)",
@@ -7043,62 +7047,62 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Allen's Liquors",
-            "cases2026": 18920.2
+            "cases2026": 19256.2
           },
           {
             "customer": "Gene's Liquor",
-            "cases2026": 13200.0
+            "cases2026": 14370.0
           },
           {
             "customer": "Passaic Discount Liquors",
-            "cases2026": 12729.0
+            "cases2026": 14111.0
           },
           {
             "customer": "Regalado Liq",
-            "cases2026": 12723.0
+            "cases2026": 14086.0
           },
           {
             "customer": "Monroe Wine & Liq(P)",
-            "cases2026": 12594.0
+            "cases2026": 13914.0
           },
           {
             "customer": "Broadway W&L",
-            "cases2026": 12334.0
+            "cases2026": 13660.0
           },
           {
             "customer": "Sunny's Liqs.(P)",
-            "cases2026": 12069.0
+            "cases2026": 13449.0
           },
           {
             "customer": "Johnny's Liqs (P)",
-            "cases2026": 10190.0
+            "cases2026": 11045.0
           },
           {
             "customer": "#1 Liqrs (P)",
-            "cases2026": 8006.0
-          },
-          {
-            "customer": "Joe's Liquor (A)",
-            "cases2026": 6406.5
+            "cases2026": 8984.0
           },
           {
             "customer": "Boulevard Wine & Spirits",
-            "cases2026": 5896.0
+            "cases2026": 7200.0
+          },
+          {
+            "customer": "Joe's Liquor (A)",
+            "cases2026": 7032.5
           },
           {
             "customer": "Intensity Lounge/Angie's Liquors",
-            "cases2026": 5586.0
+            "cases2026": 6222.0
           },
           {
             "customer": "Schulman's (P) Deli",
-            "cases2026": 5462.3
+            "cases2026": 5961.3
           },
           {
             "customer": "Carisma Liq & Groc (P)",
-            "cases2026": 4474.0
+            "cases2026": 4960.0
           }
         ],
-        "offPremTargetCount": 26,
+        "offPremTargetCount": 28,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -7143,11 +7147,11 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Balthazar Bakery (A)",
-            "cases2026": 104.0
+            "cases2026": 120.0
           },
           {
             "customer": "Mykos",
-            "cases2026": 66.0
+            "cases2026": 80.0
           }
         ],
         "offPremTargetCount": 2,
@@ -7621,52 +7625,68 @@ const PROGRAM_DATA = {
         "offPremReorderCount": 13,
         "offPremTargets": [
           {
-            "customer": "Agave Liquor, Wine & Spirits",
-            "cases2026": 51424.4
+            "customer": "Super Wine Warehse(P)Pate",
+            "cases2026": 60828.0
           },
           {
-            "customer": "Super Wine Warehse(P)Pate",
-            "cases2026": 50573.0
+            "customer": "Agave Liquor, Wine & Spirits",
+            "cases2026": 52704.0
           },
           {
             "customer": "Palisades Wine And Liquor",
-            "cases2026": 14982.0
+            "cases2026": 16881.0
           },
           {
             "customer": "Budy's Wine & Liq (A)",
-            "cases2026": 13391.0
+            "cases2026": 14893.0
+          },
+          {
+            "customer": "Acme Markets (Midland Park)",
+            "cases2026": 5632.0
           },
           {
             "customer": "Wine Country Of Saddle Brook (A)",
-            "cases2026": 4529.0
+            "cases2026": 5038.0
+          },
+          {
+            "customer": "Acme Markets (Fort Lee)",
+            "cases2026": 4661.0
           },
           {
             "customer": "Whole Foods Market (Paramus)",
-            "cases2026": 3153.0
-          },
-          {
-            "customer": "Acme Markets (Allendale)",
-            "cases2026": 3105.0
+            "cases2026": 3541.0
           },
           {
             "customer": "Riverview Liq (P)",
-            "cases2026": 3013.0
+            "cases2026": 3530.0
+          },
+          {
+            "customer": "Acme Markets (Allendale)",
+            "cases2026": 3480.0
           },
           {
             "customer": "Gary's Wine & Marketplace (Wayne)",
             "cases2026": 2026.0
           },
           {
+            "customer": "THE BOTTLE SHOP",
+            "cases2026": 1585.0
+          },
+          {
             "customer": "Stew Leonard's(A) Paramu (NA)",
-            "cases2026": 1414.0
+            "cases2026": 1540.0
           },
           {
             "customer": "Lushka Liquors",
-            "cases2026": 1010.2
+            "cases2026": 1134.2
           },
           {
             "customer": "Megha Liquor & Grocery",
-            "cases2026": 496.2
+            "cases2026": 601.2
+          },
+          {
+            "customer": "USA Wine Traders Paramus",
+            "cases2026": 526.0
           },
           {
             "customer": "Stew Leonard's Wines & Spirits of Clifton (NA)",
@@ -7677,7 +7697,7 @@ const PROGRAM_DATA = {
             "cases2026": 85.0
           }
         ],
-        "offPremTargetCount": 14,
+        "offPremTargetCount": 18,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -7747,10 +7767,14 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Jerry's Outlet",
-            "cases2026": 343.0
+            "cases2026": 404.0
+          },
+          {
+            "customer": "Pizza Town USA",
+            "cases2026": 101.0
           }
         ],
-        "offPremTargetCount": 1,
+        "offPremTargetCount": 2,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -8246,66 +8270,74 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Bottle King (A) Hillsdale",
-            "cases2026": 19774.0
+            "cases2026": 22087.0
           },
           {
             "customer": "Shop Rite Liq (A)Emerson",
-            "cases2026": 8480.0
+            "cases2026": 9551.0
           },
           {
             "customer": "Township Liq (P)",
-            "cases2026": 7349.0
+            "cases2026": 8114.0
           },
           {
             "customer": "Brand Bar & Bev (A)",
-            "cases2026": 7080.0
+            "cases2026": 7764.0
           },
           {
             "customer": "Garden State Deli (A)",
-            "cases2026": 6742.0
+            "cases2026": 7608.0
+          },
+          {
+            "customer": "Cambridge Wines (Woodcliff Lake)",
+            "cases2026": 4546.9
           },
           {
             "customer": "Wine & Whiskey (A)",
-            "cases2026": 3269.0
-          },
-          {
-            "customer": "Ridgemont Liquors (A)",
-            "cases2026": 2990.7
+            "cases2026": 3776.0
           },
           {
             "customer": "Coasters Liquors",
-            "cases2026": 2899.0
+            "cases2026": 3302.0
+          },
+          {
+            "customer": "Ridgemont Liquors (A)",
+            "cases2026": 3222.7
           },
           {
             "customer": "Djm Liq Inc. (P)(Andrew)",
-            "cases2026": 2857.0
+            "cases2026": 3181.0
           },
           {
             "customer": "D & L Dumont Liquors",
-            "cases2026": 1823.0
+            "cases2026": 2052.0
           },
           {
             "customer": "Oradell Mini Mart(P)",
-            "cases2026": 1663.0
+            "cases2026": 1907.0
           },
           {
             "customer": "Murphy's Fine Wines & Liquors (UNI 4H Inc.)",
-            "cases2026": 1289.0
+            "cases2026": 1368.0
+          },
+          {
+            "customer": "Woori Mart",
+            "cases2026": 1209.0
           },
           {
             "customer": "Whole Foods #8407 (Woodcliff Lake)",
-            "cases2026": 438.0
+            "cases2026": 490.0
           },
           {
             "customer": "Whole Foods #10381 (Closter)",
-            "cases2026": 380.0
+            "cases2026": 413.0
           },
           {
             "customer": "The Store",
-            "cases2026": 140.0
+            "cases2026": 151.0
           }
         ],
-        "offPremTargetCount": 15,
+        "offPremTargetCount": 17,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -8690,7 +8722,7 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Paradise Liquors",
-            "cases2026": 19143.6
+            "cases2026": 21184.7
           },
           {
             "customer": "Wine Warehouse (P) (Bayonne)",
@@ -8702,7 +8734,7 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Super K Food (A) Store",
-            "cases2026": 1534.0
+            "cases2026": 1763.0
           },
           {
             "customer": "High Spirits Of Bayonne",
@@ -9252,83 +9284,83 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Highland Wine&Liquor Inc",
-            "cases2026": 18415.2
+            "cases2026": 19996.2
           },
           {
             "customer": "Uncorked Wines & Spirits (West Milford)",
-            "cases2026": 16537.0
+            "cases2026": 18631.0
           },
           {
             "customer": "Usa Wine Traders Club (Bloomingdale)",
-            "cases2026": 16250.0
+            "cases2026": 17917.0
           },
           {
             "customer": "River Place Food Store",
-            "cases2026": 10087.1
+            "cases2026": 11190.1
           },
           {
             "customer": "Greenwood Lake Disc.(P)",
-            "cases2026": 9370.3
+            "cases2026": 10016.3
           },
           {
             "customer": "Ringwood W&L",
-            "cases2026": 8930.0
-          },
-          {
-            "customer": "Krauszer's Liquor Wine and Spirits",
-            "cases2026": 8619.0
+            "cases2026": 9941.0
           },
           {
             "customer": "Turnpike Discount Liquors",
-            "cases2026": 8460.0
+            "cases2026": 9636.0
+          },
+          {
+            "customer": "Krauszer's Liquor Wine and Spirits",
+            "cases2026": 9270.0
           },
           {
             "customer": "George's Market (A)",
-            "cases2026": 6831.0
+            "cases2026": 7858.0
           },
           {
             "customer": "Appio's Liquors",
-            "cases2026": 6769.0
+            "cases2026": 7682.0
           },
           {
             "customer": "Roserne Pkg Store South",
-            "cases2026": 6401.3
+            "cases2026": 7194.3
           },
           {
             "customer": "Usa Wine Traders (Wanaque)",
-            "cases2026": 6326.0
+            "cases2026": 7122.0
           },
           {
             "customer": "Shoppers Disc(A)Pompton",
-            "cases2026": 6109.5
+            "cases2026": 6840.5
           },
           {
             "customer": "Roserne Liquors North",
-            "cases2026": 5991.2
-          },
-          {
-            "customer": "B & B Wine&Liq",
-            "cases2026": 5581.0
+            "cases2026": 6600.2
           },
           {
             "customer": "Ringwood Discount Liquors",
-            "cases2026": 5493.0
+            "cases2026": 6293.0
+          },
+          {
+            "customer": "B & B Wine&Liq",
+            "cases2026": 6195.0
           },
           {
             "customer": "Wine 2 Spirits (P)",
-            "cases2026": 4669.0
+            "cases2026": 5204.0
           },
           {
             "customer": "Country Convenience Store",
-            "cases2026": 4174.0
+            "cases2026": 4697.0
           },
           {
             "customer": "Empire Wine & Liquor",
-            "cases2026": 3100.0
+            "cases2026": 3543.0
           },
           {
             "customer": "Bloomingdale Discount Liq",
-            "cases2026": 3091.0
+            "cases2026": 3317.0
           }
         ],
         "offPremTargetCount": 25,
@@ -9441,15 +9473,15 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Culver Liquor and Bar",
-            "cases2026": 7273.0
+            "cases2026": 8034.0
           },
           {
             "customer": "Picatinny Main Exch",
-            "cases2026": 742.0
+            "cases2026": 807.0
           },
           {
             "customer": "Swartswood",
-            "cases2026": 440.0
+            "cases2026": 531.0
           },
           {
             "customer": "Point 5 Lafayette",
@@ -9607,86 +9639,86 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Discount Lqr(A) Outlet",
-            "cases2026": 162859.9
+            "cases2026": 172824.5
           },
           {
             "customer": "Ridgefield Deli & Liq",
-            "cases2026": 44545.3
+            "cases2026": 79037.7
           },
           {
             "customer": "Clifton Disc Liq (A)",
-            "cases2026": 34517.5
+            "cases2026": 38748.5
           },
           {
             "customer": "Garden Liquors (P)",
-            "cases2026": 19064.3
+            "cases2026": 21097.3
           },
           {
             "customer": "Wineland",
-            "cases2026": 17843.0
+            "cases2026": 20263.0
           },
           {
             "customer": "Usa Wine Traders Club (Saddle Brook)",
-            "cases2026": 16492.5
+            "cases2026": 18450.5
           },
           {
             "customer": "46 Discount Liquor Store",
-            "cases2026": 11594.0
-          },
-          {
-            "customer": "Westmont Liquors 64",
-            "cases2026": 11036.8
+            "cases2026": 12564.0
           },
           {
             "customer": "Exquisite W & L (A)",
-            "cases2026": 10812.5
+            "cases2026": 11863.5
           },
           {
             "customer": "Buy Rite Of Main St Lodi",
-            "cases2026": 10446.7
+            "cases2026": 11740.7
+          },
+          {
+            "customer": "Westmont Liquors 64",
+            "cases2026": 11323.8
           },
           {
             "customer": "Buy Rite Discount Liquor",
-            "cases2026": 8886.2
+            "cases2026": 9923.2
           },
           {
             "customer": "Figlar's (P)",
-            "cases2026": 8657.0
+            "cases2026": 9773.0
           },
           {
             "customer": "Shop Rite Liq.(A)Lodi",
-            "cases2026": 7318.0
-          },
-          {
-            "customer": "Circle Liquors",
-            "cases2026": 6790.7
+            "cases2026": 8214.0
           },
           {
             "customer": "Woodridge Wines & Liq(A)",
-            "cases2026": 6525.7
+            "cases2026": 7160.7
+          },
+          {
+            "customer": "Circle Liquors",
+            "cases2026": 7049.9
           },
           {
             "customer": "Teaneck Quickshop(P)Conv",
-            "cases2026": 5899.0
+            "cases2026": 6502.0
           },
           {
             "customer": "Lodi Liquor Store(P)",
-            "cases2026": 5552.0
-          },
-          {
-            "customer": "B & B Liquors (Fair Lawn)",
-            "cases2026": 4265.0
+            "cases2026": 6337.0
           },
           {
             "customer": "Discount Liq & Bar",
-            "cases2026": 4261.0
+            "cases2026": 4867.0
+          },
+          {
+            "customer": "B & B Liquors (Fair Lawn)",
+            "cases2026": 4738.0
           },
           {
             "customer": "Krauszer Liquor",
-            "cases2026": 4169.7
+            "cases2026": 4489.7
           }
         ],
-        "offPremTargetCount": 38,
+        "offPremTargetCount": 39,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -9768,82 +9800,82 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Banner Delicatessen",
-            "cases2026": 77507.8
+            "cases2026": 80347.2
+          },
+          {
+            "customer": "Edgewater Liquor (A)",
+            "cases2026": 40565.5
           },
           {
             "customer": "Bella Wine & Liquor",
             "cases2026": 30851.4
           },
           {
-            "customer": "Edgewater Liquor (A)",
-            "cases2026": 29281.9
-          },
-          {
             "customer": "Buy Rite Of Fairview",
-            "cases2026": 19436.0
+            "cases2026": 21494.0
           },
           {
             "customer": "Liquor World",
-            "cases2026": 12473.0
+            "cases2026": 13951.0
           },
           {
             "customer": "Liquor City(A)Cliffside",
-            "cases2026": 11521.0
+            "cases2026": 13165.0
           },
           {
             "customer": "Rome Liquors (Fairview)",
-            "cases2026": 10396.7
-          },
-          {
-            "customer": "Winston Wine & Liq",
-            "cases2026": 10303.4
+            "cases2026": 11653.7
           },
           {
             "customer": "Fairview Liq & Groc.(A)",
-            "cases2026": 10173.0
+            "cases2026": 11169.0
           },
           {
             "customer": "Boulevard Liq.(Fairview)",
-            "cases2026": 10122.0
+            "cases2026": 11053.0
+          },
+          {
+            "customer": "Winston Wine & Liq",
+            "cases2026": 10459.4
           },
           {
             "customer": "Linwood Wine-Linwood Plaza",
-            "cases2026": 8416.8
+            "cases2026": 9059.8
           },
           {
             "customer": "Stop N Go Conven. (P)",
-            "cases2026": 7595.0
+            "cases2026": 8463.0
           },
           {
             "customer": "Kikos Liquors Ii",
-            "cases2026": 7101.0
-          },
-          {
-            "customer": "Jay Cee (P) Deli & Liq.",
-            "cases2026": 6022.0
+            "cases2026": 7809.0
           },
           {
             "customer": "Mukeunji (Z)",
-            "cases2026": 5854.0
+            "cases2026": 6730.0
+          },
+          {
+            "customer": "Metro Liquor (Cliffside Park)",
+            "cases2026": 6702.2
+          },
+          {
+            "customer": "Jay Cee (P) Deli & Liq.",
+            "cases2026": 6690.0
           },
           {
             "customer": "Linwood Wine-Hudson Light",
-            "cases2026": 5393.0
+            "cases2026": 6079.0
           },
           {
             "customer": "Garden State Food&Liq (P)",
-            "cases2026": 5339.0
+            "cases2026": 5995.0
           },
           {
             "customer": "Banner Liquor Iii",
-            "cases2026": 5145.0
-          },
-          {
-            "customer": "American Classic Liq",
-            "cases2026": 4782.0
+            "cases2026": 5848.0
           }
         ],
-        "offPremTargetCount": 45,
+        "offPremTargetCount": 46,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -9988,87 +10020,87 @@ const PROGRAM_DATA = {
         "offPremReorderCount": 6,
         "offPremTargets": [
           {
+            "customer": "Burgundy Convenience Store",
+            "cases2026": 31788.7
+          },
+          {
             "customer": "Shop Rite Liq (A)Englewd",
-            "cases2026": 28132.0
+            "cases2026": 31435.0
           },
           {
             "customer": "Buy Rite Of Hackensack",
-            "cases2026": 22991.8
+            "cases2026": 25686.8
           },
           {
             "customer": "Barrel & Brew Bar & Liq",
-            "cases2026": 20580.2
+            "cases2026": 20995.2
           },
           {
             "customer": "Portland Wine & Liquor",
-            "cases2026": 17216.0
+            "cases2026": 18713.0
           },
           {
             "customer": "Hackensack Liquors",
-            "cases2026": 15898.0
+            "cases2026": 17640.3
           },
           {
             "customer": "Wine & More (P)",
-            "cases2026": 14581.0
+            "cases2026": 15425.8
           },
           {
             "customer": "Bergenfield Liq & Fw",
-            "cases2026": 13371.3
+            "cases2026": 14827.3
           },
           {
             "customer": "W E Beverage (A)",
-            "cases2026": 8230.0
-          },
-          {
-            "customer": "Time Lounge And Liq (A)",
-            "cases2026": 8184.0
+            "cases2026": 9307.0
           },
           {
             "customer": "Simple Simon's (Z)",
-            "cases2026": 7858.0
+            "cases2026": 9148.0
+          },
+          {
+            "customer": "Time Lounge And Liq (A)",
+            "cases2026": 9042.0
           },
           {
             "customer": "Essex St Liquor and Wine",
-            "cases2026": 6703.0
+            "cases2026": 7558.0
           },
           {
             "customer": "George's Liq",
-            "cases2026": 6635.0
-          },
-          {
-            "customer": "H & R Disc. Liq (P)",
-            "cases2026": 6168.0
+            "cases2026": 7434.0
           },
           {
             "customer": "Deli Mart (A)",
-            "cases2026": 6098.0
+            "cases2026": 6928.0
           },
           {
-            "customer": "G & G Liquors & Bar",
-            "cases2026": 5370.0
-          },
-          {
-            "customer": "Joes Beer Wine & Spirits",
-            "cases2026": 5105.3
-          },
-          {
-            "customer": "Englewood Wine and Spirits",
-            "cases2026": 3375.0
-          },
-          {
-            "customer": "Teaneck Discount Liquor",
-            "cases2026": 2846.2
-          },
-          {
-            "customer": "River Edge Wine & Liquor",
-            "cases2026": 2520.0
+            "customer": "H & R Disc. Liq (P)",
+            "cases2026": 6879.0
           },
           {
             "customer": "Country Wine & Liquors",
-            "cases2026": 1712.0
+            "cases2026": 6121.1
+          },
+          {
+            "customer": "Joes Beer Wine & Spirits",
+            "cases2026": 5817.3
+          },
+          {
+            "customer": "G & G Liquors & Bar",
+            "cases2026": 5762.0
+          },
+          {
+            "customer": "Englewood Wine and Spirits",
+            "cases2026": 3888.0
+          },
+          {
+            "customer": "Teaneck Discount Liquor",
+            "cases2026": 3267.2
           }
         ],
-        "offPremTargetCount": 28,
+        "offPremTargetCount": 30,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -10114,7 +10146,7 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Shop Rite Wines/Spirits",
-            "cases2026": 186098.8
+            "cases2026": 191980.7
           },
           {
             "customer": "Scheps Discount Bar/Liq",
@@ -10122,78 +10154,78 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Ant's Bar & Liquors",
-            "cases2026": 80227.9
+            "cases2026": 86998.8
           },
           {
             "customer": "Gonzalez Liq & Bar(A)",
-            "cases2026": 36092.8
+            "cases2026": 36998.8
           },
           {
             "customer": "Shop Rite Liq (A)Littlefl",
-            "cases2026": 28486.0
+            "cases2026": 31482.0
           },
           {
             "customer": "The Liquor Shop",
-            "cases2026": 27097.0
+            "cases2026": 31026.0
           },
           {
             "customer": "C Town (A)",
-            "cases2026": 26134.7
+            "cases2026": 26338.7
           },
           {
             "customer": "The Point Liquor & Bar",
-            "cases2026": 21665.5
+            "cases2026": 22427.5
           },
           {
             "customer": "Economy Liquors",
-            "cases2026": 18898.0
+            "cases2026": 21090.0
           },
           {
             "customer": "Quis Queya Liquor(P)",
-            "cases2026": 13567.0
+            "cases2026": 15689.0
           },
           {
             "customer": "Ferraro's Liquor",
-            "cases2026": 11999.5
+            "cases2026": 13231.7
           },
           {
             "customer": "Pal's Liquor",
-            "cases2026": 11623.0
+            "cases2026": 12978.0
           },
           {
             "customer": "La Sorpresa Liq (P)",
-            "cases2026": 11157.0
+            "cases2026": 12436.0
           },
           {
             "customer": "Limestone Liquors (A)",
-            "cases2026": 11133.0
+            "cases2026": 12335.0
           },
           {
             "customer": "Santana's Sport(P)Bella",
-            "cases2026": 10374.8
+            "cases2026": 11252.8
           },
           {
             "customer": "Raphael & Angel Liq (A)",
-            "cases2026": 9958.0
-          },
-          {
-            "customer": "El Oasis",
-            "cases2026": 9646.0
+            "cases2026": 11241.0
           },
           {
             "customer": "230 Liq & Groc.(A)",
-            "cases2026": 9584.0
+            "cases2026": 10604.0
+          },
+          {
+            "customer": "El Oasis",
+            "cases2026": 10500.0
           },
           {
             "customer": "Dorta Liquor (A)",
-            "cases2026": 9141.0
+            "cases2026": 10225.0
           },
           {
-            "customer": "Mercer Bar & Liquors",
-            "cases2026": 7419.0
+            "customer": "Yaremy Liquors",
+            "cases2026": 9144.8
           }
         ],
-        "offPremTargetCount": 32,
+        "offPremTargetCount": 33,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -10294,12 +10326,12 @@ const PROGRAM_DATA = {
             "cases2026": 5143.3
           },
           {
-            "customer": "STOP & GO LIQUORS",
-            "cases2026": 1594.0
+            "customer": "J B Liquors_2",
+            "cases2026": 1731.0
           },
           {
-            "customer": "J B Liquors_2",
-            "cases2026": 1571.0
+            "customer": "STOP & GO LIQUORS",
+            "cases2026": 1594.0
           },
           {
             "customer": "A2Z Wine Club",
@@ -10740,12 +10772,12 @@ const PROGRAM_DATA = {
             "cases2026": 2264.0
           },
           {
-            "customer": "Sparrow's Wine & Liq(P) (1224 Hoboken)",
-            "cases2026": 1640.0
+            "customer": "One Stop Wine (A) & Liq",
+            "cases2026": 1700.0
           },
           {
-            "customer": "One Stop Wine (A) & Liq",
-            "cases2026": 1578.0
+            "customer": "Sparrow's Wine & Liq(P) (1224 Hoboken)",
+            "cases2026": 1640.0
           },
           {
             "customer": "ShopRite Wines & Spirits of Hoboken",
@@ -10914,86 +10946,86 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Edwards (P) Wine & Liq",
-            "cases2026": 44151.2
+            "cases2026": 45969.9
           },
           {
             "customer": "D'bar Liquors (P)",
-            "cases2026": 37223.2
+            "cases2026": 38287.2
+          },
+          {
+            "customer": "El Cantaro Liquors",
+            "cases2026": 37195.6
           },
           {
             "customer": "President Liqrs (A)",
-            "cases2026": 19683.0
+            "cases2026": 21023.0
           },
           {
             "customer": "Farm Boy",
-            "cases2026": 14051.0
+            "cases2026": 15788.0
           },
           {
             "customer": "Bottle Liquor (P)",
-            "cases2026": 14010.0
+            "cases2026": 15510.0
           },
           {
             "customer": "New Eagle Liquors",
-            "cases2026": 13517.0
+            "cases2026": 15209.0
           },
           {
             "customer": "Parker Liquors (Z)",
-            "cases2026": 13256.0
+            "cases2026": 14710.0
           },
           {
             "customer": "Diamond Liquors (P)",
-            "cases2026": 11857.0
+            "cases2026": 13433.0
           },
           {
             "customer": "Danny's Liquor",
-            "cases2026": 11699.0
+            "cases2026": 13208.0
           },
           {
             "customer": "ESTEVEZ LIQUORS LLC",
-            "cases2026": 11618.0
+            "cases2026": 12883.0
           },
           {
             "customer": "Luna Liquors",
-            "cases2026": 11399.0
+            "cases2026": 12801.0
           },
           {
             "customer": "Shanik Liqs.(P)",
-            "cases2026": 11287.0
+            "cases2026": 12344.0
           },
           {
             "customer": "East Side Bar Liquors",
-            "cases2026": 9821.0
+            "cases2026": 11115.0
           },
           {
             "customer": "Bermuda Liquors (P)",
-            "cases2026": 9445.0
-          },
-          {
-            "customer": "C Town Supermarket(P)",
-            "cases2026": 7701.0
-          },
-          {
-            "customer": "Paulison Liquors (P)",
-            "cases2026": 7557.0
+            "cases2026": 10138.0
           },
           {
             "customer": "La Joya Liquors",
-            "cases2026": 7453.0
+            "cases2026": 8583.0
           },
           {
             "customer": "Segundo's (P)",
-            "cases2026": 7344.0
+            "cases2026": 8582.0
+          },
+          {
+            "customer": "Paulison Liquors (P)",
+            "cases2026": 8543.0
+          },
+          {
+            "customer": "C Town Supermarket(P)",
+            "cases2026": 8531.0
           },
           {
             "customer": "Liquor Stop (Passaic)",
-            "cases2026": 7124.0
-          },
-          {
-            "customer": "C & S Lucky Liquors (P)",
-            "cases2026": 6476.0
+            "cases2026": 8146.0
           }
         ],
-        "offPremTargetCount": 28,
+        "offPremTargetCount": 29,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -11079,86 +11111,86 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Liquor Factory III Sparta",
-            "cases2026": 18253.8
+            "cases2026": 19876.8
           },
           {
             "customer": "Mac & Lindy's W & S (A)",
-            "cases2026": 14958.0
-          },
-          {
-            "customer": "Liquor Factory II Jefferson",
-            "cases2026": 14542.0
+            "cases2026": 16662.0
           },
           {
             "customer": "ShopRite Wines & Spirits of Franklin",
-            "cases2026": 14418.0
+            "cases2026": 15968.0
+          },
+          {
+            "customer": "Liquor Factory II Jefferson",
+            "cases2026": 15824.0
           },
           {
             "customer": "Liquor Factory IV Hopatcong",
-            "cases2026": 11934.0
+            "cases2026": 13192.0
           },
           {
             "customer": "The George Inn",
-            "cases2026": 10126.0
+            "cases2026": 11148.0
           },
           {
             "customer": "Liquor Factory V Andover",
-            "cases2026": 9806.0
+            "cases2026": 10556.0
           },
           {
             "customer": "Liquor Factory VI Byram",
-            "cases2026": 9588.0
-          },
-          {
-            "customer": "Liquor Factory I Landing",
-            "cases2026": 8717.0
-          },
-          {
-            "customer": "Wantage Plaza Liq Outlet",
-            "cases2026": 8658.0
+            "cases2026": 10438.0
           },
           {
             "customer": "Spring Street Liquors",
-            "cases2026": 8560.0
+            "cases2026": 10037.0
+          },
+          {
+            "customer": "Wantage Plaza Liq Outlet",
+            "cases2026": 9663.0
+          },
+          {
+            "customer": "Liquor Factory I Landing",
+            "cases2026": 9499.0
           },
           {
             "customer": "Super Saver Liq",
-            "cases2026": 6898.0
+            "cases2026": 7609.0
           },
           {
             "customer": "Wine Country Newton",
-            "cases2026": 6827.0
+            "cases2026": 7547.0
           },
           {
             "customer": "Seplow's Liquors",
-            "cases2026": 5939.0
-          },
-          {
-            "customer": "The Right Bottle",
-            "cases2026": 5007.0
+            "cases2026": 6609.0
           },
           {
             "customer": "Sussex Co.Discount Liq(P)",
-            "cases2026": 4983.0
+            "cases2026": 5425.0
+          },
+          {
+            "customer": "The Right Bottle",
+            "cases2026": 5372.0
           },
           {
             "customer": "Brix - Wine, Spirits, Beer (Fredon)",
-            "cases2026": 4173.0
-          },
-          {
-            "customer": "Highland General Store",
-            "cases2026": 4144.0
-          },
-          {
-            "customer": "Woody's Liq Shop (A)",
-            "cases2026": 4116.0
+            "cases2026": 4818.0
           },
           {
             "customer": "George's Wine & Spirits",
-            "cases2026": 3971.0
+            "cases2026": 4521.2
+          },
+          {
+            "customer": "Highland General Store",
+            "cases2026": 4512.0
+          },
+          {
+            "customer": "Woody's Liq Shop (A)",
+            "cases2026": 4438.0
           }
         ],
-        "offPremTargetCount": 26,
+        "offPremTargetCount": 28,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -11218,7 +11250,7 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Shoppers Vineyard (A)",
-            "cases2026": 34288.0
+            "cases2026": 39124.0
           },
           {
             "customer": "Allwood Liquor Store",
@@ -11226,35 +11258,35 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "World of Wine & Liquor",
-            "cases2026": 28658.1
+            "cases2026": 29268.1
           },
           {
             "customer": "Lexington Liquors (Z)",
-            "cases2026": 17131.0
+            "cases2026": 19257.0
           },
           {
             "customer": "Clifton Commons S & W",
-            "cases2026": 15142.0
+            "cases2026": 16822.0
           },
           {
             "customer": "Lucky 7 (A)",
-            "cases2026": 11499.8
+            "cases2026": 12842.8
           },
           {
             "customer": "Rainbow Liquor (P)",
-            "cases2026": 11147.2
-          },
-          {
-            "customer": "Marina's Wine & Spirits",
-            "cases2026": 9272.9
+            "cases2026": 12415.2
           },
           {
             "customer": "Savers Club Liquor Locker",
-            "cases2026": 8772.0
+            "cases2026": 10398.0
+          },
+          {
+            "customer": "Marina's Wine & Spirits",
+            "cases2026": 10139.9
           },
           {
             "customer": "Little Falls Liq(P)",
-            "cases2026": 8533.2
+            "cases2026": 9762.2
           },
           {
             "customer": "Mason's Cellar (A)",
@@ -11262,35 +11294,35 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "US#1 Wine & Liquor",
-            "cases2026": 7041.0
-          },
-          {
-            "customer": "Rutherford Wine (A)",
-            "cases2026": 6507.9
+            "cases2026": 7746.0
           },
           {
             "customer": "Town Liquors",
-            "cases2026": 6162.0
+            "cases2026": 6932.0
+          },
+          {
+            "customer": "Rutherford Wine (A)",
+            "cases2026": 6791.9
           },
           {
             "customer": "Valley Liquors (A)",
-            "cases2026": 5542.0
+            "cases2026": 6199.0
           },
           {
             "customer": "Metro Liquors (North Arlington)",
-            "cases2026": 5366.0
+            "cases2026": 6003.0
           },
           {
             "customer": "Quik Stop Conv(Z)",
-            "cases2026": 5183.0
+            "cases2026": 5689.0
           },
           {
             "customer": "Liquor Shed",
-            "cases2026": 4902.5
+            "cases2026": 5477.5
           },
           {
-            "customer": "Dante's Liquor & Wine",
-            "cases2026": 4707.0
+            "customer": "West End Wine & Liq",
+            "cases2026": 5316.0
           }
         ],
         "offPremTargetCount": 42,
@@ -11455,16 +11487,16 @@ const PROGRAM_DATA = {
             "cases2026": 1070.0
           },
           {
+            "customer": "Charlie's Liquor and Convenience",
+            "cases2026": 1044.0
+          },
+          {
             "customer": "Bottle King (Z) Chatham",
             "cases2026": 897.0
           },
           {
             "customer": "Best Cellars(Ledgewood)",
             "cases2026": 889.0
-          },
-          {
-            "customer": "Charlie's Liquor and Convenience",
-            "cases2026": 876.0
           },
           {
             "customer": "Sandy's Wine & Spirits (Flanders)",
@@ -11515,12 +11547,12 @@ const PROGRAM_DATA = {
             "cases2026": 279.0
           },
           {
-            "customer": "Fairfield Wine Cellar",
-            "cases2026": 270.0
+            "customer": "X Plor Wine",
+            "cases2026": 272.0
           },
           {
-            "customer": "Kenvil Liquor,Wine & Food",
-            "cases2026": 243.0
+            "customer": "Fairfield Wine Cellar",
+            "cases2026": 270.0
           }
         ],
         "offPremTargetCount": 45,
@@ -11773,87 +11805,87 @@ const PROGRAM_DATA = {
         "offPremReorderCount": 9,
         "offPremTargets": [
           {
-            "customer": "House of Wine & Liquor",
-            "cases2026": 92498.9
+            "customer": "House of Wine & Liquor - Boonton",
+            "cases2026": 96412.9
           },
           {
             "customer": "Mountain Lakes Wine & Liquor",
-            "cases2026": 28534.5
+            "cases2026": 28584.5
           },
           {
             "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
-            "cases2026": 19983.0
+            "cases2026": 21721.0
           },
           {
             "customer": "Milton Inn",
-            "cases2026": 19754.0
+            "cases2026": 21428.0
           },
           {
             "customer": "Quick Check Liquor (A)",
-            "cases2026": 11861.6
+            "cases2026": 12429.6
           },
           {
             "customer": "Shoppers Disc Liquor",
-            "cases2026": 9603.7
+            "cases2026": 10610.7
           },
           {
             "customer": "Rockaway W/L",
-            "cases2026": 9358.0
+            "cases2026": 10437.0
           },
           {
             "customer": "Shop-Rite(A) Netcong",
-            "cases2026": 9256.0
+            "cases2026": 10208.0
           },
           {
             "customer": "Nova Liquors",
-            "cases2026": 8813.9
-          },
-          {
-            "customer": "Island Of Spirits (P)",
-            "cases2026": 6551.0
+            "cases2026": 8876.9
           },
           {
             "customer": "Sam's Liq Wine (P)",
-            "cases2026": 6278.0
+            "cases2026": 7270.0
           },
           {
-            "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
-            "cases2026": 5589.0
+            "customer": "Island Of Spirits (P)",
+            "cases2026": 7154.0
           },
           {
             "customer": "Boonton Liquor Locker",
-            "cases2026": 5368.0
+            "cases2026": 6360.5
           },
           {
             "customer": "Wharton Liquor Store",
-            "cases2026": 5367.0
+            "cases2026": 6311.0
+          },
+          {
+            "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
+            "cases2026": 6220.0
           },
           {
             "customer": "Main Street Liquor",
-            "cases2026": 5024.3
+            "cases2026": 5864.3
           },
           {
             "customer": "Montville Wine & Spirits",
-            "cases2026": 4749.2
+            "cases2026": 5398.2
           },
           {
             "customer": "Kingston Liquors",
-            "cases2026": 4571.0
-          },
-          {
-            "customer": "3 IN 1 LIQUORS INC",
-            "cases2026": 4048.3
+            "cases2026": 5264.0
           },
           {
             "customer": "Denville W & L",
-            "cases2026": 3897.0
+            "cases2026": 4434.0
+          },
+          {
+            "customer": "3 IN 1 LIQUORS INC",
+            "cases2026": 4357.3
           },
           {
             "customer": "Stanhope Liquors",
-            "cases2026": 3770.0
+            "cases2026": 4152.0
           }
         ],
-        "offPremTargetCount": 22,
+        "offPremTargetCount": 23,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -11950,86 +11982,86 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Home Wine Liquor (Passaic)",
-            "cases2026": 28031.0
-          },
-          {
-            "customer": "Wine And People",
-            "cases2026": 16899.4
-          },
-          {
-            "customer": "Capri Deli&Liq (P)",
-            "cases2026": 13231.4
-          },
-          {
-            "customer": "Shop Rite Of Wallington",
-            "cases2026": 11492.2
-          },
-          {
-            "customer": "Whoopee Liq (A)",
-            "cases2026": 11335.3
-          },
-          {
-            "customer": "Metro Liquor (Elmwood Park)",
-            "cases2026": 11002.0
-          },
-          {
-            "customer": "Archies (P)",
-            "cases2026": 9268.0
-          },
-          {
-            "customer": "Metro Liquors (East Rutherford)",
-            "cases2026": 8889.5
+            "cases2026": 31807.0
           },
           {
             "customer": "Bottle Republic (Rutherford)",
-            "cases2026": 7676.0
+            "cases2026": 20042.6
+          },
+          {
+            "customer": "Wine And People",
+            "cases2026": 17078.4
+          },
+          {
+            "customer": "Capri Deli&Liq (P)",
+            "cases2026": 14122.4
+          },
+          {
+            "customer": "Shop Rite Of Wallington",
+            "cases2026": 12915.2
+          },
+          {
+            "customer": "Metro Liquor (Elmwood Park)",
+            "cases2026": 12437.0
+          },
+          {
+            "customer": "Whoopee Liq (A)",
+            "cases2026": 12050.3
+          },
+          {
+            "customer": "Archies (P)",
+            "cases2026": 10185.0
+          },
+          {
+            "customer": "Metro Liquors (East Rutherford)",
+            "cases2026": 10093.5
           },
           {
             "customer": "Luigi's Liquor (A)",
-            "cases2026": 6710.0
+            "cases2026": 7382.0
           },
           {
             "customer": "Birchwood Liq & Deli (Z)",
-            "cases2026": 5532.0
+            "cases2026": 6059.0
           },
           {
             "customer": "All Star Wine & Liquor",
-            "cases2026": 5390.0
+            "cases2026": 5835.0
           },
           {
             "customer": "Wine Grand (Carlstadt)",
-            "cases2026": 5013.7
+            "cases2026": 5790.0
+          },
+          {
+            "customer": "Buzzzrite Liquors",
+            "cases2026": 5487.0
           },
           {
             "customer": "Moonachie Liquors",
-            "cases2026": 4732.0
+            "cases2026": 5232.0
           },
           {
             "customer": "Cobblestone Hill Deli",
-            "cases2026": 4481.0
+            "cases2026": 5192.0
           },
           {
             "customer": "River Drive Bar (P)",
-            "cases2026": 4371.0
+            "cases2026": 4928.0
           },
           {
             "customer": "Vinny's Disc Liq (P)",
-            "cases2026": 4159.0
+            "cases2026": 4744.0
           },
           {
             "customer": "Wine Land",
-            "cases2026": 3910.0
-          },
-          {
-            "customer": "King Liquors",
-            "cases2026": 3630.1
+            "cases2026": 4557.0
           },
           {
             "customer": "Garfield Discount Liquors",
-            "cases2026": 3415.0
+            "cases2026": 4098.0
           }
         ],
-        "offPremTargetCount": 33,
+        "offPremTargetCount": 38,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -12124,23 +12156,23 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Kinnelon Country Wine & Liquor",
-            "cases2026": 13317.5
+            "cases2026": 13538.5
           },
           {
             "customer": "Lincoln Center Liq",
-            "cases2026": 11632.6
+            "cases2026": 12653.6
           },
           {
             "customer": "Shays Liquors",
-            "cases2026": 9552.0
+            "cases2026": 10762.0
           },
           {
             "customer": "Wayne Liquor Locker",
-            "cases2026": 5874.0
+            "cases2026": 6631.7
           },
           {
             "customer": "Wolfson Market",
-            "cases2026": 4849.0
+            "cases2026": 5459.0
           },
           {
             "customer": "Shoprite Wine & Spirits",
@@ -12325,83 +12357,83 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Bottle King (A) Wayne",
-            "cases2026": 38922.0
+            "cases2026": 43035.0
           },
           {
             "customer": "Waldwick Wine/Spirits",
-            "cases2026": 19439.0
+            "cases2026": 20435.0
           },
           {
             "customer": "Fair Lawn Wine & Spirits",
-            "cases2026": 17532.8
-          },
-          {
-            "customer": "Hawthorne Liq (A)",
-            "cases2026": 15329.4
+            "cases2026": 18417.8
           },
           {
             "customer": "Lincoln Park Fine Wines & Spirits",
-            "cases2026": 14976.5
+            "cases2026": 16324.5
           },
           {
             "customer": "Long Hill Liquors (A)",
-            "cases2026": 14466.0
+            "cases2026": 16155.0
+          },
+          {
+            "customer": "Hawthorne Liq (A)",
+            "cases2026": 15995.4
           },
           {
             "customer": "Frank's Fine Wine & Foods",
-            "cases2026": 14291.0
+            "cases2026": 15364.0
           },
           {
             "customer": "Nico's Wine & Spirits",
-            "cases2026": 11913.2
+            "cases2026": 13444.2
           },
           {
             "customer": "Mahwah Liqrs (P)",
-            "cases2026": 9234.2
+            "cases2026": 10016.2
           },
           {
             "customer": "Grand Opening Liq (A)_2",
-            "cases2026": 8697.0
-          },
-          {
-            "customer": "Goffle Road Wine and More",
-            "cases2026": 7496.8
+            "cases2026": 9809.0
           },
           {
             "customer": "Oakland Wine (A)",
-            "cases2026": 7233.5
+            "cases2026": 8338.5
+          },
+          {
+            "customer": "Goffle Road Wine and More",
+            "cases2026": 8225.8
           },
           {
             "customer": "Diamond Liquor",
-            "cases2026": 6522.0
+            "cases2026": 7229.0
           },
           {
             "customer": "Speedy Mart (P)",
-            "cases2026": 6117.0
+            "cases2026": 7164.0
           },
           {
             "customer": "Allendale Wine Shoppe",
-            "cases2026": 5962.0
+            "cases2026": 6886.0
           },
           {
             "customer": "Discount Liq (P)_2",
-            "cases2026": 4911.0
+            "cases2026": 5417.0
           },
           {
             "customer": "Franklin Lake Liq",
-            "cases2026": 4843.0
+            "cases2026": 5369.0
           },
           {
             "customer": "Scherer & Company",
-            "cases2026": 4449.0
+            "cases2026": 5114.0
           },
           {
             "customer": "Mahwah Wine & Liquor (A)",
-            "cases2026": 3651.0
+            "cases2026": 4098.0
           },
           {
             "customer": "Uncorked Wine & Spirits (Hohokus)",
-            "cases2026": 2493.0
+            "cases2026": 2834.0
           }
         ],
         "offPremTargetCount": 29,
@@ -12474,11 +12506,11 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Port Imperial HOQ LLC",
-            "cases2026": 4139.9
+            "cases2026": 4192.9
           },
           {
             "customer": "H Mart Inc (Space A101-A)",
-            "cases2026": 873.0
+            "cases2026": 942.0
           }
         ],
         "offPremTargetCount": 2,
@@ -12602,23 +12634,23 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Bombolon Liquor & Grocery",
-            "cases2026": 110867.8
+            "cases2026": 135370.7
           },
           {
             "customer": "Altiero Liquors",
-            "cases2026": 63576.0
+            "cases2026": 69400.7
           },
           {
             "customer": "Caraballo's",
-            "cases2026": 51120.9
+            "cases2026": 52883.9
           },
           {
             "customer": "Midtown Liquors",
-            "cases2026": 38646.3
+            "cases2026": 39211.3
           },
           {
             "customer": "EL BOHEMIO 2 LIQUOR STORE & BAR",
-            "cases2026": 29864.4
+            "cases2026": 31837.4
           },
           {
             "customer": "Limonta Liqs (A)",
@@ -12626,62 +12658,62 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Allen's Liquors",
-            "cases2026": 18920.2
+            "cases2026": 19256.2
           },
           {
             "customer": "Gene's Liquor",
-            "cases2026": 13200.0
+            "cases2026": 14370.0
           },
           {
             "customer": "Passaic Discount Liquors",
-            "cases2026": 12729.0
+            "cases2026": 14111.0
           },
           {
             "customer": "Regalado Liq",
-            "cases2026": 12723.0
+            "cases2026": 14086.0
           },
           {
             "customer": "Monroe Wine & Liq(P)",
-            "cases2026": 12594.0
+            "cases2026": 13914.0
           },
           {
             "customer": "Broadway W&L",
-            "cases2026": 12334.0
+            "cases2026": 13660.0
           },
           {
             "customer": "Sunny's Liqs.(P)",
-            "cases2026": 12069.0
+            "cases2026": 13449.0
           },
           {
             "customer": "Johnny's Liqs (P)",
-            "cases2026": 10190.0
+            "cases2026": 11045.0
           },
           {
             "customer": "#1 Liqrs (P)",
-            "cases2026": 8006.0
-          },
-          {
-            "customer": "Joe's Liquor (A)",
-            "cases2026": 6406.5
+            "cases2026": 8984.0
           },
           {
             "customer": "Boulevard Wine & Spirits",
-            "cases2026": 5896.0
+            "cases2026": 7200.0
+          },
+          {
+            "customer": "Joe's Liquor (A)",
+            "cases2026": 7032.5
           },
           {
             "customer": "Intensity Lounge/Angie's Liquors",
-            "cases2026": 5586.0
+            "cases2026": 6222.0
           },
           {
             "customer": "Schulman's (P) Deli",
-            "cases2026": 5462.3
+            "cases2026": 5961.3
           },
           {
             "customer": "Carisma Liq & Groc (P)",
-            "cases2026": 4474.0
+            "cases2026": 4960.0
           }
         ],
-        "offPremTargetCount": 26,
+        "offPremTargetCount": 28,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -12726,11 +12758,11 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Balthazar Bakery (A)",
-            "cases2026": 104.0
+            "cases2026": 120.0
           },
           {
             "customer": "Mykos",
-            "cases2026": 66.0
+            "cases2026": 80.0
           }
         ],
         "offPremTargetCount": 2,
@@ -12869,83 +12901,87 @@ const PROGRAM_DATA = {
         "offPremReorderCount": 7,
         "offPremTargets": [
           {
-            "customer": "Agave Liquor, Wine & Spirits",
-            "cases2026": 51424.4
+            "customer": "Super Wine Warehse(P)Pate",
+            "cases2026": 60828.0
           },
           {
-            "customer": "Super Wine Warehse(P)Pate",
-            "cases2026": 50573.0
+            "customer": "Agave Liquor, Wine & Spirits",
+            "cases2026": 52704.0
           },
           {
             "customer": "Palisades Wine And Liquor",
-            "cases2026": 14982.0
-          },
-          {
-            "customer": "Shop-Rite Liq Lyndhurst",
-            "cases2026": 13510.3
+            "cases2026": 16881.0
           },
           {
             "customer": "Budy's Wine & Liq (A)",
-            "cases2026": 13391.0
+            "cases2026": 14893.0
           },
           {
-            "customer": "City Supermarket",
-            "cases2026": 11028.0
+            "customer": "Shop-Rite Liq Lyndhurst",
+            "cases2026": 14872.3
           },
           {
             "customer": "Stew Leonard's(A) Paramus Wine",
-            "cases2026": 10822.0
+            "cases2026": 12641.0
+          },
+          {
+            "customer": "City Supermarket",
+            "cases2026": 12507.0
           },
           {
             "customer": "Food Universe Marketplace",
-            "cases2026": 10135.2
+            "cases2026": 11376.3
           },
           {
             "customer": "Home Wines & Liq 75 (A) (South Hackensack)",
-            "cases2026": 8001.0
+            "cases2026": 8824.0
+          },
+          {
+            "customer": "PRIME WINE CELLAR Liquor & Beer",
+            "cases2026": 6672.0
           },
           {
             "customer": "Wine Country Of Saddle Brook (A)",
-            "cases2026": 4529.0
+            "cases2026": 5038.0
           },
           {
-            "customer": "Acme Markets (Allendale)",
-            "cases2026": 3105.0
+            "customer": "Acme Markets (Fort Lee)",
+            "cases2026": 4661.0
           },
           {
             "customer": "Riverview Liq (P)",
-            "cases2026": 3013.0
+            "cases2026": 3530.0
+          },
+          {
+            "customer": "Acme Markets (Allendale)",
+            "cases2026": 3480.0
           },
           {
             "customer": "Gary's Wine & Marketplace (Wayne)",
             "cases2026": 2026.0
           },
           {
+            "customer": "THE BOTTLE SHOP",
+            "cases2026": 1585.0
+          },
+          {
             "customer": "Stew Leonard's(A) Paramu (NA)",
-            "cases2026": 1414.0
+            "cases2026": 1540.0
           },
           {
             "customer": "Wides Deli & Liquor",
-            "cases2026": 1260.0
+            "cases2026": 1466.0
           },
           {
             "customer": "Lushka Liquors",
-            "cases2026": 1010.2
+            "cases2026": 1134.2
           },
           {
             "customer": "Megha Liquor & Grocery",
-            "cases2026": 496.2
-          },
-          {
-            "customer": "Stew Leonard's Wines & Spirits of Clifton (NA)",
-            "cases2026": 234.0
-          },
-          {
-            "customer": "Beverage Depot",
-            "cases2026": 85.0
+            "cases2026": 601.2
           }
         ],
-        "offPremTargetCount": 19,
+        "offPremTargetCount": 23,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -12999,10 +13035,14 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Jerry's Outlet",
-            "cases2026": 343.0
+            "cases2026": 404.0
+          },
+          {
+            "customer": "Pizza Town USA",
+            "cases2026": 101.0
           }
         ],
-        "offPremTargetCount": 1,
+        "offPremTargetCount": 2,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -13108,86 +13148,86 @@ const PROGRAM_DATA = {
         "offPremTargets": [
           {
             "customer": "Beverage Barn (A)",
-            "cases2026": 24857.0
+            "cases2026": 27883.0
           },
           {
             "customer": "Ramsey Wine & Liquor",
-            "cases2026": 24068.0
+            "cases2026": 27164.0
           },
           {
             "customer": "Bottle King (A) Hillsdale",
-            "cases2026": 19774.0
+            "cases2026": 22087.0
           },
           {
             "customer": "Shoprite Liq (A)Northvle",
-            "cases2026": 18009.0
+            "cases2026": 20026.0
           },
           {
             "customer": "Shop Rite Liq (A)Hillsdal",
-            "cases2026": 15421.5
+            "cases2026": 17157.5
           },
           {
             "customer": "Cork & Keg (A)",
-            "cases2026": 11978.2
+            "cases2026": 13286.7
           },
           {
             "customer": "Shop Rite Liq (A)Emerson",
-            "cases2026": 8480.0
+            "cases2026": 9551.0
           },
           {
             "customer": "Winemart Discount",
-            "cases2026": 8310.7
+            "cases2026": 9260.7
           },
           {
             "customer": "Township Liq (P)",
-            "cases2026": 7349.0
+            "cases2026": 8114.0
           },
           {
             "customer": "Brand Bar & Bev (A)",
-            "cases2026": 7080.0
+            "cases2026": 7764.0
           },
           {
             "customer": "Garden State Deli (A)",
-            "cases2026": 6742.0
+            "cases2026": 7608.0
           },
           {
-            "customer": "Gary's Wine & Marketplace (Closter)",
-            "cases2026": 6414.0
+            "customer": "Gary's Closter / CLoster Cellars",
+            "cases2026": 6861.0
           },
           {
             "customer": "Westwood Wine and Liquors",
-            "cases2026": 5404.0
+            "cases2026": 6090.0
           },
           {
             "customer": "Wine And Beverage Spirits",
-            "cases2026": 4751.0
+            "cases2026": 5467.0
+          },
+          {
+            "customer": "Cambridge Wines (Woodcliff Lake)",
+            "cases2026": 4546.9
           },
           {
             "customer": "Wine & Whiskey (A)",
-            "cases2026": 3269.0
+            "cases2026": 3776.0
           },
           {
             "customer": "Coasters Liquors",
-            "cases2026": 2899.0
+            "cases2026": 3302.0
           },
           {
             "customer": "Djm Liq Inc. (P)(Andrew)",
-            "cases2026": 2857.0
+            "cases2026": 3181.0
           },
           {
             "customer": "Royal Wine & Spirits II",
-            "cases2026": 2801.0
-          },
-          {
-            "customer": "D & L Dumont Liquors",
-            "cases2026": 1823.0
+            "cases2026": 3154.0
           },
           {
             "customer": "Montvale Wines & Spirits",
-            "cases2026": 1823.0
+            "cases2026": 2151.0
           }
         ],
-        "offPremTargetCount": 25,
+        "offPremTargetCount": 27,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -13543,7 +13583,7 @@ const PROGRAM_DATA = {
         "targets24oz": [
           {
             "customer": "Paradise Liquors",
-            "cases2026": 19143.6
+            "cases2026": 21184.7
           },
           {
             "customer": "Bottle King Glen Ridge",
@@ -13559,7 +13599,7 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Super K Food (A) Store",
-            "cases2026": 1534.0
+            "cases2026": 1763.0
           },
           {
             "customer": "High Spirits Of Bayonne",
@@ -13868,83 +13908,83 @@ const PROGRAM_DATA = {
         "targets24oz": [
           {
             "customer": "Highland Wine&Liquor Inc",
-            "cases2026": 18415.2
+            "cases2026": 19996.2
           },
           {
             "customer": "Uncorked Wines & Spirits (West Milford)",
-            "cases2026": 16537.0
+            "cases2026": 18631.0
           },
           {
             "customer": "Usa Wine Traders Club (Bloomingdale)",
-            "cases2026": 16250.0
+            "cases2026": 17917.0
           },
           {
             "customer": "Best Cellars (Wanaque)",
-            "cases2026": 11357.2
+            "cases2026": 12657.2
           },
           {
             "customer": "River Place Food Store",
-            "cases2026": 10087.1
+            "cases2026": 11190.1
           },
           {
             "customer": "Greenwood Lake Disc.(P)",
-            "cases2026": 9370.3
+            "cases2026": 10016.3
           },
           {
             "customer": "Ringwood W&L",
-            "cases2026": 8930.0
-          },
-          {
-            "customer": "Krauszer's Liquor Wine and Spirits",
-            "cases2026": 8619.0
+            "cases2026": 9941.0
           },
           {
             "customer": "Turnpike Discount Liquors",
-            "cases2026": 8460.0
+            "cases2026": 9636.0
+          },
+          {
+            "customer": "Krauszer's Liquor Wine and Spirits",
+            "cases2026": 9270.0
           },
           {
             "customer": "Buy Rite W &L Pompton(P)",
-            "cases2026": 7904.0
+            "cases2026": 8805.0
           },
           {
             "customer": "George's Market (A)",
-            "cases2026": 6831.0
+            "cases2026": 7858.0
           },
           {
             "customer": "Appio's Liquors",
-            "cases2026": 6769.0
+            "cases2026": 7682.0
           },
           {
             "customer": "Roserne Pkg Store South",
-            "cases2026": 6401.3
+            "cases2026": 7194.3
           },
           {
             "customer": "Usa Wine Traders (Wanaque)",
-            "cases2026": 6326.0
+            "cases2026": 7122.0
           },
           {
             "customer": "Shoppers Disc(A)Pompton",
-            "cases2026": 6109.5
+            "cases2026": 6840.5
           },
           {
             "customer": "Roserne Liquors North",
-            "cases2026": 5991.2
-          },
-          {
-            "customer": "B & B Wine&Liq",
-            "cases2026": 5581.0
+            "cases2026": 6600.2
           },
           {
             "customer": "Ringwood Discount Liquors",
-            "cases2026": 5493.0
+            "cases2026": 6293.0
+          },
+          {
+            "customer": "B & B Wine&Liq",
+            "cases2026": 6195.0
           },
           {
             "customer": "Wine 2 Spirits (P)",
-            "cases2026": 4669.0
+            "cases2026": 5204.0
           },
           {
             "customer": "Country Convenience Store",
-            "cases2026": 4174.0
+            "cases2026": 4697.0
           }
         ],
         "targets24ozCount": 27,
@@ -13966,23 +14006,23 @@ const PROGRAM_DATA = {
         "targets24oz": [
           {
             "customer": "Chabons Ii Liq/Bar (A)",
-            "cases2026": 7664.0
+            "cases2026": 8348.0
           },
           {
             "customer": "Culver Liquor and Bar",
-            "cases2026": 7273.0
+            "cases2026": 8034.0
           },
           {
             "customer": "The Greek's",
-            "cases2026": 1755.0
+            "cases2026": 2010.0
           },
           {
             "customer": "Picatinny Main Exch",
-            "cases2026": 742.0
+            "cases2026": 807.0
           },
           {
             "customer": "Swartswood",
-            "cases2026": 440.0
+            "cases2026": 531.0
           },
           {
             "customer": "Point 5 Lafayette",
@@ -14003,86 +14043,86 @@ const PROGRAM_DATA = {
         "targets24oz": [
           {
             "customer": "Discount Lqr(A) Outlet",
-            "cases2026": 162859.9
+            "cases2026": 172824.5
           },
           {
             "customer": "Ridgefield Deli & Liq",
-            "cases2026": 44545.3
+            "cases2026": 79037.7
           },
           {
             "customer": "Clifton Disc Liq (A)",
-            "cases2026": 34517.5
+            "cases2026": 38748.5
           },
           {
             "customer": "Garden Liquors (P)",
-            "cases2026": 19064.3
+            "cases2026": 21097.3
           },
           {
             "customer": "Wineland",
-            "cases2026": 17843.0
+            "cases2026": 20263.0
           },
           {
             "customer": "Usa Wine Traders Club (Saddle Brook)",
-            "cases2026": 16492.5
+            "cases2026": 18450.5
           },
           {
             "customer": "46 Discount Liquor Store",
-            "cases2026": 11594.0
-          },
-          {
-            "customer": "Westmont Liquors 64",
-            "cases2026": 11036.8
+            "cases2026": 12564.0
           },
           {
             "customer": "Exquisite W & L (A)",
-            "cases2026": 10812.5
+            "cases2026": 11863.5
           },
           {
             "customer": "Buy Rite Of Main St Lodi",
-            "cases2026": 10446.7
+            "cases2026": 11740.7
+          },
+          {
+            "customer": "Westmont Liquors 64",
+            "cases2026": 11323.8
           },
           {
             "customer": "Buy Rite Discount Liquor",
-            "cases2026": 8886.2
+            "cases2026": 9923.2
           },
           {
             "customer": "Figlar's (P)",
-            "cases2026": 8657.0
+            "cases2026": 9773.0
           },
           {
             "customer": "Shop Rite Liq.(A)Lodi",
-            "cases2026": 7318.0
-          },
-          {
-            "customer": "Circle Liquors",
-            "cases2026": 6790.7
+            "cases2026": 8214.0
           },
           {
             "customer": "Woodridge Wines & Liq(A)",
-            "cases2026": 6525.7
+            "cases2026": 7160.7
+          },
+          {
+            "customer": "Circle Liquors",
+            "cases2026": 7049.9
           },
           {
             "customer": "Teaneck Quickshop(P)Conv",
-            "cases2026": 5899.0
+            "cases2026": 6502.0
           },
           {
             "customer": "Lodi Liquor Store(P)",
-            "cases2026": 5552.0
-          },
-          {
-            "customer": "B & B Liquors (Fair Lawn)",
-            "cases2026": 4265.0
+            "cases2026": 6337.0
           },
           {
             "customer": "Discount Liq & Bar",
-            "cases2026": 4261.0
+            "cases2026": 4867.0
           },
           {
-            "customer": "Krauszer Liquor",
-            "cases2026": 4169.7
+            "customer": "B & B Liquors (Fair Lawn)",
+            "cases2026": 4738.0
+          },
+          {
+            "customer": "Welsh Farms",
+            "cases2026": 4562.0
           }
         ],
-        "targets24ozCount": 39,
+        "targets24ozCount": 40,
         "caseVolume24oz": 0.0,
         "caseVolumeOther": 10.0,
         "caseVolume24ozByAccount": [],
@@ -14105,82 +14145,82 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Banner Delicatessen",
-            "cases2026": 77507.8
+            "cases2026": 80347.2
+          },
+          {
+            "customer": "Edgewater Liquor (A)",
+            "cases2026": 40565.5
           },
           {
             "customer": "Bella Wine & Liquor",
             "cases2026": 30851.4
           },
           {
-            "customer": "Edgewater Liquor (A)",
-            "cases2026": 29281.9
-          },
-          {
             "customer": "Buy Rite Of Fairview",
-            "cases2026": 19436.0
+            "cases2026": 21494.0
           },
           {
             "customer": "Liquor World",
-            "cases2026": 12473.0
+            "cases2026": 13951.0
           },
           {
             "customer": "Liquor City(A)Cliffside",
-            "cases2026": 11521.0
+            "cases2026": 13165.0
           },
           {
             "customer": "Rome Liquors (Fairview)",
-            "cases2026": 10396.7
-          },
-          {
-            "customer": "Winston Wine & Liq",
-            "cases2026": 10303.4
+            "cases2026": 11653.7
           },
           {
             "customer": "Fairview Liq & Groc.(A)",
-            "cases2026": 10173.0
+            "cases2026": 11169.0
           },
           {
             "customer": "Boulevard Liq.(Fairview)",
-            "cases2026": 10122.0
+            "cases2026": 11053.0
+          },
+          {
+            "customer": "Winston Wine & Liq",
+            "cases2026": 10459.4
           },
           {
             "customer": "Linwood Wine-Linwood Plaza",
-            "cases2026": 8416.8
+            "cases2026": 9059.8
           },
           {
             "customer": "Stop N Go Conven. (P)",
-            "cases2026": 7595.0
+            "cases2026": 8463.0
           },
           {
             "customer": "Kikos Liquors Ii",
-            "cases2026": 7101.0
-          },
-          {
-            "customer": "Jay Cee (P) Deli & Liq.",
-            "cases2026": 6022.0
+            "cases2026": 7809.0
           },
           {
             "customer": "Mukeunji (Z)",
-            "cases2026": 5854.0
+            "cases2026": 6730.0
+          },
+          {
+            "customer": "Metro Liquor (Cliffside Park)",
+            "cases2026": 6702.2
+          },
+          {
+            "customer": "Jay Cee (P) Deli & Liq.",
+            "cases2026": 6690.0
           },
           {
             "customer": "Linwood Wine-Hudson Light",
-            "cases2026": 5393.0
+            "cases2026": 6079.0
           },
           {
             "customer": "Garden State Food&Liq (P)",
-            "cases2026": 5339.0
+            "cases2026": 5995.0
           },
           {
             "customer": "Banner Liquor Iii",
-            "cases2026": 5145.0
-          },
-          {
-            "customer": "American Classic Liq",
-            "cases2026": 4782.0
+            "cases2026": 5848.0
           }
         ],
-        "targets24ozCount": 45,
+        "targets24ozCount": 46,
         "caseVolume24oz": 0.0,
         "caseVolumeOther": 0.0,
         "caseVolume24ozByAccount": [],
@@ -14194,86 +14234,86 @@ const PROGRAM_DATA = {
         "targets24oz": [
           {
             "customer": "Total Wine & More (Totowa)",
-            "cases2026": 74064.0
+            "cases2026": 82762.0
           },
           {
             "customer": "Total Wine & More (River Edge)",
-            "cases2026": 71785.0
+            "cases2026": 79890.8
+          },
+          {
+            "customer": "Burgundy Convenience Store",
+            "cases2026": 31788.7
           },
           {
             "customer": "Shop Rite Liq (A)Englewd",
-            "cases2026": 28132.0
+            "cases2026": 31435.0
           },
           {
             "customer": "Buy Rite Of Hackensack",
-            "cases2026": 22991.8
+            "cases2026": 25686.8
           },
           {
             "customer": "Barrel & Brew Bar & Liq",
-            "cases2026": 20580.2
+            "cases2026": 20995.2
           },
           {
             "customer": "Portland Wine & Liquor",
-            "cases2026": 17216.0
+            "cases2026": 18713.0
           },
           {
             "customer": "Wine And Liq Depot(A)",
-            "cases2026": 16879.0
+            "cases2026": 18647.7
           },
           {
             "customer": "Hackensack Liquors",
-            "cases2026": 15898.0
+            "cases2026": 17640.3
           },
           {
             "customer": "Wine & More (P)",
-            "cases2026": 14581.0
+            "cases2026": 15425.8
           },
           {
             "customer": "Bergenfield Liq & Fw",
-            "cases2026": 13371.3
+            "cases2026": 14827.3
           },
           {
             "customer": "W E Beverage (A)",
-            "cases2026": 8230.0
-          },
-          {
-            "customer": "Time Lounge And Liq (A)",
-            "cases2026": 8184.0
+            "cases2026": 9307.0
           },
           {
             "customer": "Simple Simon's (Z)",
-            "cases2026": 7858.0
+            "cases2026": 9148.0
+          },
+          {
+            "customer": "Time Lounge And Liq (A)",
+            "cases2026": 9042.0
           },
           {
             "customer": "Bottle & Cork",
-            "cases2026": 7562.3
+            "cases2026": 8671.3
           },
           {
             "customer": "Essex St Liquor and Wine",
-            "cases2026": 6703.0
+            "cases2026": 7558.0
           },
           {
             "customer": "George's Liq",
-            "cases2026": 6635.0
-          },
-          {
-            "customer": "H & R Disc. Liq (P)",
-            "cases2026": 6168.0
+            "cases2026": 7434.0
           },
           {
             "customer": "Deli Mart (A)",
-            "cases2026": 6098.0
+            "cases2026": 6928.0
           },
           {
-            "customer": "G & G Liquors & Bar",
-            "cases2026": 5370.0
+            "customer": "H & R Disc. Liq (P)",
+            "cases2026": 6879.0
           },
           {
-            "customer": "Joes Beer Wine & Spirits",
-            "cases2026": 5105.3
+            "customer": "Country Wine & Liquors",
+            "cases2026": 6121.1
           }
         ],
-        "targets24ozCount": 33,
+        "targets24ozCount": 35,
         "caseVolume24oz": 0.0,
         "caseVolumeOther": 11.0,
         "caseVolume24ozByAccount": [],
@@ -14302,7 +14342,7 @@ const PROGRAM_DATA = {
         "targets24oz": [
           {
             "customer": "Shop Rite Wines/Spirits",
-            "cases2026": 186098.8
+            "cases2026": 191980.7
           },
           {
             "customer": "Scheps Discount Bar/Liq",
@@ -14310,78 +14350,78 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Ant's Bar & Liquors",
-            "cases2026": 80227.9
+            "cases2026": 86998.8
           },
           {
             "customer": "Gonzalez Liq & Bar(A)",
-            "cases2026": 36092.8
+            "cases2026": 36998.8
           },
           {
             "customer": "Shop Rite Liq (A)Littlefl",
-            "cases2026": 28486.0
+            "cases2026": 31482.0
           },
           {
             "customer": "The Liquor Shop",
-            "cases2026": 27097.0
+            "cases2026": 31026.0
           },
           {
             "customer": "C Town (A)",
-            "cases2026": 26134.7
+            "cases2026": 26338.7
           },
           {
             "customer": "The Point Liquor & Bar",
-            "cases2026": 21665.5
+            "cases2026": 22427.5
           },
           {
             "customer": "Economy Liquors",
-            "cases2026": 18898.0
+            "cases2026": 21090.0
           },
           {
             "customer": "Quis Queya Liquor(P)",
-            "cases2026": 13567.0
+            "cases2026": 15689.0
           },
           {
             "customer": "Ferraro's Liquor",
-            "cases2026": 11999.5
+            "cases2026": 13231.7
           },
           {
             "customer": "Pal's Liquor",
-            "cases2026": 11623.0
+            "cases2026": 12978.0
           },
           {
             "customer": "La Sorpresa Liq (P)",
-            "cases2026": 11157.0
+            "cases2026": 12436.0
           },
           {
             "customer": "Limestone Liquors (A)",
-            "cases2026": 11133.0
+            "cases2026": 12335.0
           },
           {
             "customer": "Santana's Sport(P)Bella",
-            "cases2026": 10374.8
+            "cases2026": 11252.8
           },
           {
             "customer": "Raphael & Angel Liq (A)",
-            "cases2026": 9958.0
-          },
-          {
-            "customer": "El Oasis",
-            "cases2026": 9646.0
+            "cases2026": 11241.0
           },
           {
             "customer": "230 Liq & Groc.(A)",
-            "cases2026": 9584.0
+            "cases2026": 10604.0
+          },
+          {
+            "customer": "El Oasis",
+            "cases2026": 10500.0
+          },
+          {
+            "customer": "Yaremy Liquors",
+            "cases2026": 9144.8
           },
           {
             "customer": "Mercer Bar & Liquors",
-            "cases2026": 7419.0
-          },
-          {
-            "customer": "Liquor Gallery (Paterson)",
-            "cases2026": 7175.5
+            "cases2026": 8270.0
           }
         ],
-        "targets24ozCount": 31,
+        "targets24ozCount": 32,
         "caseVolume24oz": 1.0,
         "caseVolumeOther": 183.0,
         "caseVolume24ozByAccount": [
@@ -14455,12 +14495,12 @@ const PROGRAM_DATA = {
             "cases2026": 5143.3
           },
           {
-            "customer": "STOP & GO LIQUORS",
-            "cases2026": 1594.0
+            "customer": "J B Liquors_2",
+            "cases2026": 1731.0
           },
           {
-            "customer": "J B Liquors_2",
-            "cases2026": 1571.0
+            "customer": "STOP & GO LIQUORS",
+            "cases2026": 1594.0
           },
           {
             "customer": "A2Z Wine Club",
@@ -14761,12 +14801,12 @@ const PROGRAM_DATA = {
             "cases2026": 2264.0
           },
           {
-            "customer": "Sparrow's Wine & Liq(P) (1224 Hoboken)",
-            "cases2026": 1640.0
+            "customer": "One Stop Wine (A) & Liq",
+            "cases2026": 1700.0
           },
           {
-            "customer": "One Stop Wine (A) & Liq",
-            "cases2026": 1578.0
+            "customer": "Sparrow's Wine & Liq(P) (1224 Hoboken)",
+            "cases2026": 1640.0
           },
           {
             "customer": "ShopRite Wines & Spirits of Hoboken",
@@ -14836,86 +14876,86 @@ const PROGRAM_DATA = {
         "targets24oz": [
           {
             "customer": "Edwards (P) Wine & Liq",
-            "cases2026": 44151.2
+            "cases2026": 45969.9
           },
           {
             "customer": "D'bar Liquors (P)",
-            "cases2026": 37223.2
+            "cases2026": 38287.2
+          },
+          {
+            "customer": "El Cantaro Liquors",
+            "cases2026": 37195.6
           },
           {
             "customer": "President Liqrs (A)",
-            "cases2026": 19683.0
+            "cases2026": 21023.0
           },
           {
             "customer": "Bottle Liquor (P)",
-            "cases2026": 14010.0
+            "cases2026": 15510.0
           },
           {
             "customer": "New Eagle Liquors",
-            "cases2026": 13517.0
+            "cases2026": 15209.0
           },
           {
             "customer": "Parker Liquors (Z)",
-            "cases2026": 13256.0
+            "cases2026": 14710.0
           },
           {
             "customer": "Diamond Liquors (P)",
-            "cases2026": 11857.0
+            "cases2026": 13433.0
           },
           {
             "customer": "Danny's Liquor",
-            "cases2026": 11699.0
+            "cases2026": 13208.0
           },
           {
             "customer": "ESTEVEZ LIQUORS LLC",
-            "cases2026": 11618.0
+            "cases2026": 12883.0
           },
           {
             "customer": "Luna Liquors",
-            "cases2026": 11399.0
+            "cases2026": 12801.0
           },
           {
             "customer": "Shanik Liqs.(P)",
-            "cases2026": 11287.0
+            "cases2026": 12344.0
           },
           {
             "customer": "East Side Bar Liquors",
-            "cases2026": 9821.0
+            "cases2026": 11115.0
           },
           {
             "customer": "Bermuda Liquors (P)",
-            "cases2026": 9445.0
-          },
-          {
-            "customer": "Paulison Liquors (P)",
-            "cases2026": 7557.0
+            "cases2026": 10138.0
           },
           {
             "customer": "La Joya Liquors",
-            "cases2026": 7453.0
+            "cases2026": 8583.0
           },
           {
             "customer": "Segundo's (P)",
-            "cases2026": 7344.0
+            "cases2026": 8582.0
+          },
+          {
+            "customer": "Paulison Liquors (P)",
+            "cases2026": 8543.0
           },
           {
             "customer": "Liquor Stop (Passaic)",
-            "cases2026": 7124.0
+            "cases2026": 8146.0
           },
           {
             "customer": "C & S Lucky Liquors (P)",
-            "cases2026": 6476.0
-          },
-          {
-            "customer": "C & S Lucky Liquors II",
-            "cases2026": 6049.0
+            "cases2026": 7333.0
           },
           {
             "customer": "Estevez Liquors & Grocery 2 LLC",
-            "cases2026": 5971.0
+            "cases2026": 6913.3
           }
         ],
-        "targets24ozCount": 26,
+        "targets24ozCount": 27,
         "caseVolume24oz": 1.0,
         "caseVolumeOther": 29.0,
         "caseVolume24ozByAccount": [
@@ -14947,86 +14987,86 @@ const PROGRAM_DATA = {
         "targets24oz": [
           {
             "customer": "Patricks Wine Barn",
-            "cases2026": 22162.0
+            "cases2026": 24732.0
           },
           {
             "customer": "USA Wine Traders Club Of Newton (A)",
-            "cases2026": 21030.0
+            "cases2026": 22910.0
           },
           {
             "customer": "ShopRite Wines & Spirits of Sparta",
-            "cases2026": 20657.0
+            "cases2026": 22540.0
           },
           {
             "customer": "Liquor Factory III Sparta",
-            "cases2026": 18253.8
+            "cases2026": 19876.8
           },
           {
             "customer": "ShopRite Wine & Spirits of Newton#830",
-            "cases2026": 15804.0
+            "cases2026": 17503.0
           },
           {
             "customer": "Mac & Lindy's W & S (A)",
-            "cases2026": 14958.0
-          },
-          {
-            "customer": "Liquor Factory II Jefferson",
-            "cases2026": 14542.0
+            "cases2026": 16662.0
           },
           {
             "customer": "ShopRite Wines & Spirits of Franklin",
-            "cases2026": 14418.0
+            "cases2026": 15968.0
+          },
+          {
+            "customer": "Liquor Factory II Jefferson",
+            "cases2026": 15824.0
           },
           {
             "customer": "Buy Rite Liquors Franklin",
-            "cases2026": 14384.0
+            "cases2026": 15567.0
           },
           {
             "customer": "Liquor Factory IV Hopatcong",
-            "cases2026": 11934.0
+            "cases2026": 13192.0
           },
           {
             "customer": "The George Inn",
-            "cases2026": 10126.0
+            "cases2026": 11148.0
           },
           {
             "customer": "Liquor Factory V Andover",
-            "cases2026": 9806.0
+            "cases2026": 10556.0
           },
           {
             "customer": "Liquor Factory VI Byram",
-            "cases2026": 9588.0
-          },
-          {
-            "customer": "Liquor Factory I Landing",
-            "cases2026": 8717.0
-          },
-          {
-            "customer": "Wantage Plaza Liq Outlet",
-            "cases2026": 8658.0
+            "cases2026": 10438.0
           },
           {
             "customer": "Spring Street Liquors",
-            "cases2026": 8560.0
+            "cases2026": 10037.0
+          },
+          {
+            "customer": "Wantage Plaza Liq Outlet",
+            "cases2026": 9663.0
+          },
+          {
+            "customer": "Liquor Factory I Landing",
+            "cases2026": 9499.0
           },
           {
             "customer": "Super Saver Liq",
-            "cases2026": 6898.0
+            "cases2026": 7609.0
           },
           {
             "customer": "Wine Country Newton",
-            "cases2026": 6827.0
+            "cases2026": 7547.0
           },
           {
             "customer": "Seplow's Liquors",
-            "cases2026": 5939.0
+            "cases2026": 6609.0
           },
           {
-            "customer": "The Right Bottle",
-            "cases2026": 5007.0
+            "customer": "Sussex Co.Discount Liq(P)",
+            "cases2026": 5425.0
           }
         ],
-        "targets24ozCount": 33,
+        "targets24ozCount": 35,
         "caseVolume24oz": 0.0,
         "caseVolumeOther": 10.0,
         "caseVolume24ozByAccount": [],
@@ -15055,7 +15095,7 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Shoppers Vineyard (A)",
-            "cases2026": 34288.0
+            "cases2026": 39124.0
           },
           {
             "customer": "Allwood Liquor Store",
@@ -15063,35 +15103,35 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "World of Wine & Liquor",
-            "cases2026": 28658.1
+            "cases2026": 29268.1
           },
           {
             "customer": "Clifton Commons S & W",
-            "cases2026": 15142.0
+            "cases2026": 16822.0
           },
           {
             "customer": "Broad Liquors (A)",
-            "cases2026": 12801.0
+            "cases2026": 14183.0
           },
           {
             "customer": "Lucky 7 (A)",
-            "cases2026": 11499.8
+            "cases2026": 12842.8
           },
           {
             "customer": "Rainbow Liquor (P)",
-            "cases2026": 11147.2
-          },
-          {
-            "customer": "Marina's Wine & Spirits",
-            "cases2026": 9272.9
+            "cases2026": 12415.2
           },
           {
             "customer": "Savers Club Liquor Locker",
-            "cases2026": 8772.0
+            "cases2026": 10398.0
+          },
+          {
+            "customer": "Marina's Wine & Spirits",
+            "cases2026": 10139.9
           },
           {
             "customer": "Little Falls Liq(P)",
-            "cases2026": 8533.2
+            "cases2026": 9762.2
           },
           {
             "customer": "Mason's Cellar (A)",
@@ -15099,35 +15139,35 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "US#1 Wine & Liquor",
-            "cases2026": 7041.0
-          },
-          {
-            "customer": "Rutherford Wine (A)",
-            "cases2026": 6507.9
+            "cases2026": 7746.0
           },
           {
             "customer": "Town Liquors",
-            "cases2026": 6162.0
+            "cases2026": 6932.0
+          },
+          {
+            "customer": "Rutherford Wine (A)",
+            "cases2026": 6791.9
           },
           {
             "customer": "Valley Liquors (A)",
-            "cases2026": 5542.0
+            "cases2026": 6199.0
           },
           {
             "customer": "Metro Liquors (North Arlington)",
-            "cases2026": 5366.0
+            "cases2026": 6003.0
           },
           {
             "customer": "Quik Stop Conv(Z)",
-            "cases2026": 5183.0
+            "cases2026": 5689.0
           },
           {
             "customer": "Liquor Shed",
-            "cases2026": 4902.5
+            "cases2026": 5477.5
           },
           {
-            "customer": "Dante's Liquor & Wine",
-            "cases2026": 4707.0
+            "customer": "West End Wine & Liq",
+            "cases2026": 5316.0
           }
         ],
         "targets24ozCount": 42,
@@ -15189,16 +15229,16 @@ const PROGRAM_DATA = {
             "cases2026": 1070.0
           },
           {
+            "customer": "Charlie's Liquor and Convenience",
+            "cases2026": 1044.0
+          },
+          {
             "customer": "Bottle King (Z) Chatham",
             "cases2026": 897.0
           },
           {
             "customer": "Best Cellars(Ledgewood)",
             "cases2026": 889.0
-          },
-          {
-            "customer": "Charlie's Liquor and Convenience",
-            "cases2026": 876.0
           },
           {
             "customer": "Sandy's Wine & Spirits (Flanders)",
@@ -15263,87 +15303,87 @@ const PROGRAM_DATA = {
         "new24ozReorderCount": 0,
         "targets24oz": [
           {
-            "customer": "House of Wine & Liquor",
-            "cases2026": 92498.9
+            "customer": "House of Wine & Liquor - Boonton",
+            "cases2026": 96412.9
           },
           {
             "customer": "Shop Rite Liq (A)Wharton",
-            "cases2026": 33283.0
+            "cases2026": 36521.0
           },
           {
             "customer": "Liquor Outlet",
-            "cases2026": 31126.5
+            "cases2026": 34835.5
           },
           {
             "customer": "Mountain Lakes Wine & Liquor",
-            "cases2026": 28534.5
+            "cases2026": 28584.5
           },
           {
             "customer": "Shop Rite Wine & Spirits Stanhope",
-            "cases2026": 21764.0
+            "cases2026": 23910.0
           },
           {
             "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
-            "cases2026": 19983.0
+            "cases2026": 21721.0
           },
           {
             "customer": "Milton Inn",
-            "cases2026": 19754.0
+            "cases2026": 21428.0
           },
           {
             "customer": "Quick Check Liquor (A)",
-            "cases2026": 11861.6
+            "cases2026": 12429.6
           },
           {
             "customer": "Shoppers Disc Liquor",
-            "cases2026": 9603.7
+            "cases2026": 10610.7
           },
           {
             "customer": "Rockaway W/L",
-            "cases2026": 9358.0
+            "cases2026": 10437.0
           },
           {
             "customer": "Shop-Rite(A) Netcong",
-            "cases2026": 9256.0
+            "cases2026": 10208.0
           },
           {
             "customer": "Nova Liquors",
-            "cases2026": 8813.9
-          },
-          {
-            "customer": "Island Of Spirits (P)",
-            "cases2026": 6551.0
-          },
-          {
-            "customer": "Midtown Liq",
-            "cases2026": 6440.2
+            "cases2026": 8876.9
           },
           {
             "customer": "Sam's Liq Wine (P)",
-            "cases2026": 6278.0
+            "cases2026": 7270.0
           },
           {
-            "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
-            "cases2026": 5589.0
+            "customer": "Island Of Spirits (P)",
+            "cases2026": 7154.0
+          },
+          {
+            "customer": "Midtown Liq",
+            "cases2026": 6957.2
           },
           {
             "customer": "Boonton Liquor Locker",
-            "cases2026": 5368.0
+            "cases2026": 6360.5
           },
           {
             "customer": "Wharton Liquor Store",
-            "cases2026": 5367.0
+            "cases2026": 6311.0
+          },
+          {
+            "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
+            "cases2026": 6220.0
           },
           {
             "customer": "Main Street Liquor",
-            "cases2026": 5024.3
+            "cases2026": 5864.3
           },
           {
             "customer": "Montville Wine & Spirits",
-            "cases2026": 4749.2
+            "cases2026": 5398.2
           }
         ],
-        "targets24ozCount": 27,
+        "targets24ozCount": 28,
         "caseVolume24oz": 0.0,
         "caseVolumeOther": 1.0,
         "caseVolume24ozByAccount": [],
@@ -15361,87 +15401,87 @@ const PROGRAM_DATA = {
         "new24ozReorderCount": 0,
         "targets24oz": [
           {
+            "customer": "Bottle Republic (Rutherford)",
+            "cases2026": 20042.6
+          },
+          {
             "customer": "Wine And People",
-            "cases2026": 16899.4
+            "cases2026": 17078.4
           },
           {
             "customer": "M & M Wine & Spirits",
-            "cases2026": 13826.2
+            "cases2026": 15449.2
           },
           {
             "customer": "Capri Deli&Liq (P)",
-            "cases2026": 13231.4
+            "cases2026": 14122.4
           },
           {
             "customer": "Shop Rite Of Wallington",
-            "cases2026": 11492.2
-          },
-          {
-            "customer": "Whoopee Liq (A)",
-            "cases2026": 11335.3
+            "cases2026": 12915.2
           },
           {
             "customer": "Metro Liquor (Elmwood Park)",
-            "cases2026": 11002.0
+            "cases2026": 12437.0
+          },
+          {
+            "customer": "Whoopee Liq (A)",
+            "cases2026": 12050.3
           },
           {
             "customer": "Archies (P)",
-            "cases2026": 9268.0
+            "cases2026": 10185.0
           },
           {
             "customer": "Metro Liquors (East Rutherford)",
-            "cases2026": 8889.5
-          },
-          {
-            "customer": "Bottle Republic (Rutherford)",
-            "cases2026": 7676.0
+            "cases2026": 10093.5
           },
           {
             "customer": "Luigi's Liquor (A)",
-            "cases2026": 6710.0
-          },
-          {
-            "customer": "Birchwood Liq & Deli (Z)",
-            "cases2026": 5532.0
-          },
-          {
-            "customer": "All Star Wine & Liquor",
-            "cases2026": 5390.0
+            "cases2026": 7382.0
           },
           {
             "customer": "Metro Wine And Liq(A)",
-            "cases2026": 5373.7
+            "cases2026": 6140.7
+          },
+          {
+            "customer": "Birchwood Liq & Deli (Z)",
+            "cases2026": 6059.0
+          },
+          {
+            "customer": "All Star Wine & Liquor",
+            "cases2026": 5835.0
           },
           {
             "customer": "Wine Grand (Carlstadt)",
-            "cases2026": 5013.7
+            "cases2026": 5790.0
+          },
+          {
+            "customer": "Buzzzrite Liquors",
+            "cases2026": 5487.0
           },
           {
             "customer": "Moonachie Liquors",
-            "cases2026": 4732.0
+            "cases2026": 5232.0
           },
           {
             "customer": "Cobblestone Hill Deli",
-            "cases2026": 4481.0
+            "cases2026": 5192.0
           },
           {
             "customer": "River Drive Bar (P)",
-            "cases2026": 4371.0
+            "cases2026": 4928.0
           },
           {
             "customer": "Vinny's Disc Liq (P)",
-            "cases2026": 4159.0
+            "cases2026": 4744.0
           },
           {
             "customer": "Wine Land",
-            "cases2026": 3910.0
-          },
-          {
-            "customer": "King Liquors",
-            "cases2026": 3630.1
+            "cases2026": 4557.0
           }
         ],
-        "targets24ozCount": 34,
+        "targets24ozCount": 39,
         "caseVolume24oz": 0.0,
         "caseVolumeOther": 1.0,
         "caseVolume24ozByAccount": [],
@@ -15460,27 +15500,27 @@ const PROGRAM_DATA = {
         "targets24oz": [
           {
             "customer": "Kinnelon Country Wine & Liquor",
-            "cases2026": 13317.5
+            "cases2026": 13538.5
           },
           {
             "customer": "Shay's Liquors",
-            "cases2026": 12054.8
+            "cases2026": 13381.0
           },
           {
             "customer": "Lincoln Center Liq",
-            "cases2026": 11632.6
+            "cases2026": 12653.6
           },
           {
             "customer": "Shays Liquors",
-            "cases2026": 9552.0
+            "cases2026": 10762.0
           },
           {
             "customer": "Wayne Liquor Locker",
-            "cases2026": 5874.0
+            "cases2026": 6631.7
           },
           {
             "customer": "Wolfson Market",
-            "cases2026": 4849.0
+            "cases2026": 5459.0
           },
           {
             "customer": "Total Wine & More (West Orange)",
@@ -15553,83 +15593,83 @@ const PROGRAM_DATA = {
         "targets24oz": [
           {
             "customer": "Bottle King (A) Wayne",
-            "cases2026": 38922.0
+            "cases2026": 43035.0
           },
           {
             "customer": "Waldwick Wine/Spirits",
-            "cases2026": 19439.0
+            "cases2026": 20435.0
           },
           {
             "customer": "Fair Lawn Wine & Spirits",
-            "cases2026": 17532.8
-          },
-          {
-            "customer": "Hawthorne Liq (A)",
-            "cases2026": 15329.4
+            "cases2026": 18417.8
           },
           {
             "customer": "Wine & Spirit World(W)",
-            "cases2026": 15037.0
+            "cases2026": 16677.7
           },
           {
             "customer": "Lincoln Park Fine Wines & Spirits",
-            "cases2026": 14976.5
+            "cases2026": 16324.5
           },
           {
             "customer": "Long Hill Liquors (A)",
-            "cases2026": 14466.0
+            "cases2026": 16155.0
+          },
+          {
+            "customer": "Hawthorne Liq (A)",
+            "cases2026": 15995.4
           },
           {
             "customer": "Frank's Fine Wine & Foods",
-            "cases2026": 14291.0
+            "cases2026": 15364.0
           },
           {
             "customer": "Nico's Wine & Spirits",
-            "cases2026": 11913.2
+            "cases2026": 13444.2
           },
           {
             "customer": "Mahwah Liqrs (P)",
-            "cases2026": 9234.2
+            "cases2026": 10016.2
           },
           {
             "customer": "Grand Opening Liq (A)_2",
-            "cases2026": 8697.0
-          },
-          {
-            "customer": "Goffle Road Wine and More",
-            "cases2026": 7496.8
+            "cases2026": 9809.0
           },
           {
             "customer": "Oakland Wine (A)",
-            "cases2026": 7233.5
+            "cases2026": 8338.5
+          },
+          {
+            "customer": "Goffle Road Wine and More",
+            "cases2026": 8225.8
           },
           {
             "customer": "Diamond Liquor",
-            "cases2026": 6522.0
+            "cases2026": 7229.0
           },
           {
             "customer": "Speedy Mart (P)",
-            "cases2026": 6117.0
+            "cases2026": 7164.0
           },
           {
             "customer": "Allendale Wine Shoppe",
-            "cases2026": 5962.0
+            "cases2026": 6886.0
           },
           {
             "customer": "Discount Liq (P)_2",
-            "cases2026": 4911.0
+            "cases2026": 5417.0
           },
           {
             "customer": "Franklin Lake Liq",
-            "cases2026": 4843.0
+            "cases2026": 5369.0
           },
           {
             "customer": "Scherer & Company",
-            "cases2026": 4449.0
+            "cases2026": 5114.0
           },
           {
             "customer": "Ridgewood Super Cellar",
-            "cases2026": 4325.5
+            "cases2026": 4749.5
           }
         ],
         "targets24ozCount": 31,
@@ -15646,11 +15686,11 @@ const PROGRAM_DATA = {
         "targets24oz": [
           {
             "customer": "Port Imperial HOQ LLC",
-            "cases2026": 4139.9
+            "cases2026": 4192.9
           },
           {
             "customer": "H Mart Inc (Space A101-A)",
-            "cases2026": 873.0
+            "cases2026": 942.0
           }
         ],
         "targets24ozCount": 2,
@@ -15667,23 +15707,23 @@ const PROGRAM_DATA = {
         "targets24oz": [
           {
             "customer": "Bombolon Liquor & Grocery",
-            "cases2026": 110867.8
+            "cases2026": 135370.7
           },
           {
             "customer": "Altiero Liquors",
-            "cases2026": 63576.0
+            "cases2026": 69400.7
           },
           {
             "customer": "Caraballo's",
-            "cases2026": 51120.9
+            "cases2026": 52883.9
           },
           {
             "customer": "Midtown Liquors",
-            "cases2026": 38646.3
+            "cases2026": 39211.3
           },
           {
             "customer": "EL BOHEMIO 2 LIQUOR STORE & BAR",
-            "cases2026": 29864.4
+            "cases2026": 31837.4
           },
           {
             "customer": "Limonta Liqs (A)",
@@ -15691,62 +15731,62 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Allen's Liquors",
-            "cases2026": 18920.2
+            "cases2026": 19256.2
           },
           {
             "customer": "Gene's Liquor",
-            "cases2026": 13200.0
+            "cases2026": 14370.0
           },
           {
             "customer": "Passaic Discount Liquors",
-            "cases2026": 12729.0
+            "cases2026": 14111.0
           },
           {
             "customer": "Regalado Liq",
-            "cases2026": 12723.0
+            "cases2026": 14086.0
           },
           {
             "customer": "Monroe Wine & Liq(P)",
-            "cases2026": 12594.0
+            "cases2026": 13914.0
           },
           {
             "customer": "Broadway W&L",
-            "cases2026": 12334.0
+            "cases2026": 13660.0
           },
           {
             "customer": "Sunny's Liqs.(P)",
-            "cases2026": 12069.0
+            "cases2026": 13449.0
           },
           {
             "customer": "Johnny's Liqs (P)",
-            "cases2026": 10190.0
+            "cases2026": 11045.0
           },
           {
             "customer": "#1 Liqrs (P)",
-            "cases2026": 8006.0
-          },
-          {
-            "customer": "Joe's Liquor (A)",
-            "cases2026": 6406.5
+            "cases2026": 8984.0
           },
           {
             "customer": "Boulevard Wine & Spirits",
-            "cases2026": 5896.0
+            "cases2026": 7200.0
+          },
+          {
+            "customer": "Joe's Liquor (A)",
+            "cases2026": 7032.5
           },
           {
             "customer": "Intensity Lounge/Angie's Liquors",
-            "cases2026": 5586.0
+            "cases2026": 6222.0
           },
           {
             "customer": "Schulman's (P) Deli",
-            "cases2026": 5462.3
+            "cases2026": 5961.3
           },
           {
             "customer": "Carisma Liq & Groc (P)",
-            "cases2026": 4474.0
+            "cases2026": 4960.0
           }
         ],
-        "targets24ozCount": 26,
+        "targets24ozCount": 28,
         "caseVolume24oz": 0.0,
         "caseVolumeOther": 4.0,
         "caseVolume24ozByAccount": [],
@@ -15765,11 +15805,11 @@ const PROGRAM_DATA = {
         "targets24oz": [
           {
             "customer": "Balthazar Bakery (A)",
-            "cases2026": 104.0
+            "cases2026": 120.0
           },
           {
             "customer": "Mykos",
-            "cases2026": 66.0
+            "cases2026": 80.0
           }
         ],
         "targets24ozCount": 2,
@@ -15785,87 +15825,87 @@ const PROGRAM_DATA = {
         "new24ozReorderCount": 0,
         "targets24oz": [
           {
-            "customer": "Agave Liquor, Wine & Spirits",
-            "cases2026": 51424.4
+            "customer": "Super Wine Warehse(P)Pate",
+            "cases2026": 60828.0
           },
           {
-            "customer": "Super Wine Warehse(P)Pate",
-            "cases2026": 50573.0
+            "customer": "Agave Liquor, Wine & Spirits",
+            "cases2026": 52704.0
           },
           {
             "customer": "Bottle King (A) Glen Rock",
-            "cases2026": 34861.0
+            "cases2026": 39163.0
           },
           {
             "customer": "Shop Rite Liq(A) Roch Pk",
-            "cases2026": 17977.0
+            "cases2026": 19883.0
           },
           {
             "customer": "Shop Rite Liq(A) Fair Lwn",
-            "cases2026": 16512.0
+            "cases2026": 18023.0
           },
           {
             "customer": "Palisades Wine And Liquor",
-            "cases2026": 14982.0
-          },
-          {
-            "customer": "Shop-Rite Liq Lyndhurst",
-            "cases2026": 13510.3
+            "cases2026": 16881.0
           },
           {
             "customer": "Budy's Wine & Liq (A)",
-            "cases2026": 13391.0
+            "cases2026": 14893.0
+          },
+          {
+            "customer": "Shop-Rite Liq Lyndhurst",
+            "cases2026": 14872.3
           },
           {
             "customer": "Shop Rite Liq (Paramus)",
-            "cases2026": 11134.0
-          },
-          {
-            "customer": "City Supermarket",
-            "cases2026": 11028.0
+            "cases2026": 12872.0
           },
           {
             "customer": "Stew Leonard's(A) Paramus Wine",
-            "cases2026": 10822.0
+            "cases2026": 12641.0
+          },
+          {
+            "customer": "City Supermarket",
+            "cases2026": 12507.0
           },
           {
             "customer": "Food Universe Marketplace",
-            "cases2026": 10135.2
+            "cases2026": 11376.3
           },
           {
             "customer": "Stew Leonard's Wines & Spirits of Clifton",
-            "cases2026": 9016.0
+            "cases2026": 10520.0
           },
           {
             "customer": "Home Wines & Liq 75 (A) (South Hackensack)",
-            "cases2026": 8001.0
+            "cases2026": 8824.0
+          },
+          {
+            "customer": "PRIME WINE CELLAR Liquor & Beer",
+            "cases2026": 6672.0
+          },
+          {
+            "customer": "Acme Markets (Midland Park)",
+            "cases2026": 5632.0
           },
           {
             "customer": "Wine Country Of Saddle Brook (A)",
-            "cases2026": 4529.0
+            "cases2026": 5038.0
+          },
+          {
+            "customer": "Acme Markets (Fort Lee)",
+            "cases2026": 4661.0
           },
           {
             "customer": "Whole Foods Market (Paramus)",
-            "cases2026": 3153.0
-          },
-          {
-            "customer": "Acme Markets (Allendale)",
-            "cases2026": 3105.0
+            "cases2026": 3541.0
           },
           {
             "customer": "Riverview Liq (P)",
-            "cases2026": 3013.0
-          },
-          {
-            "customer": "Gary's Wine & Marketplace (Wayne)",
-            "cases2026": 2026.0
-          },
-          {
-            "customer": "Stew Leonard's(A) Paramu (NA)",
-            "cases2026": 1414.0
+            "cases2026": 3530.0
           }
         ],
-        "targets24ozCount": 25,
+        "targets24ozCount": 30,
         "caseVolume24oz": 0.0,
         "caseVolumeOther": 4.0,
         "caseVolume24ozByAccount": [],
@@ -15884,10 +15924,14 @@ const PROGRAM_DATA = {
         "targets24oz": [
           {
             "customer": "Jerry's Outlet",
-            "cases2026": 343.0
+            "cases2026": 404.0
+          },
+          {
+            "customer": "Pizza Town USA",
+            "cases2026": 101.0
           }
         ],
-        "targets24ozCount": 1,
+        "targets24ozCount": 2,
         "caseVolume24oz": 0.0,
         "caseVolumeOther": 0.0,
         "caseVolume24ozByAccount": [],
@@ -15901,86 +15945,86 @@ const PROGRAM_DATA = {
         "targets24oz": [
           {
             "customer": "Bottle King (A) Ramsey",
-            "cases2026": 44746.0
+            "cases2026": 49333.0
           },
           {
             "customer": "Bottle King (A) Dumont",
-            "cases2026": 36261.0
+            "cases2026": 39813.0
           },
           {
             "customer": "Beverage Barn (A)",
-            "cases2026": 24857.0
+            "cases2026": 27883.0
           },
           {
             "customer": "Ramsey Wine & Liquor",
-            "cases2026": 24068.0
+            "cases2026": 27164.0
           },
           {
             "customer": "Montvale Wine/Liq & Beer",
-            "cases2026": 21475.0
+            "cases2026": 23653.0
           },
           {
             "customer": "Bottle King (A) Hillsdale",
-            "cases2026": 19774.0
+            "cases2026": 22087.0
           },
           {
             "customer": "Shoprite Liq (A)Northvle",
-            "cases2026": 18009.0
+            "cases2026": 20026.0
           },
           {
             "customer": "Shop Rite Liq (A)Hillsdal",
-            "cases2026": 15421.5
+            "cases2026": 17157.5
           },
           {
             "customer": "Cork & Keg (A)",
-            "cases2026": 11978.2
+            "cases2026": 13286.7
           },
           {
             "customer": "Shop Rite Liq (A)Emerson",
-            "cases2026": 8480.0
+            "cases2026": 9551.0
           },
           {
             "customer": "Winemart Discount",
-            "cases2026": 8310.7
+            "cases2026": 9260.7
           },
           {
             "customer": "Township Liq (P)",
-            "cases2026": 7349.0
+            "cases2026": 8114.0
           },
           {
             "customer": "Brand Bar & Bev (A)",
-            "cases2026": 7080.0
+            "cases2026": 7764.0
           },
           {
             "customer": "Garden State Deli (A)",
-            "cases2026": 6742.0
+            "cases2026": 7608.0
           },
           {
-            "customer": "Gary's Wine & Marketplace (Closter)",
-            "cases2026": 6414.0
+            "customer": "Gary's Closter / CLoster Cellars",
+            "cases2026": 6861.0
           },
           {
             "customer": "Westwood Wine and Liquors",
-            "cases2026": 5404.0
+            "cases2026": 6090.0
           },
           {
             "customer": "Wine And Beverage Spirits",
-            "cases2026": 4751.0
+            "cases2026": 5467.0
+          },
+          {
+            "customer": "Cambridge Wines (Woodcliff Lake)",
+            "cases2026": 4546.9
           },
           {
             "customer": "Wine & Whiskey (A)",
-            "cases2026": 3269.0
-          },
-          {
-            "customer": "Ridgemont Liquors (A)",
-            "cases2026": 2990.7
+            "cases2026": 3776.0
           },
           {
             "customer": "Coasters Liquors",
-            "cases2026": 2899.0
+            "cases2026": 3302.0
           }
         ],
-        "targets24ozCount": 29,
+        "targets24ozCount": 31,
         "caseVolume24oz": 0.0,
         "caseVolumeOther": 2.0,
         "caseVolume24ozByAccount": [],
@@ -18204,11 +18248,11 @@ const PROGRAM_DATA = {
         "packageWhitespace": [
           {
             "customer": "Paradise Liquors",
-            "cases2026": 19143.6
+            "cases2026": 21184.7
           },
           {
             "customer": "Super K Food (A) Store",
-            "cases2026": 1534.0
+            "cases2026": 1763.0
           }
         ],
         "points": 0,
@@ -18837,47 +18881,47 @@ const PROGRAM_DATA = {
         "packageWhitespace": [
           {
             "customer": "River Place Food Store",
-            "cases2026": 10087.1
+            "cases2026": 11190.1
           },
           {
             "customer": "George's Market (A)",
-            "cases2026": 6831.0
+            "cases2026": 7858.0
           },
           {
             "customer": "Appio's Liquors",
-            "cases2026": 6769.0
+            "cases2026": 7682.0
           },
           {
             "customer": "Usa Wine Traders (Wanaque)",
-            "cases2026": 6326.0
+            "cases2026": 7122.0
           },
           {
             "customer": "Shoppers Disc(A)Pompton",
-            "cases2026": 6109.5
+            "cases2026": 6840.5
           },
           {
             "customer": "Country Convenience Store",
-            "cases2026": 4174.0
+            "cases2026": 4697.0
           },
           {
             "customer": "Bloomingdale Discount Liq",
-            "cases2026": 3091.0
+            "cases2026": 3317.0
           },
           {
             "customer": "Meloi Liquors",
-            "cases2026": 2687.0
+            "cases2026": 2932.0
           },
           {
             "customer": "Vault Liquors",
-            "cases2026": 2653.8
+            "cases2026": 2695.8
           },
           {
             "customer": "M & M Discount Liq",
-            "cases2026": 2159.0
+            "cases2026": 2461.0
           },
           {
             "customer": "Hootch Hut (P)",
-            "cases2026": 1837.0
+            "cases2026": 1886.0
           }
         ],
         "points": 18,
@@ -19173,19 +19217,19 @@ const PROGRAM_DATA = {
         "packageWhitespace": [
           {
             "customer": "Chabons Ii Liq/Bar (A)",
-            "cases2026": 7664.0
+            "cases2026": 8348.0
           },
           {
             "customer": "The Greek's",
-            "cases2026": 1755.0
+            "cases2026": 2010.0
           },
           {
             "customer": "Picatinny Main Exch",
-            "cases2026": 742.0
+            "cases2026": 807.0
           },
           {
             "customer": "Swartswood",
-            "cases2026": 440.0
+            "cases2026": 531.0
           },
           {
             "customer": "Point 5 Lafayette",
@@ -19350,63 +19394,63 @@ const PROGRAM_DATA = {
         "packageWhitespace": [
           {
             "customer": "Discount Lqr(A) Outlet",
-            "cases2026": 162859.9
+            "cases2026": 172824.5
           },
           {
             "customer": "Clifton Disc Liq (A)",
-            "cases2026": 34517.5
+            "cases2026": 38748.5
           },
           {
             "customer": "Westmont Liquors 64",
-            "cases2026": 11036.8
+            "cases2026": 11323.8
           },
           {
             "customer": "Lodi Liquor Store(P)",
-            "cases2026": 5552.0
+            "cases2026": 6337.0
           },
           {
             "customer": "B & B Liquors (Fair Lawn)",
-            "cases2026": 4265.0
+            "cases2026": 4738.0
           },
           {
             "customer": "Welsh Farms",
-            "cases2026": 4059.0
+            "cases2026": 4562.0
           },
           {
             "customer": "Maywood Wine&Liq (A)",
-            "cases2026": 3204.0
+            "cases2026": 3683.0
           },
           {
             "customer": "Paramus Food Center",
-            "cases2026": 2058.0
+            "cases2026": 2277.0
           },
           {
             "customer": "Morlot W & L (A)",
-            "cases2026": 1649.0
+            "cases2026": 2001.0
           },
           {
             "customer": "Meadowland Wine & Liquor",
-            "cases2026": 1498.0
+            "cases2026": 1763.0
           },
           {
             "customer": "Princess Liquor's(P)",
-            "cases2026": 1148.0
+            "cases2026": 1288.0
           },
           {
             "customer": "Yoshi Liq/Wine (P)",
-            "cases2026": 913.0
+            "cases2026": 1020.0
           },
           {
             "customer": "Iga Supermarkets (A)",
-            "cases2026": 799.0
+            "cases2026": 932.0
+          },
+          {
+            "customer": "Ani Service Station Inc",
+            "cases2026": 287.0
           },
           {
             "customer": "Pompei's Little Market",
-            "cases2026": 211.0
-          },
-          {
-            "customer": "Ma'adan Catering",
-            "cases2026": 17.0
+            "cases2026": 234.0
           }
         ],
         "points": 3,
@@ -19532,59 +19576,59 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Banner Delicatessen",
-            "cases2026": 77507.8
+            "cases2026": 80347.2
+          },
+          {
+            "customer": "Edgewater Liquor (A)",
+            "cases2026": 40565.5
           },
           {
             "customer": "Bella Wine & Liquor",
             "cases2026": 30851.4
           },
           {
-            "customer": "Edgewater Liquor (A)",
-            "cases2026": 29281.9
-          },
-          {
             "customer": "Liquor World",
-            "cases2026": 12473.0
+            "cases2026": 13951.0
           },
           {
             "customer": "Liquor City(A)Cliffside",
-            "cases2026": 11521.0
+            "cases2026": 13165.0
           },
           {
             "customer": "Rome Liquors (Fairview)",
-            "cases2026": 10396.7
-          },
-          {
-            "customer": "Winston Wine & Liq",
-            "cases2026": 10303.4
+            "cases2026": 11653.7
           },
           {
             "customer": "Fairview Liq & Groc.(A)",
-            "cases2026": 10173.0
+            "cases2026": 11169.0
           },
           {
             "customer": "Boulevard Liq.(Fairview)",
-            "cases2026": 10122.0
+            "cases2026": 11053.0
+          },
+          {
+            "customer": "Winston Wine & Liq",
+            "cases2026": 10459.4
           },
           {
             "customer": "Linwood Wine-Linwood Plaza",
-            "cases2026": 8416.8
+            "cases2026": 9059.8
           },
           {
             "customer": "Stop N Go Conven. (P)",
-            "cases2026": 7595.0
+            "cases2026": 8463.0
           },
           {
             "customer": "Kikos Liquors Ii",
-            "cases2026": 7101.0
-          },
-          {
-            "customer": "Jay Cee (P) Deli & Liq.",
-            "cases2026": 6022.0
+            "cases2026": 7809.0
           },
           {
             "customer": "Mukeunji (Z)",
-            "cases2026": 5854.0
+            "cases2026": 6730.0
+          },
+          {
+            "customer": "Jay Cee (P) Deli & Liq.",
+            "cases2026": 6690.0
           }
         ],
         "points": 2,
@@ -19665,51 +19709,59 @@ const PROGRAM_DATA = {
         "packageWhitespace": [
           {
             "customer": "Total Wine & More (Totowa)",
-            "cases2026": 74064.0
+            "cases2026": 82762.0
           },
           {
             "customer": "Total Wine & More (River Edge)",
-            "cases2026": 71785.0
+            "cases2026": 79890.8
+          },
+          {
+            "customer": "Burgundy Convenience Store",
+            "cases2026": 31788.7
           },
           {
             "customer": "Barrel & Brew Bar & Liq",
-            "cases2026": 20580.2
+            "cases2026": 20995.2
           },
           {
             "customer": "W E Beverage (A)",
-            "cases2026": 8230.0
+            "cases2026": 9307.0
           },
           {
             "customer": "Time Lounge And Liq (A)",
-            "cases2026": 8184.0
-          },
-          {
-            "customer": "Englewood Wine and Spirits",
-            "cases2026": 3375.0
+            "cases2026": 9042.0
           },
           {
             "customer": "Country Wine & Liquors",
-            "cases2026": 1712.0
+            "cases2026": 6121.1
+          },
+          {
+            "customer": "Englewood Wine and Spirits",
+            "cases2026": 3888.0
           },
           {
             "customer": "Englewood Liq (A)",
-            "cases2026": 1537.0
+            "cases2026": 1707.0
           },
           {
             "customer": "99 Ranch Market",
-            "cases2026": 1091.0
+            "cases2026": 1303.0
           },
           {
             "customer": "Fill Er Up Kosher Wine(P)",
-            "cases2026": 698.0
+            "cases2026": 743.0
           },
           {
             "customer": "Santa Barbara",
-            "cases2026": 575.0
+            "cases2026": 720.0
+          },
+          {
+            "customer": "VINEYARD",
+            "cases2026": 628.0
           },
           {
             "customer": "Parisi Deli",
-            "cases2026": 192.0
+            "cases2026": 215.0
           },
           {
             "customer": "Englewood Wine (A)",
@@ -19760,59 +19812,59 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Ant's Bar & Liquors",
-            "cases2026": 80227.9
+            "cases2026": 86998.8
           },
           {
             "customer": "Gonzalez Liq & Bar(A)",
-            "cases2026": 36092.8
+            "cases2026": 36998.8
           },
           {
             "customer": "The Liquor Shop",
-            "cases2026": 27097.0
+            "cases2026": 31026.0
           },
           {
             "customer": "C Town (A)",
-            "cases2026": 26134.7
+            "cases2026": 26338.7
           },
           {
             "customer": "The Point Liquor & Bar",
-            "cases2026": 21665.5
+            "cases2026": 22427.5
           },
           {
             "customer": "Economy Liquors",
-            "cases2026": 18898.0
+            "cases2026": 21090.0
           },
           {
             "customer": "Quis Queya Liquor(P)",
-            "cases2026": 13567.0
+            "cases2026": 15689.0
           },
           {
             "customer": "Ferraro's Liquor",
-            "cases2026": 11999.5
+            "cases2026": 13231.7
           },
           {
             "customer": "Pal's Liquor",
-            "cases2026": 11623.0
+            "cases2026": 12978.0
           },
           {
             "customer": "La Sorpresa Liq (P)",
-            "cases2026": 11157.0
+            "cases2026": 12436.0
           },
           {
             "customer": "Limestone Liquors (A)",
-            "cases2026": 11133.0
+            "cases2026": 12335.0
           },
           {
             "customer": "Santana's Sport(P)Bella",
-            "cases2026": 10374.8
+            "cases2026": 11252.8
           },
           {
             "customer": "Raphael & Angel Liq (A)",
-            "cases2026": 9958.0
+            "cases2026": 11241.0
           },
           {
-            "customer": "El Oasis",
-            "cases2026": 9646.0
+            "customer": "230 Liq & Groc.(A)",
+            "cases2026": 10604.0
           }
         ],
         "points": 0,
@@ -19836,7 +19888,7 @@ const PROGRAM_DATA = {
         "packageWhitespace": [
           {
             "customer": "J B Liquors_2",
-            "cases2026": 1571.0
+            "cases2026": 1731.0
           }
         ],
         "points": 0,
@@ -19950,63 +20002,63 @@ const PROGRAM_DATA = {
         "packageWhitespace": [
           {
             "customer": "Edwards (P) Wine & Liq",
-            "cases2026": 44151.2
+            "cases2026": 45969.9
           },
           {
             "customer": "D'bar Liquors (P)",
-            "cases2026": 37223.2
+            "cases2026": 38287.2
+          },
+          {
+            "customer": "El Cantaro Liquors",
+            "cases2026": 37195.6
           },
           {
             "customer": "President Liqrs (A)",
-            "cases2026": 19683.0
+            "cases2026": 21023.0
           },
           {
             "customer": "Farm Boy",
-            "cases2026": 14051.0
+            "cases2026": 15788.0
           },
           {
             "customer": "Parker Liquors (Z)",
-            "cases2026": 13256.0
+            "cases2026": 14710.0
           },
           {
             "customer": "Diamond Liquors (P)",
-            "cases2026": 11857.0
+            "cases2026": 13433.0
           },
           {
             "customer": "Danny's Liquor",
-            "cases2026": 11699.0
+            "cases2026": 13208.0
           },
           {
             "customer": "ESTEVEZ LIQUORS LLC",
-            "cases2026": 11618.0
+            "cases2026": 12883.0
           },
           {
             "customer": "Luna Liquors",
-            "cases2026": 11399.0
+            "cases2026": 12801.0
           },
           {
             "customer": "Shanik Liqs.(P)",
-            "cases2026": 11287.0
+            "cases2026": 12344.0
           },
           {
             "customer": "East Side Bar Liquors",
-            "cases2026": 9821.0
-          },
-          {
-            "customer": "Paulison Liquors (P)",
-            "cases2026": 7557.0
+            "cases2026": 11115.0
           },
           {
             "customer": "La Joya Liquors",
-            "cases2026": 7453.0
+            "cases2026": 8583.0
           },
           {
             "customer": "Segundo's (P)",
-            "cases2026": 7344.0
+            "cases2026": 8582.0
           },
           {
-            "customer": "Liquor Stop (Passaic)",
-            "cases2026": 7124.0
+            "customer": "Paulison Liquors (P)",
+            "cases2026": 8543.0
           }
         ],
         "points": 0,
@@ -20083,51 +20135,59 @@ const PROGRAM_DATA = {
         "packageWhitespace": [
           {
             "customer": "ShopRite Wines & Spirits of Franklin",
-            "cases2026": 14418.0
+            "cases2026": 15968.0
           },
           {
             "customer": "Wine Country Newton",
-            "cases2026": 6827.0
+            "cases2026": 7547.0
           },
           {
             "customer": "Brix - Wine, Spirits, Beer (Fredon)",
-            "cases2026": 4173.0
-          },
-          {
-            "customer": "Highland General Store",
-            "cases2026": 4144.0
+            "cases2026": 4818.0
           },
           {
             "customer": "George's Wine & Spirits",
-            "cases2026": 3971.0
+            "cases2026": 4521.2
+          },
+          {
+            "customer": "Highland General Store",
+            "cases2026": 4512.0
           },
           {
             "customer": "Hamburg Liquor",
-            "cases2026": 3793.2
+            "cases2026": 4237.2
           },
           {
             "customer": "White Deer Inn",
-            "cases2026": 3769.0
+            "cases2026": 4105.0
           },
           {
             "customer": "Fredon Liquor (Fredon Deli)",
-            "cases2026": 3134.0
+            "cases2026": 3517.0
           },
           {
             "customer": "Kent's Liquors",
-            "cases2026": 1924.0
+            "cases2026": 2211.0
           },
           {
             "customer": "Burkes",
-            "cases2026": 1795.2
+            "cases2026": 2012.2
           },
           {
             "customer": "Market Place Liquor",
-            "cases2026": 1569.0
+            "cases2026": 1764.0
           },
           {
             "customer": "Lake Wanda Store",
-            "cases2026": 1166.0
+            "cases2026": 1301.0
+          },
+          {
+            "customer": "Weis Supermarkets 143 Newton",
+            "cases2026": 11.0
+          },
+          {
+            "customer": "Weiss Super Market 147 Franklin",
+            "cases2026": 11.0
           }
         ],
         "points": 1,
@@ -20221,7 +20281,7 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Marina's Wine & Spirits",
-            "cases2026": 9272.9
+            "cases2026": 10139.9
           },
           {
             "customer": "Mason's Cellar (A)",
@@ -20229,47 +20289,47 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Rutherford Wine (A)",
-            "cases2026": 6507.9
+            "cases2026": 6791.9
           },
           {
             "customer": "Valley Liquors (A)",
-            "cases2026": 5542.0
+            "cases2026": 6199.0
           },
           {
             "customer": "Quik Stop Conv(Z)",
-            "cases2026": 5183.0
+            "cases2026": 5689.0
           },
           {
             "customer": "Dante's Liquor & Wine",
-            "cases2026": 4707.0
+            "cases2026": 5276.0
           },
           {
             "customer": "Swizzle Stick Liq (A)",
-            "cases2026": 4580.0
+            "cases2026": 5268.0
           },
           {
             "customer": "Quick Buy",
-            "cases2026": 2561.0
+            "cases2026": 2736.0
           },
           {
             "customer": "Krauser Food & Liq(A)",
-            "cases2026": 2455.0
-          },
-          {
-            "customer": "Schuyler Food",
-            "cases2026": 2333.0
+            "cases2026": 2706.0
           },
           {
             "customer": "Richfield Liquors",
-            "cases2026": 2291.0
+            "cases2026": 2643.0
           },
           {
-            "customer": "Field Liquors (A)",
-            "cases2026": 2250.0
+            "customer": "Schuyler Food",
+            "cases2026": 2626.0
           },
           {
             "customer": "Vasel's (A)",
-            "cases2026": 2245.0
+            "cases2026": 2526.0
+          },
+          {
+            "customer": "Field Liquors (A)",
+            "cases2026": 2504.0
           }
         ],
         "points": 2,
@@ -20293,15 +20353,15 @@ const PROGRAM_DATA = {
         "packageWhitespace": [
           {
             "customer": "Charlie's Liquor and Convenience",
-            "cases2026": 876.0
+            "cases2026": 1044.0
           },
           {
             "customer": "X Plor Wine",
-            "cases2026": 232.0
+            "cases2026": 272.0
           },
           {
             "customer": "Haworth Fine Wine/Spirits",
-            "cases2026": 226.0
+            "cases2026": 268.0
           }
         ],
         "points": 0,
@@ -20352,47 +20412,51 @@ const PROGRAM_DATA = {
         "packageWhitespace": [
           {
             "customer": "Mountain Lakes Wine & Liquor",
-            "cases2026": 28534.5
+            "cases2026": 28584.5
           },
           {
             "customer": "Nova Liquors",
-            "cases2026": 8813.9
-          },
-          {
-            "customer": "Island Of Spirits (P)",
-            "cases2026": 6551.0
+            "cases2026": 8876.9
           },
           {
             "customer": "Sam's Liq Wine (P)",
-            "cases2026": 6278.0
+            "cases2026": 7270.0
           },
           {
-            "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
-            "cases2026": 5589.0
+            "customer": "Island Of Spirits (P)",
+            "cases2026": 7154.0
           },
           {
             "customer": "Wharton Liquor Store",
-            "cases2026": 5367.0
+            "cases2026": 6311.0
+          },
+          {
+            "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
+            "cases2026": 6220.0
           },
           {
             "customer": "Main Street Liquor",
-            "cases2026": 5024.3
-          },
-          {
-            "customer": "Patel Liqr & Gro(P)",
-            "cases2026": 3922.3
+            "cases2026": 5864.3
           },
           {
             "customer": "Denville W & L",
-            "cases2026": 3897.0
+            "cases2026": 4434.0
+          },
+          {
+            "customer": "Patel Liqr & Gro(P)",
+            "cases2026": 4295.3
           },
           {
             "customer": "Berkshire(P) Bot. Shop",
-            "cases2026": 1203.0
+            "cases2026": 1325.0
           },
           {
             "customer": "The Village Place",
-            "cases2026": 903.0
+            "cases2026": 971.0
+          },
+          {
+            "customer": "23 liquor & Tobacco",
+            "cases2026": 855.0
           }
         ],
         "points": 1,
@@ -20508,63 +20572,63 @@ const PROGRAM_DATA = {
         "packageWhitespace": [
           {
             "customer": "Home Wine Liquor (Passaic)",
-            "cases2026": 28031.0
+            "cases2026": 31807.0
           },
           {
             "customer": "Wine And People",
-            "cases2026": 16899.4
+            "cases2026": 17078.4
           },
           {
             "customer": "M & M Wine & Spirits",
-            "cases2026": 13826.2
+            "cases2026": 15449.2
           },
           {
             "customer": "Archies (P)",
-            "cases2026": 9268.0
+            "cases2026": 10185.0
           },
           {
             "customer": "Luigi's Liquor (A)",
-            "cases2026": 6710.0
+            "cases2026": 7382.0
           },
           {
             "customer": "Birchwood Liq & Deli (Z)",
-            "cases2026": 5532.0
+            "cases2026": 6059.0
           },
           {
             "customer": "Wine Grand (Carlstadt)",
-            "cases2026": 5013.7
+            "cases2026": 5790.0
           },
           {
             "customer": "Moonachie Liquors",
-            "cases2026": 4732.0
+            "cases2026": 5232.0
           },
           {
             "customer": "Vinny's Disc Liq (P)",
-            "cases2026": 4159.0
+            "cases2026": 4744.0
+          },
+          {
+            "customer": "Wallington Liquor and Wine",
+            "cases2026": 4023.0
           },
           {
             "customer": "Garfield Bar & Liq (P)",
-            "cases2026": 3057.0
+            "cases2026": 3554.0
           },
           {
             "customer": "L. F. Wine Country (P)",
-            "cases2026": 2711.0
-          },
-          {
-            "customer": "Payless Liquor & Dell",
-            "cases2026": 2651.0
+            "cases2026": 3058.0
           },
           {
             "customer": "Little Ferry Wines/Liquor",
-            "cases2026": 2584.0
+            "cases2026": 2914.0
           },
           {
-            "customer": "Vicki's Bar & Liquors",
-            "cases2026": 2230.4
+            "customer": "Payless Liquor & Dell",
+            "cases2026": 2825.0
           },
           {
             "customer": "Worldwide Liquors",
-            "cases2026": 2005.0
+            "cases2026": 2423.0
           }
         ],
         "points": 1,
@@ -20614,15 +20678,15 @@ const PROGRAM_DATA = {
         "packageWhitespace": [
           {
             "customer": "Kinnelon Country Wine & Liquor",
-            "cases2026": 13317.5
+            "cases2026": 13538.5
           },
           {
             "customer": "Lincoln Center Liq",
-            "cases2026": 11632.6
+            "cases2026": 12653.6
           },
           {
             "customer": "Wayne Liquor Locker",
-            "cases2026": 5874.0
+            "cases2026": 6631.7
           }
         ],
         "points": 1,
@@ -20758,63 +20822,63 @@ const PROGRAM_DATA = {
         "packageWhitespace": [
           {
             "customer": "Frank's Fine Wine & Foods",
-            "cases2026": 14291.0
+            "cases2026": 15364.0
           },
           {
             "customer": "Nico's Wine & Spirits",
-            "cases2026": 11913.2
+            "cases2026": 13444.2
           },
           {
             "customer": "Mahwah Liqrs (P)",
-            "cases2026": 9234.2
+            "cases2026": 10016.2
           },
           {
             "customer": "Oakland Wine (A)",
-            "cases2026": 7233.5
+            "cases2026": 8338.5
           },
           {
             "customer": "Speedy Mart (P)",
-            "cases2026": 6117.0
+            "cases2026": 7164.0
           },
           {
             "customer": "Allendale Wine Shoppe",
-            "cases2026": 5962.0
+            "cases2026": 6886.0
           },
           {
             "customer": "Discount Liq (P)_2",
-            "cases2026": 4911.0
+            "cases2026": 5417.0
           },
           {
             "customer": "Franklin Lake Liq",
-            "cases2026": 4843.0
+            "cases2026": 5369.0
           },
           {
             "customer": "Scherer & Company",
-            "cases2026": 4449.0
+            "cases2026": 5114.0
           },
           {
             "customer": "Uncorked Wine & Spirits (Hohokus)",
-            "cases2026": 2493.0
+            "cases2026": 2834.0
           },
           {
             "customer": "Stop & Shop (A)Ridgewood",
-            "cases2026": 2137.0
+            "cases2026": 2476.0
           },
           {
             "customer": "Beekman's Wines and Liquors",
-            "cases2026": 1639.0
+            "cases2026": 1849.0
           },
           {
             "customer": "GREEN WAY MARKETS",
-            "cases2026": 1452.0
+            "cases2026": 1690.0
           },
           {
             "customer": "Garbo's Ital Deli&Liq(Z)",
-            "cases2026": 1071.4
+            "cases2026": 1477.6
           },
           {
             "customer": "The Wine Seller",
-            "cases2026": 518.0
+            "cases2026": 583.0
           }
         ],
         "points": 9,
@@ -21225,7 +21289,7 @@ const PROGRAM_DATA = {
         "packageWhitespace": [
           {
             "customer": "Port Imperial HOQ LLC",
-            "cases2026": 4139.9
+            "cases2026": 4192.9
           }
         ],
         "points": 39,
@@ -21290,23 +21354,23 @@ const PROGRAM_DATA = {
         "packageWhitespace": [
           {
             "customer": "Bombolon Liquor & Grocery",
-            "cases2026": 110867.8
+            "cases2026": 135370.7
           },
           {
             "customer": "Altiero Liquors",
-            "cases2026": 63576.0
+            "cases2026": 69400.7
           },
           {
             "customer": "Caraballo's",
-            "cases2026": 51120.9
+            "cases2026": 52883.9
           },
           {
             "customer": "Midtown Liquors",
-            "cases2026": 38646.3
+            "cases2026": 39211.3
           },
           {
             "customer": "EL BOHEMIO 2 LIQUOR STORE & BAR",
-            "cases2026": 29864.4
+            "cases2026": 31837.4
           },
           {
             "customer": "Limonta Liqs (A)",
@@ -21314,39 +21378,39 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Allen's Liquors",
-            "cases2026": 18920.2
+            "cases2026": 19256.2
           },
           {
             "customer": "Gene's Liquor",
-            "cases2026": 13200.0
+            "cases2026": 14370.0
           },
           {
             "customer": "Monroe Wine & Liq(P)",
-            "cases2026": 12594.0
+            "cases2026": 13914.0
           },
           {
             "customer": "Broadway W&L",
-            "cases2026": 12334.0
+            "cases2026": 13660.0
           },
           {
             "customer": "Sunny's Liqs.(P)",
-            "cases2026": 12069.0
+            "cases2026": 13449.0
           },
           {
             "customer": "Johnny's Liqs (P)",
-            "cases2026": 10190.0
+            "cases2026": 11045.0
           },
           {
             "customer": "#1 Liqrs (P)",
-            "cases2026": 8006.0
-          },
-          {
-            "customer": "Joe's Liquor (A)",
-            "cases2026": 6406.5
+            "cases2026": 8984.0
           },
           {
             "customer": "Boulevard Wine & Spirits",
-            "cases2026": 5896.0
+            "cases2026": 7200.0
+          },
+          {
+            "customer": "Joe's Liquor (A)",
+            "cases2026": 7032.5
           }
         ],
         "points": 0,
@@ -21644,11 +21708,11 @@ const PROGRAM_DATA = {
         "packageWhitespace": [
           {
             "customer": "Balthazar Bakery (A)",
-            "cases2026": 104.0
+            "cases2026": 120.0
           },
           {
             "customer": "Mykos",
-            "cases2026": 66.0
+            "cases2026": 80.0
           }
         ],
         "points": 26,
@@ -21703,64 +21767,64 @@ const PROGRAM_DATA = {
         "packageLapsedCount": 4,
         "packageWhitespace": [
           {
-            "customer": "Agave Liquor, Wine & Spirits",
-            "cases2026": 51424.4
-          },
-          {
             "customer": "Super Wine Warehse(P)Pate",
-            "cases2026": 50573.0
+            "cases2026": 60828.0
           },
           {
-            "customer": "City Supermarket",
-            "cases2026": 11028.0
+            "customer": "Agave Liquor, Wine & Spirits",
+            "cases2026": 52704.0
           },
           {
             "customer": "Stew Leonard's(A) Paramus Wine",
-            "cases2026": 10822.0
+            "cases2026": 12641.0
+          },
+          {
+            "customer": "City Supermarket",
+            "cases2026": 12507.0
           },
           {
             "customer": "Stew Leonard's Wines & Spirits of Clifton",
-            "cases2026": 9016.0
+            "cases2026": 10520.0
           },
           {
             "customer": "Home Wines & Liq 75 (A) (South Hackensack)",
-            "cases2026": 8001.0
+            "cases2026": 8824.0
           },
           {
             "customer": "Wine Country Of Saddle Brook (A)",
-            "cases2026": 4529.0
+            "cases2026": 5038.0
           },
           {
             "customer": "Whole Foods Market (Paramus)",
-            "cases2026": 3153.0
+            "cases2026": 3541.0
           },
           {
             "customer": "Riverview Liq (P)",
-            "cases2026": 3013.0
+            "cases2026": 3530.0
           },
           {
             "customer": "Gary's Wine & Marketplace (Wayne)",
             "cases2026": 2026.0
           },
           {
+            "customer": "THE BOTTLE SHOP",
+            "cases2026": 1585.0
+          },
+          {
             "customer": "Stew Leonard's(A) Paramu (NA)",
-            "cases2026": 1414.0
+            "cases2026": 1540.0
           },
           {
             "customer": "Wides Deli & Liquor",
-            "cases2026": 1260.0
+            "cases2026": 1466.0
           },
           {
             "customer": "Lushka Liquors",
-            "cases2026": 1010.2
+            "cases2026": 1134.2
           },
           {
-            "customer": "Stew Leonard's Wines & Spirits of Clifton (NA)",
-            "cases2026": 234.0
-          },
-          {
-            "customer": "Beverage Depot",
-            "cases2026": 85.0
+            "customer": "USA Wine Traders Paramus",
+            "cases2026": 526.0
           }
         ],
         "points": 0,
@@ -21917,7 +21981,11 @@ const PROGRAM_DATA = {
         "packageWhitespace": [
           {
             "customer": "Jerry's Outlet",
-            "cases2026": 343.0
+            "cases2026": 404.0
+          },
+          {
+            "customer": "Pizza Town USA",
+            "cases2026": 101.0
           }
         ],
         "points": 8,
@@ -21979,55 +22047,63 @@ const PROGRAM_DATA = {
         "packageWhitespace": [
           {
             "customer": "Ramsey Wine & Liquor",
-            "cases2026": 24068.0
+            "cases2026": 27164.0
           },
           {
             "customer": "Montvale Wine/Liq & Beer",
-            "cases2026": 21475.0
+            "cases2026": 23653.0
           },
           {
             "customer": "Shop Rite Liq (A)Emerson",
-            "cases2026": 8480.0
+            "cases2026": 9551.0
           },
           {
             "customer": "Township Liq (P)",
-            "cases2026": 7349.0
+            "cases2026": 8114.0
+          },
+          {
+            "customer": "Cambridge Wines (Woodcliff Lake)",
+            "cases2026": 4546.9
           },
           {
             "customer": "Wine & Whiskey (A)",
-            "cases2026": 3269.0
+            "cases2026": 3776.0
           },
           {
             "customer": "Djm Liq Inc. (P)(Andrew)",
-            "cases2026": 2857.0
+            "cases2026": 3181.0
           },
           {
             "customer": "Royal Wine & Spirits II",
-            "cases2026": 2801.0
+            "cases2026": 3154.0
           },
           {
             "customer": "D & L Dumont Liquors",
-            "cases2026": 1823.0
+            "cases2026": 2052.0
           },
           {
             "customer": "Oradell Mini Mart(P)",
-            "cases2026": 1663.0
+            "cases2026": 1907.0
           },
           {
             "customer": "Murphy's Fine Wines & Liquors (UNI 4H Inc.)",
-            "cases2026": 1289.0
+            "cases2026": 1368.0
+          },
+          {
+            "customer": "Woori Mart",
+            "cases2026": 1209.0
           },
           {
             "customer": "Whole Foods #8407 (Woodcliff Lake)",
-            "cases2026": 438.0
+            "cases2026": 490.0
           },
           {
             "customer": "Whole Foods #10381 (Closter)",
-            "cases2026": 380.0
+            "cases2026": 413.0
           },
           {
             "customer": "The Store",
-            "cases2026": 140.0
+            "cases2026": 151.0
           }
         ],
         "points": 2,
@@ -23757,11 +23833,11 @@ const PROGRAM_DATA = {
         "whitespaceAccounts": [
           {
             "customer": "Paradise Liquors",
-            "cases2026": 19143.6
+            "cases2026": 21184.7
           },
           {
             "customer": "Super K Food (A) Store",
-            "cases2026": 1534.0
+            "cases2026": 1763.0
           }
         ],
         "partialAccounts": [],
@@ -23854,75 +23930,75 @@ const PROGRAM_DATA = {
         "whitespaceAccounts": [
           {
             "customer": "Highland Wine&Liquor Inc",
-            "cases2026": 18415.2
+            "cases2026": 19996.2
           },
           {
             "customer": "Uncorked Wines & Spirits (West Milford)",
-            "cases2026": 16537.0
+            "cases2026": 18631.0
           },
           {
             "customer": "Usa Wine Traders Club (Bloomingdale)",
-            "cases2026": 16250.0
+            "cases2026": 17917.0
           },
           {
             "customer": "River Place Food Store",
-            "cases2026": 10087.1
+            "cases2026": 11190.1
           },
           {
             "customer": "Greenwood Lake Disc.(P)",
-            "cases2026": 9370.3
-          },
-          {
-            "customer": "Krauszer's Liquor Wine and Spirits",
-            "cases2026": 8619.0
+            "cases2026": 10016.3
           },
           {
             "customer": "Turnpike Discount Liquors",
-            "cases2026": 8460.0
+            "cases2026": 9636.0
+          },
+          {
+            "customer": "Krauszer's Liquor Wine and Spirits",
+            "cases2026": 9270.0
           },
           {
             "customer": "Buy Rite W &L Pompton(P)",
-            "cases2026": 7904.0
+            "cases2026": 8805.0
           },
           {
             "customer": "George's Market (A)",
-            "cases2026": 6831.0
+            "cases2026": 7858.0
           },
           {
             "customer": "Appio's Liquors",
-            "cases2026": 6769.0
-          },
-          {
-            "customer": "B & B Wine&Liq",
-            "cases2026": 5581.0
+            "cases2026": 7682.0
           },
           {
             "customer": "Ringwood Discount Liquors",
-            "cases2026": 5493.0
+            "cases2026": 6293.0
+          },
+          {
+            "customer": "B & B Wine&Liq",
+            "cases2026": 6195.0
           },
           {
             "customer": "Wine 2 Spirits (P)",
-            "cases2026": 4669.0
+            "cases2026": 5204.0
           },
           {
             "customer": "Bloomingdale Discount Liq",
-            "cases2026": 3091.0
+            "cases2026": 3317.0
           },
           {
             "customer": "Meloi Liquors",
-            "cases2026": 2687.0
+            "cases2026": 2932.0
           },
           {
             "customer": "Vault Liquors",
-            "cases2026": 2653.8
+            "cases2026": 2695.8
           },
           {
             "customer": "M & M Discount Liq",
-            "cases2026": 2159.0
+            "cases2026": 2461.0
           },
           {
             "customer": "Hootch Hut (P)",
-            "cases2026": 1837.0
+            "cases2026": 1886.0
           }
         ],
         "partialAccounts": [],
@@ -23941,23 +24017,23 @@ const PROGRAM_DATA = {
         "whitespaceAccounts": [
           {
             "customer": "Chabons Ii Liq/Bar (A)",
-            "cases2026": 7664.0
+            "cases2026": 8348.0
           },
           {
             "customer": "Culver Liquor and Bar",
-            "cases2026": 7273.0
+            "cases2026": 8034.0
           },
           {
             "customer": "The Greek's",
-            "cases2026": 1755.0
+            "cases2026": 2010.0
           },
           {
             "customer": "Picatinny Main Exch",
-            "cases2026": 742.0
+            "cases2026": 807.0
           },
           {
             "customer": "Swartswood",
-            "cases2026": 440.0
+            "cases2026": 531.0
           },
           {
             "customer": "Point 5 Lafayette",
@@ -24048,103 +24124,107 @@ const PROGRAM_DATA = {
           }
         ],
         "buyingAccountCount": 15,
-        "eligibleAccountCount": 39,
+        "eligibleAccountCount": 40,
         "caseVolume": 68.0,
-        "penetrationPct": 38.5,
+        "penetrationPct": 37.5,
         "tier": "Gettin' Lytt",
         "rate": 0.5,
         "whitespaceAccounts": [
           {
             "customer": "Discount Lqr(A) Outlet",
-            "cases2026": 162859.9
+            "cases2026": 172824.5
           },
           {
             "customer": "Garden Liquors (P)",
-            "cases2026": 19064.3
-          },
-          {
-            "customer": "Westmont Liquors 64",
-            "cases2026": 11036.8
+            "cases2026": 21097.3
           },
           {
             "customer": "Buy Rite Of Main St Lodi",
-            "cases2026": 10446.7
+            "cases2026": 11740.7
+          },
+          {
+            "customer": "Westmont Liquors 64",
+            "cases2026": 11323.8
           },
           {
             "customer": "Buy Rite Discount Liquor",
-            "cases2026": 8886.2
+            "cases2026": 9923.2
           },
           {
             "customer": "Figlar's (P)",
-            "cases2026": 8657.0
+            "cases2026": 9773.0
           },
           {
             "customer": "Shop Rite Liq.(A)Lodi",
-            "cases2026": 7318.0
+            "cases2026": 8214.0
           },
           {
             "customer": "Circle Liquors",
-            "cases2026": 6790.7
+            "cases2026": 7049.9
           },
           {
             "customer": "Teaneck Quickshop(P)Conv",
-            "cases2026": 5899.0
+            "cases2026": 6502.0
           },
           {
             "customer": "Lodi Liquor Store(P)",
-            "cases2026": 5552.0
+            "cases2026": 6337.0
           },
           {
             "customer": "B & B Liquors (Fair Lawn)",
-            "cases2026": 4265.0
+            "cases2026": 4738.0
           },
           {
             "customer": "Maywood Wine&Liq (A)",
-            "cases2026": 3204.0
+            "cases2026": 3683.0
           },
           {
             "customer": "Liquor Masters (P)",
-            "cases2026": 3070.8
+            "cases2026": 3468.8
           },
           {
             "customer": "JR Sports Bar & Liquors(Z)",
-            "cases2026": 2666.0
+            "cases2026": 3122.0
           },
           {
             "customer": "Radburn Liquors (A",
-            "cases2026": 2529.0
+            "cases2026": 2921.0
           },
           {
             "customer": "Paramus Food Center",
-            "cases2026": 2058.0
+            "cases2026": 2277.0
           },
           {
             "customer": "Morlot W & L (A)",
-            "cases2026": 1649.0
+            "cases2026": 2001.0
           },
           {
             "customer": "Meadowland Wine & Liquor",
-            "cases2026": 1498.0
+            "cases2026": 1763.0
           },
           {
             "customer": "Maywood Market(A)",
-            "cases2026": 1324.0
+            "cases2026": 1540.0
           },
           {
             "customer": "Princess Liquor's(P)",
-            "cases2026": 1148.0
+            "cases2026": 1288.0
           },
           {
             "customer": "Yoshi Liq/Wine (P)",
-            "cases2026": 913.0
+            "cases2026": 1020.0
           },
           {
             "customer": "Iga Supermarkets (A)",
-            "cases2026": 799.0
+            "cases2026": 932.0
+          },
+          {
+            "customer": "Ani Service Station Inc",
+            "cases2026": 287.0
           },
           {
             "customer": "Pompei's Little Market",
-            "cases2026": 211.0
+            "cases2026": 234.0
           },
           {
             "customer": "Ma'adan Catering",
@@ -24220,9 +24300,9 @@ const PROGRAM_DATA = {
           }
         ],
         "buyingAccountCount": 12,
-        "eligibleAccountCount": 44,
+        "eligibleAccountCount": 45,
         "caseVolume": 63.0,
-        "penetrationPct": 27.3,
+        "penetrationPct": 26.7,
         "tier": "Gettin' Lytt",
         "rate": 0.5,
         "whitespaceAccounts": [
@@ -24232,123 +24312,123 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Banner Delicatessen",
-            "cases2026": 77507.8
+            "cases2026": 80347.2
+          },
+          {
+            "customer": "Edgewater Liquor (A)",
+            "cases2026": 40565.5
           },
           {
             "customer": "Bella Wine & Liquor",
             "cases2026": 30851.4
           },
           {
-            "customer": "Edgewater Liquor (A)",
-            "cases2026": 29281.9
-          },
-          {
             "customer": "Liquor World",
-            "cases2026": 12473.0
-          },
-          {
-            "customer": "Winston Wine & Liq",
-            "cases2026": 10303.4
+            "cases2026": 13951.0
           },
           {
             "customer": "Fairview Liq & Groc.(A)",
-            "cases2026": 10173.0
+            "cases2026": 11169.0
+          },
+          {
+            "customer": "Winston Wine & Liq",
+            "cases2026": 10459.4
           },
           {
             "customer": "Kikos Liquors Ii",
-            "cases2026": 7101.0
-          },
-          {
-            "customer": "Jay Cee (P) Deli & Liq.",
-            "cases2026": 6022.0
+            "cases2026": 7809.0
           },
           {
             "customer": "Mukeunji (Z)",
-            "cases2026": 5854.0
+            "cases2026": 6730.0
+          },
+          {
+            "customer": "Jay Cee (P) Deli & Liq.",
+            "cases2026": 6690.0
           },
           {
             "customer": "Linwood Wine-Hudson Light",
-            "cases2026": 5393.0
+            "cases2026": 6079.0
           },
           {
             "customer": "Banner Liquor Iii",
-            "cases2026": 5145.0
+            "cases2026": 5848.0
           },
           {
             "customer": "Tenafly Fine Wine & Spirits",
-            "cases2026": 4589.3
-          },
-          {
-            "customer": "Checo Supermarket",
-            "cases2026": 4195.0
+            "cases2026": 5191.3
           },
           {
             "customer": "Rome Liquor (Cliffside Park)",
-            "cases2026": 4176.0
+            "cases2026": 4611.0
+          },
+          {
+            "customer": "Checo Supermarket",
+            "cases2026": 4465.0
           },
           {
             "customer": "Palisades Park Liq(P)",
-            "cases2026": 3424.0
+            "cases2026": 3870.0
           },
           {
             "customer": "JC&D Best Wine & Liquor",
-            "cases2026": 3289.0
-          },
-          {
-            "customer": "Han Mi Supermkt (A)",
-            "cases2026": 3089.0
-          },
-          {
-            "customer": "Minit Mart_2",
-            "cases2026": 2974.0
+            "cases2026": 3655.0
           },
           {
             "customer": "Bp Gas Station",
-            "cases2026": 2946.0
+            "cases2026": 3453.0
+          },
+          {
+            "customer": "Minit Mart_2",
+            "cases2026": 3370.0
+          },
+          {
+            "customer": "Han Mi Supermkt (A)",
+            "cases2026": 3362.0
           },
           {
             "customer": "Best Choice Liqrs (P)",
-            "cases2026": 2480.0
-          },
-          {
-            "customer": "Manor Wine & Liquor",
-            "cases2026": 2428.5
+            "cases2026": 2791.0
           },
           {
             "customer": "Mitsuwa Market (A)",
-            "cases2026": 2301.0
+            "cases2026": 2651.0
           },
           {
-            "customer": "Boulevard Food Store",
-            "cases2026": 2214.0
+            "customer": "Manor Wine & Liquor",
+            "cases2026": 2593.5
           },
           {
-            "customer": "Andres Wine & Spirits",
-            "cases2026": 1904.0
+            "customer": "Boulevard Food And Liquor",
+            "cases2026": 2512.0
           },
           {
             "customer": "Top Shelf Liquors",
-            "cases2026": 1853.0
+            "cases2026": 2113.5
+          },
+          {
+            "customer": "Andres Wine & Spirits",
+            "cases2026": 2077.0
           },
           {
             "customer": "Wine Ventures",
-            "cases2026": 1639.0
-          },
-          {
-            "customer": "Fairway Mkt & Gift(A)",
-            "cases2026": 1089.0
+            "cases2026": 1873.0
           },
           {
             "customer": "Hmart Fresh (P)",
-            "cases2026": 1060.0
+            "cases2026": 1146.0
+          },
+          {
+            "customer": "Fairway Mkt & Gift(A)",
+            "cases2026": 1145.0
           },
           {
             "customer": "Leonia Wine & Spirits",
-            "cases2026": 709.0
+            "cases2026": 819.0
           },
           {
             "customer": "Junction Liquors",
-            "cases2026": 495.0
+            "cases2026": 532.0
           },
           {
             "customer": "Anthony's Pharmacy",
@@ -24356,7 +24436,7 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Campbell's Wines & Liquor",
-            "cases2026": 183.0
+            "cases2026": 250.0
           }
         ],
         "partialAccounts": [],
@@ -24433,91 +24513,95 @@ const PROGRAM_DATA = {
           }
         ],
         "buyingAccountCount": 13,
-        "eligibleAccountCount": 33,
+        "eligibleAccountCount": 35,
         "caseVolume": 106.0,
-        "penetrationPct": 39.4,
+        "penetrationPct": 37.1,
         "tier": "Gettin' Lytt",
         "rate": 0.5,
         "whitespaceAccounts": [
           {
             "customer": "Shop Rite Liq (A)Englewd",
-            "cases2026": 28132.0
+            "cases2026": 31435.0
           },
           {
             "customer": "Barrel & Brew Bar & Liq",
-            "cases2026": 20580.2
+            "cases2026": 20995.2
           },
           {
             "customer": "Portland Wine & Liquor",
-            "cases2026": 17216.0
+            "cases2026": 18713.0
           },
           {
             "customer": "Wine & More (P)",
-            "cases2026": 14581.0
+            "cases2026": 15425.8
           },
           {
             "customer": "Bergenfield Liq & Fw",
-            "cases2026": 13371.3
+            "cases2026": 14827.3
           },
           {
             "customer": "Time Lounge And Liq (A)",
-            "cases2026": 8184.0
+            "cases2026": 9042.0
           },
           {
             "customer": "Bottle & Cork",
-            "cases2026": 7562.3
+            "cases2026": 8671.3
           },
           {
             "customer": "Essex St Liquor and Wine",
-            "cases2026": 6703.0
-          },
-          {
-            "customer": "H & R Disc. Liq (P)",
-            "cases2026": 6168.0
+            "cases2026": 7558.0
           },
           {
             "customer": "Deli Mart (A)",
-            "cases2026": 6098.0
+            "cases2026": 6928.0
           },
           {
-            "customer": "G & G Liquors & Bar",
-            "cases2026": 5370.0
-          },
-          {
-            "customer": "Englewood Wine and Spirits",
-            "cases2026": 3375.0
-          },
-          {
-            "customer": "River Edge Wine & Liquor",
-            "cases2026": 2520.0
+            "customer": "H & R Disc. Liq (P)",
+            "cases2026": 6879.0
           },
           {
             "customer": "Country Wine & Liquors",
-            "cases2026": 1712.0
+            "cases2026": 6121.1
+          },
+          {
+            "customer": "G & G Liquors & Bar",
+            "cases2026": 5762.0
+          },
+          {
+            "customer": "Englewood Wine and Spirits",
+            "cases2026": 3888.0
+          },
+          {
+            "customer": "River Edge Wine & Liquor",
+            "cases2026": 2882.0
           },
           {
             "customer": "Englewood Liq (A)",
-            "cases2026": 1537.0
+            "cases2026": 1707.0
           },
           {
             "customer": "99 Ranch Market",
-            "cases2026": 1091.0
+            "cases2026": 1303.0
           },
           {
             "customer": "Grand Liquor & Delicatesen",
-            "cases2026": 785.0
+            "cases2026": 892.0
           },
           {
             "customer": "Fill Er Up Kosher Wine(P)",
-            "cases2026": 698.0
+            "cases2026": 743.0
           },
           {
             "customer": "Santa Barbara",
-            "cases2026": 575.0
+            "cases2026": 720.0
+          },
+          {
+            "customer": "VINEYARD",
+            "cases2026": 628.0
           },
           {
             "customer": "Parisi Deli",
-            "cases2026": 192.0
+            "cases2026": 215.0
           },
           {
             "customer": "Englewood Wine (A)",
@@ -24623,9 +24707,9 @@ const PROGRAM_DATA = {
           }
         ],
         "buyingAccountCount": 18,
-        "eligibleAccountCount": 32,
+        "eligibleAccountCount": 33,
         "caseVolume": 90.0,
-        "penetrationPct": 56.2,
+        "penetrationPct": 54.5,
         "tier": "Lytty City",
         "rate": 1.0,
         "whitespaceAccounts": [
@@ -24635,51 +24719,55 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Ant's Bar & Liquors",
-            "cases2026": 80227.9
+            "cases2026": 86998.8
           },
           {
             "customer": "Gonzalez Liq & Bar(A)",
-            "cases2026": 36092.8
+            "cases2026": 36998.8
           },
           {
             "customer": "The Point Liquor & Bar",
-            "cases2026": 21665.5
+            "cases2026": 22427.5
           },
           {
             "customer": "Economy Liquors",
-            "cases2026": 18898.0
+            "cases2026": 21090.0
           },
           {
             "customer": "La Sorpresa Liq (P)",
-            "cases2026": 11157.0
+            "cases2026": 12436.0
           },
           {
             "customer": "Limestone Liquors (A)",
-            "cases2026": 11133.0
+            "cases2026": 12335.0
           },
           {
             "customer": "230 Liq & Groc.(A)",
-            "cases2026": 9584.0
-          },
-          {
-            "customer": "10th Ave Liq & Food (P)",
-            "cases2026": 7024.0
-          },
-          {
-            "customer": "M & R Disc (A) Liqs.",
-            "cases2026": 6575.0
-          },
-          {
-            "customer": "Moya E.Bar&Liq.(Z)",
-            "cases2026": 5669.5
+            "cases2026": 10604.0
           },
           {
             "customer": "Yaremy Liquors",
-            "cases2026": 3753.2
+            "cases2026": 9144.8
+          },
+          {
+            "customer": "10th Ave Liq & Food (P)",
+            "cases2026": 7764.0
+          },
+          {
+            "customer": "M & R Disc (A) Liqs.",
+            "cases2026": 7155.0
+          },
+          {
+            "customer": "Moya E.Bar&Liq.(Z)",
+            "cases2026": 6144.5
           },
           {
             "customer": "Rocky's Liquor Store",
-            "cases2026": 3658.0
+            "cases2026": 4237.0
+          },
+          {
+            "customer": "Moca Liquors Ii",
+            "cases2026": 2287.0
           },
           {
             "customer": "Main Discount (P) Liqs.",
@@ -24702,7 +24790,7 @@ const PROGRAM_DATA = {
         "whitespaceAccounts": [
           {
             "customer": "J B Liquors_2",
-            "cases2026": 1571.0
+            "cases2026": 1731.0
           }
         ],
         "partialAccounts": [],
@@ -24741,7 +24829,7 @@ const PROGRAM_DATA = {
         "whitespaceAccounts": [
           {
             "customer": "One Stop Wine (A) & Liq",
-            "cases2026": 1578.0
+            "cases2026": 1700.0
           }
         ],
         "partialAccounts": [],
@@ -24783,87 +24871,91 @@ const PROGRAM_DATA = {
           }
         ],
         "buyingAccountCount": 6,
-        "eligibleAccountCount": 28,
+        "eligibleAccountCount": 29,
         "caseVolume": 31.0,
-        "penetrationPct": 21.4,
+        "penetrationPct": 20.7,
         "tier": null,
         "rate": 0.0,
         "whitespaceAccounts": [
           {
             "customer": "Edwards (P) Wine & Liq",
-            "cases2026": 44151.2
+            "cases2026": 45969.9
           },
           {
             "customer": "D'bar Liquors (P)",
-            "cases2026": 37223.2
+            "cases2026": 38287.2
+          },
+          {
+            "customer": "El Cantaro Liquors",
+            "cases2026": 37195.6
           },
           {
             "customer": "Bottle Liquor (P)",
-            "cases2026": 14010.0
+            "cases2026": 15510.0
           },
           {
             "customer": "New Eagle Liquors",
-            "cases2026": 13517.0
+            "cases2026": 15209.0
           },
           {
             "customer": "Diamond Liquors (P)",
-            "cases2026": 11857.0
+            "cases2026": 13433.0
           },
           {
             "customer": "Danny's Liquor",
-            "cases2026": 11699.0
+            "cases2026": 13208.0
           },
           {
             "customer": "Luna Liquors",
-            "cases2026": 11399.0
+            "cases2026": 12801.0
           },
           {
             "customer": "Shanik Liqs.(P)",
-            "cases2026": 11287.0
+            "cases2026": 12344.0
           },
           {
             "customer": "Bermuda Liquors (P)",
-            "cases2026": 9445.0
-          },
-          {
-            "customer": "Paulison Liquors (P)",
-            "cases2026": 7557.0
+            "cases2026": 10138.0
           },
           {
             "customer": "La Joya Liquors",
-            "cases2026": 7453.0
+            "cases2026": 8583.0
+          },
+          {
+            "customer": "Paulison Liquors (P)",
+            "cases2026": 8543.0
           },
           {
             "customer": "Liquor Stop (Passaic)",
-            "cases2026": 7124.0
+            "cases2026": 8146.0
           },
           {
             "customer": "C & S Lucky Liquors (P)",
-            "cases2026": 6476.0
-          },
-          {
-            "customer": "C & S Lucky Liquors II",
-            "cases2026": 6049.0
+            "cases2026": 7333.0
           },
           {
             "customer": "Estevez Liquors & Grocery 2 LLC",
-            "cases2026": 5971.0
+            "cases2026": 6913.3
+          },
+          {
+            "customer": "C & S Lucky Liquors II",
+            "cases2026": 6883.0
           },
           {
             "customer": "Camilo Liquors(A)",
-            "cases2026": 4630.0
+            "cases2026": 5156.0
           },
           {
             "customer": "Mariana's Liquors",
-            "cases2026": 4198.0
+            "cases2026": 4838.0
           },
           {
             "customer": "Pete's Family Liqs",
-            "cases2026": 3450.0
+            "cases2026": 3877.0
           },
           {
             "customer": "Deli Parchardo Liquors",
-            "cases2026": 2710.0
+            "cases2026": 2948.0
           }
         ],
         "partialAccounts": [
@@ -24960,95 +25052,103 @@ const PROGRAM_DATA = {
           }
         ],
         "buyingAccountCount": 12,
-        "eligibleAccountCount": 33,
+        "eligibleAccountCount": 35,
         "caseVolume": 66.0,
-        "penetrationPct": 36.4,
+        "penetrationPct": 34.3,
         "tier": "Gettin' Lytt",
         "rate": 0.5,
         "whitespaceAccounts": [
           {
             "customer": "Liquor Factory III Sparta",
-            "cases2026": 18253.8
+            "cases2026": 19876.8
           },
           {
             "customer": "Buy Rite Liquors Franklin",
-            "cases2026": 14384.0
+            "cases2026": 15567.0
           },
           {
             "customer": "Liquor Factory IV Hopatcong",
-            "cases2026": 11934.0
+            "cases2026": 13192.0
           },
           {
             "customer": "The George Inn",
-            "cases2026": 10126.0
+            "cases2026": 11148.0
           },
           {
             "customer": "Liquor Factory V Andover",
-            "cases2026": 9806.0
+            "cases2026": 10556.0
           },
           {
             "customer": "Liquor Factory VI Byram",
-            "cases2026": 9588.0
-          },
-          {
-            "customer": "Wantage Plaza Liq Outlet",
-            "cases2026": 8658.0
+            "cases2026": 10438.0
           },
           {
             "customer": "Spring Street Liquors",
-            "cases2026": 8560.0
+            "cases2026": 10037.0
+          },
+          {
+            "customer": "Wantage Plaza Liq Outlet",
+            "cases2026": 9663.0
           },
           {
             "customer": "Seplow's Liquors",
-            "cases2026": 5939.0
+            "cases2026": 6609.0
           },
           {
             "customer": "Sussex Co.Discount Liq(P)",
-            "cases2026": 4983.0
+            "cases2026": 5425.0
           },
           {
             "customer": "Brix - Wine, Spirits, Beer (Fredon)",
-            "cases2026": 4173.0
-          },
-          {
-            "customer": "Highland General Store",
-            "cases2026": 4144.0
-          },
-          {
-            "customer": "Woody's Liq Shop (A)",
-            "cases2026": 4116.0
+            "cases2026": 4818.0
           },
           {
             "customer": "George's Wine & Spirits",
-            "cases2026": 3971.0
+            "cases2026": 4521.2
+          },
+          {
+            "customer": "Highland General Store",
+            "cases2026": 4512.0
+          },
+          {
+            "customer": "Woody's Liq Shop (A)",
+            "cases2026": 4438.0
           },
           {
             "customer": "Hamburg Liquor",
-            "cases2026": 3793.2
+            "cases2026": 4237.2
           },
           {
             "customer": "White Deer Inn",
-            "cases2026": 3769.0
+            "cases2026": 4105.0
           },
           {
             "customer": "Fredon Liquor (Fredon Deli)",
-            "cases2026": 3134.0
+            "cases2026": 3517.0
           },
           {
             "customer": "Kent's Liquors",
-            "cases2026": 1924.0
+            "cases2026": 2211.0
           },
           {
             "customer": "Burkes",
-            "cases2026": 1795.2
+            "cases2026": 2012.2
           },
           {
             "customer": "Market Place Liquor",
-            "cases2026": 1569.0
+            "cases2026": 1764.0
           },
           {
             "customer": "Lake Wanda Store",
-            "cases2026": 1166.0
+            "cases2026": 1301.0
+          },
+          {
+            "customer": "Weis Supermarkets 143 Newton",
+            "cases2026": 11.0
+          },
+          {
+            "customer": "Weiss Super Market 147 Franklin",
+            "cases2026": 11.0
           }
         ],
         "partialAccounts": [],
@@ -25147,19 +25247,19 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Shoppers Vineyard (A)",
-            "cases2026": 34288.0
+            "cases2026": 39124.0
           },
           {
             "customer": "Allwood Liquor Store",
             "cases2026": 32609.3
           },
           {
-            "customer": "Marina's Wine & Spirits",
-            "cases2026": 9272.9
+            "customer": "Savers Club Liquor Locker",
+            "cases2026": 10398.0
           },
           {
-            "customer": "Savers Club Liquor Locker",
-            "cases2026": 8772.0
+            "customer": "Marina's Wine & Spirits",
+            "cases2026": 10139.9
           },
           {
             "customer": "Mason's Cellar (A)",
@@ -25167,87 +25267,87 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "US#1 Wine & Liquor",
-            "cases2026": 7041.0
-          },
-          {
-            "customer": "Rutherford Wine (A)",
-            "cases2026": 6507.9
+            "cases2026": 7746.0
           },
           {
             "customer": "Town Liquors",
-            "cases2026": 6162.0
+            "cases2026": 6932.0
+          },
+          {
+            "customer": "Rutherford Wine (A)",
+            "cases2026": 6791.9
           },
           {
             "customer": "Metro Liquors (North Arlington)",
-            "cases2026": 5366.0
+            "cases2026": 6003.0
           },
           {
             "customer": "West End Wine & Liq",
-            "cases2026": 4699.0
+            "cases2026": 5316.0
           },
           {
             "customer": "Pete's Liquors",
-            "cases2026": 3922.0
+            "cases2026": 4479.0
           },
           {
             "customer": "Riverside Liquors",
-            "cases2026": 3739.0
+            "cases2026": 4218.0
           },
           {
             "customer": "Meadow Fine Liquors",
-            "cases2026": 3703.0
+            "cases2026": 4179.0
           },
           {
             "customer": "Liquor Mart (North Arlington)",
-            "cases2026": 3421.2
+            "cases2026": 3886.2
           },
           {
             "customer": "Henry's Liquors",
-            "cases2026": 3145.0
-          },
-          {
-            "customer": "Village Wine (P)",
-            "cases2026": 2567.2
+            "cases2026": 3531.0
           },
           {
             "customer": "Krauser Food & Liq(A)",
-            "cases2026": 2455.0
-          },
-          {
-            "customer": "Schuyler Food",
-            "cases2026": 2333.0
+            "cases2026": 2706.0
           },
           {
             "customer": "Richfield Liquors",
-            "cases2026": 2291.0
+            "cases2026": 2643.0
           },
           {
-            "customer": "Field Liquors (A)",
-            "cases2026": 2250.0
+            "customer": "Schuyler Food",
+            "cases2026": 2626.0
+          },
+          {
+            "customer": "Village Wine (P)",
+            "cases2026": 2611.2
           },
           {
             "customer": "Vasel's (A)",
-            "cases2026": 2245.0
+            "cases2026": 2526.0
           },
           {
-            "customer": "Clifton Wine & Liquor",
-            "cases2026": 2140.0
+            "customer": "Field Liquors (A)",
+            "cases2026": 2504.0
           },
           {
             "customer": "Forest Dairy (A)",
-            "cases2026": 2064.0
+            "cases2026": 2345.0
+          },
+          {
+            "customer": "Clifton Wine & Liquor",
+            "cases2026": 2306.0
           },
           {
             "customer": "Krauszers Food",
-            "cases2026": 962.0
+            "cases2026": 1107.0
           },
           {
             "customer": "Liquor Mart 46",
-            "cases2026": 912.0
+            "cases2026": 1065.0
           },
           {
             "customer": "Liquor Stop (P) (Clifton)",
-            "cases2026": 865.0
+            "cases2026": 989.0
           }
         ],
         "partialAccounts": [
@@ -25273,15 +25373,15 @@ const PROGRAM_DATA = {
         "whitespaceAccounts": [
           {
             "customer": "Charlie's Liquor and Convenience",
-            "cases2026": 876.0
+            "cases2026": 1044.0
           },
           {
             "customer": "X Plor Wine",
-            "cases2026": 232.0
+            "cases2026": 272.0
           },
           {
             "customer": "Haworth Fine Wine/Spirits",
-            "cases2026": 226.0
+            "cases2026": 268.0
           }
         ],
         "partialAccounts": [],
@@ -25328,91 +25428,95 @@ const PROGRAM_DATA = {
           }
         ],
         "buyingAccountCount": 7,
-        "eligibleAccountCount": 27,
+        "eligibleAccountCount": 28,
         "caseVolume": 27.0,
-        "penetrationPct": 25.9,
+        "penetrationPct": 25.0,
         "tier": "Gettin' Lytt",
         "rate": 0.5,
         "whitespaceAccounts": [
           {
-            "customer": "House of Wine & Liquor",
-            "cases2026": 92498.9
+            "customer": "House of Wine & Liquor - Boonton",
+            "cases2026": 96412.9
           },
           {
             "customer": "Shop Rite Liq (A)Wharton",
-            "cases2026": 33283.0
+            "cases2026": 36521.0
           },
           {
             "customer": "Liquor Outlet",
-            "cases2026": 31126.5
+            "cases2026": 34835.5
           },
           {
             "customer": "Mountain Lakes Wine & Liquor",
-            "cases2026": 28534.5
+            "cases2026": 28584.5
           },
           {
             "customer": "Milton Inn",
-            "cases2026": 19754.0
+            "cases2026": 21428.0
           },
           {
             "customer": "Quick Check Liquor (A)",
-            "cases2026": 11861.6
+            "cases2026": 12429.6
           },
           {
             "customer": "Rockaway W/L",
-            "cases2026": 9358.0
+            "cases2026": 10437.0
           },
           {
             "customer": "Shop-Rite(A) Netcong",
-            "cases2026": 9256.0
+            "cases2026": 10208.0
           },
           {
             "customer": "Nova Liquors",
-            "cases2026": 8813.9
-          },
-          {
-            "customer": "Island Of Spirits (P)",
-            "cases2026": 6551.0
-          },
-          {
-            "customer": "Midtown Liq",
-            "cases2026": 6440.2
+            "cases2026": 8876.9
           },
           {
             "customer": "Sam's Liq Wine (P)",
-            "cases2026": 6278.0
+            "cases2026": 7270.0
+          },
+          {
+            "customer": "Island Of Spirits (P)",
+            "cases2026": 7154.0
+          },
+          {
+            "customer": "Midtown Liq",
+            "cases2026": 6957.2
           },
           {
             "customer": "Boonton Liquor Locker",
-            "cases2026": 5368.0
+            "cases2026": 6360.5
           },
           {
             "customer": "Montville Wine & Spirits",
-            "cases2026": 4749.2
+            "cases2026": 5398.2
           },
           {
             "customer": "Kingston Liquors",
-            "cases2026": 4571.0
-          },
-          {
-            "customer": "Patel Liqr & Gro(P)",
-            "cases2026": 3922.3
+            "cases2026": 5264.0
           },
           {
             "customer": "Denville W & L",
-            "cases2026": 3897.0
+            "cases2026": 4434.0
+          },
+          {
+            "customer": "Patel Liqr & Gro(P)",
+            "cases2026": 4295.3
           },
           {
             "customer": "Stanhope Liquors",
-            "cases2026": 3770.0
+            "cases2026": 4152.0
           },
           {
             "customer": "Berkshire(P) Bot. Shop",
-            "cases2026": 1203.0
+            "cases2026": 1325.0
           },
           {
             "customer": "The Village Place",
-            "cases2026": 903.0
+            "cases2026": 971.0
+          },
+          {
+            "customer": "23 liquor & Tobacco",
+            "cases2026": 855.0
           }
         ],
         "partialAccounts": [],
@@ -25479,111 +25583,123 @@ const PROGRAM_DATA = {
           }
         ],
         "buyingAccountCount": 11,
-        "eligibleAccountCount": 35,
+        "eligibleAccountCount": 40,
         "caseVolume": 66.0,
-        "penetrationPct": 31.4,
+        "penetrationPct": 27.5,
         "tier": "Gettin' Lytt",
         "rate": 0.5,
         "whitespaceAccounts": [
           {
             "customer": "Home Wine Liquor (Passaic)",
-            "cases2026": 28031.0
-          },
-          {
-            "customer": "M & M Wine & Spirits",
-            "cases2026": 13826.2
-          },
-          {
-            "customer": "Metro Liquor (Elmwood Park)",
-            "cases2026": 11002.0
-          },
-          {
-            "customer": "Archies (P)",
-            "cases2026": 9268.0
+            "cases2026": 31807.0
           },
           {
             "customer": "Bottle Republic (Rutherford)",
-            "cases2026": 7676.0
+            "cases2026": 20042.6
+          },
+          {
+            "customer": "M & M Wine & Spirits",
+            "cases2026": 15449.2
+          },
+          {
+            "customer": "Metro Liquor (Elmwood Park)",
+            "cases2026": 12437.0
+          },
+          {
+            "customer": "Archies (P)",
+            "cases2026": 10185.0
           },
           {
             "customer": "Luigi's Liquor (A)",
-            "cases2026": 6710.0
-          },
-          {
-            "customer": "Birchwood Liq & Deli (Z)",
-            "cases2026": 5532.0
-          },
-          {
-            "customer": "All Star Wine & Liquor",
-            "cases2026": 5390.0
+            "cases2026": 7382.0
           },
           {
             "customer": "Metro Wine And Liq(A)",
-            "cases2026": 5373.7
+            "cases2026": 6140.7
+          },
+          {
+            "customer": "Birchwood Liq & Deli (Z)",
+            "cases2026": 6059.0
+          },
+          {
+            "customer": "All Star Wine & Liquor",
+            "cases2026": 5835.0
+          },
+          {
+            "customer": "Buzzzrite Liquors",
+            "cases2026": 5487.0
           },
           {
             "customer": "Moonachie Liquors",
-            "cases2026": 4732.0
+            "cases2026": 5232.0
           },
           {
             "customer": "Cobblestone Hill Deli",
-            "cases2026": 4481.0
+            "cases2026": 5192.0
           },
           {
             "customer": "River Drive Bar (P)",
-            "cases2026": 4371.0
+            "cases2026": 4928.0
           },
           {
             "customer": "Vinny's Disc Liq (P)",
-            "cases2026": 4159.0
+            "cases2026": 4744.0
           },
           {
             "customer": "Garfield Discount Liquors",
-            "cases2026": 3415.0
+            "cases2026": 4098.0
           },
           {
             "customer": "L. F. Wine Country (P)",
-            "cases2026": 2711.0
-          },
-          {
-            "customer": "Payless Liquor & Dell",
-            "cases2026": 2651.0
+            "cases2026": 3058.0
           },
           {
             "customer": "Little Ferry Wines/Liquor",
-            "cases2026": 2584.0
+            "cases2026": 2914.0
           },
           {
             "customer": "Wine Liquor Shop",
-            "cases2026": 2412.0
+            "cases2026": 2844.0
           },
           {
-            "customer": "Vicki's Bar & Liquors",
-            "cases2026": 2230.4
+            "customer": "Payless Liquor & Dell",
+            "cases2026": 2825.0
           },
           {
             "customer": "Worldwide Liquors",
-            "cases2026": 2005.0
+            "cases2026": 2423.0
+          },
+          {
+            "customer": "Vicki's Bar & Liquors",
+            "cases2026": 2380.5
+          },
+          {
+            "customer": "Lidl Elmwood Park",
+            "cases2026": 2099.0
           },
           {
             "customer": "Joe's Liquors",
-            "cases2026": 1712.0
-          },
-          {
-            "customer": "Food Mart Liquor",
-            "cases2026": 1174.0
+            "cases2026": 1792.0
           },
           {
             "customer": "Jay's Liquormart",
-            "cases2026": 1156.0
+            "cases2026": 1295.0
+          },
+          {
+            "customer": "Food Mart Liquor",
+            "cases2026": 1279.0
+          },
+          {
+            "customer": "Cork and Barrel",
+            "cases2026": 990.0
           },
           {
             "customer": "All Nations Liq",
-            "cases2026": 803.0
+            "cases2026": 936.0
           },
           {
             "customer": "Piast Meats & Prov.",
-            "cases2026": 729.0
+            "cases2026": 809.0
           },
           {
             "customer": "Tatra Haus Restaurant",
@@ -25622,15 +25738,15 @@ const PROGRAM_DATA = {
         "whitespaceAccounts": [
           {
             "customer": "Kinnelon Country Wine & Liquor",
-            "cases2026": 13317.5
+            "cases2026": 13538.5
           },
           {
             "customer": "Lincoln Center Liq",
-            "cases2026": 11632.6
+            "cases2026": 12653.6
           },
           {
             "customer": "Wolfson Market",
-            "cases2026": 4849.0
+            "cases2026": 5459.0
           }
         ],
         "partialAccounts": [],
@@ -25680,83 +25796,83 @@ const PROGRAM_DATA = {
         "whitespaceAccounts": [
           {
             "customer": "Lincoln Park Fine Wines & Spirits",
-            "cases2026": 14976.5
+            "cases2026": 16324.5
           },
           {
             "customer": "Long Hill Liquors (A)",
-            "cases2026": 14466.0
+            "cases2026": 16155.0
           },
           {
             "customer": "Frank's Fine Wine & Foods",
-            "cases2026": 14291.0
+            "cases2026": 15364.0
           },
           {
             "customer": "Mahwah Liqrs (P)",
-            "cases2026": 9234.2
+            "cases2026": 10016.2
           },
           {
             "customer": "Grand Opening Liq (A)_2",
-            "cases2026": 8697.0
+            "cases2026": 9809.0
           },
           {
             "customer": "Oakland Wine (A)",
-            "cases2026": 7233.5
+            "cases2026": 8338.5
           },
           {
             "customer": "Speedy Mart (P)",
-            "cases2026": 6117.0
+            "cases2026": 7164.0
           },
           {
             "customer": "Allendale Wine Shoppe",
-            "cases2026": 5962.0
+            "cases2026": 6886.0
           },
           {
             "customer": "Discount Liq (P)_2",
-            "cases2026": 4911.0
+            "cases2026": 5417.0
           },
           {
             "customer": "Scherer & Company",
-            "cases2026": 4449.0
+            "cases2026": 5114.0
           },
           {
             "customer": "Mahwah Wine & Liquor (A)",
-            "cases2026": 3651.0
+            "cases2026": 4098.0
           },
           {
             "customer": "Uncorked Wine & Spirits (Hohokus)",
-            "cases2026": 2493.0
+            "cases2026": 2834.0
           },
           {
             "customer": "Stop & Shop (A)Ridgewood",
-            "cases2026": 2137.0
+            "cases2026": 2476.0
           },
           {
             "customer": "Beekman's Wines and Liquors",
-            "cases2026": 1639.0
+            "cases2026": 1849.0
           },
           {
             "customer": "GREEN WAY MARKETS",
-            "cases2026": 1452.0
+            "cases2026": 1690.0
           },
           {
             "customer": "Garbo's Ital Deli&Liq(Z)",
-            "cases2026": 1071.4
+            "cases2026": 1477.6
           },
           {
             "customer": "The Wine Seller",
-            "cases2026": 518.0
+            "cases2026": 583.0
           },
           {
             "customer": "Public Ridgewood",
-            "cases2026": 459.0
+            "cases2026": 498.0
           },
           {
             "customer": "Whole Foods #10106 (Ridgewood)",
-            "cases2026": 452.0
+            "cases2026": 485.0
           },
           {
             "customer": "Wine & Spirits World (Hohokus)",
-            "cases2026": 339.3
+            "cases2026": 385.3
           }
         ],
         "partialAccounts": [
@@ -25806,11 +25922,11 @@ const PROGRAM_DATA = {
         "whitespaceAccounts": [
           {
             "customer": "Port Imperial HOQ LLC",
-            "cases2026": 4139.9
+            "cases2026": 4192.9
           },
           {
             "customer": "H Mart Inc (Space A101-A)",
-            "cases2026": 873.0
+            "cases2026": 942.0
           }
         ],
         "partialAccounts": [],
@@ -25852,31 +25968,31 @@ const PROGRAM_DATA = {
           }
         ],
         "buyingAccountCount": 6,
-        "eligibleAccountCount": 26,
+        "eligibleAccountCount": 28,
         "caseVolume": 21.0,
-        "penetrationPct": 23.1,
+        "penetrationPct": 21.4,
         "tier": null,
         "rate": 0.0,
         "whitespaceAccounts": [
           {
             "customer": "Bombolon Liquor & Grocery",
-            "cases2026": 110867.8
+            "cases2026": 135370.7
           },
           {
             "customer": "Altiero Liquors",
-            "cases2026": 63576.0
+            "cases2026": 69400.7
           },
           {
             "customer": "Caraballo's",
-            "cases2026": 51120.9
+            "cases2026": 52883.9
           },
           {
             "customer": "Midtown Liquors",
-            "cases2026": 38646.3
+            "cases2026": 39211.3
           },
           {
             "customer": "EL BOHEMIO 2 LIQUOR STORE & BAR",
-            "cases2026": 29864.4
+            "cases2026": 31837.4
           },
           {
             "customer": "Limonta Liqs (A)",
@@ -25884,51 +26000,59 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Allen's Liquors",
-            "cases2026": 18920.2
+            "cases2026": 19256.2
           },
           {
             "customer": "Gene's Liquor",
-            "cases2026": 13200.0
+            "cases2026": 14370.0
           },
           {
             "customer": "Broadway W&L",
-            "cases2026": 12334.0
-          },
-          {
-            "customer": "Joe's Liquor (A)",
-            "cases2026": 6406.5
+            "cases2026": 13660.0
           },
           {
             "customer": "Boulevard Wine & Spirits",
-            "cases2026": 5896.0
+            "cases2026": 7200.0
+          },
+          {
+            "customer": "Joe's Liquor (A)",
+            "cases2026": 7032.5
           },
           {
             "customer": "Intensity Lounge/Angie's Liquors",
-            "cases2026": 5586.0
+            "cases2026": 6222.0
           },
           {
             "customer": "Schulman's (P) Deli",
-            "cases2026": 5462.3
+            "cases2026": 5961.3
           },
           {
             "customer": "Carisma Liq & Groc (P)",
-            "cases2026": 4474.0
+            "cases2026": 4960.0
           },
           {
             "customer": "Costambar Bar & Liquor Corp.",
-            "cases2026": 3177.8
+            "cases2026": 3404.8
           },
           {
             "customer": "Freddie's Corner",
-            "cases2026": 2832.0
+            "cases2026": 3199.0
           },
           {
             "customer": "Star Liquor Store",
-            "cases2026": 1755.0
+            "cases2026": 2011.0
+          },
+          {
+            "customer": "Riverside Liquors (Paterson)",
+            "cases2026": 1965.0
           },
           {
             "customer": "Legacy Bar & Liquor",
-            "cases2026": 1633.7
+            "cases2026": 1822.7
+          },
+          {
+            "customer": "Lena y Carbon Broaster",
+            "cases2026": 67.0
           }
         ],
         "partialAccounts": [
@@ -25960,11 +26084,11 @@ const PROGRAM_DATA = {
         "whitespaceAccounts": [
           {
             "customer": "Balthazar Bakery (A)",
-            "cases2026": 104.0
+            "cases2026": 120.0
           },
           {
             "customer": "Mykos",
-            "cases2026": 66.0
+            "cases2026": 80.0
           }
         ],
         "partialAccounts": [],
@@ -26041,43 +26165,51 @@ const PROGRAM_DATA = {
           }
         ],
         "buyingAccountCount": 13,
-        "eligibleAccountCount": 25,
+        "eligibleAccountCount": 30,
         "caseVolume": 66.0,
-        "penetrationPct": 52.0,
-        "tier": "Lytty City",
-        "rate": 1.0,
+        "penetrationPct": 43.3,
+        "tier": "Gettin' Lytt",
+        "rate": 0.5,
         "whitespaceAccounts": [
           {
             "customer": "Agave Liquor, Wine & Spirits",
-            "cases2026": 51424.4
+            "cases2026": 52704.0
           },
           {
             "customer": "Shop Rite Liq(A) Roch Pk",
-            "cases2026": 17977.0
+            "cases2026": 19883.0
           },
           {
             "customer": "Shop Rite Liq(A) Fair Lwn",
-            "cases2026": 16512.0
-          },
-          {
-            "customer": "Shop-Rite Liq Lyndhurst",
-            "cases2026": 13510.3
+            "cases2026": 18023.0
           },
           {
             "customer": "Budy's Wine & Liq (A)",
-            "cases2026": 13391.0
+            "cases2026": 14893.0
+          },
+          {
+            "customer": "Shop-Rite Liq Lyndhurst",
+            "cases2026": 14872.3
+          },
+          {
+            "customer": "Acme Markets (Midland Park)",
+            "cases2026": 5632.0
+          },
+          {
+            "customer": "Acme Markets (Fort Lee)",
+            "cases2026": 4661.0
           },
           {
             "customer": "Whole Foods Market (Paramus)",
-            "cases2026": 3153.0
-          },
-          {
-            "customer": "Acme Markets (Allendale)",
-            "cases2026": 3105.0
+            "cases2026": 3541.0
           },
           {
             "customer": "Riverview Liq (P)",
-            "cases2026": 3013.0
+            "cases2026": 3530.0
+          },
+          {
+            "customer": "Acme Markets (Allendale)",
+            "cases2026": 3480.0
           },
           {
             "customer": "Gary's Wine & Marketplace (Wayne)",
@@ -26085,15 +26217,19 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Stew Leonard's(A) Paramu (NA)",
-            "cases2026": 1414.0
+            "cases2026": 1540.0
           },
           {
             "customer": "Lushka Liquors",
-            "cases2026": 1010.2
+            "cases2026": 1134.2
           },
           {
             "customer": "Megha Liquor & Grocery",
-            "cases2026": 496.2
+            "cases2026": 601.2
+          },
+          {
+            "customer": "USA Wine Traders Paramus",
+            "cases2026": 526.0
           },
           {
             "customer": "Stew Leonard's Wines & Spirits of Clifton (NA)",
@@ -26112,7 +26248,7 @@ const PROGRAM_DATA = {
       "Robin Feldman": {
         "buyingAccounts": [],
         "buyingAccountCount": 0,
-        "eligibleAccountCount": 1,
+        "eligibleAccountCount": 2,
         "caseVolume": 2.0,
         "penetrationPct": 0.0,
         "tier": null,
@@ -26120,7 +26256,11 @@ const PROGRAM_DATA = {
         "whitespaceAccounts": [
           {
             "customer": "Jerry's Outlet",
-            "cases2026": 343.0
+            "cases2026": 404.0
+          },
+          {
+            "customer": "Pizza Town USA",
+            "cases2026": 101.0
           }
         ],
         "partialAccounts": [
@@ -26184,87 +26324,95 @@ const PROGRAM_DATA = {
           }
         ],
         "buyingAccountCount": 9,
-        "eligibleAccountCount": 29,
+        "eligibleAccountCount": 31,
         "caseVolume": 46.0,
-        "penetrationPct": 31.0,
+        "penetrationPct": 29.0,
         "tier": "Gettin' Lytt",
         "rate": 0.5,
         "whitespaceAccounts": [
           {
             "customer": "Beverage Barn (A)",
-            "cases2026": 24857.0
+            "cases2026": 27883.0
           },
           {
             "customer": "Montvale Wine/Liq & Beer",
-            "cases2026": 21475.0
+            "cases2026": 23653.0
           },
           {
             "customer": "Bottle King (A) Hillsdale",
-            "cases2026": 19774.0
+            "cases2026": 22087.0
           },
           {
             "customer": "Shop Rite Liq (A)Hillsdal",
-            "cases2026": 15421.5
+            "cases2026": 17157.5
           },
           {
             "customer": "Cork & Keg (A)",
-            "cases2026": 11978.2
+            "cases2026": 13286.7
           },
           {
             "customer": "Shop Rite Liq (A)Emerson",
-            "cases2026": 8480.0
+            "cases2026": 9551.0
           },
           {
             "customer": "Township Liq (P)",
-            "cases2026": 7349.0
+            "cases2026": 8114.0
           },
           {
-            "customer": "Gary's Wine & Marketplace (Closter)",
-            "cases2026": 6414.0
+            "customer": "Gary's Closter / CLoster Cellars",
+            "cases2026": 6861.0
           },
           {
             "customer": "Westwood Wine and Liquors",
-            "cases2026": 5404.0
+            "cases2026": 6090.0
           },
           {
             "customer": "Wine And Beverage Spirits",
-            "cases2026": 4751.0
+            "cases2026": 5467.0
+          },
+          {
+            "customer": "Cambridge Wines (Woodcliff Lake)",
+            "cases2026": 4546.9
           },
           {
             "customer": "Wine & Whiskey (A)",
-            "cases2026": 3269.0
+            "cases2026": 3776.0
           },
           {
             "customer": "Ridgemont Liquors (A)",
-            "cases2026": 2990.7
+            "cases2026": 3222.7
           },
           {
             "customer": "Djm Liq Inc. (P)(Andrew)",
-            "cases2026": 2857.0
+            "cases2026": 3181.0
           },
           {
             "customer": "D & L Dumont Liquors",
-            "cases2026": 1823.0
+            "cases2026": 2052.0
           },
           {
             "customer": "Oradell Mini Mart(P)",
-            "cases2026": 1663.0
+            "cases2026": 1907.0
           },
           {
             "customer": "Murphy's Fine Wines & Liquors (UNI 4H Inc.)",
-            "cases2026": 1289.0
+            "cases2026": 1368.0
+          },
+          {
+            "customer": "Woori Mart",
+            "cases2026": 1209.0
           },
           {
             "customer": "Whole Foods #8407 (Woodcliff Lake)",
-            "cases2026": 438.0
+            "cases2026": 490.0
           },
           {
             "customer": "Whole Foods #10381 (Closter)",
-            "cases2026": 380.0
+            "cases2026": 413.0
           },
           {
             "customer": "The Store",
-            "cases2026": 140.0
+            "cases2026": 151.0
           }
         ],
         "partialAccounts": [
@@ -26283,37 +26431,37 @@ const PROGRAM_DATA = {
     "leaderboard": [
       {
         "rep": "Derrick Laws",
-        "penetrationPct": 56.2,
+        "penetrationPct": 54.5,
         "rank": 1
-      },
-      {
-        "rep": "Phil Ernst",
-        "penetrationPct": 52.0,
-        "rank": 2
       },
       {
         "rep": "Michael Harboy",
         "penetrationPct": 50.0,
+        "rank": 2
+      },
+      {
+        "rep": "Phil Ernst",
+        "penetrationPct": 43.3,
         "rank": 3
       },
       {
-        "rep": "Dave Ehlers",
-        "penetrationPct": 39.4,
+        "rep": "Chris Payton",
+        "penetrationPct": 37.5,
         "rank": 4
       },
       {
-        "rep": "Chris Payton",
-        "penetrationPct": 38.5,
+        "rep": "Dave Ehlers",
+        "penetrationPct": 37.1,
         "rank": 5
-      },
-      {
-        "rep": "Jayson Romine",
-        "penetrationPct": 36.4,
-        "rank": 6
       },
       {
         "rep": "Jim Heaney",
         "penetrationPct": 34.9,
+        "rank": 6
+      },
+      {
+        "rep": "Jayson Romine",
+        "penetrationPct": 34.3,
         "rank": 7
       },
       {
@@ -26322,33 +26470,33 @@ const PROGRAM_DATA = {
         "rank": 8
       },
       {
-        "rep": "Matt Powierski",
-        "penetrationPct": 31.4,
+        "rep": "Shane Barreca",
+        "penetrationPct": 29.0,
         "rank": 9
       },
       {
-        "rep": "Shane Barreca",
-        "penetrationPct": 31.0,
+        "rep": "Matt Powierski",
+        "penetrationPct": 27.5,
         "rank": 10
       },
       {
         "rep": "Dan Lagala",
-        "penetrationPct": 27.3,
+        "penetrationPct": 26.7,
         "rank": 11
       },
       {
         "rep": "Klejdi Lamo",
-        "penetrationPct": 25.9,
+        "penetrationPct": 25.0,
         "rank": 12
       },
       {
         "rep": "Pablo Lopez",
-        "penetrationPct": 23.1,
+        "penetrationPct": 21.4,
         "rank": 13
       },
       {
         "rep": "Javier Melo",
-        "penetrationPct": 21.4,
+        "penetrationPct": 20.7,
         "rank": 14
       },
       {
@@ -96836,31 +96984,31 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "JR Sports Bar & Liquors(Z)",
-            "cases2026": 2666.0
+            "cases2026": 3122.0
           },
           {
             "customer": "Paramus Food Center",
-            "cases2026": 2058.0
+            "cases2026": 2277.0
           },
           {
             "customer": "Maywood Market(A)",
-            "cases2026": 1324.0
+            "cases2026": 1540.0
           },
           {
             "customer": "Princess Liquor's(P)",
-            "cases2026": 1148.0
+            "cases2026": 1288.0
           },
           {
             "customer": "Yoshi Liq/Wine (P)",
-            "cases2026": 913.0
+            "cases2026": 1020.0
           },
           {
             "customer": "Iga Supermarkets (A)",
-            "cases2026": 799.0
+            "cases2026": 932.0
           },
           {
             "customer": "Pompei's Little Market",
-            "cases2026": 211.0
+            "cases2026": 234.0
           },
           {
             "customer": "Ma'adan Catering",
@@ -96967,7 +97115,7 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Banner Delicatessen",
-            "cases2026": 77507.8
+            "cases2026": 80347.2
           },
           {
             "customer": "Bella Wine & Liquor",
@@ -96975,74 +97123,74 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Fairview Liq & Groc.(A)",
-            "cases2026": 10173.0
+            "cases2026": 11169.0
           },
           {
             "customer": "Stop N Go Conven. (P)",
-            "cases2026": 7595.0
+            "cases2026": 8463.0
           },
           {
             "customer": "Kikos Liquors Ii",
-            "cases2026": 7101.0
-          },
-          {
-            "customer": "Jay Cee (P) Deli & Liq.",
-            "cases2026": 6022.0
+            "cases2026": 7809.0
           },
           {
             "customer": "Mukeunji (Z)",
-            "cases2026": 5854.0
+            "cases2026": 6730.0
+          },
+          {
+            "customer": "Metro Liquor (Cliffside Park)",
+            "cases2026": 6702.2
+          },
+          {
+            "customer": "Jay Cee (P) Deli & Liq.",
+            "cases2026": 6690.0
           },
           {
             "customer": "Linwood Wine-Hudson Light",
-            "cases2026": 5393.0
+            "cases2026": 6079.0
           },
           {
             "customer": "Banner Liquor Iii",
-            "cases2026": 5145.0
-          },
-          {
-            "customer": "Checo Supermarket",
-            "cases2026": 4195.0
+            "cases2026": 5848.0
           },
           {
             "customer": "Rome Liquor (Cliffside Park)",
-            "cases2026": 4176.0
+            "cases2026": 4611.0
+          },
+          {
+            "customer": "Checo Supermarket",
+            "cases2026": 4465.0
           },
           {
             "customer": "Palisades Park Liq(P)",
-            "cases2026": 3424.0
+            "cases2026": 3870.0
           },
           {
             "customer": "JC&D Best Wine & Liquor",
-            "cases2026": 3289.0
-          },
-          {
-            "customer": "Han Mi Supermkt (A)",
-            "cases2026": 3089.0
-          },
-          {
-            "customer": "Minit Mart_2",
-            "cases2026": 2974.0
+            "cases2026": 3655.0
           },
           {
             "customer": "Bp Gas Station",
-            "cases2026": 2946.0
+            "cases2026": 3453.0
+          },
+          {
+            "customer": "Minit Mart_2",
+            "cases2026": 3370.0
+          },
+          {
+            "customer": "Han Mi Supermkt (A)",
+            "cases2026": 3362.0
           },
           {
             "customer": "Best Choice Liqrs (P)",
-            "cases2026": 2480.0
-          },
-          {
-            "customer": "Manor Wine & Liquor",
-            "cases2026": 2428.5
+            "cases2026": 2791.0
           },
           {
             "customer": "Mitsuwa Market (A)",
-            "cases2026": 2301.0
+            "cases2026": 2651.0
           }
         ],
-        "offPremTargetCount": 30
+        "offPremTargetCount": 31
       },
       "Dave Ehlers": {
         "offPremNew": [
@@ -97315,27 +97463,27 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "W E Beverage (A)",
-            "cases2026": 8230.0
+            "cases2026": 9307.0
           },
           {
             "customer": "Englewood Wine and Spirits",
-            "cases2026": 3375.0
+            "cases2026": 3888.0
           },
           {
             "customer": "Teaneck Liquors",
-            "cases2026": 1593.0
+            "cases2026": 2364.0
           },
           {
             "customer": "99 Ranch Market",
-            "cases2026": 1091.0
+            "cases2026": 1303.0
           },
           {
             "customer": "Santa Barbara",
-            "cases2026": 575.0
+            "cases2026": 720.0
           },
           {
             "customer": "Parisi Deli",
-            "cases2026": 192.0
+            "cases2026": 215.0
           },
           {
             "customer": "Englewood Wine (A)",
@@ -97381,75 +97529,75 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Ant's Bar & Liquors",
-            "cases2026": 80227.9
+            "cases2026": 86998.8
           },
           {
             "customer": "Gonzalez Liq & Bar(A)",
-            "cases2026": 36092.8
+            "cases2026": 36998.8
           },
           {
             "customer": "The Liquor Shop",
-            "cases2026": 27097.0
+            "cases2026": 31026.0
           },
           {
             "customer": "The Point Liquor & Bar",
-            "cases2026": 21665.5
+            "cases2026": 22427.5
           },
           {
             "customer": "Economy Liquors",
-            "cases2026": 18898.0
+            "cases2026": 21090.0
           },
           {
             "customer": "Ferraro's Liquor",
-            "cases2026": 11999.5
+            "cases2026": 13231.7
           },
           {
             "customer": "Pal's Liquor",
-            "cases2026": 11623.0
+            "cases2026": 12978.0
           },
           {
             "customer": "La Sorpresa Liq (P)",
-            "cases2026": 11157.0
+            "cases2026": 12436.0
           },
           {
             "customer": "Limestone Liquors (A)",
-            "cases2026": 11133.0
+            "cases2026": 12335.0
           },
           {
             "customer": "Santana's Sport(P)Bella",
-            "cases2026": 10374.8
+            "cases2026": 11252.8
           },
           {
             "customer": "Dorta Liquor (A)",
-            "cases2026": 9141.0
-          },
-          {
-            "customer": "10th Ave Liq & Food (P)",
-            "cases2026": 7024.0
-          },
-          {
-            "customer": "Hiciano Liquor Store",
-            "cases2026": 6874.0
-          },
-          {
-            "customer": "M & R Disc (A) Liqs.",
-            "cases2026": 6575.0
-          },
-          {
-            "customer": "Hillcrest Liqrs (A)",
-            "cases2026": 5335.0
-          },
-          {
-            "customer": "J & B Bar & Liq (Z)",
-            "cases2026": 4243.0
+            "cases2026": 10225.0
           },
           {
             "customer": "Yaremy Liquors",
-            "cases2026": 3753.2
+            "cases2026": 9144.8
+          },
+          {
+            "customer": "10th Ave Liq & Food (P)",
+            "cases2026": 7764.0
+          },
+          {
+            "customer": "Hiciano Liquor Store",
+            "cases2026": 7695.0
+          },
+          {
+            "customer": "M & R Disc (A) Liqs.",
+            "cases2026": 7155.0
+          },
+          {
+            "customer": "Hillcrest Liqrs (A)",
+            "cases2026": 5717.0
+          },
+          {
+            "customer": "J & B Bar & Liq (Z)",
+            "cases2026": 4708.0
           },
           {
             "customer": "Rocky's Liquor Store",
-            "cases2026": 3658.0
+            "cases2026": 4237.0
           },
           {
             "customer": "Main Discount (P) Liqs.",
@@ -97705,12 +97853,12 @@ const PROGRAM_DATA_2026_09 = {
             "cases2026": 2264.0
           },
           {
-            "customer": "Sparrow's Wine & Liq(P) (1224 Hoboken)",
-            "cases2026": 1640.0
+            "customer": "One Stop Wine (A) & Liq",
+            "cases2026": 1700.0
           },
           {
-            "customer": "One Stop Wine (A) & Liq",
-            "cases2026": 1578.0
+            "customer": "Sparrow's Wine & Liq(P) (1224 Hoboken)",
+            "cases2026": 1640.0
           },
           {
             "customer": "ShopRite Wines & Spirits of Hoboken",
@@ -97781,86 +97929,86 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Edwards (P) Wine & Liq",
-            "cases2026": 44151.2
+            "cases2026": 45969.9
           },
           {
             "customer": "D'bar Liquors (P)",
-            "cases2026": 37223.2
+            "cases2026": 38287.2
+          },
+          {
+            "customer": "El Cantaro Liquors",
+            "cases2026": 37195.6
           },
           {
             "customer": "President Liqrs (A)",
-            "cases2026": 19683.0
+            "cases2026": 21023.0
           },
           {
             "customer": "Farm Boy",
-            "cases2026": 14051.0
+            "cases2026": 15788.0
           },
           {
             "customer": "New Eagle Liquors",
-            "cases2026": 13517.0
+            "cases2026": 15209.0
           },
           {
             "customer": "Parker Liquors (Z)",
-            "cases2026": 13256.0
+            "cases2026": 14710.0
           },
           {
             "customer": "Diamond Liquors (P)",
-            "cases2026": 11857.0
+            "cases2026": 13433.0
           },
           {
             "customer": "Danny's Liquor",
-            "cases2026": 11699.0
+            "cases2026": 13208.0
           },
           {
             "customer": "ESTEVEZ LIQUORS LLC",
-            "cases2026": 11618.0
+            "cases2026": 12883.0
           },
           {
             "customer": "Luna Liquors",
-            "cases2026": 11399.0
+            "cases2026": 12801.0
           },
           {
             "customer": "Shanik Liqs.(P)",
-            "cases2026": 11287.0
+            "cases2026": 12344.0
           },
           {
             "customer": "East Side Bar Liquors",
-            "cases2026": 9821.0
+            "cases2026": 11115.0
           },
           {
             "customer": "Bermuda Liquors (P)",
-            "cases2026": 9445.0
-          },
-          {
-            "customer": "C Town Supermarket(P)",
-            "cases2026": 7701.0
+            "cases2026": 10138.0
           },
           {
             "customer": "La Joya Liquors",
-            "cases2026": 7453.0
+            "cases2026": 8583.0
           },
           {
             "customer": "Segundo's (P)",
-            "cases2026": 7344.0
+            "cases2026": 8582.0
+          },
+          {
+            "customer": "C Town Supermarket(P)",
+            "cases2026": 8531.0
           },
           {
             "customer": "Liquor Stop (Passaic)",
-            "cases2026": 7124.0
+            "cases2026": 8146.0
           },
           {
             "customer": "C & S Lucky Liquors (P)",
-            "cases2026": 6476.0
-          },
-          {
-            "customer": "C & S Lucky Liquors II",
-            "cases2026": 6049.0
+            "cases2026": 7333.0
           },
           {
             "customer": "Estevez Liquors & Grocery 2 LLC",
-            "cases2026": 5971.0
+            "cases2026": 6913.3
           }
         ],
-        "offPremTargetCount": 25
+        "offPremTargetCount": 26
       },
       "Jayson Romine": {
         "offPremNew": [
@@ -97972,14 +98120,22 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Liquor Factory VI Byram",
-            "cases2026": 9588.0
+            "cases2026": 10438.0
           },
           {
             "customer": "Wine Grand (Franklin)",
-            "cases2026": 1761.3
+            "cases2026": 1783.3
+          },
+          {
+            "customer": "Weis Supermarkets 143 Newton",
+            "cases2026": 11.0
+          },
+          {
+            "customer": "Weiss Super Market 147 Franklin",
+            "cases2026": 11.0
           }
         ],
-        "offPremTargetCount": 2
+        "offPremTargetCount": 4
       },
       "Jim Heaney": {
         "offPremNew": [
@@ -98064,11 +98220,11 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Lexington Liquors (Z)",
-            "cases2026": 17131.0
+            "cases2026": 19257.0
           },
           {
             "customer": "Marina's Wine & Spirits",
-            "cases2026": 9272.9
+            "cases2026": 10139.9
           },
           {
             "customer": "Mason's Cellar (A)",
@@ -98076,43 +98232,43 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Valley Liquors (A)",
-            "cases2026": 5542.0
+            "cases2026": 6199.0
           },
           {
             "customer": "Quik Stop Conv(Z)",
-            "cases2026": 5183.0
+            "cases2026": 5689.0
           },
           {
             "customer": "Swizzle Stick Liq (A)",
-            "cases2026": 4580.0
-          },
-          {
-            "customer": "Village Wine (P)",
-            "cases2026": 2567.2
+            "cases2026": 5268.0
           },
           {
             "customer": "Krauser Food & Liq(A)",
-            "cases2026": 2455.0
+            "cases2026": 2706.0
           },
           {
             "customer": "Richfield Liquors",
-            "cases2026": 2291.0
+            "cases2026": 2643.0
           },
           {
-            "customer": "Field Liquors (A)",
-            "cases2026": 2250.0
+            "customer": "Village Wine (P)",
+            "cases2026": 2611.2
           },
           {
             "customer": "Vasel's (A)",
-            "cases2026": 2245.0
+            "cases2026": 2526.0
+          },
+          {
+            "customer": "Field Liquors (A)",
+            "cases2026": 2504.0
           },
           {
             "customer": "Forest Dairy (A)",
-            "cases2026": 2064.0
+            "cases2026": 2345.0
           },
           {
             "customer": "Liquor Stop (P) (Clifton)",
-            "cases2026": 865.0
+            "cases2026": 989.0
           }
         ],
         "offPremTargetCount": 15
@@ -98162,16 +98318,16 @@ const PROGRAM_DATA_2026_09 = {
             "cases2026": 1070.0
           },
           {
+            "customer": "Charlie's Liquor and Convenience",
+            "cases2026": 1044.0
+          },
+          {
             "customer": "Bottle King (Z) Chatham",
             "cases2026": 897.0
           },
           {
             "customer": "Best Cellars(Ledgewood)",
             "cases2026": 889.0
-          },
-          {
-            "customer": "Charlie's Liquor and Convenience",
-            "cases2026": 876.0
           },
           {
             "customer": "Sandy's Wine & Spirits (Flanders)",
@@ -98317,14 +98473,18 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Mountain Lakes Wine & Liquor",
-            "cases2026": 28534.5
+            "cases2026": 28584.5
           },
           {
             "customer": "The Village Place",
-            "cases2026": 903.0
+            "cases2026": 971.0
+          },
+          {
+            "customer": "23 liquor & Tobacco",
+            "cases2026": 855.0
           }
         ],
-        "offPremTargetCount": 2
+        "offPremTargetCount": 3
       },
       "Matt Powierski": {
         "offPremNew": [
@@ -98403,54 +98563,58 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Archies (P)",
-            "cases2026": 9268.0
+            "cases2026": 10185.0
           },
           {
             "customer": "Luigi's Liquor (A)",
-            "cases2026": 6710.0
+            "cases2026": 7382.0
           },
           {
             "customer": "River Drive Bar (P)",
-            "cases2026": 4371.0
-          },
-          {
-            "customer": "Payless Liquor & Dell",
-            "cases2026": 2651.0
+            "cases2026": 4928.0
           },
           {
             "customer": "Little Ferry Wines/Liquor",
-            "cases2026": 2584.0
+            "cases2026": 2914.0
           },
           {
-            "customer": "Vicki's Bar & Liquors",
-            "cases2026": 2230.4
+            "customer": "Payless Liquor & Dell",
+            "cases2026": 2825.0
           },
           {
             "customer": "Worldwide Liquors",
-            "cases2026": 2005.0
+            "cases2026": 2423.0
+          },
+          {
+            "customer": "Vicki's Bar & Liquors",
+            "cases2026": 2380.5
+          },
+          {
+            "customer": "Riverview Liquors & Bar",
+            "cases2026": 2248.0
           },
           {
             "customer": "Joe's Liquors",
-            "cases2026": 1712.0
+            "cases2026": 1792.0
           },
           {
             "customer": "Food Mart Liquor",
-            "cases2026": 1174.0
+            "cases2026": 1279.0
           },
           {
             "customer": "All Nations Liq",
-            "cases2026": 803.0
+            "cases2026": 936.0
           },
           {
             "customer": "Piast Meats & Prov.",
-            "cases2026": 729.0
+            "cases2026": 809.0
           },
           {
             "customer": "Tatra Haus Restaurant",
             "cases2026": 36.0
           }
         ],
-        "offPremTargetCount": 12
+        "offPremTargetCount": 13
       },
       "Michael Harboy": {
         "offPremNew": [
@@ -98499,7 +98663,7 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Kinnelon Country Wine & Liquor",
-            "cases2026": 13317.5
+            "cases2026": 13538.5
           },
           {
             "customer": "Total Wine & More (West Orange)",
@@ -98636,39 +98800,39 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Nico's Wine & Spirits",
-            "cases2026": 11913.2
+            "cases2026": 13444.2
           },
           {
             "customer": "Speedy Mart (P)",
-            "cases2026": 6117.0
+            "cases2026": 7164.0
           },
           {
             "customer": "Scherer & Company",
-            "cases2026": 4449.0
+            "cases2026": 5114.0
           },
           {
             "customer": "Stop & Shop (A)Ridgewood",
-            "cases2026": 2137.0
+            "cases2026": 2476.0
           },
           {
             "customer": "Garbo's Ital Deli&Liq(Z)",
-            "cases2026": 1071.4
+            "cases2026": 1477.6
           },
           {
             "customer": "The Wine Seller",
-            "cases2026": 518.0
+            "cases2026": 583.0
           },
           {
             "customer": "Public Ridgewood",
-            "cases2026": 459.0
+            "cases2026": 498.0
           },
           {
             "customer": "Whole Foods #10106 (Ridgewood)",
-            "cases2026": 452.0
+            "cases2026": 485.0
           },
           {
             "customer": "Wine & Spirits World (Hohokus)",
-            "cases2026": 339.3
+            "cases2026": 385.3
           }
         ],
         "offPremTargetCount": 9
@@ -98812,7 +98976,7 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "H Mart Inc (Space A101-A)",
-            "cases2026": 873.0
+            "cases2026": 942.0
           }
         ],
         "offPremTargetCount": 1
@@ -98864,23 +99028,23 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Bombolon Liquor & Grocery",
-            "cases2026": 110867.8
+            "cases2026": 135370.7
           },
           {
             "customer": "Altiero Liquors",
-            "cases2026": 63576.0
+            "cases2026": 69400.7
           },
           {
             "customer": "Caraballo's",
-            "cases2026": 51120.9
+            "cases2026": 52883.9
           },
           {
             "customer": "Midtown Liquors",
-            "cases2026": 38646.3
+            "cases2026": 39211.3
           },
           {
             "customer": "EL BOHEMIO 2 LIQUOR STORE & BAR",
-            "cases2026": 29864.4
+            "cases2026": 31837.4
           },
           {
             "customer": "Limonta Liqs (A)",
@@ -98888,58 +99052,62 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Allen's Liquors",
-            "cases2026": 18920.2
+            "cases2026": 19256.2
           },
           {
             "customer": "Gene's Liquor",
-            "cases2026": 13200.0
+            "cases2026": 14370.0
           },
           {
             "customer": "Monroe Wine & Liq(P)",
-            "cases2026": 12594.0
+            "cases2026": 13914.0
           },
           {
             "customer": "Broadway W&L",
-            "cases2026": 12334.0
-          },
-          {
-            "customer": "Joe's Liquor (A)",
-            "cases2026": 6406.5
+            "cases2026": 13660.0
           },
           {
             "customer": "Boulevard Wine & Spirits",
-            "cases2026": 5896.0
+            "cases2026": 7200.0
+          },
+          {
+            "customer": "Joe's Liquor (A)",
+            "cases2026": 7032.5
           },
           {
             "customer": "Intensity Lounge/Angie's Liquors",
-            "cases2026": 5586.0
+            "cases2026": 6222.0
           },
           {
             "customer": "Schulman's (P) Deli",
-            "cases2026": 5462.3
+            "cases2026": 5961.3
           },
           {
             "customer": "Costambar Bar & Liquor Corp.",
-            "cases2026": 3177.8
+            "cases2026": 3404.8
           },
           {
             "customer": "Freddie's Corner",
-            "cases2026": 2832.0
+            "cases2026": 3199.0
           },
           {
             "customer": "Ronny's Liqrs (Z)",
-            "cases2026": 2485.0
+            "cases2026": 2984.0
           },
           {
             "customer": "Star Liquor Store",
-            "cases2026": 1755.0
+            "cases2026": 2011.0
+          },
+          {
+            "customer": "Riverside Liquors (Paterson)",
+            "cases2026": 1965.0
           },
           {
             "customer": "Florida Drugs (A)",
-            "cases2026": 469.0
+            "cases2026": 503.0
           }
         ],
-        "offPremTargetCount": 19
+        "offPremTargetCount": 21
       },
       "Paul Mclaughlin": {
         "offPremNew": [],
@@ -99044,11 +99212,11 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Balthazar Bakery (A)",
-            "cases2026": 104.0
+            "cases2026": 120.0
           },
           {
             "customer": "Mykos",
-            "cases2026": 66.0
+            "cases2026": 80.0
           }
         ],
         "offPremTargetCount": 2
@@ -99133,15 +99301,15 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Agave Liquor, Wine & Spirits",
-            "cases2026": 51424.4
+            "cases2026": 52704.0
           },
           {
             "customer": "Whole Foods Market (Paramus)",
-            "cases2026": 3153.0
+            "cases2026": 3541.0
           },
           {
             "customer": "Riverview Liq (P)",
-            "cases2026": 3013.0
+            "cases2026": 3530.0
           },
           {
             "customer": "Gary's Wine & Marketplace (Wayne)",
@@ -99149,15 +99317,19 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Stew Leonard's(A) Paramu (NA)",
-            "cases2026": 1414.0
+            "cases2026": 1540.0
           },
           {
             "customer": "Lushka Liquors",
-            "cases2026": 1010.2
+            "cases2026": 1134.2
           },
           {
             "customer": "Megha Liquor & Grocery",
-            "cases2026": 496.2
+            "cases2026": 601.2
+          },
+          {
+            "customer": "USA Wine Traders Paramus",
+            "cases2026": 526.0
           },
           {
             "customer": "Stew Leonard's Wines & Spirits of Clifton (NA)",
@@ -99168,7 +99340,7 @@ const PROGRAM_DATA_2026_09 = {
             "cases2026": 85.0
           }
         ],
-        "offPremTargetCount": 9
+        "offPremTargetCount": 10
       },
       "Robin Feldman": {
         "offPremNew": [],
@@ -99305,10 +99477,14 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Jerry's Outlet",
-            "cases2026": 343.0
+            "cases2026": 404.0
+          },
+          {
+            "customer": "Pizza Town USA",
+            "cases2026": 101.0
           }
         ],
-        "offPremTargetCount": 1
+        "offPremTargetCount": 2
       },
       "Shane Barreca": {
         "offPremNew": [
@@ -99371,34 +99547,42 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Brand Bar & Bev (A)",
-            "cases2026": 7080.0
+            "cases2026": 7764.0
           },
           {
             "customer": "Wine And Beverage Spirits",
-            "cases2026": 4751.0
+            "cases2026": 5467.0
+          },
+          {
+            "customer": "Cambridge Wines (Woodcliff Lake)",
+            "cases2026": 4546.9
           },
           {
             "customer": "Coasters Liquors",
-            "cases2026": 2899.0
+            "cases2026": 3302.0
           },
           {
             "customer": "Oradell Mini Mart(P)",
-            "cases2026": 1663.0
+            "cases2026": 1907.0
+          },
+          {
+            "customer": "Woori Mart",
+            "cases2026": 1209.0
           },
           {
             "customer": "Whole Foods #8407 (Woodcliff Lake)",
-            "cases2026": 438.0
+            "cases2026": 490.0
           },
           {
             "customer": "Whole Foods #10381 (Closter)",
-            "cases2026": 380.0
+            "cases2026": 413.0
           },
           {
             "customer": "The Store",
-            "cases2026": 140.0
+            "cases2026": 151.0
           }
         ],
-        "offPremTargetCount": 7
+        "offPremTargetCount": 9
       }
     },
     "leaderboard": [
@@ -99714,7 +99898,7 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Paradise Liquors",
-            "cases2026": 19143.6
+            "cases2026": 21184.7
           },
           {
             "customer": "Wine Warehouse (P) (Bayonne)",
@@ -99726,7 +99910,7 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Super K Food (A) Store",
-            "cases2026": 1534.0
+            "cases2026": 1763.0
           },
           {
             "customer": "High Spirits Of Bayonne",
@@ -99990,83 +100174,83 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Highland Wine&Liquor Inc",
-            "cases2026": 18415.2
+            "cases2026": 19996.2
           },
           {
             "customer": "Usa Wine Traders Club (Bloomingdale)",
-            "cases2026": 16250.0
+            "cases2026": 17917.0
           },
           {
             "customer": "River Place Food Store",
-            "cases2026": 10087.1
+            "cases2026": 11190.1
           },
           {
             "customer": "Greenwood Lake Disc.(P)",
-            "cases2026": 9370.3
+            "cases2026": 10016.3
           },
           {
             "customer": "Ringwood W&L",
-            "cases2026": 8930.0
-          },
-          {
-            "customer": "Krauszer's Liquor Wine and Spirits",
-            "cases2026": 8619.0
+            "cases2026": 9941.0
           },
           {
             "customer": "Turnpike Discount Liquors",
-            "cases2026": 8460.0
+            "cases2026": 9636.0
+          },
+          {
+            "customer": "Krauszer's Liquor Wine and Spirits",
+            "cases2026": 9270.0
           },
           {
             "customer": "George's Market (A)",
-            "cases2026": 6831.0
+            "cases2026": 7858.0
           },
           {
             "customer": "Appio's Liquors",
-            "cases2026": 6769.0
+            "cases2026": 7682.0
           },
           {
             "customer": "Usa Wine Traders (Wanaque)",
-            "cases2026": 6326.0
+            "cases2026": 7122.0
           },
           {
             "customer": "Shoppers Disc(A)Pompton",
-            "cases2026": 6109.5
+            "cases2026": 6840.5
           },
           {
             "customer": "Roserne Liquors North",
-            "cases2026": 5991.2
-          },
-          {
-            "customer": "B & B Wine&Liq",
-            "cases2026": 5581.0
+            "cases2026": 6600.2
           },
           {
             "customer": "Ringwood Discount Liquors",
-            "cases2026": 5493.0
+            "cases2026": 6293.0
+          },
+          {
+            "customer": "B & B Wine&Liq",
+            "cases2026": 6195.0
           },
           {
             "customer": "Wine 2 Spirits (P)",
-            "cases2026": 4669.0
+            "cases2026": 5204.0
           },
           {
             "customer": "Country Convenience Store",
-            "cases2026": 4174.0
+            "cases2026": 4697.0
           },
           {
             "customer": "Empire Wine & Liquor",
-            "cases2026": 3100.0
+            "cases2026": 3543.0
           },
           {
             "customer": "Bloomingdale Discount Liq",
-            "cases2026": 3091.0
+            "cases2026": 3317.0
           },
           {
             "customer": "Vault Liquors",
-            "cases2026": 2653.8
+            "cases2026": 2695.8
           },
           {
             "customer": "M & M Discount Liq",
-            "cases2026": 2159.0
+            "cases2026": 2461.0
           }
         ],
         "offPremTargetCount": 22
@@ -100190,23 +100374,23 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Chabons Ii Liq/Bar (A)",
-            "cases2026": 7664.0
+            "cases2026": 8348.0
           },
           {
             "customer": "Culver Liquor and Bar",
-            "cases2026": 7273.0
+            "cases2026": 8034.0
           },
           {
             "customer": "The Greek's",
-            "cases2026": 1755.0
+            "cases2026": 2010.0
           },
           {
             "customer": "Picatinny Main Exch",
-            "cases2026": 742.0
+            "cases2026": 807.0
           },
           {
             "customer": "Swartswood",
-            "cases2026": 440.0
+            "cases2026": 531.0
           },
           {
             "customer": "Point 5 Lafayette",
@@ -100236,86 +100420,86 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Discount Lqr(A) Outlet",
-            "cases2026": 162859.9
+            "cases2026": 172824.5
           },
           {
             "customer": "Ridgefield Deli & Liq",
-            "cases2026": 44545.3
+            "cases2026": 79037.7
           },
           {
             "customer": "Clifton Disc Liq (A)",
-            "cases2026": 34517.5
+            "cases2026": 38748.5
           },
           {
             "customer": "Garden Liquors (P)",
-            "cases2026": 19064.3
+            "cases2026": 21097.3
           },
           {
             "customer": "46 Discount Liquor Store",
-            "cases2026": 11594.0
-          },
-          {
-            "customer": "Westmont Liquors 64",
-            "cases2026": 11036.8
+            "cases2026": 12564.0
           },
           {
             "customer": "Exquisite W & L (A)",
-            "cases2026": 10812.5
+            "cases2026": 11863.5
           },
           {
             "customer": "Buy Rite Of Main St Lodi",
-            "cases2026": 10446.7
+            "cases2026": 11740.7
+          },
+          {
+            "customer": "Westmont Liquors 64",
+            "cases2026": 11323.8
           },
           {
             "customer": "Buy Rite Discount Liquor",
-            "cases2026": 8886.2
+            "cases2026": 9923.2
           },
           {
             "customer": "Figlar's (P)",
-            "cases2026": 8657.0
+            "cases2026": 9773.0
           },
           {
             "customer": "Shop Rite Liq.(A)Lodi",
-            "cases2026": 7318.0
-          },
-          {
-            "customer": "Circle Liquors",
-            "cases2026": 6790.7
+            "cases2026": 8214.0
           },
           {
             "customer": "Woodridge Wines & Liq(A)",
-            "cases2026": 6525.7
+            "cases2026": 7160.7
+          },
+          {
+            "customer": "Circle Liquors",
+            "cases2026": 7049.9
           },
           {
             "customer": "Teaneck Quickshop(P)Conv",
-            "cases2026": 5899.0
+            "cases2026": 6502.0
           },
           {
             "customer": "Lodi Liquor Store(P)",
-            "cases2026": 5552.0
-          },
-          {
-            "customer": "B & B Liquors (Fair Lawn)",
-            "cases2026": 4265.0
+            "cases2026": 6337.0
           },
           {
             "customer": "Discount Liq & Bar",
-            "cases2026": 4261.0
+            "cases2026": 4867.0
           },
           {
-            "customer": "Krauszer Liquor",
-            "cases2026": 4169.7
+            "customer": "B & B Liquors (Fair Lawn)",
+            "cases2026": 4738.0
           },
           {
             "customer": "Welsh Farms",
-            "cases2026": 4059.0
+            "cases2026": 4562.0
+          },
+          {
+            "customer": "Krauszer Liquor",
+            "cases2026": 4489.7
           },
           {
             "customer": "Quick Stop Food & Liq",
-            "cases2026": 3455.3
+            "cases2026": 3970.3
           }
         ],
-        "offPremTargetCount": 37
+        "offPremTargetCount": 38
       },
       "Dan Lagala": {
         "offPremNew": [],
@@ -100342,82 +100526,82 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Banner Delicatessen",
-            "cases2026": 77507.8
+            "cases2026": 80347.2
+          },
+          {
+            "customer": "Edgewater Liquor (A)",
+            "cases2026": 40565.5
           },
           {
             "customer": "Bella Wine & Liquor",
             "cases2026": 30851.4
           },
           {
-            "customer": "Edgewater Liquor (A)",
-            "cases2026": 29281.9
-          },
-          {
             "customer": "Buy Rite Of Fairview",
-            "cases2026": 19436.0
+            "cases2026": 21494.0
           },
           {
             "customer": "Liquor World",
-            "cases2026": 12473.0
+            "cases2026": 13951.0
           },
           {
             "customer": "Liquor City(A)Cliffside",
-            "cases2026": 11521.0
+            "cases2026": 13165.0
           },
           {
             "customer": "Rome Liquors (Fairview)",
-            "cases2026": 10396.7
-          },
-          {
-            "customer": "Winston Wine & Liq",
-            "cases2026": 10303.4
+            "cases2026": 11653.7
           },
           {
             "customer": "Fairview Liq & Groc.(A)",
-            "cases2026": 10173.0
+            "cases2026": 11169.0
           },
           {
             "customer": "Boulevard Liq.(Fairview)",
-            "cases2026": 10122.0
+            "cases2026": 11053.0
+          },
+          {
+            "customer": "Winston Wine & Liq",
+            "cases2026": 10459.4
           },
           {
             "customer": "Linwood Wine-Linwood Plaza",
-            "cases2026": 8416.8
+            "cases2026": 9059.8
           },
           {
             "customer": "Stop N Go Conven. (P)",
-            "cases2026": 7595.0
+            "cases2026": 8463.0
           },
           {
             "customer": "Kikos Liquors Ii",
-            "cases2026": 7101.0
-          },
-          {
-            "customer": "Jay Cee (P) Deli & Liq.",
-            "cases2026": 6022.0
+            "cases2026": 7809.0
           },
           {
             "customer": "Mukeunji (Z)",
-            "cases2026": 5854.0
+            "cases2026": 6730.0
+          },
+          {
+            "customer": "Metro Liquor (Cliffside Park)",
+            "cases2026": 6702.2
+          },
+          {
+            "customer": "Jay Cee (P) Deli & Liq.",
+            "cases2026": 6690.0
           },
           {
             "customer": "Linwood Wine-Hudson Light",
-            "cases2026": 5393.0
+            "cases2026": 6079.0
           },
           {
             "customer": "Garden State Food&Liq (P)",
-            "cases2026": 5339.0
+            "cases2026": 5995.0
           },
           {
             "customer": "Banner Liquor Iii",
-            "cases2026": 5145.0
-          },
-          {
-            "customer": "American Classic Liq",
-            "cases2026": 4782.0
+            "cases2026": 5848.0
           }
         ],
-        "offPremTargetCount": 45
+        "offPremTargetCount": 46
       },
       "Dave Ehlers": {
         "offPremNew": [
@@ -100468,87 +100652,87 @@ const PROGRAM_DATA_2026_09 = {
         "draftChannelOk": false,
         "offPremTargets": [
           {
+            "customer": "Burgundy Convenience Store",
+            "cases2026": 31788.7
+          },
+          {
             "customer": "Shop Rite Liq (A)Englewd",
-            "cases2026": 28132.0
+            "cases2026": 31435.0
           },
           {
             "customer": "Barrel & Brew Bar & Liq",
-            "cases2026": 20580.2
+            "cases2026": 20995.2
           },
           {
             "customer": "Portland Wine & Liquor",
-            "cases2026": 17216.0
+            "cases2026": 18713.0
           },
           {
             "customer": "Wine And Liq Depot(A)",
-            "cases2026": 16879.0
+            "cases2026": 18647.7
           },
           {
             "customer": "Hackensack Liquors",
-            "cases2026": 15898.0
+            "cases2026": 17640.3
           },
           {
             "customer": "Wine & More (P)",
-            "cases2026": 14581.0
+            "cases2026": 15425.8
           },
           {
             "customer": "Bergenfield Liq & Fw",
-            "cases2026": 13371.3
+            "cases2026": 14827.3
           },
           {
             "customer": "W E Beverage (A)",
-            "cases2026": 8230.0
-          },
-          {
-            "customer": "Time Lounge And Liq (A)",
-            "cases2026": 8184.0
+            "cases2026": 9307.0
           },
           {
             "customer": "Simple Simon's (Z)",
-            "cases2026": 7858.0
+            "cases2026": 9148.0
+          },
+          {
+            "customer": "Time Lounge And Liq (A)",
+            "cases2026": 9042.0
           },
           {
             "customer": "Bottle & Cork",
-            "cases2026": 7562.3
+            "cases2026": 8671.3
           },
           {
             "customer": "Essex St Liquor and Wine",
-            "cases2026": 6703.0
+            "cases2026": 7558.0
           },
           {
             "customer": "George's Liq",
-            "cases2026": 6635.0
-          },
-          {
-            "customer": "H & R Disc. Liq (P)",
-            "cases2026": 6168.0
+            "cases2026": 7434.0
           },
           {
             "customer": "Deli Mart (A)",
-            "cases2026": 6098.0
+            "cases2026": 6928.0
           },
           {
-            "customer": "G & G Liquors & Bar",
-            "cases2026": 5370.0
-          },
-          {
-            "customer": "Englewood Wine and Spirits",
-            "cases2026": 3375.0
-          },
-          {
-            "customer": "New Milford Liquors",
-            "cases2026": 3159.0
-          },
-          {
-            "customer": "River Edge Wine & Liquor",
-            "cases2026": 2520.0
+            "customer": "H & R Disc. Liq (P)",
+            "cases2026": 6879.0
           },
           {
             "customer": "Country Wine & Liquors",
-            "cases2026": 1712.0
+            "cases2026": 6121.1
+          },
+          {
+            "customer": "G & G Liquors & Bar",
+            "cases2026": 5762.0
+          },
+          {
+            "customer": "Englewood Wine and Spirits",
+            "cases2026": 3888.0
+          },
+          {
+            "customer": "New Milford Liquors",
+            "cases2026": 3525.0
           }
         ],
-        "offPremTargetCount": 27
+        "offPremTargetCount": 29
       },
       "Derrick Laws": {
         "offPremNew": [],
@@ -100571,7 +100755,7 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Shop Rite Wines/Spirits",
-            "cases2026": 186098.8
+            "cases2026": 191980.7
           },
           {
             "customer": "Scheps Discount Bar/Liq",
@@ -100579,78 +100763,78 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Ant's Bar & Liquors",
-            "cases2026": 80227.9
+            "cases2026": 86998.8
           },
           {
             "customer": "Gonzalez Liq & Bar(A)",
-            "cases2026": 36092.8
+            "cases2026": 36998.8
           },
           {
             "customer": "Shop Rite Liq (A)Littlefl",
-            "cases2026": 28486.0
+            "cases2026": 31482.0
           },
           {
             "customer": "The Liquor Shop",
-            "cases2026": 27097.0
+            "cases2026": 31026.0
           },
           {
             "customer": "C Town (A)",
-            "cases2026": 26134.7
+            "cases2026": 26338.7
           },
           {
             "customer": "The Point Liquor & Bar",
-            "cases2026": 21665.5
+            "cases2026": 22427.5
           },
           {
             "customer": "Economy Liquors",
-            "cases2026": 18898.0
+            "cases2026": 21090.0
           },
           {
             "customer": "Quis Queya Liquor(P)",
-            "cases2026": 13567.0
+            "cases2026": 15689.0
           },
           {
             "customer": "Ferraro's Liquor",
-            "cases2026": 11999.5
+            "cases2026": 13231.7
           },
           {
             "customer": "Pal's Liquor",
-            "cases2026": 11623.0
+            "cases2026": 12978.0
           },
           {
             "customer": "La Sorpresa Liq (P)",
-            "cases2026": 11157.0
+            "cases2026": 12436.0
           },
           {
             "customer": "Limestone Liquors (A)",
-            "cases2026": 11133.0
+            "cases2026": 12335.0
           },
           {
             "customer": "Santana's Sport(P)Bella",
-            "cases2026": 10374.8
+            "cases2026": 11252.8
           },
           {
             "customer": "Raphael & Angel Liq (A)",
-            "cases2026": 9958.0
-          },
-          {
-            "customer": "El Oasis",
-            "cases2026": 9646.0
+            "cases2026": 11241.0
           },
           {
             "customer": "230 Liq & Groc.(A)",
-            "cases2026": 9584.0
+            "cases2026": 10604.0
+          },
+          {
+            "customer": "El Oasis",
+            "cases2026": 10500.0
           },
           {
             "customer": "Dorta Liquor (A)",
-            "cases2026": 9141.0
+            "cases2026": 10225.0
           },
           {
-            "customer": "Mercer Bar & Liquors",
-            "cases2026": 7419.0
+            "customer": "Yaremy Liquors",
+            "cases2026": 9144.8
           }
         ],
-        "offPremTargetCount": 32
+        "offPremTargetCount": 33
       },
       "Dylan Rubino": {
         "offPremNew": [],
@@ -100683,12 +100867,12 @@ const PROGRAM_DATA_2026_09 = {
             "cases2026": 5143.3
           },
           {
-            "customer": "STOP & GO LIQUORS",
-            "cases2026": 1594.0
+            "customer": "J B Liquors_2",
+            "cases2026": 1731.0
           },
           {
-            "customer": "J B Liquors_2",
-            "cases2026": 1571.0
+            "customer": "STOP & GO LIQUORS",
+            "cases2026": 1594.0
           },
           {
             "customer": "A2Z Wine Club",
@@ -100930,12 +101114,12 @@ const PROGRAM_DATA_2026_09 = {
             "cases2026": 2264.0
           },
           {
-            "customer": "Sparrow's Wine & Liq(P) (1224 Hoboken)",
-            "cases2026": 1640.0
+            "customer": "One Stop Wine (A) & Liq",
+            "cases2026": 1700.0
           },
           {
-            "customer": "One Stop Wine (A) & Liq",
-            "cases2026": 1578.0
+            "customer": "Sparrow's Wine & Liq(P) (1224 Hoboken)",
+            "cases2026": 1640.0
           },
           {
             "customer": "ShopRite Wines & Spirits of Hoboken",
@@ -101017,86 +101201,86 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Edwards (P) Wine & Liq",
-            "cases2026": 44151.2
+            "cases2026": 45969.9
           },
           {
             "customer": "D'bar Liquors (P)",
-            "cases2026": 37223.2
+            "cases2026": 38287.2
+          },
+          {
+            "customer": "El Cantaro Liquors",
+            "cases2026": 37195.6
           },
           {
             "customer": "President Liqrs (A)",
-            "cases2026": 19683.0
+            "cases2026": 21023.0
           },
           {
             "customer": "Farm Boy",
-            "cases2026": 14051.0
+            "cases2026": 15788.0
           },
           {
             "customer": "Bottle Liquor (P)",
-            "cases2026": 14010.0
+            "cases2026": 15510.0
           },
           {
             "customer": "New Eagle Liquors",
-            "cases2026": 13517.0
+            "cases2026": 15209.0
           },
           {
             "customer": "Parker Liquors (Z)",
-            "cases2026": 13256.0
+            "cases2026": 14710.0
           },
           {
             "customer": "Diamond Liquors (P)",
-            "cases2026": 11857.0
+            "cases2026": 13433.0
           },
           {
             "customer": "Danny's Liquor",
-            "cases2026": 11699.0
+            "cases2026": 13208.0
           },
           {
             "customer": "ESTEVEZ LIQUORS LLC",
-            "cases2026": 11618.0
+            "cases2026": 12883.0
           },
           {
             "customer": "Luna Liquors",
-            "cases2026": 11399.0
+            "cases2026": 12801.0
           },
           {
             "customer": "Shanik Liqs.(P)",
-            "cases2026": 11287.0
+            "cases2026": 12344.0
           },
           {
             "customer": "East Side Bar Liquors",
-            "cases2026": 9821.0
+            "cases2026": 11115.0
           },
           {
             "customer": "Bermuda Liquors (P)",
-            "cases2026": 9445.0
-          },
-          {
-            "customer": "C Town Supermarket(P)",
-            "cases2026": 7701.0
-          },
-          {
-            "customer": "Paulison Liquors (P)",
-            "cases2026": 7557.0
+            "cases2026": 10138.0
           },
           {
             "customer": "La Joya Liquors",
-            "cases2026": 7453.0
+            "cases2026": 8583.0
           },
           {
             "customer": "Segundo's (P)",
-            "cases2026": 7344.0
+            "cases2026": 8582.0
+          },
+          {
+            "customer": "Paulison Liquors (P)",
+            "cases2026": 8543.0
+          },
+          {
+            "customer": "C Town Supermarket(P)",
+            "cases2026": 8531.0
           },
           {
             "customer": "Liquor Stop (Passaic)",
-            "cases2026": 7124.0
-          },
-          {
-            "customer": "C & S Lucky Liquors (P)",
-            "cases2026": 6476.0
+            "cases2026": 8146.0
           }
         ],
-        "offPremTargetCount": 28
+        "offPremTargetCount": 29
       },
       "Jayson Romine": {
         "offPremNew": [
@@ -101127,86 +101311,86 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "ShopRite Wine & Spirits of Newton#830",
-            "cases2026": 15804.0
+            "cases2026": 17503.0
           },
           {
             "customer": "Mac & Lindy's W & S (A)",
-            "cases2026": 14958.0
-          },
-          {
-            "customer": "Liquor Factory II Jefferson",
-            "cases2026": 14542.0
+            "cases2026": 16662.0
           },
           {
             "customer": "ShopRite Wines & Spirits of Franklin",
-            "cases2026": 14418.0
+            "cases2026": 15968.0
+          },
+          {
+            "customer": "Liquor Factory II Jefferson",
+            "cases2026": 15824.0
           },
           {
             "customer": "Buy Rite Liquors Franklin",
-            "cases2026": 14384.0
+            "cases2026": 15567.0
           },
           {
             "customer": "Liquor Factory IV Hopatcong",
-            "cases2026": 11934.0
+            "cases2026": 13192.0
           },
           {
             "customer": "The George Inn",
-            "cases2026": 10126.0
+            "cases2026": 11148.0
           },
           {
             "customer": "Liquor Factory V Andover",
-            "cases2026": 9806.0
-          },
-          {
-            "customer": "Liquor Factory I Landing",
-            "cases2026": 8717.0
-          },
-          {
-            "customer": "Wantage Plaza Liq Outlet",
-            "cases2026": 8658.0
+            "cases2026": 10556.0
           },
           {
             "customer": "Spring Street Liquors",
-            "cases2026": 8560.0
+            "cases2026": 10037.0
+          },
+          {
+            "customer": "Wantage Plaza Liq Outlet",
+            "cases2026": 9663.0
+          },
+          {
+            "customer": "Liquor Factory I Landing",
+            "cases2026": 9499.0
           },
           {
             "customer": "Super Saver Liq",
-            "cases2026": 6898.0
+            "cases2026": 7609.0
           },
           {
             "customer": "Wine Country Newton",
-            "cases2026": 6827.0
+            "cases2026": 7547.0
           },
           {
             "customer": "Seplow's Liquors",
-            "cases2026": 5939.0
+            "cases2026": 6609.0
           },
           {
             "customer": "The Right Bottle",
-            "cases2026": 5007.0
+            "cases2026": 5372.0
           },
           {
             "customer": "Brix - Wine, Spirits, Beer (Fredon)",
-            "cases2026": 4173.0
-          },
-          {
-            "customer": "Highland General Store",
-            "cases2026": 4144.0
-          },
-          {
-            "customer": "Woody's Liq Shop (A)",
-            "cases2026": 4116.0
+            "cases2026": 4818.0
           },
           {
             "customer": "George's Wine & Spirits",
-            "cases2026": 3971.0
+            "cases2026": 4521.2
+          },
+          {
+            "customer": "Highland General Store",
+            "cases2026": 4512.0
+          },
+          {
+            "customer": "Woody's Liq Shop (A)",
+            "cases2026": 4438.0
           },
           {
             "customer": "Hamburg Liquor",
-            "cases2026": 3793.2
+            "cases2026": 4237.2
           }
         ],
-        "offPremTargetCount": 27
+        "offPremTargetCount": 29
       },
       "Jim Heaney": {
         "offPremNew": [],
@@ -101233,7 +101417,7 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Shoppers Vineyard (A)",
-            "cases2026": 34288.0
+            "cases2026": 39124.0
           },
           {
             "customer": "Allwood Liquor Store",
@@ -101241,39 +101425,39 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "World of Wine & Liquor",
-            "cases2026": 28658.1
+            "cases2026": 29268.1
           },
           {
             "customer": "Lexington Liquors (Z)",
-            "cases2026": 17131.0
+            "cases2026": 19257.0
           },
           {
             "customer": "Clifton Commons S & W",
-            "cases2026": 15142.0
+            "cases2026": 16822.0
           },
           {
             "customer": "Broad Liquors (A)",
-            "cases2026": 12801.0
+            "cases2026": 14183.0
           },
           {
             "customer": "Lucky 7 (A)",
-            "cases2026": 11499.8
+            "cases2026": 12842.8
           },
           {
             "customer": "Rainbow Liquor (P)",
-            "cases2026": 11147.2
-          },
-          {
-            "customer": "Marina's Wine & Spirits",
-            "cases2026": 9272.9
+            "cases2026": 12415.2
           },
           {
             "customer": "Savers Club Liquor Locker",
-            "cases2026": 8772.0
+            "cases2026": 10398.0
+          },
+          {
+            "customer": "Marina's Wine & Spirits",
+            "cases2026": 10139.9
           },
           {
             "customer": "Little Falls Liq(P)",
-            "cases2026": 8533.2
+            "cases2026": 9762.2
           },
           {
             "customer": "Mason's Cellar (A)",
@@ -101281,31 +101465,31 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "US#1 Wine & Liquor",
-            "cases2026": 7041.0
-          },
-          {
-            "customer": "Rutherford Wine (A)",
-            "cases2026": 6507.9
+            "cases2026": 7746.0
           },
           {
             "customer": "Town Liquors",
-            "cases2026": 6162.0
+            "cases2026": 6932.0
+          },
+          {
+            "customer": "Rutherford Wine (A)",
+            "cases2026": 6791.9
           },
           {
             "customer": "Valley Liquors (A)",
-            "cases2026": 5542.0
+            "cases2026": 6199.0
           },
           {
             "customer": "Metro Liquors (North Arlington)",
-            "cases2026": 5366.0
+            "cases2026": 6003.0
           },
           {
             "customer": "Quik Stop Conv(Z)",
-            "cases2026": 5183.0
+            "cases2026": 5689.0
           },
           {
             "customer": "Liquor Shed",
-            "cases2026": 4902.5
+            "cases2026": 5477.5
           }
         ],
         "offPremTargetCount": 43
@@ -101359,16 +101543,16 @@ const PROGRAM_DATA_2026_09 = {
             "cases2026": 1070.0
           },
           {
+            "customer": "Charlie's Liquor and Convenience",
+            "cases2026": 1044.0
+          },
+          {
             "customer": "Bottle King (Z) Chatham",
             "cases2026": 897.0
           },
           {
             "customer": "Best Cellars(Ledgewood)",
             "cases2026": 889.0
-          },
-          {
-            "customer": "Charlie's Liquor and Convenience",
-            "cases2026": 876.0
           },
           {
             "customer": "Bottle King (A) Ledgewood",
@@ -101419,8 +101603,8 @@ const PROGRAM_DATA_2026_09 = {
             "cases2026": 279.0
           },
           {
-            "customer": "Fairfield Wine Cellar",
-            "cases2026": 270.0
+            "customer": "X Plor Wine",
+            "cases2026": 272.0
           }
         ],
         "offPremTargetCount": 46
@@ -101446,86 +101630,86 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Mountain Lakes Wine & Liquor",
-            "cases2026": 28534.5
+            "cases2026": 28584.5
           },
           {
             "customer": "Shop Rite Wine & Spirits Stanhope",
-            "cases2026": 21764.0
+            "cases2026": 23910.0
           },
           {
             "customer": "Milton Inn",
-            "cases2026": 19754.0
+            "cases2026": 21428.0
           },
           {
             "customer": "Quick Check Liquor (A)",
-            "cases2026": 11861.6
+            "cases2026": 12429.6
           },
           {
             "customer": "Shoppers Disc Liquor",
-            "cases2026": 9603.7
+            "cases2026": 10610.7
           },
           {
             "customer": "Rockaway W/L",
-            "cases2026": 9358.0
+            "cases2026": 10437.0
           },
           {
             "customer": "Shop-Rite(A) Netcong",
-            "cases2026": 9256.0
+            "cases2026": 10208.0
           },
           {
             "customer": "Nova Liquors",
-            "cases2026": 8813.9
-          },
-          {
-            "customer": "Island Of Spirits (P)",
-            "cases2026": 6551.0
-          },
-          {
-            "customer": "Midtown Liq",
-            "cases2026": 6440.2
+            "cases2026": 8876.9
           },
           {
             "customer": "Sam's Liq Wine (P)",
-            "cases2026": 6278.0
+            "cases2026": 7270.0
           },
           {
-            "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
-            "cases2026": 5589.0
+            "customer": "Island Of Spirits (P)",
+            "cases2026": 7154.0
+          },
+          {
+            "customer": "Midtown Liq",
+            "cases2026": 6957.2
           },
           {
             "customer": "Boonton Liquor Locker",
-            "cases2026": 5368.0
+            "cases2026": 6360.5
           },
           {
             "customer": "Wharton Liquor Store",
-            "cases2026": 5367.0
+            "cases2026": 6311.0
+          },
+          {
+            "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
+            "cases2026": 6220.0
           },
           {
             "customer": "Main Street Liquor",
-            "cases2026": 5024.3
-          },
-          {
-            "customer": "3 IN 1 LIQUORS INC",
-            "cases2026": 4048.3
-          },
-          {
-            "customer": "Patel Liqr & Gro(P)",
-            "cases2026": 3922.3
+            "cases2026": 5864.3
           },
           {
             "customer": "Denville W & L",
-            "cases2026": 3897.0
+            "cases2026": 4434.0
+          },
+          {
+            "customer": "3 IN 1 LIQUORS INC",
+            "cases2026": 4357.3
+          },
+          {
+            "customer": "Patel Liqr & Gro(P)",
+            "cases2026": 4295.3
           },
           {
             "customer": "Stanhope Liquors",
-            "cases2026": 3770.0
+            "cases2026": 4152.0
           },
           {
             "customer": "Berkshire(P) Bot. Shop",
-            "cases2026": 1203.0
+            "cases2026": 1325.0
           }
         ],
-        "offPremTargetCount": 21
+        "offPremTargetCount": 22
       },
       "Matt Powierski": {
         "offPremNew": [],
@@ -101548,86 +101732,86 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Home Wine Liquor (Passaic)",
-            "cases2026": 28031.0
-          },
-          {
-            "customer": "Wine And People",
-            "cases2026": 16899.4
-          },
-          {
-            "customer": "M & M Wine & Spirits",
-            "cases2026": 13826.2
-          },
-          {
-            "customer": "Capri Deli&Liq (P)",
-            "cases2026": 13231.4
-          },
-          {
-            "customer": "Shop Rite Of Wallington",
-            "cases2026": 11492.2
-          },
-          {
-            "customer": "Whoopee Liq (A)",
-            "cases2026": 11335.3
-          },
-          {
-            "customer": "Metro Liquor (Elmwood Park)",
-            "cases2026": 11002.0
-          },
-          {
-            "customer": "Archies (P)",
-            "cases2026": 9268.0
-          },
-          {
-            "customer": "Metro Liquors (East Rutherford)",
-            "cases2026": 8889.5
+            "cases2026": 31807.0
           },
           {
             "customer": "Bottle Republic (Rutherford)",
-            "cases2026": 7676.0
+            "cases2026": 20042.6
+          },
+          {
+            "customer": "Wine And People",
+            "cases2026": 17078.4
+          },
+          {
+            "customer": "M & M Wine & Spirits",
+            "cases2026": 15449.2
+          },
+          {
+            "customer": "Capri Deli&Liq (P)",
+            "cases2026": 14122.4
+          },
+          {
+            "customer": "Shop Rite Of Wallington",
+            "cases2026": 12915.2
+          },
+          {
+            "customer": "Metro Liquor (Elmwood Park)",
+            "cases2026": 12437.0
+          },
+          {
+            "customer": "Whoopee Liq (A)",
+            "cases2026": 12050.3
+          },
+          {
+            "customer": "Archies (P)",
+            "cases2026": 10185.0
+          },
+          {
+            "customer": "Metro Liquors (East Rutherford)",
+            "cases2026": 10093.5
           },
           {
             "customer": "Luigi's Liquor (A)",
-            "cases2026": 6710.0
-          },
-          {
-            "customer": "Birchwood Liq & Deli (Z)",
-            "cases2026": 5532.0
-          },
-          {
-            "customer": "All Star Wine & Liquor",
-            "cases2026": 5390.0
+            "cases2026": 7382.0
           },
           {
             "customer": "Metro Wine And Liq(A)",
-            "cases2026": 5373.7
+            "cases2026": 6140.7
+          },
+          {
+            "customer": "Birchwood Liq & Deli (Z)",
+            "cases2026": 6059.0
+          },
+          {
+            "customer": "All Star Wine & Liquor",
+            "cases2026": 5835.0
           },
           {
             "customer": "Wine Grand (Carlstadt)",
-            "cases2026": 5013.7
+            "cases2026": 5790.0
+          },
+          {
+            "customer": "Buzzzrite Liquors",
+            "cases2026": 5487.0
           },
           {
             "customer": "Moonachie Liquors",
-            "cases2026": 4732.0
+            "cases2026": 5232.0
           },
           {
             "customer": "Cobblestone Hill Deli",
-            "cases2026": 4481.0
+            "cases2026": 5192.0
           },
           {
             "customer": "River Drive Bar (P)",
-            "cases2026": 4371.0
+            "cases2026": 4928.0
           },
           {
             "customer": "Vinny's Disc Liq (P)",
-            "cases2026": 4159.0
-          },
-          {
-            "customer": "Wine Land",
-            "cases2026": 3910.0
+            "cases2026": 4744.0
           }
         ],
-        "offPremTargetCount": 35
+        "offPremTargetCount": 40
       },
       "Michael Harboy": {
         "offPremNew": [
@@ -101678,19 +101862,19 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Kinnelon Country Wine & Liquor",
-            "cases2026": 13317.5
+            "cases2026": 13538.5
           },
           {
             "customer": "Lincoln Center Liq",
-            "cases2026": 11632.6
+            "cases2026": 12653.6
           },
           {
             "customer": "Wayne Liquor Locker",
-            "cases2026": 5874.0
+            "cases2026": 6631.7
           },
           {
             "customer": "Wolfson Market",
-            "cases2026": 4849.0
+            "cases2026": 5459.0
           },
           {
             "customer": "Total Wine & More (West Orange)",
@@ -101780,83 +101964,83 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Waldwick Wine/Spirits",
-            "cases2026": 19439.0
+            "cases2026": 20435.0
           },
           {
             "customer": "Fair Lawn Wine & Spirits",
-            "cases2026": 17532.8
+            "cases2026": 18417.8
           },
           {
             "customer": "Wine & Spirit World(W)",
-            "cases2026": 15037.0
+            "cases2026": 16677.7
           },
           {
             "customer": "Lincoln Park Fine Wines & Spirits",
-            "cases2026": 14976.5
+            "cases2026": 16324.5
           },
           {
             "customer": "Long Hill Liquors (A)",
-            "cases2026": 14466.0
+            "cases2026": 16155.0
           },
           {
             "customer": "Frank's Fine Wine & Foods",
-            "cases2026": 14291.0
+            "cases2026": 15364.0
           },
           {
             "customer": "Nico's Wine & Spirits",
-            "cases2026": 11913.2
+            "cases2026": 13444.2
           },
           {
             "customer": "Mahwah Liqrs (P)",
-            "cases2026": 9234.2
-          },
-          {
-            "customer": "Goffle Road Wine and More",
-            "cases2026": 7496.8
+            "cases2026": 10016.2
           },
           {
             "customer": "Oakland Wine (A)",
-            "cases2026": 7233.5
+            "cases2026": 8338.5
+          },
+          {
+            "customer": "Goffle Road Wine and More",
+            "cases2026": 8225.8
           },
           {
             "customer": "Diamond Liquor",
-            "cases2026": 6522.0
+            "cases2026": 7229.0
           },
           {
             "customer": "Speedy Mart (P)",
-            "cases2026": 6117.0
+            "cases2026": 7164.0
           },
           {
             "customer": "Allendale Wine Shoppe",
-            "cases2026": 5962.0
+            "cases2026": 6886.0
           },
           {
             "customer": "Discount Liq (P)_2",
-            "cases2026": 4911.0
+            "cases2026": 5417.0
           },
           {
             "customer": "Franklin Lake Liq",
-            "cases2026": 4843.0
+            "cases2026": 5369.0
           },
           {
             "customer": "Scherer & Company",
-            "cases2026": 4449.0
+            "cases2026": 5114.0
           },
           {
             "customer": "Ridgewood Super Cellar",
-            "cases2026": 4325.5
+            "cases2026": 4749.5
           },
           {
             "customer": "Mahwah Wine & Liquor (A)",
-            "cases2026": 3651.0
+            "cases2026": 4098.0
           },
           {
             "customer": "Quick Stop Liquor & Wine",
-            "cases2026": 2177.7
+            "cases2026": 2525.7
           },
           {
             "customer": "Stop & Shop (A)Ridgewood",
-            "cases2026": 2137.0
+            "cases2026": 2476.0
           }
         ],
         "offPremTargetCount": 27
@@ -101901,11 +102085,11 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Port Imperial HOQ LLC",
-            "cases2026": 4139.9
+            "cases2026": 4192.9
           },
           {
             "customer": "H Mart Inc (Space A101-A)",
-            "cases2026": 873.0
+            "cases2026": 942.0
           }
         ],
         "offPremTargetCount": 2
@@ -101931,23 +102115,23 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Bombolon Liquor & Grocery",
-            "cases2026": 110867.8
+            "cases2026": 135370.7
           },
           {
             "customer": "Altiero Liquors",
-            "cases2026": 63576.0
+            "cases2026": 69400.7
           },
           {
             "customer": "Caraballo's",
-            "cases2026": 51120.9
+            "cases2026": 52883.9
           },
           {
             "customer": "Midtown Liquors",
-            "cases2026": 38646.3
+            "cases2026": 39211.3
           },
           {
             "customer": "EL BOHEMIO 2 LIQUOR STORE & BAR",
-            "cases2026": 29864.4
+            "cases2026": 31837.4
           },
           {
             "customer": "Limonta Liqs (A)",
@@ -101955,62 +102139,62 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Allen's Liquors",
-            "cases2026": 18920.2
+            "cases2026": 19256.2
           },
           {
             "customer": "Gene's Liquor",
-            "cases2026": 13200.0
+            "cases2026": 14370.0
           },
           {
             "customer": "Passaic Discount Liquors",
-            "cases2026": 12729.0
+            "cases2026": 14111.0
           },
           {
             "customer": "Regalado Liq",
-            "cases2026": 12723.0
+            "cases2026": 14086.0
           },
           {
             "customer": "Monroe Wine & Liq(P)",
-            "cases2026": 12594.0
+            "cases2026": 13914.0
           },
           {
             "customer": "Broadway W&L",
-            "cases2026": 12334.0
+            "cases2026": 13660.0
           },
           {
             "customer": "Sunny's Liqs.(P)",
-            "cases2026": 12069.0
+            "cases2026": 13449.0
           },
           {
             "customer": "Johnny's Liqs (P)",
-            "cases2026": 10190.0
+            "cases2026": 11045.0
           },
           {
             "customer": "#1 Liqrs (P)",
-            "cases2026": 8006.0
-          },
-          {
-            "customer": "Joe's Liquor (A)",
-            "cases2026": 6406.5
+            "cases2026": 8984.0
           },
           {
             "customer": "Boulevard Wine & Spirits",
-            "cases2026": 5896.0
+            "cases2026": 7200.0
+          },
+          {
+            "customer": "Joe's Liquor (A)",
+            "cases2026": 7032.5
           },
           {
             "customer": "Intensity Lounge/Angie's Liquors",
-            "cases2026": 5586.0
+            "cases2026": 6222.0
           },
           {
             "customer": "Schulman's (P) Deli",
-            "cases2026": 5462.3
+            "cases2026": 5961.3
           },
           {
             "customer": "Carisma Liq & Groc (P)",
-            "cases2026": 4474.0
+            "cases2026": 4960.0
           }
         ],
-        "offPremTargetCount": 26
+        "offPremTargetCount": 28
       },
       "Paul Mclaughlin": {
         "offPremNew": [],
@@ -102059,11 +102243,11 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Balthazar Bakery (A)",
-            "cases2026": 104.0
+            "cases2026": 120.0
           },
           {
             "customer": "Mykos",
-            "cases2026": 66.0
+            "cases2026": 80.0
           }
         ],
         "offPremTargetCount": 2
@@ -102117,87 +102301,87 @@ const PROGRAM_DATA_2026_09 = {
         "draftChannelOk": false,
         "offPremTargets": [
           {
-            "customer": "Agave Liquor, Wine & Spirits",
-            "cases2026": 51424.4
+            "customer": "Super Wine Warehse(P)Pate",
+            "cases2026": 60828.0
           },
           {
-            "customer": "Super Wine Warehse(P)Pate",
-            "cases2026": 50573.0
+            "customer": "Agave Liquor, Wine & Spirits",
+            "cases2026": 52704.0
           },
           {
             "customer": "Shop Rite Liq(A) Roch Pk",
-            "cases2026": 17977.0
+            "cases2026": 19883.0
           },
           {
             "customer": "Palisades Wine And Liquor",
-            "cases2026": 14982.0
+            "cases2026": 16881.0
           },
           {
             "customer": "Budy's Wine & Liq (A)",
-            "cases2026": 13391.0
+            "cases2026": 14893.0
           },
           {
             "customer": "Shop Rite Liq (Paramus)",
-            "cases2026": 11134.0
+            "cases2026": 12872.0
           },
           {
             "customer": "Stew Leonard's(A) Paramus Wine",
-            "cases2026": 10822.0
+            "cases2026": 12641.0
           },
           {
             "customer": "Food Universe Marketplace",
-            "cases2026": 10135.2
+            "cases2026": 11376.3
           },
           {
             "customer": "Stew Leonard's Wines & Spirits of Clifton",
-            "cases2026": 9016.0
+            "cases2026": 10520.0
           },
           {
             "customer": "Home Wines & Liq 75 (A) (South Hackensack)",
-            "cases2026": 8001.0
+            "cases2026": 8824.0
+          },
+          {
+            "customer": "PRIME WINE CELLAR Liquor & Beer",
+            "cases2026": 6672.0
+          },
+          {
+            "customer": "Acme Markets (Midland Park)",
+            "cases2026": 5632.0
           },
           {
             "customer": "Wine Country Of Saddle Brook (A)",
-            "cases2026": 4529.0
+            "cases2026": 5038.0
+          },
+          {
+            "customer": "Acme Markets (Fort Lee)",
+            "cases2026": 4661.0
           },
           {
             "customer": "Whole Foods Market (Paramus)",
-            "cases2026": 3153.0
-          },
-          {
-            "customer": "Acme Markets (Allendale)",
-            "cases2026": 3105.0
+            "cases2026": 3541.0
           },
           {
             "customer": "Riverview Liq (P)",
-            "cases2026": 3013.0
+            "cases2026": 3530.0
+          },
+          {
+            "customer": "Acme Markets (Allendale)",
+            "cases2026": 3480.0
           },
           {
             "customer": "Gary's Wine & Marketplace (Wayne)",
             "cases2026": 2026.0
           },
           {
+            "customer": "THE BOTTLE SHOP",
+            "cases2026": 1585.0
+          },
+          {
             "customer": "Stew Leonard's(A) Paramu (NA)",
-            "cases2026": 1414.0
-          },
-          {
-            "customer": "Wides Deli & Liquor",
-            "cases2026": 1260.0
-          },
-          {
-            "customer": "Lushka Liquors",
-            "cases2026": 1010.2
-          },
-          {
-            "customer": "Megha Liquor & Grocery",
-            "cases2026": 496.2
-          },
-          {
-            "customer": "Stew Leonard's Wines & Spirits of Clifton (NA)",
-            "cases2026": 234.0
+            "cases2026": 1540.0
           }
         ],
-        "offPremTargetCount": 21
+        "offPremTargetCount": 26
       },
       "Robin Feldman": {
         "offPremNew": [],
@@ -102239,10 +102423,14 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Jerry's Outlet",
-            "cases2026": 343.0
+            "cases2026": 404.0
+          },
+          {
+            "customer": "Pizza Town USA",
+            "cases2026": 101.0
           }
         ],
-        "offPremTargetCount": 1
+        "offPremTargetCount": 2
       },
       "Shane Barreca": {
         "offPremNew": [],
@@ -102265,86 +102453,86 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Bottle King (A) Ramsey",
-            "cases2026": 44746.0
+            "cases2026": 49333.0
           },
           {
             "customer": "Bottle King (A) Dumont",
-            "cases2026": 36261.0
+            "cases2026": 39813.0
           },
           {
             "customer": "Beverage Barn (A)",
-            "cases2026": 24857.0
+            "cases2026": 27883.0
           },
           {
             "customer": "Ramsey Wine & Liquor",
-            "cases2026": 24068.0
+            "cases2026": 27164.0
           },
           {
             "customer": "Bottle King (A) Hillsdale",
-            "cases2026": 19774.0
+            "cases2026": 22087.0
           },
           {
             "customer": "Shoprite Liq (A)Northvle",
-            "cases2026": 18009.0
+            "cases2026": 20026.0
           },
           {
             "customer": "Shop Rite Liq (A)Hillsdal",
-            "cases2026": 15421.5
+            "cases2026": 17157.5
           },
           {
             "customer": "Cork & Keg (A)",
-            "cases2026": 11978.2
+            "cases2026": 13286.7
           },
           {
             "customer": "Shop Rite Liq (A)Emerson",
-            "cases2026": 8480.0
+            "cases2026": 9551.0
           },
           {
             "customer": "Winemart Discount",
-            "cases2026": 8310.7
+            "cases2026": 9260.7
           },
           {
             "customer": "Township Liq (P)",
-            "cases2026": 7349.0
+            "cases2026": 8114.0
           },
           {
             "customer": "Brand Bar & Bev (A)",
-            "cases2026": 7080.0
+            "cases2026": 7764.0
           },
           {
             "customer": "Garden State Deli (A)",
-            "cases2026": 6742.0
+            "cases2026": 7608.0
           },
           {
-            "customer": "Gary's Wine & Marketplace (Closter)",
-            "cases2026": 6414.0
+            "customer": "Gary's Closter / CLoster Cellars",
+            "cases2026": 6861.0
           },
           {
             "customer": "Westwood Wine and Liquors",
-            "cases2026": 5404.0
+            "cases2026": 6090.0
           },
           {
             "customer": "Wine And Beverage Spirits",
-            "cases2026": 4751.0
+            "cases2026": 5467.0
+          },
+          {
+            "customer": "Cambridge Wines (Woodcliff Lake)",
+            "cases2026": 4546.9
           },
           {
             "customer": "Wine & Whiskey (A)",
-            "cases2026": 3269.0
-          },
-          {
-            "customer": "Ridgemont Liquors (A)",
-            "cases2026": 2990.7
+            "cases2026": 3776.0
           },
           {
             "customer": "Coasters Liquors",
-            "cases2026": 2899.0
+            "cases2026": 3302.0
           },
           {
-            "customer": "Djm Liq Inc. (P)(Andrew)",
-            "cases2026": 2857.0
+            "customer": "Ridgemont Liquors (A)",
+            "cases2026": 3222.7
           }
         ],
-        "offPremTargetCount": 28
+        "offPremTargetCount": 30
       }
     },
     "leaderboard": [
@@ -102705,7 +102893,7 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Paradise Liquors",
-            "cases2026": 19143.6
+            "cases2026": 21184.7
           },
           {
             "customer": "Bbb Liquors(Costco)",
@@ -102713,7 +102901,7 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Super K Food (A) Store",
-            "cases2026": 1534.0
+            "cases2026": 1763.0
           },
           {
             "customer": "Bridgeview Liquors",
@@ -103009,75 +103197,75 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Highland Wine&Liquor Inc",
-            "cases2026": 18415.2
+            "cases2026": 19996.2
           },
           {
             "customer": "Best Cellars (Wanaque)",
-            "cases2026": 11357.2
+            "cases2026": 12657.2
           },
           {
             "customer": "Turnpike Discount Liquors",
-            "cases2026": 8460.0
+            "cases2026": 9636.0
           },
           {
             "customer": "George's Market (A)",
-            "cases2026": 6831.0
+            "cases2026": 7858.0
           },
           {
             "customer": "Appio's Liquors",
-            "cases2026": 6769.0
+            "cases2026": 7682.0
           },
           {
             "customer": "Roserne Pkg Store South",
-            "cases2026": 6401.3
+            "cases2026": 7194.3
           },
           {
             "customer": "Shoppers Disc(A)Pompton",
-            "cases2026": 6109.5
+            "cases2026": 6840.5
           },
           {
             "customer": "Roserne Liquors North",
-            "cases2026": 5991.2
-          },
-          {
-            "customer": "B & B Wine&Liq",
-            "cases2026": 5581.0
+            "cases2026": 6600.2
           },
           {
             "customer": "Ringwood Discount Liquors",
-            "cases2026": 5493.0
+            "cases2026": 6293.0
+          },
+          {
+            "customer": "B & B Wine&Liq",
+            "cases2026": 6195.0
           },
           {
             "customer": "Wine 2 Spirits (P)",
-            "cases2026": 4669.0
+            "cases2026": 5204.0
           },
           {
             "customer": "Country Convenience Store",
-            "cases2026": 4174.0
+            "cases2026": 4697.0
           },
           {
             "customer": "Bloomingdale Discount Liq",
-            "cases2026": 3091.0
+            "cases2026": 3317.0
           },
           {
             "customer": "Meloi Liquors",
-            "cases2026": 2687.0
+            "cases2026": 2932.0
           },
           {
             "customer": "Vault Liquors",
-            "cases2026": 2653.8
+            "cases2026": 2695.8
           },
           {
             "customer": "M & M Discount Liq",
-            "cases2026": 2159.0
+            "cases2026": 2461.0
           },
           {
             "customer": "Hootch Hut (P)",
-            "cases2026": 1837.0
+            "cases2026": 1886.0
           },
           {
             "customer": "Home Wine and Liquors",
-            "cases2026": 1542.0
+            "cases2026": 1848.0
           }
         ],
         "offPremTargetCount": 18
@@ -103204,23 +103392,23 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Chabons Ii Liq/Bar (A)",
-            "cases2026": 7664.0
+            "cases2026": 8348.0
           },
           {
             "customer": "Culver Liquor and Bar",
-            "cases2026": 7273.0
+            "cases2026": 8034.0
           },
           {
             "customer": "The Greek's",
-            "cases2026": 1755.0
+            "cases2026": 2010.0
           },
           {
             "customer": "Picatinny Main Exch",
-            "cases2026": 742.0
+            "cases2026": 807.0
           },
           {
             "customer": "Swartswood",
-            "cases2026": 440.0
+            "cases2026": 531.0
           },
           {
             "customer": "Point 5 Lafayette",
@@ -103267,86 +103455,86 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Ridgefield Deli & Liq",
-            "cases2026": 44545.3
+            "cases2026": 79037.7
           },
           {
             "customer": "Clifton Disc Liq (A)",
-            "cases2026": 34517.5
+            "cases2026": 38748.5
           },
           {
             "customer": "Garden Liquors (P)",
-            "cases2026": 19064.3
+            "cases2026": 21097.3
           },
           {
             "customer": "Usa Wine Traders Club (Saddle Brook)",
-            "cases2026": 16492.5
+            "cases2026": 18450.5
           },
           {
             "customer": "46 Discount Liquor Store",
-            "cases2026": 11594.0
+            "cases2026": 12564.0
           },
           {
             "customer": "Exquisite W & L (A)",
-            "cases2026": 10812.5
+            "cases2026": 11863.5
           },
           {
             "customer": "Buy Rite Of Main St Lodi",
-            "cases2026": 10446.7
+            "cases2026": 11740.7
           },
           {
             "customer": "Buy Rite Discount Liquor",
-            "cases2026": 8886.2
+            "cases2026": 9923.2
           },
           {
             "customer": "Figlar's (P)",
-            "cases2026": 8657.0
+            "cases2026": 9773.0
           },
           {
             "customer": "Shop Rite Liq.(A)Lodi",
-            "cases2026": 7318.0
+            "cases2026": 8214.0
           },
           {
             "customer": "Circle Liquors",
-            "cases2026": 6790.7
+            "cases2026": 7049.9
           },
           {
             "customer": "Teaneck Quickshop(P)Conv",
-            "cases2026": 5899.0
+            "cases2026": 6502.0
           },
           {
             "customer": "Lodi Liquor Store(P)",
-            "cases2026": 5552.0
+            "cases2026": 6337.0
           },
           {
             "customer": "Discount Liq & Bar",
-            "cases2026": 4261.0
-          },
-          {
-            "customer": "Krauszer Liquor",
-            "cases2026": 4169.7
+            "cases2026": 4867.0
           },
           {
             "customer": "Welsh Farms",
-            "cases2026": 4059.0
+            "cases2026": 4562.0
+          },
+          {
+            "customer": "Krauszer Liquor",
+            "cases2026": 4489.7
           },
           {
             "customer": "Quick Stop Food & Liq",
-            "cases2026": 3455.3
+            "cases2026": 3970.3
           },
           {
             "customer": "Maywood Wine&Liq (A)",
-            "cases2026": 3204.0
+            "cases2026": 3683.0
           },
           {
             "customer": "Hollywd Liq&Deli (A)",
-            "cases2026": 2897.7
+            "cases2026": 3223.7
           },
           {
-            "customer": "J R W & Liq (A)",
-            "cases2026": 2738.6
+            "customer": "JR Sports Bar & Liquors(Z)",
+            "cases2026": 3122.0
           }
         ],
-        "offPremTargetCount": 29
+        "offPremTargetCount": 30
       },
       "Dan Lagala": {
         "offPremNew": [
@@ -103408,7 +103596,7 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Banner Delicatessen",
-            "cases2026": 77507.8
+            "cases2026": 80347.2
           },
           {
             "customer": "Bella Wine & Liquor",
@@ -103416,74 +103604,74 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Buy Rite Of Fairview",
-            "cases2026": 19436.0
+            "cases2026": 21494.0
           },
           {
             "customer": "Liquor World",
-            "cases2026": 12473.0
+            "cases2026": 13951.0
           },
           {
             "customer": "Rome Liquors (Fairview)",
-            "cases2026": 10396.7
+            "cases2026": 11653.7
           },
           {
             "customer": "Fairview Liq & Groc.(A)",
-            "cases2026": 10173.0
+            "cases2026": 11169.0
           },
           {
             "customer": "Boulevard Liq.(Fairview)",
-            "cases2026": 10122.0
+            "cases2026": 11053.0
           },
           {
             "customer": "Linwood Wine-Linwood Plaza",
-            "cases2026": 8416.8
+            "cases2026": 9059.8
           },
           {
             "customer": "Stop N Go Conven. (P)",
-            "cases2026": 7595.0
+            "cases2026": 8463.0
           },
           {
             "customer": "Kikos Liquors Ii",
-            "cases2026": 7101.0
-          },
-          {
-            "customer": "Jay Cee (P) Deli & Liq.",
-            "cases2026": 6022.0
+            "cases2026": 7809.0
           },
           {
             "customer": "Mukeunji (Z)",
-            "cases2026": 5854.0
+            "cases2026": 6730.0
+          },
+          {
+            "customer": "Metro Liquor (Cliffside Park)",
+            "cases2026": 6702.2
+          },
+          {
+            "customer": "Jay Cee (P) Deli & Liq.",
+            "cases2026": 6690.0
           },
           {
             "customer": "Garden State Food&Liq (P)",
-            "cases2026": 5339.0
+            "cases2026": 5995.0
           },
           {
             "customer": "Banner Liquor Iii",
-            "cases2026": 5145.0
+            "cases2026": 5848.0
           },
           {
             "customer": "American Classic Liq",
-            "cases2026": 4782.0
-          },
-          {
-            "customer": "Checo Supermarket",
-            "cases2026": 4195.0
+            "cases2026": 5371.0
           },
           {
             "customer": "Rome Liquor (Cliffside Park)",
-            "cases2026": 4176.0
+            "cases2026": 4611.0
+          },
+          {
+            "customer": "Checo Supermarket",
+            "cases2026": 4465.0
           },
           {
             "customer": "Palisades Park Liq(P)",
-            "cases2026": 3424.0
-          },
-          {
-            "customer": "Ridgefield Liq (Z)",
-            "cases2026": 3338.3
+            "cases2026": 3870.0
           }
         ],
-        "offPremTargetCount": 35
+        "offPremTargetCount": 36
       },
       "Dave Ehlers": {
         "offPremNew": [
@@ -103515,87 +103703,87 @@ const PROGRAM_DATA_2026_09 = {
         "draftChannelOk": false,
         "offPremTargets": [
           {
+            "customer": "Burgundy Convenience Store",
+            "cases2026": 31788.7
+          },
+          {
             "customer": "Barrel & Brew Bar & Liq",
-            "cases2026": 20580.2
+            "cases2026": 20995.2
           },
           {
             "customer": "Portland Wine & Liquor",
-            "cases2026": 17216.0
+            "cases2026": 18713.0
           },
           {
             "customer": "Hackensack Liquors",
-            "cases2026": 15898.0
+            "cases2026": 17640.3
           },
           {
             "customer": "Wine & More (P)",
-            "cases2026": 14581.0
+            "cases2026": 15425.8
           },
           {
             "customer": "Bergenfield Liq & Fw",
-            "cases2026": 13371.3
+            "cases2026": 14827.3
           },
           {
             "customer": "W E Beverage (A)",
-            "cases2026": 8230.0
-          },
-          {
-            "customer": "Time Lounge And Liq (A)",
-            "cases2026": 8184.0
+            "cases2026": 9307.0
           },
           {
             "customer": "Simple Simon's (Z)",
-            "cases2026": 7858.0
+            "cases2026": 9148.0
+          },
+          {
+            "customer": "Time Lounge And Liq (A)",
+            "cases2026": 9042.0
           },
           {
             "customer": "Essex St Liquor and Wine",
-            "cases2026": 6703.0
+            "cases2026": 7558.0
           },
           {
             "customer": "George's Liq",
-            "cases2026": 6635.0
-          },
-          {
-            "customer": "H & R Disc. Liq (P)",
-            "cases2026": 6168.0
+            "cases2026": 7434.0
           },
           {
             "customer": "Deli Mart (A)",
-            "cases2026": 6098.0
+            "cases2026": 6928.0
           },
           {
-            "customer": "G & G Liquors & Bar",
-            "cases2026": 5370.0
-          },
-          {
-            "customer": "Englewood Wine and Spirits",
-            "cases2026": 3375.0
-          },
-          {
-            "customer": "New Milford Liquors",
-            "cases2026": 3159.0
-          },
-          {
-            "customer": "Teaneck Discount Liquor",
-            "cases2026": 2846.2
+            "customer": "H & R Disc. Liq (P)",
+            "cases2026": 6879.0
           },
           {
             "customer": "Country Wine & Liquors",
-            "cases2026": 1712.0
+            "cases2026": 6121.1
+          },
+          {
+            "customer": "G & G Liquors & Bar",
+            "cases2026": 5762.0
+          },
+          {
+            "customer": "Englewood Wine and Spirits",
+            "cases2026": 3888.0
+          },
+          {
+            "customer": "New Milford Liquors",
+            "cases2026": 3525.0
+          },
+          {
+            "customer": "Teaneck Discount Liquor",
+            "cases2026": 3267.2
           },
           {
             "customer": "Teaneck Liquors",
-            "cases2026": 1593.0
+            "cases2026": 2364.0
           },
           {
             "customer": "99 Ranch Market",
-            "cases2026": 1091.0
-          },
-          {
-            "customer": "Grand Liquor & Delicatesen",
-            "cases2026": 785.0
+            "cases2026": 1303.0
           }
         ],
-        "offPremTargetCount": 24
+        "offPremTargetCount": 26
       },
       "Derrick Laws": {
         "offPremNew": [],
@@ -103621,7 +103809,7 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Shop Rite Wines/Spirits",
-            "cases2026": 186098.8
+            "cases2026": 191980.7
           },
           {
             "customer": "Scheps Discount Bar/Liq",
@@ -103629,78 +103817,78 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Ant's Bar & Liquors",
-            "cases2026": 80227.9
+            "cases2026": 86998.8
           },
           {
             "customer": "Gonzalez Liq & Bar(A)",
-            "cases2026": 36092.8
+            "cases2026": 36998.8
           },
           {
             "customer": "The Liquor Shop",
-            "cases2026": 27097.0
+            "cases2026": 31026.0
           },
           {
             "customer": "C Town (A)",
-            "cases2026": 26134.7
+            "cases2026": 26338.7
           },
           {
             "customer": "The Point Liquor & Bar",
-            "cases2026": 21665.5
+            "cases2026": 22427.5
           },
           {
             "customer": "Economy Liquors",
-            "cases2026": 18898.0
+            "cases2026": 21090.0
           },
           {
             "customer": "Quis Queya Liquor(P)",
-            "cases2026": 13567.0
+            "cases2026": 15689.0
           },
           {
             "customer": "Ferraro's Liquor",
-            "cases2026": 11999.5
+            "cases2026": 13231.7
           },
           {
             "customer": "Pal's Liquor",
-            "cases2026": 11623.0
+            "cases2026": 12978.0
           },
           {
             "customer": "La Sorpresa Liq (P)",
-            "cases2026": 11157.0
+            "cases2026": 12436.0
           },
           {
             "customer": "Limestone Liquors (A)",
-            "cases2026": 11133.0
+            "cases2026": 12335.0
           },
           {
             "customer": "Santana's Sport(P)Bella",
-            "cases2026": 10374.8
+            "cases2026": 11252.8
           },
           {
             "customer": "Raphael & Angel Liq (A)",
-            "cases2026": 9958.0
-          },
-          {
-            "customer": "El Oasis",
-            "cases2026": 9646.0
+            "cases2026": 11241.0
           },
           {
             "customer": "230 Liq & Groc.(A)",
-            "cases2026": 9584.0
+            "cases2026": 10604.0
+          },
+          {
+            "customer": "El Oasis",
+            "cases2026": 10500.0
           },
           {
             "customer": "Dorta Liquor (A)",
-            "cases2026": 9141.0
+            "cases2026": 10225.0
+          },
+          {
+            "customer": "Yaremy Liquors",
+            "cases2026": 9144.8
           },
           {
             "customer": "Mercer Bar & Liquors",
-            "cases2026": 7419.0
-          },
-          {
-            "customer": "Liquor Gallery (Paterson)",
-            "cases2026": 7175.5
+            "cases2026": 8270.0
           }
         ],
-        "offPremTargetCount": 31
+        "offPremTargetCount": 32
       },
       "Dylan Rubino": {
         "offPremNew": [],
@@ -103755,7 +103943,7 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "J B Liquors_2",
-            "cases2026": 1571.0
+            "cases2026": 1731.0
           },
           {
             "customer": "Liquor Mart (Jersey City)",
@@ -104069,7 +104257,7 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "One Stop Wine (A) & Liq",
-            "cases2026": 1578.0
+            "cases2026": 1700.0
           },
           {
             "customer": "Coolvines Powerhouse",
@@ -104130,86 +104318,86 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Edwards (P) Wine & Liq",
-            "cases2026": 44151.2
+            "cases2026": 45969.9
           },
           {
             "customer": "D'bar Liquors (P)",
-            "cases2026": 37223.2
+            "cases2026": 38287.2
+          },
+          {
+            "customer": "El Cantaro Liquors",
+            "cases2026": 37195.6
           },
           {
             "customer": "President Liqrs (A)",
-            "cases2026": 19683.0
+            "cases2026": 21023.0
           },
           {
             "customer": "Farm Boy",
-            "cases2026": 14051.0
+            "cases2026": 15788.0
           },
           {
             "customer": "Bottle Liquor (P)",
-            "cases2026": 14010.0
+            "cases2026": 15510.0
           },
           {
             "customer": "New Eagle Liquors",
-            "cases2026": 13517.0
+            "cases2026": 15209.0
           },
           {
             "customer": "Parker Liquors (Z)",
-            "cases2026": 13256.0
+            "cases2026": 14710.0
           },
           {
             "customer": "Diamond Liquors (P)",
-            "cases2026": 11857.0
+            "cases2026": 13433.0
           },
           {
             "customer": "Danny's Liquor",
-            "cases2026": 11699.0
+            "cases2026": 13208.0
           },
           {
             "customer": "ESTEVEZ LIQUORS LLC",
-            "cases2026": 11618.0
+            "cases2026": 12883.0
           },
           {
             "customer": "Luna Liquors",
-            "cases2026": 11399.0
+            "cases2026": 12801.0
           },
           {
             "customer": "Shanik Liqs.(P)",
-            "cases2026": 11287.0
+            "cases2026": 12344.0
           },
           {
             "customer": "East Side Bar Liquors",
-            "cases2026": 9821.0
+            "cases2026": 11115.0
           },
           {
             "customer": "Bermuda Liquors (P)",
-            "cases2026": 9445.0
-          },
-          {
-            "customer": "C Town Supermarket(P)",
-            "cases2026": 7701.0
-          },
-          {
-            "customer": "Paulison Liquors (P)",
-            "cases2026": 7557.0
+            "cases2026": 10138.0
           },
           {
             "customer": "La Joya Liquors",
-            "cases2026": 7453.0
+            "cases2026": 8583.0
           },
           {
             "customer": "Segundo's (P)",
-            "cases2026": 7344.0
+            "cases2026": 8582.0
+          },
+          {
+            "customer": "Paulison Liquors (P)",
+            "cases2026": 8543.0
+          },
+          {
+            "customer": "C Town Supermarket(P)",
+            "cases2026": 8531.0
           },
           {
             "customer": "Liquor Stop (Passaic)",
-            "cases2026": 7124.0
-          },
-          {
-            "customer": "C & S Lucky Liquors (P)",
-            "cases2026": 6476.0
+            "cases2026": 8146.0
           }
         ],
-        "offPremTargetCount": 28
+        "offPremTargetCount": 29
       },
       "Jayson Romine": {
         "offPremNew": [],
@@ -104235,86 +104423,86 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "USA Wine Traders Club Of Newton (A)",
-            "cases2026": 21030.0
+            "cases2026": 22910.0
           },
           {
             "customer": "ShopRite Wine & Spirits of Newton#830",
-            "cases2026": 15804.0
+            "cases2026": 17503.0
           },
           {
             "customer": "Mac & Lindy's W & S (A)",
-            "cases2026": 14958.0
-          },
-          {
-            "customer": "Liquor Factory II Jefferson",
-            "cases2026": 14542.0
+            "cases2026": 16662.0
           },
           {
             "customer": "ShopRite Wines & Spirits of Franklin",
-            "cases2026": 14418.0
+            "cases2026": 15968.0
+          },
+          {
+            "customer": "Liquor Factory II Jefferson",
+            "cases2026": 15824.0
           },
           {
             "customer": "Buy Rite Liquors Franklin",
-            "cases2026": 14384.0
+            "cases2026": 15567.0
           },
           {
             "customer": "Liquor Factory IV Hopatcong",
-            "cases2026": 11934.0
+            "cases2026": 13192.0
           },
           {
             "customer": "The George Inn",
-            "cases2026": 10126.0
+            "cases2026": 11148.0
           },
           {
             "customer": "Liquor Factory V Andover",
-            "cases2026": 9806.0
+            "cases2026": 10556.0
           },
           {
             "customer": "Liquor Factory VI Byram",
-            "cases2026": 9588.0
-          },
-          {
-            "customer": "Liquor Factory I Landing",
-            "cases2026": 8717.0
-          },
-          {
-            "customer": "Wantage Plaza Liq Outlet",
-            "cases2026": 8658.0
+            "cases2026": 10438.0
           },
           {
             "customer": "Spring Street Liquors",
-            "cases2026": 8560.0
+            "cases2026": 10037.0
+          },
+          {
+            "customer": "Wantage Plaza Liq Outlet",
+            "cases2026": 9663.0
+          },
+          {
+            "customer": "Liquor Factory I Landing",
+            "cases2026": 9499.0
           },
           {
             "customer": "Super Saver Liq",
-            "cases2026": 6898.0
+            "cases2026": 7609.0
           },
           {
             "customer": "Wine Country Newton",
-            "cases2026": 6827.0
+            "cases2026": 7547.0
           },
           {
             "customer": "Seplow's Liquors",
-            "cases2026": 5939.0
-          },
-          {
-            "customer": "The Right Bottle",
-            "cases2026": 5007.0
+            "cases2026": 6609.0
           },
           {
             "customer": "Sussex Co.Discount Liq(P)",
-            "cases2026": 4983.0
+            "cases2026": 5425.0
+          },
+          {
+            "customer": "The Right Bottle",
+            "cases2026": 5372.0
           },
           {
             "customer": "Brix - Wine, Spirits, Beer (Fredon)",
-            "cases2026": 4173.0
+            "cases2026": 4818.0
           },
           {
-            "customer": "Highland General Store",
-            "cases2026": 4144.0
+            "customer": "George's Wine & Spirits",
+            "cases2026": 4521.2
           }
         ],
-        "offPremTargetCount": 29
+        "offPremTargetCount": 31
       },
       "Jim Heaney": {
         "offPremNew": [
@@ -104357,7 +104545,7 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Shoppers Vineyard (A)",
-            "cases2026": 34288.0
+            "cases2026": 39124.0
           },
           {
             "customer": "Allwood Liquor Store",
@@ -104365,31 +104553,31 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "World of Wine & Liquor",
-            "cases2026": 28658.1
+            "cases2026": 29268.1
           },
           {
             "customer": "Lexington Liquors (Z)",
-            "cases2026": 17131.0
+            "cases2026": 19257.0
           },
           {
             "customer": "Clifton Commons S & W",
-            "cases2026": 15142.0
+            "cases2026": 16822.0
           },
           {
             "customer": "Lucky 7 (A)",
-            "cases2026": 11499.8
+            "cases2026": 12842.8
           },
           {
             "customer": "Rainbow Liquor (P)",
-            "cases2026": 11147.2
-          },
-          {
-            "customer": "Marina's Wine & Spirits",
-            "cases2026": 9272.9
+            "cases2026": 12415.2
           },
           {
             "customer": "Savers Club Liquor Locker",
-            "cases2026": 8772.0
+            "cases2026": 10398.0
+          },
+          {
+            "customer": "Marina's Wine & Spirits",
+            "cases2026": 10139.9
           },
           {
             "customer": "Mason's Cellar (A)",
@@ -104397,39 +104585,39 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "US#1 Wine & Liquor",
-            "cases2026": 7041.0
-          },
-          {
-            "customer": "Rutherford Wine (A)",
-            "cases2026": 6507.9
+            "cases2026": 7746.0
           },
           {
             "customer": "Town Liquors",
-            "cases2026": 6162.0
+            "cases2026": 6932.0
+          },
+          {
+            "customer": "Rutherford Wine (A)",
+            "cases2026": 6791.9
           },
           {
             "customer": "Valley Liquors (A)",
-            "cases2026": 5542.0
+            "cases2026": 6199.0
           },
           {
             "customer": "Metro Liquors (North Arlington)",
-            "cases2026": 5366.0
+            "cases2026": 6003.0
           },
           {
             "customer": "Quik Stop Conv(Z)",
-            "cases2026": 5183.0
+            "cases2026": 5689.0
           },
           {
             "customer": "Liquor Shed",
-            "cases2026": 4902.5
-          },
-          {
-            "customer": "Dante's Liquor & Wine",
-            "cases2026": 4707.0
+            "cases2026": 5477.5
           },
           {
             "customer": "West End Wine & Liq",
-            "cases2026": 4699.0
+            "cases2026": 5316.0
+          },
+          {
+            "customer": "Dante's Liquor & Wine",
+            "cases2026": 5276.0
           }
         ],
         "offPremTargetCount": 36
@@ -104468,12 +104656,12 @@ const PROGRAM_DATA_2026_09 = {
             "cases2026": 1202.0
           },
           {
-            "customer": "Best Cellars(Ledgewood)",
-            "cases2026": 889.0
+            "customer": "Charlie's Liquor and Convenience",
+            "cases2026": 1044.0
           },
           {
-            "customer": "Charlie's Liquor and Convenience",
-            "cases2026": 876.0
+            "customer": "Best Cellars(Ledgewood)",
+            "cases2026": 889.0
           },
           {
             "customer": "Weis Market",
@@ -104484,8 +104672,16 @@ const PROGRAM_DATA_2026_09 = {
             "cases2026": 326.0
           },
           {
+            "customer": "X Plor Wine",
+            "cases2026": 272.0
+          },
+          {
             "customer": "Fairfield Wine Cellar",
             "cases2026": 270.0
+          },
+          {
+            "customer": "Haworth Fine Wine/Spirits",
+            "cases2026": 268.0
           },
           {
             "customer": "Kenvil Liquor,Wine & Food",
@@ -104494,14 +104690,6 @@ const PROGRAM_DATA_2026_09 = {
           {
             "customer": "Randolph Liquors",
             "cases2026": 239.0
-          },
-          {
-            "customer": "X Plor Wine",
-            "cases2026": 232.0
-          },
-          {
-            "customer": "Haworth Fine Wine/Spirits",
-            "cases2026": 226.0
           },
           {
             "customer": "Four Seasons Wine & Liq",
@@ -104570,86 +104758,86 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Mountain Lakes Wine & Liquor",
-            "cases2026": 28534.5
+            "cases2026": 28584.5
           },
           {
             "customer": "Shop Rite Wine & Spirits Stanhope",
-            "cases2026": 21764.0
+            "cases2026": 23910.0
           },
           {
             "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
-            "cases2026": 19983.0
+            "cases2026": 21721.0
           },
           {
             "customer": "Milton Inn",
-            "cases2026": 19754.0
+            "cases2026": 21428.0
           },
           {
             "customer": "Quick Check Liquor (A)",
-            "cases2026": 11861.6
+            "cases2026": 12429.6
           },
           {
             "customer": "Shoppers Disc Liquor",
-            "cases2026": 9603.7
+            "cases2026": 10610.7
           },
           {
             "customer": "Rockaway W/L",
-            "cases2026": 9358.0
+            "cases2026": 10437.0
           },
           {
             "customer": "Shop-Rite(A) Netcong",
-            "cases2026": 9256.0
+            "cases2026": 10208.0
           },
           {
             "customer": "Nova Liquors",
-            "cases2026": 8813.9
-          },
-          {
-            "customer": "Island Of Spirits (P)",
-            "cases2026": 6551.0
-          },
-          {
-            "customer": "Midtown Liq",
-            "cases2026": 6440.2
+            "cases2026": 8876.9
           },
           {
             "customer": "Sam's Liq Wine (P)",
-            "cases2026": 6278.0
+            "cases2026": 7270.0
           },
           {
-            "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
-            "cases2026": 5589.0
+            "customer": "Island Of Spirits (P)",
+            "cases2026": 7154.0
+          },
+          {
+            "customer": "Midtown Liq",
+            "cases2026": 6957.2
           },
           {
             "customer": "Wharton Liquor Store",
-            "cases2026": 5367.0
+            "cases2026": 6311.0
+          },
+          {
+            "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
+            "cases2026": 6220.0
           },
           {
             "customer": "Main Street Liquor",
-            "cases2026": 5024.3
+            "cases2026": 5864.3
           },
           {
             "customer": "Kingston Liquors",
-            "cases2026": 4571.0
-          },
-          {
-            "customer": "3 IN 1 LIQUORS INC",
-            "cases2026": 4048.3
-          },
-          {
-            "customer": "Patel Liqr & Gro(P)",
-            "cases2026": 3922.3
+            "cases2026": 5264.0
           },
           {
             "customer": "Denville W & L",
-            "cases2026": 3897.0
+            "cases2026": 4434.0
+          },
+          {
+            "customer": "3 IN 1 LIQUORS INC",
+            "cases2026": 4357.3
+          },
+          {
+            "customer": "Patel Liqr & Gro(P)",
+            "cases2026": 4295.3
           },
           {
             "customer": "Stanhope Liquors",
-            "cases2026": 3770.0
+            "cases2026": 4152.0
           }
         ],
-        "offPremTargetCount": 22
+        "offPremTargetCount": 23
       },
       "Matt Powierski": {
         "offPremNew": [],
@@ -104675,86 +104863,86 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Home Wine Liquor (Passaic)",
-            "cases2026": 28031.0
-          },
-          {
-            "customer": "Shop Rite Of Wallington",
-            "cases2026": 11492.2
-          },
-          {
-            "customer": "Whoopee Liq (A)",
-            "cases2026": 11335.3
-          },
-          {
-            "customer": "Metro Liquor (Elmwood Park)",
-            "cases2026": 11002.0
-          },
-          {
-            "customer": "Archies (P)",
-            "cases2026": 9268.0
-          },
-          {
-            "customer": "Metro Liquors (East Rutherford)",
-            "cases2026": 8889.5
+            "cases2026": 31807.0
           },
           {
             "customer": "Bottle Republic (Rutherford)",
-            "cases2026": 7676.0
+            "cases2026": 20042.6
+          },
+          {
+            "customer": "Shop Rite Of Wallington",
+            "cases2026": 12915.2
+          },
+          {
+            "customer": "Metro Liquor (Elmwood Park)",
+            "cases2026": 12437.0
+          },
+          {
+            "customer": "Whoopee Liq (A)",
+            "cases2026": 12050.3
+          },
+          {
+            "customer": "Archies (P)",
+            "cases2026": 10185.0
+          },
+          {
+            "customer": "Metro Liquors (East Rutherford)",
+            "cases2026": 10093.5
           },
           {
             "customer": "Luigi's Liquor (A)",
-            "cases2026": 6710.0
+            "cases2026": 7382.0
           },
           {
             "customer": "Birchwood Liq & Deli (Z)",
-            "cases2026": 5532.0
+            "cases2026": 6059.0
           },
           {
             "customer": "All Star Wine & Liquor",
-            "cases2026": 5390.0
+            "cases2026": 5835.0
           },
           {
             "customer": "Wine Grand (Carlstadt)",
-            "cases2026": 5013.7
+            "cases2026": 5790.0
           },
           {
             "customer": "Moonachie Liquors",
-            "cases2026": 4732.0
+            "cases2026": 5232.0
           },
           {
             "customer": "River Drive Bar (P)",
-            "cases2026": 4371.0
+            "cases2026": 4928.0
           },
           {
             "customer": "Vinny's Disc Liq (P)",
-            "cases2026": 4159.0
+            "cases2026": 4744.0
           },
           {
             "customer": "Wine Land",
-            "cases2026": 3910.0
-          },
-          {
-            "customer": "King Liquors",
-            "cases2026": 3630.1
+            "cases2026": 4557.0
           },
           {
             "customer": "Garfield Discount Liquors",
-            "cases2026": 3415.0
+            "cases2026": 4098.0
+          },
+          {
+            "customer": "Wallington Liquor and Wine",
+            "cases2026": 4023.0
+          },
+          {
+            "customer": "King Liquors",
+            "cases2026": 3979.1
           },
           {
             "customer": "Garfield Bar & Liq (P)",
-            "cases2026": 3057.0
+            "cases2026": 3554.0
           },
           {
             "customer": "L. F. Wine Country (P)",
-            "cases2026": 2711.0
-          },
-          {
-            "customer": "Payless Liquor & Dell",
-            "cases2026": 2651.0
+            "cases2026": 3058.0
           }
         ],
-        "offPremTargetCount": 30
+        "offPremTargetCount": 34
       },
       "Michael Harboy": {
         "offPremNew": [
@@ -104806,23 +104994,23 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Kinnelon Country Wine & Liquor",
-            "cases2026": 13317.5
+            "cases2026": 13538.5
           },
           {
             "customer": "Lincoln Center Liq",
-            "cases2026": 11632.6
+            "cases2026": 12653.6
           },
           {
             "customer": "Shays Liquors",
-            "cases2026": 9552.0
+            "cases2026": 10762.0
           },
           {
             "customer": "Wayne Liquor Locker",
-            "cases2026": 5874.0
+            "cases2026": 6631.7
           },
           {
             "customer": "Wolfson Market",
-            "cases2026": 4849.0
+            "cases2026": 5459.0
           },
           {
             "customer": "The Bottle Stop (Caldwell)",
@@ -104931,63 +105119,63 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Waldwick Wine/Spirits",
-            "cases2026": 19439.0
+            "cases2026": 20435.0
           },
           {
             "customer": "Lincoln Park Fine Wines & Spirits",
-            "cases2026": 14976.5
+            "cases2026": 16324.5
           },
           {
             "customer": "Frank's Fine Wine & Foods",
-            "cases2026": 14291.0
+            "cases2026": 15364.0
           },
           {
             "customer": "Nico's Wine & Spirits",
-            "cases2026": 11913.2
+            "cases2026": 13444.2
           },
           {
             "customer": "Mahwah Liqrs (P)",
-            "cases2026": 9234.2
-          },
-          {
-            "customer": "Goffle Road Wine and More",
-            "cases2026": 7496.8
+            "cases2026": 10016.2
           },
           {
             "customer": "Oakland Wine (A)",
-            "cases2026": 7233.5
+            "cases2026": 8338.5
+          },
+          {
+            "customer": "Goffle Road Wine and More",
+            "cases2026": 8225.8
           },
           {
             "customer": "Diamond Liquor",
-            "cases2026": 6522.0
+            "cases2026": 7229.0
           },
           {
             "customer": "Speedy Mart (P)",
-            "cases2026": 6117.0
+            "cases2026": 7164.0
           },
           {
             "customer": "Allendale Wine Shoppe",
-            "cases2026": 5962.0
+            "cases2026": 6886.0
           },
           {
             "customer": "Mahwah Wine & Liquor (A)",
-            "cases2026": 3651.0
+            "cases2026": 4098.0
           },
           {
             "customer": "Garbo's Ital Deli&Liq(Z)",
-            "cases2026": 1071.4
+            "cases2026": 1477.6
           },
           {
             "customer": "Public Ridgewood",
-            "cases2026": 459.0
+            "cases2026": 498.0
           },
           {
             "customer": "Whole Foods #10106 (Ridgewood)",
-            "cases2026": 452.0
+            "cases2026": 485.0
           },
           {
             "customer": "Wine & Spirits World (Hohokus)",
-            "cases2026": 339.3
+            "cases2026": 385.3
           }
         ],
         "offPremTargetCount": 15
@@ -105102,11 +105290,11 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Port Imperial HOQ LLC",
-            "cases2026": 4139.9
+            "cases2026": 4192.9
           },
           {
             "customer": "H Mart Inc (Space A101-A)",
-            "cases2026": 873.0
+            "cases2026": 942.0
           }
         ],
         "offPremTargetCount": 2
@@ -105135,23 +105323,23 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Bombolon Liquor & Grocery",
-            "cases2026": 110867.8
+            "cases2026": 135370.7
           },
           {
             "customer": "Altiero Liquors",
-            "cases2026": 63576.0
+            "cases2026": 69400.7
           },
           {
             "customer": "Caraballo's",
-            "cases2026": 51120.9
+            "cases2026": 52883.9
           },
           {
             "customer": "Midtown Liquors",
-            "cases2026": 38646.3
+            "cases2026": 39211.3
           },
           {
             "customer": "EL BOHEMIO 2 LIQUOR STORE & BAR",
-            "cases2026": 29864.4
+            "cases2026": 31837.4
           },
           {
             "customer": "Limonta Liqs (A)",
@@ -105159,62 +105347,62 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Allen's Liquors",
-            "cases2026": 18920.2
+            "cases2026": 19256.2
           },
           {
             "customer": "Gene's Liquor",
-            "cases2026": 13200.0
+            "cases2026": 14370.0
           },
           {
             "customer": "Passaic Discount Liquors",
-            "cases2026": 12729.0
+            "cases2026": 14111.0
           },
           {
             "customer": "Regalado Liq",
-            "cases2026": 12723.0
+            "cases2026": 14086.0
           },
           {
             "customer": "Monroe Wine & Liq(P)",
-            "cases2026": 12594.0
+            "cases2026": 13914.0
           },
           {
             "customer": "Broadway W&L",
-            "cases2026": 12334.0
+            "cases2026": 13660.0
           },
           {
             "customer": "Sunny's Liqs.(P)",
-            "cases2026": 12069.0
+            "cases2026": 13449.0
           },
           {
             "customer": "Johnny's Liqs (P)",
-            "cases2026": 10190.0
+            "cases2026": 11045.0
           },
           {
             "customer": "#1 Liqrs (P)",
-            "cases2026": 8006.0
-          },
-          {
-            "customer": "Joe's Liquor (A)",
-            "cases2026": 6406.5
+            "cases2026": 8984.0
           },
           {
             "customer": "Boulevard Wine & Spirits",
-            "cases2026": 5896.0
+            "cases2026": 7200.0
+          },
+          {
+            "customer": "Joe's Liquor (A)",
+            "cases2026": 7032.5
           },
           {
             "customer": "Intensity Lounge/Angie's Liquors",
-            "cases2026": 5586.0
+            "cases2026": 6222.0
           },
           {
             "customer": "Schulman's (P) Deli",
-            "cases2026": 5462.3
+            "cases2026": 5961.3
           },
           {
             "customer": "Carisma Liq & Groc (P)",
-            "cases2026": 4474.0
+            "cases2026": 4960.0
           }
         ],
-        "offPremTargetCount": 26
+        "offPremTargetCount": 28
       },
       "Paul Mclaughlin": {
         "offPremNew": [],
@@ -105344,11 +105532,11 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Balthazar Bakery (A)",
-            "cases2026": 104.0
+            "cases2026": 120.0
           },
           {
             "customer": "Mykos",
-            "cases2026": 66.0
+            "cases2026": 80.0
           }
         ],
         "offPremTargetCount": 2
@@ -105504,19 +105692,23 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Super Wine Warehse(P)Pate",
-            "cases2026": 50573.0
+            "cases2026": 60828.0
           },
           {
             "customer": "Shop Rite Liq(A) Fair Lwn",
-            "cases2026": 16512.0
+            "cases2026": 18023.0
           },
           {
             "customer": "Home Wines & Liq 75 (A) (South Hackensack)",
-            "cases2026": 8001.0
+            "cases2026": 8824.0
+          },
+          {
+            "customer": "Acme Markets (Midland Park)",
+            "cases2026": 5632.0
           },
           {
             "customer": "Wine Country Of Saddle Brook (A)",
-            "cases2026": 4529.0
+            "cases2026": 5038.0
           },
           {
             "customer": "Gary's Wine & Marketplace (Wayne)",
@@ -105524,7 +105716,11 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Stew Leonard's(A) Paramu (NA)",
-            "cases2026": 1414.0
+            "cases2026": 1540.0
+          },
+          {
+            "customer": "USA Wine Traders Paramus",
+            "cases2026": 526.0
           },
           {
             "customer": "Stew Leonard's Wines & Spirits of Clifton (NA)",
@@ -105535,7 +105731,7 @@ const PROGRAM_DATA_2026_09 = {
             "cases2026": 85.0
           }
         ],
-        "offPremTargetCount": 8
+        "offPremTargetCount": 10
       },
       "Robin Feldman": {
         "offPremNew": [],
@@ -105598,10 +105794,14 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Jerry's Outlet",
-            "cases2026": 343.0
+            "cases2026": 404.0
+          },
+          {
+            "customer": "Pizza Town USA",
+            "cases2026": 101.0
           }
         ],
-        "offPremTargetCount": 1
+        "offPremTargetCount": 2
       },
       "Shane Barreca": {
         "offPremNew": [
@@ -105652,42 +105852,46 @@ const PROGRAM_DATA_2026_09 = {
         "offPremTargets": [
           {
             "customer": "Township Liq (P)",
-            "cases2026": 7349.0
+            "cases2026": 8114.0
           },
           {
             "customer": "Brand Bar & Bev (A)",
-            "cases2026": 7080.0
+            "cases2026": 7764.0
           },
           {
             "customer": "Wine & Whiskey (A)",
-            "cases2026": 3269.0
+            "cases2026": 3776.0
           },
           {
             "customer": "Djm Liq Inc. (P)(Andrew)",
-            "cases2026": 2857.0
+            "cases2026": 3181.0
           },
           {
             "customer": "Oradell Mini Mart(P)",
-            "cases2026": 1663.0
+            "cases2026": 1907.0
           },
           {
             "customer": "Murphy's Fine Wines & Liquors (UNI 4H Inc.)",
-            "cases2026": 1289.0
+            "cases2026": 1368.0
+          },
+          {
+            "customer": "Woori Mart",
+            "cases2026": 1209.0
           },
           {
             "customer": "Whole Foods #8407 (Woodcliff Lake)",
-            "cases2026": 438.0
+            "cases2026": 490.0
           },
           {
             "customer": "Whole Foods #10381 (Closter)",
-            "cases2026": 380.0
+            "cases2026": 413.0
           },
           {
             "customer": "The Store",
-            "cases2026": 140.0
+            "cases2026": 151.0
           }
         ],
-        "offPremTargetCount": 9
+        "offPremTargetCount": 10
       }
     },
     "leaderboard": [
@@ -108456,7 +108660,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 17,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 44.0,
+        "pctOfPace": 39.0,
         "products": [
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -108521,7 +108725,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 27,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 197.0,
+        "pctOfPace": 174.5,
         "products": [
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
@@ -108651,7 +108855,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 166,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 212.2,
+        "pctOfPace": 188.0,
         "products": [
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
@@ -108953,7 +109157,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 40,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 198.1,
+        "pctOfPace": 175.5,
         "products": [
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
@@ -109109,7 +109313,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 232,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 183.2,
+        "pctOfPace": 162.2,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -109401,7 +109605,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 191,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 139.4,
+        "pctOfPace": 123.5,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -109658,7 +109862,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 83,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 251.6,
+        "pctOfPace": 222.8,
         "products": [
           {
             "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
@@ -109981,7 +110185,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 109,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 182.9,
+        "pctOfPace": 162.0,
         "products": [
           {
             "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
@@ -110288,7 +110492,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 8,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 32.6,
+        "pctOfPace": 28.9,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -110358,7 +110562,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 6,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 157.9,
+        "pctOfPace": 139.9,
         "products": [
           {
             "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
@@ -110432,7 +110636,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 98,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 175.2,
+        "pctOfPace": 155.2,
         "products": [
           {
             "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
@@ -110705,7 +110909,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 207,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 205.5,
+        "pctOfPace": 182.0,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -111002,7 +111206,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 213,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 192.0,
+        "pctOfPace": 170.0,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -111299,7 +111503,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 7,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 146.8,
+        "pctOfPace": 130.0,
         "products": [
           {
             "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
@@ -111384,7 +111588,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 148,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 223.7,
+        "pctOfPace": 198.1,
         "products": [
           {
             "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
@@ -111712,7 +111916,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 183,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 209.0,
+        "pctOfPace": 185.1,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -112035,7 +112239,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 15,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 255.7,
+        "pctOfPace": 226.5,
         "products": [
           {
             "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
@@ -112271,7 +112475,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 129,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 199.0,
+        "pctOfPace": 176.3,
         "products": [
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -112558,7 +112762,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 34,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 150.9,
+        "pctOfPace": 133.6,
         "products": [
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -112648,7 +112852,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 72,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 194.3,
+        "pctOfPace": 172.1,
         "products": [
           {
             "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
@@ -112884,7 +113088,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 18,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 178.8,
+        "pctOfPace": 158.3,
         "products": [
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
@@ -112953,7 +113157,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 87,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 236.6,
+        "pctOfPace": 209.6,
         "products": [
           {
             "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
@@ -113271,7 +113475,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 36,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 170.6,
+        "pctOfPace": 151.1,
         "products": [
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -113371,7 +113575,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 169,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 176.4,
+        "pctOfPace": 156.3,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -113640,8 +113844,8 @@ const PROGRAM_DATA_2026_09 = {
     "periodStart": "2026-09-01",
     "periodEnd": "2026-11-30",
     "periodDays": 91,
-    "daysElapsed": 31,
-    "pacePct": 34.1,
+    "daysElapsed": 35,
+    "pacePct": 38.5,
     "meta": {
       "offRoster": [
         "Default",
@@ -139982,8 +140186,8 @@ const PROGRAM_DATA_2026_09 = {
     "periodStart": "2026-09-01",
     "periodEnd": "2026-11-30",
     "periodDays": 91,
-    "daysElapsed": 31,
-    "pacePct": 34.1,
+    "daysElapsed": 35,
+    "pacePct": 38.5,
     "meta": {
       "onPrem": {
         "packages": {
@@ -143117,8 +143321,8 @@ const PROGRAM_DATA_2026_09 = {
     "periodStart": "2026-09-01",
     "periodEnd": "2026-11-30",
     "periodDays": 91,
-    "daysElapsed": 31,
-    "pacePct": 34.1,
+    "daysElapsed": 35,
+    "pacePct": 38.5,
     "meta": {
       "offRoster": []
     }
@@ -150527,7 +150731,7 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Paradise Liquors",
-            "cases2026": 19143.6
+            "cases2026": 21184.7
           },
           {
             "customer": "Bottle King Glen Ridge",
@@ -150543,7 +150747,7 @@ const PROGRAM_DATA_2026_10 = {
           },
           {
             "customer": "Super K Food (A) Store",
-            "cases2026": 1534.0
+            "cases2026": 1763.0
           },
           {
             "customer": "High Spirits Of Bayonne",
@@ -150816,83 +151020,83 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Highland Wine&Liquor Inc",
-            "cases2026": 18415.2
+            "cases2026": 19996.2
           },
           {
             "customer": "Uncorked Wines & Spirits (West Milford)",
-            "cases2026": 16537.0
+            "cases2026": 18631.0
           },
           {
             "customer": "Usa Wine Traders Club (Bloomingdale)",
-            "cases2026": 16250.0
+            "cases2026": 17917.0
           },
           {
             "customer": "Best Cellars (Wanaque)",
-            "cases2026": 11357.2
+            "cases2026": 12657.2
           },
           {
             "customer": "River Place Food Store",
-            "cases2026": 10087.1
+            "cases2026": 11190.1
           },
           {
             "customer": "Greenwood Lake Disc.(P)",
-            "cases2026": 9370.3
+            "cases2026": 10016.3
           },
           {
             "customer": "Ringwood W&L",
-            "cases2026": 8930.0
-          },
-          {
-            "customer": "Krauszer's Liquor Wine and Spirits",
-            "cases2026": 8619.0
+            "cases2026": 9941.0
           },
           {
             "customer": "Turnpike Discount Liquors",
-            "cases2026": 8460.0
+            "cases2026": 9636.0
+          },
+          {
+            "customer": "Krauszer's Liquor Wine and Spirits",
+            "cases2026": 9270.0
           },
           {
             "customer": "Buy Rite W &L Pompton(P)",
-            "cases2026": 7904.0
+            "cases2026": 8805.0
           },
           {
             "customer": "George's Market (A)",
-            "cases2026": 6831.0
+            "cases2026": 7858.0
           },
           {
             "customer": "Appio's Liquors",
-            "cases2026": 6769.0
+            "cases2026": 7682.0
           },
           {
             "customer": "Roserne Pkg Store South",
-            "cases2026": 6401.3
+            "cases2026": 7194.3
           },
           {
             "customer": "Usa Wine Traders (Wanaque)",
-            "cases2026": 6326.0
+            "cases2026": 7122.0
           },
           {
             "customer": "Shoppers Disc(A)Pompton",
-            "cases2026": 6109.5
+            "cases2026": 6840.5
           },
           {
             "customer": "Roserne Liquors North",
-            "cases2026": 5991.2
-          },
-          {
-            "customer": "B & B Wine&Liq",
-            "cases2026": 5581.0
+            "cases2026": 6600.2
           },
           {
             "customer": "Ringwood Discount Liquors",
-            "cases2026": 5493.0
+            "cases2026": 6293.0
+          },
+          {
+            "customer": "B & B Wine&Liq",
+            "cases2026": 6195.0
           },
           {
             "customer": "Wine 2 Spirits (P)",
-            "cases2026": 4669.0
+            "cases2026": 5204.0
           },
           {
             "customer": "Country Convenience Store",
-            "cases2026": 4174.0
+            "cases2026": 4697.0
           }
         ],
         "offPremTargetCount": 27
@@ -150923,23 +151127,23 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Chabons Ii Liq/Bar (A)",
-            "cases2026": 7664.0
+            "cases2026": 8348.0
           },
           {
             "customer": "Culver Liquor and Bar",
-            "cases2026": 7273.0
+            "cases2026": 8034.0
           },
           {
             "customer": "The Greek's",
-            "cases2026": 1755.0
+            "cases2026": 2010.0
           },
           {
             "customer": "Picatinny Main Exch",
-            "cases2026": 742.0
+            "cases2026": 807.0
           },
           {
             "customer": "Swartswood",
-            "cases2026": 440.0
+            "cases2026": 531.0
           },
           {
             "customer": "Point 5 Lafayette",
@@ -150974,86 +151178,86 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Discount Lqr(A) Outlet",
-            "cases2026": 162859.9
+            "cases2026": 172824.5
           },
           {
             "customer": "Ridgefield Deli & Liq",
-            "cases2026": 44545.3
+            "cases2026": 79037.7
           },
           {
             "customer": "Clifton Disc Liq (A)",
-            "cases2026": 34517.5
+            "cases2026": 38748.5
           },
           {
             "customer": "Garden Liquors (P)",
-            "cases2026": 19064.3
+            "cases2026": 21097.3
           },
           {
             "customer": "Wineland",
-            "cases2026": 17843.0
+            "cases2026": 20263.0
           },
           {
             "customer": "Usa Wine Traders Club (Saddle Brook)",
-            "cases2026": 16492.5
+            "cases2026": 18450.5
           },
           {
             "customer": "46 Discount Liquor Store",
-            "cases2026": 11594.0
-          },
-          {
-            "customer": "Westmont Liquors 64",
-            "cases2026": 11036.8
+            "cases2026": 12564.0
           },
           {
             "customer": "Exquisite W & L (A)",
-            "cases2026": 10812.5
+            "cases2026": 11863.5
           },
           {
             "customer": "Buy Rite Of Main St Lodi",
-            "cases2026": 10446.7
+            "cases2026": 11740.7
+          },
+          {
+            "customer": "Westmont Liquors 64",
+            "cases2026": 11323.8
           },
           {
             "customer": "Buy Rite Discount Liquor",
-            "cases2026": 8886.2
+            "cases2026": 9923.2
           },
           {
             "customer": "Figlar's (P)",
-            "cases2026": 8657.0
+            "cases2026": 9773.0
           },
           {
             "customer": "Shop Rite Liq.(A)Lodi",
-            "cases2026": 7318.0
-          },
-          {
-            "customer": "Circle Liquors",
-            "cases2026": 6790.7
+            "cases2026": 8214.0
           },
           {
             "customer": "Woodridge Wines & Liq(A)",
-            "cases2026": 6525.7
+            "cases2026": 7160.7
+          },
+          {
+            "customer": "Circle Liquors",
+            "cases2026": 7049.9
           },
           {
             "customer": "Teaneck Quickshop(P)Conv",
-            "cases2026": 5899.0
+            "cases2026": 6502.0
           },
           {
             "customer": "Lodi Liquor Store(P)",
-            "cases2026": 5552.0
-          },
-          {
-            "customer": "B & B Liquors (Fair Lawn)",
-            "cases2026": 4265.0
+            "cases2026": 6337.0
           },
           {
             "customer": "Discount Liq & Bar",
-            "cases2026": 4261.0
+            "cases2026": 4867.0
           },
           {
-            "customer": "Krauszer Liquor",
-            "cases2026": 4169.7
+            "customer": "B & B Liquors (Fair Lawn)",
+            "cases2026": 4738.0
+          },
+          {
+            "customer": "Welsh Farms",
+            "cases2026": 4562.0
           }
         ],
-        "offPremTargetCount": 37
+        "offPremTargetCount": 38
       },
       "Dan Lagala": {
         "pods": [],
@@ -151098,82 +151302,82 @@ const PROGRAM_DATA_2026_10 = {
           },
           {
             "customer": "Banner Delicatessen",
-            "cases2026": 77507.8
+            "cases2026": 80347.2
+          },
+          {
+            "customer": "Edgewater Liquor (A)",
+            "cases2026": 40565.5
           },
           {
             "customer": "Bella Wine & Liquor",
             "cases2026": 30851.4
           },
           {
-            "customer": "Edgewater Liquor (A)",
-            "cases2026": 29281.9
-          },
-          {
             "customer": "Buy Rite Of Fairview",
-            "cases2026": 19436.0
+            "cases2026": 21494.0
           },
           {
             "customer": "Liquor World",
-            "cases2026": 12473.0
+            "cases2026": 13951.0
           },
           {
             "customer": "Liquor City(A)Cliffside",
-            "cases2026": 11521.0
+            "cases2026": 13165.0
           },
           {
             "customer": "Rome Liquors (Fairview)",
-            "cases2026": 10396.7
-          },
-          {
-            "customer": "Winston Wine & Liq",
-            "cases2026": 10303.4
+            "cases2026": 11653.7
           },
           {
             "customer": "Fairview Liq & Groc.(A)",
-            "cases2026": 10173.0
+            "cases2026": 11169.0
           },
           {
             "customer": "Boulevard Liq.(Fairview)",
-            "cases2026": 10122.0
+            "cases2026": 11053.0
+          },
+          {
+            "customer": "Winston Wine & Liq",
+            "cases2026": 10459.4
           },
           {
             "customer": "Linwood Wine-Linwood Plaza",
-            "cases2026": 8416.8
+            "cases2026": 9059.8
           },
           {
             "customer": "Stop N Go Conven. (P)",
-            "cases2026": 7595.0
+            "cases2026": 8463.0
           },
           {
             "customer": "Kikos Liquors Ii",
-            "cases2026": 7101.0
-          },
-          {
-            "customer": "Jay Cee (P) Deli & Liq.",
-            "cases2026": 6022.0
+            "cases2026": 7809.0
           },
           {
             "customer": "Mukeunji (Z)",
-            "cases2026": 5854.0
+            "cases2026": 6730.0
+          },
+          {
+            "customer": "Metro Liquor (Cliffside Park)",
+            "cases2026": 6702.2
+          },
+          {
+            "customer": "Jay Cee (P) Deli & Liq.",
+            "cases2026": 6690.0
           },
           {
             "customer": "Linwood Wine-Hudson Light",
-            "cases2026": 5393.0
+            "cases2026": 6079.0
           },
           {
             "customer": "Garden State Food&Liq (P)",
-            "cases2026": 5339.0
+            "cases2026": 5995.0
           },
           {
             "customer": "Banner Liquor Iii",
-            "cases2026": 5145.0
-          },
-          {
-            "customer": "American Classic Liq",
-            "cases2026": 4782.0
+            "cases2026": 5848.0
           }
         ],
-        "offPremTargetCount": 45
+        "offPremTargetCount": 46
       },
       "Dave Ehlers": {
         "pods": [],
@@ -151201,86 +151405,86 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Total Wine & More (Totowa)",
-            "cases2026": 74064.0
+            "cases2026": 82762.0
           },
           {
             "customer": "Total Wine & More (River Edge)",
-            "cases2026": 71785.0
+            "cases2026": 79890.8
+          },
+          {
+            "customer": "Burgundy Convenience Store",
+            "cases2026": 31788.7
           },
           {
             "customer": "Shop Rite Liq (A)Englewd",
-            "cases2026": 28132.0
+            "cases2026": 31435.0
           },
           {
             "customer": "Buy Rite Of Hackensack",
-            "cases2026": 22991.8
+            "cases2026": 25686.8
           },
           {
             "customer": "Barrel & Brew Bar & Liq",
-            "cases2026": 20580.2
+            "cases2026": 20995.2
           },
           {
             "customer": "Portland Wine & Liquor",
-            "cases2026": 17216.0
+            "cases2026": 18713.0
           },
           {
             "customer": "Wine And Liq Depot(A)",
-            "cases2026": 16879.0
+            "cases2026": 18647.7
           },
           {
             "customer": "Hackensack Liquors",
-            "cases2026": 15898.0
+            "cases2026": 17640.3
           },
           {
             "customer": "Wine & More (P)",
-            "cases2026": 14581.0
+            "cases2026": 15425.8
           },
           {
             "customer": "Bergenfield Liq & Fw",
-            "cases2026": 13371.3
+            "cases2026": 14827.3
           },
           {
             "customer": "W E Beverage (A)",
-            "cases2026": 8230.0
-          },
-          {
-            "customer": "Time Lounge And Liq (A)",
-            "cases2026": 8184.0
+            "cases2026": 9307.0
           },
           {
             "customer": "Simple Simon's (Z)",
-            "cases2026": 7858.0
+            "cases2026": 9148.0
+          },
+          {
+            "customer": "Time Lounge And Liq (A)",
+            "cases2026": 9042.0
           },
           {
             "customer": "Bottle & Cork",
-            "cases2026": 7562.3
+            "cases2026": 8671.3
           },
           {
             "customer": "Essex St Liquor and Wine",
-            "cases2026": 6703.0
+            "cases2026": 7558.0
           },
           {
             "customer": "George's Liq",
-            "cases2026": 6635.0
-          },
-          {
-            "customer": "H & R Disc. Liq (P)",
-            "cases2026": 6168.0
+            "cases2026": 7434.0
           },
           {
             "customer": "Deli Mart (A)",
-            "cases2026": 6098.0
+            "cases2026": 6928.0
           },
           {
-            "customer": "G & G Liquors & Bar",
-            "cases2026": 5370.0
+            "customer": "H & R Disc. Liq (P)",
+            "cases2026": 6879.0
           },
           {
-            "customer": "Joes Beer Wine & Spirits",
-            "cases2026": 5105.3
+            "customer": "Country Wine & Liquors",
+            "cases2026": 6121.1
           }
         ],
-        "offPremTargetCount": 33
+        "offPremTargetCount": 35
       },
       "Derrick Laws": {
         "pods": [],
@@ -151308,7 +151512,7 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Shop Rite Wines/Spirits",
-            "cases2026": 186098.8
+            "cases2026": 191980.7
           },
           {
             "customer": "Scheps Discount Bar/Liq",
@@ -151316,78 +151520,78 @@ const PROGRAM_DATA_2026_10 = {
           },
           {
             "customer": "Ant's Bar & Liquors",
-            "cases2026": 80227.9
+            "cases2026": 86998.8
           },
           {
             "customer": "Gonzalez Liq & Bar(A)",
-            "cases2026": 36092.8
+            "cases2026": 36998.8
           },
           {
             "customer": "Shop Rite Liq (A)Littlefl",
-            "cases2026": 28486.0
+            "cases2026": 31482.0
           },
           {
             "customer": "The Liquor Shop",
-            "cases2026": 27097.0
+            "cases2026": 31026.0
           },
           {
             "customer": "C Town (A)",
-            "cases2026": 26134.7
+            "cases2026": 26338.7
           },
           {
             "customer": "The Point Liquor & Bar",
-            "cases2026": 21665.5
+            "cases2026": 22427.5
           },
           {
             "customer": "Economy Liquors",
-            "cases2026": 18898.0
+            "cases2026": 21090.0
           },
           {
             "customer": "Quis Queya Liquor(P)",
-            "cases2026": 13567.0
+            "cases2026": 15689.0
           },
           {
             "customer": "Ferraro's Liquor",
-            "cases2026": 11999.5
+            "cases2026": 13231.7
           },
           {
             "customer": "Pal's Liquor",
-            "cases2026": 11623.0
+            "cases2026": 12978.0
           },
           {
             "customer": "La Sorpresa Liq (P)",
-            "cases2026": 11157.0
+            "cases2026": 12436.0
           },
           {
             "customer": "Limestone Liquors (A)",
-            "cases2026": 11133.0
+            "cases2026": 12335.0
           },
           {
             "customer": "Santana's Sport(P)Bella",
-            "cases2026": 10374.8
+            "cases2026": 11252.8
           },
           {
             "customer": "Raphael & Angel Liq (A)",
-            "cases2026": 9958.0
-          },
-          {
-            "customer": "El Oasis",
-            "cases2026": 9646.0
+            "cases2026": 11241.0
           },
           {
             "customer": "230 Liq & Groc.(A)",
-            "cases2026": 9584.0
+            "cases2026": 10604.0
+          },
+          {
+            "customer": "El Oasis",
+            "cases2026": 10500.0
           },
           {
             "customer": "Dorta Liquor (A)",
-            "cases2026": 9141.0
+            "cases2026": 10225.0
           },
           {
-            "customer": "Mercer Bar & Liquors",
-            "cases2026": 7419.0
+            "customer": "Yaremy Liquors",
+            "cases2026": 9144.8
           }
         ],
-        "offPremTargetCount": 32
+        "offPremTargetCount": 33
       },
       "Dylan Rubino": {
         "pods": [],
@@ -151418,12 +151622,12 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 5143.3
           },
           {
-            "customer": "STOP & GO LIQUORS",
-            "cases2026": 1594.0
+            "customer": "J B Liquors_2",
+            "cases2026": 1731.0
           },
           {
-            "customer": "J B Liquors_2",
-            "cases2026": 1571.0
+            "customer": "STOP & GO LIQUORS",
+            "cases2026": 1594.0
           },
           {
             "customer": "A2Z Wine Club",
@@ -151652,12 +151856,12 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 2264.0
           },
           {
-            "customer": "Sparrow's Wine & Liq(P) (1224 Hoboken)",
-            "cases2026": 1640.0
+            "customer": "One Stop Wine (A) & Liq",
+            "cases2026": 1700.0
           },
           {
-            "customer": "One Stop Wine (A) & Liq",
-            "cases2026": 1578.0
+            "customer": "Sparrow's Wine & Liq(P) (1224 Hoboken)",
+            "cases2026": 1640.0
           },
           {
             "customer": "ShopRite Wines & Spirits of Hoboken",
@@ -151736,86 +151940,86 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Edwards (P) Wine & Liq",
-            "cases2026": 44151.2
+            "cases2026": 45969.9
           },
           {
             "customer": "D'bar Liquors (P)",
-            "cases2026": 37223.2
+            "cases2026": 38287.2
+          },
+          {
+            "customer": "El Cantaro Liquors",
+            "cases2026": 37195.6
           },
           {
             "customer": "President Liqrs (A)",
-            "cases2026": 19683.0
+            "cases2026": 21023.0
           },
           {
             "customer": "Farm Boy",
-            "cases2026": 14051.0
+            "cases2026": 15788.0
           },
           {
             "customer": "Bottle Liquor (P)",
-            "cases2026": 14010.0
+            "cases2026": 15510.0
           },
           {
             "customer": "New Eagle Liquors",
-            "cases2026": 13517.0
+            "cases2026": 15209.0
           },
           {
             "customer": "Parker Liquors (Z)",
-            "cases2026": 13256.0
+            "cases2026": 14710.0
           },
           {
             "customer": "Diamond Liquors (P)",
-            "cases2026": 11857.0
+            "cases2026": 13433.0
           },
           {
             "customer": "Danny's Liquor",
-            "cases2026": 11699.0
+            "cases2026": 13208.0
           },
           {
             "customer": "ESTEVEZ LIQUORS LLC",
-            "cases2026": 11618.0
+            "cases2026": 12883.0
           },
           {
             "customer": "Luna Liquors",
-            "cases2026": 11399.0
+            "cases2026": 12801.0
           },
           {
             "customer": "Shanik Liqs.(P)",
-            "cases2026": 11287.0
+            "cases2026": 12344.0
           },
           {
             "customer": "East Side Bar Liquors",
-            "cases2026": 9821.0
+            "cases2026": 11115.0
           },
           {
             "customer": "Bermuda Liquors (P)",
-            "cases2026": 9445.0
-          },
-          {
-            "customer": "C Town Supermarket(P)",
-            "cases2026": 7701.0
-          },
-          {
-            "customer": "Paulison Liquors (P)",
-            "cases2026": 7557.0
+            "cases2026": 10138.0
           },
           {
             "customer": "La Joya Liquors",
-            "cases2026": 7453.0
+            "cases2026": 8583.0
           },
           {
             "customer": "Segundo's (P)",
-            "cases2026": 7344.0
+            "cases2026": 8582.0
+          },
+          {
+            "customer": "Paulison Liquors (P)",
+            "cases2026": 8543.0
+          },
+          {
+            "customer": "C Town Supermarket(P)",
+            "cases2026": 8531.0
           },
           {
             "customer": "Liquor Stop (Passaic)",
-            "cases2026": 7124.0
-          },
-          {
-            "customer": "C & S Lucky Liquors (P)",
-            "cases2026": 6476.0
+            "cases2026": 8146.0
           }
         ],
-        "offPremTargetCount": 28
+        "offPremTargetCount": 29
       },
       "Jayson Romine": {
         "pods": [],
@@ -151843,86 +152047,86 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Patricks Wine Barn",
-            "cases2026": 22162.0
+            "cases2026": 24732.0
           },
           {
             "customer": "USA Wine Traders Club Of Newton (A)",
-            "cases2026": 21030.0
+            "cases2026": 22910.0
           },
           {
             "customer": "ShopRite Wines & Spirits of Sparta",
-            "cases2026": 20657.0
+            "cases2026": 22540.0
           },
           {
             "customer": "Liquor Factory III Sparta",
-            "cases2026": 18253.8
+            "cases2026": 19876.8
           },
           {
             "customer": "ShopRite Wine & Spirits of Newton#830",
-            "cases2026": 15804.0
+            "cases2026": 17503.0
           },
           {
             "customer": "Mac & Lindy's W & S (A)",
-            "cases2026": 14958.0
-          },
-          {
-            "customer": "Liquor Factory II Jefferson",
-            "cases2026": 14542.0
+            "cases2026": 16662.0
           },
           {
             "customer": "ShopRite Wines & Spirits of Franklin",
-            "cases2026": 14418.0
+            "cases2026": 15968.0
+          },
+          {
+            "customer": "Liquor Factory II Jefferson",
+            "cases2026": 15824.0
           },
           {
             "customer": "Buy Rite Liquors Franklin",
-            "cases2026": 14384.0
+            "cases2026": 15567.0
           },
           {
             "customer": "Liquor Factory IV Hopatcong",
-            "cases2026": 11934.0
+            "cases2026": 13192.0
           },
           {
             "customer": "The George Inn",
-            "cases2026": 10126.0
+            "cases2026": 11148.0
           },
           {
             "customer": "Liquor Factory V Andover",
-            "cases2026": 9806.0
+            "cases2026": 10556.0
           },
           {
             "customer": "Liquor Factory VI Byram",
-            "cases2026": 9588.0
-          },
-          {
-            "customer": "Liquor Factory I Landing",
-            "cases2026": 8717.0
-          },
-          {
-            "customer": "Wantage Plaza Liq Outlet",
-            "cases2026": 8658.0
+            "cases2026": 10438.0
           },
           {
             "customer": "Spring Street Liquors",
-            "cases2026": 8560.0
+            "cases2026": 10037.0
+          },
+          {
+            "customer": "Wantage Plaza Liq Outlet",
+            "cases2026": 9663.0
+          },
+          {
+            "customer": "Liquor Factory I Landing",
+            "cases2026": 9499.0
           },
           {
             "customer": "Super Saver Liq",
-            "cases2026": 6898.0
+            "cases2026": 7609.0
           },
           {
             "customer": "Wine Country Newton",
-            "cases2026": 6827.0
+            "cases2026": 7547.0
           },
           {
             "customer": "Seplow's Liquors",
-            "cases2026": 5939.0
+            "cases2026": 6609.0
           },
           {
-            "customer": "The Right Bottle",
-            "cases2026": 5007.0
+            "customer": "Sussex Co.Discount Liq(P)",
+            "cases2026": 5425.0
           }
         ],
-        "offPremTargetCount": 33
+        "offPremTargetCount": 35
       },
       "Jim Heaney": {
         "pods": [
@@ -151961,7 +152165,7 @@ const PROGRAM_DATA_2026_10 = {
           },
           {
             "customer": "Shoppers Vineyard (A)",
-            "cases2026": 34288.0
+            "cases2026": 39124.0
           },
           {
             "customer": "Allwood Liquor Store",
@@ -151969,35 +152173,35 @@ const PROGRAM_DATA_2026_10 = {
           },
           {
             "customer": "World of Wine & Liquor",
-            "cases2026": 28658.1
+            "cases2026": 29268.1
           },
           {
             "customer": "Lexington Liquors (Z)",
-            "cases2026": 17131.0
+            "cases2026": 19257.0
           },
           {
             "customer": "Clifton Commons S & W",
-            "cases2026": 15142.0
+            "cases2026": 16822.0
           },
           {
             "customer": "Broad Liquors (A)",
-            "cases2026": 12801.0
+            "cases2026": 14183.0
           },
           {
             "customer": "Lucky 7 (A)",
-            "cases2026": 11499.8
+            "cases2026": 12842.8
           },
           {
             "customer": "Rainbow Liquor (P)",
-            "cases2026": 11147.2
+            "cases2026": 12415.2
           },
           {
             "customer": "Marina's Wine & Spirits",
-            "cases2026": 9272.9
+            "cases2026": 10139.9
           },
           {
             "customer": "Little Falls Liq(P)",
-            "cases2026": 8533.2
+            "cases2026": 9762.2
           },
           {
             "customer": "Mason's Cellar (A)",
@@ -152005,35 +152209,35 @@ const PROGRAM_DATA_2026_10 = {
           },
           {
             "customer": "US#1 Wine & Liquor",
-            "cases2026": 7041.0
-          },
-          {
-            "customer": "Rutherford Wine (A)",
-            "cases2026": 6507.9
+            "cases2026": 7746.0
           },
           {
             "customer": "Town Liquors",
-            "cases2026": 6162.0
+            "cases2026": 6932.0
+          },
+          {
+            "customer": "Rutherford Wine (A)",
+            "cases2026": 6791.9
           },
           {
             "customer": "Valley Liquors (A)",
-            "cases2026": 5542.0
+            "cases2026": 6199.0
           },
           {
             "customer": "Metro Liquors (North Arlington)",
-            "cases2026": 5366.0
+            "cases2026": 6003.0
           },
           {
             "customer": "Quik Stop Conv(Z)",
-            "cases2026": 5183.0
+            "cases2026": 5689.0
           },
           {
             "customer": "Liquor Shed",
-            "cases2026": 4902.5
+            "cases2026": 5477.5
           },
           {
-            "customer": "Dante's Liquor & Wine",
-            "cases2026": 4707.0
+            "customer": "West End Wine & Liq",
+            "cases2026": 5316.0
           }
         ],
         "offPremTargetCount": 42
@@ -152091,16 +152295,16 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 1070.0
           },
           {
+            "customer": "Charlie's Liquor and Convenience",
+            "cases2026": 1044.0
+          },
+          {
             "customer": "Bottle King (Z) Chatham",
             "cases2026": 897.0
           },
           {
             "customer": "Best Cellars(Ledgewood)",
             "cases2026": 889.0
-          },
-          {
-            "customer": "Charlie's Liquor and Convenience",
-            "cases2026": 876.0
           },
           {
             "customer": "Sandy's Wine & Spirits (Flanders)",
@@ -152170,87 +152374,87 @@ const PROGRAM_DATA_2026_10 = {
         "rate": 10,
         "offPremTargets": [
           {
-            "customer": "House of Wine & Liquor",
-            "cases2026": 92498.9
+            "customer": "House of Wine & Liquor - Boonton",
+            "cases2026": 96412.9
           },
           {
             "customer": "Shop Rite Liq (A)Wharton",
-            "cases2026": 33283.0
+            "cases2026": 36521.0
           },
           {
             "customer": "Liquor Outlet",
-            "cases2026": 31126.5
+            "cases2026": 34835.5
           },
           {
             "customer": "Mountain Lakes Wine & Liquor",
-            "cases2026": 28534.5
+            "cases2026": 28584.5
           },
           {
             "customer": "Shop Rite Wine & Spirits Stanhope",
-            "cases2026": 21764.0
+            "cases2026": 23910.0
           },
           {
             "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
-            "cases2026": 19983.0
+            "cases2026": 21721.0
           },
           {
             "customer": "Milton Inn",
-            "cases2026": 19754.0
+            "cases2026": 21428.0
           },
           {
             "customer": "Quick Check Liquor (A)",
-            "cases2026": 11861.6
+            "cases2026": 12429.6
           },
           {
             "customer": "Shoppers Disc Liquor",
-            "cases2026": 9603.7
+            "cases2026": 10610.7
           },
           {
             "customer": "Rockaway W/L",
-            "cases2026": 9358.0
+            "cases2026": 10437.0
           },
           {
             "customer": "Shop-Rite(A) Netcong",
-            "cases2026": 9256.0
+            "cases2026": 10208.0
           },
           {
             "customer": "Nova Liquors",
-            "cases2026": 8813.9
-          },
-          {
-            "customer": "Island Of Spirits (P)",
-            "cases2026": 6551.0
-          },
-          {
-            "customer": "Midtown Liq",
-            "cases2026": 6440.2
+            "cases2026": 8876.9
           },
           {
             "customer": "Sam's Liq Wine (P)",
-            "cases2026": 6278.0
+            "cases2026": 7270.0
           },
           {
-            "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
-            "cases2026": 5589.0
+            "customer": "Island Of Spirits (P)",
+            "cases2026": 7154.0
+          },
+          {
+            "customer": "Midtown Liq",
+            "cases2026": 6957.2
           },
           {
             "customer": "Boonton Liquor Locker",
-            "cases2026": 5368.0
+            "cases2026": 6360.5
           },
           {
             "customer": "Wharton Liquor Store",
-            "cases2026": 5367.0
+            "cases2026": 6311.0
+          },
+          {
+            "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
+            "cases2026": 6220.0
           },
           {
             "customer": "Main Street Liquor",
-            "cases2026": 5024.3
+            "cases2026": 5864.3
           },
           {
             "customer": "Montville Wine & Spirits",
-            "cases2026": 4749.2
+            "cases2026": 5398.2
           }
         ],
-        "offPremTargetCount": 27
+        "offPremTargetCount": 28
       },
       "Matt Powierski": {
         "pods": [],
@@ -152278,86 +152482,86 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Home Wine Liquor (Passaic)",
-            "cases2026": 28031.0
-          },
-          {
-            "customer": "Wine And People",
-            "cases2026": 16899.4
-          },
-          {
-            "customer": "M & M Wine & Spirits",
-            "cases2026": 13826.2
-          },
-          {
-            "customer": "Capri Deli&Liq (P)",
-            "cases2026": 13231.4
-          },
-          {
-            "customer": "Shop Rite Of Wallington",
-            "cases2026": 11492.2
-          },
-          {
-            "customer": "Whoopee Liq (A)",
-            "cases2026": 11335.3
-          },
-          {
-            "customer": "Metro Liquor (Elmwood Park)",
-            "cases2026": 11002.0
-          },
-          {
-            "customer": "Archies (P)",
-            "cases2026": 9268.0
-          },
-          {
-            "customer": "Metro Liquors (East Rutherford)",
-            "cases2026": 8889.5
+            "cases2026": 31807.0
           },
           {
             "customer": "Bottle Republic (Rutherford)",
-            "cases2026": 7676.0
+            "cases2026": 20042.6
+          },
+          {
+            "customer": "Wine And People",
+            "cases2026": 17078.4
+          },
+          {
+            "customer": "M & M Wine & Spirits",
+            "cases2026": 15449.2
+          },
+          {
+            "customer": "Capri Deli&Liq (P)",
+            "cases2026": 14122.4
+          },
+          {
+            "customer": "Shop Rite Of Wallington",
+            "cases2026": 12915.2
+          },
+          {
+            "customer": "Metro Liquor (Elmwood Park)",
+            "cases2026": 12437.0
+          },
+          {
+            "customer": "Whoopee Liq (A)",
+            "cases2026": 12050.3
+          },
+          {
+            "customer": "Archies (P)",
+            "cases2026": 10185.0
+          },
+          {
+            "customer": "Metro Liquors (East Rutherford)",
+            "cases2026": 10093.5
           },
           {
             "customer": "Luigi's Liquor (A)",
-            "cases2026": 6710.0
-          },
-          {
-            "customer": "Birchwood Liq & Deli (Z)",
-            "cases2026": 5532.0
-          },
-          {
-            "customer": "All Star Wine & Liquor",
-            "cases2026": 5390.0
+            "cases2026": 7382.0
           },
           {
             "customer": "Metro Wine And Liq(A)",
-            "cases2026": 5373.7
+            "cases2026": 6140.7
+          },
+          {
+            "customer": "Birchwood Liq & Deli (Z)",
+            "cases2026": 6059.0
+          },
+          {
+            "customer": "All Star Wine & Liquor",
+            "cases2026": 5835.0
           },
           {
             "customer": "Wine Grand (Carlstadt)",
-            "cases2026": 5013.7
+            "cases2026": 5790.0
+          },
+          {
+            "customer": "Buzzzrite Liquors",
+            "cases2026": 5487.0
           },
           {
             "customer": "Moonachie Liquors",
-            "cases2026": 4732.0
+            "cases2026": 5232.0
           },
           {
             "customer": "Cobblestone Hill Deli",
-            "cases2026": 4481.0
+            "cases2026": 5192.0
           },
           {
             "customer": "River Drive Bar (P)",
-            "cases2026": 4371.0
+            "cases2026": 4928.0
           },
           {
             "customer": "Vinny's Disc Liq (P)",
-            "cases2026": 4159.0
-          },
-          {
-            "customer": "Wine Land",
-            "cases2026": 3910.0
+            "cases2026": 4744.0
           }
         ],
-        "offPremTargetCount": 35
+        "offPremTargetCount": 40
       },
       "Michael Harboy": {
         "pods": [],
@@ -152385,27 +152589,27 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Kinnelon Country Wine & Liquor",
-            "cases2026": 13317.5
+            "cases2026": 13538.5
           },
           {
             "customer": "Shay's Liquors",
-            "cases2026": 12054.8
+            "cases2026": 13381.0
           },
           {
             "customer": "Lincoln Center Liq",
-            "cases2026": 11632.6
+            "cases2026": 12653.6
           },
           {
             "customer": "Shays Liquors",
-            "cases2026": 9552.0
+            "cases2026": 10762.0
           },
           {
             "customer": "Wayne Liquor Locker",
-            "cases2026": 5874.0
+            "cases2026": 6631.7
           },
           {
             "customer": "Wolfson Market",
-            "cases2026": 4849.0
+            "cases2026": 5459.0
           },
           {
             "customer": "Total Wine & More (West Orange)",
@@ -152511,83 +152715,83 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Bottle King (A) Wayne",
-            "cases2026": 38922.0
+            "cases2026": 43035.0
           },
           {
             "customer": "Waldwick Wine/Spirits",
-            "cases2026": 19439.0
+            "cases2026": 20435.0
           },
           {
             "customer": "Fair Lawn Wine & Spirits",
-            "cases2026": 17532.8
-          },
-          {
-            "customer": "Hawthorne Liq (A)",
-            "cases2026": 15329.4
+            "cases2026": 18417.8
           },
           {
             "customer": "Wine & Spirit World(W)",
-            "cases2026": 15037.0
+            "cases2026": 16677.7
           },
           {
             "customer": "Lincoln Park Fine Wines & Spirits",
-            "cases2026": 14976.5
+            "cases2026": 16324.5
           },
           {
             "customer": "Long Hill Liquors (A)",
-            "cases2026": 14466.0
+            "cases2026": 16155.0
+          },
+          {
+            "customer": "Hawthorne Liq (A)",
+            "cases2026": 15995.4
           },
           {
             "customer": "Frank's Fine Wine & Foods",
-            "cases2026": 14291.0
+            "cases2026": 15364.0
           },
           {
             "customer": "Nico's Wine & Spirits",
-            "cases2026": 11913.2
+            "cases2026": 13444.2
           },
           {
             "customer": "Mahwah Liqrs (P)",
-            "cases2026": 9234.2
+            "cases2026": 10016.2
           },
           {
             "customer": "Grand Opening Liq (A)_2",
-            "cases2026": 8697.0
-          },
-          {
-            "customer": "Goffle Road Wine and More",
-            "cases2026": 7496.8
+            "cases2026": 9809.0
           },
           {
             "customer": "Oakland Wine (A)",
-            "cases2026": 7233.5
+            "cases2026": 8338.5
+          },
+          {
+            "customer": "Goffle Road Wine and More",
+            "cases2026": 8225.8
           },
           {
             "customer": "Diamond Liquor",
-            "cases2026": 6522.0
+            "cases2026": 7229.0
           },
           {
             "customer": "Speedy Mart (P)",
-            "cases2026": 6117.0
+            "cases2026": 7164.0
           },
           {
             "customer": "Allendale Wine Shoppe",
-            "cases2026": 5962.0
+            "cases2026": 6886.0
           },
           {
             "customer": "Discount Liq (P)_2",
-            "cases2026": 4911.0
+            "cases2026": 5417.0
           },
           {
             "customer": "Franklin Lake Liq",
-            "cases2026": 4843.0
+            "cases2026": 5369.0
           },
           {
             "customer": "Scherer & Company",
-            "cases2026": 4449.0
+            "cases2026": 5114.0
           },
           {
             "customer": "Ridgewood Super Cellar",
-            "cases2026": 4325.5
+            "cases2026": 4749.5
           }
         ],
         "offPremTargetCount": 31
@@ -152685,11 +152889,11 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Port Imperial HOQ LLC",
-            "cases2026": 4139.9
+            "cases2026": 4192.9
           },
           {
             "customer": "H Mart Inc (Space A101-A)",
-            "cases2026": 873.0
+            "cases2026": 942.0
           }
         ],
         "offPremTargetCount": 2
@@ -152720,23 +152924,23 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Bombolon Liquor & Grocery",
-            "cases2026": 110867.8
+            "cases2026": 135370.7
           },
           {
             "customer": "Altiero Liquors",
-            "cases2026": 63576.0
+            "cases2026": 69400.7
           },
           {
             "customer": "Caraballo's",
-            "cases2026": 51120.9
+            "cases2026": 52883.9
           },
           {
             "customer": "Midtown Liquors",
-            "cases2026": 38646.3
+            "cases2026": 39211.3
           },
           {
             "customer": "EL BOHEMIO 2 LIQUOR STORE & BAR",
-            "cases2026": 29864.4
+            "cases2026": 31837.4
           },
           {
             "customer": "Limonta Liqs (A)",
@@ -152744,62 +152948,62 @@ const PROGRAM_DATA_2026_10 = {
           },
           {
             "customer": "Allen's Liquors",
-            "cases2026": 18920.2
+            "cases2026": 19256.2
           },
           {
             "customer": "Gene's Liquor",
-            "cases2026": 13200.0
+            "cases2026": 14370.0
           },
           {
             "customer": "Passaic Discount Liquors",
-            "cases2026": 12729.0
+            "cases2026": 14111.0
           },
           {
             "customer": "Regalado Liq",
-            "cases2026": 12723.0
+            "cases2026": 14086.0
           },
           {
             "customer": "Monroe Wine & Liq(P)",
-            "cases2026": 12594.0
+            "cases2026": 13914.0
           },
           {
             "customer": "Broadway W&L",
-            "cases2026": 12334.0
+            "cases2026": 13660.0
           },
           {
             "customer": "Sunny's Liqs.(P)",
-            "cases2026": 12069.0
+            "cases2026": 13449.0
           },
           {
             "customer": "Johnny's Liqs (P)",
-            "cases2026": 10190.0
+            "cases2026": 11045.0
           },
           {
             "customer": "#1 Liqrs (P)",
-            "cases2026": 8006.0
-          },
-          {
-            "customer": "Joe's Liquor (A)",
-            "cases2026": 6406.5
+            "cases2026": 8984.0
           },
           {
             "customer": "Boulevard Wine & Spirits",
-            "cases2026": 5896.0
+            "cases2026": 7200.0
+          },
+          {
+            "customer": "Joe's Liquor (A)",
+            "cases2026": 7032.5
           },
           {
             "customer": "Intensity Lounge/Angie's Liquors",
-            "cases2026": 5586.0
+            "cases2026": 6222.0
           },
           {
             "customer": "Schulman's (P) Deli",
-            "cases2026": 5462.3
+            "cases2026": 5961.3
           },
           {
             "customer": "Carisma Liq & Groc (P)",
-            "cases2026": 4474.0
+            "cases2026": 4960.0
           }
         ],
-        "offPremTargetCount": 26
+        "offPremTargetCount": 28
       },
       "Paul Mclaughlin": {
         "pods": [],
@@ -152870,11 +153074,11 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Balthazar Bakery (A)",
-            "cases2026": 104.0
+            "cases2026": 120.0
           },
           {
             "customer": "Mykos",
-            "cases2026": 66.0
+            "cases2026": 80.0
           }
         ],
         "offPremTargetCount": 2
@@ -152941,87 +153145,87 @@ const PROGRAM_DATA_2026_10 = {
         "rate": 10,
         "offPremTargets": [
           {
-            "customer": "Agave Liquor, Wine & Spirits",
-            "cases2026": 51424.4
+            "customer": "Super Wine Warehse(P)Pate",
+            "cases2026": 60828.0
           },
           {
-            "customer": "Super Wine Warehse(P)Pate",
-            "cases2026": 50573.0
+            "customer": "Agave Liquor, Wine & Spirits",
+            "cases2026": 52704.0
           },
           {
             "customer": "Bottle King (A) Glen Rock",
-            "cases2026": 34861.0
+            "cases2026": 39163.0
           },
           {
             "customer": "Shop Rite Liq(A) Roch Pk",
-            "cases2026": 17977.0
+            "cases2026": 19883.0
           },
           {
             "customer": "Shop Rite Liq(A) Fair Lwn",
-            "cases2026": 16512.0
+            "cases2026": 18023.0
           },
           {
             "customer": "Palisades Wine And Liquor",
-            "cases2026": 14982.0
-          },
-          {
-            "customer": "Shop-Rite Liq Lyndhurst",
-            "cases2026": 13510.3
+            "cases2026": 16881.0
           },
           {
             "customer": "Budy's Wine & Liq (A)",
-            "cases2026": 13391.0
+            "cases2026": 14893.0
+          },
+          {
+            "customer": "Shop-Rite Liq Lyndhurst",
+            "cases2026": 14872.3
           },
           {
             "customer": "Shop Rite Liq (Paramus)",
-            "cases2026": 11134.0
+            "cases2026": 12872.0
           },
           {
             "customer": "City Supermarket",
-            "cases2026": 11028.0
+            "cases2026": 12507.0
           },
           {
             "customer": "Food Universe Marketplace",
-            "cases2026": 10135.2
+            "cases2026": 11376.3
           },
           {
             "customer": "Home Wines & Liq 75 (A) (South Hackensack)",
-            "cases2026": 8001.0
+            "cases2026": 8824.0
+          },
+          {
+            "customer": "PRIME WINE CELLAR Liquor & Beer",
+            "cases2026": 6672.0
           },
           {
             "customer": "Wine Country Of Saddle Brook (A)",
-            "cases2026": 4529.0
+            "cases2026": 5038.0
           },
           {
-            "customer": "Acme Markets (Allendale)",
-            "cases2026": 3105.0
+            "customer": "Acme Markets (Fort Lee)",
+            "cases2026": 4661.0
           },
           {
             "customer": "Riverview Liq (P)",
-            "cases2026": 3013.0
+            "cases2026": 3530.0
+          },
+          {
+            "customer": "Acme Markets (Allendale)",
+            "cases2026": 3480.0
           },
           {
             "customer": "Gary's Wine & Marketplace (Wayne)",
             "cases2026": 2026.0
           },
           {
+            "customer": "THE BOTTLE SHOP",
+            "cases2026": 1585.0
+          },
+          {
             "customer": "Stew Leonard's(A) Paramu (NA)",
-            "cases2026": 1414.0
-          },
-          {
-            "customer": "Wides Deli & Liquor",
-            "cases2026": 1260.0
-          },
-          {
-            "customer": "Lushka Liquors",
-            "cases2026": 1010.2
-          },
-          {
-            "customer": "Megha Liquor & Grocery",
-            "cases2026": 496.2
+            "cases2026": 1540.0
           }
         ],
-        "offPremTargetCount": 22
+        "offPremTargetCount": 25
       },
       "Robin Feldman": {
         "pods": [],
@@ -153074,10 +153278,14 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Jerry's Outlet",
-            "cases2026": 343.0
+            "cases2026": 404.0
+          },
+          {
+            "customer": "Pizza Town USA",
+            "cases2026": 101.0
           }
         ],
-        "offPremTargetCount": 1
+        "offPremTargetCount": 2
       },
       "Shane Barreca": {
         "pods": [],
@@ -153112,86 +153320,86 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Bottle King (A) Ramsey",
-            "cases2026": 44746.0
+            "cases2026": 49333.0
           },
           {
             "customer": "Bottle King (A) Dumont",
-            "cases2026": 36261.0
+            "cases2026": 39813.0
           },
           {
             "customer": "Beverage Barn (A)",
-            "cases2026": 24857.0
+            "cases2026": 27883.0
           },
           {
             "customer": "Montvale Wine/Liq & Beer",
-            "cases2026": 21475.0
+            "cases2026": 23653.0
           },
           {
             "customer": "Bottle King (A) Hillsdale",
-            "cases2026": 19774.0
+            "cases2026": 22087.0
           },
           {
             "customer": "Shoprite Liq (A)Northvle",
-            "cases2026": 18009.0
+            "cases2026": 20026.0
           },
           {
             "customer": "Shop Rite Liq (A)Hillsdal",
-            "cases2026": 15421.5
+            "cases2026": 17157.5
           },
           {
             "customer": "Cork & Keg (A)",
-            "cases2026": 11978.2
+            "cases2026": 13286.7
           },
           {
             "customer": "Shop Rite Liq (A)Emerson",
-            "cases2026": 8480.0
+            "cases2026": 9551.0
           },
           {
             "customer": "Winemart Discount",
-            "cases2026": 8310.7
+            "cases2026": 9260.7
           },
           {
             "customer": "Township Liq (P)",
-            "cases2026": 7349.0
+            "cases2026": 8114.0
           },
           {
             "customer": "Brand Bar & Bev (A)",
-            "cases2026": 7080.0
+            "cases2026": 7764.0
           },
           {
             "customer": "Garden State Deli (A)",
-            "cases2026": 6742.0
+            "cases2026": 7608.0
           },
           {
-            "customer": "Gary's Wine & Marketplace (Closter)",
-            "cases2026": 6414.0
+            "customer": "Gary's Closter / CLoster Cellars",
+            "cases2026": 6861.0
           },
           {
             "customer": "Westwood Wine and Liquors",
-            "cases2026": 5404.0
+            "cases2026": 6090.0
           },
           {
             "customer": "Wine And Beverage Spirits",
-            "cases2026": 4751.0
+            "cases2026": 5467.0
+          },
+          {
+            "customer": "Cambridge Wines (Woodcliff Lake)",
+            "cases2026": 4546.9
           },
           {
             "customer": "Wine & Whiskey (A)",
-            "cases2026": 3269.0
-          },
-          {
-            "customer": "Ridgemont Liquors (A)",
-            "cases2026": 2990.7
+            "cases2026": 3776.0
           },
           {
             "customer": "Coasters Liquors",
-            "cases2026": 2899.0
+            "cases2026": 3302.0
           },
           {
-            "customer": "Djm Liq Inc. (P)(Andrew)",
-            "cases2026": 2857.0
+            "customer": "Ridgemont Liquors (A)",
+            "cases2026": 3222.7
           }
         ],
-        "offPremTargetCount": 28
+        "offPremTargetCount": 30
       }
     },
     "leaderboard": [
@@ -155730,7 +155938,7 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Paradise Liquors",
-            "cases2026": 19143.6
+            "cases2026": 21184.7
           },
           {
             "customer": "Bottle King Glen Ridge",
@@ -155746,7 +155954,7 @@ const PROGRAM_DATA_2026_10 = {
           },
           {
             "customer": "Super K Food (A) Store",
-            "cases2026": 1534.0
+            "cases2026": 1763.0
           },
           {
             "customer": "High Spirits Of Bayonne",
@@ -155967,83 +156175,83 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Highland Wine&Liquor Inc",
-            "cases2026": 18415.2
+            "cases2026": 19996.2
           },
           {
             "customer": "Usa Wine Traders Club (Bloomingdale)",
-            "cases2026": 16250.0
+            "cases2026": 17917.0
           },
           {
             "customer": "Best Cellars (Wanaque)",
-            "cases2026": 11357.2
+            "cases2026": 12657.2
           },
           {
             "customer": "River Place Food Store",
-            "cases2026": 10087.1
+            "cases2026": 11190.1
           },
           {
             "customer": "Greenwood Lake Disc.(P)",
-            "cases2026": 9370.3
+            "cases2026": 10016.3
           },
           {
             "customer": "Ringwood W&L",
-            "cases2026": 8930.0
-          },
-          {
-            "customer": "Krauszer's Liquor Wine and Spirits",
-            "cases2026": 8619.0
+            "cases2026": 9941.0
           },
           {
             "customer": "Turnpike Discount Liquors",
-            "cases2026": 8460.0
+            "cases2026": 9636.0
+          },
+          {
+            "customer": "Krauszer's Liquor Wine and Spirits",
+            "cases2026": 9270.0
           },
           {
             "customer": "Buy Rite W &L Pompton(P)",
-            "cases2026": 7904.0
+            "cases2026": 8805.0
           },
           {
             "customer": "George's Market (A)",
-            "cases2026": 6831.0
+            "cases2026": 7858.0
           },
           {
             "customer": "Appio's Liquors",
-            "cases2026": 6769.0
+            "cases2026": 7682.0
           },
           {
             "customer": "Roserne Pkg Store South",
-            "cases2026": 6401.3
+            "cases2026": 7194.3
           },
           {
             "customer": "Usa Wine Traders (Wanaque)",
-            "cases2026": 6326.0
+            "cases2026": 7122.0
           },
           {
             "customer": "Shoppers Disc(A)Pompton",
-            "cases2026": 6109.5
+            "cases2026": 6840.5
           },
           {
             "customer": "Roserne Liquors North",
-            "cases2026": 5991.2
-          },
-          {
-            "customer": "B & B Wine&Liq",
-            "cases2026": 5581.0
+            "cases2026": 6600.2
           },
           {
             "customer": "Ringwood Discount Liquors",
-            "cases2026": 5493.0
+            "cases2026": 6293.0
+          },
+          {
+            "customer": "B & B Wine&Liq",
+            "cases2026": 6195.0
           },
           {
             "customer": "Wine 2 Spirits (P)",
-            "cases2026": 4669.0
+            "cases2026": 5204.0
           },
           {
             "customer": "Country Convenience Store",
-            "cases2026": 4174.0
+            "cases2026": 4697.0
           },
           {
             "customer": "Empire Wine & Liquor",
-            "cases2026": 3100.0
+            "cases2026": 3543.0
           }
         ],
         "offPremTargetCount": 26
@@ -156067,23 +156275,23 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Chabons Ii Liq/Bar (A)",
-            "cases2026": 7664.0
+            "cases2026": 8348.0
           },
           {
             "customer": "Culver Liquor and Bar",
-            "cases2026": 7273.0
+            "cases2026": 8034.0
           },
           {
             "customer": "The Greek's",
-            "cases2026": 1755.0
+            "cases2026": 2010.0
           },
           {
             "customer": "Picatinny Main Exch",
-            "cases2026": 742.0
+            "cases2026": 807.0
           },
           {
             "customer": "Swartswood",
-            "cases2026": 440.0
+            "cases2026": 531.0
           },
           {
             "customer": "Point 5 Lafayette",
@@ -156111,86 +156319,86 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Discount Lqr(A) Outlet",
-            "cases2026": 162859.9
+            "cases2026": 172824.5
           },
           {
             "customer": "Ridgefield Deli & Liq",
-            "cases2026": 44545.3
+            "cases2026": 79037.7
           },
           {
             "customer": "Clifton Disc Liq (A)",
-            "cases2026": 34517.5
+            "cases2026": 38748.5
           },
           {
             "customer": "Garden Liquors (P)",
-            "cases2026": 19064.3
+            "cases2026": 21097.3
           },
           {
             "customer": "Wineland",
-            "cases2026": 17843.0
+            "cases2026": 20263.0
           },
           {
             "customer": "Usa Wine Traders Club (Saddle Brook)",
-            "cases2026": 16492.5
+            "cases2026": 18450.5
           },
           {
             "customer": "46 Discount Liquor Store",
-            "cases2026": 11594.0
-          },
-          {
-            "customer": "Westmont Liquors 64",
-            "cases2026": 11036.8
+            "cases2026": 12564.0
           },
           {
             "customer": "Exquisite W & L (A)",
-            "cases2026": 10812.5
+            "cases2026": 11863.5
           },
           {
             "customer": "Buy Rite Of Main St Lodi",
-            "cases2026": 10446.7
+            "cases2026": 11740.7
+          },
+          {
+            "customer": "Westmont Liquors 64",
+            "cases2026": 11323.8
           },
           {
             "customer": "Buy Rite Discount Liquor",
-            "cases2026": 8886.2
+            "cases2026": 9923.2
           },
           {
             "customer": "Figlar's (P)",
-            "cases2026": 8657.0
+            "cases2026": 9773.0
           },
           {
             "customer": "Shop Rite Liq.(A)Lodi",
-            "cases2026": 7318.0
-          },
-          {
-            "customer": "Circle Liquors",
-            "cases2026": 6790.7
+            "cases2026": 8214.0
           },
           {
             "customer": "Woodridge Wines & Liq(A)",
-            "cases2026": 6525.7
+            "cases2026": 7160.7
+          },
+          {
+            "customer": "Circle Liquors",
+            "cases2026": 7049.9
           },
           {
             "customer": "Teaneck Quickshop(P)Conv",
-            "cases2026": 5899.0
+            "cases2026": 6502.0
           },
           {
             "customer": "Lodi Liquor Store(P)",
-            "cases2026": 5552.0
-          },
-          {
-            "customer": "B & B Liquors (Fair Lawn)",
-            "cases2026": 4265.0
+            "cases2026": 6337.0
           },
           {
             "customer": "Discount Liq & Bar",
-            "cases2026": 4261.0
+            "cases2026": 4867.0
           },
           {
-            "customer": "Krauszer Liquor",
-            "cases2026": 4169.7
+            "customer": "B & B Liquors (Fair Lawn)",
+            "cases2026": 4738.0
+          },
+          {
+            "customer": "Welsh Farms",
+            "cases2026": 4562.0
           }
         ],
-        "offPremTargetCount": 39
+        "offPremTargetCount": 40
       },
       "Dan Lagala": {
         "accounts": [],
@@ -156215,82 +156423,82 @@ const PROGRAM_DATA_2026_10 = {
           },
           {
             "customer": "Banner Delicatessen",
-            "cases2026": 77507.8
+            "cases2026": 80347.2
+          },
+          {
+            "customer": "Edgewater Liquor (A)",
+            "cases2026": 40565.5
           },
           {
             "customer": "Bella Wine & Liquor",
             "cases2026": 30851.4
           },
           {
-            "customer": "Edgewater Liquor (A)",
-            "cases2026": 29281.9
-          },
-          {
             "customer": "Buy Rite Of Fairview",
-            "cases2026": 19436.0
+            "cases2026": 21494.0
           },
           {
             "customer": "Liquor World",
-            "cases2026": 12473.0
+            "cases2026": 13951.0
           },
           {
             "customer": "Liquor City(A)Cliffside",
-            "cases2026": 11521.0
+            "cases2026": 13165.0
           },
           {
             "customer": "Rome Liquors (Fairview)",
-            "cases2026": 10396.7
-          },
-          {
-            "customer": "Winston Wine & Liq",
-            "cases2026": 10303.4
+            "cases2026": 11653.7
           },
           {
             "customer": "Fairview Liq & Groc.(A)",
-            "cases2026": 10173.0
+            "cases2026": 11169.0
           },
           {
             "customer": "Boulevard Liq.(Fairview)",
-            "cases2026": 10122.0
+            "cases2026": 11053.0
+          },
+          {
+            "customer": "Winston Wine & Liq",
+            "cases2026": 10459.4
           },
           {
             "customer": "Linwood Wine-Linwood Plaza",
-            "cases2026": 8416.8
+            "cases2026": 9059.8
           },
           {
             "customer": "Stop N Go Conven. (P)",
-            "cases2026": 7595.0
+            "cases2026": 8463.0
           },
           {
             "customer": "Kikos Liquors Ii",
-            "cases2026": 7101.0
-          },
-          {
-            "customer": "Jay Cee (P) Deli & Liq.",
-            "cases2026": 6022.0
+            "cases2026": 7809.0
           },
           {
             "customer": "Mukeunji (Z)",
-            "cases2026": 5854.0
+            "cases2026": 6730.0
+          },
+          {
+            "customer": "Metro Liquor (Cliffside Park)",
+            "cases2026": 6702.2
+          },
+          {
+            "customer": "Jay Cee (P) Deli & Liq.",
+            "cases2026": 6690.0
           },
           {
             "customer": "Linwood Wine-Hudson Light",
-            "cases2026": 5393.0
+            "cases2026": 6079.0
           },
           {
             "customer": "Garden State Food&Liq (P)",
-            "cases2026": 5339.0
+            "cases2026": 5995.0
           },
           {
             "customer": "Banner Liquor Iii",
-            "cases2026": 5145.0
-          },
-          {
-            "customer": "American Classic Liq",
-            "cases2026": 4782.0
+            "cases2026": 5848.0
           }
         ],
-        "offPremTargetCount": 45
+        "offPremTargetCount": 46
       },
       "Dave Ehlers": {
         "accounts": [],
@@ -156311,86 +156519,86 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Total Wine & More (Totowa)",
-            "cases2026": 74064.0
+            "cases2026": 82762.0
           },
           {
             "customer": "Total Wine & More (River Edge)",
-            "cases2026": 71785.0
+            "cases2026": 79890.8
+          },
+          {
+            "customer": "Burgundy Convenience Store",
+            "cases2026": 31788.7
           },
           {
             "customer": "Shop Rite Liq (A)Englewd",
-            "cases2026": 28132.0
+            "cases2026": 31435.0
           },
           {
             "customer": "Buy Rite Of Hackensack",
-            "cases2026": 22991.8
+            "cases2026": 25686.8
           },
           {
             "customer": "Barrel & Brew Bar & Liq",
-            "cases2026": 20580.2
+            "cases2026": 20995.2
           },
           {
             "customer": "Portland Wine & Liquor",
-            "cases2026": 17216.0
+            "cases2026": 18713.0
           },
           {
             "customer": "Wine And Liq Depot(A)",
-            "cases2026": 16879.0
+            "cases2026": 18647.7
           },
           {
             "customer": "Hackensack Liquors",
-            "cases2026": 15898.0
+            "cases2026": 17640.3
           },
           {
             "customer": "Wine & More (P)",
-            "cases2026": 14581.0
+            "cases2026": 15425.8
           },
           {
             "customer": "Bergenfield Liq & Fw",
-            "cases2026": 13371.3
+            "cases2026": 14827.3
           },
           {
             "customer": "W E Beverage (A)",
-            "cases2026": 8230.0
-          },
-          {
-            "customer": "Time Lounge And Liq (A)",
-            "cases2026": 8184.0
+            "cases2026": 9307.0
           },
           {
             "customer": "Simple Simon's (Z)",
-            "cases2026": 7858.0
+            "cases2026": 9148.0
+          },
+          {
+            "customer": "Time Lounge And Liq (A)",
+            "cases2026": 9042.0
           },
           {
             "customer": "Bottle & Cork",
-            "cases2026": 7562.3
+            "cases2026": 8671.3
           },
           {
             "customer": "Essex St Liquor and Wine",
-            "cases2026": 6703.0
+            "cases2026": 7558.0
           },
           {
             "customer": "George's Liq",
-            "cases2026": 6635.0
-          },
-          {
-            "customer": "H & R Disc. Liq (P)",
-            "cases2026": 6168.0
+            "cases2026": 7434.0
           },
           {
             "customer": "Deli Mart (A)",
-            "cases2026": 6098.0
+            "cases2026": 6928.0
           },
           {
-            "customer": "G & G Liquors & Bar",
-            "cases2026": 5370.0
+            "customer": "H & R Disc. Liq (P)",
+            "cases2026": 6879.0
           },
           {
-            "customer": "Joes Beer Wine & Spirits",
-            "cases2026": 5105.3
+            "customer": "Country Wine & Liquors",
+            "cases2026": 6121.1
           }
         ],
-        "offPremTargetCount": 33
+        "offPremTargetCount": 35
       },
       "Derrick Laws": {
         "accounts": [],
@@ -156411,7 +156619,7 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Shop Rite Wines/Spirits",
-            "cases2026": 186098.8
+            "cases2026": 191980.7
           },
           {
             "customer": "Scheps Discount Bar/Liq",
@@ -156419,78 +156627,78 @@ const PROGRAM_DATA_2026_10 = {
           },
           {
             "customer": "Ant's Bar & Liquors",
-            "cases2026": 80227.9
+            "cases2026": 86998.8
           },
           {
             "customer": "Gonzalez Liq & Bar(A)",
-            "cases2026": 36092.8
+            "cases2026": 36998.8
           },
           {
             "customer": "Shop Rite Liq (A)Littlefl",
-            "cases2026": 28486.0
+            "cases2026": 31482.0
           },
           {
             "customer": "The Liquor Shop",
-            "cases2026": 27097.0
+            "cases2026": 31026.0
           },
           {
             "customer": "C Town (A)",
-            "cases2026": 26134.7
+            "cases2026": 26338.7
           },
           {
             "customer": "The Point Liquor & Bar",
-            "cases2026": 21665.5
+            "cases2026": 22427.5
           },
           {
             "customer": "Economy Liquors",
-            "cases2026": 18898.0
+            "cases2026": 21090.0
           },
           {
             "customer": "Quis Queya Liquor(P)",
-            "cases2026": 13567.0
+            "cases2026": 15689.0
           },
           {
             "customer": "Ferraro's Liquor",
-            "cases2026": 11999.5
+            "cases2026": 13231.7
           },
           {
             "customer": "Pal's Liquor",
-            "cases2026": 11623.0
+            "cases2026": 12978.0
           },
           {
             "customer": "La Sorpresa Liq (P)",
-            "cases2026": 11157.0
+            "cases2026": 12436.0
           },
           {
             "customer": "Limestone Liquors (A)",
-            "cases2026": 11133.0
+            "cases2026": 12335.0
           },
           {
             "customer": "Santana's Sport(P)Bella",
-            "cases2026": 10374.8
+            "cases2026": 11252.8
           },
           {
             "customer": "Raphael & Angel Liq (A)",
-            "cases2026": 9958.0
-          },
-          {
-            "customer": "El Oasis",
-            "cases2026": 9646.0
+            "cases2026": 11241.0
           },
           {
             "customer": "230 Liq & Groc.(A)",
-            "cases2026": 9584.0
+            "cases2026": 10604.0
+          },
+          {
+            "customer": "El Oasis",
+            "cases2026": 10500.0
           },
           {
             "customer": "Dorta Liquor (A)",
-            "cases2026": 9141.0
+            "cases2026": 10225.0
           },
           {
-            "customer": "Mercer Bar & Liquors",
-            "cases2026": 7419.0
+            "customer": "Yaremy Liquors",
+            "cases2026": 9144.8
           }
         ],
-        "offPremTargetCount": 32
+        "offPremTargetCount": 33
       },
       "Dylan Rubino": {
         "accounts": [],
@@ -156514,12 +156722,12 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 5143.3
           },
           {
-            "customer": "STOP & GO LIQUORS",
-            "cases2026": 1594.0
+            "customer": "J B Liquors_2",
+            "cases2026": 1731.0
           },
           {
-            "customer": "J B Liquors_2",
-            "cases2026": 1571.0
+            "customer": "STOP & GO LIQUORS",
+            "cases2026": 1594.0
           },
           {
             "customer": "A2Z Wine Club",
@@ -156734,12 +156942,12 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 2264.0
           },
           {
-            "customer": "Sparrow's Wine & Liq(P) (1224 Hoboken)",
-            "cases2026": 1640.0
+            "customer": "One Stop Wine (A) & Liq",
+            "cases2026": 1700.0
           },
           {
-            "customer": "One Stop Wine (A) & Liq",
-            "cases2026": 1578.0
+            "customer": "Sparrow's Wine & Liq(P) (1224 Hoboken)",
+            "cases2026": 1640.0
           },
           {
             "customer": "ShopRite Wines & Spirits of Hoboken",
@@ -156811,86 +157019,86 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Edwards (P) Wine & Liq",
-            "cases2026": 44151.2
+            "cases2026": 45969.9
           },
           {
             "customer": "D'bar Liquors (P)",
-            "cases2026": 37223.2
+            "cases2026": 38287.2
+          },
+          {
+            "customer": "El Cantaro Liquors",
+            "cases2026": 37195.6
           },
           {
             "customer": "President Liqrs (A)",
-            "cases2026": 19683.0
+            "cases2026": 21023.0
           },
           {
             "customer": "Farm Boy",
-            "cases2026": 14051.0
+            "cases2026": 15788.0
           },
           {
             "customer": "Bottle Liquor (P)",
-            "cases2026": 14010.0
+            "cases2026": 15510.0
           },
           {
             "customer": "New Eagle Liquors",
-            "cases2026": 13517.0
+            "cases2026": 15209.0
           },
           {
             "customer": "Parker Liquors (Z)",
-            "cases2026": 13256.0
+            "cases2026": 14710.0
           },
           {
             "customer": "Diamond Liquors (P)",
-            "cases2026": 11857.0
+            "cases2026": 13433.0
           },
           {
             "customer": "Danny's Liquor",
-            "cases2026": 11699.0
+            "cases2026": 13208.0
           },
           {
             "customer": "ESTEVEZ LIQUORS LLC",
-            "cases2026": 11618.0
+            "cases2026": 12883.0
           },
           {
             "customer": "Luna Liquors",
-            "cases2026": 11399.0
+            "cases2026": 12801.0
           },
           {
             "customer": "Shanik Liqs.(P)",
-            "cases2026": 11287.0
+            "cases2026": 12344.0
           },
           {
             "customer": "East Side Bar Liquors",
-            "cases2026": 9821.0
+            "cases2026": 11115.0
           },
           {
             "customer": "Bermuda Liquors (P)",
-            "cases2026": 9445.0
-          },
-          {
-            "customer": "C Town Supermarket(P)",
-            "cases2026": 7701.0
-          },
-          {
-            "customer": "Paulison Liquors (P)",
-            "cases2026": 7557.0
+            "cases2026": 10138.0
           },
           {
             "customer": "La Joya Liquors",
-            "cases2026": 7453.0
+            "cases2026": 8583.0
           },
           {
             "customer": "Segundo's (P)",
-            "cases2026": 7344.0
+            "cases2026": 8582.0
+          },
+          {
+            "customer": "Paulison Liquors (P)",
+            "cases2026": 8543.0
+          },
+          {
+            "customer": "C Town Supermarket(P)",
+            "cases2026": 8531.0
           },
           {
             "customer": "Liquor Stop (Passaic)",
-            "cases2026": 7124.0
-          },
-          {
-            "customer": "C & S Lucky Liquors (P)",
-            "cases2026": 6476.0
+            "cases2026": 8146.0
           }
         ],
-        "offPremTargetCount": 28
+        "offPremTargetCount": 29
       },
       "Jayson Romine": {
         "accounts": [],
@@ -156911,86 +157119,86 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Patricks Wine Barn",
-            "cases2026": 22162.0
+            "cases2026": 24732.0
           },
           {
             "customer": "USA Wine Traders Club Of Newton (A)",
-            "cases2026": 21030.0
+            "cases2026": 22910.0
           },
           {
             "customer": "ShopRite Wines & Spirits of Sparta",
-            "cases2026": 20657.0
+            "cases2026": 22540.0
           },
           {
             "customer": "Liquor Factory III Sparta",
-            "cases2026": 18253.8
+            "cases2026": 19876.8
           },
           {
             "customer": "ShopRite Wine & Spirits of Newton#830",
-            "cases2026": 15804.0
+            "cases2026": 17503.0
           },
           {
             "customer": "Mac & Lindy's W & S (A)",
-            "cases2026": 14958.0
-          },
-          {
-            "customer": "Liquor Factory II Jefferson",
-            "cases2026": 14542.0
+            "cases2026": 16662.0
           },
           {
             "customer": "ShopRite Wines & Spirits of Franklin",
-            "cases2026": 14418.0
+            "cases2026": 15968.0
+          },
+          {
+            "customer": "Liquor Factory II Jefferson",
+            "cases2026": 15824.0
           },
           {
             "customer": "Buy Rite Liquors Franklin",
-            "cases2026": 14384.0
+            "cases2026": 15567.0
           },
           {
             "customer": "Liquor Factory IV Hopatcong",
-            "cases2026": 11934.0
+            "cases2026": 13192.0
           },
           {
             "customer": "The George Inn",
-            "cases2026": 10126.0
+            "cases2026": 11148.0
           },
           {
             "customer": "Liquor Factory V Andover",
-            "cases2026": 9806.0
+            "cases2026": 10556.0
           },
           {
             "customer": "Liquor Factory VI Byram",
-            "cases2026": 9588.0
-          },
-          {
-            "customer": "Liquor Factory I Landing",
-            "cases2026": 8717.0
-          },
-          {
-            "customer": "Wantage Plaza Liq Outlet",
-            "cases2026": 8658.0
+            "cases2026": 10438.0
           },
           {
             "customer": "Spring Street Liquors",
-            "cases2026": 8560.0
+            "cases2026": 10037.0
+          },
+          {
+            "customer": "Wantage Plaza Liq Outlet",
+            "cases2026": 9663.0
+          },
+          {
+            "customer": "Liquor Factory I Landing",
+            "cases2026": 9499.0
           },
           {
             "customer": "Super Saver Liq",
-            "cases2026": 6898.0
+            "cases2026": 7609.0
           },
           {
             "customer": "Wine Country Newton",
-            "cases2026": 6827.0
+            "cases2026": 7547.0
           },
           {
             "customer": "Seplow's Liquors",
-            "cases2026": 5939.0
+            "cases2026": 6609.0
           },
           {
-            "customer": "The Right Bottle",
-            "cases2026": 5007.0
+            "customer": "Sussex Co.Discount Liq(P)",
+            "cases2026": 5425.0
           }
         ],
-        "offPremTargetCount": 33
+        "offPremTargetCount": 35
       },
       "Jim Heaney": {
         "accounts": [],
@@ -157015,7 +157223,7 @@ const PROGRAM_DATA_2026_10 = {
           },
           {
             "customer": "Shoppers Vineyard (A)",
-            "cases2026": 34288.0
+            "cases2026": 39124.0
           },
           {
             "customer": "Allwood Liquor Store",
@@ -157023,39 +157231,39 @@ const PROGRAM_DATA_2026_10 = {
           },
           {
             "customer": "World of Wine & Liquor",
-            "cases2026": 28658.1
+            "cases2026": 29268.1
           },
           {
             "customer": "Lexington Liquors (Z)",
-            "cases2026": 17131.0
+            "cases2026": 19257.0
           },
           {
             "customer": "Clifton Commons S & W",
-            "cases2026": 15142.0
+            "cases2026": 16822.0
           },
           {
             "customer": "Broad Liquors (A)",
-            "cases2026": 12801.0
+            "cases2026": 14183.0
           },
           {
             "customer": "Lucky 7 (A)",
-            "cases2026": 11499.8
+            "cases2026": 12842.8
           },
           {
             "customer": "Rainbow Liquor (P)",
-            "cases2026": 11147.2
-          },
-          {
-            "customer": "Marina's Wine & Spirits",
-            "cases2026": 9272.9
+            "cases2026": 12415.2
           },
           {
             "customer": "Savers Club Liquor Locker",
-            "cases2026": 8772.0
+            "cases2026": 10398.0
+          },
+          {
+            "customer": "Marina's Wine & Spirits",
+            "cases2026": 10139.9
           },
           {
             "customer": "Little Falls Liq(P)",
-            "cases2026": 8533.2
+            "cases2026": 9762.2
           },
           {
             "customer": "Mason's Cellar (A)",
@@ -157063,31 +157271,31 @@ const PROGRAM_DATA_2026_10 = {
           },
           {
             "customer": "US#1 Wine & Liquor",
-            "cases2026": 7041.0
-          },
-          {
-            "customer": "Rutherford Wine (A)",
-            "cases2026": 6507.9
+            "cases2026": 7746.0
           },
           {
             "customer": "Town Liquors",
-            "cases2026": 6162.0
+            "cases2026": 6932.0
+          },
+          {
+            "customer": "Rutherford Wine (A)",
+            "cases2026": 6791.9
           },
           {
             "customer": "Valley Liquors (A)",
-            "cases2026": 5542.0
+            "cases2026": 6199.0
           },
           {
             "customer": "Metro Liquors (North Arlington)",
-            "cases2026": 5366.0
+            "cases2026": 6003.0
           },
           {
             "customer": "Quik Stop Conv(Z)",
-            "cases2026": 5183.0
+            "cases2026": 5689.0
           },
           {
             "customer": "Liquor Shed",
-            "cases2026": 4902.5
+            "cases2026": 5477.5
           }
         ],
         "offPremTargetCount": 43
@@ -157138,16 +157346,16 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 1070.0
           },
           {
+            "customer": "Charlie's Liquor and Convenience",
+            "cases2026": 1044.0
+          },
+          {
             "customer": "Bottle King (Z) Chatham",
             "cases2026": 897.0
           },
           {
             "customer": "Best Cellars(Ledgewood)",
             "cases2026": 889.0
-          },
-          {
-            "customer": "Charlie's Liquor and Convenience",
-            "cases2026": 876.0
           },
           {
             "customer": "Sandy's Wine & Spirits (Flanders)",
@@ -157210,87 +157418,87 @@ const PROGRAM_DATA_2026_10 = {
         "totalNew": 0,
         "offPremTargets": [
           {
-            "customer": "House of Wine & Liquor",
-            "cases2026": 92498.9
+            "customer": "House of Wine & Liquor - Boonton",
+            "cases2026": 96412.9
           },
           {
             "customer": "Shop Rite Liq (A)Wharton",
-            "cases2026": 33283.0
+            "cases2026": 36521.0
           },
           {
             "customer": "Liquor Outlet",
-            "cases2026": 31126.5
+            "cases2026": 34835.5
           },
           {
             "customer": "Mountain Lakes Wine & Liquor",
-            "cases2026": 28534.5
+            "cases2026": 28584.5
           },
           {
             "customer": "Shop Rite Wine & Spirits Stanhope",
-            "cases2026": 21764.0
+            "cases2026": 23910.0
           },
           {
             "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
-            "cases2026": 19983.0
+            "cases2026": 21721.0
           },
           {
             "customer": "Milton Inn",
-            "cases2026": 19754.0
+            "cases2026": 21428.0
           },
           {
             "customer": "Quick Check Liquor (A)",
-            "cases2026": 11861.6
+            "cases2026": 12429.6
           },
           {
             "customer": "Shoppers Disc Liquor",
-            "cases2026": 9603.7
+            "cases2026": 10610.7
           },
           {
             "customer": "Rockaway W/L",
-            "cases2026": 9358.0
+            "cases2026": 10437.0
           },
           {
             "customer": "Shop-Rite(A) Netcong",
-            "cases2026": 9256.0
+            "cases2026": 10208.0
           },
           {
             "customer": "Nova Liquors",
-            "cases2026": 8813.9
-          },
-          {
-            "customer": "Island Of Spirits (P)",
-            "cases2026": 6551.0
-          },
-          {
-            "customer": "Midtown Liq",
-            "cases2026": 6440.2
+            "cases2026": 8876.9
           },
           {
             "customer": "Sam's Liq Wine (P)",
-            "cases2026": 6278.0
+            "cases2026": 7270.0
           },
           {
-            "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
-            "cases2026": 5589.0
+            "customer": "Island Of Spirits (P)",
+            "cases2026": 7154.0
+          },
+          {
+            "customer": "Midtown Liq",
+            "cases2026": 6957.2
           },
           {
             "customer": "Boonton Liquor Locker",
-            "cases2026": 5368.0
+            "cases2026": 6360.5
           },
           {
             "customer": "Wharton Liquor Store",
-            "cases2026": 5367.0
+            "cases2026": 6311.0
+          },
+          {
+            "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
+            "cases2026": 6220.0
           },
           {
             "customer": "Main Street Liquor",
-            "cases2026": 5024.3
+            "cases2026": 5864.3
           },
           {
             "customer": "Montville Wine & Spirits",
-            "cases2026": 4749.2
+            "cases2026": 5398.2
           }
         ],
-        "offPremTargetCount": 27
+        "offPremTargetCount": 28
       },
       "Matt Powierski": {
         "accounts": [],
@@ -157311,86 +157519,86 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Home Wine Liquor (Passaic)",
-            "cases2026": 28031.0
-          },
-          {
-            "customer": "Wine And People",
-            "cases2026": 16899.4
-          },
-          {
-            "customer": "M & M Wine & Spirits",
-            "cases2026": 13826.2
-          },
-          {
-            "customer": "Capri Deli&Liq (P)",
-            "cases2026": 13231.4
-          },
-          {
-            "customer": "Shop Rite Of Wallington",
-            "cases2026": 11492.2
-          },
-          {
-            "customer": "Whoopee Liq (A)",
-            "cases2026": 11335.3
-          },
-          {
-            "customer": "Metro Liquor (Elmwood Park)",
-            "cases2026": 11002.0
-          },
-          {
-            "customer": "Archies (P)",
-            "cases2026": 9268.0
-          },
-          {
-            "customer": "Metro Liquors (East Rutherford)",
-            "cases2026": 8889.5
+            "cases2026": 31807.0
           },
           {
             "customer": "Bottle Republic (Rutherford)",
-            "cases2026": 7676.0
+            "cases2026": 20042.6
+          },
+          {
+            "customer": "Wine And People",
+            "cases2026": 17078.4
+          },
+          {
+            "customer": "M & M Wine & Spirits",
+            "cases2026": 15449.2
+          },
+          {
+            "customer": "Capri Deli&Liq (P)",
+            "cases2026": 14122.4
+          },
+          {
+            "customer": "Shop Rite Of Wallington",
+            "cases2026": 12915.2
+          },
+          {
+            "customer": "Metro Liquor (Elmwood Park)",
+            "cases2026": 12437.0
+          },
+          {
+            "customer": "Whoopee Liq (A)",
+            "cases2026": 12050.3
+          },
+          {
+            "customer": "Archies (P)",
+            "cases2026": 10185.0
+          },
+          {
+            "customer": "Metro Liquors (East Rutherford)",
+            "cases2026": 10093.5
           },
           {
             "customer": "Luigi's Liquor (A)",
-            "cases2026": 6710.0
-          },
-          {
-            "customer": "Birchwood Liq & Deli (Z)",
-            "cases2026": 5532.0
-          },
-          {
-            "customer": "All Star Wine & Liquor",
-            "cases2026": 5390.0
+            "cases2026": 7382.0
           },
           {
             "customer": "Metro Wine And Liq(A)",
-            "cases2026": 5373.7
+            "cases2026": 6140.7
+          },
+          {
+            "customer": "Birchwood Liq & Deli (Z)",
+            "cases2026": 6059.0
+          },
+          {
+            "customer": "All Star Wine & Liquor",
+            "cases2026": 5835.0
           },
           {
             "customer": "Wine Grand (Carlstadt)",
-            "cases2026": 5013.7
+            "cases2026": 5790.0
+          },
+          {
+            "customer": "Buzzzrite Liquors",
+            "cases2026": 5487.0
           },
           {
             "customer": "Moonachie Liquors",
-            "cases2026": 4732.0
+            "cases2026": 5232.0
           },
           {
             "customer": "Cobblestone Hill Deli",
-            "cases2026": 4481.0
+            "cases2026": 5192.0
           },
           {
             "customer": "River Drive Bar (P)",
-            "cases2026": 4371.0
+            "cases2026": 4928.0
           },
           {
             "customer": "Vinny's Disc Liq (P)",
-            "cases2026": 4159.0
-          },
-          {
-            "customer": "Wine Land",
-            "cases2026": 3910.0
+            "cases2026": 4744.0
           }
         ],
-        "offPremTargetCount": 35
+        "offPremTargetCount": 40
       },
       "Michael Harboy": {
         "accounts": [
@@ -157444,23 +157652,23 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Kinnelon Country Wine & Liquor",
-            "cases2026": 13317.5
+            "cases2026": 13538.5
           },
           {
             "customer": "Shay's Liquors",
-            "cases2026": 12054.8
+            "cases2026": 13381.0
           },
           {
             "customer": "Lincoln Center Liq",
-            "cases2026": 11632.6
+            "cases2026": 12653.6
           },
           {
             "customer": "Shays Liquors",
-            "cases2026": 9552.0
+            "cases2026": 10762.0
           },
           {
             "customer": "Wolfson Market",
-            "cases2026": 4849.0
+            "cases2026": 5459.0
           },
           {
             "customer": "Total Wine & More (West Orange)",
@@ -157559,83 +157767,83 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Bottle King (A) Wayne",
-            "cases2026": 38922.0
+            "cases2026": 43035.0
           },
           {
             "customer": "Waldwick Wine/Spirits",
-            "cases2026": 19439.0
+            "cases2026": 20435.0
           },
           {
             "customer": "Fair Lawn Wine & Spirits",
-            "cases2026": 17532.8
+            "cases2026": 18417.8
           },
           {
             "customer": "Wine & Spirit World(W)",
-            "cases2026": 15037.0
+            "cases2026": 16677.7
           },
           {
             "customer": "Lincoln Park Fine Wines & Spirits",
-            "cases2026": 14976.5
+            "cases2026": 16324.5
           },
           {
             "customer": "Long Hill Liquors (A)",
-            "cases2026": 14466.0
+            "cases2026": 16155.0
           },
           {
             "customer": "Frank's Fine Wine & Foods",
-            "cases2026": 14291.0
+            "cases2026": 15364.0
           },
           {
             "customer": "Nico's Wine & Spirits",
-            "cases2026": 11913.2
+            "cases2026": 13444.2
           },
           {
             "customer": "Mahwah Liqrs (P)",
-            "cases2026": 9234.2
+            "cases2026": 10016.2
           },
           {
             "customer": "Grand Opening Liq (A)_2",
-            "cases2026": 8697.0
-          },
-          {
-            "customer": "Goffle Road Wine and More",
-            "cases2026": 7496.8
+            "cases2026": 9809.0
           },
           {
             "customer": "Oakland Wine (A)",
-            "cases2026": 7233.5
+            "cases2026": 8338.5
+          },
+          {
+            "customer": "Goffle Road Wine and More",
+            "cases2026": 8225.8
           },
           {
             "customer": "Diamond Liquor",
-            "cases2026": 6522.0
+            "cases2026": 7229.0
           },
           {
             "customer": "Speedy Mart (P)",
-            "cases2026": 6117.0
+            "cases2026": 7164.0
           },
           {
             "customer": "Allendale Wine Shoppe",
-            "cases2026": 5962.0
+            "cases2026": 6886.0
           },
           {
             "customer": "Discount Liq (P)_2",
-            "cases2026": 4911.0
+            "cases2026": 5417.0
           },
           {
             "customer": "Franklin Lake Liq",
-            "cases2026": 4843.0
+            "cases2026": 5369.0
           },
           {
             "customer": "Scherer & Company",
-            "cases2026": 4449.0
+            "cases2026": 5114.0
           },
           {
             "customer": "Ridgewood Super Cellar",
-            "cases2026": 4325.5
+            "cases2026": 4749.5
           },
           {
             "customer": "Mahwah Wine & Liquor (A)",
-            "cases2026": 3651.0
+            "cases2026": 4098.0
           }
         ],
         "offPremTargetCount": 30
@@ -157659,11 +157867,11 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Port Imperial HOQ LLC",
-            "cases2026": 4139.9
+            "cases2026": 4192.9
           },
           {
             "customer": "H Mart Inc (Space A101-A)",
-            "cases2026": 873.0
+            "cases2026": 942.0
           }
         ],
         "offPremTargetCount": 2
@@ -157687,23 +157895,23 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Bombolon Liquor & Grocery",
-            "cases2026": 110867.8
+            "cases2026": 135370.7
           },
           {
             "customer": "Altiero Liquors",
-            "cases2026": 63576.0
+            "cases2026": 69400.7
           },
           {
             "customer": "Caraballo's",
-            "cases2026": 51120.9
+            "cases2026": 52883.9
           },
           {
             "customer": "Midtown Liquors",
-            "cases2026": 38646.3
+            "cases2026": 39211.3
           },
           {
             "customer": "EL BOHEMIO 2 LIQUOR STORE & BAR",
-            "cases2026": 29864.4
+            "cases2026": 31837.4
           },
           {
             "customer": "Limonta Liqs (A)",
@@ -157711,62 +157919,62 @@ const PROGRAM_DATA_2026_10 = {
           },
           {
             "customer": "Allen's Liquors",
-            "cases2026": 18920.2
+            "cases2026": 19256.2
           },
           {
             "customer": "Gene's Liquor",
-            "cases2026": 13200.0
+            "cases2026": 14370.0
           },
           {
             "customer": "Passaic Discount Liquors",
-            "cases2026": 12729.0
+            "cases2026": 14111.0
           },
           {
             "customer": "Regalado Liq",
-            "cases2026": 12723.0
+            "cases2026": 14086.0
           },
           {
             "customer": "Monroe Wine & Liq(P)",
-            "cases2026": 12594.0
+            "cases2026": 13914.0
           },
           {
             "customer": "Broadway W&L",
-            "cases2026": 12334.0
+            "cases2026": 13660.0
           },
           {
             "customer": "Sunny's Liqs.(P)",
-            "cases2026": 12069.0
+            "cases2026": 13449.0
           },
           {
             "customer": "Johnny's Liqs (P)",
-            "cases2026": 10190.0
+            "cases2026": 11045.0
           },
           {
             "customer": "#1 Liqrs (P)",
-            "cases2026": 8006.0
-          },
-          {
-            "customer": "Joe's Liquor (A)",
-            "cases2026": 6406.5
+            "cases2026": 8984.0
           },
           {
             "customer": "Boulevard Wine & Spirits",
-            "cases2026": 5896.0
+            "cases2026": 7200.0
+          },
+          {
+            "customer": "Joe's Liquor (A)",
+            "cases2026": 7032.5
           },
           {
             "customer": "Intensity Lounge/Angie's Liquors",
-            "cases2026": 5586.0
+            "cases2026": 6222.0
           },
           {
             "customer": "Schulman's (P) Deli",
-            "cases2026": 5462.3
+            "cases2026": 5961.3
           },
           {
             "customer": "Carisma Liq & Groc (P)",
-            "cases2026": 4474.0
+            "cases2026": 4960.0
           }
         ],
-        "offPremTargetCount": 26
+        "offPremTargetCount": 28
       },
       "Paul Mclaughlin": {
         "accounts": [],
@@ -157787,11 +157995,11 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Balthazar Bakery (A)",
-            "cases2026": 104.0
+            "cases2026": 120.0
           },
           {
             "customer": "Mykos",
-            "cases2026": 66.0
+            "cases2026": 80.0
           }
         ],
         "offPremTargetCount": 2
@@ -157814,87 +158022,87 @@ const PROGRAM_DATA_2026_10 = {
         "totalNew": 0,
         "offPremTargets": [
           {
-            "customer": "Agave Liquor, Wine & Spirits",
-            "cases2026": 51424.4
+            "customer": "Super Wine Warehse(P)Pate",
+            "cases2026": 60828.0
           },
           {
-            "customer": "Super Wine Warehse(P)Pate",
-            "cases2026": 50573.0
+            "customer": "Agave Liquor, Wine & Spirits",
+            "cases2026": 52704.0
           },
           {
             "customer": "Bottle King (A) Glen Rock",
-            "cases2026": 34861.0
+            "cases2026": 39163.0
           },
           {
             "customer": "Shop Rite Liq(A) Roch Pk",
-            "cases2026": 17977.0
+            "cases2026": 19883.0
           },
           {
             "customer": "Shop Rite Liq(A) Fair Lwn",
-            "cases2026": 16512.0
+            "cases2026": 18023.0
           },
           {
             "customer": "Palisades Wine And Liquor",
-            "cases2026": 14982.0
-          },
-          {
-            "customer": "Shop-Rite Liq Lyndhurst",
-            "cases2026": 13510.3
+            "cases2026": 16881.0
           },
           {
             "customer": "Budy's Wine & Liq (A)",
-            "cases2026": 13391.0
+            "cases2026": 14893.0
+          },
+          {
+            "customer": "Shop-Rite Liq Lyndhurst",
+            "cases2026": 14872.3
           },
           {
             "customer": "Shop Rite Liq (Paramus)",
-            "cases2026": 11134.0
-          },
-          {
-            "customer": "City Supermarket",
-            "cases2026": 11028.0
+            "cases2026": 12872.0
           },
           {
             "customer": "Stew Leonard's(A) Paramus Wine",
-            "cases2026": 10822.0
+            "cases2026": 12641.0
+          },
+          {
+            "customer": "City Supermarket",
+            "cases2026": 12507.0
           },
           {
             "customer": "Food Universe Marketplace",
-            "cases2026": 10135.2
+            "cases2026": 11376.3
           },
           {
             "customer": "Stew Leonard's Wines & Spirits of Clifton",
-            "cases2026": 9016.0
+            "cases2026": 10520.0
           },
           {
             "customer": "Home Wines & Liq 75 (A) (South Hackensack)",
-            "cases2026": 8001.0
+            "cases2026": 8824.0
+          },
+          {
+            "customer": "PRIME WINE CELLAR Liquor & Beer",
+            "cases2026": 6672.0
+          },
+          {
+            "customer": "Acme Markets (Midland Park)",
+            "cases2026": 5632.0
           },
           {
             "customer": "Wine Country Of Saddle Brook (A)",
-            "cases2026": 4529.0
+            "cases2026": 5038.0
+          },
+          {
+            "customer": "Acme Markets (Fort Lee)",
+            "cases2026": 4661.0
           },
           {
             "customer": "Whole Foods Market (Paramus)",
-            "cases2026": 3153.0
-          },
-          {
-            "customer": "Acme Markets (Allendale)",
-            "cases2026": 3105.0
+            "cases2026": 3541.0
           },
           {
             "customer": "Riverview Liq (P)",
-            "cases2026": 3013.0
-          },
-          {
-            "customer": "Gary's Wine & Marketplace (Wayne)",
-            "cases2026": 2026.0
-          },
-          {
-            "customer": "Stew Leonard's(A) Paramu (NA)",
-            "cases2026": 1414.0
+            "cases2026": 3530.0
           }
         ],
-        "offPremTargetCount": 25
+        "offPremTargetCount": 30
       },
       "Robin Feldman": {
         "accounts": [],
@@ -157915,10 +158123,14 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Jerry's Outlet",
-            "cases2026": 343.0
+            "cases2026": 404.0
+          },
+          {
+            "customer": "Pizza Town USA",
+            "cases2026": 101.0
           }
         ],
-        "offPremTargetCount": 1
+        "offPremTargetCount": 2
       },
       "Shane Barreca": {
         "accounts": [
@@ -157956,86 +158168,86 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Bottle King (A) Ramsey",
-            "cases2026": 44746.0
+            "cases2026": 49333.0
           },
           {
             "customer": "Bottle King (A) Dumont",
-            "cases2026": 36261.0
+            "cases2026": 39813.0
           },
           {
             "customer": "Ramsey Wine & Liquor",
-            "cases2026": 24068.0
+            "cases2026": 27164.0
           },
           {
             "customer": "Montvale Wine/Liq & Beer",
-            "cases2026": 21475.0
+            "cases2026": 23653.0
           },
           {
             "customer": "Bottle King (A) Hillsdale",
-            "cases2026": 19774.0
+            "cases2026": 22087.0
           },
           {
             "customer": "Shoprite Liq (A)Northvle",
-            "cases2026": 18009.0
+            "cases2026": 20026.0
           },
           {
             "customer": "Shop Rite Liq (A)Hillsdal",
-            "cases2026": 15421.5
+            "cases2026": 17157.5
           },
           {
             "customer": "Cork & Keg (A)",
-            "cases2026": 11978.2
+            "cases2026": 13286.7
           },
           {
             "customer": "Shop Rite Liq (A)Emerson",
-            "cases2026": 8480.0
+            "cases2026": 9551.0
           },
           {
             "customer": "Winemart Discount",
-            "cases2026": 8310.7
+            "cases2026": 9260.7
           },
           {
             "customer": "Township Liq (P)",
-            "cases2026": 7349.0
+            "cases2026": 8114.0
           },
           {
             "customer": "Brand Bar & Bev (A)",
-            "cases2026": 7080.0
+            "cases2026": 7764.0
           },
           {
             "customer": "Garden State Deli (A)",
-            "cases2026": 6742.0
+            "cases2026": 7608.0
           },
           {
-            "customer": "Gary's Wine & Marketplace (Closter)",
-            "cases2026": 6414.0
+            "customer": "Gary's Closter / CLoster Cellars",
+            "cases2026": 6861.0
           },
           {
             "customer": "Westwood Wine and Liquors",
-            "cases2026": 5404.0
+            "cases2026": 6090.0
           },
           {
             "customer": "Wine And Beverage Spirits",
-            "cases2026": 4751.0
+            "cases2026": 5467.0
+          },
+          {
+            "customer": "Cambridge Wines (Woodcliff Lake)",
+            "cases2026": 4546.9
           },
           {
             "customer": "Wine & Whiskey (A)",
-            "cases2026": 3269.0
-          },
-          {
-            "customer": "Ridgemont Liquors (A)",
-            "cases2026": 2990.7
+            "cases2026": 3776.0
           },
           {
             "customer": "Coasters Liquors",
-            "cases2026": 2899.0
+            "cases2026": 3302.0
           },
           {
-            "customer": "Djm Liq Inc. (P)(Andrew)",
-            "cases2026": 2857.0
+            "customer": "Ridgemont Liquors (A)",
+            "cases2026": 3222.7
           }
         ],
-        "offPremTargetCount": 28
+        "offPremTargetCount": 30
       }
     },
     "leaderboard": [
@@ -158416,7 +158628,7 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Paradise Liquors",
-            "cases2026": 19143.6
+            "cases2026": 21184.7
           },
           {
             "customer": "Bottle King Glen Ridge",
@@ -158432,7 +158644,7 @@ const PROGRAM_DATA_2026_10 = {
           },
           {
             "customer": "Super K Food (A) Store",
-            "cases2026": 1534.0
+            "cases2026": 1763.0
           },
           {
             "customer": "High Spirits Of Bayonne",
@@ -159561,11 +159773,11 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Vault Liquors",
-            "cases2026": 2653.8
+            "cases2026": 2695.8
           },
           {
             "customer": "Hootch Hut (P)",
-            "cases2026": 1837.0
+            "cases2026": 1886.0
           }
         ],
         "offPremTargetCount": 2
@@ -159639,15 +159851,15 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "The Greek's",
-            "cases2026": 1755.0
+            "cases2026": 2010.0
           },
           {
             "customer": "Picatinny Main Exch",
-            "cases2026": 742.0
+            "cases2026": 807.0
           },
           {
             "customer": "Swartswood",
-            "cases2026": 440.0
+            "cases2026": 531.0
           },
           {
             "customer": "Point 5 Lafayette",
@@ -160482,23 +160694,23 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Teaneck Quickshop(P)Conv",
-            "cases2026": 5899.0
+            "cases2026": 6502.0
           },
           {
             "customer": "J R W & Liq (A)",
-            "cases2026": 2738.6
+            "cases2026": 2998.6
           },
           {
             "customer": "Maywood Market(A)",
-            "cases2026": 1324.0
+            "cases2026": 1540.0
           },
           {
             "customer": "Yoshi Liq/Wine (P)",
-            "cases2026": 913.0
+            "cases2026": 1020.0
           },
           {
             "customer": "Pompei's Little Market",
-            "cases2026": 211.0
+            "cases2026": 234.0
           },
           {
             "customer": "Ma'adan Catering",
@@ -160959,79 +161171,79 @@ const PROGRAM_DATA_2026_10 = {
           },
           {
             "customer": "Banner Delicatessen",
-            "cases2026": 77507.8
+            "cases2026": 80347.2
           },
           {
             "customer": "Bella Wine & Liquor",
             "cases2026": 30851.4
           },
           {
-            "customer": "Winston Wine & Liq",
-            "cases2026": 10303.4
+            "customer": "Boulevard Liq.(Fairview)",
+            "cases2026": 11053.0
           },
           {
-            "customer": "Boulevard Liq.(Fairview)",
-            "cases2026": 10122.0
+            "customer": "Winston Wine & Liq",
+            "cases2026": 10459.4
           },
           {
             "customer": "Linwood Wine-Linwood Plaza",
-            "cases2026": 8416.8
+            "cases2026": 9059.8
           },
           {
             "customer": "Kikos Liquors Ii",
-            "cases2026": 7101.0
-          },
-          {
-            "customer": "Jay Cee (P) Deli & Liq.",
-            "cases2026": 6022.0
+            "cases2026": 7809.0
           },
           {
             "customer": "Mukeunji (Z)",
-            "cases2026": 5854.0
+            "cases2026": 6730.0
+          },
+          {
+            "customer": "Jay Cee (P) Deli & Liq.",
+            "cases2026": 6690.0
           },
           {
             "customer": "Linwood Wine-Hudson Light",
-            "cases2026": 5393.0
+            "cases2026": 6079.0
           },
           {
             "customer": "American Classic Liq",
-            "cases2026": 4782.0
+            "cases2026": 5371.0
           },
           {
             "customer": "Tenafly Fine Wine & Spirits",
-            "cases2026": 4589.3
+            "cases2026": 5191.3
           },
           {
             "customer": "Checo Supermarket",
-            "cases2026": 4195.0
+            "cases2026": 4465.0
           },
           {
             "customer": "Palisades Park Liq(P)",
-            "cases2026": 3424.0
+            "cases2026": 3870.0
           },
           {
             "customer": "JC&D Best Wine & Liquor",
-            "cases2026": 3289.0
-          },
-          {
-            "customer": "Han Mi Supermkt (A)",
-            "cases2026": 3089.0
+            "cases2026": 3655.0
           },
           {
             "customer": "Minit Mart_2",
-            "cases2026": 2974.0
+            "cases2026": 3370.0
+          },
+          {
+            "customer": "Han Mi Supermkt (A)",
+            "cases2026": 3362.0
           },
           {
             "customer": "Best Choice Liqrs (P)",
-            "cases2026": 2480.0
+            "cases2026": 2791.0
           },
           {
             "customer": "Mitsuwa Market (A)",
-            "cases2026": 2301.0
+            "cases2026": 2651.0
           },
           {
-            "customer": "Fairway Mkt & Gift(A)",
-            "cases2026": 1089.0
+            "customer": "Hmart Fresh (P)",
+            "cases2026": 1146.0
           }
         ],
         "offPremTargetCount": 25
@@ -162169,39 +162381,47 @@ const PROGRAM_DATA_2026_10 = {
         "legsQualified": 2,
         "offPremTargets": [
           {
-            "customer": "Wine & More (P)",
-            "cases2026": 14581.0
+            "customer": "Burgundy Convenience Store",
+            "cases2026": 31788.7
           },
           {
-            "customer": "New Milford Liquors",
-            "cases2026": 3159.0
+            "customer": "Wine & More (P)",
+            "cases2026": 15425.8
           },
           {
             "customer": "Country Wine & Liquors",
-            "cases2026": 1712.0
+            "cases2026": 6121.1
+          },
+          {
+            "customer": "New Milford Liquors",
+            "cases2026": 3525.0
           },
           {
             "customer": "Grand Liquor & Delicatesen",
-            "cases2026": 785.0
+            "cases2026": 892.0
           },
           {
             "customer": "Fill Er Up Kosher Wine(P)",
-            "cases2026": 698.0
+            "cases2026": 743.0
           },
           {
             "customer": "Santa Barbara",
-            "cases2026": 575.0
+            "cases2026": 720.0
+          },
+          {
+            "customer": "VINEYARD",
+            "cases2026": 628.0
           },
           {
             "customer": "Parisi Deli",
-            "cases2026": 192.0
+            "cases2026": 215.0
           },
           {
             "customer": "Englewood Wine (A)",
             "cases2026": 27.5
           }
         ],
-        "offPremTargetCount": 8
+        "offPremTargetCount": 10
       },
       "Derrick Laws": {
         "wc": {
@@ -162606,78 +162826,82 @@ const PROGRAM_DATA_2026_10 = {
           },
           {
             "customer": "Ant's Bar & Liquors",
-            "cases2026": 80227.9
+            "cases2026": 86998.8
           },
           {
             "customer": "Gonzalez Liq & Bar(A)",
-            "cases2026": 36092.8
+            "cases2026": 36998.8
           },
           {
             "customer": "The Liquor Shop",
-            "cases2026": 27097.0
+            "cases2026": 31026.0
           },
           {
             "customer": "C Town (A)",
-            "cases2026": 26134.7
+            "cases2026": 26338.7
           },
           {
             "customer": "The Point Liquor & Bar",
-            "cases2026": 21665.5
+            "cases2026": 22427.5
           },
           {
             "customer": "Economy Liquors",
-            "cases2026": 18898.0
+            "cases2026": 21090.0
           },
           {
             "customer": "Limestone Liquors (A)",
-            "cases2026": 11133.0
+            "cases2026": 12335.0
           },
           {
             "customer": "El Oasis",
-            "cases2026": 9646.0
-          },
-          {
-            "customer": "10th Ave Liq & Food (P)",
-            "cases2026": 7024.0
-          },
-          {
-            "customer": "Hiciano Liquor Store",
-            "cases2026": 6874.0
-          },
-          {
-            "customer": "M & R Disc (A) Liqs.",
-            "cases2026": 6575.0
-          },
-          {
-            "customer": "Broadway Liq (A)",
-            "cases2026": 6375.5
-          },
-          {
-            "customer": "Moya E.Bar&Liq.(Z)",
-            "cases2026": 5669.5
-          },
-          {
-            "customer": "J & B Bar & Liq (Z)",
-            "cases2026": 4243.0
-          },
-          {
-            "customer": "Angel's Wine & Liquors",
-            "cases2026": 4072.0
+            "cases2026": 10500.0
           },
           {
             "customer": "Yaremy Liquors",
-            "cases2026": 3753.2
+            "cases2026": 9144.8
+          },
+          {
+            "customer": "10th Ave Liq & Food (P)",
+            "cases2026": 7764.0
+          },
+          {
+            "customer": "Hiciano Liquor Store",
+            "cases2026": 7695.0
+          },
+          {
+            "customer": "M & R Disc (A) Liqs.",
+            "cases2026": 7155.0
+          },
+          {
+            "customer": "Broadway Liq (A)",
+            "cases2026": 7066.5
+          },
+          {
+            "customer": "Moya E.Bar&Liq.(Z)",
+            "cases2026": 6144.5
+          },
+          {
+            "customer": "J & B Bar & Liq (Z)",
+            "cases2026": 4708.0
+          },
+          {
+            "customer": "Angel's Wine & Liquors",
+            "cases2026": 4682.0
           },
           {
             "customer": "Rocky's Liquor Store",
-            "cases2026": 3658.0
+            "cases2026": 4237.0
+          },
+          {
+            "customer": "Moca Liquors Ii",
+            "cases2026": 2287.0
           },
           {
             "customer": "Main Discount (P) Liqs.",
             "cases2026": 235.0
           }
         ],
-        "offPremTargetCount": 19
+        "offPremTargetCount": 20
       },
       "Dylan Rubino": {
         "wc": {
@@ -162950,12 +163174,12 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 2264.0
           },
           {
-            "customer": "Sparrow's Wine & Liq(P) (1224 Hoboken)",
-            "cases2026": 1640.0
+            "customer": "One Stop Wine (A) & Liq",
+            "cases2026": 1700.0
           },
           {
-            "customer": "One Stop Wine (A) & Liq",
-            "cases2026": 1578.0
+            "customer": "Sparrow's Wine & Liq(P) (1224 Hoboken)",
+            "cases2026": 1640.0
           },
           {
             "customer": "ShopRite Wines & Spirits of Hoboken",
@@ -163351,58 +163575,62 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Edwards (P) Wine & Liq",
-            "cases2026": 44151.2
+            "cases2026": 45969.9
           },
           {
             "customer": "D'bar Liquors (P)",
-            "cases2026": 37223.2
+            "cases2026": 38287.2
+          },
+          {
+            "customer": "El Cantaro Liquors",
+            "cases2026": 37195.6
           },
           {
             "customer": "Farm Boy",
-            "cases2026": 14051.0
+            "cases2026": 15788.0
           },
           {
             "customer": "ESTEVEZ LIQUORS LLC",
-            "cases2026": 11618.0
+            "cases2026": 12883.0
           },
           {
             "customer": "Luna Liquors",
-            "cases2026": 11399.0
+            "cases2026": 12801.0
           },
           {
             "customer": "East Side Bar Liquors",
-            "cases2026": 9821.0
+            "cases2026": 11115.0
           },
           {
             "customer": "La Joya Liquors",
-            "cases2026": 7453.0
+            "cases2026": 8583.0
           },
           {
             "customer": "Segundo's (P)",
-            "cases2026": 7344.0
-          },
-          {
-            "customer": "C & S Lucky Liquors II",
-            "cases2026": 6049.0
+            "cases2026": 8582.0
           },
           {
             "customer": "Estevez Liquors & Grocery 2 LLC",
-            "cases2026": 5971.0
+            "cases2026": 6913.3
+          },
+          {
+            "customer": "C & S Lucky Liquors II",
+            "cases2026": 6883.0
           },
           {
             "customer": "Camilo Liquors(A)",
-            "cases2026": 4630.0
+            "cases2026": 5156.0
           },
           {
             "customer": "Park Avenue Liquors",
-            "cases2026": 4273.0
+            "cases2026": 5083.0
           },
           {
             "customer": "Deli Parchardo Liquors",
-            "cases2026": 2710.0
+            "cases2026": 2948.0
           }
         ],
-        "offPremTargetCount": 13
+        "offPremTargetCount": 14
       },
       "Jayson Romine": {
         "wc": {
@@ -164580,22 +164808,30 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Highland General Store",
-            "cases2026": 4144.0
+            "cases2026": 4512.0
           },
           {
             "customer": "Burkes",
-            "cases2026": 1795.2
+            "cases2026": 2012.2
           },
           {
             "customer": "Market Place Liquor",
-            "cases2026": 1569.0
+            "cases2026": 1764.0
           },
           {
             "customer": "Lake Wanda Store",
-            "cases2026": 1166.0
+            "cases2026": 1301.0
+          },
+          {
+            "customer": "Weis Supermarkets 143 Newton",
+            "cases2026": 11.0
+          },
+          {
+            "customer": "Weiss Super Market 147 Franklin",
+            "cases2026": 11.0
           }
         ],
-        "offPremTargetCount": 4
+        "offPremTargetCount": 6
       },
       "Jim Heaney": {
         "wc": {
@@ -165511,7 +165747,7 @@ const PROGRAM_DATA_2026_10 = {
           },
           {
             "customer": "Shoppers Vineyard (A)",
-            "cases2026": 34288.0
+            "cases2026": 39124.0
           },
           {
             "customer": "Allwood Liquor Store",
@@ -165519,7 +165755,7 @@ const PROGRAM_DATA_2026_10 = {
           },
           {
             "customer": "Broad Liquors (A)",
-            "cases2026": 12801.0
+            "cases2026": 14183.0
           },
           {
             "customer": "Mason's Cellar (A)",
@@ -165527,15 +165763,15 @@ const PROGRAM_DATA_2026_10 = {
           },
           {
             "customer": "Village Wine (P)",
-            "cases2026": 2567.2
+            "cases2026": 2611.2
           },
           {
             "customer": "Vasel's (A)",
-            "cases2026": 2245.0
+            "cases2026": 2526.0
           },
           {
             "customer": "Krauszers Food",
-            "cases2026": 962.0
+            "cases2026": 1107.0
           }
         ],
         "offPremTargetCount": 8
@@ -165593,16 +165829,16 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 1070.0
           },
           {
+            "customer": "Charlie's Liquor and Convenience",
+            "cases2026": 1044.0
+          },
+          {
             "customer": "Bottle King (Z) Chatham",
             "cases2026": 897.0
           },
           {
             "customer": "Best Cellars(Ledgewood)",
             "cases2026": 889.0
-          },
-          {
-            "customer": "Charlie's Liquor and Convenience",
-            "cases2026": 876.0
           },
           {
             "customer": "Sandy's Wine & Spirits (Flanders)",
@@ -166753,11 +166989,11 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Mountain Lakes Wine & Liquor",
-            "cases2026": 28534.5
+            "cases2026": 28584.5
           },
           {
             "customer": "The Village Place",
-            "cases2026": 903.0
+            "cases2026": 971.0
           }
         ],
         "offPremTargetCount": 2
@@ -167833,30 +168069,38 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "L. F. Wine Country (P)",
-            "cases2026": 2711.0
+            "cases2026": 3058.0
           },
           {
             "customer": "Payless Liquor & Dell",
-            "cases2026": 2651.0
+            "cases2026": 2825.0
+          },
+          {
+            "customer": "Lidl Elmwood Park",
+            "cases2026": 2099.0
           },
           {
             "customer": "Jay's Liquormart",
-            "cases2026": 1156.0
+            "cases2026": 1295.0
+          },
+          {
+            "customer": "Cork and Barrel",
+            "cases2026": 990.0
           },
           {
             "customer": "All Nations Liq",
-            "cases2026": 803.0
+            "cases2026": 936.0
           },
           {
             "customer": "Piast Meats & Prov.",
-            "cases2026": 729.0
+            "cases2026": 809.0
           },
           {
             "customer": "Tatra Haus Restaurant",
             "cases2026": 36.0
           }
         ],
-        "offPremTargetCount": 6
+        "offPremTargetCount": 8
       },
       "Michael Harboy": {
         "wc": {
@@ -168089,7 +168333,7 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Kinnelon Country Wine & Liquor",
-            "cases2026": 13317.5
+            "cases2026": 13538.5
           },
           {
             "customer": "Total Wine & More (West Orange)",
@@ -168765,47 +169009,47 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Grand Opening Liq (A)_2",
-            "cases2026": 8697.0
+            "cases2026": 9809.0
           },
           {
             "customer": "Speedy Mart (P)",
-            "cases2026": 6117.0
+            "cases2026": 7164.0
           },
           {
             "customer": "Discount Liq (P)_2",
-            "cases2026": 4911.0
+            "cases2026": 5417.0
           },
           {
             "customer": "Ridgewood Super Cellar",
-            "cases2026": 4325.5
+            "cases2026": 4749.5
           },
           {
             "customer": "Uncorked Wine & Spirits (Hohokus)",
-            "cases2026": 2493.0
+            "cases2026": 2834.0
           },
           {
             "customer": "Stop & Shop (A)Ridgewood",
-            "cases2026": 2137.0
+            "cases2026": 2476.0
           },
           {
             "customer": "Garbo's Ital Deli&Liq(Z)",
-            "cases2026": 1071.4
+            "cases2026": 1477.6
           },
           {
             "customer": "The Wine Seller",
-            "cases2026": 518.0
+            "cases2026": 583.0
           },
           {
             "customer": "Public Ridgewood",
-            "cases2026": 459.0
+            "cases2026": 498.0
           },
           {
             "customer": "Whole Foods #10106 (Ridgewood)",
-            "cases2026": 452.0
+            "cases2026": 485.0
           },
           {
             "customer": "Wine & Spirits World (Hohokus)",
-            "cases2026": 339.3
+            "cases2026": 385.3
           }
         ],
         "offPremTargetCount": 11
@@ -168851,7 +169095,7 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Port Imperial HOQ LLC",
-            "cases2026": 4139.9
+            "cases2026": 4192.9
           }
         ],
         "offPremTargetCount": 1
@@ -169101,19 +169345,19 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Bombolon Liquor & Grocery",
-            "cases2026": 110867.8
+            "cases2026": 135370.7
           },
           {
             "customer": "Caraballo's",
-            "cases2026": 51120.9
+            "cases2026": 52883.9
           },
           {
             "customer": "Midtown Liquors",
-            "cases2026": 38646.3
+            "cases2026": 39211.3
           },
           {
             "customer": "EL BOHEMIO 2 LIQUOR STORE & BAR",
-            "cases2026": 29864.4
+            "cases2026": 31837.4
           },
           {
             "customer": "Limonta Liqs (A)",
@@ -169121,34 +169365,42 @@ const PROGRAM_DATA_2026_10 = {
           },
           {
             "customer": "Allen's Liquors",
-            "cases2026": 18920.2
+            "cases2026": 19256.2
           },
           {
             "customer": "Boulevard Wine & Spirits",
-            "cases2026": 5896.0
+            "cases2026": 7200.0
           },
           {
             "customer": "Intensity Lounge/Angie's Liquors",
-            "cases2026": 5586.0
+            "cases2026": 6222.0
           },
           {
             "customer": "Schulman's (P) Deli",
-            "cases2026": 5462.3
+            "cases2026": 5961.3
           },
           {
             "customer": "Costambar Bar & Liquor Corp.",
-            "cases2026": 3177.8
+            "cases2026": 3404.8
           },
           {
             "customer": "Ronny's Liqrs (Z)",
-            "cases2026": 2485.0
+            "cases2026": 2984.0
+          },
+          {
+            "customer": "Riverside Liquors (Paterson)",
+            "cases2026": 1965.0
           },
           {
             "customer": "Florida Drugs (A)",
-            "cases2026": 469.0
+            "cases2026": 503.0
+          },
+          {
+            "customer": "Lena y Carbon Broaster",
+            "cases2026": 67.0
           }
         ],
-        "offPremTargetCount": 12
+        "offPremTargetCount": 14
       },
       "Paul Mclaughlin": {
         "wc": {
@@ -169176,11 +169428,11 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Balthazar Bakery (A)",
-            "cases2026": 104.0
+            "cases2026": 120.0
           },
           {
             "customer": "Mykos",
-            "cases2026": 66.0
+            "cases2026": 80.0
           }
         ],
         "offPremTargetCount": 2
@@ -169836,15 +170088,15 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Agave Liquor, Wine & Spirits",
-            "cases2026": 51424.4
+            "cases2026": 52704.0
           },
           {
             "customer": "Shop Rite Liq(A) Roch Pk",
-            "cases2026": 17977.0
+            "cases2026": 19883.0
           },
           {
             "customer": "Palisades Wine And Liquor",
-            "cases2026": 14982.0
+            "cases2026": 16881.0
           },
           {
             "customer": "Gary's Wine & Marketplace (Wayne)",
@@ -169852,15 +170104,15 @@ const PROGRAM_DATA_2026_10 = {
           },
           {
             "customer": "Stew Leonard's(A) Paramu (NA)",
-            "cases2026": 1414.0
+            "cases2026": 1540.0
           },
           {
             "customer": "Wides Deli & Liquor",
-            "cases2026": 1260.0
+            "cases2026": 1466.0
           },
           {
             "customer": "Megha Liquor & Grocery",
-            "cases2026": 496.2
+            "cases2026": 601.2
           },
           {
             "customer": "Stew Leonard's Wines & Spirits of Clifton (NA)",
@@ -169899,10 +170151,14 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargets": [
           {
             "customer": "Jerry's Outlet",
-            "cases2026": 343.0
+            "cases2026": 404.0
+          },
+          {
+            "customer": "Pizza Town USA",
+            "cases2026": 101.0
           }
         ],
-        "offPremTargetCount": 1
+        "offPremTargetCount": 2
       },
       "Shane Barreca": {
         "wc": {
@@ -170554,43 +170810,51 @@ const PROGRAM_DATA_2026_10 = {
         "legsQualified": 2,
         "offPremTargets": [
           {
-            "customer": "Gary's Wine & Marketplace (Closter)",
-            "cases2026": 6414.0
+            "customer": "Gary's Closter / CLoster Cellars",
+            "cases2026": 6861.0
           },
           {
-            "customer": "Ridgemont Liquors (A)",
-            "cases2026": 2990.7
+            "customer": "Cambridge Wines (Woodcliff Lake)",
+            "cases2026": 4546.9
           },
           {
             "customer": "Coasters Liquors",
-            "cases2026": 2899.0
+            "cases2026": 3302.0
+          },
+          {
+            "customer": "Ridgemont Liquors (A)",
+            "cases2026": 3222.7
           },
           {
             "customer": "Djm Liq Inc. (P)(Andrew)",
-            "cases2026": 2857.0
+            "cases2026": 3181.0
           },
           {
             "customer": "D & L Dumont Liquors",
-            "cases2026": 1823.0
+            "cases2026": 2052.0
           },
           {
             "customer": "Murphy's Fine Wines & Liquors (UNI 4H Inc.)",
-            "cases2026": 1289.0
+            "cases2026": 1368.0
+          },
+          {
+            "customer": "Woori Mart",
+            "cases2026": 1209.0
           },
           {
             "customer": "Whole Foods #8407 (Woodcliff Lake)",
-            "cases2026": 438.0
+            "cases2026": 490.0
           },
           {
             "customer": "Whole Foods #10381 (Closter)",
-            "cases2026": 380.0
+            "cases2026": 413.0
           },
           {
             "customer": "The Store",
-            "cases2026": 140.0
+            "cases2026": 151.0
           }
         ],
-        "offPremTargetCount": 9
+        "offPremTargetCount": 11
       }
     },
     "leaderboard": [
@@ -170851,5 +171115,5 @@ const PROGRAM_DATA_2026_10 = {
     }
   }
 };
-const PROGRAM_DATA_REFRESHED = "Oct 1, 2026, 10:34 AM ET";
-const PROGRAM_DATA_REFRESHED_AT = "2026-10-01T14:34:56Z";
+const PROGRAM_DATA_REFRESHED = "Oct 5, 2026, 1:37 PM ET";
+const PROGRAM_DATA_REFRESHED_AT = "2026-10-05T17:37:14Z";
