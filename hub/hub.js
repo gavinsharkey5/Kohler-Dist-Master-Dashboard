@@ -343,7 +343,7 @@ const SUPPLIER_ALIAS = {'BBC':'Boston Beer', 'HUSA':'Heineken USA', 'Spirits':'C
   'iSellBeer Execution':'Kohler House Programs', 'Wine':'Wine & Spirits'};
 const SUPPLIER_LOGO_KEY = {'Molson Coors':'molson_coors','Boston Beer':'boston_beer','Constellation':'constellation',
   'New Belgium':'new_belgium','Bardstown Bourbon':'bardstown','Kohler House Programs':'house'};
-const MPO_BRAND_LOGO = {constellation_innovation:'constellation.png', keystone_ice:'keystone_ice.png', bbc_lytt:'lytt.png', disruptors:'lytt.png', constellation_gaintain:'constellation.png',
+const MPO_BRAND_LOGO = {sam_adams_conversion:'boston_beer.png', constellation_innovation:'constellation.png', keystone_ice:'keystone_ice.png', bbc_lytt:'lytt.png', disruptors:'lytt.png', constellation_gaintain:'constellation.png',
   corona_premier:'constellation.png', new_belgium:'new_belgium.png', bardstown_menu:'bardstown.png', molson_coors:'molson_coors.png',
   fever_tree:'molson_coors.png', angry_orchard:'boston_beer.png', ws_2xo:'two_xo.png', carbliss:null};
 const TYPE_NOTE = {
@@ -626,7 +626,7 @@ function sortedForRep(rep, cat){
 const openCards = new Set();   // program ids expanded in place on the rep page
 const acctTabs = {};           // program id -> active account tab
 const acctMore = {};           // program id|tab -> show every row
-const state = {mode:'rep', view:'home', rep:null, main:null, cat:null, month:null, prog:null, from:null, peek:null, filters:{type:'all', chan:'all', sup:'all', month:'active'}, showEnded:false, only:null, sup:null, list:null, n:null, im:'2026-08'};
+const state = {mode:'rep', view:'home', rep:null, main:null, cat:null, month:null, prog:null, from:null, peek:null, filters:{type:'all', chan:'all', sup:'all', month:'active'}, showEnded:false, only:null, sup:null, list:null, n:null, im:'2026-09'};
 // PREVIOUS MONTHS on the Incentives screen (Gavin, 2026-09-30): a simple
 // August / September toggle under the live list so reps can review an
 // earlier month's incentives. Each month lists the programs that ENDED in it
@@ -830,7 +830,7 @@ function hashOf(){
   if(state.peek && state.view==='detail') p.push('who='+encodeURIComponent(state.peek));
   if(isMgr()) p.push('mode=manager');
   if(state.only) p.push('only='+state.only);
-  if(state.im && state.im!==INC_MONTHS[0].key && (state.view==='rep' || state.view==='sup')) p.push('im='+state.im);
+  if(state.im && state.im!==INC_MONTHS[INC_MONTHS.length-1].key && (state.view==='rep' || state.view==='sup')) p.push('im='+state.im);
   return p.length ? '#'+p.join('&') : '#';
 }
 function readHash(){
@@ -867,7 +867,7 @@ function applyHash(){
   if((state.view==='detail' || state.view==='program') && !state.prog) state.view = state.rep ? 'rep' : 'programs';
   if(isMobile() && (state.view==='programs' || state.view==='program')) state.view = state.rep ? 'rep' : 'home';
   state.only = TAB_KEYS.includes(h.only) ? h.only : null;
-  state.im = INC_MONTHS.some(m=>m.key===h.im) ? h.im : INC_MONTHS[0].key;
+  state.im = INC_MONTHS.some(m=>m.key===h.im) ? h.im : INC_MONTHS[INC_MONTHS.length-1].key;
   applyOnly();
   lockState();
 }
@@ -1547,6 +1547,7 @@ const SELL_ASK = {
   'inc:yave':'Open a new YaVe account.', 'inc:mollys':"Place Molly's 1.75L.", 'inc:path_to_victory':'Sell Victory Monkey 6-packs.', 'inc:path_to_victory_sd':'Open a new Victory Monkey 6-pack POD.', 'inc:fall_seasonal_sd':'Sell Fall Seasonal packages and kegs.',
   'inc:boston_beer':'Place an Angry Orchard or Dogfish Head tap.', 'inc:new_belgium':'Place a Juicy Haze or Two Hearted tap.',
   'inc:sam_adams':'Sell more Sam Adams than last Aug–Sep — finish positive and your commission doubles.', 'inc:new_belgium_distribution':"Sell more Bell's, Kirin and Voodoo.",
+  'on:sam_adams_conversion':'Swap Summer Ale kegs for Oktoberfest at every account.', 'on:spirits_followup':'Re-order spirits at every account you placed in Jul–Sep.',
   'on:carbliss':'Open a new Carbliss account.', 'on:fever_tree':'Place Fever Tree.', 'on:bardstown_menu':'Get Bardstown or Green River on the menu.',
   'on:husa_xx_draft':'Place a Dos Equis tap.', 'on:angry_orchard':'Place an Angry Orchard tap.', 'on:molson_coors':'Place Peroni and Coors Banquet.',
   'on:wine_spirits':'Place YaVe and Leyenda.', 'on:sapporo_na':'Place Sapporo NA.',
@@ -3033,7 +3034,7 @@ function endedIn(rep, key){
 // ended programs (name · supplier, the finish, the end date) or the notice
 // for a month whose recap is not in yet.
 function prevMonthsHtml(rep){
-  const cur = INC_MONTHS.find(m=>m.key===state.im) || INC_MONTHS[0];
+  const cur = INC_MONTHS.find(m=>m.key===state.im) || INC_MONTHS[INC_MONTHS.length-1];
   const pills = INC_MONTHS.map(m=>`<button class="mpill${m.key===cur.key?' active':''}" data-act="set-inc-month" data-im="${E(m.key)}" role="tab" aria-selected="${m.key===cur.key?'true':'false'}">${E(m.label)}</button>`).join('');
   let body;
   if(cur.note){

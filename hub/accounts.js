@@ -67,7 +67,7 @@ const PROGRAM_BRANDS = {
   // --- on-premise MPO objectives (MPOs/on-prem/programs.js keys) ---
   'on:bardstown_menu':BARDSTOWN, 'on:fever_tree':['Fever Tree'], 'on:carbliss':['Carbliss'], 'on:husa_xx_draft':['Dos Equis'],
   'on:angry_orchard':['Angry Orchard'], 'on:molson_coors':['Peroni','Coors'], 'on:wine_spirits':['YaVe','Leyenda 1925'],
-  'on:sapporo_na':['Sapporo'], 'on:isellbeer':null,
+  'on:sapporo_na':['Sapporo'], 'on:isellbeer':null, 'on:sam_adams_conversion':['Samuel Adams'], 'on:spirits_followup':null,
   // --- off-premise MPO objectives (MPOs/off-prem/programs.js keys) ---
   'off:constellation_gaintain':['Corona Extra','Corona Light','Corona Premier','Corona Familiar','Corona Sunbrew'],
   'off:constellation_innovation':null, 'off:mollys':["Molly's"], 'off:wine_new':null,

@@ -354,6 +354,26 @@ objective NAME's prefix before " – " sets the hub supplier (SUPPLIER_ALIAS).
 On-Premise October (docx: Carbliss 40%, BBC Oktoberfest conversion, Spirits
 follow-up, iSellBeer 5 photos) is NOT built yet.
 
+## October 2026 On-Premise MPO tab + "latest month" defaults (2026-10-05)
+
+OCTOBER_ON_PREM_2026_MPO.docx (25% each): Carbliss 40% buying accounts and iSellBeer
+(5) feature photos ride as AWAITING (hasData:false, awaiting:true -- Gavin is holding
+Carbliss for the account base; no iSellBeer export yet). BBC Oktoberfest Draft
+Conversion and Wine & Spirits Spirits Follow-Up are a NEW on-prem objective type,
+'followup': per rep a list of base accounts, each done or not (target = every base
+account, `pct:1`). Run `python3 MPOs/on-prem/generate_2026-10.py` (rebuilds per-rep
+copies). Conversion (Gavin's windows, 2026-10-05): base = accounts with NET Summer
+Ale keg units > 0 loaded 4/1-7/17, done = NET Octoberfest keg units > 0 loaded
+8/1-10/23 (a keg returned is nothing; house "reps" Default / Office Tell Sell
+dropped). Spirits: base = accounts with a
+7/1-9/30 spirits placement, done = any October placement at that account; accounts
+new in October are not in the base. ASSUMPTION to confirm: "complete" / "all" =
+100% of the rep's own list. Inputs: sam_adams_kegs_summer_to_octoberfest.csv,
+spirits_followup_placements.csv. Defaults: the Incentive Tracker's DEFAULT_MONTH_KEY
+is now the LAST entry of MONTHS (no more editing it each month), the MPO trackers
+already default to the last month, and the hub's Previous Months toggle opens on the
+latest ended month (September).
+
 ## Team Activity page: team/ (2026-09-28)
 
 `team/index.html` + `team/team.css` is the manager's read of the
