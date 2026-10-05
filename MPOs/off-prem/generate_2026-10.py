@@ -8,11 +8,10 @@
   10%  POS           -- (5) Cooler Door Stickers, iSellBeer  (awaiting October's Promos_Report)
 
 Inputs (this folder, overwrite to refresh):
-  constellation_innovation_october.csv   RDE "Innovation SKUs Placements 10/1/2026 - 10/31/2026"
-                                         (rep, customer, product, 1.00 per placement)
-  constellation_innovation_goals.csv     each rep's Corona Innovation GOAL (RDE "Goals" column,
-                                         9/1-11/30/2026). The objective is 75% of it. A rep with
-                                         no row here is NOT scored. Edit this file when goals change.
+  constellation_innovation_fall.csv      RDE "Constellation Innovation Fall 2026 OFF w Goals":
+                                         placements by product 9/1-11/30/2026 plus the rep's GOAL
+                                         (100%) on each rep's subtotal row. The objective is 75% of
+                                         that goal. A rep with no goal is NOT scored.
   lytt_october.csv                       RDE "BBC Lytt October MPO" -- one row per rep / account / SKU
                                          (Buyer / Placement / Cases 10/1-10/31)
   sales_reps_customer_base_core.csv      each rep's CORE off-premise accounts = the Lytt denominator
@@ -23,10 +22,9 @@ Inputs (this folder, overwrite to refresh):
 Run:  python3 generate_2026-10.py     (also rebuilds the per-rep copies)
 
 --- Constellation ---
-Progress = placements in the export's window (10/1-10/31) summed per rep; target
-= ceil(75% x goal). The goal report's window is 9/1-11/30 while this export is
-October only -- if Gavin wants September / November counted too, pull the export
-for that window and rerun; nothing else changes.
+Progress = the rep's placements 9/1-11/30/2026 (the export's own window, the same one the
+goal is measured over); target = ceil(75% x the rep's Goals column). Fall-long: it keeps
+growing through November, like September's Corona Gaintain did.
 
 --- Lytt: 50% buying accounts (pct_of_base) ---
 Denominator = the rep's accounts in sales_reps_customer_base_core.csv, MINUS every
@@ -53,32 +51,54 @@ NINE = importlib.util.spec_from_file_location("gen09", HERE / "generate_2026-09.
 gen09 = importlib.util.module_from_spec(NINE)
 NINE.loader.exec_module(gen09)
 
-CONSTELLATION_CSV = HERE / "constellation_innovation_october.csv"
-GOALS_CSV = HERE / "constellation_innovation_goals.csv"
+CONSTELLATION_CSV = HERE / "constellation_innovation_fall.csv"
 MOLLYS_CSV = HERE / "mollys_new_placements.csv"
 WINE_CSV = HERE / "wine_new_placements.csv"
 GOAL_PCT = 0.75
 BASE_START = datetime(2026, 7, 1)
 CURRENT_START = datetime(2026, 10, 1)
+FALL_START = datetime(2026, 9, 1)     # Constellation Innovation runs the whole fall: 9/1 - 11/30
 
 
 def build_constellation():
+    """RDE "Constellation Innovation Fall 2026 OFF w Goals": one block per rep, first
+    row = the rep's SUBTOTAL (it reuses the first product's name, carries the rep's
+    9/1-11/30 placements AND the goal), then one row per product. Progress = the
+    placements column over the same window; goal = the "Goals" column (100% of the
+    goal; the objective is 75% of it). The subtotal row is dropped only when it equals
+    the sum of the rest, so nothing real is thrown away if RDE changes the layout."""
     rows = gen09.load_csv(CONSTELLATION_CSV)
-    col = gen09.find_col(rows[0].keys(), "Innovation SKUs Placements")
-    gen09.check_window(col, CURRENT_START, "Constellation Innovation window")
-    agg = {}
+    k = list(rows[0].keys())
+    goal_col = next(c for c in k if "Goals" in c and "% of" not in c)
+    pct_col = next(c for c in k if "% of" in c)
+    act_col = next(c for c in k if c.startswith("Innovation SKUs Placements"))
+    gen09.check_window(act_col, FALL_START, "Constellation Innovation window")
+    blocks, order = defaultdict(list), []
     for r in rows:
         rep = (r.get("Sales Rep Assigned") or "").strip()
         if not rep:
             continue
-        product = re.sub(r"^\d+\s+", "", (r.get("Product Num Name") or "").strip())
-        agg[(rep, product)] = agg.get((rep, product), 0.0) + gen09.to_num(r[col])
-    out = [{"SALES_REP_ASSIGNED": rep, "PRODUCT_NAME": prod, "BASE_PLACEMENTS": 0, "CURRENT_PLACEMENTS": n}
-           for (rep, prod), n in sorted(agg.items())]
-    goals = []
-    for r in gen09.load_csv(GOALS_CSV):
-        goals.append({"SALES_REP_ASSIGNED": r["Sales Rep Assigned"].strip(),
-                      "GOAL": gen09.to_num(r["Corona Innovation Goal"])})
+        if rep not in blocks:
+            order.append(rep)
+        blocks[rep].append(r)
+    out, goals, warned = [], [], []
+    for rep in order:
+        blk = blocks[rep]
+        head, rest = blk[0], blk[1:]
+        goal = gen09.to_num(head[goal_col])
+        if rest and abs(gen09.to_num(head[act_col]) - sum(gen09.to_num(r[act_col]) for r in rest)) < 0.01:
+            product_rows = rest
+        else:
+            product_rows = blk
+            warned.append(rep)
+        agg = defaultdict(float)
+        for r in product_rows:
+            agg[(r.get("Product Name") or "").strip()] += gen09.to_num(r[act_col])
+        out += [{"SALES_REP_ASSIGNED": rep, "PRODUCT_NAME": prod, "BASE_PLACEMENTS": 0, "CURRENT_PLACEMENTS": n}
+                for prod, n in sorted(agg.items(), key=lambda kv: (-kv[1], kv[0]))]
+        goals.append({"SALES_REP_ASSIGNED": rep, "GOAL": goal})
+    if warned:
+        print(f"  Constellation: no subtotal row detected for {', '.join(warned)} -- all rows kept; check the export")
     return out, goals
 
 

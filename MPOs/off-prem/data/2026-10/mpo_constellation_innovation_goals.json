@@ -12,12 +12,12 @@
     "GOAL": 117.0
   },
   {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "GOAL": 95.0
-  },
-  {
     "SALES_REP_ASSIGNED": "Phil Ernst",
     "GOAL": 92.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "GOAL": 95.0
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -62,5 +62,21 @@
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
     "GOAL": 4.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Alisa Acciardi",
+    "GOAL": 0.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "John Neukum",
+    "GOAL": 0.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "John O'Donoghue",
+    "GOAL": 0.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dylan Rubino",
+    "GOAL": 0.0
   }
 ]

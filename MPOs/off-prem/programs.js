@@ -111,15 +111,16 @@ const OBJECTIVES_2026_09 = [
 // Constellation is 'pct_of_goal' again, but the rep's GOAL is no longer last
 // fall's own placements: Gavin supplied each rep's Corona Innovation goal
 // (RDE "Innovation SKUs Placements ... Goals", mpo_constellation_innovation_
-// goals.json) and the objective is 75% of it. Reps with no goal on that report
-// are not scored. Actuals are the export's own window (10/1-10/31).
+// goals.json, the Goals column of RDE's Innovation Fall export = 100% of the
+// incentive goal) and the objective is 75% of it. Reps with no goal on that
+// report are not scored. Actuals are the same export's 9/1-11/30 placements.
 // BBC Lytt is 'pct_of_base' at 50%, 1+ SKU, over the core base minus Whole Foods.
 // Molly's (2) and Wine (1) are 'new_placements' on the two-window export
 // (base 7/1-9/30 = the 90-day non-buy window, current 10/1-10/31).
 // POS cooler-door stickers carry over from September but stay awaiting-data
 // until October's iSellBeer Promos_Report is merged (generate_2026-10.py).
 const OBJECTIVES_2026_10 = [
-  {key:'constellation_innovation', name:'Constellation – 75% Corona Innovation Distro', shortName:'Corona Innovation', unit:'placement', weight:0.30, type:'pct_of_goal', hasData:true, goalLabel:'75% of your Corona Innovation goal', goalWord:'Corona Innovation goal',
+  {key:'constellation_innovation', name:'Constellation – 75% Corona Innovation Distro', shortName:'Corona Innovation', unit:'placement', weight:0.30, type:'pct_of_goal', hasData:true, goalLabel:'75% of your Corona Innovation goal', goalWord:'Corona Innovation goal', periodEnd:'2026-11-30',
    typeNote:'Your target is 75% of the Corona Innovation distribution goal assigned to you.'},
   {key:'bbc_lytt', name:'BBC – 50% Buying Accounts Lytt', shortName:'Lytt', unit:'buying account', weight:0.30, type:'pct_of_base', hasData:true, goalLabel:'50% of account base', accountsLabel:'Buying Accounts', brandLabel:'Lytt'},
   {key:'mollys', name:'Molly\u2019s – (2) New Placements (Spirits)', shortName:'Molly\u2019s', unit:'new placement', weight:0.15, type:'new_placements', hasData:true, goalLabel:'2 new Molly\u2019s placements each'},

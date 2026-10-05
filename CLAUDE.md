@@ -339,10 +339,15 @@ October pill here once its programs have ended. hub.js tag 20261005c.
 ## October 2026 Off-Premise MPO tab (2026-10-05)
 
 October_2026_MPO.docx: Constellation 75% Corona Innovation Distro (30%, 'pct_of_goal'
-with an ASSIGNED per-rep goal: `constellation_innovation_goals.csv`, from Gavin's
-RDE "Goals" screenshot; reps with no goal are not scored; actuals = the export's
-10/1-10/31 window, so September/November are NOT counted unless a wider export is
-dropped in), BBC 50% Buying Accounts Lytt (30%, 'pct_of_base' 0.5, 1+ SKU, built 2026-10-05 from lytt_october.csv over sales_reps_customer_base_core.csv MINUS Whole Foods -- they cannot sell alcohol; the removal is Lytt-only, Keystone / Fever Tree still read the shared file; Lytt buyers outside a rep's base are NOT counted and printed; see the CUSTOMER BASE REFRESH note below for the 2026-10-05 base), Molly's
+with an ASSIGNED per-rep goal: the "( Innovation SKUs Placements 9/1/2026 - 11/30/2026 )
+Goals" column of RDE's "Constellation Innovation Fall 2026 OFF w Goals" export
+(MPOs/off-prem/constellation_innovation_fall.csv) = 100% of the INCENTIVE goal; the MPO
+target is 75% of it (Gavin, 2026-10-05, corrected -- the first build used a one-month
+export and screenshot goals). Progress = the same export's 9/1-11/30 placements, so it
+runs through Nov 30 (periodEnd). Each rep's block starts with a SUBTOTAL row (first
+product's name, carries the goal) that is dropped when it equals the rest; reps with no
+goal (Alisa, both Johns' -- John Neukum / John O'Donoghue -- and Dylan) are not scored; the
+BBC 50% Buying Accounts Lytt (30%, 'pct_of_base' 0.5, 1+ SKU, built 2026-10-05 from lytt_october.csv over sales_reps_customer_base_core.csv MINUS Whole Foods -- they cannot sell alcohol; the removal is Lytt-only, Keystone / Fever Tree still read the shared file; Lytt buyers outside a rep's base are NOT counted and printed; see the CUSTOMER BASE REFRESH note below for the 2026-10-05 base), Molly's
 (2) New Placements (15%) and Wine (1) New Placement (15%) as 'new_placements' on
 the two-window exports (base 7/1-9/30, current 10/1-10/31), POS (5) Cooler Door
 Stickers (10%, awaiting until October's iSellBeer Promos_Report is merged with
