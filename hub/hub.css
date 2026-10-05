@@ -1540,3 +1540,6 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:600;letter-spacing:-.01em;
 .px-cap{margin-top:8px;font-size:14.5px;color:var(--text-dim)}
 .px-cap.dim{margin-top:2px;color:var(--text-mute)}
 .px-how{margin-top:10px}
+.hrow.prog .hrow-lg{width:44px;height:44px;object-fit:contain;background:#fff;border-radius:8px;padding:4px;flex:none;margin-right:12px;box-sizing:border-box}
+.g-logos{display:flex;justify-content:center;align-items:center;gap:8px;margin:0 0 10px}
+.g-logo{height:40px;max-width:150px;width:auto;object-fit:contain;background:#fff;border-radius:8px;padding:5px 8px;box-sizing:content-box}

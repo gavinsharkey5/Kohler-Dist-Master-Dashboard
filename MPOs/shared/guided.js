@@ -374,19 +374,6 @@ function screenRepDetail(){
       roleOf(rep) ? esc(roleOf(rep)) : '',
       (function(){ var u = document.getElementById('updated-line'); return u && u.textContent.trim() ? '<span class="g-stamp">'+esc(u.textContent.trim())+'</span>' : ''; })()
     ])+
-    // ONE SUMMARY CARD (2026-10-02) in place of four stat tiles: the weighted
-    // percent, one bar, the objective counts in a line, the partial-credit note.
-    // Same numbers as before (weightedForRep), only fewer boxes.
-    '<div class="g-summary">'+
-      '<div class="g-summary-top"><span class="g-summary-n '+sums[0].cls+'">'+fmtNum(w.earnedPct/100*w.counted*100)+
-        '<span class="g-summary-of"> of '+fmtNum(w.counted*100)+' points</span></span></div>'+
-      '<div class="g-summary-l">MPO Points Earned</div>'+
-      barHtml(w.earnedPct, w.earnedPct>=90?'achieved':(w.earnedPct>0?'inprogress':'notstarted'))+
-      '<div class="g-summary-facts"><b>'+w.achieved+' of '+w.scoredCount+'</b> objectives achieved · '+
-        w.inprogress+' in progress · '+w.notstarted+' not started</div>'+
-      '<div class="g-summary-note">An objective earns its full weight once its requirement is met; progress short of the requirement earns no points yet.'+
-        (excluded.length?' <b>Partial result:</b> excludes '+excluded.join(' and ')+' ('+fmtNum(100-w.counted*100)+' points not counted).':'')+'</div>'+
-    '</div>'+
     cards+
   '</div>';
 }
@@ -399,6 +386,23 @@ function titleOf(o){
 }
 
 // Plural / unit helpers shared by the v3 cards (2026-10-05 brief).
+
+// Supplier marks cut from the rewards decks (incentive-tracking/assets/logos).
+// A general objective (Wine, Spirits, POS, iSellBeer photos) has none and shows no mark.
+var LOGO_BASE = '../../incentive-tracking/assets/logos/';
+var MPO_LOGO = {
+  constellation_innovation:['constellation.png'], constellation_gaintain:['constellation.png'], corona_premier:['constellation.png'],
+  bbc_lytt:['lytt.png'], disruptors:['lytt.png'], mollys:['mollys.png'],
+  sam_adams_conversion:['boston_beer.png','sam_adams.png'], angry_orchard:['boston_beer.png'],
+  keystone_ice:['keystone_ice.png'], molson_coors:['molson_coors.png'], fever_tree:['molson_coors.png'],
+  new_belgium:['new_belgium.png'], yave:['yave.png'], ws_2xo:['two_xo.png'], bardstown_menu:['bardstown.png'], green_river:['bardstown.png'], famosa:['famosa.png']
+};
+function logoHtml(o){
+  var l = MPO_LOGO[o.key]; if(!l) return '';
+  return '<div class="g-logos">'+l.map(function(f){
+    return '<img class="g-logo" src="'+LOGO_BASE+f+'" alt="" loading="lazy" onerror="this.remove()">';
+  }).join('')+'</div>';
+}
 function uPlural(n, u){ u = String(u||'').trim(); if(!u) return ''; if(Number(n)===1) return u; return /s$/.test(u) ? u : u+'s'; }
 function titleCase(t){ return String(t||'').replace(/\b([a-z])/g, function(c){ return c.toUpperCase(); }); }
 function fmtNum(v){ var n = Number(v); if(!isFinite(n)) return '\u2014'; return (Math.round(n*10)/10).toLocaleString('en-US'); }
@@ -473,7 +477,7 @@ function repObjectiveCard(o, rep){
     var unitLbl = titleCase(uPlural(Number(m.goal), unit));
     var met = m.remaining<=0;
     return '<div class="g-obj g-obj-v3 '+st+'">'+
-      '<div class="g-obj-head"><div class="g-obj-name">'+esc(titleOf(o))+'</div>'+creditPill(st)+'</div>'+
+      logoHtml(o)+'<div class="g-obj-head"><div class="g-obj-name">'+esc(titleOf(o))+'</div>'+creditPill(st)+'</div>'+
       '<div class="g-obj-sub">'+supPeriod(o)+'</div>'+
       '<div class="g-fig"><span class="g-fig-n">'+fmtNum(m.value)+'</span><span class="g-fig-of"> of '+fmtNum(m.goal)+'</span>'+
         '<span class="g-fig-u">Required '+esc(unitLbl)+'</span></div>'+
@@ -518,6 +522,7 @@ function programCard(o){
   var head =
     '<button class="g-prog-head js-prog'+(open?' open':'')+'" data-key="'+esc(o.key)+'" '+
       'aria-expanded="'+(open?'true':'false')+'">'+
+      logoHtml(o)+
       '<div class="g-prog-top">'+
         '<span class="g-prog-name">'+esc(titleOf(o))+
           '<span class="g-reprow-dm">'+supPeriod(o)+'</span>'+

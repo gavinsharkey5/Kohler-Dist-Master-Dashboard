@@ -345,7 +345,8 @@ const SUPPLIER_LOGO_KEY = {'Molson Coors':'molson_coors','Boston Beer':'boston_b
   'New Belgium':'new_belgium','Bardstown Bourbon':'bardstown','Kohler House Programs':'house'};
 const MPO_BRAND_LOGO = {sam_adams_conversion:'boston_beer.png', constellation_innovation:'constellation.png', keystone_ice:'keystone_ice.png', bbc_lytt:'lytt.png', disruptors:'lytt.png', constellation_gaintain:'constellation.png',
   corona_premier:'constellation.png', new_belgium:'new_belgium.png', bardstown_menu:'bardstown.png', molson_coors:'molson_coors.png',
-  fever_tree:'molson_coors.png', angry_orchard:'boston_beer.png', ws_2xo:'two_xo.png', carbliss:null};
+  fever_tree:'molson_coors.png', angry_orchard:'boston_beer.png', ws_2xo:'two_xo.png', mollys:'mollys.png', yave:'yave.png', green_river:'bardstown.png', famosa:'famosa.png', carbliss:null};
+const sam_adams_conversion_extra = k => k==='sam_adams_conversion' ? 'sam_adams.png' : '';
 const TYPE_NOTE = {
   dual: 'Every brand target must be hit for the objective to count — it is not a combined pool.',
   pct_of_base: 'Your target is a share of your OWN account base, so every rep has a different number.',
@@ -2637,7 +2638,9 @@ function mpoProgramCardHtml(p){
   const all = !!(g && g.total && g.n === g.total);
   const has = !!(g && g.total);
   const share = has ? (g.n/g.total)*100 : 0;
+  const mlogo = MPO_BRAND_LOGO[o.key] ? `<div class="g-logos">${[sam_adams_conversion_extra(o.key), MPO_BRAND_LOGO[o.key]].filter(Boolean).map(f=>`<img class="g-logo" src="${E(INC_ASSETS+'assets/logos/'+f)}" alt="" loading="lazy" onerror="this.remove()">`).join('')}</div>` : '';
   return `<div class="g-prog"><button class="g-prog-head" data-act="open-program" data-prog="${E(p.id)}">
+      ${mlogo}
       <div class="g-prog-top">
         <span class="g-prog-name">${E(p.shortName||o.name)}<span class="g-reprow-dm">${E(o.supplier||p.supplier||'')}${(o.periodText||p.monthLabel)?' · '+E(o.periodText||p.monthLabel):''}</span></span>
         <span class="g-chev">&#9656;</span>
@@ -3004,8 +3007,9 @@ function progRowHtml(p, r, rep, noSup){
   const f = progFacts(p, r, rep) || {main:'', need:'', cls:'open', label:''};
   const meta = [state.view==='sup' || noSup ? p.channelLabel : `${p.supplier} · ${p.channelLabel}`, endsLabel(p.period)].filter(Boolean).join(' · ');
   const off = r.status==='unavailable' || r.soon;
+  const rowLogo = (p.type==='MPO' && p.brandLogos && p.brandLogos[0]) ? `<img class="hrow-lg" src="${E(p.brandLogos[0])}" alt="" loading="lazy" onerror="this.remove()">` : '';
   return `<button class="hrow prog${off?' off':''}" data-act="open" data-prog="${E(p.id)}" id="card-${E(p.id)}">
-    <span class="hrow-main">
+    ${rowLogo}<span class="hrow-main">
       <span class="hrow-t"><span>${E(p.type==='MPO' ? (p.shortName||p.name) : (p.shortName||p.name))}</span>${htag(f)}</span>
       <span class="hrow-s">${E(meta)}</span>
       ${f.main ? `<span class="hrow-p"><b>${f.main}</b>${f.need && f.need!==f.label ? ` · ${f.need}` : ''}</span>` : ''}

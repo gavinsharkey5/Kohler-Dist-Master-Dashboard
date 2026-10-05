@@ -426,3 +426,7 @@
   .g-fig-n{font-size:34px}
   .g-obj-v3{padding:16px 14px}
 }
+
+/* MPO supplier marks (2026-10-05) */
+.g-logos{display:flex;justify-content:center;align-items:center;gap:8px;margin:0 0 10px}
+.g-logo{height:40px;max-width:150px;width:auto;object-fit:contain;background:#fff;border-radius:8px;padding:5px 8px;box-sizing:content-box}
