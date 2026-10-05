@@ -501,40 +501,10 @@ function repObjectiveCard(o, rep){
    ================================================================== */
 function screenProgram(){
   var objs = H.objectives();
-  // OVERALL RESULT (2026-10-05 brief): the team's average earned MPO, in points.
-  // Each objective is worth weight x 100 points; its contribution is those
-  // points x the share of eligible reps at goal. An objective with no data is
-  // NOT counted as zero and does not stay in the denominator -- it is listed as
-  // awaiting, and the result is labelled partial.
-  var tracked = [], missing = [], earned = 0, possible = 0;
-  objs.forEach(function(o){
-    var g = H.atGoal(o);
-    if(g && g.total){ var pts = o.weight*100; tracked.push({o:o, g:g, pts:pts, got:pts*g.n/g.total}); earned += pts*g.n/g.total; possible += pts; }
-    else missing.push(o);
-  });
-  var f1 = function(v){ return (Math.round(v*10)/10).toLocaleString('en-US'); };
-  var partial = missing.length > 0;
-  var contrib = tracked.map(function(t){
-    return '<li><span>'+esc(titleOf(t.o))+'</span><b>'+f1(t.got)+' of '+f1(t.pts)+'</b>'+
-      '<i>'+t.g.n+' of '+t.g.total+' reps at goal</i></li>';
-  }).join('')+missing.map(function(o){
-    return '<li class="miss"><span>'+esc(titleOf(o))+'</span><b>Not Counted</b><i>No data yet</i></li>';
-  }).join('');
-
   return '<div class="g g-fade">'+
     stepHead(null,'Program results',
       esc(H.scope)+' · '+esc(H.monthLabel())+
       ' · open a program to review each rep.')+
-    '<div class="g-summary">'+
-      '<div class="g-summary-top"><span class="g-summary-n '+(possible&&earned/possible>=.9?'good':(earned>0?'accent':'mute'))+'">'+f1(earned)+
-        '<span class="g-summary-of"> of '+f1(possible)+' points</span></span></div>'+
-      '<div class="g-summary-l">Average MPO Points Earned Per Rep</div>'+
-      barHtml(possible?earned/possible*100:0, earned>0?'inprogress':'notstarted')+
-      '<div class="g-summary-note">Each objective is worth its weight in points and counts in proportion to the share of reps at goal. '+
-        (partial ? '<b>Partial result:</b> '+pl(missing.length,'objective')+' ('+f1(100-possible)+' points) have no data yet and are not counted as zero.'
-                 : 'All objectives are included.')+'</div>'+
-      '<ul class="g-contrib">'+contrib+'</ul>'+
-    '</div>'+
     objs.map(programCard).join('')+
   '</div>';
 }

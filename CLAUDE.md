@@ -2249,3 +2249,5 @@ hub.js (rep program screen, mpoRepCard, manager card + summary), Lytt records
 `Potential Accounts` wording). Tags 20261005e/g.
 
 Follow-up (same day, Gavin): Lytt October needs 3+ DISTINCT SKUs per account (minSkus 3 -- supersedes the 1+ SKU assumption above); "How This Goal Is Calculated" REMOVED from every MPO card (the Details fold keeps the rules); reps an objective does not cover (no account base / no goal) are no longer listed in manager rep rows and are out of reps_total (Lytt and Constellation now count covered reps only: 23 and 16); detail tables share one spacing style (guided.css, stacked labelled rows under 640px, followup cells carry data-l).
+
+Follow-up 2 (same day, Gavin): the manager "Program results" points summary box is REMOVED on both MPO pages (guided.js screenProgram, hub.js mpoSectionHtml -- no summary tiles at all now); program tiles and rep cards are center-aligned (title, supplier / period, figure, bar, caption, weight, Review Reps). The rep's own "MPO Points Earned" card on a rep's page was left in place.

@@ -398,3 +398,31 @@
   .g-reprow-detail td,.g-more-body td{display:block;border:0;padding:3px 12px;min-width:0!important}
   .g-reprow-detail td[data-l]::before,.g-more-body td[data-l]::before{content:attr(data-l);display:block;font-size:12.5px;color:var(--text-mute);font-weight:400}
 }
+
+/* ===== Centered tiles (2026-10-05): title, figure, progress ===== */
+.g-prog-head{text-align:center;position:relative}
+.g-prog-head .g-prog-top{justify-content:center;position:relative;padding:0 28px}
+.g-prog-head .g-prog-name{flex:0 1 auto;text-align:center;font-size:19px}
+.g-prog-head .g-reprow-dm{display:block;margin-top:2px;text-align:center}
+.g-prog-head .g-chev{position:absolute;right:0;top:2px}
+.g-prog-head .g-fig{justify-content:center;text-align:center;margin-top:12px}
+.g-prog-head .g-fig-u{text-align:center}
+.g-prog-head .g-bar{margin-left:auto;margin-right:auto;max-width:560px}
+.g-prog-head .g-bar-cap{text-align:center}
+.g-prog-head .g-need{text-align:center}
+.g-prog-head .g-meta{flex-direction:column;justify-content:center;gap:0;align-items:center;margin-top:8px}
+.g-prog-head .g-review{justify-content:center;min-height:44px}
+.g-obj-v3{text-align:center}
+.g-obj-v3 .g-obj-head{flex-direction:column;align-items:center;gap:8px}
+.g-obj-v3 .g-obj-sub{text-align:center}
+.g-obj-v3 .g-fig{justify-content:center}
+.g-obj-v3 .g-fig-u{text-align:center}
+.g-obj-v3 .g-bar{margin-left:auto;margin-right:auto;max-width:560px}
+.g-obj-v3 .g-meta{justify-content:center}
+.g-obj-v3 .g-more{justify-content:center;margin-left:auto;margin-right:auto}
+.g-obj-v3 .g-more-body,.g-obj-v3 .g-subs{text-align:left}
+@media(max-width:520px){
+  .g-prog-head{padding:16px 14px}
+  .g-fig-n{font-size:34px}
+  .g-obj-v3{padding:16px 14px}
+}

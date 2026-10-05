@@ -2662,31 +2662,12 @@ function mpoSectionHtml(scope, mk, progs){
   const D = mpoDataFor(scope, mk);
   const objPct = o => (D && o.hasData) ? M.objPct(o, D) : 0;
   const atGoal = o => (D && o.hasData) ? M.atGoalFor(o, D) : null;
-  // Points: weight x 100 per objective x share of reps at goal; objectives with no
-  // data are listed as not counted (never zero) and the result is labelled partial.
-  let earnedPts = 0, possiblePts = 0, missingN = 0;
-  objs.forEach(o=>{ const g = (D && o.hasData) ? M.atGoalFor(o, D) : null;
-    if(g && g.total){ possiblePts += (o.weight||0)*100; earnedPts += (o.weight||0)*100*g.n/g.total; } else missingN++; });
-  const f1 = v => (Math.round(v*10)/10).toLocaleString('en-US');
-  const sums = [{l:'Average MPO Points Earned Per Rep', n:D?`${f1(earnedPts)} of ${f1(possiblePts)}`:'—',
-    cls: !D ? 'mute' : (possiblePts && earnedPts/possiblePts>=.9) ? 'good' : earnedPts>0 ? 'accent' : '',
-    s: missingN ? `Partial: ${missingN} objective${missingN===1?'':'s'} (${f1(100-possiblePts)} points) have no data yet and are not counted as zero.` : 'All objectives included; each counts its weight x share of reps at goal.'}];
-  objs.forEach(o=>{
-    const g = atGoal(o);
-    if(!g){ sums.push({l:E(o.shortName||o.name), n:'—', cls:'mute', s:D?'not tracked yet':'loading…'}); return; }
-    sums.push({l:E(o.shortName||o.name)+(g.headline?'':' – Reps at Goal'),
-      n: g.headline || (g.n+' / '+g.total),
-      cls: g.cls || (g.total && g.n===g.total ? 'good' : (g.n ? 'accent' : 'mute')),
-      s: g.sub || o.goalLabel || ''});
-  });
   const hidden = objs.length - progs.length;
   return `<section class="g pv-mpo">
     <div class="g-step-head">
       <div class="g-title">${E(S.label)} MPO</div>
-      <div class="g-sub">${E(month?month.label:mk)} · tap a program to see every rep&rsquo;s result.${hidden>0?` <span class="pv-mpo-filtered">${hidden} more objective${hidden===1?'':'s'} hidden by your filters — the summary still covers all ${objs.length}.</span>`:''}</div>
+      <div class="g-sub">${E(month?month.label:mk)} · tap a program to see every rep&rsquo;s result.${hidden>0?` <span class="pv-mpo-filtered">${hidden} more objective${hidden===1?'':'s'} hidden by your filters</span>`:''}</div>
     </div>
-    <div class="g-sum-grid">${sums.map(k=>`<div class="g-sum"><div class="g-sum-l">${k.l}</div>
-      <div class="g-sum-n ${k.cls}">${k.n}</div><div class="g-sum-s">${E(k.s)}</div></div>`).join('')}</div>
     ${progs.map(mpoProgramCardHtml).join('')}
   </section>`;
 }
