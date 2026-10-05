@@ -336,6 +336,24 @@ current month and September becomes a stepped-back month automatically (the
 MPO tracker pages default to the LAST month in MONTHS). Next month: add the
 October pill here once its programs have ended. hub.js tag 20261005c.
 
+## October 2026 Off-Premise MPO tab (2026-10-05)
+
+October_2026_MPO.docx: Constellation 75% Corona Innovation Distro (30%, 'pct_of_goal'
+with an ASSIGNED per-rep goal: `constellation_innovation_goals.csv`, from Gavin's
+RDE "Goals" screenshot; reps with no goal are not scored; actuals = the export's
+10/1-10/31 window, so September/November are NOT counted unless a wider export is
+dropped in), BBC 50% Buying Accounts Lytt (30%, awaiting: hasData:false), Molly's
+(2) New Placements (15%) and Wine (1) New Placement (15%) as 'new_placements' on
+the two-window exports (base 7/1-9/30, current 10/1-10/31), POS (5) Cooler Door
+Stickers (10%, awaiting until October's iSellBeer Promos_Report is merged with
+generate_2026-09.py --merge-cooler-doors, then flip hasData). Run
+`python3 MPOs/off-prem/generate_2026-10.py` (rebuilds per-rep copies). programs.js
+OBJECTIVES_2026_10 + a MONTHS entry; objectives may carry `awaiting`/`awaitingNote`
+(hub shows "Awaiting the first export", not "verified by hand") and `typeNote`. The
+objective NAME's prefix before " – " sets the hub supplier (SUPPLIER_ALIAS).
+On-Premise October (docx: Carbliss 40%, BBC Oktoberfest conversion, Spirits
+follow-up, iSellBeer 5 photos) is NOT built yet.
+
 ## Team Activity page: team/ (2026-09-28)
 
 `team/index.html` + `team/team.css` is the manager's read of the
