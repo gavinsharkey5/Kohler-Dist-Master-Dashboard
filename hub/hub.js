@@ -820,7 +820,7 @@ window.addEventListener('resize', ()=>{ if(!LIB && state.mode==='manager') rende
 // no repeated mode screens); a manager who switched to Rep Mode keeps it.
 const SIGNED_MGR = !!(KDH_USER && KDH_USER.role === 'manager' && !KDH_USER.preview);
 function restore(){ try{ const s = JSON.parse(localStorage.getItem(LS_KEY)||'{}');
-  if(mgrCapable() && (s.mode==='manager' || (SIGNED_MGR && s.mode!=='rep'))) state.mode = 'manager'; }catch(e){ if(SIGNED_MGR && mgrCapable()) state.mode = 'manager'; } }
+  if(mgrCapable() && (s.mode==='manager' || SIGNED_MGR)) state.mode = 'manager'; }catch(e){ if(SIGNED_MGR && mgrCapable()) state.mode = 'manager'; } }
 function hashOf(){
   const p = [];
   if(state.view!=='home') p.push('view='+state.view);
