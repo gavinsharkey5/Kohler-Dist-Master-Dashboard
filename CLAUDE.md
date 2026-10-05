@@ -316,6 +316,14 @@ retries the hand-off POST 3x (10 s timeout) so one dropped reply no longer
 leaves a rep on an hour-long fallback sign-in. Root cause still on Gavin:
 JWT expiry (ROADMAP "Session length") -- fewer rotations, fewer lost ones.
 
+## "Not real time" notice for reps (2026-10-05)
+
+`liveNotice()` in shared/kdh-user.js puts an amber, non-dismissible WARNING
+under the top bar on every page a rep (or a manager previewing one) opens:
+this site does NOT update in real time, use the Encompass dashboard
+(DashboardID=184193) for live incentive / MPO data. Managers do not see it.
+Remove it by deleting that function and its one call in chrome().
+
 ## Team Activity page: team/ (2026-09-28)
 
 `team/index.html` + `team/team.css` is the manager's read of the
