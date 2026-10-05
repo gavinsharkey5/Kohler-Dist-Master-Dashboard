@@ -561,7 +561,7 @@ const MONTHS = [
 ];
 // October is the landing tab from 2026-09-30 (the September programs end
 // today; the October ones start tomorrow and reps open the page for them).
-const DEFAULT_MONTH_KEY = '2026-10';
+const DEFAULT_MONTH_KEY = MONTHS[MONTHS.length-1].key;   // always the most recent month (Gavin, 2026-10-05)
 
 let activeMonth = MONTHS.find(m=>m.key===DEFAULT_MONTH_KEY) || MONTHS[0];
 // Every renderer reads PROGRAM_LIST; reassigning it on a tab switch is what
