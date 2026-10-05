@@ -314,6 +314,32 @@
       location.href = dest.href;
     });
   }
+  // NOT-REAL-TIME NOTICE (2026-10-05, Gavin): reps are told on every page, in
+  // plain words, that this site is not live and where the live numbers are.
+  // Shown to reps (and a manager previewing one), never dismissible, right
+  // under the top bar. Remove it by deleting this function and its call.
+  var LIVE_URL = 'https://kohlerdist.encompass8.com/Home?DashboardID=184193';
+  function liveNotice(u, isMgr, bar) {
+    if (!u || isMgr || document.getElementById('kdhLive')) return;
+    if (!document.getElementById('kdhLiveCss')) {
+      var st = document.createElement('style'); st.id = 'kdhLiveCss';
+      st.textContent = '#kdhLive{box-sizing:border-box;margin:0;padding:14px 16px;background:#FFE08A;color:#2B1B00;border-top:1px solid #B45309;border-bottom:4px solid #B45309;font:16px/1.45 var(--kdh-body,system-ui,sans-serif);display:flex;gap:12px;align-items:flex-start;justify-content:center}' +
+        '#kdhLive .lv-i{flex:none;width:28px;height:28px;border-radius:50%;background:#B45309;color:#fff;font-weight:800;font-size:18px;line-height:28px;text-align:center}' +
+        '#kdhLive .lv-t{max-width:880px}#kdhLive b{font-weight:800;font-size:17px;letter-spacing:0}' +
+        '#kdhLive a{color:#6B2A00;font-weight:700;text-decoration:underline;word-break:break-all}' +
+        ':root[data-theme="dark"] #kdhLive{background:#4A3300;color:#FFF1C7;border-color:#F0A93B}' +
+        ':root[data-theme="dark"] #kdhLive .lv-i{background:#F0A93B;color:#2B1B00}' +
+        ':root[data-theme="dark"] #kdhLive a{color:#FFD27A}' +
+        '@media print{#kdhLive{display:none}}';
+      document.head.appendChild(st);
+    }
+    var n = document.createElement('div');
+    n.id = 'kdhLive'; n.setAttribute('role', 'alert');
+    n.innerHTML = '<span class="lv-i" aria-hidden="true">!</span><div class="lv-t"><b>WARNING: This website does NOT update in real time.</b> ' +
+      'To see incentive and MPO data updates in real time, please use <a href="' + LIVE_URL + '" target="_blank" rel="noopener">Encompass (open the live dashboard)</a>. ' +
+      'We are working to make this live for everyone. Thank you for your patience.</div>';
+    bar.parentNode.insertBefore(n, bar.nextSibling);
+  }
   function chrome() {
     markViewer();
     if (document.querySelector('.kdh-bar') || document.getElementById('kdhBar')) return;
@@ -344,6 +370,7 @@
       '<div class="kdh-acts">' + acts + '</div></div>' +
       (who ? menuHtml(u, isMgr) : '');
     document.body.insertBefore(b, document.body.firstChild);
+    liveNotice(u, isMgr, b);
     // the menu lives on <body>: the bar's backdrop blur would trap a fixed sheet inside it
     var mn = document.getElementById('kdhMenu'); if (mn) document.body.appendChild(mn);
     sideBar(u, who);
