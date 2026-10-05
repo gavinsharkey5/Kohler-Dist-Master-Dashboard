@@ -225,6 +225,18 @@ sit under that account). RLS through kdh_can_access_account; only the author
 edits or removes a Hub record. Verified on a local Postgres 16 (scratchpad
 sql_merch_test.sh, 26 checks). merchandising/README.txt has the rules.
 
+PHOTO ADMIN (2026-10-05)
+Run migrations/20261005090000_photo_admin.sql after the merchandising file.
+Idempotent. Adds allowed_users.photo_admin (default false) and
+kdh_is_photo_admin(); a photo admin may remove ANY account photo row, ANY
+merchandising record (Hub or imported; lines and photo links cascade) and ANY
+stored image file in account-photos. Authors keep removing their own. Reading
+is unchanged. Nobody can set the flag on themselves (signed-in people only
+READ their own allow-list row). The repo names no admin -- turn it on in the
+SQL Editor:  update public.allowed_users set photo_admin = true where email = '<email>';
+or tick photo_admin on that row in Table Editor -> allowed_users. Verified on
+local Postgres 16 (scratchpad sql_admin_test.sh, 19 checks).
+
 STAY SIGNED IN (2026-10-02)
 Reps stay signed in on a device until they sign out: the server keeps the
 refresh token in an HttpOnly cookie and middleware.js renews the access token

@@ -131,3 +131,13 @@ Tests (scratchpad): sql_merch_test.sh (local Postgres 16), isb_test.mjs
 (the attached exports), imp_test.mjs (import page), merch_capture_test.mjs
 (capture, retake, drafts, retry, imported records, preview), recap_test.mjs,
 notes_photos_test.mjs / drafts_test.mjs (before the SQL is run).
+
+PHOTO ADMIN (2026-10-05)
+A person with allowed_users.photo_admin = true (migration
+20261005090000_photo_admin.sql; Gavin, who runs the iSellBeer operation) sees
+"Remove (Photo Admin)" on every merchandising record -- someone else's Hub
+record or an iSellBeer import -- and "Remove Photo (Photo Admin)" on every
+older single photo, never in preview. Removing a record removes its lines,
+photo links, photo rows and stored files. An imported record comes back if the
+same iSellBeer file is imported again (the import restates by source_key).
+Edit Details / Edit Labels stay with the author.

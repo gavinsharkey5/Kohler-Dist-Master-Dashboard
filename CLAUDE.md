@@ -1957,4 +1957,15 @@ removed only after the row is gone) and every PATCH checks a row came back.
 Never trust a 2xx from PostgREST as proof a write under RLS happened.
 Tests: notes_photos_test (same name other sign-in, refused delete, own
 delete) with RLS-faithful stubs in it and merch_capture_test.
+PHOTO ADMIN (2026-10-05, Gavin: "I oversee the whole iSellBeer operation"):
+migration `20261005090000_photo_admin.sql` adds allowed_users.photo_admin +
+`kdh_is_photo_admin()` and widens three DELETE policies (account_photos,
+merch_records -- any source, storage.objects in account-photos) to "author OR
+photo admin". The flag is set by hand in Supabase (no email in the public repo);
+nobody can set it on themselves. activity.js asks the RPC once per page
+(`isPhotoAdmin()`, `st.admin`) and draws "Remove (Photo Admin)" / "Remove Photo
+(Photo Admin)" on other people's and imported records -- never in preview; edits
+stay author-only. Removing a record also deletes its photo rows (imported link
+photos included) and files. Tests: sql_admin_test.sh (19), notes_photos_test,
+merch_capture_test. activity.js tag 20261005b.
 

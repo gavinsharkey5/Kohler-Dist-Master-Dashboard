@@ -11,6 +11,11 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
+- [ ] **Photo admin: run the SQL, then flag your work sign-in** (Gavin): Supabase
+  SQL Editor, run `supabase/migrations/20261005090000_photo_admin.sql`, then in a
+  new query `update public.allowed_users set photo_admin = true where email =
+  '<your work email>';`. Reload an account page: every photo and record then
+  shows "Remove (Photo Admin)". Run it after the merchandising SQL.
 - [ ] **Merchandising: run the SQL** (Gavin): Supabase SQL Editor, paste and
   run `supabase/migrations/20261004090000_merchandising.sql`. Turns photos
   into records (several photos + product / brand lines + optional program

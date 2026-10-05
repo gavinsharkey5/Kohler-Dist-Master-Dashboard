@@ -73,7 +73,17 @@ const PHOTO_COLS = 'id,customer_num,category,premise,caption,storage_path,width,
 const MERCH_SQL = 'supabase/migrations/20261004090000_merchandising.sql';
 const REC_COLS = 'id,category,subtype,subtype_note,caption,location,brands,program_id,premise,source,source_kind,source_key,isb_promotion_type,isb_theme,isb_elements,source_author,source_author_role,observed_at,created_at,author_name,author_email,'
   + 'merch_lines(line_no,supplier,brand_family,brand,package,quantity,quantity_unit,ownership_source,ownership_corrected,ownership_rule,source_line_ref),merch_record_photos(ord,photo_id)';
-const cache = new Map();      // n -> {notes, photos, records, notesErr, photosErr, update, merchMissing}
+const cache = new Map();      // n -> {notes, photos, records, notesErr, photosErr, update, merchMissing, admin}
+// PHOTO ADMIN (2026-10-05): the database says whether this sign-in may remove ANY
+// photo / record (allowed_users.photo_admin, migration 20261005090000). Asked
+// once per page; no function yet (SQL not run) = false. The database still
+// decides every delete -- this only decides which buttons to draw.
+let adminAsk = null;
+function isPhotoAdmin(){
+  if(!adminAsk) adminAsk = rest('rpc/kdh_is_photo_admin', {method:'POST', headers:{'content-type':'application/json'}, body:'{}'})
+    .then(v=>v===true).catch(()=>false);
+  return adminAsk;
+}
 async function load(n, force){
   if(!force && cache.has(n)) return cache.get(n);
   const out = {notes:[], photos:[], records:[], notesErr:'', photosErr:'', update:false, merchMissing:false};
@@ -96,6 +106,7 @@ async function load(n, force){
       .catch(e=>{ out.merchMissing = true; }),
   ]);
   out.records = buildRecords(recs, out.photos);
+  out.admin = await isPhotoAdmin();
   cache.set(n, out);
   return out;
 }
@@ -753,7 +764,10 @@ function viewer(st, key, idx){
   const myEmail = String((ctx.me||{}).email||'').toLowerCase();
   const mineLegacy = r.legacy && !!r.author_email && !!myEmail && String(r.author_email).toLowerCase()===myEmail;
   // same name, different sign-in: say why there is no Remove instead of offering one that cannot work
-  const otherSignIn = r.legacy && !mineLegacy && r.author_email && (r.author_name||'').toLowerCase()===String((ctx.me||{}).name||'').toLowerCase();
+  const admin = !!st.admin && !ctx.readOnly;         // never in preview: preview shows what the rep sees
+  const adminRec = admin && !r.legacy && !mineHub;     // someone else's record, or an iSellBeer import
+  const adminPhoto = admin && r.legacy && !mineLegacy;
+  const otherSignIn = !admin && r.legacy && !mineLegacy && r.author_email && (r.author_name||'').toLowerCase()===String((ctx.me||{}).name||'').toLowerCase();
   const hist = r.source==='isellbeer' || (r.observed_at && Date.now() - new Date(r.observed_at) > 2*86400000);
   const prog = r.program_id ? ctx.progName(r.program_id) : '';
   const isb = [r.isb_promotion_type, r.isb_theme, r.isb_elements].filter(Boolean).join(' · ');
@@ -780,6 +794,8 @@ function viewer(st, key, idx){
       ${ph && ph.source_url ? `<a class="btn outline" href="${E(ph.source_url)}" target="_blank" rel="noopener noreferrer">Open in iSellBeer ↗</a>` : ''}
       ${!ctx.readOnly && mineHub ? `<button type="button" class="btn outline" id="rvEdit">Edit Details</button><button type="button" class="btn outline danger" id="rvDel">Remove</button>` : ''}
       ${!ctx.readOnly && mineLegacy ? `<button type="button" class="btn outline" id="pvEdit">Edit Labels</button><button type="button" class="btn outline danger" id="pvDel">Remove Photo</button>` : ''}
+      ${adminRec ? `<button type="button" class="btn outline danger" id="rvDel" data-admin="1">Remove (Photo Admin)</button>` : ''}
+      ${adminPhoto ? `<button type="button" class="btn outline danger" id="pvDel" data-admin="1">Remove Photo (Photo Admin)</button>` : ''}
       ${!ctx.readOnly && otherSignIn ? `<p class="pv-sub">Saved by another sign-in under the name ${E(r.author_name)}. Only that sign-in can edit or remove it.</p>` : ''}
     </div>`);
   hydrateImages(w);
@@ -787,18 +803,21 @@ function viewer(st, key, idx){
   w.querySelectorAll('[data-ri]').forEach(b=>b.addEventListener('click', ()=>viewer(st, key, +b.dataset.ri)));
   const ed = w.querySelector('#rvEdit'); if(ed) ed.addEventListener('click', ()=>editRecord(st, r));
   const rd = w.querySelector('#rvDel'); if(rd) rd.addEventListener('click', async ()=>{
-    if(!confirm(`Remove this ${catName(r.category).toLowerCase()} and its ${r.photos.length} ${r.photos.length===1?'photo':'photos'} from the account? This cannot be undone.`)) return;
+    const who = r.source==='isellbeer' ? 'imported from iSellBeer' : 'saved by '+(r.author_name||'someone else');
+    if(!confirm(rd.dataset.admin
+      ? `Remove this ${catName(r.category).toLowerCase()} (${who}) and its ${r.photos.length} ${r.photos.length===1?'photo':'photos'} as photo admin? This cannot be undone.${r.source==='isellbeer' ? ' Importing the same iSellBeer file again would bring it back.' : ''}`
+      : `Remove this ${catName(r.category).toLowerCase()} and its ${r.photos.length} ${r.photos.length===1?'photo':'photos'} from the account? This cannot be undone.`)) return;
     rd.disabled = true; rd.setAttribute('aria-busy', 'true');
     try{ await deleteRow('merch_records?id=eq.'+encodeURIComponent(r.rid));
-      for(const p of r.photos){ if(p.storage_path){ let gone = false; try{ gone = await deleteRow('account_photos?id=eq.'+encodeURIComponent(p.id), true); }catch(e){} if(gone) await removeObject(p.storage_path); } }
+      for(const p of r.photos){ let gone = false; try{ gone = await deleteRow('account_photos?id=eq.'+encodeURIComponent(p.id), true); }catch(e){} if(gone && p.storage_path) await removeObject(p.storage_path); }
       closeSheet(); const s2 = await load(ctx.n, true); paint(s2); toast('Removed'); }
     catch(e){ rd.disabled = false; rd.removeAttribute('aria-busy'); toast(e.notRemoved ? e.message : 'Could not remove it: '+(e.message||'error')); }
   });
   const pe = w.querySelector('#pvEdit'); if(pe) pe.addEventListener('click', ()=>relabel(st, r));
   const pd = w.querySelector('#pvDel'); if(pd) pd.addEventListener('click', async ()=>{
-    if(!confirm('Remove this photo from the account? This cannot be undone.')) return;
+    if(!confirm(pd.dataset.admin ? `Remove this photo saved by ${r.author_name||'someone else'} as photo admin? This cannot be undone.` : 'Remove this photo from the account? This cannot be undone.')) return;
     pd.disabled = true; pd.setAttribute('aria-busy', 'true');
-    try{ await deleteRow('account_photos?id=eq.'+encodeURIComponent(ph.id)); await removeObject(ph.storage_path);
+    try{ await deleteRow('account_photos?id=eq.'+encodeURIComponent(ph.id)); if(ph.storage_path) await removeObject(ph.storage_path);
       closeSheet(); const s2 = await load(ctx.n, true); paint(s2); toast('Photo removed'); }
     catch(e){ pd.disabled = false; pd.removeAttribute('aria-busy'); toast(e.notRemoved ? e.message : 'Could not remove it: '+(e.message||'error')); }
   });
