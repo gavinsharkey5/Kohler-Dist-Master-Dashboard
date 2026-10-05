@@ -147,13 +147,19 @@ export default async function middleware(request) {
   const cookieHeader = request.headers.get('cookie') || '';
   const rt = parseRt(readCookie(cookieHeader, 'kdh_rt'));
   let token = readCookie(cookieHeader, COOKIE);
-  let renewed = null, dropRt = false;
+  let renewed = null, dropRt = false, softFail = false;
   if (rt && (!token || tokenExpiry(token) - Date.now() < RENEW_BEFORE_MS)) {
     const r = await refreshSession(rt.token, supabaseUrl, publishableKey);
     if (r.ok) { renewed = r.session; token = r.session.access_token; }
     else if (r.reason === 'invalid') dropRt = true;
+    else softFail = true;   // Supabase busy / network: keep the cookie, let /login/ retry
   }
-  const verdict = token ? await check(token, supabaseUrl, publishableKey) : { ok: false };
+  let verdict = token ? await check(token, supabaseUrl, publishableKey) : { ok: false };
+  // Say why a page load was sent to sign-in (the page words it for the rep).
+  if (!verdict.ok && verdict.reason !== 'notlisted') {
+    if (dropRt) verdict = { ok: false, reason: 'revoked' };
+    else if (softFail) verdict = { ok: false, reason: 'unavailable' };
+  }
   const res = route(request, url, verdict);
   if (renewed && verdict.ok) {
     const sets = sessionCookies(renewed, verdict, rt.keep);

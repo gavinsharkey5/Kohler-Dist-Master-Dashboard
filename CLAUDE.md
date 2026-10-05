@@ -304,6 +304,18 @@ offers to save it (autocomplete current-/new-password). Test: scratchpad
 remember_test.mjs (both steps, 30-day vs session cookies, storage
 dropped, choice sticks).
 
+## Stay-signed-in hardening (2026-10-05)
+
+`refreshSession()` (api/session.js) now calls only a definite 4xx (not 429)
+"invalid" -- the one case that clears kdh_rt. A 429, 5xx or dropped
+connection is "unavailable": retried once after 400 ms, the cookie kept, the
+page load sent to /login/?why=unavailable, where `resume()` asks GET
+/api/session (retried 3x) and goes straight in. Before, a 429 wiped the
+long-lived cookie. A dead token redirects with `why=revoked`. /login/ also
+retries the hand-off POST 3x (10 s timeout) so one dropped reply no longer
+leaves a rep on an hour-long fallback sign-in. Root cause still on Gavin:
+JWT expiry (ROADMAP "Session length") -- fewer rotations, fewer lost ones.
+
 ## Team Activity page: team/ (2026-09-28)
 
 `team/index.html` + `team/team.css` is the manager's read of the
