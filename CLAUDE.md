@@ -2247,3 +2247,5 @@ objectives with no data are "Not Counted" and the result is labelled partial),
 hub.js (rep program screen, mpoRepCard, manager card + summary), Lytt records
 (`lineTableLytt`: Qualifying Accounts, product name / package / date / cases,
 `Potential Accounts` wording). Tags 20261005e/g.
+
+Follow-up (same day, Gavin): Lytt October needs 3+ DISTINCT SKUs per account (minSkus 3 -- supersedes the 1+ SKU assumption above); "How This Goal Is Calculated" REMOVED from every MPO card (the Details fold keeps the rules); reps an objective does not cover (no account base / no goal) are no longer listed in manager rep rows and are out of reps_total (Lytt and Constellation now count covered reps only: 23 and 16); detail tables share one spacing style (guided.css, stacked labelled rows under 640px, followup cells carry data-l).

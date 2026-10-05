@@ -459,9 +459,9 @@ let activeMonth = null;
 // Follow-up drill-down: every base account, the ones still to do first.
 function lineTableFollowup(lines, L){
   if(!lines || !lines.length) return '<div class="no-lines">No accounts on your list.</div>';
-  const rows = lines.map(l=>`<tr class="${l.done?'':'focus-row'}"><td>${l.customer}</td><td>${l.had||''}</td><td>${l.done
-    ? `<span class="complete-tag">${L.doneTag||'Done'}</span>${l.doneDate?' '+l.doneDate:''}${l.doneDetail?'<br><span class="no-lines">'+l.doneDetail+'</span>':''}`
-    : (L.todoTag||'Not yet')}</td></tr>`).join('');
+  const rows = lines.map(l=>`<tr class="${l.done?'':'focus-row'}"><td data-l="Account">${l.customer}</td><td data-l="${L.had||'Before'}">${l.had||'\u2014'}</td><td data-l="${L.done||'Now'}">${l.done
+    ? `<span class="complete-tag">${L.doneTag||'Done'}</span>${l.doneDate?' '+l.doneDate:''}${l.doneDetail?'<span class="no-lines">'+l.doneDetail+'</span>':''}`
+    : `<span class="todo-tag">${L.todoTag||'Not yet'}</span>`}</td></tr>`).join('');
   return `<div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Account</th><th>${L.had||'Before'}</th><th>${L.done||'Now'}</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 function isActiveMonthDate(dateStr){

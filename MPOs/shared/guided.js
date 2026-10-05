@@ -481,7 +481,7 @@ function repObjectiveCard(o, rep){
       barHtml(m.pct, st)+
       '<div class="g-bar-cap">Progress: '+Math.round(m.pct)+'% of this MPO requirement</div>'+
       '<div class="g-meta">MPO Weight: '+Math.round(o.weight*100)+'%</div>'+
-      explainFold(o, m)+subsHtml+moreHtml+
+      subsHtml+moreHtml+
     '</div>';
   }
   return '<div class="g-obj g-obj-v2 '+st+'">'+
@@ -570,7 +570,7 @@ function programBody(o){
   var rows = H.roster.map(function(rep){
     var m = H.metric(o, rep);
     return {rep: rep, dm: dmOf(rep), m: m};
-  }).filter(function(r){ return !(r.m && r.m.hidden); });   // a support rep off this objective
+  }).filter(function(r){ return !(r.m && (r.m.hidden || r.m.notScored)); });   // reps this objective does not cover are not listed
   if(!rows.some(function(r){return r.m && !r.m.notScored;})){
     return '<div class="g-note">This objective isn’t being tracked with data yet. '+
       'Its goal and weight still count toward the month.</div>';

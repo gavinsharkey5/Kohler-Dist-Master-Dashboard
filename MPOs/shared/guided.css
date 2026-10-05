@@ -379,3 +379,22 @@
 .g-obj-v3 .g-bar{margin-top:6px}
 .g-obj-v3 .g-more+.g-more-body{margin-bottom:4px}
 .g-rr-bar .g-reprow-fill{display:block}
+
+/* ===== Detail tables: even spacing, top-aligned, no indented second lines (2026-10-05) ===== */
+.g-reprow-detail .rep-sub-inner,.g-more-body .rep-sub-inner{padding:0!important;overflow-x:auto}
+.g-reprow-detail table,.g-more-body table{width:100%;border-collapse:collapse;table-layout:auto;margin:0}
+.g-reprow-detail th,.g-more-body th{text-align:left;font-size:13px;font-weight:600;color:var(--text-mute);padding:10px 14px;border-bottom:1px solid var(--border);white-space:nowrap}
+.g-reprow-detail td,.g-more-body td{padding:11px 14px;vertical-align:top;line-height:1.45;font-size:14.5px;border-bottom:1px solid var(--border);overflow-wrap:anywhere}
+.g-reprow-detail td:first-child,.g-more-body td:first-child{font-weight:500;min-width:180px}
+.g-reprow-detail th.num,.g-reprow-detail td.num,.g-more-body th.num,.g-more-body td.num{text-align:right;white-space:nowrap}
+.g-reprow-detail td .no-lines,.g-more-body td .no-lines{display:block;padding:0;margin:2px 0 0;font-size:13.5px;color:var(--text-mute)}
+.g-reprow-detail .todo-tag,.g-more-body .todo-tag{color:var(--text-mute)}
+.g-reprow-detail tr.focus-row td,.g-more-body tr.focus-row td{background:transparent}
+@media(max-width:640px){
+  .g-reprow-detail table,.g-more-body table{display:block}
+  .g-reprow-detail thead,.g-more-body thead{display:none}
+  .g-reprow-detail tbody,.g-more-body tbody{display:block}
+  .g-reprow-detail tr,.g-more-body tr{display:block;padding:10px 2px;border-bottom:1px solid var(--border)}
+  .g-reprow-detail td,.g-more-body td{display:block;border:0;padding:3px 12px;min-width:0!important}
+  .g-reprow-detail td[data-l]::before,.g-more-body td[data-l]::before{content:attr(data-l);display:block;font-size:12.5px;color:var(--text-mute);font-weight:400}
+}

@@ -122,7 +122,7 @@ const OBJECTIVES_2026_09 = [
 const OBJECTIVES_2026_10 = [
   {key:'constellation_innovation', name:'Constellation – 75% Corona Innovation Distro', shortName:'Corona Innovation', unit:'placement', weight:0.30, type:'pct_of_goal', hasData:true, periodText:'Sep 1 \u2013 Nov 30, 2026', goalLabel:'75% of your Corona Innovation goal', goalWord:'Corona Innovation goal', periodEnd:'2026-11-30',
    typeNote:'Your goal is the Corona Innovation distribution goal assigned to you. Reaching 75% of it counts as Achieved.'},
-  {key:'bbc_lytt', name:'BBC – 50% Buying Accounts Lytt', shortName:'Lytt Buying Accounts', unit:'buying account', weight:0.30, type:'pct_of_base', hasData:true, periodText:'Oct 1 \u2013 Oct 31, 2026', goalLabel:'50% of account base', accountsLabel:'Buying Accounts', brandLabel:'Lytt'},
+  {key:'bbc_lytt', name:'BBC – 50% Buying Accounts Lytt', shortName:'Lytt Buying Accounts', unit:'buying account', weight:0.30, type:'pct_of_base', hasData:true, periodText:'Oct 1 \u2013 Oct 31, 2026', goalLabel:'50% of account base (3+ SKUs each)', accountsLabel:'Buying Accounts', brandLabel:'Lytt'},
   {key:'mollys', name:'Molly\u2019s – (2) New Placements (Spirits)', shortName:'Molly\u2019s', unit:'new placement', weight:0.15, type:'new_placements', hasData:true, goalLabel:'2 new Molly\u2019s placements each'},
   {key:'wine_new', name:'Wine – (1) New Placement', shortName:'Wine', unit:'new placement', weight:0.15, type:'new_placements', hasData:true, goalLabel:'1 new wine placement each'},
   {key:'pos_stickers', name:'POS – (5) Cooler Door Stickers, Any Brand in iSellBeer', shortName:'Cooler Door Stickers', unit:'cooler door sticker', weight:0.10, type:'photos', hasData:false, awaiting:true, awaitingNote:'Waiting on October\u2019s iSellBeer export.', goalLabel:'5 cooler door stickers each',
@@ -165,7 +165,7 @@ const MONTHS = [
   {key:'2026-10', label:'October 2026', dir:'data/2026-10/', objectives: OBJECTIVES_2026_10, tables: [
     {objKey:'constellation_innovation', special:'pct_of_goal', file:'mpo_constellation_innovation.json', goalsFile:'mpo_constellation_innovation_goals.json', pct:0.75},
     {objKey:'bbc_lytt', special:'pct_of_base', baseFile:'mpo_sales_reps_customer_base_core.json', numFile:'mpo_bbc_lytt_numerator.json', pct:0.5,
-      minSkus:1, targetsFile:'mpo_targets_bbc_lytt.json'},
+      minSkus:3, targetsFile:'mpo_targets_bbc_lytt.json'},
     {objKey:'mollys', file:'mpo_mollys.json', target:2, builder:'new_placements'},
     {objKey:'wine_new', file:'mpo_wine_new_placements.json', target:1, builder:'new_placements'},
   ]},
@@ -341,7 +341,9 @@ function buildPctOfBaseDataset(baseRows, numRows, pct, minSkus){
                lines, minSkus:min});
   });
   const reps_at_goal=ROSTER.filter(name=>{const r=reps.find(x=>x.rep===name);return r?r.qualifying>=r.target:false;}).length;
-  return {pct, reps, reps_at_goal, reps_total:ROSTER.length};
+  // only reps whose account base covers this program count
+  const reps_total=ROSTER.filter(name=>reps.some(x=>x.rep===name)).length;
+  return {pct, reps, reps_at_goal, reps_total};
 }
 
 // A pct_of_base rep's headline number is PENETRATION -- what share of their
@@ -481,7 +483,8 @@ function buildPctOfGoalDataset(rows, pct, goals){
                hit: placements>=target, lines});
   });
   const reps_at_goal=ROSTER.filter(name=>{const r=reps.find(x=>x.rep===name);return r?r.hit:false;}).length;
-  return {pct, reps, reps_at_goal, reps_total:ROSTER.length, repGoal:hasGoals};
+  const reps_total=ROSTER.filter(name=>reps.some(x=>x.rep===name)).length;
+  return {pct, reps, reps_at_goal, reps_total, repGoal:hasGoals};
 }
 
 const BUILDERS = {new_accounts: buildNewAccountsDataset, placements: buildPlacementsDataset, photos: buildPhotosDataset, new_placements: buildNewPlacementsDataset};

@@ -3180,7 +3180,7 @@ function screenProgramRep(p, r, rep){
         <div class="px-need ${f.cls}">${f.need}</div>
         ${hbar(f)}
         ${p.type==='MPO' && f.pct!=null ? `<div class="px-cap">Progress: ${Math.round(f.pct)}% of this MPO requirement</div><div class="px-cap dim">MPO Weight: ${Math.round((f.weight||0))}%</div>` : ''}
-        ${p.type==='MPO' && f.explain ? `<details class="hdet px-how"><summary>How This Goal Is Calculated</summary><ul class="ibul">${f.explain.map(x=>`<li>${E(x)}</li>`).join('')}</ul></details>` : (f.rule ? `<div class="px-rule">${f.rule}</div>` : '')}
+        ${p.type==='MPO' ? '' : (f.rule ? `<div class="px-rule">${f.rule}</div>` : '')}
         ${f.segments && f.segments.length ? `<div class="px-segs">${f.segments.map(g=>`<div class="px-seg"><span>${E(g.label)}</span><b>${E(g.valueText)}</b></div>`).join('')}</div>` : ''}
       </div>`}
     </div>
