@@ -939,12 +939,11 @@ function topbar(){
       <div class="nj-hero-row"><img class="hero-logo-badge" src="../assets/kohler-logo-badge.png" alt="Kohler Distributing Company"><span class="nj-hero-script">Northern NJ</span></div>
     </div></div>
     ${state.view!=='home' ? `<div class="navrow">
-      <div class="navl">${rep && onRep ? `<span class="nav-rep">👤 ${E(state.peek && state.view==='detail' ? state.peek : rep)}</span>` : ''}</div>
+      <div class="navl"></div>
       <div class="navr">
         ${rep && state.view!=='rep' && isMgr() ? `<button class="nbtn" data-act="my-programs">All of ${E(rep.split(' ')[0])}’s programs</button>` : ''}
-        ${!LOCKED_REP && !state.asRep && state.view!=='home' ? `<button class="nbtn quiet" data-act="home">Choose Another Rep</button>` : ''}
-        ${isMgr() && !state.asRep && !(state.view==='programs' || state.view==='program') ? `<button class="nbtn quiet" data-act="programs">By program</button>` : ''}
-        ${isMobile() || LOCKED_REP || state.asRep ? '' : `<span class="modeseg" role="group" aria-label="How much detail"><button class="mseg${isMgr()?'':' active'}" data-act="set-mode" data-mode="rep">Rep view</button><button class="mseg${isMgr()?' active':''}" data-act="set-mode" data-mode="manager">Manager view</button></span>`}
+        ${isMgr() && !state.asRep && !(state.view==='programs' || state.view==='program') ? `<button class="nbtn quiet" data-act="programs">‹ Program View</button>` : ''}
+        ${!isMgr() && !LOCKED_REP && !state.asRep && state.view!=='home' ? `<button class="nbtn quiet" data-act="home">Choose Another Rep</button>` : ''}
       </div>
     </div>` : ''}
   </div>`;
@@ -985,7 +984,7 @@ function screenHome(){
       ${refreshedLine()}
     </div>
     <div id="repList" class="replist">${repListHtml()}</div>
-    <div class="home-foot">${isMobile() ? '' : isMgr() ? `Manager Mode is on · <a href="#" data-act="programs">Browse by program</a> · <a href="#" data-act="set-mode" data-mode="rep">Back to Rep Mode</a>` : `Manager? <a href="#" data-act="set-mode" data-mode="manager">Switch to Manager Mode (desktop)</a>`}</div>
+    <div class="home-foot">${isMobile() ? '' : isMgr() ? `<a href="#" data-act="programs">Back to Program View</a>` : `Manager? <a href="#" data-act="set-mode" data-mode="manager">Switch to Manager Mode (desktop)</a>`}</div>
   </div>`;
 }
 // Reps under their District Manager, in DM_GROUPS order; anyone on the

@@ -276,3 +276,8 @@ html.kdh-rep #kicker{display:none}
   .rh-tool{flex-direction:row;align-items:center;min-height:68px;padding:var(--sp-2) 14px}
   .rh-tool .rh-ts{-webkit-line-clamp:2}
 }
+
+/* Manager home header (2026-10-05): one primary action, the manager preview is a quiet second step */
+.btn.quiet{background:none;border-color:transparent;color:var(--text-3);text-decoration:underline;min-height:36px;padding:0 6px}
+.ws .switch#viewAs{gap:12px}
+.ws #mgrSwitch{flex:1 1 100%;justify-content:flex-end}
