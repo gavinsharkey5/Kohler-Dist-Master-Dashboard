@@ -19,12 +19,17 @@ device, a decision).
   Editor, run `supabase/migrations/20261005120000_merch_pod_signage.sql`.
   Until then a rep who picks PODs or Signage gets a save error; the other
   types work. Idempotent.
-- [ ] **Decide: stop capturing in iSellBeer?** (Gavin) Reps can capture every
-  type in the Hub now, but these pages are still built from iSellBeer exports:
-  Off-Premise MPO cooler doors + Lytt POS, On-Premise MPO Bardstown menus,
-  Display Auction, Tier 1 Display Recap, Tap Tracker, Executive Overview. Each
-  needs to read Hub records (or both) before iSellBeer can be dropped, and
-  supplier programs that require iSellBeer proof need confirming.
+- [ ] **Stop capturing in iSellBeer, page by page** (Gavin + Claude): the Tap
+  Tracker now reads tap surveys reps take in the Hub (2026-10-05). Still built
+  from iSellBeer exports only: Off-Premise MPO cooler doors + Lytt POS,
+  On-Premise MPO Bardstown menus, Display Auction, Tier 1 Display Recap,
+  Executive Overview -- each needs the same treatment before iSellBeer can be
+  dropped, and supplier programs that require iSellBeer proof need confirming.
+- [ ] **Tap Tracker + Hub surveys: live check** (Gavin): take one tap photo in
+  the Hub at an account (Tap Handles, two or three lines), open the Tap
+  Tracker, search the account: its current lineup should be the Hub survey
+  ("· Kohler Hub" by the date) and the footer should say "Includes 1 Kohler
+  Hub tap survey". Also once as a rep on a phone.
 - [ ] **iSellBeer photo PDFs: run one more SQL file** (Gavin, before importing
   PDFs): Supabase SQL Editor, run
   `supabase/migrations/20261005100000_isb_pdf_photos.sql`. It lets a photo PDF
@@ -231,6 +236,13 @@ device, a decision).
 - **Account-aware assistant + mock pitch** -- built 2026-09-30 and hardened the same day (server-side account authorization, server-built record, tools on the full record, ledger + spend limits); waiting on the pilot above. Snowflake later adds freshness (daily grain, invoices, inventory); route-wide / comparable-account questions need a permission rule first.
 
 ## Done
+
+- [x] 2026-10-05 **Tap Tracker reads Hub tap surveys**: the page merges the
+  tap surveys reps take in the Hub (viewer's own sign-in, a rep gets only
+  their accounts) with iSellBeer's -- newest survey per account is the current
+  lineup, older ones go to Survey history; never-surveyed accounts appear;
+  footer says how many Hub surveys are included. No file to upload. Tap lines
+  must be answered Ours / Theirs before saving.
 
 - [x] 2026-10-05 **Tap lines Ours / Theirs in the Hub**: a rep's Tap Handles
   lines label themselves from Kohler's territory rulebook (the Tap Tracker's

@@ -2050,3 +2050,20 @@ activity summary ("N ours · M theirs", handles counted) and the Excel / CSV
 exports (US/THEM + basis). The Tap Tracker itself does NOT read Hub tap lines
 yet. Test: scratchpad tap_own_test.mjs (Bergen Ours / Union Theirs / not
 carried / rep's call / save payload / viewer).
+
+## Tap Tracker reads the Hub's own tap surveys (2026-10-05)
+
+First iSellBeer-fed page rewired (Gavin: "start with the tap tracker").
+`isellbeer/tap-survey-tracking/hub-taps.js` (`KdhTapHub`) fetches tap_handle
+merch_records + lines + a 1-day signed photo link with the VIEWER's token (RLS:
+a rep gets only their accounts) while the page parses; the main script is now
+`window.__tapMain`, started when `KdhTapHub.ready` settles (6 s cap), and calls
+`KdhTapHub.apply(DATA)` first. Merge rule = the 2026-09-04 current-lineup rule
+across sources: newest pass per account (iSellBeer or Hub) is current, every
+other pass goes to HISTORY (no totals). Hub-only accounts come from
+hub/data/accounts.js -- NOTE it declares `const HUB_ACCOUNTS`, a global
+binding that is NOT on window (read it bare). Capture now requires Ours /
+Theirs on every named tap line. README "HUB TAP SURVEYS ON THIS PAGE" has the
+rules; tests: scratchpad tap_hub_test.mjs (+ tap_own_test, slice_test,
+lock_test2, dm_test). Still iSellBeer-only: MPO cooler doors / Lytt POS /
+Bardstown menus, Display Auction, Tier 1 recap, Executive Overview.

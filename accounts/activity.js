@@ -1138,6 +1138,9 @@ function detailsStep(d){
     if(d.subtype==='other' && !d.subtype_note){ err('Describe the activation in a few words (Other).'); $('#capSubNote').focus(); return; }
     const bad = d.lines.findIndex(l=>l.quantity!=='' && l.quantity!=null && lineMode!=='taps' && !l.unit);
     if(bad >= 0){ err(`Line ${bad+1}: choose what the quantity counts (cases, bottles, facings…).`); return; }
+    // the Tap Tracker counts these lines (2026-10-05): every named tap line needs Ours or Theirs
+    const unl = lineMode==='taps' ? d.lines.findIndex(l=>String(l.brand||'').trim() && l.own!=='US' && l.own!=='THEM') : -1;
+    if(unl >= 0){ err(`Line ${unl+1}: tap Ours or Theirs — that brand is not in the territory list.`); return; }
     err('');
     const prog = w.querySelector('.pf-prog'), bar = w.querySelector('.pf-bar i'), stx = w.querySelector('.pf-st');
     const btns = w.querySelectorAll('.sheet-b button, .cap-acts button'); btns.forEach(b=>b.disabled = true);

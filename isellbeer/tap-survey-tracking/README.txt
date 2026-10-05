@@ -649,5 +649,25 @@ build_tap_rules.py writes from THIS workbook with audit_engine's own steps
 distribution area). generate.py runs it at the end of every refresh; run it by
 hand after editing the workbook alone. Checked equal to the audit on all 6,870
 surveyed taps. A brand the workbook does not cover is the rep's call (saved as
-ownership_rule 'rep'); everything else is 'territory'. Hub tap lines are NOT
-yet read by this dashboard -- see ROADMAP "Decide: stop capturing in iSellBeer?".
+ownership_rule 'rep'); everything else is 'territory'. Hub tap lines ARE read by
+this dashboard -- see below.
+
+HUB TAP SURVEYS ON THIS PAGE (2026-10-05)
+hub-taps.js (loaded before the page's main script) reads the Hub's tap_handle
+records with the viewer's own sign-in -- row-level security gives a rep only
+their own accounts -- and merges them into the data before the first render
+(the main script is window.__tapMain, started when KdhTapHub.ready settles, at
+most 6 s). Every survey of an account, iSellBeer pass or Hub pass, is one pass;
+the NEWEST is the current lineup (the 2026-09-04 rule), the rest go to Survey
+history and feed no total. A Hub record with no tap lines is not a survey. A
+line's status is its saved label; an unlabelled line counts THEM (the page's
+own default) -- the capture screen now refuses to save a named tap line
+without Ours / Theirs. Accounts iSellBeer never surveyed come in with the
+customer base's name / area / rep (hub/data/accounts.js -- a rep's own book via
+the middleware) and the DM from shared/dm-groups.js. Header numbers are
+restated for the merged lineup; a rep copy's company-wide playbook totals are
+left as built. The footer says "Includes N Kohler Hub tap surveys", or that
+they could not be loaded (then the iSellBeer data shows alone). Current Hub
+rows read "<date> · Kohler Hub". generate.py replaces only the data script,
+so none of this needs a rebuild; rep copies come from tools/rep_slices.py as
+always. Test: scratchpad tap_hub_test.mjs.
