@@ -88,7 +88,12 @@ var T = {
   'off:2026-09:keystone_ice': 'Keystone Ice Buyers',
   'off:2026-09:fever_tree': 'Fever-Tree Placements',
   'off:2026-09:wine_spirits_any': 'Wine & Spirits Placements, Any Brand',
-  'off:2026-09:pos_stickers': 'Cooler Door Stickers'
+  'off:2026-09:pos_stickers': 'Cooler Door Stickers',
+  'off:2026-10:constellation_innovation': 'Corona Innovation Distribution',
+  'off:2026-10:bbc_lytt': 'Lytt Distribution',
+  'off:2026-10:mollys': 'Molly\u2019s New Placements',
+  'off:2026-10:wine_new': 'Wine New Placements',
+  'off:2026-10:pos_stickers': 'Cooler Door Stickers'
 };
 window.KDH_PROGRAM_TITLES = T;
 window.kdhTitle = function(id, fallback){ return (id && T[id]) || fallback || id || ''; };

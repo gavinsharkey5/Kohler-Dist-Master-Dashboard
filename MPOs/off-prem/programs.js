@@ -106,6 +106,28 @@ const OBJECTIVES_2026_09 = [
    photoUnit:'stickers', photoColLabel:'Stickers', photoItemsLabel:'Brands on the sticker', photoEmptyLabel:'cooler door stickers'},
 ];
 
+// October's five objectives (October_2026_MPO.docx, 2026-10-05).
+//
+// Constellation is 'pct_of_goal' again, but the rep's GOAL is no longer last
+// fall's own placements: Gavin supplied each rep's Corona Innovation goal
+// (RDE "Innovation SKUs Placements ... Goals", mpo_constellation_innovation_
+// goals.json) and the objective is 75% of it. Reps with no goal on that report
+// are not scored. Actuals are the export's own window (10/1-10/31).
+// BBC Lytt (50% buying accounts) is structure only until its data is loaded.
+// Molly's (2) and Wine (1) are 'new_placements' on the two-window export
+// (base 7/1-9/30 = the 90-day non-buy window, current 10/1-10/31).
+// POS cooler-door stickers carry over from September but stay awaiting-data
+// until October's iSellBeer Promos_Report is merged (generate_2026-10.py).
+const OBJECTIVES_2026_10 = [
+  {key:'constellation_innovation', name:'Constellation – 75% Corona Innovation Distro', shortName:'Corona Innovation', unit:'placement', weight:0.30, type:'pct_of_goal', hasData:true, goalLabel:'75% of your Corona Innovation goal', goalWord:'Corona Innovation goal',
+   typeNote:'Your target is 75% of the Corona Innovation distribution goal assigned to you.'},
+  {key:'bbc_lytt', name:'BBC – 50% Buying Accounts Lytt', shortName:'Lytt', unit:'buying account', weight:0.30, type:'pct_of_base', hasData:false, awaiting:true, awaitingNote:'Lytt data has not been loaded yet.', goalLabel:'50% of account base', accountsLabel:'Buying Accounts', brandLabel:'Lytt'},
+  {key:'mollys', name:'Molly\u2019s – (2) New Placements (Spirits)', shortName:'Molly\u2019s', unit:'new placement', weight:0.15, type:'new_placements', hasData:true, goalLabel:'2 new Molly\u2019s placements each'},
+  {key:'wine_new', name:'Wine – (1) New Placement', shortName:'Wine', unit:'new placement', weight:0.15, type:'new_placements', hasData:true, goalLabel:'1 new wine placement each'},
+  {key:'pos_stickers', name:'POS – (5) Cooler Door Stickers, Any Brand in iSellBeer', shortName:'Cooler Door Stickers', unit:'cooler door sticker', weight:0.10, type:'photos', hasData:false, awaiting:true, awaitingNote:'Waiting on October\u2019s iSellBeer export.', goalLabel:'5 cooler door stickers each',
+   photoUnit:'stickers', photoColLabel:'Stickers', photoItemsLabel:'Brands on the sticker', photoEmptyLabel:'cooler door stickers'},
+];
+
 // Each entry is a permanent monthly snapshot -- add a new one here (and a
 // matching generate_<key>.py, and its own objectives list above) once a new
 // month's RDE exports are ready. Earlier months stay viewable forever.
@@ -138,6 +160,11 @@ const MONTHS = [
       targetsFile:'mpo_targets_fever_tree.json'},
     {objKey:'wine_spirits_any', file:'mpo_wine_spirits_any_brand.json', target:5, builder:'new_placements'},
     {objKey:'pos_stickers', file:'mpo_pos_cooler_doors.json', target:5, builder:'photos'},
+  ]},
+  {key:'2026-10', label:'October 2026', dir:'data/2026-10/', objectives: OBJECTIVES_2026_10, tables: [
+    {objKey:'constellation_innovation', special:'pct_of_goal', file:'mpo_constellation_innovation.json', goalsFile:'mpo_constellation_innovation_goals.json', pct:0.75},
+    {objKey:'mollys', file:'mpo_mollys.json', target:2, builder:'new_placements'},
+    {objKey:'wine_new', file:'mpo_wine_new_placements.json', target:1, builder:'new_placements'},
   ]},
 ];
 
@@ -410,8 +437,14 @@ function buildNewPlacementsDataset(rows, target){
 // A rep in the export with no prior-fall placements at all still gets a
 // target of 1 (Math.max, same floor as pct_of_base) rather than a target of
 // 0 that anyone would clear by doing nothing.
-function buildPctOfGoalDataset(rows, pct){
+function buildPctOfGoalDataset(rows, pct, goals){
   if(!Array.isArray(rows)||!rows.length) return null;
+  // goals (October 2026): [{SALES_REP_ASSIGNED, GOAL}] -- an ASSIGNED per-rep goal
+  // replaces last fall's own placements as the baseline. Only reps with a goal
+  // are scored; the rows just supply their placements by product.
+  const goalBy=new Map();
+  if(Array.isArray(goals)) goals.forEach(g=>{ const n=String(g.SALES_REP_ASSIGNED||"").trim(); const v=Number(g.GOAL)||0; if(n&&v>0) goalBy.set(n,v); });
+  const hasGoals=goalBy.size>0;
   const byRep=new Map();
   rows.forEach(r=>{
     const rep=String(r.SALES_REP_ASSIGNED||"").trim(); if(!rep) return;
@@ -420,11 +453,13 @@ function buildPctOfGoalDataset(rows, pct){
                          base:Number(r.BASE_PLACEMENTS)||0, current:Number(r.CURRENT_PLACEMENTS)||0});
   });
   const reps=[];
+  if(hasGoals) goalBy.forEach((g,rep)=>{ if(!byRep.has(rep)) byRep.set(rep,[]); });
   byRep.forEach((lines,rep)=>{
-    const baseline=lines.reduce((s,l)=>s+l.base,0);
+    if(hasGoals && !goalBy.has(rep)) return;
+    const baseline=hasGoals ? goalBy.get(rep) : lines.reduce((s,l)=>s+l.base,0);
     const placements=lines.reduce((s,l)=>s+l.current,0);
     const target=Math.max(1,Math.ceil(baseline*pct));
-    lines.forEach(l=>{ l.goal=Math.ceil(l.base*pct); l.pct=l.goal>0?(l.current/l.goal)*100:0; });
+    lines.forEach(l=>{ l.goal=hasGoals?0:Math.ceil(l.base*pct); l.pct=l.goal>0?(l.current/l.goal)*100:0; });
     // Products still short of their own 30% share first, worst first --
     // same "surface the outstanding work" ordering as sortNBLines().
     lines.sort((a,b)=>{
@@ -432,6 +467,7 @@ function buildPctOfGoalDataset(rows, pct){
       return ah!==bh ? ah-bh : (a.pct-b.pct || b.goal-a.goal);
     });
     lines.forEach(l=>{ l.share = l.base>0 ? (l.current/l.base)*100 : 0; });
+    if(hasGoals) lines.sort((a,b)=>b.current-a.current || a.product.localeCompare(b.product));
     reps.push({rep, baseline, target, placements, pct: (placements/target)*100,
                // share is THIS FALL AS A PERCENTAGE OF LAST FALL -- the number
                // the objective is actually named for ("30% Corona Gaintain
@@ -442,7 +478,7 @@ function buildPctOfGoalDataset(rows, pct){
                hit: placements>=target, lines});
   });
   const reps_at_goal=ROSTER.filter(name=>{const r=reps.find(x=>x.rep===name);return r?r.hit:false;}).length;
-  return {pct, reps, reps_at_goal, reps_total:ROSTER.length};
+  return {pct, reps, reps_at_goal, reps_total:ROSTER.length, repGoal:hasGoals};
 }
 
 const BUILDERS = {new_accounts: buildNewAccountsDataset, placements: buildPlacementsDataset, photos: buildPhotosDataset, new_placements: buildNewPlacementsDataset};
@@ -679,9 +715,9 @@ async function loadMonthData(monthKey, baseDir){
         continue;
       }
       if(t.special==='pct_of_goal'){
-        const rows=await loadJSON(t.file);
+        const [rows, goals]=await Promise.all([loadJSON(t.file), t.goalsFile?loadJSON(t.goalsFile):null]);
         if(rows){
-          const built=buildPctOfGoalDataset(rows, t.pct);
+          const built=buildPctOfGoalDataset(rows, t.pct, goals);
           if(built) DATA[t.objKey]=built;
         }
         continue;
@@ -1042,6 +1078,13 @@ function lineTableNewPlacements(lines, flagLabel, targetsHtml){
 
 // Constellation's drill-down: one row per product, with that product's own
 // share of the 30% goal alongside last fall's and this fall's placements.
+// October: the goal is one number per rep, so the drill-down is just the
+// placements by product.
+function lineTableProducts(lines){
+  if(!lines || lines.length===0) return '<div class="no-lines">No placements recorded yet this month.</div>';
+  const rows = lines.map(l=>`<tr><td>${l.product}</td><td class="num">${l.current}</td></tr>`).join('');
+  return `<div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Product</th><th class="num">Placements</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
 function lineTableGoal(lines){
   if(!lines || lines.length===0) return '<div class="no-lines">No distribution recorded for this rep.</div>';
   const rows = lines.map(l=>{
@@ -1138,7 +1181,7 @@ function metricFor(o, rep, DATA){
       pct: Math.min(r.pct, 100),
       remaining,
       valueText: fmtPen(r.share),
-      goalText: fmtPen(goalPen)+' of last fall ('+r.target+' of '+r.baseline+')',
+      goalText: fmtPen(goalPen)+' of '+(d.repGoal ? 'my '+(o.goalWord||'goal') : 'last fall')+' ('+r.target+' of '+r.baseline+')',
       remainText: remaining>0 ? unitFor(o, remaining) : '',
       status: r.hit ? 'achieved' : (r.placements>0 ? 'inprogress' : 'notstarted'),
       hasActivity: r.placements>0
@@ -1213,7 +1256,7 @@ function detailFor(o, rep, DATA, monthKey){
     if(!r) return '';
     return lineTableLytt(r.lines, r.minSkus, o.brandLabel||o.shortName||o.name) + tgt();
   }
-  if(o.type === 'pct_of_goal') return r ? lineTableGoal(r.lines) : none;
+  if(o.type === 'pct_of_goal') return r ? (d.repGoal ? lineTableProducts(r.lines) : lineTableGoal(r.lines)) : none;
   if(o.key === 'new_belgium') return r ? nbLineTable(r.lines) : none;
   if(o.type === 'photos') return lineTablePhotos(r ? r.lines : [], o);
   if(o.type === 'new_placements') return lineTableNewPlacements(r ? r.lines : [], 'New Placement', tgt());

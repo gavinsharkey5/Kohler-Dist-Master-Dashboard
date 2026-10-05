@@ -340,10 +340,10 @@ const MPO_SCOPES = {
 };
 const SUPPLIER_ALIAS = {'BBC':'Boston Beer', 'HUSA':'Heineken USA', 'Spirits':'Carbliss', 'Lofted Spirits':'Bardstown Bourbon',
   'Sapporo Light':'Sapporo', 'Famosa 7oz':'Famosa', 'POS':'Kohler House Programs', 'Disruptors':'Kohler House Programs',
-  'iSellBeer Execution':'Kohler House Programs'};
+  'iSellBeer Execution':'Kohler House Programs', 'Wine':'Wine & Spirits'};
 const SUPPLIER_LOGO_KEY = {'Molson Coors':'molson_coors','Boston Beer':'boston_beer','Constellation':'constellation',
   'New Belgium':'new_belgium','Bardstown Bourbon':'bardstown','Kohler House Programs':'house'};
-const MPO_BRAND_LOGO = {keystone_ice:'keystone_ice.png', bbc_lytt:'lytt.png', disruptors:'lytt.png', constellation_gaintain:'constellation.png',
+const MPO_BRAND_LOGO = {constellation_innovation:'constellation.png', keystone_ice:'keystone_ice.png', bbc_lytt:'lytt.png', disruptors:'lytt.png', constellation_gaintain:'constellation.png',
   corona_premier:'constellation.png', new_belgium:'new_belgium.png', bardstown_menu:'bardstown.png', molson_coors:'molson_coors.png',
   fever_tree:'molson_coors.png', angry_orchard:'boston_beer.png', ws_2xo:'two_xo.png', carbliss:null};
 const TYPE_NOTE = {
@@ -391,7 +391,7 @@ function makeMpo(scope, month, o){
   const rules = [];
   if(o.goalLabel) rules.push(`Goal: ${o.goalLabel}`);
   rules.push(`Worth ${weightPct}% of the ${month.label} ${S.label} MPO — the MPO is 20% of total commission eligibility, weighted across the month's objectives`);
-  if(TYPE_NOTE[o.type]) rules.push(TYPE_NOTE[o.type]);
+  if(o.typeNote || TYPE_NOTE[o.type]) rules.push(o.typeNote || TYPE_NOTE[o.type]);
   if(o.key==='new_belgium' && TYPE_NOTE.new_belgium && o.type!=='new_belgium') rules.push(TYPE_NOTE.new_belgium);
   if(!o.hasData) rules.push('Verified from iSellBeer photos — there is no data feed behind this objective, so no numbers show here.');
   if(o.periodEnd) rules.push(`Runs through ${fmtDayYear(end)}, so it keeps accruing after the rest of the month's objectives close.`);
@@ -401,7 +401,7 @@ function makeMpo(scope, month, o){
     name: o.name, shortName: (window.kdhTitle ? window.kdhTitle(`${scope}:${month.key}:${o.key}`, o.shortName || o.name) : (o.shortName || o.name)), pitch: o.goalLabel ? `${o.goalLabel} — ${weightPct}% of the ${S.label} MPO.` : '',
     type:'MPO', channel: S.channel, channelLabel: CHANNEL_LABEL[S.channel],
     supplier, supplierLogo: supLogo, brandLogos: brand ? [brand] : [],
-    period, refreshed: '', manual: !o.hasData, awaitingNote: '',
+    period, refreshed: '', manual: !o.hasData && !o.awaiting, awaitingNote: o.awaitingNote || '',
     rules, reward: `${weightPct}% of the ${S.label} MPO (20% of commission eligibility)`,
     territory: '', objective: o, month, scope,
     get loaded(){ return !!data().DATA; },
@@ -629,11 +629,13 @@ const acctMore = {};           // program id|tab -> show every row
 const state = {mode:'rep', view:'home', rep:null, main:null, cat:null, month:null, prog:null, from:null, peek:null, filters:{type:'all', chan:'all', sup:'all', month:'active'}, showEnded:false, only:null, sup:null, list:null, n:null, im:'2026-08'};
 // PREVIOUS MONTHS on the Incentives screen (Gavin, 2026-09-30): a simple
 // August / September toggle under the live list so reps can review an
-// earlier month's incentives. August lists the programs that ended in
-// August; September shows a notice until the recap is added (Friday).
+// earlier month's incentives. Each month lists the programs that ENDED in it
+// (endedIn); a program still running into the next month stays in the live
+// list above. September went live 2026-10-05 (the `note` placeholder is gone).
+// Adding October later = one more entry here once its programs have ended.
 const INC_MONTHS = [
-  {key:'2026-08', label:'August'},
-  {key:'2026-09', label:'September', note:'September recap coming Friday.', sub:'September’s incentives will be added here once the month closes.'},
+  {key:'2026-08', label:'August 2026'},
+  {key:'2026-09', label:'September 2026'},
 ];
 // REP-MODE FLOW (2026-09-30, Gavin's Encompass brief): Incentives (one row
 // per supplier) -> a supplier's programs -> ONE program's summary -> an
@@ -1550,6 +1552,7 @@ const SELL_ASK = {
   'on:wine_spirits':'Place YaVe and Leyenda.', 'on:sapporo_na':'Place Sapporo NA.',
   'off:constellation_gaintain':'Place Corona.', 'off:keystone_ice':'Place Keystone Ice 24oz cans.', 'off:fever_tree':'Place Fever Tree.',
   'off:wine_spirits_any':'Place a new wine or spirits SKU.', 'off:pos_stickers':'Put up a cooler door sticker and photograph it.',
+  'off:constellation_innovation':'Place the Corona and Modelo innovation items.', 'off:mollys':'Place Molly\u2019s Irish Cream.', 'off:wine_new':'Place a new wine SKU.',
   'off:corona_premier':'Place Corona Premier suitcases.', 'off:bbc_lytt':'Place 3 or more Lytt SKUs.', 'off:disruptors':'Photograph Lytt POS in iSellBeer.',
   'off:molson_coors':'Place Peroni and Coors Banquet.', 'off:wine_spirits':'Place Le Grand Noir, Leyenda and Green River.',
   'off:new_belgium':"Place Bell's, Voodoo and Kirin.", 'off:ws_2xo':'Place 2XO, Le Grand and YaVe.', 'off:sapporo_light':'Place Sapporo Light.', 'off:famosa':'Place Famosa 7oz.',

@@ -422,7 +422,7 @@ def build_customer_base_core():
 
 # ------------------------------------------------------------- objectives 3/4
 
-def build_new_placements(path, product_col=None):
+def build_new_placements(path, product_col=None, base_start=None, current_start=None):
     """The two-window new-placement read (see this script's docstring): a
     key is NEW when its current window is populated and its base window is
     not. The key is one rep/account (Fever Tree) or rep/account/product
@@ -459,8 +459,9 @@ def build_new_placements(path, product_col=None):
             except ValueError:
                 pass
         return None
-    check_window(base_col, datetime(2026, 6, 1), f"{path.name} base window")
-    check_window(current_col, ACTUAL_WINDOW_START, f"{path.name} current window")
+    # Windows default to September's; generate_2026-10.py passes its own.
+    check_window(base_col, base_start or datetime(2026, 6, 1), f"{path.name} base window")
+    check_window(current_col, current_start or ACTUAL_WINDOW_START, f"{path.name} current window")
 
     agg, order = {}, []
     for r in rows:
