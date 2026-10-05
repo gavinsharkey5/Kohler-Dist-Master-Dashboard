@@ -11,6 +11,7 @@ import csv
 import datetime
 import math
 import json
+import os
 import re
 import sys
 from collections import defaultdict
@@ -5361,6 +5362,26 @@ def main():
           f"across {len(yu_goaled)} reps | retention accounts held {sum(d['heldCount'] for d in yu.values())} / {sum(d['listedCount'] for d in yu.values())} "
           f"({sum(len(d['off']['atRisk']) + len(d['onPkg']['atRisk']) for d in yu.values())} at risk) | draft "
           f"{sum(d['draft']['units'] for d in yu.values())} units across {sum(1 for d in yu.values() if d['draftInReport'])} reps (no goals tracked)")
+
+    # CLOSED MONTHS ARE PUBLISHED SNAPSHOTS (Gavin, 2026-10-05). August and
+    # September are restored from data/frozen/ so a customer-base or CSV refresh
+    # cannot move a finished month's numbers; only October (and later) rebuild.
+    # The versions this run would have produced are filed under
+    # data/refreshed_archive/ when they differ. To deliberately re-open a month:
+    # KDH_UNFREEZE=1 python3 generate.py (then re-freeze the new blobs by
+    # copying them into data/frozen/).
+    if not os.environ.get("KDH_UNFREEZE"):
+        frozen = {"data": DATA_DIR / "frozen" / "PROGRAM_DATA_2026_08.json",
+                  "data_09": DATA_DIR / "frozen" / "PROGRAM_DATA_2026_09.json"}
+        if all(p.exists() for p in frozen.values()):
+            fresh_08 = json.dumps(data, sort_keys=True)
+            fresh_09 = json.dumps(data_09, sort_keys=True)
+            data = json.loads(frozen["data"].read_text())
+            data_09 = json.loads(frozen["data_09"].read_text())
+            moved = [n for n, was, now in (("August", json.dumps(data, sort_keys=True), fresh_08),
+                                           ("September", json.dumps(data_09, sort_keys=True), fresh_09)) if was != now]
+            print("Closed months restored from data/frozen/ (August, September)"
+                  + (f"; this run would have changed: {', '.join(moved)} (not applied -- KDH_UNFREEZE=1 to apply)" if moved else "; no difference"))
 
     payload = json.dumps(data, indent=2)
     html = INDEX_HTML.read_text()

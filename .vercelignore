@@ -12,3 +12,7 @@ supabase/
 
 # Scripts run from a laptop against a deployment, never loaded by a page.
 tools/
+
+# Frozen / archived incentive snapshots -- generator inputs, never loaded by a page.
+incentive-tracking/data/frozen/
+incentive-tracking/data/refreshed_archive/

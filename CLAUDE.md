@@ -367,7 +367,7 @@ sales_reps_customer_base.csv (on-prem off-premise exclusion) and incentive-track
 customer_base_full.csv (+25 each; 31 accounts have a blank Draft Package, read as not
 draft-capable). Then re-run: MPOs/off-prem/generate_2026-10.py and incentive-tracking/
 generate.py (14 program blobs moved -- mostly refreshed 2026 case volumes on target lists
-plus the 25 new accounts). Closed months (Aug / Sep MPO files) were NOT rebuilt. The 25
+plus the 25 new accounts). Closed months (Aug / Sep MPO files) were NOT rebuilt, and August / September INCENTIVES were restored to what was published (Gavin, 2026-10-05): generate.py now restores them from incentive-tracking/data/frozen/ on every run (KDH_UNFREEZE=1 re-opens a month), and the refreshed versions are filed in incentive-tracking/data/refreshed_archive/. Only October's incentive blob moved (lagunitas_sprint, industrial_arts, mabi_single_serve). The 25
 added: Chris Payton, Dan Lagala, Derrick Laws, Javier Melo, Klejdi Lamo, Robin Feldman 1
 each; Dave Ehlers, Pablo Lopez, Shane Barreca, Jayson Romine 2 each; Matt Powierski 5;
 Phil Ernst 5 (incl. USA Wine Traders Paramus 80004, a Lytt buyer); and 1 for the house
