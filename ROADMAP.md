@@ -11,21 +11,20 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
-- [ ] **Photo admin: run the SQL, then flag your work sign-in** (Gavin): Supabase
-  SQL Editor, run `supabase/migrations/20261005090000_photo_admin.sql`, then in a
-  new query `update public.allowed_users set photo_admin = true where email =
-  '<your work email>';`. Reload an account page: every photo and record then
-  shows "Remove (Photo Admin)". Run it after the merchandising SQL.
-- [ ] **Merchandising: run the SQL** (Gavin): Supabase SQL Editor, paste and
-  run `supabase/migrations/20261004090000_merchandising.sql`. Turns photos
-  into records (several photos + product / brand lines + optional program
-  per record) and enables the iSellBeer import. Until then photos still save
-  one per record and the pages say the update is needed.
-- [ ] **Merchandising: import the iSellBeer exports** (Gavin, after the SQL):
-  Manager -> Merchandising -> Import From iSellBeer. Add the Display, Raw
-  Reports and Promos .xlsx files and the photo PDFs, read the
-  reconciliation, match the PDF pages by hand (or leave them for the Review
-  Queue), Import. Re-importing restates, never duplicates.
+- [ ] **iSellBeer photo PDFs: run one more SQL file** (Gavin, before importing
+  PDFs): Supabase SQL Editor, run
+  `supabase/migrations/20261005100000_isb_pdf_photos.sql`. It lets a photo PDF
+  attach each page to the photo an earlier import already created (so the
+  spreadsheet and the PDF -- or the PDF's parts -- can go in on different
+  days). Idempotent.
+- [ ] **Merchandising: import the iSellBeer exports** (Gavin, after that SQL):
+  Manager -> Merchandising -> Import From iSellBeer, on a computer. Add the
+  .xlsx exports first (or together with the PDFs), read the reconciliation,
+  Import; then add the photo PDFs -- whole or split into parts, any order --
+  and press Attach. Pages match their record by the photo link iSellBeer prints
+  on each page; only a page with no readable link asks for a person (or goes to
+  the Review Queue). Re-importing restates, never duplicates. The files never
+  pass through a chat: they are read in the browser.
 - [ ] **Merchandising: real-device capture check** (Gavin): on the iPhone and
   iPad, Account -> Add Photos -> Display -> Take Photo (the camera should
   open with no video controls and no microphone prompt), take two, Retake
@@ -218,6 +217,18 @@ device, a decision).
 - **Account-aware assistant + mock pitch** -- built 2026-09-30 and hardened the same day (server-side account authorization, server-built record, tools on the full record, ledger + spend limits); waiting on the pilot above. Snowflake later adds freshness (daily grain, invoices, inventory); route-wide / comparable-account questions need a permission rule first.
 
 ## Done
+
+- [x] 2026-10-05 **iSellBeer import at full scale**: PDF pages matched by the
+  photo link printed on each page (any order, split or re-saved PDFs too),
+  stored as that photo's report page (no second photo), later PDFs attach to
+  records already in the Hub, records sent 150 per call with upload progress.
+  The Account page stays clean with 80+ imported records: Overview shows one
+  "Imported From iSellBeer" summary row, Account Activity folds imports by
+  month, the gallery pages 24 at a time with a Source filter and loads images
+  only as they come into view. Tested with Report (68) (899 records, 80 on one
+  account).
+- [x] 2026-10-05 **Photo admin + merchandising SQL run** (Gavin): photo admin
+  flag set on the work sign-in; removing any photo verified live.
 
 - [x] **Merchandising records + iSellBeer import + recap** (2026-10-04):
   photos attached to records (Display, Window, Cooler Door, Tap Handles,

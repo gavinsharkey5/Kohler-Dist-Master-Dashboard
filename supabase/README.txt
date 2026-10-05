@@ -237,6 +237,16 @@ SQL Editor:  update public.allowed_users set photo_admin = true where email = '<
 or tick photo_admin on that row in Table Editor -> allowed_users. Verified on
 local Postgres 16 (scratchpad sql_admin_test.sh, 19 checks).
 
+iSELLBEER PHOTO PDFs (2026-10-05)
+Run migrations/20261005100000_isb_pdf_photos.sql after the merchandising file
+(idempotent). Adds kdh_merch_attach_photos(p) (managers only): for each
+{source_url, storage_path} it fills the stored copy of a photo an earlier
+import created as a link -- only when it has none, only under that photo's own
+account folder -- and labels it a report page. It never creates a photo. The
+relabel trigger is redefined with that one exception (a NULL storage_path may
+be filled under the same account; a stored path still never changes).
+Verified on local Postgres 16 (scratchpad sql_pdf_test.sh, 13 checks).
+
 STAY SIGNED IN (2026-10-02)
 Reps stay signed in on a device until they sign out: the server keeps the
 refresh token in an HttpOnly cookie and middleware.js renews the access token

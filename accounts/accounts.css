@@ -747,3 +747,7 @@ html.asheet-open{overflow:hidden}
 .ask-setup p{margin:4px 0 0;line-height:1.5;color:var(--text)}
 #askAvail .kdh-state .btn{margin-top:8px;align-self:flex-start}
 .ask-chip[disabled]{opacity:1;color:var(--text-3);cursor:not-allowed}
+
+/* imported iSellBeer records folded per month (2026-10-05) */
+.act-grp > summary{font-weight:500}
+.act-grp > .acts{margin-top:8px;border-left:2px solid var(--border);padding-left:8px}

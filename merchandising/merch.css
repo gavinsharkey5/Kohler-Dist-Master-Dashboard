@@ -117,3 +117,7 @@ details.mfold > summary:focus-visible{outline:2px solid var(--brand);outline-off
 /* recap photos one per row at full width, so a menu or shelf label stays readable */
 .rp .rrec-ph{grid-template-columns:minmax(0,1fr)}
 .rp .rrec-ph img{width:100%;height:auto}
+
+/* import: report pages (2026-10-05) */
+.mtiles.mt3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.msub{font-size:15px;font-weight:600;margin:16px 0 4px}

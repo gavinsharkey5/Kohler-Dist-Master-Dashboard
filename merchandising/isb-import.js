@@ -24,8 +24,10 @@
  *    corrected value is attached only from the Tap Tracker's audited survey
  *    for the same account, time and brand -- never re-derived here.
  *  - PDF pages are REPORT PAGES (iSellBeer's printed frame + metadata around a
- *    small copy of the photo). They are matched to a record only by a person;
- *    page order means nothing.
+ *    small copy of the photo). Page order means nothing. A page is matched by
+ *    the photo link iSellBeer prints on it (same photo id as the export's Photo
+ *    cell -- matchPage); a page without a readable link is matched only by a
+ *    person.
  */
 (function (global) {
   'use strict';
@@ -318,9 +320,100 @@
     return new Uint8Array(out);
   }
   // every JPEG image XObject, in file order: [{page, bytes, width, height}]
-  function pdfImages(buf) {
+  // PDF REPORT PAGES (2026-10-05). Walks the page tree so each page comes back with
+  // its own photo image AND its own link annotations: iSellBeer's photo reports
+  // put a clickable "view-photo/<type>/<photo id>" link on every page, which is
+  // the key that matches a page to a record (never page order). Falls back to a
+  // plain scan of the image objects when the page tree cannot be read.
+  // -> [{page, bytes (JPEG) | null, width, height, links:[url...], unsupported?}]
+  // ASYNC: a PDF that was split or re-saved (Preview, Acrobat, online splitters) usually
+  // packs its page and link objects into compressed object streams, which are inflated
+  // here with the browser's DecompressionStream.
+  async function pdfImages(buf) {
     const b = new Uint8Array(buf); const s = new TextDecoder('latin1').decode(b);
     if (!/^%PDF-/.test(s)) throw new Error('Not a PDF file.');
+    try { const pages = await pdfPages(b, s); if (pages.length) return pages; } catch (e) { /* fall back below */ }
+    return pdfImageScan(b, s);
+  }
+  async function inflate(bytes) {
+    if (typeof DecompressionStream === 'undefined') throw new Error('no DecompressionStream');
+    const ds = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('deflate'));
+    return new Uint8Array(await new Response(ds).arrayBuffer());
+  }
+  function streamOf(b, s, at, dict, lengthOf) {  // the raw bytes of the stream that starts after `at`
+    const k = s.indexOf('stream', at); if (k < 0) return null;
+    let start = k + 6; if (s[start] === '\r') start++; if (s[start] === '\n') start++;
+    let len = null; const lenM = /\/Length\s+(\d+)(\s+\d+\s+R)?/.exec(dict);
+    if (lenM) len = lenM[2] ? (lengthOf ? lengthOf(+lenM[1]) : null) : +lenM[1];
+    let end = len != null && len > 0 ? start + len : s.indexOf('endstream', start);
+    if (len == null) while (end > start && (s[end - 1] === '\n' || s[end - 1] === '\r')) end--;
+    return b.subarray(start, end);
+  }
+  async function imageFrom(b, s, at, dict, lengthOf) {
+    const filters = (/\/Filter\s*(\[[^\]]*\]|\/\w+)/.exec(dict) || [, ''])[1];
+    const w = +((/\/Width\s+(\d+)/.exec(dict) || [])[1] || 0), h = +((/\/Height\s+(\d+)/.exec(dict) || [])[1] || 0);
+    let data = streamOf(b, s, at, dict, lengthOf); if (!data) return null;
+    // filters apply in order: ASCII85 / Flate wrappers around the JPEG are undone; anything else is reported
+    for (const f of (filters.match(/\/\w+/g) || [])) {
+      if (f === '/ASCII85Decode' || f === '/A85') data = a85(data);
+      else if (f === '/FlateDecode' || f === '/Fl') { try { data = await inflate(data); } catch (e) { return { bytes: null, width: w, height: h, unsupported: filters }; } }
+      else if (f !== '/DCTDecode' && f !== '/DCT') return { bytes: null, width: w, height: h, unsupported: filters };
+    }
+    if (!/DCT/.test(filters)) return { bytes: null, width: w, height: h, unsupported: filters };
+    return { bytes: data, width: w, height: h };
+  }
+  async function pdfPages(b, s) {
+    const objAt = new Map(); const reObj = /(?:^|[\r\n\s])(\d+)\s+(\d+)\s+obj\b/g; let m;
+    while ((m = reObj.exec(s))) objAt.set(+m[1], m.index + m[0].length);
+    const rawDict = i => { const e1 = s.indexOf('endobj', i), e2 = s.indexOf('stream', i);
+      const e = [e1, e2].filter(x => x >= 0).reduce((a, x) => Math.min(a, x), i + 20000); return s.slice(i, e); };
+    const packed = new Map();   // objects inside compressed object streams: num -> text
+    const dictOf = n => { const i = objAt.get(n); if (i != null) return rawDict(i); return packed.get(n) || ''; };
+    const lengthOf = n => { const v = /^\s*(\d+)/.exec(dictOf(n)); return v ? +v[1] : null; };
+    for (const [n, i] of objAt) {
+      const d = rawDict(i); if (!/\/Type\s*\/ObjStm\b/.test(d)) continue;
+      try {
+        let data = streamOf(b, s, i, d, lengthOf); const filters = (/\/Filter\s*(\[[^\]]*\]|\/\w+)/.exec(d) || [, ''])[1];
+        if (/ASCII85Decode/.test(filters)) data = a85(data);
+        if (/FlateDecode/.test(filters)) data = await inflate(data);
+        const t = new TextDecoder('latin1').decode(data);
+        const first = +((/\/First\s+(\d+)/.exec(d) || [])[1] || 0), count = +((/\/N\s+(\d+)/.exec(d) || [])[1] || 0);
+        const nums = t.slice(0, first).trim().split(/\s+/).map(Number);
+        for (let k = 0; k < count; k++) {
+          const num = nums[2 * k], off = nums[2 * k + 1], next = k + 1 < count ? nums[2 * k + 3] : t.length - first;
+          if (!objAt.has(num)) packed.set(num, t.slice(first + off, first + next));
+        }
+      } catch (e) { /* an unreadable object stream: its objects stay unknown */ }
+    }
+    const refs = t => [...String(t || '').matchAll(/(\d+)\s+\d+\s+R/g)].map(x => +x[1]);
+    let catalog = null; for (const n of [...objAt.keys(), ...packed.keys()]) { if (/\/Type\s*\/Catalog\b/.test(dictOf(n))) { catalog = n; break; } }
+    const root = catalog != null && /\/Pages\s+(\d+)\s+\d+\s+R/.exec(dictOf(catalog));
+    if (!root) return [];
+    const order = []; const seen = new Set();
+    const walk = (n, depth) => { if (depth > 30 || seen.has(n)) return; seen.add(n); const d = dictOf(n);
+      if (/\/Type\s*\/Pages\b/.test(d)) { const k = /\/Kids\s*\[([^\]]*)\]/.exec(d); if (k) refs(k[1]).forEach(c => walk(c, depth + 1)); }
+      else if (/\/Type\s*\/Page\b/.test(d)) order.push(n); };
+    walk(+root[1], 0);
+    const out = [];
+    for (let i = 0; i < order.length; i++) { const n = order[i];
+      const d = dictOf(n);
+      // links: /Annots [ 4 0 R ... ] (or a reference to that array)
+      let annots = /\/Annots\s*\[([^\]]*)\]/.exec(d); let annotRefs = annots ? refs(annots[1]) : [];
+      if (!annots) { const ar = /\/Annots\s+(\d+)\s+\d+\s+R/.exec(d); if (ar) annotRefs = refs((/\[([^\]]*)\]/.exec(dictOf(+ar[1])) || [])[1]); }
+      const links = annotRefs.map(a => (/\/URI\s*\(([^)]*)\)/.exec(dictOf(a)) || [])[1]).filter(Boolean);
+      // images: /Resources (inline or a reference) -> /XObject (inline or a reference)
+      let res = d; const rr = /\/Resources\s+(\d+)\s+\d+\s+R/.exec(d); if (rr) res = dictOf(+rr[1]);
+      let xo = /\/XObject\s*<<([^>]*)>>/.exec(res); let xoRefs = xo ? refs(xo[1]) : [];
+      if (!xo) { const xr = /\/XObject\s+(\d+)\s+\d+\s+R/.exec(res); if (xr) xoRefs = refs(dictOf(+xr[1])); }
+      let best = null;
+      for (const x of xoRefs) { const xd = dictOf(x); if (!/\/Subtype\s*\/Image\b/.test(xd)) continue;
+        const at = objAt.get(x); const img = at == null ? null : await imageFrom(b, s, at, xd, lengthOf);
+        if (img && (!best || (img.bytes && !best.bytes) || img.width * img.height > best.width * best.height)) best = img; }
+      out.push(Object.assign({ page: i + 1, links }, best || { bytes: null, width: 0, height: 0, unsupported: 'no image on this page' }));
+    }
+    return out;
+  }
+  function pdfImageScan(b, s) {
     const out = []; const re = /<<((?:(?!>>\s*stream)[\s\S]){0,800}?\/Subtype\s*\/Image[\s\S]{0,800}?)>>\s*stream\r?\n/g; let m;
     while ((m = re.exec(s))) {
       const dict = m[1]; const start = m.index + m[0].length;
@@ -330,11 +423,17 @@
       const w = +((/\/Width\s+(\d+)/.exec(dict) || [])[1] || 0), h = +((/\/Height\s+(\d+)/.exec(dict) || [])[1] || 0);
       let data = b.subarray(start, end);
       if (/ASCII85Decode/.test(filters)) data = a85(data);
-      if (!/DCTDecode/.test(filters)) { out.push({ page: out.length + 1, bytes: null, width: w, height: h, unsupported: filters }); continue; }
-      out.push({ page: out.length + 1, bytes: data, width: w, height: h });
+      if (!/DCTDecode/.test(filters)) { out.push({ page: out.length + 1, bytes: null, width: w, height: h, unsupported: filters, links: [] }); continue; }
+      out.push({ page: out.length + 1, bytes: data, width: w, height: h, links: [] });
       re.lastIndex = end;
     }
     return out;
+  }
+  // the record a page's own link points at (same iSellBeer photo id), or null
+  function matchPage(page, records) {
+    const ids = (page.links || []).map(photoId).filter(Boolean); if (!ids.length) return null;
+    for (const R of records) for (const p of R.photos) { const id = photoId(p.source_url); if (id && ids.includes(id)) return { record: R, url: p.source_url }; }
+    return null;
   }
 
   /* ---------------------------------------------------------------- reconciliation */
@@ -382,6 +481,6 @@
       period_from: P.filters.from, period_to: P.filters.to, counts: o.counts || null }, records: recs, review: o.review || [] };
   }
 
-  const API = { readXlsx, parseWorkbook, parseTable, findTable, readFilters, parseWhen, photoId, promoCategory, applyTapAudit, pdfImages, reconcile, payload, FORMATS };
+  const API = { readXlsx, parseWorkbook, parseTable, findTable, readFilters, parseWhen, photoId, promoCategory, applyTapAudit, pdfImages, matchPage, reconcile, payload, FORMATS };
   if (typeof module !== 'undefined' && module.exports) module.exports = API; else global.KdhIsb = API;
 })(typeof window !== 'undefined' ? window : globalThis);

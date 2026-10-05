@@ -89,12 +89,28 @@ restates its records and adds nothing.
     BESIDE it as the correction; a photo never overwrites a tap survey.
   * Hyperlink targets are read from the workbook (not the cell text). A link
     that does not load shows "Photo Unavailable" -- nothing is guessed.
-  * PDF pages are NEVER matched by position. Each page is shown with a
-    "Match To Record" picker (default: Leave Unresolved); a page matched by
-    hand is stored under that account as a REPORT PAGE (photo_kind
-    report_page, labelled as a report page, not an original photo).
-    Unmatched pages go to the Review Queue (storage _review/), where a
-    manager searches an account and attaches them later.
+  * PDF pages are NEVER matched by position. iSellBeer prints a clickable
+    link to the photo on every page ("view-photo/<type>/<photo id>"), the same
+    link the export's Photo cell holds; isb-import.js reads it from the page
+    tree (also inside the compressed object streams a split / re-saved PDF
+    uses) and matchPage() pairs the page with the record holding that photo.
+    The page's image is iSellBeer's printed frame (date, account, caption,
+    author) around the photo, so it is stored as that photo's REPORT PAGE
+    (photo_kind report_page) at <account>/isb-<photo id>.jpg and attached to
+    the EXISTING photo row by kdh_merch_attach_photos (migration
+    20261005100000_isb_pdf_photos.sql) -- never a second photo, never a
+    replaced copy, never another account's folder.
+  * The spreadsheet and the PDF may come in different sittings and the PDF in
+    any number of parts: the page looks up each page's link among the photos
+    already in the Hub. A page whose photo is not in the Hub yet is SKIPPED
+    (import the spreadsheet, then add the PDF again) -- not stored, not queued.
+  * A page with no readable link gets a "Match To Record" picker (default:
+    Leave Unresolved); matched by hand it rides with its record as a report
+    page; unmatched it goes to the Review Queue (storage _review/). Only these
+    pages are drawn as cards (60 at most); link-matched pages are a list in a
+    fold.
+  * Records go to kdh_merch_import 150 per call; report pages upload four at a
+    time with progress; every step is safe to repeat.
   * The reconciliation is shown BEFORE anything is written: source rows,
     grouped records, product / brand lines, unique photo references, report
     pages matched, duplicates collapsed, unresolved -- per file, with the
@@ -120,6 +136,18 @@ the author edits or removes a Hub record; imported records are read-only for
 reps. kdh_merch_import and the review queue are managers only. Photos are in
 the PRIVATE account-photos bucket and load with the viewer's own token. The
 assistant does not look at photos and says so.
+
+Account page with many imported records (2026-10-05)
+----------------------------------------------------
+One account can carry 80+ imported displays (Report 68: 58001). The Overview's
+recent activity shows the team's own notes, follow-ups and photos and ONE
+"Imported From iSellBeer · N records" row (link: the gallery filtered to
+imports). Account Activity folds imports into one row per month that opens in
+place; the Photos chip or a search lists them one by one. The gallery pages 24
+at a time (Show More) with a Source filter (Captured in the Hub / Imported From
+iSellBeer). The Overview tiles prefer records whose picture is stored, a
+record's tile shows a stored photo before a link, and images load only as they
+scroll into view. Counts and filters still include every record.
 
 Not built (on purpose)
 ----------------------

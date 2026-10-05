@@ -1969,3 +1969,37 @@ stay author-only. Removing a record also deletes its photo rows (imported link
 photos included) and files. Tests: sql_admin_test.sh (19), notes_photos_test,
 merch_capture_test. activity.js tag 20261005b.
 
+
+## iSellBeer import at full scale: PDF pages by link, clean Account page (2026-10-05)
+
+Gavin's first real export (Report 68: 1,391 rows -> 899 display records, 146
+accounts, 80 on 58001) and photo PDFs too big for chat. Imports run ON THE SITE
+(merchandising/import/, files read in the browser); never route them through a
+chat. What holds:
+- PDF PAGES MATCH BY LINK: every iSellBeer photo-PDF page carries a link
+  annotation to its photo (`view-photo/<type>/<photo id>`), identical to the
+  export's Photo cell. `pdfImages()` (now ASYNC) walks the page tree, inflates
+  compressed object streams (split / re-saved PDFs -- tested with pikepdf
+  copies), returns {page, bytes, links}; `matchPage()` pairs a page with the
+  record holding that photo. Never by position. The page image is iSellBeer's
+  printed frame around the photo, so it is a REPORT PAGE (photo_kind
+  report_page), stored at `<account>/isb-<photo id>.jpg` and attached to the
+  EXISTING photo row by `kdh_merch_attach_photos` (migration
+  20261005100000_isb_pdf_photos.sql, which also lets the relabel trigger fill a
+  NULL storage_path under the same account and nothing else). A later PDF (or
+  part) looks its links up in account_photos; a photo not in the Hub yet is
+  skipped ("import the spreadsheet, then add this PDF again"), never queued.
+  Only link-less pages get the hand picker / review queue.
+- Records go 150 per kdh_merch_import call; pages upload 4 at a time with
+  progress (#impProg); everything is safe to repeat.
+- ACCOUNT PAGE AT SCALE (accounts/activity.js tag 20261005c): Overview recent
+  activity excludes imports and adds ONE "Imported From iSellBeer · N records"
+  row (`importSummaryHtml`, link sets `pf.src`); Account Activity folds imports
+  per month (`groupImports`, only on All with no search); gallery pages 24
+  (`pf.limit`, #phMore) with a Source select (#phSrc); Overview tiles and a
+  record's photo order prefer stored copies (also in merchandising/recap.js);
+  `hydrateImages` loads through an IntersectionObserver.
+Tests (scratchpad): isb_test (39, split PDFs), imp_test (rewritten: link
+match, re-import, PDF before spreadsheet, split PDF later, review queue),
+sql_pdf_test.sh (13), scale_test.mjs (Report 68 at 390/820/1280 + dark),
+merch_capture_test updated.

@@ -115,7 +115,9 @@ async function load(n, force){
 function buildRecords(recs, photos){
   const byId = new Map(photos.map(p=>[p.id, p])); const used = new Set();
   const out = recs.map(r=>{
-    const ph = (r.merch_record_photos||[]).slice().sort((a,b)=>a.ord-b.ord).map(x=>{ used.add(x.photo_id); return byId.get(x.photo_id); }).filter(Boolean);
+    // stored photos first (they always load; an iSellBeer link may need an iSellBeer sign-in), then the record's own order
+    const ph = (r.merch_record_photos||[]).slice().sort((a,b)=>a.ord-b.ord).map(x=>{ used.add(x.photo_id); return byId.get(x.photo_id); }).filter(Boolean)
+      .map((p, i)=>[p, i]).sort((a,b)=>((b[0].storage_path?1:0) - (a[0].storage_path?1:0)) || a[1]-b[1]).map(x=>x[0]);
     return Object.assign({}, r, {rid:r.id, key:'mr:'+r.id, lines:(r.merch_lines||[]).slice().sort((a,b)=>a.line_no-b.line_no), photos:ph, legacy:false});
   });
   photos.forEach(p=>{ if(used.has(p.id)) return;
@@ -392,24 +394,70 @@ function stateNote(st){
   return '';
 }
 const tl = {type:'all', q:'', limit:15};       // the full timeline's filters (kept while the page is open)
+/* IMPORTED RECORDS STAY OUT OF THE WAY (2026-10-05). One account can carry 80+
+   iSellBeer display records. The Overview shows people's own notes, follow-ups
+   and photos and ONE summary row for the imports; the full Account Activity
+   folds the imports into one row per month (opened in place), unless the Photos
+   chip or a search asks for them one by one; the gallery pages 24 at a time with
+   a Source filter. Nothing is hidden from a filter or a count. */
+const isImport = e => e.type==='photo' && e.rec && e.rec.source==='isellbeer';
+const monKey = t => String(t||'').slice(0, 7);
+const monLabel = k => { const [y, m] = k.split('-').map(Number); return m ? MONL[m-1]+' '+y : 'Undated'; };
+function groupImports(list){
+  const out = [], at = new Map();
+  list.forEach(e=>{
+    if(!isImport(e)){ out.push(e); return; }
+    const k = monKey(e.t); let g = at.get(k);
+    if(!g){ g = {group:true, id:'isb:'+k, month:k, t:e.t, members:[]}; at.set(k, g); out.push(g); }
+    g.members.push(e);
+  });
+  // a month with a single import shows that record itself
+  return out.map(x=>x.group && x.members.length===1 ? x.members[0] : x);
+}
+function importCounts(evs){
+  const recs = evs.map(e=>e.rec), photos = recs.reduce((a, r)=>a + r.photos.length, 0);
+  const cats = {}; recs.forEach(r=>{ const c = catName(r.category); cats[c] = (cats[c]||0)+1; });
+  return {n:recs.length, photos, cats:Object.entries(cats).sort((a,b)=>b[1]-a[1])};
+}
+function importSummaryHtml(evs){
+  const c = importCounts(evs), last = evs[0];
+  return `<li class="act k-isb" data-ev="isb:summary"><span class="act-ic">${ICON.photo}</span><div class="act-b">
+    <p class="act-h"><b>Imported From iSellBeer</b> <span class="act-p">${c.n} ${c.n===1?'record':'records'}</span></p>
+    <p class="act-t">${E(c.cats.slice(0,3).map(([k, n])=>n+' '+k).join(' · '))}${c.cats.length>3 ? ' · …' : ''}</p>
+    <p class="act-m">Latest ${E(fmtDay(last.t))} · <a href="#" data-go="more:photos" data-src-filter="isellbeer">View Imported Photos</a></p></div></li>`;
+}
+function importGroupHtml(g){
+  const c = importCounts(g.members);
+  // preview: records whose picture the Hub has stored first (an iSellBeer link may not load)
+  const pick = g.members.filter(e=>e.rec.photos[0] && e.rec.photos[0].storage_path).concat(g.members.filter(e=>!(e.rec.photos[0] && e.rec.photos[0].storage_path)));
+  const thumbs = pick.slice(0, 4).map(e=>e.rec.photos[0] ? `<button type="button" class="act-thumb" data-rec="${E(e.rec.key)}" aria-label="Open the ${E(catName(e.rec.category))} photos"><img alt="" loading="lazy" ${thumbAttr(e.rec.photos[0])}></button>` : '').join('');
+  return `<li class="act k-isb" data-ev="${E(g.id)}"><span class="act-ic">${ICON.photo}</span><div class="act-b">
+    <p class="act-h"><b>Imported From iSellBeer · ${E(monLabel(g.month))}</b> <span class="act-p">${c.n} records · ${c.photos} ${c.photos===1?'photo':'photos'}</span></p>
+    <p class="act-t">${E(c.cats.slice(0,3).map(([k, n])=>n+' '+k).join(' · '))}${c.cats.length>3 ? ' · …' : ''}</p>
+    ${thumbs ? `<div class="act-thumbs">${thumbs}${g.members.length > 4 ? `<span class="act-more">+${g.members.length-4}</span>` : ''}</div>` : ''}
+    <details class="act-det act-grp"><summary>Show ${c.n} Records</summary><ul class="acts">${g.members.map(evHtml).join('')}</ul></details></div></li>`;
+}
 function timelineHtml(st, full){
   const all = events(st);
   if(!full){
-    const recent = all.filter(e=>e.type!=='buy').slice(0, 5);
-    const empty = !recent.length ? `<p class="act-empty">${ctx.readOnly ? 'No notes or photos on this account yet.' : 'No notes or photos yet. Notes save to this account for everyone on its route and for managers.'}</p>` : '';
-    return `${stateNote(st)}${empty}<ul class="acts">${recent.map(evHtml).join('')}</ul><a class="btn outline wide" href="#" data-go="more:activity">View All Activity</a>`;
+    // the Overview keeps the people's own work in view: imported iSellBeer records are summarised in ONE row
+    const recent = all.filter(e=>e.type!=='buy' && !isImport(e)).slice(0, 5);
+    const imp = all.filter(isImport);
+    const empty = !recent.length && !imp.length ? `<p class="act-empty">${ctx.readOnly ? 'No notes or photos on this account yet.' : 'No notes or photos yet. Notes save to this account for everyone on its route and for managers.'}</p>` : '';
+    return `${stateNote(st)}${empty}<ul class="acts">${recent.map(evHtml).join('')}${imp.length ? importSummaryHtml(imp) : ''}</ul><a class="btn outline wide" href="#" data-go="more:activity">View All Activity</a>`;
   }
   const counts = {}; all.forEach(e=>{ counts[e.type] = (counts[e.type]||0)+1; });
   const q = tl.q.trim().toLowerCase();
   const shown = all.filter(e=>(tl.type==='all' || e.type===tl.type) && (!q || evText(e).toLowerCase().includes(q)));
+  const items = tl.type==='all' && !q ? groupImports(shown) : shown;
   const chips = TYPES.filter(([k])=>k==='all' || counts[k]).map(([k, l])=>`<button type="button" class="chip" data-tl="${k}" aria-pressed="${tl.type===k}">${E(l)} <span>${k==='all' ? all.length : counts[k]}</span></button>`).join('');
   return `${stateNote(st)}<div class="tl-bar">
       <input type="search" class="kdh-field" id="tlq" placeholder="Search activity" value="${E(tl.q)}" aria-label="Search this account’s activity">
       <div class="chips" role="group" aria-label="Activity type">${chips}</div>
     </div>
     <p class="tl-count">${shown.length===all.length ? `${all.length} ${all.length===1?'record':'records'}` : `Showing ${shown.length} of ${all.length} records`} · newest first</p>
-    ${shown.length ? `<ul class="acts">${shown.slice(0, tl.limit).map(evHtml).join('')}</ul>` : `<div class="kdh-state empty slim"><b>No activity matches.</b><span>Clear the search or pick another type.</span></div>`}
-    ${shown.length > tl.limit ? `<button type="button" class="btn outline wide" id="tlMore">Load Older Activity · ${shown.length - tl.limit} more</button>` : ''}
+    ${items.length ? `<ul class="acts">${items.slice(0, tl.limit).map(it=>it.group ? importGroupHtml(it) : evHtml(it)).join('')}</ul>` : `<div class="kdh-state empty slim"><b>No activity matches.</b><span>Clear the search or pick another type.</span></div>`}
+    ${items.length > tl.limit ? `<button type="button" class="btn outline wide" id="tlMore">Load Older Activity · ${items.length - tl.limit} more</button>` : ''}
     <p class="note">Notes, follow-ups, photos and program marks are saved in the Hub; tap surveys come from iSellBeer; purchases are the monthly sales record. None of these is recorded as a visit.</p>`;
 }
 
@@ -527,7 +575,8 @@ let merchSaveMissing = false;
 
 /* ---------------- PHOTOS & MERCHANDISING (komoot's Photos: category selection above an
    even grid; one tile per record -- its first photo, with the photo count) ---------------- */
-const pf = {cat:'all', q:'', author:'', brand:'', prog:'', when:''};
+const pf = {cat:'all', q:'', author:'', brand:'', prog:'', when:'', src:'', limit:24};
+const GALLERY_PAGE = 24;
 function catOrder(){ const first = M().BY_PREMISE[ctx.prem] || []; return first.concat(M().CATS.map(c=>c.k).filter(k=>!first.includes(k))); }
 function recDate(r){ return r.observed_at || r.created_at; }
 function recAuthor(r){ return r.source==='isellbeer' ? (r.source_author || 'iSellBeer') : (r.author_name || ''); }
@@ -548,7 +597,9 @@ function photosErr(st){
 function photosSide(st){
   const err = photosErr(st); if(err) return err;
   if(!st.records.length) return draftsHtml() + `<p class="act-empty">No photos or merchandising yet.${ctx.readOnly ? '' : ' Use Add Photo to document a display, window, cooler door, tap handles or a menu placement.'}</p>`;
-  return draftsHtml() + recGrid(st.records, 4) + `<a class="btn outline wide" href="#" data-go="more:photos">${st.records.length > 4 ? `View All · ${st.records.length} Records` : 'Open Photos & Merchandising'}</a>`;
+  const withFile = st.records.filter(r=>r.photos[0] && r.photos[0].storage_path);
+  const side = withFile.slice(0, 4).concat(st.records.filter(r=>!withFile.includes(r)).slice(0, Math.max(0, 4 - withFile.length)));
+  return draftsHtml() + recGrid(side, 4) + `<a class="btn outline wide" href="#" data-go="more:photos">${st.records.length > 4 ? `View All · ${st.records.length} Records` : 'Open Photos & Merchandising'}</a>`;
 }
 function photosFull(st){
   const err = photosErr(st);
@@ -564,7 +615,9 @@ function photosFull(st){
   const brands = Array.from(new Set(all.flatMap(r=>(r.brands||[]).concat(r.lines.map(l=>l.brand)).filter(Boolean)))).sort();
   const progs = Array.from(new Set(all.map(r=>r.program_id).filter(Boolean)));
   const q = pf.q.trim().toLowerCase(), since = pf.when ? Date.now() - Number(pf.when)*86400000 : 0;
-  const shown = all.filter(r=>(pf.cat==='all' || (pf.cat==='none' ? !r.category : r.category===pf.cat))
+  const nHub = all.filter(r=>r.source!=='isellbeer').length, nIsb = all.length - nHub;
+  const shown = all.filter(r=>(!pf.src || (pf.src==='isellbeer' ? r.source==='isellbeer' : r.source!=='isellbeer'))
+    && (pf.cat==='all' || (pf.cat==='none' ? !r.category : r.category===pf.cat))
     && (!q || [r.caption, r.location, (r.brands||[]).join(' '), r.lines.map(l=>[l.brand, l.package].join(' ')).join(' '), recAuthor(r), catName(r.category), r.isb_elements, r.isb_promotion_type].join(' ').toLowerCase().includes(q))
     && (!pf.author || recAuthor(r)===pf.author) && (!pf.brand || (r.brands||[]).includes(pf.brand) || r.lines.some(l=>l.brand===pf.brand))
     && (!pf.prog || r.program_id===pf.prog)
@@ -578,24 +631,28 @@ function photosFull(st){
       <label class="fsel"><select id="phWhen" aria-label="Date"><option value="">Any date</option>${[['30','Last 30 days'],['90','Last 90 days'],['365','Last 12 months']].map(([v,l])=>`<option value="${v}"${pf.when===v?' selected':''}>${l}</option>`).join('')}</select></label>
       ${brands.length ? `<label class="fsel"><select id="phBrand" aria-label="Brand"><option value="">Any brand</option>${brands.map(b=>`<option${pf.brand===b?' selected':''}>${E(b)}</option>`).join('')}</select></label>` : ''}
       ${progs.length ? `<label class="fsel"><select id="phProg" aria-label="Program"><option value="">Any program</option>${progs.map(p=>`<option value="${E(p)}"${pf.prog===p?' selected':''}>${E(ctx.progName(p))}</option>`).join('')}</select></label>` : ''}
+      ${nHub && nIsb ? `<label class="fsel"><select id="phSrc" aria-label="Source"><option value="">Any source</option><option value="hub"${pf.src==='hub'?' selected':''}>Captured in the Hub · ${nHub}</option><option value="isellbeer"${pf.src==='isellbeer'?' selected':''}>Imported From iSellBeer · ${nIsb}</option></select></label>` : ''}
       ${authors.length > 1 ? `<label class="fsel"><select id="phAuthor" aria-label="Taken by"><option value="">Anyone</option>${authors.map(a=>`<option${pf.author===a?' selected':''}>${E(a)}</option>`).join('')}</select></label>` : ''}
     </div>
     ${!all.length ? `<p class="act-empty">No photos or merchandising yet.${ctx.readOnly ? '' : ' Use Add Photos to document a display, window, cooler door, tap handles or a menu placement.'}</p>`
-      : shown.length ? `<p class="tl-count">${shown.length===all.length ? `${all.length} ${all.length===1?'record':'records'} · ${nPhotos} ${nPhotos===1?'photo':'photos'}` : `Showing ${shown.length} of ${all.length} records`} · newest first</p>${recGrid(shown, 0)}`
+      : shown.length ? `<p class="tl-count">${shown.length===all.length ? `${all.length} ${all.length===1?'record':'records'} · ${nPhotos} ${nPhotos===1?'photo':'photos'}` : `${shown.length} of ${all.length} records match`} · newest first</p>${recGrid(shown, pf.limit)}
+        ${shown.length > pf.limit ? `<button type="button" class="btn outline wide" id="phMore">Show More · ${Math.min(GALLERY_PAGE, shown.length - pf.limit)} of ${shown.length - pf.limit} more</button>` : ''}`
       : `<div class="kdh-state empty slim"><b>Nothing matches.</b><span>Pick another type or clear the search.</span></div>`}
     ${merchSaveMissing ? `<p class="note">Your photos were saved. Grouping them into one record with product lines needs ${E(MERCH_SQL)} in Supabase.</p>` : ''}`;
 }
 // stored photos load with the person's own token; an iSellBeer link loads straight from iSellBeer
 // (it may need an iSellBeer sign-in) -- when it does not load, the tile says Photo Unavailable
+function loadImg(img){
+  if(img.dataset.src){ const path = img.dataset.src; img.removeAttribute('data-src'); photoUrl(path).then(u=>{ img.src = u; }).catch(()=>unavailable(img)); return; }
+  if(img.dataset.ext){ const u = img.dataset.ext; img.removeAttribute('data-ext'); img.referrerPolicy = 'no-referrer';
+    img.addEventListener('error', ()=>unavailable(img), {once:true}); img.src = u; }
+}
+let imgIO = null;
 function hydrateImages(root){
-  root.querySelectorAll('img[data-src]').forEach(img=>{
-    const path = img.dataset.src; img.removeAttribute('data-src');
-    photoUrl(path).then(u=>{ img.src = u; }).catch(()=>unavailable(img));
-  });
-  root.querySelectorAll('img[data-ext]').forEach(img=>{
-    const u = img.dataset.ext; img.removeAttribute('data-ext'); img.referrerPolicy = 'no-referrer';
-    img.addEventListener('error', ()=>unavailable(img), {once:true}); img.src = u;
-  });
+  const imgs = root.querySelectorAll('img[data-src], img[data-ext]');
+  if(!('IntersectionObserver' in window)){ imgs.forEach(loadImg); return; }
+  if(!imgIO) imgIO = new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ imgIO.unobserve(en.target); loadImg(en.target); } }), {rootMargin:'400px 0px'});
+  imgs.forEach(img=>imgIO.observe(img));
 }
 function unavailable(img){
   const s = document.createElement('span'); s.className = 'pnone'; s.textContent = 'Photo Unavailable';
@@ -625,10 +682,11 @@ function repaintTimeline(root, st, keepFocus){
   if(keepFocus){ const q = root.querySelector('#tlq'); if(q){ q.focus(); q.setSelectionRange(q.value.length, q.value.length); } }
 }
 function wirePhotoFilters(root, st){
-  root.querySelectorAll('[data-pc]').forEach(b=>b.addEventListener('click', ()=>{ pf.cat = b.dataset.pc; repaintPhotos(root, st); }));
+  root.querySelectorAll('[data-pc]').forEach(b=>b.addEventListener('click', ()=>{ pf.cat = b.dataset.pc; pf.limit = GALLERY_PAGE; repaintPhotos(root, st); }));
   const q = root.querySelector('#phq'); let t = 0;
-  if(q) q.addEventListener('input', ()=>{ clearTimeout(t); t = setTimeout(()=>{ pf.q = q.value; repaintPhotos(root, st, true); }, 200); });
-  [['#phWhen','when'], ['#phAuthor','author'], ['#phBrand','brand'], ['#phProg','prog']].forEach(([sel, k])=>{ const s = root.querySelector(sel); if(s) s.addEventListener('change', ()=>{ pf[k] = s.value; repaintPhotos(root, st); }); });
+  if(q) q.addEventListener('input', ()=>{ clearTimeout(t); t = setTimeout(()=>{ pf.q = q.value; pf.limit = GALLERY_PAGE; repaintPhotos(root, st, true); }, 200); });
+  [['#phWhen','when'], ['#phAuthor','author'], ['#phBrand','brand'], ['#phProg','prog'], ['#phSrc','src']].forEach(([sel, k])=>{ const s = root.querySelector(sel); if(s) s.addEventListener('change', ()=>{ pf[k] = s.value; pf.limit = GALLERY_PAGE; repaintPhotos(root, st); }); });
+  const more = root.querySelector('#phMore'); if(more) more.addEventListener('click', ()=>{ pf.limit += GALLERY_PAGE; const y = window.scrollY; repaintPhotos(root, st); window.scrollTo(0, y); });
 }
 function repaintPhotos(root, st, keepFocus){
   root.innerHTML = photosFull(st); wireQuick(root); wirePhotos(root, st); wirePhotoFilters(root, st);
@@ -653,6 +711,9 @@ function expand(form){ form.querySelector('.ncomp-x').hidden = false; form.class
 function wireFeed(root, st){
   hydrateImages(root); hydrateDrafts(root);
   root.querySelectorAll('[data-rec]').forEach(b=>b.addEventListener('click', ()=>viewer(st, b.dataset.rec)));
+  // "View Imported Photos" opens the gallery already filtered to the imports
+  root.querySelectorAll('[data-src-filter]').forEach(a=>a.addEventListener('click', ()=>{ pf.src = a.dataset.srcFilter; pf.limit = GALLERY_PAGE;
+    const pa = document.getElementById('actPhotosAll'); if(pa) repaintPhotos(pa, st); }));
   root.querySelectorAll('[data-done]').forEach(b=>b.addEventListener('click', async ()=>{
     b.disabled = true; b.setAttribute('aria-busy', 'true');
     try{ await rest('rep_actions?id=eq.'+encodeURIComponent(b.dataset.done), {method:'PATCH', headers:{'content-type':'application/json', prefer:'return=representation'}, body: JSON.stringify({status:'done'})});

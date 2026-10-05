@@ -52,7 +52,9 @@ async function load(){
   if(merchMissing) NOTE = 'Records with product lines need supabase/migrations/20261004090000_merchandising.sql. Until it is run, each photo is listed on its own.';
   const byId = new Map(photos.map(p=>[p.id, p])); const used = new Set();
   const out = recs.map(r=>{
-    const ph = (r.merch_record_photos||[]).slice().sort((a,b)=>a.ord-b.ord).map(x=>{ used.add(x.photo_id); return byId.get(x.photo_id); }).filter(Boolean);
+    // stored photos first (always load; an iSellBeer link may need an iSellBeer sign-in), then the record's own order
+    const ph = (r.merch_record_photos||[]).slice().sort((a,b)=>a.ord-b.ord).map(x=>{ used.add(x.photo_id); return byId.get(x.photo_id); }).filter(Boolean)
+      .map((p, i)=>[p, i]).sort((a,b)=>((b[0].storage_path?1:0) - (a[0].storage_path?1:0)) || a[1]-b[1]).map(x=>x[0]);
     return Object.assign({}, r, {key:'mr:'+r.id, lines:(r.merch_lines||[]).slice().sort((a,b)=>a.line_no-b.line_no), photos:ph});
   });
   photos.forEach(p=>{ if(used.has(p.id)) return;

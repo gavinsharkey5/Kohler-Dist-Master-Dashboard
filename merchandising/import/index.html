@@ -9,7 +9,7 @@
 <link rel="preload" href="../../assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 <script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <link rel="stylesheet" href="../../rep/rep.css?v=20261004a">
-<link rel="stylesheet" href="../merch.css?v=20261004a">
+<link rel="stylesheet" href="../merch.css?v=20261005a">
 <meta name="kdh-page" content="Import Merchandising">
 <script src="../../shared/kdh-user.js?v=20261004b"></script>
 </head>
@@ -19,7 +19,8 @@
   the middleware's REP_PATHS; the page also refuses a rep or a rep preview).
   Add the display / tap survey / promotions exports and any "photos" PDFs;
   the page groups rows into records (merchandising/isb-import.js), shows the
-  reconciliation, lets a manager match report pages to records BY HAND, and
+  reconciliation, matches report pages to records by the photo link printed
+  on each page (a page with no readable link only BY HAND), and
   only then calls kdh_merch_import. Nothing is written before "Import".
   merchandising/README.txt has every rule.
 -->
@@ -29,7 +30,7 @@
 <script src="../../shared/auth-config.js"></script>
 <script src="../../shared/merch-types.js?v=20261004a"></script>
 <script src="../../shared/kdh-data.js?v=20261004b"></script>
-<script src="../isb-import.js?v=20261004a"></script>
-<script src="import.js?v=20261004a"></script>
+<script src="../isb-import.js?v=20261005a"></script>
+<script src="import.js?v=20261005a"></script>
 </body>
 </html>
