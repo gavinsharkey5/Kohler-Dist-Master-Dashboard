@@ -38,14 +38,12 @@ Files:
                  product, since Product Num Name was added 2026-07-21; cases
                  and buyer counts are summed across a brand's product rows
                  per account in generate.py, not just the last row read)
-  price_vol.csv  RDE "...Price & Vol" export
-                 (SKU-level price, cases, and $ volume per account, both brands + Carbliss)
-  generate.py    Rebuilds the embedded data in index.html from the two CSVs above
+  generate.py    Rebuilds the embedded data in index.html from the CSVs/workbook above
   index.html     The page itself (data is embedded in the <script id="tg-data"> tag)
 
 To refresh with new exports:
-  1. Re-export both RDE reports, keeping the same columns.
-  2. Save them over accounts.csv and price_vol.csv in this folder (same filenames).
+  1. Re-export the RDE Eval report (and the Buyers L90 report), same columns.
+  2. Save them over accounts.csv and carbliss_buyers_l90.csv in this folder.
   3. Run: python3 generate.py
   4. Commit and push.
 
@@ -56,14 +54,18 @@ now. The old cross-reference lookup from other trackers in this repo
 DisplayPhotoReport.csv) is kept only as a fallback for the rare case a
 future export drops the City column or leaves it blank for an account.
 
-accounts.csv's Product Num Name column (also added 2026-07-21) isn't
-used for flavor detection — cross-checked against price_vol.csv's
-Product Name and found to be a perfect match on every (customer,
-product) pair (identical cases both years, zero mismatches across
-2,689 rows), so price_vol.csv remains the single source for per-SKU
-flavor coverage and pricing; accounts.csv is the source for
-account-level brand totals (Sun Cruiser/White Claw/Carbliss cases by
-year) and now City.
+NO DOLLARS (Gavin, 2026-10-06): this page talks distribution only --
+placements (accounts / buyers) and cases. price_vol.csv ($Vol, unit price)
+is gone: generate.py no longer reads it, and the pitch has no "~$" on the
+top mover and no Price bullet. Per-product cases now come from accounts.csv's
+Product Num Name rows (they matched price_vol case for case). Don't re-add
+a $Vol export or any money wording.
+
+2026-10-06 REFRESH -- Eval _11 + Buyers L90 _3 exports: accounts.csv 3,115 ->
+3,140 rows, 617 target accounts (611 before), 278 carrying Carbliss (265),
+SC + WC 2026 cases 28,182. Buyers file runs to 10/7: 297 YTD buyers, 229
+rolling-90 (window 7/7 - 10/7), 68 fell off. Sell sheets need openpyxl
+(11 of 12 flavors have a URL; Pineapple none).
 
 Flavor mapping and the "gap" ranking (most broadly-carried missing flavor,
 preferring one from a different flavor family than the pitched SKU) are

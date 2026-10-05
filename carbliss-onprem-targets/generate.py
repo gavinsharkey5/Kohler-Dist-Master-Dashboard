@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Regenerates the embedded data in index.html from accounts.csv + price_vol.csv.
+Regenerates the embedded data in index.html from accounts.csv (+ the buyers and sell-sheet files).
 
 Usage (from this folder):
     python3 generate.py
@@ -10,9 +10,11 @@ Inputs (keep these filenames when re-exporting from RDE):
                      (Sales Rep Assigned, Customer ID, Customer Name, Shipping Address, City,
                       On Premise, Brand Family, Product Num Name, Cases 2025, Buyer Count 2025,
                       Cases 2026, Buyer Count 2026)
-    price_vol.csv  - "RDE Carbliss Eval vs Sun Cruiser & White Claw Price & Vol" export
-                     (Product Name, Customer Num, Customer Name, On-Off Premise, Unit Price,
-                      Cases 2025, Cases 2026, $Vol 2025, $Vol 2026)
+
+Dollars are NOT used anywhere on this page (Gavin, 2026-10-06): distribution
+only -- placements (accounts / buyers) and cases. The old price & volume
+export (price_vol.csv) is no longer read or kept; per-product cases come from
+accounts.csv's Product Num Name rows, which matched it case for case.
 
 City comes straight from accounts.csv's own City column (added 2026-07-21 --
 100% of accounts resolve directly from the source export now). The old
@@ -20,14 +22,6 @@ cross-reference lookup from other trackers in this repo (molsoncoors/retention,
 carbliss/data.csv, isellbeer DisplayPhotoReport.csv) is kept only as a fallback
 for the rare case a future export drops the City column or leaves it blank for
 an account.
-
-accounts.csv's Product Num Name column (also added 2026-07-21) isn't otherwise
-used here -- cross-checked against price_vol.csv's Product Name and found to
-be a perfect match on every (customer, product) pair (same cases both years,
-zero mismatches across 2,689 rows), so price_vol.csv remains the single source
-for per-SKU flavor detection and pricing; accounts.csv stays the source for
-account-level brand totals (Sun Cruiser/White Claw/Carbliss cases by year) and
-now City.
 """
 import csv, json, re, os, datetime
 from collections import defaultdict
@@ -35,7 +29,6 @@ from collections import defaultdict
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
 F1 = os.path.join(HERE, 'accounts.csv')
-F2 = os.path.join(HERE, 'price_vol.csv')
 # 2026-09-30: the rolling-90 buyer export ("RDE Carbliss Buyers (ON) L90 vs
 # Start": one row per Carbliss load sheet, with Buyers L90 = 1 when that load
 # sheet falls inside the last 90 days and Buyers 2026 = 1 for the year) and
@@ -123,27 +116,8 @@ def num(s):
     return float(s) if s else 0.0
 
 
-def money(s):
-    s = (s or '').strip().replace('$', '').replace(',', '')
-    if not s:
-        return 0.0
-    neg = s.startswith('(') and s.endswith(')')
-    if neg:
-        s = s[1:-1]
-    v = float(s)
-    return -v if neg else v
-
-
 def fmt_cases(n):
     return f'{n:,.0f}'
-
-
-def fmt_money(n):
-    return f'{n:,.0f}'
-
-
-def fmt_price(n):
-    return f'{n:,.2f}'
 
 
 # ---------- City lookup: direct from accounts.csv, with the old cross-referenced
@@ -192,33 +166,26 @@ with open(F1, encoding='utf-8') as f:
         bucket['buyers25'] += int(r['Buyer Count   2025'] or 0)
         bucket['buyers26'] += int(r['Buyer Count   2026'] or 0)
 
-# ---------- price_vol.csv: per-account per-product aggregation ----------
-# Same (customer, product) pair can appear on multiple rows at different unit
-# prices (price changes / different order sizes during the year) - sum them.
-prod_agg = defaultdict(lambda: {'cases25': 0.0, 'cases26': 0.0, 'vol25': 0.0, 'vol26': 0.0})
-with open(F2, encoding='utf-8') as f:
+# ---------- accounts.csv again: per-account per-product cases ----------
+# One row per (customer, brand, product); the same pair can repeat, so sum.
+prod_agg = defaultdict(lambda: {'cases25': 0.0, 'cases26': 0.0})
+with open(F1, encoding='utf-8') as f:
     for r in csv.DictReader(f):
-        key = (r['Customer Num'].strip(), r['Product Name'].strip())
+        pn = re.sub(r'^\s*\d+\s+', '', r['Product Num Name'].strip())
+        key = (r['Customer ID'].strip(), pn)
         prod_agg[key]['cases25'] += num(r['Cases   2025'])
         prod_agg[key]['cases26'] += num(r['Cases   2026'])
-        prod_agg[key]['vol25'] += money(r['$Vol   2025'])
-        prod_agg[key]['vol26'] += money(r['$Vol   2026'])
 
 # Global per-Carbliss-flavor totals across every account: used both to rank which
-# missing flavor is the strongest bet, and as the reference "typical" Carbliss price.
-flavor_global = defaultdict(lambda: {'cases26': 0.0, 'vol26': 0.0})
+# missing flavor is the strongest bet.
+flavor_global = defaultdict(lambda: {'cases26': 0.0})
 for (cid, prod), agg in prod_agg.items():
     if prod.startswith('Carbliss'):
         fl = carbliss_flavor_of(prod)
         if fl:
             flavor_global[fl]['cases26'] += agg['cases26']
-            flavor_global[fl]['vol26'] += agg['vol26']
 
 flavor_popularity = {fl: flavor_global.get(fl, {}).get('cases26', 0.0) for fl in CARBLISS_FLAVORS}
-flavor_ref_price = {
-    fl: (flavor_global[fl]['vol26'] / flavor_global[fl]['cases26']) if flavor_global.get(fl, {}).get('cases26', 0) > 0 else None
-    for fl in CARBLISS_FLAVORS
-}
 
 by_account = defaultdict(list)
 for (cid, prod), agg in prod_agg.items():
@@ -248,7 +215,7 @@ def build_pitch(r):
             tail = "brand new this year, nothing moved here in 2025."
         else:
             tail = f"steady seller — {fmt_cases(agg['cases25'])} cs moved last year too."
-        bullets.append({'label': 'Top mover', 'text': f"{fmt_cases(agg['cases26'])} cs of {brand} ({sku}) this year (~${fmt_money(agg['vol26'])}) — {tail}"})
+        bullets.append({'label': 'Top mover', 'text': f"{fmt_cases(agg['cases26'])} cs of {brand} ({sku}) this year — {tail}"})
 
         if r['breadth'] > 1:
             bullets.append({'label': 'Not a one-off', 'text': f"{r['breadth']} different Sun Cruiser/White Claw SKUs move through this account."})
@@ -275,22 +242,6 @@ def build_pitch(r):
             bullets.append({'label': 'Diversify with', 'items': [
                 f"Carbliss {flavor_list} — nothing on their menu covers it yet, clean white space.",
             ]})
-
-        ref_price = flavor_ref_price.get(top_flavor)
-        anchor = r['primary']
-        if ref_price and anchor:
-            anchor_prod, anchor_agg = anchor
-            onshelf_price = (anchor_agg['vol26'] / anchor_agg['cases26']) if anchor_agg['cases26'] > 0 else None
-            if onshelf_price:
-                onshelf_brand = brand_of(anchor_prod)
-                onshelf_sku = strip_brand(anchor_prod, onshelf_brand)
-                if ref_price > onshelf_price * 1.05:
-                    framing = "a bit of a premium, but it's new territory, not a price fight."
-                elif ref_price < onshelf_price * 0.95:
-                    framing = "and it undercuts what's already on shelf — easy yes."
-                else:
-                    framing = "in line with what's already on shelf — no price objection."
-                bullets.append({'label': 'Price', 'text': f"Carbliss {top_flavor} runs ~${fmt_price(ref_price)}/cs vs ~${fmt_price(onshelf_price)}/cs for their {onshelf_brand} ({onshelf_sku}) — {framing}"})
     elif r['existing_carbliss']:
         bullets.append({'label': 'Note', 'text': "Their flavor mix already lines up with Carbliss — this is about shelf share, not a new flavor."})
     elif r['primary']:

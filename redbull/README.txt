@@ -63,6 +63,11 @@ Files:
                   export as .csv or .xlsx.
   index.html      The page itself.
 
+2026-10-06 CHECK -- RDE_Red_Bull_Tracker_June_1_Start_4.csv: 977 rows, 7/1 through
+9/30, identical in content to the 9/30 build (170 buying accounts, 162 Regular /
+82 Free / 56 Flavor); nothing to change. The buying period has ended, so the
+numbers are final unless Gavin sets a new period (--start / --end).
+
 2026-09-17 REFRESH -- RDE_Red_Bull_Tracker_Apr_1_Start_5.csv (1,827 rows,
 4/1 through 9/17, nothing dated ahead of the pull this time). Buying accounts
 hold at 197 -- no account joined or dropped -- but four existing accounts
