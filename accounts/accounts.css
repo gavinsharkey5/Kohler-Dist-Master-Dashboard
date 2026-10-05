@@ -881,3 +881,17 @@ html.asheet-open{overflow:hidden}
 .ai-own{font-style:normal;font-size:12.5px;font-weight:600;margin-left:6px;color:var(--text-2)}
 .ai-own.own-us{color:var(--kdh-ok,#13733A)}
 .ai-tot{margin:6px 0 0;font-size:14px;font-weight:600;color:var(--text)}
+/* Save for Later (2026-10-05) */
+.cap-foot{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr) minmax(0,1.3fr);gap:8px}
+.cap-foot .btn{padding:0 10px;font-size:15.5px}
+@media (max-width:360px){ .cap-foot .btn{font-size:14.5px;padding:0 6px} }
+.dchip.d-later{background:var(--brand-soft);color:var(--brand)}
+.dph-none{flex:none;width:56px;height:56px;border-radius:10px;background:var(--surface-2);color:var(--text-2);display:flex;align-items:center;justify-content:center}
+.dph-none svg{width:24px;height:24px}
+.later{margin:4px 0 12px;padding:10px 14px;border-radius:14px;background:var(--brand-soft)}
+.later-h{margin:0 0 4px;font-size:15px;font-weight:600;color:var(--text)}
+.later-h span{display:block;font-size:13.5px;font-weight:400;color:var(--text-2)}
+.later-row{display:flex;flex-direction:column;justify-content:center;min-height:48px;padding:6px 0;border-top:1px solid var(--border);color:var(--text);text-decoration:none}
+.later-row:first-of-type{border-top:0}
+.later-row b{font-size:15.5px;font-weight:600;color:var(--brand)}
+.later-row span{font-size:14px;color:var(--text-2)}

@@ -514,13 +514,17 @@ function stateChip(state, extra){
    record key and the SAME photo paths, so nothing is ever saved twice. */
 function draftsHtml(){
   if(!recDrafts.length) return '';
-  return `<div class="drafts" aria-label="Evidence not yet saved"><p class="drafts-h">Not Yet Saved <span>· kept on this device</span></p>${recDrafts.map(d=>`
-    <div class="dphoto" data-draft="${E(d.id)}"><img alt="" data-dblob="${E(d.id)}">
-      <div class="dp-b"><p class="dp-h"><b>${E(catName(d.category))}</b> · ${d.photos.length} ${d.photos.length===1?'photo':'photos'}${d.caption ? ' · '+E(d.caption) : ''}</p>
-      <p class="dp-s">${stateChip(d.state==='uploading' ? 'pending' : d.state, d.err || (d.state==='pending' ? 'Tap Retry when you have signal.' : d.state==='draft' ? 'Open it to finish and save.' : ''))}</p>
+  return `<div class="drafts" aria-label="Evidence not yet saved"><p class="drafts-h">Not Yet Saved <span>· kept on this device</span></p>${recDrafts.map(d=>{
+    const items = (d.lines||[]).filter(l=>l.brand || l.product_num).length;
+    const what = [`${d.photos.length} ${d.photos.length===1?'photo':'photos'}`].concat(items ? [`${items} ${items===1?'item':'items'}`] : []).join(' · ');
+    const why = d.err || (d.state==='pending' ? 'Tap Retry when you have signal.' : d.state==='draft' ? (d.later ? 'Saved for later. Continue to finish and save.' : 'Open it to finish and save.') : '');
+    return `
+    <div class="dphoto" data-draft="${E(d.id)}">${d.photos.length ? `<img alt="" data-dblob="${E(d.id)}">` : `<span class="dph-none">${ticon(d.category)}</span>`}
+      <div class="dp-b"><p class="dp-h"><b>${E(catOne(d.category))}</b> · ${E(what)}${d.caption ? ' · '+E(d.caption) : ''}</p>
+      <p class="dp-s">${d.state==='draft' && d.later ? '<span class="dchip d-later">Saved for Later</span>'+(why ? ` <span class="dwhy">${E(why)}</span>` : '') : stateChip(d.state==='uploading' ? 'pending' : d.state, why)}</p>
       <div class="dp-p" hidden><div class="pf-bar"><i></i></div></div>
       <div class="dp-a">${d.state==='draft' ? `<button type="button" class="btn primary sm" data-dopen="${E(d.id)}">Continue</button>` : `<button type="button" class="btn primary sm" data-dretry="${E(d.id)}">Retry</button><button type="button" class="btn sm" data-dopen="${E(d.id)}">Edit</button>`}<button type="button" class="btn sm" data-ddiscard="${E(d.id)}">Discard</button></div></div>
-    </div>`).join('')}</div>`;
+    </div>`; }).join('')}</div>`;
 }
 const blobFor = new Map();
 const blobUrlOf = (key, blob) => { let u = blobFor.get(key); if(!u){ u = URL.createObjectURL(blob); blobFor.set(key, u); } return u; };
@@ -1148,6 +1152,7 @@ function detailsStep(d){
     {cls:'cap-sheet', noFocus:true, sub:`${E(ctx.name)} · <button type="button" class="linkbtn" id="pfType">Change type</button>`,
      foot:`<p class="cap-msg" id="capErr" role="alert" hidden></p>
        <div class="cap-foot"><button type="button" class="btn" id="capCancel">Cancel</button>
+       <button type="button" class="btn outline" id="capLater">Save for Later</button>
        <button type="button" class="btn primary" id="capSave"><span class="cs-lbl">${d.state==='failed' || d.state==='pending' ? 'Retry' : 'Save'}</span></button></div>`});
   const $ = s => w.querySelector(s);
   let t = 0; const persist = () => { clearTimeout(t); t = setTimeout(async ()=>{ if(d.photos.length){ d.at = Date.now(); await IDB.put('records', d); } }, 300); };
@@ -1299,6 +1304,17 @@ function detailsStep(d){
     if(d.photos.some(p=>!p.rowSaved) && !confirm('Discard this? The photos have not been saved to the account.')) return;
     w._noKeep = true; await discardDraft(d); closeSheet(); paint(cache.get(ctx.n) || await load(ctx.n));
   });
+  // SAVE FOR LATER (2026-10-05, a rep in a rush): keep exactly what is there on this phone -- no checks,
+  // no upload -- and close. It waits under "Not Yet Saved" on this account and in My Accounts' "Saved for
+  // Later" strip; Continue reopens it here. Nothing reaches the account until Save.
+  $('#capLater').addEventListener('click', async ()=>{
+    if(!d.photos.length && !d.lines.some(l=>l.brand || l.product_num) && !d.location && !d.caption && !d.subtype_note){ err('Nothing to keep yet — take a photo first.'); return; }
+    d.later = true; d.state = d.state==='failed' || d.state==='pending' ? d.state : 'draft'; d.at = Date.now();
+    const kept = await IDB.put('records', d);
+    if(!kept){ err('This phone could not keep a copy (private browsing?). Finish and Save now, or the photos will be lost.'); return; }
+    w._noKeep = true; closeSheet(); await refreshDrafts(); paint(cache.get(ctx.n) || await load(ctx.n));
+    toast('Saved for later on this phone · finish it from My Accounts');
+  });
   const saveBtn = $('#capSave'), lbl = saveBtn.querySelector('.cs-lbl');
   saveBtn.addEventListener('click', async ()=>{
     if(saveBtn.getAttribute('aria-busy')==='true') return;          // one save at a time
@@ -1313,7 +1329,7 @@ function detailsStep(d){
     if(spec.what) d.subtype = 'other';
     d.brands = Array.from(new Set(d.lines.map(l=>l.fam || l.brand).filter(Boolean))).slice(0, 20);
     d.lines.forEach(l=>{ if(!spec.qty && !taps){ l.quantity = ''; l.unit = ''; } });
-    saveBtn.setAttribute('aria-busy', 'true'); $('#capCancel').disabled = true; lbl.textContent = 'Saving…';
+    saveBtn.setAttribute('aria-busy', 'true'); $('#capCancel').disabled = true; $('#capLater').disabled = true; lbl.textContent = 'Saving…';
     d.fresh = false;
     const kept = await IDB.put('records', d);
     const ok = await uploadRecord(d, f=>{ lbl.textContent = `Saving ${Math.round(f*100)}%`; });
@@ -1325,7 +1341,7 @@ function detailsStep(d){
       toast(`${c.one || c.label} saved${n ? ` · ${n} ${n===1 ? 'item' : 'items'}` : ''}`);
       return;
     }
-    saveBtn.removeAttribute('aria-busy'); $('#capCancel').disabled = false; lbl.textContent = 'Retry';
+    saveBtn.removeAttribute('aria-busy'); $('#capCancel').disabled = false; $('#capLater').disabled = false; lbl.textContent = 'Retry';
     err(`Not saved — ${d.err || 'something went wrong'}. ${kept ? 'Everything is kept on this device; tap Retry now or later.' : 'Keep this screen open and tap Retry.'}`);
     if(kept){ await refreshDrafts(); paint(cache.get(ctx.n) || await load(ctx.n)); }
   });
@@ -1335,10 +1351,17 @@ function detailsStep(d){
   setTimeout(()=>{ const f = w.querySelector('#capTake'); if(f && !d.photos.length) f.focus({preventScroll:true}); }, 40);
 }
 
+// this person's drafts on this phone, every account -- for My Accounts' "Saved for Later" strip
+async function savedForLater(){
+  const me = ownerId(); if(!me) return [];
+  const all = await IDB.tx('records', 'readonly', s=>s.getAll());
+  return (all||[]).filter(r=>r.owner===me && r.state!=='saved').sort((a, b)=>b.at - a.at)
+    .map(r=>({id:r.id, n:String(r.n), name:r.name, category:r.category, label:catOne(r.category), photos:(r.photos||[]).length, state:r.state, later:!!r.later, at:r.at}));
+}
 // drafts for the whole device: /login/ "Switch account" calls this so the next person sees none
 async function forgetDrafts(){
   try{ Object.keys(localStorage).filter(k=>k.indexOf('kdh_draft:')===0).forEach(k=>localStorage.removeItem(k)); }catch(e){}
   try{ if(window.indexedDB) indexedDB.deleteDatabase('kdh-drafts'); }catch(e){}
 }
-window.KdhActivity = {attach, load, openComposer, photoFlow, capture: photoFlow, forgetDrafts, _exifTime: exifTime, _cats: CATS, _events: ()=>ctx ? events(cache.get(ctx.n) || {notes:[], photos:[], records:[]}) : []};
+window.KdhActivity = {attach, load, openComposer, photoFlow, capture: photoFlow, forgetDrafts, savedForLater, _exifTime: exifTime, _cats: CATS, _events: ()=>ctx ? events(cache.get(ctx.n) || {notes:[], photos:[], records:[]}) : []};
 })();

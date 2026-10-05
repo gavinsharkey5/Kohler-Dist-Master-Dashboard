@@ -246,6 +246,11 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-10-05 **Save for Later on Add Photos**: a rep in a rush keeps a
+  half-done photo record on the phone (no checks, no upload); it is listed on
+  the account and in a "Saved for Later" strip on My Accounts; Continue
+  finishes it.
+
 - [x] 2026-10-05 **Add Photos redesigned for the phone**: the selected type
   decides the form (POD / Display, Cooler Stickers, Windows, Signage, Menu
   Placements, Tap Handles, Other); no generic Caption / Brands / Program /

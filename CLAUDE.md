@@ -2124,3 +2124,9 @@ acceptance script, 47 checks, 375/390/393/430 x light/dark: fit, tap targets,
 progressive reveal, totals, save / retry / double tap, keyboard stand-in),
 plus merch_capture_test / tap_own_test / notes_photos_test / drafts_test ported
 to the new flow, recap_test (Excel item columns).
+Save for Later (same day, Gavin): footer Cancel · Save for Later · Save. It writes
+the draft to IndexedDB (`d.later = true`) with no checks and no upload and closes;
+`draftsHtml` shows "Saved for Later" + "N photos · N items", and My Accounts
+renders `#laterStrip` from `KdhActivity.savedForLater()` (this person's drafts on
+this phone, every account; hidden in preview). Device-only by design -- nothing is
+on the account until Save. cap2_test.mjs covers it (57 checks).

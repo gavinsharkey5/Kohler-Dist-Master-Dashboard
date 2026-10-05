@@ -295,6 +295,7 @@ function renderList(){
   // list would show (same search, filters and authorized accounts)
   const viewSeg = `<div class="seg vseg" id="viewSeg" role="group" aria-label="View">${[['list','List'],['map','Map']].map(([v,l])=>`<button type="button" data-mode="${v}" aria-pressed="${state.mode===v}"${state.mode===v?' class="on"':''}>${l}</button>`).join('')}</div>`;
   app.innerHTML = `<header class="ws lhead"><div class="lh-top"><h1>${title}</h1>${viewSeg}</div><div class="id"><p class="idline">${sub}${flagged ? ` · ${plural(flagged,'account')} with buying alerts` : ''}${ref ? ` · sales through ${E(monLabel(ref))}` : ''}</p></div></header>
+    <div id="laterStrip"></div>
     <div class="filters">
       <input type="search" class="kdh-field" id="q" placeholder="Search by name, town or #${isMgr?' or rep':''}" value="${E(state.q)}" autocomplete="off" aria-label="Search accounts">
       ${isMgr ? `<select id="repSel" aria-label="Rep"><option value="">All my reps</option>${SCOPE.map(r=>`<option value="${E(r)}"${r===state.rep?' selected':''}>${E(r)}</option>`).join('')}</select>` : ''}
@@ -334,6 +335,7 @@ function renderList(){
   const ks = $('#kindSel'); if(ks) ks.addEventListener('change', e=>{ state.kind = e.target.value; history.replaceState(null,'',listHash()); render(); });
   $('#famSel').addEventListener('change', e=>{ state.fam = e.target.value; history.replaceState(null,'',listHash()); render(); });
   const fc = $('#famClear'); if(fc) fc.addEventListener('click', ()=>{ state.fam = ''; history.replaceState(null,'',listHash()); render(); });
+  fillLater();
 }
 // One list row (Shopify All Customers): the account name, town · #CustomerID
 // (· premise · rep for a manager), then ONE leading action and a count of the
@@ -356,6 +358,16 @@ function listBody(shown, rows){
   let left = state.limit;
   return GROUPS.filter(g=>by.get(g[0]).length).map(g=>{ const list = by.get(g[0]); const take = list.slice(0, Math.max(0, left)); left -= take.length; if(!take.length) return '';
     return `<h3 class="lgroup" data-g="${g[0]}">${E(g[1])} <span>${list.length}</span></h3><div class="rows">${take.map(rowHtml).join('')}</div>`; }).join('');
+}
+// SAVED FOR LATER (2026-10-05): photo records this person started and kept on this phone, any account,
+// so a rep who hurried out of a store finds them again. Device-only (IndexedDB), the real signed-in person only.
+async function fillLater(){
+  const el = document.getElementById('laterStrip'); if(!el || !window.KdhActivity || !window.KdhActivity.savedForLater || (U && U.preview)) return;
+  let list = []; try{ list = await window.KdhActivity.savedForLater(); }catch(e){}
+  if(!list.length || !el.isConnected){ el.innerHTML = ''; return; }
+  const byAcct = new Map(); list.forEach(d=>{ const k = d.n; if(!byAcct.has(k)) byAcct.set(k, []); byAcct.get(k).push(d); });
+  el.innerHTML = `<section class="later" aria-label="Saved for later"><p class="later-h">Saved for Later <span>${list.length} on this phone · not on the account yet</span></p>
+    ${Array.from(byAcct.entries()).map(([n, ds])=>`<a class="later-row" href="#acct=${encodeURIComponent(n)}"><b>${E(ds[0].name || ('Account #'+n))}</b><span>${E(ds.map(d=>d.label).join(' · '))}${ds.some(d=>d.state==='failed' || d.state==='pending') ? ' · needs Retry' : ''}</span></a>`).join('')}</section>`;
 }
 function renderListRowsOnly(){ const y = window.scrollY; renderList(); const q = $('#q'); q.focus(); q.setSelectionRange(q.value.length, q.value.length); window.scrollTo(0, y); }
 

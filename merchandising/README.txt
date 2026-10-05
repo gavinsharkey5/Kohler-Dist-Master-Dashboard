@@ -82,7 +82,13 @@ catalogue (accounts/data/catalog.json), then other brands from the territory lis
 camera, image-only input) / Choose From Photos; thumbnails carry Retake and Remove;
 + Photo / Library tiles add more. Save shows progress in the button, refuses a
 second tap, and on failure keeps everything (draft) with the reason in the footer
-and Save -> Retry. Required: a photo; for every type but Other at least one item;
+and Save -> Retry. SAVE FOR LATER (footer: Cancel · Save for Later · Save) keeps
+exactly what is there on this phone -- no required-field checks, no upload -- and
+closes; it waits under "Not Yet Saved" ("Saved for Later") on that account and in
+a "Saved for Later" strip at the top of My Accounts (every account, this signed-in
+person only, not in preview), and Continue reopens it. Nothing reaches the
+account until Save. Device-only: another phone or a cleared browser does not
+have it. Required: a photo; for every type but Other at least one item;
 each item's required groups; tap location and every tap's Ours / Theirs.
 Account Activity shows a Hub capture as its items ("POD · 2 SKUs", "Tap Handles ·
 Main Bar", one line each, 3 shown + "N more", tap totals); the viewer lists every
