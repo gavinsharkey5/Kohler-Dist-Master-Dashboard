@@ -346,7 +346,7 @@ target is 75% of it (Gavin, 2026-10-05, corrected -- the first build used a one-
 export and screenshot goals). Progress = the same export's 9/1-11/30 placements, so it
 runs through Nov 30 (periodEnd). Each rep's block starts with a SUBTOTAL row (first
 product's name, carries the goal) that is dropped when it equals the rest; reps with no
-goal (Alisa, both Johns' -- John Neukum / John O'Donoghue -- and Dylan) are not scored; the
+goal (Alisa Acciardi, John Neukum, John O'Donoghue, Dylan Rubino) are not scored.
 BBC 50% Buying Accounts Lytt (30%, 'pct_of_base' 0.5, 1+ SKU, built 2026-10-05 from lytt_october.csv over sales_reps_customer_base_core.csv MINUS Whole Foods -- they cannot sell alcohol; the removal is Lytt-only, Keystone / Fever Tree still read the shared file; Lytt buyers outside a rep's base are NOT counted and printed; see the CUSTOMER BASE REFRESH note below for the 2026-10-05 base), Molly's
 (2) New Placements (15%) and Wine (1) New Placement (15%) as 'new_placements' on
 the two-window exports (base 7/1-9/30, current 10/1-10/31), POS (5) Cooler Door
