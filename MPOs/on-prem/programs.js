@@ -103,8 +103,8 @@ const OBJECTIVES_2026_09 = [
 const OBJECTIVES_2026_10 = [
   {key:'carbliss', name:'Carbliss – 40% Buying Accounts', shortName:'Carbliss', unit:'buying account', weight:0.25, type:'new_accounts', hasData:false, awaiting:true, awaitingNote:'Carbliss buying accounts have not been loaded yet.', goalLabel:'40% of account base'},
   {key:'sam_adams_conversion', name:'BBC – Complete Oktoberfest Draft Conversion', shortName:'Oktoberfest Conversion', unit:'account', weight:0.25, type:'followup', hasData:true, goalLabel:'Convert every Summer Ale keg account to Oktoberfest',
-   typeNote:'Every account that poured Sam Adams Summer Ale kegs this season needs an Oktoberfest keg. Kegs bought and returned do not count.',
-   followLabels:{had:'Summer Ale kegs', done:'Oktoberfest kegs', doneTag:'Converted', todoTag:'Not converted yet'}},
+   typeNote:'Every account that had Summer Ale kegs from April 1 to July 17 needs an Oktoberfest keg from August 1 to October 23. Kegs bought and returned do not count.',
+   followLabels:{had:'Summer Ale kegs (Apr 1\u2013Jul 17)', done:'Oktoberfest kegs (Aug 1\u2013Oct 23)', doneTag:'Converted', todoTag:'Not converted yet'}},
   {key:'spirits_followup', name:'Wine & Spirits – Follow Up On All On-Premise Spirits Placements', shortName:'Spirits Follow-Up', unit:'account', weight:0.25, type:'followup', hasData:true, goalLabel:'Re-order at every account placed Jul–Sep',
    typeNote:'Every account that took a spirits placement from July through September needs to order spirits again in October.',
    followLabels:{had:'Placed Jul–Sep', done:'Ordered in October', doneTag:'Followed up', todoTag:'Not followed up yet'}},

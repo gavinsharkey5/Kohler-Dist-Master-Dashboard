@@ -17,12 +17,14 @@ Both objectives are FOLLOW-UP scores: a rep has a list of accounts (the base)
 and each one is either done or not yet.
 
 --- BBC Oktoberfest conversion ---
-BASE = accounts whose NET Summer Ale keg units are > 0 over the export's whole
-window (4/1/2026 on; a keg bought and returned is nothing -- the same net rule
-the Incentive Tracker's Sam Adams conversion uses). DONE = the same account has
-NET Octoberfest keg units > 0. Accounts that took Octoberfest but never Summer
-Ale ("gained") are not in the base. "Complete" = every base account, so the
-target is 100% of the rep's base.
+BASE = accounts with NET Summer Ale keg units > 0 loaded 4/1/2026 - 7/17/2026
+(Gavin, 2026-10-05). DONE = the same account has NET Octoberfest keg units > 0
+loaded 8/1/2026 - 10/23/2026. Net = a keg bought and returned is nothing (the
+same net rule the Incentive Tracker's Sam Adams conversion uses). Summer Ale
+loaded after 7/17 and Octoberfest loaded before 8/1 count toward neither side.
+Accounts that took Octoberfest but never poured Summer Ale in the base window
+("gained") are not in the base. "Complete" = every base account, so the target
+is 100% of the rep's base.
 
 --- Spirits follow-up ---
 BASE = accounts with a spirits placement in 7/1-9/30. DONE = the same account
@@ -39,6 +41,8 @@ MONTH_KEY = "2026-10"
 KEGS_CSV = HERE / "sam_adams_kegs_summer_to_octoberfest.csv"
 SPIRITS_CSV = HERE / "spirits_followup_placements.csv"
 HOUSE = {"Default", "Office Tell Sell"}      # Encompass house "reps" -- not people
+BASE_WINDOW = (datetime(2026, 4, 1), datetime(2026, 7, 17))     # Summer Ale poured
+DONE_WINDOW = (datetime(2026, 8, 1), datetime(2026, 10, 23))    # Oktoberfest taken
 
 
 def load(path):
@@ -86,12 +90,15 @@ def build_conversion():
         if not rep or rep in HOUSE:
             continue
         units = sum(num(r[c]) for c in ucols)
-        a = acct[(rep, r["Customer Num & Company"].strip())]
         side = "S" if "summer" in r["Brand"].lower() else "O"
-        a[side][short_keg(r["Product Num & Name"])] += units
         d = dt(r["Date"])
+        lo, hi = BASE_WINDOW if side == "S" else DONE_WINDOW
+        if not d or not (lo <= d <= hi):
+            continue                # outside that side's window: counts for nothing
+        a = acct[(rep, r["Customer Num & Company"].strip())]
+        a[side][short_keg(r["Product Num & Name"])] += units
         key = "sd" if side == "S" else "od"
-        if d and units > 0 and (a[key] is None or (side == "S" and d > a[key]) or (side == "O" and d < a[key])):
+        if units > 0 and (a[key] is None or (side == "S" and d > a[key]) or (side == "O" and d < a[key])):
             a[key] = d      # latest Summer Ale load; FIRST Octoberfest load
     out = []
     for (rep, cust), a in sorted(acct.items()):

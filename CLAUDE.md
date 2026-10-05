@@ -362,9 +362,10 @@ Carbliss for the account base; no iSellBeer export yet). BBC Oktoberfest Draft
 Conversion and Wine & Spirits Spirits Follow-Up are a NEW on-prem objective type,
 'followup': per rep a list of base accounts, each done or not (target = every base
 account, `pct:1`). Run `python3 MPOs/on-prem/generate_2026-10.py` (rebuilds per-rep
-copies). Conversion: base = accounts with NET Summer Ale keg units > 0 over the
-export (4/1 on), done = NET Octoberfest keg units > 0 (a keg returned is nothing;
-house "reps" Default / Office Tell Sell dropped). Spirits: base = accounts with a
+copies). Conversion (Gavin's windows, 2026-10-05): base = accounts with NET Summer
+Ale keg units > 0 loaded 4/1-7/17, done = NET Octoberfest keg units > 0 loaded
+8/1-10/23 (a keg returned is nothing; house "reps" Default / Office Tell Sell
+dropped). Spirits: base = accounts with a
 7/1-9/30 spirits placement, done = any October placement at that account; accounts
 new in October are not in the base. ASSUMPTION to confirm: "complete" / "all" =
 100% of the rep's own list. Inputs: sam_adams_kegs_summer_to_octoberfest.csv,
