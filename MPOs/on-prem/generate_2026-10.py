@@ -128,6 +128,72 @@ def build_conversion():
     return out
 
 
+BB_DIR = HERE.parent.parent / "incentive-tracking" / "data"
+
+
+def apply_boston_beer(rows):
+    """BOSTON BEER SCOREBOARD OVERRIDE (Gavin, 2026-10-05: "use the boston beer
+    files to update this mpo"). For every rep on Boston Beer's seasonal
+    conversion scoreboard the MPO counts are THEIR numbers: base = Prev Season
+    lines, done = Converted, with their unconverted-account list as the named
+    targets (matched to the RDE keg export by outlet name when possible).
+    Converted accounts are named from the RDE export where it agrees; surplus
+    RDE conversions (newest first-Octoberfest keg first -- those landed after
+    Boston Beer's snapshot) are left out, and a shortfall is filled with
+    "Converted account (Boston Beer count)" lines. Reps with no scoreboard row
+    (Dave Ehlers, Phil Ernst, Shane Barreca) and the route-90 row keep the RDE
+    list. Source files: incentive-tracking/data/sam_adams_seasonal_oct_*.csv."""
+    import csv, re
+    off = BB_DIR / "sam_adams_seasonal_oct_official.csv"
+    unc = BB_DIR / "sam_adams_seasonal_oct_unconverted.csv"
+    if not off.exists() or not unc.exists():
+        return rows
+    norm = lambda t: re.sub(r"[^a-z0-9]", "", (t or "").lower())
+    score = {r["Sales Rep Name"]: r for r in csv.DictReader(open(off, encoding="utf-8"))
+             if not r["Sales Rep Name"].startswith("Route ")}
+    bb_unc = defaultdict(list)
+    for u in csv.DictReader(open(unc, encoding="utf-8")):
+        bb_unc[u["Sales Rep Name"]].append(u)
+    out, report = [], []
+    by_rep = defaultdict(list)
+    for r in rows:
+        by_rep[r["SALES_REP_ASSIGNED"]].append(r)
+    for rep, lst in sorted(by_rep.items()):
+        sc = score.get(rep)
+        if not sc:
+            out += lst
+            continue
+        conv_n, not_n = int(sc["Converted"]), int(sc["Not Converted"])
+        pool = {norm(r["CUSTOMER_NAME"]): r for r in lst}
+        used, targets = set(), []
+        for u in bb_unc.get(rep, []):
+            outlet = u["Account"]
+            hit = pool.get(norm(outlet))
+            used.add(norm(outlet))
+            if hit:
+                t = dict(hit); t["DONE"] = 0; t["DONE_DETAIL"] = ""; t["DONE_DATE"] = ""
+                if not t["BASE_DETAIL"]:
+                    t["BASE_DETAIL"] = "Summer Ale (Boston Beer list)"
+            else:
+                t = {"SALES_REP_ASSIGNED": rep, "CUSTOMER_NUM": "", "CUSTOMER_NAME": outlet.title(),
+                     "BASE_DETAIL": f"Summer Ale last season · {float(u['Prev Season CEs'] or 0):.1f} CE (Boston Beer list)",
+                     "BASE_DATE": "", "DONE": 0, "DONE_DETAIL": "", "DONE_DATE": ""}
+            targets.append(t)
+        done = [r for r in lst if r["DONE"] and norm(r["CUSTOMER_NAME"]) not in used]
+        done.sort(key=lambda r: (r["DONE_DATE"] or ""))          # oldest first-Octoberfest keg first
+        done = done[:conv_n]
+        pad = conv_n - len(done)
+        for i in range(pad):
+            done.append({"SALES_REP_ASSIGNED": rep, "CUSTOMER_NUM": "", "CUSTOMER_NAME": "Converted account (Boston Beer count)",
+                         "BASE_DETAIL": "Summer Ale last season", "BASE_DATE": "", "DONE": 1,
+                         "DONE_DETAIL": "Octoberfest (Boston Beer scoreboard 10/5)", "DONE_DATE": "2026-10-05"})
+        out += targets + done
+        report.append((rep, conv_n + not_n, conv_n, len(targets), pad))
+    print("sam_adams_conversion (Boston Beer scoreboard 10/5): " + "; ".join(
+        f"{r[0]} {r[2]}/{r[1]} (named targets {r[3]}, filler {r[4]})" for r in report))
+    return out
+
+
 def build_spirits():
     rows = load(SPIRITS_CSV)
     k = list(rows[0].keys())
@@ -203,7 +269,7 @@ def build_carbliss():
 def main():
     month_dir = HERE / "data" / MONTH_KEY
     month_dir.mkdir(parents=True, exist_ok=True)
-    conv, spirits = build_conversion(), build_spirits()
+    conv, spirits = apply_boston_beer(build_conversion()), build_spirits()
     carb, carb_outside = build_carbliss()
     (month_dir / "mpo_carbliss.json").write_text(json.dumps(carb, indent=2))
     (month_dir / "mpo_sam_adams_conversion.json").write_text(json.dumps(conv, indent=2))

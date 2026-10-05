@@ -447,7 +447,7 @@ const PROGRAM_LIST_2026_10 = [
    pitch:`Convert every seasonal handle by October 23 — 90% of your lines pays $300, all of them $400.`,
    getRep:oct('sam_adams_cold_snap'),
    metric:d=>d.hasBase ? d.convertedPct : null, metricLabel:'% of lines converted', fmt:v=>v.toFixed(0)+'%',
-   awaitingNote:`Awaiting the conversion scoreboard — the rules above are live; your lines and conversions will fill in here once the data lands.`},
+   },
   {key:'industrial_arts', group:'new', title:'Industrial Arts Target Account Launch', shortTitle:'Industrial Arts', tag:'Oct–Dec',
    pitch:`Open accounts on Industrial Arts — three core SKUs opens a store, and a Wrench draft line at a target account pays $100 in October.`,
    getRep:oct('industrial_arts'),
@@ -972,6 +972,53 @@ function cardSamAdamsConversion(rep){
   </div>`;
 }
 
+function cardSamAdamsColdSnap(rep){
+  const P = PROGRAM_DATA_2026_10['sam_adams_cold_snap']||{};
+  const d = P.byRep?.[rep];
+  if(!d) return '';
+  const asOf = d.asOf ? new Date(d.asOf+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'}) : '';
+  const ces = n => `${Number(n||0).toFixed(1)} CE`;
+  const pct = d.hasBase ? (d.convertedPct||0) : null;
+  const board = statBoard([
+    {num:d.hasOfficial?`${d.converted} of ${d.lines}`:'—', label:'Lines Converted', status:d.converted>0?'good':null,
+     sub:d.hasOfficial?`${pct!=null?pct.toFixed(0)+'% · ':''}Boston Beer scoreboard, ${asOf}`:'Not on Boston Beer’s scoreboard'},
+    {num:d.hasOfficial?d.notConverted:'—', label:'Still To Convert', sub:d.hasOfficial?`${d.gained} gained lines not from conversion`:''},
+    {num:d.payout?`$${d.payout.toLocaleString('en-US')}`:'$0', label:'Tracked Earnings', sub:'Converted lines tier + gained-line bonus'},
+  ]);
+  const mainBlock = (!d.hasOfficial || !d.hasBase)
+    ? naBlock('No Lines To Score', `Boston Beer’s seasonal conversion scoreboard (as of ${asOf}) shows no prior-season lines for you, so there is no conversion percentage. Gained lines still pay $50 each.`)
+    : earnBlock({
+      icon:'🍂', title:'Convert Every Seasonal Draft Handle By October 23',
+      rate:`${pct.toFixed(0)}% CONVERTED`,
+      rateNote:d.smallBook
+        ? `You have fewer than 10 lines, so the 80% rule applies: convert at least 80% for $20 per conversion. Boston Beer’s count as of ${asOf}.`
+        : `90% of your lines pays $300 and all of them pays $400, with at least 10 conversions to qualify. Boston Beer’s count as of ${asOf}.`,
+      steps:[
+        {text:d.smallBook?`Reach 80% of your ${d.lines} lines`:`Reach 90% of your ${d.lines} lines — ${d.toNinety} more conversion${d.toNinety===1?'':'s'}`, done:d.smallBook?pct>=80:pct>=90},
+        {text:`Convert all ${d.lines} lines for the top tier — ${d.notConverted} still to go`, done:d.notConverted===0},
+        {text:`Open Octoberfest at accounts that never had Summer Ale — $50 each (${d.gained} so far)`, done:d.gained>0},
+      ],
+      stats:[{num:d.converted,label:'Converted'},{num:d.notConverted,label:'Not Yet',dim:d.notConverted===0},{num:d.gained,label:'Gained'}],
+      progress:{pct:pct||0, caption:`${d.converted} of ${d.lines} lines converted · conversions must be final by Oct 23`},
+      opportunity:{
+        label:`Boston Beer’s Unconverted List (${asOf})`, count:d.notConverted,
+        note:`Accounts of yours still on last season’s handle, biggest pourers first.`,
+        items:(d.unconvertedAccounts||[]).map(a=>({name:`${a.account}${a.city?` · ${a.city}`:''}`, stat:`${ces(a.prevCEs)} last season`})),
+        emptyMsg:'Boston Beer has every one of your lines converted.',
+      },
+      extra:'',
+    });
+  return `<div class="prog-card">
+    <div class="prog-head">
+      <div class="prog-name-row">${progLogo('sam_adams_cold_snap')}<span class="prog-name">Sam Adams Seasonal Draft Conversion</span><span class="prog-tag">Oct 1&ndash;23</span>${terrTag('sam_adams_cold_snap')}</div>
+      ${progPitch('sam_adams_cold_snap')}
+    </div>
+    <div class="prog-body">${board}${mainBlock}
+      <div class="prog-foot-note">Scored from Boston Beer’s seasonal conversion scoreboard as of ${asOf} (route ${esc(d.route||'—')}), by route. The unconverted list comes from their companion workbook and updates with their next report.</div>
+    </div>
+  </div>`;
+}
+
 // 2XO Bourbon. Off-premise pays for the American+French Oak PAIR, not either
 // oak alone, so this is the one program where opening a single SKU shows as
 // "not yet a placement" rather than a smaller placement -- see build_two_xo().
@@ -1253,6 +1300,7 @@ const PROGRAM_CARD_FN = {
   'constellation_fall': cardConstellationFall,
   'yuengling_retention_fall': cardYuenglingRetentionFall,
   'sam_adams_conversion': cardSamAdamsConversion,
+  'sam_adams_cold_snap': cardSamAdamsColdSnap,
 };
 
 // Zero-state card for a program whose rules and goals are known but whose data
@@ -3818,7 +3866,7 @@ const PROGRAM_SUMMARY = {
     sub:`${d.legsQualified} of 2 legs at 8+`,
     next:(d.wc.qualified&&d.harder.qualified) ? `Both legs are in — keep every package M.A.D.E. and the payout doubles.` : `Sell in <strong>${[!d.wc.qualified?pl(d.wc.toQualifier,'more White Claw 19.2oz'):'', !d.harder.qualified?pl(d.harder.toQualifier,'more Harder / Cayman single serve'):''].filter(Boolean).join(' and ')}</strong>.`}),
   four_loko:(d)=>({goal:false, now:d.cases||0, unit:'cases', label:`${Math.round(d.cases||0)} cases`, next:`Five new Sour Apple or USA placements switch the per-case payout on.`}),
-  sam_adams_cold_snap:(d)=>({goal:true, now:d.converted||0, target:d.lines||0, unit:'lines', label:`${d.converted||0} of ${d.lines||0} lines converted`, next:`Convert every seasonal handle by October 23.`}),
+  sam_adams_cold_snap:(d)=>({goal:true, now:d.converted||0, target:d.lines||0, unit:'lines', label:`${d.converted||0} of ${d.lines||0} lines converted`, next:d.notConverted>0?`Convert ${d.notConverted} more seasonal handle${d.notConverted===1?'':'s'} by October 23.`:`Every seasonal handle is converted — hold them through October 23.`}),
 
   montauk:(d)=>({goal:false, now:d.totalNewPlacements, unit:'placements',
     label:`${pl(d.totalNewPlacements,'new placement')}`, sub:money(d.payout)+' earned',

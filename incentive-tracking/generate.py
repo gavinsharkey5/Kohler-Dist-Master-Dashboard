@@ -4748,6 +4748,63 @@ def build_sam_adams_conversion():
     }
 
 
+
+def build_sam_adams_cold_snap():
+    """October Sam Adams seasonal draft conversion (deck: convert every
+    seasonal handle by Oct 23; 90% of lines $300, 100% $400, 10 conversions to
+    qualify, <10 accounts: 80% at $20 per conversion; $50 per new Octoberfest
+    line at an account without Summer Ale). SOURCE OF TRUTH = Boston Beer's
+    two workbooks (as of 2026-10-05), flattened by
+    `convert_sam_adams_official.py --oct` into sam_adams_seasonal_oct_*.csv.
+    Lines = the rep's Prev Season accounts; gained = Boston Beer's "Gained Not
+    from Conversion". Tiers are read from the deck as worded -- ASSUMPTION: the
+    10-conversion minimum applies to the $300/$400 tiers only. Dollars are
+    tracker-only."""
+    official, as_of = {}, None
+    for o in read_rows("sam_adams_seasonal_oct_official.csv"):
+        prev, conv = int(to_num(o["Prev Season Dist"])), int(to_num(o["Converted"]))
+        gained = int(to_num(o["Gained"]))
+        pct = round(conv / prev * 100, 1) if prev else None
+        if prev >= 10:
+            tier = 400 if (pct is not None and pct >= 100 and conv >= 10) else (300 if (pct is not None and pct >= 90 and conv >= 10) else 0)
+        else:
+            tier = 20 * conv if (pct is not None and pct >= 80) else 0
+        official[o["Sales Rep Name"]] = {
+            "route": o["Route"], "asOf": o["As Of"], "lines": prev, "converted": conv,
+            "notConverted": int(to_num(o["Not Converted"])), "gained": gained,
+            "convertedPct": pct, "hasBase": prev > 0, "smallBook": 0 < prev < 10,
+            "tierPay": tier, "gainedBonus": 50 * gained, "payout": tier + 50 * gained,
+            "toNinety": max(0, -(-prev * 9 // 10) - conv) if prev else 0,
+        }
+        as_of = o["As Of"]
+    if as_of is None:
+        raise SystemExit("sam_adams_seasonal_oct_official.csv is empty -- run convert_sam_adams_official.py --oct")
+    unconv = defaultdict(list)
+    for u in read_rows("sam_adams_seasonal_oct_unconverted.csv"):
+        unconv[u["Sales Rep Name"]].append({
+            "account": u["Account"].title().replace("'S", "'s"), "address": u["Address"].title(),
+            "city": u["City"].title(), "prevCEs": to_num(u["Prev Season CEs"]),
+            "currentLYCEs": to_num(u["Current Season LY CEs"])})
+    for lst in unconv.values():
+        lst.sort(key=lambda a: (-a["prevCEs"], a["account"]))
+    for rep, o in official.items():
+        if len(unconv.get(rep, [])) != o["notConverted"]:
+            raise SystemExit(f"sam_adams_cold_snap: {rep} list/scoreboard mismatch")
+    by_rep = {}
+    for rep in ROSTER:
+        o = official.get(rep)
+        d = dict(o) if o else {"route": None, "asOf": as_of, "lines": 0, "converted": 0, "notConverted": 0,
+                               "gained": 0, "convertedPct": None, "hasBase": False, "smallBook": False,
+                               "tierPay": 0, "gainedBonus": 0, "payout": 0, "toNinety": 0}
+        d["hasOfficial"] = o is not None
+        d["unconvertedAccounts"] = unconv.get(rep, [])
+        by_rep[rep] = d
+    house = {k: sum(v[k] for v in official.values()) for k in ("lines", "converted", "notConverted", "gained")}
+    return {"byRep": by_rep, "house": house,
+            "periodStart": "2026-10-01", "periodEnd": "2026-10-23",
+            "meta": {"source": "Boston Beer Seasonal Conversion Fall workbooks", "officialAsOf": as_of,
+                     "offRoster": sorted(set(official) - set(ROSTER))}}
+
 # =============================================================================
 # OCTOBER 2026 (2026-09-30, from the 2026 October Rewards Deck). These four
 # builders feed PROGRAM_DATA_2026_10; Four Loko Volume and the Sam Adams
@@ -5161,6 +5218,7 @@ def main():
         "famosa_oct": build_famosa_october(),
         "industrial_arts": build_industrial_arts(),
         "mabi_single_serve": build_mabi_single_serve(),
+        "sam_adams_cold_snap": build_sam_adams_cold_snap(),
     }
     lg = data_10["lagunitas_sprint"]; fm = data_10["famosa_oct"]; ia = data_10["industrial_arts"]; ss = data_10["mabi_single_serve"]
     print(f"lagunitas_sprint: {lg['meta']['housePods']} new PODs house-wide (goal {lg['meta']['houseGoal']}), "
@@ -5170,6 +5228,8 @@ def main():
           f"{sum(1 for d in fm['byRep'].values() if d['positive'])} reps positive | " + ", ".join(f"{e['rep']} {e['growth']:+.0f}" for e in fm['leaderboard'][:6]))
     print(f"industrial_arts: {sum(d['openedCount'] for d in ia['byRep'].values())} accounts opened, {sum(d['progressCount'] for d in ia['byRep'].values())} in progress, "
           f"{sum(d['draftQualifiedCount'] for d in ia['byRep'].values())} draft | " + ", ".join(f"{e['rep']} {e['opened']}+{e['skus']}sku" for e in ia['leaderboard'][:6] if e['skus']))
+    _cs = data_10["sam_adams_cold_snap"]
+    print(f"sam_adams_cold_snap (Boston Beer {_cs['meta']['officialAsOf']}): house {_cs['house']}, off roster {_cs['meta']['offRoster']}")
     print(f"mabi_single_serve: {sum(d['totalPods'] for d in ss['byRep'].values())} single-serve PODs, "
           f"{sum(1 for d in ss['byRep'].values() if d['wc']['qualified'])} reps at 8+ White Claw, {sum(1 for d in ss['byRep'].values() if d['harder']['qualified'])} at 8+ Harder/Cayman | "
           + ", ".join(f"{e['rep']} {e['wc']}/{e['harder']}" for e in ss['leaderboard'][:6]))

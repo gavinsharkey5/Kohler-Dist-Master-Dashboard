@@ -15,7 +15,7 @@ generate.py. The raw workbooks are archived alongside as
 data/sam_adams_conversion_boston_beer.xlsx and
 data/sam_adams_unconverted_boston_beer.xlsx; generate.py never reads them.
 
-Run: python3 convert_sam_adams_official.py <MMDDYY_..._Conversion_Fall.xlsx> <MMDDYY_..._Unconverted_Accounts_Fall.xlsx> [--dry-run]
+Run: python3 convert_sam_adams_official.py [--oct] <MMDDYY_..._Conversion_Fall.xlsx> <MMDDYY_..._Unconverted_Accounts_Fall.xlsx> [--dry-run]
 
 The unconverted list carries no rep name, only a Route; each route is mapped
 to the rep who owns it on the scoreboard, and the per-route count is
@@ -59,6 +59,12 @@ COLS = ["Rep Name", "Route", "Prev Season Dist", "Converted", "Converted %", "No
 def main():
     argv = sys.argv[1:]
     dry = "--dry-run" in argv
+    global OUT, OUT_UNCONV
+    if "--oct" in argv:
+        # October's seasonal conversion (sam_adams_cold_snap) reads its own
+        # pair so September's files, behind the frozen September blob, stay.
+        OUT = DATA / "sam_adams_seasonal_oct_official.csv"
+        OUT_UNCONV = DATA / "sam_adams_seasonal_oct_unconverted.csv"
     as_of = None
     if "--as-of" in argv:
         i = argv.index("--as-of")

@@ -337,7 +337,7 @@ Refresh = save the new export over the same name, python3 generate.py.
   four_loko           STRUCTURE ONLY (rules, zero-state card, awaiting note)
                       until Gavin sends the export. Supplier "Four Loko"
                       (Phusion Projects), no logo file.
-  sam_adams_cold_snap STRUCTURE ONLY. The deck slide reads "convert Cold
+  sam_adams_cold_snap BUILT 2026-10-05 from Boston Beer workbooks (see CLAUDE.md). The deck slide reads "convert Cold
                       Snap to Summer Ale by October 23" -- almost certainly
                       a carry-over typo (Octoberfest -> Cold Snap is the
                       seasonal move); the rules are shown as the deck words

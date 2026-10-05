@@ -2204,3 +2204,26 @@ the draft to IndexedDB (`d.later = true`) with no checks and no upload and close
 renders `#laterStrip` from `KdhActivity.savedForLater()` (this person's drafts on
 this phone, every account; hidden in preview). Device-only by design -- nothing is
 on the account until Save. cap2_test.mjs covers it (57 checks).
+
+## Boston Beer seasonal sheets now score the October MPO + incentive (2026-10-05)
+
+Gavin: "use the boston beer files to update this mpo and incentive." The two
+10-05-26 workbooks (Seasonal Conversion Fall + Unconverted Accounts Fall) were
+flattened with `python3 incentive-tracking/convert_sam_adams_official.py --oct
+--as-of 2026-10-05 <scoreboard.xlsx> <unconverted.xlsx>` into
+data/sam_adams_seasonal_oct_official.csv / _unconverted.csv (`--oct` keeps
+September's sam_adams_conversion_* files, which sit behind the frozen
+September blob; raw workbooks archived beside them). INCENTIVE: October's
+`sam_adams_cold_snap` now has a builder (`build_sam_adams_cold_snap()`, card
+`cardSamAdamsColdSnap`): lines = Prev Season accounts, converted / not
+converted / gained straight from the scoreboard, unconverted list by route.
+Tracker-only pay (deck): >=10 lines: 90% (and 10+ conversions) $300, 100% $400;
+<10 lines: 80% gives $20 per conversion; +$50 per gained line. ASSUMPTION: the
+10-conversion minimum applies to the $300/$400 tiers only. MPO: `apply_boston_beer()`
+in MPOs/on-prem/generate_2026-10.py makes Boston Beer's counts the MPO's for every
+rep on their scoreboard (base = Prev Season, done = Converted; unconverted accounts
+are the named targets, matched to RDE by outlet name; surplus RDE conversions --
+newest first Octoberfest keg -- are dropped, a shortfall is filled with
+"Converted account (Boston Beer count)" lines). Dave Ehlers, Phil Ernst, Shane
+Barreca (no BB row) and route 90 stay on the RDE list. House total now 271 of 313.
+Refresh = rerun converter with `--oct` on the new pair, then both generators.
