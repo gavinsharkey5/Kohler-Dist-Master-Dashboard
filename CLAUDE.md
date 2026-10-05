@@ -2261,3 +2261,50 @@ A signed-in manager ALWAYS starts the hub in Manager Mode / Program View (2026-1
 October POS (5) Cooler Door Stickers is LIVE (2026-10-05): Promos_Report_47 (10/1-10/5) was merged into the shared archive MPOs/off-prem/pos_cooler_door_promos.xlsx (3 cooler-door rows in, 105 -> 108; the other 2 rows were not cooler doors) with `python3 MPOs/off-prem/generate_2026-10.py --merge-cooler-doors Promos_Report_NN.xlsx` -- the October generator now does the merge AND writes data/2026-10/mpo_pos_cooler_doors.json = archive rows dated 10/xx/2026 only, scored per DISTINCT PHOTO ('photos' builder, goal 5). programs.js pos_stickers is hasData:true with a 2026-10 table entry. Weekly: same command with the new Promos_Report. Do NOT rerun generate_2026-09.py for this -- it reads the whole archive. Jayson Romine has 3 of 5 so far. `patrick infante` (photo taker, not on the roster) is a pre-existing unmatched name.
 
 Manager navigation cleanup (2026-10-05, Gavin: "redundant and confusing"): manager home has ONE primary action, "View as Rep" (picker -> preview cookie -> /rep/); Gavin's manager preview is a quiet "Preview as a manager" text button that reveals the select ("Preview as" + "Preview"), no always-on "Viewing as" row. In the hub a manager no longer sees "Choose Another Rep" (the top-bar "Viewing <rep> · Change" chip and the Program View rep filter cover it) or the Rep view / Manager view toggle (managers are always in Manager Mode; seeing a rep as they do = View as Rep); the only secondary link is "‹ Program View"; the redundant name label above the title is gone. Non-manager, non-locked users in Rep Mode keep "Choose Another Rep". Tags hub.js / rep.css 20261005n.
+
+## Program eligibility: one calculation, ID joins only (2026-10-05)
+
+Gavin's brief: "What should I do at this account?" / "Which account helps me
+finish this program?" -- verify the rules first, then the screens.
+`tools/program_eligibility.py` is THE account-level calculation (run by
+MPOs/off-prem/generate_2026-10.py and accounts/generate.py; `--check` = exit 1
+if stale). It joins the trackers' own exports to the rolling sales master on
+CustomerID + ProductID ONLY and writes `shared/data/program-rules.json` (rules +
+qualifying products with package / size / ProductID, each rule tagged
+verified / assumed / unverified with its evidence, the open questions; NO
+customer data) and `accounts/data/elig/<rep key>.json` (eligible accounts,
+credited results, remaining opportunities with a reason code: sku = buys the
+brand not this product, lapsed = bought before not in the window, brand = new
+to the brand, partial = some this period). The middleware serves a rep only
+their own elig file (ACCOUNT_DATA regex now includes `elig`). Programs built:
+Corona Innovation (kind placements), Lytt Buying Accounts and Carbliss 40%
+(kind accounts, minSkus 3 / 1). Add a program = one function in the script.
+VERIFIED for Corona Innovation: the 11 products the RDE export counts (Modelo
+Chelada Suprema x2, Modelo Negra 2/12/12 oz CAN only, Pacifico 1/24/7 oz,
+Vicky Mango, Sunbrew x4, Corona NA 4/6 btl + 2/12 btl) -- other packages of
+those brands do not count; off-premise Core Market only; repeat buyers count;
+Phil Ernst 54 of 69 = 75% x 92. Account-level credit comes from the master
+(through September), so the workspace says "42 by account, 12 more credited
+after" -- the export has no customer column (REPORTING_REQUEST 12, C2).
+`shared/eligibility.js` (KdhElig) is the browser side: model(), accountsView(),
+accountLine(), forAccount(), productIds(). Readers: hub.js PROGRAM WORKSPACE
+(`screenWorkspaceRep` replaces the rep program screen when a rule exists:
+"54 of 69 / Required Placements / 15 More Needed", one bar, View Eligible
+Accounts, Details with Original Goal / MPO Requirement and the tagged rules,
+then tabs Eligible Accounts / Qualifying Products / Credited Results; state
+pv / pp / pq / pr in the hash; manager Program View gets `workspaceTeamHtml`
+with a rep filter), accounts/opps.js `fromRule` (Program Opportunities: What
+to Sell = the exact products still open here, What Is Needed, Deadline,
+Already Credited Here, reasons per product in Details, a Qualifying Products
+link), and hub/accounts.js `eligibleProducts` (Products list filter, Lead
+tags, assistant context) -- one product rule. Accounts open the unified
+Account page with `fl=<Title> Eligible Accounts`; Back lands on the same
+program, product, search, rep and scroll (sessionStorage kdh_hubpos:, and
+boot() honours a program deep link on a navigation, not a reload). Also fixed:
+'off:constellation_innovation' had NO brand families in PROGRAM_BRANDS, so the
+old target list offered Essex / Hudson / Union accounts. Tests (scratchpad):
+elig_rules_test.py (the checklist: same-brand non-qualifying SKUs, packages,
+territories, previously credited, multiple gaps, baseline, minimums, missing
+data), elig_test.mjs (tracker == calculation for 60 rep-programs, both flows,
+6 sizes x 2 themes), mw_test.mjs. Tags: hub.js 20261005o, hub.css 20261005k,
+hub/accounts.js 20261005d, eligibility.js 20261005a.

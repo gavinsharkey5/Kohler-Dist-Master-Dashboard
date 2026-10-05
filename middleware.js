@@ -69,7 +69,7 @@ function nameKey(n) {
   const last = parts.slice(1).join('');
   return first + (last ? '-' + last : '');
 }
-const ACCOUNT_DATA = /^\/accounts\/data\/(book|reps|sales)\/([a-z0-9-]+)(\.js|\.json|\/[0-9a-z_-]+\.json)$/;
+const ACCOUNT_DATA = /^\/accounts\/data\/(book|reps|sales|elig)\/([a-z0-9-]+)(\.js|\.json|\/[0-9a-z_-]+\.json)$/;
 function accountDataVerdict(pathname, name) {
   if (pathname === '/accounts/data/index.json') return 'ok';
   const m = pathname.match(ACCOUNT_DATA);

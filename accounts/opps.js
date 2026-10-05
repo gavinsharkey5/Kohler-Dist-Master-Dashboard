@@ -46,7 +46,8 @@ const noBuy = w => /^(Never bought it|No purchases in the available history)/.te
 // the products a program counts (hub/accounts.js eligibleProducts), memoised per program
 const ELMEMO = new Map();
 function eligibleFor(p, CAT, HB, famKey){
-  const k = p.id; if(ELMEMO.has(k) && ELMEMO.get(k).cat===CAT) return ELMEMO.get(k).v;
+  const ruled = !!(window.KdhElig && window.KdhElig.rule && window.KdhElig.rule(p.id));
+  const k = p.id + (ruled ? '|rule' : ''); if(ELMEMO.has(k) && ELMEMO.get(k).cat===CAT) return ELMEMO.get(k).v;
   const rows = (CAT && CAT.products) || [];
   const v = HB && HB.eligibleProducts ? HB.eligibleProducts(p, rows, famKey) : {rows: [], rule: '', byProduct: false};
   ELMEMO.set(k, {cat: CAT, v}); return v;
@@ -80,6 +81,10 @@ function build(o){
     const base = {id:p.id, p, name:p.shortName||p.name, full:p.name, supplier:p.supplier, channel:p.channelLabel, type:p.type, month:p.monthLabel||'',
       ends:H.endsLabel(p.period), end:p.period && p.period.end, ask, fams,
       repProgress:[facts.main, facts.need].filter(Boolean).join(' · '), whose:o.whose};
+    // A program with a VERIFIED rule (shared/eligibility.js): the account's own
+    // qualification comes from the one eligibility calculation, by ProductID.
+    const EG = (o.elig||[]).find(x=>x.rule.id===p.id);
+    if(EG){ fromRule(out, base, EG, p, o, CAT, HB, famKey, familyAllowed, a, asOf, ageDays); return; }
     if(cred.length){ out.credited.push(Object.assign(base, {status:'credited', lines:cred.map(c=>[c.what||'Credited', c.date||''].filter(Boolean).join(' · '))})); return; }
     if(!tgt){
       out.other.push(Object.assign(base, {status: excl ? 'not sellable' : buying ? 'already buying' : r.soon ? 'awaiting data' : 'not on its lists',
@@ -103,6 +108,39 @@ function build(o){
   // warm leads first, then the soonest deadline
   out.list.sort((x,y)=>(y.warm - x.warm) || ((x.end||0) - (y.end||0)));
   return out;
+}
+
+// One account x one ruled program -> an opportunity, a credit, or "doesn't apply".
+function fromRule(out, base, EG, p, o, CAT, HB, famKey, familyAllowed, a, asOf, ageDays){
+  const R = EG.rule, A = EG.account;
+  const P = new Map(R.products.map(x=>[String(x.id), x]));
+  const nm = id => (P.get(String(id))||{}).name || '#'+id;
+  const thru = R.kind==='placements' ? 'sales record through '+R.detail.throughLabel : 'tracker export through '+R.detail.throughLabel;
+  const done = (A.cr||[]).map(nm);
+  if(A.st==='excluded'){ out.other.push(Object.assign(base, {status:'not sellable', why:A.why})); return; }
+  const EL = eligibleFor(p, CAT, HB, famKey);
+  const prods = EL.rows.filter(c=>familyAllowed(c[3], a.area).ok);
+  const common = {byProduct:true, products:prods.slice(0, 40), productCount:prods.length, sizeNote:R.products.length+' qualifying products', packages:Array.from(new Set(prods.map(c=>c[4]).filter(Boolean))),
+    sheets:prods.filter(c=>c[10]).map(c=>({name:c[1], url:c[10]})), inventory:{asOf, ageDays, stale: ageDays!=null && ageDays>7}, rule:R, done, thru};
+  if(R.kind==='placements'){
+    const PRI = {sku:0, lapsed:1, brand:2};
+    const ops = (A.op||[]).slice().sort((x,y)=>(PRI[x[1]]??3)-(PRI[y[1]]??3)).map(x=>({id:x[0], name:nm(x[0]), code:x[1], why:x[2]}));
+    if(!ops.length){ out.credited.push(Object.assign(base, common, {status:'credited', lines:['Every qualifying product is credited here ('+thru+'): '+done.join(', ')]})); return; }
+    const names = ops.map(x=>x.name);
+    out.list.push(Object.assign(base, common, {status: ops.some(x=>x.code==='sku') ? 'lead' : 'eligible', warm: ops.some(x=>x.code==='sku'),
+      ask: names.slice(0, 3).join(', ') + (names.length>3 ? ` + ${names.length-3} more` : ''),
+      needs: `One placement per product. ${ops.length} of the ${R.products.length} qualifying products could still count here.`,
+      open: ops, why: ops[0].why + (ops[0].code==='sku' ? ' — the easiest add.' : '.')}));
+    if(done.length) out.list[out.list.length-1].completed = done;
+    return;
+  }
+  const one = (R.minSkus||1)<=1;
+  if(A.st==='done'){ out.credited.push(Object.assign(base, common, {status:'credited', lines:[one ? `Buying account for ${R.period.label} (${thru})${done.length ? ' — '+done.join(', ') : ''}` : `Buying account: ${done.length} different ${R.families[0]} products, ${R.period.label} (${thru}) — ${done.join(', ')}`]})); return; }
+  const missing = R.products.filter(x=>!(A.cr||[]).map(String).includes(String(x.id))).map(x=>({id:x.id, name:x.name, code:'', why:''}));
+  out.list.push(Object.assign(base, common, {status: A.why && A.why[0]!=='brand' ? 'lead' : 'eligible', warm: !!(A.why && A.why[0]!=='brand'),
+    ask: one ? `Any ${R.families[0]} product` : `Any ${A.need} more ${R.families[0]} ${A.need===1?'product':'products'} — ${missing.slice(0, 3).map(x=>x.name.replace(/ 1\/24\/6\.8 oz Btl$/,'')).join(', ')}${missing.length>3 ? ' or another' : ''}`,
+    needs: one ? `One ${R.families[0]} purchase here, ${R.period.label}.` : `${R.minSkus} different ${R.families[0]} products bought here, ${R.period.label}${done.length ? ` — has ${done.length} (${done.join(', ')})` : ' — has none yet'}.`,
+    open: missing, completed: done, why: (A.why ? A.why[1] : '') + '.'}));
 }
 
 /* ---------------- render ---------------- */
@@ -138,16 +176,18 @@ function cardHtml(o, links){
       <dt>What to Sell</dt><dd>${E(o.ask)}</dd>
       <dt>What Is Needed</dt><dd>${need}</dd>
       <dt>Deadline</dt><dd><b>${E(o.ends)}</b></dd>
+      ${o.completed && o.completed.length ? `<dt>Already Credited Here</dt><dd>${E(o.completed.join(', '))}</dd>` : ''}
     </dl>
     <details class="op-res"><summary>Details</summary><div class="op-rb">
       <div class="op-r"><p class="op-rh">Why It’s Listed Here</p><p>${E(o.why)}</p></div>
-      <div class="op-r"><p class="op-rh">Credit at This Account</p><p>Not earned yet. Credit comes from the tracker’s sales data — a saved photo or note is evidence, not credit.</p></div>
+      ${o.open && o.open.length && o.rule && o.rule.kind==='placements' ? `<div class="op-r"><p class="op-rh">Products That Could Still Count Here</p><ul class="op-prods">${o.open.map(x=>`<li><span class="op-pn">${E(x.name)}</span><span class="op-pi">${E(x.why)}</span></li>`).join('')}</ul><p class="op-rs">${E(o.rule.detail.note)}</p></div>` : ''}
+      <div class="op-r"><p class="op-rh">Credit at This Account</p><p>${o.rule ? (o.completed && o.completed.length ? E(o.completed.length+' credited here so far ('+o.thru+').') : 'Nothing credited here yet ('+E(o.thru)+').') : 'Not earned yet.'} Credit comes from the tracker’s sales data — a saved photo or note is evidence, not credit.</p></div>
       <div class="op-r"><p class="op-rh">Products That Count</p><p>${what}${o.productCount && o.products[0] ? `, e.g. ${E(o.products[0][1])}` : ''}</p>${o.productCount ? `<a class="btn outline sm" href="#" data-pq="${E(o.fams[0]||'')}" data-pprog="${E(o.id)}">View ${o.productCount} Eligible ${o.productCount===1?'Product':'Products'}</a>` : ''}</div>
       ${resourcesInner(o)}
       <div class="op-r"><p class="op-rh">Full Program Name</p><p>${E(o.full)}</p></div>
       ${o.repProgress ? `<div class="op-r"><p class="op-rh">${E(o.whose||'Your')} Overall Progress (All Accounts)</p><p>${E(o.repProgress)}</p></div>` : ''}
     </div></details>
-    <p class="op-a"><a class="btn sm" href="${E(links.prog(o))}">Open Tracker</a>${evid}${links.acct ? `<a class="btn ghost sm" href="${E(links.acct(o))}">Account in the Hub</a>` : ''}</p>
+    <p class="op-a"><a class="btn sm" href="${E(links.prog(o))}">Open Tracker</a>${o.rule && links.progView ? `<a class="btn outline sm" href="${E(links.progView(o, 'prods'))}">Qualifying Products</a>` : ''}${evid}${links.acct ? `<a class="btn ghost sm" href="${E(links.acct(o))}">Account in the Hub</a>` : ''}</p>
   </div>`;
 }
 function overviewHtml(res, links, allHref){

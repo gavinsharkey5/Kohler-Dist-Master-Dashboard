@@ -330,3 +330,12 @@ if __name__ == "__main__":
     from pathlib import Path as _P
     _root = next(p for p in _P(__file__).resolve().parents if (p / "middleware.js").exists())
     _sp.run([_sys.executable, str(_root / "tools" / "rep_slices.py")], check=True)
+
+# Program eligibility (tools/program_eligibility.py, 2026-10-05): the one account-level
+# calculation behind the hub's Eligible Accounts / Qualifying Products / Credited Results
+# and the Account page's Program Opportunities -- rebuilt from the same inputs.
+if __name__ == "__main__":
+    import subprocess as _sp2, sys as _sys2
+    from pathlib import Path as _P2
+    _root2 = next(p for p in _P2(__file__).resolve().parents if (p / "middleware.js").exists())
+    _sp2.run([_sys2.executable, str(_root2 / "tools" / "program_eligibility.py")], check=True)

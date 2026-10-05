@@ -11,6 +11,16 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
+- [ ] **Program eligibility: answer the rule questions** (Gavin):
+  accounts/REPORTING_REQUEST.md section 12 -- C1 the Constellation "Innovation
+  SKUs" list, C2 the same export with Customer Num + Product Num, rounding
+  (C3 / L1 / K1), Lytt returns (L2), refresh the hub account list so the 25
+  accounts added Oct 5 open in My Accounts (B1), a beer-only vs wine & spirits
+  flag (M1, before Molly's / Wine get account lists), Boston Beer lists with
+  Customer Num (S1), and each October incentive's supplier rules (P1). Then
+  look at Corona Innovation / Lytt / Carbliss in the hub on a phone: Details
+  shows each rule as Verified / Assumed / Unverified.
+
 - [ ] **Redesigned Add Photos: run the SQL, then try it on a phone** (Gavin):
   Supabase SQL Editor, run `supabase/migrations/20261005160000_capture_items.sql`
   (after the tap file). Until then the new flow works but the POD type / shelf /
@@ -245,6 +255,16 @@ device, a decision).
 - **Account-aware assistant + mock pitch** -- built 2026-09-30 and hardened the same day (server-side account authorization, server-built record, tools on the full record, ledger + spend limits); waiting on the pilot above. Snowflake later adds freshness (daily grain, invoices, inventory); route-wide / comparable-account questions need a permission rule first.
 
 ## Done
+
+- [x] 2026-10-05 **Program eligibility, one calculation**: Corona Innovation,
+  Lytt and Carbliss 40% show "54 of 69 Required Placements / 15 More Needed",
+  the goal math with each rule's status, and three views -- Eligible Accounts
+  (with the reason the data supports, filter by product / rep), Qualifying
+  Products (ProductID + package; the non-counting packages of the same brands
+  listed), Credited Results. The Account page's Program Opportunities name the
+  exact products still open there, and Back returns to the same list. Tracker
+  and calculation agree for every rep. Corona Innovation now respects the Core
+  Market (it used to list Essex / Hudson / Union accounts).
 
 - [x] 2026-10-05 **Save for Later on Add Photos**: a rep in a rush keeps a
   half-done photo record on the phone (no checks, no upload); it is listed on

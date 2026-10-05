@@ -70,7 +70,7 @@ const PROGRAM_BRANDS = {
   'on:sapporo_na':['Sapporo'], 'on:isellbeer':null, 'on:sam_adams_conversion':['Samuel Adams'], 'on:spirits_followup':null,
   // --- off-premise MPO objectives (MPOs/off-prem/programs.js keys) ---
   'off:constellation_gaintain':['Corona Extra','Corona Light','Corona Premier','Corona Familiar','Corona Sunbrew'],
-  'off:constellation_innovation':null, 'off:mollys':["Molly's"], 'off:wine_new':null,
+  'off:constellation_innovation':['Corona Sunbrew','Corona NA','Modelo Chelada','Modelo Negra','Pacifico','Victoria'], 'off:mollys':["Molly's"], 'off:wine_new':null,
   'off:keystone_ice':['Keystone'], 'off:fever_tree':['Fever Tree'], 'off:wine_spirits_any':null, 'off:pos_stickers':null,
   'off:corona_premier':['Corona Premier'], 'off:bbc_lytt':['Lytt'], 'off:disruptors':['Lytt'], 'off:molson_coors':['Peroni','Coors'],
   'off:wine_spirits':['Le Grand Noir','Leyenda 1925','Bardstown Green River'], 'off:new_belgium':NEW_BELGIUM,
@@ -98,6 +98,10 @@ const PROGRAM_PRODUCTS = {
 };
 // the products a program counts, from catalogue rows [num, name, supplier, family, package, ...]
 function eligibleProducts(p, rows, famKeyFn){
+  // A program with a verified rule (shared/data/program-rules.json, KdhElig) lists
+  // its qualifying ProductIDs -- the ONE product rule the tracker counts.
+  const ids = (global.KdhElig && global.KdhElig.productIds) ? global.KdhElig.productIds(p.id) : null;
+  if(ids && ids.size){ const R = global.KdhElig.rule(p.id); return {rows: rows.filter(c=>ids.has(String(c[0]))), rule: R ? R.products.length+' qualifying products ('+R.title+')' : '', byProduct: true, ids}; }
   const r = PROGRAM_PRODUCTS[brandKey(p)];
   if(r) return {rows: rows.filter(c=>r.re.test(String(c[1]||''))), rule: r.rule, byProduct: true};
   const fams = PROGRAM_BRANDS[brandKey(p)];

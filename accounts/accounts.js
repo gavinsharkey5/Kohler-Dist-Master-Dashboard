@@ -396,13 +396,15 @@ async function renderAccount(){
   app.innerHTML = back(fromLabel, fromHref) + headHtml + `<div class="kdh-state loading">Loading this account…</div>`;
   // everything the page needs, in parallel
   const key = repKey(rep);
-  const [sales, idx, , CAT, ACT] = await Promise.all([
+  const [sales, idx, , CAT, ACT, ED] = await Promise.all([
     salesCache.has(String(a.n)) ? Promise.resolve(salesCache.get(String(a.n))) : getJson('data/sales/'+key+'/'+encodeURIComponent(a.n)+'.json').catch(()=>null).then(s=>{ salesCache.set(String(a.n), s); return s; }),
     indexPrograms(rep),
     loadMarks(SCOPE),
     loadCatalog(),
     window.KdhActivity ? window.KdhActivity.load(String(a.n)).catch(()=>null) : Promise.resolve(null),
+    window.KdhElig ? window.KdhElig.load(rep).catch(()=>null) : Promise.resolve(null),
   ]);
+  const ELIG_ACC = window.KdhElig ? window.KdhElig.forAccount(a.n, ED) : [];
   if(state.view!=='acct' || String(state.n)!==String(a.n)) return;   // navigated away meanwhile
   const k = String(a.n);
   // this account's rep_actions: the notes module's account-level read when it
@@ -665,8 +667,8 @@ async function renderAccount(){
     </div>`;
 
   /* ---- PROGRAM OPPORTUNITIES (accounts/opps.js) ---- */
-  const OPP = window.KdhOpps ? window.KdhOpps.build({a, rep, k, programs: idx.programs, credited, targets, H, HB: HubAccounts, CAT, famKey, familyAllowed, today: TODAY, whose: isMgr ? rep.split(' ')[0]+'’s' : 'Your'}) : null;
-  const oppLinks = {prog: o=>progLink(o.p, rep), acct: o=>hubAcctLink(o.p, rep, a.n, 'targets'), prem: a.prem, evidence: !!(window.KdhActivity && window.KDH_AUTH && !(U && U.preview))};
+  const OPP = window.KdhOpps ? window.KdhOpps.build({a, rep, k, programs: idx.programs, credited, targets, H, HB: HubAccounts, CAT, famKey, familyAllowed, today: TODAY, whose: isMgr ? rep.split(' ')[0]+'’s' : 'Your', elig: ELIG_ACC}) : null;
+  const oppLinks = {prog: o=>progLink(o.p, rep), progView: (o, pv)=>progLink(o.p, rep)+'&pv='+pv, acct: o=>hubAcctLink(o.p, rep, a.n, 'targets'), prem: a.prem, evidence: !!(window.KdhActivity && window.KDH_AUTH && !(U && U.preview))};
   const oppOver = OPP ? window.KdhOpps.overviewHtml(OPP, oppLinks, acctHash(a.n, rep, 'more', 'programs')) : progHtml;
   const oppFull = OPP ? window.KdhOpps.fullHtml(OPP, oppLinks) : progHtml;
   /* ---- the activity timeline's non-Hub records: tap survey passes (iSellBeer)

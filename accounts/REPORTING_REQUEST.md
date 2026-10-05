@@ -416,3 +416,47 @@ Record drafts use the device's own storage (IndexedDB, scoped to the
 signed-in person). The recap, the CSV and the counts read only what the
 records hold. The assistant's availability check reads the existing usage
 ledger and needs nothing new.
+
+## 12. Program eligibility -- the one list to send (2026-10-05)
+
+The hub's program workspace (Eligible Accounts / Qualifying Products /
+Credited Results) and the Account page's Program Opportunities now read ONE
+calculation, `tools/program_eligibility.py`, joined on CustomerID and
+ProductID only. Every rule it uses is listed on the program's Details fold
+as Verified, Assumed or Unverified. Built so far: Corona Innovation, Lytt
+Buying Accounts, Carbliss 40% Buying Accounts (all October MPOs).
+
+### What was verified, and how
+
+| Program | Rule | Evidence |
+|---|---|---|
+| Corona Innovation | 11 qualifying products (Corona Sunbrew x4, Corona NA 4/6 btl + 2/12 btl, Modelo Chelada Suprema Mangonada + Tropical, Modelo Negra 2/12/12 oz can, Pacifico 1/24/7 oz, Vicky Mango) | Every product on the RDE export; ProductIDs matched by exact, unique catalogue name |
+| Corona Innovation | Other packages of the same brands do NOT count (29 products, e.g. Modelo Negra 4/6 btl, Vicky Chamoy, Corona NA 2/12 can) | Sold off-premise in September, absent from the export |
+| Corona Innovation | Off-premise, Core Market only | No innovation placement outside the six core areas; adding on-premise would exceed the export for 3 reps |
+| Corona Innovation | Placement = account x product, repeat buyers count | September sales never exceed the export per rep and product; the export counts 699 vs 118 new since June |
+| Corona Innovation | Phil Ernst: 54 of 69 (75% x 92) | Goals column 92; 54 = the sum of his 10 product rows (the first row is a subtotal) |
+| Lytt | 6 products, 3+ different in October, core base minus Whole Foods, buyers outside the base not counted | RDE export (IDs), MPO generator, Gavin 2026-10-05 |
+| Carbliss 40% | Core on-premise base, any Carbliss purchase Sep 1 - Oct 31 | RDE exports (IDs), MPO generator |
+
+The answer to "do Modelo Chelada, Modelo Negra and Pacifico count toward
+Corona Innovation?": YES for the specific packages above (the report
+counts them) and NO for their other packages.
+
+### Please confirm or send
+
+| # | Ask | Why |
+|---|---|---|
+| C1 | The full "Innovation SKUs" list behind the Constellation report (ProductIDs) | A product nobody has placed yet cannot appear in the export, so the list may be incomplete -- the page says so |
+| C2 | The same Constellation export with Customer Num and Product Num, one row per account x product | Today account-level credit comes from the monthly sales record (through September), which lags the export: Phil shows 42 by account, 12 more credited after |
+| C3 | Rounding: 75% of a goal of 10 = 8 or 7? | Assumed up; affects reps whose goal is not a multiple of 4 |
+| L1 | Rounding: 50% of 29 = 15 or 14? | Assumed up |
+| L2 | Does a returned case remove a product from the 3-product count? | Assumed net of returns |
+| K1 | Carbliss: does every package count, and 40% of 26 = 11 or 10? | Assumed any package, rounded up |
+| B1 | Refresh hub/data/Sales_Reps_Customer_Base.xlsx (account list as of Sep 10) | The 25 accounts added on Oct 5 (e.g. USA Wine Traders Paramus, Phil's only Lytt buying account) are in the tracker but cannot open in My Accounts yet; the workspace lists them without a link |
+| M1 | A license / segment flag per account (beer-only vs wine & spirits) | Needed before Molly's (2) New Placements and Wine (1) New Placement get eligible-account lists; without it a beer-only store would be listed as a target |
+| S1 | Boston Beer's seasonal-conversion lists with Customer Num | They match accounts by outlet NAME today; the eligibility layer joins on IDs only, so Oktoberfest conversion is not in it yet |
+| P1 | For each October incentive (Lagunitas Sprint, Industrial Arts, MABI Single Serve, Famosa, Four Loko, Cold Snap, Touchdowns & Tea): the qualifying ProductIDs, eligible account types, baseline window and minimums as the supplier states them | So each can be added to the same calculation with every rule verified, not inferred from the tracker's wording |
+
+Answers go into `tools/program_eligibility.py` (one function per program);
+rerun it (the MPO and Accounts generators also run it) and the hub, the
+Account page and the Products list all follow.

@@ -478,6 +478,19 @@ brand. The author can Edit Labels later (needs
 supabase/migrations/20261003090000_photo_labels.sql; until it is run the
 page saves without brand / program and hides Edit Labels).
 
+VERIFIED PROGRAM RULES (2026-10-05)
+A program with a rule in shared/data/program-rules.json (tools/program_eligibility.py,
+read through shared/eligibility.js) no longer uses the hub's target lists on
+this page: opps.js fromRule() reads the account's own row in
+data/elig/<rep key>.json (served only to that rep). Placement programs (Corona
+Innovation) list the exact qualifying products still open HERE with the reason
+(buys the brand, not this product / bought before, not this period / new to the
+brand) and what is already credited; account-count programs (Lytt 3+ products,
+Carbliss any purchase) say how many more products or purchases are needed. A
+territory exclusion shows under "Doesn't apply here". The same ProductIDs feed
+eligibleProducts(), so the Products list filter and Lead tags agree. Arriving
+from the hub workspace, the Back link reads "<Program> Eligible Accounts".
+
 PROGRAM OPPORTUNITIES + ONE ELIGIBILITY RULE (2026-10-04)
 The Overview section "Programs This Account Could Help Complete" is now
 "Program Opportunities". Each card reads Program -> What to Sell -> What Is

@@ -628,7 +628,7 @@ function sortedForRep(rep, cat){
 const openCards = new Set();   // program ids expanded in place on the rep page
 const acctTabs = {};           // program id -> active account tab
 const acctMore = {};           // program id|tab -> show every row
-const state = {mode:'rep', view:'home', rep:null, main:null, cat:null, month:null, prog:null, from:null, peek:null, filters:{type:'all', chan:'all', sup:'all', month:'active'}, showEnded:false, only:null, sup:null, list:null, n:null, im:'2026-09'};
+const state = {mode:'rep', view:'home', rep:null, main:null, cat:null, month:null, prog:null, from:null, peek:null, filters:{type:'all', chan:'all', sup:'all', month:'active'}, showEnded:false, only:null, sup:null, list:null, n:null, im:'2026-09', pv:null, pp:null, pq:'', pq2:'', pr:null, plim:30};
 // PREVIOUS MONTHS on the Incentives screen (Gavin, 2026-09-30): a simple
 // August / September toggle under the live list so reps can review an
 // earlier month's incentives. Each month lists the programs that ENDED in it
@@ -833,6 +833,12 @@ function hashOf(){
   if(state.prog && (state.view==='detail' || state.view==='program' || state.view==='accts' || state.view==='acct')) p.push('prog='+encodeURIComponent(state.prog));
   if(state.from && state.view==='detail') p.push('from='+state.from);
   if(state.peek && state.view==='detail') p.push('who='+encodeURIComponent(state.peek));
+  if(state.prog && (state.view==='detail' || state.view==='program')){
+    if(state.pv && state.pv!=='accts') p.push('pv='+state.pv);
+    if(state.pp) p.push('pp='+encodeURIComponent(state.pp));
+    if(state.pq) p.push('pq='+encodeURIComponent(state.pq));
+    if(state.pr) p.push('pr='+encodeURIComponent(state.pr));
+  }
   if(isMgr()) p.push('mode=manager');
   if(state.only) p.push('only='+state.only);
   if(state.im && state.im!==INC_MONTHS[INC_MONTHS.length-1].key && (state.view==='rep' || state.view==='sup')) p.push('im='+state.im);
@@ -851,6 +857,8 @@ function applyHash(){
   state.month = h.month && Object.keys(MPO_SCOPES).some(sc=>MPO_SCOPES[sc].mod.MONTHS.some(m=>m.key===h.month)) ? h.month : null;
   state.prog = h.prog && PROGRAMS.some(p=>p.id===h.prog) ? h.prog : null;
   state.from = h.from || null;
+  state.pv = ['accts','prods','cred'].includes(h.pv) ? h.pv : null;
+  state.pp = h.pp || null; state.pq = h.pq || ''; state.pr = h.pr && ROSTER.includes(h.pr) ? h.pr : null;
   state.peek = (h.who && ROSTER.includes(h.who) && h.who!==state.rep) ? h.who : null;
   if(h.mode==='manager') state.mode = mgrCapable() ? 'manager' : 'rep'; else if(h.mode==='rep') state.mode = 'rep';
   const v = h.view;
@@ -1562,7 +1570,7 @@ const SELL_ASK = {
   'on:wine_spirits':'Place YaVe and Leyenda.', 'on:sapporo_na':'Place Sapporo NA.',
   'off:constellation_gaintain':'Place Corona.', 'off:keystone_ice':'Place Keystone Ice 24oz cans.', 'off:fever_tree':'Place Fever Tree.',
   'off:wine_spirits_any':'Place a new wine or spirits SKU.', 'off:pos_stickers':'Put up a cooler door sticker and photograph it.',
-  'off:constellation_innovation':'Place the Corona and Modelo innovation items.', 'off:mollys':'Place Molly\u2019s Irish Cream.', 'off:wine_new':'Place a new wine SKU.',
+  'off:constellation_innovation':'Place the Corona Innovation products — Corona Sunbrew, Corona Non-Alcoholic, Modelo Chelada Suprema, Modelo Negra 12 oz cans, Pacifico 7 oz, Vicky Mango.', 'off:mollys':'Place Molly\u2019s Irish Cream.', 'off:wine_new':'Place a new wine SKU.',
   'off:corona_premier':'Place Corona Premier suitcases.', 'off:bbc_lytt':'Place 3 or more Lytt SKUs.', 'off:disruptors':'Photograph Lytt POS in iSellBeer.',
   'off:molson_coors':'Place Peroni and Coors Banquet.', 'off:wine_spirits':'Place Le Grand Noir, Leyenda and Green River.',
   'off:new_belgium':"Place Bell's, Voodoo and Kirin.", 'off:ws_2xo':'Place 2XO, Le Grand and YaVe.', 'off:sapporo_light':'Place Sapporo Light.', 'off:famosa':'Place Famosa 7oz.',
@@ -2936,6 +2944,7 @@ function screenProgram(){
       <ul class="rules">${p.rules.map(x=>`<li>${p.type==='Incentive' ? ruleHl(x) : E(x)}</li>`).join('')}</ul>
       ${p.type==='MPO' ? `<p class="note"><a href="${E(MPO_SCOPES[p.source].page)}#view=program&program=${encodeURIComponent(p.key)}&month=${E(p.monthKey)}">Open on the ${E(p.channelLabel)} MPO tracker ›</a></p>` : `<p class="note"><a href="${INC_ASSETS}index.html">Open the Incentive Tracker ›</a></p>`}
     </section>
+    ${loaded ? workspaceTeamHtml(p) : ''}
     <section class="dsec">
       <h2 class="dsec-h">Rep rankings</h2>
       ${rank.length ? `<p class="dsec-p">${plw(rank.length,'rep')} ranked by ${E(rank[0].metricLabel)} · tap a rep for their full breakdown</p>${leaderboard(p, rank, state.rep, 0)}` : `<div class="empty small">${loaded ? 'No rep activity yet for this program.' : 'Loading…'}</div>`}
@@ -3125,6 +3134,8 @@ function listCounts(p, r, rep){
 function screenProgramRep(p, r, rep){
   const f = progFacts(p, r, rep);
   const off = r.status==='unavailable' || r.soon;
+  const WR = !off && eligRule(p);
+  if(WR){ const w = screenWorkspaceRep(p, r, rep, WR); if(w) return w; }
   const C = listCounts(p, r, rep);
   const BG = off ? [] : brandGoals(p, rep);
   const fams = HubAccounts.PROGRAM_BRANDS[HubAccounts.brandKey(p)];
@@ -3180,6 +3191,189 @@ function screenProgramRep(p, r, rep){
     </details>
     ${tl && tl.length ? `<details class="hdet"><summary>Progress So Far</summary>${chartHtml(tl, p, r)}</details>` : ''}
   </div>`;
+}
+/* ====================================================================
+   PROGRAM WORKSPACE (2026-10-05, the eligibility brief) -- for a program
+   that has a verified rule in shared/data/program-rules.json (KdhElig):
+   the summary in the requirement's own units, ONE bar, "View Eligible
+   Accounts", the goal math under Details (only what is verified, each
+   rule tagged), then three views over ONE calculation:
+     Eligible Accounts (default) -- accounts in scope with a remaining
+       opportunity, the reason the data supports, filtered by product /
+       search / rep (managers), ordered by the rule's own order
+     Qualifying Products -- ProductID, package, size; "View Eligible
+       Accounts" filters the account list to that product
+     Credited Results -- what the tracker already counts, by account
+   Accounts open the unified Account page with a contextual Back that
+   returns here with program, product, search, rep and scroll kept.
+   Numbers are read from the generated files; nothing is recomputed here.
+   ==================================================================== */
+const ELIG = {ready:false, files:new Map()};
+const eligRule = p => (window.KdhElig && ELIG.ready) ? window.KdhElig.rule(p.id) : null;
+function eligData(rep){
+  if(!window.KdhElig) return null;
+  if(ELIG.files.has(rep)) return ELIG.files.get(rep);
+  ELIG.files.set(rep, undefined);
+  window.KdhElig.load(rep).then(d=>{ ELIG.files.set(rep, d||null); if(!LIB) render(); });
+  return undefined;
+}
+const PW_VIEWS = [['accts','Eligible Accounts'], ['prods','Qualifying Products'], ['cred','Credited Results']];
+const STATUS_TAG = {verified:'Verified', assumed:'Assumed', unverified:'Unverified'};
+const pwUnit = (R, n) => R.kind==='placements' ? (n===1 ? 'Placement' : 'Placements') : (n===1 ? 'Buying Account' : 'Buying Accounts');
+const MGR_REAL = () => !!(KDH_USER && KDH_USER.role==='manager' && !KDH_USER.preview);
+function pwAcctHref(R, a, rep){
+  const label = (R.title||'Program')+' Eligible Accounts';
+  return `../accounts/#acct=${encodeURIComponent(a.n)}${MGR_REAL() ? '&rep='+encodeURIComponent(rep||a.rep||'') : ''}&sec=more&sub=programs&from=${encodeURIComponent(location.pathname+hashOf())}&fl=${encodeURIComponent(label)}`;
+}
+function pwInBook(rep, n){ return bookIndex(rep).has(String(n)); }
+function pwSummary(p, r, rep, R, M){
+  const f = progFacts(p, r, rep) || {};
+  const N = p.type==='MPO' ? mpoNums(r) : null;
+  const cur = N ? N.cur : M.totals.tracker, req = N ? N.goal : M.totals.requirement, need = Math.max(0, req-cur);
+  const days = daysLeft(p.period.end);
+  return `<div class="pw-sum">
+      <div class="pw-main"><b>${fmtN(cur)} of ${fmtN(req)}</b> Required ${pwUnit(R, req)}</div>
+      <div class="px-need ${f.cls||''}">${need<=0 ? 'Requirement Met' : `${fmtN(need)} More Needed`}</div>
+      ${hbar(f)}
+      <div class="pw-time">${E(R.period.label)}${isActive(p) ? ` · ${days<=0 ? 'Ends today' : plw(days,'day')+' left'}` : ' · Ended'}</div>
+      <button class="pw-btn pw-go" data-act="pw-view" data-pv="accts">View Eligible Accounts</button>
+    </div>`;
+}
+function pwDetails(p, r, R, M, single){
+  const t = single ? (single.tracker||{}) : {};
+  const st = s => `<span class="pw-st ${s}">${STATUS_TAG[s]||s}</span>`;
+  const rows = [];
+  const rnd = R.rules.find(x=>x.k==='Rounding') || {status:'assumed'};
+  if(single && R.requirement.kind==='pct_of_assigned_goal' && t.goal){
+    const exact = Math.round(t.goal*R.requirement.pct*100)/100;
+    rows.push(`<div class="pw-kv"><span>Original Goal</span><b>${fmtN(t.goal)} ${pwUnit(R, t.goal)}</b>${st('verified')}</div>`);
+    rows.push(`<div class="pw-kv"><span>MPO Requirement</span><b>${Math.round(R.requirement.pct*100)}% × ${fmtN(t.goal)} = ${fmtN(exact)}${exact!==t.requirement ? ' → '+fmtN(t.requirement) : ''}</b>${exact!==t.requirement ? st(rnd.status) : st('verified')}</div>`);
+  }
+  if(single && R.requirement.kind==='pct_of_base' && t.base){
+    const exact = Math.round(t.base*R.requirement.pct*100)/100;
+    rows.push(`<div class="pw-kv"><span>Account Base</span><b>${fmtN(t.base)} Accounts</b>${st('verified')}</div>`);
+    rows.push(`<div class="pw-kv"><span>MPO Requirement</span><b>${Math.round(R.requirement.pct*100)}% × ${fmtN(t.base)} = ${fmtN(exact)}${exact!==t.requirement ? ' → '+fmtN(t.requirement) : ''}</b>${exact!==t.requirement ? st(rnd.status) : st('verified')}</div>`);
+  }
+  if(p.type==='MPO') rows.push(`<div class="pw-kv"><span>Weight</span><b>${Math.round((p.objective.weight||0)*100)}% of the ${E(p.monthLabel)} ${E(p.channelLabel)} MPO</b></div>`);
+  return `<details class="hdet pw-det"><summary>Details</summary>
+      <div class="pw-kvs">${rows.join('')}</div>
+      <p class="pw-measure">${E(R.measure)}</p>
+      <p class="px-full"><span>Full program name</span>${E(R.official)}</p>
+      <h3 class="pw-h3">Program Rules</h3>
+      <ul class="pw-rules">${R.rules.map(x=>`<li><div class="pw-rk"><b>${E(x.k)}</b>${st(x.status)}</div><div>${E(x.v)}</div>${x.status!=='verified' || x.evidence ? `<div class="pw-ev">${E(x.evidence||'')}</div>` : ''}</li>`).join('')}</ul>
+      <p class="hnote">${E(R.detail.note)}</p>
+      <p class="hnote">Tracker numbers as of ${E(p.refreshed||'—')}. Photos and notes are not credit.</p>
+    </details>`;
+}
+function pwTabs(M, R){
+  const n = {accts: M.totals.open, prods: R.products.length, cred: R.kind==='placements' ? M.totals.tracker : M.credited.length};
+  const pv = state.pv || 'accts';
+  return `<div class="pw-tabs" role="tablist">${PW_VIEWS.map(([k,l])=>`<button class="pw-tab${k===pv?' on':''}" role="tab" aria-selected="${k===pv}" data-act="pw-view" data-pv="${k}"><span class="pw-tl">${E(l)}</span><span class="pw-tn">${fmtN(n[k])}</span></button>`).join('')}</div>`;
+}
+function pwAccounts(M, R, reps){
+  const many = reps.length>1;
+  const rows = window.KdhElig.accountsView(M, {product: state.pp, q: state.pq, rep: state.pr});
+  const P = state.pp ? R.products.find(x=>String(x.id)===String(state.pp)) : null;
+  const lim = state.plim || 30;
+  const opps = R.kind==='placements' ? rows.reduce((s,a)=>s + (state.pp ? 1 : (a.op||[]).length), 0) : rows.length;
+  const count = R.kind==='placements'
+    ? `${plw(rows.length,'account')} · ${plw(opps, 'product opportunity').replace('opportunitys','opportunities')}`
+    : (R.minSkus||1)>1 ? `${plw(rows.length,'account')} below ${R.minSkus} different products` : `${plw(rows.length,'account')} not buying yet`;
+  const repSel = many ? `<select class="kdh-field pw-rep" data-pw="rep" aria-label="Rep"><option value="">All Reps (${reps.length})</option>${reps.map(x=>`<option${x.rep===state.pr?' selected':''}>${E(x.rep)}</option>`).join('')}</select>` : '';
+  const chip = P ? `<button class="pw-chip" data-act="pw-prod" data-pp="">Product: ${E(P.name)} <span aria-hidden="true">✕</span><span class="sr">Clear product filter</span></button>` : '';
+  const list = rows.slice(0, lim).map(a=>{
+    const L = window.KdhElig.accountLine(M, a, state.pp);
+    const inBook = pwInBook(a.rep, a.n);
+    const meta = [a.city, '#'+a.n, many ? a.rep : ''].filter(Boolean).join(' · ');
+    const head = `<span class="hrow-t"><span>${E(a.name)}</span></span><span class="hrow-s">${E(meta)}</span>
+        <span class="pw-what"><b>${E(L.what)}</b></span>
+        ${L.why ? `<span class="pw-why c-${E(L.code)}">${E(L.why)}</span>` : ''}`;
+    return inBook
+      ? `<a class="hrow acct pw-row" href="${E(pwAcctHref(R, a, a.rep))}" data-pwpos="1"><span class="hrow-main">${head}</span><span class="pw-open">Open Account</span>${CHEV}</a>`
+      : `<div class="hrow acct pw-row nolink"><span class="hrow-main">${head}<span class="pw-why">Not in My Accounts yet — the account list is as of ${E((HubAccounts.asOf)||'—')}</span></span></div>`;
+  }).join('');
+  return `<div class="pw-tools">
+      <input type="search" class="kdh-field pw-q" data-pw="q" placeholder="Search accounts" value="${E(state.pq||'')}" autocomplete="off" aria-label="Search accounts">
+      ${repSel}
+    </div>
+    ${chip}
+    <div class="pw-count">${E(count)}${P && R.kind==='placements' ? ' for this product' : ''}</div>
+    <details class="pw-order"><summary>How is this ordered?</summary><p>${E(R.order)}</p></details>
+    ${rows.length ? `<div class="hlist">${list}</div>${rows.length>lim ? `<button class="pw-btn outline wide" data-act="pw-more">Show More · ${rows.length-lim} more</button>` : ''}`
+      : `<div class="kdh-state empty"><b>${state.pq ? 'No account matches “'+E(state.pq)+'”.' : P ? 'Every eligible account already has this product.' : 'No eligible account is left to reach.'}</b></div>`}
+    ${M.totals.excluded ? `<p class="hnote">${plw(M.totals.excluded,'account')} outside the program’s territory ${M.totals.excluded===1?'is':'are'} not listed (${E(R.universe.territory)}: ${E(R.universe.areas.join(', '))}).</p>` : ''}`;
+}
+function pwProducts(M, R){
+  const q = String(state.pq2||'').trim().toLowerCase();
+  const rows = M.products.filter(x=>!q || (x.name+' '+x.id+' '+x.package).toLowerCase().includes(q));
+  return `<div class="pw-tools"><input type="search" class="kdh-field pw-q" data-pw="q2" placeholder="Search products" value="${E(state.pq2||'')}" autocomplete="off" aria-label="Search products"></div>
+    ${R.productsExhaustive ? '' : `<p class="pw-warn">${E(R.productsNote)}</p>`}
+    <div class="hlist">${rows.map(x=>{
+        const inner = `<span class="hrow-main">
+        <span class="hrow-t"><span>${E(x.name)}</span></span>
+        <span class="hrow-s">${E([x.package, x.size, '#'+x.id].filter(Boolean).join(' · '))}</span>
+        <span class="pw-why">${R.kind==='placements' ? `${plw(x.open,'account')} could add it · ${fmtN(x.credited)} credited by account` : `${(R.minSkus||1)>1 ? `Counts toward ${R.minSkus} different ${E(R.families[0])} products` : `Any ${E(R.families[0])} product counts`} · ${plw(x.open,'account')} still to reach`}</span></span>`;
+        return x.open ? `<button class="hrow pw-prow" data-act="pw-prod" data-pp="${E(x.id)}">${inner}<span class="pw-open">View Eligible Accounts</span>${CHEV}</button>` : `<div class="hrow pw-prow nolink">${inner}</div>`;
+      }).join('') || `<div class="kdh-state empty"><b>No product matches.</b></div>`}</div>
+    ${R.excludedProducts && R.excludedProducts.length ? `<details class="hdet"><summary>Same Brands That Don’t Count · ${R.excludedProducts.length}</summary>
+      <p class="hnote">${E(R.excludedProducts[0].why)}.</p><ul class="pw-ex">${R.excludedProducts.map(x=>`<li>${E(x.name)} <span>#${E(x.id)}</span></li>`).join('')}</ul></details>` : ''}`;
+}
+function pwCredited(M, R, reps){
+  const many = reps.length>1;
+  let rows = M.credited.filter(c=>!state.pr || c.rep===state.pr);
+  const groups = new Map();
+  rows.forEach(c=>{ const k = c.rep+'|'+c.n; if(!groups.has(k)) groups.set(k, {rep:c.rep, n:c.n, name:c.name, city:c.city, items:[]}); const g = groups.get(k);
+    if(c.product) g.items.push(c.product.name); (c.products||[]).forEach(x=>g.items.push(x.name)); });
+  const T = M.totals;
+  const head = R.kind==='placements'
+    ? `<div class="pw-count"><b>${fmtN(T.tracker)} ${pwUnit(R, T.tracker)}</b> credited by the tracker${many ? ' across '+plw(reps.length,'rep') : ''}</div>
+       ${T.afterDetail>0 ? `<p class="pw-warn">${fmtN(T.detail)} are shown by account (sales record through ${E(R.detail.throughLabel)}). ${fmtN(T.afterDetail)} more were credited by the tracker after that — the account detail is not in the data yet.</p>` : ''}`
+    : `<div class="pw-count"><b>${plw(groups.size, 'buying account')}</b>${(R.minSkus||1)>1 ? ` with ${R.minSkus}+ different ${E(R.families[0])} products` : ''} (${E(R.detail.throughLabel ? 'loads through '+R.detail.throughLabel : '')})</div>`;
+  const list = [...groups.values()].map(g=>{
+    const inBook = pwInBook(g.rep, g.n);
+    const inner = `<span class="hrow-main"><span class="hrow-t"><span>${E(g.name||'#'+g.n)}</span></span><span class="hrow-s">${E([g.city, '#'+g.n, many ? g.rep : ''].filter(Boolean).join(' · '))}</span><span class="pw-why">${E(g.items.join(' · '))}</span></span>`;
+    return inBook ? `<a class="hrow acct pw-row" href="${E(pwAcctHref(R, g, g.rep))}" data-pwpos="1">${inner}${CHEV}</a>` : `<div class="hrow acct pw-row nolink">${inner}</div>`;
+  }).join('');
+  return head + (list ? `<div class="hlist">${list}</div>` : `<div class="kdh-state empty"><b>Nothing credited by account yet.</b></div>`);
+}
+function pwBody(M, R, reps){
+  const pv = state.pv || 'accts';
+  return `<section class="pw-view" id="pwList" data-pv="${pv}">${pv==='prods' ? pwProducts(M, R) : pv==='cred' ? pwCredited(M, R, reps) : pwAccounts(M, R, reps)}</section>`;
+}
+// The rep's workspace (Rep Mode program screen).
+function screenWorkspaceRep(p, r, rep, R){
+  const d = eligData(rep);
+  const top = `${backForProgram(p)}
+    <div class="px pw">
+      <div class="px-sup">${E(p.supplier)} · ${E(p.channelLabel)}${p.type==='MPO' ? ' · '+E(p.monthLabel)+' MPO' : ''}</div>
+      <h1 class="px-name">${E(R.title)}</h1>
+      <div class="px-meta">${htag(progFacts(p, r, rep))}<span class="px-ends">${E(endsLabel(p.period))}</span></div>`;
+  if(d===undefined) return `<div class="hview">${top}</div><div class="kdh-state loading">Loading eligible accounts…</div></div>`;
+  if(!d || !d.programs || !d.programs[p.id]) return null;   // no file for this rep: fall back to the tracker's own screen
+  const reps = [{rep, data:d}];
+  const M = window.KdhElig.model(p.id, reps);
+  return `<div class="hview">${top}
+      ${pwSummary(p, r, rep, R, M)}
+      ${pwDetails(p, r, R, M, d.programs[p.id])}
+    </div>
+    ${pwTabs(M, R)}
+    ${pwBody(M, R, reps)}
+  </div>`;
+}
+// The manager's program screen: the team's accounts with a rep filter.
+function workspaceTeamHtml(p){
+  const R = eligRule(p); if(!R) return '';
+  const files = ROSTER.map(rep=>({rep, data:eligData(rep)}));
+  if(files.some(x=>x.data===undefined)) return `<section class="dsec"><h2 class="dsec-h">Eligible Accounts</h2><div class="kdh-state loading">Loading the team’s accounts…</div></section>`;
+  const reps = files.filter(x=>x.data && x.data.programs && x.data.programs[p.id]);
+  if(!reps.length) return '';
+  const M = window.KdhElig.model(p.id, reps);
+  const T = M.totals;
+  return `<section class="dsec pw pw-team"><h2 class="dsec-h">Team Opportunities</h2>
+    <p class="dsec-p">${plw(reps.length,'rep')} · ${plw(T.open,'account')} still to reach${R.kind==='placements' ? ' · '+fmtN(T.opportunities)+' product opportunities' : ''} · ${fmtN(T.tracker)} of ${fmtN(T.requirement)} required ${pwUnit(R, T.requirement).toLowerCase()} across scored reps</p>
+    ${pwTabs(M, R)}${pwBody(M, R, reps)}
+    ${pwDetails(p, null, R, M, null)}
+  </section>`;
 }
 /* ---- account lists ---- */
 function acctRowsFor(p, rep, list){
@@ -3379,6 +3573,10 @@ document.addEventListener('click', e=>{
     case 'back-sup': { if(state.sup && supProgs(state.rep).has(state.sup) && supProgs(state.rep).get(state.sup).length>1) go({view:'sup', prog:null, list:null, n:null}); else go({view:'rep', prog:null, sup:null, list:null, n:null}); break; }
     case 'accts': go({view:'accts', prog:t.dataset.prog || state.prog, list:t.dataset.list || 'targets', n:null}); break;
     case 'open-acct': go({view:'acct', n:t.dataset.n, list:t.dataset.list || state.list || 'targets'}); break;
+    // program workspace (2026-10-05)
+    case 'pw-view': { const pv = t.dataset.pv || 'accts'; state.pv = pv==='accts' ? null : pv; state.plim = 30; history.replaceState(null, '', hashOf()); render(); pwScrollToList(); break; }
+    case 'pw-prod': { state.pp = t.dataset.pp || null; state.pv = null; state.plim = 30; history.pushState(null, '', hashOf()); render(); pwScrollToList(); break; }
+    case 'pw-more': { state.plim = (state.plim||30) + 60; render(); break; }
     case 'back-prog': go({view:'detail', list:null, n:null}); break;
     case 'back-accts': go({view:'accts', n:null}); break;
     case 'open-for-rep': {
@@ -3397,12 +3595,22 @@ document.addEventListener('keydown', e=>{
   const t = e.target.closest('article[data-act]'); if(!t) return;
   e.preventDefault(); t.click();
 });
+function pwScrollToList(){ requestAnimationFrame(()=>{ const el = document.getElementById('pwList') && document.querySelector('.pw-tabs'); if(el) el.scrollIntoView({block:'start'}); }); }
 document.addEventListener('input', e=>{
+  const w = e.target.closest('[data-pw]');
+  if(w && (w.dataset.pw==='q' || w.dataset.pw==='q2')){
+    if(w.dataset.pw==='q') state.pq = w.value; else state.pq2 = w.value;
+    state.plim = 30; history.replaceState(null, '', hashOf());
+    const pos = w.selectionStart; render();
+    const again = document.querySelector('[data-pw="'+w.dataset.pw+'"]'); if(again){ again.focus(); try{ again.setSelectionRange(pos, pos); }catch(err){} }
+    return;
+  }
   const t = e.target.closest('.hsearch input'); if(!t) return;
   acctQ[t.dataset.key] = t.value;
   const list = document.getElementById('acctRows'); if(list) list.innerHTML = acctRowsHtml(t.dataset.key);
 });
 document.addEventListener('change', e=>{
+  if(e.target.dataset && e.target.dataset.pw==='rep'){ state.pr = e.target.value || null; state.plim = 30; history.replaceState(null, '', hashOf()); render(); return; }
   if(e.target.id==='pvRep'){ const who = e.target.value; if(who && ROSTER.includes(who)){ state.asRep = false; const tab = isSupport(who) ? 'on' : lastTab(); openCards.clear(); go({view:'rep', rep:who, cat:tab, main:tabOf(tab), month:null, prog:null, peek:null, from:null}); } return; }
   const t = e.target.closest('.fsel'); if(!t) return;
   state.filters[t.dataset.filter] = t.value; render();
@@ -3422,9 +3630,22 @@ document.addEventListener('click', e=>{
 });
 
 /* ---- boot ---- */
+const PW_POS = 'kdh_hubpos:';
+document.addEventListener('click', e=>{
+  const a = e.target.closest('a[data-pwpos]'); if(!a) return;
+  try{ sessionStorage.setItem(PW_POS+location.pathname+(location.hash||'#'), String(window.scrollY)); }catch(err){}
+}, true);
+function pwRestoreScroll(){
+  try{ const k = PW_POS+location.pathname+(location.hash||'#'); const y = sessionStorage.getItem(k);
+    if(y==null) return; sessionStorage.removeItem(k);
+    // wait for the account list (the eligibility file loads after the first render)
+    let tries = 0; const t = setInterval(()=>{ if(document.getElementById('pwList') || ++tries>40){ clearInterval(t); window.scrollTo(0, Number(y)||0); } }, 75); }catch(e){}
+}
 function boot(){
   buildPrograms();
   if(LIB) return;                  // the Accounts page drives the rest itself
+  // Program eligibility rules (shared/eligibility.js): render again once they land.
+  if(window.KdhElig) window.KdhElig.ready().then(ok=>{ ELIG.ready = !!ok; if(ok && (state.view==='detail' || state.view==='program')) render(); });
   restore();                       // only the Rep / Manager mode survives a reload
   // A reload ALWAYS starts over on the home screen with an empty picker (per
   // Gavin, 2026-09-10) -- whatever the URL hash or the last visit said. The
@@ -3439,13 +3660,19 @@ function boot(){
   // (2026-09-29, per Gavin). The "Viewing <rep> · Change" chip is the way out.
   state.asRep = !!(deep.rep && ROSTER.includes(deep.rep) && !LOCKED_REP && KDH_USER && KDH_USER.role === 'manager');
   if(state.asRep) state.mode = 'rep';
-  if((deep.rep && ROSTER.includes(deep.rep)) || TAB_KEYS.includes(deep.only)){ applyHash(); if(state.rep && state.view==='home'){ state.view = 'rep'; state.cat = state.cat || lastTab(); state.main = tabOf(state.cat); applyOnly(); } }
+  // Coming BACK from the Account page (a navigation, not a reload) to a program
+  // workspace: land on that program with its product / search / rep kept.
+  let navType = ''; try{ navType = (performance.getEntriesByType('navigation')[0]||{}).type || ''; }catch(e){}
+  const pwBack = navType!=='reload' && deep.prog && PROGRAMS.some(p=>p.id===deep.prog) && (deep.view==='detail' || (deep.view==='program' && isMgr()));
+  if(pwBack && deep.view==='program'){ applyHash(); }
+  else if((deep.rep && ROSTER.includes(deep.rep)) || TAB_KEYS.includes(deep.only)){ applyHash(); if(state.rep && state.view==='home'){ state.view = 'rep'; state.cat = state.cat || lastTab(); state.main = tabOf(state.cat); applyOnly(); } }
   lockState();                     // a signed-in rep opens straight on their own page
   // A manager in Manager Mode lands on the team / program overview (Program
   // View, with its rep filter) instead of the name picker -- a deep link wins.
   if(state.view==='home' && !state.rep && !state.only && !state.asRep && !LOCKED_REP && isMgr()) state.view = 'programs';
-  history.replaceState(null, '', (LOCKED_REP || state.rep || state.only || state.view==='programs') ? hashOf() : '#');
+  history.replaceState(null, '', (LOCKED_REP || state.rep || state.only || state.view==='programs' || state.view==='program') ? hashOf() : '#');
   render();
+  if(pwBack) pwRestoreScroll();
   // Warm the active MPO months in the background so the first tap is instant.
   Object.keys(MPO_SCOPES).forEach(scope=>{
     MPO_SCOPES[scope].mod.MONTHS.forEach(m=>{ if(mpoMonthActive(scope, m)) ensureMpoMonth(scope, m.key).then(()=>{ if(state.view!=='home') render(); }); });

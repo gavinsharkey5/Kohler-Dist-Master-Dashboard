@@ -992,3 +992,16 @@ authorized roster. An eligible account with no purchase of the brand reads
 "No purchases in the available history" (NO_BUY; the account screen adds the
 tracker data's refresh date) instead of "Never bought it".
 Tests: scratchpad export_test / mgr_desktop / hubonly_test / dm_test.
+
+PROGRAM WORKSPACE (2026-10-05)
+A program with a verified rule (shared/data/program-rules.json, written by
+tools/program_eligibility.py) opens as a workspace instead of the older
+program screen: summary in the requirement's own units ("54 of 69 Required
+Placements", "15 More Needed"), one bar, View Eligible Accounts, a Details fold
+(Original Goal, MPO Requirement with the math, weight, every rule tagged
+Verified / Assumed / Unverified), then Eligible Accounts / Qualifying Products /
+Credited Results. Picking a product filters the accounts to that product
+(`pp=` in the hash; `pv=`, `pq=`, `pr=` keep the view, search and the
+manager's rep filter). Each account opens the Account page; its Back returns
+here with the same filters and scroll. Managers get the same views for their
+team on Program View (rep filter). Programs without a rule keep the old screen.
