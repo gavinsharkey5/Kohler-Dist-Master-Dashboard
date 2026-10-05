@@ -324,6 +324,18 @@ this site does NOT update in real time, use the Encompass dashboard
 (DashboardID=184193) for live incentive / MPO data. Managers do not see it.
 Remove it by deleting that function and its one call in chrome().
 
+## September is on the Incentives "Previous Months" toggle (2026-10-05)
+
+hub.js `INC_MONTHS`: pills read "August 2026" / "September 2026"; the
+September placeholder note is gone, so September lists the programs that
+ENDED in it (`endedIn`, period.end in Sep 2026: 9 programs for a typical
+rep). Programs still running into October stay in the live list above.
+MPOs need no edit: when October's month is added to the MPO programs.js
+MONTHS array and its files are dropped in, `mpoRepMonth` makes October the
+current month and September becomes a stepped-back month automatically (the
+MPO tracker pages default to the LAST month in MONTHS). Next month: add the
+October pill here once its programs have ended. hub.js tag 20261005c.
+
 ## Team Activity page: team/ (2026-09-28)
 
 `team/index.html` + `team/team.css` is the manager's read of the

@@ -629,11 +629,13 @@ const acctMore = {};           // program id|tab -> show every row
 const state = {mode:'rep', view:'home', rep:null, main:null, cat:null, month:null, prog:null, from:null, peek:null, filters:{type:'all', chan:'all', sup:'all', month:'active'}, showEnded:false, only:null, sup:null, list:null, n:null, im:'2026-08'};
 // PREVIOUS MONTHS on the Incentives screen (Gavin, 2026-09-30): a simple
 // August / September toggle under the live list so reps can review an
-// earlier month's incentives. August lists the programs that ended in
-// August; September shows a notice until the recap is added (Friday).
+// earlier month's incentives. Each month lists the programs that ENDED in it
+// (endedIn); a program still running into the next month stays in the live
+// list above. September went live 2026-10-05 (the `note` placeholder is gone).
+// Adding October later = one more entry here once its programs have ended.
 const INC_MONTHS = [
-  {key:'2026-08', label:'August'},
-  {key:'2026-09', label:'September', note:'September recap coming Friday.', sub:'September’s incentives will be added here once the month closes.'},
+  {key:'2026-08', label:'August 2026'},
+  {key:'2026-09', label:'September 2026'},
 ];
 // REP-MODE FLOW (2026-09-30, Gavin's Encompass brief): Incentives (one row
 // per supplier) -> a supplier's programs -> ONE program's summary -> an
