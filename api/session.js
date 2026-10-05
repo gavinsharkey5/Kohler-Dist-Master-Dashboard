@@ -82,20 +82,32 @@ export function refreshSession(rt, supabaseUrl, key) {
   for (const [k, v] of inflight) if (v.until < now) inflight.delete(k);
   const hit = inflight.get(rt);
   if (hit) return hit.p;
+  // Only a definite "that token is dead" (a 4xx other than 429) may end a
+  // sign-in. A rate limit, a 5xx, a dropped connection or a slow cellular
+  // network is "unavailable": the caller keeps the cookie and tries again
+  // (2026-10-05: a 429 used to be read as invalid and wiped the rep's
+  // long-lived cookie, so they had to type everything again).
   const p = (async () => {
-    let res;
-    try {
-      res = await fetch(`${supabaseUrl}/auth/v1/token?grant_type=refresh_token`, {
-        method: 'POST',
-        headers: { apikey: key, 'content-type': 'application/json', accept: 'application/json' },
-        body: JSON.stringify({ refresh_token: rt }),
-      });
-    } catch { return { ok: false, reason: 'unavailable' }; }
-    if (res.status >= 500) return { ok: false, reason: 'unavailable' };
-    let body = null; try { body = await res.json(); } catch {}
-    if (!res.ok || !body || !body.access_token || !body.refresh_token) return { ok: false, reason: 'invalid' };
-    return { ok: true, session: body };
+    for (let attempt = 0; attempt < 2; attempt++) {
+      let res = null;
+      try {
+        res = await fetch(`${supabaseUrl}/auth/v1/token?grant_type=refresh_token`, {
+          method: 'POST',
+          headers: { apikey: key, 'content-type': 'application/json', accept: 'application/json' },
+          body: JSON.stringify({ refresh_token: rt }),
+        });
+      } catch { res = null; }
+      if (res && res.status !== 429 && res.status < 500) {
+        let body = null; try { body = await res.json(); } catch {}
+        if (res.ok && body && body.access_token && body.refresh_token) return { ok: true, session: body };
+        return { ok: false, reason: res.status >= 400 ? 'invalid' : 'unavailable' };
+      }
+      if (attempt === 0) await new Promise((r) => setTimeout(r, 400));
+    }
+    return { ok: false, reason: 'unavailable' };
   })();
+  // A failure that may pass is not remembered: the next request tries again.
+  p.then((r) => { if (!r.ok && r.reason === 'unavailable') inflight.delete(rt); });
   inflight.set(rt, { p, until: now + 60 * 1000 });
   return p;
 }

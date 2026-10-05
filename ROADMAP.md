@@ -157,6 +157,13 @@ device, a decision).
   (Since 2026-09-30 an expired cookie recovers silently on /login/ when
   "Remember me" was on -- the stored session refreshes and the cookies are
   re-issued -- so a short JWT costs a redirect, not a password.)
+  2026-10-05, reps still being asked to sign in: set this NOW. Each renewal
+  rotates the refresh token, and a phone on weak cell service that loses the
+  reply is locked out once Supabase's reuse window (10 s) passes; a week-long
+  JWT cuts renewals from hourly to weekly. Also confirm Sessions has NO
+  time-box / inactivity timeout, and (if shown) raise "Refresh token reuse
+  interval". Reps who signed in before 2026-10-02 have no server cookie and
+  need to sign in one more time.
 - [ ] **Roll out to reps** (Gavin): send the kohlerdisthub.com link (or the
   home-screen steps) to the reps; DMs get the same link and see everything.
 - [ ] **Vercel plan** (Gavin): Hobby is for non-commercial use; move the

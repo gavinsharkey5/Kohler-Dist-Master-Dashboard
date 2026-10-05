@@ -273,10 +273,21 @@
   // token from it), so a rep is not asked again until they sign out.
   function serverSession(method, body) {
     var ctl = window.AbortController ? new AbortController() : null;
-    var t = setTimeout(function () { if (ctl) ctl.abort(); }, 6000);
+    var t = setTimeout(function () { if (ctl) ctl.abort(); }, 10000);   // slow cellular in a store
     return fetch('/api/session', { method: method, credentials: 'same-origin', headers: body ? { 'content-type': 'application/json' } : {}, body: body ? JSON.stringify(body) : undefined, signal: ctl ? ctl.signal : undefined })
-      .then(function (r) { clearTimeout(t); return r.ok ? r.json().catch(function () { return { ok: true }; }) : null; })
-      .catch(function () { clearTimeout(t); return null; });
+      .then(function (r) { clearTimeout(t); return r.ok ? r.json().catch(function () { return { ok: true }; }) : (r.status === 503 ? { busy: true } : null); })
+      .catch(function () { clearTimeout(t); return { busy: true }; });
+  }
+  // Same call, tried up to three times while the answer is only "busy" (a
+  // dropped connection, Supabase slow): a lost hand-off meant an hour-long
+  // sign-in instead of a lasting one. A definite no (401/403) is final.
+  // Repeating the hand-off is safe: Supabase hands back the same new token
+  // for a refresh token redeemed again within its reuse window.
+  function serverSessionRetry(method, body, left) {
+    return serverSession(method, body).then(function (r) {
+      if (r && r.busy && left > 1) return new Promise(function (ok) { setTimeout(ok, 800); }).then(function () { return serverSessionRetry(method, body, left - 1); });
+      return r && r.busy ? null : r;
+    });
   }
   function homeFor(role) { return next === '/' && role !== 'manager' ? '/rep/' : next; }
   function escapeHtml(s) {
@@ -325,6 +336,7 @@
   var whyText = {
     expired: 'Your session expired. Sign in again to continue.',
     invalid: 'Please sign in again to continue.',
+    revoked: 'You were signed out on this device. Sign in once more &mdash; it will remember you after that.',
     notlisted: 'That account isn&rsquo;t on the access list. Ask Gavin to add your email.',
     unavailable: 'The sign-in service didn&rsquo;t respond. Try again in a moment.'
   }[why];
@@ -349,7 +361,7 @@
   // password fills it; first-timers get the email step.
   function resume() {
     show('working');
-    serverSession('GET').then(function (r) {
+    serverSessionRetry('GET', null, 3).then(function (r) {
       if (r && r.ok && !entered) {
         entered = true;
         $('working').innerHTML = '<span class="spin"></span><span>Signed in as <b>' + escapeHtml(r.name || '') + '</b>. Opening&hellip;</span>';
@@ -416,7 +428,7 @@
     // stored session -- the page renews it the old way next time.
     var go = function () { location.replace(homeFor(me.role)); };
     if (!session.refresh_token) { go(); return; }
-    serverSession('POST', { refresh_token: session.refresh_token, remember: keep }).then(function (r) {
+    serverSessionRetry('POST', { refresh_token: session.refresh_token, remember: keep }, 3).then(function (r) {
       if (r && r.ok) forgetStoredSession();
       go();
     });
