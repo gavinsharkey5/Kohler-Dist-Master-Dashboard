@@ -28,10 +28,12 @@ Where it lives
 
 Categories (Hub)
 ----------------
-Display, Window, Cooler Door, Tap Handles, Menu Placement, Other Activation.
-Off-premise accounts see Display / Window / Cooler Door / Other first;
-on-premise accounts see Tap Handles / Menu Placement / Other first; every
-type is one tap away (More Types). Subtypes: Menu, Cocktail List, Spirit
+Display, PODs, Cooler Door, Window, Signage, Tap Handles, Menu Placement,
+Other Activation (PODs + Signage added 2026-10-05: migration
+20261005120000_merch_pod_signage.sql). Off-premise accounts see Display / PODs
+/ Cooler Door / Window / Signage / Other first; on-premise accounts see Tap
+Handles / Menu Placement / Signage / Other first; every type is one tap away
+(More Types). Displays and PODs ask for product lines with a unit. Subtypes: Menu, Cocktail List, Spirit
 List, Table Tent (menu); Cooler Door Wrap; Tasting / Event and Other with a
 description (other activation). iSellBeer's own Promotion Type, Theme and
 Elements are kept on the imported record as they were -- never rewritten
@@ -127,6 +129,16 @@ the filters, the generated time and the separate counts. Export Recap = a
 print page (Save as PDF) with every photo loaded at full column width, the
 filters, the definitions and the same counts; it holds the first 150 records
 (the CSV holds all). Both use exactly the filtered set on screen.
+Download Excel (2026-10-05, merchandising/xlsx-write.js, no library) is the
+iSellBeer-style export of the same view: sheet Records = one row per line
+(Date, Account #, Account, Town, Premise, Rep, Category, Subtype, Supplier,
+Brand Family, Brand, Package, Product #, Quantity, Unit, iSellBeer US/THEM,
+Tap Tracker Audit, Record Brands, Caption, Location, Program, Taken By,
+Source, Photos, Photo .. Photo 6, Open in Hub, Record ID); sheet About = the
+filters, separate counts and link expiry. Hub photos get 7-day signed links
+(KdhData.signUrls, made with the manager's own token, so only photos they can
+read); imported photos keep iSellBeer's link; Open in Hub always works for a
+signed-in manager.
 
 Permissions
 -----------

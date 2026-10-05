@@ -141,10 +141,26 @@
     return fetch(cfg().url.replace(/\/$/, '') + '/storage/v1/object/authenticated/' + BUCKET + '/' + String(path).split('/').map(encodeURIComponent).join('/'),
       { headers: { apikey: c.key, authorization: 'Bearer ' + token() } }).then(function (r) { return r.ok ? r.blob() : null; }, function () { return null; });
   }
+  // time-limited links to private photos (for exports): POST /storage/v1/object/sign/<bucket> with the
+  // person's own token, so only photos they may read can be signed. -> {path: url} (a path that fails is left out)
+  function signUrls(paths, seconds) {
+    if (!signedIn() || !paths.length) return Promise.resolve({});
+    var c = cfg(), base = c.url.replace(/\/$/, ''), out = {}, chunks = [];
+    for (var i = 0; i < paths.length; i += 100) chunks.push(paths.slice(i, i + 100));
+    return chunks.reduce(function (p, ch) {
+      return p.then(function () {
+        return fetch(base + '/storage/v1/object/sign/' + BUCKET, { method: 'POST',
+          headers: { apikey: c.key, authorization: 'Bearer ' + token(), 'content-type': 'application/json' },
+          body: JSON.stringify({ expiresIn: seconds || 604800, paths: ch }) })
+          .then(function (r) { return r.ok ? r.json() : []; }, function () { return []; })
+          .then(function (rows) { (rows || []).forEach(function (x) { if (x && x.signedURL && !x.error) out[x.path] = base + '/storage/v1' + (x.signedURL.charAt(0) === '/' ? '' : '/') + x.signedURL; }); });
+      });
+    }, Promise.resolve()).then(function () { return out; });
+  }
   async function sha256hex(blob) {
     var buf = await blob.arrayBuffer(); var h = await crypto.subtle.digest('SHA-256', buf);
     return Array.from(new Uint8Array(h)).map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
   }
 
-  global.KdhData = { ROOT: ROOT, signedIn: signedIn, json: json, rest: rest, repIndex: repIndex, repKeyFor: repKeyFor, repBook: repBook, catalog: catalog, actions: actions, team: team, rpc: rpc, upload: upload, objectBlob: objectBlob, sha256hex: sha256hex };
+  global.KdhData = { ROOT: ROOT, signedIn: signedIn, json: json, rest: rest, repIndex: repIndex, repKeyFor: repKeyFor, repBook: repBook, catalog: catalog, actions: actions, team: team, rpc: rpc, upload: upload, objectBlob: objectBlob, signUrls: signUrls, sha256hex: sha256hex };
 })(window);

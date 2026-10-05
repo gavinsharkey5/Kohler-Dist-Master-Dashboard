@@ -11,6 +11,16 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
+- [ ] **PODs + Signage photo types: run the SQL** (Gavin): Supabase SQL
+  Editor, run `supabase/migrations/20261005120000_merch_pod_signage.sql`.
+  Until then a rep who picks PODs or Signage gets a save error; the other
+  types work. Idempotent.
+- [ ] **Decide: stop capturing in iSellBeer?** (Gavin) Reps can capture every
+  type in the Hub now, but these pages are still built from iSellBeer exports:
+  Off-Premise MPO cooler doors + Lytt POS, On-Premise MPO Bardstown menus,
+  Display Auction, Tier 1 Display Recap, Tap Tracker, Executive Overview. Each
+  needs to read Hub records (or both) before iSellBeer can be dropped, and
+  supplier programs that require iSellBeer proof need confirming.
 - [ ] **iSellBeer photo PDFs: run one more SQL file** (Gavin, before importing
   PDFs): Supabase SQL Editor, run
   `supabase/migrations/20261005100000_isb_pdf_photos.sql`. It lets a photo PDF
@@ -217,6 +227,13 @@ device, a decision).
 - **Account-aware assistant + mock pitch** -- built 2026-09-30 and hardened the same day (server-side account authorization, server-built record, tools on the full record, ledger + spend limits); waiting on the pilot above. Snowflake later adds freshness (daily grain, invoices, inventory); route-wide / comparable-account questions need a permission rule first.
 
 ## Done
+
+- [x] 2026-10-05 **Merchandising: PODs + Signage, Excel export**: capture
+  lists now match Gavin's (off-premise Display, PODs, Cooler Door, Window,
+  Signage; on-premise Tap Handles, Menu Placement, Signage), and the
+  Merchandising page has Download Excel -- one row per product line like
+  iSellBeer's reports, clickable photo links (7-day links for Hub photos,
+  iSellBeer's own for imports), Open in Hub per row, an About sheet.
 
 - [x] 2026-10-05 **iSellBeer import at full scale**: PDF pages matched by the
   photo link printed on each page (any order, split or re-saved PDFs too),

@@ -56,6 +56,7 @@ function evidenceCat(o, prem){
   const t = (o.ask+' '+o.full+' '+o.channel).toLowerCase();
   if(/\b(keg|draft|draught|tap|handle)\b/.test(t) && prem!=='Off') return 'tap_handle';
   if(prem==='On' || /on-?prem/.test(t)) return 'menu';
+  if(/\b(pods?|placements?|new items?|distribution)\b/.test(t)) return 'pod';
   return 'display';
 }
 

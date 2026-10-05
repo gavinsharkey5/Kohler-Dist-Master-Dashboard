@@ -2003,3 +2003,21 @@ Tests (scratchpad): isb_test (39, split PDFs), imp_test (rewritten: link
 match, re-import, PDF before spreadsheet, split PDF later, review queue),
 sql_pdf_test.sh (13), scale_test.mjs (Report 68 at 390/820/1280 + dark),
 merch_capture_test updated.
+
+## Merchandising: PODs + Signage; Excel export like iSellBeer's (2026-10-05)
+
+Gavin wants reps to capture in the Hub instead of iSellBeer: off-premise
+displays, PODs, cooler doors, windows, signage; on-premise taps, menu promos
+(+ signage). shared/merch-types.js gained `pod` and `signage` (BY_PREMISE in
+that order; PODs take product lines like displays; opps.js `evidenceCat` sends
+placement programs to PODs); the DB checks need
+`supabase/migrations/20261005120000_merch_pod_signage.sql` (sql_pod_test.sh).
+The Merchandising page's Download Excel (`downloadXlsx`, writer
+merchandising/xlsx-write.js, signed links via `KdhData.signUrls`) is the
+iSellBeer-style export of exactly the filtered view; CSV and Export Recap stay.
+NOT done, Gavin's decision first (ROADMAP "Now"): seven pages are still built
+from iSellBeer exports (MPO cooler doors / Lytt POS / Bardstown menus, Display
+Auction, Tier 1 recap, Tap Tracker, Executive Overview) -- dropping iSellBeer
+means rewiring each to read Hub records. Hub tap captures have brand + handle
+count only, no ours/theirs, so they cannot feed the Tap Tracker yet.
+Tests: recap_test (Excel opened in openpyxl), merch_capture_test, opp_elig_test.

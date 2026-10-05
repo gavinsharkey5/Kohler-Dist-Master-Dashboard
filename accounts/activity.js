@@ -957,7 +957,7 @@ function typeStep(d, showAll){
     ${prog ? `<p class="pf-prog-note">For <b>${E(prog)}</b></p>` : ''}
     <p class="pf-step">What are you documenting?</p>
     <div class="pf-list">${list.map((k, i)=>{ const c = M().cat(k); return `<button type="button" class="pf-opt${d.category===k?' on':''}" data-type="${k}"${i===0?' data-first':''}><b>${E(c.label)}</b><span>${E(c.hint)}</span></button>`; }).join('')}</div>
-    ${rest_.length ? `<button type="button" class="btn ghost" id="pfMore">More Types · ${rest_.map(k=>M().catLabel(k)).join(', ')}</button>` : ''}`, ()=>keepIfStarted(d));
+    ${rest_.length ? `<button type="button" class="btn ghost pf-more-types" id="pfMore">More Types · ${rest_.slice(0,2).map(k=>M().catLabel(k)).join(', ')}${rest_.length>2 ? ` +${rest_.length-2}` : ''}</button>` : ''}`, ()=>keepIfStarted(d));
   w.querySelectorAll('[data-type]').forEach(b=>b.addEventListener('click', ()=>{ d.category = b.dataset.type; if(!(M().SUBTYPES[d.category]||[]).some(s=>s[0]===d.subtype)) d.subtype = ''; detailsStep(d); }));
   const more = w.querySelector('#pfMore'); if(more) more.addEventListener('click', ()=>typeStep(d, true));
 }

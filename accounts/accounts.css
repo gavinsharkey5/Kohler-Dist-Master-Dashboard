@@ -751,3 +751,5 @@ html.asheet-open{overflow:hidden}
 /* imported iSellBeer records folded per month (2026-10-05) */
 .act-grp > summary{font-weight:500}
 .act-grp > .acts{margin-top:8px;border-left:2px solid var(--border);padding-left:8px}
+
+.pf-more-types{white-space:normal;text-align:left;height:auto;min-height:40px}

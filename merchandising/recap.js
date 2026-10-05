@@ -60,7 +60,7 @@ async function load(){
   photos.forEach(p=>{ if(used.has(p.id)) return;
     out.push({key:'ph:'+p.id, id:p.id, customer_num:p.customer_num, category:p.category||null, caption:p.caption, brands:p.brand ? [p.brand] : [], program_id:p.program_id||null,
       source:p.source||'hub', observed_at:p.captured_at, created_at:p.uploaded_at, author_name:p.author_name, lines:[], photos:[p]}); });
-  out.forEach(r=>{ const a = ACCTS.get(String(r.customer_num)) || {}; r.acct = a.name || ('Account #'+r.customer_num); r.rep = a.rep || ''; r.city = a.city || '';
+  out.forEach(r=>{ const a = ACCTS.get(String(r.customer_num)) || {}; r.acct = a.name || ('Account #'+r.customer_num); r.rep = a.rep || ''; r.city = a.city || ''; r.prem = a.prem || r.premise || '';
     r.when = r.observed_at || r.created_at; });
   RECS = out.filter(r=>inScope(r.rep)).sort((a,b)=>String(b.when).localeCompare(String(a.when)));
   LOADED_AT = new Date();
@@ -164,6 +164,7 @@ function render(){
       <label>Source<select id="fsrc"><option value="">Hub and iSellBeer</option><option value="hub"${st.src==='hub'?' selected':''}>Captured in Kohler Hub</option><option value="isellbeer"${st.src==='isellbeer'?' selected':''}>Imported From iSellBeer</option></select></label>
     </div>
     <div class="mact">
+      <button type="button" class="btn primary" id="dlXlsx"${rows.length ? '' : ' disabled'}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Download Excel</button>
       <button type="button" class="btn" id="dlCsv"${rows.length ? '' : ' disabled'}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Download CSV</button>
       <button type="button" class="btn outline" id="doRecap"${rows.length ? '' : ' disabled'}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg>Export Recap</button>
       ${KEYS.some(k=>st[k]) ? `<button type="button" class="btn ghost" id="fclear">Clear Filters</button>` : ''}
@@ -189,7 +190,56 @@ function wire(){
   on('fclear', 'click', ()=>{ KEYS.forEach(k=>{ st[k] = ''; }); st.limit = 40; writeHash(); render(); });
   on('more', 'click', ()=>{ const y = window.scrollY; st.limit += 40; render(); window.scrollTo(0, y); });
   on('dlCsv', 'click', downloadCsv);
+  on('dlXlsx', 'click', downloadXlsx);
   on('doRecap', 'click', recap);
+}
+
+/* ---- Download Excel (2026-10-05): the iSellBeer-style export. One row per product / brand line
+   (a record with no lines = one row), clickable Photo columns and an Open in Hub link per row, and an
+   About sheet with the filters, the separate counts and the link expiry. Photos the Hub stores get a
+   7-day signed link (made with the manager's own sign-in, so only photos they can see); iSellBeer
+   imports keep iSellBeer's own link. Exactly view() -- the filtered set on screen. ---- */
+const LINK_DAYS = 7, MAX_PHOTO_COLS = 6;
+async function downloadXlsx(){
+  const btn = document.getElementById('dlXlsx'); const label = btn ? btn.innerHTML : '';
+  if(btn){ btn.disabled = true; btn.setAttribute('aria-busy', 'true'); btn.textContent = 'Preparing photo links…'; }
+  try{
+    const rows = view(); const c = counts(rows);
+    const paths = [...new Set(rows.flatMap(r=>r.photos.map(p=>p.storage_path).filter(Boolean)))];
+    const signed = await D.signUrls(paths, LINK_DAYS*86400);
+    const nPhotoCols = Math.min(MAX_PHOTO_COLS, Math.max(1, ...rows.map(r=>r.photos.length)));
+    const hub = location.origin + location.pathname.replace(/merchandising\/.*$/, '');
+    const head = ['Date', 'Account #', 'Account', 'Town', 'Premise', 'Rep', 'Category', 'Subtype', 'Supplier', 'Brand Family', 'Brand', 'Package', 'Product #',
+      'Quantity', 'Unit', 'iSellBeer US/THEM', 'Tap Tracker Audit', 'Record Brands', 'Caption', 'Location', 'Program', 'Taken By', 'Source', 'Photos']
+      .concat(Array.from({length:nPhotoCols}, (_, i)=>i ? 'Photo '+(i+1) : 'Photo'), ['Open in Hub', 'Record ID']);
+    const photoCell = p => { const u = p.storage_path ? signed[p.storage_path] : p.source_url; return u ? {v: p.storage_path ? 'Open Photo' : 'Open in iSellBeer', link: u} : (p.storage_path ? 'Link unavailable' : ''); };
+    const out = [head]; let unsigned = 0;
+    rows.forEach(r=>{
+      r.photos.forEach(p=>{ if(p.storage_path && !signed[p.storage_path]) unsigned++; });
+      const day = String(r.when||'').slice(0,10);
+      const base = r2 => [day, Number(r.customer_num) || r.customer_num, r.acct, r.city, r.prem==='On' ? 'On-premise' : r.prem==='Off' ? 'Off-premise' : '', r.rep,
+        M.catLabel(r.category), r.subtype ? (M.SUB_LABEL[r.subtype]||r.subtype) : ''].concat(r2, [(r.brands||[]).join('; '), r.caption || '', r.location || '',
+        r.program_id ? progName(r.program_id) : '', r.author_name || r.source_author || '', M.SOURCE_LABEL[r.source||'hub'], r.photos.length],
+        Array.from({length:nPhotoCols}, (_, i)=>r.photos[i] ? photoCell(r.photos[i]) : ''),
+        [{v:'Open in Hub', link: hub + 'accounts/#acct=' + encodeURIComponent(r.customer_num) + '&sec=more&sub=photos'}, r.key]);
+      if(!r.lines.length) out.push(base(['', '', '', '', '', '', '', '', '']));
+      else r.lines.forEach(l=>out.push(base([l.supplier||'', l.brand_family||'', l.brand||'', l.package||'', l.product_num||'',
+        l.quantity==null ? '' : Number(l.quantity), l.quantity==null ? '' : M.UNIT_LABEL[l.quantity_unit||'unspecified'] || l.quantity_unit, l.ownership_source||'', l.ownership_corrected||''])));
+    });
+    const about = [['Merchandising Export'], ['Generated', new Date().toLocaleString('en-US')], ['Filters', filterText()],
+      ['Counts', `${c.accounts} accounts · ${c.records} records · ${c.photos} photos · ${c.lines} product / brand lines (counted separately)`],
+      ['Rows', 'One row per product / brand line; a record with no lines has one row. A blank quantity was not recorded.'],
+      ['Photo links', `Photos saved in the Hub open through a link that works for ${LINK_DAYS} days (until ${new Date(Date.now()+LINK_DAYS*86400000).toLocaleDateString('en-US')}); download again for fresh links. “Open in Hub” always works for a signed-in manager. iSellBeer photos open iSellBeer's own link.`],
+      ['Note', 'Evidence is not program credit. Nothing here changes iSellBeer.']];
+    if(unsigned) about.push(['Unavailable', `${unsigned} stored photo(s) could not get a link (sign in again and retry).`]);
+    const blob = KdhXlsx.book([{name:'Records', rows:out, freeze:1, widths:[11,10,30,14,11,16,14,14,18,18,24,12,10,9,10,10,10,24,30,16,22,18,22,7].concat(Array(nPhotoCols).fill(16), [14, 22])},
+      {name:'About', rows:about, widths:[16, 110]}]);
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+    a.download = 'merchandising-export-' + new Date().toISOString().slice(0,10) + '.xlsx';
+    document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+  } finally {
+    if(btn){ btn.disabled = false; btn.removeAttribute('aria-busy'); btn.innerHTML = label; }
+  }
 }
 
 /* ---- Download CSV: one row per product / brand line (a record with no lines = one row) ---- */
