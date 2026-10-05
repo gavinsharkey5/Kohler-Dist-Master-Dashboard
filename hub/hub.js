@@ -811,13 +811,16 @@ function persist(){ try{ localStorage.setItem(LS_KEY, JSON.stringify({rep:state.
 // narrow window) always gets Rep Mode, and a mode=manager link opened there
 // is rewritten to Rep Mode.
 const isMobile = () => window.innerWidth < 760 || (window.matchMedia('(pointer:coarse)').matches && window.innerWidth < 1100) || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-const isMgr = () => state.mode==='manager' && !isMobile();
+// Manager Mode needs a wide screen -- unless the person is a signed-in manager (2026-10-05, Gavin: managers
+// open on the program view everywhere; DMs are already cut to their team by HUB_TEAM).
+const mgrCapable = () => !isMobile() || SIGNED_MGR;
+const isMgr = () => state.mode==='manager' && mgrCapable();
 window.addEventListener('resize', ()=>{ if(!LIB && state.mode==='manager') render(); });
 // A signed-in manager on a computer starts in Manager Mode (2026-10-04, Gavin:
 // no repeated mode screens); a manager who switched to Rep Mode keeps it.
 const SIGNED_MGR = !!(KDH_USER && KDH_USER.role === 'manager' && !KDH_USER.preview);
 function restore(){ try{ const s = JSON.parse(localStorage.getItem(LS_KEY)||'{}');
-  if(!isMobile() && (s.mode==='manager' || (SIGNED_MGR && s.mode!=='rep'))) state.mode = 'manager'; }catch(e){ if(SIGNED_MGR && !isMobile()) state.mode = 'manager'; } }
+  if(mgrCapable() && (s.mode==='manager' || (SIGNED_MGR && s.mode!=='rep'))) state.mode = 'manager'; }catch(e){ if(SIGNED_MGR && mgrCapable()) state.mode = 'manager'; } }
 function hashOf(){
   const p = [];
   if(state.view!=='home') p.push('view='+state.view);
@@ -849,7 +852,7 @@ function applyHash(){
   state.prog = h.prog && PROGRAMS.some(p=>p.id===h.prog) ? h.prog : null;
   state.from = h.from || null;
   state.peek = (h.who && ROSTER.includes(h.who) && h.who!==state.rep) ? h.who : null;
-  if(h.mode==='manager') state.mode = isMobile() ? 'rep' : 'manager'; else if(h.mode==='rep') state.mode = 'rep';
+  if(h.mode==='manager') state.mode = mgrCapable() ? 'manager' : 'rep'; else if(h.mode==='rep') state.mode = 'rep';
   const v = h.view;
   // view=pick was the old "what are you looking for?" / supplier step -- an
   // old link now lands straight on the rep's dashboard with that tab open.
@@ -867,7 +870,7 @@ function applyHash(){
   if(state.view==='rep' && !state.cat){ state.cat = lastTab(); }
   state.main = tabOf(state.cat);
   if((state.view==='detail' || state.view==='program') && !state.prog) state.view = state.rep ? 'rep' : 'programs';
-  if(isMobile() && (state.view==='programs' || state.view==='program')) state.view = state.rep ? 'rep' : 'home';
+  if(!mgrCapable() && (state.view==='programs' || state.view==='program')) state.view = state.rep ? 'rep' : 'home';
   state.only = TAB_KEYS.includes(h.only) ? h.only : null;
   state.im = INC_MONTHS.some(m=>m.key===h.im) ? h.im : INC_MONTHS[INC_MONTHS.length-1].key;
   applyOnly();
@@ -3355,7 +3358,7 @@ document.addEventListener('click', e=>{
       { const el = document.querySelector('.ra-edit input'); if(el){ el.focus(); el.setSelectionRange(el.value.length, el.value.length); } } break;
     case 'ra-cancel': raEdit = null; render(); break;
     case 'log-more': logMore[t.dataset.key] = !logMore[t.dataset.key]; render(); break;
-    case 'set-mode': if(LOCKED_REP || state.asRep) break; state.mode = (t.dataset.mode==='manager' && !isMobile()) ? 'manager' : 'rep'; persist();
+    case 'set-mode': if(LOCKED_REP || state.asRep) break; state.mode = (t.dataset.mode==='manager' && mgrCapable()) ? 'manager' : 'rep'; persist();
       // Program View is a Manager Mode screen: switching to Rep Mode there opens the rep picker
       if(state.mode==='rep' && (state.view==='programs' || state.view==='program')){ go({view:'home', prog:null, peek:null, from:null}); break; }
       history.replaceState(null, '', hashOf()); render(); break;
