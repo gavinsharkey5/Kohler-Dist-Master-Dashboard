@@ -384,9 +384,15 @@ real, then the two generators above.
 
 ## October 2026 On-Premise MPO tab + "latest month" defaults (2026-10-05)
 
-OCTOBER_ON_PREM_2026_MPO.docx (25% each): Carbliss 40% buying accounts and iSellBeer
-(5) feature photos ride as AWAITING (hasData:false, awaiting:true -- Gavin is holding
-Carbliss for the account base; no iSellBeer export yet). BBC Oktoberfest Draft
+OCTOBER_ON_PREM_2026_MPO.docx (25% each): iSellBeer (5) feature photos rides as AWAITING
+(hasData:false, awaiting:true -- no iSellBeer export yet). CARBLISS 40% buying accounts is
+BUILT (2026-10-05): a 'followup' objective with pct 0.4 over MPOs/on-prem/
+core_market_on_prem_accts.csv (RDE "Entire Core Market On Prem Accts", 1,047 accounts for the
+roster) as the denominator, DONE = bought Carbliss 9/1-10/31 per carbliss_buying_accounts.csv
+(September carries over); all 127 buyers were in their rep's base. That on-prem export was
+used for Carbliss ONLY -- the territory-accounts three-file refresh was NOT run for it (offer
+it to Gavin). Hub: followup objectives list their own base accounts as targets / done
+accounts as credited (hub.js nextAccounts / closedFor / buyingFor). BBC Oktoberfest Draft
 Conversion and Wine & Spirits Spirits Follow-Up are a NEW on-prem objective type,
 'followup': per rep a list of base accounts, each done or not (target = every base
 account, `pct:1`). Run `python3 MPOs/on-prem/generate_2026-10.py` (rebuilds per-rep
@@ -401,6 +407,26 @@ spirits_followup_placements.csv. Defaults: the Incentive Tracker's DEFAULT_MONTH
 is now the LAST entry of MONTHS (no more editing it each month), the MPO trackers
 already default to the last month, and the hub's Previous Months toggle opens on the
 latest ended month (September).
+
+## Boston Beer's seasonal-conversion sheets vs the RDE keg export (2026-10-05)
+
+Gavin sent Boston Beer's own "10-05-26 Sam Adams Seasonal Conversion Fall.xlsx" (per-rep
+scoreboard, 307 prior-season accounts, 264 converted = 86.0%) and "Seasonal Unconverted
+Accounts Fall.xlsx" (43 accounts, by ROUTE, no rep column) and asked whether they match the
+RDE keg export behind the October on-prem Oktoberfest MPO (335 accounts, 287 converted =
+85.7%). VERDICT: same story, not the same list. Percentages agree; the big reps are within
+1-3 accounts (Nick 79/73 vs 78/72, Allison 56/49 vs 55/48, Brian 53/50 vs 54/51, Paul 46/33
+vs 46/32, Dan 4/3 = 4/3). Differences, all explainable: (1) Boston Beer counts by ROUTE and
+leaves out package accounts Encompass keeps (Jayson 12 vs 1, Mike Ast 12 vs 8, Klejdi 5 vs
+2) and has no rows for Dave Ehlers, Phil Ernst, Shane Barreca (8 accounts); (2) its base
+window runs past 7/17 (Hapgoods bought 7/22-23 and is in their base, not ours); (3) timing:
+Straphanger and Skylands show Octoberfest loaded 10/2 in Encompass but "not converted" on
+their 10/5 sheet; (4) 5 of their 43 unconverted accounts (Chelas, Andiamo's, Masonic Temple,
+Z's Casual Dining, Knights of Columbus) are not in the Encompass keg export at all, and the two
+VFW posts sit under the Encompass house account "NJ VETERANS NETWORK RENAISSANCE FESTIVAL"
+(rep "Default"). The MPO stays on the RDE export (Gavin's windows, rep-assigned). The
+Boston Beer files can score the October INCENTIVE through
+incentive-tracking/convert_sam_adams_official.py if Gavin wants -- not loaded yet.
 
 ## Team Activity page: team/ (2026-09-28)
 

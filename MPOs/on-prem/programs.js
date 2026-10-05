@@ -101,7 +101,9 @@ const OBJECTIVES_2026_09 = [
 // Carbliss (40% buying accounts) waits on the account base; iSellBeer
 // feature photos wait on October's export -- both ride as awaiting.
 const OBJECTIVES_2026_10 = [
-  {key:'carbliss', name:'Carbliss – 40% Buying Accounts', shortName:'Carbliss', unit:'buying account', weight:0.25, type:'new_accounts', hasData:false, awaiting:true, awaitingNote:'Carbliss buying accounts have not been loaded yet.', goalLabel:'40% of account base'},
+  {key:'carbliss', name:'Carbliss – 40% Buying Accounts', shortName:'Carbliss', unit:'buying account', weight:0.25, type:'followup', shareOfBase:true, hasData:true, goalLabel:'40% of account base',
+   typeNote:'Your target is 40% of your OWN core on-premise accounts buying Carbliss from September 1 through October 31. An account counts once, however many times it orders.',
+   followLabels:{had:'Town', done:'Carbliss (Sep 1\u2013Oct 31)', doneTag:'Buying', todoTag:'Not buying yet'}},
   {key:'sam_adams_conversion', name:'BBC – Complete Oktoberfest Draft Conversion', shortName:'Oktoberfest Conversion', unit:'account', weight:0.25, type:'followup', hasData:true, goalLabel:'Convert every Summer Ale keg account to Oktoberfest',
    typeNote:'Every account that had Summer Ale kegs from April 1 to July 17 needs an Oktoberfest keg from August 1 to October 23. Kegs bought and returned do not count.',
    followLabels:{had:'Summer Ale kegs (Apr 1\u2013Jul 17)', done:'Oktoberfest kegs (Aug 1\u2013Oct 23)', doneTag:'Converted', todoTag:'Not converted yet'}},
@@ -144,6 +146,7 @@ const MONTHS = [
     {objKey:'husa_xx_draft', file:'mpo_husa_xx_draft.json', target:1, builder:'new_accounts'},
   ]},
   {key:'2026-10', label:'October 2026', dir:'data/2026-10/', objectives: OBJECTIVES_2026_10, tables: [
+    {objKey:'carbliss', file:'mpo_carbliss.json', pct:0.4, builder:'followup'},
     {objKey:'sam_adams_conversion', file:'mpo_sam_adams_conversion.json', pct:1, builder:'followup'},
     {objKey:'spirits_followup', file:'mpo_spirits_followup.json', pct:1, builder:'followup'},
   ]},
@@ -631,7 +634,7 @@ function metricFor(o, rep, DATA){
       pct: Math.min(r.qualifying/r.target,1)*100,
       remaining,
       valueText: r.qualifying + ' of ' + r.target,
-      goalText: unitFor(o, r.target),
+      goalText: o.shareOfBase ? (Math.round(d.pct*100)+'% of my account base ('+r.target+' of '+r.base+')') : unitFor(o, r.target),
       remainText: remaining>0 ? unitFor(o, remaining) : '',
       status: r.qualifying>=r.target ? 'achieved' : (r.qualifying>0 ? 'inprogress' : 'notstarted'),
       hasActivity: r.qualifying>0

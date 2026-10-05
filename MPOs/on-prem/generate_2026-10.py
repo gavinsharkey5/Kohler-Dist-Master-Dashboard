@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """Builds October 2026's on-premise MPO datasets (OCTOBER_ON_PREM_2026_MPO.docx).
 
-  25%  Carbliss  -- 40% Buying Accounts              (awaiting: account base not loaded yet)
+  25%  Carbliss  -- 40% Buying Accounts              (built here)
   25%  BBC       -- Complete Oktoberfest Draft Conversion   (built here)
   25%  Spirits   -- Follow up on all On-Premise Spirits placements   (built here)
   25%  iSellBeer -- (5) Feature Photos               (awaiting: no October export yet)
 
 Inputs (this folder, overwrite to refresh):
+  core_market_on_prem_accts.csv              RDE "Entire Core Market On Prem Accts" -- every on-premise
+                                             account in the Core Market, per rep: the Carbliss DENOMINATOR.
+  carbliss_buying_accounts.csv               RDE "Carbliss 40% Buying Accounts": one row per load sheet,
+                                             Buyer Count 9/1/2026 - 10/31/2026 (September + October).
   sam_adams_kegs_summer_to_octoberfest.csv   RDE "Sam Adams Kegs: Summer Ale to Octoberfest" --
                                              one row per rep / account / keg SKU / load-sheet date.
   spirits_followup_placements.csv            RDE two-window export (7/1-9/30 placements, 10/1-10/31).
@@ -15,6 +19,12 @@ Run:  python3 generate_2026-10.py     (also rebuilds the per-rep copies)
 
 Both objectives are FOLLOW-UP scores: a rep has a list of accounts (the base)
 and each one is either done or not yet.
+
+--- Carbliss: 40% buying accounts ---
+Base = the rep's accounts in core_market_on_prem_accts.csv; DONE = the account bought Carbliss
+on any load sheet 9/1-10/31 (the objective carries over from September, so the window is
+September + October). Distinct accounts, so repeat orders count once. Target = ceil(40% x
+base). A buyer that is not in that rep's own base would not be counted (the build prints them).
 
 --- BBC Oktoberfest conversion ---
 BASE = accounts with NET Summer Ale keg units > 0 loaded 4/1/2026 - 7/17/2026
@@ -155,21 +165,61 @@ def build_spirits():
     return out
 
 
+CORE_ON_CSV = HERE / "core_market_on_prem_accts.csv"
+CARBLISS_CSV = HERE / "carbliss_buying_accounts.csv"
+
+
+def build_carbliss():
+    base = {}
+    for r in load(CORE_ON_CSV):
+        rep = (r["Sales Rep Assigned"] or "").strip()
+        if not rep or rep in HOUSE:
+            continue
+        base.setdefault((rep, r["Customer Num"].strip()), r)
+    bcol = next(c for c in load(CARBLISS_CSV)[0] if c.startswith("Buyer Count"))
+    buyers, outside = {}, set()
+    for r in load(CARBLISS_CSV):
+        rep = (r["Sales Rep Assigned"] or "").strip()
+        num_, name = split_customer(r["Customer Num & Company"])
+        if not rep or rep in HOUSE or num(r[bcol]) <= 0:
+            continue
+        if (rep, num_) not in base:
+            outside.add((rep, num_, name))
+            continue
+        d = dt(r["Load Sheet Date"])
+        b = buyers.setdefault((rep, num_), d)
+        if d and (b is None or d > b):
+            buyers[(rep, num_)] = d
+    out = []
+    for (rep, num_), r in sorted(base.items(), key=lambda kv: (kv[0][0], kv[1]["Customer Name"])):
+        done = (rep, num_) in buyers
+        out.append({"SALES_REP_ASSIGNED": rep, "CUSTOMER_NUM": int(num_) if num_.isdigit() else num_,
+                    "CUSTOMER_NAME": r["Customer Name"].strip(), "BASE_DETAIL": (r["City"] or "").strip(),
+                    "BASE_DATE": "", "DONE": 1 if done else 0, "DONE_DETAIL": "Carbliss" if done else "",
+                    "DONE_DATE": fmt(buyers.get((rep, num_)))})
+    return out, outside
+
+
 def main():
     month_dir = HERE / "data" / MONTH_KEY
     month_dir.mkdir(parents=True, exist_ok=True)
     conv, spirits = build_conversion(), build_spirits()
+    carb, carb_outside = build_carbliss()
+    (month_dir / "mpo_carbliss.json").write_text(json.dumps(carb, indent=2))
     (month_dir / "mpo_sam_adams_conversion.json").write_text(json.dumps(conv, indent=2))
     (month_dir / "mpo_spirits_followup.json").write_text(json.dumps(spirits, indent=2))
     synced = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     (month_dir / "sync_meta.json").write_text(json.dumps({"synced_at": synced}, indent=2))
-    for label, rows in (("Oktoberfest conversion", conv), ("Spirits follow-up", spirits)):
+    for label, rows in (("Carbliss", carb), ("Oktoberfest conversion", conv), ("Spirits follow-up", spirits)):
         by = defaultdict(lambda: [0, 0])
         for r in rows:
             by[r["SALES_REP_ASSIGNED"]][0] += 1
             by[r["SALES_REP_ASSIGNED"]][1] += r["DONE"]
         print(f"{label}: {sum(v[1] for v in by.values())} of {sum(v[0] for v in by.values())} accounts done; "
               f"{sum(1 for v in by.values() if v[1] >= v[0])} of {len(by)} reps complete")
+    if carb_outside:
+        print("  Carbliss buyers NOT in the rep's core on-prem base (not counted): "
+              + "; ".join(sorted(f"{r} / {n} {m}" for r, n, m in carb_outside)))
     print(f"sync_meta.json timestamped {synced} in data/{MONTH_KEY}/")
 
 

@@ -1458,8 +1458,13 @@ function buyingFor(p, rep){
     const r = (sd.reps||[]).find(x=>x.rep===rep); if(!r || !Array.isArray(r.lines)) return;
     r.lines.forEach(l=>{
       const name = l.customer; if(!name) return;
+      // FOLLOW-UP objectives (Oktoberfest conversion, Spirits follow-up, Carbliss
+      // 40%): every base account is a line, but only a DONE one is "already
+      // buying" -- the rest are the targets.
+      if(p.objective.type==='followup' && !l.done) return;
       let note = '';
-      if(p.objective.type==='photos') note = 'photo submitted';
+      if(p.objective.type==='followup') note = l.doneDetail || 'done';
+      else if(p.objective.type==='photos') note = 'photo submitted';
       else if(l.new_buyer==='1' || l.isNew) note = 'new this month';
       else if(l.period==='base') note = 'bought in base period';
       else if(l.period==='current') note = 'repeat buyer';
@@ -1604,6 +1609,25 @@ function nextAccounts(p, rep){
   const cold = new Map(); warm.filter(w=>!w.warm).forEach(w=>{ if(!cold.has(w.k)) cold.set(w.k, w.why); });
   A.eligible.forEach(a=>{ const k = HubAccounts.norm(a.name); if(seen.has(k)) return; seen.add(k);
     rows.push(Object.assign({}, a, {why: cold.get(k) || NO_BUY})); });
+  // FOLLOW-UP objectives score against the rep's own BASE list (a Summer Ale
+  // account, a Q3 spirits placement, a core on-premise account), so only those
+  // base accounts still to do are targets -- not every account the brand could
+  // be sold to.
+  if(p.source!=='inc' && p.objective && p.objective.type==='followup'){
+    const slot = mpoState[p.source] && mpoState[p.source][p.monthKey]; const D = slot && slot.DATA;
+    const fr = D && D[p.key] && (D[p.key].reps||[]).find(x=>x.rep===rep);
+    if(fr){
+      // The rows ARE the base accounts still to do (named from the tracker's own
+      // list), borrowing city / area / cases from the rep's book when it has the
+      // account -- the brand-eligibility rules do not apply to a follow-up.
+      const book = new Map(); (HUB_ACCOUNTS.reps[rep]||[]).forEach(a=>{ book.set(HubAccounts.norm(a.name), a); if(a.n!=null) book.set(String(a.n), a); });
+      const keep = (fr.lines||[]).filter(l=>!l.done).map(l=>{
+        const a = book.get(String(l.num)) || book.get(HubAccounts.norm(l.customer));
+        return Object.assign({}, a || {name:l.customer, n:l.num, city:'', area:'', prem:'', cases:null}, {why: l.had || NO_BUY});
+      });
+      return {rows: keep, hold:false, A};
+    }
+  }
   return {rows, hold:false, A};
 }
 /* ---- Closed / Completed: the placements the tracker already credits ---- */
@@ -1678,6 +1702,7 @@ function closedFor(p, rep){
         }
         else if(t==='new_placements'){ if(l.isNew) add(l.customer, l.product, '', l.current ? l.current+' placement'+(l.current===1?'':'s') : '', photo); }
         else if(t==='pct_of_base') add(l.customer, l.product, '', 'on the shelf', photo);
+        else if(t==='followup'){ if(l.done) add(l.customer, l.doneDetail, l.doneDate, '', ''); }
         else if(l.new_buyer==='1') add(l.customer, l.product || label, l.date, '', photo);
       });
     });
