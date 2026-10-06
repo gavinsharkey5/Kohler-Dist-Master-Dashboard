@@ -377,7 +377,7 @@ function findAccount(n){
   return null;
 }
 const back = (label, href) => `<a class="hreturn" href="${E(href)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg><span>${E(label)}</span></a>`;
-function progLink(p, rep){ return HUB+'#view=detail&rep='+encodeURIComponent(rep)+'&cat='+(p.type==='MPO' ? p.source : 'inc')+'&prog='+encodeURIComponent(p.id); }
+function progLink(p, rep){ return HUB+'#view=detail&rep='+encodeURIComponent(rep)+'&cat='+(p.type==='MPO' ? p.source : 'inc')+'&prog='+encodeURIComponent(p.id)+'&ret='+encodeURIComponent(location.pathname+location.hash); }
 function hubAcctLink(p, rep, n, list){ return HUB+'#view=acct&rep='+encodeURIComponent(rep)+'&cat='+(p ? (p.type==='MPO' ? p.source : 'inc') : 'inc')+(p ? '&prog='+encodeURIComponent(p.id) : '')+'&n='+encodeURIComponent(n)+'&list='+(list||'targets'); }
 function progName(id){ if(/^note:/.test(id||'')) return 'Account Note'; const p = H.programs().find(x=>x.id===id); return p ? (p.shortName||p.name)+(p.type==='MPO' ? ' · '+p.channelLabel+' MPO' : '') : id; }
 function sumRange(arr, from, to){ let s = 0; for(let i=from;i<to;i++) s += arr[i]||0; return s; }

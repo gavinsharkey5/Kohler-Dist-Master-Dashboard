@@ -1673,3 +1673,34 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:600;letter-spacing:-.01em;
 .pcard .mq-stats{margin:10px 0 8px}
 .pcard .g-barcap{display:flex;justify-content:space-between;gap:10px;color:var(--text-dim);font-size:14px;margin-top:6px}
 .pcard .g-bar{box-shadow:inset 0 0 0 1px var(--border)}
+
+/* ELIGIBLE ACCOUNTS, FOCUSED (2026-10-06): Back -> title -> Goal / Current /
+   Still Needed -> Qualifying Products (folded) -> search -> accounts. */
+a.hreturn{text-decoration:none;}
+.pwf .px-sup{margin-bottom:2px;}
+.pwf-sum{margin-top:14px;padding-top:12px;border-top:1px solid var(--line-soft);}
+.pwf-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;}
+.pwf-stat{display:flex;flex-direction:column;gap:1px;padding:10px 12px;border-radius:10px;background:var(--card-alt);border:1px solid var(--border);min-width:0;}
+.pwf-l{font-size:13.5px;font-weight:600;color:var(--text-dim);}
+.pwf-v{font-size:26px;font-weight:700;line-height:1.15;color:var(--text);font-variant-numeric:tabular-nums;}
+.pwf-u{font-size:13.5px;color:var(--text-dim);overflow-wrap:anywhere;}
+.pwf-stat.met .pwf-v{color:var(--good);}
+.pwf-sum .hbar{margin-top:12px;height:8px;max-width:none;box-shadow:inset 0 0 0 1px var(--border);}
+.pwf-dl{margin-top:8px;font-size:14px;color:var(--text-dim);}
+.pwf-dl b{color:var(--text);font-weight:600;}
+.pwq{margin:14px 0 4px;border:1px solid var(--border);border-radius:12px;background:var(--card);}
+.pwq>summary{display:flex;align-items:center;gap:8px;min-height:48px;padding:0 14px;cursor:pointer;font-size:15.5px;font-weight:600;color:var(--text);list-style:none;}
+.pwq>summary::-webkit-details-marker{display:none;}
+.pwq>summary::after{content:'';margin-left:auto;width:8px;height:8px;border-right:2px solid var(--text-dim);border-bottom:2px solid var(--text-dim);transform:rotate(45deg);transition:transform .15s;}
+.pwq[open]>summary::after{transform:rotate(-135deg);}
+.pwq-rule{margin:0 14px 8px;font-size:14px;color:var(--text);}
+.pwq-list{list-style:none;margin:0;padding:0 14px 6px;}
+.pwq-row{display:flex;flex-direction:column;gap:1px;padding:9px 0;border-top:1px solid var(--line-soft);}
+.pwq-n{font-size:15px;font-weight:600;color:var(--text);}
+.pwq-m{font-size:13.5px;color:var(--text-dim);}
+.pwq-c{font-size:13.5px;color:var(--text);}
+.pwq-note{margin:0 14px 12px;font-size:13.5px;color:var(--text-dim);}
+.pwf-h{display:flex;align-items:center;gap:8px;margin:18px 0 8px;font-size:17px;font-weight:600;color:var(--text);}
+.pwf-list .pw-tools{margin-bottom:8px;}
+.pwf-list .pw-what{margin-top:2px;}
+@media (max-width:420px){ .pwf-stats{gap:6px} .pwf-stat{padding:8px 9px} .pwf-v{font-size:22px} }

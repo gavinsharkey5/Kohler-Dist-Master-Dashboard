@@ -455,8 +455,26 @@ function eligibleHref(o, rep){
   var scope = /on-prem/.test(location.pathname) ? 'on' : 'off';
   var mk = H.monthKey ? H.monthKey() : ''; if(!mk) return '';
   var id = scope+':'+mk+':'+o.key;
-  return '../../hub/#view=detail&rep='+encodeURIComponent(rep)+'&cat='+scope+'&prog='+encodeURIComponent(id);
+  // ret = this exact screen (rep, month, view), so the hub's Back comes here.
+  return '../../hub/#view=detail&rep='+encodeURIComponent(rep)+'&cat='+scope+'&prog='+encodeURIComponent(id)+
+    '&ret='+encodeURIComponent(location.pathname+stateToHash());
 }
+// RETURN TRIP (2026-10-06): remember the scroll position when a rep leaves for
+// the hub's Eligible Accounts, and put it back when they come back to this
+// exact screen (same path + hash).
+var MPO_POS = 'kdh_mpopos:';
+document.addEventListener('click', function(e){
+  var a = e.target.closest && e.target.closest('a.g-elig'); if(!a) return;
+  try{ sessionStorage.setItem(MPO_POS+location.pathname+stateToHash(), String(window.scrollY)); }catch(err){}
+}, true);
+(function(){
+  var y = null, key = MPO_POS+location.pathname+(location.hash||'#');
+  try{ y = sessionStorage.getItem(key); if(y!=null) sessionStorage.removeItem(key); }catch(e){}
+  if(y==null) return;
+  var tries = 0, t = setInterval(function(){
+    if(document.querySelector('.g-obj') || ++tries>80){ clearInterval(t); window.scrollTo(0, Number(y)||0); }
+  }, 75);
+})();
 function repObjectiveCard(o, rep){
   var m = H.metric(o, rep);
   var weightTag = '<span class="g-tag weight">'+Math.round(o.weight*100)+'% of MPO</span>';

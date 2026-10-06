@@ -2350,3 +2350,48 @@ no sideways scroll, every table number on screen, measured contrast of goal /
 stats / labels / table text >= 4.5 -- worst 5.93), elig_test.mjs (updated for
 the goal block), the usual suites. Tags: guided.js / guided.css / fit-tables.js /
 hub.js / hub.css / on-prem programs.js 20261006a.
+
+## Eligible Accounts, simplified; Back returns to where you came from (2026-10-06)
+
+Gavin's brief (screenshots of the MPO card -> hub workspace): one destination,
+less detail, a return path that goes back to the exact screen. The rep's
+program workspace in the hub (`screenWorkspaceRep`, Rep Mode, any program with
+a rule in shared/data/program-rules.json -- today Corona Innovation, Lytt,
+Carbliss 40%) now reads: Back -> title (+ supplier · channel · month) ->
+`pwFocusSummary()` (Goal / Current / Still Needed tiles, one bar, deadline) ->
+`pwProductsFold()` "Qualifying Products" <details>, CLOSED by default (open
+when the link carries pv=prods): short name, "Package … · Size …", and ONE
+condition line only where it changes what counts ("Only the Modelo Negra
+packages listed here count", from excludedProducts' families; for account
+programs one rule line, "An account counts once it buys 3 different products
+from this list") -> "Eligible Accounts" heading + search -> rows
+(`pwFocusAccounts`: name, town, what is still needed = KdhElig.accountLine().what,
+Open Account). Gone from the REP screen: the second "View Eligible Accounts"
+button, the Details fold (pwDetails: original goal, rounding, rules, evidence),
+the Eligible / Qualifying / Credited tabs, the per-row evidence line and #number,
+"How is this ordered?", the territory note. The rules stay on the MPO tracker
+card's Details; the evidence (reasons per product, already credited) on the
+Account page's Program Opportunities. Manager Program View
+(`workspaceTeamHtml`) still uses pwTabs / pwBody / pwDetails unchanged.
+RETURN PATH: every link into a hub program screen carries `ret=<path+hash of
+the page it came from>` -- MPO trackers (guided.js `eligibleHref`, rep +
+month + view), the Account page (`progLink`) and Exceptions (`progLink`).
+Inside the hub, go() records the hub screen being left (e.g. the Off-Premise
+tab) as `state.ret`; leaving the program screens clears it; hashOf carries
+it on detail / accts / acct, so the Account-page round trip keeps it.
+`safeRet()` accepts only a same-origin path (never /login/), `retLabel()`
+names it ("Back to Off-Premise MPOs" / "On-Premise MPOs" / "Account" / "My
+Accounts" / "Exceptions" / "Incentives" / a supplier / "Program View"),
+`retLinkHtml()` draws a link for another page and a `back-ret` button (replays
+the hub hash, restores scrollMem) for a hub screen. No ret on the focused
+screen (a bookmark) -> `fallbackBack()` = the rep's own tracker for that
+program's month. Scroll: guided.js saves sessionStorage `kdh_mpopos:<path+hash>`
+when "View Eligible Accounts" is tapped and restores it on return; the hub's
+`kdh_hubpos:` keeps the list's scroll / search across the Account page.
+SIDEBAR: kdh-user.js `where()` marks the hub's MPO tabs (cat=off / on) as
+Off- / On-Premise MPOs instead of Incentives, and `window.kdhSyncNav()` (called
+by hub render) re-marks it after in-page navigation. Test: scratchpad
+elig_trip_test.mjs (MPO screen -> eligible -> products -> account -> back ->
+back at 390 light/dark, 820, 1366 dark; hub-tab entry; direct open fallback;
+off-site ret ignored). Tags: hub.js 20261006d, hub.css 20261006c, guided.js
+20261006b, accounts.js / exceptions.js 20261006a, kdh-user.js 20261006a.

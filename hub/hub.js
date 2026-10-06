@@ -628,7 +628,7 @@ function sortedForRep(rep, cat){
 const openCards = new Set();   // program ids expanded in place on the rep page
 const acctTabs = {};           // program id -> active account tab
 const acctMore = {};           // program id|tab -> show every row
-const state = {mode:'rep', view:'home', rep:null, main:null, cat:null, month:null, prog:null, from:null, peek:null, filters:{type:'all', chan:'all', sup:'all', month:'active'}, showEnded:false, only:null, sup:null, list:null, n:null, im:'2026-09', pv:null, pp:null, pq:'', pq2:'', pr:null, plim:30};
+const state = {mode:'rep', view:'home', rep:null, main:null, cat:null, month:null, prog:null, from:null, peek:null, filters:{type:'all', chan:'all', sup:'all', month:'active'}, showEnded:false, only:null, sup:null, list:null, n:null, im:'2026-09', pv:null, pp:null, pq:'', pq2:'', pr:null, plim:30, ret:null};
 // PREVIOUS MONTHS on the Incentives screen (Gavin, 2026-09-30): a simple
 // August / September toggle under the live list so reps can review an
 // earlier month's incentives. Each month lists the programs that ENDED in it
@@ -835,6 +835,7 @@ function hashOf(){
   if(state.month && state.view==='rep') p.push('month='+state.month);
   if(state.prog && (state.view==='detail' || state.view==='program' || state.view==='accts' || state.view==='acct')) p.push('prog='+encodeURIComponent(state.prog));
   if(state.from && state.view==='detail') p.push('from='+state.from);
+  if(state.ret && (state.view==='detail' || state.view==='accts' || state.view==='acct')) p.push('ret='+encodeURIComponent(state.ret));
   if(state.peek && state.view==='detail') p.push('who='+encodeURIComponent(state.peek));
   if(state.prog && (state.view==='detail' || state.view==='program')){
     if(state.pv && state.pv!=='accts') p.push('pv='+state.pv);
@@ -860,6 +861,7 @@ function applyHash(){
   state.month = h.month && Object.keys(MPO_SCOPES).some(sc=>MPO_SCOPES[sc].mod.MONTHS.some(m=>m.key===h.month)) ? h.month : null;
   state.prog = h.prog && PROGRAMS.some(p=>p.id===h.prog) ? h.prog : null;
   state.from = h.from || null;
+  state.ret = safeRet(h.ret);
   state.pv = ['accts','prods','cred'].includes(h.pv) ? h.pv : null;
   state.pp = h.pp || null; state.pq = h.pq || ''; state.pr = h.pr && ROSTER.includes(h.pr) ? h.pr : null;
   state.peek = (h.who && ROSTER.includes(h.who) && h.who!==state.rep) ? h.who : null;
@@ -889,6 +891,15 @@ function applyHash(){
 }
 function go(next, replace){
   try{ scrollMem[location.hash||'#'] = window.scrollY; }catch(e){}
+  // RETURN PATH (2026-10-06): a program screen remembers the exact screen it
+  // was opened from (another page's link passes ret=; inside the hub it is the
+  // hub screen we are leaving), and its Back goes there.
+  if(!('ret' in next) && next.view!==undefined){
+    const into = next.view==='detail' || next.view==='accts' || next.view==='acct';
+    const inside = state.view==='detail' || state.view==='accts' || state.view==='acct';
+    if(!into) next.ret = null;
+    else if(!inside && state.view!=='home') next.ret = location.pathname + (location.hash || '#');
+  }
   Object.assign(state, next);
   applyOnly();
   lockState();
@@ -2975,6 +2986,45 @@ const CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentC
 const BACKI = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>';
 const uPl = (n, u) => { u = String(u||'').trim(); if(!u) return ''; if(n===1) return /s$/.test(u) && !/ss$/.test(u) ? u.replace(/s$/,'') : u; return /s$/.test(u) ? u : u+'s'; };
 const returnLink = (act, label, extra) => `<button class="hreturn" data-act="${act}"${extra||''}>${BACKI}<span>${E(label)}</span></button>`;
+// ret= must be a page of this site (never another origin, never /login/).
+function safeRet(s){
+  if(!s) return null;
+  try{ const u = new URL(s, location.href); if(u.origin!==location.origin || /\/login\//.test(u.pathname)) return null; return u.pathname + u.search + u.hash; }catch(e){ return null; }
+}
+// What the originating screen is called, for "Back to <name>".
+function retLabel(ret){
+  const u = new URL(ret, location.href), path = u.pathname;
+  const h = {}; u.hash.replace(/^#/,'').split('&').forEach(kv=>{ const i = kv.indexOf('='); if(i>0) h[kv.slice(0,i)] = decodeURIComponent(kv.slice(i+1)); });
+  if(/\/MPOs\/off-prem\//.test(path)) return 'Off-Premise MPOs';
+  if(/\/MPOs\/on-prem\//.test(path)) return 'On-Premise MPOs';
+  if(/\/accounts\//.test(path)) return h.acct ? 'Account' : (MGR_REAL() ? 'Accounts' : 'My Accounts');
+  if(/\/exceptions\//.test(path)) return 'Exceptions';
+  if(path===location.pathname){
+    if(h.view==='sup' && h.sup) return h.sup;
+    if(h.view==='programs' || h.view==='program') return 'Program View';
+    const c = h.cat || '';
+    if(c==='inc' || /^sup:/.test(c)) return 'Incentives';
+    if(c==='on') return 'On-Premise MPOs';
+    if(c==='off') return 'Off-Premise MPOs';
+    if(c==='mpo') return 'MPOs';
+    if(c==='all') return 'All Programs';
+  }
+  return 'Previous Screen';
+}
+// "Back to <origin>": another page is a plain link; a hub screen is replayed in place.
+function retLinkHtml(){
+  if(!state.ret) return '';
+  const same = new URL(state.ret, location.href).pathname===location.pathname;
+  const label = 'Back to '+retLabel(state.ret);
+  return same ? returnLink('back-ret', label) : `<a class="hreturn" href="${E(state.ret)}" data-ret="1">${BACKI}<span>${E(label)}</span></a>`;
+}
+// Opened with no origin (a bookmark, a typed link): an MPO goes back to the
+// rep's own tracker on that program's month; anything else to its hub list.
+function fallbackBack(p){
+  if(p.type!=='MPO') return '';
+  const href = `../MPOs/${p.source}-prem/#view=rep&rep=${encodeURIComponent(state.rep||'')}&month=${encodeURIComponent(p.monthKey||'')}`;
+  return `<a class="hreturn" href="${E(href)}">${BACKI}<span>Back to ${E(p.channelLabel)} MPOs</span></a>`;
+}
 // ONE READ OF A PROGRAM'S PROGRESS, used by every row and the program
 // screen: {main "6 of 8 accounts", need "2 more accounts needed" | "Goal met",
 // pct, cls met|ontrack|attn|open|na, label, rule (the supporting goal text)}.
@@ -3182,7 +3232,9 @@ function screenSupplier(){
   </div>`;
 }
 /* ---- one program: the summary, then the account lists ---- */
-function backForProgram(p){
+function backForProgram(p, focus){
+  if(state.ret) return retLinkHtml();
+  if(focus && p.type==='MPO') return fallbackBack(p);
   if(p.type==='MPO') return returnLink('back-list', `${p.channelLabel} MPOs`);
   const sups = supProgs(state.rep); const k = p.supplier;
   if(sups.has(k) && sups.get(k).length>1) return returnLink('back-sup', p.supplier);
@@ -3295,20 +3347,6 @@ function pwAcctHref(R, a, rep){
   return `../accounts/#acct=${encodeURIComponent(a.n)}${MGR_REAL() ? '&rep='+encodeURIComponent(rep||a.rep||'') : ''}&sec=more&sub=programs&from=${encodeURIComponent(location.pathname+hashOf())}&fl=${encodeURIComponent(label)}`;
 }
 function pwInBook(rep, n){ return bookIndex(rep).has(String(n)); }
-function pwSummary(p, r, rep, R, M){
-  const f = progFacts(p, r, rep) || {};
-  const btn = `<button class="pw-btn pw-go" data-act="pw-view" data-pv="accts">View Eligible Accounts</button>`;
-  const gb = goalBlockHtml(p, f, {button: btn});
-  if(gb) return gb;
-  const N = p.type==='MPO' ? mpoNums(r) : null;
-  const cur = N ? N.cur : M.totals.tracker, req = N ? N.goal : M.totals.requirement, need = Math.max(0, req-cur);
-  return `<div class="pw-sum">
-      <div class="pw-main"><b>${fmtN(cur)} of ${fmtN(req)}</b> Required ${pwUnit(R, req)}</div>
-      <div class="px-need ${f.cls||''}">${need<=0 ? 'Requirement Met' : `${fmtN(need)} More Needed`}</div>
-      ${hbar(f)}
-      ${btn}
-    </div>`;
-}
 function pwDetails(p, r, R, M, single){
   const t = single ? (single.tracker||{}) : {};
   const st = s => `<span class="pw-st ${s}">${STATUS_TAG[s]||s}</span>`;
@@ -3410,24 +3448,81 @@ function pwBody(M, R, reps){
   const pv = state.pv || 'accts';
   return `<section class="pw-view" id="pwList" data-pv="${pv}">${pv==='prods' ? pwProducts(M, R) : pv==='cred' ? pwCredited(M, R, reps) : pwAccounts(M, R, reps)}</section>`;
 }
-// The rep's workspace (Rep Mode program screen).
+// The rep's ELIGIBLE ACCOUNTS screen (Rep Mode program screen; simplified
+// 2026-10-06, Gavin): Back to where it was opened -> title -> Goal / Current /
+// Still Needed -> Qualifying Products (folded) -> search -> the accounts. No
+// second "View Eligible Accounts" button, no rules fold, no tabs: the rules
+// stay on the tracker card, the evidence on the Account page.
+function pwFocusSummary(p, f){
+  if(!f || f.goalN==null || !isFinite(Number(f.goalN))) return '';
+  const met = f.needN<=0, unit = t => f.unit ? E(titleW(uPl(t, f.unit))) : '';
+  const days = daysLeft(p.period.end);
+  const dl = isActive(p) ? `Ends <b>${E(fmtDay(p.period.end))}</b> · ${days<=0 ? 'last day' : plw(days,'day')+' left'}` : `Ended ${E(fmtDayYear(p.period.end))}`;
+  return `<div class="pwf-sum">
+      <div class="pwf-stats">
+        <div class="pwf-stat"><span class="pwf-l">Goal</span><span class="pwf-v">${fmtN(f.goalN)}</span><span class="pwf-u">${unit(f.goalN)}</span></div>
+        <div class="pwf-stat"><span class="pwf-l">Current</span><span class="pwf-v">${fmtN(f.cur)}</span><span class="pwf-u">of ${fmtN(f.goalN)}</span></div>
+        <div class="pwf-stat${met?' met':''}"><span class="pwf-l">Still Needed</span><span class="pwf-v">${met ? 'Met' : fmtN(f.needN)}</span><span class="pwf-u">${met ? 'Goal complete' : unit(f.needN)}</span></div>
+      </div>
+      ${hbar(f)}
+      <div class="pwf-dl">${dl}</div>
+    </div>`;
+}
+// Qualifying Products: names, package and size, and a product condition only
+// where it changes what counts. Nothing else.
+function pwProductsFold(R){
+  const fams = new Set((R.excludedProducts||[]).map(x=>x.family).filter(Boolean));
+  const noted = new Set();
+  const short = x => { const n = String(x.name||''); const k = x.package && n.endsWith(x.package) ? n.slice(0, -x.package.length).trim() : n; return k || n; };
+  const rows = R.products.slice().sort((a,b)=>String(a.family).localeCompare(String(b.family)) || short(a).localeCompare(short(b))).map(x=>{
+    let cond = '';
+    if(x.family && fams.has(x.family) && !noted.has(x.family)){ noted.add(x.family); cond = `Only the ${x.family} packages listed here count`; }
+    const meta = [x.package ? 'Package '+x.package : '', x.size ? 'Size '+x.size : ''].filter(Boolean).join(' · ');
+    return `<li class="pwq-row"><span class="pwq-n">${E(short(x))}</span>${meta ? `<span class="pwq-m">${E(meta)}</span>` : ''}${cond ? `<span class="pwq-c">${E(cond)}</span>` : ''}</li>`;
+  }).join('');
+  const rule = R.kind==='placements' ? '' : (R.minSkus||1)>1
+    ? `An account counts once it buys ${R.minSkus} different products from this list.`
+    : `An account counts with any one product from this list.`;
+  return `<details class="pwq"${state.pv==='prods' ? ' open' : ''}><summary><span>Qualifying Products</span><span class="pw-tn">${fmtN(R.products.length)}</span></summary>
+      ${rule ? `<p class="pwq-rule">${E(rule)}</p>` : ''}
+      <ul class="pwq-list">${rows}</ul>
+      ${R.productsExhaustive ? '' : `<p class="pwq-note">This list comes from the report so far; a product no one has placed yet may not be on it.</p>`}
+    </details>`;
+}
+function pwFocusAccounts(M, R, rep){
+  const rows = window.KdhElig.accountsView(M, {product: state.pp, q: state.pq});
+  const P = state.pp ? R.products.find(x=>String(x.id)===String(state.pp)) : null;
+  const lim = state.plim || 30;
+  const chip = P ? `<button class="pw-chip" data-act="pw-prod" data-pp="">Product: ${E(P.name)} <span aria-hidden="true">✕</span><span class="sr">Clear product filter</span></button>` : '';
+  const list = rows.slice(0, lim).map(a=>{
+    const L = window.KdhElig.accountLine(M, a, state.pp);
+    const head = `<span class="hrow-t"><span>${E(a.name)}</span></span>${a.city ? `<span class="hrow-s">${E(a.city)}</span>` : ''}<span class="pw-what">${E(L.what)}</span>`;
+    return pwInBook(a.rep, a.n)
+      ? `<a class="hrow acct pw-row" href="${E(pwAcctHref(R, a, a.rep))}" data-pwpos="1"><span class="hrow-main">${head}</span><span class="pw-open">Open Account</span>${CHEV}</a>`
+      : `<div class="hrow acct pw-row nolink"><span class="hrow-main">${head}<span class="pw-why">Not in My Accounts yet</span></span></div>`;
+  }).join('');
+  return `<h2 class="pwf-h">Eligible Accounts <span class="pw-tn">${fmtN(M.totals.open)}</span></h2>
+    <div class="pw-tools"><input type="search" class="kdh-field pw-q" data-pw="q" placeholder="Search accounts" value="${E(state.pq||'')}" autocomplete="off" aria-label="Search eligible accounts"></div>
+    ${chip}
+    ${state.pq || P ? `<div class="pw-count">${plw(rows.length,'account')}${P ? ' for this product' : ''}</div>` : ''}
+    ${rows.length ? `<div class="hlist">${list}</div>${rows.length>lim ? `<button class="pw-btn outline wide" data-act="pw-more">Show More · ${rows.length-lim} more</button>` : ''}`
+      : `<div class="kdh-state empty"><b>${state.pq ? 'No account matches “'+E(state.pq)+'”.' : P ? 'Every eligible account already has this product.' : 'No eligible account is left to reach.'}</b></div>`}`;
+}
 function screenWorkspaceRep(p, r, rep, R){
   const d = eligData(rep);
-  const top = `${backForProgram(p)}
-    <div class="px pw">
+  const f = progFacts(p, r, rep) || {};
+  const top = `${backForProgram(p, true)}
+    <div class="px pw pwf">
       <h1 class="px-name">${E(R.title)}</h1>
-      <div class="px-sup">${E(p.supplier)} · ${E(p.channelLabel)}${p.type==='MPO' ? ' · '+E(p.monthLabel)+' MPO' : ''}</div>
-      <div class="px-meta">${htag(progFacts(p, r, rep))}</div>`;
+      <div class="px-sup">${E(p.supplier)} · ${E(p.channelLabel)}${p.type==='MPO' ? ' · '+E(p.monthLabel)+' MPO' : ''}</div>`;
   if(d===undefined) return `<div class="hview">${top}</div><div class="kdh-state loading">Loading eligible accounts…</div></div>`;
   if(!d || !d.programs || !d.programs[p.id]) return null;   // no file for this rep: fall back to the tracker's own screen
-  const reps = [{rep, data:d}];
-  const M = window.KdhElig.model(p.id, reps);
+  const M = window.KdhElig.model(p.id, [{rep, data:d}]);
   return `<div class="hview">${top}
-      ${pwSummary(p, r, rep, R, M)}
-      ${pwDetails(p, r, R, M, d.programs[p.id])}
+      ${pwFocusSummary(p, f)}
     </div>
-    ${pwTabs(M, R)}
-    ${pwBody(M, R, reps)}
+    ${pwProductsFold(R)}
+    <section class="pw-view pwf-list" id="pwList">${pwFocusAccounts(M, R, rep)}</section>
   </div>`;
 }
 // The manager's program screen: the team's accounts with a rep filter.
@@ -3551,6 +3646,7 @@ function render(){
   document.body.classList.toggle('is-home', state.view==='home');
   root.innerHTML = topbar() + `<main class="wrap">${body}</main>`;
   if(window.KdhFit) window.KdhFit.tables(root);
+  try{ if(window.kdhSyncNav) window.kdhSyncNav(); }catch(e){}
   // The top bar says whose page this is (a manager on a rep's screen).
   try{ if(window.kdhViewing) window.kdhViewing((state.view==='rep'||state.view==='detail'||state.view==='sup'||state.view==='accts'||state.view==='acct') && !LOCKED_REP ? (state.peek && state.view==='detail' ? state.peek : state.rep) : '', function(){ openCards.clear(); state.showEnded = false; leaveAsRep(); go({view:'home', rep:null, main:null, cat:null, prog:null, peek:null, from:null}); }); }catch(e){}
   document.title = state.view==='rep' && state.rep ? `${possessive(state.rep)} Incentives & MPOs | Kohler` : 'Incentives & MPO Hub | Kohler Distributing';
@@ -3648,6 +3744,8 @@ document.addEventListener('click', e=>{
     case 'pw-view': { const pv = t.dataset.pv || 'accts'; state.pv = pv==='accts' ? null : pv; state.plim = 30; history.replaceState(null, '', hashOf()); render(); pwScrollToList(); break; }
     case 'pw-prod': { state.pp = t.dataset.pp || null; state.pv = null; state.plim = 30; history.pushState(null, '', hashOf()); render(); pwScrollToList(); break; }
     case 'pw-more': { state.plim = (state.plim||30) + 60; render(); break; }
+    case 'back-ret': { const u = new URL(state.ret, location.href); history.pushState(null, '', u.hash || '#'); applyHash(); const h = hashOf(); if(h!==(location.hash||'#')) history.replaceState(null, '', h); render();
+      const y = scrollMem[location.hash||'#']; window.scrollTo(0, typeof y==='number' ? y : 0); break; }
     case 'back-prog': go({view:'detail', list:null, n:null}); break;
     case 'back-accts': go({view:'accts', n:null}); break;
     case 'open-for-rep': {

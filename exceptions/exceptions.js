@@ -67,7 +67,7 @@ function programsFor(rep){
 }
 const strip = s => String(s||'').replace(/<[^>]*>/g, '').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'");
 const DONE_RE = /goal met|top tier|every one pays/i;
-const progLink = (p, rep) => '../hub/#view=detail&rep='+encodeURIComponent(rep)+'&cat='+(p.type==='MPO' ? p.source : 'inc')+'&prog='+encodeURIComponent(p.id);
+const progLink = (p, rep) => '../hub/#view=detail&rep='+encodeURIComponent(rep)+'&cat='+(p.type==='MPO' ? p.source : 'inc')+'&prog='+encodeURIComponent(p.id)+'&ret='+encodeURIComponent(location.pathname+location.hash);
 const acctLink = (n, rep, sub) => '../accounts/#acct='+encodeURIComponent(n)+'&rep='+encodeURIComponent(rep)+(sub ? '&sec=more&sub='+sub : '');
 
 /* ---- build ---- */

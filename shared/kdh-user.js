@@ -236,7 +236,10 @@
     var rel = ROOT ? location.href.replace(new URL(ROOT, location.href).href, '') : location.pathname.replace(/^\//, '');
     rel = rel.split(/[?#]/)[0];
     if (/^accounts\//.test(rel)) return { nav: 'accounts', tool: '' };
-    if (/^hub\//.test(rel)) return { nav: 'programs', tool: 'inc' };
+    if (/^hub\//.test(rel)) {   // the hub's MPO tabs mark their MPO item (2026-10-06)
+      var cat = (location.hash.match(/[#&]cat=([^&]+)/) || [])[1];
+      return { nav: 'programs', tool: cat === 'off' ? 'off' : cat === 'on' ? 'on' : 'inc' };
+    }
     if (/^MPOs\/off-prem\//.test(rel)) return { nav: 'programs', tool: 'off' };
     if (/^MPOs\/on-prem\//.test(rel)) return { nav: 'programs', tool: 'on' };
     if (/^team\//.test(rel)) return { nav: 'team', tool: '' };
@@ -272,8 +275,24 @@
     document.documentElement.classList.add('kdh-has-tabs');
   }
   // the desktop sidebar (CSS shows it from 1024px)
+  // A page that changes its own URL (the hub, by pushState) calls kdhSyncNav()
+  // after each render so the sidebar marks where the person is now.
+  var SIDE_U = null;
+  function syncSide() {
+    var s = document.getElementById('kdhSide'); if (!s || !SIDE_U) return;
+    var w = where(SIDE_U), main = {};
+    navItems(SIDE_U).forEach(function (it) { main[it.key] = 1; });
+    Array.prototype.forEach.call(s.querySelectorAll('a[data-nav]'), function (a) {
+      var k = a.getAttribute('data-nav');
+      var on = (a.classList.contains('sub') || !main[k]) ? w.tool === k : (k === w.nav && (!w.tool || k !== 'programs' || w.tool === 'inc'));
+      a.classList.toggle('on', on);
+      if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+    });
+  }
+  window.kdhSyncNav = syncSide;
   function sideBar(u, who) {
     if (!u || document.getElementById('kdhSide') || shellOff()) return;
+    SIDE_U = u;
     var w = where(u), isMgr = u.role === 'manager';
     var home = isMgr ? ROOT : REP_HOME;
     var groups = {}; toolItems(u).forEach(function (t) { (groups[t.group] = groups[t.group] || []).push(t); });
