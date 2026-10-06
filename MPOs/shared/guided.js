@@ -243,12 +243,12 @@ function weightedForRep(rep){
 
 /* ---- Small shared bits -------------------------------------------- */
 var STATUS_TEXT = {achieved:'Goal Achieved', inprogress:'In Progress',
-  notstarted:'Not Started', nodata:'Not tracked yet'};
+  notstarted:'Not Started', nodata:'Not Tracked Yet'};
 var STATUS_MARK = {achieved:'✓', inprogress:'●', notstarted:'○', nodata:'—'};
 
 // The status pill also says whether the credit is earned, so the card
 // needs no separate "Credit earned" column.
-var CREDIT_TEXT = {achieved:'Goal achieved · credit earned', inprogress:'In progress · credit not yet earned', notstarted:'Not started', nodata:'Not tracked yet'};
+var CREDIT_TEXT = {achieved:'Goal Achieved', inprogress:'In Progress', notstarted:'Not Started', nodata:'Not Tracked Yet'};
 function creditPill(status){
   return '<span class="g-pill '+status+'">'+STATUS_MARK[status]+' '+(CREDIT_TEXT[status]||STATUS_TEXT[status])+'</span>';
 }
@@ -323,8 +323,7 @@ function screenRepPicker(){
 
   return '<div class="g g-fade">'+
     stepHead(1,'Choose a Rep',
-      'Tap a name to see that rep’s '+esc(H.monthLabel())+' '+esc(H.scope)+
-      ' MPO progress.')+
+      esc(H.monthLabel())+' · '+esc(H.scope))+
     body+
   '</div>';
 }
@@ -369,10 +368,11 @@ function screenRepDetail(){
     // the scope, the manager and the role each on its own line, then the
     // data stamp. The month is the selected pill just above, not repeated.
     repHead(esc(first)+'’s MPO Progress', [
-      esc(H.scope),
-      dmOf(rep) ? 'Sales manager: '+esc(dmOf(rep)) : '',
-      roleOf(rep) ? esc(roleOf(rep)) : '',
-      (function(){ var u = document.getElementById('updated-line'); return u && u.textContent.trim() ? '<span class="g-stamp">'+esc(u.textContent.trim())+'</span>' : ''; })()
+      [esc(H.scope),
+        dmOf(rep) ? 'Sales Manager '+esc(dmOf(rep)) : '',
+        roleOf(rep) ? esc(roleOf(rep)) : '',
+        (function(){ var u = document.getElementById('updated-line'); var t = u ? u.textContent.trim().replace(/^Data refreshed\s*/i,'Data ').replace(/,\s*\d{1,2}:\d{2}\s*[AP]M.*$/i,'') : ''; return t ? esc(t) : ''; })()
+      ].filter(Boolean).join(' · ')
     ])+
     cards+
   '</div>';
@@ -454,7 +454,7 @@ function carblissCard(o, rep, st){
     '<div class="g-cb" data-rep="'+esc(rep)+'"><div class="g-cb-wait">Loading Carbliss buying accounts\u2026</div></div>'+
     (dl ? '<div class="g-deadline">'+dl+'</div>' : '')+
     '<a class="g-elig g-cb-lb" href="../../carbliss-onprem-targets/">See Leaderboard</a>'+
-    '<div class="g-meta g-weight">MPO weight: '+Math.round(o.weight*100)+'%</div>'+
+    '<div class="g-meta g-weight">MPO Weight '+Math.round(o.weight*100)+'%</div>'+
   '</div>';
 }
 var CB_DATA = null;
@@ -540,15 +540,13 @@ document.addEventListener('click', function(e){
 })();
 function repObjectiveCard(o, rep){
   var m = H.metric(o, rep);
-  var weightTag = '<span class="g-tag weight">'+Math.round(o.weight*100)+'% of MPO</span>';
+  var weightTag = '<span class="g-tag weight">MPO Weight '+Math.round(o.weight*100)+'%</span>';
 
   if(!m || m.notScored){
     var note = m && m.notScored
-      ? 'This objective doesn’t apply to '+esc(rep.split(' ')[0])+' this month — there’s no '+
-        'goal to measure against, so it isn’t counted for or against them.'+
+      ? 'Not scored for '+esc(rep.split(' ')[0])+' this month. No goal to measure.'+
         (m.valueText ? ' Recorded so far: <strong>'+esc(m.valueText)+'</strong>.' : '')
-      : 'This objective isn’t being tracked with data yet, so there’s no progress to show. '+
-        'The goal and its weight still count toward the month.';
+      : 'No data yet. The goal and weight still count toward the month.';
     return '<div class="g-obj notstarted">'+
       (o.supplier?'<div class="g-obj-sup">'+esc(o.supplier)+'</div>':'')+
       '<div class="g-obj-name">'+esc(o.name)+'</div>'+
@@ -621,11 +619,10 @@ function repObjectiveCard(o, rep){
           '<span class="g-stat-u">'+(met ? 'Requirement complete' : esc(titleCase(uPlural(Number(m.remaining), unit))))+'</span></div>'+
       '</div>'+
       barHtml(m.pct, st)+
-      '<div class="g-bar-cap">'+Math.round(m.pct)+'% of the requirement</div>'+
       (dl ? '<div class="g-deadline">'+dl+'</div>' : '')+
       (href && !met ? '<a class="g-elig" href="'+esc(href)+'">View Eligible Accounts</a>' : '')+
       subsHtml+
-      '<div class="g-meta g-weight">MPO weight: '+Math.round(o.weight*100)+'%</div>'+
+      '<div class="g-meta g-weight">MPO Weight '+Math.round(o.weight*100)+'%</div>'+
       moreHtml+
     '</div>';
   }
@@ -675,7 +672,7 @@ function programCard(o){
           barHtml(share, g.n===g.total ? 'achieved' : (g.n>0?'inprogress':'notstarted'))+
           '<div class="g-bar-cap">Team progress: '+Math.round(share)+'% of eligible reps at goal</div>'
         : '<div class="g-need">No data yet \u2014 not counted</div>')+
-      '<div class="g-meta">MPO Weight: '+Math.round(o.weight*100)+'%<span class="g-review">'+(open?'Hide Reps':'Review Reps')+'</span></div>'+
+      '<div class="g-meta">MPO Weight '+Math.round(o.weight*100)+'%<span class="g-review">'+(open?'Hide Reps':'Review Reps')+'</span></div>'+
     '</button>';
 
   var body = open ? '<div class="g-prog-body open">'+programBody(o)+'</div>' : '';

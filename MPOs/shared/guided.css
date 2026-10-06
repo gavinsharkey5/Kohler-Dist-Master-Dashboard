@@ -502,3 +502,23 @@
 @media(max-width:430px){ .g-cb-tiles{gap:8px} .g-cbt{padding:10px 6px} .g-cbt .g-stat-v{font-size:26px} .g-cbt .g-stat-of{font-size:16px} }
 .g-cb-goal{margin:8px auto 0;font-size:15px;color:var(--text)}
 .g-cb-goal b{font-weight:600}
+
+/* PAGE STANDARD (2026-10-07): one 960px centered column, centered header, short card copy */
+.g-viewbar{max-width:960px;padding:0 16px}
+.monthbar,main,header,.topbar{max-width:960px!important;padding-left:16px!important;padding-right:16px!important;box-sizing:border-box}
+.monthbar{justify-content:center}
+.g-rephead{text-align:center}
+.g-rephead .g-sub{font-size:14px;color:var(--text-dim);margin-top:6px}
+.g-obj-v4 .g-weight{font-size:14px}
+.g-obj-v4 .g-pill{font-size:14px}
+.g-obj-v4 .g-deadline{margin-top:12px}
+.g-obj.notstarted:not(.g-obj-v3){text-align:center}
+.g-obj.notstarted:not(.g-obj-v3) .g-tags{justify-content:center}
+header{text-align:center}
+header .eyebrow{display:none}
+header h1{font-size:clamp(24px,5vw,28px)!important;font-weight:600!important}
+header .sub{font-size:14px}
+header .updated{justify-content:center;font-size:14px!important;letter-spacing:0!important;font-family:inherit!important}
+.g-step-head{text-align:center}
+.g-actions{max-width:100%}
+header{padding-top:24px!important}
