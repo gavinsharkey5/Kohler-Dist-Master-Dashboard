@@ -2473,3 +2473,28 @@ Octoberfest kegs (#3813 15.5 gal, #3862 5.2 gal; the generator counts keg
 units) instead of all 66 Samuel Adams products. The October INCENTIVE
 sam_adams_cold_snap stays on the family until Gavin's SKU list arrives.
 hub/accounts.js 20261006a.
+
+## Official SKU lists per program: tools/program_skus.py (2026-10-06)
+
+Gavin sent the October Off-Premise MPO SKU exports (Corona Innovation 11,
+Lytt 6, Molly's 5, Wine 60). `python3 tools/program_skus.py add <program id>
+<export.csv> [--source TEXT]` keeps ONLY Product Num + Product Name (Gavin:
+disregard the cases / placements columns) in MPOs/<on|off>-prem/skus/
+<YYYY-MM>_<key>.csv (incentives: incentive-tracking/data/skus/<key>.csv), logs
+the source + date in that folder's sources.json, and builds
+shared/data/program-skus.js (`window.KDH_PROGRAM_SKUS[programId]`; no
+customer data; `--check` = exit 1 if stale). It reads "Product Num", "Product
+ID" or "Product Num & Name" columns. READERS: hub/accounts.js
+`eligibleProducts()` uses the official list first (after a KdhElig rule) --
+so the Products list's program filter, Lead tags, Program Opportunities and
+the assistant's context use it; hub.js `incProductsFold()` shows it directly
+(its own names, no "not on file" note); tools/program_eligibility.py reads it
+through `program_skus.official()` -- Corona Innovation stops on a product the
+report counts that is NOT on the list, adds an official SKU nobody has placed
+yet, and marks the list verified (productsExhaustive true, rule "Official SKU
+list"); Lytt stops if the list ever differs from the Lytt family. Both lists
+matched what the reports had shown exactly, so no account data moved.
+program-skus.js is loaded before hub/accounts.js on hub, accounts, exceptions
+and performance. Tags: hub/accounts.js 20261006b, hub.js 20261006g,
+program-skus.js 20261006a. New list = run `add`, then
+`python3 tools/program_eligibility.py` when the program has a rule.

@@ -278,6 +278,10 @@ device, a decision).
   every account (buyers and nonbuyers) with Bought Aug 1-Oct 30 / Bought Since Launch /
   Last Carbliss Purchase, Sales Through date, `--finalize` freeze. Rep home tile, manager
   card, Programs sidebar item. See the Now item for what to confirm.
+- [x] 2026-10-06 **Official SKU lists loaded** for the October Off-Premise MPOs (Corona
+  Innovation 11, Lytt 6, Molly's 5, Wine 60). Corona and Lytt matched the reports
+  exactly and are now confirmed. TO DO (you): Carbliss + Spirits follow-up
+  (on-premise) and the October incentives -- REPORTING_REQUEST section 13.
 - [x] 2026-10-06 **Incentives use the same Eligible Accounts page** as the MPOs (goal,
   What Counts, Qualifying Products, search, accounts; Back returns where you
   came from), and every product shows as one line ("Corona Non-Alcoholic
