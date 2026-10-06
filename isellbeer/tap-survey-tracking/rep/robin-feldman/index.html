@@ -2136,7 +2136,7 @@ window.__tapMain = function(){
     var head = '<div class="rep-head" data-rep="'+esc(rep.rep)+'">'+
       '<span class="rep-chev">▸</span>'+
       '<div class="rep-pie">'+pieSvg(rep.us, rep.them, rep.unv)+'</div>'+
-      '<div class="rep-info"><div class="rep-name">'+esc(rep.rep)+'</div>'+
+      '<div class="rep-info"><div class="rep-name">'+esc(LOCK_NAME && state.rep===rep.rep ? 'Your Taps' : rep.rep)+'</div>'+
       '<div class="rep-meta">'+ce0(rep.accountsList.length)+' accounts &middot; '+ce0(rep.taps)+' taps surveyed'+repRefreshBadge+'</div></div>'+
       '<div class="rep-stats"><div class="us"><span class="n">'+pct(rep.us)+'%</span><span class="l">Ours</span></div>'+
       '<div class="them"><span class="n">'+pct(rep.them)+'%</span><span class="l">Competitor</span></div></div>'+

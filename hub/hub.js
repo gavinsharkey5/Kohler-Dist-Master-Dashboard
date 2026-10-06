@@ -918,7 +918,8 @@ window.addEventListener('popstate', ()=>{ if(LIB) return; applyHash(); const h =
    ==================================================================== */
 const app = () => $('#app');
 const first = rep => String(rep||'').split(' ')[0];
-const possessive = rep => { const f = first(rep); return f + (f.endsWith('s') ? '’' : '’s'); };
+const isSelf = rep => !!((LOCKED_REP && rep === LOCKED_REP) || state.asRep);   // a signed-in rep (or a manager seeing the page as that rep) reads 'Your'
+const possessive = rep => { if (isSelf(rep)) return 'Your'; const f = first(rep); return f + (f.endsWith('s') ? '’' : '’s'); };
 
 function chip(cls, text, ic){ return `<span class="chip ${cls}">${ic?`<span class="ic">${ic}</span>`:''}${E(text)}</span>`; }
 function statusChip(r, small){
@@ -3184,7 +3185,7 @@ function prevMonthsHtml(rep){
     body = ended.length ? `<div class="iended-list">${ended.map(x=>{ const f = progFacts(x.p, x.r, rep);
         const okd = x.r.status==='complete'||x.r.status==='exceeded';
         return `<div class="iended-row"><span class="iended-name">${E(x.p.shortName||x.p.name)}<span class="iended-sup">${E(x.p.supplier)}</span></span><span class="iended-fin${okd?' ok':''}">${okd?'Goal met · ':''}${f.main}</span><span class="iended-when">Ended ${E(fmtDay(x.p.period.end))}</span></div>`; }).join('')}</div>`
-      : `<div class="kdh-state empty"><b>No ${E(cur.label)} incentives on record for ${E(first(rep))}.</b></div>`;
+      : `<div class="kdh-state empty"><b>No ${E(cur.label)} incentives on record ${isSelf(rep) ? 'for you' : 'for '+E(first(rep))}.</b></div>`;
   }
   return `<section class="iprev" aria-label="Previous months">
       <div class="iprev-head"><span class="iprev-t">Previous Months</span><span class="iprev-s">Review an earlier month’s incentives</span></div>
@@ -3227,7 +3228,7 @@ function screenSupplier(){
   const logo = (list[0] && list[0].p.supplierLogo) || '';
   return `<div class="hview">
     ${returnLink('back-list', 'Incentives')}
-    <div class="hhead"><div class="hhead-row">${supLogoHtml(name, logo, 'lg')}<div><h1>${E(name)}</h1><p class="hsub">${plw(list.length,'program')} for ${E(first(rep))}</p></div></div></div>
+    <div class="hhead"><div class="hhead-row">${supLogoHtml(name, logo, 'lg')}<div><h1>${E(name)}</h1><p class="hsub">${plw(list.length,'program')} for ${isSelf(rep) ? 'you' : E(first(rep))}</p></div></div></div>
     ${list.length ? `<div class="hlist">${list.map(x=>progRowHtml(x.p, x.r, rep)).join('')}</div>` : `<div class="kdh-state empty"><b>Nothing here right now.</b></div>`}
   </div>`;
 }

@@ -184,7 +184,7 @@
   /* ---- the page: a rep sees their own; a manager can pick one ---- */
   function showRep(name){
     viewRep = name;
-    $('repName').textContent = name || 'Your workspace';
+    $('repName').textContent = (!isManager || !name) ? 'Your Workspace' : name;
     territory(name);
     // Deep-link the hub to this rep so it opens on their page.
     // Incentives only: the two MPO rows beside it cover the MPO tabs.

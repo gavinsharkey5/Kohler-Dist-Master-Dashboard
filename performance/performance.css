@@ -22,3 +22,34 @@
 
 .pf-why{margin:-2px 0 10px;font-size:14.5px;color:var(--text-2);line-height:1.45}
 .pf-grp .pf-metrics{margin-bottom:6px}
+
+/* PAGE STANDARD (2026-10-07): 960 column, centered header and tiles, folds */
+#perfApp.wrap{max-width:960px;margin:0 auto;padding-left:16px;padding-right:16px}
+#perfApp .ws{display:block;text-align:center}
+#perfApp .ws h1{font-size:26px;font-weight:600;margin:0 0 4px}
+#perfApp .idline{margin:0;font-size:15px;color:var(--text-2)}
+.pf-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:12px 0}
+.pf-controls label{max-width:none;flex:none}
+@media (max-width:640px){ .pf-controls{grid-template-columns:minmax(0,1fr)} }
+.pf-prog{text-align:center;margin:0 0 12px}
+.pf-banner{text-align:center}
+.pf-grp h2,.sec h2{font-size:17px;font-weight:600;margin:24px 0 8px}
+.pf-why{margin:0 0 12px;font-size:14px}
+.pf-metrics{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:0 0 12px}
+.pf-m{text-align:center;padding:14px}
+.pf-mt{font-size:15px;color:var(--text)}
+.pf-mv{font-size:13px}
+.pf-md{font-size:14px}
+.pf-dl,.pf-q,.pf-need{font-size:15px}
+.note{font-size:14px;color:var(--text-2)}
+.pf-tbl{font-size:14px}
+.pf-tbl th{font-size:13px;font-weight:600;text-align:left}
+.pf-fold{border:1px solid var(--border);border-radius:12px;background:var(--surface);padding:0 14px}
+.pf-fold > summary{cursor:pointer;list-style:none;display:flex;align-items:center;min-height:48px;font-size:17px;font-weight:600}
+.pf-fold > summary::-webkit-details-marker{display:none}
+.pf-fold > summary::after{content:'';margin-left:auto;width:8px;height:8px;border-right:2px solid var(--text-3);border-bottom:2px solid var(--text-3);transform:rotate(45deg) translateY(-2px)}
+.pf-fold[open] > summary::after{transform:rotate(-135deg)}
+.pf-fold > .card{border:0;padding:0 0 14px;box-shadow:none;background:none}
+.pf-fold:focus-within{outline:none}
+@media (max-width:700px){ .pf-tbl td[data-l]{display:flex;justify-content:space-between;gap:12px} .pf-tbl td:first-child{font-weight:600} .pf-tbl td:first-child::before{content:none} }
+.pf-fold{margin:16px 0}

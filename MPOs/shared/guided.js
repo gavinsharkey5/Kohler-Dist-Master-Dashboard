@@ -367,7 +367,7 @@ function screenRepDetail(){
     // One stacked header, no step badge (2026-09-28, Gavin): the name, then
     // the scope, the manager and the role each on its own line, then the
     // data stamp. The month is the selected pill just above, not repeated.
-    repHead(esc(first)+'’s MPO Progress', [
+    repHead((lockedRep() || asRep ? 'Your' : esc(first)+'’s')+' MPO Progress', [
       [esc(H.scope),
         dmOf(rep) ? 'Sales Manager '+esc(dmOf(rep)) : '',
         roleOf(rep) ? esc(roleOf(rep)) : '',

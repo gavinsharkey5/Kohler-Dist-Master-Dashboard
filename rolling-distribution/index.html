@@ -294,6 +294,61 @@
   .loading{padding:60px 0;text-align:center;color:var(--ink-soft)}
   footer{color:var(--ink-dim);font-size:16.5px;padding:20px 0 40px;line-height:1.6}
   @media (max-width:700px){body{padding:0 12px}.card{padding:14px 12px}.kpi .v{font-size:30px}th,td{padding:8px 10px}.seg button{padding:10px 12px}.back{margin-left:0}}
+
+  /* PAGE STANDARD (2026-10-07): one centered 960px column, short copy, Title Case strings, 14px floor. */
+  .wrap{max-width:960px;padding:0 16px}
+  header{padding:18px 0 4px;text-align:center}
+  h1{font-size:28px;line-height:1.2;font-weight:600;letter-spacing:0;text-transform:none;text-align:center}
+  .sub{max-width:none;margin:6px 0 0;font-size:15px;text-align:center}
+  .pills{justify-content:center;gap:8px;margin:12px 0 0}
+  .pill{font-size:14px;padding:6px 14px}
+  .pagetabs{gap:12px;margin:16px 0 12px}
+  .pagetabs button{font-size:17px;font-weight:600;padding:12px 14px;min-height:64px}
+  .pagetabs button small{font-size:14px;font-weight:400}
+  .card{padding:16px;margin:12px 0}
+  .card h2,.sc-head h2{font-size:18px;font-weight:600}
+  .step{font-size:18px;font-weight:600;letter-spacing:0;text-transform:none}
+  .gtitle,.qlab,.measure-l,.sact-l,.tk-say{letter-spacing:0;text-transform:none;font-size:14px;font-weight:600}
+  .qmode{justify-content:center;padding:12px 16px}
+  .qmode-l{font-size:16px;font-weight:600}
+  .qmode #q-print{margin-left:0 !important}
+  .terr{margin:0 0 12px;font-size:14px;text-align:center}
+  .muted,.help,.note,footer{font-size:14px}
+  footer{padding:12px 0 32px}
+  footer .more{margin-top:0}
+  .filters>.row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 14px;align-items:end}
+  .filters>.row label.inl{grid-column:1/-1}
+  .inl{flex-wrap:wrap;max-width:100%}
+  .group .ctl{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .groups{grid-template-columns:1fr 1fr}
+  .ctl label.wide{grid-column:1/-1}
+  .btn,.seg button,.tabs button{font-size:15px;font-weight:500}
+  .btn.glow,.seg button.on,.tabs button.on,.btn.primary{font-weight:600}
+  .tag,.verdict,.dtag,.qseg,.kpi .l,th.grp,tr.total td,.crumbs .cur,.qsub,.tk-title,.cprow .cpn{font-weight:600}
+  th.grp{letter-spacing:0;text-transform:none}
+  .kpi .v,.sbig .v{font-size:36px;font-weight:700}
+  .kpi .l,.kpi .d{font-size:14px}
+  .tbl-wrap{max-height:none}
+  table{font-size:15px}
+  .scard{padding:16px}
+  .seelink{font-size:14px}
+  .slist,.scol .slist{font-size:15px}.scol h4{font-size:16px;font-weight:600}
+  .sfit{font-size:15px}
+  @media (max-width:700px){
+    .wrap{padding:0 16px}
+    h1{font-size:24px}
+    .filters>.row{grid-template-columns:1fr}
+    .groups,.group .ctl{grid-template-columns:1fr}
+    .pagetabs{flex-direction:column}
+    .toolbar{flex-direction:column;align-items:stretch}
+    .tbtns .btn{flex:1}
+    table{font-size:14px}
+    th,td{padding:8px 6px}
+    .qbar{grid-template-columns:1fr}
+    .sfit{grid-template-columns:1fr;gap:4px}
+    .scols{grid-template-columns:1fr}
+    .qlegend{margin-left:0;flex-wrap:wrap}
+  }
 </style>
 <script src="../shared/kdh-user.js?v=20261007a"></script>
 <script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
