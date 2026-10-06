@@ -460,3 +460,35 @@ counts them) and NO for their other packages.
 Answers go into `tools/program_eligibility.py` (one function per program);
 rerun it (the MPO and Accounts generators also run it) and the hub, the
 Account page and the Products list all follow.
+
+## 13. Exact SKU lists per program -- the one list to send (2026-10-06)
+
+The Eligible Accounts pages now show a "Qualifying Products" list for every
+program. Only four programs have an exact list today; every other program
+shows its whole brand family (every product we carry for that brand), with a
+note saying the exact SKU list is not on file, while the program's "What
+Counts" line names the narrower rule (e.g. Evil Genius: "Place Stacy's Mom,
+Adulting or 867-5309" while the family has 32 products).
+
+HAVE an exact list:
+- Lagunitas Sprint to the Finish (the 13 products in its export)
+- Corona Innovation MPO (the 11 products the RDE report counts -- built from
+  the report's credited rows, so a qualifying product nobody has placed yet
+  would be missing; a SKU list would confirm it)
+- Lytt Buying Accounts MPO (every Lytt product; the report filters on the
+  family) and Carbliss 40% MPO (every Carbliss product; whether every package
+  counts is not stated)
+
+NEED an exact list (one CSV per program is fine; columns Product Num and/or
+Product Name, one row per qualifying SKU; a "does not count" list helps too):
+- October incentives: Mark Anthony Single Serve, Push Famosa, Sam Adams
+  Seasonal Draft Conversion, Lytt Launch, Other Half Launch, Le Grand Noir
+  Volume, 2XO Bourbon, Industrial Arts Launch, Four Loko
+- October MPOs: Corona Innovation (to confirm), Carbliss 40% (packages),
+  Molly's (2) New Placements, Wine (1) New Placement, Spirits Follow-Up
+- Every new program from November on, with the program sheet
+
+WHERE IT GOES: save each as incentive-tracking/data/skus/<program key>.csv
+(or MPOs/<on|off>-prem/skus/<objective key>.csv). The page will then list
+exactly those products, drop the "not on file" note, and the Products list,
+Program Opportunities and the assistant will use the same list.

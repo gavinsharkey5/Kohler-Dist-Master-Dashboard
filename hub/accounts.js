@@ -95,6 +95,11 @@ const PROGRAM_PRODUCTS = {
     // territory filter off (Union / Essex accounts, NOT IN TERRITORY, were listed
     // as targets; none bought Lagunitas in Jan 2025 - Aug 2026).
     checked:'2026-10-04: the 13 products in incentive-tracking/data/lagunitas_sprint.csv (IPA 6/12/24-pack cans + bottles, 19.2 oz, 15.5 + 7.75 gal kegs; Little Sumpin cans, bottles, 19.2 oz, 15.5 gal keg) -- not Daytime, Hazy, Maximus, Variety or other Lagunitas'},
+  // October on-prem MPO: done = NET Octoberfest KEG units loaded 8/1-10/23
+  // (MPOs/on-prem/generate_2026-10.py) -- the two Sam Adams Octoberfest kegs.
+  'on:sam_adams_conversion': {re:/^sam adams octoberfest (15\.5|5\.2) gal keg$/i,
+    rule:'Sam Adams Octoberfest kegs (15.5 and 5.2 gal)',
+    checked:'2026-10-06: catalogue #3813 15.5 gal + #3862 5.2 gal; the conversion counts keg units only'},
 };
 // the products a program counts, from catalogue rows [num, name, supplier, family, package, ...]
 function eligibleProducts(p, rows, famKeyFn){

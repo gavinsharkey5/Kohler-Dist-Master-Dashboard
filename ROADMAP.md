@@ -256,6 +256,12 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-10-06 **Incentives use the same Eligible Accounts page** as the MPOs (goal,
+  What Counts, Qualifying Products, search, accounts; Back returns where you
+  came from), and every product shows as one line ("Corona Non-Alcoholic
+  4/6/12 oz Btl"). TO DO (you): send one SKU CSV per program -- list in
+  accounts/REPORTING_REQUEST.md section 13 -- so each program shows its exact
+  products instead of the whole brand.
 - [x] 2026-10-06 **Eligible Accounts, simplified**: from an MPO card, "View Eligible
   Accounts" opens one focused page -- goal / current / still needed, a folded
   Qualifying Products list (product, package, size), search, and the accounts.

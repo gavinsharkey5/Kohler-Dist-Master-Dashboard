@@ -1704,3 +1704,10 @@ a.hreturn{text-decoration:none;}
 .pwf-list .pw-tools{margin-bottom:8px;}
 .pwf-list .pw-what{margin-top:2px;}
 @media (max-width:420px){ .pwf-stats{gap:6px} .pwf-stat{padding:8px 9px} .pwf-v{font-size:22px} }
+/* the incentive page's secondary items, below the accounts (2026-10-06) */
+.pwf-more{margin-top:18px;display:flex;flex-direction:column;gap:10px;}
+.pwf-more .hdet{margin:0;}
+.pwf .px-prog{margin-top:14px;padding-top:12px;border-top:1px solid var(--line-soft);}
+.pwq-row .pwq-n{overflow-wrap:anywhere;}
+.pwf-ask{margin:12px 0 0;font-size:15px;line-height:1.4;color:var(--text);}
+.pwf-ask span{display:block;font-size:13.5px;font-weight:600;color:var(--text-dim);margin-bottom:1px;}

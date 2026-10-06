@@ -2395,3 +2395,47 @@ elig_trip_test.mjs (MPO screen -> eligible -> products -> account -> back ->
 back at 390 light/dark, 820, 1366 dark; hub-tab entry; direct open fallback;
 off-site ret ignored). Tags: hub.js 20261006d, hub.css 20261006c, guided.js
 20261006b, accounts.js / exceptions.js 20261006a, kdh-user.js 20261006a.
+
+## Incentives get the same Eligible Accounts page; one-line products (2026-10-06)
+
+Gavin: "apply the same eligible accounts page to the incentive programs" and
+"put the brand and package in one line". hub.js `screenProgramRep` now hands
+every incentive with an account list (`!legs && !brandGoals && !hold &&
+C.targets!=null`) to `screenIncentiveFocus()`: Back -> title -> summary
+(`pwFocusSummary` when the goal is countable, else the old main / need / bar
+block) -> "What Counts" (`sellAsk`) -> `incProductsFold()` -> "Eligible
+Accounts" + search -> rows -> Done / Not Now folds -> Credited Accounts row,
+How It Is Scored and Progress So Far as folds BELOW the list. Retention
+(brand goals), Touchdowns & Tea (legs), accounts-to-hold lists, unavailable /
+awaiting programs keep the old program screen. Rows are list `elig` (LISTS
+gains 'Eligible Accounts'; acctRowsFor treats it as the live target list):
+name, town, the reason only when it is not NO_BUY, "Open Account" -> the hub
+account screen (credits + the rep's Done / Follow Up / Not Now marks), whose
+Back is `back-prog` "<title> Eligible Accounts"; back-prog / back-accts now
+restore scrollMem. QP_OPEN (sessionStorage kdh_qpopen) keeps an opened Qualifying Products fold open for
+the visit so Back lands on the same page height. PRODUCTS: `qpFoldHtml()` is
+shared by the MPO rule page and the incentive page -- one line per product,
+the full catalogue name (brand + package, "Corona Non-Alcoholic 4/6/12 oz
+Btl"), no separate Package / Size line; the condition line names what does
+NOT count ("Doesn't count: Corona Non-Alcohol 2/12/12 oz Can", or "Other
+Modelo Negra flavors and packages don't count (4)" past two) from the rule's
+excludedProducts. Incentive products come from ../accounts/data/catalog.json
+(`hubCatalog()`, loaded once) through hub/accounts.js `eligibleProducts`:
+exact for Lagunitas (PROGRAM_PRODUCTS), otherwise the brand family with the
+note "Every <family> product we carry. The program's exact SKU list is not on
+file yet..." -- REPORTING_REQUEST section 13 asks Gavin for per-program SKU
+CSVs. Tests (scratchpad): inc_trip_test.mjs (Incentives list -> Lagunitas ->
+products -> search -> account -> back -> back at 390 light/dark, 820, 1366;
+account-page entry -> "Back to Account"), elig_trip_test.mjs (one-line names,
+named exclusions). Tags hub.js 20261006f, hub.css 20261006d.
+Same day, follow-up: the focused page also serves MPO objectives WITHOUT a
+rule (Molly's, Wine, Oktoberfest conversion, Spirits follow-up) -- their
+card's "View Eligible Accounts" used to open the old program screen with a
+second "View Eligible Accounts" button; now every MPO card lands on a
+focused page (rule programs on screenWorkspaceRep, the rest on
+screenIncentiveFocus) with "Back to <Off|On>-Premise MPOs". hub/accounts.js
+PROGRAM_PRODUCTS gained 'on:sam_adams_conversion' = the two Sam Adams
+Octoberfest kegs (#3813 15.5 gal, #3862 5.2 gal; the generator counts keg
+units) instead of all 66 Samuel Adams products. The October INCENTIVE
+sam_adams_cold_snap stays on the family until Gavin's SKU list arrives.
+hub/accounts.js 20261006a.
