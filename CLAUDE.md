@@ -469,6 +469,13 @@ the rep's assigned accounts (a rep sees only their own group, a DM their team, a
 collapsible groups; filters search / rep / All - L90 buyers - Fell off L90 - Never bought). program.json
 accounts gained `l90` (the RDE Buyers L90 flag) and the file gained `board`. The old goal bar and buyers card stay.
 Tags: kdh-user.js 20261006d. Tests (scratchpad): lb2_test.mjs.
+L90 REDEFINED (Gavin, same day): on the leaderboard page, the MPO card and the roster, "L90" = bought in the FIXED program
+period Aug 1 - Oct 31 (program.json `prog`), NOT the RDE rolling-90 flag (that flag is no longer read; program.json `l90` is gone,
+`board.l90` = accounts with prog). Fell Off L90 = bought since launch but not in the period. The page reads everything from
+program.json (buyers card, bar, leaderboard, roster); the roster has Search / Sales Rep / Town / L90 Buyer / YTD Buyer filters.
+TEAM GOAL: `L90_GOAL = 331` in carbliss-mpo/generate.py (meta.goal) -- the company chases 331 L90 buyers out of the entire core
+market on-premise base (1,047). A "Team L90 Goal" bar tops the leaderboard page (160 of 331, 171 to go, "Goal 331 of 1,047 On-Premise
+Accounts") and one line sits on the MPO Carbliss card for every rep; company-wide counts only. guided.js 20261006e.
 Follow-up (same day): the leaderboard's "Show All Reps" / "Show Top 10" toggle sits top right of its card (a rep below #10 opens it
 expanded); the old Sun Cruiser / White Claw goal bar is now "<Your|Team|Company> Customer Base": YTD buyers of the
 rep's whole core-market on-premise account base ("42 of 122 Accounts"), from program.json `board`.

@@ -492,7 +492,8 @@ function hydrateCarbliss(){
           tile('Program Period', cbDay(M.period.start)+'\u2013'+cbDay(M.period.end, true), prog)+
           tile('Since Launch', cbDay(M.launch)+' \u2013 '+cbDay(M.sales_through, true), since)+
         '</div>'+
-        '<div class="g-bar-cap">Accounts that bought Carbliss \u00f7 '+base+' assigned accounts \u00b7 Sales through '+esc(cbDay(endTxt, true))+'</div>';
+        '<div class="g-bar-cap">Accounts that bought Carbliss \u00f7 '+base+' assigned accounts \u00b7 Sales through '+esc(cbDay(endTxt, true))+'</div>'+
+        (M.goal ? '<div class="g-cb-goal">Team L90 Goal: <b>'+D.house.buyers+' of '+M.goal+'</b> Accounts</div>' : '');
     }
   }).catch(function(){
     for(var i=0;i<boxes.length;i++) boxes[i].innerHTML = '<div class="g-cb-wait">Carbliss buying figures are unavailable right now. Reload to try again.</div>';
