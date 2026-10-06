@@ -67,6 +67,9 @@ SC + WC 2026 cases 28,182. Buyers file runs to 10/7: 297 YTD buyers, 229
 rolling-90 (window 7/7 - 10/7), 68 fell off. Sell sheets need openpyxl
 (11 of 12 flavors have a URL; Pineapple none).
 
+2026-10-06 REFRESH -- Eval _12 + Buyers L90 _4 exports: accounts.csv 3,140 -> 3,143 rows; buyers file runs to
+10/16 (412 load sheets, +18, none removed). Also feeds carbliss-mpo/ (run its generate.py after saving the buyers file).
+
 Flavor mapping and the "gap" ranking (most broadly-carried missing flavor,
 preferring one from a different flavor family than the pitched SKU) are
 both defined at the top of generate.py — edit FLAVOR_KEYWORDS or
