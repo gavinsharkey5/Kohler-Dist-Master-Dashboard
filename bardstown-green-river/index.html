@@ -207,9 +207,9 @@
     color:var(--accent);cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
   .glossary summary::-webkit-details-marker{display:none}
   .glossary summary::before{content:"\24D8";font-size:17px}
-  .glossary summary::after{content:"Tap for plain-English definitions";margin-left:auto;font-size:13.5px;
+  .glossary summary::after{content:"";margin-left:auto;font-size:13.5px;
     font-weight:400;color:var(--ink-dim)}
-  .glossary[open] summary::after{content:"Tap to collapse"}
+  .glossary[open] summary::after{content:""}
   .glossary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:var(--s2);
     padding:2px 15px var(--s3);margin:0}
   .gitem dt{font-size:15px;font-weight:700;color:var(--ink)}
@@ -253,6 +253,93 @@
     .glossary-grid{grid-template-columns:1fr}
     .toolbar .count{margin-left:0;width:100%}
   }
+
+  /* ===== PAGE STANDARD (2026-10-07): 960 column, Title Case in the strings, no all-caps, 13px floor ===== */
+  body{border-top:0;font-size:16px}
+  .wrap{max-width:960px;padding:0 16px 40px}
+  h1{font-weight:600;font-size:clamp(24px,4vw,28px);line-height:1.2;letter-spacing:0;text-transform:none;text-align:center;margin:20px 0 4px}
+  .lede{font-size:15px;text-align:center;max-width:none;margin:0 0 14px}
+  .controls{position:static;padding:0 0 12px;margin:0 0 12px}
+  .ctlrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+  .ctlgroup>.cl{font-size:14px;letter-spacing:0;text-transform:none;font-weight:600;color:var(--ink-soft)}
+  .chip,.seg button,.tabs .tab{font-size:14px;font-weight:500;letter-spacing:0;text-transform:none}
+  .chip{padding:8px 14px;min-height:40px}
+  .tabs .tab{padding:8px 14px;min-height:40px}
+  .tabs{margin:12px 0 16px}
+  .dates label{font-size:14px;font-weight:500;color:var(--ink-soft)}
+  input[type="date"],select,input[type="search"]{font-size:16px;min-height:44px}
+  .rangenote{font-size:14px;color:var(--ink-soft);margin:12px 0 0}
+  .premise-note{font-size:14px;color:var(--ink-soft);margin:4px 0 0;max-width:none}
+  .glossary{margin:12px 0 0}
+  .glossary summary{font-size:16px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--ink);min-height:44px}
+  .gitem dt{font-weight:600}
+  .gitem dd{font-size:14px}
+  .kpis{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:0 0 16px}
+  .kpi{padding:14px 16px;text-align:center;align-items:center}
+  .kpi .k{font-size:14px;letter-spacing:0;text-transform:none;font-weight:500;justify-content:center}
+  .kpi .v{font-weight:600;font-size:30px}
+  .kpi .v small{font-size:14px;font-weight:500}
+  .kpi .s{font-size:14px}
+  .sec{margin:0 0 24px}
+  .sec h2{font-size:17px;font-weight:600;letter-spacing:0;text-transform:none;margin:0 0 4px}
+  .sec h2::before{display:none}
+  .sec .sub{font-size:14px;margin:0 0 12px;max-width:none}
+  .panel{padding:14px 16px}
+  .panel h3{font-size:16px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--ink)}
+  .panel .note{font-size:14px}
+  .perfgrid,.grid2{gap:12px}
+  .perfcard{padding:14px 16px;text-align:center}
+  .perfcard .p{font-size:14px;letter-spacing:0;text-transform:none;font-weight:600}
+  .perfcard .big{font-weight:600;font-size:30px}
+  .perfcard .big small{font-size:14px;font-weight:500}
+  .perfcard .delta,.perfcard .row{font-size:14px}
+  .perfcard .delta{font-weight:600}
+  .perfcard .row{text-align:left}
+  th{font-size:13px;letter-spacing:0;text-transform:none;font-weight:600}
+  table{font-size:15px}
+  .pill{font-size:13px;font-weight:600}
+  .prem,.rank{font-size:13px;font-weight:600}
+  .rank{width:24px;height:24px}
+  tr.drill td:first-child::before{font-size:13px}
+  .toolbar{display:grid;grid-template-columns:2fr 1fr auto;gap:12px;align-items:center}
+  .toolbar input[type="search"]{grid-column:1}
+  .toolbar .count{font-size:14px;margin:0;text-align:right}
+  .matrix td.cell .sub{font-size:13px}
+  .legend{font-size:14px}
+  .missing{font-size:14px}
+  .coretile{font-size:14px}
+  .mlabels div{font-size:13px}
+  .barrow{font-size:15px}
+  .empty{font-size:15px}
+  @media(max-width:720px){
+    .wrap{padding:0 16px 32px}
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .toolbar{grid-template-columns:1fr 1fr}
+    .toolbar input[type="search"]{grid-column:1/-1}
+    .toolbar .count{grid-column:1/-1;text-align:left}
+    .mlabels div{font-size:11px}
+    .tblwrap{overflow:visible}
+    table,thead,tbody,tr,td{display:block}
+    thead{display:none}
+    tr[hidden]{display:none!important}
+    tbody tr{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:0 0 12px;background:var(--card2)}
+    tbody tr:hover td{background:transparent}
+    td{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:6px 0;border:0;
+      text-align:right;white-space:normal;font-size:15px}
+    td::before{content:attr(data-l);color:var(--ink-dim);text-align:left;font-size:14px;flex:none;max-width:55%}
+    thead th:first-child,tbody td:first-child{position:static;box-shadow:none;background:transparent;min-width:0;max-width:none}
+    td:first-child{display:block;text-align:left;font-size:16px;font-weight:600;padding-top:0}
+    td:first-child::before{display:none}
+    tbody tr.drill td:first-child::before{display:inline-block;content:"\25B8";color:var(--accent);margin-right:6px;font-size:13px}
+    tbody tr.drill.open td:first-child::before{content:"\25BE"}
+    td.wrap,td.cell{text-align:right;min-width:0}
+    .matrix td.cell{text-align:right}
+    td.cell .sub{display:inline;margin-left:8px}
+    tr.detail{padding:8px;background:var(--card)}
+    tr.detail>td{display:block;padding:0}
+    tr.detail>td::before{display:none}
+    .panel{padding:12px}
+  }
 </style>
 <script src="../shared/kdh-user.js?v=20261007a"></script>
 <script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
@@ -262,55 +349,51 @@
 </head>
 <body>
 <div class="wrap">
-  <a class="back" href="../">&lsaquo; Kohler Distributing</a>
-  <p class="eyebrow">Kohler Distributing &middot; Bardstown Bourbon Co. &amp; Green River</p>
   <h1>Bardstown &amp; Green River</h1>
-  <p class="lede">Pick any date range and the whole page &mdash; cases, orders, accounts, new placements,
-    retention, SKUs, cities and brand-line gaps &mdash; recalculates for it, next to a comparable prior period.
-    <b>Every volume figure on this page is cases.</b></p>
+  <p class="lede">Every Volume Figure Is Cases</p>
 
   <div class="controls">
     <div class="ctlrow">
       <div class="ctlgroup">
-        <div class="cl">Date range</div>
+        <div class="cl">Date Range</div>
         <div class="chips" id="presetChips"></div>
       </div>
       <div class="ctlgroup">
-        <div class="cl">Custom range</div>
+        <div class="cl">Custom Range</div>
         <div class="dates">
           <div><label for="fromDate">From</label><br><input type="date" id="fromDate"></div>
           <div><label for="toDate">To</label><br><input type="date" id="toDate"></div>
-          <div><label for="cmpMode">Compare with</label><br>
+          <div><label for="cmpMode">Compare With</label><br>
             <select id="cmpMode">
-              <option value="ly">Last year</option>
-              <option value="prev">Previous period</option>
-              <option value="none">No comparison</option>
+              <option value="ly">Last Year</option>
+              <option value="prev">Previous Period</option>
+              <option value="none">No Comparison</option>
             </select></div>
         </div>
       </div>
     </div>
     <div class="ctlrow" style="margin-top:var(--s3)">
       <div class="ctlgroup"><div class="cl">Brand</div><div class="chips" id="brandChips"></div></div>
-      <div class="ctlgroup"><div class="cl">Account premise</div><div class="chips" id="premiseChips"></div></div>
+      <div class="ctlgroup"><div class="cl">Account Premise</div><div class="chips" id="premiseChips"></div></div>
     </div>
     <p class="rangenote" id="rangeNote"></p>
     <p class="premise-note" id="premiseNote"></p>
   </div>
 
   <details class="glossary">
-    <summary>What am I looking at? (plain-English glossary)</summary>
+    <summary>Glossary</summary>
     <dl class="glossary-grid">
       <div class="gitem"><dt>Cases</dt><dd>The one and only volume measure on this page, straight off the export's Cases column (6 bottles = 1 case, so a single bottle is 0.17 of a case).</dd></div>
-      <div class="gitem"><dt>Selected range</dt><dd>Everything on the page &mdash; KPIs, tables, charts, drilldowns &mdash; counts only orders dated inside the range you picked above.</dd></div>
-      <div class="gitem"><dt>Comparison period</dt><dd>Either the same dates a year earlier, or the equally long stretch immediately before your range. Change it in "Compare with".</dd></div>
+      <div class="gitem"><dt>Selected Range</dt><dd>Everything on the page &mdash; KPIs, tables, charts, drilldowns &mdash; counts only orders dated inside the range you picked above.</dd></div>
+      <div class="gitem"><dt>Comparison Period</dt><dd>Either the same dates a year earlier, or the equally long stretch immediately before your range. Change it in "Compare with".</dd></div>
       <div class="gitem"><dt>Order</dt><dd>One line of the report = one account buying one product on one date. Counting orders for an account &times; product is literally how many times they bought it.</dd></div>
-      <div class="gitem"><dt>New placement</dt><dd>An account whose <b>first ever</b> order of that brand (anywhere in this export) falls inside the selected range.</dd></div>
-      <div class="gitem"><dt>Account universe</dt><dd>Every account on the assigned Wine &amp; Spirits book &mdash; the denominator for &ldquo;% of universe&rdquo;, not just accounts that already buy these brands.</dd></div>
-      <div class="gitem"><dt>Repeat buyer</dt><dd>An account that bought this brand on 2 or more separate dates inside the range.</dd></div>
+      <div class="gitem"><dt>New Placement</dt><dd>An account whose <b>first ever</b> order of that brand (anywhere in this export) falls inside the selected range.</dd></div>
+      <div class="gitem"><dt>Account Universe</dt><dd>Every account on the assigned Wine &amp; Spirits book &mdash; the denominator for &ldquo;% of universe&rdquo;, not just accounts that already buy these brands.</dd></div>
+      <div class="gitem"><dt>Repeat Buyer</dt><dd>An account that bought this brand on 2 or more separate dates inside the range.</dd></div>
       <div class="gitem"><dt>Velocity</dt><dd>Cases per month, averaged over the selected range.</dd></div>
-      <div class="gitem"><dt>Brand line</dt><dd>The four sellable lines behind the placement-gap matrix: Bardstown Origin Series, Bardstown Discovery/Collab, Green River Core, Green River Single Barrel/Specialty.</dd></div>
+      <div class="gitem"><dt>Brand Line</dt><dd>The four sellable lines behind the placement-gap matrix: Bardstown Origin Series, Bardstown Discovery/Collab, Green River Core, Green River Single Barrel/Specialty.</dd></div>
       <div class="gitem"><dt>CORE</dt><dd>The brand's flagship SKU set. An account carries the CORE once it has bought <b>every</b> CORE SKU inside the range. Green River = Bourbon, Full Proof, Rye, Wheated, Honey. Bardstown = Bottled-in-Bond, Bourbon, Double Barrel Rye, High Wheat.</dd></div>
-      <div class="gitem"><dt>First-order size</dt><dd>Was the account's first order of the range a single bottle, a partial case (2-5 bottles) or a full case (6+)? The only place bottles are counted &mdash; it reports no volume.</dd></div>
+      <div class="gitem"><dt>First-order Size</dt><dd>Was the account's first order of the range a single bottle, a partial case (2-5 bottles) or a full case (6+)? The only place bottles are counted &mdash; it reports no volume.</dd></div>
     </dl>
   </details>
 
@@ -394,7 +477,7 @@ function dayFromDate(d){ return Math.round((new Date(d.getFullYear(), d.getMonth
 
 const PRESETS = [
   {key:"mtd", label:"MTD", range: () => [dayFromDate(startOfMonth(END)), LAST_DAY]},
-  {key:"prevmonth", label:"Previous month", range: () => {
+  {key:"prevmonth", label:"Previous Month", range: () => {
     const s = addMonths(startOfMonth(END), -1);
     return [dayFromDate(s), dayFromDate(endOfMonth(s))];
   }},
@@ -403,10 +486,10 @@ const PRESETS = [
     return [dayFromDate(q), LAST_DAY];
   }},
   {key:"ytd", label:"YTD", range: () => [dayFromDate(new Date(END.getFullYear(), 0, 1)), LAST_DAY]},
-  {key:"l90", label:"Last 90 days", range: () => [LAST_DAY - 89, LAST_DAY]},
-  {key:"prevyear", label:"Previous year", range: () => [
+  {key:"l90", label:"Last 90 Days", range: () => [LAST_DAY - 89, LAST_DAY]},
+  {key:"prevyear", label:"Previous Year", range: () => [
     dayFromDate(new Date(END.getFullYear() - 1, 0, 1)), dayFromDate(new Date(END.getFullYear() - 1, 11, 31))]},
-  {key:"all", label:"All data", range: () => [0, LAST_DAY]},
+  {key:"all", label:"All Data", range: () => [0, LAST_DAY]},
 ];
 
 function applyPreset(key){
@@ -624,18 +707,18 @@ function renderPerformance(){
       "Total cases sold in the selected range. Cases are the only volume measure on this page.")}
     ${kpi("Orders", fmt(c.orders), cmpOn ? deltaHTML(c.orders, m.orders, "orders", fmt) + " vs " + cmpShort() : "order occasions", "",
       "Order occasions in the range: one account buying one product on one date.")}
-    ${kpi("Buying accounts", fmt(buyers), cmpOn ? deltaHTML(buyers, cmpBuyers, "accts", fmt) + " vs " + cmpShort() : "distinct accounts", "",
+    ${kpi("Buying Accounts", fmt(buyers), cmpOn ? deltaHTML(buyers, cmpBuyers, "accts", fmt) + " vs " + cmpShort() : "distinct accounts", "",
       "Distinct accounts that bought " + st.brand + " at least once in the range.")}
     ${kpi("Revenue", money(c.revenue), cmpOn ? deltaHTML(c.revenue, m.revenue, "", money) + " vs " + cmpShort() : "in the selected range", "",
       "Dollars sold in the range, straight from the export's Revenue column.")}
-    ${kpi("New placements", fmt(c.newPlacements.length), "click to see the accounts", "gd",
+    ${kpi("New Placements", fmt(c.newPlacements.length), "Tap to See the Accounts", "gd",
       "Accounts whose first ever " + st.brand + " order in this export falls inside the range.", 'data-goto="placements"')}
-    ${kpi("Cases / buying account", fmt1(buyers ? c.cases / buyers : 0),
+    ${kpi("Cases / Buying Account", fmt1(buyers ? c.cases / buyers : 0),
       cmpOn && cmpBuyers ? deltaHTML(buyers ? c.cases / buyers : 0, m.cases / cmpBuyers, "cases") : "average depth", "",
       "Cases divided by buying accounts — how deep the average account went in this range.")}
     ${kpi("Reach", (uni ? (buyers / uni * 100) : 0).toFixed(1) + "%", fmt(buyers) + " of " + fmt(uni) + " assigned accounts", "",
       "Buying accounts as a share of the whole assigned Wine & Spirits book for this premise view.")}
-    ${kpi("Repeat rate", (() => {
+    ${kpi("Repeat Rate", (() => {
       const rep = [...c.accounts.values()].filter(a => a.days.size >= 2).length;
       return buyers ? (rep / buyers * 100).toFixed(1) + "%" : "—";
     })(), "accounts that bought 2+ times in range", "",
@@ -653,9 +736,9 @@ function renderPerformance(){
       <th data-tip="Cases sold in that period.">Cases</th>
       <th data-tip="Order occasions in that period.">Orders</th>
       <th data-tip="Distinct accounts buying in that period.">Accounts</th>
-      <th data-tip="Accounts whose first ever order of this brand fell in that period.">New placements</th>
+      <th data-tip="Accounts whose first ever order of this brand fell in that period.">New Placements</th>
       <th data-tip="Dollars sold in that period.">Revenue</th>
-      <th data-tip="Gross profit dollars in that period.">Gross profit</th>
+      <th data-tip="Gross profit dollars in that period.">Gross Profit</th>
     </tr></thead><tbody>
       ${perfRow("Selected: " + fmtDate(st.from) + " – " + fmtDate(st.to), c)}
       ${cmpOn ? perfRow("Comparison: " + cmpLabel(), m) : ""}
@@ -676,15 +759,12 @@ function renderPerformance(){
     </tbody></table></div>`;
 
   return `${kpis}
-    <div class="sec"><h2>Selected range vs comparison</h2>
-      <div class="sub">Everything below counts only orders dated inside the range you picked. The comparison
-        period is set in the "Compare with" dropdown.</div>
+    <div class="sec"><h2>Selected Range vs Comparison</h2>
       ${cards}</div>
-    <div class="sec"><h2>Cases by month</h2>
-      <div class="sub">Every month in the export. Solid bars are inside your selected range; faded bars are outside it.</div>
+    <div class="sec"><h2>Cases by Month</h2>
+      <div class="sub">Solid Bars Are in the Selected Range</div>
       <div class="panel">${chart}</div></div>
-    <div class="sec"><h2>Period detail</h2>
-      <div class="sub">The same numbers in table form, with the absolute and percentage change.</div>
+    <div class="sec"><h2>Period Detail</h2>
       <div class="panel">${tbl}</div></div>`;
 }
 function monthLabel(s){ return new Date(s.y, s.m, 1).toLocaleDateString(undefined, {month:"short", year:"numeric"}); }
@@ -737,26 +817,24 @@ function renderPlacements(){
   }).join("");
 
   return `<div class="kpis">
-      ${kpi("New placements", fmt(list.length), CMP ? deltaHTML(list.length, cmpN, "accts", fmt) + " vs " + cmpShort() : "in the selected range", "hl",
+      ${kpi("New Placements", fmt(list.length), CMP ? deltaHTML(list.length, cmpN, "accts", fmt) + " vs " + cmpShort() : "in the selected range", "hl",
         "Accounts whose first ever " + st.brand + " order in this export falls inside the selected range.")}
-      ${kpi("Cases from new placements", fmt1(cases), "bought inside the range", "gd",
+      ${kpi("Cases from New Placements", fmt1(cases), "bought inside the range", "gd",
         "Cases those brand-new accounts bought inside the range.")}
-      ${kpi("Cases per new account", fmt1(list.length ? cases / list.length : 0), "average", "",
+      ${kpi("Cases per New Account", fmt1(list.length ? cases / list.length : 0), "average", "",
         "Average cases per newly placed account.")}
-      ${kpi("Reps opening accounts", fmt(new Set(list.map(a => ACC[a.a].rep)).size), "with at least one new placement", "",
+      ${kpi("Reps Opening Accounts", fmt(new Set(list.map(a => ACC[a.a].rep)).size), "with at least one new placement", "",
         "How many reps opened a brand-new account inside the range.")}
     </div>
-    <div class="sec"><h2>New placements — ${esc(st.brand)}</h2>
-      <div class="sub">Every account whose first ever ${esc(st.brand)} order lands between
-        ${fmtDate(st.from)} and ${fmtDate(st.to)}. Tap a row for the SKUs they bought.</div>
-      <p class="swipe-hint">Swipe the table sideways for the rest of the columns — tap any i for what a column means.</p>
+    <div class="sec"><h2>New Placements — ${esc(st.brand)}</h2>
+      <div class="sub">${fmtDate(st.from)} – ${fmtDate(st.to)} · Tap a Row for SKUs</div>
       <div class="panel">${list.length ? `<div class="tblwrap"><table><thead><tr>
         <th data-tip="The account that opened.">Account</th>
         <th data-tip="Which brand this placement is for.">Brand</th>
         <th data-tip="The account's city.">City</th>
         <th data-tip="The assigned sales rep.">Rep</th>
         <th data-tip="On-premise (bar, restaurant) or off-premise (liquor store).">Premise</th>
-        <th data-tip="The date of their first ever order of this brand.">First purchase</th>
+        <th data-tip="The date of their first ever order of this brand.">First Purchase</th>
         <th data-tip="Cases bought inside the selected range.">Cases</th>
         <th data-tip="Order occasions inside the range.">Orders</th>
         <th data-tip="Dollars sold inside the range.">Revenue</th></tr></thead><tbody>${rows}</tbody></table></div>`
@@ -781,10 +859,10 @@ function renderRetention(){
   const maxPct = Math.max(...rows.map(r => r.pctUni), 1);
 
   const freqTable = `<div class="tblwrap"><table><thead><tr>
-      <th data-tip="Accounts that placed at least this many separate orders of the brand inside the range.">Purchase frequency</th>
+      <th data-tip="Accounts that placed at least this many separate orders of the brand inside the range.">Purchase Frequency</th>
       <th data-tip="How many accounts hit that bar in the selected range.">Accounts</th>
-      <th data-tip="Those accounts divided by the ENTIRE assigned account book — not just accounts that already buy.">% of universe</th>
-      <th data-tip="Those accounts divided by the accounts that bought this brand at all in the range.">% of buyers</th>
+      <th data-tip="Those accounts divided by the ENTIRE assigned account book — not just accounts that already buy."% of Universe</th>
+      <th data-tip="Those accounts divided by the accounts that bought this brand at all in the range."% of Buyers</th>
       ${CMP ? `<th data-tip="The same account count in the comparison period.">Comparison</th>
       <th data-tip="Change against the comparison period.">Change</th>` : ""}
       <th data-tip="A bar showing the % of universe, so the ladder is easy to scan.">Reach</th>
@@ -817,37 +895,33 @@ function renderRetention(){
 
   const repeat = accts.filter(a => a.days.size >= 2).length;
   return `<div class="kpis">
-      ${kpi("Account universe", fmt(uni), "assigned accounts in this premise view", "",
+      ${kpi("Account Universe", fmt(uni), "assigned accounts in this premise view", "",
         "Every account on the assigned Wine & Spirits book for this premise view — the denominator below.")}
-      ${kpi("Accounts buying", fmt(buyers), (uni ? (buyers / uni * 100).toFixed(1) : 0) + "% of universe", "hl",
+      ${kpi("Accounts Buying", fmt(buyers), (uni ? (buyers / uni * 100).toFixed(1) : 0) + "% of universe", "hl",
         "Distinct accounts that bought " + st.brand + " inside the selected range.")}
-      ${kpi("Repeat rate", buyers ? (repeat / buyers * 100).toFixed(1) + "%" : "—",
+      ${kpi("Repeat Rate", buyers ? (repeat / buyers * 100).toFixed(1) + "%" : "—",
         fmt(repeat) + " bought 2+ times in range", "gd",
         "Share of buying accounts that ordered on 2 or more separate dates inside the range.")}
-      ${kpi("Avg orders / buyer", buyers ? (CUR.orders / buyers).toFixed(2) : "—",
+      ${kpi("Avg Orders / Buyer", buyers ? (CUR.orders / buyers).toFixed(2) : "—",
         fmt1(buyers ? CUR.cases / buyers : 0) + " cases per buyer", "",
         "Order occasions divided by buying accounts, inside the range.")}
     </div>
-    <div class="sec"><h2>Purchase frequency vs the whole account universe</h2>
-      <div class="sub">Out of every assigned account, how many are buying ${esc(st.brand)} in this range — and how
-        often they come back. The denominator is the whole book (${fmt(uni)} accounts), not just buyers.</div>
-      <p class="swipe-hint">Swipe the table sideways for the rest of the columns — tap any i for what a column means.</p>
+    <div class="sec"><h2>Purchase Frequency vs the Whole Account Universe</h2>
+      <div class="sub">Whole Book: ${fmt(uni)} Accounts</div>
       <div class="panel">${freqTable}</div></div>
-    <div class="sec"><h2>How often accounts re-buy</h2>
-      <div class="sub">Exact order counts per account inside the range, and whether the size of an account's first
-        order predicts a second one.</div>
+    <div class="sec"><h2>How Often Accounts Re-buy</h2>
       <div class="grid2">
-        <div class="panel"><h3>Order frequency, by account
+        <div class="panel"><h3>Order Frequency, by Account
           <i class="tip-ic" role="button" tabindex="0" data-tip="How many separate order dates each buying account has inside the range. A tall 1x bar means most accounts have only tried it once.">i</i></h3>
           <div class="bars">${freqBars}</div></div>
-        <div class="panel"><h3>Bottle vs. case — does first-order size predict retention?
+        <div class="panel"><h3>Bottle vs. Case — Does First-Order Size Predict Retention?
           <i class="tip-ic" role="button" tabindex="0" data-tip="6 bottles = 1 case. The only section that counts bottles, because it is a question about order size; it reports no volume.">i</i></h3>
           <div class="tblwrap"><table><thead><tr>
-            <th data-tip="The size of the account's first order inside this range.">First order size</th>
+            <th data-tip="The size of the account's first order inside this range.">First Order Size</th>
             <th data-tip="Accounts whose first order in the range was that size.">Accounts</th>
-            <th data-tip="Share of them that ordered again inside the range.">Repeat rate</th>
-            <th data-tip="Average order occasions per account in that group.">Avg orders</th>
-            <th data-tip="Average cases per account in that group.">Avg cases</th>
+            <th data-tip="Share of them that ordered again inside the range.">Repeat Rate</th>
+            <th data-tip="Average order occasions per account in that group.">Avg Orders</th>
+            <th data-tip="Average cases per account in that group.">Avg Cases</th>
           </tr></thead><tbody>${segRows}</tbody></table></div></div>
       </div></div>`;
 }
@@ -896,23 +970,21 @@ function renderAccounts(){
         <div class="note" style="margin:0 0 8px">SKUs bought by ${esc(acc.name)} inside the range${
           a.missingCore && a.missingCore.length ? ` &middot; missing CORE: <b style="color:var(--bad)">${a.missingCore.map(p => esc(PROD[p].shortName)).join(", ")}</b>` : ""}</div>
         <div class="tblwrap"><table><thead><tr><th>SKU</th><th>Cases</th><th>Sales</th><th>Orders</th>
-          <th>First purchase</th><th>Last purchase</th>
-          <th data-tip="Average gap between order dates for this SKU at this account, inside the range.">Purchase frequency</th>
-          ${CMP ? `<th data-tip="Cases of this SKU in the comparison period.">Comparison cases</th>
-            <th data-tip="Change against the comparison period.">Cases trend</th>` : ""}
+          <th>First Purchase</th><th>Last Purchase</th>
+          <th data-tip="Average gap between order dates for this SKU at this account, inside the range.">Purchase Frequency</th>
+          ${CMP ? `<th data-tip="Cases of this SKU in the comparison period.">Comparison Cases</th>
+            <th data-tip="Change against the comparison period.">Cases Trend</th>` : ""}
         </tr></thead><tbody>${skuRows}</tbody></table></div></td></tr>`;
   }).join("");
 
   return `<div class="sec"><h2>Brand &rarr; Account &rarr; SKU</h2>
-      <div class="sub">Every ${esc(st.brand)} account with an order between ${fmtDate(st.from)} and ${fmtDate(st.to)}.
-        Tap a row to open the SKU dropdown for that account.</div>
+      <div class="sub">${fmtDate(st.from)} – ${fmtDate(st.to)} · Tap a Row for SKUs</div>
       <div class="toolbar">
-        <input type="search" id="acctSearch" placeholder="Search account, city, rep or SKU…" value="${esc(st.acctSearch)}">
-        <select id="acctRep"><option value="">All reps</option>${reps.map(r =>
+        <input type="search" id="acctSearch" placeholder="Search Account, City, Rep or SKU" value="${esc(st.acctSearch)}">
+        <select id="acctRep"><option value="">All Reps</option>${reps.map(r =>
           `<option value="${esc(r)}" ${r === st.acctRep ? "selected" : ""}>${esc(r)}</option>`).join("")}</select>
-        <div class="count">${fmt(list.length)} accounts</div>
+        <div class="count">${fmt(list.length)} Accounts</div>
       </div>
-      <p class="swipe-hint">Swipe the table sideways for the rest of the columns — tap any i for what a column means.</p>
       <div class="panel">${list.length ? `<div class="tblwrap"><table><thead><tr>
         <th data-tip="The account name.">Account</th>
         <th data-tip="The account's city.">City</th>
@@ -924,8 +996,8 @@ function renderAccounts(){
           <th data-tip="Change against the comparison period.">Change</th>` : ""}
         <th data-tip="Order occasions inside the range.">Orders</th>
         <th data-tip="Average gap between order dates inside the range.">Frequency</th>
-        <th data-tip="Cases per month, averaged over the selected range.">Velocity (cs/mo)</th>
-        <th data-tip="The most recent order date inside the range.">Last order</th>
+        <th data-tip="Cases per month, averaged over the selected range.">Velocity (Cs/Mo)</th>
+        <th data-tip="The most recent order date inside the range.">Last Order</th>
         <th data-tip="Whether the account bought every CORE SKU inside the range.">CORE</th>
         </tr></thead><tbody>${body}</tbody></table></div>` : '<p class="empty">No accounts match that filter in this range.</p>'}</div></div>`;
 }
@@ -953,7 +1025,7 @@ function renderGaps(){
         return `<td class="cell has">${fmt(cell.buyers.size)}<span class="sub">${fmt1(cell.cases)} cs</span></td>`;
       }
       const open = [...rp.buyers].filter(a => !(acctLines.get(a) || new Set()).has(l.key)).length;
-      return `<td class="cell gap" data-drill="gap-${i}">MISSING<span class="sub">${fmt(open)} open</span></td>`;
+      return `<td class="cell gap" data-drill="gap-${i}">Missing<span class="sub">${fmt(open)} open</span></td>`;
     }).join("");
     const missing = lines.filter(l => !(rp.lines.get(l.key) || {buyers:new Set()}).buyers.size);
     const openAccts = [...rp.buyers].map(a => ACC[a]);
@@ -970,27 +1042,24 @@ function renderGaps(){
   }).join("");
 
   return `<div class="kpis">
-      ${kpi("Reps with all 4 lines", fmt(summary[4]), "full lineup placed in this range", "gd",
+      ${kpi("Reps with All 4 Lines", fmt(summary[4]), "full lineup placed in this range", "gd",
         "Reps with at least one account buying every one of the four brand lines inside the selected range.")}
       ${kpi("Reps with 3 of 4", fmt(summary[3]), "one line missing", "hl", "One brand line away from the full lineup.")}
       ${kpi("Reps with 2 of 4", fmt(summary[2]), "two lines missing", "", "Two brand lines missing across their whole book.")}
       ${kpi("Reps with 1 of 4", fmt(summary[1]), "three lines missing", "", "Only one of the four lines placed anywhere.")}
-      ${kpi("Accounts with all 4", fmt(acctSummary[4]), fmt(acctSummary[3]) + " carry 3 of 4", "gd",
+      ${kpi("Accounts with All 4", fmt(acctSummary[4]), fmt(acctSummary[3]) + " carry 3 of 4", "gd",
         "Accounts buying all four brand lines inside the range, and the ones a single line away.")}
-      ${kpi("Reps selling in range", fmt(reps.length), "with at least one order", "",
+      ${kpi("Reps Selling in Range", fmt(reps.length), "with at least one order", "",
         "Reps with any Bardstown/Green River order inside the selected range.")}
     </div>
-    <div class="sec"><h2>Who has all four brand lines — and who's missing one</h2>
-      <div class="sub">Cells show how many of that rep's accounts bought the line inside the range, with cases.
-        Tap any <b style="color:var(--bad)">MISSING</b> cell for the accounts behind the gap. This matrix spans
-        <b>both</b> brands, so the brand chips don't scope it — the premise chips and the date range do.</div>
+    <div class="sec"><h2>Who Has All Four Brand Lines — and Who's Missing One</h2>
+      <div class="sub">Tap a <b style="color:var(--bad)">Missing</b> Cell for Accounts · Both Brands</div>
       <div class="legend">${lines.map(l => `<span><b>${esc(l.label)}</b>: ${
         l.products.slice(0,3).map(p => esc(PROD[p].shortName)).join(", ")}${l.products.length > 3 ? " +" + (l.products.length - 3) + " more" : ""}</span>`).join("")}</div>
-      <p class="swipe-hint">Swipe the table sideways for the rest of the columns — tap any i for what a column means.</p>
       <div class="panel"><div class="tblwrap"><table class="matrix"><thead><tr>
         <th data-tip="The sales rep.">Rep</th>
         ${lines.map(l => `<th style="text-align:center" data-tip="${esc(l.label)}: accounts buying it in the range, with cases. MISSING means nothing placed anywhere in that rep's book — tap for the accounts that could carry it.">${esc(l.label)}</th>`).join("")}
-        <th data-tip="How many of the four brand lines this rep has placed anywhere in the range.">Lines held</th>
+        <th data-tip="How many of the four brand lines this rep has placed anywhere in the range.">Lines Held</th>
         <th data-tip="Accounts buying anything from this rep in the range.">Accounts</th>
         <th data-tip="Cases this rep sold in the range, across both brands.">Cases</th>
       </tr></thead><tbody>${rows}</tbody></table></div></div></div>`;
@@ -1039,43 +1108,40 @@ function renderCities(){
   }).join("");
 
   return `<div class="kpis">
-      ${kpi("Cities with orders", fmt(CUR.cities.size), "in the selected range", "",
+      ${kpi("Cities with Orders", fmt(CUR.cities.size), "in the selected range", "",
         "Distinct cities with at least one buying account for " + st.brand + " inside the range.")}
-      ${kpi("On-premise cases", fmt1(totOn), tot ? (totOn / tot * 100).toFixed(1) + "% of range volume" : "—", "hl",
+      ${kpi("On-Premise Cases", fmt1(totOn), tot ? (totOn / tot * 100).toFixed(1) + "% of range volume" : "—", "hl",
         "Cases going to bars and restaurants inside the range.")}
-      ${kpi("Off-premise cases", fmt1(totOff), tot ? (totOff / tot * 100).toFixed(1) + "% of range volume" : "—", "",
+      ${kpi("Off-Premise Cases", fmt1(totOff), tot ? (totOff / tot * 100).toFixed(1) + "% of range volume" : "—", "",
         "Cases going to liquor stores inside the range.")}
-      ${kpi("Top city", list.length ? esc(list[0].city) : "—", list.length ? fmt1(list[0].cases) + " cases" : "", "gd",
+      ${kpi("Top City", list.length ? esc(list[0].city) : "—", list.length ? fmt1(list[0].cases) + " cases" : "", "gd",
         "The city with the most cases inside the range.")}
     </div>
-    <div class="sec"><h2>Account velocity by city</h2>
-      <div class="sub">Is ${esc(st.brand)} gaining traction in the surrounding area, and is that growth on-premise or
-        off-premise? The premise chips re-scope the whole page; the split columns here show both at once.</div>
-      <div class="toolbar"><input type="search" id="citySearch" placeholder="Search city or rep…" value="${esc(st.citySearch)}">
-        <div class="count">${fmt(list.length)} cities</div></div>
-      <p class="swipe-hint">Swipe the table sideways for the rest of the columns — tap any i for what a column means.</p>
+    <div class="sec"><h2>Account Velocity by City</h2>
+      <div class="toolbar"><input type="search" id="citySearch" placeholder="Search City or Rep" value="${esc(st.citySearch)}">
+        <div class="count">${fmt(list.length)} Cities</div></div>
       <div class="panel"><div class="tblwrap"><table><thead><tr>
         <th data-tip="The city, from the account's record.">City</th>
         <th data-tip="Reps selling this brand in the city during the range.">Rep(s)</th>
         <th data-tip="Assigned accounts in this city on the W&S roster. Blank where the roster has no city on file.">Accounts</th>
         <th data-tip="Accounts in this city that bought inside the range.">Buying</th>
-        <th data-tip="Buying accounts divided by assigned accounts in the city.">% of city</th>
+        <th data-tip="Buying accounts divided by assigned accounts in the city."% of City</th>
         <th data-tip="Cases sold in the city inside the range.">Cases</th>
         <th data-tip="Order occasions in the city inside the range.">Orders</th>
-        <th data-tip="Orders divided by buying accounts.">Orders/acct</th>
-        <th data-tip="Cases divided by buying accounts.">Cases/acct</th>
+        <th data-tip="Orders divided by buying accounts.">Orders/Acct</th>
+        <th data-tip="Cases divided by buying accounts.">Cases/Acct</th>
         <th data-tip="Cases per buying account per month across the range.">Velocity</th>
         ${CMP ? `<th data-tip="Cases in the comparison period.">Comparison</th>
           <th data-tip="Change against the comparison period.">Change</th>` : ""}
-        <th data-tip="On-premise buying accounts / cases.">On-prem (accts/cases)</th>
-        <th data-tip="Off-premise buying accounts / cases.">Off-prem (accts/cases)</th>
+        <th data-tip="On-premise buying accounts / cases.">On-prem (Accts/Cases)</th>
+        <th data-tip="Off-premise buying accounts / cases.">Off-prem (Accts/Cases)</th>
         <th data-tip="Accounts in this city whose first ever order of this brand fell inside the range.">New</th>
       </tr></thead><tbody>${body}</tbody></table></div></div></div>
-    <div class="sec"><h2>Velocity and areas</h2>
-      <div class="sub">Cases per buying account per month across the range.</div>
+    <div class="sec"><h2>Velocity and Areas</h2>
+      <div class="sub">Cases per Buying Account per Month</div>
       <div class="grid2">
-        <div class="panel"><h3>Top 10 cities by velocity</h3><div class="bars">${velBars}</div></div>
-        <div class="panel"><h3>By distribution area</h3><div class="tblwrap"><table><thead><tr>
+        <div class="panel"><h3>Top 10 Cities by Velocity</h3><div class="bars">${velBars}</div></div>
+        <div class="panel"><h3>By Distribution Area</h3><div class="tblwrap"><table><thead><tr>
           <th data-tip="The rep's territory / route.">Area</th>
           <th data-tip="Accounts buying in the area inside the range.">Buyers</th>
           <th data-tip="Share of them that ordered 2+ times inside the range.">Repeat</th>
@@ -1113,22 +1179,20 @@ function renderSkus(){
   }).join("");
   const caseBars = barChart(list.slice(0,10).map(s => ({lbl:PROD[s.p].shortName, val:s.cases, disp:fmt1(s.cases)})), brandCls());
 
-  return `<div class="sec"><h2>SKU performance</h2>
-      <div class="sub">Which ${esc(st.brand)} products sell and get re-ordered inside the selected range.</div>
-      <p class="swipe-hint">Swipe the table sideways for the rest of the columns — tap any i for what a column means.</p>
+  return `<div class="sec"><h2>SKU Performance</h2>
       <div class="panel">${list.length ? `<div class="tblwrap"><table><thead><tr>
         <th data-tip="The specific product / SKU.">Product</th>
         <th data-tip="Distinct accounts that bought this SKU inside the range.">Buyers</th>
         <th data-tip="Order occasions for this SKU inside the range.">Orders</th>
-        <th data-tip="Buyers who bought this SKU on 2+ separate dates inside the range, divided by total buyers.">Repeat rate</th>
-        <th data-tip="Average order occasions per buying account.">Avg orders/buyer</th>
+        <th data-tip="Buyers who bought this SKU on 2+ separate dates inside the range, divided by total buyers.">Repeat Rate</th>
+        <th data-tip="Average order occasions per buying account.">Avg Orders/Buyer</th>
         <th data-tip="Cases sold inside the range.">Cases</th>
         ${CMP ? `<th data-tip="Cases in the comparison period.">Comparison</th>
           <th data-tip="Change against the comparison period.">Change</th>
-          <th data-tip="Buyers in the comparison period.">Comparison buyers</th>` : ""}
+          <th data-tip="Buyers in the comparison period.">Comparison Buyers</th>` : ""}
         <th data-tip="Dollars sold inside the range.">Revenue</th>
       </tr></thead><tbody>${rows}</tbody></table></div>` : '<p class="empty">No SKU activity in this range.</p>'}</div></div>
-    <div class="sec"><h2>Top SKUs by cases</h2><div class="sub">Inside the selected range.</div>
+    <div class="sec"><h2>Top SKUs by Cases</h2>
       <div class="panel"><div class="bars">${caseBars}</div></div></div>`;
 }
 
@@ -1167,30 +1231,29 @@ function renderCore(){
 
   return `<div class="coretiles">${core.map(p => `<div class="coretile">${esc(PROD[p].shortName)}</div>`).join("")}</div>
     <div class="kpis">
-      ${kpi("CORE accounts", fmt(coreAccts.length), buyers ? (coreAccts.length / buyers * 100).toFixed(1) + "% of buyers" : "—", "gd",
+      ${kpi("CORE Accounts", fmt(coreAccts.length), buyers ? (coreAccts.length / buyers * 100).toFixed(1) + "% of buyers" : "—", "gd",
         "Accounts that bought every one of " + st.brand + "'s CORE SKUs inside the selected range.")}
-      ${kpi("Near-CORE accounts", fmt(nearAccts.length), "missing exactly 1 SKU", "hl",
+      ${kpi("Near-CORE Accounts", fmt(nearAccts.length), "missing exactly 1 SKU", "hl",
         "One SKU away from the full CORE lineup inside the range — the easiest upsell target.")}
       ${kpi("Cases", fmt1(CUR.cases), fmt(CUR.orders) + " orders · " + money(CUR.revenue), "",
         "Total cases across all " + st.brand + " SKUs inside the range.")}
-      ${kpi("Cases per buyer", fmt1(buyers ? CUR.cases / buyers : 0), "inside the range", "",
+      ${kpi("Cases per Buyer", fmt1(buyers ? CUR.cases / buyers : 0), "inside the range", "",
         "Cases divided by buying accounts.")}
     </div>
-    <div class="sec"><h2>CORE tracker</h2>
-      <div class="sub">CORE = every SKU in the tile row above, bought at least once inside the selected range.
-        ${fmt(coreAccts.length)} of ${fmt(buyers)} buying accounts carry the full ${esc(st.brand)} CORE lineup in this range.</div>
+    <div class="sec"><h2>CORE Tracker</h2>
+      <div class="sub">${fmt(coreAccts.length)} of ${fmt(buyers)} Buying Accounts Carry the Full CORE</div>
       <div class="grid2">
-        <div class="panel"><h3>Carrying the full CORE (${fmt(coreAccts.length)})</h3>${coreTable(coreAccts.sort((a,b) => b.cases - a.cases), false)}</div>
-        <div class="panel"><h3>Near-CORE — missing exactly 1 SKU (${fmt(nearAccts.length)})</h3>${coreTable(nearAccts.slice(0,40), true)}</div>
+        <div class="panel"><h3>Carrying the Full CORE (${fmt(coreAccts.length)})</h3>${coreTable(coreAccts.sort((a,b) => b.cases - a.cases), false)}</div>
+        <div class="panel"><h3>Near-CORE — Missing Exactly 1 SKU (${fmt(nearAccts.length)})</h3>${coreTable(nearAccts.slice(0,40), true)}</div>
       </div></div>
-    <div class="sec"><h2>Best accounts — velocity leaderboard</h2>
-      <div class="sub">Top 25 accounts by cases inside the range (accounts with 2+ orders only, to keep out one-time trials).</div>
+    <div class="sec"><h2>Best Accounts — Velocity Leaderboard</h2>
+      <div class="sub">Top 25 · 2+ Orders Only</div>
       <div class="panel"><div class="tblwrap"><table><thead><tr>
         <th data-tip="Rank by cases inside the range, then the account.">#  Account</th>
         <th data-tip="The account's city.">City</th><th data-tip="The assigned sales rep.">Rep</th>
         <th data-tip="Order occasions inside the range.">Orders</th>
         <th data-tip="Cases bought inside the range.">Cases</th>
-        <th data-tip="Cases per month across the selected range.">Velocity (cs/mo)</th>
+        <th data-tip="Cases per month across the selected range.">Velocity (Cs/Mo)</th>
         <th data-tip="Dollars sold inside the range.">Revenue</th>
         <th data-tip="Whether this account bought the full CORE lineup inside the range.">CORE?</th>
       </tr></thead><tbody>${vel.map((a, i) => `<tr>
@@ -1200,17 +1263,16 @@ function renderCore(){
         <td>${money(a.revenue)}</td>
         <td>${a.isCore ? '<span class="pill core">CORE</span>' : '<span class="muted">—</span>'}</td></tr>`).join("")}
       </tbody></table></div></div></div>
-    <div class="sec"><h2>CORE and cases by rep</h2>
-      <div class="sub">Which reps have the most accounts carrying the full CORE lineup inside the range.</div>
+    <div class="sec"><h2>CORE and Cases by Rep</h2>
       <div class="panel"><div class="tblwrap"><table><thead><tr>
         <th data-tip="The sales rep.">Rep</th>
         <th data-tip="Accounts buying this brand from this rep inside the range.">Buyers</th>
-        <th data-tip="Of those, how many bought the full CORE lineup inside the range.">CORE accts</th>
-        <th data-tip="CORE accounts divided by buyers.">CORE rate</th>
+        <th data-tip="Of those, how many bought the full CORE lineup inside the range.">CORE Accts</th>
+        <th data-tip="CORE accounts divided by buyers.">CORE Rate</th>
         <th data-tip="Cases sold inside the range.">Cases</th>
         ${CMP ? `<th data-tip="Cases in the comparison period.">Comparison</th>
           <th data-tip="Change against the comparison period.">Change</th>` : ""}
-        <th data-tip="Accounts this rep opened for the brand inside the range.">New placements</th>
+        <th data-tip="Accounts this rep opened for the brand inside the range.">New Placements</th>
       </tr></thead><tbody>${repRows}</tbody></table></div></div></div>`;
 }
 
@@ -1288,27 +1350,31 @@ function syncInputs(){
     c.setAttribute("aria-pressed", c.dataset.preset === st.preset));
 }
 
+function labelCells(){
+  document.querySelectorAll("#app table").forEach(t => {
+    const heads = [...t.querySelectorAll(":scope > thead > tr > th")].map(th => {
+      const c = th.cloneNode(true); c.querySelectorAll(".tip-ic").forEach(i => i.remove());
+      return c.textContent.replace(/\s+/g, " ").trim();
+    });
+    t.querySelectorAll(":scope > tbody > tr").forEach(tr => {
+      if(tr.classList.contains("detail")) return;
+      [...tr.children].forEach((td, i) => { if(heads[i]) td.setAttribute("data-l", heads[i]); });
+    });
+  });
+}
 function render(){
   recompute();
   document.getElementById("app").innerHTML = RENDER[st.tab]();
   applyTips();
+  labelCells();
   wire();
   const cmp = comparisonRange();
   document.getElementById("rangeNote").innerHTML =
-    `Showing <b>${fmtDate(st.from)} – ${fmtDate(st.to)}</b> (${fmt(st.to - st.from + 1)} days)` +
-    (cmp ? ` compared with <b>${cmpLabel()}</b>` : " with no comparison period") +
-    `. Data available ${fmtDate(0)} – ${fmtDate(LAST_DAY)}.` +
-    (st.from === 0 ? ` <b>Heads up:</b> the range starts at the very beginning of the export, so every buyer counts
-      as a "new placement" — there is no earlier history to compare them against.` : "");
-  document.getElementById("foot").innerHTML =
-    `<b>Definitions.</b> <b>Cases</b> are the only volume measure on this page, taken from the export's own Cases
-     column (6 bottles = 1 case). An <b>order</b> is one line of the RDE export — one account buying one product on
-     one date. Everything recalculates for the selected range; the comparison column is
-     ${st.cmp === "prev" ? "the equally long period immediately before it" : st.cmp === "none" ? "switched off" : "the same dates one year earlier"}.
-     <b>Velocity</b> is cases per month across the selected range. <b>% of universe</b> uses the assigned Wine &amp;
-     Spirits book (${fmt(D.universe.all)} accounts; ${fmt(D.universe.on)} on-premise, ${fmt(D.universe.off)} off-premise)
-     as the denominator. <b>CORE</b> is fixed by Kohler: Green River is Bourbon, Full Proof, Rye, Wheated &amp; Honey;
-     Bardstown Bourbon is Bottled-in-Bond, Bourbon, Double Barrel Rye &amp; High Wheat.`;
+    `<b>${fmtDate(st.from)} – ${fmtDate(st.to)}</b> · ${fmt(st.to - st.from + 1)} Days` +
+    (cmp ? ` · vs <b>${cmpLabel()}</b>` : " · No Comparison") +
+    ` · Data Through ${fmtDate(LAST_DAY)}` +
+    (st.from === 0 ? ` · Range Starts at the Beginning of the Export, So Every Buyer Counts as New` : "");
+  document.getElementById("foot").innerHTML = "";
 }
 
 function wire(){
@@ -1396,8 +1462,8 @@ function init(){
 
   const cov = D.premiseCoverage;
   document.getElementById("premiseNote").textContent = cov && cov.unmatchedAccounts
-    ? `On-Premise/Off-Premise is joined from the Wine & Spirits account roster by customer number; ${cov.unmatchedAccounts} of ${cov.totalAccounts} accounts have no known premise and appear under "All Accounts" only.`
-    : `On-Premise/Off-Premise is joined from the Wine & Spirits account roster by customer number (all ${cov ? cov.totalAccounts : ""} accounts matched). Switching premise re-scopes every section, including the account-universe denominator.`;
+    ? `${cov.unmatchedAccounts} of ${cov.totalAccounts} Accounts Have No Known Premise · Shown Under All Accounts Only`
+    : `All ${cov ? cov.totalAccounts : ""} Accounts Matched to a Premise`;
 
   applyPreset("ytd");
   render();

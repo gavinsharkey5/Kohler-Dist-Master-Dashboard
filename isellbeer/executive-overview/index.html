@@ -355,9 +355,12 @@ details.notes li{margin-bottom:6px}
 footer{color:var(--ink-mute);font-size:14px;text-align:center;padding:30px 0 10px}
 
 /* PAGE STANDARD */
+.pg-back{display:flex;align-items:center;justify-content:center;min-height:40px;color:var(--ink-soft);font-size:14px;font-weight:600;text-decoration:none;margin:0 0 4px}
+.pg-back:hover{color:var(--ink)}
 body{font-size:16px;line-height:1.45;padding:0 0 40px}
 .wrap,#snapshotTab.wrap{max-width:960px;padding:0 16px}
 .gx-head{margin-top:0}
+#snapshotTab{padding-top:16px}
 .gx-head::before{display:none}
 .gx-head .wrap{padding:24px 16px 16px;text-align:center}
 h1{font-size:28px;font-weight:600;letter-spacing:0;line-height:1.2}
@@ -425,7 +428,8 @@ details.notes summary{font-size:15px;min-height:40px;display:flex;align-items:ce
 <body>
 <div class="gx-head">
   <div class="wrap">
-    <h1>Tap Share Overview</h1>
+<a class="pg-back" href="../">&lsaquo; iSellBeer</a>
+  <h1>Tap Share Overview</h1>
     <p class="updated" id="updated"></p>
   </div>
 </div>

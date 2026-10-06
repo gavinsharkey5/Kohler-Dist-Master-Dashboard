@@ -330,7 +330,7 @@ function renderChart(){
       (H - padB - h - 6) + '" text-anchor="middle">' + x.buyers + '</text>');
   });
   d.forEach((x, i) => {
-    if(i === 0 || i === d.length - 1 || i % 5 === 0)
+    if(i === 0 || i === d.length - 1 || (i % 5 === 0 && d.length - 1 - i >= 3))
       parts.push('<text class="tick" x="' + (padL + i * bw + bw / 2) + '" y="' + (H - padB + 16) +
         '" text-anchor="middle">' + x.date.replace(/\/\d{4}$/, "") + '</text>');
   });

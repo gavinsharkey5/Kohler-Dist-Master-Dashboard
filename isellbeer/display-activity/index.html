@@ -101,13 +101,59 @@ footer .mlist li{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
 footer .mlist b{min-width:130px;flex:none}
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* PAGE STANDARD */
+.pg-back{display:flex;align-items:center;justify-content:center;min-height:40px;color:var(--ink-soft);font-size:14px;font-weight:600;text-decoration:none;margin:0 0 4px}
+.pg-back:hover{color:var(--ink)}
+.wrap{max-width:960px;padding:0 16px}
+.gx-head::before{display:none}
+.gx-head .wrap{padding:24px 16px 16px;text-align:center}
+.num,h1,.scard .big,.dl-btn,.mgr-chip{font-family:"Inter",sans-serif}
+h1{font-size:28px;font-weight:600;line-height:1.2}
+.updated{font-size:14px;margin:8px 0 0}
+.summary{gap:12px;margin:16px 0 12px}
+.scard{padding:14px 12px;text-align:center;border-radius:12px}
+.scard .lbl{font-size:14px;letter-spacing:0;text-transform:none;font-weight:500}
+.scard .big{font-size:32px;font-weight:600}
+.scard .sub{font-size:14px}
+.toolbar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:end;padding:14px;margin-bottom:12px}
+.tgroup{min-width:0}
+.tgroup label{font-size:14px;text-transform:none;letter-spacing:0;font-weight:500}
+.tgroup input,.tgroup select,.tgroup input[type=search]{min-width:0}
+.tgroup:has(#search){grid-column:1/-1}
+.sortgroup{display:none}
+.result-count{grid-column:1/-1;margin:0;font-size:14px;text-align:center}
+.dl-btn{font-size:15px;font-weight:600;justify-content:center;grid-column:1/-1}
+table{font-size:14px;min-width:0}
+thead th{font-size:14px;text-transform:none;letter-spacing:0;font-weight:600;background:var(--card2)}
+tbody tr:hover{background:var(--card2)}
+.dba-cell .sub{font-size:14px}
+.mgr-chip{font-size:13px;letter-spacing:0}
+.photo-link{font-size:14px}
+.legend{font-size:14px}
+footer{font-size:14px}
+footer summary{font-size:15px;min-height:40px;display:flex;align-items:center}
+footer .mlist b{min-width:130px}
+@media (max-width:820px){
+  .summary{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .toolbar{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sortgroup{display:flex}
+  .table-scroll{overflow-x:visible}
+  #daTable,#daTable tbody,#daTable tr,#daTable td{display:block;width:100%}
+  #daTable thead{display:none}
+  #daTable tr{padding:10px 14px;border-bottom:1px solid var(--line)}
+  #daTable td{border:0;padding:4px 0;text-align:left}
+  #daTable td[data-l]{display:flex;justify-content:space-between;gap:12px;text-align:right}
+  #daTable td[data-l]::before{content:attr(data-l);color:var(--ink-soft);text-align:left;flex:none}
+  #daTable td.first b{font-size:16px}
+}
+@media (max-width:520px){.toolbar{grid-template-columns:minmax(0,1fr)}.scard .big{font-size:28px}}
 </style></head>
 <body>
 
 <div class="gx-head"><div class="wrap">
-  <p class="eyebrow"><span class="pulse"></span> Kohler Distributing &middot; Display Activity</p>
-  <h1>Display activity, sorted by brand manager</h1>
-  <p class="lede">Every display photo logged since April, split by brand manager and supplier so each manager can pull just their book and hand a clean list to that supplier. Pick a date range, filter down, then download exactly what's on screen as a CSV.</p>
+  <a class="pg-back" href="../">&lsaquo; iSellBeer</a>
+  <h1>Display Activity</h1>
   <p class="updated" id="updated"></p>
 </div></div>
 
@@ -125,20 +171,24 @@ footer .mlist b{min-width:130px;flex:none}
       <input type="date" id="endDate">
     </div>
     <div class="tgroup">
-      <label>Search account / brand</label>
-      <input type="search" id="search" placeholder="Account or brand...">
+      <label>Search</label>
+      <input type="search" id="search" placeholder="Account or Brand">
     </div>
     <div class="tgroup">
       <label>Brand Manager</label>
-      <select id="managerFilter"><option value="">All managers</option></select>
+      <select id="managerFilter"><option value="">All Managers</option></select>
     </div>
     <div class="tgroup">
       <label>Supplier</label>
-      <select id="supplierFilter"><option value="">All suppliers</option></select>
+      <select id="supplierFilter"><option value="">All Suppliers</option></select>
     </div>
     <div class="tgroup">
       <label>Rep</label>
-      <select id="repFilter"><option value="">All reps</option></select>
+      <select id="repFilter"><option value="">All Reps</option></select>
+    </div>
+    <div class="tgroup sortgroup">
+      <label>Sort By</label>
+      <select id="sortSel"><option value="ts:-1">Date, Newest</option><option value="ts:1">Date, Oldest</option><option value="dba:1">Account</option><option value="manager:1">Manager</option><option value="supplier:1">Supplier</option><option value="brand:1">Brand</option><option value="qty:-1">Qty, High to Low</option><option value="rep:1">Rep</option></select>
     </div>
     <button class="dl-btn" id="downloadBtn" type="button">
       <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 16h12"/></svg>
@@ -165,20 +215,16 @@ footer .mlist b{min-width:130px;flex:none}
       </table>
     </div>
     <div class="legend">
-      <span>Click a column to sort &middot; click Download CSV to export exactly what's filtered above.</span>
+      <span>Download CSV Exports the Filtered Rows</span>
     </div>
   </div>
 
   <footer>
-    <hr>
-    <p><b>How this is built:</b> every row is a single display-photo submission, and the data currently covers every report available (see the date shown above). Each row is matched to a brand manager using the report's own manager assignment, and photo links are carried over from the original export. Fever Tree USA is grouped under Molson Coors Beverage Company in the Supplier filter (they share a distribution relationship) &mdash; each row still shows its real supplier in the table and CSV, only the filter/download grouping is combined.</p>
-    <p><b>Unverified suppliers:</b> a handful of suppliers (Artisanal Brewing Ventures, Bucanero USA, Delta Beer Lab, Destihl Brewery, Flying Dog Brewery, Kirin Brewery Company, Yeasty Brews) don't have a confirmed brand manager yet, so they show up under an "Unverified" chip instead of being guessed. Let me know who owns each and I'll reassign them.</p>
-    <p><b>To send a supplier their displays:</b> set a date range if you want one, pick your name in Brand Manager, then narrow to one supplier if you want to split your book up (e.g. Constellation vs. Mark Anthony) &mdash; then hit Download CSV. The file only contains whatever's currently filtered. The Photo column in the CSV is a clickable link (opens the photo directly in Excel/Google Sheets); if Excel shows a one-time security prompt for the download, click through it &mdash; the links still work.</p>
     <details>
-      <summary>Brand manager &rarr; supplier book</summary>
+      <summary>Brand Manager &rarr; Supplier Book</summary>
       <ul class="mlist" id="mgrList"></ul>
+      <p>Fever Tree USA is grouped under Molson Coors Beverage Company in the Supplier filter. Suppliers shown as Unverified have no confirmed brand manager yet.</p>
     </details>
-    <p>To refresh: re-export the Raw Reports display activity for the new period (with photo hyperlinks intact) and I'll rebuild this and extend the date range.</p>
   </footer>
 
 </div>
@@ -222,7 +268,7 @@ footer .mlist b{min-width:130px;flex:none}
     var supSel = document.getElementById('supplierFilter');
     var list = state.manager ? (META.managerSuppliers[state.manager]||[]) : META.suppliers;
     var current = state.supplier;
-    supSel.innerHTML = '<option value="">All suppliers'+(state.manager?' (this manager)':'')+'</option>';
+    supSel.innerHTML = '<option value="">All Suppliers'+(state.manager?' (This Manager)':'')+'</option>';
     list.forEach(function(s){ var o=document.createElement('option'); o.value=s; o.textContent=s; supSel.appendChild(o); });
     if(current && list.indexOf(current)<0){ state.supplier=''; }
     supSel.value = state.supplier;
@@ -268,34 +314,34 @@ footer .mlist b{min-width:130px;flex:none}
     var suppliers = new Set(rows.map(function(r){ return r.supplier; })).size;
     var scoped = state.manager || state.supplier || state.rep || state.search;
     var scopedByDate = state.startDate!==META.dataMinDate || state.endDate!==META.dataMaxDate;
-    var subtext = (scoped||scopedByDate) ? 'matching current filters' : 'across all managers, full range';
+    var subtext = (scoped||scopedByDate) ? 'Matching Filters' : 'All Managers, Full Range';
     document.getElementById('summary').innerHTML =
       '<div class="scard"><div class="lbl">Displays Logged</div><div class="big num">'+ce0(displays)+'</div><div class="sub">'+subtext+'</div></div>'+
-      '<div class="scard"><div class="lbl">Cases</div><div class="big num">'+ce0(cases)+'</div><div class="sub">total units across these displays</div></div>'+
-      '<div class="scard"><div class="lbl">Accounts</div><div class="big num">'+ce0(accounts)+'</div><div class="sub">distinct accounts</div></div>'+
-      '<div class="scard"><div class="lbl">Suppliers</div><div class="big num">'+ce0(suppliers)+'</div><div class="sub">distinct suppliers</div></div>';
+      '<div class="scard"><div class="lbl">Cases</div><div class="big num">'+ce0(cases)+'</div><div class="sub">Total Units</div></div>'+
+      '<div class="scard"><div class="lbl">Accounts</div><div class="big num">'+ce0(accounts)+'</div><div class="sub">Distinct</div></div>'+
+      '<div class="scard"><div class="lbl">Suppliers</div><div class="big num">'+ce0(suppliers)+'</div><div class="sub">Distinct</div></div>';
   }
 
   function renderTable(rows){
-    document.getElementById('resultCount').textContent = ce0(rows.length)+' displays';
+    document.getElementById('resultCount').textContent = ce0(rows.length)+' Displays';
     var body = rows.map(function(r){
       var mgrClass = r.manager==='Unassigned' ? 'mgr-chip unassigned' : (r.manager==='Unverified' ? 'mgr-chip unverified' : 'mgr-chip');
       var photoHtml = r.photo
         ? '<a href="'+esc(r.photo)+'" target="_blank" rel="noopener" class="photo-link">&#128247; Photo</a>'
         : '<span style="color:var(--ink-soft);font-size:12px">&mdash;</span>';
       return '<tr>'+
-        '<td style="white-space:nowrap">'+fmtDate(r)+'</td>'+
-        '<td class="dba-cell"><b>'+esc(r.dba)+'</b><span class="sub">'+esc(r.city||'')+'</span></td>'+
-        '<td><span class="'+mgrClass+'">'+esc(r.manager)+'</span></td>'+
-        '<td>'+esc(r.supplier)+'</td>'+
-        '<td class="dba-cell"><b>'+esc(r.brand||'')+'</b>'+(r.brandFamily && r.brandFamily!==r.brand ? '<span class="sub">'+esc(r.brandFamily)+'</span>' : '')+'</td>'+
-        '<td>'+esc(r.sku||'')+'</td>'+
-        '<td class="num-cell num">'+ce0(r.qty||0)+'</td>'+
-        '<td>'+esc(r.rep||'')+'</td>'+
-        '<td>'+photoHtml+'</td>'+
+        '<td data-l="Date">'+fmtDate(r)+'</td>'+
+        '<td class="dba-cell first"><b>'+esc(r.dba)+'</b><span class="sub">'+esc(r.city||'')+'</span></td>'+
+        '<td data-l="Manager"><span class="'+mgrClass+'">'+esc(r.manager)+'</span></td>'+
+        '<td data-l="Supplier">'+esc(r.supplier)+'</td>'+
+        '<td class="dba-cell" data-l="Brand"><b>'+esc(r.brand||'')+'</b>'+(r.brandFamily && r.brandFamily!==r.brand ? '<span class="sub">'+esc(r.brandFamily)+'</span>' : '')+'</td>'+
+        '<td data-l="SKU">'+esc(r.sku||'')+'</td>'+
+        '<td class="num-cell num" data-l="Qty">'+ce0(r.qty||0)+'</td>'+
+        '<td data-l="Rep">'+esc(r.rep||'')+'</td>'+
+        '<td class="photocell">'+photoHtml+'</td>'+
       '</tr>';
     }).join('');
-    document.getElementById('tbody').innerHTML = body || '<tr><td colspan="9" style="text-align:center;color:var(--ink-soft);padding:24px">No displays match these filters.</td></tr>';
+    document.getElementById('tbody').innerHTML = body || '<tr><td colspan="9" style="text-align:center;color:var(--ink-soft);padding:24px">No Matches</td></tr>';
   }
 
   var CSV_COLS = [
@@ -362,8 +408,11 @@ footer .mlist b{min-width:130px;flex:none}
     });
   });
 
-  document.getElementById('updated').textContent = 'Data as of '+META.generatedAt+' \u00B7 available range '+META.dataMinDate+' to '+META.dataMaxDate;
+  document.getElementById('updated').textContent = 'Data as of '+META.generatedAt+' \u00B7 '+META.dataMinDate+' to '+META.dataMaxDate;
 
+  document.getElementById('sortSel').addEventListener('change', function(e){
+    var p = e.target.value.split(':'); state.sortKey=p[0]; state.sortDir=+p[1]; renderAll();
+  });
   populateSelects();
   renderMgrList();
   renderAll();
