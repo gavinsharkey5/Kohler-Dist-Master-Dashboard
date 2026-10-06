@@ -13,7 +13,7 @@ Builds carbliss-mpo/data/program.json from two files that already live in the re
       uses for its Carbliss objective).
 
 Rules (README.txt has the evidence behind each one):
-  * PROGRAM PERIOD is fixed: Aug 1 - Oct 30, 2026, inclusive. It is not a
+  * PROGRAM PERIOD is fixed: Aug 1 - Oct 31, 2026, inclusive. It is not a
     rolling window. A load sheet dated outside it never changes the result.
   * SINCE LAUNCH = any qualifying load sheet from the launch date (the first
     Carbliss load sheet on file) through the latest load sheet in the export.
@@ -28,7 +28,7 @@ Rules (README.txt has the evidence behind each one):
   * An account follows its CURRENT rep (the base file's assignment): history is
     re-attributed, exactly like the rolling-distribution page.
 
-FREEZE: `--finalize` (once the export runs through Oct 30) writes
+FREEZE: `--finalize` (once the export runs through Oct 31) writes
 data/final.json = the program-period result (accounts in the base, who bought,
 the rep and house numbers). From then on every run reads the program-period
 fields from it, so later purchases, transfers or new accounts cannot change
@@ -36,7 +36,7 @@ the completed result; Bought Since Launch and Last Carbliss Purchase keep
 updating. `--reopen` ignores the freeze (a correction, on purpose).
 
   python3 carbliss-mpo/generate.py                # rebuild
-  python3 carbliss-mpo/generate.py --finalize     # lock the program period (needs data through Oct 30)
+  python3 carbliss-mpo/generate.py --finalize     # lock the program period (needs data through Oct 31)
 """
 import argparse
 import csv
@@ -55,7 +55,7 @@ BASE = ROOT / "MPOs" / "on-prem" / "core_market_on_prem_accts.csv"
 MASTER = ROOT / "rolling-distribution" / "data" / "master"
 
 PERIOD_START = date(2026, 8, 1)
-PERIOD_END = date(2026, 10, 30)
+PERIOD_END = date(2026, 10, 31)
 # The export's flag is "Buyers 2026" (year to date), so it reports every 2026
 # load sheet. If a future export is cut shorter, move this date and the
 # non-buyers' Since Launch turns "unknown" instead of a false "No".
@@ -201,7 +201,7 @@ def compute(data_dir, reopen=False):
         "program": "Carbliss",
         "channel": "On-Premise",
         "period": {"start": PERIOD_START.isoformat(), "end": PERIOD_END.isoformat(),
-                   "label": "Program Period: Aug 1–Oct 30, 2026"},
+                   "label": "Program Period: Aug 1–Oct 31, 2026"},
         "launch": launch.isoformat(),
         "coverage_start": COVERAGE_START.isoformat(),
         "sales_through": through.isoformat(),

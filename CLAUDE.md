@@ -442,6 +442,22 @@ changed: the October MPO objective "Carbliss 40% buying accounts" (Sep 1-Oct 31,
 cm_mw_test.mjs (real middleware.js with stubbed Supabase). Tags: carbliss-mpo.css /
 .js 20261006d, kdh-user.js 20261006b (new Programs sidebar item "Carbliss MPO").
 
+Follow-up (2026-10-06, Gavin): the tracker now LIVES IN THE CARD. Program period is Aug 1 - OCT 31
+(PERIOD_END in generate.py; supersedes the Oct 30 above). The "Carbliss MPO" Programs sidebar item and the
+rep / manager home tiles are REMOVED; /carbliss-mpo/ still exists (data + page) but nothing links to it.
+The October on-premise "Carbliss Buying Accounts" card (guided.js `carblissCard` / `hydrateCarbliss`, only
+for key carbliss in 2026-10 on the on-prem page) shows two centered tiles against the rep's own base --
+Program Period (Aug 1-Oct 31) "X of Y, Z%" and Since Launch (Jun 2 - latest load sheet) "X of Y, Z%",
+read from carbliss-mpo/data/program.json (a rep is served their own copy) -- plus the credit pill,
+deadline and weight; NO goal band, Current / Still Needed, View Eligible Accounts or Details; the one
+link is "See Leaderboard" -> /carbliss-onprem-targets/. The 40% goal still drives the credit pill
+(metricFor untouched). That leaderboard page was reformatted (a CSS block at the end of its <style>):
+everything centered, larger type, tiles / leaderboard rows / buyers / toolbar centered, and the
+accounts table is one labelled centered block per account under 900px (no sideways scroll; a "Sort by"
+select replaces the hidden header sorting; Rep hidden for reps). Generator untouched, so it survives
+refreshes. Tests (scratchpad): card_test.mjs, lb_test.mjs. Tags: guided.js 20261006d, guided.css
+20261006b, kdh-user.js 20261006c.
+
 ## Boston Beer's seasonal-conversion sheets vs the RDE keg export (2026-10-05)
 
 Gavin sent Boston Beer's own "10-05-26 Sam Adams Seasonal Conversion Fall.xlsx" (per-rep

@@ -489,3 +489,14 @@
   .g-more-body td[data-l]::before,.g-reprow-detail td[data-l]::before{color:var(--text-dim)}
 }
 .g-obj-v4 .g-more-body.open{width:fit-content;max-width:100%;margin-left:auto;margin-right:auto}
+
+/* Carbliss Buying Accounts card (2026-10-06): two centered tiles, program period + since launch */
+.g-cb-tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:560px;margin:0 auto 10px}
+.g-cbt{display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px 10px;border-radius:10px;background:var(--card-alt,var(--kdh-surface-2));border:1px solid var(--border)}
+.g-cbt-r{font-size:14px;color:var(--text-dim);line-height:1.3;text-align:center}
+.g-cbt .g-stat-v{margin-top:4px}
+.g-cbt-p{font-size:20px;font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums}
+.g-cbt .g-bar{width:100%;height:8px;margin:6px 0 0;background:var(--input-bg,var(--kdh-surface-2));box-shadow:inset 0 0 0 1px var(--border)}
+.g-cb-wait{padding:14px;font-size:15px;color:var(--text-dim);text-align:center}
+.g-cb-card .g-bar-cap{max-width:560px;margin:6px auto 0}
+@media(max-width:430px){ .g-cb-tiles{gap:8px} .g-cbt{padding:10px 6px} .g-cbt .g-stat-v{font-size:26px} .g-cbt .g-stat-of{font-size:16px} }

@@ -69,11 +69,11 @@ function acctHref(a){
 }
 function rowsHtml(rows){
   const P = D.meta.period;
-  const head = '<thead><tr><th scope="col">Account</th><th scope="col">Bought Aug 1–Oct 30</th><th scope="col">Bought Since Launch</th><th scope="col">Last Carbliss Purchase</th></tr></thead>';
+  const head = '<thead><tr><th scope="col">Account</th><th scope="col">Bought Aug 1–Oct 31</th><th scope="col">Bought Since Launch</th><th scope="col">Last Carbliss Purchase</th></tr></thead>';
   const body = rows.map(a=>{
     const since = a.since==='yes' ? yn('y','Yes') : a.since==='unknown' ? yn('u','Unknown') : yn('n','No');
     return '<tr><td class="c-acct"><a class="cm-acct" href="'+E(acctHref(a))+'" data-acct>'+E(a.name)+'</a><span class="cm-town">'+E(a.town||'')+(a.town?' · ':'')+'#'+E(a.n)+'</span></td>'
-      +'<td data-l="Bought Aug 1–Oct 30">'+(a.prog ? yn('y','Yes') : yn('n','No'))+'</td>'
+      +'<td data-l="Bought Aug 1–Oct 31">'+(a.prog ? yn('y','Yes') : yn('n','No'))+'</td>'
       +'<td data-l="Bought Since Launch">'+since+'</td>'
       +'<td data-l="Last Carbliss Purchase">'+(a.last ? '<span class="cm-date">'+E(fmt(a.last))+'</span>' : '<span class="cm-none">None on record</span>')+'</td></tr>';
   }).join('');
@@ -86,7 +86,7 @@ function houseCard(){
   return '<section class="cm-card house" aria-label="House total"><p class="cm-lab">Carbliss Buying Accounts</p>'
     +'<p class="cm-big">'+D.house.buyers.toLocaleString('en-US')+'</p>'
     +'<p class="cm-sub">Accounts Bought During the Program Period</p>'
-    +'<p class="cm-fine"><em>Aug 1\u2013Oct 30, 2026 \u00b7 '+(M.frozen ? 'Final \u00b7 ' : '')+'Sales Through '+E(fmt(M.frozen ? M.frozen_sales_through : M.sales_through))+'</em></p>'
+    +'<p class="cm-fine"><em>Aug 1\u2013Oct 31, 2026 \u00b7 '+(M.frozen ? 'Final \u00b7 ' : '')+'Sales Through '+E(fmt(M.frozen ? M.frozen_sales_through : M.sales_through))+'</em></p>'
     +'<p class="cm-fine"><b>House total</b>, all on-premise reps \u2014 separate from '+(LOCK ? 'your results' : 'any one rep\u2019s results')+'.</p></section>';
 }
 function repCard(rep, s, mine){
@@ -135,7 +135,7 @@ function listHtml(){
 function howHtml(){
   const M = D.meta;
   return '<details class="cm-how"><summary>How This Is Counted</summary><div class="cm-how-b">'
-    +'<p><b>Program period.</b> A fixed window, Aug 1–Oct 30, 2026, inclusive. It is not a rolling 90 days, and later purchases never change the program-period result'+(M.frozen ? ' (locked '+E(fmt(M.frozen_at))+')' : '')+'.</p>'
+    +'<p><b>Program period.</b> A fixed window, Aug 1–Oct 31, 2026, inclusive. It is not a rolling 90 days, and later purchases never change the program-period result'+(M.frozen ? ' (locked '+E(fmt(M.frozen_at))+')' : '')+'.</p>'
     +'<p><b>A purchase counts</b> when an on-premise load sheet carries any Carbliss flavor (every Carbliss product counts) and Encompass flags the account as a buyer on it. An account counts once, however many flavors, loads or reorders it has. Accounts are matched by customer number, not by name.</p>'
     +'<p><b>Bought Since Launch</b> covers every load sheet from launch ('+E(fmt(M.launch))+', the first Carbliss load sheet on file) through '+E(fmt(M.sales_through))+', including the program period (it keeps updating after the program ends; the program-period result does not). <b>Last Carbliss Purchase</b> is the most recent of those load sheets.</p>'
     +'<p><b>Account penetration</b> = assigned accounts that bought during the program period ÷ the rep’s core on-premise accounts. An account follows its current rep, so a transfer moves its history with it. The house total counts every account that bought, whoever its rep is.</p>'

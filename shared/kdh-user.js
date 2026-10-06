@@ -219,7 +219,6 @@
     var t = [
       { key: 'off', group: 'Programs', label: 'Off-Premise MPOs', href: ROOT + 'MPOs/off-prem/index.html' },
       { key: 'on', group: 'Programs', label: 'On-Premise MPOs', href: ROOT + 'MPOs/on-prem/index.html' },
-      { key: 'cbm', group: 'Programs', label: 'Carbliss MPO', href: ROOT + 'carbliss-mpo/' },
       { key: 'tap', group: 'Trackers', label: 'Tap Tracker', href: ROOT + 'isellbeer/tap-survey-tracking/' },
       { key: 'rb', group: 'Trackers', label: 'Red Bull Tracker', href: ROOT + 'redbull/' },
       { key: 'cb', group: 'Trackers', label: 'Carbliss Targets', href: ROOT + 'carbliss-onprem-targets/' }
@@ -243,7 +242,6 @@
     }
     if (/^MPOs\/off-prem\//.test(rel)) return { nav: 'programs', tool: 'off' };
     if (/^MPOs\/on-prem\//.test(rel)) return { nav: 'programs', tool: 'on' };
-    if (/^carbliss-mpo\//.test(rel)) return { nav: 'programs', tool: 'cbm' };
     if (/^team\//.test(rel)) return { nav: 'team', tool: '' };
     if (/^performance\//.test(rel)) return { nav: 'more', tool: 'perf' };
     if (/^exceptions\//.test(rel)) return { nav: 'more', tool: 'exc' };

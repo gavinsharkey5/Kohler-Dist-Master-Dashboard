@@ -437,6 +437,68 @@ function goalWhy(o, m){
   return '';
 }
 // "Ends Nov 30 · 55 days left" from the objective's own end (or the month's last day).
+/* CARBLISS BUYING ACCOUNTS (2026-10-06, Gavin): the October on-premise Carbliss card shows two
+   counts against the rep's own account base -- accounts that bought in the fixed program period
+   (Aug 1 - Oct 31) and accounts that bought since launch (Jun 2) -- and links to the Carbliss
+   leaderboard page instead of Details / View Eligible Accounts. The numbers come from
+   carbliss-mpo/data/program.json (carbliss-mpo/generate.py; a rep is served their own copy). */
+function isCarblissLaunch(o){
+  return o && o.key==='carbliss' && /on-prem/.test(location.pathname) && H.monthKey && H.monthKey()==='2026-10';
+}
+function carblissCard(o, rep, st){
+  var dl = deadlineOf(o);
+  return '<div class="g-obj g-obj-v3 g-obj-v4 g-cb-card '+st+'">'+
+    '<div class="g-obj-head"><div class="g-obj-name">'+esc(titleOf(o))+'</div>'+
+      '<div class="g-obj-sub">'+esc([o.supplier, (H.monthLabel ? H.monthLabel()+' MPO' : '')].filter(Boolean).join(' \u00b7 '))+'</div>'+
+      creditPill(st)+'</div>'+
+    '<div class="g-cb" data-rep="'+esc(rep)+'"><div class="g-cb-wait">Loading Carbliss buying accounts\u2026</div></div>'+
+    (dl ? '<div class="g-deadline">'+dl+'</div>' : '')+
+    '<a class="g-elig g-cb-lb" href="../../carbliss-onprem-targets/">See Leaderboard</a>'+
+    '<div class="g-meta g-weight">MPO weight: '+Math.round(o.weight*100)+'%</div>'+
+  '</div>';
+}
+var CB_DATA = null;
+function cbLoad(){
+  if(!CB_DATA) CB_DATA = fetch('../../carbliss-mpo/data/program.json', {cache:'no-cache', credentials:'same-origin'})
+    .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); });
+  return CB_DATA;
+}
+function cbDay(iso, withYear){
+  var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso||''); if(!m) return '';
+  var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return MON[Number(m[2])-1]+' '+Number(m[3])+(withYear ? ', '+m[1] : '');
+}
+function hydrateCarbliss(){
+  var boxes = document.querySelectorAll('.g-cb[data-rep]'); if(!boxes.length) return;
+  cbLoad().then(function(D){
+    var names = D.reps.map(function(r){ return r.rep; });
+    for(var i=0;i<boxes.length;i++){
+      var box = boxes[i], rep = box.getAttribute('data-rep');
+      var me = (window.kdhMatchName ? window.kdhMatchName(rep, names) : (names.indexOf(rep)>=0 ? rep : null));
+      var mine = me ? D.accounts.filter(function(a){ return a.rep===me; }) : [];
+      var base = mine.length;
+      if(!base){ box.innerHTML = '<div class="g-cb-wait">No Carbliss account base on file for '+esc(rep)+'.</div>'; continue; }
+      var prog = mine.filter(function(a){ return a.prog; }).length;
+      var since = mine.filter(function(a){ return a.since==='yes'; }).length;
+      var pc = function(n){ return (Math.round(1000*n/base)/10).toFixed(1).replace(/\.0$/,'')+'%'; };
+      var M = D.meta, endTxt = M.frozen ? M.frozen_sales_through : M.sales_through;
+      var tile = function(label, range, n){
+        return '<div class="g-cbt"><div class="g-stat-l">'+label+'</div><div class="g-cbt-r">'+range+'</div>'+
+          '<div class="g-stat-v">'+n+'<span class="g-stat-of"> of '+base+'</span></div>'+
+          '<div class="g-cbt-p">'+pc(n)+'</div>'+
+          '<div class="g-bar"><div class="g-bar-fill" style="width:'+Math.min(100, 100*n/base).toFixed(1)+'%"></div></div></div>';
+      };
+      box.innerHTML = '<div class="g-cb-tiles">'+
+          tile('Program Period', cbDay(M.period.start)+'\u2013'+cbDay(M.period.end, true), prog)+
+          tile('Since Launch', cbDay(M.launch)+' \u2013 '+cbDay(M.sales_through, true), since)+
+        '</div>'+
+        '<div class="g-bar-cap">Accounts that bought Carbliss \u00f7 '+base+' assigned accounts \u00b7 Sales through '+esc(cbDay(endTxt, true))+'</div>';
+    }
+  }).catch(function(){
+    for(var i=0;i<boxes.length;i++) boxes[i].innerHTML = '<div class="g-cb-wait">Carbliss buying figures are unavailable right now. Reload to try again.</div>';
+  });
+}
+
 function deadlineOf(o){
   var end = o.periodEnd ? new Date(o.periodEnd+'T12:00:00') : null;
   if(!end && H.monthKey){ var mk = String(H.monthKey()).split('-'); if(mk.length===2) end = new Date(Number(mk[0]), Number(mk[1]), 0, 12); }
@@ -497,6 +559,7 @@ function repObjectiveCard(o, rep){
   }
 
   var st = m.status;
+  if(isCarblissLaunch(o)) return carblissCard(o, rep, st);
   // ONE SHORT SUMMARY (2026-09-30, Gavin's Encompass brief): the objective's
   // short name, "3 of 13 buying accounts", "10 more buying accounts needed",
   // one bar, and the goal rule as a quiet supporting line. The weight and
@@ -712,6 +775,7 @@ function render(){
   else { activeRep = null; html = screenRepPicker(); }
   mount.innerHTML = html;
   if(window.KdhFit) window.KdhFit.tables(mount);
+  hydrateCarbliss();
   var segs = document.querySelectorAll('.g-seg-btn');
   for(var i=0;i<segs.length;i++){
     segs[i].classList.toggle('active', segs[i].dataset.view===view);

@@ -206,6 +206,103 @@ footer b{color:var(--ink)}
   .table-scroll thead th:first-child,.table-scroll thead th:nth-child(2){z-index:2}
   .pitch-row td:first-child{position:static;min-width:0;max-width:none;box-shadow:none}
 }
+
+/* ---- LEADERBOARD CLEANUP (2026-10-06, Gavin): everything centered, evenly spaced and legible; the
+   accounts table fits a phone with no sideways scroll (one labelled block per account under 900px). ---- */
+.gx-head .wrap{text-align:center;max-width:960px;padding:26px 16px 22px}
+.eyebrow{justify-content:center;font-size:13px;letter-spacing:.04em;text-transform:none}
+h1{font-size:clamp(26px,5vw,34px)}
+.lede{margin:0 auto;font-size:16px;line-height:1.5;max-width:640px}
+.updated{font-size:14px;margin-top:10px}
+.stats{max-width:960px;margin:22px auto 0;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.stat{text-align:center;padding:16px 14px}
+.stat-label{font-size:14px;text-transform:none;letter-spacing:0;font-weight:600;margin-bottom:4px}
+.stat-val{font-size:30px;line-height:1.15}
+.stat-sub{font-size:14px;line-height:1.4;margin-top:4px}
+.goalbar{max-width:960px;margin:14px auto 0}
+.goalbar-card{text-align:center;padding:18px 16px}
+.goalbar-head{justify-content:center;text-align:center;gap:4px 14px;margin-bottom:10px}
+.goalbar-label{font-size:14px;text-transform:none;letter-spacing:0;font-weight:600;color:var(--ink)}
+.goalbar-count{font-size:17px}
+.goalbar-count .of{font-size:14px}
+.lb-head{flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:4px;margin-bottom:12px}
+.lb-when{font-size:14px}
+.lb-rows{margin:8px 0 0}
+.lb-row{gap:12px;padding:12px 8px}
+.lb-rank{width:40px;font-size:16px}
+.lb-who{text-align:center}
+.lb-who b{font-size:16px}
+.lb-sub{font-size:14px;margin-top:2px}
+.lb-track{height:6px;margin:8px auto 0;max-width:420px}
+.lb-val{width:84px;text-align:center;font-size:20px}
+.lb-val small{font-size:12.5px;margin-top:1px}
+.lb-you{font-size:12.5px}
+.lb-note{font-size:14px;line-height:1.6;margin-top:14px;text-align:center}
+details.lb-fold summary{justify-content:center;font-size:15px;color:var(--ink)}
+.btiles{gap:12px;margin-top:10px}
+.btile{text-align:center;padding:14px 12px}
+.fell-list{margin-top:8px}
+.fell-row{flex-direction:column;align-items:center;text-align:center;gap:2px;padding:12px 0;font-size:15px}
+.fell-name{flex:none;font-size:16px}
+.fell-note{font-size:13px}
+.fell-rep,.fell-when{font-size:14px}
+.toolbar{max-width:none;margin:0 0 16px;justify-content:center;align-items:flex-end;gap:14px 16px;text-align:center}
+.tgroup{align-items:center}
+.tgroup label{font-size:14px;text-transform:none;letter-spacing:0;color:var(--ink)}
+.tgroup select,.tgroup input[type=search],.tgroup input[type=text],.tgroup input[type=number]{text-align:center;text-align-last:center}
+.toolbar .divider{display:none}
+.check{justify-content:center;font-size:15px;color:var(--ink)}
+.result-count{margin:0 auto;flex:1 1 100%;text-align:center;font-size:14px}
+.sort-mobile{display:none}
+main{max-width:1200px}
+.table-scroll{overflow-x:visible}
+table{min-width:0;table-layout:auto;font-size:15px}
+thead th{position:static;text-align:center;text-transform:none;letter-spacing:0;font-size:13.5px;line-height:1.3;white-space:normal;padding:12px 8px;color:var(--ink)}
+tbody td{text-align:center;vertical-align:middle;white-space:normal;padding:12px 8px}
+tbody td:first-child{min-width:0}
+tbody td:nth-child(2){min-width:150px}
+.num-cell{text-align:center}
+.num-cell > div{justify-content:center!important}
+.badge{display:inline-block;margin:4px 2px 0;font-size:12px;text-transform:none;letter-spacing:0;white-space:normal}
+.status-badge,.gap-pill{font-size:13px}
+.pitch-btn,.copy-btn{font-size:14px;min-height:40px}
+.legend{justify-content:center;text-align:center;font-size:14px;gap:8px 18px;padding:14px 16px}
+footer{max-width:960px;text-align:center;font-size:14px}
+.pitch-row td{text-align:left}
+.pitch-label{justify-content:center}
+.rtd-bar{width:44px}
+@media(max-width:899px){
+  html.kdh-rep #acctTable .col-rep{display:none!important}
+  .sort-mobile{display:flex}
+  .table-panel{overflow:visible}
+  #acctTable,#acctTable tbody{display:block;width:100%;min-width:0}
+  #acctTable thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  #acctTable tbody tr:not(.pitch-row){display:grid;grid-template-columns:1fr 1fr;gap:10px 12px;padding:18px 16px;border-bottom:1px solid var(--line);text-align:center;align-items:start}
+  #acctTable tbody tr:not(.pitch-row) td{display:block;border:0;padding:0;min-width:0!important;max-width:none!important;width:auto!important;position:static!important;box-shadow:none!important;background:transparent!important;white-space:normal}
+  #acctTable tbody tr.is-open{background:var(--card2)}
+  #acctTable td:nth-child(2){grid-column:1/-1;order:-3;font-size:17px;font-weight:700;line-height:1.3}
+  #acctTable td:nth-child(4){grid-column:1/-1;order:-2;font-size:15px;color:var(--ink-soft);margin-top:-6px}
+  #acctTable td:nth-child(3){grid-column:1/-1;order:-1;font-size:14px;color:var(--ink-soft)}
+  #acctTable td:nth-child(3)::before{content:"Rep: "}
+  #acctTable td:nth-child(n+5):nth-child(-n+9){background:var(--card2)!important;border-radius:10px;padding:10px 6px!important}
+  #acctTable td:nth-child(n+5):nth-child(-n+9)::before{display:block;font-size:13px;font-weight:600;color:var(--ink-soft);margin-bottom:4px}
+  #acctTable td:nth-child(5)::before{content:"Sun Cruiser (cs)"}
+  #acctTable td:nth-child(6)::before{content:"White Claw (cs)"}
+  #acctTable td:nth-child(7)::before{content:"SC + WC cases (2026)"}
+  #acctTable td:nth-child(8)::before{content:"Carries Carbliss"}
+  #acctTable td:nth-child(9)::before{content:"Opportunity (cases)"}
+  #acctTable td:nth-child(7){grid-column:1/-1}
+  #acctTable td:nth-child(7) > div{justify-content:center!important}
+  #acctTable td:nth-child(1){grid-column:1/-1;order:9}
+  #acctTable td:nth-child(1) .pitch-btn{width:100%;min-height:46px;font-size:15px}
+  #acctTable .pitch-row{display:block}
+  #acctTable .pitch-row td{display:block;padding:14px 12px}
+  .pitch-list>li{flex-direction:column;gap:4px}
+  .brandrow{justify-content:center}
+  .tgroup{flex:1 1 100%;width:100%}
+  .tgroup select,.tgroup input{width:100%;min-width:0}
+}
+@media(max-width:560px){ .stats{grid-template-columns:repeat(2,minmax(0,1fr))} .stats>.stat:nth-child(3):last-child{grid-column:1/-1} .btiles{grid-template-columns:1fr} .lb-val{width:70px} }
 </style>
 <script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="kdh-page" content="Carbliss On-Premise Targets">
@@ -242,6 +339,17 @@ footer b{color:var(--ink)}
   <div class="tgroup">
     <label>Town</label>
     <select id="cityFilter"><option value="">All towns</option></select>
+  </div>
+  <div class="tgroup sort-mobile">
+    <label for="sortSel">Sort by</label>
+    <select id="sortSel">
+      <option value="total26">SC + WC cases (most first)</option>
+      <option value="sc">Sun Cruiser cases</option>
+      <option value="wc">White Claw cases</option>
+      <option value="gapVal">Opportunity cases</option>
+      <option value="name">Account (A to Z)</option>
+      <option value="city">Town (A to Z)</option>
+    </select>
   </div>
   <div class="divider"></div>
   <div class="tgroup">
@@ -288,7 +396,7 @@ footer b{color:var(--ink)}
   <p class="kdh-maint">Source: RDE Carbliss Eval vs Sun Cruiser &amp; White Claw exports (account- and product-level cases and buyers; no dollars). Update by re-exporting the reports into <code>accounts.csv</code> / <code>carbliss_buyers_l90.csv</code> and running <code>generate.py</code> in this folder.</p>
 </footer>
 
-<script src="../shared/kdh-user.js?v=20261006b"></script>
+<script src="../shared/kdh-user.js?v=20261006c"></script>
 <script src="../shared/dm-groups.js?v=20260929a"></script>
 <script id="tg-data" type="application/json">{"meta":{"totalAccounts":617,"total26":28182.0,"total25":29050.0,"withCarbliss":278,"lapsed":143,"isNew":66,"reps":["Alisa Acciardi","Allison Scott","Anthony Palmisano","Brian Sengebush","Chris Payton","Chris Politano","Dan Lagala","Derrick Laws","Javier Melo","Jim Heaney","Klejdi Lamo","Matt Powierski","Mike Ast","Nick Melissari","Office Tell Sell","Pablo Lopez","Paul Mclaughlin","Phil Ernst","Robin Feldman"],"generatedAt":"2026-10-05","buyers":{"asOf":"2026-10-07","windowStart":"2026-07-07","rows":394,"ytd":297,"l90":229,"fell":68},"sellSheets":[{"flavor":"Black Cherry","brand":"Carbliss Black Cherry","url":"https://cdn.e8.co/GlobalDocs/30c63de73c282239d8f46e240967831b.pdf"},{"flavor":"Black Raspberry","brand":"Carbliss Black Raspberry","url":"https://cdn.e8.co/GlobalDocs/bc99870b5fc7b0f569706aa6efbf835c.pdf"},{"flavor":"Blood Orange","brand":"Carbliss Blood Orange","url":"https://cdn.e8.co/GlobalDocs/7a4ea5e6f702e55554710547cab27706.pdf"},{"flavor":"Cranberry","brand":"Carbliss Cranberry","url":"https://cdn.e8.co/GlobalDocs/2424bff96badf669179681320c29e454.pdf"},{"flavor":"Grapefruit","brand":"Carbliss Grapefruit","url":"https://cdn.e8.co/GlobalDocs/28a321654142f637f08c09ae9a2e1bcd.pdf"},{"flavor":"Lemon Tea","brand":"Carbliss Lemon Tea","url":"https://cdn.e8.co/GlobalDocs/bc51a59bc3229a80e35f3ec1a1adbee0.pdf"},{"flavor":"Lemon Lime","brand":"Carbliss Lemon Lime","url":"https://cdn.e8.co/GlobalDocs/1bcacb8c0bb50425726f10b2f3936f7f.pdf"},{"flavor":"Mango","brand":"Carbliss Mango","url":"https://cdn.e8.co/GlobalDocs/909daff81b463664a9662cbc830e6337.pdf"},{"flavor":"Margarita","brand":"Carbliss Margarita","url":"https://cdn.e8.co/GlobalDocs/142af27d62cdc805e0ecb15e9550e3a2.pdf"},{"flavor":"Peach","brand":"Carbliss Peach","url":"https://cdn.e8.co/GlobalDocs/750bb727978fdab2a9b4d537d6f14071.pdf"},{"flavor":"Pineapple","brand":"Carbliss Pineapple","url":""},{"flavor":"Watermelon","brand":"Carbliss Watermelon","url":"https://cdn.e8.co/GlobalDocs/1361c2b757b5210a222c04f9b4b70faf.pdf"}],"board":[{"rep":"Alisa Acciardi","count":0,"total":1},{"rep":"Allison Scott","count":41,"total":91},{"rep":"Anthony Palmisano","count":28,"total":45},{"rep":"Brian Sengebush","count":34,"total":78},{"rep":"Chris Payton","count":11,"total":14},{"rep":"Chris Politano","count":0,"total":1},{"rep":"Dan Lagala","count":9,"total":22},{"rep":"Derrick Laws","count":1,"total":4},{"rep":"Javier Melo","count":9,"total":9},{"rep":"Jim Heaney","count":0,"total":1},{"rep":"Klejdi Lamo","count":0,"total":1},{"rep":"Matt Powierski","count":5,"total":11},{"rep":"Mike Ast","count":9,"total":11},{"rep":"Nick Melissari","count":41,"total":105},{"rep":"Office Tell Sell","count":0,"total":3},{"rep":"Pablo Lopez","count":8,"total":10},{"rep":"Paul Mclaughlin","count":27,"total":76},{"rep":"Phil Ernst","count":1,"total":1},{"rep":"Robin Feldman","count":54,"total":133}]},"accounts":[{"id":"190702","name":"Smith's Tavern","rep":"Klejdi Lamo","city":"Rockaway","sunCruiser":{"cases25":6.0,"cases26":12.0},"whiteClaw":{"cases25":45.0,"cases26":22.0},"total25":51.0,"total26":34.0,"breadth":13,"existingCarbliss":[],"lapsed":false,"isNew":false,"primaryFlavor":"Lemon Tea","gapFlavors":["Pineapple","Cranberry","Peach","Watermelon"],"pitchBullets":[{"label":"Top mover","text":"6 cs of White Claw (Hard Seltzer Variety #1 2/12/12 oz Can) this year \u2014 steady seller \u2014 9 cs moved last year too."},{"label":"Not a one-off","text":"13 different Sun Cruiser/White Claw SKUs move through this account."},{"label":"Diversify with","items":["Their Lemon Tea craving is already covered by Sun Cruiser.","Pitch Carbliss Pineapple, Cranberry, Peach, or Watermelon instead to open a new flavor lane rather than compete head-on."]},{"label":"The ask","text":"A menu or tap-list slot in Rockaway \u2014 sized for social-pour occasions."}],"buyer":null}],"buyers":[]}</script>
 <script>
@@ -502,6 +610,11 @@ document.getElementById('gapOnly').addEventListener('change', e=>{ state.gapOnly
 document.getElementById('fellOnly').addEventListener('change', e=>{ state.fellOnly=e.target.checked; renderTable(); });
 document.getElementById('threshOn').addEventListener('input', e=>{ state.threshOn=parseFloat(e.target.value)||0; renderTable(); });
 
+document.getElementById('sortSel').addEventListener('change', e=>{
+  state.sortKey = e.target.value; state.sortDir = (state.sortKey==='name' || state.sortKey==='city') ? 1 : -1;
+  document.querySelectorAll('#acctTable thead th').forEach(x=>{ x.classList.remove('sorted','sorted-asc'); if(x.dataset.key===state.sortKey) x.classList.add(state.sortDir===1?'sorted-asc':'sorted'); });
+  renderTable();
+});
 document.querySelectorAll('#acctTable thead th').forEach(th=>{
   th.addEventListener('click', ()=>{
     const key = th.dataset.key; if(!key) return;

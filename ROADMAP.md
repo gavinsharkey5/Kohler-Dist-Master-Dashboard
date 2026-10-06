@@ -12,19 +12,19 @@ device, a decision).
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
 - [ ] **Carbliss MPO tracker: confirm five points, then refresh weekly** (Gavin):
-  built 2026-10-06 at /carbliss-mpo/ (carbliss-mpo/README.txt). Confirm: (1) the
+  built 2026-10-06 (carbliss-mpo/README.txt); it now shows in the October on-premise Carbliss card (Program Period Aug 1-Oct 31 + Since Launch, "See Leaderboard" -> the Carbliss targets page), not as its own tile. Confirm: (1) the
   program is ON-PREMISE only (off-premise accounts bought Carbliss too and are
   not counted); (2) launch = Jun 2, 2026, the first Carbliss load sheet (or give
   Kohler's official date); (3) an account whose Carbliss load sheet was fully
   returned the same month still counts as a buyer (2 such accounts so far --
   Encompass's buyer flag does not net returns); (4) the existing October
   on-premise MPO objective "Carbliss 40% buying accounts" (window Sep 1-Oct 31,
-  a 40% target) is a different definition from this tracker (Aug 1-Oct 30, no
+  a 40% target) is a different definition from this tracker (Aug 1-Oct 31, no
   target shown) -- keep both, or replace one; (5) the denominator is the core
   on-premise base the October MPO already uses (no inactive flag, no Carbliss
   territory rule on file). Weekly: save the new buyers export over
   carbliss-onprem-targets/carbliss_buyers_l90.csv and run
-  `python3 carbliss-mpo/generate.py`; after Oct 30, `--finalize`. 21 accounts
+  `python3 carbliss-mpo/generate.py`; after Oct 31, `--finalize`. 21 accounts
   are newer than the Account page's books and show unlinked until
   hub/generate.py + accounts/generate.py are re-run on the refreshed base.
 

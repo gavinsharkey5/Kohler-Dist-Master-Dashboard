@@ -1,9 +1,9 @@
 CARBLISS MPO TRACKER (2026-10-06)
 =================================
 A fixed-window program, not a monthly MPO: which on-premise accounts bought
-Carbliss between Aug 1 and Oct 30, 2026 (inclusive), each rep's penetration of
-their own assigned accounts, and every account's status. Page: /carbliss-mpo/
-(rep home "Carbliss MPO" tile, manager home card, Programs sidebar item).
+Carbliss between Aug 1 and Oct 31, 2026 (inclusive), each rep's penetration of
+their own assigned accounts, and every account's status. The figures show in the October on-premise
+Carbliss Buying Accounts card (guided.js); /carbliss-mpo/ is no longer linked from the nav or home pages.
 
 REFRESH (about weekly while the program runs)
   1. Save the new RDE "Carbliss Buyers (ON) L90 vs Start" export over
@@ -21,7 +21,7 @@ REFRESH (about weekly while the program runs)
   Carbliss Purchase keep updating. --reopen ignores the freeze (a correction).
 
 DEFINITIONS (one set, used for the house total, rep percentages and rows)
-  Program period   Aug 1 - Oct 30, 2026, fixed. Never "L90". A load sheet dated
+  Program period   Aug 1 - Oct 31, 2026, fixed. Never "L90". A load sheet dated
                    outside it cannot change the result.
   Qualifying       a load-sheet row of the export with Buyers 2026 > 0: any
   purchase         Carbliss flavor (brand family Carbliss, all 11 products,
