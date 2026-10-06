@@ -256,6 +256,13 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-10-06 **Cards easier to read**: every incentive and MPO card leads with
+  the goal (with its unit and the rule behind it), then Current / Still Needed in
+  large dark numbers, one bar, the deadline and View Eligible Accounts; weight
+  and full rules sit lower. Supporting tables fit their content (the phone
+  placement counts were off-screen), empty columns are hidden with a note, and
+  the manager's rep cards are no longer dark-on-dark in light mode.
+
 - [x] 2026-10-05 **Program eligibility, one calculation**: Corona Innovation,
   Lytt and Carbliss 40% show "54 of 69 Required Placements / 15 More Needed",
   the goal math with each rule's status, and three views -- Eligible Accounts

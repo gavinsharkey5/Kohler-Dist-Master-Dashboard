@@ -416,6 +416,47 @@ function explainFold(o, m){
   return '<button class="g-more js-more" data-target="'+id+'" aria-expanded="false">How This Goal Is Calculated<span class="ar">&#9656;</span></button>'+
     '<div class="g-more-body" id="'+id+'"><ul class="g-rules">'+lines.map(function(l){ return '<li>'+esc(l)+'</li>'; }).join('')+'</ul></div>';
 }
+// The goal's own explanation, from the metric's numbers: "75% of your 92-placement
+// program goal" / "50% of your 29-account base (14.5, rounded up)". Empty when the
+// goal is a plain count (2 new placements) -- the Goal line already says it all.
+function goalWhy(o, m){
+  if(m.underlying==null || !isFinite(Number(m.underlying))){
+    // older objectives carry the rule only as text: "30% of last fall (33 of 110)"
+    var g = String(m.goalText||'');
+    return /%/.test(g) ? g.replace(/^my /i,'your ').replace(/ my /g,' your ').replace(/^./, function(c){ return c.toUpperCase(); }) : '';
+  }
+  var u = Number(m.underlying), req = Number(m.goal);
+  var pct = req && u ? Math.round(req/u*100) : 0;
+  var ex = (m.explain||[]).join(' ');
+  var p = /(\d+(?:\.\d+)?)%/.exec(ex); if(p) pct = Number(p[1]);
+  if(m.pctRule) pct = Math.round(Number(m.pctRule)*100);
+  var exact = Math.round(u*pct)/100;
+  var rnd = exact !== req ? ' ('+fmtNum(exact)+', rounded up)' : '';
+  if(o.type==='pct_of_goal') return pct+'% of your '+fmtNum(u)+'-'+(o.unit||'placement')+' program goal'+rnd;
+  if(o.type==='pct_of_base' || o.shareOfBase || o.type==='followup') return pct+'% of your '+fmtNum(u)+' eligible accounts'+rnd;
+  return '';
+}
+// "Ends Nov 30 · 55 days left" from the objective's own end (or the month's last day).
+function deadlineOf(o){
+  var end = o.periodEnd ? new Date(o.periodEnd+'T12:00:00') : null;
+  if(!end && H.monthKey){ var mk = String(H.monthKey()).split('-'); if(mk.length===2) end = new Date(Number(mk[0]), Number(mk[1]), 0, 12); }
+  if(!end || isNaN(end)) return '';
+  var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var today = new Date(); today.setHours(12,0,0,0);
+  var days = Math.round((end - today)/86400000);
+  var day = MON[end.getMonth()]+' '+end.getDate();
+  if(days < 0) return 'Ended '+day+', '+end.getFullYear();
+  return 'Ends <b>'+day+'</b> · '+(days===0 ? 'last day' : days+(days===1?' day':' days')+' left');
+}
+// The hub's list of eligible accounts for this objective and rep: the program
+// workspace when a verified rule exists (it decides on load), else the target list.
+function eligibleHref(o, rep){
+  if(o.type==='photos') return '';
+  var scope = /on-prem/.test(location.pathname) ? 'on' : 'off';
+  var mk = H.monthKey ? H.monthKey() : ''; if(!mk) return '';
+  var id = scope+':'+mk+':'+o.key;
+  return '../../hub/#view=detail&rep='+encodeURIComponent(rep)+'&cat='+scope+'&prog='+encodeURIComponent(id);
+}
 function repObjectiveCard(o, rep){
   var m = H.metric(o, rep);
   var weightTag = '<span class="g-tag weight">'+Math.round(o.weight*100)+'% of MPO</span>';
@@ -466,26 +507,44 @@ function repObjectiveCard(o, rep){
 
   var detail = H.detailHtml(o, rep) || '';
   var mid = 'gm'+(uid++);
-  var moreHtml =
+  // Details holds only what the card does not already say (2026-10-06): the
+  // full program name when the title is shortened, and the tracker's own table.
+  var full = titleOf(o) !== o.name ? '<p class="g-full"><span>Full program name</span>'+esc(o.name)+'</p>' : '';
+  var moreHtml = (full || detail) ?
       '<button class="g-more js-more" data-target="'+mid+'" aria-expanded="false">'+
         'Details<span class="ar">&#9656;</span></button>'+
-      '<div class="g-more-body" id="'+mid+'">'+
-        '<ul class="g-rules"><li>'+esc(o.name)+'</li><li>Worth '+Math.round(o.weight*100)+'% of this month\u2019s MPO.</li>'+
-        (m.goalText ? '<li>Goal: '+esc(m.goalText)+'</li>' : '')+'</ul>'+detail+'</div>';
+      '<div class="g-more-body" id="'+mid+'">'+full+detail+'</div>' : '';
 
   if(hasNums){
-    var unitLbl = titleCase(uPlural(Number(m.goal), unit));
+    // READABILITY v4 (2026-10-06, Gavin): Goal (with its unit and, for a
+    // percentage rule, the underlying goal) -> Current -> Still Needed ->
+    // one bar -> deadline -> View Eligible Accounts. Weight and the full rule
+    // stay secondary. Every number is the metric's own (m.goal is the
+    // requirement, m.underlying the program goal or account base).
     var met = m.remaining<=0;
-    return '<div class="g-obj g-obj-v3 '+st+'">'+
-      logoHtml(o)+'<div class="g-obj-head"><div class="g-obj-name">'+esc(titleOf(o))+'</div>'+creditPill(st)+'</div>'+
-      '<div class="g-obj-sub">'+supPeriod(o)+'</div>'+
-      '<div class="g-fig"><span class="g-fig-n">'+fmtNum(m.value)+'</span><span class="g-fig-of"> of '+fmtNum(m.goal)+'</span>'+
-        '<span class="g-fig-u">Required '+esc(unitLbl)+'</span></div>'+
-      '<div class="g-need'+(met?' good':'')+'">'+(met ? 'Requirement Met' : fmtNum(m.remaining)+' More Needed')+'</div>'+
+    var unitGoal = titleCase(uPlural(Number(m.goal), unit));
+    var why = goalWhy(o, m);
+    var dl = deadlineOf(o);
+    var href = /^Ended/.test(dl) ? '' : eligibleHref(o, rep);   // an ended month has nothing left to sell into
+    return '<div class="g-obj g-obj-v3 g-obj-v4 '+st+'">'+
+      logoHtml(o)+
+      '<div class="g-obj-head"><div class="g-obj-name">'+esc(titleOf(o))+'</div>'+
+        '<div class="g-obj-sub">'+esc([o.supplier, (H.monthLabel ? H.monthLabel()+' MPO' : '')].filter(Boolean).join(' · '))+'</div>'+
+        creditPill(st)+'</div>'+
+      '<div class="g-goal"><div class="g-goal-l">Goal</div><div class="g-goal-v">'+fmtNum(m.goal)+' '+esc(unitGoal)+'</div>'+
+        (why ? '<div class="g-goal-why">'+esc(why)+'</div>' : '')+'</div>'+
+      '<div class="g-stats">'+
+        '<div class="g-stat"><span class="g-stat-l">Current</span><span class="g-stat-v">'+fmtNum(m.value)+'<span class="g-stat-of"> of '+fmtNum(m.goal)+'</span></span></div>'+
+        '<div class="g-stat'+(met?' good':'')+'"><span class="g-stat-l">Still Needed</span><span class="g-stat-v">'+(met ? 'Met' : fmtNum(m.remaining))+'</span>'+
+          '<span class="g-stat-u">'+(met ? 'Requirement complete' : esc(titleCase(uPlural(Number(m.remaining), unit))))+'</span></div>'+
+      '</div>'+
       barHtml(m.pct, st)+
-      '<div class="g-bar-cap">Progress: '+Math.round(m.pct)+'% of this MPO requirement</div>'+
-      '<div class="g-meta">MPO Weight: '+Math.round(o.weight*100)+'%</div>'+
-      subsHtml+moreHtml+
+      '<div class="g-bar-cap">'+Math.round(m.pct)+'% of the requirement</div>'+
+      (dl ? '<div class="g-deadline">'+dl+'</div>' : '')+
+      (href && !met ? '<a class="g-elig" href="'+esc(href)+'">View Eligible Accounts</a>' : '')+
+      subsHtml+
+      '<div class="g-meta g-weight">MPO weight: '+Math.round(o.weight*100)+'%</div>'+
+      moreHtml+
     '</div>';
   }
   return '<div class="g-obj g-obj-v2 '+st+'">'+
@@ -634,6 +693,7 @@ function render(){
   else if(activeRep && H.roster.indexOf(activeRep)>=0) html = screenRepDetail();
   else { activeRep = null; html = screenRepPicker(); }
   mount.innerHTML = html;
+  if(window.KdhFit) window.KdhFit.tables(mount);
   var segs = document.querySelectorAll('.g-seg-btn');
   for(var i=0;i<segs.length;i++){
     segs[i].classList.toggle('active', segs[i].dataset.view===view);
@@ -674,6 +734,7 @@ function wire(){
           rbody.innerHTML = (obj && H.detailHtml(obj, rd.dataset.rep)) ||
             '<div class="g-note">No line-level detail for this rep this month.</div>';
           rbody.dataset.filled = '1';
+          if(window.KdhFit) window.KdhFit.tables(rbody);
         }
         rbody.classList.toggle('open', ropen);
       }

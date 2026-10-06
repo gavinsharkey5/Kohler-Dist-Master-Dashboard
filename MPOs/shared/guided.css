@@ -430,3 +430,62 @@
 /* MPO supplier marks (2026-10-05) */
 .g-logos{display:flex;justify-content:center;align-items:center;gap:8px;margin:0 0 10px}
 .g-logo{height:40px;max-width:150px;width:auto;object-fit:contain;background:#fff;border-radius:8px;padding:5px 8px;box-sizing:content-box}
+
+/* ===== READABILITY v4 (2026-10-06): goal band, Current / Still Needed, contrast ===== */
+.g-obj-v4{text-align:center}
+.g-obj-v4 .g-obj-head{flex-direction:column;align-items:center;gap:4px;margin-bottom:12px}
+.g-obj-v4 .g-obj-name{font-size:19px;font-weight:600;color:var(--text)}
+.g-obj-v4 .g-obj-sub{margin:0 0 6px;font-size:14px;color:var(--text-dim)}
+.g-goal{margin:0 auto 14px;max-width:560px;padding:10px 14px;border-radius:10px;background:var(--card-alt,var(--kdh-surface-2));border:1px solid var(--border)}
+.g-goal-l{font-size:13.5px;font-weight:600;color:var(--text-dim)}
+.g-goal-v{font-size:20px;font-weight:600;line-height:1.25;color:var(--text);font-variant-numeric:tabular-nums}
+.g-goal-why{margin-top:2px;font-size:14px;color:var(--text-dim)}
+.g-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:560px;margin:0 auto 10px}
+.g-stat{display:flex;flex-direction:column;align-items:center;gap:2px}
+.g-stat-l{font-size:13.5px;font-weight:600;color:var(--text-dim)}
+.g-stat-v{font-size:30px;font-weight:600;line-height:1.1;color:var(--text);font-variant-numeric:tabular-nums}
+.g-stat-of{font-size:19px;font-weight:500;color:var(--text-dim)}
+.g-stat-u{font-size:14px;color:var(--text-dim)}
+.g-stat.good .g-stat-v{color:var(--good)}
+.g-obj-v4 .g-bar{height:10px;margin:4px auto 0;max-width:560px;background:var(--input-bg,var(--kdh-surface-2));box-shadow:inset 0 0 0 1px var(--border)}
+.g-obj-v4 .g-bar-cap{margin-top:6px;font-size:14px;color:var(--text-dim)}
+.g-deadline{margin-top:8px;font-size:15px;color:var(--text)}
+.g-deadline b{font-weight:600}
+.g-elig{display:flex;align-items:center;justify-content:center;max-width:320px;min-height:44px;margin:12px auto 0;padding:0 16px;border-radius:10px;border:1px solid var(--accent);color:var(--accent);background:transparent;font-size:15px;font-weight:600;text-decoration:none}
+.g-elig:hover{background:var(--accent-soft)}
+.g-elig:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.g-obj-v4 .g-weight{justify-content:center;margin-top:10px;font-size:13.5px;color:var(--text-dim)}
+.g-obj-v4 .g-more{margin-top:2px}
+.g-full{margin:0 0 10px;font-size:14px;color:var(--text)}
+.g-full span{display:block;font-size:13px;font-weight:600;color:var(--text-dim)}
+@media(max-width:520px){ .g-stat-v{font-size:28px} .g-goal-v{font-size:19px} }
+/* contrast on the older pieces that remain (manager tiles, rep rows) */
+.g-fig-of,.g-fig-u,.g-bar-cap,.g-meta,.g-obj-sub,.g-rr-l,.g-rr-u,.g-rr-pct{color:var(--text-dim)}
+.g-fig-n,.g-rr-fig b,.g-rr-need b{color:var(--text)}
+.g-bar{box-shadow:inset 0 0 0 1px var(--border)}
+
+/* ===== Detail tables fit their content (shared/fit-tables.js) ===== */
+.kf-off{display:none!important}
+.kf-note{margin:6px 2px 4px;font-size:13.5px;color:var(--text-dim)}
+.g-more-body .rep-sub-inner table,.g-reprow-detail .rep-sub-inner table,.g-more-body table,.g-reprow-detail table{width:auto!important;min-width:min(100%,360px)!important;max-width:100%}
+.g-more-body th,.g-reprow-detail th{color:var(--text-dim);white-space:normal}
+.g-more-body td,.g-reprow-detail td{white-space:normal!important;color:var(--text)}
+.g-more-body td:first-child,.g-reprow-detail td:first-child{min-width:0}
+.g-more-body th.num,.g-more-body td.num,.g-reprow-detail th.num,.g-reprow-detail td.num{white-space:nowrap!important;padding-left:28px;font-variant-numeric:tabular-nums}
+@media(max-width:640px){
+  /* one or two columns: stays a table -- name left, number right, header kept */
+  .g-more-body table.kf-2,.g-reprow-detail table.kf-2{display:table!important;width:100%!important}
+  .g-more-body table.kf-2 thead,.g-reprow-detail table.kf-2 thead{display:table-header-group!important}
+  .g-more-body table.kf-2 tbody,.g-reprow-detail table.kf-2 tbody{display:table-row-group!important}
+  .g-more-body table.kf-2 tr,.g-reprow-detail table.kf-2 tr{display:table-row!important;padding:0}
+  .g-more-body table.kf-2 th,.g-more-body table.kf-2 td,.g-reprow-detail table.kf-2 th,.g-reprow-detail table.kf-2 td{display:table-cell!important;padding:10px 8px;border-bottom:1px solid var(--border)}
+  .g-more-body table.kf-2 td::before,.g-reprow-detail table.kf-2 td::before{content:none!important}
+  /* more columns: one compact labelled record per row, two facts across */
+  .g-more-body table.kf-n tr,.g-reprow-detail table.kf-n tr{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:4px 12px;padding:10px 4px}
+  .g-more-body table.kf-n td,.g-reprow-detail table.kf-n td{padding:2px 4px!important}
+  .g-more-body table.kf-n td:first-child,.g-reprow-detail table.kf-n td:first-child{grid-column:1/-1;font-size:15px}
+  .g-more-body table.kf-n td:first-child::before,.g-reprow-detail table.kf-n td:first-child::before{content:none}
+  .g-more-body table.kf-n td.num,.g-reprow-detail table.kf-n td.num{text-align:left;width:auto;padding-left:4px}
+  .g-more-body td[data-l]::before,.g-reprow-detail td[data-l]::before{color:var(--text-dim)}
+}
+.g-obj-v4 .g-more-body.open{width:fit-content;max-width:100%;margin-left:auto;margin-right:auto}

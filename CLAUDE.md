@@ -2308,3 +2308,45 @@ territories, previously credited, multiple gaps, baseline, minimums, missing
 data), elig_test.mjs (tracker == calculation for 60 rep-programs, both flows,
 6 sizes x 2 themes), mw_test.mjs. Tags: hub.js 20261005o, hub.css 20261005k,
 hub/accounts.js 20261005d, eligibility.js 20261005a.
+
+## Card readability: goal first, contrast, tables that fit (2026-10-06)
+
+Gavin's brief (reps like the simple design; make every number easier to read).
+Every incentive / MPO card now reads Title -> GOAL -> Current / Still Needed ->
+one bar -> deadline -> View Eligible Accounts, with weight / full name / rules
+secondary. MPO trackers (guided.js `repObjectiveCard`, class `g-obj-v4`, still
+centered): a `.g-goal` band ("Goal 69 Placements" + `goalWhy()` = "75% of your
+92-placement program goal" from the metric's own `underlying` / `explain` /
+`pctRule`, else the tracker's % goal text), `.g-stats` (Current "54 of 69" /
+Still Needed "15 Placements" or "Met"), "78% of the requirement", `deadlineOf()`
+("Ends Nov 30 · 55 days left" / "Ended ..."), `.g-elig` link to the hub
+(`eligibleHref()`: the program workspace when a rule exists, hidden for photo
+objectives, met goals and ended months), "MPO weight: 30%", and Details = full
+program name + the tracker's table only (the duplicate "Worth 30%" / "Goal:"
+lines are gone). on-prem followup metrics now also return `underlying` /
+`pctRule` for share-of-base goals (Carbliss 40%). HUB: progFacts() returns
+`cur / goalN / needN / unit / why` on every branch with a countable goal;
+`goalBlockHtml()` (program screen + workspace summary, `.gb*`), `goalLineHtml()`
+(Manager Mode MPO + incentive cards) and the list rows (`.hrow-g` "Goal 69
+Placements", then "54 of 69 · 15 more needed") all draw from it; `goalContext()`
+drops a restated count from the tracker's text ("2 of 51 cases (Oct 2025 pace)"
+-> "Oct 2025 pace"); `mpoGoalWhy()` mirrors guided.js. Fixed on the way: the
+Manager Mode program cards (`.pcard`) had a hard-coded navy (#162037) from the
+old dark theme -- dark title on dark card in light mode -- now on the tokens.
+TABLES: `shared/fit-tables.js` (`KdhFit.tables(root)`, called after every
+guided.js / hub render and when a rep row's detail fills) hides a column that is
+blank or a dash on EVERY row of the whole table (zero is a value; a link /
+photo counts as filled) and says so under the table ("Column hidden (blank on
+every row): Base Period."), labels cells (`data-l`) and tags tables kf-2 (two
+columns: stays a real table on a phone, name left / number right) or kf-n
+(stacked labelled records, facts side by side). Tables are content-width with
+right-aligned numbers under their headings; the old page rule
+`.rep-sub-inner table{min-width:540px;white-space:nowrap}` had pushed the
+placement counts OFF a phone screen -- overridden in guided.css. Never put a
+percentage width on a cell in these auto-layout tables (it stretches the table).
+Presentation only: no number, record or rule changed. Tests (scratchpad):
+card_audit.mjs (6 pages x 375/390/430/820/1180/1440 x light/dark: goal shown,
+no sideways scroll, every table number on screen, measured contrast of goal /
+stats / labels / table text >= 4.5 -- worst 5.93), elig_test.mjs (updated for
+the goal block), the usual suites. Tags: guided.js / guided.css / fit-tables.js /
+hub.js / hub.css / on-prem programs.js 20261006a.

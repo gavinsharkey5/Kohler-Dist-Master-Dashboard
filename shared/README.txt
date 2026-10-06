@@ -155,3 +155,10 @@ middleware and Supabase RLS do). Exceptions uses it; the older pages still
 carry their own loaders in a separate "data" block (accounts.js, team/,
 rep/) -- move them over when they are next touched. A future Snowflake /
 Postgres feed replaces a loader there and nothing else.
+
+FIT TABLES (2026-10-06)
+shared/fit-tables.js (KdhFit.tables(root)) -- call it after rendering any card
+whose supporting table comes from a tracker (guided.js and hub.js already do).
+It hides columns blank on every row (with a note), labels cells for phone
+layouts and tags tables kf-2 / kf-n. Pair it with the .kf-* rules in
+MPOs/shared/guided.css or hub/hub.css. Presentation only.

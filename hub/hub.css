@@ -1613,3 +1613,63 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:600;letter-spacing:-.01em;
 .pw-btn.sm{min-height:40px;padding:0 12px;font-size:14px;}
 .pw-btn.wide{width:100%;}
 .pw-btn[disabled]{opacity:1;color:var(--text-mute);border-color:var(--line-soft);background:var(--card-alt);cursor:default;filter:none;}
+
+/* ===== GOAL BLOCK + READABILITY (2026-10-06): Goal -> Current / Still Needed -> bar -> deadline ===== */
+.gb{margin-top:14px;padding-top:12px;border-top:1px solid var(--line-soft)}
+.gb-goal{display:flex;flex-direction:column;gap:1px;padding:10px 14px;border-radius:10px;background:var(--card-alt);border:1px solid var(--border);margin-bottom:12px}
+.gb-l{font-size:13.5px;font-weight:600;color:var(--text-dim)}
+.gb-v{font-size:21px;font-weight:600;line-height:1.25;color:var(--text);font-variant-numeric:tabular-nums}
+.gb-why{font-size:14px;line-height:1.4;color:var(--text-dim)}
+.gb-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px}
+.gb-stat{display:flex;flex-direction:column;gap:1px;min-width:0}
+.gb-sl{font-size:13.5px;font-weight:600;color:var(--text-dim)}
+.gb-sv{font-size:30px;font-weight:600;line-height:1.1;color:var(--text);font-variant-numeric:tabular-nums}
+.gb-of{font-size:19px;font-weight:500;color:var(--text-dim)}
+.gb-su{font-size:14px;color:var(--text-dim)}
+.gb-stat.met .gb-sv{color:var(--good)}
+.gb .hbar{height:10px;max-width:none;margin-top:2px;box-shadow:inset 0 0 0 1px var(--border)}
+.gb-cap{margin-top:6px;font-size:14px;color:var(--text-dim)}
+.gb-dl{margin-top:6px;font-size:15px;color:var(--text)}
+.gb-dl b{font-weight:600}
+.gb .pw-btn{width:100%;margin-top:12px}
+.px-cap.dim{margin-top:8px;font-size:13.5px;color:var(--text-dim)}
+.px .px-sup{margin-top:2px;font-size:14px;color:var(--text-dim)}
+.px .px-meta{margin-top:8px}
+.px .px-qual{margin-top:12px}
+/* list rows: goal line + darker progress */
+.hrow-g{font-size:14.5px;color:var(--text);line-height:1.35}
+.hrow-g span{color:var(--text-dim);font-weight:600}
+.hrow-g b{font-weight:600}
+.hrow-p{color:var(--text)}
+.hrow-p b{color:var(--text)}
+.hrow-p b.ok{color:var(--good)}
+.hrow-s{color:var(--text-dim)}
+.hrow .hbar{height:7px;box-shadow:inset 0 0 0 1px var(--border)}
+/* supporting tables in hub program screens (MPO drill-downs) fit their content */
+.kf-off{display:none!important}
+.kf-note{margin:6px 2px 4px;font-size:13.5px;color:var(--text-dim)}
+.mpo-detail table{width:auto!important;min-width:min(100%,360px)!important;max-width:100%}
+.mpo-detail td{white-space:normal!important;color:var(--text)}
+.mpo-detail th{white-space:normal;color:var(--text-dim)}
+.mpo-detail th.num,.mpo-detail td.num{white-space:nowrap!important;padding-left:28px;text-align:right}
+@media(max-width:520px){ .gb-sv{font-size:28px} .gb-v{font-size:19px} }
+/* Manager Mode cards: goal line, two figures (Current of Required / Still Needed), darker text */
+.mgoal{margin-top:10px;padding:8px 12px;border-radius:10px;background:var(--card-alt);border:1px solid var(--border);font-size:15px;color:var(--text);line-height:1.4}
+.mgoal-l{font-weight:600;color:var(--text-dim)}
+.mgoal b{font-weight:600}
+.mgoal-why{display:block;font-size:13.5px;color:var(--text-dim)}
+.mfig{grid-template-columns:repeat(2,1fr)!important}
+.mf-of{font-size:.6em;font-weight:500;color:var(--text-dim)}
+.mf-l,.mf-u,.mbar-cap,.irow-meta,.iprog{color:var(--text-dim)!important}
+.iprog b{color:var(--text)}
+.mbar,.ibar{box-shadow:inset 0 0 0 1px var(--border)}
+/* Manager Mode program cards on the theme tokens (the old hard-coded navy, #162037, read as dark text on dark in light mode) */
+.pcard{background:var(--card)!important;border-color:var(--border)!important;box-shadow:none!important}
+.pcard .q,.pcard .line,.pcard .bg-row{background:var(--card-alt)!important}
+.pcard .line.sell,.pcard .line.go,.pcard .line.done{background:var(--card-alt)!important}
+.pcard .bg-sku-row{background:var(--card-alt)!important}
+.pcard-name{color:var(--text)!important;font-size:18px;font-weight:600;line-height:1.3}
+.pcard-sup{color:var(--text-dim)!important}
+.pcard .mq-stats{margin:10px 0 8px}
+.pcard .g-barcap{display:flex;justify-content:space-between;gap:10px;color:var(--text-dim);font-size:14px;margin-top:6px}
+.pcard .g-bar{box-shadow:inset 0 0 0 1px var(--border)}

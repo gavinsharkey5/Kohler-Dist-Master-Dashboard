@@ -637,7 +637,9 @@ function metricFor(o, rep, DATA){
       goalText: o.shareOfBase ? (Math.round(d.pct*100)+'% of my account base ('+r.target+' of '+r.base+')') : unitFor(o, r.target),
       remainText: remaining>0 ? unitFor(o, remaining) : '',
       status: r.qualifying>=r.target ? 'achieved' : (r.qualifying>0 ? 'inprogress' : 'notstarted'),
-      hasActivity: r.qualifying>0
+      hasActivity: r.qualifying>0,
+      // the base behind a share-of-base goal (cards say "40% of your 49 eligible accounts")
+      underlying: o.shareOfBase ? r.base : null, pctRule: o.shareOfBase ? d.pct : null
     };
   }
 
