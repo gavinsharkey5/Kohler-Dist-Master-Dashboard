@@ -60,7 +60,7 @@
 
   /* table */
   .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
-  table{border-collapse:collapse;width:1130px;table-layout:fixed}
+  table{border-collapse:collapse;width:1138px;table-layout:fixed}
   .grp-brewery{background:rgba(91,141,239,.07)}
   .grp-kohler{background:rgba(244,184,62,.07)}
   th.grp-first,td.grp-first{border-left:2px solid var(--line)}
@@ -85,7 +85,7 @@
   .delta.neg{color:var(--bad)}
   .delta.flat{color:var(--ink-soft)}
   .pctinput{width:100%;max-width:64px;background:var(--input-bg);border:1px solid var(--input-border);color:var(--brewery);
-    font:inherit;font-weight:600;font-size:14px;text-align:right;border-radius:6px;padding:4px 6px;min-height:34px}
+    font:inherit;font-weight:600;font-size:14px;text-align:right;border-radius:6px;padding:4px 4px;min-height:34px}
   .pctinput.kohler{color:var(--kohler)}
   .pctinput:focus{outline:2px solid var(--brewery);outline-offset:1px}
   .pctinput.kohler:focus{outline-color:var(--kohler)}
@@ -95,25 +95,32 @@
   @media (max-width:760px){
     .controls{grid-template-columns:repeat(2,1fr)}
     #sortSel{display:block;grid-column:1/-1}
+    .kpi .val{font-size:20px}
     .tablewrap{overflow:visible;border:0;border-radius:0}
-    table,tbody,tr,td{display:block}
+    table,tbody{display:block}
     table{width:auto}
+    tr{display:block}
     colgroup,thead{display:none}
-    tbody tr{border:1px solid var(--line);border-radius:12px;margin:0 0 12px;padding:12px 14px;background:var(--card)}
-    tbody td{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:6px 0;border:0;
-      font-size:15px;white-space:normal;text-align:right}
-    tbody td::before{content:attr(data-l);color:var(--ink-soft);font-size:14px;text-align:left;flex:none}
-    tbody td.num{text-align:right}
-    tbody td.td-brand{order:-2;font-size:16px;justify-content:flex-start;padding-bottom:0}
-    tbody td.td-sup{order:-1;justify-content:flex-start;padding-top:0;padding-bottom:8px}
+    tbody tr{display:grid;grid-template-columns:repeat(6,1fr);gap:4px 8px;border:1px solid var(--line);border-radius:12px;margin:0 0 12px;padding:12px;background:var(--card)}
+    tbody td{display:flex;flex-direction:column;align-items:flex-start;gap:2px;grid-column:span 2;padding:4px 0;border:0;
+      font-size:16px;white-space:normal;text-align:left;overflow:visible;min-width:0}
+    tbody td::before{content:attr(data-l);color:var(--ink-soft);font-size:13px;font-weight:400}
+    tbody td.num{text-align:left}
+    tbody td.td-brand{grid-column:1/-1;order:-2;font-size:17px;padding-bottom:0}
+    tbody td.td-sup{grid-column:1/-1;order:-1;padding-top:0;padding-bottom:8px}
     tbody td.td-brand::before,tbody td.td-sup::before{display:none}
-    tbody tr{display:flex;flex-direction:column}
+    tbody td:nth-child(7){grid-column:span 4}
+    tbody td.grp-brewery,tbody td.grp-kohler{padding:6px 8px;border-radius:8px}
     th.grp-first,td.grp-first{border-left:0}
-    td.grp-brewery,td.grp-kohler{padding-left:8px;padding-right:8px;border-radius:6px}
+    .pctinput{max-width:80px}
     tbody tr:hover td{background:transparent}
     tbody tr:hover td.grp-brewery{background:rgba(91,141,239,.07)}
     tbody tr:hover td.grp-kohler{background:rgba(244,184,62,.07)}
   }
+  .pctinput{-moz-appearance:textfield;appearance:textfield}
+  .pctinput::-webkit-outer-spin-button,.pctinput::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .morewrap{text-align:center;margin:12px 0 0}
+  .morewrap:empty{display:none}
 
   /* methodology */
   .methodology p{color:var(--ink-soft);font-size:14px;margin:0 0 10px}
@@ -164,15 +171,16 @@
     <div class="tablewrap">
       <table>
         <colgroup>
-          <col style="width:130px"><col style="width:130px"><col style="width:80px">
-          <col style="width:84px"><col style="width:84px"><col style="width:66px"><col style="width:84px">
-          <col style="width:72px"><col style="width:72px"><col style="width:90px">
-          <col style="width:72px"><col style="width:72px"><col style="width:90px">
+          <col style="width:130px"><col style="width:130px"><col style="width:76px">
+          <col style="width:84px"><col style="width:82px"><col style="width:66px"><col style="width:92px">
+          <col style="width:72px"><col style="width:76px"><col style="width:90px">
+          <col style="width:72px"><col style="width:76px"><col style="width:90px">
         </colgroup>
         <thead><tr id="theadRow"></tr></thead>
         <tbody id="tbody"></tbody>
       </table>
     </div>
+    <div class="morewrap" id="moreWrap"></div>
   </section>
 
   <details class="panel methodology">
@@ -214,6 +222,7 @@ const fmtPct = (n,d=1) => n==null?'—':(n*100>=0?'+':'')+(n*100).toFixed(d)+'%'
 let RECORDS = [];
 let SORT = {key:'ce_2026_proj_finish', dir:'desc'};
 let FILTER = {search:'', segment:'', supplier:''};
+const PAGE = 100; let ROWLIMIT = PAGE;
 
 const COLS = [
   {key:'supplier', label:'Supplier', kind:'text'},
@@ -291,7 +300,7 @@ function renderHead(){
     th.addEventListener('click', ()=>{
       if (c.kind==='editpct') return; // editing col isn't sortable, all other cols are
       if (SORT.key===c.key) SORT.dir = SORT.dir==='asc'?'desc':'asc'; else { SORT.key=c.key; SORT.dir='desc'; }
-      renderAll();
+      ROWLIMIT = PAGE; renderAll();
     });
     tr.appendChild(th);
   });
@@ -318,7 +327,7 @@ function renderRows(rows){
   const tbody = document.getElementById('tbody');
   tbody.innerHTML = '';
   const frag = document.createDocumentFragment();
-  rows.forEach(r=>{
+  rows.slice(0,ROWLIMIT).forEach(r=>{
     const tr = document.createElement('tr');
     tr.dataset.key = r._key;
     if (!r.in_taxonomy) tr.classList.add('unclassified');
@@ -363,7 +372,11 @@ function renderRows(rows){
     frag.appendChild(tr);
   });
   tbody.appendChild(frag);
-  document.getElementById('rowcount').textContent = `${rows.length.toLocaleString()} of ${RECORDS.length.toLocaleString()} Brand Families`;
+  document.getElementById('rowcount').textContent = `${Math.min(rows.length,ROWLIMIT).toLocaleString()} of ${rows.length.toLocaleString()} Brand Families` + (rows.length<RECORDS.length ? ` (${RECORDS.length.toLocaleString()} Total)` : '');
+  const mw = document.getElementById('moreWrap');
+  mw.innerHTML = rows.length>ROWLIMIT ? `<button class="btn" id="moreBtn">Show ${Math.min(PAGE,rows.length-ROWLIMIT)} More</button>` : '';
+  const mb = document.getElementById('moreBtn');
+  if (mb) mb.addEventListener('click', ()=>{ ROWLIMIT += PAGE; renderTable(); });
 }
 
 function sum(rows, key){ return rows.reduce((a,r)=>a+(r[key]||0),0); }
@@ -406,7 +419,7 @@ function renderSort(){
         const o=document.createElement('option'); o.value=c.key+'|'+d; o.textContent='Sort: '+(c.full||c.label)+' ('+l+')'; sel.appendChild(o);
       });
     });
-    sel.addEventListener('change',e=>{ const [k,d]=e.target.value.split('|'); SORT={key:k,dir:d}; renderTable(); });
+    sel.addEventListener('change',e=>{ const [k,d]=e.target.value.split('|'); SORT={key:k,dir:d}; ROWLIMIT=PAGE; renderTable(); });
   }
   sel.value = SORT.key+'|'+SORT.dir;
 }
@@ -449,9 +462,9 @@ async function init(){
   populateFilters();
   renderAll();
 
-  document.getElementById('search').addEventListener('input', e=>{ FILTER.search = e.target.value; renderTable(); });
-  document.getElementById('segmentFilter').addEventListener('change', e=>{ FILTER.segment = e.target.value; renderTable(); });
-  document.getElementById('supplierFilter').addEventListener('change', e=>{ FILTER.supplier = e.target.value; renderTable(); });
+  document.getElementById('search').addEventListener('input', e=>{ FILTER.search = e.target.value; ROWLIMIT=PAGE; renderTable(); });
+  document.getElementById('segmentFilter').addEventListener('change', e=>{ FILTER.segment = e.target.value; ROWLIMIT=PAGE; renderTable(); });
+  document.getElementById('supplierFilter').addEventListener('change', e=>{ FILTER.supplier = e.target.value; ROWLIMIT=PAGE; renderTable(); });
   document.getElementById('resetBtn').addEventListener('click', ()=>{
     RECORDS.forEach(r=>{ r.goal2027_brewery_pct = r.goal2026_brewery_pct; r.goal2027_kohler_pct = r.goal2026_kohler_pct; });
     renderAll();
