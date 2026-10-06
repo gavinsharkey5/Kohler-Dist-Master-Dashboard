@@ -2308,3 +2308,21 @@ territories, previously credited, multiple gaps, baseline, minimums, missing
 data), elig_test.mjs (tracker == calculation for 60 rep-programs, both flows,
 6 sizes x 2 themes), mw_test.mjs. Tags: hub.js 20261005o, hub.css 20261005k,
 hub/accounts.js 20261005d, eligibility.js 20261005a.
+
+## Account contacts: private table, never in the repo (2026-10-06)
+
+Encompass' "Customers" export (Customer ID, Primary Contact, Phone, Email, 2,912
+rows) fills the Account page's Contact group. The repo is PUBLIC, so the data
+lives only in Supabase `public.account_contacts` (migration
+`20261006100000_account_contacts.sql`; RLS = `kdh_can_access_account`, the notes /
+photos rule: a rep reads only accounts assigned to them, a manager all; nobody
+signed in can write). `tools/load_contacts.py <export.csv>` cleans the names
+(proper case, Mc / O' / D', "_12" suffixes, phone numbers / account codes /
+extensions / (notes) / symbols stripped, " / " between two people, "None" and
+emails typed in the name box dropped) and writes the git-ignored
+`supabase/data/account_contacts.sql` (replaces the table in one transaction) for
+Gavin to paste into the SQL Editor. accounts.js `loadContact(n)` reads one row
+with the caller's token and sets contact_name / phone / email; no row = "No
+contact is on file". Verified on local Postgres 16 (rep sees own accounts only,
+manager all, writes and anon refused, migration idempotent). Never commit the
+generated SQL or the export. accounts.js tag 20261006a.

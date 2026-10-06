@@ -143,6 +143,26 @@ async function loadMarks(names){
     (await r.json()).forEach(row=>{ const k = String(row.account_num); if(!marks.has(k)) marks.set(k, []); marks.get(k).push(row); });
   }catch(e){ marksError = e.message||String(e); }
 }
+// Primary contact (name / phone / email) per account, from the PRIVATE
+// account_contacts table (Supabase, RLS = the notes/photos rule: a rep reads
+// only their own accounts, a manager all). Never in a committed file -- the
+// repo is public. Missing table / not loaded yet -> the page says so.
+const contactCache = new Map();
+async function loadContact(n){
+  const k = String(n);
+  if(contactCache.has(k)) return contactCache.get(k);
+  const cfg = window.KDH_AUTH || {}, token = cookie('kdh_at');
+  let row = null;
+  if(cfg.url && cfg.key && token){
+    try{
+      const r = await fetch(cfg.url.replace(/\/$/,'')+'/rest/v1/account_contacts?select=contact_name,phone,email&customer_num=eq.'+encodeURIComponent(k)+'&limit=1',
+        {headers:{apikey:cfg.key, authorization:'Bearer '+token, accept:'application/json'}});
+      if(r.ok) row = (await r.json())[0] || null;
+    }catch(e){ row = null; }
+  }
+  contactCache.set(k, row);
+  return row;
+}
 // The programs a rep is in right now: active incentives + this month's MPOs,
 // through the hub's own filters (support reps, territory, dollar programs).
 function programsFor(rep){
@@ -396,14 +416,16 @@ async function renderAccount(){
   app.innerHTML = back(fromLabel, fromHref) + headHtml + `<div class="kdh-state loading">Loading this account…</div>`;
   // everything the page needs, in parallel
   const key = repKey(rep);
-  const [sales, idx, , CAT, ACT, ED] = await Promise.all([
+  const [sales, idx, , CAT, ACT, ED, CONTACT] = await Promise.all([
     salesCache.has(String(a.n)) ? Promise.resolve(salesCache.get(String(a.n))) : getJson('data/sales/'+key+'/'+encodeURIComponent(a.n)+'.json').catch(()=>null).then(s=>{ salesCache.set(String(a.n), s); return s; }),
     indexPrograms(rep),
     loadMarks(SCOPE),
     loadCatalog(),
     window.KdhActivity ? window.KdhActivity.load(String(a.n)).catch(()=>null) : Promise.resolve(null),
     window.KdhElig ? window.KdhElig.load(rep).catch(()=>null) : Promise.resolve(null),
+    loadContact(a.n),
   ]);
+  if(CONTACT){ a.contact_name = CONTACT.contact_name || ''; a.phone = CONTACT.phone || ''; a.email = CONTACT.email || ''; }
   const ELIG_ACC = window.KdhElig ? window.KdhElig.forAccount(a.n, ED) : [];
   if(state.view!=='acct' || String(state.n)!==String(a.n)) return;   // navigated away meanwhile
   const k = String(a.n);
@@ -621,7 +643,7 @@ async function renderAccount(){
   const telHref = v => 'tel:'+String(v).replace(/[^\d+]/g,'');
   const contactBody = (a.contact_name || a.phone || a.email)
     ? kvl('Contact', E(a.contact_name||'')) + (a.phone ? `<div class="kv"><span>Phone</span><span><a href="${E(telHref(a.phone))}">${E(a.phone)}</a></span></div>` : '') + (a.email ? `<div class="kv"><span>Email</span><span><a href="mailto:${E(a.email)}">${E(a.email)}</a></span></div>` : '')
-    : `<p class="dg-na">Contact name, phone and email are not in our exports yet — they are in Encompass.</p>`;
+    : `<p class="dg-na">No contact is on file for this account yet — check Encompass.</p>`;
   const serviceBody = kvl('Service', E(a.service||'')) + (a.stops2026!=null ? kvl('2026 So Far', `${plural(a.stops2026,'stop')}${a.distPts!=null ? ' · '+plural(a.distPts,'distribution point') : ''}${a.cases2026!=null ? ' · '+fmtN(a.cases2026)+' cases' : ''}`) : (a.cases2026!=null ? kvl('2026 So Far', fmtN(a.cases2026)+' cases') : ''))
     + (a.hours ? kvl('Hours', E(a.hours)) : '') + (a.instructions ? kvl('Instructions', E(a.instructions)) : '')
     + (a.hours && a.instructions ? '' : `<p class="dg-na">Business hours, delivery days and servicing instructions are not in our exports yet.</p>`);

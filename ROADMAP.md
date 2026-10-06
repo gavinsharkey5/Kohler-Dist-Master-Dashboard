@@ -11,6 +11,13 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
+- [ ] **Account contacts (2026-10-06).** In the Supabase SQL Editor run, in order:
+  `supabase/migrations/20261006100000_account_contacts.sql`, then
+  `supabase/data/account_contacts.sql` (generated from the Encompass Customers
+  export by `python3 tools/load_contacts.py <export.csv>`; git-ignored because
+  the repo is public). Until both are run the Account page's Contact group says
+  no contact is on file. To refresh: new export -> run the tool -> paste -> run.
+
 - [ ] **Program eligibility: answer the rule questions** (Gavin):
   accounts/REPORTING_REQUEST.md section 12 -- C1 the Constellation "Innovation
   SKUs" list, C2 the same export with Customer Num + Product Num, rounding
