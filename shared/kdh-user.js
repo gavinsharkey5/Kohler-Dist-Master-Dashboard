@@ -221,7 +221,7 @@
       { key: 'on', group: 'Programs', label: 'On-Premise MPOs', href: ROOT + 'MPOs/on-prem/index.html' },
       { key: 'tap', group: 'Trackers', label: 'Tap Tracker', href: ROOT + 'isellbeer/tap-survey-tracking/' },
       { key: 'rb', group: 'Trackers', label: 'Red Bull Tracker', href: ROOT + 'redbull/' },
-      { key: 'cb', group: 'Trackers', label: 'Carbliss Targets', href: ROOT + 'carbliss-onprem-targets/' }
+      { key: 'cb', group: 'Trackers', label: 'Carbliss Leaderboard', href: ROOT + 'carbliss-onprem-targets/' }
     ];
     if (isMgr) t.push({ key: 'invm', group: 'Manager', label: 'Inventory', href: ROOT + 'inventory/', menuOnly: true });
     if (isMgr) t.push({ key: 'exc', group: 'Manager', label: 'Exceptions', href: ROOT + 'exceptions/' });

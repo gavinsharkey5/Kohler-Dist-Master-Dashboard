@@ -128,6 +128,8 @@ def compute(data_dir, reopen=False):
     rows = load(EXPORT)
     flag = next(c for c in rows[0] if c.lower() == "buyers 2026")
     buys = defaultdict(list)            # customer num -> [dates]
+    l90col = next((c for c in rows[0] if c.lower() == "buyers l90 2026"), None)
+    l90set = set()                      # accounts with a load sheet the RDE flags as rolling-90
     export_rep = {}
     for r in rows:
         num, _ = split_customer(r["Customer Num & Company"])
@@ -140,6 +142,11 @@ def compute(data_dir, reopen=False):
             continue
         buys[num].append(d)
         export_rep.setdefault(num, r["Sales Rep Assigned"])
+        try:
+            if l90col and float(r[l90col] or 0) > 0:
+                l90set.add(num)
+        except ValueError:
+            pass
     all_dates = [d for v in buys.values() for d in v]
     launch, through = min(all_dates), max(all_dates)
 
@@ -170,7 +177,7 @@ def compute(data_dir, reopen=False):
             live = base.get(n)
             ds = buys.get(n, [])
             accounts.append({"n": int(n), "name": v["name"], "town": v["town"], "rep": v["rep"],
-                             "prog": v["prog"], "since": since_state(n),
+                             "prog": v["prog"], "l90": 1 if n in l90set else 0, "since": since_state(n),
                              "last": max(ds).isoformat() if ds else ""})
         house_buyers = frozen["house"]["buyers"]
     else:
@@ -178,7 +185,7 @@ def compute(data_dir, reopen=False):
             ds = buys.get(n, [])
             accounts.append({"n": int(n) if n.isdigit() else n, "name": r["Customer Name"], "town": r["City"],
                              "rep": r["Sales Rep Assigned"], "prog": 1 if any(in_period(d) for d in ds) else 0,
-                             "since": since_state(n), "last": max(ds).isoformat() if ds else ""})
+                             "l90": 1 if n in l90set else 0, "since": since_state(n), "last": max(ds).isoformat() if ds else ""})
         house_buyers = sum(1 for ds in buys.values() if any(in_period(d) for d in ds))
 
     pages = account_pages()
@@ -190,6 +197,14 @@ def compute(data_dir, reopen=False):
         by[a["rep"]][0] += 1
         by[a["rep"]][1] += a["prog"]
     reps = [{"rep": k, "base": v[0], "bought": v[1], "pct": pct(v[1], v[0])} for k, v in sorted(by.items())]
+    # Rolling-90 / since-launch counts per rep: aggregate numbers only (no account names), so every rep's
+    # copy carries the whole board for the leaderboard page.
+    bd = defaultdict(lambda: [0, 0, 0])
+    for a in accounts:
+        bd[a["rep"]][0] += 1
+        bd[a["rep"]][1] += a["l90"]
+        bd[a["rep"]][2] += 1 if a["since"] == "yes" else 0
+    board = [{"rep": k, "base": v[0], "l90": v[1], "ytd": v[2]} for k, v in sorted(bd.items())]
     in_base_buyers = sum(a["prog"] for a in accounts)
 
     # reconciliation, printed -- never silently dropped
@@ -213,7 +228,7 @@ def compute(data_dir, reopen=False):
     }
     house = {"buyers": house_buyers, "in_rep_bases": in_base_buyers,
              "reps": len(reps), "base": sum(r["base"] for r in reps)}
-    return {"meta": meta, "house": house, "reps": reps, "accounts": accounts}, {
+    return {"meta": meta, "house": house, "reps": reps, "board": board, "accounts": accounts}, {
         "launch": launch, "through": through, "outside": outside, "moved": moved,
         "buyers": len(prog_nums), "rows": len(rows), "customers": len(buys)}
 

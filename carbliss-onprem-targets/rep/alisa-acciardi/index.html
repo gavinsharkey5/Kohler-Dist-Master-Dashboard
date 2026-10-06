@@ -303,9 +303,50 @@ footer{max-width:960px;text-align:center;font-size:14px}
   .tgroup select,.tgroup input{width:100%;min-width:0}
 }
 @media(max-width:560px){ .stats{grid-template-columns:repeat(2,minmax(0,1fr))} .stats>.stat:nth-child(3):last-child{grid-column:1/-1} .btiles{grid-template-columns:1fr} .lb-val{width:70px} }
+
+/* ---- REP ROSTER (2026-10-06): sales rep -> customers with L90 buyer / YTD buyer / last purchase ---- */
+#roster{max-width:960px;margin:0 auto}
+.roster-note{max-width:960px;margin:12px auto 0;text-align:center;font-size:14px;color:var(--ink-soft);line-height:1.5}
+.rg{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden;box-shadow:var(--shadow)}
+.rg-h{display:flex;flex-direction:column;align-items:center;gap:3px;width:100%;padding:14px 16px;border:0;background:transparent;color:var(--ink);font:inherit;cursor:pointer;min-height:60px;text-align:center}
+.rg-h:hover{background:var(--card2)}
+.rg-h:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.rg-h > b{font-size:18px;font-weight:600}
+.rg-s{font-size:15px;color:var(--ink-soft)}
+.rg-s b{color:var(--ink);font-weight:600;font-size:15px}
+.rg-chev{display:inline-block;width:8px;height:8px;margin-left:10px;border-right:2px solid var(--ink-soft);border-bottom:2px solid var(--ink-soft);transform:rotate(45deg) translateY(-3px)}
+.rg.open .rg-chev{transform:rotate(-135deg) translateY(-1px)}
+.rt-wrap{border-top:1px solid var(--line)}
+table.rt{width:100%;min-width:0;table-layout:fixed}
+table.rt th:first-child{width:42%}
+table.rt th,table.rt td{text-align:center}
+.rt-name{display:block;font-weight:600;font-size:16px;line-height:1.3;overflow-wrap:anywhere}
+a.rt-name:hover{color:var(--accent);text-decoration:underline}
+a.rt-name:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.rt-town{display:block;font-size:14px;color:var(--ink-soft);margin-top:2px}
+.yn{display:inline-flex;align-items:center;justify-content:center;gap:6px;font-weight:600;font-size:15px;white-space:nowrap}
+.yn svg{width:18px;height:18px;flex:none}
+.yn.y{color:var(--green)}
+.yn.n{color:var(--ink-soft)}
+.yn.u{color:var(--amber)}
+.rt-date{font-variant-numeric:tabular-nums;white-space:nowrap;font-size:15px}
+.rt-none{color:var(--ink-soft);font-size:15px}
+.empty.slim{padding:20px}
+@media(max-width:759px){
+  table.rt,.rt tbody,.rt tr{display:block;width:100%;table-layout:auto}
+  table.rt thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .rt tr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 6px;padding:16px 12px;border-top:1px solid var(--line)}
+  .rt tbody tr:first-child{border-top:0}
+  .rt td{display:block;border:0;padding:0;min-width:0}
+  .rt td.rt-acct{grid-column:1/-1;margin-bottom:2px}
+  .rt td[data-l]{background:var(--card2);border-radius:10px;padding:10px 4px}
+  .rt td[data-l]::before{content:attr(data-l);display:block;font-size:13px;font-weight:600;color:var(--ink-soft);margin-bottom:5px}
+  .rt td[data-l] .yn{font-size:15px}
+  .rg-h > b{font-size:17px}
+}
 </style>
 <script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
-<meta name="kdh-page" content="Carbliss On-Premise Targets">
+<meta name="kdh-page" content="Carbliss Leaderboard">
 <!-- Site design system: maps this page's variables + fonts onto shared/kdh.css. Keep it LAST in <head>. -->
 <link rel="stylesheet" href="../shared/kdh-skin.css?v=20261002b">
 </head>
@@ -314,78 +355,41 @@ footer{max-width:960px;text-align:center;font-size:14px}
 <div class="gx-head">
   <div class="wrap">
     <div class="eyebrow"><span class="dot"></span>CARBLISS · SUN CRUISER &amp; WHITE CLAW EVAL</div>
-    <h1>Carbliss On-Premise Targets</h1>
-    <p class="lede">On-premise accounts ranked by their Sun Cruiser + White Claw volume, with the Carbliss flavor to pitch at each. Tap <b>Pitch</b> on an account.</p>
+    <h1>Carbliss Leaderboard</h1>
+    <p class="lede">Who is buying Carbliss: accounts that bought in the last 90 days, accounts that have bought since launch, and the last purchase date for every account.</p>
     <div class="updated" id="updated"></div>
   </div>
 </div>
 
-<div class="stats" id="stats"></div>
 <div class="goalbar" id="goalbar"></div>
 <div class="goalbar" id="buyers"></div>
 <div class="goalbar" id="leaderboard"></div>
 
 <main>
 
-<div class="toolbar">
+<div class="toolbar" id="rosterBar">
   <div class="tgroup">
-    <label>Search account</label>
+    <label for="search">Search account</label>
     <input type="search" id="search" placeholder="Account or town…">
   </div>
   <div class="tgroup">
-    <label>Rep</label>
+    <label for="repFilter">Sales rep</label>
     <select id="repFilter"><option value="">All reps</option></select>
   </div>
   <div class="tgroup">
-    <label>Town</label>
-    <select id="cityFilter"><option value="">All towns</option></select>
-  </div>
-  <div class="tgroup sort-mobile">
-    <label for="sortSel">Sort by</label>
-    <select id="sortSel">
-      <option value="total26">SC + WC cases (most first)</option>
-      <option value="sc">Sun Cruiser cases</option>
-      <option value="wc">White Claw cases</option>
-      <option value="gapVal">Opportunity cases</option>
-      <option value="name">Account (A to Z)</option>
-      <option value="city">Town (A to Z)</option>
+    <label for="showFilter">Show</label>
+    <select id="showFilter">
+      <option value="">All accounts</option>
+      <option value="l90">L90 buyers</option>
+      <option value="fell">Fell off L90</option>
+      <option value="none">Never bought</option>
     </select>
-  </div>
-  <div class="divider"></div>
-  <div class="tgroup">
-    <label>Opportunity threshold (SC + WC cases)</label>
-    <input type="number" id="threshOn" min="0" step="1">
-  </div>
-  <div class="tgroup" style="justify-content:center">
-    <label class="check"><input type="checkbox" id="gapOnly"> Opportunities only</label>
-    <label class="check"><input type="checkbox" id="fellOnly"> Fell off rolling 90 only</label>
   </div>
   <div class="result-count" id="count"></div>
 </div>
 
-<div class="table-panel">
-  <div class="table-scroll">
-    <table id="acctTable">
-      <thead><tr>
-        <th class="col-pitch">Pitch</th>
-        <th data-key="name">Account</th>
-        <th data-key="rep" class="col-rep">Rep</th>
-        <th data-key="city">Town</th>
-        <th data-key="sc" class="num-cell">Sun Cruiser (cs)</th>
-        <th data-key="wc" class="num-cell">White Claw (cs)</th>
-        <th data-key="total26" class="num-cell">SC + WC cases (2026)</th>
-        <th data-key="hasCarbliss">Carries Carbliss</th>
-        <th data-key="gapVal" class="num-cell">Opportunity (cases)</th>
-      </tr></thead>
-      <tbody id="tbody"></tbody>
-    </table>
-  </div>
-  <div class="legend">
-    <span><span style="width:9px;height:9px;border-radius:50%;background:var(--sc);display:inline-block"></span> Sun Cruiser volume</span>
-    <span><span style="width:9px;height:9px;border-radius:50%;background:var(--wc);display:inline-block"></span> White Claw volume</span>
-    <span><b>Opportunity</b> = an account with no Carbliss yet whose Sun Cruiser + White Claw cases meet the threshold above; the number is those cases.</span>
-  </div>
-</div>
+<div id="roster"><div class="empty">Loading accounts…</div></div>
+<p class="roster-note" id="rosterNote"></p>
 
 </main>
 
@@ -396,7 +400,7 @@ footer{max-width:960px;text-align:center;font-size:14px}
   <p class="kdh-maint">Source: RDE Carbliss Eval vs Sun Cruiser &amp; White Claw exports (account- and product-level cases and buyers; no dollars). Update by re-exporting the reports into <code>accounts.csv</code> / <code>carbliss_buyers_l90.csv</code> and running <code>generate.py</code> in this folder.</p>
 </footer>
 
-<script src="../shared/kdh-user.js?v=20261006c"></script>
+<script src="../shared/kdh-user.js?v=20261006d"></script>
 <script src="../shared/dm-groups.js?v=20260929a"></script>
 <script id="tg-data" type="application/json">{"meta":{"totalAccounts":617,"total26":28194.0,"total25":29050.0,"withCarbliss":278,"lapsed":143,"isNew":66,"reps":["Alisa Acciardi","Allison Scott","Anthony Palmisano","Brian Sengebush","Chris Payton","Chris Politano","Dan Lagala","Derrick Laws","Javier Melo","Jim Heaney","Klejdi Lamo","Matt Powierski","Mike Ast","Nick Melissari","Office Tell Sell","Pablo Lopez","Paul Mclaughlin","Phil Ernst","Robin Feldman"],"generatedAt":"2026-10-06","buyers":{"asOf":"2026-10-16","windowStart":"2026-07-08","rows":412,"ytd":304,"l90":238,"fell":66},"sellSheets":[{"flavor":"Black Cherry","brand":"Carbliss Black Cherry","url":"https://cdn.e8.co/GlobalDocs/30c63de73c282239d8f46e240967831b.pdf"},{"flavor":"Black Raspberry","brand":"Carbliss Black Raspberry","url":"https://cdn.e8.co/GlobalDocs/bc99870b5fc7b0f569706aa6efbf835c.pdf"},{"flavor":"Blood Orange","brand":"Carbliss Blood Orange","url":"https://cdn.e8.co/GlobalDocs/7a4ea5e6f702e55554710547cab27706.pdf"},{"flavor":"Cranberry","brand":"Carbliss Cranberry","url":"https://cdn.e8.co/GlobalDocs/2424bff96badf669179681320c29e454.pdf"},{"flavor":"Grapefruit","brand":"Carbliss Grapefruit","url":"https://cdn.e8.co/GlobalDocs/28a321654142f637f08c09ae9a2e1bcd.pdf"},{"flavor":"Lemon Tea","brand":"Carbliss Lemon Tea","url":"https://cdn.e8.co/GlobalDocs/bc51a59bc3229a80e35f3ec1a1adbee0.pdf"},{"flavor":"Lemon Lime","brand":"Carbliss Lemon Lime","url":"https://cdn.e8.co/GlobalDocs/1bcacb8c0bb50425726f10b2f3936f7f.pdf"},{"flavor":"Mango","brand":"Carbliss Mango","url":"https://cdn.e8.co/GlobalDocs/909daff81b463664a9662cbc830e6337.pdf"},{"flavor":"Margarita","brand":"Carbliss Margarita","url":"https://cdn.e8.co/GlobalDocs/142af27d62cdc805e0ecb15e9550e3a2.pdf"},{"flavor":"Peach","brand":"Carbliss Peach","url":"https://cdn.e8.co/GlobalDocs/750bb727978fdab2a9b4d537d6f14071.pdf"},{"flavor":"Pineapple","brand":"Carbliss Pineapple","url":""},{"flavor":"Watermelon","brand":"Carbliss Watermelon","url":"https://cdn.e8.co/GlobalDocs/1361c2b757b5210a222c04f9b4b70faf.pdf"}],"board":[{"rep":"Alisa Acciardi","count":0,"total":1},{"rep":"Allison Scott","count":41,"total":91},{"rep":"Anthony Palmisano","count":28,"total":45},{"rep":"Brian Sengebush","count":34,"total":78},{"rep":"Chris Payton","count":11,"total":14},{"rep":"Chris Politano","count":0,"total":1},{"rep":"Dan Lagala","count":9,"total":22},{"rep":"Derrick Laws","count":1,"total":4},{"rep":"Javier Melo","count":9,"total":9},{"rep":"Jim Heaney","count":0,"total":1},{"rep":"Klejdi Lamo","count":0,"total":1},{"rep":"Matt Powierski","count":5,"total":11},{"rep":"Mike Ast","count":9,"total":11},{"rep":"Nick Melissari","count":41,"total":105},{"rep":"Office Tell Sell","count":0,"total":3},{"rep":"Pablo Lopez","count":8,"total":10},{"rep":"Paul Mclaughlin","count":27,"total":76},{"rep":"Phil Ernst","count":1,"total":1},{"rep":"Robin Feldman","count":54,"total":133}]},"accounts":[{"id":"24057","name":"Mighty Quinns Bbq","rep":"Alisa Acciardi","city":"Clifton","sunCruiser":{"cases25":0,"cases26":0},"whiteClaw":{"cases25":12.0,"cases26":2.0},"total25":12.0,"total26":2.0,"breadth":1,"existingCarbliss":[],"lapsed":false,"isNew":false,"primaryFlavor":"Black Cherry","gapFlavors":["Pineapple","Lemon Lime","Blood Orange","Peach","Lemon Tea","Watermelon","Grapefruit"],"pitchBullets":[{"label":"Top mover","text":"2 cs of White Claw (Hard Seltzer Black Cherry 2/12/12 oz Can) this year \u2014 steady seller \u2014 6 cs moved last year too."},{"label":"Diversify with","items":["Their Black Cherry craving is already covered by White Claw.","Pitch Carbliss Pineapple, Lemon Lime, Blood Orange, Peach, Lemon Tea, Watermelon, or Grapefruit instead to open a new flavor lane rather than compete head-on."]},{"label":"The ask","text":"A menu or tap-list slot in Clifton \u2014 sized for social-pour occasions."}],"buyer":null}],"buyers":[]}</script>
 <script>
@@ -416,36 +420,6 @@ const state = {
 function isGap(a){ return !a.existingCarbliss.length && a.total26 >= state.threshOn; }
 const shortDate = iso => { if(!iso) return ''; const [y,m,d] = iso.split('-'); return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+m-1]+' '+(+d); };
 const daysBetween = (a,b) => Math.round((new Date(b+'T00:00:00')-new Date(a+'T00:00:00'))/86400000);
-// SELL SHEETS (2026-09-30, per Gavin): every Carbliss flavor's sell sheet from
-// the Brands workbook, so the rep picks the one that fits the customer. The
-// pitched flavors are marked Recommended and flavors already on the menu On
-// menu; a flavor without a sheet in the workbook is shown but not linkable.
-function sellSheetsHtml(a){
-  const sheets = (DATA.meta.sellSheets||[]);
-  if(!sheets.length) return '';
-  const rec = new Set(a.gapFlavors||[]), on = new Set(a.existingCarbliss||[]);
-  // recommended flavors first, in the pitch's own ranking (top gap first); the rest alphabetical
-  const rank = f => { const i = (a.gapFlavors||[]).indexOf(f); return i < 0 ? 999 : i; };
-  const order = sheets.slice().sort((x,y)=>(rank(x.flavor)-rank(y.flavor)) || x.flavor.localeCompare(y.flavor));
-  const items = order.map(sh=>{
-    const cls = 'sheet'+(rec.has(sh.flavor)?' rec':'')+(on.has(sh.flavor)?' on':'')+(sh.url?'':' off');
-    const tag = rec.has(sh.flavor) ? '<small>Recommended</small>' : on.has(sh.flavor) ? '<small>On menu</small>' : '';
-    return sh.url ? `<a class="${cls}" href="${esc(sh.url)}" target="_blank" rel="noopener">${esc(sh.flavor)}${tag}</a>`
-                  : `<span class="${cls}" title="No sell sheet in the Brands file yet">${esc(sh.flavor)}<small>No sheet yet</small></span>`;
-  }).join('');
-  return `<div class="pitch-label">Sell sheets <span class="pitch-hint">Tap a flavor to open its sheet — pick the one that fits this customer</span></div><div class="sheets">${items}</div>`;
-}
-
-function renderStats(){
-  const m = DATA.meta;
-  const el = document.getElementById('stats');
-  const tiles = [
-    {label:'Target Accounts', val: fmt(m.totalAccounts), sub:'on-premise, SC + WC'},
-    {label:'Without SC/WC in 2026', val: fmt(m.lapsed), sub:'zero cases so far this year'},
-  ];
-  el.innerHTML = tiles.map(t=>`<div class="stat"><div class="stat-label">${t.label}</div><div class="stat-val ${t.cls||''}">${t.val}</div><div class="stat-sub">${t.sub}</div></div>`).join('');
-}
-
 // Company-wide on-premise Carbliss goal (matches the /carbliss/ tracker's
 // fixed target of 331 on-premise accounts carrying Carbliss). withCarbliss
 // here counts accounts with real 2026 Carbliss volume within this file's
@@ -471,159 +445,10 @@ function renderGoal(){
 
 function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
-function populateSelects(){
+function populateSelects(reps){
   const repSel = document.getElementById('repFilter');
-  // House "reps" (Default, Office Tell Sell) are not people: keep them out of the list (2026-09-29).
-  DATA.meta.reps.filter(r=>(!window.kdhIsRep || window.kdhIsRep(r)) && (!LOCK_TEAM || LOCK_TEAM.reps.has(r))).forEach(r=>{
-    const opt = document.createElement('option'); opt.value=r; opt.textContent=r; repSel.appendChild(opt);
-  });
-  const cities = Array.from(new Set(DATA.accounts.map(a=>a.city).filter(Boolean))).sort();
-  const citySel = document.getElementById('cityFilter');
-  cities.forEach(c=>{
-    const opt = document.createElement('option'); opt.value=c; opt.textContent=c; citySel.appendChild(opt);
-  });
-  document.getElementById('threshOn').value = state.threshOn;
+  reps.forEach(r=>{ const opt = document.createElement('option'); opt.value=r; opt.textContent=r; repSel.appendChild(opt); });
 }
-
-function sortValue(a, key){
-  if(key==='sc') return a.sunCruiser.cases26;
-  if(key==='wc') return a.whiteClaw.cases26;
-  if(key==='hasCarbliss') return a.existingCarbliss.length ? 1 : 0;
-  if(key==='gapVal') return isGap(a) ? a.total26 : -1;
-  return a[key];
-}
-
-function filteredRows(){
-  return DATA.accounts.filter(a=>{
-    if(state.fellOnly && !(a.buyer && a.buyer.fell)) return false;
-    if(state.rep && a.rep!==state.rep) return false;
-    if(LOCK_TEAM && !LOCK_TEAM.reps.has(a.rep)) return false;   // a district manager: their team only
-    if(state.city && a.city!==state.city) return false;
-    if(state.gapOnly && !isGap(a)) return false;
-    if(state.search){
-      const s = state.search.toLowerCase();
-      if(!a.name.toLowerCase().includes(s) && !(a.city||'').toLowerCase().includes(s)) return false;
-    }
-    return true;
-  }).sort((x,y)=>{
-    const av = sortValue(x, state.sortKey), bv = sortValue(y, state.sortKey);
-    if(typeof av==='string') return av.localeCompare(bv)*state.sortDir;
-    return (av-bv)*state.sortDir;
-  });
-}
-
-function brandCell(label, brand){
-  const c25 = brand.cases25||0, c26 = brand.cases26||0;
-  return `<div class="brandcell"><div class="bl">${label}</div><div class="bv num">${fmt(c25)}<span class="arrow">→</span>${fmt(c26)}</div></div>`;
-}
-
-function pitchList(bullets){
-  return `<ul class="pitch-list">${bullets.map(b=>{
-    const body = (b.items && b.items.length)
-      ? `<ul class="sub-list">${b.items.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`
-      : `<span>${esc(b.text)}</span>`;
-    return `<li><span class="plabel">${esc(b.label)}:</span>${body}</li>`;
-  }).join('')}</ul>`;
-}
-
-function renderTable(){
-  const rows = filteredRows();
-  document.getElementById('count').textContent = `${rows.length.toLocaleString()} account${rows.length===1?'':'s'}`;
-  if(!rows.length){
-    document.getElementById('tbody').innerHTML = `<tr><td colspan="9"><div class="empty">No accounts match this filter.</div></td></tr>`;
-    return;
-  }
-  const maxBar = 120; // reference scale for bar width
-  const body = rows.map((a,i)=>{
-    const rowId = 'r'+i+'_'+(a.id!=null?a.id:a.name);
-    const gap = isGap(a);
-    const scW = Math.min(100, (a.sunCruiser.cases26/maxBar*100));
-    const wcW = Math.min(100, (a.whiteClaw.cases26/maxBar*100));
-    const badges = [];
-    if(a.isNew) badges.push('<span class="badge new">New</span>');
-    if(a.lapsed) badges.push('<span class="badge lapsed">No SC/WC in 2026</span>');
-    // YTD / rolling-90 Carbliss buyer status (2026-09-30): from the L90 export
-    const by = a.buyer;
-    if(by && by.fell) badges.push(`<span class="badge fell" title="Bought Carbliss this year, nothing in the rolling 90 days">Fell off rolling 90 · last ${esc(shortDate(by.last))}</span>`);
-    else if(by && by.l90) badges.push(`<span class="badge l90" title="Carbliss load sheet inside the rolling 90 days">Rolling 90</span>`);
-    const mainRow = `<tr class="${state.openPitch===rowId?'is-open':''}">
-      <td class="col-pitch"><button class="pitch-btn" data-row="${rowId}">${state.openPitch===rowId?'Hide':'Pitch'}</button></td>
-      <td>${esc(a.name)}${badges.length?' '+badges.join(' '):''}</td>
-      <td class="col-rep">${esc(a.rep)}</td>
-      <td>${esc(a.city||'—')}</td>
-      <td class="num-cell">${fmt(a.sunCruiser.cases26)}</td>
-      <td class="num-cell">${fmt(a.whiteClaw.cases26)}</td>
-      <td class="num-cell">
-        <div style="display:flex;align-items:center;gap:8px;justify-content:flex-end">
-          <div class="rtd-bar"><i class="b-sc" style="width:${scW}%"></i><i class="b-wc" style="width:${wcW}%"></i></div>
-          <span>${fmt(a.total26)}</span>
-        </div>
-      </td>
-      <td><span class="status-badge ${a.existingCarbliss.length?'yes':'no'}">${a.existingCarbliss.length?'Yes':'No'}</span></td>
-      <td class="num-cell">${gap?`<span class="gap-pill">${fmt(a.total26)}</span>`:'—'}</td>
-    </tr>`;
-    let pitchRow = '';
-    if(state.openPitch===rowId){
-      const flavorTags = [];
-      if(a.primaryFlavor) flavorTags.push(`<span class="ftag">Already covered: ${esc(a.primaryFlavor)}</span>`);
-      if(a.gapFlavors && a.gapFlavors.length) flavorTags.push(`<span class="ftag">Pitch: ${a.gapFlavors.map(esc).join(', ')}</span>`);
-      if(a.existingCarbliss.length) flavorTags.push(`<span class="ftag">Carbliss on menu: ${a.existingCarbliss.map(esc).join(', ')}</span>`);
-      const plainText = a.pitchBullets.map(b=>(b.items&&b.items.length)?`${b.label}: ${b.items.join(' ')}`:`${b.label}: ${b.text}`).join(' ');
-      pitchRow = `<tr class="pitch-row"><td colspan="9"><div class="pitch-box">
-        <div class="brandrow">
-          ${brandCell('Sun Cruiser cases (2025→2026)', a.sunCruiser)}
-          ${brandCell('White Claw cases (2025→2026)', a.whiteClaw)}
-        </div>
-        <div class="pitch-label">Pitch</div>
-        ${pitchList(a.pitchBullets)}
-        ${flavorTags.length?`<div class="flavors">${flavorTags.join('')}</div>`:''}
-        ${sellSheetsHtml(a)}
-        <button class="copy-btn" data-copy="${encodeURIComponent(plainText)}">Copy pitch</button>
-      </div></td></tr>`;
-    }
-    return mainRow+pitchRow;
-  }).join('');
-  document.getElementById('tbody').innerHTML = body;
-
-  document.querySelectorAll('.pitch-btn').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const id = btn.dataset.row;
-      state.openPitch = (state.openPitch===id) ? null : id;
-      renderTable();
-    });
-  });
-  document.querySelectorAll('.copy-btn').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const text = decodeURIComponent(btn.dataset.copy);
-      navigator.clipboard && navigator.clipboard.writeText(text).then(()=>{
-        btn.textContent = 'Copied'; btn.classList.add('copied');
-        setTimeout(()=>{ btn.textContent='Copy pitch'; btn.classList.remove('copied'); }, 1600);
-      });
-    });
-  });
-}
-
-document.getElementById('search').addEventListener('input', e=>{ state.search=e.target.value; renderTable(); });
-document.getElementById('repFilter').addEventListener('change', e=>{ state.rep=e.target.value; renderTable(); renderBuyers(); });
-document.getElementById('cityFilter').addEventListener('change', e=>{ state.city=e.target.value; renderTable(); });
-document.getElementById('gapOnly').addEventListener('change', e=>{ state.gapOnly=e.target.checked; renderTable(); });
-document.getElementById('fellOnly').addEventListener('change', e=>{ state.fellOnly=e.target.checked; renderTable(); });
-document.getElementById('threshOn').addEventListener('input', e=>{ state.threshOn=parseFloat(e.target.value)||0; renderTable(); });
-
-document.getElementById('sortSel').addEventListener('change', e=>{
-  state.sortKey = e.target.value; state.sortDir = (state.sortKey==='name' || state.sortKey==='city') ? 1 : -1;
-  document.querySelectorAll('#acctTable thead th').forEach(x=>{ x.classList.remove('sorted','sorted-asc'); if(x.dataset.key===state.sortKey) x.classList.add(state.sortDir===1?'sorted-asc':'sorted'); });
-  renderTable();
-});
-document.querySelectorAll('#acctTable thead th').forEach(th=>{
-  th.addEventListener('click', ()=>{
-    const key = th.dataset.key; if(!key) return;
-    if(state.sortKey===key) state.sortDir *= -1; else { state.sortKey=key; state.sortDir=-1; }
-    document.querySelectorAll('#acctTable thead th').forEach(x=>x.classList.remove('sorted','sorted-asc'));
-    th.classList.add(state.sortDir===1?'sorted-asc':'sorted');
-    renderTable();
-  });
-});
 
 // The data date is the build stamp generate.py writes into the data (the exports carry no report date).
 const DATA_DATE = DATA.meta.generatedAt ? new Date(DATA.meta.generatedAt+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '';
@@ -641,16 +466,6 @@ if(LOCK_REP){
   state.rep = LOCK_REP;
   const grp = document.getElementById('repFilter').closest('.tgroup'); if(grp) grp.style.display='none';
   const mine = DATA.accounts.filter(a=>a.rep===LOCK_REP);
-  renderStats = function(){
-    const el = document.getElementById('stats');
-    const lapsed = mine.filter(a=>!(a.total26>0)).length;
-    const gaps = mine.filter(isGap).length;
-    el.innerHTML = [
-      {label:'Your target accounts', val: fmt(mine.length), sub:'on-premise, SC + WC'},
-      {label:'Opportunity accounts', val: fmt(gaps), sub:'no Carbliss yet, SC + WC cases at or above the threshold'},
-      {label:'Without SC/WC in 2026', val: fmt(lapsed), sub:'zero cases so far this year'},
-    ].map(t=>`<div class="stat"><div class="stat-label">${t.label}</div><div class="stat-val">${t.val}</div><div class="stat-sub">${t.sub}</div></div>`).join('');
-  };
   renderGoal = function(){
     const count = mine.filter(a=>a.existingCarbliss.length).length, total = mine.length;
     const pct = total ? Math.min(100, count/total*100) : 0;
@@ -661,7 +476,7 @@ if(LOCK_REP){
         <div class="goalbar-count">${fmt(count)}<span class="of"> / ${fmt(total)} of your Sun Cruiser / White Claw accounts</span></div>
       </div>
       <div class="goalbar-track"><div class="goalbar-fill" style="width:${pct.toFixed(1)}%"></div></div>
-      <div class="stat-sub" style="margin-top:8px">Every account below is on your route. Tap one for the pitch.</div>
+      <div class="stat-sub" style="margin-top:8px">Counts the accounts on your route with 2026 Carbliss volume.</div>
     </div>` : `<div class="goalbar-card"><div class="goalbar-label">No target accounts on your route</div><div class="stat-sub" style="margin-top:6px">${esc(LOCK_REP)}: none of your on-premise accounts buy Sun Cruiser or White Claw in this file, so there is nothing to pitch yet.</div></div>`;
   };
 }
@@ -679,16 +494,6 @@ const LOCK_TEAM=(()=>{try{
 }catch(e){return null;}})();
 if(LOCK_TEAM){
   const book = DATA.accounts.filter(a=>LOCK_TEAM.reps.has(a.rep));
-  renderStats = function(){
-    const el = document.getElementById('stats');
-    const lapsed = book.filter(a=>!(a.total26>0)).length;
-    const gaps = book.filter(isGap).length;
-    el.innerHTML = [
-      {label:"Your team's target accounts", val: fmt(book.length), sub:'on-premise, SC + WC · ' + LOCK_TEAM.reps.size + ' reps'},
-      {label:'Opportunity accounts', val: fmt(gaps), sub:'no Carbliss yet, SC + WC cases at or above the threshold'},
-      {label:'Without SC/WC in 2026', val: fmt(lapsed), sub:'zero cases so far this year'},
-    ].map(t=>`<div class="stat"><div class="stat-label">${t.label}</div><div class="stat-val">${t.val}</div><div class="stat-sub">${t.sub}</div></div>`).join('');
-  };
   renderGoal = function(){
     const count = book.filter(a=>a.existingCarbliss.length).length, total = book.length;
     const pct = total ? Math.min(100, count/total*100) : 0;
@@ -699,42 +504,37 @@ if(LOCK_TEAM){
         <div class="goalbar-count">${fmt(count)}<span class="of"> / ${fmt(total)} of your team's Sun Cruiser / White Claw accounts</span></div>
       </div>
       <div class="goalbar-track"><div class="goalbar-fill" style="width:${pct.toFixed(1)}%"></div></div>
-      <div class="stat-sub" style="margin-top:8px">Every account below is on one of your reps' routes. Filter by rep, or tap one for the pitch.</div>
+      <div class="stat-sub" style="margin-top:8px">Counts your team's accounts with 2026 Carbliss volume.</div>
     </div>` : `<div class="goalbar-card"><div class="goalbar-label">No target accounts on your team's routes</div><div class="stat-sub" style="margin-top:6px">${esc(LOCK_TEAM.dm)}: none of your team's on-premise accounts buy Sun Cruiser or White Claw in this file.</div></div>`;
   };
 }
-// REP LEADERBOARD (2026-09-30): every participating rep, ranked by the
-// tracker's own per-rep measure -- accounts carrying Carbliss (at least one
-// Carbliss flavor with 2026 volume) among that rep's on-premise Sun Cruiser /
-// White Claw target accounts, the same number as the rep's goal bar. Ties
-// on the count are broken by the share of their own target accounts, then
-// by name; reps still level share a rank (1, 2, 2, 4). Aggregate counts
-// only -- no account names -- so a rep may see everyone's row; the signed-in
-// rep's own row is marked. Managers and DMs see the same board.
-function renderBoard(){
+// REP LEADERBOARD (2026-10-06, Gavin): every participating rep ranked by ROLLING-90 buyers -- the accounts
+// in their own on-premise account base (the same base as the October MPO card) with a Carbliss load sheet
+// the RDE flags as rolling 90. Ties on the count break on the share of their own base, then on name; reps
+// still level share a rank (1, 2, 2, 4). The numbers come from carbliss-mpo/data/program.json's `board`
+// (counts per rep, no account names), so a rep's copy carries every rep's row; the signed-in rep's own row
+// is marked.
+function renderBoard(P){
   const el = document.getElementById('leaderboard'); if(!el) return;
-  const reps = DATA.meta.reps.filter(r=>!window.kdhIsRep || window.kdhIsRep(r));
-  // a rep's copy of this page (tools/rep_slices.py) carries only their own
-  // accounts plus meta.board -- every rep's counts, no account names
-  const BOARD = DATA.meta.board ? new Map(DATA.meta.board.map(b=>[b.rep, b])) : null;
-  const rows = reps.map(r=>{ if(BOARD){ const b = BOARD.get(r) || {count:0, total:0}; return {rep:r, count:b.count, total:b.total, share: b.total ? b.count/b.total : 0}; }
-      const mine = DATA.accounts.filter(a=>a.rep===r); const count = mine.filter(a=>a.existingCarbliss.length).length; return {rep:r, count, total:mine.length, share: mine.length ? count/mine.length : 0}; })
-    .filter(x=>x.total>0)
+  const names = P.board.map(b=>b.rep);
+  const me = LOCK_REP ? (window.kdhMatchName ? window.kdhMatchName(LOCK_REP, names) : (names.includes(LOCK_REP)?LOCK_REP:null)) : null;
+  const rows = P.board.filter(b=>(!window.kdhIsRep || window.kdhIsRep(b.rep)) && b.base>0)
+    .map(b=>({rep:b.rep, count:b.l90, total:b.base, share:b.l90/b.base}))
     .sort((a,b)=>b.count-a.count || b.share-a.share || a.rep.localeCompare(b.rep));
   let rank=0; rows.forEach((r,i)=>{ if(!i || r.count!==rows[i-1].count || r.share!==rows[i-1].share) rank=i+1; r.rank=rank; });
   rows.forEach((r,i)=>{ r.tied = (i>0 && rows[i-1].rank===r.rank) || (i<rows.length-1 && rows[i+1].rank===r.rank); });
-  const me = LOCK_REP || null;
   const mine = me ? rows.find(r=>r.rep===me) : null;
+  const M = DATA.meta.buyers || {};
   const rowHtml = r=>`<div class="lb-row${r.rep===me?' me':''}"${r.rep===me?' aria-current="true"':''}><span class="lb-rank">${r.rank}${r.tied?'<small>=</small>':''}</span>
-      <span class="lb-who"><b>${esc(r.rep)}${r.rep===me?' <span class="lb-you">you</span>':''}</b><div class="lb-sub">${fmt(r.count)} of ${fmt(r.total)} target accounts · ${Math.round(r.share*100)}%</div><div class="lb-track"><i style="width:${(r.share*100).toFixed(1)}%"></i></div></span>
-      <span class="lb-val">${fmt(r.count)}<small>carry Carbliss</small></span></div>`;
+      <span class="lb-who"><b>${esc(r.rep)}${r.rep===me?' <span class="lb-you">you</span>':''}</b><div class="lb-sub">${fmt(r.count)} of ${fmt(r.total)} accounts · ${Math.round(r.share*100)}%</div><div class="lb-track"><i style="width:${Math.min(100,r.share*100).toFixed(1)}%"></i></div></span>
+      <span class="lb-val">${fmt(r.count)}<small>L90 buyers</small></span></div>`;
   const top = rows.slice(0, 10), rest = rows.slice(10);
   el.innerHTML = `<div class="goalbar-card">
-      <div class="lb-head"><div class="goalbar-label">Rep leaderboard · on-premise Carbliss</div><div class="lb-when">${rows.length} reps · 2026 year to date${DATA_DATE ? ' · data as of ' + esc(DATA_DATE) : ''}</div></div>
-      ${mine ? `<div class="stat-sub">You are <b>#${mine.rank}${mine.tied?' (tied)':''}</b> of ${rows.length} with ${fmt(mine.count)} of your ${fmt(mine.total)} target accounts carrying Carbliss.</div>` : ''}
+      <div class="lb-head"><div class="goalbar-label">Rep leaderboard · Carbliss buyers, rolling 90</div><div class="lb-when">${rows.length} reps · load sheets ${esc(shortDate(M.windowStart))} – ${esc(shortDate(M.asOf))}${M.asOf ? ', ' + esc(M.asOf.slice(0,4)) : ''}${DATA_DATE ? ' · data as of ' + esc(DATA_DATE) : ''}</div></div>
+      ${mine ? `<div class="stat-sub">You are <b>#${mine.rank}${mine.tied?' (tied)':''}</b> of ${rows.length} with ${fmt(mine.count)} of your ${fmt(mine.total)} accounts bought in the last 90 days.</div>` : ''}
       <div class="lb-rows">${top.map(rowHtml).join('')}</div>
       ${rest.length ? `<details class="lb-fold"${mine && mine.rank>10 ? ' open' : ''}><summary>Show ${rest.length} More Reps</summary><div class="lb-rows">${rest.map(rowHtml).join('')}</div></details>` : ''}
-      <p class="lb-note"><b>How the ranking works:</b> each rep is counted on their own on-premise accounts that buy Sun Cruiser or White Claw (the target list on this page) — how many of them carry at least one Carbliss flavor in 2026. Most accounts carrying Carbliss ranks first; a tie is broken by the share of that rep's own target accounts, and reps still level share a rank (=). <b>Target lists differ in size</b> — a rep with 12 target accounts cannot match a rep with 45 on the count, so the share is shown beside it. Company-wide the goal is ${ONPREM_CARBLISS_GOAL} on-premise accounts carrying Carbliss.</p>
+      <p class="lb-note"><b>How the ranking works:</b> each rep is counted on their own on-premise accounts (the same account base as the October MPO) — how many have a Carbliss load sheet in the rolling 90 days. Ties are broken by the share of the rep's own accounts, so a smaller route is not penalized for its size. Counts only; no account names are shown for other reps.</p>
     </div>`;
 }
 // CARBLISS BUYERS: YTD vs ROLLING 90 (2026-09-30, per Gavin -- "Carbliss is
@@ -754,10 +554,9 @@ function renderBuyers(){
   const inScope = b => scopeRep ? b.rep===scopeRep : (LOCK_TEAM ? LOCK_TEAM.reps.has(b.rep) : true);
   const rows = all.filter(inScope);
   const ytd = rows.filter(b=>b.ytd).length, l90 = rows.filter(b=>b.l90).length, fell = rows.filter(b=>b.fell);
-  const inTable = new Set(DATA.accounts.map(a=>a.id));
   const who = scopeRep ? (LOCK_REP ? 'Your' : scopeRep+'’s') : (LOCK_TEAM ? 'Your team’s' : 'Company');
   fell.sort((a,b)=>(b.last||'').localeCompare(a.last||'') || a.name.localeCompare(b.name));
-  const list = fell.map(b=>`<div class="fell-row"><span class="fell-name">${esc(b.name)}${!inTable.has(b.id)?' <small class="fell-note">not on the SC/WC list below</small>':''}</span>${!LOCK_REP?`<span class="fell-rep">${esc(b.rep)}</span>`:''}<span class="fell-when">last ${esc(shortDate(b.last))} · ${daysBetween(b.last, M.asOf)} days</span></div>`).join('');
+  const list = fell.map(b=>`<div class="fell-row"><span class="fell-name">${esc(b.name)}</span>${!LOCK_REP?`<span class="fell-rep">${esc(b.rep)}</span>`:''}<span class="fell-when">last ${esc(shortDate(b.last))}</span></div>`).join('');
   el.innerHTML = `<div class="goalbar-card buyers-card">
       <div class="lb-head"><div class="goalbar-label">${who} Carbliss buyers · YTD vs rolling 90</div><div class="lb-when">rolling 90 = load sheets ${esc(shortDate(M.windowStart))} – ${esc(shortDate(M.asOf))}, ${M.asOf ? esc(M.asOf.slice(0,4)) : ''} · data as of ${esc(shortDate(M.asOf))}</div></div>
       <div class="btiles">
@@ -765,15 +564,94 @@ function renderBuyers(){
         <div class="btile"><div class="stat-label">Rolling-90 buyers</div><div class="stat-val">${fmt(l90)}</div><div class="stat-sub">${ytd ? Math.round(l90/ytd*100) : 0}% of YTD buyers still buying</div></div>
         <div class="btile alert"><div class="stat-label">Fell off rolling 90</div><div class="stat-val">${fmt(fell.length)}</div><div class="stat-sub">bought this year, nothing in the last 90 days</div></div>
       </div>
-      ${fell.length ? `<details class="lb-fold"${LOCK_REP || scopeRep ? ' open' : ''}><summary>${fell.length===1 ? '1 account' : fell.length+' accounts'} to win back · most recent first</summary><div class="fell-list">${list}</div><p class="lb-note">An account here bought Carbliss this year and has no load sheet in the rolling 90 days. Check the menu and reorder — the data shows the gap, not the reason. Rows marked "not on the SC/WC list" buy Carbliss but no Sun Cruiser or White Claw, so they are not in the table below.</p></details>` : `<p class="lb-note">Every ${LOCK_REP ? 'one of your' : ''} Carbliss buyer${LOCK_REP ? 's' : ' in this scope'} this year has bought in the rolling 90 days.</p>`}
+      ${fell.length ? `<details class="lb-fold"${LOCK_REP || scopeRep ? ' open' : ''}><summary>${fell.length===1 ? '1 account' : fell.length+' accounts'} to win back · most recent first</summary><div class="fell-list">${list}</div><p class="lb-note">An account here bought Carbliss this year and has no load sheet in the rolling 90 days. Check the menu and reorder — the data shows the gap, not the reason.</p></details>` : `<p class="lb-note">Every ${LOCK_REP ? 'one of your' : ''} Carbliss buyer${LOCK_REP ? 's' : ' in this scope'} this year has bought in the rolling 90 days.</p>`}
     </div>`;
 }
-renderStats();
 renderGoal();
 renderBuyers();
-renderBoard();
-populateSelects();
-renderTable();
+
+// ---- ROSTER (2026-10-06, Gavin): sales rep -> their accounts, with L90 buyer, YTD buyer and last purchase.
+// Rows are the rep's whole on-premise account base from carbliss-mpo/data/program.json (a rep is served only
+// their own copy; a manager gets everyone, a DM only their team in the filter). YTD = bought since launch.
+let PROG = null;
+const rs = {q:'', rep:'', show:'', open:new Set()};
+const yn = (ok, yes, no) => ok ? `<span class="yn y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>${yes}</span>`
+                         : `<span class="yn n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>${no}</span>`;
+const longDate = iso => { if(!iso) return ''; const [y,m,d] = iso.split('-'); return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+m-1]+' '+(+d)+', '+y; };
+function rosterScope(P){
+  const names = P.board.map(b=>b.rep).filter(r=>!window.kdhIsRep || window.kdhIsRep(r));
+  if(LOCK_REP){ const me = window.kdhMatchName ? window.kdhMatchName(LOCK_REP, names) : (names.includes(LOCK_REP)?LOCK_REP:null); return me ? [me] : []; }
+  if(LOCK_TEAM) return names.filter(n=>[...LOCK_TEAM.reps].some(t=>window.kdhMatchName ? window.kdhMatchName(t,[n]) : t===n));
+  return names;
+}
+function acctHref(a, rep){
+  const mgr = !LOCK_REP && window.kdhUser && (window.kdhUser()||{}).role==='manager' && !(window.kdhUser()||{}).preview;
+  return '../accounts/#acct='+encodeURIComponent(a.n)+(mgr?'&rep='+encodeURIComponent(rep):'')+'&from='+encodeURIComponent(location.pathname+location.hash)+'&fl='+encodeURIComponent('Carbliss Leaderboard');
+}
+function rosterRows(P, rep){
+  const q = rs.q.trim().toLowerCase();
+  return P.accounts.filter(a=>a.rep===rep).filter(a=>{
+    const ytd = a.since==='yes';
+    if(rs.show==='l90' && !a.l90) return false;
+    if(rs.show==='fell' && !(ytd && !a.l90)) return false;
+    if(rs.show==='none' && ytd) return false;
+    if(q && !(a.name.toLowerCase().includes(q) || (a.town||'').toLowerCase().includes(q) || String(a.n).includes(q))) return false;
+    return true;
+  });
+}
+function rosterTable(rows, rep){
+  return `<table class="rt"><thead><tr><th scope="col">Customer</th><th scope="col">L90 Buyer</th><th scope="col">YTD Buyer</th><th scope="col">Last Purchase</th></tr></thead><tbody>`+
+    rows.map(a=>{
+      const nm = a.page ? `<a class="rt-name" href="${esc(acctHref(a, rep))}">${esc(a.name)}</a>` : `<span class="rt-name">${esc(a.name)}</span>`;
+      return `<tr><td class="rt-acct">${nm}<span class="rt-town">${esc(a.town||'')}</span></td>
+        <td data-l="L90 Buyer">${yn(a.l90, 'Yes', 'No')}</td>
+        <td data-l="YTD Buyer">${a.since==='unknown' ? '<span class="yn u">Unknown</span>' : yn(a.since==='yes', 'Yes', 'No')}</td>
+        <td data-l="Last Purchase">${a.last ? `<span class="rt-date">${esc(longDate(a.last))}</span>` : '<span class="rt-none">None on record</span>'}</td></tr>`;
+    }).join('')+`</tbody></table>`;
+}
+function renderRoster(){
+  const P = PROG, el = document.getElementById('roster'); if(!P || !el) return;
+  const scope = rosterScope(P);
+  const reps = rs.rep && scope.includes(rs.rep) ? [rs.rep] : scope;
+  const q = rs.q.trim();
+  let shown = 0;
+  const groups = reps.map(rep=>{
+    const all = P.accounts.filter(a=>a.rep===rep), rows = rosterRows(P, rep);
+    if((q || rs.show) && !rows.length) return '';
+    shown += rows.length;
+    const l90 = all.filter(a=>a.l90).length, ytd = all.filter(a=>a.since==='yes').length;
+    const open = reps.length===1 || !!q || !!rs.show || rs.open.has(rep);
+    return `<section class="rg${open?' open':''}"><button type="button" class="rg-h" data-rep="${esc(rep)}" aria-expanded="${open}">
+        <b>${esc(rep)}</b><span class="rg-s"><b>${fmt(l90)}</b> L90 buyers of ${fmt(all.length)} · <b>${all.length?Math.round(100*l90/all.length):0}%</b> · ${fmt(ytd)} YTD<i class="rg-chev"></i></span></button>
+        ${open ? (rows.length ? `<div class="rt-wrap">${rosterTable(rows, rep)}</div>` : '<div class="empty slim">No accounts match.</div>') : ''}</section>`;
+  }).join('');
+  document.getElementById('count').textContent = `${shown.toLocaleString()} account${shown===1?'':'s'}`;
+  el.innerHTML = groups || '<div class="empty">No accounts match this filter.</div>';
+  const M = DATA.meta.buyers || {};
+  document.getElementById('rosterNote').innerHTML = `L90 = a Carbliss load sheet in the rolling 90 days (${esc(shortDate(M.windowStart))} – ${esc(shortDate(M.asOf))}). YTD = bought Carbliss since launch (${esc(longDate(P.meta.launch))}). Last Purchase = the most recent Carbliss load sheet on file, through ${esc(longDate(P.meta.sales_through))}.`;
+}
+document.getElementById('search').addEventListener('input', e=>{ rs.q=e.target.value; renderRoster(); });
+document.getElementById('repFilter').addEventListener('change', e=>{ rs.rep=e.target.value; state.rep=e.target.value; renderBuyers(); renderRoster(); });
+document.getElementById('showFilter').addEventListener('change', e=>{ rs.show=e.target.value; renderRoster(); });
+document.getElementById('roster').addEventListener('click', e=>{
+  const h = e.target.closest('.rg-h'); if(!h) return;
+  const rep = h.getAttribute('data-rep'); if(rs.open.has(rep)) rs.open.delete(rep); else rs.open.add(rep);
+  renderRoster();
+});
+fetch('../carbliss-mpo/data/program.json', {cache:'no-cache', credentials:'same-origin'})
+  .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+  .then(P=>{
+    PROG = P;
+    const scope = rosterScope(P);
+    populateSelects(LOCK_REP ? [] : scope);
+    renderBoard(P);
+    if(LOCK_REP && !scope.length){ document.getElementById('roster').innerHTML = '<div class="empty">No accounts on file for you in the Carbliss base.</div>'; return; }
+    renderRoster();
+  })
+  .catch(err=>{
+    const m = '<div class="empty">Carbliss account figures could not be loaded ('+esc(err.message||err)+'). Reload, or sign in again.</div>';
+    document.getElementById('roster').innerHTML = m; const lb = document.getElementById('leaderboard'); if(lb) lb.innerHTML = '';
+  });
 </script>
 </body>
 </html>

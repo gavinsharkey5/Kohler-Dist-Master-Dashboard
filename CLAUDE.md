@@ -458,6 +458,18 @@ select replaces the hidden header sorting; Rep hidden for reps). Generator untou
 refreshes. Tests (scratchpad): card_test.mjs, lb_test.mjs. Tags: guided.js 20261006d, guided.css
 20261006b, kdh-user.js 20261006c.
 
+Leaderboard page rebuilt (2026-10-06, Gavin): /carbliss-onprem-targets/ is now "Carbliss Leaderboard" (nav label,
+rep home tile, manager card renamed). The Sun Cruiser / White Claw pitch TABLE, its toolbar, the three stat tiles
+(target / opportunity / without SC-WC) and the pitch panel are REMOVED (the generator still embeds that data,
+unused). The win-back list shows "last <date>" with no day counts. The REP LEADERBOARD ranks reps by ROLLING-90
+buyers over the rep's whole on-premise account base (the MPO base): "34 of 122 accounts · 28%", ties on share
+then name, from `board` in carbliss-mpo/data/program.json (counts per rep, no names; every rep's copy carries it).
+Below it, ROSTER: sales rep -> customers with L90 Buyer / YTD Buyer (since launch) / Last Purchase, for ALL of
+the rep's assigned accounts (a rep sees only their own group, a DM their team, a manager every rep as
+collapsible groups; filters search / rep / All - L90 buyers - Fell off L90 - Never bought). program.json
+accounts gained `l90` (the RDE Buyers L90 flag) and the file gained `board`. The old goal bar and buyers card stay.
+Tags: kdh-user.js 20261006d. Tests (scratchpad): lb2_test.mjs.
+
 ## Boston Beer's seasonal-conversion sheets vs the RDE keg export (2026-10-05)
 
 Gavin sent Boston Beer's own "10-05-26 Sam Adams Seasonal Conversion Fall.xlsx" (per-rep

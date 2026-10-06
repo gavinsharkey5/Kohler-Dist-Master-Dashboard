@@ -1,4 +1,4 @@
-Carbliss On-Premise Targets
+Carbliss Leaderboard (was Carbliss On-Premise Targets)
 
 Turns the "Carbliss Eval vs Sun Cruiser & White Claw" RDE exports into a
 per-account sales-pitch generator: every on-premise account with real
@@ -161,3 +161,8 @@ Tests: scratchpad carbliss_test.mjs (rep / manager / DM scope of the card,
 badges = data, filter, picker order + links, no leaks, 390 / 820 / 1366) +
 lb_test.mjs + mobile_audit ONLY=carbliss (the two 24px checkboxes are the
 known audit note).
+
+
+LEADERBOARD REBUILD (2026-10-06): the pitch table is gone; the page is the rolling-90 leaderboard + a rep -> customer
+roster (L90 Buyer / YTD Buyer / Last Purchase) read from ../carbliss-mpo/data/program.json. After saving a new buyers export
+here, run python3 carbliss-mpo/generate.py as well as generate.py.
