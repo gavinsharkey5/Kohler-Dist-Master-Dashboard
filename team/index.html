@@ -13,8 +13,8 @@
 <link rel="preload" href="../assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 <!-- Theme before first paint: the saved choice, else the device setting (2026-09-30). -->
 <script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
-<link rel="stylesheet" href="../rep/rep.css?v=20261005n">
-<link rel="stylesheet" href="team.css?v=20261002b">
+<link rel="stylesheet" href="../rep/rep.css?v=20261007a">
+<link rel="stylesheet" href="team.css?v=20261007a">
 <meta name="kdh-page" content="Team Activity">
 <script src="../shared/kdh-user.js?v=20261006d"></script>
 <script src="../shared/program-titles.js?v=20261005e"></script>
@@ -36,9 +36,8 @@
 <main class="wrap">
   <div class="head">
     <div>
-      <p class="kicker" id="kicker">Manager View</p>
       <h1>Team Activity</h1>
-      <p>What your reps have marked in the Incentive Hub — <b>Done</b>, <b>Follow up</b>, <b>Not now</b> — the moment they tap it. Open a rep for the accounts behind the numbers.</p>
+      <p id="sub">Incentive Hub Marks by Rep</p>
     </div>
     <div class="pills" id="pills" hidden></div>
   </div>
@@ -46,14 +45,14 @@
   <div id="notes"></div>
 
   <div class="tiles" id="tiles" hidden>
-    <div class="tile"><p class="l">Active this week</p><div class="v" id="tActive">–</div><div class="s" id="tActiveS"></div></div>
-    <div class="tile follow"><p class="l">Open follow-ups</p><div class="v" id="tFollow">–</div><div class="s">across the team</div></div>
-    <div class="tile done"><p class="l">Done this week</p><div class="v" id="tDone">–</div><div class="s">accounts marked done</div></div>
-    <div class="tile"><p class="l">Set aside</p><div class="v" id="tSkip">–</div><div class="s">marked Not now</div></div>
+    <div class="tile"><p class="l">Active This Week</p><div class="v" id="tActive">–</div><div class="s" id="tActiveS"></div></div>
+    <div class="tile follow"><p class="l">Open Follow-Ups</p><div class="v" id="tFollow">–</div><div class="s">Across the Team</div></div>
+    <div class="tile done"><p class="l">Done This Week</p><div class="v" id="tDone">–</div><div class="s">Accounts</div></div>
+    <div class="tile"><p class="l">Set Aside</p><div class="v" id="tSkip">–</div><div class="s">Marked Not Now</div></div>
   </div>
 
   <div class="list" id="list"><div class="note" style="margin:0;border:0;border-radius:0">Loading…</div></div>
-  <p class="foot">"This week" = the last 7 days. Times are when the rep tapped. A rep's marks stay until they change them; Done and Not now accounts sit folded at the bottom of their own lists.</p>
+  <p class="foot">This Week = Last 7 Days</p>
 </main>
 
 <script src="../shared/auth-config.js"></script>
@@ -83,7 +82,6 @@
   function note(html, bad){ notes.push('<div class="note'+(bad?' bad':'')+'">'+html+'</div>'); $('notes').innerHTML = notes.join(''); }
 
   if(!user || user.role!=='manager'){ $('list').innerHTML=''; note('This page is for managers. <a href="../rep/">Go to your workspace</a>.', true); return; }
-  $('kicker').textContent = 'Manager View · ' + user.name;
   if(!cfg.url || !cfg.key || !token){ $('list').innerHTML=''; note('Not signed in on kohlerdisthub.com — activity is only available there. <a href="../login/">Sign in</a>.', true); return; }
 
   /* ---- program names from the trackers' registries ---- */
@@ -128,7 +126,8 @@
       .then(function(r){ return r.ok ? r.json() : null; }, function(){ return null; })
   ]).then(function(res){
     rows = res[0] || []; team = res[1];
-    if(!team) note('Grouping by manager needs one more Supabase step (run <code>supabase/migrations/20260928120000_team.sql</code>). Showing everyone for now.');
+    if(!Array.isArray(team)) team = null;
+    if(!team) note('Run <code>supabase/migrations/20260928120000_team.sql</code> to group by manager. Showing everyone.');
     build();
   }).catch(function(e){ $('list').innerHTML=''; note('Couldn’t load activity: '+esc(e.message)+'. Reload, or sign in again.', true); });
 
@@ -176,7 +175,6 @@
     if(isDm){
       $('pills').innerHTML = '<button class="pill" type="button" data-scope="mine">My Team<span class="n">'+mine.length+'</span></button>';
       $('pills').hidden = false; scope = 'mine';
-      $('kicker').textContent = 'Manager View · ' + user.name + ' · your team';
       dms = {}; render(); return;
     }
     // One pill per DM (anyone a rep reports to), most reps first.
@@ -206,11 +204,11 @@
     var follow = 0, done7 = 0, skip = 0;
     list.forEach(function(R){ follow += R.follow.length; done7 += R.done7; skip += R.skip; });
     $('tiles').hidden = false;
-    $('tActive').textContent = active; $('tActiveS').textContent = 'of ' + list.length + ' rep' + (list.length===1?'':'s');
+    $('tActive').textContent = active; $('tActiveS').textContent = 'of ' + list.length + ' Rep' + (list.length===1?'':'s');
     $('tFollow').textContent = follow; $('tDone').textContent = done7; $('tSkip').textContent = skip;
     var showDm = scope!=='mine' && scope.indexOf('dm:')!==0 && !!team;
-    var html = '<div class="hrow'+(showDm?' dm':'')+'"><span>Rep</span>'+(showDm?'<span>Reports to</span>':'')+'<span>Follow-ups</span><span>Done · 7d</span><span>Not now</span><span>Last activity</span><span></span></div>';
-    if(!list.length) html += '<div class="note" style="margin:0;border:0;border-radius:0">No reps to show.</div>';
+    var html = '<div class="hrow'+(showDm?' dm':'')+'"><span>Rep</span>'+(showDm?'<span>Reports to</span>':'')+'<span>Follow-Ups</span><span>Done · 7 Days</span><span>Not Now</span><span>Last Activity</span><span></span></div>';
+    if(!list.length) html += '<div class="note" style="margin:0;border:0;border-radius:0">No Reps to Show</div>';
     list.forEach(function(R){
       var open = openRep===ci(R.name);
       var stale = !R.last || R.last < Date.now()-10*86400*1000;
@@ -218,17 +216,17 @@
         + '<span class="name"><i class="av">'+esc(initials(R.name))+'</i><span>'+esc(R.name)+'</span></span>'
         + (showDm ? '<span class="dmcell">'+esc(R.dm||'—')+'</span>' : '')
         + '<span class="stats">'
-        + '<span class="num'+(R.follow.length?' follow':' zero')+'">'+R.follow.length+'<small>follow-up'+(R.follow.length===1?'':'s')+'</small></span>'
-        + '<span class="num'+(R.done7?' done':' zero')+'">'+R.done7+'<small>done</small></span>'
-        + '<span class="num'+(R.skip?'':' zero')+'">'+R.skip+'<small>not now</small></span>'
-        + '<span class="when'+(R.last?(stale?' stale':''):' none')+'">'+(R.last ? esc(ago(new Date(R.last).toISOString())) : 'No marks yet')+'</span>'
+        + '<span class="num'+(R.follow.length?' follow':' zero')+'">'+R.follow.length+'<small>Follow-Up'+(R.follow.length===1?'':'s')+'</small></span>'
+        + '<span class="num'+(R.done7?' done':' zero')+'">'+R.done7+'<small>Done</small></span>'
+        + '<span class="num'+(R.skip?'':' zero')+'">'+R.skip+'<small>Not Now</small></span>'
+        + '<span class="when'+(R.last?(stale?' stale':''):' none')+'">'+(R.last ? esc(ago(new Date(R.last).toISOString())) : 'No Marks Yet')+'</span>'
         + '</span><span class="chev">›</span></button>';
       if(open) html += panel(R);
     });
     $('list').innerHTML = html;
   }
   function item(r, withChip){
-    return '<li>'+(withChip?'<span class="chip '+esc(r.status)+'">'+({done:'Done',follow:'Follow up',skip:'Not now'}[r.status]||r.status)+'</span>':'')
+    return '<li>'+(withChip?'<span class="chip '+esc(r.status)+'">'+({done:'Done',follow:'Follow Up',skip:'Not Now'}[r.status]||r.status)+'</span>':'')
       + '<span class="acct">'+esc(r.account_name || ('Account #'+r.account_num))+'</span>'
       + '<div class="prog">'+esc(progName(r.program_id))+'</div>'
       + (r.note ? '<div class="memo">“'+esc(r.note)+'”</div>' : '')
@@ -239,8 +237,8 @@
     var recent = R.rows.slice(0, 8);
     var hub = '../hub/#view=rep&rep='+encodeURIComponent(R.name)+'&cat=inc&only=inc';
     return '<div class="panel">'
-      + '<div><h3>Open Follow-ups · '+follow.length+'</h3>'+(follow.length ? '<ul>'+follow.map(function(r){ return item(r,false); }).join('')+'</ul>' : '<p class="empty">Nothing waiting on a follow-up.</p>')+'</div>'
-      + '<div><h3>Recent Marks</h3>'+(recent.length ? '<ul>'+recent.map(function(r){ return item(r,true); }).join('')+'</ul>' : '<p class="empty">'+esc(R.name)+' hasn’t marked anything yet.</p>')+'</div>'
+      + '<div><h3>Open Follow-ups · '+follow.length+'</h3>'+(follow.length ? '<ul>'+follow.map(function(r){ return item(r,false); }).join('')+'</ul>' : '<p class="empty">No Open Follow-Ups</p>')+'</div>'
+      + '<div><h3>Recent Marks</h3>'+(recent.length ? '<ul>'+recent.map(function(r){ return item(r,true); }).join('')+'</ul>' : '<p class="empty">'+esc(R.name)+' Has No Marks Yet</p>')+'</div>'
       + '<div class="links"><a href="'+hub+'">View in Incentive Hub ›</a><button type="button" data-preview="'+esc(R.name)+'">Preview as '+esc(R.name.split(' ')[0])+' ›</button></div>'
       + '</div>';
   }

@@ -948,6 +948,7 @@ function flags(p, r){
   return out.join('');
 }
 const plw = (n,w)=>`${n} ${w}${n===1?'':'s'}`;
+const plwT = (n,w)=>`${n} ${w}${n===1?'':'s'}`;
 const pl = plw;
 
 /* ---- topbar ---- */
@@ -980,14 +981,14 @@ function refreshedLine(){
   // Incentive Hub tile) says nothing about the MPO boards (2026-09-28).
   // and on a rep's tab only that tab's feed (2026-10-02): one quiet line, not three
   const tabNow = (state.view==='rep' || state.view==='sup' || state.view==='detail') && ['inc','off','on'].includes(tabOf(state.cat)) ? tabOf(state.cat) : '';
-  const lines = tabNow && tabNow!=='inc' ? [] : [['Incentives', incRefreshed()]];
+  const lines = tabNow && tabNow!=='inc' ? [] : [['Data', incRefreshed()]];
   (state.only==='inc' || tabNow==='inc' ? [] : ['off','on'].filter(x=>!tabNow || x===tabNow)).forEach(s=>{
     const st = mpoState[s]||{}; const mk = mpoRepMonth(s);
     const iso = (st[mk] && st[mk].syncedAt) || Object.keys(st).map(k=>st[k].syncedAt).filter(Boolean).sort().pop();
-    lines.push([MPO_SCOPES[s].label, iso ? fmtSynced(iso) : 'loading…']);
+    lines.push([tabNow ? 'Data' : MPO_SCOPES[s].label, iso ? fmtSynced(iso) : 'loading…']);
   });
   return `<p class="updated"><span class="livedot"></span><span class="upd-lines">${lines.map(([k,v])=>
-    `<span class="upd"><span class="upd-k">${E(k)} refreshed</span> <span class="upd-v">${E(v||'—')}</span></span>`).join('')}</span></p>`;
+    `<span class="upd"><span class="upd-k">${E(k)} Refreshed</span> <span class="upd-v">${E(v||'—')}</span></span>`).join('')}</span></p>`;
 }
 
 /* ---- landing ---- */
@@ -1071,10 +1072,10 @@ function incNums(r){
 // something about today; 5 is what does not apply to them at all.
 function incBand(p, r){
   if(!r) return null;
-  if(r.status==='unavailable') return {band:5, label:'Not in your territory', cls:'na'};
-  if(r.soon) return {band:4, label:'Awaiting data', cls:'na'};
+  if(r.status==='unavailable') return {band:5, label:'Not in Your Territory', cls:'na'};
+  if(r.soon) return {band:4, label:'Awaiting Data', cls:'na'};
   const N = incNums(r);
-  if(!N) return {band:3, label:'No set goal', cls:'open'};
+  if(!N) return {band:3, label:'No Set Goal', cls:'open'};
   if(N.need<=0) return {band:2, label:'Goal Met', cls:'met'};
   if(r.pace==='close' || r.pace==='ontrack') return {band:1, label:'On Track', cls:'ontrack'};
   return {band:0, label:'Needs Attention', cls:'attn'};
@@ -1267,7 +1268,7 @@ function screenRepIncentives(rep){
     // fourteen suppliers to find out what needs attention.
     const mini = expanded ? '' : `<div class="imini-list">${g.list.map(x=>{
       const N = incNums(x.r); const u = N ? unitOf(x.r) : '';
-      const prog = !N ? E(x.r.now || (x.r.soon ? 'Awaiting data' : x.r.openEnded ? 'Every one pays' : '')) : (u ? `${fmtN(N.cur)} of ${fmtN(N.goal)} ${E(u)}` : `${E(x.r.now||fmtN(N.cur))} of ${E(x.r.goal||fmtN(N.goal))}`);
+      const prog = !N ? E(x.r.now || (x.r.soon ? 'Awaiting data' : x.r.openEnded ? 'Every One Pays' : '')) : (u ? `${fmtN(N.cur)} of ${fmtN(N.goal)} ${E(u)}` : `${E(x.r.now||fmtN(N.cur))} of ${E(x.r.goal||fmtN(N.goal))}`);
       return `<button class="imini" data-act="open-prog" data-sup="${E(key)}" data-prog="${E(x.p.id)}">
         <span class="imini-n">${E(x.p.shortName||x.p.name)}</span>
         <span class="imini-s ${x.b.cls}">${x.b.band<=2?`<i class="idot ${x.b.cls}"></i>`:''}${E(x.b.label)}</span>
@@ -1374,7 +1375,7 @@ function screenRep(){
   const subline = bySup
     ? `${plw(active.length,'incentive')}${active.filter(x=>isEarned(x.r)).length?` · <strong class="ok">${active.filter(x=>isEarned(x.r)).length} already earned</strong>`:''}${counts.ending?` · <strong>${counts.ending} ending soon</strong>`:''}`
     : isMpoCat
-      ? `${plw(active.length,'program')} · ${counts.complete} at goal · ${active.length-counts.complete}${past?' missed':' still open'}`
+      ? `${plwT(active.length,'Program')} · ${counts.complete} At Goal · ${active.length-counts.complete}${past?' Missed':' Still Open'}`
       : `${plw(active.length,'active program')}${counts.ending?` · <strong>${counts.ending} ending soon</strong>`:''}`;
   let html = `<div class="rep-head">
     <div class="rep-title"><h1>${E(possessive(rep))} ${E(catMeta.label)}</h1>
@@ -2452,7 +2453,7 @@ function programCard(p, r, rep){
     quick = `<div class="quick">
         <div class="q goal"><span class="ql"><span class="qi">🎯</span>Goal</span><span class="qv">${E(r.openEnded ? 'No cap' : (r.goal||'—'))}</span></div>
         <div class="q prog"><span class="ql"><span class="qi">📍</span>Where you are</span><span class="qv">${E(r.now||'—')}</span></div>
-        <div class="q need"><span class="ql"><span class="qi">⏳</span>Still need</span><span class="qv${r.remain?'':' ok'}">${E(r.remain || (done ? 'Done ✓' : (r.openEnded ? 'Every one pays' : '—')))}</span></div>
+        <div class="q need"><span class="ql"><span class="qi">⏳</span>Still need</span><span class="qv${r.remain?'':' ok'}">${E(r.remain || (done ? 'Done ✓' : (r.openEnded ? 'Every One Pays' : '—')))}</span></div>
       </div>
       <div class="barrow">${barHtml(r)}<span class="barrow-pct ${r.pace}">${E(pctTxt || (r.status==='notstarted' ? '0' : '✓'))}</span></div>
       ${dead}`;
@@ -2680,7 +2681,7 @@ function mpoProgramCardHtml(p){
       </div>
       ${has ? `<div class="g-fig"><span class="g-fig-n">${g.n}</span><span class="g-fig-of"> of ${g.total}</span><span class="g-fig-u">Reps at Goal</span></div>
         <div class="g-bar"><div class="g-bar-fill ${all?'achieved':g.n>0?'inprogress':'notstarted'}" style="width:${Math.round(share)}%"></div></div>
-        <div class="g-bar-cap">Team progress: ${Math.round(share)}% of eligible reps at goal</div>`
+        <div class="g-bar-cap">Team Progress: ${Math.round(share)}% of eligible reps at goal</div>`
         : `<div class="g-need">${loaded?'No data yet \u2014 not counted':'Loading…'}</div>`}
       <div class="g-meta">MPO Weight: ${Math.round((o.weight||0)*100)}%<span class="g-review">Review Reps</span></div>
     </button></div>`;
@@ -2702,7 +2703,7 @@ function mpoSectionHtml(scope, mk, progs){
   return `<section class="g pv-mpo">
     <div class="g-step-head">
       <div class="g-title">${E(S.label)} MPO</div>
-      <div class="g-sub">${E(month?month.label:mk)} · tap a program to see every rep&rsquo;s result.${hidden>0?` <span class="pv-mpo-filtered">${hidden} more objective${hidden===1?'':'s'} hidden by your filters</span>`:''}</div>
+      <div class="g-sub">${E(month?month.label:mk)}${hidden>0?` · <span class="pv-mpo-filtered">${hidden} More Hidden by Filters</span>`:''}</div>
     </div>
     ${progs.map(mpoProgramCardHtml).join('')}
   </section>`;
@@ -2876,14 +2877,13 @@ function screenPrograms(){
   const sel = (name, opts, val) => `<select class="fsel" data-filter="${name}">${opts.map(o=>`<option value="${E(o.v)}"${o.v===val?' selected':''}>${E(o.l)}</option>`).join('')}</select>`;
   let html = `<div class="pv-head">
     <div class="pv-title"><h1>Program View</h1>${exportMenuHtml('')}</div>
-    <p class="pv-sub">Every program on the board, by program instead of by rep — participation, completion and who is where.</p>
     ${refreshedLine()}
     <div class="filters">
       <div class="fgrp"><span class="fl">Type</span>${['all','inc','mpo'].map(v=>`<button class="fpill${f.type===v?' active':''}" data-filter="type" data-v="${v}">${v==='all'?'All':v==='inc'?'Incentives':'MPOs'}</button>`).join('')}</div>
       <div class="fgrp"><span class="fl">Channel</span>${['all','on','off'].map(v=>`<button class="fpill${f.chan===v?' active':''}" data-filter="chan" data-v="${v}">${v==='all'?'All':v==='on'?'On-Premise':'Off-Premise'}</button>`).join('')}</div>
-      <div class="fgrp"><span class="fl">Supplier</span>${sel('sup', [{v:'all',l:'All suppliers'}].concat(sups.map(s=>({v:s,l:s}))), f.sup)}</div>
-      <div class="fgrp"><span class="fl">Rep</span><select class="pv-rep" id="pvRep" aria-label="Open one rep’s programs"><option value="">All reps (${ROSTER.length})</option>${DM_GROUPS.map(g=>({dm:g.dm, reps:g.reps.filter(r=>ROSTER.includes(r))})).filter(g=>g.reps.length).map(g=>`<optgroup label="${E(g.dm)}">${g.reps.map(r=>`<option value="${E(r)}">${E(r)}</option>`).join('')}</optgroup>`).join('')}${(()=>{ const inG = new Set(DM_GROUPS.flatMap(g=>g.reps)); const o = ROSTER.filter(r=>!inG.has(r)); return o.length ? `<optgroup label="Other">${o.map(r=>`<option value="${E(r)}">${E(r)}</option>`).join('')}</optgroup>` : ''; })()}</select></div>
-      <div class="fgrp"><span class="fl">Month</span>${sel('month', [{v:'active',l:'Active now'},{v:'all',l:'All months'}].concat(months.map(m=>({v:m,l:monthLabel(m)}))), f.month)}</div>
+      <div class="fgrp"><span class="fl">Supplier</span>${sel('sup', [{v:'all',l:'All Suppliers'}].concat(sups.map(s=>({v:s,l:s}))), f.sup)}</div>
+      <div class="fgrp"><span class="fl">Rep</span><select class="pv-rep" id="pvRep" aria-label="Open one rep’s programs"><option value="">All Reps (${ROSTER.length})</option>${DM_GROUPS.map(g=>({dm:g.dm, reps:g.reps.filter(r=>ROSTER.includes(r))})).filter(g=>g.reps.length).map(g=>`<optgroup label="${E(g.dm)}">${g.reps.map(r=>`<option value="${E(r)}">${E(r)}</option>`).join('')}</optgroup>`).join('')}${(()=>{ const inG = new Set(DM_GROUPS.flatMap(g=>g.reps)); const o = ROSTER.filter(r=>!inG.has(r)); return o.length ? `<optgroup label="Other">${o.map(r=>`<option value="${E(r)}">${E(r)}</option>`).join('')}</optgroup>` : ''; })()}</select></div>
+      <div class="fgrp"><span class="fl">Month</span>${sel('month', [{v:'active',l:'Active Now'},{v:'all',l:'All Months'}].concat(months.map(m=>({v:m,l:monthLabel(m)}))), f.month)}</div>
     </div>
   </div>`;
   if(pending.length) html += `<div class="loading">Loading MPO data for ${pending.map(x=>MPO_SCOPES[x[0]].label+' '+monthLabel(x[1])).join(', ')}…</div>`;
@@ -3079,11 +3079,11 @@ function goalBlockHtml(p, f, opt){
 function progFacts(p, r, rep){
   if(!r) return null;
   if(r.status==='unavailable') return {main:'Not in your territory', need:'', pct:null, cls:'na', label:'Not in your territory', rule:r.sub||''};
-  if(r.soon) return {main: r.loading ? 'Loading…' : (p.manual ? 'Verified by hand from iSellBeer photos' : 'Awaiting the first export'), need:'', pct:null, cls:'na', label: r.loading ? 'Loading' : 'Awaiting data', rule:''};
+  if(r.soon) return {main: r.loading ? 'Loading…' : (p.manual ? 'Verified by hand from iSellBeer photos' : 'Awaiting the first export'), need:'', pct:null, cls:'na', label: r.loading ? 'Loading' : 'Awaiting Data', rule:''};
   if(p.type==='MPO'){
     const N = mpoNums(r); const unit = (p.objective && p.objective.unit) || '';
     const st = gStatusOf(r); const cls = st==='achieved' ? 'met' : st==='inprogress' ? 'ontrack' : 'open';
-    const label = st==='achieved' ? 'Goal met' : st==='inprogress' ? 'In progress' : 'Not started';
+    const label = st==='achieved' ? 'Goal Met' : st==='inprogress' ? 'In Progress' : 'Not Started';
     if(!N) return {main:E(r.now||'—'), need:E(r.remain||''), pct:r.pct, cls, label, rule:r.goal||''};
     const main = unit ? `${fmtN(N.cur)} of ${fmtN(N.goal)} required ${uPl(N.goal, unit)}` : `${E(r.now||fmtN(N.cur))} of ${E(r.goal||fmtN(N.goal))}`;
     const need = N.need<=0 ? 'Requirement met' : (unit ? `${fmtN(N.need)} more ${uPl(N.need, unit)} needed` : `${E(r.remain||fmtN(N.need)+' more needed')}`);
@@ -3093,7 +3093,7 @@ function progFacts(p, r, rep){
       cur:N.cur, goalN:N.goal, needN:N.need, unit, why: mpoGoalWhy(p, r, N)};
   }
   const b = incBand(p, r) || {cls:'open', label:''};
-  if(r.openEnded) return {main:E(r.now||'—'), need:'Every one pays — no goal to count down', pct:null, cls:'open', label:b.label, rule:''};
+  if(r.openEnded) return {main:E(r.now||'—'), need:'Every One Pays', pct:null, cls:'open', label:b.label, rule:''};
   const N = incNums(r);
   if(!N) return {main:E(r.now||'—'), need:E(r.remain||''), pct:r.pct, cls:b.cls, label:b.label, rule:''};
   // A percentage goal (Lytt: "25% of your accounts"): say it in accounts
@@ -3137,7 +3137,7 @@ function progRowHtml(p, r, rep, noSup){
       <span class="hrow-t"><span>${E(p.type==='MPO' ? (p.shortName||p.name) : (p.shortName||p.name))}</span>${htag(f)}</span>
       <span class="hrow-s">${E(meta)}</span>
       ${(!off && f.goalN!=null) ? `<span class="hrow-g"><span>Goal</span> <b>${fmtN(f.goalN)}${f.unit ? ' '+E(titleW(uPl(f.goalN, f.unit))) : ''}</b></span>
-      <span class="hrow-p"><b>${fmtN(f.cur)}</b> of ${fmtN(f.goalN)} · ${f.needN<=0 ? '<b class="ok">Goal met</b>' : `<b>${fmtN(f.needN)}</b> more needed`}</span>`
+      <span class="hrow-p"><b>${fmtN(f.cur)}</b> of ${fmtN(f.goalN)} · ${f.needN<=0 ? '<b class="ok">Goal Met</b>' : `<b>${fmtN(f.needN)}</b> more needed`}</span>`
         : (f.main ? `<span class="hrow-p"><b>${f.main}</b>${f.need && f.need!==f.label ? ` · ${f.need}` : ''}</span>` : '')}
       ${off ? '' : hbar(f)}
     </span>${CHEV}</button>`;
@@ -3205,14 +3205,14 @@ function screenSuppliers(rep){
   const list = groups.map(g=>{
     const logo = (g.list[0] && g.list[0].p.supplierLogo) || '';
     return `<section class="hsupg" aria-label="${E(g.name)}">
-      <div class="hsupg-h">${supLogoHtml(g.name, logo)}<span class="hsupg-n">${E(g.name)}</span><span class="hsupg-c">${plw(g.list.length,'program')}</span></div>
+      <div class="hsupg-h">${supLogoHtml(g.name, logo)}<span class="hsupg-n">${E(g.name)}</span><span class="hsupg-c">${plwT(g.list.length,'Program')}</span></div>
       <div class="hlist">${g.list.map(x=>progRowHtml(x.p, x.r, rep, true)).join('')}</div></section>`;
   }).join('');
   return `<div class="hview">
     <div class="rep-head">
       <div class="rep-title"><h1>${E(possessive(rep))} Incentives</h1>
         ${roleLine(rep)}${tapShareLink(rep)}
-        <div class="rep-sub">${plw(rows.length,'program')} across ${plw(groups.length,'supplier')} · ${rows.length ? `<span class="hs met">${met} met</span> · <span class="hs ontrack">${onTrack} on track</span> · <span class="hs attn">${attn} need${attn===1?'s':''} attention</span>` : ''}</div>
+        <div class="rep-sub">${plwT(rows.length,'Program')}${rows.length ? ` · <span class="hs met">${met} Met</span> · <span class="hs ontrack">${onTrack} On Track</span> · <span class="hs attn">${attn} Need${attn===1?'s':''} Attention</span>` : ''}</div>
         ${refreshedLine()}</div>
       ${tabbar(rep, 'inc')}
     </div>

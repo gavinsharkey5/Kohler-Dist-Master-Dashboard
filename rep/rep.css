@@ -281,3 +281,36 @@ html.kdh-rep #kicker{display:none}
 .btn.quiet{background:none;border-color:transparent;color:var(--text-3);text-decoration:underline;min-height:36px;padding:0 6px}
 .ws .switch#viewAs{gap:12px}
 .ws #mgrSwitch{flex:1 1 100%;justify-content:flex-end}
+
+/* PAGE STANDARD (2026-10-07): rep home + manager home. One centered 960px column,
+   centered title block, short card copy. Scoped to .rh / .mh so shared pages are unchanged. */
+.wrap.rh,.wrap.mh{max-width:960px;padding:0 16px}
+.rh + footer,.mh + footer{max-width:960px;padding:12px 16px 32px;text-align:center;font-size:14px}
+.rh-head,.mh .ws{flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;padding:24px 0 16px}
+.rh-id,.mh .ws .id{text-align:center}
+.rh-id h1,.mh .ws h1{font-size:28px;font-weight:600;line-height:1.2}
+.rh-meta,.mh .meta{justify-content:center;font-size:15px;margin:4px 0 0}
+.mh .meta{min-height:0}
+.mh .switch,.rh-head .switch{justify-content:center;font-size:14px}
+.mh .ws .switch#viewAs{justify-content:center}
+.mh .ws #mgrSwitch{flex:0 1 auto;justify-content:center}
+.rh-id .kicker{display:none}
+.rh-gh h2,.mh .section-h h2{font-size:17px}
+.mh .section{margin:0;padding:0 0 24px}
+.mh .section-h{margin:0 0 12px}
+.mh .grid{gap:12px}
+.mh a.card{align-items:center;text-align:center;gap:8px;padding:16px;min-height:132px}
+.mh a.card .head{justify-content:center}
+.mh .card p{font-size:14px;-webkit-line-clamp:unset;display:block;overflow:visible}
+.mh .card .foot{width:100%;font-size:14px;justify-content:space-between}
+.rh-tool{align-items:center;text-align:center}
+.rh-tool .rh-tmain{align-items:center;text-align:center}
+.rh-tool .rh-ts{display:block;overflow:visible;-webkit-line-clamp:unset}
+.rh-n small{font-size:13px}
+.rh-quiet{font-size:15px;text-align:center}
+.rh-gh{margin:0 0 12px}
+.rh-group,.rh-entry{margin:0 0 24px}
+@media (max-width:599px){
+  .rh-tool{flex-direction:row;text-align:left;align-items:center}
+  .rh-tool .rh-tmain{align-items:flex-start;text-align:left}
+}

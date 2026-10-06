@@ -20,11 +20,11 @@ html,body{overflow-x:clip;}
 body{background:var(--canvas);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;padding-bottom:80px;}
 a{color:var(--accent);}
 button{font:inherit;color:inherit;}
-.wrap{max-width:1100px;margin:0 auto;padding:18px 16px 0;}
+.wrap{max-width:960px;margin:0 auto;padding:18px 16px 0;}
 @media (min-width:760px){ .wrap{padding:24px 32px 0;} }
 
 /* ---- top bar + banner (the tracker's) ---- */
-.topbar{padding:16px 16px 0;max-width:1100px;margin:0 auto;}
+.topbar{padding:16px 16px 0;max-width:960px;margin:0 auto;}
 @media (min-width:760px){ .topbar{padding:24px 32px 0;} }
 .crumb{font-size:14px;color:var(--text-dim);margin-bottom:12px;}
 .crumb a{color:var(--text-dim);text-decoration:none;}
@@ -872,7 +872,7 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:600;letter-spacing:-.01em;
 .rep-month{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-dim);}
 
 /* ---- v8: incentives by supplier (the tracker's "choose a supplier" step) ---- */
-.pickview.wide{max-width:1100px;}
+.pickview.wide{max-width:960px;}
 .pick-head.left{text-align:left;margin:6px 0 20px;}
 .pick-head.left h1{font-size:clamp(27px,6.4vw,38px);}
 .supgrid{display:grid;grid-template-columns:1fr;gap:12px;}
@@ -1370,7 +1370,7 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:600;letter-spacing:-.01em;
    short header, then one list of tappable rows, then the detail behind a
    labelled fold. One accent for actions, status in small quiet tags.
    ==================================================================== */
-.hview{max-width:760px;}
+.hview{max-width:none;}
 .hview .rep-head{margin-bottom:10px;}
 .hview .rep-sub .hs{font-weight:600;color:var(--text-dim);} .hs.met{color:var(--good);} .hs.attn{color:var(--amber);} .hs.ontrack{color:var(--accent);}
 .hreturn{display:inline-flex;align-items:center;gap:4px;min-height:40px;padding:0 10px 0 4px;margin:0 0 6px -4px;border:0;background:none;color:var(--accent);font:inherit;font-size:14.5px;font-weight:600;cursor:pointer;border-radius:8px;}
@@ -1711,3 +1711,16 @@ a.hreturn{text-decoration:none;}
 .pwq-row .pwq-n{overflow-wrap:anywhere;}
 .pwf-ask{margin:12px 0 0;font-size:15px;line-height:1.4;color:var(--text);}
 .pwf-ask span{display:block;font-size:13.5px;font-weight:600;color:var(--text-dim);margin-bottom:1px;}
+
+/* ---- PAGE STANDARD (2026-10-07): one 960px column, centered header ---- */
+.rep-head .rep-title{text-align:center;}
+.rep-head .rep-title h1{font-size:clamp(24px,6.4vw,28px);font-weight:600;}
+.rep-head .rep-title .rep-sub{font-size:15px;margin-top:6px;}
+.rep-head .rep-title .rep-role{text-align:center;}
+.rep-head .rep-title .updated{justify-content:center;margin-top:6px;font-family:inherit;letter-spacing:0;font-size:14px;}
+.rep-head .rep-title .updated > span:last-child{text-align:left;}
+.rep-head .rep-title .upd-lines{justify-content:center;}
+.rep-head .rep-title .taplink{margin:8px 0 2px;font-family:inherit;letter-spacing:0;font-size:14px;min-height:40px;}
+.rep-head .tabbar{margin-top:14px;}
+.hview .hlist,.hview .hsups{width:100%;}
+.hrow .hbar{max-width:none;}
