@@ -815,6 +815,9 @@ const isMobile = () => window.innerWidth < 760 || (window.matchMedia('(pointer:c
 // open on the program view everywhere; DMs are already cut to their team by HUB_TEAM).
 const mgrCapable = () => !isMobile() || SIGNED_MGR;
 const isMgr = () => state.mode==='manager' && mgrCapable();
+// Leaving one rep's view (Change / home): a signed-in manager goes back to Manager Mode --
+// managers always browse in Manager Mode; only the as-rep view forces Rep Mode.
+const leaveAsRep = () => { state.asRep = false; if(SIGNED_MGR && mgrCapable()) state.mode = 'manager'; };
 window.addEventListener('resize', ()=>{ if(!LIB && state.mode==='manager') render(); });
 // A signed-in manager on a computer starts in Manager Mode (2026-10-04, Gavin:
 // no repeated mode screens); a manager who switched to Rep Mode keeps it.
@@ -3549,7 +3552,7 @@ function render(){
   root.innerHTML = topbar() + `<main class="wrap">${body}</main>`;
   if(window.KdhFit) window.KdhFit.tables(root);
   // The top bar says whose page this is (a manager on a rep's screen).
-  try{ if(window.kdhViewing) window.kdhViewing((state.view==='rep'||state.view==='detail'||state.view==='sup'||state.view==='accts'||state.view==='acct') && !LOCKED_REP ? (state.peek && state.view==='detail' ? state.peek : state.rep) : '', function(){ openCards.clear(); state.showEnded = false; state.asRep = false; go({view:'home', rep:null, main:null, cat:null, prog:null, peek:null, from:null}); }); }catch(e){}
+  try{ if(window.kdhViewing) window.kdhViewing((state.view==='rep'||state.view==='detail'||state.view==='sup'||state.view==='accts'||state.view==='acct') && !LOCKED_REP ? (state.peek && state.view==='detail' ? state.peek : state.rep) : '', function(){ openCards.clear(); state.showEnded = false; leaveAsRep(); go({view:'home', rep:null, main:null, cat:null, prog:null, peek:null, from:null}); }); }catch(e){}
   document.title = state.view==='rep' && state.rep ? `${possessive(state.rep)} Incentives & MPOs | Kohler` : 'Incentives & MPO Hub | Kohler Distributing';
   // Kick off any MPO month this screen needs, then re-render once it lands.
   let needed = [];
@@ -3580,7 +3583,7 @@ document.addEventListener('click', e=>{
   const act = t.dataset.act;
   if(t.tagName==='A') e.preventDefault();
   switch(act){
-    case 'home': openCards.clear(); state.showEnded = false; state.asRep = false; go({view:'home', rep:null, main:null, cat:null, prog:null, peek:null, from:null}); break;
+    case 'home': openCards.clear(); state.showEnded = false; leaveAsRep(); go({view:'home', rep:null, main:null, cat:null, prog:null, peek:null, from:null}); break;
     // Picking a name IS the whole landing step: open that rep's dashboard.
     case 'pick-rep': { state.asRep = false; const who = LOCKED_REP || t.dataset.rep, tab = isSupport(who) ? 'on' : lastTab();   // support lands on the on-prem MPO
       openCards.clear(); state.showEnded = false;

@@ -256,6 +256,10 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-10-06 **Hub: a manager stays in Manager Mode after viewing one rep**:
+  tapping Change on the "Viewing <rep>" chip used to leave the hub in rep mode, so
+  the next rep you picked showed "Choose Another Rep" instead of "‹ Program View".
+  Nothing to do on your side.
 - [x] 2026-10-06 **Cards easier to read**: every incentive and MPO card leads with
   the goal (with its unit and the rule behind it), then Current / Still Needed in
   large dark numbers, one bar, the deadline and View Eligible Accounts; weight
