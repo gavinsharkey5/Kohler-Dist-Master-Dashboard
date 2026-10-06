@@ -253,6 +253,9 @@
   .note{font-size:12.5px;color:var(--ink-soft)}
   .pill{display:inline-block;font-size:11px;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:2px 9px;color:var(--ink-soft)}
 
+  .dashgrid>*{min-width:0}
+  @media (max-width:900px){.dashgrid{grid-template-columns:minmax(0,1fr)}}
+  .mapwrap svg{max-width:100%;height:auto}
   /* PAGE STANDARD (phone app: structure and bottom tabs unchanged) */
   .eyebrow{letter-spacing:0;text-transform:none;font-size:14px;font-weight:600}
   h1,h2,h3,.brandmark .t,.locbanner .id,.kpi .v{font-family:"Inter",sans-serif}
@@ -277,10 +280,22 @@
   .filters{justify-content:center}
   .kpi{text-align:center}
   .kpi .v{font-size:32px;font-weight:600}
-  .kpis{gap:12px}
+  .kpis{gap:12px;grid-template-columns:repeat(3,minmax(0,1fr))}
+  @media (max-width:640px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
   .card{padding:16px}
   .card h2{font-size:18px;font-weight:600}
   .card + .card{margin-top:12px}
+  table.tbl th{font-size:14px;letter-spacing:0;text-transform:none}
+  table.tbl{font-size:14px}
+  @media (max-width:640px){
+    .tscroll{overflow-x:visible}
+    #brandtable,#brandtable tbody,#brandtable tr,#brandtable td{display:block;width:100%}
+    #brandtable thead{display:none}
+    #brandtable tr{border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:0 0 12px}
+    #brandtable td{border:0;padding:4px 0;text-align:left}
+    #brandtable td[data-l]{display:flex;justify-content:space-between;gap:12px}
+    #brandtable td[data-l]::before{content:attr(data-l);color:var(--ink-soft)}
+  }
   @media print{
     .topbar,.tabs,.savebar,#toast{display:none!important}
     body{background:#fff;color:#000;padding:0}
@@ -1225,7 +1240,7 @@ function dashFilters(){
   const ef = $('#eventfilter'); const cur = ef.dataset.set ? ef.value : (Settings.get().event && events.includes(Settings.get().event) ? Settings.get().event : '');
   ef.innerHTML = `<option value="">All events</option>` + events.map(e => `<option value="${esc(e)}" ${e===cur?'selected':''}>${esc(e)}</option>`).join(''); ef.dataset.set = '1';
   ef.hidden = events.length < 2;
-  const lf = $('#levelfilter'); if (!lf.dataset.set) { lf.innerHTML = `<option value="">All levels</option>` + LEVELS.map(l => `<option value="${esc(l)}">${esc(l)}</option>`).join(''); lf.dataset.set='1'; }
+  const lf = $('#levelfilter'); if (!lf.dataset.set) { lf.innerHTML = `<option value="">All Levels</option>` + LEVELS.map(l => `<option value="${esc(l)}">${esc(l)}</option>`).join(''); lf.dataset.set='1'; }
   return all.filter(l => (!ef.value || l.event===ef.value) && (!lf.value || levelOf(l.section)===lf.value));
 }
 $('#eventfilter').onchange = renderDashboard; $('#levelfilter').onchange = renderDashboard;
@@ -1254,7 +1269,7 @@ function renderDashboard(){
   // map brand selector
   const mb = $('#mapbrand'); const prev = mb.value;
   mb.innerHTML = globalStats.brandList.map(b => `<option value="${esc(b.name)}" ${b.name===prev?'selected':''}>${esc(b.name)}</option>`).join('');
-  $('#secjump').innerHTML = '<option value="">Jump to section…</option>' + Array.from(st.sections.keys()).sort((a,b) => a.localeCompare(b, undefined, {numeric:true})).map(k => `<option value="${esc(k)}">${esc(k)} (${st.sections.get(k).locs})</option>`).join('');
+  $('#secjump').innerHTML = '<option value="">Jump to Section…</option>' + Array.from(st.sections.keys()).sort((a,b) => a.localeCompare(b, undefined, {numeric:true})).map(k => `<option value="${esc(k)}">${esc(k)} (${st.sections.get(k).locs})</option>`).join('');
   paintMap(st);
   if (selectedSection && st.sections.has(selectedSection)) selectSection(selectedSection);
   else if (selectedSection) { $('#secdetail').innerHTML = `<div class="empty">Section ${esc(selectedSection)} is outside the current filter. Select another section on the map.</div>`; }
@@ -1287,7 +1302,8 @@ function renderStacks(st){
 }
 function renderBrandTable(st){
   const rows = st.brandList.map(b => `<tr class="${b.kohler?'kohler':''}"><td><span style="display:inline-flex;align-items:center;gap:7px"><i style="width:9px;height:9px;border-radius:50%;background:${colorOf(b.name)};display:inline-block"></i>${esc(b.name)}${b.kohler?' <span class="pill">Ours</span>':''}</span></td><td class="num">${b.facings}</td><td class="num">${b.taps}</td><td class="num">${pct(b.brandShare,1)}</td><td class="num">${pct(b.facingsShare,1)}</td><td class="num">${pct(b.draftShare,1)}</td><td class="num">${pct(b.coolerShare,1)}</td><td class="num">${b.locs.size}</td><td class="num">${pct(b.distribution,1)}</td></tr>`).join('');
-  $('#brandtable').innerHTML = `<thead><tr><th>Brand</th><th class="num">Facings</th><th class="num">Taps</th><th class="num">Brand share</th><th class="num">Facings share</th><th class="num">Draft share</th><th class="num">Cooler share</th><th class="num">Locations</th><th class="num">Distribution</th></tr></thead><tbody>${rows}</tbody>`;
+  $('#brandtable').innerHTML = `<thead><tr><th>Brand</th><th class="num">Facings</th><th class="num">Taps</th><th class="num">Brand Share</th><th class="num">Facings Share</th><th class="num">Draft Share</th><th class="num">Cooler Share</th><th class="num">Locations</th><th class="num">Distribution</th></tr></thead><tbody>${rows}</tbody>`;
+  { const hs=[...document.querySelectorAll('#brandtable thead th')].map(h=>h.textContent); document.querySelectorAll('#brandtable tbody tr').forEach(tr=>[...tr.children].forEach((td,i)=>{ if(i) td.setAttribute('data-l',hs[i]); })); }
 }
 
 /* =====================================================================
