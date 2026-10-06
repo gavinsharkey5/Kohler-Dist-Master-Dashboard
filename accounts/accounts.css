@@ -895,3 +895,32 @@ html.asheet-open{overflow:hidden}
 .later-row:first-of-type{border-top:0}
 .later-row b{font-size:15.5px;font-weight:600;color:var(--brand)}
 .later-row span{font-size:14px;color:var(--text-2)}
+
+/* ===== PAGE STANDARD (2026-10-07): one centered 960px column; page title +
+   subtitle centered; lists stay left-aligned inside the same edges ===== */
+#acctApp.wrap{max-width:960px;padding-left:16px;padding-right:16px;margin-left:auto;margin-right:auto}
+.ws.lhead{text-align:center;padding:14px 0 10px}
+.lh-top{position:relative;flex-direction:column;justify-content:center;gap:10px}
+.lh-top h1{font-size:26px;font-weight:600;text-align:center}
+.ws.lhead .idline{font-size:14px;color:var(--text-3);margin:6px 0 0;text-align:center}
+@media (min-width:600px){
+  .lh-top{flex-direction:row}
+  .lh-top .vseg{position:absolute;right:0;top:50%;transform:translateY(-50%)}
+}
+.acct-head,.acct-head .rec-st,.acct-head .sub{text-align:center}
+.acct-head .rec-st{justify-content:center}
+.acct-head .rec-loc{justify-content:center;text-align:center}
+.acct-head .rec-loc .rec-addr{flex:0 1 auto}
+.acct-head .act-quick,.acct-head .qa-row{justify-content:center}
+.acct-head h1{font-size:26px}
+.note,.dg-na,.fresh-foot{font-size:14px}
+.prio-note{margin:8px 0 0}
+details.about-data{margin:4px 0 16px}
+details.about-data > summary{font-size:14px}
+details.about-data > .note{margin:4px 0 0;line-height:1.5}
+/* Account page: main column + narrower side column inside the 960 column */
+@media (min-width:1180px){ .over-grid{grid-template-columns:minmax(0,1fr) 280px;gap:0 16px} }
+.over-grid > *{min-width:0}
+@media (min-width:1180px){ .over-grid{grid-template-columns:minmax(0,1fr) 300px} .over-side .dgroup .kv{grid-template-columns:92px minmax(0,1fr)} }
+#actQuick,.act-quick{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.qacts{justify-content:center}
