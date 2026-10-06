@@ -2554,3 +2554,14 @@ program-skus.js is loaded before hub/accounts.js on hub, accounts, exceptions
 and performance. Tags: hub/accounts.js 20261006b, hub.js 20261006g,
 program-skus.js 20261006a. New list = run `add`, then
 `python3 tools/program_eligibility.py` when the program has a rule.
+
+## Page standard applied sitewide (2026-10-06, branch only until Gavin approves pictures)
+
+Rep home, manager home, Team Activity, Exceptions, My Accounts + Account page, Incentive Hub (rep screens and
+Program View), both MPO trackers, Red Bull, Tap Tracker and Inventory now follow the COPY + LAYOUT STANDARD:
+960px centered column, page headers and summary cards centered, dense lists / tables left-aligned, short copy
+(rules moved into closed folds), Title Case in the strings, floors 13px tags / 14px secondary (`MIN_PX` 13 in
+kdh-user.js), phones stack into labelled blocks. The amber banner reads "Not Real Time. For live incentive and
+MPO data, Open Encompass." Each page has a "PAGE STANDARD" CSS block at the end of its stylesheet. NOT yet
+covered: manager tools (performance, merchandising, rolling-distribution, cockpit, W&S, metlife, etc.).
+Tests that match old copy ("accounts on your route", "In progress", "Manager Dashboards", "Why:") need updating.
