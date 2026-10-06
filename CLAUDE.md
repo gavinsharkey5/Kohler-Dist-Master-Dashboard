@@ -408,6 +408,40 @@ is now the LAST entry of MONTHS (no more editing it each month), the MPO tracker
 already default to the last month, and the hub's Previous Months toggle opens on the
 latest ended month (September).
 
+## Carbliss MPO tracker: fixed window, house total, penetration (2026-10-06)
+
+`carbliss-mpo/` (page + `generate.py` + README.txt). Gavin's brief: rebuild the
+Carbliss on-premise MPO around launch-period buying, NOT a rolling L90. PROGRAM
+PERIOD Aug 1 - Oct 30, 2026 inclusive (fixed; "Program Period: Aug 1-Oct 30,
+2026"); launch = first Carbliss load sheet on file (Jun 2, 2026, corroborated by
+the rolling master: no Carbliss sales before June 2026). Data = two EXISTING files,
+read in place: carbliss-onprem-targets/carbliss_buyers_l90.csv (load-sheet dates,
+Buyers 2026 flag; ON-PREMISE only, month-by-month equal to the master's on-prem
+buyers) and MPOs/on-prem/core_market_on_prem_accts.csv (the denominator, same base
+the October MPO's Carbliss objective uses, house reps Default / Office Tell Sell
+dropped). Qualifying purchase = a load-sheet row with Buyers 2026 > 0, any Carbliss
+flavor, counted by CustomerID once; the RDE flag does not net same-month returns
+(2 accounts, documented). Page: house card ("Carbliss Buying Accounts / N Accounts
+Bought During the Program Period / Aug 1-Oct 30 . Sales Through <latest load-sheet
+date>"), the rep card ("X of Y Assigned Accounts Bought Carbliss / Z% Account
+Penetration"), search + All Accounts / Program Buyers / Program Nonbuyers, rows
+Account | Bought Aug 1-Oct 30 | Bought Since Launch | Last Carbliss Purchase (check /
+X text labels; "Unknown" only if coverage starts after launch), stacked labelled
+rows under 760px. Managers: rep groups (collapsible) + rep select, DM scoped to
+their team (kdhTeam), house total stays company-wide. Reps: served their own
+`rep/<key>/program.json` (tools/rep_slices.py carbliss_mpo + middleware
+repSlicePath / SLICE_DIRS / REP_PATHS), pinned by kdhMatchName, fail closed.
+`generate.py --finalize` writes data/final.json (denied to reps, in .vercelignore):
+later runs read the program-period fields from it so nothing after Oct 30 can
+change the result, while Since Launch / Last Purchase keep updating. State: filters
+in the hash, groups + scroll in sessionStorage; account links carry from= / fl=.
+Accounts missing from the Account page's books (21) are listed unlinked. NOT
+changed: the October MPO objective "Carbliss 40% buying accounts" (Sep 1-Oct 31,
+40% target) -- a different definition; ROADMAP asks Gavin which to keep. Tests
+(scratchpad): cm_test.mjs (rep / phone / dark / manager / DM / preview / unmatched),
+cm_mw_test.mjs (real middleware.js with stubbed Supabase). Tags: carbliss-mpo.css /
+.js 20261006d, kdh-user.js 20261006b (new Programs sidebar item "Carbliss MPO").
+
 ## Boston Beer's seasonal-conversion sheets vs the RDE keg export (2026-10-05)
 
 Gavin sent Boston Beer's own "10-05-26 Sam Adams Seasonal Conversion Fall.xlsx" (per-rep
