@@ -2680,7 +2680,9 @@ function mpoProgramCardHtml(p){
         <span class="g-prog-name">${E(p.shortName||o.name)}<span class="g-reprow-dm">${E(o.supplier||p.supplier||'')}${(o.periodText||p.monthLabel)?' · '+E(o.periodText||p.monthLabel):''}</span></span>
         <span class="g-chev">&#9656;</span>
       </div>
-      ${has ? `<div class="g-fig"><span class="g-fig-n">${g.n}</span><span class="g-fig-of"> of ${g.total}</span><span class="g-fig-u">Reps at Goal</span></div>
+      ${isCarbliss(p) && cbData() ? (()=>{ const d=cbData(), n=d.house.buyers, goal=d.meta.goal; return `<div class="g-fig"><span class="g-fig-n">${n}</span><span class="g-fig-of"> of ${goal}</span><span class="g-fig-u">Team L90 Goal</span></div>
+        <div class="g-bar"><div class="g-bar-fill inprogress" style="width:${Math.round(cbShare(n,goal))}%"></div></div>
+        <div class="g-bar-cap">${goal-n} To Go · Aug 1 – Oct 31</div>`; })() : has ? `<div class="g-fig"><span class="g-fig-n">${g.n}</span><span class="g-fig-of"> of ${g.total}</span><span class="g-fig-u">Reps at Goal</span></div>
         <div class="g-bar"><div class="g-bar-fill ${all?'achieved':g.n>0?'inprogress':'notstarted'}" style="width:${Math.round(share)}%"></div></div>
         <div class="g-bar-cap">Team Progress: ${Math.round(share)}% of eligible reps at goal</div>`
         : `<div class="g-need">${loaded?'No data yet \u2014 not counted':'Loading…'}</div>`}
@@ -2937,9 +2939,67 @@ function screenPrograms(){
     </article>`;}).join('')}</div>`;
   return `<div class="pview">${html}</div>`;
 }
+
+/* ---- Carbliss On-Premise, manager side (2026-10-06): same numbers as the MPO card and the
+   leaderboard page (carbliss-mpo/data/program.json): L90 = bought Aug 1 - Oct 31, Team L90 Goal. ---- */
+const isCarbliss = p => !!(p && p.type==='MPO' && /^on:2026-10:carbliss$/.test(p.id));
+let CB_DATA;
+function cbData(){
+  if(CB_DATA!==undefined) return CB_DATA;
+  CB_DATA = null;
+  fetch('../carbliss-mpo/data/program.json', {credentials:'same-origin'}).then(r=>r.ok ? r.json() : null).catch(()=>null)
+    .then(d=>{ CB_DATA = d || false; if(!LIB && (state.view==='programs' || state.view==='program')) render(); });
+  return null;
+}
+const cbShare = (n, d) => d ? Math.round(n/d*1000)/10 : 0;
+function cbBoard(d){
+  return d.board.filter(b=>b.base>0).map(b=>({rep:b.rep, l90:b.l90, ytd:b.ytd, base:b.base, share:b.l90/b.base}))
+    .sort((a,b)=> b.share-a.share || a.rep.localeCompare(b.rep))
+    .reduce((out,x,i)=>{ out.push({...x, rank: i && out[i-1].share===x.share ? out[i-1].rank : i+1}); return out; }, []);
+}
+function screenProgramCarbliss(p){
+  const d = cbData();
+  const head = `<div class="pv-title"><button class="back" data-act="programs"><span class="ar">‹</span> Back to Program View</button>${exportMenuHtml(p.id)}</div>`;
+  if(!d) return `<div class="detail pdetail">${head}<div class="kdh-state ${d===false?'empty':'loading'}">${d===false?'Carbliss data is not available.':'Loading…'}</div></div>`;
+  const m = d.meta, goal = m.goal, n = d.house.buyers;
+  const board = cbBoard(d);
+  const ytdAll = d.board.reduce((a,b)=>a+b.ytd,0), fell = ytdAll - n;
+  const row = x => `<button class="lrow" data-act="open-for-rep" data-prog="${E(p.id)}" data-rep="${E(x.rep)}">
+      <span class="lrank">${x.rank<=3 ? ['🥇','🥈','🥉'][x.rank-1] : '#'+x.rank}</span>
+      <span class="lname">${E(x.rep)}</span>
+      <span class="lval">${x.l90} of ${x.base} · ${cbShare(x.l90,x.base)}%</span>
+      <span class="lbar"><span class="bar sm"><span class="bar-fill ontrack" style="width:${Math.max(x.share*100,2)}%"></span></span></span>
+    </button>`;
+  return `<div class="detail pdetail cbmgr">${head}
+    <div class="dhero cbhero">
+      <div class="dhero-top">${logoStrip(p,'lg')}<div class="dhero-meta">${typeChips(p)}<span class="chip sup">${E(p.supplier)}</span></div></div>
+      <h1 class="dhero-name">Carbliss Buying Accounts</h1>
+      <div class="dhero-sup">${E(p.monthLabel)} · MPO Weight 25%</div>
+      <div class="pstats">
+        <div class="pstat accent"><div class="pstat-n">${n} of ${goal}</div><div class="pstat-l">Team L90 Goal</div></div>
+        <div class="pstat"><div class="pstat-n">${goal-n}</div><div class="pstat-l">To Go</div></div>
+        <div class="pstat"><div class="pstat-n">${ytdAll}</div><div class="pstat-l">Since Launch</div></div>
+        <div class="pstat"><div class="pstat-n">${fell}</div><div class="pstat-l">Fell Off L90</div></div>
+      </div>
+      <div class="bar"><div class="bar-fill ontrack" style="width:${Math.min(100,Math.max(cbShare(n,goal),2))}%"></div></div>
+      <div class="dhero-line"><span class="period">📅 Aug 1 – Oct 31, 2026 · ${E(endsLabel(p.period))}</span><span class="refreshed">Sales Through ${E(new Date(m.sales_through+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}))}</span></div>
+      <p class="note"><a href="../carbliss-onprem-targets/">See Leaderboard ›</a></p>
+    </div>
+    <section class="dsec">
+      <h2 class="dsec-h">Rep Leaderboard</h2>
+      <p class="dsec-p">L90 Buyers of Assigned On-Premise Accounts · ${plw(board.length,'Rep')}</p>
+      <div class="lboard">${board.map(row).join('')}</div>
+    </section>
+    <details class="dsec fold"><summary class="dsec-h">Rules</summary>
+      <ul class="rules"><li>L90 = bought Carbliss Aug 1 – Oct 31, 2026</li><li>Team goal: ${goal} L90 buyers of ${d.house.base.toLocaleString('en-US')} core market on-premise accounts</li><li>Credit: 40% of your own on-premise accounts buying Carbliss, Sep 1 – Oct 31</li></ul>
+    </details>
+    ${workspaceTeamHtml(p) ? `<details class="dsec fold"><summary class="dsec-h">Team Opportunities</summary>${workspaceTeamHtml(p)}</details>` : ''}
+  </div>`;
+}
 function screenProgram(){
   const p = PROGRAMS.find(x=>x.id===state.prog);
   if(!p) return `<div class="empty">That program is not on the board.</div>`;
+  if(isCarbliss(p)) return screenProgramCarbliss(p);
   const loaded = p.type!=='MPO' || mpoMonthLoaded(p.source, p.monthKey);
   const st = loaded ? programStats(p) : null;
   const rank = loaded ? p.ranking() : [];
