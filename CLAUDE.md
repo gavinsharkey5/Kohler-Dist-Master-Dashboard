@@ -470,6 +470,24 @@ collapsible groups; filters search / rep / All - L90 buyers - Fell off L90 - Nev
 accounts gained `l90` (the RDE Buyers L90 flag) and the file gained `board`. The old goal bar and buyers card stay.
 Tags: kdh-user.js 20261006d. Tests (scratchpad): lb2_test.mjs.
 
+## COPY + LAYOUT STANDARD -- every page, every time (Gavin, 2026-10-06)
+
+Reps are beer sales reps: they do not read paragraphs. For every page you build or touch:
+- SHORT COPY. Labels and numbers first. No lede paragraphs, no "how this works" essays, no restating what a
+  number already says. One short line of context at most ("Data through Oct 16, 2026", "L90 = bought in the
+  last 90 days"). Put any rule detail in a fold or the README, never on the main screen. Cut stale copy when the
+  feature it described is gone.
+- CAPITALIZATION. Title Case for page names, section headings, card titles, tile labels, column headings, buttons
+  and filter labels ("Rep Leaderboard", "L90 Buyer", "Win Back", "See Leaderboard"); sentence case only for the
+  rare explanatory line. Same word, same spelling everywhere (L90, YTD, Account / Accounts).
+- TYPE. One face (Inter via the skin). Headings 16-18px / 600, body 15-16px, secondary 14px, nothing under 14px
+  except icons; big figures 30-48px / 600-700. No all-caps, no letter-spacing.
+- LAYOUT. One centered column per page (960px, 16px side padding): header, cards, filter bar and lists share the
+  same left and right edges; no panel wider than its neighbors. Spacing steps 12 / 14 / 16px between and inside
+  cards. Centered text inside cards. Filters in one grid row (search full width on top). Phones: stack into
+  labelled blocks, never a sideways-scrolling table. Verify at 390 / 820 / 1366, light and dark, before pushing.
+- Carbliss Leaderboard (carbliss-onprem-targets/) is the reference page: its last <style> block ("PAGE STANDARD").
+
 ## Boston Beer's seasonal-conversion sheets vs the RDE keg export (2026-10-05)
 
 Gavin sent Boston Beer's own "10-05-26 Sam Adams Seasonal Conversion Fall.xlsx" (per-rep
