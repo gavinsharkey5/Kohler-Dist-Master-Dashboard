@@ -383,6 +383,13 @@ thead th{font-size:14px;font-weight:600;color:var(--ink-soft)}
 .lb-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 @media(max-width:560px){ .lb-toggle{position:static;display:block;margin:0 0 8px auto} }
 @media(max-width:620px){ .btiles{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px} .btiles .btile.alert{grid-column:auto!important} .btile{padding:10px 4px} .btile .stat-val{font-size:26px} .btile .stat-label,.btile .stat-sub{font-size:13px} }
+
+/* Manager flat roster (2026-10-06) */
+.rt-flat td.rt-rep{font-weight:600}
+.rt-flat th,.rt-flat td{text-align:left}
+.rt-more{display:block;margin:14px auto 0;min-height:44px;padding:0 20px;border-radius:10px;border:1px solid var(--line,var(--kdh-line));background:transparent;color:inherit;font-size:15px;font-weight:600}
+@media(max-width:900px){.rt-flat td.rt-rep{order:-1;opacity:.8;font-weight:500}}
+@media(min-width:901px){.rt-flat{table-layout:fixed}.rt-flat th:nth-child(1),.rt-flat td:nth-child(1){width:19%}.rt-flat th:nth-child(2),.rt-flat td:nth-child(2){width:33%}}
 </style>
 <script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="kdh-page" content="Carbliss Leaderboard">
@@ -613,22 +620,33 @@ function rosterRows(P, rep){
     return true;
   });
 }
-function rosterTable(rows, rep){
-  return `<table class="rt"><thead><tr><th scope="col">Customer</th><th scope="col">L90 Buyer</th><th scope="col">YTD Buyer</th><th scope="col">Last Purchase</th></tr></thead><tbody>`+
+function rosterTable(rows, rep, flat){
+  return `<table class="rt${flat?' rt-flat':''}"><thead><tr>${flat?'<th scope="col">Sales Rep</th>':''}<th scope="col">Customer</th><th scope="col">L90 Buyer</th><th scope="col">YTD Buyer</th><th scope="col">Last Purchase</th></tr></thead><tbody>`+
     rows.map(a=>{
-      const nm = a.page ? `<a class="rt-name" href="${esc(acctHref(a, rep))}">${esc(a.name)}</a>` : `<span class="rt-name">${esc(a.name)}</span>`;
-      return `<tr><td class="rt-acct">${nm}<span class="rt-town">${esc(a.town||'')}</span></td>
+      const r = flat ? a.rep : rep;
+      const nm = a.page ? `<a class="rt-name" href="${esc(acctHref(a, r))}">${esc(a.name)}</a>` : `<span class="rt-name">${esc(a.name)}</span>`;
+      return `<tr>${flat?`<td class="rt-rep" data-l="Sales Rep">${esc(a.rep)}</td>`:''}<td class="rt-acct">${nm}<span class="rt-town">${esc(a.town||'')}</span></td>
         <td data-l="L90 Buyer">${yn(a.prog, 'Yes', 'No')}</td>
         <td data-l="YTD Buyer">${a.since==='unknown' ? '<span class="yn u">Unknown</span>' : yn(a.since==='yes', 'Yes', 'No')}</td>
         <td data-l="Last Purchase">${a.last ? `<span class="rt-date">${esc(longDate(a.last))}</span>` : '<span class="rt-none">None</span>'}</td></tr>`;
     }).join('')+`</tbody></table>`;
 }
+// Managers (2026-10-06): one flat list, Sales Rep as the first column, filtered by the Sales Rep select.
+const MGR_FLAT = !LOCK_REP && !!(window.kdhUser && (window.kdhUser()||{}).role==='manager' && !(window.kdhUser()||{}).preview);
+rs.lim = 100;
 function renderRoster(){
   const P = PROG, el = document.getElementById('roster'); if(!P || !el) return;
   const scope = rosterScope(P);
   const reps = rs.rep && scope.includes(rs.rep) ? [rs.rep] : scope;
   const q = rs.q.trim();
   let shown = 0;
+  if(MGR_FLAT){
+    const rows = reps.flatMap(rep=>rosterRows(P, rep)).sort((a,b)=> a.rep.localeCompare(b.rep) || a.name.localeCompare(b.name));
+    document.getElementById('count').textContent = `${rows.length.toLocaleString()} ${rows.length===1?'Account':'Accounts'}`;
+    el.innerHTML = rows.length ? `<div class="rt-wrap">${rosterTable(rows.slice(0, rs.lim), null, true)}</div>`+(rows.length>rs.lim ? `<button type="button" class="rt-more" id="rtMore">Show ${Math.min(100, rows.length-rs.lim)} More</button>` : '') : '<div class="empty">No accounts match.</div>';
+    document.getElementById('rosterNote').textContent = `L90 = bought ${periodText(P)}. YTD = bought since ${longDate(P.meta.launch)}.`;
+    return;
+  }
   const groups = reps.map(rep=>{
     const all = P.accounts.filter(a=>a.rep===rep), rows = rosterRows(P, rep);
     if((q || rs.town || rs.l90 || rs.ytd) && !rows.length) return '';
@@ -644,12 +662,13 @@ function renderRoster(){
   const M = DATA.meta.buyers || {};
   document.getElementById('rosterNote').textContent = `L90 = bought ${periodText(P)}. YTD = bought since ${longDate(P.meta.launch)}.`;
 }
-document.getElementById('search').addEventListener('input', e=>{ rs.q=e.target.value; renderRoster(); });
-document.getElementById('repFilter').addEventListener('change', e=>{ rs.rep=e.target.value; state.rep=e.target.value; renderGoal(); renderBuyers(); renderRoster(); });
-document.getElementById('townFilter').addEventListener('change', e=>{ rs.town=e.target.value; renderRoster(); });
-document.getElementById('l90Filter').addEventListener('change', e=>{ rs.l90=e.target.value; renderRoster(); });
-document.getElementById('ytdFilter').addEventListener('change', e=>{ rs.ytd=e.target.value; renderRoster(); });
+document.getElementById('search').addEventListener('input', e=>{ rs.q=e.target.value; rs.lim=100; renderRoster(); });
+document.getElementById('repFilter').addEventListener('change', e=>{ rs.rep=e.target.value; state.rep=e.target.value; rs.lim=100; renderGoal(); renderBuyers(); renderRoster(); });
+document.getElementById('townFilter').addEventListener('change', e=>{ rs.town=e.target.value; rs.lim=100; renderRoster(); });
+document.getElementById('l90Filter').addEventListener('change', e=>{ rs.l90=e.target.value; rs.lim=100; renderRoster(); });
+document.getElementById('ytdFilter').addEventListener('change', e=>{ rs.ytd=e.target.value; rs.lim=100; renderRoster(); });
 document.getElementById('roster').addEventListener('click', e=>{
+  if(e.target.id==='rtMore'){ rs.lim += 100; renderRoster(); return; }
   const h = e.target.closest('.rg-h'); if(!h) return;
   const rep = h.getAttribute('data-rep'); if(rs.open.has(rep)) rs.open.delete(rep); else rs.open.add(rep);
   renderRoster();

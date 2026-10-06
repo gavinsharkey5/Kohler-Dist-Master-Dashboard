@@ -1724,3 +1724,28 @@ a.hreturn{text-decoration:none;}
 .rep-head .tabbar{margin-top:14px;}
 .hview .hlist,.hview .hsups{width:100%;}
 .hrow .hbar{max-width:none;}
+
+/* Carbliss manager roster (2026-10-06) */
+.cbroster .cb-filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:12px 0}
+.cbroster .cb-q{grid-column:1/-1;width:100%;min-height:44px;padding:0 14px;font-size:16px;border:1px solid var(--kdh-line,#2a2f3a);border-radius:10px;background:var(--kdh-surface,#16181d);color:inherit}
+.cbroster .cb-sel{width:100%;min-height:44px;padding:0 10px;font-size:15px;border:1px solid var(--kdh-line,#2a2f3a);border-radius:10px;background:var(--kdh-surface,#16181d);color:inherit}
+.cbroster .cb-count{margin:0 0 12px;font-size:14px;text-align:center}
+.cbt-wrap{overflow:hidden}
+.cbt{width:100%;border-collapse:collapse;font-size:15px}
+.cbt th{text-align:left;font-size:14px;font-weight:600;padding:10px 12px;border-bottom:1px solid var(--kdh-line,#2a2f3a)}
+.cbt td{padding:12px;border-bottom:1px solid var(--kdh-line,#2a2f3a);vertical-align:top}
+.cbt .cbt-name a{font-weight:600;color:inherit;text-decoration:none}
+.cbt .cbt-town{display:block;font-size:14px;opacity:.75}
+.cbt .yn.y{color:var(--kdh-ok,#13733A)} .cbt .yn.n{opacity:.8}
+.cb-more{display:block;margin:14px auto 0;min-height:44px;padding:0 20px;border-radius:10px;border:1px solid var(--kdh-line,#2a2f3a);background:transparent;color:inherit;font-size:15px;font-weight:600}
+@media(max-width:640px){
+  .cbroster .cb-filters{grid-template-columns:1fr 1fr}
+  .cbt thead{display:none}
+  .cbt,.cbt tbody,.cbt tr,.cbt td{display:block;width:100%}
+  .cbt tr{padding:10px 0;border-bottom:1px solid var(--kdh-line,#2a2f3a)}
+  .cbt td{border:0;padding:4px 12px;display:flex;justify-content:space-between;gap:12px}
+  .cbt td[data-l]::before{content:attr(data-l);opacity:.75}
+  .cbt td.cbt-name{display:block;font-size:16px}
+  .cbt td.cbt-rep{order:-1;opacity:.8}
+}
+.cbt td.cbt-name::before{display:none!important}

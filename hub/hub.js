@@ -2957,6 +2957,56 @@ function cbBoard(d){
     .sort((a,b)=> b.share-a.share || a.rep.localeCompare(b.rep))
     .reduce((out,x,i)=>{ out.push({...x, rank: i && out[i-1].share===x.share ? out[i-1].rank : i+1}); return out; }, []);
 }
+
+const CBF = {rep:'', q:'', l90:'', ytd:'', lim:100};
+const cbLongDate = iso => iso ? new Date(iso+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '';
+const cbYn = (on, y, n) => on ? `<span class="yn y">✓ ${y}</span>` : `<span class="yn n">✕ ${n}</span>`;
+function cbRows(d){
+  const q = CBF.q.trim().toLowerCase();
+  return d.accounts.filter(a=>{
+    const ytd = a.since==='yes';
+    if(CBF.rep && a.rep!==CBF.rep) return false;
+    if(CBF.l90==='yes' && !a.prog) return false; if(CBF.l90==='no' && a.prog) return false;
+    if(CBF.ytd==='yes' && !ytd) return false; if(CBF.ytd==='no' && ytd) return false;
+    if(q && !(a.name.toLowerCase().includes(q) || (a.town||'').toLowerCase().includes(q) || String(a.n).includes(q) || a.rep.toLowerCase().includes(q))) return false;
+    return true;
+  }).sort((x,y)=> x.rep.localeCompare(y.rep) || x.name.localeCompare(y.name));
+}
+function cbTableHtml(d){
+  const rows = cbRows(d), shown = rows.slice(0, CBF.lim);
+  const href = a => '../accounts/#acct='+encodeURIComponent(a.n)+'&rep='+encodeURIComponent(a.rep)+'&from='+encodeURIComponent(location.pathname+location.hash)+'&fl='+encodeURIComponent('Carbliss Buying Accounts');
+  return `<p class="cb-count">${rows.length.toLocaleString('en-US')} ${rows.length===1?'Account':'Accounts'}</p>
+    ${rows.length ? `<div class="cbt-wrap"><table class="cbt"><thead><tr><th>Sales Rep</th><th>Customer</th><th>L90 Buyer</th><th>YTD Buyer</th><th>Last Purchase</th></tr></thead><tbody>${shown.map(a=>`<tr>
+      <td data-l="Sales Rep" class="cbt-rep">${E(a.rep)}</td>
+      <td class="cbt-name">${a.page ? `<a href="${E(href(a))}">${E(a.name)}</a>` : E(a.name)}<span class="cbt-town">${E(a.town||'')}</span></td>
+      <td data-l="L90 Buyer">${cbYn(a.prog,'Yes','No')}</td>
+      <td data-l="YTD Buyer">${a.since==='unknown' ? '<span class="yn">Unknown</span>' : cbYn(a.since==='yes','Yes','No')}</td>
+      <td data-l="Last Purchase">${a.last ? E(cbLongDate(a.last)) : '<span class="cbt-none">None</span>'}</td></tr>`).join('')}</tbody></table></div>
+    ${rows.length>shown.length ? `<button type="button" class="cb-more" id="cbMore">Show ${Math.min(100, rows.length-shown.length)} More</button>` : ''}` : '<div class="empty slim">No accounts match.</div>'}`;
+}
+function cbRosterHtml(d, p){
+  const reps = [...new Set(d.accounts.map(a=>a.rep))].sort();
+  const sel = (id, opts, cur) => `<select id="${id}" class="cb-sel">${opts.map(o=>`<option value="${E(o[0])}"${o[0]===cur?' selected':''}>${E(o[1])}</option>`).join('')}</select>`;
+  return `<section class="dsec cbroster" id="cbRoster">
+    <h2 class="dsec-h">Accounts by Rep</h2>
+    <div class="cb-filters">
+      <input type="search" id="cbQ" class="cb-q" placeholder="Search Account, Town or Rep" value="${E(CBF.q)}" autocomplete="off">
+      ${sel('cbRep', [['','All Sales Reps'], ...reps.map(r=>[r,r])], CBF.rep)}
+      ${sel('cbL90', [['','L90 Buyer: All'],['yes','L90 Buyer: Yes'],['no','L90 Buyer: No']], CBF.l90)}
+      ${sel('cbYtd', [['','YTD Buyer: All'],['yes','YTD Buyer: Yes'],['no','YTD Buyer: No']], CBF.ytd)}
+    </div>
+    <div id="cbTable">${cbTableHtml(d)}</div>
+  </section>`;
+}
+(function(){
+  const redo = () => { const d = CB_DATA, t = document.getElementById('cbTable'); if(d && t) t.innerHTML = cbTableHtml(d); };
+  document.addEventListener('input', e=>{ if(e.target.id==='cbQ'){ CBF.q = e.target.value; CBF.lim = 100; redo(); } });
+  document.addEventListener('change', e=>{
+    const id = e.target.id, m = {cbRep:'rep', cbL90:'l90', cbYtd:'ytd'};
+    if(m[id]){ CBF[m[id]] = e.target.value; CBF.lim = 100; redo(); }
+  });
+  document.addEventListener('click', e=>{ if(e.target.id==='cbMore'){ CBF.lim += 100; redo(); } });
+})();
 function screenProgramCarbliss(p){
   const d = cbData();
   const head = `<div class="pv-title"><button class="back" data-act="programs"><span class="ar">‹</span> Back to Program View</button>${exportMenuHtml(p.id)}</div>`;
@@ -2985,11 +3035,7 @@ function screenProgramCarbliss(p){
       <div class="dhero-line"><span class="period">📅 Aug 1 – Oct 31, 2026 · ${E(endsLabel(p.period))}</span><span class="refreshed">Sales Through ${E(new Date(m.sales_through+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}))}</span></div>
       <p class="note"><a href="../carbliss-onprem-targets/">See Leaderboard ›</a></p>
     </div>
-    <section class="dsec">
-      <h2 class="dsec-h">Rep Leaderboard</h2>
-      <p class="dsec-p">L90 Buyers of Assigned On-Premise Accounts · ${plw(board.length,'Rep')}</p>
-      <div class="lboard">${board.map(row).join('')}</div>
-    </section>
+    ${cbRosterHtml(d, p)}
     <details class="dsec fold"><summary class="dsec-h">Rules</summary>
       <ul class="rules"><li>L90 = bought Carbliss Aug 1 – Oct 31, 2026</li><li>Team goal: ${goal} L90 buyers of ${d.house.base.toLocaleString('en-US')} core market on-premise accounts</li><li>Credit: 40% of your own on-premise accounts buying Carbliss, Sep 1 – Oct 31</li></ul>
     </details>
