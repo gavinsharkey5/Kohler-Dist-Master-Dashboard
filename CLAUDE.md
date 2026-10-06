@@ -469,6 +469,9 @@ the rep's assigned accounts (a rep sees only their own group, a DM their team, a
 collapsible groups; filters search / rep / All - L90 buyers - Fell off L90 - Never bought). program.json
 accounts gained `l90` (the RDE Buyers L90 flag) and the file gained `board`. The old goal bar and buyers card stay.
 Tags: kdh-user.js 20261006d. Tests (scratchpad): lb2_test.mjs.
+Follow-up (same day): the leaderboard's "Show All Reps" / "Show Top 10" toggle sits top right of its card (a rep below #10 opens it
+expanded); the old Sun Cruiser / White Claw goal bar is now "<Your|Team|Company> Customer Base": YTD buyers of the
+rep's whole core-market on-premise account base ("42 of 122 Accounts"), from program.json `board`.
 
 ## COPY + LAYOUT STANDARD -- every page, every time (Gavin, 2026-10-06)
 

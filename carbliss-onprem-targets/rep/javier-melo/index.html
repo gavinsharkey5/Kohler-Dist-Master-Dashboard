@@ -372,6 +372,12 @@ main{max-width:960px;margin:20px auto 48px;padding:0 16px}
 thead th{font-size:14px;font-weight:600;color:var(--ink-soft)}
 .yn,.rt-date,.rt-none{font-size:15px}
 .empty{padding:32px 16px;font-size:15px}
+
+#leaderboard .goalbar-card{position:relative}
+.lb-toggle{position:absolute;top:12px;right:12px;min-height:36px;padding:0 12px;border:1px solid var(--line);border-radius:8px;background:var(--card2);color:var(--ink);font:inherit;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap}
+.lb-toggle:hover{border-color:var(--accent)}
+.lb-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media(max-width:560px){ .lb-toggle{position:static;display:block;margin:0 0 8px auto} }
 </style>
 <script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="kdh-page" content="Carbliss Leaderboard">
@@ -440,29 +446,6 @@ const state = {
 function isGap(a){ return !a.existingCarbliss.length && a.total26 >= state.threshOn; }
 const shortDate = iso => { if(!iso) return ''; const [y,m,d] = iso.split('-'); return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+m-1]+' '+(+d); };
 const daysBetween = (a,b) => Math.round((new Date(b+'T00:00:00')-new Date(a+'T00:00:00'))/86400000);
-// Company-wide on-premise Carbliss goal (matches the /carbliss/ tracker's
-// fixed target of 331 on-premise accounts carrying Carbliss). withCarbliss
-// here counts accounts with real 2026 Carbliss volume within this file's
-// Sun Cruiser/White Claw-evaluated account set, not every on-premise
-// account company-wide -- so this progress bar is a lower bound on true
-// company-wide progress toward 331, not the authoritative count.
-const ONPREM_CARBLISS_GOAL = 331;
-
-function renderGoal(){
-  const count = DATA.meta.withCarbliss;
-  const goal = ONPREM_CARBLISS_GOAL;
-  const pct = Math.min(100, (count/goal*100));
-  document.getElementById('goalbar').innerHTML = `
-    <div class="goalbar-card">
-      <div class="goalbar-head">
-        <div class="goalbar-label">On-Premise Carbliss Goal</div>
-        <div class="goalbar-count">${fmt(count)}<span class="of"> of ${goal} Accounts</span></div>
-      </div>
-      <div class="goalbar-track"><div class="goalbar-fill" style="width:${pct.toFixed(1)}%"></div></div>
-      <div class="stat-sub">Accounts carrying Carbliss</div>
-    </div>`;
-}
-
 function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
 function populateSelects(reps){
@@ -486,19 +469,6 @@ if(LOCK_REP){
   state.rep = LOCK_REP;
   const grp = document.getElementById('repFilter').closest('.tgroup'); if(grp) grp.style.display='none';
   const mine = DATA.accounts.filter(a=>a.rep===LOCK_REP);
-  renderGoal = function(){
-    const count = mine.filter(a=>a.existingCarbliss.length).length, total = mine.length;
-    const pct = total ? Math.min(100, count/total*100) : 0;
-    document.getElementById('goalbar').innerHTML = total ? `
-    <div class="goalbar-card">
-      <div class="goalbar-head">
-        <div class="goalbar-label">Your Accounts With Carbliss</div>
-        <div class="goalbar-count">${fmt(count)}<span class="of"> of ${fmt(total)} Accounts</span></div>
-      </div>
-      <div class="goalbar-track"><div class="goalbar-fill" style="width:${pct.toFixed(1)}%"></div></div>
-      <div class="stat-sub">Your Sun Cruiser / White Claw accounts</div>
-    </div>` : `<div class="goalbar-card"><div class="goalbar-label">Your Accounts With Carbliss</div><div class="stat-sub">No Sun Cruiser or White Claw accounts on your route.</div></div>`;
-  };
 }
 // District manager (2026-09-29, per Gavin): only their team's accounts,
 // the rep filter offers only their reps, and the stats + goal bar describe
@@ -514,19 +484,6 @@ const LOCK_TEAM=(()=>{try{
 }catch(e){return null;}})();
 if(LOCK_TEAM){
   const book = DATA.accounts.filter(a=>LOCK_TEAM.reps.has(a.rep));
-  renderGoal = function(){
-    const count = book.filter(a=>a.existingCarbliss.length).length, total = book.length;
-    const pct = total ? Math.min(100, count/total*100) : 0;
-    document.getElementById('goalbar').innerHTML = total ? `
-    <div class="goalbar-card">
-      <div class="goalbar-head">
-        <div class="goalbar-label">Your Team's Accounts With Carbliss</div>
-        <div class="goalbar-count">${fmt(count)}<span class="of"> of ${fmt(total)} Accounts</span></div>
-      </div>
-      <div class="goalbar-track"><div class="goalbar-fill" style="width:${pct.toFixed(1)}%"></div></div>
-      <div class="stat-sub">Your team's Sun Cruiser / White Claw accounts</div>
-    </div>` : `<div class="goalbar-card"><div class="goalbar-label">Your Team's Accounts With Carbliss</div><div class="stat-sub">No Sun Cruiser or White Claw accounts on your team's routes.</div></div>`;
-  };
 }
 // REP LEADERBOARD (2026-10-06, Gavin): every participating rep ranked by ROLLING-90 buyers -- the accounts
 // in their own on-premise account base (the same base as the October MPO card) with a Carbliss load sheet
@@ -534,6 +491,7 @@ if(LOCK_TEAM){
 // still level share a rank (1, 2, 2, 4). The numbers come from carbliss-mpo/data/program.json's `board`
 // (counts per rep, no account names), so a rep's copy carries every rep's row; the signed-in rep's own row
 // is marked.
+let boardAll = null;
 function renderBoard(P){
   const el = document.getElementById('leaderboard'); if(!el) return;
   const names = P.board.map(b=>b.rep);
@@ -548,14 +506,16 @@ function renderBoard(P){
   const rowHtml = r=>`<div class="lb-row${r.rep===me?' me':''}"${r.rep===me?' aria-current="true"':''}><span class="lb-rank">${r.rank}${r.tied?'<small>=</small>':''}</span>
       <span class="lb-who"><b>${esc(r.rep)}${r.rep===me?' <span class="lb-you">you</span>':''}</b><div class="lb-sub">${fmt(r.count)} of ${fmt(r.total)} Accounts · ${Math.round(r.share*100)}%</div><div class="lb-track"><i style="width:${Math.min(100,r.share*100).toFixed(1)}%"></i></div></span>
       <span class="lb-val">${fmt(r.count)}<small>L90 Buyers</small></span></div>`;
-  const top = rows.slice(0, 10), rest = rows.slice(10);
+  if(boardAll===null) boardAll = !!(mine && mine.rank>10);
+  const shown = boardAll ? rows : rows.slice(0, 10);
   el.innerHTML = `<div class="goalbar-card">
+      ${rows.length>10 ? `<button type="button" class="lb-toggle" id="lbToggle" aria-pressed="${boardAll}">${boardAll ? 'Show Top 10' : 'Show All Reps'}</button>` : ''}
       <div class="lb-head"><div class="goalbar-label">Rep Leaderboard</div><div class="lb-when">L90 Buyers · ${esc(shortDate(M.windowStart))} – ${esc(shortDate(M.asOf))}</div></div>
       ${mine ? `<div class="stat-sub">You are <b>#${mine.rank}${mine.tied?' (tied)':''}</b> of ${rows.length}</div>` : ''}
-      <div class="lb-rows">${top.map(rowHtml).join('')}</div>
-      ${rest.length ? `<details class="lb-fold"${mine && mine.rank>10 ? ' open' : ''}><summary>Show ${rest.length} More Reps</summary><div class="lb-rows">${rest.map(rowHtml).join('')}</div></details>` : ''}
+      <div class="lb-rows">${shown.map(rowHtml).join('')}</div>
       <p class="lb-note">Ranked by L90 buyers. Ties go to the higher share of accounts.</p>
     </div>`;
+  const t = document.getElementById('lbToggle'); if(t) t.addEventListener('click', ()=>{ boardAll = !boardAll; renderBoard(P); });
 }
 // CARBLISS BUYERS: YTD vs ROLLING 90 (2026-09-30, per Gavin -- "Carbliss is
 // tracking a rolling 90 day customer tracker"). From carbliss_buyers_l90.csv:
@@ -587,12 +547,27 @@ function renderBuyers(){
       ${fell.length ? `<details class="lb-fold"${LOCK_REP || scopeRep ? ' open' : ''}><summary>${fell.length===1 ? '1 Account' : fell.length+' Accounts'} to Win Back</summary><div class="fell-list">${list}</div></details>` : `<p class="lb-note">No accounts fell off.</p>`}
     </div>`;
 }
-renderGoal();
 renderBuyers();
 
 // ---- ROSTER (2026-10-06, Gavin): sales rep -> their accounts, with L90 buyer, YTD buyer and last purchase.
 // Rows are the rep's whole on-premise account base from carbliss-mpo/data/program.json (a rep is served only
 // their own copy; a manager gets everyone, a DM only their team in the filter). YTD = bought since launch.
+// CUSTOMER BASE BAR (2026-10-06, Gavin): YTD buyers over the rep's WHOLE on-premise core market account base
+// (the same base as the October MPO), from carbliss-mpo/data/program.json's board -- not the Sun Cruiser / White
+// Claw subset. Scope follows the page: a rep their own, a DM their team, a manager everyone or the rep picked.
+function renderGoal(){
+  const P = PROG, el = document.getElementById('goalbar'); if(!P || !el) return;
+  const scope = rosterScope(P);
+  const reps = (!LOCK_REP && state.rep && scope.includes(state.rep)) ? [state.rep] : scope;
+  const rows = P.board.filter(b=>reps.includes(b.rep));
+  const base = rows.reduce((n,b)=>n+b.base,0), ytd = rows.reduce((n,b)=>n+b.ytd,0);
+  const who = LOCK_REP ? 'Your' : state.rep ? state.rep+'’s' : LOCK_TEAM ? 'Your Team’s' : 'Company';
+  const pct = base ? Math.min(100, ytd/base*100) : 0;
+  el.innerHTML = base ? `<div class="goalbar-card">
+      <div class="goalbar-head"><div class="goalbar-label">${who} Customer Base</div><div class="goalbar-count">${fmt(ytd)}<span class="of"> of ${fmt(base)} Accounts</span></div></div>
+      <div class="goalbar-track"><div class="goalbar-fill" style="width:${pct.toFixed(1)}%"></div></div>
+      <div class="stat-sub">YTD buyers · Core Market On-Premise</div></div>` : '';
+}
 let PROG = null;
 const rs = {q:'', rep:'', l90:'', ytd:'', open:new Set()};
 const yn = (ok, yes, no) => ok ? `<span class="yn y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>${yes}</span>`
@@ -652,7 +627,7 @@ function renderRoster(){
   document.getElementById('rosterNote').textContent = `L90 = bought in the last 90 days. YTD = bought since ${longDate(P.meta.launch)}.`;
 }
 document.getElementById('search').addEventListener('input', e=>{ rs.q=e.target.value; renderRoster(); });
-document.getElementById('repFilter').addEventListener('change', e=>{ rs.rep=e.target.value; state.rep=e.target.value; renderBuyers(); renderRoster(); });
+document.getElementById('repFilter').addEventListener('change', e=>{ rs.rep=e.target.value; state.rep=e.target.value; renderGoal(); renderBuyers(); renderRoster(); });
 document.getElementById('l90Filter').addEventListener('change', e=>{ rs.l90=e.target.value; renderRoster(); });
 document.getElementById('ytdFilter').addEventListener('change', e=>{ rs.ytd=e.target.value; renderRoster(); });
 document.getElementById('roster').addEventListener('click', e=>{
@@ -666,6 +641,7 @@ fetch('../carbliss-mpo/data/program.json', {cache:'no-cache', credentials:'same-
     PROG = P;
     const scope = rosterScope(P);
     populateSelects(LOCK_REP ? [] : scope);
+    renderGoal();
     renderBoard(P);
     if(LOCK_REP && !scope.length){ document.getElementById('roster').innerHTML = '<div class="empty">No accounts on file.</div>'; return; }
     renderRoster();
