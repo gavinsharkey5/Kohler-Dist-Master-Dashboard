@@ -492,3 +492,14 @@ WHERE IT GOES: save each as incentive-tracking/data/skus/<program key>.csv
 (or MPOs/<on|off>-prem/skus/<objective key>.csv). The page will then list
 exactly those products, drop the "not on file" note, and the Products list,
 Program Opportunities and the assistant will use the same list.
+
+Update 2026-10-06 -- RECEIVED the October Off-Premise MPO lists (saved with
+`python3 tools/program_skus.py add <program id> <export.csv>`, product number +
+name only; the cases / placements columns are ignored):
+- Corona Innovation: 11 SKUs -- exactly the 11 the report counts, so the list is
+  now confirmed and the "may be incomplete" note is gone
+- Lytt Buying Accounts: 6 SKUs -- all six Lytt flavors, as before, now confirmed
+- Molly's (2) New Placements: 5 SKUs (the page had listed 7 Molly's products)
+- Wine (1) New Placement: 60 SKUs (the page had no list)
+STILL NEEDED: Carbliss 40% (on-premise: do all packages count?), Spirits
+Follow-Up (on-premise), and the October incentives listed above.

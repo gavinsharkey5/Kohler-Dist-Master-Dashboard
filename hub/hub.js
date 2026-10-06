@@ -3322,6 +3322,9 @@ function screenProgramRep(p, r, rep){
   </div>`;
 }
 function incProductsFold(p){
+  // the program's official SKU list wins: its own names, no catalogue needed
+  const off = window.KDH_PROGRAM_SKUS && window.KDH_PROGRAM_SKUS[p.id];
+  if(off && off.products && off.products.length) return qpFoldHtml({products: off.products, open: state.pv==='prods'});
   const cat = hubCatalog();
   if(cat===null) return qpFoldHtml({products:[], loading:true});
   if(!cat) return '';

@@ -107,6 +107,11 @@ function eligibleProducts(p, rows, famKeyFn){
   // its qualifying ProductIDs -- the ONE product rule the tracker counts.
   const ids = (global.KdhElig && global.KdhElig.productIds) ? global.KdhElig.productIds(p.id) : null;
   if(ids && ids.size){ const R = global.KdhElig.rule(p.id); return {rows: rows.filter(c=>ids.has(String(c[0]))), rule: R ? R.products.length+' qualifying products ('+R.title+')' : '', byProduct: true, ids}; }
+  // The program's OFFICIAL SKU list (tools/program_skus.py -> shared/data/program-skus.js),
+  // when Gavin has sent one: exactly those ProductIDs (2026-10-06).
+  const off = global.KDH_PROGRAM_SKUS && global.KDH_PROGRAM_SKUS[p.id];
+  if(off && off.products && off.products.length){ const ids = new Set(off.products.map(x=>String(x.id)));
+    return {rows: rows.filter(c=>ids.has(String(c[0]))), rule: off.products.length+' products on the program’s SKU list', byProduct: true, ids, official: off}; }
   const r = PROGRAM_PRODUCTS[brandKey(p)];
   if(r) return {rows: rows.filter(c=>r.re.test(String(c[1]||''))), rule: r.rule, byProduct: true};
   const fams = PROGRAM_BRANDS[brandKey(p)];
