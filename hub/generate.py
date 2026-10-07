@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
-"""Builds hub/data/accounts.js from the two workbooks in hub/data/.
+"""Builds hub/data/accounts.js.
 
-    Sales_Reps_Customer_Base.xlsx     each rep's assigned account universe
-                                      (RDE "Sales Reps' Customer Base" report,
-                                      one block per rep, YTD buyers with 2026
-                                      case volume, area/county/city/premise)
+    ../territory-accounts/customers_active.csv
+                                      each rep's assigned account universe since
+                                      2026-10-07: Encompass' active "Customers"
+                                      export, read through tools/customer_base.py
+                                      (Gavin: "use that customer file as account base
+                                      for reps going forward"). 2026 cases from the
+                                      Rolling Distribution sales master.
     Brand_Sellable_Unsellable.xlsx    "Brand Permissions -- can we sell this
                                       brand in this area?" -- one row per
                                       brand family, CAN SELL / NOT IN
@@ -51,45 +54,33 @@ COUNTY_TO_AREA = {"Bergen": "Bergen", "Passaic": "Passaic", "Hudson": "Hudson", 
 
 
 def load_base():
-    wb = openpyxl.load_workbook(BASE_XLSX, read_only=True, data_only=True)
-    ws = wb["Sales Reps Customer Base"]
-    rows = list(ws.iter_rows(values_only=True))
-    hdr = [str(h or "").strip() for h in rows[0]]
-    col = {h.split()[0].lower() if h else "": i for i, h in enumerate(hdr)}
-    # The header row is fixed by the RDE report; locate by leading word so a
-    # respaced "Cases   2026" still resolves.
-    i_num = next(i for i, h in enumerate(hdr) if h.startswith("Sales Rep Assigned"))
-    i_name = hdr.index("Customer Name"); i_area = hdr.index("Area"); i_county = hdr.index("County")
-    i_city = hdr.index("City"); i_prem = hdr.index("Premise")
-    i_cases = next(i for i, h in enumerate(hdr) if h.startswith("Cases"))
-    reps, cur, unresolved = {}, None, {}
-    for r in rows[1:]:
-        key = r[i_num]
-        if key is None:
-            continue
-        if isinstance(key, str):
-            if key.strip() == "Total":
-                continue
-            cur = key.strip(); reps[cur] = []
-            continue
-        raw_area = (r[i_area] or "").strip()
-        county = (r[i_county] or "").strip()
+    """THE REP ACCOUNT BASE (Gavin, 2026-10-07): the active Customers export through
+    tools/customer_base.py (territory-accounts/customers_active.csv) -- every active account,
+    on- and off-premise, by its Sales Rep Name. 2026 cases come from the Rolling Distribution
+    sales master (Jan 2026 -> the latest loaded month), one scale for every account; they only
+    order the "high potential" lists. The old Sales_Reps_Customer_Base.xlsx is no longer read."""
+    import csv, sys
+    sys.path.insert(0, str(HERE.parent / "tools"))
+    import customer_base
+    cases = {}
+    for f in sorted((HERE.parent / "rolling-distribution" / "data" / "master" / "months").glob("2026-*.csv")):
+        with open(f, newline="") as fh:
+            for r in csv.DictReader(fh):
+                cases[r["customer_num"]] = cases.get(r["customer_num"], 0.0) + float(r["cases"] or 0)
+    reps, unresolved = {}, {}
+    for a in customer_base.load():
+        raw_area, county = a["area"], a["county"]
         area = raw_area if raw_area in AREAS else COUNTY_TO_AREA.get(county)
         if area is None:
             unresolved[(raw_area, county)] = unresolved.get((raw_area, county), 0) + 1
-        prem = (r[i_prem] or "").strip()
-        reps[cur].append({
-            "n": int(key), "name": (r[i_name] or "").strip(),
-            "area": area, "rawArea": raw_area, "county": county, "city": (r[i_city] or "").strip(),
-            "prem": "On" if prem.lower().startswith("on") else ("Off" if prem.lower().startswith("off") else prem),
-            "cases": round(float(r[i_cases] or 0), 1),
+        reps.setdefault(a["rep"], []).append({
+            "n": int(a["num"]) if a["num"].isdigit() else a["num"], "name": a["name"],
+            "area": area, "rawArea": raw_area, "county": county, "city": a["city"],
+            "prem": a["premise"], "cases": round(max(cases.get(a["num"], 0.0), 0.0), 1),
         })
-    details = wb["Details"] if "Details" in wb.sheetnames else None
-    as_of = None
-    if details:
-        for r in details.iter_rows(values_only=True):
-            if r and r[0] == "Report Created Time" and isinstance(r[2], datetime.datetime):
-                as_of = r[2].date().isoformat()
+    for v in reps.values():
+        v.sort(key=lambda x: -x["cases"])
+    as_of = datetime.date.fromtimestamp(customer_base.CUSTOMERS_CSV.stat().st_mtime).isoformat()
     return reps, as_of, unresolved
 
 
@@ -123,7 +114,7 @@ def main():
     stamp = as_of or datetime.date.today().isoformat()
     n_acc = sum(len(v) for v in reps.values())
     payload = (
-        "// GENERATED by hub/generate.py from data/Sales_Reps_Customer_Base.xlsx and\n"
+        "// GENERATED by hub/generate.py from territory-accounts/customers_active.csv and\n"
         "// data/Brand_Sellable_Unsellable.xlsx -- do not edit by hand. See generate.py.\n"
         f"const HUB_ACCOUNTS = {json.dumps({'asOf': stamp, 'areas': AREAS, 'reps': reps}, separators=(',', ':'))};\n"
         f"const HUB_BRANDS = {json.dumps({'asOf': stamp, 'areas': AREAS, 'families': fams}, separators=(',', ':'))};\n"

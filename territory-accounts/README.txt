@@ -117,3 +117,9 @@ To refresh:
      a published snapshot, never rebuilt against newer account data;
      see each MPO folder's own README.)
   5. Commit and push.
+
+CUSTOMERS EXPORT = THE REP ACCOUNT BASE (2026-10-07)
+customers_active.csv is Encompass' "Customers" export of active accounts and is now the account base for every
+rep page (read through ../tools/customer_base.py). Core Market = Bergen, Passaic, Passaic-FF, Morris 1, Morris 3,
+Sussex; Southern District = Essex, Hudson, Union; a "Sales" area goes by its County. Refresh steps: see the repo's
+CLAUDE.md "THE REP ACCOUNT BASE".

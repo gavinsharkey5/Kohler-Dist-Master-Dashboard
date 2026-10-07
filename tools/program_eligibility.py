@@ -243,7 +243,7 @@ def constellation(products, customers, sources, months, reps):
             r_("Deadline", "Reach 75% of the goal by Oct 31, 2026; placements count from Sep 1.", "verified", "Gavin, 2026-10-07."),
             r_("Weight", "30% of the October Off-Premise MPO; credit is all-or-nothing.", "verified", "October_2026_MPO.docx"),
             r_("Reps without a goal", "Not scored for this objective.", "verified", "No Goals value on the report."),
-            r_("Whole Foods", "Not listed as an opportunity. Placements there still count in the report's total.", "verified", "Gavin, 2026-10-07: leave Whole Foods out of these programs."),
+            r_("Whole Foods", "Included (Gavin, 2026-10-07). Only the non-alcoholic products (Corona Non-Alcoholic) are offered as opportunities there.", "verified", "Whole Foods cannot sell alcohol (Gavin, 2026-10-05)."),
             r_("Evidence", "Sales data only. Photos and notes are not credit.", "verified", "MPO rule"),
         ],
         "detail": {"through": detail_through, "throughLabel": month_label(detail_through) if detail_through else "",
@@ -266,13 +266,13 @@ def constellation(products, customers, sources, months, reps):
             if area not in CORE_AREAS:
                 accts.append(dict(who, n=int(n), st="excluded", why=f"Corona Innovation is not sold in {area or 'this area'} (Core Market only)"))
                 continue
-            if "whole foods" in (a.get("name") or "").lower():   # Gavin, 2026-10-07: Whole Foods is left out of these programs
-                accts.append(dict(who, n=int(n), st="excluded", why="Whole Foods accounts are not part of this program"))
-                continue
             cr = sorted(credited.get(n, set()))
             ops = []
+            no_alcohol = "whole foods" in (a.get("name") or "").lower()   # Gavin, 2026-10-05: they cannot sell alcohol
             for pid in prods:
                 if pid in cr:
+                    continue
+                if no_alcohol and "non-alc" not in products[pid]["name"].lower():
                     continue
                 f = products[pid]["family"]
                 if by_prod.get(n, {}).get(pid):

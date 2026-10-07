@@ -177,12 +177,16 @@ def compute(data_dir, reopen=False):
     all_dates = [d for v in buys.values() for d in v]
     launch, through = min(all_dates), max(all_dates)
 
+    # THE BASE (Gavin, 2026-10-07): the active Customers export through tools/customer_base.py --
+    # on-premise accounts in the Core Market ("Sales" placed by county), Whole Foods / MetLife stands out.
+    # Was MPOs/on-prem/core_market_on_prem_accts.csv (RDE) until 2026-10-07.
+    sys.path.insert(0, str(ROOT / "tools"))
+    import customer_base
     base = {}
-    for r in load(BASE):
-        rep = r["Sales Rep Assigned"]
-        if not rep or rep in HOUSE:
+    for a in customer_base.program_base("On", "core")[0]:
+        if a["rep"] in HOUSE:
             continue
-        base.setdefault(r["Customer Num"], r)
+        base.setdefault(a["num"], {"Sales Rep Assigned": a["rep"], "Customer Name": a["name"], "City": a["city"]})
 
     final_path = data_dir / "final.json"
     frozen = None

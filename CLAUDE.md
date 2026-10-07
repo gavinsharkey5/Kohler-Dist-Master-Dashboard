@@ -2764,8 +2764,37 @@ incl. 5 MetLife concession stands under Alex Rodriguez filed Off Premise / "Sale
 fall export (9/1-11/30 window, Goals column = 100% goal) is the source again; the MPO = 75% of the goal ROUNDED
 to the nearest whole number, halves up (programs.js buildPctOfGoalDataset when goals exist; program_eligibility
 `req`), reached BY OCT 31 (periodEnd 2026-10-31, periodText Sep 1 - Oct 31). Dave Ehlers 82/65 and Michael Harboy
-11/11 achieved -- matches Gavin. Whole Foods is excluded from Constellation's eligible-account lists (its
-placements still count in RDE's total). The cards' rounding note now says "rounded up" or "rounded down" as
-it happened. The October-only Constellation file was deleted. FREEZE AFTER OCT 31: a later fall export adds
-November placements. Tags: off-prem programs.js / hub.js / guided.js 20261007x.
+11/11 achieved -- matches Gavin. Whole Foods was briefly taken off Constellation's eligible lists and is BACK (Gavin: leave it in). The cards' rounding note now says "rounded up" or "rounded down" as
+it happened. The October-only Constellation file was deleted. No freeze needed: Gavin keeps November invoices
+out of the fall export. Tags: off-prem programs.js / hub.js / guided.js 20261007x.
+
+## THE REP ACCOUNT BASE = the active Customers export; Core Market vs Southern District (Gavin, 2026-10-07 -- REMEMBER)
+
+Gavin: "use that customer file as account base for reps going forward and remember the dist area breakdown."
+SOURCE: Encompass "Customers" export of ACTIVE accounts, saved as territory-accounts/customers_active.csv
+(columns Customer ID, Customer Name, On Premise, Sales Rep Name, Class, Chain, Account Status, Draft Package,
+Customer Type, Shipping Address, City, County, Distribution Area, District Manager Name -- NO phones / emails;
+check every new copy before committing, the repo is public). ONE reader: tools/customer_base.py.
+TERRITORY: CORE MARKET = Distribution Area Bergen, Passaic, Passaic-FF, Morris 1, Morris 3, Sussex. SOUTHERN
+DISTRICT = Essex, Hudson, Union. "Sales" is a placeholder -> use its County (Bergen / Passaic / Sussex = core;
+Essex / Hudson / Union = southern; Warren, Somerset ... = neither). Morris 2 and Middlesex belong to neither.
+PROGRAM BASES (`program_base(premise, "core")`): the rep's accounts of that premise in the Core Market, minus
+Whole Foods (cannot sell alcohol) and minus the five MetLife Stadium concession stands filed off-premise under
+Alex Rodriguez (`LEFT_OUT`: Qsr, Lounge, Victory Terrace, Backyard, Izod Center -- Gavin: "leave out").
+Whole Foods STAYS in Constellation Innovation (its placements count; only Corona Non-Alcoholic is offered there).
+WHO READS IT (2026-10-07): hub/generate.py -> hub/data/accounts.js (every rep's book: 2,850 accounts, 27 reps;
+was the Sales_Reps_Customer_Base.xlsx YTD-buyer workbook, 2,351) -> accounts/generate.py (My Accounts books,
+stale rep folders for John Neukum / Chris Politano removed); MPOs/off-prem/generate_2026-10.py (Lytt base, 501);
+carbliss-mpo/generate.py (Carbliss on-premise base 1,127, was 1,047 from core_market_on_prem_accts.csv -- no
+rep's credit flipped); `python3 tools/customer_base.py --write-incentive-base` rewrites
+incentive-tracking/data/customer_base_full.csv in its old layout for incentive-tracking/generate.py (August /
+September stay frozen). 2026 CASES everywhere come from the Rolling Distribution sales master (one scale; the
+old workbook's numbers were on another) and only order / label target lists. Closed months (Aug / Sep MPO
+files) and MPOs/*/sales_reps_customer_base*.csv are NOT rebuilt. supabase/seed/account_assignments.sql was
+regenerated (2,850 accounts): Gavin must paste it into the Supabase SQL Editor so notes / photos / contacts
+permissions follow the new books.
+REFRESH: save the new export over territory-accounts/customers_active.csv, then run hub/generate.py,
+`python3 tools/customer_base.py --write-incentive-base`, incentive-tracking/generate.py, accounts/generate.py,
+carbliss-mpo/generate.py (it rebuilds the on-prem MPO + eligibility) and MPOs/off-prem/generate_2026-10.py.
+Constellation: Gavin keeps November invoices out of the fall export -- no freeze needed.
 

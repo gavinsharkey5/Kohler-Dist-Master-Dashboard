@@ -11,6 +11,10 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
+- [ ] **Re-run supabase/seed/account_assignments.sql** in the Supabase SQL Editor (2026-10-07): the rep
+  books now come from the active Customers export (2,850 accounts), so notes / photos / contacts permissions
+  must follow them.
+
 - [ ] **Account contacts (2026-10-06).** In the Supabase SQL Editor run, in order:
   `supabase/migrations/20261006100000_account_contacts.sql`, then
   `supabase/data/account_contacts.sql` (generated from the Encompass Customers
@@ -279,10 +283,12 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-10-07 **Rep account base = the active Customers export** (territory-accounts/customers_active.csv,
+  tools/customer_base.py): rep books, My Accounts, Incentives target lists, the Lytt and Carbliss bases;
+  Core Market / Southern District rules written down; MetLife stands out of program bases.
 - [x] 2026-10-07 **Off-Premise MPO rules confirmed**: core base rebuilt from the active Customers
   export (off-premise, core areas, "Sales" by county, no Whole Foods; 506 accounts); Constellation = 75% of
-  the assigned goal, rounded to the nearest whole number, by Oct 31 (2 reps achieved). After Oct 31: load the
-  last export up to Oct 31 and freeze it -- a later fall export would add November placements.
+  the assigned goal, rounded to the nearest whole number, by Oct 31 (2 reps achieved).
 - [x] 2026-10-07 **October Off-Premise MPO refreshed; Lytt counts Aug 1 - Oct 31**: new Lytt,
   Molly's and Wine exports loaded; Lytt = 50% of the core base with 3+ SKUs bought since Aug 1
   (fully returned SKUs not counted -- to confirm). Constellation left on the fall export until Gavin

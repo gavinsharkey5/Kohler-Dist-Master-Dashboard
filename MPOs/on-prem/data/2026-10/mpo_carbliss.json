@@ -811,16 +811,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24045,
-    "CUSTOMER_NAME": "Red Robin Gourmet Burger (Clifton)",
-    "BASE_DETAIL": "Clifton",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 15036,
     "CUSTOMER_NAME": "River Terrace Inn(P)",
     "BASE_DETAIL": "Paterson",
@@ -864,6 +854,16 @@
     "CUSTOMER_NUM": 13005,
     "CUSTOMER_NAME": "Sear",
     "BASE_DETAIL": "Little Falls",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 25019,
+    "CUSTOMER_NAME": "Shaking Crab(P)",
+    "BASE_DETAIL": "Clifton",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -1301,6 +1301,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 191215,
+    "CUSTOMER_NAME": "Blini Restaurant",
+    "BASE_DETAIL": "West Milford",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "CUSTOMER_NUM": 230930,
     "CUSTOMER_NAME": "Brick & Brew",
     "BASE_DETAIL": "Franklin",
@@ -1361,6 +1371,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 230914,
+    "CUSTOMER_NAME": "Cravin Tha LLC (Z)",
+    "BASE_DETAIL": "Hamburg",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "CUSTOMER_NUM": 230915,
     "CUSTOMER_NAME": "Crystal Sprs/Wild Turkey",
     "BASE_DETAIL": "Hamburg",
@@ -1368,6 +1388,16 @@
     "DONE": 1,
     "DONE_DETAIL": "Carbliss",
     "DONE_DATE": "10/7/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 191216,
+    "CUSTOMER_NAME": "Cuban Breeze Bar & Restaurant",
+    "BASE_DETAIL": "Oak Ridge",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -2051,6 +2081,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 190812,
+    "CUSTOMER_NAME": "Gunpowder Grill",
+    "BASE_DETAIL": "Picatinny",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
     "CUSTOMER_NUM": 231715,
     "CUSTOMER_NAME": "Gyp's Tavern",
     "BASE_DETAIL": "Sandyston",
@@ -2094,16 +2134,6 @@
     "CUSTOMER_NUM": 230113,
     "CUSTOMER_NAME": "Industry",
     "BASE_DETAIL": "Sparta",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 231607,
-    "CUSTOMER_NAME": "JJ's Bar and Package Goods LLC",
-    "BASE_DETAIL": "Sandyston",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -2364,6 +2394,16 @@
     "CUSTOMER_NUM": 230421,
     "CUSTOMER_NAME": "Nativa Coffee Bar",
     "BASE_DETAIL": "Newton",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191613,
+    "CUSTOMER_NAME": "Netcong Col.Council #3665",
+    "BASE_DETAIL": "Netcong",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -2651,6 +2691,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191720,
+    "CUSTOMER_NAME": "Stanhope Hose Co #1",
+    "BASE_DETAIL": "Stanhope",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
     "CUSTOMER_NUM": 191601,
     "CUSTOMER_NAME": "Stoll Street Tavern",
     "BASE_DETAIL": "Netcong",
@@ -2714,6 +2764,16 @@
     "CUSTOMER_NUM": 191509,
     "CUSTOMER_NAME": "The Beacon",
     "BASE_DETAIL": "Hopatcong",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 231706,
+    "CUSTOMER_NAME": "The Carriage House",
+    "BASE_DETAIL": "Branchville",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -2801,6 +2861,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191716,
+    "CUSTOMER_NAME": "The Stanhope House(P)",
+    "BASE_DETAIL": "Stanhope",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
     "CUSTOMER_NUM": 190503,
     "CUSTOMER_NAME": "The Station",
     "BASE_DETAIL": "Mountain Lakes",
@@ -2831,9 +2901,29 @@
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191816,
+    "CUSTOMER_NAME": "Vasa Park",
+    "BASE_DETAIL": "Hackettstown",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
     "CUSTOMER_NUM": 230432,
     "CUSTOMER_NAME": "Vfw 5360 Newton(P)",
     "BASE_DETAIL": "Newton",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191610,
+    "CUSTOMER_NAME": "Vfw Of Netcong",
+    "BASE_DETAIL": "Netcong",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -3031,16 +3121,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 81031,
-    "CUSTOMER_NAME": "Rail Yard Tavern (P)",
-    "BASE_DETAIL": "Fair Lawn",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 80023,
     "CUSTOMER_NAME": "Red Lobster Paramus",
     "BASE_DETAIL": "Paramus",
@@ -3090,30 +3170,10 @@
     "DONE_DATE": ""
   },
   {
-    "SALES_REP_ASSIGNED": "Chris Politano",
-    "CUSTOMER_NUM": 31037,
-    "CUSTOMER_NAME": "Delaware North Met Life Stadium",
-    "BASE_DETAIL": "East Rutherford",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
     "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 44027,
     "CUSTOMER_NAME": "354 Steakhouse (A)",
     "BASE_DETAIL": "Cliffside Park",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 49012,
-    "CUSTOMER_NAME": "365 BBQ",
-    "BASE_DETAIL": "Fort Lee",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -3174,16 +3234,6 @@
     "CUSTOMER_NUM": 53001,
     "CUSTOMER_NAME": "Brownstone Pancake Factor",
     "BASE_DETAIL": "Englewood Cliff",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 43022,
-    "CUSTOMER_NAME": "C & C Bar Factory",
-    "BASE_DETAIL": "Fairview",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -3254,6 +3304,16 @@
     "CUSTOMER_NUM": 49061,
     "CUSTOMER_NAME": "Double Tree Hotel Ft Lee",
     "BASE_DETAIL": "Fort Lee",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "CUSTOMER_NUM": 46016,
+    "CUSTOMER_NAME": "Dumok Bbq",
+    "BASE_DETAIL": "Palisades Park",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -3361,6 +3421,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
+    "CUSTOMER_NUM": 46004,
+    "CUSTOMER_NAME": "Hang Ahri(Pelicana Chic)Z",
+    "BASE_DETAIL": "Palisades Park",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 49065,
     "CUSTOMER_NAME": "Haven Rest/Bar (A)",
     "BASE_DETAIL": "Edgewater",
@@ -3441,9 +3511,9 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 53004,
-    "CUSTOMER_NAME": "Lefkes Restaurant",
-    "BASE_DETAIL": "Englewood Cliff",
+    "CUSTOMER_NUM": 46018,
+    "CUSTOMER_NAME": "Mad For Chicken Palisades Park",
+    "BASE_DETAIL": "Palisades Park",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -3531,6 +3601,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
+    "CUSTOMER_NUM": 44042,
+    "CUSTOMER_NAME": "R J's (Z)",
+    "BASE_DETAIL": "Cliffside Park",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 49076,
     "CUSTOMER_NAME": "Raku Izakaya (Z)",
     "BASE_DETAIL": "Fort Lee",
@@ -3584,16 +3664,6 @@
     "CUSTOMER_NUM": 46010,
     "CUSTOMER_NAME": "So Noon Nan Jib",
     "BASE_DETAIL": "Palisades Park",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 49053,
-    "CUSTOMER_NAME": "Soho (Z)",
-    "BASE_DETAIL": "Fort Lee",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -3690,6 +3760,16 @@
     "DONE_DATE": ""
   },
   {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 56010,
+    "CUSTOMER_NAME": "REPUBLIC 23 LOUNGE",
+    "BASE_DETAIL": "Bergenfield",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 20127,
     "CUSTOMER_NAME": "Brothers A&C Pizza (P)",
@@ -3751,6 +3831,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
+    "CUSTOMER_NUM": 20050,
+    "CUSTOMER_NAME": "Fusion Banquet/Lnge (P)",
+    "BASE_DETAIL": "Paterson",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 20075,
     "CUSTOMER_NAME": "Griselda Rest.(A)",
     "BASE_DETAIL": "Paterson",
@@ -3773,6 +3863,16 @@
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 20058,
     "CUSTOMER_NAME": "Krystal Bar(P) & Liqs.",
+    "BASE_DETAIL": "Paterson",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "CUSTOMER_NUM": 20132,
+    "CUSTOMER_NAME": "Lovelust",
     "BASE_DETAIL": "Paterson",
     "BASE_DATE": "",
     "DONE": 0,
@@ -3831,9 +3931,39 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
+    "CUSTOMER_NUM": 20119,
+    "CUSTOMER_NAME": "Una Copa Mas",
+    "BASE_DETAIL": "Paterson",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 15008,
     "CUSTOMER_NAME": "Westmount Country Club",
     "BASE_DETAIL": "Woodland Park",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dylan Rubino",
+    "CUSTOMER_NUM": 43024,
+    "CUSTOMER_NAME": "Noches De Colombia (Fairview)",
+    "BASE_DETAIL": "Fairview",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Hakan Sadik",
+    "CUSTOMER_NUM": 192049,
+    "CUSTOMER_NAME": "Eccola Italian Bisto",
+    "BASE_DETAIL": "Parsippany",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -3951,16 +4081,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27076,
-    "CUSTOMER_NAME": "El Asadero Mexican Grill (Passaic)",
-    "BASE_DETAIL": "Passaic",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 27110,
     "CUSTOMER_NAME": "El Camaron Mazatleco",
     "BASE_DETAIL": "Passaic",
@@ -3993,16 +4113,6 @@
     "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 27001,
     "CUSTOMER_NAME": "Fiesta Night Club(P)",
-    "BASE_DETAIL": "Passaic",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27146,
-    "CUSTOMER_NAME": "Foxes Place",
     "BASE_DETAIL": "Passaic",
     "BASE_DATE": "",
     "DONE": 0,
@@ -4221,6 +4331,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
+    "CUSTOMER_NUM": 27052,
+    "CUSTOMER_NAME": "Taqueria Los Gueros",
+    "BASE_DETAIL": "Passaic",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 20110,
     "CUSTOMER_NAME": "The Cathedral Restaurant",
     "BASE_DETAIL": "Paterson",
@@ -4270,10 +4390,10 @@
     "DONE_DATE": ""
   },
   {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 26013,
-    "CUSTOMER_NAME": "Tiny Tijuana",
-    "BASE_DETAIL": "Passaic",
+    "SALES_REP_ASSIGNED": "John O'Donoghue",
+    "CUSTOMER_NUM": 190926,
+    "CUSTOMER_NAME": "Applebee's Rockaway",
+    "BASE_DETAIL": "Rockaway",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -4284,6 +4404,16 @@
     "CUSTOMER_NUM": 32033,
     "CUSTOMER_NAME": "Pulse Gentleman's Club",
     "BASE_DETAIL": "Carlstadt",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "John O'Donoghue",
+    "CUSTOMER_NUM": 29059,
+    "CUSTOMER_NAME": "Traxx Lounge (Z)",
+    "BASE_DETAIL": "Lyndhurst",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -4331,6 +4461,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
+    "CUSTOMER_NUM": 37059,
+    "CUSTOMER_NAME": "Barcelona's Restaurant",
+    "BASE_DETAIL": "Garfield",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 33006,
     "CUSTOMER_NAME": "Bazzarellis (Z)",
     "BASE_DETAIL": "Moonachie",
@@ -4361,6 +4501,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
+    "CUSTOMER_NUM": 36020,
+    "CUSTOMER_NAME": "Cracovia Manor",
+    "BASE_DETAIL": "Wallington",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 37075,
     "CUSTOMER_NAME": "Deja Vu (Z)",
     "BASE_DETAIL": "Garfield",
@@ -4378,6 +4528,16 @@
     "DONE": 1,
     "DONE_DETAIL": "Carbliss",
     "DONE_DATE": "9/25/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "CUSTOMER_NUM": 33001,
+    "CUSTOMER_NAME": "El Tango Argentina Grill",
+    "BASE_DETAIL": "Moonachie",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -4421,6 +4581,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
+    "CUSTOMER_NUM": 37048,
+    "CUSTOMER_NAME": "LaBella Pizza (P)",
+    "BASE_DETAIL": "Garfield",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 37026,
     "CUSTOMER_NAME": "Michele (Z) Rest,",
     "BASE_DETAIL": "Garfield",
@@ -4441,9 +4611,29 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
+    "CUSTOMER_NUM": 36033,
+    "CUSTOMER_NAME": "Polka Dot Rest (Z)",
+    "BASE_DETAIL": "Wallington",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 37050,
     "CUSTOMER_NAME": "Royal Manor",
     "BASE_DETAIL": "Garfield",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "CUSTOMER_NUM": 77006,
+    "CUSTOMER_NAME": "Royal Warsaw (P) Rest.",
+    "BASE_DETAIL": "Elmwood Park",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -4494,16 +4684,6 @@
     "CUSTOMER_NUM": 37038,
     "CUSTOMER_NAME": "Wisla Center (Z)",
     "BASE_DETAIL": "Garfield",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Michael Harboy",
-    "CUSTOMER_NUM": 12003,
-    "CUSTOMER_NAME": "Whole Foods Market (Wayne)",
-    "BASE_DETAIL": "Wayne",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -4568,16 +4748,6 @@
     "DONE": 1,
     "DONE_DETAIL": "Carbliss",
     "DONE_DATE": "9/22/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 17013,
-    "CUSTOMER_NAME": "Joe's pub",
-    "BASE_DETAIL": "Haledon",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -4698,6 +4868,16 @@
     "DONE": 1,
     "DONE_DETAIL": "Carbliss",
     "DONE_DATE": "9/30/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 89003,
+    "CUSTOMER_NAME": "Allendale Social",
+    "BASE_DETAIL": "Allendale",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -4824,6 +5004,16 @@
     "CUSTOMER_NUM": 37019,
     "CUSTOMER_NAME": "BJ Polonia",
     "BASE_DETAIL": "Garfield",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 80014,
+    "CUSTOMER_NAME": "Bahama Breeze (Paramus)",
+    "BASE_DETAIL": "Paramus",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -5331,6 +5521,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 32032,
+    "CUSTOMER_NAME": "HUNKAR RESTAURANT",
+    "BASE_DETAIL": "Carlstadt",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 80062,
     "CUSTOMER_NAME": "Hampton Inn Paramus",
     "BASE_DETAIL": "Paramus",
@@ -5464,6 +5664,16 @@
     "CUSTOMER_NUM": 28016,
     "CUSTOMER_NAME": "Inka Flames",
     "BASE_DETAIL": "North Arlington",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 31057,
+    "CUSTOMER_NAME": "Isolla Bella Champagne Bar",
+    "BASE_DETAIL": "East Rutherford",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -5624,6 +5834,16 @@
     "CUSTOMER_NUM": 31049,
     "CUSTOMER_NAME": "Marcus Live Bar & Grille",
     "BASE_DETAIL": "East Rutherford",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 80048,
+    "CUSTOMER_NAME": "Marketplace Cafe (A)",
+    "BASE_DETAIL": "Paramus",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -6051,6 +6271,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 28031,
+    "CUSTOMER_NAME": "Shawn's Crazy Saloon",
+    "BASE_DETAIL": "North Arlington",
+    "BASE_DATE": "",
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/7/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 30026,
     "CUSTOMER_NAME": "Simulcast",
     "BASE_DETAIL": "East Rutherford",
@@ -6321,16 +6551,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 28019,
-    "CUSTOMER_NAME": "Turf and Barrel",
-    "BASE_DETAIL": "North Arlington",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 45020,
     "CUSTOMER_NAME": "Tutto A Modo Mio",
     "BASE_DETAIL": "Ridgefield",
@@ -6383,6 +6603,16 @@
     "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 31017,
     "CUSTOMER_NAME": "Victory Sports Bar",
+    "BASE_DETAIL": "East Rutherford",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 31044,
+    "CUSTOMER_NAME": "Vinoteca",
     "BASE_DETAIL": "East Rutherford",
     "BASE_DATE": "",
     "DONE": 0,
@@ -6544,6 +6774,16 @@
     "CUSTOMER_NUM": 27100,
     "CUSTOMER_NAME": "Buenaaazo",
     "BASE_DETAIL": "Passaic",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "CUSTOMER_NUM": 20082,
+    "CUSTOMER_NAME": "Central Restobar & Lounge",
+    "BASE_DETAIL": "Paterson",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -6751,16 +6991,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 20102,
-    "CUSTOMER_NAME": "La Fiesta",
-    "BASE_DETAIL": "Paterson",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 33005,
     "CUSTOMER_NAME": "La Havana 59",
     "BASE_DETAIL": "Moonachie",
@@ -6811,8 +7041,28 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "CUSTOMER_NUM": 20077,
+    "CUSTOMER_NAME": "Mamajuana Cafe (P)",
+    "BASE_DETAIL": "Paterson",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 21042,
     "CUSTOMER_NAME": "Marcet Cafe",
+    "BASE_DETAIL": "Paterson",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "CUSTOMER_NUM": 15025,
+    "CUSTOMER_NAME": "Nagueros Sport Bar",
     "BASE_DETAIL": "Paterson",
     "BASE_DATE": "",
     "DONE": 0,
@@ -7041,6 +7291,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 75007,
+    "CUSTOMER_NAME": "Acadia Catering",
+    "BASE_DETAIL": "Emerson",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 63002,
     "CUSTOMER_NAME": "Alpine C.C. (Z)",
     "BASE_DETAIL": "Demarest",
@@ -7221,6 +7481,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 62004,
+    "CUSTOMER_NAME": "Brasserie Memere",
+    "BASE_DETAIL": "Closter",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 40026,
     "CUSTOMER_NAME": "Brooklyn's (A)",
     "BASE_DETAIL": "Hackensack",
@@ -7291,6 +7561,26 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 60005,
+    "CUSTOMER_NAME": "Choir Practice Bar",
+    "BASE_DETAIL": "Dumont",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 54016,
+    "CUSTOMER_NAME": "Clinton Hotel (A)",
+    "BASE_DETAIL": "Tenafly",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 39007,
     "CUSTOMER_NAME": "Club Flamingo (A)",
     "BASE_DETAIL": "South Hackensac",
@@ -7341,6 +7631,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 40023,
+    "CUSTOMER_NAME": "Crows Nest (A)",
+    "BASE_DETAIL": "Hackensack",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 41027,
     "CUSTOMER_NAME": "Cubby's (P)",
     "BASE_DETAIL": "Hackensack",
@@ -7354,6 +7654,16 @@
     "CUSTOMER_NUM": 70004,
     "CUSTOMER_NAME": "Davey's Locker (A)",
     "BASE_DETAIL": "Montvale",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 81007,
+    "CUSTOMER_NAME": "Davia (P)",
+    "BASE_DETAIL": "Fair Lawn",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -7421,6 +7731,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 51010,
+    "CUSTOMER_NAME": "Elsa Lareina Del Chicharo",
+    "BASE_DETAIL": "Teaneck",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 75001,
     "CUSTOMER_NAME": "Emerson Hotel",
     "BASE_DETAIL": "Emerson",
@@ -7441,6 +7761,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 71002,
+    "CUSTOMER_NAME": "Esty Street",
+    "BASE_DETAIL": "Park Ridge",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 81015,
     "CUSTOMER_NAME": "Fair Lawn Athletic Club",
     "BASE_DETAIL": "Fair Lawn",
@@ -7448,6 +7778,16 @@
     "DONE": 1,
     "DONE_DETAIL": "Carbliss",
     "DONE_DATE": "9/10/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 81026,
+    "CUSTOMER_NAME": "Fair Lawn Diner",
+    "BASE_DETAIL": "Fair Lawn",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -7518,6 +7858,16 @@
     "DONE": 1,
     "DONE_DETAIL": "Carbliss",
     "DONE_DATE": "10/7/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 35010,
+    "CUSTOMER_NAME": "GUS'S LAST WORD",
+    "BASE_DETAIL": "Woodridge",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -7651,6 +8001,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 81021,
+    "CUSTOMER_NAME": "Land & Sea",
+    "BASE_DETAIL": "Fair Lawn",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 62012,
     "CUSTOMER_NAME": "Landmark Closter",
     "BASE_DETAIL": "Closter",
@@ -7664,6 +8024,16 @@
     "CUSTOMER_NUM": 40005,
     "CUSTOMER_NAME": "Lazy Lanigans (A)",
     "BASE_DETAIL": "Hackensack",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 73011,
+    "CUSTOMER_NAME": "Leblon Steakhouse",
+    "BASE_DETAIL": "Hillsdale",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -7981,6 +8351,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 51003,
+    "CUSTOMER_NAME": "Rain On Water Events",
+    "BASE_DETAIL": "Teaneck",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 57004,
     "CUSTOMER_NAME": "River & Henley",
     "BASE_DETAIL": "New Milford",
@@ -8011,6 +8391,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 67016,
+    "CUSTOMER_NAME": "Rockleigh Golf Course",
+    "BASE_DETAIL": "Rockleigh",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 62002,
     "CUSTOMER_NAME": "Rudy's Pizzeria (P)",
     "BASE_DETAIL": "Closter",
@@ -8023,6 +8413,26 @@
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 55009,
     "CUSTOMER_NAME": "Samdan Mediterranean Restaurant And Bar",
+    "BASE_DETAIL": "Cresskill",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 54010,
+    "CUSTOMER_NAME": "Sayola Rest & Tapas Bar",
+    "BASE_DETAIL": "Tenafly",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 55003,
+    "CUSTOMER_NAME": "Scotty's Bar & Grill",
     "BASE_DETAIL": "Cresskill",
     "BASE_DATE": "",
     "DONE": 0,
@@ -8084,6 +8494,26 @@
     "CUSTOMER_NUM": 52030,
     "CUSTOMER_NAME": "Sofia",
     "BASE_DETAIL": "Englewood",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 72005,
+    "CUSTOMER_NAME": "Sol Restaurant",
+    "BASE_DETAIL": "Woodcliff Lake",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 58007,
+    "CUSTOMER_NAME": "Sonny T",
+    "BASE_DETAIL": "River Edge",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -8171,9 +8601,9 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 62007,
-    "CUSTOMER_NAME": "The Hill",
-    "BASE_DETAIL": "Closter",
+    "CUSTOMER_NUM": 69001,
+    "CUSTOMER_NAME": "The Gathering",
+    "BASE_DETAIL": "Rivervale",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -8241,6 +8671,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 69004,
+    "CUSTOMER_NAME": "Valley Burgers And Brew",
+    "BASE_DETAIL": "Rivervale",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 65003,
     "CUSTOMER_NAME": "Verana",
     "BASE_DETAIL": "Norwood",
@@ -8298,6 +8738,26 @@
     "DONE": 1,
     "DONE_DETAIL": "Carbliss",
     "DONE_DATE": "10/5/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 76024,
+    "CUSTOMER_NAME": "Saddle Brook Liquor & Bar (NA)",
+    "BASE_DETAIL": "Saddle Brook",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 37072,
+    "CUSTOMER_NAME": "3 Sts. Russian Church (A)",
+    "BASE_DETAIL": "Garfield",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -8371,6 +8831,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 94007,
+    "CUSTOMER_NAME": "American Legion Oakland Post369",
+    "BASE_DETAIL": "Oakland",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 1026,
     "CUSTOMER_NAME": "American Legion Post 289 (A) West Milford",
     "BASE_DETAIL": "West Milford",
@@ -8404,6 +8874,16 @@
     "CUSTOMER_NUM": 55008,
     "CUSTOMER_NAME": "American Lgn (Z) (Cresskill)",
     "BASE_DETAIL": "Cresskill",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 81028,
+    "CUSTOMER_NAME": "American Lgn (Z) (Fair Lawn)",
+    "BASE_DETAIL": "Fair Lawn",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -8481,6 +8961,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 37078,
+    "CUSTOMER_NAME": "American Lgn 255 Garfield",
+    "BASE_DETAIL": "Garfield",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 52027,
     "CUSTOMER_NAME": "American Lgn 58 (A) Englewood",
     "BASE_DETAIL": "Englewood",
@@ -8494,6 +8984,16 @@
     "CUSTOMER_NUM": 231708,
     "CUSTOMER_NAME": "American Lgn Branchville",
     "BASE_DETAIL": "Branchville",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 31031,
+    "CUSTOMER_NAME": "American Lgn E Rutherford",
+    "BASE_DETAIL": "East Rutherford",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -8531,9 +9031,29 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 19019,
+    "CUSTOMER_NAME": "American Lgn Hawthorne",
+    "BASE_DETAIL": "Hawthorne",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 190301,
     "CUSTOMER_NAME": "American Lgn Lake Hiawath",
     "BASE_DETAIL": "Lake Hiawatha",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 191525,
+    "CUSTOMER_NAME": "American Lgn Lake Hopatcong",
+    "BASE_DETAIL": "Lake Hopatcong",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -8721,6 +9241,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 3013,
+    "CUSTOMER_NAME": "Berta's Chateau",
+    "BASE_DETAIL": "Wanaque",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 4011,
     "CUSTOMER_NAME": "Bloomingdale Fire Dept",
     "BASE_DETAIL": "Bloomingdale",
@@ -8764,6 +9294,16 @@
     "CUSTOMER_NUM": 231802,
     "CUSTOMER_NAME": "Candy's Pizza",
     "BASE_DETAIL": "Montague",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 40002,
+    "CUSTOMER_NAME": "Cap Diner",
+    "BASE_DETAIL": "Hackensack",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -8931,6 +9471,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 190008,
+    "CUSTOMER_NAME": "Denville Vfw Post 2519",
+    "BASE_DETAIL": "Denville",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 23015,
     "CUSTOMER_NAME": "Disabled Amvets (P)",
     "BASE_DETAIL": "Clifton",
@@ -9001,6 +9551,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 12029,
+    "CUSTOMER_NAME": "Elks Post (A) #2181 Wayne",
+    "BASE_DETAIL": "Wayne",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 29047,
     "CUSTOMER_NAME": "Elks Post (P)",
     "BASE_DETAIL": "Lyndhurst",
@@ -9048,16 +9608,6 @@
     "DONE": 1,
     "DONE_DETAIL": "Carbliss",
     "DONE_DATE": "9/22/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 40007,
-    "CUSTOMER_NAME": "Elks Post 153 (Z)",
-    "BASE_DETAIL": "Hackensack",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -9171,6 +9721,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 40028,
+    "CUSTOMER_NAME": "Elks Post 658 (A)",
+    "BASE_DETAIL": "Hackensack",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 77033,
     "CUSTOMER_NAME": "Elmwood Pk-Pater Elks #60",
     "BASE_DETAIL": "Elmwood Park",
@@ -9194,6 +9754,16 @@
     "CUSTOMER_NUM": 12042,
     "CUSTOMER_NAME": "Exotic Indian Cuisine",
     "BASE_DETAIL": "Wayne",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 230901,
+    "CUSTOMER_NAME": "Fire Department",
+    "BASE_DETAIL": "Franklin",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -9331,6 +9901,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 73012,
+    "CUSTOMER_NAME": "Hillsdale Vol Fire(Z)",
+    "BASE_DETAIL": "Hillsdale",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 190710,
     "CUSTOMER_NAME": "Hilton Garden Inn Rockaway",
     "BASE_DETAIL": "Rockaway",
@@ -9384,6 +9964,16 @@
     "CUSTOMER_NUM": 28033,
     "CUSTOMER_NAME": "Homewood Suites By Hilton",
     "BASE_DETAIL": "East Rutherford",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 93020,
+    "CUSTOMER_NAME": "Homewood Suites Mahwah",
+    "BASE_DETAIL": "Mahwah",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -9471,6 +10061,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 10005,
+    "CUSTOMER_NAME": "K Of C",
+    "BASE_DETAIL": "Pequannock",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 86005,
     "CUSTOMER_NAME": "K Of C (Z) Washing. Twsp",
     "BASE_DETAIL": "Washington Twsp",
@@ -9528,6 +10128,16 @@
     "DONE": 1,
     "DONE_DETAIL": "Carbliss",
     "DONE_DATE": "10/2/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 94015,
+    "CUSTOMER_NAME": "K Of C Oakland (A)",
+    "BASE_DETAIL": "Oakland",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -9751,6 +10361,26 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 32002,
+    "CUSTOMER_NAME": "Meadowlands Diner",
+    "BASE_DETAIL": "Carlstadt",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 8012,
+    "CUSTOMER_NAME": "Monica's Ital.Rest.(Z)",
+    "BASE_DETAIL": "Pompton Lakes",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 66001,
     "CUSTOMER_NAME": "Montammy Golf Club (P)",
     "BASE_DETAIL": "Alpine",
@@ -9791,6 +10421,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 190502,
+    "CUSTOMER_NAME": "Mountain (P) Lakes Club",
+    "BASE_DETAIL": "Mountain Lakes",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 23009,
     "CUSTOMER_NAME": "Mountainside (A)",
     "BASE_DETAIL": "Clifton",
@@ -9823,6 +10463,16 @@
     "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 67006,
     "CUSTOMER_NAME": "Northvale Diner",
+    "BASE_DETAIL": "Northvale",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 67012,
+    "CUSTOMER_NAME": "Northvale Fire Dept",
     "BASE_DETAIL": "Northvale",
     "BASE_DATE": "",
     "DONE": 0,
@@ -9874,6 +10524,16 @@
     "CUSTOMER_NUM": 73004,
     "CUSTOMER_NAME": "Osso Buco",
     "BASE_DETAIL": "Hillsdale",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 19010,
+    "CUSTOMER_NAME": "Ossy's Cafe (P)",
+    "BASE_DETAIL": "Hawthorne",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -9961,6 +10621,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 38004,
+    "CUSTOMER_NAME": "Pinnacle",
+    "BASE_DETAIL": "Lodi",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 29052,
     "CUSTOMER_NAME": "Polish American Club",
     "BASE_DETAIL": "Lyndhurst",
@@ -9991,9 +10661,39 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 9006,
+    "CUSTOMER_NAME": "Regency House (P)",
+    "BASE_DETAIL": "Pompton Plains",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 30017,
     "CUSTOMER_NAME": "Renaissance Meadowlands",
     "BASE_DETAIL": "Rutherford",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 77029,
+    "CUSTOMER_NAME": "Reserve (Z) Assoc.",
+    "BASE_DETAIL": "Elmwood Park",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 71012,
+    "CUSTOMER_NAME": "Reserve Police",
+    "BASE_DETAIL": "Park Ridge",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -10091,6 +10791,26 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 54015,
+    "CUSTOMER_NAME": "Serafina Tenafly",
+    "BASE_DETAIL": "Tenafly",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 52028,
+    "CUSTOMER_NAME": "Shiloh (Z)",
+    "BASE_DETAIL": "Englewood",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 191306,
     "CUSTOMER_NAME": "Shore Hills Country Club",
     "BASE_DETAIL": "Landing",
@@ -10134,6 +10854,16 @@
     "CUSTOMER_NUM": 32031,
     "CUSTOMER_NAME": "Spring Hill Suites Carlstadt",
     "BASE_DETAIL": "Carlstadt",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 54004,
+    "CUSTOMER_NAME": "Spring House",
+    "BASE_DETAIL": "Tenafly",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -10221,6 +10951,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 231301,
+    "CUSTOMER_NAME": "The Green Restaurant and Pub",
+    "BASE_DETAIL": "Wantage",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 34008,
     "CUSTOMER_NAME": "The Ivy Inn",
     "BASE_DETAIL": "Hasbrouck Heights",
@@ -10253,6 +10993,16 @@
     "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 25018,
     "CUSTOMER_NAME": "Tick-Tock Diner (A)",
+    "BASE_DETAIL": "Clifton",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 23010,
+    "CUSTOMER_NAME": "Toros Turkish (P)",
     "BASE_DETAIL": "Clifton",
     "BASE_DATE": "",
     "DONE": 0,
@@ -10401,6 +11151,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 28029,
+    "CUSTOMER_NAME": "Vfw North Arlington",
+    "BASE_DETAIL": "North Arlington",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 76013,
     "CUSTOMER_NAME": "Vfw Of Saddlebrook",
     "BASE_DETAIL": "Saddle Brook",
@@ -10414,6 +11174,16 @@
     "CUSTOMER_NUM": 37010,
     "CUSTOMER_NAME": "Vfw Outwater (Z) Lane",
     "BASE_DETAIL": "Garfield",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 80044,
+    "CUSTOMER_NAME": "Vfw Post 6699 Paramus",
+    "BASE_DETAIL": "Paramus",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",
@@ -10451,6 +11221,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 12027,
+    "CUSTOMER_NAME": "Wayne Hills Diner",
+    "BASE_DETAIL": "Wayne",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 190712,
     "CUSTOMER_NAME": "White Meadow Lake Cc",
     "BASE_DETAIL": "Rockaway",
@@ -10461,9 +11241,29 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 12062,
+    "CUSTOMER_NAME": "Will Pat Univ-Wayne Hall",
+    "BASE_DETAIL": "Wayne",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 77013,
     "CUSTOMER_NAME": "William J. Mulligan VFW Post 281",
     "BASE_DETAIL": "Elmwood Park",
+    "BASE_DATE": "",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 31040,
+    "CUSTOMER_NAME": "World of Blue Hotel",
+    "BASE_DETAIL": "East Rutherford",
     "BASE_DATE": "",
     "DONE": 0,
     "DONE_DETAIL": "",

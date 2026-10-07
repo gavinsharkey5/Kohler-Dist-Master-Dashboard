@@ -1,35 +1,5 @@
 [
   {
-    "SALES_REP_ASSIGNED": "Alex Rodriguez",
-    "CUSTOMER_NUM": 30027,
-    "CUSTOMER_NAME": "Backyard",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Alex Rodriguez",
-    "CUSTOMER_NUM": 31012,
-    "CUSTOMER_NAME": "Izod Center (A)E Rutherf",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Alex Rodriguez",
-    "CUSTOMER_NUM": 30019,
-    "CUSTOMER_NAME": "Lounge",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Alex Rodriguez",
-    "CUSTOMER_NUM": 30018,
-    "CUSTOMER_NAME": "Qsr",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Alex Rodriguez",
-    "CUSTOMER_NUM": 30020,
-    "CUSTOMER_NAME": "Victory Terrace",
-    "AREA": "Bergen"
-  },
-  {
     "SALES_REP_ASSIGNED": "Alisa Acciardi",
     "CUSTOMER_NUM": 29010,
     "CUSTOMER_NAME": "Paradise Liquors",
