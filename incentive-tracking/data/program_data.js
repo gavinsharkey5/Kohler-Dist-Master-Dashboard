@@ -150616,12 +150616,42 @@ const PROGRAM_DATA_2026_10 = {
           "ipa": 0,
           "lss": 0
         },
-        "draftNew": [],
-        "draftNewCount": 0,
-        "draftQualifiedCount": 0,
-        "draftReorderCount": 0,
+        "draftNew": [
+          {
+            "customer": "Breaker Billiards",
+            "bbl": 0.0,
+            "rebuy": false
+          }
+        ],
+        "draftNewCount": 1,
+        "draftQualifiedCount": 1,
+        "draftReorderCount": 3,
         "rebuyCount": 0,
         "draftAccounts": [
+          {
+            "customer": "Grasshopper Too (A)",
+            "bbl": 0.0,
+            "status": "reorder",
+            "rebuy": false
+          },
+          {
+            "customer": "Breaker Billiards",
+            "bbl": 0.0,
+            "status": "new",
+            "rebuy": false
+          },
+          {
+            "customer": "Grasshopper Irish Pub (A)",
+            "bbl": 0.0,
+            "status": "reorder",
+            "rebuy": false
+          },
+          {
+            "customer": "YARD HOUSE 8384",
+            "bbl": 0.0,
+            "status": "reorder",
+            "rebuy": false
+          },
           {
             "customer": "Dave & Buster's Nj, Inc",
             "bbl": 0.0,
@@ -150630,24 +150660,6 @@ const PROGRAM_DATA_2026_10 = {
           },
           {
             "customer": "Red Robin Gourmet Burger (Clifton)",
-            "bbl": 0.0,
-            "status": "lapsed",
-            "rebuy": false
-          },
-          {
-            "customer": "Grasshopper Too (A)",
-            "bbl": 0.0,
-            "status": "lapsed",
-            "rebuy": false
-          },
-          {
-            "customer": "YARD HOUSE 8384",
-            "bbl": 0.0,
-            "status": "lapsed",
-            "rebuy": false
-          },
-          {
-            "customer": "Grasshopper Irish Pub (A)",
             "bbl": 0.0,
             "status": "lapsed",
             "rebuy": false
@@ -150672,11 +150684,11 @@ const PROGRAM_DATA_2026_10 = {
           }
         ],
         "caseVolume": 0.0,
-        "accounts": 0,
+        "accounts": 4,
         "qualified": false,
         "podPayout": 0,
-        "draftPayout": 0,
-        "payout": 0,
+        "draftPayout": 100,
+        "payout": 100,
         "draftChannelOk": true,
         "toQualifier": 3,
         "rate": 10,
@@ -150791,12 +150803,19 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargetCount": 78
       },
       "Anthony Palmisano": {
-        "pods": [],
-        "podCount": 0,
-        "reorderCount": 0,
+        "pods": [
+          {
+            "customer": "River Place Food Store",
+            "product": "Lagunitas Little Sumpin IPA 4/6/12 oz Can",
+            "brand": "lss",
+            "date": "10/6/2026"
+          }
+        ],
+        "podCount": 1,
+        "reorderCount": 9,
         "byBrand": {
           "ipa": 0,
-          "lss": 0
+          "lss": 1
         },
         "draftNew": [],
         "draftNewCount": 0,
@@ -150804,20 +150823,16 @@ const PROGRAM_DATA_2026_10 = {
         "draftReorderCount": 0,
         "rebuyCount": 0,
         "draftAccounts": [],
-        "caseVolume": 0.0,
-        "accounts": 0,
+        "caseVolume": 21.0,
+        "accounts": 6,
         "qualified": false,
         "podPayout": 0,
         "draftPayout": 0,
         "payout": 0,
         "draftChannelOk": true,
-        "toQualifier": 3,
+        "toQualifier": 2,
         "rate": 10,
         "offPremTargets": [
-          {
-            "customer": "Uncorked Wines & Spirits (West Milford)",
-            "cases2026": 18173.0
-          },
           {
             "customer": "Usa Wine Traders Club (Bloomingdale)",
             "cases2026": 17917.0
@@ -150835,24 +150850,12 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 9950.3
           },
           {
-            "customer": "Ringwood W&L",
-            "cases2026": 9732.0
-          },
-          {
             "customer": "Turnpike Discount Liquors",
             "cases2026": 9574.0
           },
           {
-            "customer": "Krauszer's Liquor Wine and Spirits",
-            "cases2026": 9219.0
-          },
-          {
             "customer": "Buy Rite W &L Pompton(P)",
             "cases2026": 8805.0
-          },
-          {
-            "customer": "River Place Food Store",
-            "cases2026": 8055.0
           },
           {
             "customer": "George's Market (A)",
@@ -150875,10 +150878,6 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 6830.5
           },
           {
-            "customer": "Roserne Liquors North",
-            "cases2026": 6600.2
-          },
-          {
             "customer": "B & B Wine&Liq",
             "cases2026": 6195.0
           },
@@ -150891,11 +150890,31 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 5159.0
           },
           {
-            "customer": "Country Convenience Store",
-            "cases2026": 4676.0
+            "customer": "Empire Wine & Liquor",
+            "cases2026": 3432.0
+          },
+          {
+            "customer": "Bloomingdale Discount Liq",
+            "cases2026": 3317.0
+          },
+          {
+            "customer": "Meloi Liquors",
+            "cases2026": 2932.0
+          },
+          {
+            "customer": "M & M Discount Liq",
+            "cases2026": 2402.0
+          },
+          {
+            "customer": "Hootch Hut (P)",
+            "cases2026": 1886.0
+          },
+          {
+            "customer": "Home Wine and Liquors",
+            "cases2026": 1848.0
           }
         ],
-        "offPremTargetCount": 27
+        "offPremTargetCount": 21
       },
       "Brian Sengebush": {
         "pods": [],
@@ -150949,12 +150968,79 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargetCount": 6
       },
       "Chris Payton": {
-        "pods": [],
-        "podCount": 0,
-        "reorderCount": 2,
+        "pods": [
+          {
+            "customer": "Exquisite W & L (A)",
+            "product": "Lagunitas IPA 4/6/12 oz Can",
+            "brand": "ipa",
+            "date": "10/8/2026"
+          },
+          {
+            "customer": "Exquisite W & L (A)",
+            "product": "Lagunitas IPA 1/12/19.2 oz Can",
+            "brand": "ipa",
+            "date": "10/8/2026"
+          },
+          {
+            "customer": "Exquisite W & L (A)",
+            "product": "Lagunitas IPA 2/12/12 oz Btl",
+            "brand": "ipa",
+            "date": "10/8/2026"
+          },
+          {
+            "customer": "Exquisite W & L (A)",
+            "product": "Lagunitas Little Sumpin IPA 4/6/12 oz Can",
+            "brand": "lss",
+            "date": "10/8/2026"
+          },
+          {
+            "customer": "Wineland",
+            "product": "Lagunitas Little Sumpin IPA 2/12/12 oz Can",
+            "brand": "lss",
+            "date": "10/8/2026"
+          },
+          {
+            "customer": "Wineland",
+            "product": "Lagunitas Little Sumpin IPA 1/12/19.2 oz Can",
+            "brand": "lss",
+            "date": "10/8/2026"
+          },
+          {
+            "customer": "Exquisite W & L (A)",
+            "product": "Lagunitas Little Sumpin IPA 1/12/19.2 oz Can",
+            "brand": "lss",
+            "date": "10/8/2026"
+          },
+          {
+            "customer": "Shop Rite Liq.(A)Lodi",
+            "product": "Lagunitas IPA 1/12/19.2 oz Can",
+            "brand": "ipa",
+            "date": "10/5/2026"
+          },
+          {
+            "customer": "Shop Rite Liq.(A)Lodi",
+            "product": "Lagunitas IPA 4/6/12 oz Can",
+            "brand": "ipa",
+            "date": "10/5/2026"
+          },
+          {
+            "customer": "Usa Wine Traders Club (Saddle Brook)",
+            "product": "Lagunitas Little Sumpin IPA 4/6/12 oz Can",
+            "brand": "lss",
+            "date": "10/2/2026"
+          },
+          {
+            "customer": "Buy Rite Discount Liquor",
+            "product": "Lagunitas Little Sumpin IPA 1/12/19.2 oz Can",
+            "brand": "lss",
+            "date": "10/1/2026"
+          }
+        ],
+        "podCount": 11,
+        "reorderCount": 6,
         "byBrand": {
-          "ipa": 0,
-          "lss": 0
+          "ipa": 5,
+          "lss": 6
         },
         "draftNew": [],
         "draftNewCount": 0,
@@ -150962,15 +151048,15 @@ const PROGRAM_DATA_2026_10 = {
         "draftReorderCount": 0,
         "rebuyCount": 0,
         "draftAccounts": [],
-        "caseVolume": 2.0,
-        "accounts": 2,
-        "qualified": false,
-        "podPayout": 0,
+        "caseVolume": 27.0,
+        "accounts": 9,
+        "qualified": true,
+        "podPayout": 165,
         "draftPayout": 0,
-        "payout": 0,
+        "payout": 165,
         "draftChannelOk": true,
-        "toQualifier": 3,
-        "rate": 10,
+        "toQualifier": 0,
+        "rate": 15,
         "offPremTargets": [
           {
             "customer": "Clifton Disc Liq (A)",
@@ -150981,28 +151067,8 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 20871.3
           },
           {
-            "customer": "Wineland",
-            "cases2026": 20004.0
-          },
-          {
-            "customer": "Usa Wine Traders Club (Saddle Brook)",
-            "cases2026": 18418.5
-          },
-          {
             "customer": "46 Discount Liquor Store",
             "cases2026": 12469.0
-          },
-          {
-            "customer": "Exquisite W & L (A)",
-            "cases2026": 11863.5
-          },
-          {
-            "customer": "Buy Rite Of Main St Lodi",
-            "cases2026": 11690.7
-          },
-          {
-            "customer": "Buy Rite Discount Liquor",
-            "cases2026": 9703.2
           },
           {
             "customer": "Figlar's (P)",
@@ -151011,10 +151077,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Discount Lqr(A) Outlet",
             "cases2026": 9394.0
-          },
-          {
-            "customer": "Shop Rite Liq.(A)Lodi",
-            "cases2026": 8214.0
           },
           {
             "customer": "Woodridge Wines & Liq(A)",
@@ -151051,24 +151113,60 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Quick Stop Food & Liq",
             "cases2026": 3881.3
+          },
+          {
+            "customer": "Liquor Masters (P)",
+            "cases2026": 3449.8
+          },
+          {
+            "customer": "Hollywd Liq&Deli (A)",
+            "cases2026": 3223.7
+          },
+          {
+            "customer": "Westmont Liquors 64",
+            "cases2026": 2969.0
+          },
+          {
+            "customer": "J R W & Liq (A)",
+            "cases2026": 2921.6
+          },
+          {
+            "customer": "Radburn Liquors (A",
+            "cases2026": 2870.0
+          },
+          {
+            "customer": "Circle Liquors",
+            "cases2026": 2720.5
           }
         ],
-        "offPremTargetCount": 40
+        "offPremTargetCount": 33
       },
       "Dan Lagala": {
         "pods": [],
         "podCount": 0,
-        "reorderCount": 0,
+        "reorderCount": 5,
         "byBrand": {
           "ipa": 0,
           "lss": 0
         },
-        "draftNew": [],
-        "draftNewCount": 0,
-        "draftQualifiedCount": 0,
+        "draftNew": [
+          {
+            "customer": "Edgewater Liquor (A)",
+            "bbl": 0.25,
+            "rebuy": false
+          }
+        ],
+        "draftNewCount": 1,
+        "draftQualifiedCount": 1,
         "draftReorderCount": 0,
         "rebuyCount": 0,
         "draftAccounts": [
+          {
+            "customer": "Edgewater Liquor (A)",
+            "bbl": 0.25,
+            "status": "new",
+            "rebuy": false
+          },
           {
             "customer": "J D Steak Pit",
             "bbl": 0.0,
@@ -151082,12 +151180,12 @@ const PROGRAM_DATA_2026_10 = {
             "rebuy": false
           }
         ],
-        "caseVolume": 0.0,
-        "accounts": 0,
+        "caseVolume": 11.0,
+        "accounts": 4,
         "qualified": false,
         "podPayout": 0,
-        "draftPayout": 0,
-        "payout": 0,
+        "draftPayout": 100,
+        "payout": 100,
         "draftChannelOk": true,
         "toQualifier": 3,
         "rate": 10,
@@ -151123,10 +151221,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Stop N Go Conven. (P)",
             "cases2026": 8285.0
-          },
-          {
-            "customer": "Edgewater Liquor (A)",
-            "cases2026": 7946.0
           },
           {
             "customer": "Kikos Liquors Ii",
@@ -151165,23 +151259,76 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 5371.0
           },
           {
-            "customer": "Tenafly Fine Wine & Spirits",
-            "cases2026": 4973.3
-          },
-          {
             "customer": "Rome Liquor (Cliffside Park)",
             "cases2026": 4578.0
+          },
+          {
+            "customer": "Checo Supermarket",
+            "cases2026": 4465.0
+          },
+          {
+            "customer": "Palisades Park Liq(P)",
+            "cases2026": 3870.0
           }
         ],
-        "offPremTargetCount": 44
+        "offPremTargetCount": 41
       },
       "Dave Ehlers": {
-        "pods": [],
-        "podCount": 0,
-        "reorderCount": 0,
+        "pods": [
+          {
+            "customer": "Total Wine & More (Totowa)",
+            "product": "Lagunitas Little Sumpin IPA 4/6/12 oz Can",
+            "brand": "lss",
+            "date": "10/7/2026"
+          },
+          {
+            "customer": "Bergenfield Liq & Fw",
+            "product": "Lagunitas Little Sumpin IPA 2/12/12 oz Can",
+            "brand": "lss",
+            "date": "10/7/2026"
+          },
+          {
+            "customer": "Barrel & Brew Bar & Liq",
+            "product": "Lagunitas IPA 4/6/12 oz Btl",
+            "brand": "ipa",
+            "date": "10/6/2026"
+          },
+          {
+            "customer": "Barrel & Brew Bar & Liq",
+            "product": "Lagunitas Little Sumpin IPA 4/6/12 oz Can",
+            "brand": "lss",
+            "date": "10/6/2026"
+          },
+          {
+            "customer": "Deli Mart (A)",
+            "product": "Lagunitas IPA 4/6/12 oz Btl",
+            "brand": "ipa",
+            "date": "10/6/2026"
+          },
+          {
+            "customer": "New Milford Liquors",
+            "product": "Lagunitas IPA 2/12/12 oz Btl",
+            "brand": "ipa",
+            "date": "10/5/2026"
+          },
+          {
+            "customer": "New Milford Liquors",
+            "product": "Lagunitas Little Sumpin IPA 2/12/12 oz Btl",
+            "brand": "lss",
+            "date": "10/5/2026"
+          },
+          {
+            "customer": "Burgundy Convenience Store",
+            "product": "Lagunitas IPA 4/6/12 oz Btl",
+            "brand": "ipa",
+            "date": "10/2/2026"
+          }
+        ],
+        "podCount": 8,
+        "reorderCount": 19,
         "byBrand": {
-          "ipa": 0,
-          "lss": 0
+          "ipa": 4,
+          "lss": 4
         },
         "draftNew": [],
         "draftNewCount": 0,
@@ -151189,31 +151336,19 @@ const PROGRAM_DATA_2026_10 = {
         "draftReorderCount": 0,
         "rebuyCount": 0,
         "draftAccounts": [],
-        "caseVolume": 0.0,
-        "accounts": 0,
-        "qualified": false,
-        "podPayout": 0,
+        "caseVolume": 60.0,
+        "accounts": 9,
+        "qualified": true,
+        "podPayout": 120,
         "draftPayout": 0,
-        "payout": 0,
+        "payout": 120,
         "draftChannelOk": true,
-        "toQualifier": 3,
-        "rate": 10,
+        "toQualifier": 0,
+        "rate": 15,
         "offPremTargets": [
-          {
-            "customer": "Total Wine & More (Totowa)",
-            "cases2026": 80385.0
-          },
-          {
-            "customer": "Total Wine & More (River Edge)",
-            "cases2026": 79034.8
-          },
           {
             "customer": "Shop Rite Liq (A)Englewd",
             "cases2026": 31435.0
-          },
-          {
-            "customer": "Buy Rite Of Hackensack",
-            "cases2026": 25400.8
           },
           {
             "customer": "Portland Wine & Liquor",
@@ -151226,10 +151361,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Hackensack Liquors",
             "cases2026": 17640.3
-          },
-          {
-            "customer": "Bergenfield Liq & Fw",
-            "cases2026": 14768.3
           },
           {
             "customer": "W E Beverage (A)",
@@ -151256,10 +151387,6 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 7351.0
           },
           {
-            "customer": "Deli Mart (A)",
-            "cases2026": 6826.0
-          },
-          {
             "customer": "H & R Disc. Liq (P)",
             "cases2026": 6668.0
           },
@@ -151276,16 +151403,36 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 3888.0
           },
           {
-            "customer": "Barrel & Brew Bar & Liq",
-            "cases2026": 3790.0
+            "customer": "Teaneck Discount Liquor",
+            "cases2026": 3142.2
+          },
+          {
+            "customer": "Teaneck Liquors",
+            "cases2026": 2364.0
+          },
+          {
+            "customer": "Wine & More (P)",
+            "cases2026": 1903.0
+          },
+          {
+            "customer": "Englewood Liq (A)",
+            "cases2026": 1665.0
+          },
+          {
+            "customer": "99 Ranch Market",
+            "cases2026": 1187.0
+          },
+          {
+            "customer": "Grand Liquor & Delicatesen",
+            "cases2026": 859.0
           }
         ],
-        "offPremTargetCount": 36
+        "offPremTargetCount": 27
       },
       "Derrick Laws": {
         "pods": [],
         "podCount": 0,
-        "reorderCount": 0,
+        "reorderCount": 3,
         "byBrand": {
           "ipa": 0,
           "lss": 0
@@ -151296,8 +151443,8 @@ const PROGRAM_DATA_2026_10 = {
         "draftReorderCount": 0,
         "rebuyCount": 0,
         "draftAccounts": [],
-        "caseVolume": 0.0,
-        "accounts": 0,
+        "caseVolume": 5.0,
+        "accounts": 2,
         "qualified": false,
         "podPayout": 0,
         "draftPayout": 0,
@@ -151313,10 +151460,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "The Liquor Shop",
             "cases2026": 30665.0
-          },
-          {
-            "customer": "Shop Rite Wines/Spirits",
-            "cases2026": 24348.5
           },
           {
             "customer": "Economy Liquors",
@@ -151363,10 +151506,6 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 8270.0
           },
           {
-            "customer": "Liquor Gallery (Paterson)",
-            "cases2026": 8121.5
-          },
-          {
             "customer": "10th Ave Liq & Food (P)",
             "cases2026": 7764.0
           },
@@ -151385,9 +151524,17 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Moya E.Bar&Liq.(Z)",
             "cases2026": 6144.5
+          },
+          {
+            "customer": "The Point Liquor & Bar",
+            "cases2026": 5985.0
+          },
+          {
+            "customer": "Gonzalez Liq & Bar(A)",
+            "cases2026": 5963.0
           }
         ],
-        "offPremTargetCount": 33
+        "offPremTargetCount": 31
       },
       "Dylan Rubino": {
         "pods": [],
@@ -151711,12 +151858,19 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargetCount": 44
       },
       "Javier Melo": {
-        "pods": [],
-        "podCount": 0,
-        "reorderCount": 0,
+        "pods": [
+          {
+            "customer": "Bottle Liquor (P)",
+            "product": "Lagunitas Little Sumpin IPA 2/12/12 oz Can",
+            "brand": "lss",
+            "date": "10/5/2026"
+          }
+        ],
+        "podCount": 1,
+        "reorderCount": 2,
         "byBrand": {
           "ipa": 0,
-          "lss": 0
+          "lss": 1
         },
         "draftNew": [],
         "draftNewCount": 0,
@@ -151724,23 +151878,19 @@ const PROGRAM_DATA_2026_10 = {
         "draftReorderCount": 0,
         "rebuyCount": 0,
         "draftAccounts": [],
-        "caseVolume": 0.0,
-        "accounts": 0,
+        "caseVolume": 4.0,
+        "accounts": 1,
         "qualified": false,
         "podPayout": 0,
         "draftPayout": 0,
         "payout": 0,
         "draftChannelOk": true,
-        "toQualifier": 3,
+        "toQualifier": 2,
         "rate": 10,
         "offPremTargets": [
           {
             "customer": "Farm Boy",
             "cases2026": 15703.0
-          },
-          {
-            "customer": "Bottle Liquor (P)",
-            "cases2026": 15510.0
           },
           {
             "customer": "New Eagle Liquors",
@@ -151813,9 +151963,13 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "C & S Lucky Liquors (P)",
             "cases2026": 7333.0
+          },
+          {
+            "customer": "C & S Lucky Liquors II",
+            "cases2026": 6886.0
           }
         ],
-        "offPremTargetCount": 29
+        "offPremTargetCount": 28
       },
       "Jayson Romine": {
         "pods": [],
@@ -151927,17 +152081,59 @@ const PROGRAM_DATA_2026_10 = {
       "Jim Heaney": {
         "pods": [
           {
+            "customer": "Swizzle Stick Liq (A)",
+            "product": "Lagunitas IPA 4/6/12 oz Btl",
+            "brand": "ipa",
+            "date": "10/8/2026"
+          },
+          {
+            "customer": "Liquor Shed",
+            "product": "Lagunitas IPA 4/6/12 oz Btl",
+            "brand": "ipa",
+            "date": "10/7/2026"
+          },
+          {
+            "customer": "Liquor Mart (North Arlington)",
+            "product": "Lagunitas Little Sumpin IPA 4/6/12 oz Can",
+            "brand": "lss",
+            "date": "10/5/2026"
+          },
+          {
+            "customer": "Liquor Mart (North Arlington)",
+            "product": "Lagunitas IPA 4/6/12 oz Btl",
+            "brand": "ipa",
+            "date": "10/5/2026"
+          },
+          {
+            "customer": "Little Falls Liq(P)",
+            "product": "Lagunitas Little Sumpin IPA 4/6/12 oz Can",
+            "brand": "lss",
+            "date": "10/2/2026"
+          },
+          {
+            "customer": "Shoppers Vineyard (A)",
+            "product": "Lagunitas Little Sumpin IPA 4/6/12 oz Can",
+            "brand": "lss",
+            "date": "10/2/2026"
+          },
+          {
+            "customer": "Little Falls Liq(P)",
+            "product": "Lagunitas IPA 4/6/12 oz Btl",
+            "brand": "ipa",
+            "date": "10/2/2026"
+          },
+          {
             "customer": "Savers Club Liquor Locker",
             "product": "Lagunitas IPA 4/6/12 oz Btl",
             "brand": "ipa",
             "date": "10/1/2026"
           }
         ],
-        "podCount": 1,
-        "reorderCount": 0,
+        "podCount": 8,
+        "reorderCount": 3,
         "byBrand": {
-          "ipa": 1,
-          "lss": 0
+          "ipa": 5,
+          "lss": 3
         },
         "draftNew": [],
         "draftNewCount": 0,
@@ -151945,27 +152141,19 @@ const PROGRAM_DATA_2026_10 = {
         "draftReorderCount": 0,
         "rebuyCount": 0,
         "draftAccounts": [],
-        "caseVolume": 5.0,
-        "accounts": 1,
-        "qualified": false,
-        "podPayout": 0,
+        "caseVolume": 26.0,
+        "accounts": 7,
+        "qualified": true,
+        "podPayout": 120,
         "draftPayout": 0,
-        "payout": 0,
+        "payout": 120,
         "draftChannelOk": true,
-        "toQualifier": 2,
-        "rate": 10,
+        "toQualifier": 0,
+        "rate": 15,
         "offPremTargets": [
-          {
-            "customer": "Shoppers Vineyard (A)",
-            "cases2026": 38414.0
-          },
           {
             "customer": "Lexington Liquors (Z)",
             "cases2026": 19257.0
-          },
-          {
-            "customer": "Clifton Commons S & W",
-            "cases2026": 16728.0
           },
           {
             "customer": "Broad Liquors (A)",
@@ -151978,10 +152166,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Rainbow Liquor (P)",
             "cases2026": 12273.2
-          },
-          {
-            "customer": "Little Falls Liq(P)",
-            "cases2026": 9592.1
           },
           {
             "customer": "US#1 Wine & Liquor",
@@ -152012,10 +152196,6 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 5689.0
           },
           {
-            "customer": "Liquor Shed",
-            "cases2026": 5477.5
-          },
-          {
             "customer": "West End Wine & Liq",
             "cases2026": 5212.0
           },
@@ -152024,19 +152204,35 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 5186.0
           },
           {
-            "customer": "Swizzle Stick Liq (A)",
-            "cases2026": 5145.0
-          },
-          {
             "customer": "Pete's Liquors",
             "cases2026": 4428.0
           },
           {
             "customer": "On The Rocks",
             "cases2026": 4419.0
+          },
+          {
+            "customer": "Riverside Liquors",
+            "cases2026": 4188.0
+          },
+          {
+            "customer": "Meadow Fine Liquors",
+            "cases2026": 4179.0
+          },
+          {
+            "customer": "Henry's Liquors",
+            "cases2026": 3490.0
+          },
+          {
+            "customer": "Lyndhurst Liquors (P)",
+            "cases2026": 3268.7
+          },
+          {
+            "customer": "Quick Buy",
+            "cases2026": 2736.0
           }
         ],
-        "offPremTargetCount": 42
+        "offPremTargetCount": 36
       },
       "John O'Donoghue": {
         "pods": [],
@@ -152253,12 +152449,37 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargetCount": 29
       },
       "Matt Powierski": {
-        "pods": [],
-        "podCount": 0,
-        "reorderCount": 0,
+        "pods": [
+          {
+            "customer": "Metro Wine And Liq(A)",
+            "product": "Lagunitas Little Sumpin IPA 2/12/12 oz Can",
+            "brand": "lss",
+            "date": "10/7/2026"
+          },
+          {
+            "customer": "Bottle Republic (Rutherford)",
+            "product": "Lagunitas IPA 4/6/12 oz Can",
+            "brand": "ipa",
+            "date": "10/6/2026"
+          },
+          {
+            "customer": "Bottle Republic (Rutherford)",
+            "product": "Lagunitas Little Sumpin IPA 4/6/12 oz Can",
+            "brand": "lss",
+            "date": "10/6/2026"
+          },
+          {
+            "customer": "M & M Wine & Spirits",
+            "product": "Lagunitas Little Sumpin IPA 2/12/12 oz Can",
+            "brand": "lss",
+            "date": "10/2/2026"
+          }
+        ],
+        "podCount": 4,
+        "reorderCount": 1,
         "byBrand": {
-          "ipa": 0,
-          "lss": 0
+          "ipa": 1,
+          "lss": 3
         },
         "draftNew": [],
         "draftNewCount": 0,
@@ -152266,23 +152487,19 @@ const PROGRAM_DATA_2026_10 = {
         "draftReorderCount": 0,
         "rebuyCount": 0,
         "draftAccounts": [],
-        "caseVolume": 0.0,
-        "accounts": 0,
-        "qualified": false,
-        "podPayout": 0,
+        "caseVolume": 2.0,
+        "accounts": 3,
+        "qualified": true,
+        "podPayout": 60,
         "draftPayout": 0,
-        "payout": 0,
+        "payout": 60,
         "draftChannelOk": true,
-        "toQualifier": 3,
-        "rate": 10,
+        "toQualifier": 0,
+        "rate": 15,
         "offPremTargets": [
           {
             "customer": "Home Wine Liquor (Passaic)",
             "cases2026": 31209.0
-          },
-          {
-            "customer": "M & M Wine & Spirits",
-            "cases2026": 15392.2
           },
           {
             "customer": "Shop Rite Of Wallington",
@@ -152305,16 +152522,8 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 9913.5
           },
           {
-            "customer": "Bottle Republic (Rutherford)",
-            "cases2026": 8853.0
-          },
-          {
             "customer": "Luigi's Liquor (A)",
             "cases2026": 7382.0
-          },
-          {
-            "customer": "Metro Wine And Liq(A)",
-            "cases2026": 6140.7
           },
           {
             "customer": "Birchwood Liq & Deli (Z)",
@@ -152355,17 +152564,36 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Wine Land",
             "cases2026": 4557.0
+          },
+          {
+            "customer": "Wallington Liquor and Wine",
+            "cases2026": 4023.0
+          },
+          {
+            "customer": "Garfield Discount Liquors",
+            "cases2026": 3965.0
+          },
+          {
+            "customer": "Wine And People",
+            "cases2026": 3844.3
           }
         ],
-        "offPremTargetCount": 40
+        "offPremTargetCount": 37
       },
       "Michael Harboy": {
-        "pods": [],
-        "podCount": 0,
-        "reorderCount": 0,
+        "pods": [
+          {
+            "customer": "Lincoln Center Liq",
+            "product": "Lagunitas Little Sumpin IPA 2/12/12 oz Can",
+            "brand": "lss",
+            "date": "10/9/2026"
+          }
+        ],
+        "podCount": 1,
+        "reorderCount": 2,
         "byBrand": {
           "ipa": 0,
-          "lss": 0
+          "lss": 1
         },
         "draftNew": [],
         "draftNewCount": 0,
@@ -152373,20 +152601,16 @@ const PROGRAM_DATA_2026_10 = {
         "draftReorderCount": 0,
         "rebuyCount": 0,
         "draftAccounts": [],
-        "caseVolume": 0.0,
-        "accounts": 0,
+        "caseVolume": 6.0,
+        "accounts": 2,
         "qualified": false,
         "podPayout": 0,
         "draftPayout": 0,
         "payout": 0,
         "draftChannelOk": true,
-        "toQualifier": 3,
+        "toQualifier": 2,
         "rate": 10,
         "offPremTargets": [
-          {
-            "customer": "Shay's Liquors",
-            "cases2026": 13358.0
-          },
           {
             "customer": "Shays Liquors",
             "cases2026": 10762.0
@@ -152394,10 +152618,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Wayne Liquor Locker",
             "cases2026": 6621.6
-          },
-          {
-            "customer": "Lincoln Center Liq",
-            "cases2026": 6603.5
           },
           {
             "customer": "Wolfson Market",
@@ -152462,14 +152682,22 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Krauszer's Food & Liq",
             "cases2026": 342.0
+          },
+          {
+            "customer": "B & B Liquors (West Orange)",
+            "cases2026": 290.0
+          },
+          {
+            "customer": "Quick Stop Liquors",
+            "cases2026": 286.0
           }
         ],
-        "offPremTargetCount": 44
+        "offPremTargetCount": 42
       },
       "Mike Ast": {
         "pods": [],
         "podCount": 0,
-        "reorderCount": 0,
+        "reorderCount": 8,
         "byBrand": {
           "ipa": 0,
           "lss": 0
@@ -152477,13 +152705,13 @@ const PROGRAM_DATA_2026_10 = {
         "draftNew": [],
         "draftNewCount": 0,
         "draftQualifiedCount": 0,
-        "draftReorderCount": 0,
+        "draftReorderCount": 1,
         "rebuyCount": 0,
         "draftAccounts": [
           {
             "customer": "Hohokus Inn & Tavern",
             "bbl": 0.0,
-            "status": "lapsed",
+            "status": "reorder",
             "rebuy": false
           },
           {
@@ -152499,8 +152727,8 @@ const PROGRAM_DATA_2026_10 = {
             "rebuy": false
           }
         ],
-        "caseVolume": 0.0,
-        "accounts": 0,
+        "caseVolume": 20.0,
+        "accounts": 7,
         "qualified": false,
         "podPayout": 0,
         "draftPayout": 0,
@@ -152510,20 +152738,8 @@ const PROGRAM_DATA_2026_10 = {
         "rate": 10,
         "offPremTargets": [
           {
-            "customer": "Bottle King (A) Wayne",
-            "cases2026": 42677.0
-          },
-          {
-            "customer": "Wine & Spirit World(W)",
-            "cases2026": 16677.7
-          },
-          {
             "customer": "Lincoln Park Fine Wines & Spirits",
             "cases2026": 16209.5
-          },
-          {
-            "customer": "Long Hill Liquors (A)",
-            "cases2026": 16082.0
           },
           {
             "customer": "Frank's Fine Wine & Foods",
@@ -152588,9 +152804,21 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Ridgewood Super Cellar",
             "cases2026": 4749.5
+          },
+          {
+            "customer": "Mahwah Wine & Liquor (A)",
+            "cases2026": 4098.0
+          },
+          {
+            "customer": "Uncorked Wine & Spirits (Hohokus)",
+            "cases2026": 2804.0
+          },
+          {
+            "customer": "Stop & Shop (A)Ridgewood",
+            "cases2026": 2398.0
           }
         ],
-        "offPremTargetCount": 32
+        "offPremTargetCount": 28
       },
       "Nick Melissari": {
         "pods": [],
@@ -152600,34 +152828,58 @@ const PROGRAM_DATA_2026_10 = {
           "ipa": 0,
           "lss": 0
         },
-        "draftNew": [],
-        "draftNewCount": 0,
-        "draftQualifiedCount": 0,
-        "draftReorderCount": 0,
+        "draftNew": [
+          {
+            "customer": "Amc- Shops @ Riverside P",
+            "bbl": 0.5,
+            "rebuy": false
+          }
+        ],
+        "draftNewCount": 1,
+        "draftQualifiedCount": 1,
+        "draftReorderCount": 6,
         "rebuyCount": 0,
         "draftAccounts": [
           {
-            "customer": "Millers Paramus Ale House",
-            "bbl": 0.0,
-            "status": "lapsed",
+            "customer": "Amc- Shops @ Riverside P",
+            "bbl": 0.5,
+            "status": "new",
             "rebuy": false
           },
           {
-            "customer": "Yard House 8390",
-            "bbl": 0.0,
-            "status": "lapsed",
-            "rebuy": false
-          },
-          {
-            "customer": "Houlihan's Ramsey",
-            "bbl": 0.0,
-            "status": "lapsed",
+            "customer": "Houlihans (Para)(A)",
+            "bbl": 0.5,
+            "status": "reorder",
             "rebuy": false
           },
           {
             "customer": "California Pizza Paramus",
             "bbl": 0.0,
-            "status": "lapsed",
+            "status": "reorder",
+            "rebuy": false
+          },
+          {
+            "customer": "Houlihan's Ramsey",
+            "bbl": 0.0,
+            "status": "reorder",
+            "rebuy": false
+          },
+          {
+            "customer": "Yard House 8390",
+            "bbl": 0.0,
+            "status": "reorder",
+            "rebuy": false
+          },
+          {
+            "customer": "Segovia Tavern",
+            "bbl": 0.0,
+            "status": "reorder",
+            "rebuy": false
+          },
+          {
+            "customer": "Millers Paramus Ale House",
+            "bbl": 0.0,
+            "status": "reorder",
             "rebuy": false
           },
           {
@@ -152649,19 +152901,7 @@ const PROGRAM_DATA_2026_10 = {
             "rebuy": false
           },
           {
-            "customer": "Houlihans (Para)(A)",
-            "bbl": 0.0,
-            "status": "lapsed",
-            "rebuy": false
-          },
-          {
             "customer": "Houstons (A)Hackensack",
-            "bbl": 0.0,
-            "status": "lapsed",
-            "rebuy": false
-          },
-          {
-            "customer": "Segovia Tavern",
             "bbl": 0.0,
             "status": "lapsed",
             "rebuy": false
@@ -152673,12 +152913,12 @@ const PROGRAM_DATA_2026_10 = {
             "rebuy": false
           }
         ],
-        "caseVolume": 0.0,
-        "accounts": 0,
+        "caseVolume": 11.0,
+        "accounts": 12,
         "qualified": false,
         "podPayout": 0,
-        "draftPayout": 0,
-        "payout": 0,
+        "draftPayout": 100,
+        "payout": 100,
         "draftChannelOk": true,
         "toQualifier": 3,
         "rate": 10,
@@ -152812,13 +153052,25 @@ const PROGRAM_DATA_2026_10 = {
         "draftNew": [],
         "draftNewCount": 0,
         "draftQualifiedCount": 0,
-        "draftReorderCount": 0,
+        "draftReorderCount": 3,
         "rebuyCount": 0,
         "draftAccounts": [
           {
             "customer": "Davey's Locker (A)",
+            "bbl": 1.0,
+            "status": "reorder",
+            "rebuy": false
+          },
+          {
+            "customer": "Peppercorn's",
             "bbl": 0.0,
-            "status": "lapsed",
+            "status": "reorder",
+            "rebuy": false
+          },
+          {
+            "customer": "The Whiskey Priest (Hackensack)",
+            "bbl": 0.0,
+            "status": "reorder",
             "rebuy": false
           },
           {
@@ -152834,13 +153086,7 @@ const PROGRAM_DATA_2026_10 = {
             "rebuy": false
           },
           {
-            "customer": "Peppercorn's",
-            "bbl": 0.0,
-            "status": "lapsed",
-            "rebuy": false
-          },
-          {
-            "customer": "The Whiskey Priest (Hackensack)",
+            "customer": "The Plank Pizza And Bar",
             "bbl": 0.0,
             "status": "lapsed",
             "rebuy": false
@@ -152850,16 +153096,10 @@ const PROGRAM_DATA_2026_10 = {
             "bbl": 0.0,
             "status": "lapsed",
             "rebuy": false
-          },
-          {
-            "customer": "The Plank Pizza And Bar",
-            "bbl": 0.0,
-            "status": "lapsed",
-            "rebuy": false
           }
         ],
-        "caseVolume": 0.0,
-        "accounts": 0,
+        "caseVolume": 5.0,
+        "accounts": 4,
         "qualified": false,
         "podPayout": 0,
         "draftPayout": 0,
@@ -152882,8 +153122,26 @@ const PROGRAM_DATA_2026_10 = {
       "Phil Ernst": {
         "pods": [
           {
+            "customer": "Food Universe Marketplace",
+            "product": "Lagunitas Little Sumpin IPA 2/12/12 oz Can",
+            "brand": "lss",
+            "date": "10/2/2026"
+          },
+          {
             "customer": "USA Wine Traders Paramus",
             "product": "Lagunitas Little Sumpin IPA 4/6/12 oz Can",
+            "brand": "lss",
+            "date": "10/1/2026"
+          },
+          {
+            "customer": "Whole Foods Market (Paramus)",
+            "product": "Lagunitas IPA 1/12/19.2 oz Can",
+            "brand": "ipa",
+            "date": "10/1/2026"
+          },
+          {
+            "customer": "Stew Leonard's(A) Paramus Wine",
+            "product": "Lagunitas Little Sumpin IPA 2/12/12 oz Can",
             "brand": "lss",
             "date": "10/1/2026"
           },
@@ -152894,13 +153152,13 @@ const PROGRAM_DATA_2026_10 = {
             "date": "10/1/2026"
           },
           {
-            "customer": "Whole Foods Market (Paramus)",
+            "customer": "USA Wine Traders Paramus",
             "product": "Lagunitas IPA 1/12/19.2 oz Can",
             "brand": "ipa",
             "date": "10/1/2026"
           },
           {
-            "customer": "USA Wine Traders Paramus",
+            "customer": "Bottle King (A) Glen Rock",
             "product": "Lagunitas IPA 1/12/19.2 oz Can",
             "brand": "ipa",
             "date": "10/1/2026"
@@ -152910,19 +153168,13 @@ const PROGRAM_DATA_2026_10 = {
             "product": "Lagunitas IPA 4/6/12 oz Btl",
             "brand": "ipa",
             "date": "10/1/2026"
-          },
-          {
-            "customer": "Stew Leonard's(A) Paramus Wine",
-            "product": "Lagunitas Little Sumpin IPA 2/12/12 oz Can",
-            "brand": "lss",
-            "date": "10/1/2026"
           }
         ],
-        "podCount": 6,
-        "reorderCount": 5,
+        "podCount": 8,
+        "reorderCount": 17,
         "byBrand": {
-          "ipa": 4,
-          "lss": 2
+          "ipa": 5,
+          "lss": 3
         },
         "draftNew": [],
         "draftNewCount": 0,
@@ -152930,27 +153182,19 @@ const PROGRAM_DATA_2026_10 = {
         "draftReorderCount": 0,
         "rebuyCount": 0,
         "draftAccounts": [],
-        "caseVolume": 15.0,
-        "accounts": 5,
+        "caseVolume": 54.0,
+        "accounts": 11,
         "qualified": true,
-        "podPayout": 60,
+        "podPayout": 120,
         "draftPayout": 0,
-        "payout": 60,
+        "payout": 120,
         "draftChannelOk": true,
         "toQualifier": 0,
-        "rate": 10,
+        "rate": 15,
         "offPremTargets": [
           {
             "customer": "Super Wine Warehse(P)Pate",
             "cases2026": 59982.0
-          },
-          {
-            "customer": "Bottle King (A) Glen Rock",
-            "cases2026": 38599.0
-          },
-          {
-            "customer": "Shop Rite Liq(A) Roch Pk",
-            "cases2026": 19851.0
           },
           {
             "customer": "Shop Rite Liq(A) Fair Lwn",
@@ -152969,16 +153213,8 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 14872.3
           },
           {
-            "customer": "Shop Rite Liq (Paramus)",
-            "cases2026": 12734.0
-          },
-          {
             "customer": "City Supermarket",
             "cases2026": 12507.0
-          },
-          {
-            "customer": "Food Universe Marketplace",
-            "cases2026": 11039.3
           },
           {
             "customer": "Home Wines & Liq 75 (A) (South Hackensack)",
@@ -152995,10 +153231,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Agave Liquor, Wine & Spirits",
             "cases2026": 4925.0
-          },
-          {
-            "customer": "Acme Markets (Fort Lee)",
-            "cases2026": 4615.0
           },
           {
             "customer": "Riverview Liq (P)",
@@ -153019,9 +153251,29 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "THE BOTTLE SHOP",
             "cases2026": 1536.0
+          },
+          {
+            "customer": "Wides Deli & Liquor",
+            "cases2026": 1435.0
+          },
+          {
+            "customer": "Lushka Liquors",
+            "cases2026": 1134.2
+          },
+          {
+            "customer": "Megha Liquor & Grocery",
+            "cases2026": 601.2
+          },
+          {
+            "customer": "Stew Leonard's Wines & Spirits of Clifton (NA)",
+            "cases2026": 234.0
+          },
+          {
+            "customer": "Beverage Place Inc",
+            "cases2026": 0.0
           }
         ],
-        "offPremTargetCount": 26
+        "offPremTargetCount": 21
       },
       "Robin Feldman": {
         "pods": [],
@@ -153062,8 +153314,8 @@ const PROGRAM_DATA_2026_10 = {
             "rebuy": false
           }
         ],
-        "caseVolume": 0.0,
-        "accounts": 0,
+        "caseVolume": 1.0,
+        "accounts": 1,
         "qualified": false,
         "podPayout": 0,
         "draftPayout": 0,
@@ -153084,51 +153336,52 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargetCount": 2
       },
       "Shane Barreca": {
-        "pods": [],
-        "podCount": 0,
-        "reorderCount": 3,
+        "pods": [
+          {
+            "customer": "Beverage Barn (A)",
+            "product": "Lagunitas IPA 1/12/19.2 oz Can",
+            "brand": "ipa",
+            "date": "10/5/2026"
+          },
+          {
+            "customer": "Garden State Deli (A)",
+            "product": "Lagunitas IPA 2/12/12 oz Can",
+            "brand": "ipa",
+            "date": "10/1/2026"
+          }
+        ],
+        "podCount": 2,
+        "reorderCount": 20,
         "byBrand": {
-          "ipa": 0,
+          "ipa": 2,
           "lss": 0
         },
         "draftNew": [],
         "draftNewCount": 0,
         "draftQualifiedCount": 0,
-        "draftReorderCount": 0,
+        "draftReorderCount": 1,
         "rebuyCount": 0,
         "draftAccounts": [
           {
             "customer": "Cork & Keg (A)",
             "bbl": 0.0,
-            "status": "lapsed",
+            "status": "reorder",
             "rebuy": false
           }
         ],
-        "caseVolume": 5.0,
-        "accounts": 1,
+        "caseVolume": 59.0,
+        "accounts": 11,
         "qualified": false,
         "podPayout": 0,
         "draftPayout": 0,
         "payout": 0,
         "draftChannelOk": true,
-        "toQualifier": 3,
+        "toQualifier": 1,
         "rate": 10,
         "offPremTargets": [
           {
-            "customer": "Bottle King (A) Ramsey",
-            "cases2026": 48928.0
-          },
-          {
             "customer": "Bottle King (A) Dumont",
             "cases2026": 39470.0
-          },
-          {
-            "customer": "Beverage Barn (A)",
-            "cases2026": 27731.0
-          },
-          {
-            "customer": "Montvale Wine/Liq & Beer",
-            "cases2026": 23653.0
           },
           {
             "customer": "Bottle King (A) Hillsdale",
@@ -153137,18 +153390,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Shoprite Liq (A)Northvle",
             "cases2026": 20026.0
-          },
-          {
-            "customer": "Shop Rite Liq (A)Hillsdal",
-            "cases2026": 17023.5
-          },
-          {
-            "customer": "Cork & Keg (A)",
-            "cases2026": 13240.7
-          },
-          {
-            "customer": "Shop Rite Liq (A)Emerson",
-            "cases2026": 9551.0
           },
           {
             "customer": "Winemart Discount",
@@ -153161,18 +153402,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Brand Bar & Bev (A)",
             "cases2026": 7767.0
-          },
-          {
-            "customer": "Garden State Deli (A)",
-            "cases2026": 7479.0
-          },
-          {
-            "customer": "Gary's Closter / Closter Cellars",
-            "cases2026": 6861.0
-          },
-          {
-            "customer": "Westwood Wine and Liquors",
-            "cases2026": 6090.0
           },
           {
             "customer": "Wine And Beverage Spirits",
@@ -153193,196 +153422,228 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Djm Liq Inc. (P)(Andrew)",
             "cases2026": 3181.0
+          },
+          {
+            "customer": "Royal Wine & Spirits II",
+            "cases2026": 3154.0
+          },
+          {
+            "customer": "D & L Dumont Liquors",
+            "cases2026": 2052.0
+          },
+          {
+            "customer": "Oradell Mini Mart(P)",
+            "cases2026": 1907.0
+          },
+          {
+            "customer": "Murphy's Fine Wines & Liquors (UNI 4H Inc.)",
+            "cases2026": 1368.0
+          },
+          {
+            "customer": "Woori Mart",
+            "cases2026": 1209.0
+          },
+          {
+            "customer": "Whole Foods #8407 (Woodcliff Lake)",
+            "cases2026": 484.0
+          },
+          {
+            "customer": "Whole Foods #10381 (Closter)",
+            "cases2026": 400.0
+          },
+          {
+            "customer": "The Store",
+            "cases2026": 151.0
           }
         ],
-        "offPremTargetCount": 29
+        "offPremTargetCount": 19
       }
     },
     "leaderboard": [
       {
-        "rep": "Phil Ernst",
-        "pods": 6,
+        "rep": "Chris Payton",
+        "pods": 11,
         "draft": 0,
-        "payout": 60,
+        "payout": 165,
         "rank": 1
       },
       {
-        "rep": "Jim Heaney",
-        "pods": 1,
+        "rep": "Dave Ehlers",
+        "pods": 8,
         "draft": 0,
-        "payout": 0,
+        "payout": 120,
         "rank": 2
       },
       {
-        "rep": "Alex Rodriguez",
-        "pods": 0,
+        "rep": "Jim Heaney",
+        "pods": 8,
         "draft": 0,
-        "payout": 0,
+        "payout": 120,
         "rank": 3
       },
       {
-        "rep": "Alisa Acciardi",
-        "pods": 0,
+        "rep": "Phil Ernst",
+        "pods": 8,
         "draft": 0,
-        "payout": 0,
+        "payout": 120,
         "rank": 4
       },
       {
-        "rep": "Allison Scott",
-        "pods": 0,
+        "rep": "Matt Powierski",
+        "pods": 4,
         "draft": 0,
-        "payout": 0,
+        "payout": 60,
         "rank": 5
       },
       {
-        "rep": "Andrew Lundy",
-        "pods": 0,
+        "rep": "Shane Barreca",
+        "pods": 2,
         "draft": 0,
         "payout": 0,
         "rank": 6
       },
       {
         "rep": "Anthony Palmisano",
-        "pods": 0,
+        "pods": 1,
         "draft": 0,
         "payout": 0,
         "rank": 7
       },
       {
-        "rep": "Brian Sengebush",
-        "pods": 0,
+        "rep": "Javier Melo",
+        "pods": 1,
         "draft": 0,
         "payout": 0,
         "rank": 8
       },
       {
-        "rep": "Chris Payton",
-        "pods": 0,
+        "rep": "Michael Harboy",
+        "pods": 1,
         "draft": 0,
         "payout": 0,
         "rank": 9
       },
       {
-        "rep": "Dan Lagala",
+        "rep": "Allison Scott",
         "pods": 0,
-        "draft": 0,
-        "payout": 0,
+        "draft": 1,
+        "payout": 100,
         "rank": 10
       },
       {
-        "rep": "Dave Ehlers",
+        "rep": "Dan Lagala",
         "pods": 0,
-        "draft": 0,
-        "payout": 0,
+        "draft": 1,
+        "payout": 100,
         "rank": 11
       },
       {
-        "rep": "Derrick Laws",
+        "rep": "Nick Melissari",
         "pods": 0,
-        "draft": 0,
-        "payout": 0,
+        "draft": 1,
+        "payout": 100,
         "rank": 12
       },
       {
-        "rep": "Dylan Rubino",
+        "rep": "Alex Rodriguez",
         "pods": 0,
         "draft": 0,
         "payout": 0,
         "rank": 13
       },
       {
-        "rep": "Hakan Sadik",
+        "rep": "Alisa Acciardi",
         "pods": 0,
         "draft": 0,
         "payout": 0,
         "rank": 14
       },
       {
-        "rep": "Jaime Colonna",
+        "rep": "Andrew Lundy",
         "pods": 0,
         "draft": 0,
         "payout": 0,
         "rank": 15
       },
       {
-        "rep": "Javier Melo",
+        "rep": "Brian Sengebush",
         "pods": 0,
         "draft": 0,
         "payout": 0,
         "rank": 16
       },
       {
-        "rep": "Jayson Romine",
+        "rep": "Derrick Laws",
         "pods": 0,
         "draft": 0,
         "payout": 0,
         "rank": 17
       },
       {
-        "rep": "John O'Donoghue",
+        "rep": "Dylan Rubino",
         "pods": 0,
         "draft": 0,
         "payout": 0,
         "rank": 18
       },
       {
-        "rep": "Klejdi Lamo",
+        "rep": "Hakan Sadik",
         "pods": 0,
         "draft": 0,
         "payout": 0,
         "rank": 19
       },
       {
-        "rep": "Matt Powierski",
+        "rep": "Jaime Colonna",
         "pods": 0,
         "draft": 0,
         "payout": 0,
         "rank": 20
       },
       {
-        "rep": "Michael Harboy",
+        "rep": "Jayson Romine",
         "pods": 0,
         "draft": 0,
         "payout": 0,
         "rank": 21
       },
       {
-        "rep": "Mike Ast",
+        "rep": "John O'Donoghue",
         "pods": 0,
         "draft": 0,
         "payout": 0,
         "rank": 22
       },
       {
-        "rep": "Nick Melissari",
+        "rep": "Klejdi Lamo",
         "pods": 0,
         "draft": 0,
         "payout": 0,
         "rank": 23
       },
       {
-        "rep": "Pablo Lopez",
+        "rep": "Mike Ast",
         "pods": 0,
         "draft": 0,
         "payout": 0,
         "rank": 24
       },
       {
-        "rep": "Paul Mclaughlin",
+        "rep": "Pablo Lopez",
         "pods": 0,
         "draft": 0,
         "payout": 0,
         "rank": 25
       },
       {
-        "rep": "Robin Feldman",
+        "rep": "Paul Mclaughlin",
         "pods": 0,
         "draft": 0,
         "payout": 0,
         "rank": 26
       },
       {
-        "rep": "Shane Barreca",
+        "rep": "Robin Feldman",
         "pods": 0,
         "draft": 0,
         "payout": 0,
@@ -153392,9 +153653,9 @@ const PROGRAM_DATA_2026_10 = {
     "periodStart": "2026-10-01",
     "periodEnd": "2026-10-31",
     "meta": {
-      "housePods": 7,
+      "housePods": 44,
       "houseGoal": 40,
-      "houseQualified": false,
+      "houseQualified": true,
       "repQualifier": 3,
       "rates": {
         "pod": 10,
@@ -153410,15 +153671,25 @@ const PROGRAM_DATA_2026_10 = {
   "famosa_oct": {
     "byRep": {
       "Alex Rodriguez": {
-        "cases26": 0.0,
+        "cases26": 30.0,
         "cases25": 165.0,
-        "growth": -165.0,
+        "growth": -135.0,
         "positive": false,
         "cases7oz": 0.0,
-        "casesOther": 0.0,
+        "casesOther": 30.0,
         "payout": 0,
-        "accounts": 0,
+        "accounts": 2,
         "accountList": [
+          {
+            "customer": "Station Liquors",
+            "cases26": 20.0,
+            "cases25": 20.0
+          },
+          {
+            "customer": "Liquor Gallery (Elizabeth)",
+            "cases26": 10.0,
+            "cases25": 0.0
+          },
           {
             "customer": "Jakob Liquors",
             "cases26": 0.0,
@@ -153438,11 +153709,6 @@ const PROGRAM_DATA_2026_10 = {
             "customer": "Ben Franklin Liquor",
             "cases26": 0.0,
             "cases25": 31.0
-          },
-          {
-            "customer": "Station Liquors",
-            "cases26": 0.0,
-            "cases25": 20.0
           },
           {
             "customer": "Rick's Wines & Liquors",
@@ -153466,25 +153732,29 @@ const PROGRAM_DATA_2026_10 = {
           }
         ],
         "byProduct": {
+          "Famosa 1/12/24 oz Can": {
+            "cases26": 8.0,
+            "cases25": 57.0
+          },
+          "Famosa 4/6/12 oz Btl": {
+            "cases26": 4.0,
+            "cases25": 22.0
+          },
+          "Famosa Lager 1/12/32 oz Btl": {
+            "cases26": 3.0,
+            "cases25": 0.0
+          },
+          "Famosa 2/12/12 oz Can": {
+            "cases26": 15.0,
+            "cases25": 49.0
+          },
           "Famosa 1/12/33.8 oz Btl": {
             "cases26": 0.0,
             "cases25": 10.0
           },
-          "Famosa 2/12/12 oz Can": {
-            "cases26": 0.0,
-            "cases25": 49.0
-          },
-          "Famosa 1/12/24 oz Can": {
-            "cases26": 0.0,
-            "cases25": 57.0
-          },
           "Famosa 2/12/12 oz Btl": {
             "cases26": 0.0,
             "cases25": 27.0
-          },
-          "Famosa 4/6/12 oz Btl": {
-            "cases26": 0.0,
-            "cases25": 22.0
           }
         },
         "lostAccounts": [
@@ -153499,10 +153769,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Pickwick Liquor Shop",
             "cases25": 30.0
-          },
-          {
-            "customer": "Station Liquors",
-            "cases25": 20.0
           },
           {
             "customer": "South Ave Liquors",
@@ -153525,27 +153791,32 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 1.0
           }
         ],
-        "toPositive": 165.0
+        "toPositive": 135.0
       },
       "Alisa Acciardi": {
-        "cases26": 0.0,
+        "cases26": 16.0,
         "cases25": 234.0,
-        "growth": -234.0,
+        "growth": -218.0,
         "positive": false,
         "cases7oz": 0.0,
-        "casesOther": 0.0,
+        "casesOther": 16.0,
         "payout": 0,
-        "accounts": 0,
+        "accounts": 2,
         "accountList": [
+          {
+            "customer": "Seabra Liquors",
+            "cases26": 15.0,
+            "cases25": 23.0
+          },
+          {
+            "customer": "Cottage Liquors",
+            "cases26": 1.0,
+            "cases25": 7.0
+          },
           {
             "customer": "Eddy's Wine & Liq",
             "cases26": 0.0,
             "cases25": 10.0
-          },
-          {
-            "customer": "Harrison Discount Liq(P)",
-            "cases26": 0.0,
-            "cases25": 20.0
           },
           {
             "customer": "Berkeley Liquors",
@@ -153553,14 +153824,14 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 9.0
           },
           {
-            "customer": "Sun Liquors & Grocery",
+            "customer": "Harrison Discount Liq(P)",
             "cases26": 0.0,
             "cases25": 20.0
           },
           {
-            "customer": "Cottage Liquors",
+            "customer": "Sun Liquors & Grocery",
             "cases26": 0.0,
-            "cases25": 7.0
+            "cases25": 20.0
           },
           {
             "customer": "Lisbon Wines & Liquors",
@@ -153593,11 +153864,6 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 20.0
           },
           {
-            "customer": "Seabra Liquors",
-            "cases26": 0.0,
-            "cases25": 23.0
-          },
-          {
             "customer": "Iron Bound Wines & Spirit",
             "cases26": 0.0,
             "cases25": 5.0
@@ -153614,35 +153880,35 @@ const PROGRAM_DATA_2026_10 = {
           }
         ],
         "byProduct": {
+          "Famosa 2/12/12 oz Can": {
+            "cases26": 5.0,
+            "cases25": 38.0
+          },
           "Famosa 1/12/24 oz Can": {
-            "cases26": 0.0,
+            "cases26": 10.0,
             "cases25": 161.0
           },
-          "Famosa 2/12/12 oz Can": {
-            "cases26": 0.0,
-            "cases25": 38.0
+          "Famosa Lager 1/12/32 oz Btl": {
+            "cases26": 1.0,
+            "cases25": 0.0
           },
           "Famosa 1/12/33.8 oz Btl": {
             "cases26": 0.0,
             "cases25": 4.0
           },
-          "Famosa 4/6/12 oz Btl": {
-            "cases26": 0.0,
-            "cases25": 23.0
-          },
           "Famosa 2/12/12 oz Btl": {
             "cases26": 0.0,
             "cases25": 8.0
+          },
+          "Famosa 4/6/12 oz Btl": {
+            "cases26": 0.0,
+            "cases25": 23.0
           }
         },
         "lostAccounts": [
           {
             "customer": "Lisbon Wines & Liquors",
             "cases25": 49.0
-          },
-          {
-            "customer": "Seabra Liquors",
-            "cases25": 23.0
           },
           {
             "customer": "Massarelli's Liquors",
@@ -153681,10 +153947,6 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 9.0
           },
           {
-            "customer": "Cottage Liquors",
-            "cases25": 7.0
-          },
-          {
             "customer": "Cordes Wine & Liquor",
             "cases25": 5.0
           },
@@ -153697,7 +153959,7 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 5.0
           }
         ],
-        "toPositive": 234.0
+        "toPositive": 218.0
       },
       "Allison Scott": {
         "cases26": 0.0,
@@ -153714,15 +153976,35 @@ const PROGRAM_DATA_2026_10 = {
         "toPositive": 0.0
       },
       "Andrew Lundy": {
-        "cases26": 0.0,
+        "cases26": 59.0,
         "cases25": 235.0,
-        "growth": -235.0,
+        "growth": -176.0,
         "positive": false,
-        "cases7oz": 0.0,
-        "casesOther": 0.0,
+        "cases7oz": 2.0,
+        "casesOther": 57.0,
         "payout": 0,
-        "accounts": 0,
+        "accounts": 4,
         "accountList": [
+          {
+            "customer": "Best Cellars (Summit)",
+            "cases26": 21.0,
+            "cases25": 30.0
+          },
+          {
+            "customer": "Fenrose Wine & Liq",
+            "cases26": 20.0,
+            "cases25": 45.0
+          },
+          {
+            "customer": "U S 1 Buy Rite (A)",
+            "cases26": 12.0,
+            "cases25": 10.0
+          },
+          {
+            "customer": "The Wine Rack Summit",
+            "cases26": 6.0,
+            "cases25": 0.0
+          },
           {
             "customer": "Liquor Rangers",
             "cases26": 0.0,
@@ -153734,14 +154016,9 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 10.0
           },
           {
-            "customer": "Best Cellars (Summit)",
+            "customer": "Metro Liquor (Linden)",
             "cases26": 0.0,
-            "cases25": 30.0
-          },
-          {
-            "customer": "Fenrose Wine & Liq",
-            "cases26": 0.0,
-            "cases25": 45.0
+            "cases25": 5.0
           },
           {
             "customer": "Bayway World Of Liquor",
@@ -153749,24 +154026,19 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 25.0
           },
           {
-            "customer": "Metro Liquor (Linden)",
-            "cases26": 0.0,
-            "cases25": 5.0
-          },
-          {
             "customer": "Rotondo's Liquor",
             "cases26": 0.0,
             "cases25": 2.0
           },
           {
-            "customer": "Pointe Grande Liquor",
-            "cases26": 0.0,
-            "cases25": 19.0
-          },
-          {
             "customer": "The Wine Rack Millburn",
             "cases26": 0.0,
             "cases25": 1.0
+          },
+          {
+            "customer": "Pointe Grande Liquor",
+            "cases26": 0.0,
+            "cases25": 19.0
           },
           {
             "customer": "Total Wine & More (Union)",
@@ -153779,22 +154051,17 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 10.0
           },
           {
-            "customer": "Queen City Liquors",
-            "cases26": 0.0,
-            "cases25": 35.0
-          },
-          {
             "customer": "Cap N Cork Liquors",
             "cases26": 0.0,
             "cases25": 1.0
           },
           {
-            "customer": "D&R Liquor",
+            "customer": "Queen City Liquors",
             "cases26": 0.0,
-            "cases25": 10.0
+            "cases25": 35.0
           },
           {
-            "customer": "U S 1 Buy Rite (A)",
+            "customer": "D&R Liquor",
             "cases26": 0.0,
             "cases25": 10.0
           },
@@ -153805,21 +154072,29 @@ const PROGRAM_DATA_2026_10 = {
           }
         ],
         "byProduct": {
+          "Famosa 4/6/12 oz Btl": {
+            "cases26": 10.0,
+            "cases25": 29.0
+          },
+          "Famosa 2/12/12 oz Can": {
+            "cases26": 22.0,
+            "cases25": 100.0
+          },
+          "Famosa 1/12/24 oz Can": {
+            "cases26": 21.0,
+            "cases25": 59.0
+          },
+          "Famosa 4/6/7 oz Btl": {
+            "cases26": 2.0,
+            "cases25": 0.0
+          },
+          "Famosa Lager 1/12/32 oz Btl": {
+            "cases26": 4.0,
+            "cases25": 0.0
+          },
           "Famosa 2/12/12 oz Btl": {
             "cases26": 0.0,
             "cases25": 37.0
-          },
-          "Famosa 1/12/24 oz Can": {
-            "cases26": 0.0,
-            "cases25": 59.0
-          },
-          "Famosa 2/12/12 oz Can": {
-            "cases26": 0.0,
-            "cases25": 100.0
-          },
-          "Famosa 4/6/12 oz Btl": {
-            "cases26": 0.0,
-            "cases25": 29.0
           },
           "Famosa 1/12/33.8 oz Btl": {
             "cases26": 0.0,
@@ -153828,16 +154103,8 @@ const PROGRAM_DATA_2026_10 = {
         },
         "lostAccounts": [
           {
-            "customer": "Fenrose Wine & Liq",
-            "cases25": 45.0
-          },
-          {
             "customer": "Queen City Liquors",
             "cases25": 35.0
-          },
-          {
-            "customer": "Best Cellars (Summit)",
-            "cases25": 30.0
           },
           {
             "customer": "Bayway World Of Liquor",
@@ -153868,10 +154135,6 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 10.0
           },
           {
-            "customer": "U S 1 Buy Rite (A)",
-            "cases25": 10.0
-          },
-          {
             "customer": "Metro Liquor (Linden)",
             "cases25": 5.0
           },
@@ -153886,9 +154149,13 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "The Wine Rack Millburn",
             "cases25": 1.0
+          },
+          {
+            "customer": "Cap N Cork Liquors",
+            "cases25": 1.0
           }
         ],
-        "toPositive": 235.0
+        "toPositive": 176.0
       },
       "Anthony Palmisano": {
         "cases26": 0.0,
@@ -153919,24 +154186,24 @@ const PROGRAM_DATA_2026_10 = {
         "toPositive": 0.0
       },
       "Chris Payton": {
-        "cases26": 0.0,
+        "cases26": 7.0,
         "cases25": 15.0,
-        "growth": -15.0,
+        "growth": -8.0,
         "positive": false,
-        "cases7oz": 0.0,
-        "casesOther": 0.0,
+        "cases7oz": 2.0,
+        "casesOther": 5.0,
         "payout": 0,
-        "accounts": 0,
+        "accounts": 1,
         "accountList": [
+          {
+            "customer": "Clifton Disc Liq (A)",
+            "cases26": 7.0,
+            "cases25": 3.0
+          },
           {
             "customer": "Figlar's (P)",
             "cases26": 0.0,
             "cases25": 10.0
-          },
-          {
-            "customer": "Clifton Disc Liq (A)",
-            "cases26": 0.0,
-            "cases25": 3.0
           },
           {
             "customer": "Paramus Food Center",
@@ -153945,6 +154212,18 @@ const PROGRAM_DATA_2026_10 = {
           }
         ],
         "byProduct": {
+          "Famosa 4/6/12 oz Btl": {
+            "cases26": 2.0,
+            "cases25": 0.0
+          },
+          "Famosa 1/12/24 oz Can": {
+            "cases26": 3.0,
+            "cases25": 5.0
+          },
+          "Famosa 4/6/7 oz Btl": {
+            "cases26": 2.0,
+            "cases25": 0.0
+          },
           "Famosa 2/12/12 oz Can": {
             "cases26": 0.0,
             "cases25": 7.0
@@ -153952,10 +154231,6 @@ const PROGRAM_DATA_2026_10 = {
           "Famosa 2/12/12 oz Btl": {
             "cases26": 0.0,
             "cases25": 3.0
-          },
-          "Famosa 1/12/24 oz Can": {
-            "cases26": 0.0,
-            "cases25": 5.0
           }
         },
         "lostAccounts": [
@@ -153964,30 +154239,81 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 10.0
           },
           {
-            "customer": "Clifton Disc Liq (A)",
-            "cases25": 3.0
-          },
-          {
             "customer": "Paramus Food Center",
             "cases25": 2.0
           }
         ],
-        "toPositive": 15.0
+        "toPositive": 8.0
       },
       "Dan Lagala": {
-        "cases26": 5.0,
+        "cases26": 178.0,
         "cases25": 970.0,
-        "growth": -965.0,
+        "growth": -792.0,
         "positive": false,
-        "cases7oz": 0.0,
-        "casesOther": 5.0,
+        "cases7oz": 12.0,
+        "casesOther": 166.0,
         "payout": 0,
-        "accounts": 1,
+        "accounts": 12,
         "accountList": [
+          {
+            "customer": "American Classic Liq",
+            "cases26": 39.0,
+            "cases25": 60.0
+          },
+          {
+            "customer": "Garden State Food&Liq (P)",
+            "cases26": 30.0,
+            "cases25": 0.0
+          },
+          {
+            "customer": "Kikos Liquors Ii",
+            "cases26": 25.0,
+            "cases25": 140.0
+          },
+          {
+            "customer": "Jay Cee (P) Deli & Liq.",
+            "cases26": 20.0,
+            "cases25": 45.0
+          },
+          {
+            "customer": "Mukeunji (Z)",
+            "cases26": 20.0,
+            "cases25": 60.0
+          },
+          {
+            "customer": "Boulevard Food And Liquor",
+            "cases26": 12.0,
+            "cases25": 0.0
+          },
+          {
+            "customer": "Linwood Wine-Linwood Plaza",
+            "cases26": 10.0,
+            "cases25": 20.0
+          },
+          {
+            "customer": "Buy Rite Of Fairview",
+            "cases26": 10.0,
+            "cases25": 21.0
+          },
           {
             "customer": "Sonsonate Rest(P)",
             "cases26": 5.0,
             "cases25": 5.0
+          },
+          {
+            "customer": "Banner Delicatessen",
+            "cases26": 5.0,
+            "cases25": 25.0
+          },
+          {
+            "customer": "Top Shelf Liquors",
+            "cases26": 1.0,
+            "cases25": 2.0
+          },
+          {
+            "customer": "El Tio Taco Ii",
+            "cases26": 1.0,
+            "cases25": 0.0
           },
           {
             "customer": "Stop N Go Conven. (P)",
@@ -153995,24 +154321,14 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 20.0
           },
           {
-            "customer": "Banner Delicatessen",
+            "customer": "Liquor City(A)Cliffside",
             "cases26": 0.0,
-            "cases25": 25.0
+            "cases25": 45.0
           },
           {
             "customer": "Han Mi Supermkt (A)",
             "cases26": 0.0,
             "cases25": 20.0
-          },
-          {
-            "customer": "Mukeunji (Z)",
-            "cases26": 0.0,
-            "cases25": 60.0
-          },
-          {
-            "customer": "Liquor City(A)Cliffside",
-            "cases26": 0.0,
-            "cases25": 45.0
           },
           {
             "customer": "Boulevard Liq.(Fairview)",
@@ -154025,9 +154341,9 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 10.0
           },
           {
-            "customer": "Buy Rite Of Fairview",
+            "customer": "Best Choice Liqrs (P)",
             "cases26": 0.0,
-            "cases25": 21.0
+            "cases25": 46.0
           },
           {
             "customer": "Winston Wine & Liq",
@@ -154035,14 +154351,9 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 1.0
           },
           {
-            "customer": "Best Choice Liqrs (P)",
+            "customer": "Fairview Liq & Groc.(A)",
             "cases26": 0.0,
-            "cases25": 46.0
-          },
-          {
-            "customer": "Wine And Food Mart (Z)",
-            "cases26": 0.0,
-            "cases25": 25.0
+            "cases25": 100.0
           },
           {
             "customer": "Rome Liquors (Fairview)",
@@ -154050,14 +154361,9 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 245.0
           },
           {
-            "customer": "Fairview Liq & Groc.(A)",
+            "customer": "Wine And Food Mart (Z)",
             "cases26": 0.0,
-            "cases25": 100.0
-          },
-          {
-            "customer": "American Classic Liq",
-            "cases26": 0.0,
-            "cases25": 60.0
+            "cases25": 25.0
           },
           {
             "customer": "Checo Supermarket",
@@ -154070,48 +154376,31 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 20.0
           },
           {
-            "customer": "Linwood Wine-Linwood Plaza",
-            "cases26": 0.0,
-            "cases25": 20.0
-          },
-          {
             "customer": "Minit Mart_2",
             "cases26": 0.0,
             "cases25": 20.0
-          },
-          {
-            "customer": "Top Shelf Liquors",
-            "cases26": 0.0,
-            "cases25": 2.0
-          },
-          {
-            "customer": "Tenafly Fine Wine & Spirits",
-            "cases26": 0.0,
-            "cases25": 5.0
-          },
-          {
-            "customer": "Kikos Liquors Ii",
-            "cases26": 0.0,
-            "cases25": 140.0
-          },
-          {
-            "customer": "Jay Cee (P) Deli & Liq.",
-            "cases26": 0.0,
-            "cases25": 45.0
           }
         ],
         "byProduct": {
           "Famosa 4/6/12 oz Btl": {
-            "cases26": 5.0,
+            "cases26": 23.0,
             "cases25": 161.0
           },
           "Famosa 2/12/12 oz Can": {
-            "cases26": 0.0,
+            "cases26": 20.0,
             "cases25": 306.0
           },
           "Famosa 1/12/24 oz Can": {
-            "cases26": 0.0,
+            "cases26": 118.0,
             "cases25": 454.0
+          },
+          "Famosa 4/6/7 oz Btl": {
+            "cases26": 12.0,
+            "cases25": 0.0
+          },
+          "Famosa Lager 1/12/32 oz Btl": {
+            "cases26": 5.0,
+            "cases25": 0.0
           },
           "Famosa 1/12/33.8 oz Btl": {
             "cases26": 0.0,
@@ -154128,20 +154417,8 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 245.0
           },
           {
-            "customer": "Kikos Liquors Ii",
-            "cases25": 140.0
-          },
-          {
             "customer": "Fairview Liq & Groc.(A)",
             "cases25": 100.0
-          },
-          {
-            "customer": "Mukeunji (Z)",
-            "cases25": 60.0
-          },
-          {
-            "customer": "American Classic Liq",
-            "cases25": 60.0
           },
           {
             "customer": "Best Choice Liqrs (P)",
@@ -154152,24 +154429,12 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 45.0
           },
           {
-            "customer": "Jay Cee (P) Deli & Liq.",
-            "cases25": 45.0
-          },
-          {
-            "customer": "Banner Delicatessen",
-            "cases25": 25.0
-          },
-          {
             "customer": "Wine And Food Mart (Z)",
             "cases25": 25.0
           },
           {
             "customer": "Checo Supermarket",
             "cases25": 25.0
-          },
-          {
-            "customer": "Buy Rite Of Fairview",
-            "cases25": 21.0
           },
           {
             "customer": "Stop N Go Conven. (P)",
@@ -154182,34 +154447,64 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Palisades Park Liq(P)",
             "cases25": 20.0
+          },
+          {
+            "customer": "Minit Mart_2",
+            "cases25": 20.0
+          },
+          {
+            "customer": "Boulevard Liq.(Fairview)",
+            "cases25": 10.0
+          },
+          {
+            "customer": "Banner Liquor Iii",
+            "cases25": 10.0
+          },
+          {
+            "customer": "Tenafly Fine Wine & Spirits",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Winston Wine & Liq",
+            "cases25": 1.0
           }
         ],
-        "toPositive": 965.0
+        "toPositive": 792.0
       },
       "Dave Ehlers": {
-        "cases26": 0.0,
+        "cases26": 33.0,
         "cases25": 101.0,
-        "growth": -101.0,
+        "growth": -68.0,
         "positive": false,
         "cases7oz": 0.0,
-        "casesOther": 0.0,
+        "casesOther": 33.0,
         "payout": 0,
-        "accounts": 0,
+        "accounts": 4,
         "accountList": [
           {
+            "customer": "Total Wine & More (Totowa)",
+            "cases26": 12.0,
+            "cases25": 0.0
+          },
+          {
             "customer": "Time Lounge And Liq (A)",
-            "cases26": 0.0,
+            "cases26": 10.0,
             "cases25": 10.0
+          },
+          {
+            "customer": "Wine And Liq Depot(A)",
+            "cases26": 10.0,
+            "cases25": 20.0
+          },
+          {
+            "customer": "Bergenfield Liq & Fw",
+            "cases26": 1.0,
+            "cases25": 0.0
           },
           {
             "customer": "W E Beverage (A)",
             "cases26": 0.0,
             "cases25": 25.0
-          },
-          {
-            "customer": "Wine And Liq Depot(A)",
-            "cases26": 0.0,
-            "cases25": 20.0
           },
           {
             "customer": "George's Liq",
@@ -154228,25 +154523,25 @@ const PROGRAM_DATA_2026_10 = {
           }
         ],
         "byProduct": {
-          "Famosa 2/12/12 oz Can": {
-            "cases26": 0.0,
-            "cases25": 21.0
-          },
           "Famosa 4/6/12 oz Btl": {
-            "cases26": 0.0,
+            "cases26": 6.0,
             "cases25": 4.0
           },
-          "Famosa 1/12/24 oz Can": {
-            "cases26": 0.0,
-            "cases25": 69.0
+          "Famosa 2/12/12 oz Btl": {
+            "cases26": 12.0,
+            "cases25": 6.0
+          },
+          "Famosa 2/12/12 oz Can": {
+            "cases26": 15.0,
+            "cases25": 21.0
           },
           "Famosa 1/12/33.8 oz Btl": {
             "cases26": 0.0,
             "cases25": 1.0
           },
-          "Famosa 2/12/12 oz Btl": {
+          "Famosa 1/12/24 oz Can": {
             "cases26": 0.0,
-            "cases25": 6.0
+            "cases25": 69.0
           }
         },
         "lostAccounts": [
@@ -154259,14 +154554,6 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 25.0
           },
           {
-            "customer": "Wine And Liq Depot(A)",
-            "cases25": 20.0
-          },
-          {
-            "customer": "Time Lounge And Liq (A)",
-            "cases25": 10.0
-          },
-          {
             "customer": "Shop Rite Liq (A)Englewd",
             "cases25": 5.0
           },
@@ -154275,27 +154562,37 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 1.0
           }
         ],
-        "toPositive": 101.0
+        "toPositive": 68.0
       },
       "Derrick Laws": {
-        "cases26": 0.0,
+        "cases26": 8.0,
         "cases25": 109.0,
-        "growth": -109.0,
+        "growth": -101.0,
         "positive": false,
         "cases7oz": 0.0,
-        "casesOther": 0.0,
+        "casesOther": 8.0,
         "payout": 0,
-        "accounts": 0,
+        "accounts": 3,
         "accountList": [
+          {
+            "customer": "Shop Rite Wines/Spirits",
+            "cases26": 3.0,
+            "cases25": 35.0
+          },
+          {
+            "customer": "The Point Liquor & Bar",
+            "cases26": 3.0,
+            "cases25": 0.0
+          },
+          {
+            "customer": "C Town (A)",
+            "cases26": 2.0,
+            "cases25": 0.0
+          },
           {
             "customer": "Economy Liquors",
             "cases26": 0.0,
             "cases25": 10.0
-          },
-          {
-            "customer": "Shop Rite Wines/Spirits",
-            "cases26": 0.0,
-            "cases25": 35.0
           },
           {
             "customer": "Raphael & Angel Liq (A)",
@@ -154324,17 +154621,21 @@ const PROGRAM_DATA_2026_10 = {
           }
         ],
         "byProduct": {
+          "Famosa 1/12/24 oz Can": {
+            "cases26": 2.0,
+            "cases25": 20.0
+          },
+          "Famosa Lager 1/12/32 oz Btl": {
+            "cases26": 3.0,
+            "cases25": 0.0
+          },
           "Famosa 4/6/12 oz Btl": {
-            "cases26": 0.0,
+            "cases26": 3.0,
             "cases25": 49.0
           },
           "Famosa 2/12/12 oz Can": {
             "cases26": 0.0,
             "cases25": 32.0
-          },
-          "Famosa 1/12/24 oz Can": {
-            "cases26": 0.0,
-            "cases25": 20.0
           },
           "Famosa 1/12/33.8 oz Btl": {
             "cases26": 0.0,
@@ -154343,10 +154644,6 @@ const PROGRAM_DATA_2026_10 = {
         },
         "lostAccounts": [
           {
-            "customer": "Shop Rite Wines/Spirits",
-            "cases25": 35.0
-          },
-          {
             "customer": "Dorta Liquor (A)",
             "cases25": 35.0
           },
@@ -154371,32 +154668,57 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 4.0
           }
         ],
-        "toPositive": 109.0
+        "toPositive": 101.0
       },
       "Dylan Rubino": {
-        "cases26": 0.0,
+        "cases26": 118.0,
         "cases25": 1041.0,
-        "growth": -1041.0,
+        "growth": -923.0,
         "positive": false,
         "cases7oz": 0.0,
-        "casesOther": 0.0,
+        "casesOther": 118.0,
         "payout": 0,
-        "accounts": 0,
+        "accounts": 7,
         "accountList": [
+          {
+            "customer": "WNY Liquors",
+            "cases26": 26.0,
+            "cases25": 83.0
+          },
+          {
+            "customer": "Corks & Bottles (P)",
+            "cases26": 20.0,
+            "cases25": 75.0
+          },
+          {
+            "customer": "Town Beverage",
+            "cases26": 20.0,
+            "cases25": 55.0
+          },
+          {
+            "customer": "Benny's Liq & Deli",
+            "cases26": 20.0,
+            "cases25": 105.0
+          },
+          {
+            "customer": "Union Liquors",
+            "cases26": 12.0,
+            "cases25": 10.0
+          },
+          {
+            "customer": "Discount Wine & Spirits",
+            "cases26": 10.0,
+            "cases25": 0.0
+          },
+          {
+            "customer": "Universal Liquors (A)",
+            "cases26": 10.0,
+            "cases25": 60.0
+          },
           {
             "customer": "Cosmo Liquors & Grocery",
             "cases26": 0.0,
             "cases25": 6.0
-          },
-          {
-            "customer": "Discount Liquors West New York",
-            "cases26": 0.0,
-            "cases25": 45.0
-          },
-          {
-            "customer": "Moon Liquors (P)",
-            "cases26": 0.0,
-            "cases25": 7.0
           },
           {
             "customer": "Metro Liquors (1212 Jersey City)",
@@ -154404,24 +154726,24 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 10.0
           },
           {
+            "customer": "Moon Liquors (P)",
+            "cases26": 0.0,
+            "cases25": 7.0
+          },
+          {
+            "customer": "Discount Liquors West New York",
+            "cases26": 0.0,
+            "cases25": 45.0
+          },
+          {
             "customer": "L&T Liquors",
             "cases26": 0.0,
             "cases25": 10.0
           },
           {
-            "customer": "Universal Liquors (A)",
-            "cases26": 0.0,
-            "cases25": 60.0
-          },
-          {
             "customer": "Los Padrinos",
             "cases26": 0.0,
             "cases25": 55.0
-          },
-          {
-            "customer": "WNY Liquors",
-            "cases26": 0.0,
-            "cases25": 83.0
           },
           {
             "customer": "Hudson Wine & Liq (P)",
@@ -154449,29 +154771,19 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 10.0
           },
           {
-            "customer": "Twin City Liquors",
-            "cases26": 0.0,
-            "cases25": 45.0
-          },
-          {
             "customer": "Communipaw Liqs (P)",
             "cases26": 0.0,
             "cases25": 3.0
           },
           {
-            "customer": "Benny's Liq & Deli",
+            "customer": "Twin City Liquors",
             "cases26": 0.0,
-            "cases25": 105.0
+            "cases25": 45.0
           },
           {
             "customer": "Central Wine And Liquors",
             "cases26": 0.0,
             "cases25": -5.0
-          },
-          {
-            "customer": "Kikos Liquor (P)",
-            "cases26": 0.0,
-            "cases25": 20.0
           },
           {
             "customer": "Jenny's Liq",
@@ -154484,51 +154796,40 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 20.0
           },
           {
-            "customer": "J & L Liquors (P)",
-            "cases26": 0.0,
-            "cases25": 110.0
-          },
-          {
             "customer": "Buy Rite North Bergen",
             "cases26": 0.0,
             "cases25": 20.0
           },
           {
-            "customer": "Union Liquors",
+            "customer": "J & L Liquors (P)",
             "cases26": 0.0,
-            "cases25": 10.0
-          },
-          {
-            "customer": "Fragoso Liquors",
-            "cases26": 0.0,
-            "cases25": 10.0
-          },
-          {
-            "customer": "HD Liquors",
-            "cases26": 0.0,
-            "cases25": 31.0
+            "cases25": 110.0
           }
         ],
         "byProduct": {
+          "Famosa 4/6/12 oz Btl": {
+            "cases26": 23.0,
+            "cases25": 211.0
+          },
+          "Famosa 2/12/12 oz Can": {
+            "cases26": 44.0,
+            "cases25": 277.0
+          },
+          "Famosa 1/12/24 oz Can": {
+            "cases26": 37.0,
+            "cases25": 463.0
+          },
+          "Famosa 2/12/12 oz Btl": {
+            "cases26": 8.0,
+            "cases25": 11.0
+          },
+          "Famosa Lager 1/12/32 oz Btl": {
+            "cases26": 6.0,
+            "cases25": 0.0
+          },
           "Famosa 1/12/33.8 oz Btl": {
             "cases26": 0.0,
             "cases25": 79.0
-          },
-          "Famosa 4/6/12 oz Btl": {
-            "cases26": 0.0,
-            "cases25": 211.0
-          },
-          "Famosa 1/12/24 oz Can": {
-            "cases26": 0.0,
-            "cases25": 463.0
-          },
-          "Famosa 2/12/12 oz Can": {
-            "cases26": 0.0,
-            "cases25": 277.0
-          },
-          "Famosa 2/12/12 oz Btl": {
-            "cases26": 0.0,
-            "cases25": 11.0
           }
         },
         "lostAccounts": [
@@ -154537,31 +154838,11 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 110.0
           },
           {
-            "customer": "Benny's Liq & Deli",
-            "cases25": 105.0
-          },
-          {
             "customer": "Jenny's Liq",
             "cases25": 88.0
           },
           {
-            "customer": "WNY Liquors",
-            "cases25": 83.0
-          },
-          {
-            "customer": "Corks & Bottles (P)",
-            "cases25": 75.0
-          },
-          {
-            "customer": "Universal Liquors (A)",
-            "cases25": 60.0
-          },
-          {
             "customer": "Los Padrinos",
-            "cases25": 55.0
-          },
-          {
-            "customer": "Town Beverage",
             "cases25": 55.0
           },
           {
@@ -154589,31 +154870,76 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 20.0
           },
           {
+            "customer": "Wine Warehouse (P) (Union City)",
+            "cases25": 20.0
+          },
+          {
+            "customer": "Buy Rite North Bergen",
+            "cases25": 20.0
+          },
+          {
             "customer": "Kikos Liquor (P)",
             "cases25": 20.0
+          },
+          {
+            "customer": "Figi Wine & Liq (P)",
+            "cases25": 18.0
+          },
+          {
+            "customer": "Hudson Wine & Liq (P)",
+            "cases25": 15.0
+          },
+          {
+            "customer": "Metro Liquors (1212 Jersey City)",
+            "cases25": 10.0
           }
         ],
-        "toPositive": 1041.0
+        "toPositive": 923.0
       },
       "Hakan Sadik": {
-        "cases26": 0.0,
+        "cases26": 119.0,
         "cases25": 765.0,
-        "growth": -765.0,
+        "growth": -646.0,
         "positive": false,
-        "cases7oz": 0.0,
-        "casesOther": 0.0,
+        "cases7oz": -4.0,
+        "casesOther": 123.0,
         "payout": 0,
-        "accounts": 0,
+        "accounts": 6,
         "accountList": [
+          {
+            "customer": "Double Dee Liquors",
+            "cases26": 36.0,
+            "cases25": 0.0
+          },
+          {
+            "customer": "C & D Liquors",
+            "cases26": 29.0,
+            "cases25": 30.0
+          },
+          {
+            "customer": "Liquor Zone",
+            "cases26": 20.0,
+            "cases25": 40.0
+          },
+          {
+            "customer": "Three Corners Liquor/Bar",
+            "cases26": 20.0,
+            "cases25": 0.0
+          },
+          {
+            "customer": "Maple Liquors",
+            "cases26": 12.0,
+            "cases25": 25.0
+          },
+          {
+            "customer": "Lyons Discount",
+            "cases26": 2.0,
+            "cases25": 5.0
+          },
           {
             "customer": "Jonathan's Liquor Store",
             "cases26": 0.0,
             "cases25": 20.0
-          },
-          {
-            "customer": "Liquor Zone",
-            "cases26": 0.0,
-            "cases25": 40.0
           },
           {
             "customer": "Colony Liquors",
@@ -154624,11 +154950,6 @@ const PROGRAM_DATA_2026_10 = {
             "customer": "Toast Of The Town",
             "cases26": 0.0,
             "cases25": 67.0
-          },
-          {
-            "customer": "C & D Liquors",
-            "cases26": 0.0,
-            "cases25": 30.0
           },
           {
             "customer": "Harmony Bar & Liquors",
@@ -154656,34 +154977,19 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 100.0
           },
           {
-            "customer": "Home Liquors(1277 Irvington)",
-            "cases26": 0.0,
-            "cases25": 15.0
-          },
-          {
-            "customer": "Lyons Discount",
-            "cases26": 0.0,
-            "cases25": 5.0
-          },
-          {
             "customer": "Home Wines & Liquors (Orange)",
             "cases26": 0.0,
             "cases25": 40.0
           },
           {
-            "customer": "Brandy's Lounge And Liquors",
+            "customer": "Home Liquors(1277 Irvington)",
             "cases26": 0.0,
-            "cases25": 40.0
+            "cases25": 15.0
           },
           {
             "customer": "Boot Leggers W/L",
             "cases26": 0.0,
             "cases25": 20.0
-          },
-          {
-            "customer": "Avenue Liquors",
-            "cases26": 0.0,
-            "cases25": 30.0
           },
           {
             "customer": "Galaxy Liquor",
@@ -154696,14 +155002,19 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 20.0
           },
           {
+            "customer": "Avenue Liquors",
+            "cases26": 0.0,
+            "cases25": 30.0
+          },
+          {
+            "customer": "Brandy's Lounge And Liquors",
+            "cases26": 0.0,
+            "cases25": 40.0
+          },
+          {
             "customer": "Chancellor Irvington",
             "cases26": 0.0,
             "cases25": 15.0
-          },
-          {
-            "customer": "Maple Liquors",
-            "cases26": 0.0,
-            "cases25": 25.0
           },
           {
             "customer": "Ivy Plaza Liquors",
@@ -154716,33 +155027,27 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 20.0
           },
           {
-            "customer": "Best Quality Liquor",
-            "cases26": 0.0,
-            "cases25": 27.0
-          },
-          {
             "customer": "New Home Liquor",
             "cases26": 0.0,
             "cases25": 20.0
-          },
-          {
-            "customer": "Bell Liquor",
-            "cases26": 0.0,
-            "cases25": 10.0
           }
         ],
         "byProduct": {
           "Famosa 2/12/12 oz Can": {
-            "cases26": 0.0,
+            "cases26": 47.0,
             "cases25": 248.0
           },
+          "Famosa 1/12/24 oz Can": {
+            "cases26": 71.0,
+            "cases25": 376.0
+          },
           "Famosa 4/6/12 oz Btl": {
-            "cases26": 0.0,
+            "cases26": 5.0,
             "cases25": 118.0
           },
-          "Famosa 1/12/24 oz Can": {
-            "cases26": 0.0,
-            "cases25": 376.0
+          "Famosa 4/6/7 oz Btl": {
+            "cases26": -4.0,
+            "cases25": 0.0
           },
           "Famosa 2/12/12 oz Btl": {
             "cases26": 0.0,
@@ -154771,20 +155076,12 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 57.0
           },
           {
-            "customer": "Liquor Zone",
-            "cases25": 40.0
-          },
-          {
             "customer": "Home Wines & Liquors (Orange)",
             "cases25": 40.0
           },
           {
             "customer": "Brandy's Lounge And Liquors",
             "cases25": 40.0
-          },
-          {
-            "customer": "C & D Liquors",
-            "cases25": 30.0
           },
           {
             "customer": "Avenue Liquors",
@@ -154799,10 +155096,6 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 26.0
           },
           {
-            "customer": "Maple Liquors",
-            "cases25": 25.0
-          },
-          {
             "customer": "Jonathan's Liquor Store",
             "cases25": 20.0
           },
@@ -154813,20 +155106,37 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Harmony Bar & Liquors",
             "cases25": 20.0
+          },
+          {
+            "customer": "Boot Leggers W/L",
+            "cases25": 20.0
+          },
+          {
+            "customer": "Newark Discount Wine and Spirits",
+            "cases25": 20.0
+          },
+          {
+            "customer": "Park Ave Wine & Liquors",
+            "cases25": 20.0
           }
         ],
-        "toPositive": 765.0
+        "toPositive": 646.0
       },
       "Jaime Colonna": {
-        "cases26": 0.0,
+        "cases26": 1.0,
         "cases25": 67.0,
-        "growth": -67.0,
+        "growth": -66.0,
         "positive": false,
         "cases7oz": 0.0,
-        "casesOther": 0.0,
+        "casesOther": 1.0,
         "payout": 0,
-        "accounts": 0,
+        "accounts": 1,
         "accountList": [
+          {
+            "customer": "Cork Wines & Spirits (Harrison)",
+            "cases26": 1.0,
+            "cases25": 0.0
+          },
           {
             "customer": "Jersey City Buy Rite (A)",
             "cases26": 0.0,
@@ -154844,6 +155154,10 @@ const PROGRAM_DATA_2026_10 = {
           }
         ],
         "byProduct": {
+          "Famosa 4/6/12 oz Btl": {
+            "cases26": 1.0,
+            "cases25": 43.0
+          },
           "Famosa 1/12/24 oz Can": {
             "cases26": 0.0,
             "cases25": 3.0
@@ -154851,10 +155165,6 @@ const PROGRAM_DATA_2026_10 = {
           "Famosa 2/12/12 oz Can": {
             "cases26": 0.0,
             "cases25": 20.0
-          },
-          "Famosa 4/6/12 oz Btl": {
-            "cases26": 0.0,
-            "cases25": 43.0
           },
           "Famosa 1/12/33.8 oz Btl": {
             "cases26": 0.0,
@@ -154875,17 +155185,17 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 1.0
           }
         ],
-        "toPositive": 67.0
+        "toPositive": 66.0
       },
       "Javier Melo": {
-        "cases26": 40.0,
+        "cases26": 42.0,
         "cases25": 74.0,
-        "growth": -34.0,
+        "growth": -32.0,
         "positive": false,
         "cases7oz": 0.0,
-        "casesOther": 40.0,
+        "casesOther": 42.0,
         "payout": 0,
-        "accounts": 1,
+        "accounts": 2,
         "accountList": [
           {
             "customer": "ESTEVEZ LIQUORS LLC",
@@ -154894,7 +155204,7 @@ const PROGRAM_DATA_2026_10 = {
           },
           {
             "customer": "Farm Boy",
-            "cases26": 0.0,
+            "cases26": 2.0,
             "cases25": 11.0
           },
           {
@@ -154903,14 +155213,14 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 20.0
           },
           {
-            "customer": "Mojito Bar",
-            "cases26": 0.0,
-            "cases25": 5.0
-          },
-          {
             "customer": "New Eagle Liquors",
             "cases26": 0.0,
             "cases25": 20.0
+          },
+          {
+            "customer": "Mojito Bar",
+            "cases26": 0.0,
+            "cases25": 5.0
           },
           {
             "customer": "Liquor Stop (Passaic)",
@@ -154920,24 +155230,24 @@ const PROGRAM_DATA_2026_10 = {
         ],
         "byProduct": {
           "Famosa 1/12/24 oz Can": {
-            "cases26": 10.0,
+            "cases26": 11.0,
             "cases25": 12.0
           },
           "Famosa Lager 1/12/32 oz Btl": {
-            "cases26": 15.0,
+            "cases26": 16.0,
             "cases25": 0.0
           },
           "Famosa 2/12/12 oz Can": {
             "cases26": 15.0,
             "cases25": 41.0
           },
-          "Famosa 1/12/33.8 oz Btl": {
-            "cases26": 0.0,
-            "cases25": 7.0
-          },
           "Famosa 4/6/12 oz Btl": {
             "cases26": 0.0,
             "cases25": 14.0
+          },
+          "Famosa 1/12/33.8 oz Btl": {
+            "cases26": 0.0,
+            "cases25": 7.0
           }
         },
         "lostAccounts": [
@@ -154950,15 +155260,11 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 20.0
           },
           {
-            "customer": "Farm Boy",
-            "cases25": 11.0
-          },
-          {
             "customer": "Mojito Bar",
             "cases25": 5.0
           }
         ],
-        "toPositive": 34.0
+        "toPositive": 32.0
       },
       "Jayson Romine": {
         "cases26": 0.0,
@@ -154975,12 +155281,12 @@ const PROGRAM_DATA_2026_10 = {
         "toPositive": 0.0
       },
       "Jim Heaney": {
-        "cases26": 0.0,
+        "cases26": -4.0,
         "cases25": 1.0,
-        "growth": -1.0,
+        "growth": -5.0,
         "positive": false,
         "cases7oz": 0.0,
-        "casesOther": 0.0,
+        "casesOther": -4.0,
         "payout": 0,
         "accounts": 0,
         "accountList": [
@@ -154988,9 +155294,18 @@ const PROGRAM_DATA_2026_10 = {
             "customer": "On The Rocks",
             "cases26": 0.0,
             "cases25": 1.0
+          },
+          {
+            "customer": "Swizzle Stick Liq (A)",
+            "cases26": -4.0,
+            "cases25": 0.0
           }
         ],
         "byProduct": {
+          "Famosa 4/6/12 oz Btl": {
+            "cases26": -4.0,
+            "cases25": 0.0
+          },
           "Famosa 1/12/24 oz Can": {
             "cases26": 0.0,
             "cases25": 1.0
@@ -155002,7 +155317,7 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 1.0
           }
         ],
-        "toPositive": 1.0
+        "toPositive": 5.0
       },
       "John O'Donoghue": {
         "cases26": 0.0,
@@ -155043,14 +155358,14 @@ const PROGRAM_DATA_2026_10 = {
         "accounts": 0,
         "accountList": [
           {
-            "customer": "Shop Rite Of Wallington",
-            "cases26": 0.0,
-            "cases25": 2.0
-          },
-          {
             "customer": "Wine Grand (Carlstadt)",
             "cases26": 0.0,
             "cases25": 5.0
+          },
+          {
+            "customer": "Shop Rite Of Wallington",
+            "cases26": 0.0,
+            "cases25": 2.0
           }
         ],
         "byProduct": {
@@ -155106,13 +155421,13 @@ const PROGRAM_DATA_2026_10 = {
             "cases26": 0.0,
             "cases25": 10.0
           },
-          "Famosa 1/12/24 oz Can": {
-            "cases26": 0.0,
-            "cases25": 30.0
-          },
           "Famosa 2/12/12 oz Can": {
             "cases26": 0.0,
             "cases25": 25.0
+          },
+          "Famosa 1/12/24 oz Can": {
+            "cases26": 0.0,
+            "cases25": 30.0
           },
           "Famosa 1/12/33.8 oz Btl": {
             "cases26": 0.0,
@@ -155136,16 +155451,27 @@ const PROGRAM_DATA_2026_10 = {
         "toPositive": 66.0
       },
       "Mike Ast": {
-        "cases26": 0.0,
+        "cases26": 5.0,
         "cases25": 0.0,
-        "growth": 0.0,
-        "positive": false,
+        "growth": 5.0,
+        "positive": true,
         "cases7oz": 0.0,
-        "casesOther": 0.0,
-        "payout": 0,
-        "accounts": 0,
-        "accountList": [],
-        "byProduct": {},
+        "casesOther": 5.0,
+        "payout": 10,
+        "accounts": 1,
+        "accountList": [
+          {
+            "customer": "Goffle Road Wine and More",
+            "cases26": 5.0,
+            "cases25": 0.0
+          }
+        ],
+        "byProduct": {
+          "Famosa 4/6/12 oz Btl": {
+            "cases26": 5.0,
+            "cases25": 0.0
+          }
+        },
         "lostAccounts": [],
         "toPositive": 0.0
       },
@@ -155164,64 +155490,65 @@ const PROGRAM_DATA_2026_10 = {
         "toPositive": 0.0
       },
       "Pablo Lopez": {
-        "cases26": 0.0,
+        "cases26": 42.0,
         "cases25": 81.0,
-        "growth": -81.0,
+        "growth": -39.0,
         "positive": false,
         "cases7oz": 0.0,
-        "casesOther": 0.0,
+        "casesOther": 42.0,
         "payout": 0,
-        "accounts": 0,
+        "accounts": 3,
         "accountList": [
           {
             "customer": "Regalado Liq",
-            "cases26": 0.0,
+            "cases26": 25.0,
             "cases25": 46.0
+          },
+          {
+            "customer": "Passaic Discount Liquors",
+            "cases26": 12.0,
+            "cases25": 10.0
+          },
+          {
+            "customer": "Sunny's Liqs.(P)",
+            "cases26": 5.0,
+            "cases25": 0.0
           },
           {
             "customer": "Monroe Wine & Liq(P)",
             "cases26": 0.0,
             "cases25": 25.0
-          },
-          {
-            "customer": "Passaic Discount Liquors",
-            "cases26": 0.0,
-            "cases25": 10.0
           }
         ],
         "byProduct": {
+          "Famosa 4/6/12 oz Btl": {
+            "cases26": 15.0,
+            "cases25": 21.0
+          },
+          "Famosa Lager 1/12/32 oz Btl": {
+            "cases26": 11.0,
+            "cases25": 0.0
+          },
+          "Famosa 2/12/12 oz Can": {
+            "cases26": 6.0,
+            "cases25": 15.0
+          },
+          "Famosa 1/12/24 oz Can": {
+            "cases26": 10.0,
+            "cases25": 15.0
+          },
           "Famosa 1/12/33.8 oz Btl": {
             "cases26": 0.0,
             "cases25": 30.0
-          },
-          "Famosa 1/12/24 oz Can": {
-            "cases26": 0.0,
-            "cases25": 15.0
-          },
-          "Famosa 4/6/12 oz Btl": {
-            "cases26": 0.0,
-            "cases25": 21.0
-          },
-          "Famosa 2/12/12 oz Can": {
-            "cases26": 0.0,
-            "cases25": 15.0
           }
         },
         "lostAccounts": [
           {
-            "customer": "Regalado Liq",
-            "cases25": 46.0
-          },
-          {
             "customer": "Monroe Wine & Liq(P)",
             "cases25": 25.0
-          },
-          {
-            "customer": "Passaic Discount Liquors",
-            "cases25": 10.0
           }
         ],
-        "toPositive": 81.0
+        "toPositive": 39.0
       },
       "Paul Mclaughlin": {
         "cases26": 0.0,
@@ -155254,18 +155581,33 @@ const PROGRAM_DATA_2026_10 = {
         "toPositive": 3.0
       },
       "Phil Ernst": {
-        "cases26": 2.0,
+        "cases26": 24.0,
         "cases25": 51.0,
-        "growth": -49.0,
+        "growth": -27.0,
         "positive": false,
-        "cases7oz": 0.0,
-        "casesOther": 2.0,
+        "cases7oz": 10.0,
+        "casesOther": 14.0,
         "payout": 0,
-        "accounts": 1,
+        "accounts": 4,
         "accountList": [
+          {
+            "customer": "City Supermarket",
+            "cases26": 20.0,
+            "cases25": 30.0
+          },
           {
             "customer": "USA Wine Traders Paramus",
             "cases26": 2.0,
+            "cases25": 0.0
+          },
+          {
+            "customer": "Acme Markets (Allendale)",
+            "cases26": 1.0,
+            "cases25": 0.0
+          },
+          {
+            "customer": "Agave Liquor, Wine & Spirits",
+            "cases26": 1.0,
             "cases25": 0.0
           },
           {
@@ -155277,20 +155619,19 @@ const PROGRAM_DATA_2026_10 = {
             "customer": "Budy's Wine & Liq (A)",
             "cases26": 0.0,
             "cases25": 20.0
-          },
-          {
-            "customer": "City Supermarket",
-            "cases26": 0.0,
-            "cases25": 30.0
           }
         ],
         "byProduct": {
           "Famosa 1/12/24 oz Can": {
-            "cases26": 1.0,
+            "cases26": 7.0,
             "cases25": 20.0
           },
+          "Famosa 4/6/7 oz Btl": {
+            "cases26": 10.0,
+            "cases25": 0.0
+          },
           "Famosa 4/6/12 oz Btl": {
-            "cases26": 1.0,
+            "cases26": 7.0,
             "cases25": 11.0
           },
           "Famosa 2/12/12 oz Can": {
@@ -155300,10 +155641,6 @@ const PROGRAM_DATA_2026_10 = {
         },
         "lostAccounts": [
           {
-            "customer": "City Supermarket",
-            "cases25": 30.0
-          },
-          {
             "customer": "Budy's Wine & Liq (A)",
             "cases25": 20.0
           },
@@ -155312,7 +155649,7 @@ const PROGRAM_DATA_2026_10 = {
             "cases25": 1.0
           }
         ],
-        "toPositive": 49.0
+        "toPositive": 27.0
       },
       "Robin Feldman": {
         "cases26": 0.0,
@@ -155329,38 +155666,47 @@ const PROGRAM_DATA_2026_10 = {
         "toPositive": 0.0
       },
       "Shane Barreca": {
-        "cases26": -1.0,
+        "cases26": 66.0,
         "cases25": 100.0,
-        "growth": -101.0,
+        "growth": -34.0,
         "positive": false,
         "cases7oz": 0.0,
-        "casesOther": -1.0,
+        "casesOther": 66.0,
         "payout": 0,
-        "accounts": 0,
+        "accounts": 2,
         "accountList": [
+          {
+            "customer": "Beverage Barn (A)",
+            "cases26": 65.0,
+            "cases25": 98.0
+          },
+          {
+            "customer": "Bottle King (A) Dumont",
+            "cases26": 1.0,
+            "cases25": 0.0
+          },
           {
             "customer": "Bottle King (A) Hillsdale",
             "cases26": 0.0,
             "cases25": 2.0
-          },
-          {
-            "customer": "Beverage Barn (A)",
-            "cases26": -1.0,
-            "cases25": 98.0
           }
         ],
         "byProduct": {
           "Famosa 1/12/24 oz Can": {
-            "cases26": -1.0,
+            "cases26": 17.0,
             "cases25": 25.0
           },
-          "Famosa 4/6/12 oz Btl": {
-            "cases26": 0.0,
-            "cases25": 16.0
+          "Famosa Lager 1/12/32 oz Btl": {
+            "cases26": 12.0,
+            "cases25": 0.0
           },
           "Famosa 2/12/12 oz Can": {
-            "cases26": 0.0,
+            "cases26": 25.0,
             "cases25": 42.0
+          },
+          "Famosa 4/6/12 oz Btl": {
+            "cases26": 12.0,
+            "cases25": 16.0
           },
           "Famosa 1/12/33.8 oz Btl": {
             "cases26": 0.0,
@@ -155373,28 +155719,24 @@ const PROGRAM_DATA_2026_10 = {
         },
         "lostAccounts": [
           {
-            "customer": "Beverage Barn (A)",
-            "cases25": 98.0
-          },
-          {
             "customer": "Bottle King (A) Hillsdale",
             "cases25": 2.0
           }
         ],
-        "toPositive": 101.0
+        "toPositive": 34.0
       }
     },
     "leaderboard": [
       {
-        "rep": "Allison Scott",
-        "growth": 0.0,
-        "cases26": 0.0,
-        "positive": false,
-        "payout": 0,
+        "rep": "Mike Ast",
+        "growth": 5.0,
+        "cases26": 5.0,
+        "positive": true,
+        "payout": 10,
         "rank": 1
       },
       {
-        "rep": "Anthony Palmisano",
+        "rep": "Allison Scott",
         "growth": 0.0,
         "cases26": 0.0,
         "positive": false,
@@ -155402,7 +155744,7 @@ const PROGRAM_DATA_2026_10 = {
         "rank": 2
       },
       {
-        "rep": "Brian Sengebush",
+        "rep": "Anthony Palmisano",
         "growth": 0.0,
         "cases26": 0.0,
         "positive": false,
@@ -155410,7 +155752,7 @@ const PROGRAM_DATA_2026_10 = {
         "rank": 3
       },
       {
-        "rep": "Jayson Romine",
+        "rep": "Brian Sengebush",
         "growth": 0.0,
         "cases26": 0.0,
         "positive": false,
@@ -155418,7 +155760,7 @@ const PROGRAM_DATA_2026_10 = {
         "rank": 4
       },
       {
-        "rep": "John O'Donoghue",
+        "rep": "Jayson Romine",
         "growth": 0.0,
         "cases26": 0.0,
         "positive": false,
@@ -155426,7 +155768,7 @@ const PROGRAM_DATA_2026_10 = {
         "rank": 5
       },
       {
-        "rep": "Klejdi Lamo",
+        "rep": "John O'Donoghue",
         "growth": 0.0,
         "cases26": 0.0,
         "positive": false,
@@ -155434,7 +155776,7 @@ const PROGRAM_DATA_2026_10 = {
         "rank": 6
       },
       {
-        "rep": "Mike Ast",
+        "rep": "Klejdi Lamo",
         "growth": 0.0,
         "cases26": 0.0,
         "positive": false,
@@ -155458,17 +155800,17 @@ const PROGRAM_DATA_2026_10 = {
         "rank": 9
       },
       {
-        "rep": "Jim Heaney",
-        "growth": -1.0,
+        "rep": "Paul Mclaughlin",
+        "growth": -3.0,
         "cases26": 0.0,
         "positive": false,
         "payout": 0,
         "rank": 10
       },
       {
-        "rep": "Paul Mclaughlin",
-        "growth": -3.0,
-        "cases26": 0.0,
+        "rep": "Jim Heaney",
+        "growth": -5.0,
+        "cases26": -4.0,
         "positive": false,
         "payout": 0,
         "rank": 11
@@ -155483,27 +155825,51 @@ const PROGRAM_DATA_2026_10 = {
       },
       {
         "rep": "Chris Payton",
-        "growth": -15.0,
-        "cases26": 0.0,
+        "growth": -8.0,
+        "cases26": 7.0,
         "positive": false,
         "payout": 0,
         "rank": 13
       },
       {
-        "rep": "Javier Melo",
-        "growth": -34.0,
-        "cases26": 40.0,
+        "rep": "Phil Ernst",
+        "growth": -27.0,
+        "cases26": 24.0,
         "positive": false,
         "payout": 0,
         "rank": 14
       },
       {
-        "rep": "Phil Ernst",
-        "growth": -49.0,
-        "cases26": 2.0,
+        "rep": "Javier Melo",
+        "growth": -32.0,
+        "cases26": 42.0,
         "positive": false,
         "payout": 0,
         "rank": 15
+      },
+      {
+        "rep": "Shane Barreca",
+        "growth": -34.0,
+        "cases26": 66.0,
+        "positive": false,
+        "payout": 0,
+        "rank": 16
+      },
+      {
+        "rep": "Pablo Lopez",
+        "growth": -39.0,
+        "cases26": 42.0,
+        "positive": false,
+        "payout": 0,
+        "rank": 17
+      },
+      {
+        "rep": "Jaime Colonna",
+        "growth": -66.0,
+        "cases26": 1.0,
+        "positive": false,
+        "payout": 0,
+        "rank": 18
       },
       {
         "rep": "Michael Harboy",
@@ -155511,92 +155877,68 @@ const PROGRAM_DATA_2026_10 = {
         "cases26": 0.0,
         "positive": false,
         "payout": 0,
-        "rank": 16
-      },
-      {
-        "rep": "Jaime Colonna",
-        "growth": -67.0,
-        "cases26": 0.0,
-        "positive": false,
-        "payout": 0,
-        "rank": 17
-      },
-      {
-        "rep": "Pablo Lopez",
-        "growth": -81.0,
-        "cases26": 0.0,
-        "positive": false,
-        "payout": 0,
-        "rank": 18
-      },
-      {
-        "rep": "Dave Ehlers",
-        "growth": -101.0,
-        "cases26": 0.0,
-        "positive": false,
-        "payout": 0,
         "rank": 19
       },
       {
-        "rep": "Shane Barreca",
-        "growth": -101.0,
-        "cases26": -1.0,
+        "rep": "Dave Ehlers",
+        "growth": -68.0,
+        "cases26": 33.0,
         "positive": false,
         "payout": 0,
         "rank": 20
       },
       {
         "rep": "Derrick Laws",
-        "growth": -109.0,
-        "cases26": 0.0,
+        "growth": -101.0,
+        "cases26": 8.0,
         "positive": false,
         "payout": 0,
         "rank": 21
       },
       {
         "rep": "Alex Rodriguez",
-        "growth": -165.0,
-        "cases26": 0.0,
+        "growth": -135.0,
+        "cases26": 30.0,
         "positive": false,
         "payout": 0,
         "rank": 22
       },
       {
-        "rep": "Alisa Acciardi",
-        "growth": -234.0,
-        "cases26": 0.0,
+        "rep": "Andrew Lundy",
+        "growth": -176.0,
+        "cases26": 59.0,
         "positive": false,
         "payout": 0,
         "rank": 23
       },
       {
-        "rep": "Andrew Lundy",
-        "growth": -235.0,
-        "cases26": 0.0,
+        "rep": "Alisa Acciardi",
+        "growth": -218.0,
+        "cases26": 16.0,
         "positive": false,
         "payout": 0,
         "rank": 24
       },
       {
         "rep": "Hakan Sadik",
-        "growth": -765.0,
-        "cases26": 0.0,
+        "growth": -646.0,
+        "cases26": 119.0,
         "positive": false,
         "payout": 0,
         "rank": 25
       },
       {
         "rep": "Dan Lagala",
-        "growth": -965.0,
-        "cases26": 5.0,
+        "growth": -792.0,
+        "cases26": 178.0,
         "positive": false,
         "payout": 0,
         "rank": 26
       },
       {
         "rep": "Dylan Rubino",
-        "growth": -1041.0,
-        "cases26": 0.0,
+        "growth": -923.0,
+        "cases26": 118.0,
         "positive": false,
         "payout": 0,
         "rank": 27
@@ -155716,26 +156058,86 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargetCount": 66
       },
       "Alisa Acciardi": {
-        "accounts": [],
-        "openedCount": 0,
+        "accounts": [
+          {
+            "customer": "Bottle King Glen Ridge",
+            "skus": 8,
+            "skuList": [
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 15.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-07"
+          },
+          {
+            "customer": "Kelly's Liquors",
+            "skus": 7,
+            "skuList": [
+              "Industrial Arts Forever Fest 6/4/16 oz Can",
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Screwdriver Juicy Orange Beer 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 11.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-01"
+          },
+          {
+            "customer": "Kearny Plaza Discount Liq",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-07"
+          },
+          {
+            "customer": "C & I Liquors(Superfresh)",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-06"
+          }
+        ],
+        "openedCount": 4,
         "progressCount": 0,
-        "skuPlacements": 0,
-        "caseVolume": 0.0,
+        "skuPlacements": 19,
+        "caseVolume": 37.0,
         "draftAccounts": [],
         "draftNewCount": 0,
         "draftQualifiedCount": 0,
         "draftHoldCount": 0,
-        "openedPayout": 0,
+        "openedPayout": 200,
         "draftPayout": 0,
-        "payout": 0,
+        "payout": 200,
         "southern": true,
         "draftChannelOk": true,
-        "totalNew": 0,
+        "totalNew": 4,
         "offPremTargets": [
-          {
-            "customer": "Bottle King Glen Ridge",
-            "cases2026": 4545.0
-          },
           {
             "customer": "Bbb Liquors(Costco)",
             "cases2026": 2518.0
@@ -155781,14 +156183,6 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 691.0
           },
           {
-            "customer": "Kelly's Liquors",
-            "cases2026": 676.0
-          },
-          {
-            "customer": "Kearny Plaza Discount Liq",
-            "cases2026": 637.0
-          },
-          {
             "customer": "Wine Warehouse (P) (Bayonne)",
             "cases2026": 630.0
           },
@@ -155811,18 +156205,55 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Berkeley Liquors",
             "cases2026": 386.0
+          },
+          {
+            "customer": "Plaza Wine & Liquor",
+            "cases2026": 377.0
+          },
+          {
+            "customer": "Harrison Discount Liq(P)",
+            "cases2026": 372.0
+          },
+          {
+            "customer": "Liquor City",
+            "cases2026": 366.0
           }
         ],
-        "offPremTargetCount": 88
+        "offPremTargetCount": 84
       },
       "Allison Scott": {
         "accounts": [],
         "openedCount": 0,
         "progressCount": 0,
         "skuPlacements": 0,
-        "caseVolume": 0.0,
-        "draftAccounts": [],
-        "draftNewCount": 0,
+        "caseVolume": 6.0,
+        "draftAccounts": [
+          {
+            "customer": "Maggie's Town Tav.(P)",
+            "bbl": 0.25,
+            "qualifies": false,
+            "hold": false
+          },
+          {
+            "customer": "Blackjack Mulligans (Hawthorne)",
+            "bbl": 0.25,
+            "qualifies": false,
+            "hold": false
+          },
+          {
+            "customer": "Maggies Town Tavern Ii",
+            "bbl": 0.25,
+            "qualifies": false,
+            "hold": false
+          },
+          {
+            "customer": "Brokedown Palace",
+            "bbl": 0.25,
+            "qualifies": false,
+            "hold": false
+          }
+        ],
+        "draftNewCount": 4,
         "draftQualifiedCount": 0,
         "draftHoldCount": 0,
         "openedPayout": 0,
@@ -155835,29 +156266,121 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargetCount": 0
       },
       "Andrew Lundy": {
-        "accounts": [],
-        "openedCount": 0,
+        "accounts": [
+          {
+            "customer": "Park Beverage",
+            "skus": 8,
+            "skuList": [
+              "Industrial Arts Forever Fest 6/4/16 oz Can",
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 16.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-06"
+          },
+          {
+            "customer": "Witty's Fine Wine & Spirt",
+            "skus": 5,
+            "skuList": [
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can"
+            ],
+            "cases": 7.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-08"
+          },
+          {
+            "customer": "Jersey Fine Wines",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 14.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-06"
+          },
+          {
+            "customer": "House of Wine & Liquor Westfield",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-06"
+          },
+          {
+            "customer": "Drinq Linq The Liquor Store",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can"
+            ],
+            "cases": 3.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-06"
+          },
+          {
+            "customer": "Buyrite Liquors",
+            "skus": 1,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 1.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-06"
+          }
+        ],
+        "openedCount": 6,
         "progressCount": 0,
-        "skuPlacements": 0,
-        "caseVolume": 0.0,
-        "draftAccounts": [],
-        "draftNewCount": 0,
-        "draftQualifiedCount": 0,
+        "skuPlacements": 22,
+        "caseVolume": 47.0,
+        "draftAccounts": [
+          {
+            "customer": "Bareburger (Westfield)",
+            "bbl": 0.5,
+            "qualifies": true,
+            "hold": false
+          }
+        ],
+        "draftNewCount": 1,
+        "draftQualifiedCount": 1,
         "draftHoldCount": 0,
-        "openedPayout": 0,
-        "draftPayout": 0,
-        "payout": 0,
+        "openedPayout": 300,
+        "draftPayout": 100,
+        "payout": 400,
         "southern": true,
         "draftChannelOk": true,
-        "totalNew": 0,
+        "totalNew": 7,
         "offPremTargets": [
           {
             "customer": "Total Wine & More (Union)",
             "cases2026": 3617.0
-          },
-          {
-            "customer": "Witty's Fine Wine & Spirt",
-            "cases2026": 3432.0
           },
           {
             "customer": "Bayway World Of Liquor",
@@ -155866,10 +156389,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Metro Liquor (Linden)",
             "cases2026": 1483.0
-          },
-          {
-            "customer": "Park Beverage",
-            "cases2026": 1341.0
           },
           {
             "customer": "Shop Rite of Westfield",
@@ -155894,10 +156413,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Wine Anthology (A)",
             "cases2026": 839.0
-          },
-          {
-            "customer": "House of Wine & Liquor Westfield",
-            "cases2026": 805.0
           },
           {
             "customer": "Dittrick's W&L (A)",
@@ -155930,9 +156445,21 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Queen City Liquors",
             "cases2026": 619.0
+          },
+          {
+            "customer": "Liquor City @ Sams Club",
+            "cases2026": 596.0
+          },
+          {
+            "customer": "Linden Discount Liquors",
+            "cases2026": 563.0
+          },
+          {
+            "customer": "Home Wines & Liquors (360 Union)",
+            "cases2026": 561.0
           }
         ],
-        "offPremTargetCount": 78
+        "offPremTargetCount": 72
       },
       "Anthony Palmisano": {
         "accounts": [
@@ -155947,55 +156474,156 @@ const PROGRAM_DATA_2026_10 = {
               "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
               "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
+            "cases": 16.0,
+            "opened": true,
+            "payout": 70,
+            "toOpen": 0,
+            "date": "2026-10-02"
+          },
+          {
+            "customer": "Usa Wine Traders Club (Bloomingdale)",
+            "skus": 6,
+            "skuList": [
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
             "cases": 15.0,
             "opened": true,
             "payout": 70,
             "toOpen": 0,
+            "date": "2026-10-06"
+          },
+          {
+            "customer": "Usa Wine Traders (Wanaque)",
+            "skus": 6,
+            "skuList": [
+              "Industrial Arts Forever Fest 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 7.0,
+            "opened": true,
+            "payout": 70,
+            "toOpen": 0,
+            "date": "2026-10-08"
+          },
+          {
+            "customer": "Greenwood Lake Disc.(P)",
+            "skus": 4,
+            "skuList": [
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 10.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-08"
+          },
+          {
+            "customer": "Highland Wine&Liquor Inc",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 7.0,
+            "opened": true,
+            "payout": 40,
+            "toOpen": 0,
+            "date": "2026-10-09"
+          },
+          {
+            "customer": "George's Market (A)",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 1,
+            "date": "2026-10-07"
+          },
+          {
+            "customer": "Krauszer's Liquor Wine and Spirits",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can"
+            ],
+            "cases": 3.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 1,
+            "date": "2026-10-06"
+          },
+          {
+            "customer": "Best Cellars (Wanaque)",
+            "skus": 1,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can"
+            ],
+            "cases": 15.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 2,
+            "date": "2026-10-02"
+          },
+          {
+            "customer": "Roserne Pkg Store South",
+            "skus": 1,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can"
+            ],
+            "cases": 7.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 2,
+            "date": "2026-10-06"
+          },
+          {
+            "customer": "Ringwood W&L",
+            "skus": 1,
+            "skuList": [
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 2,
             "date": "2026-10-01"
           }
         ],
-        "openedCount": 1,
-        "progressCount": 0,
-        "skuPlacements": 6,
-        "caseVolume": 15.0,
+        "openedCount": 5,
+        "progressCount": 5,
+        "skuPlacements": 32,
+        "caseVolume": 90.0,
         "draftAccounts": [],
         "draftNewCount": 0,
         "draftQualifiedCount": 0,
         "draftHoldCount": 0,
-        "openedPayout": 70,
+        "openedPayout": 300,
         "draftPayout": 0,
-        "payout": 70,
+        "payout": 300,
         "southern": false,
         "draftChannelOk": true,
-        "totalNew": 1,
+        "totalNew": 5,
         "offPremTargets": [
-          {
-            "customer": "Usa Wine Traders Club (Bloomingdale)",
-            "cases2026": 17917.0
-          },
-          {
-            "customer": "Highland Wine&Liquor Inc",
-            "cases2026": 12985.0
-          },
-          {
-            "customer": "Best Cellars (Wanaque)",
-            "cases2026": 12588.2
-          },
-          {
-            "customer": "Greenwood Lake Disc.(P)",
-            "cases2026": 9950.3
-          },
-          {
-            "customer": "Ringwood W&L",
-            "cases2026": 9732.0
-          },
           {
             "customer": "Turnpike Discount Liquors",
             "cases2026": 9574.0
-          },
-          {
-            "customer": "Krauszer's Liquor Wine and Spirits",
-            "cases2026": 9219.0
           },
           {
             "customer": "Buy Rite W &L Pompton(P)",
@@ -156006,20 +156634,8 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 8055.0
           },
           {
-            "customer": "George's Market (A)",
-            "cases2026": 7858.0
-          },
-          {
             "customer": "Appio's Liquors",
             "cases2026": 7586.0
-          },
-          {
-            "customer": "Roserne Pkg Store South",
-            "cases2026": 7194.3
-          },
-          {
-            "customer": "Usa Wine Traders (Wanaque)",
-            "cases2026": 6937.0
           },
           {
             "customer": "Shoppers Disc(A)Pompton",
@@ -156048,9 +156664,33 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Empire Wine & Liquor",
             "cases2026": 3432.0
+          },
+          {
+            "customer": "Bloomingdale Discount Liq",
+            "cases2026": 3317.0
+          },
+          {
+            "customer": "Meloi Liquors",
+            "cases2026": 2932.0
+          },
+          {
+            "customer": "M & M Discount Liq",
+            "cases2026": 2402.0
+          },
+          {
+            "customer": "Hootch Hut (P)",
+            "cases2026": 1886.0
+          },
+          {
+            "customer": "Home Wine and Liquors",
+            "cases2026": 1848.0
+          },
+          {
+            "customer": "Vault Liquors",
+            "cases2026": 789.0
           }
         ],
-        "offPremTargetCount": 26
+        "offPremTargetCount": 17
       },
       "Brian Sengebush": {
         "accounts": [],
@@ -156097,37 +156737,78 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargetCount": 6
       },
       "Chris Payton": {
-        "accounts": [],
-        "openedCount": 0,
-        "progressCount": 0,
-        "skuPlacements": 0,
-        "caseVolume": 0.0,
+        "accounts": [
+          {
+            "customer": "Clifton Disc Liq (A)",
+            "skus": 4,
+            "skuList": [
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-07"
+          },
+          {
+            "customer": "Wineland",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 1,
+            "date": "2026-10-08"
+          },
+          {
+            "customer": "Morlot W & L (A)",
+            "skus": 1,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can"
+            ],
+            "cases": 1.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 2,
+            "date": "2026-10-02"
+          },
+          {
+            "customer": "Usa Wine Traders Club (Saddle Brook)",
+            "skus": 1,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can"
+            ],
+            "cases": 1.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 2,
+            "date": "2026-10-02"
+          }
+        ],
+        "openedCount": 1,
+        "progressCount": 3,
+        "skuPlacements": 8,
+        "caseVolume": 12.0,
         "draftAccounts": [],
         "draftNewCount": 0,
         "draftQualifiedCount": 0,
         "draftHoldCount": 0,
-        "openedPayout": 0,
+        "openedPayout": 50,
         "draftPayout": 0,
-        "payout": 0,
+        "payout": 50,
         "southern": false,
         "draftChannelOk": true,
-        "totalNew": 0,
+        "totalNew": 1,
         "offPremTargets": [
-          {
-            "customer": "Clifton Disc Liq (A)",
-            "cases2026": 38330.5
-          },
           {
             "customer": "Garden Liquors (P)",
             "cases2026": 20871.3
-          },
-          {
-            "customer": "Wineland",
-            "cases2026": 20004.0
-          },
-          {
-            "customer": "Usa Wine Traders Club (Saddle Brook)",
-            "cases2026": 18418.5
           },
           {
             "customer": "46 Discount Liquor Store",
@@ -156192,26 +156873,68 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Quick Stop Food & Liq",
             "cases2026": 3881.3
+          },
+          {
+            "customer": "Maywood Wine&Liq (A)",
+            "cases2026": 3548.0
+          },
+          {
+            "customer": "Liquor Masters (P)",
+            "cases2026": 3449.8
+          },
+          {
+            "customer": "Hollywd Liq&Deli (A)",
+            "cases2026": 3223.7
           }
         ],
-        "offPremTargetCount": 42
+        "offPremTargetCount": 38
       },
       "Dan Lagala": {
-        "accounts": [],
-        "openedCount": 0,
-        "progressCount": 0,
-        "skuPlacements": 0,
-        "caseVolume": 0.0,
+        "accounts": [
+          {
+            "customer": "Wine Ventures",
+            "skus": 5,
+            "skuList": [
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 60,
+            "toOpen": 0,
+            "date": "2026-10-05"
+          },
+          {
+            "customer": "Andres Wine & Spirits",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 1,
+            "date": "2026-10-08"
+          }
+        ],
+        "openedCount": 1,
+        "progressCount": 1,
+        "skuPlacements": 7,
+        "caseVolume": 10.0,
         "draftAccounts": [],
         "draftNewCount": 0,
         "draftQualifiedCount": 0,
         "draftHoldCount": 0,
-        "openedPayout": 0,
+        "openedPayout": 60,
         "draftPayout": 0,
-        "payout": 0,
+        "payout": 60,
         "southern": false,
         "draftChannelOk": true,
-        "totalNew": 0,
+        "totalNew": 1,
         "offPremTargets": [
           {
             "customer": "Buy Rite Of Fairview",
@@ -156294,40 +157017,84 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 4578.0
           }
         ],
-        "offPremTargetCount": 44
+        "offPremTargetCount": 42
       },
       "Dave Ehlers": {
-        "accounts": [],
-        "openedCount": 0,
-        "progressCount": 0,
-        "skuPlacements": 0,
-        "caseVolume": 0.0,
+        "accounts": [
+          {
+            "customer": "Total Wine & More (River Edge)",
+            "skus": 5,
+            "skuList": [
+              "Industrial Arts Forever Fest 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 14.0,
+            "opened": true,
+            "payout": 60,
+            "toOpen": 0,
+            "date": "2026-10-06"
+          },
+          {
+            "customer": "Total Wine & More (Totowa)",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 6.0,
+            "opened": true,
+            "payout": 40,
+            "toOpen": 0,
+            "date": "2026-10-07"
+          },
+          {
+            "customer": "Buy Rite Of Hackensack",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 1,
+            "date": "2026-10-08"
+          },
+          {
+            "customer": "Teaneck Discount Liquor",
+            "skus": 1,
+            "skuList": [
+              "Industrial Arts Impact Wrench 6/4/16 oz Can"
+            ],
+            "cases": 1.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 2,
+            "date": "2026-10-08"
+          }
+        ],
+        "openedCount": 2,
+        "progressCount": 2,
+        "skuPlacements": 11,
+        "caseVolume": 26.0,
         "draftAccounts": [],
         "draftNewCount": 0,
         "draftQualifiedCount": 0,
         "draftHoldCount": 0,
-        "openedPayout": 0,
+        "openedPayout": 100,
         "draftPayout": 0,
-        "payout": 0,
+        "payout": 100,
         "southern": false,
         "draftChannelOk": true,
-        "totalNew": 0,
+        "totalNew": 2,
         "offPremTargets": [
-          {
-            "customer": "Total Wine & More (Totowa)",
-            "cases2026": 80385.0
-          },
-          {
-            "customer": "Total Wine & More (River Edge)",
-            "cases2026": 79034.8
-          },
           {
             "customer": "Shop Rite Liq (A)Englewd",
             "cases2026": 31435.0
-          },
-          {
-            "customer": "Buy Rite Of Hackensack",
-            "cases2026": 25400.8
           },
           {
             "customer": "Portland Wine & Liquor",
@@ -156392,38 +157159,73 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Barrel & Brew Bar & Liq",
             "cases2026": 3790.0
+          },
+          {
+            "customer": "New Milford Liquors",
+            "cases2026": 3483.0
+          },
+          {
+            "customer": "River Edge Wine & Liquor",
+            "cases2026": 2864.0
+          },
+          {
+            "customer": "Burgundy Convenience Store",
+            "cases2026": 2503.0
           }
         ],
-        "offPremTargetCount": 36
+        "offPremTargetCount": 32
       },
       "Derrick Laws": {
-        "accounts": [],
-        "openedCount": 0,
-        "progressCount": 0,
-        "skuPlacements": 0,
-        "caseVolume": 0.0,
+        "accounts": [
+          {
+            "customer": "Shop Rite Wines/Spirits",
+            "skus": 7,
+            "skuList": [
+              "Industrial Arts Forever Fest 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Safety Glasses White Non-Alcoholic 4/6/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can"
+            ],
+            "cases": 7.0,
+            "opened": true,
+            "payout": 80,
+            "toOpen": 0,
+            "date": "2026-10-09"
+          },
+          {
+            "customer": "Shop Rite Liq (A)Littlefl",
+            "skus": 1,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can"
+            ],
+            "cases": 3.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 2,
+            "date": "2026-10-07"
+          }
+        ],
+        "openedCount": 1,
+        "progressCount": 1,
+        "skuPlacements": 8,
+        "caseVolume": 10.0,
         "draftAccounts": [],
         "draftNewCount": 0,
         "draftQualifiedCount": 0,
         "draftHoldCount": 0,
-        "openedPayout": 0,
+        "openedPayout": 80,
         "draftPayout": 0,
-        "payout": 0,
+        "payout": 80,
         "southern": false,
         "draftChannelOk": true,
-        "totalNew": 0,
+        "totalNew": 1,
         "offPremTargets": [
-          {
-            "customer": "Shop Rite Liq (A)Littlefl",
-            "cases2026": 31482.0
-          },
           {
             "customer": "The Liquor Shop",
             "cases2026": 30665.0
-          },
-          {
-            "customer": "Shop Rite Wines/Spirits",
-            "cases2026": 24348.5
           },
           {
             "customer": "Economy Liquors",
@@ -156492,26 +157294,74 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Moya E.Bar&Liq.(Z)",
             "cases2026": 6144.5
+          },
+          {
+            "customer": "The Point Liquor & Bar",
+            "cases2026": 5985.0
+          },
+          {
+            "customer": "Gonzalez Liq & Bar(A)",
+            "cases2026": 5963.0
           }
         ],
-        "offPremTargetCount": 33
+        "offPremTargetCount": 31
       },
       "Dylan Rubino": {
-        "accounts": [],
-        "openedCount": 0,
+        "accounts": [
+          {
+            "customer": "Cool Vines",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-06"
+          },
+          {
+            "customer": "Liberty Liquors",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-08"
+          },
+          {
+            "customer": "Liberty Wine (P) & Deli",
+            "skus": 1,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 1.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-08"
+          }
+        ],
+        "openedCount": 3,
         "progressCount": 0,
-        "skuPlacements": 0,
-        "caseVolume": 0.0,
+        "skuPlacements": 6,
+        "caseVolume": 11.0,
         "draftAccounts": [],
         "draftNewCount": 0,
         "draftQualifiedCount": 0,
         "draftHoldCount": 0,
-        "openedPayout": 0,
+        "openedPayout": 150,
         "draftPayout": 0,
-        "payout": 0,
+        "payout": 150,
         "southern": true,
         "draftChannelOk": true,
-        "totalNew": 0,
+        "totalNew": 3,
         "offPremTargets": [
           {
             "customer": "J B Liquors_2",
@@ -156562,20 +157412,12 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 636.0
           },
           {
-            "customer": "Cool Vines",
-            "cases2026": 628.5
-          },
-          {
             "customer": "Buy Rite Union City",
             "cases2026": 627.0
           },
           {
             "customer": "Town Beverage",
             "cases2026": 600.0
-          },
-          {
-            "customer": "Liberty Wine (P) & Deli",
-            "cases2026": 564.0
           },
           {
             "customer": "A2Z Wine Club",
@@ -156592,26 +157434,70 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Universal Liquors (A)",
             "cases2026": 484.0
+          },
+          {
+            "customer": "WNY Liquors",
+            "cases2026": 473.0
+          },
+          {
+            "customer": "Jersey Wine & Spirits",
+            "cases2026": 467.0
           }
         ],
-        "offPremTargetCount": 145
+        "offPremTargetCount": 142
       },
       "Hakan Sadik": {
-        "accounts": [],
-        "openedCount": 0,
+        "accounts": [
+          {
+            "customer": "Buy Rite Wine & Liquor",
+            "skus": 9,
+            "skuList": [
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 16.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-06"
+          },
+          {
+            "customer": "Lum's Cellars",
+            "skus": 4,
+            "skuList": [
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 10.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-06"
+          }
+        ],
+        "openedCount": 2,
         "progressCount": 0,
-        "skuPlacements": 0,
-        "caseVolume": 0.0,
+        "skuPlacements": 13,
+        "caseVolume": 26.0,
         "draftAccounts": [],
         "draftNewCount": 0,
         "draftQualifiedCount": 0,
         "draftHoldCount": 0,
-        "openedPayout": 0,
+        "openedPayout": 100,
         "draftPayout": 0,
-        "payout": 0,
+        "payout": 100,
         "southern": true,
         "draftChannelOk": true,
-        "totalNew": 0,
+        "totalNew": 2,
         "offPremTargets": [
           {
             "customer": "Bottle King Livingston",
@@ -156628,10 +157514,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Home Liquors(520 East Orange)",
             "cases2026": 1989.0
-          },
-          {
-            "customer": "Buy Rite Wine & Liquor",
-            "cases2026": 1922.0
           },
           {
             "customer": "Home Liquors(1277 Irvington)",
@@ -156692,26 +157574,95 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Kingdom Liquors (A)",
             "cases2026": 634.0
+          },
+          {
+            "customer": "Maple Liquors",
+            "cases2026": 619.0
           }
         ],
-        "offPremTargetCount": 127
+        "offPremTargetCount": 125
       },
       "Jaime Colonna": {
-        "accounts": [],
-        "openedCount": 0,
+        "accounts": [
+          {
+            "customer": "ShopRite Wines & Spirits of Hoboken",
+            "skus": 7,
+            "skuList": [
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Screwdriver Juicy Orange Beer 6/4/16 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 10.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-07"
+          },
+          {
+            "customer": "Sunset wine & spirits",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-08"
+          },
+          {
+            "customer": "Acme Markets (Hoboken)",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Metric Pils 6/4/16 oz Can"
+            ],
+            "cases": 6.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-01"
+          },
+          {
+            "customer": "Village Wine & Liquors Ii",
+            "skus": 1,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 1.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-02"
+          }
+        ],
+        "openedCount": 4,
         "progressCount": 0,
-        "skuPlacements": 0,
-        "caseVolume": 0.0,
-        "draftAccounts": [],
-        "draftNewCount": 0,
+        "skuPlacements": 13,
+        "caseVolume": 23.0,
+        "draftAccounts": [
+          {
+            "customer": "Abbey's Pub",
+            "bbl": 0.25,
+            "qualifies": false,
+            "hold": false
+          }
+        ],
+        "draftNewCount": 1,
         "draftQualifiedCount": 0,
         "draftHoldCount": 0,
-        "openedPayout": 0,
+        "openedPayout": 200,
         "draftPayout": 0,
-        "payout": 0,
+        "payout": 200,
         "southern": true,
         "draftChannelOk": true,
-        "totalNew": 0,
+        "totalNew": 4,
         "offPremTargets": [
           {
             "customer": "Jersey City Buy Rite (A)",
@@ -156728,10 +157679,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "One Stop Wine (A) & Liq",
             "cases2026": 1700.0
-          },
-          {
-            "customer": "ShopRite Wines & Spirits of Hoboken",
-            "cases2026": 1279.0
           },
           {
             "customer": "Shop Rite/Metro Plaza",
@@ -156756,10 +157703,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Sprove Marketplace",
             "cases2026": 646.0
-          },
-          {
-            "customer": "Acme Markets (Hoboken)",
-            "cases2026": 618.0
           },
           {
             "customer": "The Thirsty Quaker (P)",
@@ -156792,9 +157735,17 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Coolvines Powerhouse",
             "cases2026": 380.0
+          },
+          {
+            "customer": "Blue Ribbon Wine/Liq/Groc",
+            "cases2026": 354.0
+          },
+          {
+            "customer": "Alvins W&L (P)",
+            "cases2026": 297.0
           }
         ],
-        "offPremTargetCount": 44
+        "offPremTargetCount": 40
       },
       "Javier Melo": {
         "accounts": [],
@@ -156897,26 +157848,117 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargetCount": 29
       },
       "Jayson Romine": {
-        "accounts": [],
-        "openedCount": 0,
-        "progressCount": 0,
-        "skuPlacements": 0,
-        "caseVolume": 0.0,
+        "accounts": [
+          {
+            "customer": "Fredon Liquor (Fredon Deli)",
+            "skus": 4,
+            "skuList": [
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 13.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-06"
+          },
+          {
+            "customer": "Wantage Plaza Liq Outlet",
+            "skus": 4,
+            "skuList": [
+              "Industrial Arts Forever Fest 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-05"
+          },
+          {
+            "customer": "Patricks Wine Barn",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can"
+            ],
+            "cases": 15.0,
+            "opened": true,
+            "payout": 40,
+            "toOpen": 0,
+            "date": "2026-10-02"
+          },
+          {
+            "customer": "ShopRite Wine & Spirits of Newton#830",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can"
+            ],
+            "cases": 15.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 1,
+            "date": "2026-10-02"
+          },
+          {
+            "customer": "George's Wine & Spirits",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 3.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 1,
+            "date": "2026-10-01"
+          },
+          {
+            "customer": "Liquor Factory VI Byram",
+            "skus": 1,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can"
+            ],
+            "cases": 3.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 2,
+            "date": "2026-10-05"
+          },
+          {
+            "customer": "Liquor Factory IV Hopatcong",
+            "skus": 1,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can"
+            ],
+            "cases": 3.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 2,
+            "date": "2026-10-05"
+          }
+        ],
+        "openedCount": 3,
+        "progressCount": 4,
+        "skuPlacements": 17,
+        "caseVolume": 57.0,
         "draftAccounts": [],
         "draftNewCount": 0,
         "draftQualifiedCount": 0,
         "draftHoldCount": 0,
-        "openedPayout": 0,
+        "openedPayout": 140,
         "draftPayout": 0,
-        "payout": 0,
+        "payout": 140,
         "southern": false,
         "draftChannelOk": false,
-        "totalNew": 0,
+        "totalNew": 3,
         "offPremTargets": [
-          {
-            "customer": "Patricks Wine Barn",
-            "cases2026": 24581.0
-          },
           {
             "customer": "USA Wine Traders Club Of Newton (A)",
             "cases2026": 22855.0
@@ -156928,10 +157970,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Liquor Factory III Sparta",
             "cases2026": 19857.8
-          },
-          {
-            "customer": "ShopRite Wine & Spirits of Newton#830",
-            "cases2026": 17324.0
           },
           {
             "customer": "Mac & Lindy's W & S (A)",
@@ -156946,10 +157984,6 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 15824.0
           },
           {
-            "customer": "Liquor Factory IV Hopatcong",
-            "cases2026": 13190.0
-          },
-          {
             "customer": "The George Inn",
             "cases2026": 11148.0
           },
@@ -156958,16 +157992,8 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 10556.0
           },
           {
-            "customer": "Liquor Factory VI Byram",
-            "cases2026": 10439.0
-          },
-          {
             "customer": "Spring Street Liquors",
             "cases2026": 9888.0
-          },
-          {
-            "customer": "Wantage Plaza Liq Outlet",
-            "cases2026": 9663.0
           },
           {
             "customer": "Liquor Factory I Landing",
@@ -156992,26 +158018,78 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Sussex Co.Discount Liq(P)",
             "cases2026": 5425.0
+          },
+          {
+            "customer": "The Right Bottle",
+            "cases2026": 5347.0
+          },
+          {
+            "customer": "Brix - Wine, Spirits, Beer (Fredon)",
+            "cases2026": 4772.0
+          },
+          {
+            "customer": "Highland General Store",
+            "cases2026": 4512.0
+          },
+          {
+            "customer": "Woody's Liq Shop (A)",
+            "cases2026": 4438.0
+          },
+          {
+            "customer": "Hamburg Liquor",
+            "cases2026": 4237.2
           }
         ],
-        "offPremTargetCount": 36
+        "offPremTargetCount": 29
       },
       "Jim Heaney": {
-        "accounts": [],
-        "openedCount": 0,
+        "accounts": [
+          {
+            "customer": "Liquor Mart (North Arlington)",
+            "skus": 5,
+            "skuList": [
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 60,
+            "toOpen": 0,
+            "date": "2026-10-05"
+          },
+          {
+            "customer": "Little Falls Liq(P)",
+            "skus": 4,
+            "skuList": [
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-08"
+          }
+        ],
+        "openedCount": 2,
         "progressCount": 0,
-        "skuPlacements": 0,
-        "caseVolume": 0.0,
+        "skuPlacements": 9,
+        "caseVolume": 10.0,
         "draftAccounts": [],
         "draftNewCount": 0,
         "draftQualifiedCount": 0,
         "draftHoldCount": 0,
-        "openedPayout": 0,
+        "openedPayout": 110,
         "draftPayout": 0,
-        "payout": 0,
+        "payout": 110,
         "southern": false,
         "draftChannelOk": true,
-        "totalNew": 0,
+        "totalNew": 2,
         "offPremTargets": [
           {
             "customer": "Shoppers Vineyard (A)",
@@ -157040,10 +158118,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Savers Club Liquor Locker",
             "cases2026": 10082.0
-          },
-          {
-            "customer": "Little Falls Liq(P)",
-            "cases2026": 9592.1
           },
           {
             "customer": "US#1 Wine & Liquor",
@@ -157092,26 +158166,188 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Pete's Liquors",
             "cases2026": 4428.0
+          },
+          {
+            "customer": "On The Rocks",
+            "cases2026": 4419.0
           }
         ],
-        "offPremTargetCount": 43
+        "offPremTargetCount": 41
       },
       "John O'Donoghue": {
-        "accounts": [],
-        "openedCount": 0,
+        "accounts": [
+          {
+            "customer": "Bottle King (Z) Chatham",
+            "skus": 9,
+            "skuList": [
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 16.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-07"
+          },
+          {
+            "customer": "Gary's Wine & Marketplace (Madison)",
+            "skus": 7,
+            "skuList": [
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can"
+            ],
+            "cases": 25.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-08"
+          },
+          {
+            "customer": "Shop Rite Liq Parsippany",
+            "skus": 5,
+            "skuList": [
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-08"
+          },
+          {
+            "customer": "Cambridge Wines (191 Morristown)",
+            "skus": 4,
+            "skuList": [
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 10.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-07"
+          },
+          {
+            "customer": "Wegmans",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can"
+            ],
+            "cases": 17.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-06"
+          },
+          {
+            "customer": "Vine Republic (Berkeley Height)",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 16.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-06"
+          },
+          {
+            "customer": "Fairfield Wine Cellar",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-08"
+          },
+          {
+            "customer": "Ridgedale Wine & Liq",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-06"
+          },
+          {
+            "customer": "Shop Rite W & S Chester",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can"
+            ],
+            "cases": 3.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-02"
+          },
+          {
+            "customer": "Stirling Fine Wines",
+            "skus": 1,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 1.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-06"
+          }
+        ],
+        "openedCount": 10,
         "progressCount": 0,
-        "skuPlacements": 0,
-        "caseVolume": 0.0,
-        "draftAccounts": [],
-        "draftNewCount": 0,
-        "draftQualifiedCount": 0,
+        "skuPlacements": 40,
+        "caseVolume": 109.0,
+        "draftAccounts": [
+          {
+            "customer": "Revolution Bar",
+            "bbl": 0.5,
+            "qualifies": true,
+            "hold": false
+          }
+        ],
+        "draftNewCount": 1,
+        "draftQualifiedCount": 1,
         "draftHoldCount": 0,
-        "openedPayout": 0,
-        "draftPayout": 0,
-        "payout": 0,
+        "openedPayout": 500,
+        "draftPayout": 100,
+        "payout": 600,
         "southern": true,
         "draftChannelOk": true,
-        "totalNew": 0,
+        "totalNew": 11,
         "offPremTargets": [
           {
             "customer": "Shop Rite Liquors",
@@ -157122,28 +158358,12 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 2042.0
           },
           {
-            "customer": "Wegmans",
-            "cases2026": 1782.0
-          },
-          {
             "customer": "Shop Rite Wines & Spirits of Roxbury#832",
             "cases2026": 1537.0
           },
           {
             "customer": "Bottle King Morris Plains",
             "cases2026": 1474.0
-          },
-          {
-            "customer": "Gary's Wine & Marketplace (Madison)",
-            "cases2026": 1429.0
-          },
-          {
-            "customer": "Stirling Fine Wines",
-            "cases2026": 1311.0
-          },
-          {
-            "customer": "Bottle King (Z) Chatham",
-            "cases2026": 1160.0
           },
           {
             "customer": "Best Cellars(Ledgewood)",
@@ -157158,20 +158378,8 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 1044.0
           },
           {
-            "customer": "Shop Rite W & S Chester",
-            "cases2026": 1030.0
-          },
-          {
             "customer": "Bottle King (A) Ledgewood",
             "cases2026": 1021.0
-          },
-          {
-            "customer": "Shop Rite Liq Parsippany",
-            "cases2026": 910.0
-          },
-          {
-            "customer": "Vine Republic (Berkeley Height)",
-            "cases2026": 751.0
           },
           {
             "customer": "Joe Canal's Disc Liq",
@@ -157192,34 +158400,123 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Buyrite Of Chatham",
             "cases2026": 493.0
+          },
+          {
+            "customer": "Wine World (A)",
+            "cases2026": 477.0
+          },
+          {
+            "customer": "Village Wine & Liquors",
+            "cases2026": 418.0
+          },
+          {
+            "customer": "Wine & Whiskey Country Morris Plains",
+            "cases2026": 401.0
+          },
+          {
+            "customer": "Basket Of Cheer (Dover)",
+            "cases2026": 393.0
+          },
+          {
+            "customer": "Hickory Wine Cellar",
+            "cases2026": 375.0
+          },
+          {
+            "customer": "Vine Republik (Mountainside)",
+            "cases2026": 369.0
+          },
+          {
+            "customer": "Randolph Liquors",
+            "cases2026": 309.0
           }
         ],
-        "offPremTargetCount": 71
+        "offPremTargetCount": 61
       },
       "Klejdi Lamo": {
-        "accounts": [],
-        "openedCount": 0,
-        "progressCount": 0,
-        "skuPlacements": 0,
-        "caseVolume": 0.0,
+        "accounts": [
+          {
+            "customer": "Liquor Outlet",
+            "skus": 9,
+            "skuList": [
+              "Industrial Arts Forever Fest 6/4/16 oz Can",
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Screwdriver Juicy Orange Beer 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can"
+            ],
+            "cases": 9.0,
+            "opened": true,
+            "payout": 100,
+            "toOpen": 0,
+            "date": "2026-10-07"
+          },
+          {
+            "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
+            "skus": 5,
+            "skuList": [
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 60,
+            "toOpen": 0,
+            "date": "2026-10-06"
+          },
+          {
+            "customer": "Denville W & L",
+            "skus": 5,
+            "skuList": [
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 60,
+            "toOpen": 0,
+            "date": "2026-10-05"
+          },
+          {
+            "customer": "Milton Inn",
+            "skus": 1,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can"
+            ],
+            "cases": 3.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 2,
+            "date": "2026-10-02"
+          }
+        ],
+        "openedCount": 3,
+        "progressCount": 1,
+        "skuPlacements": 20,
+        "caseVolume": 22.0,
         "draftAccounts": [],
         "draftNewCount": 0,
         "draftQualifiedCount": 0,
         "draftHoldCount": 0,
-        "openedPayout": 0,
+        "openedPayout": 220,
         "draftPayout": 0,
-        "payout": 0,
+        "payout": 220,
         "southern": false,
         "draftChannelOk": true,
-        "totalNew": 0,
+        "totalNew": 3,
         "offPremTargets": [
           {
             "customer": "Shop Rite Liq (A)Wharton",
             "cases2026": 36484.0
-          },
-          {
-            "customer": "Liquor Outlet",
-            "cases2026": 34815.5
           },
           {
             "customer": "Shop Rite Wine & Spirits Stanhope",
@@ -157228,10 +158525,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
             "cases2026": 21665.0
-          },
-          {
-            "customer": "Milton Inn",
-            "cases2026": 21415.0
           },
           {
             "customer": "House of Wine & Liquor - Boonton",
@@ -157262,10 +158555,6 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 6957.2
           },
           {
-            "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
-            "cases2026": 6220.0
-          },
-          {
             "customer": "Boonton Liquor Locker",
             "cases2026": 6196.5
           },
@@ -157286,15 +158575,27 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 5174.0
           },
           {
-            "customer": "Denville W & L",
-            "cases2026": 4381.0
-          },
-          {
             "customer": "3 IN 1 LIQUORS INC",
             "cases2026": 4357.3
+          },
+          {
+            "customer": "Quick Check Liquor (A)",
+            "cases2026": 4316.0
+          },
+          {
+            "customer": "Patel Liqr & Gro(P)",
+            "cases2026": 4295.3
+          },
+          {
+            "customer": "Stanhope Liquors",
+            "cases2026": 4152.0
+          },
+          {
+            "customer": "Berkshire(P) Bot. Shop",
+            "cases2026": 1325.0
           }
         ],
-        "offPremTargetCount": 29
+        "offPremTargetCount": 25
       },
       "Matt Powierski": {
         "accounts": [],
@@ -157402,17 +158703,17 @@ const PROGRAM_DATA_2026_10 = {
             "customer": "Wayne Liquor Locker",
             "skus": 5,
             "skuList": [
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
               "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
               "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
               "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
-              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
               "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
-            "cases": 8.0,
+            "cases": 7.0,
             "opened": true,
             "payout": 50,
             "toOpen": 0,
-            "date": "2026-10-01"
+            "date": "2026-10-07"
           },
           {
             "customer": "Pilgrim Liquor",
@@ -157429,62 +158730,183 @@ const PROGRAM_DATA_2026_10 = {
             "payout": 50,
             "toOpen": 0,
             "date": "2026-10-01"
-          }
-        ],
-        "openedCount": 2,
-        "progressCount": 0,
-        "skuPlacements": 10,
-        "caseVolume": 15.0,
-        "draftAccounts": [],
-        "draftNewCount": 0,
-        "draftQualifiedCount": 0,
-        "draftHoldCount": 0,
-        "openedPayout": 100,
-        "draftPayout": 0,
-        "payout": 100,
-        "southern": true,
-        "draftChannelOk": true,
-        "totalNew": 2,
-        "offPremTargets": [
-          {
-            "customer": "Shay's Liquors",
-            "cases2026": 13358.0
-          },
-          {
-            "customer": "Shays Liquors",
-            "cases2026": 10762.0
-          },
-          {
-            "customer": "Lincoln Center Liq",
-            "cases2026": 6603.5
-          },
-          {
-            "customer": "Wolfson Market",
-            "cases2026": 5459.0
-          },
-          {
-            "customer": "Total Wine & More (West Orange)",
-            "cases2026": 4593.0
-          },
-          {
-            "customer": "Shoprite Wine & Spirits",
-            "cases2026": 2129.0
-          },
-          {
-            "customer": "Kinnelon Country Wine & Liquor",
-            "cases2026": 2044.0
-          },
-          {
-            "customer": "Verona Wine Cellar",
-            "cases2026": 1219.0
-          },
-          {
-            "customer": "ShopRite of West Caldwell",
-            "cases2026": 1102.0
           },
           {
             "customer": "Angelbeck's",
-            "cases2026": 814.0
+            "skus": 4,
+            "skuList": [
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-08"
+          },
+          {
+            "customer": "Total Wine & More (West Orange)",
+            "skus": 4,
+            "skuList": [
+              "Industrial Arts Forever Fest 6/4/16 oz Can",
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-08"
+          },
+          {
+            "customer": "Lincoln Center Liq",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can"
+            ],
+            "cases": 15.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-09"
+          },
+          {
+            "customer": "ShopRite of West Caldwell",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-08"
+          },
+          {
+            "customer": "Cedar Grove Wine Cellar",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-08"
+          },
+          {
+            "customer": "Kinnelon Country Wine & Liquor",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-07"
+          },
+          {
+            "customer": "Wolfson Market",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-06"
+          },
+          {
+            "customer": "Quick Stop Liquors",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-06"
+          },
+          {
+            "customer": "Shay's Liquors",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can"
+            ],
+            "cases": 3.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-06"
+          },
+          {
+            "customer": "Shoprite Wine & Spirits",
+            "skus": 1,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can"
+            ],
+            "cases": 3.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-07"
+          },
+          {
+            "customer": "Verona Wine Cellar",
+            "skus": 1,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can"
+            ],
+            "cases": 3.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-07"
+          }
+        ],
+        "openedCount": 13,
+        "progressCount": 0,
+        "skuPlacements": 39,
+        "caseVolume": 74.0,
+        "draftAccounts": [
+          {
+            "customer": "Halcyon Seafood Brasserie",
+            "bbl": 0.25,
+            "qualifies": false,
+            "hold": false
+          }
+        ],
+        "draftNewCount": 1,
+        "draftQualifiedCount": 0,
+        "draftHoldCount": 0,
+        "openedPayout": 650,
+        "draftPayout": 0,
+        "payout": 650,
+        "southern": true,
+        "draftChannelOk": true,
+        "totalNew": 13,
+        "offPremTargets": [
+          {
+            "customer": "Shays Liquors",
+            "cases2026": 10762.0
           },
           {
             "customer": "Merit (P)",
@@ -157493,10 +158915,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Lucky 7 Wine & Liq (A)",
             "cases2026": 695.0
-          },
-          {
-            "customer": "Cedar Grove Wine Cellar",
-            "cases2026": 683.0
           },
           {
             "customer": "The Bottle Stop (Caldwell)",
@@ -157525,12 +158943,97 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "B & B Liquors (West Orange)",
             "cases2026": 290.0
+          },
+          {
+            "customer": "A&M Liquor",
+            "cases2026": 261.0
+          },
+          {
+            "customer": "Romany Liquor Shop (A)",
+            "cases2026": 249.0
+          },
+          {
+            "customer": "Don's Wine & Liq(P)",
+            "cases2026": 243.0
+          },
+          {
+            "customer": "Cedar Grove Liq (P)",
+            "cases2026": 241.0
+          },
+          {
+            "customer": "Jacks Supermarket",
+            "cases2026": 240.0
+          },
+          {
+            "customer": "Caggiano Liquors",
+            "cases2026": 184.0
+          },
+          {
+            "customer": "South End Liquors",
+            "cases2026": 167.0
+          },
+          {
+            "customer": "St Cloud Liquors",
+            "cases2026": 135.0
+          },
+          {
+            "customer": "Tory Corner Liquors (P)",
+            "cases2026": 82.0
+          },
+          {
+            "customer": "Valley Liquors",
+            "cases2026": 79.0
           }
         ],
-        "offPremTargetCount": 42
+        "offPremTargetCount": 31
       },
       "Mike Ast": {
         "accounts": [
+          {
+            "customer": "Grand Opening Liq (A)_2",
+            "skus": 5,
+            "skuList": [
+              "Industrial Arts Screwdriver Juicy Orange Beer 6/4/16 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 20.0,
+            "opened": true,
+            "payout": 60,
+            "toOpen": 0,
+            "date": "2026-10-01"
+          },
+          {
+            "customer": "Long Hill Liquors (A)",
+            "skus": 4,
+            "skuList": [
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 15.0,
+            "opened": true,
+            "payout": 50,
+            "toOpen": 0,
+            "date": "2026-10-05"
+          },
+          {
+            "customer": "Wine & Spirit World(W)",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 15.0,
+            "opened": true,
+            "payout": 40,
+            "toOpen": 0,
+            "date": "2026-10-05"
+          },
           {
             "customer": "Hawthorne Liq (A)",
             "skus": 3,
@@ -157544,38 +159047,69 @@ const PROGRAM_DATA_2026_10 = {
             "payout": 40,
             "toOpen": 0,
             "date": "2026-10-02"
+          },
+          {
+            "customer": "Mahwah Wine & Liquor (A)",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 1,
+            "date": "2026-10-06"
+          },
+          {
+            "customer": "Discount Liq (P)_2",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 1,
+            "date": "2026-10-01"
           }
         ],
-        "openedCount": 1,
-        "progressCount": 0,
-        "skuPlacements": 3,
-        "caseVolume": 12.0,
-        "draftAccounts": [],
-        "draftNewCount": 0,
-        "draftQualifiedCount": 0,
+        "openedCount": 4,
+        "progressCount": 2,
+        "skuPlacements": 19,
+        "caseVolume": 74.0,
+        "draftAccounts": [
+          {
+            "customer": "Stone & Rail",
+            "bbl": 0.25,
+            "qualifies": false,
+            "hold": false
+          },
+          {
+            "customer": "Steel Wheel Tavern",
+            "bbl": 0.5,
+            "qualifies": true,
+            "hold": false
+          }
+        ],
+        "draftNewCount": 2,
+        "draftQualifiedCount": 1,
         "draftHoldCount": 0,
-        "openedPayout": 40,
-        "draftPayout": 0,
-        "payout": 40,
+        "openedPayout": 190,
+        "draftPayout": 100,
+        "payout": 290,
         "southern": false,
         "draftChannelOk": true,
-        "totalNew": 1,
+        "totalNew": 5,
         "offPremTargets": [
           {
             "customer": "Bottle King (A) Wayne",
             "cases2026": 42677.0
           },
           {
-            "customer": "Wine & Spirit World(W)",
-            "cases2026": 16677.7
-          },
-          {
             "customer": "Lincoln Park Fine Wines & Spirits",
             "cases2026": 16209.5
-          },
-          {
-            "customer": "Long Hill Liquors (A)",
-            "cases2026": 16082.0
           },
           {
             "customer": "Frank's Fine Wine & Foods",
@@ -157592,10 +159126,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Mahwah Liqrs (P)",
             "cases2026": 10016.2
-          },
-          {
-            "customer": "Grand Opening Liq (A)_2",
-            "cases2026": 9726.0
           },
           {
             "customer": "Oakland Wine (A)",
@@ -157626,10 +159156,6 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 5369.0
           },
           {
-            "customer": "Discount Liq (P)_2",
-            "cases2026": 5342.0
-          },
-          {
             "customer": "Scherer & Company",
             "cases2026": 5024.0
           },
@@ -157638,28 +159164,57 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 4749.5
           },
           {
-            "customer": "Mahwah Wine & Liquor (A)",
-            "cases2026": 4098.0
+            "customer": "Uncorked Wine & Spirits (Hohokus)",
+            "cases2026": 2804.0
+          },
+          {
+            "customer": "Quick Stop Liquor & Wine",
+            "cases2026": 2466.7
+          },
+          {
+            "customer": "Stop & Shop (A)Ridgewood",
+            "cases2026": 2398.0
+          },
+          {
+            "customer": "Beekman's Wines and Liquors",
+            "cases2026": 1848.0
+          },
+          {
+            "customer": "GREEN WAY MARKETS",
+            "cases2026": 1585.0
           }
         ],
-        "offPremTargetCount": 31
+        "offPremTargetCount": 26
       },
       "Nick Melissari": {
         "accounts": [],
         "openedCount": 0,
         "progressCount": 0,
         "skuPlacements": 0,
-        "caseVolume": 0.0,
-        "draftAccounts": [],
-        "draftNewCount": 0,
-        "draftQualifiedCount": 0,
+        "caseVolume": 2.0,
+        "draftAccounts": [
+          {
+            "customer": "The Shannon Rose/Ramsey",
+            "bbl": 0.5,
+            "qualifies": true,
+            "hold": false
+          },
+          {
+            "customer": "Mahwah B & G (A)",
+            "bbl": 0.5,
+            "qualifies": true,
+            "hold": false
+          }
+        ],
+        "draftNewCount": 2,
+        "draftQualifiedCount": 2,
         "draftHoldCount": 0,
         "openedPayout": 0,
-        "draftPayout": 0,
-        "payout": 0,
+        "draftPayout": 200,
+        "payout": 200,
         "southern": false,
         "draftChannelOk": true,
-        "totalNew": 0,
+        "totalNew": 2,
         "offPremTargets": [
           {
             "customer": "H Mart Inc (Space A101-A)",
@@ -157777,17 +159332,60 @@ const PROGRAM_DATA_2026_10 = {
         "openedCount": 0,
         "progressCount": 0,
         "skuPlacements": 0,
-        "caseVolume": 0.0,
-        "draftAccounts": [],
-        "draftNewCount": 0,
-        "draftQualifiedCount": 0,
+        "caseVolume": 9.0,
+        "draftAccounts": [
+          {
+            "customer": "Bareburger (Closter)",
+            "bbl": 0.5,
+            "qualifies": true,
+            "hold": false
+          },
+          {
+            "customer": "Davey's Locker (A)",
+            "bbl": 1.0,
+            "qualifies": true,
+            "hold": false
+          },
+          {
+            "customer": "101 Pub (A)",
+            "bbl": 0.5,
+            "qualifies": true,
+            "hold": false
+          },
+          {
+            "customer": "Bareburger (Woodcliff Lake)",
+            "bbl": 0.5,
+            "qualifies": true,
+            "hold": false
+          },
+          {
+            "customer": "Rivervale Country Club",
+            "bbl": 0.25,
+            "qualifies": false,
+            "hold": false
+          },
+          {
+            "customer": "Side Bar",
+            "bbl": 0.5,
+            "qualifies": true,
+            "hold": false
+          },
+          {
+            "customer": "Peppercorn's",
+            "bbl": 0.25,
+            "qualifies": false,
+            "hold": false
+          }
+        ],
+        "draftNewCount": 7,
+        "draftQualifiedCount": 5,
         "draftHoldCount": 0,
         "openedPayout": 0,
-        "draftPayout": 0,
-        "payout": 0,
+        "draftPayout": 500,
+        "payout": 500,
         "southern": false,
         "draftChannelOk": true,
-        "totalNew": 0,
+        "totalNew": 5,
         "offPremTargets": [
           {
             "customer": "Balthazar Bakery (A)",
@@ -157801,21 +159399,79 @@ const PROGRAM_DATA_2026_10 = {
         "offPremTargetCount": 2
       },
       "Phil Ernst": {
-        "accounts": [],
-        "openedCount": 0,
-        "progressCount": 0,
-        "skuPlacements": 0,
-        "caseVolume": 0.0,
+        "accounts": [
+          {
+            "customer": "Food Universe Marketplace",
+            "skus": 6,
+            "skuList": [
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
+              "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 17.0,
+            "opened": true,
+            "payout": 70,
+            "toOpen": 0,
+            "date": "2026-10-05"
+          },
+          {
+            "customer": "Stew Leonard's(A) Paramus Wine",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 6.0,
+            "opened": true,
+            "payout": 40,
+            "toOpen": 0,
+            "date": "2026-10-08"
+          },
+          {
+            "customer": "Acme Markets (Midland Park)",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 40,
+            "toOpen": 0,
+            "date": "2026-10-09"
+          },
+          {
+            "customer": "Acme Markets (Fort Lee)",
+            "skus": 1,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can"
+            ],
+            "cases": 2.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 2,
+            "date": "2026-10-06"
+          }
+        ],
+        "openedCount": 3,
+        "progressCount": 1,
+        "skuPlacements": 13,
+        "caseVolume": 30.0,
         "draftAccounts": [],
         "draftNewCount": 0,
         "draftQualifiedCount": 0,
         "draftHoldCount": 0,
-        "openedPayout": 0,
+        "openedPayout": 150,
         "draftPayout": 0,
-        "payout": 0,
+        "payout": 150,
         "southern": false,
         "draftChannelOk": true,
-        "totalNew": 0,
+        "totalNew": 3,
         "offPremTargets": [
           {
             "customer": "Super Wine Warehse(P)Pate",
@@ -157854,14 +159510,6 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 12507.0
           },
           {
-            "customer": "Stew Leonard's(A) Paramus Wine",
-            "cases2026": 12432.0
-          },
-          {
-            "customer": "Food Universe Marketplace",
-            "cases2026": 11039.3
-          },
-          {
             "customer": "Stew Leonard's Wines & Spirits of Clifton",
             "cases2026": 10342.0
           },
@@ -157874,10 +159522,6 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 6677.0
           },
           {
-            "customer": "Acme Markets (Midland Park)",
-            "cases2026": 5575.0
-          },
-          {
             "customer": "Wine Country Of Saddle Brook (A)",
             "cases2026": 5038.0
           },
@@ -157886,26 +159530,51 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 4925.0
           },
           {
-            "customer": "Acme Markets (Fort Lee)",
-            "cases2026": 4615.0
-          },
-          {
             "customer": "Riverview Liq (P)",
             "cases2026": 3491.0
           },
           {
             "customer": "Whole Foods Market (Paramus)",
             "cases2026": 3468.0
+          },
+          {
+            "customer": "Acme Markets (Allendale)",
+            "cases2026": 3447.0
+          },
+          {
+            "customer": "Gary's Wine & Marketplace (Wayne)",
+            "cases2026": 2026.0
+          },
+          {
+            "customer": "Stew Leonard's(A) Paramu (NA)",
+            "cases2026": 1540.0
+          },
+          {
+            "customer": "THE BOTTLE SHOP",
+            "cases2026": 1536.0
           }
         ],
-        "offPremTargetCount": 31
+        "offPremTargetCount": 27
       },
       "Robin Feldman": {
-        "accounts": [],
+        "accounts": [
+          {
+            "customer": "Pizza Town USA",
+            "skus": 1,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 1.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 2,
+            "date": "2026-10-02"
+          }
+        ],
         "openedCount": 0,
-        "progressCount": 0,
-        "skuPlacements": 0,
-        "caseVolume": 0.0,
+        "progressCount": 1,
+        "skuPlacements": 1,
+        "caseVolume": 1.0,
         "draftAccounts": [],
         "draftNewCount": 0,
         "draftQualifiedCount": 0,
@@ -157920,47 +159589,141 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Jerry's Outlet",
             "cases2026": 369.0
-          },
-          {
-            "customer": "Pizza Town USA",
-            "cases2026": 88.0
           }
         ],
-        "offPremTargetCount": 2
+        "offPremTargetCount": 1
       },
       "Shane Barreca": {
         "accounts": [
           {
-            "customer": "Beverage Barn (A)",
-            "skus": 5,
+            "customer": "Ramsey Wine & Liquor",
+            "skus": 9,
             "skuList": [
+              "Industrial Arts Forever Fest 6/4/16 oz Can",
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Pocket Wrench Hazy Pale Ale 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 21.0,
+            "opened": true,
+            "payout": 100,
+            "toOpen": 0,
+            "date": "2026-10-05"
+          },
+          {
+            "customer": "Beverage Barn (A)",
+            "skus": 6,
+            "skuList": [
+              "Industrial Arts Impact Wrench 6/4/16 oz Can",
               "Industrial Arts Tool Box Variety Pack 2/12/12 oz Can",
               "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
               "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can",
               "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
               "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
             ],
-            "cases": 16.0,
+            "cases": 17.0,
             "opened": true,
-            "payout": 60,
+            "payout": 70,
             "toOpen": 0,
-            "date": "2026-10-02"
+            "date": "2026-10-05"
+          },
+          {
+            "customer": "Gary's Closter / Closter Cellars",
+            "skus": 6,
+            "skuList": [
+              "Industrial Arts Metric Pils 6/4/16 oz Can",
+              "Industrial Arts Power Tools West Coast IPA 6/4/16 oz Can",
+              "Industrial Arts Screwdriver Juicy Orange Beer 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 15.0,
+            "opened": true,
+            "payout": 70,
+            "toOpen": 0,
+            "date": "2026-10-08"
+          },
+          {
+            "customer": "Montvale Wine/Liq & Beer",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Screwdriver Juicy Orange Beer 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 2/12/12 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 17.0,
+            "opened": true,
+            "payout": 40,
+            "toOpen": 0,
+            "date": "2026-10-06"
+          },
+          {
+            "customer": "Winemart Discount",
+            "skus": 3,
+            "skuList": [
+              "Industrial Arts Hex Bolt IPA 6/4/16 oz Can",
+              "Industrial Arts Torque Wrench Hazy Double IPA 6/4/16 oz Can",
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 5.0,
+            "opened": true,
+            "payout": 40,
+            "toOpen": 0,
+            "date": "2026-10-06"
+          },
+          {
+            "customer": "Shoprite Liq (A)Northvle",
+            "skus": 2,
+            "skuList": [
+              "Industrial Arts Torque Wrench Hazy Double IPA 1/15/19.2 oz Can",
+              "Industrial Arts Wrench Hazy IPA 1/15/19.2 oz Can"
+            ],
+            "cases": 4.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 1,
+            "date": "2026-10-06"
+          },
+          {
+            "customer": "Ridgemont Liquors (A)",
+            "skus": 1,
+            "skuList": [
+              "Industrial Arts Wrench Hazy IPA 6/4/16 oz Can"
+            ],
+            "cases": 1.0,
+            "opened": false,
+            "payout": 0,
+            "toOpen": 2,
+            "date": "2026-10-08"
           }
         ],
-        "openedCount": 1,
-        "progressCount": 0,
-        "skuPlacements": 5,
-        "caseVolume": 16.0,
-        "draftAccounts": [],
-        "draftNewCount": 0,
+        "openedCount": 5,
+        "progressCount": 2,
+        "skuPlacements": 30,
+        "caseVolume": 81.0,
+        "draftAccounts": [
+          {
+            "customer": "Bottle King (A) Hillsdale",
+            "bbl": 0.25,
+            "qualifies": false,
+            "hold": false
+          }
+        ],
+        "draftNewCount": 1,
         "draftQualifiedCount": 0,
         "draftHoldCount": 0,
-        "openedPayout": 60,
+        "openedPayout": 320,
         "draftPayout": 0,
-        "payout": 60,
+        "payout": 320,
         "southern": false,
-        "draftChannelOk": false,
-        "totalNew": 1,
+        "draftChannelOk": true,
+        "totalNew": 5,
         "offPremTargets": [
           {
             "customer": "Bottle King (A) Ramsey",
@@ -157969,22 +159732,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Bottle King (A) Dumont",
             "cases2026": 39470.0
-          },
-          {
-            "customer": "Ramsey Wine & Liquor",
-            "cases2026": 26982.0
-          },
-          {
-            "customer": "Montvale Wine/Liq & Beer",
-            "cases2026": 23653.0
-          },
-          {
-            "customer": "Bottle King (A) Hillsdale",
-            "cases2026": 21889.0
-          },
-          {
-            "customer": "Shoprite Liq (A)Northvle",
-            "cases2026": 20026.0
           },
           {
             "customer": "Shop Rite Liq (A)Hillsdal",
@@ -157999,10 +159746,6 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 9551.0
           },
           {
-            "customer": "Winemart Discount",
-            "cases2026": 9170.6
-          },
-          {
             "customer": "Township Liq (P)",
             "cases2026": 8114.0
           },
@@ -158013,10 +159756,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Garden State Deli (A)",
             "cases2026": 7479.0
-          },
-          {
-            "customer": "Gary's Closter / Closter Cellars",
-            "cases2026": 6861.0
           },
           {
             "customer": "Westwood Wine and Liquors",
@@ -158035,49 +159774,209 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 3302.0
           },
           {
-            "customer": "Ridgemont Liquors (A)",
-            "cases2026": 3198.7
-          },
-          {
             "customer": "Djm Liq Inc. (P)(Andrew)",
             "cases2026": 3181.0
+          },
+          {
+            "customer": "Royal Wine & Spirits II",
+            "cases2026": 3154.0
+          },
+          {
+            "customer": "Montvale Wines & Spirits",
+            "cases2026": 2151.0
+          },
+          {
+            "customer": "D & L Dumont Liquors",
+            "cases2026": 2052.0
+          },
+          {
+            "customer": "Oradell Mini Mart(P)",
+            "cases2026": 1907.0
+          },
+          {
+            "customer": "Murphy's Fine Wines & Liquors (UNI 4H Inc.)",
+            "cases2026": 1368.0
+          },
+          {
+            "customer": "Woori Mart",
+            "cases2026": 1209.0
+          },
+          {
+            "customer": "Whole Foods #8407 (Woodcliff Lake)",
+            "cases2026": 484.0
           }
         ],
-        "offPremTargetCount": 29
+        "offPremTargetCount": 22
       }
     },
     "leaderboard": [
       {
         "rep": "Michael Harboy",
-        "opened": 2,
+        "opened": 13,
         "draft": 0,
-        "skus": 10,
-        "payout": 100,
+        "skus": 39,
+        "payout": 650,
         "rank": 1
       },
       {
-        "rep": "Anthony Palmisano",
-        "opened": 1,
-        "draft": 0,
-        "skus": 6,
-        "payout": 70,
+        "rep": "John O'Donoghue",
+        "opened": 10,
+        "draft": 1,
+        "skus": 40,
+        "payout": 600,
         "rank": 2
       },
       {
-        "rep": "Shane Barreca",
-        "opened": 1,
-        "draft": 0,
-        "skus": 5,
-        "payout": 60,
+        "rep": "Andrew Lundy",
+        "opened": 6,
+        "draft": 1,
+        "skus": 22,
+        "payout": 400,
         "rank": 3
       },
       {
+        "rep": "Anthony Palmisano",
+        "opened": 5,
+        "draft": 0,
+        "skus": 32,
+        "payout": 300,
+        "rank": 4
+      },
+      {
+        "rep": "Shane Barreca",
+        "opened": 5,
+        "draft": 0,
+        "skus": 30,
+        "payout": 320,
+        "rank": 5
+      },
+      {
         "rep": "Mike Ast",
+        "opened": 4,
+        "draft": 1,
+        "skus": 19,
+        "payout": 290,
+        "rank": 6
+      },
+      {
+        "rep": "Paul Mclaughlin",
+        "opened": 0,
+        "draft": 5,
+        "skus": 0,
+        "payout": 500,
+        "rank": 7
+      },
+      {
+        "rep": "Alisa Acciardi",
+        "opened": 4,
+        "draft": 0,
+        "skus": 19,
+        "payout": 200,
+        "rank": 8
+      },
+      {
+        "rep": "Jaime Colonna",
+        "opened": 4,
+        "draft": 0,
+        "skus": 13,
+        "payout": 200,
+        "rank": 9
+      },
+      {
+        "rep": "Klejdi Lamo",
+        "opened": 3,
+        "draft": 0,
+        "skus": 20,
+        "payout": 220,
+        "rank": 10
+      },
+      {
+        "rep": "Jayson Romine",
+        "opened": 3,
+        "draft": 0,
+        "skus": 17,
+        "payout": 140,
+        "rank": 11
+      },
+      {
+        "rep": "Phil Ernst",
+        "opened": 3,
+        "draft": 0,
+        "skus": 13,
+        "payout": 150,
+        "rank": 12
+      },
+      {
+        "rep": "Dylan Rubino",
+        "opened": 3,
+        "draft": 0,
+        "skus": 6,
+        "payout": 150,
+        "rank": 13
+      },
+      {
+        "rep": "Hakan Sadik",
+        "opened": 2,
+        "draft": 0,
+        "skus": 13,
+        "payout": 100,
+        "rank": 14
+      },
+      {
+        "rep": "Dave Ehlers",
+        "opened": 2,
+        "draft": 0,
+        "skus": 11,
+        "payout": 100,
+        "rank": 15
+      },
+      {
+        "rep": "Jim Heaney",
+        "opened": 2,
+        "draft": 0,
+        "skus": 9,
+        "payout": 110,
+        "rank": 16
+      },
+      {
+        "rep": "Nick Melissari",
+        "opened": 0,
+        "draft": 2,
+        "skus": 0,
+        "payout": 200,
+        "rank": 17
+      },
+      {
+        "rep": "Derrick Laws",
         "opened": 1,
         "draft": 0,
-        "skus": 3,
-        "payout": 40,
-        "rank": 4
+        "skus": 8,
+        "payout": 80,
+        "rank": 18
+      },
+      {
+        "rep": "Chris Payton",
+        "opened": 1,
+        "draft": 0,
+        "skus": 8,
+        "payout": 50,
+        "rank": 19
+      },
+      {
+        "rep": "Dan Lagala",
+        "opened": 1,
+        "draft": 0,
+        "skus": 7,
+        "payout": 60,
+        "rank": 20
+      },
+      {
+        "rep": "Robin Feldman",
+        "opened": 0,
+        "draft": 0,
+        "skus": 1,
+        "payout": 0,
+        "rank": 21
       },
       {
         "rep": "Alex Rodriguez",
@@ -158085,15 +159984,7 @@ const PROGRAM_DATA_2026_10 = {
         "draft": 0,
         "skus": 0,
         "payout": 0,
-        "rank": 5
-      },
-      {
-        "rep": "Alisa Acciardi",
-        "opened": 0,
-        "draft": 0,
-        "skus": 0,
-        "payout": 0,
-        "rank": 6
+        "rank": 22
       },
       {
         "rep": "Allison Scott",
@@ -158101,15 +159992,7 @@ const PROGRAM_DATA_2026_10 = {
         "draft": 0,
         "skus": 0,
         "payout": 0,
-        "rank": 7
-      },
-      {
-        "rep": "Andrew Lundy",
-        "opened": 0,
-        "draft": 0,
-        "skus": 0,
-        "payout": 0,
-        "rank": 8
+        "rank": 23
       },
       {
         "rep": "Brian Sengebush",
@@ -158117,63 +160000,7 @@ const PROGRAM_DATA_2026_10 = {
         "draft": 0,
         "skus": 0,
         "payout": 0,
-        "rank": 9
-      },
-      {
-        "rep": "Chris Payton",
-        "opened": 0,
-        "draft": 0,
-        "skus": 0,
-        "payout": 0,
-        "rank": 10
-      },
-      {
-        "rep": "Dan Lagala",
-        "opened": 0,
-        "draft": 0,
-        "skus": 0,
-        "payout": 0,
-        "rank": 11
-      },
-      {
-        "rep": "Dave Ehlers",
-        "opened": 0,
-        "draft": 0,
-        "skus": 0,
-        "payout": 0,
-        "rank": 12
-      },
-      {
-        "rep": "Derrick Laws",
-        "opened": 0,
-        "draft": 0,
-        "skus": 0,
-        "payout": 0,
-        "rank": 13
-      },
-      {
-        "rep": "Dylan Rubino",
-        "opened": 0,
-        "draft": 0,
-        "skus": 0,
-        "payout": 0,
-        "rank": 14
-      },
-      {
-        "rep": "Hakan Sadik",
-        "opened": 0,
-        "draft": 0,
-        "skus": 0,
-        "payout": 0,
-        "rank": 15
-      },
-      {
-        "rep": "Jaime Colonna",
-        "opened": 0,
-        "draft": 0,
-        "skus": 0,
-        "payout": 0,
-        "rank": 16
+        "rank": 24
       },
       {
         "rep": "Javier Melo",
@@ -158181,39 +160008,7 @@ const PROGRAM_DATA_2026_10 = {
         "draft": 0,
         "skus": 0,
         "payout": 0,
-        "rank": 17
-      },
-      {
-        "rep": "Jayson Romine",
-        "opened": 0,
-        "draft": 0,
-        "skus": 0,
-        "payout": 0,
-        "rank": 18
-      },
-      {
-        "rep": "Jim Heaney",
-        "opened": 0,
-        "draft": 0,
-        "skus": 0,
-        "payout": 0,
-        "rank": 19
-      },
-      {
-        "rep": "John O'Donoghue",
-        "opened": 0,
-        "draft": 0,
-        "skus": 0,
-        "payout": 0,
-        "rank": 20
-      },
-      {
-        "rep": "Klejdi Lamo",
-        "opened": 0,
-        "draft": 0,
-        "skus": 0,
-        "payout": 0,
-        "rank": 21
+        "rank": 25
       },
       {
         "rep": "Matt Powierski",
@@ -158221,42 +160016,10 @@ const PROGRAM_DATA_2026_10 = {
         "draft": 0,
         "skus": 0,
         "payout": 0,
-        "rank": 22
-      },
-      {
-        "rep": "Nick Melissari",
-        "opened": 0,
-        "draft": 0,
-        "skus": 0,
-        "payout": 0,
-        "rank": 23
-      },
-      {
-        "rep": "Pablo Lopez",
-        "opened": 0,
-        "draft": 0,
-        "skus": 0,
-        "payout": 0,
-        "rank": 24
-      },
-      {
-        "rep": "Paul Mclaughlin",
-        "opened": 0,
-        "draft": 0,
-        "skus": 0,
-        "payout": 0,
-        "rank": 25
-      },
-      {
-        "rep": "Phil Ernst",
-        "opened": 0,
-        "draft": 0,
-        "skus": 0,
-        "payout": 0,
         "rank": 26
       },
       {
-        "rep": "Robin Feldman",
+        "rep": "Pablo Lopez",
         "opened": 0,
         "draft": 0,
         "skus": 0,
@@ -158400,13 +160163,35 @@ const PROGRAM_DATA_2026_10 = {
       },
       "Alisa Acciardi": {
         "wc": {
-          "pods": [],
-          "count": 0,
-          "madeCount": 0,
+          "pods": [
+            {
+              "customer": "Super K Food (A) Store",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Paradise Liquors",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": false
+            },
+            {
+              "customer": "Paradise Liquors",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            }
+          ],
+          "count": 3,
+          "madeCount": 2,
           "allMade": false,
           "qualified": false,
           "payout": 0,
-          "toQualifier": 8
+          "toQualifier": 5
         },
         "harder": {
           "pods": [],
@@ -158417,8 +160202,8 @@ const PROGRAM_DATA_2026_10 = {
           "payout": 0,
           "toQualifier": 8
         },
-        "totalPods": 0,
-        "accounts": 0,
+        "totalPods": 3,
+        "accounts": 2,
         "payout": 0,
         "legsQualified": 0,
         "offPremTargets": [
@@ -158431,16 +160216,8 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 2518.0
           },
           {
-            "customer": "Super K Food (A) Store",
-            "cases2026": 1710.0
-          },
-          {
             "customer": "High Spirits Of Bayonne",
             "cases2026": 1677.0
-          },
-          {
-            "customer": "Paradise Liquors",
-            "cases2026": 1607.0
           },
           {
             "customer": "Bridgeview Liquors",
@@ -158501,9 +160278,17 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Berkeley Liquors",
             "cases2026": 386.0
+          },
+          {
+            "customer": "Plaza Wine & Liquor",
+            "cases2026": 377.0
+          },
+          {
+            "customer": "Harrison Discount Liq(P)",
+            "cases2026": 372.0
           }
         ],
-        "offPremTargetCount": 88
+        "offPremTargetCount": 86
       },
       "Allison Scott": {
         "wc": {
@@ -158642,8 +160427,267 @@ const PROGRAM_DATA_2026_10 = {
         "wc": {
           "pods": [
             {
+              "customer": "Highland Wine&Liquor Inc",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/9/2026",
+              "made": true
+            },
+            {
+              "customer": "Highland Wine&Liquor Inc",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/9/2026",
+              "made": true
+            },
+            {
+              "customer": "Highland Wine&Liquor Inc",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/9/2026",
+              "made": true
+            },
+            {
+              "customer": "Country Convenience Store",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Greenwood Lake Disc.(P)",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
               "customer": "Uncorked Wines & Spirits (West Milford)",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Country Convenience Store",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/8/2026",
+              "made": false
+            },
+            {
+              "customer": "Bloomingdale Discount Liq",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Meloi Liquors",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Bloomingdale Discount Liq",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "George's Market (A)",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Meloi Liquors",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Bloomingdale Discount Liq",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Shoppers Disc(A)Pompton",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Roserne Pkg Store South",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Roserne Liquors North",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Roserne Liquors North",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "B & B Wine&Liq",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Roserne Liquors North",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "River Place Food Store",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "B & B Wine&Liq",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Shoppers Disc(A)Pompton",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "B & B Wine&Liq",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": false
+            },
+            {
+              "customer": "Krauszer's Liquor Wine and Spirits",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": false
+            },
+            {
+              "customer": "Krauszer's Liquor Wine and Spirits",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Turnpike Discount Liquors",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Turnpike Discount Liquors",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Krauszer's Liquor Wine and Spirits",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Krauszer's Liquor Wine and Spirits",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Krauszer's Liquor Wine and Spirits",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Ringwood W&L",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Ringwood W&L",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Ringwood Discount Liquors",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Ringwood W&L",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": false
+            },
+            {
+              "customer": "Ringwood Discount Liquors",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Ringwood Discount Liquors",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Greenwood Lake Disc.(P)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "The New Jessies Kettle(P)",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "10/1/2026",
               "made": true
@@ -158671,59 +160715,17 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Krauszer's Liquor Wine and Spirits",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
-              "brand": "White Claw",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
-              "customer": "Roserne Liquors North",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
-              "customer": "Roserne Liquors North",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
-              "customer": "Buy Rite W &L Pompton(P)",
               "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/29/2026",
               "made": true
             },
             {
-              "customer": "River Place Food Store",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
-              "customer": "Buy Rite W &L Pompton(P)",
+              "customer": "Home Wine and Liquors",
               "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/29/2026",
               "made": false
-            },
-            {
-              "customer": "River Place Food Store",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
-              "customer": "Krauszer's Liquor Wine and Spirits",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/29/2026",
-              "made": true
             },
             {
               "customer": "Home Wine and Liquors",
@@ -158733,15 +160735,22 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Home Wine and Liquors",
+              "customer": "River Place Food Store",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/29/2026",
+              "made": true
+            },
+            {
+              "customer": "Buy Rite W &L Pompton(P)",
               "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/29/2026",
               "made": false
             },
             {
-              "customer": "Home Wine and Liquors",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "customer": "Krauszer's Liquor Wine and Spirits",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
               "brand": "White Claw",
               "date": "9/29/2026",
               "made": true
@@ -158762,23 +160771,23 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Buy Rite W &L Pompton(P)",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/29/2026",
+              "made": true
+            },
+            {
+              "customer": "Home Wine and Liquors",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/29/2026",
+              "made": true
+            },
+            {
+              "customer": "Buy Rite W &L Pompton(P)",
               "product": "White Claw Surge Grape 1/12/19.2oz Can",
               "brand": "White Claw",
               "date": "9/29/2026",
-              "made": true
-            },
-            {
-              "customer": "Shoppers Disc(A)Pompton",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
-              "customer": "Appio's Liquors",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
               "made": true
             },
             {
@@ -158796,6 +160805,27 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
+              "customer": "Appio's Liquors",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/28/2026",
+              "made": true
+            },
+            {
+              "customer": "Best Cellars (Wanaque)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/25/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine 2 Spirits (P)",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/25/2026",
+              "made": true
+            },
+            {
               "customer": "Wine 2 Spirits (P)",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
@@ -158803,7 +160833,7 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Wine 2 Spirits (P)",
+              "customer": "Best Cellars (Wanaque)",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/25/2026",
@@ -158812,20 +160842,6 @@ const PROGRAM_DATA_2026_10 = {
             {
               "customer": "Wine 2 Spirits (P)",
               "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Best Cellars (Wanaque)",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Best Cellars (Wanaque)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/25/2026",
               "made": true
@@ -158846,27 +160862,6 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Usa Wine Traders (Wanaque)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "B & B Wine&Liq",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "The New Jessies Kettle(P)",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "Greenwood Lake Disc.(P)",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/24/2026",
@@ -158887,29 +160882,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": false
             },
             {
-              "customer": "Roserne Pkg Store South",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
               "customer": "Highland Wine&Liquor Inc",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Highland Wine&Liquor Inc",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Krauszer's Liquor Wine and Spirits",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/22/2026",
               "made": true
@@ -158922,43 +160896,22 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Krauszer's Liquor Wine and Spirits",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "customer": "Highland Wine&Liquor Inc",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/22/2026",
               "made": true
             },
             {
-              "customer": "Highland Wine&Liquor Inc",
+              "customer": "Appio's Liquors",
               "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Highland Wine&Liquor Inc",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
+              "date": "9/21/2026",
               "made": true
             },
             {
               "customer": "Empire Wine & Liquor",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/21/2026",
-              "made": true
-            },
-            {
-              "customer": "Appio's Liquors",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/21/2026",
-              "made": true
-            },
-            {
-              "customer": "Appio's Liquors",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/21/2026",
               "made": true
@@ -158971,31 +160924,17 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Shoppers Disc(A)Pompton",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "customer": "Appio's Liquors",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/18/2026",
+              "date": "9/21/2026",
               "made": true
-            },
-            {
-              "customer": "Krauszer's Liquor Wine and Spirits",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/18/2026",
-              "made": false
             },
             {
               "customer": "Shoppers Disc(A)Pompton",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/18/2026",
-              "made": true
-            },
-            {
-              "customer": "Ringwood W&L",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/17/2026",
               "made": true
             },
             {
@@ -159006,6 +160945,41 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
+              "customer": "Ringwood W&L",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/17/2026",
+              "made": true
+            },
+            {
+              "customer": "Meloi Liquors",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/16/2026",
+              "made": true
+            },
+            {
+              "customer": "Usa Wine Traders Club (Bloomingdale)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/16/2026",
+              "made": true
+            },
+            {
+              "customer": "Meloi Liquors",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/16/2026",
+              "made": true
+            },
+            {
+              "customer": "Usa Wine Traders Club (Bloomingdale)",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/16/2026",
+              "made": true
+            },
+            {
               "customer": "Country Convenience Store",
               "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
@@ -159013,48 +160987,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Country Convenience Store",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/16/2026",
-              "made": true
-            },
-            {
-              "customer": "Meloi Liquors",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/16/2026",
-              "made": true
-            },
-            {
-              "customer": "Meloi Liquors",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/16/2026",
-              "made": true
-            },
-            {
-              "customer": "Meloi Liquors",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/16/2026",
-              "made": true
-            },
-            {
-              "customer": "Usa Wine Traders Club (Bloomingdale)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/16/2026",
-              "made": true
-            },
-            {
-              "customer": "Usa Wine Traders Club (Bloomingdale)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/16/2026",
-              "made": true
-            },
-            {
               "customer": "Meloi Liquors",
               "product": "White Claw Peach 1/12/19.2 oz Can",
               "brand": "White Claw",
@@ -159063,14 +160995,28 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Usa Wine Traders Club (Bloomingdale)",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/16/2026",
               "made": true
             },
             {
-              "customer": "Roserne Liquors North",
+              "customer": "Buy Rite W &L Pompton(P)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/15/2026",
+              "made": true
+            },
+            {
+              "customer": "Buy Rite W &L Pompton(P)",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/15/2026",
+              "made": true
+            },
+            {
+              "customer": "Buy Rite W &L Pompton(P)",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/15/2026",
               "made": true
@@ -159084,7 +161030,7 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "George's Market (A)",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/15/2026",
               "made": true
@@ -159098,49 +161044,14 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "George's Market (A)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/15/2026",
-              "made": true
-            },
-            {
-              "customer": "George's Market (A)",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/15/2026",
               "made": true
             },
             {
-              "customer": "Buy Rite W &L Pompton(P)",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/15/2026",
-              "made": true
-            },
-            {
-              "customer": "Buy Rite W &L Pompton(P)",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/15/2026",
-              "made": true
-            },
-            {
-              "customer": "Buy Rite W &L Pompton(P)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/15/2026",
-              "made": true
-            },
-            {
               "customer": "Country Convenience Store",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/14/2026",
-              "made": true
-            },
-            {
-              "customer": "Country Convenience Store",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/14/2026",
               "made": true
@@ -159160,10 +161071,24 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "B & B Wine&Liq",
+              "customer": "Country Convenience Store",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/14/2026",
+              "made": true
+            },
+            {
+              "customer": "Ringwood Discount Liquors",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/10/2026",
+              "made": true
+            },
+            {
+              "customer": "Ringwood Discount Liquors",
               "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/11/2026",
+              "date": "9/10/2026",
               "made": true
             },
             {
@@ -159181,57 +161106,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Ringwood Discount Liquors",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/10/2026",
-              "made": true
-            },
-            {
-              "customer": "Turnpike Discount Liquors",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/10/2026",
-              "made": true
-            },
-            {
-              "customer": "Ringwood Discount Liquors",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/10/2026",
-              "made": true
-            },
-            {
-              "customer": "Highland Wine&Liquor Inc",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/10/2026",
-              "made": true
-            },
-            {
-              "customer": "Ringwood Discount Liquors",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/10/2026",
-              "made": true
-            },
-            {
               "customer": "Meloi Liquors",
               "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/9/2026",
-              "made": true
-            },
-            {
-              "customer": "Usa Wine Traders Club (Bloomingdale)",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/9/2026",
-              "made": true
-            },
-            {
-              "customer": "Meloi Liquors",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/9/2026",
               "made": true
@@ -159242,6 +161118,20 @@ const PROGRAM_DATA_2026_10 = {
               "brand": "White Claw",
               "date": "9/9/2026",
               "made": false
+            },
+            {
+              "customer": "Usa Wine Traders Club (Bloomingdale)",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/9/2026",
+              "made": true
+            },
+            {
+              "customer": "Best Cellars (Wanaque)",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/8/2026",
+              "made": true
             },
             {
               "customer": "Greenwood Lake Disc.(P)",
@@ -159265,45 +161155,10 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Best Cellars (Wanaque)",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/8/2026",
-              "made": true
-            },
-            {
-              "customer": "Greenwood Lake Disc.(P)",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
-              "brand": "White Claw",
-              "date": "9/8/2026",
-              "made": true
-            },
-            {
               "customer": "Empire Wine & Liquor",
               "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/4/2026",
-              "made": true
-            },
-            {
-              "customer": "B & B Wine&Liq",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/4/2026",
-              "made": false
-            },
-            {
-              "customer": "Highland Wine&Liquor Inc",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
-              "brand": "White Claw",
-              "date": "9/3/2026",
-              "made": true
-            },
-            {
-              "customer": "Ringwood Discount Liquors",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/3/2026",
               "made": true
             },
             {
@@ -159314,22 +161169,15 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
+              "customer": "Highland Wine&Liquor Inc",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "9/3/2026",
+              "made": true
+            },
+            {
               "customer": "Bloomingdale Discount Liq",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/1/2026",
-              "made": true
-            },
-            {
-              "customer": "Krauszer's Liquor Wine and Spirits",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/1/2026",
-              "made": true
-            },
-            {
-              "customer": "Usa Wine Traders Club (Bloomingdale)",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
               "brand": "White Claw",
               "date": "9/1/2026",
               "made": true
@@ -159342,29 +161190,15 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Krauszer's Liquor Wine and Spirits",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/1/2026",
-              "made": true
-            },
-            {
-              "customer": "Bloomingdale Discount Liq",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/1/2026",
-              "made": true
-            },
-            {
-              "customer": "Bloomingdale Discount Liq",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "customer": "Usa Wine Traders Club (Bloomingdale)",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/1/2026",
               "made": true
             }
           ],
-          "count": 103,
-          "madeCount": 96,
+          "count": 110,
+          "madeCount": 101,
           "allMade": false,
           "qualified": true,
           "payout": 15,
@@ -159373,14 +161207,91 @@ const PROGRAM_DATA_2026_10 = {
         "harder": {
           "pods": [
             {
-              "customer": "Buy Rite W &L Pompton(P)",
+              "customer": "Uncorked Wines & Spirits (West Milford)",
               "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
-              "date": "9/29/2026",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Greenwood Lake Disc.(P)",
+              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Greenwood Lake Disc.(P)",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Greenwood Lake Disc.(P)",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Uncorked Wines & Spirits (West Milford)",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Krauszer's Liquor Wine and Spirits",
+              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/6/2026",
               "made": true
             },
             {
               "customer": "Usa Wine Traders Club (Bloomingdale)",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Krauszer's Liquor Wine and Spirits",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Krauszer's Liquor Wine and Spirits",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Usa Wine Traders Club (Bloomingdale)",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine 2 Spirits (P)",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Greenwood Lake Disc.(P)",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Buy Rite W &L Pompton(P)",
               "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/29/2026",
@@ -159416,58 +161327,30 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Krauszer's Liquor Wine and Spirits",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/22/2026",
+              "made": true
+            },
+            {
+              "customer": "Krauszer's Liquor Wine and Spirits",
               "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/22/2026",
               "made": true
             },
             {
-              "customer": "Krauszer's Liquor Wine and Spirits",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Krauszer's Liquor Wine and Spirits",
-              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Krauszer's Liquor Wine and Spirits",
+              "customer": "Meloi Liquors",
               "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
-              "date": "9/22/2026",
+              "date": "9/16/2026",
               "made": true
             },
             {
-              "customer": "Krauszer's Liquor Wine and Spirits",
-              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Greenwood Lake Disc.(P)",
+              "customer": "Meloi Liquors",
               "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
-              "date": "9/17/2026",
-              "made": true
-            },
-            {
-              "customer": "Greenwood Lake Disc.(P)",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/17/2026",
-              "made": true
-            },
-            {
-              "customer": "Greenwood Lake Disc.(P)",
-              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/17/2026",
+              "date": "9/16/2026",
               "made": true
             },
             {
@@ -159485,27 +161368,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Meloi Liquors",
-              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/16/2026",
-              "made": true
-            },
-            {
-              "customer": "Meloi Liquors",
-              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/16/2026",
-              "made": true
-            },
-            {
-              "customer": "Ringwood Discount Liquors",
-              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/10/2026",
-              "made": true
-            },
-            {
               "customer": "Ringwood Discount Liquors",
               "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
@@ -159520,8 +161382,29 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
+              "customer": "Ringwood Discount Liquors",
+              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/10/2026",
+              "made": true
+            },
+            {
               "customer": "Turnpike Discount Liquors",
               "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Turnpike Discount Liquors",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Turnpike Discount Liquors",
+              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/1/2026",
               "made": true
@@ -159539,30 +161422,16 @@ const PROGRAM_DATA_2026_10 = {
               "brand": "Mike's Harder",
               "date": "9/1/2026",
               "made": true
-            },
-            {
-              "customer": "Turnpike Discount Liquors",
-              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/1/2026",
-              "made": true
-            },
-            {
-              "customer": "Turnpike Discount Liquors",
-              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/1/2026",
-              "made": true
             }
           ],
-          "count": 26,
-          "madeCount": 26,
+          "count": 31,
+          "madeCount": 31,
           "allMade": true,
           "qualified": true,
           "payout": 30,
           "toQualifier": 0
         },
-        "totalPods": 129,
+        "totalPods": 141,
         "accounts": 27,
         "payout": 45,
         "legsQualified": 2,
@@ -159582,6 +161451,13 @@ const PROGRAM_DATA_2026_10 = {
         "wc": {
           "pods": [
             {
+              "customer": "Culver Liquor and Bar",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
               "customer": "Chabons Ii Liq/Bar (A)",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
@@ -159597,13 +161473,6 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Chabons Ii Liq/Bar (A)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Culver Liquor and Bar",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/22/2026",
@@ -159669,73 +161538,339 @@ const PROGRAM_DATA_2026_10 = {
           "pods": [
             {
               "customer": "JR Sports Bar & Liquors(Z)",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "10/1/2026",
-              "made": true
-            },
-            {
-              "customer": "Garden Liquors (P)",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/30/2026",
+              "date": "10/8/2026",
               "made": true
             },
             {
-              "customer": "Paramus Food Center",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "customer": "Wineland",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/29/2026",
+              "date": "10/8/2026",
               "made": true
             },
             {
-              "customer": "Paramus Food Center",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "customer": "Quick Stop Food & Liq",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/29/2026",
+              "date": "10/8/2026",
               "made": true
             },
             {
-              "customer": "Meadowland Wine & Liquor",
+              "customer": "B & B Liquors (Fair Lawn)",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Lodi Liquor Store(P)",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": false
-            },
-            {
-              "customer": "Lodi Liquor Store(P)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Lodi Liquor Store(P)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Figlar's (P)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
+              "date": "10/7/2026",
               "made": true
             },
             {
               "customer": "Liquor Masters (P)",
               "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/25/2026",
+              "date": "10/7/2026",
               "made": false
+            },
+            {
+              "customer": "Liquor Masters (P)",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "B & B Liquors (Fair Lawn)",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "B & B Liquors (Fair Lawn)",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Clifton Disc Liq (A)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "B & B Liquors (Fair Lawn)",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Clifton Disc Liq (A)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Garden Liquors (P)",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Buy Rite Of Main St Lodi",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Buy Rite Of Main St Lodi",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Buy Rite Of Main St Lodi",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Woodridge Wines & Liq(A)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Garden Liquors (P)",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Garden Liquors (P)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Buy Rite Of Main St Lodi",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": false
+            },
+            {
+              "customer": "Welsh Farms",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Liq.(A)Lodi",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Liq.(A)Lodi",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Liq.(A)Lodi",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Radburn Liquors (A",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Figlar's (P)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Radburn Liquors (A",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Radburn Liquors (A",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Radburn Liquors (A",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Krauszer Liquor",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Figlar's (P)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "JR Sports Bar & Liquors(Z)",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Wineland",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Wineland",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "46 Discount Liquor Store",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Teaneck Quickshop(P)Conv",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Teaneck Quickshop(P)Conv",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Buy Rite Discount Liquor",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "46 Discount Liquor Store",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Teaneck Quickshop(P)Conv",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Coronet Variety",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Paramus Food Center",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/29/2026",
+              "made": true
+            },
+            {
+              "customer": "Paramus Food Center",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/29/2026",
+              "made": true
+            },
+            {
+              "customer": "Lodi Liquor Store(P)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/28/2026",
+              "made": true
+            },
+            {
+              "customer": "Meadowland Wine & Liquor",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/28/2026",
+              "made": true
+            },
+            {
+              "customer": "Lodi Liquor Store(P)",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/28/2026",
+              "made": false
+            },
+            {
+              "customer": "Lodi Liquor Store(P)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/28/2026",
+              "made": true
+            },
+            {
+              "customer": "JR Sports Bar & Liquors(Z)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/24/2026",
+              "made": true
+            },
+            {
+              "customer": "Westmont Liquors 64",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/24/2026",
+              "made": true
             },
             {
               "customer": "Westmont Liquors 64",
@@ -159752,62 +161887,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Westmont Liquors 64",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "JR Sports Bar & Liquors(Z)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "JR Sports Bar & Liquors(Z)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "Wineland",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "Buy Rite Of Main St Lodi",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Buy Rite Of Main St Lodi",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": false
-            },
-            {
-              "customer": "Woodridge Wines & Liq(A)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Woodridge Wines & Liq(A)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
               "customer": "Paramus Food Center",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
@@ -159815,7 +161894,7 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Buy Rite Of Main St Lodi",
+              "customer": "Woodridge Wines & Liq(A)",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/22/2026",
@@ -159823,34 +161902,13 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Buy Rite Of Main St Lodi",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/22/2026",
               "made": true
             },
             {
               "customer": "Welsh Farms",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/21/2026",
-              "made": true
-            },
-            {
-              "customer": "Usa Wine Traders Club (Saddle Brook)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/21/2026",
-              "made": true
-            },
-            {
-              "customer": "Usa Wine Traders Club (Saddle Brook)",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/21/2026",
-              "made": true
-            },
-            {
-              "customer": "Usa Wine Traders Club (Saddle Brook)",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/21/2026",
@@ -159864,15 +161922,29 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Welsh Farms",
+              "customer": "Usa Wine Traders Club (Saddle Brook)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/21/2026",
+              "made": true
+            },
+            {
+              "customer": "Usa Wine Traders Club (Saddle Brook)",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/21/2026",
               "made": true
             },
             {
-              "customer": "Meadowland Wine & Liquor",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "customer": "Usa Wine Traders Club (Saddle Brook)",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/21/2026",
+              "made": true
+            },
+            {
+              "customer": "Discount Lqr(A) Outlet",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/18/2026",
               "made": true
@@ -159885,22 +161957,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Radburn Liquors (A",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/18/2026",
-              "made": true
-            },
-            {
-              "customer": "Radburn Liquors (A",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/18/2026",
-              "made": true
-            },
-            {
               "customer": "Meadowland Wine & Liquor",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/18/2026",
               "made": true
@@ -159913,38 +161971,10 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Radburn Liquors (A",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/18/2026",
-              "made": true
-            },
-            {
-              "customer": "Discount Lqr(A) Outlet",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/18/2026",
-              "made": true
-            },
-            {
-              "customer": "Iga Supermarkets (A)",
+              "customer": "Meadowland Wine & Liquor",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/17/2026",
-              "made": true
-            },
-            {
-              "customer": "Krauszer Liquor",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/17/2026",
-              "made": true
-            },
-            {
-              "customer": "Wineland",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/17/2026",
+              "date": "9/18/2026",
               "made": true
             },
             {
@@ -159955,21 +161985,28 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Wineland",
+              "customer": "Quick Stop Food & Liq",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/17/2026",
+              "made": true
+            },
+            {
+              "customer": "Maywood Wine&Liq (A)",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/17/2026",
+              "made": true
+            },
+            {
+              "customer": "Iga Supermarkets (A)",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/17/2026",
               "made": true
             },
             {
-              "customer": "Quick Stop Food & Liq",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/17/2026",
-              "made": true
-            },
-            {
-              "customer": "Quick Stop Food & Liq",
+              "customer": "Krauszer Liquor",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/17/2026",
@@ -159984,14 +162021,7 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Iga Supermarkets (A)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/17/2026",
-              "made": true
-            },
-            {
-              "customer": "Maywood Wine&Liq (A)",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/17/2026",
               "made": true
@@ -160004,15 +162034,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Clifton Disc Liq (A)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/15/2026",
-              "made": true
-            },
-            {
               "customer": "Welsh Farms",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/15/2026",
               "made": true
@@ -160025,24 +162048,10 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Clifton Disc Liq (A)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/15/2026",
-              "made": true
-            },
-            {
               "customer": "Welsh Farms",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/15/2026",
-              "made": true
-            },
-            {
-              "customer": "Figlar's (P)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/14/2026",
               "made": true
             },
             {
@@ -160053,29 +162062,22 @@ const PROGRAM_DATA_2026_10 = {
               "made": false
             },
             {
-              "customer": "Figlar's (P)",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "customer": "Garden Liquors (P)",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/11/2026",
-              "made": true
+              "made": false
             },
             {
               "customer": "Radburn Liquors (A",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/11/2026",
               "made": true
             },
             {
-              "customer": "Buy Rite Of Main St Lodi",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/11/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor Masters (P)",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "customer": "Figlar's (P)",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/11/2026",
               "made": true
@@ -160088,43 +162090,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Garden Liquors (P)",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/11/2026",
-              "made": true
-            },
-            {
-              "customer": "Radburn Liquors (A",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/11/2026",
-              "made": true
-            },
-            {
-              "customer": "Garden Liquors (P)",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/11/2026",
-              "made": false
-            },
-            {
-              "customer": "B & B Liquors (Fair Lawn)",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/10/2026",
-              "made": true
-            },
-            {
               "customer": "46 Discount Liquor Store",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/10/2026",
-              "made": true
-            },
-            {
-              "customer": "B & B Liquors (Fair Lawn)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/10/2026",
               "made": true
@@ -160137,21 +162104,49 @@ const PROGRAM_DATA_2026_10 = {
               "made": false
             },
             {
-              "customer": "46 Discount Liquor Store",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "customer": "B & B Liquors (Fair Lawn)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/10/2026",
               "made": true
             },
             {
-              "customer": "Princess Liquor's(P)",
+              "customer": "46 Discount Liquor Store",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/10/2026",
+              "made": true
+            },
+            {
+              "customer": "Morlot W & L (A)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/9/2026",
+              "made": true
+            },
+            {
+              "customer": "Morlot W & L (A)",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/9/2026",
               "made": true
             },
             {
+              "customer": "Hollywd Liq&Deli (A)",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/9/2026",
+              "made": false
+            },
+            {
               "customer": "Exquisite W & L (A)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/9/2026",
+              "made": true
+            },
+            {
+              "customer": "Hollywd Liq&Deli (A)",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/9/2026",
@@ -160160,48 +162155,6 @@ const PROGRAM_DATA_2026_10 = {
             {
               "customer": "Exquisite W & L (A)",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/9/2026",
-              "made": true
-            },
-            {
-              "customer": "Morlot W & L (A)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/9/2026",
-              "made": true
-            },
-            {
-              "customer": "Hollywd Liq&Deli (A)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/9/2026",
-              "made": true
-            },
-            {
-              "customer": "Morlot W & L (A)",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/9/2026",
-              "made": false
-            },
-            {
-              "customer": "Morlot W & L (A)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/9/2026",
-              "made": true
-            },
-            {
-              "customer": "Hollywd Liq&Deli (A)",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/9/2026",
-              "made": false
-            },
-            {
-              "customer": "Exquisite W & L (A)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/9/2026",
               "made": true
@@ -160221,24 +162174,24 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Shop Rite Liq.(A)Lodi",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "customer": "Morlot W & L (A)",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/8/2026",
-              "made": true
+              "date": "9/9/2026",
+              "made": false
             },
             {
-              "customer": "Shop Rite Liq.(A)Lodi",
+              "customer": "Exquisite W & L (A)",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/8/2026",
+              "date": "9/9/2026",
               "made": true
             },
             {
-              "customer": "Shop Rite Liq.(A)Lodi",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "customer": "Princess Liquor's(P)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/8/2026",
+              "date": "9/9/2026",
               "made": true
             },
             {
@@ -160263,29 +162216,22 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "46 Discount Liquor Store",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/3/2026",
-              "made": true
-            },
-            {
-              "customer": "Ridgefield Deli & Liq",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/2/2026",
-              "made": true
-            },
-            {
               "customer": "Ridgefield Deli & Liq",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/2/2026",
               "made": true
+            },
+            {
+              "customer": "Ridgefield Deli & Liq",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/2/2026",
+              "made": true
             }
           ],
-          "count": 88,
-          "madeCount": 80,
+          "count": 99,
+          "madeCount": 91,
           "allMade": false,
           "qualified": true,
           "payout": 15,
@@ -160297,21 +162243,49 @@ const PROGRAM_DATA_2026_10 = {
               "customer": "JR Sports Bar & Liquors(Z)",
               "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
-              "date": "10/1/2026",
+              "date": "10/8/2026",
               "made": true
             },
             {
               "customer": "Clifton Disc Liq (A)",
               "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
-              "date": "9/25/2026",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Garden Liquors (P)",
+              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Garden Liquors (P)",
+              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/6/2026",
               "made": true
             },
             {
               "customer": "Shop Rite Liq.(A)Lodi",
               "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
-              "date": "9/23/2026",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Buy Rite Discount Liquor",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Buy Rite Discount Liquor",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/1/2026",
               "made": true
             },
             {
@@ -160323,14 +162297,14 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Lodi Liquor Store(P)",
-              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/21/2026",
               "made": true
             },
             {
               "customer": "Lodi Liquor Store(P)",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/21/2026",
               "made": true
@@ -160350,36 +162324,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Buy Rite Discount Liquor",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/18/2026",
-              "made": true
-            },
-            {
-              "customer": "Garden Liquors (P)",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/17/2026",
-              "made": true
-            },
-            {
-              "customer": "Iga Supermarkets (A)",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/17/2026",
-              "made": true
-            },
-            {
               "customer": "Iga Supermarkets (A)",
               "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/17/2026",
-              "made": true
-            },
-            {
-              "customer": "Garden Liquors (P)",
-              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/17/2026",
               "made": true
@@ -160400,6 +162346,27 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Garden Liquors (P)",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/17/2026",
+              "made": true
+            },
+            {
+              "customer": "Garden Liquors (P)",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/17/2026",
+              "made": true
+            },
+            {
+              "customer": "Iga Supermarkets (A)",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/17/2026",
+              "made": true
+            },
+            {
+              "customer": "Garden Liquors (P)",
               "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/17/2026",
@@ -160410,20 +162377,6 @@ const PROGRAM_DATA_2026_10 = {
               "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/15/2026",
-              "made": true
-            },
-            {
-              "customer": "Wineland",
-              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
-              "brand": "Cayman Jack",
-              "date": "9/11/2026",
-              "made": true
-            },
-            {
-              "customer": "Wineland",
-              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
-              "brand": "Cayman Jack",
-              "date": "9/11/2026",
               "made": true
             },
             {
@@ -160448,6 +162401,20 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
+              "customer": "Wineland",
+              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "9/11/2026",
+              "made": true
+            },
+            {
+              "customer": "Wineland",
+              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "9/11/2026",
+              "made": true
+            },
+            {
               "customer": "JR Sports Bar & Liquors(Z)",
               "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
@@ -160462,13 +162429,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Buy Rite Discount Liquor",
-              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/4/2026",
-              "made": true
-            },
-            {
               "customer": "Iga Supermarkets (A)",
               "product": "Mikes Harder Mango 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
@@ -160476,22 +162436,18 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             }
           ],
-          "count": 26,
-          "madeCount": 26,
+          "count": 28,
+          "madeCount": 28,
           "allMade": true,
           "qualified": true,
           "payout": 30,
           "toQualifier": 0
         },
-        "totalPods": 114,
-        "accounts": 34,
+        "totalPods": 127,
+        "accounts": 35,
         "payout": 45,
         "legsQualified": 2,
         "offPremTargets": [
-          {
-            "customer": "Teaneck Quickshop(P)Conv",
-            "cases2026": 6342.0
-          },
           {
             "customer": "J R W & Liq (A)",
             "cases2026": 2921.6
@@ -160521,21 +162477,112 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 0.0
           }
         ],
-        "offPremTargetCount": 8
+        "offPremTargetCount": 7
       },
       "Dan Lagala": {
         "wc": {
           "pods": [
             {
-              "customer": "Banner Liquor Iii",
+              "customer": "Top Shelf Liquors",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Top Shelf Liquors",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Metro Liquor (Cliffside Park)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine And Food Mart (Z)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine And Food Mart (Z)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine And Food Mart (Z)",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Metro Liquor (Cliffside Park)",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Metro Liquor (Cliffside Park)",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Metro Liquor (Cliffside Park)",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": false
+            },
+            {
+              "customer": "Edgewater Liquor (A)",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Edgewater Liquor (A)",
               "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Edgewater Liquor (A)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Rome Liquor (Cliffside Park)",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Banner Liquor Iii",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/30/2026",
               "made": true
             },
             {
               "customer": "Banner Liquor Iii",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/30/2026",
               "made": true
@@ -160549,16 +162596,23 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Banner Liquor Iii",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/30/2026",
               "made": true
             },
             {
               "customer": "Banner Liquor Iii",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/30/2026",
+              "made": true
+            },
+            {
+              "customer": "Buy Rite Of Fairview",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/29/2026",
               "made": true
             },
             {
@@ -160577,13 +162631,6 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Buy Rite Of Fairview",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
-              "customer": "Buy Rite Of Fairview",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/29/2026",
@@ -160591,14 +162638,14 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Andres Wine & Spirits",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/25/2026",
               "made": true
             },
             {
               "customer": "Andres Wine & Spirits",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/25/2026",
               "made": true
@@ -160612,14 +162659,14 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Garden State Food&Liq (P)",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/24/2026",
               "made": true
             },
             {
               "customer": "Garden State Food&Liq (P)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/24/2026",
               "made": true
@@ -160633,13 +162680,6 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Edgewater Liquor (A)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Buy Rite Of Fairview",
               "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/22/2026",
@@ -160647,6 +162687,13 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Edgewater Liquor (A)",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "9/22/2026",
+              "made": true
+            },
+            {
+              "customer": "Buy Rite Of Fairview",
               "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/22/2026",
@@ -160660,43 +162707,15 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Edgewater Liquor (A)",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "customer": "Liquor World",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Edgewater Liquor (A)",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Edgewater Liquor (A)",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
+              "date": "9/21/2026",
               "made": true
             },
             {
               "customer": "Bp Gas Station",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/21/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor World",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/21/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor World",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/21/2026",
               "made": true
@@ -160710,7 +162729,14 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Bp Gas Station",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/21/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor World",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/21/2026",
               "made": true
@@ -160718,13 +162744,6 @@ const PROGRAM_DATA_2026_10 = {
             {
               "customer": "Campbell's Wines & Liquor",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/16/2026",
-              "made": true
-            },
-            {
-              "customer": "Metro Liquor (Cliffside Park)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/16/2026",
               "made": true
@@ -160738,20 +162757,6 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Metro Liquor (Cliffside Park)",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/16/2026",
-              "made": true
-            },
-            {
-              "customer": "Metro Liquor (Cliffside Park)",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/16/2026",
-              "made": false
-            },
-            {
-              "customer": "Campbell's Wines & Liquor",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/16/2026",
@@ -160759,17 +162764,17 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Metro Liquor (Cliffside Park)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/16/2026",
               "made": true
             },
             {
-              "customer": "Banner Liquor Iii",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "customer": "Campbell's Wines & Liquor",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/15/2026",
-              "made": false
+              "date": "9/16/2026",
+              "made": true
             },
             {
               "customer": "Banner Liquor Iii",
@@ -160786,11 +162791,11 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Gulf Express Fort Lee",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "customer": "Banner Liquor Iii",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/15/2026",
-              "made": true
+              "made": false
             },
             {
               "customer": "Banner Liquor Iii",
@@ -160800,17 +162805,17 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
+              "customer": "Gulf Express Fort Lee",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/15/2026",
+              "made": true
+            },
+            {
               "customer": "Wine Ventures",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/14/2026",
-              "made": true
-            },
-            {
-              "customer": "Garden State Food&Liq (P)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/10/2026",
               "made": true
             },
             {
@@ -160828,8 +162833,15 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Wine And Food Mart (Z)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "customer": "Garden State Food&Liq (P)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/10/2026",
+              "made": true
+            },
+            {
+              "customer": "Ridgefield Liq (Z)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/9/2026",
               "made": true
@@ -160849,27 +162861,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Ridgefield Liq (Z)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/9/2026",
-              "made": true
-            },
-            {
-              "customer": "Ridgefield Liq (Z)",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/9/2026",
-              "made": true
-            },
-            {
-              "customer": "Wine And Food Mart (Z)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/9/2026",
-              "made": true
-            },
-            {
               "customer": "Bp Gas Station",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
@@ -160877,10 +162868,10 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Top Shelf Liquors",
+              "customer": "Ridgefield Liq (Z)",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/8/2026",
+              "date": "9/9/2026",
               "made": true
             },
             {
@@ -160892,23 +162883,16 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Liquor City(A)Cliffside",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/4/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor City(A)Cliffside",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/4/2026",
               "made": true
             },
             {
-              "customer": "Manor Wine & Liquor",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "customer": "Liquor City(A)Cliffside",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/2/2026",
+              "date": "9/4/2026",
               "made": true
             },
             {
@@ -160917,10 +162901,17 @@ const PROGRAM_DATA_2026_10 = {
               "brand": "White Claw",
               "date": "9/2/2026",
               "made": true
+            },
+            {
+              "customer": "Manor Wine & Liquor",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/2/2026",
+              "made": true
             }
           ],
-          "count": 56,
-          "madeCount": 52,
+          "count": 61,
+          "madeCount": 57,
           "allMade": false,
           "qualified": true,
           "payout": 15,
@@ -160930,6 +162921,13 @@ const PROGRAM_DATA_2026_10 = {
           "pods": [
             {
               "customer": "Andres Wine & Spirits",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/30/2026",
+              "made": true
+            },
+            {
+              "customer": "Andres Wine & Spirits",
               "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/30/2026",
@@ -160938,13 +162936,6 @@ const PROGRAM_DATA_2026_10 = {
             {
               "customer": "Metro Liquor (Cliffside Park)",
               "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Andres Wine & Spirits",
-              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/30/2026",
               "made": true
@@ -160964,7 +162955,7 @@ const PROGRAM_DATA_2026_10 = {
           "payout": 0,
           "toQualifier": 4
         },
-        "totalPods": 60,
+        "totalPods": 65,
         "accounts": 21,
         "payout": 15,
         "legsQualified": 1,
@@ -161056,11 +163047,284 @@ const PROGRAM_DATA_2026_10 = {
         "wc": {
           "pods": [
             {
-              "customer": "99 Ranch Market",
+              "customer": "Englewood Liq (A)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Grand Liquor & Delicatesen",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Grand Liquor & Delicatesen",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine And Liq Depot(A)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine And Liq Depot(A)",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle & Cork",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Bergenfield Liq & Fw",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": false
+            },
+            {
+              "customer": "Wine And Liq Depot(A)",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle & Cork",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Bergenfield Liq & Fw",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Bergenfield Liq & Fw",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine And Liq Depot(A)",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Hackensack Liquors",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Deli Mart (A)",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": false
+            },
+            {
+              "customer": "Hackensack Liquors",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "George's Liq",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": false
+            },
+            {
+              "customer": "Barrel & Brew Bar & Liq",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Hackensack Liquors",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Deli Mart (A)",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Barrel & Brew Bar & Liq",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Barrel & Brew Bar & Liq",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Hackensack Liquors",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": false
+            },
+            {
+              "customer": "Hackensack Liquors",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Barrel & Brew Bar & Liq",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "George's Liq",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Deli Mart (A)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "George's Liq",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "George's Liq",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Simple Simon's (Z)",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Simple Simon's (Z)",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "River Edge Wine & Liquor",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "River Edge Wine & Liquor",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Time Lounge And Liq (A)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Simple Simon's (Z)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "River Edge Wine & Liquor",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Buy Rite Of Hackensack",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Buy Rite Of Hackensack",
               "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
               "date": "10/1/2026",
               "made": true
+            },
+            {
+              "customer": "Buy Rite Of Hackensack",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Buy Rite Of Hackensack",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "G & G Liquors & Bar",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": false
             },
             {
               "customer": "99 Ranch Market",
@@ -161077,8 +163341,29 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Wine And Liq Depot(A)",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "customer": "99 Ranch Market",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "G & G Liquors & Bar",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Barrel & Brew Bar & Liq",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/30/2026",
+              "made": false
+            },
+            {
+              "customer": "Joes Beer Wine & Spirits",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/30/2026",
               "made": true
@@ -161091,8 +163376,15 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Joes Beer Wine & Spirits",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "customer": "Barrel & Brew Bar & Liq",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/30/2026",
+              "made": true
+            },
+            {
+              "customer": "Total Wine & More (Totowa)",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/30/2026",
               "made": true
@@ -161112,6 +163404,13 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
+              "customer": "Wine And Liq Depot(A)",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "9/30/2026",
+              "made": true
+            },
+            {
               "customer": "Teaneck Liquors",
               "product": "White Claw Peach 1/12/19.2 oz Can",
               "brand": "White Claw",
@@ -161119,73 +163418,31 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Barrel & Brew Bar & Liq",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Total Wine & More (Totowa)",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Barrel & Brew Bar & Liq",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": false
-            },
-            {
-              "customer": "Barrel & Brew Bar & Liq",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Barrel & Brew Bar & Liq",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Hackensack Liquors",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/29/2026",
-              "made": false
-            },
-            {
-              "customer": "Hackensack Liquors",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
-              "customer": "Hackensack Liquors",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
-              "customer": "Hackensack Liquors",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
               "customer": "Hackensack Liquors",
               "product": "White Claw Surge Grape 1/12/19.2oz Can",
               "brand": "White Claw",
               "date": "9/29/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Liq (A)Englewd",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/28/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Liq (A)Englewd",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/28/2026",
+              "made": false
+            },
+            {
+              "customer": "Shop Rite Liq (A)Englewd",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/28/2026",
               "made": true
             },
             {
@@ -161196,83 +163453,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Shop Rite Liq (A)Englewd",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": false
-            },
-            {
-              "customer": "Shop Rite Liq (A)Englewd",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Shop Rite Liq (A)Englewd",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Time Lounge And Liq (A)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Deli Mart (A)",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Simple Simon's (Z)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "H & R Disc. Liq (P)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Simple Simon's (Z)",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "H & R Disc. Liq (P)",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Simple Simon's (Z)",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Simple Simon's (Z)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
               "customer": "H & R Disc. Liq (P)",
               "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
               "brand": "White Claw",
@@ -161280,8 +163460,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": false
             },
             {
-              "customer": "Time Lounge And Liq (A)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "customer": "H & R Disc. Liq (P)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/25/2026",
               "made": true
@@ -161301,8 +163481,29 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
+              "customer": "Simple Simon's (Z)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/25/2026",
+              "made": true
+            },
+            {
+              "customer": "Time Lounge And Liq (A)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/25/2026",
+              "made": true
+            },
+            {
               "customer": "Time Lounge And Liq (A)",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/25/2026",
+              "made": true
+            },
+            {
+              "customer": "H & R Disc. Liq (P)",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/25/2026",
               "made": true
@@ -161315,8 +163516,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Englewood Liq (A)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "customer": "Essex St Liquor and Wine",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/24/2026",
               "made": true
@@ -161333,76 +163534,6 @@ const PROGRAM_DATA_2026_10 = {
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "Buy Rite Of Hackensack",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "Essex St Liquor and Wine",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "Buy Rite Of Hackensack",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "Buy Rite Of Hackensack",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "Bottle & Cork",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/23/2026",
-              "made": true
-            },
-            {
-              "customer": "Bottle & Cork",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
-              "brand": "White Claw",
-              "date": "9/23/2026",
-              "made": true
-            },
-            {
-              "customer": "Bottle & Cork",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/23/2026",
-              "made": true
-            },
-            {
-              "customer": "Bottle & Cork",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/23/2026",
-              "made": false
-            },
-            {
-              "customer": "Bergenfield Liq & Fw",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/23/2026",
-              "made": true
-            },
-            {
-              "customer": "Bergenfield Liq & Fw",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/23/2026",
               "made": true
             },
             {
@@ -161414,7 +163545,14 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Bergenfield Liq & Fw",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/23/2026",
+              "made": true
+            },
+            {
+              "customer": "Bergenfield Liq & Fw",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/23/2026",
               "made": true
@@ -161427,18 +163565,18 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Barrel & Brew Bar & Liq",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "customer": "Bottle & Cork",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/22/2026",
+              "date": "9/23/2026",
               "made": true
             },
             {
-              "customer": "Barrel & Brew Bar & Liq",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "customer": "Bottle & Cork",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
+              "date": "9/23/2026",
+              "made": false
             },
             {
               "customer": "Deli Mart (A)",
@@ -161448,10 +163586,17 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Deli Mart (A)",
+              "customer": "Teaneck Liquors",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/21/2026",
+              "made": true
+            },
+            {
+              "customer": "Teaneck Liquors",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/22/2026",
+              "date": "9/21/2026",
               "made": true
             },
             {
@@ -161464,20 +163609,6 @@ const PROGRAM_DATA_2026_10 = {
             {
               "customer": "Portland Wine & Liquor",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/21/2026",
-              "made": true
-            },
-            {
-              "customer": "Teaneck Liquors",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/21/2026",
-              "made": true
-            },
-            {
-              "customer": "Teaneck Liquors",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/21/2026",
               "made": true
@@ -161505,23 +163636,9 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "George's Liq",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/17/2026",
-              "made": true
-            },
-            {
-              "customer": "George's Liq",
               "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/17/2026",
-              "made": true
-            },
-            {
-              "customer": "Wine And Liq Depot(A)",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/16/2026",
               "made": true
             },
             {
@@ -161551,20 +163668,6 @@ const PROGRAM_DATA_2026_10 = {
               "brand": "White Claw",
               "date": "9/14/2026",
               "made": false
-            },
-            {
-              "customer": "River Edge Wine & Liquor",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/14/2026",
-              "made": true
-            },
-            {
-              "customer": "River Edge Wine & Liquor",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/14/2026",
-              "made": true
             },
             {
               "customer": "Shop Rite Liq (A)Englewd",
@@ -161575,13 +163678,6 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Simple Simon's (Z)",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/11/2026",
-              "made": false
-            },
-            {
-              "customer": "Simple Simon's (Z)",
               "product": "White Claw Surge Grape 1/12/19.2oz Can",
               "brand": "White Claw",
               "date": "9/11/2026",
@@ -161589,13 +163685,20 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Simple Simon's (Z)",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/11/2026",
+              "made": false
+            },
+            {
+              "customer": "Joes Beer Wine & Spirits",
               "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/11/2026",
               "made": true
             },
             {
-              "customer": "Joes Beer Wine & Spirits",
+              "customer": "Simple Simon's (Z)",
               "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/11/2026",
@@ -161623,11 +163726,11 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "G & G Liquors & Bar",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "customer": "Bottle & Cork",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/10/2026",
-              "made": false
+              "date": "9/9/2026",
+              "made": true
             },
             {
               "customer": "Joes Beer Wine & Spirits",
@@ -161637,8 +163740,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Wine And Liq Depot(A)",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "customer": "Bottle & Cork",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/9/2026",
               "made": true
@@ -161649,41 +163752,6 @@ const PROGRAM_DATA_2026_10 = {
               "brand": "White Claw",
               "date": "9/9/2026",
               "made": false
-            },
-            {
-              "customer": "Bottle & Cork",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/9/2026",
-              "made": true
-            },
-            {
-              "customer": "Bottle & Cork",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/9/2026",
-              "made": true
-            },
-            {
-              "customer": "Hackensack Liquors",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/8/2026",
-              "made": true
-            },
-            {
-              "customer": "Portland Wine & Liquor",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/8/2026",
-              "made": true
-            },
-            {
-              "customer": "H & R Disc. Liq (P)",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/8/2026",
-              "made": true
             },
             {
               "customer": "Total Wine & More (River Edge)",
@@ -161694,9 +163762,30 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Portland Wine & Liquor",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Portland Wine & Liquor",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/8/2026",
+              "made": true
+            },
+            {
+              "customer": "H & R Disc. Liq (P)",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/8/2026",
+              "made": true
+            },
+            {
+              "customer": "George's Liq",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/4/2026",
               "made": true
             },
             {
@@ -161714,22 +163803,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "George's Liq",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/4/2026",
-              "made": true
-            },
-            {
-              "customer": "Deli Mart (A)",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/4/2026",
-              "made": false
-            },
-            {
               "customer": "Essex St Liquor and Wine",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/3/2026",
               "made": true
@@ -161743,30 +163818,9 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Essex St Liquor and Wine",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/3/2026",
-              "made": true
-            },
-            {
-              "customer": "Bergenfield Liq & Fw",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/2/2026",
-              "made": false
-            },
-            {
-              "customer": "Joes Beer Wine & Spirits",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/2/2026",
-              "made": false
-            },
-            {
-              "customer": "Bottle & Cork",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/2/2026",
               "made": true
             },
             {
@@ -161778,10 +163832,24 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Bottle & Cork",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle & Cork",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/2/2026",
               "made": true
+            },
+            {
+              "customer": "Joes Beer Wine & Spirits",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/2/2026",
+              "made": false
             },
             {
               "customer": "Total Wine & More (River Edge)",
@@ -161791,8 +163859,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             }
           ],
-          "count": 105,
-          "madeCount": 92,
+          "count": 116,
+          "madeCount": 102,
           "allMade": false,
           "qualified": true,
           "payout": 15,
@@ -161801,10 +163869,73 @@ const PROGRAM_DATA_2026_10 = {
         "harder": {
           "pods": [
             {
-              "customer": "George's Liq",
-              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "customer": "Joes Beer Wine & Spirits",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
-              "date": "10/1/2026",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Joes Beer Wine & Spirits",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine And Liq Depot(A)",
+              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine And Liq Depot(A)",
+              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Hackensack Liquors",
+              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Barrel & Brew Bar & Liq",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Hackensack Liquors",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Total Wine & More (Totowa)",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Total Wine & More (Totowa)",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Portland Wine & Liquor",
+              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "10/2/2026",
               "made": true
             },
             {
@@ -161815,8 +163946,36 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
+              "customer": "George's Liq",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Barrel & Brew Bar & Liq",
+              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/30/2026",
+              "made": true
+            },
+            {
               "customer": "Barrel & Brew Bar & Liq",
               "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/30/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine And Liq Depot(A)",
+              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/30/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine And Liq Depot(A)",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/30/2026",
               "made": true
@@ -161829,57 +163988,22 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Wine And Liq Depot(A)",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Wine And Liq Depot(A)",
-              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Barrel & Brew Bar & Liq",
-              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
               "customer": "Hackensack Liquors",
               "product": "Mikes Harder Mango 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
-              "customer": "Hackensack Liquors",
-              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
-              "brand": "Cayman Jack",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
-              "customer": "Hackensack Liquors",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/29/2026",
               "made": true
             },
             {
               "customer": "Shop Rite Liq (A)Englewd",
-              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/28/2026",
               "made": true
             },
             {
               "customer": "Shop Rite Liq (A)Englewd",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/28/2026",
               "made": true
@@ -161892,45 +164016,24 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
+              "customer": "G & G Liquors & Bar",
+              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "9/24/2026",
+              "made": true
+            },
+            {
+              "customer": "G & G Liquors & Bar",
+              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "9/24/2026",
+              "made": true
+            },
+            {
               "customer": "Essex St Liquor and Wine",
               "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
               "brand": "Cayman Jack",
               "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "G & G Liquors & Bar",
-              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
-              "brand": "Cayman Jack",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "G & G Liquors & Bar",
-              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
-              "brand": "Cayman Jack",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "Joes Beer Wine & Spirits",
-              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/23/2026",
-              "made": true
-            },
-            {
-              "customer": "Bottle & Cork",
-              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
-              "brand": "Cayman Jack",
-              "date": "9/23/2026",
-              "made": true
-            },
-            {
-              "customer": "Bergenfield Liq & Fw",
-              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/23/2026",
               "made": true
             },
             {
@@ -161941,20 +164044,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Joes Beer Wine & Spirits",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/23/2026",
-              "made": true
-            },
-            {
-              "customer": "Bottle & Cork",
-              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/23/2026",
-              "made": true
-            },
-            {
               "customer": "Bottle & Cork",
               "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
               "brand": "Cayman Jack",
@@ -161962,15 +164051,29 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Barrel & Brew Bar & Liq",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "customer": "Bergenfield Liq & Fw",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
-              "date": "9/22/2026",
+              "date": "9/23/2026",
               "made": true
             },
             {
-              "customer": "River Edge Wine & Liquor",
+              "customer": "Bottle & Cork",
+              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "9/23/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle & Cork",
               "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/23/2026",
+              "made": true
+            },
+            {
+              "customer": "Barrel & Brew Bar & Liq",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/22/2026",
               "made": true
@@ -161983,8 +164086,22 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Total Wine & More (Totowa)",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "customer": "River Edge Wine & Liquor",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/22/2026",
+              "made": true
+            },
+            {
+              "customer": "Simple Simon's (Z)",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/18/2026",
+              "made": true
+            },
+            {
+              "customer": "Simple Simon's (Z)",
+              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/18/2026",
               "made": true
@@ -161998,28 +164115,7 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Simple Simon's (Z)",
-              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/18/2026",
-              "made": true
-            },
-            {
-              "customer": "Total Wine & More (Totowa)",
               "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/18/2026",
-              "made": true
-            },
-            {
-              "customer": "Simple Simon's (Z)",
-              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/18/2026",
-              "made": true
-            },
-            {
-              "customer": "Simple Simon's (Z)",
-              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/18/2026",
               "made": true
@@ -162029,13 +164125,6 @@ const PROGRAM_DATA_2026_10 = {
               "product": "Mikes Harder Mango 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/18/2026",
-              "made": true
-            },
-            {
-              "customer": "Wine And Liq Depot(A)",
-              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
-              "brand": "Cayman Jack",
-              "date": "9/16/2026",
               "made": true
             },
             {
@@ -162043,13 +164132,6 @@ const PROGRAM_DATA_2026_10 = {
               "product": "Mikes Harder Mango 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/15/2026",
-              "made": true
-            },
-            {
-              "customer": "Portland Wine & Liquor",
-              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
-              "brand": "Cayman Jack",
-              "date": "9/14/2026",
               "made": true
             },
             {
@@ -162075,7 +164157,7 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "H & R Disc. Liq (P)",
-              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/8/2026",
               "made": true
@@ -162089,9 +164171,16 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "H & R Disc. Liq (P)",
-              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Simple Simon's (Z)",
+              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "9/4/2026",
               "made": true
             },
             {
@@ -162109,20 +164198,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Simple Simon's (Z)",
-              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
-              "brand": "Cayman Jack",
-              "date": "9/4/2026",
-              "made": true
-            },
-            {
-              "customer": "W E Beverage (A)",
-              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/3/2026",
-              "made": true
-            },
-            {
               "customer": "Teaneck Discount Liquor",
               "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
@@ -162137,10 +164212,10 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Bergenfield Liq & Fw",
+              "customer": "W E Beverage (A)",
               "product": "Mikes Harder Mango 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
-              "date": "9/2/2026",
+              "date": "9/3/2026",
               "made": true
             },
             {
@@ -162151,17 +164226,10 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Wine And Liq Depot(A)",
-              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
-              "brand": "Cayman Jack",
-              "date": "9/2/2026",
-              "made": true
-            },
-            {
-              "customer": "Deli Mart (A)",
-              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "customer": "Bergenfield Liq & Fw",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
-              "date": "9/1/2026",
+              "date": "9/2/2026",
               "made": true
             },
             {
@@ -162170,17 +164238,24 @@ const PROGRAM_DATA_2026_10 = {
               "brand": "Mike's Harder",
               "date": "9/1/2026",
               "made": true
+            },
+            {
+              "customer": "Deli Mart (A)",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/1/2026",
+              "made": true
             }
           ],
-          "count": 53,
-          "madeCount": 53,
+          "count": 54,
+          "madeCount": 54,
           "allMade": true,
           "qualified": true,
           "payout": 30,
           "toQualifier": 0
         },
-        "totalPods": 158,
-        "accounts": 25,
+        "totalPods": 170,
+        "accounts": 26,
         "payout": 45,
         "legsQualified": 2,
         "offPremTargets": [
@@ -162195,10 +164270,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "Wine & More (P)",
             "cases2026": 1903.0
-          },
-          {
-            "customer": "Grand Liquor & Delicatesen",
-            "cases2026": 859.0
           },
           {
             "customer": "Fill Er Up Kosher Wine(P)",
@@ -162229,16 +164300,121 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 0.0
           }
         ],
-        "offPremTargetCount": 11
+        "offPremTargetCount": 10
       },
       "Derrick Laws": {
         "wc": {
           "pods": [
             {
-              "customer": "Shop Rite Wines/Spirits",
+              "customer": "Shop Rite Liq (A)Littlefl",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Mercer Bar & Liquors",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": false
+            },
+            {
+              "customer": "Shop Rite Liq (A)Littlefl",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Liq (A)Littlefl",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "230 Liq & Groc.(A)",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": false
+            },
+            {
+              "customer": "Mercer Bar & Liquors",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Liq (A)Littlefl",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": false
+            },
+            {
+              "customer": "Ferraro's Liquor",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Limestone Liquors (A)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Raphael & Angel Liq (A)",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Gallery (Paterson)",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "10/2/2026",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Raphael & Angel Liq (A)",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Gallery (Paterson)",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Raphael & Angel Liq (A)",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Gallery (Paterson)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Raphael & Angel Liq (A)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
               "made": true
             },
             {
@@ -162257,6 +164433,13 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Shop Rite Wines/Spirits",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Wines/Spirits",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "10/2/2026",
@@ -162264,42 +164447,21 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Shop Rite Wines/Spirits",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "10/2/2026",
               "made": true
             },
             {
-              "customer": "Shop Rite Liq (A)Littlefl",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Shop Rite Liq (A)Littlefl",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "230 Liq & Groc.(A)",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": false
-            },
-            {
               "customer": "Pal's Liquor",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/25/2026",
               "made": true
             },
             {
               "customer": "Pal's Liquor",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/25/2026",
               "made": true
@@ -162326,27 +164488,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Shop Rite Liq (A)Littlefl",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/23/2026",
-              "made": false
-            },
-            {
-              "customer": "Shop Rite Liq (A)Littlefl",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/23/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor Gallery (Paterson)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/21/2026",
-              "made": true
-            },
-            {
               "customer": "Liquor Gallery (Paterson)",
               "product": "White Claw Peach 1/12/19.2 oz Can",
               "brand": "White Claw",
@@ -162368,20 +164509,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Raphael & Angel Liq (A)",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
-              "brand": "White Claw",
-              "date": "9/18/2026",
-              "made": true
-            },
-            {
-              "customer": "Raphael & Angel Liq (A)",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/18/2026",
-              "made": true
-            },
-            {
               "customer": "Quis Queya Liquor(P)",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
@@ -162390,23 +164517,16 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Ferraro's Liquor",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/15/2026",
-              "made": true
-            },
-            {
-              "customer": "Ferraro's Liquor",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/15/2026",
               "made": true
             },
             {
-              "customer": "Liquor Gallery (Paterson)",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "customer": "Ferraro's Liquor",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/14/2026",
+              "date": "9/15/2026",
               "made": true
             },
             {
@@ -162438,24 +164558,10 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Mercer Bar & Liquors",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "customer": "Dorta Liquor (A)",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/9/2026",
-              "made": false
-            },
-            {
-              "customer": "Mercer Bar & Liquors",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/9/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor Gallery (Paterson)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/8/2026",
+              "date": "9/2/2026",
               "made": true
             },
             {
@@ -162464,17 +164570,10 @@ const PROGRAM_DATA_2026_10 = {
               "brand": "White Claw",
               "date": "9/2/2026",
               "made": true
-            },
-            {
-              "customer": "Dorta Liquor (A)",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/2/2026",
-              "made": true
             }
           ],
-          "count": 34,
-          "madeCount": 29,
+          "count": 38,
+          "madeCount": 33,
           "allMade": false,
           "qualified": true,
           "payout": 15,
@@ -162482,6 +164581,62 @@ const PROGRAM_DATA_2026_10 = {
         },
         "harder": {
           "pods": [
+            {
+              "customer": "El Oasis",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Liq (A)Littlefl",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Broadway Liq (A)",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Mercer Bar & Liquors",
+              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Broadway Liq (A)",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Mercer Bar & Liquors",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Ferraro's Liquor",
+              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Limestone Liquors (A)",
+              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "10/6/2026",
+              "made": true
+            },
             {
               "customer": "Shop Rite Wines/Spirits",
               "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
@@ -162519,13 +164674,6 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Raphael & Angel Liq (A)",
-              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Raphael & Angel Liq (A)",
               "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
               "brand": "Cayman Jack",
               "date": "9/28/2026",
@@ -162539,15 +164687,22 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
+              "customer": "Raphael & Angel Liq (A)",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/28/2026",
+              "made": true
+            },
+            {
               "customer": "Shop Rite Wines/Spirits",
-              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
+              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
               "brand": "Cayman Jack",
               "date": "9/25/2026",
               "made": true
             },
             {
               "customer": "Shop Rite Wines/Spirits",
-              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
+              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
               "brand": "Cayman Jack",
               "date": "9/25/2026",
               "made": true
@@ -162560,9 +164715,9 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Pal's Liquor",
-              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
-              "brand": "Cayman Jack",
+              "customer": "Shop Rite Liq (A)Littlefl",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
               "date": "9/16/2026",
               "made": true
             },
@@ -162574,9 +164729,9 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Shop Rite Liq (A)Littlefl",
-              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
+              "customer": "Pal's Liquor",
+              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
               "date": "9/16/2026",
               "made": true
             },
@@ -162616,15 +164771,15 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             }
           ],
-          "count": 19,
-          "madeCount": 19,
+          "count": 27,
+          "madeCount": 27,
           "allMade": true,
           "qualified": true,
           "payout": 30,
           "toQualifier": 0
         },
-        "totalPods": 53,
-        "accounts": 13,
+        "totalPods": 65,
+        "accounts": 16,
         "payout": 45,
         "legsQualified": 2,
         "offPremTargets": [
@@ -162637,14 +164792,6 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 20970.0
           },
           {
-            "customer": "Limestone Liquors (A)",
-            "cases2026": 12335.0
-          },
-          {
-            "customer": "El Oasis",
-            "cases2026": 10245.0
-          },
-          {
             "customer": "10th Ave Liq & Food (P)",
             "cases2026": 7764.0
           },
@@ -162655,10 +164802,6 @@ const PROGRAM_DATA_2026_10 = {
           {
             "customer": "M & R Disc (A) Liqs.",
             "cases2026": 7155.0
-          },
-          {
-            "customer": "Broadway Liq (A)",
-            "cases2026": 7042.5
           },
           {
             "customer": "Moya E.Bar&Liq.(Z)",
@@ -162709,7 +164852,7 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 0.0
           }
         ],
-        "offPremTargetCount": 20
+        "offPremTargetCount": 17
       },
       "Dylan Rubino": {
         "wc": {
@@ -163044,43 +165187,85 @@ const PROGRAM_DATA_2026_10 = {
         "wc": {
           "pods": [
             {
-              "customer": "President Liqrs (A)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "President Liqrs (A)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
               "customer": "Paulison Liquors (P)",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/29/2026",
+              "date": "10/8/2026",
               "made": true
             },
             {
               "customer": "Paulison Liquors (P)",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/29/2026",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "ESTEVEZ LIQUORS LLC",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Parker Liquors (Z)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle Liquor (P)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "President Liqrs (A)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "President Liqrs (A)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle Liquor (P)",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle Liquor (P)",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle Liquor (P)",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": false
+            },
+            {
+              "customer": "Parker Liquors (Z)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
               "made": true
             },
             {
               "customer": "Liquor Stop (Passaic)",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor Stop (Passaic)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/29/2026",
               "made": true
@@ -163093,22 +165278,15 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Bottle Liquor (P)",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": false
-            },
-            {
-              "customer": "Bottle Liquor (P)",
+              "customer": "Liquor Stop (Passaic)",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/28/2026",
+              "date": "9/29/2026",
               "made": true
             },
             {
               "customer": "Danny's Liquor",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/24/2026",
               "made": true
@@ -163116,6 +165294,13 @@ const PROGRAM_DATA_2026_10 = {
             {
               "customer": "Danny's Liquor",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/24/2026",
+              "made": true
+            },
+            {
+              "customer": "Danny's Liquor",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/24/2026",
               "made": true
@@ -163128,13 +165313,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": false
             },
             {
-              "customer": "Danny's Liquor",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
               "customer": "Bermuda Liquors (P)",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
@@ -163149,15 +165327,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Bottle Liquor (P)",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
-              "brand": "White Claw",
-              "date": "9/21/2026",
-              "made": true
-            },
-            {
-              "customer": "Parker Liquors (Z)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "customer": "New Eagle Liquors",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/21/2026",
               "made": true
@@ -163168,20 +165339,6 @@ const PROGRAM_DATA_2026_10 = {
               "brand": "White Claw",
               "date": "9/21/2026",
               "made": false
-            },
-            {
-              "customer": "Parker Liquors (Z)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/21/2026",
-              "made": true
-            },
-            {
-              "customer": "New Eagle Liquors",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/21/2026",
-              "made": true
             },
             {
               "customer": "Mariana's Liquors",
@@ -163198,13 +165355,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Bottle Liquor (P)",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/14/2026",
-              "made": true
-            },
-            {
               "customer": "Shanik Liqs.(P)",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
@@ -163216,6 +165366,20 @@ const PROGRAM_DATA_2026_10 = {
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/8/2026",
+              "made": true
+            },
+            {
+              "customer": "C Town Supermarket(P)",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/2/2026",
+              "made": true
+            },
+            {
+              "customer": "C Town Supermarket(P)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/2/2026",
               "made": true
             },
             {
@@ -163231,24 +165395,10 @@ const PROGRAM_DATA_2026_10 = {
               "brand": "White Claw",
               "date": "9/2/2026",
               "made": true
-            },
-            {
-              "customer": "C Town Supermarket(P)",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/2/2026",
-              "made": true
-            },
-            {
-              "customer": "C Town Supermarket(P)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/2/2026",
-              "made": true
             }
           ],
-          "count": 29,
-          "madeCount": 26,
+          "count": 30,
+          "madeCount": 27,
           "allMade": false,
           "qualified": true,
           "payout": 15,
@@ -163256,6 +165406,62 @@ const PROGRAM_DATA_2026_10 = {
         },
         "harder": {
           "pods": [
+            {
+              "customer": "Bottle Liquor (P)",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle Liquor (P)",
+              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle Liquor (P)",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "C & S Lucky Liquors (P)",
+              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Farm Boy",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Farm Boy",
+              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Farm Boy",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Farm Boy",
+              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/2/2026",
+              "made": true
+            },
             {
               "customer": "C Town Supermarket(P)",
               "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
@@ -163271,13 +165477,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "C & S Lucky Liquors (P)",
-              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
-              "brand": "Cayman Jack",
-              "date": "9/23/2026",
-              "made": true
-            },
-            {
               "customer": "New Eagle Liquors",
               "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
               "brand": "Cayman Jack",
@@ -163293,7 +165492,7 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "C & S Lucky Liquors (P)",
-              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
+              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
               "brand": "Cayman Jack",
               "date": "9/23/2026",
               "made": true
@@ -163307,23 +165506,9 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Bottle Liquor (P)",
-              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
-              "brand": "Cayman Jack",
-              "date": "9/21/2026",
-              "made": true
-            },
-            {
-              "customer": "Bottle Liquor (P)",
               "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
               "brand": "Cayman Jack",
               "date": "9/21/2026",
-              "made": true
-            },
-            {
-              "customer": "Bottle Liquor (P)",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/14/2026",
               "made": true
             },
             {
@@ -163335,7 +165520,7 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Belmont Liqrs (P)",
-              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/9/2026",
               "made": true
@@ -163349,16 +165534,9 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Belmont Liqrs (P)",
-              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/9/2026",
-              "made": true
-            },
-            {
-              "customer": "President Liqrs (A)",
-              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
-              "brand": "Cayman Jack",
-              "date": "9/8/2026",
               "made": true
             },
             {
@@ -163367,31 +165545,30 @@ const PROGRAM_DATA_2026_10 = {
               "brand": "Cayman Jack",
               "date": "9/8/2026",
               "made": true
+            },
+            {
+              "customer": "President Liqrs (A)",
+              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "9/8/2026",
+              "made": true
             }
           ],
-          "count": 16,
-          "madeCount": 16,
+          "count": 21,
+          "madeCount": 21,
           "allMade": true,
           "qualified": true,
           "payout": 30,
           "toQualifier": 0
         },
-        "totalPods": 45,
-        "accounts": 15,
+        "totalPods": 51,
+        "accounts": 17,
         "payout": 45,
         "legsQualified": 2,
         "offPremTargets": [
           {
-            "customer": "Farm Boy",
-            "cases2026": 15703.0
-          },
-          {
             "customer": "Luna Liquors",
             "cases2026": 12543.0
-          },
-          {
-            "customer": "ESTEVEZ LIQUORS LLC",
-            "cases2026": 12309.0
           },
           {
             "customer": "East Side Bar Liquors",
@@ -163438,49 +165615,280 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 2898.0
           }
         ],
-        "offPremTargetCount": 14
+        "offPremTargetCount": 12
       },
       "Jayson Romine": {
         "wc": {
           "pods": [
             {
-              "customer": "Super Saver Liq",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "customer": "ShopRite Wine & Spirits of Newton#830",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
-              "date": "10/1/2026",
+              "date": "10/8/2026",
               "made": true
             },
             {
-              "customer": "Super Saver Liq",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "customer": "ShopRite Wine & Spirits of Newton#830",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "10/1/2026",
+              "date": "10/8/2026",
               "made": true
+            },
+            {
+              "customer": "ShopRite Wine & Spirits of Newton#830",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "ShopRite Wines & Spirits of Sparta",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/8/2026",
+              "made": false
+            },
+            {
+              "customer": "ShopRite Wine & Spirits of Newton#830",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "The Right Bottle",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": false
             },
             {
               "customer": "Hamburg Liquor",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/30/2026",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Woody's Liq Shop (A)",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
               "made": true
             },
             {
               "customer": "Hamburg Liquor",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/30/2026",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "White Deer Inn",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "The Right Bottle",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Woody's Liq Shop (A)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "The George Inn",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "The George Inn",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "The George Inn",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine Country Newton",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine Country Newton",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": false
+            },
+            {
+              "customer": "Liquor Factory III Sparta",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": false
+            },
+            {
+              "customer": "Liquor Factory III Sparta",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine Country Newton",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Factory I Landing",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Factory V Andover",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Factory V Andover",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Factory III Sparta",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Factory IV Hopatcong",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": false
+            },
+            {
+              "customer": "Liquor Factory V Andover",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": false
+            },
+            {
+              "customer": "Liquor Factory III Sparta",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Factory V Andover",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Factory V Andover",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Buy Rite Liquors Franklin",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Brix - Wine, Spirits, Beer (Fredon)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Patricks Wine Barn",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": false
+            },
+            {
+              "customer": "Patricks Wine Barn",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Super Saver Liq",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Brix - Wine, Spirits, Beer (Fredon)",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Patricks Wine Barn",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Super Saver Liq",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Patricks Wine Barn",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
               "made": true
             },
             {
               "customer": "Mac & Lindy's W & S (A)",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "White Deer Inn",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/30/2026",
               "made": true
@@ -163514,41 +165922,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Mac & Lindy's W & S (A)",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Woody's Liq Shop (A)",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Mac & Lindy's W & S (A)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Woody's Liq Shop (A)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "White Deer Inn",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
               "customer": "Hamburg Liquor",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
@@ -163556,28 +165929,28 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "The George Inn",
+              "customer": "White Deer Inn",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/30/2026",
+              "made": true
+            },
+            {
+              "customer": "Mac & Lindy's W & S (A)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/30/2026",
+              "made": true
+            },
+            {
+              "customer": "Mac & Lindy's W & S (A)",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/29/2026",
+              "date": "9/30/2026",
               "made": true
             },
             {
               "customer": "Wantage Plaza Liq Outlet",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
-              "customer": "Seplow's Liquors",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
-              "customer": "Wine Country Newton",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/29/2026",
@@ -163591,7 +165964,21 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
+              "customer": "Wantage Plaza Liq Outlet",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/29/2026",
+              "made": true
+            },
+            {
               "customer": "Wine Country Newton",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/29/2026",
+              "made": true
+            },
+            {
+              "customer": "Seplow's Liquors",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/29/2026",
@@ -163605,15 +165992,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Wantage Plaza Liq Outlet",
+              "customer": "Seplow's Liquors",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
-              "customer": "Wine Country Newton",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/29/2026",
               "made": true
@@ -163626,17 +166006,45 @@ const PROGRAM_DATA_2026_10 = {
               "made": false
             },
             {
-              "customer": "Seplow's Liquors",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "customer": "Liquor Factory II Jefferson",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/29/2026",
+              "date": "9/28/2026",
               "made": true
             },
             {
-              "customer": "The George Inn",
+              "customer": "Liquor Factory IV Hopatcong",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/29/2026",
+              "date": "9/28/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Factory IV Hopatcong",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/28/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Factory VI Byram",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/28/2026",
+              "made": false
+            },
+            {
+              "customer": "Liquor Factory I Landing",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/28/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Factory II Jefferson",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/28/2026",
               "made": true
             },
             {
@@ -163661,90 +166069,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": false
             },
             {
-              "customer": "Liquor Factory II Jefferson",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor Factory V Andover",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor Factory V Andover",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": false
-            },
-            {
-              "customer": "Liquor Factory I Landing",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor Factory III Sparta",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor Factory I Landing",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor Factory III Sparta",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor Factory IV Hopatcong",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor Factory IV Hopatcong",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor Factory III Sparta",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": false
-            },
-            {
-              "customer": "Liquor Factory II Jefferson",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor Factory III Sparta",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
               "customer": "Liquor Factory VI Byram",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
@@ -163752,6 +166076,13 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
+              "customer": "Liquor Factory II Jefferson",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/28/2026",
+              "made": true
+            },
+            {
               "customer": "Liquor Factory III Sparta",
               "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
@@ -163759,73 +166090,10 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Liquor Factory II Jefferson",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "customer": "Liquor Factory III Sparta",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor Factory IV Hopatcong",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": false
-            },
-            {
-              "customer": "Liquor Factory VI Byram",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": false
-            },
-            {
-              "customer": "Buy Rite Liquors Franklin",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Spring Street Liquors",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "ShopRite Wines & Spirits of Sparta",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "ShopRite Wines & Spirits of Sparta",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": false
-            },
-            {
-              "customer": "Spring Street Liquors",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "Spring Street Liquors",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "Spring Street Liquors",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
               "made": true
             },
             {
@@ -163836,6 +166104,20 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
+              "customer": "Spring Street Liquors",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/24/2026",
+              "made": true
+            },
+            {
+              "customer": "Spring Street Liquors",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/24/2026",
+              "made": true
+            },
+            {
               "customer": "ShopRite Wines & Spirits of Sparta",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
@@ -163843,22 +166125,29 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "White Deer Inn",
+              "customer": "Spring Street Liquors",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/23/2026",
+              "date": "9/24/2026",
               "made": true
             },
             {
-              "customer": "The Right Bottle",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/23/2026",
-              "made": true
-            },
-            {
-              "customer": "The Right Bottle",
+              "customer": "ShopRite Wines & Spirits of Sparta",
               "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/24/2026",
+              "made": true
+            },
+            {
+              "customer": "Spring Street Liquors",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/24/2026",
+              "made": true
+            },
+            {
+              "customer": "White Deer Inn",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/23/2026",
               "made": true
@@ -163872,23 +166161,44 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "The Right Bottle",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/23/2026",
+              "made": true
+            },
+            {
+              "customer": "The Right Bottle",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/23/2026",
               "made": true
             },
             {
-              "customer": "Brix - Wine, Spirits, Beer (Fredon)",
+              "customer": "Fredon Liquor (Fredon Deli)",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/22/2026",
+              "date": "9/21/2026",
               "made": true
             },
             {
-              "customer": "Brix - Wine, Spirits, Beer (Fredon)",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "customer": "Wine Country Newton",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/22/2026",
+              "date": "9/21/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Factory V Andover",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/21/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Factory VI Byram",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/21/2026",
               "made": true
             },
             {
@@ -163906,57 +166216,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Fredon Liquor (Fredon Deli)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/21/2026",
-              "made": true
-            },
-            {
               "customer": "Liquor Factory IV Hopatcong",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/21/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor Factory V Andover",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/21/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor Factory VI Byram",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/21/2026",
-              "made": true
-            },
-            {
-              "customer": "Wine Country Newton",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/21/2026",
-              "made": false
-            },
-            {
-              "customer": "Liquor Factory V Andover",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/21/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor Factory III Sparta",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/21/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor Factory V Andover",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/21/2026",
               "made": true
@@ -163966,48 +166227,6 @@ const PROGRAM_DATA_2026_10 = {
               "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/21/2026",
-              "made": true
-            },
-            {
-              "customer": "Wine Country Newton",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/21/2026",
-              "made": true
-            },
-            {
-              "customer": "USA Wine Traders Club Of Newton (A)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/17/2026",
-              "made": true
-            },
-            {
-              "customer": "ShopRite Wine & Spirits of Newton#830",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/17/2026",
-              "made": true
-            },
-            {
-              "customer": "ShopRite Wine & Spirits of Newton#830",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/17/2026",
-              "made": true
-            },
-            {
-              "customer": "ShopRite Wine & Spirits of Newton#830",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/17/2026",
-              "made": true
-            },
-            {
-              "customer": "USA Wine Traders Club Of Newton (A)",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/17/2026",
               "made": true
             },
             {
@@ -164018,17 +166237,17 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Patricks Wine Barn",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "customer": "USA Wine Traders Club Of Newton (A)",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/16/2026",
+              "date": "9/17/2026",
               "made": true
             },
             {
-              "customer": "Patricks Wine Barn",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "customer": "USA Wine Traders Club Of Newton (A)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/16/2026",
+              "date": "9/17/2026",
               "made": true
             },
             {
@@ -164060,13 +166279,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "ShopRite Wine & Spirits of Newton#830",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/10/2026",
-              "made": true
-            },
-            {
               "customer": "Spring Street Liquors",
               "product": "White Claw Surge Grape 1/12/19.2oz Can",
               "brand": "White Claw",
@@ -164074,17 +166286,10 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "The Right Bottle",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "customer": "Liquor Factory VI Byram",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/9/2026",
-              "made": false
-            },
-            {
-              "customer": "The George Inn",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/9/2026",
+              "date": "9/8/2026",
               "made": true
             },
             {
@@ -164102,28 +166307,7 @@ const PROGRAM_DATA_2026_10 = {
               "made": false
             },
             {
-              "customer": "Liquor Factory VI Byram",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/8/2026",
-              "made": true
-            },
-            {
               "customer": "Wine Grand (Franklin)",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/4/2026",
-              "made": true
-            },
-            {
-              "customer": "Wine Grand (Franklin)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/4/2026",
-              "made": true
-            },
-            {
-              "customer": "George's Wine & Spirits",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/4/2026",
@@ -164138,7 +166322,21 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Wine Grand (Franklin)",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/4/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine Grand (Franklin)",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/4/2026",
+              "made": true
+            },
+            {
+              "customer": "George's Wine & Spirits",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/4/2026",
               "made": true
@@ -164158,8 +166356,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             }
           ],
-          "count": 102,
-          "madeCount": 92,
+          "count": 105,
+          "madeCount": 94,
           "allMade": false,
           "qualified": true,
           "payout": 15,
@@ -164168,24 +166366,178 @@ const PROGRAM_DATA_2026_10 = {
         "harder": {
           "pods": [
             {
+              "customer": "ShopRite Wines & Spirits of Franklin",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Spring Street Liquors",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "ShopRite Wines & Spirits of Franklin",
+              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
               "customer": "Spring Street Liquors",
               "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
-              "date": "10/2/2026",
+              "date": "10/8/2026",
               "made": true
             },
             {
-              "customer": "Spring Street Liquors",
+              "customer": "ShopRite Wine & Spirits of Newton#830",
+              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "ShopRite Wine & Spirits of Newton#830",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "ShopRite Wine & Spirits of Newton#830",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "ShopRite Wine & Spirits of Newton#830",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "ShopRite Wines & Spirits of Franklin",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Sussex Co.Discount Liq(P)",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Sussex Co.Discount Liq(P)",
+              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "The George Inn",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Patricks Wine Barn",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Factory V Andover",
+              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Wantage Plaza Liq Outlet",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Wantage Plaza Liq Outlet",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Factory II Jefferson",
+              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Wantage Plaza Liq Outlet",
+              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Factory VI Byram",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Factory VI Byram",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Wantage Plaza Liq Outlet",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Factory IV Hopatcong",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Buy Rite Liquors Franklin",
               "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "10/2/2026",
               "made": true
             },
             {
-              "customer": "Hamburg Liquor",
-              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "customer": "Buy Rite Liquors Franklin",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
-              "date": "9/30/2026",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Patricks Wine Barn",
+              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/1/2026",
               "made": true
             },
             {
@@ -164197,23 +166549,23 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Hamburg Liquor",
-              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/30/2026",
               "made": true
             },
             {
               "customer": "Hamburg Liquor",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/30/2026",
               "made": true
             },
             {
-              "customer": "Seplow's Liquors",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "customer": "Hamburg Liquor",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
-              "date": "9/29/2026",
+              "date": "9/30/2026",
               "made": true
             },
             {
@@ -164224,14 +166576,42 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Liquor Factory IV Hopatcong",
-              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "customer": "Seplow's Liquors",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/29/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Factory VI Byram",
+              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/28/2026",
               "made": true
             },
             {
-              "customer": "Liquor Factory VI Byram",
+              "customer": "Liquor Factory IV Hopatcong",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/28/2026",
+              "made": true
+            },
+            {
+              "customer": "ShopRite Wines & Spirits of Sparta",
+              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "9/28/2026",
+              "made": true
+            },
+            {
+              "customer": "ShopRite Wines & Spirits of Sparta",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/28/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Factory I Landing",
               "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/28/2026",
@@ -164245,50 +166625,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Liquor Factory VI Byram",
-              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor Factory V Andover",
-              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
               "customer": "ShopRite Wines & Spirits of Sparta",
               "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "ShopRite Wines & Spirits of Sparta",
-              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
-              "brand": "Cayman Jack",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor Factory I Landing",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "ShopRite Wines & Spirits of Sparta",
-              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor Factory IV Hopatcong",
-              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/28/2026",
               "made": true
@@ -164301,22 +166639,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Patricks Wine Barn",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
               "customer": "ShopRite Wines & Spirits of Franklin",
               "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "ShopRite Wines & Spirits of Franklin",
-              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/24/2026",
               "made": true
@@ -164329,22 +166653,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Woody's Liq Shop (A)",
-              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/23/2026",
-              "made": true
-            },
-            {
               "customer": "Mac & Lindy's W & S (A)",
               "product": "Mikes Harder Mango 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/23/2026",
-              "made": true
-            },
-            {
-              "customer": "Mac & Lindy's W & S (A)",
-              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/23/2026",
               "made": true
@@ -164364,22 +166674,22 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Liquor Factory I Landing",
-              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
+              "customer": "Woody's Liq Shop (A)",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
-              "date": "9/22/2026",
+              "date": "9/23/2026",
+              "made": true
+            },
+            {
+              "customer": "Mac & Lindy's W & S (A)",
+              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/23/2026",
               "made": true
             },
             {
               "customer": "Liquor Factory I Landing",
               "product": "Mikes Harder Mango 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "ShopRite Wine & Spirits of Newton#830",
-              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/22/2026",
               "made": true
@@ -164392,15 +166702,22 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
+              "customer": "Liquor Factory I Landing",
+              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/22/2026",
+              "made": true
+            },
+            {
               "customer": "Liquor Factory IV Hopatcong",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/21/2026",
               "made": true
             },
             {
               "customer": "Liquor Factory IV Hopatcong",
-              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/21/2026",
               "made": true
@@ -164413,71 +166730,22 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "ShopRite Wine & Spirits of Newton#830",
-              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/17/2026",
-              "made": true
-            },
-            {
-              "customer": "ShopRite Wine & Spirits of Newton#830",
-              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/17/2026",
-              "made": true
-            },
-            {
-              "customer": "ShopRite Wine & Spirits of Newton#830",
-              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/17/2026",
-              "made": true
-            },
-            {
-              "customer": "Patricks Wine Barn",
-              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/16/2026",
-              "made": true
-            },
-            {
-              "customer": "Sussex Co.Discount Liq(P)",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/15/2026",
-              "made": true
-            },
-            {
               "customer": "Sussex Co.Discount Liq(P)",
               "product": "Mikes Harder Mango 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/15/2026",
-              "made": true
-            },
-            {
-              "customer": "Wantage Plaza Liq Outlet",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/14/2026",
-              "made": true
-            },
-            {
-              "customer": "Wantage Plaza Liq Outlet",
-              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/14/2026",
-              "made": true
-            },
-            {
-              "customer": "Wantage Plaza Liq Outlet",
-              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/14/2026",
               "made": true
             },
             {
               "customer": "Liquor Factory III Sparta",
-              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/14/2026",
+              "made": true
+            },
+            {
+              "customer": "Wantage Plaza Liq Outlet",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/14/2026",
               "made": true
@@ -164490,15 +166758,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Wantage Plaza Liq Outlet",
-              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/14/2026",
-              "made": true
-            },
-            {
               "customer": "Liquor Factory III Sparta",
-              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/14/2026",
               "made": true
@@ -164511,8 +166772,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Buy Rite Liquors Franklin",
-              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "customer": "Spring Street Liquors",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/10/2026",
               "made": true
@@ -164525,29 +166786,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Buy Rite Liquors Franklin",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/10/2026",
-              "made": true
-            },
-            {
-              "customer": "Spring Street Liquors",
-              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/10/2026",
-              "made": true
-            },
-            {
               "customer": "The George Inn",
               "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/9/2026",
-              "made": true
-            },
-            {
-              "customer": "The George Inn",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/9/2026",
               "made": true
@@ -164568,28 +166808,28 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Super Saver Liq",
-              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/3/2026",
               "made": true
             },
             {
               "customer": "Super Saver Liq",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/3/2026",
               "made": true
             },
             {
               "customer": "The Right Bottle",
-              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/2/2026",
               "made": true
             },
             {
               "customer": "The Right Bottle",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/2/2026",
               "made": true
@@ -164602,14 +166842,14 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             }
           ],
-          "count": 62,
-          "madeCount": 62,
+          "count": 68,
+          "madeCount": 68,
           "allMade": true,
           "qualified": true,
           "payout": 30,
           "toQualifier": 0
         },
-        "totalPods": 164,
+        "totalPods": 173,
         "accounts": 29,
         "payout": 45,
         "legsQualified": 2,
@@ -164649,16 +166889,226 @@ const PROGRAM_DATA_2026_10 = {
         "wc": {
           "pods": [
             {
-              "customer": "Metro Liquors (North Arlington)",
+              "customer": "Swizzle Stick Liq (A)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Clifton Commons S & W",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/8/2026",
+              "made": false
+            },
+            {
+              "customer": "Swizzle Stick Liq (A)",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "10/1/2026",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Swizzle Stick Liq (A)",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/8/2026",
+              "made": false
+            },
+            {
+              "customer": "Dante's Liquor & Wine",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Clifton Commons S & W",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Dante's Liquor & Wine",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Rainbow Liquor (P)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Mart (North Arlington)",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Lyndhurst Liquors (P)",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Lyndhurst Liquors (P)",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Lyndhurst Liquors (P)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottleneck Liquors",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "US#1 Wine & Liquor",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottleneck Liquors",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "US#1 Wine & Liquor",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Lexington Liquors (Z)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
               "made": true
             },
             {
               "customer": "Quick Buy",
               "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Lexington Liquors (Z)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "West End Wine & Liq",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": false
+            },
+            {
+              "customer": "West End Wine & Liq",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "West End Wine & Liq",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "World of Wine & Liquor",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Marina's Wine & Spirits",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Marina's Wine & Spirits",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Town Liquors",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Clifton Commons S & W",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Mart (North Arlington)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Swizzle Stick Liq (A)",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Clifton Commons S & W",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "West End Wine & Liq",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Metro Liquors (North Arlington)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
               "date": "10/1/2026",
               "made": true
             },
@@ -164670,11 +167120,25 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
+              "customer": "Forest Dairy (A)",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": false
+            },
+            {
               "customer": "Liquor Shed",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/30/2026",
               "made": true
+            },
+            {
+              "customer": "Krauser Food & Liq(A)",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/30/2026",
+              "made": false
             },
             {
               "customer": "Liquor Shed",
@@ -164685,7 +167149,7 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Liquor Shed",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/30/2026",
               "made": true
@@ -164699,10 +167163,10 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Krauser Food & Liq(A)",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/30/2026",
-              "made": false
+              "made": true
             },
             {
               "customer": "Riverside Liquors",
@@ -164712,13 +167176,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Krauser Food & Liq(A)",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
               "customer": "Rainbow Liquor (P)",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
@@ -164726,17 +167183,10 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Rainbow Liquor (P)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "customer": "Lexington Liquors (Z)",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
-              "customer": "US#1 Wine & Liquor",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/29/2026",
+              "date": "9/28/2026",
               "made": true
             },
             {
@@ -164748,7 +167198,7 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Lexington Liquors (Z)",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/28/2026",
               "made": true
@@ -164762,13 +167212,27 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Lexington Liquors (Z)",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/28/2026",
               "made": true
             },
             {
               "customer": "Meadow Fine Liquors",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/28/2026",
+              "made": true
+            },
+            {
+              "customer": "Meadow Fine Liquors",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/28/2026",
+              "made": true
+            },
+            {
+              "customer": "Lexington Liquors (Z)",
               "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/28/2026",
@@ -164789,38 +167253,17 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Lexington Liquors (Z)",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "customer": "Bottleneck Liquors",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
+              "date": "9/25/2026",
+              "made": false
             },
             {
-              "customer": "Lexington Liquors (Z)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Meadow Fine Liquors",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Lexington Liquors (Z)",
+              "customer": "Bottleneck Liquors",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Lexington Liquors (Z)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
+              "date": "9/25/2026",
               "made": true
             },
             {
@@ -164829,27 +167272,6 @@ const PROGRAM_DATA_2026_10 = {
               "brand": "White Claw",
               "date": "9/25/2026",
               "made": true
-            },
-            {
-              "customer": "Liquor Mart (North Arlington)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor Mart (North Arlington)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Bottleneck Liquors",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": false
             },
             {
               "customer": "Liquor Mart (North Arlington)",
@@ -164866,29 +167288,15 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
+              "customer": "Liquor Mart (North Arlington)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/25/2026",
+              "made": true
+            },
+            {
               "customer": "Pete's Liquors",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Bottleneck Liquors",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Bottleneck Liquors",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Clifton Wine & Liquor",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/25/2026",
               "made": true
@@ -164901,59 +167309,10 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "US#1 Wine & Liquor",
+              "customer": "Clifton Wine & Liquor",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Bottleneck Liquors",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Marina's Wine & Spirits",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Marina's Wine & Spirits",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor Mart (North Arlington)",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Swizzle Stick Liq (A)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "Dante's Liquor & Wine",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "Swizzle Stick Liq (A)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
               "made": true
             },
             {
@@ -164971,22 +167330,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Dante's Liquor & Wine",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
               "customer": "Forest Dairy (A)",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/23/2026",
-              "made": false
-            },
-            {
-              "customer": "Lyndhurst Liquors (P)",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/23/2026",
               "made": true
@@ -164999,10 +167344,10 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Forest Dairy (A)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "customer": "On The Rocks",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/23/2026",
+              "date": "9/22/2026",
               "made": true
             },
             {
@@ -165027,43 +167372,15 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "On The Rocks",
+              "customer": "Clifton Commons S & W",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/21/2026",
+              "made": true
+            },
+            {
+              "customer": "Henry's Liquors",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Clifton Commons S & W",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/21/2026",
-              "made": false
-            },
-            {
-              "customer": "Clifton Commons S & W",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/21/2026",
-              "made": true
-            },
-            {
-              "customer": "Clifton Commons S & W",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
-              "brand": "White Claw",
-              "date": "9/21/2026",
-              "made": true
-            },
-            {
-              "customer": "Town Liquors",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/21/2026",
-              "made": true
-            },
-            {
-              "customer": "Quick Buy",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/18/2026",
               "made": true
@@ -165071,6 +167388,20 @@ const PROGRAM_DATA_2026_10 = {
             {
               "customer": "Quick Buy",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/18/2026",
+              "made": true
+            },
+            {
+              "customer": "Quick Buy",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/18/2026",
+              "made": true
+            },
+            {
+              "customer": "Quick Buy",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/18/2026",
               "made": true
@@ -165083,59 +167414,10 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Henry's Liquors",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/18/2026",
-              "made": true
-            },
-            {
-              "customer": "Quick Buy",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/18/2026",
-              "made": true
-            },
-            {
               "customer": "West End Wine & Liq",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/17/2026",
-              "made": true
-            },
-            {
-              "customer": "West End Wine & Liq",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/17/2026",
-              "made": true
-            },
-            {
-              "customer": "West End Wine & Liq",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/17/2026",
-              "made": false
-            },
-            {
-              "customer": "Liquor Shed",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
-              "brand": "White Claw",
-              "date": "9/16/2026",
-              "made": true
-            },
-            {
-              "customer": "Rutherford Wine (A)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/16/2026",
-              "made": true
-            },
-            {
-              "customer": "On The Rocks",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/16/2026",
               "made": true
             },
             {
@@ -165153,10 +167435,45 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
+              "customer": "Liquor Shed",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "9/16/2026",
+              "made": true
+            },
+            {
+              "customer": "On The Rocks",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/16/2026",
+              "made": true
+            },
+            {
+              "customer": "Rutherford Wine (A)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/16/2026",
+              "made": true
+            },
+            {
               "customer": "Meadow Fine Liquors",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/15/2026",
+              "made": true
+            },
+            {
+              "customer": "Richfield Liquors",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/11/2026",
+              "made": true
+            },
+            {
+              "customer": "Richfield Liquors",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/11/2026",
               "made": true
             },
             {
@@ -165167,17 +167484,38 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Richfield Liquors",
+              "customer": "Savers Club Liquor Locker",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/10/2026",
+              "made": false
+            },
+            {
+              "customer": "Town Liquors",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/11/2026",
+              "date": "9/10/2026",
               "made": true
             },
             {
-              "customer": "Richfield Liquors",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "customer": "Field Liquors (A)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/11/2026",
+              "date": "9/10/2026",
+              "made": true
+            },
+            {
+              "customer": "Savers Club Liquor Locker",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/10/2026",
+              "made": true
+            },
+            {
+              "customer": "Field Liquors (A)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/10/2026",
               "made": true
             },
             {
@@ -165188,64 +167526,15 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Swizzle Stick Liq (A)",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "customer": "Quik Stop Conv(Z)",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
               "brand": "White Claw",
-              "date": "9/10/2026",
-              "made": true
-            },
-            {
-              "customer": "Clifton Commons S & W",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/10/2026",
-              "made": true
-            },
-            {
-              "customer": "Clifton Commons S & W",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/10/2026",
-              "made": true
-            },
-            {
-              "customer": "Town Liquors",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/10/2026",
-              "made": true
-            },
-            {
-              "customer": "Savers Club Liquor Locker",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/10/2026",
-              "made": false
-            },
-            {
-              "customer": "Field Liquors (A)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/10/2026",
-              "made": true
-            },
-            {
-              "customer": "Savers Club Liquor Locker",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/10/2026",
-              "made": true
-            },
-            {
-              "customer": "Field Liquors (A)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/10/2026",
+              "date": "9/9/2026",
               "made": true
             },
             {
               "customer": "Lyndhurst Liquors (P)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/9/2026",
               "made": true
@@ -165258,29 +167547,15 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Lyndhurst Liquors (P)",
+              "customer": "Little Falls Liq(P)",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/9/2026",
-              "made": true
-            },
-            {
-              "customer": "Quik Stop Conv(Z)",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
-              "brand": "White Claw",
-              "date": "9/9/2026",
-              "made": true
-            },
-            {
-              "customer": "US#1 Wine & Liquor",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/8/2026",
               "made": true
             },
             {
-              "customer": "Little Falls Liq(P)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "customer": "US#1 Wine & Liquor",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/8/2026",
               "made": true
@@ -165300,18 +167575,18 @@ const PROGRAM_DATA_2026_10 = {
               "made": false
             },
             {
-              "customer": "West End Wine & Liq",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/3/2026",
-              "made": true
-            },
-            {
               "customer": "Clifton Commons S & W",
               "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/3/2026",
               "made": true
+            },
+            {
+              "customer": "Meadow Fine Liquors",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/2/2026",
+              "made": false
             },
             {
               "customer": "Forest Dairy (A)",
@@ -165335,21 +167610,7 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "World of Wine & Liquor",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/2/2026",
-              "made": true
-            },
-            {
               "customer": "Lyndhurst Liquors (P)",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/2/2026",
-              "made": false
-            },
-            {
-              "customer": "Meadow Fine Liquors",
               "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/2/2026",
@@ -165363,8 +167624,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             }
           ],
-          "count": 102,
-          "madeCount": 91,
+          "count": 105,
+          "madeCount": 93,
           "allMade": false,
           "qualified": true,
           "payout": 15,
@@ -165372,6 +167633,34 @@ const PROGRAM_DATA_2026_10 = {
         },
         "harder": {
           "pods": [
+            {
+              "customer": "Lyndhurst Liquors (P)",
+              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Lyndhurst Liquors (P)",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Lyndhurst Liquors (P)",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Valley Liquors (A)",
+              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "10/6/2026",
+              "made": true
+            },
             {
               "customer": "Metro Liquors (North Arlington)",
               "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
@@ -165388,14 +167677,14 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Rainbow Liquor (P)",
-              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/29/2026",
               "made": true
             },
             {
               "customer": "Rainbow Liquor (P)",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/29/2026",
               "made": true
@@ -165422,8 +167711,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Rainbow Liquor (P)",
-              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
+              "customer": "Lyndhurst Liquors (P)",
+              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
               "brand": "Cayman Jack",
               "date": "9/23/2026",
               "made": true
@@ -165436,7 +167725,7 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Lyndhurst Liquors (P)",
+              "customer": "Rainbow Liquor (P)",
               "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
               "brand": "Cayman Jack",
               "date": "9/23/2026",
@@ -165444,7 +167733,7 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Rainbow Liquor (P)",
-              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
+              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
               "brand": "Cayman Jack",
               "date": "9/23/2026",
               "made": true
@@ -165457,16 +167746,16 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Town Liquors",
-              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
-              "brand": "Cayman Jack",
+              "customer": "Richfield Liquors",
+              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
               "date": "9/18/2026",
               "made": true
             },
             {
-              "customer": "Richfield Liquors",
-              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
+              "customer": "Town Liquors",
+              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
               "date": "9/18/2026",
               "made": true
             },
@@ -165486,14 +167775,14 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Lexington Liquors (Z)",
-              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
+              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
               "brand": "Cayman Jack",
               "date": "9/8/2026",
               "made": true
             },
             {
               "customer": "Lexington Liquors (Z)",
-              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
+              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
               "brand": "Cayman Jack",
               "date": "9/8/2026",
               "made": true
@@ -165513,20 +167802,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Dante's Liquor & Wine",
-              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/2/2026",
-              "made": true
-            },
-            {
-              "customer": "Valley Liquors (A)",
-              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
-              "brand": "Cayman Jack",
-              "date": "9/2/2026",
-              "made": true
-            },
-            {
               "customer": "Valley Liquors (A)",
               "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
               "brand": "Cayman Jack",
@@ -165539,16 +167814,23 @@ const PROGRAM_DATA_2026_10 = {
               "brand": "Mike's Harder",
               "date": "9/2/2026",
               "made": true
+            },
+            {
+              "customer": "Dante's Liquor & Wine",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/2/2026",
+              "made": true
             }
           ],
-          "count": 24,
-          "madeCount": 24,
+          "count": 27,
+          "madeCount": 27,
           "allMade": true,
           "qualified": true,
           "payout": 30,
           "toQualifier": 0
         },
-        "totalPods": 126,
+        "totalPods": 132,
         "accounts": 35,
         "payout": 45,
         "legsQualified": 2,
@@ -165699,15 +167981,302 @@ const PROGRAM_DATA_2026_10 = {
         "wc": {
           "pods": [
             {
+              "customer": "Denville W & L",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Wharton Liquor Store",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Wharton Liquor Store",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Wharton Liquor Store",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "3 IN 1 LIQUORS INC",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/8/2026",
+              "made": false
+            },
+            {
+              "customer": "3 IN 1 LIQUORS INC",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Wharton Liquor Store",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Rockaway W/L",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Wine & Spirits Stanhope",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Quick Check Liquor (A)",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop-Rite(A) Netcong",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop-Rite(A) Netcong",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Island Of Spirits (P)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Outlet",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
               "customer": "Island Of Spirits (P)",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Outlet",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Quick Check Liquor (A)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Outlet",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Shoppers Disc Liquor",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Stanhope Liquors",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": false
+            },
+            {
+              "customer": "23 liquor & Tobacco",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Shoppers Disc Liquor",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Milton Inn",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Midtown Liq",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Berkshire(P) Bot. Shop",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "23 liquor & Tobacco",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Liq (A)Wharton",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Liq (A)Wharton",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Liq (A)Wharton",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Kingston Liquors",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Boonton Liquor Locker",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Boonton Liquor Locker",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Boonton Liquor Locker",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Boonton Liquor Locker",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Kingston Liquors",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Main Street Liquor",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Main Street Liquor",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Main Street Liquor",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "House of Wine & Liquor - Boonton",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "House of Wine & Liquor - Boonton",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Island Of Spirits (P)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/30/2026",
               "made": true
             },
             {
               "customer": "Island Of Spirits (P)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/30/2026",
+              "made": true
+            },
+            {
+              "customer": "Quick Check Liquor (A)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/30/2026",
               "made": true
@@ -165721,21 +168290,14 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Shop-Rite(A) Netcong",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Quick Check Liquor (A)",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Island Of Spirits (P)",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/30/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Wine & Spirits Stanhope",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/30/2026",
               "made": true
@@ -165756,111 +168318,20 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Shop Rite Wine & Spirits Stanhope",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Island Of Spirits (P)",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Quick Check Liquor (A)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Shop Rite Wine & Spirits Stanhope",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Quick Check Liquor (A)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Shop-Rite(A) Netcong",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Shop Rite Wine & Spirits Stanhope",
               "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/30/2026",
               "made": true
             },
             {
-              "customer": "Liquor Outlet",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Shop-Rite(A) Netcong",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Milton Inn",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
-              "customer": "Milton Inn",
+              "customer": "Shop Rite Wine & Spirits Stanhope",
               "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
-              "customer": "Patel Liqr & Gro(P)",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
-              "brand": "White Claw",
-              "date": "9/29/2026",
+              "date": "9/30/2026",
               "made": true
             },
             {
               "customer": "Milton Inn",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
-              "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
-              "customer": "Patel Liqr & Gro(P)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
-              "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/29/2026",
@@ -165875,10 +168346,10 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Milton Inn",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/29/2026",
-              "made": false
+              "made": true
             },
             {
               "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
@@ -165888,22 +168359,50 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Denville W & L",
+              "customer": "Patel Liqr & Gro(P)",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "9/29/2026",
+              "made": true
+            },
+            {
+              "customer": "Patel Liqr & Gro(P)",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/28/2026",
+              "date": "9/29/2026",
               "made": true
+            },
+            {
+              "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/29/2026",
+              "made": true
+            },
+            {
+              "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/29/2026",
+              "made": true
+            },
+            {
+              "customer": "Milton Inn",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/29/2026",
+              "made": false
+            },
+            {
+              "customer": "Shop Rite Liq (A)Wharton",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/28/2026",
+              "made": false
             },
             {
               "customer": "Shop Rite Liq (A)Wharton",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Shop Rite Liq (A)Wharton",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/28/2026",
               "made": true
@@ -165916,62 +168415,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Shop Rite Liq (A)Wharton",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": false
-            },
-            {
-              "customer": "Shop Rite Liq (A)Wharton",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Kingston Liquors",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Boonton Liquor Locker",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "House of Wine & Liquor - Boonton",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Kingston Liquors",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Boonton Liquor Locker",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Kingston Liquors",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
               "customer": "Kingston Liquors",
               "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
               "brand": "White Claw",
@@ -165980,7 +168423,7 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Kingston Liquors",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/25/2026",
               "made": true
@@ -165993,8 +168436,15 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Wharton Liquor Store",
+              "customer": "Kingston Liquors",
               "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/25/2026",
+              "made": true
+            },
+            {
+              "customer": "Sam's Liq Wine (P)",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
               "brand": "White Claw",
               "date": "9/24/2026",
               "made": true
@@ -166007,29 +168457,15 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Sam's Liq Wine (P)",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "Sam's Liq Wine (P)",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "Main Street Liquor",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
               "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
               "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/24/2026",
+              "made": true
+            },
+            {
+              "customer": "Wharton Liquor Store",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/24/2026",
               "made": true
@@ -166042,43 +168478,15 @@ const PROGRAM_DATA_2026_10 = {
               "made": false
             },
             {
-              "customer": "Wharton Liquor Store",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "Rockaway W/L",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/23/2026",
-              "made": true
-            },
-            {
-              "customer": "Shoppers Disc Liquor",
+              "customer": "Sam's Liq Wine (P)",
               "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/23/2026",
+              "date": "9/24/2026",
               "made": true
             },
             {
               "customer": "Shop Rite Wine & Spirits Stanhope",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/23/2026",
-              "made": true
-            },
-            {
-              "customer": "Shoppers Disc Liquor",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/23/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor Outlet",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/23/2026",
               "made": true
@@ -166091,8 +168499,22 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "customer": "Rockaway W/L",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/23/2026",
+              "made": true
+            },
+            {
+              "customer": "Shoppers Disc Liquor",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/23/2026",
+              "made": true
+            },
+            {
+              "customer": "Midtown Liq",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/22/2026",
               "made": true
@@ -166105,8 +168527,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Midtown Liq",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
               "brand": "White Claw",
               "date": "9/22/2026",
               "made": true
@@ -166119,13 +168541,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Montville Wine & Spirits",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/18/2026",
-              "made": true
-            },
-            {
               "customer": "Nova Liquors",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
@@ -166134,6 +168549,13 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Montville Wine & Spirits",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/18/2026",
+              "made": true
+            },
+            {
+              "customer": "Montville Wine & Spirits",
               "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/18/2026",
@@ -166147,20 +168569,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Main Street Liquor",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/17/2026",
-              "made": true
-            },
-            {
-              "customer": "House of Wine & Liquor - Boonton",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/17/2026",
-              "made": false
-            },
-            {
               "customer": "House of Wine & Liquor - Boonton",
               "product": "White Claw Peach 1/12/19.2 oz Can",
               "brand": "White Claw",
@@ -166168,11 +168576,11 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Main Street Liquor",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "customer": "House of Wine & Liquor - Boonton",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/17/2026",
-              "made": true
+              "made": false
             },
             {
               "customer": "Main Street Liquor",
@@ -166180,27 +168588,6 @@ const PROGRAM_DATA_2026_10 = {
               "brand": "White Claw",
               "date": "9/17/2026",
               "made": false
-            },
-            {
-              "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
-              "brand": "White Claw",
-              "date": "9/16/2026",
-              "made": true
-            },
-            {
-              "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/16/2026",
-              "made": false
-            },
-            {
-              "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/16/2026",
-              "made": true
             },
             {
               "customer": "Quick Check Liquor (A)",
@@ -166210,15 +168597,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Quick Check Liquor (A)",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/16/2026",
-              "made": false
-            },
-            {
               "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/16/2026",
               "made": true
@@ -166231,11 +168611,11 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "3 IN 1 LIQUORS INC",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "customer": "Quick Check Liquor (A)",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/16/2026",
-              "made": true
+              "made": false
             },
             {
               "customer": "Quick Check Liquor (A)",
@@ -166245,8 +168625,22 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Rockaway W/L",
+              "customer": "Quick Check Liquor (A)",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/16/2026",
+              "made": true
+            },
+            {
+              "customer": "3 IN 1 LIQUORS INC",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/16/2026",
+              "made": true
+            },
+            {
+              "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/16/2026",
               "made": true
@@ -166259,57 +168653,22 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "3 IN 1 LIQUORS INC",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/16/2026",
-              "made": true
+              "made": false
             },
             {
-              "customer": "Quick Check Liquor (A)",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
               "brand": "White Claw",
               "date": "9/16/2026",
-              "made": true
-            },
-            {
-              "customer": "Shoppers Disc Liquor",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/15/2026",
-              "made": true
-            },
-            {
-              "customer": "Shop Rite Liq (A)Wharton",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/14/2026",
-              "made": true
-            },
-            {
-              "customer": "Midtown Liq",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/14/2026",
-              "made": true
-            },
-            {
-              "customer": "Boonton Liquor Locker",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/11/2026",
               "made": true
             },
             {
               "customer": "House of Wine & Liquor - Boonton",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/11/2026",
-              "made": true
-            },
-            {
-              "customer": "Boonton Liquor Locker",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/11/2026",
               "made": true
@@ -166344,14 +168703,14 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Patel Liqr & Gro(P)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/9/2026",
               "made": true
             },
             {
               "customer": "Patel Liqr & Gro(P)",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/9/2026",
               "made": true
@@ -166364,13 +168723,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/2/2026",
-              "made": true
-            },
-            {
               "customer": "Rockaway W/L",
               "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
@@ -166390,10 +168742,17 @@ const PROGRAM_DATA_2026_10 = {
               "brand": "White Claw",
               "date": "9/2/2026",
               "made": false
+            },
+            {
+              "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/2/2026",
+              "made": true
             }
           ],
-          "count": 99,
-          "madeCount": 88,
+          "count": 110,
+          "madeCount": 97,
           "allMade": false,
           "qualified": true,
           "payout": 15,
@@ -166402,6 +168761,125 @@ const PROGRAM_DATA_2026_10 = {
         "harder": {
           "pods": [
             {
+              "customer": "Smith's Tavern",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Outlet",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Outlet",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "3 IN 1 LIQUORS INC",
+              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Outlet",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Liquor Outlet",
+              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "3 IN 1 LIQUORS INC",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "23 liquor & Tobacco",
+              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "23 liquor & Tobacco",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "23 liquor & Tobacco",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
+              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
+              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "23 liquor & Tobacco",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Milton Inn",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Liq (A)Wharton",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Liq (A)Wharton",
+              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
               "customer": "Island Of Spirits (P)",
               "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
@@ -166409,31 +168887,10 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Liquor Outlet",
-              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor Outlet",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
               "customer": "Island Of Spirits (P)",
               "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/29/2026",
               "made": true
             },
             {
@@ -166444,13 +168901,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "23 liquor & Tobacco",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
               "customer": "Milton Inn",
               "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
@@ -166458,8 +168908,15 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Milton Inn",
-              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/29/2026",
+              "made": true
+            },
+            {
+              "customer": "23 liquor & Tobacco",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/29/2026",
               "made": true
@@ -166472,20 +168929,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "23 liquor & Tobacco",
-              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
-              "customer": "23 liquor & Tobacco",
-              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
               "customer": "Milton Inn",
               "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
@@ -166494,63 +168937,49 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Shop Rite Liq (A)Wharton",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/28/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Liq (A)Wharton",
               "product": "Mikes Harder Mango 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/28/2026",
               "made": true
             },
             {
-              "customer": "Shop Rite Liq (A)Wharton",
+              "customer": "Kingston Liquors",
               "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
-              "date": "9/28/2026",
+              "date": "9/25/2026",
               "made": true
             },
             {
-              "customer": "Shop Rite Liq (A)Wharton",
+              "customer": "Kingston Liquors",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/25/2026",
+              "made": true
+            },
+            {
+              "customer": "3 IN 1 LIQUORS INC",
               "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
-              "date": "9/28/2026",
+              "date": "9/23/2026",
               "made": true
             },
             {
-              "customer": "Kingston Liquors",
-              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Kingston Liquors",
+              "customer": "3 IN 1 LIQUORS INC",
               "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Smith's Tavern",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/24/2026",
+              "date": "9/23/2026",
               "made": true
             },
             {
               "customer": "Shop Rite Wine & Spirits Stanhope",
               "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/23/2026",
-              "made": true
-            },
-            {
-              "customer": "3 IN 1 LIQUORS INC",
-              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/23/2026",
-              "made": true
-            },
-            {
-              "customer": "3 IN 1 LIQUORS INC",
-              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/23/2026",
               "made": true
@@ -166560,27 +168989,6 @@ const PROGRAM_DATA_2026_10 = {
               "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/23/2026",
-              "made": true
-            },
-            {
-              "customer": "3 IN 1 LIQUORS INC",
-              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/23/2026",
-              "made": true
-            },
-            {
-              "customer": "3 IN 1 LIQUORS INC",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/23/2026",
-              "made": true
-            },
-            {
-              "customer": "Milton Inn",
-              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/22/2026",
               "made": true
             },
             {
@@ -166591,6 +168999,13 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
+              "customer": "Milton Inn",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/22/2026",
+              "made": true
+            },
+            {
               "customer": "Stanhope Liquors",
               "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
@@ -166613,16 +169028,23 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Wharton Liquor Store",
-              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/17/2026",
               "made": true
             },
             {
               "customer": "Wharton Liquor Store",
-              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/17/2026",
+              "made": true
+            },
+            {
+              "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/16/2026",
               "made": true
             },
             {
@@ -166633,27 +169055,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
-              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
-              "brand": "Cayman Jack",
-              "date": "9/16/2026",
-              "made": true
-            },
-            {
-              "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
-              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/16/2026",
-              "made": true
-            },
-            {
-              "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
-              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
-              "brand": "Cayman Jack",
-              "date": "9/16/2026",
-              "made": true
-            },
-            {
               "customer": "Shop Rite Liq (A)Wharton",
               "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
@@ -166661,10 +169062,17 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Shop Rite Liq (A)Wharton",
-              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
-              "brand": "Cayman Jack",
-              "date": "9/14/2026",
+              "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/11/2026",
+              "made": true
+            },
+            {
+              "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/11/2026",
               "made": true
             },
             {
@@ -166675,22 +169083,15 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
+              "customer": "Main Street Liquor",
               "product": "Mikes Harder Mango 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
-              "date": "9/11/2026",
-              "made": true
-            },
-            {
-              "customer": "Basket Of Cheer Ii (Lake Hiawatha)",
-              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/11/2026",
+              "date": "9/10/2026",
               "made": true
             },
             {
               "customer": "Main Street Liquor",
-              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/10/2026",
               "made": true
@@ -166700,34 +169101,6 @@ const PROGRAM_DATA_2026_10 = {
               "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/10/2026",
-              "made": true
-            },
-            {
-              "customer": "Main Street Liquor",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/10/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor Outlet",
-              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/9/2026",
-              "made": true
-            },
-            {
-              "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/9/2026",
-              "made": true
-            },
-            {
-              "customer": "Liquor Outlet",
-              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/9/2026",
               "made": true
             },
             {
@@ -166738,15 +169111,22 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
+              "customer": "Sandy's Wine & Spirit (P) (Budd Lake)",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/9/2026",
+              "made": true
+            },
+            {
               "customer": "Shoppers Disc Liquor",
-              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/8/2026",
               "made": true
             },
             {
               "customer": "Shoppers Disc Liquor",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/8/2026",
               "made": true
@@ -166760,14 +169140,14 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "House of Wine & Liquor - Boonton",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/3/2026",
               "made": true
             },
             {
               "customer": "House of Wine & Liquor - Boonton",
-              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/3/2026",
               "made": true
@@ -166787,14 +169167,14 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             }
           ],
-          "count": 55,
-          "madeCount": 55,
+          "count": 58,
+          "madeCount": 58,
           "allMade": true,
           "qualified": true,
           "payout": 30,
           "toQualifier": 0
         },
-        "totalPods": 154,
+        "totalPods": 168,
         "accounts": 27,
         "payout": 45,
         "legsQualified": 2,
@@ -166818,10 +169198,185 @@ const PROGRAM_DATA_2026_10 = {
         "wc": {
           "pods": [
             {
-              "customer": "Garfield Discount Liquors",
+              "customer": "Shop Rite Of Wallington",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/9/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Of Wallington",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/9/2026",
+              "made": false
+            },
+            {
+              "customer": "Shop Rite Of Wallington",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/9/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Of Wallington",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/9/2026",
+              "made": true
+            },
+            {
+              "customer": "Vinny's Disc Liq (P)",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": false
+            },
+            {
+              "customer": "Vinny's Disc Liq (P)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Garfield Bar & Liq (P)",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Metro Wine And Liq(A)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Whoopee Liq (A)",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Whoopee Liq (A)",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": false
+            },
+            {
+              "customer": "Metro Wine And Liq(A)",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Whoopee Liq (A)",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Cobblestone Hill Deli",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Moonachie Liquors",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Home Wine Liquor (Passaic)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Cobblestone Hill Deli",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Cobblestone Hill Deli",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "All Star Wine & Liquor",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "M & M Wine & Spirits",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Metro Liquors (East Rutherford)",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "10/1/2026",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "M & M Wine & Spirits",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "M & M Wine & Spirits",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Luigi's Liquor (A)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "M & M Wine & Spirits",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Metro Liquors (East Rutherford)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Of Wallington",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
               "made": true
             },
             {
@@ -166832,10 +169387,52 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
+              "customer": "Bottle Republic (Rutherford)",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
               "customer": "Garfield Discount Liquors",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle Republic (Rutherford)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Garfield Discount Liquors",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle Republic (Rutherford)",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Garfield Bar & Liq (P)",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/30/2026",
+              "made": false
+            },
+            {
+              "customer": "Garfield Bar & Liq (P)",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/30/2026",
               "made": true
             },
             {
@@ -166846,7 +169443,7 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Vinny's Disc Liq (P)",
+              "customer": "Garfield Bar & Liq (P)",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/30/2026",
@@ -166858,34 +169455,6 @@ const PROGRAM_DATA_2026_10 = {
               "brand": "White Claw",
               "date": "9/30/2026",
               "made": true
-            },
-            {
-              "customer": "Garfield Bar & Liq (P)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Garfield Bar & Liq (P)",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": false
-            },
-            {
-              "customer": "Garfield Bar & Liq (P)",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Vinny's Disc Liq (P)",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": false
             },
             {
               "customer": "King Liquors",
@@ -166895,39 +169464,25 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Luigi's Liquor (A)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
               "customer": "Metro Liquors (East Rutherford)",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Luigi's Liquor (A)",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/28/2026",
               "made": true
             },
             {
-              "customer": "Metro Wine And Liq(A)",
+              "customer": "Buzzzrite Liquors",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/28/2026",
               "made": true
             },
             {
-              "customer": "Metro Liquors (East Rutherford)",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "customer": "Luigi's Liquor (A)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/28/2026",
-              "made": false
+              "made": true
             },
             {
               "customer": "Luigi's Liquor (A)",
@@ -166944,22 +169499,29 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Buzzzrite Liquors",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
               "customer": "Metro Liquors (East Rutherford)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/28/2026",
-              "made": true
+              "made": false
             },
             {
               "customer": "Metro Liquor (Elmwood Park)",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/25/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine And People",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/25/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine And People",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/25/2026",
               "made": true
@@ -166967,41 +169529,6 @@ const PROGRAM_DATA_2026_10 = {
             {
               "customer": "Metro Liquor (Elmwood Park)",
               "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Shop Rite Of Wallington",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Shop Rite Of Wallington",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Wine And People",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Wine And People",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Shop Rite Of Wallington",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/25/2026",
               "made": true
@@ -167015,7 +169542,28 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Home Wine Liquor (Passaic)",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/24/2026",
+              "made": true
+            },
+            {
+              "customer": "Home Wine Liquor (Passaic)",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/24/2026",
+              "made": true
+            },
+            {
+              "customer": "Home Wine Liquor (Passaic)",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/24/2026",
+              "made": true
+            },
+            {
+              "customer": "Home Wine Liquor (Passaic)",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/24/2026",
               "made": true
@@ -167028,42 +169576,14 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Home Wine Liquor (Passaic)",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "Home Wine Liquor (Passaic)",
+              "customer": "Capri Deli&Liq (P)",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/24/2026",
+              "date": "9/23/2026",
               "made": true
             },
             {
-              "customer": "Metro Liquors (East Rutherford)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "Home Wine Liquor (Passaic)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "Home Wine Liquor (Passaic)",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "Capri Deli&Liq (P)",
+              "customer": "Wine Land",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/23/2026",
@@ -167077,13 +169597,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Wine Land",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/23/2026",
-              "made": true
-            },
-            {
               "customer": "Capri Deli&Liq (P)",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
@@ -167091,13 +169604,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "All Star Wine & Liquor",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
               "customer": "Wine Liquor Shop",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
@@ -167106,49 +169612,14 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Moonachie Liquors",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/22/2026",
               "made": true
             },
             {
               "customer": "All Star Wine & Liquor",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Cobblestone Hill Deli",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Moonachie Liquors",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Wine Liquor Shop",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Moonachie Liquors",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Cobblestone Hill Deli",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/22/2026",
               "made": true
@@ -167162,14 +169633,7 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Cobblestone Hill Deli",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Cobblestone Hill Deli",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/22/2026",
               "made": true
@@ -167177,6 +169641,20 @@ const PROGRAM_DATA_2026_10 = {
             {
               "customer": "Cobblestone Hill Deli",
               "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "9/22/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine Liquor Shop",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/22/2026",
+              "made": true
+            },
+            {
+              "customer": "Moonachie Liquors",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/22/2026",
               "made": true
@@ -167197,6 +169675,13 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Wine Grand (Carlstadt)",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/18/2026",
+              "made": true
+            },
+            {
+              "customer": "Metro Wine And Liq(A)",
               "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/18/2026",
@@ -167204,14 +169689,7 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Wine Grand (Carlstadt)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/18/2026",
-              "made": true
-            },
-            {
-              "customer": "Wine Grand (Carlstadt)",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/18/2026",
               "made": true
@@ -167225,24 +169703,10 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Wine Grand (Carlstadt)",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/18/2026",
               "made": true
-            },
-            {
-              "customer": "Metro Wine And Liq(A)",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/18/2026",
-              "made": true
-            },
-            {
-              "customer": "Metro Wine And Liq(A)",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/18/2026",
-              "made": false
             },
             {
               "customer": "Wine Grand (Carlstadt)",
@@ -167250,6 +169714,34 @@ const PROGRAM_DATA_2026_10 = {
               "brand": "White Claw",
               "date": "9/18/2026",
               "made": true
+            },
+            {
+              "customer": "Wine Grand (Carlstadt)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/18/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine Grand (Carlstadt)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/18/2026",
+              "made": true
+            },
+            {
+              "customer": "Metro Wine And Liq(A)",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/18/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine Grand (Carlstadt)",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/18/2026",
+              "made": false
             },
             {
               "customer": "Little Ferry Wines/Liquor",
@@ -167259,20 +169751,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Wine Grand (Carlstadt)",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/18/2026",
-              "made": true
-            },
-            {
-              "customer": "Wine Grand (Carlstadt)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/18/2026",
-              "made": true
-            },
-            {
               "customer": "Birchwood Liq & Deli (Z)",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
@@ -167284,6 +169762,13 @@ const PROGRAM_DATA_2026_10 = {
               "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/17/2026",
+              "made": true
+            },
+            {
+              "customer": "Whoopee Liq (A)",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/16/2026",
               "made": true
             },
             {
@@ -167302,6 +169787,13 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Whoopee Liq (A)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/16/2026",
+              "made": true
+            },
+            {
+              "customer": "Whoopee Liq (A)",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/16/2026",
@@ -167315,23 +169807,9 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Whoopee Liq (A)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/16/2026",
-              "made": true
-            },
-            {
-              "customer": "Whoopee Liq (A)",
+              "customer": "Bottle Republic (Rutherford)",
               "product": "White Claw Peach 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/16/2026",
-              "made": true
-            },
-            {
-              "customer": "King Liquors",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
               "date": "9/15/2026",
               "made": true
             },
@@ -167341,41 +169819,6 @@ const PROGRAM_DATA_2026_10 = {
               "brand": "White Claw",
               "date": "9/15/2026",
               "made": true
-            },
-            {
-              "customer": "Wine Land",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/15/2026",
-              "made": true
-            },
-            {
-              "customer": "River Drive Bar (P)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/15/2026",
-              "made": true
-            },
-            {
-              "customer": "Shop Rite Of Wallington",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/15/2026",
-              "made": false
-            },
-            {
-              "customer": "River Drive Bar (P)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/15/2026",
-              "made": true
-            },
-            {
-              "customer": "Bottle Republic (Rutherford)",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/15/2026",
-              "made": false
             },
             {
               "customer": "Shop Rite Of Wallington",
@@ -167385,14 +169828,42 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Bottle Republic (Rutherford)",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "customer": "Wine Land",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/15/2026",
               "made": true
             },
             {
               "customer": "Wine Land",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/15/2026",
+              "made": true
+            },
+            {
+              "customer": "River Drive Bar (P)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/15/2026",
+              "made": true
+            },
+            {
+              "customer": "River Drive Bar (P)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/15/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle Republic (Rutherford)",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/15/2026",
+              "made": false
+            },
+            {
+              "customer": "King Liquors",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/15/2026",
@@ -167413,15 +169884,15 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "M & M Wine & Spirits",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "customer": "Metro Liquor (Elmwood Park)",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/14/2026",
+              "date": "9/11/2026",
               "made": true
             },
             {
-              "customer": "Birchwood Liq & Deli (Z)",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "customer": "Metro Liquor (Elmwood Park)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/11/2026",
               "made": true
@@ -167434,22 +169905,15 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
+              "customer": "Birchwood Liq & Deli (Z)",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/11/2026",
+              "made": true
+            },
+            {
               "customer": "King Liquors",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/11/2026",
-              "made": true
-            },
-            {
-              "customer": "Metro Liquor (Elmwood Park)",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/11/2026",
-              "made": true
-            },
-            {
-              "customer": "Metro Liquor (Elmwood Park)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/11/2026",
               "made": true
@@ -167462,13 +169926,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Garfield Bar & Liq (P)",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
-              "brand": "White Claw",
-              "date": "9/10/2026",
-              "made": true
-            },
-            {
               "customer": "Cobblestone Hill Deli",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
@@ -167476,8 +169933,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Metro Wine And Liq(A)",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "customer": "Riverview Liquors & Bar",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/9/2026",
               "made": true
@@ -167490,32 +169947,11 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Riverview Liquors & Bar",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/9/2026",
-              "made": true
-            },
-            {
-              "customer": "M & M Wine & Spirits",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/8/2026",
-              "made": true
-            },
-            {
               "customer": "M & M Wine & Spirits",
               "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/8/2026",
               "made": false
-            },
-            {
-              "customer": "M & M Wine & Spirits",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/4/2026",
-              "made": true
             },
             {
               "customer": "Metro Liquors (East Rutherford)",
@@ -167546,13 +169982,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Food Mart Liquor",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/1/2026",
-              "made": true
-            },
-            {
               "customer": "Joe's Liquors",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
@@ -167560,15 +169989,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Wallington Liquor and Wine",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/1/2026",
-              "made": true
-            },
-            {
-              "customer": "King Liquors",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "customer": "Food Mart Liquor",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/1/2026",
               "made": true
@@ -167581,15 +170003,29 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
+              "customer": "Wallington Liquor and Wine",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/1/2026",
+              "made": true
+            },
+            {
               "customer": "Joe's Liquors",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/1/2026",
               "made": true
+            },
+            {
+              "customer": "King Liquors",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/1/2026",
+              "made": true
             }
           ],
-          "count": 110,
-          "madeCount": 101,
+          "count": 118,
+          "madeCount": 108,
           "allMade": false,
           "qualified": true,
           "payout": 15,
@@ -167598,17 +170034,150 @@ const PROGRAM_DATA_2026_10 = {
         "harder": {
           "pods": [
             {
-              "customer": "Bottle Republic (Rutherford)",
+              "customer": "Whoopee Liq (A)",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Whoopee Liq (A)",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Whoopee Liq (A)",
+              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Whoopee Liq (A)",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Whoopee Liq (A)",
               "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
-              "date": "9/30/2026",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Whoopee Liq (A)",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Cobblestone Hill Deli",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Cobblestone Hill Deli",
+              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/6/2026",
               "made": true
             },
             {
               "customer": "Bottle Republic (Rutherford)",
-              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
+              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle Republic (Rutherford)",
+              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Cobblestone Hill Deli",
+              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
-              "date": "9/30/2026",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Buzzzrite Liquors",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Buzzzrite Liquors",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Buzzzrite Liquors",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Metro Liquors (East Rutherford)",
+              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Vicki's Bar & Liquors",
+              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Metro Liquor (Elmwood Park)",
+              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Metro Liquor (Elmwood Park)",
+              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Home Wine Liquor (Passaic)",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Home Wine Liquor (Passaic)",
+              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Home Wine Liquor (Passaic)",
+              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/1/2026",
               "made": true
             },
             {
@@ -167619,8 +170188,29 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
+              "customer": "Bottle Republic (Rutherford)",
+              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/30/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle Republic (Rutherford)",
+              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/30/2026",
+              "made": true
+            },
+            {
               "customer": "Worldwide Liquors",
               "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/28/2026",
+              "made": true
+            },
+            {
+              "customer": "Metro Wine And Liq(A)",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/28/2026",
               "made": true
@@ -167642,13 +170232,6 @@ const PROGRAM_DATA_2026_10 = {
             {
               "customer": "Worldwide Liquors",
               "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Metro Wine And Liq(A)",
-              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/28/2026",
               "made": true
@@ -167668,41 +170251,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Metro Liquors (East Rutherford)",
-              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/21/2026",
-              "made": true
-            },
-            {
-              "customer": "Wine Grand (Carlstadt)",
-              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
-              "brand": "Cayman Jack",
-              "date": "9/18/2026",
-              "made": true
-            },
-            {
-              "customer": "Wine Grand (Carlstadt)",
-              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/18/2026",
-              "made": true
-            },
-            {
-              "customer": "Wine Grand (Carlstadt)",
-              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/18/2026",
-              "made": true
-            },
-            {
-              "customer": "Wine Grand (Carlstadt)",
-              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/18/2026",
-              "made": true
-            },
-            {
               "customer": "Wine Grand (Carlstadt)",
               "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
               "brand": "Cayman Jack",
@@ -167710,15 +170258,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Metro Wine And Liq(A)",
-              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/18/2026",
-              "made": true
-            },
-            {
               "customer": "Wine Grand (Carlstadt)",
-              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
+              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/18/2026",
               "made": true
@@ -167738,10 +170279,38 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Capri Deli&Liq (P)",
+              "customer": "Wine Grand (Carlstadt)",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/18/2026",
+              "made": true
+            },
+            {
+              "customer": "Metro Wine And Liq(A)",
+              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/18/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine Grand (Carlstadt)",
               "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
               "brand": "Cayman Jack",
-              "date": "9/16/2026",
+              "date": "9/18/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine Grand (Carlstadt)",
+              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/18/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine Grand (Carlstadt)",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/18/2026",
               "made": true
             },
             {
@@ -167752,14 +170321,21 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Capri Deli&Liq (P)",
+              "customer": "Moonachie Liquors",
               "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
               "brand": "Cayman Jack",
               "date": "9/16/2026",
               "made": true
             },
             {
-              "customer": "Moonachie Liquors",
+              "customer": "Capri Deli&Liq (P)",
+              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "9/16/2026",
+              "made": true
+            },
+            {
+              "customer": "Capri Deli&Liq (P)",
               "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
               "brand": "Cayman Jack",
               "date": "9/16/2026",
@@ -167774,28 +170350,28 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Birchwood Liq & Deli (Z)",
-              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
-              "brand": "Cayman Jack",
-              "date": "9/11/2026",
-              "made": true
-            },
-            {
-              "customer": "Birchwood Liq & Deli (Z)",
               "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
               "brand": "Cayman Jack",
               "date": "9/11/2026",
               "made": true
             },
             {
+              "customer": "Birchwood Liq & Deli (Z)",
+              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "9/11/2026",
+              "made": true
+            },
+            {
               "customer": "All Star Wine & Liquor",
-              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/8/2026",
               "made": true
             },
             {
               "customer": "All Star Wine & Liquor",
-              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/8/2026",
               "made": true
@@ -167816,7 +170392,21 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Metro Liquor (Elmwood Park)",
-              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/3/2026",
+              "made": true
+            },
+            {
+              "customer": "Metro Liquor (Elmwood Park)",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/3/2026",
+              "made": true
+            },
+            {
+              "customer": "Metro Liquor (Elmwood Park)",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/3/2026",
               "made": true
@@ -167830,55 +170420,20 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Metro Liquor (Elmwood Park)",
-              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/3/2026",
-              "made": true
-            },
-            {
-              "customer": "Metro Liquor (Elmwood Park)",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/3/2026",
-              "made": true
-            },
-            {
-              "customer": "Home Wine Liquor (Passaic)",
-              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
-              "brand": "Cayman Jack",
-              "date": "9/3/2026",
-              "made": true
-            },
-            {
-              "customer": "Metro Liquor (Elmwood Park)",
-              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/3/2026",
-              "made": true
-            },
-            {
-              "customer": "Whoopee Liq (A)",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/2/2026",
-              "made": true
-            },
-            {
-              "customer": "Whoopee Liq (A)",
-              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/2/2026",
               "made": true
             }
           ],
-          "count": 39,
-          "madeCount": 39,
+          "count": 56,
+          "madeCount": 56,
           "allMade": true,
           "qualified": true,
           "payout": 30,
           "toQualifier": 0
         },
-        "totalPods": 149,
+        "totalPods": 174,
         "accounts": 32,
         "payout": 45,
         "legsQualified": 2,
@@ -167922,66 +170477,73 @@ const PROGRAM_DATA_2026_10 = {
         "wc": {
           "pods": [
             {
-              "customer": "Wayne Liquor Locker",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Wayne Liquor Locker",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Wolfson Market",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
-              "customer": "Wolfson Market",
+              "customer": "Lincoln Center Liq",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/29/2026",
+              "date": "10/9/2026",
+              "made": true
+            },
+            {
+              "customer": "Wayne Liquor Locker",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": false
+            },
+            {
+              "customer": "Wayne Liquor Locker",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Wolfson Market",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
               "made": true
             },
             {
               "customer": "Shay's Liquors",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/29/2026",
+              "date": "10/6/2026",
               "made": true
             },
             {
               "customer": "Shay's Liquors",
               "product": "White Claw Surge Grape 1/12/19.2oz Can",
               "brand": "White Claw",
-              "date": "9/29/2026",
+              "date": "10/6/2026",
               "made": true
             },
             {
-              "customer": "Wolfson Market",
+              "customer": "Shay's Liquors",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/29/2026",
+              "date": "10/6/2026",
               "made": true
             },
             {
-              "customer": "Shay's Liquors",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "customer": "Wolfson Market",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/29/2026",
+              "date": "10/6/2026",
               "made": true
             },
             {
               "customer": "Shay's Liquors",
               "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/29/2026",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Wayne Liquor Locker",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "9/30/2026",
               "made": true
             },
             {
@@ -167992,29 +170554,22 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Shays Liquors",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "customer": "Shay's Liquors",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/25/2026",
+              "date": "9/29/2026",
               "made": true
             },
             {
-              "customer": "Shays Liquors",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "customer": "Wolfson Market",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": false
+              "date": "9/29/2026",
+              "made": true
             },
             {
               "customer": "Shays Liquors",
               "product": "White Claw Surge Grape 1/12/19.2oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Shays Liquors",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/25/2026",
               "made": true
@@ -168027,15 +170582,29 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Wolfson Market",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "customer": "Shays Liquors",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/22/2026",
+              "date": "9/25/2026",
               "made": true
             },
             {
-              "customer": "Shay's Liquors",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "customer": "Shays Liquors",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/25/2026",
+              "made": true
+            },
+            {
+              "customer": "Shays Liquors",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/25/2026",
+              "made": false
+            },
+            {
+              "customer": "Wolfson Market",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
               "brand": "White Claw",
               "date": "9/22/2026",
               "made": true
@@ -168056,31 +170625,17 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Wayne Liquor Locker",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/9/2026",
-              "made": true
-            },
-            {
-              "customer": "Wayne Liquor Locker",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/9/2026",
               "made": true
             },
             {
-              "customer": "Lincoln Center Liq",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/4/2026",
-              "made": true
-            },
-            {
               "customer": "Wayne Liquor Locker",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/2/2026",
-              "made": false
+              "date": "9/9/2026",
+              "made": true
             }
           ],
           "count": 23,
@@ -168092,6 +170647,20 @@ const PROGRAM_DATA_2026_10 = {
         },
         "harder": {
           "pods": [
+            {
+              "customer": "Lincoln Center Liq",
+              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "10/9/2026",
+              "made": true
+            },
+            {
+              "customer": "Lincoln Center Liq",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/9/2026",
+              "made": true
+            },
             {
               "customer": "Wayne Liquor Locker",
               "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
@@ -168135,17 +170704,17 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             }
           ],
-          "count": 6,
-          "madeCount": 6,
+          "count": 8,
+          "madeCount": 8,
           "allMade": true,
-          "qualified": false,
-          "payout": 0,
-          "toQualifier": 2
+          "qualified": true,
+          "payout": 30,
+          "toQualifier": 0
         },
-        "totalPods": 29,
+        "totalPods": 31,
         "accounts": 5,
-        "payout": 15,
-        "legsQualified": 1,
+        "payout": 45,
+        "legsQualified": 2,
         "offPremTargets": [
           {
             "customer": "Total Wine & More (West Orange)",
@@ -168234,207 +170803,298 @@ const PROGRAM_DATA_2026_10 = {
         "wc": {
           "pods": [
             {
-              "customer": "Waldwick Wine/Spirits",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "customer": "Hawthorne Liq (A)",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "10/1/2026",
+              "date": "10/9/2026",
               "made": true
             },
             {
-              "customer": "Waldwick Wine/Spirits",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "customer": "Hawthorne Liq (A)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "10/1/2026",
+              "date": "10/9/2026",
               "made": true
             },
             {
               "customer": "Waldwick Wine/Spirits",
               "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
               "brand": "White Claw",
-              "date": "10/1/2026",
+              "date": "10/6/2026",
               "made": false
-            },
-            {
-              "customer": "Waldwick Wine/Spirits",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "10/1/2026",
-              "made": true
-            },
-            {
-              "customer": "Waldwick Wine/Spirits",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "10/1/2026",
-              "made": true
-            },
-            {
-              "customer": "Waldwick Wine/Spirits",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
-              "brand": "White Claw",
-              "date": "10/1/2026",
-              "made": true
             },
             {
               "customer": "Franklin Lake Liq",
               "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Wine & Spirit World(W)",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Franklin Lake Liq",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Wine & Spirit World(W)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Wine & Spirit World(W)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": true
-            },
-            {
-              "customer": "Bottle King (A) Wayne",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/29/2026",
+              "date": "10/6/2026",
               "made": true
             },
             {
               "customer": "Mahwah Liqrs (P)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
-              "customer": "Quick Stop Liquor & Wine",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Diamond Liquor",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Fair Lawn Wine & Spirits",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Long Hill Liquors (A)",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Fair Lawn Wine & Spirits",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Long Hill Liquors (A)",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Fair Lawn Wine & Spirits",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Fair Lawn Wine & Spirits",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Fair Lawn Wine & Spirits",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": false
-            },
-            {
-              "customer": "Quick Stop Liquor & Wine",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Diamond Liquor",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Bottle King (A) Wayne",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "Bottle King (A) Wayne",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": false
-            },
-            {
-              "customer": "Franklin Lake Liq",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/23/2026",
+              "date": "10/6/2026",
               "made": true
             },
             {
               "customer": "Mahwah Wine & Liquor (A)",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/22/2026",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Franklin Lake Liq",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Waldwick Wine/Spirits",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Quick Stop Liquor & Wine",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Quick Stop Liquor & Wine",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Waldwick Wine/Spirits",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Diamond Liquor",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Frank's Fine Wine & Foods",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Franklin Lake Liq",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle King (A) Wayne",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle King (A) Wayne",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle King (A) Wayne",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Lincoln Park Fine Wines & Spirits",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": false
+            },
+            {
+              "customer": "Oakland Wine (A)",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Lincoln Park Fine Wines & Spirits",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Lincoln Park Fine Wines & Spirits",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Oakland Wine (A)",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Nico's Wine & Spirits",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": false
+            },
+            {
+              "customer": "Waldwick Wine/Spirits",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Waldwick Wine/Spirits",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Waldwick Wine/Spirits",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine & Spirit World(W)",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/30/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine & Spirit World(W)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/30/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine & Spirit World(W)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/30/2026",
               "made": true
             },
             {
               "customer": "Mahwah Liqrs (P)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/29/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle King (A) Wayne",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/29/2026",
+              "made": true
+            },
+            {
+              "customer": "Long Hill Liquors (A)",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/25/2026",
+              "made": true
+            },
+            {
+              "customer": "Fair Lawn Wine & Spirits",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/22/2026",
+              "date": "9/25/2026",
               "made": true
+            },
+            {
+              "customer": "Diamond Liquor",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/25/2026",
+              "made": true
+            },
+            {
+              "customer": "Fair Lawn Wine & Spirits",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/25/2026",
+              "made": true
+            },
+            {
+              "customer": "Fair Lawn Wine & Spirits",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/25/2026",
+              "made": true
+            },
+            {
+              "customer": "Fair Lawn Wine & Spirits",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/25/2026",
+              "made": false
+            },
+            {
+              "customer": "Quick Stop Liquor & Wine",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/25/2026",
+              "made": true
+            },
+            {
+              "customer": "Long Hill Liquors (A)",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/25/2026",
+              "made": true
+            },
+            {
+              "customer": "Fair Lawn Wine & Spirits",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/25/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle King (A) Wayne",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "9/24/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle King (A) Wayne",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/24/2026",
+              "made": false
             },
             {
               "customer": "Goffle Road Wine and More",
@@ -168445,37 +171105,16 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Wine & Spirit World(W)",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/21/2026",
-              "made": true
-            },
-            {
-              "customer": "Wine & Spirit World(W)",
               "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/21/2026",
               "made": false
             },
             {
-              "customer": "Lincoln Park Fine Wines & Spirits",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "customer": "Wine & Spirit World(W)",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/18/2026",
-              "made": true
-            },
-            {
-              "customer": "Lincoln Park Fine Wines & Spirits",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/18/2026",
-              "made": true
-            },
-            {
-              "customer": "Oakland Wine (A)",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/18/2026",
+              "date": "9/21/2026",
               "made": true
             },
             {
@@ -168486,15 +171125,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Oakland Wine (A)",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/18/2026",
-              "made": true
-            },
-            {
-              "customer": "Hawthorne Liq (A)",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "customer": "Lincoln Park Fine Wines & Spirits",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/18/2026",
               "made": true
@@ -168521,20 +171153,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Bottle King (A) Wayne",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/17/2026",
-              "made": true
-            },
-            {
-              "customer": "GREEN WAY MARKETS",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/16/2026",
-              "made": true
-            },
-            {
               "customer": "GREEN WAY MARKETS",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
@@ -168542,10 +171160,10 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Beekman's Wines and Liquors",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "customer": "GREEN WAY MARKETS",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/15/2026",
+              "date": "9/16/2026",
               "made": true
             },
             {
@@ -168557,7 +171175,21 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Beekman's Wines and Liquors",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/15/2026",
+              "made": true
+            },
+            {
+              "customer": "Beekman's Wines and Liquors",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/15/2026",
+              "made": true
+            },
+            {
+              "customer": "Nico's Wine & Spirits",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/15/2026",
               "made": true
@@ -168570,52 +171202,10 @@ const PROGRAM_DATA_2026_10 = {
               "made": false
             },
             {
-              "customer": "Nico's Wine & Spirits",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/15/2026",
-              "made": true
-            },
-            {
-              "customer": "Frank's Fine Wine & Foods",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/15/2026",
-              "made": true
-            },
-            {
-              "customer": "Hawthorne Liq (A)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/11/2026",
-              "made": true
-            },
-            {
               "customer": "Hawthorne Liq (A)",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/11/2026",
-              "made": true
-            },
-            {
-              "customer": "Frank's Fine Wine & Foods",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/9/2026",
-              "made": true
-            },
-            {
-              "customer": "Frank's Fine Wine & Foods",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
-              "brand": "White Claw",
-              "date": "9/9/2026",
-              "made": true
-            },
-            {
-              "customer": "Goffle Road Wine and More",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/9/2026",
               "made": true
             },
             {
@@ -168626,22 +171216,29 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Bottle King (A) Wayne",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "customer": "Frank's Fine Wine & Foods",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/8/2026",
+              "date": "9/9/2026",
               "made": true
             },
             {
-              "customer": "Bottle King (A) Wayne",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "customer": "Goffle Road Wine and More",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/8/2026",
+              "date": "9/9/2026",
               "made": true
             },
             {
-              "customer": "Lincoln Park Fine Wines & Spirits",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "customer": "Frank's Fine Wine & Foods",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "9/9/2026",
+              "made": true
+            },
+            {
+              "customer": "Fair Lawn Wine & Spirits",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
               "brand": "White Claw",
               "date": "9/4/2026",
               "made": true
@@ -168649,13 +171246,6 @@ const PROGRAM_DATA_2026_10 = {
             {
               "customer": "Goffle Road Wine and More",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/4/2026",
-              "made": true
-            },
-            {
-              "customer": "Fair Lawn Wine & Spirits",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
               "brand": "White Claw",
               "date": "9/4/2026",
               "made": true
@@ -168668,8 +171258,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             }
           ],
-          "count": 62,
-          "madeCount": 57,
+          "count": 65,
+          "madeCount": 58,
           "allMade": false,
           "qualified": true,
           "payout": 15,
@@ -168678,6 +171268,27 @@ const PROGRAM_DATA_2026_10 = {
         "harder": {
           "pods": [
             {
+              "customer": "Quick Stop Liquor & Wine",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Fair Lawn Wine & Spirits",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Lincoln Park Fine Wines & Spirits",
+              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
               "customer": "Hawthorne Liq (A)",
               "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
@@ -168685,10 +171296,38 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Waldwick Wine/Spirits",
+              "customer": "Lincoln Park Fine Wines & Spirits",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Fair Lawn Wine & Spirits",
+              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Fair Lawn Wine & Spirits",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Fair Lawn Wine & Spirits",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Scherer & Company",
               "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
-              "date": "10/1/2026",
+              "date": "10/2/2026",
               "made": true
             },
             {
@@ -168699,15 +171338,36 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Wine & Spirit World(W)",
+              "customer": "GREEN WAY MARKETS",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "GREEN WAY MARKETS",
               "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Waldwick Wine/Spirits",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine & Spirit World(W)",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/30/2026",
               "made": true
             },
             {
               "customer": "Wine & Spirit World(W)",
-              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/30/2026",
               "made": true
@@ -168734,20 +171394,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Scherer & Company",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/21/2026",
-              "made": true
-            },
-            {
-              "customer": "Quick Stop Liquor & Wine",
-              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/18/2026",
-              "made": true
-            },
-            {
               "customer": "Quick Stop Liquor & Wine",
               "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
@@ -168757,6 +171403,13 @@ const PROGRAM_DATA_2026_10 = {
             {
               "customer": "Bottle King (A) Wayne",
               "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/17/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle King (A) Wayne",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/17/2026",
               "made": true
@@ -168776,27 +171429,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Bottle King (A) Wayne",
-              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/17/2026",
-              "made": true
-            },
-            {
-              "customer": "GREEN WAY MARKETS",
-              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/16/2026",
-              "made": true
-            },
-            {
-              "customer": "GREEN WAY MARKETS",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/16/2026",
-              "made": true
-            },
-            {
               "customer": "GREEN WAY MARKETS",
               "product": "Mikes Harder Mango 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
@@ -168811,14 +171443,14 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             }
           ],
-          "count": 19,
-          "madeCount": 19,
+          "count": 25,
+          "madeCount": 25,
           "allMade": true,
           "qualified": true,
           "payout": 30,
           "toQualifier": 0
         },
-        "totalPods": 81,
+        "totalPods": 90,
         "accounts": 20,
         "payout": 45,
         "legsQualified": 2,
@@ -168879,14 +171511,14 @@ const PROGRAM_DATA_2026_10 = {
           "pods": [
             {
               "customer": "H Mart Inc (Space A101-A)",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/24/2026",
               "made": true
             },
             {
               "customer": "H Mart Inc (Space A101-A)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/24/2026",
               "made": true
@@ -168924,15 +171556,57 @@ const PROGRAM_DATA_2026_10 = {
         "wc": {
           "pods": [
             {
-              "customer": "Freddie's Corner",
+              "customer": "Passaic Discount Liquors",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Monroe Wine & Liq(P)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Broadway W&L",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Allen's Liquors",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Allen's Liquors",
               "product": "White Claw Peach 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/28/2026",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Gene's Liquor",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Johnny's Liqs (P)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
               "made": true
             },
             {
               "customer": "Freddie's Corner",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/28/2026",
               "made": true
@@ -168945,17 +171619,17 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "#1 Liqrs (P)",
+              "customer": "Freddie's Corner",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/28/2026",
               "made": true
             },
             {
-              "customer": "Monroe Wine & Liq(P)",
+              "customer": "#1 Liqrs (P)",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/25/2026",
+              "date": "9/28/2026",
               "made": true
             },
             {
@@ -168966,13 +171640,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "#1 Liqrs (P)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
               "customer": "Passaic Discount Liquors",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
@@ -168980,10 +171647,10 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Johnny's Liqs (P)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "customer": "#1 Liqrs (P)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/23/2026",
+              "date": "9/24/2026",
               "made": true
             },
             {
@@ -168991,6 +171658,13 @@ const PROGRAM_DATA_2026_10 = {
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/23/2026",
+              "made": true
+            },
+            {
+              "customer": "Altiero Liquors",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/18/2026",
               "made": true
             },
             {
@@ -169003,13 +171677,6 @@ const PROGRAM_DATA_2026_10 = {
             {
               "customer": "Altiero Liquors",
               "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/18/2026",
-              "made": true
-            },
-            {
-              "customer": "Altiero Liquors",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/18/2026",
               "made": true
@@ -169029,24 +171696,10 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Passaic Discount Liquors",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/17/2026",
-              "made": true
-            },
-            {
               "customer": "Regalado Liq",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/17/2026",
-              "made": true
-            },
-            {
-              "customer": "Broadway W&L",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/15/2026",
               "made": true
             },
             {
@@ -169078,10 +171731,10 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Gene's Liquor",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "customer": "Legacy Bar & Liquor",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/2/2026",
+              "date": "9/1/2026",
               "made": true
             },
             {
@@ -169090,17 +171743,10 @@ const PROGRAM_DATA_2026_10 = {
               "brand": "White Claw",
               "date": "9/1/2026",
               "made": true
-            },
-            {
-              "customer": "Legacy Bar & Liquor",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/1/2026",
-              "made": true
             }
           ],
-          "count": 25,
-          "madeCount": 25,
+          "count": 27,
+          "madeCount": 27,
           "allMade": true,
           "qualified": true,
           "payout": 30,
@@ -169108,6 +171754,13 @@ const PROGRAM_DATA_2026_10 = {
         },
         "harder": {
           "pods": [
+            {
+              "customer": "Passaic Discount Liquors",
+              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
+              "date": "10/7/2026",
+              "made": true
+            },
             {
               "customer": "Freddie's Corner",
               "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
@@ -169142,13 +171795,6 @@ const PROGRAM_DATA_2026_10 = {
               "brand": "Mike's Harder",
               "date": "9/3/2026",
               "made": true
-            },
-            {
-              "customer": "Passaic Discount Liquors",
-              "product": "Cayman Jacked Margarita 1/12/19.2 oz Can",
-              "brand": "Cayman Jack",
-              "date": "9/2/2026",
-              "made": true
             }
           ],
           "count": 6,
@@ -169158,8 +171804,8 @@ const PROGRAM_DATA_2026_10 = {
           "payout": 0,
           "toQualifier": 2
         },
-        "totalPods": 31,
-        "accounts": 14,
+        "totalPods": 33,
+        "accounts": 15,
         "payout": 30,
         "legsQualified": 1,
         "offPremTargets": [
@@ -169192,10 +171838,6 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 5961.3
           },
           {
-            "customer": "Allen's Liquors",
-            "cases2026": 5005.0
-          },
-          {
             "customer": "Costambar Bar & Liquor Corp.",
             "cases2026": 3404.8
           },
@@ -169220,7 +171862,7 @@ const PROGRAM_DATA_2026_10 = {
             "cases2026": 0.0
           }
         ],
-        "offPremTargetCount": 14
+        "offPremTargetCount": 13
       },
       "Paul Mclaughlin": {
         "wc": {
@@ -169261,6 +171903,223 @@ const PROGRAM_DATA_2026_10 = {
         "wc": {
           "pods": [
             {
+              "customer": "Shop Rite Liq (Paramus)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Stew Leonard's Wines & Spirits of Clifton",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Liq (Paramus)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine Country Of Saddle Brook (A)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "City Supermarket",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "City Supermarket",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "City Supermarket",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Budy's Wine & Liq (A)",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "City Supermarket",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Liq(A) Fair Lwn",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Liq(A) Fair Lwn",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Liq(A) Fair Lwn",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Food Universe Marketplace",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Liq(A) Fair Lwn",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Food Universe Marketplace",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Lushka Liquors",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Lushka Liquors",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Food Universe Marketplace",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Food Universe Marketplace",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle King (A) Glen Rock",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "USA Wine Traders Paramus",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Whole Foods Market (Paramus)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle King (A) Glen Rock",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": false
+            },
+            {
+              "customer": "Bottle King (A) Glen Rock",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle King (A) Glen Rock",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Whole Foods Market (Paramus)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle King (A) Glen Rock",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "USA Wine Traders Paramus",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": false
+            },
+            {
+              "customer": "Bottle King (A) Glen Rock",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle King (A) Glen Rock",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "USA Wine Traders Paramus",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
               "customer": "USA Wine Traders Paramus",
               "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
@@ -169268,53 +172127,11 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Whole Foods Market (Paramus)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "10/1/2026",
-              "made": true
-            },
-            {
-              "customer": "USA Wine Traders Paramus",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "10/1/2026",
-              "made": true
-            },
-            {
-              "customer": "USA Wine Traders Paramus",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "10/1/2026",
-              "made": false
-            },
-            {
-              "customer": "Whole Foods Market (Paramus)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "10/1/2026",
-              "made": true
-            },
-            {
-              "customer": "USA Wine Traders Paramus",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "10/1/2026",
-              "made": true
-            },
-            {
               "customer": "PRIME WINE CELLAR Liquor & Beer",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/30/2026",
               "made": true
-            },
-            {
-              "customer": "PRIME WINE CELLAR Liquor & Beer",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/30/2026",
-              "made": false
             },
             {
               "customer": "Wine Country Of Saddle Brook (A)",
@@ -169324,6 +172141,13 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
+              "customer": "PRIME WINE CELLAR Liquor & Beer",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/30/2026",
+              "made": false
+            },
+            {
               "customer": "Acme Markets (Midland Park)",
               "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
               "brand": "White Claw",
@@ -169331,64 +172155,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Shop Rite Liq(A) Fair Lwn",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Shop Rite Liq(A) Fair Lwn",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Shop Rite Liq (Paramus)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Shop Rite Liq(A) Fair Lwn",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Shop Rite Liq(A) Fair Lwn",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Food Universe Marketplace",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Shop Rite Liq (Paramus)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
               "customer": "THE BOTTLE SHOP",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Acme Markets (Fort Lee)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/25/2026",
               "made": true
@@ -169401,8 +172169,29 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
+              "customer": "Acme Markets (Fort Lee)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/25/2026",
+              "made": true
+            },
+            {
+              "customer": "Super Wine Warehse(P)Pate",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/24/2026",
+              "made": true
+            },
+            {
               "customer": "Super Wine Warehse(P)Pate",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/24/2026",
+              "made": true
+            },
+            {
+              "customer": "Stew Leonard's(A) Paramus Wine",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/24/2026",
               "made": true
@@ -169422,20 +172211,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Super Wine Warehse(P)Pate",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "Stew Leonard's(A) Paramus Wine",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
               "customer": "Lushka Liquors",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
@@ -169443,25 +172218,11 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Lushka Liquors",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/23/2026",
-              "made": true
-            },
-            {
-              "customer": "Lushka Liquors",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/23/2026",
-              "made": true
-            },
-            {
-              "customer": "City Supermarket",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "customer": "Stew Leonard's Wines & Spirits of Clifton",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/22/2026",
-              "made": true
+              "made": false
             },
             {
               "customer": "Shop-Rite Liq Lyndhurst",
@@ -169471,8 +172232,15 @@ const PROGRAM_DATA_2026_10 = {
               "made": false
             },
             {
+              "customer": "Wine Country Of Saddle Brook (A)",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/22/2026",
+              "made": true
+            },
+            {
               "customer": "Shop-Rite Liq Lyndhurst",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/22/2026",
               "made": true
@@ -169480,20 +172248,6 @@ const PROGRAM_DATA_2026_10 = {
             {
               "customer": "Shop-Rite Liq Lyndhurst",
               "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Budy's Wine & Liq (A)",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Shop-Rite Liq Lyndhurst",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/22/2026",
               "made": true
@@ -169507,42 +172261,28 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Shop-Rite Liq Lyndhurst",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/22/2026",
               "made": true
             },
             {
-              "customer": "Stew Leonard's Wines & Spirits of Clifton",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": false
-            },
-            {
-              "customer": "Wine Country Of Saddle Brook (A)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Wine Country Of Saddle Brook (A)",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "customer": "Shop-Rite Liq Lyndhurst",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/22/2026",
               "made": true
             },
             {
               "customer": "Home Wines & Liq 75 (A) (South Hackensack)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/21/2026",
               "made": true
             },
             {
               "customer": "Home Wines & Liq 75 (A) (South Hackensack)",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/21/2026",
               "made": true
@@ -169563,14 +172303,14 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Budy's Wine & Liq (A)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/15/2026",
               "made": true
             },
             {
               "customer": "Budy's Wine & Liq (A)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/15/2026",
               "made": true
@@ -169583,27 +172323,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Food Universe Marketplace",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/11/2026",
-              "made": true
-            },
-            {
-              "customer": "Food Universe Marketplace",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/11/2026",
-              "made": true
-            },
-            {
-              "customer": "Riverview Liq (P)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/10/2026",
-              "made": true
-            },
-            {
               "customer": "Super Wine Warehse(P)Pate",
               "product": "White Claw Peach 1/12/19.2 oz Can",
               "brand": "White Claw",
@@ -169611,15 +172330,15 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Stew Leonard's Wines & Spirits of Clifton",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "customer": "Riverview Liq (P)",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/10/2026",
               "made": true
             },
             {
               "customer": "Riverview Liq (P)",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/10/2026",
               "made": true
@@ -169653,6 +172372,20 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
+              "customer": "Saddle Brook Liquor & Bar",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/4/2026",
+              "made": true
+            },
+            {
+              "customer": "Saddle Brook Liquor & Bar",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/4/2026",
+              "made": true
+            },
+            {
               "customer": "Acme Markets (Fort Lee)",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
@@ -169660,36 +172393,15 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Saddle Brook Liquor & Bar",
+              "customer": "Bottle King (A) Glen Rock",
               "product": "White Claw Peach 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/4/2026",
-              "made": true
-            },
-            {
-              "customer": "Saddle Brook Liquor & Bar",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/4/2026",
+              "date": "9/3/2026",
               "made": true
             },
             {
               "customer": "Super Wine Warehse(P)Pate",
               "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/3/2026",
-              "made": true
-            },
-            {
-              "customer": "Bottle King (A) Glen Rock",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/3/2026",
-              "made": true
-            },
-            {
-              "customer": "Bottle King (A) Glen Rock",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/3/2026",
               "made": true
@@ -169716,8 +172428,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             }
           ],
-          "count": 65,
-          "madeCount": 60,
+          "count": 75,
+          "madeCount": 69,
           "allMade": false,
           "qualified": true,
           "payout": 15,
@@ -169726,8 +172438,50 @@ const PROGRAM_DATA_2026_10 = {
         "harder": {
           "pods": [
             {
+              "customer": "Shop Rite Liq(A) Fair Lwn",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Food Universe Marketplace",
+              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Food Universe Marketplace",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
               "customer": "USA Wine Traders Paramus",
               "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle King (A) Glen Rock",
+              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle King (A) Glen Rock",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle King (A) Glen Rock",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "10/1/2026",
               "made": true
@@ -169740,35 +172494,42 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
+              "customer": "Bottle King (A) Glen Rock",
+              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
               "customer": "USA Wine Traders Paramus",
               "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Liq (Paramus)",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/28/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Liq (Paramus)",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/28/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Liq (Paramus)",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "9/28/2026",
               "made": true
             },
             {
               "customer": "Shop Rite Liq(A) Fair Lwn",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Shop Rite Liq (Paramus)",
-              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Shop Rite Liq (Paramus)",
-              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Shop Rite Liq (Paramus)",
               "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/28/2026",
@@ -169783,28 +172544,21 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Super Wine Warehse(P)Pate",
-              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/24/2026",
               "made": true
             },
             {
               "customer": "Super Wine Warehse(P)Pate",
-              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/24/2026",
               "made": true
             },
             {
-              "customer": "Acme Markets (Fort Lee)",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/18/2026",
-              "made": true
-            },
-            {
               "customer": "Food Universe Marketplace",
-              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/18/2026",
               "made": true
@@ -169818,14 +172572,14 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Food Universe Marketplace",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/18/2026",
               "made": true
             },
             {
-              "customer": "Food Universe Marketplace",
-              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "customer": "Acme Markets (Fort Lee)",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/18/2026",
               "made": true
@@ -169845,16 +172599,16 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Super Wine Warehse(P)Pate",
-              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
-              "brand": "Cayman Jack",
+              "customer": "Saddle Brook Liquor & Bar",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
               "date": "9/17/2026",
               "made": true
             },
             {
-              "customer": "Saddle Brook Liquor & Bar",
-              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
+              "customer": "Super Wine Warehse(P)Pate",
+              "product": "Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
+              "brand": "Cayman Jack",
               "date": "9/17/2026",
               "made": true
             },
@@ -169873,20 +172627,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Bottle King (A) Glen Rock",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/10/2026",
-              "made": true
-            },
-            {
-              "customer": "Bottle King (A) Glen Rock",
-              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/10/2026",
-              "made": true
-            },
-            {
               "customer": "Super Wine Warehse(P)Pate",
               "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
@@ -169894,14 +172634,14 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             }
           ],
-          "count": 24,
-          "madeCount": 24,
+          "count": 28,
+          "madeCount": 28,
           "allMade": true,
           "qualified": true,
           "payout": 30,
           "toQualifier": 0
         },
-        "totalPods": 89,
+        "totalPods": 103,
         "accounts": 22,
         "payout": 45,
         "legsQualified": 2,
@@ -169989,20 +172729,160 @@ const PROGRAM_DATA_2026_10 = {
           "pods": [
             {
               "customer": "Ramsey Wine & Liquor",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "10/1/2026",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Ramsey Wine & Liquor",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/8/2026",
               "made": true
             },
             {
               "customer": "Ramsey Wine & Liquor",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "10/1/2026",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Township Liq (P)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Montvale Wines & Spirits",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Township Liq (P)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Oradell Mini Mart(P)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Garden State Deli (A)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Oradell Mini Mart(P)",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/7/2026",
+              "made": true
+            },
+            {
+              "customer": "Montvale Wine/Liq & Beer",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/6/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle King (A) Ramsey",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Beverage Barn (A)",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
               "made": true
             },
             {
               "customer": "Ramsey Wine & Liquor",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/5/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine And Beverage Spirits",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Wine And Beverage Spirits",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Beverage Barn (A)",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Beverage Barn (A)",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Beverage Barn (A)",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": false
+            },
+            {
+              "customer": "Beverage Barn (A)",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Beverage Barn (A)",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Cork & Keg (A)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle King (A) Hillsdale",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": false
+            },
+            {
+              "customer": "Wine & Whiskey (A)",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "10/1/2026",
@@ -170016,6 +172896,41 @@ const PROGRAM_DATA_2026_10 = {
               "made": false
             },
             {
+              "customer": "Bottle King (A) Dumont",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Garden State Deli (A)",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": false
+            },
+            {
+              "customer": "Wine & Whiskey (A)",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle King (A) Hillsdale",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle King (A) Hillsdale",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
               "customer": "Oradell Mini Mart(P)",
               "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
@@ -170023,29 +172938,8 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Montvale Wine/Liq & Beer",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
               "customer": "Shop Rite Liq (A)Emerson",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
-              "customer": "Shop Rite Liq (A)Emerson",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/29/2026",
-              "made": true
-            },
-            {
-              "customer": "Township Liq (P)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/29/2026",
               "made": true
@@ -170072,171 +172966,66 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Bottle King (A) Ramsey",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Bottle King (A) Ramsey",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Ramsey Wine & Liquor",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/28/2026",
-              "made": true
-            },
-            {
-              "customer": "Beverage Barn (A)",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Cork & Keg (A)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Cork & Keg (A)",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/25/2026",
-              "made": false
-            },
-            {
-              "customer": "Bottle King (A) Hillsdale",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "Bottle King (A) Hillsdale",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": false
-            },
-            {
-              "customer": "Ramsey Wine & Liquor",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "Bottle King (A) Dumont",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "Bottle King (A) Dumont",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "Royal Wine & Spirits II",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/23/2026",
-              "made": true
-            },
-            {
-              "customer": "Royal Wine & Spirits II",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/23/2026",
-              "made": true
-            },
-            {
-              "customer": "Oradell Mini Mart(P)",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/23/2026",
-              "made": false
-            },
-            {
-              "customer": "Oradell Mini Mart(P)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/23/2026",
-              "made": true
-            },
-            {
-              "customer": "Shoprite Liq (A)Northvle",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": false
-            },
-            {
               "customer": "Shop Rite Liq (A)Emerson",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Township Liq (P)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Winemart Discount",
-              "product": "White Claw Peach 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Shoprite Liq (A)Northvle",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Shoprite Liq (A)Northvle",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Winemart Discount",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Winemart Discount",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/22/2026",
+              "date": "9/29/2026",
               "made": true
             },
             {
-              "customer": "Winemart Discount",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "customer": "Bottle King (A) Ramsey",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/22/2026",
+              "date": "9/28/2026",
+              "made": true
+            },
+            {
+              "customer": "Ramsey Wine & Liquor",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/28/2026",
+              "made": true
+            },
+            {
+              "customer": "Cork & Keg (A)",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/25/2026",
+              "made": false
+            },
+            {
+              "customer": "Bottle King (A) Dumont",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/24/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle King (A) Hillsdale",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/24/2026",
+              "made": true
+            },
+            {
+              "customer": "Royal Wine & Spirits II",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/23/2026",
+              "made": true
+            },
+            {
+              "customer": "Oradell Mini Mart(P)",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/23/2026",
+              "made": false
+            },
+            {
+              "customer": "Royal Wine & Spirits II",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/23/2026",
               "made": true
             },
             {
@@ -170248,24 +173037,52 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Shoprite Liq (A)Northvle",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/22/2026",
+              "made": true
+            },
+            {
+              "customer": "Winemart Discount",
+              "product": "White Claw Peach 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/22/2026",
               "made": true
             },
             {
               "customer": "Shop Rite Liq (A)Hillsdal",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/22/2026",
+              "made": true
+            },
+            {
+              "customer": "Winemart Discount",
+              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/22/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Liq (A)Emerson",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/22/2026",
+              "made": true
+            },
+            {
+              "customer": "Shoprite Liq (A)Northvle",
               "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/22/2026",
               "made": true
             },
             {
-              "customer": "Shop Rite Liq (A)Hillsdal",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "customer": "Shoprite Liq (A)Northvle",
+              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/22/2026",
-              "made": true
+              "made": false
             },
             {
               "customer": "Shoprite Liq (A)Northvle",
@@ -170275,7 +173092,7 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Winemart Discount",
+              "customer": "Shoprite Liq (A)Northvle",
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/22/2026",
@@ -170283,35 +173100,28 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Shoprite Liq (A)Northvle",
-              "product": "White Claw Surge Grape 1/12/19.2oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Shop Rite Liq (A)Emerson",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Shoprite Liq (A)Northvle",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Shop Rite Liq (A)Hillsdal",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/22/2026",
               "made": true
             },
             {
               "customer": "Winemart Discount",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
+              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/22/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Liq (A)Hillsdal",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/22/2026",
+              "made": true
+            },
+            {
+              "customer": "Winemart Discount",
+              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/22/2026",
               "made": true
@@ -170324,10 +173134,38 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Beverage Barn (A)",
-              "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
+              "customer": "Winemart Discount",
+              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/21/2026",
+              "date": "9/22/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Liq (A)Emerson",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "9/22/2026",
+              "made": true
+            },
+            {
+              "customer": "Shoprite Liq (A)Northvle",
+              "product": "White Claw Surge Grape 1/12/19.2oz Can",
+              "brand": "White Claw",
+              "date": "9/22/2026",
+              "made": true
+            },
+            {
+              "customer": "Winemart Discount",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/22/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Liq (A)Hillsdal",
+              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
+              "brand": "White Claw",
+              "date": "9/22/2026",
               "made": true
             },
             {
@@ -170338,10 +173176,10 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Beverage Barn (A)",
+              "customer": "Cork & Keg (A)",
               "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/21/2026",
+              "date": "9/18/2026",
               "made": true
             },
             {
@@ -170349,20 +173187,6 @@ const PROGRAM_DATA_2026_10 = {
               "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/18/2026",
-              "made": true
-            },
-            {
-              "customer": "Cork & Keg (A)",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/18/2026",
-              "made": true
-            },
-            {
-              "customer": "Bottle King (A) Hillsdale",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/17/2026",
               "made": true
             },
             {
@@ -170373,13 +173197,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Montvale Wines & Spirits",
-              "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/16/2026",
-              "made": false
-            },
-            {
               "customer": "Westwood Wine and Liquors",
               "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
               "brand": "White Claw",
@@ -170395,58 +173212,23 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Montvale Wines & Spirits",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/16/2026",
-              "made": true
-            },
-            {
-              "customer": "Montvale Wines & Spirits",
               "product": "White Claw Surge Blueberry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/16/2026",
               "made": true
             },
             {
-              "customer": "Oradell Mini Mart(P)",
-              "product": "White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/16/2026",
-              "made": true
-            },
-            {
-              "customer": "Beverage Barn (A)",
-              "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/14/2026",
-              "made": true
-            },
-            {
-              "customer": "Beverage Barn (A)",
+              "customer": "Montvale Wines & Spirits",
               "product": "White Claw Surge 8% Cranberry 19.2 oz Can",
               "brand": "White Claw",
-              "date": "9/14/2026",
+              "date": "9/16/2026",
               "made": false
             },
             {
               "customer": "Beverage Barn (A)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/14/2026",
-              "made": true
-            },
-            {
-              "customer": "Beverage Barn (A)",
               "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
               "brand": "White Claw",
               "date": "9/14/2026",
-              "made": true
-            },
-            {
-              "customer": "Wine & Whiskey (A)",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/10/2026",
               "made": true
             },
             {
@@ -170454,25 +173236,11 @@ const PROGRAM_DATA_2026_10 = {
               "product": "White Claw Surge 8% Blood Orange 19.2 oz Can",
               "brand": "White Claw",
               "date": "9/8/2026",
-              "made": true
-            },
-            {
-              "customer": "Garden State Deli (A)",
-              "product": "White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/8/2026",
-              "made": true
-            },
-            {
-              "customer": "Wine And Beverage Spirits",
-              "product": "White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-              "brand": "White Claw",
-              "date": "9/4/2026",
               "made": true
             }
           ],
-          "count": 69,
-          "madeCount": 62,
+          "count": 73,
+          "madeCount": 65,
           "allMade": false,
           "qualified": true,
           "payout": 15,
@@ -170481,14 +173249,119 @@ const PROGRAM_DATA_2026_10 = {
         "harder": {
           "pods": [
             {
+              "customer": "Shop Rite Liq (A)Hillsdal",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/9/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Liq (A)Hillsdal",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/9/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Liq (A)Hillsdal",
+              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/9/2026",
+              "made": true
+            },
+            {
+              "customer": "Shop Rite Liq (A)Hillsdal",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/9/2026",
+              "made": true
+            },
+            {
+              "customer": "Shoprite Liq (A)Northvle",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/9/2026",
+              "made": true
+            },
+            {
+              "customer": "Shoprite Liq (A)Northvle",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/9/2026",
+              "made": true
+            },
+            {
+              "customer": "Shoprite Liq (A)Northvle",
+              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/9/2026",
+              "made": true
+            },
+            {
+              "customer": "Shoprite Liq (A)Northvle",
+              "product": "Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/9/2026",
+              "made": true
+            },
+            {
+              "customer": "Shoprite Liq (A)Northvle",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/9/2026",
+              "made": true
+            },
+            {
+              "customer": "Shoprite Liq (A)Northvle",
+              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/9/2026",
+              "made": true
+            },
+            {
               "customer": "Ramsey Wine & Liquor",
+              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Ramsey Wine & Liquor",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/8/2026",
+              "made": true
+            },
+            {
+              "customer": "Beverage Barn (A)",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Beverage Barn (A)",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/2/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle King (A) Ramsey",
               "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "10/1/2026",
               "made": true
             },
             {
-              "customer": "Ramsey Wine & Liquor",
+              "customer": "Bottle King (A) Ramsey",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "brand": "Mike's Harder",
+              "date": "10/1/2026",
+              "made": true
+            },
+            {
+              "customer": "Bottle King (A) Ramsey",
               "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "10/1/2026",
@@ -170503,13 +173376,6 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Winemart Discount",
-              "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Beverage Barn (A)",
               "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/25/2026",
@@ -170517,23 +173383,9 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Winemart Discount",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/25/2026",
-              "made": true
-            },
-            {
-              "customer": "Bottle King (A) Ramsey",
               "product": "Mikes Harder Black Cherry 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "Bottle King (A) Ramsey",
-              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/24/2026",
+              "date": "9/25/2026",
               "made": true
             },
             {
@@ -170544,27 +173396,6 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             },
             {
-              "customer": "Bottle King (A) Ramsey",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/24/2026",
-              "made": true
-            },
-            {
-              "customer": "Shoprite Liq (A)Northvle",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
-              "customer": "Shoprite Liq (A)Northvle",
-              "product": "Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/22/2026",
-              "made": true
-            },
-            {
               "customer": "Ramsey Wine & Liquor",
               "product": "Mikes Harder Mango 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
@@ -170574,20 +173405,6 @@ const PROGRAM_DATA_2026_10 = {
             {
               "customer": "Bottle King (A) Ramsey",
               "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/14/2026",
-              "made": true
-            },
-            {
-              "customer": "Shop Rite Liq (A)Hillsdal",
-              "product": "Mikes Harder Cranberry 1/12/23.5 oz Can",
-              "brand": "Mike's Harder",
-              "date": "9/14/2026",
-              "made": true
-            },
-            {
-              "customer": "Shop Rite Liq (A)Hillsdal",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/14/2026",
               "made": true
@@ -170601,14 +173418,14 @@ const PROGRAM_DATA_2026_10 = {
             },
             {
               "customer": "Cork & Keg (A)",
-              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
+              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/4/2026",
               "made": true
             },
             {
               "customer": "Cork & Keg (A)",
-              "product": "Mikes Harder Lemonade 1/12/23.5 oz Can",
+              "product": "Mikes Harder Mango 1/12/23.5 oz Can",
               "brand": "Mike's Harder",
               "date": "9/4/2026",
               "made": true
@@ -170621,14 +173438,14 @@ const PROGRAM_DATA_2026_10 = {
               "made": true
             }
           ],
-          "count": 20,
-          "madeCount": 20,
+          "count": 27,
+          "madeCount": 27,
           "allMade": true,
           "qualified": true,
           "payout": 30,
           "toQualifier": 0
         },
-        "totalPods": 89,
+        "totalPods": 100,
         "accounts": 20,
         "payout": 45,
         "legsQualified": 2,
@@ -170679,138 +173496,138 @@ const PROGRAM_DATA_2026_10 = {
     },
     "leaderboard": [
       {
-        "rep": "Jayson Romine",
-        "pods": 164,
-        "wc": 102,
-        "harder": 62,
+        "rep": "Matt Powierski",
+        "pods": 174,
+        "wc": 118,
+        "harder": 56,
         "legs": 2,
         "payout": 45,
         "rank": 1
       },
       {
-        "rep": "Dave Ehlers",
-        "pods": 158,
+        "rep": "Jayson Romine",
+        "pods": 173,
         "wc": 105,
-        "harder": 53,
+        "harder": 68,
         "legs": 2,
         "payout": 45,
         "rank": 2
       },
       {
-        "rep": "Klejdi Lamo",
-        "pods": 154,
-        "wc": 99,
-        "harder": 55,
+        "rep": "Dave Ehlers",
+        "pods": 170,
+        "wc": 116,
+        "harder": 54,
         "legs": 2,
         "payout": 45,
         "rank": 3
       },
       {
-        "rep": "Matt Powierski",
-        "pods": 149,
+        "rep": "Klejdi Lamo",
+        "pods": 168,
         "wc": 110,
-        "harder": 39,
+        "harder": 58,
         "legs": 2,
         "payout": 45,
         "rank": 4
       },
       {
         "rep": "Anthony Palmisano",
-        "pods": 129,
-        "wc": 103,
-        "harder": 26,
+        "pods": 141,
+        "wc": 110,
+        "harder": 31,
         "legs": 2,
         "payout": 45,
         "rank": 5
       },
       {
         "rep": "Jim Heaney",
-        "pods": 126,
-        "wc": 102,
-        "harder": 24,
+        "pods": 132,
+        "wc": 105,
+        "harder": 27,
         "legs": 2,
         "payout": 45,
         "rank": 6
       },
       {
         "rep": "Chris Payton",
-        "pods": 114,
-        "wc": 88,
-        "harder": 26,
+        "pods": 127,
+        "wc": 99,
+        "harder": 28,
         "legs": 2,
         "payout": 45,
         "rank": 7
       },
       {
         "rep": "Phil Ernst",
-        "pods": 89,
-        "wc": 65,
-        "harder": 24,
+        "pods": 103,
+        "wc": 75,
+        "harder": 28,
         "legs": 2,
         "payout": 45,
         "rank": 8
       },
       {
         "rep": "Shane Barreca",
-        "pods": 89,
-        "wc": 69,
-        "harder": 20,
+        "pods": 100,
+        "wc": 73,
+        "harder": 27,
         "legs": 2,
         "payout": 45,
         "rank": 9
       },
       {
         "rep": "Mike Ast",
-        "pods": 81,
-        "wc": 62,
-        "harder": 19,
+        "pods": 90,
+        "wc": 65,
+        "harder": 25,
         "legs": 2,
         "payout": 45,
         "rank": 10
       },
       {
         "rep": "Derrick Laws",
-        "pods": 53,
-        "wc": 34,
-        "harder": 19,
+        "pods": 65,
+        "wc": 38,
+        "harder": 27,
         "legs": 2,
         "payout": 45,
         "rank": 11
       },
       {
         "rep": "Javier Melo",
-        "pods": 45,
-        "wc": 29,
-        "harder": 16,
+        "pods": 51,
+        "wc": 30,
+        "harder": 21,
         "legs": 2,
         "payout": 45,
         "rank": 12
       },
       {
-        "rep": "Dan Lagala",
-        "pods": 60,
-        "wc": 56,
-        "harder": 4,
-        "legs": 1,
-        "payout": 15,
+        "rep": "Michael Harboy",
+        "pods": 31,
+        "wc": 23,
+        "harder": 8,
+        "legs": 2,
+        "payout": 45,
         "rank": 13
       },
       {
-        "rep": "Pablo Lopez",
-        "pods": 31,
-        "wc": 25,
-        "harder": 6,
+        "rep": "Dan Lagala",
+        "pods": 65,
+        "wc": 61,
+        "harder": 4,
         "legs": 1,
-        "payout": 30,
+        "payout": 15,
         "rank": 14
       },
       {
-        "rep": "Michael Harboy",
-        "pods": 29,
-        "wc": 23,
+        "rep": "Pablo Lopez",
+        "pods": 33,
+        "wc": 27,
         "harder": 6,
         "legs": 1,
-        "payout": 15,
+        "payout": 30,
         "rank": 15
       },
       {
@@ -170823,13 +173640,22 @@ const PROGRAM_DATA_2026_10 = {
         "rank": 16
       },
       {
+        "rep": "Alisa Acciardi",
+        "pods": 3,
+        "wc": 3,
+        "harder": 0,
+        "legs": 0,
+        "payout": 0,
+        "rank": 17
+      },
+      {
         "rep": "Nick Melissari",
         "pods": 2,
         "wc": 2,
         "harder": 0,
         "legs": 0,
         "payout": 0,
-        "rank": 17
+        "rank": 18
       },
       {
         "rep": "Dylan Rubino",
@@ -170838,19 +173664,10 @@ const PROGRAM_DATA_2026_10 = {
         "harder": 0,
         "legs": 0,
         "payout": 0,
-        "rank": 18
-      },
-      {
-        "rep": "Alex Rodriguez",
-        "pods": 0,
-        "wc": 0,
-        "harder": 0,
-        "legs": 0,
-        "payout": 0,
         "rank": 19
       },
       {
-        "rep": "Alisa Acciardi",
+        "rep": "Alex Rodriguez",
         "pods": 0,
         "wc": 0,
         "harder": 0,
@@ -170932,6 +173749,3492 @@ const PROGRAM_DATA_2026_10 = {
       },
       "window": "9/1/2026 - 11/30/2026",
       "exportMadeOnly": true
+    }
+  },
+  "four_loko": {
+    "byRep": {
+      "Alex Rodriguez": {
+        "cases26": 0.0,
+        "cases25": 0.0,
+        "growth": 0.0,
+        "positive": false,
+        "toPositive": 0.0,
+        "placements": [],
+        "placementCount": 0,
+        "qualified": false,
+        "toQualifier": 5,
+        "accounts": 0,
+        "accountList": [],
+        "lostAccounts": [],
+        "byProduct": {}
+      },
+      "Alisa Acciardi": {
+        "cases26": 29.0,
+        "cases25": 227.0,
+        "growth": -198.0,
+        "positive": false,
+        "toPositive": 198.0,
+        "placements": [
+          {
+            "customer": "Irv's Wines & Liquors(P)",
+            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
+            "sku": "Sour Apple",
+            "date": "2026-10-06"
+          }
+        ],
+        "placementCount": 1,
+        "qualified": false,
+        "toQualifier": 4,
+        "accounts": 5,
+        "accountList": [
+          {
+            "customer": "Midland Dairy (A)",
+            "cases26": 9.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Irv's Wines & Liquors(P)",
+            "cases26": 5.0,
+            "cases25": 0.0
+          },
+          {
+            "customer": "Golden Beer & Liquor",
+            "cases26": 5.0,
+            "cases25": 0.0
+          },
+          {
+            "customer": "Super K Food (A) Store",
+            "cases26": 5.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Eddy's Wine & Liq",
+            "cases26": 5.0,
+            "cases25": 11.0
+          },
+          {
+            "customer": "J & V Liquors",
+            "cases26": 0.0,
+            "cases25": 21.0
+          },
+          {
+            "customer": "Brothers Supermarket",
+            "cases26": 0.0,
+            "cases25": 42.0
+          },
+          {
+            "customer": "Massarelli's Liquors",
+            "cases26": 0.0,
+            "cases25": 16.0
+          },
+          {
+            "customer": "Harrison Discount Liq(P)",
+            "cases26": 0.0,
+            "cases25": 14.0
+          },
+          {
+            "customer": "Liquor Warehouse",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Shop Rite Wine & Spirits Kearny",
+            "cases26": 0.0,
+            "cases25": 8.0
+          },
+          {
+            "customer": "Sun Liquors & Grocery",
+            "cases26": 0.0,
+            "cases25": 8.0
+          },
+          {
+            "customer": "High Spirits Of Bayonne",
+            "cases26": 0.0,
+            "cases25": 26.0
+          },
+          {
+            "customer": "BuyRite Liquors - Kearny",
+            "cases26": 0.0,
+            "cases25": 6.0
+          },
+          {
+            "customer": "Liquoram Of Kearny",
+            "cases26": 0.0,
+            "cases25": 42.0
+          },
+          {
+            "customer": "John's Liq & Deli",
+            "cases26": 0.0,
+            "cases25": 10.0
+          },
+          {
+            "customer": "Drink Rite Liquor",
+            "cases26": 0.0,
+            "cases25": 3.0
+          },
+          {
+            "customer": "Harry's Wine Cellar",
+            "cases26": 0.0,
+            "cases25": 5.0
+          }
+        ],
+        "lostAccounts": [
+          {
+            "customer": "Brothers Supermarket",
+            "cases25": 42.0
+          },
+          {
+            "customer": "Liquoram Of Kearny",
+            "cases25": 42.0
+          },
+          {
+            "customer": "High Spirits Of Bayonne",
+            "cases25": 26.0
+          },
+          {
+            "customer": "J & V Liquors",
+            "cases25": 21.0
+          },
+          {
+            "customer": "Massarelli's Liquors",
+            "cases25": 16.0
+          },
+          {
+            "customer": "Harrison Discount Liq(P)",
+            "cases25": 14.0
+          },
+          {
+            "customer": "John's Liq & Deli",
+            "cases25": 10.0
+          },
+          {
+            "customer": "Shop Rite Wine & Spirits Kearny",
+            "cases25": 8.0
+          },
+          {
+            "customer": "Sun Liquors & Grocery",
+            "cases25": 8.0
+          },
+          {
+            "customer": "BuyRite Liquors - Kearny",
+            "cases25": 6.0
+          },
+          {
+            "customer": "Liquor Warehouse",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Harry's Wine Cellar",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Drink Rite Liquor",
+            "cases25": 3.0
+          }
+        ],
+        "byProduct": {
+          "Four Loko Sour Galactic Punch 1/12/23.5 oz": {
+            "cases26": 3.0,
+            "cases25": 11.0
+          },
+          "Four Loko 14% Sour Melon 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 5.0
+          },
+          "Four Loko Camo 1/12/23.5 oz Can": {
+            "cases26": 2.0,
+            "cases25": 13.0
+          },
+          "Four Loko 14% Sour Blue Razz 1/12/23.5 oz Can": {
+            "cases26": 4.0,
+            "cases25": 24.0
+          },
+          "Four Loko 14% Sour Apple 1/12/23.5 oz Can": {
+            "cases26": 7.0,
+            "cases25": 31.0
+          },
+          "Four Loko Jackpot 1/12/23.5 oz Can": {
+            "cases26": 4.0,
+            "cases25": 0.0
+          },
+          "Four Loko 14% Electric Lemonade 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 20.0
+          },
+          "Four Loko 14% USA 1/12/23.5 oz Can": {
+            "cases26": 2.0,
+            "cases25": 18.0
+          },
+          "Four Loko Jungle Juice 1/12/23.5 oz Can": {
+            "cases26": 2.0,
+            "cases25": 20.0
+          },
+          "Four Loko Fruit Punch 1/12/23.5 oz Can": {
+            "cases26": 2.0,
+            "cases25": 17.0
+          },
+          "Four Loko Watermelon 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 24.0
+          },
+          "Four Loko Gold 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 28.0
+          },
+          "Four Loko Strawberry Lemonade 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 7.0
+          },
+          "Four Loko Peach 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 6.0
+          },
+          "Four Loko 14% Sour Grape 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 3.0
+          }
+        }
+      },
+      "Allison Scott": {
+        "cases26": 0.0,
+        "cases25": 0.0,
+        "growth": 0.0,
+        "positive": false,
+        "toPositive": 0.0,
+        "placements": [],
+        "placementCount": 0,
+        "qualified": false,
+        "toQualifier": 5,
+        "accounts": 0,
+        "accountList": [],
+        "lostAccounts": [],
+        "byProduct": {}
+      },
+      "Andrew Lundy": {
+        "cases26": 0.0,
+        "cases25": 0.0,
+        "growth": 0.0,
+        "positive": false,
+        "toPositive": 0.0,
+        "placements": [],
+        "placementCount": 0,
+        "qualified": false,
+        "toQualifier": 5,
+        "accounts": 0,
+        "accountList": [],
+        "lostAccounts": [],
+        "byProduct": {}
+      },
+      "Anthony Palmisano": {
+        "cases26": 9.0,
+        "cases25": 61.0,
+        "growth": -52.0,
+        "positive": false,
+        "toPositive": 52.0,
+        "placements": [],
+        "placementCount": 0,
+        "qualified": false,
+        "toQualifier": 5,
+        "accounts": 2,
+        "accountList": [
+          {
+            "customer": "Highland Wine&Liquor Inc",
+            "cases26": 6.0,
+            "cases25": 9.0
+          },
+          {
+            "customer": "Bloomingdale Discount Liq",
+            "cases26": 3.0,
+            "cases25": 9.0
+          },
+          {
+            "customer": "Best Cellars (Wanaque)",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Empire Wine & Liquor",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Krauszer's Liquor Wine and Spirits",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Buy Rite W &L Pompton(P)",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Wine 2 Spirits (P)",
+            "cases26": 0.0,
+            "cases25": 1.0
+          },
+          {
+            "customer": "Roserne Liquors North",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Appio's Liquors",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Home Wine and Liquors",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Uncorked Wines & Spirits (West Milford)",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Meloi Liquors",
+            "cases26": 0.0,
+            "cases25": 1.0
+          },
+          {
+            "customer": "M & M Discount Liq",
+            "cases26": 0.0,
+            "cases25": 1.0
+          }
+        ],
+        "lostAccounts": [
+          {
+            "customer": "Best Cellars (Wanaque)",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Empire Wine & Liquor",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Krauszer's Liquor Wine and Spirits",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Buy Rite W &L Pompton(P)",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Roserne Liquors North",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Appio's Liquors",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Home Wine and Liquors",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Uncorked Wines & Spirits (West Milford)",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Wine 2 Spirits (P)",
+            "cases25": 1.0
+          },
+          {
+            "customer": "Meloi Liquors",
+            "cases25": 1.0
+          },
+          {
+            "customer": "M & M Discount Liq",
+            "cases25": 1.0
+          }
+        ],
+        "byProduct": {
+          "Four Loko 14% Sour Apple 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 15.0
+          },
+          "Four Loko Gold 1/12/23.5 oz Can": {
+            "cases26": 2.0,
+            "cases25": 5.0
+          },
+          "Four Loko Sour Galactic Punch 1/12/23.5 oz": {
+            "cases26": 1.0,
+            "cases25": 3.0
+          },
+          "Four Loko Jungle Juice 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 6.0
+          },
+          "Four Loko 14% Sour Grape 1/12/23.5 oz Can": {
+            "cases26": 4.0,
+            "cases25": 12.0
+          },
+          "Four Loko Strawberry Lemonade 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 4.0
+          },
+          "Four Loko Fruit Punch 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 3.0
+          },
+          "Four Loko 14% Electric Lemonade 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          "Four Loko 14% Sour Blue Razz 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 6.0
+          },
+          "Four Loko Camo 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 2.0
+          }
+        }
+      },
+      "Brian Sengebush": {
+        "cases26": 0.0,
+        "cases25": 0.0,
+        "growth": 0.0,
+        "positive": false,
+        "toPositive": 0.0,
+        "placements": [],
+        "placementCount": 0,
+        "qualified": false,
+        "toQualifier": 5,
+        "accounts": 0,
+        "accountList": [],
+        "lostAccounts": [],
+        "byProduct": {}
+      },
+      "Chris Payton": {
+        "cases26": 9.0,
+        "cases25": 122.0,
+        "growth": -113.0,
+        "positive": false,
+        "toPositive": 113.0,
+        "placements": [],
+        "placementCount": 0,
+        "qualified": false,
+        "toQualifier": 5,
+        "accounts": 2,
+        "accountList": [
+          {
+            "customer": "Meadowland Wine & Liquor",
+            "cases26": 5.0,
+            "cases25": 0.0
+          },
+          {
+            "customer": "JR Sports Bar & Liquors(Z)",
+            "cases26": 4.0,
+            "cases25": 12.0
+          },
+          {
+            "customer": "Lodi Liquor Store(P)",
+            "cases26": 0.0,
+            "cases25": 20.0
+          },
+          {
+            "customer": "Discount Lqr(A) Outlet",
+            "cases26": 0.0,
+            "cases25": 3.0
+          },
+          {
+            "customer": "Clifton Disc Liq (A)",
+            "cases26": 0.0,
+            "cases25": 8.0
+          },
+          {
+            "customer": "Paramus Food Center",
+            "cases26": 0.0,
+            "cases25": 8.0
+          },
+          {
+            "customer": "Circle Liquors",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Figlar's (P)",
+            "cases26": 0.0,
+            "cases25": 6.0
+          },
+          {
+            "customer": "Yoshi Liq/Wine (P)",
+            "cases26": 0.0,
+            "cases25": 1.0
+          },
+          {
+            "customer": "Exquisite W & L (A)",
+            "cases26": 0.0,
+            "cases25": 6.0
+          },
+          {
+            "customer": "Maywood Wine&Liq (A)",
+            "cases26": 0.0,
+            "cases25": 3.0
+          },
+          {
+            "customer": "Buy Rite Discount Liquor",
+            "cases26": 0.0,
+            "cases25": 1.0
+          },
+          {
+            "customer": "Hollywd Liq&Deli (A)",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Teaneck Quickshop(P)Conv",
+            "cases26": 0.0,
+            "cases25": 28.0
+          },
+          {
+            "customer": "Ridgefield Deli & Liq",
+            "cases26": 0.0,
+            "cases25": 7.0
+          },
+          {
+            "customer": "46 Discount Liquor Store",
+            "cases26": 0.0,
+            "cases25": 4.0
+          },
+          {
+            "customer": "Garden Liquors (P)",
+            "cases26": 0.0,
+            "cases25": 5.0
+          }
+        ],
+        "lostAccounts": [
+          {
+            "customer": "Teaneck Quickshop(P)Conv",
+            "cases25": 28.0
+          },
+          {
+            "customer": "Lodi Liquor Store(P)",
+            "cases25": 20.0
+          },
+          {
+            "customer": "Clifton Disc Liq (A)",
+            "cases25": 8.0
+          },
+          {
+            "customer": "Paramus Food Center",
+            "cases25": 8.0
+          },
+          {
+            "customer": "Ridgefield Deli & Liq",
+            "cases25": 7.0
+          },
+          {
+            "customer": "Figlar's (P)",
+            "cases25": 6.0
+          },
+          {
+            "customer": "Exquisite W & L (A)",
+            "cases25": 6.0
+          },
+          {
+            "customer": "Circle Liquors",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Hollywd Liq&Deli (A)",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Garden Liquors (P)",
+            "cases25": 5.0
+          },
+          {
+            "customer": "46 Discount Liquor Store",
+            "cases25": 4.0
+          },
+          {
+            "customer": "Discount Lqr(A) Outlet",
+            "cases25": 3.0
+          },
+          {
+            "customer": "Maywood Wine&Liq (A)",
+            "cases25": 3.0
+          },
+          {
+            "customer": "Yoshi Liq/Wine (P)",
+            "cases25": 1.0
+          },
+          {
+            "customer": "Buy Rite Discount Liquor",
+            "cases25": 1.0
+          }
+        ],
+        "byProduct": {
+          "Four Loko Fruit Punch 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 13.0
+          },
+          "Four Loko 14% Sour Melon 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 5.0
+          },
+          "Four Loko Gold 1/12/23.5 oz Can": {
+            "cases26": 6.0,
+            "cases25": 29.0
+          },
+          "Four Loko 14% Sour Blue Razz 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 8.0
+          },
+          "Four Loko 14% Sour Apple 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 10.0
+          },
+          "Four Loko 14% USA 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 11.0
+          },
+          "Four Loko Peach 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 6.0
+          },
+          "Four Loko Camo 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 6.0
+          },
+          "Four Loko Watermelon 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          "Four Loko 14% Electric Lemonade 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 3.0
+          },
+          "Four Loko Jungle Juice 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 12.0
+          },
+          "Four Loko Sour Galactic Punch 1/12/23.5 oz": {
+            "cases26": 0.0,
+            "cases25": 4.0
+          },
+          "Four Loko Strawberry Lemonade 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          "Four Loko 14% Sour Grape 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 5.0
+          }
+        }
+      },
+      "Dan Lagala": {
+        "cases26": 19.0,
+        "cases25": 90.0,
+        "growth": -71.0,
+        "positive": false,
+        "toPositive": 71.0,
+        "placements": [],
+        "placementCount": 0,
+        "qualified": false,
+        "toQualifier": 5,
+        "accounts": 2,
+        "accountList": [
+          {
+            "customer": "Banner Delicatessen",
+            "cases26": 15.0,
+            "cases25": 0.0
+          },
+          {
+            "customer": "Fairview Liq & Groc.(A)",
+            "cases26": 4.0,
+            "cases25": 30.0
+          },
+          {
+            "customer": "Wine Ventures",
+            "cases26": 0.0,
+            "cases25": 2.0
+          },
+          {
+            "customer": "Best Choice Liqrs (P)",
+            "cases26": 0.0,
+            "cases25": 15.0
+          },
+          {
+            "customer": "Garden State Food&Liq (P)",
+            "cases26": 0.0,
+            "cases25": 11.0
+          },
+          {
+            "customer": "Wine And Food Mart (Z)",
+            "cases26": 0.0,
+            "cases25": 9.0
+          },
+          {
+            "customer": "Ridgefield Liq (Z)",
+            "cases26": 0.0,
+            "cases25": 10.0
+          },
+          {
+            "customer": "Kikos Liquors Ii",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Liquor City(A)Cliffside",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Rome Liquors (Fairview)",
+            "cases26": 0.0,
+            "cases25": 3.0
+          }
+        ],
+        "lostAccounts": [
+          {
+            "customer": "Best Choice Liqrs (P)",
+            "cases25": 15.0
+          },
+          {
+            "customer": "Garden State Food&Liq (P)",
+            "cases25": 11.0
+          },
+          {
+            "customer": "Ridgefield Liq (Z)",
+            "cases25": 10.0
+          },
+          {
+            "customer": "Wine And Food Mart (Z)",
+            "cases25": 9.0
+          },
+          {
+            "customer": "Kikos Liquors Ii",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Liquor City(A)Cliffside",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Rome Liquors (Fairview)",
+            "cases25": 3.0
+          },
+          {
+            "customer": "Wine Ventures",
+            "cases25": 2.0
+          }
+        ],
+        "byProduct": {
+          "Four Loko 14% Sour Grape 1/12/23.5 oz Can": {
+            "cases26": 5.0,
+            "cases25": 13.0
+          },
+          "Four Loko Peach 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 0.0
+          },
+          "Four Loko Camo 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 15.0
+          },
+          "Four Loko Watermelon 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 8.0
+          },
+          "Four Loko Fruit Punch 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 15.0
+          },
+          "Four Loko Sour Galactic Punch 1/12/23.5 oz": {
+            "cases26": 1.0,
+            "cases25": 2.0
+          },
+          "Four Loko 14% Sour Melon 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 0.0
+          },
+          "Four Loko 14% Sour Blue Razz 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 0.0
+          },
+          "Four Loko Strawberry Lemonade 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 0.0
+          },
+          "Four Loko Gold 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 10.0
+          },
+          "Four Loko 14% USA 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 12.0
+          },
+          "Four Loko 14% Electric Lemonade 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 0.0
+          },
+          "Four Loko Jungle Juice 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 0.0
+          },
+          "Four Loko 14% Sour Apple 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 15.0
+          },
+          "Four Loko Jackpot 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 0.0
+          }
+        }
+      },
+      "Dave Ehlers": {
+        "cases26": 51.0,
+        "cases25": 243.0,
+        "growth": -192.0,
+        "positive": false,
+        "toPositive": 192.0,
+        "placements": [
+          {
+            "customer": "W E Beverage (A)",
+            "product": "Four Loko 14% USA 1/12/23.5 oz Can",
+            "sku": "USA",
+            "date": "2026-10-01"
+          }
+        ],
+        "placementCount": 1,
+        "qualified": false,
+        "toQualifier": 4,
+        "accounts": 10,
+        "accountList": [
+          {
+            "customer": "Simple Simon's (Z)",
+            "cases26": 14.0,
+            "cases25": 18.0
+          },
+          {
+            "customer": "Hackensack Liquors",
+            "cases26": 7.0,
+            "cases25": 6.0
+          },
+          {
+            "customer": "Bottle & Cork",
+            "cases26": 5.0,
+            "cases25": 0.0
+          },
+          {
+            "customer": "George's Liq",
+            "cases26": 5.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "G & G Liquors & Bar",
+            "cases26": 5.0,
+            "cases25": 21.0
+          },
+          {
+            "customer": "W E Beverage (A)",
+            "cases26": 5.0,
+            "cases25": 0.0
+          },
+          {
+            "customer": "H & R Disc. Liq (P)",
+            "cases26": 4.0,
+            "cases25": 0.0
+          },
+          {
+            "customer": "Barrel & Brew Bar & Liq",
+            "cases26": 3.0,
+            "cases25": 7.0
+          },
+          {
+            "customer": "River Edge Wine & Liquor",
+            "cases26": 2.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Deli Mart (A)",
+            "cases26": 1.0,
+            "cases25": 6.0
+          },
+          {
+            "customer": "Time Lounge And Liq (A)",
+            "cases26": 0.0,
+            "cases25": 21.0
+          },
+          {
+            "customer": "Bergenfield Liq & Fw",
+            "cases26": 0.0,
+            "cases25": 10.0
+          },
+          {
+            "customer": "Wine & More (P)",
+            "cases26": 0.0,
+            "cases25": 6.0
+          },
+          {
+            "customer": "Wine And Liq Depot(A)",
+            "cases26": 0.0,
+            "cases25": 16.0
+          },
+          {
+            "customer": "Essex St Liquor and Wine",
+            "cases26": 0.0,
+            "cases25": 15.0
+          },
+          {
+            "customer": "Portland Wine & Liquor",
+            "cases26": 0.0,
+            "cases25": 102.0
+          },
+          {
+            "customer": "Buy Rite Of Hackensack",
+            "cases26": 0.0,
+            "cases25": 5.0
+          }
+        ],
+        "lostAccounts": [
+          {
+            "customer": "Portland Wine & Liquor",
+            "cases25": 102.0
+          },
+          {
+            "customer": "Time Lounge And Liq (A)",
+            "cases25": 21.0
+          },
+          {
+            "customer": "Wine And Liq Depot(A)",
+            "cases25": 16.0
+          },
+          {
+            "customer": "Essex St Liquor and Wine",
+            "cases25": 15.0
+          },
+          {
+            "customer": "Bergenfield Liq & Fw",
+            "cases25": 10.0
+          },
+          {
+            "customer": "Wine & More (P)",
+            "cases25": 6.0
+          },
+          {
+            "customer": "Buy Rite Of Hackensack",
+            "cases25": 5.0
+          }
+        ],
+        "byProduct": {
+          "Four Loko 14% USA 1/12/23.5 oz Can": {
+            "cases26": 8.0,
+            "cases25": 15.0
+          },
+          "Four Loko 14% Sour Apple 1/12/23.5 oz Can": {
+            "cases26": 16.0,
+            "cases25": 40.0
+          },
+          "Four Loko Sour Galactic Punch 1/12/23.5 oz": {
+            "cases26": 6.0,
+            "cases25": 14.0
+          },
+          "Four Loko Peach 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 5.0
+          },
+          "Four Loko 14% Sour Blue Razz 1/12/23.5 oz Can": {
+            "cases26": 4.0,
+            "cases25": 20.0
+          },
+          "Four Loko Jackpot 1/12/23.5 oz Can": {
+            "cases26": 3.0,
+            "cases25": 0.0
+          },
+          "Four Loko Watermelon 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 4.0
+          },
+          "Four Loko 14% Sour Grape 1/12/23.5 oz Can": {
+            "cases26": 3.0,
+            "cases25": 79.0
+          },
+          "Four Loko Jungle Juice 1/12/23.5 oz Can": {
+            "cases26": 7.0,
+            "cases25": 6.0
+          },
+          "Four Loko Fruit Punch 1/12/23.5 oz Can": {
+            "cases26": 2.0,
+            "cases25": 26.0
+          },
+          "Four Loko Camo 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 6.0
+          },
+          "Four Loko Gold 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 19.0
+          },
+          "Four Loko 14% Sour Melon 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 2.0
+          },
+          "Four Loko 14% Electric Lemonade 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 3.0
+          },
+          "Four Loko Strawberry Lemonade 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 4.0
+          }
+        }
+      },
+      "Derrick Laws": {
+        "cases26": 40.0,
+        "cases25": 96.0,
+        "growth": -56.0,
+        "positive": false,
+        "toPositive": 56.0,
+        "placements": [
+          {
+            "customer": "Liquor Gallery (Paterson)",
+            "product": "Four Loko 14% USA 1/12/23.5 oz Can",
+            "sku": "USA",
+            "date": "2026-10-06"
+          },
+          {
+            "customer": "Liquor Gallery (Paterson)",
+            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
+            "sku": "Sour Apple",
+            "date": "2026-10-06"
+          }
+        ],
+        "placementCount": 2,
+        "qualified": false,
+        "toQualifier": 3,
+        "accounts": 4,
+        "accountList": [
+          {
+            "customer": "Liquor Gallery (Paterson)",
+            "cases26": 25.0,
+            "cases25": 0.0
+          },
+          {
+            "customer": "El Oasis",
+            "cases26": 5.0,
+            "cases25": 14.0
+          },
+          {
+            "customer": "Raphael & Angel Liq (A)",
+            "cases26": 5.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "J & B Bar & Liq (Z)",
+            "cases26": 5.0,
+            "cases25": 0.0
+          },
+          {
+            "customer": "Limestone Liquors (A)",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Shop Rite Liq (A)Littlefl",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Mercer Bar & Liquors",
+            "cases26": 0.0,
+            "cases25": 10.0
+          },
+          {
+            "customer": "Krystal Bar(P) & Liqs.",
+            "cases26": 0.0,
+            "cases25": 6.0
+          },
+          {
+            "customer": "Broadway Liq (A)",
+            "cases26": 0.0,
+            "cases25": 3.0
+          },
+          {
+            "customer": "Ferraro's Liquor",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Shop Rite Wines/Spirits",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Hillcrest Liqrs (A)",
+            "cases26": 0.0,
+            "cases25": 1.0
+          },
+          {
+            "customer": "Gonzalez Liq & Bar(A)",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Economy Liquors",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "10th Ave Liq & Food (P)",
+            "cases26": 0.0,
+            "cases25": 8.0
+          },
+          {
+            "customer": "230 Liq & Groc.(A)",
+            "cases26": 0.0,
+            "cases25": 8.0
+          },
+          {
+            "customer": "Ant's Bar & Liquors",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Hiciano Liquor Store",
+            "cases26": 0.0,
+            "cases25": 6.0
+          }
+        ],
+        "lostAccounts": [
+          {
+            "customer": "Mercer Bar & Liquors",
+            "cases25": 10.0
+          },
+          {
+            "customer": "10th Ave Liq & Food (P)",
+            "cases25": 8.0
+          },
+          {
+            "customer": "230 Liq & Groc.(A)",
+            "cases25": 8.0
+          },
+          {
+            "customer": "Krystal Bar(P) & Liqs.",
+            "cases25": 6.0
+          },
+          {
+            "customer": "Hiciano Liquor Store",
+            "cases25": 6.0
+          },
+          {
+            "customer": "Limestone Liquors (A)",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Shop Rite Liq (A)Littlefl",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Ferraro's Liquor",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Shop Rite Wines/Spirits",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Gonzalez Liq & Bar(A)",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Economy Liquors",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Ant's Bar & Liquors",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Broadway Liq (A)",
+            "cases25": 3.0
+          },
+          {
+            "customer": "Hillcrest Liqrs (A)",
+            "cases25": 1.0
+          }
+        ],
+        "byProduct": {
+          "Four Loko 14% Sour Blue Razz 1/12/23.5 oz Can": {
+            "cases26": 8.0,
+            "cases25": 4.0
+          },
+          "Four Loko 14% Sour Melon 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 0.0
+          },
+          "Four Loko Sour Galactic Punch 1/12/23.5 oz": {
+            "cases26": 2.0,
+            "cases25": 4.0
+          },
+          "Four Loko 14% Electric Lemonade 1/12/23.5 oz Can": {
+            "cases26": 2.0,
+            "cases25": 3.0
+          },
+          "Four Loko Watermelon 1/12/23.5 oz Can": {
+            "cases26": 4.0,
+            "cases25": 11.0
+          },
+          "Four Loko Gold 1/12/23.5 oz Can": {
+            "cases26": 2.0,
+            "cases25": 4.0
+          },
+          "Four Loko Camo 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 1.0
+          },
+          "Four Loko 14% Sour Apple 1/12/23.5 oz Can": {
+            "cases26": 4.0,
+            "cases25": 21.0
+          },
+          "Four Loko 14% Sour Grape 1/12/23.5 oz Can": {
+            "cases26": 3.0,
+            "cases25": 11.0
+          },
+          "Four Loko Fruit Punch 1/12/23.5 oz Can": {
+            "cases26": 2.0,
+            "cases25": 23.0
+          },
+          "Four Loko Peach 1/12/23.5 oz Can": {
+            "cases26": 4.0,
+            "cases25": 4.0
+          },
+          "Four Loko Jungle Juice 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 2.0
+          },
+          "Four Loko 14% USA 1/12/23.5 oz Can": {
+            "cases26": 2.0,
+            "cases25": 3.0
+          },
+          "Four Loko Jackpot 1/12/23.5 oz Can": {
+            "cases26": 2.0,
+            "cases25": 0.0
+          },
+          "Four Loko Strawberry Lemonade 1/12/23.5 oz Can": {
+            "cases26": 2.0,
+            "cases25": 5.0
+          }
+        }
+      },
+      "Dylan Rubino": {
+        "cases26": 64.0,
+        "cases25": 462.0,
+        "growth": -398.0,
+        "positive": false,
+        "toPositive": 398.0,
+        "placements": [
+          {
+            "customer": "Jersey Farm & Liquors",
+            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
+            "sku": "Sour Apple",
+            "date": "2026-10-07"
+          },
+          {
+            "customer": "Corks & Bottles (P)",
+            "product": "Four Loko 14% USA 1/12/23.5 oz Can",
+            "sku": "USA",
+            "date": "2026-10-06"
+          },
+          {
+            "customer": "Corks & Bottles (P)",
+            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
+            "sku": "Sour Apple",
+            "date": "2026-10-06"
+          },
+          {
+            "customer": "Boulevard W & L (P)",
+            "product": "Four Loko 14% USA 1/12/23.5 oz Can",
+            "sku": "USA",
+            "date": "2026-10-01"
+          },
+          {
+            "customer": "Boulevard W & L (P)",
+            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
+            "sku": "Sour Apple",
+            "date": "2026-10-01"
+          }
+        ],
+        "placementCount": 5,
+        "qualified": true,
+        "toQualifier": 0,
+        "accounts": 10,
+        "accountList": [
+          {
+            "customer": "Jersey Farm & Liquors",
+            "cases26": 10.0,
+            "cases25": 0.0
+          },
+          {
+            "customer": "Boulevard W & L (P)",
+            "cases26": 10.0,
+            "cases25": 0.0
+          },
+          {
+            "customer": "Corks & Bottles (P)",
+            "cases26": 6.0,
+            "cases25": 14.0
+          },
+          {
+            "customer": "Belmont Wine & Liquors",
+            "cases26": 6.0,
+            "cases25": 10.0
+          },
+          {
+            "customer": "WNY Liquors",
+            "cases26": 6.0,
+            "cases25": 0.0
+          },
+          {
+            "customer": "Park Ave Wine & Liq Gros.",
+            "cases26": 6.0,
+            "cases25": 13.0
+          },
+          {
+            "customer": "New Town Liquors (P)",
+            "cases26": 5.0,
+            "cases25": 10.0
+          },
+          {
+            "customer": "STOP & GO LIQUORS",
+            "cases26": 5.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Benny's Liq & Deli",
+            "cases26": 5.0,
+            "cases25": 17.0
+          },
+          {
+            "customer": "Union Liquors",
+            "cases26": 5.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Heaven Liquors",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Latino's Liquor (P)",
+            "cases26": 0.0,
+            "cases25": 15.0
+          },
+          {
+            "customer": "Liquor Mart (Jersey City)",
+            "cases26": 0.0,
+            "cases25": 10.0
+          },
+          {
+            "customer": "Metro Liquors (1212 Jersey City)",
+            "cases26": 0.0,
+            "cases25": 15.0
+          },
+          {
+            "customer": "Liquor Boss",
+            "cases26": 0.0,
+            "cases25": 10.0
+          },
+          {
+            "customer": "Blvd Liquors (P)",
+            "cases26": 0.0,
+            "cases25": 10.0
+          },
+          {
+            "customer": "A2Z Wine Club",
+            "cases26": 0.0,
+            "cases25": 15.0
+          },
+          {
+            "customer": "HD Liquors",
+            "cases26": 0.0,
+            "cases25": 10.0
+          },
+          {
+            "customer": "Sparrow Hill Market &Liq (Jersey City)",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Fragoso Liquors",
+            "cases26": 0.0,
+            "cases25": 12.0
+          },
+          {
+            "customer": "Reuben Liq (Uc) (P)",
+            "cases26": 0.0,
+            "cases25": 18.0
+          },
+          {
+            "customer": "Town Beverage",
+            "cases26": 0.0,
+            "cases25": 20.0
+          },
+          {
+            "customer": "FOOD BAZAAR",
+            "cases26": 0.0,
+            "cases25": 2.0
+          },
+          {
+            "customer": "Royal Liquors & Deli",
+            "cases26": 0.0,
+            "cases25": 26.0
+          },
+          {
+            "customer": "Twin City Liquors (A)",
+            "cases26": 0.0,
+            "cases25": 17.0
+          }
+        ],
+        "lostAccounts": [
+          {
+            "customer": "Royal Liquors & Deli",
+            "cases25": 26.0
+          },
+          {
+            "customer": "Town Beverage",
+            "cases25": 20.0
+          },
+          {
+            "customer": "Reuben Liq (Uc) (P)",
+            "cases25": 18.0
+          },
+          {
+            "customer": "Twin City Liquors (A)",
+            "cases25": 17.0
+          },
+          {
+            "customer": "Twin City Liquors",
+            "cases25": 16.0
+          },
+          {
+            "customer": "Latino's Liquor (P)",
+            "cases25": 15.0
+          },
+          {
+            "customer": "Metro Liquors (1212 Jersey City)",
+            "cases25": 15.0
+          },
+          {
+            "customer": "A2Z Wine Club",
+            "cases25": 15.0
+          },
+          {
+            "customer": "Payano Liquors",
+            "cases25": 14.0
+          },
+          {
+            "customer": "Fragoso Liquors",
+            "cases25": 12.0
+          },
+          {
+            "customer": "Liquor Mart (Jersey City)",
+            "cases25": 10.0
+          },
+          {
+            "customer": "Liquor Boss",
+            "cases25": 10.0
+          },
+          {
+            "customer": "Blvd Liquors (P)",
+            "cases25": 10.0
+          },
+          {
+            "customer": "HD Liquors",
+            "cases25": 10.0
+          },
+          {
+            "customer": "Krauszers (Secaucus)",
+            "cases25": 10.0
+          }
+        ],
+        "byProduct": {
+          "Four Loko 14% Sour Apple 1/12/23.5 oz Can": {
+            "cases26": 11.0,
+            "cases25": 79.0
+          },
+          "Four Loko Gold 1/12/23.5 oz Can": {
+            "cases26": 6.0,
+            "cases25": 47.0
+          },
+          "Four Loko Fruit Punch 1/12/23.5 oz Can": {
+            "cases26": 11.0,
+            "cases25": 76.0
+          },
+          "Four Loko 14% Electric Lemonade 1/12/23.5 oz Can": {
+            "cases26": 4.0,
+            "cases25": 17.0
+          },
+          "Four Loko Strawberry Lemonade 1/12/23.5 oz Can": {
+            "cases26": 2.0,
+            "cases25": 33.0
+          },
+          "Four Loko 14% Sour Blue Razz 1/12/23.5 oz Can": {
+            "cases26": 7.0,
+            "cases25": 39.0
+          },
+          "Four Loko Watermelon 1/12/23.5 oz Can": {
+            "cases26": 6.0,
+            "cases25": 39.0
+          },
+          "Four Loko 14% USA 1/12/23.5 oz Can": {
+            "cases26": 3.0,
+            "cases25": 12.0
+          },
+          "Four Loko 14% Sour Grape 1/12/23.5 oz Can": {
+            "cases26": 6.0,
+            "cases25": 32.0
+          },
+          "Four Loko Peach 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 26.0
+          },
+          "Four Loko Jackpot 1/12/23.5 oz Can": {
+            "cases26": 6.0,
+            "cases25": 0.0
+          },
+          "Four Loko 14% Sour Melon 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 5.0
+          },
+          "Four Loko Sour Galactic Punch 1/12/23.5 oz": {
+            "cases26": 0.0,
+            "cases25": 18.0
+          },
+          "Four Loko Jungle Juice 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 25.0
+          },
+          "Four Loko Camo 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 14.0
+          }
+        }
+      },
+      "Hakan Sadik": {
+        "cases26": 0.0,
+        "cases25": 0.0,
+        "growth": 0.0,
+        "positive": false,
+        "toPositive": 0.0,
+        "placements": [],
+        "placementCount": 0,
+        "qualified": false,
+        "toQualifier": 5,
+        "accounts": 0,
+        "accountList": [],
+        "lostAccounts": [],
+        "byProduct": {}
+      },
+      "Jaime Colonna": {
+        "cases26": 122.0,
+        "cases25": 1129.0,
+        "growth": -1007.0,
+        "positive": false,
+        "toPositive": 1007.0,
+        "placements": [],
+        "placementCount": 0,
+        "qualified": false,
+        "toQualifier": 5,
+        "accounts": 2,
+        "accountList": [
+          {
+            "customer": "Jersey City Buy Rite (A)",
+            "cases26": 119.0,
+            "cases25": 1043.0
+          },
+          {
+            "customer": "Acme Markets (Hoboken)",
+            "cases26": 3.0,
+            "cases25": 6.0
+          },
+          {
+            "customer": "Alvins W&L (P)",
+            "cases26": 0.0,
+            "cases25": 45.0
+          },
+          {
+            "customer": "Hoboken Liquor & Grocery",
+            "cases26": 0.0,
+            "cases25": 21.0
+          },
+          {
+            "customer": "Bauers Wine & Liquor",
+            "cases26": 0.0,
+            "cases25": 9.0
+          },
+          {
+            "customer": "Willow Grocery Liq.",
+            "cases26": 0.0,
+            "cases25": 5.0
+          }
+        ],
+        "lostAccounts": [
+          {
+            "customer": "Alvins W&L (P)",
+            "cases25": 45.0
+          },
+          {
+            "customer": "Hoboken Liquor & Grocery",
+            "cases25": 21.0
+          },
+          {
+            "customer": "Bauers Wine & Liquor",
+            "cases25": 9.0
+          },
+          {
+            "customer": "Willow Grocery Liq.",
+            "cases25": 5.0
+          }
+        ],
+        "byProduct": {
+          "Four Loko 14% Sour Grape 1/12/23.5 oz Can": {
+            "cases26": 19.0,
+            "cases25": 124.0
+          },
+          "Four Loko 14% Sour Apple 1/12/23.5 oz Can": {
+            "cases26": 20.0,
+            "cases25": 111.0
+          },
+          "Four Loko Peach 1/12/23.5 oz Can": {
+            "cases26": 15.0,
+            "cases25": 82.0
+          },
+          "Four Loko Watermelon 1/12/23.5 oz Can": {
+            "cases26": 21.0,
+            "cases25": 94.0
+          },
+          "Four Loko 14% Sour Blue Razz 1/12/23.5 oz Can": {
+            "cases26": 15.0,
+            "cases25": 122.0
+          },
+          "Four Loko 14% USA 1/12/23.5 oz Can": {
+            "cases26": 15.0,
+            "cases25": 77.0
+          },
+          "Four Loko Fruit Punch 1/12/23.5 oz Can": {
+            "cases26": 17.0,
+            "cases25": 166.0
+          },
+          "Four Loko Gold 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 148.0
+          },
+          "Four Loko 14% Electric Lemonade 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 111.0
+          },
+          "Four Loko 14% Sour Melon 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 53.0
+          },
+          "Four Loko Jungle Juice 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 11.0
+          },
+          "Four Loko Sour Galactic Punch 1/12/23.5 oz": {
+            "cases26": 0.0,
+            "cases25": 23.0
+          },
+          "Four Loko Strawberry Lemonade 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 6.0
+          },
+          "Four Loko Camo 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 1.0
+          }
+        }
+      },
+      "Javier Melo": {
+        "cases26": 8.0,
+        "cases25": 136.0,
+        "growth": -128.0,
+        "positive": false,
+        "toPositive": 128.0,
+        "placements": [
+          {
+            "customer": "Farm Boy",
+            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
+            "sku": "Sour Apple",
+            "date": "2026-10-02"
+          }
+        ],
+        "placementCount": 1,
+        "qualified": false,
+        "toQualifier": 4,
+        "accounts": 2,
+        "accountList": [
+          {
+            "customer": "Liquor Stop (Passaic)",
+            "cases26": 5.0,
+            "cases25": 15.0
+          },
+          {
+            "customer": "Farm Boy",
+            "cases26": 3.0,
+            "cases25": 0.0
+          },
+          {
+            "customer": "New Eagle Liquors",
+            "cases26": 0.0,
+            "cases25": 14.0
+          },
+          {
+            "customer": "Shanik Liqs.(P)",
+            "cases26": 0.0,
+            "cases25": 16.0
+          },
+          {
+            "customer": "Parker Liquors (Z)",
+            "cases26": 0.0,
+            "cases25": 23.0
+          },
+          {
+            "customer": "La Joya Liquors",
+            "cases26": 0.0,
+            "cases25": 15.0
+          },
+          {
+            "customer": "Mariana's Liquors",
+            "cases26": 0.0,
+            "cases25": 27.0
+          },
+          {
+            "customer": "Paruta's (A)",
+            "cases26": 0.0,
+            "cases25": 4.0
+          },
+          {
+            "customer": "Danny's Liquor",
+            "cases26": 0.0,
+            "cases25": 12.0
+          },
+          {
+            "customer": "Belmont Liqrs (P)",
+            "cases26": 0.0,
+            "cases25": 10.0
+          }
+        ],
+        "lostAccounts": [
+          {
+            "customer": "Mariana's Liquors",
+            "cases25": 27.0
+          },
+          {
+            "customer": "Parker Liquors (Z)",
+            "cases25": 23.0
+          },
+          {
+            "customer": "Shanik Liqs.(P)",
+            "cases25": 16.0
+          },
+          {
+            "customer": "La Joya Liquors",
+            "cases25": 15.0
+          },
+          {
+            "customer": "New Eagle Liquors",
+            "cases25": 14.0
+          },
+          {
+            "customer": "Danny's Liquor",
+            "cases25": 12.0
+          },
+          {
+            "customer": "Belmont Liqrs (P)",
+            "cases25": 10.0
+          },
+          {
+            "customer": "Paruta's (A)",
+            "cases25": 4.0
+          }
+        ],
+        "byProduct": {
+          "Four Loko 14% Sour Grape 1/12/23.5 oz Can": {
+            "cases26": 2.0,
+            "cases25": 2.0
+          },
+          "Four Loko Peach 1/12/23.5 oz Can": {
+            "cases26": 2.0,
+            "cases25": 7.0
+          },
+          "Four Loko 14% Sour Melon 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 3.0
+          },
+          "Four Loko Watermelon 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 7.0
+          },
+          "Four Loko Fruit Punch 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 25.0
+          },
+          "Four Loko 14% Sour Apple 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 28.0
+          },
+          "Four Loko 14% Electric Lemonade 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 9.0
+          },
+          "Four Loko Strawberry Lemonade 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          "Four Loko 14% Sour Blue Razz 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 19.0
+          },
+          "Four Loko Gold 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 10.0
+          },
+          "Four Loko Jungle Juice 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 10.0
+          },
+          "Four Loko Sour Galactic Punch 1/12/23.5 oz": {
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          "Four Loko 14% USA 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 3.0
+          },
+          "Four Loko Camo 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 3.0
+          }
+        }
+      },
+      "Jayson Romine": {
+        "cases26": 22.0,
+        "cases25": 113.0,
+        "growth": -91.0,
+        "positive": false,
+        "toPositive": 91.0,
+        "placements": [],
+        "placementCount": 0,
+        "qualified": false,
+        "toQualifier": 5,
+        "accounts": 5,
+        "accountList": [
+          {
+            "customer": "Patricks Wine Barn",
+            "cases26": 6.0,
+            "cases25": 10.0
+          },
+          {
+            "customer": "ShopRite Wine & Spirits of Newton#830",
+            "cases26": 5.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "The Right Bottle",
+            "cases26": 5.0,
+            "cases25": 15.0
+          },
+          {
+            "customer": "USA Wine Traders Club Of Newton (A)",
+            "cases26": 5.0,
+            "cases25": 10.0
+          },
+          {
+            "customer": "Hamburg Liquor",
+            "cases26": 1.0,
+            "cases25": 16.0
+          },
+          {
+            "customer": "Seplow's Liquors",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Liquor Factory III Sparta",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Buy Rite Liquors Franklin",
+            "cases26": 0.0,
+            "cases25": 11.0
+          },
+          {
+            "customer": "Wantage Plaza Liq Outlet",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Liquor Factory I Landing",
+            "cases26": 0.0,
+            "cases25": 10.0
+          },
+          {
+            "customer": "Liquor Factory IV Hopatcong",
+            "cases26": 0.0,
+            "cases25": 10.0
+          },
+          {
+            "customer": "ShopRite Wines & Spirits of Franklin",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Wine Grand (Franklin)",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Kent's Liquors",
+            "cases26": 0.0,
+            "cases25": 1.0
+          }
+        ],
+        "lostAccounts": [
+          {
+            "customer": "Buy Rite Liquors Franklin",
+            "cases25": 11.0
+          },
+          {
+            "customer": "Liquor Factory I Landing",
+            "cases25": 10.0
+          },
+          {
+            "customer": "Liquor Factory IV Hopatcong",
+            "cases25": 10.0
+          },
+          {
+            "customer": "Seplow's Liquors",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Liquor Factory III Sparta",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Wantage Plaza Liq Outlet",
+            "cases25": 5.0
+          },
+          {
+            "customer": "ShopRite Wines & Spirits of Franklin",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Wine Grand (Franklin)",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Kent's Liquors",
+            "cases25": 1.0
+          }
+        ],
+        "byProduct": {
+          "Four Loko Jackpot 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 0.0
+          },
+          "Four Loko Gold 1/12/23.5 oz Can": {
+            "cases26": 8.0,
+            "cases25": 13.0
+          },
+          "Four Loko Fruit Punch 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 11.0
+          },
+          "Four Loko 14% Electric Lemonade 1/12/23.5 oz Can": {
+            "cases26": 8.0,
+            "cases25": 18.0
+          },
+          "Four Loko 14% Sour Apple 1/12/23.5 oz Can": {
+            "cases26": 2.0,
+            "cases25": 32.0
+          },
+          "Four Loko 14% Sour Blue Razz 1/12/23.5 oz Can": {
+            "cases26": 2.0,
+            "cases25": 7.0
+          },
+          "Four Loko Jungle Juice 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 2.0
+          },
+          "Four Loko Camo 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 3.0
+          },
+          "Four Loko Sour Galactic Punch 1/12/23.5 oz": {
+            "cases26": 0.0,
+            "cases25": 1.0
+          },
+          "Four Loko Watermelon 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 8.0
+          },
+          "Four Loko 14% USA 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 8.0
+          },
+          "Four Loko 14% Sour Grape 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 8.0
+          },
+          "Four Loko Peach 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 2.0
+          }
+        }
+      },
+      "Jim Heaney": {
+        "cases26": 5.0,
+        "cases25": 92.0,
+        "growth": -87.0,
+        "positive": false,
+        "toPositive": 87.0,
+        "placements": [],
+        "placementCount": 0,
+        "qualified": false,
+        "toQualifier": 5,
+        "accounts": 1,
+        "accountList": [
+          {
+            "customer": "Lexington Liquors (Z)",
+            "cases26": 5.0,
+            "cases25": 33.0
+          },
+          {
+            "customer": "Bottleneck Liquors",
+            "cases26": 0.0,
+            "cases25": 10.0
+          },
+          {
+            "customer": "Quick Buy",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "On The Rocks",
+            "cases26": 0.0,
+            "cases25": 3.0
+          },
+          {
+            "customer": "Dante's Liquor & Wine",
+            "cases26": 0.0,
+            "cases25": 10.0
+          },
+          {
+            "customer": "US#1 Wine & Liquor",
+            "cases26": 0.0,
+            "cases25": 3.0
+          },
+          {
+            "customer": "Rainbow Liquor (P)",
+            "cases26": 0.0,
+            "cases25": 6.0
+          },
+          {
+            "customer": "Marina's Wine & Spirits",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Riverside Liquors",
+            "cases26": 0.0,
+            "cases25": -3.0
+          },
+          {
+            "customer": "Henry's Liquors",
+            "cases26": 0.0,
+            "cases25": 4.0
+          },
+          {
+            "customer": "Liquor Mart (North Arlington)",
+            "cases26": 0.0,
+            "cases25": 4.0
+          },
+          {
+            "customer": "Broad Liquors (A)",
+            "cases26": 0.0,
+            "cases25": 7.0
+          },
+          {
+            "customer": "Town Liquors",
+            "cases26": 0.0,
+            "cases25": 5.0
+          }
+        ],
+        "lostAccounts": [
+          {
+            "customer": "Bottleneck Liquors",
+            "cases25": 10.0
+          },
+          {
+            "customer": "Dante's Liquor & Wine",
+            "cases25": 10.0
+          },
+          {
+            "customer": "Broad Liquors (A)",
+            "cases25": 7.0
+          },
+          {
+            "customer": "Rainbow Liquor (P)",
+            "cases25": 6.0
+          },
+          {
+            "customer": "Quick Buy",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Marina's Wine & Spirits",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Town Liquors",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Henry's Liquors",
+            "cases25": 4.0
+          },
+          {
+            "customer": "Liquor Mart (North Arlington)",
+            "cases25": 4.0
+          },
+          {
+            "customer": "On The Rocks",
+            "cases25": 3.0
+          },
+          {
+            "customer": "US#1 Wine & Liquor",
+            "cases25": 3.0
+          }
+        ],
+        "byProduct": {
+          "Four Loko 14% Sour Melon 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 5.0
+          },
+          "Four Loko 14% Electric Lemonade 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 2.0
+          },
+          "Four Loko 14% Sour Blue Razz 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 11.0
+          },
+          "Four Loko 14% Sour Apple 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 15.0
+          },
+          "Four Loko Watermelon 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 6.0
+          },
+          "Four Loko 14% USA 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 13.0
+          },
+          "Four Loko Gold 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 9.0
+          },
+          "Four Loko 14% Sour Grape 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 13.0
+          },
+          "Four Loko Strawberry Lemonade 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 6.0
+          },
+          "Four Loko Sour Galactic Punch 1/12/23.5 oz": {
+            "cases26": 0.0,
+            "cases25": 3.0
+          },
+          "Four Loko Fruit Punch 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 4.0
+          },
+          "Four Loko Peach 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 3.0
+          },
+          "Four Loko Camo 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 1.0
+          },
+          "Four Loko Jungle Juice 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 1.0
+          }
+        }
+      },
+      "John O'Donoghue": {
+        "cases26": 0.0,
+        "cases25": 0.0,
+        "growth": 0.0,
+        "positive": false,
+        "toPositive": 0.0,
+        "placements": [],
+        "placementCount": 0,
+        "qualified": false,
+        "toQualifier": 5,
+        "accounts": 0,
+        "accountList": [],
+        "lostAccounts": [],
+        "byProduct": {}
+      },
+      "Klejdi Lamo": {
+        "cases26": 10.0,
+        "cases25": 51.0,
+        "growth": -41.0,
+        "positive": false,
+        "toPositive": 41.0,
+        "placements": [],
+        "placementCount": 0,
+        "qualified": false,
+        "toQualifier": 5,
+        "accounts": 1,
+        "accountList": [
+          {
+            "customer": "Wharton Liquor Store",
+            "cases26": 10.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Shoppers Disc Liquor",
+            "cases26": 0.0,
+            "cases25": 15.0
+          },
+          {
+            "customer": "Shop Rite Liq (A)Wharton",
+            "cases26": 0.0,
+            "cases25": 15.0
+          },
+          {
+            "customer": "House of Wine & Liquor - Boonton",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "The Village Place",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Island Of Spirits (P)",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Denville W & L",
+            "cases26": 0.0,
+            "cases25": 1.0
+          }
+        ],
+        "lostAccounts": [
+          {
+            "customer": "Shoppers Disc Liquor",
+            "cases25": 15.0
+          },
+          {
+            "customer": "Shop Rite Liq (A)Wharton",
+            "cases25": 15.0
+          },
+          {
+            "customer": "House of Wine & Liquor - Boonton",
+            "cases25": 5.0
+          },
+          {
+            "customer": "The Village Place",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Island Of Spirits (P)",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Denville W & L",
+            "cases25": 1.0
+          }
+        ],
+        "byProduct": {
+          "Four Loko 14% USA 1/12/23.5 oz Can": {
+            "cases26": 2.0,
+            "cases25": 1.0
+          },
+          "Four Loko Sour Galactic Punch 1/12/23.5 oz": {
+            "cases26": 2.0,
+            "cases25": 8.0
+          },
+          "Four Loko Jackpot 1/12/23.5 oz Can": {
+            "cases26": 3.0,
+            "cases25": 0.0
+          },
+          "Four Loko 14% Sour Apple 1/12/23.5 oz Can": {
+            "cases26": 2.0,
+            "cases25": 9.0
+          },
+          "Four Loko 14% Sour Blue Razz 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 4.0
+          },
+          "Four Loko Watermelon 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 3.0
+          },
+          "Four Loko Gold 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 8.0
+          },
+          "Four Loko 14% Electric Lemonade 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 11.0
+          },
+          "Four Loko Camo 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 4.0
+          },
+          "Four Loko Peach 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 2.0
+          },
+          "Four Loko Fruit Punch 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 1.0
+          }
+        }
+      },
+      "Matt Powierski": {
+        "cases26": 29.0,
+        "cases25": 66.0,
+        "growth": -37.0,
+        "positive": false,
+        "toPositive": 37.0,
+        "placements": [
+          {
+            "customer": "Cobblestone Hill Deli",
+            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
+            "sku": "Sour Apple",
+            "date": "2026-10-06"
+          },
+          {
+            "customer": "Cobblestone Hill Deli",
+            "product": "Four Loko 14% USA 1/12/23.5 oz Can",
+            "sku": "USA",
+            "date": "2026-10-06"
+          }
+        ],
+        "placementCount": 2,
+        "qualified": false,
+        "toQualifier": 3,
+        "accounts": 4,
+        "accountList": [
+          {
+            "customer": "Archies (P)",
+            "cases26": 10.0,
+            "cases25": 0.0
+          },
+          {
+            "customer": "Cobblestone Hill Deli",
+            "cases26": 8.0,
+            "cases25": 11.0
+          },
+          {
+            "customer": "Moonachie Liquors",
+            "cases26": 6.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Capri Deli&Liq (P)",
+            "cases26": 5.0,
+            "cases25": 0.0
+          },
+          {
+            "customer": "Wine Liquor Shop",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Garfield Discount Liquors",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Whoopee Liq (A)",
+            "cases26": 0.0,
+            "cases25": 10.0
+          },
+          {
+            "customer": "Little Ferry Wines/Liquor",
+            "cases26": 0.0,
+            "cases25": 10.0
+          },
+          {
+            "customer": "All Nations Liq",
+            "cases26": 0.0,
+            "cases25": 1.0
+          },
+          {
+            "customer": "Vinny's Disc Liq (P)",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Metro Wine And Liq(A)",
+            "cases26": 0.0,
+            "cases25": 4.0
+          },
+          {
+            "customer": "Luigi's Liquor (A)",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "All Star Wine & Liquor",
+            "cases26": 0.0,
+            "cases25": 5.0
+          }
+        ],
+        "lostAccounts": [
+          {
+            "customer": "Whoopee Liq (A)",
+            "cases25": 10.0
+          },
+          {
+            "customer": "Little Ferry Wines/Liquor",
+            "cases25": 10.0
+          },
+          {
+            "customer": "Wine Liquor Shop",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Garfield Discount Liquors",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Vinny's Disc Liq (P)",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Luigi's Liquor (A)",
+            "cases25": 5.0
+          },
+          {
+            "customer": "All Star Wine & Liquor",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Metro Wine And Liq(A)",
+            "cases25": 4.0
+          },
+          {
+            "customer": "All Nations Liq",
+            "cases25": 1.0
+          }
+        ],
+        "byProduct": {
+          "Four Loko Peach 1/12/23.5 oz Can": {
+            "cases26": 3.0,
+            "cases25": 2.0
+          },
+          "Four Loko 14% Sour Apple 1/12/23.5 oz Can": {
+            "cases26": 3.0,
+            "cases25": 12.0
+          },
+          "Four Loko Fruit Punch 1/12/23.5 oz Can": {
+            "cases26": 3.0,
+            "cases25": 18.0
+          },
+          "Four Loko 14% Sour Grape 1/12/23.5 oz Can": {
+            "cases26": 3.0,
+            "cases25": 3.0
+          },
+          "Four Loko Strawberry Lemonade 1/12/23.5 oz Can": {
+            "cases26": 4.0,
+            "cases25": 1.0
+          },
+          "Four Loko 14% Electric Lemonade 1/12/23.5 oz Can": {
+            "cases26": 3.0,
+            "cases25": 3.0
+          },
+          "Four Loko 14% USA 1/12/23.5 oz Can": {
+            "cases26": 2.0,
+            "cases25": 2.0
+          },
+          "Four Loko 14% Sour Blue Razz 1/12/23.5 oz Can": {
+            "cases26": 3.0,
+            "cases25": 6.0
+          },
+          "Four Loko Jungle Juice 1/12/23.5 oz Can": {
+            "cases26": 2.0,
+            "cases25": 5.0
+          },
+          "Four Loko Camo 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 0.0
+          },
+          "Four Loko Gold 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 7.0
+          },
+          "Four Loko Watermelon 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 2.0
+          },
+          "Four Loko 14% Sour Melon 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 2.0
+          },
+          "Four Loko Sour Galactic Punch 1/12/23.5 oz": {
+            "cases26": 0.0,
+            "cases25": 3.0
+          }
+        }
+      },
+      "Michael Harboy": {
+        "cases26": 0.0,
+        "cases25": 25.0,
+        "growth": -25.0,
+        "positive": false,
+        "toPositive": 25.0,
+        "placements": [],
+        "placementCount": 0,
+        "qualified": false,
+        "toQualifier": 5,
+        "accounts": 0,
+        "accountList": [
+          {
+            "customer": "Lincoln Center Liq",
+            "cases26": 0.0,
+            "cases25": 10.0
+          },
+          {
+            "customer": "Shays Liquors",
+            "cases26": 0.0,
+            "cases25": 10.0
+          },
+          {
+            "customer": "Shay's Liquors",
+            "cases26": 0.0,
+            "cases25": 5.0
+          }
+        ],
+        "lostAccounts": [
+          {
+            "customer": "Lincoln Center Liq",
+            "cases25": 10.0
+          },
+          {
+            "customer": "Shays Liquors",
+            "cases25": 10.0
+          },
+          {
+            "customer": "Shay's Liquors",
+            "cases25": 5.0
+          }
+        ],
+        "byProduct": {
+          "Four Loko Gold 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 12.0
+          },
+          "Four Loko 14% Sour Apple 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          "Four Loko 14% Electric Lemonade 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 2.0
+          },
+          "Four Loko 14% Sour Blue Razz 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 1.0
+          },
+          "Four Loko 14% USA 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 3.0
+          },
+          "Four Loko Jungle Juice 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 2.0
+          }
+        }
+      },
+      "Mike Ast": {
+        "cases26": 5.0,
+        "cases25": 134.0,
+        "growth": -129.0,
+        "positive": false,
+        "toPositive": 129.0,
+        "placements": [],
+        "placementCount": 0,
+        "qualified": false,
+        "toQualifier": 5,
+        "accounts": 1,
+        "accountList": [
+          {
+            "customer": "Lincoln Park Fine Wines & Spirits",
+            "cases26": 5.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Fair Lawn Wine & Spirits",
+            "cases26": 0.0,
+            "cases25": 11.0
+          },
+          {
+            "customer": "Allendale Wine Shoppe",
+            "cases26": 0.0,
+            "cases25": 102.0
+          },
+          {
+            "customer": "Scherer & Company",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Nico's Wine & Spirits",
+            "cases26": 0.0,
+            "cases25": 3.0
+          },
+          {
+            "customer": "Goffle Road Wine and More",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Quick Stop Liquor & Wine",
+            "cases26": 0.0,
+            "cases25": 3.0
+          }
+        ],
+        "lostAccounts": [
+          {
+            "customer": "Allendale Wine Shoppe",
+            "cases25": 102.0
+          },
+          {
+            "customer": "Fair Lawn Wine & Spirits",
+            "cases25": 11.0
+          },
+          {
+            "customer": "Scherer & Company",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Goffle Road Wine and More",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Nico's Wine & Spirits",
+            "cases25": 3.0
+          },
+          {
+            "customer": "Quick Stop Liquor & Wine",
+            "cases25": 3.0
+          }
+        ],
+        "byProduct": {
+          "Four Loko 14% Sour Grape 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 7.0
+          },
+          "Four Loko 14% USA 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 12.0
+          },
+          "Four Loko Jackpot 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 0.0
+          },
+          "Four Loko Gold 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 12.0
+          },
+          "Four Loko Sour Galactic Punch 1/12/23.5 oz": {
+            "cases26": 1.0,
+            "cases25": 10.0
+          },
+          "Four Loko Camo 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 8.0
+          },
+          "Four Loko 14% Sour Apple 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 9.0
+          },
+          "Four Loko Jungle Juice 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 19.0
+          },
+          "Four Loko Fruit Punch 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 21.0
+          },
+          "Four Loko Peach 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          "Four Loko 14% Sour Blue Razz 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 7.0
+          },
+          "Four Loko 14% Sour Melon 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 9.0
+          },
+          "Four Loko Strawberry Lemonade 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 7.0
+          },
+          "Four Loko 14% Electric Lemonade 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 8.0
+          }
+        }
+      },
+      "Nick Melissari": {
+        "cases26": 0.0,
+        "cases25": 0.0,
+        "growth": 0.0,
+        "positive": false,
+        "toPositive": 0.0,
+        "placements": [],
+        "placementCount": 0,
+        "qualified": false,
+        "toQualifier": 5,
+        "accounts": 0,
+        "accountList": [],
+        "lostAccounts": [],
+        "byProduct": {}
+      },
+      "Pablo Lopez": {
+        "cases26": 39.0,
+        "cases25": 109.0,
+        "growth": -70.0,
+        "positive": false,
+        "toPositive": 70.0,
+        "placements": [
+          {
+            "customer": "Regalado Liq",
+            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
+            "sku": "Sour Apple",
+            "date": "2026-10-01"
+          }
+        ],
+        "placementCount": 1,
+        "qualified": false,
+        "toQualifier": 4,
+        "accounts": 4,
+        "accountList": [
+          {
+            "customer": "Joe's Liquor (A)",
+            "cases26": 25.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Altiero Liquors",
+            "cases26": 5.0,
+            "cases25": 0.0
+          },
+          {
+            "customer": "Sunny's Liqs.(P)",
+            "cases26": 5.0,
+            "cases25": 0.0
+          },
+          {
+            "customer": "Regalado Liq",
+            "cases26": 4.0,
+            "cases25": 10.0
+          },
+          {
+            "customer": "Gene's Liquor",
+            "cases26": 0.0,
+            "cases25": 8.0
+          },
+          {
+            "customer": "Broadway W&L",
+            "cases26": 0.0,
+            "cases25": 16.0
+          },
+          {
+            "customer": "Passaic Discount Liquors",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Carisma Liq & Groc (P)",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Caraballo's",
+            "cases26": 0.0,
+            "cases25": 10.0
+          },
+          {
+            "customer": "Limonta Liqs (A)",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "Monroe Wine & Liq(P)",
+            "cases26": 0.0,
+            "cases25": 10.0
+          },
+          {
+            "customer": "#1 Liqrs (P)",
+            "cases26": 0.0,
+            "cases25": 15.0
+          },
+          {
+            "customer": "Johnny's Liqs (P)",
+            "cases26": 0.0,
+            "cases25": 10.0
+          },
+          {
+            "customer": "Boulevard Wine & Spirits",
+            "cases26": 0.0,
+            "cases25": 6.0
+          },
+          {
+            "customer": "Bombolon Liquor & Grocery",
+            "cases26": 0.0,
+            "cases25": 4.0
+          }
+        ],
+        "lostAccounts": [
+          {
+            "customer": "Broadway W&L",
+            "cases25": 16.0
+          },
+          {
+            "customer": "#1 Liqrs (P)",
+            "cases25": 15.0
+          },
+          {
+            "customer": "Caraballo's",
+            "cases25": 10.0
+          },
+          {
+            "customer": "Monroe Wine & Liq(P)",
+            "cases25": 10.0
+          },
+          {
+            "customer": "Johnny's Liqs (P)",
+            "cases25": 10.0
+          },
+          {
+            "customer": "Gene's Liquor",
+            "cases25": 8.0
+          },
+          {
+            "customer": "Boulevard Wine & Spirits",
+            "cases25": 6.0
+          },
+          {
+            "customer": "Passaic Discount Liquors",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Carisma Liq & Groc (P)",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Limonta Liqs (A)",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Bombolon Liquor & Grocery",
+            "cases25": 4.0
+          }
+        ],
+        "byProduct": {
+          "Four Loko Jackpot 1/12/23.5 oz Can": {
+            "cases26": 4.0,
+            "cases25": 0.0
+          },
+          "Four Loko Gold 1/12/23.5 oz Can": {
+            "cases26": 6.0,
+            "cases25": 4.0
+          },
+          "Four Loko Watermelon 1/12/23.5 oz Can": {
+            "cases26": 6.0,
+            "cases25": 20.0
+          },
+          "Four Loko Fruit Punch 1/12/23.5 oz Can": {
+            "cases26": 13.0,
+            "cases25": 27.0
+          },
+          "Four Loko Sour Galactic Punch 1/12/23.5 oz": {
+            "cases26": 4.0,
+            "cases25": 0.0
+          },
+          "Four Loko 14% Sour Blue Razz 1/12/23.5 oz Can": {
+            "cases26": 2.0,
+            "cases25": 12.0
+          },
+          "Four Loko 14% Sour Grape 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 7.0
+          },
+          "Four Loko Strawberry Lemonade 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 7.0
+          },
+          "Four Loko 14% Sour Apple 1/12/23.5 oz Can": {
+            "cases26": 2.0,
+            "cases25": 14.0
+          },
+          "Four Loko Peach 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          "Four Loko 14% USA 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 1.0
+          },
+          "Four Loko Jungle Juice 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 8.0
+          },
+          "Four Loko 14% Sour Melon 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 3.0
+          },
+          "Four Loko Camo 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 1.0
+          }
+        }
+      },
+      "Paul Mclaughlin": {
+        "cases26": 0.0,
+        "cases25": 0.0,
+        "growth": 0.0,
+        "positive": false,
+        "toPositive": 0.0,
+        "placements": [],
+        "placementCount": 0,
+        "qualified": false,
+        "toQualifier": 5,
+        "accounts": 0,
+        "accountList": [],
+        "lostAccounts": [],
+        "byProduct": {}
+      },
+      "Phil Ernst": {
+        "cases26": 7.0,
+        "cases25": 82.0,
+        "growth": -75.0,
+        "positive": false,
+        "toPositive": 75.0,
+        "placements": [],
+        "placementCount": 0,
+        "qualified": false,
+        "toQualifier": 5,
+        "accounts": 3,
+        "accountList": [
+          {
+            "customer": "Food Universe Marketplace",
+            "cases26": 5.0,
+            "cases25": 0.0
+          },
+          {
+            "customer": "Acme Markets (Midland Park)",
+            "cases26": 1.0,
+            "cases25": 3.0
+          },
+          {
+            "customer": "Acme Markets (Fort Lee)",
+            "cases26": 1.0,
+            "cases25": 2.0
+          },
+          {
+            "customer": "Budy's Wine & Liq (A)",
+            "cases26": 0.0,
+            "cases25": 13.0
+          },
+          {
+            "customer": "Super Wine Warehse(P)Pate",
+            "cases26": 0.0,
+            "cases25": 15.0
+          },
+          {
+            "customer": "Saddle Brook Liquor & Bar",
+            "cases26": 0.0,
+            "cases25": 26.0
+          },
+          {
+            "customer": "Riverview Liq (P)",
+            "cases26": 0.0,
+            "cases25": 5.0
+          },
+          {
+            "customer": "PRIME WINE CELLAR Liquor & Beer",
+            "cases26": 0.0,
+            "cases25": 15.0
+          },
+          {
+            "customer": "Wides Deli & Liquor",
+            "cases26": 0.0,
+            "cases25": 1.0
+          },
+          {
+            "customer": "Acme Markets (Allendale)",
+            "cases26": 0.0,
+            "cases25": 2.0
+          }
+        ],
+        "lostAccounts": [
+          {
+            "customer": "Saddle Brook Liquor & Bar",
+            "cases25": 26.0
+          },
+          {
+            "customer": "Super Wine Warehse(P)Pate",
+            "cases25": 15.0
+          },
+          {
+            "customer": "PRIME WINE CELLAR Liquor & Beer",
+            "cases25": 15.0
+          },
+          {
+            "customer": "Budy's Wine & Liq (A)",
+            "cases25": 13.0
+          },
+          {
+            "customer": "Riverview Liq (P)",
+            "cases25": 5.0
+          },
+          {
+            "customer": "Acme Markets (Allendale)",
+            "cases25": 2.0
+          },
+          {
+            "customer": "Wides Deli & Liquor",
+            "cases25": 1.0
+          }
+        ],
+        "byProduct": {
+          "Four Loko Watermelon 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 7.0
+          },
+          "Four Loko Fruit Punch 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 10.0
+          },
+          "Four Loko Jackpot 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 0.0
+          },
+          "Four Loko Camo 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 2.0
+          },
+          "Four Loko 14% Sour Apple 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 8.0
+          },
+          "Four Loko Sour Galactic Punch 1/12/23.5 oz": {
+            "cases26": 2.0,
+            "cases25": 0.0
+          },
+          "Four Loko 14% Electric Lemonade 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 1.0
+          },
+          "Four Loko 14% Sour Grape 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 10.0
+          },
+          "Four Loko Gold 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 8.0
+          },
+          "Four Loko Jungle Juice 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 6.0
+          },
+          "Four Loko 14% USA 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 8.0
+          },
+          "Four Loko Peach 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 2.0
+          },
+          "Four Loko 14% Sour Blue Razz 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 6.0
+          },
+          "Four Loko Strawberry Lemonade 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 11.0
+          },
+          "Four Loko 14% Sour Melon 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 3.0
+          }
+        }
+      },
+      "Robin Feldman": {
+        "cases26": 0.0,
+        "cases25": 0.0,
+        "growth": 0.0,
+        "positive": false,
+        "toPositive": 0.0,
+        "placements": [],
+        "placementCount": 0,
+        "qualified": false,
+        "toQualifier": 5,
+        "accounts": 0,
+        "accountList": [],
+        "lostAccounts": [],
+        "byProduct": {}
+      },
+      "Shane Barreca": {
+        "cases26": 26.0,
+        "cases25": 21.0,
+        "growth": 5.0,
+        "positive": true,
+        "toPositive": 0.0,
+        "placements": [
+          {
+            "customer": "Beverage Barn (A)",
+            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
+            "sku": "Sour Apple",
+            "date": "2026-10-02"
+          }
+        ],
+        "placementCount": 1,
+        "qualified": false,
+        "toQualifier": 4,
+        "accounts": 1,
+        "accountList": [
+          {
+            "customer": "Beverage Barn (A)",
+            "cases26": 26.0,
+            "cases25": 15.0
+          },
+          {
+            "customer": "Djm Liq Inc. (P)(Andrew)",
+            "cases26": 0.0,
+            "cases25": 2.0
+          },
+          {
+            "customer": "Brand Bar & Bev (A)",
+            "cases26": 0.0,
+            "cases25": 4.0
+          }
+        ],
+        "lostAccounts": [
+          {
+            "customer": "Brand Bar & Bev (A)",
+            "cases25": 4.0
+          },
+          {
+            "customer": "Djm Liq Inc. (P)(Andrew)",
+            "cases25": 2.0
+          }
+        ],
+        "byProduct": {
+          "Four Loko Gold 1/12/23.5 oz Can": {
+            "cases26": 1.0,
+            "cases25": 2.0
+          },
+          "Four Loko 14% Sour Blue Razz 1/12/23.5 oz Can": {
+            "cases26": 5.0,
+            "cases25": 5.0
+          },
+          "Four Loko 14% USA 1/12/23.5 oz Can": {
+            "cases26": 5.0,
+            "cases25": 13.0
+          },
+          "Four Loko Watermelon 1/12/23.5 oz Can": {
+            "cases26": 5.0,
+            "cases25": 0.0
+          },
+          "Four Loko 14% Sour Apple 1/12/23.5 oz Can": {
+            "cases26": 5.0,
+            "cases25": 0.0
+          },
+          "Four Loko Fruit Punch 1/12/23.5 oz Can": {
+            "cases26": 5.0,
+            "cases25": 0.0
+          },
+          "Four Loko Strawberry Lemonade 1/12/23.5 oz Can": {
+            "cases26": 0.0,
+            "cases25": 1.0
+          }
+        }
+      }
+    },
+    "leaderboard": [
+      {
+        "rep": "Dylan Rubino",
+        "cases26": 64.0,
+        "growth": -398.0,
+        "placements": 5,
+        "positive": false,
+        "qualified": true,
+        "rank": 1
+      },
+      {
+        "rep": "Matt Powierski",
+        "cases26": 29.0,
+        "growth": -37.0,
+        "placements": 2,
+        "positive": false,
+        "qualified": false,
+        "rank": 2
+      },
+      {
+        "rep": "Derrick Laws",
+        "cases26": 40.0,
+        "growth": -56.0,
+        "placements": 2,
+        "positive": false,
+        "qualified": false,
+        "rank": 3
+      },
+      {
+        "rep": "Shane Barreca",
+        "cases26": 26.0,
+        "growth": 5.0,
+        "placements": 1,
+        "positive": true,
+        "qualified": false,
+        "rank": 4
+      },
+      {
+        "rep": "Pablo Lopez",
+        "cases26": 39.0,
+        "growth": -70.0,
+        "placements": 1,
+        "positive": false,
+        "qualified": false,
+        "rank": 5
+      },
+      {
+        "rep": "Javier Melo",
+        "cases26": 8.0,
+        "growth": -128.0,
+        "placements": 1,
+        "positive": false,
+        "qualified": false,
+        "rank": 6
+      },
+      {
+        "rep": "Dave Ehlers",
+        "cases26": 51.0,
+        "growth": -192.0,
+        "placements": 1,
+        "positive": false,
+        "qualified": false,
+        "rank": 7
+      },
+      {
+        "rep": "Alisa Acciardi",
+        "cases26": 29.0,
+        "growth": -198.0,
+        "placements": 1,
+        "positive": false,
+        "qualified": false,
+        "rank": 8
+      },
+      {
+        "rep": "Alex Rodriguez",
+        "cases26": 0.0,
+        "growth": 0.0,
+        "placements": 0,
+        "positive": false,
+        "qualified": false,
+        "rank": 9
+      },
+      {
+        "rep": "Allison Scott",
+        "cases26": 0.0,
+        "growth": 0.0,
+        "placements": 0,
+        "positive": false,
+        "qualified": false,
+        "rank": 10
+      },
+      {
+        "rep": "Andrew Lundy",
+        "cases26": 0.0,
+        "growth": 0.0,
+        "placements": 0,
+        "positive": false,
+        "qualified": false,
+        "rank": 11
+      },
+      {
+        "rep": "Brian Sengebush",
+        "cases26": 0.0,
+        "growth": 0.0,
+        "placements": 0,
+        "positive": false,
+        "qualified": false,
+        "rank": 12
+      },
+      {
+        "rep": "Hakan Sadik",
+        "cases26": 0.0,
+        "growth": 0.0,
+        "placements": 0,
+        "positive": false,
+        "qualified": false,
+        "rank": 13
+      },
+      {
+        "rep": "John O'Donoghue",
+        "cases26": 0.0,
+        "growth": 0.0,
+        "placements": 0,
+        "positive": false,
+        "qualified": false,
+        "rank": 14
+      },
+      {
+        "rep": "Nick Melissari",
+        "cases26": 0.0,
+        "growth": 0.0,
+        "placements": 0,
+        "positive": false,
+        "qualified": false,
+        "rank": 15
+      },
+      {
+        "rep": "Paul Mclaughlin",
+        "cases26": 0.0,
+        "growth": 0.0,
+        "placements": 0,
+        "positive": false,
+        "qualified": false,
+        "rank": 16
+      },
+      {
+        "rep": "Robin Feldman",
+        "cases26": 0.0,
+        "growth": 0.0,
+        "placements": 0,
+        "positive": false,
+        "qualified": false,
+        "rank": 17
+      },
+      {
+        "rep": "Michael Harboy",
+        "cases26": 0.0,
+        "growth": -25.0,
+        "placements": 0,
+        "positive": false,
+        "qualified": false,
+        "rank": 18
+      },
+      {
+        "rep": "Klejdi Lamo",
+        "cases26": 10.0,
+        "growth": -41.0,
+        "placements": 0,
+        "positive": false,
+        "qualified": false,
+        "rank": 19
+      },
+      {
+        "rep": "Anthony Palmisano",
+        "cases26": 9.0,
+        "growth": -52.0,
+        "placements": 0,
+        "positive": false,
+        "qualified": false,
+        "rank": 20
+      },
+      {
+        "rep": "Dan Lagala",
+        "cases26": 19.0,
+        "growth": -71.0,
+        "placements": 0,
+        "positive": false,
+        "qualified": false,
+        "rank": 21
+      },
+      {
+        "rep": "Phil Ernst",
+        "cases26": 7.0,
+        "growth": -75.0,
+        "placements": 0,
+        "positive": false,
+        "qualified": false,
+        "rank": 22
+      },
+      {
+        "rep": "Jim Heaney",
+        "cases26": 5.0,
+        "growth": -87.0,
+        "placements": 0,
+        "positive": false,
+        "qualified": false,
+        "rank": 23
+      },
+      {
+        "rep": "Jayson Romine",
+        "cases26": 22.0,
+        "growth": -91.0,
+        "placements": 0,
+        "positive": false,
+        "qualified": false,
+        "rank": 24
+      },
+      {
+        "rep": "Chris Payton",
+        "cases26": 9.0,
+        "growth": -113.0,
+        "placements": 0,
+        "positive": false,
+        "qualified": false,
+        "rank": 25
+      },
+      {
+        "rep": "Mike Ast",
+        "cases26": 5.0,
+        "growth": -129.0,
+        "placements": 0,
+        "positive": false,
+        "qualified": false,
+        "rank": 26
+      },
+      {
+        "rep": "Jaime Colonna",
+        "cases26": 122.0,
+        "growth": -1007.0,
+        "placements": 0,
+        "positive": false,
+        "qualified": false,
+        "rank": 27
+      }
+    ],
+    "periodStart": "2026-10-01",
+    "periodEnd": "2026-11-30",
+    "meta": {
+      "qualifier": 5,
+      "qualSkus": {
+        "7925": "Sour Apple",
+        "7935": "USA"
+      },
+      "casesThrough": "2026-10-09",
+      "baseWindow": "10/1/2025 - 11/30/2025",
+      "currentWindow": "10/1/2026 - 11/30/2026",
+      "placeWindow": "10/1/2026 - 11/30/2026",
+      "placeBaseWindow": "7/1/2026 - 9/30/2026",
+      "offRoster": []
     }
   },
   "sam_adams_cold_snap": {
@@ -171868,5 +178171,5 @@ const PROGRAM_DATA_2026_10 = {
     }
   }
 };
-const PROGRAM_DATA_REFRESHED = "Oct 7, 2026, 3:23 PM ET";
-const PROGRAM_DATA_REFRESHED_AT = "2026-10-07T19:23:05Z";
+const PROGRAM_DATA_REFRESHED = "Oct 7, 2026, 3:45 PM ET";
+const PROGRAM_DATA_REFRESHED_AT = "2026-10-07T19:45:56Z";

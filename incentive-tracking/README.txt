@@ -334,9 +334,28 @@ Refresh = save the new export over the same name, python3 generate.py.
                       +$250 (counted when those months exist). ASSUMED: a
                       new brand, so every account is a non-buy and every
                       SKU is core (the deck names no core list).
-  four_loko           STRUCTURE ONLY (rules, zero-state card, awaiting note)
-                      until Gavin sends the export. Supplier "Four Loko"
-                      (Phusion Projects), no logo file.
+                      GAVIN 2026-10-07: off-premise tracks ALL 16oz, 19.2oz and 12oz
+                      packages (IA_OFF_SIZES); on-premise is ONLY Wrench draft
+                      (Industrial Arts Wrench ... keg / bbl; Pocket Wrench is a
+                      different beer and no longer counts).
+  four_loko           BUILT 2026-10-07, NO PAYMENTS (Gavin: just cases vs last year and
+                      new placements). CASES = data/four_loko.csv (RDE "FOUR LOKO
+                      VOLUME REWARDS OCT-NOV", Cases 10/1-11/30/2026 vs 2025, net
+                      of returns; loads through the date printed by generate.py).
+                      NEW PLACEMENTS = RDE's own flags: data/four_loko_new_placements.csv
+                      (Sour Apple 7925 + USA 7935 only; "Placements 10/1-11/30/2026" vs
+                      "Placements 7/1/2026-9/30/2026") -- a (rep, customer, SKU) with a
+                      current placement and NONE in 7/1-9/30. data/four_loko_placements_all.csv
+                      (every SKU, same two columns) is the cross-check: generate.py
+                      stops if its Sour Apple / USA rows disagree. NOTE: the file Gavin
+                      named "VOLUME_2" carries placements, not cases, so the cases
+                      still come from the first export -- re-pull it for fresher volume.
+                      The deck's 5-placement qualifier shows as progress only.
+  LAGUNITAS (Gavin, 2026-10-07): the whole program is NEW placements -- every
+                      "POD" in the deck means a NEW POD (SKU at an account with
+                      no placement the same window last year). The builder
+                      already works that way; export saved 2026-10-07 covers
+                      10/1-11/30.
   sam_adams_cold_snap BUILT 2026-10-05 from Boston Beer workbooks (see CLAUDE.md). The deck slide reads "convert Cold
                       Snap to Summer Ale by October 23" -- almost certainly
                       a carry-over typo (Octoberfest -> Cold Snap is the
