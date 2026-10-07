@@ -391,6 +391,9 @@ thead th{font-size:14px;font-weight:600;color:var(--ink-soft)}
 @media(max-width:900px){.rt-flat td.rt-rep{order:-1;opacity:.8;font-weight:500}}
 @media(min-width:901px){.rt-flat{table-layout:fixed}.rt-flat th:nth-child(1),.rt-flat td:nth-child(1){width:19%}.rt-flat th:nth-child(2),.rt-flat td:nth-child(2){width:33%}}
 
+/* Load Sheets totals row */
+.lst-tot td{font-weight:700;background:var(--card2);border-bottom:2px solid var(--line)}
+@media(max-width:900px){.lst-tot td.lst-hide{display:none}.lst-tot td:first-child{display:block;text-align:left!important;font-size:16px}.lst-tot td:first-child::before{content:none}}
 /* Load Sheets table (2026-10-07): every export column, fits 960px, stacks under 900px */
 .ls{margin:24px 0 0}
 .ls[hidden]{display:none}
@@ -405,6 +408,7 @@ thead th{font-size:14px;font-weight:600;color:var(--ink-soft)}
 .ls-sort:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .ls-sort i{width:0;height:0;border:5px solid transparent;border-top-color:currentColor;border-bottom:0}
 .ls-sort.asc i{border-top:0;border-bottom:5px solid currentColor}
+.rt-sort.on.asc i{border-top:0;border-bottom:5px solid currentColor}.rt-sort i{opacity:.35}.rt-sort.on i{opacity:1}
 .lst .neg{color:var(--red);font-weight:600}
 @media(max-width:900px){
   .lst,.lst tbody,.lst tr,.lst td{display:block;width:auto}
@@ -459,6 +463,10 @@ thead th{font-size:14px;font-weight:600;color:var(--ink-soft)}
   <div class="tgroup">
     <label for="ytdFilter">YTD Buyer</label>
     <select id="ytdFilter"><option value="">All</option><option value="yes">Yes</option><option value="no">No</option></select>
+  </div>
+  <div class="tgroup">
+    <label for="sortSel">Sort By</label>
+    <select id="sortSel"><option value="">Customer Name</option><option value="desc">Last Purchase: Newest</option><option value="asc">Last Purchase: Oldest</option></select>
   </div>
   <div class="result-count" id="count"></div>
 </div>
@@ -631,7 +639,7 @@ function renderGoal(){
       <div class="stat-sub">L90 buyers · Core Market On-Premise</div></div>` : '';
 }
 let PROG = null;
-const rs = {q:'', rep:'', town:'', l90:'', ytd:'', open:new Set()};
+const rs = {sort:'', q:'', rep:'', town:'', l90:'', ytd:'', open:new Set()};
 const yn = (ok, yes, no) => ok ? `<span class="yn y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>${yes}</span>`
                          : `<span class="yn n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>${no}</span>`;
 const longDate = iso => { if(!iso) return ''; const [y,m,d] = iso.split('-'); return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+m-1]+' '+(+d)+', '+y; };
@@ -658,9 +666,16 @@ function rosterRows(P, rep){
     return true;
   });
 }
+// Last Purchase sort (2026-10-07): click the heading to cycle newest first -> oldest first -> default order; accounts with no
+// purchase stay at the bottom either way.
+function sortLast(rows){
+  if(!rs.sort) return rows;
+  const d = rs.sort==='asc'?1:-1;
+  return rows.slice().sort((a,b)=> (!a.last)-(!b.last) || (a.last===b.last?0:(a.last<b.last?-1:1)*d) || a.name.localeCompare(b.name));
+}
 function rosterTable(rows, rep, flat){
-  return `<table class="rt${flat?' rt-flat':''}"><thead><tr>${flat?'<th scope="col">Sales Rep</th>':''}<th scope="col">Customer</th><th scope="col">L90 Buyer</th><th scope="col">YTD Buyer</th><th scope="col">Last Purchase</th></tr></thead><tbody>`+
-    rows.map(a=>{
+  return `<table class="rt${flat?' rt-flat':''}"><thead><tr>${flat?'<th scope="col">Sales Rep</th>':''}<th scope="col">Customer</th><th scope="col">L90 Buyer</th><th scope="col">YTD Buyer</th><th scope="col" aria-sort="${rs.sort==='asc'?'ascending':rs.sort==='desc'?'descending':'none'}"><button type="button" class="ls-sort rt-sort${rs.sort?' on '+rs.sort:''}" aria-label="Sort by Last Purchase">Last Purchase<i aria-hidden="true"></i></button></th></tr></thead><tbody>`+
+    sortLast(rows).map(a=>{
       const r = flat ? a.rep : rep;
       const nm = a.page ? `<a class="rt-name" href="${esc(acctHref(a, r))}">${esc(a.name)}</a>` : `<span class="rt-name">${esc(a.name)}</span>`;
       return `<tr>${flat?`<td class="rt-rep" data-l="Sales Rep">${esc(a.rep)}</td>`:''}<td class="rt-acct">${nm}<span class="rt-town">${esc(a.town||'')}</span></td>
@@ -673,6 +688,7 @@ function rosterTable(rows, rep, flat){
 const MGR_FLAT = !LOCK_REP && !!(window.kdhUser && (window.kdhUser()||{}).role==='manager' && !(window.kdhUser()||{}).preview);
 rs.lim = 100;
 function renderRoster(){
+  const ss = document.getElementById('sortSel'); if(ss) ss.value = rs.sort;
   const P = PROG, el = document.getElementById('roster'); if(!P || !el) return;
   const scope = rosterScope(P);
   const reps = rs.rep && scope.includes(rs.rep) ? [rs.rep] : scope;
@@ -681,7 +697,7 @@ function renderRoster(){
   if(MGR_FLAT){
     const rows = reps.flatMap(rep=>rosterRows(P, rep)).sort((a,b)=> a.rep.localeCompare(b.rep) || a.name.localeCompare(b.name));
     document.getElementById('count').textContent = `${rows.length.toLocaleString()} ${rows.length===1?'Account':'Accounts'}`;
-    el.innerHTML = rows.length ? `<div class="rt-wrap">${rosterTable(rows.slice(0, rs.lim), null, true)}</div>`+(rows.length>rs.lim ? `<button type="button" class="rt-more" id="rtMore">Show ${Math.min(100, rows.length-rs.lim)} More</button>` : '') : '<div class="empty">No accounts match.</div>';
+    el.innerHTML = rows.length ? `<div class="rt-wrap">${rosterTable(sortLast(rows).slice(0, rs.lim), null, true)}</div>`+(rows.length>rs.lim ? `<button type="button" class="rt-more" id="rtMore">Show ${Math.min(100, rows.length-rs.lim)} More</button>` : '') : '<div class="empty">No accounts match.</div>';
     document.getElementById('rosterNote').textContent = `L90 = bought ${periodText(P)}. YTD = bought since ${longDate(P.meta.launch)}.`;
     return;
   }
@@ -700,6 +716,7 @@ function renderRoster(){
   const M = DATA.meta.buyers || {};
   document.getElementById('rosterNote').textContent = `L90 = bought ${periodText(P)}. YTD = bought since ${longDate(P.meta.launch)}.`;
 }
+document.getElementById('sortSel').addEventListener('change', e=>{ rs.sort=e.target.value; renderRoster(); });
 document.getElementById('search').addEventListener('input', e=>{ rs.q=e.target.value; rs.lim=100; renderRoster(); });
 document.getElementById('repFilter').addEventListener('change', e=>{ rs.rep=e.target.value; state.rep=e.target.value; rs.lim=100; renderGoal(); renderBuyers(); renderRoster(); });
 document.getElementById('townFilter').addEventListener('change', e=>{ rs.town=e.target.value; rs.lim=100; renderRoster(); });
@@ -707,6 +724,7 @@ document.getElementById('l90Filter').addEventListener('change', e=>{ rs.l90=e.ta
 document.getElementById('ytdFilter').addEventListener('change', e=>{ rs.ytd=e.target.value; rs.lim=100; renderRoster(); });
 document.getElementById('roster').addEventListener('click', e=>{
   if(e.target.id==='rtMore'){ rs.lim += 100; renderRoster(); return; }
+  if(e.target.closest('.rt-sort')){ rs.sort = rs.sort==='' ? 'desc' : rs.sort==='desc' ? 'asc' : ''; renderRoster(); return; }
   const h = e.target.closest('.rg-h'); if(!h) return;
   const rep = h.getAttribute('data-rep'); if(rs.open.has(rep)) rs.open.delete(rep); else rs.open.add(rep);
   renderRoster();
@@ -734,7 +752,11 @@ function renderLoads(){
   const b = document.getElementById('lsSort'); b.classList.toggle('asc', ls.dir==='asc'); b.parentElement.setAttribute('aria-sort', ls.dir==='asc'?'ascending':'descending');
   document.getElementById('lsSort2').textContent = 'Sort by Load Sheet Date: '+label;
   const n = v => `<td class="n" data-l="">${v}</td>`;
-  document.getElementById('lsBody').innerHTML = rows.slice(0, ls.lim).map(l=>`<tr>
+  const T = k => rows.reduce((a,l)=>a+l[k],0);
+  const tot = `<tr class="lst-tot"><td data-l="">Totals</td><td data-l="Load Sheets">${rows.length.toLocaleString()} Load Sheets</td><td data-l="" class="lst-hide"></td><td data-l="" class="lst-hide"></td>
+    <td class="n" data-l="Aug 1 – Oct 31">${T('prog').toLocaleString()}</td><td class="n" data-l="L90">${T('l90').toLocaleString()}</td><td class="n" data-l="YTD">${T('ytd').toLocaleString()}</td>
+    <td class="n" data-l="Difference">${T('diff').toLocaleString()}</td></tr>`;
+  document.getElementById('lsBody').innerHTML = tot + rows.slice(0, ls.lim).map(l=>`<tr>
     <td data-l="Brand Family">${esc(l.brand)}</td><td data-l="Customer">${esc(l.id+' '+l.name)}</td><td data-l="Sales Rep">${esc(l.rep)}</td>
     <td data-l="Load Sheet Date">${l.date?esc(longDate(l.date)):''}</td>
     <td class="n" data-l="Aug 1 – Oct 31">${l.prog}</td><td class="n" data-l="L90">${l.l90}</td><td class="n" data-l="YTD">${l.ytd}</td>
