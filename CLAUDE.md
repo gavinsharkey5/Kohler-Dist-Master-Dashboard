@@ -2842,8 +2842,10 @@ MPO tile for a route with no account of that premise (Allison: no Off-Premise; S
 On-Premise). Managers' Program View is unchanged apart from these reps dropping out of an
 objective's rep list. Test: scratchpad reach_test.mjs. Tags hub.js 20261007y2, guided.js / rep.css /
 on-prem programs.js 20261007z.
-OPEN (asked Gavin 2026-10-07): the On-Premise "Spirits Follow-Up" base is ~85% OFF-premise accounts
-(the RDE export has no premise filter) -- should it count on-premise accounts only?
+SPIRITS FOLLOW-UP is ON-PREMISE ONLY (Gavin, 2026-10-07): his RDE export now filters On Premise (all
+107 base accounts on-premise; was ~85% off-premise). 12 of 107 done; 16 reps scored, off-premise reps
+(Hakan, Jayson, Shane, Dave, ...) no longer carry it. Note: the export's "Spirits" segment includes BJ's
+hard root beer / prickly pear kegs and a New Holland coconut rum beer -- counted as the export says.
 
 ## October incentives refreshed + Four Loko built (2026-10-07)
 
