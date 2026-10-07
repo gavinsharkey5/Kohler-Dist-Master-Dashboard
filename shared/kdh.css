@@ -452,3 +452,12 @@ html.kdh-menu-open .kdh-tabs{z-index:71}
 .kdh-band + .rh-head,.kdh-band + .ws,.kdh-band + header{margin-top:0!important;padding-top:8px!important}
 .gx-head .kdh-band{margin-top:4px}
 .kdh-band.cans img{object-position:50% 30%}
+/* .kdh-portfolio.compact (2026-10-07, homes v4): the same content as a slim
+   strip -- heading + mission on the left, the three category photos at a fixed
+   small size on the right; stacked on phones. */
+.kdh-portfolio.compact{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:20px;padding:18px 22px;text-align:left;border-radius:14px}
+.kdh-portfolio.compact .kp-text{min-width:0}
+.kdh-portfolio.compact p{margin:0;max-width:440px}
+.kdh-portfolio.compact ul{grid-template-columns:repeat(3,128px);gap:12px}
+.kdh-portfolio.compact li span{font-size:14px;text-align:center}
+@media (max-width:759px){ .kdh-portfolio.compact{grid-template-columns:minmax(0,1fr);padding:16px} .kdh-portfolio.compact ul{grid-template-columns:repeat(3,minmax(0,1fr))} }

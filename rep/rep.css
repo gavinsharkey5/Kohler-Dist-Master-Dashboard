@@ -2,7 +2,7 @@
    Tokens come from shared/kdh.css (the design system: light + dark,
    fonts, top bar). The short names below are aliases kept so this
    file's rules and the pages' inline styles stay readable. */
-@import url("../shared/kdh.css?v=20261007p");
+@import url("../shared/kdh.css?v=20261007q");
 :root{
   --bg:var(--kdh-bg);--surface:var(--kdh-surface);--surface-2:var(--kdh-surface-2);
   --text:var(--kdh-text);--text-2:var(--kdh-text-2);--text-3:var(--kdh-text-3);--text-4:var(--kdh-text-4);
@@ -212,112 +212,119 @@ html.kdh-rep #kicker{display:none}
 .tnone{margin:0;padding:12px 14px;font-size:14px;color:var(--text-3)}
 @media (max-width:599px){ .tstat{padding:10px 12px} .tstat b{font-size:20px} .tstat span{font-size:13px} }
 
-/* ---- REP HOME (2026-10-02, third build; Shopify's Home) ----
-   compact header -> search + My Accounts entry -> Needs Attention (one card
-   of grouped rows, each count labelled accounts / products) -> Programs and
-   Trackers as equal-size cards. Spacing on the 8 / 12 / 16 / 24 scale. */
-.rh{padding-bottom:var(--sp-4)}
-.rh-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:var(--sp-2) var(--sp-4);padding:var(--sp-4) 0 var(--sp-3)}
-.rh-id{min-width:0}
-.rh-id .kicker{font-size:13px;font-weight:600;color:var(--text-3);margin:0 0 2px}
-.rh-id h1{margin:0;font-size:26px;font-weight:600;line-height:1.2}
-.rh-meta{margin:4px 0 0;font-size:15px;color:var(--text-2);line-height:1.4}
-.rh-meta .sep{color:var(--kdh-text-4);margin:0 8px}
-.rh-entry{display:grid;gap:var(--sp-2);margin:0 0 var(--sp-4)}
-@media (min-width:900px){ .rh-entry{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch} }
+/* ---- HOMES v4 (2026-10-07): Manager Home + Rep Home ----
+   HoneyBook's compact working header + Dropbox's bordered action tiles.
+   .hh   header: left-aligned page title (gold rule), name / role / reporting
+         line under it, preview controls as secondary buttons on the right.
+   .hs   a section: heading + a grid of tool cards.
+   .kt   THE tool card: icon tile, title, one optional line, a status line only
+         where real data exists, a chevron. The whole card is one link; the
+         icon and chevron are decoration (aria-hidden). Hover / focus / pressed
+         states, ~100px tall on desktop, grows with its text, never clips.
+   Grid: 3 columns from 1280px (iPad landscape keeps 2 roomy ones beside the
+   sidebar), 2 from 640px (the last odd card spans the row
+   so no card sits alone), 1 below -- horizontal cards on phones.
+   Card borders are --kdh-border-2 (3:1 against the page in both themes); the
+   rows' inner dividers are lighter. Surface / icon tile tuned per theme (measured:
+   scratchpad contrast_audit.mjs + home_test.mjs). */
+.wrap.home{max-width:1200px;padding:0 24px}
+.home + footer{max-width:1200px;padding:16px 24px 32px;font-size:14px}
+.home{--kt-surface:var(--kdh-surface);--kt-bd:var(--kdh-border-2);--kt-div:#D3DAE6;--kt-bd-h:var(--kdh-brand);--kt-ico-bg:var(--kdh-brand-soft);--kt-ico-bd:#C4D6F5;--kt-press:var(--kdh-surface-3)}
+[data-theme="dark"] .home{--kt-surface:#14223F;--kt-bd:var(--kdh-border-2);--kt-div:#2E4170;--kt-bd-h:#6AA1FF;--kt-ico-bg:#1A3366;--kt-ico-bd:#34589E;--kt-press:#1A2A4E}
+/* header */
+.hh{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px 24px;padding:28px 0 4px}
+.hh-id{min-width:0;flex:1 1 320px}
+.hh h1{margin:0;font-size:30px;font-weight:700;line-height:1.15;letter-spacing:normal;color:var(--kdh-head-c)}
+.hh h1::after{content:"";display:block;width:36px;height:3px;border-radius:2px;background:var(--kdh-accent);margin:10px 0 0}
+.hh-meta{display:flex;flex-wrap:wrap;align-items:baseline;margin:10px 0 0;font-size:16px;line-height:1.45;color:var(--text-2)}
+.hh-meta b{font-weight:600;color:var(--text)}
+.hh-meta .sep{margin:0 8px;color:var(--kdh-text-4)}
+.hh-acts{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:10px;font-size:14px;color:var(--text-2)}
+.hh-acts .btn{min-height:42px}
+.hh-acts label{display:flex;align-items:center;gap:8px}
+.hh-acts select{height:42px;border-radius:10px;border-color:var(--kt-bd);background-color:var(--kt-surface)}
+.hh-switch{flex:1 1 100%;justify-content:flex-end;font-size:14px;color:var(--text-2)}
+.hh-switch select{height:42px;border-radius:10px;background-color:var(--kt-surface)}
+.btn.brand-outline{border-color:var(--brand);color:var(--brand);background:var(--kt-surface)}
+.btn.brand-outline:hover{background:var(--brand-soft);border-color:var(--brand);color:var(--brand)}
+.home .btn.outline{background:var(--kt-surface);border-color:var(--kt-bd)}
+.home .btn.outline:hover{border-color:var(--kdh-border-2)}
+/* sections */
+.hs{margin:28px 0 0}
+.hs-h{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 12px;min-height:40px}
+.hs-h h2{margin:0;font-size:19px;font-weight:600;line-height:1.25;color:var(--kdh-head-c)}
+.kt-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+@media (min-width:640px){ .kt-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px} .kt-grid > .kt:last-child:nth-child(odd){grid-column:1 / -1} }
+@media (min-width:1280px){ .kt-grid{grid-template-columns:repeat(3,minmax(0,1fr))} .kt-grid > .kt:last-child:nth-child(odd){grid-column:auto} }
+/* the tool card */
+.kt{position:relative;display:flex;align-items:center;gap:16px;min-height:100px;padding:18px 16px 18px 18px;border:1px solid var(--kt-bd);border-radius:12px;background:var(--kt-surface);color:inherit;text-decoration:none;
+  transition:border-color .12s ease,box-shadow .12s ease,background-color .12s ease,transform .06s ease;-webkit-tap-highlight-color:transparent}
+.kt:hover{border-color:var(--kt-bd-h);box-shadow:0 1px 2px rgba(11,36,102,.06),0 6px 16px rgba(11,36,102,.08)}
+[data-theme="dark"] .kt:hover{box-shadow:0 6px 18px rgba(0,0,0,.35)}
+.kt:active{transform:translateY(1px);background:var(--kt-press)}
+.kt:focus-visible{outline:none;border-color:var(--kt-bd-h);box-shadow:0 0 0 3px var(--kdh-ring)}
+.kt-ico{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;flex:none;border-radius:12px;background:var(--kt-ico-bg);border:1px solid var(--kt-ico-bd);color:var(--brand)}
+.kt-ico svg{width:24px;height:24px}
+.kt-main{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1 1 auto}
+.kt-t{font-size:17px;font-weight:600;line-height:1.3;color:var(--text);overflow-wrap:break-word}
+.kt-s{font-size:15px;line-height:1.4;color:var(--text-2)}
+.kt-st{display:flex;align-items:baseline;gap:7px;margin-top:2px;font-size:14px;line-height:1.4;color:var(--text-2)}
+.kt-st .dot{width:7px;height:7px;border-radius:50%;flex:none;background:var(--kdh-text-4);transform:translateY(-1px)}
+.kt-st.ok .dot{background:var(--ok)} .kt-st.warn .dot{background:var(--warn)}
+.kt-chev{width:20px;height:20px;flex:none;color:var(--text-3);transition:transform .12s ease,color .12s ease}
+.kt:hover .kt-chev,.kt:focus-visible .kt-chev{color:var(--brand);transform:translateX(2px)}
+.kt.muted .kt-ico{background:var(--kdh-surface-3);border-color:var(--kt-bd);color:var(--text-3)}
+.kt.muted .kt-t{color:var(--text-2)}
+.kt-lg{min-height:104px}
+.kt-lg .kt-ico{width:54px;height:54px}
+.kt-lg .kt-ico svg{width:27px;height:27px}
+.kt-lg .kt-t{font-size:20px}
+.kt-lg .kt-s{font-size:16px}
+/* Rep Home: My Accounts + its search, then Needs Attention rows */
+.rh-entry{display:grid;gap:12px}
+@media (min-width:900px){ .rh-entry{grid-template-columns:minmax(0,3fr) minmax(0,2fr);align-items:center} }
 .rh-search{position:relative;display:flex}
-.rh-search input{width:100%;min-height:52px;padding:0 16px 0 46px;border:1px solid var(--border-2);border-radius:12px;background:var(--surface);color:var(--text);font:inherit;font-size:16px;-webkit-appearance:none;appearance:none}
+.rh-search input{width:100%;min-height:54px;padding:0 16px 0 46px;border:1px solid var(--kdh-border-2);border-radius:12px;background:var(--kt-surface);color:var(--text);font:inherit;font-size:16px;-webkit-appearance:none;appearance:none}
 .rh-search input:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--ring)}
 .rh-sico{position:absolute;left:15px;top:50%;width:20px;height:20px;margin-top:-10px;color:var(--text-3);pointer-events:none}
-.rh-primary{display:flex;align-items:center;gap:var(--sp-2);min-height:52px;padding:var(--sp-2) var(--sp-3);border:1px solid var(--border);border-radius:12px;background:var(--surface);color:inherit;text-decoration:none;transition:border-color .12s,background-color .12s}
-.rh-primary:hover{border-color:var(--border-2);background:var(--surface-2)}
-.rh-primary:active{transform:translateY(1px)}
-.rh-ico{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;flex:none;border-radius:10px;background:var(--brand-soft);color:var(--brand)}
-.rh-ico svg{width:20px;height:20px}
 .rh-tmain{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1 1 auto}
 .rh-tt{font-size:16px;font-weight:600;color:var(--text);line-height:1.3}
-.rh-ts{font-size:14px;color:var(--text-2);line-height:1.4}
-.rh-open{display:inline-flex;align-items:center;gap:4px;flex:none;color:var(--brand);font-size:15px;font-weight:600}
-.rh-open .chev{width:18px;height:18px;color:currentColor}
-.rh-group{margin:0 0 var(--sp-4)}
-.rh-gh{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-2);margin:0 0 var(--sp-1);min-height:40px}
-.rh-gh h2{margin:0;font-size:17px;font-weight:600}
-.rh-card{border:1px solid var(--border);border-radius:12px;background:var(--surface);overflow:hidden}
-.rh-arow{display:flex;align-items:center;gap:var(--sp-2);min-height:68px;padding:var(--sp-2) var(--sp-3);color:inherit;text-decoration:none;border-top:1px solid var(--border)}
+.rh-ts{font-size:14.5px;color:var(--text-2);line-height:1.4}
+.rh-card{border:1px solid var(--kt-bd);border-radius:12px;background:var(--kt-surface);overflow:hidden}
+.rh-arow{display:flex;align-items:center;gap:var(--sp-2);min-height:68px;padding:var(--sp-2) var(--sp-3);color:inherit;text-decoration:none;border-top:1px solid var(--kt-div)}
 .rh-arow:first-child{border-top:0}
-.rh-arow:hover{background:var(--surface-2)}
+.rh-arow:hover{background:var(--kdh-surface-2)}
+[data-theme="dark"] .rh-arow:hover{background:var(--kt-press)}
 .rh-arow:focus-visible{outline:none;box-shadow:inset 0 0 0 3px var(--ring)}
-.rh-aico{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;flex:none;border-radius:50%;background:var(--surface-2);color:var(--text-2)}
+.rh-aico{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;flex:none;border-radius:50%;background:var(--kt-ico-bg);color:var(--brand)}
 .rh-aico svg{width:18px;height:18px}
 .rh-n{display:flex;flex-direction:column;align-items:flex-end;flex:none;line-height:1.15;min-width:56px}
 .rh-n b{font-size:20px;font-weight:600;color:var(--text)}
-.rh-n small{font-size:12.5px;color:var(--text-2)}
-.rh-arow .chev,.rh-tool .chev{width:18px;height:18px;flex:none;color:var(--kdh-text-4)}
-.rh-quiet{margin:var(--sp-1) 2px 0;font-size:14.5px;color:var(--text-2)}
-.rh-card[hidden]+.rh-quiet{margin-top:0;padding:var(--sp-2) var(--sp-3);border:1px dashed var(--border-2);border-radius:12px}
-.rh-tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp-2)}
-@media (min-width:760px){ .rh-tools{grid-template-columns:repeat(3,minmax(0,1fr))} }
-.rh-tool{display:flex;flex-direction:column;align-items:flex-start;gap:var(--sp-2);min-height:124px;padding:var(--sp-3);border:1px solid var(--border);border-radius:12px;background:var(--surface);color:inherit;text-decoration:none;transition:border-color .12s,background-color .12s}
-.rh-tool:hover{border-color:var(--border-2);background:var(--surface-2)}
-.rh-tool:active{transform:translateY(1px)}
-.rh-tool:focus-visible,.rh-primary:focus-visible{outline:none;box-shadow:0 0 0 3px var(--ring)}
-.rh-tool .rh-ts{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.rh-ts.status .dot{display:inline-block;width:7px;height:7px;margin:0 6px 1px 0;border-radius:50%;background:var(--kdh-text-4);vertical-align:middle}
-.rh-ts.status.ok .dot{background:var(--ok)} .rh-ts.status.warn .dot{background:var(--warn)}
-@media (max-width:420px){
-  .rh-head{padding:var(--sp-3) 0 var(--sp-2)}
-  .rh-id h1{font-size:24px}
-  .rh-tool{min-height:118px;padding:var(--sp-2) 14px}
-  .rh-tt{font-size:15.5px}
+.rh-n small{font-size:13px;color:var(--text-2)}
+.rh-arow .chev{width:18px;height:18px;flex:none;color:var(--text-3)}
+.rh-quiet{margin:8px 2px 0;font-size:15px;color:var(--text-2)}
+.rh-card[hidden]+.rh-quiet{margin-top:0;padding:var(--sp-2) var(--sp-3);border:1px dashed var(--kdh-border-2);border-radius:12px}
+/* Our Portfolio, compact: the brand strip at the foot of both homes */
+.home .kdh-portfolio.compact{max-width:none;margin:36px 0 8px}
+/* tablets and phones */
+@media (max-width:1023px){ .wrap.home{padding:0 20px} .home + footer{padding:16px 20px 32px} }
+@media (max-width:639px){
+  .wrap.home{padding:0 16px} .home + footer{padding:16px 16px 32px}
+  .hh{padding:20px 0 0;gap:14px}
+  .hh h1{font-size:26px}
+  .hh-meta{font-size:15px}
+  .hh-acts,.hh-switch{flex:1 1 100%;justify-content:stretch}
+  .hh-acts .btn,.hh-switch .btn{flex:1 1 auto}
+  .hh-acts label,.hh-switch label{flex:1 1 100%}
+  .hh-acts select,.hh-switch select{flex:1;min-width:0}
+  .hs{margin:24px 0 0}
+  .hs-h h2{font-size:18px}
+  .kt{min-height:76px;gap:14px;padding:14px 14px 14px 14px}
+  .kt-ico{width:44px;height:44px;border-radius:11px}
+  .kt-ico svg{width:22px;height:22px}
+  .kt-t{font-size:16.5px}
+  .kt-s{font-size:14.5px}
+  .kt-lg{min-height:88px}
+  .kt-lg .kt-t{font-size:19px}
   .rh-arow{padding:var(--sp-2) 14px}
 }
-@media (max-width:599px){
-  .rh-tools{grid-template-columns:minmax(0,1fr);gap:var(--sp-1)}
-  .rh-tool{flex-direction:row;align-items:center;min-height:68px;padding:var(--sp-2) 14px}
-  .rh-tool .rh-ts{-webkit-line-clamp:2}
-}
-
-/* Manager home header (2026-10-05): one primary action, the manager preview is a quiet second step */
-.btn.quiet{background:none;border-color:transparent;color:var(--text-3);text-decoration:underline;min-height:36px;padding:0 6px}
-.ws .switch#viewAs{gap:12px}
-.ws #mgrSwitch{flex:1 1 100%;justify-content:flex-end}
-
-/* PAGE STANDARD (2026-10-07): rep home + manager home. One centered 960px column,
-   centered title block, short card copy. Scoped to .rh / .mh so shared pages are unchanged. */
-.wrap.rh,.wrap.mh{max-width:960px;padding:0 16px}
-.rh + footer,.mh + footer{max-width:960px;padding:12px 16px 32px;text-align:center;font-size:14px}
-.rh-head,.mh .ws{flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;padding:24px 0 16px}
-.rh-id,.mh .ws .id{text-align:center}
-.rh-id h1,.mh .ws h1{font-size:28px;font-weight:600;line-height:1.2}
-.rh-meta,.mh .meta{justify-content:center;font-size:15px;margin:4px 0 0}
-.mh .meta{min-height:0}
-.mh .switch,.rh-head .switch{justify-content:center;font-size:14px}
-.mh .ws .switch#viewAs{justify-content:center}
-.mh .ws #mgrSwitch{flex:0 1 auto;justify-content:center}
-.rh-id .kicker{display:none}
-.rh-gh h2,.mh .section-h h2{font-size:17px}
-.mh .section{margin:0;padding:0 0 24px}
-.mh .section-h{margin:0 0 12px}
-.mh .grid{gap:12px}
-.mh a.card{align-items:center;text-align:center;gap:8px;padding:16px;min-height:132px}
-.mh a.card .head{justify-content:center}
-.mh .card p{font-size:14px;-webkit-line-clamp:unset;display:block;overflow:visible}
-.mh .card .foot{width:100%;font-size:14px;justify-content:space-between}
-.rh-tool{align-items:center;text-align:center}
-.rh-tool .rh-tmain{align-items:center;text-align:center}
-.rh-tool .rh-ts{display:block;overflow:visible;-webkit-line-clamp:unset}
-.rh-n small{font-size:13px}
-.rh-quiet{font-size:15px;text-align:center}
-.rh-gh{margin:0 0 12px}
-.rh-group,.rh-entry{margin:0 0 24px}
-@media (max-width:599px){
-  .rh-tool{flex-direction:row;text-align:left;align-items:center}
-  .rh-tool .rh-tmain{align-items:flex-start;text-align:left}
-}
-
-/* KOHLER BRAND (2026-10-07): page titles in Kohler navy (white in dark) and
-   one short gold rule under the home heading -- the only gold on these pages */
-.ws h1,.rh-head h1{color:var(--kdh-head-c);font-weight:700}
-.ws .id h1::after,.rh-head h1::after{content:"";display:block;width:40px;height:3px;border-radius:2px;background:var(--kdh-accent);margin:8px 0 0}
-/* the home headers are centred (PAGE STANDARD above): centre the gold rule with them */
-.rh-head h1::after,.mh .ws .id h1::after{margin:8px auto 0}

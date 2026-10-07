@@ -19,7 +19,7 @@
 <link rel="preload" href="../assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 <!-- Theme before first paint: the saved choice, else the device setting (2026-09-30). -->
 <script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
-<link rel="stylesheet" href="rep.css?v=20261007p">
+<link rel="stylesheet" href="rep.css?v=20261007q">
 <!-- The top bar is injected by shared/kdh-user.js (badge, Previewing chip,
      account menu). kdh-home = this is a landing page: no Back button. -->
 <meta name="kdh-page" content="Rep Home">
@@ -37,86 +37,109 @@
   (account menu, or the button below) previews the whole site as that rep.
 -->
 <main class="wrap home rh">
-  <!-- REP HOME (2026-10-02, third build; Shopify's Home: a compact header, one
-       prominent entry control, grouped actionable rows, then the tools as
-       equal-size cards). Every count says what it counts -- accounts or
-       products -- and opens the matching filtered list in My Accounts. -->
-  <figure class="kdh-band team"><img src="../assets/brand/team.webp" alt="The Kohler Distributing team in front of the Hawthorne building" width="578" height="791"></figure>
-  <header class="rh-head">
-    <div class="rh-id">
-      <h1 id="repName">Your workspace</h1>
-      <p class="rh-meta" id="meta"><span class="muted">Loading…</span></p>
+  <!-- REP HOME v4 (2026-10-07): HoneyBook's compact working header + Dropbox's
+       bordered action tiles, the same tool card (.kt) as the Manager Home.
+       Order: My Accounts (the main way in, with the account search beside it),
+       Needs Attention (counts open My Accounts already filtered -- the same rules
+       as the list), Programs, Trackers, Tools. A manager sees the same page for
+       the rep they are viewing; "View as Rep" previews the whole site as that rep. -->
+  <header class="hh">
+    <div class="hh-id">
+      <h1>Rep Home</h1>
+      <p class="hh-meta" id="meta"><b id="repName">Your Workspace</b><span id="metaRest"></span></p>
     </div>
-    <!-- Managers only (not in preview): pick whose tools the rows below open,
+    <!-- Managers only (not in preview): pick whose tools the cards below open,
          or preview the whole site as that rep. -->
-    <div class="switch" id="switch" hidden>
+    <div class="switch hh-acts" id="switch" hidden>
       <label>Viewing as <select id="repSelect" aria-label="Choose a rep to view"></select></label>
-      <button class="btn primary" id="previewBtn" type="button" title="Every page will show exactly what this rep sees on this device until you exit">Preview as This Rep</button>
+      <button class="btn outline" id="previewBtn" type="button" title="Every page will show exactly what this rep sees on this device until you exit">Preview as This Rep</button>
     </div>
   </header>
 
-  <!-- the prominent entry: search straight into My Accounts, or open it -->
-  <section class="rh-entry" aria-label="My Accounts">
+  <!-- the prominent entry: My Accounts, and a search straight into it -->
+  <section class="hs rh-entry" aria-label="My Accounts">
+    <a class="kt kt-lg" id="c-acct" href="../accounts/" data-nav="accounts">
+      <span class="kt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/><path d="M3 12h18"/></svg></span>
+      <span class="kt-main"><span class="kt-t">My Accounts</span><span class="kt-s" id="s-acct">Your Route</span></span>
+      <svg class="kt-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+    </a>
     <form class="rh-search" id="rhSearch" role="search">
       <svg class="rh-sico" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
       <input type="search" id="rhQ" placeholder="Search Accounts, Towns or #" aria-label="Search my accounts" autocomplete="off" enterkeyhint="search">
     </form>
-    <a class="rh-primary" id="c-acct" href="../accounts/" data-nav="accounts">
-      <span class="rh-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/><path d="M3 12h18"/></svg></span>
-      <span class="rh-tmain"><span class="rh-tt">My Accounts</span><span class="rh-ts" id="s-acct">Your Route</span></span>
-      <span class="rh-open">Open <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></span>
-    </a>
   </section>
 
   <!-- NEEDS ATTENTION: one grouped card of rows (follow-ups, reorders,
        lapsed products, surveys), each opening My Accounts already filtered.
        Counts come from the rep's own account file and rep_actions -- the same
        rules the list uses, so the numbers match. -->
-  <section class="rh-group" id="todaySec" hidden>
-    <div class="rh-gh"><h2>Needs Attention</h2><a class="btn ghost sm" id="todayAll" href="../accounts/#need=any">View All</a></div>
+  <section class="hs" id="todaySec" hidden>
+    <div class="hs-h"><h2>Needs Attention</h2><a class="btn ghost sm" id="todayAll" href="../accounts/#need=any">View All</a></div>
     <div class="rh-card" id="todayRows"></div>
     <p class="rh-quiet" id="fuQuiet" hidden></p>
   </section>
 
-  <section class="rh-group">
-    <div class="rh-gh"><h2>Programs</h2></div>
-    <div class="rh-tools">
-      <a class="rh-tool" id="c-hub" href="../hub/">
-        <span class="rh-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
-        <span class="rh-tmain"><span class="rh-tt">Incentive Hub</span><span class="rh-ts" id="s-hub">By Supplier</span></span>
+  <section class="hs">
+    <div class="hs-h"><h2>Programs</h2></div>
+    <div class="kt-grid">
+      <a class="kt" id="c-hub" href="../hub/">
+        <span class="kt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+        <span class="kt-main"><span class="kt-t">Incentives</span><span class="kt-s" id="s-hub">Your programs by supplier</span></span>
+        <svg class="kt-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
       </a>
-      <a class="rh-tool" id="c-off" href="../MPOs/off-prem/index.html#view=program">
-        <span class="rh-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M4 9v11h16V9"/><path d="M9 20v-6h6v6"/></svg></span>
-        <span class="rh-tmain"><span class="rh-tt">Off-Premise MPOs</span><span class="rh-ts status" id="s-off"><span class="dot"></span>Checking…</span></span>
+      <a class="kt" id="c-off" href="../MPOs/off-prem/index.html#view=program">
+        <span class="kt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M4 9v11h16V9"/><path d="M9 20v-6h6v6"/></svg></span>
+        <span class="kt-main"><span class="kt-t">Off-Premise MPOs</span><span class="kt-st" id="s-off"><span class="dot"></span>Checking…</span></span>
+        <svg class="kt-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
       </a>
-      <a class="rh-tool" id="c-on" href="../MPOs/on-prem/index.html#view=program">
-        <span class="rh-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 11h1a3 3 0 0 1 0 6h-1"/><path d="M5 8h12v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M9 12v5M13 12v5"/><path d="M6 8a3 3 0 0 1 5-2.2A3 3 0 0 1 16 8"/></svg></span>
-        <span class="rh-tmain"><span class="rh-tt">On-Premise MPOs</span><span class="rh-ts status" id="s-on"><span class="dot"></span>Checking…</span></span>
+      <a class="kt" id="c-on" href="../MPOs/on-prem/index.html#view=program">
+        <span class="kt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M17 11h1a3 3 0 0 1 0 6h-1"/><path d="M5 8h12v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M9 12v5M13 12v5"/><path d="M6 8a3 3 0 0 1 5-2.2A3 3 0 0 1 16 8"/></svg></span>
+        <span class="kt-main"><span class="kt-t">On-Premise MPOs</span><span class="kt-st" id="s-on"><span class="dot"></span>Checking…</span></span>
+        <svg class="kt-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+    </div>
+  </section>
+  <section class="hs">
+    <div class="hs-h"><h2>Trackers</h2></div>
+    <div class="kt-grid">
+      <a class="kt" id="c-tap" href="../isellbeer/tap-survey-tracking/">
+        <span class="kt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 6.5 9a6.5 6.5 0 1 0 11 0z"/></svg></span>
+        <span class="kt-main"><span class="kt-t">Tap Tracker</span><span class="kt-s" id="s-tap">Taps at surveyed accounts</span></span>
+        <svg class="kt-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+      <a class="kt" id="c-rb" href="../redbull/">
+        <span class="kt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
+        <span class="kt-main"><span class="kt-t">Red Bull Tracker</span><span class="kt-s">Placements against goal</span><span class="kt-st" id="s-rb"><span class="dot"></span>Checking…</span></span>
+        <svg class="kt-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+      <a class="kt" id="c-cb" href="../carbliss-onprem-targets/">
+        <span class="kt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></span>
+        <span class="kt-main"><span class="kt-t">Carbliss Leaderboard</span><span class="kt-s">Buyers and last purchases</span><span class="kt-st" id="s-cb"><span class="dot"></span>Checking…</span></span>
+        <svg class="kt-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+    </div>
+  </section>
+  <section class="hs">
+    <div class="hs-h"><h2>Tools</h2></div>
+    <div class="kt-grid">
+      <a class="kt" id="c-inv" href="../inventory/">
+        <span class="kt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8l8-4 8 4v8l-8 4-8-4z"/><path d="M4 8l8 4 8-4"/><path d="M12 12v8"/></svg></span>
+        <span class="kt-main"><span class="kt-t">Inventory</span><span class="kt-s">What is available to sell</span></span>
+        <svg class="kt-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+      <a class="kt" id="c-map" href="../accounts/#mode=map">
+        <span class="kt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
+        <span class="kt-main"><span class="kt-t">Account Map</span><span class="kt-s">Your accounts on a map</span></span>
+        <svg class="kt-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
       </a>
     </div>
   </section>
 
-  <section class="rh-group">
-    <div class="rh-gh"><h2>Trackers</h2></div>
-    <div class="rh-tools">
-      <a class="rh-tool" id="c-tap" href="../isellbeer/tap-survey-tracking/">
-        <span class="rh-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 6.5 9a6.5 6.5 0 1 0 11 0z"/></svg></span>
-        <span class="rh-tmain"><span class="rh-tt">Tap Tracker</span><span class="rh-ts" id="s-tap">Surveyed Accounts</span></span>
-      </a>
-      <a class="rh-tool" id="c-rb" href="../redbull/">
-        <span class="rh-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
-        <span class="rh-tmain"><span class="rh-tt">Red Bull Tracker</span><span class="rh-ts status" id="s-rb"><span class="dot"></span>Checking…</span></span>
-      </a>
-      <a class="rh-tool" id="c-cb" href="../carbliss-onprem-targets/">
-        <span class="rh-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></span>
-        <span class="rh-tmain"><span class="rh-tt">Carbliss MPO</span><span class="rh-ts" id="s-cb">Leaderboard</span></span>
-      </a>
-    </div>
-  </section>
-  <!-- Our Portfolio (2026-10-07): the company site's category photos + mission; decoration only -->
-  <section class="kdh-portfolio" aria-label="Our Portfolio">
-    <h2>Our <span>Portfolio</span></h2>
-    <p>Committed to the growth of all brands through the continued development of our people.</p>
+  <!-- Our Portfolio (2026-10-07): the company site's category photos + mission, a
+       compact strip at the foot (secondary brand treatment); decoration only -->
+  <section class="kdh-portfolio compact" aria-label="Our Portfolio">
+    <div class="kp-text"><h2>Our <span>Portfolio</span></h2>
+    <p>Committed to the growth of all brands through the continued development of our people.</p></div>
     <ul>
       <li><img src="../assets/brand/beer.webp" alt="" width="526" height="432" loading="lazy"><span>Beer</span></li>
       <li><img src="../assets/brand/wine-spirits.webp" alt="" width="526" height="432" loading="lazy"><span>Wine &amp; Spirits</span></li>
@@ -181,8 +204,7 @@
       $('s-acct').textContent = 'No Account List';
     }
     out = out.filter(Boolean);
-    $('meta').innerHTML = out.length ? out.join('<span class="sep">·</span>') : '';
-    $('meta').hidden = !out.length;
+    $('metaRest').innerHTML = out.map(function(m){ return '<span class="sep">·</span><span>' + m + '</span>'; }).join('');
   }
 
   /* ---- the entry: search straight into My Accounts ---- */
@@ -195,13 +217,14 @@
   /* ---- the page: a rep sees their own; a manager can pick one ---- */
   function showRep(name){
     viewRep = name;
-    $('repName').textContent = (!isManager || !name) ? 'Your Workspace' : name;
+    $('repName').textContent = name || 'Your Workspace';
     territory(name);
     // Deep-link the hub to this rep so it opens on their page.
     // Incentives only: the two MPO rows beside it cover the MPO tabs.
     $('c-hub').href = '../hub/#' + (name ? 'view=rep&rep=' + encodeURIComponent(name) + '&cat=inc&' : '') + 'only=inc';
     setMpoHref($('c-off')); setMpoHref($('c-on'));
     $('c-acct').href = '../accounts/' + (isManager && name ? '#rep=' + encodeURIComponent(name) : '');
+    $('c-map').href = '../accounts/#' + (isManager && name ? 'rep=' + encodeURIComponent(name) + '&' : '') + 'mode=map';
     att = { name: name, acc: null, fu: null };
     followUps(name);
     today(name);
@@ -322,7 +345,7 @@
   whenReady(function(){ if (isManager) setupSwitcher(); else territory(viewRep); });
 
   /* ---- live status where real data exists ---- */
-  function status(id, cls, text){ var el = $(id); el.className = 'rh-ts status' + (cls ? ' ' + cls : ''); el.innerHTML = '<span class="dot"></span>' + text; }
+  function status(id, cls, text){ var el = $(id); el.className = 'kt-st' + (cls ? ' ' + cls : ''); el.innerHTML = '<span class="dot"></span>' + text; }
   function ymd(d){ return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0'); }
   function fmtDay(iso){ var d = new Date(iso); return isNaN(d) ? '' : MON[d.getMonth()] + ' ' + d.getDate(); }
   function getJson(url){ return fetch(url, {cache:'no-store'}).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }); }
@@ -345,12 +368,12 @@
   getJson('../carbliss-mpo/data/program.json').then(function(d){
     var c = d && d.meta && d.meta.counts; if (!c) return;
     var g = d.meta.goal || 331;
-    status('s-cb', 'ok', c.l90 + ' / ' + g + ' L90 · ' + c.prog + ' / ' + g + ' Aug–Oct');
+    status('s-cb', 'ok', 'Team ' + c.l90 + ' / ' + g + ' L90 · ' + c.prog + ' / ' + g + ' Aug–Oct');
   });
 
   // Red Bull: the tracked period and how long is left in it.
   getJson('../redbull/period.json').then(function(p){
-    if (!p || !p.end) { status('s-rb', '', 'Placements Against Goal'); return; }
+    if (!p || !p.end) { $('s-rb').hidden = true; return; }
     var end = new Date(p.end + 'T23:59:59'), days = Math.ceil((end - now) / 86400000);
     if (end < now) status('s-rb', '', (p.label || 'Period') + ' · Period Ended');   // not days < 0: ceil of a small negative is -0
     else status('s-rb', days <= 7 ? 'warn' : 'ok', (p.label || 'Current period') + ' · ' + (days === 0 ? 'Last Day' : days + ' Day' + (days === 1 ? '' : 's') + ' Left'));

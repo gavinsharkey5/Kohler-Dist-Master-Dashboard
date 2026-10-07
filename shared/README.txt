@@ -222,15 +222,34 @@ Sources are screenshots, so they are ~580px wide: never show one wider than
 about 640px (the .kdh-band max-width) or it goes soft. Swap in the originals
 if Gavin sends them; the file names can stay.
   .kdh-band       (kdh.css) slim photo strip at the top of a page; decoration,
-                  never a control, never text on the photo. Used on the rep
-                  home + manager home (team), Wine & Spirits (wine-spirits),
+                  never a control, never text on the photo. Used on Wine &
+                  Spirits (wine-spirits),
                   Carbliss Leaderboard (beyond-beer, class "cans"), Tap
                   Tracker (beer).
   .kdh-portfolio  (kdh.css) "Our Portfolio" on solid navy at the foot of both
-                  homes: the mission line + the three category photos. Not
+                  homes (.compact = slim strip, homes v4): the mission line + the three category photos. Not
                   links -- there is no Beer / W&S / Beyond Beer split in any
                   dataset (inventory has none), so nothing honest to filter.
   /login/         the same photos as the "story" panel (left half from 960px,
                   under the form on phones). See login/index.html's comment.
 Gold text only on navy (7:1); gold on white is 2.2:1 and never used for text.
+
+HOME TOOL CARD (2026-10-07, homes v4)
+-------------------------------------
+Manager Home and Rep Home share ONE card component, .kt in rep/rep.css:
+  <a class="kt" href="..."> <span class="kt-ico">svg</span>
+    <span class="kt-main"><span class="kt-t">Title</span>
+      <span class="kt-s">one short line (optional)</span>
+      <span class="kt-st ok|warn"><span class="dot"></span>status</span></span>
+    <svg class="kt-chev"> </a>
+The whole card is the link; nothing interactive inside it. Show a status
+line (.kt-st) ONLY where real data exists (MPO month + update, Red Bull
+period, Carbliss team counts, a program's fixed period) -- never a label
+that repeats the destination ("Team", "Taps", "Open"). Borders are
+--kdh-border-2 (3:1 against the page, both themes). Grid .kt-grid: 1 column
+under 640px (horizontal cards), 2 up to 1279px (an odd last card spans the
+row), 3 from 1280px. Section = .hs with an .hs-h h2. Header = .hh (title,
+.hh-meta name / role / reporting line, .hh-acts secondary buttons). .kt-lg
+is the bigger My Accounts card. Add a tool = one more <a class="kt"> in the
+right section of index.html or rep/index.html.
 

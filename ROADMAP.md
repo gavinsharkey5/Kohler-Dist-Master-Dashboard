@@ -279,6 +279,11 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-10-07 **Manager Home + Rep Home rebuilt**: compact left-aligned header,
+  tools grouped into clear sections, one clickable card style everywhere (icon,
+  title, one line, status only where real data exists, chevron). Incentive
+  Performance now has a card; the rep home gained Inventory and Account Map cards.
+
 - [x] 2026-10-07 **Company photos + cleaner sign-in**: the team photo, the
   mission line and the Beer / Wine & Spirits / Beyond Beer photos from
   kohlerdistributing.co on the sign-in page, both home pages and the Wine &

@@ -2648,3 +2648,35 @@ scratchpad head_audit.mjs checks every dashboard's h1-h3 against its real
 (gradient-aware) background: 0 failures. shared/README.txt "COMPANY PHOTOS" has
 the rules. Tags: kdh.css 20261007p (imported by rep.css + kdh-skin.css),
 kdh-skin.css / rep.css 20261007p.
+
+## Manager Home + Rep Home v4: compact header, grouped tool cards (2026-10-07)
+
+Gavin's brief with a dark concept image; Mobbin refs inspected: HoneyBook Home
+(82fb022a-9a06-4774-9942-f857076567e0: compact left identity header, separated work
+sections) and Dropbox quick actions (8f6b34cd-2a14-47a7-86db-5e905e64c44a: bordered,
+consistently aligned action tiles). Both homes now: a left-aligned title ("Manager
+Home" / "Rep Home", 30px, gold rule) with name / role / reporting line under it
+(#who / #repName + #metaRest), the preview controls as secondary buttons on the right
+(View as Rep, Preview as Manager for Gavin, the rep home's Viewing as + Preview as This
+Rep), NO team photo in the working area (the portfolio strip at the foot is now
+`.kdh-portfolio.compact`), and ONE tool card `.kt` (rep/rep.css "HOMES v4";
+shared/README.txt "HOME TOOL CARD"): icon tile, title, one line, a status line only
+where real data exists, chevron, the whole card one link; the "Open ->" labels and
+repeated footer words are gone. Manager groups: Accounts & Team (Accounts, Team),
+Programs (Incentives, Off/On-Premise MPOs), Trackers (Tap, Red Bull, Carbliss
+Leaderboard), Manager Tools (Merchandising, Exceptions, Incentive Performance -- a NEW
+card, it was sidebar-only), Sales Performance (6), Warehouse & Inventory (3), Planning
+& Field (2027 Planning, iSellBeer Activity, MetLife) = 23 cards, every old destination
+kept. Rep: My Accounts (big card, `.kt-lg`) + search, Needs Attention (unchanged
+rows), Programs (Incentives = the hub card, Off/On MPOs), Trackers (Tap, Red Bull,
+Carbliss Leaderboard -- was mislabelled "Carbliss MPO"; status "Team X / 331 L90 ·
+Y / 331 Aug-Oct"), Tools (Inventory, Account Map = /accounts/#mode=map, rep= for a
+manager). Card borders use --kdh-border-2 (3:1 vs the page in both themes). Grid: 1
+column < 640px, 2 to 1279px (odd last card spans the row), 3 from 1280px (iPad
+landscape stays 2 -- 3 made 171px-tall cards beside the sidebar). Tests (scratchpad):
+home_test.mjs (216: both homes x 375/390/430/820/1180/1366 x light/dark -- every
+destination, one link per card, no clipping / sideways scroll, text 4.5:1, borders
+3:1, compact desktop heights, bottom bar never covers the last card, keyboard Tab +
+Enter, View as Rep / Viewing as / Preview as This Rep), updated mgr_test (23 cards),
+team_test, fu_test, hubonly_test, preview_flow. Tags rep.css / kdh.css / kdh-skin.css
+20261007q.
