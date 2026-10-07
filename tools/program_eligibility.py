@@ -296,13 +296,19 @@ def constellation(products, customers, sources, months, reps):
 def lytt(products, customers, sources, months, reps):
     """BBC -- 50% Buying Accounts Lytt (October off-prem MPO, 30%).
 
-    Tracker: lytt_october.csv (RDE, rep x CustomerID x ProductID, Oct 1-31)
-    over the rep's core base minus Whole Foods (mpo_sales_reps_customer_base_core.json).
-    An account counts once it bought 3+ DISTINCT Lytt products in October.
+    Tracker: lytt_october.csv (RDE, rep x CustomerID x ProductID x load sheet, Aug 1 - Oct 31;
+    Gavin 2026-10-07: August and September distribution counts) over the rep's core base minus
+    Whole Foods (mpo_sales_reps_customer_base_core.json). An account counts once it has 3+
+    DISTINCT Lytt products in the window; a product whose cases net to 0 or less (bought, then
+    fully returned) does not count -- the same rule as the tracker (generate_2026-10.py).
     """
     base = json.load(open(OFF / "data" / "2026-10" / "mpo_sales_reps_customer_base_core.json"))
-    raw = list(csv.DictReader(open(OFF / "lytt_october.csv")))
+    raw = list(csv.DictReader(open(OFF / "lytt_october.csv", encoding="utf-8-sig")))
     pcol = next(c for c in raw[0] if c.startswith("Product Num"))
+    ccol = next(c for c in raw[0] if c.startswith("Cases"))
+    netc = defaultdict(float)
+    for r in raw:
+        netc[(r["Sales Rep Assigned"].strip(), r["Customer Num"].strip(), r[pcol].strip())] += float((r[ccol] or "0").replace(",", "") or 0)
     lytt_ids = sorted(pid for pid, p in products.items() if p["family"] == "Lytt")
     lytt_off = program_skus.official("off:2026-10:bbc_lytt")
     if lytt_off is not None and set(lytt_off) != set(lytt_ids):
@@ -316,6 +322,8 @@ def lytt(products, customers, sources, months, reps):
         base_by_rep[name_key(r["SALES_REP_ASSIGNED"])][str(r["CUSTOMER_NUM"])] = r
     oct_skus = defaultdict(lambda: defaultdict(set))    # rep key -> cust -> {pid}
     for r in raw:
+        if netc[(r["Sales Rep Assigned"].strip(), r["Customer Num"].strip(), r[pcol].strip())] <= 0:
+            continue
         oct_skus[name_key(r["Sales Rep Assigned"])][r["Customer Num"].strip()].add(r[pcol].strip())
     by_prod, by_fam, monthly = history_for(set(lytt_ids), ["Lytt"], products, months)
     dates = sorted(datetime.strptime(r["Date"], "%m/%d/%Y") for r in raw if r.get("Date"))
@@ -324,8 +332,8 @@ def lytt(products, customers, sources, months, reps):
         "id": "off:2026-10:bbc_lytt", "source": "off", "month": "2026-10", "key": "bbc_lytt",
         "title": "Lytt Buying Accounts", "official": "BBC – 50% Buying Accounts Lytt", "supplier": "Boston Beer Company",
         "kind": "accounts", "unit": "buying account", "minSkus": 3,
-        "period": {"start": "2026-10-01", "end": "2026-10-31", "label": "Oct 1 – Oct 31, 2026"},
-        "measure": "A buying account = an account in your core base that bought 3 or more different Lytt products during October 2026. It counts once, however many products or cases.",
+        "period": {"start": "2026-08-01", "end": "2026-10-31", "label": "Aug 1 – Oct 31, 2026"},
+        "measure": "A buying account = an account in your core base with 3 or more different Lytt products bought Aug 1 – Oct 31, 2026. It counts once, however many products or cases.",
         "requirement": {"kind": "pct_of_base", "pct": 0.5, "rounding": "up", "text": "50% of your core account base (Whole Foods removed), rounded up"},
         "products": [prod_row(products[p]) for p in lytt_ids],
         "productsExhaustive": True,
@@ -336,12 +344,12 @@ def lytt(products, customers, sources, months, reps):
         "universe": {"premise": "Off", "territory": "Core Market", "areas": CORE_AREAS, "base": "Your core off-premise account base, Whole Foods removed"},
         "rules": [
             r_("Qualifying products", "Any Lytt product (6 flavors, 1/24/6.8 oz bottles).", "verified", "The export's Brand Family = Lytt; every catalogue Lytt product."),
-            r_("Minimum", "3 or more different Lytt products at the account in October.", "verified", "Gavin, 2026-10-05 (supersedes 1+ SKU)."),
+            r_("Minimum", "3 or more different Lytt products at the account, Aug 1 – Oct 31.", "verified", "Gavin, 2026-10-05 (supersedes 1+ SKU); window Gavin, 2026-10-07."),
             r_("Eligible accounts", "Your accounts in the core off-premise base (RDE “Entire Core Market Off Prem Accts”, refreshed Oct 5, 2026), minus every Whole Foods.", "verified", "Whole Foods cannot sell alcohol (Gavin, 2026-10-05)."),
             r_("Buyers outside your base", "Not counted.", "verified", "MPO generator rule; the build prints any."),
             r_("Credit measure", "Distinct accounts, not products or cases.", "verified", "October_2026_MPO.docx: 50% buying accounts"),
-            r_("Prior purchases", "Only October purchases count; buying Lytt in August or September does not.", "verified", "The export window is Oct 1 – Oct 31."),
-            r_("Returns", "A product counts when it appears on the export with a placement; net-of-returns handling is RDE's.", "assumed", "Not separately confirmed."),
+            r_("Prior purchases", "August and September distribution counts; buying before Aug 1 does not.", "verified", "Gavin, 2026-10-07; the export window is Aug 1 – Oct 31."),
+            r_("Returns", "A product bought and then fully returned (cases net to 0 or less) does not count.", "assumed", "Same net rule as the keg conversion; to confirm with Gavin."),
             r_("MPO requirement", "50% of the base.", "verified", "October_2026_MPO.docx"),
             r_("Rounding", "Rounded UP (29 accounts × 50% = 14.5 → 15).", "assumed", "Not stated in the MPO document."),
             r_("Weight", "30% of the October Off-Premise MPO; credit is all-or-nothing.", "verified", "October_2026_MPO.docx"),
@@ -349,7 +357,7 @@ def lytt(products, customers, sources, months, reps):
         ],
         "detail": {"through": "export", "throughLabel": last, "trackerThrough": "export through " + last,
                    "note": "Account-level results come straight from the tracker's own export (loads through " + last + "), so they always match the tracker."},
-        "order": "Accounts already buying 1–2 Lytt products this month come first (fewest products needed), then accounts that bought Lytt before October, then accounts new to Lytt. Ties go to the account's 2026 case volume.",
+        "order": "Accounts already carrying 1–2 Lytt products since Aug 1 come first (fewest products needed), then accounts that bought Lytt before October, then accounts new to Lytt. Ties go to the account's 2026 case volume.",
         "openQuestions": ["L1", "L2"],
     }
     out = {}
@@ -366,10 +374,10 @@ def lytt(products, customers, sources, months, reps):
                 continue
             need = 3 - len(have)
             if have:
-                rs = ["partial", f"Bought {len(have)} Lytt product{'s' if len(have) > 1 else ''} in October — {need} more needed"]
+                rs = ["partial", f"Bought {len(have)} Lytt product{'s' if len(have) > 1 else ''} since Aug 1 — {need} more needed"]
                 rank = 0
             elif by_fam.get(n, {}).get("Lytt"):
-                rs = ["lapsed", f"Bought Lytt before ({month_label(by_fam[n]['Lytt'])}), none in October"]
+                rs = ["lapsed", f"Bought Lytt before ({month_label(by_fam[n]['Lytt'])}), none since Aug 1"]
                 rank = 1
             else:
                 rs = ["brand", "No Lytt purchases since Jan 2025"]

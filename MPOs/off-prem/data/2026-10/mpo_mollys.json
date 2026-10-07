@@ -97,6 +97,30 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "200291 Molly's Irish Cream 6/1.75 L Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 25045,
+    "CUSTOMER_NAME": "Clifton Disc Liq (A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/7/2026",
+    "LAST_DATE": "10/7/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "200294 Molly's Irish Cream 1/12/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 25045,
+    "CUSTOMER_NAME": "Clifton Disc Liq (A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/7/2026",
+    "LAST_DATE": "10/7/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
     "PRODUCT_NAME": "200294 Molly's Irish Cream 1/12/750 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 38007,
@@ -430,6 +454,18 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "200294 Molly's Irish Cream 1/12/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 25047,
+    "CUSTOMER_NAME": "Parker Liquors (Z)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/7/2026",
+    "LAST_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",

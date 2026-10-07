@@ -1086,10 +1086,10 @@
     "CUSTOMER_NUM": 170153,
     "CUSTOMER_NAME": "Molos Rest",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "10/6/2026",
+    "LAST_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jaime Colonna",
@@ -1590,10 +1590,10 @@
     "CUSTOMER_NUM": 190101,
     "CUSTOMER_NAME": "Montville Wine & Spirits",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "10/7/2026",
+    "LAST_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -2386,6 +2386,30 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
+    "PRODUCT_NAME": "200174 Chateau Diana Pinot Grigio 12/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 70001,
+    "CUSTOMER_NAME": "Montvale Wine/Liq & Beer",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/6/2026",
+    "LAST_DATE": "10/6/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
+    "PRODUCT_NAME": "200175 Chateau Diana White Zinfandel 12/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 70001,
+    "CUSTOMER_NAME": "Montvale Wine/Liq & Beer",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/6/2026",
+    "LAST_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",

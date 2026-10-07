@@ -2729,3 +2729,22 @@ the remembered view is no longer restored. A link that names a rep or program st
 (or a manager previewing one) stays pinned to their own page. Tests (scratchpad): nompo_test.mjs; updated
 hubonly_test, mgr_desktop, elig_trip_test (hub-tab entry removed), dm_test (DM opens By Program, By Rep
 picker is the team), export_test (no Type filter).
+
+## October Off-Premise MPO refresh; Lytt counts Aug 1 - Oct 31 (2026-10-07)
+
+New RDE exports saved over MPOs/off-prem/lytt_october.csv, mollys_new_placements.csv and
+wine_new_placements.csv; `python3 MPOs/off-prem/generate_2026-10.py` rebuilt the month, the per-rep
+copies and the eligibility files. LYTT RULE (Gavin): 50% of the rep's off-premise CORE base (Whole Foods
+still removed), August and September distribution counts -- the export's window is Aug 1 - Oct 31 and
+generate_2026-10.py `check_window`s it (LYTT_START) -- and an account qualifies with 3+ DISTINCT Lytt SKUs
+over that window. NEW: a SKU whose cases net to 0 or less over the window (bought, then fully returned) is
+dropped -- 11 lines, incl. all 6 at Roserne Liquors North (Palmisano) and 3 at Franklin Lake Liq (Ast);
+ASSUMPTION, confirm with Gavin. Result 2026-10-07: 157 qualifying accounts, 2 reps at 50% (Derrick Laws
+18/17, Michael Harboy 3/3); Phil Ernst 14/15. tools/program_eligibility.py `lytt()` reads the same file
+with the same net rule (period Aug 1 - Oct 31, "since Aug 1" wording); programs.js periodText updated.
+Molly's 8 new placements, Wine 11. CONSTELLATION NOT CHANGED: Gavin's "Constellation Innovation OCTOBER
+2026 MPO OFF RDE" export (saved as constellation_innovation_october_accounts.csv, NOT read by anything) is
+October-only placements by account with no goal column (201 placements vs 699 in the 9/1-11/30 fall export
+the card scores against the fall goals) -- asked Gavin whether the MPO is October-only and what the goal is.
+Tags: off-prem programs.js 20261007w. Tests: elig_test (Lytt card now Aug 1 - Oct 31; account 50003),
+elig_trip_test, card_audit, opp_elig_test.

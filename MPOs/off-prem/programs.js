@@ -114,7 +114,8 @@ const OBJECTIVES_2026_09 = [
 // goals.json, the Goals column of RDE's Innovation Fall export = 100% of the
 // incentive goal) and the objective is 75% of it. Reps with no goal on that
 // report are not scored. Actuals are the same export's 9/1-11/30 placements.
-// BBC Lytt is 'pct_of_base' at 50%, 1+ SKU, over the core base minus Whole Foods.
+// BBC Lytt is 'pct_of_base' at 50%, 3+ distinct SKUs bought Aug 1 - Oct 31 (Gavin, 2026-10-07),
+// over the core base minus Whole Foods.
 // Molly's (2) and Wine (1) are 'new_placements' on the two-window export
 // (base 7/1-9/30 = the 90-day non-buy window, current 10/1-10/31).
 // POS cooler-door stickers carry over from September but stay awaiting-data
@@ -122,7 +123,7 @@ const OBJECTIVES_2026_09 = [
 const OBJECTIVES_2026_10 = [
   {key:'constellation_innovation', name:'Constellation – 75% Corona Innovation Distro', shortName:'Corona Innovation', unit:'placement', weight:0.30, type:'pct_of_goal', hasData:true, periodText:'Sep 1 \u2013 Nov 30, 2026', goalLabel:'75% of your Corona Innovation goal', goalWord:'Corona Innovation goal', periodEnd:'2026-11-30',
    typeNote:'Your goal is the Corona Innovation distribution goal assigned to you. Reaching 75% of it counts as Achieved.'},
-  {key:'bbc_lytt', name:'BBC – 50% Buying Accounts Lytt', shortName:'Lytt Buying Accounts', unit:'buying account', weight:0.30, type:'pct_of_base', hasData:true, periodText:'Oct 1 \u2013 Oct 31, 2026', goalLabel:'50% of account base (3+ SKUs each)', accountsLabel:'Buying Accounts', brandLabel:'Lytt'},
+  {key:'bbc_lytt', name:'BBC – 50% Buying Accounts Lytt', shortName:'Lytt Buying Accounts', unit:'buying account', weight:0.30, type:'pct_of_base', hasData:true, periodText:'Aug 1 \u2013 Oct 31, 2026', goalLabel:'50% of account base (3+ SKUs each)', accountsLabel:'Buying Accounts', brandLabel:'Lytt'},
   {key:'mollys', name:'Molly\u2019s – (2) New Placements (Spirits)', shortName:'Molly\u2019s', unit:'new placement', weight:0.15, type:'new_placements', hasData:true, goalLabel:'2 new Molly\u2019s placements each'},
   {key:'wine_new', name:'Wine – (1) New Placement', shortName:'Wine', unit:'new placement', weight:0.15, type:'new_placements', hasData:true, goalLabel:'1 new wine placement each'},
   {key:'pos_stickers', name:'POS – (5) Cooler Door Stickers, Any Brand in iSellBeer', shortName:'Cooler Door Stickers', unit:'cooler door sticker', weight:0.10, type:'photos', hasData:true, goalLabel:'5 cooler door stickers each',

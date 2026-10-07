@@ -12,8 +12,9 @@ Inputs (this folder, overwrite to refresh):
                                          placements by product 9/1-11/30/2026 plus the rep's GOAL
                                          (100%) on each rep's subtotal row. The objective is 75% of
                                          that goal. A rep with no goal is NOT scored.
-  lytt_october.csv                       RDE "BBC Lytt October MPO" -- one row per rep / account / SKU
-                                         (Buyer / Placement / Cases 10/1-10/31)
+  lytt_october.csv                       RDE "LYTT OCTOBER 2026 MPO OFF" -- one row per rep / account / SKU /
+                                         load sheet, Placement Count + Cases 8/1-10/31/2026 (Gavin,
+                                         2026-10-07: August and September distribution counts)
   sales_reps_customer_base_core.csv      each rep's CORE off-premise accounts = the Lytt denominator
                                          (Lytt can only be sold in the core territory)
   mollys_new_placements.csv              RDE two-window export (7/1-9/30 base, 10/1-10/31 current)
@@ -29,11 +30,13 @@ growing through November, like September's Corona Gaintain did.
 --- Lytt: 50% buying accounts (pct_of_base) ---
 Denominator = the rep's accounts in sales_reps_customer_base_core.csv, MINUS every
 Whole Foods account (they cannot sell alcohol; Gavin, 2026-10-05). Scoped to Lytt:
-Keystone / Fever Tree still read the shared core file as before. Numerator = the
-accounts that bought any Lytt SKU in October (1+ SKU: "buying account"), counted
-distinct, and ONLY accounts that are in that rep's own base -- a buyer outside the
-core base (the build prints them) would otherwise inflate a rep past 50%. Target =
-ceil(50% x base). Target Accounts = base accounts with no Lytt purchase in October.
+Keystone / Fever Tree still read the shared core file as before. WINDOW (Gavin,
+2026-10-07): distribution done Aug 1 - Oct 31, 2026 counts (the export's own window).
+An account QUALIFIES with 3+ DISTINCT Lytt SKUs over that window (programs.js minSkus 3),
+counted once, and ONLY in that rep's own base -- a buyer outside the core base (the build
+prints them) would otherwise inflate a rep past 50%. A SKU whose cases net to 0 or less
+over the window (bought, then fully returned) does not count (the build prints them).
+Target = ceil(50% x base). Target Accounts = base accounts with no Lytt purchase.
 
 --- Molly's / Wine: new placements ---
 Same rule as September (generate_2026-09.py build_new_placements): NEW = the
@@ -103,6 +106,7 @@ def build_constellation():
 
 
 LYTT_CSV = HERE / "lytt_october.csv"
+LYTT_START = datetime(2026, 8, 1)     # Lytt counts distribution from Aug 1 (Gavin, 2026-10-07)
 
 
 def is_whole_foods(name):
@@ -115,18 +119,26 @@ def build_lytt():
     base_by_rep = defaultdict(set)
     for r in base:
         base_by_rep[r["SALES_REP_ASSIGNED"]].add(str(r["CUSTOMER_NUM"]))
+    raw = gen09.load_csv(LYTT_CSV)
+    cases_col = next(c for c in raw[0] if c.startswith("Cases"))
+    gen09.check_window(cases_col, LYTT_START, "Lytt window")
+    net = defaultdict(float)
+    for r in raw:
+        net[((r.get("Sales Rep Assigned") or "").strip(), (r.get("Customer Num") or "").strip(),
+             (r.get("Product Name") or "").strip())] += gen09.to_num(r.get(cases_col))
+    returned = sorted(k for k, v in net.items() if v <= 0)
     num, outside = [], []
-    for r in gen09.load_csv(LYTT_CSV):
+    for r in raw:
         rep = (r.get("Sales Rep Assigned") or "").strip()
         cust = (r.get("Customer Num") or "").strip()
-        if not rep or not cust:
+        if not rep or not cust or net[(rep, cust, (r.get("Product Name") or "").strip())] <= 0:
             continue
         row = {"SALES_REP_ASSIGNED": rep, "PRODUCT_NAME": (r.get("Product Name") or "").strip(),
                "BRAND_FAMILY": (r.get("Brand Family") or "").strip(),
                "CUSTOMER_NUM": int(cust) if cust.isdigit() else cust,
                "CUSTOMER_NAME": (r.get("Customer Name") or "").strip(),
                "DATE": (r.get("Date") or "").strip(),
-               "CASES": gen09.to_num(next((r[c] for c in r if c.startswith("Cases")), ""))}
+               "CASES": gen09.to_num(r.get(cases_col))}
         (num if cust in base_by_rep.get(rep, ()) else outside).append(row)
     carrying = defaultdict(set)
     for r in num:
@@ -135,7 +147,7 @@ def build_lytt():
                 "CUSTOMER_NAME": r["CUSTOMER_NAME"], "AREA": r["AREA"]}
                for r in base if str(r["CUSTOMER_NUM"]) not in carrying[r["SALES_REP_ASSIGNED"]]]
     num.sort(key=lambda r: (r["SALES_REP_ASSIGNED"], r["CUSTOMER_NAME"], r["PRODUCT_NAME"]))
-    return base, num, targets, removed, outside
+    return base, num, targets, removed, outside, returned
 
 
 def build_cooler_doors():
@@ -162,7 +174,7 @@ def main():
         MOLLYS_CSV, product_col="Product Num & Name", base_start=BASE_START, current_start=CURRENT_START)
     wine, w_new, w_keys, w_total, _ = gen09.build_new_placements(
         WINE_CSV, product_col="Product Num & Name", base_start=BASE_START, current_start=CURRENT_START)
-    lbase, lnum, ltargets, lremoved, loutside = build_lytt()
+    lbase, lnum, ltargets, lremoved, loutside, lreturned = build_lytt()
     for name, data in (("mpo_sales_reps_customer_base_core.json", lbase),
                        ("mpo_bbc_lytt_numerator.json", lnum),
                        ("mpo_targets_bbc_lytt.json", ltargets),
@@ -186,12 +198,21 @@ def main():
     lb = defaultdict(int)
     for r in lbase:
         lb[r["SALES_REP_ASSIGNED"]] += 1
-    lbuy = defaultdict(set)
+    skus = defaultdict(set)
     for r in lnum:
-        lbuy[r["SALES_REP_ASSIGNED"]].add(r["CUSTOMER_NUM"])
-    print(f"Lytt: {sum(len(v) for v in lbuy.values())} buying accounts in base ({len(lbase)} base accounts, "
+        skus[(r["SALES_REP_ASSIGNED"], r["CUSTOMER_NUM"])].add(r["PRODUCT_NAME"])
+    lbuy, lqual = defaultdict(set), defaultdict(set)
+    for (rp, c), v in skus.items():
+        lbuy[rp].add(c)
+        if len(v) >= 3:
+            lqual[rp].add(c)
+    print(f"Lytt (Aug 1-Oct 31): {sum(len(v) for v in lbuy.values())} buying accounts in base, "
+          f"{sum(len(v) for v in lqual.values())} with 3+ SKUs ({len(lbase)} base accounts, "
           f"{len(lremoved)} Whole Foods removed: {', '.join(r['Customer Name'] for r in lremoved)}); "
-          f"{sum(1 for rp, n in lb.items() if len(lbuy[rp]) >= max(1, -(-n * 50 // 100)))} reps at 50%")
+          f"{sum(1 for rp, n in lb.items() if len(lqual[rp]) >= max(1, -(-n * 50 // 100)))} reps at 50%")
+    if lreturned:
+        print("  Lytt SKUs bought then fully returned (net cases <= 0, not counted): " +
+              "; ".join(f"{r} / {c} {p}" for r, c, p in lreturned))
     if loutside:
         print("  Lytt buyers NOT in the rep's core base (not counted): " +
               "; ".join(sorted({f"{r['SALES_REP_ASSIGNED']} / {r['CUSTOMER_NUM']} {r['CUSTOMER_NAME']}" for r in loutside})))

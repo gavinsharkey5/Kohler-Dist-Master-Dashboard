@@ -279,6 +279,10 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-10-07 **October Off-Premise MPO refreshed; Lytt counts Aug 1 - Oct 31**: new Lytt,
+  Molly's and Wine exports loaded; Lytt = 50% of the core base with 3+ SKUs bought since Aug 1
+  (fully returned SKUs not counted -- to confirm). Constellation left on the fall export until Gavin
+  says whether the new October-only file should score it.
 - [x] 2026-10-07 **Incentives page is incentives only; MPO trackers open By Program**: the
   hub lost its On/Off-Premise MPO tabs and Program View's Type filter (MPOs live on their two
   trackers); both MPO trackers now open on View by Program for every manager, DMs included.
