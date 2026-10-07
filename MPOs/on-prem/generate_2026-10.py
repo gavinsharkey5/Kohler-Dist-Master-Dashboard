@@ -30,14 +30,19 @@ Target = ceil(40% x base) (the October docx). Was Sep 1 - Oct 31 from carbliss_b
 until 2026-10-07; that file is no longer read.
 
 --- BBC Oktoberfest conversion ---
-BASE = accounts with NET Summer Ale keg units > 0 loaded 4/1/2026 - 7/17/2026
-(Gavin, 2026-10-05). DONE = the same account has NET Octoberfest keg units > 0
-loaded 8/1/2026 - 10/23/2026. Net = a keg bought and returned is nothing (the
-same net rule the Incentive Tracker's Sam Adams conversion uses). Summer Ale
-loaded after 7/17 and Octoberfest loaded before 8/1 count toward neither side.
-Accounts that took Octoberfest but never poured Summer Ale in the base window
-("gained") are not in the base. "Complete" = every base account, so the target
-is 100% of the rep's base.
+Counted the way Boston Beer's own seasonal-conversion scoreboard counts (Gavin, 2026-10-07,
+after reconciling the RDE export against Boston Beer's 10/5 sheets -- base 307 = theirs):
+BASE = ON-PREMISE accounts (the export's Premise column) with NET Summer Ale keg units > 0
+loaded 4/1/2026 - 8/31/2026 (the whole Summer Ale season; was 4/1 - 7/17 until 2026-10-07).
+DONE = the same account has NET Octoberfest keg units > 0 loaded 8/1/2026 - 10/23/2026.
+Net = add up the units: a keg bought and returned is nothing, and the export's 0-unit rows
+(Buyer Count 1, units 0) count for nothing -- never read the Buyer Count column.
+Off-premise keg buyers (liquor stores) are out, EXCEPT the three bars Encompass files as Off
+Premise (ON_PREM_EXTRA: Milton Inn, White Deer Inn, The George Inn) -- Boston Beer counts them
+as on-premise; ASKED Gavin to confirm / fix the flag. House "reps" (Default, Office Tell Sell)
+are not people and are dropped. "Complete" = every base account (target 100%).
+The Boston Beer scoreboard override (apply_boston_beer, 2026-10-05) is GONE: the RDE export
+now agrees with it and is fresher (Boston Beer's data lags a few days).
 
 --- Spirits follow-up ---
 BASE = accounts with a spirits placement in 7/1-9/30. DONE = the same account
@@ -54,7 +59,9 @@ MONTH_KEY = "2026-10"
 KEGS_CSV = HERE / "sam_adams_kegs_summer_to_octoberfest.csv"
 SPIRITS_CSV = HERE / "spirits_followup_placements.csv"
 HOUSE = {"Default", "Office Tell Sell"}      # Encompass house "reps" -- not people
-BASE_WINDOW = (datetime(2026, 4, 1), datetime(2026, 7, 17))     # Summer Ale poured
+BASE_WINDOW = (datetime(2026, 4, 1), datetime(2026, 8, 31))     # Summer Ale poured (whole season)
+# Filed Off Premise in Encompass but bars that pour kegs; Boston Beer counts them on-premise.
+ON_PREM_EXTRA = {"191210", "230121", "231203"}   # Milton Inn, White Deer Inn, The George Inn
 DONE_WINDOW = (datetime(2026, 8, 1), datetime(2026, 10, 23))    # Oktoberfest taken
 
 
@@ -92,6 +99,20 @@ def short_keg(name):
     return n.replace("Sam Adams ", "").replace("Summer Ale", "Summer Ale").strip()
 
 
+def on_premise(r, cnum, _book={}):
+    """The export's Premise column; the active Customers export when the column is missing."""
+    if cnum in ON_PREM_EXTRA:
+        return True
+    p = (r.get("Premise") or "").strip().lower()
+    if not p:
+        if not _book:
+            sys.path.insert(0, str(HERE.parent.parent / "tools"))
+            import customer_base
+            _book.update({a["num"]: a["premise"] for a in customer_base.load()})
+        p = (_book.get(cnum) or "").lower()
+    return p.startswith("on")
+
+
 def build_conversion():
     rows = load(KEGS_CSV)
     k = list(rows[0].keys())
@@ -101,6 +122,9 @@ def build_conversion():
     for r in rows:
         rep = (r["Sales Rep Assigned"] or "").strip()
         if not rep or rep in HOUSE:
+            continue
+        cnum = split_customer(r["Customer Num & Company"])[0]
+        if not on_premise(r, cnum):
             continue
         units = sum(num(r[c]) for c in ucols)
         side = "S" if "summer" in r["Brand"].lower() else "O"
@@ -128,72 +152,6 @@ def build_conversion():
             "DONE_DETAIL": ", ".join(f"{p} x{u:g}" for p, u in a["O"].items() if u > 0) if o_net > 0 else "",
             "DONE_DATE": fmt(a["od"]) if o_net > 0 else "",
         })
-    return out
-
-
-BB_DIR = HERE.parent.parent / "incentive-tracking" / "data"
-
-
-def apply_boston_beer(rows):
-    """BOSTON BEER SCOREBOARD OVERRIDE (Gavin, 2026-10-05: "use the boston beer
-    files to update this mpo"). For every rep on Boston Beer's seasonal
-    conversion scoreboard the MPO counts are THEIR numbers: base = Prev Season
-    lines, done = Converted, with their unconverted-account list as the named
-    targets (matched to the RDE keg export by outlet name when possible).
-    Converted accounts are named from the RDE export where it agrees; surplus
-    RDE conversions (newest first-Octoberfest keg first -- those landed after
-    Boston Beer's snapshot) are left out, and a shortfall is filled with
-    "Converted account (Boston Beer count)" lines. Reps with no scoreboard row
-    (Dave Ehlers, Phil Ernst, Shane Barreca) and the route-90 row keep the RDE
-    list. Source files: incentive-tracking/data/sam_adams_seasonal_oct_*.csv."""
-    import csv, re
-    off = BB_DIR / "sam_adams_seasonal_oct_official.csv"
-    unc = BB_DIR / "sam_adams_seasonal_oct_unconverted.csv"
-    if not off.exists() or not unc.exists():
-        return rows
-    norm = lambda t: re.sub(r"[^a-z0-9]", "", (t or "").lower())
-    score = {r["Sales Rep Name"]: r for r in csv.DictReader(open(off, encoding="utf-8"))
-             if not r["Sales Rep Name"].startswith("Route ")}
-    bb_unc = defaultdict(list)
-    for u in csv.DictReader(open(unc, encoding="utf-8")):
-        bb_unc[u["Sales Rep Name"]].append(u)
-    out, report = [], []
-    by_rep = defaultdict(list)
-    for r in rows:
-        by_rep[r["SALES_REP_ASSIGNED"]].append(r)
-    for rep, lst in sorted(by_rep.items()):
-        sc = score.get(rep)
-        if not sc:
-            out += lst
-            continue
-        conv_n, not_n = int(sc["Converted"]), int(sc["Not Converted"])
-        pool = {norm(r["CUSTOMER_NAME"]): r for r in lst}
-        used, targets = set(), []
-        for u in bb_unc.get(rep, []):
-            outlet = u["Account"]
-            hit = pool.get(norm(outlet))
-            used.add(norm(outlet))
-            if hit:
-                t = dict(hit); t["DONE"] = 0; t["DONE_DETAIL"] = ""; t["DONE_DATE"] = ""
-                if not t["BASE_DETAIL"]:
-                    t["BASE_DETAIL"] = "Summer Ale (Boston Beer list)"
-            else:
-                t = {"SALES_REP_ASSIGNED": rep, "CUSTOMER_NUM": "", "CUSTOMER_NAME": outlet.title(),
-                     "BASE_DETAIL": f"Summer Ale last season · {float(u['Prev Season CEs'] or 0):.1f} CE (Boston Beer list)",
-                     "BASE_DATE": "", "DONE": 0, "DONE_DETAIL": "", "DONE_DATE": ""}
-            targets.append(t)
-        done = [r for r in lst if r["DONE"] and norm(r["CUSTOMER_NAME"]) not in used]
-        done.sort(key=lambda r: (r["DONE_DATE"] or ""))          # oldest first-Octoberfest keg first
-        done = done[:conv_n]
-        pad = conv_n - len(done)
-        for i in range(pad):
-            done.append({"SALES_REP_ASSIGNED": rep, "CUSTOMER_NUM": "", "CUSTOMER_NAME": "Converted account (Boston Beer count)",
-                         "BASE_DETAIL": "Summer Ale last season", "BASE_DATE": "", "DONE": 1,
-                         "DONE_DETAIL": "Octoberfest (Boston Beer scoreboard 10/5)", "DONE_DATE": "2026-10-05"})
-        out += targets + done
-        report.append((rep, conv_n + not_n, conv_n, len(targets), pad))
-    print("sam_adams_conversion (Boston Beer scoreboard 10/5): " + "; ".join(
-        f"{r[0]} {r[2]}/{r[1]} (named targets {r[3]}, filler {r[4]})" for r in report))
     return out
 
 
@@ -271,7 +229,7 @@ def build_carbliss():
 def main():
     month_dir = HERE / "data" / MONTH_KEY
     month_dir.mkdir(parents=True, exist_ok=True)
-    conv, spirits = apply_boston_beer(build_conversion()), build_spirits()
+    conv, spirits = build_conversion(), build_spirits()
     carb, carb_prog = build_carbliss()
     (month_dir / "mpo_carbliss.json").write_text(json.dumps(carb, indent=2))
     (month_dir / "mpo_sam_adams_conversion.json").write_text(json.dumps(conv, indent=2))

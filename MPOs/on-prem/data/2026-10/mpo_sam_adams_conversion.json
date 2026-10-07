@@ -1,123 +1,13 @@
 [
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Chelas Restaurant & Bar",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 20.7 CE (Boston Beer list)",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Dcarbon Bar & Grill",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 2.3 CE (Boston Beer list)",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Feathers",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 4.6 CE (Boston Beer list)",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "In The Drink",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 13.8 CE (Boston Beer list)",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "North Jersey Country Club",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 4.6 CE (Boston Beer list)",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Preakness Hills Country Club",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 2.3 CE (Boston Beer list)",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Red Lobster #255",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 11.5 CE (Boston Beer list)",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12022,
-    "CUSTOMER_NAME": "Grasshopper Too (A)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
-    "BASE_DATE": "6/15/2026",
+    "CUSTOMER_NUM": 10001,
+    "CUSTOMER_NAME": "cherry's",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x3",
+    "BASE_DATE": "5/20/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x6",
-    "DONE_DATE": "8/10/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 19004,
-    "CUSTOMER_NAME": "Shortways' Barn (A)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
-    "BASE_DATE": "6/29/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
-    "DONE_DATE": "8/10/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24031,
-    "CUSTOMER_NAME": "Tommy's Tavern & Tap (Clifton)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x10, Summer Ale 15.5 Gal Keg x12",
-    "BASE_DATE": "7/16/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x10, Octoberfest 5.2 Gal Keg x8",
-    "DONE_DATE": "8/11/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 8015,
-    "CUSTOMER_NAME": "Thatcher Mc Ghees (A)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x6",
-    "BASE_DATE": "7/8/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x5",
-    "DONE_DATE": "8/11/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 3002,
-    "CUSTOMER_NAME": "The Celtic Knot",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
-    "BASE_DATE": "7/9/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x5",
-    "DONE_DATE": "8/13/2026"
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DATE": "8/25/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -128,6 +18,126 @@
     "DONE": 1,
     "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
     "DONE_DATE": "8/14/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 1005,
+    "CUSTOMER_NAME": "Grasshopper Irish Pub (A)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x8",
+    "BASE_DATE": "7/17/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x7",
+    "DONE_DATE": "8/3/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 11007,
+    "CUSTOMER_NAME": "Meadows Golf Club(P)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
+    "BASE_DATE": "7/14/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DATE": "8/5/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 11011,
+    "CUSTOMER_NAME": "Sunset Pub & Grill(Z)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
+    "BASE_DATE": "7/13/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x7",
+    "DONE_DATE": "8/31/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12008,
+    "CUSTOMER_NAME": "North Jersey C C",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x2",
+    "BASE_DATE": "4/22/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12022,
+    "CUSTOMER_NAME": "Grasshopper Too (A)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
+    "BASE_DATE": "7/20/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x6",
+    "DONE_DATE": "8/10/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12026,
+    "CUSTOMER_NAME": "WAYNE ALE HOUSE & PIZZA",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2, Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "6/16/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DATE": "9/29/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12034,
+    "CUSTOMER_NAME": "Dave & Buster's Nj, Inc",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
+    "BASE_DATE": "7/2/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DATE": "9/3/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12035,
+    "CUSTOMER_NAME": "Preakness Hills (A) cc",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "5/28/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12036,
+    "CUSTOMER_NAME": "Brokedown Palace",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
+    "BASE_DATE": "7/16/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "8/20/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12037,
+    "CUSTOMER_NAME": "Maggies Town Tavern Ii",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
+    "BASE_DATE": "7/8/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x5",
+    "DONE_DATE": "8/5/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12038,
+    "CUSTOMER_NAME": "Tommy's Tavern + Tap (Wayne)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x6",
+    "BASE_DATE": "7/7/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x9",
+    "DONE_DATE": "8/4/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12041,
+    "CUSTOMER_NAME": "Cheesecake Fact (A)Wayne",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
+    "BASE_DATE": "7/23/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DATE": "8/20/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -151,223 +161,33 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 13003,
-    "CUSTOMER_NAME": "Maggie's Town Tav.(P)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x6",
-    "BASE_DATE": "7/1/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x6",
-    "DONE_DATE": "8/17/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24026,
-    "CUSTOMER_NAME": "Rock Bar",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
-    "BASE_DATE": "7/15/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x5",
-    "DONE_DATE": "8/18/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 25083,
-    "CUSTOMER_NAME": "Rutt's Hut (A)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
+    "CUSTOMER_NUM": 12054,
+    "CUSTOMER_NAME": "Red Lobster 225 Wayne",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1, Summer Ale 5.2 Gal Keg x2",
     "BASE_DATE": "6/3/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "8/19/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12036,
-    "CUSTOMER_NAME": "Brokedown Palace",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
-    "BASE_DATE": "7/16/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "8/20/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12041,
-    "CUSTOMER_NAME": "Cheesecake Fact (A)Wayne",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
-    "BASE_DATE": "7/1/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "8/20/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24048,
-    "CUSTOMER_NAME": "Dante's",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
-    "BASE_DATE": "7/15/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "8/21/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 10001,
-    "CUSTOMER_NAME": "cherry's",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x3",
-    "BASE_DATE": "5/20/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "8/25/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 17009,
-    "CUSTOMER_NAME": "Jimmy Geez (P)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
-    "BASE_DATE": "7/1/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "8/25/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 19012,
-    "CUSTOMER_NAME": "Bottagra Rest (P)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
-    "BASE_DATE": "7/15/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
-    "DONE_DATE": "8/26/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24006,
-    "CUSTOMER_NAME": "The Grand Saloon",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
-    "BASE_DATE": "7/8/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "8/26/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 25052,
-    "CUSTOMER_NAME": "Uno Chicago Grl (A)Clifto",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
-    "BASE_DATE": "6/10/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "8/26/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 5003,
-    "CUSTOMER_NAME": "Applebee's (A)Butler",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
-    "BASE_DATE": "7/1/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "8/26/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 15004,
-    "CUSTOMER_NAME": "Blackjack Mulligan's Public House",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1, Summer Ale 15.5 Gal Keg x3",
-    "BASE_DATE": "7/16/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "8/27/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 14008,
-    "CUSTOMER_NAME": "The Barnyard and Carriage House",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
-    "BASE_DATE": "7/10/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "8/28/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 17001,
-    "CUSTOMER_NAME": "Underdog Lounge(P)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x3",
-    "BASE_DATE": "6/12/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
-    "DONE_DATE": "8/28/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 25056,
-    "CUSTOMER_NAME": "Emerald Corner (Z)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x2",
-    "BASE_DATE": "6/10/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
-    "DONE_DATE": "8/28/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 1005,
-    "CUSTOMER_NAME": "Grasshopper Irish Pub (A)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x8",
-    "BASE_DATE": "7/17/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x7",
-    "DONE_DATE": "8/3/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24019,
-    "CUSTOMER_NAME": "Sharky's Wings(P)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x6",
-    "BASE_DATE": "7/1/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x7",
-    "DONE_DATE": "8/3/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 7005,
-    "CUSTOMER_NAME": "Chili's (Riverdale)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
-    "BASE_DATE": "7/13/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
-    "DONE_DATE": "8/3/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 11011,
-    "CUSTOMER_NAME": "Sunset Pub & Grill(Z)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
-    "BASE_DATE": "7/13/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
-    "DONE_DATE": "8/31/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12038,
-    "CUSTOMER_NAME": "Tommy's Tavern + Tap (Wayne)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x6",
-    "BASE_DATE": "7/7/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x8",
-    "DONE_DATE": "8/4/2026"
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 12057,
     "CUSTOMER_NAME": "YARD HOUSE 8384",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
-    "BASE_DATE": "7/7/2026",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
+    "BASE_DATE": "7/21/2026",
     "DONE": 1,
     "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x11",
     "DONE_DATE": "8/4/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12064,
+    "CUSTOMER_NAME": "In The Drink@Passaic Gc",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
+    "BASE_DATE": "6/27/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -376,108 +196,28 @@
     "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
     "BASE_DATE": "5/28/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "8/4/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 13018,
-    "CUSTOMER_NAME": "Chili's Little Falls",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x9",
-    "BASE_DATE": "7/7/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x6",
-    "DONE_DATE": "8/4/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 15070,
-    "CUSTOMER_NAME": "Brownstone House",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
-    "BASE_DATE": "7/17/2026",
-    "DONE": 1,
     "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
     "DONE_DATE": "8/4/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 19005,
-    "CUSTOMER_NAME": "Celtic Corner",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
-    "BASE_DATE": "6/8/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "8/4/2026"
+    "CUSTOMER_NUM": 13002,
+    "CUSTOMER_NAME": "The Little Falls Tavern",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x3, Summer Ale 15.5 Gal Keg x2",
+    "BASE_DATE": "7/16/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 7003,
-    "CUSTOMER_NAME": "Blu Ale House",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x10",
-    "BASE_DATE": "7/14/2026",
+    "CUSTOMER_NUM": 13003,
+    "CUSTOMER_NAME": "Maggie's Town Tav.(P)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x6, Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "7/24/2026",
     "DONE": 1,
     "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x6",
-    "DONE_DATE": "8/4/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 11007,
-    "CUSTOMER_NAME": "Meadows Golf Club(P)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
-    "BASE_DATE": "7/14/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "8/5/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12037,
-    "CUSTOMER_NAME": "Maggies Town Tavern Ii",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
-    "BASE_DATE": "7/8/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
-    "DONE_DATE": "8/5/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 14003,
-    "CUSTOMER_NAME": "Murph's Bar & Liquor",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x3, Summer Ale 15.5 Gal Keg x8",
-    "BASE_DATE": "7/14/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2, Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "8/5/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 15074,
-    "CUSTOMER_NAME": "Bask 46",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3, Summer Ale 5.2 Gal Keg x1",
-    "BASE_DATE": "5/21/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "8/5/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 25049,
-    "CUSTOMER_NAME": "Yesterdays (P)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x6",
-    "BASE_DATE": "7/8/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
-    "DONE_DATE": "8/5/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 19002,
-    "CUSTOMER_NAME": "Puzo's Pizza",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x3",
-    "BASE_DATE": "7/2/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1",
-    "DONE_DATE": "8/6/2026"
+    "DONE_DATE": "8/17/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -491,6 +231,126 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 13018,
+    "CUSTOMER_NAME": "Chili's Little Falls",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x10",
+    "BASE_DATE": "7/22/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x7",
+    "DONE_DATE": "8/4/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 14003,
+    "CUSTOMER_NAME": "Murph's Bar & Liquor",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x3, Summer Ale 15.5 Gal Keg x8",
+    "BASE_DATE": "7/14/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x3, Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "8/5/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 14008,
+    "CUSTOMER_NAME": "The Barnyard and Carriage House",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
+    "BASE_DATE": "7/10/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DATE": "8/28/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 15004,
+    "CUSTOMER_NAME": "Blackjack Mulligan's Public House",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1, Summer Ale 15.5 Gal Keg x3",
+    "BASE_DATE": "7/16/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DATE": "8/27/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 15070,
+    "CUSTOMER_NAME": "Brownstone House",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
+    "BASE_DATE": "7/17/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DATE": "8/4/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 15074,
+    "CUSTOMER_NAME": "Bask 46",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3, Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "5/21/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DATE": "8/5/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 17001,
+    "CUSTOMER_NAME": "Underdog Lounge(P)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x3",
+    "BASE_DATE": "6/12/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
+    "DONE_DATE": "8/28/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 17003,
+    "CUSTOMER_NAME": "D'CARBON BAR AND GRILL haledon",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "4/10/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 17009,
+    "CUSTOMER_NAME": "Jimmy Geez (P)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
+    "BASE_DATE": "7/1/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "8/25/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 19002,
+    "CUSTOMER_NAME": "Puzo's Pizza",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x3",
+    "BASE_DATE": "7/2/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1",
+    "DONE_DATE": "8/6/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 19004,
+    "CUSTOMER_NAME": "Shortways' Barn (A)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
+    "BASE_DATE": "6/29/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x5",
+    "DONE_DATE": "8/10/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 19005,
+    "CUSTOMER_NAME": "Celtic Corner",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
+    "BASE_DATE": "6/8/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DATE": "8/4/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 19006,
     "CUSTOMER_NAME": "Blackjack Mulligans (Hawthorne)",
     "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2, Summer Ale 5.2 Gal Keg x1",
@@ -501,23 +361,33 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 25078,
-    "CUSTOMER_NAME": "The Shannon Rose (A)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
-    "BASE_DATE": "7/16/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "9/17/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 23001,
     "CUSTOMER_NAME": "Bogey's Sport Bar",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x2",
-    "BASE_DATE": "6/24/2026",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x3",
+    "BASE_DATE": "7/24/2026",
     "DONE": 1,
     "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
     "DONE_DATE": "9/18/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 24006,
+    "CUSTOMER_NAME": "The Grand Saloon",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
+    "BASE_DATE": "7/8/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "8/26/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 24019,
+    "CUSTOMER_NAME": "Sharky's Wings(P)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x6",
+    "BASE_DATE": "7/1/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x8",
+    "DONE_DATE": "8/3/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -531,223 +401,153 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12026,
-    "CUSTOMER_NAME": "WAYNE ALE HOUSE & PIZZA",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2, Summer Ale 5.2 Gal Keg x1",
-    "BASE_DATE": "6/16/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "9/29/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12034,
-    "CUSTOMER_NAME": "Dave & Buster's Nj, Inc",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
-    "BASE_DATE": "7/2/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "9/3/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Skylands Craft Beer & Wine Garden",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 9.2 CE (Boston Beer list)",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Veterans Of Foreign Wars #8441",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 2.3 CE (Boston Beer list)",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Whiskey Wolf Tavern",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 2.3 CE (Boston Beer list)",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Zs Casual Dining",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 6.9 CE (Boston Beer list)",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 231307,
-    "CUSTOMER_NAME": "Skylands Wine& Beer Garden",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1, Summer Ale 5.2 Gal Keg x1",
-    "BASE_DATE": "7/9/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "10/2/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 231211,
-    "CUSTOMER_NAME": "Tony's Pizza (P)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
-    "BASE_DATE": "6/4/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "8/12/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 231210,
-    "CUSTOMER_NAME": "Bally Owen Golf Club",
+    "CUSTOMER_NUM": 24026,
+    "CUSTOMER_NAME": "Rock Bar",
     "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
-    "BASE_DATE": "7/8/2026",
+    "BASE_DATE": "7/15/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "8/13/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 231303,
-    "CUSTOMER_NAME": "The Sussex Saloon",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x3",
-    "BASE_DATE": "6/17/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x4",
-    "DONE_DATE": "8/13/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 231305,
-    "CUSTOMER_NAME": "Early American Tavern",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
-    "BASE_DATE": "4/30/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1, Octoberfest 5.2 Gal Keg x1",
-    "DONE_DATE": "8/13/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 231304,
-    "CUSTOMER_NAME": "The Lamp Post Inn",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
-    "BASE_DATE": "7/16/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x5",
     "DONE_DATE": "8/18/2026"
   },
   {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 230929,
-    "CUSTOMER_NAME": "Airport Pub & Pkg",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x4",
-    "BASE_DATE": "7/2/2026",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 24031,
+    "CUSTOMER_NAME": "Tommy's Tavern & Tap (Clifton)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x12, Summer Ale 5.2 Gal Keg x10",
+    "BASE_DATE": "7/16/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x10, Octoberfest 5.2 Gal Keg x8",
+    "DONE_DATE": "8/11/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 24048,
+    "CUSTOMER_NAME": "Dante's",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
+    "BASE_DATE": "7/15/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DATE": "8/21/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 25049,
+    "CUSTOMER_NAME": "Yesterdays (P)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x6",
+    "BASE_DATE": "7/8/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
+    "DONE_DATE": "8/5/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 25052,
+    "CUSTOMER_NAME": "Uno Chicago Grl (A)Clifto",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
+    "BASE_DATE": "7/22/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DATE": "8/26/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 25056,
+    "CUSTOMER_NAME": "Emerald Corner (Z)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x2",
+    "BASE_DATE": "6/10/2026",
     "DONE": 1,
     "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
+    "DONE_DATE": "8/28/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 25078,
+    "CUSTOMER_NAME": "The Shannon Rose (A)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
+    "BASE_DATE": "7/16/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DATE": "9/17/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 25083,
+    "CUSTOMER_NAME": "Rutt's Hut (A)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
+    "BASE_DATE": "6/3/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
     "DONE_DATE": "8/19/2026"
   },
   {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 1035,
-    "CUSTOMER_NAME": "Old School Pub P)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x3",
-    "BASE_DATE": "7/7/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
-    "DONE_DATE": "8/25/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 230119,
-    "CUSTOMER_NAME": "Smokey's Brick Oven Tav.",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 3002,
+    "CUSTOMER_NAME": "The Celtic Knot",
     "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
-    "BASE_DATE": "6/26/2026",
+    "BASE_DATE": "7/9/2026",
     "DONE": 1,
     "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x5",
-    "DONE_DATE": "8/3/2026"
+    "DONE_DATE": "8/13/2026"
   },
   {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 230907,
-    "CUSTOMER_NAME": "Irish Cottage Inn",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
-    "BASE_DATE": "6/26/2026",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 5003,
+    "CUSTOMER_NAME": "Applebee's (A)Butler",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
+    "BASE_DATE": "7/1/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "8/31/2026"
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DATE": "8/26/2026"
   },
   {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 1010,
-    "CUSTOMER_NAME": "Jimmy Geez(North)Bar/Gril",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 5004,
+    "CUSTOMER_NAME": "Outback",
     "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
-    "BASE_DATE": "7/8/2026",
+    "BASE_DATE": "6/12/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "8/4/2026"
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "9/3/2026"
   },
   {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 230903,
-    "CUSTOMER_NAME": "Black Bear Golf(A)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
-    "BASE_DATE": "7/14/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "8/5/2026"
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 58005,
+    "CUSTOMER_NAME": "Feathers (A)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x2",
+    "BASE_DATE": "7/1/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
   },
   {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 230915,
-    "CUSTOMER_NAME": "Crystal Sprs/Wild Turkey",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 7003,
+    "CUSTOMER_NAME": "Blu Ale House",
     "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x10",
     "BASE_DATE": "7/14/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
-    "DONE_DATE": "8/5/2026"
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x7",
+    "DONE_DATE": "8/4/2026"
   },
   {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 231213,
-    "CUSTOMER_NAME": "The Kites (P)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x23, Summer Ale 15.5 Gal Keg x3",
-    "BASE_DATE": "7/17/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3, Octoberfest 5.2 Gal Keg x6",
-    "DONE_DATE": "8/5/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 230930,
-    "CUSTOMER_NAME": "Brick & Brew",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 7005,
+    "CUSTOMER_NAME": "Chili's (Riverdale)",
     "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
-    "BASE_DATE": "7/9/2026",
+    "BASE_DATE": "7/13/2026",
     "DONE": 1,
     "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
-    "DONE_DATE": "8/6/2026"
+    "DONE_DATE": "8/3/2026"
   },
   {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 3011,
-    "CUSTOMER_NAME": "Flip's Bar (P)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x6",
-    "BASE_DATE": "7/16/2026",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 8015,
+    "CUSTOMER_NAME": "Thatcher Mc Ghees (A)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x7",
+    "BASE_DATE": "7/23/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x6",
-    "DONE_DATE": "8/6/2026"
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x5",
+    "DONE_DATE": "8/11/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -761,6 +561,106 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 1023,
+    "CUSTOMER_NAME": "The New Jessies Kettle(P)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
+    "BASE_DATE": "7/9/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "9/17/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 1033,
+    "CUSTOMER_NAME": "D'Boathaus Restaurant",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "7/8/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "9/30/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 1035,
+    "CUSTOMER_NAME": "Old School Pub P)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x3",
+    "BASE_DATE": "7/7/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x3",
+    "DONE_DATE": "8/25/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 1214,
+    "CUSTOMER_NAME": "Whiskey Wolf Tavern (P)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "4/24/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 191207,
+    "CUSTOMER_NAME": "Daily Planet (A)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2, Summer Ale 5.2 Gal Keg x2",
+    "BASE_DATE": "7/16/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1",
+    "DONE_DATE": "9/30/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 230119,
+    "CUSTOMER_NAME": "Smokey's Brick Oven Tav.",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
+    "BASE_DATE": "6/26/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x5",
+    "DONE_DATE": "8/3/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 230903,
+    "CUSTOMER_NAME": "Black Bear Golf(A)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
+    "BASE_DATE": "7/14/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DATE": "8/5/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 230907,
+    "CUSTOMER_NAME": "Irish Cottage Inn",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
+    "BASE_DATE": "6/26/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DATE": "8/31/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 230915,
+    "CUSTOMER_NAME": "Crystal Sprs/Wild Turkey",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x10",
+    "BASE_DATE": "7/14/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x5",
+    "DONE_DATE": "8/5/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 230921,
+    "CUSTOMER_NAME": "ACQUAVIVA RESTAURANT",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x3",
+    "BASE_DATE": "6/27/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "CUSTOMER_NUM": 230925,
     "CUSTOMER_NAME": "Springs Bistro Biosphere",
     "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
@@ -771,13 +671,113 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 230929,
+    "CUSTOMER_NAME": "Airport Pub & Pkg",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x5",
+    "BASE_DATE": "7/22/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
+    "DONE_DATE": "8/19/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 230930,
+    "CUSTOMER_NAME": "Brick & Brew",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
+    "BASE_DATE": "7/9/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
+    "DONE_DATE": "8/6/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 231206,
+    "CUSTOMER_NAME": "Vfw 8441 Vernon",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "6/30/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "CUSTOMER_NUM": 231209,
     "CUSTOMER_NAME": "Mt Creek Hex Lg(North) A",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x11, Summer Ale 5.2 Gal Keg x15",
-    "BASE_DATE": "6/25/2026",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x19, Summer Ale 15.5 Gal Keg x11",
+    "BASE_DATE": "7/24/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x6, Octoberfest 15.5 Gal Keg x19",
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x10, Octoberfest 15.5 Gal Keg x19",
     "DONE_DATE": "8/7/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 231210,
+    "CUSTOMER_NAME": "Bally Owen Golf Club",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
+    "BASE_DATE": "7/8/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DATE": "8/13/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 231211,
+    "CUSTOMER_NAME": "Tony's Pizza (P)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
+    "BASE_DATE": "6/4/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DATE": "8/12/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 231213,
+    "CUSTOMER_NAME": "The Kites (P)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x27, Summer Ale 15.5 Gal Keg x3",
+    "BASE_DATE": "7/31/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3, Octoberfest 5.2 Gal Keg x6",
+    "DONE_DATE": "8/5/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 231303,
+    "CUSTOMER_NAME": "The Sussex Saloon",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x4",
+    "BASE_DATE": "7/22/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x5",
+    "DONE_DATE": "8/13/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 231304,
+    "CUSTOMER_NAME": "The Lamp Post Inn",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
+    "BASE_DATE": "7/16/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DATE": "8/18/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 231305,
+    "CUSTOMER_NAME": "Early American Tavern",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
+    "BASE_DATE": "4/30/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1, Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "8/13/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 231307,
+    "CUSTOMER_NAME": "Skylands Wine& Beer Garden",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1, Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "7/9/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "10/2/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -791,303 +791,53 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 1023,
-    "CUSTOMER_NAME": "The New Jessies Kettle(P)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
-    "BASE_DATE": "7/9/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "9/17/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Bella Italia Restaurant & Pizzeria",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 13.8 CE (Boston Beer list)",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Industry Restaurant",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 2.3 CE (Boston Beer list)",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "St Moritz Grill And Bar",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 20.7 CE (Boston Beer list)",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 230407,
-    "CUSTOMER_NAME": "Fountain House (Z)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
-    "BASE_DATE": "6/5/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1",
-    "DONE_DATE": "10/1/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191507,
-    "CUSTOMER_NAME": "The Windlass Rest (A)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x9",
-    "BASE_DATE": "7/17/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x5",
-    "DONE_DATE": "8/11/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 231715,
-    "CUSTOMER_NAME": "Gyp's Tavern",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
-    "BASE_DATE": "7/14/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
-    "DONE_DATE": "8/12/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 1024,
-    "CUSTOMER_NAME": "Buffalo Wild Wings (Rockaway)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x7",
-    "BASE_DATE": "7/8/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x6",
-    "DONE_DATE": "8/13/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 231606,
-    "CUSTOMER_NAME": "The Lafayette House",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x10",
+    "CUSTOMER_NUM": 3011,
+    "CUSTOMER_NAME": "Flip's Bar (P)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x6",
     "BASE_DATE": "7/16/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x6",
-    "DONE_DATE": "8/13/2026"
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x8",
+    "DONE_DATE": "8/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191719,
-    "CUSTOMER_NAME": "American Lgn Stanhope",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x16",
-    "BASE_DATE": "7/16/2026",
+    "CUSTOMER_NUM": 1017,
+    "CUSTOMER_NAME": "Millers Ale House Rockawa",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x10",
+    "BASE_DATE": "7/21/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x5",
-    "DONE_DATE": "8/14/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191009,
-    "CUSTOMER_NAME": "Mason Street Grille",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
-    "BASE_DATE": "7/10/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "8/17/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 230306,
-    "CUSTOMER_NAME": "AG Pizza & Restaurant - Newton",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1, Summer Ale 5.2 Gal Keg x1",
-    "BASE_DATE": "5/26/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "8/18/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191504,
-    "CUSTOMER_NAME": "The Jefferson House",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
-    "BASE_DATE": "6/26/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
-    "DONE_DATE": "8/19/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 230424,
-    "CUSTOMER_NAME": "Moose Lodge 432",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
-    "BASE_DATE": "6/17/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "8/19/2026"
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x11",
+    "DONE_DATE": "8/4/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
     "CUSTOMER_NUM": 1022,
     "CUSTOMER_NAME": "The Cheesecake Factory",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
-    "BASE_DATE": "6/4/2026",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
+    "BASE_DATE": "7/23/2026",
     "DONE": 1,
     "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
     "DONE_DATE": "8/20/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191008,
-    "CUSTOMER_NAME": "Jefferson Diner & Tav(P)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
-    "BASE_DATE": "7/9/2026",
+    "CUSTOMER_NUM": 1024,
+    "CUSTOMER_NAME": "Buffalo Wild Wings (Rockaway)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x8",
+    "BASE_DATE": "7/22/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "8/20/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191502,
-    "CUSTOMER_NAME": "Alice's (Z)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
-    "BASE_DATE": "7/16/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "8/20/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191601,
-    "CUSTOMER_NAME": "Stoll Street Tavern",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x10",
-    "BASE_DATE": "7/2/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "8/20/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 230702,
-    "CUSTOMER_NAME": "Hyde-Away Rest & Tap Room",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
-    "BASE_DATE": "6/11/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1",
-    "DONE_DATE": "8/20/2026"
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x7",
+    "DONE_DATE": "8/13/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
     "CUSTOMER_NUM": 190102,
     "CUSTOMER_NAME": "Lake Valhalla Club (P)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x9",
-    "BASE_DATE": "6/26/2026",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x10",
+    "BASE_DATE": "7/31/2026",
     "DONE": 1,
     "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
     "DONE_DATE": "8/21/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 190723,
-    "CUSTOMER_NAME": "Muldoon's Steak & Pub",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x3",
-    "BASE_DATE": "7/17/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
-    "DONE_DATE": "8/21/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 190923,
-    "CUSTOMER_NAME": "Knotty Pine Pub (P)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x6",
-    "BASE_DATE": "7/16/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "8/24/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 190706,
-    "CUSTOMER_NAME": "Mill Lane Tavern",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
-    "BASE_DATE": "6/12/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x8",
-    "DONE_DATE": "8/26/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191505,
-    "CUSTOMER_NAME": "Mckenna's Pub (P)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
-    "BASE_DATE": "7/2/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "8/26/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191718,
-    "CUSTOMER_NAME": "Bell's Mansion",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
-    "BASE_DATE": "7/15/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "8/26/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 230123,
-    "CUSTOMER_NAME": "Sparta Lanes (Pino)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
-    "BASE_DATE": "7/2/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "8/26/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 230405,
-    "CUSTOMER_NAME": "Sheridan Lodge (P)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
-    "BASE_DATE": "7/8/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "8/26/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191521,
-    "CUSTOMER_NAME": "Patricks Pub (P)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
-    "BASE_DATE": "7/2/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1, Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "8/27/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 190306,
-    "CUSTOMER_NAME": "Lena y Carbon VII Parsippany",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
-    "BASE_DATE": "6/12/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1",
-    "DONE_DATE": "8/28/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191004,
-    "CUSTOMER_NAME": "Club 15(P)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
-    "BASE_DATE": "6/9/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1",
-    "DONE_DATE": "8/28/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -1106,108 +856,18 @@
     "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x10",
     "BASE_DATE": "7/17/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x8",
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x10",
     "DONE_DATE": "8/3/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
     "CUSTOMER_NUM": 190214,
     "CUSTOMER_NAME": "Johnnie's Tavern",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x9, Summer Ale 15.5 Gal Keg x1",
-    "BASE_DATE": "6/17/2026",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x10, Summer Ale 15.5 Gal Keg x1",
+    "BASE_DATE": "7/31/2026",
     "DONE": 1,
     "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2, Octoberfest 5.2 Gal Keg x2",
     "DONE_DATE": "8/3/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191007,
-    "CUSTOMER_NAME": "Charley's Tavern",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x16",
-    "BASE_DATE": "7/14/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x12",
-    "DONE_DATE": "8/3/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 230304,
-    "CUSTOMER_NAME": "Mc Q's Pub (P)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x7",
-    "BASE_DATE": "7/2/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x5",
-    "DONE_DATE": "8/3/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 1017,
-    "CUSTOMER_NAME": "Millers Ale House Rockawa",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x9",
-    "BASE_DATE": "7/14/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x8",
-    "DONE_DATE": "8/4/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 190905,
-    "CUSTOMER_NAME": "Elevengreen",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x6",
-    "BASE_DATE": "7/14/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x5",
-    "DONE_DATE": "8/4/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191405,
-    "CUSTOMER_NAME": "Pat's Bar (P)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
-    "BASE_DATE": "7/7/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "8/4/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 231714,
-    "CUSTOMER_NAME": "Mountain House Tav & Gril",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
-    "BASE_DATE": "7/7/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x5",
-    "DONE_DATE": "8/4/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 190601,
-    "CUSTOMER_NAME": "Thatcher Mcghee's (A)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x8",
-    "BASE_DATE": "7/14/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x6",
-    "DONE_DATE": "8/5/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191704,
-    "CUSTOMER_NAME": "Stonewood Tavern",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
-    "BASE_DATE": "6/26/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "8/7/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 230430,
-    "CUSTOMER_NAME": "Applebee's Grill(A)Newton",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x7",
-    "BASE_DATE": "7/16/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
-    "DONE_DATE": "8/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -1221,93 +881,33 @@
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191618,
-    "CUSTOMER_NAME": "Polo's Bar And Grill",
+    "CUSTOMER_NUM": 190306,
+    "CUSTOMER_NAME": "Lena y Carbon VII Parsippany",
     "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
-    "BASE_DATE": "6/26/2026",
+    "BASE_DATE": "6/12/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x7",
-    "DONE_DATE": "9/10/2026"
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1",
+    "DONE_DATE": "8/28/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 231601,
-    "CUSTOMER_NAME": "Farmstead Golf (P)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
-    "BASE_DATE": "7/15/2026",
+    "CUSTOMER_NUM": 190601,
+    "CUSTOMER_NAME": "Thatcher Mcghee's (A)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x8",
+    "BASE_DATE": "7/14/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "9/15/2026"
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x8",
+    "DONE_DATE": "8/5/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 190815,
-    "CUSTOMER_NAME": "Sam Adam's Pub (NAFIB4-22-A-0036)",
+    "CUSTOMER_NUM": 190706,
+    "CUSTOMER_NAME": "Mill Lane Tavern",
     "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
-    "BASE_DATE": "6/30/2026",
+    "BASE_DATE": "6/12/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "9/16/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191509,
-    "CUSTOMER_NAME": "The Beacon",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
-    "BASE_DATE": "5/28/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "9/2/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 231713,
-    "CUSTOMER_NAME": "Flatbrook Tap House (P)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
-    "BASE_DATE": "7/16/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "9/2/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 190925,
-    "CUSTOMER_NAME": "Olive Garden Rockaway",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
-    "BASE_DATE": "7/7/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
-    "DONE_DATE": "9/23/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 230312,
-    "CUSTOMER_NAME": "Skyland Baseball",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
-    "BASE_DATE": "6/4/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "9/23/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 230406,
-    "CUSTOMER_NAME": "Bearbrook Valley",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
-    "BASE_DATE": "6/3/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "9/23/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 231719,
-    "CUSTOMER_NAME": "Layton Tavern",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
-    "BASE_DATE": "6/23/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "9/4/2026"
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x8",
+    "DONE_DATE": "8/26/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -1331,20 +931,420 @@
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Converted account (Boston Beer count)",
-    "BASE_DETAIL": "Summer Ale last season",
-    "BASE_DATE": "",
+    "CUSTOMER_NUM": 190723,
+    "CUSTOMER_NAME": "Muldoon's Steak & Pub",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x3",
+    "BASE_DATE": "7/17/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest (Boston Beer scoreboard 10/5)",
-    "DONE_DATE": "2026-10-05"
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
+    "DONE_DATE": "8/21/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 190815,
+    "CUSTOMER_NAME": "Sam Adam's Pub (NAFIB4-22-A-0036)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "6/30/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "9/16/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 190905,
+    "CUSTOMER_NAME": "Elevengreen",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x6",
+    "BASE_DATE": "7/14/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x5",
+    "DONE_DATE": "8/4/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 190923,
+    "CUSTOMER_NAME": "Knotty Pine Pub (P)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x6",
+    "BASE_DATE": "7/16/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DATE": "8/24/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 190925,
+    "CUSTOMER_NAME": "Olive Garden Rockaway",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
+    "BASE_DATE": "7/7/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x3",
+    "DONE_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191004,
+    "CUSTOMER_NAME": "Club 15(P)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "6/9/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1",
+    "DONE_DATE": "8/28/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191007,
+    "CUSTOMER_NAME": "Charley's Tavern",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x17",
+    "BASE_DATE": "7/21/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x14",
+    "DONE_DATE": "8/3/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191008,
+    "CUSTOMER_NAME": "Jefferson Diner & Tav(P)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
+    "BASE_DATE": "7/9/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "8/20/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191009,
+    "CUSTOMER_NAME": "Mason Street Grille",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
+    "BASE_DATE": "7/22/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DATE": "8/17/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191405,
+    "CUSTOMER_NAME": "Pat's Bar (P)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
+    "BASE_DATE": "7/7/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DATE": "8/4/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191502,
+    "CUSTOMER_NAME": "Alice's (Z)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
+    "BASE_DATE": "7/16/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DATE": "8/20/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191504,
+    "CUSTOMER_NAME": "The Jefferson House",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
+    "BASE_DATE": "7/22/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
+    "DONE_DATE": "8/19/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191505,
+    "CUSTOMER_NAME": "Mckenna's Pub (P)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
+    "BASE_DATE": "7/2/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DATE": "8/26/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191507,
+    "CUSTOMER_NAME": "The Windlass Rest (A)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x9",
+    "BASE_DATE": "7/17/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x6",
+    "DONE_DATE": "8/11/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191509,
+    "CUSTOMER_NAME": "The Beacon",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
+    "BASE_DATE": "5/28/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "9/2/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191521,
+    "CUSTOMER_NAME": "Patricks Pub (P)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
+    "BASE_DATE": "7/2/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1, Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "8/27/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191601,
+    "CUSTOMER_NAME": "Stoll Street Tavern",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x11",
+    "BASE_DATE": "7/23/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "8/20/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191618,
+    "CUSTOMER_NAME": "Polo's Bar And Grill",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x5",
+    "BASE_DATE": "7/22/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x7",
+    "DONE_DATE": "9/10/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191704,
+    "CUSTOMER_NAME": "Stonewood Tavern",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
+    "BASE_DATE": "6/26/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DATE": "8/7/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191718,
+    "CUSTOMER_NAME": "Bell's Mansion",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
+    "BASE_DATE": "7/15/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DATE": "8/26/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191719,
+    "CUSTOMER_NAME": "American Lgn Stanhope",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x18",
+    "BASE_DATE": "7/23/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x5",
+    "DONE_DATE": "8/14/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 230103,
+    "CUSTOMER_NAME": "St.Moritz Grill & Bar",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
+    "BASE_DATE": "7/7/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 230111,
+    "CUSTOMER_NAME": "Rock Island Lake Club",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
+    "BASE_DATE": "7/23/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "9/15/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 230113,
+    "CUSTOMER_NAME": "Industry",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "6/5/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 230123,
+    "CUSTOMER_NAME": "Sparta Lanes (Pino)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
+    "BASE_DATE": "7/2/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DATE": "8/26/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 230304,
+    "CUSTOMER_NAME": "Mc Q's Pub (P)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x8",
+    "BASE_DATE": "7/22/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x6",
+    "DONE_DATE": "8/3/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 230306,
+    "CUSTOMER_NAME": "AG Pizza & Restaurant - Newton",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1, Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "5/26/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "8/18/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 230312,
+    "CUSTOMER_NAME": "Skyland Baseball",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
+    "BASE_DATE": "6/4/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 230402,
+    "CUSTOMER_NAME": "Bella Italio Rest.(P)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
+    "BASE_DATE": "7/23/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 230405,
+    "CUSTOMER_NAME": "Sheridan Lodge (P)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
+    "BASE_DATE": "7/22/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DATE": "8/26/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 230406,
+    "CUSTOMER_NAME": "Bearbrook Valley",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
+    "BASE_DATE": "6/3/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 230407,
+    "CUSTOMER_NAME": "Fountain House (Z)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "6/5/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1",
+    "DONE_DATE": "10/1/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 230424,
+    "CUSTOMER_NAME": "Moose Lodge 432",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
+    "BASE_DATE": "6/17/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "8/19/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 230430,
+    "CUSTOMER_NAME": "Applebee's Grill(A)Newton",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x7",
+    "BASE_DATE": "7/16/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
+    "DONE_DATE": "8/7/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 230702,
+    "CUSTOMER_NAME": "Hyde-Away Rest & Tap Room",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "6/11/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1",
+    "DONE_DATE": "8/20/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 231601,
+    "CUSTOMER_NAME": "Farmstead Golf (P)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x6",
+    "BASE_DATE": "7/23/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DATE": "9/15/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 231606,
+    "CUSTOMER_NAME": "The Lafayette House",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x12",
+    "BASE_DATE": "7/24/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x6",
+    "DONE_DATE": "8/13/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 231713,
+    "CUSTOMER_NAME": "Flatbrook Tap House (P)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
+    "BASE_DATE": "7/16/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DATE": "9/2/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 231714,
+    "CUSTOMER_NAME": "Mountain House Tav & Gril",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x6",
+    "BASE_DATE": "7/21/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x5",
+    "DONE_DATE": "8/4/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 231715,
+    "CUSTOMER_NAME": "Gyp's Tavern",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
+    "BASE_DATE": "7/21/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x5",
+    "DONE_DATE": "8/12/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 231719,
+    "CUSTOMER_NAME": "Layton Tavern",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
+    "BASE_DATE": "6/23/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "9/4/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Fiesta",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 2.3 CE (Boston Beer list)",
-    "BASE_DATE": "",
+    "CUSTOMER_NUM": 35009,
+    "CUSTOMER_NAME": "Fiesta (A)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "6/26/2026",
     "DONE": 0,
     "DONE_DETAIL": "",
     "DONE_DATE": ""
@@ -1361,12 +1361,12 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 47005,
-    "CUSTOMER_NAME": "Exquisite W & L (A)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
-    "BASE_DATE": "6/12/2026",
+    "CUSTOMER_NUM": 76014,
+    "CUSTOMER_NAME": "Que Pasta (A)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
+    "BASE_DATE": "4/9/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1",
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
     "DONE_DATE": "9/1/2026"
   },
   {
@@ -1381,10 +1381,20 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
+    "CUSTOMER_NUM": 44027,
+    "CUSTOMER_NAME": "354 Steakhouse (A)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x3",
+    "BASE_DATE": "7/9/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
+    "DONE_DATE": "9/8/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 49016,
     "CUSTOMER_NAME": "Ipic Theaters",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
-    "BASE_DATE": "6/19/2026",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
+    "BASE_DATE": "7/22/2026",
     "DONE": 1,
     "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
     "DONE_DATE": "8/4/2026"
@@ -1400,44 +1410,24 @@
     "DONE_DATE": "9/15/2026"
   },
   {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44027,
-    "CUSTOMER_NAME": "354 Steakhouse (A)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x3",
-    "BASE_DATE": "7/9/2026",
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "CUSTOMER_NUM": 230121,
+    "CUSTOMER_NAME": "White Deer Inn",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "7/1/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
-    "DONE_DATE": "9/8/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 14007,
-    "CUSTOMER_NAME": "Total Wine & More (Totowa)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x2",
-    "BASE_DATE": "6/17/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2, Octoberfest 5.2 Gal Keg x17",
-    "DONE_DATE": "8/5/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 58001,
-    "CUSTOMER_NAME": "Total Wine & More (River Edge)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x2",
-    "BASE_DATE": "6/26/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x13",
-    "DONE_DATE": "9/4/2026"
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1",
+    "DONE_DATE": "9/30/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "CUSTOMER_NUM": 230412,
-    "CUSTOMER_NAME": "USA Wine Traders Club Of Newton (A)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2, Summer Ale 5.2 Gal Keg x2",
-    "BASE_DATE": "6/1/2026",
+    "CUSTOMER_NUM": 231203,
+    "CUSTOMER_NAME": "The George Inn",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
+    "BASE_DATE": "6/30/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "10/5/2026"
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
+    "DONE_DATE": "9/1/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -1463,51 +1453,21 @@
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 42014,
     "CUSTOMER_NAME": "Segovia Steak House(A)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x4",
-    "BASE_DATE": "7/10/2026",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x5",
+    "BASE_DATE": "7/23/2026",
     "DONE": 1,
     "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x4",
     "DONE_DATE": "8/5/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 83011,
-    "CUSTOMER_NAME": "Stone & Rail",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1, Summer Ale 5.2 Gal Keg x1",
-    "BASE_DATE": "5/21/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "10/1/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 84015,
-    "CUSTOMER_NAME": "The Office 2131 Ridgewood",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
-    "BASE_DATE": "7/16/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "8/13/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 84012,
-    "CUSTOMER_NAME": "Bareburger (Ridgewood)",
+    "CUSTOMER_NUM": 83005,
+    "CUSTOMER_NAME": "Glen Rock Inn",
     "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
-    "BASE_DATE": "6/3/2026",
+    "BASE_DATE": "6/2/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "8/19/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 19009,
-    "CUSTOMER_NAME": "Diamond Liquor",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x4",
-    "BASE_DATE": "7/7/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "8/21/2026"
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
+    "DONE_DATE": "8/26/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -1521,16 +1481,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 83005,
-    "CUSTOMER_NAME": "Glen Rock Inn",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
-    "BASE_DATE": "6/2/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "8/26/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 83009,
     "CUSTOMER_NAME": "Jalapeno Mex. Grille(A)",
     "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x5",
@@ -1538,6 +1488,16 @@
     "DONE": 1,
     "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x3",
     "DONE_DATE": "8/4/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "CUSTOMER_NUM": 83011,
+    "CUSTOMER_NAME": "Stone & Rail",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1, Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "5/21/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "10/1/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -1550,444 +1510,34 @@
     "DONE_DATE": "8/4/2026"
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 28009,
-    "CUSTOMER_NAME": "1 Republik",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
-    "BASE_DATE": "7/2/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "American Legion #",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 2.3 CE (Boston Beer list)",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 49063,
-    "CUSTOMER_NAME": "COV",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
-    "BASE_DATE": "7/16/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 94012,
-    "CUSTOMER_NAME": "Holiday Bowl",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
-    "BASE_DATE": "6/26/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Ruths Chris Steak House #7364",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 13.8 CE (Boston Beer list)",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31055,
-    "CUSTOMER_NAME": "The Game Room",
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "CUSTOMER_NUM": 84012,
+    "CUSTOMER_NAME": "Bareburger (Ridgewood)",
     "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
-    "BASE_DATE": "6/29/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 37034,
-    "CUSTOMER_NAME": "Blackjack Mulligans(P) (Garfield)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
-    "BASE_DATE": "7/2/2026",
+    "BASE_DATE": "6/3/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "8/10/2026"
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "8/19/2026"
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 80054,
-    "CUSTOMER_NAME": "Chili's Paramus",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
-    "BASE_DATE": "6/26/2026",
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "CUSTOMER_NUM": 84015,
+    "CUSTOMER_NAME": "The Office 2131 Ridgewood",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
+    "BASE_DATE": "7/16/2026",
     "DONE": 1,
     "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "8/10/2026"
+    "DONE_DATE": "8/13/2026"
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 80018,
-    "CUSTOMER_NAME": "Millers Paramus Ale House",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x10",
-    "BASE_DATE": "7/15/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x9",
-    "DONE_DATE": "8/11/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 49004,
-    "CUSTOMER_NAME": "Dino's Bar & Grill",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "CUSTOMER_NUM": 84022,
+    "CUSTOMER_NAME": "Park West Tavern",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x6",
     "BASE_DATE": "7/8/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "8/12/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 79001,
-    "CUSTOMER_NAME": "Victor's Maywood Inn",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
-    "BASE_DATE": "6/26/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x9",
-    "DONE_DATE": "8/13/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 88003,
-    "CUSTOMER_NAME": "W's Village Grille",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
-    "BASE_DATE": "7/2/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
-    "DONE_DATE": "8/13/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 77003,
-    "CUSTOMER_NAME": "Blue 42 Restaurant & Bar",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x8, Summer Ale 5.2 Gal Keg x3",
-    "BASE_DATE": "6/30/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x9, Octoberfest 5.2 Gal Keg x1",
-    "DONE_DATE": "8/14/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 92004,
-    "CUSTOMER_NAME": "Brothers Smokehouse",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x7, Summer Ale 15.5 Gal Keg x1",
-    "BASE_DATE": "7/10/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x9",
-    "DONE_DATE": "8/14/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 93007,
-    "CUSTOMER_NAME": "Rp Prime Restaurant",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x5",
-    "BASE_DATE": "6/18/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x5",
-    "DONE_DATE": "8/14/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 34002,
-    "CUSTOMER_NAME": "Heights Bar (P)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
-    "BASE_DATE": "5/13/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "8/17/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 96005,
-    "CUSTOMER_NAME": "The Brick House (P)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x8",
-    "BASE_DATE": "6/19/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x4",
-    "DONE_DATE": "8/17/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31039,
-    "CUSTOMER_NAME": "Yard House 8390",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
-    "BASE_DATE": "6/30/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x7",
-    "DONE_DATE": "8/18/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31059,
-    "CUSTOMER_NAME": "Apres Cafe",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
-    "BASE_DATE": "6/11/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "8/18/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 29045,
-    "CUSTOMER_NAME": "Teros Snack Bar",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x2",
-    "BASE_DATE": "6/11/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x3",
-    "DONE_DATE": "8/19/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31011,
-    "CUSTOMER_NAME": "Blarney Station",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x6",
-    "BASE_DATE": "7/15/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "8/19/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 80007,
-    "CUSTOMER_NAME": "The Orange Lantern",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
-    "BASE_DATE": "4/22/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "8/19/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 80012,
-    "CUSTOMER_NAME": "California Pizza Paramus",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
-    "BASE_DATE": "6/9/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "8/19/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 92010,
-    "CUSTOMER_NAME": "Houlihan's Ramsey",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
-    "BASE_DATE": "7/16/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
-    "DONE_DATE": "8/19/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 93014,
-    "CUSTOMER_NAME": "Double Tree By Hilton",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
-    "BASE_DATE": "7/2/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "8/19/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31023,
-    "CUSTOMER_NAME": "Applebee's Garfield (A)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
-    "BASE_DATE": "7/2/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "8/20/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 41016,
-    "CUSTOMER_NAME": "Cheesecake Fact (A)Hacken",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x6",
-    "BASE_DATE": "7/9/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
-    "DONE_DATE": "8/20/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 49022,
-    "CUSTOMER_NAME": "El asadero Mexican Grill (Fort Lee)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x3",
-    "BASE_DATE": "7/10/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
-    "DONE_DATE": "8/21/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 96007,
-    "CUSTOMER_NAME": "The Original Barn",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x5",
-    "BASE_DATE": "7/1/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x4",
-    "DONE_DATE": "8/21/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 37005,
-    "CUSTOMER_NAME": "Charlies Tav(Z)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x5",
-    "BASE_DATE": "7/15/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x3",
-    "DONE_DATE": "8/26/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31028,
-    "CUSTOMER_NAME": "The Union Bar & Provisions",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
-    "BASE_DATE": "7/15/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "8/27/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 42003,
-    "CUSTOMER_NAME": "Whiskey Roads",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
-    "BASE_DATE": "7/7/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1, Octoberfest 5.2 Gal Keg x1",
-    "DONE_DATE": "8/27/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 28024,
-    "CUSTOMER_NAME": "N Arlington Bowl O Drome",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x17",
-    "BASE_DATE": "7/16/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x15",
-    "DONE_DATE": "8/3/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 29014,
-    "CUSTOMER_NAME": "Bar 503",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
-    "BASE_DATE": "6/26/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
-    "DONE_DATE": "8/3/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 32012,
-    "CUSTOMER_NAME": "The Local Pub",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
-    "BASE_DATE": "6/15/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "8/3/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 92007,
-    "CUSTOMER_NAME": "Brady's At(A)The Station",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x9",
-    "BASE_DATE": "7/16/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x10",
-    "DONE_DATE": "8/3/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31026,
-    "CUSTOMER_NAME": "Rockafella's",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1, Summer Ale 5.2 Gal Keg x1",
-    "BASE_DATE": "6/26/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1, Octoberfest 5.2 Gal Keg x1",
-    "DONE_DATE": "8/31/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 78007,
-    "CUSTOMER_NAME": "Woodstone Pizza B & G",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
-    "BASE_DATE": "6/30/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "8/31/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31027,
-    "CUSTOMER_NAME": "New Park Tav (A)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x10",
-    "BASE_DATE": "7/14/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x11",
-    "DONE_DATE": "8/4/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 32008,
-    "CUSTOMER_NAME": "Steve's Bar & Grill (A)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x22",
-    "BASE_DATE": "7/15/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x17",
-    "DONE_DATE": "8/4/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 38020,
-    "CUSTOMER_NAME": "Lodi Lanes (A)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
-    "BASE_DATE": "7/9/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "8/4/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 49059,
-    "CUSTOMER_NAME": "Outback Steakhouse(Z)Edg",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5, Summer Ale 5.2 Gal Keg x1",
-    "BASE_DATE": "6/25/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "8/4/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 49085,
-    "CUSTOMER_NAME": "Tommy's Tavern + Tap (Edgewater)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x8",
-    "BASE_DATE": "7/14/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x5",
-    "DONE_DATE": "8/4/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 92006,
-    "CUSTOMER_NAME": "Chili's Ramsey (A)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1, Summer Ale 5.2 Gal Keg x7",
-    "BASE_DATE": "6/26/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
-    "DONE_DATE": "8/4/2026"
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2, Octoberfest 5.2 Gal Keg x3",
+    "DONE_DATE": "9/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -2001,283 +1551,23 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 29035,
-    "CUSTOMER_NAME": "Marty Gra's (A)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
-    "BASE_DATE": "7/8/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x6",
-    "DONE_DATE": "8/5/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 30026,
-    "CUSTOMER_NAME": "Simulcast",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
-    "BASE_DATE": "7/9/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "8/5/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31020,
-    "CUSTOMER_NAME": "Chili's B & G E Rutherfor",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
-    "BASE_DATE": "7/14/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "8/5/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31052,
-    "CUSTOMER_NAME": "Mozzarella Bar",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x6",
-    "BASE_DATE": "7/2/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x5",
-    "DONE_DATE": "8/5/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 39017,
-    "CUSTOMER_NAME": "Bj's Rest & Brewhouse(A)",
+    "CUSTOMER_NUM": 28009,
+    "CUSTOMER_NAME": "1 Republik",
     "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
     "BASE_DATE": "7/2/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "8/5/2026"
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 39018,
-    "CUSTOMER_NAME": "Texas Roadhouse",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x9",
-    "BASE_DATE": "6/30/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x11",
-    "DONE_DATE": "8/5/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 78014,
-    "CUSTOMER_NAME": "Longhorn Steak Rochele Pk",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x16",
-    "BASE_DATE": "7/2/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x11",
-    "DONE_DATE": "8/5/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 78016,
-    "CUSTOMER_NAME": "Outback Stk Hse Roch Pk",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
-    "BASE_DATE": "5/27/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "8/5/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 88002,
-    "CUSTOMER_NAME": "Nellie's Place (P)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x8",
-    "BASE_DATE": "7/8/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x6",
-    "DONE_DATE": "8/5/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 89002,
-    "CUSTOMER_NAME": "Allendale Bar & Grill",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x12",
-    "BASE_DATE": "7/15/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x9",
-    "DONE_DATE": "8/5/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 92014,
-    "CUSTOMER_NAME": "Ramsey Country Clb",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x23, Summer Ale 15.5 Gal Keg x5",
-    "BASE_DATE": "7/15/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4, Octoberfest 5.2 Gal Keg x5",
-    "DONE_DATE": "8/5/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 93008,
-    "CUSTOMER_NAME": "Nonna's Pizza",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
-    "BASE_DATE": "5/15/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x3",
-    "DONE_DATE": "8/5/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 96010,
-    "CUSTOMER_NAME": "Aldo's Italian Rest(Z)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x4",
-    "BASE_DATE": "7/1/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x3",
-    "DONE_DATE": "8/5/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 80061,
-    "CUSTOMER_NAME": "The Green Lounge",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x4",
-    "BASE_DATE": "7/3/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x4",
-    "DONE_DATE": "8/6/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 92002,
-    "CUSTOMER_NAME": "Anthony's CF Pizza (A) (Ramsey)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x12",
-    "BASE_DATE": "6/30/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x8",
-    "DONE_DATE": "8/6/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 92012,
-    "CUSTOMER_NAME": "The Shannon Rose/Ramsey",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x8",
+    "CUSTOMER_NUM": 28024,
+    "CUSTOMER_NAME": "N Arlington Bowl O Drome",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x17",
     "BASE_DATE": "7/16/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x8",
-    "DONE_DATE": "8/6/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 93004,
-    "CUSTOMER_NAME": "Mahwah B & G (A)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x10",
-    "BASE_DATE": "7/9/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x6",
-    "DONE_DATE": "8/6/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 94002,
-    "CUSTOMER_NAME": "Trovato's Due (Z)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x5",
-    "BASE_DATE": "7/1/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
-    "DONE_DATE": "8/6/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 94013,
-    "CUSTOMER_NAME": "Portobello Feasts",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
-    "BASE_DATE": "6/18/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "8/6/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 78017,
-    "CUSTOMER_NAME": "El Asadero Mexican Grill (Rochelle Park)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
-    "BASE_DATE": "4/24/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
-    "DONE_DATE": "8/7/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 80013,
-    "CUSTOMER_NAME": "Bonefish Grill (A) (Paramus)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x6",
-    "BASE_DATE": "7/17/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
-    "DONE_DATE": "8/7/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 80024,
-    "CUSTOMER_NAME": "Applebee's Paramus",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
-    "BASE_DATE": "7/9/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "9/10/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 85003,
-    "CUSTOMER_NAME": "Arturo's Restaurnt",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x3",
-    "BASE_DATE": "6/26/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1",
-    "DONE_DATE": "9/11/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 93002,
-    "CUSTOMER_NAME": "Roxanne's A)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
-    "BASE_DATE": "6/12/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "9/11/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 41033,
-    "CUSTOMER_NAME": "Applebee's (A) Hackensack",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
-    "BASE_DATE": "6/19/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "9/17/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 29036,
-    "CUSTOMER_NAME": "Mr.Bruno's",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
-    "BASE_DATE": "4/2/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1",
-    "DONE_DATE": "9/18/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31049,
-    "CUSTOMER_NAME": "Marcus Live Bar & Grille",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x12",
-    "BASE_DATE": "7/15/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x3",
-    "DONE_DATE": "9/21/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 37070,
-    "CUSTOMER_NAME": "The Hive Bar & Bistro",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
-    "BASE_DATE": "4/8/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "9/22/2026"
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x15",
+    "DONE_DATE": "8/3/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -2291,13 +1581,153 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 37011,
-    "CUSTOMER_NAME": "The Firehouse",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
-    "BASE_DATE": "7/10/2026",
+    "CUSTOMER_NUM": 29014,
+    "CUSTOMER_NAME": "Bar 503",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "6/26/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
+    "DONE_DATE": "8/3/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 29035,
+    "CUSTOMER_NAME": "Marty Gra's (A)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
+    "BASE_DATE": "7/8/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x6",
+    "DONE_DATE": "8/5/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 29036,
+    "CUSTOMER_NAME": "Mr.Bruno's",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "4/2/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1",
+    "DONE_DATE": "9/18/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 29045,
+    "CUSTOMER_NAME": "Teros Snack Bar",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x2",
+    "BASE_DATE": "6/11/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x3",
+    "DONE_DATE": "8/19/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 30026,
+    "CUSTOMER_NAME": "Simulcast",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
+    "BASE_DATE": "7/9/2026",
     "DONE": 1,
     "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "9/28/2026"
+    "DONE_DATE": "8/5/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 31011,
+    "CUSTOMER_NAME": "Blarney Station",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x7",
+    "BASE_DATE": "7/23/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x3, Octoberfest 15.5 Gal Keg x4",
+    "DONE_DATE": "8/19/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 31020,
+    "CUSTOMER_NAME": "Chili's B & G E Rutherfor",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
+    "BASE_DATE": "7/14/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
+    "DONE_DATE": "8/5/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 31023,
+    "CUSTOMER_NAME": "Applebee's Garfield (A)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
+    "BASE_DATE": "7/23/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DATE": "8/20/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 31026,
+    "CUSTOMER_NAME": "Rockafella's",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1, Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "6/26/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1, Octoberfest 5.2 Gal Keg x1",
+    "DONE_DATE": "8/31/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 31027,
+    "CUSTOMER_NAME": "New Park Tav (A)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x11",
+    "BASE_DATE": "7/21/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x11",
+    "DONE_DATE": "8/4/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 31028,
+    "CUSTOMER_NAME": "The Union Bar & Provisions",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
+    "BASE_DATE": "7/15/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DATE": "8/27/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 31039,
+    "CUSTOMER_NAME": "Yard House 8390",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
+    "BASE_DATE": "6/30/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x7",
+    "DONE_DATE": "8/18/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 31049,
+    "CUSTOMER_NAME": "Marcus Live Bar & Grille",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x12",
+    "BASE_DATE": "7/15/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x3",
+    "DONE_DATE": "9/21/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 31052,
+    "CUSTOMER_NAME": "Mozzarella Bar",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x7",
+    "BASE_DATE": "7/23/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x6",
+    "DONE_DATE": "8/5/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 31055,
+    "CUSTOMER_NAME": "The Game Room",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
+    "BASE_DATE": "6/29/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -2311,13 +1741,283 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 31059,
+    "CUSTOMER_NAME": "Apres Cafe",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
+    "BASE_DATE": "6/11/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "8/18/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 32005,
     "CUSTOMER_NAME": "Biggies (A)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
-    "BASE_DATE": "7/9/2026",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
+    "BASE_DATE": "7/23/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
+    "DONE_DATE": "9/3/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 32008,
+    "CUSTOMER_NAME": "Steve's Bar & Grill (A)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x23",
+    "BASE_DATE": "7/22/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x17",
+    "DONE_DATE": "8/4/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 32012,
+    "CUSTOMER_NAME": "The Local Pub",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
+    "BASE_DATE": "6/15/2026",
     "DONE": 1,
     "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "9/3/2026"
+    "DONE_DATE": "8/3/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 34002,
+    "CUSTOMER_NAME": "Heights Bar (P)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
+    "BASE_DATE": "5/13/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "8/17/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 37005,
+    "CUSTOMER_NAME": "Charlies Tav(Z)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x5",
+    "BASE_DATE": "7/15/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x3",
+    "DONE_DATE": "8/26/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 37011,
+    "CUSTOMER_NAME": "The Firehouse",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
+    "BASE_DATE": "7/10/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "9/28/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 37034,
+    "CUSTOMER_NAME": "Blackjack Mulligans(P) (Garfield)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
+    "BASE_DATE": "7/2/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DATE": "8/10/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 37070,
+    "CUSTOMER_NAME": "The Hive Bar & Bistro",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x2",
+    "BASE_DATE": "7/21/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "9/22/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 38020,
+    "CUSTOMER_NAME": "Lodi Lanes (A)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
+    "BASE_DATE": "7/9/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DATE": "8/4/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 39017,
+    "CUSTOMER_NAME": "Bj's Rest & Brewhouse(A)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
+    "BASE_DATE": "7/2/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DATE": "8/5/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 39018,
+    "CUSTOMER_NAME": "Texas Roadhouse",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x10",
+    "BASE_DATE": "7/21/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x11",
+    "DONE_DATE": "8/5/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 41016,
+    "CUSTOMER_NAME": "Cheesecake Fact (A)Hacken",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x7",
+    "BASE_DATE": "7/23/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
+    "DONE_DATE": "8/20/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 41033,
+    "CUSTOMER_NAME": "Applebee's (A) Hackensack",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
+    "BASE_DATE": "6/19/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "9/17/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 42003,
+    "CUSTOMER_NAME": "Whiskey Roads",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "7/7/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1, Octoberfest 5.2 Gal Keg x1",
+    "DONE_DATE": "8/27/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 49004,
+    "CUSTOMER_NAME": "Dino's Bar & Grill",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
+    "BASE_DATE": "7/22/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
+    "DONE_DATE": "8/12/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 49022,
+    "CUSTOMER_NAME": "El asadero Mexican Grill (Fort Lee)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x3",
+    "BASE_DATE": "7/10/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
+    "DONE_DATE": "8/21/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 49059,
+    "CUSTOMER_NAME": "Outback Steakhouse(Z)Edg",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5, Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "6/25/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
+    "DONE_DATE": "8/4/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 49063,
+    "CUSTOMER_NAME": "COV",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
+    "BASE_DATE": "7/16/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 49085,
+    "CUSTOMER_NAME": "Tommy's Tavern + Tap (Edgewater)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x8",
+    "BASE_DATE": "7/14/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x6",
+    "DONE_DATE": "8/4/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 77003,
+    "CUSTOMER_NAME": "Blue 42 Restaurant & Bar",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x7, Summer Ale 5.2 Gal Keg x3",
+    "BASE_DATE": "6/30/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2, Octoberfest 15.5 Gal Keg x10",
+    "DONE_DATE": "8/14/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 78007,
+    "CUSTOMER_NAME": "Woodstone Pizza B & G",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
+    "BASE_DATE": "8/10/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "8/31/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 78014,
+    "CUSTOMER_NAME": "Longhorn Steak Rochele Pk",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x18",
+    "BASE_DATE": "7/24/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x11",
+    "DONE_DATE": "8/5/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 78016,
+    "CUSTOMER_NAME": "Outback Stk Hse Roch Pk",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
+    "BASE_DATE": "7/21/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DATE": "8/5/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 78017,
+    "CUSTOMER_NAME": "El Asadero Mexican Grill (Rochelle Park)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
+    "BASE_DATE": "4/24/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
+    "DONE_DATE": "8/7/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 79001,
+    "CUSTOMER_NAME": "Victor's Maywood Inn",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
+    "BASE_DATE": "6/26/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x9",
+    "DONE_DATE": "8/13/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 79010,
+    "CUSTOMER_NAME": "Ruth's Chris Steakhouse (Maywood)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x6",
+    "BASE_DATE": "7/10/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
+    "DONE_DATE": "10/6/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 80007,
+    "CUSTOMER_NAME": "The Orange Lantern",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
+    "BASE_DATE": "7/21/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DATE": "8/19/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -2330,21 +2030,461 @@
     "DONE_DATE": "9/3/2026"
   },
   {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 80012,
+    "CUSTOMER_NAME": "California Pizza Paramus",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
+    "BASE_DATE": "7/23/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DATE": "8/19/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 80013,
+    "CUSTOMER_NAME": "Bonefish Grill (A) (Paramus)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x6",
+    "BASE_DATE": "7/17/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x5",
+    "DONE_DATE": "8/7/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 80018,
+    "CUSTOMER_NAME": "Millers Paramus Ale House",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x10",
+    "BASE_DATE": "7/15/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x10",
+    "DONE_DATE": "8/11/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 80024,
+    "CUSTOMER_NAME": "Applebee's Paramus",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
+    "BASE_DATE": "7/9/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DATE": "9/10/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 80054,
+    "CUSTOMER_NAME": "Chili's Paramus",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
+    "BASE_DATE": "6/26/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DATE": "8/10/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 80061,
+    "CUSTOMER_NAME": "The Green Lounge",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x4",
+    "BASE_DATE": "7/3/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x4",
+    "DONE_DATE": "8/6/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 85003,
+    "CUSTOMER_NAME": "Arturo's Restaurnt",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x3",
+    "BASE_DATE": "6/26/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1",
+    "DONE_DATE": "9/11/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 88002,
+    "CUSTOMER_NAME": "Nellie's Place (P)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x9",
+    "BASE_DATE": "7/22/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x7",
+    "DONE_DATE": "8/5/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 88003,
+    "CUSTOMER_NAME": "W's Village Grille",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
+    "BASE_DATE": "7/2/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
+    "DONE_DATE": "8/13/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 88008,
+    "CUSTOMER_NAME": "American Lgn (P) (Waldwick)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "7/13/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 89002,
+    "CUSTOMER_NAME": "Allendale Bar & Grill",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x13",
+    "BASE_DATE": "7/22/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x10",
+    "DONE_DATE": "8/5/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 92002,
+    "CUSTOMER_NAME": "Anthony's CF Pizza (A) (Ramsey)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x14",
+    "BASE_DATE": "7/22/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x8",
+    "DONE_DATE": "8/6/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 92004,
+    "CUSTOMER_NAME": "Brothers Smokehouse",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x7, Summer Ale 15.5 Gal Keg x1",
+    "BASE_DATE": "7/10/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x10",
+    "DONE_DATE": "8/14/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 92006,
+    "CUSTOMER_NAME": "Chili's Ramsey (A)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1, Summer Ale 5.2 Gal Keg x7",
+    "BASE_DATE": "6/26/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
+    "DONE_DATE": "8/4/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 92007,
+    "CUSTOMER_NAME": "Brady's At(A)The Station",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x9",
+    "BASE_DATE": "7/16/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x10",
+    "DONE_DATE": "8/3/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 92010,
+    "CUSTOMER_NAME": "Houlihan's Ramsey",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
+    "BASE_DATE": "7/16/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
+    "DONE_DATE": "8/19/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 92012,
+    "CUSTOMER_NAME": "The Shannon Rose/Ramsey",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x8",
+    "BASE_DATE": "7/16/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x8",
+    "DONE_DATE": "8/6/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 92014,
+    "CUSTOMER_NAME": "Ramsey Country Clb",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x23, Summer Ale 15.5 Gal Keg x5",
+    "BASE_DATE": "7/15/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4, Octoberfest 5.2 Gal Keg x5",
+    "DONE_DATE": "8/5/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 93002,
+    "CUSTOMER_NAME": "Roxanne's A)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
+    "BASE_DATE": "8/7/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DATE": "9/11/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 93004,
+    "CUSTOMER_NAME": "Mahwah B & G (A)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x10",
+    "BASE_DATE": "7/9/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x6",
+    "DONE_DATE": "8/6/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 93007,
+    "CUSTOMER_NAME": "Rp Prime Restaurant",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x6",
+    "BASE_DATE": "7/22/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x5",
+    "DONE_DATE": "8/14/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 93008,
+    "CUSTOMER_NAME": "Nonna's Pizza",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "5/15/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x3",
+    "DONE_DATE": "8/5/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 93014,
+    "CUSTOMER_NAME": "Double Tree By Hilton",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
+    "BASE_DATE": "7/2/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DATE": "8/19/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 94002,
+    "CUSTOMER_NAME": "Trovato's Due (Z)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x5",
+    "BASE_DATE": "7/1/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
+    "DONE_DATE": "8/6/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 94009,
+    "CUSTOMER_NAME": "Oakland Diner",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x6",
+    "BASE_DATE": "6/4/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x3",
+    "DONE_DATE": "9/3/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 94012,
+    "CUSTOMER_NAME": "Holiday Bowl",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
+    "BASE_DATE": "6/26/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 94013,
+    "CUSTOMER_NAME": "Portobello Feasts",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
+    "BASE_DATE": "8/13/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "8/6/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 96005,
+    "CUSTOMER_NAME": "The Brick House (P)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x10",
+    "BASE_DATE": "7/31/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x4",
+    "DONE_DATE": "8/17/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 96007,
+    "CUSTOMER_NAME": "The Original Barn",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x5",
+    "BASE_DATE": "7/1/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x5",
+    "DONE_DATE": "8/21/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 96010,
+    "CUSTOMER_NAME": "Aldo's Italian Rest(Z)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x4",
+    "BASE_DATE": "7/1/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x4",
+    "DONE_DATE": "8/5/2026"
+  },
+  {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Andiamos",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 4.6 CE (Boston Beer list)",
-    "BASE_DATE": "",
+    "CUSTOMER_NUM": 29051,
+    "CUSTOMER_NAME": "Medieval Times",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x88",
+    "BASE_DATE": "7/28/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x54",
+    "DONE_DATE": "8/13/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 36015,
+    "CUSTOMER_NAME": "Wallington Lane (Bowlero)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
+    "BASE_DATE": "7/1/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DATE": "8/5/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 39010,
+    "CUSTOMER_NAME": "Players Club (Z)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x2",
+    "BASE_DATE": "6/30/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
+    "DONE_DATE": "9/1/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 40005,
+    "CUSTOMER_NAME": "Lazy Lanigans (A)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
+    "BASE_DATE": "7/17/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DATE": "8/14/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 40008,
+    "CUSTOMER_NAME": "Tavern 61 (Z)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x4",
+    "BASE_DATE": "7/9/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x5",
+    "DONE_DATE": "8/31/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 41006,
+    "CUSTOMER_NAME": "Straphanger Saloon (A)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
+    "BASE_DATE": "7/10/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "10/2/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 41023,
+    "CUSTOMER_NAME": "The Whiskey Priest (Hackensack)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
+    "BASE_DATE": "7/21/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DATE": "9/1/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 50001,
+    "CUSTOMER_NAME": "Andy's Corner (Z)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "6/4/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1",
+    "DONE_DATE": "9/9/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 50006,
+    "CUSTOMER_NAME": "Cozy Tavern (P)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x2",
+    "BASE_DATE": "6/10/2026",
     "DONE": 0,
     "DONE_DETAIL": "",
     "DONE_DATE": ""
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Aumm Aumm At The Brownstone",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 13.8 CE (Boston Beer list)",
-    "BASE_DATE": "",
+    "CUSTOMER_NUM": 50008,
+    "CUSTOMER_NAME": "101 Pub (A)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
+    "BASE_DATE": "7/21/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DATE": "8/24/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 50015,
+    "CUSTOMER_NAME": "PUB 178",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
+    "BASE_DATE": "5/18/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "9/22/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 50018,
+    "CUSTOMER_NAME": "Debonair Music Hall",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x7",
+    "BASE_DATE": "7/10/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x3",
+    "DONE_DATE": "8/21/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 51014,
+    "CUSTOMER_NAME": "Marriott (A) Teaneck",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
+    "BASE_DATE": "6/1/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DATE": "8/18/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 52003,
+    "CUSTOMER_NAME": "Cassies (A)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x4",
+    "BASE_DATE": "6/19/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
+    "DONE_DATE": "8/14/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 52018,
+    "CUSTOMER_NAME": "Aumm Aumm @The Brownstone",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x6",
+    "BASE_DATE": "7/23/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 54011,
+    "CUSTOMER_NAME": "Knickerbocker Golf (P)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x9",
+    "BASE_DATE": "7/24/2026",
     "DONE": 0,
     "DONE_DETAIL": "",
     "DONE_DATE": ""
@@ -2361,23 +2501,83 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Bareburger",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 13.8 CE (Boston Beer list)",
-    "BASE_DATE": "",
+    "CUSTOMER_NUM": 55005,
+    "CUSTOMER_NAME": "Cresskill Tavern",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "6/18/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x3",
+    "DONE_DATE": "8/17/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 56009,
+    "CUSTOMER_NAME": "Tommy Fox's Pub Hse(P)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
+    "BASE_DATE": "7/3/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DATE": "8/20/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 57004,
+    "CUSTOMER_NAME": "River & Henley",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
+    "BASE_DATE": "7/22/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DATE": "9/23/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 59006,
+    "CUSTOMER_NAME": "The Oak House",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x6",
+    "BASE_DATE": "7/16/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x5",
+    "DONE_DATE": "8/12/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 60012,
+    "CUSTOMER_NAME": "Grant Street Cafe (A)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
+    "BASE_DATE": "4/24/2026",
     "DONE": 0,
     "DONE_DETAIL": "",
     "DONE_DATE": ""
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Biddy Omalleys Irish Pub",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 20.7 CE (Boston Beer list)",
-    "BASE_DATE": "",
+    "CUSTOMER_NUM": 61004,
+    "CUSTOMER_NAME": "Andiamo",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x2",
+    "BASE_DATE": "6/26/2026",
     "DONE": 0,
     "DONE_DETAIL": "",
     "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 62003,
+    "CUSTOMER_NAME": "Stern And Bow",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x5",
+    "BASE_DATE": "7/24/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x3",
+    "DONE_DATE": "8/21/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 65006,
+    "CUSTOMER_NAME": "Gerry's Place",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
+    "BASE_DATE": "7/2/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DATE": "8/5/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -2391,203 +2591,33 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Cozy Tavern",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 6.9 CE (Boston Beer list)",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Edgewood Country Club",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 9.2 CE (Boston Beer list)",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Grant Street Cafe",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 6.9 CE (Boston Beer list)",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Green Point",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 2.3 CE (Boston Beer list)",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 74012,
-    "CUSTOMER_NAME": "Iron Horse",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
-    "BASE_DATE": "5/12/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Knickerbocker Country Club",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 20.7 CE (Boston Beer list)",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Rockleigh Field Club",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 2.3 CE (Boston Beer list)",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Straphanger Saloon",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 6.9 CE (Boston Beer list)",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 41006,
-    "CUSTOMER_NAME": "Straphanger Saloon (A)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
-    "BASE_DATE": "7/10/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "10/2/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 59006,
-    "CUSTOMER_NAME": "The Oak House",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x6",
-    "BASE_DATE": "7/16/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
-    "DONE_DATE": "8/12/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 29051,
-    "CUSTOMER_NAME": "Medieval Times",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x73",
-    "BASE_DATE": "7/14/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x54",
-    "DONE_DATE": "8/13/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 70008,
-    "CUSTOMER_NAME": "Hearth & Tap Co.",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
-    "BASE_DATE": "7/16/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
-    "DONE_DATE": "8/13/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 40005,
-    "CUSTOMER_NAME": "Lazy Lanigans (A)",
+    "CUSTOMER_NUM": 67010,
+    "CUSTOMER_NAME": "Biddy O'malleys Pub (A)",
     "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
-    "BASE_DATE": "7/17/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "8/14/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 52003,
-    "CUSTOMER_NAME": "Cassies (A)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x4",
-    "BASE_DATE": "6/19/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
-    "DONE_DATE": "8/14/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 55005,
-    "CUSTOMER_NAME": "Cresskill Tavern",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
-    "BASE_DATE": "6/18/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x3",
-    "DONE_DATE": "8/17/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 51014,
-    "CUSTOMER_NAME": "Marriott (A) Teaneck",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
-    "BASE_DATE": "6/1/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "8/18/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 56009,
-    "CUSTOMER_NAME": "Tommy Fox's Pub Hse(P)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
-    "BASE_DATE": "7/3/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "8/20/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 50018,
-    "CUSTOMER_NAME": "Debonair Music Hall",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x7",
-    "BASE_DATE": "7/10/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x3",
-    "DONE_DATE": "8/21/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 62003,
-    "CUSTOMER_NAME": "Stern And Bow",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x4",
     "BASE_DATE": "7/1/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x3",
-    "DONE_DATE": "8/21/2026"
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 50008,
-    "CUSTOMER_NAME": "101 Pub (A)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
-    "BASE_DATE": "6/15/2026",
+    "CUSTOMER_NUM": 67014,
+    "CUSTOMER_NAME": "The Rockleigh C C (P)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "4/16/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 69007,
+    "CUSTOMER_NAME": "Florentine Garden",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x18",
+    "BASE_DATE": "7/23/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "8/24/2026"
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x12",
+    "DONE_DATE": "8/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -2601,6 +2631,126 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 69011,
+    "CUSTOMER_NAME": "Green Point Restaurant",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "7/16/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 69012,
+    "CUSTOMER_NAME": "449 Prime @ Edgewood Country Club",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x4",
+    "BASE_DATE": "6/12/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 70004,
+    "CUSTOMER_NAME": "Davey's Locker (A)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x9, Summer Ale 5.2 Gal Keg x8",
+    "BASE_DATE": "7/10/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x6, Octoberfest 5.2 Gal Keg x9",
+    "DONE_DATE": "8/28/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 70008,
+    "CUSTOMER_NAME": "Hearth & Tap Co.",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
+    "BASE_DATE": "7/16/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
+    "DONE_DATE": "8/13/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 70012,
+    "CUSTOMER_NAME": "Fire & Oak (A)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x14",
+    "BASE_DATE": "7/21/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x7",
+    "DONE_DATE": "9/3/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 71001,
+    "CUSTOMER_NAME": "Peppercorn's",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5, Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "7/22/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
+    "DONE_DATE": "8/28/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 71011,
+    "CUSTOMER_NAME": "Marriott (P) Park Ridge",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
+    "BASE_DATE": "5/27/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DATE": "8/6/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 72002,
+    "CUSTOMER_NAME": "Bareburger (Woodcliff Lake)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
+    "BASE_DATE": "6/29/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 73001,
+    "CUSTOMER_NAME": "Lou's",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1, Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "7/14/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "9/1/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 73002,
+    "CUSTOMER_NAME": "The Cornerstone (P)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x8",
+    "BASE_DATE": "7/9/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x6",
+    "DONE_DATE": "8/7/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 74012,
+    "CUSTOMER_NAME": "Iron Horse",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
+    "BASE_DATE": "5/12/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 75001,
+    "CUSTOMER_NAME": "Emerson Hotel",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
+    "BASE_DATE": "7/15/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "9/16/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 76005,
     "CUSTOMER_NAME": "Midland Brewhouse (A)",
     "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
@@ -2611,52 +2761,12 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 70004,
-    "CUSTOMER_NAME": "Davey's Locker (A)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x9, Summer Ale 5.2 Gal Keg x8",
-    "BASE_DATE": "7/10/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x9, Octoberfest 15.5 Gal Keg x4",
-    "DONE_DATE": "8/28/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 71001,
-    "CUSTOMER_NAME": "Peppercorn's",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4, Summer Ale 5.2 Gal Keg x1",
-    "BASE_DATE": "7/6/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "8/28/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 85001,
-    "CUSTOMER_NAME": "Eleven Central",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
-    "BASE_DATE": "5/19/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "8/28/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 40008,
-    "CUSTOMER_NAME": "Tavern 61 (Z)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x4",
-    "BASE_DATE": "7/9/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x5",
-    "DONE_DATE": "8/31/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 81024,
     "CUSTOMER_NAME": "Anthony's Coal Fired Pizza (Fair Lawn)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x12",
-    "BASE_DATE": "7/15/2026",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x13",
+    "BASE_DATE": "7/22/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x5",
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x6",
     "DONE_DATE": "8/4/2026"
   },
   {
@@ -2671,183 +2781,143 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 36015,
-    "CUSTOMER_NAME": "Wallington Lane (Bowlero)",
+    "CUSTOMER_NUM": 85001,
+    "CUSTOMER_NAME": "Eleven Central",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
+    "BASE_DATE": "5/19/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "8/28/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 10002,
+    "CUSTOMER_NAME": "American Lgn Pequannock 450",
     "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
-    "BASE_DATE": "7/1/2026",
+    "BASE_DATE": "6/16/2026",
     "DONE": 1,
     "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "8/5/2026"
+    "DONE_DATE": "8/18/2026"
   },
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 65006,
-    "CUSTOMER_NAME": "Gerry's Place",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
-    "BASE_DATE": "7/2/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "8/5/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 69007,
-    "CUSTOMER_NAME": "Florentine Garden",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x16",
-    "BASE_DATE": "7/9/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x12",
-    "DONE_DATE": "8/6/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 71011,
-    "CUSTOMER_NAME": "Marriott (P) Park Ridge",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
-    "BASE_DATE": "5/27/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
-    "DONE_DATE": "8/6/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 73002,
-    "CUSTOMER_NAME": "The Cornerstone (P)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x8",
-    "BASE_DATE": "7/9/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x6",
-    "DONE_DATE": "8/7/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 39010,
-    "CUSTOMER_NAME": "Players Club (Z)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x2",
-    "BASE_DATE": "6/30/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
-    "DONE_DATE": "9/1/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 41023,
-    "CUSTOMER_NAME": "The Whiskey Priest (Hackensack)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
-    "BASE_DATE": "7/1/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "9/1/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 73001,
-    "CUSTOMER_NAME": "Lou's",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1, Summer Ale 5.2 Gal Keg x1",
-    "BASE_DATE": "7/14/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "9/1/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 75001,
-    "CUSTOMER_NAME": "Emerson Hotel",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
-    "BASE_DATE": "7/15/2026",
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 12023,
+    "CUSTOMER_NAME": "The Village Inn",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "4/1/2026",
     "DONE": 1,
     "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
     "DONE_DATE": "9/16/2026"
   },
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 50015,
-    "CUSTOMER_NAME": "PUB 178",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
-    "BASE_DATE": "5/18/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "9/22/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 57004,
-    "CUSTOMER_NAME": "River & Henley",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 15081,
+    "CUSTOMER_NAME": "Evolution Restaurant & Bar",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x6",
     "BASE_DATE": "7/10/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "9/23/2026"
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x5",
+    "DONE_DATE": "8/5/2026"
   },
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 70012,
-    "CUSTOMER_NAME": "Fire & Oak (A)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x12",
-    "BASE_DATE": "7/14/2026",
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 190210,
+    "CUSTOMER_NAME": "Matta Donna (Z)",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
+    "BASE_DATE": "5/27/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x4",
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
+    "DONE_DATE": "8/19/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 190710,
+    "CUSTOMER_NAME": "Hilton Garden Inn Rockaway",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x2",
+    "BASE_DATE": "6/23/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
+    "DONE_DATE": "8/28/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 190714,
+    "CUSTOMER_NAME": "Green Pond Yacht Club (Z)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x12",
+    "BASE_DATE": "7/21/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x5",
+    "DONE_DATE": "8/4/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 190908,
+    "CUSTOMER_NAME": "4 Seasons Restaurant",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "7/16/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 190919,
+    "CUSTOMER_NAME": "Amer Lgn Of Wharton 91",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x2",
+    "BASE_DATE": "5/20/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
+    "DONE_DATE": "8/19/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 191403,
+    "CUSTOMER_NAME": "Davy's Dogs",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x4",
+    "BASE_DATE": "6/25/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x3",
+    "DONE_DATE": "8/5/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 192156,
+    "CUSTOMER_NAME": "Hapgoods Restaurant",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x2",
+    "BASE_DATE": "7/23/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 230303,
+    "CUSTOMER_NAME": "Crossed Keys Inn",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1, Summer Ale 15.5 Gal Keg x1",
+    "BASE_DATE": "5/28/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x5",
     "DONE_DATE": "9/3/2026"
   },
   {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 29004,
-    "CUSTOMER_NAME": "Shop-Rite Liq Lyndhurst",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2, Summer Ale 5.2 Gal Keg x2",
-    "BASE_DATE": "7/10/2026",
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 29041,
+    "CUSTOMER_NAME": "Masonic (A) Club",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "7/28/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 29052,
+    "CUSTOMER_NAME": "Polish American Club",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "6/17/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "9/2/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 83010,
-    "CUSTOMER_NAME": "Bottle King (A) Glen Rock",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1, Summer Ale 5.2 Gal Keg x2",
-    "BASE_DATE": "6/4/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x4",
-    "DONE_DATE": "8/27/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "4 Seasons Resturant",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 2.3 CE (Boston Beer list)",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Hapgoods",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 4.6 CE (Boston Beer list)",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Masonic Temple",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 2.3 CE (Boston Beer list)",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Montammy Golf Club",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 4.6 CE (Boston Beer list)",
-    "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1",
+    "DONE_DATE": "9/9/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -2861,20 +2931,70 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Veterans Of Foreign Wars #809",
-    "BASE_DETAIL": "Summer Ale last season \u00b7 2.3 CE (Boston Beer list)",
-    "BASE_DATE": "",
+    "CUSTOMER_NUM": 31022,
+    "CUSTOMER_NAME": "Candlewick",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x5",
+    "BASE_DATE": "7/24/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1",
+    "DONE_DATE": "9/16/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 34000,
+    "CUSTOMER_NAME": "Holiday Inn (Hasbrook Height)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x2",
+    "BASE_DATE": "7/9/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x4",
+    "DONE_DATE": "9/3/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 42007,
+    "CUSTOMER_NAME": "Vfw 809 (P)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "5/21/2026",
     "DONE": 0,
     "DONE_DETAIL": "",
     "DONE_DATE": ""
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 6003,
+    "CUSTOMER_NAME": "Cypress",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
+    "BASE_DATE": "7/20/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DATE": "8/6/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 66001,
+    "CUSTOMER_NAME": "Montammy Golf Club (P)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x2",
+    "BASE_DATE": "4/8/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 67006,
+    "CUSTOMER_NAME": "Northvale Diner",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x3",
+    "BASE_DATE": "6/26/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1",
+    "DONE_DATE": "9/2/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 73007,
     "CUSTOMER_NAME": "Bensi (P)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x5",
-    "BASE_DATE": "7/1/2026",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x6",
+    "BASE_DATE": "7/24/2026",
     "DONE": 1,
     "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x7",
     "DONE_DATE": "8/12/2026"
@@ -2896,158 +3016,8 @@
     "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x5",
     "BASE_DATE": "6/25/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x5",
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x7",
     "DONE_DATE": "8/12/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 93001,
-    "CUSTOMER_NAME": "Stateline Diner (P)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x4",
-    "BASE_DATE": "7/14/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
-    "DONE_DATE": "8/14/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 10002,
-    "CUSTOMER_NAME": "American Lgn Pequannock 450",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x2",
-    "BASE_DATE": "6/16/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
-    "DONE_DATE": "8/18/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 190210,
-    "CUSTOMER_NAME": "Matta Donna (Z)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
-    "BASE_DATE": "5/27/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "8/19/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 190919,
-    "CUSTOMER_NAME": "Amer Lgn Of Wharton 91",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x2",
-    "BASE_DATE": "5/20/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
-    "DONE_DATE": "8/19/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 9009,
-    "CUSTOMER_NAME": "Cedar Crest Village(607)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x3",
-    "BASE_DATE": "7/16/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
-    "DONE_DATE": "8/20/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 190710,
-    "CUSTOMER_NAME": "Hilton Garden Inn Rockaway",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x2",
-    "BASE_DATE": "6/23/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
-    "DONE_DATE": "8/28/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 190714,
-    "CUSTOMER_NAME": "Green Pond Yacht Club (Z)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x11",
-    "BASE_DATE": "7/16/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x5",
-    "DONE_DATE": "8/4/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 15081,
-    "CUSTOMER_NAME": "Evolution Restaurant & Bar",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x6",
-    "BASE_DATE": "7/10/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x4",
-    "DONE_DATE": "8/5/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 191403,
-    "CUSTOMER_NAME": "Davy's Dogs",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x4",
-    "BASE_DATE": "6/25/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x3",
-    "DONE_DATE": "8/5/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 12023,
-    "CUSTOMER_NAME": "The Village Inn",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
-    "BASE_DATE": "4/1/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "9/16/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 31022,
-    "CUSTOMER_NAME": "Candlewick",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x3",
-    "BASE_DATE": "7/13/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1",
-    "DONE_DATE": "9/16/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 67006,
-    "CUSTOMER_NAME": "Northvale Diner",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x3",
-    "BASE_DATE": "6/26/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1",
-    "DONE_DATE": "9/2/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 92016,
-    "CUSTOMER_NAME": "K Of C Ramsey",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
-    "BASE_DATE": "6/30/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "9/22/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 230303,
-    "CUSTOMER_NAME": "Crossed Keys Inn",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1, Summer Ale 15.5 Gal Keg x1",
-    "BASE_DATE": "5/28/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x4",
-    "DONE_DATE": "9/3/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 34000,
-    "CUSTOMER_NAME": "Holiday Inn (Hasbrook Height)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x2",
-    "BASE_DATE": "7/9/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x4",
-    "DONE_DATE": "9/3/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -3061,13 +3031,33 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 29052,
-    "CUSTOMER_NAME": "Polish American Club",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
-    "BASE_DATE": "6/17/2026",
+    "CUSTOMER_NUM": 9009,
+    "CUSTOMER_NAME": "Cedar Crest Village(607)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x3",
+    "BASE_DATE": "7/16/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1",
-    "DONE_DATE": "9/9/2026"
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x4",
+    "DONE_DATE": "8/20/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 92016,
+    "CUSTOMER_NAME": "K Of C Ramsey",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x4",
+    "BASE_DATE": "6/30/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DATE": "9/22/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 93001,
+    "CUSTOMER_NAME": "Stateline Diner (P)",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x4",
+    "BASE_DATE": "7/14/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
+    "DONE_DATE": "8/14/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -3078,55 +3068,5 @@
     "DONE": 1,
     "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
     "DONE_DATE": "9/9/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": "",
-    "CUSTOMER_NAME": "Converted account (Boston Beer count)",
-    "BASE_DETAIL": "Summer Ale last season",
-    "BASE_DATE": "",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest (Boston Beer scoreboard 10/5)",
-    "DONE_DATE": "2026-10-05"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 71006,
-    "CUSTOMER_NAME": "Ridgemont Liquors (A)",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x2",
-    "BASE_DATE": "5/14/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1",
-    "DONE_DATE": "9/11/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 73003,
-    "CUSTOMER_NAME": "Bottle King (A) Hillsdale",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x2",
-    "BASE_DATE": "7/16/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x2",
-    "DONE_DATE": "9/3/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 75004,
-    "CUSTOMER_NAME": "Cork & Keg (A)",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3, Summer Ale 5.2 Gal Keg x42",
-    "BASE_DATE": "7/17/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x25",
-    "DONE_DATE": "8/14/2026"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 92011,
-    "CUSTOMER_NAME": "Bottle King (A) Ramsey",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x7, Summer Ale 5.2 Gal Keg x20",
-    "BASE_DATE": "7/16/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x8, Octoberfest 5.2 Gal Keg x10",
-    "DONE_DATE": "8/14/2026"
   }
 ]
