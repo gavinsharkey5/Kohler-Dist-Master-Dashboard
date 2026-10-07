@@ -393,7 +393,13 @@ thead th{font-size:14px;font-weight:600;color:var(--ink-soft)}
 
 /* Gavin 2026-10-07: prominent titles, 4 tiles, wider column so every table column fits */
 .goalbar,main{max-width:1240px}
-.bt-title{font-size:22px;font-weight:700;color:var(--accent)}
+.goalbar-card .bt-title{font-size:24px!important;font-weight:700!important;color:var(--ink)!important;margin-bottom:2px}
+.goalbar-card .lb-when{font-size:15px;font-weight:600}
+.btiles .btile .stat-label{font-size:17px!important;font-weight:700!important;color:var(--ink)!important}
+.fell-open .fell-row{display:grid!important;grid-template-columns:minmax(0,1fr) 220px 110px;gap:12px;align-items:center;text-align:left;padding:10px 12px}
+.fell-open .fell-row>span{text-align:left!important;margin:0!important}
+.fell-open .fell-when{text-align:right!important;white-space:nowrap}
+@media(max-width:700px){.fell-open .fell-row{grid-template-columns:1fr auto}.fell-open .fell-rep{grid-column:1;order:3;font-size:14px}}
 .btiles{grid-template-columns:repeat(4,minmax(0,1fr))}
 .btile .stat-label{font-size:16px;font-weight:700;color:var(--ink)}
 .btile .stat-val{font-size:38px;font-weight:700}
@@ -402,7 +408,7 @@ thead th{font-size:14px;font-weight:600;color:var(--ink-soft)}
 .bt-fell{margin:18px 0 8px;font-size:18px;font-weight:700;text-align:center}
 .bt-fell span{display:inline-block;margin-left:6px;padding:0 10px;border-radius:999px;background:color-mix(in srgb,var(--red) 22%,transparent);color:var(--red)}
 .fell-open{max-height:420px;overflow:auto}
-.ls-h{font-size:22px;font-weight:700;color:var(--accent)}
+.ls-h{font-size:24px!important;font-weight:700!important}
 @media(max-width:900px){.btiles{grid-template-columns:repeat(2,minmax(0,1fr))!important}.btiles .btile.alert{grid-column:auto!important}.btile .stat-val{font-size:32px!important}}
 @media(max-width:620px){.btile .stat-label{font-size:14px!important}}
 /* tables: auto layout, nothing clipped; dates, flags and numbers never wrap */
