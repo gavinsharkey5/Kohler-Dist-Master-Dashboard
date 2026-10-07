@@ -4779,14 +4779,47 @@ def build_sam_adams_cold_snap():
         as_of = o["As Of"]
     if as_of is None:
         raise SystemExit("sam_adams_seasonal_oct_official.csv is empty -- run convert_sam_adams_official.py --oct")
+    # Boston Beer names its outlets its own way; sam_adams_bb_to_encompass.csv pins each
+    # unconverted outlet to the Encompass customer by street address (Chelas = The Little
+    # Falls Tavern, Z's Casual Dining = Acquaviva Restaurant, ...). Boston Beer's counts stay
+    # the program's numbers -- the Encompass keg export only says which listed accounts
+    # already had an Octoberfest keg LOADED (net > 0, Aug 1 - Oct 23) that Boston Beer's
+    # report has not caught yet, so the rest are the accounts to close.
+    bb_map = {(m["BB Account"], m["BB Address"]): m for m in read_rows("sam_adams_bb_to_encompass.csv")}
+    oct_loaded = defaultdict(float)
+    oct_first = {}
+    kegs = DATA_DIR.parent.parent / "MPOs" / "on-prem" / "sam_adams_kegs_summer_to_octoberfest.csv"
+    if kegs.exists():
+        with open(kegs, newline="", encoding="utf-8-sig") as f:
+            for r in csv.DictReader(f):
+                if "octoberfest" not in (r.get("Brand") or "").lower():
+                    continue
+                try:
+                    d = datetime.datetime.strptime(r["Date"].strip(), "%m/%d/%Y").date()
+                except (KeyError, ValueError):
+                    continue
+                if not (datetime.date(2026, 8, 1) <= d <= datetime.date(2026, 10, 23)):
+                    continue
+                cid = (r.get("Customer Num & Company") or "").split(" ", 1)[0]
+                u = sum(to_num(r[c]) for c in r if c.startswith("Units"))
+                oct_loaded[cid] += u
+                if u > 0 and (cid not in oct_first or d < oct_first[cid]):
+                    oct_first[cid] = d
     unconv = defaultdict(list)
     for u in read_rows("sam_adams_seasonal_oct_unconverted.csv"):
+        m = bb_map.get((u["Account"], u["Address"]))
+        if not m or not m["Customer ID"]:
+            raise SystemExit(f"sam_adams_cold_snap: no Encompass customer for Boston Beer outlet {u['Account']!r} -- add it to sam_adams_bb_to_encompass.csv")
+        cid = m["Customer ID"]
+        loaded = oct_loaded.get(cid, 0) > 0
         unconv[u["Sales Rep Name"]].append({
             "account": u["Account"].title().replace("'S", "'s"), "address": u["Address"].title(),
             "city": u["City"].title(), "prevCEs": to_num(u["Prev Season CEs"]),
-            "currentLYCEs": to_num(u["Current Season LY CEs"])})
+            "currentLYCEs": to_num(u["Current Season LY CEs"]),
+            "customerNum": cid, "customer": m["Encompass Name"],
+            "octLoaded": oct_first[cid].isoformat() if loaded and cid in oct_first else None})
     for lst in unconv.values():
-        lst.sort(key=lambda a: (-a["prevCEs"], a["account"]))
+        lst.sort(key=lambda a: (a["octLoaded"] is not None, -a["prevCEs"], a["account"]))
     for rep, o in official.items():
         if len(unconv.get(rep, [])) != o["notConverted"]:
             raise SystemExit(f"sam_adams_cold_snap: {rep} list/scoreboard mismatch")
@@ -4798,6 +4831,7 @@ def build_sam_adams_cold_snap():
                                "tierPay": 0, "gainedBonus": 0, "payout": 0, "toNinety": 0}
         d["hasOfficial"] = o is not None
         d["unconvertedAccounts"] = unconv.get(rep, [])
+        d["toClose"] = sum(1 for a in d["unconvertedAccounts"] if not a["octLoaded"])
         by_rep[rep] = d
     house = {k: sum(v[k] for v in official.values()) for k in ("lines", "converted", "notConverted", "gained")}
     return {"byRep": by_rep, "house": house,

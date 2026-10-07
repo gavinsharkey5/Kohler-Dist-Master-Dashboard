@@ -2799,22 +2799,29 @@ carbliss-mpo/generate.py (it rebuilds the on-prem MPO + eligibility) and MPOs/of
 Constellation: Gavin keeps November invoices out of the fall export -- no freeze needed.
 
 
-## Oktoberfest MPO counts like Boston Beer's scoreboard; the override is gone (2026-10-07)
+## Oktoberfest MPO from the RDE export; Boston Beer still scores the incentive (2026-10-07)
 
 After reconciling Gavin's RDE "Sam Adams Kegs: Summer Ale to Octoberfest" export against Boston Beer's
-10/5 sheets (they agree once filtered: base 307), the October on-prem objective is built from the RDE
-alone (MPOs/on-prem/generate_2026-10.py `build_conversion`; `apply_boston_beer` deleted): ON-PREMISE
-accounts only (export's Premise column, plus ON_PREM_EXTRA = Milton Inn, White Deer Inn, The George Inn,
-filed Off Premise but bars Boston Beer counts -- ASKED Gavin), BASE = net Summer Ale keg units > 0
-4/1-8/31 (was 4/1-7/17), DONE = net Octoberfest > 0 8/1-10/23 (card deadline periodEnd 2026-10-23),
-NEVER the Buyer Count column (~29% of rows are 0-unit lines with Buyer Count 1), house reps dropped
-(Gavin now leaves Default out of the export). Name differences found on the way: Boston Beer's Chelas =
-The Little Falls Tavern (13002), Z's Casual Dining = Acquaviva Restaurant (230921), Knights of Columbus
-Rochelle Park = Columbian Club (Z) (78018, Office Tell Sell = their route 90); every one of their 43
-unconverted accounts is in the RDE export (supersedes "5 not in the export" in the 2026-10-05 note).
-Result 2026-10-07: 268 of 307; Dave Ehlers, Phil Ernst, Shane Barreca have no on-premise Summer Ale
-accounts and are no longer scored on it (they were 2/2, 2/2, 4/4 on liquor stores) -- ASKED Gavin.
-The October INCENTIVE sam_adams_cold_snap still reads Boston Beer's files. on-prem programs.js 20261007y.
+10/5 sheets, Gavin's answers: the October on-prem OBJECTIVE is built from the RDE alone
+(MPOs/on-prem/generate_2026-10.py `build_conversion`; `apply_boston_beer` deleted): ON-PREMISE accounts
+only (export's Premise column), Dave Ehlers / Phil Ernst / Shane Barreca LEFT OUT (their keg accounts are
+liquor stores), ON_PREM_EXTRA = Milton Inn, White Deer Inn, The George Inn KEPT (filed Off Premise, bars),
+Gavin's ORIGINAL windows -- BASE = net Summer Ale keg units > 0 4/1-7/17, DONE = net Octoberfest > 0
+8/1-10/23 (card deadline periodEnd 2026-10-23) -- NEVER the Buyer Count column (~29% of rows are 0-unit
+lines with Buyer Count 1), house reps dropped. Result: 268 of 305.
+The October INCENTIVE sam_adams_cold_snap keeps Boston Beer's scoreboard as its numbers (Gavin: never
+report wrongly). Its unconverted list is now matched to Encompass customers through
+incentive-tracking/data/sam_adams_bb_to_encompass.csv (all 43 by street address; Chelas = The Little
+Falls Tavern 13002, Z's Casual Dining = Acquaviva Restaurant 230921, Knights of Columbus Rochelle Park =
+Columbian Club (Z) 78018 / Office Tell Sell = their route 90; every one IS in the RDE export -- supersedes
+"5 not in the export" in the 2026-10-05 note). generate.py `build_sam_adams_cold_snap` stops if a new
+Boston Beer outlet has no row there (add it), adds customerNum / customer (Encompass name) / octLoaded
+(first net-positive Octoberfest keg 8/1-10/23 in the MPO keg export) and `toClose`. The tracker card shows
+"Accounts To Close" (Encompass name · # · town, Boston Beer's name only when it really differs) and a
+separate "Octoberfest Loaded, Not Yet On Boston Beer's Report" list (Straphanger, Skylands, Ruth's
+Chris) -- counts unchanged; the hub lists the accounts to close first ("Still on Summer Ale · Boston
+Beer list"). Refresh: new Boston Beer pair -> convert_sam_adams_official.py --oct, then generate.py.
+Tags: incentive programs.js / hub.js / on-prem programs.js 20261007z.
 
 ## October incentives refreshed + Four Loko built (2026-10-07)
 
