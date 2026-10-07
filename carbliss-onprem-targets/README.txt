@@ -70,6 +70,11 @@ rolling-90 (window 7/7 - 10/7), 68 fell off. Sell sheets need openpyxl
 2026-10-06 REFRESH -- Eval _12 + Buyers L90 _4 exports: accounts.csv 3,140 -> 3,143 rows; buyers file runs to
 10/16 (412 load sheets, +18, none removed). Also feeds carbliss-mpo/ (run its generate.py after saving the buyers file).
 
+2026-10-07 -- Buyers file _7 (new header: Brand Family, Customer, Rep, Load Sheet Date, Buyers: Aug 1 to Oct 31, Buyers: L90,
+Buyers: YTD, Difference; 436 load sheets). generate.py also embeds every row as `loads`; the page's "Load Sheets" table shows all
+eight columns, newest first, click Load Sheet Date to flip oldest / newest (scoped like the roster; reps get only their rows via
+tools/rep_slices.py). Both generators accept the old and the new header names.
+
 Flavor mapping and the "gap" ranking (most broadly-carried missing flavor,
 preferring one from a different flavor family than the pitched SKU) are
 both defined at the top of generate.py — edit FLAVOR_KEYWORDS or

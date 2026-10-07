@@ -329,7 +329,7 @@ def carbliss(out, keys_holder):
         return set()
     html = CB.read_text(encoding='utf-8')
     data = json.loads(tag_re('tg-data').search(html).group(2))
-    names = {a['rep'] for a in data['accounts']} | {b['rep'] for b in data.get('buyers', [])}
+    names = {a['rep'] for a in data['accounts']} | {b['rep'] for b in data.get('buyers', [])} | {b['rep'] for b in data.get('loads', [])}
     board = []
     for r in data['meta'].get('reps', []):
         mine = [a for a in data['accounts'] if a['rep'] == r]
@@ -340,7 +340,8 @@ def carbliss(out, keys_holder):
         for key in keys + [NONE]:
             d = {'meta': dict(data['meta'], board=board),
                  'accounts': [a for a in data['accounts'] if name_key(a['rep']) == key],
-                 'buyers': [b for b in data.get('buyers', []) if name_key(b['rep']) == key]}
+                 'buyers': [b for b in data.get('buyers', []) if name_key(b['rep']) == key],
+                 'loads': [b for b in data.get('loads', []) if name_key(b['rep']) == key]}
             out.put(ROOT / f'carbliss-onprem-targets/rep/{key}/index.html', page_with(html, {'tg-data': dumps(d)}))
     keys_holder.append(write)
     return names
