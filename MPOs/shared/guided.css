@@ -522,3 +522,5 @@ header .updated{justify-content:center;font-size:14px!important;letter-spacing:0
 .g-step-head{text-align:center}
 .g-actions{max-width:100%}
 header{padding-top:24px!important}
+/* Carbliss program card (2026-10-07): company tiles from the leaderboard in the header */
+.g-cb-co{margin:14px 0 8px}.g-cb-co .cbx-h{font-size:20px}

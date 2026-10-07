@@ -2699,3 +2699,8 @@ periodStart/End + periodText "Aug 1 – Oct 31, 2026"; program_eligibility's Car
 Oct 31 (lapsed = "not since Aug 1"); hub Carbliss rules line. Tags: on-prem programs.js / hub.js
 20261007r. Test: scratchpad cb_same_test.mjs (every rep: hub metric == board, card tile == board,
 pill follows the same count).
+Follow-up (same day, Gavin): on the On-Premise MPO's Program View (managers), the Carbliss program card's
+header now shows the leaderboard's company tiles (KdhCarbTiles compact: L90 / Aug 1 – Oct 31 / YTD /
+Fell Off L90 against the 331 team goal) instead of the "N of 21 Reps at Goal" figure + bar; that count moved
+into the meta line ("MPO Weight 25% · 1 of 21 Reps at Goal"), Review Reps unchanged. guided.js `programCard`
+(`.g-cb-co`, filled by hydrateCarbliss), guided.js / guided.css 20261007r. Test: scratchpad cbhead_shot.mjs.

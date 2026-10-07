@@ -469,6 +469,12 @@ function cbDay(iso, withYear){
   return MON[Number(m[2])-1]+' '+Number(m[3])+(withYear ? ', '+m[1] : '');
 }
 function hydrateCarbliss(){
+  var co = document.querySelectorAll('.g-cb[data-co]');
+  if(co.length) cbLoad().then(function(D){
+    for(var i=0;i<co.length;i++) co[i].innerHTML = window.KdhCarbTiles.html(D, {compact:true});
+  }).catch(function(){
+    for(var i=0;i<co.length;i++) co[i].innerHTML = '<div class="g-cb-wait">Carbliss buying figures are unavailable right now. Reload to try again.</div>';
+  });
   var boxes = document.querySelectorAll('.g-cb[data-rep]'); if(!boxes.length) return;
   cbLoad().then(function(D){
     var names = D.reps.map(function(r){ return r.rep; });
@@ -652,12 +658,17 @@ function programCard(o){
         '</span>'+
         '<span class="g-chev">&#9656;</span>'+
       '</div>'+
-      (has
+      (isCarblissLaunch(o)
+        // Carbliss (2026-10-07, Gavin): the program card's header shows the company tiles from the
+        // Carbliss Leaderboard (L90 / Aug 1 - Oct 31 / YTD / Fell Off L90), filled by hydrateCarbliss().
+        ? '<div class="g-cb g-cb-co" data-co="1"><div class="g-cb-wait">Loading Carbliss buyers\u2026</div></div>'
+        : has
         ? '<div class="g-fig"><span class="g-fig-n">'+g.n+'</span><span class="g-fig-of"> of '+g.total+'</span><span class="g-fig-u">Reps at Goal</span></div>'+
           barHtml(share, g.n===g.total ? 'achieved' : (g.n>0?'inprogress':'notstarted'))+
           '<div class="g-bar-cap">Team progress: '+Math.round(share)+'% of eligible reps at goal</div>'
         : '<div class="g-need">No data yet \u2014 not counted</div>')+
-      '<div class="g-meta">MPO Weight '+Math.round(o.weight*100)+'%<span class="g-review">'+(open?'Hide Reps':'Review Reps')+'</span></div>'+
+      '<div class="g-meta">MPO Weight '+Math.round(o.weight*100)+'%'+
+        (isCarblissLaunch(o) && has ? ' \u00b7 '+g.n+' of '+g.total+' Reps at Goal' : '')+'<span class="g-review">'+(open?'Hide Reps':'Review Reps')+'</span></div>'+
     '</button>';
 
   var body = open ? '<div class="g-prog-body open">'+programBody(o)+'</div>' : '';
