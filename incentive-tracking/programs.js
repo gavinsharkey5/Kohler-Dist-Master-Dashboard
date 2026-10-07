@@ -972,6 +972,13 @@ function cardSamAdamsConversion(rep){
   </div>`;
 }
 
+// Boston Beer's outlet name beside the Encompass one only when they really differ (Chelas =
+// The Little Falls Tavern), not for spelling: its first real word missing from the Encompass name.
+function bbAlias(a){
+  if(!a.customer) return false;
+  const w = a.account.toLowerCase().replace(/[^a-z0-9 ]/g,'').split(/\s+/).find(x=>x.length>2 && x!=='the');
+  return !!w && !a.customer.toLowerCase().replace(/[^a-z0-9]/g,'').includes(w.replace(/s$/,''));
+}
 function cardSamAdamsColdSnap(rep){
   const P = PROGRAM_DATA_2026_10['sam_adams_cold_snap']||{};
   const d = P.byRep?.[rep];
@@ -1001,12 +1008,16 @@ function cardSamAdamsColdSnap(rep){
       stats:[{num:d.converted,label:'Converted'},{num:d.notConverted,label:'Not Yet',dim:d.notConverted===0},{num:d.gained,label:'Gained'}],
       progress:{pct:pct||0, caption:`${d.converted} of ${d.lines} lines converted · conversions must be final by Oct 23`},
       opportunity:{
-        label:`Boston Beer’s Unconverted List (${asOf})`, count:d.notConverted,
-        note:`Accounts of yours still on last season’s handle, biggest pourers first.`,
-        items:(d.unconvertedAccounts||[]).map(a=>({name:`${a.account}${a.city?` · ${a.city}`:''}`, stat:`${ces(a.prevCEs)} last season`})),
-        emptyMsg:'Boston Beer has every one of your lines converted.',
+        label:`Accounts To Close`, count:(d.unconvertedAccounts||[]).filter(a=>!a.octLoaded).length,
+        note:`Boston Beer’s unconverted list (${asOf}) matched to your Encompass accounts, biggest Summer Ale pourers first. Boston Beer’s name is shown when it differs.`,
+        items:(d.unconvertedAccounts||[]).filter(a=>!a.octLoaded).map(a=>({name:`${a.customer||a.account} · #${a.customerNum} · ${a.city}${bbAlias(a)?` (Boston Beer: ${a.account})`:''}`, stat:`${ces(a.prevCEs)} last season`})),
+        emptyMsg:'Every account on Boston Beer’s unconverted list has an Octoberfest keg loaded in Encompass.',
       },
-      extra:'',
+      extra:(d.unconvertedAccounts||[]).some(a=>a.octLoaded) ? detailList({
+        label:`Octoberfest Loaded, Not Yet On Boston Beer’s Report`,
+        items:(d.unconvertedAccounts||[]).filter(a=>a.octLoaded).map(a=>({name:`${a.customer||a.account} · #${a.customerNum}`, sub:`Octoberfest keg loaded ${new Date(a.octLoaded+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'})} (Encompass) · still counted as not converted until Boston Beer’s next report`, status:'progress'})),
+        emptyMsg:'',
+      }) : '',
     });
   return `<div class="prog-card">
     <div class="prog-head">

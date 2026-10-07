@@ -30,19 +30,17 @@ Target = ceil(40% x base) (the October docx). Was Sep 1 - Oct 31 from carbliss_b
 until 2026-10-07; that file is no longer read.
 
 --- BBC Oktoberfest conversion ---
-Counted the way Boston Beer's own seasonal-conversion scoreboard counts (Gavin, 2026-10-07,
-after reconciling the RDE export against Boston Beer's 10/5 sheets -- base 307 = theirs):
 BASE = ON-PREMISE accounts (the export's Premise column) with NET Summer Ale keg units > 0
-loaded 4/1/2026 - 8/31/2026 (the whole Summer Ale season; was 4/1 - 7/17 until 2026-10-07).
-DONE = the same account has NET Octoberfest keg units > 0 loaded 8/1/2026 - 10/23/2026.
+loaded 4/1/2026 - 7/17/2026; DONE = the same account has NET Octoberfest keg units > 0 loaded
+8/1/2026 - 10/23/2026 (Gavin's windows; confirmed 2026-10-07 after a day on 4/1 - 8/31).
 Net = add up the units: a keg bought and returned is nothing, and the export's 0-unit rows
 (Buyer Count 1, units 0) count for nothing -- never read the Buyer Count column.
-Off-premise keg buyers (liquor stores) are out, EXCEPT the three bars Encompass files as Off
-Premise (ON_PREM_EXTRA: Milton Inn, White Deer Inn, The George Inn) -- Boston Beer counts them
-as on-premise; ASKED Gavin to confirm / fix the flag. House "reps" (Default, Office Tell Sell)
-are not people and are dropped. "Complete" = every base account (target 100%).
-The Boston Beer scoreboard override (apply_boston_beer, 2026-10-05) is GONE: the RDE export
-now agrees with it and is fresher (Boston Beer's data lags a few days).
+Off-premise keg buyers (liquor stores) are out (Gavin, 2026-10-07: Dave Ehlers, Phil Ernst and
+Shane Barreca are left out of this objective), EXCEPT ON_PREM_EXTRA -- Milton Inn, White Deer
+Inn, The George Inn: filed Off Premise in Encompass but bars, kept in (Gavin, 2026-10-07).
+House "reps" (Default, Office Tell Sell) are not people and are dropped. "Complete" = every
+base account (target 100%). Boston Beer's scoreboard no longer overrides this objective
+(apply_boston_beer removed 2026-10-07); it still scores the October INCENTIVE.
 
 --- Spirits follow-up ---
 BASE = accounts with a spirits placement in 7/1-9/30. DONE = the same account
@@ -59,7 +57,7 @@ MONTH_KEY = "2026-10"
 KEGS_CSV = HERE / "sam_adams_kegs_summer_to_octoberfest.csv"
 SPIRITS_CSV = HERE / "spirits_followup_placements.csv"
 HOUSE = {"Default", "Office Tell Sell"}      # Encompass house "reps" -- not people
-BASE_WINDOW = (datetime(2026, 4, 1), datetime(2026, 8, 31))     # Summer Ale poured (whole season)
+BASE_WINDOW = (datetime(2026, 4, 1), datetime(2026, 7, 17))     # Summer Ale poured (Gavin's window)
 # Filed Off Premise in Encompass but bars that pour kegs; Boston Beer counts them on-premise.
 ON_PREM_EXTRA = {"191210", "230121", "231203"}   # Milton Inn, White Deer Inn, The George Inn
 DONE_WINDOW = (datetime(2026, 8, 1), datetime(2026, 10, 23))    # Oktoberfest taken

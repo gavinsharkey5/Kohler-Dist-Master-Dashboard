@@ -1625,7 +1625,7 @@ function warmTargets(p, rep){
     (d.partialAccounts||[]).forEach(it=>push(it.customer, `${it.need} SKU${it.need===1?'':'s'} short`, true));
     (d.offPremSingles||[]).forEach(it=>push(it.customer, 'Add the other oak', true));
     (d.onPremBuilding||[]).forEach(it=>push(it.customer, 'Needs a 2nd bottle', true));
-    (d.unconvertedAccounts||[]).forEach(it=>push(it.account, 'Still on Summer Ale', true));
+    (d.unconvertedAccounts||[]).forEach(it=>push(it.customer||it.account, it.octLoaded ? `Octoberfest loaded ${new Date(it.octLoaded+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'})} · not yet on Boston Beer’s report` : 'Still on Summer Ale · Boston Beer list', !it.octLoaded));
     if(d.encompass) (d.encompass.notConvertedAccounts||[]).forEach(it=>push(it.customer, 'Still on Summer Ale', true));
     Object.keys(d).forEach(k=>{ if(/Targets$|Whitespace$/.test(k) && Array.isArray(d[k])) d[k].forEach(it=>push(it.customer, NO_BUY, false)); });
     return out;
