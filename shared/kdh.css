@@ -22,38 +22,48 @@
 
 /* ---- tokens ---- */
 :root{
-  /* 2026-10-01: neutral canvas, white surfaces, quiet dividers (Shopify admin) */
-  --kdh-bg:#F1F2F4; --kdh-surface:#FFFFFF; --kdh-surface-2:#F6F7F8; --kdh-surface-3:#ECEEF1;
-  --kdh-text:#1A1C1F; --kdh-text-2:#474B52; --kdh-text-3:#5F646C; --kdh-text-4:#676C74;
-  --kdh-border:#E1E3E6; --kdh-border-2:#C9CDD2;
-  --kdh-brand:#2F5FC4; --kdh-brand-2:#244C9E; --kdh-brand-soft:#EBF0FA; --kdh-brand-ink:#FFFFFF; --kdh-ring:rgba(47,95,196,.35);
-  --kdh-navy:#12275F; --kdh-navy-ink:#FFFFFF;
-  --kdh-ok:#13733A; --kdh-ok-soft:#E6F4EA; --kdh-warn:#A35A06; --kdh-warn-soft:#FBF0DC; --kdh-bad:#B42318; --kdh-bad-soft:#FCEBEA;
-  --kdh-gold:#8A6100; --kdh-gold-soft:#F8EFD5;
+  /* 2026-10-07 KOHLER BRAND (sampled from the official logo files -- see shared/README.txt
+     "KOHLER BRAND"): Kohler blue for actions + navigation, deep Kohler navy for headings and
+     the sidebar mark, warm gold as a small decorative accent only. Every text pair >= 4.5:1. */
+  --kdh-bg:#F4F6FA; --kdh-surface:#FFFFFF; --kdh-surface-2:#F7F9FC; --kdh-surface-3:#EDF1F7;
+  --kdh-text:#0E1A33; --kdh-text-2:#3C4A63; --kdh-text-3:#55627A; --kdh-text-4:#5B677D;
+  --kdh-border:#DCE2EC; --kdh-border-2:#7B88A0;
+  --kdh-brand:#2866C0; --kdh-brand-2:#1F55A6; --kdh-brand-soft:#E8F0FC; --kdh-brand-ink:#FFFFFF; --kdh-ring:rgba(61,130,252,.40);
+  --kdh-focus:#2866C0;
+  --kdh-navy:#0B2466; --kdh-navy-ink:#FFFFFF; --kdh-head-c:#0B2466;
+  --kdh-accent:#E4A252; --kdh-accent-soft:#FBF1E2;
+  --kdh-ok:#13733A; --kdh-ok-soft:#E6F4EA; --kdh-warn:#B54708; --kdh-warn-soft:#FDEFE4; --kdh-bad:#B42318; --kdh-bad-soft:#FCEBEA;
+  --kdh-gold:#875A0E; --kdh-gold-soft:#FBF1E2;
   --kdh-r:8px; --kdh-r-lg:12px; --kdh-r-xl:14px;
-  --kdh-shadow:0 1px 0 rgba(26,28,31,.06); --kdh-shadow-h:0 2px 8px rgba(26,28,31,.08);
+  --kdh-shadow:0 1px 0 rgba(11,36,102,.06); --kdh-shadow-h:0 2px 10px rgba(11,36,102,.10);
   --kdh-head:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; --kdh-body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   --kdh-max:1120px;
 }
-/* dark tokens (the media block is a belt-and-braces copy for a page that has not set data-theme yet) */
+/* dark tokens: deep Kohler navy canvas (the media block is a belt-and-braces copy for a page that has not set data-theme yet) */
 @media (prefers-color-scheme:dark){
   :root[data-theme="dark"]{
-    --kdh-bg:#131416; --kdh-surface:#1C1D20; --kdh-surface-2:#232428; --kdh-surface-3:#2C2E33;
-    --kdh-text:#ECEDEF; --kdh-text-2:#B9BCC2; --kdh-text-3:#9497A0; --kdh-text-4:#8F939C;
-    --kdh-border:#2E3035; --kdh-border-2:#3E4148;
-    --kdh-brand:#7EA2EE; --kdh-brand-2:#9AB6F2; --kdh-brand-soft:#1F2A40; --kdh-brand-ink:#0B1226; --kdh-ring:rgba(126,162,238,.45);
-    --kdh-ok:#4ADE80; --kdh-ok-soft:#14301E; --kdh-warn:#F2B552; --kdh-warn-soft:#382A10; --kdh-bad:#F87171; --kdh-bad-soft:#3A1C1C;
-    --kdh-gold:#F2C14E; --kdh-gold-soft:#3A300F;
+  --kdh-bg:#0A1226; --kdh-surface:#111C36; --kdh-surface-2:#16223F; --kdh-surface-3:#1D2B4D;
+    --kdh-text:#EEF2FA; --kdh-text-2:#C5CEDF; --kdh-text-3:#A7B3C9; --kdh-text-4:#9DA9C0;
+    --kdh-border:#26365C; --kdh-border-2:#5D72A6;
+    --kdh-brand:#6AA1FF; --kdh-brand-2:#8DB8FF; --kdh-brand-soft:#18315F; --kdh-brand-ink:#06122E; --kdh-ring:rgba(106,161,255,.45);
+    --kdh-focus:#8AB8FF;
+    --kdh-navy:#0B2466; --kdh-navy-ink:#FFFFFF; --kdh-head-c:#F4F7FD;
+    --kdh-accent:#F0B866; --kdh-accent-soft:#33280F;
+    --kdh-ok:#4ADE80; --kdh-ok-soft:#14301E; --kdh-warn:#FB923C; --kdh-warn-soft:#3A2210; --kdh-bad:#F87171; --kdh-bad-soft:#3A1C1C;
+    --kdh-gold:#F0B866; --kdh-gold-soft:#33280F;
     --kdh-shadow:0 1px 0 rgba(0,0,0,.35); --kdh-shadow-h:0 4px 14px rgba(0,0,0,.45);
   }
 }
 :root[data-theme="dark"]{
-  --kdh-bg:#131416; --kdh-surface:#1C1D20; --kdh-surface-2:#232428; --kdh-surface-3:#2C2E33;
-  --kdh-text:#ECEDEF; --kdh-text-2:#B9BCC2; --kdh-text-3:#9497A0; --kdh-text-4:#8F939C;
-  --kdh-border:#2E3035; --kdh-border-2:#3E4148;
-  --kdh-brand:#7EA2EE; --kdh-brand-2:#9AB6F2; --kdh-brand-soft:#1F2A40; --kdh-brand-ink:#0B1226; --kdh-ring:rgba(126,162,238,.45);
-  --kdh-ok:#4ADE80; --kdh-ok-soft:#14301E; --kdh-warn:#F2B552; --kdh-warn-soft:#382A10; --kdh-bad:#F87171; --kdh-bad-soft:#3A1C1C;
-  --kdh-gold:#F2C14E; --kdh-gold-soft:#3A300F;
+  --kdh-bg:#0A1226; --kdh-surface:#111C36; --kdh-surface-2:#16223F; --kdh-surface-3:#1D2B4D;
+  --kdh-text:#EEF2FA; --kdh-text-2:#C5CEDF; --kdh-text-3:#A7B3C9; --kdh-text-4:#9DA9C0;
+  --kdh-border:#26365C; --kdh-border-2:#5D72A6;
+  --kdh-brand:#6AA1FF; --kdh-brand-2:#8DB8FF; --kdh-brand-soft:#18315F; --kdh-brand-ink:#06122E; --kdh-ring:rgba(106,161,255,.45);
+  --kdh-focus:#8AB8FF;
+  --kdh-navy:#0B2466; --kdh-navy-ink:#FFFFFF; --kdh-head-c:#F4F7FD;
+  --kdh-accent:#F0B866; --kdh-accent-soft:#33280F;
+  --kdh-ok:#4ADE80; --kdh-ok-soft:#14301E; --kdh-warn:#FB923C; --kdh-warn-soft:#3A2210; --kdh-bad:#F87171; --kdh-bad-soft:#3A1C1C;
+  --kdh-gold:#F0B866; --kdh-gold-soft:#33280F;
   --kdh-shadow:0 1px 0 rgba(0,0,0,.35); --kdh-shadow-h:0 4px 14px rgba(0,0,0,.45);
 }
 html{color-scheme:light}
@@ -365,3 +375,53 @@ html.kdh-menu-open .kdh-tabs{z-index:71}
 
 /* placeholders pass AA in both themes (contrast audit 2026-10-02) */
 ::placeholder{color:var(--kdh-text-3);opacity:1}
+
+/* ==== KOHLER BRAND (2026-10-07) ==========================================
+   Gavin: the Hub should read as Kohler's own sales app in both themes.
+   Colours are SAMPLED from the official logo files (the company site could
+   not be reached from the build environment) and adapted for contrast --
+   shared/README.txt "KOHLER BRAND" lists sampled vs. used values.
+   - Kohler blue (--kdh-brand) = actions, links, selected navigation
+   - Kohler navy = headings (light) and the desktop sidebar (both themes)
+   - warm gold (--kdh-accent) = small DECORATIVE rules only, never a status
+   - statuses keep their own colours AND text labels; warnings are a burnt
+     orange (--kdh-warn) so they never read as brand gold */
+:where(h1,h2,h3){color:var(--kdh-head-c)}
+:focus-visible{outline:2px solid var(--kdh-focus);outline-offset:2px}
+.kdh-nav-i:focus-visible,.kdh-side-i:focus-visible{outline:2px solid var(--kdh-focus);outline-offset:-2px}
+.kdh-tab:focus-visible{outline:2px solid var(--kdh-focus);outline-offset:-3px}
+/* top bar: a slim Kohler-blue top edge; the badge always sits on a white tile so it reads on both themes */
+.kdh-bar{box-shadow:inset 0 3px 0 #2866C0}
+.kdh-logo img{width:32px;height:32px;border-radius:8px;border:1px solid var(--kdh-border);background:#fff;padding:1px;object-fit:contain}
+.kdh-chip.kdh-preview{color:var(--kdh-gold)}
+/* bottom tabs: the selected tab carries a 3px Kohler-blue marker */
+.kdh-tab.on::before{height:3px;border-radius:0 0 3px 3px}
+/* desktop sidebar: Kohler navy in BOTH themes, the official badge + wordmark lockup, a short gold rule */
+@media (min-width:1024px){
+  .kdh-side{background:#0B2466;border-right:1px solid #06195A;color:#E8EEFB}
+  html[data-theme="dark"] .kdh-side{background:#081633;border-right-color:#26365C}
+  .kdh-side-logo{position:relative;height:auto;gap:12px;padding:4px 8px 14px;margin-bottom:12px;color:#FFFFFF;border-bottom:1px solid rgba(255,255,255,.12)}
+  .kdh-side-logo::after{content:'';position:absolute;left:8px;bottom:-2px;width:44px;height:3px;border-radius:2px;background:var(--kdh-accent)}
+  .kdh-side-logo img{width:40px;height:48px;border-radius:0;object-fit:contain;flex:none}
+  .kdh-lock{display:flex;flex-direction:column;min-width:0}
+  .kdh-lock b{font-size:19px;font-weight:700;line-height:1.1;color:#FFFFFF}
+  .kdh-lock small{font-size:13px;font-weight:500;line-height:1.3;color:#C2CEEA}
+  .kdh-side-i{color:#D9E1F2}
+  .kdh-side-i svg{color:#A9BADC}
+  .kdh-side-i:hover{background:rgba(255,255,255,.08);color:#FFFFFF}
+  .kdh-side-i.on{background:rgba(106,161,255,.22);color:#FFFFFF;font-weight:600;box-shadow:inset 3px 0 0 #8DB8FF}
+  .kdh-side-i.on svg{color:#B5D0FF}
+  .kdh-side-i:focus-visible{outline-color:#B5D0FF}
+  .kdh-side a:focus-visible,.kdh-side button:focus-visible{outline:2px solid #B5D0FF}
+  /* the hub has its own generic .sub card class; never let it reach the sidebar's sub-items */
+  .kdh-side .kdh-side-i.sub{width:auto;min-height:34px;padding:0 10px;gap:10px;background:transparent;border:0;border-radius:8px;box-shadow:none;transform:none;opacity:1;font-size:14px}
+  .kdh-side .kdh-side-i.sub:hover{background:rgba(255,255,255,.08);border:0}
+  .kdh-side .kdh-side-i.sub.on{background:rgba(106,161,255,.22);box-shadow:inset 3px 0 0 #8DB8FF}
+  .kdh-side-sub{border-left-color:rgba(255,255,255,.16)}
+  .kdh-side-h{color:#B3C1E0}
+  .kdh-side-foot{border-top-color:rgba(255,255,255,.12)}
+  .kdh-side-user{color:#FFFFFF}
+  .kdh-side-user:hover,.kdh-side-user[aria-expanded="true"]{background:rgba(255,255,255,.08)}
+  .kdh-side-who small{color:#C2CEEA}
+  .kdh-side-user > svg{color:#A9BADC}
+}

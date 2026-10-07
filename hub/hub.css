@@ -119,8 +119,11 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:600;letter-spacing:-.01em;
 .chip .ic{font-size:11.5px;}
 .chip.type-inc{color:var(--amber);background:var(--amber-soft);border-color:rgba(244,184,62,.42);}
 .chip.type-mpo{color:#9BC1FF;background:rgba(78,124,232,.18);border-color:rgba(78,124,232,.5);}
-.chip.chan-on{color:#D9B6FF;background:rgba(170,120,255,.16);border-color:rgba(170,120,255,.42);}
-.chip.chan-off{color:#7EE0D8;background:rgba(60,190,180,.16);border-color:rgba(60,190,180,.42);}
+/* premise chips: the same hue in both themes, readable in each (2026-10-07) */
+.chip.chan-on{color:#5E35A0;background:rgba(124,77,206,.10);border-color:rgba(124,77,206,.45);}
+.chip.chan-off{color:#0B6B65;background:rgba(18,140,130,.10);border-color:rgba(18,140,130,.45);}
+html[data-theme="dark"] .chip.chan-on{color:#D9B6FF;background:rgba(170,120,255,.16);border-color:rgba(170,120,255,.42);}
+html[data-theme="dark"] .chip.chan-off{color:#7EE0D8;background:rgba(60,190,180,.16);border-color:rgba(60,190,180,.42);}
 .chip.chan-both{color:var(--text-dim);}
 .chip.sup{color:var(--text);}
 .chip.terr{color:var(--text-mute);}

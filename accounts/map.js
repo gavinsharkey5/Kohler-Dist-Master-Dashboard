@@ -175,7 +175,7 @@ function locate(){
   if(btn){ btn.disabled = true; btn.textContent = 'Locating…'; }
   navigator.geolocation.getCurrentPosition(p=>{
     const ll = [p.coords.latitude, p.coords.longitude];
-    if(youMarker) youMarker.setLatLng(ll); else youMarker = L.circleMarker(ll, {radius:8, weight:3, color:'#fff', fillColor:'#2F5FC4', fillOpacity:1}).addTo(map).bindTooltip('You are here');
+    if(youMarker) youMarker.setLatLng(ll); else youMarker = L.circleMarker(ll, {radius:8, weight:3, color:'#fff', fillColor:'#2866C0', fillOpacity:1}).addTo(map).bindTooltip('You are here');
     map.setView(ll, Math.max(map.getZoom(), 13));
     if(btn){ btn.disabled = false; btn.textContent = 'Use My Location'; }
   }, err=>{

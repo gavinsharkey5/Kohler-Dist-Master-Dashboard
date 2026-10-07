@@ -2464,3 +2464,37 @@ program-skus.js is loaded before hub/accounts.js on hub, accounts, exceptions
 and performance. Tags: hub/accounts.js 20261006b, hub.js 20261006g,
 program-skus.js 20261006a. New list = run `add`, then
 `python3 tools/program_eligibility.py` when the program has a rule.
+
+## Kohler brand across the Hub, both themes (2026-10-07)
+
+Gavin's brief: make the Hub look like Kohler's official sales app, light and
+dark, keeping the compact layouts. kohlerdistributing.co is BLOCKED by this
+environment's network policy (curl + WebFetch both denied), so colours were
+SAMPLED from the official logo files and adapted for contrast -- the table and
+every rule are in shared/README.txt "KOHLER BRAND". Tokens (shared/kdh.css):
+light bg #F4F6FA, text #0E1A33, Kohler blue #2866C0 (actions / selection /
+focus), navy #0B2466 (headings via a zero-specificity `:where(h1,h2,h3)` and
+the desktop sidebar in BOTH themes), gold #E4A252 as `--kdh-accent` for three
+short decorative rules only; dark = deep navy canvas #0A1226, surfaces
+#111C36, blue #6AA1FF with a navy label. Warnings moved to burnt orange
+(#B54708 / #FB923C) so gold never reads as a status. Chrome (kdh-user.js): the
+sidebar lockup = official badge + "Kohler" / "Distribution Hub" + gold rule;
+top bar = badge on a white tile + a 3px Kohler-blue top edge; theme-color meta
+follows the theme. /login/ restyled (presentation only -- every step, id and
+guard unchanged): square Kohler logo in the card, the warehouse aerial photo on
+the left from 960px with its caption on a solid navy band, light / dark via
+the shared snippet + its own switch (`#loginTheme`, same kdh_theme). App name
+is "Kohler Distribution Hub" (titles, manifest; short_name "Kohler Hub").
+Fixed on the way: hub.css's generic `.sub` card leaked onto the sidebar's
+sub-items (reset in kdh.css), the hub's premise chips were dark-theme colours
+in light mode, the Export Recap print page / map "you" marker / sign-in
+email used the old blue. Assets: assets/brand/ (kohler-logo-square[-192].webp,
+warehouse-aerial[-sm].webp). Tests (scratchpad): brand_test.mjs (71: logo
+pixels >= 2x display and unstretched, sign-in photo only >= 960 and the form
+in the top third at 375-1366, theme switch saves + persists across 7 pages +
+reload with data-theme set before DOMContentLoaded, typed search kept on
+toggle, focus ring >= 3:1, sidebar selection + aria-current, gold != warn),
+contrast_audit.mjs (login added; 0 failures at 390 / 820 / 1366, both themes),
+mobile_audit.mjs, brand_shots.mjs (paired light/dark shots). Tags: kdh.css
+20261007c, kdh-skin.css / rep.css 20261007c, kdh-user.js / hub.css / hub.js /
+map.js 20261007a.

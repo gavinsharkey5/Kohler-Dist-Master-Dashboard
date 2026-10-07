@@ -1,4 +1,4 @@
-/* Kohler Dist Hub -- who is signed in, for the pages.
+/* Kohler Distribution Hub -- who is signed in, for the pages.
    /login/ leaves a readable `kdh_user` cookie ({name, role, email, title,
    dm}). A manager can also set `kdh_preview` (from the rep workspace's
    "Preview as this rep", or -- Gavin only -- the manager page's "Preview
@@ -78,7 +78,13 @@
   var MQ = (function () { try { return window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null; } catch (e) { return null; } })();
   function savedTheme() { try { var t = localStorage.getItem('kdh_theme'); return (t === 'dark' || t === 'light') ? t : ''; } catch (e) { return ''; } }
   function deviceTheme() { return MQ && MQ.matches ? 'dark' : 'light'; }
-  function setThemeAttr(t) { document.documentElement.setAttribute('data-theme', t); document.dispatchEvent(new CustomEvent('kdh:theme', { detail: t })); }
+  // the browser / phone status-bar tint follows the theme: the top bar's own surface (2026-10-07)
+  function themeColor(t) {
+    try { var m = document.querySelector('meta[name="theme-color"]');
+      if (!m) { m = document.createElement('meta'); m.name = 'theme-color'; document.head.appendChild(m); }
+      m.setAttribute('content', t === 'dark' ? '#111C36' : '#FFFFFF'); } catch (e) {}
+  }
+  function setThemeAttr(t) { document.documentElement.setAttribute('data-theme', t); themeColor(t); document.dispatchEvent(new CustomEvent('kdh:theme', { detail: t })); }
   function applyTheme() { setThemeAttr(savedTheme() || deviceTheme()); }
   // chooseTheme('dark'|'light') saves a choice; chooseTheme('') goes back to the device setting
   function chooseTheme(t) {
@@ -296,7 +302,7 @@
     var w = where(u), isMgr = u.role === 'manager';
     var home = isMgr ? ROOT : REP_HOME;
     var groups = {}; toolItems(u).forEach(function (t) { (groups[t.group] = groups[t.group] || []).push(t); });
-    var html = '<a class="kdh-side-logo" href="' + home + '"><img src="' + ROOT + 'assets/kohler-logo-badge.png" alt=""><span>Kohler Dist Hub</span></a><nav class="kdh-side-nav" aria-label="Main">';
+    var html = '<a class="kdh-side-logo" href="' + home + '" aria-label="Kohler Distribution Hub home"><img src="' + ROOT + 'assets/kohler-logo-badge.png" alt="" width="40" height="48"><span class="kdh-lock"><b>Kohler</b><small>Distribution Hub</small></span></a><nav class="kdh-side-nav" aria-label="Main">';
     navItems(u).forEach(function (it) {
       html += link('kdh-side-i', it, it.key === w.nav && (!w.tool || it.key !== 'programs' || w.tool === 'inc'));
       if (it.key === 'programs') {
@@ -384,7 +390,7 @@
     // without a sign-in there is no shell, so the menu button stays in the bar
     if (who && shellOff()) acts += '<button type="button" class="kdh-b kdh-user" id="kdhMenuBtn" aria-haspopup="true" aria-expanded="false" aria-label="Account menu, signed in as ' + esc(who) + '"><span class="kdh-av">' + esc(initials(who)) + '</span><span class="kdh-name">' + esc(who) + '</span>' + CARET + '</button>';
     b.innerHTML = '<div class="kdh-bar-in">' +
-      '<a class="kdh-logo" href="' + home + '"><img src="' + ROOT + 'assets/kohler-logo-badge.png" alt=""><span class="kdh-word">Kohler Dist Hub</span><small>' + esc(pageName(u)) + '</small></a>' +
+      '<a class="kdh-logo" href="' + home + '"><img src="' + ROOT + 'assets/kohler-logo-badge.png" alt="Kohler Distributing" width="32" height="32"><span class="kdh-word">Kohler Distribution Hub</span><small>' + esc(pageName(u)) + '</small></a>' +
       chips +
       '<div class="kdh-acts">' + acts + '</div></div>' +
       (who ? menuHtml(u, isMgr) : '');

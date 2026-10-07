@@ -2789,7 +2789,7 @@ async function exportData(onlyId, withLines){
   const st = exportStamp();
   const cols = ['record','program_id','program_title','program_source_name','type','supplier','premise','month','period_start','period_end','rep','district_manager','status','qualified','current','goal','remaining','unit','progress_text','remaining_text','pct','data_as_of','account_num','account_name','product','credit_date'];
   const head = [
-    ['# Kohler Dist Hub — Program Data Export'], ['# Generated', st.label], ['# Filters', onlyId ? 'One program: '+(list[0] ? list[0].shortName||list[0].name : onlyId) : exportFilterText(state.filters)],
+    ['# Kohler Distribution Hub — Program Data Export'], ['# Generated', st.label], ['# Filters', onlyId ? 'One program: '+(list[0] ? list[0].shortName||list[0].name : onlyId) : exportFilterText(state.filters)],
     ['# Scope', exportScopeText()], ['# Programs', String(list.length)], ['# Rows', String(rows.length)+(withLines ? ' (rep progress + credited lines)' : ' (rep progress)')],
     ['# Note', 'Tracker figures as published; leads and eligible accounts are not results; no dollar figures.'], []];
   const text = head.map(r=>r.map(csvCell).join(',')).join('\r\n') + '\r\n' + cols.join(',') + '\r\n' + rows.map(r=>cols.map(c=>csvCell(r[c])).join(',')).join('\r\n') + '\r\n';
@@ -2824,7 +2824,7 @@ async function exportRecap(onlyId, withAccounts){
 @page{size:letter;margin:14mm}
 body{font:14px/1.45 -apple-system,"Segoe UI",Inter,Arial,sans-serif;color:#1a1c1f;margin:24px;max-width:960px}
 h1{font-size:22px;margin:0 0 4px} h2{font-size:17px;margin:0 0 2px} .sub{color:#4a4f57;margin:0 0 2px}
-.bar{display:flex;gap:8px;margin:12px 0 18px} .bar button{font:inherit;padding:8px 14px;border-radius:8px;border:1px solid #2F5FC4;background:#2F5FC4;color:#fff;cursor:pointer}
+.bar{display:flex;gap:8px;margin:12px 0 18px} .bar button{font:inherit;padding:8px 14px;border-radius:8px;border:1px solid #2866C0;background:#2866C0;color:#fff;cursor:pointer}
 .prog{border-top:1px solid #d5d8dd;padding:14px 0 10px;break-inside:avoid-page} .meta,.full,.fresh{color:#4a4f57;margin:2px 0} .fresh{font-size:12.5px}
 .rules{margin:6px 0 8px;padding-left:18px;color:#33373d} .na{color:#4a4f57;font-style:italic}
 .kpis{display:flex;flex-wrap:wrap;gap:8px 22px;margin:8px 0} .kpis b{display:block;font-size:18px} .kpis span{color:#4a4f57;font-size:12.5px}

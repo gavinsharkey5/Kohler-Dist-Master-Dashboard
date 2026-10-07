@@ -256,6 +256,14 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-10-07 **Kohler branding, light and dark**: Kohler blue actions, navy
+  headings and sidebar, small gold accents, the official logo in the header,
+  sidebar and sign-in, and the warehouse photo on the desktop sign-in. TO DO
+  (you): (1) if you want the website's exact colours and font, allow
+  kohlerdistributing.co in the cloud environment's network settings or send
+  the official values -- today's colours are sampled from the logo files;
+  (2) re-paste supabase/email/magic-link.html into the Supabase email
+  templates (it now uses Kohler navy / blue and the new app name).
 - [x] 2026-10-06 **Official SKU lists loaded** for the October Off-Premise MPOs (Corona
   Innovation 11, Lytt 6, Molly's 5, Wine 60). Corona and Lytt matched the reports
   exactly and are now confirmed. TO DO (you): Carbliss + Spirits follow-up

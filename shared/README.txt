@@ -162,3 +162,49 @@ whose supporting table comes from a tracker (guided.js and hub.js already do).
 It hides columns blank on every row (with a note), labels cells for phone
 layouts and tags tables kf-2 / kf-n. Pair it with the .kf-* rules in
 MPOs/shared/guided.css or hub/hub.css. Presentation only.
+
+KOHLER BRAND (2026-10-07)
+-------------------------
+The Hub carries Kohler Distributing's identity in both themes. The company
+site (kohlerdistributing.co) could NOT be read from the build environment
+(its network policy blocks that host), so the colours below were SAMPLED
+from the official logo files, not copied from the site's CSS. Treat them as
+a faithful reading of the logo, not an official brand specification; if
+Gavin supplies the official values (or the host is allowed), swap them in
+shared/kdh.css and re-run the contrast audit.
+
+  Sampled from the logos              Used in the Hub (accessible adaptation)
+  script blue   #3D82FC (badge)       light: --kdh-brand #2866C0 (white label 5.6:1)
+  field blue    #2E74C8 / #2868C0     dark:  --kdh-brand #6AA1FF (navy label #06122E, 7.2:1)
+  navy          #041F73 (NJ banner)   --kdh-navy #0B2466: light headings, desktop sidebar
+  gold          #E4A252 (badge map)   --kdh-accent #E4A252 light / #F0B866 dark: DECORATIVE ONLY
+
+Rules
+- Kohler blue = actions, links, selected navigation, focus ring (--kdh-focus).
+- Kohler navy = headings in light mode (`:where(h1,h2,h3)`, any page rule wins)
+  and the desktop sidebar in BOTH themes (white text, blue-tinted selection,
+  a 3px light-blue marker; its own #B5D0FF focus ring).
+- Gold = three short rules only: under the sidebar lockup, under the home
+  page heading, on the sign-in card / photo caption. Never text, never a
+  status. Warnings are burnt orange (--kdh-warn #B54708 / #FB923C) with a
+  label, so they never read as brand gold. --kdh-gold stays the dark-amber
+  NOTICE colour pages already map (preview chip, Rolling note).
+- Logo: assets/kohler-logo-badge.png (official badge, transparent, 265x320)
+  in the top bar (on a white tile so it reads in both themes) and the
+  sidebar; assets/brand/kohler-logo-square*.webp (the square watercolour
+  logo Gavin sent, 447 / 192 px) on /login/. Never shown above half its
+  pixel size, never stretched (brand_test.mjs checks both), never redrawn.
+- Photo: assets/brand/warehouse-aerial.webp (Gavin's aerial photo, wing strut
+  cropped off) ONLY on the desktop sign-in (>= 960px), with the caption on a
+  solid navy band, never text over the photo. Working screens carry no
+  photography.
+- Type: Inter everywhere (the site's own face could not be inspected); the
+  script lettering lives only inside the logo images.
+- Boundaries: input borders (--kdh-border-2 #7B88A0 / #5D72A6) >= 3:1;
+  card borders are decorative.
+- Theme: unchanged mechanism (device default, saved choice, no flash);
+  /login/ now carries the same head snippet and its own small switch writing
+  the same kdh_theme. kdh-user.js sets <meta name="theme-color"> to the bar's
+  surface for each theme.
+- Gotcha: the hub's generic `.sub` card class used to leak onto the
+  sidebar's sub-items (boxed links); kdh.css resets it inside .kdh-side.
