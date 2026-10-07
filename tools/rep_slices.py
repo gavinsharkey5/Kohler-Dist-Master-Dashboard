@@ -301,6 +301,8 @@ def carbliss_mpo(out, keys_holder):
                 'meta': data['meta'],
                 'house': {'buyers': data['house']['buyers']},
                 'board': data.get('board', []),
+                'byrep': data.get('byrep', []),
+                'fell': [f for f in data.get('fell', []) if name_key(f['rep']) == key],
                 'reps': [r for r in data['reps'] if name_key(r['rep']) == key],
                 'accounts': [a for a in data['accounts'] if name_key(a['rep']) == key],
             }

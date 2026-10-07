@@ -853,8 +853,12 @@ function readHash(){
   h.split('&').filter(Boolean).forEach(kv=>{ const i = kv.indexOf('='); if(i<0) return; o[kv.slice(0,i)] = decodeURIComponent(kv.slice(i+1)); });
   return o;
 }
+// Carbliss MPO (2026-10-07, Gavin): the leaderboard IS this month's Carbliss MPO, so every way into that program
+// (Program View card, rep row, old deep links) lands on /carbliss-onprem-targets/ with no second screen.
+const CB_PROG = 'on:2026-10:carbliss', CB_HREF = '../carbliss-onprem-targets/';
 function applyHash(){
   const h = readHash();
+  if(!LIB && h.prog===CB_PROG && !h.acct){ location.replace(CB_HREF); return; }
   if(h.rep && ROSTER.includes(h.rep)) state.rep = h.rep;
   if(h.main==='inc' || h.main==='mpo') state.main = h.main;
   if(h.cat && CATEGORIES.some(c=>c.key===h.cat)){ state.cat = h.cat; state.main = tabOf(h.cat); }
@@ -890,6 +894,7 @@ function applyHash(){
   lockState();
 }
 function go(next, replace){
+  if(!LIB && next.prog===CB_PROG && (next.view==='program' || next.view==='detail' || next.view==='workspace')){ location.href = CB_HREF; return; }
   try{ scrollMem[location.hash||'#'] = window.scrollY; }catch(e){}
   // RETURN PATH (2026-10-06): a program screen remembers the exact screen it
   // was opened from (another page's link passes ret=; inside the hub it is the
@@ -2680,9 +2685,7 @@ function mpoProgramCardHtml(p){
         <span class="g-prog-name">${E(p.shortName||o.name)}<span class="g-reprow-dm">${E(o.supplier||p.supplier||'')}${(o.periodText||p.monthLabel)?' · '+E(o.periodText||p.monthLabel):''}</span></span>
         <span class="g-chev">&#9656;</span>
       </div>
-      ${isCarbliss(p) && cbData() ? (()=>{ const d=cbData(), n=d.house.buyers, goal=d.meta.goal; return `<div class="g-fig"><span class="g-fig-n">${n}</span><span class="g-fig-of"> of ${goal}</span><span class="g-fig-u">Team L90 Goal</span></div>
-        <div class="g-bar"><div class="g-bar-fill inprogress" style="width:${Math.round(cbShare(n,goal))}%"></div></div>
-        <div class="g-bar-cap">${goal-n} To Go · Aug 1 – Oct 31</div>`; })() : has ? `<div class="g-fig"><span class="g-fig-n">${g.n}</span><span class="g-fig-of"> of ${g.total}</span><span class="g-fig-u">Reps at Goal</span></div>
+      ${isCarbliss(p) && cbData() ? window.KdhCarbTiles.html(cbData(), {compact:true, noTitle:true}) : has ? `<div class="g-fig"><span class="g-fig-n">${g.n}</span><span class="g-fig-of"> of ${g.total}</span><span class="g-fig-u">Reps at Goal</span></div>
         <div class="g-bar"><div class="g-bar-fill ${all?'achieved':g.n>0?'inprogress':'notstarted'}" style="width:${Math.round(share)}%"></div></div>
         <div class="g-bar-cap">Team Progress: ${Math.round(share)}% of eligible reps at goal</div>`
         : `<div class="g-need">${loaded?'No data yet \u2014 not counted':'Loading…'}</div>`}
@@ -3025,17 +3028,9 @@ function screenProgramCarbliss(p){
       <div class="dhero-top">${logoStrip(p,'lg')}<div class="dhero-meta">${typeChips(p)}<span class="chip sup">${E(p.supplier)}</span></div></div>
       <h1 class="dhero-name">Carbliss Buying Accounts</h1>
       <div class="dhero-sup">${E(p.monthLabel)} · MPO Weight 25%</div>
-      <div class="pstats">
-        <div class="pstat accent"><div class="pstat-n">${n} of ${goal}</div><div class="pstat-l">Team L90 Goal</div></div>
-        <div class="pstat"><div class="pstat-n">${goal-n}</div><div class="pstat-l">To Go</div></div>
-        <div class="pstat"><div class="pstat-n">${ytdAll}</div><div class="pstat-l">Since Launch</div></div>
-        <div class="pstat"><div class="pstat-n">${fell}</div><div class="pstat-l">Fell Off L90</div></div>
-      </div>
-      <div class="bar"><div class="bar-fill ontrack" style="width:${Math.min(100,Math.max(cbShare(n,goal),2))}%"></div></div>
-      <div class="dhero-line"><span class="period">📅 Aug 1 – Oct 31, 2026 · ${E(endsLabel(p.period))}</span><span class="refreshed">Sales Through ${E(new Date(m.sales_through+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}))}</span></div>
-      <p class="note"><a href="../carbliss-onprem-targets/">See Leaderboard ›</a></p>
+      ${window.KdhCarbTiles.html(d, {noTitle:true, link:'../carbliss-onprem-targets/'})}
+      <div class="dhero-line"><span class="period">📅 Aug 1 – Oct 31, 2026 · ${E(endsLabel(p.period))}</span></div>
     </div>
-    ${cbRosterHtml(d, p)}
     <details class="dsec fold"><summary class="dsec-h">Rules</summary>
       <ul class="rules"><li>L90 = bought Carbliss Aug 1 – Oct 31, 2026</li><li>Team goal: ${goal} L90 buyers of ${d.house.base.toLocaleString('en-US')} core market on-premise accounts</li><li>Credit: 40% of your own on-premise accounts buying Carbliss, Sep 1 – Oct 31</li></ul>
     </details>

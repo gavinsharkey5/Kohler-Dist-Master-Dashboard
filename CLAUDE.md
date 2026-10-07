@@ -2617,3 +2617,9 @@ contrast_audit.mjs (login added; 0 failures at 390 / 820 / 1366, both themes),
 mobile_audit.mjs, brand_shots.mjs (paired light/dark shots). Tags: kdh.css
 20261007c, kdh-skin.css / rep.css 20261007c, kdh-user.js / hub.css / hub.js /
 map.js 20261007a.
+Merged with main the same day: rep.css / hub.css 20261007m, hub.js 20261007n
+(both sides changed them); the home headings' gold rule is centred under main's
+centred page-standard headers; shared/carbliss-tiles.css (main's new Carbliss
+tiles) now takes its red from --kdh-bad / --kdh-bad-soft (its fixed #d63c2d pill
+was 3.57:1 light / 3.19:1 dark), tag 20261007m. Never give a shared component a
+fixed colour: use the kdh tokens so both themes stay AA.
