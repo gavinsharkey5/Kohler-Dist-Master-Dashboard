@@ -121,3 +121,28 @@ details.mfold > summary:focus-visible{outline:2px solid var(--brand);outline-off
 /* import: report pages (2026-10-05) */
 .mtiles.mt3{grid-template-columns:repeat(3,minmax(0,1fr))}
 .msub{font-size:15px;font-weight:600;margin:16px 0 4px}
+
+/* PAGE STANDARD (2026-10-07): one 960 column, centered headers and tiles, 16px steps */
+main.wrap{max-width:960px;margin:0 auto;padding-left:16px;padding-right:16px}
+.ws.mh{text-align:center}
+.mh h1{font-size:26px;font-weight:600}
+.mh-sub{max-width:none;font-size:15px;line-height:1.4}
+.mcard{margin:16px 0;padding:16px}
+.mcard > h2{font-size:17px;font-weight:600}
+.mnote{font-size:14px}
+.mt{text-align:center}
+.mt b{font-size:30px;font-weight:600}
+.mt span{font-size:15px;font-weight:600}
+.mt small{font-size:14px}
+.mtiles,.mtiles.mt4{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (min-width:760px){ .mtiles.mt4{grid-template-columns:repeat(4,minmax(0,1fr))} .mtiles{grid-template-columns:repeat(4,minmax(0,1fr))} }
+.mtiles.mt3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.mform label,.msel{font-size:14px}
+.mform{gap:12px}
+.mact{justify-content:center}
+.mtbl th{font-size:13px}
+.rl-s,.rl-lines,.rrec .rm{font-size:14px}
+.rrec h4{font-size:16px}
+.rgroup > h3 small{font-size:14px}
+.msub{font-size:16px;font-weight:600}
+.tblwrap{overflow-x:auto}

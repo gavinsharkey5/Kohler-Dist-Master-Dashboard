@@ -157,9 +157,72 @@
     .kpi-num{font-size:26px;}
     .bar-row{grid-template-columns:1fr;gap:3px;}
     .bar-val{text-align:left;}
+    .table-scroll td[data-l]{flex-wrap:wrap;justify-content:flex-end;}
+    .table-scroll td[data-l]::before{margin-right:auto;}
     .act{flex-wrap:wrap;}
     .act-metric{text-align:left;min-width:0;}
   }
+
+  /* PAGE STANDARD */
+  .wrap{max-width:960px;padding:0 16px;}
+  header{text-align:center;padding:20px 0 16px;}
+  h1{font-family:'Inter',sans-serif;font-weight:600;letter-spacing:0;font-size:28px;line-height:1.2;
+    background:none;-webkit-text-fill-color:currentColor;color:var(--amber);}
+  .updated{justify-content:center;font-family:'Inter',sans-serif;font-size:14px;margin-top:8px;}
+  h2.sec,.act-title,.act-rank,.act-metric,.kpi-num,.kpi-label,th,.num,.bar-val,.tag,.chip .n,.daysleft{font-family:'Inter',sans-serif;}
+  h2.sec{font-size:18px;font-weight:600;margin:24px 0 12px;}
+  h2.sec .note{font-size:14px;}
+  .sec-intro{font-size:14px;margin:0 0 12px;}
+  .sec-intro:empty{display:none;}
+  .kpis{grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px;}
+  .kpi{text-align:center;padding:14px 12px;}
+  .kpi-num{font-size:32px;font-weight:600;}
+  .kpi-label{font-size:14px;font-weight:600;text-transform:none;letter-spacing:0;margin-top:6px;}
+  .kpi-sub{font-size:14px;}
+  .panel{padding:16px;margin-top:12px;}
+  .grid2{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px;}
+  .act-title{font-size:16px;font-weight:600;}
+  .act-why{font-size:14px;margin-top:2px;}
+  .act-rank{font-size:13px;font-weight:600;}
+  .act-metric{font-size:18px;font-weight:600;}
+  .bar-val{font-weight:600;}
+  .legend{font-size:14px;}
+  .wk-lab{font-size:13px;}
+  .wkchart{gap:6px;}
+  .chip,.btn{font-size:14px;}
+  th{font-size:14px;font-weight:600;text-transform:none;letter-spacing:0;}
+  table{font-size:15px;min-width:0;}
+  .psub{font-size:14px;}
+  .tag{font-size:13px;font-weight:600;}
+  .num{font-weight:600;}
+  .rowcount{font-size:14px;}
+  .filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:4px 0 12px;}
+  .filters input[type=search]{grid-column:1/-1;min-width:0;}
+  .filters .chip,.filters .btn{justify-content:center;}
+  #flagChips{display:flex;flex-wrap:wrap;gap:8px;}
+  .notes{margin-top:24px;padding:12px 16px;font-size:14px;}
+  .notes summary{cursor:pointer;font-weight:600;font-size:16px;color:var(--text);min-height:40px;display:flex;align-items:center;}
+  .table-scroll{overflow-x:auto;}
+  .grid2:has(#inbRiskTable){grid-template-columns:minmax(0,1fr);}
+  #prodTable{min-width:860px;}
+  @media (max-width:820px){
+    .kpis{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .grid2{grid-template-columns:minmax(0,1fr);}
+    .table-scroll{overflow-x:visible;}
+    #prodTable{min-width:0;}
+    .table-scroll table,.table-scroll tbody,.table-scroll tr,.table-scroll td{display:block;width:100%;}
+    .table-scroll thead{display:none;}
+    .table-scroll tr{border:1px solid var(--line-soft);border-radius:10px;padding:8px 12px;margin:0 0 12px;}
+    .table-scroll td{border:0;padding:4px 0;text-align:left;}
+    .table-scroll td[data-l]{display:flex;justify-content:space-between;gap:12px;text-align:right;}
+    .table-scroll td[data-l]::before{content:attr(data-l);color:var(--text-dim);text-align:left;font-weight:500;}
+    .table-scroll td.num{text-align:right;}
+    .act{flex-wrap:wrap;}
+    .act-metric{text-align:left;min-width:0;}
+    .bar-row{grid-template-columns:minmax(90px,140px) 1fr auto;}
+    .filters{grid-template-columns:repeat(2,minmax(0,1fr));}
+  }
+  @media (max-width:520px){.kpi-num{font-size:28px;}.filters{grid-template-columns:minmax(0,1fr);}}
 </style>
 <script src="../shared/kdh-user.js?v=20261007a"></script>
 <script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
@@ -176,92 +239,86 @@
 
   <header>
     <h1>Inventory Overview</h1>
-    <p class="sub">Where the warehouse stands right now &mdash; what we hold, what just came in, and what is about to
-      go bad. Built for a glance first: the numbers up top, the action list right under them, and the detail below
-      for whoever has to go fix it.</p>
-    <p class="updated"><span class="livedot"></span> <span id="asOf"></span></p>
+        <p class="updated"><span class="livedot"></span> <span id="asOf"></span></p>
   </header>
 
   <div class="kpis" id="kpis"></div>
 
-  <h2 class="sec">What needs attention <span class="note" id="actNote"></span></h2>
-  <p class="sec-intro">Ranked by what it costs to ignore. Every line is a filter &mdash; open the product table at the
-    bottom to work the list.</p>
+  <h2 class="sec">What Needs Attention <span class="note" id="actNote"></span></h2>
   <div class="panel" id="actions"></div>
 
-  <h2 class="sec">Expiration risk</h2>
+  <h2 class="sec">Expiration Risk</h2>
   <p class="sec-intro" id="expIntro"></p>
   <div class="grid2">
     <div class="panel">
-      <h2 class="sec" style="margin-top:0;font-size:16px">Stock by time to expiry</h2>
+      <h2 class="sec" style="margin-top:0;font-size:16px">Stock by Time to Expiry</h2>
       <div class="legend" id="pipeLegend"></div>
       <div class="chart" id="pipeline"></div>
       <p class="rowcount" id="pipeNote"></p>
     </div>
     <div class="panel">
-      <h2 class="sec" style="margin-top:0;font-size:16px">Write-off risk by supplier</h2>
+      <h2 class="sec" style="margin-top:0;font-size:16px">Write-Off Risk by Supplier</h2>
       <div class="chart" id="riskBySupplier"></div>
     </div>
   </div>
 
-  <h2 class="sec">What is still coming <span class="note" id="inbNote"></span></h2>
+  <h2 class="sec">What Is Still Coming <span class="note" id="inbNote"></span></h2>
   <p class="sec-intro" id="inbIntro"></p>
   <div class="grid2">
     <div class="panel">
-      <h2 class="sec" style="margin-top:0;font-size:16px">Arrivals by week</h2>
+      <h2 class="sec" style="margin-top:0;font-size:16px">Arrivals by Week</h2>
       <div class="chart" id="inbWeeks"></div>
       <p class="rowcount" id="inbWeekNote"></p>
     </div>
     <div class="panel">
-      <h2 class="sec" style="margin-top:0;font-size:16px">Landing on top of 90+ days of cover</h2>
+      <h2 class="sec" style="margin-top:0;font-size:16px">Landing on 90+ Days of Cover</h2>
       <div class="table-scroll"><table id="inbRiskTable"></table></div>
       <p class="rowcount" id="inbRiskNote"></p>
     </div>
   </div>
 
   <div class="panel">
-    <h2 class="sec" style="margin-top:0;font-size:16px">At-risk lots &mdash; 0&ndash;60 days to expire</h2>
+    <h2 class="sec" style="margin-top:0;font-size:16px">At-Risk Lots &mdash; 0&ndash;60 Days to Expire</h2>
     <div class="filters">
-      <label class="rowcount" for="expWindow">Expiring within</label>
+      <label class="rowcount" for="expWindow">Expiring Within</label>
       <select id="expWindow">
-        <option value="7">7 days</option>
-        <option value="14">14 days</option>
-        <option value="30">30 days</option>
-        <option value="60" selected>60 days (all)</option>
+        <option value="7">7 Days</option>
+        <option value="14">14 Days</option>
+        <option value="30">30 Days</option>
+        <option value="60" selected>60 Days (All)</option>
       </select>
-      <button class="chip" id="deadOnly">Dead movers only <span class="n" id="deadN"></span></button>
+      <button class="chip" id="deadOnly">Dead Movers Only <span class="n" id="deadN"></span></button>
     </div>
     <div class="table-scroll"><table id="riskTable"></table></div>
     <p class="rowcount" id="riskCount"></p>
   </div>
 
-  <h2 class="sec">Inventory on hand</h2>
+  <h2 class="sec">Inventory on Hand</h2>
   <p class="sec-intro" id="onHandIntro"></p>
   <div class="grid2">
     <div class="panel">
-      <h2 class="sec" style="margin-top:0;font-size:16px">Top suppliers by units on hand</h2>
+      <h2 class="sec" style="margin-top:0;font-size:16px">Top Suppliers by Units on Hand</h2>
       <div class="chart" id="supplierChart"></div>
     </div>
     <div class="panel">
-      <h2 class="sec" style="margin-top:0;font-size:16px">Biggest single products</h2>
+      <h2 class="sec" style="margin-top:0;font-size:16px">Biggest Single Products</h2>
       <div class="chart" id="topProducts"></div>
     </div>
   </div>
 
-  <h2 class="sec">Inventory received</h2>
+  <h2 class="sec">Inventory Received</h2>
   <p class="sec-intro" id="recvIntro"></p>
   <div class="panel">
     <div class="wkchart" id="weekly"></div>
     <p class="rowcount" id="weeklyNote"></p>
   </div>
 
-  <h2 class="sec">Product detail</h2>
-  <p class="sec-intro">Every product in the catalogue. Filter it down, or click a column to sort.</p>
+  <h2 class="sec">Product Detail</h2>
   <div class="panel">
     <div class="filters">
-      <input type="search" id="q" placeholder="Search product, brand or supplier&hellip;" aria-label="Search products">
-      <select id="supplierSel" aria-label="Filter by supplier"><option value="">All suppliers</option></select>
-      <select id="brandSel" aria-label="Filter by brand"><option value="">All brands</option></select>
+      <input type="search" id="q" placeholder="Search Product, Brand or Supplier&hellip;" aria-label="Search products">
+      <select id="supplierSel" aria-label="Filter by supplier"><option value="">All Suppliers</option></select>
+      <select id="brandSel" aria-label="Filter by brand"><option value="">All Brands</option></select>
       <button class="btn" id="reset">Reset</button>
     </div>
     <div class="filters" id="flagChips"></div>
@@ -285,22 +342,22 @@ const dstr = s => { if(!s) return '—'; const [y,m,d]=s.split('-'); return `${+
 /* Severity tiers. Colour is backed by a text label everywhere it is used, so
    the encoding never depends on colour alone. */
 const TIERS = [
-  {key:'expired', label:'Already expired', color:'var(--sev-expired)'},
-  {key:'soon',    label:'0–60 days',       color:'var(--sev-soon)'},
-  {key:'watch',   label:'61–90 days',      color:'var(--sev-watch)'},
-  {key:'ok',      label:'90+ days',        color:'var(--sev-ok)'},
+  {key:'expired', label:'Already Expired', color:'var(--sev-expired)'},
+  {key:'soon',    label:'0–60 Days',       color:'var(--sev-soon)'},
+  {key:'watch',   label:'61–90 Days',      color:'var(--sev-watch)'},
+  {key:'ok',      label:'90+ Days',        color:'var(--sev-ok)'},
 ];
 
 const FLAGS = [
-  {key:'expired',    label:'Expired on hand', hint:'stock past its expiration date, still in the building'},
+  {key:'expired',    label:'Expired on Hand', hint:'stock past its expiration date, still in the building'},
   {key:'atrisk',     label:'Expiring ≤60d',   hint:'has a lot in the 0–60 day at-risk export'},
-  {key:'inboundrisk',label:'Buying into it',  hint:'more stock inbound on top of 90+ days of cover'},
+  {key:'inboundrisk',label:'Buying Into It',  hint:'more stock inbound on top of 90+ days of cover'},
   {key:'slow',       label:'Slow — 180d+',    hint:'six months or more of cover at its own rate of sale'},
   {key:'overstock',  label:'Overstocked 90d+',hint:'three months or more of cover at its own rate of sale'},
   {key:'low',        label:'Low — ≤14d',      hint:'two weeks of cover left, still has stock to sell'},
-  {key:'stockout',   label:'Out of stock',    hint:'nothing available, and either backordered or still selling'},
-  {key:'unsellable', label:'Unsellable units',hint:'has units flagged unsellable'},
-  {key:'negative',   label:'Negative balance',hint:'on-hand or available is below zero — a count to investigate'},
+  {key:'stockout',   label:'Out of Stock',    hint:'nothing available, and either backordered or still selling'},
+  {key:'unsellable', label:'Unsellable Units',hint:'has units flagged unsellable'},
+  {key:'negative',   label:'Negative Balance',hint:'on-hand or available is below zero — a count to investigate'},
 ];
 
 /* $18.5M rather than $18,499,939 -- a KPI tile is read at a glance, and the
@@ -318,15 +375,15 @@ document.getElementById('asOf').textContent =
   `${n0(S.productsTotal)} products across ${n0(S.suppliers)} suppliers`;
 
 document.getElementById('kpis').innerHTML = [
-  {cls:'', num:bigMoney(S.value), label:'Inventory on hand',
+  {cls:'', num:bigMoney(S.value), label:'Inventory on Hand',
    sub:`${n0(S.onHand)} units · laid-in cost on ${S.onHand?Math.round(S.valuedOnHand/S.onHand*100):0}% of them`},
-  {cls:'good', num:n0(S.available), label:'Available to sell',
+  {cls:'good', num:n0(S.available), label:'Available to Sell',
    sub:`${S.onHand?Math.round(S.available/S.onHand*100):0}% of on hand · ${n0(S.preSales)} pre-sold, ${n0(S.allocated)} allocated`},
-  {cls:'', num:bigMoney(S.incomingValue), label:'On order, inbound',
+  {cls:'', num:bigMoney(S.incomingValue), label:'On Order, Inbound',
    sub:`${n0(S.incomingUnits)} units over ${n0(S.incomingLots)} lots · ${n0(S.incomingProducts)} products`},
-  {cls:'warn', num:money(S.riskDollars), label:'Write-off risk ≤60 days',
+  {cls:'warn', num:money(S.riskDollars), label:'Write-Off Risk ≤60 Days',
    sub:`${n0(S.riskUnits)} units over ${n0(S.riskLots)} lots · ${n0(S.riskProducts)} products`},
-  {cls:'bad', num:n0(S.expiredUnits), label:'Expired, still on hand',
+  {cls:'bad', num:n0(S.expiredUnits), label:'Expired, Still on Hand',
    sub:`${n0(S.expiredLots)} lots already past their date`},
 ].map(k=>`<div class="kpi ${k.cls}"><div class="kpi-num">${k.num}</div>
   <div class="kpi-label">${k.label}</div><div class="kpi-sub">${k.sub}</div></div>`).join('');
@@ -347,35 +404,35 @@ const inbOver = byFlag('inboundrisk');
 const inbOnOver = inbOver.reduce((a,p)=>a+(p.incomingUnits||0),0);
 const inbOnOverVal = inbOver.reduce((a,p)=>a+(p.incomingUnits||0)*(p.unitCost||0),0);
 const acts = [
-  S.expiredLots ? {rank:'Do now', cls:'now', title:'Clear expired stock out of the building',
-    why:`${n0(S.expiredUnits)} units across ${n0(S.expiredLots)} lots are already past their expiration date and still counted as on hand. Some carry dates years old, which points at a count problem as much as a product problem.`,
+  S.expiredLots ? {rank:'Do Now', cls:'now', title:'Clear Expired Stock Out of the Building',
+    why:`${n0(S.expiredUnits)} units across ${n0(S.expiredLots)} lots are past their expiration date`,
     metric:`${n0(S.expiredUnits)} u`} : null,
-  deadLots.length ? {rank:'Do now', cls:'now', title:'Dead movers that will not clear before they expire',
-    why:`${deadLots.length} at-risk lots are selling under 0.2 cases a day. At that rate none of them sell through in time, so this is write-off unless it is moved on price or promotion.`,
+  deadLots.length ? {rank:'Do Now', cls:'now', title:'Dead Movers That Will Not Clear Before They Expire',
+    why:`${deadLots.length} at-risk lots selling under 0.2 cases a day`,
     metric:money(deadDollars)} : null,
-  topRisk ? {rank:'This week', cls:'soon', title:`Biggest single exposure: ${topRisk.name}`,
-    why:`${n0(topRisk.units)} units expire in ${topRisk.daysLeft} days — ${money(topRisk.risk)} of the ${money(S.riskDollars)} total risk sits in this one lot. Selling ${topRisk.velocity}/day against ${topRisk.doi} days of inventory.`,
+  topRisk ? {rank:'This Week', cls:'soon', title:`Biggest Single Exposure: ${topRisk.name}`,
+    why:`${n0(topRisk.units)} units expire in ${topRisk.daysLeft} days · ${money(topRisk.risk)} of ${money(S.riskDollars)} total risk · ${topRisk.velocity}/day vs ${topRisk.doi} days of inventory`,
     metric:money(topRisk.risk)} : null,
-  fc.inboundrisk ? {rank:'Do now', cls:'now', title:'Buying more of what is already overstocked',
-    why:`${n0(fc.inboundrisk)} products have stock inbound on top of 90+ days of cover — ${n0(inbOnOver)} units worth ${money(inbOnOverVal)}. These are POs that can still be cut, moved out or renegotiated before they land; once received they become next quarter's expiry list.`,
+  fc.inboundrisk ? {rank:'Do Now', cls:'now', title:'Buying More of What Is Already Overstocked',
+    why:`${n0(fc.inboundrisk)} products inbound on 90+ days of cover · ${n0(inbOnOver)} units · ${money(inbOnOverVal)}`,
     metric:money(inbOnOverVal)} : null,
-  fc.slow ? {rank:'This week', cls:'soon', title:'Six months or more of cover',
-    why:`${n0(fc.slow)} products carry 180+ days of inventory at their own rate of sale, ${money(slowValue)} of stock. Nothing here is expiring yet, but it is cash standing still and it is the front of the queue for the next expiry list.`,
+  fc.slow ? {rank:'This Week', cls:'soon', title:'Six Months or More of Cover',
+    why:`${n0(fc.slow)} products with 180+ days of inventory · ${money(slowValue)}`,
     metric:money(slowValue)} : null,
-  fc.overstock ? {rank:'This week', cls:'soon', title:'Three to six months of cover',
-    why:`A further ${n0(fc.overstock)} products sit between 90 and 180 days of inventory, ${money(overValue)} worth. Not yet a problem, but worth checking before the next order goes in.`,
+  fc.overstock ? {rank:'This Week', cls:'soon', title:'Three to Six Months of Cover',
+    why:`${n0(fc.overstock)} more products at 90–180 days · ${money(overValue)}`,
     metric:money(overValue)} : null,
-  fc.stockout ? {rank:'Watch', cls:'watch', title:'Products that have run dry',
-    why:`${n0(fc.stockout)} products have nothing available to sell while still selling or carrying backorders (${n0(S.backordered)} units backordered overall). Worth a reorder check.`,
+  fc.stockout ? {rank:'Watch', cls:'watch', title:'Products That Have Run Dry',
+    why:`${n0(fc.stockout)} products with nothing available · ${n0(S.backordered)} units backordered`,
     metric:`${n0(fc.stockout)}`} : null,
-  fc.low ? {rank:'Watch', cls:'watch', title:'About to run out',
-    why:`${n0(fc.low)} products have two weeks of cover or less and still have stock on the floor. They have not run dry yet, which makes them the cheapest stockouts to prevent.`,
+  fc.low ? {rank:'Watch', cls:'watch', title:'About to Run Out',
+    why:`${n0(fc.low)} products with two weeks of cover or less`,
     metric:`${n0(fc.low)}`} : null,
-  (fc.unsellable||fc.negative) ? {rank:'Watch', cls:'watch', title:'Counts that need cleaning up',
-    why:`${n0(S.unsellable)} units are flagged unsellable across ${n0(fc.unsellable)} products, and ${n0(fc.negative)} products show a negative on-hand or available balance. Neither can be true of real stock on a shelf.`,
+  (fc.unsellable||fc.negative) ? {rank:'Watch', cls:'watch', title:'Counts That Need Cleaning Up',
+    why:`${n0(S.unsellable)} unsellable units across ${n0(fc.unsellable)} products · ${n0(fc.negative)} products with a negative balance`,
     metric:`${n0(fc.unsellable+fc.negative)}`} : null,
 ].filter(Boolean);
-document.getElementById('actNote').textContent = `${acts.length} items, worst first`;
+document.getElementById('actNote').textContent = `${acts.length} Items, Worst First`;
 document.getElementById('actions').innerHTML = acts.map(a=>`<div class="act">
   <span class="act-rank ${a.cls}">${a.rank}</span>
   <div class="act-body"><div class="act-title">${esc(a.title)}</div><div class="act-why">${esc(a.why)}</div></div>
@@ -388,10 +445,7 @@ document.getElementById('actions').innerHTML = acts.map(a=>`<div class="act">
 const INB = DATA.incoming||[];
 document.getElementById('inbNote').textContent =
   `${n0(S.incomingLots)} lots · ${n0(S.incomingUnits)} units · ${money(S.incomingValue)}`;
-document.getElementById('inbIntro').textContent = INB.length
-  ? `Purchase lots dated after ${dstr(DATA.asOf)} and still open (New or Ordered). This is the only forward-looking `
-    + `view in the data — everything else on the page describes stock already in the building.`
-  : `No open future-dated purchase lots in this export.`;
+document.getElementById('inbIntro').textContent = INB.length ? '' : `No open future-dated purchase lots.`;
 
 const inbByWeek = {};
 INB.forEach(l=>{
@@ -404,7 +458,7 @@ INB.forEach(l=>{
 const inbWeeks = Object.values(inbByWeek).sort((a,b)=>a.week<b.week?-1:1);
 const inbMax = Math.max(1, ...inbWeeks.map(w=>w.units));
 document.getElementById('inbWeeks').innerHTML = inbWeeks.length ? inbWeeks.map(w=>`<div class="bar-row">
-  <div class="bar-label">wk of ${dstr(w.week)}</div>
+  <div class="bar-label">Week of ${dstr(w.week)}</div>
   <div class="bar-track"><div class="bar-fill" style="width:${w.units/inbMax*100}%;background:var(--accent)"
     title="${n0(w.units)} units in ${n0(w.lots)} lots, ${money(w.value)}"></div></div>
   <div class="bar-val">${n0(w.units)} u</div></div>`).join('')
@@ -418,7 +472,7 @@ const inbRisk = INB.filter(l=>l.doi!=null && l.doi>=90)
   .sort((a,b)=>(b.qty*(b.cost||0))-(a.qty*(a.cost||0))).slice(0,40);
 document.getElementById('inbRiskTable').innerHTML =
   `<thead><tr><th>Product</th><th class="num">Arrives</th><th class="num">Qty</th>`+
-  `<th class="num">Value</th><th class="num">DOI now</th></tr></thead><tbody>`+
+  `<th class="num">Value</th><th class="num">DOI Now</th></tr></thead><tbody>`+
   (inbRisk.length ? inbRisk.map(l=>`<tr>
     <td><div class="pname">${esc(l.name)}</div><div class="psub">${esc(l.supplier)} · ${n0(l.onHand)} on hand</div></td>
     <td class="num">${dstr(l.arrives)}</td>
@@ -455,12 +509,9 @@ document.getElementById('pipeline').innerHTML = pipeShown.map(r=>`<div class="ba
   + `<div class="bar-row" style="border-top:1px solid var(--line-soft);margin-top:8px;padding-top:10px">
       <div class="bar-label" style="color:var(--text-dim)"><i class="swatch" style="background:${pipeOk.tier.color}"></i>
         ${pipeOk.tier.label}</div>
-      <div class="bar-label" style="color:var(--text-mute)">healthy — not charted, it would flatten the rest</div>
+      <div class="bar-label" style="color:var(--text-mute)">Healthy — Not Charted</div>
       <div class="bar-val">${n0(pipeOk.units)} u</div></div>`;
-document.getElementById('expIntro').textContent =
-  `The 0–60 day numbers come from the at-risk export, which covers every lot however long ago it arrived. `+
-  `The chart below is built from receipt lots instead, so it only sees stock received since `+
-  `${dstr(DATA.receivedWindow.start)} — read it for the shape of what is coming, not as a full count.`;
+document.getElementById('expIntro').textContent = '';
 const pipeTot = pipeRows.reduce((a,r)=>a+r.units,0);
 document.getElementById('pipeNote').textContent =
   `Receipt lots with stock remaining, by days from ${dstr(DATA.asOf)} to their expiration date. `+
@@ -482,9 +533,7 @@ magBars('riskBySupplier', Object.entries(riskSup).map(([k,v])=>({label:k,value:v
   .sort((a,b)=>b.value-a.value).slice(0,8), money, 'var(--sev-soon)');
 magBars('supplierChart', (DATA.suppliers||[]).slice(0,10).map(s=>({label:s.name,value:s.onHand})), v=>n0(v)+' u');
 magBars('topProducts', (DATA.products||[]).slice(0,10).map(p=>({label:p.name,value:p.onHand})), v=>n0(v)+' u');
-document.getElementById('onHandIntro').textContent =
-  `${n0(S.onHand)} units in the building. ${n0(S.available)} of that is free to sell — the rest is pre-sold, `+
-  `allocated, or flagged unsellable.`;
+document.getElementById('onHandIntro').textContent = '';
 
 /* ---------- weekly receipts (single series, no legend needed) ---------- */
 const wk = DATA.weekly||[];
@@ -498,9 +547,7 @@ document.getElementById('weekly').innerHTML = wk.map(w=>{
 document.getElementById('weeklyNote').textContent =
   `Units received per week, ${dstr(DATA.receivedWindow.start)} to ${dstr(DATA.receivedWindow.end)}. Hover a bar for the lot count.`;
 document.getElementById('recvIntro').textContent =
-  `${n0(S.recv30Units)} units arrived in the last 30 days, ${n0(S.recvWindowUnits)} across the whole export window. `+
-  `Every row in this export is already received — there are no future-dated inbound shipments in it, so it shows `+
-  `what landed, not what is on its way.`;
+  `${n0(S.recv30Units)} units in the last 30 days · ${n0(S.recvWindowUnits)} across the export window`;
 
 /* ---------- at-risk table ---------- */
 let expWindow = 60, deadOnly = false;
@@ -510,8 +557,8 @@ function renderRisk(){
   const t = document.getElementById('riskTable');
   if(!rows.length){ t.innerHTML=''; document.getElementById('riskCount').textContent='No lots match.'; return; }
   t.innerHTML = `<thead><tr><th>Product</th><th>Supplier</th><th class="num">Units</th>
-    <th class="num">Days left</th><th>Expires</th><th class="num">Sells/day</th>
-    <th class="num">Days of inv.</th><th class="num">Write-off risk</th></tr></thead><tbody>`+
+    <th class="num">Days Left</th><th>Expires</th><th class="num">Sells/Day</th>
+    <th class="num">Days of Inv.</th><th class="num">Write-Off Risk</th></tr></thead><tbody>`+
     rows.map(r=>`<tr>
       <td><div class="pname">${esc(r.name)}</div><div class="psub">#${esc(r.num)}${r.dead?' · dead mover':''}</div></td>
       <td>${esc(r.supplier)}</td>
@@ -544,14 +591,14 @@ document.getElementById('flagChips').innerHTML = FLAGS.map(f=>
 const COLS = [
   {key:'name', label:'Product', sortable:true},
   {key:'supplier', label:'Supplier', sortable:true},
-  {key:'onHand', label:'On hand', num:true, sortable:true},
+  {key:'onHand', label:'On Hand', num:true, sortable:true},
   {key:'available', label:'Available', num:true, sortable:true},
-  {key:'doi', label:'Days of inv', num:true, sortable:true},
+  {key:'doi', label:'Days of Inv', num:true, sortable:true},
   {key:'value', label:'Value', num:true, sortable:true},
   {key:'incomingUnits', label:'Inbound', num:true, sortable:true},
   {key:'unsellable', label:'Unsellable', num:true, sortable:true},
-  {key:'lastRecv', label:'Last recv', sortable:true},
-  {key:'riskDollars', label:'At-risk $', num:true, sortable:true},
+  {key:'lastRecv', label:'Last Recv', sortable:true},
+  {key:'riskDollars', label:'At-Risk $', num:true, sortable:true},
   {key:'flags', label:'Flags'},
 ];
 function filtered(){
@@ -620,7 +667,7 @@ document.getElementById('reset').addEventListener('click', ()=>{
 renderProducts();
 
 /* ---------- methodology ---------- */
-document.getElementById('notes').innerHTML = `<h3>How to read this, and what it does not cover</h3><ul>
+document.getElementById('notes').innerHTML = `<details><summary>How to Read This Page</summary><ul>
   <li><b>Five exports, joined on product number.</b> Inventory Status gives the on-hand position and is the only
     file carrying supplier, so it supplies that dimension to the rest. Inventory Received gives receipt lots.
     Inventory at Risk gives the 0–60 day exposure. Inventory Projections gives catalog-wide days of inventory and
@@ -651,7 +698,25 @@ document.getElementById('notes').innerHTML = `<h3>How to read this, and what it 
     selling or backordered.</li>
   <li><b>Some receipt lots join no product</b> — they are pallets, bulkhead spacers and kegboard across 15 item
     numbers. Warehouse handling material, not sellable stock, so they are excluded rather than counted as inventory.</li>
-  <li>Snapshot generated ${esc(DATA.generatedAt)} from the exports in this folder.</li></ul>`;
+  <li>Snapshot generated ${esc(DATA.generatedAt)} from the exports in this folder.</li></ul></details>`;
+/* Phones: label each cell with its column heading so CSS can stack rows. */
+function kdhStackTables(){
+  document.querySelectorAll('.table-scroll table').forEach(t=>{
+    const hs=[...t.querySelectorAll('thead th')].map(h=>h.textContent.replace(/[▲▼]/g,'').trim());
+    t.querySelectorAll('tbody tr').forEach(tr=>{
+      [...tr.children].forEach((td,i)=>{
+        if(td.hasAttribute('colspan')||!hs[i]||i===0) return;
+        if(td.getAttribute('data-l')!==hs[i]) td.setAttribute('data-l',hs[i]);
+      });
+    });
+  });
+}
+(function(){
+  let busy=false;
+  const run=()=>{ if(busy) return; busy=true; kdhStackTables(); busy=false; };
+  new MutationObserver(()=>{ run(); }).observe(document.body,{childList:true,subtree:true});
+  run();
+})();
 </script>
 
 </body>

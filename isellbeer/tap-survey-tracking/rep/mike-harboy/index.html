@@ -653,6 +653,62 @@ footer{font-size:13px}
 @media (max-width:420px){.summary{grid-template-columns:1fr}}
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ---- PAGE STANDARD (2026-10-07): one 960px column, centered header, rows that never clip, type 13-16 ---- */
+.wrap,.gx-head .wrap{max-width:960px;padding-left:16px;padding-right:16px}
+.gx-head .wrap{text-align:center}
+.updated{font-size:14px}
+.tabbtn{font-size:15px;min-height:40px}
+.tgroup label{font-size:14px;font-weight:600}
+.tgroup input,.tgroup select{font-size:16px}
+.tbtn,.ras-btn{font-size:14px;min-height:40px}
+.result-count{font-size:14px}
+.rep-name{font-size:17px;font-weight:600}
+.rep-meta{font-size:14px}
+.rep-stats .l{font-size:13px;text-transform:none;letter-spacing:0}
+.ras-lbl,.ras-note{font-size:14px}
+.acct-head{display:grid;grid-template-columns:12px 52px minmax(0,1fr) 88px auto auto;column-gap:12px;align-items:center;padding:10px 12px}
+.acct-info{min-width:0}
+.acct-name{font-size:16px;font-weight:600}
+.acct-sub{font-size:14px}
+.acct-taps{width:auto;min-width:0;text-align:right;font-size:16px}
+.acct-taps small{display:inline;margin-left:4px;font-size:14px;text-transform:none;color:var(--ink-soft)}
+.acct-ot{display:block;font-size:14px;white-space:nowrap}
+.acct-visited{width:auto;min-width:150px;font-size:14px;text-align:right}
+.acct-visited .l{display:inline;margin-right:4px;font-size:14px;text-transform:none;letter-spacing:0}
+.acct-photo,.acct-photo-ph{width:52px;height:52px}
+.acct-brands{padding:8px 16px 14px}
+.acct-brands table{font-size:14px;min-width:0}
+.acct-brands th{font-size:14px;font-weight:600;text-transform:none;letter-spacing:0}
+.acct-address,.photo-empty-note{font-size:14px}
+.status-badge,.refresh-badge,.hist-badge,.flip-badge{font-size:13px}
+.hist-toggle,.hist-date,.hist-cap,.hd-col li{font-size:14px}
+.brow{font-size:15px}
+.bd-title,.bd-row{font-size:14px}
+.scard .lbl,.cgroup-h .gl,.cgroup-h .gs,.cchip .ct,.cchip .cp,.cchip .cn,.rep-pills .rp-lbl,.finder .f-sub,.finder .rights-note,.tt-cap,.tb-l{font-size:14px;letter-spacing:0;text-transform:none}
+.drill table{font-size:14px}
+.tap-analytics > summary .ta-t{font-size:16px;font-weight:600}
+.tap-analytics > summary .ta-s{font-size:14px}
+.legend{font-size:14px}
+@media (max-width:760px){
+  .rep-accounts{max-height:none;overflow:visible}
+  .acct-head{grid-template-columns:52px minmax(0,1fr);row-gap:8px}
+  .acct-chev{display:none}
+  .acct-mix{grid-column:1/-1;width:auto}
+  .acct-taps{grid-column:1/-1;text-align:left}
+  .acct-ot{display:inline;margin-left:8px;white-space:normal}
+  .acct-visited{grid-column:1/-1;display:block;text-align:left;min-width:0}
+  .acct-name,.acct-sub{white-space:normal}
+  .acct-brands{padding:8px 12px 14px;overflow-x:visible}
+  .acct-brands table,.acct-brands thead,.acct-brands tbody,.acct-brands tr,.acct-brands td{display:block;width:100%}
+  .acct-brands thead{display:none}
+  .acct-brands tr{border:1px solid var(--line-soft);border-radius:10px;padding:10px 12px;margin:0 0 8px}
+  .acct-brands td{border:0;padding:3px 0;text-align:left}
+  .acct-brands td.brand-cell{font-size:16px;padding-bottom:6px}
+  .acct-brands td[data-l]{display:flex;justify-content:space-between;gap:12px;text-align:right}
+  .acct-brands td[data-l]::before{content:attr(data-l);color:var(--ink-soft);text-align:left;flex:none}
+  .acct-brands td.num-cell{text-align:right}
+}
 </style><script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="kdh-page" content="Tap Tracker">
 <!-- Site design system: maps this page's variables + fonts onto shared/kdh.css. Keep it LAST in <head>. -->
@@ -669,9 +725,7 @@ footer{font-size:13px}
 </div>
 
 <div class="gx-head"><div class="wrap">
-  <p class="eyebrow"><span class="pulse"></span> Kohler Distributing &middot; Tap Tracker</p>
   <h1>Tap Tracker</h1>
-  <p class="lede">Find an account, see what is on tap there, and when it was last surveyed. Share-of-tap analytics and target tools are further down.</p>
   <p class="updated" id="updated"></p>
 </div></div>
 
@@ -740,7 +794,7 @@ footer{font-size:13px}
   <div id="brands" style="display:none"></div>
   <div id="michelob" style="display:none"></div>
 
-  <details class="tap-analytics" id="tapAnalytics"><summary><span class="ta-t">Tap Analytics &amp; Target Tools</span><span class="ta-s">Share of taps, brands, areas, opportunities and target lists</span></summary>
+  <details class="tap-analytics" id="tapAnalytics"><summary><span class="ta-t">Tap Analytics &amp; Target Tools</span><span class="ta-s">Share of Taps · Brands · Targets</span></summary>
   <div class="cc-h"><span class="t" id="ccTitle">Kohler Tap Business</span><span class="s" id="ccHint"></span></div>
   <div class="rep-pills" id="dmPills"></div>
   <div class="rep-pills" id="repPills"></div>
@@ -812,9 +866,9 @@ window.__tapMain = function(){
   // per-card view preference rather than a filter.
   var repSort = {};
   var REP_ACCT_SORTERS = {
-    taps: { label:'Taps ↓', note:'Their accounts by tap handles, biggest book first.',
+    taps: { label:'Taps ↓', note:'',
       cmp:function(x,y){ return y.taps-x.taps || (y.visited<x.visited?-1:y.visited>x.visited?1:0) || x.dba.localeCompare(y.dba); } },
-    date: { label:'Date ↓', note:'Their accounts by most recent visit, newest survey first.',
+    date: { label:'Date ↓', note:'',
       cmp:function(x,y){ return (y.visited<x.visited?-1:y.visited>x.visited?1:0) || y.taps-x.taps || x.dba.localeCompare(y.dba); } }
   };
   var DEFAULT_ACCT_SORT = 'taps';
@@ -1942,10 +1996,10 @@ window.__tapMain = function(){
       var badge = '<span class="status-badge '+b.status+'" title="'+esc(b.reason)+'">'+(b.status==='UNVERIFIED'?'Unverified':(b.status==='US'?'Ours':'Competitor'))+'</span>';
       var flip = b.flipped ? ' <span class="flip-badge" title="iSellBeer’s own survey flagged this '+esc(b.rawStatus)+'; '+esc(b.reason)+'">⇄ corrected</span>' : '';
       return '<tr><td class="brand-cell"><b>'+esc(b.brand)+'</b>'+(b.brandFamily && b.brandFamily!==b.brand ? '<span class="sub">'+esc(b.brandFamily)+'</span>':'')+'</td>'+
-        '<td>'+esc(b.supplier)+'</td>'+
-        '<td>'+esc(b.segment)+'</td>'+
-        '<td class="num-cell">'+ce0(b.taps)+'</td>'+
-        '<td>'+badge+flip+'</td></tr>';
+        '<td data-l="Supplier">'+esc(b.supplier)+'</td>'+
+        '<td data-l="Segment">'+esc(b.segment)+'</td>'+
+        '<td class="num-cell" data-l="Taps">'+ce0(b.taps)+'</td>'+
+        '<td data-l="Status">'+badge+flip+'</td></tr>';
     }).join('');
   }
 
@@ -2082,7 +2136,7 @@ window.__tapMain = function(){
     var head = '<div class="rep-head" data-rep="'+esc(rep.rep)+'">'+
       '<span class="rep-chev">▸</span>'+
       '<div class="rep-pie">'+pieSvg(rep.us, rep.them, rep.unv)+'</div>'+
-      '<div class="rep-info"><div class="rep-name">'+esc(rep.rep)+'</div>'+
+      '<div class="rep-info"><div class="rep-name">'+esc(LOCK_NAME && state.rep===rep.rep ? 'Your Taps' : rep.rep)+'</div>'+
       '<div class="rep-meta">'+ce0(rep.accountsList.length)+' accounts &middot; '+ce0(rep.taps)+' taps surveyed'+repRefreshBadge+'</div></div>'+
       '<div class="rep-stats"><div class="us"><span class="n">'+pct(rep.us)+'%</span><span class="l">Ours</span></div>'+
       '<div class="them"><span class="n">'+pct(rep.them)+'%</span><span class="l">Competitor</span></div></div>'+
@@ -2096,7 +2150,7 @@ window.__tapMain = function(){
       var sorted = rep.accountsList.slice().sort(REP_ACCT_SORTERS[mode].cmp);
       body = '<div class="rep-accounts" data-rep-scroll="'+esc(rep.rep)+'">'+
         '<div class="ras" role="group" aria-label="Sort '+esc(rep.rep)+'\'s accounts"><span class="ras-lbl">Sort</span>'+sortBtns+'</div>'+
-        '<p class="ras-note">'+esc(REP_ACCT_SORTERS[mode].note)+'</p>'+
+        (REP_ACCT_SORTERS[mode].note?'<p class="ras-note">'+esc(REP_ACCT_SORTERS[mode].note)+'</p>':'')+
         sorted.map(function(a){ return accountHtml(rep.rep, a); }).join('')+'</div>';
     }
     // one rep picked (or a signed-in rep): the card is a plain header over their accounts (2026-10-02)

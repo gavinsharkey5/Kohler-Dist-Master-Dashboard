@@ -22,6 +22,9 @@ generator below calls it at the end of its run:
       NAME replaced by an opaque label, so the leaderboard and team-goal
       cards (counts only) compute exactly as before and no other rep's
       account name reaches the browser.
+  carbliss-mpo/data/program.json            -> carbliss-mpo/rep/<key>/program.json
+      the rep's own summary row and account rows; the HOUSE total travels as
+      a count only (meta + house), never another rep's accounts or numbers.
   carbliss-onprem-targets/index.html        -> .../rep/<key>/index.html
       the embedded tg-data keeps the rep's accounts and buyers; meta.board
       carries the leaderboard counts per rep (renderBoard reads it).
@@ -281,6 +284,31 @@ def redbull(out, keys_holder):
     return names
 
 
+# ---------- Carbliss MPO tracker (2026-10-06) ----------
+CM = ROOT / 'carbliss-mpo/data/program.json'
+
+
+def carbliss_mpo(out, keys_holder):
+    if not CM.exists():
+        return set()
+    data = json.loads(CM.read_text(encoding='utf-8'))
+    names = {r['rep'] for r in data['reps']}
+    out.reset_dir(ROOT / 'carbliss-mpo/rep')
+
+    def write(keys):
+        for key in keys + [NONE]:
+            mine = {
+                'meta': data['meta'],
+                'house': {'buyers': data['house']['buyers']},
+                'board': data.get('board', []),
+                'reps': [r for r in data['reps'] if name_key(r['rep']) == key],
+                'accounts': [a for a in data['accounts'] if name_key(a['rep']) == key],
+            }
+            out.put(ROOT / f'carbliss-mpo/rep/{key}/program.json', dumps(mine))
+    keys_holder.append(write)
+    return names
+
+
 # ---------- embedded-data pages ----------
 def tag_re(tag_id):
     return re.compile(r'(<script id="' + tag_id + r'" type="application/json">)(.*?)(</script>)', re.S)
@@ -301,7 +329,7 @@ def carbliss(out, keys_holder):
         return set()
     html = CB.read_text(encoding='utf-8')
     data = json.loads(tag_re('tg-data').search(html).group(2))
-    names = {a['rep'] for a in data['accounts']} | {b['rep'] for b in data.get('buyers', [])}
+    names = {a['rep'] for a in data['accounts']} | {b['rep'] for b in data.get('buyers', [])} | {b['rep'] for b in data.get('loads', [])}
     board = []
     for r in data['meta'].get('reps', []):
         mine = [a for a in data['accounts'] if a['rep'] == r]
@@ -312,7 +340,8 @@ def carbliss(out, keys_holder):
         for key in keys + [NONE]:
             d = {'meta': dict(data['meta'], board=board),
                  'accounts': [a for a in data['accounts'] if name_key(a['rep']) == key],
-                 'buyers': [b for b in data.get('buyers', []) if name_key(b['rep']) == key]}
+                 'buyers': [b for b in data.get('buyers', []) if name_key(b['rep']) == key],
+                 'loads': [b for b in data.get('loads', []) if name_key(b['rep']) == key]}
             out.put(ROOT / f'carbliss-onprem-targets/rep/{key}/index.html', page_with(html, {'tg-data': dumps(d)}))
     keys_holder.append(write)
     return names
@@ -394,6 +423,7 @@ def main():
     names |= incentives(out, writers)
     names |= mpos(out, writers)
     names |= redbull(out, writers)
+    names |= carbliss_mpo(out, writers)
     names |= carbliss(out, writers)
     names |= tap(out, writers)
     keys = all_keys(names)

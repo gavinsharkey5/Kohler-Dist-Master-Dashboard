@@ -408,6 +408,96 @@ is now the LAST entry of MONTHS (no more editing it each month), the MPO tracker
 already default to the last month, and the hub's Previous Months toggle opens on the
 latest ended month (September).
 
+## Carbliss MPO tracker: fixed window, house total, penetration (2026-10-06)
+
+`carbliss-mpo/` (page + `generate.py` + README.txt). Gavin's brief: rebuild the
+Carbliss on-premise MPO around launch-period buying, NOT a rolling L90. PROGRAM
+PERIOD Aug 1 - Oct 30, 2026 inclusive (fixed; "Program Period: Aug 1-Oct 30,
+2026"); launch = first Carbliss load sheet on file (Jun 2, 2026, corroborated by
+the rolling master: no Carbliss sales before June 2026). Data = two EXISTING files,
+read in place: carbliss-onprem-targets/carbliss_buyers_l90.csv (load-sheet dates,
+Buyers 2026 flag; ON-PREMISE only, month-by-month equal to the master's on-prem
+buyers) and MPOs/on-prem/core_market_on_prem_accts.csv (the denominator, same base
+the October MPO's Carbliss objective uses, house reps Default / Office Tell Sell
+dropped). Qualifying purchase = a load-sheet row with Buyers 2026 > 0, any Carbliss
+flavor, counted by CustomerID once; the RDE flag does not net same-month returns
+(2 accounts, documented). Page: house card ("Carbliss Buying Accounts / N Accounts
+Bought During the Program Period / Aug 1-Oct 30 . Sales Through <latest load-sheet
+date>"), the rep card ("X of Y Assigned Accounts Bought Carbliss / Z% Account
+Penetration"), search + All Accounts / Program Buyers / Program Nonbuyers, rows
+Account | Bought Aug 1-Oct 30 | Bought Since Launch | Last Carbliss Purchase (check /
+X text labels; "Unknown" only if coverage starts after launch), stacked labelled
+rows under 760px. Managers: rep groups (collapsible) + rep select, DM scoped to
+their team (kdhTeam), house total stays company-wide. Reps: served their own
+`rep/<key>/program.json` (tools/rep_slices.py carbliss_mpo + middleware
+repSlicePath / SLICE_DIRS / REP_PATHS), pinned by kdhMatchName, fail closed.
+`generate.py --finalize` writes data/final.json (denied to reps, in .vercelignore):
+later runs read the program-period fields from it so nothing after Oct 30 can
+change the result, while Since Launch / Last Purchase keep updating. State: filters
+in the hash, groups + scroll in sessionStorage; account links carry from= / fl=.
+Accounts missing from the Account page's books (21) are listed unlinked. NOT
+changed: the October MPO objective "Carbliss 40% buying accounts" (Sep 1-Oct 31,
+40% target) -- a different definition; ROADMAP asks Gavin which to keep. Tests
+(scratchpad): cm_test.mjs (rep / phone / dark / manager / DM / preview / unmatched),
+cm_mw_test.mjs (real middleware.js with stubbed Supabase). Tags: carbliss-mpo.css /
+.js 20261006d, kdh-user.js 20261006b (new Programs sidebar item "Carbliss MPO").
+
+Follow-up (2026-10-06, Gavin): the tracker now LIVES IN THE CARD. Program period is Aug 1 - OCT 31
+(PERIOD_END in generate.py; supersedes the Oct 30 above). The "Carbliss MPO" Programs sidebar item and the
+rep / manager home tiles are REMOVED; /carbliss-mpo/ still exists (data + page) but nothing links to it.
+The October on-premise "Carbliss Buying Accounts" card (guided.js `carblissCard` / `hydrateCarbliss`, only
+for key carbliss in 2026-10 on the on-prem page) shows two centered tiles against the rep's own base --
+Program Period (Aug 1-Oct 31) "X of Y, Z%" and Since Launch (Jun 2 - latest load sheet) "X of Y, Z%",
+read from carbliss-mpo/data/program.json (a rep is served their own copy) -- plus the credit pill,
+deadline and weight; NO goal band, Current / Still Needed, View Eligible Accounts or Details; the one
+link is "See Leaderboard" -> /carbliss-onprem-targets/. The 40% goal still drives the credit pill
+(metricFor untouched). That leaderboard page was reformatted (a CSS block at the end of its <style>):
+everything centered, larger type, tiles / leaderboard rows / buyers / toolbar centered, and the
+accounts table is one labelled centered block per account under 900px (no sideways scroll; a "Sort by"
+select replaces the hidden header sorting; Rep hidden for reps). Generator untouched, so it survives
+refreshes. Tests (scratchpad): card_test.mjs, lb_test.mjs. Tags: guided.js 20261006d, guided.css
+20261006b, kdh-user.js 20261006c.
+
+Leaderboard page rebuilt (2026-10-06, Gavin): /carbliss-onprem-targets/ is now "Carbliss Leaderboard" (nav label,
+rep home tile, manager card renamed). The Sun Cruiser / White Claw pitch TABLE, its toolbar, the three stat tiles
+(target / opportunity / without SC-WC) and the pitch panel are REMOVED (the generator still embeds that data,
+unused). The win-back list shows "last <date>" with no day counts. The REP LEADERBOARD ranks reps by ROLLING-90
+buyers over the rep's whole on-premise account base (the MPO base): "34 of 122 accounts · 28%", ties on share
+then name, from `board` in carbliss-mpo/data/program.json (counts per rep, no names; every rep's copy carries it).
+Below it, ROSTER: sales rep -> customers with L90 Buyer / YTD Buyer (since launch) / Last Purchase, for ALL of
+the rep's assigned accounts (a rep sees only their own group, a DM their team, a manager every rep as
+collapsible groups; filters search / rep / All - L90 buyers - Fell off L90 - Never bought). program.json
+accounts gained `l90` (the RDE Buyers L90 flag) and the file gained `board`. The old goal bar and buyers card stay.
+Tags: kdh-user.js 20261006d. Tests (scratchpad): lb2_test.mjs.
+L90 REDEFINED (Gavin, same day): on the leaderboard page, the MPO card and the roster, "L90" = bought in the FIXED program
+period Aug 1 - Oct 31 (program.json `prog`), NOT the RDE rolling-90 flag (that flag is no longer read; program.json `l90` is gone,
+`board.l90` = accounts with prog). Fell Off L90 = bought since launch but not in the period. The page reads everything from
+program.json (buyers card, bar, leaderboard, roster); the roster has Search / Sales Rep / Town / L90 Buyer / YTD Buyer filters.
+TEAM GOAL: `L90_GOAL = 331` in carbliss-mpo/generate.py (meta.goal) -- the company chases 331 L90 buyers out of the entire core
+market on-premise base (1,047). A "Team L90 Goal" bar tops the leaderboard page (160 of 331, 171 to go, "Goal 331 of 1,047 On-Premise
+Accounts") and one line sits on the MPO Carbliss card for every rep; company-wide counts only. guided.js 20261006e.
+Follow-up (same day): the leaderboard's "Show All Reps" / "Show Top 10" toggle sits top right of its card (a rep below #10 opens it
+expanded); the old Sun Cruiser / White Claw goal bar is now "<Your|Team|Company> Customer Base": YTD buyers of the
+rep's whole core-market on-premise account base ("42 of 122 Accounts"), from program.json `board`.
+
+## COPY + LAYOUT STANDARD -- every page, every time (Gavin, 2026-10-06)
+
+Reps are beer sales reps: they do not read paragraphs. For every page you build or touch:
+- SHORT COPY. Labels and numbers first. No lede paragraphs, no "how this works" essays, no restating what a
+  number already says. One short line of context at most ("Data through Oct 16, 2026", "L90 = bought in the
+  last 90 days"). Put any rule detail in a fold or the README, never on the main screen. Cut stale copy when the
+  feature it described is gone.
+- CAPITALIZATION. Title Case for page names, section headings, card titles, tile labels, column headings, buttons
+  and filter labels ("Rep Leaderboard", "L90 Buyer", "Win Back", "See Leaderboard"); sentence case only for the
+  rare explanatory line. Same word, same spelling everywhere (L90, YTD, Account / Accounts).
+- TYPE. One face (Inter via the skin). Headings 16-18px / 600, body 15-16px, secondary 14px, nothing under 14px
+  except icons; big figures 30-48px / 600-700. No all-caps, no letter-spacing.
+- LAYOUT. One centered column per page (960px, 16px side padding): header, cards, filter bar and lists share the
+  same left and right edges; no panel wider than its neighbors. Spacing steps 12 / 14 / 16px between and inside
+  cards. Centered text inside cards. Filters in one grid row (search full width on top). Phones: stack into
+  labelled blocks, never a sideways-scrolling table. Verify at 390 / 820 / 1366, light and dark, before pushing.
+- Carbliss Leaderboard (carbliss-onprem-targets/) is the reference page: its last <style> block ("PAGE STANDARD").
+
 ## Boston Beer's seasonal-conversion sheets vs the RDE keg export (2026-10-05)
 
 Gavin sent Boston Beer's own "10-05-26 Sam Adams Seasonal Conversion Fall.xlsx" (per-rep
@@ -2464,6 +2554,35 @@ program-skus.js is loaded before hub/accounts.js on hub, accounts, exceptions
 and performance. Tags: hub/accounts.js 20261006b, hub.js 20261006g,
 program-skus.js 20261006a. New list = run `add`, then
 `python3 tools/program_eligibility.py` when the program has a rule.
+
+## Page standard applied sitewide (2026-10-06, branch only until Gavin approves pictures)
+
+Rep home, manager home, Team Activity, Exceptions, My Accounts + Account page, Incentive Hub (rep screens and
+Program View), both MPO trackers, Red Bull, Tap Tracker and Inventory now follow the COPY + LAYOUT STANDARD:
+960px centered column, page headers and summary cards centered, dense lists / tables left-aligned, short copy
+(rules moved into closed folds), Title Case in the strings, floors 13px tags / 14px secondary (`MIN_PX` 13 in
+kdh-user.js), phones stack into labelled blocks. The amber banner reads "Not Real Time. For live incentive and
+MPO data, Open Encompass." Each page has a "PAGE STANDARD" CSS block at the end of its stylesheet. NOT yet
+covered: manager tools (performance, merchandising, rolling-distribution, cockpit, W&S, metlife, etc.).
+Tests that match old copy ("accounts on your route", "In progress", "Manager Dashboards", "Why:") need updating.
+
+## Account contacts: private table, never in the repo (2026-10-06)
+
+Encompass' "Customers" export (Customer ID, Primary Contact, Phone, Email, 2,912
+rows) fills the Account page's Contact group. The repo is PUBLIC, so the data
+lives only in Supabase `public.account_contacts` (migration
+`20261006100000_account_contacts.sql`; RLS = `kdh_can_access_account`, the notes /
+photos rule: a rep reads only accounts assigned to them, a manager all; nobody
+signed in can write). `tools/load_contacts.py <export.csv>` cleans the names
+(proper case, Mc / O' / D', "_12" suffixes, phone numbers / account codes /
+extensions / (notes) / symbols stripped, " / " between two people, "None" and
+emails typed in the name box dropped) and writes the git-ignored
+`supabase/data/account_contacts.sql` (replaces the table in one transaction) for
+Gavin to paste into the SQL Editor. accounts.js `loadContact(n)` reads one row
+with the caller's token and sets contact_name / phone / email; no row = "No
+contact is on file". Verified on local Postgres 16 (rep sees own accounts only,
+manager all, writes and anon refused, migration idempotent). Never commit the
+generated SQL or the export. accounts.js tag 20261006a.
 
 ## Kohler brand across the Hub, both themes (2026-10-07)
 

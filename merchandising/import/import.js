@@ -39,7 +39,7 @@ function render(){
   const recordOpts = rec ? rec.records.slice().sort((a,b)=>a.observed_at<b.observed_at?1:-1) : [];
   app.innerHTML = `
   <header class="ws mh"><h1>Import From iSellBeer</h1>
-    <p class="mh-sub">Add the exports you pulled from iSellBeer. Nothing is saved until you press Import, and importing never changes iSellBeer.</p></header>
+    <p class="mh-sub">Nothing Is Saved Until You Press Import</p></header>
   <section class="mcard">
     <h2>1. Add Files</h2>
     <label class="drop" id="drop"><input type="file" id="files" accept=".xlsx,.pdf,application/pdf,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" multiple>

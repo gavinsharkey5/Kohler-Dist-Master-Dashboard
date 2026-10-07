@@ -235,6 +235,75 @@
     h1{font-size:24px} .kpi .kval{font-size:20px} .kpi.hero .kval{font-size:25px}
     .wrap{padding:0 14px}
   }
+
+  /* ===== PAGE STANDARD (2026-10-07): one 960 column, Title Case, no all-caps, phones stack ===== */
+  .wrap{max-width:960px;padding:0 16px}
+  h1{font-size:26px;font-weight:600;letter-spacing:0;text-align:center;margin:24px 0 4px}
+  .sub{text-align:center;font-size:15px;color:var(--ink-soft)}
+  .seclabel{font-family:inherit;font-size:17px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--ink);margin:24px 0 12px}
+  .seclabel span.hint{font-size:14px}
+  .pill{font-size:13px}
+  .pickgrid{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+  .ptile{text-align:center}
+  .ptile .pname{justify-content:center;font-size:16px;font-weight:600}
+  .ptile .pcomm{font-size:30px;font-weight:600}
+  .ptile .pmeta{justify-content:center;font-size:14px}
+  .ptile .prank,.alertdot{font-size:13px}
+  .kpi{text-align:center}
+  .kpi .klab{font-size:14px;font-weight:600;letter-spacing:0;text-transform:none;white-space:normal}
+  .kpi .kval{font-size:30px;font-weight:600}
+  .kpi.hero .kval{font-size:36px}
+  .kpi .ksub{font-size:14px}
+  .kpigrid{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+  .cardh{font-size:16px;font-weight:600;text-align:center}
+  .cardsub{font-size:14px;text-align:center}
+  .opp .ot,.opph .ot{font-size:16px;font-weight:600}
+  .otag,.stat{font-size:13px;font-weight:600;letter-spacing:0;text-transform:none}
+  .oppb{font-size:15px}
+  .orow,.blmeta,.tsub,.tfoot,.dnote,.modelnote,.dhead .ds,.dkpi .ksub{font-size:14px}
+  .minibtn{font-size:14px;min-height:40px}
+  .seg button{white-space:nowrap;padding:7px 8px}
+  .fclear{grid-column:1/-1}
+  .kpi.hero{background:var(--card)}
+  .seg button,select.f,input.f,.fclear,.backbtn,.repsel{font-size:14px;min-height:40px}
+  .ctxchip{font-size:14px}
+  th{font-size:13px;font-weight:600;letter-spacing:0;text-transform:none}
+  table{font-size:14px;min-width:0}
+  th,td{padding:10px 4px}
+  td:last-child{white-space:normal;min-width:84px}
+  th:nth-child(2),td:nth-child(2){text-align:left}
+  th:first-child,td:first-child{text-align:left;width:28px}
+  .tblscroll{overflow-x:auto}
+  .tname{max-width:150px}
+  .modelnote{padding:0;border:0}
+  .modelnote details{border:1px dashed var(--line);border-radius:12px;padding:0 14px}
+  .modelnote summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:600;font-size:15px;color:var(--ink)}
+  .modelnote details[open] summary{margin-bottom:4px}
+  .modelnote details>div{padding:0 0 14px;color:var(--ink-soft)}
+  .filterbar .frow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+  .filterbar .frow .seg{display:flex}
+  .filterbar .frow .seg button{flex:1}
+  .filterbar .frow input.f{grid-column:1/-1;max-width:none}
+  .filterbar .frow select.f{max-width:none;width:100%}
+  @media(max-width:700px){
+    h1{font-size:24px}
+    .filterbar{position:static}
+    .tblscroll{overflow:visible}
+    td.empty{display:block}
+    table,thead,tbody,tr,td{display:block;width:100%}
+    thead{display:none}
+    tbody tr{border-bottom:1px solid var(--line);padding:10px 12px}
+    td,td:first-child{display:flex;justify-content:space-between;gap:12px;border:0;padding:3px 0;text-align:right;white-space:normal}
+    td[data-l]::before{content:attr(data-l);color:var(--ink-soft);text-align:left;flex:none}
+    td.rk,td:first-child.rk{display:none}
+    td:nth-child(2){display:block;text-align:left;font-size:16px;padding-bottom:6px}
+    td:nth-child(2) .tname{max-width:none;white-space:normal;text-align:left}
+    td:nth-child(2)::before{content:none}
+    td.empty{display:block;text-align:center}
+    .tfoot{flex-direction:column}
+    .opph .ot{min-width:0}
+    .orow{flex-wrap:wrap}
+  }
 </style>
 <script src="../shared/kdh-user.js?v=20261007a"></script>
 <script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
@@ -247,7 +316,7 @@
 <div class="topbar">
   <div class="wrap">
     <div class="brandmark"><i></i>Sales Rep Cockpit</div>
-    <button class="backbtn" id="btnBack" style="display:none">&larr; All reps</button>
+    <button class="backbtn" id="btnBack" style="display:none">&larr; All Reps</button>
     <div class="spacer"></div>
     <select class="repsel" id="repSel" style="display:none"></select>
     <span class="pill" id="syncPill">&nbsp;</span>
@@ -256,9 +325,9 @@
 
 <!-- ============ rep picker ============ -->
 <section id="viewPick" class="wrap">
-  <h1>Whose book are we looking at?</h1>
+  <h1>Choose a Rep</h1>
   <p class="sub" id="pickSub">&nbsp;</p>
-  <p class="seclabel">Reps <span class="hint">ranked by commission year to date</span></p>
+  <p class="seclabel">Reps <span class="hint">Ranked by YTD Commission</span></p>
   <div class="pickgrid" id="pickGrid"></div>
   <div class="modelnote" id="pickNote"></div>
 </section>
@@ -270,18 +339,18 @@
     <div class="wrap">
       <div class="frow">
         <div class="seg" id="segPeriod">
-          <button data-p="ytd" class="on">Year to date</button>
-          <button data-p="mtd">Month to date</button>
+          <button data-p="ytd" class="on">Year to Date</button>
+          <button data-p="mtd">Month to Date</button>
         </div>
         <div class="seg" id="segChan">
           <button data-c="all" class="on">All</button>
-          <button data-c="On Premise">On-prem</button>
-          <button data-c="Off Premise">Off-prem</button>
+          <button data-c="On Premise">On-Prem</button>
+          <button data-c="Off Premise">Off-Prem</button>
         </div>
         <select class="f" id="selArea"></select>
         <select class="f" id="selBrand"></select>
-        <input class="f" id="inpAcct" type="search" placeholder="Search accounts…" autocomplete="off">
-        <button class="fclear" id="btnReset">Reset filters</button>
+        <input class="f" id="inpAcct" type="search" placeholder="Search Accounts…" autocomplete="off">
+        <button class="fclear" id="btnReset">Reset Filters</button>
       </div>
       <div class="ctx" id="ctxChips"></div>
     </div>
@@ -291,22 +360,21 @@
     <h1 id="repName">&nbsp;</h1>
     <p class="sub" id="repSub">&nbsp;</p>
 
-    <p class="seclabel">The 30-second read <span class="hint" id="kpiHint"></span></p>
+    <p class="seclabel">The 30-Second Read <span class="hint" id="kpiHint"></span></p>
     <div class="kpigrid" id="kpiGrid"></div>
 
-    <p class="seclabel">Opportunities &amp; attention needed
-      <span class="hint">why it matters, not just red and green</span></p>
+    <p class="seclabel">Opportunities &amp; Attention Needed</p>
     <div id="oppList"></div>
 
-    <p class="seclabel">Where your commission comes from</p>
+    <p class="seclabel">Where Commission Comes From</p>
     <div class="cols2">
       <div class="card">
-        <p class="cardh">Top brands by commission</p>
+        <p class="cardh">Top Brands by Commission</p>
         <p class="cardsub" id="cbBrandSub"></p>
         <div class="bl" id="cbBrand"></div>
       </div>
       <div class="card">
-        <p class="cardh">Top accounts by commission</p>
+        <p class="cardh">Top Accounts by Commission</p>
         <p class="cardsub" id="cbAcctSub"></p>
         <div class="bl" id="cbAcct"></div>
       </div>
@@ -314,42 +382,42 @@
 
     <div class="cols2" style="margin-top:12px">
       <div class="card">
-        <p class="cardh">Biggest commission gains</p>
-        <p class="cardsub">Brands adding the most commission vs the same window last year.</p>
+        <p class="cardh">Biggest Commission Gains</p>
+        <p class="cardsub">Brands vs the same window last year.</p>
         <div class="bl" id="cbUp"></div>
       </div>
       <div class="card">
-        <p class="cardh">Biggest commission losses</p>
-        <p class="cardsub">Brands giving back the most commission vs last year — the recoverable pile.</p>
+        <p class="cardh">Biggest Commission Losses</p>
+        <p class="cardsub">Brands vs the same window last year.</p>
         <div class="bl" id="cbDown"></div>
       </div>
     </div>
 
-    <p class="seclabel">Brand performance <span class="hint">click any row to see the accounts behind it</span></p>
+    <p class="seclabel">Brand Performance</p>
     <div class="tblwrap">
       <div class="tblscroll"><table id="tblBrand">
         <thead><tr>
           <th class="nos">#</th><th class="nos">Brand</th>
-          <th data-s="cur">Sales</th><th data-s="dpct">vs LY</th>
-          <th data-s="comm">Commission</th><th data-s="dcomm">Comm &plusmn;</th>
-          <th data-s="shc">% of comm</th><th data-s="shs">% of sales</th>
-          <th data-s="accts">Accts</th><th data-s="avg">Avg/acct</th>
+          <th data-s="cur">Sales</th><th data-s="dpct">Vs LY</th>
+          <th data-s="comm">Commission</th><th data-s="dcomm">Change</th>
+          <th data-s="shc">% of Comm</th><th data-s="shs">% of Sales</th>
+          <th data-s="accts">Accounts</th><th data-s="avg">Avg / Acct</th>
           <th data-s="opp">Opportunity</th>
         </tr></thead><tbody></tbody>
       </table></div>
       <div class="tfoot" id="brandFoot"></div>
     </div>
 
-    <p class="seclabel">Account performance <span class="hint" id="acctHint">click any row for the full brand breakdown</span></p>
+    <p class="seclabel">Account Performance <span class="hint" id="acctHint"></span></p>
     <div class="tblwrap">
       <div class="tblscroll"><table id="tblAcct">
         <thead><tr>
           <th class="nos">#</th><th class="nos">Account</th>
           <th class="nos">Channel</th>
-          <th data-s="cur">Sales</th><th data-s="dpct">vs LY</th>
-          <th data-s="comm">Commission</th><th data-s="dcomm">Comm &plusmn;</th>
-          <th data-s="brands_n">Brands</th><th data-s="shc">% of comm</th>
-          <th class="nos">Last activity</th>
+          <th data-s="cur">Sales</th><th data-s="dpct">Vs LY</th>
+          <th data-s="comm">Commission</th><th data-s="dcomm">Change</th>
+          <th data-s="brands_n">Brands</th><th data-s="shc">% of Comm</th>
+          <th class="nos">Status</th>
         </tr></thead><tbody></tbody>
       </table></div>
       <div class="tfoot" id="acctFoot"></div>
@@ -448,14 +516,14 @@ function renderPicker(){
 
 function modelNote(){
   var c = IDX.commission;
-  return '<b>How commission is calculated here.</b> The two source reports carry '+
+  return '<details><summary>How Commission Is Calculated</summary><div>The two source reports carry '+
     'Case Equivalents only — no commission and no dollar revenue — so commission on '+
     'this page is modeled as <b>cases &times; rate</b>, currently '+
     '<b>$'+c.default_rate.toFixed(2)+' per case</b> from <code>commission_rates.csv</code>. '+
     'Every share, rank, ratio and year-over-year move is exact; only the dollar scale '+
     'follows that file. Put the real comp plan into <code>commission_rates.csv</code> '+
     '(per supplier or per brand) and re-run <code>generate.py</code> to make the '+
-    'dollar figures real too.';
+    'dollar figures real too.</div></details>';
 }
 
 /* ------------------------------------------------------------------ rep */
@@ -495,11 +563,11 @@ function buildFilterOptions(){
     if(a.area) areas[a.area] = (areas[a.area]||0) + 1;
   }
   var ak = Object.keys(areas).sort();
-  el("selArea").innerHTML = '<option value="all">All territories</option>' +
+  el("selArea").innerHTML = '<option value="all">All Territories</option>' +
     ak.map(function(k){ return '<option value="'+esc(k)+'">'+esc(k)+' ('+areas[k]+')</option>'; }).join("");
   var bs = D.brands.filter(function(b){ return b.s_ytd>0 || b.s_ytd_py>0; })
     .slice().sort(function(x,y){ return x.brand.localeCompare(y.brand); });
-  el("selBrand").innerHTML = '<option value="">All brands</option>' +
+  el("selBrand").innerHTML = '<option value="">All Brands</option>' +
     bs.map(function(b){ return '<option value="'+esc(b.brand)+'">'+esc(b.brand)+'</option>'; }).join("");
   el("selArea").value = "all"; el("selBrand").value = ""; el("inpAcct").value = "";
   Array.prototype.forEach.call(document.querySelectorAll("#segChan button"), function(b){
@@ -607,7 +675,7 @@ function render(){
   var pp = S.period === "ytd" ? META.ytd_py : META.mtd_py;
   el("repSub").innerHTML = '<b>' + (S.period==="ytd"?"Year to date":"Month to date") +
     '</b> ' + esc(pl) + ' &nbsp;·&nbsp; compared against ' + esc(pp);
-  el("kpiHint").textContent = "cases and modeled commission, this window vs the same window last year";
+  el("kpiHint").textContent = "Vs Same Window Last Year";
 }
 
 function renderCtx(V){
@@ -676,22 +744,22 @@ function renderKPI(V){
          dChip(otherCp ? (otherC-otherCp)/otherCp*100 : null)+" "+otherVs) +
     card("Sales "+otherLab, fCases(otherS)+'<span class="kunit">cs</span>',
          dChip(otherSp ? (otherS-otherSp)/otherSp*100 : null)+" "+otherVs) +
-    card("vs prior year", fPct(yoyS,1),
+    card("Vs Prior Year", fPct(yoyS,1),
          (cSale-pSale>=0?"+":"")+fCases(cSale-pSale)+" cs · "+
          (cComm-pComm>=0?"+":"")+fMoney(cComm-pComm)+" commission") +
-    card("vs prior period", fPct(pace,1),
+    card("Vs Prior Period", fPct(pace,1),
          "August's daily pace vs the rest of "+META.cy+
          (dRest ? " ("+fCases(dNow)+" vs "+fCases(dRest)+" cs/day)" : "")) +
-    card("Active brands", nB, "carrying volume in "+META.cy) +
-    card("Active accounts", nA,
+    card("Active Brands", nB, "carrying volume in "+META.cy) +
+    card("Active Accounts", nA,
          nBook ? nA+" active of "+nBook+" on your book" : "with volume in "+META.cy) +
-    card("Avg sales / account", nA?fCases(cSale/nA)+'<span class="kunit">cs</span>':"—",
+    card("Avg Sales / Account", nA?fCases(cSale/nA)+'<span class="kunit">cs</span>':"—",
          "across accounts with volume") +
-    card("Avg comm / account", nA?fMoney(cComm/nA):"—",
+    card("Avg Comm / Account", nA?fMoney(cComm/nA):"—",
          "your per-door earning rate") +
-    card("Stopped ordering", lapsed,
+    card("Stopped Ordering", lapsed,
          lapsed ? "bought in "+META.py+", nothing in "+META.cy : "none — every account is live") +
-    card("Quiet this month", quiet,
+    card("Quiet This Month", quiet,
          quiet ? "ordered in "+META.cy+" but not in August" : "every active account has ordered");
 }
 
@@ -711,10 +779,10 @@ function renderOpps(V){
     list = list.filter(function(o){ return !o.account || live[o.account]; });
     filtered = true;
   }
-  var tag = { 3:"Act now", 2:"Worth a look", 1:"Upside" };
-  var kindName = { brand_decline:"Brand decline", brand_growth:"Momentum",
-    whitespace:"Untapped", lapsed:"Stopped ordering", acct_decline:"Account slipping",
-    acct_soft_month:"Soft month", dormant_book:"Dormant book",
+  var tag = { 3:"Act Now", 2:"Worth a Look", 1:"Upside" };
+  var kindName = { brand_decline:"Brand Decline", brand_growth:"Momentum",
+    whitespace:"Untapped", lapsed:"Stopped Ordering", acct_decline:"Account Slipping",
+    acct_soft_month:"Soft Month", dormant_book:"Dormant Book",
     concentration:"Concentration" };
   if(!list.length){
     el("oppList").innerHTML = '<div class="card"><p class="cardsub" style="margin:0">'+
@@ -731,7 +799,7 @@ function renderOpps(V){
     list.slice(0,14).map(function(o){
       var acts = "";
       if(o.brand) acts += '<button class="minibtn" data-jb="'+esc(o.brand)+'">Filter to '+esc(o.brand)+'</button>';
-      if(o.account) acts += '<button class="minibtn" data-ja="'+esc(o.account)+'">Open account</button>';
+      if(o.account) acts += '<button class="minibtn" data-ja="'+esc(o.account)+'">Open Account</button>';
       // Grouped cards carry their items as rows -- the reasoning is stated once
       // and each item brings its own numbers, instead of one card per item
       // repeating the same paragraph.
@@ -872,13 +940,14 @@ function brandOpp(b){
   return '<span class="tsub">—</span>';
 }
 
+var BLIM = 25, CUR_B = null;
 function renderBrandTable(V){
   var rows = sortRows(V.brands, S.bsort);
   var tb = el("tblBrand").querySelector("tbody");
   if(!rows.length){
     tb.innerHTML = '<tr><td colspan="11" class="empty">No brands match these filters.</td></tr>';
   } else {
-    tb.innerHTML = rows.map(function(b){
+    tb.innerHTML = rows.slice(0,BLIM).map(function(b){
       var m = D.brandmeta[b.brand] || {};
       return '<tr data-b="'+esc(b.brand)+'"'+(S.brand===b.brand?' class="sel"':'')+'>'+
         '<td class="rk">'+b.rank+'</td>'+
@@ -904,19 +973,30 @@ function renderBrandTable(V){
   var falling = V.brands.filter(function(b){ return (b.dpct||0) < -1.5; }).length;
   el("brandFoot").innerHTML =
     '<span>'+V.brands.length+' brands · '+growing+' growing · '+falling+' declining</span>'+
-    '<span>Sorted by '+esc(colName(S.bsort.k))+'. Click a column to re-sort, a row to drill in.</span>';
-  markSorted("tblBrand", S.bsort);
+    '<span>Sorted by '+esc(colName(S.bsort.k))+' · Tap a row for detail</span>';
+  markSorted("tblBrand", S.bsort); labelCells("tblBrand");
+  var bb = el("brandMore");
+  if(!bb){ bb = document.createElement("button"); bb.id = "brandMore"; bb.className = "minibtn"; bb.style.cssText = "display:block;margin:12px auto";
+    bb.onclick = function(){ BLIM += 100; renderBrandTable(CUR_B); }; el("brandFoot").parentNode.appendChild(bb); }
+  CUR_B = V; bb.style.display = rows.length>BLIM ? "" : "none"; bb.textContent = "Show More Brands";
 }
 
+function labelCells(tid){
+  var t = el(tid), hs = Array.prototype.map.call(t.querySelectorAll("thead th"), function(h){ return h.textContent.trim(); });
+  Array.prototype.forEach.call(t.querySelectorAll("tbody tr"), function(tr){
+    Array.prototype.forEach.call(tr.children, function(td, i){ if(i>1 && hs[i] && !td.hasAttribute("colspan")) td.setAttribute("data-l", hs[i]); });
+  });
+}
+var ALIM = 50, CUR_V = null;
 function renderAcctTable(V){
   var rows = sortRows(V.accts, S.asort);
   var tb = el("tblAcct").querySelector("tbody");
-  var statLab = { mtd:"Ordered this month", ytd:"Quiet this month",
-                  lapsed:"No orders in "+META.cy, none:"No volume either year" };
+  var statLab = { mtd:"Ordered This Month", ytd:"Quiet This Month",
+                  lapsed:"No Orders in "+META.cy, none:"No Volume" };
   if(!rows.length){
     tb.innerHTML = '<tr><td colspan="10" class="empty">No accounts match these filters.</td></tr>';
   } else {
-    tb.innerHTML = rows.slice(0,400).map(function(a){
+    tb.innerHTML = rows.slice(0,ALIM).map(function(a){
       var loc = [a.city, a.area].filter(Boolean).join(" · ");
       return '<tr data-a="'+esc(a.num)+'">'+
         '<td class="rk">'+a.rank+'</td>'+
@@ -940,10 +1020,14 @@ function renderAcctTable(V){
   var lapsed = V.accts.filter(function(a){ return a.status==="lapsed"; }).length;
   var quiet  = V.accts.filter(function(a){ return a.status==="ytd"; }).length;
   el("acctFoot").innerHTML =
-    '<span>'+V.accts.length+' accounts'+(V.accts.length>400?" (showing top 400)":"")+
+    '<span>'+V.accts.length+' accounts'+(V.accts.length>ALIM?" (showing top "+ALIM+")":"")+
       ' · '+lapsed+' with no '+META.cy+' orders · '+quiet+' quiet this month</span>'+
-    '<span>Sorted by '+esc(colName(S.asort.k))+'.</span>';
-  markSorted("tblAcct", S.asort);
+    '<span>Sorted by '+esc(colName(S.asort.k))+' · Tap a row for detail</span>';
+  markSorted("tblAcct", S.asort); labelCells("tblAcct");
+  var mb = el("acctMore");
+  if(!mb){ mb = document.createElement("button"); mb.id = "acctMore"; mb.className = "minibtn"; mb.style.cssText = "display:block;margin:12px auto";
+    mb.onclick = function(){ ALIM += 100; renderAcctTable(CUR_V); }; el("acctFoot").parentNode.appendChild(mb); }
+  CUR_V = V; mb.style.display = V.accts.length>ALIM ? "" : "none"; mb.textContent = "Show More Accounts";
 }
 
 function colName(k){

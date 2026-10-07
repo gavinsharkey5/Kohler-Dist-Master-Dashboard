@@ -111,6 +111,34 @@
     .row-num{order:2;min-width:0;text-align:left;font-size:21px;}
     .tag{order:3;margin-left:auto;}
   }
+
+  /* PAGE STANDARD */
+  body{font-family:'Inter',system-ui,-apple-system,sans-serif;}
+  .wrap{max-width:960px;padding:24px 16px 70px;}
+  h1,h2,.kpi-num,.tab,.row-num,h4,.dlg h3{font-family:'Inter',sans-serif;}
+  h1{font-weight:600;font-size:28px;text-align:center;line-height:1.2;}
+  .updated{text-align:center;font-size:14px;margin:6px 0 0;}
+  .kpis{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:16px;}
+  .kpi{text-align:center;padding:14px 12px;}
+  .kpi-num{font-size:32px;font-weight:600;}
+  .kpi-label{font-size:14px;}
+  .tabs{gap:8px;margin:16px 0;justify-content:center;}
+  .tab{font-size:15px;min-height:40px;font-weight:600;}
+  h2{font-size:18px;font-weight:600;margin:0 0 12px;}
+  .chips{gap:8px;margin:0 0 12px;}
+  .chip{min-height:40px;font-size:14px;}
+  .count{font-size:14px;}
+  .row{margin:0 0 12px;padding:14px 16px;}
+  .row-sub{font-size:14px;}
+  .row-num{font-weight:600;font-size:22px;}
+  .row-num small{font-size:13px;}
+  .tag{font-size:13px;}
+  .q .qq{font-size:14px;}
+  h4{font-size:14px;font-weight:600;}
+  .mini{font-size:15px;}
+  footer{font-size:14px;max-width:none;}
+  footer summary{cursor:pointer;font-weight:600;font-size:15px;color:var(--text);min-height:40px;display:flex;align-items:center;}
+  @media (max-width:640px){.wrap{padding:16px 16px 55px;}h1{font-size:24px;}.kpis{grid-template-columns:repeat(2,minmax(0,1fr));}.kpi-num{font-size:28px;}.row{padding:12px 14px;}}
 </style>
 <script src="../shared/kdh-user.js?v=20261007a"></script>
 <script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
@@ -120,52 +148,44 @@
 </head>
 <body>
 <div class="wrap">
-<a class="back" href="../">&larr; Kohler dashboards</a>
 <h1>Asset Inventory</h1>
-<p class="sub">Everything upstairs at Hawthorne — and everything we have out in the market.</p>
 <p class="updated" id="updated"></p>
 
 <div class="kpis" id="kpis"></div>
 <div class="tabs" role="tablist" id="tabs"></div>
 
 <section id="pane-stock" role="tabpanel">
-  <h2>What we have</h2>
-  <p class="lead">The big number is how many you can take. Tap anything for detail.</p>
-  <input type="search" id="q-stock" placeholder="Search for an item…" autocomplete="off">
+  <h2>What We Have</h2>
+  <input type="search" id="q-stock" placeholder="Search Items…" autocomplete="off">
   <div class="chips" id="chips-stock"></div>
   <p class="count" id="c-stock"></p>
   <div id="l-stock"></div>
 </section>
 
 <section id="pane-requests" role="tabpanel" hidden>
-  <h2>Requests waiting</h2>
-  <p class="lead">Asked for, nothing pulled yet. Once someone pulls the item it moves to In &amp; out.</p>
-  <input type="search" id="q-requests" placeholder="Search item or person…" autocomplete="off">
+  <h2>Requests Waiting</h2>
+  <input type="search" id="q-requests" placeholder="Search Item or Person…" autocomplete="off">
   <p class="count" id="c-requests"></p>
   <div id="l-requests"></div>
 </section>
 
 <section id="pane-loans" role="tabpanel" hidden>
-  <h2>Out in market</h2>
-  <p class="lead" id="loan-lead"></p>
-  <input type="search" id="q-loans" placeholder="Search account or item…" autocomplete="off">
+  <h2>Out in Market</h2>
+  <input type="search" id="q-loans" placeholder="Search Account or Item…" autocomplete="off">
   <div class="chips" id="chips-loans"></div>
   <p class="count" id="c-loans"></p>
   <div id="l-loans"></div>
 </section>
 
 <section id="pane-activity" role="tabpanel" hidden>
-  <h2>In &amp; out</h2>
-  <p class="lead">What came in and what went out, newest first.
-    <span class="in">Green is in</span>, <span class="outd">amber is out</span>.</p>
-  <input type="search" id="q-activity" placeholder="Search item, supplier or person…" autocomplete="off">
+  <h2>In &amp; Out</h2>
+  <input type="search" id="q-activity" placeholder="Search Item, Supplier or Person…" autocomplete="off">
   <p class="count" id="c-activity"></p>
   <div id="l-activity"></div>
 </section>
 
 <section id="pane-check" role="tabpanel" hidden>
-  <h2>Worth a look</h2>
-  <p class="lead">Odd records. None of these are counted in the numbers above unless the note says so.</p>
+  <h2>Worth a Look</h2>
   <input type="search" id="q-check" placeholder="Search…" autocomplete="off">
   <p class="count" id="c-check"></p>
   <div id="l-check"></div>
@@ -201,19 +221,19 @@ function since(d){
   return m < 24 ? m + ' months' : Math.floor(d/365) + ' years';
 }
 
-$('updated').textContent = 'Updated ' + fdate(S.refreshed) + ' from Encompass';
+$('updated').textContent = 'Updated ' + fdate(S.refreshed);
 var kpis = [
-  [n(S.units), 'units upstairs', ''],
-  [n(S.openRequests), 'waiting on a request', ''],
-  [n(S.loanUnits), 'out in market', ''],
-  [n(S.low + S.out), 'items low or out', 'color:#E9A93B']
+  [n(S.units), 'Units Upstairs', ''],
+  [n(S.openRequests), 'Waiting on a Request', ''],
+  [n(S.loanUnits), 'Out in Market', ''],
+  [n(S.low + S.out), 'Items Low or Out', 'color:#E9A93B']
 ];
 $('kpis').innerHTML = kpis.map(function(k){
   return '<div class="kpi"><div class="kpi-num" style="'+k[2]+'">'+k[0]+'</div>'
        + '<div class="kpi-label">'+esc(k[1])+'</div></div>'; }).join('');
 
-var TABS = [['stock','What we have'],['requests','Requests'],['loans','Out in market'],
-            ['activity','In &amp; out'],['check','Worth a look']];
+var TABS = [['stock','What We Have'],['requests','Requests'],['loans','Out in Market'],
+            ['activity','In &amp; Out'],['check','Worth a Look']];
 $('tabs').innerHTML = TABS.map(function(t,i){
   return '<button class="tab" role="tab" id="tab-'+t[0]+'" aria-controls="pane-'+t[0]+'" aria-selected="'
        + (i===0) + '">' + t[1] + '</button>'; }).join('');
@@ -248,7 +268,7 @@ function list(host, rows, render, opts){
 function hit(hay, q){ return hay.toLowerCase().indexOf(q) >= 0; }
 
 /* ---- what we have ----------------------------------------------------- */
-var STOCK_FILTERS = [['all','Everything'],['low','Running low'],['out','Out of stock']];
+var STOCK_FILTERS = [['all','Everything'],['low','Running Low'],['out','Out of Stock']];
 var sf = 'all';
 $('chips-stock').innerHTML = STOCK_FILTERS.map(function(f){
   return '<button class="chip" data-f="'+f[0]+'" aria-pressed="'+(f[0]==='all')+'">'+esc(f[1])+'</button>'; }).join('');
@@ -261,8 +281,8 @@ Array.prototype.forEach.call($('chips-stock').querySelectorAll('.chip'), functio
   });
 });
 function tagFor(i){
-  return i.available === 0 ? '<span class="tag t-out">Out of stock</span>'
-       : i.available <= S.lowAt ? '<span class="tag t-low">Running low</span>'
+  return i.available === 0 ? '<span class="tag t-out">Out of Stock</span>'
+       : i.available <= S.lowAt ? '<span class="tag t-low">Running Low</span>'
        : '<span class="tag t-ok">Good</span>';
 }
 function stockRow(i, idx){
@@ -272,7 +292,7 @@ function stockRow(i, idx){
   return '<button class="row" data-i="'+idx+'"><div class="row-main">'
     + '<div class="row-name">'+esc(i.type)+'</div>'
     + (sub.length ? '<div class="row-sub">'+esc(sub.join(' · '))+'</div>' : '')
-    + '</div><div class="row-num">'+n(i.available)+'<small>can take</small></div>'
+    + '</div><div class="row-num">'+n(i.available)+'<small>Can Take</small></div>'
     + tagFor(i) + '</button>';
 }
 function drawStock(){
@@ -283,7 +303,7 @@ function drawStock(){
     return !q || hit(i.type+' '+i.supplier+' '+i.brand, q);
   });
   rows.sort(function(a,b){ return b.available - a.available; });
-  $('c-stock').textContent = n(rows.length) + ' items';
+  $('c-stock').textContent = n(rows.length) + ' Items';
   list($('l-stock'), rows, stockRow, {click:detail, empty:'Nothing matches that search.'});
 }
 $('q-stock').addEventListener('input', drawStock);
@@ -293,26 +313,22 @@ drawStock();
 function drawRequests(){
   var q = $('q-requests').value.trim().toLowerCase();
   var rows = D.open.filter(function(r){ return !q || hit(r.type+' '+r.rep, q); });
-  $('c-requests').textContent = n(rows.reduce(function(a,r){ return a+r.qty; },0)) + ' units asked for';
+  $('c-requests').textContent = n(rows.reduce(function(a,r){ return a+r.qty; },0)) + ' Units Asked For';
   list($('l-requests'), rows, function(r){
     return '<div class="row"><div class="row-main">'
       + '<div class="row-name">'+esc(r.type)+'</div>'
       + '<div class="row-sub">'+esc(r.rep)+' · asked '+fdate(r.date)
       + (r.age > 30 ? ', waiting ' + since(r.age) : '') + '</div></div>'
-      + '<div class="row-num">'+n(r.qty)+'<small>wanted</small></div>'
-      + (r.onHand ? '<span class="tag t-ok">'+n(r.onHand)+' here</span>'
-                  : '<span class="tag t-out">None here</span>') + '</div>';
+      + '<div class="row-num">'+n(r.qty)+'<small>Wanted</small></div>'
+      + (r.onHand ? '<span class="tag t-ok">'+n(r.onHand)+' Here</span>'
+                  : '<span class="tag t-out">None Here</span>') + '</div>';
   }, {empty:'No requests waiting.'});
 }
 $('q-requests').addEventListener('input', drawRequests);
 drawRequests();
 
 /* ---- out in market (the retrieval list) -------------------------------- */
-$('loan-lead').innerHTML = 'Our assets come back, so this is every account holding something of ours — '
-  + '<b>oldest first</b>, because the one that has been out longest is the one worth chasing. Encompass '
-  + 'keeps no return record, so anything already collected is still listed until it is marked back in.'
-  + (S.internalUnits ? ' Internal sample write-offs (' + n(S.internalUnits) + ' units) are left out.' : '');
-var LOAN_FILTERS = [['all','Everything'],['old','Out over a year']];  /* label reads the same either way */
+var LOAN_FILTERS = [['all','Everything'],['old','Out Over a Year']];  /* label reads the same either way */
 var lf = 'all';
 $('chips-loans').innerHTML = LOAN_FILTERS.map(function(f){
   return '<button class="chip" data-f="'+f[0]+'" aria-pressed="'+(f[0]==='all')+'">'+esc(f[1])+'</button>'; }).join('');
@@ -332,13 +348,13 @@ function drawLoans(){
   });
   var units = rows.reduce(function(a,l){ return a+l.qty; }, 0);
   var cust = {}; rows.forEach(function(l){ cust[l.customer] = 1; });
-  $('c-loans').textContent = n(units)+' units at '+n(Object.keys(cust).length)+' accounts';
+  $('c-loans').textContent = n(units)+' Units at '+n(Object.keys(cust).length)+' Accounts';
   list($('l-loans'), rows, function(l){
     return '<div class="row"><div class="row-main">'
       + '<div class="row-name">'+esc(l.customer)+'</div>'
       + '<div class="row-sub">'+esc(l.type)+(l.date ? ' · since '+fdate(l.date) : '')+'</div></div>'
-      + '<div class="row-num">'+n(l.qty)+'<small>in market</small></div>'
-      + (l.date == null ? '<span class="tag t-mute">No date</span>'
+      + '<div class="row-num">'+n(l.qty)+'<small>In Market</small></div>'
+      + (l.date == null ? '<span class="tag t-mute">No Date</span>'
          : l.old ? '<span class="tag t-out">'+esc(since(l.age))+'</span>'
                  : '<span class="tag t-mute">'+esc(since(l.age))+'</span>') + '</div>';
   }, {empty:'Nothing matches that search.'});
@@ -352,14 +368,14 @@ function drawActivity(){
   var rows = D.activity.filter(function(a){ return !q || hit(a.type+' '+a.who, q); });
   var i = 0, o = 0;
   rows.forEach(function(a){ if(a.dir === 'in') i += a.qty; else o += a.qty; });
-  $('c-activity').textContent = n(i)+' units in · '+n(o)+' units out';
+  $('c-activity').textContent = n(i)+' Units In · '+n(o)+' Units Out';
   list($('l-activity'), rows, function(a){
     var into = a.dir === 'in';
     return '<div class="row"><div class="row-main">'
       + '<div class="row-name">'+esc(a.type)+'</div>'
       + '<div class="row-sub">'+fdate(a.date)+(a.who ? ' · '+esc(a.who) : '')+'</div></div>'
       + '<div class="row-num '+(into?'in':'outd')+'">'+(into?'+':'−')+n(a.qty)+'</div>'
-      + '<span class="tag '+(into?'t-ok':'t-low')+'">'+(into?'Came in':'Went out')+'</span></div>';
+      + '<span class="tag '+(into?'t-ok':'t-low')+'">'+(into?'Came In':'Went Out')+'</span></div>';
   }, {empty:'No recent movement.'});
 }
 $('q-activity').addEventListener('input', drawActivity);
@@ -369,7 +385,7 @@ drawActivity();
 function drawCheck(){
   var q = $('q-check').value.trim().toLowerCase();
   var rows = D.issues.filter(function(x){ return !q || hit(x.kind+' '+x.ref+' '+x.detail, q); });
-  $('c-check').textContent = n(rows.length)+' records';
+  $('c-check').textContent = n(rows.length)+' Records';
   list($('l-check'), rows, function(x){
     return '<div class="row"><div class="row-main">'
       + '<div class="row-name">'+esc(x.ref)+'</div>'
@@ -390,20 +406,20 @@ function detail(i){
         + '<button class="x" id="dlg-x" aria-label="Close">×</button></div>';
   if(i.flag) h += '<div class="warn">'+esc(i.flag)+' Nothing left to take.</div>';
   h += '<div class="q">'
-    + '<div><div class="qq">How many can I take?</div><div class="qa"><b>'+n(i.available)+'</b>'
+    + '<div><div class="qq">How Many Can I Take?</div><div class="qa"><b>'+n(i.available)+'</b>'
       + (i.pending ? ' — '+n(i.onHand)+' upstairs, '+n(i.pending)+' already spoken for' : '')+'</div></div>'
-    + '<div><div class="qq">Where is it?</div><div class="qa">'
+    + '<div><div class="qq">Where Is It?</div><div class="qa">'
       + (i.onHand ? esc(i.location)+(i.shelf ? ', bin '+esc(i.shelf) : '') : 'Nothing upstairs right now')+'</div></div>'
-    + '<div><div class="qq">Where has it gone?</div><div class="qa">'+n(i.onLoan)+' out in market at '
+    + '<div><div class="qq">Where Has It Gone?</div><div class="qa">'+n(i.onLoan)+' out in market at '
       + n(loanTotal.length)+' accounts</div></div>'
     + '<div><div class="qq">Supplier</div><div class="qa">'+esc(i.supplier || 'Not in the export')+'</div></div>'
-    + '<div><div class="qq">Last came in</div><div class="qa">'+fdate(i.lastReceived)+'</div></div>'
+    + '<div><div class="qq">Last Came In</div><div class="qa">'+fdate(i.lastReceived)+'</div></div>'
     + '</div>';
-  if(open.length) h += '<h4>Waiting on it ('+n(openUnits)+' units)</h4>'
+  if(open.length) h += '<h4>Waiting on It ('+n(openUnits)+' units)</h4>'
     + open.slice(0,8).map(function(r){
         return '<div class="mini"><span>'+esc(r.rep)+' — '+n(r.qty)+'</span><span>'+fdate(r.date)+'</span></div>';
       }).join('');
-  if(loans.length) h += '<h4>Out in market — longest out first</h4>'
+  if(loans.length) h += '<h4>Out in Market — Longest Out First</h4>'
     + loans.slice().sort(function(a,b){ return (a.date||'') < (b.date||'') ? -1 : 1; }).map(function(l){
         return '<div class="mini"><span>'+esc(l.customer)+' — '+n(l.qty)+'</span><span>'
              + (l.date ? esc(since(l.age)) : 'no date')+'</span></div>';
@@ -421,14 +437,9 @@ $('ov').addEventListener('click', function(e){ if(e.target === $('ov')) close();
 document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
 
 $('foot').innerHTML =
-  '<p><b>How the counts work.</b> Each unit upstairs is its own record in Encompass, so "units upstairs" '
-  + 'is a headcount of them. Once someone pulls an item for a request, Encompass takes it off the list, '
-  + 'so the count is already up to date. The number you can take is what is upstairs minus what others '
-  + 'have already asked for.</p>'
-  + '<p><b>Two things it cannot tell you.</b> A request shows who asked but not which account it was for, '
-  + 'so In &amp; out and Out in market cannot be matched up. And nothing records an asset coming back, so '
-  + 'Out in market keeps listing things until Encompass is updated.</p>'
-  + '<p>Run <code>generate.py</code> after dropping new exports into <code>data/</code>. See README.txt.</p>';
+  '<details><summary>How the Counts Work</summary>'
+  + '<p>Each unit upstairs is its own record in Encompass. The number you can take is what is upstairs minus what others have asked for.</p>'
+  + '<p>A request does not name the account, so In &amp; Out and Out in Market cannot be matched. Nothing records an asset coming back, so Out in Market keeps listing items until Encompass is updated.</p></details>';
 })();
 </script>
 </body>

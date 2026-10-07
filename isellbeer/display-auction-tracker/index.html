@@ -107,15 +107,49 @@ footer p{max-width:640px;margin:6px auto}
 @media (max-width:520px){
   .detail{padding-left:44px}
 }
+
+/* PAGE STANDARD */
+.pg-back{display:flex;align-items:center;justify-content:center;min-height:40px;color:var(--ink-soft);font-size:14px;font-weight:600;text-decoration:none;margin:0 0 4px}
+.pg-back:hover{color:var(--ink)}
+.wrap{max-width:960px}
+.gx-head::before{display:none}
+.gx-head .wrap{padding:24px 16px 16px;text-align:center}
+.num,h1,.tab,.scard .sval,.row .metric b,.rank,.dsort-btn,.ditem .dcases{font-family:"Inter",sans-serif}
+h1{font-size:28px;font-weight:600;line-height:1.2}
+.updated{font-size:14px;margin:8px 0 0}
+.tabs{margin:16px 0 0;gap:8px}
+.tab{font-size:15px;min-height:44px;font-weight:600}
+main{padding:16px 0 40px}
+.stats{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:12px}
+.scard{text-align:center;padding:14px 12px}
+.scard .slabel{font-size:14px;text-transform:none;letter-spacing:0;font-weight:500}
+.scard .sval{font-size:32px;font-weight:600}
+.row summary{padding:14px 16px}
+.rank{font-size:14px;width:32px;height:32px}
+.row .pname{font-size:16px}
+.row .pmeta{font-size:14px;display:block}
+.row .metric b{font-size:20px;font-weight:600}
+.row .metric small{font-size:13px;text-transform:none;letter-spacing:0;font-weight:500}
+.detail{font-size:14px}
+.dsort-btn{font-size:14px;min-height:40px;padding:8px 14px}
+.dnote{font-size:14px}
+.ditem .dacct{font-size:15px}
+.ditem .dsub{font-size:14px}
+.ditem .dcases{font-size:15px;font-weight:600}
+.ditem .dcases small{font-size:13px;text-transform:none}
+.badge{font-size:13px}
+.empty{font-size:15px}
+footer{font-size:14px;text-align:left;padding:16px 0 40px;margin-top:24px}
+footer p{max-width:none;margin:8px 0}
+footer summary{cursor:pointer;font-weight:600;font-size:15px;min-height:40px;display:flex;align-items:center}
+@media (max-width:640px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.scard .sval{font-size:28px}.detail{padding-left:16px}}
 </style>
 </head>
 <body>
 
 <div class="gx-head"><div class="wrap">
-  <a class="back" href="../">&larr; iSellBeer</a>
-  <p class="eyebrow"><span class="pulse"></span>iSellBeer · Display Incentive</p>
+  <a class="pg-back" href="../">&lsaquo; iSellBeer</a>
   <h1>Display Auction Tracker</h1>
-  <p class="lede">Points earned for display photos logged through iSellBeer — Priority Brands and All Other Brands, tiered by case count.</p>
   <p class="updated" id="updated-line"></p>
 </div></div>
 
@@ -127,22 +161,21 @@ footer p{max-width:640px;margin:6px auto}
 
   <main>
     <section class="tabpanel active" id="panel-rep">
-      <p class="panel-lede">Points accumulated by Sales Reps this period.</p>
       <div class="stats" id="stats-rep"></div>
       <div class="list" id="list-rep"></div>
     </section>
 
     <section class="tabpanel" id="panel-assoc">
-      <p class="panel-lede">Points accumulated by Sales Associates this period.</p>
       <div class="stats" id="stats-assoc"></div>
       <div class="list" id="list-assoc"></div>
     </section>
   </main>
 
   <footer>
+    <details><summary>How Points Work</summary>
     <p><strong>Priority Brands</strong> — Tier 1 (10–19 cases): 200 pts · Tier 2 (20–39): 300 pts · Tier 3 (40–69): 500 pts · Tier 4 (70+): 1,000 pts.</p>
     <p><strong>All Other Brands</strong> — Tier 1 (10–19 cases): 100 pts · Tier 2 (20–39): 200 pts · Tier 3 (40–69): 300 pts · Tier 4 (70+): 600 pts. Sales Reps and Sales Associates earn on the same scale.</p>
-    <p>One display = one photo submission (same rep, account, and timestamp); case totals are summed across every SKU logged in that photo before the tier is applied. Displays under 10 cases don't qualify. Brand classification is matched automatically against the Priority/All Other brand lists — flag anything that looks off for a manual check.</p>
+    <p>One display = one photo submission (same rep, account, and timestamp); case totals are summed across every SKU logged in that photo before the tier is applied. Displays under 10 cases do not qualify.</p></details>
   </footer>
 </div>
 
@@ -162,7 +195,7 @@ function fmtDate(s){
 const rangeStart = new Date(DATA.meta.startDate).toLocaleDateString('en-US', {month:'short', day:'numeric'});
 const rangeEnd = new Date(DATA.meta.endDate).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
 document.getElementById('updated-line').textContent =
-  `${rangeStart} – ${rangeEnd} · ${fmtNum(DATA.meta.totalPoints)} total points issued across ${DATA.meta.totalDisplays} logged displays`;
+  `${rangeStart} – ${rangeEnd} · ${fmtNum(DATA.meta.totalPoints)} Points · ${DATA.meta.totalDisplays} Displays`;
 
 const TABS = {
   rep: { role: 'Sales Rep', people: DATA.people.filter(p => p.role === 'Sales Rep') },
@@ -199,11 +232,11 @@ function renderStats(key){
 
 const DISPLAY_SORTERS = {
   points: {
-    label: 'Points ↓', note: 'Every display logged this period, highest-earning first.',
+    label: 'Points ↓', note: 'Highest Points First',
     cmp: (a,b) => b.points - a.points || b.cases - a.cases || new Date(b.dt) - new Date(a.dt),
   },
   date: {
-    label: 'Date ↓', note: 'Every display logged this period, most recent first.',
+    label: 'Date ↓', note: 'Most Recent First',
     cmp: (a,b) => new Date(b.dt) - new Date(a.dt) || b.points - a.points,
   },
 };
@@ -223,9 +256,9 @@ function renderDisplaysHtml(displays, mode){
         <div class="dsub">${esc(d.city || '')} · ${esc(d.brands.join(', '))} · ${fmtDate(d.dt)}</div>
         ${photoLinks ? `<div class="dsub">${photoLinks}</div>` : ''}
       </div>
-      <div class="dcases num">${fmtNum(d.cases)}<small>cases</small></div>
+      <div class="dcases num">${fmtNum(d.cases)}<small>Cases</small></div>
       <div class="dpts">
-        ${d.points > 0 ? classBadge(d.classification) : '<span class="badge b-none">Below min.</span>'}
+        ${d.points > 0 ? classBadge(d.classification) : '<span class="badge b-none">Below Min.</span>'}
         <div class="num" style="font-weight:700;margin-top:4px">${d.points > 0 ? '+' + fmtNum(d.points) : '0'}</div>
       </div>
     </div>
@@ -255,7 +288,7 @@ function renderList(key){
           <span class="pname">${esc(p.name)}</span>
           <span class="pmeta">${p.priorityQualifying} priority / ${p.otherQualifying} all other</span>
         </span>
-        <span class="metric"><b class="num">${fmtNum(p.points)}</b><small>points</small></span>
+        <span class="metric"><b class="num">${fmtNum(p.points)}</b><small>Points</small></span>
         <span class="chev">&rsaquo;</span>
       </summary>
       <div class="detail">

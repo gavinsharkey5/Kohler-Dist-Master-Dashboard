@@ -19,7 +19,7 @@
 <link rel="preload" href="../assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 <!-- Theme before first paint: the saved choice, else the device setting (2026-09-30). -->
 <script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
-<link rel="stylesheet" href="rep.css?v=20261007c">
+<link rel="stylesheet" href="rep.css?v=20261007m">
 <!-- The top bar is injected by shared/kdh-user.js (badge, Previewing chip,
      account menu). kdh-home = this is a landing page: no Back button. -->
 <meta name="kdh-page" content="Rep Home">
@@ -43,7 +43,6 @@
        products -- and opens the matching filtered list in My Accounts. -->
   <header class="rh-head">
     <div class="rh-id">
-      <p class="kicker" id="kicker">Rep Home</p>
       <h1 id="repName">Your workspace</h1>
       <p class="rh-meta" id="meta"><span class="muted">Loading…</span></p>
     </div>
@@ -59,11 +58,11 @@
   <section class="rh-entry" aria-label="My Accounts">
     <form class="rh-search" id="rhSearch" role="search">
       <svg class="rh-sico" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-      <input type="search" id="rhQ" placeholder="Search accounts, towns or #" aria-label="Search my accounts" autocomplete="off" enterkeyhint="search">
+      <input type="search" id="rhQ" placeholder="Search Accounts, Towns or #" aria-label="Search my accounts" autocomplete="off" enterkeyhint="search">
     </form>
     <a class="rh-primary" id="c-acct" href="../accounts/" data-nav="accounts">
       <span class="rh-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/><path d="M3 12h18"/></svg></span>
-      <span class="rh-tmain"><span class="rh-tt">My Accounts</span><span class="rh-ts" id="s-acct">Every account on your route</span></span>
+      <span class="rh-tmain"><span class="rh-tt">My Accounts</span><span class="rh-ts" id="s-acct">Your Route</span></span>
       <span class="rh-open">Open <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></span>
     </a>
   </section>
@@ -83,7 +82,7 @@
     <div class="rh-tools">
       <a class="rh-tool" id="c-hub" href="../hub/">
         <span class="rh-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
-        <span class="rh-tmain"><span class="rh-tt">Incentive Hub</span><span class="rh-ts" id="s-hub">Every incentive you’re in, by supplier</span></span>
+        <span class="rh-tmain"><span class="rh-tt">Incentive Hub</span><span class="rh-ts" id="s-hub">By Supplier</span></span>
       </a>
       <a class="rh-tool" id="c-off" href="../MPOs/off-prem/index.html#view=program">
         <span class="rh-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M4 9v11h16V9"/><path d="M9 20v-6h6v6"/></svg></span>
@@ -101,7 +100,7 @@
     <div class="rh-tools">
       <a class="rh-tool" id="c-tap" href="../isellbeer/tap-survey-tracking/">
         <span class="rh-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 6.5 9a6.5 6.5 0 1 0 11 0z"/></svg></span>
-        <span class="rh-tmain"><span class="rh-tt">Tap Tracker</span><span class="rh-ts" id="s-tap">What’s on tap at your surveyed accounts</span></span>
+        <span class="rh-tmain"><span class="rh-tt">Tap Tracker</span><span class="rh-ts" id="s-tap">Surveyed Accounts</span></span>
       </a>
       <a class="rh-tool" id="c-rb" href="../redbull/">
         <span class="rh-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
@@ -109,13 +108,13 @@
       </a>
       <a class="rh-tool" id="c-cb" href="../carbliss-onprem-targets/">
         <span class="rh-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></span>
-        <span class="rh-tmain"><span class="rh-tt">Carbliss Targets</span><span class="rh-ts" id="s-cb">On-premise accounts to pitch</span></span>
+        <span class="rh-tmain"><span class="rh-tt">Carbliss Leaderboard</span><span class="rh-ts" id="s-cb">By Rep</span></span>
       </a>
     </div>
   </section>
 </main>
 
-<footer>Internal use. These pages show customer and account detail — please don’t share the link outside the team.</footer>
+<footer>Internal Use Only</footer>
 
 <script src="../hub/data/accounts.js?v=20260923h" defer></script>
 <!-- Follow-ups: where Supabase lives (served by the middleware; 404 on
@@ -139,7 +138,6 @@
   try { user = window.kdhUser ? window.kdhUser() : null; } catch (e) {}
   var isManager = !!(user && user.role === 'manager');
   var viewRep = (user && user.name) || '';
-  if (isManager) $('kicker').textContent = 'Rep Home · viewing a rep';
   // A manager's opening page is the manager page. Home-screen apps
   // installed before 2026-09-29 still start here: send a manager on, but
   // only on a plain app launch (standalone, no link, no reload, no referrer).
@@ -167,9 +165,9 @@
       accts.forEach(function(a){ areas[a.area || a.county || '?'] = (areas[a.area || a.county || '?'] || 0) + 1; });
       var top = Object.keys(areas).sort(function(a,b){ return areas[b] - areas[a]; }).slice(0,2);
       out.push(top.length ? esc(top.join(', ')) : '');
-      $('s-acct').textContent = accts.length + ' account' + (accts.length === 1 ? '' : 's') + ' on ' + (own ? 'your' : 'this') + ' route';
+      $('s-acct').textContent = accts.length + ' Account' + (accts.length === 1 ? '' : 's');
     } else if (A) {
-      $('s-acct').textContent = 'No account list on file';
+      $('s-acct').textContent = 'No Account List';
     }
     out = out.filter(Boolean);
     $('meta').innerHTML = out.length ? out.join('<span class="sep">·</span>') : '';
@@ -186,7 +184,7 @@
   /* ---- the page: a rep sees their own; a manager can pick one ---- */
   function showRep(name){
     viewRep = name;
-    $('repName').textContent = name || 'Your workspace';
+    $('repName').textContent = (!isManager || !name) ? 'Your Workspace' : name;
     territory(name);
     // Deep-link the hub to this rep so it opens on their page.
     // Incentives only: the two MPO rows beside it cover the MPO tabs.
@@ -246,13 +244,13 @@
         '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>';
     };
     var html = '', fu = att.fu, c = att.acc;
-    if (fu && fu.accounts) html += row(base + 'need=follow', IC.follow, 'Open Follow-Ups', plural(fu.items, 'follow-up') + ' you flagged' + (fu.done7 ? ' · ' + fu.done7 + ' done this week' : ''), fu.accounts, fu.accounts === 1 ? 'account' : 'accounts');
-    if (c && c.re) html += row(base + 'need=any&kind=reorder', IC.reorder, 'Possible Reorders', plural(c.reP, 'product') + ' past their usual reorder gap', c.re, c.re === 1 ? 'account' : 'accounts');
-    if (c && c.la) html += row(base + 'need=any&kind=lapsed', IC.lapsed, 'Lapsed Products', plural(c.laP, 'product') + ' not bought for longer than usual', c.la, c.la === 1 ? 'account' : 'accounts');
-    if (c && c.tp) html += row(base + 'need=any&kind=tap', IC.tap, 'Tap Surveys Due', 'Last survey 53+ days ago (60-day cycle)', c.tp, c.tp === 1 ? 'account' : 'accounts');
+    if (fu && fu.accounts) html += row(base + 'need=follow', IC.follow, 'Open Follow-Ups', plural(fu.items, 'Follow-Up') + (fu.done7 ? ' · ' + fu.done7 + ' Done This Week' : ''), fu.accounts, fu.accounts === 1 ? 'Account' : 'Accounts');
+    if (c && c.re) html += row(base + 'need=any&kind=reorder', IC.reorder, 'Possible Reorders', plural(c.reP, 'Product'), c.re, c.re === 1 ? 'Account' : 'Accounts');
+    if (c && c.la) html += row(base + 'need=any&kind=lapsed', IC.lapsed, 'Lapsed Products', plural(c.laP, 'Product'), c.la, c.la === 1 ? 'Account' : 'Accounts');
+    if (c && c.tp) html += row(base + 'need=any&kind=tap', IC.tap, 'Tap Surveys Due', '53+ Days Since Last Survey', c.tp, c.tp === 1 ? 'Account' : 'Accounts');
     var quiet = [];
-    if (fu && !fu.accounts) quiet.push('No open follow-ups' + (fu.done7 ? ' · ' + fu.done7 + ' done this week' : '') + '.');
-    if (c && c.ok && !c.re && !c.la && !c.tp) quiet.push('Nothing flagged from sales or tap surveys.');
+    if (fu && !fu.accounts) quiet.push('No Open Follow-Ups' + (fu.done7 ? ' · ' + fu.done7 + ' Done This Week' : ''));
+    if (c && c.ok && !c.re && !c.la && !c.tp) quiet.push('Nothing Flagged');
     $('todayRows').innerHTML = html;
     $('todayRows').hidden = !html;
     $('fuQuiet').textContent = quiet.join(' ');
@@ -295,7 +293,7 @@
     var T = window.kdhTeam && dmGroupsFile() ? window.kdhTeam(dmGroupsFile()) : null;
     if (T) {
       var mine = names.filter(function(n){ return T.reps.indexOf(n) >= 0 || (window.kdhMatchName && !!window.kdhMatchName(n, T.reps)); });
-      if (mine.length) { names = mine; $('kicker').textContent = 'Rep Home · your team'; }
+      if (mine.length) names = mine;
     }
     var sel = $('repSelect'); sel.innerHTML = '';
     names.forEach(function(n){ var o = document.createElement('option'); o.value = n; o.textContent = n; sel.appendChild(o); });
@@ -324,20 +322,20 @@
     var base = '../MPOs/' + t[0] + '-prem/', card = $(t[1]);
     card.dataset.base = base;
     getJson(base + 'data/' + thisM + '/sync_meta.json').then(function(meta){
-      if (meta) { card.dataset.month = thisM; setMpoHref(card); status(t[2], 'ok', MONTHS_LONG[now.getMonth()] + (meta.synced_at ? ' · updated ' + fmtDay(meta.synced_at) : '')); return; }
+      if (meta) { card.dataset.month = thisM; setMpoHref(card); status(t[2], 'ok', MONTHS_LONG[now.getMonth()] + (meta.synced_at ? ' · Updated ' + fmtDay(meta.synced_at) : '')); return; }
       return getJson(base + 'data/' + prevM + '/sync_meta.json').then(function(pm){
-        if (pm) { card.dataset.month = prevM; setMpoHref(card); status(t[2], 'warn', MONTHS_LONG[(now.getMonth()+11)%12] + ' results · ' + MONTHS_LONG[now.getMonth()] + ' not yet published'); }
-        else { card.classList.add('muted'); status(t[2], '', 'No programs loaded yet'); }
+        if (pm) { card.dataset.month = prevM; setMpoHref(card); status(t[2], 'warn', MONTHS_LONG[(now.getMonth()+11)%12] + ' Results · ' + MONTHS_LONG[now.getMonth()] + ' Not Yet Published'); }
+        else { card.classList.add('muted'); status(t[2], '', 'No Programs Loaded Yet'); }
       });
     });
   });
 
   // Red Bull: the tracked period and how long is left in it.
   getJson('../redbull/period.json').then(function(p){
-    if (!p || !p.end) { status('s-rb', '', 'Placements against goal'); return; }
+    if (!p || !p.end) { status('s-rb', '', 'Placements Against Goal'); return; }
     var end = new Date(p.end + 'T23:59:59'), days = Math.ceil((end - now) / 86400000);
-    if (end < now) status('s-rb', '', (p.label || 'Period') + ' · period ended');   // not days < 0: ceil of a small negative is -0
-    else status('s-rb', days <= 7 ? 'warn' : 'ok', (p.label || 'Current period') + ' · ' + (days === 0 ? 'last day' : days + ' day' + (days === 1 ? '' : 's') + ' left'));
+    if (end < now) status('s-rb', '', (p.label || 'Period') + ' · Period Ended');   // not days < 0: ceil of a small negative is -0
+    else status('s-rb', days <= 7 ? 'warn' : 'ok', (p.label || 'Current period') + ' · ' + (days === 0 ? 'Last Day' : days + ' Day' + (days === 1 ? '' : 's') + ' Left'));
   });
 })();
 </script>

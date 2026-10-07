@@ -252,6 +252,50 @@
   details.defs dd{margin:0}
   .note{font-size:12.5px;color:var(--ink-soft)}
   .pill{display:inline-block;font-size:11px;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:2px 9px;color:var(--ink-soft)}
+
+  .dashgrid>*{min-width:0}
+  @media (max-width:900px){.dashgrid{grid-template-columns:minmax(0,1fr)}}
+  .mapwrap svg{max-width:100%;height:auto}
+  /* PAGE STANDARD (phone app: structure and bottom tabs unchanged) */
+  .eyebrow{letter-spacing:0;text-transform:none;font-size:14px;font-weight:600}
+  h1,h2,h3,.brandmark .t,.locbanner .id,.kpi .v{font-family:"Inter",sans-serif}
+  h1,h2,h3{letter-spacing:0}
+  .brandmark .s{font-size:13px}
+  .small,.note,.loccard .note,details.defs{font-size:14px}
+  .pill{font-size:13px}
+  label.f{font-size:14px}
+  .tabs button{font-size:14px}
+  .btn{font-size:15px;min-height:44px}
+  .chip,.seclocs button,.seclocs .lbl{font-size:14px}
+  .locbanner .meta,.brow .nm small,.logitem .d,.logitem .acts button,.kpi .l,.kpi .h,.loccard .who{font-size:14px}
+  .loccard .lines h4{font-size:13px;letter-spacing:0;text-transform:none}
+  #tooltip{font-size:14px}
+  .logitem .id .dsc{font-size:14px}
+  #changesec,#editid{font-size:14px!important;min-height:40px!important}
+  main{max-width:960px}
+  .topbar .row{max-width:960px}
+  .dashhead{text-align:center;justify-content:center}
+  .dashhead h1{font-size:28px;font-weight:600}
+  .dashhead .sub{font-size:14px}
+  .filters{justify-content:center}
+  .kpi{text-align:center}
+  .kpi .v{font-size:32px;font-weight:600}
+  .kpis{gap:12px;grid-template-columns:repeat(3,minmax(0,1fr))}
+  @media (max-width:640px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  .card{padding:16px}
+  .card h2{font-size:18px;font-weight:600}
+  .card + .card{margin-top:12px}
+  table.tbl th{font-size:14px;letter-spacing:0;text-transform:none}
+  table.tbl{font-size:14px}
+  @media (max-width:640px){
+    .tscroll{overflow-x:visible}
+    #brandtable,#brandtable tbody,#brandtable tr,#brandtable td{display:block;width:100%}
+    #brandtable thead{display:none}
+    #brandtable tr{border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:0 0 12px}
+    #brandtable td{border:0;padding:4px 0;text-align:left}
+    #brandtable td[data-l]{display:flex;justify-content:space-between;gap:12px}
+    #brandtable td[data-l]::before{content:attr(data-l);color:var(--ink-soft)}
+  }
   @media print{
     .topbar,.tabs,.savebar,#toast{display:none!important}
     body{background:#fff;color:#000;padding:0}
@@ -271,7 +315,7 @@
   <div class="row">
     <a class="brandmark" href="../">
       <img src="../assets/kohler-logo-badge.png" alt="">
-      <span><span class="t">MetLife Beer Audit</span><br><span class="s">Kohler Distributing · field capture &amp; results</span></span>
+      <span><span class="t">MetLife Beer Audit</span><br><span class="s">Field Capture &amp; Results</span></span>
     </a>
     <span class="spacer"></span>
     <nav class="tabs" role="tablist" aria-label="Views">
@@ -289,17 +333,15 @@
 <section id="view-audit">
 
   <div class="card" id="startcard">
-    <p class="eyebrow">Start audit</p>
-    <h2>Who, what game, and where are you starting?</h2>
-    <p class="muted small">Set once. The location number advances by itself after every save — you only pick a new section when you walk into one.</p>
+    <h2>Start Audit</h2>
     <label class="f" for="auditor">Auditor</label>
     <input class="in" id="auditor" placeholder="Your name" autocomplete="name">
-    <label class="f" for="event">Event / game</label>
-    <input class="in" id="event" placeholder="e.g. Giants vs. Cowboys · Sep 10, 2026">
-    <label class="f" for="startsection">Starting section</label>
-    <input class="in mono" id="startsection" inputmode="numeric" pattern="[0-9A-Za-z ]*" placeholder="e.g. 125 → first location is 125-A" style="font-size:22px;font-family:'Space Grotesk';font-weight:700">
-    <div class="btnrow"><button class="btn primary block" id="startbtn">Start audit →</button></div>
-    <p class="note" style="margin-top:12px">Everything you capture is saved on this phone as you go (works without signal). Export from the Log tab when you're done.</p>
+    <label class="f" for="event">Event / Game</label>
+    <input class="in" id="event" placeholder="Giants vs. Cowboys · Sep 10, 2026">
+    <label class="f" for="startsection">Starting Section</label>
+    <input class="in mono" id="startsection" inputmode="numeric" pattern="[0-9A-Za-z ]*" placeholder="125" style="font-size:22px;font-family:'Space Grotesk';font-weight:700">
+    <div class="btnrow"><button class="btn primary block" id="startbtn">Start Audit →</button></div>
+    <p class="note" style="margin-top:12px">Saved on This Phone · Works Without Signal</p>
   </div>
 
   <div id="formcard" hidden>
@@ -307,20 +349,20 @@
       <div>
         <div class="id mono" id="locid">125-A</div>
         <div class="meta" id="locdesc" hidden></div>
-        <div class="meta"><span id="loclevel">Lower Level</span> · <button class="btn ghost" id="changesec" style="padding:2px 8px;min-height:0;font-size:12.5px;border-radius:8px">Change section</button> <button class="btn ghost" id="editid" style="padding:2px 8px;min-height:0;font-size:12.5px;border-radius:8px">Edit #</button></div>
+        <div class="meta"><span id="loclevel">Lower Level</span> · <button class="btn ghost" id="changesec" style="padding:2px 8px;min-height:0;font-size:12.5px;border-radius:8px">Change Section</button> <button class="btn ghost" id="editid" style="padding:2px 8px;min-height:0;font-size:12.5px;border-radius:8px">Edit #</button></div>
       </div>
-      <div class="rt"><div class="n mono" id="sectiondone">0</div><div class="meta">in this section</div><div class="n mono" id="totaldone" style="margin-top:6px">0</div><div class="meta">total saved</div></div>
+      <div class="rt"><div class="n mono" id="sectiondone">0</div><div class="meta">In This Section</div><div class="n mono" id="totaldone" style="margin-top:6px">0</div><div class="meta">Total Saved</div></div>
     </div>
 
     <div class="seclocs" id="seclocs"></div>
 
     <div class="card" style="margin-top:12px">
-      <label class="f" for="desc" style="margin-top:0">Location description</label>
+      <label class="f" for="desc" style="margin-top:0">Location Description</label>
       <select class="in" id="desc"></select>
-      <input class="in" id="descother" list="desclist" placeholder="Describe this location (required)" autocomplete="off" hidden style="margin-top:8px">
+      <input class="in" id="descother" list="desclist" placeholder="Describe This Location (Required)" autocomplete="off" hidden style="margin-top:8px">
       <datalist id="desclist"></datalist>
 
-      <h2 style="margin-top:16px">What's here?</h2>
+      <h2 style="margin-top:16px">What's Here?</h2>
       <div class="seg" id="typeseg" style="margin-top:10px">
         <button data-type="cooler" aria-pressed="false"><span class="ic">🧊</span>Cooler</button>
         <button data-type="taps" aria-pressed="false"><span class="ic">🍺</span>Taps</button>
@@ -328,33 +370,33 @@
       </div>
 
       <div class="brandbox" id="coolerbox" hidden>
-        <h3>🧊 Cooler brands <span class="tot">Facings: <b id="coolertot" class="mono">0</b></span></h3>
+        <h3>🧊 Cooler Brands <span class="tot">Facings: <b id="coolertot" class="mono">0</b></span></h3>
         <div id="coolerrows"></div>
         <div class="pickrow"><select class="in ours" id="cooler-ours" aria-label="Add one of our brands"></select><select class="in" id="cooler-theirs" aria-label="Add a competitor brand"></select></div>
-        <div class="addrow" id="cooler-otherrow" hidden><input class="in" id="cooler-other" list="brandlist" placeholder="Brand name (required)" autocomplete="off"><select class="in who" id="cooler-otherwho"><option value="theirs">Theirs</option><option value="ours">Ours</option></select><button class="btn" id="cooler-otheradd">Add</button></div>
+        <div class="addrow" id="cooler-otherrow" hidden><input class="in" id="cooler-other" list="brandlist" placeholder="Brand Name (Required)" autocomplete="off"><select class="in who" id="cooler-otherwho"><option value="theirs">Theirs</option><option value="ours">Ours</option></select><button class="btn" id="cooler-otheradd">Add</button></div>
       </div>
 
       <div class="brandbox" id="tapbox" hidden>
-        <h3>🍺 Tap brands <span class="tot">Taps: <b id="taptot" class="mono">0</b></span></h3>
+        <h3>🍺 Tap Brands <span class="tot">Taps: <b id="taptot" class="mono">0</b></span></h3>
         <div id="taprows"></div>
         <div class="pickrow"><select class="in ours" id="taps-ours" aria-label="Add one of our brands"></select><select class="in" id="taps-theirs" aria-label="Add a competitor brand"></select></div>
-        <div class="addrow" id="taps-otherrow" hidden><input class="in" id="taps-other" list="brandlist" placeholder="Brand name (required)" autocomplete="off"><select class="in who" id="taps-otherwho"><option value="theirs">Theirs</option><option value="ours">Ours</option></select><button class="btn" id="taps-otheradd">Add</button></div>
+        <div class="addrow" id="taps-otherrow" hidden><input class="in" id="taps-other" list="brandlist" placeholder="Brand Name (Required)" autocomplete="off"><select class="in who" id="taps-otherwho"><option value="theirs">Theirs</option><option value="ours">Ours</option></select><button class="btn" id="taps-otheradd">Add</button></div>
       </div>
       <datalist id="brandlist"></datalist>
 
       <label class="f">Photos</label>
       <div class="photos" id="photos">
-        <label class="ph add" for="photoinput"><span class="ic">📷</span>Take photo<input id="photoinput" type="file" accept="image/*" capture="environment" multiple hidden></label>
+        <label class="ph add" for="photoinput"><span class="ic">📷</span>Take Photo<input id="photoinput" type="file" accept="image/*" capture="environment" multiple hidden></label>
       </div>
 
-      <label class="f" for="notes">Notes <span class="muted" style="font-weight:500">(optional)</span></label>
-      <textarea class="in" id="notes" placeholder="Anything worth flagging — out-of-stock, competitor signage, pricing…"></textarea>
+      <label class="f" for="notes">Notes <span class="muted" style="font-weight:500">(Optional)</span></label>
+      <textarea class="in" id="notes" placeholder="Out of Stock, Competitor Signage, Pricing"></textarea>
       <div class="err" id="formerr" hidden></div>
-      <div class="btnrow"><button class="btn ghost" id="cancelEdit" hidden>Cancel edit</button><button class="btn ghost" id="clearform">Clear form</button></div>
+      <div class="btnrow"><button class="btn ghost" id="cancelEdit" hidden>Cancel Edit</button><button class="btn ghost" id="clearform">Clear Form</button></div>
     </div>
 
     <div class="savebar">
-      <button class="btn primary block" id="savebtn">Save &amp; next location →</button>
+      <button class="btn primary block" id="savebtn">Save &amp; Next Location →</button>
     </div>
   </div>
 </section>
@@ -362,14 +404,14 @@
 <!-- ================= LOG VIEW ================= -->
 <section id="view-log" hidden>
   <div class="card">
-    <div class="hd"><h2>Saved locations</h2><span class="pill" id="logsummary"></span></div>
+    <div class="hd"><h2>Saved Locations</h2><span class="pill" id="logsummary"></span></div>
     <div class="btnrow" style="margin-top:0">
-      <button class="btn" id="exportbtn">⬇️ Export + photos</button>
-      <button class="btn" id="exportlite">Export (no photos)</button>
+      <button class="btn" id="exportbtn">⬇️ Export + Photos</button>
+      <button class="btn" id="exportlite">Export (No Photos)</button>
       <button class="btn" id="exportcsv">CSV</button>
       <label class="btn" for="importinput">⬆️ Import<input id="importinput" type="file" accept="application/json,.json" multiple hidden></label>
     </div>
-    <p class="note" style="margin-top:10px">Export creates a single <code>.json</code> file with every location and photo. Import merges files from other auditors' phones onto this one (newest edit of each location wins). To publish for management, drop the export at <code>metlife-audit/data/audit.json</code> in the repo.</p>
+    <details class="defs"><summary>About Export and Import</summary><p class="note">Export creates one .json file with every location and photo. Import merges files from other auditors' phones (newest edit wins). To publish, save the export as metlife-audit/data/audit.json.</p></details>
   </div>
   <div class="card">
     <div class="hd"><h2>Log</h2><select id="logfilter" style="margin-left:auto"></select></div>
@@ -377,8 +419,8 @@
   </div>
   <div class="card">
     <h2>Settings</h2>
-    <p class="note">Brand lists (ours / theirs, cooler / tap) and location descriptions are fixed in the app. "Other" on any picker opens a write-in.</p>
-    <div class="btnrow"><button class="btn danger" id="wipebtn">Delete all data on this device…</button></div>
+    <p class="note">Brand Lists Are Fixed · "Other" Opens a Write-In</p>
+    <div class="btnrow"><button class="btn danger" id="wipebtn">Delete All Data on This Device…</button></div>
   </div>
 </section>
 
@@ -386,7 +428,6 @@
 <section id="view-dash" hidden>
   <div class="dashhead">
     <div>
-      <p class="eyebrow">MetLife Stadium · beer distribution audit</p>
       <h1 id="dashtitle">MetLife Beer Audit</h1>
       <div class="sub" id="dashsub">—</div>
     </div>
@@ -394,7 +435,7 @@
     <div class="filters">
       <select id="eventfilter" class="in" title="Event"></select>
       <select id="levelfilter" class="in" title="Level">
-        <option value="">All levels</option>
+        <option value="">All Levels</option>
       </select>
       <button class="btn" id="printbtn" style="min-height:0;padding:9px 12px;font-size:14px">🖨️ Print / PDF</button>
     </div>
@@ -415,29 +456,29 @@
             <h2>Stadium map</h2>
             <div class="ctl mapctl">
               <select id="mapmode">
-                <option value="coverage">Color: locations audited</option>
-                <option value="leader">Color: leading brand</option>
-                <option value="brand">Color: brand share of…</option>
-                <option value="kohler">Color: our brands' share</option>
+                <option value="coverage">Color: Locations Audited</option>
+                <option value="leader">Color: Leading Brand</option>
+                <option value="brand">Color: Brand Share Of…</option>
+                <option value="kohler">Color: Our Brands' Share</option>
               </select>
               <select id="mapbrand" hidden></select>
-              <select id="secjump"><option value="">Jump to section…</option></select>
+              <select id="secjump"><option value="">Jump to Section…</option></select>
             </div>
           </div>
-          <p class="note" style="margin:-4px 0 8px">Hover or tap a section to see every audited location in it. Schematic layout: 100s lower bowl, 200s mezzanine, 300s upper deck.</p>
+          <p class="note" style="margin:-4px 0 8px">100s Lower Bowl · 200s Mezzanine · 300s Upper Deck</p>
           <div class="mapwrap" id="mapwrap"></div>
           <div class="legend" id="maplegend"></div>
           <div id="otherareas" class="otherareas"></div>
         </div>
 
         <div class="card">
-          <div class="hd"><h2>Brand share</h2>
+          <div class="hd"><h2>Brand Share</h2>
             <div class="ctl"><select id="metricsel">
-              <option value="brandShare">Brand share (facings + taps)</option>
-              <option value="facingsShare">Facings share (cooler)</option>
-              <option value="draftShare">Draft share (taps)</option>
-              <option value="coolerShare">Cooler share (% of coolers)</option>
-              <option value="distribution">Distribution (% of locations)</option>
+              <option value="brandShare">Brand Share (Facings + Taps)</option>
+              <option value="facingsShare">Facings Share (Cooler)</option>
+              <option value="draftShare">Draft Share (Taps)</option>
+              <option value="coolerShare">Cooler Share (% of Coolers)</option>
+              <option value="distribution">Distribution (% of Locations)</option>
             </select></div>
           </div>
           <p class="note" id="metricnote" style="margin:-4px 0 10px"></p>
@@ -445,21 +486,21 @@
         </div>
 
         <div class="card">
-          <div class="hd"><h2>Share by stadium level</h2></div>
+          <div class="hd"><h2>Share by Stadium Level</h2></div>
           <div id="levelstack"></div>
           <div class="legend" id="stacklegend"></div>
         </div>
 
         <div class="card">
-          <div class="hd"><h2>Share by section</h2><span class="pill" id="seccount"></span></div>
+          <div class="hd"><h2>Share by Section</h2><span class="pill" id="seccount"></span></div>
           <div id="sectionstack" style="max-height:560px;overflow:auto;padding-right:4px"></div>
         </div>
 
         <div class="card">
-          <div class="hd"><h2>Brand table</h2></div>
+          <div class="hd"><h2>Brand Table</h2></div>
           <div class="tscroll"><table class="tbl" id="brandtable"></table></div>
           <details class="defs">
-            <summary>How each number is calculated</summary>
+            <summary>How Each Number Is Calculated</summary>
             <dl>
               <dt>Locations audited</dt><dd>Count of saved locations (each cooler, bar or stand you logged is one location).</dd>
               <dt>Brand share</dt><dd>Brand's cooler facings + tap handles ÷ all facings + tap handles audited.</dd>
@@ -476,7 +517,7 @@
 
       <div>
         <div class="card secdetail" id="secdetail">
-          <div class="empty">Select a section on the map to see every audited location in it — brands, facings, taps and photos.</div>
+          <div class="empty">Select a Section on the Map</div>
         </div>
       </div>
     </div>
@@ -1129,13 +1170,13 @@ function paintMap(st){
     else { const s = sec.shares.find(x => x.name===brand); p.style.fill = s ? seqFill(Math.max(0.05, s.share)) : 'var(--s0)'; }
   });
   const ramp = `<span class="ramp">${SEQ.map(c => `<i style="background:var(${c})"></i>`).join('')}</span>`;
-  if (mode==='coverage') legend.innerHTML = `<span>Fewer ${ramp} more locations audited (max ${maxLocs})</span><span><i style="background:var(--map-empty)"></i>Not audited</span>`;
+  if (mode==='coverage') legend.innerHTML = `<span>Fewer ${ramp} More Locations Audited (Max ${maxLocs})</span><span><i style="background:var(--map-empty)"></i>Not Audited</span>`;
   else if (mode==='leader') legend.innerHTML = st.brandList.slice(0,8).map(b => `<span><i style="background:${colorOf(b.name)}"></i>${esc(b.name)}</span>`).join('') + `<span><i style="background:var(--s0)"></i>Other</span><span><i style="background:var(--map-empty)"></i>Not audited</span>`;
   else if (mode==='kohler') legend.innerHTML = `<span>0% ${ramp} 100% our brands' share of facings + taps</span>`;
   else legend.innerHTML = `<span>0% ${ramp} 100% ${esc(brand)} share of facings + taps</span><span><i style="background:var(--s0)"></i>Audited, brand absent</span>`;
   // sections not on the ring map (clubs, named areas, or numbers outside the rings)
   const others = Array.from(st.sections.values()).filter(s => !$(`.sec[data-sec="${mapKeyOf(s.key)}"]`)).sort((a,b) => a.key.localeCompare(b.key, undefined, {numeric:true}));
-  $('#otherareas').innerHTML = others.length ? `<span class="note" style="align-self:center">Other areas:</span>` + others.map(s => `<button class="${s.key===selectedSection?'sel':''}" data-sec="${esc(s.key)}">${esc(s.key)} <span class="muted">· ${s.locs}</span></button>`).join('') : '';
+  $('#otherareas').innerHTML = others.length ? `<span class="note" style="align-self:center">Other Areas:</span>` + others.map(s => `<button class="${s.key===selectedSection?'sel':''}" data-sec="${esc(s.key)}">${esc(s.key)} <span class="muted">· ${s.locs}</span></button>`).join('') : '';
   $$('#otherareas button').forEach(b => b.onclick = () => selectSection(b.dataset.sec));
 }
 $('#mapmode').onchange = () => { if (currentStats) paintMap(currentStats); };
@@ -1157,7 +1198,7 @@ async function selectSection(key){
   selectedSection = key;
   if (currentStats) paintMap(currentStats);
   const el = $('#secdetail'); const sec = currentStats?.sections.get(key);
-  if (!sec) { el.innerHTML = `<div class="hdr"><h2>Section ${esc(key)}</h2><span class="lv">${esc(levelShort(key))}</span></div><div class="empty">No locations audited in this section yet.</div>`; return; }
+  if (!sec) { el.innerHTML = `<div class="hdr"><h2>Section ${esc(key)}</h2><span class="lv">${esc(levelShort(key))}</span></div><div class="empty">No Locations Audited</div>`; return; }
   const locs = sec.locations.slice().sort((a,b) => a.seq-b.seq);
   el.innerHTML = `
     <div class="hdr"><h2>Section ${esc(sec.key)}</h2><span class="lv">${esc(sec.level)}</span></div>
@@ -1199,7 +1240,7 @@ function dashFilters(){
   const ef = $('#eventfilter'); const cur = ef.dataset.set ? ef.value : (Settings.get().event && events.includes(Settings.get().event) ? Settings.get().event : '');
   ef.innerHTML = `<option value="">All events</option>` + events.map(e => `<option value="${esc(e)}" ${e===cur?'selected':''}>${esc(e)}</option>`).join(''); ef.dataset.set = '1';
   ef.hidden = events.length < 2;
-  const lf = $('#levelfilter'); if (!lf.dataset.set) { lf.innerHTML = `<option value="">All levels</option>` + LEVELS.map(l => `<option value="${esc(l)}">${esc(l)}</option>`).join(''); lf.dataset.set='1'; }
+  const lf = $('#levelfilter'); if (!lf.dataset.set) { lf.innerHTML = `<option value="">All Levels</option>` + LEVELS.map(l => `<option value="${esc(l)}">${esc(l)}</option>`).join(''); lf.dataset.set='1'; }
   return all.filter(l => (!ef.value || l.event===ef.value) && (!lf.value || levelOf(l.section)===lf.value));
 }
 $('#eventfilter').onchange = renderDashboard; $('#levelfilter').onchange = renderDashboard;
@@ -1213,22 +1254,22 @@ function renderDashboard(){
   assignColors(globalStats.brandList);   // colors follow the brand across level filters
   $('#dashempty').hidden = locs.length>0; $('#dashbody').hidden = !locs.length;
   const ev = $('#eventfilter').value || Array.from(st.events).join(', ');
-  $('#dashsub').textContent = locs.length ? `${ev || 'All events'} · ${Array.from(st.auditors).filter(Boolean).join(', ') || 'auditor n/a'} · last save ${new Date(Math.max(...locs.map(l => l.updatedAt||0))).toLocaleString()}` : '';
+  $('#dashsub').textContent = locs.length ? `${ev || 'All Events'} · ${Array.from(st.auditors).filter(Boolean).join(', ') || 'auditor n/a'} · Last Save ${new Date(Math.max(...locs.map(l => l.updatedAt||0))).toLocaleString()}` : '';
   if (!locs.length) return;
   // KPIs
   const lead = st.brandList[0];
   $('#kpis').innerHTML = [
-    ['Locations audited', fmt(st.total), `${st.sections.size} sections · ${st.levels.size} level${st.levels.size===1?'':'s'}`],
-    ['Cooler facings', fmt(st.facings), `${st.coolerLocs} cooler locations`],
-    ['Tap handles', fmt(st.taps), `${st.tapLocs} draft locations`],
-    ['Brands seen', fmt(st.brandList.length), lead ? `#1 ${lead.name} · ${pct(lead.brandShare)}` : ''],
-    ['Our brands share', pct(st.kohler.share), `${fmt(st.kohler.facings)} facings · ${fmt(st.kohler.taps)} taps · in ${pct(st.total? st.kohler.locs/st.total:0)} of locations`],
+    ['Locations Audited', fmt(st.total), `${st.sections.size} Sections · ${st.levels.size} Level${st.levels.size===1?'':'s'}`],
+    ['Cooler Facings', fmt(st.facings), `${st.coolerLocs} Cooler Locations`],
+    ['Tap Handles', fmt(st.taps), `${st.tapLocs} Draft Locations`],
+    ['Brands Seen', fmt(st.brandList.length), lead ? `#1 ${lead.name} · ${pct(lead.brandShare)}` : ''],
+    ['Our Brands Share', pct(st.kohler.share), `${fmt(st.kohler.facings)} facings · ${fmt(st.kohler.taps)} taps · in ${pct(st.total? st.kohler.locs/st.total:0)} of Locations`],
     ['Photos', fmt(st.photos), `${st.total ? pct(locs.filter(l => (l.photoIds?.length||l.photos?.length)).length/st.total) : '—'} of locations`],
   ].map(([l,v,h]) => `<div class="kpi"><div class="l">${l}</div><div class="v">${v}</div><div class="h">${h}</div></div>`).join('');
   // map brand selector
   const mb = $('#mapbrand'); const prev = mb.value;
   mb.innerHTML = globalStats.brandList.map(b => `<option value="${esc(b.name)}" ${b.name===prev?'selected':''}>${esc(b.name)}</option>`).join('');
-  $('#secjump').innerHTML = '<option value="">Jump to section…</option>' + Array.from(st.sections.keys()).sort((a,b) => a.localeCompare(b, undefined, {numeric:true})).map(k => `<option value="${esc(k)}">${esc(k)} (${st.sections.get(k).locs})</option>`).join('');
+  $('#secjump').innerHTML = '<option value="">Jump to Section…</option>' + Array.from(st.sections.keys()).sort((a,b) => a.localeCompare(b, undefined, {numeric:true})).map(k => `<option value="${esc(k)}">${esc(k)} (${st.sections.get(k).locs})</option>`).join('');
   paintMap(st);
   if (selectedSection && st.sections.has(selectedSection)) selectSection(selectedSection);
   else if (selectedSection) { $('#secdetail').innerHTML = `<div class="empty">Section ${esc(selectedSection)} is outside the current filter. Select another section on the map.</div>`; }
@@ -1261,7 +1302,8 @@ function renderStacks(st){
 }
 function renderBrandTable(st){
   const rows = st.brandList.map(b => `<tr class="${b.kohler?'kohler':''}"><td><span style="display:inline-flex;align-items:center;gap:7px"><i style="width:9px;height:9px;border-radius:50%;background:${colorOf(b.name)};display:inline-block"></i>${esc(b.name)}${b.kohler?' <span class="pill">Ours</span>':''}</span></td><td class="num">${b.facings}</td><td class="num">${b.taps}</td><td class="num">${pct(b.brandShare,1)}</td><td class="num">${pct(b.facingsShare,1)}</td><td class="num">${pct(b.draftShare,1)}</td><td class="num">${pct(b.coolerShare,1)}</td><td class="num">${b.locs.size}</td><td class="num">${pct(b.distribution,1)}</td></tr>`).join('');
-  $('#brandtable').innerHTML = `<thead><tr><th>Brand</th><th class="num">Facings</th><th class="num">Taps</th><th class="num">Brand share</th><th class="num">Facings share</th><th class="num">Draft share</th><th class="num">Cooler share</th><th class="num">Locations</th><th class="num">Distribution</th></tr></thead><tbody>${rows}</tbody>`;
+  $('#brandtable').innerHTML = `<thead><tr><th>Brand</th><th class="num">Facings</th><th class="num">Taps</th><th class="num">Brand Share</th><th class="num">Facings Share</th><th class="num">Draft Share</th><th class="num">Cooler Share</th><th class="num">Locations</th><th class="num">Distribution</th></tr></thead><tbody>${rows}</tbody>`;
+  { const hs=[...document.querySelectorAll('#brandtable thead th')].map(h=>h.textContent); document.querySelectorAll('#brandtable tbody tr').forEach(tr=>[...tr.children].forEach((td,i)=>{ if(i) td.setAttribute('data-l',hs[i]); })); }
 }
 
 /* =====================================================================
@@ -1323,7 +1365,7 @@ async function boot(){
   if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(()=>{});
   try { locations = await DB.allLocations(); await migrate(); } catch(e){ console.error(e); toast('Storage unavailable — data will not persist'); }
   await loadPublished();
-  if (demoMode) { published = demoData(); $('#dashtitle').textContent = 'MetLife Beer Audit — demo data'; }
+  if (demoMode) { published = demoData(); $('#dashtitle').textContent = 'MetLife Beer Audit — Demo Data'; }
   const s = Settings.get();
   $('#auditor').value = s.auditor||''; $('#event').value = s.event||''; $('#startsection').value = s.section||'';
   if (s.started && s.auditor && s.event && s.section) { $('#startcard').hidden = true; $('#formcard').hidden = false; }

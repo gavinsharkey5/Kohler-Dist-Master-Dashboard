@@ -155,18 +155,18 @@ function render(){
     return `<section class="rgroup"><h3>${E(g.acct)} <small class="rm">${E([g.city, '#'+g.n, g.rep ? 'Rep: '+g.rep : 'Not in the customer base'].filter(Boolean).join(' · '))} · ${plural(g.recs.length,'record')}</small></h3>${recs.map(r=>recHtml(r)).join('')}</section>`; }).join('');
   app.innerHTML = `
   <header class="ws mh"><h1>Merchandising Recap</h1>
-    <p class="mh-sub">Photos and merchandising records your reps captured in the Hub or that were imported from iSellBeer${TEAM ? `, for ${E(TEAM.dm.split(' ')[0])}’s team` : ''}. A saved photo is evidence, not program credit.</p></header>
+    <p class="mh-sub">${TEAM ? `${E(TEAM.dm.split(' ')[0])}’s Team` : 'All Reps'} · Photos Are Evidence, Not Credit</p></header>
   ${NOTE ? `<div class="kdh-state unavailable slim">${E(NOTE)}</div>` : ''}
   <section class="mcard no-print"><h2>Filters</h2>
     <div class="mform">
       <label>Account<input type="search" id="fq" value="${E(st.q)}" placeholder="Name, town or #" autocomplete="off"></label>
-      <label>Rep<select id="frep"><option value="">${TEAM ? `${E(TEAM.dm.split(' ')[0])}’s team` : 'All reps'} · ${ROSTER.length}</option>${repOpts}</select></label>
+      <label>Rep<select id="frep"><option value="">${TEAM ? `${E(TEAM.dm.split(' ')[0])}’s team` : 'All Reps'} · ${ROSTER.length}</option>${repOpts}</select></label>
       <label>Supplier or Brand<input type="search" id="fbrand" value="${E(st.brand)}" placeholder="e.g. Boston Beer, Twisted Tea" autocomplete="off"></label>
       <label>From<input type="date" id="ffrom" value="${E(st.from)}"></label>
       <label>To<input type="date" id="fto" value="${E(st.to)}"></label>
-      <label>Category<select id="fcat"><option value="">Any category</option>${M.CATS.map(x=>`<option value="${x.k}"${st.cat===x.k?' selected':''}>${E(x.label)}</option>`).join('')}<option value="none"${st.cat==='none'?' selected':''}>Uncategorized</option></select></label>
-      <label>Program<select id="fprog"><option value="">Any program</option>${progs.map(p=>`<option value="${E(p)}"${st.prog===p?' selected':''}>${E(progName(p))}</option>`).join('')}<option value="none"${st.prog==='none'?' selected':''}>No program</option></select></label>
-      <label>Source<select id="fsrc"><option value="">Hub and iSellBeer</option><option value="hub"${st.src==='hub'?' selected':''}>Captured in Kohler Hub</option><option value="isellbeer"${st.src==='isellbeer'?' selected':''}>Imported From iSellBeer</option></select></label>
+      <label>Category<select id="fcat"><option value="">Any Category</option>${M.CATS.map(x=>`<option value="${x.k}"${st.cat===x.k?' selected':''}>${E(x.label)}</option>`).join('')}<option value="none"${st.cat==='none'?' selected':''}>Uncategorized</option></select></label>
+      <label>Program<select id="fprog"><option value="">Any Program</option>${progs.map(p=>`<option value="${E(p)}"${st.prog===p?' selected':''}>${E(progName(p))}</option>`).join('')}<option value="none"${st.prog==='none'?' selected':''}>No program</option></select></label>
+      <label>Source<select id="fsrc"><option value="">Hub and iSellBeer</option><option value="hub"${st.src==='hub'?' selected':''}>Captured in Hub</option><option value="isellbeer"${st.src==='isellbeer'?' selected':''}>Imported From iSellBeer</option></select></label>
     </div>
     <div class="mact">
       <button type="button" class="btn primary" id="dlXlsx"${rows.length ? '' : ' disabled'}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Download Excel</button>
@@ -174,14 +174,14 @@ function render(){
       <button type="button" class="btn outline" id="doRecap"${rows.length ? '' : ' disabled'}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg>Export Recap</button>
       ${KEYS.some(k=>st[k]) ? `<button type="button" class="btn ghost" id="fclear">Clear Filters</button>` : ''}
     </div>
-    <p class="mnote">Both exports use exactly the ${plural(c.records,'record')} below — every one the filters match, not just the ones on screen.</p>
+    <p class="mnote">Exports include all ${plural(c.records,'record')} that match.</p>
   </section>
   <section class="mcard" aria-live="polite"><h2>Results</h2>
-    <div class="mtiles mt4">${tile(c.accounts,'Accounts')}${tile(c.records,'Records','one per observation')}${tile(c.photos,'Photos','unique images')}${tile(c.lines,'Product / Brand Lines','what a record lists')}</div>
-    <p class="mnote">${c.records===all.records ? 'All records you can see.' : `Of ${plural(all.records,'record')} you can see.`} Read ${E(fmtWhen(LOADED_AT))}. Counts are kept apart: one display can list several products, one survey several brands, one photo can belong to one record only.</p>
+    <div class="mtiles mt4">${tile(c.accounts,'Accounts')}${tile(c.records,'Records')}${tile(c.photos,'Photos')}${tile(c.lines,'Product / Brand Lines')}</div>
+    <p class="mnote">${c.records===all.records ? 'All records.' : `Of ${plural(all.records,'record')}.`} Data read ${E(fmtWhen(LOADED_AT))}</p>
     ${rows.length ? body + (rows.length > shown ? `<button type="button" class="btn outline wide" id="more">Show More · ${plural(rows.length - shown,'record')}</button>` : '')
-      : RECS.length ? `<div class="kdh-state empty"><b>No records match these filters.</b><span>Clear a filter or widen the dates.</span></div>`
-      : `<div class="kdh-state empty"><b>No merchandising records yet.</b><span>Reps add them with Add Photos on an account; managers can import iSellBeer exports under <a href="import/">Import From iSellBeer</a>.</span></div>`}
+      : RECS.length ? `<div class="kdh-state empty"><b>No Records Match</b><span>Clear a filter or widen the dates.</span></div>`
+      : `<div class="kdh-state empty"><b>No Records Yet</b><span>Reps add them with Add Photos on an account.</span></div>`}
   </section>
   <p class="mnote no-print"><a href="import/">Import From iSellBeer ›</a></p>`;
   wire(); hydrate(app);

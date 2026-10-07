@@ -227,7 +227,7 @@
       { key: 'on', group: 'Programs', label: 'On-Premise MPOs', href: ROOT + 'MPOs/on-prem/index.html' },
       { key: 'tap', group: 'Trackers', label: 'Tap Tracker', href: ROOT + 'isellbeer/tap-survey-tracking/' },
       { key: 'rb', group: 'Trackers', label: 'Red Bull Tracker', href: ROOT + 'redbull/' },
-      { key: 'cb', group: 'Trackers', label: 'Carbliss Targets', href: ROOT + 'carbliss-onprem-targets/' }
+      { key: 'cb', group: 'Trackers', label: 'Carbliss Leaderboard', href: ROOT + 'carbliss-onprem-targets/' }
     ];
     if (isMgr) t.push({ key: 'invm', group: 'Manager', label: 'Inventory', href: ROOT + 'inventory/', menuOnly: true });
     if (isMgr) t.push({ key: 'exc', group: 'Manager', label: 'Exceptions', href: ROOT + 'exceptions/' });
@@ -348,9 +348,9 @@
     if (!u || isMgr || document.getElementById('kdhLive')) return;
     if (!document.getElementById('kdhLiveCss')) {
       var st = document.createElement('style'); st.id = 'kdhLiveCss';
-      st.textContent = '#kdhLive{box-sizing:border-box;margin:0;padding:14px 16px;background:#FFE08A;color:#2B1B00;border-top:1px solid #B45309;border-bottom:4px solid #B45309;font:16px/1.45 var(--kdh-body,system-ui,sans-serif);display:flex;gap:12px;align-items:flex-start;justify-content:center}' +
-        '#kdhLive .lv-i{flex:none;width:28px;height:28px;border-radius:50%;background:#B45309;color:#fff;font-weight:800;font-size:18px;line-height:28px;text-align:center}' +
-        '#kdhLive .lv-t{max-width:880px}#kdhLive b{font-weight:800;font-size:17px;letter-spacing:0}' +
+      st.textContent = '#kdhLive{box-sizing:border-box;margin:0;padding:10px 16px;background:#FFE08A;color:#2B1B00;border-top:1px solid #B45309;border-bottom:4px solid #B45309;font:15px/1.4 var(--kdh-body,system-ui,sans-serif);display:flex;gap:12px;align-items:center;justify-content:center}' +
+        '#kdhLive .lv-i{flex:none;width:24px;height:24px;border-radius:50%;background:#B45309;color:#fff;font-weight:800;font-size:15px;line-height:24px;text-align:center}' +
+        '#kdhLive .lv-t{max-width:880px}#kdhLive b{font-weight:700;font-size:15px;letter-spacing:0}' +
         '#kdhLive a{color:#6B2A00;font-weight:700;text-decoration:underline;word-break:break-all}' +
         ':root[data-theme="dark"] #kdhLive{background:#4A3300;color:#FFF1C7;border-color:#F0A93B}' +
         ':root[data-theme="dark"] #kdhLive .lv-i{background:#F0A93B;color:#2B1B00}' +
@@ -360,9 +360,8 @@
     }
     var n = document.createElement('div');
     n.id = 'kdhLive'; n.setAttribute('role', 'alert');
-    n.innerHTML = '<span class="lv-i" aria-hidden="true">!</span><div class="lv-t"><b>WARNING: This website does NOT update in real time.</b> ' +
-      'To see incentive and MPO data updates in real time, please use <a href="' + LIVE_URL + '" target="_blank" rel="noopener">Encompass (open the live dashboard)</a>. ' +
-      'We are working to make this live for everyone. Thank you for your patience.</div>';
+    n.innerHTML = '<span class="lv-i" aria-hidden="true">!</span><div class="lv-t"><b>Not Real Time.</b> For live incentive and MPO data, ' +
+      '<a href="' + LIVE_URL + '" target="_blank" rel="noopener">Open Encompass</a>.</div>';
     bar.parentNode.insertBefore(n, bar.nextSibling);
   }
   function chrome() {
@@ -612,7 +611,7 @@
   // 12.5px. The dashboards were written for desktops with 10-11px captions;
   // rather than chase every class, lift any visible text that computes
   // smaller, and keep doing so as pages re-render.
-  var MIN_PX = 12.5;
+  var MIN_PX = 13;
   function liftSmallType(root) {
     try {
       var els = (root || document.body).querySelectorAll('body *:not(script):not(style):not(svg):not(svg *)');

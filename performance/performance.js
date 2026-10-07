@@ -5,7 +5,7 @@ const E = s => String(s==null?'':s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&l
 const app = document.getElementById('perfApp');
 const U = window.kdhUser ? window.kdhUser() : null;
 if(!U || U.role !== 'manager' || U.preview){
-  app.innerHTML = `<div class="kdh-state unavailable"><b>Incentive Performance is for managers.</b><span>Financial results are not shown on rep pages.</span></div>`;
+  app.innerHTML = `<div class="kdh-state unavailable"><b>Incentive Performance Is for Managers</b><span>Managers only.</span></div>`;
   return;
 }
 const H = window.KohlerHub;
@@ -19,15 +19,15 @@ const probe = new Map();
 function has(path){ if(!probe.has(path)) probe.set(path, fetch(path, {method:'HEAD', cache:'no-store'}).then(r=>r.ok).catch(()=>false)); return probe.get(path); }
 
 const METRICS = [
-  ['Qualifying Sales', 'Revenue on sales that meet the program’s rules', 'line'],
-  ['Cases', 'Qualifying cases, with explicit unit conversions', 'line'],
-  ['Cost of Goods Sold', 'Laid-in cost of the qualifying sales', 'line'],
-  ['Gross Profit', 'Qualifying sales minus cost of goods sold', 'line'],
-  ['Gross Margin', 'Gross profit ÷ qualifying sales', 'line'],
-  ['Incentive Costs', 'Rep payouts and program costs, shown separately', 'cost'],
-  ['Supplier Reimbursements', 'Supplier funding for the program, shown separately', 'cost'],
-  ['Estimated Incremental Gross Profit', 'Needs an agreed baseline / comparison method', 'base'],
-  ['Estimated Net Contribution', 'Incremental gross profit minus defined program costs — not net income', 'base'],
+  ['Qualifying Sales', 'Revenue on qualifying sales', 'line'],
+  ['Cases', 'Qualifying cases', 'line'],
+  ['Cost of Goods Sold', 'Laid-in cost of qualifying sales', 'line'],
+  ['Gross Profit', 'Sales minus cost', 'line'],
+  ['Gross Margin', 'Gross profit ÷ sales', 'line'],
+  ['Incentive Costs', 'Rep payouts and program costs', 'cost'],
+  ['Supplier Reimbursements', 'Supplier funding', 'cost'],
+  ['Estimated Incremental Gross Profit', 'Needs an agreed baseline', 'base'],
+  ['Estimated Net Contribution', 'Incremental profit minus program costs', 'base'],
 ];
 const QUESTIONS = [
   ['Revenue', 'Is Fusion’s “$Vol” net of discounts and promotional pricing? Does it include excise or sales tax, or keg / bottle deposits?'],
@@ -57,39 +57,39 @@ async function render(){
   const moneyAll = cover.length && cover.every(c=>c.money);
   const credited = p && p.type==='Incentive' && p.forRep ? H.roster.some(rep=>{ try{ return (H.distFor ? H.distFor(p, rep) : []).length > 0; }catch(e){ return false; } }) : false;
   const why = {
-    line: 'Needs invoice-level sales with revenue and cost for the program period, matched to the program’s rules' + (moneyAll ? '' : ' — Fusion’s monthly money file is not loaded for ' + cover.filter(c=>!c.money).map(c=>monLabel(c.m)).join(', ')),
-    cost: 'Needs the program’s payout and supplier-funding records',
-    base: 'Needs an agreed baseline method and the figures above',
+    line: 'Needs invoice-level sales with revenue and cost' + (moneyAll ? '' : ' · Monthly money file not loaded for ' + cover.filter(c=>!c.money).map(c=>monLabel(c.m)).join(', ')),
+    cost: 'Needs payout and supplier-funding records',
+    base: 'Needs an agreed baseline method',
   };
   app.innerHTML = `
-    <header class="ws"><div class="id"><h1>Incentive Performance</h1><p class="idline">Gross profit on qualifying sales, by program and period · managers only</p></div></header>
+    <header class="ws"><div class="id"><h1>Incentive Performance</h1><p class="idline">Gross Profit by Program and Period</p></div></header>
     <div class="pf-controls">
       <label>Period <select id="pfMonth">${months.map(m=>`<option value="${m}"${m===month?' selected':''}>${E(monLabel(m))}</option>`).join('')}</select></label>
       <label>Program <select id="pfProg">${inMonth.map(x=>`<option value="${E(x.id)}"${x.id===pid?' selected':''}>${E(x.shortName||x.name)} · ${E(x.supplier)}</option>`).join('')}</select></label>
     </div>
-    ${p ? `<p class="pf-prog"><b>${E(p.shortName||p.name)}</b> · ${E(p.supplier)} · ${E(p.channelLabel)} · ${E(p.period.label)}${p.shortName && p.shortName!==p.name ? `<br><span>Full program name: ${E(p.name)}</span>` : ''}</p>` : ''}
-    <div class="kdh-state unavailable pf-banner"><b>Not calculable with current data.</b><span>The financial results below need the definitions confirmed and the reports listed under What Is Needed. Nothing is estimated in the meantime.</span></div>
-    ${[['line','Qualifying Sales and Gross Profit'],['cost','Program Costs and Funding'],['base','Incremental Results (Estimates)']].map(([k, title])=>`<section class="sec pf-grp"><h2>${E(title)}</h2><p class="pf-why">${E(why[k])}.</p>
+    ${p ? `<p class="pf-prog"><b>${E(p.shortName||p.name)}</b> · ${E(p.supplier)} · ${E(p.channelLabel)} · ${E(p.period.label)}${p.shortName && p.shortName!==p.name ? `<br><span>Full Name: ${E(p.name)}</span>` : ''}</p>` : ''}
+    <div class="kdh-state unavailable pf-banner"><b>Not Calculable With Current Data</b><span>Nothing is estimated. See What Is Needed.</span></div>
+    ${[['line','Qualifying Sales and Gross Profit'],['cost','Program Costs and Funding'],['base','Incremental Results (Estimates)']].map(([k, title])=>`<section class="sec pf-grp"><h2>${E(title)}</h2><p class="pf-why">${E(why[k])}</p>
       <div class="pf-metrics">${METRICS.filter(m=>m[2]===k).map(([t, d])=>`<div class="pf-m"><p class="pf-mt">${E(t)}</p><p class="pf-mv">Not Calculable With Current Data</p><p class="pf-md">${E(d)}</p></div>`).join('')}</div></section>`).join('')}
-    <section class="sec"><h2>Three Different Things</h2><div class="card"><dl class="pf-dl">
-      <dt>Sales during the program period</dt><dd>Everything the participating accounts bought between the program’s start and end. Not a program result.</dd>
-      <dt>Qualifying sales</dt><dd>Only the sales that meet the program’s own rules (products, packages, account conditions). An account’s other purchases are not qualifying sales just because it earned a placement.</dd>
-      <dt>Sales that earned credit</dt><dd>The sales the tracker actually credited. ${p ? (credited ? 'The tracker publishes credited lines for this program.' : 'The tracker does not publish credited lines for this program, only totals.') : ''}</dd>
-    </dl><p class="note">Gross profit on qualifying sales is not profit caused by the incentive. An incremental figure needs a documented baseline, and program contribution is not company net income.</p></div></section>
-    <section class="sec"><h2>Data Coverage <small>for this program’s months</small></h2><div class="card"><table class="tbl pf-tbl"><thead><tr><th>Month</th><th>Cases by account (Fusion)</th><th>Revenue and cost (monthly)</th><th>Adjustments</th><th>Invoice lines</th><th>Program costs</th></tr></thead><tbody>
-      ${cover.map(c=>`<tr><td><b>${E(monLabel(c.m))}</b></td><td data-l="Cases by account">${c.sales ? 'Loaded' : 'Not loaded'}</td><td data-l="Revenue and cost">${c.money ? 'Loaded' : 'Not loaded'}</td><td data-l="Adjustments">${c.adj ? 'Loaded' : 'Not loaded'}</td><td data-l="Invoice lines">Not available</td><td data-l="Program costs">Not available</td></tr>`).join('')}
-    </tbody></table><p class="note">Monthly files say how much an account bought in a month, not which invoices met a rule on which day, so they cannot by themselves separate qualifying sales from the rest.</p></div></section>
-    <section class="sec"><h2>Definitions to Confirm</h2><div class="card"><ol class="pf-q">${QUESTIONS.map(([t, q])=>`<li><b>${E(t)}.</b> ${E(q)}</li>`).join('')}</ol></div></section>
+    <section class="sec"><details class="pf-fold"><summary>Sales vs Qualifying vs Credited</summary><div class="card"><dl class="pf-dl">
+      <dt>Program Period Sales</dt><dd>Everything participating accounts bought. Not a program result.</dd>
+      <dt>Qualifying Sales</dt><dd>Only sales that meet the program’s own rules.</dd>
+      <dt>Credited Sales</dt><dd>${p ? (credited ? 'Tracker publishes credited lines.' : 'Tracker publishes totals only.') : 'Sales the tracker credited.'}</dd>
+    </dl><p class="note">Gross profit on qualifying sales is not profit caused by the incentive.</p></div></details></section>
+    <section class="sec"><h2>Data Coverage</h2><div class="card"><table class="tbl pf-tbl"><thead><tr><th>Month</th><th>Cases by Account</th><th>Revenue and Cost</th><th>Adjustments</th><th>Invoice Lines</th><th>Program Costs</th></tr></thead><tbody>
+      ${cover.map(c=>`<tr><td><b>${E(monLabel(c.m))}</b></td><td data-l="Cases by Account">${c.sales ? 'Loaded' : 'Not loaded'}</td><td data-l="Revenue and Cost">${c.money ? 'Loaded' : 'Not loaded'}</td><td data-l="Adjustments">${c.adj ? 'Loaded' : 'Not loaded'}</td><td data-l="Invoice Lines">Not available</td><td data-l="Program Costs">Not available</td></tr>`).join('')}
+    </tbody></table></div></section>
+    <section class="sec"><details class="pf-fold"><summary>Definitions to Confirm (12)</summary><div class="card"><ol class="pf-q">${QUESTIONS.map(([t, q])=>`<li><b>${E(t)}.</b> ${E(q)}</li>`).join('')}</ol></div></details></section>
     <section class="sec"><h2>What Is Needed</h2><div class="card"><ul class="pf-need">
-      <li><b>Invoice-level sales</b> for the program periods: invoice number and date, CustomerID, product number, quantity with unit, net revenue, cost, discounts, returns and credits as separate lines.</li>
-      <li><b>Program payout records</b>: program, rep, amount, earned / approved / paid dates.</li>
-      <li><b>Supplier funding</b>: program, supplier, amount, basis (per case, per placement, flat), date received.</li>
-      <li><b>Each program’s qualifying rule</b> in data form: eligible products and packages, account conditions, dates.</li>
-    </ul><p class="note">The full request, with fields and refresh timing, is in accounts/REPORTING_REQUEST.md (P1–P4).</p></div></section>
-    <section class="sec"><h2>Supporting Transactions</h2><div class="kdh-state empty"><b>No transactions to show yet.</b><span>Qualifying transactions will be listed here, with their dates, once invoice-level data is loaded.</span></div></section>`;
+      <li><b>Invoice-Level Sales</b> for the program periods</li>
+      <li><b>Program Payout Records</b></li>
+      <li><b>Supplier Funding</b></li>
+      <li><b>Qualifying Rules</b> in data form</li>
+    </ul><p class="note">Full request: accounts/REPORTING_REQUEST.md (P1–P4).</p></div></section>
+    <section class="sec"><h2>Supporting Transactions</h2><div class="kdh-state empty"><b>No Transactions Yet</b><span>Listed here once invoice-level data is loaded.</span></div></section>`;
   document.getElementById('pfMonth').addEventListener('change', e=>{ location.hash = 'm='+e.target.value; });
   document.getElementById('pfProg').addEventListener('change', e=>{ location.hash = 'm='+month+'&p='+encodeURIComponent(e.target.value); });
 }
 window.addEventListener('hashchange', render);
-render().catch(e=>{ app.innerHTML = `<div class="kdh-state error"><b>Could not load programs.</b><span>${E(e.message||e)}</span></div>`; });
+render().catch(e=>{ app.innerHTML = `<div class="kdh-state error"><b>Could Not Load Programs</b><span>${E(e.message||e)}</span></div>`; });
 })();

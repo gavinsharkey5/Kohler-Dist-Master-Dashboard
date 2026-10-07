@@ -106,6 +106,48 @@
     header h1{font-size:25px;} .kpi-num{font-size:26px;}
     table{font-size:14.5px;}
   }
+
+  /* ---- PAGE STANDARD (2026-10-07): one 960px column, centered header + tiles, stacked rows on phones ---- */
+  .wrap{max-width:960px;padding:20px 16px 80px}
+  header{text-align:center}
+  header h1{font-size:26px;font-weight:600;letter-spacing:0}
+  header .sub{font-size:15px;margin:6px 0 0;max-width:none}
+  .updated{justify-content:center;font-size:14px;margin:6px 0 0;flex-wrap:wrap}
+  .kpis{gap:12px;margin:16px 0 0}
+  .kpi{text-align:center;padding:16px;border-left-width:1px;border-top:4px solid var(--ok)}
+  .kpi.warn{border-top-color:var(--low);border-left-color:var(--line-soft)} .kpi.bad{border-top-color:var(--out);border-left-color:var(--line-soft)} .kpi.info{border-top-color:var(--heavy);border-left-color:var(--line-soft)}
+  .kpi{border-left-color:var(--line-soft)}
+  .kpi-num{font-size:34px;font-weight:600}
+  .kpi-label{font-size:15px;font-weight:600;text-transform:none;letter-spacing:0;margin-top:6px}
+  .kpi-sub{font-size:14px;margin-top:4px}
+  h2.sec{font-size:17px;font-weight:600;margin:24px 0 4px}
+  .sec-intro{font-size:14px;margin:0 0 12px;max-width:none}
+  .panel{padding:16px}
+  .controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0 0 12px}
+  .controls .search{grid-column:1/-1;min-width:0}
+  .controls select{width:100%;min-width:0}
+  .chip{font-size:14px;min-height:40px}
+  .btn-reset{font-size:14px;min-height:40px}
+  th{font-size:14px;font-weight:600;text-transform:none;letter-spacing:0}
+  .big{font-weight:600}
+  .psub{font-size:14px}
+  .st{font-size:14px}
+  .rowcount,.note{font-size:14px}
+  .arr-units{font-weight:600}
+  footer{font-size:14px}
+  footer summary{font-size:15px;font-weight:600;cursor:pointer;min-height:40px}
+  @media (max-width:760px){
+    .controls{grid-template-columns:1fr}
+    .table-scroll{overflow-x:visible}
+    table,thead,tbody,tr,td{display:block;width:100%;min-width:0}
+    thead{display:none}
+    tbody tr{border:1px solid var(--line-soft);border-radius:10px;padding:10px 12px;margin:0 0 10px;background:var(--card-alt)}
+    td{border:0;padding:4px 0;text-align:left}
+    td.num{text-align:left}
+    td[data-l]{display:flex;justify-content:space-between;align-items:baseline;gap:12px;text-align:right}
+    td[data-l]::before{content:attr(data-l);color:var(--text-dim);text-align:left;flex:none;font-size:14px}
+    td[data-l] .psub{text-align:right}
+  }
 </style>
 <script src="../shared/kdh-user.js?v=20261007a"></script>
 <script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
@@ -117,18 +159,17 @@
 <div class="wrap">
   <header>
     <h1>What Can I Sell</h1>
-    <p class="sub">Sellable inventory from the latest Encompass snapshot: what is available, what is running low and what just landed. Search a product, or filter by supplier, brand or pack.</p>
+    <p class="sub">Sellable Stock From the Latest Encompass Snapshot</p>
     <p class="updated"><span id="asOf"></span> <span id="stale"></span></p>
   </header>
 
   <div class="kpis" id="kpis"></div>
 
-  <h2 class="sec">Find a product</h2>
-  <p class="sec-intro">Available is the sellable number straight from Encompass &mdash; the same figure you see there.
-    Days of cover is how long that stock lasts at the product&rsquo;s own current rate of sale.</p>
+  <h2 class="sec">Find a Product</h2>
+  <p class="sec-intro">Days of Cover = how long stock lasts at its current rate of sale.</p>
   <div class="panel">
     <div class="controls">
-      <div class="search"><input type="search" id="q" placeholder="Search product, supplier or brand…"
+      <div class="search"><input type="search" id="q" placeholder="Search Product, Supplier or Brand"
         autocomplete="off" aria-label="Search products"></div>
       <select id="sup" aria-label="Filter by supplier"></select>
       <select id="br" aria-label="Filter by brand"></select>
@@ -139,7 +180,7 @@
     <p class="rowcount" id="count"></p>
   </div>
 
-  <h2 class="sec">Just arrived <span class="note" id="arrNote"></span></h2>
+  <h2 class="sec">Just Arrived <span class="note" id="arrNote"></span></h2>
   <p class="sec-intro" id="arrIntro"></p>
   <div class="panel"><div class="arrivals" id="arrivals"></div></div>
 
@@ -165,19 +206,18 @@ const dstr = s => s ? new Date(s+'T00:00:00').toLocaleDateString('en-US') : '—
 /* Status is a reserved four-state scale, not a categorical series: every chip
    carries its label as text, so it never depends on colour. */
 const ST = {
-  out:    {label:'Out of stock', color:'var(--out)'},
-  low:    {label:'Running low',  color:'var(--low)'},
-  ok:     {label:'In stock',     color:'var(--ok)'},
+  out:    {label:'Out of Stock', color:'var(--out)'},
+  low:    {label:'Running Low',  color:'var(--low)'},
+  ok:     {label:'In Stock',     color:'var(--ok)'},
   heavy:  {label:'Plenty',       color:'var(--heavy)'},
-  unknown:{label:'No sales rate',color:'var(--text-mute)'},
+  unknown:{label:'No Sales Rate',color:'var(--text-mute)'},
 };
 
 // Honest freshness (2026-09-29): the figures are a SNAPSHOT with its own
 // effective date, which is not the date this page was built or opened.
 // Older than a week is flagged so nobody sells from stale stock numbers.
 document.getElementById('asOf').innerHTML =
-  `<b>Inventory as of ${dstr(DATA.asOf)}</b> · ${n0(S.productsAvailable)} products available across ${n0(S.suppliers)} suppliers`
-  + (DATA.generatedAt ? ` · <span style="color:var(--text-mute)">page built ${new Date(DATA.generatedAt).toLocaleDateString('en-US')}</span>` : '');
+  `<b>Inventory as of ${dstr(DATA.asOf)}</b>`;
 (function(){
   var age = DATA.asOf ? Math.floor((Date.now() - new Date(DATA.asOf+'T00:00:00').getTime())/86400000) : null;
   var el = document.getElementById('stale');
@@ -186,14 +226,14 @@ document.getElementById('asOf').innerHTML =
 
 const C = S.counts||{};
 document.getElementById('kpis').innerHTML = [
-  {cls:'', num:n0(S.available), label:'Units available to sell',
-   sub:`across ${n0(S.productsAvailable)} products`},
-  {cls:'bad', num:n0(C.out), label:'Out of stock',
-   sub:`none available in this snapshot`},
-  {cls:'warn', num:n0(C.low), label:`Running low (≤${DATA.lowDoi}d)`,
-   sub:`two weeks of cover or less — sell or reorder`},
-  {cls:'info', num:n0(S.justInUnits), label:`Arrived last ${DATA.justInDays} days`,
-   sub:`${n0(S.justInProducts)} products · ${n0(S.incomingUnits)} more units on the way`},
+  {cls:'', num:n0(S.available), label:'Units Available to Sell',
+   sub:`${n0(S.productsAvailable)} products`},
+  {cls:'bad', num:n0(C.out), label:'Out of Stock',
+   sub:`None available`},
+  {cls:'warn', num:n0(C.low), label:`Running Low (≤${DATA.lowDoi}d)`,
+   sub:`${DATA.lowDoi} days of cover or less`},
+  {cls:'info', num:n0(S.justInUnits), label:`Arrived Last ${DATA.justInDays} Days`,
+   sub:`${n0(S.justInProducts)} products · ${n0(S.incomingUnits)} on the way`},
 ].map(k=>`<div class="kpi ${k.cls}"><div class="kpi-num">${k.num}</div>
   <div class="kpi-label">${k.label}</div><div class="kpi-sub">${k.sub}</div></div>`).join('');
 
@@ -205,7 +245,7 @@ function fill(sel, label, values){
   sel.innerHTML = `<option value="">${label}</option>`
     + values.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('');
 }
-fill(supEl,'All suppliers',[...new Set(PRODUCTS.map(p=>p.supplier))].sort());
+fill(supEl,'All Suppliers',[...new Set(PRODUCTS.map(p=>p.supplier))].sort());
 /* Brand is derived from the product name (no export carries one), and a
    first word alone reads as a fragment ("Sun", "White", "Other"). Where
    every product sharing that first word also shares the second, the brand
@@ -223,8 +263,8 @@ fill(supEl,'All suppliers',[...new Set(PRODUCTS.map(p=>p.supplier))].sort());
     if(b && (seconds.size===1 || GENERIC.has(k))) p.brand = a+' '+b; else p.brand = a;
   });
 })();
-fill(brEl,'All brands',[...new Set(PRODUCTS.map(p=>p.brand))].sort());
-fill(pkEl,'All packs',[...new Set(PRODUCTS.map(p=>p.pack).filter(Boolean))].sort());
+fill(brEl,'All Brands',[...new Set(PRODUCTS.map(p=>p.brand))].sort());
+fill(pkEl,'All Packs',[...new Set(PRODUCTS.map(p=>p.pack).filter(Boolean))].sort());
 
 document.getElementById('statusChips').innerHTML =
   Object.entries(ST).map(([k,v])=>
@@ -237,10 +277,10 @@ let sortKey='available', sortDir=-1;
 const COLS=[
   {key:'name', label:'Product', sortable:true},
   {key:'available', label:'Available', num:true, sortable:true},
-  {key:'doi', label:'Days of cover', num:true, sortable:true},
+  {key:'doi', label:'Days of Cover', num:true, sortable:true},
   {key:'status', label:'Status', sortable:true},
-  {key:'incoming', label:'On the way', num:true, sortable:true},
-  {key:'lastRecv', label:'Last received', sortable:true},
+  {key:'incoming', label:'On the Way', num:true, sortable:true},
+  {key:'lastRecv', label:'Last Received', sortable:true},
 ];
 
 function matches(p){
@@ -273,20 +313,19 @@ function render(){
         return `<tr>
         <td><div class="pname">${esc(p.name)}</div>
             <div class="psub">${esc(p.supplier)}${p.pack?' · '+esc(p.pack):''}</div></td>
-        <td class="num"><span class="big">${n0(p.available)}</span></td>
-        <td class="num">${p.doi==null?'<span class="muted">—</span>':n0(p.doi)}</td>
-        <td><span class="st ${p.status}"><span class="dot" style="background:${st.color}"></span>${st.label}</span>
+        <td class="num" data-l="Available"><span class="big">${n0(p.available)}</span></td>
+        <td class="num" data-l="Days of Cover">${p.doi==null?'<span class="muted">—</span>':n0(p.doi)}</td>
+        <td data-l="Status"><span class="st ${p.status}"><span class="dot" style="background:${st.color}"></span>${st.label}</span>
             ${p.backordered>0?`<div class="psub">${n0(p.backordered)} backordered</div>`:''}</td>
-        <td class="num">${p.incoming>0
+        <td class="num" data-l="On the Way">${p.incoming>0
             ? n0(p.incoming)+(p.nextArrival?`<div class="psub">${dstr(p.nextArrival)}</div>`:'')
             : '<span class="muted">—</span>'}</td>
-        <td>${dstr(p.lastRecv)}${p.recvUnits>0?`<div class="psub">${n0(p.recvUnits)} just in</div>`:''}</td>
+        <td data-l="Last Received">${dstr(p.lastRecv)}${p.recvUnits>0?`<div class="psub">${n0(p.recvUnits)} just in</div>`:''}</td>
       </tr>`;}).join('')
-      : `<tr><td colspan="${COLS.length}"><p class="empty">Nothing matches those filters.</p></td></tr>`)
+      : `<tr><td colspan="${COLS.length}"><p class="empty">No Matches</p></td></tr>`)
     +`</tbody>`;
   document.getElementById('count').textContent =
-    `Showing ${n0(shown.length)} of ${n0(rows.length)} products`
-    + (rows.length>shown.length ? ' — search or filter to narrow it down.' : '');
+    `Showing ${n0(shown.length)} of ${n0(rows.length)} products`;
 }
 document.getElementById('tbl').addEventListener('click', e=>{
   const th=e.target.closest('th[data-sort]'); if(!th) return;
@@ -317,8 +356,8 @@ const ARR = DATA.justArrived||[];
 document.getElementById('arrNote').textContent =
   `${n0(S.justInProducts)} products · ${n0(S.justInUnits)} units`;
 document.getElementById('arrIntro').textContent = ARR.length
-  ? `Received in the last ${DATA.justInDays} days, newest first — fresh stock worth leading with.`
-  : `Nothing received in the last ${DATA.justInDays} days.`;
+  ? `Last ${DATA.justInDays} days · newest first`
+  : `Nothing received in the last ${DATA.justInDays} days`;
 document.getElementById('arrivals').innerHTML = ARR.length
   ? ARR.map(a=>`<div class="arr">
       <div class="arr-top"><div class="pname">${esc(a.name)}</div><div class="arr-units">+${n0(a.units)}</div></div>
@@ -328,7 +367,7 @@ document.getElementById('arrivals').innerHTML = ARR.length
   : `<p class="empty">No recent receipts in this export.</p>`;
 
 /* ---------- notes ---------- */
-document.getElementById('notes').innerHTML = `<ul>
+document.getElementById('notes').innerHTML = `<details class="kdh-details"><summary>About This Data</summary><ul>
   <li><b>Available</b> is Encompass&rsquo;s own sellable figure, shown exactly as it reports it — so this page and
     Encompass never disagree.</li>
   <li><b>Days of cover</b> is how long the available stock lasts at that product&rsquo;s current rate of sale, on
@@ -343,7 +382,7 @@ document.getElementById('notes').innerHTML = `<ul>
   <li><b>One warehouse</b> in the data, so there is no location filter. It will be added when a second one appears.</li>
   <li>This page lists ${n0(PRODUCTS.length)} products — everything with stock, availability or something inbound.
     The rest of the catalogue holds nothing and is left out.</li>
-</ul>`;
+</ul></details>`;
 </script>
 </body>
 </html>

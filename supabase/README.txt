@@ -256,3 +256,10 @@ Authentication -> Sessions "Time-box user sessions" and "Inactivity timeout"
 renewal is automatic. Refresh token rotation and its reuse interval (default
 10 s) stay as they are -- the middleware relies on the reuse interval when a
 page fires several requests at once.
+
+ACCOUNT CONTACTS (2026-10-06)
+Run migrations/20261006100000_account_contacts.sql (idempotent), then the file
+tools/load_contacts.py writes to supabase/data/account_contacts.sql (git-ignored).
+Replaces the whole table in one transaction, so a refresh is the same two steps.
+Reps read contacts only for their assigned accounts (account_assignments), managers
+all; no signed-in writes. Needs the 20261002120000 migration first.
