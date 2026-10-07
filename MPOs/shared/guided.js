@@ -453,7 +453,7 @@ function carblissCard(o, rep, st){
       creditPill(st)+'</div>'+
     '<div class="g-cb" data-rep="'+esc(rep)+'"><div class="g-cb-wait">Loading Carbliss buying accounts\u2026</div></div>'+
     (dl ? '<div class="g-deadline">'+dl+'</div>' : '')+
-    '<a class="g-elig g-cb-lb" href="../../carbliss-onprem-targets/">See Leaderboard</a>'+
+    '<a class="g-elig g-cb-lb cbx-link" href="../../carbliss-onprem-targets/">Open Carbliss Leaderboard</a>'+
     '<div class="g-meta g-weight">MPO Weight '+Math.round(o.weight*100)+'%</div>'+
   '</div>';
 }
@@ -478,22 +478,7 @@ function hydrateCarbliss(){
       var mine = me ? D.accounts.filter(function(a){ return a.rep===me; }) : [];
       var base = mine.length;
       if(!base){ box.innerHTML = '<div class="g-cb-wait">No Carbliss account base on file for '+esc(rep)+'.</div>'; continue; }
-      var prog = mine.filter(function(a){ return a.prog; }).length;
-      var since = mine.filter(function(a){ return a.since==='yes'; }).length;
-      var pc = function(n){ return (Math.round(1000*n/base)/10).toFixed(1).replace(/\.0$/,'')+'%'; };
-      var M = D.meta, endTxt = M.frozen ? M.frozen_sales_through : M.sales_through;
-      var tile = function(label, range, n){
-        return '<div class="g-cbt"><div class="g-stat-l">'+label+'</div><div class="g-cbt-r">'+range+'</div>'+
-          '<div class="g-stat-v">'+n+'<span class="g-stat-of"> of '+base+'</span></div>'+
-          '<div class="g-cbt-p">'+pc(n)+'</div>'+
-          '<div class="g-bar"><div class="g-bar-fill" style="width:'+Math.min(100, 100*n/base).toFixed(1)+'%"></div></div></div>';
-      };
-      box.innerHTML = '<div class="g-cb-tiles">'+
-          tile('Program Period', cbDay(M.period.start)+'\u2013'+cbDay(M.period.end, true), prog)+
-          tile('Since Launch', cbDay(M.launch)+' \u2013 '+cbDay(M.sales_through, true), since)+
-        '</div>'+
-        '<div class="g-bar-cap">Accounts that bought Carbliss \u00f7 '+base+' assigned accounts \u00b7 Sales through '+esc(cbDay(endTxt, true))+'</div>'+
-        (M.goal ? '<div class="g-cb-goal">Team L90 Goal: <b>'+D.house.buyers+' of '+M.goal+'</b> Accounts</div>' : '');
+      box.innerHTML = window.KdhCarbTiles.html(D, {rep: me, noTitle:true});
     }
   }).catch(function(){
     for(var i=0;i<boxes.length;i++) boxes[i].innerHTML = '<div class="g-cb-wait">Carbliss buying figures are unavailable right now. Reload to try again.</div>';

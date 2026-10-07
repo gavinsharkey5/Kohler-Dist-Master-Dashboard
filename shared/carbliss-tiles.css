@@ -1,0 +1,22 @@
+/* Carbliss MPO tiles -- see carbliss-tiles.js. Phone first: 2 x 2 tiles, one-line rows, 44px link. */
+.cbx{text-align:center;max-width:1000px;margin:0 auto}
+.cbx-h{font-size:24px;font-weight:700;line-height:1.2;color:var(--kdh-text,var(--text,inherit))}
+.cbx-g{font-size:15px;font-weight:600;margin:4px 0 14px;opacity:.85}
+.cbx-tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.cbx-t{padding:14px 10px;border-radius:12px;border:1px solid var(--kdh-line,var(--border,rgba(128,128,128,.35)));background:var(--kdh-surface-2,var(--card-alt,rgba(128,128,128,.08)))}
+.cbx-l{font-size:16px;font-weight:700;line-height:1.25}
+.cbx-v{font-size:38px;font-weight:700;line-height:1.15;margin-top:4px;font-variant-numeric:tabular-nums}
+.cbx-of{font-size:20px;font-weight:600;opacity:.7}
+.cbx-s{font-size:14px;opacity:.85;margin-top:2px}
+.cbx-alert{border-color:rgba(214,60,45,.55)}.cbx-alert .cbx-v{color:#d63c2d}
+.cbx-fh{font-size:18px;font-weight:700;margin:18px 0 6px}
+.cbx-fh span{display:inline-block;margin-left:6px;padding:0 10px;border-radius:999px;background:rgba(214,60,45,.18);color:#d63c2d}
+.cbx-list{text-align:left;max-height:420px;overflow:auto;border-top:1px solid var(--kdh-line,rgba(128,128,128,.3))}
+.cbx-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;padding:10px 4px;border-bottom:1px solid var(--kdh-line,rgba(128,128,128,.3));align-items:baseline}
+.cbx-n{font-size:16px;font-weight:600}.cbx-d{font-size:14px;text-align:right;white-space:nowrap;opacity:.85}
+.cbx-r{grid-column:1;grid-row:2;font-size:14px;opacity:.8}
+@media(min-width:760px){.cbx-row{grid-template-columns:minmax(0,1fr) 220px 110px}.cbx-r{grid-column:2;grid-row:1}}
+.cbx-none{font-size:15px;padding:8px}
+.cbx-link{display:flex;align-items:center;justify-content:center;min-height:48px;margin:16px auto 0;max-width:420px;border-radius:10px;font-size:17px;font-weight:700;text-decoration:none;background:var(--kdh-brand,var(--accent,#2F5FC4));color:var(--kdh-brand-ink,#fff)}
+.cbx-foot{font-size:14px;margin-top:10px;opacity:.8}
+@media(max-width:760px){.cbx-tiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.cbx-v{font-size:34px}.cbx-h{font-size:22px}}

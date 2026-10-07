@@ -144,6 +144,36 @@ def compute(data_dir, reopen=False):
         buys[num].append(d)
         export_rep.setdefault(num, r["Sales Rep Assigned"])
 
+    # Leaderboard tiles (2026-10-07): distinct accounts per export rep for the RDE's three flags -- Aug 1 to Oct 31,
+    # rolling L90 and YTD -- so this page and /carbliss-onprem-targets/ always read the same counts. Names only in `fell`
+    # (YTD buyers with no L90 load sheet, their last load sheet), which the rep slices cut to each rep.
+    def flag_col(*names):
+        return next((c for c in rows[0] if c.lower().replace("buyers: ", "buyers ") in names), None)
+    c_prog = next((c for c in rows[0] if c.lower().startswith("buyers: aug")), None)
+    c_l90 = next((c for c in rows[0] if c.lower() in ("buyers: l90 2026", "buyers l90 2026")), None)
+    c_ytd = next((c for c in rows[0] if c.lower() in ("buyers: ytd 2026", "buyers 2026")), None)
+    sets = {k: defaultdict(set) for k in ("prog", "l90", "ytd")}
+    lastrow = {}
+    for r in rows:
+        num, nm = split_customer(r["Customer Num & Company"])
+        d = parse_day(r["Load Sheet Date"])
+        if not num or not d:
+            continue
+        for k, c in (("prog", c_prog), ("l90", c_l90), ("ytd", c_ytd)):
+            if c and (r.get(c) or "0") not in ("", "0"):
+                sets[k][r["Sales Rep Assigned"]].add(num)
+        if num not in lastrow or d > lastrow[num][0]:
+            lastrow[num] = (d, nm, r["Sales Rep Assigned"])
+    all_ids = {k: set().union(*v.values()) if v else set() for k, v in sets.items()}
+    fell_ids = all_ids["ytd"] - all_ids["l90"]
+    counts = {"prog": len(all_ids["prog"]), "l90": len(all_ids["l90"]), "ytd": len(all_ids["ytd"]), "fell": len(fell_ids)}
+    byrep = []
+    for rep in sorted(set().union(*[set(v) for v in sets.values()])):
+        y, l = sets["ytd"].get(rep, set()), sets["l90"].get(rep, set())
+        byrep.append({"rep": rep, "prog": len(sets["prog"].get(rep, set())), "l90": len(l), "ytd": len(y), "fell": len(y - l)})
+    fell = sorted(({"rep": lastrow[i][2], "name": lastrow[i][1], "last": lastrow[i][0].isoformat()} for i in fell_ids if i in lastrow),
+                  key=lambda x: (x["last"], x["name"]), reverse=True)
+
     all_dates = [d for v in buys.values() for d in v]
     launch, through = min(all_dates), max(all_dates)
 
@@ -215,6 +245,7 @@ def compute(data_dir, reopen=False):
         "period": {"start": PERIOD_START.isoformat(), "end": PERIOD_END.isoformat(),
                    "label": "Program Period: Aug 1–Oct 31, 2026"},
         "goal": L90_GOAL,
+        "counts": counts,
         "launch": launch.isoformat(),
         "coverage_start": COVERAGE_START.isoformat(),
         "sales_through": through.isoformat(),
@@ -226,7 +257,7 @@ def compute(data_dir, reopen=False):
     }
     house = {"buyers": house_buyers, "in_rep_bases": in_base_buyers,
              "reps": len(reps), "base": sum(r["base"] for r in reps)}
-    return {"meta": meta, "house": house, "reps": reps, "board": board, "accounts": accounts}, {
+    return {"meta": meta, "house": house, "reps": reps, "board": board, "byrep": byrep, "fell": fell, "accounts": accounts}, {
         "launch": launch, "through": through, "outside": outside, "moved": moved,
         "buyers": len(prog_nums), "rows": len(rows), "customers": len(buys)}
 
