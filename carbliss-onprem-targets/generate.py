@@ -377,6 +377,9 @@ if os.path.exists(F3):
     buyers_meta['ytd'] = sum(1 for b in buyers.values() if b['ytd'])
     buyers_meta['l90'] = sum(1 for b in buyers.values() if b['l90'])
     buyers_meta['fell'] = sum(1 for b in buyers.values() if b['fell'])
+    # company-wide distinct-account counts from the load-sheet rows (a rep's copy carries these too, counts only)
+    buyers_meta['counts'] = {k: len({l['id'] for l in loads if l[k]}) for k in ('prog', 'l90', 'ytd')}
+    buyers_meta['counts']['fell'] = len({l['id'] for l in loads if l['ytd']} - {l['id'] for l in loads if l['l90']})
     print(f"Buyers: {buyers_meta['rows']} load sheets, {len(buyers)} accounts -- YTD {buyers_meta['ytd']}, rolling-90 {buyers_meta['l90']}, fell off {buyers_meta['fell']} (window {buyers_meta['windowStart']} .. {buyers_meta['asOf']})")
 else:
     print("Buyers: carbliss_buyers_l90.csv not found -- YTD / rolling-90 status left off the page")
