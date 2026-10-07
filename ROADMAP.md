@@ -24,9 +24,9 @@ device, a decision).
   Kohler's official date); (3) an account whose Carbliss load sheet was fully
   returned the same month still counts as a buyer (2 such accounts so far --
   Encompass's buyer flag does not net returns); (4) the existing October
-  on-premise MPO objective "Carbliss 40% buying accounts" (window Sep 1-Oct 31,
-  a 40% target) is a different definition from this tracker (Aug 1-Oct 31, no
-  target shown) -- keep both, or replace one; (5) the denominator is the core
+  on-premise MPO objective "Carbliss 40% buying accounts" now IS this program
+  (Aug 1-Oct 31, same base, same export, done 2026-10-07) -- confirm the credit
+  stays 40% of each rep's own base (the docx) while the team chases 331; (5) the denominator is the core
   on-premise base the October MPO already uses (no inactive flag, no Carbliss
   territory rule on file). Weekly: save the new buyers export over
   carbliss-onprem-targets/carbliss_buyers_l90.csv and run
@@ -279,6 +279,12 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-10-07 **Carbliss on-premise MPO = the Carbliss Leaderboard's program**:
+  the October objective now counts the leaderboard's L90 buyers (bought Aug 1 -
+  Oct 31, in the rep's own core on-premise base) instead of a separate Sep 1 -
+  Oct 31 export. MPO tracker card, hub, Account page and leaderboard agree rep for
+  rep (182 in rep bases). Credit is still 40% of the rep's base. Weekly refresh is
+  just `python3 carbliss-mpo/generate.py` -- it rebuilds the MPO too.
 - [x] 2026-10-07 **Manager Home + Rep Home rebuilt**: compact left-aligned header,
   tools grouped into clear sections, one clickable card style everywhere (icon,
   title, one line, status only where real data exists, chevron). Incentive

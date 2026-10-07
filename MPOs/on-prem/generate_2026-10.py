@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Builds October 2026's on-premise MPO datasets (OCTOBER_ON_PREM_2026_MPO.docx).
 
-  25%  Carbliss  -- 40% Buying Accounts              (built here)
+  25%  Carbliss  -- 40% Buying Accounts              (copied from the Carbliss Leaderboard's program)
   25%  BBC       -- Complete Oktoberfest Draft Conversion   (built here)
   25%  Spirits   -- Follow up on all On-Premise Spirits placements   (built here)
   25%  iSellBeer -- (5) Feature Photos               (awaiting: no October export yet)
@@ -9,8 +9,9 @@
 Inputs (this folder, overwrite to refresh):
   core_market_on_prem_accts.csv              RDE "Entire Core Market On Prem Accts" -- every on-premise
                                              account in the Core Market, per rep: the Carbliss DENOMINATOR.
-  carbliss_buying_accounts.csv               RDE "Carbliss 40% Buying Accounts": one row per load sheet,
-                                             Buyer Count 9/1/2026 - 10/31/2026 (September + October).
+  ../../carbliss-mpo/data/program.json       The Carbliss Leaderboard's program (carbliss-mpo/generate.py):
+                                             who bought Carbliss Aug 1 - Oct 31, per base account. Run that
+                                             generator first -- it runs this one at its end.
   sam_adams_kegs_summer_to_octoberfest.csv   RDE "Sam Adams Kegs: Summer Ale to Octoberfest" --
                                              one row per rep / account / keg SKU / load-sheet date.
   spirits_followup_placements.csv            RDE two-window export (7/1-9/30 placements, 10/1-10/31).
@@ -21,10 +22,12 @@ Both objectives are FOLLOW-UP scores: a rep has a list of accounts (the base)
 and each one is either done or not yet.
 
 --- Carbliss: 40% buying accounts ---
-Base = the rep's accounts in core_market_on_prem_accts.csv; DONE = the account bought Carbliss
-on any load sheet 9/1-10/31 (the objective carries over from September, so the window is
-September + October). Distinct accounts, so repeat orders count once. Target = ceil(40% x
-base). A buyer that is not in that rep's own base would not be counted (the build prints them).
+The SAME program as the Carbliss Leaderboard (Gavin, 2026-10-07): base = the rep's accounts in
+core_market_on_prem_accts.csv (house reps dropped); DONE = the account bought Carbliss on a load
+sheet Aug 1 - Oct 31, 2026 (the leaderboard's "L90"), read from carbliss-mpo/data/program.json --
+so the freeze (--finalize) applies here too. Distinct accounts, so repeat orders count once.
+Target = ceil(40% x base) (the October docx). Was Sep 1 - Oct 31 from carbliss_buying_accounts.csv
+until 2026-10-07; that file is no longer read.
 
 --- BBC Oktoberfest conversion ---
 BASE = accounts with NET Summer Ale keg units > 0 loaded 4/1/2026 - 7/17/2026
@@ -232,45 +235,44 @@ def build_spirits():
 
 
 CORE_ON_CSV = HERE / "core_market_on_prem_accts.csv"
-CARBLISS_CSV = HERE / "carbliss_buying_accounts.csv"
+# The Carbliss objective IS the Carbliss Leaderboard's program (Gavin, 2026-10-07): same base, same
+# Aug 1 - Oct 31 window, same export, same freeze. carbliss-mpo/generate.py decides who bought; this
+# step only copies its per-account result, so the MPO card, the hub and the leaderboard can't disagree.
+CARBLISS_PROGRAM = HERE.parent.parent / "carbliss-mpo" / "data" / "program.json"
+CARBLISS_EXPORT = HERE.parent.parent / "carbliss-onprem-targets" / "carbliss_buyers_l90.csv"
 
 
 def build_carbliss():
-    base = {}
-    for r in load(CORE_ON_CSV):
-        rep = (r["Sales Rep Assigned"] or "").strip()
-        if not rep or rep in HOUSE:
-            continue
-        base.setdefault((rep, r["Customer Num"].strip()), r)
-    bcol = next(c for c in load(CARBLISS_CSV)[0] if c.startswith("Buyer Count"))
-    buyers, outside = {}, set()
-    for r in load(CARBLISS_CSV):
-        rep = (r["Sales Rep Assigned"] or "").strip()
-        num_, name = split_customer(r["Customer Num & Company"])
-        if not rep or rep in HOUSE or num(r[bcol]) <= 0:
-            continue
-        if (rep, num_) not in base:
-            outside.add((rep, num_, name))
-            continue
+    prog = json.loads(CARBLISS_PROGRAM.read_text())
+    per = prog["meta"]["period"]
+    start, end = datetime.strptime(per["start"], "%Y-%m-%d"), datetime.strptime(per["end"], "%Y-%m-%d")
+    # latest in-period load sheet per account (DONE_DATE only; the DONE flag is the leaderboard's own)
+    rows = load(CARBLISS_EXPORT)
+    flag = next(c for c in rows[0] if " ".join(c.lower().replace(":", " ").split()) in ("buyers ytd 2026", "buyers 2026"))
+    last = {}
+    for r in rows:
+        num_, _ = split_customer(r["Customer Num & Company"])
         d = dt(r["Load Sheet Date"])
-        b = buyers.setdefault((rep, num_), d)
-        if d and (b is None or d > b):
-            buyers[(rep, num_)] = d
+        if num_ and d and start <= d <= end and num(r[flag]) > 0 and (num_ not in last or d > last[num_]):
+            last[num_] = d
     out = []
-    for (rep, num_), r in sorted(base.items(), key=lambda kv: (kv[0][0], kv[1]["Customer Name"])):
-        done = (rep, num_) in buyers
-        out.append({"SALES_REP_ASSIGNED": rep, "CUSTOMER_NUM": int(num_) if num_.isdigit() else num_,
-                    "CUSTOMER_NAME": r["Customer Name"].strip(), "BASE_DETAIL": (r["City"] or "").strip(),
+    for a in sorted(prog["accounts"], key=lambda a: (a["rep"], a["name"])):
+        if a["rep"] in HOUSE:
+            continue
+        n = str(a["n"])
+        done = bool(a["prog"])
+        out.append({"SALES_REP_ASSIGNED": a["rep"], "CUSTOMER_NUM": a["n"],
+                    "CUSTOMER_NAME": a["name"], "BASE_DETAIL": a.get("town") or "",
                     "BASE_DATE": "", "DONE": 1 if done else 0, "DONE_DETAIL": "Carbliss" if done else "",
-                    "DONE_DATE": fmt(buyers.get((rep, num_)))})
-    return out, outside
+                    "DONE_DATE": fmt(last.get(n)) if done else ""})
+    return out, prog
 
 
 def main():
     month_dir = HERE / "data" / MONTH_KEY
     month_dir.mkdir(parents=True, exist_ok=True)
     conv, spirits = apply_boston_beer(build_conversion()), build_spirits()
-    carb, carb_outside = build_carbliss()
+    carb, carb_prog = build_carbliss()
     (month_dir / "mpo_carbliss.json").write_text(json.dumps(carb, indent=2))
     (month_dir / "mpo_sam_adams_conversion.json").write_text(json.dumps(conv, indent=2))
     (month_dir / "mpo_spirits_followup.json").write_text(json.dumps(spirits, indent=2))
@@ -283,9 +285,10 @@ def main():
             by[r["SALES_REP_ASSIGNED"]][1] += r["DONE"]
         print(f"{label}: {sum(v[1] for v in by.values())} of {sum(v[0] for v in by.values())} accounts done; "
               f"{sum(1 for v in by.values() if v[1] >= v[0])} of {len(by)} reps complete")
-    if carb_outside:
-        print("  Carbliss buyers NOT in the rep's core on-prem base (not counted): "
-              + "; ".join(sorted(f"{r} / {n} {m}" for r, n, m in carb_outside)))
+    m = carb_prog["meta"]
+    print(f"  Carbliss = the leaderboard's program ({m['period']['label']}, sales through {m['sales_through']}"
+          f"{', FROZEN' if m['frozen'] else ''}): {sum(r['DONE'] for r in carb)} buyers in rep bases, "
+          f"{m['counts']['prog']} company-wide")
     print(f"sync_meta.json timestamped {synced} in data/{MONTH_KEY}/")
 
 

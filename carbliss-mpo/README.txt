@@ -88,3 +88,10 @@ ACCOUNT LINKS
   and says so.
 
 OPEN CONFIRMATIONS FOR GAVIN: see ROADMAP.md "Carbliss MPO tracker".
+
+THE OCTOBER ON-PREMISE MPO READS THIS (2026-10-07)
+The October on-premise objective "Carbliss – 40% Buying Accounts" is this program: its DONE flag per
+account is `prog` from data/program.json (Aug 1 - Oct 31, same base, same freeze). generate.py runs
+../MPOs/on-prem/generate_2026-10.py and ../tools/program_eligibility.py at the end, so refreshing here
+refreshes the MPO card, the hub and the Account page's Program Opportunities. Credit stays 40% of the
+rep's own base (the MPO docx).

@@ -3032,7 +3032,7 @@ function screenProgramCarbliss(p){
       <div class="dhero-line"><span class="period">📅 Aug 1 – Oct 31, 2026 · ${E(endsLabel(p.period))}</span></div>
     </div>
     <details class="dsec fold"><summary class="dsec-h">Rules</summary>
-      <ul class="rules"><li>L90 = bought Carbliss Aug 1 – Oct 31, 2026</li><li>Team goal: ${goal} L90 buyers of ${d.house.base.toLocaleString('en-US')} core market on-premise accounts</li><li>Credit: 40% of your own on-premise accounts buying Carbliss, Sep 1 – Oct 31</li></ul>
+      <ul class="rules"><li>L90 = bought Carbliss Aug 1 – Oct 31, 2026</li><li>Team goal: ${goal} L90 buyers of ${d.house.base.toLocaleString('en-US')} core market on-premise accounts</li><li>Credit: 40% of your own on-premise accounts are L90 buyers (Aug 1 – Oct 31)</li></ul>
     </details>
     ${workspaceTeamHtml(p) ? `<details class="dsec fold"><summary class="dsec-h">Team Opportunities</summary>${workspaceTeamHtml(p)}</details>` : ''}
   </div>`;

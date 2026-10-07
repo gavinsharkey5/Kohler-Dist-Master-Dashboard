@@ -98,12 +98,14 @@ const OBJECTIVES_2026_09 = [
 // Two are FOLLOW-UP scores ('followup'): the rep has a list of accounts and
 // each is done or not yet -- Summer Ale kegs converted to Oktoberfest, and
 // Q3 spirits placements re-ordered in October. See generate_2026-10.py.
-// Carbliss (40% buying accounts) waits on the account base; iSellBeer
-// feature photos wait on October's export -- both ride as awaiting.
+// Carbliss (40% buying accounts) is the Carbliss Leaderboard's own program
+// (Aug 1 - Oct 31, carbliss-mpo/data/program.json); iSellBeer feature photos
+// wait on October's export and ride as awaiting.
 const OBJECTIVES_2026_10 = [
   {key:'carbliss', name:'Carbliss – 40% Buying Accounts', shortName:'Carbliss', unit:'buying account', weight:0.25, type:'followup', shareOfBase:true, hasData:true, goalLabel:'40% of account base',
-   typeNote:'Your target is 40% of your OWN core on-premise accounts buying Carbliss from September 1 through October 31. An account counts once, however many times it orders.',
-   followLabels:{had:'Town', done:'Carbliss (Sep 1\u2013Oct 31)', doneTag:'Buying', todoTag:'Not buying yet'}},
+   periodStart:'2026-08-01', periodEnd:'2026-10-31', periodText:'Aug 1 \u2013 Oct 31, 2026',
+   typeNote:'Same program as the Carbliss Leaderboard: your target is 40% of your OWN core on-premise accounts buying Carbliss from August 1 through October 31 (the leaderboard\u2019s L90). An account counts once, however many times it orders.',
+   followLabels:{had:'Town', done:'Carbliss (Aug 1\u2013Oct 31)', doneTag:'Buying', todoTag:'Not buying yet'}},
   {key:'sam_adams_conversion', name:'BBC – Complete Oktoberfest Draft Conversion', shortName:'Oktoberfest Conversion', unit:'account', weight:0.25, type:'followup', hasData:true, goalLabel:'Convert every Summer Ale keg account to Oktoberfest',
    typeNote:'Every account that had Summer Ale kegs from April 1 to July 17 needs an Oktoberfest keg from August 1 to October 23. Kegs bought and returned do not count.',
    followLabels:{had:'Summer Ale kegs (Apr 1\u2013Jul 17)', done:'Oktoberfest kegs (Aug 1\u2013Oct 23)', doneTag:'Converted', todoTag:'Not converted yet'}},

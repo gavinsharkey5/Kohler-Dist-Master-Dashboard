@@ -310,7 +310,11 @@ def main():
           f"first load sheet in the export = {info['launch']}")
 
     if not a.no_slices and data_dir == HERE / "data":
-        subprocess.run([sys.executable, str(ROOT / "tools" / "rep_slices.py")], check=True)
+        # The October on-premise MPO's Carbliss objective IS this program: rebuild it from the
+        # program.json just written (that generator also runs tools/rep_slices.py), then the
+        # account-level eligibility file that reads it.
+        subprocess.run([sys.executable, str(ROOT / "MPOs" / "on-prem" / "generate_2026-10.py")], check=True)
+        subprocess.run([sys.executable, str(ROOT / "tools" / "program_eligibility.py")], check=True)
 
 
 if __name__ == "__main__":

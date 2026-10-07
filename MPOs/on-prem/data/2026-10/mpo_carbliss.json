@@ -105,9 +105,9 @@
     "CUSTOMER_NAME": "Bask 46",
     "BASE_DETAIL": "Woodland Park",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -135,9 +135,9 @@
     "CUSTOMER_NAME": "Blu Ale House",
     "BASE_DETAIL": "Riverdale",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -595,9 +595,9 @@
     "CUSTOMER_NAME": "Macks American Bar/Grill",
     "BASE_DETAIL": "Pompton Lakes",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -645,9 +645,9 @@
     "CUSTOMER_NAME": "Meadows Golf Club(P)",
     "BASE_DETAIL": "Lincoln Park",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -875,9 +875,9 @@
     "CUSTOMER_NAME": "Sharky's Wings(P)",
     "BASE_DETAIL": "Clifton",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -885,9 +885,9 @@
     "CUSTOMER_NAME": "Shortways' Barn (A)",
     "BASE_DETAIL": "Hawthorne",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "8/28/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -915,9 +915,9 @@
     "CUSTOMER_NAME": "Sunset Pub & Grill(Z)",
     "BASE_DETAIL": "Lincoln Park",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "8/5/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -1085,9 +1085,9 @@
     "CUSTOMER_NAME": "The Side Door (P)",
     "BASE_DETAIL": "Pompton Lakes",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -1365,9 +1365,9 @@
     "CUSTOMER_NAME": "Crystal Sprs/Wild Turkey",
     "BASE_DETAIL": "Hamburg",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -1425,9 +1425,9 @@
     "CUSTOMER_NAME": "Great Gorge Golf (A) Club",
     "BASE_DETAIL": "Vernon",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -1515,9 +1515,9 @@
     "CUSTOMER_NAME": "Mt Creek Hex Lg(North) A",
     "BASE_DETAIL": "Vernon",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "8/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -1695,9 +1695,9 @@
     "CUSTOMER_NAME": "Tony's Pizza (P)",
     "BASE_DETAIL": "Stockholm",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "8/12/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -1735,9 +1735,9 @@
     "CUSTOMER_NAME": "Whistle Stop (P)",
     "BASE_DETAIL": "Newfoundland",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -1915,9 +1915,9 @@
     "CUSTOMER_NAME": "Charley's Tavern",
     "BASE_DETAIL": "Lake Hopatcong",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -2265,9 +2265,9 @@
     "CUSTOMER_NAME": "Mason Street Grille",
     "BASE_DETAIL": "Lake Hopatcong",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -2285,9 +2285,9 @@
     "CUSTOMER_NAME": "Mckenna's Pub (P)",
     "BASE_DETAIL": "Lake Hopatcong",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -2615,9 +2615,9 @@
     "CUSTOMER_NAME": "Skyland Baseball",
     "BASE_DETAIL": "Augusta",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "8/20/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -2755,9 +2755,9 @@
     "CUSTOMER_NAME": "The Jefferson House",
     "BASE_DETAIL": "Lake Hopatcong",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "8/26/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -2915,9 +2915,9 @@
     "CUSTOMER_NAME": "Dutch House",
     "BASE_DETAIL": "Fair Lawn",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -4417,7 +4417,7 @@
     "BASE_DATE": "",
     "DONE": 1,
     "DONE_DETAIL": "Carbliss",
-    "DONE_DATE": "9/29/2026"
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -4655,9 +4655,9 @@
     "CUSTOMER_NAME": "The Office 2131 Ridgewood",
     "BASE_DETAIL": "Ridgewood",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "8/27/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -4685,9 +4685,9 @@
     "CUSTOMER_NAME": "Aldo's Italian Rest(Z)",
     "BASE_DETAIL": "Wyckoff",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -4895,9 +4895,9 @@
     "CUSTOMER_NAME": "Blackjack Mulligans(P) (Garfield)",
     "BASE_DETAIL": "Garfield",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "8/21/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -4975,9 +4975,9 @@
     "CUSTOMER_NAME": "Burger Shack",
     "BASE_DETAIL": "East Rutherford",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -5075,9 +5075,9 @@
     "CUSTOMER_NAME": "Charlies Tav(Z)",
     "BASE_DETAIL": "Garfield",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "8/12/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -5165,9 +5165,9 @@
     "CUSTOMER_NAME": "De Novo European Pub",
     "BASE_DETAIL": "Edgewater",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -5175,9 +5175,9 @@
     "CUSTOMER_NAME": "Dino's Bar & Grill",
     "BASE_DETAIL": "Edgewater",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -5275,9 +5275,9 @@
     "CUSTOMER_NAME": "Eros Cafe",
     "BASE_DETAIL": "East Rutherford",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -5335,9 +5335,9 @@
     "CUSTOMER_NAME": "Hampton Inn Paramus",
     "BASE_DETAIL": "Paramus",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -5395,9 +5395,9 @@
     "CUSTOMER_NAME": "Hiram's",
     "BASE_DETAIL": "Fort Lee",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "8/26/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -5715,9 +5715,9 @@
     "CUSTOMER_NAME": "Native Union Club",
     "BASE_DETAIL": "Rutherford",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -6045,9 +6045,9 @@
     "CUSTOMER_NAME": "Segovia Tavern",
     "BASE_DETAIL": "Oakland",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -6105,9 +6105,9 @@
     "CUSTOMER_NAME": "Tavern On Ridge",
     "BASE_DETAIL": "North Arlington",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -6235,9 +6235,9 @@
     "CUSTOMER_NAME": "The Orange Lantern",
     "BASE_DETAIL": "Paramus",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -6297,7 +6297,7 @@
     "BASE_DATE": "",
     "DONE": 1,
     "DONE_DETAIL": "Carbliss",
-    "DONE_DATE": "9/29/2026"
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -6365,9 +6365,9 @@
     "CUSTOMER_NAME": "Varka",
     "BASE_DETAIL": "Ramsey",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -6567,7 +6567,7 @@
     "BASE_DATE": "",
     "DONE": 1,
     "DONE_DETAIL": "Carbliss",
-    "DONE_DATE": "9/29/2026"
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -7075,9 +7075,9 @@
     "CUSTOMER_NAME": "Anthony's Coal Fired Pizza (Fair Lawn)",
     "BASE_DETAIL": "Fair Lawn",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -7325,9 +7325,9 @@
     "CUSTOMER_NAME": "Cozy Tavern (P)",
     "BASE_DETAIL": "Bogota",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -7425,9 +7425,9 @@
     "CUSTOMER_NAME": "Emerson Hotel",
     "BASE_DETAIL": "Emerson",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -7465,9 +7465,9 @@
     "CUSTOMER_NAME": "Fat Bastard & Sons",
     "BASE_DETAIL": "South Hackensac",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -7515,9 +7515,9 @@
     "CUSTOMER_NAME": "Four Leaves",
     "BASE_DETAIL": "Park Ridge",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -7525,9 +7525,9 @@
     "CUSTOMER_NAME": "Gerry's Place",
     "BASE_DETAIL": "Norwood",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -7535,9 +7535,9 @@
     "CUSTOMER_NAME": "Grant Street Cafe (A)",
     "BASE_DETAIL": "Dumont",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -7695,9 +7695,9 @@
     "CUSTOMER_NAME": "Lidos Restaurant (P)",
     "BASE_DETAIL": "Hackensack",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -7875,9 +7875,9 @@
     "CUSTOMER_NAME": "Old Tappan Manor (P)",
     "BASE_DETAIL": "Old Tappan",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -8015,9 +8015,9 @@
     "CUSTOMER_NAME": "Rudy's Pizzeria (P)",
     "BASE_DETAIL": "Closter",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -8095,9 +8095,9 @@
     "CUSTOMER_NAME": "Stern And Bow",
     "BASE_DETAIL": "Closter",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -8115,9 +8115,9 @@
     "CUSTOMER_NAME": "Straphanger Saloon (A)",
     "BASE_DETAIL": "Hackensack",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/16/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -8215,9 +8215,9 @@
     "CUSTOMER_NAME": "The Whiskey Priest (Hackensack)",
     "BASE_DETAIL": "Hackensack",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -8275,9 +8275,9 @@
     "CUSTOMER_NAME": "White Beeches Golf Club",
     "BASE_DETAIL": "Haworth",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -8345,9 +8345,9 @@
     "CUSTOMER_NAME": "Amer Lgn (Z) Little Ferry",
     "BASE_DETAIL": "Little Ferry",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "8/13/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -8485,9 +8485,9 @@
     "CUSTOMER_NAME": "American Lgn 58 (A) Englewood",
     "BASE_DETAIL": "Englewood",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -8577,7 +8577,7 @@
     "BASE_DATE": "",
     "DONE": 1,
     "DONE_DETAIL": "Carbliss",
-    "DONE_DATE": "9/15/2026"
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -9345,9 +9345,9 @@
     "CUSTOMER_NAME": "Hilton Garden Inn wayne",
     "BASE_DETAIL": "Wayne",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -9455,9 +9455,9 @@
     "CUSTOMER_NAME": "In The Crease (P)",
     "BASE_DETAIL": "Wayne",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -10167,7 +10167,7 @@
     "BASE_DATE": "",
     "DONE": 1,
     "DONE_DETAIL": "Carbliss",
-    "DONE_DATE": "9/22/2026"
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -10375,9 +10375,9 @@
     "CUSTOMER_NAME": "Vfw Butler",
     "BASE_DETAIL": "Butler",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "8/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -10405,9 +10405,9 @@
     "CUSTOMER_NAME": "Vfw Of Saddlebrook",
     "BASE_DETAIL": "Saddle Brook",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "8/4/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -10445,9 +10445,9 @@
     "CUSTOMER_NAME": "Wallkill Golf Club",
     "BASE_DETAIL": "Franklin",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",

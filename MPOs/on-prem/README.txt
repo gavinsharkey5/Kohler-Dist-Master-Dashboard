@@ -1195,3 +1195,10 @@ background and was hardcoded rgba(21,16,10,...) -- the old brown. It is
 now rgba(8,12,22,...). Miss that and the photo fades to brown against a
 navy page. See incentive-tracking/README.txt for how the blue was chosen.
 
+
+OCTOBER 2026 -- CARBLISS (2026-10-07)
+The Carbliss objective is the Carbliss Leaderboard's own program: an account in the rep's core
+on-premise base that bought Carbliss Aug 1 - Oct 31, 2026, copied from
+../../carbliss-mpo/data/program.json. Refresh by running `python3 carbliss-mpo/generate.py` from the
+repo root (it rebuilds this month's files too). carbliss_buying_accounts.csv is no longer read.
+Every other October objective: see generate_2026-10.py's docstring.

@@ -2680,3 +2680,22 @@ destination, one link per card, no clipping / sideways scroll, text 4.5:1, borde
 Enter, View as Rep / Viewing as / Preview as This Rep), updated mgr_test (23 cards),
 team_test, fu_test, hubonly_test, preview_flow. Tags rep.css / kdh.css / kdh-skin.css
 20261007q.
+
+## Carbliss on-premise MPO IS the Carbliss Leaderboard's program (2026-10-07)
+
+Gavin: "the program is the same as the leaderboard we made." The October on-premise objective
+"Carbliss – 40% Buying Accounts" no longer reads MPOs/on-prem/carbliss_buying_accounts.csv (Sep 1 -
+Oct 31; kept on disk, unused). `build_carbliss()` in MPOs/on-prem/generate_2026-10.py copies, per base
+account, the `prog` flag from carbliss-mpo/data/program.json -- bought Carbliss on a load sheet Aug 1 -
+Oct 31, 2026 (the leaderboard's "L90", what its Rep Leaderboard ranks and its Team L90 Goal sums), over
+the same core on-premise base, honouring the leaderboard's --finalize freeze. DONE_DATE = the latest
+in-period load sheet from carbliss-onprem-targets/carbliss_buyers_l90.csv. Per rep the MPO equals
+`board[].l90` / `base` exactly (182 of 1,047 in rep bases on 2026-10-07). Credit is still 40% of the
+rep's own base (the docx, metricFor unchanged); the team goal 331 is the leaderboard's. NOT the same:
+the cards' "L90 Buyers" tile (byrep.l90, RDE rolling-90 flag, company 257) -- that is a separate
+number on both pages. carbliss-mpo/generate.py now runs MPOs/on-prem/generate_2026-10.py (which runs
+rep_slices) and tools/program_eligibility.py at its end, so ONE command refreshes all three. Registry:
+periodStart/End + periodText "Aug 1 – Oct 31, 2026"; program_eligibility's Carbliss rule period Aug 1 -
+Oct 31 (lapsed = "not since Aug 1"); hub Carbliss rules line. Tags: on-prem programs.js / hub.js
+20261007r. Test: scratchpad cb_same_test.mjs (every rep: hub metric == board, card tile == board,
+pill follows the same count).

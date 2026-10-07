@@ -394,26 +394,27 @@ def lytt(products, customers, sources, months, reps):
 def carbliss_on(products, customers, sources, months, reps):
     """Carbliss -- 40% Buying Accounts (October on-prem MPO, 25%).
 
-    Tracker (MPOs/on-prem/generate_2026-10.py build_carbliss): base = the rep's
+    The SAME program as the Carbliss Leaderboard (2026-10-07): base = the rep's
     accounts in RDE "Entire Core Market On Prem Accts" (core_market_on_prem_accts.csv,
-    house reps dropped); DONE = the account bought Carbliss 9/1-10/31 per RDE
-    "Carbliss 40% Buying Accounts" (carbliss_buying_accounts.csv). Both by
-    CustomerID; the tracker JSON carries one row per base account with DONE.
+    house reps dropped); DONE = the account bought Carbliss on a load sheet Aug 1 -
+    Oct 31 per carbliss-mpo/data/program.json (RDE "Carbliss Buyers (ON)" export,
+    carbliss-onprem-targets/carbliss_buyers_l90.csv). Both by CustomerID; the
+    tracker JSON (MPOs/on-prem/generate_2026-10.py) copies program.json per account.
     """
     rows = json.load(open(ROOT / "MPOs" / "on-prem" / "data" / "2026-10" / "mpo_carbliss.json"))
-    raw = list(csv.DictReader(open(ROOT / "MPOs" / "on-prem" / "carbliss_buying_accounts.csv")))
+    raw = list(csv.DictReader(open(ROOT / "carbliss-onprem-targets" / "carbliss_buyers_l90.csv", encoding="utf-8-sig")))
     fam_ids = sorted(pid for pid, p in products.items() if p["family"] == "Carbliss")
     by_prod, by_fam, monthly = history_for(set(fam_ids), ["Carbliss"], products, months)
     dates = sorted(datetime.strptime(r["Load Sheet Date"], "%m/%d/%Y") for r in raw if r.get("Load Sheet Date"))
     last = dates[-1].strftime("%b %-d, %Y") if dates else ""
     # what each base account bought in the window, from the sales record (detail only)
-    win = [m for m in months if "2026-09" <= m <= "2026-10"]
+    win = [m for m in months if "2026-08" <= m <= "2026-10"]
     rule = {
         "id": "on:2026-10:carbliss", "source": "on", "month": "2026-10", "key": "carbliss",
         "title": "Carbliss Buying Accounts", "official": "Carbliss – 40% Buying Accounts", "supplier": "Carbliss",
         "kind": "accounts", "unit": "buying account", "minSkus": 1,
-        "period": {"start": "2026-09-01", "end": "2026-10-31", "label": "Sep 1 – Oct 31, 2026"},
-        "measure": "A buying account = an account in your core on-premise base that bought any Carbliss product between Sep 1 and Oct 31, 2026. It counts once.",
+        "period": {"start": "2026-08-01", "end": "2026-10-31", "label": "Aug 1 – Oct 31, 2026"},
+        "measure": "A buying account = an account in your core on-premise base that bought any Carbliss product between Aug 1 and Oct 31, 2026 (the Carbliss Leaderboard's L90). It counts once.",
         "requirement": {"kind": "pct_of_base", "pct": 0.4, "rounding": "up", "text": "40% of your core on-premise account base, rounded up"},
         "products": [prod_row(products[p]) for p in fam_ids],
         "productsExhaustive": False,
@@ -423,10 +424,11 @@ def carbliss_on(products, customers, sources, months, reps):
         "universe": {"premise": "On", "territory": "Core on-premise base", "areas": [], "base": "Your accounts in the Core Market on-premise base"},
         "rules": [
             r_("Qualifying products", "Any Carbliss product (the report filters on the Carbliss brand family).", "assumed", "Brand Family = Carbliss on every export row; packages are not listed."),
-            r_("Minimum", "One purchase of any Carbliss product.", "verified", "Buyer Count on the RDE export."),
+            r_("Minimum", "One purchase of any Carbliss product.", "verified", "Buyers flag on the RDE export."),
+            r_("Same as the leaderboard", "Counts the Carbliss Leaderboard's L90 buyers exactly.", "verified", "carbliss-mpo/data/program.json"),
             r_("Eligible accounts", "Your accounts in RDE “Entire Core Market On Prem Accts” (house accounts removed).", "verified", "MPOs/on-prem/core_market_on_prem_accts.csv"),
             r_("Buyers outside your base", "Not counted.", "verified", "MPO generator rule."),
-            r_("Prior purchases", "September purchases carry over; buying before Sep 1 does not count.", "verified", "Export window Sep 1 – Oct 31."),
+            r_("Prior purchases", "August and September purchases count; buying before Aug 1 does not.", "verified", "Program period Aug 1 – Oct 31 (carbliss-mpo/generate.py)."),
             r_("MPO requirement", "40% of the base.", "verified", "OCTOBER_ON_PREM_2026_MPO.docx"),
             r_("Rounding", "Rounded UP.", "assumed", "Not stated in the MPO document."),
             r_("Weight", "25% of the October On-Premise MPO; credit is all-or-nothing.", "verified", "OCTOBER_ON_PREM_2026_MPO.docx"),
@@ -434,7 +436,7 @@ def carbliss_on(products, customers, sources, months, reps):
         ],
         "detail": {"through": "export", "throughLabel": last, "trackerThrough": "export through " + last,
                    "note": "Account-level results come straight from the tracker's own export (loads through " + last + "), so they always match the tracker."},
-        "order": "Accounts that bought Carbliss before September come first (they know the brand), then accounts new to Carbliss. Ties go to the account's 2026 case volume.",
+        "order": "Accounts that bought Carbliss before August come first (they know the brand), then accounts new to Carbliss. Ties go to the account's 2026 case volume.",
         "openQuestions": ["K1"],
     }
     by_rep = defaultdict(list)
@@ -457,7 +459,7 @@ def carbliss_on(products, customers, sources, months, reps):
                 accts.append(dict(who, st="done", cr=seen))
                 continue
             if by_fam.get(n, {}).get("Carbliss"):
-                why, rank = ["lapsed", f"Bought Carbliss before ({month_label(by_fam[n]['Carbliss'])}), not since Sep 1"], 0
+                why, rank = ["lapsed", f"Bought Carbliss before ({month_label(by_fam[n]['Carbliss'])}), not since Aug 1"], 0
             else:
                 why, rank = ["brand", "No Carbliss purchases since Jan 2025"], 1
             accts.append(dict(who, st="open", cr=[], need=1, why=why, rank=rank, before=sorted(by_prod.get(n, {}))))
