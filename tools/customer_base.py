@@ -37,6 +37,11 @@ SOUTHERN_SALES_COUNTIES = ("Essex", "Hudson", "Union")
 # Victory Terrace, Backyard, Izod Center): out of every program base.
 LEFT_OUT = {"30018", "30019", "30020", "30027", "31012"}
 
+# Bars Encompass files as Off Premise that pour draft kegs -- counted as ON-premise for program
+# reach (Gavin, 2026-10-07: Milton Inn, White Deer Inn, The George Inn). Read by the on-prem MPO
+# generator (Oktoberfest base) and hub/generate.py (shared/data/rep-premise.js counts).
+ON_PREM_BARS = {"191210", "230121", "231203"}
+
 
 def _s(v):
     return (v or "").strip()

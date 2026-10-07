@@ -328,3 +328,6 @@ html.kdh-rep #kicker{display:none}
   .kt-lg .kt-t{font-size:19px}
   .rh-arow{padding:var(--sp-2) 14px}
 }
+
+/* A tile hidden for a route (rep/index.html showRep): two cards left, no spanning last card. */
+.kt-grid.kt-cut > .kt{grid-column:auto!important}

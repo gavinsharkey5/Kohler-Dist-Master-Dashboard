@@ -356,7 +356,9 @@ function screenRepDetail(){
 
   // An objective the metric marks hidden (a support rep's non-objective)
   // is left off the card entirely -- "all he needs to see is that one".
-  var cards = objs.filter(function(o){ var m = H.metric(o, rep); return !(m && m.hidden); })
+  // Nor is one with no goal for this rep (no account base / no assigned goal) -- the rep
+  // sees only the objectives they can reach (Gavin, 2026-10-07).
+  var cards = objs.filter(function(o){ var m = H.metric(o, rep); return !(m && (m.hidden || m.notScored)); })
     .map(function(o){ return repObjectiveCard(o, rep); }).join('');
 
   return '<div class="g g-fade">'+
@@ -374,7 +376,7 @@ function screenRepDetail(){
         (function(){ var u = document.getElementById('updated-line'); var t = u ? u.textContent.trim().replace(/^Data refreshed\s*/i,'Data ').replace(/,\s*\d{1,2}:\d{2}\s*[AP]M.*$/i,'') : ''; return t ? esc(t) : ''; })()
       ].filter(Boolean).join(' · ')
     ])+
-    cards+
+    (cards || '<div class="kdh-state empty"><b>No '+esc(H.scope)+' MPOs Apply to '+(lockedRep() || asRep ? 'Your Route' : esc(first)+'’s Route')+' This Month</b></div>')+
   '</div>';
 }
 
@@ -870,6 +872,20 @@ var API = {
         roster: (host.roster || []).filter(function(r){ return T.reps.indexOf(r) >= 0; }),
         dmGroups: (host.dmGroups || []).filter(function(g){ return g.dm === T.dm || g.under === T.dm; })
       });
+    }
+    // OUT OF REACH (Gavin, 2026-10-07: a rep sees only the MPOs available to them): an
+    // objective on this page needs an account of the page's premise. A rep whose book has
+    // none (shared/data/rep-premise.js, counts from the active Customers export) is not
+    // scored on it and does not see it -- unless the tracker already credits them something.
+    var PREM = window.KDH_REP_PREMISE;
+    var need = host.scope === 'Off-Premise' ? 'off' : host.scope === 'On-Premise' ? 'on' : null;
+    if(PREM && need){
+      var baseMetric = H.metric;
+      H = Object.assign({}, H, {metric: function(o, rep){
+        var m = baseMetric(o, rep), c = PREM[rep];
+        if(c && !c[need] && !(m && Number(m.value) > 0)) return {notScored:true, hidden:true, outOfReach:true};
+        return m;
+      }});
     }
     mount = host.mount;
 

@@ -2822,3 +2822,25 @@ separate "Octoberfest Loaded, Not Yet On Boston Beer's Report" list (Straphanger
 Chris) -- counts unchanged; the hub lists the accounts to close first ("Still on Summer Ale · Boston
 Beer list"). Refresh: new Boston Beer pair -> convert_sam_adams_official.py --oct, then generate.py.
 Tags: incentive programs.js / hub.js / on-prem programs.js 20261007z.
+
+## Reps see only the programs their route can reach (2026-10-07)
+
+Gavin: "when the rep signs in they see only the MPOs and incentives that are available to them."
+A program is OUT OF REACH for a rep when (hub.js `availability`): the brand cannot be sold at any
+account on the route (territory workbook), the route has no account of the program's premise
+(NEW: checked even when any brand counts; an existing credit keeps it -- Jayson's Oktoberfest),
+the program is Core Market-only and the route is Southern District (`territoryEligible`), or an
+account-count MPO goal exceeds the accounts that could count. Out-of-reach programs are no longer
+shown greyed ("Unavailable based on account base/territory" / "Not in Your Territory") -- they are
+NOT LISTED: hub `incRows`, `sortedForRep`, `endedIn`. MPO trackers (guided.js init wraps H.metric):
+an objective on the Off- / On-Premise page is hidden for a rep with no account of that premise
+(`shared/data/rep-premise.js`, counts only, written by hub/generate.py; the three Inns in
+customer_base.ON_PREM_BARS count as on-premise) unless they already have credit, and a "Not
+scored" objective (no base / no goal) is no longer drawn on the rep's page; a page with nothing
+left shows "No <scope> MPOs Apply to Your Route This Month". Rep home hides the Off- / On-Premise
+MPO tile for a route with no account of that premise (Allison: no Off-Premise; Shane: no
+On-Premise). Managers' Program View is unchanged apart from these reps dropping out of an
+objective's rep list. Test: scratchpad reach_test.mjs. Tags hub.js 20261007y2, guided.js / rep.css /
+on-prem programs.js 20261007z.
+OPEN (asked Gavin 2026-10-07): the On-Premise "Spirits Follow-Up" base is ~85% OFF-premise accounts
+(the RDE export has no premise filter) -- should it count on-premise accounts only?

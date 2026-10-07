@@ -543,6 +543,15 @@ function availability(p, rep){
   if(isSupport(rep)) return {ok:true};          // no route: any account counts
   if(p.type==='MPO' && !mpoMonthLoaded(p.source, p.monthKey)) return {ok:true};
   const A = accountsFor(p, rep);
+  // NO ACCOUNT OF THE PROGRAM'S PREMISE (2026-10-07, Gavin: a rep sees only the programs
+  // available to them): an on-premise program for a rep whose book has no on-premise account
+  // (or off for off) is out of reach even when any brand counts -- unless the tracker already
+  // credits them something (Jayson's Oktoberfest Inns), which stays on their page.
+  if(A.universe===0 && (p.channel==='on' || p.channel==='off')){
+    const r0 = p.forRep(rep);
+    if(!(r0 && Number(r0.valueNum) > 0))
+      return {ok:false, why:UNAVAILABLE, sub:`No ${p.channel==='on'?'on-premise':'off-premise'} accounts on your route.`};
+  }
   if(A.any) return {ok:true};
   const reach = A.eligible.length + A.buying.length;
   if(reach===0){
@@ -609,6 +618,7 @@ function sortedForRep(rep, cat){
       const av = availability(p, rep);
       if(!av.ok) r = Object.assign({}, r, {status:'unavailable', pace:'notstarted', pct:null, unavailable:true, why:av.why, sub:av.sub, next:'', remain:null});
     }
+    if(r.status==='unavailable') return;          // out of reach for this rep: not listed (2026-10-07)
     const past = p.type==='MPO' && viewingPast(p.source);
     rows.push({p, r, g: sortGroup(p, r, past), days: daysLeft(p.period.end)});
   });
@@ -1213,7 +1223,10 @@ function incRows(rep){
     if(!supportAllows(rep, p)) return;
     const r = p.forRep(rep); if(!r) return;
     if(isDollarProgram(r)) return;             // money is not a field metric
-    if(!availability(p, rep).ok && r.status!=='unavailable') return;
+    // Out of reach for this rep -- brand not sellable on the route, no account of the
+    // program's premise, or a Core Market program for a Southern District route -- is not
+    // listed at all (Gavin, 2026-10-07: reps see only what is available to them).
+    if(r.status==='unavailable' || !availability(p, rep).ok) return;
     const b = incBand(p, r); if(!b) return;
     rows.push({p, r, b});
   });
@@ -3270,7 +3283,7 @@ function endedIn(rep, key){
     if(p.type!=='Incentive' || isActive(p) || !supportAllows(rep, p)) return;
     const e = p.period.end; const k = e.getFullYear()+'-'+String(e.getMonth()+1).padStart(2,'0');
     if(k!==key) return;
-    const r = p.forRep(rep); if(!r || r.status==='unavailable' || isDollarProgram(r)) return;
+    const r = p.forRep(rep); if(!r || r.status==='unavailable' || isDollarProgram(r) || !availability(p, rep).ok) return;
     out.push({p, r});
   });
   out.sort((a,b)=>b.p.period.end - a.p.period.end || a.p.supplier.localeCompare(b.p.supplier));

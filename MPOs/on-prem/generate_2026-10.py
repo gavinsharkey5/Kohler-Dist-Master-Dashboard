@@ -59,7 +59,8 @@ SPIRITS_CSV = HERE / "spirits_followup_placements.csv"
 HOUSE = {"Default", "Office Tell Sell"}      # Encompass house "reps" -- not people
 BASE_WINDOW = (datetime(2026, 4, 1), datetime(2026, 7, 17))     # Summer Ale poured (Gavin's window)
 # Filed Off Premise in Encompass but bars that pour kegs; Boston Beer counts them on-premise.
-ON_PREM_EXTRA = {"191210", "230121", "231203"}   # Milton Inn, White Deer Inn, The George Inn
+sys.path.insert(0, str(HERE.parent.parent / "tools"))
+from customer_base import ON_PREM_BARS as ON_PREM_EXTRA   # Milton Inn, White Deer Inn, The George Inn
 DONE_WINDOW = (datetime(2026, 8, 1), datetime(2026, 10, 23))    # Oktoberfest taken
 
 
