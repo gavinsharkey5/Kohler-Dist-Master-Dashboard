@@ -2708,5 +2708,6 @@ Second follow-up (same day, Gavin: "instead of Review Reps, have the card take m
 leaderboard"): the Carbliss program card on Program View is now ONE LINK to /carbliss-onprem-targets/
 (guided.js `carblissProgramCard`, an <a class="g-prog-head g-prog-link">, no js-prog, no rep list), ending
 "Open Carbliss Leaderboard"; the rep's own Carbliss card already links there ("Open Carbliss Leaderboard").
-Other program cards still expand to Review Reps. guided.js / guided.css 20261007s. Test: scratchpad
+Other program cards still expand to Review Reps. The tiles carry no "Company Carbliss Buyers" heading on this
+card (noTitle) -- the card title already says Carbliss. guided.js 20261007t, guided.css 20261007s. Test: scratchpad
 cbhead_link.mjs (manager card click + rep card link -> leaderboard, 390 / 1366, light / dark).

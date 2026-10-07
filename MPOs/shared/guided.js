@@ -471,7 +471,7 @@ function cbDay(iso, withYear){
 function hydrateCarbliss(){
   var co = document.querySelectorAll('.g-cb[data-co]');
   if(co.length) cbLoad().then(function(D){
-    for(var i=0;i<co.length;i++) co[i].innerHTML = window.KdhCarbTiles.html(D, {compact:true});
+    for(var i=0;i<co.length;i++) co[i].innerHTML = window.KdhCarbTiles.html(D, {compact:true, noTitle:true});
   }).catch(function(){
     for(var i=0;i<co.length;i++) co[i].innerHTML = '<div class="g-cb-wait">Carbliss buying figures are unavailable right now. Reload to try again.</div>';
   });
