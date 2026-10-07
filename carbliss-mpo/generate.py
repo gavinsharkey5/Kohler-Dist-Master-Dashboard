@@ -129,7 +129,7 @@ def account_pages():
 
 def compute(data_dir, reopen=False):
     rows = load(EXPORT)
-    flag = next(c for c in rows[0] if c.lower() == "buyers 2026")
+    flag = next(c for c in rows[0] if c.lower() in ("buyers 2026", "buyers: ytd 2026"))
     buys = defaultdict(list)            # customer num -> [dates]
     export_rep = {}
     for r in rows:

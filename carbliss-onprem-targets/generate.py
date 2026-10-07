@@ -335,6 +335,7 @@ for r in results:
 # page reports it from the data (latest load sheet date, earliest L90 row).
 buyers = {}
 buyers_meta = {'asOf': '', 'windowStart': '', 'rows': 0}
+loads = []   # one row per load sheet, every column of the export (2026-10-07: Load Sheets table)
 def _d(s):
     try:
         m, d, y = s.strip().split('/'); return datetime.date(int(y), int(m), int(d))
@@ -349,10 +350,19 @@ if os.path.exists(F3):
             b = buyers.setdefault(cid, {'id': cid, 'name': cname.strip(), 'rep': r['Sales Rep Assigned'].strip(),
                                         'ytd': False, 'l90': False, 'buys': 0, 'buysL90': 0, 'last': None, 'first': None})
             dt = _d(r.get('Load Sheet Date') or '')
-            l90 = (r.get('Buyers L90   2026') or '').strip() == '1'
-            ytd = (r.get('Buyers   2026') or '').strip() == '1'
+            l90 = (r.get('Buyers: L90   2026') or r.get('Buyers L90   2026') or '').strip() == '1'
+            ytd = (r.get('Buyers: YTD   2026') or r.get('Buyers   2026') or '').strip() == '1'
             b['ytd'] |= ytd; b['l90'] |= l90; b['buys'] += 1; b['buysL90'] += 1 if l90 else 0
             buyers_meta['rows'] += 1
+            _flag = lambda k: int((r.get(k) or '0').strip() or 0)
+            _prog = next((k for k in r if k and k.startswith('Buyers: Aug')), None)
+            loads.append({'id': cid, 'name': cname.strip(), 'rep': r['Sales Rep Assigned'].strip(),
+                          'brand': (r.get('Brand Family') or '').strip(),
+                          'date': dt.isoformat() if dt else None,
+                          'prog': _flag(_prog) if _prog else 0,
+                          'l90': _flag('Buyers: L90   2026') if 'Buyers: L90   2026' in r else _flag('Buyers L90   2026'),
+                          'ytd': _flag('Buyers: YTD   2026') if 'Buyers: YTD   2026' in r else _flag('Buyers   2026'),
+                          'diff': _flag('Difference   2026')})
             if dt:
                 if not b['last'] or dt > b['last']: b['last'] = dt
                 if not b['first'] or dt < b['first']: b['first'] = dt
@@ -427,7 +437,8 @@ meta = {
     'sellSheets': sell_sheets,
 }
 
-data_json = json.dumps({'meta': meta, 'accounts': final_accounts, 'buyers': sorted(buyers.values(), key=lambda b: (b['rep'], b['name']))}, separators=(',', ':'))
+data_json = json.dumps({'meta': meta, 'accounts': final_accounts, 'buyers': sorted(buyers.values(), key=lambda b: (b['rep'], b['name'])),
+                        'loads': sorted(loads, key=lambda l: (l['date'] or '', l['name']), reverse=True)}, separators=(',', ':'))
 
 html = open(HTML, encoding='utf-8').read()
 new_html, n = re.subn(
