@@ -16,3 +16,6 @@ tools/
 # Frozen / archived incentive snapshots -- generator inputs, never loaded by a page.
 incentive-tracking/data/frozen/
 incentive-tracking/data/refreshed_archive/
+
+# The Carbliss MPO tracker's frozen program-period snapshot -- generator input, never loaded by a page.
+carbliss-mpo/data/final.json

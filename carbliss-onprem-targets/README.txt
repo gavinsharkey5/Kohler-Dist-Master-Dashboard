@@ -1,4 +1,4 @@
-Carbliss On-Premise Targets
+Carbliss Leaderboard (was Carbliss On-Premise Targets)
 
 Turns the "Carbliss Eval vs Sun Cruiser & White Claw" RDE exports into a
 per-account sales-pitch generator: every on-premise account with real
@@ -66,6 +66,9 @@ a $Vol export or any money wording.
 SC + WC 2026 cases 28,182. Buyers file runs to 10/7: 297 YTD buyers, 229
 rolling-90 (window 7/7 - 10/7), 68 fell off. Sell sheets need openpyxl
 (11 of 12 flavors have a URL; Pineapple none).
+
+2026-10-06 REFRESH -- Eval _12 + Buyers L90 _4 exports: accounts.csv 3,140 -> 3,143 rows; buyers file runs to
+10/16 (412 load sheets, +18, none removed). Also feeds carbliss-mpo/ (run its generate.py after saving the buyers file).
 
 Flavor mapping and the "gap" ranking (most broadly-carried missing flavor,
 preferring one from a different flavor family than the pitched SKU) are
@@ -158,3 +161,8 @@ Tests: scratchpad carbliss_test.mjs (rep / manager / DM scope of the card,
 badges = data, filter, picker order + links, no leaks, 390 / 820 / 1366) +
 lb_test.mjs + mobile_audit ONLY=carbliss (the two 24px checkboxes are the
 known audit note).
+
+
+LEADERBOARD REBUILD (2026-10-06): the pitch table is gone; the page is the rolling-90 leaderboard + a rep -> customer
+roster (L90 Buyer / YTD Buyer / Last Purchase) read from ../carbliss-mpo/data/program.json. After saving a new buyers export
+here, run python3 carbliss-mpo/generate.py as well as generate.py.

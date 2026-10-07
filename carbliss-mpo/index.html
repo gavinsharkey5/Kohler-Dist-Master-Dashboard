@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F6F7F9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1523" media="(prefers-color-scheme: dark)">
+<title>Carbliss MPO | Kohler Dist Hub</title>
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Dist Hub">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="preload" href="../assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+<script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="stylesheet" href="../rep/rep.css?v=20261005n">
+<link rel="stylesheet" href="carbliss-mpo.css?v=20261006d">
+<meta name="kdh-page" content="Carbliss MPO">
+<script src="../shared/kdh-user.js?v=20261007a"></script>
+<script src="../shared/dm-groups.js"></script>
+</head>
+<body>
+<!--
+  CARBLISS MPO TRACKER (2026-10-06). A fixed-window program, not a monthly MPO:
+  accounts that bought Carbliss Aug 1 - Oct 31, 2026, each rep's penetration of
+  their own assigned on-premise accounts, and every account with whether it
+  bought in the window, whether it has bought since launch, and its last
+  purchase. Data: data/program.json (generate.py; a rep is served their own
+  copy by the middleware -- their rows plus the house total as a count).
+  Rules and evidence: carbliss-mpo/README.txt.
+-->
+<main class="wrap" id="cmApp"><div class="kdh-state loading">Loading Carbliss results…</div></main>
+<footer>Internal use. Counts come from Encompass load sheets; see How This Is Counted.</footer>
+<script src="carbliss-mpo.js?v=20261006d"></script>
+</body>
+</html>

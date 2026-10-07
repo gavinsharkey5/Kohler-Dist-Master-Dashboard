@@ -233,8 +233,73 @@ th:first-child .th-label{justify-content:flex-start;}
   .spark{height:92px;}
   .glossary-grid{grid-template-columns:1fr;}
 }
+
+/* PAGE STANDARD (2026-10-07): one centered 960px column, short copy, Title Case strings, 14px floor. */
+.header,.controlbar{padding-left:max(16px,calc((100% - 960px)/2 + 16px)); padding-right:max(16px,calc((100% - 960px)/2 + 16px));}
+.container{max-width:960px; padding:var(--s3) 16px var(--s6);}
+.header{padding-top:var(--s3);}
+.header-top{justify-content:center; text-align:center;}
+.brandmark{flex-direction:column; text-align:center; gap:6px;}
+.glyph{display:none;}
+h1{font-size:28px; line-height:1.2; font-weight:600; letter-spacing:0;}
+.subtitle{font-size:14px; opacity:.9;}
+.asof{font-size:14px; text-align:center; width:100%;}
+.tabs{justify-content:center; gap:8px;}
+.tab{font-size:14px; font-weight:600;}
+.tab.active{font-weight:600; background:var(--kdh-brand); color:var(--kdh-brand-ink);}
+.controlbar .ctlrow{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px 14px; align-items:end;}
+.controlbar .ctl:first-child{grid-column:1/-1;}
+.controlbar .ctl:last-child{grid-column:auto;}
+.ctl select{width:100%; min-width:0;}
+.ctl label,.kpi .label,th,.detail-card .dl{font-size:14px; text-transform:none; letter-spacing:0; font-weight:600;}
+.preset,.subtabs button{font-size:14px;}
+.rangenote{font-size:14px; text-align:center;}
+.notice{font-size:14px; padding:var(--s2) var(--s3);}
+.notice summary{font-size:15px;}
+.kpi-grid{grid-template-columns:repeat(auto-fit,minmax(185px,1fr)); gap:12px; margin-bottom:var(--s3);}
+.kpi{text-align:center; align-items:center; padding:14px;}
+.kpi .label{justify-content:center; min-height:0;}
+.kpi .value{font-size:28px; font-weight:700; overflow-wrap:normal; white-space:nowrap;}
+.kpi .sub{font-size:14px;}
+.panel{margin-bottom:var(--s3);}
+.panel-head h2{font-size:17px; font-weight:600; color:var(--ink);}
+.panel-sub,.result-count,.footer-note,.swipe-hint,.glossary-item dd,.glossary summary,.nogoal,.empty{font-size:14px;}
+.panel-sub{max-width:none;}
+.grade,.badge,.why span,.chip{font-size:13px; font-weight:600; letter-spacing:0;}
+table{font-size:14px;}
+.badge.Active,.trend-up,.trend-down,.trend-flat,.matrix-cell{font-weight:600;}
+.mover-card h3{font-size:16px; font-weight:600;}
+.mover-card h3 span{font-size:14px;}
+.matrix-cell small{font-size:13px;}
+.spark-labels div{font-size:13px;}
+.footer-note{padding:var(--s3) 0;}
+@media(max-width:1000px){
+  .header,.controlbar{padding-left:16px; padding-right:16px;}
+  .container{padding:var(--s3) 16px var(--s5);}
+  .controlbar .ctlrow{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media(max-width:720px){
+  h1{font-size:24px;}
+  .tabs{flex-wrap:wrap; overflow:visible; justify-content:center;}
+  .tab{flex:none;}
+  .controlbar .ctlrow{grid-template-columns:1fr;}
+  .ctl{flex:none; min-width:0;}
+  .swipe-hint{display:none;}
+  .table-scroll{overflow:visible;}
+  table.kf-n,table.kf-n tbody{display:block; width:100%;}
+  table.kf-n thead{display:none;}
+  table.kf-n tr{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:2px 8px; padding:8px 4px; border-bottom:1px solid var(--line);}
+  table.kf-n td{display:block; text-align:left; padding:2px 4px; border:0; white-space:normal; position:static; min-width:0; max-width:none; box-shadow:none; background:transparent;}
+  table.kf-n td[data-l]::before{content:attr(data-l); display:block; font-size:13px; line-height:1.2; font-weight:600; color:var(--ink-soft);}
+  table.kf-n td:first-child{grid-column:1/-1; font-size:15px; min-width:0; max-width:none; position:static; background:transparent; box-shadow:none;}
+  table.kf-n td:first-child::before{content:none;}
+  table.kf-n .detail-row,table.kf-n .detail-row td{display:block; grid-column:1/-1;}
+  table.kf-n tr.detail-row{display:block;}
+  .bar-cell{min-width:0;}
+  .chip-list,.why{max-width:none; flex-wrap:wrap; overflow:visible;}
+}
 </style>
-<script src="../shared/kdh-user.js?v=20261005a"></script>
+<script src="../shared/kdh-user.js?v=20261007a"></script>
 <script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="kdh-page" content="Wine &amp; Spirits">
 <!-- Site design system: maps this page's variables + fonts onto shared/kdh.css. Keep it LAST in <head>. -->
@@ -248,7 +313,7 @@ th:first-child .th-label{justify-content:flex-start;}
       <div class="glyph">W</div>
       <div>
         <h1>Wine &amp; Spirits</h1>
-        <div class="subtitle">Kohler Distributing &middot; distribution, execution and account detail &mdash; all volume in cases</div>
+        <div class="subtitle">All Volume in Cases</div>
       </div>
     </div>
     <div class="asof" id="asof-note"></div>
@@ -270,22 +335,22 @@ th:first-child .th-label{justify-content:flex-start;}
 <div class="controlbar">
   <div class="ctlrow">
     <div class="ctl" style="flex:1 1 380px">
-      <label>Date range</label>
+      <label>Date Range</label>
       <div class="presets" id="presets"></div>
     </div>
-    <div class="ctl"><label for="fromMonth">From month</label><select id="fromMonth"></select></div>
-    <div class="ctl"><label for="toMonth">To month</label><select id="toMonth"></select></div>
-    <div class="ctl"><label for="cmpMode">Compare with</label>
+    <div class="ctl"><label for="fromMonth">From Month</label><select id="fromMonth"></select></div>
+    <div class="ctl"><label for="toMonth">To Month</label><select id="toMonth"></select></div>
+    <div class="ctl"><label for="cmpMode">Compare With</label>
       <select id="cmpMode">
-        <option value="ly">Last year</option>
-        <option value="prev">Previous period</option>
-        <option value="none">No comparison</option>
+        <option value="ly">Last Year</option>
+        <option value="prev">Previous Period</option>
+        <option value="none">No Comparison</option>
       </select></div>
-    <div class="ctl"><label for="repFilter">Rep</label><select id="repFilter"><option value="">All reps</option></select></div>
+    <div class="ctl"><label for="repFilter">Rep</label><select id="repFilter"><option value="">All Reps</option></select></div>
     <div class="ctl"><label for="premFilter">Premise</label>
-      <select id="premFilter"><option value="">All premises</option>
-        <option value="On Premise">On-premise</option>
-        <option value="Off Premise">Off-premise</option></select></div>
+      <select id="premFilter"><option value="">All Premises</option>
+        <option value="On Premise">On-Premise</option>
+        <option value="Off Premise">Off-Premise</option></select></div>
   </div>
   <p class="rangenote" id="rangeNote"></p>
 </div>
@@ -293,7 +358,7 @@ th:first-child .th-label{justify-content:flex-start;}
 <div class="container">
 
 <details class="notice" id="notice">
-  <summary><b>How to read this</b> &mdash; cases only, and everything follows the date range above</summary>
+  <summary><b>How to Read This</b></summary>
   <div class="notice-body">Pick any range of months and the whole dashboard recalculates for it, next to a
     comparable prior period. <b>Volume is measured in cases everywhere</b>: the Encompass exports measure volume in
     a selling size that differs by item (a bottle for some items, a full case for others), and every figure is
@@ -313,7 +378,7 @@ th:first-child .th-label{justify-content:flex-start;}
   </div>
   <div class="panel">
     <div class="panel-head"><div><h2>Brand Families</h2>
-      <div class="panel-sub">Cases and buying accounts in the selected range, against the comparison period.</div></div>
+      <div class="panel-sub">Cases and buying accounts vs. the comparison period.</div></div>
       <div class="result-count" id="fam-count"></div></div>
     <div class="panel-body"><p class="swipe-hint">Swipe the table sideways for the rest of the columns — tap any i for what a column means.</p>
       <div class="table-scroll" id="fam-table"></div></div>
@@ -348,9 +413,9 @@ th:first-child .th-label{justify-content:flex-start;}
       </div>
       <div class="controls">
         <input type="search" id="dist-search" placeholder="Search brand, item, supplier…">
-        <select id="dist-supplier"><option value="">All suppliers</option></select>
-        <select id="dist-family"><option value="">All brand families</option></select>
-        <select id="dist-trend"><option value="">All trends</option><option value="up">Gaining</option>
+        <select id="dist-supplier"><option value="">All Suppliers</option></select>
+        <select id="dist-family"><option value="">All Brand Families</option></select>
+        <select id="dist-trend"><option value="">All Trends</option><option value="up">Gaining</option>
           <option value="down">Declining</option><option value="flat">Flat</option></select>
         <div class="result-count" id="dist-result-count"></div>
       </div>
@@ -378,14 +443,14 @@ th:first-child .th-label{justify-content:flex-start;}
   <div class="kpi-grid" id="kpi-account"></div>
   <div class="panel">
     <div class="panel-head"><div><h2>Account Detail &mdash; Cases, Status &amp; SKUs</h2>
-      <div class="panel-sub">Tap any account to open the items it actually bought in the range, against the comparison period.</div></div>
+      <div class="panel-sub">Tap an account to see the items it bought.</div></div>
       <div class="result-count" id="account-count"></div></div>
     <div class="panel-body">
       <div class="controls">
         <input type="search" id="account-search" placeholder="Search account, city, brand…">
-        <select id="account-status"><option value="">All statuses</option><option>Active</option><option>New</option>
+        <select id="account-status"><option value="">All Statuses</option><option>Active</option><option>New</option>
           <option>Lapsed</option><option>Never Bought</option></select>
-        <select id="account-city"><option value="">All cities</option></select>
+        <select id="account-city"><option value="">All Cities</option></select>
         <div class="result-count" id="account-result-count"></div>
       </div>
       <p class="swipe-hint">Swipe the table sideways for the rest of the columns — tap any i for what a column means.</p>
@@ -397,12 +462,12 @@ th:first-child .th-label{justify-content:flex-start;}
 <div class="view" id="view-brand">
   <div class="panel">
     <div class="panel-head"><div><h2>Brand Performance</h2>
-      <div class="panel-sub">Every brand in the selected range. Tap a row for the accounts gained and lost.</div></div>
+      <div class="panel-sub">Tap a brand for accounts gained and lost.</div></div>
       <div class="result-count" id="brand-count"></div></div>
     <div class="panel-body">
       <div class="controls">
         <input type="search" id="brand-search" placeholder="Search brand, family, supplier…">
-        <select id="brand-family"><option value="">All brand families</option></select>
+        <select id="brand-family"><option value="">All Brand Families</option></select>
         <div class="result-count" id="brand-result-count"></div>
       </div>
       <p class="swipe-hint">Swipe the table sideways for the rest of the columns — tap any i for what a column means.</p>
@@ -416,8 +481,8 @@ th:first-child .th-label{justify-content:flex-start;}
     <div class="panel-body">
       <div class="controls">
         <input type="search" id="margin-search" placeholder="Search brand, item, supplier…">
-        <select id="margin-segment"><option value="">All segments</option></select>
-        <select id="margin-family"><option value="">All brand families</option></select>
+        <select id="margin-segment"><option value="">All Segments</option></select>
+        <select id="margin-family"><option value="">All Brand Families</option></select>
         <div class="result-count" id="margin-result-count"></div>
       </div>
       <p class="swipe-hint">Swipe the table sideways for the rest of the columns — tap any i for what a column means.</p>
@@ -430,15 +495,14 @@ th:first-child .th-label{justify-content:flex-start;}
   <div class="kpi-grid" id="kpi-city"></div>
   <div class="panel">
     <div class="panel-head"><div><h2>Performance by City</h2>
-      <div class="panel-sub">Activation and account velocity by city in the selected range, split on- vs off-premise.</div></div>
+      <div class="panel-sub">Activation by city, on- vs. off-premise.</div></div>
       <div class="result-count" id="city-count"></div></div>
     <div class="panel-body">
       <div class="controls"><input type="search" id="city-search" placeholder="Search city or rep…">
         <div class="result-count" id="city-result-count"></div></div>
       <p class="swipe-hint">Swipe the table sideways for the rest of the columns — tap any i for what a column means.</p>
       <div class="table-scroll" id="city-table"></div>
-      <p class="footer-note" style="text-align:left">Cities come from the assigned account roster, which only
-        carries a city for accounts that have transacted at some point; the rest sit under &ldquo;Unknown&rdquo;.</p>
+      <p class="footer-note" style="text-align:left">Accounts with no transactions yet sit under &ldquo;Unknown&rdquo;.</p>
     </div>
   </div>
 </div>
@@ -453,8 +517,7 @@ th:first-child .th-label{justify-content:flex-start;}
   </div>
   <div class="panel">
     <div class="panel-head"><div><h2>Par Level by Brand Family</h2>
-      <div class="panel-sub">Par = the average number of buying accounts per rep for that family in this range,
-        company-wide. Below par is a placement opportunity.</div></div>
+      <div class="panel-sub">Par = average buying accounts per rep for the family, company-wide.</div></div>
       <div class="result-count" id="par-count"></div></div>
     <div class="panel-body">
       <div class="controls">
@@ -484,7 +547,7 @@ th:first-child .th-label{justify-content:flex-start;}
       </div>
       <div class="controls">
         <input type="search" id="rc-search" placeholder="Search name, brand, supplier…">
-        <select id="rc-grade"><option value="">All performance</option>
+        <select id="rc-grade"><option value="">All Performance</option>
           <option value="Growing">Growing</option><option value="Steady">Steady</option>
           <option value="Declining">Declining</option><option value="New">New</option>
           <option value="Lost">Lost</option></select>
@@ -495,7 +558,7 @@ th:first-child .th-label{justify-content:flex-start;}
     </div>
   </div>
   <div class="panel">
-    <div class="panel-head"><div><h2>How the report card is calculated</h2></div></div>
+    <div class="panel-head"><div><h2>How the Report Card Is Calculated</h2></div></div>
     <div class="panel-body"><div class="glossary-grid" id="rc-glossary"></div></div>
   </div>
 </div>
@@ -503,9 +566,7 @@ th:first-child .th-label{justify-content:flex-start;}
 <div class="view" id="view-opportunity">
   <div class="panel">
     <div class="panel-head"><div><h2>Opportunity Tracker</h2>
-      <div class="panel-sub">Where distribution could reasonably be added &mdash; measured against the accounts that
-        are actually eligible to buy, never against a target. <b>There are no company goals in this dashboard.</b>
-        Nothing here is an approved objective.</div></div></div>
+      <div class="panel-sub">Eligible accounts that could add distribution. <b>No company goals here.</b></div></div></div>
     <div class="panel-body">
       <div class="subtabs" id="opp-level">
         <button data-level="family" aria-pressed="true">Brand Family</button>
@@ -515,24 +576,24 @@ th:first-child .th-label{justify-content:flex-start;}
       </div>
       <div class="controls">
         <select id="opp-target"></select>
-        <select id="opp-area"><option value="">All territories</option></select>
-        <select id="opp-rep"><option value="">All reps</option></select>
+        <select id="opp-area"><option value="">All Territories</option></select>
+        <select id="opp-rep"><option value="">All Reps</option></select>
         <select id="opp-prem"><option value="">On &amp; off premise</option>
-          <option value="On Premise">On-premise only</option>
-          <option value="Off Premise">Off-premise only</option></select>
+          <option value="On Premise">On-Premise Only</option>
+          <option value="Off Premise">Off-Premise Only</option></select>
       </div>
       <div class="kpi-grid" id="kpi-opp"></div>
       <p class="rangenote" id="opp-note"></p>
     </div>
   </div>
   <div class="panel">
-    <div class="panel-head"><div><h2>Recommended accounts</h2>
+    <div class="panel-head"><div><h2>Recommended Accounts</h2>
       <div class="panel-sub" id="opp-sub"></div></div>
       <div class="result-count" id="opp-count"></div></div>
     <div class="panel-body">
       <div class="controls">
         <input type="search" id="opp-search" placeholder="Search account, rep, city…">
-        <select id="opp-reason"><option value="">All reasons</option>
+        <select id="opp-reason"><option value="">All Reasons</option>
           <option value="lapsed">Bought it before, not now</option>
           <option value="family">Buys the family already</option>
           <option value="segment">Buys comparable brands</option>
@@ -544,7 +605,7 @@ th:first-child .th-label{justify-content:flex-start;}
     </div>
   </div>
   <div class="panel">
-    <div class="panel-head"><div><h2>What qualifies an account &mdash; and what this cannot see</h2></div></div>
+    <div class="panel-head"><div><h2>What Qualifies an Account</h2></div></div>
     <div class="panel-body"><div class="glossary-grid" id="opp-glossary"></div></div>
   </div>
 </div>
@@ -557,8 +618,7 @@ th:first-child .th-label{justify-content:flex-start;}
   </div>
   <div class="panel">
     <div class="panel-head"><div><h2>Lost Placement Detail</h2>
-      <div class="panel-sub">Account &times; item pairs that ordered earlier in the window but nothing in the
-        trailing 60 days before the end of your range.</div></div>
+      <div class="panel-sub">Ordered earlier in the window, nothing in the last 60 days of the range.</div></div>
       <div class="result-count" id="lost-count"></div></div>
     <div class="panel-body">
       <div class="controls"><input type="search" id="lost-search" placeholder="Search account, product, rep…">
@@ -574,7 +634,7 @@ th:first-child .th-label{justify-content:flex-start;}
   </div>
   <div class="panel">
     <div class="panel-head"><div><h2>Lapsed Accounts</h2>
-      <div class="panel-sub">Bought before the selected range, nothing inside it.</div></div>
+      <div class="panel-sub">Bought before the range, nothing inside it.</div></div>
       <div class="result-count" id="lapsed-count"></div></div>
     <div class="panel-body">
       <div class="controls"><input type="search" id="lapsed-search" placeholder="Search account, rep, city…">
@@ -584,10 +644,7 @@ th:first-child .th-label{justify-content:flex-start;}
   </div>
 </div>
 
-<div class="footer-note">Kohler Distributing &middot; Wine &amp; Spirits Dashboard &middot; one page for portfolio
-  distribution and rep execution &mdash; built from Encompass RDE exports (Account Level by Month, Invoice
-  Transactions, L6-month and L90-day placements) plus the assigned account roster. All volume in cases.
-  See README.md in this folder for refresh steps and methodology.</div>
+<div class="footer-note">Source: Encompass RDE Exports &middot; All Volume in Cases</div>
 
 </div>
 
@@ -639,8 +696,8 @@ function findMonth(y, m){ for(var i = 0; i < NM; i++){ if(M.monthYear[i] === y &
 var LATEST = NM - 1;
 
 var PRESETS = [
-  {key:'mtd', label:'Latest month', range:function(){ return [LATEST, LATEST]; }},
-  {key:'prevmonth', label:'Previous month', range:function(){ return [Math.max(0, LATEST - 1), Math.max(0, LATEST - 1)]; }},
+  {key:'mtd', label:'Latest Month', range:function(){ return [LATEST, LATEST]; }},
+  {key:'prevmonth', label:'Previous Month', range:function(){ return [Math.max(0, LATEST - 1), Math.max(0, LATEST - 1)]; }},
   {key:'qtd', label:'QTD', range:function(){
     var m = monthNum(LATEST), qs = m - ((m - 1) % 3);
     var i = findMonth(monthYear(LATEST), qs);
@@ -648,13 +705,13 @@ var PRESETS = [
   {key:'ytd', label:'YTD', range:function(){
     var i = findMonth(monthYear(LATEST), 1);
     return [i < 0 ? 0 : i, LATEST]; }},
-  {key:'l3', label:'Last 3 months', range:function(){ return [Math.max(0, LATEST - 2), LATEST]; }},
-  {key:'l12', label:'Last 12 months', range:function(){ return [Math.max(0, LATEST - 11), LATEST]; }},
-  {key:'prevyear', label:'Previous year', range:function(){
+  {key:'l3', label:'Last 3 Months', range:function(){ return [Math.max(0, LATEST - 2), LATEST]; }},
+  {key:'l12', label:'Last 12 Months', range:function(){ return [Math.max(0, LATEST - 11), LATEST]; }},
+  {key:'prevyear', label:'Previous Year', range:function(){
     var y = monthYear(LATEST) - 1, a = -1, b = -1;
     for(var i = 0; i < NM; i++){ if(monthYear(i) === y){ if(a < 0) a = i; b = i; } }
     return a < 0 ? [0, LATEST] : [a, b]; }},
-  {key:'all', label:'All data', range:function(){ return [0, LATEST]; }},
+  {key:'all', label:'All Data', range:function(){ return [0, LATEST]; }},
 ];
 
 function applyPreset(key){
@@ -969,36 +1026,36 @@ function renderOverview(){
     {label:'Cases', value:fmtCases(CUR.cases), tip:'Cases sold inside the selected range. Cases are the only volume measure on this dashboard.',
      sub: CMP ? signed(CUR.cases - CMP.cases, fmtCases) + ' vs ' + cmpShort() + ' (' + yoyStr(pctChange(CUR.cases, CMP.cases)) + ')' : rangeLabel(st.from, st.to),
      cls: CMP ? yoyClass(pctChange(CUR.cases, CMP.cases)) : ''},
-    {label:'Buying accounts', value:fmtNum(buyers), tip:'Distinct accounts that bought at least one case inside the range.',
+    {label:'Buying Accounts', value:fmtNum(buyers), tip:'Distinct accounts that bought at least one case inside the range.',
      sub: CMP ? signed(buyers - cmpBuyers) + ' vs ' + cmpShort() + ' (' + yoyStr(pctChange(buyers, cmpBuyers)) + ')' : 'in the selected range',
      cls: CMP ? yoyClass(buyers - cmpBuyers) : ''},
-    {label:'% of book activated', value:fmtPct(uni ? buyers / uni * 100 : 0),
+    {label:'% of Book Activated', value:fmtPct(uni ? buyers / uni * 100 : 0),
      tip:'Buying accounts divided by the assigned account book currently in view (rep and premise filters apply).',
      sub:fmtNum(buyers) + ' of ' + fmtNum(uni) + ' assigned accounts'},
-    {label:'New accounts', value:fmtNum(statuses['New']), cls:'pos',
+    {label:'New Accounts', value:fmtNum(statuses['New']), cls:'pos',
      tip:'Accounts whose first ever purchase in this data falls inside the selected range.',
      sub:'first purchase inside the range'},
-    {label:'Lapsed accounts', value:fmtNum(statuses['Lapsed']), cls:'neg',
+    {label:'Lapsed Accounts', value:fmtNum(statuses['Lapsed']), cls:'neg',
      tip:'Accounts that bought before the range but nothing inside it.', sub:'bought before, not in range'},
-    {label:'Never bought', value:fmtNum(statuses['Never Bought']), cls:'neg',
+    {label:'Never Bought', value:fmtNum(statuses['Never Bought']), cls:'neg',
      tip:'Accounts on the assigned book with no Wine & Spirits purchase on file at all.',
      sub:fmtPct(uni ? statuses['Never Bought'] / uni * 100 : 0) + ' of the book — untapped'},
-    {label:'Cases per buying account', value:fmtCases(buyers ? CUR.cases / buyers : 0),
+    {label:'Cases per Buying Account', value:fmtCases(buyers ? CUR.cases / buyers : 0),
      tip:'Cases divided by buying accounts — how deep the average account went in this range.',
      sub:'average depth in range'},
-    {label:'Brand families sold', value:fmtNum(CUR.families.size),
+    {label:'Brand Families Sold', value:fmtNum(CUR.families.size),
      tip:'Distinct brand families with at least one case sold in the range.',
      sub:fmtNum(CUR.brands.size) + ' brands, ' + fmtNum(CUR.items.size) + ' items'},
     {label:'$Vol (invoiced)', value:fmtMoney(INVCUR.total.revenue),
      tip:'Dollars invoiced inside the range, from real invoice lines.',
      sub:fmtCases(INVCUR.total.cases) + ' cases invoiced'},
-    {label:'Realized margin', value:marginPct == null ? '—' : fmtPct(marginPct),
+    {label:'Realized Margin', value:marginPct == null ? '—' : fmtPct(marginPct),
      tip:'Invoiced dollars minus laid-in cost, divided by invoiced dollars, for the selected range.',
      sub:fmtMoney(INVCUR.total.revenue - INVCUR.total.cost) + ' margin'},
-    {label:'Lost placements', value:PLACE ? fmtNum(PLACE.lost.length) : '—', cls:'neg',
+    {label:'Lost Placements', value:PLACE ? fmtNum(PLACE.lost.length) : '—', cls:'neg',
      tip:'Account × item pairs with no order in the 60 days before the end of your range.',
      sub:PLACE ? 'of ' + fmtNum(PLACE.tracked) + ' tracked pairs' : 'no placement data'},
-    {label:'At-risk accounts', value:fmtNum(atRiskRows().length), cls:'neg',
+    {label:'At-Risk Accounts', value:fmtNum(atRiskRows().length), cls:'neg',
      tip:'Accounts still buying in the range but down ' + Math.abs(M.declineThreshold) + '% or more in cases against the comparison period.',
      sub:'down ' + Math.abs(M.declineThreshold) + '%+ vs ' + cmpShort()},
   ]);
@@ -1044,12 +1101,12 @@ function renderOverview(){
   renderTable('fam-table', [
     {key:'family', label:'Brand Family', tip:'The supplier-level grouping a brand belongs to.'},
     {key:'cases', label:'Cases', tip:'Cases sold in the selected range.', render:function(r){ return fmtCases(r.cases); }},
-    {key:'cmpCases', label:'Comparison cases', tip:'Cases over the comparison period.', render:function(r){ return CMP ? fmtCases(r.cmpCases) : '—'; }},
-    {key:'casesPct', label:'Cases % chg', tip:'Change in cases against the comparison period.',
+    {key:'cmpCases', label:'Comparison Cases', tip:'Cases over the comparison period.', render:function(r){ return CMP ? fmtCases(r.cmpCases) : '—'; }},
+    {key:'casesPct', label:'Cases % Chg', tip:'Change in cases against the comparison period.',
      render:function(r){ return '<span class="' + yoyClass(r.casesPct) + '">' + yoyStr(r.casesPct) + '</span>'; }},
     {key:'buyers', label:'Buyers', tip:'Distinct accounts buying this family in the range.', render:function(r){ return fmtNum(r.buyers); }},
-    {key:'cmpBuyers', label:'Comparison buyers', tip:'Distinct accounts in the comparison period.', render:function(r){ return CMP ? fmtNum(r.cmpBuyers) : '—'; }},
-    {key:'buyerChange', label:'Buyer chg', tip:'Buying accounts in range minus the comparison period.',
+    {key:'cmpBuyers', label:'Comparison Buyers', tip:'Distinct accounts in the comparison period.', render:function(r){ return CMP ? fmtNum(r.cmpBuyers) : '—'; }},
+    {key:'buyerChange', label:'Buyer Chg', tip:'Buying accounts in range minus the comparison period.',
      render:function(r){ return '<span class="' + yoyClass(r.buyerChange) + '">' + signed(r.buyerChange) + '</span>'; }},
     {key:'gained', label:'Gained', tip:'Accounts buying in the range that were not buying in the comparison period.', render:function(r){ return fmtNum(r.gained); }},
     {key:'lost', label:'Lost', tip:'Accounts buying in the comparison period that did not buy in the range.', render:function(r){ return fmtNum(r.lost); }},
@@ -1074,7 +1131,7 @@ function renderOverview(){
   renderTable('marginfam-table', [
     {key:'family', label:'Brand Family', tip:'The supplier-level grouping a brand belongs to.'},
     {key:'revenue', label:'$Vol', tip:'Dollars invoiced in the range.', render:function(r){ return fmtMoney(r.revenue); }},
-    {key:'cases', label:'Cases sold', tip:'Cases invoiced in the range.', render:function(r){ return fmtCases(r.cases); }},
+    {key:'cases', label:'Cases Sold', tip:'Cases invoiced in the range.', render:function(r){ return fmtCases(r.cases); }},
     {key:'marginPct', label:'Margin %', tip:'Margin dollars divided by invoiced dollars.', render:function(r){ return fmtPct(r.marginPct); }},
     {key:'marginTotal', label:'Margin $', tip:'Invoiced dollars minus laid-in cost.', render:function(r){ return fmtMoney(r.marginTotal); }},
   ], famMargin, {defaultSort:'revenue', max:25});
@@ -1138,22 +1195,22 @@ function renderDistribution(){
   distRowsCacheAll().forEach(function(r){ gainedAll += r.gained || 0; lostAll += r.lost || 0;
     if(r.trend === 'up') up++; if(r.trend === 'down') down++; });
   kpis('kpi-dist', [
-    {label:'Buying accounts', value:fmtNum(CUR.buyers.size),
+    {label:'Buying Accounts', value:fmtNum(CUR.buyers.size),
      tip:'Distinct accounts buying anything in the selected range.',
      sub:CMP ? signed(CUR.buyers.size - CMP.buyers.size) + ' vs ' + cmpShort() : rangeLabel(st.from, st.to),
      cls:CMP ? yoyClass(CUR.buyers.size - CMP.buyers.size) : ''},
-    {label:'Items gaining distribution', value:fmtNum(up), cls:'pos',
+    {label:'Items Gaining Distribution', value:fmtNum(up), cls:'pos',
      tip:'Items with more buying accounts in the range than in the comparison period.',
      sub:'more buyers than ' + cmpShort()},
-    {label:'Items losing distribution', value:fmtNum(down), cls:'neg',
+    {label:'Items Losing Distribution', value:fmtNum(down), cls:'neg',
      tip:'Items with fewer buying accounts than the comparison period.', sub:'fewer buyers than ' + cmpShort()},
-    {label:'Placements gained', value:fmtNum(gainedAll), cls:'pos',
+    {label:'Placements Gained', value:fmtNum(gainedAll), cls:'pos',
      tip:'Across every item: account-item pairs buying in the range that were not buying in the comparison period.',
      sub:'account × item pairs added'},
-    {label:'Placements lost', value:fmtNum(lostAll), cls:'neg',
+    {label:'Placements Lost', value:fmtNum(lostAll), cls:'neg',
      tip:'Across every item: pairs buying in the comparison period that did not buy in the range.',
      sub:'account × item pairs dropped'},
-    {label:'Items sold', value:fmtNum(CUR.items.size),
+    {label:'Items Sold', value:fmtNum(CUR.items.size),
      tip:'Distinct items with at least one case sold in the range.',
      sub:fmtNum(CUR.families.size) + ' families · ' + fmtNum(uni) + ' assigned accounts'},
   ]);
@@ -1220,25 +1277,25 @@ function renderDistribution(){
        {key:'pkg', label:'Package', tip:'How the item is packed, e.g. 1/12/750ml Btl.', cls:'wrap'}]
     : st.distLevel === 'brand'
       ? [{key:'name', label:'Brand', tip:'The brand as it appears in Encompass.'},
-         {key:'family', label:'Brand family', tip:'The supplier-level grouping this brand belongs to.', cls:'wrap'},
+         {key:'family', label:'Brand Family', tip:'The supplier-level grouping this brand belongs to.', cls:'wrap'},
          {key:'supplier', label:'Supplier', tip:'The supplier this brand comes from.', cls:'wrap'},
          {key:'items', label:'Items', tip:'Distinct items under this brand with sales in the range.', render:function(r){ return fmtNum(r.items); }}]
-      : [{key:'name', label:'Brand family', tip:'The supplier-level grouping a brand belongs to.'},
+      : [{key:'name', label:'Brand Family', tip:'The supplier-level grouping a brand belongs to.'},
          {key:'items', label:'Items', tip:'Distinct items in this family with sales in the range.', render:function(r){ return fmtNum(r.items); }}];
 
   var cols = levelCols.concat([
     {key:'buyers', label:'Buyers', tip:'Distinct accounts buying this in the selected range.', render:function(r){ return fmtNum(r.buyers); }},
-    {key:'cmpBuyers', label:'Comparison buyers', tip:'The same count over the comparison period — same number of months.', render:function(r){ return CMP ? fmtNum(r.cmpBuyers) : '—'; }},
+    {key:'cmpBuyers', label:'Comparison Buyers', tip:'The same count over the comparison period — same number of months.', render:function(r){ return CMP ? fmtNum(r.cmpBuyers) : '—'; }},
     {key:'buyerChange', label:'Change', tip:'Buyers in range minus buyers in the comparison period.',
      render:function(r){ return '<span class="' + yoyClass(r.buyerChange) + '">' + signed(r.buyerChange) + '</span>'; }},
-    {key:'buyerPct', label:'% change', tip:'That change as a percentage of the comparison period.',
+    {key:'buyerPct', label:'% Change', tip:'That change as a percentage of the comparison period.',
      render:function(r){ return '<span class="' + yoyClass(r.buyerPct) + '">' + yoyStr(r.buyerPct) + '</span>'; }},
-    {key:'buyers90', label:'90-day buyers', tip:'Distinct accounts buying in the last 3 months of the selected range — the closest the monthly source data gets to a rolling 90 days.', render:function(r){ return fmtNum(r.buyers90); }},
+    {key:'buyers90', label:'90-Day Buyers', tip:'Distinct accounts buying in the last 3 months of the selected range — the closest the monthly source data gets to a rolling 90 days.', render:function(r){ return fmtNum(r.buyers90); }},
     {key:'gained', label:'Gained', tip:'Accounts buying in the range that were not buying in the comparison period. Tap the row for names.', render:function(r){ return CMP ? fmtNum(r.gained) : '—'; }},
     {key:'lost', label:'Lost', tip:'Accounts buying in the comparison period that did not buy in the range. Tap the row for names.', render:function(r){ return CMP ? fmtNum(r.lost) : '—'; }},
     {key:'cases', label:'Cases', tip:'Cases sold in the selected range.', render:function(r){ return fmtCases(r.cases); }},
-    {key:'cmpCases', label:'Comparison cases', tip:'Cases over the comparison period.', render:function(r){ return CMP ? fmtCases(r.cmpCases) : '—'; }},
-    {key:'casesPct', label:'Cases % chg', tip:'Change in cases against the comparison period.',
+    {key:'cmpCases', label:'Comparison Cases', tip:'Cases over the comparison period.', render:function(r){ return CMP ? fmtCases(r.cmpCases) : '—'; }},
+    {key:'casesPct', label:'Cases % Chg', tip:'Change in cases against the comparison period.',
      render:function(r){ return '<span class="' + yoyClass(r.casesPct) + '">' + yoyStr(r.casesPct) + '</span>'; }},
     {key:'trend', label:'Trend', tip:'Direction of the buyer count against the comparison period.', render:function(r){ return trendCell(r.trend); }},
   ]);
@@ -1310,19 +1367,19 @@ function renderReps(){
   var totalAssigned = rows.reduce(function(s, r){ return s + r.assigned; }, 0);
   var best = rows.slice().sort(function(a, b){ return b.pctActivated - a.pctActivated; })[0];
   kpis('kpi-reps', [
-    {label:'Reps in view', value:fmtNum(rows.length), tip:'Reps with accounts on the assigned book after the filters above.',
+    {label:'Reps in View', value:fmtNum(rows.length), tip:'Reps with accounts on the assigned book after the filters above.',
      sub:fmtNum(totalAssigned) + ' assigned accounts'},
-    {label:'Book activated', value:fmtPct(totalAssigned ? CUR.buyers.size / totalAssigned * 100 : 0),
+    {label:'Book Activated', value:fmtPct(totalAssigned ? CUR.buyers.size / totalAssigned * 100 : 0),
      tip:'Accounts that bought at least one case in the range, divided by the assigned book.',
      sub:fmtNum(CUR.buyers.size) + ' accounts bought in range'},
-    {label:'Cases in range', value:fmtCases(CUR.cases), tip:'Cases sold in the selected range across the reps in view.',
+    {label:'Cases in Range', value:fmtCases(CUR.cases), tip:'Cases sold in the selected range across the reps in view.',
      sub:CMP ? yoyStr(pctChange(CUR.cases, CMP.cases)) + ' vs ' + cmpShort() : rangeLabel(st.from, st.to),
      cls:CMP ? yoyClass(pctChange(CUR.cases, CMP.cases)) : ''},
-    {label:'New accounts', value:fmtNum(rows.reduce(function(s, r){ return s + r.newAcct; }, 0)), cls:'pos',
+    {label:'New Accounts', value:fmtNum(rows.reduce(function(s, r){ return s + r.newAcct; }, 0)), cls:'pos',
      tip:'Accounts opened inside the range (first ever purchase).', sub:'first purchase in range'},
     {label:'Lapsed', value:fmtNum(rows.reduce(function(s, r){ return s + r.lapsed; }, 0)), cls:'neg',
      tip:'Accounts that bought before the range but nothing inside it.', sub:'bought before, not in range'},
-    {label:'Best activation', value:best ? esc(best.rep) : '—',
+    {label:'Best Activation', value:best ? esc(best.rep) : '—',
      tip:'The rep with the highest share of their assigned book buying inside the range.',
      sub:best ? fmtPct(best.pctActivated) + ' of their book buying' : ''},
   ]);
@@ -1333,18 +1390,18 @@ function renderReps(){
     {key:'rep', label:'Rep', tip:'The assigned sales rep.'},
     {key:'assigned', label:'Assigned', tip:'Accounts on this rep\'s assigned book, whether or not they buy.', render:function(r){ return fmtNum(r.assigned); }},
     {key:'activated', label:'Activated', tip:'Assigned accounts that bought at least one case inside the range.', render:function(r){ return fmtNum(r.activated); }},
-    {key:'pctActivated', label:'% activated', tip:'Activated accounts divided by assigned accounts.', render:function(r){ return fmtPct(r.pctActivated); }},
-    {key:'activationChange', label:'Activation chg', tip:'Activated accounts in range minus the comparison period.',
+    {key:'pctActivated', label:'% Activated', tip:'Activated accounts divided by assigned accounts.', render:function(r){ return fmtPct(r.pctActivated); }},
+    {key:'activationChange', label:'Activation Chg', tip:'Activated accounts in range minus the comparison period.',
      render:function(r){ return '<span class="' + yoyClass(r.activationChange) + '">' + signed(r.activationChange) + '</span>'; }},
     {key:'newAcct', label:'New', tip:'Accounts opened inside the range.', render:function(r){ return '<span class="yoy-pos">' + fmtNum(r.newAcct) + '</span>'; }},
     {key:'lapsed', label:'Lapsed', tip:'Bought before the range, nothing inside it.', render:function(r){ return '<span class="yoy-neg">' + fmtNum(r.lapsed) + '</span>'; }},
-    {key:'never', label:'Never bought', tip:'On the book with no purchase on file at all.', render:function(r){ return fmtNum(r.never); }},
+    {key:'never', label:'Never Bought', tip:'On the book with no purchase on file at all.', render:function(r){ return fmtNum(r.never); }},
     {key:'cases', label:'Cases', tip:'Cases sold inside the range.', render:function(r){ return fmtCases(r.cases); }},
-    {key:'cmpCases', label:'Comparison cases', tip:'Cases over the comparison period.', render:function(r){ return CMP ? fmtCases(r.cmpCases) : '—'; }},
-    {key:'casesPct', label:'Cases % chg', tip:'Change in cases against the comparison period.',
+    {key:'cmpCases', label:'Comparison Cases', tip:'Cases over the comparison period.', render:function(r){ return CMP ? fmtCases(r.cmpCases) : '—'; }},
+    {key:'casesPct', label:'Cases % Chg', tip:'Change in cases against the comparison period.',
      render:function(r){ return '<span class="' + yoyClass(r.casesPct) + '">' + yoyStr(r.casesPct) + '</span>'; }},
-    {key:'casesPerActive', label:'Cases / active acct', tip:'Cases divided by the accounts that actually bought.', render:function(r){ return fmtCases(r.casesPerActive); }},
-    {key:'familiesPlaced', label:'Families placed', tip:'Distinct brand families this rep sold in the range.', render:function(r){ return fmtNum(r.familiesPlaced); }},
+    {key:'casesPerActive', label:'Cases / Active Acct', tip:'Cases divided by the accounts that actually bought.', render:function(r){ return fmtCases(r.casesPerActive); }},
+    {key:'familiesPlaced', label:'Families Placed', tip:'Distinct brand families this rep sold in the range.', render:function(r){ return fmtNum(r.familiesPlaced); }},
   ], rows, {defaultSort:'cases', countId:'rep-count', noun:'reps', rowsFn:repRows});
 }
 
@@ -1378,13 +1435,13 @@ function renderAccounts(){
   var statuses = {Active:0, New:0, Lapsed:0, 'Never Bought':0};
   for(var a = 0; a < D.accounts.length; a++){ if(acctOK[a]) statuses[statusOf(a)]++; }
   kpis('kpi-account', [
-    {label:'Assigned accounts', value:fmtNum(uni), tip:'The assigned book after the rep and premise filters.', sub:'in view'},
+    {label:'Assigned Accounts', value:fmtNum(uni), tip:'The assigned book after the rep and premise filters.', sub:'in view'},
     {label:'Active', value:fmtNum(statuses.Active), tip:'Bought inside the range and also before it.', sub:'bought in range and before'},
     {label:'New', value:fmtNum(statuses.New), cls:'pos', tip:'First ever purchase falls inside the range.', sub:'first purchase in range'},
     {label:'Lapsed', value:fmtNum(statuses.Lapsed), cls:'neg', tip:'Bought before the range, nothing inside it.', sub:'bought before, not in range'},
-    {label:'Never bought', value:fmtNum(statuses['Never Bought']), cls:'neg', tip:'No purchase on file at all.',
+    {label:'Never Bought', value:fmtNum(statuses['Never Bought']), cls:'neg', tip:'No purchase on file at all.',
      sub:fmtPct(uni ? statuses['Never Bought'] / uni * 100 : 0) + ' of the book'},
-    {label:'Cases per buying account', value:fmtCases(CUR.buyers.size ? CUR.cases / CUR.buyers.size : 0),
+    {label:'Cases per Buying Account', value:fmtCases(CUR.buyers.size ? CUR.cases / CUR.buyers.size : 0),
      tip:'Cases divided by the accounts that bought in the range.', sub:'average depth in range'},
   ]);
   renderTable('account-table', [
@@ -1395,14 +1452,14 @@ function renderAccounts(){
     {key:'status', label:'Status', tip:'Active = bought in the range and before it. New = first ever purchase in the range. Lapsed = bought before, nothing in range. Never Bought = nothing on file.',
      render:function(r){ return badge(r.status); }},
     {key:'cases', label:'Cases', tip:'Cases bought inside the range.', render:function(r){ return fmtCases(r.cases); }},
-    {key:'cmpCases', label:'Comparison cases', tip:'Cases over the comparison period.', render:function(r){ return CMP ? fmtCases(r.cmpCases) : '—'; }},
-    {key:'casesPct', label:'Cases % chg', tip:'Change against the comparison period.',
+    {key:'cmpCases', label:'Comparison Cases', tip:'Cases over the comparison period.', render:function(r){ return CMP ? fmtCases(r.cmpCases) : '—'; }},
+    {key:'casesPct', label:'Cases % Chg', tip:'Change against the comparison period.',
      render:function(r){ return '<span class="' + yoyClass(r.casesPct) + '">' + yoyStr(r.casesPct) + '</span>'; }},
-    {key:'months', label:'Buying months', tip:'How many months inside the range the account bought anything.', render:function(r){ return fmtNum(r.months); }},
+    {key:'months', label:'Buying Months', tip:'How many months inside the range the account bought anything.', render:function(r){ return fmtNum(r.months); }},
     {key:'skus', label:'Items', tip:'Distinct items bought inside the range.', render:function(r){ return fmtNum(r.skus); }},
-    {key:'lastMonth', label:'Last bought', tip:'The most recent month with a purchase inside the range.',
+    {key:'lastMonth', label:'Last Bought', tip:'The most recent month with a purchase inside the range.',
      render:function(r){ return r.lastMonth ? esc(r.lastMonth) : '<span class="yoy-flat">—</span>'; }},
-    {key:'brands', label:'Brands in range', tip:'Brands this account bought in the range.',
+    {key:'brands', label:'Brands in Range', tip:'Brands this account bought in the range.',
      render:function(r){ return r.brands.length
        ? '<div class="chip-list" title="' + esc(r.brands.join(', ')) + '">' +
          r.brands.slice(0, 3).map(function(b){ return '<span class="chip">' + esc(b) + '</span>'; }).join('') +
@@ -1494,21 +1551,21 @@ function marginRows(){
 function renderBrand(){
   renderTable('brand-table', [
     {key:'brand', label:'Brand', tip:'The brand as it appears in Encompass.'},
-    {key:'family', label:'Brand family', tip:'The supplier-level grouping this brand belongs to.', cls:'wrap'},
+    {key:'family', label:'Brand Family', tip:'The supplier-level grouping this brand belongs to.', cls:'wrap'},
     {key:'supplier', label:'Supplier', tip:'The supplier this brand comes from.', cls:'wrap'},
     {key:'buyers', label:'AP (buyers)', tip:'Accounts Placed — distinct accounts buying this brand in the range. An account counts once however many items of the brand it stocks, so brand AP is lower than its item APs added together. Open the row to see the overlap.', render:function(r){ return fmtNum(r.buyers); }},
-    {key:'cmpBuyers', label:'Comparison buyers', tip:'The same count over the comparison period.', render:function(r){ return CMP ? fmtNum(r.cmpBuyers) : '—'; }},
+    {key:'cmpBuyers', label:'Comparison Buyers', tip:'The same count over the comparison period.', render:function(r){ return CMP ? fmtNum(r.cmpBuyers) : '—'; }},
     {key:'buyerChange', label:'Change', tip:'Buyers in range minus buyers in the comparison period.',
      render:function(r){ return '<span class="' + yoyClass(r.buyerChange) + '">' + signed(r.buyerChange) + '</span>'; }},
-    {key:'buyerPct', label:'% change', tip:'That change as a percentage of the comparison period.',
+    {key:'buyerPct', label:'% Change', tip:'That change as a percentage of the comparison period.',
      render:function(r){ return '<span class="' + yoyClass(r.buyerPct) + '">' + yoyStr(r.buyerPct) + '</span>'; }},
     {key:'gained', label:'Gained', tip:'Accounts buying in the range that were not buying in the comparison period.', render:function(r){ return CMP ? fmtNum(r.gained) : '—'; }},
     {key:'lost', label:'Lost', tip:'Accounts buying in the comparison period that did not buy in the range.', render:function(r){ return CMP ? fmtNum(r.lost) : '—'; }},
     {key:'cases', label:'Cases', tip:'Cases sold in the range.', render:function(r){ return fmtCases(r.cases); }},
-    {key:'cmpCases', label:'Comparison cases', tip:'Cases over the comparison period.', render:function(r){ return CMP ? fmtCases(r.cmpCases) : '—'; }},
-    {key:'caseVar', label:'Case variance', tip:'Cases in range minus cases in the comparison period.',
+    {key:'cmpCases', label:'Comparison Cases', tip:'Cases over the comparison period.', render:function(r){ return CMP ? fmtCases(r.cmpCases) : '—'; }},
+    {key:'caseVar', label:'Case Variance', tip:'Cases in range minus cases in the comparison period.',
      render:function(r){ return varCellOf(r.cases, r.cmpCases, !!CMP, fmtCases); }},
-    {key:'casesPct', label:'Cases % chg', tip:'Change in cases against the comparison period. Reads "new" where ' +
+    {key:'casesPct', label:'Cases % Chg', tip:'Change in cases against the comparison period. Reads "new" where ' +
       'the comparison period sold nothing, because a percentage against zero has no meaning.',
      render:function(r){ return pctCellOf(r.cases, r.cmpCases, !!CMP); }},
     {key:'items', label:'Items', tip:'Distinct items of this brand sold in the range. Open the row for each ' +
@@ -1534,19 +1591,19 @@ function renderBrand(){
   renderTable('margin-table', [
     {key:'item', label:'Item', tip:'The specific item / SKU.'},
     {key:'brand', label:'Brand', tip:'The brand as it appears in Encompass.', cls:'wrap'},
-    {key:'family', label:'Brand family', tip:'The supplier-level grouping this brand belongs to.', cls:'wrap'},
+    {key:'family', label:'Brand Family', tip:'The supplier-level grouping this brand belongs to.', cls:'wrap'},
     {key:'segment', label:'Segment', tip:'Wine, spirits or other, as classified in Encompass.', cls:'wrap'},
     {key:'pkg', label:'Package', tip:'How the item is packed.', cls:'wrap'},
-    {key:'cases', label:'Cases sold', tip:'Cases invoiced inside the range.', render:function(r){ return fmtCases(r.cases); }},
+    {key:'cases', label:'Cases Sold', tip:'Cases invoiced inside the range.', render:function(r){ return fmtCases(r.cases); }},
     {key:'revenue', label:'$Vol', tip:'Dollars invoiced inside the range.', render:function(r){ return fmtMoney(r.revenue); }},
-    {key:'casePrice', label:'Avg case price', tip:'$Vol divided by cases — the net price actually achieved per case, after discounts.', render:function(r){ return fmtMoney(r.casePrice); }},
-    {key:'caseCost', label:'Avg laid-in cost / case', tip:'Weighted average landed cost per case.', render:function(r){ return fmtMoney(r.caseCost); }},
-    {key:'discount', label:'Avg discount / case', tip:'Average discount given per case.', render:function(r){ return fmtMoney(r.discount); }},
+    {key:'casePrice', label:'Avg Case Price', tip:'$Vol divided by cases — the net price actually achieved per case, after discounts.', render:function(r){ return fmtMoney(r.casePrice); }},
+    {key:'caseCost', label:'Avg Laid-In Cost / Case', tip:'Weighted average landed cost per case.', render:function(r){ return fmtMoney(r.caseCost); }},
+    {key:'discount', label:'Avg Discount / Case', tip:'Average discount given per case.', render:function(r){ return fmtMoney(r.discount); }},
     {key:'marginPerCase', label:'Margin $/case', tip:'Average case price minus average laid-in cost per case.', render:function(r){ return fmtMoney(r.marginPerCase); }},
     {key:'marginPct', label:'Margin %', tip:'Margin dollars divided by $Vol.',
      render:function(r){ return r.marginPct != null && r.marginPct < 15 && r.cases >= 2
        ? '<span style="color:var(--red);font-weight:600">' + fmtPct(r.marginPct) + '</span>' : fmtPct(r.marginPct); }},
-    {key:'marginTotal', label:'Total margin $', tip:'Total realized margin dollars for this item in the range.', render:function(r){ return fmtMoney(r.marginTotal); }},
+    {key:'marginTotal', label:'Total Margin $', tip:'Total realized margin dollars for this item in the range.', render:function(r){ return fmtMoney(r.marginTotal); }},
   ], marginRows(), {defaultSort:'revenue', countId:'margin-result-count', noun:'items', max:400, rowsFn:marginRows});
   document.getElementById('margin-count').textContent = INVCUR.items.size + ' items invoiced in range';
 }
@@ -1592,33 +1649,33 @@ function renderCity(){
   var tot = onCases + offCases;
   var top = rows.slice().sort(function(a, b){ return b.cases - a.cases; })[0];
   kpis('kpi-city', [
-    {label:'Cities on the book', value:fmtNum(rows.length), tip:'Cities with at least one assigned account in view.',
+    {label:'Cities on the Book', value:fmtNum(rows.length), tip:'Cities with at least one assigned account in view.',
      sub:'including accounts with no city on file'},
-    {label:'On-premise cases', value:fmtCases(onCases), tip:'Cases going to bars and restaurants inside the range.',
+    {label:'On-Premise Cases', value:fmtCases(onCases), tip:'Cases going to bars and restaurants inside the range.',
      sub:tot ? fmtPct(onCases / tot * 100) + ' of range volume' : '—'},
-    {label:'Off-premise cases', value:fmtCases(offCases), tip:'Cases going to liquor stores inside the range.',
+    {label:'Off-Premise Cases', value:fmtCases(offCases), tip:'Cases going to liquor stores inside the range.',
      sub:tot ? fmtPct(offCases / tot * 100) + ' of range volume' : '—'},
-    {label:'Top city', value:top ? esc(top.city) : '—', tip:'The city with the most cases inside the range.',
+    {label:'Top City', value:top ? esc(top.city) : '—', tip:'The city with the most cases inside the range.',
      sub:top ? fmtCases(top.cases) + ' cases' : ''},
   ]);
   renderTable('city-table', [
     {key:'city', label:'City', tip:'The city, from the assigned account roster.'},
-    {key:'assigned', label:'Assigned accounts', tip:'Accounts on the book in this city, whether or not they buy.', render:function(r){ return fmtNum(r.assigned); }},
+    {key:'assigned', label:'Assigned Accounts', tip:'Accounts on the book in this city, whether or not they buy.', render:function(r){ return fmtNum(r.assigned); }},
     {key:'buyers', label:'Buying', tip:'Accounts in this city that bought inside the range.', render:function(r){ return fmtNum(r.buyers); }},
-    {key:'pctActivated', label:'% activated', tip:'Buying accounts divided by assigned accounts in the city.', render:function(r){ return fmtPct(r.pctActivated); }},
-    {key:'buyerChange', label:'Buyer chg', tip:'Buying accounts in range minus the comparison period.',
+    {key:'pctActivated', label:'% Activated', tip:'Buying accounts divided by assigned accounts in the city.', render:function(r){ return fmtPct(r.pctActivated); }},
+    {key:'buyerChange', label:'Buyer Chg', tip:'Buying accounts in range minus the comparison period.',
      render:function(r){ return '<span class="' + yoyClass(r.buyerChange) + '">' + signed(r.buyerChange) + '</span>'; }},
     {key:'newAcct', label:'New', tip:'Accounts in this city opened inside the range.', render:function(r){ return fmtNum(r.newAcct); }},
     {key:'lapsed', label:'Lapsed', tip:'Accounts that bought before the range and nothing inside it.', render:function(r){ return fmtNum(r.lapsed); }},
-    {key:'never', label:'Never bought', tip:'Accounts with no purchase on file at all.', render:function(r){ return fmtNum(r.never); }},
+    {key:'never', label:'Never Bought', tip:'Accounts with no purchase on file at all.', render:function(r){ return fmtNum(r.never); }},
     {key:'cases', label:'Cases', tip:'Cases sold in this city inside the range.', render:function(r){ return fmtCases(r.cases); }},
-    {key:'cmpCases', label:'Comparison cases', tip:'Cases over the comparison period.', render:function(r){ return CMP ? fmtCases(r.cmpCases) : '—'; }},
-    {key:'casesPct', label:'Cases % chg', tip:'Change in cases against the comparison period.',
+    {key:'cmpCases', label:'Comparison Cases', tip:'Cases over the comparison period.', render:function(r){ return CMP ? fmtCases(r.cmpCases) : '—'; }},
+    {key:'casesPct', label:'Cases % Chg', tip:'Change in cases against the comparison period.',
      render:function(r){ return '<span class="' + yoyClass(r.casesPct) + '">' + yoyStr(r.casesPct) + '</span>'; }},
-    {key:'casesPerBuyer', label:'Cases / buying acct', tip:'Cases divided by buying accounts in the city.', render:function(r){ return fmtCases(r.casesPerBuyer); }},
-    {key:'onCases', label:'On-prem (accts / cases)', tip:'On-premise buying accounts and their cases.',
+    {key:'casesPerBuyer', label:'Cases / Buying Acct', tip:'Cases divided by buying accounts in the city.', render:function(r){ return fmtCases(r.casesPerBuyer); }},
+    {key:'onCases', label:'On-Prem (Accts / Cases)', tip:'On-premise buying accounts and their cases.',
      render:function(r){ return fmtNum(r.onBuyers) + ' / ' + fmtCases(r.onCases); }},
-    {key:'offCases', label:'Off-prem (accts / cases)', tip:'Off-premise buying accounts and their cases.',
+    {key:'offCases', label:'Off-Prem (Accts / Cases)', tip:'Off-premise buying accounts and their cases.',
      render:function(r){ return fmtNum(r.offBuyers) + ' / ' + fmtCases(r.offCases); }},
     {key:'reps', label:'Rep(s)', tip:'Reps selling in this city inside the range.',
      render:function(r){ return esc(r.reps.slice(0, 3).join(', ')) + (r.reps.length > 3 ? ' +' + (r.reps.length - 3) : ''); }, cls:'wrap'},
@@ -1666,21 +1723,21 @@ function renderGaps(){
   var belowPar = g.parRows.filter(function(p){ return p.status === 'Below Par'; }).length;
 
   kpis('kpi-gaps', [
-    {label:'Open placement gaps', value:fmtNum(openGaps), cls:'neg',
+    {label:'Open Placement Gaps', value:fmtNum(openGaps), cls:'neg',
      tip:'Rep × top-family combinations with nothing placed inside the selected range.',
      sub:'rep × family pairs with nothing sold'},
-    {label:'Median families held', value:fmtNum(median) + ' of ' + g.top.length,
+    {label:'Median Families Held', value:fmtNum(median) + ' of ' + g.top.length,
      tip:'The middle rep sells this many of the largest brand families in the range.',
      sub:fmtNum(allHeld) + ' reps hold all ' + g.top.length},
-    {label:'Reps at half or less', value:fmtNum(halfOrLess), cls:'neg',
+    {label:'Reps at Half or Less', value:fmtNum(halfOrLess), cls:'neg',
      tip:'Reps selling half or fewer of the tracked families in the range.', sub:'biggest whitespace'},
-    {label:'Most-missed family', value:worst != null ? esc(D.families[worst]) : '—', cls:'neg',
+    {label:'Most-Missed Family', value:worst != null ? esc(D.families[worst]) : '—', cls:'neg',
      tip:'The tracked family missing from the most reps in this range.',
      sub:worst != null ? fmtNum(missCount[worst]) + ' reps have it nowhere' : ''},
-    {label:'Below-par combinations', value:fmtNum(belowPar), cls:'neg',
+    {label:'Below-Par Combinations', value:fmtNum(belowPar), cls:'neg',
      tip:'Rep × family pairs below the company average buyer count per rep for that family.',
      sub:'of ' + fmtNum(g.parRows.length) + ' pairs'},
-    {label:'Reps selling in range', value:fmtNum(g.reps.length),
+    {label:'Reps Selling in Range', value:fmtNum(g.reps.length),
      tip:'Reps with at least one case sold inside the range.', sub:'with at least one case'},
   ]);
   document.getElementById('gap-sub').textContent =
@@ -1737,7 +1794,7 @@ function renderGaps(){
   }
   renderTable('par-table', [
     {key:'rep', label:'Rep', tip:'The sales rep.'},
-    {key:'family', label:'Brand family', tip:'The brand family.', cls:'wrap'},
+    {key:'family', label:'Brand Family', tip:'The brand family.', cls:'wrap'},
     {key:'buyers', label:'Buyers', tip:'Accounts buying this family from this rep in the range.', render:function(r){ return fmtNum(r.buyers); }},
     {key:'par', label:'Par', tip:'Average buying accounts per rep for that family, company-wide, in this range.', render:function(r){ return r.par.toFixed(1); }},
     {key:'gap', label:'Gap', tip:'Buyers minus par. Negative means below the company average.',
@@ -1780,20 +1837,20 @@ function renderLost(){
   }
 
   kpis('kpi-lost', [
-    {label:'Lost placements', value:fmtNum(lostRows.length), cls:'neg',
+    {label:'Lost Placements', value:fmtNum(lostRows.length), cls:'neg',
      tip:'Account × item pairs that ordered inside the range but nothing in the trailing 60 days before its end.',
      sub:PLACE ? 'of ' + fmtNum(PLACE.tracked) + ' tracked pairs' : 'no placement data in range'},
-    {label:'Accounts affected', value:fmtNum(new Set(lostRows.map(function(p){ return p.cust; })).size),
+    {label:'Accounts Affected', value:fmtNum(new Set(lostRows.map(function(p){ return p.cust; })).size),
      tip:'Distinct accounts with at least one lost placement.',
      sub:fmtNum(new Set(lostRows.map(function(p){ return p.prod; })).size) + ' distinct items'},
-    {label:'Cases in lost placements', value:fmtCases(lostRows.reduce(function(s, p){ return s + p.cases; }, 0)),
+    {label:'Cases in Lost Placements', value:fmtCases(lostRows.reduce(function(s, p){ return s + p.cases; }, 0)),
      tip:'Cases those pairs bought inside the range before going quiet.', sub:'volume now at risk'},
-    {label:'At-risk accounts', value:fmtNum(risk.length), cls:'neg',
+    {label:'At-Risk Accounts', value:fmtNum(risk.length), cls:'neg',
      tip:'Still buying in the range but down ' + Math.abs(M.declineThreshold) + '% or more against the comparison period.',
      sub:'down ' + Math.abs(M.declineThreshold) + '%+ vs ' + cmpShort()},
-    {label:'Lapsed accounts', value:fmtNum(lapsed.length), cls:'neg',
+    {label:'Lapsed Accounts', value:fmtNum(lapsed.length), cls:'neg',
      tip:'Bought before the range, nothing inside it.', sub:'bought before, not in range'},
-    {label:'Placement window', value:anchorDate ? esc(anchorDate) : '—',
+    {label:'Placement Window', value:anchorDate ? esc(anchorDate) : '—',
      tip:'Lost placements are measured against the most recent load-sheet date inside your range.',
      sub:cutoffDate ? 'quiet since ' + cutoffDate : 'no placement rows in range'},
   ]);
@@ -1811,10 +1868,10 @@ function renderLost(){
   }) : [];
   renderTable('lostrep-table', [
     {key:'rep', label:'Rep', tip:'The sales rep on the placement.'},
-    {key:'tracked', label:'Tracked placements', tip:'Account × item pairs this rep has in the range.', render:function(r){ return fmtNum(r.tracked); }},
+    {key:'tracked', label:'Tracked Placements', tip:'Account × item pairs this rep has in the range.', render:function(r){ return fmtNum(r.tracked); }},
     {key:'lost', label:'Lost', tip:'Pairs with no order in the trailing 60 days.', render:function(r){ return '<span class="yoy-neg">' + fmtNum(r.lost) + '</span>'; }},
-    {key:'pctLost', label:'% lost', tip:'Lost divided by tracked placements.', render:function(r){ return fmtPct(r.pctLost); }},
-    {key:'cases', label:'Cases in lost placements', tip:'Cases tied to the placements this rep has lost.', render:function(r){ return fmtCases(r.cases); }},
+    {key:'pctLost', label:'% Lost', tip:'Lost divided by tracked placements.', render:function(r){ return fmtPct(r.pctLost); }},
+    {key:'cases', label:'Cases in Lost Placements', tip:'Cases tied to the placements this rep has lost.', render:function(r){ return fmtCases(r.cases); }},
   ], repRowsData, {defaultSort:'lost'});
 
   function lostFiltered(){
@@ -1833,11 +1890,11 @@ function renderLost(){
     {key:'city', label:'City', tip:'The account\'s city.', cls:'wrap'},
     {key:'premise', label:'Premise', tip:'On- or off-premise.', cls:'wrap'},
     {key:'rep', label:'Rep', tip:'The assigned sales rep.', cls:'wrap'},
-    {key:'dm', label:'District manager', tip:'The district manager over this rep.', cls:'wrap'},
+    {key:'dm', label:'District Manager', tip:'The district manager over this rep.', cls:'wrap'},
     {key:'product', label:'Item', tip:'The item that stopped being ordered.', cls:'wrap'},
-    {key:'lastOrder', label:'Last order', tip:'The last date this account ordered this item inside the range.'},
-    {key:'daysSince', label:'Days since', tip:'Days between that last order and the latest load-sheet date in the range.', render:function(r){ return fmtNum(r.daysSince); }},
-    {key:'cases', label:'Cases (in range)', tip:'Cases this pair bought inside the range before going quiet.', render:function(r){ return fmtCases(r.cases); }},
+    {key:'lastOrder', label:'Last Order', tip:'The last date this account ordered this item inside the range.'},
+    {key:'daysSince', label:'Days Since', tip:'Days between that last order and the latest load-sheet date in the range.', render:function(r){ return fmtNum(r.daysSince); }},
+    {key:'cases', label:'Cases (in Range)', tip:'Cases this pair bought inside the range before going quiet.', render:function(r){ return fmtCases(r.cases); }},
   ], lostFiltered(), {defaultSort:'daysSince', countId:'lost-result-count', noun:'lost placements', max:800, rowsFn:lostFiltered});
   document.getElementById('lost-count').textContent = '';
 
@@ -1847,10 +1904,10 @@ function renderLost(){
     {key:'city', label:'City', tip:'The account\'s city.', cls:'wrap'},
     {key:'premise', label:'Premise', tip:'On- or off-premise.', cls:'wrap'},
     {key:'cases', label:'Cases', tip:'Cases bought inside the range.', render:function(r){ return fmtCases(r.cases); }},
-    {key:'cmpCases', label:'Comparison cases', tip:'Cases over the comparison period.', render:function(r){ return fmtCases(r.cmpCases); }},
-    {key:'pct', label:'Cases % chg', tip:'Change against the comparison period.',
+    {key:'cmpCases', label:'Comparison Cases', tip:'Cases over the comparison period.', render:function(r){ return fmtCases(r.cmpCases); }},
+    {key:'pct', label:'Cases % Chg', tip:'Change against the comparison period.',
      render:function(r){ return '<span class="' + yoyClass(r.pct) + '">' + yoyStr(r.pct) + '</span>'; }},
-    {key:'lastMonth', label:'Last bought', tip:'The most recent month with a purchase inside the range.'},
+    {key:'lastMonth', label:'Last Bought', tip:'The most recent month with a purchase inside the range.'},
   ], risk, {defaultSort:'cmpCases', countId:'risk-count', noun:'accounts', max:400,
      emptyText: CMP ? 'No accounts are down that far in this range.' : 'Pick a comparison period to see at-risk accounts.'});
 
@@ -1863,7 +1920,7 @@ function renderLost(){
     {key:'rep', label:'Rep', tip:'The assigned sales rep.', cls:'wrap'},
     {key:'city', label:'City', tip:'The account\'s city.', cls:'wrap'},
     {key:'premise', label:'Premise', tip:'On- or off-premise.', cls:'wrap'},
-    {key:'cmpCases', label:'Comparison cases', tip:'What this account bought in the comparison period — the volume that has now stopped.', render:function(r){ return fmtCases(r.cmpCases); }},
+    {key:'cmpCases', label:'Comparison Cases', tip:'What this account bought in the comparison period — the volume that has now stopped.', render:function(r){ return fmtCases(r.cmpCases); }},
   ], lapsedFiltered(), {defaultSort:'cmpCases', countId:'lapsed-result-count', noun:'lapsed accounts', max:500, rowsFn:lapsedFiltered});
   document.getElementById('lapsed-count').textContent = '';
 }
@@ -1910,7 +1967,7 @@ function mtdRange(){ return [LATEST, LATEST]; }
 /* group any window of sales cells by one level of the hierarchy, carrying both
    measures the page reports on: cases, and AP as a set of distinct accounts */
 var LEVELS = {
-  family:  {noun:'brand families', label:'Brand family',
+  family:  {noun:'brand families', label:'Brand Family',
             key:function(it, ii){ return 'f' + it.f; }, name:function(it){ return D.families[it.f]; }},
   brand:   {noun:'brands', label:'Brand',
             key:function(it, ii){ return 'b' + it.b; }, name:function(it){ return D.brands[it.b]; }},
@@ -2042,9 +2099,9 @@ function renderReportCard(){
   if(pyAll) pyAll.forEach(function(v){ tot.py += v.cases; v.ap.forEach(function(a){ apP.add(a); }); });
 
   kpis('kpi-reportcard', [
-    {label:'MTD cases', value:fmtCases(tot.mtd), tip:'Cases in ' + esc(M.months[LATEST]) +
+    {label:'MTD Cases', value:fmtCases(tot.mtd), tip:'Cases in ' + esc(M.months[LATEST]) +
       ' — the latest month on file, through the latest data date.', sub:M.months[LATEST]},
-    {label:'YTD cases', value:fmtCases(tot.ytd),
+    {label:'YTD Cases', value:fmtCases(tot.ytd),
      tip:'Cases from January of the latest year through the latest data date.',
      sub:on ? signed(tot.ytd - tot.py, fmtCases) + ' vs ' + cmpShort() : rangeLabel(y[0], y[1]),
      cls:on ? yoyClass(tot.ytd - tot.py) : ''},
@@ -2053,7 +2110,7 @@ function renderReportCard(){
          'An account buying twenty items still counts once.',
      sub:on ? signed(apY.size - apP.size) + ' vs ' + cmpShort() : 'distinct accounts',
      cls:on ? yoyClass(apY.size - apP.size) : ''},
-    {label:'Rows on the card', value:fmtNum(rows.length),
+    {label:'Rows on the Card', value:fmtNum(rows.length),
      tip:'How many ' + L.noun + ' the current level and filters produce.',
      sub:'by ' + L.label.toLowerCase()},
   ]);
@@ -2073,15 +2130,15 @@ function renderReportCard(){
   }
   if(mode === 'item') cols.push({key:'channel', label:'Premise', tip:'On or off premise.', cls:'wrap'});
   cols = cols.concat([
-    {key:'mtdCases', label:'MTD cases', tip:'Cases in ' + M.months[LATEST] + ', the latest month on file.',
+    {key:'mtdCases', label:'MTD Cases', tip:'Cases in ' + M.months[LATEST] + ', the latest month on file.',
      render:function(r){ return fmtCases(r.mtdCases); }},
-    {key:'ytdCases', label:'YTD cases', tip:'Cases from January of the latest year through the latest data date.',
+    {key:'ytdCases', label:'YTD Cases', tip:'Cases from January of the latest year through the latest data date.',
      render:function(r){ return fmtCases(r.ytdCases); }},
-    {key:'pyCases', label:'Comparison cases', tip:'The same YTD window over the comparison period.',
+    {key:'pyCases', label:'Comparison Cases', tip:'The same YTD window over the comparison period.',
      render:function(r){ return on ? fmtCases(r.pyCases) : '—'; }},
-    {key:'caseVar', label:'Case variance', tip:'YTD cases minus comparison cases.',
+    {key:'caseVar', label:'Case Variance', tip:'YTD cases minus comparison cases.',
      render:function(r){ return varCellOf(r.ytdCases, r.pyCases, on, fmtCases); }},
-    {key:'casePct', label:'Case % chg', tip:'That variance as a percentage of the comparison period. ' +
+    {key:'casePct', label:'Case % Chg', tip:'That variance as a percentage of the comparison period. ' +
       'Shown as "new" where the comparison period is zero, because a percentage against zero has no meaning.',
      render:function(r){ return pctCellOf(r.ytdCases, r.pyCases, on); }},
     {key:'ytdAp', label:'YTD AP', tip:'Accounts Placed — distinct accounts buying this in the year to date. ' +
@@ -2089,9 +2146,9 @@ function renderReportCard(){
      render:function(r){ return fmtNum(r.ytdAp); }},
     {key:'pyAp', label:'Comparison AP', tip:'Distinct accounts over the comparison period.',
      render:function(r){ return on ? fmtNum(r.pyAp) : '—'; }},
-    {key:'apVar', label:'AP variance', tip:'YTD AP minus comparison AP.',
+    {key:'apVar', label:'AP Variance', tip:'YTD AP minus comparison AP.',
      render:function(r){ return varCellOf(r.ytdAp, r.pyAp, on, fmtNum); }},
-    {key:'apPct', label:'AP % chg', tip:'That variance as a percentage of the comparison period.',
+    {key:'apPct', label:'AP % Chg', tip:'That variance as a percentage of the comparison period.',
      render:function(r){ return pctCellOf(r.ytdAp, r.pyAp, on); }},
     {key:'grade', label:'Performance', tip:'From the YTD case change: Growing at +5% or better, ' +
       'Declining at -5% or worse, Steady in between. "New" sold nothing in the comparison period; ' +
@@ -2100,11 +2157,11 @@ function renderReportCard(){
   ]);
   if(goalsLoaded()){
     cols = cols.concat([
-      {key:'caseGoal', label:'Case goal', tip:'From ws_goals.csv — an explicitly supplied goal. No goal is ever ' +
+      {key:'caseGoal', label:'Case Goal', tip:'From ws_goals.csv — an explicitly supplied goal. No goal is ever ' +
         'estimated or inferred.', render:function(r){ return r.caseGoal == null ? '—' : fmtCases(r.caseGoal); }},
       {key:'caseProgress', label:'Progress', tip:'YTD cases divided by the supplied case goal.',
        render:function(r){ return r.caseGoal == null ? '—' : fmtPct(progressPct(r.ytdCases, r.caseGoal)); }},
-      {key:'caseNeeded', label:'Still needed', tip:'Goal minus actual, floored at zero.',
+      {key:'caseNeeded', label:'Still Needed', tip:'Goal minus actual, floored at zero.',
        render:function(r){ return r.caseGoal == null ? '—' : fmtCases(stillNeeded(r.ytdCases, r.caseGoal)); }},
     ]);
     rows.forEach(function(r){
@@ -2395,17 +2452,17 @@ function renderOpportunity(){
     {label:'Current AP', value:fmtNum(curAP),
      tip:'Accounts Placed — distinct accounts buying this in ' + rangeLabel(st.from, st.to) +
          ', inside the filters set above.', sub:rangeLabel(st.from, st.to)},
-    {label:'Total eligible accounts', value:fmtNum(elig),
+    {label:'Total Eligible Accounts', value:fmtNum(elig),
      tip:'Active accounts on the assigned book whose premise suits this product and whose area is ' +
          'authorized to sell the brand family — plus everyone already buying it.',
      sub:'active · right premise · in territory'},
-    {label:'Potential additional accounts', value:fmtNum(potential), cls:'pos',
+    {label:'Potential Additional Accounts', value:fmtNum(potential), cls:'pos',
      tip:'Eligible accounts minus the accounts already buying. Never negative: current buyers are ' +
          'always counted as eligible.', sub:'eligible − current AP'},
-    {label:'Distribution opportunity', value:oppPct == null ? '—' : fmtPct(oppPct),
+    {label:'Distribution Opportunity', value:oppPct == null ? '—' : fmtPct(oppPct),
      tip:'Potential additional accounts as a share of the eligible universe.',
      sub:penetration == null ? '' : fmtPct(penetration) + ' of eligible accounts buy it today'},
-    {label:'Median cases per buyer', value:fmtCases(OPP.medBuyer),
+    {label:'Median Cases per Buyer', value:fmtCases(OPP.medBuyer),
      tip:'The middle account already buying this bought this many cases in the range. Used only for the ' +
          'illustration below — it is not a target.', sub:'among current buyers'},
   ]);
@@ -2442,21 +2499,21 @@ function renderOpportunity(){
     {key:'rep', label:'Rep', tip:'The rep this account is assigned to.', cls:'wrap'},
     {key:'area', label:'Territory', tip:'The area used for the brand-authorization test.', cls:'wrap'},
     {key:'prem', label:'Premise', tip:'On or off premise, from the assigned book.', cls:'wrap'},
-    {key:'why', label:'Why it qualifies', cls:'wrap',
+    {key:'why', label:'Why It Qualifies', cls:'wrap',
      tip:'Every reason this account scored. Each one is a fact from the data, not an assumption.',
      render:function(r){ return '<div class="why">' + (r.why.length
        ? r.why.map(function(w){ return '<span class="' + w.cls + '">' + w.text + '</span>'; }).join('')
        : '<span>Eligible, no buying signal yet</span>') + '</div>'; }},
-    {key:'compare', label:'Comparable brand', cls:'wrap',
+    {key:'compare', label:'Comparable Brand', cls:'wrap',
      tip:'The brand in the same segment this account buys most of — the closest thing it already stocks.'},
-    {key:'related', label:'Related W&S cases', tip:'Cases of any wine or spirits product this account bought ' +
+    {key:'related', label:'Related W&S Cases', tip:'Cases of any wine or spirits product this account bought ' +
       'in the range. The evidence that it buys this portfolio at all.',
      render:function(r){ return fmtCases(r.related); }},
-    {key:'tv', label:'Total 2026 cases', tip:'The account\'s 2026 volume across ALL Kohler products, beer ' +
+    {key:'tv', label:'Total 2026 Cases', tip:'The account\'s 2026 volume across ALL Kohler products, beer ' +
       'included, from the hub workbook. A measure of how big the account is.',
      render:function(r){ return fmtCases(r.tv); }},
-    {key:'last', label:'Last bought', tip:'The last month this account bought the selected product, if ever.'},
-    {key:'score', label:'Evidence score', tip:'Bought it before 45 · already buys the family 25 · up to 25 for ' +
+    {key:'last', label:'Last Bought', tip:'The last month this account bought the selected product, if ever.'},
+    {key:'score', label:'Evidence Score', tip:'Bought it before 45 · already buys the family 25 · up to 25 for ' +
       'comparable brands in the segment · up to 20 for related W&S volume · up to 10 for account size. ' +
       'A ranking aid, not a prediction.',
      render:function(r){ return fmtNum(r.score); }},
@@ -2592,17 +2649,15 @@ function render(){
   RENDER[st.view]();
   var cr = comparisonRange();
   document.getElementById('rangeNote').innerHTML =
-    'Showing <b>' + esc(rangeLabel(st.from, st.to)) + '</b> (' + (st.to - st.from + 1) + ' month' +
+    '<b>' + esc(rangeLabel(st.from, st.to)) + '</b> (' + (st.to - st.from + 1) + ' Month' +
     (st.to === st.from ? '' : 's') + ')' +
-    (cr ? ' compared with <b>' + esc(rangeLabel(cr[0], cr[1])) + '</b>' : ' with no comparison period') +
-    (st.rep ? ' · rep <b>' + esc(st.rep) + '</b>' : '') +
+    (cr ? ' vs. <b>' + esc(rangeLabel(cr[0], cr[1])) + '</b>' : ' · No Comparison') +
+    (st.rep ? ' · Rep <b>' + esc(st.rep) + '</b>' : '') +
     (st.premise ? ' · <b>' + esc(st.premise) + '</b>' : '') +
-    '. The account file is monthly, so ranges snap to whole months (' + esc(M.months[0]) + ' – ' +
-    esc(M.months[NM - 1]) + ' available).' +
-    (st.from === 0 ? ' <b>Heads up:</b> the range starts at the very beginning of the data, so every buyer counts as' +
-      ' &ldquo;new&rdquo; — there is no earlier history to compare them against.' : '');
+    ' · Data ' + esc(M.months[0]) + ' – ' + esc(M.months[NM - 1]) +
+    (st.from === 0 ? ' · <b>Heads Up:</b> Range starts at the beginning of the data, so every buyer counts as &ldquo;new&rdquo;.' : '');
   document.getElementById('asof-note').innerHTML =
-    'Data through ' + esc(M.months[NM - 1]) + '<br>Invoices ' + esc(M.invoiceMin) + ' – ' + esc(M.invoiceMax);
+    'Data Through ' + esc(M.months[NM - 1]) + '<br>Invoices ' + esc(M.invoiceMin) + ' – ' + esc(M.invoiceMax);
   document.querySelectorAll('#presets .preset').forEach(function(b){
     b.setAttribute('aria-pressed', b.dataset.preset === st.preset);
   });
@@ -2718,12 +2773,25 @@ function init(){
   ['opp-area','opp-rep','opp-prem','opp-search','opp-reason'].forEach(function(id){ live(id, renderOpportunity); });
   fillOppTargets();
 
-  if(window.innerWidth > 720) document.getElementById('notice').open = true;
   applyPreset('ytd');
   render();
 }
 
 init();
+})();
+
+// Phone layout: label every table cell with its column heading so rows can stack (CSS above).
+(function(){
+  function label(t){
+    var head=t.querySelector('thead tr'); if(!head) return;
+    var ths=[].slice.call(head.children).map(function(th){ var c=th.cloneNode(true); [].forEach.call(c.querySelectorAll('.th-info'),function(x){x.remove();}); return (c.textContent||'').replace(/\s+/g,' ').trim(); });
+    [].forEach.call(t.querySelectorAll('tbody tr'),function(r){ if(r.children.length!==ths.length||r.children[0].hasAttribute('data-l')||!r.children[1]||r.children[1].hasAttribute('data-l')) return; [].forEach.call(r.children,function(td,i){ if(ths[i]) td.setAttribute('data-l',ths[i]); }); });
+    t.classList.add(ths.length<=2?'kf-2':'kf-n');
+  }
+  var timer=0;
+  function run(){ timer=0; [].forEach.call(document.querySelectorAll('.table-scroll table'),label); }
+  new MutationObserver(function(){ if(!timer) timer=setTimeout(run,60); }).observe(document.body,{childList:true,subtree:true});
+  run();
 })();
 </script>
 </body>

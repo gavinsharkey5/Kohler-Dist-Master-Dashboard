@@ -294,8 +294,63 @@
   .loading{padding:60px 0;text-align:center;color:var(--ink-soft)}
   footer{color:var(--ink-dim);font-size:16.5px;padding:20px 0 40px;line-height:1.6}
   @media (max-width:700px){body{padding:0 12px}.card{padding:14px 12px}.kpi .v{font-size:30px}th,td{padding:8px 10px}.seg button{padding:10px 12px}.back{margin-left:0}}
+
+  /* PAGE STANDARD (2026-10-07): one centered 960px column, short copy, Title Case strings, 14px floor. */
+  .wrap{max-width:960px;padding:0 16px}
+  header{padding:18px 0 4px;text-align:center}
+  h1{font-size:28px;line-height:1.2;font-weight:600;letter-spacing:0;text-transform:none;text-align:center}
+  .sub{max-width:none;margin:6px 0 0;font-size:15px;text-align:center}
+  .pills{justify-content:center;gap:8px;margin:12px 0 0}
+  .pill{font-size:14px;padding:6px 14px}
+  .pagetabs{gap:12px;margin:16px 0 12px}
+  .pagetabs button{font-size:17px;font-weight:600;padding:12px 14px;min-height:64px}
+  .pagetabs button small{font-size:14px;font-weight:400}
+  .card{padding:16px;margin:12px 0}
+  .card h2,.sc-head h2{font-size:18px;font-weight:600}
+  .step{font-size:18px;font-weight:600;letter-spacing:0;text-transform:none}
+  .gtitle,.qlab,.measure-l,.sact-l,.tk-say{letter-spacing:0;text-transform:none;font-size:14px;font-weight:600}
+  .qmode{justify-content:center;padding:12px 16px}
+  .qmode-l{font-size:16px;font-weight:600}
+  .qmode #q-print{margin-left:0 !important}
+  .terr{margin:0 0 12px;font-size:14px;text-align:center}
+  .muted,.help,.note,footer{font-size:14px}
+  footer{padding:12px 0 32px}
+  footer .more{margin-top:0}
+  .filters>.row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 14px;align-items:end}
+  .filters>.row label.inl{grid-column:1/-1}
+  .inl{flex-wrap:wrap;max-width:100%}
+  .group .ctl{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .groups{grid-template-columns:1fr 1fr}
+  .ctl label.wide{grid-column:1/-1}
+  .btn,.seg button,.tabs button{font-size:15px;font-weight:500}
+  .btn.glow,.seg button.on,.tabs button.on,.btn.primary{font-weight:600}
+  .tag,.verdict,.dtag,.qseg,.kpi .l,th.grp,tr.total td,.crumbs .cur,.qsub,.tk-title,.cprow .cpn{font-weight:600}
+  th.grp{letter-spacing:0;text-transform:none}
+  .kpi .v,.sbig .v{font-size:36px;font-weight:700}
+  .kpi .l,.kpi .d{font-size:14px}
+  .tbl-wrap{max-height:none}
+  table{font-size:15px}
+  .scard{padding:16px}
+  .seelink{font-size:14px}
+  .slist,.scol .slist{font-size:15px}.scol h4{font-size:16px;font-weight:600}
+  .sfit{font-size:15px}
+  @media (max-width:700px){
+    .wrap{padding:0 16px}
+    h1{font-size:24px}
+    .filters>.row{grid-template-columns:1fr}
+    .groups,.group .ctl{grid-template-columns:1fr}
+    .pagetabs{flex-direction:column}
+    .toolbar{flex-direction:column;align-items:stretch}
+    .tbtns .btn{flex:1}
+    table{font-size:14px}
+    th,td{padding:8px 6px}
+    .qbar{grid-template-columns:1fr}
+    .sfit{grid-template-columns:1fr;gap:4px}
+    .scols{grid-template-columns:1fr}
+    .qlegend{margin-left:0;flex-wrap:wrap}
+  }
 </style>
-<script src="../shared/kdh-user.js?v=20261005a"></script>
+<script src="../shared/kdh-user.js?v=20261007a"></script>
 <script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="kdh-page" content="Rolling Distribution Trends">
 <!-- Site design system: maps this page's variables + fonts onto shared/kdh.css. Keep it LAST in <head>. -->
@@ -314,15 +369,17 @@
       </div>
       <button class="theme-btn" id="theme-btn" title="Switch between light and dark mode" aria-label="Switch between light and dark mode"><span id="theme-ico">☀</span> <span id="theme-lbl">Light mode</span></button>
     </div>
-    <p class="sub">Buyers, placements and cases by supplier, brand and product across rolling periods. Pick a supplier, rep or manager to narrow it; open <b>More filters</b> for area, county, account size and product.</p>
+    <p class="sub">Buyers, Placements and Cases by Rolling Period</p>
     <div class="pills" id="pills"></div>
   </header>
 
   <div id="app" class="loading">Loading distribution history&hellip;</div>
 
   <footer>
-    <div><b>How things are counted.</b> One row in the source is one product at one account for one month. A <b>buyer</b> is an account whose net cases in the period are above zero, counted once per row of the table (an account buying three Blue Moon packages is 1 Blue Moon buyer, 3 placements). A <b>placement</b> is one product at one account with net cases above zero in the period. <b>Cases</b> are net of returns and credits. "Any invoice activity" switches buyers and placements to Fusion's own flag, which also counts accounts whose period nets to zero or negative.</div>
+    <details class="more"><summary>How Things Are Counted</summary>
+    <div> One row in the source is one product at one account for one month. A <b>buyer</b> is an account whose net cases in the period are above zero, counted once per row of the table (an account buying three Blue Moon packages is 1 Blue Moon buyer, 3 placements). A <b>placement</b> is one product at one account with net cases above zero in the period. <b>Cases</b> are net of returns and credits. "Any invoice activity" switches buyers and placements to Fusion's own flag, which also counts accounts whose period nets to zero or negative.</div>
     <div style="margin-top:6px">Periods are whole calendar months. Rep and district manager are the current assignment applied to all history. "Prior period" is the previous non-overlapping window of the same length; "prior year" is the same months one year earlier. Source: Fusion product &times; account exports.</div>
+      </details>
   </footer>
 </div>
 <div class="tip" id="tip"></div>
@@ -399,7 +456,7 @@
   function inDecFilter(c){ var d=decOf(c); switch(S.dec){ case '1': return d===1; case '2': return d>=1&&d<=2; case '3': return d>=1&&d<=3; case 'm': return d>=4&&d<=7; case 'b': return d>=8; case 'n': return d===0; default: return true; } }
   var LEVELS = [
     {key:'supplier', label:'Supplier', plural:'Suppliers', names:D.suppliers, idx:2},
-    {key:'family',   label:'Brand family', plural:'Brand families', names:D.families, idx:3},
+    {key:'family',   label:'Brand Family', plural:'Brand Families', names:D.families, idx:3},
     {key:'brand',    label:'Brand', plural:'Brands', names:D.brands, idx:4},
     {key:'product',  label:'Product', plural:'Products', names:null, idx:0}
   ];
@@ -694,17 +751,17 @@
   function fmtM(m,v){ return m==='cases'?fmtC(v):(m==='cpp'?fmt1(v):fmtN(v)); }
 
   function pageTabs(){
-    return '<div class="pagetabs"><button data-page="tracker" class="'+(S.page==='tracker'?'on':'')+'"><span class="pt-title"><span class="pt-ico">📈</span>Rolling Trends</span><small>Buyers, placements and cases by period</small></button><button data-page="quality" class="'+(S.page==='quality'?'on':'')+'"><span class="pt-title"><span class="pt-ico">🎯</span>Distribution Quality</span><small>Are the points real? Where does the brand fit?</small></button></div>';
+    return '<div class="pagetabs"><button data-page="tracker" class="'+(S.page==='tracker'?'on':'')+'"><span class="pt-title"><span class="pt-ico">📈</span>Rolling Trends</span><small>Buyers, Placements and Cases</small></button><button data-page="quality" class="'+(S.page==='quality'?'on':'')+'"><span class="pt-title"><span class="pt-ico">🎯</span>Distribution Quality</span><small>Points, Fit and Rebuy</small></button></div>';
   }
   function terrNote(pm, T){
     if(!HAS_TERR) return '';
     var fams=scopedFamilies(), ruled=fams.filter(function(f){ return !!SELLSET[f]; });
     if(!ruled.length){
-      if(fams.length===1) return '<div class="terr off"><b>No territory rule on file for '+esc(D.families[fams[0]])+'</b> — it is counted in every area until the Brand Selling Restrictions sheet gets a row for it.</div>';
+      if(fams.length===1) return '<div class="terr off"><b>No Territory Rule on File</b> for '+esc(D.families[fams[0]])+'. Counted in every area.</div>';
       return '';
     }
     if(!terrActive()){
-      return '<div class="terr off"><b>Territory rule is OFF.</b> Every account and every invoiced case is counted, including areas where the brand cannot be sold. <button class="btn small" id="terr-toggle">Switch it back on</button></div>';
+      return '<div class="terr off"><b>Territory Rule Is Off.</b> All areas are counted. <button class="btn small" id="terr-toggle">Switch It Back On</button></div>';
     }
     // what the rule removed: accounts outside the territory, and invoiced placements / cases there in the newest period
     var cm0=customerMask(true), hidP=0, hidC=0;
@@ -712,21 +769,20 @@
     var h=['<div class="terr">'];
     if(fams.length===1){
       var f=fams[0], names=SELL[f].map(function(a){ return D.areas[a]; });
-      h.push('<b>Territory rule:</b> '+esc(D.families[f])+(TERR[f]?' is a <b>'+esc(TERR[f])+'</b> brand,':'')+' sold in <b>'+esc(names.join(', '))+'</b>. '
-        +'This page counts only accounts in those areas'+(TERR_EXCL?' — <b>'+fmtN(TERR_EXCL)+' accounts elsewhere are left out</b> so they never look like missed opportunities':'')+'.');
+      h.push('<b>Territory Rule:</b> '+esc(D.families[f])+(TERR[f]?' (<b>'+esc(TERR[f])+'</b>)':'')+' · Sold in <b>'+esc(names.join(', '))+'</b>'+(TERR_EXCL?' · <b>'+fmtN(TERR_EXCL)+' accounts</b> elsewhere left out':'')+'.');
     } else {
-      h.push('<b>Territory rule:</b> each brand family is counted only in the areas it can be sold ('+fmtN(ruled.length)+' of the '+fmtN(fams.length)+' families in view have a rule)'+(TERR_EXCL?'; <b>'+fmtN(TERR_EXCL)+' accounts</b> outside every family\u2019s territory are left out':'')+'.');
+      h.push('<b>Territory Rule:</b> '+fmtN(ruled.length)+' of '+fmtN(fams.length)+' families in view have one'+(TERR_EXCL?' · <b>'+fmtN(TERR_EXCL)+' accounts</b> outside every territory left out':'')+'.');
     }
-    if(hidP) h.push(' Invoices outside the territory in '+esc(pLabel(T))+' — <b>'+fmtN(hidP)+' placements, '+fmtC(hidC)+' cases</b> — are hidden from every number here.');
-    else if(T) h.push(' Nothing was invoiced outside the territory in '+esc(pLabel(T))+'.');
-    h.push(' <button class="btn small" id="terr-toggle">Show all areas</button></div>');
+    if(hidP) h.push(' Hidden in '+esc(pLabel(T))+': <b>'+fmtN(hidP)+' placements, '+fmtC(hidC)+' cases</b>.');
+    else if(T) h.push(' Nothing hidden in '+esc(pLabel(T))+'.');
+    h.push(' <button class="btn small" id="terr-toggle">Show All Areas</button></div>');
     return h.join('');
   }
   function qmodeBar(){
     if(S.page!=='quality') return '';
     var simple=S.qview==='simple';
-    return '<div class="qmode"><span class="qmode-l">How much detail?</span><span class="seg"><button data-qview="simple" class="'+(simple?'on':'')+'">Simple</button><button data-qview="full" class="'+(!simple?'on':'')+'">Detailed</button></span>'
-      +'<span class="muted qmode-h">'+(simple?'One plain-language card per question. "See the detail" on any card opens the detailed version.':'Every table and control. Switch to Simple for the short version.')+'</span>'
+    return '<div class="qmode"><span class="qmode-l">How Much Detail?</span><span class="seg"><button data-qview="simple" class="'+(simple?'on':'')+'">Simple</button><button data-qview="full" class="'+(!simple?'on':'')+'">Detailed</button></span>'
+      +''
       +(simple?'<button class="btn primary" id="q-print" title="Print or save as PDF" style="margin-left:auto">🖨 Print</button>':'')+'</div>';
   }
   // FILTERS (2026-09-29 overhaul): results show at once for everything;
@@ -754,24 +810,24 @@
     // --- the common filters, always visible
     h.push('<div class="step">Filters</div>');
     h.push('<div class="row common">');
-    h.push('<label>Supplier<select id="f-sup" class="'+(S.sup>=0?'active':'')+'">'+opt(-1, S.bm<0?'All suppliers':'All '+sups.length+' of their suppliers',S.sup<0)+sups.map(function(i){ return opt(i,D.suppliers[i],S.sup===i); }).join('')+'</select></label>');
-    h.push('<label>Brand family<select id="f-fam" class="'+(S.fam>=0?'active':'')+'">'+opt(-1,'All brand families',S.fam<0)+fams.map(function(i){ return opt(i,D.families[i],S.fam===i); }).join('')+'</select></label>');
-    h.push('<label>Premise<select id="f-prem" class="'+(S.prem!=='all'?'active':'')+'">'+opt('all','On + off premise',S.prem==='all')+opt('on','On premise only',S.prem==='on')+opt('off','Off premise only',S.prem==='off')+'</select></label>');
-    h.push('<label>District manager<select id="f-dm" class="'+(S.dm>=0?'active':'')+'">'+opt(-1,'All district managers',S.dm<0)+D.dms.map(function(n,i){ return opt(i,n,S.dm===i); }).join('')+'</select></label>');
-    h.push('<label>Sales rep<select id="f-rep" class="'+(S.rep>=0?'active':'')+'">'+opt(-1,'All reps',S.rep<0)+reps.map(function(i){ return opt(i,D.reps[i],S.rep===i); }).join('')+'</select></label>');
+    h.push('<label>Supplier<select id="f-sup" class="'+(S.sup>=0?'active':'')+'">'+opt(-1, S.bm<0?'All Suppliers':'All '+sups.length+' of Their Suppliers',S.sup<0)+sups.map(function(i){ return opt(i,D.suppliers[i],S.sup===i); }).join('')+'</select></label>');
+    h.push('<label>Brand Family<select id="f-fam" class="'+(S.fam>=0?'active':'')+'">'+opt(-1,'All Brand Families',S.fam<0)+fams.map(function(i){ return opt(i,D.families[i],S.fam===i); }).join('')+'</select></label>');
+    h.push('<label>Premise<select id="f-prem" class="'+(S.prem!=='all'?'active':'')+'">'+opt('all','On + Off Premise',S.prem==='all')+opt('on','On-Premise Only',S.prem==='on')+opt('off','Off-Premise Only',S.prem==='off')+'</select></label>');
+    h.push('<label>District Manager<select id="f-dm" class="'+(S.dm>=0?'active':'')+'">'+opt(-1,'All District Managers',S.dm<0)+D.dms.map(function(n,i){ return opt(i,n,S.dm===i); }).join('')+'</select></label>');
+    h.push('<label>Sales Rep<select id="f-rep" class="'+(S.rep>=0?'active':'')+'">'+opt(-1,'All Reps',S.rep<0)+reps.map(function(i){ return opt(i,D.reps[i],S.rep===i); }).join('')+'</select></label>');
     h.push('</div>');
     // --- the periods
-    h.push('<div class="step step2">Time periods</div><div class="row">');
+    h.push('<div class="step step2">Time Periods</div><div class="row">');
     if(S.pmode==='roll'){
       var lens=[]; for(var ln=1;ln<=M;ln++) lens.push(ln);
-      h.push('<label>Months in each period<select id="f-len">'+lens.map(function(n){ return opt(n, n===1?'1 month':n+' months'+(n===3?' (default)':n===12?' (a year)':''), S.len===n); }).join('')+'</select></label>');
+      h.push('<label>Months in Each Period<select id="f-len">'+lens.map(function(n){ return opt(n, n===1?'1 Month':n+' Months'+(n===3?' (Default)':n===12?' (a Year)':''), S.len===n); }).join('')+'</select></label>');
       if(S.view!=='focus'){
         var maxN=Math.max(1, S.end-S.len+2), ns=[]; for(var nn=1;nn<=maxN;nn++) ns.push(nn);
         if(S.n>maxN) S.n=maxN;
-        h.push('<label>How many periods<select id="f-n">'+ns.map(function(n){ return opt(n, n===1?'1 period':n+' periods'+(n===maxN?' (all)':''), S.n===n); }).join('')+opt(0,'All ('+maxN+')',S.n===0)+'</select></label>');
-        h.push('<label>Most recent period<select id="f-end">'+monthOpts(S.end)+'</select></label>');
+        h.push('<label>How Many Periods<select id="f-n">'+ns.map(function(n){ return opt(n, n===1?'1 Period':n+' Periods'+(n===maxN?' (All)':''), S.n===n); }).join('')+opt(0,'All ('+maxN+')',S.n===0)+'</select></label>');
+        h.push('<label>Most Recent Period<select id="f-end">'+monthOpts(S.end)+'</select></label>');
       }else{
-        h.push('<label>Which period<select id="f-focus">'+monthOpts(S.focus)+'</select></label>');
+        h.push('<label>Which Period<select id="f-focus">'+monthOpts(S.focus)+'</select></label>');
       }
     } else {
       h.push('<p class="help" style="margin:0">Custom months are set under More filters.</p>');
@@ -780,28 +836,28 @@
     h.push(showingHtml());
     // --- everything else
     var advOn = S.brand>=0 || S.prod>=0 || S.pkg!=='all' || S.area>=0 || S.county>=0 || S.terr==='off' || S.dec!=='all' || S.cust>=0 || S.bm>=0 || S.pmode==='custom' || S.view==='focus' || S.raw || !S.yoy;
-    h.push('<details class="more"'+((S.more||advOn)?' open':'')+'><summary>More filters</summary>');
+    h.push('<details class="more"'+((S.more||advOn)?' open':'')+'><summary>More Filters</summary>');
     h.push('<div class="groups">');
     h.push('<div class="group"><div class="gtitle">Product</div><div class="ctl">');
-    h.push('<label>Brand<select id="f-brand" class="'+(S.brand>=0?'active':'')+'">'+opt(-1,'All brands',S.brand<0)+brands.map(function(i){ return opt(i,D.brands[i],S.brand===i); }).join('')+'</select></label>');
-    h.push('<label>Product<select id="f-prod" class="'+(S.prod>=0?'active':'')+'"'+(prods.length?'':' disabled')+'>'+opt(-1, prods.length?'All products ('+prods.length+')':'Pick a supplier first',S.prod<0)+prods.map(function(i){ return opt(i,products[i][0]+' '+products[i][1],S.prod===i); }).join('')+'</select></label>');
-    h.push('<label>Draft or package<select id="f-pkg" class="'+(S.pkg!=='all'?'active':'')+'">'+opt('all','Draft + package',S.pkg==='all')+opt('draft','Draft only',S.pkg==='draft')+opt('package','Package only',S.pkg==='package')+'</select></label>');
-    h.push('<label>Brand manager<select id="f-bm" class="'+(S.bm>=0?'active':'')+'">'+opt(-1,'All brand managers',S.bm<0)+D.bms.map(function(n,i){ return opt(i,n,S.bm===i); }).join('')+'</select></label>');
+    h.push('<label>Brand<select id="f-brand" class="'+(S.brand>=0?'active':'')+'">'+opt(-1,'All Brands',S.brand<0)+brands.map(function(i){ return opt(i,D.brands[i],S.brand===i); }).join('')+'</select></label>');
+    h.push('<label>Product<select id="f-prod" class="'+(S.prod>=0?'active':'')+'"'+(prods.length?'':' disabled')+'>'+opt(-1, prods.length?'All Products ('+prods.length+')':'Pick a Supplier First',S.prod<0)+prods.map(function(i){ return opt(i,products[i][0]+' '+products[i][1],S.prod===i); }).join('')+'</select></label>');
+    h.push('<label>Draft or Package<select id="f-pkg" class="'+(S.pkg!=='all'?'active':'')+'">'+opt('all','Draft + Package',S.pkg==='all')+opt('draft','Draft Only',S.pkg==='draft')+opt('package','Package Only',S.pkg==='package')+'</select></label>');
+    h.push('<label>Brand Manager<select id="f-bm" class="'+(S.bm>=0?'active':'')+'">'+opt(-1,'All Brand Managers',S.bm<0)+D.bms.map(function(n,i){ return opt(i,n,S.bm===i); }).join('')+'</select></label>');
     h.push('</div></div>');
     h.push('<div class="group"><div class="gtitle">Customer</div><div class="ctl">');
-    h.push('<label>Distribution area<select id="f-area" class="'+(S.area>=0?'active':'')+'">'+opt(-1,'All areas',S.area<0)+D.areas.map(function(n,i){ return (!AREA_OK || AREA_OK[i] || S.area===i) ? opt(i,n,S.area===i) : ''; }).join('')+'</select></label>');
-    h.push('<label>County<select id="f-county" class="'+(S.county>=0?'active':'')+'">'+opt(-1,'All counties',S.county<0)+COUNTIES.map(function(n,i){ return (!AREA_OK || COUNTY_OK[n] || S.county===i) ? opt(i,n,S.county===i) : ''; }).join('')+'</select></label>');
-    if(HAS_TERR) h.push('<label>Territory<select id="f-terr" class="'+(S.terr==='off'?'active':'')+'">'+opt('on','Only where the brand can be sold',S.terr!=='off')+opt('off','All areas (ignore territory)',S.terr==='off')+'</select></label>');
-    if(HAS_DEC) h.push('<label>Account size<select id="f-dec" class="'+(S.dec!=='all'?'active':'')+'">'+[['all','All sizes'],['1','Top 10% (decile 1)'],['2','Top 20% (deciles 1–2)'],['3','Top 30% (deciles 1–3)'],['m','Middle (deciles 4–7)'],['b','Bottom 30% (deciles 8–10)'],['n','Not ranked']].map(function(x){ return opt(x[0],x[1],S.dec===x[0]); }).join('')+'</select></label>');
-    h.push('<label class="wide">One account (type a name or number)<input type="search" id="f-cust" list="custlist" class="'+(S.cust>=0?'active':'')+'" placeholder="All accounts" value="'+(S.cust>=0?esc(customers[S.cust][0]+' '+customers[S.cust][1]):'')+'"><datalist id="custlist">'+customers.map(function(c){ return '<option value="'+esc(c[0]+' '+c[1])+'">'; }).join('')+'</datalist></label>');
+    h.push('<label>Distribution Area<select id="f-area" class="'+(S.area>=0?'active':'')+'">'+opt(-1,'All Areas',S.area<0)+D.areas.map(function(n,i){ return (!AREA_OK || AREA_OK[i] || S.area===i) ? opt(i,n,S.area===i) : ''; }).join('')+'</select></label>');
+    h.push('<label>County<select id="f-county" class="'+(S.county>=0?'active':'')+'">'+opt(-1,'All Counties',S.county<0)+COUNTIES.map(function(n,i){ return (!AREA_OK || COUNTY_OK[n] || S.county===i) ? opt(i,n,S.county===i) : ''; }).join('')+'</select></label>');
+    if(HAS_TERR) h.push('<label>Territory<select id="f-terr" class="'+(S.terr==='off'?'active':'')+'">'+opt('on','Only Where the Brand Can Be Sold',S.terr!=='off')+opt('off','All Areas (Ignore Territory)',S.terr==='off')+'</select></label>');
+    if(HAS_DEC) h.push('<label>Account Size<select id="f-dec" class="'+(S.dec!=='all'?'active':'')+'">'+[['all','All sizes'],['1','Top 10% (decile 1)'],['2','Top 20% (deciles 1–2)'],['3','Top 30% (deciles 1–3)'],['m','Middle (deciles 4–7)'],['b','Bottom 30% (deciles 8–10)'],['n','Not ranked']].map(function(x){ return opt(x[0],x[1],S.dec===x[0]); }).join('')+'</select></label>');
+    h.push('<label class="wide">One Account (Name or Number)<input type="search" id="f-cust" list="custlist" class="'+(S.cust>=0?'active':'')+'" placeholder="All accounts" value="'+(S.cust>=0?esc(customers[S.cust][0]+' '+customers[S.cust][1]):'')+'"><datalist id="custlist">'+customers.map(function(c){ return '<option value="'+esc(c[0]+' '+c[1])+'">'; }).join('')+'</datalist></label>');
     h.push('</div></div>');
-    h.push('<div class="group"><div class="gtitle">How to view it</div><div class="ctl">');
-    if(S.page==='tracker') h.push('<label>Periods<span class="seg"><button data-view="compare" class="'+(S.view==='compare'?'on':'')+'">Multiple periods</button><button data-view="focus" class="'+(S.view==='focus'?'on':'')+'">One period</button></span></label>');
-    h.push('<label>Which months<span class="seg"><button data-pmode="roll" class="'+(S.pmode==='roll'?'on':'')+'">Rolling (automatic)</button><button data-pmode="custom" class="'+(S.pmode==='custom'?'on':'')+'">Pick my own months</button></span></label>');
+    h.push('<div class="group"><div class="gtitle">How to View It</div><div class="ctl">');
+    if(S.page==='tracker') h.push('<label>Periods<span class="seg"><button data-view="compare" class="'+(S.view==='compare'?'on':'')+'">Multiple Periods</button><button data-view="focus" class="'+(S.view==='focus'?'on':'')+'">One Period</button></span></label>');
+    h.push('<label>Which Months<span class="seg"><button data-pmode="roll" class="'+(S.pmode==='roll'?'on':'')+'">Rolling (Automatic)</button><button data-pmode="custom" class="'+(S.pmode==='custom'?'on':'')+'">Pick My Own Months</button></span></label>');
     if(S.view!=='focus'){
-      h.push('<label>Change vs. same period last year<span class="seg"><button data-yoy="1" class="'+(S.yoy?'on':'')+'">Show</button><button data-yoy="0" class="'+(!S.yoy?'on':'')+'">Hide</button></span></label>');
+      h.push('<label>Change vs. Same Period Last Year<span class="seg"><button data-yoy="1" class="'+(S.yoy?'on':'')+'">Show</button><button data-yoy="0" class="'+(!S.yoy?'on':'')+'">Hide</button></span></label>');
     }
-    h.push('<label>Who counts as a buyer<span class="seg"><button data-raw="0" class="'+(!S.raw?'on':'')+'">Net cases above zero</button><button data-raw="1" class="'+(S.raw?'on':'')+'">Any invoice activity</button></span></label>');
+    h.push('<label>Who Counts as a Buyer<span class="seg"><button data-raw="0" class="'+(!S.raw?'on':'')+'">Net Cases Above Zero</button><button data-raw="1" class="'+(S.raw?'on':'')+'">Any Invoice Activity</button></span></label>');
     h.push('</div></div>');
     h.push('</div>');
     if(S.pmode==='custom'){
@@ -831,8 +887,8 @@
     if(S.fam>=0) chips.push(chip(D.families[S.fam],'fam'));
     if(S.brand>=0) chips.push(chip(D.brands[S.brand],'brand'));
     if(S.prod>=0) chips.push(chip(products[S.prod][0]+' '+products[S.prod][1],'prod'));
-    if(S.pkg!=='all') chips.push(chip(S.pkg==='draft'?'Draft only':'Package only','pkg'));
-    if(S.prem!=='all') chips.push(chip(S.prem==='on'?'On premise only':'Off premise only','prem'));
+    if(S.pkg!=='all') chips.push(chip(S.pkg==='draft'?'Draft Only':'Package Only','pkg'));
+    if(S.prem!=='all') chips.push(chip(S.prem==='on'?'On-Premise Only':'Off-Premise Only','prem'));
     if(S.dm>=0) chips.push(chip('DM: '+D.dms[S.dm],'dm'));
     if(S.rep>=0) chips.push(chip('Rep: '+D.reps[S.rep],'rep'));
     if(S.area>=0) chips.push(chip('Area: '+D.areas[S.area],'area'));
@@ -849,7 +905,7 @@
   function crumbsHtml(li){
     var c=['<div class="crumbs">'];
     if(S.bm>=0) c.push('<span class="muted">'+esc(D.bms[S.bm])+'</span><span class="sep">›</span>');
-    c.push(S.sup<0 ? '<span class="cur">All suppliers</span>' : '<a data-up="0">All suppliers</a>');
+    c.push(S.sup<0 ? '<span class="cur">All Suppliers</span>' : '<a data-up="0">All Suppliers</a>');
     if(S.sup>=0){ c.push('<span class="sep">›</span>'); c.push(logoImg('supplier',D.suppliers[S.sup],'big')+(S.fam<0 ? '<span class="cur">'+esc(D.suppliers[S.sup])+'</span>' : '<a data-up="1">'+esc(D.suppliers[S.sup])+'</a>')); }
     if(S.fam>=0){ c.push('<span class="sep">›</span>'); c.push(logoImg('family',D.families[S.fam],'big')+(S.brand<0 ? '<span class="cur">'+esc(D.families[S.fam])+'</span>' : '<a data-up="2">'+esc(D.families[S.fam])+'</a>')); }
     if(S.brand>=0){ c.push('<span class="sep">›</span>'); c.push(logoImg('brand',D.brands[S.brand],'big')+(S.prod<0 ? '<span class="cur">'+esc(D.brands[S.brand])+'</span>' : '<a data-up="3">'+esc(D.brands[S.brand])+'</a>')); }
@@ -893,9 +949,9 @@
     var hi = periods[periods.length-1];
     var mname = S.cmetric==='cases'?'cases':(S.cmetric==='buyers'?'buyers':'placements');
     if(!S.chart){
-      return '<div class="chart"><div class="toolbar"><div class="left"><button class="btn glow" id="chart-toggle">📊 Show month-by-month chart</button><span class="muted">Bars for every month in the history, with the latest period highlighted.</span></div></div></div>';
+      return '<div class="chart"><div class="toolbar"><div class="left"><button class="btn glow" id="chart-toggle">📊 Show Month-by-Month Chart</button></div></div></div>';
     }
-    var h=['<div class="chart"><div class="toolbar"><div class="left"><button class="btn" id="chart-toggle">Hide chart</button><h2 style="margin:0">Month by month · '+esc(mname)+'</h2><span class="muted">Gold bars = latest period shown. Hatched = partial month.</span></div><span class="seg">'+[['buyers','Buyers'],['placements','Placements'],['cases','Cases']].map(function(m){ return '<button data-cmetric="'+m[0]+'" class="'+(S.cmetric===m[0]?'on':'')+'">'+m[1]+'</button>'; }).join('')+'</span></div>'];
+    var h=['<div class="chart"><div class="toolbar"><div class="left"><button class="btn" id="chart-toggle">Hide Chart</button><h2 style="margin:0">Month by Month · '+esc(mname)+'</h2><span class="muted">Gold = Latest Period · Hatched = Partial Month</span></div><span class="seg">'+[['buyers','Buyers'],['placements','Placements'],['cases','Cases']].map(function(m){ return '<button data-cmetric="'+m[0]+'" class="'+(S.cmetric===m[0]?'on':'')+'">'+m[1]+'</button>'; }).join('')+'</span></div>'];
     h.push('<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Monthly '+S.cmetric+'"><defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#F5B942" opacity=".3"/><line x1="0" y1="0" x2="0" y2="6" stroke="#F5B942" stroke-width="2"/></pattern></defs>');
     if(hi){ var x0=padL+hi.s*bw, x1=padL+(hi.e+1)*bw; h.push('<rect x="'+x0+'" y="'+(padT-6)+'" width="'+(x1-x0)+'" height="'+(ih+10)+'" rx="6" fill="#F5B942" opacity=".12"/>'); }
     // gridlines: 2 recessive
@@ -919,28 +975,28 @@
   // How the table rows are grouped: the brand hierarchy, or a customer attribute.
   var ROWKEYS = {
     brand:  {label:function(li){ return LEVELS[li].plural; }, col:function(li){ return LEVELS[li].label; }},
-    bm:     {label:function(){ return 'Brand managers'; }, col:function(){ return 'Brand manager'; }, key:function(i){ return D.supplier_bm[products[PP[i]][2]]; }, name:function(id){ return D.bms[id]; }},
-    rep:    {label:function(){ return 'Sales reps'; }, col:function(){ return 'Sales rep'; }, key:function(i){ return customers[PC[i]][4]; }, name:function(id){ return D.reps[id]; }, sub:function(id){ var c=customers.filter(function(c){return c[4]===id;})[0]; return c ? D.dms[c[5]] : ''; }},
-    dm:     {label:function(){ return 'District managers'; }, col:function(){ return 'District manager'; }, key:function(i){ return customers[PC[i]][5]; }, name:function(id){ return D.dms[id]; }},
-    area:   {label:function(){ return 'Distribution areas'; }, col:function(){ return 'Distribution area'; }, key:function(i){ return customers[PC[i]][3]; }, name:function(id){ return D.areas[id]; }},
+    bm:     {label:function(){ return 'Brand Managers'; }, col:function(){ return 'Brand Manager'; }, key:function(i){ return D.supplier_bm[products[PP[i]][2]]; }, name:function(id){ return D.bms[id]; }},
+    rep:    {label:function(){ return 'Sales Reps'; }, col:function(){ return 'Sales Rep'; }, key:function(i){ return customers[PC[i]][4]; }, name:function(id){ return D.reps[id]; }, sub:function(id){ var c=customers.filter(function(c){return c[4]===id;})[0]; return c ? D.dms[c[5]] : ''; }},
+    dm:     {label:function(){ return 'District Managers'; }, col:function(){ return 'District Manager'; }, key:function(i){ return customers[PC[i]][5]; }, name:function(id){ return D.dms[id]; }},
+    area:   {label:function(){ return 'Distribution Areas'; }, col:function(){ return 'Distribution Area'; }, key:function(i){ return customers[PC[i]][3]; }, name:function(id){ return D.areas[id]; }},
     county: {label:function(){ return 'Counties'; }, col:function(){ return 'County'; }, key:function(i){ return countyIdx[customers[PC[i]][6]||'(unknown)']; }, name:function(id){ return COUNTIES[id]; }},
     premise:{label:function(){ return 'Premise'; }, col:function(){ return 'Premise'; }, key:function(i){ return customers[PC[i]][2]; }, name:function(id){ return id?'On premise':'Off premise'; }},
-    decile: {label:function(){ return 'Account size'; }, col:function(){ return 'Account size (decile)'; }, key:function(i){ return decOf(PC[i]); }, name:function(id){ return id ? (id>=4&&id<=7 ? 'Decile '+id : decLabel(id)+' (decile '+id+')') : 'Not ranked'; }},
+    decile: {label:function(){ return 'Account Size'; }, col:function(){ return 'Account Size (Decile)'; }, key:function(i){ return decOf(PC[i]); }, name:function(id){ return id ? (id>=4&&id<=7 ? 'Decile '+id : decLabel(id)+' (decile '+id+')') : 'Not ranked'; }},
     account:{label:function(){ return 'Accounts'; }, col:function(){ return 'Account'; }, key:function(i){ return PC[i]; }, name:function(id){ var c=customers[id]; return c[0]+' '+c[1]; }, sub:function(id){ var c=customers[id]; return D.reps[c[4]]+' · '+(c[2]?'On premise':'Off premise'); }}
   };
   function rowTabs(cur, li){
-    var tabs=[['brand',LEVELS[li].plural],['bm','Brand managers'],['rep','Sales reps'],['dm','District managers'],['area','Areas'],['county','Counties'],['premise','Premise']].concat(HAS_DEC?[['decile','Account size']]:[]).concat([['account','Accounts']]);
+    var tabs=[['brand',LEVELS[li].plural],['bm','Brand Managers'],['rep','Sales Reps'],['dm','District Managers'],['area','Areas'],['county','Counties'],['premise','Premise']].concat(HAS_DEC?[['decile','Account Size']]:[]).concat([['account','Accounts']]);
     return '<div class="tabs">'+tabs.map(function(t){ return '<button data-rows="'+t[0]+'" class="'+(cur===t[0]?'on':'')+'">'+t[1]+'</button>'; }).join('')+'</div>';
   }
   // ---------------------------------------------------------------- compare table
   function colgroup(nvals, extra){
     // extra = [[width,...]] columns after the name column (e.g. Rep, Prem in the account list)
-    extra = extra||[]; var NAME=320, VAL=120, fixed=NAME+extra.reduce(function(a,w){return a+w;},0);
+    extra = extra||[]; var NARROW=window.innerWidth<=700, NAME=NARROW?124:320, VAL=NARROW?78:120, fixed=NAME+extra.reduce(function(a,w){return a+w;},0);
     var html='<colgroup><col style="width:'+NAME+'px">'+extra.map(function(w){ return '<col style="width:'+w+'px">'; }).join('');
     for(var i=0;i<nvals;i++) html+='<col>';
     return {html:html+'</colgroup>', style:'table-layout:fixed;width:100%;min-width:'+(fixed+nvals*VAL)+'px'};
   }
-  var ALLM=['buyers','placements','cases','cpp'], MLBL={buyers:'Buyers',placements:'Placements',cases:'Cases',cpp:'Cases / placement'};
+  var ALLM=['buyers','placements','cases','cpp'], MLBL={buyers:'Buyers',placements:'Placements',cases:'Cases',cpp:'Cases / Placement'};
   function metricsShown(){ var on=ALLM.filter(function(m){ return S.cols.split(',').indexOf(m)>=0; }); return on.length?on:['buyers']; }
   function colToggles(){
     var on=metricsShown();
@@ -960,9 +1016,9 @@
     var ms = metricsShown();
     var list=[]; rows.forEach(function(e){ e.name = isBrand ? levelName(li,e.id) : ROWKEYS[rk].name(e.id); e.sub = (!isBrand && ROWKEYS[rk].sub) ? ROWKEYS[rk].sub(e.id) : ''; list.push(e); });
     var sortKey = sortRows(list, P);
-    var h=['<div class="card"><div class="toolbar"><div class="left stack"><h2 style="margin:0">'+esc(ROWKEYS[rk].label(li))+' · '+list.length+(list.length===1?' row':' rows')+'</h2><span class="muted">'+(drill?'Click a blue name to open it. ':(rk==='bm'?'Click a manager to see their suppliers. ':''))+'Click a column heading to sort. Each period is '+S.len+' whole calendar month'+(S.len>1?'s':'')+'.</span></div>'+tableButtons()+'</div>'];
+    var h=['<div class="card"><div class="toolbar"><div class="left stack"><h2 style="margin:0">'+esc(ROWKEYS[rk].label(li))+' · '+list.length+(list.length===1?' Row':' Rows')+'</h2><span class="muted">'+(drill?'Tap a Name to Open It · ':(rk==='bm'?'Tap a Manager for Suppliers · ':''))+'Tap a Column to Sort · '+S.len+' Month'+(S.len>1?'s':'')+' per Period</span></div>'+tableButtons()+'</div>'];
     h.push(colToggles());
-    h.push('<p class="help" style="margin:0 0 4px">Show rows by:</p>'+rowTabs(rk, li));
+    h.push('<p class="help" style="margin:0 0 4px">Show Rows By</p>'+rowTabs(rk, li));
     var cg=colgroup(P*ms.length);
     h.push('<div class="tbl-wrap"><table id="cmp" style="'+cg.style+'">'+cg.html+'<thead><tr><th class="grp namehd" rowspan="2" data-sort="name:0">'+esc(ROWKEYS[rk].col(li))+'</th>');
     periods.forEach(function(p,j){ h.push('<th class="grp pb'+(j===P-1?' hi':'')+'" colspan="'+ms.length+'" title="'+pDays(p)+'">'+esc(pLabel(p))+(pPartial(p)?' <span class="tag part">partial</span>':'')+'</th>'); });
@@ -987,10 +1043,10 @@
     return h.join('');
   }
   function tableButtons(){
-    return '<span class="tbtns">'+(HIST.length>1?'<button class="btn" id="prev">&larr; Previous view</button>':'')+'<button class="btn" id="reset2">Reset filters</button><button class="btn" id="dl">Download CSV</button></span>';
+    return '<span class="tbtns">'+(HIST.length>1?'<button class="btn" id="prev">&larr; Previous View</button>':'')+'<button class="btn" id="reset2">Reset Filters</button><button class="btn" id="dl">Download CSV</button></span>';
   }
   function crumbText(){
-    if(S.prod>=0) return products[S.prod][1]; if(S.brand>=0) return D.brands[S.brand]; if(S.fam>=0) return D.families[S.fam]; if(S.sup>=0) return D.suppliers[S.sup]; return 'all suppliers';
+    if(S.prod>=0) return products[S.prod][1]; if(S.brand>=0) return D.brands[S.brand]; if(S.fam>=0) return D.families[S.fam]; if(S.sup>=0) return D.suppliers[S.sup]; return 'All Suppliers';
   }
 
   // ---------------------------------------------------------------- focus view
@@ -1010,7 +1066,7 @@
     h.push('<div class="kpi"><div class="l">Cases per buyer</div><div class="v">'+(total.buyers[0]?fmtC(total.cases[0]/total.buyers[0]):'—')+'</div><div class="d">'+(pr&&total.buyers[1]?deltaHtml(total.cases[0]/(total.buyers[0]||1), total.cases[1]/total.buyers[1],'vs prior'):'')+'</div></div>');
     h.push('<div class="kpi"><div class="l">Placements per buyer</div><div class="v">'+(total.buyers[0]?(total.placements[0]/total.buyers[0]).toFixed(1):'—')+'</div><div class="d">'+(pr&&total.buyers[1]?deltaHtml(total.placements[0]/(total.buyers[0]||1), total.placements[1]/total.buyers[1],'vs prior'):'')+'</div></div>');
     h.push('</div>');
-    var tabs=[['children',LEVELS[li].plural],['bm','Brand managers'],['rep','Sales reps'],['dm','District managers'],['area','Areas'],['county','Counties'],['premise','Premise']].concat(HAS_DEC?[['decile','Account size']]:[]).concat([['accounts','Accounts']]);
+    var tabs=[['children',LEVELS[li].plural],['bm','Brand Managers'],['rep','Sales Reps'],['dm','District Managers'],['area','Areas'],['county','Counties'],['premise','Premise']].concat(HAS_DEC?[['decile','Account Size']]:[]).concat([['accounts','Accounts']]);
     h.push('<div class="tabs">'+tabs.map(function(t){ return '<button data-tab="'+t[0]+'" class="'+(S.tab===t[0]?'on':'')+'">'+t[1]+'</button>'; }).join('')+'</div>');
     var list=[], nameOf, drill=false;
     if(S.tab==='children'){ rows.forEach(function(e){ e.name=levelName(li,e.id); list.push(e); }); drill = li<3; }
@@ -1203,7 +1259,7 @@
     h.push('<div class="card qcard">'+qhead(1,'Are the points real? · '+esc(scopeName())+' · '+esc(pLabel(T)),
       'Every placement (one product at one account) sorted by what it sells per month. Core ≥ '+S.tcore+' cases a month, Thin under '+S.tthin+'. A point of distribution that sells under a case a month is a point on a scoresheet, not a customer.',
       '<span class="tbtns"><button class="btn primary" id="q-print" title="Print or save as PDF">🖨 Print one-pager</button></span>'));
-    h.push('<div class="row" style="margin:4px 0 10px"><label>How Core and Thin are set<span class="seg"><button data-tmode="rel" class="'+(S.tmode==='rel'?'on':'')+'">Relative to each brand</button><button data-tmode="fix" class="'+(S.tmode!=='rel'?'on':'')+'">Fixed cases per month</button></span></label>'
+    h.push('<div class="row" style="margin:4px 0 10px"><label>How Core and Thin Are Set<span class="seg"><button data-tmode="rel" class="'+(S.tmode==='rel'?'on':'')+'">Relative to Each Brand</button><button data-tmode="fix" class="'+(S.tmode!=='rel'?'on':'')+'">Fixed Cases per Month</button></span></label>'
       +(S.tmode==='rel' ? '<label class="inl">Core = top <input type="number" id="q-tq" min="5" max="45" step="5" value="'+S.tq+'"> % of the brand’s placements, Thin = bottom '+S.tq+'%</label>'
                         : '<label class="inl">Core ≥ <input type="number" id="q-core" min="0.5" step="0.5" value="'+S.tcore+'"> cases / mo</label><label class="inl">Thin &lt; <input type="number" id="q-thin" min="0" step="0.5" value="'+S.tthin+'"> cases / mo</label>')
       +'</div><p class="help" style="margin:0 0 10px">Rule in use: <b>'+tierRule()+'</b>.'+cutoffText(tfT)+'</p>');
@@ -1259,7 +1315,7 @@
       var MINP = TK[tt] ? 200 : 10;   // brand-side rows need a real footprint before their Thin share means anything
       var rows=[], dropped=0; grp.forEach(function(g){ if(g.n<=MINP && TK[tt]){ dropped++; return; } g.name=kf.name(g.id); g.thin=g.t[2]/g.n; rows.push(g); });
       rows.sort(function(a,b){ var sa=a.n<10, sb=b.n<10; if(sa!==sb) return sa?1:-1; if(a.thin!==b.thin) return a.thin-b.thin; return b.n-a.n; });
-      var ttabs=[['family','Brand families'],['brand','Brands'],['product','Products'],['rep','Sales reps'],['dm','District managers'],['area','Areas'],['county','Counties'],['premise','Premise']].concat(HAS_DEC?[['decile','Account size']]:[]);
+      var ttabs=[['family','Brand families'],['brand','Brands'],['product','Products'],['rep','Sales reps'],['dm','District managers'],['area','Areas'],['county','Counties'],['premise','Premise']].concat(HAS_DEC?[['decile','Account Size']]:[]);
       function tabLabel(k){ return ttabs.filter(function(x){ return x[0]===k; })[0][1].toLowerCase(); }
       h.push('<h3 class="qsub">Who has the fewest Thin points · '+esc(scopeName())+' · '+esc(pLabel(T))+'</h3>');
       h.push('<p class="help" style="margin:0 0 6px">Least Thin at the top. '+(S.tmode==='rel'
@@ -1324,7 +1380,7 @@
         ], '“Last time we added '+fmtN(all.n)+' points '+scopeWord()+', '+fmtN(lost)+' of them were gone within '+(laters.length*len)+' months. Show us which accounts the next batch will be, or let us pick them.”'));
       }
       QS.s2={G:G, laters:laters, all:all, gsel:gsel, measure:measure};
-      var qtabs=[['children',LEVELS[li].plural],['bm','Brand managers'],['rep','Sales reps'],['dm','District managers'],['area','Areas'],['county','Counties'],['premise','Premise']].concat(HAS_DEC?[['decile','Account size']]:[]);
+      var qtabs=[['children',LEVELS[li].plural],['bm','Brand Managers'],['rep','Sales Reps'],['dm','District Managers'],['area','Areas'],['county','Counties'],['premise','Premise']].concat(HAS_DEC?[['decile','Account Size']]:[]);
       h.push('<p class="help" style="margin:10px 0 4px">Break it down by:</p><div class="tabs">'+qtabs.map(function(t){ return '<button data-qtab="'+t[0]+'" class="'+(S.qtab===t[0]?'on':'')+'">'+t[1]+'</button>'; }).join('')+'</div>');
       var rows=[]; rmap.forEach(function(r){ r.name=nameFn(r.id); rows.push(r); }); rows.sort(function(a,b){ return b.n-a.n; });
       var hdr=[S.qtab==='children'?LEVELS[li].label:qtabs.filter(function(t){return t[0]===S.qtab;})[0][1],'Gained','Median cases','Under 3 cases'].concat(laters.map(function(w,q){ return 'Still buying +'+(q+1)+'<br><span class="muted">'+esc(pLabel(w))+'</span>'; }));
@@ -1344,11 +1400,11 @@
       if(pm[PP[i]]){ scopeT[c]+=v; scopePr[c]+=ps.sum[i*ps.P+P+tj]; scopeYY[c]+=ps.sum[i*ps.P+2*P+tj]; scopeFams[products[PP[i]][3]]=1; }
     }
     // ---------------------------------------------------------------- 3. fit map
-    var FK={area:{label:'Areas',col:'Distribution area',key:function(c){return c[3];},name:function(id){return D.areas[id];}},
+    var FK={area:{label:'Areas',col:'Distribution Area',key:function(c){return c[3];},name:function(id){return D.areas[id];}},
             county:{label:'Counties',col:'County',key:function(c){return countyIdx[c[6]||'(unknown)'];},name:function(id){return COUNTIES[id];}},
             premise:{label:'Premise',col:'Premise',key:function(c){return c[2];},name:function(id){return id?'On premise':'Off premise';}},
-            rep:{label:'Sales reps',col:'Sales rep',key:function(c){return c[4];},name:function(id){return D.reps[id];}},
-            dm:{label:'District managers',col:'District manager',key:function(c){return c[5];},name:function(id){return D.dms[id];}}};
+            rep:{label:'Sales Reps',col:'Sales Rep',key:function(c){return c[4];},name:function(id){return D.reps[id];}},
+            dm:{label:'District Managers',col:'District Manager',key:function(c){return c[5];},name:function(id){return D.dms[id];}}};
     var fk=FK[S.ftab]||FK.area; var fm=new Map();
     for(var c=0;c<NC;c++){ if(!cm[c]) continue; if(!anyT[c] && !(scopePr[c]>0)) continue; var id=fk.key(customers[c]); var r=fm.get(id); if(!r){ r={id:id,buyers:0,active:0,priorB:0,retained:0,cases:0}; fm.set(id,r); }
       if(anyT[c]) r.active++; if(scopeT[c]>0){ r.buyers++; r.cases+=scopeT[c]; } if(scopePr[c]>0){ r.priorB++; if(scopeT[c]>0) r.retained++; } }
@@ -1470,7 +1526,7 @@
         (all.repeat!==null && all.firstMed!==null ? (all.repeat*T.len>all.firstMed ? 'Repeat volume beats the first drop: where this brand lands, it grows.' : 'The first drop is bigger than what follows: the launch order is the high point for most accounts.') : '')
       ].filter(Boolean), '“One in '+(all.ood>0?Math.round(1/all.ood):0)+' placements '+scopeWord()+' never reorders. Before we add points, let’s agree which accounts look like the '+pctN(all.r6)+' that do.”'));
     }
-    var rtabs=[['children',LEVELS[li].plural],['bm','Brand managers'],['rep','Sales reps'],['dm','District managers'],['area','Areas'],['county','Counties'],['premise','Premise']].concat(HAS_DEC?[['decile','Account size']]:[]);
+    var rtabs=[['children',LEVELS[li].plural],['bm','Brand Managers'],['rep','Sales Reps'],['dm','District Managers'],['area','Areas'],['county','Counties'],['premise','Premise']].concat(HAS_DEC?[['decile','Account Size']]:[]);
     h.push('<p class="help" style="margin:10px 0 4px">Break it down by:</p><div class="tabs">'+rtabs.map(function(t){ return '<button data-rtab="'+t[0]+'" class="'+((S.rtab||'children')===t[0]?'on':'')+'">'+t[1]+'</button>'; }).join('')+'</div>');
     var rt=S.rtab||'children', keyFn = rt==='children' ? function(i){ return entityOf(li,PP[i]); } : ROWKEYS[rt].key, nameFn = rt==='children' ? function(id){ return levelName(li,id); } : ROWKEYS[rt].name;
     var groups=new Map(); recs.forEach(function(r){ var id=keyFn(r.i); var g=groups.get(id); if(!g){ g=[]; groups.set(id,g); } g.push(r); });
@@ -1483,7 +1539,7 @@
     h.push('<div class="tbtns" style="margin-top:8px"><button class="btn small" data-csv="q-rebuy">CSV</button></div></div>');
 
     // ---------------------------------------------------------------- 6. geography: rebuy x velocity by county / area, with volume and per-account
-    var gt=S.gtab||'county', GK={county:{label:'Counties',col:'County',key:function(c){return countyIdx[c[6]||'(unknown)'];},name:function(id){return COUNTIES[id];}}, area:{label:'Areas',col:'Distribution area',key:function(c){return c[3];},name:function(id){return D.areas[id];}}}[gt];
+    var gt=S.gtab||'county', GK={county:{label:'Counties',col:'County',key:function(c){return countyIdx[c[6]||'(unknown)'];},name:function(id){return COUNTIES[id];}}, area:{label:'Areas',col:'Distribution Area',key:function(c){return c[3];},name:function(id){return D.areas[id];}}}[gt];
     var geo=new Map();
     recs.forEach(function(r){ var id=GK.key(customers[PC[r.i]]); var g=geo.get(id); if(!g){ g={recs:[],buyers:new Set(),cases:0}; geo.set(id,g); } g.recs.push(r); });
     for(var i2=0;i2<NP;i2++){ if(!pm[PP[i2]]||!cm[PC[i2]]) continue; var v2=ps.sum[i2*ps.P+tj]; if(!(v2>0)) continue; var id2=GK.key(customers[PC[i2]]); var g2=geo.get(id2); if(!g2){ g2={recs:[],buyers:new Set(),cases:0}; geo.set(id2,g2); } g2.buyers.add(PC[i2]); g2.cases+=v2; }
@@ -1732,13 +1788,13 @@
   function pills(){
     var p=el('pills'); var first=D.months[0], last=D.months[M-1];
     var partial=Object.keys(D.partial);
-    p.innerHTML = '<span class="pill">History <b>'+mLabel(0,true)+' – '+mLabel(M-1,true)+'</b> · '+M+' months</span>'
-      + '<span class="pill"><b>'+products.length.toLocaleString()+'</b> products · <b>'+customers.length.toLocaleString()+'</b> accounts</span>'
-      + (partial.length? '<span class="pill warn">Partial month: <b>'+partial.map(function(m){ return mLabel(D.months.indexOf(m),true)+' (exported '+D.partial[m]+')'; }).join(', ')+'</b></span>':'')
-      + '<span class="pill" id="refreshed">Data refreshed …</span>';
+    p.innerHTML = '<span class="pill">History: <b>'+mLabel(0,true)+' – '+mLabel(M-1,true)+'</b> · '+M+' Months</span>'
+      + '<span class="pill"><b>'+products.length.toLocaleString()+'</b> Products · <b>'+customers.length.toLocaleString()+'</b> Accounts</span>'
+      + (partial.length? '<span class="pill warn">Partial Month: <b>'+partial.map(function(m){ return mLabel(D.months.indexOf(m),true)+' (Exported '+D.partial[m]+')'; }).join(', ')+'</b></span>':'')
+      + '<span class="pill" id="refreshed">Data Refreshed …</span>';
     fetch('data/sync_meta.json').then(function(r){ return r.json(); }).then(function(m){
-      if(m&&m.synced_at){ var t=new Date(m.synced_at); el('refreshed').innerHTML='Data refreshed <b>'+t.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})+'</b>'; }
-    }).catch(function(){ el('refreshed').textContent='Data refreshed: unknown'; });
+      if(m&&m.synced_at){ var t=new Date(m.synced_at); el('refreshed').innerHTML='Data Refreshed: <b>'+t.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})+'</b>'; }
+    }).catch(function(){ el('refreshed').textContent='Data Refreshed: Unknown'; });
   }
   pills();
   render();

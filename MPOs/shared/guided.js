@@ -243,12 +243,12 @@ function weightedForRep(rep){
 
 /* ---- Small shared bits -------------------------------------------- */
 var STATUS_TEXT = {achieved:'Goal Achieved', inprogress:'In Progress',
-  notstarted:'Not Started', nodata:'Not tracked yet'};
+  notstarted:'Not Started', nodata:'Not Tracked Yet'};
 var STATUS_MARK = {achieved:'✓', inprogress:'●', notstarted:'○', nodata:'—'};
 
 // The status pill also says whether the credit is earned, so the card
 // needs no separate "Credit earned" column.
-var CREDIT_TEXT = {achieved:'Goal achieved · credit earned', inprogress:'In progress · credit not yet earned', notstarted:'Not started', nodata:'Not tracked yet'};
+var CREDIT_TEXT = {achieved:'Goal Achieved', inprogress:'In Progress', notstarted:'Not Started', nodata:'Not Tracked Yet'};
 function creditPill(status){
   return '<span class="g-pill '+status+'">'+STATUS_MARK[status]+' '+(CREDIT_TEXT[status]||STATUS_TEXT[status])+'</span>';
 }
@@ -323,8 +323,7 @@ function screenRepPicker(){
 
   return '<div class="g g-fade">'+
     stepHead(1,'Choose a Rep',
-      'Tap a name to see that rep’s '+esc(H.monthLabel())+' '+esc(H.scope)+
-      ' MPO progress.')+
+      esc(H.monthLabel())+' · '+esc(H.scope))+
     body+
   '</div>';
 }
@@ -368,11 +367,12 @@ function screenRepDetail(){
     // One stacked header, no step badge (2026-09-28, Gavin): the name, then
     // the scope, the manager and the role each on its own line, then the
     // data stamp. The month is the selected pill just above, not repeated.
-    repHead(esc(first)+'’s MPO Progress', [
-      esc(H.scope),
-      dmOf(rep) ? 'Sales manager: '+esc(dmOf(rep)) : '',
-      roleOf(rep) ? esc(roleOf(rep)) : '',
-      (function(){ var u = document.getElementById('updated-line'); return u && u.textContent.trim() ? '<span class="g-stamp">'+esc(u.textContent.trim())+'</span>' : ''; })()
+    repHead((lockedRep() || asRep ? 'Your' : esc(first)+'’s')+' MPO Progress', [
+      [esc(H.scope),
+        dmOf(rep) ? 'Sales Manager '+esc(dmOf(rep)) : '',
+        roleOf(rep) ? esc(roleOf(rep)) : '',
+        (function(){ var u = document.getElementById('updated-line'); var t = u ? u.textContent.trim().replace(/^Data refreshed\s*/i,'Data ').replace(/,\s*\d{1,2}:\d{2}\s*[AP]M.*$/i,'') : ''; return t ? esc(t) : ''; })()
+      ].filter(Boolean).join(' · ')
     ])+
     cards+
   '</div>';
@@ -416,17 +416,137 @@ function explainFold(o, m){
   return '<button class="g-more js-more" data-target="'+id+'" aria-expanded="false">How This Goal Is Calculated<span class="ar">&#9656;</span></button>'+
     '<div class="g-more-body" id="'+id+'"><ul class="g-rules">'+lines.map(function(l){ return '<li>'+esc(l)+'</li>'; }).join('')+'</ul></div>';
 }
+// The goal's own explanation, from the metric's numbers: "75% of your 92-placement
+// program goal" / "50% of your 29-account base (14.5, rounded up)". Empty when the
+// goal is a plain count (2 new placements) -- the Goal line already says it all.
+function goalWhy(o, m){
+  if(m.underlying==null || !isFinite(Number(m.underlying))){
+    // older objectives carry the rule only as text: "30% of last fall (33 of 110)"
+    var g = String(m.goalText||'');
+    return /%/.test(g) ? g.replace(/^my /i,'your ').replace(/ my /g,' your ').replace(/^./, function(c){ return c.toUpperCase(); }) : '';
+  }
+  var u = Number(m.underlying), req = Number(m.goal);
+  var pct = req && u ? Math.round(req/u*100) : 0;
+  var ex = (m.explain||[]).join(' ');
+  var p = /(\d+(?:\.\d+)?)%/.exec(ex); if(p) pct = Number(p[1]);
+  if(m.pctRule) pct = Math.round(Number(m.pctRule)*100);
+  var exact = Math.round(u*pct)/100;
+  var rnd = exact !== req ? ' ('+fmtNum(exact)+', rounded up)' : '';
+  if(o.type==='pct_of_goal') return pct+'% of your '+fmtNum(u)+'-'+(o.unit||'placement')+' program goal'+rnd;
+  if(o.type==='pct_of_base' || o.shareOfBase || o.type==='followup') return pct+'% of your '+fmtNum(u)+' eligible accounts'+rnd;
+  return '';
+}
+// "Ends Nov 30 · 55 days left" from the objective's own end (or the month's last day).
+/* CARBLISS BUYING ACCOUNTS (2026-10-06, Gavin): the October on-premise Carbliss card shows two
+   counts against the rep's own account base -- accounts that bought in the fixed program period
+   (Aug 1 - Oct 31) and accounts that bought since launch (Jun 2) -- and links to the Carbliss
+   leaderboard page instead of Details / View Eligible Accounts. The numbers come from
+   carbliss-mpo/data/program.json (carbliss-mpo/generate.py; a rep is served their own copy). */
+function isCarblissLaunch(o){
+  return o && o.key==='carbliss' && /on-prem/.test(location.pathname) && H.monthKey && H.monthKey()==='2026-10';
+}
+function carblissCard(o, rep, st){
+  var dl = deadlineOf(o);
+  return '<div class="g-obj g-obj-v3 g-obj-v4 g-cb-card '+st+'">'+
+    '<div class="g-obj-head"><div class="g-obj-name">'+esc(titleOf(o))+'</div>'+
+      '<div class="g-obj-sub">'+esc([o.supplier, (H.monthLabel ? H.monthLabel()+' MPO' : '')].filter(Boolean).join(' \u00b7 '))+'</div>'+
+      creditPill(st)+'</div>'+
+    '<div class="g-cb" data-rep="'+esc(rep)+'"><div class="g-cb-wait">Loading Carbliss buying accounts\u2026</div></div>'+
+    (dl ? '<div class="g-deadline">'+dl+'</div>' : '')+
+    '<a class="g-elig g-cb-lb" href="../../carbliss-onprem-targets/">See Leaderboard</a>'+
+    '<div class="g-meta g-weight">MPO Weight '+Math.round(o.weight*100)+'%</div>'+
+  '</div>';
+}
+var CB_DATA = null;
+function cbLoad(){
+  if(!CB_DATA) CB_DATA = fetch('../../carbliss-mpo/data/program.json', {cache:'no-cache', credentials:'same-origin'})
+    .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); });
+  return CB_DATA;
+}
+function cbDay(iso, withYear){
+  var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso||''); if(!m) return '';
+  var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return MON[Number(m[2])-1]+' '+Number(m[3])+(withYear ? ', '+m[1] : '');
+}
+function hydrateCarbliss(){
+  var boxes = document.querySelectorAll('.g-cb[data-rep]'); if(!boxes.length) return;
+  cbLoad().then(function(D){
+    var names = D.reps.map(function(r){ return r.rep; });
+    for(var i=0;i<boxes.length;i++){
+      var box = boxes[i], rep = box.getAttribute('data-rep');
+      var me = (window.kdhMatchName ? window.kdhMatchName(rep, names) : (names.indexOf(rep)>=0 ? rep : null));
+      var mine = me ? D.accounts.filter(function(a){ return a.rep===me; }) : [];
+      var base = mine.length;
+      if(!base){ box.innerHTML = '<div class="g-cb-wait">No Carbliss account base on file for '+esc(rep)+'.</div>'; continue; }
+      var prog = mine.filter(function(a){ return a.prog; }).length;
+      var since = mine.filter(function(a){ return a.since==='yes'; }).length;
+      var pc = function(n){ return (Math.round(1000*n/base)/10).toFixed(1).replace(/\.0$/,'')+'%'; };
+      var M = D.meta, endTxt = M.frozen ? M.frozen_sales_through : M.sales_through;
+      var tile = function(label, range, n){
+        return '<div class="g-cbt"><div class="g-stat-l">'+label+'</div><div class="g-cbt-r">'+range+'</div>'+
+          '<div class="g-stat-v">'+n+'<span class="g-stat-of"> of '+base+'</span></div>'+
+          '<div class="g-cbt-p">'+pc(n)+'</div>'+
+          '<div class="g-bar"><div class="g-bar-fill" style="width:'+Math.min(100, 100*n/base).toFixed(1)+'%"></div></div></div>';
+      };
+      box.innerHTML = '<div class="g-cb-tiles">'+
+          tile('Program Period', cbDay(M.period.start)+'\u2013'+cbDay(M.period.end, true), prog)+
+          tile('Since Launch', cbDay(M.launch)+' \u2013 '+cbDay(M.sales_through, true), since)+
+        '</div>'+
+        '<div class="g-bar-cap">Accounts that bought Carbliss \u00f7 '+base+' assigned accounts \u00b7 Sales through '+esc(cbDay(endTxt, true))+'</div>'+
+        (M.goal ? '<div class="g-cb-goal">Team L90 Goal: <b>'+D.house.buyers+' of '+M.goal+'</b> Accounts</div>' : '');
+    }
+  }).catch(function(){
+    for(var i=0;i<boxes.length;i++) boxes[i].innerHTML = '<div class="g-cb-wait">Carbliss buying figures are unavailable right now. Reload to try again.</div>';
+  });
+}
+
+function deadlineOf(o){
+  var end = o.periodEnd ? new Date(o.periodEnd+'T12:00:00') : null;
+  if(!end && H.monthKey){ var mk = String(H.monthKey()).split('-'); if(mk.length===2) end = new Date(Number(mk[0]), Number(mk[1]), 0, 12); }
+  if(!end || isNaN(end)) return '';
+  var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var today = new Date(); today.setHours(12,0,0,0);
+  var days = Math.round((end - today)/86400000);
+  var day = MON[end.getMonth()]+' '+end.getDate();
+  if(days < 0) return 'Ended '+day+', '+end.getFullYear();
+  return 'Ends <b>'+day+'</b> · '+(days===0 ? 'last day' : days+(days===1?' day':' days')+' left');
+}
+// The hub's list of eligible accounts for this objective and rep: the program
+// workspace when a verified rule exists (it decides on load), else the target list.
+function eligibleHref(o, rep){
+  if(o.type==='photos') return '';
+  var scope = /on-prem/.test(location.pathname) ? 'on' : 'off';
+  var mk = H.monthKey ? H.monthKey() : ''; if(!mk) return '';
+  var id = scope+':'+mk+':'+o.key;
+  // ret = this exact screen (rep, month, view), so the hub's Back comes here.
+  return '../../hub/#view=detail&rep='+encodeURIComponent(rep)+'&cat='+scope+'&prog='+encodeURIComponent(id)+
+    '&ret='+encodeURIComponent(location.pathname+stateToHash());
+}
+// RETURN TRIP (2026-10-06): remember the scroll position when a rep leaves for
+// the hub's Eligible Accounts, and put it back when they come back to this
+// exact screen (same path + hash).
+var MPO_POS = 'kdh_mpopos:';
+document.addEventListener('click', function(e){
+  var a = e.target.closest && e.target.closest('a.g-elig'); if(!a) return;
+  try{ sessionStorage.setItem(MPO_POS+location.pathname+stateToHash(), String(window.scrollY)); }catch(err){}
+}, true);
+(function(){
+  var y = null, key = MPO_POS+location.pathname+(location.hash||'#');
+  try{ y = sessionStorage.getItem(key); if(y!=null) sessionStorage.removeItem(key); }catch(e){}
+  if(y==null) return;
+  var tries = 0, t = setInterval(function(){
+    if(document.querySelector('.g-obj') || ++tries>80){ clearInterval(t); window.scrollTo(0, Number(y)||0); }
+  }, 75);
+})();
 function repObjectiveCard(o, rep){
   var m = H.metric(o, rep);
-  var weightTag = '<span class="g-tag weight">'+Math.round(o.weight*100)+'% of MPO</span>';
+  var weightTag = '<span class="g-tag weight">MPO Weight '+Math.round(o.weight*100)+'%</span>';
 
   if(!m || m.notScored){
     var note = m && m.notScored
-      ? 'This objective doesn’t apply to '+esc(rep.split(' ')[0])+' this month — there’s no '+
-        'goal to measure against, so it isn’t counted for or against them.'+
+      ? 'Not scored for '+esc(rep.split(' ')[0])+' this month. No goal to measure.'+
         (m.valueText ? ' Recorded so far: <strong>'+esc(m.valueText)+'</strong>.' : '')
-      : 'This objective isn’t being tracked with data yet, so there’s no progress to show. '+
-        'The goal and its weight still count toward the month.';
+      : 'No data yet. The goal and weight still count toward the month.';
     return '<div class="g-obj notstarted">'+
       (o.supplier?'<div class="g-obj-sup">'+esc(o.supplier)+'</div>':'')+
       '<div class="g-obj-name">'+esc(o.name)+'</div>'+
@@ -438,6 +558,7 @@ function repObjectiveCard(o, rep){
   }
 
   var st = m.status;
+  if(isCarblissLaunch(o)) return carblissCard(o, rep, st);
   // ONE SHORT SUMMARY (2026-09-30, Gavin's Encompass brief): the objective's
   // short name, "3 of 13 buying accounts", "10 more buying accounts needed",
   // one bar, and the goal rule as a quiet supporting line. The weight and
@@ -466,26 +587,43 @@ function repObjectiveCard(o, rep){
 
   var detail = H.detailHtml(o, rep) || '';
   var mid = 'gm'+(uid++);
-  var moreHtml =
+  // Details holds only what the card does not already say (2026-10-06): the
+  // full program name when the title is shortened, and the tracker's own table.
+  var full = titleOf(o) !== o.name ? '<p class="g-full"><span>Full program name</span>'+esc(o.name)+'</p>' : '';
+  var moreHtml = (full || detail) ?
       '<button class="g-more js-more" data-target="'+mid+'" aria-expanded="false">'+
         'Details<span class="ar">&#9656;</span></button>'+
-      '<div class="g-more-body" id="'+mid+'">'+
-        '<ul class="g-rules"><li>'+esc(o.name)+'</li><li>Worth '+Math.round(o.weight*100)+'% of this month\u2019s MPO.</li>'+
-        (m.goalText ? '<li>Goal: '+esc(m.goalText)+'</li>' : '')+'</ul>'+detail+'</div>';
+      '<div class="g-more-body" id="'+mid+'">'+full+detail+'</div>' : '';
 
   if(hasNums){
-    var unitLbl = titleCase(uPlural(Number(m.goal), unit));
+    // READABILITY v4 (2026-10-06, Gavin): Goal (with its unit and, for a
+    // percentage rule, the underlying goal) -> Current -> Still Needed ->
+    // one bar -> deadline -> View Eligible Accounts. Weight and the full rule
+    // stay secondary. Every number is the metric's own (m.goal is the
+    // requirement, m.underlying the program goal or account base).
     var met = m.remaining<=0;
-    return '<div class="g-obj g-obj-v3 '+st+'">'+
-      logoHtml(o)+'<div class="g-obj-head"><div class="g-obj-name">'+esc(titleOf(o))+'</div>'+creditPill(st)+'</div>'+
-      '<div class="g-obj-sub">'+supPeriod(o)+'</div>'+
-      '<div class="g-fig"><span class="g-fig-n">'+fmtNum(m.value)+'</span><span class="g-fig-of"> of '+fmtNum(m.goal)+'</span>'+
-        '<span class="g-fig-u">Required '+esc(unitLbl)+'</span></div>'+
-      '<div class="g-need'+(met?' good':'')+'">'+(met ? 'Requirement Met' : fmtNum(m.remaining)+' More Needed')+'</div>'+
+    var unitGoal = titleCase(uPlural(Number(m.goal), unit));
+    var why = goalWhy(o, m);
+    var dl = deadlineOf(o);
+    var href = /^Ended/.test(dl) ? '' : eligibleHref(o, rep);   // an ended month has nothing left to sell into
+    return '<div class="g-obj g-obj-v3 g-obj-v4 '+st+'">'+
+      logoHtml(o)+
+      '<div class="g-obj-head"><div class="g-obj-name">'+esc(titleOf(o))+'</div>'+
+        '<div class="g-obj-sub">'+esc([o.supplier, (H.monthLabel ? H.monthLabel()+' MPO' : '')].filter(Boolean).join(' · '))+'</div>'+
+        creditPill(st)+'</div>'+
+      '<div class="g-goal"><div class="g-goal-l">Goal</div><div class="g-goal-v">'+fmtNum(m.goal)+' '+esc(unitGoal)+'</div>'+
+        (why ? '<div class="g-goal-why">'+esc(why)+'</div>' : '')+'</div>'+
+      '<div class="g-stats">'+
+        '<div class="g-stat"><span class="g-stat-l">Current</span><span class="g-stat-v">'+fmtNum(m.value)+'<span class="g-stat-of"> of '+fmtNum(m.goal)+'</span></span></div>'+
+        '<div class="g-stat'+(met?' good':'')+'"><span class="g-stat-l">Still Needed</span><span class="g-stat-v">'+(met ? 'Met' : fmtNum(m.remaining))+'</span>'+
+          '<span class="g-stat-u">'+(met ? 'Requirement complete' : esc(titleCase(uPlural(Number(m.remaining), unit))))+'</span></div>'+
+      '</div>'+
       barHtml(m.pct, st)+
-      '<div class="g-bar-cap">Progress: '+Math.round(m.pct)+'% of this MPO requirement</div>'+
-      '<div class="g-meta">MPO Weight: '+Math.round(o.weight*100)+'%</div>'+
-      subsHtml+moreHtml+
+      (dl ? '<div class="g-deadline">'+dl+'</div>' : '')+
+      (href && !met ? '<a class="g-elig" href="'+esc(href)+'">View Eligible Accounts</a>' : '')+
+      subsHtml+
+      '<div class="g-meta g-weight">MPO Weight '+Math.round(o.weight*100)+'%</div>'+
+      moreHtml+
     '</div>';
   }
   return '<div class="g-obj g-obj-v2 '+st+'">'+
@@ -534,7 +672,7 @@ function programCard(o){
           barHtml(share, g.n===g.total ? 'achieved' : (g.n>0?'inprogress':'notstarted'))+
           '<div class="g-bar-cap">Team progress: '+Math.round(share)+'% of eligible reps at goal</div>'
         : '<div class="g-need">No data yet \u2014 not counted</div>')+
-      '<div class="g-meta">MPO Weight: '+Math.round(o.weight*100)+'%<span class="g-review">'+(open?'Hide Reps':'Review Reps')+'</span></div>'+
+      '<div class="g-meta">MPO Weight '+Math.round(o.weight*100)+'%<span class="g-review">'+(open?'Hide Reps':'Review Reps')+'</span></div>'+
     '</button>';
 
   var body = open ? '<div class="g-prog-body open">'+programBody(o)+'</div>' : '';
@@ -634,6 +772,8 @@ function render(){
   else if(activeRep && H.roster.indexOf(activeRep)>=0) html = screenRepDetail();
   else { activeRep = null; html = screenRepPicker(); }
   mount.innerHTML = html;
+  if(window.KdhFit) window.KdhFit.tables(mount);
+  hydrateCarbliss();
   var segs = document.querySelectorAll('.g-seg-btn');
   for(var i=0;i<segs.length;i++){
     segs[i].classList.toggle('active', segs[i].dataset.view===view);
@@ -674,6 +814,7 @@ function wire(){
           rbody.innerHTML = (obj && H.detailHtml(obj, rd.dataset.rep)) ||
             '<div class="g-note">No line-level detail for this rep this month.</div>';
           rbody.dataset.filled = '1';
+          if(window.KdhFit) window.KdhFit.tables(rbody);
         }
         rbody.classList.toggle('open', ropen);
       }

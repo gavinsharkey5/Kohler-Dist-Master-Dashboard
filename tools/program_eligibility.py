@@ -35,6 +35,8 @@ import csv, json, math, sys, hashlib
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import program_skus   # the official SKU list per program, when Gavin has sent one (2026-10-06)
 
 ROOT = Path(__file__).resolve().parent.parent
 MASTER = ROOT / "rolling-distribution" / "data" / "master"
@@ -155,6 +157,14 @@ def constellation(products, customers, sources, months, reps):
             unresolved.append(nm)
     if unresolved:
         raise SystemExit(f"Corona Innovation: product names not resolved to ONE ProductID: {unresolved}")
+    off_list = program_skus.official("off:2026-10:constellation_innovation")
+    if off_list is not None:
+        if set(off_list) - set(prods) - set(products):
+            raise SystemExit(f"Corona Innovation: official SKUs not in the catalogue: {sorted(set(off_list) - set(products))}")
+        extra = set(prods) - set(off_list)
+        if extra:
+            raise SystemExit(f"Corona Innovation: the report counts products missing from the official SKU list: {sorted(extra)}")
+        prods = prods + sorted(x for x in off_list if x not in prods)   # an official SKU nobody has placed yet still qualifies (order kept)
     pset = set(prods)
     fams = sorted({products[p]["family"] for p in prods})
     window = [m for m in months if "2026-09" <= m <= "2026-11"]
@@ -206,9 +216,9 @@ def constellation(products, customers, sources, months, reps):
         "requirement": {"kind": "pct_of_assigned_goal", "pct": 0.75, "rounding": "up",
                         "text": "75% of your assigned Corona Innovation goal, rounded up"},
         "products": [prod_row(products[p]) for p in sorted(prods, key=lambda x: products[x]["name"])],
-        "productsExhaustive": False,
-        "productsNote": "These are the products the RDE report counts so far. A product nobody has placed yet would not appear in the report, so the list may be incomplete until the report's own SKU list is confirmed.",
-        "excludedProducts": [dict(prod_row(products[p]), why="Sold off-premise in September but not counted by the report") for p in excluded],
+        "productsExhaustive": off_list is not None,
+        "productsNote": "The official SKU list for this MPO (RDE, received Oct 6, 2026)." if off_list is not None else "These are the products the RDE report counts so far. A product nobody has placed yet would not appear in the report, so the list may be incomplete until the report's own SKU list is confirmed.",
+        "excludedProducts": [dict(prod_row(products[p]), why="Sold off-premise in September but not on the program's SKU list" if off_list is not None else "Sold off-premise in September but not counted by the report") for p in excluded],
         "families": fams,
         "universe": {"premise": "Off", "territory": "Core Market", "areas": CORE_AREAS, "base": "Your assigned off-premise accounts"},
         "rules": [
@@ -216,7 +226,9 @@ def constellation(products, customers, sources, months, reps):
                "Every product in the export; ProductIDs matched by exact catalogue name. The export carries names only."),
             r_("Non-qualifying products of the same brands", "Other Corona, Modelo, Pacifico and Victoria packages do not count (e.g. Modelo Negra 4/6/12 oz bottles, Vicky Chamoy, Corona NA 2/12 cans).", "verified",
                f"{len(excluded)} same-family products sold off-premise in September are absent from the export."),
-            r_("Products not yet placed by anyone", "Whether any other innovation product counts is unknown until the report's SKU list is confirmed.", "unverified", "A product with zero placements cannot appear in the export."),
+            (r_("Official SKU list", f"The program's own SKU list (RDE, Oct 6, 2026) names the same {len(prods)} products.", "verified",
+                "MPOs/off-prem/skus/2026-10_constellation_innovation.csv matches the report's products exactly.") if off_list is not None else
+             r_("Products not yet placed by anyone", "Whether any other innovation product counts is unknown until the report's SKU list is confirmed.", "unverified", "A product with zero placements cannot appear in the export.")),
             r_("Eligible accounts", "Your off-premise accounts in the Core Market (Bergen, Passaic, Passaic-FF, Sussex, Morris 1, Morris 3).", "verified",
                "No innovation placements outside those areas; adding on-premise accounts would exceed the export for 3 reps. Brand Permissions file: Core Market for every family."),
             r_("Credit measure", "Placements: one account × one qualifying product, net cases above zero in the window.", "verified",
@@ -292,6 +304,9 @@ def lytt(products, customers, sources, months, reps):
     raw = list(csv.DictReader(open(OFF / "lytt_october.csv")))
     pcol = next(c for c in raw[0] if c.startswith("Product Num"))
     lytt_ids = sorted(pid for pid, p in products.items() if p["family"] == "Lytt")
+    lytt_off = program_skus.official("off:2026-10:bbc_lytt")
+    if lytt_off is not None and set(lytt_off) != set(lytt_ids):
+        raise SystemExit(f"Lytt: official SKU list {sorted(lytt_off)} differs from the Lytt family {lytt_ids}")
     in_export = sorted({r[pcol].strip() for r in raw})
     unknown = [p for p in in_export if p not in products or products[p]["family"] != "Lytt"]
     if unknown:
@@ -314,7 +329,8 @@ def lytt(products, customers, sources, months, reps):
         "requirement": {"kind": "pct_of_base", "pct": 0.5, "rounding": "up", "text": "50% of your core account base (Whole Foods removed), rounded up"},
         "products": [prod_row(products[p]) for p in lytt_ids],
         "productsExhaustive": True,
-        "productsNote": "Every Lytt product in the catalogue (all 1/24/6.8 oz bottles). The report filters on the Lytt brand family.",
+        "productsNote": ("The official SKU list for this MPO (RDE, received Oct 6, 2026): all six Lytt flavors, 1/24/6.8 oz bottles." if lytt_off is not None
+                         else "Every Lytt product in the catalogue (all 1/24/6.8 oz bottles). The report filters on the Lytt brand family."),
         "excludedProducts": [],
         "families": ["Lytt"],
         "universe": {"premise": "Off", "territory": "Core Market", "areas": CORE_AREAS, "base": "Your core off-premise account base, Whole Foods removed"},

@@ -219,13 +219,55 @@
 .ptag.upcoming{background:var(--kdh-surface-3,#ECEEF1);color:var(--kdh-text-2,#555)}
 .shead .ptag{margin-left:0}
 .rb-ended{margin:0 0 12px;padding:10px 12px;border:1px solid var(--kdh-border,#E1E3E6);border-radius:10px;background:var(--kdh-surface-2,#F6F7F8);font-size:14px;color:var(--kdh-text-2,#555)}
+
+/* ---- PAGE STANDARD (2026-10-07): one 960px column, centered header, short copy, type 13 / 14 / 15 / 16 ---- */
+.wrap{max-width:960px;padding:0 16px}
+.gx-head .wrap{padding:16px 16px 12px;text-align:center}
+.gx-head h1{font-size:26px;font-weight:600}
+.updated{display:flex;align-items:center;justify-content:center;gap:6px;margin:6px 0 0;font-size:14px;color:var(--ink-soft)}
+.updated b{font-size:14px;font-weight:600}
+.updated .lbl{font-size:14px;font-weight:400}
+.ptag{margin-left:0;font-size:13px}
+.seg{margin:16px 0 0}
+.seg .lbl{font-size:14px;font-weight:600;letter-spacing:0;text-transform:none}
+.chip{font-size:14px;min-height:40px}
+.shead{margin:24px 0 12px}
+.shead h2{font-size:17px}
+.shead .meta{font-size:14px}
+.rb-prog{text-align:center;padding:16px;margin:0 0 12px}
+.rb-k{font-size:14px}.rb-big{font-size:34px}.rb-big span{font-size:16px}.rb-need{font-size:16px}.rb-sub{font-size:14px}
+.rb-gh{font-size:16px;margin:16px 2px 8px}
+.rb-gh span,.rb-fold summary span{font-size:13px}
+.rb-sell{font-size:15px}.rb-hl{font-size:14px}
+.brow{font-size:15px}.brow .tag,.rule .tag{font-size:13px}
+.brow.rb-row > b{font-size:16px}
+.rb-fold{margin:12px 0 0}
+.rb-fold > summary{font-size:16px}
+.stats{gap:12px;margin:12px 0 0}
+.stat .k{font-size:13px;letter-spacing:0;text-transform:none}
+.stat .v{font-size:26px}
+.quest{padding:14px 16px;margin:0 0 12px}
+.quest .sup{font-size:16px}
+.qline{font-size:14px}
+.brk .cap{font-size:13px;letter-spacing:0;text-transform:none}
+.note{font-size:14px;line-height:1.6;margin:12px 0 0}
+.rule .rk{font-size:14px;font-weight:600;letter-spacing:0;text-transform:none}
+.rule .rt{font-size:14px}
+.rule{margin:12px 0 0}
+.lrow{padding:12px 16px}
+.lrow .medal{font-size:14px}.lrow .who b{font-size:16px}.lrow .sub{font-size:14px}
+.lrow .win{font-size:18px}.lrow .win small{font-size:13px}
+.lrow .you{font-size:13px}.lrow .medal small{font-size:13px}
+.hero .rankbox .lab,.hero .win2 .l{font-size:13px;letter-spacing:0;text-transform:none}
+.badge{font-size:13px;letter-spacing:0;text-transform:none}
+footer{display:none}
+@media (max-width:560px){ .lrow{gap:10px;padding:12px} .lrow .sub{font-size:14px} }
 </style><script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="kdh-page" content="Red Bull Tracker">
 <!-- Site design system: maps this page's variables + fonts onto shared/kdh.css. Keep it LAST in <head>. -->
 <link rel="stylesheet" href="../shared/kdh-skin.css?v=20261002b">
 </head><body>
 <div class="gx-head"><div class="wrap">
-  <p class="eyebrow"><span class="pulse"></span> Kohler Distributing · Red Bull · 2026</p>
   <h1>Red Bull Tracker</h1>
   <p class="updated" id="period"></p>
   <p class="updated" id="updated"></p>
@@ -236,7 +278,7 @@
   <div id="body"></div>
   <footer><hr><p id="foot"></p></footer>
 </div></div>
-<script src="../shared/kdh-user.js?v=20261005a"></script>
+<script src="../shared/kdh-user.js?v=20261007a"></script>
 <script>
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const num=x=>{const v=parseFloat(String(x).replace(/[^0-9.\-]/g,""));return isNaN(v)?0:v;};
@@ -342,11 +384,11 @@ function boardHtml(me){
   }).join("");
   const when=[PERIOD&&PERIOD.label?`period ${esc(PERIOD.label)}${periodState()&&periodState().k==='ended'?' (ended — final)':''}`:"", DATA_DATE?`data through ${esc(fmtDay(DATA_DATE))}`:""].filter(Boolean).join(" · ");
   return `<div class="shead"><span class="tr">${TROPHY}</span><h2>Rep Leaderboard</h2><span class="meta">${rows.length} reps · by ${TOP.label} accounts</span></div>
-    ${when?`<p class="lbwhen">${when}</p>`:""}<div class="board">${items}</div>
-    <p class="note"><b>How the ranking works:</b> reps are ordered by <b>${TOP.label}</b> accounts (an account buying all three: ${CAT_KEYS.join(", ")}) in the buying period; a tie is broken by total buying accounts, and reps still level share a rank (shown with =). The bar is the share of each rep's <b>own</b> buying accounts that reached ${TOP.label}. Routes differ in size and in how many accounts stock Red Bull, so a rep with few buying accounts has fewer to complete — compare the bar as well as the count.</p>`;
+    <div class="board">${items}</div>
+    `;
 }
 const tagStrip=CATS.map(c=>`<span class="tag ${c.cls}">${c.label}</span>`).join("");
-const COMPLETE_RULE=`<div class="rule"><span class="rk">How an account levels up</span>
+const COMPLETE_RULE=`<div class="rule"><span class="rk">How an Account Levels Up</span>
   <span class="rt">There are three things to sell — ${tagStrip} — and an account climbs by stacking them:
   ${TIERS.map(t=>`<span class="tag ${t.cls}">${t.label}</span> = ${t.of.map(k=>`<b>${k}</b>`).join(" + ")}.`).join(" ")}
   <b>${TOP.label}</b> is the finish line: all three together. Two of the three is <b>not</b> ${TOP.label} —
@@ -370,6 +412,7 @@ function howHtml(){
   const catKey=CATS.map(c=>`<b>${c.label}</b> = ${esc(c.blurb)}`).join(' · ');
   return `<details class="rb-fold rb-how"><summary>How It Works</summary><div class="rb-howin">${COMPLETE_RULE}
     <p class="note">${catKey}. ${HOW_EXTRA}</p>
+    <p class="note"><b>How the ranking works:</b> reps are ordered by <b>${TOP.label}</b> accounts (an account buying all three: ${CAT_KEYS.join(", ")}) in the buying period; a tie is broken by total buying accounts, and reps still level share a rank (shown with =). The bar is the share of each rep's <b>own</b> buying accounts that reached ${TOP.label}. Routes differ in size and in how many accounts stock Red Bull, so a rep with few buying accounts has fewer to complete — compare the bar as well as the count.</p>
     <p class="note">Each tally is unique buying accounts, so an account buying two ${CATS[0].label} SKUs still counts once, and <b>${TOP.label}</b> accounts are a subset of <b>${TIERS[0].label}</b> — the two tiers don't add up.</p></div></details>`;
 }
 function render(){
@@ -385,7 +428,7 @@ function render(){
         +`<p class="v num">${t.by[t2.key]}${g?`<small>/${g}</small>`:""}</p></div>`;
     }).join("");
     const stats=`<div class="stats">${statTile("Buying Accounts",t.total,"")}${tierTiles}</div>`;
-    app.innerHTML=`<div class="shead"><h2>Team Progress</h2>${periodTag()}<span class="meta">${PERIOD&&PERIOD.label?esc(PERIOD.label):''}</span></div>`+stats+`<p class="note">Team-wide, <b>${t.complete} of ${t.total}</b> buying accounts (${donePct.toFixed(0)}%) buy all three.</p>`+boardHtml(null)+howHtml();
+    app.innerHTML=`<div class="shead"><h2>Team Progress</h2></div>`+stats+`<p class="note">Team-wide, <b>${t.complete} of ${t.total}</b> buying accounts (${donePct.toFixed(0)}%) buy all three.</p>`+boardHtml(null)+howHtml();
     app.querySelectorAll(".lrow[data-rep]").forEach(el=>{const go=()=>setRep(el.dataset.rep);el.addEventListener("click",go);el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});});
   } else {
     const s=repStats(activeRep);
@@ -425,11 +468,11 @@ function render(){
     const andJoin=a=>a.length<2?a.join(''):a.slice(0,-1).join(', ')+' and '+a[a.length-1];
     const nOne=todo.filter(([n,f])=>missingFor(f).length===1).length;
     const prog=`<div class="rb-prog${allDone?' done':''}">
-      <p class="rb-k">Your ${TOP.label} Accounts <span>(buying all three)</span></p>
-      <p class="rb-big num">${s.complete} <span>of ${s.total} buying accounts</span></p>
+      <p class="rb-k">Your ${TOP.label} Accounts</p>
+      <p class="rb-big num">${s.complete} <span>of ${s.total} Buying Accounts</span></p>
       <div class="bar ${allDone?'done':''}"><i style="width:${donePct.toFixed(1)}%"></i></div>
       <p class="rb-need">${allDone?`Every buying account is ${TOP.label}.`:`<b>${todo.length} to complete</b>${nOne?` · ${nOne} need just one more product`:''}`}</p>
-      <p class="rb-sub">Rank ${rank||'–'} of ${Object.keys(REPS).length} reps${PERIOD&&PERIOD.label?` · ${esc(PERIOD.label)}`:''}</p></div>`;
+      <p class="rb-sub">Rank ${rank||'–'} of ${Object.keys(REPS).length} reps</p></div>`;
     // one row per account: the name, then WHAT TO SELL in words, then what it already buys
     const rowFor=([n,f])=>{
       const isDone=isComplete(f);
@@ -444,10 +487,9 @@ function render(){
       : `<div class="board rb-list"><div class="brow">Every account is ${TOP.label} — nice.</div></div>`;
     const doneHtml=`<details class="rb-fold"><summary>${TOP.label} Accounts <span>${done.length}</span></summary><div class="board rb-list">${done.length?done.map(rowFor).join(""):`<div class="brow">No ${TOP.label} accounts yet — an account needs ${CAT_KEYS.join(", ")} together.</div>`}</div></details>`;
     const ps=periodState();
-    app.innerHTML=`<div class="shead"><h2>Your Progress</h2>${periodTag()}<span class="meta">${PERIOD&&PERIOD.label?esc(PERIOD.label):''}</span></div>`+
-      (ps&&ps.k==='ended'?`<p class="rb-ended">This buying period ended ${esc(fmtDay(PERIOD.end))}. These are the final numbers; nothing more counts toward it.</p>`:'')+prog+
-      `<div class="shead"><h2>Accounts to Complete</h2><span class="meta">closest first</span></div>`+todoHtml+doneHtml+
-      `<div class="shead"><h2>Team Progress</h2><span class="meta">Every rep's accounts vs. the team goal · tap a category for yours</span></div>`+cards+
+    app.innerHTML=`<div class="shead"><h2>Your Progress</h2></div>`+prog+
+      `<div class="shead"><h2>Accounts to Complete</h2><span class="meta">Closest First</span></div>`+todoHtml+doneHtml+
+      `<div class="shead"><h2>Team Progress</h2><span class="meta">Tap a Category for Yours</span></div>`+cards+
       boardHtml(activeRep)+howHtml();
   }
 }
@@ -494,11 +536,11 @@ async function boot(){
   document.getElementById("lede").innerHTML=`${periodPhrase} ${goalPhrase} ${key} ${rule} Tap your name to see your accounts.`;
   HOW_EXTRA=`${periodPhrase} ${goalPhrase}`; const hw=document.querySelector('.rb-how .rb-howin .note'); if(hw) render();
   if(LOCK_REP){const l=document.getElementById("lede");l.innerHTML=l.innerHTML.replace(/\s*Tap your name to see your accounts\.?/,"");}
-  document.getElementById("period").innerHTML=period&&period.label?`<span class="lbl">Buying period</span><b>${esc(period.label)}</b>${periodTag()}`:"";
+  document.getElementById("period").innerHTML=period&&period.label?`<b>${esc(period.label)}</b>${periodTag()}`:"";
   // the export's own last date (period.json), not the file's timestamp -- a
   // rep's copy of data.csv is rewritten whenever the copies are rebuilt
   const upd=(period&&period.export_last_date)?fmtDay(period.export_last_date):(lastMod?new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):"");
-  document.getElementById("updated").innerHTML=upd?`<span class="dot"></span><span class="lbl">Data updated</span><b>${esc(upd)}</b>`:"";
+  document.getElementById("updated").innerHTML=upd?`<span class="lbl">Data through</span><b>${esc(upd)}</b>`:"";
   const catKey=CATS.map(c=>`<b>${c.label}</b> = ${c.blurb}`).join(", ")+".";
   document.getElementById("foot").innerHTML=`${goalPhrase} ${catKey} ${key} ${rule} ${periodPhrase} Each tally is unique buying accounts, so an account buying two ${CATS[0].label} SKUs still counts once, and <b>${TOP.label}</b> accounts are a subset of <b>${TIERS[0].label}</b> — the two tiers don't add up. Reps are ranked by ${TOP.label} accounts. Refresh by re-exporting the RDE Red Bull Tracker report and running <b>generate.py</b> — see README.txt.`;
 }

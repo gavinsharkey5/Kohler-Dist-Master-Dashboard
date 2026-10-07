@@ -17,6 +17,22 @@ device, a decision).
   export by `python3 tools/load_contacts.py <export.csv>`; git-ignored because
   the repo is public). Until both are run the Account page's Contact group says
   no contact is on file. To refresh: new export -> run the tool -> paste -> run.
+- [ ] **Carbliss MPO tracker: confirm five points, then refresh weekly** (Gavin):
+  built 2026-10-06 (carbliss-mpo/README.txt); it now shows in the October on-premise Carbliss card (Program Period Aug 1-Oct 31 + Since Launch, "See Leaderboard" -> the Carbliss targets page), not as its own tile. Confirm: (1) the
+  program is ON-PREMISE only (off-premise accounts bought Carbliss too and are
+  not counted); (2) launch = Jun 2, 2026, the first Carbliss load sheet (or give
+  Kohler's official date); (3) an account whose Carbliss load sheet was fully
+  returned the same month still counts as a buyer (2 such accounts so far --
+  Encompass's buyer flag does not net returns); (4) the existing October
+  on-premise MPO objective "Carbliss 40% buying accounts" (window Sep 1-Oct 31,
+  a 40% target) is a different definition from this tracker (Aug 1-Oct 31, no
+  target shown) -- keep both, or replace one; (5) the denominator is the core
+  on-premise base the October MPO already uses (no inactive flag, no Carbliss
+  territory rule on file). Weekly: save the new buyers export over
+  carbliss-onprem-targets/carbliss_buyers_l90.csv and run
+  `python3 carbliss-mpo/generate.py`; after Oct 31, `--finalize`. 21 accounts
+  are newer than the Account page's books and show unlinked until
+  hub/generate.py + accounts/generate.py are re-run on the refreshed base.
 
 - [ ] **Program eligibility: answer the rule questions** (Gavin):
   accounts/REPORTING_REQUEST.md section 12 -- C1 the Constellation "Innovation
@@ -262,6 +278,37 @@ device, a decision).
 - **Account-aware assistant + mock pitch** -- built 2026-09-30 and hardened the same day (server-side account authorization, server-built record, tools on the full record, ledger + spend limits); waiting on the pilot above. Snowflake later adds freshness (daily grain, invoices, inventory); route-wide / comparable-account questions need a permission rule first.
 
 ## Done
+
+- [x] 2026-10-06 **Carbliss MPO tracker** (/carbliss-mpo/): fixed program period Aug 1-Oct 30,
+  house buying-account total, each rep's "X of Y assigned accounts / Z% penetration",
+  every account (buyers and nonbuyers) with Bought Aug 1-Oct 30 / Bought Since Launch /
+  Last Carbliss Purchase, Sales Through date, `--finalize` freeze. Rep home tile, manager
+  card, Programs sidebar item. See the Now item for what to confirm.
+- [x] 2026-10-06 **Official SKU lists loaded** for the October Off-Premise MPOs (Corona
+  Innovation 11, Lytt 6, Molly's 5, Wine 60). Corona and Lytt matched the reports
+  exactly and are now confirmed. TO DO (you): Carbliss + Spirits follow-up
+  (on-premise) and the October incentives -- REPORTING_REQUEST section 13.
+- [x] 2026-10-06 **Incentives use the same Eligible Accounts page** as the MPOs (goal,
+  What Counts, Qualifying Products, search, accounts; Back returns where you
+  came from), and every product shows as one line ("Corona Non-Alcoholic
+  4/6/12 oz Btl"). TO DO (you): send one SKU CSV per program -- list in
+  accounts/REPORTING_REQUEST.md section 13 -- so each program shows its exact
+  products instead of the whole brand.
+- [x] 2026-10-06 **Eligible Accounts, simplified**: from an MPO card, "View Eligible
+  Accounts" opens one focused page -- goal / current / still needed, a folded
+  Qualifying Products list (product, package, size), search, and the accounts.
+  Back returns to the exact MPO screen (same rep, month and scroll), also after
+  opening an account. Nothing to do on your side.
+- [x] 2026-10-06 **Hub: a manager stays in Manager Mode after viewing one rep**:
+  tapping Change on the "Viewing <rep>" chip used to leave the hub in rep mode, so
+  the next rep you picked showed "Choose Another Rep" instead of "‹ Program View".
+  Nothing to do on your side.
+- [x] 2026-10-06 **Cards easier to read**: every incentive and MPO card leads with
+  the goal (with its unit and the rule behind it), then Current / Still Needed in
+  large dark numbers, one bar, the deadline and View Eligible Accounts; weight
+  and full rules sit lower. Supporting tables fit their content (the phone
+  placement counts were off-screen), empty columns are hidden with a note, and
+  the manager's rep cards are no longer dark-on-dark in light mode.
 
 - [x] 2026-10-05 **Program eligibility, one calculation**: Corona Innovation,
   Lytt and Carbliss 40% show "54 of 69 Required Placements / 15 More Needed",

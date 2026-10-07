@@ -408,6 +408,96 @@ is now the LAST entry of MONTHS (no more editing it each month), the MPO tracker
 already default to the last month, and the hub's Previous Months toggle opens on the
 latest ended month (September).
 
+## Carbliss MPO tracker: fixed window, house total, penetration (2026-10-06)
+
+`carbliss-mpo/` (page + `generate.py` + README.txt). Gavin's brief: rebuild the
+Carbliss on-premise MPO around launch-period buying, NOT a rolling L90. PROGRAM
+PERIOD Aug 1 - Oct 30, 2026 inclusive (fixed; "Program Period: Aug 1-Oct 30,
+2026"); launch = first Carbliss load sheet on file (Jun 2, 2026, corroborated by
+the rolling master: no Carbliss sales before June 2026). Data = two EXISTING files,
+read in place: carbliss-onprem-targets/carbliss_buyers_l90.csv (load-sheet dates,
+Buyers 2026 flag; ON-PREMISE only, month-by-month equal to the master's on-prem
+buyers) and MPOs/on-prem/core_market_on_prem_accts.csv (the denominator, same base
+the October MPO's Carbliss objective uses, house reps Default / Office Tell Sell
+dropped). Qualifying purchase = a load-sheet row with Buyers 2026 > 0, any Carbliss
+flavor, counted by CustomerID once; the RDE flag does not net same-month returns
+(2 accounts, documented). Page: house card ("Carbliss Buying Accounts / N Accounts
+Bought During the Program Period / Aug 1-Oct 30 . Sales Through <latest load-sheet
+date>"), the rep card ("X of Y Assigned Accounts Bought Carbliss / Z% Account
+Penetration"), search + All Accounts / Program Buyers / Program Nonbuyers, rows
+Account | Bought Aug 1-Oct 30 | Bought Since Launch | Last Carbliss Purchase (check /
+X text labels; "Unknown" only if coverage starts after launch), stacked labelled
+rows under 760px. Managers: rep groups (collapsible) + rep select, DM scoped to
+their team (kdhTeam), house total stays company-wide. Reps: served their own
+`rep/<key>/program.json` (tools/rep_slices.py carbliss_mpo + middleware
+repSlicePath / SLICE_DIRS / REP_PATHS), pinned by kdhMatchName, fail closed.
+`generate.py --finalize` writes data/final.json (denied to reps, in .vercelignore):
+later runs read the program-period fields from it so nothing after Oct 30 can
+change the result, while Since Launch / Last Purchase keep updating. State: filters
+in the hash, groups + scroll in sessionStorage; account links carry from= / fl=.
+Accounts missing from the Account page's books (21) are listed unlinked. NOT
+changed: the October MPO objective "Carbliss 40% buying accounts" (Sep 1-Oct 31,
+40% target) -- a different definition; ROADMAP asks Gavin which to keep. Tests
+(scratchpad): cm_test.mjs (rep / phone / dark / manager / DM / preview / unmatched),
+cm_mw_test.mjs (real middleware.js with stubbed Supabase). Tags: carbliss-mpo.css /
+.js 20261006d, kdh-user.js 20261006b (new Programs sidebar item "Carbliss MPO").
+
+Follow-up (2026-10-06, Gavin): the tracker now LIVES IN THE CARD. Program period is Aug 1 - OCT 31
+(PERIOD_END in generate.py; supersedes the Oct 30 above). The "Carbliss MPO" Programs sidebar item and the
+rep / manager home tiles are REMOVED; /carbliss-mpo/ still exists (data + page) but nothing links to it.
+The October on-premise "Carbliss Buying Accounts" card (guided.js `carblissCard` / `hydrateCarbliss`, only
+for key carbliss in 2026-10 on the on-prem page) shows two centered tiles against the rep's own base --
+Program Period (Aug 1-Oct 31) "X of Y, Z%" and Since Launch (Jun 2 - latest load sheet) "X of Y, Z%",
+read from carbliss-mpo/data/program.json (a rep is served their own copy) -- plus the credit pill,
+deadline and weight; NO goal band, Current / Still Needed, View Eligible Accounts or Details; the one
+link is "See Leaderboard" -> /carbliss-onprem-targets/. The 40% goal still drives the credit pill
+(metricFor untouched). That leaderboard page was reformatted (a CSS block at the end of its <style>):
+everything centered, larger type, tiles / leaderboard rows / buyers / toolbar centered, and the
+accounts table is one labelled centered block per account under 900px (no sideways scroll; a "Sort by"
+select replaces the hidden header sorting; Rep hidden for reps). Generator untouched, so it survives
+refreshes. Tests (scratchpad): card_test.mjs, lb_test.mjs. Tags: guided.js 20261006d, guided.css
+20261006b, kdh-user.js 20261006c.
+
+Leaderboard page rebuilt (2026-10-06, Gavin): /carbliss-onprem-targets/ is now "Carbliss Leaderboard" (nav label,
+rep home tile, manager card renamed). The Sun Cruiser / White Claw pitch TABLE, its toolbar, the three stat tiles
+(target / opportunity / without SC-WC) and the pitch panel are REMOVED (the generator still embeds that data,
+unused). The win-back list shows "last <date>" with no day counts. The REP LEADERBOARD ranks reps by ROLLING-90
+buyers over the rep's whole on-premise account base (the MPO base): "34 of 122 accounts · 28%", ties on share
+then name, from `board` in carbliss-mpo/data/program.json (counts per rep, no names; every rep's copy carries it).
+Below it, ROSTER: sales rep -> customers with L90 Buyer / YTD Buyer (since launch) / Last Purchase, for ALL of
+the rep's assigned accounts (a rep sees only their own group, a DM their team, a manager every rep as
+collapsible groups; filters search / rep / All - L90 buyers - Fell off L90 - Never bought). program.json
+accounts gained `l90` (the RDE Buyers L90 flag) and the file gained `board`. The old goal bar and buyers card stay.
+Tags: kdh-user.js 20261006d. Tests (scratchpad): lb2_test.mjs.
+L90 REDEFINED (Gavin, same day): on the leaderboard page, the MPO card and the roster, "L90" = bought in the FIXED program
+period Aug 1 - Oct 31 (program.json `prog`), NOT the RDE rolling-90 flag (that flag is no longer read; program.json `l90` is gone,
+`board.l90` = accounts with prog). Fell Off L90 = bought since launch but not in the period. The page reads everything from
+program.json (buyers card, bar, leaderboard, roster); the roster has Search / Sales Rep / Town / L90 Buyer / YTD Buyer filters.
+TEAM GOAL: `L90_GOAL = 331` in carbliss-mpo/generate.py (meta.goal) -- the company chases 331 L90 buyers out of the entire core
+market on-premise base (1,047). A "Team L90 Goal" bar tops the leaderboard page (160 of 331, 171 to go, "Goal 331 of 1,047 On-Premise
+Accounts") and one line sits on the MPO Carbliss card for every rep; company-wide counts only. guided.js 20261006e.
+Follow-up (same day): the leaderboard's "Show All Reps" / "Show Top 10" toggle sits top right of its card (a rep below #10 opens it
+expanded); the old Sun Cruiser / White Claw goal bar is now "<Your|Team|Company> Customer Base": YTD buyers of the
+rep's whole core-market on-premise account base ("42 of 122 Accounts"), from program.json `board`.
+
+## COPY + LAYOUT STANDARD -- every page, every time (Gavin, 2026-10-06)
+
+Reps are beer sales reps: they do not read paragraphs. For every page you build or touch:
+- SHORT COPY. Labels and numbers first. No lede paragraphs, no "how this works" essays, no restating what a
+  number already says. One short line of context at most ("Data through Oct 16, 2026", "L90 = bought in the
+  last 90 days"). Put any rule detail in a fold or the README, never on the main screen. Cut stale copy when the
+  feature it described is gone.
+- CAPITALIZATION. Title Case for page names, section headings, card titles, tile labels, column headings, buttons
+  and filter labels ("Rep Leaderboard", "L90 Buyer", "Win Back", "See Leaderboard"); sentence case only for the
+  rare explanatory line. Same word, same spelling everywhere (L90, YTD, Account / Accounts).
+- TYPE. One face (Inter via the skin). Headings 16-18px / 600, body 15-16px, secondary 14px, nothing under 14px
+  except icons; big figures 30-48px / 600-700. No all-caps, no letter-spacing.
+- LAYOUT. One centered column per page (960px, 16px side padding): header, cards, filter bar and lists share the
+  same left and right edges; no panel wider than its neighbors. Spacing steps 12 / 14 / 16px between and inside
+  cards. Centered text inside cards. Filters in one grid row (search full width on top). Phones: stack into
+  labelled blocks, never a sideways-scrolling table. Verify at 390 / 820 / 1366, light and dark, before pushing.
+- Carbliss Leaderboard (carbliss-onprem-targets/) is the reference page: its last <style> block ("PAGE STANDARD").
+
 ## Boston Beer's seasonal-conversion sheets vs the RDE keg export (2026-10-05)
 
 Gavin sent Boston Beer's own "10-05-26 Sam Adams Seasonal Conversion Fall.xlsx" (per-rep
@@ -2260,7 +2350,7 @@ A signed-in manager ALWAYS starts the hub in Manager Mode / Program View (2026-1
 
 October POS (5) Cooler Door Stickers is LIVE (2026-10-05): Promos_Report_47 (10/1-10/5) was merged into the shared archive MPOs/off-prem/pos_cooler_door_promos.xlsx (3 cooler-door rows in, 105 -> 108; the other 2 rows were not cooler doors) with `python3 MPOs/off-prem/generate_2026-10.py --merge-cooler-doors Promos_Report_NN.xlsx` -- the October generator now does the merge AND writes data/2026-10/mpo_pos_cooler_doors.json = archive rows dated 10/xx/2026 only, scored per DISTINCT PHOTO ('photos' builder, goal 5). programs.js pos_stickers is hasData:true with a 2026-10 table entry. Weekly: same command with the new Promos_Report. Do NOT rerun generate_2026-09.py for this -- it reads the whole archive. Jayson Romine has 3 of 5 so far. `patrick infante` (photo taker, not on the roster) is a pre-existing unmatched name.
 
-Manager navigation cleanup (2026-10-05, Gavin: "redundant and confusing"): manager home has ONE primary action, "View as Rep" (picker -> preview cookie -> /rep/); Gavin's manager preview is a quiet "Preview as a manager" text button that reveals the select ("Preview as" + "Preview"), no always-on "Viewing as" row. In the hub a manager no longer sees "Choose Another Rep" (the top-bar "Viewing <rep> · Change" chip and the Program View rep filter cover it) or the Rep view / Manager view toggle (managers are always in Manager Mode; seeing a rep as they do = View as Rep); the only secondary link is "‹ Program View"; the redundant name label above the title is gone. Non-manager, non-locked users in Rep Mode keep "Choose Another Rep". Tags hub.js / rep.css 20261005n.
+Manager navigation cleanup (2026-10-05, Gavin: "redundant and confusing"): manager home has ONE primary action, "View as Rep" (picker -> preview cookie -> /rep/); Gavin's manager preview is a quiet "Preview as a manager" text button that reveals the select ("Preview as" + "Preview"), no always-on "Viewing as" row. In the hub a manager no longer sees "Choose Another Rep" (the top-bar "Viewing <rep> · Change" chip and the Program View rep filter cover it) or the Rep view / Manager view toggle (managers are always in Manager Mode; seeing a rep as they do = View as Rep); the only secondary link is "‹ Program View"; the redundant name label above the title is gone. Non-manager, non-locked users in Rep Mode keep "Choose Another Rep". Tags hub.js / rep.css 20261005n. Fix 2026-10-06: leaving the as-rep view (the chip's Change, or home) now puts a signed-in manager back in Manager Mode (hub.js `leaveAsRep()`); before, the as-rep's forced Rep Mode stuck, so the next rep picked showed "Choose Another Rep" and no "‹ Program View". asrep_test / mgr_desktop assert the current controls. hub.js 20261006b.
 
 ## Program eligibility: one calculation, ID joins only (2026-10-05)
 
@@ -2309,6 +2399,172 @@ data), elig_test.mjs (tracker == calculation for 60 rep-programs, both flows,
 6 sizes x 2 themes), mw_test.mjs. Tags: hub.js 20261005o, hub.css 20261005k,
 hub/accounts.js 20261005d, eligibility.js 20261005a.
 
+## Card readability: goal first, contrast, tables that fit (2026-10-06)
+
+Gavin's brief (reps like the simple design; make every number easier to read).
+Every incentive / MPO card now reads Title -> GOAL -> Current / Still Needed ->
+one bar -> deadline -> View Eligible Accounts, with weight / full name / rules
+secondary. MPO trackers (guided.js `repObjectiveCard`, class `g-obj-v4`, still
+centered): a `.g-goal` band ("Goal 69 Placements" + `goalWhy()` = "75% of your
+92-placement program goal" from the metric's own `underlying` / `explain` /
+`pctRule`, else the tracker's % goal text), `.g-stats` (Current "54 of 69" /
+Still Needed "15 Placements" or "Met"), "78% of the requirement", `deadlineOf()`
+("Ends Nov 30 · 55 days left" / "Ended ..."), `.g-elig` link to the hub
+(`eligibleHref()`: the program workspace when a rule exists, hidden for photo
+objectives, met goals and ended months), "MPO weight: 30%", and Details = full
+program name + the tracker's table only (the duplicate "Worth 30%" / "Goal:"
+lines are gone). on-prem followup metrics now also return `underlying` /
+`pctRule` for share-of-base goals (Carbliss 40%). HUB: progFacts() returns
+`cur / goalN / needN / unit / why` on every branch with a countable goal;
+`goalBlockHtml()` (program screen + workspace summary, `.gb*`), `goalLineHtml()`
+(Manager Mode MPO + incentive cards) and the list rows (`.hrow-g` "Goal 69
+Placements", then "54 of 69 · 15 more needed") all draw from it; `goalContext()`
+drops a restated count from the tracker's text ("2 of 51 cases (Oct 2025 pace)"
+-> "Oct 2025 pace"); `mpoGoalWhy()` mirrors guided.js. Fixed on the way: the
+Manager Mode program cards (`.pcard`) had a hard-coded navy (#162037) from the
+old dark theme -- dark title on dark card in light mode -- now on the tokens.
+TABLES: `shared/fit-tables.js` (`KdhFit.tables(root)`, called after every
+guided.js / hub render and when a rep row's detail fills) hides a column that is
+blank or a dash on EVERY row of the whole table (zero is a value; a link /
+photo counts as filled) and says so under the table ("Column hidden (blank on
+every row): Base Period."), labels cells (`data-l`) and tags tables kf-2 (two
+columns: stays a real table on a phone, name left / number right) or kf-n
+(stacked labelled records, facts side by side). Tables are content-width with
+right-aligned numbers under their headings; the old page rule
+`.rep-sub-inner table{min-width:540px;white-space:nowrap}` had pushed the
+placement counts OFF a phone screen -- overridden in guided.css. Never put a
+percentage width on a cell in these auto-layout tables (it stretches the table).
+Presentation only: no number, record or rule changed. Tests (scratchpad):
+card_audit.mjs (6 pages x 375/390/430/820/1180/1440 x light/dark: goal shown,
+no sideways scroll, every table number on screen, measured contrast of goal /
+stats / labels / table text >= 4.5 -- worst 5.93), elig_test.mjs (updated for
+the goal block), the usual suites. Tags: guided.js / guided.css / fit-tables.js /
+hub.js / hub.css / on-prem programs.js 20261006a.
+
+## Eligible Accounts, simplified; Back returns to where you came from (2026-10-06)
+
+Gavin's brief (screenshots of the MPO card -> hub workspace): one destination,
+less detail, a return path that goes back to the exact screen. The rep's
+program workspace in the hub (`screenWorkspaceRep`, Rep Mode, any program with
+a rule in shared/data/program-rules.json -- today Corona Innovation, Lytt,
+Carbliss 40%) now reads: Back -> title (+ supplier · channel · month) ->
+`pwFocusSummary()` (Goal / Current / Still Needed tiles, one bar, deadline) ->
+`pwProductsFold()` "Qualifying Products" <details>, CLOSED by default (open
+when the link carries pv=prods): short name, "Package … · Size …", and ONE
+condition line only where it changes what counts ("Only the Modelo Negra
+packages listed here count", from excludedProducts' families; for account
+programs one rule line, "An account counts once it buys 3 different products
+from this list") -> "Eligible Accounts" heading + search -> rows
+(`pwFocusAccounts`: name, town, what is still needed = KdhElig.accountLine().what,
+Open Account). Gone from the REP screen: the second "View Eligible Accounts"
+button, the Details fold (pwDetails: original goal, rounding, rules, evidence),
+the Eligible / Qualifying / Credited tabs, the per-row evidence line and #number,
+"How is this ordered?", the territory note. The rules stay on the MPO tracker
+card's Details; the evidence (reasons per product, already credited) on the
+Account page's Program Opportunities. Manager Program View
+(`workspaceTeamHtml`) still uses pwTabs / pwBody / pwDetails unchanged.
+RETURN PATH: every link into a hub program screen carries `ret=<path+hash of
+the page it came from>` -- MPO trackers (guided.js `eligibleHref`, rep +
+month + view), the Account page (`progLink`) and Exceptions (`progLink`).
+Inside the hub, go() records the hub screen being left (e.g. the Off-Premise
+tab) as `state.ret`; leaving the program screens clears it; hashOf carries
+it on detail / accts / acct, so the Account-page round trip keeps it.
+`safeRet()` accepts only a same-origin path (never /login/), `retLabel()`
+names it ("Back to Off-Premise MPOs" / "On-Premise MPOs" / "Account" / "My
+Accounts" / "Exceptions" / "Incentives" / a supplier / "Program View"),
+`retLinkHtml()` draws a link for another page and a `back-ret` button (replays
+the hub hash, restores scrollMem) for a hub screen. No ret on the focused
+screen (a bookmark) -> `fallbackBack()` = the rep's own tracker for that
+program's month. Scroll: guided.js saves sessionStorage `kdh_mpopos:<path+hash>`
+when "View Eligible Accounts" is tapped and restores it on return; the hub's
+`kdh_hubpos:` keeps the list's scroll / search across the Account page.
+SIDEBAR: kdh-user.js `where()` marks the hub's MPO tabs (cat=off / on) as
+Off- / On-Premise MPOs instead of Incentives, and `window.kdhSyncNav()` (called
+by hub render) re-marks it after in-page navigation. Test: scratchpad
+elig_trip_test.mjs (MPO screen -> eligible -> products -> account -> back ->
+back at 390 light/dark, 820, 1366 dark; hub-tab entry; direct open fallback;
+off-site ret ignored). Tags: hub.js 20261006d, hub.css 20261006c, guided.js
+20261006b, accounts.js / exceptions.js 20261006a, kdh-user.js 20261006a.
+
+## Incentives get the same Eligible Accounts page; one-line products (2026-10-06)
+
+Gavin: "apply the same eligible accounts page to the incentive programs" and
+"put the brand and package in one line". hub.js `screenProgramRep` now hands
+every incentive with an account list (`!legs && !brandGoals && !hold &&
+C.targets!=null`) to `screenIncentiveFocus()`: Back -> title -> summary
+(`pwFocusSummary` when the goal is countable, else the old main / need / bar
+block) -> "What Counts" (`sellAsk`) -> `incProductsFold()` -> "Eligible
+Accounts" + search -> rows -> Done / Not Now folds -> Credited Accounts row,
+How It Is Scored and Progress So Far as folds BELOW the list. Retention
+(brand goals), Touchdowns & Tea (legs), accounts-to-hold lists, unavailable /
+awaiting programs keep the old program screen. Rows are list `elig` (LISTS
+gains 'Eligible Accounts'; acctRowsFor treats it as the live target list):
+name, town, the reason only when it is not NO_BUY, "Open Account" -> the hub
+account screen (credits + the rep's Done / Follow Up / Not Now marks), whose
+Back is `back-prog` "<title> Eligible Accounts"; back-prog / back-accts now
+restore scrollMem. QP_OPEN (sessionStorage kdh_qpopen) keeps an opened Qualifying Products fold open for
+the visit so Back lands on the same page height. PRODUCTS: `qpFoldHtml()` is
+shared by the MPO rule page and the incentive page -- one line per product,
+the full catalogue name (brand + package, "Corona Non-Alcoholic 4/6/12 oz
+Btl"), no separate Package / Size line; the condition line names what does
+NOT count ("Doesn't count: Corona Non-Alcohol 2/12/12 oz Can", or "Other
+Modelo Negra flavors and packages don't count (4)" past two) from the rule's
+excludedProducts. Incentive products come from ../accounts/data/catalog.json
+(`hubCatalog()`, loaded once) through hub/accounts.js `eligibleProducts`:
+exact for Lagunitas (PROGRAM_PRODUCTS), otherwise the brand family with the
+note "Every <family> product we carry. The program's exact SKU list is not on
+file yet..." -- REPORTING_REQUEST section 13 asks Gavin for per-program SKU
+CSVs. Tests (scratchpad): inc_trip_test.mjs (Incentives list -> Lagunitas ->
+products -> search -> account -> back -> back at 390 light/dark, 820, 1366;
+account-page entry -> "Back to Account"), elig_trip_test.mjs (one-line names,
+named exclusions). Tags hub.js 20261006f, hub.css 20261006d.
+Same day, follow-up: the focused page also serves MPO objectives WITHOUT a
+rule (Molly's, Wine, Oktoberfest conversion, Spirits follow-up) -- their
+card's "View Eligible Accounts" used to open the old program screen with a
+second "View Eligible Accounts" button; now every MPO card lands on a
+focused page (rule programs on screenWorkspaceRep, the rest on
+screenIncentiveFocus) with "Back to <Off|On>-Premise MPOs". hub/accounts.js
+PROGRAM_PRODUCTS gained 'on:sam_adams_conversion' = the two Sam Adams
+Octoberfest kegs (#3813 15.5 gal, #3862 5.2 gal; the generator counts keg
+units) instead of all 66 Samuel Adams products. The October INCENTIVE
+sam_adams_cold_snap stays on the family until Gavin's SKU list arrives.
+hub/accounts.js 20261006a.
+
+## Official SKU lists per program: tools/program_skus.py (2026-10-06)
+
+Gavin sent the October Off-Premise MPO SKU exports (Corona Innovation 11,
+Lytt 6, Molly's 5, Wine 60). `python3 tools/program_skus.py add <program id>
+<export.csv> [--source TEXT]` keeps ONLY Product Num + Product Name (Gavin:
+disregard the cases / placements columns) in MPOs/<on|off>-prem/skus/
+<YYYY-MM>_<key>.csv (incentives: incentive-tracking/data/skus/<key>.csv), logs
+the source + date in that folder's sources.json, and builds
+shared/data/program-skus.js (`window.KDH_PROGRAM_SKUS[programId]`; no
+customer data; `--check` = exit 1 if stale). It reads "Product Num", "Product
+ID" or "Product Num & Name" columns. READERS: hub/accounts.js
+`eligibleProducts()` uses the official list first (after a KdhElig rule) --
+so the Products list's program filter, Lead tags, Program Opportunities and
+the assistant's context use it; hub.js `incProductsFold()` shows it directly
+(its own names, no "not on file" note); tools/program_eligibility.py reads it
+through `program_skus.official()` -- Corona Innovation stops on a product the
+report counts that is NOT on the list, adds an official SKU nobody has placed
+yet, and marks the list verified (productsExhaustive true, rule "Official SKU
+list"); Lytt stops if the list ever differs from the Lytt family. Both lists
+matched what the reports had shown exactly, so no account data moved.
+program-skus.js is loaded before hub/accounts.js on hub, accounts, exceptions
+and performance. Tags: hub/accounts.js 20261006b, hub.js 20261006g,
+program-skus.js 20261006a. New list = run `add`, then
+`python3 tools/program_eligibility.py` when the program has a rule.
+
+## Page standard applied sitewide (2026-10-06, branch only until Gavin approves pictures)
+
+Rep home, manager home, Team Activity, Exceptions, My Accounts + Account page, Incentive Hub (rep screens and
+Program View), both MPO trackers, Red Bull, Tap Tracker and Inventory now follow the COPY + LAYOUT STANDARD:
+960px centered column, page headers and summary cards centered, dense lists / tables left-aligned, short copy
+(rules moved into closed folds), Title Case in the strings, floors 13px tags / 14px secondary (`MIN_PX` 13 in
+kdh-user.js), phones stack into labelled blocks. The amber banner reads "Not Real Time. For live incentive and
+MPO data, Open Encompass." Each page has a "PAGE STANDARD" CSS block at the end of its stylesheet. NOT yet
+covered: manager tools (performance, merchandising, rolling-distribution, cockpit, W&S, metlife, etc.).
+Tests that match old copy ("accounts on your route", "In progress", "Manager Dashboards", "Why:") need updating.
 ## Account contacts: private table, never in the repo (2026-10-06)
 
 Encompass' "Customers" export (Customer ID, Primary Contact, Phone, Email, 2,912

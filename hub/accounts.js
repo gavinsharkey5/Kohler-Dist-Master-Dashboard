@@ -95,6 +95,11 @@ const PROGRAM_PRODUCTS = {
     // territory filter off (Union / Essex accounts, NOT IN TERRITORY, were listed
     // as targets; none bought Lagunitas in Jan 2025 - Aug 2026).
     checked:'2026-10-04: the 13 products in incentive-tracking/data/lagunitas_sprint.csv (IPA 6/12/24-pack cans + bottles, 19.2 oz, 15.5 + 7.75 gal kegs; Little Sumpin cans, bottles, 19.2 oz, 15.5 gal keg) -- not Daytime, Hazy, Maximus, Variety or other Lagunitas'},
+  // October on-prem MPO: done = NET Octoberfest KEG units loaded 8/1-10/23
+  // (MPOs/on-prem/generate_2026-10.py) -- the two Sam Adams Octoberfest kegs.
+  'on:sam_adams_conversion': {re:/^sam adams octoberfest (15\.5|5\.2) gal keg$/i,
+    rule:'Sam Adams Octoberfest kegs (15.5 and 5.2 gal)',
+    checked:'2026-10-06: catalogue #3813 15.5 gal + #3862 5.2 gal; the conversion counts keg units only'},
 };
 // the products a program counts, from catalogue rows [num, name, supplier, family, package, ...]
 function eligibleProducts(p, rows, famKeyFn){
@@ -102,6 +107,11 @@ function eligibleProducts(p, rows, famKeyFn){
   // its qualifying ProductIDs -- the ONE product rule the tracker counts.
   const ids = (global.KdhElig && global.KdhElig.productIds) ? global.KdhElig.productIds(p.id) : null;
   if(ids && ids.size){ const R = global.KdhElig.rule(p.id); return {rows: rows.filter(c=>ids.has(String(c[0]))), rule: R ? R.products.length+' qualifying products ('+R.title+')' : '', byProduct: true, ids}; }
+  // The program's OFFICIAL SKU list (tools/program_skus.py -> shared/data/program-skus.js),
+  // when Gavin has sent one: exactly those ProductIDs (2026-10-06).
+  const off = global.KDH_PROGRAM_SKUS && global.KDH_PROGRAM_SKUS[p.id];
+  if(off && off.products && off.products.length){ const ids = new Set(off.products.map(x=>String(x.id)));
+    return {rows: rows.filter(c=>ids.has(String(c[0]))), rule: off.products.length+' products on the program’s SKU list', byProduct: true, ids, official: off}; }
   const r = PROGRAM_PRODUCTS[brandKey(p)];
   if(r) return {rows: rows.filter(c=>r.re.test(String(c[1]||''))), rule: r.rule, byProduct: true};
   const fams = PROGRAM_BRANDS[brandKey(p)];

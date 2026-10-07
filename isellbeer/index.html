@@ -141,23 +141,65 @@
   @media (max-width:620px){.hl{grid-template-columns:repeat(2,1fr)}}
   @media (max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}.hero .win2{margin-left:0;width:100%;text-align:left;margin-top:6px}.hero .top{flex-wrap:wrap}}
   @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-</style><script src="../shared/kdh-user.js?v=20261005a"></script>
+
+  /* PAGE STANDARD */
+  .wrap{max-width:960px;padding:0 16px}
+  .gx-head::before{display:none}
+  .gx-head .wrap{padding:24px 16px 16px;text-align:center}
+  h1{font-family:"Inter",sans-serif;font-weight:600;letter-spacing:0;font-size:28px;line-height:1.2}
+  .num,.medal,.win,.chip,.hlc .nm,.hlc .vv,.shead h2,.cov .ch .t,.cov .ch .pc,.stat .v,.hero .nm,.hero .win2 .b,.hero .rankbox .big,.split .v,.arow .v,.pill{font-family:"Inter",sans-serif}
+  .updated{font-size:14px;color:var(--ink-soft);letter-spacing:0;margin:6px 0 0}
+  .toolrow{margin:14px 0 0;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .toollink{display:flex;align-items:center;justify-content:center;gap:6px;min-height:44px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-weight:600;font-size:15px;color:var(--ink);text-decoration:none}
+  .toollink span{color:var(--accent)}
+  .stats,.stats3,.hl{gap:12px;margin:12px 0 0}
+  .stats{margin-top:16px}
+  .stat,.hlc,.split{text-align:center;padding:14px 12px}
+  .stat .k,.hlc .l,.split .l,.hero .rankbox .lab,.hero .win2 .l,.win small,.seg .lbl{font-size:14px;letter-spacing:0;text-transform:none;font-weight:500}
+  .stat .v{font-size:32px;font-weight:600}
+  .stat .v small{font-size:14px}
+  .hlc .nm{font-size:16px;font-weight:600}
+  .hlc .vv{font-size:14px;font-weight:500}
+  .seg{margin:24px 0 0}
+  .seg .lbl{margin:0 0 12px}
+  .chip{font-size:14px;min-height:40px;padding:8px 14px;font-weight:500}
+  .shead{margin:24px 0 12px}
+  .shead h2{font-size:18px;font-weight:600}
+  .shead .meta{font-size:14px}
+  .legend{font-size:14px;margin:16px 0 0}
+  .board{gap:12px}.arow{margin-bottom:12px}
+  .lrow{padding:14px 16px}
+  .who b{font-size:16px}.who .sub{font-size:14px}
+  .win{font-size:22px;font-weight:600;text-align:center}
+  .win small{margin-top:2px}
+  .arow .nm{font-size:15px}.arow .v{font-size:16px}
+  .hero{text-align:center}
+  .hero .top{justify-content:center;flex-wrap:wrap}
+  .hero .win2{margin-left:0;text-align:center}
+  .hero .nm small{font-size:14px}
+  .hero .rankbox .big{font-weight:600}
+  .pill{font-size:14px;letter-spacing:0;text-transform:none;font-weight:600}
+  .split .v{font-weight:600}
+  .splits{justify-content:center}
+  .cov .ch .t{font-size:16px}.covrow{font-size:15px}
+  .fold{margin:0;font-size:14px}.fold summary{cursor:pointer;font-weight:600;color:var(--ink);font-size:15px;padding:8px 0;min-height:40px}
+  .fold p{margin:6px 0 0;color:var(--ink-soft)}
+  footer{margin:24px 0 46px;font-size:14px}
+  @media (max-width:560px){.shead{flex-wrap:wrap}.shead .meta{margin-left:0;width:100%}.stats3{grid-template-columns:1fr}.toolrow{grid-template-columns:1fr}.stat .v{font-size:28px}.lrow{grid-template-columns:40px 1fr auto;gap:12px}.hero .win2{width:auto}}
+</style><script src="../shared/kdh-user.js?v=20261007a"></script>
 <script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="kdh-page" content="iSellBeer Activity">
 <!-- Site design system: maps this page's variables + fonts onto shared/kdh.css. Keep it LAST in <head>. -->
 <link rel="stylesheet" href="../shared/kdh-skin.css?v=20261002b">
 </head><body>
 <div class="gx-head"><div class="wrap">
-  <a class="back" href="../">&lsaquo; All trackers</a>
-  <p class="eyebrow"><span class="pulse"></span> Kohler Distributing · App Utilization</p>
   <h1>iSellBeer Activity</h1>
-  <p class="lede">Who's using the <b>iSellBeer</b> app and how — Display photos, Tap surveys, and PODs by rep, plus on-premise tap-survey coverage. Tap a name for that rep's module breakdown and coverage.</p>
   <p class="updated" id="updated"></p>
-  <p style="margin:12px 0 0;display:flex;flex-wrap:wrap;gap:8px"><a href="display-auction-tracker/" style="display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-family:'Space Grotesk';font-weight:600;font-size:12.5px;color:var(--ink);text-decoration:none">Display Auction Tracker — points leaderboard <span style="color:var(--accent)">&rsaquo;</span></a><a href="tier1-display-recap/" style="display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-family:'Space Grotesk';font-weight:600;font-size:12.5px;color:var(--ink);text-decoration:none">Tier 1 Display Recap — photos by account <span style="color:var(--accent)">&rsaquo;</span></a></p>
+  <p class="toolrow"><a class="toollink" href="display-auction-tracker/">Display Auction Tracker <span>&rsaquo;</span></a><a class="toollink" href="tier1-display-recap/">Tier 1 Display Recap <span>&rsaquo;</span></a></p>
 </div></div>
 <div id="app"><div class="wrap">
   <div id="top"></div>
-  <div class="seg"><p class="lbl">Pick a rep</p><div class="chips" id="chips"></div></div>
+  <div class="seg"><p class="lbl">Pick a Rep</p><div class="chips" id="chips"></div></div>
   <div id="body"></div>
   <footer><hr><p id="foot"></p></footer>
 </div></div>
@@ -165,6 +207,7 @@
 let REPS=[],ASSOC=[],SYN={},HL=[];
 function parseCSV(t){const R=[];let row=[],c="",q=false;for(let i=0;i<t.length;i++){const ch=t[i];if(q){if(ch==='"'){if(t[i+1]==='"'){c+='"';i++;}else q=false;}else c+=ch;}else{if(ch==='"')q=true;else if(ch===','){row.push(c);c="";}else if(ch==='\n'){row.push(c);R.push(row);row=[];c="";}else if(ch==='\r'){}else c+=ch;}}if(c.length||row.length){row.push(c);R.push(row);}return R;}
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const tc=s=>String(s).replace(/\b([a-z])([a-z]*)/g,(m,a,b)=>/^(of|by|in|on|and|the)$/.test(m)?m:a.toUpperCase()+b).replace(/\bPods\b/,"PODs").replace(/\bOn-prem\b/,"On-Premise");
 const n0=v=>Math.round(+v||0).toLocaleString();
 const pct=v=>(v===""||v==null||isNaN(v))?"—":(v*100).toFixed(1)+"%";
 let activeRep="ALL";
@@ -184,20 +227,20 @@ function rankByTotal(){return REPS.slice().sort((a,b)=>b.total-a.total).map((r,i
 function renderTop(){
   const s=SYN, g=k=>s[k]!=null?+s[k]:0;
   const stats=`<div class="stats">
-    ${tile("Total app actions",n0(g("Total app actions logged")),"accent")}
-    ${tile("Reps active",g("Reps active in app (any module)")+" <small>/ "+g("Assigned sales reps on roster")+"</small>","")}
-    ${tile("Using all 3 modules",g("Reps using all 3 modules"),"")}
-    ${tile("On-prem tap coverage",pct(+s["% On-Prem accounts SURVEYED"])+" <small>"+n0(g("On-Prem accounts surveyed for taps"))+" of "+n0(g("On-Premise accounts (tap survey universe)"))+"</small>","accent")}
+    ${tile("Total App Actions",n0(g("Total app actions logged")),"accent")}
+    ${tile("Reps Active",g("Reps active in app (any module)")+" <small>/ "+g("Assigned sales reps on roster")+"</small>","")}
+    ${tile("Using All 3 Modules",g("Reps using all 3 modules"),"")}
+    ${tile("On-Premise Tap Coverage",pct(+s["% On-Prem accounts SURVEYED"])+" <small>"+n0(g("On-Prem accounts surveyed for taps"))+" of "+n0(g("On-Premise accounts (tap survey universe)"))+"</small>","accent")}
   </div>
   <div class="stats3">
-    ${tile("Display photos","<span class='num'>"+n0(g("Display photos logged (all users)"))+"</span>","disp")}
-    ${tile("Tap survey entries","<span class='num'>"+n0(g("Tap survey entries logged (all)"))+"</span>","tap")}
-    ${tile("PODs logged","<span class='num'>"+n0(g("PODs logged (all)"))+"</span>","pods")}
+    ${tile("Display Photos","<span class='num'>"+n0(g("Display photos logged (all users)"))+"</span>","disp")}
+    ${tile("Tap Survey Entries","<span class='num'>"+n0(g("Tap survey entries logged (all)"))+"</span>","tap")}
+    ${tile("PODs Logged","<span class='num'>"+n0(g("PODs logged (all)"))+"</span>","pods")}
   </div>`;
   const hl=`<div class="hl">${HL.map(h=>{
     const isPc=/coverage/i.test(h.l);
     const val=isPc?pct(+h.v):n0(h.v)+" "+(/photo|display/i.test(h.l)?"photos":/surveyor|tap/i.test(h.l)?"surveys":"actions");
-    return `<div class="hlc"><div class="l">${esc(h.l)}</div><div class="nm">${esc(h.nm)}</div><div class="vv num">${val}</div></div>`;}).join("")}</div>`;
+    return `<div class="hlc"><div class="l">${esc(tc(h.l))}</div><div class="nm">${esc(h.nm)}</div><div class="vv num">${val}</div></div>`;}).join("")}</div>`;
   document.getElementById("top").innerHTML=stats+hl;
 }
 function tile(k,v,cls){return `<div class="stat"><p class="k">${k}</p><p class="v ${cls||""}">${v}</p></div>`;}
@@ -211,23 +254,23 @@ function render(){
       const seg=t=>R.total?((R[t]/R.total*100).toFixed(1)+"%"):"0%";
       return `<div class="lrow${rank<=3?' top':''}" style="--mc:${mc}" role="button" tabindex="0" data-rep="${esc(R.rep)}">
         <span class="medal ${rank<=3?'m'+rank:''}">${rank}</span>
-        <span class="who"><b>${esc(R.rep)}</b><div class="sub">${n0(R.disp)} display · ${n0(R.tap)} tap · ${n0(R.pods)} PODs · ${R.mods}/3 modules</div>
+        <span class="who"><b>${esc(R.rep)}</b><div class="sub">${n0(R.disp)} Display · ${n0(R.tap)} Tap · ${n0(R.pods)} PODs · ${R.mods}/3 Modules</div>
         <div class="track"><i class="d" style="width:${seg('disp')}"></i><i class="t" style="width:${seg('tap')}"></i><i class="p" style="width:${seg('pods')}"></i></div></span>
-        <span class="win">${n0(R.total)}<small>actions</small></span></div>`;}).join("");
+        <span class="win">${n0(R.total)}<small>Actions</small></span></div>`;}).join("");
     const cov=REPS.filter(r=>r.onprem>0).sort((a,b)=>(b.pct||0)-(a.pct||0));
     const covRows=cov.map((R,i)=>{const rank=i+1;
       return `<div class="lrow" role="button" tabindex="0" data-rep="${esc(R.rep)}">
         <span class="medal ${rank<=3?'m'+rank:''}">${rank}</span>
-        <span class="who"><b>${esc(R.rep)}</b><div class="sub">${n0(R.surv)} of ${n0(R.onprem)} on-prem surveyed · ${n0(R.notsurv)} open</div>
+        <span class="who"><b>${esc(R.rep)}</b><div class="sub">${n0(R.surv)} of ${n0(R.onprem)} Surveyed · ${n0(R.notsurv)} Open</div>
         <div class="track" style="background:var(--line)"><i class="t" style="width:${((R.pct||0)*100).toFixed(1)}%"></i></div></span>
-        <span class="win cov">${pct(R.pct)}<small>surveyed</small></span></div>`;}).join("");
+        <span class="win cov">${pct(R.pct)}<small>Surveyed</small></span></div>`;}).join("");
     const aMax=ASSOC[0]?ASSOC[0].disp:1;
     const aRows=ASSOC.slice().sort((a,b)=>b.disp-a.disp).map(a=>`<div class="arow"><div><div class="nm">${esc(a.nm)}</div><div class="bk"><i style="width:${(a.disp/aMax*100).toFixed(0)}%"></i></div></div><div class="v num">${n0(a.disp)}</div></div>`).join("");
     app.innerHTML=
-      `<div class="legend"><span><i class="dot d"></i>Display</span><span><i class="dot t"></i>Tap survey</span><span><i class="dot p"></i>PODs</span></div>`+
-      `<div class="shead"><span class="tr">${TROPHY}</span><h2>Activity leaderboard</h2><span class="meta">${ranked.length} reps · by total actions</span></div><div class="board">${rows}</div>`+
-      `<div class="shead"><span class="tr">${TAPI}</span><h2>Tap-survey coverage</h2><span class="meta">on-premise accounts · by % surveyed</span></div><div class="board">${covRows}</div>`+
-      `<div class="shead"><span class="tr">${CAM}</span><h2>Sales associates</h2><span class="meta">display photos · not on rep roster</span></div>${aRows}`;
+      `<div class="legend"><span><i class="dot d"></i>Display</span><span><i class="dot t"></i>Tap Survey</span><span><i class="dot p"></i>PODs</span></div>`+
+      `<div class="shead"><span class="tr">${TROPHY}</span><h2>Activity Leaderboard</h2><span class="meta">${ranked.length} Reps · By Total Actions</span></div><div class="board">${rows}</div>`+
+      `<div class="shead"><span class="tr">${TAPI}</span><h2>Tap Survey Coverage</h2><span class="meta">On-Premise Accounts</span></div><div class="board">${covRows}</div>`+
+      `<div class="shead"><span class="tr">${CAM}</span><h2>Sales Associates</h2><span class="meta">Display Photos</span></div>${aRows}`;
     app.querySelectorAll(".lrow[data-rep]").forEach(el=>{const go=()=>setRep(el.dataset.rep);el.addEventListener("click",go);el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});});
   } else {
     const R=REPS.find(r=>r.rep===activeRep);if(!R){app.innerHTML="";return;}
@@ -235,33 +278,33 @@ function render(){
     const pcls=R.mods>=3?"m3":R.mods===2?"m2":"m1";
     const hero=`<div class="hero"><div class="top">
         <div class="rankbox"><div class="big num">${rank}</div><div class="lab">Rank</div></div>
-        <div class="nm">${esc(R.rep)}<small>${R.mods} of 3 modules used</small></div>
-        <div class="win2"><div class="b num">${n0(R.total)}</div><div class="l">Total actions</div></div></div>
+        <div class="nm">${esc(R.rep)}<small>${R.mods} of 3 Modules Used</small></div>
+        <div class="win2"><div class="b num">${n0(R.total)}</div><div class="l">Total Actions</div></div></div>
       <span class="pill ${pcls}">${esc(R.status)}</span>
       <div class="splits">
-        <div class="split d"><div class="l">Display photos</div><div class="v num">${n0(R.disp)}</div></div>
-        <div class="split t"><div class="l">Tap surveys</div><div class="v num">${n0(R.tap)}</div></div>
-        <div class="split p"><div class="l">PODs logged</div><div class="v num">${n0(R.pods)}</div></div>
+        <div class="split d"><div class="l">Display Photos</div><div class="v num">${n0(R.disp)}</div></div>
+        <div class="split t"><div class="l">Tap Surveys</div><div class="v num">${n0(R.tap)}</div></div>
+        <div class="split p"><div class="l">PODs Logged</div><div class="v num">${n0(R.pods)}</div></div>
       </div></div>`;
     let covHTML;
     if(R.onprem>0){
-      covHTML=`<div class="cov"><div class="ch"><span class="t">On-premise tap-survey coverage</span><span class="pc num">${pct(R.pct)}</span></div>
+      covHTML=`<div class="cov"><div class="ch"><span class="t">On-Premise Tap Survey Coverage</span><span class="pc num">${pct(R.pct)}</span></div>
         <div class="bar"><i style="width:${((R.pct||0)*100).toFixed(1)}%"></i></div>
-        <div class="covrow"><span>On-prem accounts assigned</span><span class="num">${n0(R.onprem)}</span></div>
-        <div class="covrow"><span>Surveyed for taps</span><span class="num">${n0(R.surv)}</span></div>
-        <div class="covrow"><span>Not yet surveyed</span><span class="num">${n0(R.notsurv)}</span></div></div>`;
+        <div class="covrow"><span>On-Premise Accounts Assigned</span><span class="num">${n0(R.onprem)}</span></div>
+        <div class="covrow"><span>Surveyed for Taps</span><span class="num">${n0(R.surv)}</span></div>
+        <div class="covrow"><span>Not Yet Surveyed</span><span class="num">${n0(R.notsurv)}</span></div></div>`;
     } else {
-      covHTML=`<div class="cov"><div class="ch"><span class="t">On-premise tap-survey coverage</span></div>
-        <div class="covrow"><span>No on-premise accounts assigned to this rep — outside the tap-survey universe.</span></div></div>`;
+      covHTML=`<div class="cov"><div class="ch"><span class="t">On-Premise Tap Survey Coverage</span></div>
+        <div class="covrow"><span>No on-premise accounts assigned</span></div></div>`;
     }
-    app.innerHTML=hero+`<div class="shead"><h2>Tap coverage</h2><span class="meta">on-premise accounts only</span></div>`+covHTML;
+    app.innerHTML=hero+`<div class="shead"><h2>Tap Coverage</h2><span class="meta">On-Premise Accounts</span></div>`+covHTML;
   }
 }
 function setRep(v){activeRep=v;document.querySelectorAll("#chips .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.v===activeRep));render();window.scrollTo({top:0,behavior:"smooth"});}
 function renderChips(){const reps=REPS.slice().sort((a,b)=>b.total-a.total).map(r=>r.rep);
-  document.getElementById("chips").innerHTML=["ALL",...reps].map(v=>`<button class="chip" aria-pressed="${v===activeRep}" data-v="${esc(v)}">${v==="ALL"?"All reps":esc(v)}</button>`).join("");
+  document.getElementById("chips").innerHTML=["ALL",...reps].map(v=>`<button class="chip" aria-pressed="${v===activeRep}" data-v="${esc(v)}">${v==="ALL"?"All Reps":esc(v)}</button>`).join("");
   document.querySelectorAll("#chips .chip").forEach(b=>b.addEventListener("click",()=>setRep(b.dataset.v)));}
-function showEmpty(m){document.getElementById("app").innerHTML=`<div class="wrap"><div class="empty"><h2>No data yet</h2><p>${m}</p></div></div>`;}
+function showEmpty(m){document.getElementById("app").innerHTML=`<div class="wrap"><div class="empty"><h2>No Data Yet</h2><p>${m}</p></div></div>`;}
 const TROPHY='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4h12v3a6 6 0 0 1-12 0V4z"/><path d="M6 5H4a2 2 0 0 0 2 2M18 5h2a2 2 0 0 1-2 2M9 20h6M12 13v7"/></svg>';
 const TAPI='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>';
 const CAM='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>';
@@ -273,7 +316,7 @@ async function boot(){
   if(!REPS.length){showEmpty("Couldn't read the activity export — check it's saved as CSV.");return;}
   renderTop();renderChips();render();
   document.getElementById("updated").textContent=a.m?"Updated "+new Date(a.m).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):"";
-  document.getElementById("foot").innerHTML="<b>Total actions</b> = Display photos + Tap surveys + PODs credited to the user who used the app (not the assigned route). <b>Tap coverage</b> is measured against on-premise accounts only — off-premise (liquor stores) aren't surveyed for taps. Sales associates log Display photos only. Figures reflect the latest export uploaded.";
+  document.getElementById("foot").innerHTML="<details class=\"fold\"><summary>How It Is Counted</summary><p><b>Total actions</b> = Display photos + Tap surveys + PODs credited to the user who used the app (not the assigned route). <b>Tap coverage</b> is measured against on-premise accounts only. Sales associates log Display photos only.</p></details>";
 }
 boot();
 </script></body></html>

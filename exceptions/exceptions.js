@@ -21,8 +21,9 @@ const iso = d => d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+
 const parseDay = s => { const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(s||'')); return m ? new Date(+m[1], +m[2]-1, +m[3]) : null; };
 const fmtDay = d => d ? d.toLocaleDateString('en-US', {month:'short', day:'numeric', year: d.getFullYear()===TODAY.getFullYear() ? undefined : 'numeric'}) : '';
 const days = d => Math.round((d - TODAY)/DAY);
-const plural = (n, w, p) => n+' '+(n===1 ? w : (p || w+'s'));
-const rel = d => { const n = days(d); return n===0 ? 'today' : n<0 ? plural(-n,'day')+' overdue' : 'in '+plural(n,'day'); };
+const cap = s => s.charAt(0).toUpperCase()+s.slice(1);
+const plural = (n, w, p) => n+' '+cap(n===1 ? w : (p || w+'s'));
+const rel = d => { const n = days(d); return n===0 ? 'Today' : n<0 ? plural(-n,'day')+' Overdue' : 'In '+plural(n,'day'); };
 
 /* ---- the rules (also in README.txt and on the page under "How This Works") ---- */
 const PROGRAM_WINDOW = 14;   // a program "near deadline" ends within 14 days
@@ -67,7 +68,7 @@ function programsFor(rep){
 }
 const strip = s => String(s||'').replace(/<[^>]*>/g, '').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'");
 const DONE_RE = /goal met|top tier|every one pays/i;
-const progLink = (p, rep) => '../hub/#view=detail&rep='+encodeURIComponent(rep)+'&cat='+(p.type==='MPO' ? p.source : 'inc')+'&prog='+encodeURIComponent(p.id);
+const progLink = (p, rep) => '../hub/#view=detail&rep='+encodeURIComponent(rep)+'&cat='+(p.type==='MPO' ? p.source : 'inc')+'&prog='+encodeURIComponent(p.id)+'&ret='+encodeURIComponent(location.pathname+location.hash);
 const acctLink = (n, rep, sub) => '../accounts/#acct='+encodeURIComponent(n)+'&rep='+encodeURIComponent(rep)+(sub ? '&sec=more&sub='+sub : '');
 
 /* ---- build ---- */
@@ -148,12 +149,12 @@ const order = (a, b) => TYPES[a.type].p - TYPES[b.type].p || (a.due && b.due ? a
 function excRow(x, withAcct){
   const t = TYPES[x.type];
   if(x.type==='prog') return progRow(x);
-  const dueTxt = x.due ? `<span class="ex-due${days(x.due)<0 ? ' late' : ''}">${E(x.type.startsWith('tap') ? 'Survey due ' : x.type==='prog' ? 'Ends ' : 'Due ')}${E(fmtDay(x.due))} · ${E(rel(x.due))}</span>` : `<span class="ex-due">No due date</span>`;
+  const dueTxt = x.due ? `<span class="ex-due${days(x.due)<0 ? ' late' : ''}">${E(x.type.startsWith('tap') ? 'Survey Due ' : x.type==='prog' ? 'Ends ' : 'Due ')}${E(fmtDay(x.due))} · ${E(rel(x.due))}</span>` : `<span class="ex-due">No Due Date</span>`;
   return `<li class="ex k-${x.type.split('_')[0]}">
     <p class="ex-h"><span class="ex-t">${E(t.label)}</span>${dueTxt}</p>
     ${withAcct ? `<p class="ex-a"><a href="${E(acctLink(x.n, x.rep))}">${E(x.acct)}</a> <span>${E([x.city, x.n!=null ? '#'+x.n : ''].filter(Boolean).join(' · '))}${st.by!=='rep' ? ` · Rep: <b>${E(x.rep)}</b>` : ''}</span></p>` : ''}
-    <p class="ex-w">${E(x.what)}${x.src ? ` <span class="ex-src">· ${E(x.src)}</span>` : ''}${x.basis ? ` <span class="ex-src">· based on the tap data loaded ${E(tapAsOfTxt())}</span>` : ''}</p>
-    <p class="ex-n"><span><b>Why:</b> ${E(t.why)}</span> <span><b>Next:</b> ${E(x.next)} · <a href="${E(x.href)}">${E(x.hl)} ›</a></span></p>
+    <p class="ex-w">${E(x.what)}${x.src ? ` <span class="ex-src">· ${E(x.src)}</span>` : ''}${x.basis ? `` : ''}</p>
+    <p class="ex-n"><span><b>Next:</b> ${E(x.next)} · <a href="${E(x.href)}">${E(x.hl)} ›</a></span></p>
   </li>`;
 }
 function tapAsOfTxt(){ const a = META.idx && META.idx.tapsAsOf; const d = a && parseDay(a); return d ? fmtDay(d) : 'on an unknown date'; }
@@ -163,14 +164,14 @@ function progRow(x){
       <p class="ex-h"><span class="ex-t">${E(t.label)}</span><span class="ex-due">Ends ${E(fmtDay(x.due))} · ${E(rel(x.due))}</span></p>
       <p class="ex-a"><a href="${E(x.href)}">${E(x.name)}</a> <span>${E(x.supplier)}${st.by!=='rep' ? ` · Rep: <b>${E(x.rep)}</b>` : ''}</span></p>
       <p class="ex-w">${E(x.main)} · <b>${E(x.need)}</b></p>
-      <p class="ex-n"><span><b>Why:</b> ${E(t.why)} Credit comes from sales data, not from a checkbox.</span> <span><b>Next:</b> ${E(x.next)}${x.leads.length ? ': '+x.leads.map(l=>l.n!=null ? `<a href="${E(acctLink(l.n, x.rep))}">${E(l.name)}</a>` : E(l.name)).join(', ')+(x.leadCount>x.leads.length ? ` and ${x.leadCount-x.leads.length} more` : '') : ''} · <a href="${E(x.href)}">${E(x.hl)} ›</a></span></p>
+      <p class="ex-n"><span><b>Next:</b> ${E(x.next)}${x.leads.length ? ': '+x.leads.map(l=>l.n!=null ? `<a href="${E(acctLink(l.n, x.rep))}">${E(l.name)}</a>` : E(l.name)).join(', ')+(x.leadCount>x.leads.length ? ` and ${x.leadCount-x.leads.length} more` : '') : ''} · <a href="${E(x.href)}">${E(x.hl)} ›</a></span></p>
     </li>`;
 }
 // what each source contributed -- so an empty list is never mistaken for a clean bill
 function sources(){
   const out = []; const idx = META.idx || {};
   const act = META.act || {};
-  if(act.err) out.push({k:'follow', state:'missing', t:'Follow-ups', d:'could not be loaded — overdue follow-ups may be missing'});
+  if(act.err) out.push({k:'follow', state:'missing', t:'Follow-ups', d:'Could not be loaded; overdue follow-ups may be missing'});
   else if(act.off) out.push({k:'follow', state:'missing', t:'Follow-ups', d:'need a sign-in on kohlerdisthub.com — not checked'});
   else out.push({k:'follow', state: act.dated ? 'ok' : 'partial', t:'Follow-ups', d: act.dated ? 'read live from the Hub just now' : 'read live, but due dates need the notes update — every open one is treated as undated'});
   const ta = idx.tapsAsOf && parseDay(idx.tapsAsOf); const tage = ta ? Math.round((TODAY - ta)/DAY) : null;
@@ -188,7 +189,7 @@ function progCard(x){
     <ul class="exs"><li class="ex k-prog">
       <p class="ex-h"><span class="ex-t">${E(t.label)}</span><span class="ex-due">Ends ${E(fmtDay(x.due))} · ${E(rel(x.due))}</span></p>
       <p class="ex-w">${E(x.main)} · <b>${E(x.need)}</b></p>
-      <p class="ex-n"><span><b>Why:</b> ${E(t.why)} Credit comes from sales data, not from a checkbox.</span> <span><b>Next:</b> ${E(x.next)}${x.leads.length ? ': '+x.leads.map(l=>l.n!=null ? `<a href="${E(acctLink(l.n, x.rep))}">${E(l.name)}</a>` : E(l.name)).join(', ')+(x.leadCount>x.leads.length ? ` and ${x.leadCount-x.leads.length} more` : '') : ''} · <a href="${E(x.href)}">${E(x.hl)} ›</a></span></p>
+      <p class="ex-n"><span><b>Next:</b> ${E(x.next)}${x.leads.length ? ': '+x.leads.map(l=>l.n!=null ? `<a href="${E(acctLink(l.n, x.rep))}">${E(l.name)}</a>` : E(l.name)).join(', ')+(x.leadCount>x.leads.length ? ` and ${x.leadCount-x.leads.length} more` : '') : ''} · <a href="${E(x.href)}">${E(x.hl)} ›</a></span></p>
     </li></ul></article>`;
 }
 function render(){
@@ -204,10 +205,10 @@ function render(){
   const repsWith = new Set(rows.map(x=>x.rep)).size;
   const SRC = sources(); const srcBad = SRC.filter(x=>x.state!=='ok').length;
   const emptyHtml = EXC.length
-    ? `<div class="kdh-state empty"><b>No exceptions match these filters.</b><span>Clear the search or pick another rep, type or due date.</span></div>`
+    ? `<div class="kdh-state empty"><b>No Exceptions Match These Filters</b><span>Clear the search or pick another rep, type or due date.</span></div>`
     : srcBad
-      ? `<div class="kdh-state unavailable"><b>No exceptions found in the data that loaded — but not every source loaded.</b><span>${SRC.filter(x=>x.state!=='ok').map(x=>E(x.t)+': '+x.d).join(' · ')}. This is not a clean bill until they load.</span></div>`
-      : `<div class="kdh-state empty"><b>No exceptions right now.</b><span>Every source loaded: no overdue follow-ups, no tap survey due (per the latest loaded survey data, ${E(tapAsOfTxt())}) and no program ending within ${PROGRAM_WINDOW} days with work left.</span></div>`;
+      ? `<div class="kdh-state unavailable"><b>No Exceptions Found, but Not Every Source Loaded</b><span>${SRC.filter(x=>x.state!=='ok').map(x=>E(x.t)+': '+x.d).join(' · ')}. Not a clean bill until they load.</span></div>`
+      : `<div class="kdh-state empty"><b>No Exceptions Right Now</b><span>Every source loaded. Tap surveys through ${E(tapAsOfTxt())}.</span></div>`;
   // the grouped body
   const acctCard = g => `<article class="exa"><header class="exa-h"><div><h3><a href="${E(acctLink(g.n, g.rep))}">${E(g.acct)}</a></h3><p class="exa-m">${E([g.city, g.n!=null ? '#'+g.n : ''].filter(Boolean).join(' · '))}${st.by==='rep' ? '' : ` · Rep: <b>${E(g.rep)}</b>`}</p></div><span class="kdh-tag">${plural(g.items.length,'exception')}</span></header>
     <ul class="exs">${g.items.map(x=>excRow(x)).join('')}</ul></article>`;
@@ -216,15 +217,15 @@ function render(){
   if(st.by==='account'){
     totalUnits = G.length;
     body = (G.length ? `<section class="exsec"><h2>By Account <small>${plural(G.length,'account')} · ${plural(acctRows.length,'exception')}</small></h2>${G.slice(0, st.limit).map(acctCard).join('')}${more(G.length)}</section>` : '')
-      + (progRows.length ? `<section class="exsec"><h2>Program Deadlines <small>ending within ${PROGRAM_WINDOW} days with work left</small></h2>${progRows.map(progCard).join('')}</section>` : '');
+      + (progRows.length ? `<section class="exsec"><h2>Program Deadlines <small>Ending Within ${PROGRAM_WINDOW} Days</small></h2>${progRows.map(progCard).join('')}</section>` : '');
   } else if(st.by==='rep'){
     const reps = [...new Set(rows.map(x=>x.rep))].map(r=>{ const its = rows.filter(x=>x.rep===r).sort(order); return {r, its, top: its[0]}; }).sort((a, b)=>order(a.top, b.top) || a.r.localeCompare(b.r));
     totalUnits = reps.length;
     body = reps.slice(0, st.limit).map(({r, its})=>{
       const gs = G.filter(g=>g.rep===r); const ps = its.filter(x=>x.type==='prog');
       const cnt = {over: its.filter(x=>urgOf(x)==='over').length};
-      return `<section class="exsec exrep"><h2>${E(r)} <small>${plural(gs.length,'account')} · ${plural(its.length-ps.length,'exception')}${ps.length ? ` · ${plural(ps.length,'program deadline')}` : ''}${cnt.over ? ` · <b class="late">${cnt.over} overdue</b>` : ''}</small></h2>
-        ${gs.map(acctCard).join('')}${ps.length ? `<article class="exa"><header class="exa-h"><div><h3>Program Deadlines</h3><p class="exa-m">Ending within ${PROGRAM_WINDOW} days with work left</p></div><span class="kdh-tag">${plural(ps.length,'program')}</span></header><ul class="exs">${ps.map(progRow).join('')}</ul></article>` : ''}</section>`;
+      return `<section class="exsec exrep"><h2>${E(r)} <small>${plural(gs.length,'account')} · ${plural(its.length-ps.length,'exception')}${ps.length ? ` · ${plural(ps.length,'program deadline')}` : ''}${cnt.over ? ` · <b class="late">${cnt.over} Overdue</b>` : ''}</small></h2>
+        ${gs.map(acctCard).join('')}${ps.length ? `<article class="exa"><header class="exa-h"><div><h3>Program Deadlines</h3><p class="exa-m">Ending Within ${PROGRAM_WINDOW} Days</p></div><span class="kdh-tag">${plural(ps.length,'program')}</span></header><ul class="exs">${ps.map(progRow).join('')}</ul></article>` : ''}</section>`;
     }).join('') + more(reps.length);
   } else {
     const keys = st.by==='type' ? Object.keys(TYPES).sort((a, b)=>TYPES[a].p - TYPES[b].p).map(k=>[k, TYPES[k].label]) : URG;
@@ -237,10 +238,10 @@ function render(){
   }
   app.innerHTML = `
   <header class="ws exh"><h1>Exceptions</h1>
-    <p class="exs-sum" role="status"><b>${plural(G.length,'account')}</b> with ${plural(acctRows.length,'exception')}${progRows.length ? ` · <b>${plural(progRows.length,'program deadline')}</b>` : ''} · across ${repsWith} of ${plural(st.rep ? 1 : ROSTER.length,'rep')}</p>
-    <p class="exs-fresh">Follow-ups read live from the Hub · tap surveys based on the latest loaded survey date (${E(tapAsOfTxt())}) · program data from each tracker’s last refresh</p></header>
+    <p class="exs-sum" role="status"><b>${plural(G.length,'account')}</b> · ${plural(acctRows.length,'exception')}${progRows.length ? ` · <b>${plural(progRows.length,'program deadline')}</b>` : ''} · ${repsWith} of ${plural(st.rep ? 1 : ROSTER.length,'rep')}</p>
+    <p class="exs-fresh">Tap Surveys Through ${E(tapAsOfTxt())}</p></header>
   <div class="exbar">
-    <input type="search" class="kdh-field" id="exq" placeholder="Search accounts, towns or #" value="${E(st.q)}" aria-label="Search accounts">
+    <input type="search" class="kdh-field" id="exq" placeholder="Search Accounts, Towns or #" value="${E(st.q)}" aria-label="Search accounts">
     <div class="exf">
       <label class="fsel"><span class="sr">Rep</span><select id="exRep" aria-label="Rep">${repOpts}</select></label>
       <label class="fsel"><span class="sr">Due date</span><select id="exDue" aria-label="Due date">${DUE.map(([v,l])=>`<option value="${v}"${st.due===v?' selected':''}>${l}</option>`).join('')}</select></label>

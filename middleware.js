@@ -43,6 +43,7 @@ const REP_PATHS = [
   '/MPOs/shared/',                      // guided.js / guided.css the MPO pages and hub load
   '/redbull/',                          // Red Bull Distribution Tracker
   '/carbliss-onprem-targets/',          // Carbliss On-Premise Targets
+  '/carbliss-mpo/',                     // Carbliss MPO tracker (data served per rep below)
   '/incentive-tracking/assets/',       // supplier / brand logos the hub shows (reps saw initials before 2026-10-01)
   '/incentive-tracking/programs.js',    // the hub's program library ...
   '/incentive-tracking/data/program_data.js', // ... and its data
@@ -89,7 +90,7 @@ function accountDataVerdict(pathname, name) {
 /* SLICE_KEYS_START */
 const SLICE_KEYS = new Set(["adam-badalamenti", "alex-rodriguez", "alisa-acciardi", "allison-scott", "andy-lundy", "brian-sengebush", "chris-payton", "chris-politano", "dan-lagala", "dave-ehlers", "default", "derrick-laws", "dylan-rubino", "hakan-sadik", "jaime-colonna", "javier-melo", "jayson-romine", "jim-heaney", "john-neukum", "john-odonoghue", "klejdi-lamo", "matt-powierski", "mike-ast", "mike-harboy", "nick-melissari", "office-tellsell", "pablo-lopez", "pat-infante", "paul-mclaughlin", "phil-ernst", "robin-feldman", "shane-barreca", "tony-palmisano"]);
 /* SLICE_KEYS_END */
-const SLICE_DIRS = /^\/(incentive-tracking\/data\/rep\/|MPOs\/(off|on)-prem\/data\/\d{4}-\d{2}\/rep\/|redbull\/rep\/|carbliss-onprem-targets\/rep\/|isellbeer\/tap-survey-tracking\/rep\/)/;
+const SLICE_DIRS = /^\/(incentive-tracking\/data\/rep\/|MPOs\/(off|on)-prem\/data\/\d{4}-\d{2}\/rep\/|redbull\/rep\/|carbliss-mpo\/rep\/|carbliss-onprem-targets\/rep\/|isellbeer\/tap-survey-tracking\/rep\/)/;
 const MPO_FILE = /^\/MPOs\/(off|on)-prem\/data\/(\d{4}-\d{2})\/([A-Za-z0-9_.-]+\.json)$/;
 const RAW_FILE = /\.(csv|tsv|xlsx|xls)$/i;
 function sliceKey(name) { const k = nameKey(name); return SLICE_KEYS.has(k) ? k : '_none'; }
@@ -100,6 +101,7 @@ function repSlicePath(pathname, name) {
   const m = pathname.match(MPO_FILE);
   if (m && m[3] !== 'sync_meta.json') return `/MPOs/${m[1]}-prem/data/${m[2]}/rep/${k}/${m[3]}`;
   if (pathname === '/redbull/data.csv') return `/redbull/rep/${k}/data.csv`;
+  if (pathname === '/carbliss-mpo/data/program.json') return `/carbliss-mpo/rep/${k}/program.json`;
   if (pathname === '/carbliss-onprem-targets/' || pathname === '/carbliss-onprem-targets/index.html') return `/carbliss-onprem-targets/rep/${k}/index.html`;
   if (pathname === '/isellbeer/tap-survey-tracking/' || pathname === '/isellbeer/tap-survey-tracking/index.html') return `/isellbeer/tap-survey-tracking/rep/${k}/index.html`;
   return null;
@@ -108,6 +110,7 @@ function repSlicePath(pathname, name) {
 function repDenied(pathname) {
   if (SLICE_DIRS.test(pathname)) return true;
   if (pathname === '/accounts/data/size.json') return true;
+  if (pathname === '/carbliss-mpo/data/final.json') return true;   // the frozen program-period snapshot holds every rep's accounts
   if (RAW_FILE.test(pathname) && pathname !== '/redbull/goals.csv') return true;
   return false;
 }
