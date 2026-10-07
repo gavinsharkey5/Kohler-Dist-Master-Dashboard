@@ -76,7 +76,7 @@
     "BASE_DETAIL": "1 spirit: Pride & Clarke Vodka 24/375 mL Btl",
     "BASE_DATE": "8/18/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Pride & Clarke Vodka 24/375 mL Btl",
+    "DONE_DETAIL": "Pride & Clarke Vodka 24/375 mL Btl, Pride & Clarke Vodka 48/200 mL Btl",
     "DONE_DATE": "10/1/2026"
   },
   {
@@ -185,9 +185,9 @@
     "CUSTOMER_NAME": "Seabra Liquors",
     "BASE_DETAIL": "4 spirits: Traveler's Club Vodka 6/1.75 L Btl, Travelers Club Vodka 1/12/750 mL Btl, Travelers Club Vodka 12/1 L Btl, Travelers Club Vodka 24/375 mL Btl",
     "BASE_DATE": "9/3/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Traveler's Club Vodka 6/1.75 L Btl, Travelers Club Vodka 1/12/750 mL Btl, Travelers Club Vodka 12/1 L Btl, Travelers Club Vodka 24/375 mL Btl",
+    "DONE_DATE": "10/8/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Alisa Acciardi",
@@ -415,9 +415,9 @@
     "CUSTOMER_NAME": "Duffy's Tavern (Z)",
     "BASE_DETAIL": "1 spirit: Green River Honey 1/750 mL Btl",
     "BASE_DATE": "9/2/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "BJ'S Hard Root Beer Keg 15.5 Gal Keg",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -445,9 +445,9 @@
     "CUSTOMER_NAME": "Blu Ale House",
     "BASE_DETAIL": "2 spirits: YaVe Tequila Coconut 1/6/750 mL Btl, YaVe Tequila Jalapeno 1/6/750 mL Btl",
     "BASE_DATE": "9/22/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -535,9 +535,9 @@
     "CUSTOMER_NAME": "Mega Liquors",
     "BASE_DETAIL": "3 spirits: Pride & Clarke Vodka 24/375 mL Btl, Pride & Clarke Vodka 48/200 mL Btl, Travelers Club Vodka 24/375 mL Btl",
     "BASE_DATE": "9/2/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Pride & Clarke Vodka 24/375 mL Btl",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Andrew Lundy",
@@ -875,9 +875,9 @@
     "CUSTOMER_NAME": "Clifton Disc Liq (A)",
     "BASE_DETAIL": "5 spirits: Leyenda 1925 Blanco Tequila 1/750 ML Btl, Leyenda 1925 Reposado Tequila 1/750 ML Btl, Pride & Clarke Vodka 1/12/750 mL Btl, Pride & Clarke Vodka 24/375 mL Btl ...",
     "BASE_DATE": "8/28/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Molly's Irish Cream 1/12/750 mL Btl, Molly's Irish Cream 6/1.75 L Btl",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -905,9 +905,9 @@
     "CUSTOMER_NAME": "The Wine Rack Hasbrouck Hts",
     "BASE_DETAIL": "3 spirits: Bardstown Collaboration Series Lochs Of Jura 1/750 mL Btl, Bardstown Discovery 2026 1/750 mL Btl, Leyenda 1925 Blanco Tequila 1/750 ML Btl",
     "BASE_DATE": "9/24/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Molly's Irish Cream 1/12/750 mL Btl, Molly's Irish Cream Salted Caramel 1/6/750 mL Btl",
+    "DONE_DATE": "10/8/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -985,9 +985,9 @@
     "CUSTOMER_NAME": "Wineland",
     "BASE_DETAIL": "4 spirits: Bardstown Origin Series Bourbon 1/750 mL Btl, Bardstown Origin Series High Wheat 1/750 mL Btl, Green River Honey 1/750 mL Btl, Green River Wheated 1/750 mL",
     "BASE_DATE": "8/20/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Leyenda 1925 Blanco Tequila 1/750 ML Btl",
+    "DONE_DATE": "10/8/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1185,9 +1185,9 @@
     "CUSTOMER_NAME": "Total Wine & More (Totowa)",
     "BASE_DETAIL": "8 spirits: Bardstown Collaboration Series Pierre Ferrand 1/750 mL Btl, Bardstown Origin Series Bourbon 1/750 mL Btl, Bardstown Origin Series High Wheat 1/750 mL Btl, Green River Wheated 1/750 mL ...",
     "BASE_DATE": "9/25/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Southern Tier Pumking Whiskey 6/750 mL Btl",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1215,9 +1215,9 @@
     "CUSTOMER_NAME": "Hackensack Liquors",
     "BASE_DETAIL": "2 spirits: Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl, Green River Bourbon 1/750 mL Btl",
     "BASE_DATE": "9/4/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Southern Tier Pumking Whiskey 6/750 mL Btl",
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1245,9 +1245,9 @@
     "CUSTOMER_NAME": "Deli Mart (A)",
     "BASE_DETAIL": "3 spirits: Pride & Clarke Vodka 24/375 mL Btl, Pride & Clarke Vodka 48/200 mL Btl, Pride & Clarke Vodka 6/1.75 L Btl",
     "BASE_DATE": "9/11/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Pride & Clarke Vodka 6/1.75 L Btl",
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1315,9 +1315,9 @@
     "CUSTOMER_NAME": "Total Wine & More (River Edge)",
     "BASE_DETAIL": "6 spirits: Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl, Bardstown Origin Series Bourbon 1/750 mL Btl, Bardstown Origin Series High Wheat 1/750 mL Btl, Molly's Irish Cream 6/1.75 L Btl ...",
     "BASE_DATE": "9/29/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Green River Wheated 1/750 mL",
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -1485,9 +1485,9 @@
     "CUSTOMER_NAME": "Raphael & Angel Liq (A)",
     "BASE_DETAIL": "3 spirits: Pride & Clarke Vodka 24/375 mL Btl, Pride & Clarke Vodka 48/200 mL Btl, Pride & Clarke Vodka 6/1.75 L Btl",
     "BASE_DATE": "9/28/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Traveler's Club Vodka 6/1.75 L Btl",
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -1575,9 +1575,9 @@
     "CUSTOMER_NAME": "Corks & Bottles (P)",
     "BASE_DETAIL": "1 spirit: Pride & Clarke Vodka 24/375 mL Btl",
     "BASE_DATE": "8/4/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Pride & Clarke Vodka 24/375 mL Btl",
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Dylan Rubino",
@@ -1665,9 +1665,9 @@
     "CUSTOMER_NAME": "A & S Liquors",
     "BASE_DETAIL": "3 spirits: Pride & Clarke Vodka 24/375 mL Btl, Pride & Clarke Vodka 48/200 mL Btl, Pride & Clarke Vodka 6/1.75 L Btl",
     "BASE_DATE": "8/17/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Pride & Clarke Vodka 24/375 mL Btl, Pride & Clarke Vodka 48/200 mL Btl",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Dylan Rubino",
@@ -2135,9 +2135,9 @@
     "CUSTOMER_NAME": "United Liquor",
     "BASE_DETAIL": "5 spirits: Pride & Clarke Vodka 1/12/750 mL Btl, Pride & Clarke Vodka 24/375 mL Btl, Pride & Clarke Vodka 48/200 mL Btl, Travelers Club Vodka 24/375 mL Btl ...",
     "BASE_DATE": "9/22/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Pride & Clarke Vodka 6/1.75 L Btl, Traveler's Club Vodka 6/1.75 L Btl",
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Hakan Sadik",
@@ -2215,9 +2215,9 @@
     "CUSTOMER_NAME": "Home Liquors(520 East Orange)",
     "BASE_DETAIL": "4 spirits: Pride & Clarke Vodka 1/12/750 mL Btl, Pride & Clarke Vodka 24/375 mL Btl, Pride & Clarke Vodka 48/200 mL Btl, Pride & Clarke Vodka 6/1.75 L Btl",
     "BASE_DATE": "9/2/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Traveler's Club Vodka 6/1.75 L Btl",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Hakan Sadik",
@@ -2235,9 +2235,9 @@
     "CUSTOMER_NAME": "Maple Liquors",
     "BASE_DETAIL": "2 spirits: Pride & Clarke Vodka 24/375 mL Btl, Pride & Clarke Vodka 48/200 mL Btl",
     "BASE_DATE": "8/27/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Pride & Clarke Vodka 24/375 mL Btl",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Hakan Sadik",
@@ -2295,9 +2295,9 @@
     "CUSTOMER_NAME": "Home Liquors(773 Newark)",
     "BASE_DETAIL": "3 spirits: Pride & Clarke Vodka 1/12/750 mL Btl, Pride & Clarke Vodka 48/200 mL Btl, Pride & Clarke Vodka 6/1.75 L Btl",
     "BASE_DATE": "8/5/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Pride & Clarke Vodka 48/200 mL Btl",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Hakan Sadik",
@@ -2365,9 +2365,9 @@
     "CUSTOMER_NAME": "Three Corners Liquor/Bar",
     "BASE_DETAIL": "3 spirits: Pride & Clarke Vodka 24/375 mL Btl, Pride & Clarke Vodka 48/200 mL Btl, Pride & Clarke Vodka 6/1.75 L Btl",
     "BASE_DATE": "7/31/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Pride & Clarke Vodka 1/12/750 mL Btl, Pride & Clarke Vodka 24/375 mL Btl, Pride & Clarke Vodka 48/200 mL Btl, Pride & Clarke Vodka 6/1.75 L Btl",
+    "DONE_DATE": "10/8/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Hakan Sadik",
@@ -2425,9 +2425,9 @@
     "CUSTOMER_NAME": "King's W & L",
     "BASE_DETAIL": "4 spirits: Pride & Clarke Vodka 1/12/750 mL Btl, Pride & Clarke Vodka 24/375 mL Btl, Pride & Clarke Vodka 48/200 mL Btl, Pride & Clarke Vodka 6/1.75 L Btl",
     "BASE_DATE": "8/20/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Traveler's Club Vodka 6/1.75 L Btl",
+    "DONE_DATE": "10/8/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Hakan Sadik",
@@ -2605,9 +2605,9 @@
     "CUSTOMER_NAME": "Brick City Liquors",
     "BASE_DETAIL": "3 spirits: Pride & Clarke Vodka 12/1 L Btl, Pride & Clarke Vodka 6/1.75 L Btl, Traveler's Club Vodka 6/1.75 L Btl",
     "BASE_DATE": "8/7/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Traveler's Club Vodka 6/1.75 L Btl, Travelers Club Vodka 24/375 mL Btl, Travelers Club Vodka 48/200 mL Btl",
+    "DONE_DATE": "10/9/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Hakan Sadik",
@@ -2625,9 +2625,9 @@
     "CUSTOMER_NAME": "Chancellor Irvington",
     "BASE_DETAIL": "2 spirits: Pride & Clarke Vodka 6/1.75 L Btl, Traveler's Club Vodka 6/1.75 L Btl",
     "BASE_DATE": "9/24/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Pride & Clarke Vodka 24/375 mL Btl, Pride & Clarke Vodka 48/200 mL Btl, Pride & Clarke Vodka 6/1.75 L Btl",
+    "DONE_DATE": "10/8/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Hakan Sadik",
@@ -2705,9 +2705,9 @@
     "CUSTOMER_NAME": "Quality Liquors #2",
     "BASE_DETAIL": "2 spirits: Travelers Club Vodka 24/375 mL Btl, Travelers Club Vodka 48/200 mL Btl",
     "BASE_DATE": "9/15/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Traveler's Club Vodka 6/1.75 L Btl",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Hakan Sadik",
@@ -2745,9 +2745,9 @@
     "CUSTOMER_NAME": "Royal Wine Iv",
     "BASE_DETAIL": "3 spirits: Pride & Clarke Vodka 6/1.75 L Btl, Travelers Club Vodka 24/375 mL Btl, Travelers Club Vodka 48/200 mL Btl",
     "BASE_DATE": "9/9/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Pride & Clarke Vodka 1/12/750 mL Btl, Traveler's Club Vodka 6/1.75 L Btl",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Hakan Sadik",
@@ -2765,9 +2765,9 @@
     "CUSTOMER_NAME": "C & D Liquors",
     "BASE_DETAIL": "1 spirit: Pride & Clarke Vodka 12/1 L Btl",
     "BASE_DATE": "7/8/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Pride & Clarke Vodka 24/375 mL Btl, Travelers Club Vodka 24/375 mL Btl",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Hakan Sadik",
@@ -3135,9 +3135,9 @@
     "CUSTOMER_NAME": "Parker Liquors (Z)",
     "BASE_DETAIL": "5 spirits: 2XO American Oak 1/750 mL Btl, Green River Honey 1/10/50 mL Btl, Pride & Clarke Vodka 1/12/750 mL Btl, Pride & Clarke Vodka 24/375 mL Btl ...",
     "BASE_DATE": "9/9/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Molly's Irish Cream 1/12/750 mL Btl",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -3195,9 +3195,9 @@
     "CUSTOMER_NAME": "Danny's Liquor",
     "BASE_DETAIL": "1 spirit: Pride & Clarke Vodka 1/12/750 mL Btl",
     "BASE_DATE": "8/4/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Leyenda 1925 Blanco Tequila 1/750 ML Btl, Leyenda 1925 Reposado Tequila 1/750 ML Btl",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -3315,9 +3315,9 @@
     "CUSTOMER_NAME": "ShopRite Wines & Spirits of Franklin",
     "BASE_DETAIL": "3 spirits: 2XO American Oak 1/750 mL Btl, Green River Bourbon 1/750 mL Btl, Green River Wheated 1/750 mL",
     "BASE_DATE": "8/5/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Bardstown Origin Series Bourbon 1/750 mL Btl, Bardstown Origin Series Double Barrel Rye 1/750 mL Btl, Bardstown Origin Series High Wheat 1/750 mL Btl, Green River Honey 1/750 mL Btl ...",
+    "DONE_DATE": "10/8/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -3775,9 +3775,9 @@
     "CUSTOMER_NAME": "Shop Rite Wine & Spirits Stanhope",
     "BASE_DETAIL": "8 spirits: American Fruit Sour Cherry Liqueur 12/375 mL, Bardstown Collaboration Series Lochs Of Jura 1/750 mL Btl, Bardstown Discovery 2026 1/750 mL Btl, Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl ...",
     "BASE_DATE": "9/16/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Green River Bourbon 1/750 mL Btl",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -4225,9 +4225,9 @@
     "CUSTOMER_NAME": "Waldwick Wine/Spirits",
     "BASE_DETAIL": "5 spirits: Green River Honey 1/10/50 mL Btl, Traveler's Club Vodka 6/1.75 L Btl, Travelers Club Vodka 1/12/750 mL Btl, Travelers Club Vodka 24/375 mL Btl ...",
     "BASE_DATE": "9/24/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Traveler's Club Vodka 6/1.75 L Btl",
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -4266,7 +4266,7 @@
     "BASE_DETAIL": "3 spirits: Green River Honey 1/750 mL Btl, Green River Wheated 1/750 mL, Traveler's Club Vodka 6/1.75 L Btl",
     "BASE_DATE": "9/23/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Traveler's Club Vodka 6/1.75 L Btl",
+    "DONE_DETAIL": "Leyenda 1925 Blanco Tequila 1/750 ML Btl, Traveler's Club Vodka 6/1.75 L Btl",
     "DONE_DATE": "10/1/2026"
   },
   {
@@ -4395,9 +4395,9 @@
     "CUSTOMER_NAME": "Gene's Liquor",
     "BASE_DETAIL": "4 spirits: Pride & Clarke Vodka 1/12/750 mL Btl, Pride & Clarke Vodka 24/375 mL Btl, Pride & Clarke Vodka 48/200 mL Btl, Pride & Clarke Vodka 6/1.75 L Btl",
     "BASE_DATE": "8/28/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Pride & Clarke Vodka 1/12/750 mL Btl, Pride & Clarke Vodka 6/1.75 L Btl",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -4545,9 +4545,9 @@
     "CUSTOMER_NAME": "Johnny's Liqs (P)",
     "BASE_DETAIL": "2 spirits: Leyenda 1925 Blanco Tequila 1/750 ML Btl, Pride & Clarke Vodka 48/200 mL Btl",
     "BASE_DATE": "7/17/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Rompe Corazon Joven Mezcal 750 mL",
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -4555,9 +4555,9 @@
     "CUSTOMER_NAME": "Sunny's Liqs.(P)",
     "BASE_DETAIL": "2 spirits: Travelers Club Vodka 12/1 L Btl, Travelers Club Vodka 24/375 mL Btl",
     "BASE_DATE": "9/22/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Travelers Club Vodka 12/1 L Btl",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -4575,9 +4575,9 @@
     "CUSTOMER_NAME": "Broadway W&L",
     "BASE_DETAIL": "6 spirits: Pride & Clarke Vodka 1/12/750 mL Btl, Pride & Clarke Vodka 24/375 mL Btl, Pride & Clarke Vodka 48/200 mL Btl, Pride & Clarke Vodka 6/1.75 L Btl ...",
     "BASE_DATE": "9/29/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Pride & Clarke Vodka 1/12/750 mL Btl, Pride & Clarke Vodka 24/375 mL Btl, Pride & Clarke Vodka 48/200 mL Btl",
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -4585,9 +4585,9 @@
     "CUSTOMER_NAME": "Noches De Colombia (S. Hackensack))",
     "BASE_DETAIL": "5 spirits: 2XO French Oak 1/750 mL Btl, 2XO The Collectibles Hip Hop Blend 1/750 mL Btl, Desquite Artesanal 6/750 mL Btl, Paradisse Fassionola Liqueur 6/750 mL Btl ...",
     "BASE_DATE": "9/30/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Desquite Artesanal 6/750 mL Btl",
+    "DONE_DATE": "10/8/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -4665,9 +4665,9 @@
     "CUSTOMER_NAME": "Lenoras Bar (P)",
     "BASE_DETAIL": "2 spirits: Striped Pig Doppio 1/6/750 mL Btl, Travelers Club Vodka 12/1 L Btl",
     "BASE_DATE": "9/17/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Striped Pig Doppio 1/6/750 mL Btl",
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -4735,9 +4735,9 @@
     "CUSTOMER_NAME": "Andiamo",
     "BASE_DETAIL": "2 spirits: 2XO French Oak 1/750 mL Btl, Traveler's Club Vodka 6/1.75 L Btl",
     "BASE_DATE": "9/22/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "2XO French Oak 1/750 mL Btl",
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -4865,9 +4865,9 @@
     "CUSTOMER_NAME": "Super Wine Warehse(P)Pate",
     "BASE_DETAIL": "2 spirits: Pride & Clarke Vodka 24/375 mL Btl, Pride & Clarke Vodka 48/200 mL Btl",
     "BASE_DATE": "9/17/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Traveler's Club Vodka 6/1.75 L Btl",
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -4885,9 +4885,9 @@
     "CUSTOMER_NAME": "Shop-Rite Liq Lyndhurst",
     "BASE_DETAIL": "5 spirits: YaVe Tequila Blanco 1/6/750 mL Btl, YaVe Tequila Coconut 1/6/750 mL Btl, YaVe Tequila Jalapeno 1/6/750 mL Btl, YaVe Tequila Mango 1/6/750 mL Btl ...",
     "BASE_DATE": "7/28/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Traveler's Club Vodka 6/1.75 L Btl",
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -4915,9 +4915,9 @@
     "CUSTOMER_NAME": "City Supermarket",
     "BASE_DETAIL": "8 spirits: 2XO French Oak 1/750 mL Btl, Leyenda 1925 Blanco Tequila 1/750 ML Btl, Leyenda 1925 Reposado Tequila 1/750 ML Btl, YaVe Tequila Blanco 1/6/750 mL Btl ...",
     "BASE_DATE": "8/25/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Traveler's Club Vodka 6/1.75 L Btl",
+    "DONE_DATE": "10/6/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -4955,9 +4955,9 @@
     "CUSTOMER_NAME": "Wine Country Of Saddle Brook (A)",
     "BASE_DETAIL": "2 spirits: 2XO American Oak 1/750 mL Btl, 2XO French Oak 1/750 mL Btl",
     "BASE_DATE": "7/15/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Traveler's Club Vodka 6/1.75 L Btl",
+    "DONE_DATE": "10/7/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -5202,7 +5202,7 @@
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
     "CUSTOMER_NUM": 62009,
-    "CUSTOMER_NAME": "Gary's Closter / CLoster Cellars",
+    "CUSTOMER_NAME": "Gary's Closter / Closter Cellars",
     "BASE_DETAIL": "7 spirits: Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl, Bardstown Origin Series Bourbon 1/750 mL Btl, Bardstown Origin Series High Wheat 1/750 mL Btl, Green River Bourbon 1/750 mL Btl ...",
     "BASE_DATE": "9/17/2026",
     "DONE": 0,
