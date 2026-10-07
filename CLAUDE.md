@@ -2704,3 +2704,9 @@ header now shows the leaderboard's company tiles (KdhCarbTiles compact: L90 / Au
 Fell Off L90 against the 331 team goal) instead of the "N of 21 Reps at Goal" figure + bar; that count moved
 into the meta line ("MPO Weight 25% · 1 of 21 Reps at Goal"), Review Reps unchanged. guided.js `programCard`
 (`.g-cb-co`, filled by hydrateCarbliss), guided.js / guided.css 20261007r. Test: scratchpad cbhead_shot.mjs.
+Second follow-up (same day, Gavin: "instead of Review Reps, have the card take managers and reps to the
+leaderboard"): the Carbliss program card on Program View is now ONE LINK to /carbliss-onprem-targets/
+(guided.js `carblissProgramCard`, an <a class="g-prog-head g-prog-link">, no js-prog, no rep list), ending
+"Open Carbliss Leaderboard"; the rep's own Carbliss card already links there ("Open Carbliss Leaderboard").
+Other program cards still expand to Review Reps. guided.js / guided.css 20261007s. Test: scratchpad
+cbhead_link.mjs (manager card click + rep card link -> leaderboard, 390 / 1366, light / dark).

@@ -644,6 +644,7 @@ function screenProgram(){
 
 function programCard(o){
   var g = H.atGoal(o);
+  if(isCarblissLaunch(o)) return carblissProgramCard(o, g);
   var open = openProgram === o.key;
   var has = !!(g && g.total);
   var share = has ? (g.n/g.total)*100 : 0;
@@ -658,21 +659,32 @@ function programCard(o){
         '</span>'+
         '<span class="g-chev">&#9656;</span>'+
       '</div>'+
-      (isCarblissLaunch(o)
-        // Carbliss (2026-10-07, Gavin): the program card's header shows the company tiles from the
-        // Carbliss Leaderboard (L90 / Aug 1 - Oct 31 / YTD / Fell Off L90), filled by hydrateCarbliss().
-        ? '<div class="g-cb g-cb-co" data-co="1"><div class="g-cb-wait">Loading Carbliss buyers\u2026</div></div>'
-        : has
+      (has
         ? '<div class="g-fig"><span class="g-fig-n">'+g.n+'</span><span class="g-fig-of"> of '+g.total+'</span><span class="g-fig-u">Reps at Goal</span></div>'+
           barHtml(share, g.n===g.total ? 'achieved' : (g.n>0?'inprogress':'notstarted'))+
           '<div class="g-bar-cap">Team progress: '+Math.round(share)+'% of eligible reps at goal</div>'
         : '<div class="g-need">No data yet \u2014 not counted</div>')+
-      '<div class="g-meta">MPO Weight '+Math.round(o.weight*100)+'%'+
-        (isCarblissLaunch(o) && has ? ' \u00b7 '+g.n+' of '+g.total+' Reps at Goal' : '')+'<span class="g-review">'+(open?'Hide Reps':'Review Reps')+'</span></div>'+
+      '<div class="g-meta">MPO Weight '+Math.round(o.weight*100)+'%<span class="g-review">'+(open?'Hide Reps':'Review Reps')+'</span></div>'+
     '</button>';
 
   var body = open ? '<div class="g-prog-body open">'+programBody(o)+'</div>' : '';
   return '<div class="g-prog">'+head+body+'</div>';
+}
+
+// Carbliss (2026-10-07, Gavin): the program card shows the Carbliss Leaderboard's company tiles and the
+// whole card opens the leaderboard (managers and reps alike) instead of expanding the rep list.
+function carblissProgramCard(o, g){
+  var has = !!(g && g.total);
+  return '<div class="g-prog g-prog-cb"><a class="g-prog-head g-prog-link" href="../../carbliss-onprem-targets/">'+
+      logoHtml(o)+
+      '<div class="g-prog-top">'+
+        '<span class="g-prog-name">'+esc(titleOf(o))+'<span class="g-reprow-dm">'+supPeriod(o)+'</span></span>'+
+        '<span class="g-chev" aria-hidden="true">\u203a</span>'+
+      '</div>'+
+      '<div class="g-cb g-cb-co" data-co="1"><div class="g-cb-wait">Loading Carbliss buyers\u2026</div></div>'+
+      '<div class="g-meta">MPO Weight '+Math.round(o.weight*100)+'%'+(has ? ' \u00b7 '+g.n+' of '+g.total+' Reps at Goal' : '')+
+        '<span class="g-review">Open Carbliss Leaderboard</span></div>'+
+    '</a></div>';
 }
 
 function programBody(o){
