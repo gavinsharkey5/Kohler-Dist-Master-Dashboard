@@ -2815,3 +2815,15 @@ unconverted accounts is in the RDE export (supersedes "5 not in the export" in t
 Result 2026-10-07: 268 of 307; Dave Ehlers, Phil Ernst, Shane Barreca have no on-premise Summer Ale
 accounts and are no longer scored on it (they were 2/2, 2/2, 4/4 on liquor stores) -- ASKED Gavin.
 The October INCENTIVE sam_adams_cold_snap still reads Boston Beer's files. on-prem programs.js 20261007y.
+
+## October incentives refreshed + Four Loko built (2026-10-07)
+
+Gavin sent new RDE exports (through Oct 9) for MABI single serve, Lagunitas Sprint, Famosa, Industrial Arts
+and, for the first time, Four Loko Volume Rewards; all saved under incentive-tracking/data/ and
+`python3 incentive-tracking/generate.py` re-run (program_data.js + rep copies rebuilt). Gavin: Lagunitas is
+all NEW placements -- "POD" always means new POD (the builder already counts it that way). `build_four_loko()`
+is the new builder (see the README OCTOBER section for rules): 5 new Sour Apple / USA placements (90-day
+non-buy, read from the monthly Rolling Distribution master, conservative) unlock $0.50 a case, $1.00 if the
+route beats Oct-Nov 2025. Cache tags programs.js / program_data.js 20261007z. OPEN questions put to Gavin: the
+90-day grain, whether cases before the 5th placement pay, Lagunitas rep-needs-3-PODs assumption,
+Industrial Arts "non-buy" and Southern District 1+ SKU assumptions.

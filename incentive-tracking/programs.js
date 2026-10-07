@@ -432,8 +432,7 @@ const PROGRAM_LIST_2026_10 = [
   {key:'four_loko', group:'new', title:'Four Loko Volume Rewards', shortTitle:'Four Loko', tag:'Oct–Nov',
    pitch:`Get Four Loko back to positive growth — five new Sour Apple or USA placements switch the per-case payout on.`,
    getRep:oct('four_loko'),
-   metric:d=>d.cases, metricLabel:'cases (Oct–Nov)', fmt:v=>v.toFixed(0),
-   awaitingNote:`Awaiting the Four Loko export — the rules above are live; your placements and cases will fill in here once the data lands.`},
+   metric:d=>d.cases26, metricLabel:'cases (Oct–Nov)', fmt:v=>v.toFixed(0)},
   {key:'lagunitas_sprint', group:'new', title:'Lagunitas Sprint to the Finish', shortTitle:'Lagunitas', tag:'October',
    pitch:`Open new Lagunitas IPA and Little Sumpin' package PODs off-premise — three unlocks your payout, and a new IPA draft account pays $100.`,
    getRep:oct('lagunitas_sprint'),
@@ -1230,6 +1229,31 @@ function cardFamosaOct(rep){
   return `<div class="prog-card"><div class="prog-head"><div class="prog-name-row">${progLogo('famosa_oct')}<span class="prog-name">Push Famosa</span><span class="prog-tag">October</span>${terrTag('famosa_oct')}</div>${progPitch('famosa_oct')}</div>
     <div class="prog-body">${board}${block}</div></div>`;
 }
+function cardFourLoko(rep){
+  const P = PROGRAM_DATA_2026_10['four_loko']||{}; const d = P.byRep?.[rep]; if(!d) return '';
+  const m = P.meta||{}, R = m.rates||{}, Q = m.qualifier||5;
+  const board = statBoard([
+    {num:`${Math.min(d.placementCount,Q)} / ${Q}`, label:'New Sour Apple / USA Placements', status:d.qualified?'good':cntStatus(d.placementCount), sub:d.qualified?'Qualified — cases pay':`${d.toQualifier} more to qualify`},
+    {num:Math.round(d.cases26), label:'Cases Oct–Nov', status:cntStatus(d.cases26), sub:`vs ${Math.round(d.cases25)} in Oct–Nov 2025`},
+    {num:(d.growth>0?'+':'')+Math.round(d.growth), label:'Route Growth', status:d.positive?'good':null, sub:d.positive?'Route is positive — $1.00 a case':'Not positive yet — $0.50 a case'},
+    {num:d.payout?`$${d.payout.toLocaleString('en-US')}`:'$0', label:'Earned So Far', sub:d.qualified?`$${d.rate.toFixed(2)} × ${Math.round(d.cases26)} cases`:'pays once you have 5 placements'},
+  ]);
+  const prods = Object.entries(d.byProduct||{}).sort((a,b)=>b[1].cases26-a[1].cases26).map(([n,v])=>({name:n, stat:`${Math.round(v.cases26)} vs ${Math.round(v.cases25)} LY`}));
+  const block = earnBlock({
+    icon:'⚡', title:'Four Loko Volume Rewards', rate:`$${(R.case||0.5).toFixed(2)} A CASE · $${(R.casePositive||1).toFixed(2)} WHEN YOUR ROUTE IS POSITIVE`,
+    rateNote:`Five new placements of Sour Apple and/or USA unlock the payout. A placement is one of those SKUs at one account that had not bought it in the 90 days before. Once unlocked, every Four Loko case sold Oct–Nov pays $0.50, or $1.00 if your route beats Oct–Nov 2025.`,
+    steps:[
+      {text:`Place Sour Apple or USA at ${Q} accounts that did not buy it in 90 days`, done:d.qualified},
+      {text:`Pass last year's ${Math.round(d.cases25)} cases for the $1.00 rate`, done:d.positive},
+    ],
+    stats:[{num:d.placementCount, label:'New placements'}, {num:d.notNewCount, label:'Bought within 90 days (not new)'}, {num:d.accounts, label:'Buying accounts'}],
+    detail:{label:'Your New Placements', items:(d.placements||[]).map(p=>({name:p.customer, sub:p.product, stat:p.date||''})), emptyMsg:'No new Sour Apple or USA placements yet.'},
+    opportunity:{label:'Bought Four Loko Last Year, Not Yet This Year', count:(d.lostAccounts||[]).length, note:'Win these back — Sour Apple or USA here is a new placement if it has been 90 days.', items:(d.lostAccounts||[]).map(a=>({name:a.customer, stat:`${a.cases25} cs last year`})), emptyMsg:'Every account that bought last year has bought again.'},
+    extra: prods.length ? detailList({label:'By Flavor', items:prods}) : '',
+  });
+  return `<div class="prog-card"><div class="prog-head"><div class="prog-name-row">${progLogo('four_loko')}<span class="prog-name">Four Loko Volume Rewards</span><span class="prog-tag">Oct–Nov</span>${terrTag('four_loko')}</div>${progPitch('four_loko')}</div>
+    <div class="prog-body">${board}${block}<div class="prog-foot-note">Window ${esc(m.currentWindow||'10/1 – 11/30/2026')} against ${esc(m.baseWindow||'the same window in 2025')}. The 90-day check reads the sales history by month, so a placement is only counted when no month inside the 90 days shows a purchase.</div></div></div>`;
+}
 function cardIndustrialArts(rep){
   const P = PROGRAM_DATA_2026_10['industrial_arts']||{}; const d = P.byRep?.[rep]; if(!d) return '';
   const m = P.meta||{}, R = m.rates||{};
@@ -1281,7 +1305,7 @@ function cardMabiSingleServe(rep){
 }
 
 const PROGRAM_CARD_FN = {
-  'lagunitas_sprint': cardLagunitasSprint, 'famosa_oct': cardFamosaOct, 'industrial_arts': cardIndustrialArts, 'mabi_single_serve': cardMabiSingleServe,
+  'lagunitas_sprint': cardLagunitasSprint, 'famosa_oct': cardFamosaOct, 'four_loko': cardFourLoko, 'industrial_arts': cardIndustrialArts, 'mabi_single_serve': cardMabiSingleServe,
   '1911': card1911, 'woodchuck': cardWoodchuck, 'tona': cardTona,
   'path_to_victory': cardPathToVictory, 'sam_adams': cardSamAdams, 'boston_beer': cardBostonBeer,
   'new_belgium': cardNewBelgium, 'lytt': cardLytt, 'fall_seasonal': cardFallSeasonal,
@@ -3865,7 +3889,12 @@ const PROGRAM_SUMMARY = {
     remain:(d.wc.qualified&&d.harder.qualified)?null:[!d.wc.qualified?`${pl(d.wc.toQualifier,'more White Claw')}`:'', !d.harder.qualified?`${pl(d.harder.toQualifier,'more Harder / Cayman')}`:''].filter(Boolean).join(' · '),
     sub:`${d.legsQualified} of 2 legs at 8+`,
     next:(d.wc.qualified&&d.harder.qualified) ? `Both legs are in — keep every package M.A.D.E. and the payout doubles.` : `Sell in <strong>${[!d.wc.qualified?pl(d.wc.toQualifier,'more White Claw 19.2oz'):'', !d.harder.qualified?pl(d.harder.toQualifier,'more Harder / Cayman single serve'):''].filter(Boolean).join(' and ')}</strong>.`}),
-  four_loko:(d)=>({goal:false, now:d.cases||0, unit:'cases', label:`${Math.round(d.cases||0)} cases`, next:`Five new Sour Apple or USA placements switch the per-case payout on.`}),
+  four_loko:(d,m)=>({goal:true, now:Math.min(d.placementCount,(m&&m.qualifier)||5), target:(m&&m.qualifier)||5, unit:'placements',
+    label:`${d.placementCount} of ${(m&&m.qualifier)||5} new Sour Apple / USA placements`,
+    remain:d.qualified?null:`${pl(d.toQualifier,'more placement')} to qualify`,
+    sub:`${Math.round(d.cases26)} cases Oct–Nov · ${d.positive?'route positive':'route not positive yet'}`,
+    next:d.qualified ? (d.positive ? `Qualified and positive — every Four Loko case pays the higher rate.` : `Qualified — pass last year's ${Math.round(d.cases25)} cases to lift every case to the higher rate.`)
+      : `Place <strong>Sour Apple or USA at ${pl(d.toQualifier,'more account')}</strong> that has not bought it in 90 days to switch the per-case payout on.`}),
   sam_adams_cold_snap:(d)=>({goal:true, now:d.converted||0, target:d.lines||0, unit:'lines', label:`${d.converted||0} of ${d.lines||0} lines converted`, next:d.notConverted>0?`Convert ${d.notConverted} more seasonal handle${d.notConverted===1?'':'s'} by October 23.`:`Every seasonal handle is converted — hold them through October 23.`}),
 
   montauk:(d)=>({goal:false, now:d.totalNewPlacements, unit:'placements',
@@ -4172,6 +4201,7 @@ const PROGRAM_RULES = {
     'Qualifier: 5 new placements of Sour Apple and/or USA (90-day non-buy) to earn payouts',
     '$0.50 for every case sold in October and November',
     '$1.00 for every case sold if your route is positive for the two months',
+    'A placement counts when the account had not bought that SKU in the 90 days before',
   ],
   'lagunitas_sprint': [
     'Runs Oct 1–31',
@@ -4460,6 +4490,14 @@ const PROGRAM_BOARD = {
       d.draftChannelOk===false ? {num:'N/A', label:'draft', cls:'dim'} : {num:d.draftQualifiedCount, label:'draft accounts', cls:d.draftQualifiedCount>0?'good':null},
     ],
     status: d.qualified ? {cls:'good', label:`✓ Qualified · $${d.rate} a POD`} : d.podCount>0 ? {cls:'warn', label:`${d.toQualifier} POD${d.toQualifier===1?'':'s'} to qualify`} : {cls:'gray', label:'No PODs yet'},
+  }),
+  'four_loko': d=>({
+    metrics:[
+      {num:d.placementCount, label:'new placements', cls:d.placementCount>0?'good':'dim'},
+      {num:Math.round(d.cases26), label:'cases Oct–Nov'},
+      {num:(d.growth>0?'+':'')+Math.round(d.growth), label:'growth', cls:d.growth>0?'good':d.growth<0?'bad':'dim'},
+    ],
+    status: d.qualified ? {cls:'good', label:`✓ Qualified · $${d.payout.toLocaleString('en-US')}`} : d.placementCount>0 ? {cls:'warn', label:`${d.toQualifier} placement${d.toQualifier===1?'':'s'} to qualify`} : {cls:'gray', label:'No new placements yet'},
   }),
   'famosa_oct': d=>({
     metrics:[

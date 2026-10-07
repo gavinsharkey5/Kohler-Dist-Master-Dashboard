@@ -176,16 +176,18 @@ device, a decision).
   stops_2026). Decide who may see dollars (receivables, prices) before
   any appear on a rep page. Live integrations (orders, payments, sync,
   iSellBeer, DSDLink, PayLink) wait for documentation.
-- [ ] **October incentives: two exports + four answers** (Gavin): send the
-  Four Loko export and the Sam Adams seasonal conversion scoreboard so
-  their October shapes switch on. Confirm: (1) the conversion direction --
-  the deck says "Cold Snap to Summer Ale", presumably Octoberfest -> Cold
-  Snap; (2) Lagunitas: does nothing pay until a rep has 3 PODs (as built),
-  or do the first PODs pay at $10; (3) Industrial Arts: every SKU treated as
-  core and every account as a non-buy -- send a core list / target list if
-  either is narrower; (4) Touchdowns & Tea is shown through Oct 31 -- give
-  the real end date. Also: is "Long Drink Intro" (deck title slide, no
-  slide) a program to add?
+- [ ] **October incentives: answers still open** (Gavin; data refreshed
+  through Oct 9 on 2026-10-07, Four Loko built): (1) Four Loko: the 90-day
+  non-buy is read from MONTHLY sales history (a month overlapping the 90
+  days counts as a buy) -- OK, or send a day-level source? Do all Four Loko
+  cases pay once a rep has 5 placements (as built), or only cases after the
+  5th? (2) Lagunitas: does nothing pay until a rep has 3 new PODs (as
+  built), or do the first PODs pay $10; (3) Industrial Arts: every SKU
+  treated as core and every account as a non-buy -- send a core list /
+  target list if narrower; Southern District pays on 1+ SKU (as built);
+  (4) the Sam Adams seasonal conversion direction (deck says "Cold Snap to
+  Summer Ale"); (5) Touchdowns & Tea is shown through Oct 31 -- real end
+  date? Also: is "Long Drink Intro" a program to add?
 
 - [ ] **Accounts: one live check on Vercel** (Gavin): signed in as a rep,
   open kohlerdisthub.com/accounts/ and confirm the list shows only that

@@ -5161,6 +5161,130 @@ def build_mabi_single_serve():
                      "exportMadeOnly": True}}
 
 
+# Four Loko Volume Rewards (deck, Oct-Nov 2026). The qualifier SKUs.
+FOUR_LOKO_QUAL_SKUS = {"7925": "Sour Apple", "7935": "USA"}
+MASTER_MONTHS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "rolling-distribution", "data", "master", "months")
+
+def _master_sku_buys(pnums):
+    """{(customer_num, product_num): {(year, month), ...}} -- calendar months
+    with net cases > 0 in the Rolling Distribution master, for the given
+    products only. Month grain: the master has no invoice dates."""
+    out = defaultdict(set)
+    if not os.path.isdir(MASTER_MONTHS):
+        return out
+    for fn in sorted(os.listdir(MASTER_MONTHS)):
+        if not fn.endswith(".csv"):
+            continue
+        y, m = int(fn[:4]), int(fn[5:7])
+        with open(os.path.join(MASTER_MONTHS, fn), newline="") as f:
+            for r in csv.DictReader(f):
+                if r["product_num"] in pnums and to_num(r["cases"]) > 0:
+                    out[(r["customer_num"], r["product_num"])].add((y, m))
+    return out
+
+def build_four_loko():
+    """Four Loko Volume Rewards, Oct 1 - Nov 30 2026.
+
+    QUALIFIER  5 new placements of Sour Apple (7925) and/or USA (7935). A
+               placement = one of those SKUs at one account (rep, customer,
+               Product Num) with net cases > 0 on a load sheet in the window
+               and NO purchase of that SKU at that account in the 90 days
+               before its first load sheet ("90-day non-buy").
+    PAYOUT     once qualified: $0.50 on every Four Loko case sold Oct-Nov
+               (net of returns), $1.00 a case when the rep's route is
+               positive for the two months (cases 10/1-11/30/2026 above the
+               same window of 2025, from the export's two Cases columns).
+
+    The export carries cases only (no placement flag, no history), so the
+    90-day look-back is read from the Rolling Distribution master, which is
+    MONTHLY: any master month that overlaps the 90 days counts as a buy
+    (conservative -- a placement is never credited that the master could
+    disprove), plus same-window loads earlier in the export itself.
+    ASSUMED (flagged to Gavin): month-grain look-back, every Four Loko case
+    pays once the rep qualifies (not only cases after the 5th placement)."""
+    rows = read_rows("four_loko.csv")
+    fields = rows[0].keys() if rows else []
+    case_base, case_current = find_period_cols(fields, "Cases")
+    date_col = "Load Sheet Date"
+    QUAL, RATE, RATE_POS = 5, 0.50, 1.00
+    master = _master_sku_buys(set(FOUR_LOKO_QUAL_SKUS))
+    by_rep = {rep: {"cases26": 0.0, "cases25": 0.0, "growth": 0.0, "positive": False, "toPositive": 0.0,
+                    "placements": [], "placementCount": 0, "notNew": [], "notNewCount": 0, "borderlineCount": 0,
+                    "qualified": False, "toQualifier": QUAL, "rate": RATE, "payout": 0, "payoutIfQualified": 0,
+                    "accounts": 0, "accountList": [], "lostAccounts": [], "byProduct": {}}
+              for rep in ROSTER}
+    acct = defaultdict(lambda: {"cases26": 0.0, "cases25": 0.0, "name": ""})
+    sku_rows = defaultdict(list)
+    for row in rows:
+        rep = row["Sales Rep Assigned"].strip()
+        if rep not in by_rep:
+            continue
+        cust, cname = _split_num_name(row["Customer Num & Company"])
+        pnum, pname = _split_num_name(row["Product Num & Name"])
+        c26, c25 = to_num(row[case_current]), to_num(row[case_base])
+        d = by_rep[rep]
+        d["cases26"] += c26; d["cases25"] += c25
+        bp = d["byProduct"].setdefault(pname, {"cases26": 0.0, "cases25": 0.0})
+        bp["cases26"] += c26; bp["cases25"] += c25
+        a = acct[(rep, cust)]; a["name"] = cname; a["cases26"] += c26; a["cases25"] += c25
+        if pnum in FOUR_LOKO_QUAL_SKUS:
+            row["_cname"], row["_pname"], row["_dt"] = cname, pname, _us_date(row.get(date_col))
+            sku_rows[(rep, cust, pnum)].append(row)
+    for (rep, cust, pnum), krows in sku_rows.items():
+        net = sum(to_num(r[case_current]) for r in krows)
+        dated = sorted((r["_dt"] for r in krows if r["_dt"] and to_num(r[case_current]) > 0))
+        if net <= 0 or not dated:
+            continue                       # bought then fully returned: not a placement
+        first = dated[0]
+        win_start = first - datetime.timedelta(days=90)
+        months = master.get((cust, pnum), set())
+        # a master month counts when it overlaps [first-90, first-1]
+        hit = [(y, m) for (y, m) in months
+               if datetime.date(y, m, 1) <= first - datetime.timedelta(days=1)
+               and (datetime.date(y + (m == 12), m % 12 + 1, 1) - datetime.timedelta(days=1)) >= win_start]
+        # borderline: every overlapping month only partly sits inside the window
+        whole = [(y, m) for (y, m) in hit if datetime.date(y, m, 1) >= win_start]
+        entry = {"customer": krows[0]["_cname"], "product": krows[0]["_pname"], "sku": FOUR_LOKO_QUAL_SKUS[pnum],
+                 "date": first.isoformat()}
+        d = by_rep[rep]
+        if hit:
+            entry["lastBought"] = "%04d-%02d" % max(hit)
+            d["notNew"].append(entry)
+            if not whole:
+                d["borderlineCount"] += 1
+        else:
+            d["placements"].append(entry)
+    leaderboard = []
+    for rep, d in by_rep.items():
+        d["cases26"], d["cases25"] = round(d["cases26"], 1), round(d["cases25"], 1)
+        d["growth"] = round(d["cases26"] - d["cases25"], 1)
+        d["positive"] = d["cases26"] > d["cases25"] and d["cases26"] > 0
+        d["toPositive"] = round(max(0.0, d["cases25"] - d["cases26"]), 1)
+        d["placements"].sort(key=lambda e: e["date"], reverse=True)
+        d["notNew"].sort(key=lambda e: e["date"], reverse=True)
+        d["placementCount"], d["notNewCount"] = len(d["placements"]), len(d["notNew"])
+        d["qualified"] = d["placementCount"] >= QUAL
+        d["toQualifier"] = max(0, QUAL - d["placementCount"])
+        d["rate"] = RATE_POS if d["positive"] else RATE
+        d["payoutIfQualified"] = int(round(max(d["cases26"], 0) * d["rate"]))
+        d["payout"] = d["payoutIfQualified"] if d["qualified"] else 0
+        mine = [v for k, v in acct.items() if k[0] == rep and (v["cases26"] or v["cases25"])]
+        d["accounts"] = sum(1 for v in mine if v["cases26"] > 0)
+        d["accountList"] = sorted(({"customer": v["name"], "cases26": round(v["cases26"], 1), "cases25": round(v["cases25"], 1)} for v in mine), key=lambda a: -a["cases26"])[:25]
+        d["lostAccounts"] = sorted(({"customer": v["name"], "cases25": round(v["cases25"], 1)} for v in mine if v["cases25"] > 0 and v["cases26"] <= 0), key=lambda a: -a["cases25"])[:15]
+        for v in d["byProduct"].values():
+            v["cases26"], v["cases25"] = round(v["cases26"], 1), round(v["cases25"], 1)
+        leaderboard.append({"rep": rep, "cases26": d["cases26"], "growth": d["growth"], "placements": d["placementCount"],
+                            "positive": d["positive"], "qualified": d["qualified"], "payout": d["payout"]})
+    leaderboard.sort(key=lambda x: (-x["placements"], -x["growth"]))
+    for i, e in enumerate(leaderboard):
+        e["rank"] = i + 1
+    return {"byRep": by_rep, "leaderboard": leaderboard,
+            "periodStart": OCT_START.isoformat(), "periodEnd": datetime.date(2026, 11, 30).isoformat(),
+            "meta": {"qualifier": QUAL, "rates": {"case": RATE, "casePositive": RATE_POS}, "qualSkus": FOUR_LOKO_QUAL_SKUS,
+                     "baseWindow": case_base.split("  ")[-1].strip(), "currentWindow": case_current.split("  ")[-1].strip(),
+                     "lookbackDays": 90, "lookbackGrain": "month (Rolling Distribution master) + same-window loads in the export"}}
+
 
 def main():
     if "--freeze-constellation-fall-off-goals" in sys.argv:
@@ -5218,6 +5342,7 @@ def main():
         "famosa_oct": build_famosa_october(),
         "industrial_arts": build_industrial_arts(),
         "mabi_single_serve": build_mabi_single_serve(),
+        "four_loko": build_four_loko(),
         "sam_adams_cold_snap": build_sam_adams_cold_snap(),
     }
     lg = data_10["lagunitas_sprint"]; fm = data_10["famosa_oct"]; ia = data_10["industrial_arts"]; ss = data_10["mabi_single_serve"]
@@ -5228,6 +5353,11 @@ def main():
           f"{sum(1 for d in fm['byRep'].values() if d['positive'])} reps positive | " + ", ".join(f"{e['rep']} {e['growth']:+.0f}" for e in fm['leaderboard'][:6]))
     print(f"industrial_arts: {sum(d['openedCount'] for d in ia['byRep'].values())} accounts opened, {sum(d['progressCount'] for d in ia['byRep'].values())} in progress, "
           f"{sum(d['draftQualifiedCount'] for d in ia['byRep'].values())} draft | " + ", ".join(f"{e['rep']} {e['opened']}+{e['skus']}sku" for e in ia['leaderboard'][:6] if e['skus']))
+    fl = data_10["four_loko"]
+    print(f"four_loko: {sum(d['cases26'] for d in fl['byRep'].values()):.0f} vs {sum(d['cases25'] for d in fl['byRep'].values()):.0f} cases LY, "
+          f"{sum(d['placementCount'] for d in fl['byRep'].values())} new Sour Apple/USA placements ({sum(d['notNewCount'] for d in fl['byRep'].values())} bought within 90 days, "
+          f"{sum(d['borderlineCount'] for d in fl['byRep'].values())} borderline), {sum(1 for d in fl['byRep'].values() if d['qualified'])} reps at 5+, "
+          f"{sum(1 for d in fl['byRep'].values() if d['positive'])} reps positive | " + ", ".join(f"{e['rep']} {e['placements']}pl/{e['growth']:+.0f}" for e in fl['leaderboard'][:6]))
     _cs = data_10["sam_adams_cold_snap"]
     print(f"sam_adams_cold_snap (Boston Beer {_cs['meta']['officialAsOf']}): house {_cs['house']}, off roster {_cs['meta']['offRoster']}")
     print(f"mabi_single_serve: {sum(d['totalPods'] for d in ss['byRep'].values())} single-serve PODs, "
