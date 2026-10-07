@@ -145,9 +145,9 @@
     "CUSTOMER_NAME": "Duffy's Tavern (Z)",
     "BASE_DETAIL": "1 spirit: Green River Honey 1/750 mL Btl",
     "BASE_DATE": "9/2/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "BJ'S Hard Root Beer Keg 15.5 Gal Keg",
-    "DONE_DATE": "10/7/2026"
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -193,8 +193,8 @@
     "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 8006,
     "CUSTOMER_NAME": "pompton crafthouse",
-    "BASE_DETAIL": "4 spirits: New Holland Dragon's Milk Reserve Coconut Rum 6/4/12 oz Btl, Southern Tier Cinnamon Candy Apple Whiskey 6/750 mL Btl, Southern Tier Peanut Butter Cup Whiskey 6/750 mL Btl, Southern Tier Pumking Whiskey 6/750 mL Btl",
-    "BASE_DATE": "9/8/2026",
+    "BASE_DETAIL": "3 spirits: Southern Tier Cinnamon Candy Apple Whiskey 6/750 mL Btl, Southern Tier Peanut Butter Cup Whiskey 6/750 mL Btl, Southern Tier Pumking Whiskey 6/750 mL Btl",
+    "BASE_DATE": "8/31/2026",
     "DONE": 0,
     "DONE_DETAIL": "",
     "DONE_DATE": ""
@@ -365,16 +365,6 @@
     "CUSTOMER_NAME": "IKOS Greek Mediterranean",
     "BASE_DETAIL": "1 spirit: OVO Vodka 1/12/750 mL Btl",
     "BASE_DATE": "7/30/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dylan Rubino",
-    "CUSTOMER_NUM": 170915,
-    "CUSTOMER_NAME": "The Franklin Bar & Restaurant",
-    "BASE_DETAIL": "1 spirit: Molly's Irish Cream 12/1 L Btl",
-    "BASE_DATE": "8/14/2026",
     "DONE": 0,
     "DONE_DETAIL": "",
     "DONE_DATE": ""
@@ -575,16 +565,6 @@
     "CUSTOMER_NAME": "Satin Dolls (A)",
     "BASE_DETAIL": "1 spirit: 2XO American Oak 1/750 mL Btl",
     "BASE_DATE": "7/14/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 39017,
-    "CUSTOMER_NAME": "Bj's Rest & Brewhouse(A)",
-    "BASE_DETAIL": "2 spirits: BJ'S Hard Root Beer Keg 15.5 Gal Keg, BJ'S Prickly Pear Hard Lemonade Keg 15.5 Gal Keg",
-    "BASE_DATE": "9/23/2026",
     "DONE": 0,
     "DONE_DETAIL": "",
     "DONE_DATE": ""

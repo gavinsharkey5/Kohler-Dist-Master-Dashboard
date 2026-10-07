@@ -2845,7 +2845,7 @@ on-prem programs.js 20261007z.
 SPIRITS FOLLOW-UP is ON-PREMISE ONLY (Gavin, 2026-10-07): his RDE export now filters On Premise (all
 107 base accounts on-premise; was ~85% off-premise). 12 of 107 done; 16 reps scored, off-premise reps
 (Hakan, Jayson, Shane, Dave, ...) no longer carry it. Note: the export's "Spirits" segment includes BJ's
-hard root beer / prickly pear kegs and a New Holland coconut rum beer -- counted as the export says.
+hard root beer / prickly pear kegs and a New Holland coconut rum beer; Gavin filtered them (and a Molly's Irish Cream line) out of the export on 2026-10-07 -- 105 base accounts, 11 done.
 
 ## October incentives refreshed + Four Loko built (2026-10-07)
 
