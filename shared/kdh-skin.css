@@ -277,5 +277,6 @@ html.kdh-rep .tap-res-head .tbtn{display:none}
    themes; the kdh heading colour (navy in light) made its title and
    subtitle unreadable on it (2026-10-07). White there, always. */
 .header > .header-top .brandmark h1,.header > .header-top .brandmark .subtitle{color:#FFFFFF!important}
-/* the W&S "i" info badges sit on gold: navy glyph, never white (1.8:1 in dark) */
-.th-info{color:#0B2466!important}
+/* the W&S "i" info badges: navy glyph on a fixed light gold in both themes (the page gold was
+   dark in light mode -- 2.4:1 -- and light in dark mode -- white failed at 1.8:1) */
+.th-info{color:#0B2466!important;background:#E4A252!important}

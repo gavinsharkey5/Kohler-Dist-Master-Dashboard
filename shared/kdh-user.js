@@ -352,7 +352,7 @@
       var st = document.createElement('style'); st.id = 'kdhLiveCss';
       st.textContent = '#kdhLive{box-sizing:border-box;margin:0;padding:10px 16px;background:#FFE08A;color:#2B1B00;border-top:1px solid #B45309;border-bottom:4px solid #B45309;font:15px/1.4 var(--kdh-body,system-ui,sans-serif);display:flex;gap:12px;align-items:center;justify-content:center}' +
         '#kdhLive .lv-i{flex:none;width:24px;height:24px;border-radius:50%;background:#B45309;color:#fff;font-weight:800;font-size:15px;line-height:24px;text-align:center}' +
-        '#kdhLive .lv-t{max-width:880px}#kdhLive b{font-weight:700;font-size:15px;letter-spacing:0}' +
+        '#kdhLive .lv-t{max-width:880px}#kdhLive .lv-t a{display:inline-block;padding:10px 2px;margin:-10px 0}#kdhLive b{font-weight:700;font-size:15px;letter-spacing:0}' +
         '#kdhLive a{color:#6B2A00;font-weight:700;text-decoration:underline;word-break:break-all}' +
         ':root[data-theme="dark"] #kdhLive{background:#4A3300;color:#FFF1C7;border-color:#F0A93B}' +
         ':root[data-theme="dark"] #kdhLive .lv-i{background:#F0A93B;color:#2B1B00}' +

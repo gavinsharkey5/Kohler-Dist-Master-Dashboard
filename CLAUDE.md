@@ -2878,5 +2878,6 @@ the sales month (the Data pop has it); a filtered list shows `.afl` = filters in
 summary strip, guided.js cards); eligible rows say what is left ("Needs 1 more qualifying product · has 2 of
 3", KdhElig.accountLine names the first open product "+ N more"), a no-purchase eligible row says "No
 qualifying purchase yet · data through <date>", and hub `noBuyText()` always carries the period. Hub marks are
-Done / Follow-Up / Not Now. Tags: rep.css / kdh-user.js 20261008a; hub.js / eligibility.js / accounts.js /
-accounts.css / guided.js 20261008a.
+Done / Follow-Up / Not Now. Also: the W&S "i" badges are navy on a fixed light gold (skin), and the amber
+banner's "Open Encompass" link has a 41px tap area. Tags: rep.css / hub.js / eligibility.js / accounts.js /
+accounts.css / guided.js / kdh-skin.css 20261008a; kdh-user.js 20261008b.
