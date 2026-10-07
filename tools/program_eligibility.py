@@ -205,16 +205,16 @@ def constellation(products, customers, sources, months, reps):
     for r in rows:
         tracker[name_key(r["SALES_REP_ASSIGNED"])] += r["CURRENT_PLACEMENTS"]
     goals_k = {name_key(rep): g for rep, g in goals.items()}
-    req = {k: max(1, math.ceil(g * 0.75 - 1e-9)) for k, g in goals_k.items() if g > 0}
+    req = {k: max(1, math.floor(g * 0.75 + 0.5 + 1e-9)) for k, g in goals_k.items() if g > 0}   # nearest whole, halves up (Gavin, 2026-10-07)
 
     rule = {
         "id": "off:2026-10:constellation_innovation", "source": "off", "month": "2026-10", "key": "constellation_innovation",
         "title": "Corona Innovation", "official": "Constellation – 75% Corona Innovation Distro", "supplier": "Constellation Brands",
         "kind": "placements", "unit": "placement",
-        "period": {"start": "2026-09-01", "end": "2026-11-30", "label": "Sep 1 – Nov 30, 2026"},
-        "measure": "One placement = one qualifying product bought (net cases above zero) by one off-premise account during Sep 1 – Nov 30, 2026. An account can earn one placement per qualifying product.",
-        "requirement": {"kind": "pct_of_assigned_goal", "pct": 0.75, "rounding": "up",
-                        "text": "75% of your assigned Corona Innovation goal, rounded up"},
+        "period": {"start": "2026-09-01", "end": "2026-10-31", "label": "Sep 1 – Oct 31, 2026"},
+        "measure": "One placement = one qualifying product bought (net cases above zero) by one off-premise account from Sep 1, 2026. The MPO is judged on Oct 31. An account can earn one placement per qualifying product.",
+        "requirement": {"kind": "pct_of_assigned_goal", "pct": 0.75, "rounding": "nearest",
+                        "text": "75% of your assigned Corona Innovation goal, rounded to the nearest whole number, by Oct 31"},
         "products": [prod_row(products[p]) for p in sorted(prods, key=lambda x: products[x]["name"])],
         "productsExhaustive": off_list is not None,
         "productsNote": "The official SKU list for this MPO (RDE, received Oct 6, 2026)." if off_list is not None else "These are the products the RDE report counts so far. A product nobody has placed yet would not appear in the report, so the list may be incomplete until the report's own SKU list is confirmed.",
@@ -239,10 +239,11 @@ def constellation(products, customers, sources, months, reps):
                "Fusion's placement flag is net-based (Rolling Distribution); not separately confirmed for this report."),
             r_("Original goal", "Your assigned goal from the report's Goals column (Sep 1 – Nov 30).", "verified", "mpo_constellation_innovation_goals.json"),
             r_("MPO requirement", "75% of the goal (October 2026 MPO).", "verified", "October_2026_MPO.docx"),
-            r_("Rounding", "A fractional requirement is rounded UP (e.g. 75% × 10 = 7.5 → 8).", "assumed", "Not stated in the MPO document; affects reps whose goal is not a multiple of 4."),
+            r_("Rounding", "Rounded to the nearest whole number, halves up (75% × 86 = 64.5 → 65; 75% × 71 = 53.25 → 53).", "verified", "Gavin, 2026-10-07."),
+            r_("Deadline", "Reach 75% of the goal by Oct 31, 2026; placements count from Sep 1.", "verified", "Gavin, 2026-10-07."),
             r_("Weight", "30% of the October Off-Premise MPO; credit is all-or-nothing.", "verified", "October_2026_MPO.docx"),
             r_("Reps without a goal", "Not scored for this objective.", "verified", "No Goals value on the report."),
-            r_("Whole Foods", "Only the non-alcoholic products (Corona Non-Alcoholic) are offered as opportunities there.", "verified", "Whole Foods cannot sell alcohol (Gavin, 2026-10-05)."),
+            r_("Whole Foods", "Not listed as an opportunity. Placements there still count in the report's total.", "verified", "Gavin, 2026-10-07: leave Whole Foods out of these programs."),
             r_("Evidence", "Sales data only. Photos and notes are not credit.", "verified", "MPO rule"),
         ],
         "detail": {"through": detail_through, "throughLabel": month_label(detail_through) if detail_through else "",
@@ -250,7 +251,7 @@ def constellation(products, customers, sources, months, reps):
                    "note": "Account-level results come from the monthly sales record, loaded through " + (month_label(detail_through) if detail_through else "—") +
                            ". The tracker's total also includes later loads that are not in the account detail yet."},
         "order": "Accounts that already buy a brand but not one of its qualifying products come first (the easiest adds; most such products first), then accounts that bought a qualifying product before but not in this window, then accounts new to the brands. Ties go to the account's 2026 case volume. With a product picked, the order is the same, for that product.",
-        "openQuestions": ["C1", "C2", "C3"],
+        "openQuestions": ["C1", "C2"],
     }
 
     out = {}
@@ -265,13 +266,13 @@ def constellation(products, customers, sources, months, reps):
             if area not in CORE_AREAS:
                 accts.append(dict(who, n=int(n), st="excluded", why=f"Corona Innovation is not sold in {area or 'this area'} (Core Market only)"))
                 continue
+            if "whole foods" in (a.get("name") or "").lower():   # Gavin, 2026-10-07: Whole Foods is left out of these programs
+                accts.append(dict(who, n=int(n), st="excluded", why="Whole Foods accounts are not part of this program"))
+                continue
             cr = sorted(credited.get(n, set()))
             ops = []
-            no_alcohol = "whole foods" in (a.get("name") or "").lower()   # Gavin, 2026-10-05: they cannot sell alcohol
             for pid in prods:
                 if pid in cr:
-                    continue
-                if no_alcohol and "non-alc" not in products[pid]["name"].lower():
                     continue
                 f = products[pid]["family"]
                 if by_prod.get(n, {}).get(pid):

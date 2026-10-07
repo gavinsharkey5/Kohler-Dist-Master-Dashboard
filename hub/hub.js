@@ -3142,7 +3142,7 @@ function mpoGoalWhy(p, r, N){
   let pct = Math.round(N.goal/u*100);
   const m = /(\d+(?:\.\d+)?)%/.exec((r.explain||[]).join(' ')); if(m) pct = Number(m[1]);
   if(r.pctRule) pct = Math.round(Number(r.pctRule)*100);
-  const exact = Math.round(u*pct)/100, rnd = exact!==N.goal ? ` (${fmtN(exact)}, rounded up)` : '';
+  const exact = Math.round(u*pct)/100, rnd = exact!==N.goal ? ` (${fmtN(exact)}, rounded ${N.goal > exact ? 'up' : 'down'})` : '';
   const t = p.objective && p.objective.type;
   if(t==='pct_of_goal') return `${pct}% of your ${fmtN(u)}-${(p.objective.unit||'placement')} program goal${rnd}`;
   return `${pct}% of your ${fmtN(u)} eligible accounts${rnd}`;

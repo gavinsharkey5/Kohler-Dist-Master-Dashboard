@@ -121,8 +121,8 @@ const OBJECTIVES_2026_09 = [
 // POS cooler-door stickers carry over from September but stay awaiting-data
 // until October's iSellBeer Promos_Report is merged (generate_2026-10.py).
 const OBJECTIVES_2026_10 = [
-  {key:'constellation_innovation', name:'Constellation – 75% Corona Innovation Distro', shortName:'Corona Innovation', unit:'placement', weight:0.30, type:'pct_of_goal', hasData:true, periodText:'Sep 1 \u2013 Nov 30, 2026', goalLabel:'75% of your Corona Innovation goal', goalWord:'Corona Innovation goal', periodEnd:'2026-11-30',
-   typeNote:'Your goal is the Corona Innovation distribution goal assigned to you. Reaching 75% of it counts as Achieved.'},
+  {key:'constellation_innovation', name:'Constellation – 75% Corona Innovation Distro', shortName:'Corona Innovation', unit:'placement', weight:0.30, type:'pct_of_goal', hasData:true, periodText:'Sep 1 \u2013 Oct 31, 2026', goalLabel:'75% of your Corona Innovation goal', goalWord:'Corona Innovation goal', periodEnd:'2026-10-31',
+   typeNote:'Your goal is the Corona Innovation distribution goal assigned to you (Sep 1 \u2013 Nov 30). Reaching 75% of it by Oct 31 counts as Achieved.'},
   {key:'bbc_lytt', name:'BBC – 50% Buying Accounts Lytt', shortName:'Lytt Buying Accounts', unit:'buying account', weight:0.30, type:'pct_of_base', hasData:true, periodText:'Aug 1 \u2013 Oct 31, 2026', goalLabel:'50% of account base (3+ SKUs each)', accountsLabel:'Buying Accounts', brandLabel:'Lytt'},
   {key:'mollys', name:'Molly\u2019s – (2) New Placements (Spirits)', shortName:'Molly\u2019s', unit:'new placement', weight:0.15, type:'new_placements', hasData:true, goalLabel:'2 new Molly\u2019s placements each'},
   {key:'wine_new', name:'Wine – (1) New Placement', shortName:'Wine', unit:'new placement', weight:0.15, type:'new_placements', hasData:true, goalLabel:'1 new wine placement each'},
@@ -465,7 +465,9 @@ function buildPctOfGoalDataset(rows, pct, goals){
     if(hasGoals && !goalBy.has(rep)) return;
     const baseline=hasGoals ? goalBy.get(rep) : lines.reduce((s,l)=>s+l.base,0);
     const placements=lines.reduce((s,l)=>s+l.current,0);
-    const target=Math.max(1,Math.ceil(baseline*pct));
+    // Assigned goals (October Corona Innovation): the requirement is pct of the goal ROUNDED to the
+    // nearest whole number, halves up (Gavin, 2026-10-07: 64.5 -> 65, 53.25 -> 53). Older months keep ceil.
+    const target=Math.max(1, hasGoals ? Math.floor(baseline*pct+0.5+1e-9) : Math.ceil(baseline*pct));
     lines.forEach(l=>{ l.goal=hasGoals?0:Math.ceil(l.base*pct); l.pct=l.goal>0?(l.current/l.goal)*100:0; });
     // Products still short of their own 30% share first, worst first --
     // same "surface the outstanding work" ordering as sortNBLines().
@@ -1216,9 +1218,9 @@ function metricFor(o, rep, DATA){
         goalText: fmtPen(goalPen)+' of my '+r.baseline+'-'+(o.unit||'placement')+' program goal',
         requirement: r.target, underlying: r.baseline,
         explain: [
-          'Your '+(o.goalWord||'program goal')+': '+r.baseline+' '+(o.unit||'placement')+'s (Sep 1 \u2013 Nov 30, 2026).',
-          'This MPO requires '+fmtPen(goalPen)+' of it = '+(Math.round(exact*100)/100)+(exact===r.target?'':', rounded up to '+r.target)+'.',
-          'Current result: '+r.placements+' qualifying '+(o.unit||'placement')+'s in the same window as the goal.'
+          'Your '+(o.goalWord||'program goal')+': '+r.baseline+' '+(o.unit||'placement')+'s (the 100% goal).',
+          'This MPO requires '+fmtPen(goalPen)+' of it = '+(Math.round(exact*100)/100)+(exact===r.target?'':', rounded to '+r.target)+(o.periodEnd?' by '+o.periodText.replace(/^.*\u2013\s*/,''):'')+'.',
+          'Current result: '+r.placements+' qualifying '+(o.unit||'placement')+'s since Sep 1, 2026.'
         ],
         needText: unitFor(o, r.target),
         remainText: remaining>0 ? unitFor(o, remaining) : '',

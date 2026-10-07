@@ -279,6 +279,10 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-10-07 **Off-Premise MPO rules confirmed**: core base rebuilt from the active Customers
+  export (off-premise, core areas, "Sales" by county, no Whole Foods; 506 accounts); Constellation = 75% of
+  the assigned goal, rounded to the nearest whole number, by Oct 31 (2 reps achieved). After Oct 31: load the
+  last export up to Oct 31 and freeze it -- a later fall export would add November placements.
 - [x] 2026-10-07 **October Off-Premise MPO refreshed; Lytt counts Aug 1 - Oct 31**: new Lytt,
   Molly's and Wine exports loaded; Lytt = 50% of the core base with 3+ SKUs bought since Aug 1
   (fully returned SKUs not counted -- to confirm). Constellation left on the fall export until Gavin

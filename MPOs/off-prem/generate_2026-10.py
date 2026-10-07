@@ -15,17 +15,21 @@ Inputs (this folder, overwrite to refresh):
   lytt_october.csv                       RDE "LYTT OCTOBER 2026 MPO OFF" -- one row per rep / account / SKU /
                                          load sheet, Placement Count + Cases 8/1-10/31/2026 (Gavin,
                                          2026-10-07: August and September distribution counts)
-  sales_reps_customer_base_core.csv      each rep's CORE off-premise accounts = the Lytt denominator
-                                         (Lytt can only be sold in the core territory)
+  ../../territory-accounts/customers_active.csv
+                                         Encompass "Customers" export (active accounts): the Lytt
+                                         denominator = OFF-PREMISE accounts in the CORE MARKET, Whole
+                                         Foods removed (see build_core_off_base). 2026 cases for target
+                                         ordering still come from sales_reps_customer_base_core.csv.
   mollys_new_placements.csv              RDE two-window export (7/1-9/30 base, 10/1-10/31 current)
   wine_new_placements.csv                same shape
 
 Run:  python3 generate_2026-10.py     (also rebuilds the per-rep copies)
 
 --- Constellation ---
-Progress = the rep's placements 9/1-11/30/2026 (the export's own window, the same one the
-goal is measured over); target = ceil(75% x the rep's Goals column). Fall-long: it keeps
-growing through November, like September's Corona Gaintain did.
+Progress = the rep's placements from 9/1/2026 (the export's window is 9/1-11/30); the Goals
+column is the rep's 100% goal; the MPO = 75% of it, ROUNDED to the nearest whole number (halves
+up), reached BY OCT 31 (Gavin, 2026-10-07). Freeze the result after Oct 31 -- a later export
+would add November placements.
 
 --- Lytt: 50% buying accounts (pct_of_base) ---
 Denominator = the rep's accounts in sales_reps_customer_base_core.csv, MINUS every
@@ -113,9 +117,44 @@ def is_whole_foods(name):
     return "whole foods" in (name or "").lower()
 
 
+# THE CUSTOMER BASE (Gavin, 2026-10-07): Encompass' "Customers" export of active accounts
+# (territory-accounts/customers_active.csv). Base = OFF-PREMISE accounts in the CORE MARKET:
+# Distribution Area Bergen, Passaic, Passaic-FF, Morris 1, Morris 3, Sussex (Morris 2 is neither core nor
+# southern). An area of "Sales" is placed by its County: Bergen / Passaic / Sussex = core; Essex / Hudson /
+# Union = Southern District; anything else (Warren ...) is out. Whole Foods is never in the base.
+CUSTOMERS_CSV = HERE.parent.parent / "territory-accounts" / "customers_active.csv"
+CORE_AREAS = {"Bergen", "Passaic", "Passaic-FF", "Morris 1", "Morris 3", "Sussex"}
+CORE_SALES_COUNTIES = {"Bergen", "Passaic", "Sussex"}
+
+
+def build_core_off_base():
+    old_cases = {}
+    for r in gen09.load_csv(gen09.CUSTOMER_BASE_CORE_CSV):   # 2026 cases, for ordering target lists only
+        old_cases[(r.get("Customer Num") or "").strip()] = gen09.to_num(next((r[c] for c in r if c.startswith("Cases")), ""))
+    base, removed = [], []
+    for r in gen09.load_csv(CUSTOMERS_CSV):
+        if (r.get("On Premise") or "").strip() != "Off Premise":
+            continue
+        area, county = (r.get("Distribution Area") or "").strip(), (r.get("County") or "").strip()
+        if not (area in CORE_AREAS or (area == "Sales" and county in CORE_SALES_COUNTIES)):
+            continue
+        num = (r.get("Customer ID") or "").strip()
+        row = {"SALES_REP_ASSIGNED": (r.get("Sales Rep Name") or "").strip(),
+               "CUSTOMER_NUM": int(num) if num.isdigit() else num,
+               "CUSTOMER_NAME": (r.get("Customer Name") or "").strip(),
+               "SHIPPING_ADDRESS": (r.get("Shipping Address") or "").strip(),
+               "CITY": (r.get("City") or "").strip(),
+               "AREA": county if area == "Sales" else area,
+               "COUNTY": county, "CASES": old_cases.get(num, 0.0)}
+        if not row["SALES_REP_ASSIGNED"]:
+            continue
+        (removed if is_whole_foods(row["CUSTOMER_NAME"]) else base).append(row)
+    base.sort(key=lambda x: (x["SALES_REP_ASSIGNED"], x["CUSTOMER_NAME"]))
+    return base, removed
+
+
 def build_lytt():
-    base = [r for r in gen09.build_customer_base_core() if not is_whole_foods(r["CUSTOMER_NAME"])]
-    removed = [r for r in gen09.load_csv(gen09.CUSTOMER_BASE_CORE_CSV) if is_whole_foods(r["Customer Name"])]
+    base, removed = build_core_off_base()
     base_by_rep = defaultdict(set)
     for r in base:
         base_by_rep[r["SALES_REP_ASSIGNED"]].add(str(r["CUSTOMER_NUM"]))
@@ -208,7 +247,7 @@ def main():
             lqual[rp].add(c)
     print(f"Lytt (Aug 1-Oct 31): {sum(len(v) for v in lbuy.values())} buying accounts in base, "
           f"{sum(len(v) for v in lqual.values())} with 3+ SKUs ({len(lbase)} base accounts, "
-          f"{len(lremoved)} Whole Foods removed: {', '.join(r['Customer Name'] for r in lremoved)}); "
+          f"{len(lremoved)} Whole Foods removed: {', '.join(r['CUSTOMER_NAME'] for r in lremoved)}); "
           f"{sum(1 for rp, n in lb.items() if len(lqual[rp]) >= max(1, -(-n * 50 // 100)))} reps at 50%")
     if lreturned:
         print("  Lytt SKUs bought then fully returned (net cases <= 0, not counted): " +

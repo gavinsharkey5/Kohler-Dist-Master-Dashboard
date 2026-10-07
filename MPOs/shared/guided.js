@@ -431,7 +431,7 @@ function goalWhy(o, m){
   var p = /(\d+(?:\.\d+)?)%/.exec(ex); if(p) pct = Number(p[1]);
   if(m.pctRule) pct = Math.round(Number(m.pctRule)*100);
   var exact = Math.round(u*pct)/100;
-  var rnd = exact !== req ? ' ('+fmtNum(exact)+', rounded up)' : '';
+  var rnd = exact !== req ? ' ('+fmtNum(exact)+', rounded '+(req > exact ? 'up' : 'down')+')' : '';
   if(o.type==='pct_of_goal') return pct+'% of your '+fmtNum(u)+'-'+(o.unit||'placement')+' program goal'+rnd;
   if(o.type==='pct_of_base' || o.shareOfBase || o.type==='followup') return pct+'% of your '+fmtNum(u)+' eligible accounts'+rnd;
   return '';

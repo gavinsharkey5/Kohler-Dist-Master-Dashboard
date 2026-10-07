@@ -16,6 +16,10 @@
     "GOAL": 92.0
   },
   {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "GOAL": 106.0
+  },
+  {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "GOAL": 95.0
   },
@@ -24,16 +28,12 @@
     "GOAL": 76.0
   },
   {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "GOAL": 106.0
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "GOAL": 108.0
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
     "GOAL": 70.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "GOAL": 108.0
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",

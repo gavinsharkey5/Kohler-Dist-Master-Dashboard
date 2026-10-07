@@ -2748,3 +2748,24 @@ October-only placements by account with no goal column (201 placements vs 699 in
 the card scores against the fall goals) -- asked Gavin whether the MPO is October-only and what the goal is.
 Tags: off-prem programs.js 20261007w. Tests: elig_test (Lytt card now Aug 1 - Oct 31; account 50003),
 elig_trip_test, card_audit, opp_elig_test.
+
+## Gavin's answers, 2026-10-07: core base from the Customers export; Constellation by Oct 31
+
+LYTT: Aug + Sep + Oct distribution counts (window Aug 1 - Oct 31); fully returned SKUs do NOT count (confirmed).
+CUSTOMER BASE (confirmed): OFF-PREMISE accounts in the CORE MARKET only -- Distribution Area Bergen, Passaic,
+Passaic-FF, Morris 1, Morris 3, Sussex (Morris 2 is neither core nor southern); Southern District = Essex,
+Hudson, Union; an area of "Sales" is placed by its County (Bergen / Passaic / Sussex -> core). Whole Foods is
+never part of these programs. Source = Encompass "Customers" export of ACTIVE accounts, saved as
+territory-accounts/customers_active.csv (no phones / emails in it -- checked); MPOs/off-prem/generate_2026-10.py
+`build_core_off_base()` builds the Lytt denominator from it (2026 cases for target ordering still come from
+sales_reps_customer_base_core.csv; that shared file is NOT rewritten -- closed months read it). 506 accounts on
+2026-10-07 (was 513 from the RDE core export: 20 dropped -- inactive / Costco / BJ's / house accounts -- 18 added,
+incl. 5 MetLife concession stands under Alex Rodriguez filed Off Premise / "Sales" / Bergen). CONSTELLATION: the
+fall export (9/1-11/30 window, Goals column = 100% goal) is the source again; the MPO = 75% of the goal ROUNDED
+to the nearest whole number, halves up (programs.js buildPctOfGoalDataset when goals exist; program_eligibility
+`req`), reached BY OCT 31 (periodEnd 2026-10-31, periodText Sep 1 - Oct 31). Dave Ehlers 82/65 and Michael Harboy
+11/11 achieved -- matches Gavin. Whole Foods is excluded from Constellation's eligible-account lists (its
+placements still count in RDE's total). The cards' rounding note now says "rounded up" or "rounded down" as
+it happened. The October-only Constellation file was deleted. FREEZE AFTER OCT 31: a later fall export adds
+November placements. Tags: off-prem programs.js / hub.js / guided.js 20261007x.
+
