@@ -527,36 +527,61 @@ header{padding-top:24px!important}
 .g-prog-link{text-decoration:none;color:inherit}.g-prog-link .g-chev{font-size:22px}
 .g-prog-cb .g-cb-co{margin-top:2px}
 
-/* POTENTIAL ACCOUNTS (2026-10-08): the card's own dropdown -- which accounts on the route
-   can still earn this program's credit, the exact SKUs, and what is left. Replaces the
-   "View Eligible Accounts" link. Toggle styled like that button; the list is a plain
-   left-aligned column with subtle dividers, products grouped under each account. */
-.g-obj-v4 .g-pot{margin:12px auto 0}
-.g-obj-v4 .g-pot-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:auto;max-width:320px;min-height:44px;margin:0 auto;padding:0 18px;border-radius:10px;
-  border:1px solid var(--accent);background:none;color:var(--accent);font:inherit;font-size:15px;font-weight:600;cursor:pointer;box-shadow:none}
-.g-obj-v4 .g-pot-btn:hover{background:var(--accent-soft)}
-.g-obj-v4 .g-pot-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.g-pot-n{min-width:24px;padding:1px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-size:14px;font-variant-numeric:tabular-nums}
-.g-pot.empty .g-pot-n{background:none;color:var(--text-dim)}
-.g-obj-v4 .g-pot-body.open{width:100%;max-width:640px;margin:12px auto 0;text-align:left}
-.pa-note{margin:0 0 8px;font-size:14px;line-height:1.45;color:var(--text-dim)}
+/* DETAILS + POTENTIAL ACCOUNTS (2026-10-08, "Option 2 -- Shared Product List"): two
+   adjacent controls under the MPO summary -- Details (muted amber) and Potential Accounts
+   (muted green; it marks the control, never earned credit) -- each opening its own panel
+   inline; one open at a time (guided.js). Inside Potential Accounts: one shared Qualifying
+   Products fold, compact account rows, one account open at a time. */
+.g-obj{--act-d-bg:#FFF6E5;--act-d-bd:#C9922F;--act-d-tx:#7A4A00;--act-p-bg:#EAF6EE;--act-p-bd:#3F9563;--act-p-tx:#145C34}
+[data-theme="dark"] .g-obj{--act-d-bg:rgba(228,162,82,.10);--act-d-bd:#B9853F;--act-d-tx:#F2C27A;--act-p-bg:rgba(62,157,104,.12);--act-p-bd:#3E9D68;--act-p-tx:#86D9A8}
+.g-actwrap{margin:14px auto 0;max-width:640px}
+.g-acts{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.45fr);gap:10px}
+.g-acts.one{grid-template-columns:minmax(0,1fr);max-width:340px;margin:0 auto}
+.g-act{display:flex;align-items:center;justify-content:center;gap:8px;min-height:46px!important;padding:6px 12px;border-radius:12px;border:1.5px solid;
+  font:inherit;font-size:15.5px;font-weight:600;line-height:1.2;cursor:pointer;text-align:center;box-shadow:none;width:100%}
+.g-act > span{min-width:0}
+.g-act-d{background:var(--act-d-bg);border-color:var(--act-d-bd);color:var(--act-d-tx)}
+.g-act-p{background:var(--act-p-bg);border-color:var(--act-p-bd);color:var(--act-p-tx)}
+.g-act:hover{filter:brightness(.97)} [data-theme="dark"] .g-act:hover{filter:brightness(1.15)}
+.g-act:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.g-chev2{width:18px;height:18px;flex:none;transition:transform .15s}
+.g-act.open .g-chev2,.pa-acct.open > .pa-row-btn .g-chev2,.pa-qp[open] > summary .g-chev2{transform:rotate(180deg)}
+.g-pot-n{font-variant-numeric:tabular-nums;white-space:nowrap}
+.g-act-p > span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.g-obj-v4 .g-act-body.open,.g-obj-v2 .g-act-body.open{display:block;width:100%;max-width:640px;margin:12px auto 0;text-align:left}
+.pa-note{margin:10px 2px 8px;font-size:14px;line-height:1.45;color:var(--text-dim)}
 .pa-note.flag{color:var(--text);padding:8px 10px;border-radius:8px;background:var(--card-alt,var(--kdh-surface-2));border:1px solid var(--border)}
-.pa-list{border-top:1px solid var(--border)}
-.pa-acct{padding:12px 2px;border-bottom:1px solid var(--border)}
-.pa-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px}
+/* shared Qualifying Products fold + account rows: one row style */
+.pa-qp,.pa-acct{border:1px solid var(--border);border-radius:10px;background:var(--card,var(--kdh-surface));margin:0 0 8px}
+.pa-qp > summary,.pa-row-btn{display:flex;align-items:center;gap:10px;width:100%;min-height:48px!important;padding:8px 12px;cursor:pointer;list-style:none;
+  background:none;border:0;font:inherit;color:var(--text);text-align:left}
+.pa-qp > summary::-webkit-details-marker{display:none}
+.pa-qp > summary > span{flex:1;font-size:15.5px;font-weight:600}
+.pa-qp > summary .g-chev2,.pa-row-btn .g-chev2{color:var(--text-dim)}
+.pa-row-btn:focus-visible,.pa-qp > summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:10px}
+.pa-rt{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
 .pa-name{font-size:16px;font-weight:600;color:var(--text);overflow-wrap:anywhere}
 .pa-town{font-size:14px;color:var(--text-dim)}
-.pa-need{margin-top:2px;font-size:14.5px;color:var(--text)}
+.pa-list{margin-top:4px}
+.pa-acct.open{border-color:var(--border-2,var(--border))}
+.pa-det{margin:0 8px 8px;padding:10px 12px;border-radius:8px;background:var(--card-alt,var(--kdh-surface-2));border:1px solid var(--border)}
+.pa-req{font-size:15.5px;font-weight:600;color:var(--text)}
+.pa-sub{margin-top:2px;font-size:14px;line-height:1.45;color:var(--text-dim)}
 .pa-why{color:var(--text-dim)}
-.pa-sl{margin-top:6px;font-size:13.5px;color:var(--text-dim)}
-.pa-skus{margin:6px 0 0;padding:0 0 0 18px;font-size:14.5px;line-height:1.45;color:var(--text)}
-.pa-skus li{margin:2px 0;overflow-wrap:anywhere}
-.pa-skus li::marker{color:var(--text-dim)}
-.pa-more{margin-top:4px}
-.pa-more summary,.pa-all summary{cursor:pointer;color:var(--accent);font-size:14px;font-weight:600;min-height:32px;display:flex;align-items:center;gap:6px;list-style:none}
-.pa-more summary::-webkit-details-marker,.pa-all summary::-webkit-details-marker{display:none}
-.pa-more summary::before,.pa-all summary::before{content:'\25B8';font-size:12px;transition:transform .15s}
-.pa-more[open] > summary::before,.pa-all[open] > summary::before{transform:rotate(90deg)}
-.pa-more summary{padding-left:18px}
-.pa-all > summary{justify-content:center;min-height:44px}
-@media(min-width:1024px){ .g-obj-v4 .g-pot-body.open{max-width:720px} .pa-skus{columns:2;column-gap:28px} .pa-skus li{break-inside:avoid} }
+.pa-sl{margin-top:8px;font-size:13.5px;color:var(--text-dim)}
+.pa-plist,.pa-opts{list-style:none;margin:0;padding:0}
+.pa-plist{padding:0 12px 6px}
+.pa-opts{margin-top:6px}
+.pa-plist li,.pa-opts li{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:2px 12px;padding:8px 0;border-top:1px solid var(--border);font-size:14.5px;line-height:1.4;color:var(--text)}
+.pa-plist li:first-child{border-top:1px solid var(--border)}
+.pa-pn{flex:1 1 220px;min-width:0;overflow-wrap:anywhere}
+.pa-pid{font-size:13.5px;color:var(--text-dim);font-variant-numeric:tabular-nums}
+.pa-more summary{cursor:pointer;color:var(--accent);font-size:14px;font-weight:600;min-height:36px;display:flex;align-items:center;list-style:none}
+.pa-more summary::-webkit-details-marker{display:none}
+.pa-seeall{display:inline-flex;align-items:center;min-height:36px!important;margin-top:6px;padding:0;background:none;border:0;font:inherit;font-size:14px;font-weight:600;color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.pa-has{margin-top:8px;font-size:14px;line-height:1.45;color:var(--text)}
+.pa-has span{color:var(--text-dim)}
+.pa-open{display:flex;width:max-content;align-items:center;min-height:36px;margin-top:4px;font-size:14px;font-weight:600;color:var(--accent);text-decoration:none}
+.pa-open:hover{text-decoration:underline}
+@media(max-width:430px){ .g-acts{gap:8px;grid-template-columns:minmax(96px,.85fr) minmax(0,2fr)} .g-act{font-size:15px;padding:6px;gap:4px} .pa-det{margin:0 6px 6px;padding:10px} }
+@media(max-width:389px){ .g-act{font-size:14px} }

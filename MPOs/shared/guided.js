@@ -531,80 +531,104 @@ document.addEventListener('click', function(e){
     if(document.querySelector('.g-obj') || ++tries>80){ clearInterval(t); window.scrollTo(0, Number(y)||0); }
   }, 75);
 })();
-/* POTENTIAL ACCOUNTS (2026-10-08, Gavin, tested on Dave Ehlers' preview): the card
-   answers "which accounts can I sell these exact SKUs into for more credit?" in place,
-   collapsed by default, instead of linking out to the hub. Two sources, both the
-   program's own rules -- nothing is re-derived here:
+/* DETAILS + POTENTIAL ACCOUNTS (2026-10-08, Gavin; "Option 2 -- Shared Product List").
+   Under the MPO summary, two controls side by side: Details (amber: the tracker's own
+   program details / distribution history, unchanged) and Potential Accounts (N) (green:
+   which accounts on the route can still earn THIS program's credit). Both start closed,
+   opening one closes the other, everything stays inline in the card. Inside Potential
+   Accounts: ONE shared "Qualifying Products (N)" fold, then compact account rows (name,
+   town, chevron); tapping a row shows that account's own opportunity -- what is left and
+   the products that could earn it -- one account open at a time. Sources (the program's
+   own rules; nothing is re-derived here):
      * KdhElig (tools/program_eligibility.py -> accounts/data/elig/<rep>.json): premise,
-       territory / Brand Permissions, the official SKU list and the purchase windows,
-       per account x product (Corona Innovation, Lytt, Molly's, Wine);
-     * H.potential(o, rep) for objectives whose own list IS the opportunity (the
-       on-premise follow-ups: Oktoberfest conversion, Spirits).
-   Accounts that already earned everything they can are not listed; partly qualified
-   ones are, with what is left. A program with no rule says so instead of guessing. */
-var POT_MAX = 20, POT_SKUS = 4;
-function potentialSlot(o, rep){
-  if(o.type==='photos') return '';
-  var id = 'gp'+(uid++);
-  return '<div class="g-pot" data-key="'+esc(o.key)+'" data-rep="'+esc(rep)+'">'+
-    '<button class="g-more js-more g-pot-btn" data-target="'+id+'" aria-expanded="false">Potential Accounts'+
-      '<span class="g-pot-n" aria-label="accounts">\u2026</span><span class="ar">&#9656;</span></button>'+
-    '<div class="g-more-body g-pot-body" id="'+id+'"><p class="pa-note">Loading\u2026</p></div></div>';
+       territory / Brand Permissions, the official SKU list, the purchase windows and what
+       is already credited, per account x product (Corona Innovation, Lytt, Molly's, Wine);
+     * H.potential(o, rep) for objectives whose own list IS the opportunity (the on-premise
+       follow-ups: Oktoberfest conversion, Spirits).
+   N counts distinct accounts. A program with no rule says so instead of guessing. */
+var POT_OPTS = 8;
+var CHEV = '<svg class="g-chev2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+function actionsHtml(o, rep, detailContent, potOK){
+  var hasD = !!detailContent, hasP = !!potOK && o.type!=='photos';
+  if(!hasD && !hasP) return '';
+  var dId = 'gm'+(uid++), pId = 'gp'+(uid++);
+  return '<div class="g-actwrap'+(hasP?' g-pot':'')+'"'+(hasP?' data-key="'+esc(o.key)+'" data-rep="'+esc(rep)+'"':'')+'>'+
+    '<div class="g-acts'+(hasD&&hasP?'':' one')+'">'+
+      (hasD ? '<button type="button" class="g-act g-act-d js-more" data-target="'+dId+'" aria-controls="'+dId+'" aria-expanded="false"><span>Details</span>'+CHEV+'</button>' : '')+
+      (hasP ? '<button type="button" class="g-act g-act-p js-more g-pot-btn" data-target="'+pId+'" aria-controls="'+pId+'" aria-expanded="false"><span>Potential Accounts <span class="g-pot-n">(…)</span></span>'+CHEV+'</button>' : '')+
+    '</div>'+
+    (hasD ? '<div class="g-more-body g-act-body g-det-body" id="'+dId+'">'+detailContent+'</div>' : '')+
+    (hasP ? '<div class="g-more-body g-act-body g-pot-body" id="'+pId+'"><p class="pa-note">Loading…</p></div>' : '')+
+  '</div>';
 }
 function potScope(){ return /on-prem/.test(location.pathname) ? 'on' : 'off'; }
 function potShortWhy(t){ return String(t||'').replace(/, never this product$/,'').replace(/, not in this window$/,''); }
-// KdhElig model -> {note, accounts:[{name, city, need, why, skus:[names]}]}
-function potFromElig(M, data){
+// KdhElig model -> {note, products:[{name,id}], accounts:[{n,name,city,req,sub,why,skus:[{name,id}],hasLabel,has:[names]}]}
+function potFromElig(M){
   var r = M.rule, P = {};
   (r.products||[]).forEach(function(p){ P[String(p.id)] = p; });
+  var prod = function(id){ var p = P[String(id)]; return {name: p ? p.name : '#'+id, id: String(id)}; };
   var rows = window.KdhElig.accountsView(M, {});
   var thr = r.detail && r.detail.throughLabel ? r.detail.throughLabel : '';
-  var note;
-  if(r.kind==='placements' && r.requirement && r.requirement.kind==='count'){
-    note = 'Each product = 1 new placement at that account. Products it bought Jul 1 \u2013 Sep 30 are left out.'+(thr ? ' Data through '+thr+'.' : '');
-  } else if(r.kind==='placements'){
-    note = 'Each product = 1 placement at that account.'+(r.detail && r.detail.through!=='export' && thr ? ' Account detail runs through '+thr+'; a product placed since then may already count.' : (thr?' Data through '+thr+'.':''));
-  } else {
-    note = 'An account counts once it has '+(r.minSkus||1)+' different products'+(r.period ? ' bought '+r.period.label.replace(/, \d{4}$/,'') : '')+'.'+(thr ? ' Data through '+thr+'.' : '');
-  }
+  var newPl = r.kind==='placements' && r.requirement && r.requirement.kind==='count';
+  var note = newPl ? 'A product an account bought Jul 1 – Sep 30 doesn’t count there again.'+(thr?' Data through '+thr+'.':'')
+    : (r.kind==='placements' && r.detail && r.detail.through!=='export' && thr) ? 'Account detail runs through '+thr+'; a product placed since then may already count.'
+    : (thr ? 'Data through '+thr+'.' : '');
   var ord = {sku:0, partial:0, lapsed:1, brand:2};
   var accounts = rows.map(function(a){
-    var skus, need, why = '';
+    var out = {n:a.n, name:a.name, city:a.city, why:'', skus:[], has:[]};
     if(r.kind==='placements'){
       var ops = (a.op||[]).slice().sort(function(x,y){ return (ord[x[1]]??3)-(ord[y[1]]??3) || String((P[x[0]]||{}).name).localeCompare(String((P[y[0]]||{}).name)); });
-      skus = ops.map(function(op){ return (P[String(op[0])]||{}).name || ('#'+op[0]); });
-      need = '';   // the note above says it once: each product = 1 (new) placement
+      out.skus = ops.map(function(op){ return prod(op[0]); });
+      out.req = 'Any Qualifying Product = 1 '+(newPl ? 'New Placement' : 'Placement');
+      out.sub = out.skus.length>1 ? 'Each one counts once at this account.' : 'It counts once at this account.';
       var warm = ops.find(function(op){ return op[1]==='sku' || op[1]==='lapsed'; });
-      why = warm ? potShortWhy(warm[2]) : '';
+      out.why = warm ? potShortWhy(warm[2]) : '';
     } else {
-      var have = (a.cr||[]).map(String);
-      skus = (r.products||[]).filter(function(p){ return have.indexOf(String(p.id))<0; }).map(function(p){ return p.name; });
-      var min = r.minSkus||1;
-      need = min<=1 ? 'Any one of these' : (have.length ? a.need+' more different product'+(a.need===1?'':'s')+' (has '+have.length+' of '+min+')' : min+' different products from this list');
-      why = a.why && a.why[0]==='lapsed' ? a.why[1] : '';
+      var have = (a.cr||[]).map(String), min = r.minSkus||1;
+      out.skus = (r.products||[]).filter(function(p){ return have.indexOf(String(p.id))<0; }).map(function(p){ return prod(p.id); });
+      if(min<=1){ out.req = 'Needs 1 Qualifying Purchase'; out.sub = 'Any product below counts.'; }
+      else if(have.length){ out.req = 'Needs '+a.need+' More Qualifying SKU'+(a.need===1?'':'s'); out.sub = 'Has '+have.length+' of '+min+'. Add '+(a.need===1?'one':a.need)+' more from the list.'; }
+      else { out.req = 'Needs '+min+' Distinct Qualifying SKUs'; out.sub = 'Any '+min+' different products from the list.'; }
+      out.has = have.map(function(id){ return prod(id).name; });
+      out.hasLabel = 'Already bought'+(r.period ? ' since '+r.period.label.split(' – ')[0] : '');
+      out.why = a.why && a.why[0]==='lapsed' ? a.why[1] : '';
     }
-    return {name:a.name, city:a.city, need:need, why:why, skus:skus};
+    return out;
   });
-  return {note:note, accounts:accounts};
+  return {note:note, products:(r.products||[]).map(function(p){ return {name:p.name, id:String(p.id)}; }), accounts:accounts};
+}
+function acctHref(n){
+  if(n==null || !/^\d+$/.test(String(n))) return '';
+  var fl = (/on-prem/.test(location.pathname) ? 'On' : 'Off')+'-Premise MPOs';
+  return '../../accounts/#acct='+encodeURIComponent(n)+'&from='+encodeURIComponent(location.pathname+location.hash)+'&fl='+encodeURIComponent(fl);
 }
 function potBodyHtml(res){
-  if(!res) return '<p class="pa-note">Potential accounts aren\u2019t available for this program: the data on file can\u2019t confirm which sales would earn credit.</p>';
-  var A = res.accounts||[];
+  if(!res) return '<p class="pa-note">Potential accounts aren’t available for this program: the data on file can’t confirm which sales would earn credit.</p>';
+  var A = res.accounts||[], P = res.products||[];
+  var li = function(x){ return '<li><span class="pa-pn">'+esc(x.name)+'</span>'+(x.id ? '<span class="pa-pid">#'+esc(x.id)+'</span>' : '')+'</li>'; };
+  var qp = P.length
+    ? '<details class="pa-qp"><summary><span>Qualifying Products ('+P.length+')</span>'+CHEV+'</summary><ul class="pa-plist">'+P.map(li).join('')+'</ul></details>'
+    : (res.qpNote ? '<p class="pa-note flag">'+esc(res.qpNote)+'</p>' : '');
+  var pid = {}; P.forEach(function(x){ if(x.id) pid[x.id] = 1; });
+  if(!A.length) return qp+'<p class="pa-note">No account on this route can add credit for this program right now.</p>';
   var acct = function(a){
-    var cut = a.skus.length <= POT_SKUS + 2 ? a.skus.length : POT_SKUS;   // 6 or fewer: all of them, no fold
-    var first = a.skus.slice(0, cut), rest = a.skus.slice(cut);
-    var li = function(n){ return '<li>'+esc(n)+'</li>'; };
+    var href = acctHref(a.n), first = a.skus.slice(0, POT_OPTS), rest = a.skus.slice(POT_OPTS);
+    // every shared product is still open here: point to the shared list, never repeat it
+    var same = P.length>1 && a.skus.length===P.length && a.skus.every(function(x){ return x.id && pid[x.id]; });
     return '<div class="pa-acct">'+
-      '<div class="pa-head"><span class="pa-name">'+esc(a.name)+'</span>'+(a.city?'<span class="pa-town">'+esc(a.city)+'</span>':'')+'</div>'+
-      ((a.need||a.why) ? '<div class="pa-need">'+esc(a.need||'')+(a.why?'<span class="pa-why">'+(a.need?' \u00b7 ':'')+esc(a.why)+'</span>':'')+'</div>' : '')+
-      (a.skus.length ? (a.skusLabel?'<div class="pa-sl">'+esc(a.skusLabel)+'</div>':'')+'<ul class="pa-skus">'+first.map(li).join('')+'</ul>'+
-        (rest.length ? '<details class="pa-more"><summary>'+rest.length+' More Product'+(rest.length===1?'':'s')+'</summary><ul class="pa-skus">'+rest.map(li).join('')+'</ul></details>' : '') : '')+
-    '</div>';
+      '<button type="button" class="pa-row-btn" aria-expanded="false"><span class="pa-rt"><span class="pa-name">'+esc(a.name)+'</span>'+(a.city?'<span class="pa-town">'+esc(a.city)+'</span>':'')+'</span>'+CHEV+'</button>'+
+      '<div class="pa-det" hidden>'+
+        '<div class="pa-req">'+esc(a.req||'')+'</div>'+
+        (a.sub ? '<div class="pa-sub">'+esc(a.sub)+(a.why ? ' <span class="pa-why">'+esc(a.why)+'.</span>' : '')+'</div>' : (a.why ? '<div class="pa-sub pa-why">'+esc(a.why)+'.</div>' : ''))+
+        (same ? '<button type="button" class="pa-seeall">See the '+P.length+' Qualifying Products</button>' :
+         a.skus.length ? (a.skusLabel ? '<div class="pa-sl">'+esc(a.skusLabel)+'</div>' : '')+'<ul class="pa-opts">'+first.map(li).join('')+'</ul>'+
+          (rest.length ? '<details class="pa-more"><summary>Show '+rest.length+' More</summary><ul class="pa-opts">'+rest.map(li).join('')+'</ul></details>' : '') : '')+
+        (a.has && a.has.length ? '<div class="pa-has"><span>'+esc(a.hasLabel||'Already bought')+':</span> '+esc(a.has.join(', '))+'</div>' : '')+
+        (href ? '<a class="pa-open" href="'+esc(href)+'">Open Account ›</a>' : '')+
+      '</div></div>';
   };
-  if(!A.length) return '<p class="pa-note">No account on your route can add credit for this program right now.</p>';
-  return (res.note?'<p class="pa-note'+(res.flag?' flag':'')+'">'+esc(res.note)+'</p>':'')+
-    '<div class="pa-list">'+A.slice(0, POT_MAX).map(acct).join('')+'</div>'+
-    (A.length>POT_MAX ? '<details class="pa-all"><summary>Show All '+A.length+' Accounts</summary><div class="pa-list">'+A.slice(POT_MAX).map(acct).join('')+'</div></details>' : '');
+  return qp+(res.note?'<p class="pa-note'+(res.flag?' flag':'')+'">'+esc(res.note)+'</p>':'')+'<div class="pa-list">'+A.map(acct).join('')+'</div>';
 }
 function hydratePotential(){
   var slots = document.querySelectorAll('.g-pot:not([data-done])');
@@ -617,22 +641,46 @@ function hydratePotential(){
     var fill = function(res){
       var b = el.querySelector('.g-pot-body'), n = el.querySelector('.g-pot-n');
       if(b) b.innerHTML = potBodyHtml(res);
-      if(n) n.textContent = res ? String((res.accounts||[]).length) : '\u2014';
+      if(n) n.textContent = res ? '('+(res.accounts||[]).length+')' : '(—)';
       if(res && !(res.accounts||[]).length) el.classList.add('empty');
     };
-    var own = o && H.potential ? H.potential(o, rep) : null;
-    if(own) return fill(own);
     var E = window.KdhElig, id = potScope()+':'+mk+':'+key;
+    var own = o && H.potential ? H.potential(o, rep) : null;
+    if(own){
+      // towns for the follow-up lists: any of the rep's eligibility files that knows the account
+      if(!E) return fill(own);
+      return E.load(rep).then(function(data){
+        var town = {};
+        if(data && data.programs) Object.keys(data.programs).forEach(function(k){ (data.programs[k].accounts||[]).forEach(function(a){ if(a.city && !town[a.n]) town[a.n] = a.city; }); });
+        (own.accounts||[]).forEach(function(a){ if(!a.city && town[a.n]) a.city = town[a.n]; });
+        fill(own);
+      }).catch(function(){ fill(own); });
+    }
     if(!E) return fill(null);
     E.ready().then(function(){
       if(!E.rule(id)) return fill(null);
       return E.load(rep).then(function(data){
         if(!data || !data.programs || !data.programs[id]) return fill(null);
-        fill(potFromElig(E.model(id, [{rep:rep, data:data}]), data));
+        fill(potFromElig(E.model(id, [{rep:rep, data:data}])));
       });
     }).catch(function(){ fill(null); });
   });
 }
+// one account open at a time inside a Potential Accounts panel
+document.addEventListener('click', function(e){
+  var btn = e.target.closest && e.target.closest('.pa-row-btn'); if(!btn) return;
+  var list = btn.closest('.pa-list'), open = btn.getAttribute('aria-expanded')!=='true';
+  if(list) Array.prototype.forEach.call(list.querySelectorAll('.pa-row-btn[aria-expanded="true"]'), function(b){
+    b.setAttribute('aria-expanded','false'); b.parentNode.classList.remove('open'); b.nextElementSibling.hidden = true; });
+  btn.setAttribute('aria-expanded', open?'true':'false'); btn.parentNode.classList.toggle('open', open); btn.nextElementSibling.hidden = !open;
+});
+// "See the N Qualifying Products": open the shared list above and bring it into view
+document.addEventListener('click', function(e){
+  var b = e.target.closest && e.target.closest('.pa-seeall'); if(!b) return;
+  var qp = b.closest('.g-pot-body') && b.closest('.g-pot-body').querySelector('.pa-qp'); if(!qp) return;
+  qp.open = true; qp.scrollIntoView({block:'start', behavior:'smooth'});
+  var s = qp.querySelector('summary'); if(s) s.focus({preventScroll:true});
+});
 function repObjectiveCard(o, rep){
   var m = H.metric(o, rep);
   var weightTag = '<span class="g-tag weight">MPO Weight '+Math.round(o.weight*100)+'%</span>';
@@ -685,10 +733,7 @@ function repObjectiveCard(o, rep){
   // Details holds only what the card does not already say (2026-10-06): the
   // full program name when the title is shortened, and the tracker's own table.
   var full = titleOf(o) !== o.name ? '<p class="g-full"><span>Full program name</span>'+esc(o.name)+'</p>' : '';
-  var moreHtml = (full || detail) ?
-      '<button class="g-more js-more" data-target="'+mid+'" aria-expanded="false">'+
-        'Details<span class="ar">&#9656;</span></button>'+
-      '<div class="g-more-body" id="'+mid+'">'+full+detail+'</div>' : '';
+  var detailContent = (full || detail) ? full+detail : '';
 
   if(hasNums){
     // READABILITY v4 (2026-10-06, Gavin): Goal (with its unit and, for a
@@ -715,10 +760,9 @@ function repObjectiveCard(o, rep){
       '</div>'+
       barHtml(m.pct, st)+
       (dl ? '<div class="g-deadline">'+dl+'</div>' : '')+
-      (href && !met ? potentialSlot(o, rep) : '')+
       subsHtml+
       '<div class="g-meta g-weight">MPO Weight '+Math.round(o.weight*100)+'%</div>'+
-      moreHtml+
+      actionsHtml(o, rep, detailContent, !!(href && !met))+
     '</div>';
   }
   return '<div class="g-obj g-obj-v2 '+st+'">'+
@@ -729,7 +773,7 @@ function repObjectiveCard(o, rep){
     barHtml(m.pct, st)+
     (rule?'<div class="g-rule">'+rule+'</div>':'')+
     subsHtml+
-    moreHtml+
+    actionsHtml(o, rep, detailContent, false)+
   '</div>';
 }
 
@@ -935,6 +979,9 @@ function wire(){
     var more = e.target.closest('.js-more');
     if(more){
       var body = document.getElementById(more.dataset.target);
+      var grp = more.closest('.g-acts');   // Details / Potential Accounts: one open at a time
+      if(grp && !more.classList.contains('open')) Array.prototype.forEach.call(grp.querySelectorAll('.js-more.open'), function(b){
+        b.classList.remove('open'); b.setAttribute('aria-expanded','false'); var bb = document.getElementById(b.dataset.target); if(bb) bb.classList.remove('open'); });
       var nowOpen = more.classList.toggle('open');
       more.setAttribute('aria-expanded', nowOpen?'true':'false');
       if(body) body.classList.toggle('open', nowOpen);

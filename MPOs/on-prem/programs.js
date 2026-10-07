@@ -109,13 +109,14 @@ const OBJECTIVES_2026_10 = [
   {key:'sam_adams_conversion', name:'BBC – Complete Oktoberfest Draft Conversion', shortName:'Oktoberfest Conversion', unit:'account', weight:0.25, type:'followup', hasData:true, periodEnd:'2026-10-23', goalLabel:'Convert every Summer Ale keg account to Oktoberfest',
    typeNote:'Every on-premise account that had Summer Ale kegs from April 1 to July 17 needs an Oktoberfest keg from August 1 to October 23. Kegs bought and returned do not count.',
    followLabels:{had:'Summer Ale kegs (Apr 1\u2013Jul 17)', done:'Oktoberfest kegs (Aug 1\u2013Oct 23)', doneTag:'Converted', todoTag:'Not converted yet'},
-   potential:{need:'One Oktoberfest keg by Oct 23', why:'Had {had}', skus:['Sam Adams Octoberfest 15.5 Gal Keg','Sam Adams Octoberfest 5.2 Gal Keg'],
-     note:'An Oktoberfest keg loaded by Oct 23 converts the account. A keg bought and returned does not count.'}},
+   potential:{req:'Needs 1 Oktoberfest Keg by Oct 23', sub:'Had {had} (Apr 1 \u2013 Jul 17). Either keg converts the account.',
+     skus:[{name:'Sam Adams Octoberfest 15.5 Gal Keg', id:'3813'},{name:'Sam Adams Octoberfest 5.2 Gal Keg', id:'3862'}],
+     note:'A keg bought and returned does not count.'}},
   {key:'spirits_followup', name:'Wine & Spirits – Follow Up On All On-Premise Spirits Placements', shortName:'Spirits Follow-Up', unit:'account', weight:0.25, type:'followup', hasData:true, goalLabel:'Re-order at every account placed Jul–Sep',
    typeNote:'Every account that took a spirits placement from July through September needs to order spirits again in October.',
    followLabels:{had:'Placed Jul–Sep', done:'Ordered in October', doneTag:'Followed up', todoTag:'Not followed up yet'},
-   potential:{need:'One spirits order in October', skusFromHad:true, skusLabel:'Placed here Jul \u2013 Sep', flag:true,
-     note:'Any spirits order at the account in October counts. The program\u2019s exact spirits SKU list is not on file, so the products shown are what was placed there Jul \u2013 Sep.'}},
+   potential:{req:'Needs 1 Spirits Order in October', sub:'Any spirits product counts.', skusFromHad:true, skusLabel:'Placed here Jul \u2013 Sep', flag:true,
+     qpNote:'Any spirits product counts. The program\u2019s exact spirits SKU list is not on file, so no shared product list is shown.'}},
   {key:'isellbeer', name:'iSellBeer – (5) Feature Photos', shortName:'iSellBeer Photos', unit:'feature photo', weight:0.25, type:'photos', hasData:false, awaiting:true, awaitingNote:'Waiting on October\u2019s iSellBeer export.', goalLabel:'5 feature photos each'},
 ];
 
@@ -710,13 +711,14 @@ function potentialFor(o, rep, DATA){
   const r = DATA[o.key].reps.find(x=>x.rep===rep);
   if(!r) return null;
   const P = o.potential;
+  const products = (P.skus || []).map(x=>({name:x.name, id:x.id||''}));
   const accounts = r.lines.filter(l=>!l.done).map(l=>{
-    let skus = (P.skus || []).slice();
-    if(P.skusFromHad) skus = String(l.had||'').replace(/^\d+ spirits?:\s*/,'').split(/,\s*(?=[A-Z0-9])/).filter(Boolean);
+    let skus = products.slice(), skusLabel = '';
+    if(P.skusFromHad){ skus = String(l.had||'').replace(/^\d+ spirits?:\s*/,'').split(/,\s*(?=[A-Z0-9])/).filter(Boolean).map(n=>({name:n, id:''})); skusLabel = P.skusLabel || ''; }
     else if(/5\.2 Gal/.test(l.had||'') && skus.length>1) skus = skus.slice().reverse();   // the keg size they ran first
-    return {name:l.customer, city:'', need:P.need, why:P.why ? P.why.replace('{had}', l.had||'') : '', skus, skusLabel:P.skusLabel||''};
+    return {n:l.num, name:l.customer, city:'', req:P.req, sub:P.sub ? P.sub.replace('{had}', l.had||'') : '', why:'', skus, skusLabel};
   });
-  return {note:P.note, flag:!!P.flag, accounts};
+  return {note:P.note||'', qpNote:P.qpNote||'', flag:!!P.flag, products, accounts};
 }
 
 function atGoalFor(o, DATA){

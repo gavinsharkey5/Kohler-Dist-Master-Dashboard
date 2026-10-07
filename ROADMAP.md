@@ -280,6 +280,12 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-10-08 **MPO cards: Details + Potential Accounts side by side ("Option 2 -- Shared Product List").** Under every
+  On-/Off-Premise MPO summary: a muted amber Details control and a wider muted green Potential Accounts (N) control, one
+  open at a time, inline. Potential Accounts = one shared "Qualifying Products (N)" fold, then compact account rows (name,
+  town); tapping a row shows what is still needed there and only the products open at that account (an account that can
+  take every product links to the shared list instead of repeating it). Spirits flags that its SKU list is not on file.
+  Rules and counts unchanged. Nothing for Gavin to do.
 - [x] 2026-10-08 **MPO cards: Potential Accounts inside the card.** "View Eligible Accounts" is replaced by a
   collapsed list of the accounts on the rep's route that can still earn the program's credit, with the exact SKUs and
   what is left. Molly's and Wine now have eligibility rules. To confirm (question N1): do on-premise placements count

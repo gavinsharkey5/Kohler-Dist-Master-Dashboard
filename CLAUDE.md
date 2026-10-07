@@ -2904,3 +2904,26 @@ page's Program Opportunities list them ("One new placement per product", opps.js
 by default, opens in place, Details kept, partial gap named, Wine folds, Joes Beer omits the 750 mL it bought Jul-Sep,
 no sideways scroll), pot_on.mjs (Allison: Oktoberfest 7, Spirits 18), elig_trip_test (now enters the hub by URL).
 Tags: guided.js / guided.css / eligibility.js 20261008b, opps.js 20261008a.
+
+## MPO cards: Details + Potential Accounts side by side, one shared product list (2026-10-08, "Option 2")
+
+Supersedes the layout of the section above (the data rules there still hold). Under every On- / Off-Premise MPO
+summary, guided.js `actionsHtml()` draws `.g-acts`: a muted AMBER "Details" control (`.g-act-d`, the old Details /
+distribution-history content, unchanged) and a wider muted GREEN "Potential Accounts (N)" control (`.g-act-p`; green
+marks the control, never earned credit), equal height (46px, !important because kdh-skin's `button:not(...)` 40px rule
+is more specific), chevrons, one open at a time, the open one closes on a second tap; panels open inline below
+(`.g-det-body` / `.g-pot-body`). Details alone (`.one`) when there is nothing to add (met goal, ended month, photos).
+Below 431px the grid is `minmax(96px,.85fr) minmax(0,2fr)` so "Potential Accounts (23)" stays on one line.
+Inside Potential Accounts (`potBodyHtml`): ONE "Qualifying Products (N)" fold (`.pa-qp`, collapsed; name + #ProductID)
+or, with no official list (Spirits), a flagged note; then compact rows (`.pa-row-btn`: name, town, chevron), ONE account
+open at a time per list. An open row (`.pa-det`) = requirement (`.pa-req`: "Needs 1 More Qualifying SKU", "Any Qualifying
+Product = 1 New Placement", "Needs 1 Oktoberfest Keg by Oct 23" ...), one line of context (Has X of 3 / what it had /
+the warm reason), then ONLY the products still open THERE -- when that equals the shared list it shows "See the N
+Qualifying Products" (`.pa-seeall`, opens the shared fold) instead of repeating it -- options fold after 8, then "Open
+Account ›". Data: KdhElig (`potFromElig`) for rule programs, on-prem programs.js `potentialFor()` (objective `potential`
+config) for the follow-ups; towns for those come from the rep's elig file. Counts = distinct accounts that can still
+add credit (unchanged). Tests (scratchpad): pot_test.mjs (318 checks: Dave Ehlers preview + sign-in, 375/390/430/820/
+1180/1366 x light/dark, exclusion, one account open, shared list once, contrast >= 4.5, September Details only),
+pot_on.mjs (Allison Scott: Oktoberfest 7 with 2 kegs, Spirits 18 flagged). Tags guided.js / guided.css 20261008c,
+on-prem programs.js 20261008b.
+
