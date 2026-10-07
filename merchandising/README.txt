@@ -242,3 +242,12 @@ Same records, photos, filters, permissions and exports; new presentation. recap.
   * Access is unchanged: RLS decides what loads; a district manager is narrowed to their team (kdhTeam). A manager who is
     not a DM still sees everyone -- there is no per-manager "company-wide" flag to check yet.
 Test: scratchpad mg.mjs (stubbed Supabase, 130 records incl. no-photo, 3-photo, a failing photo).
+
+PHOTO ADMIN DELETE ON THE GALLERY (2026-10-07)
+----------------------------------------------
+The viewer's details panel shows "Photo Admin": Delete This Photo and Delete Record (and All Photos) ONLY when
+rpc kdh_is_photo_admin() is true for the signed-in account (allowed_users.photo_admin, migration
+20261005090000_photo_admin.sql, set by hand in Supabase for ONE account -- no email in the repo) and never in preview.
+Row-level security still decides each DELETE, so another sign-in gets nothing even from the console; every DELETE asks for the
+removed rows back and a 0-row answer says "Not deleted" instead of success. The stored file is removed after its row; a
+file that could not be removed is reported. A photo-only entry (no record) offers Delete This Photo only. Test: scratchpad mgdel.mjs.

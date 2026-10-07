@@ -275,6 +275,50 @@ function wire(){
   }
 }
 
+/* ---- Photo Admin delete (2026-10-07, Gavin only for now) ----
+   Buttons are drawn only when the database says this sign-in is a photo admin (allowed_users.photo_admin, set by hand
+   for one account; rpc kdh_is_photo_admin). The database still decides every delete: row-level security removes
+   nothing for anyone else, so each DELETE asks for the removed rows back and a 0-row answer is reported, never
+   treated as success. Never offered in preview. ---- */
+const ADMIN = {ok:false};
+const authCfg = () => { const c = window.KDH_AUTH || {}; const m = document.cookie.match(/(?:^|;\s*)kdh_at=([^;]*)/); return c.url && c.key && m ? {url:c.url.replace(/\/$/, ''), key:c.key, tok:decodeURIComponent(m[1])} : null; };
+async function delRows(path){ const c = authCfg(); if(!c) throw new Error('Sign in again.');
+  const r = await fetch(c.url + '/rest/v1/' + path, {method:'DELETE', headers:{apikey:c.key, authorization:'Bearer ' + c.tok, prefer:'return=representation'}});
+  if(!r.ok) throw new Error('HTTP ' + r.status); const rows = await r.json().catch(()=>[]); return Array.isArray(rows) ? rows.length : 0; }
+async function delObject(p){ const c = authCfg(); if(!c || !p) return true;
+  const r = await fetch(c.url + '/storage/v1/object/account-photos/' + String(p).split('/').map(encodeURIComponent).join('/'), {method:'DELETE', headers:{apikey:c.key, authorization:'Bearer ' + c.tok}});
+  if(!r.ok) return false; const j = await r.json().catch(()=>[]); return !Array.isArray(j) || j.length > 0; }
+async function deletePhoto(){
+  const r = VW.rec, p = r.photos[VW.i]; if(!p) return;
+  if(!confirm(`Delete this photo from ${r.acct} as Photo Admin? This cannot be undone.${p.source==='isellbeer' ? ' Importing the same iSellBeer file again would bring it back.' : ''}`)) return;
+  const btn = document.getElementById('vwDelPhoto'); btn.disabled = true; btn.setAttribute('aria-busy', 'true');
+  try{
+    if(!await delRows('account_photos?id=eq.' + encodeURIComponent(p.id))) throw new Error('Not deleted — this sign-in is not a Photo Admin. Nothing was changed.');
+    const fileGone = await delObject(p.storage_path);
+    r.photos.splice(VW.i, 1); PHOTOS.delete(String(p.id));
+    if(!r.photos.length && r.key.startsWith('ph:')) RECS.splice(RECS.indexOf(r), 1);
+    const y = window.scrollY;
+    if(r.photos.length){ VW.i = Math.min(VW.i, r.photos.length - 1); vwShow(); } else closeViewer(true);
+    render(); window.scrollTo(0, y);
+    toast(fileGone ? 'Photo deleted' : 'Photo deleted. Its stored file could not be removed.');
+  } catch(e){ btn.disabled = false; btn.removeAttribute('aria-busy'); toast(e.message || 'Could not delete the photo.'); }
+}
+async function deleteRecord(){
+  const r = VW.rec; if(r.key.startsWith('ph:')) return deletePhoto();
+  if(!confirm(`Delete this ${typeTitle(r).toLowerCase()} at ${r.acct} and its ${plural(r.photos.length, 'photo')} as Photo Admin? This cannot be undone.${r.source==='isellbeer' ? ' Importing the same iSellBeer file again would bring it back.' : ''}`)) return;
+  const btn = document.getElementById('vwDelRec'); btn.disabled = true; btn.setAttribute('aria-busy', 'true');
+  try{
+    if(!await delRows('merch_records?id=eq.' + encodeURIComponent(r.id))) throw new Error('Not deleted — this sign-in is not a Photo Admin. Nothing was changed.');
+    let stuck = 0;
+    for(const p of r.photos){ try{ if(await delRows('account_photos?id=eq.' + encodeURIComponent(p.id)) && !await delObject(p.storage_path)) stuck++; }catch(e){ stuck++; } PHOTOS.delete(String(p.id)); }
+    RECS.splice(RECS.indexOf(r), 1); SEL.delete(r.key);
+    const y = window.scrollY; closeViewer(true); render(); window.scrollTo(0, y);
+    toast(stuck ? `Record deleted. ${plural(stuck, 'file')} could not be removed.` : 'Record deleted');
+  } catch(e){ btn.disabled = false; btn.removeAttribute('aria-busy'); toast(e.message || 'Could not delete the record.'); }
+}
+function toast(msg){ let t = document.getElementById('mgToast'); if(!t){ t = document.createElement('div'); t.id = 'mgToast'; t.className = 'mg-toast'; t.setAttribute('role', 'status'); document.body.appendChild(t); }
+  t.textContent = msg; t.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(()=>t.classList.remove('on'), 5000); }
+
 /* ---- photo viewer: large image, Previous / Next, zoom, details beside (desktop) or under (phone) ---- */
 const VW = {rec:null, i:0, opener:null, z:1, x:0, y:0, el:null};
 const galleryHash = () => { const h = new URLSearchParams(location.hash.slice(1)); h.delete('rec'); h.delete('ph'); const x = h.toString(); return x ? '#' + x : ''; };
@@ -291,6 +335,7 @@ function infoHtml(r, p){
     <section class="vi-g"><h3>Products / Brands</h3>${lines}</section>
     ${(r.caption || r.location) ? `<section class="vi-g"><h3>Notes</h3>${r.caption ? `<p>“${E(r.caption)}”</p>` : ''}${r.location ? `<p>Location: ${E(r.location)}</p>` : ''}</section>` : ''}
     <section class="vi-g"><h3>Source</h3><p>${E(M.SOURCE_LABEL[r.source||'hub'])}${imp && r.isb_promotion_type ? ' · ' + E(r.isb_promotion_type) : ''}</p></section>
+    ${ADMIN.ok ? `<section class="vi-g vi-admin"><h3>Photo Admin</h3><div class="vi-act">${r.photos.length ? `<button type="button" class="btn outline danger sm" id="vwDelPhoto">Delete This Photo</button>` : ''}${r.key.startsWith('ph:') ? '' : `<button type="button" class="btn outline danger sm" id="vwDelRec">Delete Record${r.photos.length > 1 ? ' and All Photos' : ''}</button>`}</div></section>` : ''}
     ${r.program_id ? `<section class="vi-g"><h3>Program</h3><p>${E(progName(r.program_id))}<span class="vi-mu"> · Evidence, not credit</span></p></section>` : ''}`;
 }
 function openViewer(key, i, opener){
@@ -349,6 +394,7 @@ function vwShow(){
   el.querySelector('#vwPos').textContent = n ? `Photo ${VW.i + 1} of ${n}` : 'No photos';
   el.classList.toggle('single', n < 2);
   el.querySelector('#vwBody').innerHTML = infoHtml(r, p);
+  { const a = el.querySelector('#vwDelPhoto'); if(a) a.addEventListener('click', deletePhoto); const b = el.querySelector('#vwDelRec'); if(b) b.addEventListener('click', deleteRecord); }
   const im = el.querySelector('#vwImg'), msg = el.querySelector('#vwMsg'); vwApply();
   im.removeAttribute('src'); im.hidden = true;
   if(!p){ msg.innerHTML = '<span>No photo on this record</span>'; return; }
@@ -462,6 +508,7 @@ readHash();
 const posKey = 'kdh_merch_pos';
 load().then(()=>{
   if(st.rep && !ROSTER.includes(st.rep)) st.rep = '';
+  D.rpc('kdh_is_photo_admin').then(v=>{ if(v === true && !(window.kdhUser && (window.kdhUser()||{}).preview)){ ADMIN.ok = true; if(VW.el) vwShow(); } }).catch(()=>{});
   // Back from an account: same filters (hash), same "Show More" depth, same scroll position
   let pos = null; try{ pos = JSON.parse(sessionStorage.getItem(posKey) || 'null'); sessionStorage.removeItem(posKey); }catch(e){}
   if(pos && pos.path === location.pathname + location.hash.replace(/&?(rec|ph)=[^&]*/g, '')) st.limit = Math.max(st.limit, pos.limit || st.limit);
