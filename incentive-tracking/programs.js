@@ -1231,28 +1231,28 @@ function cardFamosaOct(rep){
 }
 function cardFourLoko(rep){
   const P = PROGRAM_DATA_2026_10['four_loko']||{}; const d = P.byRep?.[rep]; if(!d) return '';
-  const m = P.meta||{}, R = m.rates||{}, Q = m.qualifier||5;
+  const m = P.meta||{}, Q = m.qualifier||5;
   const board = statBoard([
-    {num:`${Math.min(d.placementCount,Q)} / ${Q}`, label:'New Sour Apple / USA Placements', status:d.qualified?'good':cntStatus(d.placementCount), sub:d.qualified?'Qualified — cases pay':`${d.toQualifier} more to qualify`},
+    {num:d.placementCount, label:'New Sour Apple / USA Placements', status:cntStatus(d.placementCount), sub:d.qualified?`${Q}+ placements`:`${d.toQualifier} more to reach ${Q}`},
     {num:Math.round(d.cases26), label:'Cases Oct–Nov', status:cntStatus(d.cases26), sub:`vs ${Math.round(d.cases25)} in Oct–Nov 2025`},
-    {num:(d.growth>0?'+':'')+Math.round(d.growth), label:'Route Growth', status:d.positive?'good':null, sub:d.positive?'Route is positive — $1.00 a case':'Not positive yet — $0.50 a case'},
-    {num:d.payout?`$${d.payout.toLocaleString('en-US')}`:'$0', label:'Earned So Far', sub:d.qualified?`$${d.rate.toFixed(2)} × ${Math.round(d.cases26)} cases`:'pays once you have 5 placements'},
+    {num:(d.growth>0?'+':'')+Math.round(d.growth), label:'Growth vs Last Year', status:d.positive?'good':null, sub:d.positive?'Ahead of last year':`${Math.round(d.toPositive)+1} cases to pass last year`},
+    {num:d.accounts, label:'Buying Accounts', sub:'this window'},
   ]);
   const prods = Object.entries(d.byProduct||{}).sort((a,b)=>b[1].cases26-a[1].cases26).map(([n,v])=>({name:n, stat:`${Math.round(v.cases26)} vs ${Math.round(v.cases25)} LY`}));
   const block = earnBlock({
-    icon:'⚡', title:'Four Loko Volume Rewards', rate:`$${(R.case||0.5).toFixed(2)} A CASE · $${(R.casePositive||1).toFixed(2)} WHEN YOUR ROUTE IS POSITIVE`,
-    rateNote:`Five new placements of Sour Apple and/or USA unlock the payout. A placement is one of those SKUs at one account that had not bought it in the 90 days before. Once unlocked, every Four Loko case sold Oct–Nov pays $0.50, or $1.00 if your route beats Oct–Nov 2025.`,
+    icon:'⚡', title:'Four Loko Volume Rewards', rate:`${Q} NEW SOUR APPLE / USA PLACEMENTS`,
+    rateNote:`A new placement is Sour Apple or USA at an account that had no placement of that SKU 7/1–9/30/2026. Volume compares cases 10/1–11/30/2026 with the same window last year.`,
     steps:[
-      {text:`Place Sour Apple or USA at ${Q} accounts that did not buy it in 90 days`, done:d.qualified},
-      {text:`Pass last year's ${Math.round(d.cases25)} cases for the $1.00 rate`, done:d.positive},
+      {text:`Place Sour Apple or USA at ${Q} accounts that did not carry it Jul–Sep`, done:d.qualified},
+      {text:`Pass last year's ${Math.round(d.cases25)} cases`, done:d.positive},
     ],
-    stats:[{num:d.placementCount, label:'New placements'}, {num:d.notNewCount, label:'Bought within 90 days (not new)'}, {num:d.accounts, label:'Buying accounts'}],
+    stats:[{num:d.placementCount, label:'New placements'}, {num:Math.round(d.cases26), label:'Cases this year'}, {num:Math.round(d.cases25), label:'Cases last year'}],
     detail:{label:'Your New Placements', items:(d.placements||[]).map(p=>({name:p.customer, sub:p.product, stat:p.date||''})), emptyMsg:'No new Sour Apple or USA placements yet.'},
-    opportunity:{label:'Bought Four Loko Last Year, Not Yet This Year', count:(d.lostAccounts||[]).length, note:'Win these back — Sour Apple or USA here is a new placement if it has been 90 days.', items:(d.lostAccounts||[]).map(a=>({name:a.customer, stat:`${a.cases25} cs last year`})), emptyMsg:'Every account that bought last year has bought again.'},
+    opportunity:{label:'Bought Four Loko Last Year, Not Yet This Year', count:(d.lostAccounts||[]).length, note:'Win these back.', items:(d.lostAccounts||[]).map(a=>({name:a.customer, stat:`${a.cases25} cs last year`})), emptyMsg:'Every account that bought last year has bought again.'},
     extra: prods.length ? detailList({label:'By Flavor', items:prods}) : '',
   });
   return `<div class="prog-card"><div class="prog-head"><div class="prog-name-row">${progLogo('four_loko')}<span class="prog-name">Four Loko Volume Rewards</span><span class="prog-tag">Oct–Nov</span>${terrTag('four_loko')}</div>${progPitch('four_loko')}</div>
-    <div class="prog-body">${board}${block}<div class="prog-foot-note">Window ${esc(m.currentWindow||'10/1 – 11/30/2026')} against ${esc(m.baseWindow||'the same window in 2025')}. The 90-day check reads the sales history by month, so a placement is only counted when no month inside the 90 days shows a purchase.</div></div></div>`;
+    <div class="prog-body">${board}${block}<div class="prog-foot-note">Cases through ${esc(m.casesThrough||'')}: ${esc(m.currentWindow||'10/1 – 11/30/2026')} against ${esc(m.baseWindow||'the same window in 2025')}. Placements: ${esc(m.placeWindow||'')} with none in ${esc(m.placeBaseWindow||'')}.</div></div></div>`;
 }
 function cardIndustrialArts(rep){
   const P = PROGRAM_DATA_2026_10['industrial_arts']||{}; const d = P.byRep?.[rep]; if(!d) return '';
@@ -3889,12 +3889,11 @@ const PROGRAM_SUMMARY = {
     remain:(d.wc.qualified&&d.harder.qualified)?null:[!d.wc.qualified?`${pl(d.wc.toQualifier,'more White Claw')}`:'', !d.harder.qualified?`${pl(d.harder.toQualifier,'more Harder / Cayman')}`:''].filter(Boolean).join(' · '),
     sub:`${d.legsQualified} of 2 legs at 8+`,
     next:(d.wc.qualified&&d.harder.qualified) ? `Both legs are in — keep every package M.A.D.E. and the payout doubles.` : `Sell in <strong>${[!d.wc.qualified?pl(d.wc.toQualifier,'more White Claw 19.2oz'):'', !d.harder.qualified?pl(d.harder.toQualifier,'more Harder / Cayman single serve'):''].filter(Boolean).join(' and ')}</strong>.`}),
-  four_loko:(d,m)=>({goal:true, now:Math.min(d.placementCount,(m&&m.qualifier)||5), target:(m&&m.qualifier)||5, unit:'placements',
-    label:`${d.placementCount} of ${(m&&m.qualifier)||5} new Sour Apple / USA placements`,
-    remain:d.qualified?null:`${pl(d.toQualifier,'more placement')} to qualify`,
-    sub:`${Math.round(d.cases26)} cases Oct–Nov · ${d.positive?'route positive':'route not positive yet'}`,
-    next:d.qualified ? (d.positive ? `Qualified and positive — every Four Loko case pays the higher rate.` : `Qualified — pass last year's ${Math.round(d.cases25)} cases to lift every case to the higher rate.`)
-      : `Place <strong>Sour Apple or USA at ${pl(d.toQualifier,'more account')}</strong> that has not bought it in 90 days to switch the per-case payout on.`}),
+  four_loko:(d,m)=>({goal:true, now:d.cases26, target:d.cases25, unit:'cases',
+    label:`${Math.round(d.cases26)} of ${Math.round(d.cases25)} cases (Oct–Nov 2025 pace)`,
+    remain:d.positive?null:(d.toPositive>0?`${Math.round(d.toPositive)} more cases to pass last year`:null),
+    sub:`${pl(d.placementCount,'new Sour Apple / USA placement')}`,
+    next:`Place <strong>Sour Apple or USA</strong> at accounts that did not carry it Jul–Sep${d.positive?'':' and pass last year\'s cases'}.`}),
   sam_adams_cold_snap:(d)=>({goal:true, now:d.converted||0, target:d.lines||0, unit:'lines', label:`${d.converted||0} of ${d.lines||0} lines converted`, next:d.notConverted>0?`Convert ${d.notConverted} more seasonal handle${d.notConverted===1?'':'s'} by October 23.`:`Every seasonal handle is converted — hold them through October 23.`}),
 
   montauk:(d)=>({goal:false, now:d.totalNewPlacements, unit:'placements',
@@ -4495,9 +4494,9 @@ const PROGRAM_BOARD = {
     metrics:[
       {num:d.placementCount, label:'new placements', cls:d.placementCount>0?'good':'dim'},
       {num:Math.round(d.cases26), label:'cases Oct–Nov'},
-      {num:(d.growth>0?'+':'')+Math.round(d.growth), label:'growth', cls:d.growth>0?'good':d.growth<0?'bad':'dim'},
+      {num:(d.growth>0?'+':'')+Math.round(d.growth), label:'vs last year', cls:d.growth>0?'good':d.growth<0?'bad':'dim'},
     ],
-    status: d.qualified ? {cls:'good', label:`✓ Qualified · $${d.payout.toLocaleString('en-US')}`} : d.placementCount>0 ? {cls:'warn', label:`${d.toQualifier} placement${d.toQualifier===1?'':'s'} to qualify`} : {cls:'gray', label:'No new placements yet'},
+    status: d.positive ? {cls:'good', label:'✓ Ahead of last year'} : d.cases26>0 ? {cls:'warn', label:`${Math.round(d.toPositive)+1} cases to pass last year`} : {cls:'gray', label:'No Four Loko yet'},
   }),
   'famosa_oct': d=>({
     metrics:[

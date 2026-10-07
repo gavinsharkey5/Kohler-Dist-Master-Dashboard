@@ -5004,6 +5004,8 @@ def build_famosa_october():
             "meta": {"rates": {"case": 2, "case7oz": 3}, "baseWindow": case_base.split("  ")[-1].strip(), "currentWindow": case_current.split("  ")[-1].strip()}}
 
 
+IA_OFF_SIZES = re.compile(r"(?<![\d.])(16|19\.2|12) ?oz", re.I)
+
 def build_industrial_arts():
     """Industrial Arts Target Account Launch, October 2026 (deck p7).
 
@@ -5044,14 +5046,16 @@ def build_industrial_arts():
             seen[rep].add(cust)
         dt = _us_date(row.get("Date"))
         if is_keg_package(row.get("Package")) or is_keg_package(pname):
-            if "wrench" not in pname.lower():
-                continue
+            if not pname.lower().startswith("industrial arts wrench "):
+                continue                   # Wrench draft only (Pocket Wrench is a different beer)
             k = keg[(rep, cust)]; k["name"] = cname
             k["bbl"] += (keg_bbl(row.get("Package")) or keg_bbl(pname) or 0.0) * cases
             if placed and dt: k["months"].add((dt.year, dt.month))
             continue
         if _row_premise(row, rep, cust, pname) == "On Premise":
             continue
+        if not IA_OFF_SIZES.search(row.get("Package") or pname):
+            continue                       # off-premise tracks 16oz, 19.2oz and 12oz packages only
         a = off[(rep, cust)]; a["name"] = cname
         if placed:
             a["skus"][pnum] = pname; a["cases"] += cases
@@ -5161,62 +5165,64 @@ def build_mabi_single_serve():
                      "exportMadeOnly": True}}
 
 
-# Four Loko Volume Rewards (deck, Oct-Nov 2026). The qualifier SKUs.
+# Four Loko Volume Rewards (Oct-Nov 2026): cases vs last year + new placements.
 FOUR_LOKO_QUAL_SKUS = {"7925": "Sour Apple", "7935": "USA"}
-MASTER_MONTHS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "rolling-distribution", "data", "master", "months")
 
-def _master_sku_buys(pnums):
-    """{(customer_num, product_num): {(year, month), ...}} -- calendar months
-    with net cases > 0 in the Rolling Distribution master, for the given
-    products only. Month grain: the master has no invoice dates."""
-    out = defaultdict(set)
-    if not os.path.isdir(MASTER_MONTHS):
-        return out
-    for fn in sorted(os.listdir(MASTER_MONTHS)):
-        if not fn.endswith(".csv"):
-            continue
-        y, m = int(fn[:4]), int(fn[5:7])
-        with open(os.path.join(MASTER_MONTHS, fn), newline="") as f:
-            for r in csv.DictReader(f):
-                if r["product_num"] in pnums and to_num(r["cases"]) > 0:
-                    out[(r["customer_num"], r["product_num"])].add((y, m))
-    return out
+def _four_loko_new_placements():
+    """{(rep, cust, pnum): {...}} of NEW Sour Apple / USA placements from the two RDE
+    placement exports. A placement = (rep, customer, SKU) flagged in the
+    10/1-11/30/2026 window; NEW = the same key has NO flag in the 7/1-9/30/2026 window
+    (RDE's own non-buy test). "FOUR_LOKO_NEW_PLACEMENTS" holds only those two SKUs;
+    "FOUR_LOKO_VOLUME_2" holds every SKU with the same two columns -- its Sour Apple / USA
+    rows must give the identical answer, which is checked."""
+    def read(fn):
+        rows = read_rows(fn)
+        cur = next(f for f in rows[0] if f.startswith("Placements   10/1/2026"))
+        base = next(f for f in rows[0] if f.startswith("Placements   7/1/2026"))
+        by = defaultdict(list)
+        for r in rows:
+            pnum, pname = _split_num_name(r["Product Num & Name"])
+            if pnum not in FOUR_LOKO_QUAL_SKUS:
+                continue
+            cust, cname = _split_num_name(r["Customer Num & Company"])
+            by[(r["Sales Rep Assigned"].strip(), cust, pnum)].append((r, cname, pname))
+        out = {}
+        for key, items in by.items():
+            has_cur = [x for x in items if to_num(x[0][cur]) > 0]
+            has_base = any(to_num(x[0][base]) > 0 for x in items)
+            if has_cur and not has_base:
+                dates = sorted((_us_date(x[0]["Load Sheet Date"]) for x in has_cur if _us_date(x[0]["Load Sheet Date"])))
+                out[key] = {"customer": items[0][1], "product": items[0][2], "sku": FOUR_LOKO_QUAL_SKUS[key[2]],
+                            "date": dates[0].isoformat() if dates else None}
+        return out, cur.split("  ")[-1].strip(), base.split("  ")[-1].strip()
+    new, cur_w, base_w = read("four_loko_new_placements.csv")
+    cross, _, _ = read("four_loko_placements_all.csv")
+    if set(new) != set(cross):
+        raise SystemExit(f"four_loko: new-placements file and all-SKU placement file disagree: only in new {sorted(set(new)-set(cross))[:5]}, only in all-SKU {sorted(set(cross)-set(new))[:5]}")
+    return new, cur_w, base_w
 
 def build_four_loko():
-    """Four Loko Volume Rewards, Oct 1 - Nov 30 2026.
-
-    QUALIFIER  5 new placements of Sour Apple (7925) and/or USA (7935). A
-               placement = one of those SKUs at one account (rep, customer,
-               Product Num) with net cases > 0 on a load sheet in the window
-               and NO purchase of that SKU at that account in the 90 days
-               before its first load sheet ("90-day non-buy").
-    PAYOUT     once qualified: $0.50 on every Four Loko case sold Oct-Nov
-               (net of returns), $1.00 a case when the rep's route is
-               positive for the two months (cases 10/1-11/30/2026 above the
-               same window of 2025, from the export's two Cases columns).
-
-    The export carries cases only (no placement flag, no history), so the
-    90-day look-back is read from the Rolling Distribution master, which is
-    MONTHLY: any master month that overlaps the 90 days counts as a buy
-    (conservative -- a placement is never credited that the master could
-    disprove), plus same-window loads earlier in the export itself.
-    ASSUMED (flagged to Gavin): month-grain look-back, every Four Loko case
-    pays once the rep qualifies (not only cases after the 5th placement)."""
+    """Four Loko Volume Rewards, Oct 1 - Nov 30 2026. NO payments are calculated (Gavin,
+    2026-10-07): the card shows (1) cases 10/1-11/30/2026 against the same window of
+    2025 (data/four_loko.csv, the RDE cases export, net of returns) and (2) NEW Sour Apple /
+    USA placements (see _four_loko_new_placements). The deck's 5-placement qualifier is shown
+    as progress only."""
     rows = read_rows("four_loko.csv")
     fields = rows[0].keys() if rows else []
     case_base, case_current = find_period_cols(fields, "Cases")
-    date_col = "Load Sheet Date"
-    QUAL, RATE, RATE_POS = 5, 0.50, 1.00
-    master = _master_sku_buys(set(FOUR_LOKO_QUAL_SKUS))
+    QUAL = 5
+    placed, cur_w, base_w = _four_loko_new_placements()
     by_rep = {rep: {"cases26": 0.0, "cases25": 0.0, "growth": 0.0, "positive": False, "toPositive": 0.0,
-                    "placements": [], "placementCount": 0, "notNew": [], "notNewCount": 0, "borderlineCount": 0,
-                    "qualified": False, "toQualifier": QUAL, "rate": RATE, "payout": 0, "payoutIfQualified": 0,
+                    "placements": [], "placementCount": 0, "qualified": False, "toQualifier": QUAL,
                     "accounts": 0, "accountList": [], "lostAccounts": [], "byProduct": {}}
               for rep in ROSTER}
     acct = defaultdict(lambda: {"cases26": 0.0, "cases25": 0.0, "name": ""})
-    sku_rows = defaultdict(list)
+    last_load = None
     for row in rows:
         rep = row["Sales Rep Assigned"].strip()
+        dt = _us_date(row.get("Load Sheet Date"))
+        if dt and (not last_load or dt > last_load):
+            last_load = dt
         if rep not in by_rep:
             continue
         cust, cname = _split_num_name(row["Customer Num & Company"])
@@ -5227,47 +5233,20 @@ def build_four_loko():
         bp = d["byProduct"].setdefault(pname, {"cases26": 0.0, "cases25": 0.0})
         bp["cases26"] += c26; bp["cases25"] += c25
         a = acct[(rep, cust)]; a["name"] = cname; a["cases26"] += c26; a["cases25"] += c25
-        if pnum in FOUR_LOKO_QUAL_SKUS:
-            row["_cname"], row["_pname"], row["_dt"] = cname, pname, _us_date(row.get(date_col))
-            sku_rows[(rep, cust, pnum)].append(row)
-    for (rep, cust, pnum), krows in sku_rows.items():
-        net = sum(to_num(r[case_current]) for r in krows)
-        dated = sorted((r["_dt"] for r in krows if r["_dt"] and to_num(r[case_current]) > 0))
-        if net <= 0 or not dated:
-            continue                       # bought then fully returned: not a placement
-        first = dated[0]
-        win_start = first - datetime.timedelta(days=90)
-        months = master.get((cust, pnum), set())
-        # a master month counts when it overlaps [first-90, first-1]
-        hit = [(y, m) for (y, m) in months
-               if datetime.date(y, m, 1) <= first - datetime.timedelta(days=1)
-               and (datetime.date(y + (m == 12), m % 12 + 1, 1) - datetime.timedelta(days=1)) >= win_start]
-        # borderline: every overlapping month only partly sits inside the window
-        whole = [(y, m) for (y, m) in hit if datetime.date(y, m, 1) >= win_start]
-        entry = {"customer": krows[0]["_cname"], "product": krows[0]["_pname"], "sku": FOUR_LOKO_QUAL_SKUS[pnum],
-                 "date": first.isoformat()}
-        d = by_rep[rep]
-        if hit:
-            entry["lastBought"] = "%04d-%02d" % max(hit)
-            d["notNew"].append(entry)
-            if not whole:
-                d["borderlineCount"] += 1
-        else:
-            d["placements"].append(entry)
+    off_roster = sorted({k[0] for k in placed if k[0] not in by_rep})
+    for (rep, cust, pnum), e in placed.items():
+        if rep in by_rep:
+            by_rep[rep]["placements"].append(e)
     leaderboard = []
     for rep, d in by_rep.items():
         d["cases26"], d["cases25"] = round(d["cases26"], 1), round(d["cases25"], 1)
         d["growth"] = round(d["cases26"] - d["cases25"], 1)
         d["positive"] = d["cases26"] > d["cases25"] and d["cases26"] > 0
         d["toPositive"] = round(max(0.0, d["cases25"] - d["cases26"]), 1)
-        d["placements"].sort(key=lambda e: e["date"], reverse=True)
-        d["notNew"].sort(key=lambda e: e["date"], reverse=True)
-        d["placementCount"], d["notNewCount"] = len(d["placements"]), len(d["notNew"])
+        d["placements"].sort(key=lambda e: e["date"] or "", reverse=True)
+        d["placementCount"] = len(d["placements"])
         d["qualified"] = d["placementCount"] >= QUAL
         d["toQualifier"] = max(0, QUAL - d["placementCount"])
-        d["rate"] = RATE_POS if d["positive"] else RATE
-        d["payoutIfQualified"] = int(round(max(d["cases26"], 0) * d["rate"]))
-        d["payout"] = d["payoutIfQualified"] if d["qualified"] else 0
         mine = [v for k, v in acct.items() if k[0] == rep and (v["cases26"] or v["cases25"])]
         d["accounts"] = sum(1 for v in mine if v["cases26"] > 0)
         d["accountList"] = sorted(({"customer": v["name"], "cases26": round(v["cases26"], 1), "cases25": round(v["cases25"], 1)} for v in mine), key=lambda a: -a["cases26"])[:25]
@@ -5275,15 +5254,15 @@ def build_four_loko():
         for v in d["byProduct"].values():
             v["cases26"], v["cases25"] = round(v["cases26"], 1), round(v["cases25"], 1)
         leaderboard.append({"rep": rep, "cases26": d["cases26"], "growth": d["growth"], "placements": d["placementCount"],
-                            "positive": d["positive"], "qualified": d["qualified"], "payout": d["payout"]})
+                            "positive": d["positive"], "qualified": d["qualified"]})
     leaderboard.sort(key=lambda x: (-x["placements"], -x["growth"]))
     for i, e in enumerate(leaderboard):
         e["rank"] = i + 1
     return {"byRep": by_rep, "leaderboard": leaderboard,
             "periodStart": OCT_START.isoformat(), "periodEnd": datetime.date(2026, 11, 30).isoformat(),
-            "meta": {"qualifier": QUAL, "rates": {"case": RATE, "casePositive": RATE_POS}, "qualSkus": FOUR_LOKO_QUAL_SKUS,
+            "meta": {"qualifier": QUAL, "qualSkus": FOUR_LOKO_QUAL_SKUS, "casesThrough": last_load.isoformat() if last_load else None,
                      "baseWindow": case_base.split("  ")[-1].strip(), "currentWindow": case_current.split("  ")[-1].strip(),
-                     "lookbackDays": 90, "lookbackGrain": "month (Rolling Distribution master) + same-window loads in the export"}}
+                     "placeWindow": cur_w, "placeBaseWindow": base_w, "offRoster": off_roster}}
 
 
 def main():
@@ -5354,10 +5333,10 @@ def main():
     print(f"industrial_arts: {sum(d['openedCount'] for d in ia['byRep'].values())} accounts opened, {sum(d['progressCount'] for d in ia['byRep'].values())} in progress, "
           f"{sum(d['draftQualifiedCount'] for d in ia['byRep'].values())} draft | " + ", ".join(f"{e['rep']} {e['opened']}+{e['skus']}sku" for e in ia['leaderboard'][:6] if e['skus']))
     fl = data_10["four_loko"]
-    print(f"four_loko: {sum(d['cases26'] for d in fl['byRep'].values()):.0f} vs {sum(d['cases25'] for d in fl['byRep'].values()):.0f} cases LY, "
-          f"{sum(d['placementCount'] for d in fl['byRep'].values())} new Sour Apple/USA placements ({sum(d['notNewCount'] for d in fl['byRep'].values())} bought within 90 days, "
-          f"{sum(d['borderlineCount'] for d in fl['byRep'].values())} borderline), {sum(1 for d in fl['byRep'].values() if d['qualified'])} reps at 5+, "
-          f"{sum(1 for d in fl['byRep'].values() if d['positive'])} reps positive | " + ", ".join(f"{e['rep']} {e['placements']}pl/{e['growth']:+.0f}" for e in fl['leaderboard'][:6]))
+    print(f"four_loko: {sum(d['cases26'] for d in fl['byRep'].values()):.0f} vs {sum(d['cases25'] for d in fl['byRep'].values()):.0f} cases LY (loads through {fl['meta']['casesThrough']}), "
+          f"{sum(d['placementCount'] for d in fl['byRep'].values())} new Sour Apple/USA placements, {sum(1 for d in fl['byRep'].values() if d['qualified'])} reps at 5+, "
+          f"{sum(1 for d in fl['byRep'].values() if d['positive'])} reps positive | " + ", ".join(f"{e['rep']} {e['placements']}pl/{e['growth']:+.0f}" for e in fl['leaderboard'][:6])
+          + (f" | off roster: {fl['meta']['offRoster']}" if fl['meta']['offRoster'] else ""))
     _cs = data_10["sam_adams_cold_snap"]
     print(f"sam_adams_cold_snap (Boston Beer {_cs['meta']['officialAsOf']}): house {_cs['house']}, off roster {_cs['meta']['offRoster']}")
     print(f"mabi_single_serve: {sum(d['totalPods'] for d in ss['byRep'].values())} single-serve PODs, "

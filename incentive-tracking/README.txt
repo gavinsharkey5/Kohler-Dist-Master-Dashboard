@@ -334,19 +334,23 @@ Refresh = save the new export over the same name, python3 generate.py.
                       +$250 (counted when those months exist). ASSUMED: a
                       new brand, so every account is a non-buy and every
                       SKU is core (the deck names no core list).
-  four_loko           BUILT 2026-10-07 (data/four_loko.csv, "RDE FOUR LOKO
-                      VOLUME REWARDS OCT-NOV 2026"; build_four_loko()). A
-                      placement = Sour Apple (7925) or USA (7935) at one
-                      account (rep, customer, SKU) with net cases > 0 and no
-                      purchase of that SKU in the 90 days before its first
-                      load sheet; 5 unlock the payout. Once unlocked: $0.50 a
-                      case on all Four Loko cases Oct 1-Nov 30, $1.00 when the
-                      rep's route is above the same window of 2025. The export
-                      has cases only, so the 90-day look-back reads the Rolling
-                      Distribution master (MONTHLY: any month overlapping the
-                      90 days counts as a buy -- conservative) plus earlier
-                      loads in the export. ASSUMED: all cases pay once
-                      qualified, not just those after the 5th placement.
+                      GAVIN 2026-10-07: off-premise tracks ALL 16oz, 19.2oz and 12oz
+                      packages (IA_OFF_SIZES); on-premise is ONLY Wrench draft
+                      (Industrial Arts Wrench ... keg / bbl; Pocket Wrench is a
+                      different beer and no longer counts).
+  four_loko           BUILT 2026-10-07, NO PAYMENTS (Gavin: just cases vs last year and
+                      new placements). CASES = data/four_loko.csv (RDE "FOUR LOKO
+                      VOLUME REWARDS OCT-NOV", Cases 10/1-11/30/2026 vs 2025, net
+                      of returns; loads through the date printed by generate.py).
+                      NEW PLACEMENTS = RDE's own flags: data/four_loko_new_placements.csv
+                      (Sour Apple 7925 + USA 7935 only; "Placements 10/1-11/30/2026" vs
+                      "Placements 7/1/2026-9/30/2026") -- a (rep, customer, SKU) with a
+                      current placement and NONE in 7/1-9/30. data/four_loko_placements_all.csv
+                      (every SKU, same two columns) is the cross-check: generate.py
+                      stops if its Sour Apple / USA rows disagree. NOTE: the file Gavin
+                      named "VOLUME_2" carries placements, not cases, so the cases
+                      still come from the first export -- re-pull it for fresher volume.
+                      The deck's 5-placement qualifier shows as progress only.
   LAGUNITAS (Gavin, 2026-10-07): the whole program is NEW placements -- every
                       "POD" in the deck means a NEW POD (SKU at an account with
                       no placement the same window last year). The builder

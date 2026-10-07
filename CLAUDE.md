@@ -2819,11 +2819,12 @@ The October INCENTIVE sam_adams_cold_snap still reads Boston Beer's files. on-pr
 ## October incentives refreshed + Four Loko built (2026-10-07)
 
 Gavin sent new RDE exports (through Oct 9) for MABI single serve, Lagunitas Sprint, Famosa, Industrial Arts
-and, for the first time, Four Loko Volume Rewards; all saved under incentive-tracking/data/ and
-`python3 incentive-tracking/generate.py` re-run (program_data.js + rep copies rebuilt). Gavin: Lagunitas is
-all NEW placements -- "POD" always means new POD (the builder already counts it that way). `build_four_loko()`
-is the new builder (see the README OCTOBER section for rules): 5 new Sour Apple / USA placements (90-day
-non-buy, read from the monthly Rolling Distribution master, conservative) unlock $0.50 a case, $1.00 if the
-route beats Oct-Nov 2025. Cache tags programs.js / program_data.js 20261007z. OPEN questions put to Gavin: the
-90-day grain, whether cases before the 5th placement pay, Lagunitas rep-needs-3-PODs assumption,
-Industrial Arts "non-buy" and Southern District 1+ SKU assumptions.
+and Four Loko; saved under incentive-tracking/data/ and `python3 incentive-tracking/generate.py` re-run.
+Lagunitas is all NEW placements -- "POD" always means new POD (already how the builder counts it).
+FOUR LOKO (`build_four_loko()`): NO PAYMENTS -- cases 10/1-11/30 vs last year (four_loko.csv) and NEW
+Sour Apple / USA placements from the RDE placement exports (four_loko_new_placements.csv; current-window
+flag with none in 7/1-9/30; four_loko_placements_all.csv cross-checks it). Gavin's "volume" file carried
+placements, not cases, so cases still come from the first export. INDUSTRIAL ARTS: off-premise tracks all
+16oz / 19.2oz / 12oz packages, on-premise only Wrench draft (Pocket Wrench excluded). Gavin confirmed the
+Sam Adams draft conversion ends Oct 23 and Touchdowns & Tea ends Oct 31 (both already built that way).
+Cache tags programs.js / program_data.js 20261007zz.

@@ -159365,12 +159365,6 @@ const PROGRAM_DATA_2026_10 = {
             "hold": false
           },
           {
-            "customer": "Andiamo",
-            "bbl": 0.25,
-            "qualifies": false,
-            "hold": false
-          },
-          {
             "customer": "Side Bar",
             "bbl": 0.5,
             "qualifies": true,
@@ -159383,7 +159377,7 @@ const PROGRAM_DATA_2026_10 = {
             "hold": false
           }
         ],
-        "draftNewCount": 8,
+        "draftNewCount": 7,
         "draftQualifiedCount": 5,
         "draftHoldCount": 0,
         "openedPayout": 0,
@@ -173767,14 +173761,8 @@ const PROGRAM_DATA_2026_10 = {
         "toPositive": 0.0,
         "placements": [],
         "placementCount": 0,
-        "notNew": [],
-        "notNewCount": 0,
-        "borderlineCount": 0,
         "qualified": false,
         "toQualifier": 5,
-        "rate": 0.5,
-        "payout": 0,
-        "payoutIfQualified": 0,
         "accounts": 0,
         "accountList": [],
         "lostAccounts": [],
@@ -173795,50 +173783,8 @@ const PROGRAM_DATA_2026_10 = {
           }
         ],
         "placementCount": 1,
-        "notNew": [
-          {
-            "customer": "Midland Dairy (A)",
-            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
-            "sku": "Sour Apple",
-            "date": "2026-10-07",
-            "lastBought": "2026-07"
-          },
-          {
-            "customer": "Midland Dairy (A)",
-            "product": "Four Loko 14% USA 1/12/23.5 oz Can",
-            "sku": "USA",
-            "date": "2026-10-07",
-            "lastBought": "2026-07"
-          },
-          {
-            "customer": "Golden Beer & Liquor",
-            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
-            "sku": "Sour Apple",
-            "date": "2026-10-06",
-            "lastBought": "2026-07"
-          },
-          {
-            "customer": "Super K Food (A) Store",
-            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
-            "sku": "Sour Apple",
-            "date": "2026-10-02",
-            "lastBought": "2026-07"
-          },
-          {
-            "customer": "Eddy's Wine & Liq",
-            "product": "Four Loko 14% USA 1/12/23.5 oz Can",
-            "sku": "USA",
-            "date": "2026-10-02",
-            "lastBought": "2026-09"
-          }
-        ],
-        "notNewCount": 5,
-        "borderlineCount": 4,
         "qualified": false,
         "toQualifier": 4,
-        "rate": 0.5,
-        "payout": 0,
-        "payoutIfQualified": 14,
         "accounts": 5,
         "accountList": [
           {
@@ -174057,14 +174003,8 @@ const PROGRAM_DATA_2026_10 = {
         "toPositive": 0.0,
         "placements": [],
         "placementCount": 0,
-        "notNew": [],
-        "notNewCount": 0,
-        "borderlineCount": 0,
         "qualified": false,
         "toQualifier": 5,
-        "rate": 0.5,
-        "payout": 0,
-        "payoutIfQualified": 0,
         "accounts": 0,
         "accountList": [],
         "lostAccounts": [],
@@ -174078,14 +174018,8 @@ const PROGRAM_DATA_2026_10 = {
         "toPositive": 0.0,
         "placements": [],
         "placementCount": 0,
-        "notNew": [],
-        "notNewCount": 0,
-        "borderlineCount": 0,
         "qualified": false,
         "toQualifier": 5,
-        "rate": 0.5,
-        "payout": 0,
-        "payoutIfQualified": 0,
         "accounts": 0,
         "accountList": [],
         "lostAccounts": [],
@@ -174099,22 +174033,8 @@ const PROGRAM_DATA_2026_10 = {
         "toPositive": 52.0,
         "placements": [],
         "placementCount": 0,
-        "notNew": [
-          {
-            "customer": "Highland Wine&Liquor Inc",
-            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
-            "sku": "Sour Apple",
-            "date": "2026-10-09",
-            "lastBought": "2026-07"
-          }
-        ],
-        "notNewCount": 1,
-        "borderlineCount": 1,
         "qualified": false,
         "toQualifier": 5,
-        "rate": 0.5,
-        "payout": 0,
-        "payoutIfQualified": 4,
         "accounts": 2,
         "accountList": [
           {
@@ -174280,14 +174200,8 @@ const PROGRAM_DATA_2026_10 = {
         "toPositive": 0.0,
         "placements": [],
         "placementCount": 0,
-        "notNew": [],
-        "notNewCount": 0,
-        "borderlineCount": 0,
         "qualified": false,
         "toQualifier": 5,
-        "rate": 0.5,
-        "payout": 0,
-        "payoutIfQualified": 0,
         "accounts": 0,
         "accountList": [],
         "lostAccounts": [],
@@ -174301,14 +174215,8 @@ const PROGRAM_DATA_2026_10 = {
         "toPositive": 113.0,
         "placements": [],
         "placementCount": 0,
-        "notNew": [],
-        "notNewCount": 0,
-        "borderlineCount": 0,
         "qualified": false,
         "toQualifier": 5,
-        "rate": 0.5,
-        "payout": 0,
-        "payoutIfQualified": 4,
         "accounts": 2,
         "accountList": [
           {
@@ -174526,29 +174434,8 @@ const PROGRAM_DATA_2026_10 = {
         "toPositive": 71.0,
         "placements": [],
         "placementCount": 0,
-        "notNew": [
-          {
-            "customer": "Banner Delicatessen",
-            "product": "Four Loko 14% USA 1/12/23.5 oz Can",
-            "sku": "USA",
-            "date": "2026-10-01",
-            "lastBought": "2026-07"
-          },
-          {
-            "customer": "Banner Delicatessen",
-            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
-            "sku": "Sour Apple",
-            "date": "2026-10-01",
-            "lastBought": "2026-07"
-          }
-        ],
-        "notNewCount": 2,
-        "borderlineCount": 2,
         "qualified": false,
         "toQualifier": 5,
-        "rate": 0.5,
-        "payout": 0,
-        "payoutIfQualified": 10,
         "accounts": 2,
         "accountList": [
           {
@@ -174714,99 +174601,8 @@ const PROGRAM_DATA_2026_10 = {
           }
         ],
         "placementCount": 1,
-        "notNew": [
-          {
-            "customer": "Bottle & Cork",
-            "product": "Four Loko 14% USA 1/12/23.5 oz Can",
-            "sku": "USA",
-            "date": "2026-10-07",
-            "lastBought": "2026-09"
-          },
-          {
-            "customer": "Bottle & Cork",
-            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
-            "sku": "Sour Apple",
-            "date": "2026-10-07",
-            "lastBought": "2026-09"
-          },
-          {
-            "customer": "Barrel & Brew Bar & Liq",
-            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
-            "sku": "Sour Apple",
-            "date": "2026-10-06",
-            "lastBought": "2026-08"
-          },
-          {
-            "customer": "George's Liq",
-            "product": "Four Loko 14% USA 1/12/23.5 oz Can",
-            "sku": "USA",
-            "date": "2026-10-06",
-            "lastBought": "2026-09"
-          },
-          {
-            "customer": "Hackensack Liquors",
-            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
-            "sku": "Sour Apple",
-            "date": "2026-10-06",
-            "lastBought": "2026-08"
-          },
-          {
-            "customer": "Hackensack Liquors",
-            "product": "Four Loko 14% USA 1/12/23.5 oz Can",
-            "sku": "USA",
-            "date": "2026-10-06",
-            "lastBought": "2026-08"
-          },
-          {
-            "customer": "River Edge Wine & Liquor",
-            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
-            "sku": "Sour Apple",
-            "date": "2026-10-06",
-            "lastBought": "2026-08"
-          },
-          {
-            "customer": "H & R Disc. Liq (P)",
-            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
-            "sku": "Sour Apple",
-            "date": "2026-10-02",
-            "lastBought": "2026-07"
-          },
-          {
-            "customer": "Simple Simon's (Z)",
-            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
-            "sku": "Sour Apple",
-            "date": "2026-10-02",
-            "lastBought": "2026-09"
-          },
-          {
-            "customer": "Simple Simon's (Z)",
-            "product": "Four Loko 14% USA 1/12/23.5 oz Can",
-            "sku": "USA",
-            "date": "2026-10-02",
-            "lastBought": "2026-09"
-          },
-          {
-            "customer": "G & G Liquors & Bar",
-            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
-            "sku": "Sour Apple",
-            "date": "2026-10-01",
-            "lastBought": "2026-09"
-          },
-          {
-            "customer": "W E Beverage (A)",
-            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
-            "sku": "Sour Apple",
-            "date": "2026-10-01",
-            "lastBought": "2026-08"
-          }
-        ],
-        "notNewCount": 12,
-        "borderlineCount": 1,
         "qualified": false,
         "toQualifier": 4,
-        "rate": 0.5,
-        "payout": 0,
-        "payoutIfQualified": 26,
         "accounts": 10,
         "accountList": [
           {
@@ -174997,34 +174793,20 @@ const PROGRAM_DATA_2026_10 = {
         "placements": [
           {
             "customer": "Liquor Gallery (Paterson)",
-            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
-            "sku": "Sour Apple",
+            "product": "Four Loko 14% USA 1/12/23.5 oz Can",
+            "sku": "USA",
             "date": "2026-10-06"
           },
           {
             "customer": "Liquor Gallery (Paterson)",
-            "product": "Four Loko 14% USA 1/12/23.5 oz Can",
-            "sku": "USA",
+            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
+            "sku": "Sour Apple",
             "date": "2026-10-06"
           }
         ],
         "placementCount": 2,
-        "notNew": [
-          {
-            "customer": "J & B Bar & Liq (Z)",
-            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
-            "sku": "Sour Apple",
-            "date": "2026-10-02",
-            "lastBought": "2026-09"
-          }
-        ],
-        "notNewCount": 1,
-        "borderlineCount": 0,
         "qualified": false,
         "toQualifier": 3,
-        "rate": 0.5,
-        "payout": 0,
-        "payoutIfQualified": 20,
         "accounts": 4,
         "accountList": [
           {
@@ -175254,67 +175036,32 @@ const PROGRAM_DATA_2026_10 = {
           },
           {
             "customer": "Corks & Bottles (P)",
-            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
-            "sku": "Sour Apple",
+            "product": "Four Loko 14% USA 1/12/23.5 oz Can",
+            "sku": "USA",
             "date": "2026-10-06"
           },
           {
             "customer": "Corks & Bottles (P)",
-            "product": "Four Loko 14% USA 1/12/23.5 oz Can",
-            "sku": "USA",
+            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
+            "sku": "Sour Apple",
             "date": "2026-10-06"
           },
           {
             "customer": "Boulevard W & L (P)",
-            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
-            "sku": "Sour Apple",
+            "product": "Four Loko 14% USA 1/12/23.5 oz Can",
+            "sku": "USA",
             "date": "2026-10-01"
           },
           {
             "customer": "Boulevard W & L (P)",
-            "product": "Four Loko 14% USA 1/12/23.5 oz Can",
-            "sku": "USA",
+            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
+            "sku": "Sour Apple",
             "date": "2026-10-01"
           }
         ],
         "placementCount": 5,
-        "notNew": [
-          {
-            "customer": "STOP & GO LIQUORS",
-            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
-            "sku": "Sour Apple",
-            "date": "2026-10-02",
-            "lastBought": "2026-07"
-          },
-          {
-            "customer": "WNY Liquors",
-            "product": "Four Loko 14% USA 1/12/23.5 oz Can",
-            "sku": "USA",
-            "date": "2026-10-02",
-            "lastBought": "2026-09"
-          },
-          {
-            "customer": "WNY Liquors",
-            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
-            "sku": "Sour Apple",
-            "date": "2026-10-02",
-            "lastBought": "2026-09"
-          },
-          {
-            "customer": "Union Liquors",
-            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
-            "sku": "Sour Apple",
-            "date": "2026-10-02",
-            "lastBought": "2026-08"
-          }
-        ],
-        "notNewCount": 4,
-        "borderlineCount": 1,
         "qualified": true,
         "toQualifier": 0,
-        "rate": 0.5,
-        "payout": 32,
-        "payoutIfQualified": 32,
         "accounts": 10,
         "accountList": [
           {
@@ -175576,14 +175323,8 @@ const PROGRAM_DATA_2026_10 = {
         "toPositive": 0.0,
         "placements": [],
         "placementCount": 0,
-        "notNew": [],
-        "notNewCount": 0,
-        "borderlineCount": 0,
         "qualified": false,
         "toQualifier": 5,
-        "rate": 0.5,
-        "payout": 0,
-        "payoutIfQualified": 0,
         "accounts": 0,
         "accountList": [],
         "lostAccounts": [],
@@ -175597,29 +175338,8 @@ const PROGRAM_DATA_2026_10 = {
         "toPositive": 1007.0,
         "placements": [],
         "placementCount": 0,
-        "notNew": [
-          {
-            "customer": "Jersey City Buy Rite (A)",
-            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
-            "sku": "Sour Apple",
-            "date": "2026-10-06",
-            "lastBought": "2026-08"
-          },
-          {
-            "customer": "Jersey City Buy Rite (A)",
-            "product": "Four Loko 14% USA 1/12/23.5 oz Can",
-            "sku": "USA",
-            "date": "2026-10-06",
-            "lastBought": "2026-08"
-          }
-        ],
-        "notNewCount": 2,
-        "borderlineCount": 0,
         "qualified": false,
         "toQualifier": 5,
-        "rate": 0.5,
-        "payout": 0,
-        "payoutIfQualified": 61,
         "accounts": 2,
         "accountList": [
           {
@@ -175745,14 +175465,8 @@ const PROGRAM_DATA_2026_10 = {
           }
         ],
         "placementCount": 1,
-        "notNew": [],
-        "notNewCount": 0,
-        "borderlineCount": 0,
         "qualified": false,
         "toQualifier": 4,
-        "rate": 0.5,
-        "payout": 0,
-        "payoutIfQualified": 4,
         "accounts": 2,
         "accountList": [
           {
@@ -175907,29 +175621,8 @@ const PROGRAM_DATA_2026_10 = {
         "toPositive": 91.0,
         "placements": [],
         "placementCount": 0,
-        "notNew": [
-          {
-            "customer": "Hamburg Liquor",
-            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
-            "sku": "Sour Apple",
-            "date": "2026-10-07",
-            "lastBought": "2026-09"
-          },
-          {
-            "customer": "Patricks Wine Barn",
-            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
-            "sku": "Sour Apple",
-            "date": "2026-10-01",
-            "lastBought": "2026-07"
-          }
-        ],
-        "notNewCount": 2,
-        "borderlineCount": 1,
         "qualified": false,
         "toQualifier": 5,
-        "rate": 0.5,
-        "payout": 0,
-        "payoutIfQualified": 11,
         "accounts": 5,
         "accountList": [
           {
@@ -176104,22 +175797,8 @@ const PROGRAM_DATA_2026_10 = {
         "toPositive": 87.0,
         "placements": [],
         "placementCount": 0,
-        "notNew": [
-          {
-            "customer": "Lexington Liquors (Z)",
-            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
-            "sku": "Sour Apple",
-            "date": "2026-10-05",
-            "lastBought": "2026-09"
-          }
-        ],
-        "notNewCount": 1,
-        "borderlineCount": 0,
         "qualified": false,
         "toQualifier": 5,
-        "rate": 0.5,
-        "payout": 0,
-        "payoutIfQualified": 2,
         "accounts": 1,
         "accountList": [
           {
@@ -176301,14 +175980,8 @@ const PROGRAM_DATA_2026_10 = {
         "toPositive": 0.0,
         "placements": [],
         "placementCount": 0,
-        "notNew": [],
-        "notNewCount": 0,
-        "borderlineCount": 0,
         "qualified": false,
         "toQualifier": 5,
-        "rate": 0.5,
-        "payout": 0,
-        "payoutIfQualified": 0,
         "accounts": 0,
         "accountList": [],
         "lostAccounts": [],
@@ -176322,29 +175995,8 @@ const PROGRAM_DATA_2026_10 = {
         "toPositive": 41.0,
         "placements": [],
         "placementCount": 0,
-        "notNew": [
-          {
-            "customer": "Wharton Liquor Store",
-            "product": "Four Loko 14% USA 1/12/23.5 oz Can",
-            "sku": "USA",
-            "date": "2026-10-01",
-            "lastBought": "2026-09"
-          },
-          {
-            "customer": "Wharton Liquor Store",
-            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
-            "sku": "Sour Apple",
-            "date": "2026-10-01",
-            "lastBought": "2026-09"
-          }
-        ],
-        "notNewCount": 2,
-        "borderlineCount": 0,
         "qualified": false,
         "toQualifier": 5,
-        "rate": 0.5,
-        "payout": 0,
-        "payoutIfQualified": 5,
         "accounts": 1,
         "accountList": [
           {
@@ -176477,29 +176129,8 @@ const PROGRAM_DATA_2026_10 = {
           }
         ],
         "placementCount": 2,
-        "notNew": [
-          {
-            "customer": "Archies (P)",
-            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
-            "sku": "Sour Apple",
-            "date": "2026-10-08",
-            "lastBought": "2026-07"
-          },
-          {
-            "customer": "Capri Deli&Liq (P)",
-            "product": "Four Loko 14% USA 1/12/23.5 oz Can",
-            "sku": "USA",
-            "date": "2026-10-07",
-            "lastBought": "2026-09"
-          }
-        ],
-        "notNewCount": 2,
-        "borderlineCount": 1,
         "qualified": false,
         "toQualifier": 3,
-        "rate": 0.5,
-        "payout": 0,
-        "payoutIfQualified": 14,
         "accounts": 4,
         "accountList": [
           {
@@ -176673,14 +176304,8 @@ const PROGRAM_DATA_2026_10 = {
         "toPositive": 25.0,
         "placements": [],
         "placementCount": 0,
-        "notNew": [],
-        "notNewCount": 0,
-        "borderlineCount": 0,
         "qualified": false,
         "toQualifier": 5,
-        "rate": 0.5,
-        "payout": 0,
-        "payoutIfQualified": 0,
         "accounts": 0,
         "accountList": [
           {
@@ -176748,22 +176373,8 @@ const PROGRAM_DATA_2026_10 = {
         "toPositive": 129.0,
         "placements": [],
         "placementCount": 0,
-        "notNew": [
-          {
-            "customer": "Lincoln Park Fine Wines & Spirits",
-            "product": "Four Loko 14% USA 1/12/23.5 oz Can",
-            "sku": "USA",
-            "date": "2026-10-02",
-            "lastBought": "2026-07"
-          }
-        ],
-        "notNewCount": 1,
-        "borderlineCount": 1,
         "qualified": false,
         "toQualifier": 5,
-        "rate": 0.5,
-        "payout": 0,
-        "payoutIfQualified": 2,
         "accounts": 1,
         "accountList": [
           {
@@ -176895,14 +176506,8 @@ const PROGRAM_DATA_2026_10 = {
         "toPositive": 0.0,
         "placements": [],
         "placementCount": 0,
-        "notNew": [],
-        "notNewCount": 0,
-        "borderlineCount": 0,
         "qualified": false,
         "toQualifier": 5,
-        "rate": 0.5,
-        "payout": 0,
-        "payoutIfQualified": 0,
         "accounts": 0,
         "accountList": [],
         "lostAccounts": [],
@@ -176923,14 +176528,8 @@ const PROGRAM_DATA_2026_10 = {
           }
         ],
         "placementCount": 1,
-        "notNew": [],
-        "notNewCount": 0,
-        "borderlineCount": 0,
         "qualified": false,
         "toQualifier": 4,
-        "rate": 0.5,
-        "payout": 0,
-        "payoutIfQualified": 20,
         "accounts": 4,
         "accountList": [
           {
@@ -177122,14 +176721,8 @@ const PROGRAM_DATA_2026_10 = {
         "toPositive": 0.0,
         "placements": [],
         "placementCount": 0,
-        "notNew": [],
-        "notNewCount": 0,
-        "borderlineCount": 0,
         "qualified": false,
         "toQualifier": 5,
-        "rate": 0.5,
-        "payout": 0,
-        "payoutIfQualified": 0,
         "accounts": 0,
         "accountList": [],
         "lostAccounts": [],
@@ -177143,22 +176736,8 @@ const PROGRAM_DATA_2026_10 = {
         "toPositive": 75.0,
         "placements": [],
         "placementCount": 0,
-        "notNew": [
-          {
-            "customer": "Food Universe Marketplace",
-            "product": "Four Loko 14% Sour Apple 1/12/23.5 oz Can",
-            "sku": "Sour Apple",
-            "date": "2026-10-02",
-            "lastBought": "2026-08"
-          }
-        ],
-        "notNewCount": 1,
-        "borderlineCount": 0,
         "qualified": false,
         "toQualifier": 5,
-        "rate": 0.5,
-        "payout": 0,
-        "payoutIfQualified": 4,
         "accounts": 3,
         "accountList": [
           {
@@ -177313,14 +176892,8 @@ const PROGRAM_DATA_2026_10 = {
         "toPositive": 0.0,
         "placements": [],
         "placementCount": 0,
-        "notNew": [],
-        "notNewCount": 0,
-        "borderlineCount": 0,
         "qualified": false,
         "toQualifier": 5,
-        "rate": 0.5,
-        "payout": 0,
-        "payoutIfQualified": 0,
         "accounts": 0,
         "accountList": [],
         "lostAccounts": [],
@@ -177341,22 +176914,8 @@ const PROGRAM_DATA_2026_10 = {
           }
         ],
         "placementCount": 1,
-        "notNew": [
-          {
-            "customer": "Beverage Barn (A)",
-            "product": "Four Loko 14% USA 1/12/23.5 oz Can",
-            "sku": "USA",
-            "date": "2026-10-02",
-            "lastBought": "2026-09"
-          }
-        ],
-        "notNewCount": 1,
-        "borderlineCount": 0,
         "qualified": false,
         "toQualifier": 4,
-        "rate": 1.0,
-        "payout": 0,
-        "payoutIfQualified": 26,
         "accounts": 1,
         "accountList": [
           {
@@ -177425,7 +176984,6 @@ const PROGRAM_DATA_2026_10 = {
         "placements": 5,
         "positive": false,
         "qualified": true,
-        "payout": 32,
         "rank": 1
       },
       {
@@ -177435,7 +176993,6 @@ const PROGRAM_DATA_2026_10 = {
         "placements": 2,
         "positive": false,
         "qualified": false,
-        "payout": 0,
         "rank": 2
       },
       {
@@ -177445,7 +177002,6 @@ const PROGRAM_DATA_2026_10 = {
         "placements": 2,
         "positive": false,
         "qualified": false,
-        "payout": 0,
         "rank": 3
       },
       {
@@ -177455,7 +177011,6 @@ const PROGRAM_DATA_2026_10 = {
         "placements": 1,
         "positive": true,
         "qualified": false,
-        "payout": 0,
         "rank": 4
       },
       {
@@ -177465,7 +177020,6 @@ const PROGRAM_DATA_2026_10 = {
         "placements": 1,
         "positive": false,
         "qualified": false,
-        "payout": 0,
         "rank": 5
       },
       {
@@ -177475,7 +177029,6 @@ const PROGRAM_DATA_2026_10 = {
         "placements": 1,
         "positive": false,
         "qualified": false,
-        "payout": 0,
         "rank": 6
       },
       {
@@ -177485,7 +177038,6 @@ const PROGRAM_DATA_2026_10 = {
         "placements": 1,
         "positive": false,
         "qualified": false,
-        "payout": 0,
         "rank": 7
       },
       {
@@ -177495,7 +177047,6 @@ const PROGRAM_DATA_2026_10 = {
         "placements": 1,
         "positive": false,
         "qualified": false,
-        "payout": 0,
         "rank": 8
       },
       {
@@ -177505,7 +177056,6 @@ const PROGRAM_DATA_2026_10 = {
         "placements": 0,
         "positive": false,
         "qualified": false,
-        "payout": 0,
         "rank": 9
       },
       {
@@ -177515,7 +177065,6 @@ const PROGRAM_DATA_2026_10 = {
         "placements": 0,
         "positive": false,
         "qualified": false,
-        "payout": 0,
         "rank": 10
       },
       {
@@ -177525,7 +177074,6 @@ const PROGRAM_DATA_2026_10 = {
         "placements": 0,
         "positive": false,
         "qualified": false,
-        "payout": 0,
         "rank": 11
       },
       {
@@ -177535,7 +177083,6 @@ const PROGRAM_DATA_2026_10 = {
         "placements": 0,
         "positive": false,
         "qualified": false,
-        "payout": 0,
         "rank": 12
       },
       {
@@ -177545,7 +177092,6 @@ const PROGRAM_DATA_2026_10 = {
         "placements": 0,
         "positive": false,
         "qualified": false,
-        "payout": 0,
         "rank": 13
       },
       {
@@ -177555,7 +177101,6 @@ const PROGRAM_DATA_2026_10 = {
         "placements": 0,
         "positive": false,
         "qualified": false,
-        "payout": 0,
         "rank": 14
       },
       {
@@ -177565,7 +177110,6 @@ const PROGRAM_DATA_2026_10 = {
         "placements": 0,
         "positive": false,
         "qualified": false,
-        "payout": 0,
         "rank": 15
       },
       {
@@ -177575,7 +177119,6 @@ const PROGRAM_DATA_2026_10 = {
         "placements": 0,
         "positive": false,
         "qualified": false,
-        "payout": 0,
         "rank": 16
       },
       {
@@ -177585,7 +177128,6 @@ const PROGRAM_DATA_2026_10 = {
         "placements": 0,
         "positive": false,
         "qualified": false,
-        "payout": 0,
         "rank": 17
       },
       {
@@ -177595,7 +177137,6 @@ const PROGRAM_DATA_2026_10 = {
         "placements": 0,
         "positive": false,
         "qualified": false,
-        "payout": 0,
         "rank": 18
       },
       {
@@ -177605,7 +177146,6 @@ const PROGRAM_DATA_2026_10 = {
         "placements": 0,
         "positive": false,
         "qualified": false,
-        "payout": 0,
         "rank": 19
       },
       {
@@ -177615,7 +177155,6 @@ const PROGRAM_DATA_2026_10 = {
         "placements": 0,
         "positive": false,
         "qualified": false,
-        "payout": 0,
         "rank": 20
       },
       {
@@ -177625,7 +177164,6 @@ const PROGRAM_DATA_2026_10 = {
         "placements": 0,
         "positive": false,
         "qualified": false,
-        "payout": 0,
         "rank": 21
       },
       {
@@ -177635,7 +177173,6 @@ const PROGRAM_DATA_2026_10 = {
         "placements": 0,
         "positive": false,
         "qualified": false,
-        "payout": 0,
         "rank": 22
       },
       {
@@ -177645,7 +177182,6 @@ const PROGRAM_DATA_2026_10 = {
         "placements": 0,
         "positive": false,
         "qualified": false,
-        "payout": 0,
         "rank": 23
       },
       {
@@ -177655,7 +177191,6 @@ const PROGRAM_DATA_2026_10 = {
         "placements": 0,
         "positive": false,
         "qualified": false,
-        "payout": 0,
         "rank": 24
       },
       {
@@ -177665,7 +177200,6 @@ const PROGRAM_DATA_2026_10 = {
         "placements": 0,
         "positive": false,
         "qualified": false,
-        "payout": 0,
         "rank": 25
       },
       {
@@ -177675,7 +177209,6 @@ const PROGRAM_DATA_2026_10 = {
         "placements": 0,
         "positive": false,
         "qualified": false,
-        "payout": 0,
         "rank": 26
       },
       {
@@ -177685,7 +177218,6 @@ const PROGRAM_DATA_2026_10 = {
         "placements": 0,
         "positive": false,
         "qualified": false,
-        "payout": 0,
         "rank": 27
       }
     ],
@@ -177693,18 +177225,16 @@ const PROGRAM_DATA_2026_10 = {
     "periodEnd": "2026-11-30",
     "meta": {
       "qualifier": 5,
-      "rates": {
-        "case": 0.5,
-        "casePositive": 1.0
-      },
       "qualSkus": {
         "7925": "Sour Apple",
         "7935": "USA"
       },
+      "casesThrough": "2026-10-09",
       "baseWindow": "10/1/2025 - 11/30/2025",
       "currentWindow": "10/1/2026 - 11/30/2026",
-      "lookbackDays": 90,
-      "lookbackGrain": "month (Rolling Distribution master) + same-window loads in the export"
+      "placeWindow": "10/1/2026 - 11/30/2026",
+      "placeBaseWindow": "7/1/2026 - 9/30/2026",
+      "offRoster": []
     }
   },
   "sam_adams_cold_snap": {
@@ -178488,5 +178018,5 @@ const PROGRAM_DATA_2026_10 = {
     }
   }
 };
-const PROGRAM_DATA_REFRESHED = "Oct 7, 2026, 3:26 PM ET";
-const PROGRAM_DATA_REFRESHED_AT = "2026-10-07T19:26:08Z";
+const PROGRAM_DATA_REFRESHED = "Oct 7, 2026, 3:44 PM ET";
+const PROGRAM_DATA_REFRESHED_AT = "2026-10-07T19:44:35Z";
