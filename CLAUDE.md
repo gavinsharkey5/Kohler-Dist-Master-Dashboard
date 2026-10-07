@@ -2714,3 +2714,18 @@ cbhead_link.mjs (manager card click + rep card link -> leaderboard, 390 / 1366, 
 Third follow-up (same day, Gavin): the Carbliss program card has NO title line either ("Carbliss Buying Accounts /
 Aug 1 – Oct 31, 2026" was redundant) -- it opens on "Team Goal: 331 Buyers" and the tiles; the link's aria-label
 carries the program name and period. guided.js / guided.css 20261007u.
+
+## Incentives page has no MPOs; MPO trackers open By Program (2026-10-07)
+
+Gavin: "remove the mpos from the incentive tab; default view for on and off premise MPO = by program."
+HUB (hub.js 20261007s): `tabbar()` lists only Incentives (one tab = no bar); `screenRep()` turns any
+MPO / mixed category (cat=off|on|mpo|all, old links included) into the Incentives page; Program View is
+Incentives only (`state.filters.type` forced to 'inc', the Type filter is gone, exports likewise:
+`programsForExport`). MPO program SCREENS still open by deep link -- the MPO cards' "View Eligible
+Accounts" -> hub workspace (Back returns to the tracker via ret= / fallbackBack). The picker copy says
+"incentives" only. MPO TRACKERS (guided.js 20261007v): with no rep / program / view in the link, EVERY
+manager -- DMs included (replaces the 2026-09-29 "a DM starts by rep" rule) -- opens on View by Program;
+the remembered view is no longer restored. A link that names a rep or program still wins; a signed-in rep
+(or a manager previewing one) stays pinned to their own page. Tests (scratchpad): nompo_test.mjs; updated
+hubonly_test, mgr_desktop, elig_trip_test (hub-tab entry removed), dm_test (DM opens By Program, By Rep
+picker is the team), export_test (no Type filter).

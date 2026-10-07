@@ -279,6 +279,9 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-10-07 **Incentives page is incentives only; MPO trackers open By Program**: the
+  hub lost its On/Off-Premise MPO tabs and Program View's Type filter (MPOs live on their two
+  trackers); both MPO trackers now open on View by Program for every manager, DMs included.
 - [x] 2026-10-07 **Carbliss on-premise MPO = the Carbliss Leaderboard's program**:
   the October objective now counts the leaderboard's L90 buyers (bought Aug 1 -
   Oct 31, in the rep's own core on-premise base) instead of a separate Sep 1 -

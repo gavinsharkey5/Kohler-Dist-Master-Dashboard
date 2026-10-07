@@ -1009,7 +1009,7 @@ function screenHome(){
   return `<div class="homeview">
     <div class="home-head">
       <h1>${mgrPicker ? 'Choose a Rep' : 'Choose Your Name'}</h1>
-      <p class="home-sub">${mgrPicker ? 'Tap a name to see that rep’s incentives and MPOs.' : 'Tap your name to see your incentives and MPOs.'}</p>
+      <p class="home-sub">${mgrPicker ? 'Tap a name to see that rep’s incentives.' : 'Tap your name to see your incentives.'}</p>
       ${refreshedLine()}
     </div>
     <div id="repList" class="replist">${repListHtml()}</div>
@@ -1321,7 +1321,9 @@ function subStat(rep, sub){
 // already on the page -- no extra screen, no menu, no confirm.
 function tabbar(rep, cat){
   const cur = tabOf(cat);
-  const tabs = TABS.filter(m=>!state.only || m.key===state.only);
+  // MPOs are not on the Incentives page (Gavin, 2026-10-07): they live on the two MPO trackers, so the
+  // only tab is Incentives and the bar disappears. MPO program screens still open by deep link.
+  const tabs = TABS.filter(m=>m.key==='inc');
   if(tabs.length < 2) return '';     // one tab is not a choice (incentives-only mode, 2026-09-28)
   return `<div class="tabbar" role="tablist">${tabs.map(m=>{
     const on = m.key===cur, n = tabCount(rep, m.key);
@@ -1363,7 +1365,9 @@ function repSuppliers(rep){
 }
 /* ---- rep program list ---- */
 function screenRep(){
-  const rep = state.rep, cat = state.cat || 'all';
+  const rep = state.rep;
+  let cat = state.cat || 'inc';
+  if(!(cat==='inc' || cat.startsWith('sup:'))){ cat = 'inc'; state.cat = 'inc'; state.main = 'inc'; }
   // Incentives are one page now -- no supplier step, no program step (v11).
   if(cat==='inc') return screenRepIncentives(rep);
   const rows = sortedForRep(rep, cat);
@@ -2744,7 +2748,7 @@ function exportFilterText(f){
 function exportScopeText(){ return HUB_TEAM ? `${HUB_TEAM.dm}’s team (${ROSTER.length} reps)` : `Every rep (${ROSTER.length})`; }
 function programsForExport(onlyId){
   if(onlyId){ const p = PROGRAMS.find(x=>x.id===onlyId); return p ? [p] : []; }
-  const f = state.filters;
+  const f = Object.assign({}, state.filters, {type:'inc'});
   return PROGRAMS.filter(p=>
     (f.type==='all' || (f.type==='inc' ? p.type==='Incentive' : p.type==='MPO')) &&
     (f.chan==='all' || p.channel===f.chan || (p.channel==='both')) &&
@@ -2869,6 +2873,7 @@ function exportMenuHtml(onlyId){
   </div>`;
 }
 function screenPrograms(){
+  state.filters.type = 'inc';      // Incentives only (2026-10-07): MPOs are on their trackers
   const f = state.filters;
   const sups = [...new Set(PROGRAMS.map(p=>p.supplier))].sort((a,b)=>a.localeCompare(b));
   const months = [...new Set(PROGRAMS.map(p=>p.monthKey))].sort().reverse();
@@ -2885,7 +2890,6 @@ function screenPrograms(){
     <div class="pv-title"><h1>Program View</h1>${exportMenuHtml('')}</div>
     ${refreshedLine()}
     <div class="filters">
-      <div class="fgrp"><span class="fl">Type</span>${['all','inc','mpo'].map(v=>`<button class="fpill${f.type===v?' active':''}" data-filter="type" data-v="${v}">${v==='all'?'All':v==='inc'?'Incentives':'MPOs'}</button>`).join('')}</div>
       <div class="fgrp"><span class="fl">Channel</span>${['all','on','off'].map(v=>`<button class="fpill${f.chan===v?' active':''}" data-filter="chan" data-v="${v}">${v==='all'?'All':v==='on'?'On-Premise':'Off-Premise'}</button>`).join('')}</div>
       <div class="fgrp"><span class="fl">Supplier</span>${sel('sup', [{v:'all',l:'All Suppliers'}].concat(sups.map(s=>({v:s,l:s}))), f.sup)}</div>
       <div class="fgrp"><span class="fl">Rep</span><select class="pv-rep" id="pvRep" aria-label="Open one rep’s programs"><option value="">All Reps (${ROSTER.length})</option>${DM_GROUPS.map(g=>({dm:g.dm, reps:g.reps.filter(r=>ROSTER.includes(r))})).filter(g=>g.reps.length).map(g=>`<optgroup label="${E(g.dm)}">${g.reps.map(r=>`<option value="${E(r)}">${E(r)}</option>`).join('')}</optgroup>`).join('')}${(()=>{ const inG = new Set(DM_GROUPS.flatMap(g=>g.reps)); const o = ROSTER.filter(r=>!inG.has(r)); return o.length ? `<optgroup label="Other">${o.map(r=>`<option value="${E(r)}">${E(r)}</option>`).join('')}</optgroup>` : ''; })()}</select></div>

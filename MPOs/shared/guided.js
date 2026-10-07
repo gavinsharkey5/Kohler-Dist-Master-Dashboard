@@ -881,16 +881,11 @@ var API = {
       activeRep = s.rep || null;
       openProgram = s.program || null;
     } else {
-      var saved = restore();
-      if(saved){
-        view = saved.view==='program' ? 'program' : 'rep';
-        activeRep = saved.rep || null;
-      }
+      // Every manager (DMs included) opens on View by Program (Gavin, 2026-10-07; replaces the
+      // 2026-09-29 "a DM starts by rep" rule and the remembered view). A link that names a rep or a
+      // program still wins, and a signed-in rep is pinned to their own page by applyLock().
+      view = 'program'; activeRep = null;
     }
-    // A district manager starts BY REP (their team's picker), then drills
-    // to a rep's programs (2026-09-29, per Gavin) -- unless the link names
-    // a rep or a program. View by Program is still a tap away.
-    if(T && !activeRep && !openProgram) view = 'rep';
     // A manager sent here for ONE rep sees that rep's page and nothing else.
     if(!lockedRep() && KDH_USER && KDH_USER.role === 'manager' && s.rep){ asRep = true; view = 'rep'; openProgram = null; }
     decorateAsRep();
