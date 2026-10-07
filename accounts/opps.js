@@ -129,7 +129,7 @@ function fromRule(out, base, EG, p, o, CAT, HB, famKey, familyAllowed, a, asOf, 
     const names = ops.map(x=>x.name);
     out.list.push(Object.assign(base, common, {status: ops.some(x=>x.code==='sku') ? 'lead' : 'eligible', warm: ops.some(x=>x.code==='sku'),
       ask: names.slice(0, 3).join(', ') + (names.length>3 ? ` + ${names.length-3} more` : ''),
-      needs: `One placement per product. ${ops.length} of the ${R.products.length} qualifying products could still count here.`,
+      needs: `One ${R.requirement && R.requirement.kind==='count' ? 'new placement' : 'placement'} per product. ${ops.length} of the ${R.products.length} qualifying products could still count here.`,
       open: ops, why: ops[0].why + (ops[0].code==='sku' ? ' — the easiest add.' : '.')}));
     if(done.length) out.list[out.list.length-1].completed = done;
     return;

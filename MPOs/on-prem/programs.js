@@ -108,10 +108,14 @@ const OBJECTIVES_2026_10 = [
    followLabels:{had:'Town', done:'Carbliss (Aug 1\u2013Oct 31)', doneTag:'Buying', todoTag:'Not buying yet'}},
   {key:'sam_adams_conversion', name:'BBC – Complete Oktoberfest Draft Conversion', shortName:'Oktoberfest Conversion', unit:'account', weight:0.25, type:'followup', hasData:true, periodEnd:'2026-10-23', goalLabel:'Convert every Summer Ale keg account to Oktoberfest',
    typeNote:'Every on-premise account that had Summer Ale kegs from April 1 to July 17 needs an Oktoberfest keg from August 1 to October 23. Kegs bought and returned do not count.',
-   followLabels:{had:'Summer Ale kegs (Apr 1\u2013Jul 17)', done:'Oktoberfest kegs (Aug 1\u2013Oct 23)', doneTag:'Converted', todoTag:'Not converted yet'}},
+   followLabels:{had:'Summer Ale kegs (Apr 1\u2013Jul 17)', done:'Oktoberfest kegs (Aug 1\u2013Oct 23)', doneTag:'Converted', todoTag:'Not converted yet'},
+   potential:{need:'One Oktoberfest keg by Oct 23', why:'Had {had}', skus:['Sam Adams Octoberfest 15.5 Gal Keg','Sam Adams Octoberfest 5.2 Gal Keg'],
+     note:'An Oktoberfest keg loaded by Oct 23 converts the account. A keg bought and returned does not count.'}},
   {key:'spirits_followup', name:'Wine & Spirits – Follow Up On All On-Premise Spirits Placements', shortName:'Spirits Follow-Up', unit:'account', weight:0.25, type:'followup', hasData:true, goalLabel:'Re-order at every account placed Jul–Sep',
    typeNote:'Every account that took a spirits placement from July through September needs to order spirits again in October.',
-   followLabels:{had:'Placed Jul–Sep', done:'Ordered in October', doneTag:'Followed up', todoTag:'Not followed up yet'}},
+   followLabels:{had:'Placed Jul–Sep', done:'Ordered in October', doneTag:'Followed up', todoTag:'Not followed up yet'},
+   potential:{need:'One spirits order in October', skusFromHad:true, skusLabel:'Placed here Jul \u2013 Sep', flag:true,
+     note:'Any spirits order at the account in October counts. The program\u2019s exact spirits SKU list is not on file, so the products shown are what was placed there Jul \u2013 Sep.'}},
   {key:'isellbeer', name:'iSellBeer – (5) Feature Photos', shortName:'iSellBeer Photos', unit:'feature photo', weight:0.25, type:'photos', hasData:false, awaiting:true, awaitingNote:'Waiting on October\u2019s iSellBeer export.', goalLabel:'5 feature photos each'},
 ];
 
@@ -696,10 +700,29 @@ function detailFor(o, rep, DATA, monthKey){
            : '<div class="no-lines" style="padding-left:2px">No activity recorded this month.</div>';
 }
 
+// POTENTIAL ACCOUNTS for the card (2026-10-08; guided.js potentialSlot). For a
+// follow-up objective the rep's own list IS the opportunity: every base account
+// not done yet. Objectives may name their qualifying SKUs (potentialSkus); where
+// the program's SKU list is not on file the note says so instead of guessing.
+// Carbliss has its own card (the leaderboard) and returns null here.
+function potentialFor(o, rep, DATA){
+  if(o.type !== 'followup' || o.key === 'carbliss' || !o.potential || !DATA[o.key]) return null;
+  const r = DATA[o.key].reps.find(x=>x.rep===rep);
+  if(!r) return null;
+  const P = o.potential;
+  const accounts = r.lines.filter(l=>!l.done).map(l=>{
+    let skus = (P.skus || []).slice();
+    if(P.skusFromHad) skus = String(l.had||'').replace(/^\d+ spirits?:\s*/,'').split(/,\s*(?=[A-Z0-9])/).filter(Boolean);
+    else if(/5\.2 Gal/.test(l.had||'') && skus.length>1) skus = skus.slice().reverse();   // the keg size they ran first
+    return {name:l.customer, city:'', need:P.need, why:P.why ? P.why.replace('{had}', l.had||'') : '', skus, skusLabel:P.skusLabel||''};
+  });
+  return {note:P.note, flag:!!P.flag, accounts};
+}
+
 function atGoalFor(o, DATA){
   if(!o.hasData || !DATA[o.key]) return null;
   return {n: DATA[o.key].reps_at_goal, total: DATA[o.key].reps_total};
 }
 
-global.OnPremMPO = {ROSTER, DM_GROUPS, MONTHS, SUPPORT_REPS, rosterFor, loadMonthData, objPct, metricFor, detailFor, atGoalFor, unitFor};
+global.OnPremMPO = {ROSTER, DM_GROUPS, MONTHS, SUPPORT_REPS, rosterFor, loadMonthData, objPct, metricFor, detailFor, atGoalFor, unitFor, potentialFor};
 })(window);

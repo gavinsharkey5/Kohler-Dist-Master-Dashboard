@@ -56,9 +56,23 @@
   function load(rep) {
     return ready().then(() => {
       const k = keyFor(rep); if (!k) return null;
-      if (!files.has(k)) files.set(k, getJSON(base + 'accounts/data/elig/' + k + '.json'));
+      if (!files.has(k)) files.set(k, getJSON(base + 'accounts/data/elig/' + k + '.json').then(fillWhy));
       return files.get(k);
     });
+  }
+  // The generator leaves the "new to the brand" reason text out of large SKU lists
+  // (Wine: 60 products x every account) to keep the file small; it is the same
+  // sentence every time, so it is filled in here and every reader sees triples.
+  function fillWhy(data) {
+    if (!data || !data.programs) return data;
+    Object.keys(data.programs).forEach(id => {
+      const r = rule(id); if (!r) return;
+      const P = prodMap(r);
+      (data.programs[id].accounts || []).forEach(a => (a.op || []).forEach(o => {
+        if (o.length < 3) { const p = P.get(String(o[0])); o[2] = 'No ' + (p ? p.family : 'brand') + ' purchases since Jan 2025'; }
+      }));
+    });
+    return data;
   }
   const prodMap = r => { const m = new Map(); (r.products || []).forEach(p => m.set(String(p.id), p)); return m; };
   function productIds(id) { const r = rule(id); return r ? new Set(r.products.map(p => String(p.id))) : null; }

@@ -280,6 +280,10 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-10-08 **MPO cards: Potential Accounts inside the card.** "View Eligible Accounts" is replaced by a
+  collapsed list of the accounts on the rep's route that can still earn the program's credit, with the exact SKUs and
+  what is left. Molly's and Wine now have eligibility rules. To confirm (question N1): do on-premise placements count
+  for the Off-Premise Molly's / Wine MPOs? The tracker counts them today, so the list includes on-premise accounts.
 - [x] 2026-10-08 **My Accounts + program wording.** My Accounts filters read All Accounts / Needs Attention /
   Follow-Ups, and a filtered list shows the filters, the count and Clear. Program pages say Goal / Current /
   Remaining. Eligible-account rows say what is left ("Needs 1 more qualifying product · has 2 of 3"). The

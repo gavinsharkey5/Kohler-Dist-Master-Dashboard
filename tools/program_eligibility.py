@@ -24,9 +24,12 @@ Writes
                                       middleware serves a rep ONLY their own
                                       file (ACCOUNT_DATA in middleware.js).
 
-Programs so far (start with these two, then extend PROGRAMS below):
+Programs so far (add one = one function below + a line in main()):
   off:2026-10:constellation_innovation   Constellation -- 75% Corona Innovation Distro
   off:2026-10:bbc_lytt                   BBC -- 50% Buying Accounts Lytt
+  on:2026-10:carbliss                    Carbliss -- 40% Buying Accounts
+  off:2026-10:mollys, off:2026-10:wine_new   new placements (NEW_PLACEMENTS, 2026-10-08)
+The MPO cards' "Potential Accounts" dropdown (MPOs/shared/guided.js) reads these files.
 
 Run after either MPO generator, a rolling-distribution month, or accounts/generate.py:
   python3 tools/program_eligibility.py          (--check: exit 1 if outputs are stale)
@@ -478,6 +481,147 @@ def carbliss_on(products, customers, sources, months, reps):
     return rule, out
 
 
+# ------------------------------------------------- Molly's / Wine new placements
+HUB_BRANDS = None
+def hub_brands():
+    """Brand Permissions (hub/data/accounts.js HUB_BRANDS): family -> area -> CAN SELL / NOT IN TERRITORY / BLOCKED."""
+    global HUB_BRANDS
+    if HUB_BRANDS is None:
+        src = (ROOT / "hub" / "data" / "accounts.js").read_text()
+        i = src.index("const HUB_BRANDS =") + len("const HUB_BRANDS =")
+        HUB_BRANDS, _ = json.JSONDecoder().raw_decode(src[i:].lstrip())
+    return HUB_BRANDS
+
+
+NEW_PLACEMENTS = [
+    # (program id, tracker file, goal per rep, title, official name, supplier, card unit)
+    ("off:2026-10:mollys", "mpo_mollys.json", 2, "Molly\u2019s New Placements", "Molly\u2019s \u2013 (2) New Placements (Spirits)", "Molly\u2019s"),
+    ("off:2026-10:wine_new", "mpo_wine_new_placements.json", 1, "Wine New Placements", "Wine \u2013 (1) New Placement", "Wine"),
+]
+
+
+def new_placements(products, customers, sources, months, reps, spec):
+    """A two-window NEW-PLACEMENT objective (October off-prem MPO, Molly's 15% / Wine 15%).
+
+    Tracker (generate_2026-10.py -> generate_2026-09.py build_new_placements): the RDE export
+    lists every account x product with a load in the base window (Jul 1 - Sep 30) or the current
+    window (Oct 1 - 31); a key is NEW when the current window is populated and the base window is
+    not. So, per account x qualifying product (the official SKU list):
+      credited    the export marks it new (NEW_PLACEMENT > 0)
+      no credit   the export has the key but it is not new (bought Jul 1 - Sep 30): a sale there
+                  would not count, so it is NOT an opportunity
+      opportunity not in the export at all, in an area where Brand Permissions says CAN SELL
+    The tracker counts every account on the export, on- and off-premise (its export carries both),
+    so both premises are eligible here too. Whole Foods: non-alcoholic products only.
+    """
+    pid_, fname, goal, title, official, supplier = spec
+    rows = json.load(open(OFF / "data" / "2026-10" / fname))
+    skus = program_skus.official(pid_)
+    if not skus:
+        raise SystemExit(f"{pid_}: no official SKU list (tools/program_skus.py add ...)")
+    missing = [x for x in skus if x not in products]
+    if missing:
+        raise SystemExit(f"{pid_}: official SKUs not in the catalogue: {missing}")
+    sset = set(skus)
+    key_new, key_old, tracker = defaultdict(set), defaultdict(set), defaultdict(float)
+    for r in rows:
+        pid = str(r["PRODUCT_NAME"]).split(" ", 1)[0]
+        c = str(r["CUSTOMER_NUM"])
+        if pid not in sset:
+            raise SystemExit(f"{pid_}: the export counts {r['PRODUCT_NAME']} which is not on the official SKU list")
+        if r.get("NEW_PLACEMENT"):
+            key_new[c].add(pid)
+            tracker[name_key(r["SALES_REP_ASSIGNED"])] += float(r["NEW_PLACEMENT"])
+        else:
+            key_old[c].add(pid)
+    fams = sorted({products[p]["family"] for p in skus})
+    B = hub_brands()
+    by_prod, by_fam, monthly = history_for(sset, fams, products, months)
+    dates = sorted(d for r in rows for d in (r.get("PLACED_DATE"), r.get("LAST_DATE")) if d)
+    last = max((datetime.strptime(d, "%m/%d/%Y") for d in dates), default=None)
+    lastl = last.strftime("%b %-d, %Y") if last else ""
+
+    def sellable(fam, area):
+        f = B["families"].get(fam)
+        if not f:
+            return True, ""   # not in the Brand Permissions file: no territory rule (stated in the rules)
+        st = f["areas"].get(area)
+        if st == "CAN SELL":
+            return True, ""
+        if st is None:
+            return False, f"territory not confirmed for {area or 'this area'}"
+        return False, f"{fam} {'blocked' if st == 'BLOCKED' else 'not in territory'} in {area}"
+
+    rule = {
+        "id": pid_, "source": "off", "month": "2026-10", "key": pid_.split(":")[-1],
+        "title": title, "official": official, "supplier": supplier,
+        "kind": "placements", "unit": "new placement",
+        "period": {"start": "2026-10-01", "end": "2026-10-31", "label": "Oct 1 \u2013 31, 2026"},
+        "measure": "A new placement = a qualifying product an account buys in October that it did not buy Jul 1 \u2013 Sep 30, 2026. One per account per product.",
+        "requirement": {"kind": "count", "count": goal, "text": f"{goal} new placement{'s' if goal > 1 else ''} in October"},
+        "products": [prod_row(products[p]) for p in sorted(skus, key=lambda x: products[x]["name"])],
+        "productsExhaustive": True,
+        "productsNote": "The official SKU list for this MPO (RDE, received Oct 6, 2026).",
+        "excludedProducts": [],
+        "families": fams,
+        "universe": {"premise": "Any", "territory": "Brand Permissions", "areas": [], "base": "Your assigned accounts where the brand may be sold"},
+        "rules": [
+            r_("Qualifying products", f"The {len(skus)} products on the program's SKU list.", "verified", "MPOs/off-prem/skus (RDE, Oct 6, 2026); the export counts no other product."),
+            r_("New placement", "Bought in October (Oct 1 \u2013 31) and not bought Jul 1 \u2013 Sep 30 at that account.", "verified", "generate_2026-09.py build_new_placements (the tracker's own rule)."),
+            r_("Already placed Jul \u2013 Sep", "A product the account bought Jul 1 \u2013 Sep 30 does not count again in October.", "verified", "The export's base-window column."),
+            r_("Premise", "The tracker counts every account on the export, on- and off-premise.", "assumed", "The RDE export carries on-premise rows and the tracker does not filter them; to confirm with Gavin."),
+            r_("Territory", "Only areas where Brand Permissions says CAN SELL for the product's brand family.", "verified", "hub/data/Brand_Sellable_Unsellable.xlsx"),
+            r_("Whole Foods", "Non-alcoholic products only.", "verified", "Whole Foods cannot sell alcohol (Gavin, 2026-10-05)."),
+            r_("Goal", f"{goal} new placement{'s' if goal > 1 else ''} per rep in October.", "verified", "October_2026_MPO.docx"),
+            r_("Evidence", "Sales data only. Photos and notes are not credit.", "verified", "MPO rule"),
+        ],
+        "detail": {"through": "export", "throughLabel": lastl, "trackerThrough": "export through " + lastl,
+                   "note": "Account-level results come straight from the tracker's own export (loads through " + lastl + "), so they always match the tracker."},
+        "order": "Accounts already buying the brand first, then accounts that bought a qualifying product before July, then accounts new to the brand. Ties go to the account's 2026 case volume.",
+        "openQuestions": ["N1"],
+    }
+    out = {}
+    for rep, key in reps.items():
+        book = book_for(key)
+        accts, n_open = [], 0
+        for n, a in book.items():
+            area = a.get("area") or ""
+            who = {"n": int(n), "name": a.get("name", ""), "city": a.get("city", ""), "area": area, "cases": a.get("cases2026")}
+            cr = sorted(key_new.get(n, set()) & sset)
+            no_alcohol = "whole foods" in (a.get("name") or "").lower()
+            ops, blocked = [], set()
+            for pid in skus:
+                if pid in cr or pid in key_old.get(n, set()):
+                    continue
+                pr = products[pid]
+                if no_alcohol and "non-alc" not in pr["name"].lower():
+                    continue
+                ok, why = sellable(pr["family"], area)
+                if not ok:
+                    blocked.add(why)
+                    continue
+                f = pr["family"]
+                if by_fam.get(n, {}).get(f):
+                    rs = ["sku", f"Buys {f} ({month_label(by_fam[n][f])})"]
+                elif by_prod.get(n, {}).get(pid):
+                    rs = ["lapsed", f"Bought it before ({month_label(by_prod[n][pid])})"]
+                else:
+                    rs = ["brand"]           # why filled by the page (keeps the per-rep file small)
+                ops.append([pid] + rs)
+            if not ops and not cr:
+                if blocked:
+                    accts.append(dict(who, st="excluded", why="; ".join(sorted(blocked))))
+                continue
+            n_open += len(ops)
+            rank = 0 if any(o[1] == "sku" for o in ops) else 1 if any(o[1] == "lapsed" for o in ops) else 2
+            accts.append(dict(who, st="open" if ops else "done", cr=cr, op=ops, rank=rank))
+        trk = tracker.get(key, 0)
+        det = sum(len(x.get("cr", [])) for x in accts)
+        out[rep] = {"tracker": {"value": trk, "goal": goal, "requirement": goal, "scored": True},
+                    "detailCredited": det, "afterDetail": max(0, trk - det), "accounts": accts, "openCount": n_open}
+    return rule, out
+
+
 def prod_row(p):
     pk, size, kind = pkg_size(p["name"], p.get("package", ""))
     return {"id": p["product_num"], "name": p["name"], "family": p["family"], "package": pk, "size": size, "container": kind}
@@ -493,6 +637,7 @@ QUESTIONS = {
     "C3": "Corona Innovation: confirm rounding — is 75% of a goal of 10 (7.5) a requirement of 8 or 7?",
     "L1": "Lytt: confirm rounding — is 50% of a 29-account base (14.5) a requirement of 15 or 14?",
     "L2": "Lytt: confirm that a returned case removes a product from the 3-product count (net of returns).",
+    "N1": "Molly\u2019s / Wine new placements: the RDE exports include on-premise accounts and the tracker counts them. Confirm that an on-premise placement earns this Off-Premise MPO credit.",
     "K1": "Carbliss 40%: confirm every Carbliss package counts as a buying-account purchase, and the rounding (40% of 26 = 10.4 → 11 or 10?).",
 }
 
@@ -503,8 +648,11 @@ def main():
     idx = json.load(open(ROOT / "accounts" / "data" / "index.json"))
     reps = {r["rep"]: r["key"] for r in idx["reps"]}
     rules, per_rep = [], defaultdict(dict)
-    for fn in (constellation, lytt, carbliss_on):
-        rule, out = fn(products, customers, sources, months, reps)
+    calls = [lambda: constellation(products, customers, sources, months, reps), lambda: lytt(products, customers, sources, months, reps),
+             lambda: carbliss_on(products, customers, sources, months, reps)]
+    calls += [(lambda sp: lambda: new_placements(products, customers, sources, months, reps, sp))(sp) for sp in NEW_PLACEMENTS]
+    for call in calls:
+        rule, out = call()
         rules.append(rule)
         for rep, prog in out.items():
             per_rep[rep][rule["id"]] = prog

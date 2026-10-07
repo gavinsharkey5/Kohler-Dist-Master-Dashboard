@@ -531,6 +531,108 @@ document.addEventListener('click', function(e){
     if(document.querySelector('.g-obj') || ++tries>80){ clearInterval(t); window.scrollTo(0, Number(y)||0); }
   }, 75);
 })();
+/* POTENTIAL ACCOUNTS (2026-10-08, Gavin, tested on Dave Ehlers' preview): the card
+   answers "which accounts can I sell these exact SKUs into for more credit?" in place,
+   collapsed by default, instead of linking out to the hub. Two sources, both the
+   program's own rules -- nothing is re-derived here:
+     * KdhElig (tools/program_eligibility.py -> accounts/data/elig/<rep>.json): premise,
+       territory / Brand Permissions, the official SKU list and the purchase windows,
+       per account x product (Corona Innovation, Lytt, Molly's, Wine);
+     * H.potential(o, rep) for objectives whose own list IS the opportunity (the
+       on-premise follow-ups: Oktoberfest conversion, Spirits).
+   Accounts that already earned everything they can are not listed; partly qualified
+   ones are, with what is left. A program with no rule says so instead of guessing. */
+var POT_MAX = 20, POT_SKUS = 4;
+function potentialSlot(o, rep){
+  if(o.type==='photos') return '';
+  var id = 'gp'+(uid++);
+  return '<div class="g-pot" data-key="'+esc(o.key)+'" data-rep="'+esc(rep)+'">'+
+    '<button class="g-more js-more g-pot-btn" data-target="'+id+'" aria-expanded="false">Potential Accounts'+
+      '<span class="g-pot-n" aria-label="accounts">\u2026</span><span class="ar">&#9656;</span></button>'+
+    '<div class="g-more-body g-pot-body" id="'+id+'"><p class="pa-note">Loading\u2026</p></div></div>';
+}
+function potScope(){ return /on-prem/.test(location.pathname) ? 'on' : 'off'; }
+function potShortWhy(t){ return String(t||'').replace(/, never this product$/,'').replace(/, not in this window$/,''); }
+// KdhElig model -> {note, accounts:[{name, city, need, why, skus:[names]}]}
+function potFromElig(M, data){
+  var r = M.rule, P = {};
+  (r.products||[]).forEach(function(p){ P[String(p.id)] = p; });
+  var rows = window.KdhElig.accountsView(M, {});
+  var thr = r.detail && r.detail.throughLabel ? r.detail.throughLabel : '';
+  var note;
+  if(r.kind==='placements' && r.requirement && r.requirement.kind==='count'){
+    note = 'Each product = 1 new placement at that account. Products it bought Jul 1 \u2013 Sep 30 are left out.'+(thr ? ' Data through '+thr+'.' : '');
+  } else if(r.kind==='placements'){
+    note = 'Each product = 1 placement at that account.'+(r.detail && r.detail.through!=='export' && thr ? ' Account detail runs through '+thr+'; a product placed since then may already count.' : (thr?' Data through '+thr+'.':''));
+  } else {
+    note = 'An account counts once it has '+(r.minSkus||1)+' different products'+(r.period ? ' bought '+r.period.label.replace(/, \d{4}$/,'') : '')+'.'+(thr ? ' Data through '+thr+'.' : '');
+  }
+  var ord = {sku:0, partial:0, lapsed:1, brand:2};
+  var accounts = rows.map(function(a){
+    var skus, need, why = '';
+    if(r.kind==='placements'){
+      var ops = (a.op||[]).slice().sort(function(x,y){ return (ord[x[1]]??3)-(ord[y[1]]??3) || String((P[x[0]]||{}).name).localeCompare(String((P[y[0]]||{}).name)); });
+      skus = ops.map(function(op){ return (P[String(op[0])]||{}).name || ('#'+op[0]); });
+      need = '';   // the note above says it once: each product = 1 (new) placement
+      var warm = ops.find(function(op){ return op[1]==='sku' || op[1]==='lapsed'; });
+      why = warm ? potShortWhy(warm[2]) : '';
+    } else {
+      var have = (a.cr||[]).map(String);
+      skus = (r.products||[]).filter(function(p){ return have.indexOf(String(p.id))<0; }).map(function(p){ return p.name; });
+      var min = r.minSkus||1;
+      need = min<=1 ? 'Any one of these' : (have.length ? a.need+' more different product'+(a.need===1?'':'s')+' (has '+have.length+' of '+min+')' : min+' different products from this list');
+      why = a.why && a.why[0]==='lapsed' ? a.why[1] : '';
+    }
+    return {name:a.name, city:a.city, need:need, why:why, skus:skus};
+  });
+  return {note:note, accounts:accounts};
+}
+function potBodyHtml(res){
+  if(!res) return '<p class="pa-note">Potential accounts aren\u2019t available for this program: the data on file can\u2019t confirm which sales would earn credit.</p>';
+  var A = res.accounts||[];
+  var acct = function(a){
+    var cut = a.skus.length <= POT_SKUS + 2 ? a.skus.length : POT_SKUS;   // 6 or fewer: all of them, no fold
+    var first = a.skus.slice(0, cut), rest = a.skus.slice(cut);
+    var li = function(n){ return '<li>'+esc(n)+'</li>'; };
+    return '<div class="pa-acct">'+
+      '<div class="pa-head"><span class="pa-name">'+esc(a.name)+'</span>'+(a.city?'<span class="pa-town">'+esc(a.city)+'</span>':'')+'</div>'+
+      ((a.need||a.why) ? '<div class="pa-need">'+esc(a.need||'')+(a.why?'<span class="pa-why">'+(a.need?' \u00b7 ':'')+esc(a.why)+'</span>':'')+'</div>' : '')+
+      (a.skus.length ? (a.skusLabel?'<div class="pa-sl">'+esc(a.skusLabel)+'</div>':'')+'<ul class="pa-skus">'+first.map(li).join('')+'</ul>'+
+        (rest.length ? '<details class="pa-more"><summary>'+rest.length+' More Product'+(rest.length===1?'':'s')+'</summary><ul class="pa-skus">'+rest.map(li).join('')+'</ul></details>' : '') : '')+
+    '</div>';
+  };
+  if(!A.length) return '<p class="pa-note">No account on your route can add credit for this program right now.</p>';
+  return (res.note?'<p class="pa-note'+(res.flag?' flag':'')+'">'+esc(res.note)+'</p>':'')+
+    '<div class="pa-list">'+A.slice(0, POT_MAX).map(acct).join('')+'</div>'+
+    (A.length>POT_MAX ? '<details class="pa-all"><summary>Show All '+A.length+' Accounts</summary><div class="pa-list">'+A.slice(POT_MAX).map(acct).join('')+'</div></details>' : '');
+}
+function hydratePotential(){
+  var slots = document.querySelectorAll('.g-pot:not([data-done])');
+  if(!slots.length) return;
+  var mk = H.monthKey ? H.monthKey() : '';
+  Array.prototype.forEach.call(slots, function(el){
+    el.setAttribute('data-done','1');
+    var key = el.getAttribute('data-key'), rep = el.getAttribute('data-rep');
+    var o = H.objectives().find(function(x){ return x.key===key; });
+    var fill = function(res){
+      var b = el.querySelector('.g-pot-body'), n = el.querySelector('.g-pot-n');
+      if(b) b.innerHTML = potBodyHtml(res);
+      if(n) n.textContent = res ? String((res.accounts||[]).length) : '\u2014';
+      if(res && !(res.accounts||[]).length) el.classList.add('empty');
+    };
+    var own = o && H.potential ? H.potential(o, rep) : null;
+    if(own) return fill(own);
+    var E = window.KdhElig, id = potScope()+':'+mk+':'+key;
+    if(!E) return fill(null);
+    E.ready().then(function(){
+      if(!E.rule(id)) return fill(null);
+      return E.load(rep).then(function(data){
+        if(!data || !data.programs || !data.programs[id]) return fill(null);
+        fill(potFromElig(E.model(id, [{rep:rep, data:data}]), data));
+      });
+    }).catch(function(){ fill(null); });
+  });
+}
 function repObjectiveCard(o, rep){
   var m = H.metric(o, rep);
   var weightTag = '<span class="g-tag weight">MPO Weight '+Math.round(o.weight*100)+'%</span>';
@@ -613,7 +715,7 @@ function repObjectiveCard(o, rep){
       '</div>'+
       barHtml(m.pct, st)+
       (dl ? '<div class="g-deadline">'+dl+'</div>' : '')+
-      (href && !met ? '<a class="g-elig" href="'+esc(href)+'">View Eligible Accounts</a>' : '')+
+      (href && !met ? potentialSlot(o, rep) : '')+
       subsHtml+
       '<div class="g-meta g-weight">MPO Weight '+Math.round(o.weight*100)+'%</div>'+
       moreHtml+
@@ -782,6 +884,7 @@ function render(){
   mount.innerHTML = html;
   if(window.KdhFit) window.KdhFit.tables(mount);
   hydrateCarbliss();
+  hydratePotential();
   var segs = document.querySelectorAll('.g-seg-btn');
   for(var i=0;i<segs.length;i++){
     segs[i].classList.toggle('active', segs[i].dataset.view===view);

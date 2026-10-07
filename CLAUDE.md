@@ -2877,3 +2877,30 @@ qualifying purchase yet · data through <date>", and hub `noBuyText()` always ca
 Done / Follow-Up / Not Now. Also: the W&S "i" badges are navy on a fixed light gold (skin), and the amber
 banner's "Open Encompass" link has a 41px tap area. Tags: rep.css / hub.js / eligibility.js / accounts.js /
 accounts.css / guided.js / kdh-skin.css 20261008a; kdh-user.js 20261008b; rep.css 20261008c (the revert).
+
+## MPO cards: "Potential Accounts" dropdown replaces "View Eligible Accounts" (2026-10-08)
+
+Gavin (tested in Dave Ehlers' preview): the card answers "which accounts can I sell these exact SKUs into for more
+credit?" in place. guided.js `potentialSlot()` / `hydratePotential()` draw a collapsed "Potential Accounts <N>"
+toggle (styled like the old button; N = distinct accounts that can still earn credit) between the deadline and the
+weight; the Details / distribution-history fold is unchanged. Inside: one short note (the counting rule + data date),
+then per account name · town, what is left (Lytt: "2 more different products (has 1 of 3)"; on-prem: "One Oktoberfest
+keg by Oct 23"), its warm reason ("Buys Molly's (Dec 2025)"), and the exact SKUs still open (6 or fewer shown, else 4 +
+"N More Products"); 20 accounts, then "Show All N Accounts". Hidden when the goal is met (all-or-nothing credit: no
+extra credit), the month has ended, or the objective is photos; Carbliss keeps its own card. SOURCES (no rule is
+re-derived on the page): KdhElig (shared/eligibility.js, now loaded by both MPO pages) for Corona Innovation, Lytt and
+the NEW rules for Molly's / Wine -- tools/program_eligibility.py `new_placements()` (NEW_PLACEMENTS): official SKU list,
+the tracker's own export (credited = NEW_PLACEMENT; a key bought Jul 1 - Sep 30 is NOT an opportunity; the rest is),
+Brand Permissions CAN SELL by area (hub/data/accounts.js HUB_BRANDS), Whole Foods non-alcoholic only, both premises
+because the tracker counts on-premise rows (ASSUMED -- question N1). Credit totals match the tracker exactly (Molly's
+8, Wine 11). 'brand' ops are stored as [pid, code] to keep the files small (elig total 4.8 MB, largest 430 KB);
+eligibility.js `fillWhy()` restores the text on load. On-prem follow-ups: on-prem programs.js `potentialFor()` (host
+`potential`) = the objective's own open base accounts; Oktoberfest lists the two kegs (#3813 / #3862, the size they
+ran first on top); Spirits lists what was placed there Jul - Sep and FLAGS that the program's spirits SKU list is not
+on file. A program with no rule / no file says "Potential accounts aren't available ..." instead of guessing.
+Side effects of the new rules: the hub's Molly's / Wine program screens now use the rule workspace, and the Account
+page's Program Opportunities list them ("One new placement per product", opps.js). Tests (scratchpad): pot_test.mjs
+(Dave preview + real sign-in, 390 / 820 / 1366, light / dark: no link left, met Corona has no list, Lytt 23, collapsed
+by default, opens in place, Details kept, partial gap named, Wine folds, Joes Beer omits the 750 mL it bought Jul-Sep,
+no sideways scroll), pot_on.mjs (Allison: Oktoberfest 7, Spirits 18), elig_trip_test (now enters the hub by URL).
+Tags: guided.js / guided.css / eligibility.js 20261008b, opps.js 20261008a.
