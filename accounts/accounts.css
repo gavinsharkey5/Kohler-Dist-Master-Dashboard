@@ -924,3 +924,14 @@ details.about-data > .note{margin:4px 0 0;line-height:1.5}
 @media (min-width:1180px){ .over-grid{grid-template-columns:minmax(0,1fr) 300px} .over-side .dgroup .kv{grid-template-columns:92px minmax(0,1fr)} }
 #actQuick,.act-quick{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
 .qacts{justify-content:center}
+
+/* ACTIVE FILTER LINE (2026-10-08): filters in words · result count · Clear */
+.afl{display:flex;align-items:center;flex-wrap:wrap;gap:6px 12px;margin:2px 0 10px;padding:8px 10px 8px 14px;border:1px solid var(--kdh-border-2);border-radius:10px;background:var(--kdh-surface)}
+.afl-t{font-size:14px;color:var(--text-2);min-width:0;flex:1 1 160px;overflow-wrap:anywhere}
+.afl-n{font-size:15px;font-weight:600;color:var(--text)}
+.afl .btn{min-height:36px}
+/* three equal columns; under 520px the count sits under the label so
+   "All Accounts / Needs Attention / Follow-Ups" never runs off a phone */
+#needSeg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+#needSeg button{min-height:44px;min-width:0}
+@media (max-width:519px){ #needSeg button{flex-direction:column;gap:1px;white-space:normal;padding:4px 4px;font-size:14px} #needSeg .n{font-size:13px} }

@@ -148,7 +148,7 @@
       return {
         open: ops.map(o => ({ id: o[0], name: name(o[0]), code: o[1], why: o[2] })),
         credited: (a.cr || []).map(id => ({ id, name: name(id) })),
-        what: pid ? name(pid) : (ops.length === 1 ? name(one[0]) : `${ops.length} qualifying products not placed here yet`),
+        what: pid ? name(pid) : (ops.length === 1 ? name(one[0]) : ops.length ? `${name(one[0])} + ${ops.length - 1} more qualifying ${ops.length === 2 ? 'product' : 'products'}` : ''),
         need: pid ? '1 placement for this product' : `Up to ${ops.length} ${ops.length === 1 ? 'placement' : 'placements'} here`,
         why: one ? (pid || ops.length === 1 ? one[2] : `Start with ${name(one[0])}: ${one[2].charAt(0).toLowerCase() + one[2].slice(1)}`) : '',
         more: same,
@@ -161,7 +161,7 @@
       open: missing, credited: have,
       what: (() => { const fam = r.families[0], by = r.period.label.split(' – ')[1].replace(/, \d{4}$/, '');
         if ((r.minSkus || 1) <= 1) return pid ? `${name(pid)} (any ${fam} product counts) by ${by}` : `A ${fam} purchase by ${by}`;
-        return pid ? `${name(pid)}${a.need > 1 ? ` + ${a.need - 1} more ${fam}` : ''} by ${by}` : `${a.need} more ${fam} ${a.need === 1 ? 'product' : 'products'} by ${by}`; })(),
+        return pid ? `${name(pid)}${a.need > 1 ? ` + ${a.need - 1} more ${fam}` : ''} by ${by}` : `${a.need} more ${fam} ${a.need === 1 ? 'product' : 'products'} by ${by} · has ${have.length} of ${r.minSkus}`; })(),
       need: (r.minSkus || 1) <= 1 ? `One ${r.families[0]} purchase, ${r.period.label}` : `${r.minSkus} different products, ${r.period.label} — has ${have.length}`,
       why: a.why ? a.why[1] : '',
       code: a.why ? a.why[0] : '',

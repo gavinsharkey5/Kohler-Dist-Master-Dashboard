@@ -300,11 +300,11 @@ function renderList(){
   const ref = first && first.sales.ref ? first.sales.ref : (first ? first.sales.through : '');
   const fresh = first ? `Customer base as of ${E(first.book.asOf)} · sales through ${E(monLabel(ref))} · tap surveys as of ${E((first.taps.asOf||'').slice(0,10))}` : '';
   const follows = rows.filter(({nd})=>nd.follow>0).length;
-  const kindOpts = [['', 'All Reasons'], ['reorder', 'Possible reorder'], ['slower', 'Buying less often'], ['lapsed', 'Lapsed product'], ['follow', 'Open follow-up'], ['prog', 'Program lead'], ['tap', 'Survey due or overdue']];
+  const kindOpts = [['', 'All Reasons'], ['reorder', 'Possible Reorder'], ['slower', 'Buying Less Often'], ['lapsed', 'Lapsed Product'], ['follow', 'Open Follow-Up'], ['prog', 'Program Lead'], ['tap', 'Survey Due or Overdue']];
   const active = state.need==='any';
   // the three views as one segmented control (Shopify's filter tabs): the
   // selected one is filled, each says how many accounts it holds
-  const segs = [['', 'All', rows.length], ['any', 'Needs Attention', attention], ['follow', 'Follow-Ups', follows]];
+  const segs = [['', 'All Accounts', rows.length], ['any', 'Needs Attention', attention], ['follow', 'Follow-Ups', follows]];
   const segHtml = `<div class="seg" id="needSeg" role="group" aria-label="Show">${segs.map(([v, l, c])=>`<button type="button" data-need="${v}" aria-pressed="${state.need===v}"${state.need===v ? ' class="on"' : ''}>${l}<span class="n">${c}</span></button>`).join('')}</div>`;
   // COMPACT HEADER (2026-10-01, third pass; Shopify's list header): title and
   // counts on one line, search, the three views, then one row of small
@@ -314,7 +314,7 @@ function renderList(){
   // LIST / MAP (2026-10-02): one selector; the map draws exactly the rows the
   // list would show (same search, filters and authorized accounts)
   const viewSeg = `<div class="seg vseg" id="viewSeg" role="group" aria-label="View">${[['list','List'],['map','Map']].map(([v,l])=>`<button type="button" data-mode="${v}" aria-pressed="${state.mode===v}"${state.mode===v?' class="on"':''}>${l}</button>`).join('')}</div>`;
-  app.innerHTML = `<header class="ws lhead"><div class="lh-top"><h1>${title}</h1>${viewSeg}</div><div class="id"><p class="idline">${[isMgr ? sub : '', flagged ? `${plural(flagged,'Account')} With Alerts` : '', ref ? `Sales Through ${E(monLabel(ref))}` : ''].filter(Boolean).join(' · ')}</p></div></header>
+  app.innerHTML = `<header class="ws lhead"><div class="lh-top"><h1>${title}</h1>${viewSeg}</div>${isMgr ? `<div class="id"><p class="idline">${sub}</p></div>` : ''}</header>
     <div id="laterStrip"></div>
     <div class="filters">
       <input type="search" class="kdh-field" id="q" placeholder="Search by name, town or #${isMgr?' or rep':''}" value="${E(state.q)}" autocomplete="off" aria-label="Search accounts">
@@ -334,7 +334,7 @@ function renderList(){
     </div>
     ${missing.length ? `<div class="kdh-state unavailable"><b>No account list on file for ${E(missing.join(', '))}.</b><span>The customer base report has no accounts under that name, or the data slice has not been generated.</span></div>` : ''}
     ${!SCOPE.length ? `<div class="kdh-state unavailable"><b>We couldn’t find your name on the customer base.</b><span>You’re signed in as ${E(U ? U.name : '')}. Ask Gavin to check the spelling on the access list.</span></div>` : ''}
-    ${state.mode==='map' ? `<div id="mapSlot" class="mapslot"></div>` : `${shown.length!==rows.length || state.q ? `<p class="count">Showing ${shown.length} of ${plural(rows.length,'account')}</p>` : ''}
+    ${state.mode==='map' ? `<div id="mapSlot" class="mapslot"></div>` : `${activeLine(shown.length, kindOpts)}
     <div id="rows">${listBody(shown, rows)}</div>
     ${shown.length>state.limit ? `<button class="btn outline more" id="more" type="button">Show ${Math.min(120, shown.length-state.limit)} more of ${shown.length}</button>` : ''}`}`;
   if(state.mode==='map' && window.KdhMap){
@@ -355,7 +355,21 @@ function renderList(){
   const ks = $('#kindSel'); if(ks) ks.addEventListener('change', e=>{ state.kind = e.target.value; history.replaceState(null,'',listHash()); render(); });
   $('#famSel').addEventListener('change', e=>{ state.fam = e.target.value; history.replaceState(null,'',listHash()); render(); });
   const fc = $('#famClear'); if(fc) fc.addEventListener('click', ()=>{ state.fam = ''; history.replaceState(null,'',listHash()); render(); });
+  const ca = $('#clearAll'); if(ca) ca.addEventListener('click', ()=>{ state.need = ''; state.kind = ''; state.fam = ''; state.q = ''; history.replaceState(null,'',listHash()); render(); });
   fillLater();
+}
+// ACTIVE FILTER LINE (2026-10-08): the one place a filtered list says what it
+// shows -- the filters in words, the result count, and Clear. Nothing when the
+// list is unfiltered (the segmented control already carries the totals).
+function activeLine(n, kindOpts){
+  const parts = [];
+  if(state.need==='any') parts.push('Needs Attention');
+  if(state.need==='follow') parts.push('Follow-Ups');
+  if(state.need==='any' && state.kind){ const k = kindOpts.find(x=>x[0]===state.kind); if(k) parts.push(k[1]); }
+  if(state.fam) parts.push(state.fam);
+  if(state.q.trim()) parts.push('“'+state.q.trim()+'”');
+  if(!parts.length) return '';
+  return `<div class="afl" role="status"><span class="afl-t">${E(parts.join(' · '))}</span><b class="afl-n">${plural(n,'Account')}</b><button type="button" class="btn sm outline" id="clearAll">Clear</button></div>`;
 }
 // One list row (Shopify All Customers): the account name, town · #CustomerID
 // (· premise · rep for a manager), then ONE leading action and a count of the
@@ -461,7 +475,7 @@ async function renderAccount(){
 
   /* ---- Focus: up to three supported actions, in a fixed order ---- */
   const focus = [];
-  follows.slice(0,1).forEach(r=>/^note:/.test(r.program_id||'') ? focus.push({kind:'Follow-Up', ws:`${r.follow_on ? (r.follow_on < new Date().toISOString().slice(0,10) ? 'Overdue · was due ' : 'Due ')+E(fmtDay(new Date(r.follow_on+'T12:00:00'))) : 'Added '+E(fmtDay(new Date(r.created_at||r.updated_at)))}${r.rep_name && isMgr ? ' · '+E(r.rep_name) : ''}`, t:E(r.note||'Follow up'), go:'over::activity', hl:'View Note'}) : focus.push({kind:'Follow-up', ws:`Flagged ${E(fmtDay(new Date(r.updated_at)))}${r.note ? ' · “'+E(r.note)+'”' : ''}`, t:`Follow up on ${E(progName(r.program_id))}`, w:`You flagged this account ${E(fmtDay(new Date(r.updated_at)))}${r.note ? ' — “'+E(r.note)+'”' : ''}.`, n:`Pick the conversation back up, then mark it Done in the hub.`, href:hubAcctLink(H.programs().find(p=>p.id===r.program_id), rep, a.n, 'follow'), hl:'View Follow-up'}));
+  follows.slice(0,1).forEach(r=>/^note:/.test(r.program_id||'') ? focus.push({kind:'Follow-Up', ws:`${r.follow_on ? (r.follow_on < new Date().toISOString().slice(0,10) ? 'Overdue · was due ' : 'Due ')+E(fmtDay(new Date(r.follow_on+'T12:00:00'))) : 'Added '+E(fmtDay(new Date(r.created_at||r.updated_at)))}${r.rep_name && isMgr ? ' · '+E(r.rep_name) : ''}`, t:E(r.note||'Follow up'), go:'over::activity', hl:'View Note'}) : focus.push({kind:'Follow-Up', ws:`Flagged ${E(fmtDay(new Date(r.updated_at)))}${r.note ? ' · “'+E(r.note)+'”' : ''}`, t:`Follow up on ${E(progName(r.program_id))}`, w:`You flagged this account ${E(fmtDay(new Date(r.updated_at)))}${r.note ? ' — “'+E(r.note)+'”' : ''}.`, n:`Pick the conversation back up, then mark it Done in the hub.`, href:hubAcctLink(H.programs().find(p=>p.id===r.program_id), rep, a.n, 'follow'), hl:'View Follow-Up'}));
   if(due && due.level==='overdue') focus.push({kind:'Tap Survey', ws:`Last surveyed ${E(a.taps.lastDisplay||a.taps.last)} · ${due.days} days ago`, t:'Resurvey the taps', w:`Last surveyed ${E(a.taps.lastDisplay||a.taps.last)}, ${due.days} days ago — past the 60-day window.`, n:'Walk the taps and submit the survey in iSellBeer.', href:TAP+'#q='+encodeURIComponent(a.name), hl:'View in Tap Tracker'});
   targets.filter(t=>t.p.period.end >= TODAY && (t.warm || (t.p.period.end - TODAY)/86400000 <= 14)).sort((x,y)=>(y.warm-x.warm) || (x.p.period.end-y.p.period.end)).slice(0, 2).forEach(t=>{
     const f = H.progFacts(t.p, t.r, rep);

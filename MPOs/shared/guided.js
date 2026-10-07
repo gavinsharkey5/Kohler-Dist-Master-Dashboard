@@ -608,7 +608,7 @@ function repObjectiveCard(o, rep){
         (why ? '<div class="g-goal-why">'+esc(why)+'</div>' : '')+'</div>'+
       '<div class="g-stats">'+
         '<div class="g-stat"><span class="g-stat-l">Current</span><span class="g-stat-v">'+fmtNum(m.value)+'<span class="g-stat-of"> of '+fmtNum(m.goal)+'</span></span></div>'+
-        '<div class="g-stat'+(met?' good':'')+'"><span class="g-stat-l">Still Needed</span><span class="g-stat-v">'+(met ? 'Met' : fmtNum(m.remaining))+'</span>'+
+        '<div class="g-stat'+(met?' good':'')+'"><span class="g-stat-l">Remaining</span><span class="g-stat-v">'+(met ? 'Met' : fmtNum(m.remaining))+'</span>'+
           '<span class="g-stat-u">'+(met ? 'Requirement complete' : esc(titleCase(uPlural(Number(m.remaining), unit))))+'</span></div>'+
       '</div>'+
       barHtml(m.pct, st)+
@@ -753,7 +753,7 @@ function programBody(o){
       '<div class="g-rr-fig"><span class="g-rr-l">Current / Required</span>'+
         '<b>'+(nums ? fmtNum(m.value)+' / '+fmtNum(m.goal) : esc(m.valueText))+'</b>'+
         (nums && uLbl ? '<span class="g-rr-u">'+esc(uLbl)+'</span>' : '')+'</div>'+
-      '<div class="g-rr-need"><span class="g-rr-l">Still Needed</span>'+
+      '<div class="g-rr-need"><span class="g-rr-l">Remaining</span>'+
         '<b>'+(m.remaining>0 ? (nums ? fmtNum(m.remaining) : esc(m.remainText||String(m.remaining))) : 'None')+'</b>'+
         (m.remaining>0 && nums && uLbl ? '<span class="g-rr-u">'+esc(uPlural(m.remaining,o.unit))+'</span>' : '')+'</div>'+
       '<div class="g-rr-bar"><span class="g-reprow-bar"><span class="g-reprow-fill '+st+'" style="width:'+

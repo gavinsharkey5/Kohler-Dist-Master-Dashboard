@@ -331,3 +331,63 @@ html.kdh-rep #kicker{display:none}
 
 /* A tile hidden for a route (rep/index.html showRep): two cards left, no spanning last card. */
 .kt-grid.kt-cut > .kt{grid-column:auto!important}
+
+/* ---- REP HOME v5 (2026-10-08): Option C's account-first layout + Option B's priorities ----
+   .rh-head  compact header ("Today", name · areas), no banner.
+   .rh-find  the account search; .rh-res = instant results (rep's own book), a bordered panel
+             under the field, 6 rows + "See All N Matches".
+   .rh-prow  a priority row (Todoist Inbox pattern): kind · when, account · town, one line why.
+   .rh-counts the counts behind the priorities as one wrap of links.
+   .qa-grid  compact shortcuts: one grouped list on phones, 3-across tiles from 640px. */
+.rh .rh-head{padding:20px 0 0}
+.rh .rh-head h1{font-size:26px}
+.rh .rh-head h1::after{margin-top:8px;width:28px}
+.rh .rh-head .hh-meta{margin-top:8px;font-size:15px}
+.rh .hs{margin-top:22px}
+.rh-find{margin-top:18px!important}
+.rh-search{flex-direction:column}
+.rh-search input{min-height:56px;font-size:17px;border-radius:14px}
+.rh-sico{top:28px}
+.rh-res{margin-top:8px;border:1px solid var(--kt-bd);border-radius:12px;background:var(--kt-surface);overflow:hidden;box-shadow:0 8px 24px rgba(11,36,102,.10)}
+[data-theme="dark"] .rh-res{box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.rh-hit{display:flex;flex-direction:column;gap:2px;min-height:56px;justify-content:center;padding:10px 16px;border-top:1px solid var(--kt-div);color:inherit;text-decoration:none}
+.rh-hit:first-child{border-top:0}
+.rh-hit:hover,.rh-hit:focus-visible{background:var(--kt-press);outline:none}
+.rh-hit:focus-visible{box-shadow:inset 0 0 0 3px var(--kdh-ring)}
+.rh-more{color:var(--brand);font-weight:600;font-size:15px}
+.rh-none{margin:0;padding:14px 16px;font-size:15px;color:var(--text-2)}
+.rh-prow{display:flex;align-items:center;gap:12px;min-height:76px;padding:12px 14px 12px 16px;color:inherit;text-decoration:none;border-top:1px solid var(--kt-div)}
+.rh-prow:first-child{border-top:0}
+.rh-prow:hover{background:var(--kt-press)}
+.rh-prow:focus-visible{outline:none;box-shadow:inset 0 0 0 3px var(--kdh-ring)}
+.rh-prow .chev{width:20px;height:20px;flex:none;color:var(--text-3)}
+.rh-aico{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;flex:none;border-radius:10px;background:var(--kt-ico-bg);border:1px solid var(--kt-ico-bd);color:var(--brand)}
+.rh-aico svg{width:20px;height:20px}
+.rh-pk{font-size:14px;font-weight:600;line-height:1.35;color:var(--brand)}
+.rh-pk.late{color:var(--warn)}
+.rh-town{font-weight:400;color:var(--text-2)}
+.rh-prow .rh-ts{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.rh-counts{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0}
+.rh-counts a{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:6px 12px;border:1px solid var(--kt-bd);border-radius:999px;background:var(--kt-surface);color:var(--text-2);font-size:14px;text-decoration:none}
+.rh-counts a b{color:var(--text);font-weight:700}
+.rh-counts a:hover{border-color:var(--kt-bd-h);color:var(--text)}
+.rh-counts a:focus-visible{outline:none;box-shadow:0 0 0 3px var(--kdh-ring)}
+.rh-quiet a{color:var(--brand);font-weight:600}
+.rh-why{margin:12px 0 0}
+.rh-why summary{display:inline-flex;align-items:center;min-height:40px;font-size:14.5px;font-weight:600;color:var(--brand);cursor:pointer}
+.rh-why p{margin:4px 0 0;font-size:14.5px;line-height:1.5;color:var(--text-2);max-width:68ch}
+/* phones: one grouped list (rows with dividers) -- two narrow columns wrapped every status */
+.qa-grid{grid-template-columns:minmax(0,1fr);gap:0;border:1px solid var(--kt-bd);border-radius:12px;overflow:hidden;background:var(--kt-surface)}
+.qa-grid > .kt{min-height:60px;gap:12px;padding:10px 14px;align-items:center;border:0;border-radius:0;box-shadow:none;border-top:1px solid var(--kt-div)}
+.qa-grid > .kt:first-child{border-top:0}
+.qa-grid > .kt:focus-visible{box-shadow:inset 0 0 0 3px var(--kdh-ring)}
+@media (min-width:640px){ .qa-grid > .kt:focus-visible{box-shadow:0 0 0 3px var(--kdh-ring)} }
+.qa-grid > .kt:last-child:nth-child(odd){grid-column:auto}
+.qa-grid > .kt .kt-ico{width:38px;height:38px;border-radius:10px}
+.qa-grid > .kt .kt-ico svg{width:20px;height:20px}
+.qa-grid > .kt .kt-t{font-size:15.5px;line-height:1.25}
+.qa-grid > .kt .kt-s,.qa-grid > .kt .kt-st{font-size:14px;margin-top:0}
+.qa-grid > .kt .kt-chev{display:block;width:18px;height:18px}
+@media (min-width:640px){ .qa-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;border:0;border-radius:0;overflow:visible;background:none}
+  .qa-grid > .kt{min-height:72px;padding:12px;border:1px solid var(--kt-bd);border-radius:12px} .qa-grid > .kt:first-child{border-top:1px solid var(--kt-bd)} }
+@media (min-width:1024px){ .rh .rh-find,.rh #todaySec{max-width:760px} }

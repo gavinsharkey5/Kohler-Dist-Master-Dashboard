@@ -19,12 +19,12 @@
 <link rel="preload" href="../assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 <!-- Theme before first paint: the saved choice, else the device setting (2026-09-30). -->
 <script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
-<link rel="stylesheet" href="rep.css?v=20261007z">
+<link rel="stylesheet" href="rep.css?v=20261008a">
 <!-- The top bar is injected by shared/kdh-user.js (badge, Previewing chip,
      account menu). kdh-home = this is a landing page: no Back button. -->
 <meta name="kdh-page" content="Rep Home">
 <meta name="kdh-home" content="rep">
-<script src="../shared/kdh-user.js?v=20261007a"></script>
+<script src="../shared/kdh-user.js?v=20261008a"></script>
 <script src="../shared/program-titles.js?v=20261005e"></script>
 <script src="../shared/data/rep-premise.js?v=20261007z"></script>
 </head>
@@ -38,15 +38,16 @@
   (account menu, or the button below) previews the whole site as that rep.
 -->
 <main class="wrap home rh">
-  <!-- REP HOME v4 (2026-10-07): HoneyBook's compact working header + Dropbox's
-       bordered action tiles, the same tool card (.kt) as the Manager Home.
-       Order: My Accounts (the main way in, with the account search beside it),
-       Needs Attention (counts open My Accounts already filtered -- the same rules
-       as the list), Programs, Trackers, Tools. A manager sees the same page for
-       the rep they are viewing; "View as Rep" previews the whole site as that rep. -->
-  <header class="hh">
+  <!-- REP HOME v5 (2026-10-08, Gavin's chosen direction: Option C's account-first layout +
+       Option B's short priority list). Order: a compact header, the account SEARCH (instant
+       results from the rep's own book), YOUR PRIORITIES (up to three real actions, the same
+       lead order My Accounts uses: follow-up, overdue tap survey, possible reorder), the counts
+       behind them as one line of links, then compact tool shortcuts. References: Todoist Inbox
+       rows (Mobbin fae19fe7) for the priorities, Shopify Home (fc78e9ee) for the grouped
+       shortcut rows. A manager sees the same page for the rep they are viewing. -->
+  <header class="hh rh-head">
     <div class="hh-id">
-      <h1>Rep Home</h1>
+      <h1>Today</h1>
       <p class="hh-meta" id="meta"><b id="repName">Your Workspace</b><span id="metaRest"></span></p>
     </div>
     <!-- Managers only (not in preview): pick whose tools the cards below open,
@@ -57,35 +58,39 @@
     </div>
   </header>
 
-  <!-- the prominent entry: My Accounts, and a search straight into it -->
-  <section class="hs rh-entry" aria-label="My Accounts">
-    <a class="kt kt-lg" id="c-acct" href="../accounts/" data-nav="accounts">
-      <span class="kt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/><path d="M3 12h18"/></svg></span>
-      <span class="kt-main"><span class="kt-t">My Accounts</span><span class="kt-s" id="s-acct">Your Route</span></span>
-      <svg class="kt-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-    </a>
+  <!-- FIND AN ACCOUNT: name, town or account #, results from the rep's own book -->
+  <section class="hs rh-find" aria-label="Find an Account">
     <form class="rh-search" id="rhSearch" role="search">
       <svg class="rh-sico" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-      <input type="search" id="rhQ" placeholder="Search Accounts, Towns or #" aria-label="Search my accounts" autocomplete="off" enterkeyhint="search">
+      <input type="search" id="rhQ" placeholder="Find an Account: Name, Town or #" aria-label="Find an account by name, town or account number" aria-controls="rhRes" aria-autocomplete="list" autocomplete="off" enterkeyhint="search">
+      <div class="rh-res" id="rhRes" hidden></div>
     </form>
   </section>
 
-  <!-- NEEDS ATTENTION: one grouped card of rows (follow-ups, reorders,
-       lapsed products, surveys), each opening My Accounts already filtered.
-       Counts come from the rep's own account file and rep_actions -- the same
-       rules the list uses, so the numbers match. -->
+  <!-- YOUR PRIORITIES: up to three supported actions, each opening the account. Only real
+       work is listed (a follow-up the rep flagged, a tap survey past 60 days, a possible
+       reorder); nothing here can be checked off -- an alert is not a task. -->
   <section class="hs" id="todaySec" hidden>
-    <div class="hs-h"><h2>Needs Attention</h2><a class="btn ghost sm" id="todayAll" href="../accounts/#need=any">View All</a></div>
-    <div class="rh-card" id="todayRows"></div>
+    <div class="hs-h"><h2>Your Priorities</h2><a class="btn ghost sm" id="todayAll" href="../accounts/#need=any">View All</a></div>
+    <div class="rh-card" id="prioRows"></div>
     <p class="rh-quiet" id="fuQuiet" hidden></p>
+    <div class="rh-counts" id="todayRows" hidden></div>
+    <details class="rh-why"><summary>Why These Actions?</summary>
+      <p>Listed in the order My Accounts uses: your open follow-ups first (due dates first), then tap surveys past the 60-day resurvey mark, then the accounts with the most possible reorders. One row per account, three at most. A possible reorder is a gap in the monthly sales record, not a confirmed need.</p>
+    </details>
   </section>
 
   <section class="hs">
-    <div class="hs-h"><h2>Programs</h2></div>
-    <div class="kt-grid">
+    <div class="hs-h"><h2>Quick Access</h2></div>
+    <div class="kt-grid qa-grid">
+      <a class="kt" id="c-acct" href="../accounts/" data-nav="accounts">
+        <span class="kt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/><path d="M3 12h18"/></svg></span>
+        <span class="kt-main"><span class="kt-t">My Accounts</span><span class="kt-s" id="s-acct">Your Route</span></span>
+        <svg class="kt-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
       <a class="kt" id="c-hub" href="../hub/">
         <span class="kt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
-        <span class="kt-main"><span class="kt-t">Incentives</span><span class="kt-s" id="s-hub">Your programs by supplier</span></span>
+        <span class="kt-main"><span class="kt-t">Incentives</span><span class="kt-s" id="s-hub">By Supplier</span></span>
         <svg class="kt-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
       </a>
       <a class="kt" id="c-off" href="../MPOs/off-prem/index.html#view=program">
@@ -98,39 +103,34 @@
         <span class="kt-main"><span class="kt-t">On-Premise MPOs</span><span class="kt-st" id="s-on"><span class="dot"></span>Checking…</span></span>
         <svg class="kt-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
       </a>
-    </div>
-  </section>
-  <section class="hs">
-    <div class="hs-h"><h2>Trackers</h2></div>
-    <div class="kt-grid">
-      <a class="kt" id="c-tap" href="../isellbeer/tap-survey-tracking/">
-        <span class="kt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 6.5 9a6.5 6.5 0 1 0 11 0z"/></svg></span>
-        <span class="kt-main"><span class="kt-t">Tap Tracker</span><span class="kt-s" id="s-tap">Taps at surveyed accounts</span></span>
-        <svg class="kt-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-      </a>
-      <a class="kt" id="c-rb" href="../redbull/">
-        <span class="kt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
-        <span class="kt-main"><span class="kt-t">Red Bull Tracker</span><span class="kt-s">Placements against goal</span><span class="kt-st" id="s-rb"><span class="dot"></span>Checking…</span></span>
-        <svg class="kt-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-      </a>
-      <a class="kt" id="c-cb" href="../carbliss-onprem-targets/">
-        <span class="kt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></span>
-        <span class="kt-main"><span class="kt-t">Carbliss Leaderboard</span><span class="kt-s">Buyers and last purchases</span><span class="kt-st" id="s-cb"><span class="dot"></span>Checking…</span></span>
-        <svg class="kt-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-      </a>
-    </div>
-  </section>
-  <section class="hs">
-    <div class="hs-h"><h2>Tools</h2></div>
-    <div class="kt-grid">
       <a class="kt" id="c-inv" href="../inventory/">
         <span class="kt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8l8-4 8 4v8l-8 4-8-4z"/><path d="M4 8l8 4 8-4"/><path d="M12 12v8"/></svg></span>
-        <span class="kt-main"><span class="kt-t">Inventory</span><span class="kt-s">What is available to sell</span></span>
+        <span class="kt-main"><span class="kt-t">Inventory</span><span class="kt-s">Warehouse Stock</span></span>
         <svg class="kt-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
       </a>
       <a class="kt" id="c-map" href="../accounts/#mode=map">
         <span class="kt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
-        <span class="kt-main"><span class="kt-t">Account Map</span><span class="kt-s">Your accounts on a map</span></span>
+        <span class="kt-main"><span class="kt-t">Account Map</span><span class="kt-s">Your Route</span></span>
+        <svg class="kt-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+    </div>
+  </section>
+  <section class="hs">
+    <div class="hs-h"><h2>Trackers</h2></div>
+    <div class="kt-grid qa-grid">
+      <a class="kt" id="c-tap" href="../isellbeer/tap-survey-tracking/">
+        <span class="kt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 6.5 9a6.5 6.5 0 1 0 11 0z"/></svg></span>
+        <span class="kt-main"><span class="kt-t">Tap Tracker</span><span class="kt-s" id="s-tap">Surveyed Taps</span></span>
+        <svg class="kt-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+      <a class="kt" id="c-rb" href="../redbull/">
+        <span class="kt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
+        <span class="kt-main"><span class="kt-t">Red Bull</span><span class="kt-st" id="s-rb"><span class="dot"></span>Checking…</span></span>
+        <svg class="kt-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+      <a class="kt" id="c-cb" href="../carbliss-onprem-targets/">
+        <span class="kt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></span>
+        <span class="kt-main"><span class="kt-t">Carbliss Leaderboard</span><span class="kt-st" id="s-cb"><span class="dot"></span>Checking…</span></span>
         <svg class="kt-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
       </a>
     </div>
@@ -151,7 +151,7 @@
 
 <footer>Internal Use Only</footer>
 
-<script src="../hub/data/accounts.js?v=20261007x" defer></script>
+<script src="../hub/data/accounts.js?v=20261008a" defer></script>
 <!-- Follow-ups: where Supabase lives (served by the middleware; 404 on
      github.io) and the trackers' registries for program NAMES only -- the
      incentive one wants the data blobs defined first, so give it empty ones. -->
@@ -235,10 +235,11 @@
     followUps(name);
     today(name);
   }
-  /* ---- NEEDS ATTENTION: one card of rows, each a filtered My Accounts list ----
-     acc = counts from the rep's account file (accounts with possible-reorder /
-     lapsed-product alerts and the product totals behind them; surveys due by
-     the list's own 53-day rule); fu = open follow-ups from rep_actions. */
+  /* ---- YOUR PRIORITIES (v5, 2026-10-08) ----
+     acc = the rep's account file (accounts/data/reps/<key>.json: alerts, alertProducts, taps);
+     fu  = open follow-ups from rep_actions. Priorities follow My Accounts' lead order
+     (accounts.js leadOf): follow-up, tap survey past 60 days, possible reorder -- one row per
+     account, three at most. The counts behind them stay as one line of links underneath. */
   var att = { name: '', acc: null, fu: null };
   function today(name){
     var sec = $('todaySec');
@@ -253,14 +254,15 @@
       })
       .then(function(d){
         if (att.name !== name) return;
-        var c = { re: 0, reP: 0, la: 0, laP: 0, tp: 0, ok: !!(d && d.accounts) };
+        var c = { re: 0, reP: 0, la: 0, laP: 0, tp: 0, ok: !!(d && d.accounts), list: (d && d.accounts) || [] };
         if (c.ok) {
           var now = Date.now();
           d.accounts.forEach(function(a){
             var al = a.alerts || {};
             if (al.reorder) { c.re++; c.reP += al.reorder; }
             if (al.lapsed) { c.la++; c.laP += al.lapsed; }
-            if (a.taps && a.taps.last) { var days = Math.floor((now - new Date(a.taps.last + 'T12:00:00').getTime()) / 86400000); if (days >= 53) c.tp++; }
+            a._tapDays = (a.taps && a.taps.last) ? Math.floor((now - new Date(a.taps.last + 'T12:00:00').getTime()) / 86400000) : null;
+            if (a._tapDays != null && a._tapDays >= 53) c.tp++;
           });
         }
         att.acc = c; drawAttention();
@@ -273,31 +275,94 @@
     tap: '<path d="M12 2.7 6.5 9a6.5 6.5 0 1 0 11 0z"/>'
   };
   function plural(n, one, many){ return n + ' ' + (n === 1 ? one : (many || one + 's')); }
+  function fmtDate(iso){ var d = new Date(String(iso).length <= 10 ? iso + 'T12:00:00' : iso); return isNaN(d) ? '' : MON[d.getMonth()] + ' ' + d.getDate(); }
+  function acctLink(n){ return '../accounts/#acct=' + encodeURIComponent(n) + (isManager && att.name ? '&rep=' + encodeURIComponent(att.name) : '') + '&from=' + encodeURIComponent('../rep/') + '&fl=' + encodeURIComponent('Rep Home'); }
+  function progLabel(pid){
+    if (!pid || /^note:/.test(pid)) return '';
+    try { return window.kdhTitle ? window.kdhTitle(pid, '') : ''; } catch (e) { return ''; }
+  }
+  function priorities(){
+    var fu = att.fu, c = att.acc, out = [], seen = {};
+    var byNum = {}; ((c && c.list) || []).forEach(function(a){ byNum[String(a.n)] = a; });
+    var add = function(n, row){ if (out.length >= 3 || seen[n]) return; seen[n] = 1; out.push(row); };
+    // 1. open follow-ups: dated ones by due date (overdue first), then undated, newest first
+    var today0 = new Date(); today0.setHours(0,0,0,0);
+    ((fu && fu.rows) || []).slice().sort(function(a, b){
+      var da = a.follow_on ? new Date(a.follow_on + 'T12:00:00').getTime() : Infinity, db = b.follow_on ? new Date(b.follow_on + 'T12:00:00').getTime() : Infinity;
+      return (da - db) || (new Date(b.updated_at) - new Date(a.updated_at));
+    }).forEach(function(r){
+      var n = String(r.account_num || ''); if (!n) return;
+      var a = byNum[n], nm = r.account_name || (a && a.name) || ('Account #' + n);
+      var due = r.follow_on ? new Date(r.follow_on + 'T12:00:00') : null;
+      var when = due ? (due < today0 ? 'Overdue · Due ' + fmtDate(r.follow_on) : (due.getTime() === today0.getTime() ? 'Due Today' : 'Due ' + fmtDate(r.follow_on))) : 'Flagged ' + fmtDate(r.updated_at);
+      var why = r.note ? '“' + r.note + '”' : (progLabel(r.program_id) || 'Your follow-up');
+      add(n, { k: 'follow', kind: 'Follow-Up', when: when, late: !!(due && due < today0), name: nm, town: a ? a.city : '', why: why, href: acctLink(n) });
+    });
+    // 2. tap surveys past the 60-day resurvey mark, most overdue first
+    ((c && c.list) || []).filter(function(a){ return a._tapDays != null && a._tapDays > 60; })
+      .sort(function(a, b){ return b._tapDays - a._tapDays; })
+      .forEach(function(a){ add(String(a.n), { k: 'tap', kind: 'Tap Survey Overdue', when: a._tapDays + ' Days Since Last Survey', late: true, name: a.name, town: a.city, why: 'Last surveyed ' + (a.taps.lastDisplay || fmtDate(a.taps.last)) + '. Resurvey due every 60 days.', href: acctLink(a.n) }); });
+    // 3. possible reorders: the accounts with the most, then the bigger account
+    ((c && c.list) || []).filter(function(a){ return a.alerts && a.alerts.reorder; })
+      .sort(function(a, b){ return (b.alerts.reorder - a.alerts.reorder) || ((b.cases2026 || 0) - (a.cases2026 || 0)); })
+      .forEach(function(a){
+        var ex = (a.alertProducts || []).filter(function(x){ return x.t === 'reorder'; })[0];
+        add(String(a.n), { k: 'reorder', kind: 'Possible Reorder', when: plural(a.alerts.reorder, 'Product'), name: a.name, town: a.city, why: (ex ? 'e.g. ' + ex.p + '. ' : '') + 'Past its usual reorder gap; not a confirmed need.', href: acctLink(a.n) });
+      });
+    return out;
+  }
   function drawAttention(){
     var name = att.name, sec = $('todaySec');
     if (!att.acc && !att.fu) return;
     var base = '../accounts/#' + (isManager ? 'rep=' + encodeURIComponent(name) + '&' : '');
-    var row = function(href, icon, title, sub, n, unit){
-      return '<a class="rh-arow" href="' + href + '"><span class="rh-aico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + icon + '</svg></span>' +
-        '<span class="rh-tmain"><span class="rh-tt">' + title + '</span><span class="rh-ts">' + sub + '</span></span>' +
-        '<span class="rh-n"><b>' + n + '</b><small>' + unit + '</small></span>' +
+    var P = priorities();
+    $('prioRows').innerHTML = P.map(function(p){
+      return '<a class="rh-prow" href="' + p.href + '"><span class="rh-aico k-' + p.k + '" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + IC[p.k] + '</svg></span>' +
+        '<span class="rh-tmain"><span class="rh-pk' + (p.late ? ' late' : '') + '">' + esc(p.kind) + ' · ' + esc(p.when) + '</span>' +
+        '<span class="rh-tt">' + esc(p.name) + (p.town ? '<span class="rh-town"> · ' + esc(p.town) + '</span>' : '') + '</span>' +
+        '<span class="rh-ts">' + esc(p.why) + '</span></span>' +
         '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>';
-    };
-    var html = '', fu = att.fu, c = att.acc;
-    if (fu && fu.accounts) html += row(base + 'need=follow', IC.follow, 'Open Follow-Ups', plural(fu.items, 'Follow-Up') + (fu.done7 ? ' · ' + fu.done7 + ' Done This Week' : ''), fu.accounts, fu.accounts === 1 ? 'Account' : 'Accounts');
-    if (c && c.re) html += row(base + 'need=any&kind=reorder', IC.reorder, 'Possible Reorders', plural(c.reP, 'Product'), c.re, c.re === 1 ? 'Account' : 'Accounts');
-    if (c && c.la) html += row(base + 'need=any&kind=lapsed', IC.lapsed, 'Lapsed Products', plural(c.laP, 'Product'), c.la, c.la === 1 ? 'Account' : 'Accounts');
-    if (c && c.tp) html += row(base + 'need=any&kind=tap', IC.tap, 'Tap Surveys Due', '53+ Days Since Last Survey', c.tp, c.tp === 1 ? 'Account' : 'Accounts');
+    }).join('');
+    $('prioRows').hidden = !P.length;
+    // the counts behind the priorities, each opening My Accounts already filtered
+    var fu = att.fu, c = att.acc, links = [];
+    var cnt = function(href, n, label){ links.push('<a href="' + href + '"><b>' + n + '</b> ' + label + '</a>'); };
+    if (fu && fu.accounts) cnt(base + 'need=follow', fu.accounts, fu.accounts === 1 ? 'Follow-Up Account' : 'Follow-Up Accounts');
+    if (c && c.re) cnt(base + 'need=any&kind=reorder', c.re, c.re === 1 ? 'Possible Reorder Account' : 'Possible Reorder Accounts');
+    if (c && c.la) cnt(base + 'need=any&kind=lapsed', c.la, c.la === 1 ? 'Lapsed Product Account' : 'Lapsed Product Accounts');
+    if (c && c.tp) cnt(base + 'need=any&kind=tap', c.tp, c.tp === 1 ? 'Tap Survey Due' : 'Tap Surveys Due');
+    $('todayRows').innerHTML = links.join('');
+    $('todayRows').hidden = !links.length;
     var quiet = [];
-    if (fu && !fu.accounts) quiet.push('No Open Follow-Ups' + (fu.done7 ? ' · ' + fu.done7 + ' Done This Week' : ''));
-    if (c && c.ok && !c.re && !c.la && !c.tp) quiet.push('Nothing Flagged');
-    $('todayRows').innerHTML = html;
-    $('todayRows').hidden = !html;
-    $('fuQuiet').textContent = quiet.join(' ');
+    if (!P.length && (c && c.ok || fu)) quiet.push('Nothing needs attention right now.');
+    if (fu && fu.done7) quiet.push(plural(fu.done7, 'follow-up') + ' done this week.');
+    $('fuQuiet').innerHTML = quiet.length ? esc(quiet.join(' ')) + (P.length ? '' : ' <a href="' + base.replace(/[&#]$/, '') + '">Open My Accounts</a>') : '';
     $('fuQuiet').hidden = !quiet.length;
     $('todayAll').href = base + 'need=any';
-    sec.hidden = !(html || quiet.length);
+    sec.hidden = !(P.length || links.length || quiet.length);
   }
+
+  /* ---- FIND AN ACCOUNT: instant results from the rep's own book (hub/data/accounts.js is
+     the rep's own copy for a rep; a manager's view uses the chosen rep). Name, town or #. */
+  function bookOf(name){ var A = accountsFile(); if (!A || !A.reps) return []; var k = A.reps[name] ? name : (window.kdhMatchName ? window.kdhMatchName(name, Object.keys(A.reps)) : ''); return (k && A.reps[k]) || []; }
+  function norm(t){ return String(t || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim(); }
+  function drawResults(){
+    var q = norm($('rhQ').value), box = $('rhRes');
+    if (!q) { box.hidden = true; box.innerHTML = ''; return; }
+    var book = bookOf(viewRep), hits = book.filter(function(a){
+      return norm(a.name).indexOf(q) >= 0 || norm(a.city).indexOf(q) >= 0 || String(a.n).indexOf(q.replace(/\s/g, '')) === 0;
+    });
+    hits.sort(function(a, b){ var sa = norm(a.name).indexOf(q) === 0 ? 0 : 1, sb = norm(b.name).indexOf(q) === 0 ? 0 : 1; return (sa - sb) || a.name.localeCompare(b.name); });
+    var all = '../accounts/#' + [isManager && viewRep ? 'rep=' + encodeURIComponent(viewRep) : '', 'q=' + encodeURIComponent($('rhQ').value.trim())].filter(Boolean).join('&');
+    box.innerHTML = (hits.length ? hits.slice(0, 6).map(function(a){
+      return '<a class="rh-hit" href="' + acctLink(a.n) + '"><span class="rh-tt">' + esc(a.name) + '</span><span class="rh-ts">' + esc([a.city, a.prem ? a.prem + '-Premise' : '', '#' + a.n].filter(Boolean).join(' · ')) + '</span></a>';
+    }).join('') : '<p class="rh-none">No account on your route matches “' + esc($('rhQ').value.trim()) + '”.</p>') +
+      (hits.length > 6 ? '<a class="rh-hit rh-more" href="' + all + '">See All ' + hits.length + ' Matches</a>' : '');
+    box.hidden = false;
+  }
+  $('rhQ').addEventListener('input', drawResults);
+  $('rhQ').addEventListener('keydown', function(e){ if (e.key === 'Escape') { $('rhQ').value = ''; drawResults(); } });
+
   // The MPO rows keep the rep a manager is viewing (2026-09-29): the tracker
   // opens on that rep's page instead of asking again. A rep's own row opens
   // by program and the tracker locks to them anyway.
@@ -312,15 +377,17 @@
   function followUps(name){
     var cfg = window.KDH_AUTH || {}, token = cookie('kdh_at');
     if (!name || !cfg.url || !cfg.key || !token) return;
-    var url = cfg.url.replace(/\/$/, '') + '/rest/v1/rep_actions?select=program_id,account_num,status,updated_at&rep_name=eq.' + encodeURIComponent(name) + '&order=updated_at.desc&limit=1000';
-    fetch(url, { headers: { apikey: cfg.key, authorization: 'Bearer ' + token, accept: 'application/json' } })
-      .then(function(r){ return r.ok ? r.json() : null; }, function(){ return null; })
+    // follow_on / note arrive with the notes migration; without them, ask for the original columns
+    var q = function(cols){ return fetch(cfg.url.replace(/\/$/, '') + '/rest/v1/rep_actions?select=' + cols + '&rep_name=eq.' + encodeURIComponent(name) + '&order=updated_at.desc&limit=1000', { headers: { apikey: cfg.key, authorization: 'Bearer ' + token, accept: 'application/json' } }); };
+    q('program_id,account_num,account_name,status,note,follow_on,updated_at')
+      .then(function(r){ return r.ok ? r : q('program_id,account_num,account_name,status,updated_at'); }, function(){ return null; })
+      .then(function(r){ return r && r.ok ? r.json() : null; }, function(){ return null; })
       .then(function(rows){
         if (att.name !== name || !rows) return;          // the manager switched reps meanwhile, or no access
         var week = Date.now() - 7 * 86400000, accts = {};
         var follow = rows.filter(function(r){ return r.status === 'follow'; });
         follow.forEach(function(r){ accts[r.account_num || r.program_id] = 1; });
-        att.fu = { items: follow.length, accounts: Object.keys(accts).length, done7: rows.filter(function(r){ return r.status === 'done' && new Date(r.updated_at).getTime() >= week; }).length };
+        att.fu = { rows: follow, items: follow.length, accounts: Object.keys(accts).length, done7: rows.filter(function(r){ return r.status === 'done' && new Date(r.updated_at).getTime() >= week; }).length };
         drawAttention();
       });
   }

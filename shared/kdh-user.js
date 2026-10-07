@@ -275,7 +275,9 @@
     t.id = 'kdhTabs'; t.className = 'kdh-tabs'; t.setAttribute('aria-label', 'Main');
     var isMgr = u.role === 'manager';
     var tabs = navItems(u).filter(function (it) { return !(isMgr && it.key === 'inventory'); });
-    t.innerHTML = '<div class="kdh-tabs-in">' + tabs.map(function (it) { return link('kdh-tab', it, it.key === w.nav); }).join('') +
+    // the bottom bar says "Accounts" (2026-10-08): "My Accounts" truncated to "My Acco..." on a 390px phone;
+    // the sidebar and the page title keep "My Accounts" and the link's aria-label carries the full name
+    t.innerHTML = '<div class="kdh-tabs-in">' + tabs.map(function (it) { return it.key === 'accounts' && it.label === 'My Accounts' ? link('kdh-tab', {key: it.key, href: it.href, label: 'Accounts'}, it.key === w.nav, ' aria-label="My Accounts"') : link('kdh-tab', it, it.key === w.nav); }).join('') +
       '<button type="button" class="kdh-tab' + (w.nav === 'more' ? ' on' : '') + '" id="kdhMoreBtn" aria-haspopup="true" aria-expanded="false"' + (w.nav === 'more' ? ' aria-current="page"' : '') + '>' + NAV_ICON.more + '<span>More</span></button></div>';
     document.body.appendChild(t);
     document.documentElement.classList.add('kdh-has-tabs');

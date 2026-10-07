@@ -749,7 +749,7 @@ const RA = (()=>{
     get: (pid, a) => map.get(key(pid, a)) || null,
     error: () => err, isLoading: () => loading, loadedFor: () => loadedFor};
 })();
-const RA_LABEL = {done:'Done', follow:'Follow up', skip:'Not now'};
+const RA_LABEL = {done:'Done', follow:'Follow-Up', skip:'Not Now'};
 const RA_MARK  = {done:'✓', follow:'⚑', skip:'–'};
 let raEdit = null;   // "program|acct" whose note box is open
 const raFoldOpen = new Set();   // "program|status" folds the rep opened (re-renders keep them open)
@@ -778,11 +778,11 @@ function raStrip(p, a, edit, show){
     const b = (k2, l) => `<button type="button" class="ra-b ${k2}${st && st.status===k2 ? ' on' : ''}" data-act="ra-set" data-prog="${E(p.id)}" data-n="${E(RA.num(a))}" data-status="${k2}" aria-pressed="${st && st.status===k2 ? 'true' : 'false'}">${RA_MARK[k2]} ${l}</button>`;
     return note + (raEdit===k
       ? `<form class="ra-edit" data-prog="${E(p.id)}" data-n="${E(RA.num(a))}"><input type="text" maxlength="200" placeholder="Note (who you spoke to, what they said…)" value="${E(st ? st.note : '')}" autocomplete="off"><button type="submit" class="ra-b on">Save</button><button type="button" class="ra-b" data-act="ra-cancel">Cancel</button></form>`
-      : `<div class="ra">${b('done','Done')}${b('follow','Follow up')}${b('skip','Not now')}<button type="button" class="ra-b note" data-act="ra-note" data-prog="${E(p.id)}" data-n="${E(RA.num(a))}">${st && st.note ? 'Edit note' : '+ Note'}</button>${st && st.saving ? '<span class="ra-saving">Saving…</span>' : ''}</div>`);
+      : `<div class="ra">${b('done','Done')}${b('follow','Follow-Up')}${b('skip','Not Now')}<button type="button" class="ra-b note" data-act="ra-note" data-prog="${E(p.id)}" data-n="${E(RA.num(a))}">${st && st.note ? 'Edit note' : '+ Note'}</button>${st && st.saving ? '<span class="ra-saving">Saving…</span>' : ''}</div>`);
   }
   if(RA.previewOf(state.rep)){
     const b = (k2, l) => `<button type="button" class="ra-b ${k2}${st && st.status===k2 ? ' on' : ''}" disabled aria-disabled="true">${RA_MARK[k2]} ${l}</button>`;
-    return note + `<div class="ra ra-off">${b('done','Done')}${b('follow','Follow up')}${b('skip','Not now')}</div><div class="ra-pv">Saving is off in preview — these are ${E(first(state.rep))}’s own marks.</div>`;
+    return note + `<div class="ra ra-off">${b('done','Done')}${b('follow','Follow-Up')}${b('skip','Not Now')}</div><div class="ra-pv">Saving is off in preview — these are ${E(first(state.rep))}’s own marks.</div>`;
   }
   if(st) return note + `<div class="ra"><span class="ra-chip ${st.status}">${RA_MARK[st.status]} ${RA_LABEL[st.status]}${raDay(st.updated_at) ? ' · '+raDay(st.updated_at) : ''}</span></div>`;
   return '';
@@ -790,7 +790,7 @@ function raStrip(p, a, edit, show){
 const raTag = (p, a, edit, show) => { const st = show ? RA.get(p.id, a) : null; return st && edit ? `<span class="ra-tag ${st.status}">${RA_MARK[st.status]} ${RA_LABEL[st.status]}</span>` : ''; };
 const raRowCls = (p, a, show) => { const st = show ? RA.get(p.id, a) : null; return st ? ' ra-'+st.status : ''; };
 const raNotes = (show, edit, rows, marks) => (show && RA.error() ? `<div class="ra-err">${E(RA.error())}</div>` : '')
-  + (edit && rows.length && !marks ? `<div class="ra-hint">Tap <b>Done</b>, <b>Follow up</b> or <b>Not now</b> under an account to keep track — your manager sees your marks too.</div>` : '');
+  + (edit && rows.length && !marks ? `<div class="ra-hint">Tap <b>Done</b>, <b>Follow-Up</b> or <b>Not Now</b> under an account to keep track — your manager sees your marks too.</div>` : '');
 // One visit-list row. `edit` = the signed-in rep on their own list.
 function planRowHtml(p, a, edit, show){
   const meta = E([a.city, a.area].filter(Boolean).join(' · ')) + (a.cases>0 ? ` · ${E(fmtCases(a.cases))}/yr` : '');
@@ -1208,7 +1208,7 @@ function incRowDetail(p, r, rep, targets, dist, which){
       + sec('How it is scored', repRulesHtml(p, 'ibul'))
       + full;
   }
-  const marksNote = (RA.canShow && targets.length) ? `<div class="it-note quiet">Done, Follow up and Not now are your own notes for planning visits. Credit for this program comes only from sales data — see "${E(SEC_LABEL.dist)}".</div>` : '';
+  const marksNote = (RA.canShow && targets.length) ? `<div class="it-note quiet">Done, Follow-Up and Not Now are your own notes for planning visits. Credit for this program comes only from sales data — see "${E(SEC_LABEL.dist)}".</div>` : '';
   return sec(`Potential accounts${targets.length?' · '+raLive(p, rep, targets).length:''}`, table + marksNote, listMore(key, raLive(p, rep, targets)))
     + ((fams && fams.length) ? sec('Pays on', `<div class="itext">${E(fams.join(' · '))}</div>`) : '')
     + sec('How it is scored', repRulesHtml(p, 'ibul'))
@@ -1273,7 +1273,7 @@ function screenRepIncentives(rep){
       <span class="isum-i met"><b>${met}</b> ${met===1?'goal':'goals'} met</span>
       <span class="isum-i ontrack"><b>${onTrack}</b> on track</span>
       <span class="isum-i attn"><b>${attn}</b> need${attn===1?'s':''} attention</span>
-      ${unitBits.length ? `<span class="isum-i units"><span class="isum-k">Still needed</span> ${unitBits.join('<span class="isum-sep">·</span>')}</span>` : ''}
+      ${unitBits.length ? `<span class="isum-i units"><span class="isum-k">Remaining</span> ${unitBits.join('<span class="isum-sep">·</span>')}</span>` : ''}
     </div>`;
 
   const body = groups.map(g=>{
@@ -1626,7 +1626,8 @@ function sellAsk(p){
 // Worded for what the data can show (2026-10-04): the history has a start
 // date, so it is never "never bought it".
 const NO_BUY = 'No purchases in the available history';
-const noBuyText = (why, p) => why===NO_BUY && p && p.refreshed ? `${NO_BUY} (tracker data refreshed ${p.refreshed})` : why;
+// the period always travels with it (2026-10-08): the tracker's data date, or its program window
+const noBuyText = (why, p) => why!==NO_BUY || !p ? why : p.refreshed ? `${NO_BUY} (tracker data through ${p.refreshed})` : (p.period && p.period.label ? `${NO_BUY} (${p.period.label})` : why);
 // The tracker's own opportunity lists for this rep -- warm leads that
 // should top the visit list: an account one SKU short, one oak short, a
 // handle still pouring Summer Ale, a big account that has never bought it.
@@ -1635,7 +1636,7 @@ function warmTargets(p, rep){
   const push = (name, why, warm)=>{ if(name) out.push({k:HubAccounts.norm(name), why, warm:!!warm}); };
   if(p.source==='inc'){
     const d = p.entry.getRep(rep); if(!d) return out;
-    (d.partialAccounts||[]).forEach(it=>push(it.customer, `${it.need} SKU${it.need===1?'':'s'} short`, true));
+    (d.partialAccounts||[]).forEach(it=>push(it.customer, `Needs ${it.need} more qualifying product${it.need===1?'':'s'}${it.skus!=null ? ` · has ${it.skus} of ${it.skus+it.need}` : ''}`, true));
     (d.offPremSingles||[]).forEach(it=>push(it.customer, 'Add the other oak', true));
     (d.onPremBuilding||[]).forEach(it=>push(it.customer, 'Needs a 2nd bottle', true));
     (d.unconvertedAccounts||[]).forEach(it=>push(it.customer||it.account, it.octLoaded ? `Octoberfest loaded ${new Date(it.octLoaded+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'})} · not yet on Boston Beer’s report` : 'Still on Summer Ale · Boston Beer list', !it.octLoaded));
@@ -2273,12 +2274,12 @@ function mpoQuickHtml(p, r){
   const facts = has ? `${goalLineHtml(f)}
     <div class="gb-stats mq-stats">
       <div class="gb-stat"><span class="gb-sl">Current</span><span class="gb-sv">${fmtN(f.cur)}<span class="gb-of"> of ${fmtN(f.goalN)}</span></span></div>
-      <div class="gb-stat${met?' met':''}"><span class="gb-sl">Still Needed</span><span class="gb-sv">${met ? 'Met' : fmtN(f.needN)}</span><span class="gb-su">${met ? 'Goal complete' : E(titleW(uPl(f.needN, f.unit||'')))}</span></div>
+      <div class="gb-stat${met?' met':''}"><span class="gb-sl">Remaining</span><span class="gb-sv">${met ? 'Met' : fmtN(f.needN)}</span><span class="gb-su">${met ? 'Goal complete' : E(titleW(uPl(f.needN, f.unit||'')))}</span></div>
     </div>`
     : `<div class="g-facts g-facts-3">
       <div><div class="g-fact-l">Goal</div><div class="g-fact-v">${E(r.goal||'\u2014')}</div></div>
       <div><div class="g-fact-l">Current</div><div class="g-fact-v">${E(r.now||'\u2014')}</div></div>
-      <div><div class="g-fact-l">Still Needed</div><div class="g-fact-v${r.remain?'':' good'}">${E(r.remain || 'None')}</div></div>
+      <div><div class="g-fact-l">Remaining</div><div class="g-fact-v${r.remain?'':' good'}">${E(r.remain || 'None')}</div></div>
     </div>`;
   return `<div class="g-tags mpo-tags">
       <span class="g-pill ${st}">${G_STATUS_MARK[st]} ${CREDIT[st]||G_STATUS_TEXT[st]}</span>
@@ -2377,7 +2378,7 @@ function mpoRepCard(p, r, rep){
 
   const figures = `<div class="mfig">
       <div class="mf"><div class="mf-l">Current</div><div class="mf-v">${N?fmtN(N.cur)+`<span class="mf-of"> of ${fmtN(N.goal)}</span>`:E(r.now||'—')}</div></div>
-      <div class="mf need${met?' met':''}"><div class="mf-l">${met?'Status':'Still Needed'}</div>
+      <div class="mf need${met?' met':''}"><div class="mf-l">${met?'Status':'Remaining'}</div>
         <div class="mf-v">${met?'Goal met':(N?fmtN(N.need):E(r.remain||'—'))}</div>
         ${!met && unit ? `<div class="mf-u">${E(unit)}</div>` : ''}</div>
     </div>`;
@@ -2535,7 +2536,7 @@ function screenDetailRep(p, r, rep, back){
     <div class="dfacts three">
       <div class="dfact"><span class="dfact-l">Your goal</span><span class="dfact-v">${E(r.goal||'—')}</span></div>
       <div class="dfact"><span class="dfact-l">Where you stand</span><span class="dfact-v">${E(r.now||'—')}</span>${repSub(r)?`<span class="dfact-s">${E(repSub(r))}</span>`:''}</div>
-      <div class="dfact"><span class="dfact-l">Still needed</span><span class="dfact-v">${E(r.remain || (r.openEnded ? 'No cap — every one pays' : (soon ? '—' : 'Done ✓')))}</span><span class="dfact-s ${daysLeft(p.period.end)<=ENDING_SOON_DAYS && isActive(p)?'urgent':''}">${E(endsLabel(p.period))}</span></div>
+      <div class="dfact"><span class="dfact-l">Remaining</span><span class="dfact-v">${E(r.remain || (r.openEnded ? 'No cap — every one pays' : (soon ? '—' : 'Done ✓')))}</span><span class="dfact-s ${daysLeft(p.period.end)<=ENDING_SOON_DAYS && isActive(p)?'urgent':''}">${E(endsLabel(p.period))}</span></div>
     </div>
     ${r.next ? `<div class="nextbox"><div class="nextbox-l">Your next move</div><div class="nextbox-t">${nextNoMoney(r.next)}</div></div>` : ''}
     ${(()=>{ const BG = brandGoals(p, rep); return BG.length
@@ -3187,7 +3188,7 @@ function goalBlockHtml(p, f, opt){
       <div class="gb-goal"><span class="gb-l">Goal</span><span class="gb-v">${fmtN(f.goalN)}${unitG}</span>${f.why ? `<span class="gb-why">${E(f.why)}</span>` : ''}</div>
       <div class="gb-stats">
         <div class="gb-stat"><span class="gb-sl">Current</span><span class="gb-sv">${fmtN(f.cur)}<span class="gb-of"> of ${fmtN(f.goalN)}</span></span></div>
-        <div class="gb-stat${met?' met':''}"><span class="gb-sl">Still Needed</span><span class="gb-sv">${met ? 'Met' : fmtN(f.needN)}</span><span class="gb-su">${met ? 'Goal complete' : E(titleW(uPl(f.needN, f.unit||'')))}</span></div>
+        <div class="gb-stat${met?' met':''}"><span class="gb-sl">Remaining</span><span class="gb-sv">${met ? 'Met' : fmtN(f.needN)}</span><span class="gb-su">${met ? 'Goal complete' : E(titleW(uPl(f.needN, f.unit||'')))}</span></div>
       </div>
       ${hbar(f)}
       <div class="gb-cap">${Math.round(f.pct||0)}% of the goal</div>
@@ -3652,7 +3653,7 @@ function pwFocusSummary(p, f){
       <div class="pwf-stats">
         <div class="pwf-stat"><span class="pwf-l">Goal</span><span class="pwf-v">${fmtN(f.goalN)}</span><span class="pwf-u">${unit(f.goalN)}</span></div>
         <div class="pwf-stat"><span class="pwf-l">Current</span><span class="pwf-v">${fmtN(f.cur)}</span><span class="pwf-u">of ${fmtN(f.goalN)}</span></div>
-        <div class="pwf-stat${met?' met':''}"><span class="pwf-l">Still Needed</span><span class="pwf-v">${met ? 'Met' : fmtN(f.needN)}</span><span class="pwf-u">${met ? 'Goal complete' : unit(f.needN)}</span></div>
+        <div class="pwf-stat${met?' met':''}"><span class="pwf-l">Remaining</span><span class="pwf-v">${met ? 'Met' : fmtN(f.needN)}</span><span class="pwf-u">${met ? 'Goal complete' : unit(f.needN)}</span></div>
       </div>
       ${hbar(f)}
       <div class="pwf-dl">${dl}</div>
@@ -3753,7 +3754,7 @@ function acctRowsFor(p, rep, list){
   const plan = nextAccounts(p, rep); const rows = plan.rows.filter(a=>!a.foreign);
   const T = raSplit(p, rep, rows);
   if(list==='dist') return distFor(p, rep).map(x=>Object.assign({}, x, {line:[x.what, x.date].filter(Boolean).join(' · ')}));
-  const withLine = a => Object.assign({}, a, {line: plan.hold ? 'Keep ordering' : (a.why||'')});
+  const withLine = a => Object.assign({}, a, {line: plan.hold ? 'Keep ordering' : noBuyText(a.why||'', p)});
   if(list==='follow') return T.follow.map(withLine);
   if(list==='done') return T.done.map(withLine);
   if(list==='skip') return T.later.map(withLine);
@@ -3773,7 +3774,7 @@ function acctRowsHtml(key){
     return `<button class="hrow acct${st?' ra-'+st.status:''}" data-act="open-acct" data-n="${E(RA.num(a))}" data-list="${list}">
       <span class="hrow-main"><span class="hrow-t"><span>${E(a.name)}</span>${st && list!=='follow' ? `<span class="ra-tag ${st.status}">${RA_MARK[st.status]} ${RA_LABEL[st.status]}</span>` : ''}</span>
         ${town ? `<span class="hrow-s">${E(town)}</span>` : ''}
-        ${a.line && !(elig && a.line===NO_BUY) ? `<span class="hrow-p">${E(a.line)}${list==='follow' && st && st.note ? ` · <i>${E(st.note)}</i>` : ''}</span>` : ''}</span>${elig ? '<span class="pw-open">Open Account</span>' : ''}${CHEV}</button>`;
+        ${a.line ? `<span class="hrow-p">${E(elig && a.why===NO_BUY ? 'No qualifying purchase yet'+(p.refreshed ? ' · data through '+p.refreshed : '') : a.line)}${list==='follow' && st && st.note ? ` · <i>${E(st.note)}</i>` : ''}</span>` : ''}</span>${elig ? '<span class="pw-open">Open Account</span>' : ''}${CHEV}</button>`;
   }).join('');
 }
 function screenAccounts(){
@@ -3832,7 +3833,7 @@ function screenAccount(){
     </section>
     ${show ? `<section class="hsec"><h2>Your Notes</h2>
       <div class="hcard hra">${strip || `<div class="ra"><span class="ra-chip">No mark yet</span></div>`}${RA.error() ? `<div class="ra-err">${E(RA.error())}</div>` : ''}
-      ${edit ? `<p class="hnote">Done, Follow up and Not now are your own planning notes. They don’t change credit.</p>` : ''}</div>
+      ${edit ? `<p class="hnote">Done, Follow-Up and Not Now are your own planning notes. They don’t change credit.</p>` : ''}</div>
     </section>` : ''}
   </div>`;
 }
