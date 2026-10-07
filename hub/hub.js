@@ -853,8 +853,12 @@ function readHash(){
   h.split('&').filter(Boolean).forEach(kv=>{ const i = kv.indexOf('='); if(i<0) return; o[kv.slice(0,i)] = decodeURIComponent(kv.slice(i+1)); });
   return o;
 }
+// Carbliss MPO (2026-10-07, Gavin): the leaderboard IS this month's Carbliss MPO, so every way into that program
+// (Program View card, rep row, old deep links) lands on /carbliss-onprem-targets/ with no second screen.
+const CB_PROG = 'on:2026-10:carbliss', CB_HREF = '../carbliss-onprem-targets/';
 function applyHash(){
   const h = readHash();
+  if(!LIB && h.prog===CB_PROG && !h.acct){ location.replace(CB_HREF); return; }
   if(h.rep && ROSTER.includes(h.rep)) state.rep = h.rep;
   if(h.main==='inc' || h.main==='mpo') state.main = h.main;
   if(h.cat && CATEGORIES.some(c=>c.key===h.cat)){ state.cat = h.cat; state.main = tabOf(h.cat); }
@@ -890,6 +894,7 @@ function applyHash(){
   lockState();
 }
 function go(next, replace){
+  if(!LIB && next.prog===CB_PROG && (next.view==='program' || next.view==='detail' || next.view==='workspace')){ location.href = CB_HREF; return; }
   try{ scrollMem[location.hash||'#'] = window.scrollY; }catch(e){}
   // RETURN PATH (2026-10-06): a program screen remembers the exact screen it
   // was opened from (another page's link passes ret=; inside the hub it is the

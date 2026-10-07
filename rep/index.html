@@ -108,7 +108,7 @@
       </a>
       <a class="rh-tool" id="c-cb" href="../carbliss-onprem-targets/">
         <span class="rh-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></span>
-        <span class="rh-tmain"><span class="rh-tt">Carbliss Leaderboard</span><span class="rh-ts" id="s-cb">By Rep</span></span>
+        <span class="rh-tmain"><span class="rh-tt">Carbliss MPO</span><span class="rh-ts" id="s-cb">Leaderboard</span></span>
       </a>
     </div>
   </section>
@@ -328,6 +328,13 @@
         else { card.classList.add('muted'); status(t[2], '', 'No Programs Loaded Yet'); }
       });
     });
+  });
+
+  // Carbliss MPO tile (2026-10-07): the leaderboard's own headline numbers, company-wide, from program.json.
+  getJson('../carbliss-mpo/data/program.json').then(function(d){
+    var c = d && d.meta && d.meta.counts; if (!c) return;
+    var g = d.meta.goal || 331;
+    status('s-cb', 'ok', c.l90 + ' / ' + g + ' L90 · ' + c.prog + ' / ' + g + ' Aug–Oct');
   });
 
   // Red Bull: the tracked period and how long is left in it.
