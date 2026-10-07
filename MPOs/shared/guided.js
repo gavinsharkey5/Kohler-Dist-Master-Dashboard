@@ -675,12 +675,10 @@ function programCard(o){
 // whole card opens the leaderboard (managers and reps alike) instead of expanding the rep list.
 function carblissProgramCard(o, g){
   var has = !!(g && g.total);
-  return '<div class="g-prog g-prog-cb"><a class="g-prog-head g-prog-link" href="../../carbliss-onprem-targets/">'+
+  // No title line (Gavin, 2026-10-07: redundant) -- the link's aria-label names the program for screen readers.
+  var label = titleOf(o)+', '+String(supPeriod(o)).replace(/<[^>]+>/g,'')+'. Open the Carbliss Leaderboard';
+  return '<div class="g-prog g-prog-cb"><a class="g-prog-head g-prog-link" href="../../carbliss-onprem-targets/" aria-label="'+esc(label)+'">'+
       logoHtml(o)+
-      '<div class="g-prog-top">'+
-        '<span class="g-prog-name">'+esc(titleOf(o))+'<span class="g-reprow-dm">'+supPeriod(o)+'</span></span>'+
-        '<span class="g-chev" aria-hidden="true">\u203a</span>'+
-      '</div>'+
       '<div class="g-cb g-cb-co" data-co="1"><div class="g-cb-wait">Loading Carbliss buyers\u2026</div></div>'+
       '<div class="g-meta">MPO Weight '+Math.round(o.weight*100)+'%'+(has ? ' \u00b7 '+g.n+' of '+g.total+' Reps at Goal' : '')+
         '<span class="g-review">Open Carbliss Leaderboard</span></div>'+

@@ -2711,3 +2711,6 @@ leaderboard"): the Carbliss program card on Program View is now ONE LINK to /car
 Other program cards still expand to Review Reps. The tiles carry no "Company Carbliss Buyers" heading on this
 card (noTitle) -- the card title already says Carbliss. guided.js 20261007t, guided.css 20261007s. Test: scratchpad
 cbhead_link.mjs (manager card click + rep card link -> leaderboard, 390 / 1366, light / dark).
+Third follow-up (same day, Gavin): the Carbliss program card has NO title line either ("Carbliss Buying Accounts /
+Aug 1 – Oct 31, 2026" was redundant) -- it opens on "Team Goal: 331 Buyers" and the tiles; the link's aria-label
+carries the program name and period. guided.js / guided.css 20261007u.
