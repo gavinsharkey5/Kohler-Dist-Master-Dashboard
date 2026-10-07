@@ -218,3 +218,27 @@ older single photo, never in preview. Removing a record removes its lines,
 photo links, photo rows and stored files. An imported record comes back if the
 same iSellBeer file is imported again (the import restates by source_key).
 Edit Details / Edit Labels stay with the author.
+
+
+PHOTO WORKSPACE (2026-10-07, managers: /merchandising/)
+-------------------------------------------------------
+Same records, photos, filters, permissions and exports; new presentation. recap.js render():
+  * Wide gallery (main.wrap.gal, up to 1680px): one CARD per record -- lead photo (contained, never cropped, 4:3 frame,
+    "N Photos" badge), account, type chip, town + date ("Observed on" for iSellBeer), rep and a short brand line.
+    Full product lists, tap lines, captions and source live in the viewer. Thumbnails load as they scroll into view.
+  * Summary line "N Accounts . N Records . N Photos" (+ product / brand lines, secondary). Filters: Account, Photo Type,
+    From / To, Rep always; More Filters = Town, Premise, Brand or Product, Program, Source. Active filters are removable
+    chips + Clear Filters. All in the hash (also town, prem); newest first.
+  * Viewer (openViewer): large photo, Close, Previous / Next, "Photo 1 of 3", zoom (buttons, wheel, pinch, drag to pan),
+    Escape / arrow keys, focus trapped and returned to the thumbnail, loading + "Try Again" failed state. Details beside the
+    photo from 900px, in a "Record Details" fold under it on phones: Account (+ Open Account), Observation (type, Observed /
+    Taken on, Photographer, Assigned Rep), Products / Brands, Notes, Source, Program (evidence, not credit). The hash carries
+    rec= / ph= so a reload reopens it. Open Account passes from= (the gallery hash) and the scroll + "Show More" depth go
+    in sessionStorage kdh_merch_pos, so Back lands on the same filtered gallery at the same place.
+  * Export scope: checkboxes (separate from opening a photo) choose records; with none selected every MATCHING record is
+    exported (Excel, CSV, Photo PDF all read exportRows()). The line under the buttons says which. "Export Photo PDF" is a
+    PRINT VIEW (Print -> Save as PDF), labelled so; it holds up to 300 records (RECAP_MAX) and says how many photos could
+    not be loaded. Excel and CSV always hold every record in scope.
+  * Access is unchanged: RLS decides what loads; a district manager is narrowed to their team (kdhTeam). A manager who is
+    not a DM still sees everyone -- there is no per-manager "company-wide" flag to check yet.
+Test: scratchpad mg.mjs (stubbed Supabase, 130 records incl. no-photo, 3-photo, a failing photo).
