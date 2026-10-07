@@ -208,3 +208,29 @@ Rules
   surface for each theme.
 - Gotcha: the hub's generic `.sub` card class used to leak onto the
   sidebar's sub-items (boxed links); kdh.css resets it inside .kdh-side.
+
+COMPANY PHOTOS (2026-10-07)
+---------------------------
+Gavin sent screenshots of kohlerdistributing.co (About Us, Our Mission, the
+Beer / Wine & Spirits / Beyond Beer tiles). The photos were cut from them
+into assets/brand/: team.webp (578x791, the team in front of the Hawthorne
+building), beer.webp,
+wine-spirits.webp, beyond-beer.webp (526x432, the bottles only -- the site's
+baked-in "Beer / Read More" text is cropped off; labels are real text).
+The site's gold measured #E4A154 -- the same as --kdh-accent (#E4A252).
+Sources are screenshots, so they are ~580px wide: never show one wider than
+about 640px (the .kdh-band max-width) or it goes soft. Swap in the originals
+if Gavin sends them; the file names can stay.
+  .kdh-band       (kdh.css) slim photo strip at the top of a page; decoration,
+                  never a control, never text on the photo. Used on the rep
+                  home + manager home (team), Wine & Spirits (wine-spirits),
+                  Carbliss Leaderboard (beyond-beer, class "cans"), Tap
+                  Tracker (beer).
+  .kdh-portfolio  (kdh.css) "Our Portfolio" on solid navy at the foot of both
+                  homes: the mission line + the three category photos. Not
+                  links -- there is no Beer / W&S / Beyond Beer split in any
+                  dataset (inventory has none), so nothing honest to filter.
+  /login/         the same photos as the "story" panel (left half from 960px,
+                  under the form on phones). See login/index.html's comment.
+Gold text only on navy (7:1); gold on white is 2.2:1 and never used for text.
+

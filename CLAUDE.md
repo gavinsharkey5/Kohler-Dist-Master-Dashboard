@@ -2623,3 +2623,28 @@ centred page-standard headers; shared/carbliss-tiles.css (main's new Carbliss
 tiles) now takes its red from --kdh-bad / --kdh-bad-soft (its fixed #d63c2d pill
 was 3.57:1 light / 3.19:1 dark), tag 20261007m. Never give a shared component a
 fixed colour: use the kdh tokens so both themes stay AA.
+
+## Company photos + a cleaner sign-in (2026-10-07, second request)
+
+Gavin sent screenshots of kohlerdistributing.co (Beer / Wine & Spirits / Beyond
+Beer tiles, About Us team photo, Our Mission) and asked for them in the Hub and a
+cleaner sign-in. Photos were CUT FROM THE SCREENSHOTS into assets/brand/
+(team.webp, beer.webp, wine-spirits.webp, beyond-beer.webp; ~580px sources, so
+never shown wider than ~640px). /login/ v3: the form on a plain page (no box,
+Title Case labels/buttons, shorter lead), and a navy "story" panel -- the team
+photo, "Kohler Distribution Hub" with the gold word, the mission line ("Committed
+to the growth of all brands through the continued development of our people.")
+and the three category photos -- as the left half from 960px and BELOW the form
+on phones (the email box stays on the first screen). Every step / id / guard of
+the sign-in logic is unchanged. Across the site: kdh.css `.kdh-band` (photo strip,
+top of rep home, manager home, Wine & Spirits, Carbliss Leaderboard, Tap Tracker)
+and `.kdh-portfolio` ("Our Portfolio" + mission + category photos at the foot of
+both homes; decoration, not links -- no dataset splits Beer / W&S / Beyond Beer).
+Fixed on the way (a regression from the brand pass): the zero-specificity
+`:where(h1,h2,h3)` navy heading rule beat the WHITE that Wine & Spirits' navy
+header passed down, so its title and subtitle were navy on navy in light mode --
+the skin now forces white there; and its "i" badges are navy on gold. A
+scratchpad head_audit.mjs checks every dashboard's h1-h3 against its real
+(gradient-aware) background: 0 failures. shared/README.txt "COMPANY PHOTOS" has
+the rules. Tags: kdh.css 20261007p (imported by rep.css + kdh-skin.css),
+kdh-skin.css / rep.css 20261007p.

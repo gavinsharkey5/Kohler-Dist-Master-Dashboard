@@ -279,6 +279,13 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-10-07 **Company photos + cleaner sign-in**: the team photo, the
+  mission line and the Beer / Wine & Spirits / Beyond Beer photos from
+  kohlerdistributing.co on the sign-in page, both home pages and the Wine &
+  Spirits / Carbliss / Tap Tracker headers. TO DO (optional): send the
+  ORIGINAL photo files (the ones on the website) -- today's were cut from
+  screenshots and are only ~580px wide, so they look soft on large screens.
+
 - [x] 2026-10-07 **Kohler branding, light and dark**: Kohler blue actions, navy
   headings and sidebar, small gold accents, the official logo in the header,
   sidebar and sign-in, and the warehouse photo on the desktop sign-in. TO DO

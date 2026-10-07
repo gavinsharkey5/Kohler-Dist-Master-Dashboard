@@ -20,7 +20,7 @@
 
    Page-specific fixes live at the bottom, grouped by page. Keep the
    variable map alphabetical-ish so a new dashboard is easy to add. */
-@import url("kdh.css?v=20261007c");
+@import url("kdh.css?v=20261007p");
 
 /* ---- 2. fonts: every family a dashboard asks for is one of ours ---- */
 @font-face{font-family:"Space Grotesk";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/inter.woff2) format("woff2")}
@@ -272,3 +272,10 @@ html.kdh-rep .tap-res-head .tbtn{display:none}
 .kpi-num,.st.ok{color:var(--kdh-ok)}
 .kpi.bad .kpi-num,.st.out{color:var(--kdh-bad)!important}
 .st.unknown{color:var(--kdh-text-3)!important}
+
+/* Wine & Spirits (+ the Portfolio page) keep a navy header band in both
+   themes; the kdh heading colour (navy in light) made its title and
+   subtitle unreadable on it (2026-10-07). White there, always. */
+.header > .header-top .brandmark h1,.header > .header-top .brandmark .subtitle{color:#FFFFFF!important}
+/* the W&S "i" info badges sit on gold: navy glyph, never white (1.8:1 in dark) */
+.th-info{color:#0B2466!important}

@@ -425,3 +425,30 @@ html.kdh-menu-open .kdh-tabs{z-index:71}
   .kdh-side-who small{color:#C2CEEA}
   .kdh-side-user > svg{color:#A9BADC}
 }
+
+/* COMPANY PHOTOS (2026-10-07, Gavin: "include these images throughout the
+   site"). Cut from kohlerdistributing.co: the team in front of the Hawthorne
+   building (assets/brand/team.webp) and the Beer / Wine & Spirits / Beyond
+   Beer portfolio photos. Two components, decoration only -- never a control,
+   never text laid on a photo:
+   .kdh-band       a slim photo strip at the top of a page (max 640px wide so
+                   the ~580px source is not blown up; gold rule under it)
+   .kdh-portfolio  "Our Portfolio" on solid navy at the foot of the homes:
+                   the mission line + the three category photos */
+.kdh-band{display:block;margin:0 auto 16px;max-width:640px;height:clamp(104px,20vw,170px);border-radius:14px;overflow:hidden;background:#0B2466;border-bottom:3px solid #E4A154}
+.kdh-band img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 60%}
+.kdh-band.team img{object-position:50% 86%}
+.kdh-portfolio{margin:32px auto 8px;max-width:640px;padding:22px 20px 20px;border-radius:16px;background:#0B2466;color:#FFFFFF;border-top:3px solid #E4A154;text-align:center}
+:root[data-theme="dark"] .kdh-portfolio{background:#0E2A73}
+.kdh-portfolio h2{margin:0 0 6px!important;font-size:20px!important;font-weight:700!important;line-height:1.2;color:#FFFFFF!important}
+.kdh-portfolio h2 span{color:#E4A154}
+.kdh-portfolio p{margin:0 auto 16px;max-width:520px;font-size:15px;line-height:1.5;color:#D9E1F2}
+.kdh-portfolio ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.kdh-portfolio li{margin:0}
+.kdh-portfolio img{display:block;width:100%;height:auto;aspect-ratio:526/432;object-fit:cover;border-radius:10px;background:#16306F}
+.kdh-portfolio li span{display:block;margin-top:7px;font-size:14px;font-weight:600;line-height:1.25;color:#FFFFFF}
+/* a page band sits a step below the bar and pulls the page header up to it */
+.kdh-band{margin-top:16px}
+.kdh-band + .rh-head,.kdh-band + .ws,.kdh-band + header{margin-top:0!important;padding-top:8px!important}
+.gx-head .kdh-band{margin-top:4px}
+.kdh-band.cans img{object-position:50% 30%}
