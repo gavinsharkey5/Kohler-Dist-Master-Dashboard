@@ -2860,18 +2860,14 @@ placements, not cases, so cases still come from the first export. INDUSTRIAL ART
 Sam Adams draft conversion ends Oct 23 and Touchdowns & Tea ends Oct 31 (both already built that way).
 Cache tags programs.js / program_data.js 20261007zz.
 
-## Rep Home v5 + list / program wording (2026-10-08)
+## My Accounts / program wording refresh; Rep Home v5 REVERTED (2026-10-08)
 
-Gavin's brief: Option C's account-first layout + Option B's short priority list (Option A only to group the
-secondary tools). Presentation only -- no rule, number, permission or data source changed. REP HOME
-(rep/index.html, rep.css "REP HOME v5"): h1 "Today" + name / areas; `#rhSearch` / `#rhQ` searches the
-rep's own book (accounts/data/reps/<key>.json via accounts/data/index.json; name, town or #, 6 hits + "See All
-N Matches" -> /accounts/#q=); "Your Priorities" (`priorities()`: open follow-ups by due date then newest,
-tap surveys past 60 days, possible reorders by count then 2026 cases; ONE row per account, max 3, each opens
-the Account page with from=../rep/ & fl=Rep Home) + count links (need=follow / need=any&kind=reorder|lapsed|tap)
-+ "Why These Actions?" fold; no completion controls here (alerts are not tasks). Quick Access / Trackers are
-`.kt-grid.qa-grid`: ONE grouped bordered list under 640px, 3-across tiles above. The rep bottom tab reads
-"Accounts" (aria-label "My Accounts"). MY ACCOUNTS: segmented `#needSeg` = All Accounts / Needs Attention /
+Gavin's brief asked for Option C's account-first layout + Option B's priority list. A Rep Home v5 ("Today",
+account search, "Your Priorities", grouped Quick Access) shipped and was REVERTED the same day at Gavin's
+request ("Before looks better for this screen"): rep/index.html and rep/rep.css are back to the v4 Rep Home
+(2026-10-07 section above), which is the same layout as the Manager Home. Do not bring v5 back unless he asks.
+Kept from that pass: the rep bottom tab reads "Accounts" (aria-label "My Accounts"; "My Accounts" was cut off
+at 390px). Presentation only -- no rule, number, permission or data source changed. MY ACCOUNTS: segmented `#needSeg` = All Accounts / Needs Attention /
 Follow-Ups (3 equal columns, count under the label below 520px); the header no longer repeats alert counts or
 the sales month (the Data pop has it); a filtered list shows `.afl` = filters in words · N Accounts · Clear
 (`activeLine()`, `#clearAll`). PROGRAMS: "Still Needed" is "Remaining" everywhere (hub goal blocks, workspace,
@@ -2880,4 +2876,4 @@ summary strip, guided.js cards); eligible rows say what is left ("Needs 1 more q
 qualifying purchase yet · data through <date>", and hub `noBuyText()` always carries the period. Hub marks are
 Done / Follow-Up / Not Now. Also: the W&S "i" badges are navy on a fixed light gold (skin), and the amber
 banner's "Open Encompass" link has a 41px tap area. Tags: rep.css / hub.js / eligibility.js / accounts.js /
-accounts.css / guided.js / kdh-skin.css 20261008a; kdh-user.js 20261008b.
+accounts.css / guided.js / kdh-skin.css 20261008a; kdh-user.js 20261008b; rep.css 20261008c (the revert).

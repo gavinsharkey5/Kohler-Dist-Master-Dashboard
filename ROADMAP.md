@@ -280,13 +280,11 @@ device, a decision).
 
 ## Done
 
-- [x] 2026-10-08 **UI refinement: account-first Rep Home + short priority list.** Rep Home opens on "Today": an
-  account search (name, town or # -> straight to the Account page), "Your Priorities" (up to 3 accounts from the
-  existing rules: follow-ups, overdue tap surveys, possible reorders), count links into My Accounts, a "Why These
-  Actions?" fold, then Quick Access / Trackers as one grouped list on phones. My Accounts filters read All Accounts /
-  Needs Attention / Follow-Ups and a filtered list says what it shows + the count + Clear. Program pages say Goal /
-  Current / Remaining; eligible-account rows say what is left ("Needs 1 more qualifying product · has 2 of 3"). No
-  data, rule or permission changed.
+- [x] 2026-10-08 **My Accounts + program wording.** My Accounts filters read All Accounts / Needs Attention /
+  Follow-Ups, and a filtered list shows the filters, the count and Clear. Program pages say Goal / Current /
+  Remaining. Eligible-account rows say what is left ("Needs 1 more qualifying product · has 2 of 3"). The
+  Rep Home redesign tried the same day was reverted at Gavin's request: Rep Home keeps the layout the Manager
+  Home uses. No data, rule or permission changed.
 - [x] 2026-10-07 **Rep account base = the active Customers export** (territory-accounts/customers_active.csv,
   tools/customer_base.py): rep books, My Accounts, Incentives target lists, the Lytt and Carbliss bases;
   Core Market / Southern District rules written down; MetLife stands out of program bases.
