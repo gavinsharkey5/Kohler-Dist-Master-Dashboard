@@ -1,18 +1,23 @@
 Sales Rep Assigned,Customer Num & Company,Product Num & Name,Sub-Segments,Segment,Load Sheet Date,Placement Count   10/1/2026 - 10/31/2026,Placement Count   7/1/2026 - 9/30/2026
-Alisa Acciardi,174151 Eddy's Bar & Liquor,200312 Pride & Clarke Vodka 48/200 mL Btl,Spirits - Vodka,Spirits,10/8/2026,1.00,
-Paul Mclaughlin,59001 ORA,201055 Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl,Spirits - Whiskey,Spirits,10/8/2026,1.00,
-Pablo Lopez,33005 La Havana 59,200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,10/8/2026,1.00,
+Alisa Acciardi,174151 Eddy's Bar & Liquor,200312 Pride & Clarke Vodka 48/200 mL Btl,Spirits - Vodka,Spirits,10/9/2026,1.00,
+Alisa Acciardi,174151 Eddy's Bar & Liquor,200313 Pride & Clarke Vodka 24/375 mL Btl,Spirits - Vodka,Spirits,10/9/2026,1.00,
+Paul Mclaughlin,41006 Straphanger Saloon (A),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,10/9/2026,1.00,
+Jaime Colonna,170294 Halifax Restaurant,100912 OVO Vodka 1/12/750 mL Btl,Spirits - Vodka,Spirits,10/9/2026,1.00,
+Brian Sengebush,190905 Elevengreen,201058 Bardstown Origin Series High Wheat 1/750 mL Btl,Spirits - Whiskey,Spirits,10/8/2026,1.00,
 Brian Sengebush,190108 Harrigan's Rest. (P),201077 Green River Honey 1/750 mL Btl,Spirits - Whiskey,Spirits,10/8/2026,1.00,
-Alisa Acciardi,174151 Eddy's Bar & Liquor,200313 Pride & Clarke Vodka 24/375 mL Btl,Spirits - Vodka,Spirits,10/8/2026,1.00,
+Jaime Colonna,170042 O'nieal's (A),100912 OVO Vodka 1/12/750 mL Btl,Spirits - Vodka,Spirits,10/8/2026,1.00,
+Pablo Lopez,33005 La Havana 59,200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,10/8/2026,1.00,
+Brian Sengebush,190905 Elevengreen,201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,10/8/2026,1.00,
 Pablo Lopez,33005 La Havana 59,100961 2XO American Oak 1/750 mL Btl,Spirits - Whiskey,Spirits,10/8/2026,1.00,
+Paul Mclaughlin,59001 ORA,201055 Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl,Spirits - Whiskey,Spirits,10/8/2026,1.00,
 Pablo Lopez,39004 Noches De Colombia (S. Hackensack)),200771 Desquite Artesanal 6/750 mL Btl,Spirits - Tequila,Spirits,10/8/2026,1.00,
+Paul Mclaughlin,86007 Bacari,200218 Leyenda 1925 Reposado Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,10/7/2026,1.00,
+Paul Mclaughlin,40038 Forte Ristorante,200216 Leyenda 1925 Anejo Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,10/7/2026,1.00,
 Paul Mclaughlin,86007 Bacari,200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,10/7/2026,1.00,
 Paul Mclaughlin,40038 Forte Ristorante,200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,10/7/2026,1.00,
 Paul Mclaughlin,40038 Forte Ristorante,200218 Leyenda 1925 Reposado Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,10/7/2026,1.00,
-Paul Mclaughlin,86007 Bacari,200218 Leyenda 1925 Reposado Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,10/7/2026,1.00,
-Paul Mclaughlin,40038 Forte Ristorante,200216 Leyenda 1925 Anejo Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,10/7/2026,1.00,
-Allison Scott,7003 Blu Ale House,200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,10/6/2026,1.00,
 Paul Mclaughlin,61004 Andiamo,100962 2XO French Oak 1/750 mL Btl,Spirits - Whiskey,Spirits,10/6/2026,1.00,
+Allison Scott,7003 Blu Ale House,200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,10/6/2026,1.00,
 Paul Mclaughlin,41010 Lenoras Bar (P),200365 Striped Pig Doppio 1/6/750 mL Btl,Spirits - Vodka,Spirits,10/6/2026,1.00,
 Allison Scott,13002 The Little Falls Tavern,201077 Green River Honey 1/750 mL Btl,Spirits - Whiskey,Spirits,10/5/2026,1.00,
 Allison Scott,12026 WAYNE ALE HOUSE & PIZZA,201077 Green River Honey 1/750 mL Btl,Spirits - Whiskey,Spirits,10/5/2026,1.00,
@@ -23,260 +28,260 @@ Allison Scott,10007 Bardis (P),200400 Travelers Club Vodka 12/1 L Btl,Spirits - 
 Brian Sengebush,230122 Krogh's Restaurant & Brew Pub,201081 Bardstown Collaboration Series Lochs Of Jura 1/750 mL Btl,Spirits – Bourbon,Spirits,10/1/2026,1.00,
 Brian Sengebush,230122 Krogh's Restaurant & Brew Pub,201080 Bardstown Discovery 2026 1/750 mL Btl,Spirits – Bourbon,Spirits,10/1/2026,1.00,
 Brian Sengebush,190108 Harrigan's Rest. (P),201054 Green River Wheated 1/750 mL,Spirits - Whiskey,Spirits,10/1/2026,1.00,
-Mike Ast,84022 Park West Tavern,201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,9/30/2026,,1.00
-Pablo Lopez,39004 Noches De Colombia (S. Hackensack)),100962 2XO French Oak 1/750 mL Btl,Spirits - Whiskey,Spirits,9/30/2026,,1.00
 Pablo Lopez,39004 Noches De Colombia (S. Hackensack)),100966 2XO The Collectibles Hip Hop Blend 1/750 mL Btl,Spirits – Bourbon,Spirits,9/30/2026,,1.00
-Pablo Lopez,52005 Noches De Colombia(Englewood)),100966 2XO The Collectibles Hip Hop Blend 1/750 mL Btl,Spirits – Bourbon,Spirits,9/30/2026,,1.00
 Pablo Lopez,39004 Noches De Colombia (S. Hackensack)),201004 Rompe Corazon Joven Mezcal 750 mL,Spirits - Tequila,Spirits,9/30/2026,,1.00
+Mike Ast,84022 Park West Tavern,201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,9/30/2026,,1.00
+Pablo Lopez,52005 Noches De Colombia(Englewood)),100966 2XO The Collectibles Hip Hop Blend 1/750 mL Btl,Spirits – Bourbon,Spirits,9/30/2026,,1.00
 Allison Scott,25083 Rutt's Hut (A),201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,9/30/2026,,1.00
 Paul Mclaughlin,70012 Fire & Oak (A),201057 Bardstown Origin Series Double Barrel Rye 1/750 mL Btl,Spirits - Whiskey,Spirits,9/30/2026,,1.00
-Brian Sengebush,191001 Stone Water,201058 Bardstown Origin Series High Wheat 1/750 mL Btl,Spirits - Whiskey,Spirits,9/29/2026,,1.00
-Brian Sengebush,191001 Stone Water,201054 Green River Wheated 1/750 mL,Spirits - Whiskey,Spirits,9/29/2026,,1.00
+Pablo Lopez,39004 Noches De Colombia (S. Hackensack)),100962 2XO French Oak 1/750 mL Btl,Spirits - Whiskey,Spirits,9/30/2026,,1.00
 Nick Melissari,31029 Annabella's House Of Mozz,201057 Bardstown Origin Series Double Barrel Rye 1/750 mL Btl,Spirits - Whiskey,Spirits,9/29/2026,,1.00
+Brian Sengebush,191001 Stone Water,201054 Green River Wheated 1/750 mL,Spirits - Whiskey,Spirits,9/29/2026,,1.00
 Nick Melissari,31029 Annabella's House Of Mozz,201055 Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl,Spirits - Whiskey,Spirits,9/29/2026,,1.00
-Brian Sengebush,191001 Stone Water,201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,9/29/2026,,1.00
+Brian Sengebush,191001 Stone Water,201058 Bardstown Origin Series High Wheat 1/750 mL Btl,Spirits - Whiskey,Spirits,9/29/2026,,1.00
 Nick Melissari,31029 Annabella's House Of Mozz,201058 Bardstown Origin Series High Wheat 1/750 mL Btl,Spirits - Whiskey,Spirits,9/29/2026,,1.00
-Chris Payton,80027 Ridgewood Country Club,200216 Leyenda 1925 Anejo Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,9/28/2026,,1.00
+Brian Sengebush,191001 Stone Water,201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,9/29/2026,,1.00
 Chris Payton,80027 Ridgewood Country Club,200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,9/28/2026,,1.00
 Chris Payton,80027 Ridgewood Country Club,200218 Leyenda 1925 Reposado Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,9/28/2026,,1.00
+Chris Payton,80027 Ridgewood Country Club,200216 Leyenda 1925 Anejo Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,9/28/2026,,1.00
 Paul Mclaughlin,71011 Marriott (P) Park Ridge,100962 2XO French Oak 1/750 mL Btl,Spirits - Whiskey,Spirits,9/25/2026,,1.00
-Paul Mclaughlin,41006 Straphanger Saloon (A),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,9/25/2026,,1.00
 Robin Feldman,15079 American Lgn Totowa,201072 Green River Bourbon 250th Army Anniversary 1/750 mL,Spirits - Whiskey,Spirits,9/25/2026,,1.00
+Paul Mclaughlin,41006 Straphanger Saloon (A),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,9/25/2026,,1.00
 Pablo Lopez,39004 Noches De Colombia (S. Hackensack)),200771 Desquite Artesanal 6/750 mL Btl,Spirits - Tequila,Spirits,9/24/2026,,1.00
 Jaime Colonna,170118 Madison Bar & Grill,200517 Southern Tier Pumking Whiskey 6/750 mL Btl,Spirits - Whiskey,Spirits,9/24/2026,,1.00
+Nick Melissari,89002 Allendale Bar & Grill,200609 Dogfish Head Straight Whiskey 6/750 mL Btl,Spirits - Whiskey,Spirits,9/23/2026,,1.00
+Pablo Lopez,40031 Azul Restaurant,200218 Leyenda 1925 Reposado Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,9/23/2026,,1.00
+Mike Ast,84022 Park West Tavern,100912 OVO Vodka 1/12/750 mL Btl,Spirits - Vodka,Spirits,9/23/2026,,1.00
+Nick Melissari,88003 W's Village Grille,201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,9/23/2026,,1.00
+Nick Melissari,88003 W's Village Grille,201058 Bardstown Origin Series High Wheat 1/750 mL Btl,Spirits - Whiskey,Spirits,9/23/2026,,1.00
 Chris Payton,80027 Ridgewood Country Club,200218 Leyenda 1925 Reposado Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,9/23/2026,,1.00
 Chris Payton,80027 Ridgewood Country Club,200216 Leyenda 1925 Anejo Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,9/23/2026,,1.00
-Nick Melissari,88003 W's Village Grille,201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,9/23/2026,,1.00
-Mike Ast,84022 Park West Tavern,100912 OVO Vodka 1/12/750 mL Btl,Spirits - Vodka,Spirits,9/23/2026,,1.00
-Nick Melissari,89002 Allendale Bar & Grill,200609 Dogfish Head Straight Whiskey 6/750 mL Btl,Spirits - Whiskey,Spirits,9/23/2026,,1.00
-Nick Melissari,88003 W's Village Grille,201058 Bardstown Origin Series High Wheat 1/750 mL Btl,Spirits - Whiskey,Spirits,9/23/2026,,1.00
-Pablo Lopez,40031 Azul Restaurant,200218 Leyenda 1925 Reposado Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,9/23/2026,,1.00
-Brian Sengebush,190905 Elevengreen,201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,9/22/2026,,1.00
-Brian Sengebush,190905 Elevengreen,201058 Bardstown Origin Series High Wheat 1/750 mL Btl,Spirits - Whiskey,Spirits,9/22/2026,,1.00
-Javier Melo,27001 Fiesta Night Club(P),200218 Leyenda 1925 Reposado Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,9/22/2026,,1.00
 Paul Mclaughlin,61004 Andiamo,100962 2XO French Oak 1/750 mL Btl,Spirits - Whiskey,Spirits,9/22/2026,,1.00
+Brian Sengebush,190905 Elevengreen,201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,9/22/2026,,1.00
+Javier Melo,27001 Fiesta Night Club(P),200218 Leyenda 1925 Reposado Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,9/22/2026,,1.00
+Brian Sengebush,190905 Elevengreen,201058 Bardstown Origin Series High Wheat 1/750 mL Btl,Spirits - Whiskey,Spirits,9/22/2026,,1.00
 Allison Scott,7003 Blu Ale House,200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,9/22/2026,,1.00
-Robin Feldman,74011 IL Vero Westwood,201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,9/21/2026,,1.00
 Robin Feldman,74011 IL Vero Westwood,201055 Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl,Spirits - Whiskey,Spirits,9/21/2026,,1.00
+Robin Feldman,74011 IL Vero Westwood,201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,9/21/2026,,1.00
 Paul Mclaughlin,41006 Straphanger Saloon (A),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,9/18/2026,,1.00
-Paul Mclaughlin,41010 Lenoras Bar (P),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,9/17/2026,,1.00
 Pablo Lopez,39004 Noches De Colombia (S. Hackensack)),200771 Desquite Artesanal 6/750 mL Btl,Spirits - Tequila,Spirits,9/17/2026,,1.00
-Robin Feldman,60017 K Of C Dumont,201051 Green River Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,9/17/2026,,1.00
 Paul Mclaughlin,60002 QB's Bar and Grill,100923 Paradisse Fassionola Liqueur 6/750 mL Btl,Spirits - Other,Spirits,9/17/2026,,1.00
-Paul Mclaughlin,69009 Rivervale Country Club,200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,9/16/2026,,1.00
-Robin Feldman,12023 The Village Inn,201065 Green River 1885 Bourbon 1/1 L Btl,Spirits - Whiskey,Spirits,9/16/2026,,1.00
-Paul Mclaughlin,40032 Side Bar,200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,9/16/2026,,1.00
+Paul Mclaughlin,41010 Lenoras Bar (P),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,9/17/2026,,1.00
+Robin Feldman,60017 K Of C Dumont,201051 Green River Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,9/17/2026,,1.00
 Mike Ast,84022 Park West Tavern,201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,9/16/2026,,1.00
 Mike Ast,84022 Park West Tavern,100912 OVO Vodka 1/12/750 mL Btl,Spirits - Vodka,Spirits,9/16/2026,,1.00
+Robin Feldman,12023 The Village Inn,201065 Green River 1885 Bourbon 1/1 L Btl,Spirits - Whiskey,Spirits,9/16/2026,,1.00
+Paul Mclaughlin,69009 Rivervale Country Club,200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,9/16/2026,,1.00
+Paul Mclaughlin,40032 Side Bar,200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,9/16/2026,,1.00
 Javier Melo,20055 Paruta's (A),200314 Pride & Clarke Vodka 1/12/750 mL Btl,Spirits - Vodka,Spirits,9/15/2026,,1.00
 Allison Scott,7003 Blu Ale House,200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,9/15/2026,,1.00
-Robin Feldman,191406 Courtyard Marriott Mt Arl,201080 Bardstown Discovery 2026 1/750 mL Btl,Spirits – Bourbon,Spirits,9/11/2026,,1.00
-Paul Mclaughlin,41006 Straphanger Saloon (A),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,9/11/2026,,1.00
 Paul Mclaughlin,61004 Andiamo,100962 2XO French Oak 1/750 mL Btl,Spirits - Whiskey,Spirits,9/11/2026,,1.00
-Javier Melo,27001 Fiesta Night Club(P),200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,9/11/2026,,1.00
+Paul Mclaughlin,41006 Straphanger Saloon (A),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,9/11/2026,,1.00
 Robin Feldman,191301 Lake Hopatcong Yacht Club,201054 Green River Wheated 1/750 mL,Spirits - Whiskey,Spirits,9/11/2026,,1.00
+Robin Feldman,191406 Courtyard Marriott Mt Arl,201080 Bardstown Discovery 2026 1/750 mL Btl,Spirits – Bourbon,Spirits,9/11/2026,,1.00
+Javier Melo,27001 Fiesta Night Club(P),200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,9/11/2026,,1.00
 Robin Feldman,191406 Courtyard Marriott Mt Arl,201081 Bardstown Collaboration Series Lochs Of Jura 1/750 mL Btl,Spirits – Bourbon,Spirits,9/11/2026,,1.00
-Robin Feldman,191406 Courtyard Marriott Mt Arl,201058 Bardstown Origin Series High Wheat 1/750 mL Btl,Spirits - Whiskey,Spirits,9/10/2026,,1.00
-Mike Ast,84022 Park West Tavern,100912 OVO Vodka 1/12/750 mL Btl,Spirits - Vodka,Spirits,9/10/2026,,1.00
-Javier Melo,20061 Seguidilla 56 Lounge & Liquors,200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,9/10/2026,,1.00
 Javier Melo,20061 Seguidilla 56 Lounge & Liquors,200218 Leyenda 1925 Reposado Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,9/10/2026,,1.00
+Javier Melo,20061 Seguidilla 56 Lounge & Liquors,200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,9/10/2026,,1.00
+Mike Ast,84022 Park West Tavern,100912 OVO Vodka 1/12/750 mL Btl,Spirits - Vodka,Spirits,9/10/2026,,1.00
+Robin Feldman,191406 Courtyard Marriott Mt Arl,201058 Bardstown Origin Series High Wheat 1/750 mL Btl,Spirits - Whiskey,Spirits,9/10/2026,,1.00
 Allison Scott,19012 Bottagra Rest (P),201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,9/9/2026,,1.00
 Nick Melissari,31027 New Park Tav (A),201077 Green River Honey 1/750 mL Btl,Spirits - Whiskey,Spirits,9/8/2026,,1.00
-Paul Mclaughlin,41006 Straphanger Saloon (A),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,9/4/2026,,1.00
 Nick Melissari,49049 The Metropolitan Lounge,200218 Leyenda 1925 Reposado Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,9/4/2026,,1.00
-Nick Melissari,49049 The Metropolitan Lounge,200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,9/4/2026,,1.00
 Nick Melissari,49049 The Metropolitan Lounge,200216 Leyenda 1925 Anejo Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,9/4/2026,,1.00
 Allison Scott,12026 WAYNE ALE HOUSE & PIZZA,201077 Green River Honey 1/750 mL Btl,Spirits - Whiskey,Spirits,9/4/2026,,1.00
-Pablo Lopez,39004 Noches De Colombia (S. Hackensack)),200771 Desquite Artesanal 6/750 mL Btl,Spirits - Tequila,Spirits,9/3/2026,,1.00
-Javier Melo,20061 Seguidilla 56 Lounge & Liquors,200312 Pride & Clarke Vodka 48/200 mL Btl,Spirits - Vodka,Spirits,9/3/2026,,1.00
-Jaime Colonna,170042 O'nieal's (A),100912 OVO Vodka 1/12/750 mL Btl,Spirits - Vodka,Spirits,9/3/2026,,1.00
-Javier Melo,20061 Seguidilla 56 Lounge & Liquors,200313 Pride & Clarke Vodka 24/375 mL Btl,Spirits - Vodka,Spirits,9/3/2026,,1.00
+Nick Melissari,49049 The Metropolitan Lounge,200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,9/4/2026,,1.00
+Paul Mclaughlin,41006 Straphanger Saloon (A),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,9/4/2026,,1.00
 Anthony Palmisano,231213 The Kites (P),201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,9/3/2026,,1.00
-Dylan Rubino,171353 Fork Hill Kitchen,200517 Southern Tier Pumking Whiskey 6/750 mL Btl,Spirits - Whiskey,Spirits,9/3/2026,,1.00
+Javier Melo,20061 Seguidilla 56 Lounge & Liquors,200312 Pride & Clarke Vodka 48/200 mL Btl,Spirits - Vodka,Spirits,9/3/2026,,1.00
+Pablo Lopez,39004 Noches De Colombia (S. Hackensack)),200771 Desquite Artesanal 6/750 mL Btl,Spirits - Tequila,Spirits,9/3/2026,,1.00
+Javier Melo,20061 Seguidilla 56 Lounge & Liquors,200313 Pride & Clarke Vodka 24/375 mL Btl,Spirits - Vodka,Spirits,9/3/2026,,1.00
 Allison Scott,19004 Shortways' Barn (A),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,9/3/2026,,1.00
-Robin Feldman,192156 Hapgoods Restaurant,200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,9/2/2026,,1.00
-Paul Mclaughlin,61004 Andiamo,200404 Traveler's Club Vodka 6/1.75 L Btl,Spirits - Vodka,Spirits,9/2/2026,,1.00
-Robin Feldman,192156 Hapgoods Restaurant,200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,9/2/2026,,1.00
-Paul Mclaughlin,61004 Andiamo,100962 2XO French Oak 1/750 mL Btl,Spirits - Whiskey,Spirits,9/2/2026,,1.00
-Paul Mclaughlin,50001 Andy's Corner (Z),201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,9/2/2026,,1.00
-Allison Scott,21043 Duffy's Tavern (Z),201077 Green River Honey 1/750 mL Btl,Spirits - Whiskey,Spirits,9/2/2026,,1.00
+Jaime Colonna,170042 O'nieal's (A),100912 OVO Vodka 1/12/750 mL Btl,Spirits - Vodka,Spirits,9/3/2026,,1.00
+Dylan Rubino,171353 Fork Hill Kitchen,200517 Southern Tier Pumking Whiskey 6/750 mL Btl,Spirits - Whiskey,Spirits,9/3/2026,,1.00
 Allison Scott,15074 Bask 46,201077 Green River Honey 1/750 mL Btl,Spirits - Whiskey,Spirits,9/2/2026,,1.00
-Robin Feldman,15081 Evolution Restaurant & Bar,200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,9/2/2026,,1.00
+Robin Feldman,192156 Hapgoods Restaurant,200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,9/2/2026,,1.00
+Robin Feldman,192156 Hapgoods Restaurant,200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,9/2/2026,,1.00
+Paul Mclaughlin,61004 Andiamo,200404 Traveler's Club Vodka 6/1.75 L Btl,Spirits - Vodka,Spirits,9/2/2026,,1.00
+Allison Scott,21043 Duffy's Tavern (Z),201077 Green River Honey 1/750 mL Btl,Spirits - Whiskey,Spirits,9/2/2026,,1.00
+Paul Mclaughlin,50001 Andy's Corner (Z),201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,9/2/2026,,1.00
 Robin Feldman,30017 Renaissance Meadowlands,201055 Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl,Spirits - Whiskey,Spirits,9/2/2026,,1.00
+Robin Feldman,15081 Evolution Restaurant & Bar,200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,9/2/2026,,1.00
+Paul Mclaughlin,61004 Andiamo,100962 2XO French Oak 1/750 mL Btl,Spirits - Whiskey,Spirits,9/2/2026,,1.00
 Paul Mclaughlin,59001 ORA,201055 Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl,Spirits - Whiskey,Spirits,9/1/2026,,1.00
-Allison Scott,11011 Sunset Pub & Grill(Z),201065 Green River 1885 Bourbon 1/1 L Btl,Spirits - Whiskey,Spirits,8/31/2026,,1.00
 Paul Mclaughlin,39006 Fat Bastard & Sons,200385 YaVe Tequila Coconut 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/31/2026,,1.00
-Paul Mclaughlin,39006 Fat Bastard & Sons,200365 Striped Pig Doppio 1/6/750 mL Btl,Spirits - Vodka,Spirits,8/31/2026,,1.00
-Allison Scott,8006 pompton crafthouse,200518 Southern Tier Cinnamon Candy Apple Whiskey 6/750 mL Btl,Spirits - Whiskey,Spirits,8/31/2026,,1.00
 Paul Mclaughlin,39006 Fat Bastard & Sons,200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/31/2026,,1.00
-Paul Mclaughlin,39006 Fat Bastard & Sons,200381 YaVe Tequila Mango 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/31/2026,,1.00
+Paul Mclaughlin,39006 Fat Bastard & Sons,200365 Striped Pig Doppio 1/6/750 mL Btl,Spirits - Vodka,Spirits,8/31/2026,,1.00
 Allison Scott,8006 pompton crafthouse,200527 Southern Tier Peanut Butter Cup Whiskey 6/750 mL Btl,Spirits - Whiskey,Spirits,8/31/2026,,1.00
 Allison Scott,8006 pompton crafthouse,200517 Southern Tier Pumking Whiskey 6/750 mL Btl,Spirits - Whiskey,Spirits,8/31/2026,,1.00
+Allison Scott,8006 pompton crafthouse,200518 Southern Tier Cinnamon Candy Apple Whiskey 6/750 mL Btl,Spirits - Whiskey,Spirits,8/31/2026,,1.00
+Paul Mclaughlin,39006 Fat Bastard & Sons,200381 YaVe Tequila Mango 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/31/2026,,1.00
+Allison Scott,11011 Sunset Pub & Grill(Z),201065 Green River 1885 Bourbon 1/1 L Btl,Spirits - Whiskey,Spirits,8/31/2026,,1.00
 Allison Scott,19004 Shortways' Barn (A),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,8/28/2026,,1.00
-Allison Scott,19006 Blackjack Mulligans (Hawthorne),200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/28/2026,,1.00
-Paul Mclaughlin,40032 Side Bar,200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/28/2026,,1.00
 Nick Melissari,37034 Blackjack Mulligans(P) (Garfield),200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/28/2026,,1.00
 Paul Mclaughlin,41006 Straphanger Saloon (A),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,8/28/2026,,1.00
-Javier Melo,20061 Seguidilla 56 Lounge & Liquors,200218 Leyenda 1925 Reposado Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,8/27/2026,,1.00
+Paul Mclaughlin,40032 Side Bar,200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/28/2026,,1.00
+Allison Scott,19006 Blackjack Mulligans (Hawthorne),200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/28/2026,,1.00
 Javier Melo,20061 Seguidilla 56 Lounge & Liquors,200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,8/27/2026,,1.00
+Javier Melo,20061 Seguidilla 56 Lounge & Liquors,200218 Leyenda 1925 Reposado Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,8/27/2026,,1.00
 Javier Melo,20061 Seguidilla 56 Lounge & Liquors,200216 Leyenda 1925 Anejo Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,8/27/2026,,1.00
-Mike Ast,84022 Park West Tavern,200218 Leyenda 1925 Reposado Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,8/26/2026,,1.00
 Paul Mclaughlin,59001 ORA,201055 Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl,Spirits - Whiskey,Spirits,8/26/2026,,1.00
-Allison Scott,25083 Rutt's Hut (A),201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,8/26/2026,,1.00
 Mike Ast,84022 Park West Tavern,100912 OVO Vodka 1/12/750 mL Btl,Spirits - Vodka,Spirits,8/26/2026,,1.00
-Paul Mclaughlin,69009 Rivervale Country Club,200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/26/2026,,1.00
+Mike Ast,84022 Park West Tavern,200218 Leyenda 1925 Reposado Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,8/26/2026,,1.00
+Allison Scott,25083 Rutt's Hut (A),201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,8/26/2026,,1.00
 Allison Scott,12036 Brokedown Palace,201065 Green River 1885 Bourbon 1/1 L Btl,Spirits - Whiskey,Spirits,8/26/2026,,1.00
-Allison Scott,7003 Blu Ale House,200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/25/2026,,1.00
-Paul Mclaughlin,61004 Andiamo,200404 Traveler's Club Vodka 6/1.75 L Btl,Spirits - Vodka,Spirits,8/25/2026,,1.00
-Allison Scott,7003 Blu Ale House,200385 YaVe Tequila Coconut 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/25/2026,,1.00
-Brian Sengebush,230122 Krogh's Restaurant & Brew Pub,201077 Green River Honey 1/750 mL Btl,Spirits - Whiskey,Spirits,8/25/2026,,1.00
-Paul Mclaughlin,41023 The Whiskey Priest (Hackensack),200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/25/2026,,1.00
-Mike Ast,84007 Steel Wheel Tavern,200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,8/25/2026,,1.00
-Mike Ast,84007 Steel Wheel Tavern,200218 Leyenda 1925 Reposado Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,8/25/2026,,1.00
+Paul Mclaughlin,69009 Rivervale Country Club,200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/26/2026,,1.00
 Paul Mclaughlin,41023 The Whiskey Priest (Hackensack),200218 Leyenda 1925 Reposado Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,8/25/2026,,1.00
-Brian Sengebush,191009 Mason Street Grille,200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,8/24/2026,,1.00
+Brian Sengebush,230122 Krogh's Restaurant & Brew Pub,201077 Green River Honey 1/750 mL Btl,Spirits - Whiskey,Spirits,8/25/2026,,1.00
+Mike Ast,84007 Steel Wheel Tavern,200218 Leyenda 1925 Reposado Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,8/25/2026,,1.00
+Allison Scott,7003 Blu Ale House,200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/25/2026,,1.00
+Mike Ast,84007 Steel Wheel Tavern,200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,8/25/2026,,1.00
+Paul Mclaughlin,61004 Andiamo,200404 Traveler's Club Vodka 6/1.75 L Btl,Spirits - Vodka,Spirits,8/25/2026,,1.00
+Paul Mclaughlin,41023 The Whiskey Priest (Hackensack),200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/25/2026,,1.00
+Allison Scott,7003 Blu Ale House,200385 YaVe Tequila Coconut 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/25/2026,,1.00
 Brian Sengebush,191009 Mason Street Grille,200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/24/2026,,1.00
-Brian Sengebush,191510 Lola's Restaurant,200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/21/2026,,1.00
-Javier Melo,36026 Agave Cocina Mexicana,200381 YaVe Tequila Mango 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/21/2026,,1.00
+Brian Sengebush,191009 Mason Street Grille,200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,8/24/2026,,1.00
+Brian Sengebush,191510 Lola's Restaurant,200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,8/21/2026,,1.00
 Javier Melo,36026 Agave Cocina Mexicana,200383 YaVe Tequila Reposado 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/21/2026,,1.00
 Javier Melo,36026 Agave Cocina Mexicana,200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/21/2026,,1.00
-Javier Melo,36026 Agave Cocina Mexicana,200385 YaVe Tequila Coconut 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/21/2026,,1.00
 Javier Melo,36026 Agave Cocina Mexicana,200384 YaVe Tequila Blanco 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/21/2026,,1.00
-Brian Sengebush,191510 Lola's Restaurant,200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,8/21/2026,,1.00
-Jaime Colonna,170280 Stingray Lounge,100912 OVO Vodka 1/12/750 mL Btl,Spirits - Vodka,Spirits,8/20/2026,,1.00
-Allison Scott,8004 The Side Door (P),200381 YaVe Tequila Mango 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/20/2026,,1.00
+Javier Melo,36026 Agave Cocina Mexicana,200381 YaVe Tequila Mango 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/21/2026,,1.00
+Javier Melo,36026 Agave Cocina Mexicana,200385 YaVe Tequila Coconut 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/21/2026,,1.00
+Brian Sengebush,191510 Lola's Restaurant,200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/21/2026,,1.00
 Robin Feldman,191406 Courtyard Marriott Mt Arl,201058 Bardstown Origin Series High Wheat 1/750 mL Btl,Spirits - Whiskey,Spirits,8/20/2026,,1.00
 Allison Scott,8004 The Side Door (P),200385 YaVe Tequila Coconut 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/20/2026,,1.00
-Allison Scott,12032 Casa Don Manuel,200384 YaVe Tequila Blanco 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/19/2026,,1.00
-Allison Scott,12032 Casa Don Manuel,200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/19/2026,,1.00
+Allison Scott,8004 The Side Door (P),200381 YaVe Tequila Mango 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/20/2026,,1.00
+Jaime Colonna,170280 Stingray Lounge,100912 OVO Vodka 1/12/750 mL Btl,Spirits - Vodka,Spirits,8/20/2026,,1.00
 Robin Feldman,15079 American Lgn Totowa,201051 Green River Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,8/19/2026,,1.00
+Allison Scott,12032 Casa Don Manuel,200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/19/2026,,1.00
+Allison Scott,12032 Casa Don Manuel,200383 YaVe Tequila Reposado 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/19/2026,,1.00
 Paul Mclaughlin,69009 Rivervale Country Club,200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,8/19/2026,,1.00
 Robin Feldman,12023 The Village Inn,200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/19/2026,,1.00
+Allison Scott,12032 Casa Don Manuel,200384 YaVe Tequila Blanco 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/19/2026,,1.00
 Allison Scott,12032 Casa Don Manuel,200381 YaVe Tequila Mango 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/19/2026,,1.00
-Allison Scott,12032 Casa Don Manuel,200383 YaVe Tequila Reposado 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/19/2026,,1.00
 Phil Ernst,76021 Saddle Brook Liquor & Bar,200523 Southern Tier Creme Brulee Whiskey 6/750 mL Btl,Spirits - Whiskey,Spirits,8/18/2026,,1.00
-Javier Melo,20055 Paruta's (A),200313 Pride & Clarke Vodka 24/375 mL Btl,Spirits - Vodka,Spirits,8/17/2026,,1.00
 Javier Melo,20055 Paruta's (A),200314 Pride & Clarke Vodka 1/12/750 mL Btl,Spirits - Vodka,Spirits,8/17/2026,,1.00
+Javier Melo,20055 Paruta's (A),200313 Pride & Clarke Vodka 24/375 mL Btl,Spirits - Vodka,Spirits,8/17/2026,,1.00
 Javier Melo,20055 Paruta's (A),200312 Pride & Clarke Vodka 48/200 mL Btl,Spirits - Vodka,Spirits,8/17/2026,,1.00
 Allison Scott,10007 Bardis (P),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,8/14/2026,,1.00
 Allison Scott,12051 Packanack Golf (P),200314 Pride & Clarke Vodka 1/12/750 mL Btl,Spirits - Vodka,Spirits,8/14/2026,,1.00
-Paul Mclaughlin,41010 Lenoras Bar (P),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,8/14/2026,,1.00
 Anthony Palmisano,231213 The Kites (P),201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,8/14/2026,,1.00
+Paul Mclaughlin,41010 Lenoras Bar (P),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,8/14/2026,,1.00
 Paul Mclaughlin,41006 Straphanger Saloon (A),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,8/14/2026,,1.00
+Robin Feldman,34018 Hilton Hasbrk Hts #50591,201054 Green River Wheated 1/750 mL,Spirits - Whiskey,Spirits,8/13/2026,,1.00
+Anthony Palmisano,231305 Early American Tavern,201054 Green River Wheated 1/750 mL,Spirits - Whiskey,Spirits,8/13/2026,,1.00
 Robin Feldman,34018 Hilton Hasbrk Hts #50591,201055 Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl,Spirits - Whiskey,Spirits,8/13/2026,,1.00
 Mike Ast,84015 The Office 2131 Ridgewood,201054 Green River Wheated 1/750 mL,Spirits - Whiskey,Spirits,8/13/2026,,1.00
-Anthony Palmisano,231305 Early American Tavern,201054 Green River Wheated 1/750 mL,Spirits - Whiskey,Spirits,8/13/2026,,1.00
-Robin Feldman,34018 Hilton Hasbrk Hts #50591,201054 Green River Wheated 1/750 mL,Spirits - Whiskey,Spirits,8/13/2026,,1.00
 Paul Mclaughlin,69009 Rivervale Country Club,200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,8/12/2026,,1.00
 Robin Feldman,93018 Courtyard Mahwah,201054 Green River Wheated 1/750 mL,Spirits - Whiskey,Spirits,8/7/2026,,1.00
-Allison Scott,15006 Great Notch Inn(Z),200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,8/7/2026,,1.00
 Robin Feldman,93018 Courtyard Mahwah,201055 Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl,Spirits - Whiskey,Spirits,8/7/2026,,1.00
-Paul Mclaughlin,41010 Lenoras Bar (P),200365 Striped Pig Doppio 1/6/750 mL Btl,Spirits - Vodka,Spirits,8/7/2026,,1.00
-Robin Feldman,93018 Courtyard Mahwah,200216 Leyenda 1925 Anejo Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,8/7/2026,,1.00
 Paul Mclaughlin,41006 Straphanger Saloon (A),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,8/7/2026,,1.00
-Paul Mclaughlin,73001 Lou's,200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/7/2026,,1.00
 Robin Feldman,5016 Vfw Butler,201065 Green River 1885 Bourbon 1/1 L Btl,Spirits - Whiskey,Spirits,8/7/2026,,1.00
+Paul Mclaughlin,41010 Lenoras Bar (P),200365 Striped Pig Doppio 1/6/750 mL Btl,Spirits - Vodka,Spirits,8/7/2026,,1.00
+Paul Mclaughlin,73001 Lou's,200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/7/2026,,1.00
 Robin Feldman,93018 Courtyard Mahwah,201077 Green River Honey 1/750 mL Btl,Spirits - Whiskey,Spirits,8/7/2026,,1.00
-Matt Powierski,36043 Sports Bar & Liquors,200153 American Fruit Sour Cherry Liqueur 12/375 mL,Spirits - Brandy,Spirits,8/6/2026,,1.00
-Pablo Lopez,39004 Noches De Colombia (S. Hackensack)),100923 Paradisse Fassionola Liqueur 6/750 mL Btl,Spirits - Other,Spirits,8/6/2026,,1.00
+Allison Scott,15006 Great Notch Inn(Z),200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,8/7/2026,,1.00
+Robin Feldman,93018 Courtyard Mahwah,200216 Leyenda 1925 Anejo Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,8/7/2026,,1.00
 Robin Feldman,34016 Vfw Hasbrouck (A),200384 YaVe Tequila Blanco 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/6/2026,,1.00
+Pablo Lopez,39004 Noches De Colombia (S. Hackensack)),100923 Paradisse Fassionola Liqueur 6/750 mL Btl,Spirits - Other,Spirits,8/6/2026,,1.00
 Pablo Lopez,39004 Noches De Colombia (S. Hackensack)),201004 Rompe Corazon Joven Mezcal 750 mL,Spirits - Tequila,Spirits,8/6/2026,,1.00
 Robin Feldman,34016 Vfw Hasbrouck (A),200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,8/6/2026,,1.00
+Matt Powierski,36043 Sports Bar & Liquors,200153 American Fruit Sour Cherry Liqueur 12/375 mL,Spirits - Brandy,Spirits,8/6/2026,,1.00
 Paul Mclaughlin,69009 Rivervale Country Club,200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,8/5/2026,,1.00
 Anthony Palmisano,1007 The Greenwood Tavern,201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,8/5/2026,,1.00
 Paul Mclaughlin,73001 Lou's,200385 YaVe Tequila Coconut 1/6/750 mL Btl,Spirits - Tequila,Spirits,8/5/2026,,1.00
 Anthony Palmisano,1007 The Greenwood Tavern,201054 Green River Wheated 1/750 mL,Spirits - Whiskey,Spirits,8/5/2026,,1.00
 Paul Mclaughlin,85001 Eleven Central,100923 Paradisse Fassionola Liqueur 6/750 mL Btl,Spirits - Other,Spirits,8/4/2026,,1.00
-Paul Mclaughlin,67014 The Rockleigh C C (P),200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,7/31/2026,,1.00
 John O'Donoghue,190016 12 Islands Greek Taverna,200356 Isidoros Arvanitis Plomari Ouzo 12/750 mL Btl,Spirits - Other,Spirits,7/31/2026,,1.00
-Paul Mclaughlin,41006 Straphanger Saloon (A),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,7/31/2026,,1.00
 Anthony Palmisano,1007 The Greenwood Tavern,201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,7/31/2026,,1.00
+Paul Mclaughlin,67014 The Rockleigh C C (P),200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,7/31/2026,,1.00
+Paul Mclaughlin,41006 Straphanger Saloon (A),201077 Green River Honey 1/750 mL Btl,Spirits - Whiskey,Spirits,7/31/2026,,1.00
 Anthony Palmisano,1007 The Greenwood Tavern,201054 Green River Wheated 1/750 mL,Spirits - Whiskey,Spirits,7/31/2026,,1.00
 Javier Melo,22065 Mambo Lounge (P),200771 Desquite Artesanal 6/750 mL Btl,Spirits - Tequila,Spirits,7/31/2026,,1.00
-Paul Mclaughlin,41006 Straphanger Saloon (A),201077 Green River Honey 1/750 mL Btl,Spirits - Whiskey,Spirits,7/31/2026,,1.00
+Paul Mclaughlin,41006 Straphanger Saloon (A),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,7/31/2026,,1.00
+Paul Mclaughlin,50029 La Tequilera Restaurant,200385 YaVe Tequila Coconut 1/6/750 mL Btl,Spirits - Tequila,Spirits,7/30/2026,,1.00
 Paul Mclaughlin,54001 Tenafly Pizza (Z),100923 Paradisse Fassionola Liqueur 6/750 mL Btl,Spirits - Other,Spirits,7/30/2026,,1.00
-Paul Mclaughlin,69012 449 Prime @ Edgewood Country Club,201077 Green River Honey 1/750 mL Btl,Spirits - Whiskey,Spirits,7/30/2026,,1.00
 Paul Mclaughlin,69012 449 Prime @ Edgewood Country Club,200381 YaVe Tequila Mango 1/6/750 mL Btl,Spirits - Tequila,Spirits,7/30/2026,,1.00
 Paul Mclaughlin,69003 Edgewood Country Club,100923 Paradisse Fassionola Liqueur 6/750 mL Btl,Spirits - Other,Spirits,7/30/2026,,1.00
-Dylan Rubino,170291 IKOS Greek Mediterranean,100912 OVO Vodka 1/12/750 mL Btl,Spirits - Vodka,Spirits,7/30/2026,,1.00
 Paul Mclaughlin,81027 RP Prime Steakhouse,201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,7/30/2026,,1.00
-Paul Mclaughlin,50029 La Tequilera Restaurant,200385 YaVe Tequila Coconut 1/6/750 mL Btl,Spirits - Tequila,Spirits,7/30/2026,,1.00
-Paul Mclaughlin,59001 ORA,201055 Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl,Spirits - Whiskey,Spirits,7/29/2026,,1.00
+Paul Mclaughlin,69012 449 Prime @ Edgewood Country Club,201077 Green River Honey 1/750 mL Btl,Spirits - Whiskey,Spirits,7/30/2026,,1.00
+Dylan Rubino,170291 IKOS Greek Mediterranean,100912 OVO Vodka 1/12/750 mL Btl,Spirits - Vodka,Spirits,7/30/2026,,1.00
+Pablo Lopez,39004 Noches De Colombia (S. Hackensack)),200771 Desquite Artesanal 6/750 mL Btl,Spirits - Tequila,Spirits,7/29/2026,,1.00
+Anthony Palmisano,231210 Bally Owen Golf Club,201055 Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl,Spirits - Whiskey,Spirits,7/29/2026,,1.00
 Paul Mclaughlin,61004 Andiamo,100962 2XO French Oak 1/750 mL Btl,Spirits - Whiskey,Spirits,7/29/2026,,1.00
+Paul Mclaughlin,59001 ORA,201055 Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl,Spirits - Whiskey,Spirits,7/29/2026,,1.00
 Paul Mclaughlin,50001 Andy's Corner (Z),201055 Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl,Spirits - Whiskey,Spirits,7/29/2026,,1.00
 Paul Mclaughlin,61004 Andiamo,200404 Traveler's Club Vodka 6/1.75 L Btl,Spirits - Vodka,Spirits,7/29/2026,,1.00
-Anthony Palmisano,231210 Bally Owen Golf Club,201055 Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl,Spirits - Whiskey,Spirits,7/29/2026,,1.00
-Pablo Lopez,39004 Noches De Colombia (S. Hackensack)),200771 Desquite Artesanal 6/750 mL Btl,Spirits - Tequila,Spirits,7/29/2026,,1.00
+Paul Mclaughlin,41010 Lenoras Bar (P),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,7/28/2026,,1.00
+Paul Mclaughlin,39010 Players Club (Z),201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,7/28/2026,,1.00
 Paul Mclaughlin,86002 Doghouse Saloon (Z),200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,7/28/2026,,1.00
 Robin Feldman,12023 The Village Inn,201065 Green River 1885 Bourbon 1/1 L Btl,Spirits - Whiskey,Spirits,7/28/2026,,1.00
-Paul Mclaughlin,39010 Players Club (Z),200381 YaVe Tequila Mango 1/6/750 mL Btl,Spirits - Tequila,Spirits,7/28/2026,,1.00
-Paul Mclaughlin,39010 Players Club (Z),200385 YaVe Tequila Coconut 1/6/750 mL Btl,Spirits - Tequila,Spirits,7/28/2026,,1.00
 Paul Mclaughlin,39010 Players Club (Z),201058 Bardstown Origin Series High Wheat 1/750 mL Btl,Spirits - Whiskey,Spirits,7/28/2026,,1.00
-Paul Mclaughlin,39010 Players Club (Z),201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,7/28/2026,,1.00
-Paul Mclaughlin,39010 Players Club (Z),200365 Striped Pig Doppio 1/6/750 mL Btl,Spirits - Vodka,Spirits,7/28/2026,,1.00
-Paul Mclaughlin,41010 Lenoras Bar (P),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,7/28/2026,,1.00
+Paul Mclaughlin,39010 Players Club (Z),200385 YaVe Tequila Coconut 1/6/750 mL Btl,Spirits - Tequila,Spirits,7/28/2026,,1.00
 Paul Mclaughlin,39010 Players Club (Z),200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,7/28/2026,,1.00
+Paul Mclaughlin,39010 Players Club (Z),200381 YaVe Tequila Mango 1/6/750 mL Btl,Spirits - Tequila,Spirits,7/28/2026,,1.00
+Paul Mclaughlin,39010 Players Club (Z),200365 Striped Pig Doppio 1/6/750 mL Btl,Spirits - Vodka,Spirits,7/28/2026,,1.00
 Nick Melissari,80011 Casa De Montecristo,200216 Leyenda 1925 Anejo Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,7/27/2026,,1.00
 Nick Melissari,80011 Casa De Montecristo,200218 Leyenda 1925 Reposado Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,7/27/2026,,1.00
-Pablo Lopez,27015 Dona Maria Rest,200384 YaVe Tequila Blanco 1/6/750 mL Btl,Spirits - Tequila,Spirits,7/24/2026,,1.00
+Pablo Lopez,27015 Dona Maria Rest,200381 YaVe Tequila Mango 1/6/750 mL Btl,Spirits - Tequila,Spirits,7/24/2026,,1.00
 Pablo Lopez,27015 Dona Maria Rest,200385 YaVe Tequila Coconut 1/6/750 mL Btl,Spirits - Tequila,Spirits,7/24/2026,,1.00
+Allison Scott,10007 Bardis (P),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,7/24/2026,,1.00
+Mike Ast,84022 Park West Tavern,200218 Leyenda 1925 Reposado Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,7/24/2026,,1.00
+Mike Ast,84022 Park West Tavern,200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,7/24/2026,,1.00
 Allison Scott,13003 Maggie's Town Tav.(P),201077 Green River Honey 1/750 mL Btl,Spirits - Whiskey,Spirits,7/24/2026,,1.00
 Paul Mclaughlin,41006 Straphanger Saloon (A),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,7/24/2026,,1.00
-Robin Feldman,15079 American Lgn Totowa,201072 Green River Bourbon 250th Army Anniversary 1/750 mL,Spirits - Whiskey,Spirits,7/24/2026,,1.00
-Mike Ast,84022 Park West Tavern,200216 Leyenda 1925 Anejo Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,7/24/2026,,1.00
-Pablo Lopez,27015 Dona Maria Rest,200381 YaVe Tequila Mango 1/6/750 mL Btl,Spirits - Tequila,Spirits,7/24/2026,,1.00
-Paul Mclaughlin,73002 The Cornerstone (P),200365 Striped Pig Doppio 1/6/750 mL Btl,Spirits - Vodka,Spirits,7/24/2026,,1.00
-Mike Ast,84022 Park West Tavern,200218 Leyenda 1925 Reposado Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,7/24/2026,,1.00
 Pablo Lopez,27015 Dona Maria Rest,200383 YaVe Tequila Reposado 1/6/750 mL Btl,Spirits - Tequila,Spirits,7/24/2026,,1.00
-Pablo Lopez,27015 Dona Maria Rest,200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,7/24/2026,,1.00
 Paul Mclaughlin,73002 The Cornerstone (P),200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,7/24/2026,,1.00
-Mike Ast,84022 Park West Tavern,200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,7/24/2026,,1.00
-Allison Scott,10007 Bardis (P),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,7/24/2026,,1.00
+Paul Mclaughlin,73002 The Cornerstone (P),200365 Striped Pig Doppio 1/6/750 mL Btl,Spirits - Vodka,Spirits,7/24/2026,,1.00
+Pablo Lopez,27015 Dona Maria Rest,200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,7/24/2026,,1.00
+Mike Ast,84022 Park West Tavern,200216 Leyenda 1925 Anejo Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,7/24/2026,,1.00
+Pablo Lopez,27015 Dona Maria Rest,200384 YaVe Tequila Blanco 1/6/750 mL Btl,Spirits - Tequila,Spirits,7/24/2026,,1.00
+Robin Feldman,15079 American Lgn Totowa,201072 Green River Bourbon 250th Army Anniversary 1/750 mL,Spirits - Whiskey,Spirits,7/24/2026,,1.00
 Allison Scott,19004 Shortways' Barn (A),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,7/23/2026,,1.00
 Robin Feldman,12023 The Village Inn,201065 Green River 1885 Bourbon 1/1 L Btl,Spirits - Whiskey,Spirits,7/22/2026,,1.00
 Paul Mclaughlin,71011 Marriott (P) Park Ridge,100962 2XO French Oak 1/750 mL Btl,Spirits - Whiskey,Spirits,7/22/2026,,1.00
-Paul Mclaughlin,71011 Marriott (P) Park Ridge,201054 Green River Wheated 1/750 mL,Spirits - Whiskey,Spirits,7/22/2026,,1.00
 Paul Mclaughlin,60002 QB's Bar and Grill,100923 Paradisse Fassionola Liqueur 6/750 mL Btl,Spirits - Other,Spirits,7/22/2026,,1.00
-Paul Mclaughlin,69009 Rivervale Country Club,200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,7/21/2026,,1.00
+Paul Mclaughlin,71011 Marriott (P) Park Ridge,201054 Green River Wheated 1/750 mL,Spirits - Whiskey,Spirits,7/22/2026,,1.00
 Anthony Palmisano,231213 The Kites (P),201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,7/21/2026,,1.00
-Paul Mclaughlin,59001 ORA,201055 Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl,Spirits - Whiskey,Spirits,7/21/2026,,1.00
 Paul Mclaughlin,73001 Lou's,200382 YaVe Tequila Jalapeno 1/6/750 mL Btl,Spirits - Tequila,Spirits,7/21/2026,,1.00
-Allison Scott,25056 Emerald Corner (Z),201077 Green River Honey 1/750 mL Btl,Spirits - Whiskey,Spirits,7/17/2026,,1.00
-Allison Scott,10007 Bardis (P),201077 Green River Honey 1/750 mL Btl,Spirits - Whiskey,Spirits,7/17/2026,,1.00
-Paul Mclaughlin,41006 Straphanger Saloon (A),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,7/17/2026,,1.00
+Paul Mclaughlin,69009 Rivervale Country Club,200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,7/21/2026,,1.00
+Paul Mclaughlin,59001 ORA,201055 Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl,Spirits - Whiskey,Spirits,7/21/2026,,1.00
 Allison Scott,1005 Grasshopper Irish Pub (A),201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,7/17/2026,,1.00
-Paul Mclaughlin,59001 ORA,201055 Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl,Spirits - Whiskey,Spirits,7/17/2026,,1.00
+Allison Scott,25056 Emerald Corner (Z),201077 Green River Honey 1/750 mL Btl,Spirits - Whiskey,Spirits,7/17/2026,,1.00
 Allison Scott,12022 Grasshopper Too (A),201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,7/17/2026,,1.00
-Pablo Lopez,39004 Noches De Colombia (S. Hackensack)),200771 Desquite Artesanal 6/750 mL Btl,Spirits - Tequila,Spirits,7/15/2026,,1.00
+Paul Mclaughlin,41006 Straphanger Saloon (A),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,7/17/2026,,1.00
+Paul Mclaughlin,59001 ORA,201055 Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl,Spirits - Whiskey,Spirits,7/17/2026,,1.00
+Allison Scott,10007 Bardis (P),201077 Green River Honey 1/750 mL Btl,Spirits - Whiskey,Spirits,7/17/2026,,1.00
 Allison Scott,8015 Thatcher Mc Ghees (A),201077 Green River Honey 1/750 mL Btl,Spirits - Whiskey,Spirits,7/15/2026,,1.00
+Pablo Lopez,39004 Noches De Colombia (S. Hackensack)),200771 Desquite Artesanal 6/750 mL Btl,Spirits - Tequila,Spirits,7/15/2026,,1.00
 Brian Sengebush,190217 Nostrana Ristorante,201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,7/15/2026,,1.00
+Allison Scott,25083 Rutt's Hut (A),201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,7/14/2026,,1.00
+Nick Melissari,38002 Satin Dolls (A),100961 2XO American Oak 1/750 mL Btl,Spirits - Whiskey,Spirits,7/14/2026,,1.00
+Robin Feldman,12023 The Village Inn,201073 Bardstown Collaboration Series Pierre Ferrand 1/750 mL Btl,Spirits - Whiskey,Spirits,7/14/2026,,1.00
+Robin Feldman,12023 The Village Inn,201074 Bardstown Discovery #13 1/750 mL Btl,Spirits - Whiskey,Spirits,7/14/2026,,1.00
 Paul Mclaughlin,69009 Rivervale Country Club,200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,7/14/2026,,1.00
 Brian Sengebush,230103 St.Moritz Grill & Bar,201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,7/14/2026,,1.00
-Allison Scott,25083 Rutt's Hut (A),201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,7/14/2026,,1.00
-Robin Feldman,12023 The Village Inn,201074 Bardstown Discovery #13 1/750 mL Btl,Spirits - Whiskey,Spirits,7/14/2026,,1.00
-Robin Feldman,12023 The Village Inn,201073 Bardstown Collaboration Series Pierre Ferrand 1/750 mL Btl,Spirits - Whiskey,Spirits,7/14/2026,,1.00
 Paul Mclaughlin,41010 Lenoras Bar (P),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,7/14/2026,,1.00
-Nick Melissari,38002 Satin Dolls (A),100961 2XO American Oak 1/750 mL Btl,Spirits - Whiskey,Spirits,7/14/2026,,1.00
 Paul Mclaughlin,65007 86 and Vine,201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,7/13/2026,,1.00
-Pablo Lopez,27067 Ukranian (Z) Center,101076 Ukrainian Spirit Vodka 1/12/1 L Btl,Spirits - Vodka,Spirits,7/10/2026,,1.00
 Pablo Lopez,27067 Ukranian (Z) Center,101075 Hetman Elite Vodka 1/6/700 mL Btl,Spirits - Vodka,Spirits,7/10/2026,,1.00
 Paul Mclaughlin,41006 Straphanger Saloon (A),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,7/10/2026,,1.00
+Pablo Lopez,27067 Ukranian (Z) Center,101076 Ukrainian Spirit Vodka 1/12/1 L Btl,Spirits - Vodka,Spirits,7/10/2026,,1.00
 Paul Mclaughlin,40008 Tavern 61 (Z),201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,7/9/2026,,1.00
-John O'Donoghue,190016 12 Islands Greek Taverna,200356 Isidoros Arvanitis Plomari Ouzo 12/750 mL Btl,Spirits - Other,Spirits,7/9/2026,,1.00
 Brian Sengebush,191009 Mason Street Grille,100962 2XO French Oak 1/750 mL Btl,Spirits - Whiskey,Spirits,7/9/2026,,1.00
+John O'Donoghue,190016 12 Islands Greek Taverna,200356 Isidoros Arvanitis Plomari Ouzo 12/750 mL Btl,Spirits - Other,Spirits,7/9/2026,,1.00
 Paul Mclaughlin,39010 Players Club (Z),201058 Bardstown Origin Series High Wheat 1/750 mL Btl,Spirits - Whiskey,Spirits,7/8/2026,,1.00
 Paul Mclaughlin,69009 Rivervale Country Club,200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,7/8/2026,,1.00
 Dylan Rubino,170266 San Patricios Jersey City,100912 OVO Vodka 1/12/750 mL Btl,Spirits - Vodka,Spirits,7/8/2026,,1.00
-Paul Mclaughlin,39010 Players Club (Z),201054 Green River Wheated 1/750 mL,Spirits - Whiskey,Spirits,7/7/2026,,1.00
 Paul Mclaughlin,61004 Andiamo,100962 2XO French Oak 1/750 mL Btl,Spirits - Whiskey,Spirits,7/7/2026,,1.00
+Paul Mclaughlin,39010 Players Club (Z),201054 Green River Wheated 1/750 mL,Spirits - Whiskey,Spirits,7/7/2026,,1.00
+Robin Feldman,15079 American Lgn Totowa,201072 Green River Bourbon 250th Army Anniversary 1/750 mL,Spirits - Whiskey,Spirits,7/3/2026,,1.00
 Javier Melo,27001 Fiesta Night Club(P),200771 Desquite Artesanal 6/750 mL Btl,Spirits - Tequila,Spirits,7/3/2026,,1.00
 Derrick Laws,20058 Krystal Bar(P) & Liqs.,200313 Pride & Clarke Vodka 24/375 mL Btl,Spirits - Vodka,Spirits,7/3/2026,,1.00
-Robin Feldman,15079 American Lgn Totowa,201072 Green River Bourbon 250th Army Anniversary 1/750 mL,Spirits - Whiskey,Spirits,7/3/2026,,1.00
+Nick Melissari,80011 Casa De Montecristo,201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,7/2/2026,,1.00
+Paul Mclaughlin,41006 Straphanger Saloon (A),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,7/2/2026,,1.00
+Brian Sengebush,190104 Black Rabbit Saloon LLC,201054 Green River Wheated 1/750 mL,Spirits - Whiskey,Spirits,7/2/2026,,1.00
 Nick Melissari,28021 Brazilian Spices Steakhouse & Pizza,200311 Pride & Clarke Vodka 12/1 L Btl,Spirits - Vodka,Spirits,7/2/2026,,1.00
 Paul Mclaughlin,61004 Andiamo,200404 Traveler's Club Vodka 6/1.75 L Btl,Spirits - Vodka,Spirits,7/2/2026,,1.00
-Brian Sengebush,190104 Black Rabbit Saloon LLC,201054 Green River Wheated 1/750 mL,Spirits - Whiskey,Spirits,7/2/2026,,1.00
-Paul Mclaughlin,41006 Straphanger Saloon (A),200400 Travelers Club Vodka 12/1 L Btl,Spirits - Vodka,Spirits,7/2/2026,,1.00
 Javier Melo,32011 La Fortaleza (Carlstadt),200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl,Spirits - Tequila,Spirits,7/2/2026,,1.00
-Nick Melissari,80011 Casa De Montecristo,201056 Bardstown Origin Series Bourbon 1/750 mL Btl,Spirits - Whiskey,Spirits,7/2/2026,,1.00
 Paul Mclaughlin,73001 Lou's,201077 Green River Honey 1/750 mL Btl,Spirits - Whiskey,Spirits,7/1/2026,,1.00
 Mike Ast,84022 Park West Tavern,100912 OVO Vodka 1/12/750 mL Btl,Spirits - Vodka,Spirits,7/1/2026,,1.00

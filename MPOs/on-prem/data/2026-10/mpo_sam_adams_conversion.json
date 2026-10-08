@@ -6,7 +6,7 @@
     "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x3",
     "BASE_DATE": "5/20/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
     "DONE_DATE": "8/25/2026"
   },
   {
@@ -86,7 +86,7 @@
     "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
     "BASE_DATE": "7/2/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
     "DONE_DATE": "9/3/2026"
   },
   {
@@ -266,7 +266,7 @@
     "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1, Summer Ale 15.5 Gal Keg x3",
     "BASE_DATE": "7/16/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1, Octoberfest 15.5 Gal Keg x3",
     "DONE_DATE": "8/27/2026"
   },
   {
@@ -416,7 +416,7 @@
     "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x5",
     "BASE_DATE": "7/15/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x5",
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x6",
     "DONE_DATE": "8/18/2026"
   },
   {
@@ -726,7 +726,7 @@
     "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x11, Summer Ale 5.2 Gal Keg x15",
     "BASE_DATE": "6/25/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x10, Octoberfest 15.5 Gal Keg x19",
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x13, Octoberfest 5.2 Gal Keg x10",
     "DONE_DATE": "8/7/2026"
   },
   {
@@ -786,7 +786,7 @@
     "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1",
     "BASE_DATE": "4/30/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1, Octoberfest 15.5 Gal Keg x1",
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x1, Octoberfest 5.2 Gal Keg x1",
     "DONE_DATE": "8/13/2026"
   },
   {
@@ -883,7 +883,7 @@
     "SALES_REP_ASSIGNED": "Brian Sengebush",
     "CUSTOMER_NUM": 190214,
     "CUSTOMER_NAME": "Johnnie's Tavern",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x9, Summer Ale 15.5 Gal Keg x1",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1, Summer Ale 5.2 Gal Keg x9",
     "BASE_DATE": "6/17/2026",
     "DONE": 1,
     "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2, Octoberfest 5.2 Gal Keg x2",
@@ -896,7 +896,7 @@
     "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x6",
     "BASE_DATE": "6/16/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x6",
     "DONE_DATE": "9/10/2026"
   },
   {
@@ -1105,9 +1105,9 @@
     "CUSTOMER_NAME": "Patricks Pub (P)",
     "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
     "BASE_DATE": "7/2/2026",
-    "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x1, Octoberfest 15.5 Gal Keg x1",
-    "DONE_DATE": "8/27/2026"
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -1126,7 +1126,7 @@
     "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1",
     "BASE_DATE": "6/26/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x7",
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x9",
     "DONE_DATE": "9/10/2026"
   },
   {
@@ -1306,7 +1306,7 @@
     "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x10",
     "BASE_DATE": "7/16/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x6",
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x7",
     "DONE_DATE": "8/13/2026"
   },
   {
@@ -1453,7 +1453,7 @@
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 191210,
     "CUSTOMER_NAME": "Milton Inn",
-    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1, Summer Ale 5.2 Gal Keg x1",
+    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1, Summer Ale 15.5 Gal Keg x1",
     "BASE_DATE": "6/9/2026",
     "DONE": 1,
     "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
@@ -1646,7 +1646,7 @@
     "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x6",
     "BASE_DATE": "7/15/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x3, Octoberfest 15.5 Gal Keg x4",
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4, Octoberfest 5.2 Gal Keg x3",
     "DONE_DATE": "8/19/2026"
   },
   {
@@ -1746,7 +1746,7 @@
     "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
     "BASE_DATE": "5/29/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
     "DONE_DATE": "9/3/2026"
   },
   {
@@ -1776,7 +1776,7 @@
     "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x22",
     "BASE_DATE": "7/15/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x17",
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x20",
     "DONE_DATE": "8/4/2026"
   },
   {
@@ -2146,7 +2146,7 @@
     "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x12",
     "BASE_DATE": "7/15/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x10",
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x13",
     "DONE_DATE": "8/5/2026"
   },
   {
@@ -2166,7 +2166,7 @@
     "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x7, Summer Ale 15.5 Gal Keg x1",
     "BASE_DATE": "7/10/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x10",
+    "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x11",
     "DONE_DATE": "8/14/2026"
   },
   {
@@ -2236,7 +2236,7 @@
     "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x10",
     "BASE_DATE": "7/9/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x6",
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x8",
     "DONE_DATE": "8/6/2026"
   },
   {
@@ -2376,7 +2376,7 @@
     "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
     "BASE_DATE": "7/17/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x4",
     "DONE_DATE": "8/14/2026"
   },
   {
@@ -2526,7 +2526,7 @@
     "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x3",
     "BASE_DATE": "7/3/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x2",
+    "DONE_DETAIL": "Octoberfest 15.5 Gal Keg x3",
     "DONE_DATE": "8/20/2026"
   },
   {
@@ -2893,7 +2893,7 @@
     "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 230303,
     "CUSTOMER_NAME": "Crossed Keys Inn",
-    "BASE_DETAIL": "Summer Ale 5.2 Gal Keg x1, Summer Ale 15.5 Gal Keg x1",
+    "BASE_DETAIL": "Summer Ale 15.5 Gal Keg x1, Summer Ale 5.2 Gal Keg x1",
     "BASE_DATE": "5/28/2026",
     "DONE": 1,
     "DONE_DETAIL": "Octoberfest 5.2 Gal Keg x5",

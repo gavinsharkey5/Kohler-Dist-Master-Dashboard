@@ -275,9 +275,9 @@
     "CUSTOMER_NAME": "Elevengreen",
     "BASE_DETAIL": "2 spirits: Bardstown Origin Series Bourbon 1/750 mL Btl, Bardstown Origin Series High Wheat 1/750 mL Btl",
     "BASE_DATE": "9/22/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Bardstown Origin Series Bourbon 1/750 mL Btl, Bardstown Origin Series High Wheat 1/750 mL Btl",
+    "DONE_DATE": "10/8/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -385,9 +385,9 @@
     "CUSTOMER_NAME": "O'nieal's (A)",
     "BASE_DETAIL": "1 spirit: OVO Vodka 1/12/750 mL Btl",
     "BASE_DATE": "9/3/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "OVO Vodka 1/12/750 mL Btl",
+    "DONE_DATE": "10/8/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jaime Colonna",
