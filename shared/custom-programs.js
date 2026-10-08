@@ -233,9 +233,10 @@
       if (!R.loaded) { r.support = 'awaiting_data'; r.notes.push('No sales month of ' + periodText(per) + ' is loaded yet (data through ' + monthLabel(H.through) + ').'); return finish(r, o, rep, scopeBase.length); }
       if (!R.complete) r.notes.push('Sales data through ' + monthLabel(R.through) + '; later months of the period are not loaded yet.');
       if (!Q.length && o.metric !== 'units' && o.metric !== 'growth') { r.support = 'awaiting_decision'; r.notes.push('No qualifying products are selected.'); return finish(r, o, rep, scopeBase.length); }
+      if ((o.metric === 'units' || o.metric === 'growth') && o.volumeUnit === 'units') { r.support = 'awaiting_calc'; r.notes.push('Bottles / units are not in the sales record (cases only); this objective is saved, not scored.'); return finish(r, o, rep, scopeBase.length); }
       var before = null;
       if (o.metric === 'new_buyers' || o.metric === 'new_placements') {
-        var days = Number((def.period || {}).nonBuyDays) || 90;
+        var days = Number(o.nonBuyDays) || Number((def.period || {}).nonBuyDays) || 90;   // per objective (v3); the program-wide value is the legacy fallback
         before = windowBefore(months, per.start, days);
         r.notes.push('"New" = no net purchase of a qualifying product in the ' + days + ' days before ' + fmtDayYear(parseDate(per.start)) + ', measured as whole months (' + (before && before.loaded ? monthLabel(months[before.i0]) + ' – ' + monthLabel(months[before.i1]) : 'not loaded') + ').');
       }
@@ -323,6 +324,8 @@
   }
   function pctOf(v, g) { return g > 0 ? Math.min(100, Math.max(0, Math.round(v / g * 100))) : 0; }
   function finish(r, o, rep, baseN, keepSupport) {
+    // the goal stays visible even when progress cannot be computed yet (missing data is never a zero, and never hides the goal)
+    if (r.goal == null && r.support !== 'supported' && o.metric !== 'growth') { var G0 = goalFor(o, rep, baseN, baseN); if (G0 && G0.goal != null && !G0.needsRounding && G0.goal > 0) r.goal = G0.goal; }
     if (r.goal != null && r.goal > 0) {
       r.pct = pctOf(r.value, r.goal); r.remaining = Math.max(0, r.goal - r.value);
       r.status = r.remaining <= 0 ? 'achieved' : r.value > 0 ? 'inprogress' : 'notstarted';
@@ -333,6 +336,7 @@
       r.valueText = fmt(r.value) + ' ' + plural(r.value, r.unit); r.goalText = r.goal === 0 ? 'Open-ended' : 'No goal set'; r.remainText = '';
     }
     if (r.support !== 'supported') r.status = r.support === 'awaiting_evidence' ? (r.value > 0 ? 'inprogress' : 'notstarted') : 'notstarted';
+    if (r.support === 'awaiting_data' || r.support === 'awaiting_calc') { r.valueText = 'Not yet available'; r.remainText = ''; r.notReady = true; r.pct = 0; r.status = 'notstarted'; }   // a missing month is never a zero
     return r;
   }
   function unitOf(o) {
@@ -345,24 +349,41 @@
   function periodText(p) { var s = parseDate(p && p.start), e = parseDate(p && p.end); if (!s || !e) return 'period not set'; return (s.getFullYear() === e.getFullYear() ? fmtDay(s) : fmtDayYear(s)) + ' – ' + fmtDayYear(e); }
   var SUPPORT_LABEL = { supported: 'Tracked from sales data', awaiting_data: 'Awaiting sales data', awaiting_calc: 'Awaiting calculation support', awaiting_evidence: 'Recorded, not verified', awaiting_decision: 'Needs a decision', partial: 'Partly tracked' };
 
-  // plain-language rules for a definition (no money)
+  // plain-language rules for a definition (no money): direct summaries, one fact per line
+  var MEASURE_TEXT = { buying_accounts: 'Buying Accounts', new_buyers: 'New Buyers', placements: 'Product Placements', new_placements: 'New Product Placements', retention: 'Retained Buyers', units: 'Sales Volume (Cases)', growth: 'Case Growth vs a Comparison Period', merch: 'Merchandising Records', photos: 'Merchandising Photos' };
+  function goalSummary(o) {
+    var g = o.goal || {}; var u = unitOf(o); var cap = function (t) { return t.charAt(0).toUpperCase() + t.slice(1); };
+    if (g.type === 'pct_of_base') return (g.pct ? Math.round(g.pct * 100) + '% of Eligible Accounts' + (g.rounding ? ' (Rounded ' + cap(g.rounding) + ')' : ' (Rounding Not Set)') : 'Percent Not Set');
+    if (g.type === 'individual') { var vals = Object.keys(g.perRep || {}).map(function (k) { return g.perRep[k]; }).filter(function (v) { return v !== '' && v != null; }); var set = new Set(vals.map(Number)); return vals.length ? (set.size === 1 ? fmt(vals[0]) + ' ' + cap(plural(Number(vals[0]), u)) + ' per Rep' : 'Individual Goals (' + fmt(Math.min.apply(null, vals)) + '–' + fmt(Math.max.apply(null, vals)) + ' ' + u + ')') : 'Individual Goals Not Set'; }
+    if (g.type === 'house') return g.value ? fmt(g.value) + ' ' + cap(plural(Number(g.value), u)) + ' (Team Total)' : 'Team Goal Not Set';
+    if (g.value !== '' && g.value != null) return fmt(g.value) + ' ' + cap(plural(Number(g.value), u)) + (o.scope === 'house' ? ' (Team Total)' : ' per Rep');
+    return o.metric === 'growth' ? 'Positive Growth' : 'Not Set';
+  }
+  function objectiveRule(o, per) {
+    var s = []; per = per || {};
+    if (o.minSkus > 1) s.push(o.minSkus + '+ different qualifying products per account');
+    if (o.minCases) s.push(o.minCases + '+ cases per account');
+    if (o.premise && o.premise !== 'any') s.push((o.premise === 'off' ? 'off' : 'on') + '-premise accounts only');
+    if (o.metric === 'new_buyers' || o.metric === 'new_placements') { var d = Number(o.nonBuyDays) || Number(per.nonBuyDays) || 90; s.push('new = no qualifying purchase' + (o.metric === 'new_placements' ? ' of that product' : '') + ' in the ' + d + ' days before ' + (per.start ? fmtDayYear(parseDate(per.start)) : 'the start') + ' (whole months, fixed baseline)'); }
+    if (o.metric === 'growth' || o.metric === 'retention') s.push(o.comparison && o.comparison.start ? 'compared with ' + periodText(o.comparison) : 'comparison period not set');
+    if (o.metric === 'merch' || o.metric === 'photos') s.push('records dated inside the program period, counted as recorded (not verified)');
+    if (o.logic === 'alternative') s.push('one of the alternatives is enough');
+    if (o.logic === 'prerequisite') s.push('must be met before the objectives it unlocks count');
+    if (o.followOn && o.followOn.start) s.push('follow-on period ' + periodText(o.followOn));
+    return s;
+  }
   function rulesText(def) {
-    var out = [];
-    var per = def.period || {};
-    out.push('Earning period ' + periodText(per) + ' (credit by sales month of the monthly sales record).');
-    if (per.nonBuyDays && (def.objectives || []).some(function (o) { return /^new_/.test(o.metric); })) out.push('Non-buy window: ' + per.nonBuyDays + ' days before the period, counted as whole months.');
-    (def.objectives || []).forEach(function (o, i) {
-      var g = o.goal || {}; var gt = g.type === 'pct_of_base' ? Math.round((g.pct || 0) * 100) + '% of the eligible accounts' + (g.rounding ? ' (rounded ' + g.rounding + ')' : '') : g.type === 'individual' ? 'an individual goal per participant' : g.type === 'house' ? 'a house goal of ' + g.value : (g.value != null ? g.value : 'no goal');
-      var s = (o.label || metricLabel(o)) + ': ' + metricLabel(o).toLowerCase() + (o.minSkus > 1 ? ' with ' + o.minSkus + '+ different qualifying SKUs' : '') + (o.minCases ? ', ' + o.minCases + '+ cases' : '') + (o.premise && o.premise !== 'any' ? ' (' + (o.premise === 'off' ? 'off' : 'on') + '-premise accounts)' : '') + ' — goal ' + gt + (o.scope === 'house' ? ' (house)' : '') + '.';
-      if (o.logic === 'alternative') s += ' Any one alternative qualifies.';
-      if (o.requires) s += ' Unlocked by: ' + o.requires + '.';
-      if (o.followOn && o.followOn.start) s += ' Follow-on period ' + periodText(o.followOn) + '.';
-      out.push(s);
+    var out = []; var per = def.period || {};
+    out.push('Period: ' + periodText(per) + ' (credit by sales month)');
+    (def.objectives || []).forEach(function (o) {
+      var line = (o.label || metricLabel(o)) + ' — Measure: ' + (MEASURE_TEXT[o.metric] || metricLabel(o)) + ' · Goal: ' + goalSummary(o);
+      var rules = objectiveRule(o, per); if (rules.length) line += ' · ' + rules.join('; ');
+      out.push(line);
     });
     var pr = def.products || {};
-    if (pr.resolved && pr.resolved.length) out.push('Qualifying products: ' + pr.resolved.length + (pr.dynamic ? ' (new products matching the brand, supplier or package rules are included automatically)' : ' (the approved product list is kept)') + '.');
+    if (pr.resolved && pr.resolved.length) out.push('Products: ' + pr.resolved.length + ' Selected' + (pr.dynamic ? ' (new products matching the brand, supplier or package rules join automatically)' : ''));
     var P = def.participants || {};
-    out.push('Eligible accounts: ' + (P.baseMode === 'dynamic' ? 'updated with route changes' : 'the starting account list is kept') + (P.accountFilter && P.accountFilter.premise && P.accountFilter.premise !== 'any' ? ', ' + P.accountFilter.premise + '-premise' : '') + (P.accountFilter && P.accountFilter.territory && P.accountFilter.territory !== 'any' ? ', ' + (typeof P.accountFilter.territory === 'string' ? P.accountFilter.territory : P.accountFilter.territory.join('/')) : '') + '.');
+    out.push('Account List: ' + (P.baseMode === 'dynamic' ? 'Updates With Route Changes' : 'Fixed at Program Start') + (P.accountFilter && P.accountFilter.premise && P.accountFilter.premise !== 'any' ? ' · ' + (P.accountFilter.premise === 'off' ? 'Off' : 'On') + '-Premise' : '') + (P.accountFilter && P.accountFilter.territory && P.accountFilter.territory !== 'any' ? ' · ' + (P.accountFilter.territory === 'core' ? 'Core Market' : P.accountFilter.territory === 'southern' ? 'Southern District' : 'Selected Areas') : ''));
     return out;
   }
 
@@ -590,7 +611,7 @@
   }
 
   global.KdhPrograms = { load: load, evaluate: evaluate, resultFor: resultFor, cached: cached, hubEntry: hubEntry, mpoEntries: mpoEntries, potential: potential,
-    rulesText: rulesText, resolveProducts: resolveProducts, products: products, hist: hist, baseFor: baseFor, book: book, participants: participants, isParticipant: isParticipant,
+    rulesText: rulesText, monthLabel: monthLabel, goalSummary: goalSummary, objectiveRule: objectiveRule, MEASURE_TEXT: MEASURE_TEXT, resolveProducts: resolveProducts, products: products, hist: hist, baseFor: baseFor, book: book, participants: participants, isParticipant: isParticipant,
     objectivesTable: objectivesTable, SUPPORT_LABEL: SUPPORT_LABEL, periodText: periodText, metricLabel: metricLabel, unitOf: unitOf, boot: boot, notices: notices, state: ST,
     monthRange: monthRange, windowBefore: windowBefore, keyFor: keyFor };
   if (document.currentScript && document.currentScript.getAttribute('data-boot') !== 'off') {

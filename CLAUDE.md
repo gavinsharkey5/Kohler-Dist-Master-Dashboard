@@ -3002,3 +3002,34 @@ top, products could only be picked as a whole brand. Mobbin refs: Shopify "Add p
   approver's "Publish Approved vN"). mp_stub.mjs mirrors all of it. Step nav: only VISITED steps show
   check / "!" (`S.visited`). Tags manage.* 20261008b, custom-programs.js 20261008b (rules text wording).
   Tests: mp2_test.mjs (77 x 1366 / 820 / 390, light / dark), mp_test.mjs (59), sql_programs_test.sh (80).
+
+## Manage Programs v3: objectives step, relevant dates, supplier-limited products, Review & Submit (2026-10-08)
+
+Gavin's third brief the same day (Mobbin: Zillow review screens aa311974 / 2653c9ea for the stacked
+sections + persistent action area; Deputy is not on Mobbin, so Cash App 72e44691 / Turo 7e7fe513 / Zopa
+a5f2f215 stood in for the label-value review rows). manage-programs/README.txt "Version 3" has every rule;
+the ones to remember:
+- EIGHT STEPS: Basics, Participants & Accounts, Products, Objectives, Dates & Rules, Goals, Financial Terms,
+  Review & Submit (`LAST = 8`; hash `ret=review` makes the footer carry "Return to Review").
+- `o.metric` STAYS THE STORED AUTHORITY (the evaluator, hub and MPO cards read it); the Objectives step
+  derives it from measure / qualification / unit (`kindOf()` / `metricFrom()` in manage.js). Bottles / units =
+  `o.volumeUnit:'units'` and the evaluator returns awaiting_calc (the record is in cases).
+- DATE RULES ARE PER OBJECTIVE: `o.nonBuyDays` + `o.nonBuyAnchor:'program_start'` (new buyers / new
+  placements only; the evaluator reads `o.nonBuyDays || def.period.nonBuyDays || 90`), `o.comparison`
+  (growth / retention only), `o.actDates` + `o.followOn` (merchandising activity dates). `normalizeObjective()`
+  deletes what a metric does not use on every collect and on load, and `validate()` only checks what applies --
+  a hidden value can never score or block. `upgradeDef()` migrates v2 drafts (period.nonBuyDays / baseline
+  copied onto the objectives, `def.suppliers` from `def.supplier`). Don't re-add program-wide non-buy /
+  baseline fields.
+- SUPPLIERS: `def.suppliers` (list, Basics) with `def.supplier = suppliers[0]` for the hub heading. The product
+  dialog pool is only those suppliers; removing one with selections opens a dialog (`supplierOff` /
+  `supplierImpact` / `removeSupplier`) and nothing moves until confirmed; `outOfScope()` lists stale
+  selections (#outScope, a step-3 blocker) and migration `20261008200000_program_suppliers.sql` makes
+  `kdh_program_scope_problem` refuse them server-side for everyone (mp_stub mirrors it). Adding a supplier
+  never selects products.
+- REVIEW: `reviewSections()` is shared by step 8 (`edit:true`) and the approver page (`edit:false`); the
+  evaluator's `finish()` now computes the goal before giving up on data and marks `notReady` (valueText "Not yet
+  available") for awaiting_data / awaiting_calc -- a missing month is never a 0. KdhPrograms exposes
+  `goalSummary` / `objectiveRule` / `MEASURE_TEXT` / `monthLabel`; `rulesText` uses the direct wording.
+Tags manage.js / manage.css / custom-programs.js 20261008c. Tests: scratchpad mp3_test.mjs, mp_test (60),
+mp2_test, sql_programs_test.sh (83).

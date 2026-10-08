@@ -14,7 +14,8 @@ device, a decision).
 - [ ] **Manage Programs (2026-10-08).** Managers build incentives / MPOs in the Hub
   (/manage-programs/; manage-programs/README.txt). To make it live, in the Supabase SQL
   Editor in order: `supabase/migrations/20261008120000_manage_programs.sql`, then
-  `supabase/migrations/20261008180000_program_delete.sql` (v2: Delete / Restore / Publish Again); set
+  `supabase/migrations/20261008180000_program_delete.sql` (v2: Delete / Restore / Publish Again), then
+  `supabase/migrations/20261008200000_program_suppliers.sql` (v3: products must belong to the chosen suppliers); set
   `program_admin = true` on the approver's allow-list row (the flag, never a name);
   `supabase/seed/product_master.sql`; then REVIEW and run `supabase/seed/program_brands.sql`
   (brand managers' suppliers by name match -- edit the arrays first). Then: create a TEST
@@ -299,6 +300,14 @@ device, a decision).
 
 ## Done
 
+- [x] **Manage Programs v3 (2026-10-08):** eight steps with Objectives on its own (name / what is measured /
+  unit / qualification / who it counts for; the stored metric derived from them), Dates & Rules showing only
+  each objective's own settings (per-objective Non-Buy Lookback with an explicit fixed anchor, comparison /
+  baseline periods with Same Period Last Year, activity dates for merchandising; hidden values cleared), the
+  product dialog limited to the suppliers chosen in Basics (removal explains what goes with it; stale
+  selections blocked in the UI and by the database), readable type, and a Review & Submit of stacked
+  sections with Edit / Return to Review, Data Readiness and Progress So Far kept apart ("Not Yet Available"
+  vs a real 0, goal always shown). Needs the third SQL file under Now.
 - [x] **Manage Programs v2 (2026-10-08):** spacious builder (1120px, 16px inputs), plain copy, a participant
   picker that keeps scroll / focus / search while ticking (bulk actions scoped to the filter), SKU-level
   Add Products dialog (search, filters, deliberate whole-group add, dedupe, Remove -> explicit exclusion,

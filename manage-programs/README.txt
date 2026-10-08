@@ -1,11 +1,11 @@
-Manage Programs -- manager-built incentives and MPOs (2026-10-08, v2 the same day)
-===================================================================================
+Manage Programs -- manager-built incentives and MPOs (2026-10-08, v2 and v3 the same day)
+==========================================================================================
 
 What it is
 ----------
 /manage-programs/ lets a manager build an incentive or an MPO without code:
-seven steps (Basics, Participants & Accounts, Products, Dates & Rules, Goals,
-Financial Terms, Preview & Submit), saved as drafts, submitted to the program
+eight steps (Basics, Participants & Accounts, Products, Objectives, Dates &
+Rules, Goals, Financial Terms, Review & Submit), saved as drafts, submitted to the program
 approver, approved, and then drawn by the EXISTING Programs experience --
 the hub's incentive rows / program screen and the On- / Off-Premise MPO
 tracker cards (the Option 2 layout: Details + Potential Accounts). There is
@@ -15,6 +15,141 @@ pages reps already use.
 First milestone (built): a clearly labelled TEST program can be created,
 submitted, approved and seen in the Programs experience by its participants
 (through a manager's Preview as this rep), with no effect on live incentives.
+
+Version 3 (2026-10-08): objectives, relevant dates, supplier-limited products, Review & Submit
+---------------------------------------------------------------------------------------------
+Gavin's brief after the v2 screenshots. Mobbin references inspected: Zillow's review
+screens (aa311974-7c18-4201-ba14-a093b62f9dd3, 2653c9ea-2e09-4b68-a892-7b6c0b957630:
+stacked expandable sections with a status on the row and a persistent bottom action
+area) and, since Deputy's "Review Your Information" is not on Mobbin, the same pattern
+in Cash App "Confirm your info" (72e44691), Turo "Review and submit" (7e7fe513) and
+Zopa "Check your details" (a5f2f215): label / value rows, restrained dividers, an Edit
+per section, one obvious final action. What holds (manage.js / manage.css 20261008c,
+custom-programs.js 20261008c):
+  STEPS      1 Basics, 2 Participants & Accounts, 3 Products, 4 Objectives, 5 Dates &
+             Rules, 6 Goals, 7 Financial Terms, 8 Review & Submit. Old links with
+             step=7 open Financial Terms (the number is a step, not a page).
+  OBJECTIVES one card each: Objective Name; What Are You Measuring? (Buyers,
+             Placements, Sales Volume, Merchandising Activity); Unit of Measure
+             (accounts / account-product placements / cases or bottles-units /
+             records or photos); Qualification Type (any qualifying purchase, new
+             buyer, retention; any / new placement; total cases / growth vs a
+             comparison period; recorded activity); Who It Counts For (each
+             participant / team total); Accounts Counted (premise). Counting rules
+             only where they apply (different products + minimum cases for buyers,
+             minimum cases for volume, record type + before/after for merchandising).
+             "Advanced Combination Settings" (logic, unlocked by) appears only when
+             the program has more than one objective.
+             STORAGE: o.metric is still the authority the evaluator reads; it is
+             DERIVED from the three choices (kindOf / metricFrom in manage.js):
+             buyers+any = buying_accounts, buyers+new = new_buyers, buyers+retention
+             = retention, placements+any = placements, placements+new =
+             new_placements, volume+any = units, volume+growth = growth, merch =
+             merch (records) or photos. Bottles / units is saved as o.volumeUnit =
+             'units' and the evaluator answers "awaiting calculation" (the sales
+             record is in cases) -- never a number in the wrong unit. Changing the
+             measure resets unit and qualification to that measure's first option.
+  DATES      Program start / end, period type, credit event -- then ONE rule card
+             per objective showing only what that objective uses:
+             - regular buyers / placements / cases: "Counts qualifying purchases
+               dated <period>. No lookback or comparison period applies." (+ an
+               optional Follow-On Period fold).
+             - new buyers / new placements: "Non-Buy Lookback (Days)" with the
+               explanation "No qualifying purchases during the preceding X days.",
+               a Lookback Anchor select whose only enabled option is "Fixed: the
+               days before the program start" (rolling is listed, disabled, "not
+               available yet" -- never switched silently), and "What Defines New":
+               any qualifying product (new buyers) vs that specific product (new
+               placements). Stored PER OBJECTIVE as o.nonBuyDays (30-730) +
+               o.nonBuyAnchor; the evaluator reads o.nonBuyDays first and the old
+               program-wide period.nonBuyDays only as a fallback for drafts never
+               re-saved.
+             - growth: Comparison Period start / end + "Use the Same Period Last
+               Year" (fills from the program dates); retention: the same inputs
+               labelled Baseline Period. Stored on o.comparison.
+             - merchandising: Activity Dates = same as the program period, or
+               different dates (stored as o.actDates + o.followOn, which the
+               evaluator already used as an objective's own window). "No purchase
+               window applies."
+             HIDDEN VALUES NEVER COUNT: normalizeObjective() runs on every collect
+             and on load -- an objective that does not use a lookback has no
+             nonBuyDays; one that is not growth / retention has an empty
+             comparison; a non-merch objective has no actDates and a reset merch
+             block. validate() only checks the fields a metric uses, so nothing
+             hidden can block submission.
+             OLD DRAFTS: upgradeDef() on load copies period.nonBuyDays onto new_*
+             objectives that lack one and period.baseline onto growth / retention
+             objectives without a comparison, builds def.suppliers from
+             def.supplier, then normalizes. The program-wide Non-Buy Window and
+             Baseline fields are gone from the UI (the keys stay in old JSON,
+             unread once the objective carries its own).
+  SUPPLIERS  Basics has a searchable supplier list (one or more); def.suppliers is
+             the list and def.supplier = its first entry (the hub's group heading).
+             The Add / Exclude Products dialog's pool is ONLY those suppliers (its
+             supplier filter lists only them; a search cannot reach another
+             supplier's products). No supplier -> the Products step shows "Select a
+             supplier in Basics to choose products." with an Edit Basics action.
+             Removing a supplier that has selections opens a dialog listing the
+             selected products, group rules and exclusions it takes with it (Keep
+             Supplier / Remove Supplier and Selections) -- nothing changes until
+             confirmed. A stale selection (products outside the suppliers, e.g.
+             edited JSON or an older draft) is listed on the Products step
+             (#outScope, "remove them"), is a step-3 blocker, and the database
+             refuses it too: migration 20261008200000_program_suppliers.sql
+             redefines kdh_program_scope_problem to check products.resolved
+             against definition.suppliers for everyone, the approver included
+             ("Outside the selected suppliers: ..."), before the team / brand
+             checks. Brand-scope and territory rules are unchanged. Adding a
+             supplier never selects its products.
+  READABLE   16px body and inputs, 24px step titles, 18px section headings, 14.5px
+             secondary text, 15.5px tables; Title Case labels, sentence-case
+             explanations; summaries are direct ("Measure: Product Placements",
+             "Goal: 3 Placements per Rep", "Products: 4 Selected", "Account List:
+             Fixed at Program Start" -- only when it is) via KdhPrograms.
+             goalSummary / objectiveRule / MEASURE_TEXT, which rulesText (the hub's
+             rules lines) also uses.
+  REVIEW     step 8 = a summary strip (title, Incentive / MPO, TEST, suppliers,
+             dates, audience, participants, eligible accounts) and stacked sections
+             (reviewSections(), also the approver's review page): Objectives &
+             Goals (open first), Participants & Accounts, Qualifying Products, Dates
+             & Rules, Financial Terms (manager-only, locked styling), Data
+             Readiness (Ready / Limited / Not Available, sales data through +
+             loaded date, account books date, missing inputs), Progress So Far,
+             Participant Preview. Each editable section has Edit -> that step with
+             `ret=review` in the hash: the footer then carries "Return to Review"
+             (saves and comes back), and nothing typed is lost. Facts appear once:
+             products only in Qualifying Products, dates and lookbacks only in
+             Dates & Rules, goals only in Objectives & Goals. Blockers are listed
+             inside their section with a Fix link that opens the step and focuses
+             the field; the section row shows "N to fix".
+  RESULTS    configuration and calculation are separate. "Progress So Far" prints
+             "Not Yet Available" when the sales record does not cover the period
+             (one notice: "Progress is not available yet. Sales data covers through
+             <month>."), a real number when it does -- a 0 means the calculation
+             ran and found none -- and the goal stays visible either way (the
+             evaluator now computes the goal before it gives up on data). "View
+             Calculation Details" folds the per-objective table, notes and example
+             accounts. The Participant Preview card is drawn from the same saved
+             definition; financial terms are never in it.
+  FOOTER     Back | Save Draft · Next (or Return to Review) on every step; step 8:
+             Back | Save Draft · Submit for Approval with one line saying what
+             happens ("Sends this program to the program approver. Participants see
+             nothing until it is approved" / for a revision: the approved version
+             stays live). The footer is sticky with a solid background and sits
+             above the phone tab bar; the panel's own padding keeps it off the last
+             control. Approval, admin controls, test isolation and saved programs
+             are untouched.
+Tests (scratchpad): mp3_test.mjs (the brief's checklist: regular placements without
+a lookback field, new buyers with lookback + anchor + what-defines-new, growth with
+Same Period Last Year, merchandising-only program with its own activity dates and no
+product blocker, four objectives with different rules stored only where they apply,
+supplier removal dialog Keep / Remove, stale out-of-scope product blocked in the UI
+and by the server check, legacy v2 draft upgraded, Review -> Edit -> Return to
+Review keeps the change, future period = Not Yet Available with the goal visible vs
+loaded period = computed, financial info out of the participant preview, layout at
+390 / 820 / 1366 light + dark: no sideways scroll, nothing under 14px, footer never
+over the last control), mp_test.mjs and mp2_test.mjs (step numbers updated),
+sql_programs_test.sh (83, incl. the supplier check).
 
 Version 2 (2026-10-08): the builder itself
 ------------------------------------------
