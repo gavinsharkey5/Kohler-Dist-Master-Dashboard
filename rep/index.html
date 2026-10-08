@@ -19,7 +19,7 @@
 <link rel="preload" href="../assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 <!-- Theme before first paint: the saved choice, else the device setting (2026-09-30). -->
 <script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
-<link rel="stylesheet" href="rep.css?v=20261008c">
+<link rel="stylesheet" href="rep.css?v=20261008d">
 <!-- The top bar is injected by shared/kdh-user.js (badge, Previewing chip,
      account menu). kdh-home = this is a landing page: no Back button. -->
 <meta name="kdh-page" content="Rep Home">
@@ -57,17 +57,13 @@
     </div>
   </header>
 
-  <!-- the prominent entry: My Accounts, and a search straight into it -->
+  <!-- the prominent entry: My Accounts (search lives on that page) -->
   <section class="hs rh-entry" aria-label="My Accounts">
     <a class="kt kt-lg" id="c-acct" href="../accounts/" data-nav="accounts">
       <span class="kt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/><path d="M3 12h18"/></svg></span>
       <span class="kt-main"><span class="kt-t">My Accounts</span><span class="kt-s" id="s-acct">Your Route</span></span>
       <svg class="kt-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
     </a>
-    <form class="rh-search" id="rhSearch" role="search">
-      <svg class="rh-sico" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-      <input type="search" id="rhQ" placeholder="Search Accounts, Towns or #" aria-label="Search my accounts" autocomplete="off" enterkeyhint="search">
-    </form>
   </section>
 
   <!-- NEEDS ATTENTION: one grouped card of rows (follow-ups, reorders,
@@ -207,13 +203,6 @@
     out = out.filter(Boolean);
     $('metaRest').innerHTML = out.map(function(m){ return '<span class="sep">·</span><span>' + m + '</span>'; }).join('');
   }
-
-  /* ---- the entry: search straight into My Accounts ---- */
-  $('rhSearch').addEventListener('submit', function(e){
-    e.preventDefault();
-    var q = $('rhQ').value.trim();
-    location.href = '../accounts/#' + [q ? 'q=' + encodeURIComponent(q) : '', isManager && viewRep ? 'rep=' + encodeURIComponent(viewRep) : ''].filter(Boolean).join('&');
-  });
 
   /* ---- the page: a rep sees their own; a manager can pick one ---- */
   function showRep(name){

@@ -2667,7 +2667,8 @@ Programs (Incentives, Off/On-Premise MPOs), Trackers (Tap, Red Bull, Carbliss
 Leaderboard), Manager Tools (Merchandising, Exceptions, Incentive Performance -- a NEW
 card, it was sidebar-only), Sales Performance (6), Warehouse & Inventory (3), Planning
 & Field (2027 Planning, iSellBeer Activity, MetLife) = 23 cards, every old destination
-kept. Rep: My Accounts (big card, `.kt-lg`) + search, Needs Attention (unchanged
+kept. Rep: My Accounts (big card, `.kt-lg`; its search box was REMOVED 2026-10-08, Gavin: redundant -- search
+lives on My Accounts), Needs Attention (unchanged
 rows), Programs (Incentives = the hub card, Off/On MPOs), Trackers (Tap, Red Bull,
 Carbliss Leaderboard -- was mislabelled "Carbliss MPO"; status "Team X / 331 L90 ·
 Y / 331 Aug-Oct"), Tools (Inventory, Account Map = /accounts/#mode=map, rep= for a
