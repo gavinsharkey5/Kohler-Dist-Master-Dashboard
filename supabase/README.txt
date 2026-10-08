@@ -54,6 +54,28 @@ One-time setup (done 2026-09-24 unless noted)
     signin@kohlerdisthub.com, host smtp.resend.com:465, user resend,
     password = Resend API key (2026-09-25). Rate limit raised to 100/hour.
 
+Manage Programs (2026-10-08)
+----------------------------
+  Manager-built incentives / MPOs (manage-programs/README.txt). In the SQL
+  Editor, in order:
+    1. migrations/20261008120000_manage_programs.sql (idempotent; after the
+       photo_admin migration).
+    2. update public.allowed_users set program_admin = true where email = '<Gavin>';
+       -- the program approver is this flag, never a name.
+    3. seed/product_master.sql (product # / name / supplier / family /
+       package; no customer data) -- re-run after a product refresh
+       (python3 tools/program_seed.py regenerates both seed files).
+    4. seed/program_brands.sql -- REVIEW FIRST: it sets program_brands (the
+       suppliers a brand manager may build programs for) by name match from
+       the Fusion supplier list. Edit the arrays, or set them by hand:
+       update public.allowed_users set program_brands = array['Constellation Brands']
+         where email = '<brand manager>';
+  District managers need nothing: their team is the reports_to chain already
+  in allowed_users. A manager with neither can save drafts but not submit a
+  program with participants or products. Participants read programs only
+  through kdh_my_programs / kdh_my_program_notices (no finance column is
+  ever selected); every other table is managers-only by RLS.
+
 Adding / removing people
 ------------------------
   Supabase -> Table Editor -> allowed_users. One row per person: email

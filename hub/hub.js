@@ -487,7 +487,29 @@ function buildPrograms(){
   Object.keys(MPO_SCOPES).forEach(scope=>{
     MPO_SCOPES[scope].mod.MONTHS.forEach(month=>{ month.objectives.forEach(o=>out.push(makeMpo(scope, month, o))); });
   });
+  // Manager-built programs (shared/custom-programs.js, 2026-10-08): approved
+  // definitions evaluated in the browser, handed over as ready-made hub entries.
+  // Incentives list like any other; MPO-kind ones render on the MPO trackers
+  // and reach the hub only by deep link. A TEST program carries isTest.
+  (window.KDH_CUSTOM_PROGRAMS||[]).forEach(c=>{
+    if(!c || !c.id) return;
+    if(c.kind==='mpo' && !/prog=inc:cp_/.test(location.hash)) return;
+    if(HubAccounts.PROGRAM_BRANDS[c.id]===undefined) HubAccounts.PROGRAM_BRANDS[c.id] = null;   // any brand: the product list is explicit
+    // group under the hub's own supplier heading (the builder stores the Fusion name, e.g. "Boston Beer Company")
+    if(typeof SUPPLIERS!=='undefined' && c.supplier){ const sk = Object.keys(SUPPLIERS).find(k=>SUPPLIERS[k].rde===c.supplier || SUPPLIERS[k].name===c.supplier); if(sk){ c.supKey = sk; c.supplier = SUPPLIERS[sk].name; if(!c.supplierLogo) c.supplierLogo = assetPath(SUPPLIERS[sk].logo); } }
+    const res = c.program && c.program.definition && c.program.definition.products && c.program.definition.products.resolved;
+    if(res && res.length){ window.KDH_PROGRAM_SKUS = window.KDH_PROGRAM_SKUS || {}; window.KDH_PROGRAM_SKUS[c.id] = {source:'Manage Programs', products: res.map(x=>({id:String(x.id), name:x.name}))}; }
+    out.push(c);
+  });
   PROGRAMS = out;
+}
+// Called by shared/custom-programs.js once its programs (and a rep's results) are in.
+function rebuildPrograms(){
+  buildPrograms(); acctCache.clear();
+  if(LIB) return;
+  const h = readHash();
+  if(h.prog && h.prog!==state.prog && PROGRAMS.some(p=>p.id===h.prog)) applyHash();
+  render();
 }
 const isActive = p => p.period.end >= TODAY;
 function inCategory(p, cat){
@@ -1616,6 +1638,7 @@ const SELL_ASK = {
 };
 const RETENTION = /retention|_fall$|mc_retention/;
 function sellAsk(p){
+  if(p.sellAsk) return p.sellAsk;                         // manager-built programs carry their own
   const k = HubAccounts.brandKey(p);
   if(SELL_ASK[k]) return SELL_ASK[k];
   const fams = HubAccounts.PROGRAM_BRANDS[k];
@@ -2761,13 +2784,14 @@ function exportFilterText(f){
 }
 function exportScopeText(){ return HUB_TEAM ? `${HUB_TEAM.dm}’s team (${ROSTER.length} reps)` : `Every rep (${ROSTER.length})`; }
 function programsForExport(onlyId){
+  if(onlyId){ const one = PROGRAMS.find(p=>p.id===onlyId); if(one && one.isTest) return []; }   // a TEST program never reaches a recap
   if(onlyId){ const p = PROGRAMS.find(x=>x.id===onlyId); return p ? [p] : []; }
   const f = Object.assign({}, state.filters, {type:'inc'});
   return PROGRAMS.filter(p=>
     (f.type==='all' || (f.type==='inc' ? p.type==='Incentive' : p.type==='MPO')) &&
     (f.chan==='all' || p.channel===f.chan || (p.channel==='both')) &&
     (f.sup==='all' || p.supplier===f.sup) &&
-    (f.month==='all' ? true : f.month==='active' ? isActive(p) : p.monthKey===f.month))
+    (f.month==='all' ? true : f.month==='active' ? isActive(p) : p.monthKey===f.month) && !p.isTest)
     .sort((a,b)=> (isActive(b)-isActive(a)) || (a.period.end-b.period.end) || a.name.localeCompare(b.name));
 }
 const isoDay = d => d instanceof Date && !isNaN(d) ? new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,10) : '';
@@ -3254,7 +3278,7 @@ function progRowHtml(p, r, rep, noSup){
   const rowLogo = (p.type==='MPO' && p.brandLogos && p.brandLogos[0]) ? `<img class="hrow-lg" src="${E(p.brandLogos[0])}" alt="" loading="lazy" onerror="this.remove()">` : '';
   return `<button class="hrow prog${off?' off':''}" data-act="open" data-prog="${E(p.id)}" id="card-${E(p.id)}">
     ${rowLogo}<span class="hrow-main">
-      <span class="hrow-t"><span>${E(p.type==='MPO' ? (p.shortName||p.name) : (p.shortName||p.name))}</span>${htag(f)}</span>
+      <span class="hrow-t"><span>${E(p.type==='MPO' ? (p.shortName||p.name) : (p.shortName||p.name))}</span>${p.isTest?'<span class="htag test">Test</span>':''}${htag(f)}</span>
       <span class="hrow-s">${E(meta)}</span>
       ${(!off && f.goalN!=null) ? `<span class="hrow-g"><span>Goal</span> <b>${fmtN(f.goalN)}${f.unit ? ' '+E(titleW(uPl(f.goalN, f.unit))) : ''}</b></span>
       <span class="hrow-p"><b>${fmtN(f.cur)}</b> of ${fmtN(f.goalN)} · ${f.needN<=0 ? '<b class="ok">Goal Met</b>' : `<b>${fmtN(f.needN)}</b> more needed`}</span>`
@@ -4057,7 +4081,7 @@ function boot(){
     MPO_SCOPES[scope].mod.MONTHS.forEach(m=>{ if(mpoMonthActive(scope, m)) ensureMpoMonth(scope, m.key).then(()=>{ if(state.view!=='home') render(); }); });
   });
 }
-window.KohlerHub = {NO_BUY, state, programs:()=>PROGRAMS, sortedForRep, programStats, render, buyingFor, accountsFor, nextAccounts, closedFor,
+window.KohlerHub = {NO_BUY, state, programs:()=>PROGRAMS, sortedForRep, programStats, render, rebuild:rebuildPrograms, buyingFor, accountsFor, nextAccounts, closedFor,
   // library surface for the Accounts page (2026-09-30)
   lib:LIB, loadFor, distFor, progFacts, sellAsk, endsLabel, periodLabel, isActive, incBand, isDollarProgram, availability, supportAllows, isSupport,
   mpoRepMonth, mpoMonthLoaded, scopes:MPO_SCOPES, incRows, RA, lockedRep:LOCKED_REP, roster:ROSTER, dmGroups:DM_GROUPS};

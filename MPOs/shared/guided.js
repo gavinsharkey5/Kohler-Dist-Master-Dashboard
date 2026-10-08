@@ -221,6 +221,7 @@ function weightedForRep(rep){
     var m = H.metric(o, rep);
     if(!m){ nodata++; return; }              // objective not tracked at all
     if(m.notScored){ notscored++; return; }  // tracked, but this rep has no goal
+    if(o.weight==null){ if(m.status==='achieved') achieved++; else if(m.status==='inprogress') inprogress++; else notstarted++; return; }   // no weight (manager-built, v1): counted, never weighted
     counted += o.weight;
     if(m.status==='achieved'){ earned += o.weight; achieved++; }
     else if(m.status==='inprogress'){ inprogress++; }
@@ -399,6 +400,10 @@ var MPO_LOGO = {
   keystone_ice:['keystone_ice.png'], molson_coors:['molson_coors.png'], fever_tree:['molson_coors.png'],
   new_belgium:['new_belgium.png'], yave:['yave.png'], ws_2xo:['two_xo.png'], bardstown_menu:['bardstown.png'], green_river:['bardstown.png'], famosa:['famosa.png']
 };
+function weightMeta(o){
+  if(o.weight!=null) return '<div class="g-meta g-weight">MPO Weight '+Math.round(o.weight*100)+'%</div>';
+  return o.isTest ? '<div class="g-meta g-weight g-test">TEST — Not an Active MPO</div>' : '<div class="g-meta g-weight">Manager-built objective · no MPO weight</div>';
+}
 function logoHtml(o){
   var l = MPO_LOGO[o.key]; if(!l) return '';
   return '<div class="g-logos">'+l.map(function(f){
@@ -456,7 +461,7 @@ function carblissCard(o, rep, st){
     '<div class="g-cb" data-rep="'+esc(rep)+'"><div class="g-cb-wait">Loading Carbliss buying accounts\u2026</div></div>'+
     (dl ? '<div class="g-deadline">'+dl+'</div>' : '')+
     '<a class="g-elig g-cb-lb cbx-link" href="../../carbliss-onprem-targets/">Open Carbliss Leaderboard</a>'+
-    '<div class="g-meta g-weight">MPO Weight '+Math.round(o.weight*100)+'%</div>'+
+    weightMeta(o)+
   '</div>';
 }
 var CB_DATA = null;
@@ -683,7 +688,7 @@ document.addEventListener('click', function(e){
 });
 function repObjectiveCard(o, rep){
   var m = H.metric(o, rep);
-  var weightTag = '<span class="g-tag weight">MPO Weight '+Math.round(o.weight*100)+'%</span>';
+  var weightTag = o.weight==null ? (o.isTest ? '<span class="g-tag test">TEST — Not an Active MPO</span>' : '') : '<span class="g-tag weight">MPO Weight '+Math.round(o.weight*100)+'%</span>';
 
   if(!m || m.notScored){
     var note = m && m.notScored
@@ -761,7 +766,7 @@ function repObjectiveCard(o, rep){
       barHtml(m.pct, st)+
       (dl ? '<div class="g-deadline">'+dl+'</div>' : '')+
       subsHtml+
-      '<div class="g-meta g-weight">MPO Weight '+Math.round(o.weight*100)+'%</div>'+
+      weightMeta(o)+
       actionsHtml(o, rep, detailContent, !!(href && !met))+
     '</div>';
   }
@@ -812,7 +817,7 @@ function programCard(o){
           barHtml(share, g.n===g.total ? 'achieved' : (g.n>0?'inprogress':'notstarted'))+
           '<div class="g-bar-cap">Team progress: '+Math.round(share)+'% of eligible reps at goal</div>'
         : '<div class="g-need">No data yet \u2014 not counted</div>')+
-      '<div class="g-meta">MPO Weight '+Math.round(o.weight*100)+'%<span class="g-review">'+(open?'Hide Reps':'Review Reps')+'</span></div>'+
+      '<div class="g-meta">'+(o.weight==null ? (o.isTest ? 'TEST — Not an Active MPO' : 'Manager-built objective') : 'MPO Weight '+Math.round(o.weight*100)+'%')+'<span class="g-review">'+(open?'Hide Reps':'Review Reps')+'</span></div>'+
     '</button>';
 
   var body = open ? '<div class="g-prog-body open">'+programBody(o)+'</div>' : '';
@@ -828,7 +833,7 @@ function carblissProgramCard(o, g){
   return '<div class="g-prog g-prog-cb"><a class="g-prog-head g-prog-link" href="../../carbliss-onprem-targets/" aria-label="'+esc(label)+'">'+
       logoHtml(o)+
       '<div class="g-cb g-cb-co" data-co="1"><div class="g-cb-wait">Loading Carbliss buyers\u2026</div></div>'+
-      '<div class="g-meta">MPO Weight '+Math.round(o.weight*100)+'%'+(has ? ' \u00b7 '+g.n+' of '+g.total+' Reps at Goal' : '')+
+      '<div class="g-meta">'+(o.weight==null ? (o.isTest ? 'TEST — Not an Active MPO' : 'Manager-built objective') : 'MPO Weight '+Math.round(o.weight*100)+'%')+(has ? ' \u00b7 '+g.n+' of '+g.total+' Reps at Goal' : '')+
         '<span class="g-review">Open Carbliss Leaderboard</span></div>'+
     '</a></div>';
 }

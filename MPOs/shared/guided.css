@@ -585,3 +585,6 @@ header{padding-top:24px!important}
 .pa-open:hover{text-decoration:underline}
 @media(max-width:430px){ .g-acts{gap:8px;grid-template-columns:minmax(96px,.85fr) minmax(0,2fr)} .g-act{font-size:15px;padding:6px;gap:4px} .pa-det{margin:0 6px 6px;padding:10px} }
 @media(max-width:389px){ .g-act{font-size:14px} }
+/* manager-built objectives (2026-10-08) */
+.g-tag.test,.g-weight.g-test{color:var(--kdh-warn,#B54708);font-weight:700}
+.cp-table{width:100%;border-collapse:collapse;font-size:14.5px;margin:8px 0}.cp-table th,.cp-table td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--border);vertical-align:top}.cp-table th{font-weight:600;color:var(--text-dim)}.cp-table tr.cp-note td{color:var(--text-dim);font-size:13.5px}.cp-sup{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:999px;font-size:12.5px;font-weight:600;color:var(--kdh-warn,#B54708);border:1px solid currentColor}.cp-foot{font-size:13.5px;color:var(--text-dim)}

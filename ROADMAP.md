@@ -11,6 +11,24 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
+- [ ] **Manage Programs (2026-10-08).** Managers build incentives / MPOs in the Hub
+  (/manage-programs/; manage-programs/README.txt). To make it live, in the Supabase SQL
+  Editor in order: `supabase/migrations/20261008120000_manage_programs.sql`; set
+  `program_admin = true` on the approver's allow-list row (the flag, never a name);
+  `supabase/seed/product_master.sql`; then REVIEW and run `supabase/seed/program_brands.sql`
+  (brand managers' suppliers by name match -- edit the arrays first). Then: create a TEST
+  program, submit, approve, "Open Programs as <rep>" and check the hub row / MPO card.
+  Decisions still needed before a REAL program is built: (1) rounding for fractional
+  account goals (up / nearest / down -- the builder refuses to guess); (2) "positive growth"
+  programs need an explicit comparison period (same months last year? the prior period?);
+  (3) sales associates: which accounts an associate is credited for (no associate -> account
+  mapping exists on the site); (4) merchandising objectives: who verifies a record before it
+  counts (today they are "recorded, never verified"); (5) tiered / package payouts (Four
+  Loko-style) are stored as text for the manager preview -- the projected payout is only
+  computed for per-unit and flat rates; (6) house / team-total objectives show on the
+  manager preview only (a rep's card says "house goal"); (7) rolling windows (e.g. L90)
+  are saved but not scored in this version.
+
 - [ ] **Re-run supabase/seed/account_assignments.sql** in the Supabase SQL Editor (2026-10-07): the rep
   books now come from the active Customers export (2,850 accounts), so notes / photos / contacts permissions
   must follow them.
@@ -280,6 +298,10 @@ device, a decision).
 
 ## Done
 
+- [x] **Manage Programs v1 (2026-10-08):** seven-step builder, drafts / duplicate / templates,
+  approval with versions + retroactive-or-future recalc, notices, test programs, closeout, and
+  the approved definition drawn by the existing hub rows / MPO cards. Waiting on the SQL steps
+  under Now.
 - [x] 2026-10-08 **MPO cards: Details + Potential Accounts side by side ("Option 2 -- Shared Product List").** Under every
   On-/Off-Premise MPO summary: a muted amber Details control and a wider muted green Potential Accounts (N) control, one
   open at a time, inline. Potential Accounts = one shared "Qualifying Products (N)" fold, then compact account rows (name,

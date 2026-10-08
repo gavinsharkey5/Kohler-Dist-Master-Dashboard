@@ -2928,3 +2928,47 @@ add credit (unchanged). Tests (scratchpad): pot_test.mjs (318 checks: Dave Ehler
 pot_on.mjs (Allison Scott: Oktoberfest 7 with 2 kegs, Spirits 18 flagged). Tags guided.js / guided.css 20261008c,
 on-prem programs.js 20261008b.
 
+
+## Manage Programs: managers build incentives and MPOs in the Hub (2026-10-08)
+
+Gavin's 12-section brief; first milestone = a clearly labelled TEST program created, submitted, approved and
+seen in the existing Programs experience by its participants. `/manage-programs/` (index.html, manage.css,
+manage.js; managers only -- not in REP_PATHS, refuses a rep cookie / rep preview) is a seven-step wizard
+(Basics, Participants & Accounts, Products, Dates & Rules, Goals, Financial Terms, Preview & Submit) with
+tabs Create / Drafts / Awaiting Approval / Scheduled-Active / Ended-Awaiting Closeout / Closed / Test
+Programs / Templates, Save Draft, Duplicate (a TEST copy), Save as Template. manage-programs/README.txt has
+the definition schema, lifecycle and rules. NO SECOND PROGRAM SYSTEM: `shared/custom-programs.js`
+(`KdhPrograms`) loads the viewer's approved programs (RPC kdh_my_programs; a manager previewing a rep gets
+that rep's view INCLUDING test programs, a real rep never sees a test program), evaluates every objective
+in the browser from `accounts/data/hist/<rep key>.json` (net cases per product per month, Jan 2025 -> last
+loaded month, written by tools/program_history.py at the end of accounts/generate.py, served per rep by the
+middleware's ACCOUNT_DATA) + `accounts/data/products.json`, and hands results to the EXISTING renderers:
+incentives -> `window.KDH_CUSTOM_PROGRAMS` -> hub.js buildPrograms (id `inc:cp_<8>`, `Test` tag, excluded
+from exports); MPOs -> `window.KDH_CUSTOM_MPOS` -> each MPO index.html's `customFor(monthKey)` (objective
+with `custom:` host, weight null = "Manager-built objective -- no MPO weight", skipped by weightedForRep) ->
+guided.js draws the same v4 card with Details + Potential Accounts. GOTCHA: build the objective as
+`Object.assign({}, c.objective, {custom:c})` -- the objective's own `custom:true` flag must not overwrite
+the host reference, or metricFor is never called. PERMISSIONS live in the database
+(`supabase/migrations/20261008120000_manage_programs.sql`: programs / program_versions / program_finance /
+program_events / program_templates / program_notices / program_notice_reads / program_closeouts,
+product_master; RPCs kdh_program_scope / _people / _scope_problem / _save / _submit / _withdraw / _review /
+_duplicate / _closeout / _archive, kdh_my_programs, kdh_my_program_notices): the approver is
+`allowed_users.program_admin = true` (a flag, never a name); a brand manager (`program_brands text[]`) may
+use any rep but only their suppliers' products; a DM (reports_to chain, `kdh_reports_under`) only their
+team; neither = drafts only, cannot submit with participants or products; nobody approves their own
+program except the approver; reps read only approved non-test programs they are in. Finance is a SEPARATE
+table (program_finance.terms) never selected for participants, and kdh_program_save strips finance / payout
+/ rates / billback / dollars keys from a definition. Versions: a revision is a new draft version, v1 stays
+live until the new one is approved, and approving a change to a published program REQUIRES recalc =
+retroactive | future (`coalesce(p->>'recalc','')` -- a NULL `not in` never raises). Support status per
+objective (supported / awaiting_data / awaiting_calc / awaiting_evidence / awaiting_decision) is drawn on
+the card -- a missing month is never a zero, a fractional account goal with no rounding rule is "Needs a
+decision", merch / photos are "recorded, not verified", and a REAL program cannot be submitted with an
+objective beyond supported / awaiting_data. Not scored in v1 (saved, labelled): rolling windows, house
+totals on a rep's card, growth / retention without a comparison period, tiered / package payouts (text only
+in the manager preview). Seeds: tools/program_seed.py writes supabase/seed/product_master.sql and
+program_brands.sql (REVIEW before running -- brand managers by name match from the Fusion supplier list).
+The list page refreshes its program list when a deep link names an id it has not loaded (openEdit /
+openReview call loadLists), so a program created elsewhere opens by URL. Tests (scratchpad):
+sql_programs_test.sh (56, local Postgres 16), mp_test.mjs (59, stub mp_stub.mjs mirrors the SQL; 1366 /
+390, light / dark). Tags 20261008a (manage.*, custom-programs.js, kdh-data.js on the MPO pages), hub.js 20261008b (custom programs group under the hub supplier heading through SUPPLIERS.rde).

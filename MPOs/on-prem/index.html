@@ -211,6 +211,10 @@
 <main id="objectives"></main>
 
 <script src="../../shared/kdh-user.js?v=20261008b"></script>
+<script src="../../hub/data/accounts.js?v=20261008a"></script>
+<script src="../../shared/auth-config.js"></script>
+<script src="../../shared/kdh-data.js?v=20261008a"></script>
+<script src="../../shared/custom-programs.js?v=20261008a"></script>
 <script src="../../shared/carbliss-tiles.js?v=20261007b"></script>
 <script src="../../shared/program-titles.js?v=20261005e"></script>
 <script src="../../shared/fit-tables.js?v=20261006a"></script>
@@ -244,11 +248,16 @@ function renderMonthBar(){
 }
 
 
+// Manager-built objectives (shared/custom-programs.js, 2026-10-08): approved MPO
+// programs for this premise and month ride beside the registry's objectives.
+const CP_SCOPE = 'on';
+function customFor(mk){ return (window.KDH_CUSTOM_MPOS||[]).filter(c=>c.scope===CP_SCOPE && c.month===mk).map(c=>Object.assign({}, c.objective, {custom:c})); }
+window.kdhCustomMposChanged = function(){ OBJECTIVES = (MONTHS.find(m=>m.key===activeMonth)||{objectives:[]}).objectives.concat(customFor(activeMonth)); if(Object.keys(DATA).length) renderMain(); };
 async function loadMonth(monthKey){
   const month = MONTHS.find(m=>m.key===monthKey);
   if(!month) return;
   activeMonth = monthKey;
-  OBJECTIVES = month.objectives;
+  OBJECTIVES = month.objectives.concat(customFor(monthKey));
   DATA = {};
   activeRep = null;
   renderMonthBar();
@@ -275,9 +284,14 @@ function objPct(o){ return OnPremMPO.objPct(o, DATA); }
 let activeRep = null;
 const container = document.getElementById('objectives');
 
-function metricFor(o, rep){ return OnPremMPO.metricFor(o, rep, DATA); }
-function detailFor(o, rep){ return OnPremMPO.detailFor(o, rep, DATA, activeMonth); }
-function atGoalFor(o){ return OnPremMPO.atGoalFor(o, DATA); }
+function metricFor(o, rep){ return o.custom ? (o.custom.metricFor ? o.custom.metricFor(rep) : null) : OnPremMPO.metricFor(o, rep, DATA); }
+function detailFor(o, rep){ return o.custom ? (o.custom.detailHtml ? o.custom.detailHtml(rep) : '') : OnPremMPO.detailFor(o, rep, DATA, activeMonth); }
+function atGoalFor(o){
+  if(!o.custom) return OnPremMPO.atGoalFor(o, DATA);
+  const ms = ROSTER.map(r=>metricFor(o, r)).filter(m=>m && !m.notScored && !m.hidden);
+  return ms.length ? {n: ms.filter(m=>m.status==='achieved').length, total: ms.length} : null;
+}
+function potentialFor(o, rep){ return o.custom ? (o.custom.potential ? o.custom.potential(rep) : null) : OnPremMPO.potentialFor(o, rep, DATA); }
 
 MPOGuided.init({
   scope: 'On-Premise',
@@ -290,7 +304,7 @@ MPOGuided.init({
   monthLabel: ()=>(MONTHS.find(m=>m.key===activeMonth)||{}).label||'',
   metric: metricFor,
   detailHtml: detailFor,
-  potential: (o, rep)=>OnPremMPO.potentialFor(o, rep, DATA),
+  potential: potentialFor,
   programPct: objPct,
   atGoal: atGoalFor,
   loadMonth: loadMonth

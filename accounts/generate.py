@@ -339,3 +339,11 @@ if __name__ == "__main__":
     from pathlib import Path as _P2
     _root2 = next(p for p in _P2(__file__).resolve().parents if (p / "middleware.js").exists())
     _sp2.run([_sys2.executable, str(_root2 / "tools" / "program_eligibility.py")], check=True)
+
+# Program history (tools/program_history.py, 2026-10-08): the compact per-rep
+# product x month file that manager-built programs are evaluated from.
+if __name__ == "__main__":
+    import subprocess as _sp3, sys as _sys3
+    from pathlib import Path as _P3
+    _root3 = next(p for p in _P3(__file__).resolve().parents if (p / "middleware.js").exists())
+    _sp3.run([_sys3.executable, str(_root3 / "tools" / "program_history.py")], check=True)
