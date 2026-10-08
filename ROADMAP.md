@@ -11,9 +11,8 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
-- [ ] **Non-Buy Reports (2026-10-08) -- ON THE BRANCH `claude/non-buy-reports`, NOT merged until Gavin approves.**
-  /nonbuy/ (nonbuy/README.txt). To review: open the branch's preview. To make it live after approval:
-  merge the branch, then run `supabase/migrations/20261009090000_nonbuy_reports.sql` in the SQL Editor
+- [ ] **Non-Buy Reports (2026-10-08, approved and merged to main 2026-10-08).** /nonbuy/ (nonbuy/README.txt)
+  is live for managers and reps. Still on Gavin: run `supabase/migrations/20261009090000_nonbuy_reports.sql` in the SQL Editor
   (saved reports / templates / target lists; the page generates and exports without it). Decide the
   "bought then fully returned" rule (today: not a purchase for that month) and read REPORTING_REQUEST
   section 14 (dated sales lines, purchase occurrence, unit conversion, missing Brand Permissions rows).
@@ -306,7 +305,7 @@ device, a decision).
 
 ## Done
 
-- [x] **Non-Buy Reports (2026-10-08, branch only):** one engine (nonbuy/engine.js, pure) + one static source
+- [x] **Non-Buy Reports (2026-10-08, merged to main the same day after Gavin's approval):** one engine (nonbuy/engine.js, pure) + one static source
   (source-static.js) + two experiences: managers (authorized reps, Shopify-style product dialog, account filters
   incl. new Chain / Customer Type fields, Non-Buyers / Missing Products / Lapsed Buyers, by account or by
   product / brand / supplier, Zillow-style review, results grouped by rep, Save Report / Template / Target List,

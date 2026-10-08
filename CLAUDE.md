@@ -3034,12 +3034,12 @@ the ones to remember:
 Tags manage.js / manage.css / custom-programs.js 20261008c. Tests: scratchpad mp3_test.mjs, mp_test (60),
 mp2_test, sql_programs_test.sh (83).
 
-## Non-Buy Reports: one engine, two experiences (2026-10-08, branch `claude/non-buy-reports` -- NOT merged)
+## Non-Buy Reports: one engine, two experiences (2026-10-08; approved and merged to main the same day)
 
 Gavin's brief: a manager reporting tool ("where are the distribution gaps across my authorized accounts,
 and which reps can act on them?") with a simplified rep version under My Accounts ("which accounts on
-my route can I sell this product to?"). Built on its own branch for review; do NOT merge or push to
-main until Gavin approves. nonbuy/README.txt has every rule; the ones to remember:
+my route can I sell this product to?"). Built on branch claude/non-buy-reports, approved by Gavin and merged
+to main on 2026-10-08; the saved-report migration is on Gavin (ROADMAP Now). nonbuy/README.txt has every rule; the ones to remember:
 - THE RULE: an opportunity is shown only for a product the account is PERMITTED to buy, judged per account
   x product (`KdhNonBuyEngine.eligibility`: Brand Permissions family x area CAN SELL; Whole Foods
   non-alcoholic only; area / family not on file = UNKNOWN, counted and reported, never permission).
