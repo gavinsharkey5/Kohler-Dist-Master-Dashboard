@@ -360,9 +360,9 @@
       out.push(s);
     });
     var pr = def.products || {};
-    if (pr.resolved && pr.resolved.length) out.push('Qualifying products: ' + pr.resolved.length + (pr.dynamic ? ' (list follows the product master)' : ' (list fixed at approval)') + '.');
+    if (pr.resolved && pr.resolved.length) out.push('Qualifying products: ' + pr.resolved.length + (pr.dynamic ? ' (new products matching the brand, supplier or package rules are included automatically)' : ' (the approved product list is kept)') + '.');
     var P = def.participants || {};
-    out.push('Eligible accounts: ' + (P.baseMode === 'dynamic' ? 'the route as it stands' : 'fixed at activation') + (P.accountFilter && P.accountFilter.premise && P.accountFilter.premise !== 'any' ? ', ' + P.accountFilter.premise + '-premise' : '') + (P.accountFilter && P.accountFilter.territory && P.accountFilter.territory !== 'any' ? ', ' + (typeof P.accountFilter.territory === 'string' ? P.accountFilter.territory : P.accountFilter.territory.join('/')) : '') + '.');
+    out.push('Eligible accounts: ' + (P.baseMode === 'dynamic' ? 'updated with route changes' : 'the starting account list is kept') + (P.accountFilter && P.accountFilter.premise && P.accountFilter.premise !== 'any' ? ', ' + P.accountFilter.premise + '-premise' : '') + (P.accountFilter && P.accountFilter.territory && P.accountFilter.territory !== 'any' ? ', ' + (typeof P.accountFilter.territory === 'string' ? P.accountFilter.territory : P.accountFilter.territory.join('/')) : '') + '.');
     return out;
   }
 

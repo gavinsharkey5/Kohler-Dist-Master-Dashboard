@@ -2972,3 +2972,33 @@ The list page refreshes its program list when a deep link names an id it has not
 openReview call loadLists), so a program created elsewhere opens by URL. Tests (scratchpad):
 sql_programs_test.sh (56, local Postgres 16), mp_test.mjs (59, stub mp_stub.mjs mirrors the SQL; 1366 /
 390, light / dark). Tags 20261008a (manage.*, custom-programs.js, kdh-data.js on the MPO pages), hub.js 20261008b (custom programs group under the hub supplier heading through SUPPLIERS.rde).
+
+## Manage Programs v2: the builder (2026-10-08, same day)
+
+Gavin's brief after the first screenshot: too cramped and wordy, participant ticks jumped the page to the
+top, products could only be picked as a whole brand. Mobbin refs: Shopify "Add products" dialog
+(fbc7fee1 / e8987660: search, filters, a checkbox per variant, "N selected", Cancel / Add) and Asana
+"New project" (ec2a0523: concise labels, spaced fields, one Continue). manage-programs/README.txt
+"Version 2" has every rule; the ones to remember:
+- NEVER re-render the step on a participant tick: `pickChanged()` patches the definition, the count chip,
+  the summary line and `#stepErrs` in place (scroll, focus and search text survive). Every other re-render
+  goes through `renderWizard({keep:true})` (scrollY + focused control restored). Bulk actions are scoped
+  to the visible, enabled rows ("Select All N Filtered"), so scope limits hold.
+- PRODUCTS are SKUs: `products.include` is mostly `{type:'sku'}` entries from the Add Products dialog
+  (`openProductModal`, `S.pm.checked` persists across search / filter; filtering never selects); a whole
+  family / supplier / package is a deliberate `pm-group` add labelled with its count; Remove on a product
+  that came from a group writes a `{type:'sku'}` EXCLUSION (Excluded Products, Restore); `products.dynamic`
+  may be true only while a group rule exists (`hasGroupSelection`; collect() forces false otherwise).
+  Schema unchanged, so custom-programs.js / preview / published program read the same list.
+- WHICH ACCOUNTS COUNT: fixed = the list is re-read on every draft save, sent at submit, LOCKED by approval;
+  a revision keeps the approved list for reps whose account filter is unchanged (`resolveParticipants` via
+  `approvedVersion()`); dynamic = re-read at every view. Copy on the cards is Gavin's wording.
+- DELETE is recoverable: migration `20261008180000_program_delete.sql` (status 'deleted', deleted_at / by /
+  from, restored_at; `kdh_program_may_manage` = the old can_edit, `kdh_program_can_edit` false while
+  deleted, trigger `programs_guard_deleted` refuses any other status change until `kdh_program_restore`
+  (sets `kdh.restoring`), `kdh_program_republish` admin-only). Owner / in-scope manager may delete a draft
+  or TEST program; a published real program is the approver's to delete and restore; a submitted draft
+  leaves the queue and comes back as a draft; a live program comes back UNPUBLISHED (tag "Not Published",
+  approver's "Publish Approved vN"). mp_stub.mjs mirrors all of it. Step nav: only VISITED steps show
+  check / "!" (`S.visited`). Tags manage.* 20261008b, custom-programs.js 20261008b (rules text wording).
+  Tests: mp2_test.mjs (77 x 1366 / 820 / 390, light / dark), mp_test.mjs (59), sql_programs_test.sh (80).

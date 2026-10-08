@@ -59,7 +59,8 @@ Manage Programs (2026-10-08)
   Manager-built incentives / MPOs (manage-programs/README.txt). In the SQL
   Editor, in order:
     1. migrations/20261008120000_manage_programs.sql (idempotent; after the
-       photo_admin migration).
+       photo_admin migration), then migrations/20261008180000_program_delete.sql
+       (Delete Program / Restore / Publish Again; status 'deleted').
     2. update public.allowed_users set program_admin = true where email = '<Gavin>';
        -- the program approver is this flag, never a name.
     3. seed/product_master.sql (product # / name / supplier / family /

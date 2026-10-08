@@ -13,7 +13,8 @@ device, a decision).
 
 - [ ] **Manage Programs (2026-10-08).** Managers build incentives / MPOs in the Hub
   (/manage-programs/; manage-programs/README.txt). To make it live, in the Supabase SQL
-  Editor in order: `supabase/migrations/20261008120000_manage_programs.sql`; set
+  Editor in order: `supabase/migrations/20261008120000_manage_programs.sql`, then
+  `supabase/migrations/20261008180000_program_delete.sql` (v2: Delete / Restore / Publish Again); set
   `program_admin = true` on the approver's allow-list row (the flag, never a name);
   `supabase/seed/product_master.sql`; then REVIEW and run `supabase/seed/program_brands.sql`
   (brand managers' suppliers by name match -- edit the arrays first). Then: create a TEST
@@ -298,6 +299,12 @@ device, a decision).
 
 ## Done
 
+- [x] **Manage Programs v2 (2026-10-08):** spacious builder (1120px, 16px inputs), plain copy, a participant
+  picker that keeps scroll / focus / search while ticking (bulk actions scoped to the filter), SKU-level
+  Add Products dialog (search, filters, deliberate whole-group add, dedupe, Remove -> explicit exclusion,
+  Restore), Advanced Product Settings, "Which Accounts Count?" cards, recoverable Delete Program ->
+  Deleted Programs -> Restore (never republished by itself) -> approver's Publish Again. Needs the second
+  SQL file under Now.
 - [x] **Manage Programs v1 (2026-10-08):** seven-step builder, drafts / duplicate / templates,
   approval with versions + retroactive-or-future recalc, notices, test programs, closeout, and
   the approved definition drawn by the existing hub rows / MPO cards. Waiting on the SQL steps
