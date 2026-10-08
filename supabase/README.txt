@@ -61,7 +61,9 @@ Manage Programs (2026-10-08)
     1. migrations/20261008120000_manage_programs.sql (idempotent; after the
        photo_admin migration), then migrations/20261008180000_program_delete.sql,
        then migrations/20261008200000_program_suppliers.sql (v3: products must
-       belong to the suppliers chosen in Basics; idempotent)
+       belong to the suppliers chosen in Basics; idempotent);
+       Non-Buy Reports (branch, after Gavin approves it): migrations/
+       20261009090000_nonbuy_reports.sql (saved reports / templates / target lists)
        (Delete Program / Restore / Publish Again; status 'deleted').
     2. update public.allowed_users set program_admin = true where email = '<Gavin>';
        -- the program approver is this flag, never a name.

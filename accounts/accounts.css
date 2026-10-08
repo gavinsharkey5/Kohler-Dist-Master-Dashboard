@@ -549,6 +549,9 @@ html.asheet-open{overflow:hidden}
 .lh-top{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-2,12px);flex-wrap:nowrap}
 .lh-top h1{margin:0;min-width:0}
 .lh-top .vseg{flex:none}
+.lh-top .lh-acts{display:flex;gap:8px;align-items:center;flex:none}
+.lh-top .nb-link{white-space:nowrap}
+@media (max-width:520px){ .lh-top{flex-wrap:wrap} .lh-top .lh-acts{width:100%;justify-content:space-between} }
 .lh-top .vseg button{min-width:64px;min-height:40px}
 .ws.lhead .id{margin-top:2px}
 

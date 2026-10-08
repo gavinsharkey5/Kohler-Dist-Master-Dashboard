@@ -3033,3 +3033,35 @@ the ones to remember:
   `goalSummary` / `objectiveRule` / `MEASURE_TEXT` / `monthLabel`; `rulesText` uses the direct wording.
 Tags manage.js / manage.css / custom-programs.js 20261008c. Tests: scratchpad mp3_test.mjs, mp_test (60),
 mp2_test, sql_programs_test.sh (83).
+
+## Non-Buy Reports: one engine, two experiences (2026-10-08, branch `claude/non-buy-reports` -- NOT merged)
+
+Gavin's brief: a manager reporting tool ("where are the distribution gaps across my authorized accounts,
+and which reps can act on them?") with a simplified rep version under My Accounts ("which accounts on
+my route can I sell this product to?"). Built on its own branch for review; do NOT merge or push to
+main until Gavin approves. nonbuy/README.txt has every rule; the ones to remember:
+- THE RULE: an opportunity is shown only for a product the account is PERMITTED to buy, judged per account
+  x product (`KdhNonBuyEngine.eligibility`: Brand Permissions family x area CAN SELL; Whole Foods
+  non-alcoholic only; area / family not on file = UNKNOWN, counted and reported, never permission).
+  Historical purchases stay factual; permission is never inferred from a purchase.
+- PURCHASE = net cases > 0 in a sales month (the record is monthly net cases); a purchase fully returned
+  in the same month nets to 0 and does not count -- Gavin has NOT confirmed that rule yet (REPORTING_REQUEST
+  14, N2). Dates are whole sales months: requested vs effective vs coverage are always printed; a range
+  with no complete month cannot run (never a zero).
+- LAYERS: nonbuy/engine.js (pure calc, RULE_VERSION in every snapshot / export), nonbuy/source-static.js
+  (the only reader of today's exports + kdh_program_scope + the saved-report table; a Snowflake source
+  implements the same methods), nonbuy/nonbuy.js (screens). Manager scope = kdh_program_scope (admin all,
+  DM team, brand manager every rep but only their suppliers' products, neither = NOBODY); a rep is forced to
+  their own route whatever a criteria object says (the middleware serves only their book + hist anyway).
+- DATA ADDED: hub/generate.py + tools/customer_base.py now carry Encompass Chain and Customer Type on every
+  account row (`chain`, `type`) -- hub/data/accounts.js and the per-rep books were regenerated (books, elig,
+  hist rebuilt by accounts/generate.py). middleware REP_PATHS gained '/nonbuy/'; kdh-user.js toolItems 'nb'
+  (managers) and where() (reps: nav accounts); manager home card (25 now); My Accounts header link.
+- SAVED ROWS: migration 20261009090000_nonbuy_reports.sql (table nonbuy_reports + kdh_nonbuy_save +
+  kdh_nonbuy_shared; RLS own rows; a target list is shared EXPLICITLY and a rep gets only their own subset; a
+  rep can never share). The page works without it (generate + export) and says so.
+- MOBBIN: Shopify Select Products 823f4ce6 / Manage Products 9fadbfbf inspected by id; the Calendly
+  (222efb40) and Zillow (6f72137e) ids the brief names are not returned by the plugin's search -- sibling
+  screens of the same pages were used; say so, never claim the exact ids were seen.
+Tests (scratchpad): nb_test.mjs (66 x 375/390/430/820/1366, light + dark), nb_smoke.mjs, sql_nonbuy_test.sh
+(13), nb_stub.mjs; mgr_test expects 25 cards now.

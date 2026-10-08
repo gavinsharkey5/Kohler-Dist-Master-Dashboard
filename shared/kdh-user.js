@@ -235,6 +235,7 @@
     if (isMgr) t.push({ key: 'merch', group: 'Manager', label: 'Merchandising', href: ROOT + 'merchandising/' });
     if (isMgr) t.push({ key: 'perf', group: 'Manager', label: 'Incentive Performance', href: ROOT + 'performance/' });
     if (isMgr) t.push({ key: 'mp', group: 'Manager', label: 'Manage Programs', href: ROOT + 'manage-programs/' });
+    if (isMgr) t.push({ key: 'nb', group: 'Manager', label: 'Non-Buy Reports', href: ROOT + 'nonbuy/' });
     if (isMgr) t.push({ key: 'ws', group: 'Manager', label: 'Rep Workspace', href: REP_HOME });
     return t;
   }
@@ -253,6 +254,7 @@
     if (/^team\//.test(rel)) return { nav: 'team', tool: '' };
     if (/^performance\//.test(rel)) return { nav: 'more', tool: 'perf' };
     if (/^manage-programs\//.test(rel)) return { nav: 'more', tool: 'mp' };
+    if (/^nonbuy\//.test(rel)) return isMgr ? { nav: 'more', tool: 'nb' } : { nav: 'accounts', tool: '' };   // reps reach it from My Accounts
     if (/^exceptions\//.test(rel)) return { nav: 'more', tool: 'exc' };
     if (/^merchandising\//.test(rel)) return { nav: 'more', tool: 'merch' };
     if (/^inventory\//.test(rel)) return { nav: 'inventory', tool: isMgr ? 'invm' : '' };

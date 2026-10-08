@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F6F7F9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1523" media="(prefers-color-scheme: dark)">
+<title>Non-Buy Reports | Kohler Distribution Hub</title>
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="preload" href="../assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+<script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="stylesheet" href="../rep/rep.css?v=20261008d">
+<link rel="stylesheet" href="../manage-programs/manage.css?v=20261008c">
+<link rel="stylesheet" href="nonbuy.css?v=20261008a">
+<meta name="kdh-page" content="Non-Buy Reports">
+<script src="../shared/kdh-user.js?v=20261008c"></script>
+</head>
+<body>
+<!--
+  NON-BUY REPORTS (2026-10-08). One reporting engine (engine.js, pure), one
+  data source (source-static.js, today's exports), two experiences in
+  nonbuy.js: managers (their authorized reps, products, filters, three report
+  types, templates / saved reports / target lists, exports grouped by rep) and
+  reps (My Route, Non-Buyers, Last 90 Days, eligible products only). The rule
+  that matters most: an opportunity is shown only for a product the account is
+  permitted to buy (Brand Permissions by area, account rules), judged per
+  account AND product. A rep's browser only ever receives their own account
+  book and sales history (middleware); saved rows are RLS-protected
+  (supabase/migrations/20261009090000_nonbuy_reports.sql). nonbuy/README.txt
+  has every rule.
+-->
+<main class="wrap" id="nbApp"><div class="kdh-state loading">Loading Non-Buy Reports…</div></main>
+<footer>Internal Use Only</footer>
+
+<script src="../hub/data/accounts.js?v=20261008b"></script>
+<script src="../shared/dm-groups.js?v=20260929b"></script>
+<script src="../shared/auth-config.js"></script>
+<script src="../shared/kdh-data.js?v=20261008a"></script>
+<script src="../shared/custom-programs.js?v=20261008c" data-boot="off"></script>
+<script src="../merchandising/xlsx-write.js?v=20261005a"></script>
+<script src="engine.js?v=20261008a"></script>
+<script src="source-static.js?v=20261008a"></script>
+<script src="nonbuy.js?v=20261008a"></script>
+</body>
+</html>

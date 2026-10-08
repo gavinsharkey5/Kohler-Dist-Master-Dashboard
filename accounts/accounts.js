@@ -314,7 +314,8 @@ function renderList(){
   // LIST / MAP (2026-10-02): one selector; the map draws exactly the rows the
   // list would show (same search, filters and authorized accounts)
   const viewSeg = `<div class="seg vseg" id="viewSeg" role="group" aria-label="View">${[['list','List'],['map','Map']].map(([v,l])=>`<button type="button" data-mode="${v}" aria-pressed="${state.mode===v}"${state.mode===v?' class="on"':''}>${l}</button>`).join('')}</div>`;
-  app.innerHTML = `<header class="ws lhead"><div class="lh-top"><h1>${title}</h1>${viewSeg}</div>${isMgr ? `<div class="id"><p class="idline">${sub}</p></div>` : ''}</header>
+  const nbLink = `<a class="btn sm outline nb-link" href="../nonbuy/">Non-Buy Reports</a>`;   // one engine for reps and managers (2026-10-08)
+  app.innerHTML = `<header class="ws lhead"><div class="lh-top"><h1>${title}</h1><div class="lh-acts">${nbLink}${viewSeg}</div></div>${isMgr ? `<div class="id"><p class="idline">${sub}</p></div>` : ''}</header>
     <div id="laterStrip"></div>
     <div class="filters">
       <input type="search" class="kdh-field" id="q" placeholder="Search by name, town or #${isMgr?' or rep':''}" value="${E(state.q)}" autocomplete="off" aria-label="Search accounts">

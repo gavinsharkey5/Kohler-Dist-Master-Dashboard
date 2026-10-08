@@ -79,6 +79,7 @@ def load_base():
             "n": int(a["num"]) if a["num"].isdigit() else a["num"], "name": a["name"],
             "area": area, "rawArea": raw_area, "county": county, "city": a["city"],
             "prem": a["premise"], "cases": round(max(cases.get(a["num"], 0.0), 0.0), 1),
+            "chain": a.get("chain") or "", "type": a.get("type") or "",   # Non-Buy Reports filters (2026-10-08): Encompass Chain + Customer Type
         })
     for v in reps.values():
         v.sort(key=lambda x: -x["cases"])

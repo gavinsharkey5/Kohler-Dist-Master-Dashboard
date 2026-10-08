@@ -51,6 +51,7 @@ const REP_PATHS = [
   '/api/chat',                          // the account assistant (api/chat.js re-checks the token itself)
   '/api/geocode',                       // account map coordinates (api/geocode.js authorizes the route itself)
   '/inventory/',                        // What Can I Sell (units only -- no cost, value or margin; 2026-10-02)
+  '/nonbuy/',                           // Non-Buy Reports (2026-10-08; a rep's history + book are the per-rep slices below)
 ];
 const REP_HOME = '/rep/';
 
