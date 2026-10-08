@@ -1,5 +1,148 @@
 [
   {
+    "REP": "Pablo Lopez",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "LEGACY BAR & LIQUOR",
+    "CITY": "WOODLAND PARK",
+    "BRAND": "MONACO LIME CRUSH",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "10/08/2026 12:15 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/cc715ce4-e636-4771-b504-e717fd69acfe/"
+  },
+  {
+    "REP": "Matt Powierski",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "COBBLESTONE HILL DELI",
+    "CITY": "CARLSTADT",
+    "BRAND": "MONACO",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 11,
+    "DATE": "10/08/2026 11:49 AM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/8a89a956-684a-49b3-89be-dbbd470a6343/"
+  },
+  {
+    "REP": "Matt Powierski",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "BOTTLE REPUBLIC (RUTHERFORD)",
+    "CITY": "RUTHERFORD",
+    "BRAND": "MONACO",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 12,
+    "DATE": "10/07/2026 02:08 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/81022e41-53f3-4e40-9738-9aec56b0f55f/"
+  },
+  {
+    "REP": "Jayson Romine",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "LIQUOR FACTORY III SPARTA",
+    "CITY": "SPARTA",
+    "BRAND": "KEYSTONE ICE",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "10/07/2026 11:12 AM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/fe3a5351-bd5a-4949-82d4-6c28b7aaeb16/"
+  },
+  {
+    "REP": "Jayson Romine",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "SUPER SAVER LIQ",
+    "CITY": "MT ARLINGTON",
+    "BRAND": "KEYSTONE ICE",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "10/07/2026 10:14 AM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/e5f7f471-09f6-4951-9a07-857a259541ef/"
+  },
+  {
+    "REP": "Chris Payton",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "GARDEN LIQUORS (P)",
+    "CITY": "LODI",
+    "BRAND": "COORS LIGHT BEER",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "10/06/2026 03:33 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/b2f7912f-18c6-425b-bbb0-5076d4ae3d3b/"
+  },
+  {
+    "REP": "Chris Payton",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "BUY RITE DISCOUNT LIQUOR",
+    "CITY": "LODI",
+    "BRAND": "PERONI NASTRO AZZURRO",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "10/06/2026 02:35 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/e1ae3f52-69ab-41f2-b33e-12834845dc9a/"
+  },
+  {
+    "REP": "Chris Payton",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "BUY RITE DISCOUNT LIQUOR",
+    "CITY": "LODI",
+    "BRAND": "BLUE MOON BELGIAN WHITE ALE",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "10/06/2026 02:34 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/e0d47252-ab75-4052-9128-fd3666b5fb32/"
+  },
+  {
+    "REP": "Chris Payton",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "SHOP RITE LIQ.(A)LODI",
+    "CITY": "LODI",
+    "BRAND": "KEYSTONE ICE",
+    "DETAIL": "POS, Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "10/06/2026 02:02 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/cddae72c-18b3-455c-b622-bd15a3e2b6f5/"
+  },
+  {
+    "REP": "Matt Powierski",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "M & M WINE & SPIRITS",
+    "CITY": "ELMWOOD PARK",
+    "BRAND": "MONACO",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 15,
+    "DATE": "10/06/2026 11:40 AM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/1031daae-f60e-44c8-a9d0-66bb82a32adc/"
+  },
+  {
+    "REP": "Matt Powierski",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "ALL STAR WINE & LIQUOR",
+    "CITY": "ELMWOOD PARK",
+    "BRAND": "MONACO",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 15,
+    "DATE": "10/06/2026 11:02 AM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/f1d41e66-0bbe-4ca7-ac66-e894b1626635/"
+  },
+  {
+    "REP": "Matt Powierski",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "FOOD MART LIQUOR",
+    "CITY": "ELMWOOD PARK",
+    "BRAND": "MONACO",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 9,
+    "DATE": "10/06/2026 09:37 AM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/8ecc9a16-8e74-44bf-9736-486d81ba7c51/"
+  },
+  {
+    "REP": "Matt Powierski",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "BIRCHWOOD LIQ & DELI (Z)",
+    "CITY": "ELMWOOD PARK",
+    "BRAND": "MONACO",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 6,
+    "DATE": "10/06/2026 09:24 AM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/30d0ea75-29b7-4058-8702-021cb0e5be0b/"
+  },
+  {
     "REP": "Jayson Romine",
     "SOURCE": "Promo",
     "CUSTOMER_NAME": "SHOPRITE WINE & SPIRITS OF NEWTON#830",

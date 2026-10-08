@@ -168,6 +168,30 @@
     "LAST_DATE": "10/1/2026"
   },
   {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "200294 Molly's Irish Cream 1/12/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 34009,
+    "CUSTOMER_NAME": "The Wine Rack Hasbrouck Hts",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/8/2026",
+    "LAST_DATE": "10/8/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "200298 Molly's Irish Cream Salted Caramel 1/6/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 34009,
+    "CUSTOMER_NAME": "The Wine Rack Hasbrouck Hts",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/8/2026",
+    "LAST_DATE": "10/8/2026"
+  },
+  {
     "SALES_REP_ASSIGNED": "Dan Lagala",
     "PRODUCT_NAME": "200291 Molly's Irish Cream 6/1.75 L Btl",
     "BRAND_FAMILY": "",
@@ -262,6 +286,18 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "200298 Molly's Irish Cream Salted Caramel 1/6/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 23004,
+    "CUSTOMER_NAME": "Shop Rite Wines/Spirits",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/9/2026",
+    "LAST_DATE": "10/9/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Dylan Rubino",

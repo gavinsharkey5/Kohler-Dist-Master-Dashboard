@@ -1573,6 +1573,18 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "100956 Stoney River Sauvignon Blanc 1/12/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 191803,
+    "CUSTOMER_NAME": "Kingston Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/9/2026",
+    "LAST_DATE": "10/9/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "PRODUCT_NAME": "100122 Le Grand Noir Pinot Noir 1/12/750 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 190101,
@@ -2262,10 +2274,10 @@
     "CUSTOMER_NUM": 12023,
     "CUSTOMER_NAME": "The Village Inn",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "10/9/2026",
+    "LAST_DATE": "10/9/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",

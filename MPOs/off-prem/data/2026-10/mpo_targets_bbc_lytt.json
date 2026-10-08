@@ -355,12 +355,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 49019,
-    "CUSTOMER_NAME": "Bp Gas Station",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 44014,
     "CUSTOMER_NAME": "Campbell's Wines & Liquor",
     "AREA": "Bergen"
@@ -1353,12 +1347,6 @@
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 42011,
     "CUSTOMER_NAME": "Buzzzrite Liquors",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 32016,
-    "CUSTOMER_NAME": "Cobblestone Hill Deli",
     "AREA": "Bergen"
   },
   {

@@ -869,6 +869,15 @@
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 50007,
     "CUSTOMER_NAME": "Welsh Farms",
+    "DATE": "10/9/2026",
+    "CASES": 2.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 50007,
+    "CUSTOMER_NAME": "Welsh Farms",
     "DATE": "8/14/2026",
     "CASES": 1.0
   },
@@ -879,6 +888,15 @@
     "CUSTOMER_NUM": 50007,
     "CUSTOMER_NAME": "Welsh Farms",
     "DATE": "8/14/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 50007,
+    "CUSTOMER_NAME": "Welsh Farms",
+    "DATE": "10/9/2026",
     "CASES": 1.0
   },
   {
@@ -1041,6 +1059,15 @@
     "CUSTOMER_NUM": 43004,
     "CUSTOMER_NAME": "Boulevard Liq.(Fairview)",
     "DATE": "8/5/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 49019,
+    "CUSTOMER_NAME": "Bp Gas Station",
+    "DATE": "10/9/2026",
     "CASES": 1.0
   },
   {
@@ -3970,24 +3997,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "BRAND_FAMILY": "",
-    "CUSTOMER_NUM": 28011,
-    "CUSTOMER_NAME": "Liquor Mart (North Arlington)",
-    "DATE": "10/7/2026",
-    "CASES": 1.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "BRAND_FAMILY": "",
-    "CUSTOMER_NUM": 28011,
-    "CUSTOMER_NAME": "Liquor Mart (North Arlington)",
-    "DATE": "10/7/2026",
-    "CASES": 1.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
     "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 28011,
@@ -3998,15 +4007,6 @@
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
     "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "BRAND_FAMILY": "",
-    "CUSTOMER_NUM": 28011,
-    "CUSTOMER_NAME": "Liquor Mart (North Arlington)",
-    "DATE": "10/7/2026",
-    "CASES": 1.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 28011,
     "CUSTOMER_NAME": "Liquor Mart (North Arlington)",
@@ -4821,6 +4821,15 @@
     "CUSTOMER_NUM": 31033,
     "CUSTOMER_NAME": "Capri Deli&Liq (P)",
     "DATE": "8/13/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 32016,
+    "CUSTOMER_NAME": "Cobblestone Hill Deli",
+    "DATE": "10/9/2026",
     "CASES": 1.0
   },
   {
