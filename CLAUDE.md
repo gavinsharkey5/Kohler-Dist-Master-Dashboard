@@ -2877,7 +2877,7 @@ summary strip, guided.js cards); eligible rows say what is left ("Needs 1 more q
 qualifying purchase yet · data through <date>", and hub `noBuyText()` always carries the period. Hub marks are
 Done / Follow-Up / Not Now. Also: the W&S "i" badges are navy on a fixed light gold (skin), and the amber
 banner's "Open Encompass" link has a 41px tap area. Tags: rep.css / hub.js / eligibility.js / accounts.js /
-accounts.css / guided.js / kdh-skin.css 20261008a; kdh-user.js 20261008b; rep.css 20261008c (the revert).
+accounts.css / guided.js / kdh-skin.css 20261008a; kdh-user.js 20261008d (sidebar icon for Non-Buy Reports); rep.css 20261008c (the revert).
 
 ## MPO cards: "Potential Accounts" dropdown replaces "View Eligible Accounts" (2026-10-08)
 
