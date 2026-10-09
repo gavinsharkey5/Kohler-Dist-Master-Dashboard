@@ -1193,9 +1193,12 @@ rules that hold:
   (KDH_CHAT_NO_LEDGER=1 only on a throwaway preview). KDH_CHAT_USERS =
   pilot email list. Cost is an ESTIMATE ($0.05-0.07 first question at
   list price) until the ledger and tools/assistant-eval/run.mjs measure it.
-- NOT VERIFIED (no key in the build environment): a live call, real
-  tokens / latency, the Opus-vs-Sonnet comparison, self-origin fetch and
-  POST /api/chat under trailingSlash on a live deployment. Pilot steps
+- LIVE since 2026-10-09 (Gavin ran the ledger migration, set the key +
+  KDH_CHAT_USERS + KDH_CHAT_DAILY_USD=10 on Vercel Production): a real
+  question answered end to end, so self-origin fetch and POST /api/chat
+  work on the deployment. Still unmeasured: the Opus-vs-Sonnet comparison.
+  Managers see the upstream reason on a failed question ("Claude API HTTP
+  401: invalid x-api-key" was the first live failure: a mis-pasted key). Pilot steps
   (Preview-only key, KDH_CHAT_USERS = Gavin, run.mjs, then 2-3 reps) are
   in api/README.txt; tools/ is in .vercelignore.
 - DATA SOURCE INTERFACE: `StaticExportSource` (dmGroups, repIndex, route,

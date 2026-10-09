@@ -123,12 +123,7 @@ device, a decision).
   inside the Encompass app's built-in browser, and once with Airplane Mode
   on (it should say Pending Upload and keep the draft). Built and tested in
   desktop Chromium with phone emulation only.
-- [ ] **Assistant: turn it on if it says "not set up"** (Gavin): My Accounts
-  -> an account -> Ask. A manager now sees the exact step: Vercel ->
-  Settings -> Environment Variables -> `ANTHROPIC_API_KEY` (value from
-  console.anthropic.com -> API Keys, pasted only into Vercel), Production,
-  Save, then Redeploy the latest Production deployment. The pilot item below
-  still applies (ledger SQL, KDH_CHAT_USERS).
+
 - [ ] **Lagunitas Sprint: two decisions** (Gavin; REPORTING_REQUEST.md 11.4):
   does the Little Sumpin' 15.5 gal keg (#12920) count, and is the
   workbook's NOT IN TERRITORY for Union / Essex right? The Hub, Account page
@@ -170,20 +165,7 @@ device, a decision).
   only Jan-Mar 2025 today).
 - [ ] **Breakage / out-of-code for September** (Gavin): the Fusion
   Comparison export, when ready -- rolling-distribution/README has the step.
-- [ ] **Account assistant: controlled pilot** (Gavin; api/README.txt
-  "CONTROLLED PILOT" has the exact clicks). (1) Supabase SQL Editor: run
-  `supabase/migrations/20260930210000_assistant_usage.sql`. (2) Anthropic
-  console: a dedicated key with its own spend limit. (3) Vercel env:
-  `ANTHROPIC_API_KEY` + `KDH_CHAT_USERS=<your email>` on PREVIEW only.
-  (4) Open a preview deployment, sign in, My Accounts -> account -> Ask.
-  (5) `node tools/assistant-eval/run.mjs --base <preview> --cookie
-  "kdh_at=..." --rep "Mike Ast" --account 81006` and read the report
-  (answers, tokens, latency, est. USD, numbers not found in the record).
-  (6) Same with `--models claude-opus-5-5,claude-sonnet-5-5` to pick the
-  model. (7) Production: key + 2-3 reps in KDH_CHAT_USERS +
-  `KDH_CHAT_DAILY_USD=10`; watch the ledger a week. (8) Clear
-  KDH_CHAT_USERS. Cost per question is an estimate ($0.05-0.07) until the
-  ledger says otherwise. Tell me anything the report flags.
+
 - [ ] **Friday: September recap on the hub** -- remove the `note` / `sub`
   from the September entry of INC_MONTHS in hub/hub.js so the September
   programs list under Previous months (they are "ended" from Oct 1), then
@@ -304,6 +286,8 @@ device, a decision).
 - **Account-aware assistant + mock pitch** -- built 2026-09-30 and hardened the same day (server-side account authorization, server-built record, tools on the full record, ledger + spend limits); waiting on the pilot above. Snowflake later adds freshness (daily grain, invoices, inventory); route-wide / comparable-account questions need a permission rule first.
 
 ## Done
+
+- [x] **2026-10-09 Account assistant is LIVE on kohlerdisthub.com.** Ledger migration run, API key + KDH_CHAT_USERS (every allow-list sign-in) + KDH_CHAT_DAILY_USD=10 set on Vercel Production. First live question answered (Shop Rite Liq Englewood: 12-month totals, top products, period comparisons). Still to do: watch the ledger for a week, raise the daily cap as real use shows, set a monthly spend limit in the Claude Console, consider KDH_CHAT_MODEL=claude-sonnet-5-5 if cost per question runs high. First try failed with HTTP 401 "invalid x-api-key" (a pasted key) -- managers now see the API's reason on the error line.
 
 - [x] **Non-Buy Reports (2026-10-08, merged to main the same day after Gavin's approval):** one engine (nonbuy/engine.js, pure) + one static source
   (source-static.js) + two experiences: managers (authorized reps, Shopify-style product dialog, account filters
