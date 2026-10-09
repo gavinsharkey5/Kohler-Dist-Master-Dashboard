@@ -173,8 +173,11 @@ function mount(el, packet, opts){
       const r = await fetch(ENDPOINT, {method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(body), signal: aborter.signal, credentials:'same-origin'});
       if(!r.ok){
         let msg = 'The assistant could not answer right now.';
-        try{ const j = await r.json(); if(j && j.error) msg = j.error; }catch(e){}
+        let detail = '';
+        try{ const j = await r.json(); if(j && j.error) msg = j.error; if(j && j.detail) detail = String(j.detail); }catch(e){}
         if(r.status===401) msg = 'Your sign-in has expired — sign in again to use the assistant.';
+        // managers see the upstream reason (HTTP status + the API's own message) so a setup problem can be named
+        if(isMgrCookie()) msg += ` (HTTP ${r.status}${detail ? ': ' + detail : ''})`;
         throw Object.assign(new Error(msg), {status: r.status});
       }
       const reader = r.body.getReader(); const dec = new TextDecoder(); let buf = '';
@@ -190,7 +193,7 @@ function mount(el, packet, opts){
           if(ev.tool){ meta.tools.push(ev.tool); status.hidden = false; status.innerHTML = '<span class="dots"><i></i><i></i><i></i></span> Checking the full record…'; }
           if(ev.t){ out += ev.t; status.hidden = true; bubble.firstChild.innerHTML = md(out); logEl.scrollTop = logEl.scrollHeight; }
           if(ev.done && ev.usage){ meta.fellBack = !!ev.usage.fellBack; }
-          if(ev.error) throw new Error(ev.error);
+          if(ev.error) throw new Error(ev.error + (ev.detail && isMgrCookie() ? ` (${ev.detail})` : ''));
         }
       }
       if(!out.trim()) out = 'No answer came back. Try asking again.';

@@ -518,6 +518,13 @@ async function availability(request, env) {
 
 export default async function handler(request) {
   if (request.method !== 'POST' && request.method !== 'GET') return json(405, { error: 'GET or POST only' });
+  try { return await handle(request); }
+  catch (e) {
+    // never a bare platform 500: the page shows this detail to managers
+    return json(500, { error: 'The assistant could not answer right now.', detail: 'function error: ' + String(e && e.message || e).slice(0, 200) });
+  }
+}
+async function handle(request) {
   const env = { apiKey: process.env.ANTHROPIC_API_KEY, supabaseUrl: process.env.SUPABASE_URL, publishableKey: process.env.SUPABASE_PUBLISHABLE_KEY,
     model: process.env.KDH_CHAT_MODEL || DEFAULT_MODEL, effort: process.env.KDH_CHAT_EFFORT || DEFAULT_EFFORT,
     users: String(process.env.KDH_CHAT_USERS || '').split(',').map(s => s.trim().toLowerCase()).filter(Boolean),
@@ -625,7 +632,7 @@ export default async function handler(request) {
   const opened = await claudeOpen(env, Object.assign({}, base, { messages: turn }));
   if (opened.httpStatus) {
     const status = opened.httpStatus === 429 ? 429 : 502;
-    return json(status, { error: opened.httpStatus === 429 ? 'The assistant is busy right now. Try again in a minute.' : 'The assistant could not answer right now.', detail: opened.detail });
+    return json(status, { error: opened.httpStatus === 429 ? 'The assistant is busy right now. Try again in a minute.' : 'The assistant could not answer right now.', detail: 'Claude API HTTP ' + opened.httpStatus + (opened.detail ? ': ' + opened.detail : '') });
   }
 
   const stream = new ReadableStream({
@@ -649,7 +656,7 @@ export default async function handler(request) {
           turn.push({ role: 'user', content: results });
           rounds += 1;
           res = await claudeCall(env, Object.assign({}, base, { messages: turn }), onText, onError);
-          if (res.httpStatus) { send({ error: res.httpStatus === 429 ? 'The assistant is busy right now. Try again in a minute.' : 'The assistant could not finish that answer.' }); stop = 'error'; break; }
+          if (res.httpStatus) { send({ error: res.httpStatus === 429 ? 'The assistant is busy right now. Try again in a minute.' : 'The assistant could not finish that answer.', detail: 'HTTP ' + res.httpStatus + (res.detail ? ': ' + res.detail : '') }); stop = 'error'; break; }
         }
         if (stop === 'tool_use') send({ t: '\n\n(I ran out of lookups for that one — ask a narrower question.)' });
         if (stop === 'refusal' && !sentText) send({ t: 'I can’t help with that one here. Ask about this account’s buying, programs or how to pitch it.' });
@@ -658,7 +665,7 @@ export default async function handler(request) {
         send({ done: true, stop: stop || 'end_turn', usage: Object.assign({ rounds, ms, model: servedBy || model, fellBack: !!(servedBy && servedBy !== model) }, usage), tools: toolsUsed.map(t => t.tool) });
         if (!env.noLedger) await ledger(env, token, { account_num: String(n), rep_name: routeRep, mode, model: servedBy || model, requested_model: model, input_tokens: usage.input, cache_write_tokens: usage.cacheWrite, cache_read_tokens: usage.cacheRead, output_tokens: usage.output, rounds, ms, stop: stop || 'end_turn', est_usd: estUsd(servedBy && MODELS[servedBy] ? servedBy : model, usage), tools: toolsUsed.map(t => t.tool).join(',') || null });
       } catch (e) {
-        send({ error: 'The connection to the assistant dropped.' });
+        send({ error: 'The connection to the assistant dropped.', detail: 'function error: ' + String(e && e.message || e).slice(0, 200) });
       } finally {
         try { c.close(); } catch {}
       }
