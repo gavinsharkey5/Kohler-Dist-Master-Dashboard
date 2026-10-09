@@ -89,7 +89,7 @@ def dt(s):
 
 
 def fmt(d):
-    return d.strftime("%-m/%-d/%Y") if d else ""
+    return f"{d.month}/{d.day}/{d.year}" if d else ""
 
 
 def short_keg(name):
