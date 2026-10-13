@@ -274,15 +274,27 @@ relabel trigger is redefined with that one exception (a NULL storage_path may
 be filled under the same account; a stored path still never changes).
 Verified on local Postgres 16 (scratchpad sql_pdf_test.sh, 13 checks).
 
-STAY SIGNED IN (2026-10-02)
-Reps stay signed in on a device until they sign out: the server keeps the
-refresh token in an HttpOnly cookie and middleware.js renews the access token
-from it (api/session.js). No SQL. Settings that would end sessions early:
-Authentication -> Sessions "Time-box user sessions" and "Inactivity timeout"
--- leave both off. JWT expiry (access token) can stay at the default hour;
-renewal is automatic. Refresh token rotation and its reuse interval (default
-10 s) stay as they are -- the middleware relies on the reuse interval when a
-page fires several requests at once.
+STAY SIGNED IN (2026-10-02; server-held since 2026-10-13)
+Reps stay signed in on a device until they sign out. RUN
+migrations/20261013090000_kdh_sessions.sql (idempotent): it adds
+public.kdh_sessions, where the server keeps each device's Supabase refresh
+token and renews it (api/session.js + middleware.js). The browser holds only a
+random device secret (HttpOnly cookie kdh_sid) that never changes, so a renewal
+whose reply is lost on a phone no longer ends the sign-in. Before 2026-10-13
+the refresh token itself sat in the kdh_rt cookie and Supabase's rotation on
+every renewal (plus its 10 s reuse window) signed reps out whenever a renewed
+cookie did not land -- "it makes me log in every time". Until the migration
+has run the site keeps working the old way; devices move over on their next
+renewal, nobody has to sign in again for it. The table is reachable only
+through its kdh_session_* functions (keyed by a hash of the secret); removing
+someone from allowed_users deletes their rows. Verified on local Postgres 16
+(scratchpad sql_sessions_test.sh, 17 checks) and end to end with a stubbed
+Supabase (session2_test.mjs, 47 checks).
+Settings that would end sessions early: Authentication -> Sessions "Time-box
+user sessions", "Inactivity timeout" and "Single session per user" -- leave
+all three off. JWT expiry (access token) can stay at the default hour; raising
+it (up to a week) only makes renewals rarer. Refresh token rotation and its
+reuse interval (default 10 s) stay as they are.
 
 ACCOUNT CONTACTS (2026-10-06)
 Run migrations/20261006100000_account_contacts.sql (idempotent), then the file

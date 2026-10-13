@@ -11,6 +11,17 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
+- [ ] **Stay signed in, for real (2026-10-13; reps: "it makes me log in every time, even with
+  Remember me").** Cause: Supabase rotates the refresh token on every hourly renewal and the phone
+  had to store the new cookie each time; a lost or unapplied renewal left the phone sending the old
+  token, Supabase then revoked the whole session (10 s reuse window), password box again. Now the
+  server keeps the refresh token (table kdh_sessions) and the phone holds one secret that never
+  changes. TO MAKE IT LIVE: run `supabase/migrations/20261013090000_kdh_sessions.sql` in the SQL
+  Editor (idempotent). Until then the site works exactly as before; after it, devices move over on
+  their next renewal with no extra sign-in. Also check Authentication -> Sessions: "Single session
+  per user" OFF (with it on, signing in on a second device signs the first out), time-box /
+  inactivity timeout OFF. Then watch Authentication -> Logs for "Already Used" refresh errors: they
+  should stop. Not verified live from the build environment (kohlerdisthub.com is blocked there).
 - [ ] **Non-Buy Reports (2026-10-08, approved and merged to main 2026-10-08).** /nonbuy/ (nonbuy/README.txt)
   is live for managers and reps. Still on Gavin: run `supabase/migrations/20261009090000_nonbuy_reports.sql` in the SQL Editor
   (saved reports / templates / target lists; the page generates and exports without it). Decide the
@@ -227,6 +238,8 @@ device, a decision).
   their MDM does the same thing on every iPad at once. (2026-09-25)
 - [ ] **Session length** (Gavin): Supabase -> Authentication -> Sessions ->
   JWT expiry 604800 (one week) so reps are not asked to sign in daily.
+  (2026-10-13: optional now -- the server-held session above fixes the
+  sign-outs; a longer JWT only makes renewals rarer.)
   (Since 2026-09-30 an expired cookie recovers silently on /login/ when
   "Remember me" was on -- the stored session refreshes and the cookies are
   re-issued -- so a short JWT costs a redirect, not a password.)

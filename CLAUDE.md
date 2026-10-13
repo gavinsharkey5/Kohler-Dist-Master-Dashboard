@@ -3068,3 +3068,31 @@ to main on 2026-10-08; the saved-report migration is on Gavin (ROADMAP Now). non
   screens of the same pages were used; say so, never claim the exact ids were seen.
 Tests (scratchpad): nb_test.mjs (66 x 375/390/430/820/1366, light + dark), nb_smoke.mjs, sql_nonbuy_test.sh
 (13), nb_stub.mjs; mgr_test expects 25 cards now.
+
+## Stay signed in, server-held: kdh_sid + public.kdh_sessions (2026-10-13)
+
+Reps: "it makes me log in every time, even with Remember me". ROOT CAUSE: the 2026-10-02 design kept
+Supabase's refresh token in the kdh_rt cookie; Supabase ROTATES it on every renewal (hourly), so the
+browser had to receive and store a new cookie on each one -- mostly on pass-through middleware
+responses. Any renewal whose reply was lost (cellular) or whose Set-Cookie the browser never applied
+left the phone sending the OLD token; Supabase treats a used token sent again more than 10 s later
+as theft and revokes the whole session -> `why=revoked` -> password box, an hour after every
+sign-in. (The 2026-10-05 note that a 429 wiped the cookie was a symptom of the same repeated
+renewals.) NOW: the browser holds one random device secret (HttpOnly `kdh_sid`, "k1."/"k0." prefix =
+remember / session-only, NEVER rotates); the refresh token + latest access token live in
+`public.kdh_sessions` keyed by sha256(secret) (migration `20261013090000_kdh_sessions.sql`, RPCs
+kdh_session_create / get(p_claim) / put / release / delete, anon-callable, table unreadable through
+the API; a row is deleted when the email leaves allowed_users). api/session.js `resolveSession()` is
+the ONE resolver (middleware + GET/POST/DELETE): a fresh kdh_at is used as is; else the store renews
+(claim -> redeem -> put; a concurrent renewal waits 1.2 s and re-reads; a lost reply just renews
+again from the row, within Supabase's reuse window the same token comes back); per-isolate caches
+(`sidCache` 5 min, `sidInflight`). A PAGE LOAD with a missing / expired kdh_at is sent by the
+middleware through `GET /api/session?next=<path>` (a function reply, so the cookies reliably land
+before the page's scripts run; `kdh_hop` 20 s guards against a bounce); data fetches renew inline
+with best-effort pass-through cookies and the kdh-user.js keep-alive. UNTIL GAVIN RUNS THE MIGRATION
+the RPCs 404 and everything works the old kdh_rt way (`storeKnownMissing`, memo 60 s); a kdh_rt device
+moves to the store on its next renewal with no extra sign-in. Not verified live (kohlerdisthub.com and
+vercel.com are blocked from the build environment). Supabase settings to keep OFF: Single session per
+user, time-box, inactivity timeout. Tests (scratchpad): session2_test.mjs (48: real middleware.js +
+api/session.js against a fake Supabase with rotation / reuse window / family revocation and a jar that
+drops cookies), sql_sessions_test.sh (17, local Postgres 16).
