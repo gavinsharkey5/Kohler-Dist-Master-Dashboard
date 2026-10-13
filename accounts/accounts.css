@@ -186,7 +186,16 @@ h3.note small{font-weight:400;color:var(--text-4)}
 .msg.me .msg-b{background:var(--brand);color:var(--kdh-brand-ink);border-bottom-right-radius:4px}
 .msg.ai .msg-b{border-bottom-left-radius:4px}
 .msg-b p{margin:0 0 6px} .msg-b p:last-child{margin-bottom:0}
-.msg-b ul{margin:4px 0 6px;padding-left:18px} .msg-b li{margin:2px 0}
+.msg-b ul,.msg-b ol{margin:4px 0 6px;padding-left:18px} .msg-b li{margin:3px 0}
+/* (2026-10-13) answer shapes from assistant.js md(): ranked item / labelled line / customer-ready line */
+.msg-b p.item{display:flex;gap:8px;align-items:flex-start;margin:10px 0 3px;font-weight:600;line-height:1.35}
+.msg-b p.item:first-child{margin-top:0}
+.msg-b p.item .n{flex:none;width:20px;height:20px;margin-top:1px;border-radius:50%;background:var(--brand);color:var(--kdh-brand-ink);font-size:12px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+.msg-b p.lbl{margin:0 0 3px}
+.msg-b p.item ~ p.lbl,.msg-b p.item ~ p.say{margin-left:28px}
+.msg-b p.say{margin:4px 0 8px;padding:6px 10px;border-left:3px solid var(--brand);background:var(--surface);border-radius:0 8px 8px 0;color:var(--text)}
+.msg-b p.say b{color:var(--brand)}
+@media (max-width:600px){ .msg.ai .msg-b{max-width:96%} .msg-b{font-size:15.5px;line-height:1.55} }
 /* per-answer footer: period + data load date + lookups run + links into the page */
 .msg.ai{flex-direction:column;align-items:flex-start}
 .msg-f{max-width:88%;margin:4px 0 0 4px;font-size:12px;line-height:1.5;color:var(--text-4)}

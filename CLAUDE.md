@@ -3101,3 +3101,36 @@ vercel.com are blocked from the build environment). Supabase settings to keep OF
 user, time-box, inactivity timeout. Tests (scratchpad): session2_test.mjs (48: real middleware.js +
 api/session.js against a fake Supabase with rotation / reuse window / family revocation and a jar that
 drops cookies), sql_sessions_test.sh (17, local Postgres 16).
+
+
+## Account assistant v3: sales assistant, not data analyst (2026-10-13)
+
+Gavin's brief: the Account page chatbot must give a rep "what to know, what to do, what to say" in
+five seconds on a phone, not analysis. Wire format stays v2; api/README.txt "V3" has the full list.
+- PROMPT (api/chat.js STABLE): answer first; match the question (fact = one line; what-to-sell = 1-3
+  ranked **1. Product** / **Why:** / **Do:** / **Say:** "..." items; reorder = most overdue first + Do;
+  program = what THIS account still needs + counting products it lacks + deadline + step; "tell the
+  buyer" = 2-4 spoken sentences; bigger questions = 3-5 bullets); never list everything (offer more in
+  one line); plain rep language; follow-ups continue the last answer. Every v2 grounding rule is kept
+  (record > tools > page context, period on every number, FACT apart from SUGGESTION, alerts are
+  possibilities, recommend only bought-before / buys-the-family / tracker-lead / alert, no invented
+  interest, stock, promotions or completion, no dollars, monthly grain).
+- SHAPE HINT: `intentOf(last user message)` -> a one-line system block AFTER the two cached blocks
+  (more / talk / program / reorder / priority / sell / recent / fact / summary / none). Never cached.
+- PACKET: `account.buyer` (account_contacts.contact_name, caller's token, name only), `recent3`
+  (last 3 months product by product), `patterns.seasonal[].monthsOfYear`.
+- PAGE CONTEXT: the page's own ranked Program Opportunities (`opportunities`, from opps.js build(),
+  with up to 3 counting products + warehouse units/date, open and completed products), `credited`,
+  and `nextActions` (the Next Actions rows, HTML stripped) travel in `page` (accounts.js buildPacket
+  takes `OPP, focusTop`; assistant.js pageContext caps 8 / 6 / 4; chat.js re-caps and keeps them when
+  the 24 KB cut hits). Same list and same product rule as the page, so the two never disagree.
+- PAGE: starter questions = the questions reps ask (the program one names the top opportunity);
+  md() renders the shapes (number badge, `.lbl`, `.say`, <ol>), accounts.css adds the styles and a
+  wider bubble on phones. "What It Can Answer" updated.
+- EVAL: tools/assistant-eval/run.mjs `--set reps` (12 rep questions on/off-premise, "show more" as a
+  second turn) + READABILITY check per answer. NOT run live from here (no key / cookie in the build
+  environment): Gavin runs it against kohlerdisthub.com with his browser cookie (api/README.txt
+  pilot step 5) and reads the READABILITY and NUMBER CHECK columns.
+Tags: accounts.css / accounts.js / assistant.js 20261013a. Tests (scratchpad): chat_v3_test.mjs
+(57, handler under Node with stubbed Supabase + Anthropic, real route / sales files, authorization
+re-checked), md_v3_test.mjs (17).

@@ -12,7 +12,13 @@
 //     --cookie "kdh_at=<token>; _vercel_jwt=<only on a protected preview>" \
 //     --rep "Mike Ast" --account 81006 \
 //     [--models claude-opus-5-5,claude-sonnet-5-5]   # comparison: manager cookie required
-//     [--set pilot|compare|quick] [--out tools/assistant-eval/report.md]
+//     [--set pilot|compare|quick|reps] [--out tools/assistant-eval/report.md]
+//   --set reps = the questions reps ask in their own words (what should I sell,
+//   what's due, what do I tell the buyer, ...) with a READABILITY check per
+//   answer; run it from a browser-signed-in cookie against the live site.
+//   NOTE: this script sends an EMPTY page context (no opportunities / next
+//   actions), so program answers are what the prompt does without the page;
+//   the Account page itself sends them.
 //
 // Get the cookie from the browser after signing in (DevTools -> Application
 // -> Cookies -> kdh_at). A rep's cookie can only run the rep's own accounts
@@ -78,6 +84,46 @@ const PITCH = [
   'Fair enough. What if we start with five cases and I check back in two weeks?',
 ];
 const QUICK = ASK.slice(0, 2);
+// --set reps (2026-10-13): the questions reps actually ask, on- and off-premise,
+// in their own words. Every answer gets the NUMBER CHECK and a READABILITY
+// check (length, preamble, vague wording, a customer-ready line and a next
+// step where the question calls for one, at most three ranked items).
+// 'followup' is sent as a second turn after the first [sell] answer.
+const REPS = [
+  ['sell',     'What should I sell here?'],
+  ['followup', 'show more'],
+  ['recent',   'What did they buy last month?'],
+  ['reorder',  'What haven’t they ordered lately?'],
+  ['program',  'How do I close an incentive at this account?'],
+  ['priority', 'What should I focus on today?'],
+  ['fact',     'Does this account buy Heineken?'],
+  ['fact',     'When did they last buy Corona Extra?'],
+  ['talk',     'What should I tell the buyer?'],
+  ['onprem',   'What do they have on tap, and which handle should I go after?'],
+  ['offprem',  'Which 12-packs move here, and is there a bigger pack to pitch?'],
+  ['recent',   'What did they buy last week?'],
+];
+function readability(kind, t) {
+  const text = String(t || '');
+  const words = text.split(/\s+/).filter(Boolean).length;
+  const paras = text.split(/\n\s*\n/).filter(p => p.trim() && !/^\s*(?:[-*•]|\d+[.)]|\*\*)/.test(p.trim()));
+  const longest = Math.max(0, ...paras.map(p => p.split(/\s+/).length));
+  const flags = [];
+  if (words > (kind === 'fact' || kind === 'recent' ? 90 : 190)) flags.push(`long (${words} words)`);
+  if (longest > 45) flags.push(`a ${longest}-word paragraph`);
+  if (/^\s*#{1,6}\s/m.test(text)) flags.push('markdown heading');
+  if (/^\s*\|.*\|\s*$/m.test(text)) flags.push('table');
+  if (/^(based on|looking at|after (reviewing|analy)|according to|i (looked|checked|reviewed)|here(’|')s (what|a)|great question)/i.test(text.trim())) flags.push('opens with preamble');
+  if (/\b(consider|explore|leverage|analy[sz]e|potential opportunit|may want to|portfolio expansion|favou?rable)\b/i.test(text)) flags.push('vague wording');
+  const say = /\*\*\s*(say|what to say)/i.test(text) || /[“"][^”"]{15,}[”"]/.test(text);
+  const action = /\*\*\s*(do|next step|ask)\s*:?\*\*/i.test(text) || /\b(ask (for|the buyer|about)|bring in|try (a|one)|offer|pitch|put it|check (with|whether)|walk the|place|resurvey)\b/i.test(text);
+  if ((kind === 'sell' || kind === 'priority' || kind === 'talk') && !say) flags.push('no customer-ready line');
+  if (['sell', 'priority', 'reorder', 'program', 'talk', 'onprem', 'offprem'].includes(kind) && !action) flags.push('no next step');
+  const items = (text.match(/^\s*\*\*\s*\d{1,2}[.)]/gm) || []).length;
+  if ((kind === 'sell' || kind === 'priority') && items > 3) flags.push(`${items} ranked items (max 3)`);
+  if (kind === 'recent' && /last week/i.test(text) === false && /week/i.test(text)) flags.push('talks in weeks (the record is monthly)');
+  return { words, flags };
+}
 
 async function chat(body) {
   const t0 = Date.now();
@@ -96,20 +142,26 @@ const totals = {};
 async function runModel(model) {
   const tag = model || '(deployment default)';
   lines.push(`## Model: ${tag}`, '');
-  const T = totals[tag] = { n: 0, ms: 0, usd: 0, input: 0, cw: 0, cr: 0, out: 0, tools: 0, flagged: 0 };
+  const T = totals[tag] = { n: 0, ms: 0, usd: 0, input: 0, cw: 0, cr: 0, out: 0, tools: 0, flagged: 0, unread: 0 };
   const base = { v: 2, account: N, rep: REP, page: { programs: [], warehouse: null } };
   if (model) base.model = model;
-  const qs = SET === 'quick' ? QUICK : ASK;
+  const qs = SET === 'quick' ? QUICK : SET === 'reps' ? REPS : ASK;
+  let lastSell = null;
   for (const [kind, q] of qs) {
-    const r = await chat(Object.assign({}, base, { mode: 'ask', messages: [{ role: 'user', content: q }] }));
-    lines.push(`### [${kind}] ${q}`, '');
+    const msgs = kind === 'followup' && lastSell ? [{ role: 'user', content: lastSell.q }, { role: 'assistant', content: lastSell.a }, { role: 'user', content: q }] : [{ role: 'user', content: q }];
+    if (kind === 'followup' && !lastSell) continue;
+    const r = await chat(Object.assign({}, base, { mode: 'ask', messages: msgs }));
+    lines.push(`### [${kind}] ${q}${kind === 'followup' ? ' (second turn after [sell])' : ''}`, '');
     if (r.status !== 200 || r.error) { lines.push(`**HTTP ${r.status}** — ${r.error || 'no text'} (${r.ms} ms)`, ''); continue; }
+    if (kind === 'sell') lastSell = { q, a: r.text };
     const u = r.done.usage || {}; const c = check(r.text); const cost = usd(u.model || model || 'claude-opus-5-5', u);
-    T.n++; T.ms += r.ms; T.usd += cost; T.input += u.input || 0; T.cw += u.cacheWrite || 0; T.cr += u.cacheRead || 0; T.out += u.output || 0; T.tools += r.tools.length; if (c.unknownNumbers.length || c.dollars) T.flagged++;
+    const rd = readability(kind, r.text);
+    T.n++; T.ms += r.ms; T.usd += cost; T.input += u.input || 0; T.cw += u.cacheWrite || 0; T.cr += u.cacheRead || 0; T.out += u.output || 0; T.tools += r.tools.length; if (c.unknownNumbers.length || c.dollars) T.flagged++; if (rd.flags.length) T.unread++;
     lines.push(r.text.trim().split('\n').map(l => '> ' + l).join('\n'), '');
     lines.push(`- served by ${u.model || '?'}${u.fellBack ? ' (FALLBACK)' : ''} · ${r.ms} ms · rounds ${u.rounds || 1} · tools: ${r.tools.join(', ') || 'none'}`);
     lines.push(`- tokens in ${u.input || 0} / cache write ${u.cacheWrite || 0} / cache read ${u.cacheRead || 0} / out ${u.output || 0} · est. $${cost.toFixed(4)}`);
-    lines.push(`- NUMBER CHECK: ${c.dollars ? '**DOLLARS PRESENT** · ' : ''}${c.period ? 'period stated' : '**no period stated**'} · ${c.unknownNumbers.length ? '**numbers not in the record: ' + c.unknownNumbers.join(', ') + '**' : 'every number appears in the record'}`, '');
+    lines.push(`- NUMBER CHECK: ${c.dollars ? '**DOLLARS PRESENT** · ' : ''}${c.period ? 'period stated' : '**no period stated**'} · ${c.unknownNumbers.length ? '**numbers not in the record: ' + c.unknownNumbers.join(', ') + '**' : 'every number appears in the record'}`);
+    lines.push(`- READABILITY: ${rd.words} words · ${rd.flags.length ? '**' + rd.flags.join(' · ') + '**' : 'ok (short, direct, actionable where it should be)'}`, '');
   }
   if (SET !== 'quick') {
     // another rep's account by number: must be refused by the server
@@ -134,8 +186,8 @@ async function runModel(model) {
   }
 }
 for (const m of (MODELS.length ? MODELS : [null])) await runModel(m);
-lines.push('## Totals', '', '| model | answers | avg ms | input | cache write | cache read | output | est. USD | per answer | lookups | flagged |', '|---|---|---|---|---|---|---|---|---|---|---|');
-Object.entries(totals).forEach(([m, T]) => lines.push(`| ${m} | ${T.n} | ${T.n ? Math.round(T.ms / T.n) : 0} | ${T.input} | ${T.cw} | ${T.cr} | ${T.out} | $${T.usd.toFixed(3)} | $${T.n ? (T.usd / T.n).toFixed(4) : '0'} | ${T.tools} | ${T.flagged} |`));
+lines.push('## Totals', '', '| model | answers | avg ms | input | cache write | cache read | output | est. USD | per answer | lookups | number flags | readability flags |', '|---|---|---|---|---|---|---|---|---|---|---|---|');
+Object.entries(totals).forEach(([m, T]) => lines.push(`| ${m} | ${T.n} | ${T.n ? Math.round(T.ms / T.n) : 0} | ${T.input} | ${T.cw} | ${T.cr} | ${T.out} | $${T.usd.toFixed(3)} | $${T.n ? (T.usd / T.n).toFixed(4) : '0'} | ${T.tools} | ${T.flagged} | ${T.unread} |`));
 lines.push('', 'Estimated USD uses list prices in this script (same table as api/chat.js); the Anthropic console Usage page is the bill.');
 const out = args.out || path.join(ROOT, 'tools/assistant-eval', `report-${new Date().toISOString().slice(0, 10)}.md`);
 fs.writeFileSync(out, lines.join('\n'));

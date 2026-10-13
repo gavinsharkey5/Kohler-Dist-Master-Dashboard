@@ -1,9 +1,11 @@
 /api -- Vercel Edge Functions behind kohlerdisthub.com
 ====================================================
 
-chat.js   The ACCOUNT ASSISTANT behind My Accounts -> Ask (2026-09-30, v2).
+chat.js   The ACCOUNT ASSISTANT behind My Accounts -> Ask (2026-09-30, v2;
+          prompt v3 2026-10-13 -- see "V3: SALES ASSISTANT" below).
           POST /api/chat  {v:2, mode:'ask'|'pitch'|'feedback', account:<customer #>,
-                           rep:'<rep name>', page:{programs, warehouse, warehouseAsOf},
+                           rep:'<rep name>', page:{opportunities, credited, nextActions,
+                           programs, warehouse, warehouseAsOf},
                            messages:[{role, content}, ...], model?}
           -> text/event-stream:
                data: {"meta":{ref, refLabel, months, salesLoaded, productsOnRecord,
@@ -13,6 +15,61 @@ chat.js   The ACCOUNT ASSISTANT behind My Accounts -> Ask (2026-09-30, v2).
                data: {"done":true,"stop":"end_turn","usage":{input, cacheWrite,
                       cacheRead, output, rounds, ms, model, fellBack},"tools":[...]}
              or an HTTP error {error} / a data: {"error":"..."} event mid-stream.
+
+V3: SALES ASSISTANT, NOT DATA ANALYST (2026-10-13; Gavin's brief)
+  The wire format is still v2; what changed is what the model is told, what
+  it is given, and how the page draws the answer.
+  PROMPT (STABLE): answer first, match the question (a fact question is one
+  line; "what should I sell" is 1-3 ranked items as **1. Product** / **Why:**
+  / **Do:** / **Say:** "customer-ready sentence"; reorder = most overdue
+  first + one Do line; program = what THIS account still needs, the counting
+  products it does not buy yet, the deadline, one step; "what do I tell the
+  buyer" = 2-4 spoken sentences in quotes + what to ask for; bigger questions
+  = 3-5 bullets), never list everything (offer more in one line), plain rep
+  language, no headings / tables / jargon, follow-ups continue the previous
+  answer. The v2 grounding rules are kept word for word in spirit: record >
+  tools > page context, every number with its period, FACT apart from
+  SUGGESTION, alerts are possibilities, recommend only what the data
+  supports (bought before / buys the family / tracker lead / alert), no
+  invented interest, stock, promotions or completion, no dollars, monthly
+  grain (asked about "last week" it says so and answers with the month).
+  SHAPE HINT: intentOf(last user message) -> a one-line system block AFTER
+  the two cached blocks (so the cache holds): more / talk / program /
+  reorder / priority / sell / recent / fact / summary, or none. The hint says
+  the message itself decides; it only makes the shape consistent.
+  PACKET additions: account.buyer (account_contacts.contact_name read with
+  the caller's token -- name only; phone / email stay on the page),
+  recent3 (every product bought in the last 3 months, cases by month,
+  largest first, top 20), patterns.seasonal[].monthsOfYear (the calendar
+  months each seasonal product was bought in). coverage.notInData's first
+  line now says the name is on file when it is.
+  PAGE CONTEXT additions (browser-supplied, still labelled "what the app
+  page shows"): opportunities[] = the Account page's own ranked Program
+  Opportunities (accounts/opps.js build(): tracker leads first, then the
+  soonest deadline; status, ask, needs, ends, why, productsThatCount,
+  products[] = up to 3 counting products as [name, package, units at
+  Kohler's warehouse, stock status], warehouseAsOf + stale, open[] =
+  counting products not yet credited here, completed[], repProgress),
+  credited[] (name + lines), nextActions[] = the page's Next Actions (kind,
+  task, when, why, next, caveat). Caps: 8 / 6 / 4; over 24 KB the context is
+  cut to 5 / 3 / 3 + 12 programs and no warehouse map, flagged truncated.
+  The assistant therefore recommends from the SAME list the rep sees on the
+  page, with the same product rule (hub/accounts.js eligibleProducts).
+  PAGE: starter questions are the ones reps ask ("What should I sell
+  here?", "What's due for a reorder?", "What did they buy recently?", "What
+  should I focus on today?", "How do I close <top opportunity> here?",
+  "What should I tell the buyer?"); md() draws **1. Product** as a ranked
+  item with a number badge, **Why:** / **Do:** as labelled lines, **Say:**
+  as a quoted customer line, numbered lists as <ol>, a stray "## heading"
+  as a bold line; phone bubbles are wider with a touch more line height.
+  EVAL: tools/assistant-eval/run.mjs --set reps = twelve rep questions
+  (on- and off-premise, plus "show more" as a second turn) with a
+  READABILITY check per answer (length, preamble, vague wording, a
+  customer-ready line and a next step where the question calls for one,
+  at most three ranked items) beside the NUMBER CHECK. Not run live from
+  the build environment (no key, no browser cookie there).
+  Tests: scratchpad chat_v3_test.mjs (57: prompt, packet, page context,
+  hint, tool round, authorization, availability) and md_v3_test.mjs (17).
 
 WHO MAY ASK ABOUT WHAT (server-side; the browser is never trusted)
   1. kdh_at cookie -> the caller's allowed_users row (email, name, role),
