@@ -521,6 +521,21 @@ step of the refresh and check for these defects EVERY time:
            accounts / 6,238 taps (157 re-surveyed, 1,499 superseded taps
            in history); exec core market 5,536 taps at 718 accounts,
            51.8% ours. Survey data now through 9/22.
+  10.12.26 ("vF1") 7,351 raw rows with 481 duplicate "#" (2,490 rows
+           sharing them, scattered); Import Template fully populated, but
+           its column O ("Distributor", the app's own flag) disagreed with
+           the raw sheet on 886 rows (US/THEM swapped), which is why the
+           delivered template reads MISMATCH 175 where the engine, run on
+           the raw rows, reads 32 -- Corrected Distributor is identical on
+           every comparable row (6,268), so nothing shown moved. Two new
+           reference sheets ("Brand Sell Rules (Handoff)", "Brand
+           Corrections") are not read. Repaired as usual: OK 7,097 /
+           Review 222 / MISMATCH 32 (the 32 are Industrial Arts and
+           Equilibrium x Other Half handles, now expected US). Same
+           workbook for both dashboards; the units-sold export was not
+           refreshed. Tracker 748 accounts / 6,260 taps (195 re-surveyed,
+           2,017 superseded taps in history); exec core market 5,534 taps
+           at 718 accounts, 52.3% ours. Survey data now through 10/9.
 
 Original write-up (2026-08-21):
 the 8.20.26 delivery ("iSellBeer_TAPS__US_THEM_Audit_Matrix_vF1_8.20.26.xlsx")
