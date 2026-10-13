@@ -89,6 +89,17 @@ Adding / removing people
   bounces to the sign-in page within five minutes (middleware cache).
   Bulk: python3 supabase/import_allowed_users.py <encompass export>
   then paste supabase/data/allowed_users.sql into the SQL Editor.
+  One person WITH a password set for them (2026-10-13): copy
+  supabase/add_user_with_password.sql, fill in EMAIL / NAME / ROLE /
+  PASSWORD, keep the copy in supabase/data/ (git-ignored) and run it in
+  the SQL Editor. It upserts the allow-list row, creates the auth.users
+  account with the bcrypt hash and the matching auth.identities row,
+  and prints kdh_signin_mode = 'password'; the person then signs in
+  with email + password, no "Create your password" step. Safe to re-run;
+  the commented update at its foot resets an existing password.
+  Verified on local Postgres 16 against the three sign-in migrations.
+  A person whose name is on no rep roster must be a manager (a rep with
+  no matching name is locked out of every page).
 
 Things to know
 --------------
