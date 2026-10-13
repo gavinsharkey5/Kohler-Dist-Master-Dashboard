@@ -12,16 +12,16 @@
     "GOAL": 117.0
   },
   {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "GOAL": 92.0
-  },
-  {
     "SALES_REP_ASSIGNED": "Jim Heaney",
     "GOAL": 106.0
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "GOAL": 95.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "GOAL": 92.0
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -40,6 +40,10 @@
     "GOAL": 68.0
   },
   {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "GOAL": 66.0
+  },
+  {
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "GOAL": 82.0
   },
@@ -50,10 +54,6 @@
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
     "GOAL": 62.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "GOAL": 66.0
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
@@ -68,7 +68,7 @@
     "GOAL": 0.0
   },
   {
-    "SALES_REP_ASSIGNED": "John Neukum",
+    "SALES_REP_ASSIGNED": "Dylan Rubino",
     "GOAL": 0.0
   },
   {
@@ -76,7 +76,7 @@
     "GOAL": 0.0
   },
   {
-    "SALES_REP_ASSIGNED": "Dylan Rubino",
+    "SALES_REP_ASSIGNED": "John Neukum",
     "GOAL": 0.0
   }
 ]
