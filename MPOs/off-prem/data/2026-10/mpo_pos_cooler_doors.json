@@ -1,5 +1,27 @@
 [
   {
+    "REP": "Chris Payton",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "WOODRIDGE WINES & LIQ(A)",
+    "CITY": "WOODRIDGE",
+    "BRAND": "MONACO",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "10/12/2026 02:43 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/c46aab30-371d-42fc-961b-488d955a2397/"
+  },
+  {
+    "REP": "Chris Payton",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "WOODRIDGE WINES & LIQ(A)",
+    "CITY": "WOODRIDGE",
+    "BRAND": "CARBLISS",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "10/12/2026 02:43 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/7a0eadcf-266a-4844-8d65-dc94ddac5e0e/"
+  },
+  {
     "REP": "Pablo Lopez",
     "SOURCE": "Promo",
     "CUSTOMER_NAME": "LEGACY BAR & LIQUOR",
