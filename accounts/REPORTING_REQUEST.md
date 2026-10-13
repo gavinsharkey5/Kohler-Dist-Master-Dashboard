@@ -503,3 +503,48 @@ name only; the cases / placements columns are ignored):
 - Wine (1) New Placement: 60 SKUs (the page had no list)
 STILL NEEDED: Carbliss 40% (on-premise: do all packages count?), Spirits
 Follow-Up (on-premise), and the October incentives listed above.
+
+## 14. Non-Buy Reports (2026-10-08): what the site has, what is missing
+
+The feature runs today on the monthly sales master (net cases per product per
+account per month, Jan 2025 -> last complete month), the active Customers
+export (account books, now with Chain and Customer Type), the product
+catalogue and the Brand Permissions workbook. What it CAN'T do yet, and the
+exact data that would unlock it:
+
+ESSENTIAL
+- N1 Sales at invoice / day grain (CustomerID, ProductID, invoice date,
+  quantity, unit, transaction type). Today every window is whole sales
+  months, so "Last 30 Days" on the 8th of a month means the previous whole
+  month(s). Dated lines would make the requested dates the effective dates.
+- N2 Purchase occurrence separate from net quantity: the master nets
+  returns inside a month (a case bought and fully returned in the same
+  month shows 0 and does NOT count as a purchase; a return in a later
+  month does not undo the earlier month). CONFIRM the rule you want for
+  "bought then fully returned" -- today: not a buyer for that month.
+- N3 Unit and conversion: the master is in cases (fractional allowed). "At
+  least one unit" is read as net cases > 0. If a bottle / keg is the unit for
+  some products, say which products and the conversion.
+- N4 Brand Permissions coverage: 294 families are on file; products whose
+  family is not in the workbook, and accounts whose Distribution Area does
+  not resolve (e.g. Morris 2, Middlesex, Warren, Somerset, "Sales" with an
+  unknown county), are reported as UNVERIFIED and left out of the actionable
+  list. A row per missing family x area (CAN SELL / NOT IN TERRITORY /
+  BLOCKED) and the area for every active account would close that gap.
+- N5 Coverage statement with each sales load: the month the load is
+  complete through (today read from the master's sources.json "partial"
+  flag). A latest transaction date alone does not prove completeness.
+
+OPTIONAL
+- N6 Account-level restrictions beyond territory (e.g. accounts that may
+  not buy spirits, chain mandates). Today only "Whole Foods = non-alcoholic
+  only" is applied, as a name rule.
+- N7 Inactive / closed date per account, so a lapsed-buyer report can say
+  "closed" instead of "lapsed" for an account that left the books.
+- N8 Lifetime history before Jan 2025, so "no purchases in available
+  history" could become "never bought".
+
+WHERE IT GOES: N1-N3 would replace accounts/data/hist (tools/program_history.py)
+with a dated source behind the same nonbuy/source-static.js interface (a
+Snowflake source implements the same methods); N4 is the Brand Permissions
+workbook + the Customers export; N5 is sources.json.

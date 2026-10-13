@@ -314,7 +314,8 @@ function renderList(){
   // LIST / MAP (2026-10-02): one selector; the map draws exactly the rows the
   // list would show (same search, filters and authorized accounts)
   const viewSeg = `<div class="seg vseg" id="viewSeg" role="group" aria-label="View">${[['list','List'],['map','Map']].map(([v,l])=>`<button type="button" data-mode="${v}" aria-pressed="${state.mode===v}"${state.mode===v?' class="on"':''}>${l}</button>`).join('')}</div>`;
-  app.innerHTML = `<header class="ws lhead"><div class="lh-top"><h1>${title}</h1>${viewSeg}</div>${isMgr ? `<div class="id"><p class="idline">${sub}</p></div>` : ''}</header>
+  const nbLink = `<a class="btn sm outline nb-link" href="../nonbuy/">Non-Buy Reports</a>`;   // one engine for reps and managers (2026-10-08)
+  app.innerHTML = `<header class="ws lhead"><div class="lh-top"><h1>${title}</h1><div class="lh-acts">${nbLink}${viewSeg}</div></div>${isMgr ? `<div class="id"><p class="idline">${sub}</p></div>` : ''}</header>
     <div id="laterStrip"></div>
     <div class="filters">
       <input type="search" class="kdh-field" id="q" placeholder="Search by name, town or #${isMgr?' or rep':''}" value="${E(state.q)}" autocomplete="off" aria-label="Search accounts">
@@ -791,7 +792,7 @@ async function renderAccount(){
   app.querySelectorAll('[data-evid]').forEach(b=>b.addEventListener('click', ()=>{
     if(window.KdhActivity) window.KdhActivity.capture({program_id: b.dataset.evid, category: b.dataset.ecat || ''}); }));
   // the assistant gets a packet of what this page already shows -- nothing more
-  if(window.KdhAssistant){ const packet = buildPacket({a, rep, d, sales, months, N, R, refKey, F, alerts, rows, follows, targets, credited, due, CAT, progList}); window.KdhAssistant.mount(document.getElementById('askCard'), packet, {}); }
+  if(window.KdhAssistant){ const packet = buildPacket({a, rep, d, sales, months, N, R, refKey, F, alerts, rows, follows, targets, credited, due, CAT, progList, OPP, focusTop: top}); window.KdhAssistant.mount(document.getElementById('askCard'), packet, {}); }
   const y = scrollMem[location.hash]; if(typeof y==='number'){ requestAnimationFrame(()=>window.scrollTo(0,y)); delete scrollMem[location.hash]; }
 }
 
@@ -906,8 +907,19 @@ function renderProducts(a, rep, sales, CAT, months, N, targets){
    the products it buys, and a plain list of what is NOT in the data. Kept
    around 20-40 KB. No dollars anywhere in it. */
 function buildPacket(x){
-  const {a, rep, d, sales, months, N, R, refKey, F, alerts, rows, follows, targets, credited, due, CAT, progList} = x;
+  const {a, rep, d, sales, months, N, R, refKey, F, alerts, rows, follows, targets, credited, due, CAT, progList, OPP, focusTop} = x;
   const P = F.patterns || null;
+  // (2026-10-13) the ranked Program Opportunities and Next Actions this page
+  // already shows travel with the packet, so the assistant recommends from
+  // the same list the rep sees (plain text: the focus rows hold escaped HTML)
+  const unesc = s => String(s==null?'':s).replace(/<[^>]+>/g,'').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'");
+  const opportunities = OPP ? OPP.list.slice(0, 8).map(o=>({name:o.name, supplier:o.supplier, channel:o.channel, type:o.type, status:o.status, ask:o.ask, needs:o.needs||'', ends:o.ends, why:o.why,
+      productsThatCount: o.byProduct ? o.sizeNote : ((o.fams||[]).join(' / ')+(o.sizeNote ? ' · '+o.sizeNote : '')+' (any product in the brand family)'), productCount:o.productCount,
+      products:(o.products||[]).slice(0, 3).map(c=>[c[1], c[4]||null, c[5]!=null ? Number(c[5]) : null, c[7]||null]),
+      warehouseAsOf:(o.inventory && o.inventory.asOf) || null, stale: !!(o.inventory && o.inventory.stale),
+      open:(o.open||[]).slice(0, 5).map(y=>({name:y.name, code:y.code||undefined, why:y.why||undefined})), completed:(o.completed||[]).slice(0, 5), repProgress:o.repProgress||''})) : [];
+  const creditedList = OPP ? OPP.credited.slice(0, 6).map(o=>({name:o.name, lines:(o.lines||[]).slice(0, 3)})) : [];
+  const nextActions = (focusTop||[]).map(f=>({kind:f.kind, task:unesc(f.t), when:unesc(f.ws||''), why:unesc(f.w||''), next:unesc(f.n||''), caveat: f.cs ? unesc(f.cs) : undefined}));
   const last12 = arr => arr.slice(Math.max(0, N-12)).map(v=>Math.round(v*10)/10);
   const lab12 = months.slice(Math.max(0, N-12));
   const prodRows = (sales ? sales.products : []).map(p=>{ let li=-1; for(let i=N-1;i>=0;i--) if(p[5][i]>0){ li=i; break; } const c = CAT.byNum ? CAT.byNum.get(String(p[0])) : null;
@@ -931,6 +943,7 @@ function buildPacket(x){
     alertCounts: F.counts || null,
     patterns,
     programs: progList,
+    opportunities, credited: creditedList, nextActions,
     notes: rows.map(r=>({status:r.status, program: progName(r.program_id), note:r.note||'', date:(r.updated_at||'').slice(0,10)})),
     openFollowUps: follows.length,
     taps,

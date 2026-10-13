@@ -331,7 +331,7 @@ def lytt(products, customers, sources, months, reps):
         oct_skus[name_key(r["Sales Rep Assigned"])][r["Customer Num"].strip()].add(r[pcol].strip())
     by_prod, by_fam, monthly = history_for(set(lytt_ids), ["Lytt"], products, months)
     dates = sorted(datetime.strptime(r["Date"], "%m/%d/%Y") for r in raw if r.get("Date"))
-    last = dates[-1].strftime("%b %-d, %Y") if dates else ""
+    last = f"{dates[-1]:%b} {dates[-1].day}, {dates[-1].year}" if dates else ""
     rule = {
         "id": "off:2026-10:bbc_lytt", "source": "off", "month": "2026-10", "key": "bbc_lytt",
         "title": "Lytt Buying Accounts", "official": "BBC – 50% Buying Accounts Lytt", "supplier": "Boston Beer Company",
@@ -418,7 +418,7 @@ def carbliss_on(products, customers, sources, months, reps):
     fam_ids = sorted(pid for pid, p in products.items() if p["family"] == "Carbliss")
     by_prod, by_fam, monthly = history_for(set(fam_ids), ["Carbliss"], products, months)
     dates = sorted(datetime.strptime(r["Load Sheet Date"], "%m/%d/%Y") for r in raw if r.get("Load Sheet Date"))
-    last = dates[-1].strftime("%b %-d, %Y") if dates else ""
+    last = f"{dates[-1]:%b} {dates[-1].day}, {dates[-1].year}" if dates else ""
     # what each base account bought in the window, from the sales record (detail only)
     win = [m for m in months if "2026-08" <= m <= "2026-10"]
     rule = {
@@ -539,7 +539,7 @@ def new_placements(products, customers, sources, months, reps, spec):
     by_prod, by_fam, monthly = history_for(sset, fams, products, months)
     dates = sorted(d for r in rows for d in (r.get("PLACED_DATE"), r.get("LAST_DATE")) if d)
     last = max((datetime.strptime(d, "%m/%d/%Y") for d in dates), default=None)
-    lastl = last.strftime("%b %-d, %Y") if last else ""
+    lastl = f"{last:%b} {last.day}, {last.year}" if last else ""
 
     def sellable(fam, area):
         f = B["families"].get(fam)

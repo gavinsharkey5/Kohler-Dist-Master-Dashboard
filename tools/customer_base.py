@@ -80,6 +80,7 @@ def load(path=CUSTOMERS_CSV):
                 "num": num, "name": _s(r.get("Customer Name")), "rep": rep,
                 "premise": "On" if prem.startswith("on") else ("Off" if prem.startswith("off") else _s(r.get("On Premise"))),
                 "type": _s(r.get("Customer Type")), "address": _s(r.get("Shipping Address")),
+                "chain": _s(r.get("Chain")), "cls": _s(r.get("Class")),
                 "city": _s(r.get("City")), "county": _s(r.get("County")), "area": _s(r.get("Distribution Area")),
                 "terr": territory(r.get("Distribution Area"), r.get("County")),
             })

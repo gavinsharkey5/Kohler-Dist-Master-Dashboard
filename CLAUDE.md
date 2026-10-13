@@ -384,8 +384,13 @@ real, then the two generators above.
 
 ## October 2026 On-Premise MPO tab + "latest month" defaults (2026-10-05)
 
-OCTOBER_ON_PREM_2026_MPO.docx (25% each): iSellBeer (5) feature photos rides as AWAITING
-(hasData:false, awaiting:true -- no iSellBeer export yet). CARBLISS 40% buying accounts is
+OCTOBER_ON_PREM_2026_MPO.docx (25% each): iSellBeer (5) feature photos is BUILT (2026-10-13):
+`build_feature_photos()` in MPOs/on-prem/generate_2026-10.py reads the cumulative iSellBeer archive
+MPOs/on-prem/isellbeer_feature_photos.xlsx (seeded from Promos_Report_52; weekly pulls merge with
+`python3 MPOs/on-prem/generate_2026-10.py --merge-photos Promos_Report_NN.xlsx`), counts EVERY
+October row whatever its element (Gavin: "count all the data"), scored per DISTINCT PHOTO, except
+PHOTO_EXCLUDED_ACCOUNTS (230915 Crystal Sprs/Wild Turkey, 123 Crystal Springs Rd -- Gavin: leave
+out). on-prem programs.js gained buildPhotosDataset / lineTablePhotos (ported from off-prem). CARBLISS 40% buying accounts is
 BUILT (2026-10-05): a 'followup' objective with pct 0.4 over MPOs/on-prem/
 core_market_on_prem_accts.csv (RDE "Entire Core Market On Prem Accts", 1,047 accounts for the
 roster) as the denominator, DONE = bought Carbliss 9/1-10/31 per carbliss_buying_accounts.csv
@@ -1193,9 +1198,12 @@ rules that hold:
   (KDH_CHAT_NO_LEDGER=1 only on a throwaway preview). KDH_CHAT_USERS =
   pilot email list. Cost is an ESTIMATE ($0.05-0.07 first question at
   list price) until the ledger and tools/assistant-eval/run.mjs measure it.
-- NOT VERIFIED (no key in the build environment): a live call, real
-  tokens / latency, the Opus-vs-Sonnet comparison, self-origin fetch and
-  POST /api/chat under trailingSlash on a live deployment. Pilot steps
+- LIVE since 2026-10-09 (Gavin ran the ledger migration, set the key +
+  KDH_CHAT_USERS + KDH_CHAT_DAILY_USD=10 on Vercel Production): a real
+  question answered end to end, so self-origin fetch and POST /api/chat
+  work on the deployment. Still unmeasured: the Opus-vs-Sonnet comparison.
+  Managers see the upstream reason on a failed question ("Claude API HTTP
+  401: invalid x-api-key" was the first live failure: a mis-pasted key). Pilot steps
   (Preview-only key, KDH_CHAT_USERS = Gavin, run.mjs, then 2-3 reps) are
   in api/README.txt; tools/ is in .vercelignore.
 - DATA SOURCE INTERFACE: `StaticExportSource` (dmGroups, repIndex, route,
@@ -2877,7 +2885,7 @@ summary strip, guided.js cards); eligible rows say what is left ("Needs 1 more q
 qualifying purchase yet · data through <date>", and hub `noBuyText()` always carries the period. Hub marks are
 Done / Follow-Up / Not Now. Also: the W&S "i" badges are navy on a fixed light gold (skin), and the amber
 banner's "Open Encompass" link has a 41px tap area. Tags: rep.css / hub.js / eligibility.js / accounts.js /
-accounts.css / guided.js / kdh-skin.css 20261008a; kdh-user.js 20261008b; rep.css 20261008c (the revert).
+accounts.css / guided.js / kdh-skin.css 20261008a; kdh-user.js 20261008d (sidebar icon for Non-Buy Reports); rep.css 20261008c (the revert).
 
 ## MPO cards: "Potential Accounts" dropdown replaces "View Eligible Accounts" (2026-10-08)
 
@@ -3033,3 +3041,96 @@ the ones to remember:
   `goalSummary` / `objectiveRule` / `MEASURE_TEXT` / `monthLabel`; `rulesText` uses the direct wording.
 Tags manage.js / manage.css / custom-programs.js 20261008c. Tests: scratchpad mp3_test.mjs, mp_test (60),
 mp2_test, sql_programs_test.sh (83).
+
+## Non-Buy Reports: one engine, two experiences (2026-10-08; approved and merged to main the same day)
+
+Gavin's brief: a manager reporting tool ("where are the distribution gaps across my authorized accounts,
+and which reps can act on them?") with a simplified rep version under My Accounts ("which accounts on
+my route can I sell this product to?"). Built on branch claude/non-buy-reports, approved by Gavin and merged
+to main on 2026-10-08; the saved-report migration is on Gavin (ROADMAP Now). nonbuy/README.txt has every rule; the ones to remember:
+- THE RULE: an opportunity is shown only for a product the account is PERMITTED to buy, judged per account
+  x product (`KdhNonBuyEngine.eligibility`: Brand Permissions family x area CAN SELL; Whole Foods
+  non-alcoholic only; area / family not on file = UNKNOWN, counted and reported, never permission).
+  Historical purchases stay factual; permission is never inferred from a purchase.
+- PURCHASE = net cases > 0 in a sales month (the record is monthly net cases); a purchase fully returned
+  in the same month nets to 0 and does not count -- Gavin has NOT confirmed that rule yet (REPORTING_REQUEST
+  14, N2). Dates are whole sales months: requested vs effective vs coverage are always printed; a range
+  with no complete month cannot run (never a zero).
+- LAYERS: nonbuy/engine.js (pure calc, RULE_VERSION in every snapshot / export), nonbuy/source-static.js
+  (the only reader of today's exports + kdh_program_scope + the saved-report table; a Snowflake source
+  implements the same methods), nonbuy/nonbuy.js (screens). Manager scope = kdh_program_scope (admin all,
+  DM team, brand manager every rep but only their suppliers' products, neither = NOBODY); a rep is forced to
+  their own route whatever a criteria object says (the middleware serves only their book + hist anyway).
+- DATA ADDED: hub/generate.py + tools/customer_base.py now carry Encompass Chain and Customer Type on every
+  account row (`chain`, `type`) -- hub/data/accounts.js and the per-rep books were regenerated (books, elig,
+  hist rebuilt by accounts/generate.py). middleware REP_PATHS gained '/nonbuy/'; kdh-user.js toolItems 'nb'
+  (managers) and where() (reps: nav accounts); manager home card (25 now); My Accounts header link.
+- SAVED ROWS: migration 20261009090000_nonbuy_reports.sql (table nonbuy_reports + kdh_nonbuy_save +
+  kdh_nonbuy_shared; RLS own rows; a target list is shared EXPLICITLY and a rep gets only their own subset; a
+  rep can never share). The page works without it (generate + export) and says so.
+- MOBBIN: Shopify Select Products 823f4ce6 / Manage Products 9fadbfbf inspected by id; the Calendly
+  (222efb40) and Zillow (6f72137e) ids the brief names are not returned by the plugin's search -- sibling
+  screens of the same pages were used; say so, never claim the exact ids were seen.
+Tests (scratchpad): nb_test.mjs (66 x 375/390/430/820/1366, light + dark), nb_smoke.mjs, sql_nonbuy_test.sh
+(13), nb_stub.mjs; mgr_test expects 25 cards now.
+
+## Stay signed in, server-held: kdh_sid + public.kdh_sessions (2026-10-13)
+
+Reps: "it makes me log in every time, even with Remember me". ROOT CAUSE: the 2026-10-02 design kept
+Supabase's refresh token in the kdh_rt cookie; Supabase ROTATES it on every renewal (hourly), so the
+browser had to receive and store a new cookie on each one -- mostly on pass-through middleware
+responses. Any renewal whose reply was lost (cellular) or whose Set-Cookie the browser never applied
+left the phone sending the OLD token; Supabase treats a used token sent again more than 10 s later
+as theft and revokes the whole session -> `why=revoked` -> password box, an hour after every
+sign-in. (The 2026-10-05 note that a 429 wiped the cookie was a symptom of the same repeated
+renewals.) NOW: the browser holds one random device secret (HttpOnly `kdh_sid`, "k1."/"k0." prefix =
+remember / session-only, NEVER rotates); the refresh token + latest access token live in
+`public.kdh_sessions` keyed by sha256(secret) (migration `20261013090000_kdh_sessions.sql`, RPCs
+kdh_session_create / get(p_claim) / put / release / delete, anon-callable, table unreadable through
+the API; a row is deleted when the email leaves allowed_users). api/session.js `resolveSession()` is
+the ONE resolver (middleware + GET/POST/DELETE): a fresh kdh_at is used as is; else the store renews
+(claim -> redeem -> put; a concurrent renewal waits 1.2 s and re-reads; a lost reply just renews
+again from the row, within Supabase's reuse window the same token comes back); per-isolate caches
+(`sidCache` 5 min, `sidInflight`). A PAGE LOAD with a missing / expired kdh_at is sent by the
+middleware through `GET /api/session?next=<path>` (a function reply, so the cookies reliably land
+before the page's scripts run; `kdh_hop` 20 s guards against a bounce); data fetches renew inline
+with best-effort pass-through cookies and the kdh-user.js keep-alive. UNTIL GAVIN RUNS THE MIGRATION
+the RPCs 404 and everything works the old kdh_rt way (`storeKnownMissing`, memo 60 s); a kdh_rt device
+moves to the store on its next renewal with no extra sign-in. Not verified live (kohlerdisthub.com and
+vercel.com are blocked from the build environment). Supabase settings to keep OFF: Single session per
+user, time-box, inactivity timeout. Tests (scratchpad): session2_test.mjs (48: real middleware.js +
+api/session.js against a fake Supabase with rotation / reuse window / family revocation and a jar that
+drops cookies), sql_sessions_test.sh (17, local Postgres 16).
+
+
+## Account assistant v3: sales assistant, not data analyst (2026-10-13)
+
+Gavin's brief: the Account page chatbot must give a rep "what to know, what to do, what to say" in
+five seconds on a phone, not analysis. Wire format stays v2; api/README.txt "V3" has the full list.
+- PROMPT (api/chat.js STABLE): answer first; match the question (fact = one line; what-to-sell = 1-3
+  ranked **1. Product** / **Why:** / **Do:** / **Say:** "..." items; reorder = most overdue first + Do;
+  program = what THIS account still needs + counting products it lacks + deadline + step; "tell the
+  buyer" = 2-4 spoken sentences; bigger questions = 3-5 bullets); never list everything (offer more in
+  one line); plain rep language; follow-ups continue the last answer. Every v2 grounding rule is kept
+  (record > tools > page context, period on every number, FACT apart from SUGGESTION, alerts are
+  possibilities, recommend only bought-before / buys-the-family / tracker-lead / alert, no invented
+  interest, stock, promotions or completion, no dollars, monthly grain).
+- SHAPE HINT: `intentOf(last user message)` -> a one-line system block AFTER the two cached blocks
+  (more / talk / program / reorder / priority / sell / recent / fact / summary / none). Never cached.
+- PACKET: `account.buyer` (account_contacts.contact_name, caller's token, name only), `recent3`
+  (last 3 months product by product), `patterns.seasonal[].monthsOfYear`.
+- PAGE CONTEXT: the page's own ranked Program Opportunities (`opportunities`, from opps.js build(),
+  with up to 3 counting products + warehouse units/date, open and completed products), `credited`,
+  and `nextActions` (the Next Actions rows, HTML stripped) travel in `page` (accounts.js buildPacket
+  takes `OPP, focusTop`; assistant.js pageContext caps 8 / 6 / 4; chat.js re-caps and keeps them when
+  the 24 KB cut hits). Same list and same product rule as the page, so the two never disagree.
+- PAGE: starter questions = the questions reps ask (the program one names the top opportunity);
+  md() renders the shapes (number badge, `.lbl`, `.say`, <ol>), accounts.css adds the styles and a
+  wider bubble on phones. "What It Can Answer" updated.
+- EVAL: tools/assistant-eval/run.mjs `--set reps` (12 rep questions on/off-premise, "show more" as a
+  second turn) + READABILITY check per answer. NOT run live from here (no key / cookie in the build
+  environment): Gavin runs it against kohlerdisthub.com with his browser cookie (api/README.txt
+  pilot step 5) and reads the READABILITY and NUMBER CHECK columns.
+Tags: accounts.css / accounts.js / assistant.js 20261013a. Tests (scratchpad): chat_v3_test.mjs
+(57, handler under Node with stubbed Supabase + Anthropic, real route / sales files, authorization
+re-checked), md_v3_test.mjs (17).

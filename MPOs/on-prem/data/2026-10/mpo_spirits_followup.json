@@ -275,9 +275,9 @@
     "CUSTOMER_NAME": "Elevengreen",
     "BASE_DETAIL": "2 spirits: Bardstown Origin Series Bourbon 1/750 mL Btl, Bardstown Origin Series High Wheat 1/750 mL Btl",
     "BASE_DATE": "9/22/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Bardstown Origin Series Bourbon 1/750 mL Btl, Bardstown Origin Series High Wheat 1/750 mL Btl",
+    "DONE_DATE": "10/8/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -385,9 +385,9 @@
     "CUSTOMER_NAME": "O'nieal's (A)",
     "BASE_DETAIL": "1 spirit: OVO Vodka 1/12/750 mL Btl",
     "BASE_DATE": "9/3/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "OVO Vodka 1/12/750 mL Btl",
+    "DONE_DATE": "10/8/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jaime Colonna",
@@ -415,9 +415,9 @@
     "CUSTOMER_NAME": "Paruta's (A)",
     "BASE_DETAIL": "3 spirits: Pride & Clarke Vodka 1/12/750 mL Btl, Pride & Clarke Vodka 24/375 mL Btl, Pride & Clarke Vodka 48/200 mL Btl",
     "BASE_DATE": "9/15/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Pride & Clarke Vodka 48/200 mL Btl",
+    "DONE_DATE": "10/13/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -505,9 +505,9 @@
     "CUSTOMER_NAME": "The Office 2131 Ridgewood",
     "BASE_DETAIL": "1 spirit: Green River Wheated 1/750 mL",
     "BASE_DATE": "8/13/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Green River Wheated 1/750 mL",
+    "DONE_DATE": "10/13/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -515,9 +515,9 @@
     "CUSTOMER_NAME": "Park West Tavern",
     "BASE_DETAIL": "5 spirits: Bardstown Origin Series Bourbon 1/750 mL Btl, Leyenda 1925 Anejo Tequila 1/750 ML Btl, Leyenda 1925 Blanco Tequila 1/750 ML Btl, Leyenda 1925 Reposado Tequila 1/750 ML Btl ...",
     "BASE_DATE": "9/30/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Bardstown Origin Series Bourbon 1/750 mL Btl, OVO Vodka 1/12/750 mL Btl",
+    "DONE_DATE": "10/13/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",

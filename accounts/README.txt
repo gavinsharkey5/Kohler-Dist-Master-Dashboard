@@ -157,6 +157,16 @@ THE ACCOUNT PAGE: FOUR SECTIONS (2026-09-30, Gavin's Encompass brief)
     Snowflake. Managers and previews get the same read-only tool.
     Needs ANTHROPIC_API_KEY + the assistant_usage migration; api/README.txt
     has the pilot steps and the spend limits.
+    V3 (2026-10-13): a sales assistant, not a data analyst. The page now also
+    sends the ranked Program Opportunities (opps.js) and the Next Actions it
+    shows (plain text, from buildPacket's OPP / focusTop), so the assistant
+    recommends from the same list the rep sees; the server adds the buyer's
+    name (account_contacts), the last 3 months product by product and the
+    months each seasonal product sells in. The prompt answers first, keeps a
+    fact question to one line, ranks "what to sell" as 1-3 items with Why /
+    Do / Say, and marks suggestions apart from what was bought; md() draws
+    those shapes (number badge, labelled lines, a quoted Say line). Starter
+    questions are the ones reps ask. api/README.txt "V3" has the detail.
 
 ACCOUNT WORKSPACE (2026-10-02, Attio's company record as the pattern)
   Four sections under the header, `sec=` in the hash, switched in place:

@@ -793,6 +793,30 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dylan Rubino",
+    "PRODUCT_NAME": "200192 Chateau Diana Non-Alcoholic Chardonnay 12/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 170099,
+    "CUSTOMER_NAME": "Columbia Park Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/15/2026",
+    "LAST_DATE": "10/15/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dylan Rubino",
+    "PRODUCT_NAME": "200193 Chateau Diana Non-Alcoholic Merlot 12/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 170099,
+    "CUSTOMER_NAME": "Columbia Park Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/15/2026",
+    "LAST_DATE": "10/15/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dylan Rubino",
     "PRODUCT_NAME": "200191 Chateau Diana Non-Alcoholic Cabernet Sauvignon 12/750 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 170119,
@@ -1302,10 +1326,10 @@
     "CUSTOMER_NUM": 230412,
     "CUSTOMER_NAME": "USA Wine Traders Club Of Newton (A)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "10/13/2026",
+    "LAST_DATE": "10/13/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -1641,7 +1665,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 1,
     "PLACED_DATE": "10/2/2026",
-    "LAST_DATE": "10/2/2026"
+    "LAST_DATE": "10/13/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -1926,10 +1950,10 @@
     "CUSTOMER_NUM": 96002,
     "CUSTOMER_NAME": "Wine & Spirit World(W)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "10/13/2026",
+    "LAST_DATE": "10/13/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -1962,10 +1986,10 @@
     "CUSTOMER_NUM": 78007,
     "CUSTOMER_NAME": "Woodstone Pizza B & G",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "10/13/2026",
+    "LAST_DATE": "10/13/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -2089,15 +2113,39 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "PRODUCT_NAME": "200351 Amethystos Red 12/750 mL",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 54012,
+    "CUSTOMER_NAME": "Axia Taverna",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/13/2026",
+    "LAST_DATE": "10/13/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "PRODUCT_NAME": "200352 Amethystos White 12/750 mL",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 54012,
     "CUSTOMER_NAME": "Axia Taverna",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "10/13/2026",
+    "LAST_DATE": "10/13/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "PRODUCT_NAME": "200353 Chateau Julia Assyrtiko 12/750 mL",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 54012,
+    "CUSTOMER_NAME": "Axia Taverna",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/13/2026",
+    "LAST_DATE": "10/13/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -2370,10 +2418,10 @@
     "CUSTOMER_NUM": 92011,
     "CUSTOMER_NAME": "Bottle King (A) Ramsey",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "10/13/2026",
+    "LAST_DATE": "10/13/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",

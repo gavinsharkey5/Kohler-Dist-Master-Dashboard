@@ -117,7 +117,10 @@ const OBJECTIVES_2026_10 = [
    followLabels:{had:'Placed Jul–Sep', done:'Ordered in October', doneTag:'Followed up', todoTag:'Not followed up yet'},
    potential:{req:'Needs 1 Spirits Order in October', sub:'Any spirits product counts.', skusFromHad:true, skusLabel:'Placed here Jul \u2013 Sep', flag:true,
      qpNote:'Any spirits product counts. The program\u2019s exact spirits SKU list is not on file, so no shared product list is shown.'}},
-  {key:'isellbeer', name:'iSellBeer – (5) Feature Photos', shortName:'iSellBeer Photos', unit:'feature photo', weight:0.25, type:'photos', hasData:false, awaiting:true, awaitingNote:'Waiting on October\u2019s iSellBeer export.', goalLabel:'5 feature photos each'},
+  // Built 2026-10-13 from iSellBeer Promos_Report pulls (generate_2026-10.py build_feature_photos):
+  // every October promo row counts, whatever its element; scored per DISTINCT PHOTO.
+  {key:'isellbeer', name:'iSellBeer – (5) Feature Photos', shortName:'iSellBeer Photos', unit:'feature photo', weight:0.25, type:'photos', hasData:true, goalLabel:'5 feature photos each',
+   photoEmptyLabel:'feature photos', photoItemsLabel:'Brands pictured'},
 ];
 
 // Each entry is a permanent monthly snapshot -- add a new one here (and a
@@ -156,6 +159,7 @@ const MONTHS = [
     {objKey:'carbliss', file:'mpo_carbliss.json', pct:0.4, builder:'followup'},
     {objKey:'sam_adams_conversion', file:'mpo_sam_adams_conversion.json', pct:1, builder:'followup'},
     {objKey:'spirits_followup', file:'mpo_spirits_followup.json', pct:1, builder:'followup'},
+    {objKey:'isellbeer', file:'mpo_isellbeer_photos.json', target:5, builder:'photos'},
   ]},
 ];
 
@@ -306,7 +310,33 @@ function buildFollowupDataset(rows, pct, roster){
   return {pct, reps, reps_at_goal, reps_total:scored.length};
 }
 
-const BUILDERS = {followup: buildFollowupDataset, new_accounts: buildNewAccountsDataset, placements: buildPlacementsDataset, buyer_count: buildBuyerCountDataset};
+// iSellBeer photo objectives (October's feature photos): the off-prem tracker's
+// buildPhotosDataset, with the roster passed in like every builder here.
+// Scored per DISTINCT photo link -- one promo carries one row per brand on the
+// photo and those rows share the link, so a menu listing two SKUs counts once.
+function buildPhotosDataset(rows, target, roster){
+  if(!Array.isArray(rows)||!rows.length) return null;
+  roster = roster || ROSTER;
+  const byRep=new Map();
+  rows.forEach(r=>{
+    const rep=String(r.REP||"").trim();
+    if(!rep||!r.PHOTO_URL) return;
+    if(!byRep.has(rep)) byRep.set(rep,[]);
+    byRep.get(rep).push({source:String(r.SOURCE||""), customer:String(r.CUSTOMER_NAME||""), city:String(r.CITY||""),
+      brand:String(r.BRAND||""), detail:String(r.DETAIL||""), qty:r.QUANTITY==null?"":String(r.QUANTITY),
+      date:String(r.DATE||""), photo:String(r.PHOTO_URL)});
+  });
+  const reps=[];
+  byRep.forEach((lines,rep)=>{
+    lines.sort((a,b)=>parseDateMs(b.date)-parseDateMs(a.date));
+    const count=new Set(lines.map(l=>l.photo)).size;
+    reps.push({rep, count, lines});
+  });
+  const reps_at_goal=roster.filter(name=>{const r=reps.find(x=>x.rep===name);return r?r.count>=target:false;}).length;
+  return {target_per_rep:target, reps, reps_at_goal, reps_total:roster.length};
+}
+
+const BUILDERS = {followup: buildFollowupDataset, new_accounts: buildNewAccountsDataset, placements: buildPlacementsDataset, buyer_count: buildBuyerCountDataset, photos: buildPhotosDataset};
 
 const AREA_COLS=[["area"]];
 
@@ -566,6 +596,28 @@ function existingAccountsBlockHtml(existing, anyPhotos, anyProduct){
     <div class="targets-table" id="${eid}"><table><thead><tr><th>Customer</th>${anyProduct?'<th>Product</th>':''}<th>Base Period</th><th>This Month</th><th>Status</th>${anyPhotos?'<th>Photo</th>':''}</tr></thead><tbody>${rows}</tbody></table></div>
   </div>`;
 }
+// Photo drill-down (off-prem's lineTablePhotos): one row per distinct photo,
+// the brands pictured folded into it.
+function lineTablePhotos(lines, o){
+  o = o || {};
+  const emptyLabel = o.photoEmptyLabel || 'photos';
+  const itemsLabel = o.photoItemsLabel || 'Brands pictured';
+  if(!lines || lines.length===0) return `<div class="no-lines">No ${emptyLabel} submitted yet this month.</div>`;
+  const byPhoto=new Map();
+  lines.forEach(l=>{
+    if(!byPhoto.has(l.photo)) byPhoto.set(l.photo,[]);
+    byPhoto.get(l.photo).push(l);
+  });
+  const rows=[...byPhoto.values()].map(items=>{
+    const f=items[0];
+    const itemsHtml=items.map(l=>l.brand+(l.detail?` <span class="photo-sub">${l.detail}</span>`:'')+(l.qty&&l.qty!=='1'&&l.qty!=='0'?` ×${l.qty}`:'')).join(', ');
+    return `<tr><td><a class="photo-btn" href="${f.photo}" target="_blank" rel="noopener">📷 View Photo</a></td>`+
+      `<td>${f.customer}${f.city?` <span class="photo-sub">· ${f.city}</span>`:''}</td>`+
+      `<td>${itemsHtml}</td><td style="white-space:nowrap">${f.date||'—'}</td></tr>`;
+  }).join('');
+  return `<div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Photo</th><th>Account</th><th>${itemsLabel}</th><th>Date</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
 function lineTablePlacements(lines){
   if(!lines || lines.length===0) return '<div class="no-lines">No activity recorded this month.</div>';
   const rows = lines.map(l=>`<tr><td>${l.product}</td><td>${l.customer}</td><td>${l.date}</td><td class="num">${l.count}</td></tr>`).join('');
@@ -697,6 +749,7 @@ function detailFor(o, rep, DATA, monthKey){
     return r ? lineTableNewAccounts(r.lines, o.flagLabel, tgtHtml)
              : '<div class="no-lines" style="padding-left:2px">No activity recorded this month.</div>'+tgtHtml;
   }
+  if(o.type === 'photos') return lineTablePhotos(r ? r.lines : [], o);
   return r ? lineTablePlacements(r.lines)
            : '<div class="no-lines" style="padding-left:2px">No activity recorded this month.</div>';
 }

@@ -4,7 +4,7 @@
   25%  Carbliss  -- 40% Buying Accounts              (copied from the Carbliss Leaderboard's program)
   25%  BBC       -- Complete Oktoberfest Draft Conversion   (built here)
   25%  Spirits   -- Follow up on all On-Premise Spirits placements   (built here)
-  25%  iSellBeer -- (5) Feature Photos               (awaiting: no October export yet)
+  25%  iSellBeer -- (5) Feature Photos               (built here, from iSellBeer promo photos)
 
 Inputs (this folder, overwrite to refresh):
   core_market_on_prem_accts.csv              RDE "Entire Core Market On Prem Accts" -- every on-premise
@@ -15,8 +15,12 @@ Inputs (this folder, overwrite to refresh):
   sam_adams_kegs_summer_to_octoberfest.csv   RDE "Sam Adams Kegs: Summer Ale to Octoberfest" --
                                              one row per rep / account / keg SKU / load-sheet date.
   spirits_followup_placements.csv            RDE two-window export (7/1-9/30 placements, 10/1-10/31).
+  isellbeer_feature_photos.xlsx              Cumulative iSellBeer Promos_Report ARCHIVE for the feature
+                                             photos objective (every element: menus, table tents, POS).
+                                             Weekly pulls MERGE onto it -- never save a report over it.
 
 Run:  python3 generate_2026-10.py     (also rebuilds the per-rep copies)
+      python3 generate_2026-10.py --merge-photos Promos_Report_NN.xlsx   (merge a weekly pull, then rebuild)
 
 Both objectives are FOLLOW-UP scores: a rep has a list of accounts (the base)
 and each one is either done or not yet.
@@ -46,8 +50,19 @@ base account (target 100%). Boston Beer's scoreboard no longer overrides this ob
 BASE = accounts with a spirits placement in 7/1-9/30. DONE = the same account
 placed spirits again in 10/1-10/31 (any spirit). Accounts that are new in October
 (no Q3 placement) are not in the base. Target = every base account.
+
+--- iSellBeer (5) feature photos ---
+Every October-dated row of the Promos_Report archive counts, whatever its element
+(Gavin, 2026-10-13: "count all the data in promos report"), EXCEPT the accounts in
+PHOTO_EXCLUDED_ACCOUNTS -- 230915 Crystal Sprs/Wild Turkey, 123 Crystal Springs Rd
+(two Promo Tasting rows by a sales associate; Gavin: do not count). Scored per
+DISTINCT PHOTO (the off-prem cooler-door rule): one promo carries one row per brand
+pictured and those rows share a photo, so a menu listing two Bardstown SKUs is one
+feature photo. Photo takers are matched to the roster the way the Lytt POS and
+Bardstown builders do (iSellBeer spells "brian sengebush" / "Paul McLaughlin");
+an unmatched name is kept as-is so it surfaces on the board instead of vanishing.
 """
-import csv, json, subprocess, sys
+import csv, importlib.util, json, re, subprocess, sys
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -56,6 +71,12 @@ HERE = Path(__file__).parent
 MONTH_KEY = "2026-10"
 KEGS_CSV = HERE / "sam_adams_kegs_summer_to_octoberfest.csv"
 SPIRITS_CSV = HERE / "spirits_followup_placements.csv"
+PHOTOS_XLSX = HERE / "isellbeer_feature_photos.xlsx"
+LYTT_POS_PY = HERE.parent / "off-prem" / "generate_lytt_pos.py"   # merge_export + the iSellBeer name map
+# iSellBeer Account # -> why its promo rows do not count as feature photos.
+PHOTO_EXCLUDED_ACCOUNTS = {
+    "230915": "Crystal Sprs/Wild Turkey, 123 Crystal Springs Rd -- promo tasting rows, not feature photos (Gavin, 2026-10-13)",
+}
 HOUSE = {"Default", "Office Tell Sell"}      # Encompass house "reps" -- not people
 BASE_WINDOW = (datetime(2026, 4, 1), datetime(2026, 7, 17))     # Summer Ale poured (Gavin's window)
 # Filed Off Premise in Encompass but bars that pour kegs; Boston Beer counts them on-premise.
@@ -89,7 +110,7 @@ def dt(s):
 
 
 def fmt(d):
-    return d.strftime("%-m/%-d/%Y") if d else ""
+    return f"{d.month}/{d.day}/{d.year}" if d else ""
 
 
 def short_keg(name):
@@ -225,14 +246,87 @@ def build_carbliss():
     return out, prog
 
 
+def _lytt_pos():
+    spec = importlib.util.spec_from_file_location("lytt_pos", LYTT_POS_PY)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def build_feature_photos():
+    """iSellBeer (5) Feature Photos. Emits the off-prem cooler-door row shape
+    (REP / SOURCE / CUSTOMER_NAME / CITY / BRAND / DETAIL / QUANTITY / DATE / PHOTO_URL)
+    so programs.js's buildPhotosDataset scores it per DISTINCT PHOTO_URL."""
+    if not PHOTOS_XLSX.exists():
+        print("  iSellBeer photos: no isellbeer_feature_photos.xlsx -- objective stays awaiting")
+        return []
+    import openpyxl
+    ws = openpyxl.load_workbook(PHOTOS_XLSX)["Report"]
+    header = [c.value for c in ws[1]]
+    idx = {h: i for i, h in enumerate(header) if h}
+    lp = _lytt_pos()
+    out, aliased, excluded, offp = [], {}, defaultdict(int), set()
+    for row in ws.iter_rows(min_row=2):
+        vals = [c.value for c in row]
+        if not vals or not vals[idx["Date/Time"]]:
+            continue
+        date = str(vals[idx["Date/Time"]]).strip()
+        if not re.match(r"^10/\d{1,2}/2026", date):
+            continue                                   # the archive may carry other months
+        acct = str(vals[idx["Account #"]] or "").strip()
+        if acct in PHOTO_EXCLUDED_ACCOUNTS:
+            excluded[acct] += 1
+            continue
+        raw_rep = str(vals[idx["Photo taker"]] or "").strip()
+        who = lp.canon_rep(raw_rep) or raw_rep        # unmatched: kept as-is so it surfaces
+        if who != raw_rep:
+            aliased[raw_rep] = who
+        if acct and not on_premise({}, acct):
+            offp.add(f"{acct} {str(vals[idx['DBA']] or '').strip()}")
+        photo_cell = row[idx["Photo"]]
+        out.append({
+            "REP": who, "SOURCE": "Promo",
+            "CUSTOMER_NAME": str(vals[idx["DBA"]] or "").strip(),
+            "CITY": str(vals[idx["City"]] or "").strip(),
+            "BRAND": str(vals[idx["Brand"]] or "").strip(),
+            "DETAIL": str(vals[idx["Elements"]] or "").strip(),
+            "QUANTITY": vals[idx["Quantity"]],
+            "DATE": date,
+            "PHOTO_URL": photo_cell.hyperlink.target if photo_cell.hyperlink else None,
+        })
+    if aliased:
+        print("  iSellBeer photos: matched iSellBeer name(s) to the roster -- "
+              + ", ".join(f"{k!r} -> {v!r}" for k, v in sorted(aliased.items())))
+    for acct, n in sorted(excluded.items()):
+        print(f"  iSellBeer photos: {n} row(s) for account {acct} excluded -- {PHOTO_EXCLUDED_ACCOUNTS[acct]}")
+    if offp:
+        print(f"  iSellBeer photos: NOTE -- {len(offp)} account(s) are filed Off Premise in Encompass but still count "
+              f"(every row counts, per Gavin): {sorted(offp)}")
+    unmatched = sorted({r["REP"] for r in out} - set(lp.ROSTER))
+    if unmatched:
+        print(f"  iSellBeer photos: WARNING -- {len(unmatched)} photo taker(s) match no roster rep "
+              f"and their photos reach nobody: {unmatched}")
+    missing = sum(1 for r in out if not r["PHOTO_URL"])
+    if missing:
+        print(f"  iSellBeer photos: WARNING -- {missing} archive row(s) carry no photo link; they cannot be counted")
+    return out
+
+
 def main():
+    # Partial weekly iSellBeer pull: merge onto the archive first (repo CLAUDE.md), then
+    # rebuild. Usage: python3 generate_2026-10.py --merge-photos Promos_Report_NN.xlsx
+    if len(sys.argv) == 3 and sys.argv[1] == "--merge-photos":
+        _lytt_pos().merge_export(PHOTOS_XLSX, Path(sys.argv[2]),
+                                 date_col="Date/Time", volatile_cols=("Promo #",))
     month_dir = HERE / "data" / MONTH_KEY
     month_dir.mkdir(parents=True, exist_ok=True)
     conv, spirits = build_conversion(), build_spirits()
     carb, carb_prog = build_carbliss()
+    photos = build_feature_photos()
     (month_dir / "mpo_carbliss.json").write_text(json.dumps(carb, indent=2))
     (month_dir / "mpo_sam_adams_conversion.json").write_text(json.dumps(conv, indent=2))
     (month_dir / "mpo_spirits_followup.json").write_text(json.dumps(spirits, indent=2))
+    (month_dir / "mpo_isellbeer_photos.json").write_text(json.dumps(photos, indent=2))
     synced = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     (month_dir / "sync_meta.json").write_text(json.dumps({"synced_at": synced}, indent=2))
     for label, rows in (("Carbliss", carb), ("Oktoberfest conversion", conv), ("Spirits follow-up", spirits)):
@@ -246,6 +340,13 @@ def main():
     print(f"  Carbliss = the leaderboard's program ({m['period']['label']}, sales through {m['sales_through']}"
           f"{', FROZEN' if m['frozen'] else ''}): {sum(r['DONE'] for r in carb)} buyers in rep bases, "
           f"{m['counts']['prog']} company-wide")
+    pp = defaultdict(set)
+    for r in photos:
+        if r.get("PHOTO_URL"):
+            pp[r["REP"]].add(r["PHOTO_URL"])
+    print(f"iSellBeer feature photos (October, goal 5): {sum(len(v) for v in pp.values())} distinct photos from "
+          f"{len(photos)} rows, {sum(1 for v in pp.values() if len(v) >= 5)} rep(s) at 5 | "
+          + ", ".join(f"{k} {len(v)}" for k, v in sorted(pp.items(), key=lambda kv: -len(kv[1]))))
     print(f"sync_meta.json timestamped {synced} in data/{MONTH_KEY}/")
 
 

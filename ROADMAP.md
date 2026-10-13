@@ -11,6 +11,22 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
+- [ ] **Stay signed in, for real (2026-10-13; reps: "it makes me log in every time, even with
+  Remember me").** Cause: Supabase rotates the refresh token on every hourly renewal and the phone
+  had to store the new cookie each time; a lost or unapplied renewal left the phone sending the old
+  token, Supabase then revoked the whole session (10 s reuse window), password box again. Now the
+  server keeps the refresh token (table kdh_sessions) and the phone holds one secret that never
+  changes. TO MAKE IT LIVE: run `supabase/migrations/20261013090000_kdh_sessions.sql` in the SQL
+  Editor (idempotent). Until then the site works exactly as before; after it, devices move over on
+  their next renewal with no extra sign-in. Also check Authentication -> Sessions: "Single session
+  per user" OFF (with it on, signing in on a second device signs the first out), time-box /
+  inactivity timeout OFF. Then watch Authentication -> Logs for "Already Used" refresh errors: they
+  should stop. Not verified live from the build environment (kohlerdisthub.com is blocked there).
+- [ ] **Non-Buy Reports (2026-10-08, approved and merged to main 2026-10-08).** /nonbuy/ (nonbuy/README.txt)
+  is live for managers and reps. Still on Gavin: run `supabase/migrations/20261009090000_nonbuy_reports.sql` in the SQL Editor
+  (saved reports / templates / target lists; the page generates and exports without it). Decide the
+  "bought then fully returned" rule (today: not a purchase for that month) and read REPORTING_REQUEST
+  section 14 (dated sales lines, purchase occurrence, unit conversion, missing Brand Permissions rows).
 - [ ] **Manage Programs (2026-10-08).** Managers build incentives / MPOs in the Hub
   (/manage-programs/; manage-programs/README.txt). To make it live, in the Supabase SQL
   Editor in order: `supabase/migrations/20261008120000_manage_programs.sql`, then
@@ -118,12 +134,7 @@ device, a decision).
   inside the Encompass app's built-in browser, and once with Airplane Mode
   on (it should say Pending Upload and keep the draft). Built and tested in
   desktop Chromium with phone emulation only.
-- [ ] **Assistant: turn it on if it says "not set up"** (Gavin): My Accounts
-  -> an account -> Ask. A manager now sees the exact step: Vercel ->
-  Settings -> Environment Variables -> `ANTHROPIC_API_KEY` (value from
-  console.anthropic.com -> API Keys, pasted only into Vercel), Production,
-  Save, then Redeploy the latest Production deployment. The pilot item below
-  still applies (ledger SQL, KDH_CHAT_USERS).
+
 - [ ] **Lagunitas Sprint: two decisions** (Gavin; REPORTING_REQUEST.md 11.4):
   does the Little Sumpin' 15.5 gal keg (#12920) count, and is the
   workbook's NOT IN TERRITORY for Union / Essex right? The Hub, Account page
@@ -165,20 +176,7 @@ device, a decision).
   only Jan-Mar 2025 today).
 - [ ] **Breakage / out-of-code for September** (Gavin): the Fusion
   Comparison export, when ready -- rolling-distribution/README has the step.
-- [ ] **Account assistant: controlled pilot** (Gavin; api/README.txt
-  "CONTROLLED PILOT" has the exact clicks). (1) Supabase SQL Editor: run
-  `supabase/migrations/20260930210000_assistant_usage.sql`. (2) Anthropic
-  console: a dedicated key with its own spend limit. (3) Vercel env:
-  `ANTHROPIC_API_KEY` + `KDH_CHAT_USERS=<your email>` on PREVIEW only.
-  (4) Open a preview deployment, sign in, My Accounts -> account -> Ask.
-  (5) `node tools/assistant-eval/run.mjs --base <preview> --cookie
-  "kdh_at=..." --rep "Mike Ast" --account 81006` and read the report
-  (answers, tokens, latency, est. USD, numbers not found in the record).
-  (6) Same with `--models claude-opus-5-5,claude-sonnet-5-5` to pick the
-  model. (7) Production: key + 2-3 reps in KDH_CHAT_USERS +
-  `KDH_CHAT_DAILY_USD=10`; watch the ledger a week. (8) Clear
-  KDH_CHAT_USERS. Cost per question is an estimate ($0.05-0.07) until the
-  ledger says otherwise. Tell me anything the report flags.
+
 - [ ] **Friday: September recap on the hub** -- remove the `note` / `sub`
   from the September entry of INC_MONTHS in hub/hub.js so the September
   programs list under Previous months (they are "ended" from Oct 1), then
@@ -240,6 +238,8 @@ device, a decision).
   their MDM does the same thing on every iPad at once. (2026-09-25)
 - [ ] **Session length** (Gavin): Supabase -> Authentication -> Sessions ->
   JWT expiry 604800 (one week) so reps are not asked to sign in daily.
+  (2026-10-13: optional now -- the server-held session above fixes the
+  sign-outs; a longer JWT only makes renewals rarer.)
   (Since 2026-09-30 an expired cookie recovers silently on /login/ when
   "Remember me" was on -- the stored session refreshes and the cookies are
   re-issued -- so a short JWT costs a redirect, not a password.)
@@ -300,6 +300,15 @@ device, a decision).
 
 ## Done
 
+- [x] **2026-10-09 Account assistant is LIVE on kohlerdisthub.com.** Ledger migration run, API key + KDH_CHAT_USERS (every allow-list sign-in) + KDH_CHAT_DAILY_USD=10 set on Vercel Production. First live question answered (Shop Rite Liq Englewood: 12-month totals, top products, period comparisons). Still to do: watch the ledger for a week, raise the daily cap as real use shows, set a monthly spend limit in the Claude Console, consider KDH_CHAT_MODEL=claude-sonnet-5-5 if cost per question runs high. First try failed with HTTP 401 "invalid x-api-key" (a pasted key) -- managers now see the API's reason on the error line.
+
+- [x] **Non-Buy Reports (2026-10-08, merged to main the same day after Gavin's approval):** one engine (nonbuy/engine.js, pure) + one static source
+  (source-static.js) + two experiences: managers (authorized reps, Shopify-style product dialog, account filters
+  incl. new Chain / Customer Type fields, Non-Buyers / Missing Products / Lapsed Buyers, by account or by
+  product / brand / supplier, Zillow-style review, results grouped by rep, Save Report / Template / Target List,
+  Excel / CSV / PDF) and reps (My Route, Non-Buyers, Last 90 Days, eligible products only, compact rows).
+  Eligibility per account x product from Brand Permissions; unknown is never permission; whole-month dates
+  with requested vs effective vs coverage; reconciled against Gavin's Dave Ehlers Lagunitas exports.
 - [x] **Manage Programs v3 (2026-10-08):** eight steps with Objectives on its own (name / what is measured /
   unit / qualification / who it counts for; the stored metric derived from them), Dates & Rules showing only
   each objective's own settings (per-objective Non-Buy Lookback with an explicit fixed anchor, comparison /

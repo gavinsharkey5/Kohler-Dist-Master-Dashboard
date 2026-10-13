@@ -86,30 +86,79 @@ const FILE_TTL_MS = 5 * 60 * 1000;    // route / sales files cached per isolate
 const files = new Map();
 
 // ---------------------------------------------------------------- prompts
-const STABLE = `You are the account assistant inside Kohler Dist Hub, the internal sales app of Kohler Distributing, a beer, wine and spirits distributor in northern New Jersey. You help one sales rep with ONE customer account at a time.
+// v3 (2026-10-13): a SALES ASSISTANT, not a data analyst. The analysis stays
+// behind the scenes; the rep gets the answer, what to do and what to say.
+// The grounding rules of v2 (record > tools > page context, no invented
+// facts, no dollars, alerts are possibilities) are unchanged.
+const STABLE = `You are the account assistant inside Kohler Dist Hub, the internal sales app of Kohler Distributing, a beer, wine and spirits distributor in northern New Jersey. You are a SALES ASSISTANT for one sales rep at ONE customer account: you do the analysis behind the scenes and give the rep the conclusion. Reps read you on a phone, standing in the store, and may repeat what you say to the buyer, so every answer must be short, specific and safe to repeat.
 
-Your sources, in order of trust
-1. ACCOUNT RECORD (JSON, below): built by the server from Kohler's own exports for this account. It holds the identity, the reference month, monthly case totals, the largest products with their last 12 months, every buying alert with its evidence, the buying patterns, the rep's notes and the tap survey. Its "coverage" object says exactly what the record does and does not contain.
-2. TOOLS: the record holds only the largest products inline. For ANY other product, brand family, period total or comparison, call product_history, period_totals or list_products -- they compute on the complete record (every product, every month) on the server. Never estimate a number the tools can give you; never say a product was not bought unless product_history returned no match.
-3. PAGE CONTEXT (JSON, below, if present): what the app page currently shows for program status and warehouse availability. It is computed by the app, not part of the sales record. Quote it as "the tracker shows" / "the warehouse report shows (as of <date>)" and never present it as an invoice, an order or a confirmed fact.
+SOURCES, in order of trust
+1. ACCOUNT RECORD (JSON below), built by the server from Kohler's own exports for this account: identity, the buyer's name when on file, the reference month, monthly case totals, the largest products with their last 12 months, the last 3 months' purchases (recent3), every buying alert with its evidence, the buying patterns, the rep's notes and the tap survey. Its "coverage" object says exactly what the record does and does not contain.
+2. TOOLS: only the largest products are inline. For ANY other product, brand family, period total or comparison call product_history, period_totals or list_products; they compute on the complete record (every product, every month) on the server. Never estimate a number a tool can give you; never say a product was never bought unless product_history returned no match. Run product_history before answering a yes/no "do they buy X" question.
+3. PAGE CONTEXT (JSON below, when present): what the app page shows right now. "opportunities" = the ranked program opportunities for THIS account (what to sell, what is still needed here, the deadline, the products that count, Kohler warehouse stock with its date); "nextActions" = the page's Next Actions; "programs" = this account's standing on every active program; warehouse availability per product. Computed by the app from the trackers, not part of the sales record: say "the tracker shows" / "the warehouse report shows (as of <date>)", never present it as an order, an invoice or a confirmed fact.
 
-How to answer
-- Every number must come from the record or a tool result, with its period ("in Jun-Aug 2026", "12 months through Aug 2026"). Sales are cases per product per calendar MONTH, net of returns, through the reference month; there are no invoice dates, so speak in months, never days or orders.
-- Say what is OBSERVED (bought / not bought, how many cases, which months) apart from what is INFERRED (a possible reorder, a likely switch, a pitch idea). A buying alert is a POSSIBILITY to check, never a confirmed need: "may be due", "worth asking about", never "needs" or "lost". The record marks likely switches within a brand family -- mention them.
-- When history is too short to judge (a product with one or two buying months, an account new in the record) say so instead of reading a pattern into it.
-- When something is not in the data, say so in one short sentence and, when coverage.notInData names where it lives (Encompass), say that. Never guess or fill in: no contacts, hours, prices, deals, invoices, balances, retailer shelf stock, delivery dates, reasons an account stopped, or other accounts' data.
-- You cannot see photos. Merchandising photos, displays, menus and tap walls are not in the record or the page context; never describe or infer what a photo shows. If asked, say photos are on the account's Photos & Merchandising page for the rep to look at.
-- No dollar figures. Kohler keeps money off rep pages; if asked, say prices and payouts are not on this page.
-- Program facts (credited, lead, eligible, deadline, what qualifies) come only from PAGE CONTEXT programs; the rep's overall progress is the tracker's number, do not recompute it.
-- Keep THIS ACCOUNT's standing in a program (credited here, a lead here, eligible here, or not on its lists) apart from the REP's overall progress on that program (the tracker's total across all their accounts). Never imply one account finishes a program unless PAGE CONTEXT says so.
-- When you suggest eligible products that could help an incentive or MPO, tie each to the program requirement PAGE CONTEXT gives ("what qualifies") and to this account's own history; say it is a suggestion.
-- The products that COUNT for a program are PAGE CONTEXT programs[].productsThatCount (with eligibleHere / eligibleExamples sellable in this area). Never suggest a product for a program outside that rule -- e.g. a variety pack for a program that counts only named styles.
-- Warehouse figures in PAGE CONTEXT are KOHLER'S WAREHOUSE stock at the report date, not the retailer's shelf and not live: give the date, and if it is more than 7 days old say it may have changed. Never claim a product is in stock now.
-- Kohler's sales to this account show what the ACCOUNT BOUGHT FROM KOHLER, not what consumers bought (sell-through) and not what is on the shelf today. Never claim either.
-- For seasonal questions use only the seasonal / irregular products the record's patterns name, with their months; with fewer than two years of a product's history, say the season cannot be confirmed yet.
-- Comparable accounts, area trends and seasonality across the market are not available; you can only speak to THIS account's history. Say so when asked.
-- Be brief and scannable for a phone in a store: lead with the answer, then 2-5 short bullets of evidence, then one concrete next step if there is one. Plain words, no headings, no tables, no preamble, no closing offer. Use product names as the record spells them. Do not repeat the period and data date at the end; the app prints them under every answer.
-- If the rep asks for a pitch, build it from what the account actually buys and what PAGE CONTEXT lists as a lead, and label anything you infer as a suggestion.`;
+HOW TO ANSWER
+- ANSWER FIRST. The first line answers the exact question. No preamble, no restating the question, no description of how you worked it out unless the rep asks. Then only the evidence that matters, as short bullets. The rep must get it in five seconds and know what to do next.
+- MATCH THE QUESTION. A simple question gets a one-line answer ("Last bought Red Bull in Aug 2026 -- 3 cases."). Use the shapes below only when the question calls for them; never force a template on a simple answer.
+- ONE TO THREE, RANKED. When several products or opportunities fit, give the best 1-3, best first, and end with one short line offering more ("Want the next three?"). Never list everything you know.
+- SPECIFIC. Name the product as the record spells it, the month, the cases. No vague advice ("consider promoting", "analyze their patterns", "explore opportunities").
+- PLAIN WORDS. Talk like an experienced beverage rep, not an analyst or a brochure: no jargon, no corporate phrasing, no headings, no tables, no emojis. Short sentences. Bold labels (**Why:**) only where they help scanning on a phone.
+- FOLLOW-UPS. The conversation is about this account; "and last year?", "show more", "the second one", "what about the kegs?" refer to your previous answer. Continue it; do not repeat what you already said.
+
+SHAPES (pick the one that fits; drop any line you cannot support from the data)
+- Fact question ("when did they last buy X", "do they buy X", "what did they buy in July"): one line with the answer, the month and the cases. A second line only when an alert or a switch within the brand family changes the picture.
+- What to sell / what to pitch / what to focus on: up to three items, best first, each as
+  **1. <product or action>**
+  **Why:** one sentence from the record or the tracker (bought it before and stopped / buys the family but not this one / the tracker lists it as a lead / past its usual reorder gap).
+  **Do:** the concrete ask ("ask for one case", "put it next to the Twisted Tea 12-packs").
+  **Say:** one natural sentence the rep can say to the buyer, in quotes, using only facts from the record.
+- Reorder / overdue / what haven't they ordered lately: the products past their usual gap, most overdue first: product, last month bought, usual rhythm and usual order. Then one **Do:** line.
+- Program / incentive / MPO ("how do I close this", "what qualifies here"): what THIS account still needs per the tracker, the counting products it does not buy yet (best fit to its history first), the deadline, and one next step. Keep this account's standing apart from the rep's overall progress.
+- What should I tell the buyer / give me a pitch: 2-4 spoken sentences in quotes, built only from the record and the tracker, then one line on exactly what to ask for.
+- Bigger questions (what do they usually buy, how has it changed, how is the account doing): 3-5 bullets, most important first, then one next step if there is one.
+
+GROUNDING (what keeps an answer safe to repeat to a customer)
+- Every number comes from the record or a tool result, with its month or period ("Jun-Aug 2026", "12 months through Sep 2026"). Sales are cases per product per calendar MONTH, net of returns, through the reference month: there are no invoice dates, so say "in September", never a day, an order count or "last week". Asked about last week, yesterday or a date, say in one line that the record is monthly through the reference month and answer with the latest month.
+- Keep FACT apart from SUGGESTION. A fact is what the account bought. A buying alert is a POSSIBILITY to check, never a confirmed need: "may be due", "worth asking about", never "needs", "lost" or "stopped buying for good". Mark what you infer in plain words: "Suggestion:", "worth trying", "likely". The record marks likely switches within a brand family; mention them.
+- Recommend only what the data supports: a product the account bought before, a product in a brand family it buys, a product the tracker lists for a program here, or a reorder the alerts show; say which. Never invent purchases, quantities, dates, prices, deals, stock, promotions, or what the buyer said or wants; a buyer's interest exists only when the rep's notes record it.
+- Never say a product is in stock now. Warehouse figures are Kohler's warehouse at the report date; give the date, and past 7 days say it may have changed. Never promise an incentive will be completed or credited; say what the tracker shows is still needed.
+- Program facts (credited, lead, eligible, deadline, what counts) come only from PAGE CONTEXT. The products that COUNT are opportunities[].products / programs[].productsThatCount; never suggest a product for a program outside that rule (e.g. a variety pack for a program that counts named styles). The rep's overall progress is the tracker's number; do not recompute it. Never imply one account finishes a program unless PAGE CONTEXT says so.
+- Short history (one or two buying months, an account new in the record): say so instead of reading a pattern into it. Seasonal: only the record's seasonal products with their months; under two years of history the season cannot be confirmed.
+- Not in the data (coverage.notInData): say so in one short line and move on; when it matters, say where it lives (Encompass, the page's Contact section, the Photos page). Never guess contacts, hours, prices, deals, invoices, balances, shelf stock, delivery dates, the reason an account stopped, other accounts, area trends or comparable stores. You cannot see photos. No dollar figures anywhere; Kohler keeps money off rep pages.
+- What the account bought from Kohler is not sell-through and not what is on the shelf today; never claim either.
+- Do not repeat the period and the load date at the end; the app prints them under every answer.
+- Pitch requests: build from what the account actually buys and what the tracker lists as a lead; label inferred lines as suggestions.`;
+
+// A hint from the rep's wording, appended to the prompt per question (not
+// cached). The model still reads the question itself; the hint only makes
+// the shape consistent for the common asks.
+const INTENTS = [
+  ['more',      /^(show|see|give|list)?\s*(me\s+)?(more|the next|another|next three|next 3|others|rest)\b|\bwhat else\b/i],
+  ['talk',      /\b(tell|say|pitch|talking points?|open(ing|er)|how (do|should|would) i (present|frame|position)|script|words)\b/i],
+  ['program',   /\b(incentive|mpo|program|qualif|close\b(?! (the sale|the deal|him|her|them))|credit|count(s)? toward|deadline|eligible)/i],
+  ['reorder',   /\b(reorder|re-order|overdue|due|haven['’]?t (they |we )?(ordered|bought|taken)|not ordered|stopped|lapsed|slipp|fallen off|missing)\b/i],
+  ['priority',  /\b(focus|priorit|today|this visit|first|game ?plan|where (do|should) i start)\b/i],
+  ['sell',      /\b(what (should|can|could|do) i sell|sell (here|them|this account)|what to sell|recommend|suggest|opportunit|new (sku|product|item|placement)|bring in|add|expand|grow)\b/i],
+  ['recent',    /\b(recent|lately|last (week|month|time|order|visit)|latest|this month|last few)\b/i],
+  ['fact',      /\b(when|how (much|many|often)|do(es)? (they|this account|it) (buy|carry|take|order)|did they|have they|ever)\b/i],
+  ['summary',   /\b(usually|typically|overview|summary|about this account|how (is|are) (they|this account) doing|changed|trend)\b/i],
+];
+const INTENT_TEXT = {
+  more:     'The rep asked for MORE of your previous answer: continue the same list from where it stopped (the next 1-3 items), same shape, nothing repeated.',
+  talk:     'The rep wants WORDS FOR THE BUYER: 2-4 spoken sentences in quotes built only from the record and the tracker, then one line on exactly what to ask for.',
+  program:  'This is a PROGRAM question: what THIS account still needs per the tracker, the counting products it does not buy yet (best fit first), the deadline, one next step; the rep\'s overall progress stays separate.',
+  reorder:  'This is a REORDER / OVERDUE question: the products past their usual gap, most overdue first (product, last month bought, usual rhythm and order), then one Do: line. Use list_products filter "alert" or "stopped" if the inline alerts are not enough.',
+  priority: 'This is a PRIORITIES question: the top 2-3 things to do at this account, best first, each with Why / Do / Say, drawn from nextActions, opportunities, the alerts and the notes.',
+  sell:     'This is a WHAT-TO-SELL question: 1-3 specific products, best first, each with Why / Do / Say, supported by the record or the tracker; end with one line offering more.',
+  recent:   'This is a RECENT PURCHASES question: the latest month on record and what was bought in the last 1-3 months (recent3, or period_totals), products and cases, nothing else.',
+  fact:     'This is a FACT question: one line with the answer, month and cases (run product_history first when a product is named). Add a second line only if an alert or a switch changes the picture.',
+  summary:  'This is a SUMMARY question: 3-5 bullets, most important first, then one next step if there is one.',
+};
+export function intentOf(text) {
+  const t = String(text || '').trim();
+  for (const [k, re] of INTENTS) if (re.test(t)) return k;
+  return '';
+}
 
 const PITCH = `You are now in MOCK PITCH mode: you play the buyer at this account (the owner, manager or beverage buyer of the ACCOUNT RECORD's account) while the rep practises a pitch on you. Stay in character as the buyer until the rep asks for feedback or to stop.
 Grounding rules
@@ -261,6 +310,19 @@ export function StaticExportSource(request, env, token) {
         return Array.isArray(rows) ? rows : [];
       } catch { return []; }
     },
+    // the buyer's name from account_contacts (RLS: the caller's own token, the
+    // same read the page's Contact section makes); name only -- phone and
+    // email stay on the page
+    async contact(n) {
+      try {
+        const q = `${env.supabaseUrl}/rest/v1/account_contacts?select=contact_name&customer_num=eq.${encodeURIComponent(String(n))}&limit=1`;
+        const res = await fetch(q, { headers: { apikey: env.publishableKey, authorization: `Bearer ${token}`, accept: 'application/json' } });
+        if (!res.ok) return null;
+        const rows = await res.json();
+        const name = Array.isArray(rows) && rows[0] && String(rows[0].contact_name || '').trim();
+        return name ? name.slice(0, 80) : null;
+      } catch { return null; }
+    },
   };
 }
 
@@ -308,7 +370,15 @@ function packetFor(R, viewer, notes, meta) {
   const top = [...products].sort((a, b) => b.cases12 - a.cases12);
   const inline = top.filter((p, i) => i < 30 || p.alert).slice(0, 45);
   const trim = (arr, n) => Array.isArray(arr) ? arr.slice(0, n) : arr;
-  const patterns = P ? Object.assign({}, P, { topProducts: trim(P.topProducts, 15), topFamilies: trim(P.topFamilies, 10), newPlacements: trim(P.newPlacements, 10), sizeChanges: trim(P.sizeChanges, 10), stopped: trim(P.stopped, 15), seasonal: trim(P.seasonal, 10), consistent: trim(P.consistent, 15), families: undefined }) : null;
+  // seasonal products carry the calendar months they were bought in, so "what
+  // sells here in the fall" needs no tool round
+  const byName = new Map(products.map(p => [p.name, p]));
+  const monthsOfYear = name => { const p = byName.get(name); if (!p) return undefined; const s = new Set(); p.series.forEach((v, i) => { if (v > 0) s.add(+months[i].slice(5)); }); return [...s].sort((a, b) => a - b); };
+  const seasonal = Array.isArray(P && P.seasonal) ? P.seasonal.slice(0, 10).map(x => Object.assign({}, x, { monthsOfYear: monthsOfYear(x.product) })) : P && P.seasonal;
+  const patterns = P ? Object.assign({}, P, { topProducts: trim(P.topProducts, 15), topFamilies: trim(P.topFamilies, 10), newPlacements: trim(P.newPlacements, 10), sizeChanges: trim(P.sizeChanges, 10), stopped: trim(P.stopped, 15), seasonal, consistent: trim(P.consistent, 15), families: undefined }) : null;
+  // the last 3 months, product by product: the answer to "what did they buy lately"
+  const lab3 = months.slice(Math.max(0, N - 3));
+  const recent3 = products.map(p => ({ name: p.name, pkg: p.pkg, cases3: r1(sum(p.series, N - 3, N)), byMonth: lab3.map((m, i) => [m, r1(p.series[N - 3 + i] || 0)]).filter(x => x[1] > 0) })).filter(p => p.cases3 > 0).sort((a, b) => b.cases3 - a.cases3).slice(0, 20);
   const t = row.taps;
   let taps = null;
   if (t && t.last) {
@@ -319,14 +389,14 @@ function packetFor(R, viewer, notes, meta) {
   const premise = row.prem === 'On' ? 'On-premise' : row.prem === 'Off' ? 'Off-premise' : '';
   return {
     v: 2, source: 'server-built from Kohler exports', rep: R.route.rep, viewer,
-    account: { n: row.n, name: row.name, city: row.city, county: row.county, area: row.area, premise, service: row.service || null, address: row.address || null, sizeClass: viewer.role === 'manager' ? row.sizeClass || null : null, decile: viewer.role === 'manager' ? row.decile || null : null, stops2026: row.stops2026, distributionPoints2026: row.distPts, cases2026: row.cases2026, inSalesRecord: !!(products.length) },
+    account: { n: row.n, name: row.name, city: row.city, county: row.county, area: row.area, premise, service: row.service || null, address: row.address || null, buyer: meta.contact || null, sizeClass: viewer.role === 'manager' ? row.sizeClass || null : null, decile: viewer.role === 'manager' ? row.decile || null : null, stops2026: row.stops2026, distributionPoints2026: row.distPts, cases2026: row.cases2026, inSalesRecord: !!(products.length) },
     coverage: {
       record: products.length ? `every product this account bought from Kohler, cases per calendar month, ${monLabel(months[0])} – ${monLabel(months[N - 1])} (${N} months), net of returns; ${products.length} products on record` : 'no sales rows for this account in the loaded months',
       inline: products.length ? `"products" below lists the ${inline.length} largest of the last 12 months (plus every product on alert); the other ${Math.max(0, products.length - inline.length)} are reachable only through the tools` : 'nothing inline',
       referenceMonth: R.ref, referenceMonthLabel: monLabel(R.ref), salesLoaded: (R.route.sales && R.route.sales.loaded || '').slice(0, 10), bookAsOf: R.route.book && R.route.book.asOf, tapsAsOf: (R.route.taps && R.route.taps.asOf || '').slice(0, 10),
       grain: 'cases per product per calendar month; no invoice dates, no order counts, no dollars',
       notInData: [
-        'contact name, phone, email, business hours, delivery instructions, next delivery date (Encompass customer master -- requested)',
+        (meta.contact ? 'phone and email (on the page\'s Contact section), ' : 'contact name, phone, email (the page\'s Contact section when on file), ') + 'business hours, delivery instructions, next delivery date (Encompass)',
         'invoices, invoice dates, dollar amounts, prices, deals, promotions, payouts',
         'accounts receivable, balances, credits, aging',
         'retailer shelf stock, backorders, pre-orders, customer allocations',
@@ -336,6 +406,7 @@ function packetFor(R, viewer, notes, meta) {
       ],
     },
     monthlyCases: lab12.map((m, i) => [m, last12(series)[i]]),
+    recent3: { months: lab3, note: 'every product bought in the last 3 months of the record, cases by month, largest first (top 20)', products: recent3 },
     productsOnRecord: products.length,
     products: inline.map(p => ({ num: p.num, name: p.name, family: p.family, supplier: p.supplier, pkg: p.pkg, cases12: p.cases12, months12: p.months12, lastMonth: p.last, last12: last12(p.series), alert: p.alert ? p.alert.type : undefined, warehouse: meta.warehouse ? meta.warehouse[p.num] : undefined })),
     alerts: R.alerts.slice(0, 25),
@@ -518,6 +589,13 @@ async function availability(request, env) {
 
 export default async function handler(request) {
   if (request.method !== 'POST' && request.method !== 'GET') return json(405, { error: 'GET or POST only' });
+  try { return await handle(request); }
+  catch (e) {
+    // never a bare platform 500: the page shows this detail to managers
+    return json(500, { error: 'The assistant could not answer right now.', detail: 'function error: ' + String(e && e.message || e).slice(0, 200) });
+  }
+}
+async function handle(request) {
   const env = { apiKey: process.env.ANTHROPIC_API_KEY, supabaseUrl: process.env.SUPABASE_URL, publishableKey: process.env.SUPABASE_PUBLISHABLE_KEY,
     model: process.env.KDH_CHAT_MODEL || DEFAULT_MODEL, effort: process.env.KDH_CHAT_EFFORT || DEFAULT_EFFORT,
     users: String(process.env.KDH_CHAT_USERS || '').split(',').map(s => s.trim().toLowerCase()).filter(Boolean),
@@ -552,8 +630,10 @@ export default async function handler(request) {
   const repName = typeof body.rep === 'string' ? body.rep.trim().slice(0, 80) : '';
   const messages = cleanMessages(body.messages);
   if (!messages) return json(400, { error: 'The conversation must end with the rep\'s message.' });
-  let page = body.page && typeof body.page === 'object' ? { programs: Array.isArray(body.page.programs) ? body.page.programs.slice(0, 40) : [], warehouse: body.page.warehouse && typeof body.page.warehouse === 'object' ? body.page.warehouse : null, warehouseAsOf: body.page.warehouseAsOf || null } : null;
-  if (page && JSON.stringify(page).length > MAX_PAGE_BYTES) page = { programs: page.programs.slice(0, 15), warehouse: null, warehouseAsOf: null, truncated: true };
+  // the page's own reading: program standing, warehouse availability and (v3)
+  // the ranked opportunities + Next Actions the Account page already shows
+  let page = body.page && typeof body.page === 'object' ? { opportunities: Array.isArray(body.page.opportunities) ? body.page.opportunities.slice(0, 8) : [], nextActions: Array.isArray(body.page.nextActions) ? body.page.nextActions.slice(0, 4) : [], credited: Array.isArray(body.page.credited) ? body.page.credited.slice(0, 6) : [], programs: Array.isArray(body.page.programs) ? body.page.programs.slice(0, 40) : [], warehouse: body.page.warehouse && typeof body.page.warehouse === 'object' ? body.page.warehouse : null, warehouseAsOf: body.page.warehouseAsOf || null } : null;
+  if (page && JSON.stringify(page).length > MAX_PAGE_BYTES) page = { opportunities: page.opportunities.slice(0, 5), nextActions: page.nextActions.slice(0, 3), credited: page.credited.slice(0, 3), programs: page.programs.slice(0, 12), warehouse: null, warehouseAsOf: null, truncated: true };
   let model = env.model;
   if (typeof body.model === 'string' && body.model !== model) {
     if (who.role !== 'manager' || !MODELS[body.model]) return json(403, { error: 'Only a manager may choose a model, and only from the allowed list.' });
@@ -587,13 +667,13 @@ export default async function handler(request) {
   const routeRep = route.rep || repName || who.name;
 
   // 4. the record and the caller's notes, from trusted sources
-  const [sales, notes] = await Promise.all([src.account(repKey, n), src.notes(n, routeRep)]);
+  const [sales, notes, contact] = await Promise.all([src.account(repKey, n), src.notes(n, routeRep), src.contact ? src.contact(n) : null]);
   const R = makeRecord(row, sales, route);
   const previewOf = who.role === 'manager' ? readCookie(request.headers.get('cookie'), 'kdh_preview') : '';
   let previewName = '';
   if (previewOf) { try { const o = previewOf.charAt(0) === '{' ? JSON.parse(previewOf) : null; previewName = (o && o.name) || previewOf; } catch { previewName = previewOf; } }
   const viewer = { name: who.name || 'a Kohler user', role: who.role || 'rep', preview: previewName ? `previewing ${previewName} (read-only)` : undefined };
-  const packet = packetFor(R, viewer, notes, { warehouse: page && page.warehouse });
+  const packet = packetFor(R, viewer, notes, { warehouse: page && page.warehouse, contact });
 
   // 5. spend limits
   let q = null;
@@ -610,8 +690,11 @@ export default async function handler(request) {
   if (mode === 'pitch') system.push({ type: 'text', text: PITCH });
   if (mode === 'feedback') system.push({ type: 'text', text: PITCH + '\n\n' + FEEDBACK });
   let ctx = `Signed in: ${viewer.name} (${viewer.role}${viewer.preview ? ', ' + viewer.preview : ''}). Rep on this account: ${routeRep}.\n\nACCOUNT RECORD (trusted, server-built):\n${JSON.stringify(packet)}`;
-  if (page && (page.programs.length || page.warehouse)) ctx += `\n\nPAGE CONTEXT (what the app page shows; computed by the app, not part of the sales record):\n${JSON.stringify({ programs: page.programs, warehouseAsOf: page.warehouseAsOf, warehouseNote: page.warehouse ? 'warehouse availability per product is in products[].warehouse as [available units, status]' : 'no warehouse data on the page', truncated: page.truncated })}`;
+  if (page && (page.programs.length || page.warehouse || page.opportunities.length || page.nextActions.length)) ctx += `\n\nPAGE CONTEXT (what the app page shows; computed by the app, not part of the sales record):\n${JSON.stringify({ opportunities: page.opportunities.length ? page.opportunities : undefined, opportunitiesNote: page.opportunities.length ? 'ranked as the page ranks them: tracker leads first, then the soonest deadline; products[] = the counting products sellable here, largest warehouse stock first, as [name, package, units at Kohler\'s warehouse, stock status]; open[] = counting products not yet credited here' : 'the page lists no program opportunity for this account right now', credited: page.credited.length ? page.credited : undefined, nextActions: page.nextActions.length ? page.nextActions : undefined, programs: page.programs, warehouseAsOf: page.warehouseAsOf, warehouseNote: page.warehouse ? 'warehouse availability per product is in products[].warehouse as [available units, status]' : 'no warehouse data on the page', truncated: page.truncated })}`;
   system.push({ type: 'text', text: ctx, cache_control: { type: 'ephemeral' } });
+  // per-question shape hint (after the cached blocks, so it never breaks the cache)
+  const intent = mode === 'ask' ? intentOf(messages[messages.length - 1].content) : '';
+  if (intent && INTENT_TEXT[intent]) system.push({ type: 'text', text: `SHAPE HINT for the rep's latest message (from its wording; the message itself decides): ${INTENT_TEXT[intent]}` });
   const base = { model, max_tokens: MAX_OUTPUT_TOKENS, stream: true, fallbacks: 'default', system, tools: TOOLS };
   if (MODELS[model].effort) base.output_config = { effort: env.effort };
 
@@ -625,7 +708,7 @@ export default async function handler(request) {
   const opened = await claudeOpen(env, Object.assign({}, base, { messages: turn }));
   if (opened.httpStatus) {
     const status = opened.httpStatus === 429 ? 429 : 502;
-    return json(status, { error: opened.httpStatus === 429 ? 'The assistant is busy right now. Try again in a minute.' : 'The assistant could not answer right now.', detail: opened.detail });
+    return json(status, { error: opened.httpStatus === 429 ? 'The assistant is busy right now. Try again in a minute.' : 'The assistant could not answer right now.', detail: 'Claude API HTTP ' + opened.httpStatus + (opened.detail ? ': ' + opened.detail : '') });
   }
 
   const stream = new ReadableStream({
@@ -649,7 +732,7 @@ export default async function handler(request) {
           turn.push({ role: 'user', content: results });
           rounds += 1;
           res = await claudeCall(env, Object.assign({}, base, { messages: turn }), onText, onError);
-          if (res.httpStatus) { send({ error: res.httpStatus === 429 ? 'The assistant is busy right now. Try again in a minute.' : 'The assistant could not finish that answer.' }); stop = 'error'; break; }
+          if (res.httpStatus) { send({ error: res.httpStatus === 429 ? 'The assistant is busy right now. Try again in a minute.' : 'The assistant could not finish that answer.', detail: 'HTTP ' + res.httpStatus + (res.detail ? ': ' + res.detail : '') }); stop = 'error'; break; }
         }
         if (stop === 'tool_use') send({ t: '\n\n(I ran out of lookups for that one — ask a narrower question.)' });
         if (stop === 'refusal' && !sentText) send({ t: 'I can’t help with that one here. Ask about this account’s buying, programs or how to pitch it.' });
@@ -658,7 +741,7 @@ export default async function handler(request) {
         send({ done: true, stop: stop || 'end_turn', usage: Object.assign({ rounds, ms, model: servedBy || model, fellBack: !!(servedBy && servedBy !== model) }, usage), tools: toolsUsed.map(t => t.tool) });
         if (!env.noLedger) await ledger(env, token, { account_num: String(n), rep_name: routeRep, mode, model: servedBy || model, requested_model: model, input_tokens: usage.input, cache_write_tokens: usage.cacheWrite, cache_read_tokens: usage.cacheRead, output_tokens: usage.output, rounds, ms, stop: stop || 'end_turn', est_usd: estUsd(servedBy && MODELS[servedBy] ? servedBy : model, usage), tools: toolsUsed.map(t => t.tool).join(',') || null });
       } catch (e) {
-        send({ error: 'The connection to the assistant dropped.' });
+        send({ error: 'The connection to the assistant dropped.', detail: 'function error: ' + String(e && e.message || e).slice(0, 200) });
       } finally {
         try { c.close(); } catch {}
       }

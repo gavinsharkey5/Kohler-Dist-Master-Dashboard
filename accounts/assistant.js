@@ -48,20 +48,33 @@ function load(n){ try{ const s = sessionStorage.getItem(KEY(n)); if(s) return JS
 function save(n, st){ try{ sessionStorage.setItem(KEY(n), JSON.stringify(st)); }catch(e){} }
 function forget(){ try{ Object.keys(sessionStorage).filter(k=>k.indexOf('kdh_ask:')===0).forEach(k=>sessionStorage.removeItem(k)); }catch(e){} }
 
-// markdown-lite: paragraphs, "- " bullets, **bold**. Everything else is text.
+// markdown-lite: paragraphs, "- " bullets (numbered ones become <ol>), **bold**.
+// (2026-10-13) Three answer shapes the prompt asks for get their own look so a
+// phone can scan them: "**1. Product**" on its own line = a ranked item with a
+// number badge; "**Why:** ..." / "**Do:** ..." = a labelled line; "**Say:** ..."
+// = the customer-ready line, set off as a quote. A stray "## heading" becomes a
+// bold line. Everything else is text.
 function md(s){
-  const lines = String(s||'').split('\n'); let html = '', inList = false, para = [];
+  const lines = String(s||'').split('\n'); let html = '', list = '', para = [];
   const flush = ()=>{ if(para.length){ html += `<p>${para.join('<br>')}</p>`; para = []; } };
+  const endList = ()=>{ if(list){ html += `</${list}>`; list = ''; } };
   const inline = t => E(t).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+  const ITEM = /^\*\*\s*(\d{1,2})[.)]\s*(.+?)\s*\*\*\s*:?\s*$/;                 // **1. Carbliss Black Raspberry 4-Pack**
+  const SAY = /^\*\*\s*(?:say|what to say|say this|tell (?:him|her|them|the buyer)|talking point|opener|opening line)\s*:?\s*\*\*\s*:?\s*/i;
+  const LABEL = /^\*\*[^*]{1,40}\*\*\s*:?(\s|$)/;                               // **Why:** one sentence / a short bold line
   lines.forEach(raw=>{
-    const l = raw.replace(/\s+$/,'');
-    const m = l.match(/^\s*(?:[-*•]|\d+[.)])\s+(.*)$/);
-    if(m){ flush(); if(!inList){ html += '<ul>'; inList = true; } html += `<li>${inline(m[1])}</li>`; return; }
-    if(inList){ html += '</ul>'; inList = false; }
-    if(!l.trim()){ flush(); return; }
+    const l = raw.replace(/\s+$/,'').replace(/^\s*#{1,6}\s+(.*?)\s*#*$/, '**$1**');
+    const t = l.trim();
+    const m = t.match(/^(?:([-*•])|(\d{1,2})[.)])\s+(.*)$/);
+    if(m){ flush(); const kind = m[2] ? 'ol' : 'ul'; if(list && list!==kind) endList(); if(!list){ html += `<${kind}>`; list = kind; } html += `<li>${inline(m[3])}</li>`; return; }
+    endList();
+    if(!t){ flush(); return; }
+    const it = t.match(ITEM); if(it){ flush(); html += `<p class="item"><span class="n">${E(it[1])}</span><span>${inline(it[2])}</span></p>`; return; }
+    if(SAY.test(t)){ flush(); html += `<p class="say"><b>Say:</b> ${inline(t.replace(SAY, ''))}</p>`; return; }
+    if(LABEL.test(t)){ flush(); html += `<p class="lbl">${inline(t)}</p>`; return; }
     para.push(inline(l));
   });
-  if(inList) html += '</ul>'; flush();
+  endList(); flush();
   return html;
 }
 const fmtDate = s => { if(!s) return ''; const d = new Date(s.slice(0,10)+'T12:00:00Z'); return isNaN(d) ? s : d.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric', timeZone:'UTC'}); };
@@ -76,15 +89,19 @@ function suggestions(packet, mode){
     out.push('Play a buyer who says the cooler is full and see how I handle it.');
     return out.slice(0,4);
   }
-  // the six starter questions (2026-10-02 brief, Zalando's suggested questions)
-  return ['What does this account usually buy?', 'Which products may be due for a reorder?', 'How has its buying pattern changed?', 'What seasonal purchases appear in its history?', 'Which eligible products could help this account qualify for an incentive or MPO?', 'What should I discuss on my next visit?'];
+  // the six starter questions (2026-10-13: the questions reps actually ask; the
+  // program one names the page's top opportunity when there is one)
+  const opp = (packet.opportunities||[])[0];
+  return ['What should I sell here?', 'What’s due for a reorder?', 'What did they buy recently?', 'What should I focus on today?', opp ? `How do I close ${opp.name} here?` : 'Which incentive or MPO can this account still help with?', 'What should I tell the buyer?'];
 }
 
 // what the browser sends besides the conversation: identity + the page's own reading
 function pageContext(packet){
   const warehouse = {};
   (packet.products||[]).forEach(p=>{ if(p.warehouseAvailable!=null) warehouse[p.num] = [p.warehouseAvailable, p.warehouseStatus||null]; });
-  return {v:2, account: packet.account.n, rep: packet.rep, page: {programs: (packet.programs||[]).slice(0,40), warehouse: Object.keys(warehouse).length ? warehouse : null, warehouseAsOf: (packet.data||{}).warehouseAsOf || null}};
+  // (2026-10-13) + the page's ranked Program Opportunities, credited programs and Next Actions
+  return {v:2, account: packet.account.n, rep: packet.rep, page: {opportunities: (packet.opportunities||[]).slice(0,8), credited: (packet.credited||[]).slice(0,6), nextActions: (packet.nextActions||[]).slice(0,4),
+    programs: (packet.programs||[]).slice(0,40), warehouse: Object.keys(warehouse).length ? warehouse : null, warehouseAsOf: (packet.data||{}).warehouseAsOf || null}};
 }
 
 function mount(el, packet, opts){
@@ -127,7 +144,7 @@ function mount(el, packet, opts){
         <div class="pseg" role="tablist"><button type="button" class="${st.mode==='ask'?'active':''}" data-mode="ask">Ask</button><button type="button" class="${st.mode==='pitch'?'active':''}" data-mode="pitch">Practice a Pitch</button></div>
         <div class="note ask-intro">${st.mode==='pitch'
           ? `<p>The assistant plays the buyer at ${E(packet.account.name)}. Its objections are simulated practice.</p><details class="ask-more"><summary>How Practice Works</summary><p>What it says about this account’s buying comes from the sales record, and it will not invent prices, stock levels or competitor facts. Type your opening line, then work the conversation. <b>Get Feedback</b> ends the role-play with coaching.</p></details>`
-          : `<p>Ask about <b>${E(packet.account.name)}</b>. Answers use its monthly sales record${span ? `, ${E(span)}` : ''}${D.salesLoaded ? ` (loaded ${E(fmtDate(D.salesLoaded))})` : ''}, checked by code.</p><details class="ask-more"><summary>What It Can Answer</summary><p>Every product, ${E(span || ('through '+ref))}${D.salesLoaded ? `, loaded ${E(fmtDate(D.salesLoaded))}` : ''} — plus its buying alerts and patterns, your notes and the tap survey. Program status and warehouse availability are quoted from what this page shows. Not in the data: contacts, hours, prices, invoices, balances, shelf stock, days between orders. It does not look at photos — it cannot see what a display, menu or tap wall shows. It says so when a question needs any of these.</p></details>`}</div>
+          : `<p>Ask about <b>${E(packet.account.name)}</b>: what to sell, what’s due, what to say. Short answers from its monthly sales record${span ? `, ${E(span)}` : ''}${D.salesLoaded ? ` (loaded ${E(fmtDate(D.salesLoaded))})` : ''}, checked by code.</p><details class="ask-more"><summary>What It Can Answer</summary><p>Every product, ${E(span || ('through '+ref))}${D.salesLoaded ? `, loaded ${E(fmtDate(D.salesLoaded))}` : ''} — plus its buying alerts and patterns, your notes, the tap survey, and the program opportunities and next actions this page shows. Warehouse stock is the report’s snapshot, dated. Not in the data: hours, prices, invoices, balances, shelf stock, days between orders. It does not look at photos — it cannot see what a display, menu or tap wall shows. It says so when a question needs any of these, and it marks suggestions apart from what the account actually bought.</p></details>`}</div>
         ${pitchBar}
       </div>
       <div id="askAvail">${availHtml()}</div>
@@ -173,8 +190,11 @@ function mount(el, packet, opts){
       const r = await fetch(ENDPOINT, {method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(body), signal: aborter.signal, credentials:'same-origin'});
       if(!r.ok){
         let msg = 'The assistant could not answer right now.';
-        try{ const j = await r.json(); if(j && j.error) msg = j.error; }catch(e){}
+        let detail = '';
+        try{ const j = await r.json(); if(j && j.error) msg = j.error; if(j && j.detail) detail = String(j.detail); }catch(e){}
         if(r.status===401) msg = 'Your sign-in has expired — sign in again to use the assistant.';
+        // managers see the upstream reason (HTTP status + the API's own message) so a setup problem can be named
+        if(isMgrCookie()) msg += ` (HTTP ${r.status}${detail ? ': ' + detail : ''})`;
         throw Object.assign(new Error(msg), {status: r.status});
       }
       const reader = r.body.getReader(); const dec = new TextDecoder(); let buf = '';
@@ -190,7 +210,7 @@ function mount(el, packet, opts){
           if(ev.tool){ meta.tools.push(ev.tool); status.hidden = false; status.innerHTML = '<span class="dots"><i></i><i></i><i></i></span> Checking the full record…'; }
           if(ev.t){ out += ev.t; status.hidden = true; bubble.firstChild.innerHTML = md(out); logEl.scrollTop = logEl.scrollHeight; }
           if(ev.done && ev.usage){ meta.fellBack = !!ev.usage.fellBack; }
-          if(ev.error) throw new Error(ev.error);
+          if(ev.error) throw new Error(ev.error + (ev.detail && isMgrCookie() ? ` (${ev.detail})` : ''));
         }
       }
       if(!out.trim()) out = 'No answer came back. Try asking again.';

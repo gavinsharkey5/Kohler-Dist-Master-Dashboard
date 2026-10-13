@@ -15,7 +15,7 @@
 //   SUPABASE_URL              https://<ref>.supabase.co
 //   SUPABASE_PUBLISHABLE_KEY  sb_publishable_...  (safe in the browser)
 
-import { parseRt, refreshSession, sessionCookies, clearedCookies, RENEW_BEFORE_MS } from './api/session.js';
+import { resolveSession, accessCookies, clearedCookies, tokenExpiry, rpc, forgetSid } from './api/session.js';
 
 export const config = {
   // Everything except the sign-in page, the shared logo assets, and
@@ -51,6 +51,7 @@ const REP_PATHS = [
   '/api/chat',                          // the account assistant (api/chat.js re-checks the token itself)
   '/api/geocode',                       // account map coordinates (api/geocode.js authorizes the route itself)
   '/inventory/',                        // What Can I Sell (units only -- no cost, value or margin; 2026-10-02)
+  '/nonbuy/',                           // Non-Buy Reports (2026-10-08; a rep's history + book are the per-rep slices below)
 ];
 const REP_HOME = '/rep/';
 
@@ -142,38 +143,58 @@ export default async function middleware(request) {
     );
   }
 
-  // STAY SIGNED IN (2026-10-02): the refresh token lives in the HttpOnly
-  // kdh_rt cookie (set by api/session.js after sign-in). When the access
-  // token is missing or has under 10 minutes left, renew it here, before
-  // the check, and send the new cookies back with whatever this request
-  // gets -- so a rep is only asked to sign in after signing out.
+  // STAY SIGNED IN (2026-10-02; server-held since 2026-10-13, see
+  // api/session.js): the device's sign-in is the HttpOnly kdh_sid cookie
+  // (a secret that never changes; the refresh token it stands for is kept
+  // and renewed in public.kdh_sessions) -- or, until that migration has
+  // run, the legacy kdh_rt cookie holding the refresh token itself. When
+  // the access token is missing or has under 10 minutes left, renew it
+  // before the check and send the fresh cookies back with whatever this
+  // request gets -- so a rep is only asked to sign in after signing out.
   const cookieHeader = request.headers.get('cookie') || '';
-  const rt = parseRt(readCookie(cookieHeader, 'kdh_rt'));
-  let token = readCookie(cookieHeader, COOKIE);
-  let renewed = null, dropRt = false, softFail = false;
-  if (rt && (!token || tokenExpiry(token) - Date.now() < RENEW_BEFORE_MS)) {
-    const r = await refreshSession(rt.token, supabaseUrl, publishableKey);
-    if (r.ok) { renewed = r.session; token = r.session.access_token; }
-    else if (r.reason === 'invalid') dropRt = true;
-    else softFail = true;   // Supabase busy / network: keep the cookie, let /login/ retry
+  const at = readCookie(cookieHeader, COOKIE);
+  const signedIn = !!(readCookie(cookieHeader, 'kdh_sid') || readCookie(cookieHeader, 'kdh_rt'));
+  const isDoc = wantsDocument(request);
+  // A PAGE LOAD whose access token is gone or expired takes one hop through
+  // the session function: its response is an ordinary function reply, so
+  // the renewed cookies reliably reach the browser before the page's own
+  // scripts run (a pass-through response is best effort). The function
+  // sends the browser back here, or to /login/ when nothing can be renewed.
+  // (kdh_hop, set by that reply for 20 s, means the hop was just taken: renew
+  // inline instead, so two disagreeing clocks can never bounce a page load
+  // back and forth.)
+  if (isDoc && signedIn && (!at || tokenExpiry(at) <= Date.now()) && request.method === 'GET' && !readCookie(cookieHeader, 'kdh_hop')) {
+    return redirect(new URL(`/api/session?next=${encodeURIComponent(url.pathname + url.search)}`, url).toString());
   }
-  let verdict = token ? await check(token, supabaseUrl, publishableKey) : { ok: false };
+  const s = await resolveSession(cookieHeader, supabaseUrl, publishableKey);
+  let verdict = s.token ? await check(s.token, supabaseUrl, publishableKey) : { ok: false };
   // Say why a page load was sent to sign-in (the page words it for the rep).
   if (!verdict.ok && verdict.reason !== 'notlisted') {
-    if (dropRt) verdict = { ok: false, reason: 'revoked' };
-    else if (softFail) verdict = { ok: false, reason: 'unavailable' };
+    if (s.reason === 'revoked') verdict = { ok: false, reason: 'revoked' };
+    else if (s.reason === 'unavailable') verdict = { ok: false, reason: 'unavailable' };
   }
   const res = route(request, url, verdict);
-  if (renewed && verdict.ok) {
-    const sets = sessionCookies(renewed, verdict, rt.keep);
+  if (verdict.ok && (s.token !== at || s.cookies.length)) {
+    const sets = [...s.cookies, ...accessCookies(s.token, verdict, s.keep)];
     // An API function reads the cookie from the request, so it gets the
     // renewed token too (static files don't care).
-    const fwd = url.pathname.startsWith('/api/') ? requestWithCookies(request, cookieHeader, { [COOKIE]: renewed.access_token, kdh_rt: `k${rt.keep ? 1 : 0}.${renewed.refresh_token}` }) : null;
+    const replace = { [COOKIE]: s.token };
+    if (s.legacy) replace.kdh_rt = `k${s.keep ? 1 : 0}.${s.session.refresh_token}`;
+    const fwd = url.pathname.startsWith('/api/') ? requestWithCookies(request, cookieHeader, replace) : null;
     return withHeaders(res, sets, fwd);
   }
-  if (renewed && !verdict.ok && verdict.reason === 'notlisted') return withHeaders(res, clearedCookies());
-  if (dropRt) return withHeaders(res, ['kdh_rt=; Path=/; Max-Age=0; Secure; SameSite=Lax; HttpOnly']);
+  if (!verdict.ok && verdict.reason === 'notlisted') {
+    // Off the allow list: end the device's sign-in everywhere.
+    if (s.hash) { forgetSid(s.hash); await rpc('kdh_session_delete', { p_sid_hash: s.hash }, supabaseUrl, publishableKey); }
+    return withHeaders(res, clearedCookies());
+  }
+  if (s.cookies.length) return withHeaders(res, s.cookies);   // a dead cookie cleared
   return res;
+}
+
+function wantsDocument(request) {
+  return request.headers.get('sec-fetch-dest') === 'document' ||
+    (request.headers.get('accept') || '').includes('text/html');
 }
 
 function route(request, url, verdict) {
@@ -271,17 +292,6 @@ function readCookie(header, name) {
     if (k === name) return decodeURIComponent(rest.join('='));
   }
   return '';
-}
-
-function tokenExpiry(token) {
-  try {
-    const payload = token.split('.')[1];
-    const json = atob(payload.replace(/-/g, '+').replace(/_/g, '/'));
-    const exp = JSON.parse(json).exp;
-    return typeof exp === 'number' ? exp * 1000 : 0;
-  } catch {
-    return 0;
-  }
 }
 
 async function check(token, supabaseUrl, publishableKey) {
