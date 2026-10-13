@@ -182,6 +182,7 @@
     inventory: I('<path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5"/><path d="M12 13v8"/>'),
     exc: I('<path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4"/><path d="M12 17h.01"/>'),
     perf: I('<path d="M4 20V11"/><path d="M10 20V5"/><path d="M16 20v-6"/><path d="M21 20H3"/>'),
+    kk: I('<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h4M7 16h10M14 12h3"/>'),
     mp: I('<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/>'),
     merch: I('<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>'),
     more: I('<circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/>'),
@@ -235,6 +236,7 @@
     if (isMgr) t.push({ key: 'merch', group: 'Manager', label: 'Merchandising', href: ROOT + 'merchandising/' });
     if (isMgr) t.push({ key: 'perf', group: 'Manager', label: 'Incentive Performance', href: ROOT + 'performance/' });
     if (isMgr) t.push({ key: 'mp', group: 'Manager', label: 'Manage Programs', href: ROOT + 'manage-programs/' });
+    if (isMgr) t.push({ key: 'kk', group: 'Manager', label: 'Kohler Korner', href: ROOT + 'kohler-korner/' });
     if (isMgr) t.push({ key: 'ws', group: 'Manager', label: 'Rep Workspace', href: REP_HOME });
     return t;
   }
@@ -253,6 +255,7 @@
     if (/^team\//.test(rel)) return { nav: 'team', tool: '' };
     if (/^performance\//.test(rel)) return { nav: 'more', tool: 'perf' };
     if (/^manage-programs\//.test(rel)) return { nav: 'more', tool: 'mp' };
+    if (/^kohler-korner\//.test(rel)) return { nav: 'more', tool: 'kk' };
     if (/^exceptions\//.test(rel)) return { nav: 'more', tool: 'exc' };
     if (/^merchandising\//.test(rel)) return { nav: 'more', tool: 'merch' };
     if (/^inventory\//.test(rel)) return { nav: 'inventory', tool: isMgr ? 'invm' : '' };
