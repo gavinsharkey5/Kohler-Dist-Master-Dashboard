@@ -19,3 +19,6 @@ incentive-tracking/data/refreshed_archive/
 
 # The Carbliss MPO tracker's frozen program-period snapshot -- generator input, never loaded by a page.
 carbliss-mpo/data/final.json
+
+# Newsletter validation scripts are never browser assets.
+kohler-korner/tests/

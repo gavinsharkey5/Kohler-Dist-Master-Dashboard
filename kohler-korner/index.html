@@ -23,24 +23,17 @@
 <script src="../shared/auth-config.js"></script>
 <meta name="kdh-page" content="Kohler Korner">
 <script src="../shared/kdh-user.js?v=20261008b"></script>
+<link rel="stylesheet" href="newsletter.css?v=20261013">
 </head>
 <body>
-<main class="wrap home mh">
-  <header class="hh">
-    <div class="hh-id">
-      <h1>Kohler Korner</h1>
-      <p class="hh-meta">Create, manage, and publish Kohler's monthly company newsletter.</p>
-    </div>
-  </header>
-  <section class="hs" aria-labelledby="newsletter-title">
-    <div class="kt">
-      <span class="kt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h4M7 16h10M14 12h3"/></svg></span>
-      <div class="kt-main">
-        <h2 class="kt-t" id="newsletter-title" style="margin:0">Newsletter Builder — Coming Soon.</h2>
-        <p class="kt-s" style="margin:0">This section will allow authorized managers to collaborate on monthly editions of Kohler Korner.</p>
-      </div>
-    </div>
-  </section>
+<main class="wrap home mh kk-app">
+ <header class="hh"><div class="hh-id"><h1>Kohler Korner</h1><p class="hh-meta">Create, manage, and publish Kohler's monthly company newsletter.</p></div></header>
+ <div id="kkNotice" class="kk-alert" role="status" aria-live="polite" hidden></div>
+ <div id="kkApp"><p class="kk-muted">Loading editions…</p></div>
 </main>
+<dialog class="kk-dialog" id="kkDialog"></dialog>
+<script src="../shared/kdh-data.js?v=20261013"></script>
+<script src="model.js?v=20261013"></script>
+<script src="newsletter.js?v=20261013"></script>
 </body>
 </html>

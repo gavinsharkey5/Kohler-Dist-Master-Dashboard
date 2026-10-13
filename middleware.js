@@ -34,6 +34,10 @@ const cache = new Map(); // token -> { ok, email, role, until }
 // path prefix; anything else sends a rep back to their landing page.
 // Keep this in step with what those pages load (see supabase/README.txt).
 const REP_PATHS = [
+  '/kohler-korner/read/',                // read-only published newsletters (RLS; no drafts)
+  '/kohler-korner/model.js',              // shared safe rendering only
+  '/kohler-korner/newsletter.js',         // reader client (editor RPCs enforce permissions)
+  '/kohler-korner/newsletter.css',
   '/rep/',                              // the rep landing page
   '/accounts/',                         // Accounts tab + Account page (data slices checked below)
   '/hub/',                              // Incentives & MPO Hub

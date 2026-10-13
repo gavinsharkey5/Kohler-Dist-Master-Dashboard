@@ -1,0 +1,30 @@
+/* The same content model and safe renderer drive editing, reading and print. */
+(function (g) {
+  'use strict';
+  const TYPES = {article:'Article', products:'Products & suppliers', events:'Events', birthdays:'Birthdays', anniversaries:'Work anniversaries', people:'New faces'};
+  const STANDARD = [['Message From Frank','article'],['Seasonal Beers','products'],['New Beers & Brands','products'],['On the Horizon','article'],['HR Corner','article'],['Special Events','events'],['Birthdays','birthdays'],['Work Anniversaries','anniversaries'],['New Faces','people'],['Employee Spotlight','article']];
+  const id = () => g.crypto.randomUUID();
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  function section(title,type){ return {id:id(),title,type,hidden:false,complete:false,assignedTo:'',article:{title:'',author:'',text:'',photos:[]},items:[]}; }
+  function edition(template){return {sections:(template || STANDARD.map(([title,type])=>({title,type}))).map(s=>Object.assign(section(s.title,s.type),{hidden:!!s.hidden,assignedTo:s.assignedTo||''}))};}
+  function populated(s){return s.type==='article' ? !!(s.article.text.trim() || s.article.photos.length) : s.items.length>0;}
+  function status(s){return s.complete?'Complete':populated(s)?'In Progress':'Not Started';}
+  function assets(content){const out=[];function visit(o){if(!o||typeof o!=='object')return;if(typeof o.path==='string')out.push(o.path);Object.values(o).forEach(v=>{if(typeof v==='object')visit(v);});}visit(content);return [...new Set(out)];}
+  // A deliberately small, escaped markup language: no HTML, embeds or links.
+  function inline(s){return esc(s).replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>').replace(/\*([^*]+)\*/g,'<em>$1</em>');}
+  function text(s){let html='',list=false,para=[];const flush=()=>{if(para.length){html+='<p>'+para.map(inline).join(' ')+'</p>';para=[];}if(list){html+='</ul>';list=false;}};String(s||'').split(/\r?\n/).forEach(line=>{if(/^[-•] /.test(line)){if(para.length)flush();if(!list){html+='<ul>';list=true;}html+='<li>'+inline(line.slice(2))+'</li>';}else if(/^#{1,3} /.test(line)){flush();html+='<h3>'+inline(line.replace(/^#+ /,''))+'</h3>';}else if(!line.trim())flush();else{if(list){html+='</ul>';list=false;}para.push(line);}});flush();return html;}
+  function photo(p,urls,cls=''){if(!p)return '';const url=p.path&&urls[p.path];if(!url)return p.placeholder?'<div class="kk-photo-placeholder">'+esc(p.placeholder)+'</div>':'';return '<figure class="'+cls+'"><img src="'+esc(url)+'" alt="'+esc(p.caption||'Newsletter photograph')+'" loading="eager"><figcaption>'+esc(p.caption||'')+'</figcaption></figure>';}
+  function gallery(ps,urls){return ps&&ps.length?'<div class="kk-gallery">'+ps.map(p=>photo(p,urls)).join('')+'</div>':'';}
+  const month = n=>new Intl.DateTimeFormat('en-US',{month:'long',timeZone:'UTC'}).format(new Date(Date.UTC(2000,Number(n)-1,1)));
+  function label(e){return month(e.month)+' '+e.year+(e.is_sample?' — Sample':'');}
+  function render(e,urls={},draft=false){let ss=e.content.sections.filter(s=>!s.hidden&&populated(s));return `<article class="kk-magazine"><header class="kk-mast"><div class="kk-kicker">THE PEOPLE · THE BRANDS · THE STORIES</div><div class="kk-wordmark">Kohler <span>Korner</span></div><div class="kk-issue"><span>${esc(label(e))}</span><span>${e.is_sample?'Historical sample · Unpublished':draft?'Draft preview':'The company newsletter'}</span></div></header>${e.is_sample?'<aside class="kk-sample-note">Historical content from December 2015. This unpublished sample is a design demonstration, not current company, HR or product information. Original wording and historical dates may need review.</aside>':''}${ss.length?ss.map((s,i)=>{
+    let body='';
+    if(s.type==='article')body=`<h2>${esc(s.article.title||s.title)}</h2>${s.article.author?'<p class="kk-byline">By '+esc(s.article.author)+'</p>':''}<div class="kk-copy">${text(s.article.text)}</div>${gallery(s.article.photos,urls)}`;
+    if(s.type==='products')body='<h2>'+esc(s.title)+'</h2><div class="kk-products">'+s.items.map(p=>`<article class="kk-product">${photo(p.logo,urls,'kk-logo')}${photo(p.photo,urls,'kk-product-photo')}<div class="kk-kicker">${esc(p.brand)}</div><h3>${esc(p.name)}</h3>${text(p.description)}${p.date?'<p class="kk-byline">Launch: '+esc(p.date)+'</p>':''}</article>`).join('')+'</div>';
+    if(s.type==='events')body='<h2>'+esc(s.title)+'</h2>'+s.items.map(p=>`<article class="kk-event"><h3>${esc(p.title)}</h3>${p.date?'<p class="kk-byline">'+esc(p.date)+'</p>':''}${text(p.description)}${gallery(p.photos,urls)}</article>`).join('');
+    if(s.type==='people')body='<h2>'+esc(s.title)+'</h2><div class="kk-people">'+s.items.map(p=>`<article>${photo(p.photo,urls,'kk-headshot')}<h3>${esc(p.name)}</h3><p class="kk-byline">${esc(p.title)}${p.department?' · '+esc(p.department):''}</p>${text(p.introduction)}</article>`).join('')+'</div>';
+    if(s.type==='birthdays'||s.type==='anniversaries'){const groups={};s.items.forEach(p=>{const k=s.type==='birthdays'?Number(p.month):Number(p.years);(groups[k]||(groups[k]=[])).push(p);});body='<h2>'+esc(s.title)+'</h2><div class="kk-recognition">'+Object.keys(groups).sort((a,b)=>a-b).map(k=>'<div><h3>'+esc(s.type==='birthdays'?month(k):k+' years of service')+'</h3><ul>'+groups[k].sort((a,b)=>s.type==='birthdays'?a.day-b.day:a.name.localeCompare(b.name)).map(p=>'<li><span>'+esc(p.name)+'</span>'+(s.type==='birthdays'?'<b>'+esc(p.day)+'</b>':'')+'</li>').join('')+'</ul></div>').join('')+'</div>';}
+    return `<section class="kk-story kk-type-${s.type}${i===0?' kk-lead':''}"><div class="kk-section-label">${esc(s.title)}</div>${body}</section>`;
+  }).join(''):'<div class="kk-preview-empty">Your newsletter takes shape here as you add content.</div>'}<footer class="kk-mag-foot">Kohler Korner · ${esc(label(e))} · Kohler Distributing Company</footer></article>`;}
+  g.KornerModel={TYPES,STANDARD,id,esc,section,edition,populated,status,assets,text,month,label,render};
+})(typeof window!=='undefined'?window:globalThis);
