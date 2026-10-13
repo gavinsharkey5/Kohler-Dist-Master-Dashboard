@@ -384,8 +384,13 @@ real, then the two generators above.
 
 ## October 2026 On-Premise MPO tab + "latest month" defaults (2026-10-05)
 
-OCTOBER_ON_PREM_2026_MPO.docx (25% each): iSellBeer (5) feature photos rides as AWAITING
-(hasData:false, awaiting:true -- no iSellBeer export yet). CARBLISS 40% buying accounts is
+OCTOBER_ON_PREM_2026_MPO.docx (25% each): iSellBeer (5) feature photos is BUILT (2026-10-13):
+`build_feature_photos()` in MPOs/on-prem/generate_2026-10.py reads the cumulative iSellBeer archive
+MPOs/on-prem/isellbeer_feature_photos.xlsx (seeded from Promos_Report_52; weekly pulls merge with
+`python3 MPOs/on-prem/generate_2026-10.py --merge-photos Promos_Report_NN.xlsx`), counts EVERY
+October row whatever its element (Gavin: "count all the data"), scored per DISTINCT PHOTO, except
+PHOTO_EXCLUDED_ACCOUNTS (230915 Crystal Sprs/Wild Turkey, 123 Crystal Springs Rd -- Gavin: leave
+out). on-prem programs.js gained buildPhotosDataset / lineTablePhotos (ported from off-prem). CARBLISS 40% buying accounts is
 BUILT (2026-10-05): a 'followup' objective with pct 0.4 over MPOs/on-prem/
 core_market_on_prem_accts.csv (RDE "Entire Core Market On Prem Accts", 1,047 accounts for the
 roster) as the denominator, DONE = bought Carbliss 9/1-10/31 per carbliss_buying_accounts.csv

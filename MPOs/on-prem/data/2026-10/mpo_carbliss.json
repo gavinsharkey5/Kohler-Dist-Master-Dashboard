@@ -387,7 +387,7 @@
     "BASE_DATE": "",
     "DONE": 1,
     "DONE_DETAIL": "Carbliss",
-    "DONE_DATE": "9/23/2026"
+    "DONE_DATE": "10/14/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -3997,7 +3997,7 @@
     "BASE_DATE": "",
     "DONE": 1,
     "DONE_DETAIL": "Carbliss",
-    "DONE_DATE": "10/9/2026"
+    "DONE_DATE": "10/13/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -4007,7 +4007,7 @@
     "BASE_DATE": "",
     "DONE": 1,
     "DONE_DETAIL": "Carbliss",
-    "DONE_DATE": "10/13/2026"
+    "DONE_DATE": "10/14/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -4027,7 +4027,7 @@
     "BASE_DATE": "",
     "DONE": 1,
     "DONE_DETAIL": "Carbliss",
-    "DONE_DATE": "10/13/2026"
+    "DONE_DATE": "10/14/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -4037,7 +4037,7 @@
     "BASE_DATE": "",
     "DONE": 1,
     "DONE_DETAIL": "Carbliss",
-    "DONE_DATE": "10/13/2026"
+    "DONE_DATE": "10/14/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -4357,7 +4357,7 @@
     "BASE_DATE": "",
     "DONE": 1,
     "DONE_DETAIL": "Carbliss",
-    "DONE_DATE": "10/13/2026"
+    "DONE_DATE": "10/14/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -5957,7 +5957,7 @@
     "BASE_DATE": "",
     "DONE": 1,
     "DONE_DETAIL": "Carbliss",
-    "DONE_DATE": "9/29/2026"
+    "DONE_DATE": "10/13/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -6415,9 +6415,9 @@
     "CUSTOMER_NAME": "The Game Room",
     "BASE_DETAIL": "East Rutherford",
     "BASE_DATE": "",
-    "DONE": 1,
-    "DONE_DETAIL": "Carbliss",
-    "DONE_DATE": "10/9/2026"
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -7257,7 +7257,7 @@
     "BASE_DATE": "",
     "DONE": 1,
     "DONE_DETAIL": "Carbliss",
-    "DONE_DATE": "9/28/2026"
+    "DONE_DATE": "10/13/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -7947,7 +7947,7 @@
     "BASE_DATE": "",
     "DONE": 1,
     "DONE_DETAIL": "Carbliss",
-    "DONE_DATE": "9/24/2026"
+    "DONE_DATE": "10/13/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
