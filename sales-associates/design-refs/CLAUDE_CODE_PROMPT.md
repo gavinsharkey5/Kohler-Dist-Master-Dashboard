@@ -13,6 +13,10 @@ Right now these handoffs happen through texts and calls, so nobody has a clear r
 Give reps and associates one shared place to assign, track, and close out field tasks, with a message thread attached to each task.
 
 ## Users and permissions
+The nine associates are already in `public.allowed_users` with `role = 'associate'` (migration
+`supabase/migrations/20261014150000_associate_role.sql`; title "Merchandisers", `reports_to` = their
+DM). The middleware currently treats a non-manager as a rep (REP_PATHS) -- add an associate branch.
+
 - **Reps:** create tasks, assign them to an associate, see the status of everything they've assigned, and comment on their tasks.
 - **Associates:** see tasks assigned to them, update status, comment, and attach a completion photo.
 - **Managers (optional):** read-only view of all tasks, filterable by rep, associate, and status.
