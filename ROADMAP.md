@@ -11,6 +11,10 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
+- [ ] **Rep Inventory page on the one-file report (2026-10-14).** Built on the sample `Inventory_Report_1.csv` from
+  the brief. To go live on real numbers: save each new Encompass inventory report as
+  `inventory-data/Inventory_Report.csv`, run `python3 inventory/generate.py`, then `python3 accounts/generate.py` (the
+  Account page's product list reads the same snapshot), commit, push. The snapshot date is the file's save date.
 - [~] **Brand managers open the Incentive Hub and both MPO trackers on their brands (2026-10-14).** LIVE ON PUSH, no
   Supabase step: the assignment comes from the Encompass Brand Families export (shared/data/brand_families.csv ->
   shared/data/brand-managers.json, 9 brand managers, manager -> suppliers -> brand families) by name. A brand manager
@@ -297,6 +301,20 @@ device, a decision).
 
 ## Tabled -- waiting on data or a signature
 
+- **Warehouse + delivery workflow (tabled by Gavin, 2026-10-14; keep).** The day as one chain of hand-offs,
+  each leaving a timestamp: (1) Inbound -- receiver scans / types the product number on a Warehouse phone
+  page, units + supplier, taps Received (a receipt row; Available stays Encompass's number). (2) Reps who
+  starred the product see "Received today, N units" on their Starred group and Rep Home (no push needed in
+  v1). (3) Orders stay in Encompass. (4) Night crew: "Tomorrow's Routes" page (truck, stops, cases, kegs)
+  from the Encompass route export; Loaded per truck, visible to reps. (5) Driver: route on the phone (stops
+  in order, directions, what is on the hand truck, keg pickups, the rep's note); taps Delivered, or logs a
+  short ship / refusal / return with a photo. (6) Rep sees "Delivered 10:42" / "Refused" on the Account page
+  and Needs Attention; a refusal creates a follow-up. (7) Returns / short ships are still keyed into Encompass
+  by the office -- the site is the fast signal, Encompass the invoice. NEEDS: the daily route export (truck,
+  stop order, customer, cases, kegs), a delivery-events table (like merch records), warehouse + driver roles
+  in allowed_users with their own home pages; the case barcode vs product number question for scanning.
+  Steps 1, 2 and 5 can be mocked on sample data first.
+
 - Encompass -> Snowflake -> Supabase pipeline (Snowflake agreement not
   signed yet). Unblocks: live sales numbers, the display auction tracker
   moving off weekly CSV pulls, order-day derivation, the assistant.
@@ -315,6 +333,17 @@ device, a decision).
 
 ## Done
 
+- [x] **2026-10-14 Inventory: starred products + brand-manager scope + role defaults.** Migration product_stars run by Gavin the same day ("Success. No rows returned"): stars sync across devices. Reps (and managers) star
+  products; a Starred group tops the list with "N Out · M Low", a Starred chip filters to them, stars sync per
+  person (device until the migration runs). A brand manager sees only their suppliers' products (tiles, list,
+  search, filter sheet; "Your Suppliers: ..."), a hybrid DM everything, reps never scoped. Rep default = Starred
+  first; brand manager default = their suppliers only.
+- [x] **2026-10-14 Rep Inventory page rebuilt for the phone (inventory/).** One report in place of three exports
+  (Product Num Name / Supplier / Brand Family / On Floor / Pre Sales / Allocated / Available; Available as reported, never
+  re-derived); Shopify-style list: search + Sort / Filter row, status chips, dismissible supplier / brand chips, rows
+  with an Available pill (green > 24, amber 1-24, red <= 0), tap to expand on phones, inline figures on iPad, sticky
+  supplier headers, chunked rendering for 3,200 rows, sort + filters remembered. Dropped (the report cannot support
+  them): days of cover, on the way / next arrival, just arrived, backordered. inventory/README.txt.
 - [x] **2026-10-09 Account assistant is LIVE on kohlerdisthub.com.** Ledger migration run, API key + KDH_CHAT_USERS (every allow-list sign-in) + KDH_CHAT_DAILY_USD=10 set on Vercel Production. First live question answered (Shop Rite Liq Englewood: 12-month totals, top products, period comparisons). Still to do: watch the ledger for a week, raise the daily cap as real use shows, set a monthly spend limit in the Claude Console, consider KDH_CHAT_MODEL=claude-sonnet-5-5 if cost per question runs high. First try failed with HTTP 401 "invalid x-api-key" (a pasted key) -- managers now see the API's reason on the error line.
 
 - [x] **Non-Buy Reports (2026-10-08, merged to main the same day after Gavin's approval):** one engine (nonbuy/engine.js, pure) + one static source

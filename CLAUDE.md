@@ -3188,3 +3188,64 @@ trackers: Constellation preview -> Corona Innovation only off-prem, the empty me
 By Program and a rep's page, phone, real sign-in, Chris Politano from the file = Lytt / Oktoberfest /
 Carbliss, DM, rep preview, signed-in rep); Playwright over Edge (`channel:'msedge'`, npm i playwright
 in the scratchpad), stubbed Supabase. Tags: hub.js / kdh-user.js / guided.js 20261014a.
+
+## Rep Inventory page on one report (2026-10-14)
+
+Gavin's brief (inventory/design-refs/CLAUDE_CODE_PROMPT.md + three Mobbin screenshots there: Shopify inventory
+list, Resy grouped list, Copilot filter chip). `inventory/generate.py` now reads ONE Encompass report
+(`python3 inventory/generate.py [path]`, default ../inventory-data/Inventory_Report.csv; columns Product Num Name,
+Supplier, Brand Family, On Floor Inventory, Pre Sales, Allocated, Available) instead of the three shared exports --
+inventory-overview/ (the executive view) still reads those five and was NOT touched. Available is used exactly as
+reported; status is a unit threshold now (Out <= 0, Low 1-24, In Stock 25+), the snapshot date is the report FILE's
+modified time (no date column), stale tag past 7 days. The old days-of-cover / on-the-way / just-arrived /
+backordered fields are GONE (the report has no rate of sale, purchase orders or receipts); accounts/generate.py still
+reads this page's rep-data JSON (num / name / supplier / available / status; doi / nextArrival / backordered are
+absent -> null in catalog.json), so run it after each inventory refresh. Page (`inventory/index.html`, standalone, no
+fetches): "Inventory" + "Inventory as of <date>", three KPI tiles that are filters (Products Available / Out of
+Stock / Running Low), search (150 ms debounce, substring over "<num> <name>"), Sort sheet (Available high-low
+default, A-Z, Pre Sales high-low), Filter bottom sheet (Supplier + Brand Family multi-select with find boxes,
+families narrow to the chosen suppliers), chips row (active supplier / brand chips FIRST with x, then All / In Stock
+/ Low / Out; counts hidden under 480px so all four fit), rows = description bold / "#num · Brand Family" / Available
+pill (--kdh-ok / -warn / -bad + soft), tap expands one row at a time to a 2x2 On Floor / Pre Sales / Allocated /
+Available grid on phones, inline figures on >= 768px; sticky Supplier headers (A-Z) when no search / filter, flat
+list otherwise; chunked rendering (60 then 120 via IntersectionObserver + Show More fallback -- the first IO
+notification carries stale geometry, so `near()` re-checks the real position); skeleton until first paint; state
+`kdh_inv:v2` in localStorage (sort + filters, not the search). GOTCHA: `[hidden]{display:none!important}` is in the
+page CSS because `.more{display:flex}` / `.sclr{display:flex}` beat the hidden attribute. Sheets are z-index 1200
+(above the bar, banner and tabs). Test: scratchpad inv_test.mjs (310 checks: rep + manager, 390 / 820 / 1366, light /
+dark, contrast, sticky offsets, persistence, chunking) + mobile_audit / contrast_audit / elong_audit on the page.
+Refresh = save the report as inventory-data/Inventory_Report.csv, run the two generators (ROADMAP Now).
+
+## Inventory: starred products, brand-manager scope, role defaults (2026-10-14)
+
+Gavin: "allow sales reps to star certain products" and "have the brand managers only see their
+products/brands/suppliers"; defaults tailored to the rep's and the manager's day. inventory/README.txt has the
+rules. STARS: every row carries a 44px star (`.star`, left slot; a tap never expands the row). Starred products
+form a "Starred" group at the TOP of the grouped list (header "N Out · M Low · K Products"; the rows also stay
+under their supplier) and a Starred chip (`F.status='star'`, star + count only under 480px so all five chips fit
+375px). Storage: localStorage `kdh_inv_star:v1:<fnv(email)>` {on, off} is always the truth on the device;
+`Stars.load()` syncs with `public.product_stars` (migration `20261014150000_product_stars.sql`: email stamped
+from the token, own rows only, a manager never sees a rep's; sql_stars_test.sh) through the signed-in token --
+404 = migration not run = device-only; `off` holds removals the server has not confirmed, retried on the next
+load, so a lost DELETE never resurrects a star. PREVIEW: `kdhUser().preview` -> `html.no-star`, no control, no
+chip, no group (a star would be the manager's). Stars never reserve or watch stock; About This Data says so.
+BRAND SCOPE: `scopePromise()` = null for a rep / rep preview, null when `kdhTeam(window.KDH_DM_GROUPS)` matches
+(a hybrid DM keeps everything, as on the hub / MPO trackers), else `kdhBrandScope()` with a 3 s cap; `applyScope`
+cuts `P = ALL.filter(p => kdhBrandMatch([p.supplier, p.family], scope))` BEFORE the first render (skeleton
+meanwhile), `index()` rebuilds the supplier / family / status counts from P, and the header gains "Your
+Suppliers: A, B, C (and N more)". Carbliss reaches the SN Food & Beverage manager by FAMILY. Nothing in scope ->
+"None of Your Suppliers Are on This Report" (no Clear). The page now loads shared/auth-config.js (the star sync's
+feature switch, 404 on a static server = off) and shared/dm-groups.js. Tests: scratchpad inv2_test.mjs (179) +
+inv_test.mjs (310) + sql_stars_test.sh (10) + contrast / mobile / elong audits.
+
+## Business map + the warehouse / delivery workflow (Gavin, 2026-10-14 -- tabled, REMEMBER)
+
+Gavin's list of areas still to bring onto the site: Warehouse (scan SKUs on arrival so reps know inventory was
+received), IT, Finance, Sales Associate portal. Added on review: Delivery / drivers (the largest missing group),
+Purchasing / supplier management (open POs, arrivals, out-of-code), POS / marketing requests, suppliers as
+read-only outside viewers (scoped like brand managers), compliance. Rule restated: Encompass stays the system of
+record for orders, invoices and balances; the site shows, reminds and coordinates, never takes an order or moves
+money. The warehouse + delivery day (7 hand-offs, receipts -> starred reps -> routes -> driver Delivered /
+refusal -> rep follow-up) is written out in ROADMAP.md "Tabled"; Gavin tabled it on 2026-10-14 and asked that it
+be kept. Transactional Encompass data (invoice / purchase transaction tables) belongs in Supabase with RLS, never
+in this PUBLIC repo (prices / dollars); see the same ROADMAP entry's neighbour when that work starts.
