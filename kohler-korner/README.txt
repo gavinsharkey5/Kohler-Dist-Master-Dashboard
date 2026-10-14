@@ -91,3 +91,27 @@ Editorial design (2026-10-14)
   Static masthead SVG and OFL fonts are under /assets/kohler-korner/, alongside
   existing public branding assets. Uploaded photos remain in private storage.
   No navigation, database, authentication or authorization changes in this update.
+
+Product catalog and selection
+  Source: Products_GSHARKEY_20261014_0808208423354.csv (4,320 unique SKUs).
+  catalog.json contains the complete normalized export, source filename and SHA-256.
+  Product IDs remain strings; Brand and Brand Family are source labels, not invented IDs.
+  shared/product-catalog.js supplies load, search, facets and newsletter snapshots.
+  A future service can return the same normalized records through this adapter;
+  the reusable shared/product-selector.js interface does not depend on CSV parsing.
+  No Snowflake connection, new dependency or database migration is included.
+  The existing manager route protection covers catalog.json. Readers receive only
+  products included in their authorized published edition, not the full catalog.
+  Seasonal Beers and New Beers & Brands use their existing product entries.
+  On the Horizon keeps its article and adds optional product entries. A persistent
+  productsEnabled flag retains the capability after renaming and template reuse.
+  Selections are identified by Product ID within each section. Reopening the picker
+  preserves descriptions, photographs and ordering for retained products.
+  Unknown/manual products remain editable; catalog copies never modify the source.
+  The existing 200-entry limit per section also applies to bulk catalog selection.
+  Save Draft persists product metadata through the existing newsletter save flow.
+
+Catalog validation
+  node --test kohler-korner/tests/catalog.test.cjs kohler-korner/tests/model.test.cjs
+  Browser checks cover exact SKU search, Brand Family bulk selection, removal,
+  duplicate prevention, custom descriptions, save/reload and On the Horizon.
