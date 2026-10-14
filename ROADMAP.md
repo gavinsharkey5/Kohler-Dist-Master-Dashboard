@@ -345,6 +345,9 @@ device, a decision).
 
 ## Done
 
+- [x] **View As: Manager / Rep / Associate in one picker (2026-10-14).** The manager home's "View as Rep" and
+  Gavin's "Preview as Manager" are one "View As" button; every manager gets Rep and Associate, Gavin also Manager.
+  An associate preview opens on their Field Tasks queue, read-only. Live on push, no Supabase step.
 - [x] **Field Tasks: reps hand work to sales associates (2026-10-14).** Migration
   `20261014180000_field_tasks.sql` run by Gavin the same day (Success, no rows). `/tasks/`: associate queue,
   rep list + New Task, manager read-only overview, one thread per task with photos. Open assumptions (any rep

@@ -10,7 +10,7 @@ const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp
 const app = $('#app');
 const U = (function(){ try{ return window.kdhUser ? window.kdhUser() : null; }catch(e){ return null; } })();
 const ROLE = U ? (U.role === 'associate' ? 'associate' : U.role === 'manager' ? 'manager' : 'rep') : '';
-const PREVIEW = !!(U && U.preview && U.role !== 'manager');   // a manager looking as a rep: read-only
+const PREVIEW = !!(U && U.preview);   // a manager looking as someone else: read-only, that person's tasks
 const MY_EMAIL = (U && U.email || '').toLowerCase();           // in preview this is the MANAGER's email
 const cookie = n => { const m = document.cookie.match(new RegExp('(?:^|; )' + n + '=([^;]*)')); return m ? decodeURIComponent(m[1]) : ''; };
 const cfg = () => { const c = window.KDH_AUTH; const t = cookie('kdh_at'); return c && c.url && c.key && t ? {url: String(c.url).replace(/\/$/, ''), key: c.key, token: t} : null; };
@@ -91,11 +91,14 @@ async function loadAll(){
   S.tasks = (tasks || []).filter(t => !PREVIEW || previewMine(t));
 }
 function previewMine(t){
-  // a manager previewing a rep: only tasks that rep created (by name -- the preview has no email)
-  const want = U && U.name || '';
+  // a manager previewing a rep (tasks they created) or an associate (tasks assigned to them), by
+  // name -- a rep preview carries no email; an associate preview may carry one
+  if(ROLE === 'manager') return true;
+  if(ROLE === 'associate' && U.previewEmail) return (t.associate_email || '').toLowerCase() === U.previewEmail.toLowerCase();
+  const want = U && U.name || '', have = ROLE === 'associate' ? (t.associate_name || '') : (t.rep_name || '');
   if(!want) return false;
-  if(window.kdhMatchName){ const m = window.kdhMatchName(want, [t.rep_name || '']); return !!m; }
-  return (t.rep_name || '').toLowerCase() === want.toLowerCase();
+  if(window.kdhMatchName) return !!window.kdhMatchName(want, [have]);
+  return have.toLowerCase() === want.toLowerCase();
 }
 async function loadPeople(){
   if(ROLE === 'associate') return;
@@ -247,7 +250,7 @@ function viewAssociate(){
   const T = S.tasks, open = T.filter(isOpen).sort(byDue);
   const over = open.filter(t => t.due_date && t.due_date < TODAY), today = open.filter(t => t.due_date === TODAY), up = open.filter(t => t.due_date && t.due_date > TODAY), none = open.filter(t => !t.due_date);
   const blocked = T.filter(t => t.status === 'blocked').sort(byDue), done = recentDone(T);
-  let h = '<h1>My Tasks<small>' + esc(U.name) + ' · Sales Associate</small></h1>' +
+  let h = '<h1>My Tasks<small>' + esc(U.name) + ' · Sales Associate' + (PREVIEW ? ' · preview, saving is off' : '') + '</small></h1>' +
     '<p class="tk-sub"><b>' + open.length + '</b> open' + (today.length ? ' · <b>' + today.length + '</b> due today' : '') + (over.length ? ' · <b class="over" style="color:var(--kdh-bad)">' + over.length + '</b> overdue' : '') + (blocked.length ? ' · <b>' + blocked.length + '</b> blocked' : '') + '</p>';
   if(!T.length) h += '<div class="empty">No tasks yet. When a rep assigns you one it shows here.</div>';
   h += section('Overdue', over, rowAssoc, {cls: 'over'}) + section('Today', today, rowAssoc, {always: !!T.length, empty: 'Nothing due today.'}) + section('Upcoming', up, rowAssoc) + section('No Due Date', none, rowAssoc) + section('Blocked', blocked, rowAssoc) + section('Done · Last 7 Days', done, rowAssoc, {closed: true});
@@ -288,7 +291,7 @@ function viewManager(){
   const sel = (name, label, opts) => '<div><label for="mf-' + name + '">' + label + '</label><select id="mf-' + name + '" data-mf="' + name + '">' + opts.map(([v, l]) => '<option value="' + esc(v) + '"' + ((S.mf[name] || '') === v ? ' selected' : '') + '>' + esc(l) + '</option>').join('') + '</select></div>';
   const reps = uniq(T.map(t => [t.rep_email, t.rep_name])), assocs = uniq(T.map(t => [t.associate_email, t.associate_name]));
   const perA = {}; open.forEach(t => { perA[t.associate_name || t.associate_email] = (perA[t.associate_name || t.associate_email] || 0) + 1; });
-  let h = '<h1>Field Tasks<small>Team overview · read-only</small></h1>' +
+  let h = '<h1>Field Tasks<small>Team overview · read-only' + (PREVIEW ? ' · preview' : '') + '</small></h1>' +
     '<div class="strip"><div class="tile"><b>' + open.length + '</b><span>Open</span></div><div class="tile' + (over.length ? ' bad' : '') + '"><b>' + over.length + '</b><span>Overdue</span></div><div class="tile"><b>' + doneWk.length + '</b><span>Done This Week</span></div><div class="tile"><b>' + (avg == null ? '–' : avg < 1 ? (Math.round(avg*24) + 'h') : (Math.round(avg*10)/10 + 'd')) + '</b><span>Avg Time to Complete</span></div></div>';
   const names = Object.keys(perA).sort();
   if(names.length) h += '<div class="per">' + names.map(n => '<button type="button" class="chip" data-assoc-name="' + esc(n) + '"><span>' + esc(n) + ' · ' + perA[n] + ' open</span></button>').join('') + '</div>';

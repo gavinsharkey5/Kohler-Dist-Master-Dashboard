@@ -21,6 +21,8 @@
         if (p) {
           var o = null; try { o = p.charAt(0) === '{' ? JSON.parse(p) : null; } catch (e2) {}
           if (o && o.role === 'manager' && o.name) return { name: o.name, role: 'manager', preview: true, manager: u.name, email: u.email, title: o.title || '', dm: o.dm || '', brands: Array.isArray(o.brands) && o.brands.length ? o.brands.slice() : null };
+          // an associate preview (2026-10-14): the whole site becomes that associate's (one page, Field Tasks)
+          if (o && o.role === 'associate' && o.name) return { name: o.name, role: 'associate', preview: true, manager: u.name, email: u.email, title: '', dm: '', previewEmail: o.email || '' };
           return { name: (o && o.name) || p, role: 'rep', preview: true, manager: u.name, email: u.email, title: '', dm: '' };
         }
       }
@@ -56,7 +58,7 @@
     wireExit();
   }
   function previewChipHtml(u) {
-    return '<span>Previewing <b>' + esc(u.name) + '</b>' + (u.role === 'manager' ? ' (manager)' : '') + '</span><button type="button" id="kdhExitPreview">Exit</button>';
+    return '<span>Previewing <b>' + esc(u.name) + '</b>' + (u.role === 'manager' ? ' (manager)' : u.role === 'associate' ? ' (associate)' : '') + '</span><button type="button" id="kdhExitPreview">Exit</button>';
   }
   // Leaving preview puts the manager back on their own home page: their
   // identity and permissions never changed, only what the pages showed.
@@ -436,7 +438,7 @@
     var w = where(u);
     var items = '';
     if (isMgr || u.preview) {
-      items += '<button type="button" class="kdh-menu-i" id="kdhViewAsRep">' + NAV_ICON.eye + '<span>' + (u.preview && u.role !== 'manager' ? 'Change Rep' : 'View as Rep') + '</span><small>See the site as one rep does</small></button>';
+      items += '<button type="button" class="kdh-menu-i" id="kdhViewAsRep">' + NAV_ICON.eye + '<span>View As</span><small>See the site as a ' + (isOwner(u) ? 'manager, rep or associate' : 'rep or associate') + '</small></button>';
       if (u.preview) items += '<button type="button" class="kdh-menu-i" id="kdhExitPreview2">' + BACK + '<span>Exit Preview</span><small>Back to your own pages</small></button>';
     }
     // the tools: listed here for phones and iPads; the desktop sidebar shows them itself
@@ -474,7 +476,7 @@
     if (document.__kdhMenuDoc) return; document.__kdhMenuDoc = 1;
     document.addEventListener('click', function (e) { var m = document.getElementById('kdhMenu'); if (m && !m.hidden && !m.contains(e.target)) openMenu(false); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { openMenu(false); closePicker(); } });
-    var v = document.getElementById('kdhViewAsRep'); if (v) v.addEventListener('click', function () { openMenu(false); viewAsRep(); });
+    var v = document.getElementById('kdhViewAsRep'); if (v) v.addEventListener('click', function () { openMenu(false); viewAs(); });
     var x2 = document.getElementById('kdhExitPreview2'); if (x2) x2.addEventListener('click', exitPreview);
     themeLabel();
   }
@@ -491,47 +493,127 @@
     document.head.appendChild(s);
   }
   function closePicker() { var p = document.getElementById('kdhPicker'); if (p) p.hidden = true; }
-  function viewAsRep() {
-    var u = user(); if (!u || u.role !== 'manager') return;
+  // VIEW AS (2026-10-14, Gavin: "combine View as and create a dropdown that allows me to
+  // preview as a manager, rep and associate"). One sheet, a role row on top:
+  //   Rep        every manager; a DM sees their team (dm-groups, as before) -> /rep/
+  //   Associate  every manager; kdh_people('associate') -> /tasks/ (their one page)
+  //   Manager    Gavin only (OWNER); kdh_team's managers -> the manager home
+  // The preview cookie is the same as before (a bare name = rep; JSON with role for a
+  // manager or an associate). Picking yourself on the Manager list = exit. Reads are the
+  // previewed person's; writes stay off everywhere in preview.
+  var OWNER = 'g.sharkey@kohlerdist.com';
+  function isOwner(u) { return !!(u && String(u.email || '').toLowerCase() === OWNER); }
+  var ROLE_TEXT = {
+    rep: { title: 'View as Rep', sub: 'Every page will show exactly what this rep sees. Their notes and follow-ups stay read-only while you preview.', search: 'Search reps', empty: 'No rep matches' },
+    associate: { title: 'View as Associate', sub: 'The site becomes that associate’s: their Field Tasks queue, read-only.', search: 'Search associates', empty: 'No associate matches' },
+    manager: { title: 'View as Manager', sub: 'Every page will show what this manager sees (their team, their brands). Pick yourself to leave preview.', search: 'Search managers', empty: 'No manager matches' }
+  };
+  var pickRole = 'rep', pickerGroups = [], peopleCache = {};
+  function rpc(name, body) {
+    var cfg = global.KDH_AUTH || {}, tok = cookie('kdh_at');
+    if (!cfg.url || !cfg.key || !tok) return Promise.resolve(null);
+    return fetch(String(cfg.url).replace(/\/$/, '') + '/rest/v1/rpc/' + name, { method: 'POST', headers: { apikey: cfg.key, authorization: 'Bearer ' + tok, 'content-type': 'application/json' }, body: JSON.stringify(body || {}) })
+      .then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+  }
+  function loadPeople(role, cb) {
+    if (peopleCache[role]) return cb(peopleCache[role]);
+    if (role === 'rep') return loadGroups(function (groups) {
+      var T = team(groups);
+      var g = (T ? groups.filter(function (g) { return g.dm === T.dm || g.under === T.dm; }) : groups)
+        .map(function (g) { return { dm: g.dm, people: (g.reps || []).filter(isRep).slice().sort().map(function (r) { return { name: r }; }) }; }).filter(function (g) { return g.people.length; });
+      peopleCache.rep = g; cb(g);
+    });
+    if (role === 'associate') return rpc('kdh_people', { p_role: 'associate' }).then(function (rows) {
+      var list = (rows || []).filter(function (r) { return r && r.name; }).map(function (r) { return { name: r.name, email: r.email || '', dm: r.reports_to || '' }; });
+      var g = list.length ? [{ dm: '', people: list }] : [];
+      peopleCache.associate = g; cb(g);
+    });
+    return rpc('kdh_team', {}).then(function (team) {
+      var mgrs = (team || []).filter(function (t) { return t && t.role === 'manager' && t.name; }).sort(function (a, b) { return a.name.localeCompare(b.name); });
+      // names only; when a name appears twice the entry with no title is that person's personal (test) account
+      var seen = {}; mgrs.forEach(function (m) { seen[m.name] = (seen[m.name] || 0) + 1; });
+      var list = mgrs.map(function (m) { return { name: m.name, label: m.name + (seen[m.name] > 1 && !m.title ? ' (Personal)' : ''), title: m.title || '', dm: m.reports_to || '', brands: Array.isArray(m.program_brands) ? m.program_brands.filter(Boolean) : [] }; });
+      var g = list.length ? [{ dm: '', people: list }] : [];
+      peopleCache.manager = g; cb(g);
+    });
+  }
+  function viewAs(role) {
+    var u = user(); if (!u || u.role !== 'manager' && !(u.preview && isOwner(u))) return;
+    var owner = isOwner(u);
     var p = document.getElementById('kdhPicker');
     if (!p) {
+      if (!document.getElementById('kdhPickerCss')) {
+        var st = document.createElement('style'); st.id = 'kdhPickerCss';
+        st.textContent = '.kdh-sheet-roles{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;border:1px solid var(--kdh-border-2);border-radius:10px;overflow:hidden;margin:10px 0 8px}' +
+          '.kdh-sheet-roles button{min-height:44px;border:0;border-left:1px solid var(--kdh-border);background:var(--kdh-surface);font:inherit;font-size:15px;font-weight:600;color:var(--kdh-text-2);cursor:pointer}' +
+          '.kdh-sheet-roles button:first-child{border-left:0}.kdh-sheet-roles button[aria-selected="true"]{background:var(--kdh-brand);color:var(--kdh-brand-ink)}' +
+          '.kdh-sheet-i small{display:block;font-weight:500;font-size:13px;color:var(--kdh-text-3)}';
+        document.head.appendChild(st);
+      }
       p = document.createElement('div'); p.id = 'kdhPicker'; p.className = 'kdh-sheet-wrap';
       p.innerHTML = '<div class="kdh-sheet-back"></div><div class="kdh-sheet" role="dialog" aria-modal="true" aria-labelledby="kdhPickerTitle">' +
-        '<div class="kdh-sheet-h"><b id="kdhPickerTitle">View as Rep</b><button type="button" class="kdh-sheet-x" aria-label="Close">Close</button></div>' +
-        '<p class="kdh-sheet-p">Every page will show exactly what this rep sees. Their notes and follow-ups stay read-only while you preview.</p>' +
-        '<input type="search" id="kdhPickerSearch" class="kdh-field" placeholder="Search reps" autocomplete="off" aria-label="Search reps">' +
-        '<div id="kdhPickerList" class="kdh-sheet-list"><div class="kdh-sheet-empty">Loading reps…</div></div></div>';
+        '<div class="kdh-sheet-h"><b id="kdhPickerTitle">View As</b><button type="button" class="kdh-sheet-x" aria-label="Close">Close</button></div>' +
+        '<div class="kdh-sheet-roles" role="tablist" aria-label="Who to view as" id="kdhPickerRoles">' +
+          (owner ? '<button type="button" role="tab" data-role="manager">Manager</button>' : '') +
+          '<button type="button" role="tab" data-role="rep">Rep</button><button type="button" role="tab" data-role="associate">Associate</button></div>' +
+        '<p class="kdh-sheet-p" id="kdhPickerSub"></p>' +
+        '<input type="search" id="kdhPickerSearch" class="kdh-field" placeholder="Search" autocomplete="off" aria-label="Search">' +
+        '<div id="kdhPickerList" class="kdh-sheet-list"><div class="kdh-sheet-empty">Loading…</div></div></div>';
       document.body.appendChild(p);
       p.querySelector('.kdh-sheet-back').addEventListener('click', closePicker);
       p.querySelector('.kdh-sheet-x').addEventListener('click', closePicker);
-      p.addEventListener('click', function (e) { var b = e.target.closest('[data-rep]'); if (!b) return; setPreview(b.getAttribute('data-rep')); location.href = REP_HOME; });
+      p.querySelector('#kdhPickerRoles').addEventListener('click', function (e) { var b = e.target.closest('[data-role]'); if (b) showRole(b.getAttribute('data-role')); });
+      p.addEventListener('click', function (e) {
+        var b = e.target.closest('[data-pick]'); if (!b) return;
+        var cur = user(), who = {}; try { who = JSON.parse(b.getAttribute('data-pick')); } catch (e2) { return; }
+        if (pickRole === 'rep') { setPreview(who.name); location.href = REP_HOME; return; }
+        if (pickRole === 'associate') { setPreview({ name: who.name, role: 'associate', email: who.email || '' }); location.href = ASSOC_HOME; return; }
+        // manager: picking yourself = leave preview
+        var me = cur && (cur.preview ? cur.manager : cur.name);
+        if (who.name === me) setPreview(''); else setPreview({ name: who.name, role: 'manager', title: who.title || '', dm: who.dm || '', brands: who.brands || [] });
+        location.href = ROOT || '/';
+      });
       document.getElementById('kdhPickerSearch').addEventListener('input', function () { renderPicker(this.value); });
     }
     p.hidden = false;
-    var inp = document.getElementById('kdhPickerSearch'); inp.value = '';
-    loadGroups(function (groups) {
-      var T = team(groups);
-      pickerGroups = (T ? groups.filter(function (g) { return g.dm === T.dm || g.under === T.dm; }) : groups)
-        .map(function (g) { return { dm: g.dm, reps: (g.reps || []).filter(isRep).slice().sort() }; }).filter(function (g) { return g.reps.length; });
+    showRole(role || (u.preview ? u.role : 'rep'));
+  }
+  function showRole(role) {
+    if (role === 'manager' && !isOwner(user())) role = 'rep';
+    pickRole = role;
+    var T = ROLE_TEXT[role];
+    Array.prototype.forEach.call(document.querySelectorAll('#kdhPickerRoles [data-role]'), function (b) { b.setAttribute('aria-selected', b.getAttribute('data-role') === role ? 'true' : 'false'); });
+    document.getElementById('kdhPickerTitle').textContent = T.title;
+    document.getElementById('kdhPickerSub').textContent = T.sub;
+    var inp = document.getElementById('kdhPickerSearch'); inp.value = ''; inp.placeholder = T.search; inp.setAttribute('aria-label', T.search);
+    document.getElementById('kdhPickerList').innerHTML = '<div class="kdh-sheet-empty">Loading…</div>';
+    pickerGroups = [];
+    loadPeople(role, function (groups) {
+      if (pickRole !== role) return;
+      pickerGroups = groups;
       renderPicker('');
       if (window.innerWidth >= 700) setTimeout(function () { inp.focus(); }, 50);
     });
   }
-  var pickerGroups = [];
   function renderPicker(q) {
     var list = document.getElementById('kdhPickerList'); if (!list) return;
-    var cur = user(); var now = cur && cur.preview && cur.role !== 'manager' ? cur.name : '';
+    var cur = user(); var now = cur && cur.preview && cur.role === pickRole ? cur.name : '';
+    var me = pickRole === 'manager' && cur ? (cur.preview ? cur.manager : cur.name) : '';
     q = String(q || '').trim().toLowerCase();
     var html = '';
     pickerGroups.forEach(function (g) {
-      var reps = g.reps.filter(function (r) { return !q || r.toLowerCase().indexOf(q) >= 0 || g.dm.toLowerCase().indexOf(q) >= 0; });
-      if (!reps.length) return;
-      html += '<div class="kdh-sheet-dm">' + esc(g.dm) + '</div>' + reps.map(function (r) {
-        return '<button type="button" class="kdh-sheet-i' + (r === now ? ' on' : '') + '" data-rep="' + esc(r) + '"><span class="kdh-av">' + esc(initials(r)) + '</span><span>' + esc(r) + '</span>' + (r === now ? '<small>Previewing now</small>' : '') + '</button>';
+      var people = g.people.filter(function (r) { return !q || r.name.toLowerCase().indexOf(q) >= 0 || (g.dm || '').toLowerCase().indexOf(q) >= 0; });
+      if (!people.length) return;
+      html += (g.dm ? '<div class="kdh-sheet-dm">' + esc(g.dm) + '</div>' : '') + people.map(function (r) {
+        var on = r.name === now, self = r.name === me && !cur.preview;
+        return '<button type="button" class="kdh-sheet-i' + (on ? ' on' : '') + '" data-rep="' + esc(r.name) + '" data-pick="' + esc(JSON.stringify(r)) + '"><span class="kdh-av">' + esc(initials(r.name)) + '</span><span>' + esc(r.label || r.name) +
+          (on ? '<small>Previewing now</small>' : self ? '<small>You</small>' : r.name === me && cur.preview ? '<small>Leave preview</small>' : r.dm && pickRole !== 'rep' ? '<small>Reports to ' + esc(r.dm) + '</small>' : '') + '</span></button>';
       }).join('');
     });
-    list.innerHTML = html || '<div class="kdh-sheet-empty">No rep matches “' + esc(q) + '”.</div>';
+    var T = ROLE_TEXT[pickRole];
+    list.innerHTML = html || '<div class="kdh-sheet-empty">' + (q ? T.empty + ' “' + esc(q) + '”.' : pickRole === 'associate' ? 'No sales associates are on the allow list yet.' : 'Nobody to show.') + '</div>';
   }
+  function viewAsRep() { viewAs('rep'); }
   // "Viewing <rep>" in the top bar: a manager looking at one rep's page
   // says so next to the way back. changeHref (optional) is where "Change"
   // goes -- the page's own picker. Pass '' to clear.
@@ -717,6 +799,8 @@
   global.kdhBackBar = backBar;
   global.kdhViewing = viewing;
   global.kdhViewAsRep = viewAsRep;
+  global.kdhViewAs = viewAs;
+  global.kdhIsOwner = isOwner;
   global.kdhExitPreview = exitPreview;
   global.kdhReturnTarget = returnTarget;
   global.kdhChrome = chrome;

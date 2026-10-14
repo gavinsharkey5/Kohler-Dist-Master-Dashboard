@@ -3282,3 +3282,23 @@ Every PATCH / DELETE counts the rows that come back (never trust a 2xx under RLS
 visible; no push / email yet (v2 list in PLAN.md). Tests (scratchpad): sql_tasks_test.sh (32),
 tasks_test.mjs (74 with an RLS-faithful PostgREST stub, tasks_stub.mjs), mw_test.mjs. kdh-user.js tag
 20261014b on every page (100 files, incl. per-rep copies -- rep_slices --check is clean).
+
+## View As: one picker for Manager / Rep / Associate (2026-10-14)
+
+Gavin: "add View as Associate, same as View as Rep; combine View as into one dropdown that lets me preview as a
+manager, rep and associate." kdh-user.js `viewAs(role)` (global `kdhViewAs`; `kdhViewAsRep` = viewAs('rep')) is
+the ONE picker (`#kdhPicker`): a role row `#kdhPickerRoles` (Manager only for the OWNER, g.sharkey@kohlerdist.com,
+now a constant in kdh-user.js; Rep and Associate for every manager), title / sub / search placeholder per role,
+`loadPeople(role)`: rep = dm-groups scoped by kdhTeam (unchanged), associate = RPC kdh_people('associate'),
+manager = RPC kdh_team's managers (names only, "(Personal)" for the untitled duplicate, program_brands carried).
+Picking: rep -> bare-name cookie -> /rep/; associate -> {name, role:'associate', email} -> /tasks/; manager ->
+{name, role:'manager', title, dm, brands} -> the manager home; picking yourself on Manager = exit. `user()` returns
+an ASSOCIATE PREVIEW as {role:'associate', preview:true, previewEmail} so the chrome becomes the associate's (Home
+= /tasks/, no tools, no banner) and the chip says "Previewing X (associate)". tasks.js: PREVIEW = any preview (read-
+only); an associate preview lists the tasks assigned to that associate (by email when the cookie has it, else by
+name). The manager home has ONE "View As" button (`#viewAsBtn`); the old #viewAsRepBtn / #mgrToggle / #mgrSelect /
+#mgrPreviewBtn and the page's own kdh_team switcher are gone; the menu item (`#kdhViewAsRep`, id kept) reads "View
+As". The rep home's own "Viewing as" / "Preview as This Rep" controls are untouched. Tests (scratchpad):
+viewas_test.mjs (owner phone: three tabs, associate preview chrome + read-only queue, rep, Exit, manager preview,
+self = leave; DM desktop: two tabs; rep: none), mgr_test / home_test / preview_flow updated. Tags kdh-user.js
+20261014c, tasks.js 20261014b.
