@@ -401,7 +401,7 @@ function makeMpo(scope, month, o){
     id: `${scope}:${month.key}:${o.key}`, source: scope, key: o.key, monthKey: month.key, monthLabel: month.label,
     name: o.name, shortName: (window.kdhTitle ? window.kdhTitle(`${scope}:${month.key}:${o.key}`, o.shortName || o.name) : (o.shortName || o.name)), pitch: o.goalLabel ? `${o.goalLabel} — ${weightPct}% of the ${S.label} MPO.` : '',
     type:'MPO', channel: S.channel, channelLabel: CHANNEL_LABEL[S.channel],
-    supplier, supplierLogo: supLogo, brandLogos: brand ? [brand] : [],
+    supplier, rawSupplier: rawSup, supplierLogo: supLogo, brandLogos: brand ? [brand] : [],
     period, refreshed: '', manual: !o.hasData && !o.awaiting, awaitingNote: o.awaitingNote || '',
     rules, reward: `${weightPct}% of the ${S.label} MPO (20% of commission eligibility)`,
     territory: '', objective: o, month, scope,
@@ -475,6 +475,35 @@ function makeMpo(scope, month, o){
    THE UNIFIED LIST
    ==================================================================== */
 let PROGRAMS = [];
+/* BRAND MANAGER SCOPE (2026-10-14, Gavin): a brand manager covers a supplier
+   (or a few) with EVERY rep under them, while a district manager covers a
+   team of reps across every supplier. kdhBrandScope() (shared/kdh-user.js)
+   gives the Fusion supplier names on the manager's allowed_users.program_brands
+   -- or the ones a manager preview carries -- and buildPrograms() then keeps
+   only programs of those suppliers, so Program View, its Supplier filter, a
+   rep's page and the exports all know just their brands. The roster is NOT
+   cut (all reps). A DM, a VP or Gavin (no brands on file) keeps every
+   supplier; the DM team cut (HUB_TEAM) is separate and still applies.
+   Names match the forgiving way: "Boston Beer Company" = "Boston Beer",
+   "MolsonCoors Beverage Company" = "Molson Coors", "Constellation Brands" =
+   "Constellation", "Phusion Projects" = Four Loko (through SUPPLIERS.rde). */
+let BRAND_SCOPE = null;          // ['Boston Beer Company', ...] or null = every supplier
+// the names a program is filed under; matched by kdhBrandMatch (shared/kdh-user.js: ONE rule for the hub and the MPO trackers)
+function programSupplierNames(p){
+  const names = [p.supplier, p.rawSupplier];
+  const sk = p.supKey || SUPPLIER_LOGO_KEY[p.supplier];
+  if(sk && typeof SUPPLIERS!=='undefined' && SUPPLIERS[sk]) names.push(SUPPLIERS[sk].name, SUPPLIERS[sk].rde);
+  if(p.type==='MPO' && window.kdhMpoSupplierNames) names.push(...window.kdhMpoSupplierNames(p.objective || {key:p.key, name:p.name, custom:p.custom}));
+  return names.filter(Boolean);
+}
+const brandAllows = p => !BRAND_SCOPE || !window.kdhBrandMatch || window.kdhBrandMatch(programSupplierNames(p), BRAND_SCOPE);
+// the suppliers a brand manager's programs are filed under (for the Program View line and the exports)
+function brandScopeText(){
+  if(!BRAND_SCOPE) return '';
+  const sups = [...new Set(PROGRAMS.map(p=>p.supplier))].sort((a,b)=>a.localeCompare(b));
+  return sups.length ? sups.join(', ') : (BRAND_SCOPE.suppliers || BRAND_SCOPE).join(', ');
+}
+let BOOTED = false;
 function buildPrograms(){
   const out = [];
   // Incentives: one entry per program key, the newest month's registry wins
@@ -501,10 +530,11 @@ function buildPrograms(){
     if(res && res.length){ window.KDH_PROGRAM_SKUS = window.KDH_PROGRAM_SKUS || {}; window.KDH_PROGRAM_SKUS[c.id] = {source:'Manage Programs', products: res.map(x=>({id:String(x.id), name:x.name}))}; }
     out.push(c);
   });
-  PROGRAMS = out;
+  PROGRAMS = BRAND_SCOPE ? out.filter(brandAllows) : out;
 }
 // Called by shared/custom-programs.js once its programs (and a rep's results) are in.
 function rebuildPrograms(){
+  if(!BOOTED) return;              // boot() builds once the brand scope is known
   buildPrograms(); acctCache.clear();
   if(LIB) return;
   const h = readHash();
@@ -853,7 +883,10 @@ const leaveAsRep = () => { state.asRep = false; if(SIGNED_MGR && mgrCapable()) s
 window.addEventListener('resize', ()=>{ if(!LIB && state.mode==='manager') render(); });
 // A signed-in manager on a computer starts in Manager Mode (2026-10-04, Gavin:
 // no repeated mode screens); a manager who switched to Rep Mode keeps it.
-const SIGNED_MGR = !!(KDH_USER && KDH_USER.role === 'manager' && !KDH_USER.preview);
+// A manager being PREVIEWED by Gavin counts too (2026-10-14): kdhUser() gives
+// that manager's role, so the preview opens on Program View exactly as they
+// would, not on the rep picker. A rep preview has role 'rep' and is excluded.
+const SIGNED_MGR = !!(KDH_USER && KDH_USER.role === 'manager');
 function restore(){ try{ const s = JSON.parse(localStorage.getItem(LS_KEY)||'{}');
   if(mgrCapable() && (s.mode==='manager' || SIGNED_MGR)) state.mode = 'manager'; }catch(e){ if(SIGNED_MGR && mgrCapable()) state.mode = 'manager'; } }
 function hashOf(){
@@ -2782,7 +2815,7 @@ function exportFilterText(f){
   const mon = f.month==='active' ? 'Active now' : f.month==='all' ? 'All months' : f.month;
   return `Type: ${f.type==='all'?'All':f.type==='inc'?'Incentives':'MPOs'} · Premise: ${f.chan==='all'?'All':f.chan==='on'?'On-Premise':'Off-Premise'} · Supplier: ${sup} · Month: ${mon}`;
 }
-function exportScopeText(){ return HUB_TEAM ? `${HUB_TEAM.dm}’s team (${ROSTER.length} reps)` : `Every rep (${ROSTER.length})`; }
+function exportScopeText(){ return (HUB_TEAM ? `${HUB_TEAM.dm}’s team (${ROSTER.length} reps)` : `Every rep (${ROSTER.length})`) + (BRAND_SCOPE ? ` · Brands: ${brandScopeText()}` : ''); }
 function programsForExport(onlyId){
   if(onlyId){ const one = PROGRAMS.find(p=>p.id===onlyId); if(one && one.isTest) return []; }   // a TEST program never reaches a recap
   if(onlyId){ const p = PROGRAMS.find(x=>x.id===onlyId); return p ? [p] : []; }
@@ -2926,10 +2959,11 @@ function screenPrograms(){
   const sel = (name, opts, val) => `<select class="fsel" data-filter="${name}">${opts.map(o=>`<option value="${E(o.v)}"${o.v===val?' selected':''}>${E(o.l)}</option>`).join('')}</select>`;
   let html = `<div class="pv-head">
     <div class="pv-title"><h1>Program View</h1>${exportMenuHtml('')}</div>
+    ${BRAND_SCOPE ? `<p class="pv-sub pv-brands">${sups.length ? 'Your Brands: '+E(brandScopeText()) : 'No programs on the Hub for your brands ('+E((BRAND_SCOPE.suppliers || BRAND_SCOPE).join(', '))+')'}</p>` : ''}
     ${refreshedLine()}
     <div class="filters">
       <div class="fgrp"><span class="fl">Channel</span>${['all','on','off'].map(v=>`<button class="fpill${f.chan===v?' active':''}" data-filter="chan" data-v="${v}">${v==='all'?'All':v==='on'?'On-Premise':'Off-Premise'}</button>`).join('')}</div>
-      <div class="fgrp"><span class="fl">Supplier</span>${sel('sup', [{v:'all',l:'All Suppliers'}].concat(sups.map(s=>({v:s,l:s}))), f.sup)}</div>
+      <div class="fgrp"><span class="fl">Supplier</span>${sel('sup', [{v:'all',l:BRAND_SCOPE ? `Your Suppliers (${sups.length})` : 'All Suppliers'}].concat(sups.map(s=>({v:s,l:s}))), f.sup)}</div>
       <div class="fgrp"><span class="fl">Rep</span><select class="pv-rep" id="pvRep" aria-label="Open one rep’s programs"><option value="">All Reps (${ROSTER.length})</option>${DM_GROUPS.map(g=>({dm:g.dm, reps:g.reps.filter(r=>ROSTER.includes(r))})).filter(g=>g.reps.length).map(g=>`<optgroup label="${E(g.dm)}">${g.reps.map(r=>`<option value="${E(r)}">${E(r)}</option>`).join('')}</optgroup>`).join('')}${(()=>{ const inG = new Set(DM_GROUPS.flatMap(g=>g.reps)); const o = ROSTER.filter(r=>!inG.has(r)); return o.length ? `<optgroup label="Other">${o.map(r=>`<option value="${E(r)}">${E(r)}</option>`).join('')}</optgroup>` : ''; })()}</select></div>
       <div class="fgrp"><span class="fl">Month</span>${sel('month', [{v:'active',l:'Active Now'},{v:'all',l:'All Months'}].concat(months.map(m=>({v:m,l:monthLabel(m)}))), f.month)}</div>
     </div>
@@ -4045,6 +4079,7 @@ function pwRestoreScroll(){
     let tries = 0; const t = setInterval(()=>{ if(document.getElementById('pwList') || ++tries>40){ clearInterval(t); window.scrollTo(0, Number(y)||0); } }, 75); }catch(e){}
 }
 function boot(){
+  BOOTED = true;
   buildPrograms();
   if(LIB) return;                  // the Accounts page drives the rest itself
   // Program eligibility rules (shared/eligibility.js): render again once they land.
@@ -4084,6 +4119,15 @@ function boot(){
 window.KohlerHub = {NO_BUY, state, programs:()=>PROGRAMS, sortedForRep, programStats, render, rebuild:rebuildPrograms, buyingFor, accountsFor, nextAccounts, closedFor,
   // library surface for the Accounts page (2026-09-30)
   lib:LIB, loadFor, distFor, progFacts, sellAsk, endsLabel, periodLabel, isActive, incBand, isDollarProgram, availability, supportAllows, isSupport,
-  mpoRepMonth, mpoMonthLoaded, scopes:MPO_SCOPES, incRows, RA, lockedRep:LOCKED_REP, roster:ROSTER, dmGroups:DM_GROUPS};
-boot();
+  mpoRepMonth, mpoMonthLoaded, scopes:MPO_SCOPES, incRows, RA, lockedRep:LOCKED_REP, roster:ROSTER, dmGroups:DM_GROUPS, brandScope:()=>BRAND_SCOPE};
+// A manager's brand scope must be known BEFORE the first build, or Program
+// View would flash every supplier: wait for it (3 s at most), then boot.
+// Reps, rep previews and library mode boot at once.
+if(!LIB && KDH_USER && KDH_USER.role==='manager' && window.kdhBrandScope){
+  let started = false;
+  // a district manager who also carries a brand keeps every supplier (their team is the scope)
+  const start = sc => { if(started) return; started = true; BRAND_SCOPE = !HUB_TEAM && Array.isArray(sc) && sc.length ? sc : null; boot(); };
+  try{ window.kdhBrandScope().then(start, ()=>start(null)); }catch(e){ start(null); }
+  setTimeout(()=>start(null), 3000);
+} else boot();
 })(HUB_ROSTER_SCOPED, HUB_DM_GROUPS_SCOPED);

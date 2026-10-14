@@ -86,6 +86,28 @@ function decorateAsRep(){
 var openProgram = null;
 var sortMode = 'progress';    // 'progress' | 'name' | 'remaining'
 
+/* ---- BRAND MANAGER SCOPE (2026-10-14, Gavin) ------------------------
+   A brand manager covers a supplier with every rep under them. The same
+   rule as the hub: kdhBrandScope() (shared/kdh-user.js) gives the Fusion
+   supplier names on their allowed_users.program_brands (or the ones a
+   manager preview carries); this page then lists only the objectives filed
+   under those suppliers (kdhMpoSupplierNames + kdhBrandMatch), on View by
+   Program and on a rep's page, and says "None of Your Brands Are on the
+   <scope> MPO This Month" when nothing matches. The roster is not cut.
+   A DM, a VP or Gavin (no brands) sees every objective. Because the scope
+   is read from the database, the first refresh waits for it (3 s cap). */
+var BRANDS = null;                 // ['Constellation Brands', ...] or null = every supplier
+var brandReady = Promise.resolve();
+function brandAllows(o){
+  if(!BRANDS || !window.kdhBrandMatch) return true;
+  var names = window.kdhMpoSupplierNames ? window.kdhMpoSupplierNames(o) : [o.name];
+  return window.kdhBrandMatch(names, BRANDS);
+}
+function brandEmptyHtml(){
+  return '<div class="kdh-state empty g-brand-empty"><b>None of Your Brands Are on the '+esc(H.scope)+' MPO This Month</b>'+
+    '<p>Your brands: '+esc((BRANDS.suppliers || BRANDS).join(', '))+'</p></div>';
+}
+
 var LS_KEY = 'kohler-mpo-guided';
 
 /* ---- Signed-in rep lock (kohlerdisthub.com, 2026-09-25) ---------------
@@ -361,6 +383,9 @@ function screenRepDetail(){
   // sees only the objectives they can reach (Gavin, 2026-10-07).
   var cards = objs.filter(function(o){ var m = H.metric(o, rep); return !(m && (m.hidden || m.notScored)); })
     .map(function(o){ return repObjectiveCard(o, rep); }).join('');
+  // a brand manager's view: their objectives only, so no month-wide weighted summary
+  var emptyHtml = BRANDS && !objs.length ? brandEmptyHtml()
+    : '<div class="kdh-state empty"><b>No '+esc(H.scope)+' MPOs Apply to '+(lockedRep() || asRep ? 'Your Route' : esc(first)+'’s Route')+' This Month</b></div>';
 
   return '<div class="g g-fade">'+
     '<div class="g-actions">'+
@@ -377,7 +402,7 @@ function screenRepDetail(){
         (function(){ var u = document.getElementById('updated-line'); var t = u ? u.textContent.trim().replace(/^Data refreshed\s*/i,'Data ').replace(/,\s*\d{1,2}:\d{2}\s*[AP]M.*$/i,'') : ''; return t ? esc(t) : ''; })()
       ].filter(Boolean).join(' · ')
     ])+
-    (cards || '<div class="kdh-state empty"><b>No '+esc(H.scope)+' MPOs Apply to '+(lockedRep() || asRep ? 'Your Route' : esc(first)+'’s Route')+' This Month</b></div>')+
+    (cards || emptyHtml)+
   '</div>';
 }
 
@@ -790,8 +815,9 @@ function screenProgram(){
   return '<div class="g g-fade">'+
     stepHead(null,'Program results',
       esc(H.scope)+' · '+esc(H.monthLabel())+
+      (BRANDS ? ' · your brands: '+esc((BRANDS.suppliers || BRANDS).join(', ')) : '')+
       ' · open a program to review each rep.')+
-    objs.map(programCard).join('')+
+    (objs.length ? objs.map(programCard).join('') : BRANDS ? brandEmptyHtml() : '')+
   '</div>';
 }
 
@@ -1042,6 +1068,17 @@ var API = {
         return m;
       }});
     }
+    // Brand scope: objectives filed under the manager's suppliers only (see BRANDS above).
+    var baseObjectives = H.objectives;
+    H = Object.assign({}, H, {objectives: function(){ var all = baseObjectives(); return BRANDS ? all.filter(brandAllows) : all; }});
+    // (a district manager who also carries a brand keeps every objective: their team is the scope)
+    if(KDH_USER && KDH_USER.role === 'manager' && window.kdhBrandScope && !T){
+      brandReady = new Promise(function(resolve){
+        var done = false; var settle = function(sc){ if(done) return; done = true; BRANDS = Array.isArray(sc) && sc.length ? sc : null; resolve(); };
+        try{ window.kdhBrandScope().then(settle, function(){ settle(null); }); }catch(e){ settle(null); }
+        setTimeout(function(){ settle(null); }, 3000);
+      });
+    }
     mount = host.mount;
 
     // The URL wins over the remembered state -- a shared link should land
@@ -1068,7 +1105,8 @@ var API = {
   // across months when they are still on the roster, so switching months
   // answers "how did this same rep do in August" rather than dumping the
   // user back to the picker.
-  refresh: function(){
+  refresh: function(){ brandReady.then(API._refresh); },
+  _refresh: function(){
     if(activeRep && H.roster.indexOf(activeRep)<0) activeRep = null;
     if(openProgram && !H.objectives().some(function(o){return o.key===openProgram;})){
       openProgram = null;
@@ -1084,6 +1122,7 @@ var API = {
     return s.month || (restore()||{}).month || null;
   },
   syncHash: function(){ persist(); },
+  get brands(){ return BRANDS; },
   get view(){ return view; },
   get rep(){ return activeRep; }
 };
