@@ -11,17 +11,6 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
-- [ ] **Field Tasks: reps hand work to sales associates (2026-10-14).** Built: `/tasks/` (associate queue, rep
-  list + New Task, manager overview), the associate role's own chrome, per-task thread with photos. TO MAKE IT LIVE:
-  run `supabase/migrations/20261014180000_field_tasks.sql` in the SQL Editor (idempotent); until then the page says
-  "Field Tasks are not live yet". The nine associates are already on the allow list (your associate-role migration).
-  Then try it on an iPhone as an associate: Mark Complete with a photo. sales-associates/PLAN.md lists the eight
-  assumptions to confirm (any associate for any rep, photo required for Display / Tap Handle only, managers see
-  every task, in-app notifications only) and the v2 list (push / email, Realtime, templates, archiving, DM scope).
-- [ ] **Rep Inventory page on the one-file report (2026-10-14).** Built on the sample `Inventory_Report_1.csv` from
-  the brief. To go live on real numbers: save each new Encompass inventory report as
-  `inventory-data/Inventory_Report.csv`, run `python3 inventory/generate.py`, then `python3 accounts/generate.py` (the
-  Account page's product list reads the same snapshot), commit, push. The snapshot date is the file's save date.
 - [~] **Brand managers open the Incentive Hub and both MPO trackers on their brands (2026-10-14).** LIVE ON PUSH, no
   Supabase step: the assignment comes from the Encompass Brand Families export (shared/data/brand_families.csv ->
   shared/data/brand-managers.json, 9 brand managers, manager -> suppliers -> brand families) by name. A brand manager
@@ -356,6 +345,11 @@ device, a decision).
 
 ## Done
 
+- [x] **Field Tasks: reps hand work to sales associates (2026-10-14).** Migration
+  `20261014180000_field_tasks.sql` run by Gavin the same day (Success, no rows). `/tasks/`: associate queue,
+  rep list + New Task, manager read-only overview, one thread per task with photos. Open assumptions (any rep
+  to any associate, photo required for Display / Tap Handle only, managers see every task, in-app
+  notifications only) and the v2 list are in sales-associates/PLAN.md.
 - [x] **2026-10-14 Inventory: starred products + brand-manager scope + role defaults.** Migration product_stars run by Gavin the same day ("Success. No rows returned"): stars sync across devices. Reps (and managers) star
   products; a Starred group tops the list with "N Out · M Low", a Starred chip filters to them, stars sync per
   person (device until the migration runs). A brand manager sees only their suppliers' products (tiles, list,
