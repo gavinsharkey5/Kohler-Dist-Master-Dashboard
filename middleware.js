@@ -56,8 +56,20 @@ const REP_PATHS = [
   '/api/geocode',                       // account map coordinates (api/geocode.js authorizes the route itself)
   '/inventory/',                        // What Can I Sell (units only -- no cost, value or margin; 2026-10-02)
   '/nonbuy/',                           // Non-Buy Reports (2026-10-08; a rep's history + book are the per-rep slices below)
+  '/tasks/',                            // Field Tasks: a rep assigns work to a sales associate (2026-10-14; RLS decides the rows)
 ];
 const REP_HOME = '/rep/';
+
+// A SALES ASSOCIATE (allowed_users.role = 'associate', 2026-10-14) does field
+// work reps hand them: displays, tap handles, POS. They may open only the
+// Field Tasks page and what it loads; everything else sends them there
+// (403 for a data fetch). Which tasks they see is row-level security.
+const ASSOCIATE_PATHS = ['/tasks/', '/shared/'];
+const ASSOCIATE_HOME = '/tasks/';
+function associateMayOpen(pathname) {
+  const p = pathname.split('?')[0];
+  return ASSOCIATE_PATHS.some((pre) => p.startsWith(pre) || p + '/' === pre || p === pre.replace(/\/$/, '') + '/index.html');
+}
 
 // ACCOUNT DATA IS SERVED PER REP (2026-09-30). accounts/generate.py writes one
 // slice per rep under /accounts/data/{book,reps,sales}/<key>..., where <key>
@@ -204,6 +216,16 @@ function wantsDocument(request) {
 function route(request, url, verdict) {
   if (verdict.ok) {
     if (verdict.role === 'manager') return passThrough();
+    if (verdict.role === 'associate') {
+      if (associateMayOpen(url.pathname)) return passThrough();
+      if (!wantsDocument(request)) {
+        return new Response(JSON.stringify({ error: 'not available to sales associates' }), {
+          status: 403,
+          headers: { 'content-type': 'application/json', 'cache-control': 'no-store' },
+        });
+      }
+      return redirect(new URL(ASSOCIATE_HOME, url).toString());
+    }
     // A rep: their own account slice, never anyone else's.
     if (url.pathname === '/hub/data/accounts.js') {
       const key = nameKey(verdict.name);

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F6F7F9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1523" media="(prefers-color-scheme: dark)">
+<title>Field Tasks — Kohler Distribution Hub</title>
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Dist Hub">
+<link rel="preload" href="../assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+<!-- Theme before first paint: the saved choice, else the device setting (2026-09-30). -->
+<script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="stylesheet" href="../rep/rep.css?v=20261008d">
+<link rel="stylesheet" href="tasks.css?v=20261014a">
+<meta name="kdh-page" content="Field Tasks">
+<script src="../shared/kdh-user.js?v=20261014b"></script>
+<script src="../shared/auth-config.js"></script>
+</head>
+<body>
+<!--
+  FIELD TASKS (2026-10-14): a rep hands account work to a sales associate --
+  build a display, drop a tap handle, deliver POS -- and the associate works a
+  queue, updates the status, attaches the completion photo and talks to the
+  rep in one thread. A manager reads everything.
+  Data: public.field_tasks / field_task_comments / field_task_reads and the
+  private task-photos bucket, through PostgREST with the signed-in token
+  (migration supabase/migrations/20261014180000_field_tasks.sql). Row-level
+  security decides who sees what; the page never filters by name. A manager
+  previewing a rep sees that rep's tasks read-only. Nothing here is a sales
+  record. README.txt has every rule.
+-->
+<main class="wrap tk" id="app" aria-live="polite">
+  <div class="kdh-state loading">Loading your tasks…</div>
+</main>
+<input type="file" id="tkPhotoIn" accept="image/*" capture="environment" hidden>
+<input type="file" id="tkLibIn" accept="image/*" hidden>
+<script src="../hub/data/accounts.js" defer onerror="window.__noBook=1"></script>
+<script src="tasks.js?v=20261014a" defer></script>
+</body>
+</html>

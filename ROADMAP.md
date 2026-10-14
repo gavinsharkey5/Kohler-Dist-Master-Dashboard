@@ -11,6 +11,13 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
+- [ ] **Field Tasks: reps hand work to sales associates (2026-10-14).** Built: `/tasks/` (associate queue, rep
+  list + New Task, manager overview), the associate role's own chrome, per-task thread with photos. TO MAKE IT LIVE:
+  run `supabase/migrations/20261014180000_field_tasks.sql` in the SQL Editor (idempotent); until then the page says
+  "Field Tasks are not live yet". The nine associates are already on the allow list (your associate-role migration).
+  Then try it on an iPhone as an associate: Mark Complete with a photo. sales-associates/PLAN.md lists the eight
+  assumptions to confirm (any associate for any rep, photo required for Display / Tap Handle only, managers see
+  every task, in-app notifications only) and the v2 list (push / email, Realtime, templates, archiving, DM scope).
 - [ ] **Rep Inventory page on the one-file report (2026-10-14).** Built on the sample `Inventory_Report_1.csv` from
   the brief. To go live on real numbers: save each new Encompass inventory report as
   `inventory-data/Inventory_Report.csv`, run `python3 inventory/generate.py`, then `python3 accounts/generate.py` (the
