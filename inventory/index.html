@@ -57,7 +57,8 @@
   .chip.sel svg{width:14px;height:14px;flex:none}
   .chip .c{color:var(--kdh-text-3);font-weight:500}
   .chip[aria-pressed="true"] .c{color:var(--kdh-text-2)}
-  @media (max-width:479px){ .chip .c{display:none} }  /* the tiles carry the counts; all four chips fit a phone */
+  /* phones: the tiles carry the counts and the Starred chip is its star + count, so every chip fits a 375px screen */
+  @media (max-width:479px){ .chip{padding:0 12px} .chip .c{display:none} .chip[data-status="star"] .sl{display:none} .chip[data-status="star"] .c{display:inline} }
 
   /* count line */
   .cnt{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:8px 0 4px;font-size:14px;color:var(--kdh-text-3);min-height:24px}
@@ -145,8 +146,27 @@
     .shp{width:min(520px,100%);max-height:min(80vh,720px);border-radius:16px;padding-bottom:0}
   }
   html.sh-open{overflow:hidden}
+
+  /* star (2026-10-14): the rep's own shortlist; the leading slot of every row */
+  .row{grid-template-columns:auto minmax(0,1fr) auto}
+  .star{width:44px;height:44px;margin:-4px 0 -4px -10px;border:0;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--kdh-text-4);border-radius:10px;padding:0;flex:none}
+  .star svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}
+  .star[aria-pressed="true"]{color:var(--kdh-gold,#B7791F)} .star[aria-pressed="true"] svg{fill:currentColor}
+  .star:hover{background:var(--kdh-surface-3)} .star:focus-visible{outline:2px solid var(--kdh-brand);outline-offset:-2px}
+  html.no-star .star{display:none} html.no-star .row{grid-template-columns:minmax(0,1fr) auto}
+  .gh.gstar{color:var(--kdh-text)} .gh .gsub{font-weight:500;color:var(--kdh-text-3);white-space:nowrap}
+  .chip .sv{width:14px;height:14px;fill:currentColor;flex:none}
+  @media (min-width:768px){
+    .row{grid-template-columns:auto minmax(0,1fr) auto auto}
+    html.no-star .row{grid-template-columns:minmax(0,1fr) auto auto}
+  }
+  /* brand scope line (managers who cover suppliers) */
+  .scope{margin:6px 0 0;font-size:14px;color:var(--kdh-text-2);text-align:center}
+  .scope b{font-weight:600}
 </style>
 <script src="../shared/kdh-user.js?v=20261008d"></script>
+<script src="../shared/auth-config.js"></script>
+<script src="../shared/dm-groups.js"></script>
 <script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="kdh-page" content="Inventory">
 <!-- Site design system: maps this page's variables + fonts onto shared/kdh.css. Keep it LAST in <head>. -->
@@ -157,6 +177,7 @@
   <header class="ph">
     <h1>Inventory</h1>
     <p class="snap"><span id="asOf"></span><span id="stale"></span></p>
+    <p class="scope" id="scopeLine" hidden></p>
   </header>
 
   <div class="ik" id="kpis" aria-label="Stock summary"></div>
@@ -238,16 +259,19 @@
 (function(){
 'use strict';
 const DATA = JSON.parse(document.getElementById('rep-data').textContent || '{}');
-const S = DATA.summary || {}, C = S.counts || {};
-const P = DATA.products || [];
+const S = DATA.summary || {};
+const ALL = DATA.products || [];
+let P = ALL;                      // the rows this person may see (a brand manager: their suppliers)
 const LOW_MAX = DATA.lowMax || 24;
 const n0 = v => Math.round(Number(v)||0).toLocaleString('en-US');
 const esc = s => String(s==null?'':s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const dstr = s => s ? new Date(s+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '—';
 const $ = id => document.getElementById(id);
+const U = (function(){ try{ return window.kdhUser ? window.kdhUser() : null; }catch(e){ return null; } })();
+const cookie = n => { const m = document.cookie.match(new RegExp('(?:^|; )' + n + '=([^;]*)')); return m ? decodeURIComponent(m[1]) : ''; };
 
 // one lowercase haystack per product: the full "Product Num Name" string
-P.forEach((p,i)=>{ p.i=i; p.s=((p.num||'')+' '+(p.name||'')).toLowerCase(); });
+ALL.forEach((p,i)=>{ p.i=i; p.s=((p.num||'')+' '+(p.name||'')).toLowerCase(); });
 
 /* ---------- freshness ---------- */
 $('asOf').innerHTML = `<b>Inventory as of ${esc(dstr(DATA.asOf))}</b>`;
@@ -260,7 +284,7 @@ $('asOf').innerHTML = `<b>Inventory as of ${esc(dstr(DATA.asOf))}</b>`;
 /* ---------- state (sort + filters persist; search does not) ---------- */
 const LS = 'kdh_inv:v2';
 const SORTS = {avail:'Available, High to Low', az:'Name, A to Z', pre:'Pre Sales, High to Low'};
-const STATUS = {in:'In Stock', low:'Low', out:'Out'};
+const STATUS = {star:'Starred', in:'In Stock', low:'Low', out:'Out'};
 const F = {sort:'avail', status:'', sup:[], fam:[]};
 try{ const s=JSON.parse(localStorage.getItem(LS)||'{}');
   if(SORTS[s.sort]) F.sort=s.sort; if(STATUS[s.status]||s.status==='') F.status=s.status||'';
@@ -270,14 +294,75 @@ function save(){ try{ localStorage.setItem(LS, JSON.stringify(F)); }catch(e){} }
 let q = '';
 let openId = null;
 
-const supCount = {}, famCount = {}, famSup = {};
-P.forEach(p=>{ supCount[p.supplier]=(supCount[p.supplier]||0)+1; famCount[p.family]=(famCount[p.family]||0)+1; (famSup[p.family]=famSup[p.family]||new Set()).add(p.supplier); });
-const SUPS = Object.keys(supCount).sort((a,b)=>a.localeCompare(b,undefined,{sensitivity:'base'}));
-const FAMS = Object.keys(famCount).sort((a,b)=>a.localeCompare(b,undefined,{sensitivity:'base'}));
-// drop persisted names the current report no longer has
-F.sup = F.sup.filter(s=>supCount[s]); F.fam = F.fam.filter(f=>famCount[f]);
+/* ---------- STARRED PRODUCTS (2026-10-14): the person's own shortlist ----------
+   Kept on this device (localStorage, keyed by the signed-in email) and synced to
+   public.product_stars with the signed-in token when the migration is in; a 404
+   there just means device-only. A manager previewing a rep cannot star (their
+   stars would be their own, not the rep's), so the control is hidden. */
+const fnv = str => { let h = 0x811c9dc5; for(let i=0;i<str.length;i++){ h ^= str.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; } return h.toString(16); };
+const Stars = (function(){
+  const email = U && U.email ? String(U.email).toLowerCase() : '';
+  const enabled = !!email && !(U && U.preview);
+  const key = 'kdh_inv_star:v1:' + fnv(email || 'anon');
+  let on = new Set(), off = new Set(), remote = null;   // off = removals the server has not confirmed
+  try{ const j = JSON.parse(localStorage.getItem(key) || '{}'); (j.on||[]).forEach(n=>on.add(String(n))); (j.off||[]).forEach(n=>off.add(String(n))); }catch(e){}
+  function persist(){ try{ localStorage.setItem(key, JSON.stringify({on:[...on], off:[...off]})); }catch(e){} }
+  const cfg = window.KDH_AUTH || null;
+  const api = () => cfg && cfg.url && cfg.key && cookie('kdh_at') ? String(cfg.url).replace(/\/$/,'') + '/rest/v1/product_stars' : null;
+  const hdr = extra => Object.assign({apikey: cfg.key, authorization: 'Bearer ' + cookie('kdh_at'), accept: 'application/json'}, extra||{});
+  async function push(nums){
+    const u = api(); if(!u || remote===false || !nums.length) return false;
+    const byNum = {}; ALL.forEach(p=>{ byNum[p.num]=p.name; });
+    const r = await fetch(u + '?on_conflict=email,product_num', {method:'POST', headers: hdr({'content-type':'application/json', prefer:'resolution=merge-duplicates,return=minimal'}),
+      body: JSON.stringify(nums.map(n=>({email:'', product_num:n, product_name: byNum[n] || null})))}).catch(()=>null);
+    return !!(r && r.ok);
+  }
+  async function drop(num){
+    const u = api(); if(!u || remote===false) return false;
+    const r = await fetch(u + '?product_num=eq.' + encodeURIComponent(num), {method:'DELETE', headers: hdr()}).catch(()=>null);
+    return !!(r && r.ok);
+  }
+  async function load(){
+    const u = api(); if(!enabled || !u) return false;
+    const r = await fetch(u + '?select=product_num', {headers: hdr()}).catch(()=>null);
+    if(!r){ return false; }
+    if(r.status===404){ remote = false; return false; }          // migration not run yet: device-only
+    if(!r.ok) return false;
+    let rows = []; try{ rows = await r.json(); }catch(e){ return false; }
+    remote = true;
+    const server = new Set((rows||[]).map(x=>String(x.product_num)));
+    // removals made offline go up first; then the union comes down
+    for(const n of [...off]){ if(!server.has(n) || await drop(n)) off.delete(n); }
+    const before = [...on].sort().join(',');
+    server.forEach(n=>{ if(!off.has(n)) on.add(n); });
+    const mine = [...on].filter(n=>!server.has(n));
+    if(mine.length) push(mine);
+    persist();
+    return [...on].sort().join(',') !== before;
+  }
+  function toggle(num, name){
+    if(!enabled) return;
+    num = String(num);
+    if(on.has(num)){ on.delete(num); off.add(num); persist(); drop(num).then(ok=>{ if(ok){ off.delete(num); persist(); } }); }
+    else { on.add(num); off.delete(num); persist(); push([num]); }
+  }
+  return { enabled, has: n => on.has(String(n)), size: () => on.size, toggle, load, list: () => [...on] };
+})();
+if(!Stars.enabled) document.documentElement.classList.add('no-star');
 
-const statusOk = p => !F.status || (F.status==='in' ? p.available>0 : F.status==='low' ? p.status==='low' : p.status==='out');
+/* ---------- indexes (rebuilt after the brand scope cuts P) ---------- */
+let supCount = {}, famCount = {}, famSup = {}, SUPS = [], FAMS = [], C = {ok:0, low:0, out:0};
+function index(){
+  supCount = {}; famCount = {}; famSup = {}; C = {ok:0, low:0, out:0};
+  P.forEach(p=>{ supCount[p.supplier]=(supCount[p.supplier]||0)+1; famCount[p.family]=(famCount[p.family]||0)+1; (famSup[p.family]=famSup[p.family]||new Set()).add(p.supplier); C[p.status]=(C[p.status]||0)+1; });
+  SUPS = Object.keys(supCount).sort((a,b)=>a.localeCompare(b,undefined,{sensitivity:'base'}));
+  FAMS = Object.keys(famCount).sort((a,b)=>a.localeCompare(b,undefined,{sensitivity:'base'}));
+  // drop persisted names this person's report no longer has
+  F.sup = F.sup.filter(s=>supCount[s]); F.fam = F.fam.filter(f=>famCount[f]);
+  if(F.status==='star' && !Stars.enabled) F.status = '';
+}
+
+const statusOk = p => !F.status || (F.status==='in' ? p.available>0 : F.status==='low' ? p.status==='low' : F.status==='out' ? p.status==='out' : F.status==='star' ? Stars.has(p.num) : true);
 function matches(p){
   if(!statusOk(p)) return false;
   if(F.sup.length && F.sup.indexOf(p.supplier)<0) return false;
@@ -309,11 +394,13 @@ $('kpis').addEventListener('click', e=>{
 
 /* ---------- chips ---------- */
 const X = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>';
+const STAR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L12 16.9l-5.3 2.8 1.1-5.9-4.3-4.1 5.9-.8z"/></svg>';
 function chips(){
   const st = [['', 'All', P.length], ['in','In Stock',(C.ok||0)+(C.low||0)], ['low','Low',C.low||0], ['out','Out',C.out||0]];
   // the dismissible supplier / brand chips come first so they are never scrolled out of sight
   let h = F.sup.map(s=>`<button type="button" class="chip sel" data-rm="sup" data-v="${esc(s)}" aria-label="Remove supplier filter ${esc(s)}"><span>${esc(s)}</span>${X}</button>`).join('');
   h += F.fam.map(s=>`<button type="button" class="chip sel" data-rm="fam" data-v="${esc(s)}" aria-label="Remove brand family filter ${esc(s)}"><span>${esc(s)}</span>${X}</button>`).join('');
+  if(Stars.enabled) h += `<button type="button" class="chip" data-status="star" aria-pressed="${F.status==='star'}"><svg class="sv" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L12 16.9l-5.3 2.8 1.1-5.9-4.3-4.1 5.9-.8z"/></svg><span class="sl">Starred</span> <span class="c">${n0(starCount())}</span></button>`;
   h += st.map(([k,l,n])=>`<button type="button" class="chip" data-status="${k}" aria-pressed="${F.status===k}">${l}${k?` <span class="c">${n0(n)}</span>`:''}</button>`).join('');
   $('chips').innerHTML = h;
   const nf = F.sup.length + F.fam.length;
@@ -321,6 +408,7 @@ function chips(){
   $('filtBtn').classList.toggle('on', nf>0);
   $('sortBtn').classList.toggle('on', F.sort!=='avail');
 }
+const starCount = () => P.reduce((n,p)=>n + (Stars.has(p.num)?1:0), 0);
 $('chips').addEventListener('click', e=>{
   const b=e.target.closest('button'); if(!b) return;
   if(b.dataset.rm){ const a = F[b.dataset.rm]; const i=a.indexOf(b.dataset.v); if(i>=0) a.splice(i,1); save(); render(); return; }
@@ -336,6 +424,15 @@ function build(){
   rowsTotal = rows.length;
   VIEW = [];
   if(grouped()){
+    // the person's starred products first (their day starts there), then every supplier A-Z
+    if(Stars.enabled){
+      const mine = rows.filter(p=>Stars.has(p.num));
+      if(mine.length){
+        const out = mine.filter(p=>p.status==='out').length, low = mine.filter(p=>p.status==='low').length;
+        const sub = [out ? `${n0(out)} Out` : '', low ? `${n0(low)} Low` : ''].filter(Boolean).join(' · ') || 'All In Stock';
+        VIEW.push({h:'Starred', n:mine.length, star:true, sub}); mine.forEach(p=>VIEW.push(p));
+      }
+    }
     const by = {};
     rows.forEach(p=>{ (by[p.supplier]=by[p.supplier]||[]).push(p); });
     Object.keys(by).sort((a,b)=>a.localeCompare(b,undefined,{sensitivity:'base'})).forEach(s=>{
@@ -344,8 +441,9 @@ function build(){
   } else VIEW = rows;
 }
 function rowHtml(p){
-  const w = wide.matches;
+  const w = wide.matches, on = Stars.has(p.num);
   return `<div class="row${openId===p.i?' open':''}" data-i="${p.i}"${w?'':` role="button" tabindex="0" aria-expanded="${openId===p.i}"`}>
+    ${Stars.enabled ? `<button type="button" class="star" data-star="${esc(p.num)}" aria-pressed="${on}" aria-label="${on?'Unstar':'Star'} ${esc(p.name)}" title="${on?'Remove from Starred':'Star this product'}">${STAR}</button>` : ''}
     <div class="rmain"><div class="rname">${esc(p.name)}</div><div class="rsub">#${esc(p.num)} · ${esc(p.family)}</div></div>
     <span class="pill ${p.status}" aria-label="Available ${n0(p.available)}">${n0(p.available)}</span>
     <div class="det">
@@ -355,7 +453,9 @@ function rowHtml(p){
       <div class="dk a"><span class="dl">Available</span><span class="dv">${n0(p.available)}</span></div>
     </div></div>`;
 }
-const itemHtml = x => x.h!=null ? `<div class="gh"><span>${esc(x.h)}</span><span class="c">${n0(x.n)} ${x.n===1?'Product':'Products'}</span></div>` : rowHtml(x);
+const itemHtml = x => x.h!=null
+  ? `<div class="gh${x.star?' gstar':''}"><span>${x.star ? STAR.replace('<svg ', '<svg class="sv" style="width:16px;height:16px;fill:var(--kdh-gold,#B7791F);vertical-align:-2px;margin-right:6px" ') : ''}${esc(x.h)}</span><span class="c">${x.sub ? `<span class="gsub">${esc(x.sub)} · </span>` : ''}${n0(x.n)} ${x.n===1?'Product':'Products'}</span></div>`
+  : rowHtml(x);
 function append(n){
   const end = Math.min(VIEW.length, shown+n);
   if(end>shown){ $('list').insertAdjacentHTML('beforeend', VIEW.slice(shown,end).map(itemHtml).join('')); shown = end; }
@@ -367,11 +467,13 @@ function render(){
   const empty = rowsTotal===0;
   L.hidden = empty; $('empty').hidden = !empty; $('more').hidden = true;
   if(empty){
-    $('emptySub').textContent = q ? `Nothing matches “${q}”${filtersOn()?' with the current filters':''}. Try a product number or a word from the name.` : 'Nothing matches the current filters.';
+    if(!P.length){ $('empty').querySelector('h2').textContent = 'None of Your Suppliers Are on This Report'; $('emptySub').textContent = 'The inventory report has no products for the suppliers you cover.'; $('emptyClear').hidden = true; }
+    else if(F.status==='star' && !q && !F.sup.length && !F.fam.length){ $('empty').querySelector('h2').textContent = 'No Starred Products'; $('emptySub').textContent = 'Tap the star on a product to keep it here, at the top of your list.'; $('emptyClear').hidden = false; }
+    else { $('empty').querySelector('h2').textContent = 'No Products Match'; $('emptySub').textContent = q ? `Nothing matches “${q}”${filtersOn()?' with the current filters':''}. Try a product number or a word from the name.` : 'Nothing matches the current filters.'; $('emptyClear').hidden = false; }
   } else append(CHUNK0);
   L.setAttribute('aria-busy','false');
   const on = q || filtersOn();
-  $('count').textContent = on ? `${n0(rowsTotal)} ${rowsTotal===1?'Product Matches':'Products Match'}` : `${n0(P.length)} Products · ${n0(S.suppliers||SUPS.length)} Suppliers`;
+  $('count').textContent = !P.length ? '' : on ? `${n0(rowsTotal)} ${rowsTotal===1?'Product Matches':'Products Match'}` : `${n0(P.length)} Products · ${n0(SUPS.length)} ${SUPS.length===1?'Supplier':'Suppliers'}`;
   $('clearAll').hidden = !on;
   if($('filtSheet').hidden===false) filtLists();
   $('filtDone').textContent = rowsTotal ? `Show ${n0(rowsTotal)} ${rowsTotal===1?'Product':'Products'}` : 'No Products Match';
@@ -393,8 +495,16 @@ function toggleRow(row){
   row.classList.toggle('open', open); row.setAttribute('aria-expanded', open?'true':'false');
   openId = open ? i : null;
 }
-$('list').addEventListener('click', e=>{ const r=e.target.closest('.row'); if(r) toggleRow(r); });
-$('list').addEventListener('keydown', e=>{ if(e.key!=='Enter' && e.key!==' ') return; const r=e.target.closest('.row'); if(r){ e.preventDefault(); toggleRow(r); } });
+function toggleStar(btn){
+  const num = btn.dataset.star, p = ALL.find(x=>x.num===num);
+  Stars.toggle(num, p ? p.name : '');
+  // every copy of the row (Starred group + its supplier) follows; the Starred group itself is redrawn
+  const on = Stars.has(num);
+  $('list').querySelectorAll(`.star[data-star="${CSS.escape(num)}"]`).forEach(b=>{ b.setAttribute('aria-pressed', on?'true':'false'); b.setAttribute('aria-label', (on?'Unstar ':'Star ') + (p?p.name:'')); b.title = on ? 'Remove from Starred' : 'Star this product'; });
+  if(grouped() || F.status==='star'){ const y = window.scrollY; render(); window.scrollTo(0, y); } else chips();
+}
+$('list').addEventListener('click', e=>{ const sb=e.target.closest('.star'); if(sb){ e.stopPropagation(); toggleStar(sb); return; } const r=e.target.closest('.row'); if(r) toggleRow(r); });
+$('list').addEventListener('keydown', e=>{ if(e.key!=='Enter' && e.key!==' ') return; if(e.target.closest('.star')) return; const r=e.target.closest('.row'); if(r){ e.preventDefault(); toggleRow(r); } });
 wide.addEventListener ? wide.addEventListener('change', render) : wide.addListener(render);
 
 /* ---------- search (debounced, substring, case-insensitive) ---------- */
@@ -459,16 +569,47 @@ function measure(){
 window.addEventListener('resize', measure);
 window.addEventListener('load', ()=>{ measure(); setTimeout(measure, 400); });
 
+/* ---------- BRAND SCOPE (2026-10-14): a manager who covers suppliers sees only them ----------
+   kdhBrandScope() (shared/kdh-user.js) answers with the manager's suppliers + brand families
+   (allowed_users.program_brands, the preview cookie, or brand-managers.json by name); null =
+   every supplier. A district manager who also carries a brand (kdhTeam matches) keeps everything,
+   the same hybrid rule as the hub and the MPO trackers. Reps and rep previews are never scoped. */
+function scopePromise(){
+  if(!U || U.role!=='manager' || !window.kdhBrandScope) return Promise.resolve(null);
+  try{ if(window.kdhTeam && window.kdhTeam(window.KDH_DM_GROUPS || [])) return Promise.resolve(null); }catch(e){}
+  return new Promise(resolve=>{
+    let done=false; const settle = sc => { if(done) return; done=true; resolve(Array.isArray(sc) && sc.length ? sc : null); };
+    try{ window.kdhBrandScope().then(settle, ()=>settle(null)); }catch(e){ settle(null); }
+    setTimeout(()=>settle(null), 3000);
+  });
+}
+function applyScope(sc){
+  if(!sc){ P = ALL; $('scopeLine').hidden = true; return; }
+  const match = window.kdhBrandMatch;
+  P = ALL.filter(p=>match([p.supplier, p.family], sc));
+  const sups = (sc.suppliers && sc.suppliers.length ? sc.suppliers : sc).slice();
+  const shown = sups.slice(0,4).map(esc).join(', ') + (sups.length>4 ? ` and ${sups.length-4} more` : '');
+  $('scopeLine').innerHTML = `<b>Your Suppliers:</b> ${shown}`; $('scopeLine').hidden = false;
+}
+
 /* ---------- notes ---------- */
 $('notes').innerHTML = `
   <li><b>Available</b> is Encompass’s own sellable figure, shown exactly as the report carries it — never recomputed here.</li>
   <li><b>On Floor, Pre Sales and Allocated</b> are the report’s own columns, as Encompass reports them.</li>
   <li><b>Status</b>: Out = Available 0 or less · Low = 1 to ${LOW_MAX} units · In Stock = more than ${LOW_MAX}. Units, never dollars.</li>
+  ${Stars.enabled ? `<li><b>Starred</b> products are your own shortlist: they sit at the top of the list and under the Starred chip, and follow you to your other devices when you are signed in. Starring never reserves stock or watches it live.</li>` : ''}
   <li><b>Snapshot</b>: the report file${DATA.source?` (${esc(DATA.source)})`:''} as saved on ${esc(dstr(DATA.asOf))}; a snapshot older than ${DATA.staleDays||7} days is flagged. Not live availability — check Encompass before promising a quantity.</li>
-  <li>${n0(P.length)} products · ${n0(S.suppliers||SUPS.length)} suppliers · ${n0(S.families||FAMS.length)} brand families. One warehouse in the data.</li>`;
+  <li>${n0(ALL.length)} products · ${n0(S.suppliers||0)} suppliers · ${n0(S.families||0)} brand families on the report. One warehouse in the data.</li>`;
 
-// first paint: the skeleton is in the markup; the list fills on the next frame
-requestAnimationFrame(()=>requestAnimationFrame(render));
+// first paint: the skeleton is in the markup; the list fills once the scope is known
+// (a manager's suppliers, 3 s cap) -- then the starred shortlist syncs in the background
+scopePromise().then(sc=>{
+  applyScope(sc); index();
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    render();
+    Stars.load().then(changed=>{ if(changed) render(); }).catch(()=>{});
+  }));
+});
 })();
 </script>
 </body>

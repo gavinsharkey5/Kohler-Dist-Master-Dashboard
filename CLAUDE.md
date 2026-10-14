@@ -3215,3 +3215,25 @@ page CSS because `.more{display:flex}` / `.sclr{display:flex}` beat the hidden a
 (above the bar, banner and tabs). Test: scratchpad inv_test.mjs (310 checks: rep + manager, 390 / 820 / 1366, light /
 dark, contrast, sticky offsets, persistence, chunking) + mobile_audit / contrast_audit / elong_audit on the page.
 Refresh = save the report as inventory-data/Inventory_Report.csv, run the two generators (ROADMAP Now).
+
+## Inventory: starred products, brand-manager scope, role defaults (2026-10-14)
+
+Gavin: "allow sales reps to star certain products" and "have the brand managers only see their
+products/brands/suppliers"; defaults tailored to the rep's and the manager's day. inventory/README.txt has the
+rules. STARS: every row carries a 44px star (`.star`, left slot; a tap never expands the row). Starred products
+form a "Starred" group at the TOP of the grouped list (header "N Out · M Low · K Products"; the rows also stay
+under their supplier) and a Starred chip (`F.status='star'`, star + count only under 480px so all five chips fit
+375px). Storage: localStorage `kdh_inv_star:v1:<fnv(email)>` {on, off} is always the truth on the device;
+`Stars.load()` syncs with `public.product_stars` (migration `20261014150000_product_stars.sql`: email stamped
+from the token, own rows only, a manager never sees a rep's; sql_stars_test.sh) through the signed-in token --
+404 = migration not run = device-only; `off` holds removals the server has not confirmed, retried on the next
+load, so a lost DELETE never resurrects a star. PREVIEW: `kdhUser().preview` -> `html.no-star`, no control, no
+chip, no group (a star would be the manager's). Stars never reserve or watch stock; About This Data says so.
+BRAND SCOPE: `scopePromise()` = null for a rep / rep preview, null when `kdhTeam(window.KDH_DM_GROUPS)` matches
+(a hybrid DM keeps everything, as on the hub / MPO trackers), else `kdhBrandScope()` with a 3 s cap; `applyScope`
+cuts `P = ALL.filter(p => kdhBrandMatch([p.supplier, p.family], scope))` BEFORE the first render (skeleton
+meanwhile), `index()` rebuilds the supplier / family / status counts from P, and the header gains "Your
+Suppliers: A, B, C (and N more)". Carbliss reaches the SN Food & Beverage manager by FAMILY. Nothing in scope ->
+"None of Your Suppliers Are on This Report" (no Clear). The page now loads shared/auth-config.js (the star sync's
+feature switch, 404 on a static server = off) and shared/dm-groups.js. Tests: scratchpad inv2_test.mjs (179) +
+inv_test.mjs (310) + sql_stars_test.sh (10) + contrast / mobile / elong audits.

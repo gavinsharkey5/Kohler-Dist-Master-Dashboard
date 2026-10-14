@@ -12,7 +12,8 @@ aging analysis -- those are the other page's job.
 Files:
   generate.py   Reads ONE report (below) and writes the embedded JSON into
                 index.html's <script id="rep-data"> tag. Prints a summary.
-  index.html    The page. Standalone -- no fetches, no libraries.
+  index.html    The page. No libraries; the only fetches are the star sync and
+                the brand scope (both optional -- the list itself is embedded).
   design-refs/  The three Mobbin screenshots the layout follows, the brief,
                 and a sample report (Inventory_Report_1.csv) for testing.
 
@@ -68,6 +69,32 @@ The page
                skeleton shows until the first chunk is in.
   State        Sort + filters persist in localStorage `kdh_inv:v2`; the search
                text does not. Empty state: "No Products Match" + Clear.
+  Starred      (2026-10-14) Every row has a star. Starred products sit in a
+               "Starred" group at the TOP of the grouped list (with "N Out ·
+               M Low" in the header) and under a Starred chip; they also stay
+               under their supplier. Stars are the person's own shortlist: kept
+               on the device (localStorage `kdh_inv_star:v1:<hash of email>`)
+               and synced to Supabase `public.product_stars` with the signed-in
+               token once migration 20261014150000_product_stars.sql is run
+               (a 404 = device-only until then; a removal that fails to reach
+               the server is retried on the next load and never comes back).
+               Own rows only -- a manager does not see a rep's stars. A manager
+               PREVIEWING someone cannot star (the control is hidden: a star
+               would be the manager's, not the rep's). A star never reserves
+               stock or watches it live -- the page says so in About This Data.
+  Brand scope  (2026-10-14) A manager who covers suppliers (kdhBrandScope():
+               allowed_users.program_brands, the preview cookie's brands, or
+               shared/data/brand-managers.json by name) sees ONLY products of
+               those suppliers and brand families -- the tiles, the list, the
+               search and the filter sheet are all cut, and a "Your Suppliers:
+               ..." line sits under the snapshot date. A district manager who
+               also carries a brand (kdhTeam matches, from shared/dm-groups.js)
+               keeps everything, the same hybrid rule as the hub and the MPO
+               trackers. Reps and rep previews are never scoped. Nothing in the
+               scope -> "None of Your Suppliers Are on This Report".
+  Defaults     A rep opens on their Starred group, then every supplier A-Z. A
+               brand manager opens on their suppliers' products with the three
+               tiles counting only those. Everyone else sees the whole report.
 
 Decisions worth not re-litigating
 ---------------------------------
@@ -87,7 +114,12 @@ Decisions worth not re-litigating
     -bad + the -soft backgrounds), AA in both themes; every status also reads
     as a number and a chip label, so nothing depends on colour alone.
 
-Test: scratchpad inv_test.mjs (390 / 820 / 1366 x light / dark as a rep +
+Tests: scratchpad inv_test.mjs (390 / 820 / 1366 x light / dark as a rep +
 manager: KPIs, search by word and number, chips, sheet, expand / inline,
 sort, persistence, chunked loading, sticky offsets, contrast, no sideways
-scroll).
+scroll), inv2_test.mjs (stars: device-only on 404, group + chip + filter +
+empty state, star tap vs row tap, sync GET / POST / DELETE with the token,
+lost delete retried; scope: brand preview, database row, the file by name,
+hybrid DM, nothing on the report, a rep never scoped) and sql_stars_test.sh
+(the migration on local Postgres 16: stamped email, own rows only, anon
+refused).
