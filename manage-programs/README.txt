@@ -283,6 +283,18 @@ Who may do what (decided in the database, mirrored in the UI)
   reps / associates  read only approved, non-test programs they are listed
                      in, with no financial terms (kdh_my_programs strips the
                      finance table entirely -- it is never selected).
+  HYBRID (2026-10-14, Gavin: Chris McCrohan is a brand manager for Red Bull
+  AND the on-premise district manager): a manager with BOTH reports and
+  program_brands gets `hybrid: true` from kdh_program_scope(), and
+  kdh_program_scope_problem() (migration 20261014120000_hybrid_scope.sql)
+  reads the two as a UNION -- a program passes when every participant is
+  on their team (any supplier) OR every product is one of their brands
+  (any rep). The pickers open up for a hybrid (manage.js loadScope sets
+  team / brands to null, keeps hybridTeam / hybridBrands for the hint) and
+  the server decides at submit. Non-Buy treats a hybrid as a team manager
+  with every supplier; the Hub and MPO trackers already give a DM their
+  team across every supplier.
+
 The page shows the same answer the server gives: kdh_program_scope() drives
 which people / suppliers can be picked, kdh_program_scope_problem(def) is
 shown on Preview & Submit and disables Submit; the RPCs re-check everything.

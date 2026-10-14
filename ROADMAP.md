@@ -22,6 +22,10 @@ device, a decision).
   `supabase/migrations/20261014090000_team_brands.sql` lets kdh_team carry program_brands; a database row with brands
   overrides the file. REFRESH when assignments change: save the new Brand Families export over
   shared/data/brand_families.csv (no emails in it) and run `python3 tools/program_seed.py`.
+  HYBRID (Chris McCrohan: on-premise DM + Red Bull): the Hub and both MPO trackers give him his team across
+  every supplier already. For Manage Programs / Non-Buy to read him the same way once program_brands.sql is
+  run, also run `supabase/migrations/20261014120000_hybrid_scope.sql` (kdh_program_scope `hybrid`; a program
+  must be for the team with any supplier OR for Red Bull with any rep; Non-Buy = team, every supplier).
 - [ ] **Stay signed in, for real (2026-10-13; reps: "it makes me log in every time, even with
   Remember me").** Cause: Supabase rotates the refresh token on every hourly renewal and the phone
   had to store the new cookie each time; a lost or unapplied renewal left the phone sending the old

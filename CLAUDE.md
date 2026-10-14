@@ -3147,8 +3147,15 @@ only) AND supabase/seed/program_brands.sql (the same suppliers per manager, for 
 Non-Buy scope -- optional, Gavin reviews and runs it). 9 brand managers on 2026-10-14 (Chris Politano
 19 suppliers / 45 families, Dan Downing 7 / 77, Jason Koo 40 / 76, Perry Calderone 7 / 56, Sean
 Donahue 23 / 36, Steve Halloran 11 / 59, Tom Gibbons 11 / 38; Chris McCrohan = Red Bull and Denise
-Montes = Vinaio / Food & Bev are DISTRICT MANAGERS too and keep their team across every supplier -- the
-hub and guided.js skip the brand scope when kdhTeam() matches). Refresh = save the new export over the
+Montes = Vinaio / Food & Bev are DISTRICT MANAGERS too). HYBRID RULE (Gavin, 2026-10-14: "Chris McCrohan
+is a hybrid brand manager and on-premise manager -- allow him to also see his team of reps"): a DM who
+also carries a brand keeps their TEAM ACROSS EVERY SUPPLIER on the hub and both MPO trackers (they skip the
+brand scope when kdhTeam() matches; the Red Bull tracker is company-wide for everyone anyway), and in the
+database migration `20261014120000_hybrid_scope.sql` makes kdh_program_scope return `hybrid: true` and
+kdh_program_scope_problem read team + brands as a UNION (a program is in scope when every participant is
+on the team, any supplier, OR every product is one of the brands, any rep); manage.js opens both pickers
+for a hybrid (hybridTeam / hybridBrands kept for the hint) and nonbuy/source-static.js treats a hybrid as
+team + every supplier. Never an intersection: that was the bug (team, but Red Bull products only). Refresh = save the new export over the
 CSV and re-run the script. `kdhBrandScope()` in shared/kdh-user.js answers with a list of names =
 the manager's SUPPLIERS plus the brand FAMILIES filed under them (so a program filed as "Carbliss"
 reaches the manager of "SN Food & Beverage LLC"; `.suppliers` on the array keeps the supplier names for

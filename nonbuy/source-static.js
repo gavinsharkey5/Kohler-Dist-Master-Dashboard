@@ -24,7 +24,10 @@
   // ---- who may see which reps (and which suppliers)
   // rep / rep preview: one rep. manager: the database's answer (kdh_program_scope):
   // admin -> every rep; a team -> those reps; brand manager -> every rep but only
-  // their suppliers' products; neither on file -> nobody (never "everyone" by default).
+  // their suppliers' products; a HYBRID (a DM who also carries a brand, e.g. Red
+  // Bull, 2026-10-14) -> their team across every supplier (the brand half is a
+  // Manage Programs rule, not a Non-Buy one); neither on file -> nobody (never
+  // "everyone" by default).
   function scope(user, index) {
     var all = index.reps.filter(function (r) { return isRep(r.rep); });
     var names = all.map(function (r) { return r.rep; });
@@ -36,7 +39,7 @@
       if (sc.admin) return { mode: 'admin', reps: all, brands: null, reason: '' };
       var reps = sc.team === null ? all : (sc.team || []).map(repOf).filter(Boolean);
       var seen = {}; reps = reps.filter(function (r) { if (seen[r.key]) return false; seen[r.key] = 1; return true; });
-      var br = sc.brands === null ? null : (sc.brands || []);
+      var br = (sc.brands === null || sc.hybrid) ? null : (sc.brands || []);
       var reason = !reps.length ? (sc.team && sc.team.length ? 'None of the reps on your team are on the account books yet.' : 'You have no team or brand assignment on file, so no reps are in your scope. Ask Gavin to set it.') : (br && !br.length ? 'You have no brand assignment on file, so no products are in your scope.' : '');
       return { mode: sc.team === null ? 'brand' : 'team', reps: reps, brands: br, reason: reason };
     }, function (e) {
