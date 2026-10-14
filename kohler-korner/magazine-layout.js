@@ -19,7 +19,9 @@
       }
       body.push(node.cloneNode(true));
     }
-    [...section.children].forEach(walk);return {header,body};
+    [...section.children].forEach(walk);
+    for(let i=0;i<body.length-1;i++)if(body[i].matches('h3,h4')){const group=document.createElement('div');group.className='kk-keep-heading';group.append(body[i],body[i+1]);body.splice(i,2,group);}
+    return {header,body};
   }
   async function prepare(container,{print=false}={}){
     const magazine=container.querySelector('.kk-magazine');if(!magazine)return;
@@ -31,10 +33,10 @@
     const sections=opening([...original.querySelectorAll(':scope>.kk-story,:scope>.kk-recognition-pair>.kk-story')]);
     if(!sections.length){magazine.replaceChildren(...[...original.childNodes].map(n=>n.cloneNode(true)));return;}
     magazine.classList.add('kk-column-edition');magazine.classList.toggle('kk-print-layout',print);
-    magazine.replaceChildren();
+    magazine.style.zoom='1';magazine.replaceChildren();
     const mast=original.querySelector('.kk-mast'),note=original.querySelector('.kk-sample-note'),foot=original.querySelector('.kk-mag-foot');
-    if(!print&&g.innerWidth<=600){magazine.classList.add('kk-column-mobile');if(mast)magazine.append(mast.cloneNode(true));if(note)magazine.append(note.cloneNode(true));const first=sections.slice(0,2),rest=[...original.querySelectorAll(':scope>.kk-story,:scope>.kk-recognition-pair>.kk-story')].filter(s=>!first.includes(s));[...first,...rest].forEach(s=>magazine.append(s.cloneNode(true)));if(foot)magazine.append(foot.cloneNode(true));return;}
-    magazine.classList.remove('kk-column-mobile');
+    if(!print&&g.innerWidth<=600){magazine.style.width='';magazine.classList.add('kk-column-mobile');if(mast)magazine.append(mast.cloneNode(true));if(note)magazine.append(note.cloneNode(true));const first=sections.slice(0,2),rest=[...original.querySelectorAll(':scope>.kk-story,:scope>.kk-recognition-pair>.kk-story')].filter(s=>!first.includes(s));[...first,...rest].forEach(s=>magazine.append(s.cloneNode(true)));if(foot)magazine.append(foot.cloneNode(true));return;}
+    magazine.classList.remove('kk-column-mobile');magazine.style.width='724px';
     let pages=[],page,columns,pageIndex=-1;
     function addPage(){
       pageIndex++;if(pages[pageIndex]){page=pages[pageIndex];columns=[...page.querySelectorAll('.kk-mag-column')];return columns;}
@@ -90,10 +92,18 @@
         if(col.scrollHeight<=col.clientHeight)low=amount;else high=amount;
       }
       col.style.setProperty('--kk-fill',low);
+      // Recognition lists can use gentle spacing between service milestones
+      // instead of leaving an empty block below a short employee section.
+      if(col.querySelector('.kk-recognition')){
+        let a=0,b=18;
+        for(let step=0;step<9;step++){const space=(a+b)/2;col.style.setProperty('--kk-recognition-space',space+'px');if(col.scrollHeight<=col.clientHeight)a=space;else b=space;}
+        col.style.setProperty('--kk-recognition-space',a+'px');
+      }
       col.dataset.spaceFit='true';
     }
     for(const p of pages){const cols=p.querySelectorAll('.kk-mag-column');if([...cols].some(c=>c.scrollHeight>c.clientHeight+2))p.classList.add('kk-page-expanded');}
     magazine.dataset.layoutReady='true';
+    if(!print)magazine.style.zoom=String(Math.min(1,container.clientWidth/724));
   }
   function schedule(container){
     const task=prepare(container);task.catch(()=>{});

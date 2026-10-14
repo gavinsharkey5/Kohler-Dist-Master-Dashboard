@@ -734,6 +734,8 @@
       var els = (root || document.body).querySelectorAll('body *:not(script):not(style):not(svg):not(svg *)');
       for (var i = 0; i < els.length; i++) {
         var el = els[i];
+        // Newsletter pages measure their own typography for matching screen/PDF breaks.
+        if (el.closest('.kk-magazine')) continue;
         if (el.__kdhLifted) continue;
         var hasText = false;
         for (var c = el.firstChild; c; c = c.nextSibling) { if (c.nodeType === 3 && c.nodeValue.trim().length > 1) { hasText = true; break; } }

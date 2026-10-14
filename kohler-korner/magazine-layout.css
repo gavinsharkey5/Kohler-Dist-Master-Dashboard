@@ -45,3 +45,25 @@
 .kk-column-edition .kk-compact-column .kk-product-copy h3{font-size:calc(12px + var(--kk-fill,0)*1px);line-height:calc(15px + var(--kk-fill,0)*3px)}
 .kk-column-edition .kk-compact-column .kk-story h2{font-size:calc(22px + var(--kk-fill,0)*2px);line-height:calc(25px + var(--kk-fill,0)*2px)}
 .kk-column-edition .kk-compact-column .kk-recognition li{line-height:calc(16px + var(--kk-fill,0)*2px)}
+
+/* One page geometry in both media. Screen zoom never changes pagination. */
+.kk-column-edition:not(.kk-column-mobile){width:724px;max-width:none;margin-inline:auto}
+.kk-column-edition:not(.kk-column-mobile) .kk-mag-page{padding:0}
+.kk-column-edition:not(.kk-column-mobile) *{box-sizing:border-box}
+.kk-column-edition .kk-mast{padding-top:12px}
+.kk-column-edition .kk-mast-row{margin:6px 0}
+.kk-column-edition .kk-issue{font-size:10px;line-height:14px;padding:6px 0 12px;flex-direction:row}
+.kk-column-edition .kk-kicker{font:700 10px/14px Inter,Arial,sans-serif;letter-spacing:1.6px}
+.kk-column-edition .kk-section-label{font-weight:700}
+.kk-column-edition p,.kk-column-edition li{font-weight:400;orphans:1;widows:1}
+.kk-column-edition .kk-byline{font:400 10px/14px Inter,Arial,sans-serif;margin-bottom:12px}
+.kk-column-edition .kk-story h3{font-weight:700}
+.kk-column-edition .kk-copy blockquote{font:italic 26px/30px 'KK Serif',Georgia,serif}
+.kk-column-edition .kk-compact-column .kk-story:last-of-type{padding-bottom:calc(9px + var(--kk-fill,0)*5px);border-bottom:1px solid var(--rule)}
+.kk-preview-panel:has(.kk-column-edition){padding:20px;box-sizing:border-box}
+@media print{
+ .kk-print-root .kk-column-edition{width:724px!important;max-width:none!important;zoom:1!important}
+ .kk-column-edition .kk-mag-page{margin-bottom:0}
+}
+
+.kk-column-edition .kk-compact-column .kk-recognition>div{margin-bottom:calc(5px + var(--kk-recognition-space,0px))}.kk-column-edition .kk-keep-heading{break-inside:avoid}
