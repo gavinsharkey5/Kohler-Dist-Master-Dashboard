@@ -3301,4 +3301,7 @@ name). The manager home has ONE "View As" button (`#viewAsBtn`); the old #viewAs
 As". The rep home's own "Viewing as" / "Preview as This Rep" controls are untouched. Tests (scratchpad):
 viewas_test.mjs (owner phone: three tabs, associate preview chrome + read-only queue, rep, Exit, manager preview,
 self = leave; DM desktop: two tabs; rep: none), mgr_test / home_test / preview_flow updated. Tags kdh-user.js
-20261014c, tasks.js 20261014b.
+20261014c, tasks.js 20261014b. FIX (same day, Gavin's screenshot): the role row collapsed to a sliver on desktop with
+the full rep list -- the sheet is a flex column capped at 80vh and the list (flex:1) squeezed it; the injected
+picker CSS now pins the header, role row, sub line and search to flex:none and the role buttons to 44px
+(!important, because kdh-skin's generic button rule wins otherwise). kdh-user.js 20261014d.

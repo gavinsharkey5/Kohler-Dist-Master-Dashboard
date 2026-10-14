@@ -544,8 +544,9 @@
     if (!p) {
       if (!document.getElementById('kdhPickerCss')) {
         var st = document.createElement('style'); st.id = 'kdhPickerCss';
-        st.textContent = '.kdh-sheet-roles{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;border:1px solid var(--kdh-border-2);border-radius:10px;overflow:hidden;margin:10px 0 8px}' +
-          '.kdh-sheet-roles button{min-height:44px;border:0;border-left:1px solid var(--kdh-border);background:var(--kdh-surface);font:inherit;font-size:15px;font-weight:600;color:var(--kdh-text-2);cursor:pointer}' +
+        st.textContent = '#kdhPicker .kdh-sheet-roles,#kdhPicker .kdh-sheet-h,#kdhPicker .kdh-sheet-p,#kdhPicker #kdhPickerSearch{flex:none}' +
+          '.kdh-sheet-roles{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;border:1px solid var(--kdh-border-2);border-radius:10px;overflow:hidden;margin:10px 0 8px}' +
+          '.kdh-sheet-roles button{min-height:44px!important;height:44px;padding:0 6px;line-height:1.2;border:0;border-left:1px solid var(--kdh-border);background:var(--kdh-surface);font:inherit;font-size:15px;font-weight:600;color:var(--kdh-text-2);cursor:pointer;white-space:nowrap}' +
           '.kdh-sheet-roles button:first-child{border-left:0}.kdh-sheet-roles button[aria-selected="true"]{background:var(--kdh-brand);color:var(--kdh-brand-ink)}' +
           '.kdh-sheet-i small{display:block;font-weight:500;font-size:13px;color:var(--kdh-text-3)}';
         document.head.appendChild(st);
