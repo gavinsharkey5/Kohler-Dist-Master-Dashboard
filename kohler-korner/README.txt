@@ -78,3 +78,16 @@ Release
   Newsletter schema migrations and private sample seed have been provisioned
   in Kohler Dist Hub. The website implementation is on its own Codex branch
   for review; production deployment requires authorization for this release.
+
+Editorial design (2026-10-14)
+  Figma source: k14V3nwnvjcWwN19LFVpsH, editorial proof node 4:62.
+  Native HTML/CSS patterns: masthead, article columns, supplier/portrait
+  features, product grids, adjacent recognition columns and headshot cards.
+  Narrow preview containers stack layouts independently of screen width.
+  Event photos use their actual aspect ratio to choose portrait or wide layout.
+  Quote formatting uses > followed by an author-supplied exact quotation.
+  Print rows use three products/photos or four headshots; content is never
+  shortened to fit the four-page design proof. Full editions paginate naturally.
+  Static masthead SVG and OFL fonts are under /assets/kohler-korner/, alongside
+  existing public branding assets. Uploaded photos remain in private storage.
+  No navigation, database, authentication or authorization changes in this update.

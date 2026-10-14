@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="68" height="80" viewBox="0 0 68 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Editable beer-glass mark">
+<path id="Vector" d="M8 14L17 68C28.3333 74.6667 39.6667 74.6667 51 68L60 14H8Z" fill="#F3CB43"/>
+<path id="Vector_2" d="M34 23C48.3594 23 60 18.9706 60 14C60 9.02944 48.3594 5 34 5C19.6406 5 8 9.02944 8 14C8 18.9706 19.6406 23 34 23Z" fill="#FFF8E5" stroke="#F3CB43" stroke-width="3"/>
+<g id="Vector_3" opacity="0.65">
+<path d="M16 27L22 62Z" fill="#F3CB43"/>
+<path d="M16 27L22 62" stroke="#F3CB43" stroke-width="3" stroke-linecap="round"/>
+</g>
+</g>
+</svg>
