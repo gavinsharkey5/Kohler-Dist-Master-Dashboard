@@ -301,6 +301,20 @@ device, a decision).
 
 ## Tabled -- waiting on data or a signature
 
+- **Warehouse + delivery workflow (tabled by Gavin, 2026-10-14; keep).** The day as one chain of hand-offs,
+  each leaving a timestamp: (1) Inbound -- receiver scans / types the product number on a Warehouse phone
+  page, units + supplier, taps Received (a receipt row; Available stays Encompass's number). (2) Reps who
+  starred the product see "Received today, N units" on their Starred group and Rep Home (no push needed in
+  v1). (3) Orders stay in Encompass. (4) Night crew: "Tomorrow's Routes" page (truck, stops, cases, kegs)
+  from the Encompass route export; Loaded per truck, visible to reps. (5) Driver: route on the phone (stops
+  in order, directions, what is on the hand truck, keg pickups, the rep's note); taps Delivered, or logs a
+  short ship / refusal / return with a photo. (6) Rep sees "Delivered 10:42" / "Refused" on the Account page
+  and Needs Attention; a refusal creates a follow-up. (7) Returns / short ships are still keyed into Encompass
+  by the office -- the site is the fast signal, Encompass the invoice. NEEDS: the daily route export (truck,
+  stop order, customer, cases, kegs), a delivery-events table (like merch records), warehouse + driver roles
+  in allowed_users with their own home pages; the case barcode vs product number question for scanning.
+  Steps 1, 2 and 5 can be mocked on sample data first.
+
 - Encompass -> Snowflake -> Supabase pipeline (Snowflake agreement not
   signed yet). Unblocks: live sales numbers, the display auction tracker
   moving off weekly CSV pulls, order-day derivation, the assistant.

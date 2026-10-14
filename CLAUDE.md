@@ -3237,3 +3237,15 @@ Suppliers: A, B, C (and N more)". Carbliss reaches the SN Food & Beverage manage
 "None of Your Suppliers Are on This Report" (no Clear). The page now loads shared/auth-config.js (the star sync's
 feature switch, 404 on a static server = off) and shared/dm-groups.js. Tests: scratchpad inv2_test.mjs (179) +
 inv_test.mjs (310) + sql_stars_test.sh (10) + contrast / mobile / elong audits.
+
+## Business map + the warehouse / delivery workflow (Gavin, 2026-10-14 -- tabled, REMEMBER)
+
+Gavin's list of areas still to bring onto the site: Warehouse (scan SKUs on arrival so reps know inventory was
+received), IT, Finance, Sales Associate portal. Added on review: Delivery / drivers (the largest missing group),
+Purchasing / supplier management (open POs, arrivals, out-of-code), POS / marketing requests, suppliers as
+read-only outside viewers (scoped like brand managers), compliance. Rule restated: Encompass stays the system of
+record for orders, invoices and balances; the site shows, reminds and coordinates, never takes an order or moves
+money. The warehouse + delivery day (7 hand-offs, receipts -> starred reps -> routes -> driver Delivered /
+refusal -> rep follow-up) is written out in ROADMAP.md "Tabled"; Gavin tabled it on 2026-10-14 and asked that it
+be kept. Transactional Encompass data (invoice / purchase transaction tables) belongs in Supabase with RLS, never
+in this PUBLIC repo (prices / dollars); see the same ROADMAP entry's neighbour when that work starts.
