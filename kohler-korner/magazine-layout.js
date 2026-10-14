@@ -80,6 +80,18 @@
         if(remaining.length)addPage();
       }
     }
+    // Use remaining space for readable type and larger imagery, within editorial
+    // limits. Measure each step so neither the PDF nor digital edition clips.
+    for(const col of pages.flatMap(p=>[...p.querySelectorAll('.kk-mag-column')])){
+      if(!col.children.length)continue;
+      let low=0,high=1;
+      for(let step=0;step<9;step++){
+        const amount=(low+high)/2;col.style.setProperty('--kk-fill',amount);
+        if(col.scrollHeight<=col.clientHeight)low=amount;else high=amount;
+      }
+      col.style.setProperty('--kk-fill',low);
+      col.dataset.spaceFit='true';
+    }
     for(const p of pages){const cols=p.querySelectorAll('.kk-mag-column');if([...cols].some(c=>c.scrollHeight>c.clientHeight+2))p.classList.add('kk-page-expanded');}
     magazine.dataset.layoutReady='true';
   }

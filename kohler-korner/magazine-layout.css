@@ -33,3 +33,15 @@
 .kk-column-edition .kk-recognition ul{margin:0}.kk-column-edition .kk-page-foot{width:100%;box-sizing:border-box}
 
 .kk-column-edition .kk-compact-column .kk-story h2{margin-bottom:5px}.kk-column-edition .kk-compact-column .kk-section-label{margin-bottom:3px}
+
+/* Bounded optical fitting: retain the grid, spend spare space on type and photos. */
+.kk-column-edition .kk-compact-column{font-size:calc(12px + var(--kk-fill,0)*1px);line-height:calc(16px + var(--kk-fill,0)*3px)}
+.kk-column-edition .kk-compact-column .kk-story{padding-block:calc(9px + var(--kk-fill,0)*5px)}
+.kk-column-edition .kk-compact-column .kk-story:first-child{padding-top:0}
+.kk-column-edition .kk-compact-column .kk-product-photo img{height:calc(108px + var(--kk-fill,0)*62px)}
+.kk-column-edition .kk-compact-column .kk-gallery img{height:calc(120px + var(--kk-fill,0)*50px)}
+.kk-column-edition .kk-compact-column .kk-headshot img{height:calc(112px + var(--kk-fill,0)*38px)}
+.kk-column-edition .kk-compact-column .kk-product-copy p{font-size:calc(12px + var(--kk-fill,0)*1px);line-height:calc(16px + var(--kk-fill,0)*3px)}
+.kk-column-edition .kk-compact-column .kk-product-copy h3{font-size:calc(12px + var(--kk-fill,0)*1px);line-height:calc(15px + var(--kk-fill,0)*3px)}
+.kk-column-edition .kk-compact-column .kk-story h2{font-size:calc(22px + var(--kk-fill,0)*2px);line-height:calc(25px + var(--kk-fill,0)*2px)}
+.kk-column-edition .kk-compact-column .kk-recognition li{line-height:calc(16px + var(--kk-fill,0)*2px)}
