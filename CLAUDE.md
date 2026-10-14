@@ -3249,3 +3249,12 @@ money. The warehouse + delivery day (7 hand-offs, receipts -> starred reps -> ro
 refusal -> rep follow-up) is written out in ROADMAP.md "Tabled"; Gavin tabled it on 2026-10-14 and asked that it
 be kept. Transactional Encompass data (invoice / purchase transaction tables) belongs in Supabase with RLS, never
 in this PUBLIC repo (prices / dollars); see the same ROADMAP entry's neighbour when that work starts.
+
+## "Ledger Plan" = Gavin's name for the system-of-record question (2026-10-14, REMEMBER)
+
+When Gavin says "Ledger Plan" he means: could kohlerdisthub.com hold invoices / purchase transactions /
+balances itself and take a rep's order, replacing Encompass as the system of record? The full answer is in
+ROADMAP.md "Tabled" under that name: three tiers (read-only mirror in Supabase with RLS; order capture through
+Encompass's API if it exists; replacing Encompass = a separate company project, not this site), what an
+invoice really depends on, and the recommendation (build the mirror, ask Encompass about API order creation,
+never replace from here). Tabled by Gavin on 2026-10-14; recall it by name, do not rebuild the argument.

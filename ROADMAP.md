@@ -301,6 +301,22 @@ device, a decision).
 
 ## Tabled -- waiting on data or a signature
 
+- **"Ledger Plan" (Gavin, 2026-10-14; say the name to recall it).** The question: could the site hold the
+  invoices itself so a rep sells a case through our system (the tables live here, not in Encompass)? The answer
+  on file: possible in principle, a different project in kind, not recommended. An invoice is the OUTPUT of
+  pricing, deals / post-offs, deposits, NJ taxes, credit holds, allocation, pick / load / proof of delivery,
+  returns, AR, GL, excise filings and supplier depletion reports -- replacing Encompass means owning all of
+  it (a distributor ERP: multi-year, migration + parallel run, truck printers, chain EDI, accounting,
+  compliance; the risk is financial / regulatory, not display). The three tiers: (1) READ-ONLY MIRROR --
+  invoices, balances, purchase transactions in Supabase with RLS (own accounts / managers; dollars
+  manager-only), a loader like tools/load_contacts.py, Invoices tab on the Account page + a manager
+  Transactions page; days per dataset, freshness = the export cadence (Encompass caps ~100k rows; window
+  pulls restate); never in the public repo. (2) ORDER CAPTURE on the site that Encompass still books,
+  prices and invoices -- months, and ONLY if Encompass's API creates orders (ask the account rep: does the
+  plan include API access, does it allow order creation). (3) REPLACE Encompass as the system of record --
+  a company decision with a vendor comparison, not a feature of this site. Recommendation: build (1), ask
+  the API question for (2), never (3) from here.
+
 - **Warehouse + delivery workflow (tabled by Gavin, 2026-10-14; keep).** The day as one chain of hand-offs,
   each leaving a timestamp: (1) Inbound -- receiver scans / types the product number on a Warehouse phone
   page, units + supplier, taps Received (a receipt row; Available stays Encompass's number). (2) Reps who
