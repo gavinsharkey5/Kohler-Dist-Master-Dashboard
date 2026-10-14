@@ -27,7 +27,7 @@
 <!-- The top bar is injected by shared/kdh-user.js (badge, Previewing chip, account menu with "View as rep"). kdh-home = no Back button. -->
 <meta name="kdh-page" content="Manager Home">
 <meta name="kdh-home" content="manager">
-<script src="shared/kdh-user.js?v=20261014b"></script>
+<script src="shared/kdh-user.js?v=20261014c"></script>
 </head>
 <body>
 
@@ -44,17 +44,10 @@
       <h1>Manager Home</h1>
       <p class="hh-meta" id="meta"><b id="who">Kohler Distribution Hub</b><span id="metaRest"></span></p>
     </div>
-    <!-- View as rep (2026-09-30): the searchable rep picker from shared/kdh-user.js.
-         The whole site then shows what that rep sees until "Exit" on the chip.
-         Manager preview (Gavin only, 2026-09-29): a quiet second button that reveals
-         the manager select; the list comes from the kdh_team RPC. -->
+    <!-- View As (2026-10-14): one picker from shared/kdh-user.js -- Manager (Gavin only) / Rep / Associate.
+         The whole site then shows what that person sees until "Exit" on the chip. -->
     <div class="hh-acts" id="viewAs">
-      <button class="btn brand-outline" id="viewAsRepBtn" type="button">View as Rep</button>
-      <button class="btn outline" id="mgrToggle" type="button" hidden aria-expanded="false">Preview as Manager</button>
-    </div>
-    <div class="switch hh-switch" id="mgrSwitch" hidden>
-      <label>Preview as <select id="mgrSelect" aria-label="Choose a manager to view as"></select></label>
-      <button class="btn outline" id="mgrPreviewBtn" type="button" title="Every page will show exactly what this manager sees on this device until you exit">Preview</button>
+      <button class="btn brand-outline" id="viewAsBtn" type="button">View As</button>
     </div>
   </header>
   <section class="hs">
@@ -245,7 +238,7 @@
 <script>
 (function(){
   var $ = function(id){ return document.getElementById(id); };
-  $('viewAsRepBtn').addEventListener('click', function(){ if (window.kdhViewAsRep) kdhViewAsRep(); });
+  $('viewAsBtn').addEventListener('click', function(){ if (window.kdhViewAs) kdhViewAs(); });
   var user = null; try { user = window.kdhUser ? window.kdhUser() : null; } catch (e) {}
   // Previewing a rep: still the manager here. Previewing another manager
   // (Gavin's switcher below): this page is theirs.
@@ -258,41 +251,7 @@
     if (user.dm) meta.push('Reports to ' + esc(user.dm));
     $('metaRest').innerHTML = meta.map(function(m){ return '<span class="sep">·</span><span>' + m + '</span>'; }).join('');
   }
-  // ---- the manager switcher: Gavin's account only ----
-  var OWNER = 'g.sharkey@kohlerdist.com';
-  function ck(n){ var m = document.cookie.match(new RegExp('(?:^|;\\s*)' + n + '=([^;]*)')); return m ? decodeURIComponent(m[1]) : ''; }
-  (function managerSwitcher(){
-    var cfg = window.KDH_AUTH || {}, token = ck('kdh_at');
-    if (!user || String(user.email || '').toLowerCase() !== OWNER || !cfg.url || !cfg.key || !token) return;
-    fetch(cfg.url + '/rest/v1/rpc/kdh_team', { method: 'POST', headers: { apikey: cfg.key, Authorization: 'Bearer ' + token, 'Content-Type': 'application/json' }, body: '{}' })
-      .then(function(r){ return r.ok ? r.json() : null; })
-      .then(function(team){
-        if (!team || !team.length) return;
-        var mgrs = team.filter(function(t){ return t.role === 'manager' && t.name; }).sort(function(a,b){ return a.name.localeCompare(b.name); });
-        if (!mgrs.length) return;
-        var sel = $('mgrSelect'); sel.innerHTML = '';
-        // names only (Gavin, 2026-10-01); when a name appears twice, the entry
-        // with no title is that person's personal (test) account
-        var seen = {}; mgrs.forEach(function(m){ seen[m.name] = (seen[m.name] || 0) + 1; });
-        var pick = -1;
-        mgrs.forEach(function(m, i){ var o = document.createElement('option'); o.value = m.name; o.textContent = m.name + (seen[m.name] > 1 && !m.title ? ' (Personal)' : ''); o.dataset.title = m.title || ''; o.dataset.dm = m.reports_to || '';
-          // a brand manager's suppliers (allowed_users.program_brands, once kdh_team returns them): the preview carries them so the Hub opens on their brands only
-          o.dataset.brands = JSON.stringify(Array.isArray(m.program_brands) ? m.program_brands.filter(Boolean) : []); sel.appendChild(o);
-          if (m.name === user.name && (pick < 0 || m.title)) pick = i; });
-        if (pick >= 0) sel.selectedIndex = pick;
-        // one clear action up top (View as Rep); the manager preview is a quiet second step
-        var tg = $('mgrToggle'); tg.hidden = false;
-        tg.addEventListener('click', function(){ var sw = $('mgrSwitch'); sw.hidden = !sw.hidden; tg.setAttribute('aria-expanded', String(!sw.hidden)); });
-        $('mgrPreviewBtn').addEventListener('click', function(){
-          if (!window.kdhSetPreview) return;
-          var o = sel.options[sel.selectedIndex];
-          // Picking yourself = leave preview.
-          if (user.preview ? o.value === user.manager : o.value === user.name) kdhSetPreview('');
-          else { var brands = []; try { brands = JSON.parse(o.dataset.brands || '[]'); } catch (e2) {} kdhSetPreview({ name: o.value, role: 'manager', title: o.dataset.title, dm: o.dataset.dm, brands: brands }); }
-          location.reload();
-        });
-      }).catch(function(){});
-  })();
+  // the manager switcher (Gavin only) now lives in the shared View As picker (kdh-user.js viewAs)
   var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var MONTHS_LONG = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   function status(id, cls, text){ var el = $(id); if(!el) return; el.className = 'kt-st' + (cls ? ' ' + cls : ''); el.innerHTML = '<span class="dot"></span>' + text; }

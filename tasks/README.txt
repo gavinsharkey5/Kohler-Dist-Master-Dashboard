@@ -25,8 +25,10 @@ WHO SEES WHAT (row-level security; the page only draws)
               unstarted task; comment
   manager     every task; comment; read-only screen (the database would let a
               manager edit too -- the page does not offer it)
-  preview     a manager viewing as a rep: that rep's tasks, read-only, nothing
-              is written (no New Task, no composer, no status control)
+  preview     a manager viewing as a rep (that rep's tasks), as an associate
+              (that associate's queue; View As -> Associate) or as a manager:
+              read-only, nothing is written (no New Task, no composer, no
+              status control)
 
 RULES (enforced in the database, see the migration's header)
   - creator = the token's email; the assignee must be role 'associate'
