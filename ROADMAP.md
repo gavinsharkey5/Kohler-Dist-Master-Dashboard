@@ -11,6 +11,19 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
+- [ ] **Supplier Budgets (2026-10-14): the tracker workbook as /supplier-budget/, for Alexis.** Built and pushed;
+  nothing shows until three steps: (1) run `supabase/migrations/20261014210000_supplier_budget.sql` in the SQL Editor
+  (idempotent; adds allowed_users.budget_editor, the four tables, RLS, triggers); (2) on a laptop run
+  `python3 supplier-budget/seed_from_workbook.py <Supplier_Budgets_Tracker_v1_2.xlsx>` and paste the generated
+  `supabase/data/supplier_budget_seed.sql` into the SQL Editor (git-ignored: dollars by vendor never enter the repo;
+  safe to paste twice) -- the script also prints a report: 59 Expenses accounts with no Budget row become
+  "Needs Review" accounts to fix on the Budget tab, 172 rows whose sheet Kohler Spend differed from Total - Billback
+  (the computed value is used), 26 rows with no Total (derived from Spend + Billback), one 2062 Year typo;
+  (3) `update allowed_users set budget_editor = true where email = '<Alexis>'` (the flag, never a name on the page).
+  Until the flag is set Alexis sees the page read-only (she is a manager); other brand managers see only their
+  accounts (by their name on the Budget row or their program_brands); reps never reach it. The old
+  supplier-budget/expenses.csv (dollars, public repo) is deleted from the tree but still in git history -- removing
+  it for good needs a history rewrite + force push; Gavin's call (ROADMAP "Tabled").
 - [~] **Brand managers open the Incentive Hub and both MPO trackers on their brands (2026-10-14).** LIVE ON PUSH, no
   Supabase step: the assignment comes from the Encompass Brand Families export (shared/data/brand_families.csv ->
   shared/data/brand-managers.json, 9 brand managers, manager -> suppliers -> brand families) by name. A brand manager
@@ -297,6 +310,11 @@ device, a decision).
 
 ## Tabled -- waiting on data or a signature
 
+- **Rewrite git history to purge supplier-budget/expenses.csv (2026-10-14).** The old Supplier Budget page kept the
+  tracker's Expenses tab (dollars by vendor) as a CSV in this PUBLIC repo from 2026-07 until 2026-10-14. It is deleted
+  from the tree now, but every clone and GitHub's history still carry it. Removing it for good = `git filter-repo`
+  (or BFG) on the whole history + a force push to main + every collaborator re-cloning + Vercel redeploy. Gavin
+  decides whether that is worth it; the data is a summary of invoices already shared with the suppliers.
 - **"Ledger Plan" (Gavin, 2026-10-14; say the name to recall it).** The question: could the site hold the
   invoices itself so a rep sells a case through our system (the tables live here, not in Encompass)? The answer
   on file: possible in principle, a different project in kind, not recommended. An invoice is the OUTPUT of
@@ -345,6 +363,12 @@ device, a decision).
 
 ## Done
 
+- [x] **Supplier Budgets page (2026-10-14).** /supplier-budget/: Ledger (sheet columns in order, sticky sortable
+  header, search, Account / Supplier / Brand Manager / Billback / date filters, newest first, 100 + Show More, summary
+  strip for the filter, stacked rows on phones, CSV for editors), Add Expense (account picker grouped by supplier,
+  vendor typeahead + Kohler one tap, Kohler Spend live, Save and Add Another), Edit / Delete / Mark Received from the
+  row, Budget tab (amount spent, % bar, billback outstanding, editable amounts, Add Account, Needs Review flags).
+  Manager home card (Planning & Finance) + sidebar item; hidden from reps. Needs Gavin's three steps (Now).
 - [x] **View As: Manager / Rep / Associate in one picker (2026-10-14).** The manager home's "View as Rep" and
   Gavin's "Preview as Manager" are one "View As" button; every manager gets Rep and Associate, Gavin also Manager.
   An associate preview opens on their Field Tasks queue, read-only. Live on push, no Supabase step.

@@ -193,6 +193,7 @@
     mp: I('<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/>'),
     merch: I('<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>'),
     nb: I('<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M8 11h6"/>'),
+    sb: I('<rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/><path d="M7 15h4"/>'),
     tasks: I('<path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/>'),
     more: I('<circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/>'),
     tap: I('<path d="M12 2.7 6.5 9a6.5 6.5 0 1 0 11 0z"/>'),
@@ -251,6 +252,7 @@
     if (isMgr) t.push({ key: 'mp', group: 'Manager', label: 'Manage Programs', href: ROOT + 'manage-programs/' });
     if (isMgr) t.push({ key: 'kk', group: 'Manager', label: 'Kohler Korner', href: ROOT + 'kohler-korner/' });
     if (isMgr) t.push({ key: 'nb', group: 'Manager', label: 'Non-Buy Reports', href: ROOT + 'nonbuy/' });
+    if (isMgr) t.push({ key: 'sb', group: 'Manager', label: 'Supplier Budgets', href: ROOT + 'supplier-budget/' });
     if (isMgr) t.push({ key: 'ws', group: 'Manager', label: 'Rep Workspace', href: REP_HOME });
     return t;
   }
@@ -273,6 +275,7 @@
     if (/^kohler-korner\//.test(rel)) return { nav: 'more', tool: 'kk' };
     if (/^nonbuy\//.test(rel)) return isMgr ? { nav: 'more', tool: 'nb' } : { nav: 'accounts', tool: '' };   // reps reach it from My Accounts
     if (/^exceptions\//.test(rel)) return { nav: 'more', tool: 'exc' };
+    if (/^supplier-budget\//.test(rel)) return { nav: 'more', tool: 'sb' };
     if (/^merchandising\//.test(rel)) return { nav: 'more', tool: 'merch' };
     if (/^inventory\//.test(rel)) return { nav: 'inventory', tool: isMgr ? 'invm' : '' };
     if (/^isellbeer\/tap-survey-tracking\//.test(rel)) return { nav: 'more', tool: 'tap' };

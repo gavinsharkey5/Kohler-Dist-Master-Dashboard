@@ -1,35 +1,117 @@
-Supplier Marketing Budget Tracker
+Supplier Budgets  (/supplier-budget/, managers only; 2026-10-14)
 
-Every supplier's marketing budget vs. Kohler's actual spend, plus billback
-received/outstanding, rolled up from the raw expense ledger.
+The "Supplier Budgets Tracker" workbook as a page. Alexis (office assistant)
+enters every supplier-marketing expense here instead of into the sheet; the
+Budget tab tracks spend against each GL account's budget; brand managers read
+their own accounts.
 
-Files:
-  expenses.csv   The "Expenses" tab of Supplier Budgets Tracker.xlsx, exported
-                 as-is (pivot-summary header rows and all — generate.py skips
-                 down to the real transaction rows on its own).
-  generate.py    Rebuilds the embedded DATA in index.html from expenses.csv.
-  index.html     The page itself.
+WHERE THE DATA LIVES
+  Supabase, never this repo (it is PUBLIC; this is dollars by vendor).
+  Migration: supabase/migrations/20261014210000_supplier_budget.sql
+    budget_accounts          the Budget tab: one row per Account per year (GL code,
+                             supplier, brand manager, description, file name,
+                             default vendor, budget amount, basis text, active,
+                             needs_review)
+    supplier_expenses        the Expenses tab: one row per invoice line. kohler_spend
+                             is ALWAYS total_amount - billback_amount (trigger).
+                             source = site | import_2026 | import_2025; imported rows
+                             keep the sheet's cells in sheet_values and a source_key
+                             so a re-pasted seed never duplicates.
+    supplier_expense_events  the audit trail: create / update (changed columns,
+                             from -> to) / delete, who and when. Editors only.
+    budget_vendors           vendor names for the typeahead, filled by the trigger.
+  The seed script (ONE TIME, from a laptop, the workbook never committed):
+    python3 supplier-budget/seed_from_workbook.py <Supplier_Budgets_Tracker.xlsx>
+  writes supabase/data/supplier_budget_seed.sql (+ _report.txt), both git-ignored.
+  Paste the SQL into the Supabase SQL Editor after the migration. Safe to paste
+  again. The report lists what was flagged (see RULES).
 
-To refresh with a new export:
-  1. Re-export the Expenses tab, same columns, save over expenses.csv.
-  2. Run: python3 generate.py
-  3. Commit and push.
+WHO MAY DO WHAT (decided by the database, the page only draws)
+  allowed_users.budget_editor = true   add / edit / delete expenses, edit budgets,
+                                       add accounts, export CSV. Set by hand:
+                                         update allowed_users set budget_editor = true
+                                         where email = '<Alexis>';
+  program_admin                        the same (Gavin)
+  any other manager                    read only, and only the accounts whose Brand
+                                       Manager is them (name key) or whose supplier
+                                       is one of their program_brands; the page also
+                                       applies kdhBrandScope() the same way
+  rep / associate / any preview        nothing: not in REP_PATHS (the middleware
+                                       redirects), and the page refuses a rep cookie
+                                       or any preview cookie
+  Identity is always the token (kdh_caller_email); created_by / updated_by and the
+  names are stamped by the trigger. Every write asks PostgREST for the rows back
+  and counts them -- a 2xx under RLS proves nothing.
 
-IMPORTANT — budgets are not in expenses.csv:
-Per-supplier budget targets live on a separate "Budget" tab of the workbook
-that isn't part of this export. They're hardcoded in SUPPLIER_BUDGETS at the
-top of generate.py and must be updated by hand there when a budget changes.
-Reconciled against the Budget tab on 2026-07-16 (sum of SUPPLIER_BUDGETS now
-matches its $3,020,611.00 Total Budget exactly). If a future expenses.csv
-Total Budget header no longer matches the sum this script prints, re-export
-the Budget tab and reconcile SUPPLIER_BUDGETS against it again the same way.
+RULES
+  Kohler Spend = Total - Billback, always. Nobody types it. Where the sheet's own
+    cell disagreed (172 rows on 2026-10-14) the computed value is used and the
+    sheet value stays in sheet_values; the seed report lists them.
+  A site-entered expense needs an Account, a Vendor and a Total; 0 <= Billback <=
+    Total; a date in an open year (last year .. next year; the page says
+    "this year or last" plus next for pre-dated invoices). Imported rows skip
+    those checks (history has negatives and credits).
+  Billback Received: flipping it on stamps received_date (today unless given);
+    off clears it. One tap from the row (editors).
+  Year is read from the date (the sheet's Year column had a 2062 typo).
+  Accounts on the Expenses tab with no Budget row (59 on 2026-10-14) were created
+    by the seed as placeholder accounts: needs_review = true, supplier blank, code
+    + brand manager copied from their own rows. They show "Needs Review" on the
+    Budget tab until an editor fills them in or moves the expenses. Nothing was
+    mapped by guess (several are spellings of accounts that do exist:
+    'Crescent Distributions' / 'Crescent Distributing', 'Athletic Brewing Co' /
+    'ATHletic Brewing Company', 'Primos Imports' / 'Primos Imports LLC').
+  The 2025 tab: rows dated 2025 are history (source import_2025) under year-2025
+    account rows (inactive, no budget); its 2026 rows were skipped (copies of the
+    2026 tab). The Ledger's Year filter defaults to the current year.
+  Description, Brand Manager, Code and File on a ledger row come from the ACCOUNT
+    (Budget tab wins); the row's own sheet cells are kept in sheet_values. 21 rows
+    disagreed on Brand Manager and 128 on Code -- the report lists them.
+  Budget Breakdown basis text was attached where the brand name matched a Budget
+    supplier (12 of 21); the rest are listed for Alexis to type in.
+  The summary strip is for the current filter: Total Budget = the budgets of the
+    accounts the Account / Supplier / Brand Manager / Year filters leave (search
+    and dates do not change it); the other four sum the rows shown.
 
-ACCOUNT_SUPPLIER_MAP (also in generate.py) maps each raw "Account" column
-value — or, when Account is blank, "DESC::<Description>" — to the supplier
-it rolls up to. This mapping isn't derivable from the export itself; it was
-reconstructed by reading the tracker's previously-generated data plus manual
-review of any new accounts. When a future export introduces an account this
-script doesn't recognize, that spend is filed under a "(Unmapped)" pseudo-
-supplier (with $0 budget) instead of silently vanishing, and generate.py
-prints a warning listing exactly which account/description values need a new
-entry added to ACCOUNT_SUPPLIER_MAP.
+PAGE
+  Ledger: columns in the sheet's order (Date, Year, Invoice, Vendor, Description,
+    Brand Manager, Items Purchased, Total, Kohler Spend, Billback, Received, Code,
+    Account, File, Notes), sticky sortable header, search, filters, newest first,
+    100 rows + Show More, labelled stacked rows under 760px, Export CSV (editors).
+    Tap a row = Edit (editors) or a read-only view. "Added / Edited by <first
+    name> <date>" on site-entered rows.
+  Add Expense: Date (today), Account (search, grouped by supplier, code + brand
+    manager under each; picked = "Code 423101 · Steve Halloran · Constellation ·
+    CROWN/KOHLER TACTICAL"), Vendor (typeahead, new names allowed, Kohler one tap;
+    the account's default vendor fills a blank box), Items Purchased, Invoice #,
+    Total, Billback (0), Kohler Spend live, Received Yes / No (+ date), Notes;
+    Save / Save and Add Another (keeps Date, Account, Vendor). The new row lands
+    highlighted at the top of the Ledger and the strip updates.
+  Budget tab: Account, Code, Brand Manager, Supplier, Budget Amount (tap to edit),
+    Amount Spent, % to Budget + bar, Billback Outstanding, Rows; Add Account;
+    Needs Review / Inactive chips; a row opens the account editor (editors) or
+    filters the Ledger (readers).
+  State: filters + sort in sessionStorage (kdh_sb_f / kdh_sb_sort); the view in
+    the hash (#ledger, #budget, #new, #edit=<id>).
+
+NOT IN V1 (on purpose)
+  File attachments (File Name is text, as on the sheet); approvals / sign-off;
+  email reminders for outstanding billbacks; monthly / quarterly roll-ups; vendor
+  management beyond the typeahead; deleting an account that has expenses;
+  restoring a deleted expense (the event row keeps it; an editor re-enters it);
+  the "Copy of Budget" tab; multi-year budgets (2025 is history only); dollars
+  anywhere a rep can see.
+
+TESTS (scratchpad)
+  sql_budget_test.sh   39 checks on local Postgres 16: flag, brand-key match, RLS
+                       for editor / admin / brand manager by name / by brands / VP /
+                       rep / anon, trigger rules, received stamp, events, imports.
+  budget_test.mjs      78 checks: editor at 1366 light + 390 dark, admin at 820,
+                       brand manager, VP, rep + preview refused, migration missing,
+                       nav; stub budget_stub.mjs mirrors the RLS.
+
+HISTORY
+  Until 2026-10-14 this folder held expenses.csv (the Expenses tab, with dollars)
+  and a generate.py that embedded it into index.html. Both are deleted from the
+  tree; the CSV is still in git history until Gavin decides on a rewrite
+  (ROADMAP "Tabled").

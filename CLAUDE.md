@@ -3305,3 +3305,41 @@ self = leave; DM desktop: two tabs; rep: none), mgr_test / home_test / preview_f
 the full rep list -- the sheet is a flex column capped at 80vh and the list (flex:1) squeezed it; the injected
 picker CSS now pins the header, role row, sub line and search to flex:none and the role buttons to 44px
 (!important, because kdh-skin's generic button rule wins otherwise). kdh-user.js 20261014d.
+
+## Supplier Budgets: the tracker workbook in Supabase, entered on the site (2026-10-14)
+
+Gavin's brief (supplier-budget/design-refs/CLAUDE_CODE_PROMPT.md): the "Supplier Budgets Tracker" workbook
+becomes `/supplier-budget/` for Alexis (office assistant, a manager in allowed_users). THE REPO IS PUBLIC: nothing
+from the workbook is committed -- the workbook itself, the generated seed SQL (`supabase/data/`, git-ignored) and
+every dollar live in Supabase only. The OLD page's `supplier-budget/expenses.csv` + `generate.py` (dollars embedded
+in a public page since July) are deleted from the tree; the CSV stays in git history until Gavin orders a rewrite
+(ROADMAP "Tabled"). Migration `supabase/migrations/20261014210000_supplier_budget.sql`: `allowed_users.budget_editor`
+(flag, set by hand, like photo_admin) + `kdh_is_budget_editor()` (editor OR program_admin); `budget_accounts` (the
+Budget tab: year + account unique, code, supplier, brand_manager, description, file_name, vendor_default,
+budget_amount NULL = none, basis_text, active, needs_review); `supplier_expenses` (the Expenses tab; `kohler_spend`
+is ALWAYS total - billback by trigger; site rows need 0 <= billback <= total and a date in last..next year; imported
+rows skip that; `source` site / import_2026 / import_2025, `source_key` unique so a re-pasted seed never duplicates,
+`sheet_values` = the original cells); `supplier_expense_events` (create / update diff / delete; `kdh.seeding` = '1'
+skips it; editors read); `budget_vendors` (typeahead, filled by the trigger). RLS: editor / admin everything; another
+manager reads only accounts whose brand_manager is them (`kdh_name_key`) or whose supplier matches their
+program_brands (`kdh_brand_key` = SQL mirror of kdh-user.js brandKey, prefix match >= 4 chars) via
+`kdh_budget_can_read`; reps / anon nothing. `kdh_budget_me()` tells the page {editor, admin, manager}. Name stamps
+(created_name / updated_name) come from allowed_users through the trigger so the page shows "Edited by Alexis" with
+no email. SEED: `python3 supplier-budget/seed_from_workbook.py <xlsx>` -> `supabase/data/supplier_budget_seed.sql`
++ `_report.txt` (never commit); Budget tab -> accounts, Expenses 2026 -> import_2026, Expenses 2025 rows dated 2025
+-> import_2025 under inactive 2025 account rows (its 2026 rows are copies of the 2026 tab and are skipped);
+an Expenses Account with no Budget row -> a placeholder account with needs_review (59 on 2026-10-14, NEVER mapped by
+guess); the report lists the 172 Kohler Spend disagreements (computed value wins), 26 blank Totals (derived from
+Spend + Billback), the 2062 Year typo, 21 brand-manager and 128 code disagreements with the Budget row (the Budget
+row wins on the page). PAGE (`budget.js` / `budget.css`, refuses a rep cookie or ANY preview -- RLS would use the
+manager's token and mislead): Ledger (sheet columns in order, sticky sortable header, search, Account / Supplier /
+Brand Manager / Billback / date filters, Year defaults to the current year, newest first, 100 + Show More, strip
+for the current filter, stacked rows under 760px, CSV for editors, tap = Edit or read-only view), Add Expense
+(account picker grouped by supplier with code + brand manager, vendor typeahead + Kohler one tap + the account's
+default vendor, Kohler Spend live, Received Yes/No + date, Save / Save and Add Another keeps Date-Account-Vendor,
+the saved row highlighted at the top), Edit / Delete (confirm) / Received flip from the row, Budget tab (spent, %
+bar, billback outstanding, tap-to-edit amount, Add Account, Needs Review). A non-editor manager also gets the
+`kdhBrandScope()` cut and a "Your Suppliers" line. NAV: manager home card in "Planning & Finance" (renamed from
+Planning & Field; 28 cards now), sidebar tool `sb`; not in REP_PATHS. Gavin's steps are in ROADMAP "Now" (run the
+migration, paste the seed, set budget_editor for Alexis). Tests (scratchpad): sql_budget_test.sh (39),
+budget_test.mjs (78, stub budget_stub.mjs), mgr_test expects 28 cards. kdh-user.js tag 20261014e everywhere.

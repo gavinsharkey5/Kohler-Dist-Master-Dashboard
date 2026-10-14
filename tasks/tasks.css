@@ -157,7 +157,7 @@ html.kdh-has-tabs .form{padding-bottom:168px}
 .savebar{position:fixed;left:0;right:0;bottom:0;z-index:70;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:var(--kdh-surface);border-top:1px solid var(--kdh-border);display:flex;gap:10px;justify-content:flex-end}
 .savebar .btn{flex:1}
 @media (min-width:760px){ .savebar{position:static;padding:0;border:0;background:none;justify-content:flex-end} .savebar .btn{flex:none;min-width:160px} .form{padding-bottom:0} }
-html.kdh-has-side .savebar{left:var(--kdh-side-w,240px)}
+@media (min-width:1024px){ html.kdh-has-side .savebar{left:var(--kdh-side-w,240px)} }
 @media (max-width:1023px){ html.kdh-has-tabs .savebar{bottom:calc(64px + env(safe-area-inset-bottom));padding-bottom:10px} }
 /* check your photo */
 .chk img{display:block;width:100%;max-height:52vh;object-fit:contain;border-radius:12px;background:var(--kdh-surface-3)}
