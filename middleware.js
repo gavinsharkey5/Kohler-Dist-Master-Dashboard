@@ -35,6 +35,8 @@ const cache = new Map(); // token -> { ok, email, role, until }
 // Keep this in step with what those pages load (see supabase/README.txt).
 const REP_PATHS = [
   '/kohler-korner/read/',                // read-only published newsletters (RLS; no drafts)
+  '/kohler-korner/magazine-layout.js',      // read-only newsletter pagination
+  '/kohler-korner/magazine-layout.css',
   '/kohler-korner/model.js',              // shared safe rendering only
   '/kohler-korner/newsletter.js',         // reader client (editor RPCs enforce permissions)
   '/kohler-korner/newsletter.css',
