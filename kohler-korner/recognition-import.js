@@ -74,5 +74,5 @@
     if(extension==='txt'){const rows=(await file.text()).split(/\r?\n/).map(line=>line.split('\t'));return table(rows);}
     throw Error('Upload an Excel or CSV employee list, an Outlook .msg announcement, or an anniversary table image.');
   }
-  g.KornerImport={monthDay,table,newHire,key,clean,ocrRows,parseFile};
+  g.KornerImport={monthDay,table,newHire,key,clean,ocrRows,parseFile,loadSpreadsheet:()=>script('xlsx-0.20.3.min.js')};
 })(typeof window!=='undefined'?window:globalThis);
