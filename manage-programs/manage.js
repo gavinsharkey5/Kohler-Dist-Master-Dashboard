@@ -106,7 +106,13 @@ async function loadLists(){
   if(!r.ok && r.status===404) S.msg = {cls:'err', t:'The Manage Programs tables are not in the database yet: run supabase/migrations/20261008120000_manage_programs.sql in the Supabase SQL Editor.'};
   const t = await D.rest('program_templates?select=id,name,definition,owner_name,created_at&order=created_at.desc'); S.templates = t.ok ? (t.data||[]) : [];
 }
-async function loadScope(){ if(S.scope) return S.scope; try{ S.scope = await D.rpc('kdh_program_scope'); }catch(e){ S.scope = {manager:true, admin:false, team:[], brands:[], error:e.message}; } return S.scope; }
+async function loadScope(){ if(S.scope) return S.scope; try{ S.scope = await D.rpc('kdh_program_scope'); }catch(e){ S.scope = {manager:true, admin:false, team:[], brands:[], error:e.message}; }
+  // HYBRID (2026-10-14): a DM who also carries a brand may build EITHER a program for their team (any
+  // supplier) OR one for their brands (any rep) -- a union the pickers cannot draw, so they open up and
+  // kdh_program_scope_problem decides at submit (and on every draft save).
+  if(S.scope && S.scope.hybrid){ S.scope.hybridTeam = S.scope.team || []; S.scope.hybridBrands = S.scope.brands || []; S.scope.team = null; S.scope.brands = null; }
+  return S.scope; }
+function hybridHint(){ const sc = S.scope; return sc && sc.hybrid ? `<div class="hint">You cover a team and a brand: a program must be either for your team (any supplier) or for <b>${E((sc.hybridBrands||[]).join(', ')||'your brands')}</b> (any rep). Submit checks this.</div>` : ''; }
 async function loadPeople(){ if(S.people) return S.people; try{ S.people = await D.rpc('kdh_program_people'); }catch(e){ S.people = []; } return S.people; }
 async function loadProducts(){ if(S.products) return S.products; S.products = await KP.products(); return S.products; }
 function phase(p){
@@ -356,7 +362,7 @@ function stepHtml(n, errs){
     const base = resolveParticipants(d); const nAcc = Object.values(P.accountBase).reduce((t,a)=>t+a.length,0);
     const HB2 = window.HUB_ACCOUNTS || (typeof HUB_ACCOUNTS!=='undefined' ? HUB_ACCOUNTS : null); const areas = (HB2 && HB2.areas) || CORE.concat(SOUTH);
     const noScope = S.scope.team!==null && !S.scope.admin && !(S.scope.team||[]).length;
-    return `<h2>Participants & Accounts</h2><p class="lead">Who is in the program and which of their accounts count.${noScope ? ' You have no team or brand assignment on file, so nobody can be added yet (ask Gavin).' : ''}</p>
+    return `<h2>Participants & Accounts</h2><p class="lead">Who is in the program and which of their accounts count.${noScope ? ' You have no team or brand assignment on file, so nobody can be added yet (ask Gavin).' : ''}</p>${hybridHint()}
       ${field('Choose Participants By', `<div class="radios"><label><input type="radio" name="pmode" value="individual" ${P.mode==='individual'?'checked':''}>Individuals</label><label><input type="radio" name="pmode" value="team" ${P.mode==='team'?'checked':''}>Team</label><label><input type="radio" name="pmode" value="all" ${P.mode==='all'?'checked':''}>Everyone I Manage</label></div>`)}
       ${P.mode==='team' ? field('Teams', `<div class="radios">${teams.map(t=>`<label><input type="checkbox" data-team="${E(t)}" ${P.teams.includes(t)?'checked':''}>${E(t)}</label>`).join('')||'<span class="muted">No teams on file</span>'}</div>`) : ''}
       ${P.mode==='individual' && d.audience.includes('rep') ? pickerHtml('pickReps', 'Sales Reps', reps, P.reps, groups, teams) : ''}
@@ -389,7 +395,7 @@ function stepHtml(n, errs){
       <div class="f"><div class="lbl">Choose Products</div><div class="btnrow" id="addProducts"><button class="btn" data-act="add-products">Add Products</button><button class="btn outline" data-act="exclude-products" ${list.length?'':'disabled'}>Exclude Products</button></div>
         <div class="hint">Limited to ${sups.length===1?'the supplier':'the suppliers'} chosen in Basics: <b>${E(sups.join(', '))}</b>. <button type="button" class="lnk" data-act="go-step" data-step="1">Edit Basics</button></div>
         ${groups.length?`<div class="groups">${groups.map((s,i)=>{ const g = Array.isArray(s)?s[0]:s; return `<span class="gchip">${E(SEL_LABEL[g.type]||g.type)}: <b>${E(g.type==='draft'?(g.value==='draft'?'Draft only':'Package only'):g.value)}</b> <button type="button" class="gx" data-act="rm-group" data-i="${pr.include.indexOf(s)}" aria-label="Remove ${E(g.value)}">×</button></span>`; }).join('')}</div>`:''}
-        ${S.scope && S.scope.brands!==null && !S.scope.admin ? `<div class="hint">Your brand scope: ${E((S.scope.brands||[]).join(', ')||'none on file')}. A program with products outside it cannot be submitted.</div>` : ''}</div>
+        ${S.scope && S.scope.brands!==null && !S.scope.admin ? `<div class="hint">Your brand scope: ${E((S.scope.brands||[]).join(', ')||'none on file')}. A program with products outside it cannot be submitted.</div>` : ''}${hybridHint()}</div>
       ${oos.length?`<div class="msg err" id="outScope"><b>${oos.length} ${plural(oos.length,'product')} outside the selected suppliers</b> (${E([...new Set(oos.map(p=>p.supplier||'unknown'))].join(', '))}): ${E(oos.slice(0,5).map(p=>p.name).join('; '))}${oos.length>5?' …':''}. Add that supplier in Basics or <button type="button" class="lnk" data-act="rm-outscope">remove ${oos.length===1?'it':'them'}</button>. The program cannot be submitted until this is resolved.</div>`:''}
       <div class="f"><div class="lbl">Selected Products <span class="cnt" id="selCount">${list.length}</span></div>
         ${list.length ? `<input type="search" id="pq" class="search" value="${E(S.pq||'')}" placeholder="Search selected products" aria-label="Search selected products"><ul class="plist" id="selProducts">${selRows(shown)}</ul>` : '<div class="mpempty">No products selected yet. Use Add Products.</div>'}</div>

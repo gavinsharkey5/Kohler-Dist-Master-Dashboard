@@ -43,7 +43,9 @@ Who sees what (permissions)
   MANAGER        kdh_program_scope decides: the program approver (admin) ->
                  every rep; a district manager -> the reps under them
                  (kdh_reports_under); a brand manager -> every rep but ONLY
-                 their suppliers' products (the product dialog's pool);
+                 their suppliers' products (the product dialog's pool); a
+                 HYBRID (a DM who also carries a brand, kdh_program_scope
+                 `hybrid`, 2026-10-14) -> their team, every supplier;
                  a manager with neither assignment -> NOBODY ("All My Reps"
                  is never silently everyone). The RPC missing = nothing, with
                  the migration named.
