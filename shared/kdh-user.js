@@ -68,6 +68,10 @@
     try { var src = (document.currentScript && document.currentScript.src) || ''; var i = src.indexOf('shared/kdh-user.js'); return i > 0 ? src.slice(0, i) : ''; } catch (e) { return ''; }
   })();
   var REP_HOME = ROOT + 'rep/';
+  // A SALES ASSOCIATE (role 'associate', 2026-10-14) has ONE page: Field Tasks.
+  var ASSOC_HOME = ROOT + 'tasks/';
+  function isAssoc(u) { return !!(u && u.role === 'associate'); }
+  function homeOf(u) { return !u ? ROOT : u.role === 'manager' ? ROOT : isAssoc(u) ? ASSOC_HOME : REP_HOME; }
 
   // THEME (2026-09-30): the saved choice (localStorage kdh_theme = 'dark' |
   // 'light') wins; with no choice the DEVICE setting applies and the page
@@ -120,6 +124,7 @@
     var u = user(); var root = document.documentElement;
     root.classList.toggle('kdh-rep', !!(u && u.role !== 'manager'));
     root.classList.toggle('kdh-mgr', !!(u && u.role === 'manager'));
+    root.classList.toggle('kdh-assoc', isAssoc(u));
   }
   markViewer();
   // WHERE "BACK" GOES (2026-09-29): the place the person came from, named.
@@ -131,7 +136,7 @@
   function returnTarget() {
     var u = user();
     var isMgr = !!(u && u.role === 'manager');
-    var own = { label: isMgr ? 'Back to Manager Home' : 'Back to Rep Home', href: isMgr ? ROOT : REP_HOME };
+    var own = { label: isMgr ? 'Back to Manager Home' : isAssoc(u) ? 'Back to Field Tasks' : 'Back to Rep Home', href: homeOf(u) };
     var key = 'kdh_from:' + location.pathname;
     var saved = null; try { saved = JSON.parse(sessionStorage.getItem(key) || 'null'); } catch (e) {}
     var t = null;
@@ -186,6 +191,7 @@
     mp: I('<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/>'),
     merch: I('<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>'),
     nb: I('<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M8 11h6"/>'),
+    tasks: I('<path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/>'),
     more: I('<circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/>'),
     tap: I('<path d="M12 2.7 6.5 9a6.5 6.5 0 1 0 11 0z"/>'),
     rb: I('<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>'),
@@ -211,6 +217,7 @@
   function progDefault(u) { return ROOT + 'hub/' + (u.role === 'manager' ? '' : '#view=rep&rep=' + encodeURIComponent(u.name) + '&cat=inc'); }
   function navItems(u) {
     if (!u) return [];
+    if (isAssoc(u)) return [{ key: 'home', label: 'Home', href: ASSOC_HOME }];
     var isMgr = u.role === 'manager';
     var items = [
       { key: 'home', label: 'Home', href: isMgr ? ROOT : REP_HOME },
@@ -224,13 +231,16 @@
   }
   // the authorized tools that sit behind More (phones) / in the sidebar (desktop)
   function toolItems(u) {
+    if (isAssoc(u)) return [];
     var isMgr = u.role === 'manager';
     var t = [
       { key: 'off', group: 'Programs', label: 'Off-Premise MPOs', href: ROOT + 'MPOs/off-prem/index.html' },
       { key: 'on', group: 'Programs', label: 'On-Premise MPOs', href: ROOT + 'MPOs/on-prem/index.html' },
       { key: 'tap', group: 'Trackers', label: 'Tap Tracker', href: ROOT + 'isellbeer/tap-survey-tracking/' },
       { key: 'rb', group: 'Trackers', label: 'Red Bull Tracker', href: ROOT + 'redbull/' },
-      { key: 'cb', group: 'Trackers', label: 'Carbliss Leaderboard', href: ROOT + 'carbliss-onprem-targets/' }
+      { key: 'cb', group: 'Trackers', label: 'Carbliss Leaderboard', href: ROOT + 'carbliss-onprem-targets/' },
+      // Field Tasks (2026-10-14): a rep hands display / tap handle / POS work to a sales associate
+      { key: 'tasks', group: 'Field', label: 'Field Tasks', href: ROOT + 'tasks/' }
     ];
     if (isMgr) t.push({ key: 'invm', group: 'Manager', label: 'Inventory', href: ROOT + 'inventory/', menuOnly: true });
     if (isMgr) t.push({ key: 'exc', group: 'Manager', label: 'Exceptions', href: ROOT + 'exceptions/' });
@@ -247,6 +257,7 @@
     var isMgr = u && u.role === 'manager';
     var rel = ROOT ? location.href.replace(new URL(ROOT, location.href).href, '') : location.pathname.replace(/^\//, '');
     rel = rel.split(/[?#]/)[0];
+    if (/^tasks\//.test(rel)) return isAssoc(u) ? { nav: 'home', tool: '' } : { nav: 'more', tool: 'tasks' };
     if (/^accounts\//.test(rel)) return { nav: 'accounts', tool: '' };
     if (/^hub\//.test(rel)) {   // the hub's MPO tabs mark their MPO item (2026-10-06)
       var cat = (location.hash.match(/[#&]cat=([^&]+)/) || [])[1];
@@ -311,7 +322,7 @@
     if (!u || document.getElementById('kdhSide') || shellOff()) return;
     SIDE_U = u;
     var w = where(u), isMgr = u.role === 'manager';
-    var home = isMgr ? ROOT : REP_HOME;
+    var home = homeOf(u);
     var groups = {}; toolItems(u).forEach(function (t) { (groups[t.group] = groups[t.group] || []).push(t); });
     var html = '<a class="kdh-side-logo" href="' + home + '" aria-label="Kohler Distribution Hub home"><img src="' + ROOT + 'assets/kohler-logo-badge.png" alt="" width="40" height="48"><span class="kdh-lock"><b>Kohler</b><small>Distribution Hub</small></span></a><nav class="kdh-side-nav" aria-label="Main">';
     navItems(u).forEach(function (it) {
@@ -321,14 +332,14 @@
           (groups.Programs || []).map(function (t) { return link('kdh-side-i sub', t, w.tool === t.key); }).join('') + '</div>';
       }
     });
-    ['Trackers', 'Manager'].forEach(function (g) {
+    ['Trackers', 'Field', 'Manager'].forEach(function (g) {
       if (!groups[g]) return;
       var list = groups[g].filter(function (t) { return !t.menuOnly; });
       if (!list.length) return;
       html += '<div class="kdh-side-h">' + g + '</div>' + list.map(function (t) { return link('kdh-side-i', t, w.tool === t.key); }).join('');
     });
     html += '</nav>';
-    if (who) html += '<div class="kdh-side-foot"><button type="button" class="kdh-side-user" id="kdhMenuBtn" aria-haspopup="true" aria-expanded="false" aria-label="Account menu, signed in as ' + esc(who) + '"><span class="kdh-av">' + esc(initials(who)) + '</span><span class="kdh-side-who"><b>' + esc(who) + '</b><small>' + (isMgr || u.preview ? 'Manager' : 'Sales Rep') + '</small></span>' + CARET + '</button></div>';
+    if (who) html += '<div class="kdh-side-foot"><button type="button" class="kdh-side-user" id="kdhMenuBtn" aria-haspopup="true" aria-expanded="false" aria-label="Account menu, signed in as ' + esc(who) + '"><span class="kdh-av">' + esc(initials(who)) + '</span><span class="kdh-side-who"><b>' + esc(who) + '</b><small>' + (isMgr || u.preview ? 'Manager' : isAssoc(u) ? 'Sales Associate' : 'Sales Rep') + '</small></span>' + CARET + '</button></div>';
     var a = document.createElement('aside');
     a.id = 'kdhSide'; a.className = 'kdh-side'; a.innerHTML = html;
     document.body.insertBefore(a, document.body.firstChild);
@@ -356,7 +367,7 @@
   // under the top bar. Remove it by deleting this function and its call.
   var LIVE_URL = 'https://kohlerdist.encompass8.com/Home?DashboardID=184193';
   function liveNotice(u, isMgr, bar) {
-    if (!u || isMgr || document.getElementById('kdhLive')) return;
+    if (!u || isMgr || isAssoc(u) || document.getElementById('kdhLive')) return;   // the task page holds no sales data
     if (!document.getElementById('kdhLiveCss')) {
       var st = document.createElement('style'); st.id = 'kdhLiveCss';
       st.textContent = '#kdhLive{box-sizing:border-box;margin:0;padding:10px 16px;background:#FFE08A;color:#2B1B00;border-top:1px solid #B45309;border-bottom:4px solid #B45309;font:15px/1.4 var(--kdh-body,system-ui,sans-serif);display:flex;gap:12px;align-items:center;justify-content:center}' +
@@ -380,16 +391,16 @@
     if (document.querySelector('.kdh-bar') || document.getElementById('kdhBar')) return;
     var u = user();
     var isMgr = !!(u && u.role === 'manager');
-    var home = u ? (isMgr ? ROOT : REP_HOME) : ROOT;
+    var home = homeOf(u);
     var b = document.createElement('div');
     b.id = 'kdhBar'; b.className = 'kdh-bar';
     var acts = '';
     // BACK: concise, contextual, and only when it adds a destination the
     // navigation does not already show (the Incentive Hub a tracker was
     // opened from, Team Activity, the rep workspace).
-    if (!isHomePage()) {
+    if (!isHomePage() && !isAssoc(u)) {   // an associate's only page is their home
       var back = returnTarget();
-      var dup = u && (back.href === home || back.href === (isMgr ? ROOT : REP_HOME) || /Back to (Rep|Manager) Home/.test(back.label) && back.href === home);
+      var dup = u && (back.href === home || back.href === homeOf(u) || /Back to (Rep|Manager) Home/.test(back.label) && back.href === home);
       if (!u || !dup) acts += '<a class="kdh-b kdh-outline kdh-back" href="' + esc(back.href) + '">' + BACK + '<span>' + esc(back.label.replace(/^Back to /, '')) + '</span></a>';
     }
     var chips = '<span id="kdhViewing"></span>';
@@ -421,7 +432,7 @@
   // ---- the ONE account menu: More on phones / iPads, the sidebar's account button on desktop ----
   function menuHtml(u, isMgr) {
     var who = u.preview ? u.manager : u.name;
-    var role = isMgr || u.preview ? 'Manager' : 'Sales Rep';
+    var role = isMgr || u.preview ? 'Manager' : isAssoc(u) ? 'Sales Associate' : 'Sales Rep';
     var w = where(u);
     var items = '';
     if (isMgr || u.preview) {

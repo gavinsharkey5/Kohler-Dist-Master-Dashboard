@@ -3249,3 +3249,36 @@ money. The warehouse + delivery day (7 hand-offs, receipts -> starred reps -> ro
 refusal -> rep follow-up) is written out in ROADMAP.md "Tabled"; Gavin tabled it on 2026-10-14 and asked that it
 be kept. Transactional Encompass data (invoice / purchase transaction tables) belongs in Supabase with RLS, never
 in this PUBLIC repo (prices / dollars); see the same ROADMAP entry's neighbour when that work starts.
+
+## "Ledger Plan" = Gavin's name for the system-of-record question (2026-10-14, REMEMBER)
+
+When Gavin says "Ledger Plan" he means: could kohlerdisthub.com hold invoices / purchase transactions /
+balances itself and take a rep's order, replacing Encompass as the system of record? The full answer is in
+ROADMAP.md "Tabled" under that name: three tiers (read-only mirror in Supabase with RLS; order capture through
+Encompass's API if it exists; replacing Encompass = a separate company project, not this site), what an
+invoice really depends on, and the recommendation (build the mirror, ask Encompass about API order creation,
+never replace from here). Tabled by Gavin on 2026-10-14; recall it by name, do not rebuild the argument.
+
+## Field Tasks: reps hand work to sales associates (2026-10-14)
+
+Gavin's brief (sales-associates/design-refs/CLAUDE_CODE_PROMPT.md; refs Attio My Tasks, Jira list +
+status dropdown, Asana task detail, Jobber / ClickUp new task, Bolt "Check your photo", Airtable
+overview). `/tasks/` is ONE page with three views by role (tasks/README.txt has every rule;
+sales-associates/PLAN.md is the fit / data model / MVP-vs-v2 / assumptions write-up the brief asked
+for). ROLE 'associate' (allowed_users, Gavin's migration 20261014150000_associate_role.sql, nine
+merchandisers): middleware.js ASSOCIATE_PATHS = /tasks/ + /shared/, home /tasks/, everything else
+redirects (403 for data); kdh-user.js `isAssoc` / `homeOf`: Home = /tasks/, no tools, no liveNotice,
+sidebar + menu say "Sales Associate", `html.kdh-assoc`. Reps / managers get a "Field Tasks" tool
+(group 'Field', NAV_ICON.tasks, where() -> more/tasks) and a home card each (manager home now 27
+cards; rep home #c-tasks). DATA: migration `20261014180000_field_tasks.sql` -- field_tasks (creator
+STAMPED from the token, assignee must be an associate, Display / Tap Handle cannot be Done without a
+photo, Blocked needs a reason, an associate may change only status / photo / note, only an unstarted
+task may be withdrawn), field_task_comments (status lines written by a trigger -- the audit trail;
+kind 'status' is reserved through the kdh.task_sys setting), field_task_reads (the "New" chip),
+kdh_people(role) (associates for anyone signed in, reps for managers), kdh_task_member, bucket
+task-photos/<task id>/<uuid>.jpg. RLS = rep / associate / manager; the page never filters by name
+except PREVIEW (a manager viewing as a rep: that rep's tasks by name, read-only, nothing written).
+Every PATCH / DELETE counts the rows that come back (never trust a 2xx under RLS). Polling 30 s while
+visible; no push / email yet (v2 list in PLAN.md). Tests (scratchpad): sql_tasks_test.sh (32),
+tasks_test.mjs (74 with an RLS-faithful PostgREST stub, tasks_stub.mjs), mw_test.mjs. kdh-user.js tag
+20261014b on every page (100 files, incl. per-rep copies -- rep_slices --check is clean).
