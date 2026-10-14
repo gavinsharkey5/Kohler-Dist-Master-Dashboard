@@ -27,7 +27,7 @@
 <!-- The top bar is injected by shared/kdh-user.js (badge, Previewing chip, account menu with "View as rep"). kdh-home = no Back button. -->
 <meta name="kdh-page" content="Manager Home">
 <meta name="kdh-home" content="manager">
-<script src="shared/kdh-user.js?v=20261008d"></script>
+<script src="shared/kdh-user.js?v=20261014a"></script>
 </head>
 <body>
 
@@ -270,7 +270,9 @@
         // with no title is that person's personal (test) account
         var seen = {}; mgrs.forEach(function(m){ seen[m.name] = (seen[m.name] || 0) + 1; });
         var pick = -1;
-        mgrs.forEach(function(m, i){ var o = document.createElement('option'); o.value = m.name; o.textContent = m.name + (seen[m.name] > 1 && !m.title ? ' (Personal)' : ''); o.dataset.title = m.title || ''; o.dataset.dm = m.reports_to || ''; sel.appendChild(o);
+        mgrs.forEach(function(m, i){ var o = document.createElement('option'); o.value = m.name; o.textContent = m.name + (seen[m.name] > 1 && !m.title ? ' (Personal)' : ''); o.dataset.title = m.title || ''; o.dataset.dm = m.reports_to || '';
+          // a brand manager's suppliers (allowed_users.program_brands, once kdh_team returns them): the preview carries them so the Hub opens on their brands only
+          o.dataset.brands = JSON.stringify(Array.isArray(m.program_brands) ? m.program_brands.filter(Boolean) : []); sel.appendChild(o);
           if (m.name === user.name && (pick < 0 || m.title)) pick = i; });
         if (pick >= 0) sel.selectedIndex = pick;
         // one clear action up top (View as Rep); the manager preview is a quiet second step
@@ -281,7 +283,7 @@
           var o = sel.options[sel.selectedIndex];
           // Picking yourself = leave preview.
           if (user.preview ? o.value === user.manager : o.value === user.name) kdhSetPreview('');
-          else kdhSetPreview({ name: o.value, role: 'manager', title: o.dataset.title, dm: o.dataset.dm });
+          else { var brands = []; try { brands = JSON.parse(o.dataset.brands || '[]'); } catch (e2) {} kdhSetPreview({ name: o.value, role: 'manager', title: o.dataset.title, dm: o.dataset.dm, brands: brands }); }
           location.reload();
         });
       }).catch(function(){});

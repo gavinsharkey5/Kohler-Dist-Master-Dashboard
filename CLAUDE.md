@@ -3134,3 +3134,50 @@ five seconds on a phone, not analysis. Wire format stays v2; api/README.txt "V3"
 Tags: accounts.css / accounts.js / assistant.js 20261013a. Tests (scratchpad): chat_v3_test.mjs
 (57, handler under Node with stubbed Supabase + Anthropic, real route / sales files, authorization
 re-checked), md_v3_test.mjs (17).
+
+## Brand managers: Program View for their brands only (2026-10-14)
+
+Gavin (previewing as a manager): a BRAND MANAGER covers a supplier with every rep under them; a
+DISTRICT MANAGER covers a team of reps across every supplier and has Program View or rep view only.
+The hub now opens a brand manager on Program View cut to their suppliers. WHO COVERS WHAT comes from
+Gavin's Encompass "Brand Families" export (Brand Family ID / Brand Family / Supplier / License Number =
+the brand manager), saved as shared/data/brand_families.csv; `python3 tools/program_seed.py` turns it
+into shared/data/brand-managers.json (manager -> suppliers -> brand families; names and brand names
+only) AND supabase/seed/program_brands.sql (the same suppliers per manager, for Manage Programs /
+Non-Buy scope -- optional, Gavin reviews and runs it). 9 brand managers on 2026-10-14 (Chris Politano
+19 suppliers / 45 families, Dan Downing 7 / 77, Jason Koo 40 / 76, Perry Calderone 7 / 56, Sean
+Donahue 23 / 36, Steve Halloran 11 / 59, Tom Gibbons 11 / 38; Chris McCrohan = Red Bull and Denise
+Montes = Vinaio / Food & Bev are DISTRICT MANAGERS too and keep their team across every supplier -- the
+hub and guided.js skip the brand scope when kdhTeam() matches). Refresh = save the new export over the
+CSV and re-run the script. `kdhBrandScope()` in shared/kdh-user.js answers with a list of names =
+the manager's SUPPLIERS plus the brand FAMILIES filed under them (so a program filed as "Carbliss"
+reaches the manager of "SN Food & Beverage LLC"; `.suppliers` on the array keeps the supplier names for
+display): source order = the database row (`allowed_users.program_brands`, Gavin's override, read with
+the caller's token; a 400 from a database without the column is just "no row"), else the preview
+cookie's `brands` (the manager home switcher copies them from kdh_team once migration
+`20261014090000_team_brands.sql` has run -- optional now), else brand-managers.json by NAME
+(kdhMatchName); the families always come from the file; cached 10 min in sessionStorage
+`kdh_brands:<email|preview:name>`. hub.js: `BRAND_SCOPE` (null = every supplier) is awaited (3 s cap) BEFORE the first build for
+any manager, `buildPrograms()` keeps only programs whose supplier matches (`brandAllows`: p.supplier,
+the MPO name prefix `rawSupplier`, SUPPLIERS[supKey].name / .rde, compared with `brandKey()` which strips
+Company / Brewing Co / Beverage / Brands ... so "Constellation Brands" = Constellation and "Phusion
+Projects" = Four Loko), so Program View, its Supplier filter ("Your Suppliers (N)"), a rep's page and the
+exports ("Brands: ...") all know just their brands; a "Your Brands: ..." line sits under the title. The
+roster is NOT cut (all reps); the DM team cut (HUB_TEAM) is separate and still applies. `rebuildPrograms`
+waits for boot (`BOOTED`). ALSO: `SIGNED_MGR` now includes a MANAGER PREVIEW (role manager), so Gavin
+previewing any manager lands on Program View on every device instead of the rep picker; a rep preview
+has role 'rep' and is unchanged. Exports stay off in preview. ONE MATCHING RULE for every page:
+`kdhBrandMatch(names, brands)` + `kdhMpoSupplierNames(objective)` (objective key -> deck supplier,
+the name prefix with the BBC / HUSA / Spirits aliases, a manager-built objective's supplier; Wine /
+POS / iSellBeer photos have none) live in shared/kdh-user.js. MPO TRACKERS (guided.js `BRANDS`,
+`brandReady`): init wraps H.objectives with the same cut for a manager and `refresh()` waits for the
+scope (3 s cap); View by Program and a rep's page list only their objectives, the head says "your
+brands: ...", and with nothing matching both show "None of Your Brands Are on the <scope> MPO This
+Month" (Gavin's wording). Pushing before the migration / brands are set is safe: no brands = no scope.
+Tests: scratchpad brand_test.mjs (hub: brand preview desktop + phone, real sign-in + cache, missing
+column -> the file, preview without cookie brands -> the file, Carbliss by family, DM-with-brands
+keeps everything, VP, rep preview, signed-in rep, switcher cookie) and brand_mpo_test.mjs (both
+trackers: Constellation preview -> Corona Innovation only off-prem, the empty message on-prem on
+By Program and a rep's page, phone, real sign-in, Chris Politano from the file = Lytt / Oktoberfest /
+Carbliss, DM, rep preview, signed-in rep); Playwright over Edge (`channel:'msedge'`, npm i playwright
+in the scratchpad), stubbed Supabase. Tags: hub.js / kdh-user.js / guided.js 20261014a.

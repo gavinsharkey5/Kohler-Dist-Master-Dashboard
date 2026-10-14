@@ -11,6 +11,17 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
+- [~] **Brand managers open the Incentive Hub and both MPO trackers on their brands (2026-10-14).** LIVE ON PUSH, no
+  Supabase step: the assignment comes from the Encompass Brand Families export (shared/data/brand_families.csv ->
+  shared/data/brand-managers.json, 9 brand managers, manager -> suppliers -> brand families) by name. A brand manager
+  lands on Program View / View by Program showing only their suppliers' programs (brand families count too: Carbliss
+  under SN Food & Beverage), every rep; nothing matching = "None of Your Brands Are on the <scope> MPO This Month". A
+  district manager who also carries a brand (Chris McCrohan: Red Bull; Denise Montes) keeps their team across every
+  supplier. OPTIONAL, Gavin: `supabase/seed/program_brands.sql` (regenerated from the same export; REVIEW, then run after
+  the Manage Programs migration) makes the database agree for Manage Programs / Non-Buy scope, and
+  `supabase/migrations/20261014090000_team_brands.sql` lets kdh_team carry program_brands; a database row with brands
+  overrides the file. REFRESH when assignments change: save the new Brand Families export over
+  shared/data/brand_families.csv (no emails in it) and run `python3 tools/program_seed.py`.
 - [ ] **Stay signed in, for real (2026-10-13; reps: "it makes me log in every time, even with
   Remember me").** Cause: Supabase rotates the refresh token on every hourly renewal and the phone
   had to store the new cookie each time; a lost or unapplied renewal left the phone sending the old

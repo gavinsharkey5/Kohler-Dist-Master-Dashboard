@@ -20,14 +20,14 @@
         var p = cookie('kdh_preview');
         if (p) {
           var o = null; try { o = p.charAt(0) === '{' ? JSON.parse(p) : null; } catch (e2) {}
-          if (o && o.role === 'manager' && o.name) return { name: o.name, role: 'manager', preview: true, manager: u.name, email: u.email, title: o.title || '', dm: o.dm || '' };
+          if (o && o.role === 'manager' && o.name) return { name: o.name, role: 'manager', preview: true, manager: u.name, email: u.email, title: o.title || '', dm: o.dm || '', brands: Array.isArray(o.brands) && o.brands.length ? o.brands.slice() : null };
           return { name: (o && o.name) || p, role: 'rep', preview: true, manager: u.name, email: u.email, title: '', dm: '' };
         }
       }
       return u;
     } catch (e) { return null; }
   }
-  // setPreview('Mike Ast') for a rep; setPreview({name, role:'manager', title, dm}) for a manager; setPreview('') to exit.
+  // setPreview('Mike Ast') for a rep; setPreview({name, role:'manager', title, dm, brands}) for a manager (brands = their program_brands, or none); setPreview('') to exit.
   // The account assistant keeps its transcripts in sessionStorage under
   // kdh_ask:<viewer>:<account>; a change of who we are looking as drops them
   // all so the next person (or the manager back in their own shoes) starts clean.
@@ -603,6 +603,101 @@
   // Gavin): never offered in a rep list.
   var NOT_REPS = ['default', 'office tell sell'];
   function isRep(name) { return NOT_REPS.indexOf(String(name || '').trim().toLowerCase()) < 0; }
+  // BRAND SCOPE (2026-10-14, Gavin): a BRAND MANAGER covers a supplier (or a
+  // few) with every rep under them -- allowed_users.program_brands, the
+  // Fusion supplier names. brandScope() answers "which suppliers' programs
+  // does this person cover?" as a Promise: a rep or a rep preview -> null;
+  // a manager being previewed -> the `brands` the preview cookie carries
+  // (the manager home's switcher copies them from the kdh_team RPC);
+  // a signed-in manager -> their own allowed_users row (row-level security
+  // lets a person read only that row), kept in sessionStorage for 10
+  // minutes so the hub stays synchronous on the next load. NULL means
+  // "every supplier" (a DM, a VP, Gavin, or a column not on the database
+  // yet): the DM team cut (team()) is separate and still applies.
+  // Source of the assignment: the database row first (allowed_users.program_brands, Gavin's
+  // override), else shared/data/brand-managers.json by NAME (the Encompass Brand Families
+  // export: manager -> suppliers -> brand families, written by tools/program_seed.py) --
+  // so a brand manager, and a manager preview, are scoped with no Supabase step.
+  // A DISTRICT MANAGER who also carries a brand keeps every supplier: the hub / trackers
+  // check kdhTeam() first and ignore this answer when the person is a DM.
+  // Supplier-name matching for the brand scope: "Boston Beer Company" =
+  // "Boston Beer", "MolsonCoors Beverage Company" = "Molson Coors",
+  // "Constellation Brands" = "Constellation" (generic words dropped, then an
+  // exact or 4+ character prefix match). names = the names a program is filed
+  // under, brands = the manager's scope (suppliers + brand families); true
+  // when any pair matches.
+  function brandKey(x) {
+    return String(x || '').toLowerCase().replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, ' ')
+      .replace(/\b(company|co|inc|llc|ltd|brewing|brewery|brewers|beverage|beverages|group|usa|brands|imports?|exports?|projects|international|distributing|the|and)\b/g, ' ').replace(/\s+/g, '');
+  }
+  function brandSame(a, b) { return !!a && !!b && (a === b || (a.length >= 4 && b.length >= 4 && (a.indexOf(b) === 0 || b.indexOf(a) === 0))); }
+  function brandMatch(names, brands) {
+    if (!brands || !brands.length) return true;
+    var ks = brands.map(brandKey);
+    return (names || []).filter(Boolean).some(function (n) { var k = brandKey(n); return ks.some(function (b) { return brandSame(k, b); }); });
+  }
+  // The supplier names an MPO objective is filed under: the objective's key
+  // (the deck's brand marks), the prefix of its name before " – " (BBC,
+  // Constellation, Molson Coors ...), a manager-built objective's supplier.
+  // General objectives (Wine, POS, iSellBeer photos) have none.
+  var MPO_SUPPLIER = { sam_adams_conversion: 'Boston Beer Company', constellation_innovation: 'Constellation Brands', keystone_ice: 'MolsonCoors Beverage Company',
+    bbc_lytt: 'Boston Beer Company', disruptors: 'Boston Beer Company', constellation_gaintain: 'Constellation Brands', corona_premier: 'Constellation Brands',
+    new_belgium: 'New Belgium Brewing Company', bardstown_menu: 'Bardstown Bourbon Co', green_river: 'Bardstown Bourbon Co', molson_coors: 'MolsonCoors Beverage Company',
+    fever_tree: 'MolsonCoors Beverage Company', angry_orchard: 'Boston Beer Company', ws_2xo: 'Prestige Beverage Group', mollys: "Molly's", yave: 'Cruz Beverage', famosa: 'Famosa', carbliss: 'Carbliss' };
+  var MPO_PREFIX = { BBC: 'Boston Beer Company', HUSA: 'Heineken USA', Spirits: 'Carbliss', 'Lofted Spirits': 'Bardstown Bourbon Co', 'Famosa 7oz': 'Famosa', 'Sapporo Light': 'Sapporo',
+    POS: '', Disruptors: 'Boston Beer Company', 'iSellBeer Execution': '', Wine: '' };
+  function mpoSupplierNames(o) {
+    if (!o) return [];
+    var raw = String(o.name || '').split(/\s+[\u2013\u2014-]\s+/)[0].trim();
+    var pre = Object.prototype.hasOwnProperty.call(MPO_PREFIX, raw) ? MPO_PREFIX[raw] : raw;
+    var c = o.custom && typeof o.custom === 'object' ? o.custom : null;
+    return [MPO_SUPPLIER[o.key] || '', pre, o.supplier || '', c && c.supplier || ''].filter(Boolean);
+  }
+  var fileScope = null;
+  function fileFor(name) {
+    if (!name) return Promise.resolve(null);
+    if (!fileScope) fileScope = fetch(ROOT + 'shared/data/brand-managers.json', { credentials: 'same-origin' })
+      .then(function (r) { return r.ok ? r.json() : null; }, function () { return null; })
+      .then(function (j) { return j && j.managers ? j.managers : {}; });
+    return fileScope.then(function (m) { var hit = matchName(name, Object.keys(m)); return hit ? m[hit] : null; });
+  }
+  // The scope the pages match against: the suppliers, plus the brand FAMILIES filed under
+  // those suppliers in the export (a program filed as "Carbliss" belongs to the manager of
+  // "SN Food & Beverage LLC"). `.suppliers` keeps the supplier names for display.
+  function buildScope(sups, f) {
+    sups = (sups || []).filter(Boolean);
+    if (!sups.length) return null;
+    var names = sups.slice();
+    var fam = f && f.families ? f.families : {};
+    Object.keys(fam).forEach(function (sup) { if (brandMatch([sup], sups)) (fam[sup] || []).forEach(function (x) { if (x && names.indexOf(x) < 0) names.push(x); }); });
+    names.suppliers = sups.slice();
+    return names;
+  }
+  function brandScope() {
+    var u = user();
+    if (!u || u.role !== 'manager') return Promise.resolve(null);
+    var key = 'kdh_brands:' + (u.preview ? 'preview:' : '') + (u.preview ? u.name : (u.email || u.name || ''));
+    try { var c = JSON.parse(sessionStorage.getItem(key) || 'null'); if (c && c.t && Date.now() - c.t < 600000) { var r0 = c.names && c.names.length ? c.names.slice() : null; if (r0) r0.suppliers = (c.suppliers || []).slice(); return Promise.resolve(r0); } } catch (e) {}
+    var cfg = global.KDH_AUTH || {}, tok = cookie('kdh_at');
+    var fromSource = u.preview ? Promise.resolve(u.brands && u.brands.length ? u.brands.slice() : null)
+      : (!cfg.url || !cfg.key || !tok) ? Promise.resolve(null)
+      : fetch(String(cfg.url).replace(/\/$/, '') + '/rest/v1/allowed_users?select=program_brands&limit=1', { headers: { apikey: cfg.key, authorization: 'Bearer ' + tok, accept: 'application/json' } })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (rows) {
+          var b = rows && rows[0] && Array.isArray(rows[0].program_brands) ? rows[0].program_brands.filter(function (x) { return x && String(x).trim(); }) : [];
+          return b.length ? b : null;
+        }, function () { return null; });
+    return fromSource.then(function (sups) {
+      return fileFor(u.name).then(function (f) {
+        var out = buildScope(sups || (f && f.suppliers), f);
+        try { sessionStorage.setItem(key, JSON.stringify({ t: Date.now(), names: out || [], suppliers: out ? out.suppliers : [] })); } catch (e) {}
+        return out;
+      });
+    });
+  }
+  global.kdhBrandMatch = brandMatch;
+  global.kdhMpoSupplierNames = mpoSupplierNames;
+  global.kdhBrandScope = brandScope;
   global.kdhIsRep = isRep;
   global.kdhTeam = team;
   global.kdhDmName = dmName;
