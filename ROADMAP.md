@@ -11,9 +11,6 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
-- [ ] **Starred products: run `supabase/migrations/20261014150000_product_stars.sql` in the SQL Editor (2026-10-14).**
-  Until it runs, stars live on each device only (the page says nothing, it just works); after it, a rep's stars
-  follow them from iPhone to iPad. Own rows only; verified on local Postgres 16 (sql_stars_test.sh).
 - [ ] **Rep Inventory page on the one-file report (2026-10-14).** Built on the sample `Inventory_Report_1.csv` from
   the brief. To go live on real numbers: save each new Encompass inventory report as
   `inventory-data/Inventory_Report.csv`, run `python3 inventory/generate.py`, then `python3 accounts/generate.py` (the
@@ -322,7 +319,7 @@ device, a decision).
 
 ## Done
 
-- [x] **2026-10-14 Inventory: starred products + brand-manager scope + role defaults.** Reps (and managers) star
+- [x] **2026-10-14 Inventory: starred products + brand-manager scope + role defaults.** Migration product_stars run by Gavin the same day ("Success. No rows returned"): stars sync across devices. Reps (and managers) star
   products; a Starred group tops the list with "N Out · M Low", a Starred chip filters to them, stars sync per
   person (device until the migration runs). A brand manager sees only their suppliers' products (tiles, list,
   search, filter sheet; "Your Suppliers: ..."), a hybrid DM everything, reps never scoped. Rep default = Starred
