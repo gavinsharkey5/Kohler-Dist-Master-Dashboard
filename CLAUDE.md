@@ -3188,3 +3188,30 @@ trackers: Constellation preview -> Corona Innovation only off-prem, the empty me
 By Program and a rep's page, phone, real sign-in, Chris Politano from the file = Lytt / Oktoberfest /
 Carbliss, DM, rep preview, signed-in rep); Playwright over Edge (`channel:'msedge'`, npm i playwright
 in the scratchpad), stubbed Supabase. Tags: hub.js / kdh-user.js / guided.js 20261014a.
+
+## Rep Inventory page on one report (2026-10-14)
+
+Gavin's brief (inventory/design-refs/CLAUDE_CODE_PROMPT.md + three Mobbin screenshots there: Shopify inventory
+list, Resy grouped list, Copilot filter chip). `inventory/generate.py` now reads ONE Encompass report
+(`python3 inventory/generate.py [path]`, default ../inventory-data/Inventory_Report.csv; columns Product Num Name,
+Supplier, Brand Family, On Floor Inventory, Pre Sales, Allocated, Available) instead of the three shared exports --
+inventory-overview/ (the executive view) still reads those five and was NOT touched. Available is used exactly as
+reported; status is a unit threshold now (Out <= 0, Low 1-24, In Stock 25+), the snapshot date is the report FILE's
+modified time (no date column), stale tag past 7 days. The old days-of-cover / on-the-way / just-arrived /
+backordered fields are GONE (the report has no rate of sale, purchase orders or receipts); accounts/generate.py still
+reads this page's rep-data JSON (num / name / supplier / available / status; doi / nextArrival / backordered are
+absent -> null in catalog.json), so run it after each inventory refresh. Page (`inventory/index.html`, standalone, no
+fetches): "Inventory" + "Inventory as of <date>", three KPI tiles that are filters (Products Available / Out of
+Stock / Running Low), search (150 ms debounce, substring over "<num> <name>"), Sort sheet (Available high-low
+default, A-Z, Pre Sales high-low), Filter bottom sheet (Supplier + Brand Family multi-select with find boxes,
+families narrow to the chosen suppliers), chips row (active supplier / brand chips FIRST with x, then All / In Stock
+/ Low / Out; counts hidden under 480px so all four fit), rows = description bold / "#num · Brand Family" / Available
+pill (--kdh-ok / -warn / -bad + soft), tap expands one row at a time to a 2x2 On Floor / Pre Sales / Allocated /
+Available grid on phones, inline figures on >= 768px; sticky Supplier headers (A-Z) when no search / filter, flat
+list otherwise; chunked rendering (60 then 120 via IntersectionObserver + Show More fallback -- the first IO
+notification carries stale geometry, so `near()` re-checks the real position); skeleton until first paint; state
+`kdh_inv:v2` in localStorage (sort + filters, not the search). GOTCHA: `[hidden]{display:none!important}` is in the
+page CSS because `.more{display:flex}` / `.sclr{display:flex}` beat the hidden attribute. Sheets are z-index 1200
+(above the bar, banner and tabs). Test: scratchpad inv_test.mjs (310 checks: rep + manager, 390 / 820 / 1366, light /
+dark, contrast, sticky offsets, persistence, chunking) + mobile_audit / contrast_audit / elong_audit on the page.
+Refresh = save the report as inventory-data/Inventory_Report.csv, run the two generators (ROADMAP Now).

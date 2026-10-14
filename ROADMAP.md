@@ -11,6 +11,10 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
+- [ ] **Rep Inventory page on the one-file report (2026-10-14).** Built on the sample `Inventory_Report_1.csv` from
+  the brief. To go live on real numbers: save each new Encompass inventory report as
+  `inventory-data/Inventory_Report.csv`, run `python3 inventory/generate.py`, then `python3 accounts/generate.py` (the
+  Account page's product list reads the same snapshot), commit, push. The snapshot date is the file's save date.
 - [~] **Brand managers open the Incentive Hub and both MPO trackers on their brands (2026-10-14).** LIVE ON PUSH, no
   Supabase step: the assignment comes from the Encompass Brand Families export (shared/data/brand_families.csv ->
   shared/data/brand-managers.json, 9 brand managers, manager -> suppliers -> brand families) by name. A brand manager
@@ -315,6 +319,12 @@ device, a decision).
 
 ## Done
 
+- [x] **2026-10-14 Rep Inventory page rebuilt for the phone (inventory/).** One report in place of three exports
+  (Product Num Name / Supplier / Brand Family / On Floor / Pre Sales / Allocated / Available; Available as reported, never
+  re-derived); Shopify-style list: search + Sort / Filter row, status chips, dismissible supplier / brand chips, rows
+  with an Available pill (green > 24, amber 1-24, red <= 0), tap to expand on phones, inline figures on iPad, sticky
+  supplier headers, chunked rendering for 3,200 rows, sort + filters remembered. Dropped (the report cannot support
+  them): days of cover, on the way / next arrival, just arrived, backordered. inventory/README.txt.
 - [x] **2026-10-09 Account assistant is LIVE on kohlerdisthub.com.** Ledger migration run, API key + KDH_CHAT_USERS (every allow-list sign-in) + KDH_CHAT_DAILY_USD=10 set on Vercel Production. First live question answered (Shop Rite Liq Englewood: 12-month totals, top products, period comparisons). Still to do: watch the ledger for a week, raise the daily cap as real use shows, set a monthly spend limit in the Claude Console, consider KDH_CHAT_MODEL=claude-sonnet-5-5 if cost per question runs high. First try failed with HTTP 401 "invalid x-api-key" (a pasted key) -- managers now see the API's reason on the error line.
 
 - [x] **Non-Buy Reports (2026-10-08, merged to main the same day after Gavin's approval):** one engine (nonbuy/engine.js, pure) + one static source
