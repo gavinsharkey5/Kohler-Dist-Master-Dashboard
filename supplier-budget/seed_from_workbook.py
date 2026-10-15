@@ -4,8 +4,10 @@
     python3 supplier-budget/seed_from_workbook.py <Supplier_Budgets_Tracker.xlsx>
 
 Writes (both git-ignored, supabase/data/ is in .gitignore):
-    supabase/data/supplier_budget_seed.sql     paste into the Supabase SQL Editor AFTER the
-                                               20261014210000_supplier_budget.sql migration
+    supabase/data/supplier_budget_seed_partN.sql   paste each part into the Supabase SQL Editor
+                                               AFTER the 20261014210000_supplier_budget.sql
+                                               migration, part 1 first (the editor caps one
+                                               query at ~1 MB, so the seed comes in parts)
     supabase/data/supplier_budget_seed_report.txt  what was read, what was flagged
 
 The repo is PUBLIC: the workbook holds dollars by vendor, so NEITHER the workbook nor the
@@ -36,7 +38,7 @@ except ImportError:
     sys.exit("pip install openpyxl")
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT_SQL = ROOT / "supabase/data/supplier_budget_seed.sql"
+OUT_SQL = ROOT / "supabase/data/supplier_budget_seed.sql"   # written as _part1.sql, _part2.sql, ...
 OUT_REP = ROOT / "supabase/data/supplier_budget_seed_report.txt"
 
 def key(s):
@@ -225,23 +227,46 @@ def main(path):
     say(f"Vendors: {len(vendors)} distinct names (filled by the trigger as rows are inserted)")
 
     # ---------------------------------------------------------------- SQL
-    L = ["-- Supplier Budgets seed, generated " + dt.datetime.now().strftime("%Y-%m-%d %H:%M") + " by supplier-budget/seed_from_workbook.py",
-         "-- NEVER COMMIT THIS FILE (supabase/data/ is git-ignored): it holds dollars by vendor.",
-         "-- Run once in the Supabase SQL Editor after 20261014210000_supplier_budget.sql. Safe to run again: existing rows are left alone.",
-         "begin;", "select set_config('kdh.seeding', '1', false);"]
-    for a in sorted(accounts.values(), key=lambda a: (a["year"], a["account"])):
-        L.append("insert into public.budget_accounts (year, code, account, supplier, brand_manager, description, vendor_default, budget_amount, basis_text, active, needs_review, notes, created_by, updated_by) values (" +
-                 ", ".join(q(x) for x in [a["year"], a["code"], a["account"], a["supplier"], a["brand_manager"], a["description"], a["vendor_default"], a["budget_amount"], a["basis"], a["active"], a["needs_review"], a["notes"], "import", "import"]) +
-                 ") on conflict (year, account) do nothing;")
-    for e in e26 + e25:
-        a = accounts[(e["year"], e["acct_k"])]
-        L.append("insert into public.supplier_expenses (account_id, expense_date, year, invoice, vendor, items_purchased, total_amount, billback_amount, billback_received, received_date, notes, source, source_key, sheet_values, created_by, updated_by) select id, " +
-                 ", ".join(q(x) for x in [str(e["date"]), e["year"], e["invoice"], e["vendor"], e["items"], e["total"], e["billback"], e["received"], None, e["notes"], e["source"], e["src"], json.dumps(e["sheet"], ensure_ascii=False), "import", "import"]) +
-                 f" from public.budget_accounts where year = {a['year']} and account = {q(a['account'])} on conflict (source_key) do nothing;")
-    L.append("commit;")
+    # The Supabase SQL Editor refuses a query past ~1 MB, so the seed is written in PARTS
+    # (supplier_budget_seed_part1.sql, part2, ...), each its own transaction, each safe to
+    # run twice and in any order after part 1 (part 1 holds the accounts the rest join to).
+    head = ["-- Supplier Budgets seed, generated " + dt.datetime.now().strftime("%Y-%m-%d %H:%M") + " by supplier-budget/seed_from_workbook.py",
+            "-- NEVER COMMIT THIS FILE (supabase/data/ is git-ignored): it holds dollars by vendor.",
+            "-- Run each part once in the Supabase SQL Editor after 20261014210000_supplier_budget.sql, part 1 first.",
+            "-- Safe to run again: existing rows are left alone.",
+            "begin;", "select set_config('kdh.seeding', '1', false);"]
+    acct_sql = ["insert into public.budget_accounts (year, code, account, supplier, brand_manager, description, vendor_default, budget_amount, basis_text, active, needs_review, notes, created_by, updated_by) values " +
+                ", ".join("(" + ", ".join(q(x) for x in [a["year"], a["code"], a["account"], a["supplier"], a["brand_manager"], a["description"], a["vendor_default"], a["budget_amount"], a["basis"], a["active"], a["needs_review"], a["notes"], "import", "import"]) + ")"
+                          for a in sorted(accounts.values(), key=lambda a: (a["year"], a["account"]))) +
+                " on conflict (year, account) do nothing;"]
+    def exp_stmt(batch):
+        rows = []
+        for e in batch:
+            a = accounts[(e["year"], e["acct_k"])]
+            sheet = {k: v for k, v in e["sheet"].items() if v not in (None, "")}
+            rows.append("(" + ", ".join(q(x) for x in [a["year"], a["account"], str(e["date"]), e["invoice"], e["vendor"], e["items"], e["total"], e["billback"], e["received"], e["notes"], e["source"], e["src"], json.dumps(sheet, ensure_ascii=False)]) + ")")
+        return ("insert into public.supplier_expenses (account_id, expense_date, year, invoice, vendor, items_purchased, total_amount, billback_amount, billback_received, notes, source, source_key, sheet_values, created_by, updated_by)\n"
+                "select a.id, v.d::date, v.y, v.inv, v.ven, v.items, v.total, v.bb, v.recv, v.notes, v.src, v.key, v.sheet::jsonb, 'import', 'import'\n"
+                "from (values\n" + ",\n".join(rows) + "\n) as v(y, acct, d, inv, ven, items, total, bb, recv, notes, src, key, sheet)\n"
+                "join public.budget_accounts a on a.year = v.y and a.account = v.acct\n"
+                "on conflict (source_key) do nothing;")
+    LIMIT = 600_000   # bytes per part, well under the editor's cap
+    parts, cur, size = [], list(head) + acct_sql, sum(len(x) + 1 for x in head + acct_sql)
+    exps = e26 + e25
+    for i in range(0, len(exps), 50):
+        st = exp_stmt(exps[i:i + 50])
+        if size + len(st) > LIMIT and len(cur) > len(head):
+            parts.append(cur + ["commit;"]); cur, size = list(head), sum(len(x) + 1 for x in head)
+        cur.append(st); size += len(st) + 1
+    parts.append(cur + ["commit;"])
+    for old in ROOT.glob("supabase/data/supplier_budget_seed*.sql"): old.unlink()
     OUT_SQL.parent.mkdir(parents=True, exist_ok=True)
-    OUT_SQL.write_text("\n".join(L) + "\n")
-    say(f"SQL: {len(accounts)} account rows + {len(e26) + len(e25)} expense rows -> {OUT_SQL.relative_to(ROOT)}")
+    names = []
+    for n, part in enumerate(parts, 1):
+        f = OUT_SQL.with_name(f"supplier_budget_seed_part{n}.sql")
+        f.write_text("\n".join(part).replace("\\n", "\n") + "\n")
+        names.append(f"{f.name} ({f.stat().st_size // 1024} KB)")
+    say(f"SQL: {len(accounts)} account rows + {len(exps)} expense rows in {len(parts)} parts (run part 1 first): " + ", ".join(names))
     OUT_REP.write_text("\n".join(rep) + "\n")
     print("\n".join(l for l in rep if not l.startswith("    ")))
     print(f"full report (with the row-by-row lists): {OUT_REP.relative_to(ROOT)}")

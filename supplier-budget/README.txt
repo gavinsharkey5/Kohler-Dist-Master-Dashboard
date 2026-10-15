@@ -22,7 +22,8 @@ WHERE THE DATA LIVES
     budget_vendors           vendor names for the typeahead, filled by the trigger.
   The seed script (ONE TIME, from a laptop, the workbook never committed):
     python3 supplier-budget/seed_from_workbook.py <Supplier_Budgets_Tracker.xlsx>
-  writes supabase/data/supplier_budget_seed.sql (+ _report.txt), both git-ignored.
+  writes supabase/data/supplier_budget_seed_part1.sql, _part2.sql ... (+ _report.txt), all git-ignored
+  (the SQL Editor caps one query at ~1 MB, so the seed comes in parts; part 1 first).
   Paste the SQL into the Supabase SQL Editor after the migration. Safe to paste
   again. The report lists what was flagged (see RULES).
 

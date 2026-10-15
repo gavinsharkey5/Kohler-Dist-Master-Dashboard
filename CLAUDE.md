@@ -3325,8 +3325,10 @@ manager reads only accounts whose brand_manager is them (`kdh_name_key`) or whos
 program_brands (`kdh_brand_key` = SQL mirror of kdh-user.js brandKey, prefix match >= 4 chars) via
 `kdh_budget_can_read`; reps / anon nothing. `kdh_budget_me()` tells the page {editor, admin, manager}. Name stamps
 (created_name / updated_name) come from allowed_users through the trigger so the page shows "Edited by Alexis" with
-no email. SEED: `python3 supplier-budget/seed_from_workbook.py <xlsx>` -> `supabase/data/supplier_budget_seed.sql`
-+ `_report.txt` (never commit); Budget tab -> accounts, Expenses 2026 -> import_2026, Expenses 2025 rows dated 2025
+no email. SEED: `python3 supplier-budget/seed_from_workbook.py <xlsx>` -> `supabase/data/supplier_budget_seed_part1.sql`,
+`_part2.sql` ... (self-contained parts under the SQL Editor's ~1 MB cap, part 1 holds the accounts; multi-row
+inserts joined to budget_accounts by year + account) + `_report.txt` (never commit; verified on local Postgres:
+987 + 917 rows, idempotent); Budget tab -> accounts, Expenses 2026 -> import_2026, Expenses 2025 rows dated 2025
 -> import_2025 under inactive 2025 account rows (its 2026 rows are copies of the 2026 tab and are skipped);
 an Expenses Account with no Budget row -> a placeholder account with needs_review (59 on 2026-10-14, NEVER mapped by
 guess); the report lists the 172 Kohler Spend disagreements (computed value wins), 26 blank Totals (derived from

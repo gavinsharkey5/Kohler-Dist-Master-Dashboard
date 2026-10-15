@@ -14,9 +14,9 @@ device, a decision).
 - [ ] **Supplier Budgets (2026-10-14): the tracker workbook as /supplier-budget/, for Alexis.** Built and pushed;
   nothing shows until three steps: (1) run `supabase/migrations/20261014210000_supplier_budget.sql` in the SQL Editor
   (idempotent; adds allowed_users.budget_editor, the four tables, RLS, triggers); (2) on a laptop run
-  `python3 supplier-budget/seed_from_workbook.py <Supplier_Budgets_Tracker_v1_2.xlsx>` and paste the generated
-  `supabase/data/supplier_budget_seed.sql` into the SQL Editor (git-ignored: dollars by vendor never enter the repo;
-  safe to paste twice) -- the script also prints a report: 59 Expenses accounts with no Budget row become
+  `python3 supplier-budget/seed_from_workbook.py <Supplier_Budgets_Tracker_v1_2.xlsx>` and paste each generated
+  `supabase/data/supplier_budget_seed_partN.sql` into the SQL Editor, part 1 first (the editor caps a query at
+  ~1 MB; git-ignored: dollars by vendor never enter the repo; safe to paste twice) -- the script also prints a report: 59 Expenses accounts with no Budget row become
   "Needs Review" accounts to fix on the Budget tab, 172 rows whose sheet Kohler Spend differed from Total - Billback
   (the computed value is used), 26 rows with no Total (derived from Spend + Billback), one 2062 Year typo;
   (3) `update allowed_users set budget_editor = true where email = '<Alexis>'` (the flag, never a name on the page).
