@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F6F7F9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1523" media="(prefers-color-scheme: dark)">
+<title>UPC Registration Audit — Kohler Distribution Hub</title>
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Dist Hub">
+<link rel="preload" href="../assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+<!-- Theme before first paint: the saved choice, else the device setting (2026-09-30). -->
+<script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="stylesheet" href="../rep/rep.css?v=20261008d">
+<link rel="stylesheet" href="upc.css?v=20261015a">
+<meta name="kdh-page" content="UPC Registration Audit">
+<script src="../shared/kdh-user.js?v=20261015h"></script>
+<script src="../shared/auth-config.js"></script>
+</head>
+<body>
+<!--
+  UPC REGISTRATION AUDIT (2026-10-15). Vlad (IT) adds the FileMaker product
+  export and the ABC registration search download; the page matches them on
+  UPC IN THIS BROWSER (engine.js) and lists every product that is not
+  registered under the number FileMaker has. Neither file is uploaded or
+  stored. Notes (a dated log per product code) and a summary of each run live
+  in Supabase (public.upc_notes / upc_runs, migration
+  supabase/migrations/20261015190000_upc_audit.sql). Who may open it: role
+  'it' and managers with allowed_users.upc_audit (Gavin + the brand managers)
+  -- the middleware decides. README.txt has every rule.
+-->
+<main class="upc" id="app" aria-live="polite"></main>
+<script src="../shared/xlsx-read.js?v=20261015a"></script>
+<script src="../shared/xlsx-write.js?v=20261015a"></script>
+<script src="engine.js?v=20261015a"></script>
+<script src="upc.js?v=20261015a"></script>
+</body>
+</html>

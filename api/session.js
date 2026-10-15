@@ -25,7 +25,7 @@
    the row, never sent to the phone, so a lost reply costs nothing -- the
    next request simply renews again from the row. The pages still get
      kdh_at    the access token the pages and the middleware read
-     kdh_user  {name, role, email, title, dm, ws} for the pages (ws = 'finance' for the finance workspace)
+     kdh_user  {name, role, email, title, dm, ws, upc} for the pages (ws = 'finance' for the finance workspace; upc = 1 may open the UPC audit)
    on every renewal, and the keep-alive in shared/kdh-user.js re-asks GET
    /api/session when the page's own copy runs out. When kdh_at is expired or
    missing on a page load, middleware.js sends the browser through
@@ -86,7 +86,7 @@ function clear(name, httpOnly) {
 export function accessCookies(accessToken, me, keep) {
   return [
     cookie('kdh_at', accessToken, { keep }),
-    cookie('kdh_user', JSON.stringify({ name: me.name || '', role: me.role || 'rep', email: me.email || '', title: me.title || '', dm: me.reports_to || '', ws: me.workspace || '' }), { keep }),
+    cookie('kdh_user', JSON.stringify({ name: me.name || '', role: me.role || 'rep', email: me.email || '', title: me.title || '', dm: me.reports_to || '', ws: me.workspace || '', ...(me.upc === true || me.upc_audit === true || me.role === 'it' ? { upc: 1 } : {}) }), { keep }),
   ];
 }
 // A server-held session: the device secret (never rotates) + the access cookies.

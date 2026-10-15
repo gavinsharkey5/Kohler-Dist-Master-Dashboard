@@ -78,7 +78,12 @@
   // and Incentive Performance, nothing else. The middleware enforces it; this only shapes the chrome.
   function isFin(u) { return !!(u && u.role === 'manager' && u.ws === 'finance'); }
   var FIN_HOME = ROOT;   // the manager home trims itself to the finance cards
-  function homeOf(u) { return !u ? ROOT : isFin(u) ? FIN_HOME : u.role === 'manager' ? ROOT : isAssoc(u) ? ASSOC_HOME : REP_HOME; }
+  // IT (role 'it', 2026-10-15): Vlad -- ONE page, the UPC Registration Audit. A manager with the upc flag
+  // (kdh_user.upc: Gavin, the brand managers) has it as a tool. The middleware enforces both.
+  var IT_HOME = ROOT + 'upc-audit/';
+  function isIT(u) { return !!(u && u.role === 'it'); }
+  function canUpc(u) { return !!(u && (isIT(u) || (u.role === 'manager' && u.upc && !u.preview))); }
+  function homeOf(u) { return !u ? ROOT : isFin(u) ? FIN_HOME : u.role === 'manager' ? ROOT : isAssoc(u) ? ASSOC_HOME : isIT(u) ? IT_HOME : REP_HOME; }
 
   // THEME (2026-09-30): the saved choice (localStorage kdh_theme = 'dark' |
   // 'light') wins; with no choice the DEVICE setting applies and the page
@@ -144,7 +149,7 @@
   function returnTarget() {
     var u = user();
     var isMgr = !!(u && u.role === 'manager');
-    var own = { label: isMgr ? 'Back to Manager Home' : isAssoc(u) ? 'Back to Field Tasks' : 'Back to Rep Home', href: homeOf(u) };
+    var own = { label: isMgr ? 'Back to Manager Home' : isAssoc(u) ? 'Back to Field Tasks' : isIT(u) ? 'Back to UPC Audit' : 'Back to Rep Home', href: homeOf(u) };
     var key = 'kdh_from:' + location.pathname;
     var saved = null; try { saved = JSON.parse(sessionStorage.getItem(key) || 'null'); } catch (e) {}
     var t = null;
@@ -200,6 +205,7 @@
     merch: I('<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>'),
     nb: I('<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M8 11h6"/>'),
     sb: I('<rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/><path d="M7 15h4"/>'),
+    upc: I('<path d="M4 5v14M7 5v14M10 5v14M14 5v14M16 5v14M20 5v14"/>'),
     tasks: I('<path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/>'),
     more: I('<circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/>'),
     tap: I('<path d="M12 2.7 6.5 9a6.5 6.5 0 1 0 11 0z"/>'),
@@ -227,6 +233,7 @@
   function navItems(u) {
     if (!u) return [];
     if (isAssoc(u)) return [{ key: 'home', label: 'Home', href: ASSOC_HOME }];
+    if (isIT(u)) return [{ key: 'upc', label: 'UPC Audit', href: IT_HOME }];
     if (isFin(u)) return [
       { key: 'home', label: 'Home', href: FIN_HOME },
       { key: 'inc', label: 'Incentives', short: 'Programs', href: ROOT + 'hub/' },   // the bar's word for the hub everywhere on the site; six tabs must fit a 375px phone
@@ -247,7 +254,7 @@
   }
   // the authorized tools that sit behind More (phones) / in the sidebar (desktop)
   function toolItems(u) {
-    if (isAssoc(u)) return [];
+    if (isAssoc(u) || isIT(u)) return [];
     if (isFin(u)) return [];   // the four navigation items are the whole workspace (Gavin, 2026-10-15)
     var isMgr = u.role === 'manager';
     var t = [
@@ -267,6 +274,7 @@
     if (isMgr) t.push({ key: 'kk', group: 'Manager', label: 'Kohler Korner', href: ROOT + 'kohler-korner/' });
     if (isMgr) t.push({ key: 'nb', group: 'Manager', label: 'Non-Buy Reports', href: ROOT + 'nonbuy/' });
     if (isMgr) t.push({ key: 'sb', group: 'Manager', label: 'Supplier Budgets', href: ROOT + 'supplier-budget/' });
+    if (canUpc(u)) t.push({ key: 'upc', group: 'Manager', label: 'UPC Registration Audit', href: IT_HOME });
     if (isMgr) t.push({ key: 'ws', group: 'Manager', label: 'Rep Workspace', href: REP_HOME });
     return t;
   }
@@ -282,6 +290,7 @@
       if (/^supplier-budget\//.test(rel)) return { nav: 'sb', tool: '' };
       return { nav: rel === '' || rel === 'index.html' ? 'home' : '', tool: '' };
     }
+    if (/^upc-audit\//.test(rel)) return isIT(u) ? { nav: 'upc', tool: '' } : { nav: 'more', tool: 'upc' };
     if (/^tasks\//.test(rel)) return isAssoc(u) ? { nav: 'home', tool: '' } : { nav: 'more', tool: 'tasks' };
     if (/^accounts\//.test(rel)) return { nav: 'accounts', tool: '' };
     if (/^hub\//.test(rel)) {   // the hub's MPO tabs mark their MPO item (2026-10-06)
@@ -365,7 +374,7 @@
       html += '<div class="kdh-side-h">' + g + '</div>' + list.map(function (t) { return link('kdh-side-i', t, w.tool === t.key); }).join('');
     });
     html += '</nav>';
-    if (who) html += '<div class="kdh-side-foot"><button type="button" class="kdh-side-user" id="kdhMenuBtn" aria-haspopup="true" aria-expanded="false" aria-label="Account menu, signed in as ' + esc(who) + '"><span class="kdh-av">' + esc(initials(who)) + '</span><span class="kdh-side-who"><b>' + esc(who) + '</b><small>' + (isFin(u) && !u.preview ? 'Finance' : isMgr || u.preview ? 'Manager' : isAssoc(u) ? 'Sales Associate' : 'Sales Rep') + '</small></span>' + CARET + '</button></div>';
+    if (who) html += '<div class="kdh-side-foot"><button type="button" class="kdh-side-user" id="kdhMenuBtn" aria-haspopup="true" aria-expanded="false" aria-label="Account menu, signed in as ' + esc(who) + '"><span class="kdh-av">' + esc(initials(who)) + '</span><span class="kdh-side-who"><b>' + esc(who) + '</b><small>' + (isFin(u) && !u.preview ? 'Finance' : isMgr || u.preview ? 'Manager' : isAssoc(u) ? 'Sales Associate' : isIT(u) ? 'IT' : 'Sales Rep') + '</small></span>' + CARET + '</button></div>';
     var a = document.createElement('aside');
     a.id = 'kdhSide'; a.className = 'kdh-side'; a.innerHTML = html;
     document.body.insertBefore(a, document.body.firstChild);
@@ -393,7 +402,7 @@
   // under the top bar. Remove it by deleting this function and its call.
   var LIVE_URL = 'https://kohlerdist.encompass8.com/Home?DashboardID=184193';
   function liveNotice(u, isMgr, bar) {
-    if (!u || isMgr || isAssoc(u) || document.getElementById('kdhLive')) return;   // the task page holds no sales data
+    if (!u || isMgr || isAssoc(u) || isIT(u) || document.getElementById('kdhLive')) return;   // the task page / UPC audit hold no sales data
     if (!document.getElementById('kdhLiveCss')) {
       var st = document.createElement('style'); st.id = 'kdhLiveCss';
       st.textContent = '#kdhLive{box-sizing:border-box;margin:0;padding:10px 16px;background:#FFE08A;color:#2B1B00;border-top:1px solid #B45309;border-bottom:4px solid #B45309;font:15px/1.4 var(--kdh-body,system-ui,sans-serif);display:flex;gap:12px;align-items:center;justify-content:center}' +
@@ -424,7 +433,7 @@
     // BACK: concise, contextual, and only when it adds a destination the
     // navigation does not already show (the Incentive Hub a tracker was
     // opened from, Team Activity, the rep workspace).
-    if (!isHomePage() && !isAssoc(u)) {   // an associate's only page is their home
+    if (!isHomePage() && !isAssoc(u) && !isIT(u)) {   // an associate's / IT's only page is their home
       var back = returnTarget();
       var dup = u && (back.href === home || back.href === homeOf(u) || /Back to (Rep|Manager) Home/.test(back.label) && back.href === home);
       if (!u || !dup) acts += '<a class="kdh-b kdh-outline kdh-back" href="' + esc(back.href) + '">' + BACK + '<span>' + esc(back.label.replace(/^Back to /, '')) + '</span></a>';
@@ -458,7 +467,7 @@
   // ---- the ONE account menu: More on phones / iPads, the sidebar's account button on desktop ----
   function menuHtml(u, isMgr) {
     var who = u.preview ? u.manager : u.name;
-    var role = isFin(u) && !u.preview ? 'Finance' : isMgr || u.preview ? 'Manager' : isAssoc(u) ? 'Sales Associate' : 'Sales Rep';
+    var role = isFin(u) && !u.preview ? 'Finance' : isMgr || u.preview ? 'Manager' : isAssoc(u) ? 'Sales Associate' : isIT(u) ? 'IT' : 'Sales Rep';
     var w = where(u);
     var items = '';
     if ((isMgr && !isFin(u)) || u.preview) {
@@ -825,6 +834,7 @@
   global.kdhViewing = viewing;
   global.kdhViewAsRep = viewAsRep;
   global.kdhIsFinance = isFin;
+  global.kdhCanUpc = canUpc;
   global.kdhViewAs = viewAs;
   global.kdhIsOwner = isOwner;
   global.kdhExitPreview = exitPreview;

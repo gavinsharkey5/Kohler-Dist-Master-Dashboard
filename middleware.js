@@ -66,7 +66,7 @@ const REP_HOME = '/rep/';
 // work reps hand them: displays, tap handles, POS. They may open only the
 // Field Tasks page and what it loads; everything else sends them there
 // (403 for a data fetch). Which tasks they see is row-level security.
-const ASSOCIATE_PATHS = ['/tasks/', '/shared/'];
+const ASSOCIATE_PATHS = ['/tasks/', '/shared/', '/rep/rep.css'];   // rep.css = the stylesheet tasks/ links (NOT the rep home; the same unstyled-page bug as finance, 2026-10-15)
 const ASSOCIATE_HOME = '/tasks/';
 function associateMayOpen(pathname) {
   const p = pathname.split('?')[0];
@@ -93,6 +93,19 @@ function financeMayOpen(pathname) {
   if (p === '/' || p === '/index.html') return true;
   return FINANCE_PATHS.some((pre) => p.startsWith(pre) || p + '/' === pre || p === pre.replace(/\/$/, '') + '/index.html');
 }
+
+// IT (allowed_users.role = 'it', 2026-10-15): Vlad. One page, the UPC
+// Registration Audit, and what it loads; everything else sends them there
+// (403 for a data fetch). No other row-level grant applies to the 'it' role.
+// A MANAGER may open the audit only with allowed_users.upc_audit (Gavin + the
+// brand managers, set by migration 20261015190000_upc_audit.sql).
+const IT_PATHS = ['/upc-audit/', '/shared/', '/rep/rep.css'];   // rep.css = the stylesheet the page links (not the rep home)
+const IT_HOME = '/upc-audit/';
+function itMayOpen(pathname) {
+  const p = pathname.split('?')[0];
+  return IT_PATHS.some((pre) => p.startsWith(pre) || p + '/' === pre || p === pre.replace(/\/$/, '') + '/index.html');
+}
+function isUpcPath(pathname) { return /^\/upc-audit(\/|$)/.test(pathname); }
 
 // ACCOUNT DATA IS SERVED PER REP (2026-09-30). accounts/generate.py writes one
 // slice per rep under /accounts/data/{book,reps,sales}/<key>..., where <key>
@@ -238,7 +251,27 @@ function wantsDocument(request) {
 
 function route(request, url, verdict) {
   if (verdict.ok) {
+    if (verdict.role === 'it') {
+      if (itMayOpen(url.pathname)) return passThrough();
+      if (!wantsDocument(request)) {
+        return new Response(JSON.stringify({ error: 'not part of the IT workspace' }), {
+          status: 403,
+          headers: { 'content-type': 'application/json', 'cache-control': 'no-store' },
+        });
+      }
+      return redirect(new URL(IT_HOME, url).toString());
+    }
     if (verdict.role === 'manager') {
+      if (isUpcPath(url.pathname)) {
+        if (verdict.upc) return passThrough();
+        if (!wantsDocument(request)) {
+          return new Response(JSON.stringify({ error: 'not available' }), {
+            status: 403,
+            headers: { 'content-type': 'application/json', 'cache-control': 'no-store' },
+          });
+        }
+        return redirect(new URL(verdict.workspace === 'finance' ? FINANCE_HOME : '/', url).toString());
+      }
       if (verdict.workspace !== 'finance' || financeMayOpen(url.pathname)) return passThrough();
       if (!wantsDocument(request)) {
         return new Response(JSON.stringify({ error: 'not part of the finance workspace' }), {
@@ -383,7 +416,7 @@ async function check(token, supabaseUrl, publishableKey) {
   if (!row) return remember(token, { ok: false, reason: 'notlisted' }, now + 60 * 1000);
 
   const until = Math.min(exp, now + CACHE_TTL_MS);
-  return remember(token, { ok: true, email: row.email, name: row.name || '', role: row.role || 'rep', title: row.title || '', reports_to: row.reports_to || '', workspace: row.workspace || '' }, until);
+  return remember(token, { ok: true, email: row.email, name: row.name || '', role: row.role || 'rep', title: row.title || '', reports_to: row.reports_to || '', workspace: row.workspace || '', upc: row.upc_audit === true || row.role === 'it' }, until);
 }
 
 function remember(token, verdict, until) {

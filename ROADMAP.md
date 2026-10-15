@@ -10,6 +10,16 @@ Legend: `[ ]` open, `[~]` built, waiting on a step outside the repo,
 device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
+- [ ] **UPC Registration Audit for Vlad (2026-10-15).** Built: /upc-audit/ -- Vlad adds his FileMaker export
+  and the ABC registration search (license -002; this year's file, plus next year's once renewals start), the
+  page matches them on UPC in his browser and lists what still needs registering (Not Registered, UPC Not on
+  Registration, Expired / Historical) plus Pending, Wrong Reg # in FileMaker and No UPC, with a dated notes log
+  per product code and New / Still Open / Resolved against the last run. Vlad sees only this page; you and every
+  brand manager get it as a tool. Steps: (1) run `supabase/migrations/20261015190000_upc_audit.sql` in the SQL
+  Editor; (2) add Vlad to the allow list as role `it` (the SQL is in this chat, not the repo -- it has his email);
+  (3) Vlad signs in and runs it once with the two files. A new brand manager later: re-run
+  `supabase/seed/upc_audit_access.sql` or tick allowed_users.upc_audit.
+
 - [ ] **Supplier Budgets round two (2026-10-15).** Built: + New Account from the expense form, saved vendors
   listed on tap, a billback rule per account (Constellation / Crown never split: Kohler Spend = Total; 50/50
   accounts fill half), invoice numbers that open in Encompass, no File column, past and imported rows editable.

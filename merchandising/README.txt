@@ -166,7 +166,7 @@ the filters, the generated time and the separate counts. Export Recap = a
 print page (Save as PDF) with every photo loaded at full column width, the
 filters, the definitions and the same counts; it holds the first 150 records
 (the CSV holds all). Both use exactly the filtered set on screen.
-Download Excel (2026-10-05, merchandising/xlsx-write.js, no library) is the
+Download Excel (2026-10-05, shared/xlsx-write.js, no library) is the
 iSellBeer-style export of the same view: sheet Records = one row per line
 (Date, Account #, Account, Town, Premise, Rep, Category, Subtype, Supplier,
 Brand Family, Brand, Package, Product #, Quantity, Unit, iSellBeer US/THEM,

@@ -370,7 +370,7 @@
       return r && r.busy ? null : r;
     });
   }
-  function homeFor(role) { return next === '/' && role !== 'manager' ? '/rep/' : next; }
+  function homeFor(role) { return next === '/' && role !== 'manager' ? (role === 'it' ? '/upc-audit/' : role === 'associate' ? '/tasks/' : '/rep/') : next; }
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
@@ -498,7 +498,7 @@
     // Who is signed in, for the pages (the hub locks a rep to their own
     // name; the landing pages greet by name). Not used for access
     // decisions -- the middleware asks Supabase for the role itself.
-    document.cookie = 'kdh_user=' + encodeURIComponent(JSON.stringify({ name: me.name || '', role: me.role || 'rep', email: me.email, title: me.title || '', dm: me.reports_to || '', ws: me.workspace || '' })) +
+    document.cookie = 'kdh_user=' + encodeURIComponent(JSON.stringify({ name: me.name || '', role: me.role || 'rep', email: me.email, title: me.title || '', dm: me.reports_to || '', ws: me.workspace || '', upc: (me.upc_audit === true || me.role === 'it') ? 1 : 0 })) +
       '; Path=/' + life + '; Secure; SameSite=Lax';
     $('signout').classList.remove('hidden');
     show('working'); hush();

@@ -2223,7 +2223,7 @@ that order; PODs take product lines like displays; opps.js `evidenceCat` sends
 placement programs to PODs); the DB checks need
 `supabase/migrations/20261005120000_merch_pod_signage.sql` (sql_pod_test.sh).
 The Merchandising page's Download Excel (`downloadXlsx`, writer
-merchandising/xlsx-write.js, signed links via `KdhData.signUrls`) is the
+shared/xlsx-write.js, signed links via `KdhData.signUrls`) is the
 iSellBeer-style export of exactly the filtered view; CSV and Export Recap stay.
 NOT done, Gavin's decision first (ROADMAP "Now"): seven pages are still built
 from iSellBeer exports (MPO cooler doors / Lytt POS / Bardstown menus, Display
@@ -3411,4 +3411,29 @@ once in the Ledger's "Invoice Links to Encompass" fold from one pasted invoice a
 validate(f, e) checks only what changed, so the 39 imported credit rows (and 102 odd 2025 rows) that refused every
 edit now save. Messages: a message travels only to the screen it was sent to (go() + hashchange). Tests (scratchpad):
 sql_budget_test.sh 65, budget_test.mjs 167, sb_shots.mjs.
+
+## UPC Registration Audit: IT's one page, brand managers' tool (2026-10-15)
+
+The /upc-crossref-audit skill moved onto the site: `/upc-audit/` (index.html, upc.js, upc.css, engine.js,
+README.txt has every rule). Vlad (IT) adds the FileMaker product export (12 columns; UPC = ABC_UPC_Text) and the
+ABC registration search download (sheets Data / Distributor / Criteria; XML is namespace-prefixed, which
+shared/xlsx-read.js -- the isb-import reader made shared and prefix-tolerant -- handles); engine.js (KdhUpc)
+matches IN THE BROWSER, nothing uploaded. Gavin's rules: license 3403-23-652-002 only (Criteria checked, other
+licenses / missing Criteria refused); a registration counts when State = Current and it expires in the CURRENT
+YEAR OR LATER (a file filtered to a past year is refused; several ABC files merge, e.g. 2026 + 2027); UPC match
+exact, then leading zeros stripped; ANY ABC row for the UPC with FileMaker's reg # counts. Results: notreg /
+notonreg / expired ("Still to Register") + pending / wrongreg / noupc / match -- ALL shown (Gavin). First run
+2026-10-15: 2,057 matched, 56 / 44 / 3 / 0 / 11 / 0. ACCESS (Gavin: "myself, vlad and every brand manager"):
+allowed_users.role 'it' (new; IT_PATHS /upc-audit/, /shared/, /rep/rep.css; no other RLS grant -- not a manager)
+and allowed_users.upc_audit for managers (migration `20261015190000_upc_audit.sql` sets it for program_admin +
+the brand-managers.json names; `supabase/seed/upc_audit_access.sql` from tools/program_seed.py adds new ones).
+The kdh_user cookie carries `upc:1` (api/session.js, login/, middleware verdict.upc); kdh-user.js `isIT` /
+`canUpc` (IT: one nav item "UPC Audit", no tools / banner / Back; managers: Manager tool + a hidden-unless-flag
+card on the manager home). NOTES are an append-only log per product code (upc_notes: status and/or text, the
+result then, author stamped; no update / delete); upc_runs keeps each run's counts + open codes so the next run
+says New / Still Open / Resolved. Preview: rep / associate refused, manager read-only. Excel download (Summary,
+Need Attention, All Products) via shared/xlsx-write.js -- MOVED from merchandising/ (reps' Non-Buy export could
+not load it from /merchandising/). Also fixed: associates were blocked from /rep/rep.css (tasks/ unstyled -- the
+same bug as finance), now in ASSOCIATE_PATHS. Tests (scratchpad upc2/): upc_test.mjs 46, sql_upc_test.sh 32,
+mw_test.mjs (IT routing + every asset of upc-audit and tasks passes). kdh-user.js 20261015h everywhere.
 
