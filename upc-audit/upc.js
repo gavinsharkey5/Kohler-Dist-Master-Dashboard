@@ -14,7 +14,12 @@ const YEAR = new Date().getFullYear();
 const PAGE = 100;
 // a rep / associate preview never opens it; a manager preview (Gavin's View As) is read-only
 if (U && U.preview && U.role !== 'manager') { app.innerHTML = '<div class="kdh-state unavailable"><b>UPC Registration Audit Is Not Part of This View</b><span>Exit preview to open it.</span></div>'; return; }
-if (REAL && !(REAL.role === 'it' || (REAL.role === 'manager' && REAL.upc))) { app.innerHTML = '<div class="kdh-state unavailable"><b>Not Available</b><span>The UPC Registration Audit is for IT and the brand managers.</span></div>'; return; }
+// The middleware already decided who may load this page. The cookie's upc flag can be older than the
+// person's access (a cookie written before upc_audit was ticked), so a manager without it is asked about
+// once more against the database (kdh_upc_can) before being turned away.
+const NOT_AVAILABLE = '<div class="kdh-state unavailable"><b>Not Available</b><span>The UPC Registration Audit is for IT and the brand managers.</span></div>';
+if (REAL && REAL.role !== 'it' && REAL.role !== 'manager') { app.innerHTML = NOT_AVAILABLE; return; }
+const CHECK_ACCESS = !!(REAL && REAL.role === 'manager' && !REAL.upc);
 const READONLY = !!(U && U.preview);
 const STATUS = [['open', 'Open'], ['submitted', 'Submitted to ABC'], ['waiting_supplier', 'Waiting on Supplier'], ['fixed_filemaker', 'Fixed in FileMaker'], ['registered', 'Registered'], ['not_needed', 'Not Needed']];
 const STATUS_L = Object.fromEntries(STATUS);
@@ -340,6 +345,15 @@ function download() {
 }
 
 /* ---------------- start ---------------- */
-render();
-Promise.all([loadNotes(), loadRuns()]).then(render);
+async function start() {
+  if (CHECK_ACCESS) {
+    app.innerHTML = '<div class="kdh-state loading"><b>Checking access</b></div>';
+    let ok = false;
+    try { ok = (await rest('rpc/kdh_upc_can', { method: 'POST', body: {} })) === true; } catch (e) { ok = false; }
+    if (!ok) { app.innerHTML = NOT_AVAILABLE; return; }
+  }
+  render();
+  Promise.all([loadNotes(), loadRuns()]).then(render);
+}
+start();
 })();
