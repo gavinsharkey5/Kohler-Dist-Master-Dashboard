@@ -11,34 +11,6 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
-- [ ] **Supplier Budgets (2026-10-14): the tracker workbook as /supplier-budget/, for Alexis.** Built and pushed;
-  nothing shows until three steps: (1) run `supabase/migrations/20261014210000_supplier_budget.sql` in the SQL Editor
-  (idempotent; adds allowed_users.budget_editor, the four tables, RLS, triggers); (2) on a laptop run
-  `python3 supplier-budget/seed_from_workbook.py <Supplier_Budgets_Tracker_v1_2.xlsx>` and paste each generated
-  `supabase/data/supplier_budget_seed_partN.sql` into the SQL Editor, part 1 first (the editor caps a query at
-  ~1 MB; git-ignored: dollars by vendor never enter the repo; safe to paste twice) -- the script also prints a report: 59 Expenses accounts with no Budget row become
-  "Needs Review" accounts to fix on the Budget tab, 172 rows whose sheet Kohler Spend differed from Total - Billback
-  (the computed value is used), 26 rows with no Total (derived from Spend + Billback), one 2062 Year typo;
-  (3) `update allowed_users set budget_editor = true where email = '<Alexis>'` (the flag, never a name on the page).
-  Until the flag is set Alexis sees the page read-only (she is a manager); other brand managers see only their
-  accounts (by their name on the Budget row or their program_brands); reps never reach it. The old
-  supplier-budget/expenses.csv (dollars, public repo) is deleted from the tree but still in git history -- removing
-  it for good needs a history rewrite + force push; Gavin's call (ROADMAP "Tabled").
-- [~] **Brand managers open the Incentive Hub and both MPO trackers on their brands (2026-10-14).** LIVE ON PUSH, no
-  Supabase step: the assignment comes from the Encompass Brand Families export (shared/data/brand_families.csv ->
-  shared/data/brand-managers.json, 9 brand managers, manager -> suppliers -> brand families) by name. A brand manager
-  lands on Program View / View by Program showing only their suppliers' programs (brand families count too: Carbliss
-  under SN Food & Beverage), every rep; nothing matching = "None of Your Brands Are on the <scope> MPO This Month". A
-  district manager who also carries a brand (Chris McCrohan: Red Bull; Denise Montes) keeps their team across every
-  supplier. OPTIONAL, Gavin: `supabase/seed/program_brands.sql` (regenerated from the same export; REVIEW, then run after
-  the Manage Programs migration) makes the database agree for Manage Programs / Non-Buy scope, and
-  `supabase/migrations/20261014090000_team_brands.sql` lets kdh_team carry program_brands; a database row with brands
-  overrides the file. REFRESH when assignments change: save the new Brand Families export over
-  shared/data/brand_families.csv (no emails in it) and run `python3 tools/program_seed.py`.
-  HYBRID (Chris McCrohan: on-premise DM + Red Bull): the Hub and both MPO trackers give him his team across
-  every supplier already. For Manage Programs / Non-Buy to read him the same way once program_brands.sql is
-  run, also run `supabase/migrations/20261014120000_hybrid_scope.sql` (kdh_program_scope `hybrid`; a program
-  must be for the team with any supplier OR for Red Bull with any rep; Non-Buy = team, every supplier).
 - [ ] **Stay signed in, for real (2026-10-13; reps: "it makes me log in every time, even with
   Remember me").** Cause: Supabase rotates the refresh token on every hourly renewal and the phone
   had to store the new cookie each time; a lost or unapplied renewal left the phone sending the old
@@ -363,6 +335,10 @@ device, a decision).
 
 ## Done
 
+- [x] **Supplier Budgets LIVE (2026-10-15).** Gavin ran the migration, pasted the seed (two parts: 987 rows from the
+  2026 tab, 917 from 2025, 120 accounts for 2026 of which 59 are Needs Review placeholders) and set budget_editor for
+  Alexis. Still open: whether brand managers who are not editors should see their accounts, and the history rewrite
+  for the old expenses.csv (Tabled).
 - [x] **Supplier Budgets page (2026-10-14).** /supplier-budget/: Ledger (sheet columns in order, sticky sortable
   header, search, Account / Supplier / Brand Manager / Billback / date filters, newest first, 100 + Show More, summary
   strip for the filter, stacked rows on phones, CSV for editors), Add Expense (account picker grouped by supplier,
