@@ -82,6 +82,7 @@ function associateMayOpen(pathname) {
 // untouched: they are a manager everywhere the database is asked.
 const FINANCE_PATHS = [
   '/hub/', '/MPOs/', '/supplier-budget/',
+  '/rep/rep.css',   // the stylesheet the manager home + Supplier Budgets link (NOT the rep home); without it her pages rendered unstyled, 2026-10-15
   '/incentive-tracking/programs.js', '/incentive-tracking/data/', '/incentive-tracking/assets/',   // what the hub loads; NOT the Incentive Tracker page (Gavin, 2026-10-15)
   '/shared/', '/carbliss-mpo/data/', '/api/',
   '/accounts/data/elig/', '/accounts/data/hist/', '/accounts/data/catalog.json', '/accounts/data/index.json', '/accounts/data/products.json',   // what the hub loads; never a rep's route or sales files

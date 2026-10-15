@@ -3366,7 +3366,10 @@ full site; 'finance'; check constraint; migration `20261015120000_finance_worksp
 `kdh_team()` to return `workspace` and `kdh_budget_standing()` to carry it). She stays role 'manager' so every RLS rule
 and the hub / MPO data are unchanged. ENFORCED in middleware.js: `check()` now selects `*` from allowed_users (a column
 a migration has not added yet must never break sign-in) and keeps `workspace` in the verdict; a manager with
-workspace 'finance' may open only `FINANCE_PATHS` (/hub/, /MPOs/, /supplier-budget/,
+workspace 'finance' may open only `FINANCE_PATHS` (/hub/, /MPOs/, /supplier-budget/, /rep/rep.css -- the
+STYLESHEET the manager home and Supplier Budgets link, not the rep home: Alexis's first real sign-in showed an
+unstyled page with giant icons because it was blocked, something a View As preview (Gavin's own full access)
+can never show; mw_test now walks every <link>/<script> of her five pages through the middleware,
 /incentive-tracking/{programs.js,data/,assets/} -- never the tracker or performance pages, /shared/, /carbliss-mpo/data/, /api/, and of /accounts/data/ only elig / hist / catalog / index /
 products -- never a rep's route or sales files), anything else redirects to `FINANCE_HOME` /hub/ (403 for data).
 The kdh_user cookie carries `ws` (api/session.js accessCookies, login/index.html, both now select `*`).
