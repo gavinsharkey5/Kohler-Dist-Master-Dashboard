@@ -2,7 +2,7 @@
 (function(){
 'use strict';
 const U=window.kdhUser&&window.kdhUser();
-if(!U || U.preview || !['rep','manager','associate'].includes(U.role)) return;
+if(!U || U.preview || U.ws==='finance' || !['rep','manager','associate'].includes(U.role)) return;
 const root=new URL('../',document.currentScript.src), url=p=>new URL(p,root).href;
 const E=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const me=(U.email||'').toLowerCase(), uuid=()=>crypto.randomUUID();

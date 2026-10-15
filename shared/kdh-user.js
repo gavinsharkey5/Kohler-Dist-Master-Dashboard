@@ -900,8 +900,8 @@
     setInterval(function () { if (document.visibilityState === 'visible') renew(false); }, 5 * 60 * 1000);
   }
   function boot() { chrome(); bar(); watchType(); keepAlive();
-    if (user() && user().preview) document.querySelectorAll('[data-my-day]').forEach(function(el){el.hidden=true;});
-    if (user() && !user().preview) { var work = document.createElement('script'); work.src = (ROOT || '/') + 'shared/work.js?v=20261015a'; document.head.appendChild(work); }
+    if (user() && (user().preview || user().ws === 'finance')) document.querySelectorAll('[data-my-day]').forEach(function(el){el.hidden=true;});
+    if (user() && !user().preview && user().ws !== 'finance') { var work = document.createElement('script'); work.src = (ROOT || '/') + 'shared/work.js?v=20261015a'; document.head.appendChild(work); }
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
 })(window);

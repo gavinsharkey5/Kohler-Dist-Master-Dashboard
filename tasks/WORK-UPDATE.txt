@@ -31,6 +31,8 @@ New fields: personal, planned_on, sort_order, source_key/source_url,
 assigned_by/assigned_at, completed_by, revision. Dates use America/New_York.
 
 The kdh_work private schema contains authorization and event helpers.
+- Finance workspace users are excluded from tasks, messaging, and the work
+  directory, preserving the workspace restrictions added on main.
 - Active membership means an authenticated identity still in allowed_users
   with role rep, associate, or manager.
 - Supervisors use the existing recursive reports_to hierarchy. There is no

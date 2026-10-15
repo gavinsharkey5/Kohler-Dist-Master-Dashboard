@@ -7,8 +7,8 @@ grant usage on schema kdh_work to authenticated;
 
 create or replace function kdh_work.employee() returns boolean
 language sql stable security definer set search_path = '' as $$
- select auth.uid() is not null and exists(select 1 from public.allowed_users
- where email = public.kdh_caller_email() and role in ('rep','associate','manager'));
+ select auth.uid() is not null and exists(select 1 from public.allowed_users u
+ where email = public.kdh_caller_email() and role in ('rep','associate','manager') and coalesce(to_jsonb(u)->>'workspace','')<>'finance');
 $$;
 create or replace function kdh_work.supervises(person text) returns boolean
 language sql stable security definer set search_path = '' as $$
@@ -27,7 +27,7 @@ $$;
 create or replace function kdh_work.can_assign(person text) returns boolean
 language sql stable security definer set search_path = '' as $$
  select kdh_work.employee() and exists(select 1 from public.allowed_users u
- where u.email = person and u.role in ('rep','associate','manager') and
+ where u.email = person and coalesce(to_jsonb(u)->>'workspace','')<>'finance' and u.role in ('rep','associate','manager') and
  (person = public.kdh_caller_email() or kdh_work.supervises(person)
  or (public.kdh_caller_role() = 'rep' and u.role = 'associate'
  and nullif(trim(u.reports_to),'') is not null and exists(select 1 from public.allowed_users me
@@ -62,7 +62,7 @@ language sql stable security invoker set search_path = '' as $$ select kdh_work.
 create or replace function public.kdh_work_people(p_assign boolean default false)
 returns table(email text,name text,role text) language sql stable security definer set search_path = '' as $$
  select u.email,u.name,u.role from public.allowed_users u where kdh_work.employee()
- and u.role in ('rep','associate','manager') and (not p_assign or kdh_work.can_assign(u.email)) order by u.name,u.email;
+ and coalesce(to_jsonb(u)->>'workspace','')<>'finance' and u.role in ('rep','associate','manager') and (not p_assign or kdh_work.can_assign(u.email)) order by u.name,u.email;
 $$;
 
 create or replace function public.field_tasks_guard() returns trigger
@@ -157,7 +157,7 @@ create or replace function kdh_work.notify_task(t public.field_tasks, key text, 
 language sql security definer set search_path = '' as $$
  insert into public.work_notifications(recipient,event_key,task_id,label)
  select distinct u.email,key,t.id,left(label,240) from public.allowed_users u
- where u.email<>public.kdh_caller_email() and u.role in('rep','associate','manager') and
+ where u.email<>public.kdh_caller_email() and coalesce(to_jsonb(u)->>'workspace','')<>'finance' and u.role in('rep','associate','manager') and
  (u.email in(t.rep_email,t.associate_email) or
  (u.role='manager' and exists(select 1 from public.field_task_comments c where c.task_id=t.id and c.author_email=u.email)
  and exists(select 1 from public.allowed_users member where member.email in(t.rep_email,t.associate_email)
@@ -241,7 +241,7 @@ create or replace function public.kdh_message_send(p_to text,p_body text,p_clien
 language plpgsql security definer set search_path = '' as $$
 declare me text:=public.kdh_caller_email(); cid uuid; result public.work_messages;
 begin
- if not kdh_work.employee() or p_to=me or not exists(select 1 from public.allowed_users where email=p_to and role in('rep','associate','manager')) then raise exception 'Choose an employee'; end if;
+ if not kdh_work.employee() or p_to=me or not exists(select 1 from public.allowed_users u where email=p_to and role in('rep','associate','manager') and coalesce(to_jsonb(u)->>'workspace','')<>'finance') then raise exception 'Choose an employee'; end if;
  select * into result from public.work_messages where author_email=me and client_id=p_client;
  if found then return result; end if;
  insert into public.work_conversations(person_a,person_b) values(least(me,p_to),greatest(me,p_to)) on conflict do nothing;

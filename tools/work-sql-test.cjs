@@ -63,6 +63,9 @@ await as('a2@test');await ok('other associate cannot read or attach evidence',as
 await as('a@test');const notificationCount=(await q('select * from work_notifications')).length;
 await as('r@test');await ok('routine edit causes no notification',async()=>{await q("update field_tasks set title='Updated display title' where id='10000000-0000-0000-0000-000000000003'");await as('a@test');assert.equal((await q('select * from work_notifications')).length,notificationCount);});
 await as('m2@test');await ok('manager cannot assign another territory',()=>denied("insert into field_tasks(title,task_type,rep_email,associate_email,account_num) values('Wrong territory','other','m2@test','r2@test','001')"));
+await db.exec("reset role;alter table public.allowed_users add column workspace text;update public.allowed_users set workspace='finance' where email='m@test';");
+await as('m@test');await ok('finance workspace cannot access tasks or messages',async()=>{assert.equal((await q('select * from field_tasks')).length,0);assert.equal((await q('select * from work_messages')).length,0);await denied("select * from kdh_message_send('a@test','Hello','30000000-0000-0000-0000-000000000003')");});
+await as('r@test');await ok('finance users excluded from work directory',async()=>assert.equal((await q('select * from kdh_work_people(false)')).some(p=>p.email==='m@test'),false));
 await db.exec('reset role;set role anon;');await ok('anonymous denied',()=>denied('select * from work_messages'));
 await db.close();console.log(`${count} database checks passed`);
 })().catch(e=>{console.error(e);process.exit(1);});
