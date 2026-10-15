@@ -11,6 +11,12 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
+- [ ] **Alexis's finance workspace (2026-10-15).** A manager flagged `workspace = 'finance'` gets only the Incentive
+  Hub (Program View with Export Data / Export Recap), the Incentive Tracker, both MPO trackers, Supplier Budgets and
+  Incentive Performance; the middleware sends her to the hub from anything else and the navigation lists just those.
+  Two SQL Editor steps: (1) run `supabase/migrations/20261015120000_finance_workspace.sql` (adds the column, lets
+  View As carry it); (2) `update allowed_users set workspace = 'finance' where email = '<alexis>';`. She must sign
+  out and back in once (the workspace rides in her sign-in cookie). Until step 1 runs nothing changes for anyone.
 - [ ] **Supplier Budgets: View As a manager (2026-10-15).** Gavin's View As -> Manager now opens /supplier-budget/
   read-only as that person. For the page to know the previewed manager's standing (editor / brand manager), run
   `supabase/migrations/20261015090000_budget_preview.sql` in the SQL Editor (one function, managers only). Until then a

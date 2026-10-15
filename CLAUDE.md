@@ -3357,3 +3357,26 @@ for the previewed person's editor / admin / program_brands and cuts the rows cli
 Expense disabled; a brand manager's accounts by name + brands); without the RPC the preview is read-only over every
 account and names the migration. A rep / associate preview is still refused. Tags budget.js / .css 20261015a;
 budget_test.mjs 95, sql_budget_test.sh 43.
+
+## The FINANCE workspace: Alexis sees incentives, MPOs and budgets only (2026-10-15)
+
+Gavin: "Alexis handles all billbacks and recaps to send to supplier for incentive programs ... give her the incentives
+and MPO functions so she can recap as well as supplier budgets ... and hide the rest." `allowed_users.workspace` (NULL =
+full site; 'finance'; check constraint; migration `20261015120000_finance_workspace.sql`, which also redefines
+`kdh_team()` to return `workspace` and `kdh_budget_standing()` to carry it). She stays role 'manager' so every RLS rule
+and the hub / MPO data are unchanged. ENFORCED in middleware.js: `check()` now selects `*` from allowed_users (a column
+a migration has not added yet must never break sign-in) and keeps `workspace` in the verdict; a manager with
+workspace 'finance' may open only `FINANCE_PATHS` (/hub/, /incentive-tracking/, /MPOs/, /supplier-budget/,
+/performance/, /shared/, /carbliss-mpo/data/, /api/, and of /accounts/data/ only elig / hist / catalog / index /
+products -- never a rep's route or sales files), anything else redirects to `FINANCE_HOME` /hub/ (403 for data).
+The kdh_user cookie carries `ws` (api/session.js accessCookies, login/index.html, both now select `*`).
+CHROME (kdh-user.js tag 20261015a everywhere): `isFin(u)` (also from a manager preview cookie's `ws`); navItems =
+Incentives (/hub/) / Off-Premise / On-Premise / Budgets (keys home / off / on / sb), toolItems = a 'Finance' group
+with Incentive Tracker + Incentive Performance (the sidebar's group list gained 'Finance'), where() maps those pages,
+homeOf = the hub, no View As in the menu, the foot / menu say "Finance". View As -> Manager labels her "(Finance)",
+carries `ws` in the preview cookie and lands on the hub; the manager home (index.html) hides every card outside
+hub / MPOs / supplier-budget / performance / incentive-tracking and empty sections for a finance person (preview, or
+a server without the middleware). Tests (scratchpad): mw_test (finance paths, home redirect, 403s, full manager
+untouched), fin_test.mjs (14: sidebar, bottom bar, menu, trimmed home, picker label), sql_budget_test.sh (46),
+viewas / mgr / home / tasks / budget suites. NOTE: scratchpad session_test.mjs has 2 failures that predate this
+(it describes the 2026-10-02 kdh_rt design; session2_test.mjs, which replaced it, is not in this scratchpad).

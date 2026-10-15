@@ -20,7 +20,7 @@
         var p = cookie('kdh_preview');
         if (p) {
           var o = null; try { o = p.charAt(0) === '{' ? JSON.parse(p) : null; } catch (e2) {}
-          if (o && o.role === 'manager' && o.name) return { name: o.name, role: 'manager', preview: true, manager: u.name, email: u.email, title: o.title || '', dm: o.dm || '', brands: Array.isArray(o.brands) && o.brands.length ? o.brands.slice() : null };
+          if (o && o.role === 'manager' && o.name) return { name: o.name, role: 'manager', preview: true, manager: u.name, email: u.email, title: o.title || '', dm: o.dm || '', brands: Array.isArray(o.brands) && o.brands.length ? o.brands.slice() : null, ws: o.ws || '' };
           // an associate preview (2026-10-14): the whole site becomes that associate's (one page, Field Tasks)
           if (o && o.role === 'associate' && o.name) return { name: o.name, role: 'associate', preview: true, manager: u.name, email: u.email, title: '', dm: '', previewEmail: o.email || '' };
           return { name: (o && o.name) || p, role: 'rep', preview: true, manager: u.name, email: u.email, title: '', dm: '' };
@@ -73,7 +73,12 @@
   // A SALES ASSOCIATE (role 'associate', 2026-10-14) has ONE page: Field Tasks.
   var ASSOC_HOME = ROOT + 'tasks/';
   function isAssoc(u) { return !!(u && u.role === 'associate'); }
-  function homeOf(u) { return !u ? ROOT : u.role === 'manager' ? ROOT : isAssoc(u) ? ASSOC_HOME : REP_HOME; }
+  // the FINANCE workspace (allowed_users.workspace = 'finance', 2026-10-15): a manager -- Alexis, billbacks and
+  // supplier recaps -- whose site is the Incentive Hub, the Incentive Tracker, both MPO trackers, Supplier Budgets
+  // and Incentive Performance, nothing else. The middleware enforces it; this only shapes the chrome.
+  function isFin(u) { return !!(u && u.role === 'manager' && u.ws === 'finance'); }
+  var FIN_HOME = ROOT + 'hub/';
+  function homeOf(u) { return !u ? ROOT : isFin(u) ? FIN_HOME : u.role === 'manager' ? ROOT : isAssoc(u) ? ASSOC_HOME : REP_HOME; }
 
   // THEME (2026-09-30): the saved choice (localStorage kdh_theme = 'dark' |
   // 'light') wins; with no choice the DEVICE setting applies and the page
@@ -221,6 +226,12 @@
   function navItems(u) {
     if (!u) return [];
     if (isAssoc(u)) return [{ key: 'home', label: 'Home', href: ASSOC_HOME }];
+    if (isFin(u)) return [
+      { key: 'home', label: 'Incentives', href: FIN_HOME },
+      { key: 'off', label: 'Off-Premise', href: ROOT + 'MPOs/off-prem/index.html' },
+      { key: 'on', label: 'On-Premise', href: ROOT + 'MPOs/on-prem/index.html' },
+      { key: 'sb', label: 'Budgets', href: ROOT + 'supplier-budget/' }
+    ];
     var isMgr = u.role === 'manager';
     var items = [
       { key: 'home', label: 'Home', href: isMgr ? ROOT : REP_HOME },
@@ -235,6 +246,10 @@
   // the authorized tools that sit behind More (phones) / in the sidebar (desktop)
   function toolItems(u) {
     if (isAssoc(u)) return [];
+    if (isFin(u)) return [
+      { key: 'inc', group: 'Finance', label: 'Incentive Tracker', href: ROOT + 'incentive-tracking/' },
+      { key: 'perf', group: 'Finance', label: 'Incentive Performance', href: ROOT + 'performance/' }
+    ];
     var isMgr = u.role === 'manager';
     var t = [
       { key: 'off', group: 'Programs', label: 'Off-Premise MPOs', href: ROOT + 'MPOs/off-prem/index.html' },
@@ -261,6 +276,15 @@
     var isMgr = u && u.role === 'manager';
     var rel = ROOT ? location.href.replace(new URL(ROOT, location.href).href, '') : location.pathname.replace(/^\//, '');
     rel = rel.split(/[?#]/)[0];
+    if (isFin(u)) {
+      if (/^hub\//.test(rel)) return { nav: 'home', tool: '' };
+      if (/^MPOs\/off-prem\//.test(rel)) return { nav: 'off', tool: '' };
+      if (/^MPOs\/on-prem\//.test(rel)) return { nav: 'on', tool: '' };
+      if (/^supplier-budget\//.test(rel)) return { nav: 'sb', tool: '' };
+      if (/^incentive-tracking\//.test(rel)) return { nav: 'more', tool: 'inc' };
+      if (/^performance\//.test(rel)) return { nav: 'more', tool: 'perf' };
+      return { nav: 'home', tool: '' };
+    }
     if (/^tasks\//.test(rel)) return isAssoc(u) ? { nav: 'home', tool: '' } : { nav: 'more', tool: 'tasks' };
     if (/^accounts\//.test(rel)) return { nav: 'accounts', tool: '' };
     if (/^hub\//.test(rel)) {   // the hub's MPO tabs mark their MPO item (2026-10-06)
@@ -337,14 +361,14 @@
           (groups.Programs || []).map(function (t) { return link('kdh-side-i sub', t, w.tool === t.key); }).join('') + '</div>';
       }
     });
-    ['Trackers', 'Field', 'Manager'].forEach(function (g) {
+    ['Trackers', 'Field', 'Finance', 'Manager'].forEach(function (g) {
       if (!groups[g]) return;
       var list = groups[g].filter(function (t) { return !t.menuOnly; });
       if (!list.length) return;
       html += '<div class="kdh-side-h">' + g + '</div>' + list.map(function (t) { return link('kdh-side-i', t, w.tool === t.key); }).join('');
     });
     html += '</nav>';
-    if (who) html += '<div class="kdh-side-foot"><button type="button" class="kdh-side-user" id="kdhMenuBtn" aria-haspopup="true" aria-expanded="false" aria-label="Account menu, signed in as ' + esc(who) + '"><span class="kdh-av">' + esc(initials(who)) + '</span><span class="kdh-side-who"><b>' + esc(who) + '</b><small>' + (isMgr || u.preview ? 'Manager' : isAssoc(u) ? 'Sales Associate' : 'Sales Rep') + '</small></span>' + CARET + '</button></div>';
+    if (who) html += '<div class="kdh-side-foot"><button type="button" class="kdh-side-user" id="kdhMenuBtn" aria-haspopup="true" aria-expanded="false" aria-label="Account menu, signed in as ' + esc(who) + '"><span class="kdh-av">' + esc(initials(who)) + '</span><span class="kdh-side-who"><b>' + esc(who) + '</b><small>' + (isFin(u) && !u.preview ? 'Finance' : isMgr || u.preview ? 'Manager' : isAssoc(u) ? 'Sales Associate' : 'Sales Rep') + '</small></span>' + CARET + '</button></div>';
     var a = document.createElement('aside');
     a.id = 'kdhSide'; a.className = 'kdh-side'; a.innerHTML = html;
     document.body.insertBefore(a, document.body.firstChild);
@@ -437,10 +461,10 @@
   // ---- the ONE account menu: More on phones / iPads, the sidebar's account button on desktop ----
   function menuHtml(u, isMgr) {
     var who = u.preview ? u.manager : u.name;
-    var role = isMgr || u.preview ? 'Manager' : isAssoc(u) ? 'Sales Associate' : 'Sales Rep';
+    var role = isFin(u) && !u.preview ? 'Finance' : isMgr || u.preview ? 'Manager' : isAssoc(u) ? 'Sales Associate' : 'Sales Rep';
     var w = where(u);
     var items = '';
-    if (isMgr || u.preview) {
+    if ((isMgr && !isFin(u)) || u.preview) {
       items += '<button type="button" class="kdh-menu-i" id="kdhViewAsRep">' + NAV_ICON.eye + '<span>View As</span><small>See the site as a ' + (isOwner(u) ? 'manager, rep or associate' : 'rep or associate') + '</small></button>';
       if (u.preview) items += '<button type="button" class="kdh-menu-i" id="kdhExitPreview2">' + BACK + '<span>Exit Preview</span><small>Back to your own pages</small></button>';
     }
@@ -535,7 +559,7 @@
       var mgrs = (team || []).filter(function (t) { return t && t.role === 'manager' && t.name; }).sort(function (a, b) { return a.name.localeCompare(b.name); });
       // names only; when a name appears twice the entry with no title is that person's personal (test) account
       var seen = {}; mgrs.forEach(function (m) { seen[m.name] = (seen[m.name] || 0) + 1; });
-      var list = mgrs.map(function (m) { return { name: m.name, label: m.name + (seen[m.name] > 1 && !m.title ? ' (Personal)' : ''), title: m.title || '', dm: m.reports_to || '', brands: Array.isArray(m.program_brands) ? m.program_brands.filter(Boolean) : [] }; });
+      var list = mgrs.map(function (m) { return { name: m.name, label: m.name + (seen[m.name] > 1 && !m.title ? ' (Personal)' : '') + (m.workspace === 'finance' ? ' (Finance)' : ''), title: m.title || '', dm: m.reports_to || '', brands: Array.isArray(m.program_brands) ? m.program_brands.filter(Boolean) : [], ws: m.workspace || '' }; });
       var g = list.length ? [{ dm: '', people: list }] : [];
       peopleCache.manager = g; cb(g);
     });
@@ -574,8 +598,8 @@
         if (pickRole === 'associate') { setPreview({ name: who.name, role: 'associate', email: who.email || '' }); location.href = ASSOC_HOME; return; }
         // manager: picking yourself = leave preview
         var me = cur && (cur.preview ? cur.manager : cur.name);
-        if (who.name === me) setPreview(''); else setPreview({ name: who.name, role: 'manager', title: who.title || '', dm: who.dm || '', brands: who.brands || [] });
-        location.href = ROOT || '/';
+        if (who.name === me) setPreview(''); else setPreview({ name: who.name, role: 'manager', title: who.title || '', dm: who.dm || '', brands: who.brands || [], ws: who.ws || '' });
+        location.href = who.name !== me && who.ws === 'finance' ? FIN_HOME : (ROOT || '/');   // a finance manager's home is the hub
       });
       document.getElementById('kdhPickerSearch').addEventListener('input', function () { renderPicker(this.value); });
     }
@@ -803,6 +827,7 @@
   global.kdhBackBar = backBar;
   global.kdhViewing = viewing;
   global.kdhViewAsRep = viewAsRep;
+  global.kdhIsFinance = isFin;
   global.kdhViewAs = viewAs;
   global.kdhIsOwner = isOwner;
   global.kdhExitPreview = exitPreview;

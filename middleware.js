@@ -73,6 +73,24 @@ function associateMayOpen(pathname) {
   return ASSOCIATE_PATHS.some((pre) => p.startsWith(pre) || p + '/' === pre || p === pre.replace(/\/$/, '') + '/index.html');
 }
 
+// The FINANCE workspace (allowed_users.workspace = 'finance', 2026-10-15): a
+// manager who handles billbacks and supplier recaps -- Alexis. They may open
+// the Incentive Hub, the Incentive Tracker, both MPO trackers, Supplier
+// Budgets and Incentive Performance, plus what those pages load; anything
+// else sends them to the hub (403 for a data fetch). Row-level security is
+// untouched: they are a manager everywhere the database is asked.
+const FINANCE_PATHS = [
+  '/hub/', '/incentive-tracking/', '/MPOs/', '/supplier-budget/', '/performance/',
+  '/shared/', '/carbliss-mpo/data/', '/api/',
+  '/accounts/data/elig/', '/accounts/data/hist/', '/accounts/data/catalog.json', '/accounts/data/index.json', '/accounts/data/products.json',   // what the hub loads; never a rep's route or sales files
+  '/rolling-distribution/data/',   // Incentive Performance probes the money / adjust months
+];
+const FINANCE_HOME = '/hub/';
+function financeMayOpen(pathname) {
+  const p = pathname.split('?')[0];
+  return FINANCE_PATHS.some((pre) => p.startsWith(pre) || p + '/' === pre || p === pre.replace(/\/$/, '') + '/index.html');
+}
+
 // ACCOUNT DATA IS SERVED PER REP (2026-09-30). accounts/generate.py writes one
 // slice per rep under /accounts/data/{book,reps,sales}/<key>..., where <key>
 // is the rep's name key (canonical first name + surname, the same rule
@@ -217,7 +235,16 @@ function wantsDocument(request) {
 
 function route(request, url, verdict) {
   if (verdict.ok) {
-    if (verdict.role === 'manager') return passThrough();
+    if (verdict.role === 'manager') {
+      if (verdict.workspace !== 'finance' || financeMayOpen(url.pathname)) return passThrough();
+      if (!wantsDocument(request)) {
+        return new Response(JSON.stringify({ error: 'not part of the finance workspace' }), {
+          status: 403,
+          headers: { 'content-type': 'application/json', 'cache-control': 'no-store' },
+        });
+      }
+      return redirect(new URL(FINANCE_HOME, url).toString());
+    }
     if (verdict.role === 'associate') {
       if (associateMayOpen(url.pathname)) return passThrough();
       if (!wantsDocument(request)) {
@@ -332,7 +359,7 @@ async function check(token, supabaseUrl, publishableKey) {
 
   let res;
   try {
-    res = await fetch(`${supabaseUrl}/rest/v1/allowed_users?select=email,name,role,title,reports_to&limit=1`, {
+    res = await fetch(`${supabaseUrl}/rest/v1/allowed_users?select=*&limit=1`, {
       headers: {
         apikey: publishableKey,
         authorization: `Bearer ${token}`,
@@ -353,7 +380,7 @@ async function check(token, supabaseUrl, publishableKey) {
   if (!row) return remember(token, { ok: false, reason: 'notlisted' }, now + 60 * 1000);
 
   const until = Math.min(exp, now + CACHE_TTL_MS);
-  return remember(token, { ok: true, email: row.email, name: row.name || '', role: row.role || 'rep', title: row.title || '', reports_to: row.reports_to || '' }, until);
+  return remember(token, { ok: true, email: row.email, name: row.name || '', role: row.role || 'rep', title: row.title || '', reports_to: row.reports_to || '', workspace: row.workspace || '' }, until);
 }
 
 function remember(token, verdict, until) {

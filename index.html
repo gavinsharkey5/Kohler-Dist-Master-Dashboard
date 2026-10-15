@@ -27,7 +27,7 @@
 <!-- The top bar is injected by shared/kdh-user.js (badge, Previewing chip, account menu with "View as rep"). kdh-home = no Back button. -->
 <meta name="kdh-page" content="Manager Home">
 <meta name="kdh-home" content="manager">
-<script src="shared/kdh-user.js?v=20261014e"></script>
+<script src="shared/kdh-user.js?v=20261015a"></script>
 </head>
 <body>
 
@@ -248,6 +248,13 @@
   // Previewing a rep: still the manager here. Previewing another manager
   // (Gavin's switcher below): this page is theirs.
   if (user && user.preview && user.role !== 'manager') user = { name: user.manager, role: 'manager', email: user.email };
+  // the FINANCE workspace (2026-10-15): only the incentive, MPO, budget and performance cards; everything else hidden
+  if (user && user.ws === 'finance') {
+    var KEEP = /^(hub\/|MPOs\/|supplier-budget\/|performance\/|incentive-tracking\/)/;
+    Array.prototype.forEach.call(document.querySelectorAll('a.kt'), function (a) { if (!KEEP.test(a.getAttribute('href') || '')) a.hidden = true; });
+    Array.prototype.forEach.call(document.querySelectorAll('.hs'), function (sec) { if (!sec.querySelector('a.kt:not([hidden])')) sec.hidden = true; });
+    document.documentElement.classList.add('kdh-fin');
+  }
   function esc(v){ return String(v).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
   if (user && user.name) {
     $('who').textContent = user.name;
