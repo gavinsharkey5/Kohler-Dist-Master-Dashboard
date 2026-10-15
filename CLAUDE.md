@@ -3373,7 +3373,7 @@ The kdh_user cookie carries `ws` (api/session.js accessCookies, login/index.html
 CHROME (kdh-user.js tag 20261015a everywhere): `isFin(u)` (also from a manager preview cookie's `ws`); navItems =
 Incentives (/hub/) / Off-Premise / On-Premise / Budgets (keys home / off / on / sb), toolItems = a 'Finance' group
 with Incentive Tracker + Incentive Performance (the sidebar's group list gained 'Finance'), where() maps those pages,
-homeOf = the hub, no View As in the menu, the foot / menu say "Finance". View As -> Manager labels her "(Finance)",
+homeOf = the hub, no View As in the menu, the foot / menu say "Finance". View As -> Manager lists her by name only (Gavin: no "(Finance)" tag),
 carries `ws` in the preview cookie and lands on the hub; the manager home (index.html) hides every card outside
 hub / MPOs / supplier-budget / performance / incentive-tracking and empty sections for a finance person (preview, or
 a server without the middleware). Tests (scratchpad): mw_test (finance paths, home redirect, 403s, full manager

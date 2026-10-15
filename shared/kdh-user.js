@@ -559,7 +559,7 @@
       var mgrs = (team || []).filter(function (t) { return t && t.role === 'manager' && t.name; }).sort(function (a, b) { return a.name.localeCompare(b.name); });
       // names only; when a name appears twice the entry with no title is that person's personal (test) account
       var seen = {}; mgrs.forEach(function (m) { seen[m.name] = (seen[m.name] || 0) + 1; });
-      var list = mgrs.map(function (m) { return { name: m.name, label: m.name + (seen[m.name] > 1 && !m.title ? ' (Personal)' : '') + (m.workspace === 'finance' ? ' (Finance)' : ''), title: m.title || '', dm: m.reports_to || '', brands: Array.isArray(m.program_brands) ? m.program_brands.filter(Boolean) : [], ws: m.workspace || '' }; });
+      var list = mgrs.map(function (m) { return { name: m.name, label: m.name + (seen[m.name] > 1 && !m.title ? ' (Personal)' : ''), title: m.title || '', dm: m.reports_to || '', brands: Array.isArray(m.program_brands) ? m.program_brands.filter(Boolean) : [], ws: m.workspace || '' }; });
       var g = list.length ? [{ dm: '', people: list }] : [];
       peopleCache.manager = g; cb(g);
     });
