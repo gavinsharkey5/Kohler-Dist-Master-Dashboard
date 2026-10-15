@@ -249,7 +249,6 @@
   function toolItems(u) {
     if (isAssoc(u)) return [];
     if (isFin(u)) return [
-      { key: 'inc', group: 'Finance', label: 'Incentive Tracker', href: ROOT + 'incentive-tracking/' },
       { key: 'perf', group: 'Finance', label: 'Incentive Performance', href: ROOT + 'performance/' }
     ];
     var isMgr = u.role === 'manager';
@@ -283,7 +282,6 @@
       if (/^MPOs\/off-prem\//.test(rel)) return { nav: 'off', tool: '' };
       if (/^MPOs\/on-prem\//.test(rel)) return { nav: 'on', tool: '' };
       if (/^supplier-budget\//.test(rel)) return { nav: 'sb', tool: '' };
-      if (/^incentive-tracking\//.test(rel)) return { nav: 'more', tool: 'inc' };
       if (/^performance\//.test(rel)) return { nav: 'more', tool: 'perf' };
       return { nav: rel === '' || rel === 'index.html' ? 'home' : '', tool: '' };
     }

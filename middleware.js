@@ -76,11 +76,13 @@ function associateMayOpen(pathname) {
 // The FINANCE workspace (allowed_users.workspace = 'finance', 2026-10-15): a
 // manager who handles billbacks and supplier recaps -- Alexis. They may open
 // the Incentive Hub, the Incentive Tracker, both MPO trackers, Supplier
-// Budgets and Incentive Performance, plus what those pages load; anything
+// Budgets and Incentive Performance, plus what those pages load (the Incentive
+// Tracker page itself is NOT theirs -- Gavin, 2026-10-15); anything
 // else sends them to the hub (403 for a data fetch). Row-level security is
 // untouched: they are a manager everywhere the database is asked.
 const FINANCE_PATHS = [
-  '/hub/', '/incentive-tracking/', '/MPOs/', '/supplier-budget/', '/performance/',
+  '/hub/', '/MPOs/', '/supplier-budget/', '/performance/',
+  '/incentive-tracking/programs.js', '/incentive-tracking/data/', '/incentive-tracking/assets/',   // what the hub loads; NOT the Incentive Tracker page (Gavin, 2026-10-15)
   '/shared/', '/carbliss-mpo/data/', '/api/',
   '/accounts/data/elig/', '/accounts/data/hist/', '/accounts/data/catalog.json', '/accounts/data/index.json', '/accounts/data/products.json',   // what the hub loads; never a rep's route or sales files
   '/rolling-distribution/data/',   // Incentive Performance probes the money / adjust months
