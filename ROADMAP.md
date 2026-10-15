@@ -15,9 +15,8 @@ device, a decision).
   page matches them on UPC in his browser and lists what still needs registering (Not Registered, UPC Not on
   Registration, Expired / Historical) plus Pending, Wrong Reg # in FileMaker and No UPC, with a dated notes log
   per product code and New / Still Open / Resolved against the last run. Vlad sees only this page; you and every
-  brand manager get it as a tool. Steps: (1) run `supabase/migrations/20261015190000_upc_audit.sql` in the SQL
-  Editor; (2) add Vlad to the allow list as role `it` (the SQL is in this chat, not the repo -- it has his email);
-  (3) Vlad signs in and runs it once with the two files. A new brand manager later: re-run
+  brand manager get it as a tool. DONE 2026-10-15: migration run, Vlad added as role `it` (checked: the tables
+  exist, you + the 9 brand managers have upc_audit). Left: Vlad signs in and runs it once with the two files. A new brand manager later: re-run
   `supabase/seed/upc_audit_access.sql` or tick allowed_users.upc_audit.
 
 - [ ] **Supplier Budgets round two (2026-10-15).** Built: + New Account from the expense form, saved vendors
