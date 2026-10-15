@@ -239,6 +239,7 @@ def main(path):
                  ", ".join(q(x) for x in [str(e["date"]), e["year"], e["invoice"], e["vendor"], e["items"], e["total"], e["billback"], e["received"], None, e["notes"], e["source"], e["src"], json.dumps(e["sheet"], ensure_ascii=False), "import", "import"]) +
                  f" from public.budget_accounts where year = {a['year']} and account = {q(a['account'])} on conflict (source_key) do nothing;")
     L.append("commit;")
+    OUT_SQL.parent.mkdir(parents=True, exist_ok=True)
     OUT_SQL.write_text("\n".join(L) + "\n")
     say(f"SQL: {len(accounts)} account rows + {len(e26) + len(e25)} expense rows -> {OUT_SQL.relative_to(ROOT)}")
     OUT_REP.write_text("\n".join(rep) + "\n")
