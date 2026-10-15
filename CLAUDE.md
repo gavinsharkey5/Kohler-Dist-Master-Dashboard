@@ -3345,3 +3345,15 @@ bar, billback outstanding, tap-to-edit amount, Add Account, Needs Review). A non
 Planning & Field; 28 cards now), sidebar tool `sb`; not in REP_PATHS. Gavin's steps are in ROADMAP "Now" (run the
 migration, paste the seed, set budget_editor for Alexis). Tests (scratchpad): sql_budget_test.sh (39),
 budget_test.mjs (78, stub budget_stub.mjs), mgr_test expects 28 cards. kdh-user.js tag 20261014e everywhere.
+LIVE 2026-10-15 (Gavin ran the migration, pasted the seed -- in TWO PARTS, the SQL Editor caps a query at ~1 MB --
+and set Alexis's flag). Same day, Gavin: (1) "Time Entered" column = created_at of site-entered rows ("Imported" for
+the seed's), FIRST column and the DEFAULT SORT newest on top (sessionStorage key kdh_sb_sort2; a save resets to it;
+ties fall to Date); (2) "all columns in one view, no scrolling": table-layout fixed with COLS[].w percentages, wrapped
+cells at 13px, short dates, compact Received ("Yes Oct 20" / "No"), soft-hyphenated headers, the ledger view at full
+width from 1100px (`.sb.wide`), header sticky under the top bar (`--sb-top` measured from #kdhBar + #kdhLive), Year
+and Notes hidden under 1100px (`data-narrow`); (3) VIEW AS a manager works here: a MANAGER preview is read-only, the
+page asks `kdh_budget_standing(name)` (migration `20261015090000_budget_preview.sql`, managers only, by kdh_name_key)
+for the previewed person's editor / admin / program_brands and cuts the rows client-side (an editor's page with Add
+Expense disabled; a brand manager's accounts by name + brands); without the RPC the preview is read-only over every
+account and names the migration. A rep / associate preview is still refused. Tags budget.js / .css 20261015a;
+budget_test.mjs 95, sql_budget_test.sh 43.

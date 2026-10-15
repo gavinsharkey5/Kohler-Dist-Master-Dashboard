@@ -1,6 +1,6 @@
 /* Supplier Budgets (2026-10-14). One 960px column; the ledger may widen past 1280px. Page standard. */
 .sb{max-width:960px;margin:0 auto;padding:0 16px 32px}
-@media (min-width:1280px){ .sb.wide{max-width:1360px} }
+@media (min-width:1100px){ .sb.wide{max-width:none;padding:0 24px 32px} }
 .sb h1{font-size:26px;font-weight:600;margin:16px 0 2px;line-height:1.2}
 .sb h1 small{display:block;font-size:14px;font-weight:500;color:var(--kdh-text-3);margin-top:2px}
 .sb h2{font-size:17px;font-weight:600;margin:20px 0 8px}
@@ -32,24 +32,29 @@
 .afl{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:14px;color:var(--kdh-text-2);margin:0 0 10px}
 .afl b{color:var(--kdh-text)}
 .afl .btn{min-height:36px}
-/* ledger table (>= 760px) */
-.tbl-wrap{display:none;overflow:auto;border:1px solid var(--kdh-border);border-radius:12px;background:var(--kdh-surface);max-height:calc(100vh - 120px)}
-table.led{border-collapse:separate;border-spacing:0;width:100%;font-size:14px;min-width:1240px}
-table.led th{position:sticky;top:0;z-index:2;background:var(--kdh-surface-2);text-align:left;font-weight:600;font-size:13px;padding:10px 10px;border-bottom:1px solid var(--kdh-border-2);white-space:nowrap;color:var(--kdh-text-2);cursor:pointer;user-select:none}
+/* ledger table (>= 760px): every column in view, no sideways scroll -- fixed proportional widths, wrapped cells,
+   13px type (the site floor); the page itself scrolls and the header sticks under the top bar */
+.tbl-wrap{display:none;border:1px solid var(--kdh-border);border-radius:12px;background:var(--kdh-surface);overflow:visible}
+table.led{border-collapse:separate;border-spacing:0;width:100%;table-layout:fixed;font-size:13px;line-height:1.3}
+table.led th{position:sticky;top:var(--sb-top,0px);z-index:2;background:var(--kdh-surface-2);text-align:left;font-weight:600;font-size:13px;padding:8px 5px;border-bottom:1px solid var(--kdh-border-2);color:var(--kdh-text-2);cursor:pointer;user-select:none;overflow-wrap:break-word;hyphens:auto;-webkit-hyphens:auto;vertical-align:bottom}
+table.led th:first-child{border-top-left-radius:12px} table.led th:last-child{border-top-right-radius:12px}
 table.led th.num,table.led td.num{text-align:right;font-variant-numeric:tabular-nums}
 table.led th[aria-sort]:not([aria-sort="none"]){color:var(--kdh-brand)}
-table.led th .ar{font-size:11px;margin-left:3px}
-table.led td{padding:8px 10px;border-bottom:1px solid var(--kdh-border);vertical-align:top;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-table.led td.wrap{white-space:normal;max-width:300px}
+table.led th .ar{font-size:11px;margin-left:2px}
+table.led td{padding:7px 5px;border-bottom:1px solid var(--kdh-border);vertical-align:top;overflow-wrap:break-word;hyphens:auto;-webkit-hyphens:auto}
+table.led .nw{white-space:nowrap}
+table.led td.num{white-space:nowrap}
 table.led tr.r{cursor:pointer}
 table.led tr.r:hover td{background:var(--kdh-surface-2)}
 table.led tr.hl td{background:var(--kdh-brand-soft)}
 table.led tr.hist td{color:var(--kdh-text-3)}
-.sb .rec{display:inline-flex;align-items:center;gap:5px;min-height:30px;padding:0 10px;border-radius:999px;border:1px solid var(--kdh-border-2);background:var(--kdh-surface);font:inherit;font-size:13px;font-weight:600;color:var(--kdh-text-2);cursor:pointer;white-space:nowrap}
+table.led .muted{color:var(--kdh-text-3)}
+@media (max-width:1099px){ table.led [data-narrow]{display:none} }   /* tablets: Year, File and Notes stay in the row view and the CSV */
+.sb .rec{display:inline-flex;align-items:center;gap:5px;min-height:30px;padding:0 8px;border-radius:999px;border:1px solid var(--kdh-border-2);background:var(--kdh-surface);font:inherit;font-size:13px;font-weight:600;color:var(--kdh-text-2);cursor:pointer;white-space:normal;text-align:left;line-height:1.2;max-width:100%}
 .sb .rec.yes{background:var(--kdh-ok-soft);color:var(--kdh-ok);border-color:transparent}
 .sb .rec.none{cursor:default;opacity:1;color:var(--kdh-text-3)}
 .sb .rec[disabled]{cursor:default}
-.edited{display:block;font-size:12.5px;color:var(--kdh-text-3);white-space:nowrap}
+.edited{display:block;font-size:13px;color:var(--kdh-text-3)}
 /* phone: labelled stacked rows */
 .cards{display:flex;flex-direction:column;gap:8px}
 @media (min-width:760px){ .tbl-wrap{display:block} .cards{display:none} }

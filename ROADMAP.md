@@ -11,6 +11,10 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
+- [ ] **Supplier Budgets: View As a manager (2026-10-15).** Gavin's View As -> Manager now opens /supplier-budget/
+  read-only as that person. For the page to know the previewed manager's standing (editor / brand manager), run
+  `supabase/migrations/20261015090000_budget_preview.sql` in the SQL Editor (one function, managers only). Until then a
+  manager preview shows every account read-only and says so.
 - [ ] **Stay signed in, for real (2026-10-13; reps: "it makes me log in every time, even with
   Remember me").** Cause: Supabase rotates the refresh token on every hourly renewal and the phone
   had to store the new cookie each time; a lost or unapplied renewal left the phone sending the old

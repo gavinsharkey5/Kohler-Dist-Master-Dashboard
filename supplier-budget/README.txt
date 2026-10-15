@@ -37,9 +37,17 @@ WHO MAY DO WHAT (decided by the database, the page only draws)
                                        Manager is them (name key) or whose supplier
                                        is one of their program_brands; the page also
                                        applies kdhBrandScope() the same way
-  rep / associate / any preview        nothing: not in REP_PATHS (the middleware
+  rep / associate / a rep preview      nothing: not in REP_PATHS (the middleware
                                        redirects), and the page refuses a rep cookie
-                                       or any preview cookie
+                                       or a rep / associate preview
+  a MANAGER preview (View As -> Manager) read-only: the page still reads with the
+                                       signed-in person's token, asks kdh_budget_standing
+                                       (migration 20261015090000_budget_preview.sql) who
+                                       the previewed manager is, and shows what they would
+                                       see -- an editor's page with Add Expense disabled,
+                                       or a brand manager's cut (name + program_brands).
+                                       Without that migration the preview is read-only
+                                       over every account and says so.
   Identity is always the token (kdh_caller_email); created_by / updated_by and the
   names are stamped by the trigger. Every write asks PostgREST for the rows back
   and counts them -- a 2xx under RLS proves nothing.
@@ -75,10 +83,16 @@ RULES
     and dates do not change it); the other four sum the rows shown.
 
 PAGE
-  Ledger: columns in the sheet's order (Date, Year, Invoice, Vendor, Description,
-    Brand Manager, Items Purchased, Total, Kohler Spend, Billback, Received, Code,
-    Account, File, Notes), sticky sortable header, search, filters, newest first,
-    100 rows + Show More, labelled stacked rows under 760px, Export CSV (editors).
+  Ledger: Time Entered first (when a site-entered row was saved; imported rows read
+    "Imported"; the DEFAULT SORT, newest entry on top, ties by Date), then the
+    sheet's columns in order (Date, Year, Invoice, Vendor, Description, Brand
+    Manager, Items Purchased, Total, Kohler Spend, Billback, Received, Code,
+    Account, File, Notes). EVERY COLUMN IN VIEW, NO SIDEWAYS SCROLL (Gavin,
+    2026-10-15): fixed proportional widths (COLS[].w), wrapped cells, 13px type,
+    the page uses the full width from 1100px and the header sticks under the top
+    bar; under 1100px Year and Notes fold away (row view + CSV keep them).
+    Sortable header, search, filters, 100 rows + Show More, labelled stacked rows
+    under 760px, Export CSV (editors; Time Entered is its first column).
     Tap a row = Edit (editors) or a read-only view. "Added / Edited by <first
     name> <date>" on site-entered rows.
   Add Expense: Date (today), Account (search, grouped by supplier, code + brand
