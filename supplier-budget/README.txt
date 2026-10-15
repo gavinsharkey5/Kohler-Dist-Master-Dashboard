@@ -73,7 +73,7 @@ RULES
   The 2025 tab: rows dated 2025 are history (source import_2025) under year-2025
     account rows (inactive, no budget); its 2026 rows were skipped (copies of the
     2026 tab). The Ledger's Year filter defaults to the current year.
-  Description, Brand Manager, Code and File on a ledger row come from the ACCOUNT
+  Description, Brand Manager and Code on a ledger row come from the ACCOUNT
     (Budget tab wins); the row's own sheet cells are kept in sheet_values. 21 rows
     disagreed on Brand Manager and 128 on Code -- the report lists them.
   Budget Breakdown basis text was attached where the brand name matched a Budget
@@ -87,7 +87,8 @@ PAGE
     "Imported"; the DEFAULT SORT, newest entry on top, ties by Date), then the
     sheet's columns in order (Date, Year, Invoice, Vendor, Description, Brand
     Manager, Items Purchased, Total, Kohler Spend, Billback, Received, Code,
-    Account, File, Notes). EVERY COLUMN IN VIEW, NO SIDEWAYS SCROLL (Gavin,
+    Account, Notes; the File column was removed 2026-10-15 -- file_name stays on the
+    account row, unused). EVERY COLUMN IN VIEW, NO SIDEWAYS SCROLL (Gavin,
     2026-10-15): fixed proportional widths (COLS[].w), wrapped cells, 13px type,
     the page uses the full width from 1100px and the header sticks under the top
     bar; under 1100px Year and Notes fold away (row view + CSV keep them).
@@ -109,6 +110,58 @@ PAGE
   State: filters + sort in sessionStorage (kdh_sb_f / kdh_sb_sort); the view in
     the hash (#ledger, #budget, #new, #edit=<id>).
 
+ROUND TWO (2026-10-15, Gavin; migration 20261015150000_budget_rules.sql)
+  BILLBACK RULE per account (budget_accounts.billback_rule, set on the account sheet):
+    50/50 Split (split) = the form fills Billback with half the Total until a
+      billback is typed; No Split (none) = Billback locked at 0, Kohler Spend = Total;
+      Enter Each Time (manual) = the old behaviour. CONSTELLATION / CROWN NEVER SPLIT
+      (Gavin): any account whose name, supplier or description says Crown or
+      Constellation is 'none', ENFORCED BY THE DATABASE on every insert and on any
+      edit that touches the account, Total or Billback (a notes-only edit or a
+      Received tap leaves an old row alone). Backfill: Crown / Constellation -> none;
+      Budget Breakdown says 50/50, or the account's rows were mostly split exactly in
+      half -> split; the rest -> manual. A re-run never overwrites a rule set on the
+      site. Rows split before the rule (7 Crown rows on the 2026 tab, 1 on the 2025
+      tab) keep their billback until edited or until the cleanup in
+      ROADMAP "Now" runs.
+  NEW ACCOUNT from the Add Expense picker: "+ New Account" (with the typed name)
+    opens the account sheet for the expense's year and selects the new account. The
+    Budget tab button reads "+ New Account" too. The picker lists the accounts of the
+    EXPENSE's year (an old year's inactive accounts included), so a 2025 row can be
+    moved between 2025 accounts; an account from another year is refused on save.
+  SAVED VENDORS: every vendor saved on a row goes into budget_vendors (that already
+    happened; the page just did not show it). Now: tapping the Vendor box lists the
+    recent vendors, typing lists matches (starts-with first), the quick buttons are
+    Kohler + the 5 most recently used, picking an account fills its default vendor or
+    else the vendor last used on it, and a name typed in other capitals reuses the
+    saved spelling (page + database). Uses count only on a new row or a vendor change.
+  INVOICE LINKS: an editor opens "Invoice Links to Encompass" under the Ledger, pastes
+    the address of ANY invoice open in Encompass and types that invoice's number; the
+    page swaps the number for {invoice} and saves the template in budget_settings
+    (key invoice_link; the database accepts only https://*.encompass8.com addresses
+    containing {invoice}). Every NUMERIC invoice (3+ digits) then opens in Encompass
+    in a new tab, in the table, the phone cards, the edit form and the read-only view;
+    text invoices ("Expense (Steve)") stay plain. Turn Off deletes the setting. No
+    Encompass address format is guessed in the code.
+  EDITING PAST ROWS: any row opens in the edit form for an editor (it always did); what
+    failed was validation. 39 imported 2026 rows are credits (negative Total) and 102
+    rows on the 2025 tab had a Billback above the Total, so ANY edit of them was
+    refused. Now an existing row is checked only on what changed: Total / Billback only
+    when one of them changed (a credit's billback must sit between the Total and 0),
+    the open-year date rule only when the date changed. The database applies the same
+    rules to site rows; imported rows are still not range-checked.
+  CROWN CLEANUP (optional, Gavin's call; SQL Editor, logged in supplier_expense_events):
+    -- list the no-split rows that still carry a billback
+    select e.expense_date, e.vendor, e.invoice, e.total_amount, e.billback_amount
+      from public.supplier_expenses e join public.budget_accounts a on a.id = e.account_id
+     where a.billback_rule = 'none' and e.billback_amount <> 0 order by e.expense_date;
+    -- zero them (Kohler Spend becomes the Total)
+    update public.supplier_expenses e set billback_amount = 0
+      from public.budget_accounts a
+     where a.id = e.account_id and a.billback_rule = 'none' and e.billback_amount <> 0;
+  MESSAGES: a "saved" message shows once, on the screen it was sent to; it no longer
+    rides along onto the next form (it did).
+
 NOT IN V1 (on purpose)
   File attachments (File Name is text, as on the sheet); approvals / sign-off;
   email reminders for outstanding billbacks; monthly / quarterly roll-ups; vendor
@@ -118,10 +171,17 @@ NOT IN V1 (on purpose)
   anywhere a rep can see.
 
 TESTS (scratchpad)
-  sql_budget_test.sh   39 checks on local Postgres 16: flag, brand-key match, RLS
+  sql_budget_test.sh   65 checks (round two: rule backfill + re-run, Crown forced to
+                       no split, pre-rule split rows, credits, old site rows, vendor
+                       spelling + uses, settings RLS + Encompass-only check); before:
+                       39 checks on local Postgres 16: flag, brand-key match, RLS
                        for editor / admin / brand manager by name / by brands / VP /
                        rep / anon, trigger rules, received stamp, events, imports.
-  budget_test.mjs      78 checks: editor at 1366 light + 390 dark, admin at 820,
+  budget_test.mjs      167 checks (round two at 1366 light + 390 dark: no File column,
+                       invoice links set / refused / clicked, credit row edited, Crown
+                       row zeroed with the warning, 50/50 fill + typed value kept, New
+                       Account from the picker, saved vendors, rule chips, contrast);
+                       before: 78 checks: editor at 1366 light + 390 dark, admin at 820,
                        brand manager, VP, rep + preview refused, migration missing,
                        nav; stub budget_stub.mjs mirrors the RLS.
 

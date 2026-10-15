@@ -3390,3 +3390,25 @@ trims itself. Tests (scratchpad): mw_test (finance paths, home redirect, 403s, f
 untouched), fin_test.mjs (14: sidebar, bottom bar, menu, trimmed home, picker label), sql_budget_test.sh (46),
 viewas / mgr / home / tasks / budget suites. NOTE: scratchpad session_test.mjs has 2 failures that predate this
 (it describes the 2026-10-02 kdh_rt design; session2_test.mjs, which replaced it, is not in this scratchpad).
+
+## Supplier Budgets round two: New Account, saved vendors, no-split rule, invoice links, editable history (2026-10-15)
+
+Gavin's six asks; supplier-budget/README.txt "ROUND TWO" has every rule. Migration
+`20261015150000_budget_rules.sql` (NOT yet run by Gavin; the page works without it): budget_accounts.billback_rule
+('split' 50/50 = the form fills half the Total until a billback is typed; 'none' = billback locked at 0, Kohler Spend
+= Total; 'manual'), backfilled once (Crown / Constellation -> none, 50/50 basis or mostly-half rows -> split, else
+manual; a re-run keeps rules set on the site). CONSTELLATION / CROWN NEVER SPLIT (Gavin) -- enforced by
+supplier_expenses_guard on insert and on any edit touching account / total / billback; budget_accounts_stamp forces
+'none' for a Crown / Constellation name, supplier or description. 8 rows split before the rule are left alone; the
+optional cleanup SQL is in the README (ROADMAP Now). The guard also: credits allowed on site rows (billback between the
+Total and 0), the open-year date check only on insert or a date change, a vendor typed in other capitals reuses the
+saved spelling, vendor uses count only on a new row or a vendor change. budget_settings (key / value; managers read,
+editors write; invoice_link must be https://*.encompass8.com with {invoice}). PAGE (budget.js / .css 20261015b): File
+column gone (table + CSV); "+ New Account" in the Add Expense picker (accountSheet(null, false, {name, year, onSaved}))
+and on the Budget tab; the picker lists the EXPENSE's year; saved vendors on tap + recent quick buttons + last vendor
+used on the account; invoice links (`invHtml` / `invUrl`, numeric invoices only, new tab, row click ignores them) set
+once in the Ledger's "Invoice Links to Encompass" fold from one pasted invoice address -- never a guessed URL format;
+validate(f, e) checks only what changed, so the 39 imported credit rows (and 102 odd 2025 rows) that refused every
+edit now save. Messages: a message travels only to the screen it was sent to (go() + hashchange). Tests (scratchpad):
+sql_budget_test.sh 65, budget_test.mjs 167, sb_shots.mjs.
+

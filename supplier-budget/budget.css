@@ -123,3 +123,12 @@ html.kdh-has-tabs .form{padding-bottom:168px}
 .sb .msg{padding:10px 12px;border-radius:10px;background:var(--kdh-ok-soft);color:var(--kdh-ok);font-weight:600;font-size:14px;margin:0 0 12px}
 .sb .msg.bad{background:var(--kdh-bad-soft);color:var(--kdh-bad)}
 [hidden]{display:none!important}
+/* 2026-10-15: invoice links, New Account in the picker, billback rule hint */
+a.inv{color:var(--kdh-brand);font-weight:600;text-decoration:underline;text-underline-offset:2px;white-space:nowrap}
+a.inv:focus-visible{outline:none;box-shadow:0 0 0 3px var(--kdh-ring);border-radius:4px}
+#fInvLink{display:inline-block;margin-top:6px;font-size:14px}
+#fInvLink[hidden]{display:none}
+.pick .opts button.newacct{color:var(--kdh-brand);font-weight:600;border-top:0}
+.pick .opts button.newacct small{font-weight:500}
+.sb input:disabled{background:var(--kdh-surface-2);color:var(--kdh-text-2);cursor:not-allowed}
+

@@ -10,6 +10,14 @@ Legend: `[ ]` open, `[~]` built, waiting on a step outside the repo,
 device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
+- [ ] **Supplier Budgets round two (2026-10-15).** Built: + New Account from the expense form, saved vendors
+  listed on tap, a billback rule per account (Constellation / Crown never split: Kohler Spend = Total; 50/50
+  accounts fill half), invoice numbers that open in Encompass, no File column, past and imported rows editable.
+  Steps: (1) run `supabase/migrations/20261015150000_budget_rules.sql` in the SQL Editor; (2) Alexis opens the
+  Ledger -> "Invoice Links to Encompass", pastes the address of any invoice open in Encompass and types its
+  number, Save Link; (3) OPTIONAL, your call: 8 Crown rows were split 50/50 before the rule (7 on the 2026 tab,
+  1 on 2025). The SQL to list them and to zero their billback is in supplier-budget/README.txt; every change is
+  logged with the old value.
 
 - [ ] **Stay signed in, for real (2026-10-13; reps: "it makes me log in every time, even with
   Remember me").** Cause: Supabase rotates the refresh token on every hourly renewal and the phone
