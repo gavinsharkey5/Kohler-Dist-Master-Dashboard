@@ -14,3 +14,7 @@ wine-spirits/backups/
 supabase/data/
 shots/
 undefined/
+
+# Local verification dependencies and Supabase CLI state.
+tools/node_modules/
+supabase/.temp/

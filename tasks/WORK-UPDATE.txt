@@ -1,0 +1,91 @@
+MY DAY AND EMPLOYEE COMMUNICATION -- 2026-10-15
+============================================
+This update supersedes the role, notification, and manager limitations in
+README.txt. Existing Field Tasks IDs, comments, photos, and routes are retained.
+
+USER EXPERIENCE
+- Rep Home: My Day with quick-entry text, completion, saved ordering, personal
+  and delegated views. Reorder reveals move-up buttons; the ellipsis edits or
+  delegates. Unfinished planned work carries forward by query, never by copying.
+- Manager Home and Team Activity: My Day plus team overdue/blocked counts.
+  Field Tasks adds Assign Task, assignments to reps, and CustomerID filtering.
+- Account activity: Add Task prefills CustomerID; task-created and status audit
+  events reference the original task. Follow-ups have Add to My Day.
+- Incentive/MPO/tracker pages: Add to My Day keeps an internal source link and
+  unique source key. This does not submit a survey or mark a program complete.
+- Shared header: Messages and Alerts. Direct messages are private to the pair;
+  supervisors do not gain access to employee direct messages.
+- Field Tasks retains photo capture, compression, private signed URLs, notes,
+  blocked reasons, and task conversations. Completion audit and evidence are
+  saved transactionally; the browser no longer posts a second completion event.
+- Preview is read-only: no messaging toolbar or editable checklist.
+
+DATA AND AUTHORIZATION
+Apply supabase/migrations/20261015153620_my_day_communication.sql after the
+existing Field Tasks, account assignments, and manage-programs migrations.
+
+field_tasks stays the source of truth. The existing associate_email/name
+columns now mean assignee (rep, associate, or self); keeping their names avoids
+breaking existing clients. rep_email/name remain the original creator.
+New fields: personal, planned_on, sort_order, source_key/source_url,
+assigned_by/assigned_at, completed_by, revision. Dates use America/New_York.
+
+The kdh_work private schema contains authorization and event helpers.
+- Active membership means an authenticated identity still in allowed_users
+  with role rep, associate, or manager.
+- Supervisors use the existing recursive reports_to hierarchy. There is no
+  implicit organization-wide task access for every manager or brand manager.
+- Reps may delegate to associates with the same nonempty reports_to value.
+  Managers may assign within their reporting subtree. Everyone can assign self
+  where their role may create tasks. Missing reporting data fails closed.
+- Existing creators/assignees keep access to their existing tasks. New account
+  links and account changes validate CustomerID against account_assignments.
+  Task access never grants full access to an associate's customer data.
+- Comments and storage inherit task membership. Only creator/supervisor edits
+  definitions; assignee/supervisor changes status. Completed timestamps and
+  actors are server controlled. An authorized photo object must exist before
+  a task can reference it.
+
+work_conversations: unique unordered employee pair.
+work_messages: immutable messages, unique author/client UUID for retries.
+work_message_reads: monotonic per-employee last-message cursor.
+work_notifications: server-created event/recipient records; clients can only
+change their own read_at. Explicit REVOKE protects against broad Supabase
+default grants. Status, assignment, and comment notifications exclude the
+actor; participating supervisors receive relevant thread notifications.
+Routine title/date/order edits do not generate notifications.
+
+The migration publishes tasks/comments/messages/notifications when the
+supabase_realtime publication exists. The pinned, locally vendored Supabase
+client subscribes using the current login token. Reconnect/visibility refresh
+and visible-tab polling every 30 seconds recover missed events. No push service
+or third-party messaging provider is introduced.
+
+RELEASE AND VALIDATION
+This work was implemented locally. No production schema or deployment was
+changed. Before rollout, verify reports_to mappings (including associates),
+account_assignments freshness, and the deployment's applied migration history.
+Apply the migration in staging, run Supabase security advisors, then test with
+real scoped rep/associate/manager sign-ins, storage uploads, and realtime.
+Roll out the schema before the matching frontend assets. Keep the private
+kdh_work schema out of the exposed Data API schema list.
+
+Local checks:
+  npm --prefix tools ci
+  npm --prefix tools run test:work:sql
+  npm --prefix tools run test:work:browser
+The browser suite uses installed Edge on Windows; install Playwright Chromium
+on other platforms. KDH_PGLITE and KDH_PLAYWRIGHT optionally point to existing
+package directories. KDH_TEST_OUTPUT changes the screenshot output directory.
+
+SQL tests run the original Field Tasks migration and the new migration against
+isolated PGlite/Postgres with synthetic auth/storage fixtures. They exercise
+RLS, triggers, evidence validation, deduplication, and broad default grants.
+Browser tests use actual pages and scripts with a synthetic REST API. They
+exercise quick entry, reload, completion, reorder, delegation, CustomerID,
+lost-response retries, account audit events, unread messages, and preview.
+These tests do not substitute for hosted PostgREST/Storage/Realtime validation.
+
+Dependency versions are pinned in tools/package.json and package-lock.json.
+shared/vendor/supabase-2.57.4.js is the package's dist/umd/supabase.js, with its
+MIT license alongside. Rebuild it by copying that file from the locked install.
