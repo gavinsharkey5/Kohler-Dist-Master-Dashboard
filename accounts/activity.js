@@ -88,11 +88,12 @@ function isPhotoAdmin(){
 }
 async function load(n, force){
   if(!force && cache.has(n)) return cache.get(n);
-  const out = {notes:[], photos:[], records:[], notesErr:'', photosErr:'', update:false, merchMissing:false};
+  const out = {tasks:[], notes:[], photos:[], records:[], notesErr:'', photosErr:'', update:false, merchMissing:false};
   if(!cfg()){ out.notesErr = out.photosErr = 'off'; cache.set(n, out); return out; }
   const base = 'select=id,program_id,account_num,account_name,status,note,updated_at,created_at,rep_name';
   let recs = [];
   await Promise.all([
+    rest('field_tasks?select=id,title,status,created_at,completed_at,completed_by,rep_name,associate_name,updated_at,field_task_comments(id,kind,body,created_at,author_name)&account_num=eq.'+encodeURIComponent(n)+'&order=updated_at.desc&limit=500').then(rows=>{out.tasks=rows||[];}).catch(e=>{out.tasksError=e.message;}),
     rest('rep_actions?'+base+',follow_on&account_num=eq.'+encodeURIComponent(n)+'&order=updated_at.desc&limit=200')
       .catch(e=>{ if(needsUpdate(e)){ out.update = true; return rest('rep_actions?'+base+'&account_num=eq.'+encodeURIComponent(n)+'&order=updated_at.desc&limit=200'); } throw e; })
       .then(rows=>{ out.notes = Array.isArray(rows) ? rows : []; })
@@ -312,10 +313,11 @@ const isMine = r => !!(ctx.me && r && (r.rep_name||'').toLowerCase() === String(
    nothing appears twice. A note, a photo or a survey is NOT a visit -- nothing
    here says "visited". Purchases are the monthly sales record, labelled as
    purchase activity, never as invoices. ---------------- */
-const TYPES = [['all','All'], ['note','Notes'], ['follow','Follow-Ups'], ['photo','Photos'], ['tap','Tap Surveys'], ['mark','Program Marks'], ['buy','Purchases']];
+const TYPES = [['all','All'], ['task','Tasks'], ['note','Notes'], ['follow','Follow-Ups'], ['photo','Photos'], ['tap','Tap Surveys'], ['mark','Program Marks'], ['buy','Purchases']];
 const MONL = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 function events(st){
   const ev = new Map(), add = e => { if(e.t && !ev.has(e.id)) ev.set(e.id, e); };
+  (st.tasks||[]).forEach(r=>{add({id:'task:'+r.id,type:'task',t:r.created_at,r});(r.field_task_comments||[]).filter(c=>c.kind==='status').forEach(c=>add({id:'task-event:'+c.id,type:'task',t:c.created_at,r,sub:'status',event:c}));});
   st.notes.forEach(r=>{
     if(/^note:/.test(r.program_id||'')){
       add({id:'ra:'+r.id, type: r.status==='note' ? 'note' : 'follow', t: r.created_at || r.updated_at, r, sub:'created'});
@@ -329,12 +331,14 @@ function events(st){
   return Array.from(ev.values()).sort((a,b)=>String(b.t).localeCompare(String(a.t)));
 }
 function evText(e){
+  if(e.type==='task') return [e.r.title,e.r.rep_name,e.r.associate_name,e.r.status].join(' ');
   if(e.type==='photo'){ const r = e.rec; return [catName(r.category), r.caption, (r.brands||[]).join(' '), r.lines.map(l=>l.brand).join(' '), recAuthor(r), r.isb_elements].join(' '); }
   if(e.type==='tap') return 'tap survey '+(e.s.display||'');
   if(e.type==='buy') return 'purchase '+e.m.label+' '+(e.m.top||[]).map(t=>t.name).join(' ');
   return [e.r.note, e.r.rep_name, e.type==='mark' ? ctx.progName(e.r.program_id) : ''].join(' ');
 }
 function evHtml(e){
+  if(e.type==='task') return `<li class="act k-task"><div class="act-b"><p class="act-h"><a href="../tasks/#task=${E(e.r.id)}">${E(e.r.title)}</a></p><p class="act-m">${e.event?E(e.event.body):'Task Created'} · ${E(fmtWhen(e.t))} · ${E(e.r.associate_name || '')}</p></div></li>`;
   const det = (inner, open) => inner ? `<details class="act-det"${open?' open':''}><summary>Details</summary><div class="act-dbody">${inner}</div></details>` : '';
   if(e.type==='photo'){
     const r = e.rec, hist = r.source==='isellbeer';
@@ -407,7 +411,7 @@ function evHtml(e){
     <p class="act-h">${head}</p>
     ${r.note ? `<p class="act-t">${E(r.note)}</p>` : ''}
     <p class="act-m">${E(r.rep_name||'')} · ${E(fmtWhen(r.created_at || r.updated_at))}</p>
-    ${canDone ? `<button type="button" class="btn outline sm" data-done="${E(r.id)}">Mark Done</button>` : ''}</div></li>`;
+    ${canDone ? `<a class="btn outline sm" href="../tasks/?${E(new URLSearchParams({account:ctx.n,name:ctx.name,title:r.note||'Account follow-up',source:'followup:'+r.id,from:location.pathname+location.search+location.hash}).toString())}#new">Add to My Day</a><button type="button" class="btn outline sm" data-done="${E(r.id)}">Mark Done</button>` : ''}</div></li>`;
 }
 const fmtN = n => (Math.round(Number(n||0)*10)/10).toLocaleString('en-US');
 function stateNote(st){
@@ -487,7 +491,7 @@ function timelineHtml(st, full){
 /* ---------------- note composer with a device draft ---------------- */
 function composerHtml(){
   if(ctx.readOnly || !cfg()) return '';
-  return `<form class="ncomp" id="ncomp" novalidate>
+  return `<a class="btn outline" href="../tasks/?account=${encodeURIComponent(ctx.n)}&name=${encodeURIComponent(ctx.name)}#new">Add Task</a><form class="ncomp" id="ncomp" novalidate>
     <label class="sr" for="ntext">Note</label>
     <textarea id="ntext" rows="2" maxlength="2000" placeholder="Write a note about ${E(ctx.name)}…"></textarea>
     <div class="ncomp-x" hidden>

@@ -28,7 +28,7 @@ const uuid = () => (crypto.randomUUID ? crypto.randomUUID() : 'xxxxxxxx-xxxx-4xx
 /* ---------------- dates ---------------- */
 const pad = n => String(n).padStart(2, '0');
 const ymd = d => d.getFullYear() + '-' + pad(d.getMonth()+1) + '-' + pad(d.getDate());
-const TODAY = ymd(new Date());
+let TODAY = new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
 function addDays(s, n){ const d = new Date(s + 'T00:00:00'); d.setDate(d.getDate() + n); return ymd(d); }
 const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
@@ -84,7 +84,8 @@ function friendly(e){
   return m;
 }
 async function loadAll(){
-  const tasks = await rest('field_tasks?select=*&archived_at=is.null&order=due_date.asc.nullslast,created_at.desc&limit=1000');
+  let tasks = [], offset = 0;
+  for(;;){ const page = await rest('field_tasks?select=*&archived_at=is.null&order=due_date.asc.nullslast,created_at.desc,id.asc&limit=500&offset='+offset); tasks.push(...page); if(page.length<500) break; offset+=500; }
   const reads = await rest('field_task_reads?select=task_id,seen_at');
   const rd = {}; (reads || []).forEach(r => { rd[r.task_id] = r.seen_at; });
   S.reads = rd;
@@ -101,12 +102,13 @@ function previewMine(t){
   return have.toLowerCase() === want.toLowerCase();
 }
 async function loadPeople(){
+  try { const people=await rest('rpc/kdh_work_people',{method:'POST',body:{p_assign:true}}); S.people.associate=people; S.people.rep=people.filter(p=>p.role==='rep'); return; } catch(e){ if(!e.missing) throw e; }
   if(ROLE === 'associate') return;
   try{ S.people.associate = (await rest('rpc/kdh_people', {method: 'POST', body: {p_role: 'associate'}})) || []; }catch(e){ if(e.missing) throw e; }
   if(ROLE === 'manager'){ try{ S.people.rep = (await rest('rpc/kdh_people', {method: 'POST', body: {p_role: 'rep'}})) || []; }catch(e){} }
 }
 async function loadComments(id){
-  const rows = await rest('field_task_comments?select=*&task_id=eq.' + encodeURIComponent(id) + '&order=created_at.asc&limit=500');
+  let rows=[],offset=0; for(;;){const page=await rest('field_task_comments?select=*&task_id=eq.'+encodeURIComponent(id)+'&order=created_at.asc,id.asc&limit=500&offset='+offset);rows.push(...page);if(page.length<500)break;offset+=500;}
   S.comments[id] = rows || [];
   return S.comments[id];
 }
@@ -116,14 +118,17 @@ async function patchTask(id, patch){
   const t = rows[0]; const i = S.tasks.findIndex(x => x.id === id); if(i >= 0) S.tasks[i] = t; else S.tasks.push(t);
   return t;
 }
-async function addComment(id, body, photo_path){
-  const rows = await rest('field_task_comments', {method: 'POST', body: {task_id: id, body: body || null, photo_path: photo_path || null, kind: photo_path ? 'photo' : 'comment'}, headers: {prefer: 'return=representation'}});
-  const c = rows && rows[0]; if(c) (S.comments[id] = S.comments[id] || []).push(c);
+async function addComment(id, body, photo_path, client_id){
+  const rows = await rest('field_task_comments?on_conflict=author_email,client_id', {method: 'POST', body: {task_id: id, body: body || null, photo_path: photo_path || null, kind: photo_path ? 'photo' : 'comment', client_id: client_id || uuid()}, headers: {prefer: 'resolution=ignore-duplicates,return=representation'}});
+  const c = rows && rows[0]; if(!c) { await loadComments(id); return null; } if(c) (S.comments[id] = S.comments[id] || []).push(c);
   return c;
 }
 async function markRead(id){
   if(PREVIEW) return;
-  try{ await rest('field_task_reads', {method: 'POST', body: {task_id: id, email: 'x'}, headers: {prefer: 'resolution=merge-duplicates,return=minimal'}}); S.reads[id] = new Date().toISOString(); }catch(e){}
+  try{ const viewedAt=new Date().toISOString(); await rest('field_task_reads?on_conflict=task_id,email', {method: 'POST', body: {task_id: id, email: MY_EMAIL}, headers: {prefer: 'resolution=merge-duplicates,return=minimal'}}); S.reads[id] = viewedAt;
+    await rest('work_notifications?task_id=eq.'+encodeURIComponent(id)+'&recipient=eq.'+encodeURIComponent(MY_EMAIL)+'&read_at=is.null&created_at=lte.'+encodeURIComponent(viewedAt),{method:'PATCH',body:{read_at:viewedAt},headers:{prefer:'return=minimal'}});
+    if(window.KdhWork) window.KdhWork.refresh();
+  }catch(e){}
 }
 // "New" = something happened since you last opened it. With no read row yet, a task
 // you created yourself is new only once someone else has touched it.
@@ -193,6 +198,7 @@ function go(hash){ location.hash = hash; }
 function route(){
   const h = location.hash.replace(/^#/, '');
   const m = h.match(/^([a-z]+)(?:=(.+))?$/);
+  if(h.startsWith('new')) return {v:'new',id:''};
   return m ? {v: m[1], id: m[2] || ''} : {v: 'list', id: ''};
 }
 function sheet(title, bodyHtml, opts){
@@ -260,7 +266,7 @@ function viewRep(){
   const T = S.tasks; const f = S.filter;
   const counts = {all: T.length, open: T.filter(isOpen).length, done: T.filter(t => t.status === 'done').length, blocked: T.filter(t => t.status === 'blocked').length};
   const seg = '<div class="seg" role="group" aria-label="Filter">' + [['open', 'Open'], ['blocked', 'Blocked'], ['done', 'Done'], ['all', 'All']].map(([k, l]) => '<button type="button" data-f="' + k + '" aria-pressed="' + (f === k) + '">' + l + '<small>' + counts[k] + '</small></button>').join('') + '</div>';
-  let h = '<div class="tk-head"><h1>Field Tasks<small>' + (PREVIEW ? esc(U.name) + '’s tasks · preview, saving is off' : 'Tasks you assigned to sales associates') + '</small></h1>' + (PREVIEW ? '' : '<a class="btn primary new" href="#new">' + PLUS + 'New Task</a>') + '</div>' + seg;
+  let h = '<div class="tk-head"><h1>Field Tasks<small>' + (PREVIEW ? esc(U.name) + '’s tasks · preview, saving is off' : 'Your tasks and delegated work') + '</small></h1>' + (PREVIEW ? '' : '<a class="btn primary new" href="#new">' + PLUS + 'New Task</a>') + '</div>' + seg;
   if(!T.length){ h += '<div class="empty">No tasks yet.' + (PREVIEW ? '' : ' Tap New Task to hand a display, tap handle or POS drop to a sales associate.') + '</div>'; }
   else if(f === 'open'){
     const open = T.filter(isOpen); const att = open.filter(t => unseen(t) || isOverdue(t)).sort(byDue), rest = open.filter(t => !(unseen(t) || isOverdue(t))).sort(byDue);
@@ -274,6 +280,7 @@ function viewRep(){
 }
 function mgrFiltered(){
   const m = S.mf; let L = S.tasks.slice();
+  if(m.account) L=L.filter(t=>t.account_num===m.account);
   if(m.status === 'open') L = L.filter(isOpen); else if(m.status) L = L.filter(t => t.status === m.status);
   if(m.rep) L = L.filter(t => t.rep_email === m.rep);
   if(m.assoc) L = L.filter(t => t.associate_email === m.assoc);
@@ -291,19 +298,20 @@ function viewManager(){
   const sel = (name, label, opts) => '<div><label for="mf-' + name + '">' + label + '</label><select id="mf-' + name + '" data-mf="' + name + '">' + opts.map(([v, l]) => '<option value="' + esc(v) + '"' + ((S.mf[name] || '') === v ? ' selected' : '') + '>' + esc(l) + '</option>').join('') + '</select></div>';
   const reps = uniq(T.map(t => [t.rep_email, t.rep_name])), assocs = uniq(T.map(t => [t.associate_email, t.associate_name]));
   const perA = {}; open.forEach(t => { perA[t.associate_name || t.associate_email] = (perA[t.associate_name || t.associate_email] || 0) + 1; });
-  let h = '<h1>Field Tasks<small>Team overview · read-only' + (PREVIEW ? ' · preview' : '') + '</small></h1>' +
+  let h = '<h1>Field Tasks<small>Team overview' + (PREVIEW ? ' · preview' : '') + '</small></h1>' +
     '<div class="strip"><div class="tile"><b>' + open.length + '</b><span>Open</span></div><div class="tile' + (over.length ? ' bad' : '') + '"><b>' + over.length + '</b><span>Overdue</span></div><div class="tile"><b>' + doneWk.length + '</b><span>Done This Week</span></div><div class="tile"><b>' + (avg == null ? '–' : avg < 1 ? (Math.round(avg*24) + 'h') : (Math.round(avg*10)/10 + 'd')) + '</b><span>Avg Time to Complete</span></div></div>';
+  if(!PREVIEW) h += '<a class="btn primary" href="#new">Assign Task</a>';
   const names = Object.keys(perA).sort();
   if(names.length) h += '<div class="per">' + names.map(n => '<button type="button" class="chip" data-assoc-name="' + esc(n) + '"><span>' + esc(n) + ' · ' + perA[n] + ' open</span></button>').join('') + '</div>';
   h += '<div class="fbar">' + sel('status', 'Status', [['', 'All'], ['open', 'Open'], ['assigned', 'Assigned'], ['in_progress', 'In Progress'], ['blocked', 'Blocked'], ['done', 'Done']]) +
-    sel('rep', 'Rep', [['', 'All']].concat(reps)) + sel('assoc', 'Associate', [['', 'All']].concat(assocs)) +
+    sel('account', 'Account', [['', 'All']].concat(uniq(T.filter(t=>t.account_num).map(t=>[t.account_num,(t.account_name||t.account_num)+' · #'+t.account_num])))) + sel('rep', 'Created By', [['', 'All']].concat(reps)) + sel('assoc', 'Assigned To', [['', 'All']].concat(assocs)) +
     sel('type', 'Task Type', [['', 'All']].concat(TYPE_ORDER.map(k => [k, TYPES[k]]))) + sel('due', 'Due', [['', 'Any'], ['over', 'Overdue'], ['today', 'Today'], ['week', 'Next 7 Days'], ['none', 'No Due Date']]) + '</div>';
   const L = mgrFiltered();
   h += '<p class="tk-sub"><b>' + L.length + '</b> of ' + T.length + ' tasks</p>';
   if(!L.length) h += '<div class="empty">' + (T.length ? 'No tasks match these filters.' : 'No tasks yet. Reps create them from Field Tasks.') + '</div>';
   else {
     const th = (k, l) => '<th scope="col" data-sort="' + k + '"' + (S.sort.k === k ? ' aria-sort="' + (S.sort.d > 0 ? 'ascending' : 'descending') + '"' : '') + '>' + l + '</th>';
-    h += '<div class="tbl-wrap"><table class="tbl"><thead><tr>' + th('status', 'Status') + th('task', 'Task') + th('account', 'Account') + th('rep', 'Rep') + th('assoc', 'Associate') + th('due', 'Due') + th('pri', 'Priority') + th('done', 'Completed') + '</tr></thead><tbody>' +
+    h += '<div class="tbl-wrap"><table class="tbl"><thead><tr>' + th('status', 'Status') + th('task', 'Task') + th('account', 'Account') + th('rep', 'Rep') + th('assoc', 'Assigned To') + th('due', 'Due') + th('pri', 'Priority') + th('done', 'Completed') + '</tr></thead><tbody>' +
       L.map(t => '<tr><td><span class="chip st ' + t.status + '">' + STATUS[t.status] + '</span></td><td><a href="#task=' + esc(t.id) + '">' + esc(t.title) + '</a><br><small style="color:var(--kdh-text-3)">' + TYPES[t.task_type] + '</small></td><td>' + esc(t.account_name || '–') + '</td><td>' + esc(t.rep_name || '') + '</td><td>' + esc(t.associate_name || '') + '</td><td><span class="chip due ' + dueClass(t) + '">' + esc(t.due_date ? dueText(t.due_date) : 'None') + '</span></td><td>' + (t.priority === 'urgent' ? '<span class="chip urgent">Urgent</span>' : 'Normal') + '</td><td>' + esc(t.completed_at ? when(t.completed_at) : '–') + '</td></tr>').join('') + '</tbody></table></div>';
     h += '<div class="cards mgr">' + L.map(t => '<a class="card" href="#task=' + esc(t.id) + '"><span class="t">' + esc(t.title) + '</span><span class="m">' + esc(t.rep_name || '') + ' → ' + esc(t.associate_name || '') + (t.account_name ? ' · ' + esc(t.account_name) : '') + '</span><span class="chips">' + chipsFor(t, {status: 1, type: 1, noAcct: 1}) + '</span></a>').join('') + '</div>';
   }
@@ -313,10 +321,11 @@ function uniq(pairs){ const m = {}; pairs.forEach(([e, n]) => { if(e && !m[e]) m
 
 /* ---------------- detail ---------------- */
 function viewDetail(t, comments){
-  const mine = ROLE === 'associate' ? MY_EMAIL === (t.associate_email || '').toLowerCase() : MY_EMAIL === (t.rep_email || '').toLowerCase();
-  const canStatus = ROLE === 'associate' && mine && !PREVIEW;
-  const canEdit = ROLE === 'rep' && mine && !PREVIEW;
-  const canComment = !PREVIEW && (ROLE === 'manager' || mine);
+  const assigned = MY_EMAIL === (t.associate_email || '').toLowerCase();
+  const mine = MY_EMAIL === (t.rep_email || '').toLowerCase();
+  const canStatus = (assigned || ROLE === 'manager') && !PREVIEW;
+  const canEdit = (mine || ROLE === 'manager') && !PREVIEW;
+  const canComment = !PREVIEW && (ROLE === 'manager' || mine || assigned);
   const over = isOverdue(t);
   let h = '<div class="dh"><a class="back" href="#">' + BACKI + (ROLE === 'associate' ? 'My Tasks' : 'Field Tasks') + '</a><span class="sp"></span><span class="chip st ' + t.status + '">' + STATUS[t.status] + '</span>' + (t.priority === 'urgent' ? '<span class="chip urgent">Urgent</span>' : '') + '</div>' +
     '<h1 class="dtitle">' + esc(t.title) + '</h1>';
@@ -331,7 +340,9 @@ function viewDetail(t, comments){
     '<div class="f"><label>Task Type</label><b>' + TYPES[t.task_type] + '</b></div><div class="f"><label>Priority</label><b>' + (t.priority === 'urgent' ? 'Urgent' : 'Normal') + '</b></div><div class="f"><label>Assigned By</label><b>' + esc(t.rep_name || '') + '</b></div><div class="f"><label>Created</label><b>' + esc(when(t.created_at)) + '</b></div>' + (t.completed_at ? '<div class="f"><label>Completed</label><b>' + esc(when(t.completed_at)) + '</b></div>' : '') + '</div>';
   h += '<h2>Description</h2><div class="desc' + (t.description ? '' : ' none') + '">' + (t.description ? esc(t.description) : 'No description.') + '</div>';
   if(t.photo_path) h += '<h2>Completion Photo</h2><div class="ph" id="tkPhoto" data-path="' + esc(t.photo_path) + '"><img alt="Completion photo" src=""><div class="pm"><b>' + (t.completion_note ? esc(t.completion_note) : 'Photo attached') + '</b>' + (t.completed_at ? esc(when(t.completed_at)) : '') + ' · <a href="#" data-open-photo>Open</a></div></div>';
-  if(canEdit) h += '<div class="acts" style="margin:0 0 14px"><a class="btn" href="#edit=' + esc(t.id) + '">Edit Task</a>' + (t.status === 'assigned' ? '<button type="button" class="btn danger" id="btnWithdraw">Withdraw Task</button>' : '') + '</div>';
+  if(t.source_url) h += '<a class="btn" href="'+esc(t.source_url)+'">Open Related Work</a>';
+  if(t.completion_note && !t.photo_path) h += '<h2>Completion Note</h2><p>'+esc(t.completion_note)+'</p>';
+  if(canEdit) h += '<div class="acts" style="margin:0 0 14px"><a class="btn" href="#edit=' + esc(t.id) + '">Edit Task</a>' + (t.rep_email===MY_EMAIL && (t.personal || t.status === 'assigned') ? '<button type="button" class="btn danger" id="btnWithdraw">Delete Task</button>' : '') + '</div>';
   h += '<h2>Thread</h2><div class="thread" id="thread">' + threadHtml(comments) + '</div>';
   if(canComment) h += '<form class="composer" id="composer"><textarea id="cBody" rows="1" placeholder="Write a message…" aria-label="Message"></textarea><button type="button" class="btn cam" id="cCam" aria-label="Attach a photo">' + CAM + '</button><button type="submit" class="btn primary" id="cSend" aria-label="Send">' + SEND + '</button></form><div id="cAtt"></div>';
   else if(PREVIEW) h += '<p class="tk-note">Saving is off in preview. These are ' + esc(first(U.name)) + '’s tasks.</p>';
@@ -361,21 +372,21 @@ function completeFlow(t){
   const np = $('#shNoPhoto', w); if(np) np.addEventListener('click', () => checkPhoto(t, null));
 }
 async function checkPhoto(t, file){
-  let img = null;
+  let img = null, uploadedPath = null;
   if(file){ try{ img = await toJpeg(file, 2048); }catch(e){ toast(friendly(e)); return; } }
   const w = sheet('Check Your Photo', '<div class="chk">' + (img ? '<img src="' + img.url + '" alt="Your photo">' : '<p class="kdh-sheet-p">No photo attached.</p>') + '<div class="fld" style="margin-top:10px"><label for="shNote">Note <small>(optional)</small></label><textarea id="shNote" rows="2" placeholder="Anything the rep should know"></textarea></div><div class="prog" id="shProg" hidden><i></i></div><div class="err-line" id="shErr" hidden></div>' +
     '<div class="sheet-foot"><button type="button" class="btn ok" id="shSubmit">' + TICK + 'Submit &amp; Complete</button>' + (img ? '<button type="button" class="btn" id="shRetake">Retake Photo</button>' : '<button type="button" class="btn" id="shRetake">Add a Photo</button>') + '</div></div>', {noFocus: 1});
   $('#shRetake', w).addEventListener('click', async () => { const f = await pickFile(!!img); if(f) checkPhoto(t, f); });
   $('#shSubmit', w).addEventListener('click', async () => {
-    const b = $('#shSubmit', w); b.setAttribute('aria-busy', 'true'); const err = $('#shErr', w); err.hidden = true;
+    const b = $('#shSubmit', w); if(b.disabled) return; b.disabled=true; b.setAttribute('aria-busy', 'true'); const err = $('#shErr', w); err.hidden = true;
     try{
       let path = null;
-      if(img){ const pr = $('#shProg', w); pr.hidden = false; path = t.id + '/' + uuid() + '.jpg'; await upload(path, img.blob, p => { pr.querySelector('i').style.width = Math.round(p*100) + '%'; }); }
+      if(img){ const pr = $('#shProg', w); pr.hidden = false; path = uploadedPath || (t.id + '/' + uuid() + '.jpg'); if(!uploadedPath){ await upload(path, img.blob, p => { pr.querySelector('i').style.width = Math.round(p*100) + '%'; }); uploadedPath=path; } }
       const note = $('#shNote', w).value.trim();
       await patchTask(t.id, {status: 'done', photo_path: path || t.photo_path || null, completion_note: note || null});
-      if(path) await addComment(t.id, note || 'Completed', path).catch(() => {});
+      // The database logs completion and its photo in the same transaction.
       delete S.comments[t.id]; closeSheet(); toast('Task completed'); render();
-    }catch(e){ err.textContent = friendly(e); err.hidden = false; b.removeAttribute('aria-busy'); }
+    }catch(e){ err.textContent = friendly(e); err.hidden = false; b.disabled=false; b.removeAttribute('aria-busy'); }
   });
 }
 function blockFlow(t, revert){
@@ -398,16 +409,18 @@ async function setStatus(t, st, revert){
 
 /* ---------------- new / edit form ---------------- */
 function viewForm(t){
-  const edit = !!t; const d = edit ? t : {title: '', description: '', task_type: 'display', account_num: '', account_name: '', associate_email: '', due_date: '', priority: 'normal'};
+  const edit = !!t; const d = edit ? t : {title: '', description: '', task_type: 'other', account_num: new URLSearchParams(location.search).get('account') || '', account_name: new URLSearchParams(location.search).get('name') || '', associate_email: MY_EMAIL, due_date: '', priority: 'normal'};
   const assocs = S.people.associate;
+  if(!edit) d.title=new URLSearchParams(location.search).get('title') || '';
+  if(edit && !assocs.some(p=>p.email===d.associate_email)) assocs.push({email:d.associate_email,name:d.associate_name});
   let h = '<div class="dh"><a class="back" href="' + (edit ? '#task=' + esc(t.id) : '#') + '">' + BACKI + (edit ? 'Task' : 'Field Tasks') + '</a></div><h1 class="dtitle">' + (edit ? 'Edit Task' : 'New Task') + '</h1>';
   h += '<form class="form" id="tf" novalidate>' +
     '<div class="fld"><label for="fTitle">Task</label><input type="text" id="fTitle" maxlength="160" value="' + esc(d.title) + '" placeholder="Build a Corona floor display" autocomplete="off"><div class="err" id="eTitle" hidden></div></div>' +
     '<div class="fld"><label for="fDesc">Details <small>(optional)</small></label><textarea id="fDesc" rows="3" placeholder="What to build, where, how many cases, anything the associate needs">' + esc(d.description || '') + '</textarea></div>' +
-    '<div class="fld"><label for="fAssoc">Sales Associate</label>' + (assocs.length ? '<select id="fAssoc"><option value="">Choose…</option>' + assocs.map(p => '<option value="' + esc(p.email) + '"' + (p.email === d.associate_email ? ' selected' : '') + '>' + esc(p.name) + '</option>').join('') + '</select>' : '<div class="hint">No sales associates are on the allow list yet.</div>') + '<div class="err" id="eAssoc" hidden></div></div>' +
+    '<div class="fld"><label for="fAssoc">Assigned To</label>' + (assocs.length ? '<select id="fAssoc"><option value="">Choose…</option>' + assocs.map(p => '<option value="' + esc(p.email) + '"' + (p.email === d.associate_email ? ' selected' : '') + '>' + esc(p.name) + (p.email===MY_EMAIL?' (Me)':'') + '</option>').join('') + '</select>' : '<div class="hint">No eligible employees are available.</div>') + '<div class="err" id="eAssoc" hidden></div></div>' +
     '<div class="fld"><label for="fAcct">Account <small>(optional)</small></label><div class="pick" id="acctPick">' + (d.account_name ? pickedHtml(d) : '<input type="search" id="fAcct" placeholder="Search your accounts by name, town or number" autocomplete="off"><div class="opts" id="acctOpts" hidden></div>') + '</div></div>' +
     '<div class="fld"><label>Task Type</label><div class="seg" style="margin:0" role="group" aria-label="Task type">' + TYPE_ORDER.map(k => '<button type="button" data-type="' + k + '" aria-pressed="' + (k === d.task_type) + '">' + TYPES[k] + '</button>').join('') + '</div><div class="hint" id="typeHint">' + typeHint(d.task_type) + '</div></div>' +
-    '<div class="fld"><label for="fDue">Due Date <small>(optional)</small></label><input type="date" id="fDue" value="' + esc(d.due_date || '') + '"><div class="quick"><button type="button" data-due="0">Today</button><button type="button" data-due="1">Tomorrow</button><button type="button" data-due="7">Next Week</button><button type="button" data-due="">Clear</button></div></div>' +
+    '<div class="fld"><label for="fPlan">Show in My Day</label><input type="date" id="fPlan" value="' + esc(d.planned_on || TODAY) + '"></div><div class="fld"><label for="fDue">Due Date <small>(optional)</small></label><input type="date" id="fDue" value="' + esc(d.due_date || '') + '"><div class="quick"><button type="button" data-due="0">Today</button><button type="button" data-due="1">Tomorrow</button><button type="button" data-due="7">Next Week</button><button type="button" data-due="">Clear</button></div></div>' +
     '<div class="fld"><label>Priority</label><div class="toggle2" role="group" aria-label="Priority"><button type="button" data-pri="normal" aria-pressed="' + (d.priority !== 'urgent') + '">Normal</button><button type="button" class="urg" data-pri="urgent" aria-pressed="' + (d.priority === 'urgent') + '">Urgent</button></div></div>' +
     '<div class="err-line" id="fErr" hidden></div>' +
     '<div class="savebar"><a class="btn" href="' + (edit ? '#task=' + esc(t.id) : '#') + '">Cancel</a><button type="submit" class="btn primary" id="fSave">' + (edit ? 'Save Changes' : 'Assign Task') + '</button></div></form>';
@@ -416,7 +429,7 @@ function viewForm(t){
 const typeHint = k => k === 'display' || k === 'tap_handle' ? 'A completion photo is required.' : 'A completion photo is optional.';
 function pickedHtml(d){ return '<div class="picked" id="acctPicked" data-n="' + esc(d.account_num || '') + '" data-name="' + esc(d.account_name) + '"><span>' + esc(d.account_name) + (d.account_num ? '<small>#' + esc(d.account_num) + '</small>' : '') + '</span><button type="button" class="btn sm ghost" id="acctClear">Change</button></div>'; }
 function wireForm(t){
-  const f = $('#tf'); const st = {type: t ? t.task_type : 'display', pri: t ? t.priority : 'normal'};
+  const f = $('#tf'); const createId=uuid(); const st = {type: t ? t.task_type : 'other', pri: t ? t.priority : 'normal'};
   f.addEventListener('click', e => {
     const ty = e.target.closest('[data-type]'); if(ty){ st.type = ty.getAttribute('data-type'); f.querySelectorAll('[data-type]').forEach(b => b.setAttribute('aria-pressed', b === ty)); $('#typeHint').textContent = typeHint(st.type); return; }
     const pr = e.target.closest('[data-pri]'); if(pr){ st.pri = pr.getAttribute('data-pri'); f.querySelectorAll('[data-pri]').forEach(b => b.setAttribute('aria-pressed', b === pr)); return; }
@@ -435,22 +448,25 @@ function wireForm(t){
   });
   f.addEventListener('submit', async e => {
     e.preventDefault();
+    if($('#fSave').disabled) return;
     const title = $('#fTitle').value.trim(); const sel = $('#fAssoc'); const assoc = sel ? sel.value : '';
     let ok = true;
     $('#eTitle').hidden = !!title; if(!title){ $('#eTitle').textContent = 'Give the task a name.'; ok = false; }
-    $('#eAssoc').hidden = !!assoc; if(!assoc){ $('#eAssoc').textContent = 'Pick a sales associate.'; ok = false; }
+    $('#eAssoc').hidden = !!assoc; if(!assoc){ $('#eAssoc').textContent = 'Choose who will handle this task.'; ok = false; }
     if(!ok) return;
     const pk = $('#acctPicked');
     const def = {title, description: $('#fDesc').value.trim() || null, task_type: st.type, associate_email: assoc, account_num: pk ? (pk.getAttribute('data-n') || null) : null, account_name: pk ? pk.getAttribute('data-name') : null, due_date: $('#fDue').value || null, priority: st.pri};
-    const b = $('#fSave'); b.setAttribute('aria-busy', 'true'); const err = $('#fErr'); err.hidden = true;
+    def.planned_on=$('#fPlan').value || TODAY;
+    const b = $('#fSave'); b.disabled=true; b.setAttribute('aria-busy', 'true'); const err = $('#fErr'); err.hidden = true;
     try{
       if(t){ await patchTask(t.id, def); toast('Saved'); go('task=' + t.id); }
       else {
-        const rows = await rest('field_tasks', {method: 'POST', body: def, headers: {prefer: 'return=representation'}});
-        const nt = rows && rows[0]; if(!nt) throw new Error('The task was not saved.');
+        const params=new URLSearchParams(location.search); if(params.get('source')) { const existing=await rest('field_tasks?rep_email=eq.'+encodeURIComponent(MY_EMAIL)+'&source_key=eq.'+encodeURIComponent(params.get('source'))); if(existing.length){if(!S.tasks.some(t=>t.id===existing[0].id))S.tasks.push(existing[0]);go('task='+existing[0].id);return;} } def.id=createId; def.source_key=params.get('source')||null; def.source_url=params.get('from')||null;
+        const rows = await rest('field_tasks?on_conflict=id', {method: 'POST', body: def, headers: {prefer: 'resolution=ignore-duplicates,return=representation'}});
+        const nt = rows && rows[0] || (await rest('field_tasks?id=eq.'+createId))[0]; if(!nt) throw new Error('The task was not saved.');
         S.tasks.unshift(nt); await markRead(nt.id); toast('Task assigned to ' + first(nt.associate_name)); go('task=' + nt.id);
       }
-    }catch(e2){ err.textContent = friendly(e2); err.hidden = false; b.removeAttribute('aria-busy'); }
+    }catch(e2){ err.textContent = friendly(e2); err.hidden = false; b.disabled=false; b.removeAttribute('aria-busy'); }
   });
 }
 
@@ -463,7 +479,8 @@ async function render(){
   const r = route(); CUR = null;
   window.scrollTo(0, 0);
   if(r.v === 'task' && r.id){
-    const t = S.tasks.find(x => x.id === r.id);
+    let t = S.tasks.find(x => x.id === r.id);
+    if(!t && !PREVIEW){try{t=(await rest('field_tasks?id=eq.'+encodeURIComponent(r.id)))[0];if(t)S.tasks.push(t);}catch(e){}}
     if(!t){ app.innerHTML = '<div class="dh"><a class="back" href="#">' + BACKI + 'Back</a></div><div class="kdh-state"><b>That task is not here.</b> It may have been withdrawn or reassigned.</div>'; return; }
     CUR = t.id;
     let cs = S.comments[t.id]; if(!cs){ app.innerHTML = viewDetail(t, []); try{ cs = await loadComments(t.id); }catch(e){ cs = []; } if(CUR !== t.id) return; }
@@ -474,7 +491,7 @@ async function render(){
   }
   if((r.v === 'new' || r.v === 'edit') && ROLE !== 'associate' && !PREVIEW){
     const t = r.v === 'edit' ? S.tasks.find(x => x.id === r.id) : null;
-    if(r.v === 'edit' && !t){ go(''); return; }
+    if(r.v === 'edit' && (!t || (t.rep_email!==MY_EMAIL && ROLE!=='manager'))){ go(t?'task='+t.id:''); return; }
     app.innerHTML = viewForm(t); wireForm(t); const ft = $('#fTitle'); if(ft && !t) ft.focus();
     return;
   }
@@ -495,37 +512,38 @@ function wireDetail(t){
   const bb = $('#btnBlock'); if(bb) bb.addEventListener('click', () => blockFlow(t));
   const br = $('#btnReopen'); if(br) br.addEventListener('click', () => setStatus(t, 'in_progress'));
   const bw = $('#btnWithdraw'); if(bw) bw.addEventListener('click', async () => {
-    if(!confirm('Withdraw this task? The associate will no longer see it.')) return;
+    if(!confirm(t.personal?'Delete this task?':'Withdraw this task? The assignee will no longer see it.')) return;
     try{ const rows = await rest('field_tasks?id=eq.' + encodeURIComponent(t.id), {method: 'DELETE', headers: {prefer: 'return=representation'}}); if(!rows || !rows.length) throw new Error('Not withdrawn -- the associate may already have started it.'); S.tasks = S.tasks.filter(x => x.id !== t.id); toast('Task withdrawn'); go(''); }catch(e){ toast(friendly(e)); }
   });
   const form = $('#composer'); if(!form) return;
-  let att = null;
-  const ta = $('#cBody'); ta.addEventListener('input', () => { ta.style.height = 'auto'; ta.style.height = Math.min(140, ta.scrollHeight) + 'px'; });
+  let att = null, pendingComment=null, uploadedPath=null;
+  const ta = $('#cBody'); ta.addEventListener('input', () => { pendingComment=null; ta.style.height = 'auto'; ta.style.height = Math.min(140, ta.scrollHeight) + 'px'; });
   ta.addEventListener('keydown', e => { if(e.key === 'Enter' && (e.metaKey || e.ctrlKey)) form.requestSubmit(); });
   $('#cCam').addEventListener('click', async () => {
     const f = await pickFile(true); if(!f) return;
-    try{ att = await toJpeg(f, 2048); $('#cAtt').innerHTML = '<div class="att"><img src="' + att.url + '" alt=""><span>Photo attached</span><button type="button" class="btn sm ghost" id="cAttX">Remove</button></div>'; $('#cAttX').addEventListener('click', () => { att = null; $('#cAtt').innerHTML = ''; }); }
+    try{ att = await toJpeg(f, 2048); pendingComment=null; uploadedPath=null; $('#cAtt').innerHTML = '<div class="att"><img src="' + att.url + '" alt=""><span>Photo attached</span><button type="button" class="btn sm ghost" id="cAttX">Remove</button></div>'; $('#cAttX').addEventListener('click', () => { att = null; pendingComment=null; uploadedPath=null; $('#cAtt').innerHTML = ''; }); }
     catch(e){ toast(friendly(e)); }
   });
   form.addEventListener('submit', async e => {
     e.preventDefault();
-    const body = ta.value.trim(); if(!body && !att) return;
-    const b = $('#cSend'); b.setAttribute('aria-busy', 'true');
+    const body = ta.value.trim(); if(!body && !att) return; if($('#cSend').disabled) return; if(!pendingComment) pendingComment=uuid();
+    const b = $('#cSend'); b.disabled=true; b.setAttribute('aria-busy', 'true');
     try{
       let path = null;
-      if(att){ path = t.id + '/' + uuid() + '.jpg'; await upload(path, att.blob); }
-      const c = await addComment(t.id, body, path);
+      if(att){ path = uploadedPath || (t.id + '/' + uuid() + '.jpg'); if(!uploadedPath) await upload(path, att.blob); uploadedPath=path; }
+      const c = await addComment(t.id, body, path, pendingComment); pendingComment=null; uploadedPath=null;
       ta.value = ''; ta.style.height = 'auto'; att = null; $('#cAtt').innerHTML = '';
       const th = $('#thread'); if(th){ th.innerHTML = threadHtml(S.comments[t.id]); hydratePhotos(th); th.lastElementChild.scrollIntoView({block: 'nearest'}); }
       const i = S.tasks.findIndex(x => x.id === t.id); if(i >= 0) S.tasks[i].updated_at = c && c.created_at || new Date().toISOString();
       markRead(t.id);
     }catch(e2){ toast(friendly(e2)); }
-    b.removeAttribute('aria-busy');
+    b.disabled=false; b.removeAttribute('aria-busy');
   });
 }
 
 /* ---------------- polling: every 30 s while the page is visible ---------------- */
 async function poll(){
+  TODAY=new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
   if(document.visibilityState !== 'visible' || S.sheet || !S.tasks) return;
   const r = route(); if(r.v === 'new' || r.v === 'edit') return;
   try{
@@ -556,6 +574,7 @@ async function boot(){
   render();
   window.addEventListener('hashchange', () => { closeSheet(); render(); });
   S.pollT = setInterval(poll, 30000);
+  window.addEventListener('kdh:work-changed',poll);
   document.addEventListener('visibilitychange', () => { if(document.visibilityState === 'visible') poll(); });
 }
 window.KdhTasks = {state: S, render, reload: async () => { await loadAll(); render(); }};
