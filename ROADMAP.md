@@ -13,7 +13,8 @@ device, a decision).
 
 - [ ] **Alexis's finance workspace (2026-10-15).** A manager flagged `workspace = 'finance'` gets only the Incentive
   Hub (Program View with Export Data / Export Recap), the Incentive Tracker, both MPO trackers, Supplier Budgets and
-  Incentive Performance; the middleware sends her to the hub from anything else and the navigation lists just those.
+  Incentive Performance, with a Home page that shows only those cards; the middleware sends her home from anything
+  else and the navigation lists just those.
   Two SQL Editor steps: (1) run `supabase/migrations/20261015120000_finance_workspace.sql` (adds the column, lets
   View As carry it); (2) `update allowed_users set workspace = 'finance' where email = '<alexis>';`. She must sign
   out and back in once (the workspace rides in her sign-in cookie). Until step 1 runs nothing changes for anyone.

@@ -85,9 +85,10 @@ const FINANCE_PATHS = [
   '/accounts/data/elig/', '/accounts/data/hist/', '/accounts/data/catalog.json', '/accounts/data/index.json', '/accounts/data/products.json',   // what the hub loads; never a rep's route or sales files
   '/rolling-distribution/data/',   // Incentive Performance probes the money / adjust months
 ];
-const FINANCE_HOME = '/hub/';
+const FINANCE_HOME = '/';   // the manager home, which hides every card outside the workspace for them
 function financeMayOpen(pathname) {
   const p = pathname.split('?')[0];
+  if (p === '/' || p === '/index.html') return true;
   return FINANCE_PATHS.some((pre) => p.startsWith(pre) || p + '/' === pre || p === pre.replace(/\/$/, '') + '/index.html');
 }
 

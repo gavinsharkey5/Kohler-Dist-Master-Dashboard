@@ -27,7 +27,7 @@
 <!-- The top bar is injected by shared/kdh-user.js (badge, Previewing chip, account menu with "View as rep"). kdh-home = no Back button. -->
 <meta name="kdh-page" content="Manager Home">
 <meta name="kdh-home" content="manager">
-<script src="shared/kdh-user.js?v=20261015b"></script>
+<script src="shared/kdh-user.js?v=20261015d"></script>
 </head>
 <body>
 
@@ -71,6 +71,11 @@
       <a class="kt" href="hub/">
         <span class="kt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
         <span class="kt-main"><span class="kt-t">Incentives</span><span class="kt-s">Every rep’s programs</span></span>
+        <svg class="kt-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+      <a class="kt" href="incentive-tracking/" data-fin hidden>
+        <span class="kt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M7 16V9"/><path d="M12 16V5"/><path d="M17 16v-6"/></svg></span>
+        <span class="kt-main"><span class="kt-t">Incentive Tracker</span><span class="kt-s">Every program’s detail and payouts</span></span>
         <svg class="kt-chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
       </a>
       <a class="kt" id="off" href="MPOs/off-prem/index.html#view=program">
@@ -251,7 +256,8 @@
   // the FINANCE workspace (2026-10-15): only the incentive, MPO, budget and performance cards; everything else hidden
   if (user && user.ws === 'finance') {
     var KEEP = /^(hub\/|MPOs\/|supplier-budget\/|performance\/|incentive-tracking\/)/;
-    Array.prototype.forEach.call(document.querySelectorAll('a.kt'), function (a) { if (!KEEP.test(a.getAttribute('href') || '')) a.hidden = true; });
+    Array.prototype.forEach.call(document.querySelectorAll('a.kt'), function (a) { a.hidden = !KEEP.test(a.getAttribute('href') || ''); });
+    var h1 = document.querySelector('h1'); if (h1) h1.textContent = 'Home';
     Array.prototype.forEach.call(document.querySelectorAll('.hs'), function (sec) { if (!sec.querySelector('a.kt:not([hidden])')) sec.hidden = true; });
     document.documentElement.classList.add('kdh-fin');
   }

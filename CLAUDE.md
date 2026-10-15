@@ -3370,13 +3370,18 @@ workspace 'finance' may open only `FINANCE_PATHS` (/hub/, /incentive-tracking/, 
 /performance/, /shared/, /carbliss-mpo/data/, /api/, and of /accounts/data/ only elig / hist / catalog / index /
 products -- never a rep's route or sales files), anything else redirects to `FINANCE_HOME` /hub/ (403 for data).
 The kdh_user cookie carries `ws` (api/session.js accessCookies, login/index.html, both now select `*`).
-CHROME (kdh-user.js tag 20261015a everywhere): `isFin(u)` (also from a manager preview cookie's `ws`); navItems =
-Incentives (/hub/) / Off-Premise / On-Premise / Budgets (keys home / off / on / sb), toolItems = a 'Finance' group
-with Incentive Tracker + Incentive Performance (the sidebar's group list gained 'Finance'), where() maps those pages,
-homeOf = the hub, no View As in the menu, the foot / menu say "Finance". View As -> Manager lists her by name only (Gavin: no "(Finance)" tag),
-carries `ws` in the preview cookie and lands on the hub; the manager home (index.html) hides every card outside
-hub / MPOs / supplier-budget / performance / incentive-tracking and empty sections for a finance person (preview, or
-a server without the middleware). Tests (scratchpad): mw_test (finance paths, home redirect, 403s, full manager
+CHROME (kdh-user.js tag 20261015c everywhere): `isFin(u)` (also from a manager preview cookie's `ws`); navItems =
+Home (the root page) / Incentives (/hub/, phone-bar word "Programs" -- six tabs must fit 375px, `short` labels) /
+Off-Premise ("Off-Prem") / On-Premise ("On-Prem") / Budgets (keys home / inc / off / on / sb), toolItems = a
+'Finance' group with Incentive Tracker + Incentive Performance (the sidebar's group list gained 'Finance'), where()
+maps those pages, homeOf = ROOT, no View As in the menu, the foot / menu say "Finance", the bar names the root page
+"Home". HER HOME (Gavin: "a home page with just those tabs she has available") = the manager home (index.html)
+with every card outside hub / MPOs / supplier-budget / performance / incentive-tracking hidden, empty sections
+hidden, the title "Home", plus a `data-fin` Incentive Tracker card that only a finance person sees (28 cards for
+everyone else -- tests count `a.kt:not([hidden])`); the middleware lets a finance manager open `/` and
+`/index.html` and sends her there from anything else (FINANCE_HOME '/'). View As -> Manager lists her by name
+only (Gavin: no "(Finance)" tag), carries `ws` in the preview cookie and lands on the manager home, which then
+trims itself. Tests (scratchpad): mw_test (finance paths, home redirect, 403s, full manager
 untouched), fin_test.mjs (14: sidebar, bottom bar, menu, trimmed home, picker label), sql_budget_test.sh (46),
 viewas / mgr / home / tasks / budget suites. NOTE: scratchpad session_test.mjs has 2 failures that predate this
 (it describes the 2026-10-02 kdh_rt design; session2_test.mjs, which replaced it, is not in this scratchpad).

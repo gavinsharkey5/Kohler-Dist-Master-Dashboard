@@ -77,7 +77,7 @@
   // supplier recaps -- whose site is the Incentive Hub, the Incentive Tracker, both MPO trackers, Supplier Budgets
   // and Incentive Performance, nothing else. The middleware enforces it; this only shapes the chrome.
   function isFin(u) { return !!(u && u.role === 'manager' && u.ws === 'finance'); }
-  var FIN_HOME = ROOT + 'hub/';
+  var FIN_HOME = ROOT;   // the manager home trims itself to the finance cards
   function homeOf(u) { return !u ? ROOT : isFin(u) ? FIN_HOME : u.role === 'manager' ? ROOT : isAssoc(u) ? ASSOC_HOME : REP_HOME; }
 
   // THEME (2026-09-30): the saved choice (localStorage kdh_theme = 'dark' |
@@ -117,6 +117,7 @@
     var m = document.querySelector('meta[name="kdh-page"]');
     // a page can name itself differently for a manager ("My Accounts" / "Accounts")
     if (m && u && u.role === 'manager' && m.getAttribute('data-manager')) return m.getAttribute('data-manager');
+    if (m && m.content === 'Manager Home' && isFin(u)) return 'Home';   // the finance workspace's trimmed home
     if (m && m.content) return m.content;
     var h = document.querySelector('h1'); if (h && h.textContent.trim()) return h.textContent.replace(/\s+/g, ' ').trim();
     return (document.title || '').split(/\s+[|\u2014\u00b7-]\s+/)[0].trim();
@@ -227,9 +228,10 @@
     if (!u) return [];
     if (isAssoc(u)) return [{ key: 'home', label: 'Home', href: ASSOC_HOME }];
     if (isFin(u)) return [
-      { key: 'home', label: 'Incentives', href: FIN_HOME },
-      { key: 'off', label: 'Off-Premise', href: ROOT + 'MPOs/off-prem/index.html' },
-      { key: 'on', label: 'On-Premise', href: ROOT + 'MPOs/on-prem/index.html' },
+      { key: 'home', label: 'Home', href: FIN_HOME },
+      { key: 'inc', label: 'Incentives', short: 'Programs', href: ROOT + 'hub/' },   // the bar's word for the hub everywhere on the site; six tabs must fit a 375px phone
+      { key: 'off', label: 'Off-Premise', short: 'Off-Prem', href: ROOT + 'MPOs/off-prem/index.html' },
+      { key: 'on', label: 'On-Premise', short: 'On-Prem', href: ROOT + 'MPOs/on-prem/index.html' },
       { key: 'sb', label: 'Budgets', href: ROOT + 'supplier-budget/' }
     ];
     var isMgr = u.role === 'manager';
@@ -277,13 +279,13 @@
     var rel = ROOT ? location.href.replace(new URL(ROOT, location.href).href, '') : location.pathname.replace(/^\//, '');
     rel = rel.split(/[?#]/)[0];
     if (isFin(u)) {
-      if (/^hub\//.test(rel)) return { nav: 'home', tool: '' };
+      if (/^hub\//.test(rel)) return { nav: 'inc', tool: '' };
       if (/^MPOs\/off-prem\//.test(rel)) return { nav: 'off', tool: '' };
       if (/^MPOs\/on-prem\//.test(rel)) return { nav: 'on', tool: '' };
       if (/^supplier-budget\//.test(rel)) return { nav: 'sb', tool: '' };
       if (/^incentive-tracking\//.test(rel)) return { nav: 'more', tool: 'inc' };
       if (/^performance\//.test(rel)) return { nav: 'more', tool: 'perf' };
-      return { nav: 'home', tool: '' };
+      return { nav: rel === '' || rel === 'index.html' ? 'home' : '', tool: '' };
     }
     if (/^tasks\//.test(rel)) return isAssoc(u) ? { nav: 'home', tool: '' } : { nav: 'more', tool: 'tasks' };
     if (/^accounts\//.test(rel)) return { nav: 'accounts', tool: '' };
@@ -326,7 +328,7 @@
     var tabs = navItems(u).filter(function (it) { return !(isMgr && it.key === 'inventory'); });
     // the bottom bar says "Accounts" (2026-10-08): "My Accounts" truncated to "My Acco..." on a 390px phone;
     // the sidebar and the page title keep "My Accounts" and the link's aria-label carries the full name
-    t.innerHTML = '<div class="kdh-tabs-in">' + tabs.map(function (it) { return it.key === 'accounts' && it.label === 'My Accounts' ? link('kdh-tab', {key: it.key, href: it.href, label: 'Accounts'}, it.key === w.nav, ' aria-label="My Accounts"') : link('kdh-tab', it, it.key === w.nav); }).join('') +
+    t.innerHTML = '<div class="kdh-tabs-in">' + tabs.map(function (it) { return it.key === 'accounts' && it.label === 'My Accounts' ? link('kdh-tab', {key: it.key, href: it.href, label: 'Accounts'}, it.key === w.nav, ' aria-label="My Accounts"') : it.short ? link('kdh-tab', {key: it.key, href: it.href, label: it.short}, it.key === w.nav, ' aria-label="' + esc(it.label) + '"') : link('kdh-tab', it, it.key === w.nav); }).join('') +
       '<button type="button" class="kdh-tab' + (w.nav === 'more' ? ' on' : '') + '" id="kdhMoreBtn" aria-haspopup="true" aria-expanded="false"' + (w.nav === 'more' ? ' aria-current="page"' : '') + '>' + NAV_ICON.more + '<span>More</span></button></div>';
     document.body.appendChild(t);
     document.documentElement.classList.add('kdh-has-tabs');
@@ -599,7 +601,7 @@
         // manager: picking yourself = leave preview
         var me = cur && (cur.preview ? cur.manager : cur.name);
         if (who.name === me) setPreview(''); else setPreview({ name: who.name, role: 'manager', title: who.title || '', dm: who.dm || '', brands: who.brands || [], ws: who.ws || '' });
-        location.href = who.name !== me && who.ws === 'finance' ? FIN_HOME : (ROOT || '/');   // a finance manager's home is the hub
+        location.href = ROOT || '/';
       });
       document.getElementById('kdhPickerSearch').addEventListener('input', function () { renderPicker(this.value); });
     }
