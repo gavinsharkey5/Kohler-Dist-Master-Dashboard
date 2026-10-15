@@ -11,16 +11,6 @@ device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
 
-- [ ] **Alexis's finance workspace (2026-10-15).** A manager flagged `workspace = 'finance'` gets only the Incentive
-  Hub (Program View with Export Data / Export Recap), both MPO trackers and Supplier Budgets, with a Home page that shows only those cards; the middleware sends her home from anything
-  else and the navigation lists just those.
-  Two SQL Editor steps: (1) run `supabase/migrations/20261015120000_finance_workspace.sql` (adds the column, lets
-  View As carry it); (2) `update allowed_users set workspace = 'finance' where email = '<alexis>';`. She must sign
-  out and back in once (the workspace rides in her sign-in cookie). Until step 1 runs nothing changes for anyone.
-- [ ] **Supplier Budgets: View As a manager (2026-10-15).** Gavin's View As -> Manager now opens /supplier-budget/
-  read-only as that person. For the page to know the previewed manager's standing (editor / brand manager), run
-  `supabase/migrations/20261015090000_budget_preview.sql` in the SQL Editor (one function, managers only). Until then a
-  manager preview shows every account read-only and says so.
 - [ ] **Stay signed in, for real (2026-10-13; reps: "it makes me log in every time, even with
   Remember me").** Cause: Supabase rotates the refresh token on every hourly renewal and the phone
   had to store the new cookie each time; a lost or unapplied renewal left the phone sending the old
@@ -344,6 +334,10 @@ device, a decision).
 - **Account-aware assistant + mock pitch** -- built 2026-09-30 and hardened the same day (server-side account authorization, server-built record, tools on the full record, ledger + spend limits); waiting on the pilot above. Snowflake later adds freshness (daily grain, invoices, inventory); route-wide / comparable-account questions need a permission rule first.
 
 ## Done
+- [x] **Finance workspace LIVE (2026-10-15).** Gavin ran the finance and budget-preview migrations and added the
+  finance person's allow-list row. Her Home shows four cards (Incentives, Off / On-Premise MPOs, Supplier Budgets);
+  every other page sends her home. First real sign-in showed an unstyled page (the middleware blocked the shared
+  stylesheet); fixed the same day and confirmed after a refresh. View As -> Manager shows the same screen.
 
 - [x] **Supplier Budgets LIVE (2026-10-15).** Gavin ran the migration, pasted the seed (two parts: 987 rows from the
   2026 tab, 917 from 2025, 120 accounts for 2026 of which 59 are Needs Review placeholders) and set budget_editor for
