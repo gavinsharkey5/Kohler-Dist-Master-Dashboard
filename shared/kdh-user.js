@@ -82,7 +82,11 @@
   // (kdh_user.upc: Gavin, the brand managers) has it as a tool. The middleware enforces both.
   var IT_HOME = ROOT + 'upc-audit/';
   function isIT(u) { return !!(u && u.role === 'it'); }
-  function canUpc(u) { return !!(u && (isIT(u) || (u.role === 'manager' && u.upc && !u.preview))); }
+  // A sign-in cookie can predate the person's upc_audit flag (it is rewritten only at the next renewal), so a
+  // manager without it in the cookie is asked once against the database (checkUpc) and the answer kept on this
+  // device for 6 hours under kdh_upc:<email>. Only the LINKS follow this; access is still the middleware's call.
+  function upcMemo(u) { try { var v = (localStorage.getItem('kdh_upc:' + String(u.email || '').toLowerCase()) || '').split('|'); return +v[1] > Date.now() - 6 * 3600e3 ? v[0] : ''; } catch (e) { return ''; } }
+  function canUpc(u) { return !!(u && (isIT(u) || (u.role === 'manager' && !u.preview && (u.upc || upcMemo(u) === '1')))); }
   function homeOf(u) { return !u ? ROOT : isFin(u) ? FIN_HOME : u.role === 'manager' ? ROOT : isAssoc(u) ? ASSOC_HOME : isIT(u) ? IT_HOME : REP_HOME; }
 
   // THEME (2026-09-30): the saved choice (localStorage kdh_theme = 'dark' |
@@ -909,7 +913,34 @@
     document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible') renew(false); });
     setInterval(function () { if (document.visibilityState === 'visible') renew(false); }, 5 * 60 * 1000);
   }
-  function boot() { chrome(); bar(); watchType(); keepAlive();
+  function addUpcLinks(u) {
+    var it = { key: 'upc', group: 'Manager', label: 'UPC Registration Audit', href: IT_HOME }, on = where(u).tool === 'upc', tmp = document.createElement('div');
+    var nav = document.querySelector('#kdhSide .kdh-side-nav');
+    if (nav && !nav.querySelector('a[data-nav="upc"]')) { tmp.innerHTML = link('kdh-side-i', it, on); nav.insertBefore(tmp.firstChild, nav.querySelector('a[data-nav="ws"]')); }
+    var tools = document.querySelector('#kdhMenu .kdh-menu-tools');
+    if (tools && !tools.querySelector('a[href$="upc-audit/"]')) {
+      tmp.innerHTML = '<a class="kdh-menu-i" href="' + esc(it.href) + '">' + NAV_ICON.upc + '<span>' + esc(it.label) + '</span></a>';
+      var before = Array.prototype.filter.call(tools.querySelectorAll('a.kdh-menu-i'), function (a) { return a.getAttribute('href') === REP_HOME; })[0] || tools.querySelector('.kdh-menu-g:last-of-type');
+      tools.insertBefore(tmp.firstChild, before || null);
+    }
+    document.dispatchEvent(new CustomEvent('kdh:upc'));
+  }
+  function checkUpc() {
+    var u = user();
+    if (!u || u.role !== 'manager' || u.preview || u.ws === 'finance' || u.upc) return;
+    if (upcMemo(u) === '1') return;   // already drawn by toolItems
+    if (upcMemo(u) === '0') return;
+    var ask = function () {
+      var c = window.KDH_AUTH, t = atCookie(); if (!c || !c.url || !t) return;
+      fetch(String(c.url).replace(/\/$/, '') + '/rest/v1/rpc/kdh_upc_can', { method: 'POST', headers: { apikey: c.key, authorization: 'Bearer ' + t, 'content-type': 'application/json' }, body: '{}' })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (yes) { if (yes == null) return; try { localStorage.setItem('kdh_upc:' + String(u.email || '').toLowerCase(), (yes === true ? '1' : '0') + '|' + Date.now()); } catch (e) {} if (yes === true) addUpcLinks(u); })
+        .catch(function () {});
+    };
+    if (window.KDH_AUTH) return ask();
+    var sc = document.createElement('script'); sc.src = (ROOT || '/') + 'shared/auth-config.js'; sc.onload = ask; document.head.appendChild(sc);
+  }
+  function boot() { chrome(); bar(); watchType(); keepAlive(); checkUpc();
     if (user() && (user().preview || user().ws === 'finance')) document.querySelectorAll('[data-my-day]').forEach(function(el){el.hidden=true;});
     if (user() && !user().preview && user().ws !== 'finance') { var work = document.createElement('script'); work.src = (ROOT || '/') + 'shared/work.js?v=20261015ui'; document.head.appendChild(work); }
   }
