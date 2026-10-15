@@ -3366,20 +3366,21 @@ full site; 'finance'; check constraint; migration `20261015120000_finance_worksp
 `kdh_team()` to return `workspace` and `kdh_budget_standing()` to carry it). She stays role 'manager' so every RLS rule
 and the hub / MPO data are unchanged. ENFORCED in middleware.js: `check()` now selects `*` from allowed_users (a column
 a migration has not added yet must never break sign-in) and keeps `workspace` in the verdict; a manager with
-workspace 'finance' may open only `FINANCE_PATHS` (/hub/, /MPOs/, /supplier-budget/, /performance/,
-/incentive-tracking/{programs.js,data/,assets/} -- never the tracker page, /shared/, /carbliss-mpo/data/, /api/, and of /accounts/data/ only elig / hist / catalog / index /
+workspace 'finance' may open only `FINANCE_PATHS` (/hub/, /MPOs/, /supplier-budget/,
+/incentive-tracking/{programs.js,data/,assets/} -- never the tracker or performance pages, /shared/, /carbliss-mpo/data/, /api/, and of /accounts/data/ only elig / hist / catalog / index /
 products -- never a rep's route or sales files), anything else redirects to `FINANCE_HOME` /hub/ (403 for data).
 The kdh_user cookie carries `ws` (api/session.js accessCookies, login/index.html, both now select `*`).
 CHROME (kdh-user.js tag 20261015c everywhere): `isFin(u)` (also from a manager preview cookie's `ws`); navItems =
 Home (the root page) / Incentives (/hub/, phone-bar word "Programs" -- six tabs must fit 375px, `short` labels) /
 Off-Premise ("Off-Prem") / On-Premise ("On-Prem") / Budgets (keys home / inc / off / on / sb), toolItems = a
-'Finance' group with Incentive Performance only (the sidebar's group list gained 'Finance'; the INCENTIVE TRACKER PAGE
-is NOT hers -- Gavin, 2026-10-15: "remove it from all aspects of site unless I say otherwise" -- the middleware
-allows only its programs.js / data/ / assets/ that the hub loads), where()
+toolItems = NONE (the INCENTIVE TRACKER and INCENTIVE PERFORMANCE pages are NOT hers -- Gavin, 2026-10-15: "remove it
+from all aspects of site unless I say otherwise" -- the middleware allows only incentive-tracking's programs.js /
+data/ / assets/ that the hub loads; the sidebar's group list still knows a 'Finance' group for later), where()
 maps those pages, homeOf = ROOT, no View As in the menu, the foot / menu say "Finance", the bar names the root page
 "Home". HER HOME (Gavin: "a home page with just those tabs she has available") = the manager home (index.html)
 with every card outside hub / MPOs / supplier-budget / performance / incentive-tracking hidden, empty sections
-hidden, the title "Home" (five cards; tests count `a.kt:not([hidden])`); the middleware lets a finance manager open `/` and
+hidden, the title "Home" (FOUR cards: Incentives, Off / On-Premise MPOs, Supplier Budgets; tests count
+`a.kt:not([hidden])`); the middleware lets a finance manager open `/` and
 `/index.html` and sends her there from anything else (FINANCE_HOME '/'). View As -> Manager lists her by name
 only (Gavin: no "(Finance)" tag), carries `ws` in the preview cookie and lands on the manager home, which then
 trims itself. Tests (scratchpad): mw_test (finance paths, home redirect, 403s, full manager

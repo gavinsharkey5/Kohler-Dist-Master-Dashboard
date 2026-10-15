@@ -248,9 +248,7 @@
   // the authorized tools that sit behind More (phones) / in the sidebar (desktop)
   function toolItems(u) {
     if (isAssoc(u)) return [];
-    if (isFin(u)) return [
-      { key: 'perf', group: 'Finance', label: 'Incentive Performance', href: ROOT + 'performance/' }
-    ];
+    if (isFin(u)) return [];   // the four navigation items are the whole workspace (Gavin, 2026-10-15)
     var isMgr = u.role === 'manager';
     var t = [
       { key: 'off', group: 'Programs', label: 'Off-Premise MPOs', href: ROOT + 'MPOs/off-prem/index.html' },
@@ -282,7 +280,6 @@
       if (/^MPOs\/off-prem\//.test(rel)) return { nav: 'off', tool: '' };
       if (/^MPOs\/on-prem\//.test(rel)) return { nav: 'on', tool: '' };
       if (/^supplier-budget\//.test(rel)) return { nav: 'sb', tool: '' };
-      if (/^performance\//.test(rel)) return { nav: 'more', tool: 'perf' };
       return { nav: rel === '' || rel === 'index.html' ? 'home' : '', tool: '' };
     }
     if (/^tasks\//.test(rel)) return isAssoc(u) ? { nav: 'home', tool: '' } : { nav: 'more', tool: 'tasks' };
