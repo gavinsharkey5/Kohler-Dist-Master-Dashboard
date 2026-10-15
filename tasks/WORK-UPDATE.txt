@@ -91,3 +91,24 @@ These tests do not substitute for hosted PostgREST/Storage/Realtime validation.
 Dependency versions are pinned in tools/package.json and package-lock.json.
 shared/vendor/supabase-2.57.4.js is the package's dist/umd/supabase.js, with its
 MIT license alongside. Rebuild it by copying that file from the locked install.
+
+WORKSPACE UI -- 2026-10-15
+My Day now groups Needs attention, Today, and Completed, shows daily progress,
+and opens task details and comments alongside the list on desktop. Phones use
+a native modal dialog with Escape/Back dismissal. Existing task IDs, ordering,
+source links, account context, and photo-required completion flows are kept.
+Edit/delegate and full task links use the existing Field Tasks editor.
+
+Messages now uses a conversation sidebar with search, initials, previews,
+timestamps, and unread indicators, beside the selected conversation. On phones
+the inbox and thread occupy separate screens with Back navigation. Drafts and
+retry IDs survive conversation switches for the lifetime of the page. Existing
+RPCs, RLS, and notification handling remain authoritative. No new migration or
+environment configuration is required for this UI update.
+
+Design direction: Mobbin references for ClickUp task hierarchy, Bonsai details,
+and Campsite inbox layout. Implemented with the existing Kohler design tokens.
+Validation: 31 database checks; 23 browser checks including 320/390/820/1440px,
+both themes, task comments, evidence handoff, retry deduplication, unread state,
+draft switching, and preview/Finance boundaries. Browser API data is synthetic;
+no test messages or tasks are written to production.

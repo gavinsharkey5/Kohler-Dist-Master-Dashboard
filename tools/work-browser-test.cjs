@@ -29,7 +29,7 @@ await page.route('**/*',async route=>{const request=route.request(),u=new URL(re
  else if(method==='PATCH'){result=filtered(tasks);result.forEach(t=>{Object.assign(t,body,{updated_at:new Date().toISOString()});if(body.associate_email){t.associate_name=people.find(p=>p.email===body.associate_email)?.name;t.personal=t.associate_email===t.rep_email;}if(body.status==='done')t.completed_at=new Date().toISOString();else if(body.status)t.completed_at=null;});}
  else if(method==='DELETE'){const ids=filtered(tasks).map(t=>t.id);result=filtered(tasks);tasks=tasks.filter(t=>!ids.includes(t.id));}
  else result=filtered(tasks).filter(t=>user.role==='manager'||t.rep_email===user.email||t.associate_email===user.email);
- }else if(table==='field_task_comments'){if(method==='POST'){const c={...body,id:comments.length+1,author_email:user.email,author_name:user.name,created_at:new Date().toISOString()};comments.push(c);result=[c];}else result=filtered(comments);}
+ }else if(table==='field_task_comments'){if(method==='POST'){let c=comments.find(c=>c.client_id===body.client_id&&c.author_email===user.email);if(!c){c={...body,id:comments.length+1,author_email:user.email,author_name:user.name,created_at:new Date().toISOString()};comments.push(c);result=[c];}}else result=filtered(comments);}
  else if(table==='work_notifications'){result=filtered(notices.filter(n=>n.recipient===user.email));if(method==='PATCH')result.forEach(n=>Object.assign(n,body));}
  else if(table==='work_conversations')result=conversations.filter(c=>[c.person_a,c.person_b].includes(user.email));
  else if(table==='work_messages')result=filtered(messages);
@@ -44,16 +44,51 @@ await check('My Day renders on rep Home',()=>page.getByRole('heading',{name:'My 
 await check('quick entry persists through reload',async()=>{await page.getByRole('textbox',{name:'New task',exact:true}).fill('Review Red Bull incentives');await page.getByRole('button',{name:'Add Task',exact:true}).click();await page.locator('[data-my-day]').getByText('Review Red Bull incentives',{exact:true}).waitFor();await page.reload();await page.locator('[data-my-day]').getByText('Review Red Bull incentives',{exact:true}).waitFor();assert.equal(tasks.filter(t=>t.title==='Review Red Bull incentives').length,1);});
 await check('checkbox completes personal task',async()=>{await page.getByRole('checkbox',{name:'Complete Review Red Bull incentives'}).check();await page.waitForFunction(()=>document.querySelector('[data-my-day]').textContent.includes('1 of 2 complete'));assert.equal(tasks.find(t=>t.title==='Review Red Bull incentives').status,'done');});
 await check('reorder saves rank',async()=>{await page.getByRole('button',{name:'Reorder',exact:true}).click();await page.getByRole('button',{name:'Move Review Red Bull incentives up'}).click();await page.waitForFunction(()=>document.querySelector('.work-row .work-title').textContent==='Review Red Bull incentives');assert.ok(tasks[1].sort_order<tasks[0].sort_order);await page.getByRole('button',{name:'Done Reordering'}).click();});
+await check('task detail comments persist and keep their task',async()=>{
+ await page.locator('[data-task="'+fixture.id+'"]').click();
+ await page.getByRole('textbox',{name:'Task comment',exact:true}).fill('Display checked from My Day');
+ await page.locator('.work-comment-form button').click();
+ await page.locator('[data-task-comments]').getByText('Display checked from My Day',{exact:true}).waitFor();
+ assert.equal(comments.at(-1).task_id,fixture.id);
+ await page.locator('[data-detail-close]').click();
+ await page.locator('[data-task="'+fixture.id+'"]').click();
+ await page.locator('[data-task-comments]').getByText('Display checked from My Day',{exact:true}).waitFor();
+ assert.equal(await page.locator('.work-detail').evaluate(el=>el.matches(':modal')),true);
+ await page.keyboard.press('Escape');
+ assert.equal(await page.locator('.work-detail').isVisible(),false);
+});
+await check('task detail links retain photo and edit workflows',async()=>{
+ await page.locator('[data-task="'+fixture.id+'"]').click();
+ assert.ok((await page.locator('.work-detail .work-button').getAttribute('href')).endsWith('/tasks/#edit='+fixture.id));
+ await page.locator('[data-detail-close]').click();
+});
 await check('phone has no horizontal overflow',async()=>assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true));
 await check('small phone fits',async()=>{await page.setViewportSize({width:320,height:720});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);await page.setViewportSize({width:390,height:844});});
 await page.screenshot({path:path.join(out,'my-day-mobile.png'),fullPage:false});
 await page.evaluate(()=>document.documentElement.setAttribute('data-theme','dark'));await page.screenshot({path:path.join(out,'my-day-mobile-dark.png'),fullPage:false});
 await check('delegation reuses personal task',async()=>{await page.goto(base+'/tasks/#edit='+fixture.id);await page.locator('#fAssoc').selectOption('a@test');await page.getByRole('button',{name:'Save Changes'}).click();await page.locator('.dtitle').waitFor();assert.equal(tasks.find(t=>t.id===fixture.id).associate_email,'a@test');assert.equal(tasks.length,2);});
 await check('account task prefills CustomerID',async()=>{await page.goto(base+'/tasks/?account=001&name=ABC%20Liquors#new');await page.locator('#acctPicked').waitFor();assert.equal(await page.locator('#acctPicked').getAttribute('data-n'),'001');});
-await check('direct message retry after lost response sends only once',async()=>{await page.getByRole('button',{name:/Messages/}).click();await page.locator('#work-person').selectOption('a@test');await page.getByRole('textbox',{name:'Message',exact:true}).fill('Can you check the display?');dropMessage=true;await page.getByRole('button',{name:'Send',exact:true}).click();await page.locator('.work-dialog [data-work-error]').getByText(/fetch/i).waitFor();await page.getByRole('button',{name:'Send',exact:true}).click();await page.locator('.work-thread').getByText('Can you check the display?',{exact:false}).waitFor();assert.equal(messages.length,1);});
+await check('direct message retry after lost response sends only once',async()=>{await page.locator('.work-tools [data-messages]').click();if(!await page.locator('#work-person').isVisible())await page.locator('[data-new-message]').click();await page.locator('#work-person').selectOption('a@test');await page.getByRole('textbox',{name:'Message',exact:true}).fill('Can you check the display?');dropMessage=true;await page.getByRole('button',{name:'Send',exact:true}).click();await page.locator('.work-dialog [data-work-error]').getByText(/fetch/i).waitFor();await page.getByRole('button',{name:'Send',exact:true}).click();await page.locator('.work-thread').getByText('Can you check the display?',{exact:false}).waitFor();assert.equal(messages.length,1);});
+await check('message drafts survive switching conversations and mobile back',async()=>{
+ await page.getByRole('textbox',{name:'Message',exact:true}).fill('Draft for associate');
+ await page.locator('[data-inbox-back]').click();
+ await page.locator('[data-new-message]').click();
+ await page.locator('#work-person').selectOption('m@test');
+ await page.getByRole('textbox',{name:'Message',exact:true}).fill('Draft for manager');
+ await page.locator('[data-inbox-back]').click();
+ await page.locator('[data-conversation]').first().click();
+ assert.equal(await page.getByRole('textbox',{name:'Message',exact:true}).inputValue(),'Draft for associate');
+ await page.setViewportSize({width:1440,height:1080});
+ assert.equal(await page.locator('.work-people').isVisible(),true);
+ assert.equal(await page.locator('.work-chat').isVisible(),true);
+ await page.screenshot({path:path.join(out,'messages-desktop.png'),fullPage:false});
+ await page.setViewportSize({width:390,height:844});
+ await page.screenshot({path:path.join(out,'messages-mobile.png'),fullPage:false});
+ await page.locator('[data-close]').click();
+});
 await login('associate');await page.goto(base+'/tasks/');
 await check('associate sees assigned work',()=>page.getByText('Check Carbliss placement',{exact:true}).waitFor());
-await check('unread message badge and read state',async()=>{await page.locator('[data-msg-count]').getByText('1',{exact:true}).waitFor();await page.getByRole('button',{name:/Messages/}).click();await page.locator('[data-conversation]').click();await page.locator('.work-thread').getByText('Can you check the display?',{exact:false}).waitFor();await page.waitForFunction(()=>document.querySelector('[data-msg-count]').textContent==='');});
+await check('unread message badge and read state',async()=>{await page.locator('[data-msg-count]').getByText('1',{exact:true}).waitFor();await page.locator('.work-tools [data-messages]').click();await page.locator('[data-conversation]').click();await page.locator('.work-thread').getByText('Can you check the display?',{exact:false}).waitFor();await page.waitForFunction(()=>document.querySelector('[data-msg-count]').textContent==='');});
 await login('manager');await page.goto(base+'/tasks/');
 await check('manager assignment and customer filter',async()=>{await page.getByRole('link',{name:'Assign Task',exact:true}).click();await page.locator('#fAssoc').selectOption('r@test');await page.locator('#fTitle').fill('Review account priorities');await page.getByRole('button',{name:'Assign Task',exact:true}).click();await page.locator('.dtitle').waitFor();assert.equal(tasks.at(-1).associate_email,'r@test');await page.goto(base+'/tasks/');await page.locator('#mf-account').waitFor();});
 await page.setViewportSize({width:820,height:1180});await page.screenshot({path:path.join(out,'manager-tablet.png'),fullPage:true});
@@ -65,6 +100,40 @@ await login('manager');await context.addCookies([{name:'kdh_preview',value:encod
 await check('preview disables checklist and communication writes',async()=>{await page.goto(base+'/rep/');await page.waitForFunction(()=>document.querySelector('[data-my-day]').hidden);assert.equal(await page.locator('.work-tools').count(),0);const before=writes;await page.goto(base+'/tasks/#task='+fixture.id);await page.locator('.dtitle').waitFor();assert.equal(await page.locator('#composer,#btnDone,#btnWithdraw').count(),0);assert.equal(writes,before);});
 await login('manager');await context.addCookies([{name:'kdh_user',value:encodeURIComponent(JSON.stringify({...people.find(p=>p.role==='manager'),ws:'finance'})),url:base}]);
 await check('finance workspace keeps its existing boundaries',async()=>{await page.goto(base+'/');await page.waitForFunction(()=>document.querySelector('[data-my-day]').hidden);assert.equal(await page.locator('.work-tools').count(),0);});
+fixture.associate_email='r@test';fixture.associate_name='Rep One';
+await login('rep');await page.goto(base+'/rep/');
+await check('photo-required completion opens the evidence workflow',async()=>{
+ fixture.task_type='display';await page.reload();
+ await page.locator('[data-task="'+fixture.id+'"]').click();
+ await page.locator('.work-detail').getByRole('link',{name:'Open task to add completion photo'}).waitFor();
+ const before=fixture.status;await page.locator('[data-detail-complete]').click();
+ await page.waitForURL('**/tasks/#task='+fixture.id);
+ assert.equal(fixture.status,before);fixture.task_type='other';
+});
+await check('workspace detail and inbox fit phone tablet desktop in both themes',async()=>{
+ fixture.associate_email='r@test';fixture.associate_name='Rep One';fixture.account_name='ABC Liquors';fixture.due_date='2020-01-01';
+ await page.goto(base+'/rep/');await page.locator('[data-task="'+fixture.id+'"]').waitFor();
+ for(const width of [320,390,820,1440]){
+ await page.setViewportSize({width,height:1000});await page.evaluate(()=>window.scrollTo(0,0));
+ await page.locator('[data-task="'+fixture.id+'"]').click();
+ const detail=page.locator('.work-detail');
+ assert.equal(await detail.evaluate(el=>el.scrollWidth<=el.clientWidth),true);
+ for(const theme of ['light','dark']){
+ await page.evaluate(theme=>document.documentElement.setAttribute('data-theme',theme),theme);
+ if(width===1440)await page.locator('[data-my-day]').screenshot({path:path.join(out,'tasks-desktop-'+theme+'.png')});
+ if(width===390)await detail.screenshot({path:path.join(out,'task-detail-mobile-'+theme+'.png')});
+ }
+ await page.locator('[data-detail-close]').click();
+ await page.locator('.work-tools [data-messages]').click();await page.locator('[data-conversation]').first().click();
+ assert.equal(await page.locator('.work-messaging').evaluate(el=>el.scrollWidth<=el.clientWidth),true);
+ assert.equal(await page.locator('.work-thread').evaluate(el=>el.scrollWidth<=el.clientWidth),true);
+ for(const theme of ['light','dark']){
+ await page.evaluate(theme=>document.documentElement.setAttribute('data-theme',theme),theme);
+ if(width===1440)await page.locator('.work-messaging').screenshot({path:path.join(out,'messages-desktop-'+theme+'.png')});
+ }
+ await page.locator('[data-close]').click();
+ }
+});
 await check('no uncaught browser errors',async()=>assert.deepEqual(errors,[]));
 console.log(`${checks} browser checks passed; screenshots: ${out}`);
 }finally{await browser.close();server.close();}
