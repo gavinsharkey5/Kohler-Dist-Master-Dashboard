@@ -16,8 +16,7 @@
   }
   if(associate)home.classList.add('signature-associate');
   var card=home.querySelector('[data-my-day]');
-  // Preview mode deliberately hides live personal tasks. Keep the role's tool home there.
-  if(!card||u.preview||!['manager','rep','associate'].includes(u.role))return;
+  if(!card||!['manager','rep','associate'].includes(u.role))return;
   var sections=Array.from(home.children).filter(function(e){return e.matches('section.hs');});
   var stats=document.createElement('section');stats.className='signature-stats';stats.setAttribute('aria-label','Your task summary');stats.hidden=true;
   [['My open tasks','Planned for today'],associate?['Completed today','Your finished assignments']:['Delegated tasks','Assigned to someone else'],['Blocked tasks','In your task list']].forEach(function(x,i){var box=document.createElement('div');box.className='signature-stat';var h=document.createElement('h2');h.textContent=x[0];var number=document.createElement('strong');number.dataset.signatureMetric=String(i);number.textContent='—';var p=document.createElement('p');p.textContent=x[1];box.append(h,number,p);stats.appendChild(box);});
