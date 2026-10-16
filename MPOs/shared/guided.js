@@ -69,8 +69,44 @@ var uid = 0;
    tracker's v3 flow uses. */
 var view = 'rep';             // 'rep' | 'program'
 var activeRep = null;
+// AS-REP (2026-09-29, per Gavin): a manager who opens the tracker FOR one
+// rep (the workspace's tiles, the hub) sees exactly that rep's page -- no
+// View by Rep / View by Program bar, no Back to Reps, no Start Over, no
+// other reps. The "Viewing <rep> · Change" chip in the top bar is the one
+// way out; Change (or the picker) turns the manager tools back on.
+var asRep = false;
+function decorateAsRep(){
+  var root = document.documentElement;
+  root.classList.toggle('g-asrep', !!asRep);
+  if(document.getElementById('g-asrep-style')) return;
+  var st = document.createElement('style'); st.id = 'g-asrep-style';
+  st.textContent = '.g-asrep .g-viewbar,.g-asrep .js-back,.g-asrep .js-startover{display:none!important}';
+  document.head.appendChild(st);
+}
 var openProgram = null;
 var sortMode = 'progress';    // 'progress' | 'name' | 'remaining'
+
+/* ---- BRAND MANAGER SCOPE (2026-10-14, Gavin) ------------------------
+   A brand manager covers a supplier with every rep under them. The same
+   rule as the hub: kdhBrandScope() (shared/kdh-user.js) gives the Fusion
+   supplier names on their allowed_users.program_brands (or the ones a
+   manager preview carries); this page then lists only the objectives filed
+   under those suppliers (kdhMpoSupplierNames + kdhBrandMatch), on View by
+   Program and on a rep's page, and says "None of Your Brands Are on the
+   <scope> MPO This Month" when nothing matches. The roster is not cut.
+   A DM, a VP or Gavin (no brands) sees every objective. Because the scope
+   is read from the database, the first refresh waits for it (3 s cap). */
+var BRANDS = null;                 // ['Constellation Brands', ...] or null = every supplier
+var brandReady = Promise.resolve();
+function brandAllows(o){
+  if(!BRANDS || !window.kdhBrandMatch) return true;
+  var names = window.kdhMpoSupplierNames ? window.kdhMpoSupplierNames(o) : [o.name];
+  return window.kdhBrandMatch(names, BRANDS);
+}
+function brandEmptyHtml(){
+  return '<div class="kdh-state empty g-brand-empty"><b>None of Your Brands Are on the '+esc(H.scope)+' MPO This Month</b>'+
+    '<p>Your brands: '+esc((BRANDS.suppliers || BRANDS).join(', '))+'</p></div>';
+}
 
 var LS_KEY = 'kohler-mpo-guided';
 
@@ -168,7 +204,7 @@ function pushState(){
 
 function go(next, opts){
   if('view' in next) view = next.view;
-  if('rep' in next) activeRep = next.rep;
+  if('rep' in next){ activeRep = next.rep; if(!next.rep){ asRep = false; decorateAsRep(); } }
   if('program' in next) openProgram = next.program;
   applyLock();
   if(!opts || !opts.silent) pushState();
@@ -207,6 +243,7 @@ function weightedForRep(rep){
     var m = H.metric(o, rep);
     if(!m){ nodata++; return; }              // objective not tracked at all
     if(m.notScored){ notscored++; return; }  // tracked, but this rep has no goal
+    if(o.weight==null){ if(m.status==='achieved') achieved++; else if(m.status==='inprogress') inprogress++; else notstarted++; return; }   // no weight (manager-built, v1): counted, never weighted
     counted += o.weight;
     if(m.status==='achieved'){ earned += o.weight; achieved++; }
     else if(m.status==='inprogress'){ inprogress++; }
@@ -229,12 +266,12 @@ function weightedForRep(rep){
 
 /* ---- Small shared bits -------------------------------------------- */
 var STATUS_TEXT = {achieved:'Goal Achieved', inprogress:'In Progress',
-  notstarted:'Not Started', nodata:'Not tracked yet'};
+  notstarted:'Not Started', nodata:'Not Tracked Yet'};
 var STATUS_MARK = {achieved:'✓', inprogress:'●', notstarted:'○', nodata:'—'};
 
 // The status pill also says whether the credit is earned, so the card
 // needs no separate "Credit earned" column.
-var CREDIT_TEXT = {achieved:'Goal achieved · credit earned', inprogress:'In progress · credit not yet earned', notstarted:'Not started', nodata:'Not tracked yet'};
+var CREDIT_TEXT = {achieved:'Goal Achieved', inprogress:'In Progress', notstarted:'Not Started', nodata:'Not Tracked Yet'};
 function creditPill(status){
   return '<span class="g-pill '+status+'">'+STATUS_MARK[status]+' '+(CREDIT_TEXT[status]||STATUS_TEXT[status])+'</span>';
 }
@@ -308,9 +345,8 @@ function screenRepPicker(){
   }).join('');
 
   return '<div class="g g-fade">'+
-    stepHead(1,'Choose a rep',
-      'Tap a name to see that rep’s '+esc(H.monthLabel())+' '+esc(H.scope)+
-      ' MPO progress.')+
+    stepHead(1,'Choose a Rep',
+      esc(H.monthLabel())+' · '+esc(H.scope))+
     body+
   '</div>';
 }
@@ -343,8 +379,13 @@ function screenRepDetail(){
 
   // An objective the metric marks hidden (a support rep's non-objective)
   // is left off the card entirely -- "all he needs to see is that one".
-  var cards = objs.filter(function(o){ var m = H.metric(o, rep); return !(m && m.hidden); })
+  // Nor is one with no goal for this rep (no account base / no assigned goal) -- the rep
+  // sees only the objectives they can reach (Gavin, 2026-10-07).
+  var cards = objs.filter(function(o){ var m = H.metric(o, rep); return !(m && (m.hidden || m.notScored)); })
     .map(function(o){ return repObjectiveCard(o, rep); }).join('');
+  // a brand manager's view: their objectives only, so no month-wide weighted summary
+  var emptyHtml = BRANDS && !objs.length ? brandEmptyHtml()
+    : '<div class="kdh-state empty"><b>No '+esc(H.scope)+' MPOs Apply to '+(lockedRep() || asRep ? 'Your Route' : esc(first)+'’s Route')+' This Month</b></div>';
 
   return '<div class="g g-fade">'+
     '<div class="g-actions">'+
@@ -354,32 +395,331 @@ function screenRepDetail(){
     // One stacked header, no step badge (2026-09-28, Gavin): the name, then
     // the scope, the manager and the role each on its own line, then the
     // data stamp. The month is the selected pill just above, not repeated.
-    repHead(esc(first)+'’s MPO Progress', [
-      esc(H.scope),
-      dmOf(rep) ? 'Sales manager: '+esc(dmOf(rep)) : '',
-      roleOf(rep) ? esc(roleOf(rep)) : '',
-      (function(){ var u = document.getElementById('updated-line'); return u && u.textContent.trim() ? '<span class="g-stamp">'+esc(u.textContent.trim())+'</span>' : ''; })()
+    repHead((lockedRep() || asRep ? 'Your' : esc(first)+'’s')+' MPO Progress', [
+      [esc(H.scope),
+        dmOf(rep) ? 'Sales Manager '+esc(dmOf(rep)) : '',
+        roleOf(rep) ? esc(roleOf(rep)) : '',
+        (function(){ var u = document.getElementById('updated-line'); var t = u ? u.textContent.trim().replace(/^Data refreshed\s*/i,'Data ').replace(/,\s*\d{1,2}:\d{2}\s*[AP]M.*$/i,'') : ''; return t ? esc(t) : ''; })()
+      ].filter(Boolean).join(' · ')
     ])+
-    '<div class="g-sum-grid">'+sums.map(function(k){
-      return '<div class="g-sum"><div class="g-sum-l">'+k.l+'</div>'+
-        '<div class="g-sum-n '+k.cls+'">'+k.n+'</div>'+
-        '<div class="g-sum-s">'+k.s+'</div></div>';
-    }).join('')+'</div>'+
-    cards+
+    (cards || emptyHtml)+
   '</div>';
 }
 
+// display title (shared/program-titles.js): concise label only; o.name stays the source name
+function titleOf(o){
+  var scope = /on-prem/.test(location.pathname) ? 'on' : 'off';
+  var mk = H.monthKey ? H.monthKey() : '';
+  return window.kdhTitle ? window.kdhTitle(scope+':'+mk+':'+o.key, o.shortName||o.name) : (o.shortName||o.name);
+}
+
+// Plural / unit helpers shared by the v3 cards (2026-10-05 brief).
+
+// Supplier marks cut from the rewards decks (incentive-tracking/assets/logos).
+// A general objective (Wine, Spirits, POS, iSellBeer photos) has none and shows no mark.
+var LOGO_BASE = '../../incentive-tracking/assets/logos/';
+var MPO_LOGO = {
+  constellation_innovation:['constellation.png'], constellation_gaintain:['constellation.png'], corona_premier:['constellation.png'],
+  bbc_lytt:['lytt.png'], disruptors:['lytt.png'], mollys:['mollys.png'],
+  sam_adams_conversion:['boston_beer.png','sam_adams.png'], angry_orchard:['boston_beer.png'],
+  keystone_ice:['keystone_ice.png'], molson_coors:['molson_coors.png'], fever_tree:['molson_coors.png'],
+  new_belgium:['new_belgium.png'], yave:['yave.png'], ws_2xo:['two_xo.png'], bardstown_menu:['bardstown.png'], green_river:['bardstown.png'], famosa:['famosa.png']
+};
+function weightMeta(o){
+  if(o.weight!=null) return '<div class="g-meta g-weight">MPO Weight '+Math.round(o.weight*100)+'%</div>';
+  return o.isTest ? '<div class="g-meta g-weight g-test">TEST — Not an Active MPO</div>' : '<div class="g-meta g-weight">Manager-built objective · no MPO weight</div>';
+}
+function logoHtml(o){
+  var l = MPO_LOGO[o.key]; if(!l) return '';
+  return '<div class="g-logos">'+l.map(function(f){
+    return '<img class="g-logo" src="'+LOGO_BASE+f+'" alt="" loading="lazy" onerror="this.remove()">';
+  }).join('')+'</div>';
+}
+function uPlural(n, u){ u = String(u||'').trim(); if(!u) return ''; if(Number(n)===1) return u; return /s$/.test(u) ? u : u+'s'; }
+function titleCase(t){ return String(t||'').replace(/\b([a-z])/g, function(c){ return c.toUpperCase(); }); }
+function fmtNum(v){ var n = Number(v); if(!isFinite(n)) return '\u2014'; return (Math.round(n*10)/10).toLocaleString('en-US'); }
+function periodOf(o){ return o.periodText || (H.monthLabel ? H.monthLabel() : ''); }
+function supPeriod(o){ return [o.supplier, periodOf(o)].filter(Boolean).map(esc).join(' · '); }
+// "How This Goal Is Calculated": the metric's own explanation lines, else its goal text.
+function explainFold(o, m){
+  var lines = (m.explain && m.explain.length) ? m.explain : (m.goalText ? ['Goal: '+m.goalText] : []);
+  if(!lines.length) return '';
+  var id = 'gx'+(uid++);
+  return '<button class="g-more js-more" data-target="'+id+'" aria-expanded="false">How This Goal Is Calculated<span class="ar">&#9656;</span></button>'+
+    '<div class="g-more-body" id="'+id+'"><ul class="g-rules">'+lines.map(function(l){ return '<li>'+esc(l)+'</li>'; }).join('')+'</ul></div>';
+}
+// The goal's own explanation, from the metric's numbers: "75% of your 92-placement
+// program goal" / "50% of your 29-account base (14.5, rounded up)". Empty when the
+// goal is a plain count (2 new placements) -- the Goal line already says it all.
+function goalWhy(o, m){
+  if(m.underlying==null || !isFinite(Number(m.underlying))){
+    // older objectives carry the rule only as text: "30% of last fall (33 of 110)"
+    var g = String(m.goalText||'');
+    return /%/.test(g) ? g.replace(/^my /i,'your ').replace(/ my /g,' your ').replace(/^./, function(c){ return c.toUpperCase(); }) : '';
+  }
+  var u = Number(m.underlying), req = Number(m.goal);
+  var pct = req && u ? Math.round(req/u*100) : 0;
+  var ex = (m.explain||[]).join(' ');
+  var p = /(\d+(?:\.\d+)?)%/.exec(ex); if(p) pct = Number(p[1]);
+  if(m.pctRule) pct = Math.round(Number(m.pctRule)*100);
+  var exact = Math.round(u*pct)/100;
+  var rnd = exact !== req ? ' ('+fmtNum(exact)+', rounded '+(req > exact ? 'up' : 'down')+')' : '';
+  if(o.type==='pct_of_goal') return pct+'% of your '+fmtNum(u)+'-'+(o.unit||'placement')+' program goal'+rnd;
+  if(o.type==='pct_of_base' || o.shareOfBase || o.type==='followup') return pct+'% of your '+fmtNum(u)+' eligible accounts'+rnd;
+  return '';
+}
+// "Ends Nov 30 · 55 days left" from the objective's own end (or the month's last day).
+/* CARBLISS BUYING ACCOUNTS (2026-10-06, Gavin): the October on-premise Carbliss card shows two
+   counts against the rep's own account base -- accounts that bought in the fixed program period
+   (Aug 1 - Oct 31) and accounts that bought since launch (Jun 2) -- and links to the Carbliss
+   leaderboard page instead of Details / View Eligible Accounts. The numbers come from
+   carbliss-mpo/data/program.json (carbliss-mpo/generate.py; a rep is served their own copy). */
+function isCarblissLaunch(o){
+  return o && o.key==='carbliss' && /on-prem/.test(location.pathname) && H.monthKey && H.monthKey()==='2026-10';
+}
+function carblissCard(o, rep, st){
+  var dl = deadlineOf(o);
+  return '<div class="g-obj g-obj-v3 g-obj-v4 g-cb-card '+st+'">'+
+    '<div class="g-obj-head"><div class="g-obj-name">'+esc(titleOf(o))+'</div>'+
+      '<div class="g-obj-sub">'+esc([o.supplier, (H.monthLabel ? H.monthLabel()+' MPO' : '')].filter(Boolean).join(' \u00b7 '))+'</div>'+
+      creditPill(st)+'</div>'+
+    '<div class="g-cb" data-rep="'+esc(rep)+'"><div class="g-cb-wait">Loading Carbliss buying accounts\u2026</div></div>'+
+    (dl ? '<div class="g-deadline">'+dl+'</div>' : '')+
+    '<a class="g-elig g-cb-lb cbx-link" href="../../carbliss-onprem-targets/">Open Carbliss Leaderboard</a>'+
+    weightMeta(o)+
+  '</div>';
+}
+var CB_DATA = null;
+function cbLoad(){
+  if(!CB_DATA) CB_DATA = fetch('../../carbliss-mpo/data/program.json', {cache:'no-cache', credentials:'same-origin'})
+    .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); });
+  return CB_DATA;
+}
+function cbDay(iso, withYear){
+  var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso||''); if(!m) return '';
+  var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return MON[Number(m[2])-1]+' '+Number(m[3])+(withYear ? ', '+m[1] : '');
+}
+function hydrateCarbliss(){
+  var co = document.querySelectorAll('.g-cb[data-co]');
+  if(co.length) cbLoad().then(function(D){
+    for(var i=0;i<co.length;i++) co[i].innerHTML = window.KdhCarbTiles.html(D, {compact:true, noTitle:true});
+  }).catch(function(){
+    for(var i=0;i<co.length;i++) co[i].innerHTML = '<div class="g-cb-wait">Carbliss buying figures are unavailable right now. Reload to try again.</div>';
+  });
+  var boxes = document.querySelectorAll('.g-cb[data-rep]'); if(!boxes.length) return;
+  cbLoad().then(function(D){
+    var names = D.reps.map(function(r){ return r.rep; });
+    for(var i=0;i<boxes.length;i++){
+      var box = boxes[i], rep = box.getAttribute('data-rep');
+      var me = (window.kdhMatchName ? window.kdhMatchName(rep, names) : (names.indexOf(rep)>=0 ? rep : null));
+      var mine = me ? D.accounts.filter(function(a){ return a.rep===me; }) : [];
+      var base = mine.length;
+      if(!base){ box.innerHTML = '<div class="g-cb-wait">No Carbliss account base on file for '+esc(rep)+'.</div>'; continue; }
+      box.innerHTML = window.KdhCarbTiles.html(D, {rep: me, noTitle:true});
+    }
+  }).catch(function(){
+    for(var i=0;i<boxes.length;i++) boxes[i].innerHTML = '<div class="g-cb-wait">Carbliss buying figures are unavailable right now. Reload to try again.</div>';
+  });
+}
+
+function deadlineOf(o){
+  var end = o.periodEnd ? new Date(o.periodEnd+'T12:00:00') : null;
+  if(!end && H.monthKey){ var mk = String(H.monthKey()).split('-'); if(mk.length===2) end = new Date(Number(mk[0]), Number(mk[1]), 0, 12); }
+  if(!end || isNaN(end)) return '';
+  var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var today = new Date(); today.setHours(12,0,0,0);
+  var days = Math.round((end - today)/86400000);
+  var day = MON[end.getMonth()]+' '+end.getDate();
+  if(days < 0) return 'Ended '+day+', '+end.getFullYear();
+  return 'Ends <b>'+day+'</b> · '+(days===0 ? 'last day' : days+(days===1?' day':' days')+' left');
+}
+// The hub's list of eligible accounts for this objective and rep: the program
+// workspace when a verified rule exists (it decides on load), else the target list.
+function eligibleHref(o, rep){
+  if(o.type==='photos') return '';
+  var scope = /on-prem/.test(location.pathname) ? 'on' : 'off';
+  var mk = H.monthKey ? H.monthKey() : ''; if(!mk) return '';
+  var id = scope+':'+mk+':'+o.key;
+  // ret = this exact screen (rep, month, view), so the hub's Back comes here.
+  return '../../hub/#view=detail&rep='+encodeURIComponent(rep)+'&cat='+scope+'&prog='+encodeURIComponent(id)+
+    '&ret='+encodeURIComponent(location.pathname+stateToHash());
+}
+// RETURN TRIP (2026-10-06): remember the scroll position when a rep leaves for
+// the hub's Eligible Accounts, and put it back when they come back to this
+// exact screen (same path + hash).
+var MPO_POS = 'kdh_mpopos:';
+document.addEventListener('click', function(e){
+  var a = e.target.closest && e.target.closest('a.g-elig'); if(!a) return;
+  try{ sessionStorage.setItem(MPO_POS+location.pathname+stateToHash(), String(window.scrollY)); }catch(err){}
+}, true);
+(function(){
+  var y = null, key = MPO_POS+location.pathname+(location.hash||'#');
+  try{ y = sessionStorage.getItem(key); if(y!=null) sessionStorage.removeItem(key); }catch(e){}
+  if(y==null) return;
+  var tries = 0, t = setInterval(function(){
+    if(document.querySelector('.g-obj') || ++tries>80){ clearInterval(t); window.scrollTo(0, Number(y)||0); }
+  }, 75);
+})();
+/* DETAILS + POTENTIAL ACCOUNTS (2026-10-08, Gavin; "Option 2 -- Shared Product List").
+   Under the MPO summary, two controls side by side: Details (amber: the tracker's own
+   program details / distribution history, unchanged) and Potential Accounts (N) (green:
+   which accounts on the route can still earn THIS program's credit). Both start closed,
+   opening one closes the other, everything stays inline in the card. Inside Potential
+   Accounts: ONE shared "Qualifying Products (N)" fold, then compact account rows (name,
+   town, chevron); tapping a row shows that account's own opportunity -- what is left and
+   the products that could earn it -- one account open at a time. Sources (the program's
+   own rules; nothing is re-derived here):
+     * KdhElig (tools/program_eligibility.py -> accounts/data/elig/<rep>.json): premise,
+       territory / Brand Permissions, the official SKU list, the purchase windows and what
+       is already credited, per account x product (Corona Innovation, Lytt, Molly's, Wine);
+     * H.potential(o, rep) for objectives whose own list IS the opportunity (the on-premise
+       follow-ups: Oktoberfest conversion, Spirits).
+   N counts distinct accounts. A program with no rule says so instead of guessing. */
+var POT_OPTS = 8;
+var CHEV = '<svg class="g-chev2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+function actionsHtml(o, rep, detailContent, potOK){
+  var hasD = !!detailContent, hasP = !!potOK && o.type!=='photos';
+  if(!hasD && !hasP) return '';
+  var dId = 'gm'+(uid++), pId = 'gp'+(uid++);
+  return '<div class="g-actwrap'+(hasP?' g-pot':'')+'"'+(hasP?' data-key="'+esc(o.key)+'" data-rep="'+esc(rep)+'"':'')+'>'+
+    '<div class="g-acts'+(hasD&&hasP?'':' one')+'">'+
+      (hasD ? '<button type="button" class="g-act g-act-d js-more" data-target="'+dId+'" aria-controls="'+dId+'" aria-expanded="false"><span>Details</span>'+CHEV+'</button>' : '')+
+      (hasP ? '<button type="button" class="g-act g-act-p js-more g-pot-btn" data-target="'+pId+'" aria-controls="'+pId+'" aria-expanded="false"><span>Potential Accounts <span class="g-pot-n">(…)</span></span>'+CHEV+'</button>' : '')+
+    '</div>'+
+    (hasD ? '<div class="g-more-body g-act-body g-det-body" id="'+dId+'">'+detailContent+'</div>' : '')+
+    (hasP ? '<div class="g-more-body g-act-body g-pot-body" id="'+pId+'"><p class="pa-note">Loading…</p></div>' : '')+
+  '</div>';
+}
+function potScope(){ return /on-prem/.test(location.pathname) ? 'on' : 'off'; }
+function potShortWhy(t){ return String(t||'').replace(/, never this product$/,'').replace(/, not in this window$/,''); }
+// KdhElig model -> {note, products:[{name,id}], accounts:[{n,name,city,req,sub,why,skus:[{name,id}],hasLabel,has:[names]}]}
+function potFromElig(M){
+  var r = M.rule, P = {};
+  (r.products||[]).forEach(function(p){ P[String(p.id)] = p; });
+  var prod = function(id){ var p = P[String(id)]; return {name: p ? p.name : '#'+id, id: String(id)}; };
+  var rows = window.KdhElig.accountsView(M, {});
+  var thr = r.detail && r.detail.throughLabel ? r.detail.throughLabel : '';
+  var newPl = r.kind==='placements' && r.requirement && r.requirement.kind==='count';
+  var note = newPl ? 'A product an account bought Jul 1 – Sep 30 doesn’t count there again.'+(thr?' Data through '+thr+'.':'')
+    : (r.kind==='placements' && r.detail && r.detail.through!=='export' && thr) ? 'Account detail runs through '+thr+'; a product placed since then may already count.'
+    : (thr ? 'Data through '+thr+'.' : '');
+  var ord = {sku:0, partial:0, lapsed:1, brand:2};
+  var accounts = rows.map(function(a){
+    var out = {n:a.n, name:a.name, city:a.city, why:'', skus:[], has:[]};
+    if(r.kind==='placements'){
+      var ops = (a.op||[]).slice().sort(function(x,y){ return (ord[x[1]]??3)-(ord[y[1]]??3) || String((P[x[0]]||{}).name).localeCompare(String((P[y[0]]||{}).name)); });
+      out.skus = ops.map(function(op){ return prod(op[0]); });
+      out.req = 'Any Qualifying Product = 1 '+(newPl ? 'New Placement' : 'Placement');
+      out.sub = out.skus.length>1 ? 'Each one counts once at this account.' : 'It counts once at this account.';
+      var warm = ops.find(function(op){ return op[1]==='sku' || op[1]==='lapsed'; });
+      out.why = warm ? potShortWhy(warm[2]) : '';
+    } else {
+      var have = (a.cr||[]).map(String), min = r.minSkus||1;
+      out.skus = (r.products||[]).filter(function(p){ return have.indexOf(String(p.id))<0; }).map(function(p){ return prod(p.id); });
+      if(min<=1){ out.req = 'Needs 1 Qualifying Purchase'; out.sub = 'Any product below counts.'; }
+      else if(have.length){ out.req = 'Needs '+a.need+' More Qualifying SKU'+(a.need===1?'':'s'); out.sub = 'Has '+have.length+' of '+min+'. Add '+(a.need===1?'one':a.need)+' more from the list.'; }
+      else { out.req = 'Needs '+min+' Distinct Qualifying SKUs'; out.sub = 'Any '+min+' different products from the list.'; }
+      out.has = have.map(function(id){ return prod(id).name; });
+      out.hasLabel = 'Already bought'+(r.period ? ' since '+r.period.label.split(' – ')[0] : '');
+      out.why = a.why && a.why[0]==='lapsed' ? a.why[1] : '';
+    }
+    return out;
+  });
+  return {note:note, products:(r.products||[]).map(function(p){ return {name:p.name, id:String(p.id)}; }), accounts:accounts};
+}
+function acctHref(n){
+  if(n==null || !/^\d+$/.test(String(n))) return '';
+  var fl = (/on-prem/.test(location.pathname) ? 'On' : 'Off')+'-Premise MPOs';
+  return '../../accounts/#acct='+encodeURIComponent(n)+'&from='+encodeURIComponent(location.pathname+location.hash)+'&fl='+encodeURIComponent(fl);
+}
+function potBodyHtml(res){
+  if(!res) return '<p class="pa-note">Potential accounts aren’t available for this program: the data on file can’t confirm which sales would earn credit.</p>';
+  var A = res.accounts||[], P = res.products||[];
+  var li = function(x){ return '<li><span class="pa-pn">'+esc(x.name)+'</span>'+(x.id ? '<span class="pa-pid">#'+esc(x.id)+'</span>' : '')+'</li>'; };
+  var qp = P.length
+    ? '<details class="pa-qp"><summary><span>Qualifying Products ('+P.length+')</span>'+CHEV+'</summary><ul class="pa-plist">'+P.map(li).join('')+'</ul></details>'
+    : (res.qpNote ? '<p class="pa-note flag">'+esc(res.qpNote)+'</p>' : '');
+  var pid = {}; P.forEach(function(x){ if(x.id) pid[x.id] = 1; });
+  if(!A.length) return qp+'<p class="pa-note">No account on this route can add credit for this program right now.</p>';
+  var acct = function(a){
+    var href = acctHref(a.n), first = a.skus.slice(0, POT_OPTS), rest = a.skus.slice(POT_OPTS);
+    // every shared product is still open here: point to the shared list, never repeat it
+    var same = P.length>1 && a.skus.length===P.length && a.skus.every(function(x){ return x.id && pid[x.id]; });
+    return '<div class="pa-acct">'+
+      '<button type="button" class="pa-row-btn" aria-expanded="false"><span class="pa-rt"><span class="pa-name">'+esc(a.name)+'</span>'+(a.city?'<span class="pa-town">'+esc(a.city)+'</span>':'')+'</span>'+CHEV+'</button>'+
+      '<div class="pa-det" hidden>'+
+        '<div class="pa-req">'+esc(a.req||'')+'</div>'+
+        (a.sub ? '<div class="pa-sub">'+esc(a.sub)+(a.why ? ' <span class="pa-why">'+esc(a.why)+'.</span>' : '')+'</div>' : (a.why ? '<div class="pa-sub pa-why">'+esc(a.why)+'.</div>' : ''))+
+        (same ? '<button type="button" class="pa-seeall">See the '+P.length+' Qualifying Products</button>' :
+         a.skus.length ? (a.skusLabel ? '<div class="pa-sl">'+esc(a.skusLabel)+'</div>' : '')+'<ul class="pa-opts">'+first.map(li).join('')+'</ul>'+
+          (rest.length ? '<details class="pa-more"><summary>Show '+rest.length+' More</summary><ul class="pa-opts">'+rest.map(li).join('')+'</ul></details>' : '') : '')+
+        (a.has && a.has.length ? '<div class="pa-has"><span>'+esc(a.hasLabel||'Already bought')+':</span> '+esc(a.has.join(', '))+'</div>' : '')+
+        (href ? '<a class="pa-open" href="'+esc(href)+'">Open Account ›</a>' : '')+
+      '</div></div>';
+  };
+  return qp+(res.note?'<p class="pa-note'+(res.flag?' flag':'')+'">'+esc(res.note)+'</p>':'')+'<div class="pa-list">'+A.map(acct).join('')+'</div>';
+}
+function hydratePotential(){
+  var slots = document.querySelectorAll('.g-pot:not([data-done])');
+  if(!slots.length) return;
+  var mk = H.monthKey ? H.monthKey() : '';
+  Array.prototype.forEach.call(slots, function(el){
+    el.setAttribute('data-done','1');
+    var key = el.getAttribute('data-key'), rep = el.getAttribute('data-rep');
+    var o = H.objectives().find(function(x){ return x.key===key; });
+    var fill = function(res){
+      var b = el.querySelector('.g-pot-body'), n = el.querySelector('.g-pot-n');
+      if(b) b.innerHTML = potBodyHtml(res);
+      if(n) n.textContent = res ? '('+(res.accounts||[]).length+')' : '(—)';
+      if(res && !(res.accounts||[]).length) el.classList.add('empty');
+    };
+    var E = window.KdhElig, id = potScope()+':'+mk+':'+key;
+    var own = o && H.potential ? H.potential(o, rep) : null;
+    if(own){
+      // towns for the follow-up lists: any of the rep's eligibility files that knows the account
+      if(!E) return fill(own);
+      return E.load(rep).then(function(data){
+        var town = {};
+        if(data && data.programs) Object.keys(data.programs).forEach(function(k){ (data.programs[k].accounts||[]).forEach(function(a){ if(a.city && !town[a.n]) town[a.n] = a.city; }); });
+        (own.accounts||[]).forEach(function(a){ if(!a.city && town[a.n]) a.city = town[a.n]; });
+        fill(own);
+      }).catch(function(){ fill(own); });
+    }
+    if(!E) return fill(null);
+    E.ready().then(function(){
+      if(!E.rule(id)) return fill(null);
+      return E.load(rep).then(function(data){
+        if(!data || !data.programs || !data.programs[id]) return fill(null);
+        fill(potFromElig(E.model(id, [{rep:rep, data:data}])));
+      });
+    }).catch(function(){ fill(null); });
+  });
+}
+// one account open at a time inside a Potential Accounts panel
+document.addEventListener('click', function(e){
+  var btn = e.target.closest && e.target.closest('.pa-row-btn'); if(!btn) return;
+  var list = btn.closest('.pa-list'), open = btn.getAttribute('aria-expanded')!=='true';
+  if(list) Array.prototype.forEach.call(list.querySelectorAll('.pa-row-btn[aria-expanded="true"]'), function(b){
+    b.setAttribute('aria-expanded','false'); b.parentNode.classList.remove('open'); b.nextElementSibling.hidden = true; });
+  btn.setAttribute('aria-expanded', open?'true':'false'); btn.parentNode.classList.toggle('open', open); btn.nextElementSibling.hidden = !open;
+});
+// "See the N Qualifying Products": open the shared list above and bring it into view
+document.addEventListener('click', function(e){
+  var b = e.target.closest && e.target.closest('.pa-seeall'); if(!b) return;
+  var qp = b.closest('.g-pot-body') && b.closest('.g-pot-body').querySelector('.pa-qp'); if(!qp) return;
+  qp.open = true; qp.scrollIntoView({block:'start', behavior:'smooth'});
+  var s = qp.querySelector('summary'); if(s) s.focus({preventScroll:true});
+});
 function repObjectiveCard(o, rep){
   var m = H.metric(o, rep);
-  var weightTag = '<span class="g-tag weight">'+Math.round(o.weight*100)+'% of MPO</span>';
+  var weightTag = o.weight==null ? (o.isTest ? '<span class="g-tag test">TEST — Not an Active MPO</span>' : '') : '<span class="g-tag weight">MPO Weight '+Math.round(o.weight*100)+'%</span>';
 
   if(!m || m.notScored){
     var note = m && m.notScored
-      ? 'This objective doesn’t apply to '+esc(rep.split(' ')[0])+' this month — there’s no '+
-        'goal to measure against, so it isn’t counted for or against them.'+
+      ? 'Not scored for '+esc(rep.split(' ')[0])+' this month. No goal to measure.'+
         (m.valueText ? ' Recorded so far: <strong>'+esc(m.valueText)+'</strong>.' : '')
-      : 'This objective isn’t being tracked with data yet, so there’s no progress to show. '+
-        'The goal and its weight still count toward the month.';
+      : 'No data yet. The goal and weight still count toward the month.';
     return '<div class="g-obj notstarted">'+
       (o.supplier?'<div class="g-obj-sup">'+esc(o.supplier)+'</div>':'')+
       '<div class="g-obj-name">'+esc(o.name)+'</div>'+
@@ -391,50 +731,79 @@ function repObjectiveCard(o, rep){
   }
 
   var st = m.status;
-  // Three facts, each said once (2026-09-28): the goal, where the rep is,
-  // what is still needed. Whether credit is earned rides on the status
-  // pill ("Goal achieved · credit earned") instead of a fourth column that
-  // repeated it, and a met goal reads "None" under Still needed.
-  var facts =
-    '<div class="g-facts g-facts-3">'+
-      '<div><div class="g-fact-l">My Goal</div><div class="g-fact-v">'+esc(m.goalText)+'</div></div>'+
-      '<div><div class="g-fact-l">Where I Am</div><div class="g-fact-v'+
-        (st==='achieved'?' good':'')+'">'+esc(m.valueText)+'</div></div>'+
-      '<div><div class="g-fact-l">Still Needed</div><div class="g-fact-v'+
-        (m.remaining<=0?' good':'')+'">'+
-        (m.remaining<=0?'None':esc(m.remainText||String(m.remaining)))+'</div></div>'+
-    '</div>';
+  if(isCarblissLaunch(o)) return carblissCard(o, rep, st);
+  // ONE SHORT SUMMARY (2026-09-30, Gavin's Encompass brief): the objective's
+  // short name, "3 of 13 buying accounts", "10 more buying accounts needed",
+  // one bar, and the goal rule as a quiet supporting line. The weight and
+  // the full objective name sit in the Details fold with the tracker's own
+  // drill-down; nothing about the calculation changed -- m.value / m.goal /
+  // m.remaining are the metric's own numbers.
+  var unit = o.unit || '';
+  var uPl = function(n, u){ u = String(u||'').trim(); if(!u) return ''; if(n===1) return /s$/.test(u) && !/ss$/.test(u) ? u.replace(/s$/,'') : u; return /s$/.test(u) ? u : u+'s'; };
+  var fmtN = function(v){ var n = Number(v); if(!isFinite(n)) return '\u2014'; return (Math.round(n*10)/10).toLocaleString('en-US'); };
+  var hasNums = isFinite(Number(m.value)) && isFinite(Number(m.goal)) && Number(m.goal) > 0;
+  var main = hasNums
+    ? (unit ? fmtN(m.value)+' of '+fmtN(m.goal)+' '+uPl(Number(m.goal), unit) : esc(m.valueText)+' of '+esc(m.goalText))
+    : esc(m.valueText);
+  var need = m.remaining<=0 ? 'Goal met'
+    : (hasNums && unit ? fmtN(m.remaining)+' more '+uPl(Number(m.remaining), unit)+' needed' : esc(m.remainText||String(m.remaining))+' more needed');
+  // the rule line only when the goal text says more than the count itself
+  var plainGoal = new RegExp('^[\\d,.]+\\s*'+(unit?unit.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'s?':'')+'$','i').test(String(m.goalText||'').trim());
+  var rule = (m.goalText && !plainGoal) ? 'Goal is '+esc(String(m.goalText).replace(/^my /,'your ').replace(/ my /,' your ')) : '';
 
   var subsHtml = '';
   if(m.subs && m.subs.length){
-    subsHtml = '<div style="margin-bottom:14px">'+m.subs.map(function(s){
-      return '<div style="margin-bottom:10px">'+
-        '<div class="g-barcap"><span>'+esc(s.label)+'</span>'+
-          '<strong>'+esc(s.valueText)+'</strong></div>'+
-        barHtml(s.pct, s.status)+
-      '</div>';
+    subsHtml = '<div class="g-subs">'+m.subs.map(function(s){
+      return '<div class="g-subrow"><span>'+esc(s.label)+'</span><strong>'+esc(s.valueText)+'</strong></div>';
     }).join('')+'</div>';
   }
 
   var detail = H.detailHtml(o, rep) || '';
   var mid = 'gm'+(uid++);
-  var moreHtml = detail
-    ? '<button class="g-more js-more" data-target="'+mid+'" aria-expanded="false">'+
-        'See My Progress<span class="ar">&#9656;</span></button>'+
-      '<div class="g-more-body" id="'+mid+'">'+detail+'</div>'
-    : '';
+  // Details holds only what the card does not already say (2026-10-06): the
+  // full program name when the title is shortened, and the tracker's own table.
+  var full = titleOf(o) !== o.name ? '<p class="g-full"><span>Full program name</span>'+esc(o.name)+'</p>' : '';
+  var detailContent = (full || detail) ? full+detail : '';
 
-  return '<div class="g-obj '+st+'">'+
+  if(hasNums){
+    // READABILITY v4 (2026-10-06, Gavin): Goal (with its unit and, for a
+    // percentage rule, the underlying goal) -> Current -> Still Needed ->
+    // one bar -> deadline -> View Eligible Accounts. Weight and the full rule
+    // stay secondary. Every number is the metric's own (m.goal is the
+    // requirement, m.underlying the program goal or account base).
+    var met = m.remaining<=0;
+    var unitGoal = titleCase(uPlural(Number(m.goal), unit));
+    var why = goalWhy(o, m);
+    var dl = deadlineOf(o);
+    var href = /^Ended/.test(dl) ? '' : eligibleHref(o, rep);   // an ended month has nothing left to sell into
+    return '<div class="g-obj g-obj-v3 g-obj-v4 '+st+'">'+
+      logoHtml(o)+
+      '<div class="g-obj-head"><div class="g-obj-name">'+esc(titleOf(o))+'</div>'+
+        '<div class="g-obj-sub">'+esc([o.supplier, (H.monthLabel ? H.monthLabel()+' MPO' : '')].filter(Boolean).join(' · '))+'</div>'+
+        creditPill(st)+'</div>'+
+      '<div class="g-goal"><div class="g-goal-l">Goal</div><div class="g-goal-v">'+fmtNum(m.goal)+' '+esc(unitGoal)+'</div>'+
+        (why ? '<div class="g-goal-why">'+esc(why)+'</div>' : '')+'</div>'+
+      '<div class="g-stats">'+
+        '<div class="g-stat"><span class="g-stat-l">Current</span><span class="g-stat-v">'+fmtNum(m.value)+'<span class="g-stat-of"> of '+fmtNum(m.goal)+'</span></span></div>'+
+        '<div class="g-stat'+(met?' good':'')+'"><span class="g-stat-l">Remaining</span><span class="g-stat-v">'+(met ? 'Met' : fmtNum(m.remaining))+'</span>'+
+          '<span class="g-stat-u">'+(met ? 'Requirement complete' : esc(titleCase(uPlural(Number(m.remaining), unit))))+'</span></div>'+
+      '</div>'+
+      barHtml(m.pct, st)+
+      (dl ? '<div class="g-deadline">'+dl+'</div>' : '')+
+      subsHtml+
+      weightMeta(o)+
+      actionsHtml(o, rep, detailContent, !!(href && !met))+
+    '</div>';
+  }
+  return '<div class="g-obj g-obj-v2 '+st+'">'+
     (o.supplier?'<div class="g-obj-sup">'+esc(o.supplier)+'</div>':'')+
-    '<div class="g-obj-name">'+esc(o.name)+'</div>'+
-    '<div class="g-tags">'+weightTag+creditPill(st)+'</div>'+
-    facts+
+    '<div class="g-obj-name">'+esc(titleOf(o))+'</div>'+
+    '<div class="g-tags">'+creditPill(st)+'</div>'+
+    '<div class="g-main"><b>'+main+'</b><span class="g-need'+(m.remaining<=0?' good':'')+'">· '+need+'</span></div>'+
     barHtml(m.pct, st)+
-    // The four facts above already state where the rep is, so the bar
-    // carries only the one thing they don't: how far along that is.
-    '<div class="g-barcap"><span>'+Math.round(m.pct)+'% of goal</span></div>'+
+    (rule?'<div class="g-rule">'+rule+'</div>':'')+
     subsHtml+
-    moreHtml+
+    actionsHtml(o, rep, detailContent, false)+
   '</div>';
 }
 
@@ -443,71 +812,63 @@ function repObjectiveCard(o, rep){
    ================================================================== */
 function screenProgram(){
   var objs = H.objectives();
-  var weighted = objs.reduce(function(s,o){return s + o.weight * H.programPct(o);},0);
-
-  // ONE overall summary (2026-09-29): the weighted score and how many
-  // programs the whole team has finished. Each program's own "reps at goal"
-  // is printed once, on its card below -- not here as well.
-  var tracked = objs.filter(function(o){ return !!H.atGoal(o); });
-  var allDone = tracked.filter(function(o){ var g = H.atGoal(o); return g.total && g.n===g.total; }).length;
-  var sums = [{l:'Overall weighted MPO', n:Math.round(weighted)+'%',
-    cls: weighted>=90?'good':(weighted>=50?'accent':''),
-    s:'across all '+objs.length+' objectives'},
-    {l:'Programs every rep has reached', n: tracked.length ? allDone+' of '+tracked.length : '—',
-    cls: tracked.length && allDone===tracked.length ? 'good' : (allDone ? 'accent' : 'mute'),
-    s: tracked.length===objs.length ? 'tracked with data' : (objs.length-tracked.length)+' not tracked with data yet'}];
-
   return '<div class="g g-fade">'+
     stepHead(null,'Program results',
       esc(H.scope)+' · '+esc(H.monthLabel())+
-      ' · tap a program to see every rep’s result.')+
-    '<div class="g-sum-grid">'+sums.map(function(k){
-      return '<div class="g-sum"><div class="g-sum-l">'+k.l+'</div>'+
-        '<div class="g-sum-n '+k.cls+'">'+k.n+'</div>'+
-        '<div class="g-sum-s">'+k.s+'</div></div>';
-    }).join('')+'</div>'+
-    objs.map(programCard).join('')+
+      (BRANDS ? ' · your brands: '+esc((BRANDS.suppliers || BRANDS).join(', ')) : '')+
+      ' · open a program to review each rep.')+
+    (objs.length ? objs.map(programCard).join('') : BRANDS ? brandEmptyHtml() : '')+
   '</div>';
 }
 
 function programCard(o){
   var g = H.atGoal(o);
+  if(isCarblissLaunch(o)) return carblissProgramCard(o, g);
   var open = openProgram === o.key;
-  var pct = H.programPct(o);
-  var eligible = eligibleRoster(o).length;   // support reps off this objective do not count
+  var has = !!(g && g.total);
+  var share = has ? (g.n/g.total)*100 : 0;
 
   var head =
     '<button class="g-prog-head js-prog'+(open?' open':'')+'" data-key="'+esc(o.key)+'" '+
       'aria-expanded="'+(open?'true':'false')+'">'+
+      logoHtml(o)+
       '<div class="g-prog-top">'+
-        '<span class="g-prog-name">'+esc(o.name)+
-          (o.supplier?'<span class="g-reprow-dm">'+esc(o.supplier)+'</span>':'')+
+        '<span class="g-prog-name">'+esc(titleOf(o))+
+          '<span class="g-reprow-dm">'+supPeriod(o)+'</span>'+
         '</span>'+
-        '<span class="g-prog-right">'+
-          '<span><span class="g-prog-atgoal'+(g&&g.total&&g.n===g.total?' good':'')+'">'+
-            (g? g.n+' / '+g.total : '—')+'</span>'+
-            '<span class="g-prog-atgoal-l">reps at goal</span></span>'+
-          '<span class="g-chev">&#9656;</span>'+
-        '</span>'+
+        '<span class="g-chev">&#9656;</span>'+
       '</div>'+
-      '<div class="g-tags" style="margin:12px 0 0">'+
-        '<span class="g-tag weight">'+Math.round(o.weight*100)+'% of MPO</span>'+
-        (o.goalLabel?'<span class="g-tag">Goal: '+esc(o.goalLabel)+'</span>':'')+
-        '<span class="g-tag">'+pl(eligible,'eligible rep')+'</span>'+
-        (g?'<span class="g-tag">'+Math.round(g.total?(g.n/g.total)*100:0)+'% at goal</span>':'')+
-      '</div>'+
-      barHtml(pct, g && g.total && g.n===g.total ? 'achieved' : 'inprogress')+
+      (has
+        ? '<div class="g-fig"><span class="g-fig-n">'+g.n+'</span><span class="g-fig-of"> of '+g.total+'</span><span class="g-fig-u">Reps at Goal</span></div>'+
+          barHtml(share, g.n===g.total ? 'achieved' : (g.n>0?'inprogress':'notstarted'))+
+          '<div class="g-bar-cap">Team progress: '+Math.round(share)+'% of eligible reps at goal</div>'
+        : '<div class="g-need">No data yet \u2014 not counted</div>')+
+      '<div class="g-meta">'+(o.weight==null ? (o.isTest ? 'TEST — Not an Active MPO' : 'Manager-built objective') : 'MPO Weight '+Math.round(o.weight*100)+'%')+'<span class="g-review">'+(open?'Hide Reps':'Review Reps')+'</span></div>'+
     '</button>';
 
   var body = open ? '<div class="g-prog-body open">'+programBody(o)+'</div>' : '';
   return '<div class="g-prog">'+head+body+'</div>';
 }
 
+// Carbliss (2026-10-07, Gavin): the program card shows the Carbliss Leaderboard's company tiles and the
+// whole card opens the leaderboard (managers and reps alike) instead of expanding the rep list.
+function carblissProgramCard(o, g){
+  var has = !!(g && g.total);
+  // No title line (Gavin, 2026-10-07: redundant) -- the link's aria-label names the program for screen readers.
+  var label = titleOf(o)+', '+String(supPeriod(o)).replace(/<[^>]+>/g,'')+'. Open the Carbliss Leaderboard';
+  return '<div class="g-prog g-prog-cb"><a class="g-prog-head g-prog-link" href="../../carbliss-onprem-targets/" aria-label="'+esc(label)+'">'+
+      logoHtml(o)+
+      '<div class="g-cb g-cb-co" data-co="1"><div class="g-cb-wait">Loading Carbliss buyers\u2026</div></div>'+
+      '<div class="g-meta">'+(o.weight==null ? (o.isTest ? 'TEST — Not an Active MPO' : 'Manager-built objective') : 'MPO Weight '+Math.round(o.weight*100)+'%')+(has ? ' \u00b7 '+g.n+' of '+g.total+' Reps at Goal' : '')+
+        '<span class="g-review">Open Carbliss Leaderboard</span></div>'+
+    '</a></div>';
+}
+
 function programBody(o){
   var rows = H.roster.map(function(rep){
     var m = H.metric(o, rep);
     return {rep: rep, dm: dmOf(rep), m: m};
-  }).filter(function(r){ return !(r.m && r.m.hidden); });   // a support rep off this objective
+  }).filter(function(r){ return !(r.m && (r.m.hidden || r.m.notScored)); });   // reps this objective does not cover are not listed
   if(!rows.some(function(r){return r.m && !r.m.notScored;})){
     return '<div class="g-note">This objective isn’t being tracked with data yet. '+
       'Its goal and weight still count toward the month.</div>';
@@ -560,26 +921,23 @@ function programBody(o){
       '</div>';
     }
     var st = m.status;
-    // Program View detail (2026-09-17, per Gavin: managers should see the
-    // customer / product / date / photo lines without leaving this screen).
-    // The toggle renders the SAME drill-down Rep View puts behind "See My
-    // Progress" -- H.detailHtml() -- and fills it lazily on first open, so a
-    // 27-rep objective does not build 27 tables it may never show.
     var did = 'gd'+(uid++);
-    return '<div class="g-reprow '+st+'">'+
-      '<span class="g-reprow-name">'+esc(row.rep)+
-        '<span class="g-reprow-dm">'+esc(row.dm)+'</span></span>'+
-      '<span class="g-reprow-val'+(st==='notstarted'?' mute':'')+'">'+esc(m.valueText)+'</span>'+
-      '<span class="g-reprow-meta">'+
-        '<span class="g-reprow-bar"><span class="g-reprow-fill '+st+'" style="width:'+
-          Math.max(0,Math.min(100,m.pct))+'%"></span></span>'+
-        '<span class="g-reprow-remain">'+Math.round(m.pct)+'%'+
-          (m.remaining>0 && m.remainText ? ' · '+esc(m.remainText)+' to go' : '')+
-        '</span>'+
-      '</span>'+
-      pillHtml(st)+
+    var nums = isFinite(Number(m.value)) && isFinite(Number(m.goal)) && Number(m.goal)>0;
+    var uLbl = o.unit ? uPlural(Number(m.goal), o.unit) : '';
+    return '<div class="g-reprow g-reprow-v3 '+st+'">'+
+      '<div class="g-rr-id"><span class="g-reprow-name">'+esc(row.rep)+'</span>'+
+        (row.dm?'<span class="g-reprow-dm">Manager: '+esc(row.dm)+'</span>':'')+'</div>'+
+      '<div class="g-rr-fig"><span class="g-rr-l">Current / Required</span>'+
+        '<b>'+(nums ? fmtNum(m.value)+' / '+fmtNum(m.goal) : esc(m.valueText))+'</b>'+
+        (nums && uLbl ? '<span class="g-rr-u">'+esc(uLbl)+'</span>' : '')+'</div>'+
+      '<div class="g-rr-need"><span class="g-rr-l">Remaining</span>'+
+        '<b>'+(m.remaining>0 ? (nums ? fmtNum(m.remaining) : esc(m.remainText||String(m.remaining))) : 'None')+'</b>'+
+        (m.remaining>0 && nums && uLbl ? '<span class="g-rr-u">'+esc(uPlural(m.remaining,o.unit))+'</span>' : '')+'</div>'+
+      '<div class="g-rr-bar"><span class="g-reprow-bar"><span class="g-reprow-fill '+st+'" style="width:'+
+        Math.max(0,Math.min(100,m.pct))+'%"></span></span><span class="g-rr-pct">'+Math.round(m.pct)+'% of requirement</span></div>'+
+      '<div class="g-rr-act">'+pillHtml(st)+
       '<button class="g-reprow-more js-repdetail" data-target="'+did+'" data-key="'+esc(o.key)+
-        '" data-rep="'+esc(row.rep)+'" aria-expanded="false">Details<span class="ar">&#9656;</span></button>'+
+        '" data-rep="'+esc(row.rep)+'" aria-expanded="false">View Account Details<span class="ar">&#9656;</span></button></div>'+
       '<div class="g-reprow-detail" id="'+did+'"></div>'+
     '</div>';
   }).join('');
@@ -592,13 +950,16 @@ function programBody(o){
    ================================================================== */
 function render(){
   if(!mount) return;
-  try{ if(window.kdhViewing) window.kdhViewing(view==='rep' && activeRep && !lockedRep() ? activeRep : '', '#view=rep'); }catch(e){}
+  try{ if(window.kdhViewing) window.kdhViewing(view==='rep' && activeRep && !lockedRep() ? activeRep : '', function(){ asRep = false; decorateAsRep(); go({view:'rep', rep:null, program:null}); }); }catch(e){}
   applyLock(); decorateLock();
   var html;
   if(view==='program') html = screenProgram();
   else if(activeRep && H.roster.indexOf(activeRep)>=0) html = screenRepDetail();
   else { activeRep = null; html = screenRepPicker(); }
   mount.innerHTML = html;
+  if(window.KdhFit) window.KdhFit.tables(mount);
+  hydrateCarbliss();
+  hydratePotential();
   var segs = document.querySelectorAll('.g-seg-btn');
   for(var i=0;i<segs.length;i++){
     segs[i].classList.toggle('active', segs[i].dataset.view===view);
@@ -639,6 +1000,7 @@ function wire(){
           rbody.innerHTML = (obj && H.detailHtml(obj, rd.dataset.rep)) ||
             '<div class="g-note">No line-level detail for this rep this month.</div>';
           rbody.dataset.filled = '1';
+          if(window.KdhFit) window.KdhFit.tables(rbody);
         }
         rbody.classList.toggle('open', ropen);
       }
@@ -648,6 +1010,9 @@ function wire(){
     var more = e.target.closest('.js-more');
     if(more){
       var body = document.getElementById(more.dataset.target);
+      var grp = more.closest('.g-acts');   // Details / Potential Accounts: one open at a time
+      if(grp && !more.classList.contains('open')) Array.prototype.forEach.call(grp.querySelectorAll('.js-more.open'), function(b){
+        b.classList.remove('open'); b.setAttribute('aria-expanded','false'); var bb = document.getElementById(b.dataset.target); if(bb) bb.classList.remove('open'); });
       var nowOpen = more.classList.toggle('open');
       more.setAttribute('aria-expanded', nowOpen?'true':'false');
       if(body) body.classList.toggle('open', nowOpen);
@@ -689,6 +1054,31 @@ var API = {
         dmGroups: (host.dmGroups || []).filter(function(g){ return g.dm === T.dm || g.under === T.dm; })
       });
     }
+    // OUT OF REACH (Gavin, 2026-10-07: a rep sees only the MPOs available to them): an
+    // objective on this page needs an account of the page's premise. A rep whose book has
+    // none (shared/data/rep-premise.js, counts from the active Customers export) is not
+    // scored on it and does not see it -- unless the tracker already credits them something.
+    var PREM = window.KDH_REP_PREMISE;
+    var need = host.scope === 'Off-Premise' ? 'off' : host.scope === 'On-Premise' ? 'on' : null;
+    if(PREM && need){
+      var baseMetric = H.metric;
+      H = Object.assign({}, H, {metric: function(o, rep){
+        var m = baseMetric(o, rep), c = PREM[rep];
+        if(c && !c[need] && !(m && Number(m.value) > 0)) return {notScored:true, hidden:true, outOfReach:true};
+        return m;
+      }});
+    }
+    // Brand scope: objectives filed under the manager's suppliers only (see BRANDS above).
+    var baseObjectives = H.objectives;
+    H = Object.assign({}, H, {objectives: function(){ var all = baseObjectives(); return BRANDS ? all.filter(brandAllows) : all; }});
+    // (a district manager who also carries a brand keeps every objective: their team is the scope)
+    if(KDH_USER && KDH_USER.role === 'manager' && window.kdhBrandScope && !T){
+      brandReady = new Promise(function(resolve){
+        var done = false; var settle = function(sc){ if(done) return; done = true; BRANDS = Array.isArray(sc) && sc.length ? sc : null; resolve(); };
+        try{ window.kdhBrandScope().then(settle, function(){ settle(null); }); }catch(e){ settle(null); }
+        setTimeout(function(){ settle(null); }, 3000);
+      });
+    }
     mount = host.mount;
 
     // The URL wins over the remembered state -- a shared link should land
@@ -699,16 +1089,14 @@ var API = {
       activeRep = s.rep || null;
       openProgram = s.program || null;
     } else {
-      var saved = restore();
-      if(saved){
-        view = saved.view==='program' ? 'program' : 'rep';
-        activeRep = saved.rep || null;
-      }
+      // Every manager (DMs included) opens on View by Program (Gavin, 2026-10-07; replaces the
+      // 2026-09-29 "a DM starts by rep" rule and the remembered view). A link that names a rep or a
+      // program still wins, and a signed-in rep is pinned to their own page by applyLock().
+      view = 'program'; activeRep = null;
     }
-    // A district manager starts BY REP (their team's picker), then drills
-    // to a rep's programs (2026-09-29, per Gavin) -- unless the link names
-    // a rep or a program. View by Program is still a tap away.
-    if(T && !activeRep && !openProgram) view = 'rep';
+    // A manager sent here for ONE rep sees that rep's page and nothing else.
+    if(!lockedRep() && KDH_USER && KDH_USER.role === 'manager' && s.rep){ asRep = true; view = 'rep'; openProgram = null; }
+    decorateAsRep();
     applyLock();
     wire();
     return API;
@@ -717,7 +1105,8 @@ var API = {
   // across months when they are still on the roster, so switching months
   // answers "how did this same rep do in August" rather than dumping the
   // user back to the picker.
-  refresh: function(){
+  refresh: function(){ brandReady.then(API._refresh); },
+  _refresh: function(){
     if(activeRep && H.roster.indexOf(activeRep)<0) activeRep = null;
     if(openProgram && !H.objectives().some(function(o){return o.key===openProgram;})){
       openProgram = null;
@@ -733,6 +1122,7 @@ var API = {
     return s.month || (restore()||{}).month || null;
   },
   syncHash: function(){ persist(); },
+  get brands(){ return BRANDS; },
   get view(){ return view; },
   get rep(){ return activeRep; }
 };

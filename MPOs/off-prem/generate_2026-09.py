@@ -269,7 +269,7 @@ def check_window(col, expected_start, label):
     got = datetime(int(year), int(month), int(day))
     if got != expected_start:
         raise SystemExit(
-            f"{label}: expected a window starting {expected_start:%-m/%-d/%Y}, "
+            f"{label}: expected a window starting {expected_start.month}/{expected_start.day}/{expected_start.year}, "
             f"got column {col!r}. Check the export's date range before rerunning."
         )
 
@@ -422,7 +422,7 @@ def build_customer_base_core():
 
 # ------------------------------------------------------------- objectives 3/4
 
-def build_new_placements(path, product_col=None):
+def build_new_placements(path, product_col=None, base_start=None, current_start=None):
     """The two-window new-placement read (see this script's docstring): a
     key is NEW when its current window is populated and its base window is
     not. The key is one rep/account (Fever Tree) or rep/account/product
@@ -459,8 +459,9 @@ def build_new_placements(path, product_col=None):
             except ValueError:
                 pass
         return None
-    check_window(base_col, datetime(2026, 6, 1), f"{path.name} base window")
-    check_window(current_col, ACTUAL_WINDOW_START, f"{path.name} current window")
+    # Windows default to September's; generate_2026-10.py passes its own.
+    check_window(base_col, base_start or datetime(2026, 6, 1), f"{path.name} base window")
+    check_window(current_col, current_start or ACTUAL_WINDOW_START, f"{path.name} current window")
 
     agg, order = {}, []
     for r in rows:
@@ -514,8 +515,8 @@ def build_new_placements(path, product_col=None):
             "BASE_PLACEMENTS": a["base"],
             "CURRENT_PLACEMENTS": a["current"],
             "NEW_PLACEMENT": is_new,
-            "PLACED_DATE": a["first_dt"].strftime("%-m/%-d/%Y") if a["first_dt"] else "",
-            "LAST_DATE": a["last_dt"].strftime("%-m/%-d/%Y") if a["last_dt"] else "",
+            "PLACED_DATE": f"{a['first_dt'].month}/{a['first_dt'].day}/{a['first_dt'].year}" if a["first_dt"] else "",
+            "LAST_DATE": f"{a['last_dt'].month}/{a['last_dt'].day}/{a['last_dt'].year}" if a["last_dt"] else "",
         })
     out.sort(key=lambda row: (row["SALES_REP_ASSIGNED"], row["CUSTOMER_NAME"], row["PRODUCT_NAME"]))
     return out, new_placements, new_keys, len(out), summed_alt
@@ -768,3 +769,11 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# Per-rep copies (tools/rep_slices.py, 2026-10-01): a signed-in rep's browser
+# is served only their own rows, so the copies are rebuilt after every run.
+if __name__ == "__main__":
+    import subprocess as _sp, sys as _sys
+    from pathlib import Path as _P
+    _root = next(p for p in _P(__file__).resolve().parents if (p / "middleware.js").exists())
+    _sp.run([_sys.executable, str(_root / "tools" / "rep_slices.py")], check=True)

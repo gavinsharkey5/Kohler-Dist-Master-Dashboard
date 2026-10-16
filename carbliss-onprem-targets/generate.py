@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Regenerates the embedded data in index.html from accounts.csv + price_vol.csv.
+Regenerates the embedded data in index.html from accounts.csv (+ the buyers and sell-sheet files).
 
 Usage (from this folder):
     python3 generate.py
@@ -10,9 +10,11 @@ Inputs (keep these filenames when re-exporting from RDE):
                      (Sales Rep Assigned, Customer ID, Customer Name, Shipping Address, City,
                       On Premise, Brand Family, Product Num Name, Cases 2025, Buyer Count 2025,
                       Cases 2026, Buyer Count 2026)
-    price_vol.csv  - "RDE Carbliss Eval vs Sun Cruiser & White Claw Price & Vol" export
-                     (Product Name, Customer Num, Customer Name, On-Off Premise, Unit Price,
-                      Cases 2025, Cases 2026, $Vol 2025, $Vol 2026)
+
+Dollars are NOT used anywhere on this page (Gavin, 2026-10-06): distribution
+only -- placements (accounts / buyers) and cases. The old price & volume
+export (price_vol.csv) is no longer read or kept; per-product cases come from
+accounts.csv's Product Num Name rows, which matched it case for case.
 
 City comes straight from accounts.csv's own City column (added 2026-07-21 --
 100% of accounts resolve directly from the source export now). The old
@@ -20,22 +22,19 @@ cross-reference lookup from other trackers in this repo (molsoncoors/retention,
 carbliss/data.csv, isellbeer DisplayPhotoReport.csv) is kept only as a fallback
 for the rare case a future export drops the City column or leaves it blank for
 an account.
-
-accounts.csv's Product Num Name column (also added 2026-07-21) isn't otherwise
-used here -- cross-checked against price_vol.csv's Product Name and found to
-be a perfect match on every (customer, product) pair (same cases both years,
-zero mismatches across 2,689 rows), so price_vol.csv remains the single source
-for per-SKU flavor detection and pricing; accounts.csv stays the source for
-account-level brand totals (Sun Cruiser/White Claw/Carbliss cases by year) and
-now City.
 """
-import csv, json, re, os
+import csv, json, re, os, datetime
 from collections import defaultdict
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
 F1 = os.path.join(HERE, 'accounts.csv')
-F2 = os.path.join(HERE, 'price_vol.csv')
+# 2026-09-30: the rolling-90 buyer export ("RDE Carbliss Buyers (ON) L90 vs
+# Start": one row per Carbliss load sheet, with Buyers L90 = 1 when that load
+# sheet falls inside the last 90 days and Buyers 2026 = 1 for the year) and
+# the Brands workbook that carries a sell-sheet URL per Carbliss flavor.
+F3 = os.path.join(HERE, 'carbliss_buyers_l90.csv')
+F4 = os.path.join(HERE, 'brands_sell_sheets.xlsx')
 HTML = os.path.join(HERE, 'index.html')
 
 CARBLISS_FLAVORS = ['Black Cherry', 'Black Raspberry', 'Blood Orange', 'Cranberry', 'Grapefruit',
@@ -117,27 +116,8 @@ def num(s):
     return float(s) if s else 0.0
 
 
-def money(s):
-    s = (s or '').strip().replace('$', '').replace(',', '')
-    if not s:
-        return 0.0
-    neg = s.startswith('(') and s.endswith(')')
-    if neg:
-        s = s[1:-1]
-    v = float(s)
-    return -v if neg else v
-
-
 def fmt_cases(n):
     return f'{n:,.0f}'
-
-
-def fmt_money(n):
-    return f'{n:,.0f}'
-
-
-def fmt_price(n):
-    return f'{n:,.2f}'
 
 
 # ---------- City lookup: direct from accounts.csv, with the old cross-referenced
@@ -186,33 +166,26 @@ with open(F1, encoding='utf-8') as f:
         bucket['buyers25'] += int(r['Buyer Count   2025'] or 0)
         bucket['buyers26'] += int(r['Buyer Count   2026'] or 0)
 
-# ---------- price_vol.csv: per-account per-product aggregation ----------
-# Same (customer, product) pair can appear on multiple rows at different unit
-# prices (price changes / different order sizes during the year) - sum them.
-prod_agg = defaultdict(lambda: {'cases25': 0.0, 'cases26': 0.0, 'vol25': 0.0, 'vol26': 0.0})
-with open(F2, encoding='utf-8') as f:
+# ---------- accounts.csv again: per-account per-product cases ----------
+# One row per (customer, brand, product); the same pair can repeat, so sum.
+prod_agg = defaultdict(lambda: {'cases25': 0.0, 'cases26': 0.0})
+with open(F1, encoding='utf-8') as f:
     for r in csv.DictReader(f):
-        key = (r['Customer Num'].strip(), r['Product Name'].strip())
+        pn = re.sub(r'^\s*\d+\s+', '', r['Product Num Name'].strip())
+        key = (r['Customer ID'].strip(), pn)
         prod_agg[key]['cases25'] += num(r['Cases   2025'])
         prod_agg[key]['cases26'] += num(r['Cases   2026'])
-        prod_agg[key]['vol25'] += money(r['$Vol   2025'])
-        prod_agg[key]['vol26'] += money(r['$Vol   2026'])
 
 # Global per-Carbliss-flavor totals across every account: used both to rank which
-# missing flavor is the strongest bet, and as the reference "typical" Carbliss price.
-flavor_global = defaultdict(lambda: {'cases26': 0.0, 'vol26': 0.0})
+# missing flavor is the strongest bet.
+flavor_global = defaultdict(lambda: {'cases26': 0.0})
 for (cid, prod), agg in prod_agg.items():
     if prod.startswith('Carbliss'):
         fl = carbliss_flavor_of(prod)
         if fl:
             flavor_global[fl]['cases26'] += agg['cases26']
-            flavor_global[fl]['vol26'] += agg['vol26']
 
 flavor_popularity = {fl: flavor_global.get(fl, {}).get('cases26', 0.0) for fl in CARBLISS_FLAVORS}
-flavor_ref_price = {
-    fl: (flavor_global[fl]['vol26'] / flavor_global[fl]['cases26']) if flavor_global.get(fl, {}).get('cases26', 0) > 0 else None
-    for fl in CARBLISS_FLAVORS
-}
 
 by_account = defaultdict(list)
 for (cid, prod), agg in prod_agg.items():
@@ -242,7 +215,7 @@ def build_pitch(r):
             tail = "brand new this year, nothing moved here in 2025."
         else:
             tail = f"steady seller — {fmt_cases(agg['cases25'])} cs moved last year too."
-        bullets.append({'label': 'Top mover', 'text': f"{fmt_cases(agg['cases26'])} cs of {brand} ({sku}) this year (~${fmt_money(agg['vol26'])}) — {tail}"})
+        bullets.append({'label': 'Top mover', 'text': f"{fmt_cases(agg['cases26'])} cs of {brand} ({sku}) this year — {tail}"})
 
         if r['breadth'] > 1:
             bullets.append({'label': 'Not a one-off', 'text': f"{r['breadth']} different Sun Cruiser/White Claw SKUs move through this account."})
@@ -269,22 +242,6 @@ def build_pitch(r):
             bullets.append({'label': 'Diversify with', 'items': [
                 f"Carbliss {flavor_list} — nothing on their menu covers it yet, clean white space.",
             ]})
-
-        ref_price = flavor_ref_price.get(top_flavor)
-        anchor = r['primary']
-        if ref_price and anchor:
-            anchor_prod, anchor_agg = anchor
-            onshelf_price = (anchor_agg['vol26'] / anchor_agg['cases26']) if anchor_agg['cases26'] > 0 else None
-            if onshelf_price:
-                onshelf_brand = brand_of(anchor_prod)
-                onshelf_sku = strip_brand(anchor_prod, onshelf_brand)
-                if ref_price > onshelf_price * 1.05:
-                    framing = "a bit of a premium, but it's new territory, not a price fight."
-                elif ref_price < onshelf_price * 0.95:
-                    framing = "and it undercuts what's already on shelf — easy yes."
-                else:
-                    framing = "in line with what's already on shelf — no price objection."
-                bullets.append({'label': 'Price', 'text': f"Carbliss {top_flavor} runs ~${fmt_price(ref_price)}/cs vs ~${fmt_price(onshelf_price)}/cs for their {onshelf_brand} ({onshelf_sku}) — {framing}"})
     elif r['existing_carbliss']:
         bullets.append({'label': 'Note', 'text': "Their flavor mix already lines up with Carbliss — this is about shelf share, not a new flavor."})
     elif r['primary']:
@@ -370,6 +327,81 @@ for cid, acct in accounts.items():
 for r in results:
     r['pitch_bullets'] = build_pitch(r)
 
+# ---------- carbliss_buyers_l90.csv: YTD vs rolling-90 buyers ----------
+# An ACCOUNT is a YTD buyer when any of its load sheets carries Buyers 2026 = 1
+# and a rolling-90 buyer when any carries Buyers L90 = 1. "Fell off rolling
+# 90" = YTD buyer with no load sheet inside the window -- the account bought
+# this year but not in the last 90 days. The RDE decides the window; the
+# page reports it from the data (latest load sheet date, earliest L90 row).
+buyers = {}
+buyers_meta = {'asOf': '', 'windowStart': '', 'rows': 0}
+loads = []   # one row per load sheet, every column of the export (2026-10-07: Load Sheets table)
+def _d(s):
+    try:
+        m, d, y = s.strip().split('/'); return datetime.date(int(y), int(m), int(d))
+    except Exception:
+        return None
+if os.path.exists(F3):
+    with open(F3, encoding='utf-8') as f:
+        for r in csv.DictReader(f):
+            cc = (r.get('Customer Num & Company') or '').strip()
+            if not cc: continue
+            cid, _, cname = cc.partition(' ')
+            b = buyers.setdefault(cid, {'id': cid, 'name': cname.strip(), 'rep': r['Sales Rep Assigned'].strip(),
+                                        'ytd': False, 'l90': False, 'buys': 0, 'buysL90': 0, 'last': None, 'first': None})
+            dt = _d(r.get('Load Sheet Date') or '')
+            l90 = (r.get('Buyers: L90   2026') or r.get('Buyers L90   2026') or '').strip() == '1'
+            ytd = (r.get('Buyers: YTD   2026') or r.get('Buyers   2026') or '').strip() == '1'
+            b['ytd'] |= ytd; b['l90'] |= l90; b['buys'] += 1; b['buysL90'] += 1 if l90 else 0
+            buyers_meta['rows'] += 1
+            _flag = lambda k: int((r.get(k) or '0').strip() or 0)
+            _prog = next((k for k in r if k and k.startswith('Buyers: Aug')), None)
+            loads.append({'id': cid, 'name': cname.strip(), 'rep': r['Sales Rep Assigned'].strip(),
+                          'brand': (r.get('Brand Family') or '').strip(),
+                          'date': dt.isoformat() if dt else None,
+                          'prog': _flag(_prog) if _prog else 0,
+                          'l90': _flag('Buyers: L90   2026') if 'Buyers: L90   2026' in r else _flag('Buyers L90   2026'),
+                          'ytd': _flag('Buyers: YTD   2026') if 'Buyers: YTD   2026' in r else _flag('Buyers   2026'),
+                          'diff': _flag('Difference   2026')})
+            if dt:
+                if not b['last'] or dt > b['last']: b['last'] = dt
+                if not b['first'] or dt < b['first']: b['first'] = dt
+                if not buyers_meta['asOf'] or dt > buyers_meta['asOf']: buyers_meta['asOf'] = dt
+                if l90 and (not buyers_meta['windowStart'] or dt < buyers_meta['windowStart']): buyers_meta['windowStart'] = dt
+    for b in buyers.values():
+        b['fell'] = bool(b['ytd'] and not b['l90'])
+        b['last'] = b['last'].isoformat() if b['last'] else None
+        b['first'] = b['first'].isoformat() if b['first'] else None
+    buyers_meta['asOf'] = buyers_meta['asOf'].isoformat() if buyers_meta['asOf'] else ''
+    buyers_meta['windowStart'] = buyers_meta['windowStart'].isoformat() if buyers_meta['windowStart'] else ''
+    buyers_meta['ytd'] = sum(1 for b in buyers.values() if b['ytd'])
+    buyers_meta['l90'] = sum(1 for b in buyers.values() if b['l90'])
+    buyers_meta['fell'] = sum(1 for b in buyers.values() if b['fell'])
+    # company-wide distinct-account counts from the load-sheet rows (a rep's copy carries these too, counts only)
+    buyers_meta['counts'] = {k: len({l['id'] for l in loads if l[k]}) for k in ('prog', 'l90', 'ytd')}
+    buyers_meta['counts']['fell'] = len({l['id'] for l in loads if l['ytd']} - {l['id'] for l in loads if l['l90']})
+    print(f"Buyers: {buyers_meta['rows']} load sheets, {len(buyers)} accounts -- YTD {buyers_meta['ytd']}, rolling-90 {buyers_meta['l90']}, fell off {buyers_meta['fell']} (window {buyers_meta['windowStart']} .. {buyers_meta['asOf']})")
+else:
+    print("Buyers: carbliss_buyers_l90.csv not found -- YTD / rolling-90 status left off the page")
+
+# ---------- brands_sell_sheets.xlsx: one sell-sheet URL per Carbliss flavor ----------
+sell_sheets = []
+if os.path.exists(F4):
+    try:
+        import openpyxl
+        ws = openpyxl.load_workbook(F4, read_only=True, data_only=True).worksheets[0]
+        rows = list(ws.iter_rows(values_only=True)); hdr = [str(h or '').strip() for h in rows[0]]
+        bi, ui, fi = hdr.index('Brand'), hdr.index('Sell Sheet URL'), hdr.index('Brand Family')
+        for r in rows[1:]:
+            brand = str(r[bi] or '').strip(); fam = str(r[fi] or '').strip() if fi < len(r) else ''
+            if not brand or (fam and fam != 'Carbliss'): continue
+            url = str(r[ui] or '').strip() if ui < len(r) else ''
+            flavor = re.sub(r'^Carbliss\s+', '', brand)
+            sell_sheets.append({'flavor': flavor, 'brand': brand, 'url': url if url.startswith('http') else ''})
+        print(f"Sell sheets: {len(sell_sheets)} Carbliss flavors, {sum(1 for x in sell_sheets if x['url'])} with a URL" + (" -- missing: " + ", ".join(x['flavor'] for x in sell_sheets if not x['url']) if any(not x['url'] for x in sell_sheets) else ""))
+    except Exception as e:
+        print(f"Sell sheets: could not read brands_sell_sheets.xlsx ({e}) -- picker left off")
+
 final_accounts = []
 for r in results:
     sc = r['brands'].get('Sun Cruiser', {})
@@ -388,6 +420,8 @@ for r in results:
         'isNew': total25 == 0 and total26 > 0,
         'primaryFlavor': r['primary_flavor'], 'gapFlavors': r['gap_flavors'],
         'pitchBullets': r['pitch_bullets'],
+        # YTD / rolling-90 Carbliss buyer status from the L90 export (None = not a buyer this year)
+        'buyer': ({k: buyers[r['id']][k] for k in ('ytd', 'l90', 'fell', 'last', 'buys', 'buysL90')} if r['id'] in buyers else None),
     })
 final_accounts.sort(key=lambda a: -a['total26'])
 
@@ -399,9 +433,15 @@ meta = {
     'lapsed': sum(1 for a in final_accounts if a['lapsed']),
     'isNew': sum(1 for a in final_accounts if a['isNew']),
     'reps': sorted(set(a['rep'] for a in final_accounts)),
+    # when this page was built from the exports (shown as the data date; the
+    # exports themselves carry no report date)
+    'generatedAt': datetime.datetime.utcnow().strftime('%Y-%m-%d'),
+    'buyers': buyers_meta,
+    'sellSheets': sell_sheets,
 }
 
-data_json = json.dumps({'meta': meta, 'accounts': final_accounts}, separators=(',', ':'))
+data_json = json.dumps({'meta': meta, 'accounts': final_accounts, 'buyers': sorted(buyers.values(), key=lambda b: (b['rep'], b['name'])),
+                        'loads': sorted(loads, key=lambda l: (l['date'] or '', l['name']), reverse=True)}, separators=(',', ':'))
 
 html = open(HTML, encoding='utf-8').read()
 new_html, n = re.subn(
@@ -414,3 +454,11 @@ open(HTML, 'w', encoding='utf-8').write(new_html)
 
 print(f"Wrote {len(final_accounts)} accounts into index.html")
 print(json.dumps(meta, indent=2))
+
+# Per-rep copies (tools/rep_slices.py, 2026-10-01): a signed-in rep's browser
+# is served only their own rows, so the copies are rebuilt after every run.
+if __name__ == "__main__":
+    import subprocess as _sp, sys as _sys
+    from pathlib import Path as _P
+    _root = next(p for p in _P(__file__).resolve().parents if (p / "middleware.js").exists())
+    _sp.run([_sys.executable, str(_root / "tools" / "rep_slices.py")], check=True)

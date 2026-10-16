@@ -1,10 +1,12 @@
-/* Kohler Dist Hub type, served from this site (2026-09-28): Oswald for
-   headings, Source Sans 3 for body -- Gavin's "option C". Both are the
-   variable fonts Google Fonts serves (one file covers every weight),
-   latin subset only. Self-hosted so the pages look the same on a network
-   or device that blocks fonts.googleapis.com, and so the sign-in page and
-   the installed home-screen app never wait on a third party. */
-@font-face{font-family:'Oswald';font-style:normal;font-weight:200 700;font-display:swap;src:url(../assets/fonts/oswald.woff2) format('woff2');
+/* Kohler Dist Hub type (2026-10-01): INTER, one variable file for every
+   weight (assets/fonts/inter.woff2, latin subset, from @fontsource-variable/
+   inter 5.3.0; SIL Open Font License in assets/fonts/OFL-inter.txt).
+   Self-hosted so the sign-in page and the installed app never wait on a
+   third party. The family names older pages still ask for (Oswald,
+   Source Sans 3, Space Grotesk ...) are mapped onto the same file here
+   and in shared/kdh-skin.css, so no page-level font-family can fall back
+   to a different face. */
+@font-face{font-family:'Inter';font-style:normal;font-weight:100 900;font-display:swap;src:url(../assets/fonts/inter.woff2) format('woff2');
   unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
-@font-face{font-family:'Source Sans 3';font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-sans-3.woff2) format('woff2');
-  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Source Sans 3';font-style:normal;font-weight:100 900;font-display:swap;src:url(../assets/fonts/inter.woff2) format('woff2');}
+@font-face{font-family:'Oswald';font-style:normal;font-weight:100 900;font-display:swap;src:url(../assets/fonts/inter.woff2) format('woff2');}

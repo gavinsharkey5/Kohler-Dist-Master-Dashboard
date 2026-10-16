@@ -12,3 +12,9 @@ wine-spirits/backups/
 # Sign-in allow list built from the Encompass users export -- personal
 # emails and phone numbers. The repo is public: never commit this.
 supabase/data/
+shots/
+undefined/
+
+# Local verification dependencies and Supabase CLI state.
+tools/node_modules/
+supabase/.temp/

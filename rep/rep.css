@@ -2,7 +2,7 @@
    Tokens come from shared/kdh.css (the design system: light + dark,
    fonts, top bar). The short names below are aliases kept so this
    file's rules and the pages' inline styles stay readable. */
-@import url("../shared/kdh.css?v=20260929a");
+@import url("../shared/kdh.css?v=20261007q");
 :root{
   --bg:var(--kdh-bg);--surface:var(--kdh-surface);--surface-2:var(--kdh-surface-2);
   --text:var(--kdh-text);--text-2:var(--kdh-text-2);--text-3:var(--kdh-text-3);--text-4:var(--kdh-text-4);
@@ -16,24 +16,49 @@
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);font-size:15px;line-height:1.5;min-height:100vh}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.5;min-height:100vh;font-optical-sizing:auto}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--brand);outline-offset:2px;border-radius:var(--r)}
 
-/* the page's own small buttons (the top bar itself is .kdh-bar from kdh.css) */
-.btn{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;border-radius:6px;border:1px solid transparent;background:transparent;color:var(--text-2);font:inherit;font-size:13.5px;font-weight:500;text-decoration:none;cursor:pointer;white-space:nowrap}
-.btn:hover{background:var(--surface-2);color:var(--text)}
-.btn.outline{border-color:var(--border);background:var(--surface)}
-.btn.outline:hover{border-color:var(--border-2)}
+/* BUTTONS (2026-10-02, third build): one control for every page action --
+   a softly rounded rectangle with a visible border, icon and label inside
+   the same clickable box, 44px tall (40px for .sm), 10px corners. States:
+   hover, pressed (:active), selected (aria-pressed / .is-selected), focus
+   ring, loading (aria-busy) and disabled. Spacing follows --sp-1..4
+   (8 / 12 / 16 / 24). Variants: .primary (filled), .ghost (no border, for
+   inline text actions), .danger, .sm, .wide. The top bar is .kdh-bar. */
+:root{--sp-1:8px;--sp-2:12px;--sp-3:16px;--sp-4:24px;--btn-r:10px}
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 16px;border-radius:var(--btn-r);border:1px solid var(--border-2);background:var(--surface);color:var(--text);font:inherit;font-size:15px;font-weight:600;line-height:1.2;text-decoration:none;cursor:pointer;white-space:nowrap;transition:background-color .12s,border-color .12s,box-shadow .12s,transform .06s;-webkit-tap-highlight-color:transparent}
+.btn svg{width:18px;height:18px;flex:none}
+.btn:hover{background:var(--surface-2);border-color:var(--border-2);color:var(--text)}
+.btn:active{transform:translateY(1px);background:var(--surface-3)}
+.btn:focus-visible{outline:none;box-shadow:0 0 0 3px var(--ring);border-radius:var(--btn-r)}
+.btn[aria-pressed="true"],.btn.is-selected{background:var(--brand-soft);border-color:var(--brand);color:var(--brand)}
+.btn.outline{border-color:var(--border-2);background:var(--surface)}
+.btn.outline:hover{border-color:var(--text-3)}
+.btn.primary{background:var(--brand);color:var(--kdh-brand-ink);border-color:var(--brand)}
+.btn.primary:hover{background:var(--brand-2);border-color:var(--brand-2);color:var(--kdh-brand-ink)}
+.btn.primary:active{background:var(--brand-2)}
+.btn.ghost{border-color:transparent;background:transparent;color:var(--brand)}
+.btn.ghost:hover{background:var(--brand-soft)}
+.btn.sm{min-height:40px;padding:0 12px;font-size:14px}
+.btn.wide{display:flex;width:100%}
+.btn:disabled,.btn[aria-disabled="true"]{cursor:not-allowed;transform:none;background:var(--surface-2);border-color:var(--border);color:var(--text-3)}
+.btn.primary:disabled{background:var(--surface-3);border-color:var(--border);color:var(--text-3)}
+.btn[aria-busy="true"]{color:transparent!important;pointer-events:none}
+.btn[aria-busy="true"]::after{content:'';position:absolute;inset:50% auto auto 50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;border:2px solid var(--text-3);border-top-color:transparent;animation:btnspin .7s linear infinite}
+.btn.primary[aria-busy="true"]::after{border-color:var(--kdh-brand-ink);border-top-color:transparent}
+@keyframes btnspin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){ .btn{transition:none} .btn[aria-busy="true"]::after{animation-duration:2s} }
 
 /* workspace header */
 .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
 .ws{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding:18px 0 12px;flex-wrap:wrap}
 .ws .id{min-width:0}
 .ws .kicker{font-family:var(--head);font-size:13px;font-weight:600;color:var(--text-3);margin:0 0 2px}
-.ws h1{font-family:var(--head);font-size:26px;font-weight:700;letter-spacing:-.01em;line-height:1.2;margin:0}
-.meta{display:flex;flex-wrap:wrap;align-items:center;gap:4px 0;margin:6px 0 0;font-size:13.5px;color:var(--text-2);min-height:20px}
-.meta .sep{color:var(--border-2);margin:0 8px}
+.ws h1{font-family:var(--head);font-size:26px;font-weight:600;letter-spacing:normal;line-height:1.25;margin:0}
+.meta{display:flex;flex-wrap:wrap;align-items:center;gap:4px 0;margin:4px 0 0;font-size:14px;color:var(--text-2);min-height:20px}
+.meta .sep{color:var(--kdh-text-4);margin:0 8px}
 .meta .muted{color:var(--text-4)}
 .switch{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-3);flex-wrap:wrap}
 .switch label{display:flex;align-items:center;gap:8px}
@@ -45,14 +70,15 @@ a{color:inherit}
 
 /* sections */
 .section{margin:10px 0 0;padding:0 0 22px}
+.section > h2{font-family:var(--head);font-size:17px;font-weight:600;margin:0 0 8px;color:var(--text)}
 .section-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 10px}
-.section-h h2{font-family:var(--head);font-size:17px;font-weight:700;margin:0;color:var(--text)}
+.section-h h2{font-family:var(--head);font-size:17px;font-weight:600;margin:0;color:var(--text)}
 .section-h p{margin:0;font-size:13px;color:var(--text-3)}
 
 /* cards */
 .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 @media (max-width:1023px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:599px){.grid{grid-template-columns:1fr}}
+@media (max-width:599px){.grid{grid-template-columns:minmax(0,1fr)}}
 a.card{display:flex;flex-direction:column;gap:8px;min-height:124px;padding:14px 16px 12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);
   box-shadow:var(--shadow);text-decoration:none;color:inherit;transition:border-color .12s ease,box-shadow .12s ease,transform .12s ease;-webkit-tap-highlight-color:transparent}
 a.card:hover{border-color:var(--border-2);box-shadow:var(--shadow-h)}
@@ -91,7 +117,7 @@ a.card.muted h3{color:var(--text-2)}
 .fu-empty{margin:0;padding:12px 14px;font-size:13.5px;color:var(--text-3)}
 .fu-empty b{color:var(--text-2)}
 .fu .section-h h2{white-space:nowrap}
-@media (max-width:599px){ .fu .section-h{flex-direction:column;align-items:flex-start;gap:2px} }
+@media (max-width:599px){ .section-h{flex-direction:column;align-items:flex-start;gap:2px} }
 
 footer{max-width:1120px;margin:0 auto;padding:12px 20px 36px;border-top:1px solid var(--border);font-size:12.5px;color:var(--text-4);line-height:1.6}
 footer a{color:var(--text-3)}
@@ -100,8 +126,203 @@ footer a{color:var(--text-3)}
   .meta .muted{display:none}
   .wrap{padding:0 16px}
   .ws{padding:16px 0 12px}
-  .ws h1{font-size:22px}
+  .ws h1{font-size:24px}
   .switch{width:100%} .switch select{flex:1}
   a.card{min-height:0;padding:14px 14px 12px}
   footer{padding:12px 16px 32px}
 }
+
+/* ---- REP HOME (2026-09-30): compact rows, not tall cards. One list per
+   section; each row is title + one optional status line + a chevron and is
+   tappable end to end. Cards (.grid / a.card) stay for the manager page. ---- */
+.home .ws{padding:14px 0 10px;align-items:center}
+.home .ws h1{font-size:24px}
+.home .section{padding:0 0 16px}
+.rows{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--shadow);overflow:hidden}
+.row{display:flex;align-items:center;gap:12px;min-height:60px;padding:10px 12px 10px 14px;text-decoration:none;color:inherit;background:none;border:0;border-top:1px solid var(--border);font:inherit;text-align:left;width:100%;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.rows .row:first-child{border-top:0}
+.row:hover{background:var(--surface-2)}
+.row:active{background:var(--surface-3)}
+.row:focus-visible{outline:2px solid var(--brand);outline-offset:-2px}
+.row .ico{width:34px;height:34px;border-radius:8px;background:var(--brand-soft);color:var(--brand);display:inline-flex;align-items:center;justify-content:center;flex:none}
+.row .ico svg{width:18px;height:18px}
+.row-main{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
+.row h3{font-family:var(--head);font-size:16px;font-weight:600;margin:0;line-height:1.3;color:var(--text)}
+.row-s{font-size:14px;line-height:1.4;color:var(--text-3);display:flex;align-items:center;gap:6px;min-width:0}
+.row-s .dot{width:6px;height:6px;border-radius:50%;background:var(--text-4);flex:none}
+.row-s.ok .dot{background:var(--ok)} .row-s.warn .dot{background:var(--warn)}
+.row .chev{width:18px;height:18px;color:var(--text-4);flex:none}
+.row.muted .ico{background:var(--border);color:var(--text-3)}
+.row.muted h3{color:var(--text-2)}
+/* follow-ups: the row opens the list under it */
+.fu .fu-row{border:1px solid var(--border);border-radius:var(--r-lg);background:var(--surface);box-shadow:var(--shadow)}
+.fu.open .fu-row{border-radius:var(--r-lg) var(--r-lg) 0 0}
+.fu .fu-row .ico{background:var(--kdh-warn-soft);color:var(--warn)}
+.fu .chev.fold{transition:transform .15s ease}
+.fu.open .chev.fold{transform:rotate(180deg)}
+.fu .fu-box{border-top:0;border-radius:0 0 var(--r-lg) var(--r-lg)}
+.fu-list a{min-height:52px;padding:10px 14px}
+.fu-prog i{color:var(--text-2)}
+@media (max-width:599px){
+  .home .ws{padding:12px 0 8px}
+  .home .ws h1{font-size:24px}
+  .switch{gap:8px}
+  .switch label{flex:1 1 100%}
+  .switch select{width:100%;min-width:0;min-height:40px}
+  .switch .btn{width:100%;justify-content:center}
+}
+/* ---- TOOL CARDS (2026-10-01): choosing a tool = compact cards in a grid
+   (Shopify's home tiles); browsing records stays in rows. Each card is one
+   link: icon, name, one status line. My accounts, alone in its section,
+   runs the full width as the main way in. ---- */
+.rows.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;background:none;border:0;box-shadow:none;overflow:visible}
+.tiles .row{flex-direction:column;align-items:flex-start;gap:8px;min-height:104px;padding:12px 14px;border:1px solid var(--border);border-radius:var(--r-lg);background:var(--surface);box-shadow:var(--shadow)}
+.tiles .row:hover{border-color:var(--border-2);background:var(--surface)}
+.tiles .row .chev{display:none}
+.tiles .row h3{font-size:16px}
+.tiles .row .row-s{align-items:flex-start}
+.tiles .row .row-s .dot{margin-top:6px}
+.tiles .row:only-child{grid-column:1 / -1;flex-direction:row;align-items:center;min-height:64px}
+.tiles .row:only-child .chev{display:block;margin-left:auto}
+@media (max-width:759px){ .rows.tiles{grid-template-columns:repeat(2,minmax(0,1fr))} .tiles .row{min-height:96px;padding:12px} }
+html.kdh-rep #kicker{display:none}
+@media (max-width:759px){
+  .tiles .row{display:grid;grid-template-columns:34px minmax(0,1fr);grid-template-areas:"ico title" "s s";column-gap:10px;row-gap:6px;align-items:center;min-height:0}
+  .tiles .row .ico{grid-area:ico}
+  .tiles .row .row-main{display:contents}
+  .tiles .row h3{grid-area:title}
+  .tiles .row .row-s{grid-area:s}
+  .tiles .row:first-child:nth-last-child(3){grid-column:1 / -1}
+  .tiles .row:only-child{display:flex}
+  .tiles .row:only-child .row-main{display:flex}
+}
+/* Needs Attention (2026-10-01, third pass): one compact strip of counts,
+   each a link into My Accounts already filtered; the full list sits behind
+   "View All Action Items" in the section head. Plain numbers, no badges. */
+.today .section-h{flex-direction:row;align-items:baseline;margin-bottom:8px}
+.sec-link{font-size:14px;font-weight:500;color:var(--brand);text-decoration:none;white-space:nowrap;min-height:36px;display:inline-flex;align-items:center}
+.sec-link:hover{text-decoration:underline}
+.tstats{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
+.tstat{display:flex;flex-direction:column;gap:2px;padding:10px 14px;min-height:64px;text-decoration:none;color:inherit;border-left:1px solid var(--border)}
+.tstat:first-child{border-left:0}
+.tstat:hover{background:var(--surface-2)}
+.tstat:focus-visible{outline:2px solid var(--brand);outline-offset:-2px}
+.tstat b{font-size:22px;font-weight:600;line-height:1.2;color:var(--text);font-variant-numeric:tabular-nums}
+.tstat span{font-size:14px;color:var(--text-3);line-height:1.3}
+.tnone{margin:0;padding:12px 14px;font-size:14px;color:var(--text-3)}
+@media (max-width:599px){ .tstat{padding:10px 12px} .tstat b{font-size:20px} .tstat span{font-size:13px} }
+
+/* ---- HOMES v4 (2026-10-07): Manager Home + Rep Home ----
+   HoneyBook's compact working header + Dropbox's bordered action tiles.
+   .hh   header: left-aligned page title (gold rule), name / role / reporting
+         line under it, preview controls as secondary buttons on the right.
+   .hs   a section: heading + a grid of tool cards.
+   .kt   THE tool card: icon tile, title, one optional line, a status line only
+         where real data exists, a chevron. The whole card is one link; the
+         icon and chevron are decoration (aria-hidden). Hover / focus / pressed
+         states, ~100px tall on desktop, grows with its text, never clips.
+   Grid: 3 columns from 1280px (iPad landscape keeps 2 roomy ones beside the
+   sidebar), 2 from 640px (the last odd card spans the row
+   so no card sits alone), 1 below -- horizontal cards on phones.
+   Card borders are --kdh-border-2 (3:1 against the page in both themes); the
+   rows' inner dividers are lighter. Surface / icon tile tuned per theme (measured:
+   scratchpad contrast_audit.mjs + home_test.mjs). */
+.wrap.home{max-width:1200px;padding:0 24px}
+.home + footer{max-width:1200px;padding:16px 24px 32px;font-size:14px}
+.home{--kt-surface:var(--kdh-surface);--kt-bd:var(--kdh-border-2);--kt-div:#D3DAE6;--kt-bd-h:var(--kdh-brand);--kt-ico-bg:var(--kdh-brand-soft);--kt-ico-bd:#C4D6F5;--kt-press:var(--kdh-surface-3)}
+[data-theme="dark"] .home{--kt-surface:#14223F;--kt-bd:var(--kdh-border-2);--kt-div:#2E4170;--kt-bd-h:#6AA1FF;--kt-ico-bg:#1A3366;--kt-ico-bd:#34589E;--kt-press:#1A2A4E}
+/* header */
+.hh{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px 24px;padding:28px 0 4px}
+.hh-id{min-width:0;flex:1 1 320px}
+.hh h1{margin:0;font-size:30px;font-weight:700;line-height:1.15;letter-spacing:normal;color:var(--kdh-head-c)}
+.hh h1::after{content:"";display:block;width:36px;height:3px;border-radius:2px;background:var(--kdh-accent);margin:10px 0 0}
+.hh-meta{display:flex;flex-wrap:wrap;align-items:baseline;margin:10px 0 0;font-size:16px;line-height:1.45;color:var(--text-2)}
+.hh-meta b{font-weight:600;color:var(--text)}
+.hh-meta .sep{margin:0 8px;color:var(--kdh-text-4)}
+.hh-acts{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:10px;font-size:14px;color:var(--text-2)}
+.hh-acts .btn{min-height:42px}
+.hh-acts label{display:flex;align-items:center;gap:8px}
+.hh-acts select{height:42px;border-radius:10px;border-color:var(--kt-bd);background-color:var(--kt-surface)}
+.hh-switch{flex:1 1 100%;justify-content:flex-end;font-size:14px;color:var(--text-2)}
+.hh-switch select{height:42px;border-radius:10px;background-color:var(--kt-surface)}
+.btn.brand-outline{border-color:var(--brand);color:var(--brand);background:var(--kt-surface)}
+.btn.brand-outline:hover{background:var(--brand-soft);border-color:var(--brand);color:var(--brand)}
+.home .btn.outline{background:var(--kt-surface);border-color:var(--kt-bd)}
+.home .btn.outline:hover{border-color:var(--kdh-border-2)}
+/* sections */
+.hs{margin:28px 0 0}
+.hs-h{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 12px;min-height:40px}
+.hs-h h2{margin:0;font-size:19px;font-weight:600;line-height:1.25;color:var(--kdh-head-c)}
+.kt-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+@media (min-width:640px){ .kt-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px} .kt-grid > .kt:last-child:nth-child(odd){grid-column:1 / -1} }
+@media (min-width:1280px){ .kt-grid{grid-template-columns:repeat(3,minmax(0,1fr))} .kt-grid > .kt:last-child:nth-child(odd){grid-column:auto} }
+/* the tool card */
+.kt{position:relative;display:flex;align-items:center;gap:16px;min-height:100px;padding:18px 16px 18px 18px;border:1px solid var(--kt-bd);border-radius:12px;background:var(--kt-surface);color:inherit;text-decoration:none;
+  transition:border-color .12s ease,box-shadow .12s ease,background-color .12s ease,transform .06s ease;-webkit-tap-highlight-color:transparent}
+.kt:hover{border-color:var(--kt-bd-h);box-shadow:0 1px 2px rgba(11,36,102,.06),0 6px 16px rgba(11,36,102,.08)}
+[data-theme="dark"] .kt:hover{box-shadow:0 6px 18px rgba(0,0,0,.35)}
+.kt:active{transform:translateY(1px);background:var(--kt-press)}
+.kt:focus-visible{outline:none;border-color:var(--kt-bd-h);box-shadow:0 0 0 3px var(--kdh-ring)}
+.kt-ico{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;flex:none;border-radius:12px;background:var(--kt-ico-bg);border:1px solid var(--kt-ico-bd);color:var(--brand)}
+.kt-ico svg{width:24px;height:24px}
+.kt-main{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1 1 auto}
+.kt-t{font-size:17px;font-weight:600;line-height:1.3;color:var(--text);overflow-wrap:break-word}
+.kt-s{font-size:15px;line-height:1.4;color:var(--text-2)}
+.kt-st{display:flex;align-items:baseline;gap:7px;margin-top:2px;font-size:14px;line-height:1.4;color:var(--text-2)}
+.kt-st .dot{width:7px;height:7px;border-radius:50%;flex:none;background:var(--kdh-text-4);transform:translateY(-1px)}
+.kt-st.ok .dot{background:var(--ok)} .kt-st.warn .dot{background:var(--warn)}
+.kt-chev{width:20px;height:20px;flex:none;color:var(--text-3);transition:transform .12s ease,color .12s ease}
+.kt:hover .kt-chev,.kt:focus-visible .kt-chev{color:var(--brand);transform:translateX(2px)}
+.kt.muted .kt-ico{background:var(--kdh-surface-3);border-color:var(--kt-bd);color:var(--text-3)}
+.kt.muted .kt-t{color:var(--text-2)}
+.kt-lg{min-height:104px}
+.kt-lg .kt-ico{width:54px;height:54px}
+.kt-lg .kt-ico svg{width:27px;height:27px}
+.kt-lg .kt-t{font-size:20px}
+.kt-lg .kt-s{font-size:16px}
+/* Rep Home: My Accounts + its search, then Needs Attention rows */
+.rh-entry{display:grid;gap:12px}
+.rh-tmain{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1 1 auto}
+.rh-tt{font-size:16px;font-weight:600;color:var(--text);line-height:1.3}
+.rh-ts{font-size:14.5px;color:var(--text-2);line-height:1.4}
+.rh-card{border:1px solid var(--kt-bd);border-radius:12px;background:var(--kt-surface);overflow:hidden}
+.rh-arow{display:flex;align-items:center;gap:var(--sp-2);min-height:68px;padding:var(--sp-2) var(--sp-3);color:inherit;text-decoration:none;border-top:1px solid var(--kt-div)}
+.rh-arow:first-child{border-top:0}
+.rh-arow:hover{background:var(--kdh-surface-2)}
+[data-theme="dark"] .rh-arow:hover{background:var(--kt-press)}
+.rh-arow:focus-visible{outline:none;box-shadow:inset 0 0 0 3px var(--ring)}
+.rh-aico{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;flex:none;border-radius:50%;background:var(--kt-ico-bg);color:var(--brand)}
+.rh-aico svg{width:18px;height:18px}
+.rh-n{display:flex;flex-direction:column;align-items:flex-end;flex:none;line-height:1.15;min-width:56px}
+.rh-n b{font-size:20px;font-weight:600;color:var(--text)}
+.rh-n small{font-size:13px;color:var(--text-2)}
+.rh-arow .chev{width:18px;height:18px;flex:none;color:var(--text-3)}
+.rh-quiet{margin:8px 2px 0;font-size:15px;color:var(--text-2)}
+.rh-card[hidden]+.rh-quiet{margin-top:0;padding:var(--sp-2) var(--sp-3);border:1px dashed var(--kdh-border-2);border-radius:12px}
+/* Our Portfolio, compact: the brand strip at the foot of both homes */
+.home .kdh-portfolio.compact{max-width:none;margin:36px 0 8px}
+/* tablets and phones */
+@media (max-width:1023px){ .wrap.home{padding:0 20px} .home + footer{padding:16px 20px 32px} }
+@media (max-width:639px){
+  .wrap.home{padding:0 16px} .home + footer{padding:16px 16px 32px}
+  .hh{padding:20px 0 0;gap:14px}
+  .hh h1{font-size:26px}
+  .hh-meta{font-size:15px}
+  .hh-acts,.hh-switch{flex:1 1 100%;justify-content:stretch}
+  .hh-acts .btn,.hh-switch .btn{flex:1 1 auto}
+  .hh-acts label,.hh-switch label{flex:1 1 100%}
+  .hh-acts select,.hh-switch select{flex:1;min-width:0}
+  .hs{margin:24px 0 0}
+  .hs-h h2{font-size:18px}
+  .kt{min-height:76px;gap:14px;padding:14px 14px 14px 14px}
+  .kt-ico{width:44px;height:44px;border-radius:11px}
+  .kt-ico svg{width:22px;height:22px}
+  .kt-t{font-size:16.5px}
+  .kt-s{font-size:14.5px}
+  .kt-lg{min-height:88px}
+  .kt-lg .kt-t{font-size:19px}
+  .rh-arow{padding:var(--sp-2) 14px}
+}
+
+/* A tile hidden for a route (rep/index.html showRep): two cards left, no spanning last card. */
+.kt-grid.kt-cut > .kt{grid-column:auto!important}

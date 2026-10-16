@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F6F7F9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1523" media="(prefers-color-scheme: dark)">
+<title>Kohler Korner — Kohler Distribution Hub</title>
+<!-- Home-screen install (iPad / iPhone "Add to Home Screen", Android/Chrome "Install"): the
+     app opens full-screen at /rep/ with the Kohler icon. -->
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Dist Hub">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="preload" href="../assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+<!-- Theme before first paint: the saved choice, else the device setting (2026-09-30). -->
+<script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="stylesheet" href="../rep/rep.css?v=20261008d">
+<script src="../shared/auth-config.js"></script>
+<meta name="kdh-page" content="Kohler Korner">
+<script src="../shared/kdh-user.js?v=20261015i"></script>
+<link rel="stylesheet" href="newsletter.css?v=20261014-editorial">
+<link rel="stylesheet" href="../shared/product-selector.css?v=20261014">
+<link rel="stylesheet" href="recognition-import.css?v=20261014">
+<link rel="stylesheet" href="product-import.css?v=20261014">
+<link rel="stylesheet" href="magazine-layout.css?v=20261014-matched">
+</head>
+<body>
+<main class="wrap home mh kk-app">
+ <header class="hh"><div class="hh-id"><h1>Kohler Korner</h1><p class="hh-meta">Create, manage, and publish Kohler's monthly company newsletter.</p></div></header>
+ <div id="kkNotice" class="kk-alert" role="status" aria-live="polite" hidden></div>
+ <div id="kkApp"><p class="kk-muted">Loading editions…</p></div>
+</main>
+<dialog class="kk-dialog" id="kkDialog"></dialog>
+<script src="../shared/kdh-data.js?v=20261013"></script>
+<script src="../shared/product-catalog.js?v=20261014"></script>
+<script src="../shared/product-selector.js?v=20261014"></script>
+<script src="model.js?v=20261014-editorial"></script>
+<script src="recognition-import.js?v=20261014"></script>
+<script src="recognition-review.js?v=20261014"></script>
+<script src="product-import.js?v=20261014"></script>
+<script src="product-review.js?v=20261014"></script>
+<script src="magazine-layout.js?v=20261014-matched"></script>
+<script src="newsletter.js?v=20261014-matched"></script>
+</body>
+</html>

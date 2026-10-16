@@ -259,9 +259,41 @@ Four objectives at 25% each:
   3. Spirits - Carbliss (10) New On Premise Buying Accounts
   4. HUSA - (1) New XX Draft Line
 
-All four are data-backed. Numbers as of the 2026-09-28 refresh (RDE exports run
-through 9/29): Bardstown 23 menu placements, Fever Tree 25 new placements,
-Carbliss 76 new buying accounts, HUSA 3 new draft lines.
+All four are data-backed. Numbers as of the 2026-10-01 refresh (RDE exports run
+through 9/30): Bardstown 32 menu placements, Fever Tree 27 new placements,
+Carbliss 100 new buying accounts, HUSA 3 new draft lines.
+
+2026-10-01 REFRESH -- Fever Tree, Carbliss, HUSA exports + Promos_Report_42 (final September pull)
+  python3 generate_2026-09.py --merge-bardstown Promos_Report_42.xlsx
+Diffed row by row before the run. Fever Tree _18 (608 rows) and HUSA _17
+(92 rows) are IDENTICAL to the files already in the repo, so Fever Tree 27
+and HUSA 3 hold. Carbliss _17 377 -> 376: ONE ROW GONE, nothing added --
+Anthony Palmisano's 9/30 230917 Doc's Place (P), which had scored as new on
+the 9/30 pull. The export is the record, so it drops: Carbliss 101 -> 100,
+Anthony Palmisano 7 -> 6.
+Report_42 held 45 rows: 33 for this archive, 12 for other objectives.
+2 new, 31 already published: archive 33 -> 35 rows. Both new rows are
+Allison Scott's 9/30 Cocktail List Activations for Green River Honey
+Finished Bourbon at The Little Falls Tavern #13002 and Wayne Ale House &
+Pizza #12026 -- Bardstown 30 -> 32, Allison Scott 7 -> 9. Everyone else
+holds (Adam Badalamenti 10, Brian Sengebush 5, Paul Mclaughlin 3, Robin
+Feldman 3, Nick Melissari 2).
+
+2026-09-30 REFRESH -- Fever Tree, Carbliss, HUSA exports + Promos_Report_38
+  python3 generate_2026-09.py --merge-bardstown Promos_Report_38.xlsx
+Diffed row by row before the run. The three RDE exports (Fever Tree _17,
+Carbliss _16, HUSA _16) are IDENTICAL to the files the 2026-09-29 pull
+left in the repo -- 608 / 377 / 92 rows, nothing added, nothing removed --
+so Fever Tree 27, Carbliss 101 and HUSA 3 hold exactly as published.
+Report_38 held 43 rows: 31 for this archive, 12 for other objectives.
+2 new, 29 already published: archive 31 -> 33 rows. Both new rows are
+Chris Payton's 9/30 Feature Activations at USA Wine Traders Club
+(Saddle Brook) #76010 -- Green River Army 250th Anniversary and Green
+River Kentucky Straight Wheated Bourbon -- an OFF-PREMISE account, so
+the on-premise-only rule (Kohler, 2026-08-07) skips them and Bardstown
+holds at 30 menu placements (Adam Badalamenti 10, Allison Scott 7,
+Brian Sengebush 5, Paul Mclaughlin 3, Robin Feldman 3, Nick Melissari
+2). No rep's number moved; sync_meta.json re-stamped.
 
 2026-09-28 REFRESH -- Fever Tree, Carbliss, HUSA exports + Promos_Report_36
   python3 generate_2026-09.py --merge-bardstown Promos_Report_36.xlsx
@@ -1163,3 +1195,31 @@ background and was hardcoded rgba(21,16,10,...) -- the old brown. It is
 now rgba(8,12,22,...). Miss that and the photo fades to brown against a
 navy page. See incentive-tracking/README.txt for how the blue was chosen.
 
+
+OCTOBER 2026 -- iSELLBEER (5) FEATURE PHOTOS (2026-10-13)
+Built from iSellBeer Promos_Report pulls, like September's Bardstown menus but with
+NO element filter: every October-dated row of the archive isellbeer_feature_photos.xlsx
+counts (menus, table tents, POS, blanks -- Gavin, 2026-10-13: "count all the data in
+promos report"), scored per DISTINCT PHOTO link (one promo = one row per brand on the
+photo; a menu listing two SKUs is one feature photo). The one exclusion is
+PHOTO_EXCLUDED_ACCOUNTS in generate_2026-10.py: account 230915 Crystal Sprs/Wild Turkey
+(123 Crystal Springs Rd) -- two Promo Tasting rows by a sales associate, Gavin: leave
+out. Weekly: `python3 generate_2026-10.py --merge-photos Promos_Report_NN.xlsx` (merge,
+then rebuild; never save a report over the archive). Photo takers are matched to the
+roster through generate_lytt_pos.py's canon_rep ("brian sengebush", "Paul McLaughlin");
+an unmatched name is kept so it surfaces on the board. programs.js: buildPhotosDataset
++ lineTablePhotos (the off-prem tracker's, roster passed in), table entry target 5.
+
+2026-10-13 REFRESH -- Carbliss L90 _13, Spirits _7, Sam Adams kegs _10 + Promos_Report_52
+  (first October iSellBeer pull; the archive is a copy of it)
+  python3 carbliss-mpo/generate.py      (rebuilds this month, eligibility, per-rep copies)
+Carbliss 277 -> 276 of 1,127 Aug 1 - Oct 31 buyers. Oktoberfest 267 -> 270 of 305
+(load sheets through 10/14). Spirits 13 -> 16 of 105. Feature photos: 8 distinct from
+10 report rows (2 excluded, above) -- Brian Sengebush 6 (at goal), Paul Mclaughlin 2.
+
+OCTOBER 2026 -- CARBLISS (2026-10-07)
+The Carbliss objective is the Carbliss Leaderboard's own program: an account in the rep's core
+on-premise base that bought Carbliss Aug 1 - Oct 31, 2026, copied from
+../../carbliss-mpo/data/program.json. Refresh by running `python3 carbliss-mpo/generate.py` from the
+repo root (it rebuilds this month's files too). carbliss_buying_accounts.csv is no longer read.
+Every other October objective: see generate_2026-10.py's docstring.

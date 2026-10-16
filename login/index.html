@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#0B1120">
-<title>Sign in — Kohler Dist Hub</title>
+<meta name="theme-color" content="#0B2466">
+<title>Sign In — Kohler Distribution Hub</title>
 <!-- Home-screen install (iPad / iPhone "Add to Home Screen", Android/Chrome "Install"): the
      app opens full-screen at the site root (reps land on /rep/, managers on the manager page). -->
 <link rel="manifest" href="../manifest.webmanifest">
@@ -15,87 +15,150 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Dist Hub">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<link rel="preload" href="../assets/fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../shared/fonts.css?v=20260928a">
+<link rel="preload" href="../assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../shared/fonts.css?v=20261001a">
+<script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <style>
-  /* Sign-in (2026-09-28 redesign): a white card on the navy canvas, the
-     Northern NJ banner across its top, Oswald headings + Source Sans 3
-     body -- the same type the rep workspace uses. Steps: your email, then
-     your PASSWORD if you have one, or "Create your password" the first
-     time (no code: Gavin's call, 2026-09-29). The emailed link / 6-digit
-     code remains for "Forgot password" and for accounts made before
-     passwords existed. See supabase/README.txt. */
+  /* Sign-in (2026-10-07, Kohler brand): the official square logo above the
+     form on every screen; from 960px the warehouse photograph fills the
+     left half with one caption on a SOLID navy band (never text on the
+     busy photo). Light / dark follow the saved kdh_theme choice, else the
+     device, before first paint (same snippet as every page) -- the small
+     switch top-right saves a choice exactly like the app's bar switch.
+     Steps: your email, then your PASSWORD if you have one, or "Create Your
+     Password" the first time (no code: Gavin's call, 2026-09-29). The
+     emailed link / 6-digit code remains for "Forgot password" and for
+     accounts made before passwords existed. See supabase/README.txt.
+     Colours = the shared Kohler tokens (shared/kdh.css "KOHLER BRAND"). */
   :root{
-    --canvas:#0B1120; --card:#FFFFFF; --ink:#0F172A; --ink-2:#475569; --ink-3:#94A3B8;
-    --line:#E2E8F0; --field:#F8FAFC; --blue:#1F4FD8; --blue-deep:#173FB0; --navy:#12275F;
-    --gold:#F2C14E; --good:#15803D; --good-bg:#ECFDF3; --bad:#B42318; --bad-bg:#FEF3F2; --info-bg:#EFF4FF;
-    --head:"Source Sans 3",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; --body:"Source Sans 3",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --canvas:#F4F6FA; --card:#FFFFFF; --ink:#0E1A33; --ink-2:#3C4A63; --ink-3:#55627A;
+    --line:#DCE2EC; --edge:#7B88A0; --field:#F7F9FC; --field-on:#FFFFFF; --blue:#2866C0; --blue-deep:#1F55A6; --btn-ink:#FFFFFF; --navy:#0B2466; --head-c:#0B2466;
+    --gold:#E4A252; --good:#13733A; --good-bg:#E6F4EA; --good-line:#ABEFC6; --bad:#B42318; --bad-bg:#FCEBEA; --bad-line:#FECDCA; --info-bg:#E8F0FC; --info-line:#C7D7FE; --info-ink:#0B2466;
+    --focus:#2866C0; --shadow:0 1px 2px rgba(11,36,102,.08),0 12px 32px rgba(11,36,102,.10);
+    --head:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; --body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   }
+  :root[data-theme="dark"]{
+    --canvas:#0A1226; --card:#111C36; --ink:#EEF2FA; --ink-2:#C5CEDF; --ink-3:#A7B3C9;
+    --line:#26365C; --edge:#5D72A6; --field:#16223F; --field-on:#1D2B4D; --blue:#6AA1FF; --blue-deep:#8DB8FF; --btn-ink:#06122E; --head-c:#F4F7FD;
+    --gold:#F0B866; --good:#4ADE80; --good-bg:#14301E; --good-line:#1F5132; --bad:#F87171; --bad-bg:#3A1C1C; --bad-line:#5C2B2B; --info-bg:#18315F; --info-line:#2D4C86; --info-ink:#D6E4FF;
+    --focus:#8AB8FF; --shadow:0 1px 2px rgba(0,0,0,.4),0 16px 40px rgba(0,0,0,.45);
+  }
+  html{color-scheme:light} html[data-theme="dark"]{color-scheme:dark}
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
-  body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;font-family:var(--body);font-size:16px;line-height:1.5;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 16px calc(28px + env(safe-area-inset-bottom));
-    background-image:radial-gradient(80% 55% at 50% -5%,rgba(31,79,216,.35),transparent 70%);background-repeat:no-repeat}
-  .card{width:100%;max-width:420px;background:var(--card);border-radius:20px;overflow:hidden;
-    box-shadow:0 1px 2px rgba(0,0,0,.35),0 24px 60px rgba(0,0,0,.5)}
-  .banner{display:block;width:100%;height:auto;aspect-ratio:1445/544;object-fit:cover;object-position:60% center}
-  .body{padding:22px 26px 24px}
-  .brand{display:flex;align-items:center;gap:12px;margin:0 0 20px}
-  .brand img{width:42px;height:42px;border-radius:10px;border:1px solid var(--line);background:#fff;object-fit:contain;flex:0 0 auto}
-  .eyebrow{font-family:var(--head);font-size:12.5px;font-weight:600;color:var(--ink-3);margin:0;line-height:1.2}
-  .wordmark{font-family:var(--head);font-weight:700;font-size:20px;letter-spacing:-.01em;line-height:1.15;color:var(--navy);margin:0}
-  h1{font-family:var(--head);font-weight:600;letter-spacing:-.01em;font-size:26px;line-height:1.15;margin:0 0 6px;color:var(--ink)}
+  body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;font-family:var(--body);font-size:16px;line-height:1.5}
+  :focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+  .shell{min-height:100vh;display:flex}
+  .side{position:relative;flex:1 1 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:64px 16px calc(28px + env(safe-area-inset-bottom))}
+  .card{width:100%;max-width:420px;background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}
+  .body{padding:24px 26px 24px}
+  .brand{display:flex;align-items:center;gap:14px;margin:0 0 22px;padding-bottom:18px;border-bottom:1px solid var(--line);position:relative}
+  .brand::after{content:"";position:absolute;left:0;bottom:-2px;width:44px;height:3px;border-radius:2px;background:var(--gold)}
+  .brand img{width:56px;height:56px;border-radius:12px;object-fit:cover;flex:0 0 auto}
+  .eyebrow{font-family:var(--head);font-size:13.5px;font-weight:600;color:var(--ink-3);margin:0;line-height:1.25}
+  .wordmark{font-family:var(--head);font-weight:700;font-size:21px;line-height:1.15;color:var(--head-c);margin:0}
+  h1{font-family:var(--head);font-weight:700;letter-spacing:normal;font-size:26px;line-height:1.15;margin:0 0 6px;color:var(--head-c)}
   .lead{margin:0 0 18px;color:var(--ink-2);font-size:16px}
   .lead b{color:var(--ink);font-weight:600}
-  label{display:block;font-family:var(--head);font-size:13.5px;font-weight:600;color:var(--ink-2);margin:0 0 7px}
-  .field{width:100%;font-family:var(--body);font-size:17px;color:var(--ink);background:var(--field);border:1.5px solid var(--line);border-radius:12px;padding:13px 14px;outline:none;transition:border-color .12s,box-shadow .12s;-webkit-appearance:none;appearance:none}
+  label{display:block;font-family:var(--head);font-size:14px;font-weight:600;color:var(--ink-2);margin:0 0 7px}
+  .field{width:100%;font-family:var(--body);font-size:17px;color:var(--ink);background:var(--field);border:1.5px solid var(--edge);border-radius:12px;padding:13px 14px;outline:none;transition:border-color .12s,box-shadow .12s;-webkit-appearance:none;appearance:none}
   .field::placeholder{color:var(--ink-3)}
-  .field:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(31,79,216,.14);background:#fff}
+  .field:focus{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 28%,transparent);background:var(--field-on)}
   .code{font-family:var(--head);font-weight:600;font-size:32px;text-indent:.3em;text-align:center;padding:12px 8px;font-variant-numeric:tabular-nums}
-  .code::placeholder{font-weight:500;color:#CBD5E1;}
-  .btn{width:100%;margin-top:14px;font-family:var(--head);font-weight:700;font-size:16px;color:#fff;background:var(--blue);border:0;border-radius:12px;padding:14px 16px;min-height:50px;cursor:pointer;transition:background .12s,transform .06s}
+  .code::placeholder{font-weight:500;color:var(--ink-3)}
+  .btn{width:100%;margin-top:14px;font-family:var(--head);font-weight:600;font-size:16px;color:var(--btn-ink);background:var(--blue);border:0;border-radius:12px;padding:14px 16px;min-height:50px;cursor:pointer;transition:background .12s,transform .06s}
   .btn:hover{background:var(--blue-deep)} .btn:active{transform:translateY(1px)}
-  .btn:disabled{opacity:.55;cursor:default;transform:none}
+  .btn:disabled{opacity:.6;cursor:default;transform:none}
   .link{background:none;border:0;padding:0;margin:0;font:inherit;color:var(--blue);font-weight:600;cursor:pointer;text-decoration:none;min-height:0;width:auto;text-transform:none;letter-spacing:0}
   .link:hover{text-decoration:underline} .link:disabled{color:var(--ink-3);text-decoration:none;cursor:default}
-  .back{display:inline-flex;align-items:center;gap:6px;color:var(--ink-2);font-weight:600;font-size:14.5px;margin:0 0 14px;background:none;border:0;padding:0;cursor:pointer;font-family:var(--body)}
+  .back{display:inline-flex;align-items:center;gap:6px;color:var(--ink-2);font-weight:600;font-size:14.5px;margin:0 0 14px;background:none;border:0;padding:0;min-height:40px;cursor:pointer;font-family:var(--body)}
   .back:hover{color:var(--ink)}
   .back svg{width:16px;height:16px}
   .msg{margin:14px 0 0;padding:11px 14px;border-radius:10px;font-size:15px;line-height:1.45;display:none;border:1px solid transparent}
   .msg.show{display:block}
-  .msg.good{background:var(--good-bg);color:var(--good);border-color:#ABEFC6}
-  .msg.bad{background:var(--bad-bg);color:var(--bad);border-color:#FECDCA}
-  .msg.info{background:var(--info-bg);color:var(--navy);border-color:#C7D7FE}
+  .msg.good{background:var(--good-bg);color:var(--good);border-color:var(--good-line)}
+  .msg.bad{background:var(--bad-bg);color:var(--bad);border-color:var(--bad-line)}
+  .msg.info{background:var(--info-bg);color:var(--info-ink);border-color:var(--info-line)}
   .help{margin:16px 0 0;font-size:14px;color:var(--ink-2);line-height:1.5}
   .help + .help{margin-top:6px}
-  .divider{display:flex;align-items:center;gap:12px;margin:18px 0 14px;color:var(--ink-3);font-family:var(--head);font-size:11px;}
-  .divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line)}
-  .foot{margin:22px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:13.5px;color:var(--ink-3);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .foot{margin:22px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-3);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   .foot a{color:var(--ink-2);font-weight:600;text-decoration:none} .foot a:hover{text-decoration:underline}
   .working{display:flex;align-items:center;gap:12px;color:var(--ink-2);font-size:16px;padding:6px 0 2px}
   .spin{width:20px;height:20px;border-radius:50%;border:2.5px solid var(--line);border-top-color:var(--blue);animation:spin .8s linear infinite;flex:0 0 auto}
   @keyframes spin{to{transform:rotate(360deg)}}
-  .tag{display:inline-block;font-family:var(--head);font-size:11px;font-weight:600;color:var(--ink-3);margin-top:22px}
   .pwwrap{position:relative}
   .pwwrap .field{padding-right:70px}
-  .eye{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:0;font-family:var(--head);font-size:12px;font-weight:600;color:var(--blue);cursor:pointer;padding:8px 8px;border-radius:8px;min-height:36px}
+  .eye{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:0;font-family:var(--head);font-size:13px;font-weight:600;color:var(--blue);cursor:pointer;padding:8px 8px;border-radius:8px;min-height:36px}
   .eye:hover{background:var(--info-bg)}
   .rules{margin:8px 0 0;font-size:13.5px;color:var(--ink-3)}
+  /* Remember me (2026-09-30): one box, 44px tall, on both password steps */
+  .remember{display:flex;align-items:center;gap:10px;margin:14px 0 0;min-height:44px;font-size:15px;color:var(--ink);cursor:pointer}
+  .remember input{width:22px;height:22px;margin:0;accent-color:var(--blue);flex:none}
+  .remember small{display:block;font-size:13px;color:var(--ink-3);margin-top:1px}
   .links{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:16px 0 0;font-size:14.5px}
   .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;padding:0;margin:-1px}
   .hidden{display:none!important}
+  /* the theme switch (top-right; same storage + meaning as the app's bar switch) */
+  .theme{position:absolute;top:14px;right:14px;display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 12px 0 10px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink-2);font:inherit;font-size:14px;font-weight:600;cursor:pointer}
+  .theme svg{width:16px;height:16px} .theme .moon{display:none}
+  html[data-theme="dark"] .theme .sun{display:none} html[data-theme="dark"] .theme .moon{display:inline}
   @media (max-width:420px){ .body{padding:20px 20px 22px} h1{font-size:24px} .code{font-size:27px;text-indent:.22em} }
+  /* SIGN-IN v3 (2026-10-07, Gavin: "cleaner", with the company site's photos):
+     the form sits on a plain page -- no box -- and the brand story is one navy
+     panel: the team in front of the Hawthorne building, "Kohler Distribution
+     Hub" with the gold word, the mission line, and the Beer / Wine & Spirits /
+     Beyond Beer photos. From 960px the panel is the left half; on phones and
+     tablets it comes AFTER the form, so the email box is still on the first
+     screen. Text is never laid on the photo: it sits on solid navy. */
+  body{background:var(--card)}
+  .shell{flex-direction:column}
+  .side{justify-content:flex-start;padding:60px 16px 28px}
+  .card{max-width:400px;background:transparent;border:0;border-radius:0;box-shadow:none}
+  .body{padding:0}
+  .brand{border-bottom:0;padding-bottom:0;margin:0 0 26px}
+  .brand::after{display:none}
+  .brand img{width:48px;height:48px;border-radius:11px}
+  .theme{border-color:transparent;background:transparent}
+  .theme:hover{border-color:var(--line)}
+  .foot{border-top:0;padding-top:0;margin-top:18px}
+  .story{background:#0B2466;color:#FFFFFF;margin:8px 16px calc(24px + env(safe-area-inset-bottom));border-radius:16px;overflow:hidden;max-width:400px;align-self:center;width:calc(100% - 32px)}
+  .story-photo{position:relative;height:190px;background:#0B2466}
+  .story-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 86%}
+  .story-body{padding:20px 20px 22px;border-top:3px solid #E4A154}
+  .story-kicker{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:14px;font-weight:600;color:#C2CEEA}
+  .story-kicker img{width:32px;height:32px;border-radius:8px;flex:none}
+  .story h2{margin:0 0 8px;font-size:26px;line-height:1.15;font-weight:700;color:#FFFFFF;letter-spacing:normal}
+  .story h2 span{color:#E4A154}
+  .story-mission{margin:0 0 18px;font-size:15px;line-height:1.5;color:#D9E1F2}
+  .cats{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+  .cats li{margin:0}
+  .cats img{display:block;width:100%;height:auto;aspect-ratio:526/432;object-fit:cover;border-radius:10px;background:#16306F}
+  .cats span{display:block;margin-top:7px;font-size:14px;font-weight:600;line-height:1.25;color:#FFFFFF;text-align:center}
+  @media (min-width:960px){
+    .shell{flex-direction:row;min-height:100vh}
+    .story{order:-1;flex:0 0 46%;max-width:640px;width:auto;margin:0;border-radius:0;align-self:stretch;display:flex;flex-direction:column}
+    .story-photo{flex:1 1 auto;height:auto;min-height:240px}
+    .story-photo img{position:absolute;inset:0;object-position:50% 88%}
+    .story-body{padding:28px 36px 32px}
+    .story h2{font-size:36px}
+    .story-mission{font-size:16px;max-width:460px}
+    .cats{gap:14px}
+    .side{justify-content:center;padding:64px 32px 32px}
+    .brand{display:none}
+  }
 </style>
 </head>
 <body>
+<div class="shell">
+<div class="side">
+<button type="button" class="theme" id="loginTheme" role="switch" aria-checked="false" aria-label="Dark mode"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><span id="loginThemeL">Light</span></button>
 <main class="card">
-  <img class="banner" src="/assets/nj-banner.webp" alt="">
   <div class="body">
     <div class="brand">
-      <img src="/assets/kohler-logo-badge.png" alt="">
+      <img src="/assets/brand/kohler-logo-square-192.webp" alt="Kohler Distributing Company" width="56" height="56">
       <div>
         <p class="eyebrow">Kohler Distributing</p>
-        <p class="wordmark">Kohler Dist Hub</p>
+        <p class="wordmark">Distribution Hub</p>
       </div>
     </div>
 
@@ -104,17 +167,18 @@
 
     <!-- Step 1: email. -->
     <form id="form" class="hidden" autocomplete="on" novalidate>
-      <h1>Sign in</h1>
-      <p class="lead">Use your work email. First time here? You&rsquo;ll create a password and use it every time after.</p>
-      <label for="email">Work email</label>
+      <h1>Sign In</h1>
+      <p class="lead">Use your work email. First time? You&rsquo;ll create a password next.</p>
+      <label for="email">Work Email</label>
       <input id="email" class="field" type="email" name="email" inputmode="email" autocomplete="username" placeholder="you@kohlerdist.com" required>
       <button id="send" class="btn" type="submit">Continue</button>
+      <p class="links hidden" id="switchRow"><span id="switchWho"></span><a class="link" id="switchAcct" href="#">Not you? Switch account</a></p>
     </form>
 
     <!-- Step 2a: the password (anyone who has created one). -->
     <form id="pwForm" class="hidden" autocomplete="on" novalidate>
       <button type="button" class="back" id="pwChange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Use a different email</button>
-      <h1>Welcome back</h1>
+      <h1>Welcome Back</h1>
       <p class="lead">Signing in as <b id="pwTo"></b>.</p>
       <input id="pwEmail" class="vh" type="email" name="email" autocomplete="username" tabindex="-1" aria-hidden="true" readonly>
       <label for="pw">Password</label>
@@ -122,7 +186,8 @@
         <input id="pw" class="field" type="password" name="password" autocomplete="current-password" placeholder="Your password" required>
         <button type="button" class="eye" data-for="pw" aria-label="Show password">Show</button>
       </div>
-      <button id="pwGo" class="btn" type="submit">Sign in</button>
+      <label class="remember" for="rememberPw"><input type="checkbox" id="rememberPw" name="remember" checked><span>Remember me on this device<small>Stay signed in on this device until you sign out. Untick on a shared device.</small></span></label>
+      <button id="pwGo" class="btn" type="submit">Sign In</button>
       <p class="links"><button type="button" class="link" id="forgot">Forgot password? Email me a code</button></p>
     </form>
 
@@ -134,9 +199,9 @@
          supabase/README.txt. -->
     <form id="codeForm" class="hidden" autocomplete="off" novalidate>
       <button type="button" class="back" id="change"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Use a different email</button>
-      <h1>Check your email</h1>
+      <h1>Check Your Email</h1>
       <p class="lead">We sent a sign-in email to <b id="sentTo"></b> <span id="sentAt"></span>. Type the code from <b>that</b> email below, or tap its link.</p>
-      <label for="code">Enter code</label>
+      <label for="code">Enter Code</label>
       <input id="code" class="field code" type="text" name="code" inputmode="numeric" pattern="[0-9]*" maxlength="8" autocomplete="one-time-code" placeholder="000000" aria-label="Sign-in code from the email">
       <button id="verify" class="btn" type="submit">Continue</button>
       <p class="help">Didn&rsquo;t get it? Check spam or quarantine, then <button type="button" class="link" id="resend">send it again</button><span id="resendIn"></span>.</p>
@@ -150,21 +215,22 @@
          Supabase); "Forgot password" or a code-only account arrives here
          signed in and saves it with auth.updateUser. -->
     <form id="setForm" class="hidden" autocomplete="on" novalidate>
-      <h1 id="setTitle">Create your password</h1>
+      <h1 id="setTitle">Create Your Password</h1>
       <p class="lead" id="setLead">You&rsquo;re signed in as <b id="setTo"></b>. Choose a password to use from now on &mdash; no more waiting for a code.</p>
       <input id="setEmail" class="vh" type="email" name="email" autocomplete="username" tabindex="-1" aria-hidden="true" readonly>
-      <label for="newpw">New password</label>
+      <label for="newpw">New Password</label>
       <div class="pwwrap">
         <input id="newpw" class="field" type="password" name="new-password" autocomplete="new-password" placeholder="At least 8 characters" required minlength="8">
         <button type="button" class="eye" data-for="newpw" aria-label="Show password">Show</button>
       </div>
-      <label for="newpw2" style="margin-top:12px">Confirm password</label>
+      <label for="newpw2" style="margin-top:12px">Confirm Password</label>
       <div class="pwwrap">
         <input id="newpw2" class="field" type="password" name="confirm-password" autocomplete="new-password" placeholder="Type it again" required minlength="8">
         <button type="button" class="eye" data-for="newpw2" aria-label="Show password">Show</button>
       </div>
       <p class="rules">At least 8 characters. Both boxes must match.</p>
-      <button id="setGo" class="btn" type="submit">Save and continue</button>
+      <label class="remember" for="rememberNew"><input type="checkbox" id="rememberNew" name="remember" checked><span>Remember me on this device<small>Stay signed in on this device until you sign out. Untick on a shared device.</small></span></label>
+      <button id="setGo" class="btn" type="submit">Save and Continue</button>
       <p class="links"><span></span><a class="link" id="setNotYou" href="/login/?signout=1">Not you? Sign out</a></p>
     </form>
 
@@ -173,6 +239,28 @@
     <p class="foot"><span>Not on the list? Ask Gavin to add your email.</span><a id="signout" class="hidden" href="/login/?signout=1">Sign out</a></p>
   </div>
 </main>
+</div>
+<aside class="story" aria-label="About Kohler Distributing">
+  <div class="story-photo"><img src="/assets/brand/team.webp" alt="The Kohler Distributing team in front of the company building" width="578" height="791" fetchpriority="low"></div>
+  <div class="story-body">
+    <p class="story-kicker"><img src="/assets/brand/kohler-logo-square-192.webp" alt="" width="32" height="32">Kohler Distributing Company · Hawthorne, NJ</p>
+    <h2>Kohler <span>Distribution Hub</span></h2>
+    <p class="story-mission">Committed to the growth of all brands through the continued development of our people.</p>
+    <ul class="cats">
+      <li><img src="/assets/brand/beer.webp" alt="" width="526" height="432" loading="lazy"><span>Beer</span></li>
+      <li><img src="/assets/brand/wine-spirits.webp" alt="" width="526" height="432" loading="lazy"><span>Wine &amp; Spirits</span></li>
+      <li><img src="/assets/brand/beyond-beer.webp" alt="" width="526" height="432" loading="lazy"><span>Beyond Beer</span></li>
+    </ul>
+  </div>
+</aside>
+</div>
+<script>
+/* theme switch: the same localStorage kdh_theme choice the app's bar switch writes */
+(function(){ var b=document.getElementById('loginTheme'), l=document.getElementById('loginThemeL'), d=document.documentElement;
+  function show(){ var dark=d.getAttribute('data-theme')==='dark'; b.setAttribute('aria-checked', dark?'true':'false'); l.textContent=dark?'Dark':'Light'; }
+  b.addEventListener('click', function(){ var t=d.getAttribute('data-theme')==='dark'?'light':'dark'; d.setAttribute('data-theme', t); try{ localStorage.setItem('kdh_theme', t); }catch(e){} show(); });
+  show(); })();
+</script>
 
 <script src="/shared/auth-config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
@@ -192,6 +280,15 @@
   function loadPending(){ try { var p = JSON.parse(localStorage.getItem(PENDING) || 'null'); return (p && p.email && Date.now() - p.at < 55 * 60 * 1000) ? p : null; } catch (e) { return null; } }
   function savePending(email, isReset){ try { localStorage.setItem(PENDING, JSON.stringify({ email: email, at: Date.now(), reset: !!isReset })); } catch (e) {} }
   function clearPending(){ try { localStorage.removeItem(PENDING); } catch (e) {} }
+  // REMEMBERED EMAIL (2026-09-30): the address of the last successful sign-in
+  // on this device, prefilled on the next visit. It is a convenience only --
+  // it never signs anyone in; access still needs the password (or code) and
+  // the middleware's check. "Not you? Switch account" forgets it, ends any
+  // stored session and clears the cookies, so the next person starts clean.
+  var EMAIL_KEY = 'kdh_email';
+  function rememberedEmail(){ try { return String(localStorage.getItem(EMAIL_KEY) || ''); } catch (e) { return ''; } }
+  function rememberEmail(email){ try { if (email) localStorage.setItem(EMAIL_KEY, String(email).toLowerCase()); } catch (e) {} }
+  function forgetEmail(){ try { localStorage.removeItem(EMAIL_KEY); } catch (e) {} var r = $('switchRow'); if (r) r.classList.add('hidden'); }
   function clock(t){ var d = new Date(t); var h = d.getHours(), m = d.getMinutes(); return ((h % 12) || 12) + ':' + (m < 10 ? '0' : '') + m + (h < 12 ? ' AM' : ' PM'); }
 
   function safeNext(v) {
@@ -210,15 +307,70 @@
     $('codeForm').classList.toggle('hidden', step !== 'code');
     $('setForm').classList.toggle('hidden', step !== 'setpw');
   }
-  function showForm() { show('email'); }
-  function setCookie(token) {
-    document.cookie = COOKIE + '=' + encodeURIComponent(token) + '; Path=/; Max-Age=2592000; Secure; SameSite=Lax';
+  function showForm() {
+    show('email');
+    var remembered = rememberedEmail(), f = $('email'), row = $('switchRow');
+    if (remembered && f && !f.value) f.value = remembered;
+    if (row) { row.classList.toggle('hidden', !remembered); $('switchWho').textContent = remembered ? 'Signing in as ' + remembered : ''; }
   }
+  // REMEMBER ME (2026-09-30): both password steps carry a "Remember me on
+  // this device" box, checked by default and remembered in localStorage.
+  // Checked: the cookies live 30 days and supabase-js keeps its session, so
+  // the next visit needs no password. Unchecked: session cookies only and
+  // the stored Supabase session is dropped after sign-in, so closing the
+  // browser ends it. (The password itself is never stored by the page;
+  // the browser's own password manager may offer to save it.)
+  // 2026-10-02 (Gavin: reps kept having to sign in): the box starts TICKED on
+  // every visit -- an earlier untick no longer sticks. Unticking is a choice
+  // for that one sign-in on a shared device.
+  var REMEMBER = 'kdh_remember';
+  var keepChoice = true;            // this visit's choice (the box), ticked to start
+  function rememberPref() { return keepChoice; }
+  function remembering() {
+    var box = ['rememberNew', 'rememberPw'].map(function (id) { return $(id); }).filter(function (b) { return b && !b.closest('form').classList.contains('hidden'); })[0];
+    return box ? box.checked : rememberPref();
+  }
+  function initRemember() {
+    var on = rememberPref();
+    ['rememberNew', 'rememberPw'].forEach(function (id) { var b = $(id); if (!b) return; b.checked = on; b.addEventListener('change', function () { keepChoice = b.checked; try { localStorage.setItem(REMEMBER, b.checked ? '1' : '0'); } catch (e) {} var o = $(id === 'rememberNew' ? 'rememberPw' : 'rememberNew'); if (o) o.checked = b.checked; }); });
+  }
+  var KEEP = '; Max-Age=34560000';   // 400 days, the longest a browser keeps a cookie
+  var life = KEEP;
+  function setCookie(token) {
+    document.cookie = COOKIE + '=' + encodeURIComponent(token) + '; Path=/' + life + '; Secure; SameSite=Lax';
+  }
+  function forgetStoredSession() {
+    try { Object.keys(localStorage).forEach(function (k) { if (k.indexOf('sb-') === 0) localStorage.removeItem(k); }); } catch (e) {}
+  }
+  function forgetAsk() { try { Object.keys(sessionStorage).filter(function (k) { return k.indexOf('kdh_ask:') === 0 || k.indexOf('kdh_nav:') === 0 || k.indexOf('kdh_acct') === 0 || k.indexOf('kdh_from:') === 0; }).forEach(function (k) { sessionStorage.removeItem(k); }); } catch (e) {} }
   function clearCookie() {
+    forgetAsk();   // the assistant's transcripts and the remembered lists / sections belong to the person signing out
     document.cookie = COOKIE + '=; Path=/; Max-Age=0; Secure; SameSite=Lax';
     document.cookie = 'kdh_user=; Path=/; Max-Age=0; Secure; SameSite=Lax';
     document.cookie = 'kdh_preview=; Path=/; Max-Age=0; Secure; SameSite=Lax';
   }
+  // STAY SIGNED IN (2026-10-02): the server holds the session (api/session.js
+  // sets an HttpOnly refresh-token cookie; middleware.js renews the access
+  // token from it), so a rep is not asked again until they sign out.
+  function serverSession(method, body) {
+    var ctl = window.AbortController ? new AbortController() : null;
+    var t = setTimeout(function () { if (ctl) ctl.abort(); }, 10000);   // slow cellular in a store
+    return fetch('/api/session', { method: method, credentials: 'same-origin', headers: body ? { 'content-type': 'application/json' } : {}, body: body ? JSON.stringify(body) : undefined, signal: ctl ? ctl.signal : undefined })
+      .then(function (r) { clearTimeout(t); return r.ok ? r.json().catch(function () { return { ok: true }; }) : (r.status === 503 ? { busy: true } : null); })
+      .catch(function () { clearTimeout(t); return { busy: true }; });
+  }
+  // Same call, tried up to three times while the answer is only "busy" (a
+  // dropped connection, Supabase slow): a lost hand-off meant an hour-long
+  // sign-in instead of a lasting one. A definite no (401/403) is final.
+  // Repeating the hand-off is safe: Supabase hands back the same new token
+  // for a refresh token redeemed again within its reuse window.
+  function serverSessionRetry(method, body, left) {
+    return serverSession(method, body).then(function (r) {
+      if (r && r.busy && left > 1) return new Promise(function (ok) { setTimeout(ok, 800); }).then(function () { return serverSessionRetry(method, body, left - 1); });
+      return r && r.busy ? null : r;
+    });
+  }
+  function homeFor(role) { return next === '/' && role !== 'manager' ? (role === 'it' ? '/upc-audit/' : role === 'associate' ? '/tasks/' : '/rep/') : next; }
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
@@ -251,7 +403,7 @@
 
   if (params.get('signout')) {
     clearPending();
-    sb.auth.signOut().then(function () {
+    serverSession('DELETE').then(function () { return sb.auth.signOut(); }).then(function () {
       clearCookie();
       history.replaceState(null, '', '/login/');
       showForm();
@@ -265,6 +417,7 @@
   var whyText = {
     expired: 'Your session expired. Sign in again to continue.',
     invalid: 'Please sign in again to continue.',
+    revoked: 'You were signed out on this device. Sign in once more &mdash; it will remember you after that.',
     notlisted: 'That account isn&rsquo;t on the access list. Ask Gavin to add your email.',
     unavailable: 'The sign-in service didn&rsquo;t respond. Try again in a moment.'
   }[why];
@@ -278,16 +431,38 @@
       // to the code step instead of asking for the email and sending again.
       var p = loadPending();
       if (p) { reset = !!p.reset; showCodeStep(p.email, p.at, false); }
-      else { showForm(); if (whyText) say('info', whyText); }
+      else resume();
     }
     if (event === 'SIGNED_OUT') clearCookie();
   });
+
+  // No session in this page: the server may still hold one (the cookie
+  // outlives this page's storage) -- then go straight in. Otherwise, with a
+  // remembered email, open on the password box so the phone's saved
+  // password fills it; first-timers get the email step.
+  function resume() {
+    show('working');
+    serverSessionRetry('GET', null, 3).then(function (r) {
+      if (r && r.ok && !entered) {
+        entered = true;
+        $('working').innerHTML = '<span class="spin"></span><span>Signed in as <b>' + escapeHtml(r.name || '') + '</b>. Opening&hellip;</span>';
+        location.replace(homeFor(r.role));
+        return;
+      }
+      var remembered = rememberedEmail();
+      if (!remembered) { showForm(); if (whyText) say('info', whyText); return; }
+      signinMode(remembered).then(function (res) {
+        if (!res.error && res.data === 'password') showPasswordStep(remembered);
+        else { showForm(); if (whyText) say('info', whyText); }
+      }, function () { showForm(); });
+    });
+  }
 
   // Signed in (password, code or link). Check the allow list, then either
   // ask for a password (first sign-in, or "Forgot password") or go in.
   function enter(session) {
     show('working'); hush();
-    sb.from('allowed_users').select('email,name,role,title,reports_to').limit(1).then(function (res) {
+    sb.from('allowed_users').select('*').limit(1).then(function (res) {
       if (res.error) {
         entered = false; showForm();
         say('bad', 'Couldn&rsquo;t check the access list: ' + escapeHtml(res.error.message));
@@ -313,17 +488,31 @@
 
   // The cookies the middleware and the pages read, then the page they wanted.
   function finish(session, me) {
-    clearPending(); reset = false; current = null;
+    clearPending(); reset = false; current = null; forgetAsk();
+    rememberEmail(me.email || session.user.email);
+    var keep = remembering();
+    try { localStorage.setItem(REMEMBER, keep ? '1' : '0'); } catch (e) {}
+    life = keep ? KEEP : '';
     setCookie(session.access_token);
+    if (!keep) forgetStoredSession();
     // Who is signed in, for the pages (the hub locks a rep to their own
     // name; the landing pages greet by name). Not used for access
     // decisions -- the middleware asks Supabase for the role itself.
-    document.cookie = 'kdh_user=' + encodeURIComponent(JSON.stringify({ name: me.name || '', role: me.role || 'rep', email: me.email, title: me.title || '', dm: me.reports_to || '' })) +
-      '; Path=/; Max-Age=2592000; Secure; SameSite=Lax';
+    document.cookie = 'kdh_user=' + encodeURIComponent(JSON.stringify({ name: me.name || '', role: me.role || 'rep', email: me.email, title: me.title || '', dm: me.reports_to || '', ws: me.workspace || '', upc: (me.upc_audit === true || me.role === 'it') ? 1 : 0 })) +
+      '; Path=/' + life + '; Secure; SameSite=Lax';
     $('signout').classList.remove('hidden');
     show('working'); hush();
     $('working').innerHTML = '<span class="spin"></span><span>Signed in as <b>' + escapeHtml(me.name || session.user.email) + '</b>. Opening&hellip;</span>';
-    location.replace(next === '/' && me.role !== 'manager' ? '/rep/' : next);
+    // Hand the session to the server (it keeps it in an HttpOnly cookie and
+    // renews it), then drop this page's copy: the server rotates the token,
+    // so the stored one would be stale. If the hand-off fails, keep the
+    // stored session -- the page renews it the old way next time.
+    var go = function () { location.replace(homeFor(me.role)); };
+    if (!session.refresh_token) { go(); return; }
+    serverSessionRetry('POST', { refresh_token: session.refresh_token, remember: keep }, 3).then(function (r) {
+      if (r && r.ok) forgetStoredSession();
+      go();
+    });
   }
 
   // mode: 'new' (no account yet: sign up with this password), 'reset'
@@ -333,8 +522,8 @@
     var email = String((session && session.user.email) || (me && me.email) || pendingEmail || '');
     pendingEmail = email;
     $('setEmail').value = email;
-    $('setTitle').textContent = mode === 'reset' ? 'Choose a new password' : 'Create your password';
-    $('setGo').textContent = mode === 'new' ? 'Create password and sign in' : 'Save and continue';
+    $('setTitle').textContent = mode === 'reset' ? 'Choose a New Password' : 'Create Your Password';
+    $('setGo').textContent = mode === 'new' ? 'Create Password and Sign In' : 'Save and Continue';
     $('setLead').innerHTML = mode === 'new'
       ? 'First time here. Choose a password for <b id="setTo"></b> &mdash; you&rsquo;ll use it every time you sign in.'
       : 'You&rsquo;re signed in as <b id="setTo"></b>. ' + (mode === 'reset'
@@ -415,6 +604,7 @@
   }
 
   function wireForm() {
+    initRemember();
     $('form').addEventListener('submit', function (e) {
       e.preventDefault();
       var email = $('email').value.trim().toLowerCase();
@@ -472,7 +662,18 @@
       sendLink(pendingEmail, false).then(function () { $('forgot').disabled = false; });
     });
     $('pwChange').addEventListener('click', function () {
-      reset = false; hush(); show('email'); $('email').focus();
+      reset = false; hush(); forgetEmail(); $('email').value = ''; show('email'); $('email').focus();
+    });
+    // "Not you? Switch account": forget the remembered address, end any
+    // stored session and clear the cookies. The next person signs in fresh.
+    $('switchAcct').addEventListener('click', function (e) {
+      e.preventDefault();
+      forgetEmail(); clearPending(); clearCookie(); forgetStoredSession(); reset = false; current = null; pendingEmail = '';
+      serverSession('DELETE');
+      $('email').value = ''; $('pw').value = '';
+      sb.auth.signOut().catch(function () {});
+      hush(); show('email'); $('email').focus();
+      say('info', 'Switched. Sign in with your own email.');
     });
 
     $('setForm').addEventListener('submit', function (e) {
@@ -516,7 +717,7 @@
       sb.auth.updateUser({ password: pw }).then(function (r) {
         if (r.error) {
           $('setGo').disabled = false;
-          say('bad', 'Couldn&rsquo;t save that password. ' + escapeHtml(r.error.message) + '.' + detail('Try a longer or less common one, then tap <b>Save and continue</b> again.'));
+          say('bad', 'Couldn&rsquo;t save that password. ' + escapeHtml(r.error.message) + '.' + detail('Try a longer or less common one, then tap <b>Save and Continue</b> again.'));
           $('newpw').focus();
           return;
         }
@@ -598,12 +799,12 @@
     });
     $('change').addEventListener('click', function () {
       clearInterval(resendTimer); clearPending(); reset = false;
-      hush(); show('email'); $('email').focus();
+      hush(); forgetEmail(); $('email').value = ''; show('email'); $('email').focus();
     });
 
     $('setNotYou').addEventListener('click', function (e) {
       if (this.getAttribute('href') !== '#') return;     // "Not you? Sign out" is a real link
-      e.preventDefault(); current = null; hush(); show('email'); $('email').focus();
+      e.preventDefault(); current = null; hush(); forgetEmail(); $('email').value = ''; show('email'); $('email').focus();
     });
 
     // Show / hide a password field (one tap beats a "confirm" box on a phone).

@@ -521,6 +521,21 @@ step of the refresh and check for these defects EVERY time:
            accounts / 6,238 taps (157 re-surveyed, 1,499 superseded taps
            in history); exec core market 5,536 taps at 718 accounts,
            51.8% ours. Survey data now through 9/22.
+  10.12.26 ("vF1") 7,351 raw rows with 481 duplicate "#" (2,490 rows
+           sharing them, scattered); Import Template fully populated, but
+           its column O ("Distributor", the app's own flag) disagreed with
+           the raw sheet on 886 rows (US/THEM swapped), which is why the
+           delivered template reads MISMATCH 175 where the engine, run on
+           the raw rows, reads 32 -- Corrected Distributor is identical on
+           every comparable row (6,268), so nothing shown moved. Two new
+           reference sheets ("Brand Sell Rules (Handoff)", "Brand
+           Corrections") are not read. Repaired as usual: OK 7,097 /
+           Review 222 / MISMATCH 32 (the 32 are Industrial Arts and
+           Equilibrium x Other Half handles, now expected US). Same
+           workbook for both dashboards; the units-sold export was not
+           refreshed. Tracker 748 accounts / 6,260 taps (195 re-surveyed,
+           2,017 superseded taps in history); exec core market 5,534 taps
+           at 718 accounts, 52.3% ours. Survey data now through 10/9.
 
 Original write-up (2026-08-21):
 the 8.20.26 delivery ("iSellBeer_TAPS__US_THEM_Audit_Matrix_vF1_8.20.26.xlsx")
@@ -639,3 +654,35 @@ four-surface ladder keeps its spacing; and two hardcoded #1A130C photo-tile
 backgrounds (.acct-photo / .acct-photo-ph) that are not driven by a
 variable at all -- they are now #0D1422. Grep for stray hex values, not
 just the :root block, if this palette is ever changed again.
+
+
+HUB TAP LINES: OURS vs THEIRS (2026-10-05)
+A rep who captures Tap Handles on an Account page (Add Photos) labels each tap
+line Ours or Theirs automatically from shared/data/tap-rules.json, which
+build_tap_rules.py writes from THIS workbook with audit_engine's own steps
+(brand -> Encompass family -> Master - US vs THEM for the account's
+distribution area). generate.py runs it at the end of every refresh; run it by
+hand after editing the workbook alone. Checked equal to the audit on all 6,870
+surveyed taps. A brand the workbook does not cover is the rep's call (saved as
+ownership_rule 'rep'); everything else is 'territory'. Hub tap lines ARE read by
+this dashboard -- see below.
+
+HUB TAP SURVEYS ON THIS PAGE (2026-10-05)
+hub-taps.js (loaded before the page's main script) reads the Hub's tap_handle
+records with the viewer's own sign-in -- row-level security gives a rep only
+their own accounts -- and merges them into the data before the first render
+(the main script is window.__tapMain, started when KdhTapHub.ready settles, at
+most 6 s). Every survey of an account, iSellBeer pass or Hub pass, is one pass;
+the NEWEST is the current lineup (the 2026-09-04 rule), the rest go to Survey
+history and feed no total. A Hub record with no tap lines is not a survey. A
+line's status is its saved label; an unlabelled line counts THEM (the page's
+own default) -- the capture screen now refuses to save a named tap line
+without Ours / Theirs. Accounts iSellBeer never surveyed come in with the
+customer base's name / area / rep (hub/data/accounts.js -- a rep's own book via
+the middleware) and the DM from shared/dm-groups.js. Header numbers are
+restated for the merged lineup; a rep copy's company-wide playbook totals are
+left as built. The footer says "Includes N Kohler Hub tap surveys", or that
+they could not be loaded (then the iSellBeer data shows alone). Current Hub
+rows read "<date> · Kohler Hub". generate.py replaces only the data script,
+so none of this needs a rebuild; rep copies come from tools/rep_slices.py as
+always. Test: scratchpad tap_hub_test.mjs.

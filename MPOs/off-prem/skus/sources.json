@@ -1,0 +1,26 @@
+{
+ "2026-10_bbc_lytt.csv": {
+  "products": 6,
+  "program": "off:2026-10:bbc_lytt",
+  "received": "2026-10-06",
+  "source": "RDE Lytt SKUs, October 2026 MPO (Off)"
+ },
+ "2026-10_constellation_innovation.csv": {
+  "products": 11,
+  "program": "off:2026-10:constellation_innovation",
+  "received": "2026-10-06",
+  "source": "RDE Constellation Innovation SKUs, October 2026 MPO (Off)"
+ },
+ "2026-10_mollys.csv": {
+  "products": 5,
+  "program": "off:2026-10:mollys",
+  "received": "2026-10-06",
+  "source": "RDE Spirits / Molly's SKUs, October 2026 MPO"
+ },
+ "2026-10_wine_new.csv": {
+  "products": 60,
+  "program": "off:2026-10:wine_new",
+  "received": "2026-10-06",
+  "source": "RDE wine SKU comparison, October 2026 MPO (Off)"
+ }
+}

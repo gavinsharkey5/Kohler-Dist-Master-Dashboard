@@ -50,6 +50,9 @@ const BARDSTOWN = ['Bardstown Bourbon','Bardstown Green River'];
 const PROGRAM_BRANDS = {
   // --- incentives (incentive-tracking/programs.js keys) ---
   'inc:keystone_ice':['Keystone'], 'inc:touchdowns_tea':['Sun Cruiser','Twisted Tea'], 'inc:evil_genius':['Evil Genius'],
+  // October 2026 -- Industrial Arts is not in the brand workbook yet (new brand): null = no territory rule
+  'inc:mabi_single_serve':['White Claw',"Mike's Harder",'Cayman Jack'], 'inc:four_loko':['Four Loko'], 'inc:lagunitas_sprint':['Lagunitas'],
+  'inc:famosa_oct':['Famosa'], 'inc:sam_adams_cold_snap':['Samuel Adams'], 'inc:industrial_arts':null,
   'inc:other_half':['Other Half'], 'inc:montauk':['Montauk'], 'inc:sam_adams_conversion':['Samuel Adams'],
   'inc:printed_menu':BARDSTOWN, 'inc:bardstown_display':BARDSTOWN, 'inc:two_xo':['2XO'],
   'inc:1911':['1911 Hard Cider'], 'inc:woodchuck':['Woodchuck'], 'inc:tona':['Tona'], 'inc:lytt':['Lytt'],
@@ -64,9 +67,10 @@ const PROGRAM_BRANDS = {
   // --- on-premise MPO objectives (MPOs/on-prem/programs.js keys) ---
   'on:bardstown_menu':BARDSTOWN, 'on:fever_tree':['Fever Tree'], 'on:carbliss':['Carbliss'], 'on:husa_xx_draft':['Dos Equis'],
   'on:angry_orchard':['Angry Orchard'], 'on:molson_coors':['Peroni','Coors'], 'on:wine_spirits':['YaVe','Leyenda 1925'],
-  'on:sapporo_na':['Sapporo'], 'on:isellbeer':null,
+  'on:sapporo_na':['Sapporo'], 'on:isellbeer':null, 'on:sam_adams_conversion':['Samuel Adams'], 'on:spirits_followup':null,
   // --- off-premise MPO objectives (MPOs/off-prem/programs.js keys) ---
   'off:constellation_gaintain':['Corona Extra','Corona Light','Corona Premier','Corona Familiar','Corona Sunbrew'],
+  'off:constellation_innovation':['Corona Sunbrew','Corona NA','Modelo Chelada','Modelo Negra','Pacifico','Victoria'], 'off:mollys':["Molly's"], 'off:wine_new':null,
   'off:keystone_ice':['Keystone'], 'off:fever_tree':['Fever Tree'], 'off:wine_spirits_any':null, 'off:pos_stickers':null,
   'off:corona_premier':['Corona Premier'], 'off:bbc_lytt':['Lytt'], 'off:disruptors':['Lytt'], 'off:molson_coors':['Peroni','Coors'],
   'off:wine_spirits':['Le Grand Noir','Leyenda 1925','Bardstown Green River'], 'off:new_belgium':NEW_BELGIUM,
@@ -90,6 +94,50 @@ const LYTT_BASE_EXCLUDED = {
 const PROGRAM_BASE_EXCLUDED = {
   'inc:lytt': LYTT_BASE_EXCLUDED, 'off:bbc_lytt': LYTT_BASE_EXCLUDED, 'off:disruptors': LYTT_BASE_EXCLUDED,
 };
+
+// PRODUCT-LEVEL ELIGIBILITY (2026-10-04): when a program pays on only SOME of a
+// brand family's products, the rule lives here once and every page uses it --
+// the Account page's opportunity cards and Products list, and the assistant's
+// page context (the trackers already count from their own exports). `re` is
+// tested against the catalogue product name. Each rule was checked against the
+// program export's own product list (`checked`); add one when a program names
+// specific products. Without a rule, a program's brand families are the list.
+const PROGRAM_PRODUCTS = {
+  'inc:lagunitas_sprint': {re:/^lagunitas (ipa|little sumpin)\b/i,
+    rule:'Lagunitas IPA and Little Sumpin’ packages and kegs — the 13 products in the program’s export',
+    // OPEN QUESTION (REPORTING_REQUEST 11.4): the tracker's draft bonus names IPA
+    // kegs only, but the export also lists the Little Sumpin 15.5 gal keg (#12920).
+    // The list follows the export until Gavin says otherwise.
+    // 'Lagunitas Brewing Co' was dropped from PROGRAM_BRANDS the same day: it is
+    // the SUPPLIER, not a family, and being "not on file" it switched the
+    // territory filter off (Union / Essex accounts, NOT IN TERRITORY, were listed
+    // as targets; none bought Lagunitas in Jan 2025 - Aug 2026).
+    checked:'2026-10-04: the 13 products in incentive-tracking/data/lagunitas_sprint.csv (IPA 6/12/24-pack cans + bottles, 19.2 oz, 15.5 + 7.75 gal kegs; Little Sumpin cans, bottles, 19.2 oz, 15.5 gal keg) -- not Daytime, Hazy, Maximus, Variety or other Lagunitas'},
+  // October on-prem MPO: done = NET Octoberfest KEG units loaded 8/1-10/23
+  // (MPOs/on-prem/generate_2026-10.py) -- the two Sam Adams Octoberfest kegs.
+  'on:sam_adams_conversion': {re:/^sam adams octoberfest (15\.5|5\.2) gal keg$/i,
+    rule:'Sam Adams Octoberfest kegs (15.5 and 5.2 gal)',
+    checked:'2026-10-06: catalogue #3813 15.5 gal + #3862 5.2 gal; the conversion counts keg units only'},
+};
+// the products a program counts, from catalogue rows [num, name, supplier, family, package, ...]
+function eligibleProducts(p, rows, famKeyFn){
+  // A program with a verified rule (shared/data/program-rules.json, KdhElig) lists
+  // its qualifying ProductIDs -- the ONE product rule the tracker counts.
+  const ids = (global.KdhElig && global.KdhElig.productIds) ? global.KdhElig.productIds(p.id) : null;
+  if(ids && ids.size){ const R = global.KdhElig.rule(p.id); return {rows: rows.filter(c=>ids.has(String(c[0]))), rule: R ? R.products.length+' qualifying products ('+R.title+')' : '', byProduct: true, ids}; }
+  // The program's OFFICIAL SKU list (tools/program_skus.py -> shared/data/program-skus.js),
+  // when Gavin has sent one: exactly those ProductIDs (2026-10-06).
+  const off = global.KDH_PROGRAM_SKUS && global.KDH_PROGRAM_SKUS[p.id];
+  if(off && off.products && off.products.length){ const ids = new Set(off.products.map(x=>String(x.id)));
+    return {rows: rows.filter(c=>ids.has(String(c[0]))), rule: off.products.length+' products on the program’s SKU list', byProduct: true, ids, official: off}; }
+  const r = PROGRAM_PRODUCTS[brandKey(p)];
+  if(r) return {rows: rows.filter(c=>r.re.test(String(c[1]||''))), rule: r.rule, byProduct: true};
+  const fams = PROGRAM_BRANDS[brandKey(p)];
+  if(!fams) return {rows: [], rule: '', byProduct: false, any: true};
+  const fk = famKeyFn || (f=>norm(f));
+  const set = new Set(fams.map(fk));
+  return {rows: rows.filter(c=>set.has(fk(c[3]))), rule: '', byProduct: false};
+}
 
 const norm = s => String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
 
@@ -183,6 +231,6 @@ function classify(p, rep, buying){
   return out;
 }
 
-global.HubAccounts = {PROGRAM_BRANDS, CORE_AREAS, norm, brandKey, familiesFor, classify,
+global.HubAccounts = {PROGRAM_BRANDS, PROGRAM_PRODUCTS, eligibleProducts, CORE_AREAS, norm, brandKey, familiesFor, classify,
   asOf: (typeof HUB_ACCOUNTS!=='undefined' && HUB_ACCOUNTS.asOf) || ''};
 })(window);

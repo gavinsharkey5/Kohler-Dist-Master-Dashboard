@@ -356,6 +356,7 @@ customer_num,name,premise,address,county,area,rep,dm
 22044,Los Cristales (Z),On,409 21st Ave,Passaic,Passaic,Pablo Lopez,Denise Montes
 22051,Quilvio's Tavern & Liquor,Off,933 Main Street,Passaic,Passaic,Javier Melo,Denise Montes
 22053,Rincon Centroamericano,On,197 Market St,Passaic,Passaic,Derrick Laws,Denise Montes
+22055,The Liquor Store,On,48 Rosa Parks Blvd,Passaic,Sales,,
 22065,Mambo Lounge (P),On,62-64 Dover St,Passaic,Passaic,Javier Melo,Denise Montes
 22067,Gonzalez Liq & Bar(A),Off,105 Park Ave,Passaic,Passaic,Derrick Laws,Denise Montes
 23001,Bogey's Sport Bar,On,103 Valley Road,Passaic,Passaic,Allison Scott,Chris McCrohan
@@ -404,6 +405,7 @@ customer_num,name,premise,address,county,area,rep,dm
 24043,Valley Regency,On,1129 Valley Road,Passaic,Passaic,Robin Feldman,Chris McCrohan
 24044,Pub 46 B & G (Z),On,1081 Rt 46 East,Passaic,Passaic,Allison Scott,Chris McCrohan
 24045,Red Robin Gourmet Burger (Clifton),On,265 Rt 3 East,Passaic,Passaic,Allison Scott,Chris McCrohan
+24047,The Barrow House,On,1296 Van Houten Ave,Passaic,Passaic,,
 24048,Dante's,On,955 Valley Rd,Passaic,Passaic,Allison Scott,Chris McCrohan
 24049,Hornitos Bakery,On,1094 Main Ave.,Passaic,Sales,Pablo Lopez,Denise Montes
 24051,La Bonita,On,394 Lexington Ave.,Passaic,Sales,Javier Melo,Denise Montes
@@ -765,6 +767,7 @@ customer_num,name,premise,address,county,area,rep,dm
 40027,Cigarro Bar and Lounge,On,91 Main St,Bergen,Sales,Robin Feldman,Chris McCrohan
 40028,Elks Post 658 (A),On,37 Linden St,Bergen,Bergen,Robin Feldman,Chris McCrohan
 40030,JINYA Ramen Bar (Hackensack),On,390 Hackensack Ave,Bergen,Sales,Nick Melissari,Chris McCrohan
+40031,Azul Restaurant,On,Print House,Bergen,Bergen,,
 40032,Side Bar,On,45 Main St,Bergen,Sales,Paul Mclaughlin,Chris McCrohan
 40035,Chit Chat Diner,On,515 Essex St,Bergen,Bergen,Robin Feldman,Chris McCrohan
 40037,Parisi Deli,Off,89 S State St,Bergen,Bergen,Dave Ehlers,Mike Engel
@@ -870,7 +873,7 @@ customer_num,name,premise,address,county,area,rep,dm
 46010,So Noon Nan Jib,On,238 Broad Ave,Bergen,Bergen,Dan Lagala,Mike Engel
 46011,Han Mi Supermkt (A),Off,220 Broad Ave,Bergen,Bergen,Dan Lagala,Mike Engel
 46012,Jay Cee (P) Deli & Liq.,Off,246 Broad Ave,Bergen,Bergen,Dan Lagala,Mike Engel
-46013,Boulevard Food Store,Off,520a Bergen Blvd,Bergen,Bergen,Dan Lagala,Mike Engel
+46013,Boulevard Food And Liquor,Off,520 Bergen Blvd,Bergen,Bergen,Dan Lagala,Mike Engel
 46014,Soosang Hand Pocha,On,239 Broad Ave,Bergen,Bergen,Dan Lagala,Mike Engel
 46015,Mukeunji (Z),Off,421 Broad Ave,Bergen,Bergen,Dan Lagala,Mike Engel
 46017,Mariachi (Roku) (Z),On,15 Grand Ave,Bergen,Bergen,Dan Lagala,Mike Engel
@@ -923,6 +926,7 @@ customer_num,name,premise,address,county,area,rep,dm
 49034,In Napoli (A),On,116 Main St,Bergen,Bergen,Dan Lagala,Mike Engel
 49035,Gulf Express Fort Lee,Off,1651 Bergen Blvd,Bergen,Bergen,Dan Lagala,Mike Engel
 49036,Junction Liquors,Off,266 Columbia Ave,Bergen,Bergen,Dan Lagala,Mike Engel
+49038,Orbit Karaoke Lounge,On,2025 Lemoine Ave,Bergen,Bergen,,
 49039,Acme Markets (Fort Lee),Off,2160 Lemoine Ave,Bergen,Sales,Phil Ernst,Mike Engel
 49040,Healing Karaoke,On,2011 Lemoine Ave #303,Bergen,Bergen,Nick Melissari,Chris McCrohan
 49041,WOOGA,On,1296 Palisade Ave,Bergen,Bergen,Dan Lagala,Mike Engel
@@ -1164,6 +1168,7 @@ customer_num,name,premise,address,county,area,rep,dm
 74008,MeltToba Restaurant,On,250 Center Ave,Bergen,Bergen,Paul Mclaughlin,Chris McCrohan
 74009,Westwood Wine and Liquors,Off,725 Broadway,Bergen,Bergen,Shane Barreca,Paul Deady
 74010,Osteria Crescendo,On,36 Jefferson Ave,Bergen,Bergen,Paul Mclaughlin,Chris McCrohan
+74011,IL Vero Westwood,On,166 Center Ave,Bergen,Bergen,,
 74012,Iron Horse,On,20 Washington Ave,Bergen,Bergen,Paul Mclaughlin,Chris McCrohan
 74014,American Lgn (Z) (Westwood),On,264 Washington Ave,Bergen,Bergen,Robin Feldman,Chris McCrohan
 74019,K Of C Westwood,On,40 Crest St,Bergen,Bergen,Robin Feldman,Chris McCrohan
@@ -1411,6 +1416,7 @@ customer_num,name,premise,address,county,area,rep,dm
 150023,Brookdale W & S (A),Off,1057 Broad St,Essex,Essex,Alisa Acciardi,Mike Kennedy
 150024,Mcgovern's Tavern(A),On,58 New Street,Essex,Essex,Hakan Sadik,Mike Kennedy
 150026,FERRY WINE & LIQUOR STOP,Off,178 Ferry St,Essex,Essex,Alisa Acciardi,Mike Kennedy
+150028,Amanti Vino,Off,30 Church St,Essex,Essex,,
 150029,Oso Felipe Mexican Kitchen,On,2 Erie St.,Essex,Sales,Michael Harboy,Mike Kennedy
 150031,Fairfield Wine Cellar,Off,99 Us-46,Essex,Essex,John O'Donoghue,Mike Kennedy
 150033,Discount Liquors Bloomfield,Off,24 1st Avenue,Essex,Essex,Alisa Acciardi,Mike Kennedy
@@ -1559,6 +1565,7 @@ customer_num,name,premise,address,county,area,rep,dm
 150248,The Wine Rack North Caldwell,Off,27 Bloomfield Ave,Essex,Essex,Michael Harboy,Mike Kennedy
 150249,Millburn Standard,On,42 Main St,Essex,Essex,Andrew Lundy,Mike Kennedy
 150250,Par 440 Restaurant,On,440 Parsonage Hill Rd,Essex,Essex,John O'Donoghue,Mike Kennedy
+150251,Hometown Arcade - New Jersey,On,85 Washington St,Essex,Essex,,
 150252,Guys & Dolls Billiards & Sports Bar,On,524 Washington Ave,Essex,Essex,Alisa Acciardi,Mike Kennedy
 150253,El Patio Liquor Store,Off,56 Main St.,Essex,Essex,Michael Harboy,Mike Kennedy
 150260,Glen Ridge Country Club,On,555 Ridgewood Ave,Essex,Essex,Michael Harboy,Mike Kennedy
@@ -1606,6 +1613,7 @@ customer_num,name,premise,address,county,area,rep,dm
 150647,Home Town Clinton,Off,516 Clinton Ave,Essex,Essex,Hakan Sadik,Mike Kennedy
 150648,Brick City Liquors,Off,102-106 Avon Ave,Essex,Essex,Hakan Sadik,Mike Kennedy
 150649,Ralph Liquors,Off,65-67 Elizabeth Ave,Essex,Essex,Hakan Sadik,Mike Kennedy
+150650,Lum's Cellars,Off,1718 Springfield Ave,Essex,Essex,,
 150654,Joe Canals,Off,1830-1840 Springfield Ave,Essex,Essex,Hakan Sadik,Mike Kennedy
 150655,Lufthansa Business Lounge,On,3 Brewster Rd Terminal B,Essex,Essex,Hakan Sadik,Mike Kennedy
 150665,Madison Liquor Superette,Off,378 Stuyvesant Ave,Essex,Essex,Hakan Sadik,Mike Kennedy
@@ -1802,7 +1810,7 @@ customer_num,name,premise,address,county,area,rep,dm
 170202,Golden Liquors (P),Off,7119-21 Bergen Line Ave,Hudson,Hudson,Dylan Rubino,Mike Kennedy
 170203,Town Beverage,Off,7804 Bergenline Ave,Hudson,Hudson,Dylan Rubino,Mike Kennedy
 170204,Pint (Z),On,34 Wayne Street,Hudson,Hudson,Jaime Colonna,Mike Kennedy
-170205,Buy-Rite Liquors,Off,220 Harrison Ave,Hudson,Hudson,Alisa Acciardi,Mike Kennedy
+170205,BuyRite Liquors - Kearny,Off,220 Harrison Ave,Hudson,Hudson,Alisa Acciardi,Mike Kennedy
 170206,Lito's Liquor (P),Off,220 Harrison Ave,Hudson,Hudson,Alisa Acciardi,Mike Kennedy
 170208,Benny's Liq & Deli,Off,7000 Park Ave,Hudson,Hudson,Dylan Rubino,Mike Kennedy
 170210,Eddy's Wine & Liq,Off,490 Avenue C,Hudson,Hudson,Alisa Acciardi,Mike Kennedy
@@ -1815,6 +1823,7 @@ customer_num,name,premise,address,county,area,rep,dm
 170222,E & E Wine & Liq (P),Off,114 Old Bergen Road,Hudson,Hudson,Dylan Rubino,Mike Kennedy
 170223,Ohara's Downtown,On,172 First St,Hudson,Hudson,Jaime Colonna,Mike Kennedy
 170224,Bond Drugs,Off,371 Central Ave,Hudson,Hudson,Dylan Rubino,Mike Kennedy
+170226,Ed & Mary's,On,174 Coles St,Hudson,Hudson,,
 170229,Joia Restaurant,On,1100 Frank E. Rogers Blvd,Hudson,Hudson,Alisa Acciardi,Mike Kennedy
 170230,Aivan Liq (P),Off,112 Tonnelle Ave,Hudson,Hudson,Dylan Rubino,Mike Kennedy
 170231,Hyatt Regency,On,2 Exchange Place,Hudson,Hudson,Jaime Colonna,Mike Kennedy
@@ -1826,6 +1835,7 @@ customer_num,name,premise,address,county,area,rep,dm
 170240,The Greenroom,On,203 Frank E. Rodgers Blvd,Hudson,Hudson,Alisa Acciardi,Mike Kennedy
 170241,American Legion Hoboken Post107,On,308 2nd St.,Hudson,Hudson,Jaime Colonna,Mike Kennedy
 170243,Hendrick's Corner,On,671 Broadway,Hudson,Hudson,Alisa Acciardi,Mike Kennedy
+170247,Wild Rover,On,7103 Park Ave,Hudson,Hudson,,
 170248,Coolvines Powerhouse,Off,350 Warren St,Hudson,Hudson,Jaime Colonna,Mike Kennedy
 170249,White Eagle Hall,On,335-337 Newark Ave,Hudson,Hudson,Jaime Colonna,Mike Kennedy
 170250,American Liquor,Off,509 Westside Ave,Hudson,Hudson,Dylan Rubino,Mike Kennedy
@@ -1857,6 +1867,7 @@ customer_num,name,premise,address,county,area,rep,dm
 170291,IKOS Greek Mediterranean,On,190 Steuben St,Hudson,Hudson,Dylan Rubino,Mike Kennedy
 170293,Dagda,On,123 Newark Ave.,Hudson,Hudson,Dylan Rubino,Mike Kennedy
 170294,Halifax Restaurant,On,225 River St,Hudson,Hudson,Jaime Colonna,Mike Kennedy
+170295,Maxwell Alley Bar & Restaurant,On,12 Coles St,Hudson,Hudson,,
 170299,E-Z Market & Liq (P),Off,185 Mallory Ave,Hudson,Hudson,Dylan Rubino,Mike Kennedy
 170300,Ray's Liquors,Off,266 Martin Luther King Dr,Hudson,Hudson,Jaime Colonna,Mike Kennedy
 170310,Buy & Savings Ii (P),Off,32 Coles St,Hudson,Hudson,Dylan Rubino,Mike Kennedy
@@ -1881,6 +1892,7 @@ customer_num,name,premise,address,county,area,rep,dm
 170915,The Franklin Bar & Restaurant,On,780 5th St.,Hudson,Hudson,Dylan Rubino,Mike Kennedy
 170916,Courtyard Secaucus Meadowlands,On,455 Harmon Meadow Blvd.,Hudson,Hudson,Dylan Rubino,Mike Kennedy
 170917,Regal Secaucus ShowPlace14,Off,650 Plaza Dr,Hudson,Hudson,Dylan Rubino,Mike Kennedy
+170918,KPOT Korean BBQ & Hot Pot - Secaucus,On,700 Plaza Dr,Hudson,Hudson,,
 171001,Bridgeview Liquors,Off,300 Rte 440 South,Hudson,Hudson,Alisa Acciardi,Mike Kennedy
 171002,Spirits Of Kearny,Off,426 Kearny Ave,Hudson,Hudson,Alisa Acciardi,Mike Kennedy
 171004,Donegal Saloon,On,337 Kearny Ave,Hudson,Hudson,Alisa Acciardi,Mike Kennedy
@@ -1993,6 +2005,7 @@ customer_num,name,premise,address,county,area,rep,dm
 178101,Sals Deli,Off,4510 Bergen Turnpike,Hudson,Hudson,Dylan Rubino,Mike Kennedy
 178104,Asian Grill & Sushi,On,7827 Bergenline Ave,Hudson,Hudson,Dylan Rubino,Mike Kennedy
 178105,Harry's Food & Drink,On,8101 Bergenline Ave,Hudson,Hudson,Dylan Rubino,Mike Kennedy
+178106,Brass Rail Pub North Bergen,On,7600 Bergenline Ave,Hudson,Hudson,,
 178107,Empyrean Bistro & Bar,On,800 Jackson Street,Hudson,Hudson,Jaime Colonna,Mike Kennedy
 179012,Plank Road Inn (A),On,1538 Paterson Plank Road,Hudson,Hudson,Jaime Colonna,Mike Kennedy
 179013,Dublin Yard,On,146 Front St,Hudson,Hudson,Dylan Rubino,Mike Kennedy
@@ -2015,10 +2028,12 @@ customer_num,name,premise,address,county,area,rep,dm
 190027,Wegmans,Off,34-A Sylvan Way,Morris,Morris 2,John O'Donoghue,Mike Kennedy
 190030,Florham Park Liquors,Off,184 Columbia Turnpike,Morris,Morris 2,John O'Donoghue,Mike Kennedy
 190032,The Thirsty Turtle (Florham Park),On,186 Columbia Turnpike,Morris,Morris 2,John O'Donoghue,Mike Kennedy
+190033,The Stirling Tavern,On,150 South St,Morris,Morris 2,,
 190035,Revolution Bar,On,9 South Street,Morris,Morris 2,John O'Donoghue,Mike Kennedy
 190036,Wine Cellar Of Morristown,Off,163 South Street,Morris,Morris 2,John O'Donoghue,Mike Kennedy
 190037,Office Beer Bar & Grill,On,3 South St,Morris,Morris 2,John O'Donoghue,Mike Kennedy
 190038,Famished Frog,On,18 Washington St,Morris,Morris 2,John O'Donoghue,Mike Kennedy
+190039,Rods Steak/Seafood Grille,On,1 Convent Rd,Morris,Morris 2,,
 190040,Four Seasons Wine & Liq,Off,131 Morris St,Morris,Morris 2,John O'Donoghue,Mike Kennedy
 190042,Dublin Pub (A),On,4 Pine Street,Morris,Morris 2,John O'Donoghue,Mike Kennedy
 190045,Tavern Off The Green,On,127 Morris St,Morris,Morris 2,John O'Donoghue,Mike Kennedy
@@ -2091,6 +2106,7 @@ customer_num,name,premise,address,county,area,rep,dm
 190615,The Second Half On Main,On,5 E Main St Ste 15,Morris,Morris 1,Brian Sengebush,Chris McCrohan
 190616,Partners Discount Liquors,Off,123 E Main St # 2,Morris,Morris 2,John O'Donoghue,Mike Kennedy
 190618,Sogo,On,248 Rt 46 West,Morris,Morris 2,John O'Donoghue,Mike Kennedy
+190649,Toby Grill and Bar,On,275 NJ-10,Morris,Morris 2,,
 190650,Shop Rite Wines & Spirits of Roxbury#832,Off,281-8 NJ-10,Morris,Morris 2,John O'Donoghue,Mike Kennedy
 190651,Bottle King (A) Ledgewood,Off,260 NJ-10,Morris,Morris 2,John O'Donoghue,Mike Kennedy
 190652,Shop Rite W & S Chester,Off,120 Us-206,Morris,Morris 2,John O'Donoghue,Mike Kennedy
@@ -2158,7 +2174,7 @@ customer_num,name,premise,address,county,area,rep,dm
 191104,Chapala Grill - Lake Hopatcong,On,161 NJ-181,Morris,Morris 1,Brian Sengebush,Chris McCrohan
 191202,Casa Bianca (P),On,5266 Berkshire Valley Rd,Morris,Morris 1,Robin Feldman,Chris McCrohan
 191203,American Lgn Oak Ridge Post 423,On,28 Legion Road,Morris,Morris 1,Robin Feldman,Chris McCrohan
-191206,Bella Vista,On,11 Moquis Trail,Morris,Morris 1,Robin Feldman,Chris McCrohan
+191206,Olive & Oak,On,11 Moquis Trail,Morris,Morris 1,Robin Feldman,Chris McCrohan
 191207,Daily Planet (A),On,526 Roosevelt Ave,Morris,Morris 1,Anthony Palmisano,Chris McCrohan
 191208,The Grill Room,On,53 Schoolhouse Road,Morris,Morris 1,Anthony Palmisano,Chris McCrohan
 191209,Valley Tavern,On,5604 Berkshire Valley Rd,Morris,Morris 1,Anthony Palmisano,Chris McCrohan
@@ -2222,10 +2238,12 @@ customer_num,name,premise,address,county,area,rep,dm
 191824,Grasshopper Off The Green,On,41-43 Morris St,Morris,Morris 2,John O'Donoghue,Mike Kennedy
 191826,Bottle King (Z) Chatham,Off,41 Watchung Avenue,Morris,Morris 2,John O'Donoghue,Mike Kennedy
 191827,Best Cellars(Ledgewood),Off,1001 Us Highway 46,Morris,Morris 2,John O'Donoghue,Mike Kennedy
+191834,Sandy's Wine & Spirits (Hackettstown),Off,915 County Road 517,Warren,Sales,,
 191835,The Village Liquor Store_2,Off,178 East Hanover Ave,Morris,Morris 2,John O'Donoghue,Mike Kennedy
 191837,Black Horse Tavern & Pub,On,1 West Main St.,Morris,Morris 2,John O'Donoghue,Mike Kennedy
 191838,Village Wine & Liquors,Off,88 E Main St # G,Morris,Morris 2,John O'Donoghue,Mike Kennedy
 191848,Columbus Club of Morristown NJ,On,13 South St,Morris,Morris 2,John O'Donoghue,Mike Kennedy
+191849,Bottle King Mansfield,Off,2028 NJ-57,Warren,Sales,,
 192008,At The Hop,On,14 N Morris St,Morris,Morris 2,John O'Donoghue,Mike Kennedy
 192009,Bar Cilento,On,37 Plainfield Rd,Morris,Morris 2,John O'Donoghue,Mike Kennedy
 192052,Swim And Sports Club,On,272 Emmans Rd,Morris,Morris 2,John O'Donoghue,Mike Kennedy
@@ -2516,6 +2534,7 @@ customer_num,name,premise,address,county,area,rep,dm
 251008,Home Wines & Liquors (2401 Union),Off,2401 H Union Plaza Rt.22W.,Union,Union,Andrew Lundy,Mike Kennedy
 251009,Suburban Golf Club,On,1730 Morris Ave,Union,Union,Alex Rodriguez,Mike Kennedy
 251010,Triangle Liquors,Off,1406 Burnet Ave,Union,Union,Andrew Lundy,Mike Kennedy
+251011,JC's Tavern & Table,On,2032 Morris Ave,Union,Union,,
 253000,Leland Liquor & Deli,Off,296-298 Leland Ave,Union,Union,Alex Rodriguez,Mike Kennedy
 253001,Jft Liquors,Off,231 Grant Ave,Union,Union,Alex Rodriguez,Mike Kennedy
 253002,Golden Anchor Bar,On,1217 W Front St,Union,Union,Alex Rodriguez,Mike Kennedy

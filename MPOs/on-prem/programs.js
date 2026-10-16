@@ -94,6 +94,35 @@ const OBJECTIVES_2026_09 = [
   {key:'husa_xx_draft', name:'HUSA – (1) New XX Draft Line', shortName:'HUSA XX Draft', unit:'new draft line', weight:0.25, type:'new_accounts', hasData:true, goalLabel:'1 new draft line each', flagLabel:'New Draft Line'},
 ];
 
+// October's four objectives (OCTOBER_ON_PREM_2026_MPO.docx, 25% each).
+// Two are FOLLOW-UP scores ('followup'): the rep has a list of accounts and
+// each is done or not yet -- Summer Ale kegs converted to Oktoberfest, and
+// Q3 spirits placements re-ordered in October. See generate_2026-10.py.
+// Carbliss (40% buying accounts) is the Carbliss Leaderboard's own program
+// (Aug 1 - Oct 31, carbliss-mpo/data/program.json); iSellBeer feature photos
+// wait on October's export and ride as awaiting.
+const OBJECTIVES_2026_10 = [
+  {key:'carbliss', name:'Carbliss – 40% Buying Accounts', shortName:'Carbliss', unit:'buying account', weight:0.25, type:'followup', shareOfBase:true, hasData:true, goalLabel:'40% of account base',
+   periodStart:'2026-08-01', periodEnd:'2026-10-31', periodText:'Aug 1 \u2013 Oct 31, 2026',
+   typeNote:'Same program as the Carbliss Leaderboard: your target is 40% of your OWN core on-premise accounts buying Carbliss from August 1 through October 31 (the leaderboard\u2019s L90). An account counts once, however many times it orders.',
+   followLabels:{had:'Town', done:'Carbliss (Aug 1\u2013Oct 31)', doneTag:'Buying', todoTag:'Not buying yet'}},
+  {key:'sam_adams_conversion', name:'BBC – Complete Oktoberfest Draft Conversion', shortName:'Oktoberfest Conversion', unit:'account', weight:0.25, type:'followup', hasData:true, periodEnd:'2026-10-23', goalLabel:'Convert every Summer Ale keg account to Oktoberfest',
+   typeNote:'Every on-premise account that had Summer Ale kegs from April 1 to July 17 needs an Oktoberfest keg from August 1 to October 23. Kegs bought and returned do not count.',
+   followLabels:{had:'Summer Ale kegs (Apr 1\u2013Jul 17)', done:'Oktoberfest kegs (Aug 1\u2013Oct 23)', doneTag:'Converted', todoTag:'Not converted yet'},
+   potential:{req:'Needs 1 Oktoberfest Keg by Oct 23', sub:'Had {had} (Apr 1 \u2013 Jul 17). Either keg converts the account.',
+     skus:[{name:'Sam Adams Octoberfest 15.5 Gal Keg', id:'3813'},{name:'Sam Adams Octoberfest 5.2 Gal Keg', id:'3862'}],
+     note:'A keg bought and returned does not count.'}},
+  {key:'spirits_followup', name:'Wine & Spirits – Follow Up On All On-Premise Spirits Placements', shortName:'Spirits Follow-Up', unit:'account', weight:0.25, type:'followup', hasData:true, goalLabel:'Re-order at every account placed Jul–Sep',
+   typeNote:'Every account that took a spirits placement from July through September needs to order spirits again in October.',
+   followLabels:{had:'Placed Jul–Sep', done:'Ordered in October', doneTag:'Followed up', todoTag:'Not followed up yet'},
+   potential:{req:'Needs 1 Spirits Order in October', sub:'Any spirits product counts.', skusFromHad:true, skusLabel:'Placed here Jul \u2013 Sep', flag:true,
+     qpNote:'Any spirits product counts. The program\u2019s exact spirits SKU list is not on file, so no shared product list is shown.'}},
+  // Built 2026-10-13 from iSellBeer Promos_Report pulls (generate_2026-10.py build_feature_photos):
+  // every October promo row counts, whatever its element; scored per DISTINCT PHOTO.
+  {key:'isellbeer', name:'iSellBeer – (5) Feature Photos', shortName:'iSellBeer Photos', unit:'feature photo', weight:0.25, type:'photos', hasData:true, goalLabel:'5 feature photos each',
+   photoEmptyLabel:'feature photos', photoItemsLabel:'Brands pictured'},
+];
+
 // Each entry is a permanent monthly snapshot -- add a new one here (and a
 // matching generate_<key>.py, and its own objectives list above) once a new
 // month's RDE exports are ready. Earlier months stay viewable forever.
@@ -125,6 +154,12 @@ const MONTHS = [
     {objKey:'fever_tree', file:'mpo_fever_tree.json', target:3, builder:'new_accounts'},
     {objKey:'carbliss', file:'mpo_carbliss.json', target:10, builder:'new_accounts'},
     {objKey:'husa_xx_draft', file:'mpo_husa_xx_draft.json', target:1, builder:'new_accounts'},
+  ]},
+  {key:'2026-10', label:'October 2026', dir:'data/2026-10/', objectives: OBJECTIVES_2026_10, tables: [
+    {objKey:'carbliss', file:'mpo_carbliss.json', pct:0.4, builder:'followup'},
+    {objKey:'sam_adams_conversion', file:'mpo_sam_adams_conversion.json', pct:1, builder:'followup'},
+    {objKey:'spirits_followup', file:'mpo_spirits_followup.json', pct:1, builder:'followup'},
+    {objKey:'isellbeer', file:'mpo_isellbeer_photos.json', target:5, builder:'photos'},
   ]},
 ];
 
@@ -250,7 +285,58 @@ function buildBuyerCountDataset(rows, target, roster){
   return {target_per_rep:target, reps, reps_at_goal, reps_total:roster.length};
 }
 
-const BUILDERS = {new_accounts: buildNewAccountsDataset, placements: buildPlacementsDataset, buyer_count: buildBuyerCountDataset};
+// FOLLOW-UP objectives (October 2026): one row per base account, DONE = 1 once
+// the account has followed through. A rep's target is `pct` of their own base
+// (1 = every account). Reps with no base accounts are not scored.
+function buildFollowupDataset(rows, pct, roster){
+  roster = roster || ROSTER;
+  if(!Array.isArray(rows)||!rows.length) return null;
+  const byRep=new Map();
+  rows.forEach(r=>{
+    const rep=String(r.SALES_REP_ASSIGNED||"").trim(); if(!rep) return;
+    if(!byRep.has(rep)) byRep.set(rep,[]);
+    byRep.get(rep).push({customer:String(r.CUSTOMER_NAME||"").trim(), num:String(r.CUSTOMER_NUM==null?"":r.CUSTOMER_NUM).trim(),
+      had:String(r.BASE_DETAIL||""), hadDate:String(r.BASE_DATE||""), done:String(r.DONE)==="1",
+      doneDetail:String(r.DONE_DETAIL||""), doneDate:String(r.DONE_DATE||"")});
+  });
+  const reps=[];
+  byRep.forEach((lines,rep)=>{
+    lines.sort((a,b)=>(a.done-b.done) || a.customer.localeCompare(b.customer));
+    const base=lines.length, qualifying=lines.filter(l=>l.done).length;
+    reps.push({rep, base, qualifying, target:Math.max(1,Math.ceil(base*pct)), lines});
+  });
+  const scored=roster.filter(n=>{const r=reps.find(x=>x.rep===n);return r&&r.base>0;});
+  const reps_at_goal=scored.filter(n=>{const r=reps.find(x=>x.rep===n);return r.qualifying>=r.target;}).length;
+  return {pct, reps, reps_at_goal, reps_total:scored.length};
+}
+
+// iSellBeer photo objectives (October's feature photos): the off-prem tracker's
+// buildPhotosDataset, with the roster passed in like every builder here.
+// Scored per DISTINCT photo link -- one promo carries one row per brand on the
+// photo and those rows share the link, so a menu listing two SKUs counts once.
+function buildPhotosDataset(rows, target, roster){
+  if(!Array.isArray(rows)||!rows.length) return null;
+  roster = roster || ROSTER;
+  const byRep=new Map();
+  rows.forEach(r=>{
+    const rep=String(r.REP||"").trim();
+    if(!rep||!r.PHOTO_URL) return;
+    if(!byRep.has(rep)) byRep.set(rep,[]);
+    byRep.get(rep).push({source:String(r.SOURCE||""), customer:String(r.CUSTOMER_NAME||""), city:String(r.CITY||""),
+      brand:String(r.BRAND||""), detail:String(r.DETAIL||""), qty:r.QUANTITY==null?"":String(r.QUANTITY),
+      date:String(r.DATE||""), photo:String(r.PHOTO_URL)});
+  });
+  const reps=[];
+  byRep.forEach((lines,rep)=>{
+    lines.sort((a,b)=>parseDateMs(b.date)-parseDateMs(a.date));
+    const count=new Set(lines.map(l=>l.photo)).size;
+    reps.push({rep, count, lines});
+  });
+  const reps_at_goal=roster.filter(name=>{const r=reps.find(x=>x.rep===name);return r?r.count>=target:false;}).length;
+  return {target_per_rep:target, reps, reps_at_goal, reps_total:roster.length};
+}
+
+const BUILDERS = {followup: buildFollowupDataset, new_accounts: buildNewAccountsDataset, placements: buildPlacementsDataset, buyer_count: buildBuyerCountDataset, photos: buildPhotosDataset};
 
 const AREA_COLS=[["area"]];
 
@@ -349,7 +435,7 @@ async function loadMonthData(monthKey, baseDir){
         })).length;
         DATA[t.objKey]={subs, reps_at_goal, reps_total:roster.length};
       } else {
-        const built=builder(rows, t.target, roster);
+        const built=builder(rows, t.target!=null ? t.target : t.pct, roster);
         if(built) DATA[t.objKey]=built;
       }
       if(t.targetsFile && DATA[t.objKey]){
@@ -407,6 +493,14 @@ let activeMonth = null;
 // buyer_count sources like Wine & Spirits) have no base-period concept,
 // so they keep the original single-date "New Buyer"/"Regular Buyer"
 // table rather than showing a pointless always-empty base-period column.
+// Follow-up drill-down: every base account, the ones still to do first.
+function lineTableFollowup(lines, L){
+  if(!lines || !lines.length) return '<div class="no-lines">No accounts on your list.</div>';
+  const rows = lines.map(l=>`<tr class="${l.done?'':'focus-row'}"><td data-l="Account">${l.customer}</td><td data-l="${L.had||'Before'}">${l.had||'\u2014'}</td><td data-l="${L.done||'Now'}">${l.done
+    ? `<span class="complete-tag">${L.doneTag||'Done'}</span>${l.doneDate?' '+l.doneDate:''}${l.doneDetail?'<span class="no-lines">'+l.doneDetail+'</span>':''}`
+    : `<span class="todo-tag">${L.todoTag||'Not yet'}</span>`}</td></tr>`).join('');
+  return `<div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Account</th><th>${L.had||'Before'}</th><th>${L.done||'Now'}</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
 function isActiveMonthDate(dateStr){
   return typeof dateStr==='string' && dateStr.startsWith(activeMonth);
 }
@@ -502,6 +596,28 @@ function existingAccountsBlockHtml(existing, anyPhotos, anyProduct){
     <div class="targets-table" id="${eid}"><table><thead><tr><th>Customer</th>${anyProduct?'<th>Product</th>':''}<th>Base Period</th><th>This Month</th><th>Status</th>${anyPhotos?'<th>Photo</th>':''}</tr></thead><tbody>${rows}</tbody></table></div>
   </div>`;
 }
+// Photo drill-down (off-prem's lineTablePhotos): one row per distinct photo,
+// the brands pictured folded into it.
+function lineTablePhotos(lines, o){
+  o = o || {};
+  const emptyLabel = o.photoEmptyLabel || 'photos';
+  const itemsLabel = o.photoItemsLabel || 'Brands pictured';
+  if(!lines || lines.length===0) return `<div class="no-lines">No ${emptyLabel} submitted yet this month.</div>`;
+  const byPhoto=new Map();
+  lines.forEach(l=>{
+    if(!byPhoto.has(l.photo)) byPhoto.set(l.photo,[]);
+    byPhoto.get(l.photo).push(l);
+  });
+  const rows=[...byPhoto.values()].map(items=>{
+    const f=items[0];
+    const itemsHtml=items.map(l=>l.brand+(l.detail?` <span class="photo-sub">${l.detail}</span>`:'')+(l.qty&&l.qty!=='1'&&l.qty!=='0'?` ×${l.qty}`:'')).join(', ');
+    return `<tr><td><a class="photo-btn" href="${f.photo}" target="_blank" rel="noopener">📷 View Photo</a></td>`+
+      `<td>${f.customer}${f.city?` <span class="photo-sub">· ${f.city}</span>`:''}</td>`+
+      `<td>${itemsHtml}</td><td style="white-space:nowrap">${f.date||'—'}</td></tr>`;
+  }).join('');
+  return `<div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Photo</th><th>Account</th><th>${itemsLabel}</th><th>Date</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
 function lineTablePlacements(lines){
   if(!lines || lines.length===0) return '<div class="no-lines">No activity recorded this month.</div>';
   const rows = lines.map(l=>`<tr><td>${l.product}</td><td>${l.customer}</td><td>${l.date}</td><td class="num">${l.count}</td></tr>`).join('');
@@ -568,6 +684,24 @@ function metricFor(o, rep, DATA){
     };
   }
 
+  if(o.type === 'followup'){
+    const r = d.reps.find(x=>x.rep===rep);
+    if(!r || !r.base) return {notScored:true};
+    const remaining = Math.max(r.target - r.qualifying, 0);
+    return {
+      value: r.qualifying, goal: r.target,
+      pct: Math.min(r.qualifying/r.target,1)*100,
+      remaining,
+      valueText: r.qualifying + ' of ' + r.target,
+      goalText: o.shareOfBase ? (Math.round(d.pct*100)+'% of my account base ('+r.target+' of '+r.base+')') : unitFor(o, r.target),
+      remainText: remaining>0 ? unitFor(o, remaining) : '',
+      status: r.qualifying>=r.target ? 'achieved' : (r.qualifying>0 ? 'inprogress' : 'notstarted'),
+      hasActivity: r.qualifying>0,
+      // the base behind a share-of-base goal (cards say "40% of your 49 eligible accounts")
+      underlying: o.shareOfBase ? r.base : null, pctRule: o.shareOfBase ? d.pct : null
+    };
+  }
+
   const target = d.target_per_rep;
   const r = d.reps.find(x=>x.rep===rep);
   const val = r ? (o.type==='new_accounts' ? r.qualifying : r.count) : 0;
@@ -603,6 +737,11 @@ function detailFor(o, rep, DATA, monthKey){
     }).join('');
   }
 
+  if(o.type === 'followup'){
+    const fr = d.reps.find(x=>x.rep===rep);
+    return fr ? lineTableFollowup(fr.lines, o.followLabels||{})
+              : '<div class="no-lines" style="padding-left:2px">No accounts on your list.</div>';
+  }
   const r = d.reps.find(x=>x.rep===rep);
   const tgtHtml = (o.type==='new_accounts' && d.targetsByRep)
     ? targetsBlockHtml(d.targetsByRep[rep], o.shortName||o.name) : '';
@@ -610,8 +749,29 @@ function detailFor(o, rep, DATA, monthKey){
     return r ? lineTableNewAccounts(r.lines, o.flagLabel, tgtHtml)
              : '<div class="no-lines" style="padding-left:2px">No activity recorded this month.</div>'+tgtHtml;
   }
+  if(o.type === 'photos') return lineTablePhotos(r ? r.lines : [], o);
   return r ? lineTablePlacements(r.lines)
            : '<div class="no-lines" style="padding-left:2px">No activity recorded this month.</div>';
+}
+
+// POTENTIAL ACCOUNTS for the card (2026-10-08; guided.js potentialSlot). For a
+// follow-up objective the rep's own list IS the opportunity: every base account
+// not done yet. Objectives may name their qualifying SKUs (potentialSkus); where
+// the program's SKU list is not on file the note says so instead of guessing.
+// Carbliss has its own card (the leaderboard) and returns null here.
+function potentialFor(o, rep, DATA){
+  if(o.type !== 'followup' || o.key === 'carbliss' || !o.potential || !DATA[o.key]) return null;
+  const r = DATA[o.key].reps.find(x=>x.rep===rep);
+  if(!r) return null;
+  const P = o.potential;
+  const products = (P.skus || []).map(x=>({name:x.name, id:x.id||''}));
+  const accounts = r.lines.filter(l=>!l.done).map(l=>{
+    let skus = products.slice(), skusLabel = '';
+    if(P.skusFromHad){ skus = String(l.had||'').replace(/^\d+ spirits?:\s*/,'').split(/,\s*(?=[A-Z0-9])/).filter(Boolean).map(n=>({name:n, id:''})); skusLabel = P.skusLabel || ''; }
+    else if(/5\.2 Gal/.test(l.had||'') && skus.length>1) skus = skus.slice().reverse();   // the keg size they ran first
+    return {n:l.num, name:l.customer, city:'', req:P.req, sub:P.sub ? P.sub.replace('{had}', l.had||'') : '', why:'', skus, skusLabel};
+  });
+  return {note:P.note||'', qpNote:P.qpNote||'', flag:!!P.flag, products, accounts};
 }
 
 function atGoalFor(o, DATA){
@@ -619,5 +779,5 @@ function atGoalFor(o, DATA){
   return {n: DATA[o.key].reps_at_goal, total: DATA[o.key].reps_total};
 }
 
-global.OnPremMPO = {ROSTER, DM_GROUPS, MONTHS, SUPPORT_REPS, rosterFor, loadMonthData, objPct, metricFor, detailFor, atGoalFor, unitFor};
+global.OnPremMPO = {ROSTER, DM_GROUPS, MONTHS, SUPPORT_REPS, rosterFor, loadMonthData, objPct, metricFor, detailFor, atGoalFor, unitFor, potentialFor};
 })(window);

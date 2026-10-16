@@ -11,6 +11,7 @@ import csv
 import datetime
 import math
 import json
+import os
 import re
 import sys
 from collections import defaultdict
@@ -1760,6 +1761,45 @@ def build_garage_beer_president():
 
 
 NEW_BELGIUM_DIST_BRANDS = ["Bell's", "Bell's Hearted Family", "Kirin Ichiban", "Kirin Light", "Voodoo Family"]
+
+
+def build_new_belgium_distribution_retain():
+    """Supplier report totals are authoritative; visible SKU goals do not add up.
+    Only source-listed reps participate. Extra placements in one package group
+    cannot make up another group's shortfall. No payout/bonus can be verified.
+    """
+    source = json.loads((DATA_DIR / "new_belgium_distribution_retain.json").read_text())
+    meta = source["meta"]
+    if (meta["periodStart"], meta["periodEnd"]) != ("2026-09-01", "2026-12-31"):
+        raise ValueError("New Belgium retention window changed; confirm first")
+    by_rep = {}
+    def scored(row):
+        goal, actual = row["goal"], row["placements"]
+        return dict(row, pct=round(actual / goal * 100, 2) if goal else None,
+                    toGo=max(0, goal-actual) if goal else None,
+                    retained=actual>=goal if goal else None)
+    for row in source["reps"]:
+        rep = row["rep"]
+        if rep not in ROSTER:
+            raise ValueError("New Belgium source rep not on roster: " + rep)
+        groups = []
+        for raw in row["groups"]:
+            group = scored(raw)
+            group["products"] = sorted([scored(p) for p in raw["products"]],
+                key=lambda p: (p["retained"] is not False, -(p["toGo"] or 0), p["product"]))
+            groups.append(group)
+        goaled = [g for g in groups if g["goal"]>0]
+        goal = sum(g["goal"] for g in goaled)
+        held = sum(min(g["placements"],g["goal"]) for g in goaled)
+        by_rep[rep] = dict(row, groups=groups, overallHeld=held, overallGoal=goal,
+            overallToGo=sum(g["toGo"] for g in goaled),
+            overallPct=round(held/goal*100,2) if goal else None,
+            goalsRetained=sum(g["retained"] for g in goaled), goalsTotal=len(goaled))
+    return {"byRep": by_rep, "periodStart": meta["periodStart"], "periodEnd": meta["periodEnd"],
+            "house": source["house"],
+            "meta": dict(meta, window="Sep 1 - Dec 31, 2026",
+                         bonusStatus="Unverified: prior-period results and May-October growth not supplied",
+                         payoutAvailable=False, customerDetailAvailable=False)}
 
 
 def build_new_belgium_distribution():
@@ -4747,6 +4787,557 @@ def build_sam_adams_conversion():
     }
 
 
+
+def build_sam_adams_cold_snap():
+    """October Sam Adams seasonal draft conversion (deck: convert every
+    seasonal handle by Oct 23; 90% of lines $300, 100% $400, 10 conversions to
+    qualify, <10 accounts: 80% at $20 per conversion; $50 per new Octoberfest
+    line at an account without Summer Ale). SOURCE OF TRUTH = Boston Beer's
+    two workbooks (as of 2026-10-05), flattened by
+    `convert_sam_adams_official.py --oct` into sam_adams_seasonal_oct_*.csv.
+    Lines = the rep's Prev Season accounts; gained = Boston Beer's "Gained Not
+    from Conversion". Tiers are read from the deck as worded -- ASSUMPTION: the
+    10-conversion minimum applies to the $300/$400 tiers only. Dollars are
+    tracker-only."""
+    official, as_of = {}, None
+    for o in read_rows("sam_adams_seasonal_oct_official.csv"):
+        prev, conv = int(to_num(o["Prev Season Dist"])), int(to_num(o["Converted"]))
+        gained = int(to_num(o["Gained"]))
+        pct = round(conv / prev * 100, 1) if prev else None
+        if prev >= 10:
+            tier = 400 if (pct is not None and pct >= 100 and conv >= 10) else (300 if (pct is not None and pct >= 90 and conv >= 10) else 0)
+        else:
+            tier = 20 * conv if (pct is not None and pct >= 80) else 0
+        official[o["Sales Rep Name"]] = {
+            "route": o["Route"], "asOf": o["As Of"], "lines": prev, "converted": conv,
+            "notConverted": int(to_num(o["Not Converted"])), "gained": gained,
+            "convertedPct": pct, "hasBase": prev > 0, "smallBook": 0 < prev < 10,
+            "tierPay": tier, "gainedBonus": 50 * gained, "payout": tier + 50 * gained,
+            "toNinety": max(0, -(-prev * 9 // 10) - conv) if prev else 0,
+        }
+        as_of = o["As Of"]
+    if as_of is None:
+        raise SystemExit("sam_adams_seasonal_oct_official.csv is empty -- run convert_sam_adams_official.py --oct")
+    # Boston Beer names its outlets its own way; sam_adams_bb_to_encompass.csv pins each
+    # unconverted outlet to the Encompass customer by street address (Chelas = The Little
+    # Falls Tavern, Z's Casual Dining = Acquaviva Restaurant, ...). Boston Beer's counts stay
+    # the program's numbers -- the Encompass keg export only says which listed accounts
+    # already had an Octoberfest keg LOADED (net > 0, Aug 1 - Oct 23) that Boston Beer's
+    # report has not caught yet, so the rest are the accounts to close.
+    bb_map = {(m["BB Account"], m["BB Address"]): m for m in read_rows("sam_adams_bb_to_encompass.csv")}
+    oct_loaded = defaultdict(float)
+    oct_first = {}
+    kegs = DATA_DIR.parent.parent / "MPOs" / "on-prem" / "sam_adams_kegs_summer_to_octoberfest.csv"
+    if kegs.exists():
+        with open(kegs, newline="", encoding="utf-8-sig") as f:
+            for r in csv.DictReader(f):
+                if "octoberfest" not in (r.get("Brand") or "").lower():
+                    continue
+                try:
+                    d = datetime.datetime.strptime(r["Date"].strip(), "%m/%d/%Y").date()
+                except (KeyError, ValueError):
+                    continue
+                if not (datetime.date(2026, 8, 1) <= d <= datetime.date(2026, 10, 23)):
+                    continue
+                cid = (r.get("Customer Num & Company") or "").split(" ", 1)[0]
+                u = sum(to_num(r[c]) for c in r if c.startswith("Units"))
+                oct_loaded[cid] += u
+                if u > 0 and (cid not in oct_first or d < oct_first[cid]):
+                    oct_first[cid] = d
+    unconv = defaultdict(list)
+    for u in read_rows("sam_adams_seasonal_oct_unconverted.csv"):
+        m = bb_map.get((u["Account"], u["Address"]))
+        if not m or not m["Customer ID"]:
+            raise SystemExit(f"sam_adams_cold_snap: no Encompass customer for Boston Beer outlet {u['Account']!r} -- add it to sam_adams_bb_to_encompass.csv")
+        cid = m["Customer ID"]
+        loaded = oct_loaded.get(cid, 0) > 0
+        unconv[u["Sales Rep Name"]].append({
+            "account": u["Account"].title().replace("'S", "'s"), "address": u["Address"].title(),
+            "city": u["City"].title(), "prevCEs": to_num(u["Prev Season CEs"]),
+            "currentLYCEs": to_num(u["Current Season LY CEs"]),
+            "customerNum": cid, "customer": m["Encompass Name"],
+            "octLoaded": oct_first[cid].isoformat() if loaded and cid in oct_first else None})
+    for lst in unconv.values():
+        lst.sort(key=lambda a: (a["octLoaded"] is not None, -a["prevCEs"], a["account"]))
+    for rep, o in official.items():
+        if len(unconv.get(rep, [])) != o["notConverted"]:
+            raise SystemExit(f"sam_adams_cold_snap: {rep} list/scoreboard mismatch")
+    by_rep = {}
+    for rep in ROSTER:
+        o = official.get(rep)
+        d = dict(o) if o else {"route": None, "asOf": as_of, "lines": 0, "converted": 0, "notConverted": 0,
+                               "gained": 0, "convertedPct": None, "hasBase": False, "smallBook": False,
+                               "tierPay": 0, "gainedBonus": 0, "payout": 0, "toNinety": 0}
+        d["hasOfficial"] = o is not None
+        d["unconvertedAccounts"] = unconv.get(rep, [])
+        d["toClose"] = sum(1 for a in d["unconvertedAccounts"] if not a["octLoaded"])
+        by_rep[rep] = d
+    house = {k: sum(v[k] for v in official.values()) for k in ("lines", "converted", "notConverted", "gained")}
+    return {"byRep": by_rep, "house": house,
+            "periodStart": "2026-10-01", "periodEnd": "2026-10-23",
+            "meta": {"source": "Boston Beer Seasonal Conversion Fall workbooks", "officialAsOf": as_of,
+                     "offRoster": sorted(set(official) - set(ROSTER))}}
+
+# =============================================================================
+# OCTOBER 2026 (2026-09-30, from the 2026 October Rewards Deck). These four
+# builders feed PROGRAM_DATA_2026_10; Four Loko Volume and the Sam Adams
+# seasonal conversion are STRUCTURE ONLY until Gavin sends their exports.
+# Every export's "Customer Num & Company" / "Product Num & Name" columns are
+# split here; premise comes from the row when the export carries it, else
+# from the full customer base (Lagunitas and Famosa exports have no premise
+# column). All dollar figures are TRACKER-ONLY (the hub shows distribution).
+# =============================================================================
+OCT_START, OCT_END = datetime.date(2026, 10, 1), datetime.date(2026, 10, 31)
+
+def _split_num_name(s):
+    s = (s or "").strip()
+    num, _, name = s.partition(" ")
+    return num.strip(), name.strip()
+
+def _base_premise(rep, cust_num):
+    """Premise of an account from the full customer base: the rep's own
+    entry first, then anyone's (a customer can sit under a different rep in
+    an export than in the base). '' when the account is not on the base."""
+    base = load_customer_base_full()
+    info = base.get(rep, {}).get(cust_num)
+    if not info:
+        for r in base.values():
+            if cust_num in r:
+                info = r[cust_num]; break
+    return (info or {}).get("premise", "")
+
+def _row_premise(row, rep, cust_num, product_name=""):
+    pr = _premise(row)
+    if pr:
+        return pr
+    pr = _base_premise(rep, cust_num)
+    if pr:
+        return pr
+    return "On Premise" if is_keg_package(product_name) else "Off Premise"
+
+def _us_date(s):
+    try:
+        m, d, y = (s or "").strip().split("/"); return datetime.date(int(y), int(m), int(d))
+    except Exception:
+        return None
+
+def _single_col(fields, prefix):
+    for f in fields:
+        if f.startswith(prefix + " ") or f.startswith(prefix + "  "):
+            return f
+    raise ValueError(f"no column starting with {prefix!r} in {list(fields)}")
+
+
+def build_lagunitas_sprint():
+    """Lagunitas Sprint to the Finish, October 2026 (deck p4).
+
+    OFF-PREMISE  $10 per new POD on IPA and Little Sumpin' packages; $15 per
+                 POD once the rep (3 PODs) AND the house (40 new PODs) both
+                 qualify. A POD is one package SKU at one account
+                 (rep, customer, Product Num) with a placement in the
+                 current window and none in the same window last year --
+                 the export's two "Placement Count" columns (10/1-11/30 of
+                 2025 vs 2026), the same "New PLACEMENT = SKU grain" rule as
+                 Montauk / 1911.
+    ON-PREMISE   a non-buy target account taking an IPA 15.5 or 7.75 gal keg
+                 pays $100; a November rebuy pays $50 more. Non-buy = no keg
+                 placement in the base window. The rebuy is counted once a
+                 November-dated keg row exists (not yet, on the first pull).
+    The export has no premise column, so premise comes from the full customer
+    base; keg SKUs are on-premise by nature. ASSUMED (flagged to Gavin): the
+    rep needs 3 PODs before any POD pays.
+    """
+    rows = read_rows("lagunitas_sprint.csv")
+    fields = rows[0].keys() if rows else []
+    place_base, place_current = find_period_cols(fields, "Placement Count")
+    case_base, case_current = find_period_cols(fields, "Cases")
+    REP_QUAL, HOUSE_QUAL, RATE, RATE_FULL, DRAFT_RATE, REBUY_RATE = 3, 40, 10, 15, 100, 50
+    by_rep = {rep: {"pods": [], "podCount": 0, "reorderCount": 0, "byBrand": {"ipa": 0, "lss": 0},
+                    "draftNew": [], "draftNewCount": 0, "draftQualifiedCount": 0, "draftReorderCount": 0,
+                    "rebuyCount": 0, "draftAccounts": [], "caseVolume": 0.0, "accounts": 0,
+                    "qualified": False, "podPayout": 0, "draftPayout": 0, "payout": 0, "draftChannelOk": False}
+              for rep in ROSTER}
+    pkg_groups, keg_groups, keg_name, keg_bbl_tot, seen_cust = defaultdict(list), defaultdict(list), {}, defaultdict(float), defaultdict(set)
+    for row in rows:
+        rep = row["Sales Rep Assigned"].strip()
+        if rep not in by_rep:
+            continue
+        cust, cname = _split_num_name(row["Customer Num & Company"])
+        pnum, pname = _split_num_name(row["Product Num & Name"])
+        row["_cust"], row["_cname"], row["_pnum"], row["_pname"] = cust, cname, pnum, pname
+        by_rep[rep]["caseVolume"] += to_num(row[case_current])
+        if to_num(row[place_current]) > 0:
+            seen_cust[rep].add(cust)
+        if is_keg_package(pname):
+            keg_groups[(rep, cust)].append(row); keg_name[(rep, cust)] = cname
+            keg_bbl_tot[(rep, cust)] += (keg_bbl(pname) or 0.0) * to_num(row[case_current])
+            continue
+        if _row_premise(row, rep, cust, pname) == "On Premise":
+            continue                       # on-premise package rows are not the off-premise POD leg
+        pkg_groups[(rep, cust, pnum)].append(row)
+    for key, status in classify_groups(pkg_groups, place_base, place_current).items():
+        rep, cust, pnum = key
+        krows = pkg_groups[key]
+        if status == "new":
+            dates = sorted((r["Date"] for r in krows if to_num(r[place_current]) > 0), key=lambda d: _us_date(d) or datetime.date.min, reverse=True)
+            brand = "lss" if "sumpin" in krows[0]["_pname"].lower() else "ipa"
+            by_rep[rep]["pods"].append({"customer": krows[0]["_cname"], "product": krows[0]["_pname"], "brand": brand, "date": dates[0] if dates else None})
+            by_rep[rep]["podCount"] += 1
+            by_rep[rep]["byBrand"][brand] += 1
+        elif status == "reorder":
+            by_rep[rep]["reorderCount"] += 1
+    for key, status in classify_by_customer(keg_groups, place_base, place_current).items():
+        rep, cust = key
+        bbl = round(keg_bbl_tot[key], 3)
+        months = {(_us_date(r["Date"]) or datetime.date.min).month for r in keg_groups[key] if to_num(r[place_current]) > 0 and (_us_date(r["Date"]) or datetime.date.min).year == 2026}
+        rebuy = status == "new" and 10 in months and 11 in months
+        by_rep[rep]["draftAccounts"].append({"customer": keg_name[key], "bbl": bbl, "status": status, "rebuy": rebuy})
+        if status == "new":
+            by_rep[rep]["draftNew"].append({"customer": keg_name[key], "bbl": bbl, "rebuy": rebuy})
+            by_rep[rep]["draftNewCount"] += 1
+            by_rep[rep]["draftQualifiedCount"] += 1
+            by_rep[rep]["draftPayout"] += DRAFT_RATE + (REBUY_RATE if rebuy else 0)
+            by_rep[rep]["rebuyCount"] += 1 if rebuy else 0
+        elif status == "reorder":
+            by_rep[rep]["draftReorderCount"] += 1
+    house_pods = sum(d["podCount"] for d in by_rep.values())
+    house_ok = house_pods >= HOUSE_QUAL
+    leaderboard = []
+    for rep, d in by_rep.items():
+        d["caseVolume"] = round(d["caseVolume"], 2)
+        d["accounts"] = len(seen_cust[rep])
+        d["qualified"] = d["podCount"] >= REP_QUAL
+        d["toQualifier"] = max(0, REP_QUAL - d["podCount"])
+        d["rate"] = RATE_FULL if (d["qualified"] and house_ok) else RATE
+        d["podPayout"] = d["podCount"] * d["rate"] if d["qualified"] else 0
+        d["payout"] = d["podPayout"] + d["draftPayout"]
+        d["pods"].sort(key=lambda e: e["date"] or "", reverse=True)
+        d["draftAccounts"].sort(key=lambda a: -a["bbl"])
+        d["draftChannelOk"] = bool(d["draftAccounts"]) or bool(base_accounts(rep, premise="On Premise", draft=True))
+        d["offPremTargets"], d["offPremTargetCount"] = targets_from(base_accounts(rep, premise="Off Premise"), seen_cust[rep])
+        leaderboard.append({"rep": rep, "pods": d["podCount"], "draft": d["draftQualifiedCount"], "payout": d["payout"]})
+    leaderboard.sort(key=lambda x: (-x["pods"], -x["draft"], -x["payout"]))
+    for i, e in enumerate(leaderboard):
+        e["rank"] = i + 1
+    return {"byRep": by_rep, "leaderboard": leaderboard,
+            "periodStart": OCT_START.isoformat(), "periodEnd": OCT_END.isoformat(),
+            "meta": {"housePods": house_pods, "houseGoal": HOUSE_QUAL, "houseQualified": house_ok, "repQualifier": REP_QUAL,
+                     "rates": {"pod": RATE, "podFull": RATE_FULL, "draft": DRAFT_RATE, "rebuy": REBUY_RATE},
+                     "baseWindow": place_base.split("  ")[-1].strip(), "currentWindow": place_current.split("  ")[-1].strip(),
+                     "rebuyThrough": "2026-11-30"}}
+
+
+def build_famosa_october():
+    """Push Famosa, October 2026 (deck p5): all packages count; the rep MUST be
+    positive for October vs October 2025 to earn; $2 a case on every package
+    except the 7oz, which pays $3. The export's two "Cases" columns are
+    10/1-10/31 of 2025 vs 2026 at the (customer, product) grain."""
+    rows = read_rows("famosa_october.csv")
+    fields = rows[0].keys() if rows else []
+    case_base, case_current = find_period_cols(fields, "Cases")
+    by_rep = {rep: {"cases26": 0.0, "cases25": 0.0, "growth": 0.0, "positive": False, "cases7oz": 0.0, "casesOther": 0.0,
+                    "payout": 0, "accounts": 0, "accountList": [], "byProduct": {}}
+              for rep in ROSTER}
+    acct = defaultdict(lambda: {"cases26": 0.0, "cases25": 0.0, "name": ""})
+    for row in rows:
+        rep = row["Sales Rep Assigned"].strip()
+        if rep not in by_rep:
+            continue
+        cust, cname = _split_num_name(row["Customer Num & Company"])
+        pnum, pname = _split_num_name(row["Product Num & Name"])
+        c26, c25 = to_num(row[case_current]), to_num(row[case_base])
+        d = by_rep[rep]
+        d["cases26"] += c26; d["cases25"] += c25
+        if "7 oz" in pname.lower() or "7oz" in pname.lower():
+            d["cases7oz"] += c26
+        else:
+            d["casesOther"] += c26
+        bp = d["byProduct"].setdefault(pname, {"cases26": 0.0, "cases25": 0.0})
+        bp["cases26"] += c26; bp["cases25"] += c25
+        a = acct[(rep, cust)]; a["name"] = cname; a["cases26"] += c26; a["cases25"] += c25
+    leaderboard = []
+    for rep, d in by_rep.items():
+        d["growth"] = round(d["cases26"] - d["cases25"], 2)
+        d["positive"] = d["cases26"] > d["cases25"] and d["cases26"] > 0
+        d["payout"] = int(round(d["cases7oz"] * 3 + d["casesOther"] * 2)) if d["positive"] else 0
+        mine = [(k[1], v) for k, v in acct.items() if k[0] == rep and (v["cases26"] or v["cases25"])]
+        d["accounts"] = sum(1 for _, v in mine if v["cases26"] > 0)
+        d["accountList"] = sorted(({"customer": v["name"], "cases26": round(v["cases26"], 1), "cases25": round(v["cases25"], 1)} for _, v in mine), key=lambda a: -a["cases26"])[:25]
+        d["lostAccounts"] = sorted(({"customer": v["name"], "cases25": round(v["cases25"], 1)} for _, v in mine if v["cases25"] > 0 and v["cases26"] <= 0), key=lambda a: -a["cases25"])[:15]
+        for k, v in d["byProduct"].items():
+            v["cases26"] = round(v["cases26"], 1); v["cases25"] = round(v["cases25"], 1)
+        d["cases26"], d["cases25"], d["cases7oz"], d["casesOther"] = (round(d[k], 1) for k in ("cases26", "cases25", "cases7oz", "casesOther"))
+        d["toPositive"] = round(max(0.0, d["cases25"] - d["cases26"]), 1)
+        leaderboard.append({"rep": rep, "growth": d["growth"], "cases26": d["cases26"], "positive": d["positive"], "payout": d["payout"]})
+    leaderboard.sort(key=lambda x: (-x["growth"], -x["cases26"]))
+    for i, e in enumerate(leaderboard):
+        e["rank"] = i + 1
+    return {"byRep": by_rep, "leaderboard": leaderboard,
+            "periodStart": OCT_START.isoformat(), "periodEnd": OCT_END.isoformat(),
+            "meta": {"rates": {"case": 2, "case7oz": 3}, "baseWindow": case_base.split("  ")[-1].strip(), "currentWindow": case_current.split("  ")[-1].strip()}}
+
+
+IA_OFF_SIZES = re.compile(r"(?<![\d.])(16|19\.2|12) ?oz", re.I)
+
+def build_industrial_arts():
+    """Industrial Arts Target Account Launch, October 2026 (deck p7).
+
+    OFF-PREMISE  $40 per non-buy account OPENED with at least 3 core SKUs,
+                 $10 per SKU over 3. Southern District (Mike Kennedy's team):
+                 $50 per account opened. An account is opened when it has 3+
+                 distinct Industrial Arts SKUs with a placement in the export
+                 window (10/1-12/31/2026); 1-2 SKUs = in progress.
+    ON-PREMISE   Wrench DRAFT at a non-buy target account in October pays
+                 $100 (keg minimum one 1/2 bbl or two 1/6s = 1/3 bbl); the
+                 same account pouring it in BOTH November and December pays
+                 $250 more (counted once those months exist in the export).
+    ASSUMED (flagged to Gavin): Industrial Arts is a new brand, so every
+    account in the export is a non-buy (the export carries no prior period),
+    and every Industrial Arts SKU counts as CORE. The Southern District rate
+    is applied to Mike Kennedy's team for any account opened (1+ SKU).
+    """
+    rows = read_rows("industrial_arts.csv")
+    fields = rows[0].keys() if rows else []
+    place_col = _single_col(fields, "Placement Count")
+    case_col = _single_col(fields, "Cases")
+    OPEN_SKUS, OPEN_RATE, EXTRA_RATE, SD_RATE, DRAFT_RATE, DRAFT_HOLD_RATE = 3, 40, 10, 50, 100, 250
+    by_rep = {rep: {"accounts": [], "openedCount": 0, "progressCount": 0, "skuPlacements": 0, "caseVolume": 0.0,
+                    "draftAccounts": [], "draftNewCount": 0, "draftQualifiedCount": 0, "draftHoldCount": 0,
+                    "openedPayout": 0, "draftPayout": 0, "payout": 0, "southern": rep in MIKE_KENNEDY_TEAM, "draftChannelOk": False}
+              for rep in ROSTER}
+    off, keg, seen = defaultdict(lambda: {"skus": {}, "cases": 0.0, "name": "", "dates": []}), defaultdict(lambda: {"bbl": 0.0, "months": set(), "name": ""}), defaultdict(set)
+    for row in rows:
+        rep = row["Sales Rep Assigned"].strip()
+        if rep not in by_rep:
+            continue
+        cust, cname = _split_num_name(row["Customer Num & Company"])
+        pnum, pname = _split_num_name(row["Product Num & Name"])
+        placed = to_num(row[place_col]) > 0
+        cases = to_num(row[case_col])
+        by_rep[rep]["caseVolume"] += cases
+        if placed:
+            seen[rep].add(cust)
+        dt = _us_date(row.get("Date"))
+        if is_keg_package(row.get("Package")) or is_keg_package(pname):
+            if not pname.lower().startswith("industrial arts wrench "):
+                continue                   # Wrench draft only (Pocket Wrench is a different beer)
+            k = keg[(rep, cust)]; k["name"] = cname
+            k["bbl"] += (keg_bbl(row.get("Package")) or keg_bbl(pname) or 0.0) * cases
+            if placed and dt: k["months"].add((dt.year, dt.month))
+            continue
+        if _row_premise(row, rep, cust, pname) == "On Premise":
+            continue
+        if not IA_OFF_SIZES.search(row.get("Package") or pname):
+            continue                       # off-premise tracks 16oz, 19.2oz and 12oz packages only
+        a = off[(rep, cust)]; a["name"] = cname
+        if placed:
+            a["skus"][pnum] = pname; a["cases"] += cases
+            if dt: a["dates"].append(dt)
+    leaderboard = []
+    for (rep, cust), a in off.items():
+        n = len(a["skus"])
+        if not n:
+            continue
+        d = by_rep[rep]
+        opened = n >= 1 if d["southern"] else n >= OPEN_SKUS
+        pay = SD_RATE if (d["southern"] and opened) else (OPEN_RATE + EXTRA_RATE * (n - OPEN_SKUS) if opened else 0)
+        d["accounts"].append({"customer": a["name"], "skus": n, "skuList": sorted(a["skus"].values()), "cases": round(a["cases"], 1),
+                              "opened": opened, "payout": pay, "toOpen": 0 if opened else OPEN_SKUS - n,
+                              "date": max(a["dates"]).isoformat() if a["dates"] else None})
+        d["skuPlacements"] += n
+        if opened: d["openedCount"] += 1; d["openedPayout"] += pay
+        else: d["progressCount"] += 1
+    for (rep, cust), k in keg.items():
+        d = by_rep[rep]
+        bbl = round(k["bbl"], 3); qualifies = bbl >= DRAFT_MIN_BBL and (2026, 10) in k["months"]
+        hold = (2026, 11) in k["months"] and (2026, 12) in k["months"]
+        d["draftAccounts"].append({"customer": k["name"], "bbl": bbl, "qualifies": qualifies, "hold": hold})
+        d["draftNewCount"] += 1
+        if qualifies: d["draftQualifiedCount"] += 1; d["draftPayout"] += DRAFT_RATE
+        if hold: d["draftHoldCount"] += 1; d["draftPayout"] += DRAFT_HOLD_RATE
+    for rep, d in by_rep.items():
+        d["caseVolume"] = round(d["caseVolume"], 1)
+        d["accounts"].sort(key=lambda a: (-a["opened"], -a["skus"], -a["cases"]))
+        d["payout"] = d["openedPayout"] + d["draftPayout"]
+        d["totalNew"] = d["openedCount"] + d["draftQualifiedCount"]
+        d["draftChannelOk"] = bool(d["draftAccounts"]) or bool(base_accounts(rep, premise="On Premise", draft=True))
+        d["offPremTargets"], d["offPremTargetCount"] = targets_from(base_accounts(rep, premise="Off Premise"), seen[rep])
+        leaderboard.append({"rep": rep, "opened": d["openedCount"], "draft": d["draftQualifiedCount"], "skus": d["skuPlacements"], "payout": d["payout"]})
+    leaderboard.sort(key=lambda x: (-(x["opened"] + x["draft"]), -x["skus"], -x["payout"]))
+    for i, e in enumerate(leaderboard):
+        e["rank"] = i + 1
+    return {"byRep": by_rep, "leaderboard": leaderboard,
+            "periodStart": OCT_START.isoformat(), "periodEnd": datetime.date(2026, 12, 31).isoformat(),
+            "meta": {"openSkus": OPEN_SKUS, "rates": {"open": OPEN_RATE, "extraSku": EXTRA_RATE, "southern": SD_RATE, "draft": DRAFT_RATE, "draftHold": DRAFT_HOLD_RATE},
+                     "draftMinBbl": round(DRAFT_MIN_BBL, 3), "window": place_col.split("  ")[-1].strip(), "southernTeam": MIKE_KENNEDY_TEAM}}
+
+
+# The deck's M.A.D.E. single-serve list (p2), matched on the product name.
+MABI_SS_MADE = ["black cherry", "mango", "grapefruit", "blackberry", "peach", "blood orange", "surge cranberry",
+                "surge blueberry", "surge grape", "harder lemonade", "harder cranberry", "harder mango", "pink lemonade",
+                "strawberry pineapple", "harder black cherry", "jacked margarita", "jacked strawberry margarita"]
+
+def build_mabi_single_serve():
+    """MABI Fall Single Serve Incentive, Oct-Nov 2026 (deck p2; purchases count
+    Sept 1 - Nov 30). $15 for selling in 8+ White Claw single-serve
+    PACKAGES and $15 for 8+ Mike's Harder / Cayman Jack single-serve
+    packages; each payout doubles to $30 when every package counted is a
+    M.A.D.E. SKU. A "package sold in" is one single-serve SKU at one
+    account with a placement in the window (rep, customer, Product Num) --
+    the POD grain. NOTE the export Gavin sends is already limited to the
+    16 M.A.D.E. single-serve SKUs, so non-MADE single serves cannot be
+    seen here and the MADE test reads true for every row (flagged)."""
+    rows = read_rows("mabi_single_serve.csv")
+    fields = rows[0].keys() if rows else []
+    place_col = _single_col(fields, "Placement Count")
+    QUAL, RATE, RATE_MADE = 8, 15, 30
+    by_rep = {rep: {"wc": {"pods": [], "count": 0, "madeCount": 0, "allMade": False, "qualified": False, "payout": 0, "toQualifier": QUAL},
+                    "harder": {"pods": [], "count": 0, "madeCount": 0, "allMade": False, "qualified": False, "payout": 0, "toQualifier": QUAL},
+                    "totalPods": 0, "accounts": 0, "payout": 0}
+              for rep in ROSTER}
+    pods, seen = {}, defaultdict(set)
+    for row in rows:
+        rep = row["Sales Rep Assigned"].strip()
+        if rep not in by_rep or to_num(row[place_col]) <= 0:
+            continue
+        cust, cname = _split_num_name(row["Customer Num & Company"])
+        pnum, pname = _split_num_name(row["Product Num & Name"])
+        fam = (row.get("Brand Family") or "").strip()
+        grp = "wc" if fam.lower().startswith("white claw") else "harder"
+        key = (rep, cust, pnum)
+        dt = row.get("Date", "")
+        if key not in pods or (_us_date(dt) or datetime.date.min) > (_us_date(pods[key]["date"]) or datetime.date.min):
+            pods[key] = {"rep": rep, "grp": grp, "customer": cname, "product": pname, "brand": fam, "date": dt,
+                         "made": any(k in pname.lower() for k in MABI_SS_MADE)}
+        seen[rep].add(cust)
+    for key, pdt in pods.items():
+        g = by_rep[pdt["rep"]][pdt["grp"]]
+        g["pods"].append({k: pdt[k] for k in ("customer", "product", "brand", "date", "made")})
+        g["count"] += 1; g["madeCount"] += 1 if pdt["made"] else 0
+    leaderboard = []
+    for rep, d in by_rep.items():
+        for grp in ("wc", "harder"):
+            g = d[grp]
+            g["allMade"] = g["count"] > 0 and g["madeCount"] == g["count"]
+            g["qualified"] = g["count"] >= QUAL
+            g["toQualifier"] = max(0, QUAL - g["count"])
+            g["payout"] = (RATE_MADE if g["allMade"] else RATE) if g["qualified"] else 0
+            g["pods"].sort(key=lambda e: _us_date(e["date"]) or datetime.date.min, reverse=True)
+        d["totalPods"] = d["wc"]["count"] + d["harder"]["count"]
+        d["accounts"] = len(seen[rep])
+        d["payout"] = d["wc"]["payout"] + d["harder"]["payout"]
+        d["legsQualified"] = int(d["wc"]["qualified"]) + int(d["harder"]["qualified"])
+        d["offPremTargets"], d["offPremTargetCount"] = targets_from(base_accounts(rep, premise="Off Premise"), seen[rep])
+        leaderboard.append({"rep": rep, "pods": d["totalPods"], "wc": d["wc"]["count"], "harder": d["harder"]["count"], "legs": d["legsQualified"], "payout": d["payout"]})
+    leaderboard.sort(key=lambda x: (-x["legs"], -x["pods"]))
+    for i, e in enumerate(leaderboard):
+        e["rank"] = i + 1
+    return {"byRep": by_rep, "leaderboard": leaderboard,
+            "periodStart": "2026-09-01", "periodEnd": "2026-11-30",
+            "meta": {"qualifier": QUAL, "rates": {"leg": RATE, "legMade": RATE_MADE}, "window": place_col.split("  ")[-1].strip(),
+                     "exportMadeOnly": True}}
+
+
+# Four Loko Volume Rewards (Oct-Nov 2026): cases vs last year + new placements.
+FOUR_LOKO_QUAL_SKUS = {"7925": "Sour Apple", "7935": "USA"}
+
+def _four_loko_new_placements():
+    """{(rep, cust, pnum): {...}} of NEW Sour Apple / USA placements from the two RDE
+    placement exports. A placement = (rep, customer, SKU) flagged in the
+    10/1-11/30/2026 window; NEW = the same key has NO flag in the 7/1-9/30/2026 window
+    (RDE's own non-buy test). "FOUR_LOKO_NEW_PLACEMENTS" holds only those two SKUs;
+    "FOUR_LOKO_VOLUME_2" holds every SKU with the same two columns -- its Sour Apple / USA
+    rows must give the identical answer, which is checked."""
+    def read(fn):
+        rows = read_rows(fn)
+        cur = next(f for f in rows[0] if f.startswith("Placements   10/1/2026"))
+        base = next(f for f in rows[0] if f.startswith("Placements   7/1/2026"))
+        by = defaultdict(list)
+        for r in rows:
+            pnum, pname = _split_num_name(r["Product Num & Name"])
+            if pnum not in FOUR_LOKO_QUAL_SKUS:
+                continue
+            cust, cname = _split_num_name(r["Customer Num & Company"])
+            by[(r["Sales Rep Assigned"].strip(), cust, pnum)].append((r, cname, pname))
+        out = {}
+        for key, items in by.items():
+            has_cur = [x for x in items if to_num(x[0][cur]) > 0]
+            has_base = any(to_num(x[0][base]) > 0 for x in items)
+            if has_cur and not has_base:
+                dates = sorted((_us_date(x[0]["Load Sheet Date"]) for x in has_cur if _us_date(x[0]["Load Sheet Date"])))
+                out[key] = {"customer": items[0][1], "product": items[0][2], "sku": FOUR_LOKO_QUAL_SKUS[key[2]],
+                            "date": dates[0].isoformat() if dates else None}
+        return out, cur.split("  ")[-1].strip(), base.split("  ")[-1].strip()
+    new, cur_w, base_w = read("four_loko_new_placements.csv")
+    cross, _, _ = read("four_loko_placements_all.csv")
+    if set(new) != set(cross):
+        raise SystemExit(f"four_loko: new-placements file and all-SKU placement file disagree: only in new {sorted(set(new)-set(cross))[:5]}, only in all-SKU {sorted(set(cross)-set(new))[:5]}")
+    return new, cur_w, base_w
+
+def build_four_loko():
+    """Four Loko Volume Rewards, Oct 1 - Nov 30 2026. NO payments are calculated (Gavin,
+    2026-10-07): the card shows (1) cases 10/1-11/30/2026 against the same window of
+    2025 (data/four_loko.csv, the RDE cases export, net of returns) and (2) NEW Sour Apple /
+    USA placements (see _four_loko_new_placements). The deck's 5-placement qualifier is shown
+    as progress only."""
+    rows = read_rows("four_loko.csv")
+    fields = rows[0].keys() if rows else []
+    case_base, case_current = find_period_cols(fields, "Cases")
+    QUAL = 5
+    placed, cur_w, base_w = _four_loko_new_placements()
+    by_rep = {rep: {"cases26": 0.0, "cases25": 0.0, "growth": 0.0, "positive": False, "toPositive": 0.0,
+                    "placements": [], "placementCount": 0, "qualified": False, "toQualifier": QUAL,
+                    "accounts": 0, "accountList": [], "lostAccounts": [], "byProduct": {}}
+              for rep in ROSTER}
+    acct = defaultdict(lambda: {"cases26": 0.0, "cases25": 0.0, "name": ""})
+    last_load = None
+    for row in rows:
+        rep = row["Sales Rep Assigned"].strip()
+        dt = _us_date(row.get("Load Sheet Date"))
+        if dt and (not last_load or dt > last_load):
+            last_load = dt
+        if rep not in by_rep:
+            continue
+        cust, cname = _split_num_name(row["Customer Num & Company"])
+        pnum, pname = _split_num_name(row["Product Num & Name"])
+        c26, c25 = to_num(row[case_current]), to_num(row[case_base])
+        d = by_rep[rep]
+        d["cases26"] += c26; d["cases25"] += c25
+        bp = d["byProduct"].setdefault(pname, {"cases26": 0.0, "cases25": 0.0})
+        bp["cases26"] += c26; bp["cases25"] += c25
+        a = acct[(rep, cust)]; a["name"] = cname; a["cases26"] += c26; a["cases25"] += c25
+    off_roster = sorted({k[0] for k in placed if k[0] not in by_rep})
+    for (rep, cust, pnum), e in placed.items():
+        if rep in by_rep:
+            by_rep[rep]["placements"].append(e)
+    leaderboard = []
+    for rep, d in by_rep.items():
+        d["cases26"], d["cases25"] = round(d["cases26"], 1), round(d["cases25"], 1)
+        d["growth"] = round(d["cases26"] - d["cases25"], 1)
+        d["positive"] = d["cases26"] > d["cases25"] and d["cases26"] > 0
+        d["toPositive"] = round(max(0.0, d["cases25"] - d["cases26"]), 1)
+        d["placements"].sort(key=lambda e: e["date"] or "", reverse=True)
+        d["placementCount"] = len(d["placements"])
+        d["qualified"] = d["placementCount"] >= QUAL
+        d["toQualifier"] = max(0, QUAL - d["placementCount"])
+        mine = [v for k, v in acct.items() if k[0] == rep and (v["cases26"] or v["cases25"])]
+        d["accounts"] = sum(1 for v in mine if v["cases26"] > 0)
+        d["accountList"] = sorted(({"customer": v["name"], "cases26": round(v["cases26"], 1), "cases25": round(v["cases25"], 1)} for v in mine), key=lambda a: -a["cases26"])[:25]
+        d["lostAccounts"] = sorted(({"customer": v["name"], "cases25": round(v["cases25"], 1)} for v in mine if v["cases25"] > 0 and v["cases26"] <= 0), key=lambda a: -a["cases25"])[:15]
+        for v in d["byProduct"].values():
+            v["cases26"], v["cases25"] = round(v["cases26"], 1), round(v["cases25"], 1)
+        leaderboard.append({"rep": rep, "cases26": d["cases26"], "growth": d["growth"], "placements": d["placementCount"],
+                            "positive": d["positive"], "qualified": d["qualified"]})
+    leaderboard.sort(key=lambda x: (-x["placements"], -x["growth"]))
+    for i, e in enumerate(leaderboard):
+        e["rank"] = i + 1
+    return {"byRep": by_rep, "leaderboard": leaderboard,
+            "periodStart": OCT_START.isoformat(), "periodEnd": datetime.date(2026, 11, 30).isoformat(),
+            "meta": {"qualifier": QUAL, "qualSkus": FOUR_LOKO_QUAL_SKUS, "casesThrough": last_load.isoformat() if last_load else None,
+                     "baseWindow": case_base.split("  ")[-1].strip(), "currentWindow": case_current.split("  ")[-1].strip(),
+                     "placeWindow": cur_w, "placeBaseWindow": base_w, "offRoster": off_roster}}
+
+
 def main():
     if "--freeze-constellation-fall-off-goals" in sys.argv:
         freeze_constellation_fall_off_goals()
@@ -4795,6 +5386,36 @@ def main():
         "path_to_victory_sd": build_path_to_victory_sd(),
         "fall_seasonal_sd": build_fall_seasonal_sd(),
     }
+    # October 2026 lives in a third blob (PROGRAM_DATA_2026_10). Four Loko and
+    # the Sam Adams seasonal conversion have no builder yet: their registry
+    # entries stay on the zero-state card until Gavin sends the exports.
+    data_10 = {
+        "new_belgium_distribution_retain": build_new_belgium_distribution_retain(),
+        "lagunitas_sprint": build_lagunitas_sprint(),
+        "famosa_oct": build_famosa_october(),
+        "industrial_arts": build_industrial_arts(),
+        "mabi_single_serve": build_mabi_single_serve(),
+        "four_loko": build_four_loko(),
+        "sam_adams_cold_snap": build_sam_adams_cold_snap(),
+    }
+    lg = data_10["lagunitas_sprint"]; fm = data_10["famosa_oct"]; ia = data_10["industrial_arts"]; ss = data_10["mabi_single_serve"]
+    print(f"lagunitas_sprint: {lg['meta']['housePods']} new PODs house-wide (goal {lg['meta']['houseGoal']}), "
+          f"{sum(1 for d in lg['byRep'].values() if d['qualified'])} reps at 3+, {sum(d['draftQualifiedCount'] for d in lg['byRep'].values())} new draft accounts | "
+          + ", ".join(f"{e['rep']} {e['pods']}" for e in lg['leaderboard'][:6] if e['pods']))
+    print(f"famosa_oct: house {sum(d['cases26'] for d in fm['byRep'].values()):.0f} vs {sum(d['cases25'] for d in fm['byRep'].values()):.0f} cases LY, "
+          f"{sum(1 for d in fm['byRep'].values() if d['positive'])} reps positive | " + ", ".join(f"{e['rep']} {e['growth']:+.0f}" for e in fm['leaderboard'][:6]))
+    print(f"industrial_arts: {sum(d['openedCount'] for d in ia['byRep'].values())} accounts opened, {sum(d['progressCount'] for d in ia['byRep'].values())} in progress, "
+          f"{sum(d['draftQualifiedCount'] for d in ia['byRep'].values())} draft | " + ", ".join(f"{e['rep']} {e['opened']}+{e['skus']}sku" for e in ia['leaderboard'][:6] if e['skus']))
+    fl = data_10["four_loko"]
+    print(f"four_loko: {sum(d['cases26'] for d in fl['byRep'].values()):.0f} vs {sum(d['cases25'] for d in fl['byRep'].values()):.0f} cases LY (loads through {fl['meta']['casesThrough']}), "
+          f"{sum(d['placementCount'] for d in fl['byRep'].values())} new Sour Apple/USA placements, {sum(1 for d in fl['byRep'].values() if d['qualified'])} reps at 5+, "
+          f"{sum(1 for d in fl['byRep'].values() if d['positive'])} reps positive | " + ", ".join(f"{e['rep']} {e['placements']}pl/{e['growth']:+.0f}" for e in fl['leaderboard'][:6])
+          + (f" | off roster: {fl['meta']['offRoster']}" if fl['meta']['offRoster'] else ""))
+    _cs = data_10["sam_adams_cold_snap"]
+    print(f"sam_adams_cold_snap (Boston Beer {_cs['meta']['officialAsOf']}): house {_cs['house']}, off roster {_cs['meta']['offRoster']}")
+    print(f"mabi_single_serve: {sum(d['totalPods'] for d in ss['byRep'].values())} single-serve PODs, "
+          f"{sum(1 for d in ss['byRep'].values() if d['wc']['qualified'])} reps at 8+ White Claw, {sum(1 for d in ss['byRep'].values() if d['harder']['qualified'])} at 8+ Harder/Cayman | "
+          + ", ".join(f"{e['rep']} {e['wc']}/{e['harder']}" for e in ss['leaderboard'][:6]))
     ptv = data_09["path_to_victory_sd"]["byRep"]
     print(f"path_to_victory_sd (Mike Kennedy's team, {SD_WINDOW}): "
           f"{sum(d['sixPackNewPods'] for d in ptv.values()):.0f} new 6pk PODs of "
@@ -4985,6 +5606,42 @@ def main():
           f"({sum(len(d['off']['atRisk']) + len(d['onPkg']['atRisk']) for d in yu.values())} at risk) | draft "
           f"{sum(d['draft']['units'] for d in yu.values())} units across {sum(1 for d in yu.values() if d['draftInReport'])} reps (no goals tracked)")
 
+    # CLOSED MONTHS ARE PUBLISHED SNAPSHOTS (Gavin, 2026-10-05). August and
+    # September are restored from data/frozen/ so a customer-base or CSV refresh
+    # cannot move a finished month's numbers; only October (and later) rebuild.
+    # The versions this run would have produced are filed under
+    # data/refreshed_archive/ when they differ. To deliberately re-open a month:
+    # KDH_UNFREEZE=1 python3 generate.py (then re-freeze the new blobs by
+    # copying them into data/frozen/).
+    if not os.environ.get("KDH_UNFREEZE"):
+        frozen = {"data": DATA_DIR / "frozen" / "PROGRAM_DATA_2026_08.json",
+                  "data_09": DATA_DIR / "frozen" / "PROGRAM_DATA_2026_09.json"}
+        if all(p.exists() for p in frozen.values()):
+            fresh_08 = json.dumps(data, sort_keys=True)
+            fresh_09 = json.dumps(data_09, sort_keys=True)
+            data = json.loads(frozen["data"].read_text())
+            data_09 = json.loads(frozen["data_09"].read_text())
+            moved = [n for n, was, now in (("August", json.dumps(data, sort_keys=True), fresh_08),
+                                           ("September", json.dumps(data_09, sort_keys=True), fresh_09)) if was != now]
+            print("Closed months restored from data/frozen/ (August, September)"
+                  + (f"; this run would have changed: {', '.join(moved)} (not applied -- KDH_UNFREEZE=1 to apply)" if moved else "; no difference"))
+
+    # A focused source refresh must not restate other October incentives from
+    # newer MPO files. Preserve their published blobs unless explicitly selected.
+    only = {k.strip() for k in os.environ.get('KDH_ONLY_PROGRAMS', '').split(',') if k.strip()}
+    if only:
+        unknown = only - data_10.keys()
+        if unknown:
+            raise ValueError('Unknown October program(s): ' + ', '.join(sorted(unknown)))
+        old_html = INDEX_HTML.read_text()
+        old_october = re.search(r'const PROGRAM_DATA_2026_10 = (\{.*?\});\s*/\* PROGRAM_DATA_10_END', old_html, re.S)
+        if not old_october:
+            raise ValueError('Cannot find the published October snapshot for focused refresh')
+        published = json.loads(old_october.group(1))
+        published.update({key: data_10[key] for key in only})
+        data_10 = published
+        print('Focused October refresh: ' + ', '.join(sorted(only)))
+
     payload = json.dumps(data, indent=2)
     html = INDEX_HTML.read_text()
     start_marker = "/* PROGRAM_DATA_START */"
@@ -5005,6 +5662,10 @@ def main():
     i09 = html.index(s09) + len(s09)
     j09 = html.index(e09)
     html = html[:i09] + f"\nconst PROGRAM_DATA_2026_09 = {json.dumps(data_09, indent=2)};\n" + html[j09:]
+    s10, e10 = "/* PROGRAM_DATA_10_START */", "/* PROGRAM_DATA_10_END */"
+    i10 = html.index(s10) + len(s10)
+    j10 = html.index(e10)
+    html = html[:i10] + f"\nconst PROGRAM_DATA_2026_10 = {json.dumps(data_10, indent=2)};\n" + html[j10:]
 
     # Stamped with the TIME as well as the date (2026-09-21, per Gavin: reps
     # refresh several times a day now, so "Sep 21" alone no longer says
@@ -5015,9 +5676,9 @@ def main():
     try:
         from zoneinfo import ZoneInfo
         now_et = now_utc.astimezone(ZoneInfo("America/New_York"))
-        today = now_et.strftime("%b %-d, %Y, %-I:%M %p ET")
+        today = now_et.strftime("%b ") + str(now_et.day) + now_et.strftime(", %Y, ") + str(now_et.hour % 12 or 12) + now_et.strftime(":%M %p ET")
     except Exception:
-        today = now_utc.strftime("%b %-d, %Y, %-I:%M %p UTC")
+        today = now_utc.strftime("%b ") + str(now_utc.day) + now_utc.strftime(", %Y, ") + str(now_utc.hour % 12 or 12) + now_utc.strftime(":%M %p UTC")
     refreshed_at = now_utc.isoformat().replace("+00:00", "Z")
     date_start_marker = "<!-- DATA_REFRESHED_START -->"
     date_end_marker = "<!-- DATA_REFRESHED_END -->"
@@ -5042,6 +5703,7 @@ def main():
         f"const PROGRAM_DATA = {payload};\n"
         f"const CORE_MARKET_PROGRAM_KEYS = new Set({core_keys});\n"
         f"const PROGRAM_DATA_2026_09 = {json.dumps(data_09, indent=2)};\n"
+        f"const PROGRAM_DATA_2026_10 = {json.dumps(data_10, indent=2)};\n"
         f"const PROGRAM_DATA_REFRESHED = {json.dumps(today)};\n"
         f"const PROGRAM_DATA_REFRESHED_AT = {json.dumps(refreshed_at)};\n")
     print(f"Wrote {PROGRAM_DATA_JS.relative_to(Path(__file__).parent)} for the hub")
@@ -5049,3 +5711,11 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# Per-rep copies (tools/rep_slices.py, 2026-10-01): a signed-in rep's browser
+# is served only their own rows, so the copies are rebuilt after every run.
+if __name__ == "__main__":
+    import subprocess as _sp, sys as _sys
+    from pathlib import Path as _P
+    _root = next(p for p in _P(__file__).resolve().parents if (p / "middleware.js").exists())
+    _sp.run([_sys.executable, str(_root / "tools" / "rep_slices.py")], check=True)

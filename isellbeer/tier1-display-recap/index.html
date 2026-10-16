@@ -136,6 +136,44 @@
     .acct-name{font-size:21px;}
     .month-body.open,.month-body.photos.open{grid-template-columns:1fr;}
   }
+
+  /* PAGE STANDARD */
+  .wrap{max-width:960px;padding:0 16px;}
+  header{text-align:center;padding:20px 0 16px;}
+  h1{font-family:'Inter',sans-serif;font-weight:600;letter-spacing:0;font-size:28px;line-height:1.2;
+    background:none;-webkit-text-fill-color:currentColor;color:var(--amber);}
+  .updated{justify-content:center;font-family:'Inter',sans-serif;font-size:14px;margin-top:8px;}
+  .stat-board{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:16px;}
+  .stat-tile{text-align:center;padding:14px 12px;}
+  .stat-tile-num,.stat-tile-label,.jump-label,.jpill .cnt,.acct-name,.acct-num,.astat,.month-toggle,.photo-dt,.photo-link,.mode-label,.mpill,.pf-open,.photo-fallback .pf-open,.photo-fallback{font-family:'Inter',sans-serif;}
+  .stat-tile-num{font-size:32px;font-weight:600;}
+  .stat-tile-label{font-size:14px;font-weight:500;text-transform:none;letter-spacing:0;}
+  .jump{margin:16px 0 0;}
+  .jump-label,.mode-label{font-size:14px;font-weight:600;text-transform:none;letter-spacing:0;text-align:center;}
+  .jump-pills{gap:8px;justify-content:center;}
+  .jpill{font-size:14px;}
+  .jpill .cnt{font-size:13px;font-weight:600;}
+  .mode-row{justify-content:center;margin:16px 0 0;}
+  .mode-hint{font-size:14px;width:100%;text-align:center;}
+  .mpill{font-size:14px;font-weight:600;}
+  main{gap:12px;margin-top:16px;}
+  .acct-head{padding:16px;text-align:center;}
+  .acct-name-row{justify-content:center;}
+  .acct-name{font-size:18px;font-weight:600;}
+  .acct-num{font-size:13px;font-weight:600;}
+  .acct-sub{font-size:14px;}
+  .acct-stats{justify-content:center;}
+  .astat{font-size:14px;font-weight:600;}
+  .acct-body{padding:12px 16px 16px;gap:12px;}
+  .month-toggle{font-size:16px;font-weight:600;}
+  .month-toggle .mcount{font-size:14px;}
+  .month-body.open{gap:12px;}
+  .photo-dt{font-size:15px;font-weight:600;}
+  .photo-taker,.photo-brands,.photo-cases{font-size:14px;}
+  .photo-link,.photo-fallback .pf-open{font-size:15px;font-weight:600;}
+  .photo-note{font-size:14px;}
+  .no-photos{font-size:15px;}
+  @media (max-width:640px){.wrap{padding:0 16px;}h1{font-size:24px;}.stat-board{grid-template-columns:minmax(0,1fr);}.stat-tile-num{font-size:28px;}}
 </style>
 </head>
 <body>
@@ -147,13 +185,12 @@
 
   <header>
     <h1>Tier 1 Display Program</h1>
-    <p class="sub">Kohler Tier 1 Summer Display Accounts &middot; May &ndash; September 2026. Every display photo entered in iSellBeer for the 20 program accounts, in one place &mdash; the pictures themselves under each account, or switch to Details for the photo list with links.</p>
-    <p class="updated"><span class="livedot"></span> Data refreshed <!-- DATA_REFRESHED_START -->Aug 19, 2026<!-- DATA_REFRESHED_END --></p>
+    <p class="updated"><span class="livedot"></span> Data Refreshed <!-- DATA_REFRESHED_START -->Aug 19, 2026<!-- DATA_REFRESHED_END --></p>
     <div class="stat-board" id="statBoard"></div>
   </header>
 
   <div class="jump">
-    <div class="jump-label">Jump to an account</div>
+    <div class="jump-label">Jump to an Account</div>
     <div class="jump-pills" id="jumpPills"></div>
   </div>
 
@@ -163,7 +200,7 @@
       <button class="mpill" data-mode="details">Details</button>
       <button class="mpill on" data-mode="photos">Photos</button>
     </div>
-    <span class="mode-hint" id="modeHint">Every month open &middot; the pictures themselves, under each account. Tap one to open it full size.</span>
+    <span class="mode-hint" id="modeHint">Tap a Photo to Open It</span>
   </div>
 
   <main id="main"></main>
@@ -4475,7 +4512,7 @@ let uid = 0;
 function brandLine(brands){
   if(!brands || !brands.length) return '';
   const shown = brands.slice(0,3).map(b=>esc(titleCase(b)));
-  const more = brands.length>3 ? ` +${brands.length-3} more` : '';
+  const more = brands.length>3 ? ` +${brands.length-3} More` : '';
   return `<div class="photo-brands"><b>${shown.join('</b> · <b>')}</b>${more}</div>`;
 }
 function titleCase(s){ return s.toLowerCase().replace(/(^|[\s/&(-])[a-z]/g, m=>m.toUpperCase()); }
@@ -4483,9 +4520,9 @@ function titleCase(s){ return s.toLowerCase().replace(/(^|[\s/&(-])[a-z]/g, m=>m
 function photoTile(p){
   return `<div class="photo-tile">
     <div class="photo-dt">${esc(p.dt)}</div>
-    <div class="photo-taker">by ${esc(p.taker)}</div>
+    <div class="photo-taker">By ${esc(p.taker)}</div>
     ${brandLine(p.brands)}
-    ${p.cases>0?`<div class="photo-cases">${p.cases} cases on display</div>`:''}
+    ${p.cases>0?`<div class="photo-cases">${p.cases} Cases on Display</div>`:''}
     <a class="photo-link" href="${esc(p.url)}" target="_blank" rel="noopener">View Photo &rsaquo;</a>
   </div>`;
 }
@@ -4502,9 +4539,9 @@ function photoCard(p){
     </a>
     <div class="photo-meta">
       <div class="photo-dt">${esc(p.dt)}</div>
-      <div class="photo-taker">by ${esc(p.taker)}</div>
+      <div class="photo-taker">By ${esc(p.taker)}</div>
       ${brandLine(p.brands)}
-      ${p.cases>0?`<div class="photo-cases">${p.cases} cases on display</div>`:''}
+      ${p.cases>0?`<div class="photo-cases">${p.cases} Cases on Display</div>`:''}
     </div>
   </div>`;
 }
@@ -4516,7 +4553,7 @@ function acctCard(a){
                                            // pictures sit right under the account.
   const months = (a.byMonth||[]).map(m=>{
     const did = 'm'+(uid++);
-    return `<button class="month-toggle${openCls}" data-target="${did}"><span class="chev">▶</span>${esc(m.month)}<span class="mcount">${m.photos.length} photo${m.photos.length===1?'':'s'}</span></button>
+    return `<button class="month-toggle${openCls}" data-target="${did}"><span class="chev">▶</span>${esc(m.month)}<span class="mcount">${m.photos.length} Photo${m.photos.length===1?'':'s'}</span></button>
       <div class="month-body${photos?' photos':''}${openCls}" id="${did}">${m.photos.map(tile).join('')}</div>`;
   }).join('');
   return `<div class="acct-card" id="acct-${esc(a.acct)}">
@@ -4529,7 +4566,7 @@ function acctCard(a){
         ${a.lastDate?`<span class="astat dim">Latest: ${esc(a.lastDate)}</span>`:''}
       </div>
     </div>
-    <div class="acct-body">${months || '<div class="no-photos">No display photos entered in iSellBeer for this account yet.</div>'}</div>
+    <div class="acct-body">${months || '<div class="no-photos">No Photos Yet</div>'}</div>
   </div>`;
 }
 
@@ -4537,8 +4574,8 @@ let MODE = 'photos';   // Photos is the default view (per Gavin, 2026-08-24).
 let imgTried = 0, imgFailed = 0;
 
 const MODE_HINT = {
-  details: 'Month sections collapsed \u00b7 each photo shown as a detail tile with a link.',
-  photos:  'Every month open \u00b7 the pictures themselves, under each account. Tap one to open it full size.',
+  details: 'Tap a Month to Open It',
+  photos:  'Tap a Photo to Open It',
 };
 
 /* A photo that won't embed becomes a link tile, so a blocked image never
@@ -4550,7 +4587,7 @@ function markBroken(img){
   imgFailed++;
   const frame = card.querySelector('.photo-frame');
   if(frame){
-    frame.innerHTML = `<span class="photo-fallback">This photo can\u2019t be shown inline<span class="pf-open">Open Photo \u203a</span></span>`;
+    frame.innerHTML = `<span class="photo-fallback">Photo Not Shown<span class="pf-open">Open Photo \u203a</span></span>`;
   }
   updateNotice();
 }
@@ -4560,9 +4597,7 @@ function updateNotice(){
   if(!el) return;
   if(MODE !== 'photos' || !imgFailed){ el.innerHTML = ''; return; }
   const all = imgFailed >= imgTried;
-  el.innerHTML = `<div class="photo-note"><b>${all ? 'Photos aren\u2019t embedding.' : imgFailed + ' photo' + (imgFailed===1?'':'s') + ' couldn\u2019t be embedded.'}</b>
-    iSellBeer\u2019s photo links may require a signed-in session, so they can\u2019t always be pulled into this page.
-    ${all ? 'Every tile has' : 'Those tiles have'} fallen back to an <b>Open Photo</b> link, and Details view is unchanged.</div>`;
+  el.innerHTML = `<div class="photo-note"><b>${all ? 'Photos Not Showing' : imgFailed + ' Photo' + (imgFailed===1?'':'s') + ' Not Showing'}</b> &middot; Use the Open Photo Link</div>`;
 }
 
 function renderMain(){

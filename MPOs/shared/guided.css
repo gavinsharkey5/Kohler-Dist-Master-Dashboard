@@ -31,7 +31,7 @@
 .g-viewbar{max-width:1200px;margin:26px auto 0;padding:0 32px;}
 .g-seg{display:inline-flex;background:var(--input-bg);border:1px solid var(--border);
   border-radius:999px;padding:4px;gap:4px;width:100%;max-width:420px;}
-.g-seg-btn{flex:1;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14.5px;
+.g-seg-btn{flex:1;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14.5px;
   letter-spacing:.03em;color:var(--text-dim);background:none;border:0;border-radius:999px;
   padding:11px 14px;min-height:46px;cursor:pointer;white-space:nowrap;
   transition:background .15s,color .15s;}
@@ -50,11 +50,11 @@
 
 /* ---- Step header --------------------------------------------------- */
 .g-step-head{margin:4px 0 18px;}
-.g-eyebrow{display:inline-block;font-family:'Space Grotesk',sans-serif;font-weight:700;
+.g-eyebrow{display:inline-block;font-family:'Space Grotesk',sans-serif;font-weight:600;
   font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);
   background:var(--accent-soft);border:1px solid rgba(78,124,232,.4);border-radius:999px;
   padding:6px 14px;margin-bottom:11px;}
-.g-title{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--text);
+.g-title{font-family:'Space Grotesk',sans-serif;font-weight:600;color:var(--text);
   font-size:clamp(27px,6.4vw,38px);line-height:1.18;}
 .g-sub{color:var(--text-dim);font-size:clamp(16px,4vw,18px);margin-top:8px;line-height:1.5;}
 
@@ -62,7 +62,7 @@
 .g-actions{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;}
 .g-back{display:flex;align-items:center;gap:9px;background:var(--card);
   border:1px solid var(--border);border-radius:12px;color:var(--text-dim);
-  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;letter-spacing:.02em;
+  font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;letter-spacing:.02em;
   text-transform:uppercase;padding:15px 18px;min-height:56px;cursor:pointer;
   text-align:left;flex:1 1 100%;transition:background .13s,color .13s;}
 .g-back:hover{background:var(--card-alt);color:var(--text);}
@@ -72,13 +72,13 @@
 .g-name{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;
   background:var(--card);border:1px solid var(--border);border-radius:14px;padding:0 20px;
   min-height:66px;cursor:pointer;text-align:left;font-family:'Space Grotesk',sans-serif;
-  font-weight:700;font-size:20px;color:var(--text);margin-bottom:10px;
+  font-weight:600;font-size:20px;color:var(--text);margin-bottom:10px;
   transition:border-color .13s,background .13s,transform .08s;}
 .g-name:hover{border-color:var(--accent);background:var(--card-alt);}
 .g-name:active{transform:scale(.988);}
 .g-name .ar{color:var(--accent);font-size:22px;}
 .g-dm{font-family:'Space Grotesk',sans-serif;font-size:13px;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--text-mute);font-weight:700;margin:20px 0 9px;}
+  text-transform:uppercase;color:var(--text-mute);font-weight:600;margin:20px 0 9px;}
 .g-dm:first-of-type{margin-top:4px;}
 /* A manager nested under another (sales support under a DM) keeps the
    plain DM header look -- only its position marks it as part of the group
@@ -89,8 +89,8 @@
 .g-sum{background:var(--card);border:1px solid var(--border);border-radius:14px;
   padding:16px 18px;box-shadow:var(--shadow);}
 .g-sum-l{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute);
-  font-weight:700;line-height:1.35;}
-.g-sum-n{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:34px;
+  font-weight:600;line-height:1.35;}
+.g-sum-n{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:34px;
   color:var(--amber);line-height:1.1;margin-top:7px;}
 .g-sum-n.good{color:var(--good);}
 .g-sum-n.accent{color:var(--accent);}
@@ -104,11 +104,11 @@
 .g-obj.inprogress{border-left:4px solid var(--accent);}
 .g-obj.notstarted{border-left:4px solid var(--border);}
 .g-obj-sup{font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:.11em;
-  text-transform:uppercase;color:var(--text-mute);font-weight:700;}
-.g-obj-name{font-family:'Space Grotesk',sans-serif;font-weight:700;
+  text-transform:uppercase;color:var(--text-mute);font-weight:600;}
+.g-obj-name{font-family:'Space Grotesk',sans-serif;font-weight:600;
   font-size:clamp(18px,4.4vw,21px);color:var(--text);line-height:1.25;margin:6px 0 12px;}
 .g-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px;}
-.g-tag{font-family:'Space Grotesk',sans-serif;font-size:12.5px;font-weight:700;
+.g-tag{font-family:'Space Grotesk',sans-serif;font-size:12.5px;font-weight:600;
   background:var(--input-bg);color:var(--text-dim);border:1px solid var(--border);
   border-radius:999px;padding:5px 11px;}
 .g-tag.weight{color:var(--amber);border-color:rgba(244,184,62,.4);background:var(--amber-soft);}
@@ -117,8 +117,8 @@
    goal -> where I am -> how much more -> credit earned. */
 .g-facts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
 .g-fact-l{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-mute);
-  font-weight:700;}
-.g-fact-v{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;
+  font-weight:600;}
+.g-fact-v{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:19px;
   color:var(--text);margin-top:4px;line-height:1.2;}
 .g-fact-v.good{color:var(--good);}
 .g-fact-v.mute{color:var(--text-mute);}
@@ -134,7 +134,7 @@
 
 /* ---- Status pill: word + mark, never colour alone ------------------- */
 .g-pill{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:7px 13px;
-  font-family:'Space Grotesk',sans-serif;font-size:13.5px;font-weight:700;white-space:nowrap;
+  font-family:'Space Grotesk',sans-serif;font-size:13.5px;font-weight:600;white-space:nowrap;
   border:1px solid transparent;line-height:1.2;}
 .g-pill.achieved{background:var(--good-soft);color:var(--good);border-color:rgba(76,201,122,.45);}
 .g-pill.inprogress{background:var(--accent-soft);color:var(--accent);border-color:rgba(78,124,232,.45);}
@@ -144,7 +144,7 @@
 /* ---- "See my progress" disclosure ----------------------------------- */
 .g-more{width:100%;background:var(--accent);color:#fff;border:0;border-radius:11px;
   padding:15px 18px;min-height:56px;cursor:pointer;text-align:left;
-  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;letter-spacing:.05em;
+  font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;letter-spacing:.05em;
   text-transform:uppercase;display:flex;align-items:center;justify-content:space-between;gap:10px;
   transition:background .13s;}
 .g-more:hover{background:#3C6AD8;}
@@ -162,10 +162,10 @@
   cursor:pointer;text-align:left;font:inherit;color:inherit;transition:background .13s;}
 .g-prog-head:hover{background:var(--card-alt);}
 .g-prog-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;}
-.g-prog-name{font-family:'Space Grotesk',sans-serif;font-weight:700;
+.g-prog-name{font-family:'Space Grotesk',sans-serif;font-weight:600;
   font-size:clamp(17px,4.2vw,20px);color:var(--text);line-height:1.25;flex:1;min-width:0;}
 .g-prog-right{display:flex;align-items:center;gap:12px;flex-shrink:0;}
-.g-prog-atgoal{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;
+.g-prog-atgoal{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:22px;
   color:var(--amber);line-height:1.1;text-align:right;}
 .g-prog-atgoal.good{color:var(--good);}
 .g-prog-atgoal-l{display:block;font-family:'Inter',sans-serif;font-size:11.5px;font-weight:600;
@@ -178,7 +178,7 @@
 /* ---- Program view: rep results -------------------------------------- */
 .g-sortbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:13px;}
 .g-sortlabel{font-size:12px;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--text-mute);font-weight:700;}
+  color:var(--text-mute);font-weight:600;}
 .g-sortbtn{font-family:'Inter',sans-serif;font-size:13.5px;font-weight:600;
   background:var(--input-bg);color:var(--text-dim);border:1px solid var(--input-border);
   border-radius:999px;padding:9px 14px;min-height:40px;cursor:pointer;
@@ -196,11 +196,11 @@
 .g-reprow.achieved{border-left:3px solid var(--good);}
 .g-reprow.inprogress{border-left:3px solid var(--accent);}
 .g-reprow.notstarted,.g-reprow.nodata{border-left:3px solid var(--border);}
-.g-reprow-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;
+.g-reprow-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;
   color:var(--text);line-height:1.25;}
 .g-reprow-dm{display:block;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:500;
   color:var(--text-mute);margin-top:2px;}
-.g-reprow-val{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;
+.g-reprow-val{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;
   color:var(--text);text-align:right;white-space:nowrap;}
 .g-reprow-val.mute{color:var(--text-mute);}
 .g-reprow-meta{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:9px;
@@ -258,3 +258,333 @@
 .g-stack .g-stamp{font-size:13px;color:var(--text-mute);margin-top:4px;display:inline-block;}
 .g-facts.g-facts-3{grid-template-columns:repeat(3,minmax(0,1fr));}
 @media (max-width:520px){ .g-facts.g-facts-3{grid-template-columns:1fr 1fr;} .g-facts.g-facts-3 > div:last-child{grid-column:1 / -1;} }
+
+/* ---- 2026-09-30: the compact objective card (guided.js repObjectiveCard).
+   Short name, credit pill, "3 of 13 buying accounts", "10 more ... needed",
+   one bar, the goal rule quietly under it, then Details. ---- */
+.g-obj-v2 .g-obj-name{font-size:19px;line-height:1.25;}
+.g-obj-v2 .g-tags{margin:6px 0 10px;}
+.g-main{font-size:24px;font-weight:600;line-height:1.2;font-variant-numeric:tabular-nums;color:var(--text,inherit);}
+.g-need{margin-top:3px;font-size:16px;font-weight:600;color:var(--accent,#2F5FC4);}
+.g-need.good{color:var(--good,#15803D);}
+.g-obj-v2 .g-bar{margin-top:10px;}
+.g-rule{margin-top:8px;font-size:13.5px;line-height:1.45;color:var(--text-mute,#64748B);}
+.g-subs{margin-top:10px;display:flex;flex-direction:column;gap:4px;}
+.g-subrow{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:var(--text-dim,#475569);}
+.g-subrow strong{color:var(--text,inherit);}
+.g-rules{margin:10px 0 12px;padding-left:18px;font-size:13.5px;line-height:1.55;color:var(--text-dim,#475569);}
+.g-obj-v2 .g-more{margin-top:12px;}
+.g-obj-v2 .g-more{background:none;border:1px solid var(--border,#E2E8F0);color:var(--accent,#2F5FC4);min-height:44px;box-shadow:none;}
+.g-obj-v2 .g-more:hover{background:var(--accent-soft,#EAF0FB);}
+
+/* ---- Compact MPO screens (2026-10-02) -------------------------------------
+   One summary card instead of four tiles; objective cards read like the hub's
+   program rows (name + pill, "3 of 13 ...", need, bar, rule); a quieter picker. */
+.g-summary{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin:0 0 16px}
+.g-summary-top{display:flex;align-items:baseline;gap:10px;margin-bottom:8px}
+.g-summary-n{font-size:28px;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
+.g-summary-n.good{color:var(--good)} .g-summary-n.accent{color:var(--accent)} .g-summary-n.mute{color:var(--text-mute)}
+.g-summary-l{font-size:15px;font-weight:500;color:var(--text)}
+.g-summary-facts{margin-top:10px;font-size:15px;color:var(--text)}
+.g-summary-facts b{font-weight:600}
+.g-summary-note{margin-top:4px;font-size:14px;line-height:1.45;color:var(--text-mute)}
+.g-obj.g-obj-v2{padding:14px 16px;border-radius:12px;margin-bottom:10px;border-left-width:1px}
+.g-obj-v2{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:10px;align-items:center}
+.g-obj-v2>*{grid-column:1 / -1}
+.g-obj-v2 .g-obj-name{grid-column:1;font-size:16px;line-height:1.3}
+.g-obj-v2 .g-tags{grid-column:2;margin:0;justify-self:end}
+.g-obj-v2 .g-main{font-size:15.5px;margin-top:6px}
+.g-obj-v2 .g-need{display:inline;font-size:15px;font-weight:500;margin:0}
+.g-obj-v2 .g-main{display:flex;flex-wrap:wrap;gap:0 6px;align-items:baseline}
+.g-obj-v2 .g-bar{margin-top:8px}
+.g-obj-v2 .g-rule{font-size:14px;margin-top:6px}
+.g-obj-v2 .g-more{width:auto;justify-self:start;min-height:36px;margin-top:8px;padding:0 4px;border:0;font-size:14.5px;font-weight:500}
+.g-obj-v2 .g-more:hover{background:none;text-decoration:underline}
+.g-obj-v2 .g-more-body{grid-column:1 / -1}
+.g-obj.achieved,.g-obj.inprogress,.g-obj.notstarted{border-left-width:1px}
+@media (max-width:420px){ .g-obj-v2 .g-tags{grid-column:1;justify-self:start;margin-top:6px} }
+.g-step-head .g-title{font-size:clamp(22px,4vw,26px);line-height:1.2}
+.g-rephead .g-title{font-size:clamp(22px,4vw,26px)}
+.g-step-head .g-sub{font-size:15px}
+.g-name{min-height:52px;padding:0 16px;font-size:16px;border-radius:10px;margin-bottom:8px}
+.g-name .ar{font-size:18px}
+.g-grid .g-name{margin-bottom:0}
+@media (min-width:700px){ .g-grid{gap:8px} }
+.monthbar{gap:6px}
+.monthtab{min-height:36px;padding:0 12px;font-size:14px}
+@media (max-width:520px){ .monthbar{flex-wrap:nowrap;overflow-x:auto} .monthtab{flex:none} }
+.g-obj-v2 .g-main b{font-weight:600}
+.g-obj-v2 .g-more{margin:2px 0 -6px}
+
+/* ===== MPO cards v3 (2026-10-05): current / required / remaining, one bar ===== */
+.g-obj-v3{padding:16px}
+.g-obj-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.g-obj-v3 .g-obj-name{font-size:18px;font-weight:600;margin:0}
+.g-obj-sub{margin:2px 0 12px;font-size:14px;color:var(--text-mute)}
+.g-fig{display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 6px;margin:2px 0 4px}
+.g-fig-n{font-size:30px;font-weight:600;line-height:1.1;font-variant-numeric:tabular-nums}
+.g-fig-of{font-size:20px;font-weight:500;color:var(--text-dim);font-variant-numeric:tabular-nums}
+.g-fig-u{flex-basis:100%;font-size:14px;color:var(--text-mute)}
+.g-obj-v3 .g-need,.g-prog-head .g-need{display:block;font-size:16px;font-weight:600;margin:0 0 10px;color:var(--text)}
+.g-obj-v3 .g-need.good{color:var(--good)}
+.g-bar-cap{margin-top:8px;font-size:14px;color:var(--text-dim)}
+.g-meta{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:6px;font-size:14px;color:var(--text-mute)}
+.g-review{font-weight:600;color:var(--accent);padding:8px 0;min-height:44px;display:inline-flex;align-items:center}
+.g-prog-head .g-fig{margin-top:10px}
+.g-summary-of{font-size:16px;font-weight:500;color:var(--text-dim)}
+.g-contrib{list-style:none;margin:12px 0 0;padding:0;border-top:1px solid var(--border)}
+.g-contrib li{display:grid;grid-template-columns:1fr auto;gap:0 12px;padding:10px 0;border-bottom:1px solid var(--border);font-size:15px}
+.g-contrib li b{font-weight:600;font-variant-numeric:tabular-nums;text-align:right}
+.g-contrib li i{grid-column:1/-1;font-style:normal;font-size:13.5px;color:var(--text-mute)}
+.g-contrib li.miss b{color:var(--text-mute)}
+/* expanded rep row */
+.g-reprow-v3{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;padding:14px;align-items:start}
+.g-rr-id{grid-column:1/-1}
+.g-rr-fig,.g-rr-need{min-width:0}
+.g-rr-l{display:block;font-size:13px;color:var(--text-mute);margin-bottom:2px}
+.g-rr-fig b,.g-rr-need b{font-size:18px;font-weight:600;font-variant-numeric:tabular-nums}
+.g-rr-u{display:block;font-size:13.5px;color:var(--text-mute)}
+.g-rr-bar{grid-column:1/-1}
+.g-rr-bar .g-reprow-bar{display:block;min-width:0;margin-bottom:4px}
+.g-rr-pct{font-size:13.5px;color:var(--text-mute)}
+.g-rr-act{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.g-rr-act .g-reprow-more{grid-column:auto;min-height:44px;padding:6px 2px;font-size:15px;font-weight:600}
+.g-reprow-v3 .g-reprow-detail{grid-column:1/-1}
+@media(min-width:900px){
+  .g-reprow-v3{grid-template-columns:minmax(180px,1.4fr) minmax(120px,1fr) minmax(110px,.8fr) minmax(170px,1.2fr) auto;align-items:center}
+  .g-rr-id,.g-rr-bar,.g-rr-act{grid-column:auto}
+  .g-rr-act{flex-direction:column;align-items:flex-end}
+}
+/* Lytt records */
+.lq-title{margin:14px 2px 6px;font-size:16px;font-weight:600}
+.lq-title b{font-weight:600;color:var(--text-mute);margin-left:4px}
+.lq-acct{border:1px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden}
+.lq-head{display:flex!important;flex-wrap:wrap;gap:2px 10px;align-items:baseline;min-height:44px;padding:10px 12px!important}
+.lq-name{font-weight:600;font-size:16px;flex:1 1 220px;min-width:0;overflow-wrap:anywhere}
+.lq-sum{font-size:14px;color:var(--text-mute);flex:1 1 100%;padding-left:20px}
+.lq-recs{padding:4px 12px 10px}
+.lq-rec{display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;padding:10px 0;border-top:1px solid var(--border)}
+.lq-prod{grid-column:1/-1;display:flex;flex-direction:column}
+.lq-pn{font-size:15px;font-weight:500;overflow-wrap:anywhere}
+.lq-pk{font-size:13.5px;color:var(--text-mute)}
+.lq-f{display:flex;flex-direction:column;font-size:15px}
+.lq-l{font-size:13px;color:var(--text-mute)}
+@media(min-width:760px){
+  .lq-rec{grid-template-columns:minmax(0,2fr) 130px 80px}
+  .lq-prod{grid-column:auto}
+  .lq-sum{flex:0 0 auto;padding-left:0}
+}
+.g-obj-v3 .g-more{display:flex;align-items:center;gap:6px;width:auto;min-height:44px;margin-top:6px;padding:0 2px;background:none;border:0;box-shadow:none;color:var(--accent,#2F5FC4);font-size:15px;font-weight:600}
+.g-obj-v3 .g-more:hover{background:none;text-decoration:underline}
+.g-obj-v3 .g-bar{margin-top:6px}
+.g-obj-v3 .g-more+.g-more-body{margin-bottom:4px}
+.g-rr-bar .g-reprow-fill{display:block}
+
+/* ===== Detail tables: even spacing, top-aligned, no indented second lines (2026-10-05) ===== */
+.g-reprow-detail .rep-sub-inner,.g-more-body .rep-sub-inner{padding:0!important;overflow-x:auto}
+.g-reprow-detail table,.g-more-body table{width:100%;border-collapse:collapse;table-layout:auto;margin:0}
+.g-reprow-detail th,.g-more-body th{text-align:left;font-size:13px;font-weight:600;color:var(--text-mute);padding:10px 14px;border-bottom:1px solid var(--border);white-space:nowrap}
+.g-reprow-detail td,.g-more-body td{padding:11px 14px;vertical-align:top;line-height:1.45;font-size:14.5px;border-bottom:1px solid var(--border);overflow-wrap:anywhere}
+.g-reprow-detail td:first-child,.g-more-body td:first-child{font-weight:500;min-width:180px}
+.g-reprow-detail th.num,.g-reprow-detail td.num,.g-more-body th.num,.g-more-body td.num{text-align:right;white-space:nowrap}
+.g-reprow-detail td .no-lines,.g-more-body td .no-lines{display:block;padding:0;margin:2px 0 0;font-size:13.5px;color:var(--text-mute)}
+.g-reprow-detail .todo-tag,.g-more-body .todo-tag{color:var(--text-mute)}
+.g-reprow-detail tr.focus-row td,.g-more-body tr.focus-row td{background:transparent}
+@media(max-width:640px){
+  .g-reprow-detail table,.g-more-body table{display:block}
+  .g-reprow-detail thead,.g-more-body thead{display:none}
+  .g-reprow-detail tbody,.g-more-body tbody{display:block}
+  .g-reprow-detail tr,.g-more-body tr{display:block;padding:10px 2px;border-bottom:1px solid var(--border)}
+  .g-reprow-detail td,.g-more-body td{display:block;border:0;padding:3px 12px;min-width:0!important}
+  .g-reprow-detail td[data-l]::before,.g-more-body td[data-l]::before{content:attr(data-l);display:block;font-size:12.5px;color:var(--text-mute);font-weight:400}
+}
+
+/* ===== Centered tiles (2026-10-05): title, figure, progress ===== */
+.g-prog-head{text-align:center;position:relative}
+.g-prog-head .g-prog-top{justify-content:center;position:relative;padding:0 28px}
+.g-prog-head .g-prog-name{flex:0 1 auto;text-align:center;font-size:19px}
+.g-prog-head .g-reprow-dm{display:block;margin-top:2px;text-align:center}
+.g-prog-head .g-chev{position:absolute;right:0;top:2px}
+.g-prog-head .g-fig{justify-content:center;text-align:center;margin-top:12px}
+.g-prog-head .g-fig-u{text-align:center}
+.g-prog-head .g-bar{margin-left:auto;margin-right:auto;max-width:560px}
+.g-prog-head .g-bar-cap{text-align:center}
+.g-prog-head .g-need{text-align:center}
+.g-prog-head .g-meta{flex-direction:column;justify-content:center;gap:0;align-items:center;margin-top:8px}
+.g-prog-head .g-review{justify-content:center;min-height:44px}
+.g-obj-v3{text-align:center}
+.g-obj-v3 .g-obj-head{flex-direction:column;align-items:center;gap:8px}
+.g-obj-v3 .g-obj-sub{text-align:center}
+.g-obj-v3 .g-fig{justify-content:center}
+.g-obj-v3 .g-fig-u{text-align:center}
+.g-obj-v3 .g-bar{margin-left:auto;margin-right:auto;max-width:560px}
+.g-obj-v3 .g-meta{justify-content:center}
+.g-obj-v3 .g-more{justify-content:center;margin-left:auto;margin-right:auto}
+.g-obj-v3 .g-more-body,.g-obj-v3 .g-subs{text-align:left}
+@media(max-width:520px){
+  .g-prog-head{padding:16px 14px}
+  .g-fig-n{font-size:34px}
+  .g-obj-v3{padding:16px 14px}
+}
+
+/* MPO supplier marks (2026-10-05) */
+.g-logos{display:flex;justify-content:center;align-items:center;gap:8px;margin:0 0 10px}
+.g-logo{height:40px;max-width:150px;width:auto;object-fit:contain;background:#fff;border-radius:8px;padding:5px 8px;box-sizing:content-box}
+
+/* ===== READABILITY v4 (2026-10-06): goal band, Current / Still Needed, contrast ===== */
+.g-obj-v4{text-align:center}
+.g-obj-v4 .g-obj-head{flex-direction:column;align-items:center;gap:4px;margin-bottom:12px}
+.g-obj-v4 .g-obj-name{font-size:19px;font-weight:600;color:var(--text)}
+.g-obj-v4 .g-obj-sub{margin:0 0 6px;font-size:14px;color:var(--text-dim)}
+.g-goal{margin:0 auto 14px;max-width:560px;padding:10px 14px;border-radius:10px;background:var(--card-alt,var(--kdh-surface-2));border:1px solid var(--border)}
+.g-goal-l{font-size:13.5px;font-weight:600;color:var(--text-dim)}
+.g-goal-v{font-size:20px;font-weight:600;line-height:1.25;color:var(--text);font-variant-numeric:tabular-nums}
+.g-goal-why{margin-top:2px;font-size:14px;color:var(--text-dim)}
+.g-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:560px;margin:0 auto 10px}
+.g-stat{display:flex;flex-direction:column;align-items:center;gap:2px}
+.g-stat-l{font-size:13.5px;font-weight:600;color:var(--text-dim)}
+.g-stat-v{font-size:30px;font-weight:600;line-height:1.1;color:var(--text);font-variant-numeric:tabular-nums}
+.g-stat-of{font-size:19px;font-weight:500;color:var(--text-dim)}
+.g-stat-u{font-size:14px;color:var(--text-dim)}
+.g-stat.good .g-stat-v{color:var(--good)}
+.g-obj-v4 .g-bar{height:10px;margin:4px auto 0;max-width:560px;background:var(--input-bg,var(--kdh-surface-2));box-shadow:inset 0 0 0 1px var(--border)}
+.g-obj-v4 .g-bar-cap{margin-top:6px;font-size:14px;color:var(--text-dim)}
+.g-deadline{margin-top:8px;font-size:15px;color:var(--text)}
+.g-deadline b{font-weight:600}
+.g-elig{display:flex;align-items:center;justify-content:center;max-width:320px;min-height:44px;margin:12px auto 0;padding:0 16px;border-radius:10px;border:1px solid var(--accent);color:var(--accent);background:transparent;font-size:15px;font-weight:600;text-decoration:none}
+.g-elig:hover{background:var(--accent-soft)}
+.g-elig:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.g-obj-v4 .g-weight{justify-content:center;margin-top:10px;font-size:13.5px;color:var(--text-dim)}
+.g-obj-v4 .g-more{margin-top:2px}
+.g-full{margin:0 0 10px;font-size:14px;color:var(--text)}
+.g-full span{display:block;font-size:13px;font-weight:600;color:var(--text-dim)}
+@media(max-width:520px){ .g-stat-v{font-size:28px} .g-goal-v{font-size:19px} }
+/* contrast on the older pieces that remain (manager tiles, rep rows) */
+.g-fig-of,.g-fig-u,.g-bar-cap,.g-meta,.g-obj-sub,.g-rr-l,.g-rr-u,.g-rr-pct{color:var(--text-dim)}
+.g-fig-n,.g-rr-fig b,.g-rr-need b{color:var(--text)}
+.g-bar{box-shadow:inset 0 0 0 1px var(--border)}
+
+/* ===== Detail tables fit their content (shared/fit-tables.js) ===== */
+.kf-off{display:none!important}
+.kf-note{margin:6px 2px 4px;font-size:13.5px;color:var(--text-dim)}
+.g-more-body .rep-sub-inner table,.g-reprow-detail .rep-sub-inner table,.g-more-body table,.g-reprow-detail table{width:auto!important;min-width:min(100%,360px)!important;max-width:100%}
+.g-more-body th,.g-reprow-detail th{color:var(--text-dim);white-space:normal}
+.g-more-body td,.g-reprow-detail td{white-space:normal!important;color:var(--text)}
+.g-more-body td:first-child,.g-reprow-detail td:first-child{min-width:0}
+.g-more-body th.num,.g-more-body td.num,.g-reprow-detail th.num,.g-reprow-detail td.num{white-space:nowrap!important;padding-left:28px;font-variant-numeric:tabular-nums}
+@media(max-width:640px){
+  /* one or two columns: stays a table -- name left, number right, header kept */
+  .g-more-body table.kf-2,.g-reprow-detail table.kf-2{display:table!important;width:100%!important}
+  .g-more-body table.kf-2 thead,.g-reprow-detail table.kf-2 thead{display:table-header-group!important}
+  .g-more-body table.kf-2 tbody,.g-reprow-detail table.kf-2 tbody{display:table-row-group!important}
+  .g-more-body table.kf-2 tr,.g-reprow-detail table.kf-2 tr{display:table-row!important;padding:0}
+  .g-more-body table.kf-2 th,.g-more-body table.kf-2 td,.g-reprow-detail table.kf-2 th,.g-reprow-detail table.kf-2 td{display:table-cell!important;padding:10px 8px;border-bottom:1px solid var(--border)}
+  .g-more-body table.kf-2 td::before,.g-reprow-detail table.kf-2 td::before{content:none!important}
+  /* more columns: one compact labelled record per row, two facts across */
+  .g-more-body table.kf-n tr,.g-reprow-detail table.kf-n tr{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:4px 12px;padding:10px 4px}
+  .g-more-body table.kf-n td,.g-reprow-detail table.kf-n td{padding:2px 4px!important}
+  .g-more-body table.kf-n td:first-child,.g-reprow-detail table.kf-n td:first-child{grid-column:1/-1;font-size:15px}
+  .g-more-body table.kf-n td:first-child::before,.g-reprow-detail table.kf-n td:first-child::before{content:none}
+  .g-more-body table.kf-n td.num,.g-reprow-detail table.kf-n td.num{text-align:left;width:auto;padding-left:4px}
+  .g-more-body td[data-l]::before,.g-reprow-detail td[data-l]::before{color:var(--text-dim)}
+}
+.g-obj-v4 .g-more-body.open{width:fit-content;max-width:100%;margin-left:auto;margin-right:auto}
+
+/* Carbliss Buying Accounts card (2026-10-06): two centered tiles, program period + since launch */
+.g-cb-tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:560px;margin:0 auto 10px}
+.g-cbt{display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px 10px;border-radius:10px;background:var(--card-alt,var(--kdh-surface-2));border:1px solid var(--border)}
+.g-cbt-r{font-size:14px;color:var(--text-dim);line-height:1.3;text-align:center}
+.g-cbt .g-stat-v{margin-top:4px}
+.g-cbt-p{font-size:20px;font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums}
+.g-cbt .g-bar{width:100%;height:8px;margin:6px 0 0;background:var(--input-bg,var(--kdh-surface-2));box-shadow:inset 0 0 0 1px var(--border)}
+.g-cb-wait{padding:14px;font-size:15px;color:var(--text-dim);text-align:center}
+.g-cb-card .g-bar-cap{max-width:560px;margin:6px auto 0}
+@media(max-width:430px){ .g-cb-tiles{gap:8px} .g-cbt{padding:10px 6px} .g-cbt .g-stat-v{font-size:26px} .g-cbt .g-stat-of{font-size:16px} }
+.g-cb-goal{margin:8px auto 0;font-size:15px;color:var(--text)}
+.g-cb-goal b{font-weight:600}
+
+/* PAGE STANDARD (2026-10-07): one 960px centered column, centered header, short card copy */
+.g-viewbar{max-width:960px;padding:0 16px}
+.monthbar,main,header,.topbar{max-width:960px!important;padding-left:16px!important;padding-right:16px!important;box-sizing:border-box}
+.monthbar{justify-content:center}
+.g-rephead{text-align:center}
+.g-rephead .g-sub{font-size:14px;color:var(--text-dim);margin-top:6px}
+.g-obj-v4 .g-weight{font-size:14px}
+.g-obj-v4 .g-pill{font-size:14px}
+.g-obj-v4 .g-deadline{margin-top:12px}
+.g-obj.notstarted:not(.g-obj-v3){text-align:center}
+.g-obj.notstarted:not(.g-obj-v3) .g-tags{justify-content:center}
+header{text-align:center}
+header .eyebrow{display:none}
+header h1{font-size:clamp(24px,5vw,28px)!important;font-weight:600!important}
+header .sub{font-size:14px}
+header .updated{justify-content:center;font-size:14px!important;letter-spacing:0!important;font-family:inherit!important}
+.g-step-head{text-align:center}
+.g-actions{max-width:100%}
+header{padding-top:24px!important}
+/* Carbliss program card (2026-10-07): company tiles from the leaderboard in the header */
+.g-cb-co{margin:14px 0 8px}.g-cb-co .cbx-h{font-size:20px}
+.g-prog-link{text-decoration:none;color:inherit}.g-prog-link .g-chev{font-size:22px}
+.g-prog-cb .g-cb-co{margin-top:2px}
+
+/* DETAILS + POTENTIAL ACCOUNTS (2026-10-08, "Option 2 -- Shared Product List"): two
+   adjacent controls under the MPO summary -- Details (muted amber) and Potential Accounts
+   (muted green; it marks the control, never earned credit) -- each opening its own panel
+   inline; one open at a time (guided.js). Inside Potential Accounts: one shared Qualifying
+   Products fold, compact account rows, one account open at a time. */
+.g-obj{--act-d-bg:#FFF6E5;--act-d-bd:#C9922F;--act-d-tx:#7A4A00;--act-p-bg:#EAF6EE;--act-p-bd:#3F9563;--act-p-tx:#145C34}
+[data-theme="dark"] .g-obj{--act-d-bg:rgba(228,162,82,.10);--act-d-bd:#B9853F;--act-d-tx:#F2C27A;--act-p-bg:rgba(62,157,104,.12);--act-p-bd:#3E9D68;--act-p-tx:#86D9A8}
+.g-actwrap{margin:14px auto 0;max-width:640px}
+.g-acts{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.45fr);gap:10px}
+.g-acts.one{grid-template-columns:minmax(0,1fr);max-width:340px;margin:0 auto}
+.g-act{display:flex;align-items:center;justify-content:center;gap:8px;min-height:46px!important;padding:6px 12px;border-radius:12px;border:1.5px solid;
+  font:inherit;font-size:15.5px;font-weight:600;line-height:1.2;cursor:pointer;text-align:center;box-shadow:none;width:100%}
+.g-act > span{min-width:0}
+.g-act-d{background:var(--act-d-bg);border-color:var(--act-d-bd);color:var(--act-d-tx)}
+.g-act-p{background:var(--act-p-bg);border-color:var(--act-p-bd);color:var(--act-p-tx)}
+.g-act:hover{filter:brightness(.97)} [data-theme="dark"] .g-act:hover{filter:brightness(1.15)}
+.g-act:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.g-chev2{width:18px;height:18px;flex:none;transition:transform .15s}
+.g-act.open .g-chev2,.pa-acct.open > .pa-row-btn .g-chev2,.pa-qp[open] > summary .g-chev2{transform:rotate(180deg)}
+.g-pot-n{font-variant-numeric:tabular-nums;white-space:nowrap}
+.g-act-p > span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.g-obj-v4 .g-act-body.open,.g-obj-v2 .g-act-body.open{display:block;width:100%;max-width:640px;margin:12px auto 0;text-align:left}
+.pa-note{margin:10px 2px 8px;font-size:14px;line-height:1.45;color:var(--text-dim)}
+.pa-note.flag{color:var(--text);padding:8px 10px;border-radius:8px;background:var(--card-alt,var(--kdh-surface-2));border:1px solid var(--border)}
+/* shared Qualifying Products fold + account rows: one row style */
+.pa-qp,.pa-acct{border:1px solid var(--border);border-radius:10px;background:var(--card,var(--kdh-surface));margin:0 0 8px}
+.pa-qp > summary,.pa-row-btn{display:flex;align-items:center;gap:10px;width:100%;min-height:48px!important;padding:8px 12px;cursor:pointer;list-style:none;
+  background:none;border:0;font:inherit;color:var(--text);text-align:left}
+.pa-qp > summary::-webkit-details-marker{display:none}
+.pa-qp > summary > span{flex:1;font-size:15.5px;font-weight:600}
+.pa-qp > summary .g-chev2,.pa-row-btn .g-chev2{color:var(--text-dim)}
+.pa-row-btn:focus-visible,.pa-qp > summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:10px}
+.pa-rt{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.pa-name{font-size:16px;font-weight:600;color:var(--text);overflow-wrap:anywhere}
+.pa-town{font-size:14px;color:var(--text-dim)}
+.pa-list{margin-top:4px}
+.pa-acct.open{border-color:var(--border-2,var(--border))}
+.pa-det{margin:0 8px 8px;padding:10px 12px;border-radius:8px;background:var(--card-alt,var(--kdh-surface-2));border:1px solid var(--border)}
+.pa-req{font-size:15.5px;font-weight:600;color:var(--text)}
+.pa-sub{margin-top:2px;font-size:14px;line-height:1.45;color:var(--text-dim)}
+.pa-why{color:var(--text-dim)}
+.pa-sl{margin-top:8px;font-size:13.5px;color:var(--text-dim)}
+.pa-plist,.pa-opts{list-style:none;margin:0;padding:0}
+.pa-plist{padding:0 12px 6px}
+.pa-opts{margin-top:6px}
+.pa-plist li,.pa-opts li{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:2px 12px;padding:8px 0;border-top:1px solid var(--border);font-size:14.5px;line-height:1.4;color:var(--text)}
+.pa-plist li:first-child{border-top:1px solid var(--border)}
+.pa-pn{flex:1 1 220px;min-width:0;overflow-wrap:anywhere}
+.pa-pid{font-size:13.5px;color:var(--text-dim);font-variant-numeric:tabular-nums}
+.pa-more summary{cursor:pointer;color:var(--accent);font-size:14px;font-weight:600;min-height:36px;display:flex;align-items:center;list-style:none}
+.pa-more summary::-webkit-details-marker{display:none}
+.pa-seeall{display:inline-flex;align-items:center;min-height:36px!important;margin-top:6px;padding:0;background:none;border:0;font:inherit;font-size:14px;font-weight:600;color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.pa-has{margin-top:8px;font-size:14px;line-height:1.45;color:var(--text)}
+.pa-has span{color:var(--text-dim)}
+.pa-open{display:flex;width:max-content;align-items:center;min-height:36px;margin-top:4px;font-size:14px;font-weight:600;color:var(--accent);text-decoration:none}
+.pa-open:hover{text-decoration:underline}
+@media(max-width:430px){ .g-acts{gap:8px;grid-template-columns:minmax(96px,.85fr) minmax(0,2fr)} .g-act{font-size:15px;padding:6px;gap:4px} .pa-det{margin:0 6px 6px;padding:10px} }
+@media(max-width:389px){ .g-act{font-size:14px} }
+/* manager-built objectives (2026-10-08) */
+.g-tag.test,.g-weight.g-test{color:var(--kdh-warn,#B54708);font-weight:700}
+.cp-table{width:100%;border-collapse:collapse;font-size:14.5px;margin:8px 0}.cp-table th,.cp-table td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--border);vertical-align:top}.cp-table th{font-weight:600;color:var(--text-dim)}.cp-table tr.cp-note td{color:var(--text-dim);font-size:13.5px}.cp-sup{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:999px;font-size:12.5px;font-weight:600;color:var(--kdh-warn,#B54708);border:1px solid currentColor}.cp-foot{font-size:13.5px;color:var(--text-dim)}

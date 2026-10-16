@@ -290,6 +290,239 @@ Postgres 16 (see supabase/README.txt). Tests: scratchpad login_pw_test.mjs (new,
 legacy code, returning, wrong password, forgot with reload, Confirm
 email still on, already registered, migration missing) + login_test.mjs.
 
+REMEMBER ME (2026-09-30, Gavin: "a box with Remember password after they
+enter their password for the 1st time"): both password steps (`#setForm`
+create-password and `#pwForm` Welcome back) carry "Remember me on this
+device" (`#rememberNew` / `#rememberPw`, checked by default, mirrored,
+the choice kept in localStorage `kdh_remember`). `finish()` reads it:
+checked = 30-day cookies (as before) and supabase-js keeps its session;
+unchecked = SESSION cookies (no Max-Age) and `forgetStoredSession()` drops
+the `sb-*` localStorage keys after sign-in, so closing the browser ends
+it. The page never stores the password itself -- the label says "remember
+me", not "remember password", for that reason; the browser's own manager
+offers to save it (autocomplete current-/new-password). Test: scratchpad
+remember_test.mjs (both steps, 30-day vs session cookies, storage
+dropped, choice sticks).
+
+## Stay-signed-in hardening (2026-10-05)
+
+`refreshSession()` (api/session.js) now calls only a definite 4xx (not 429)
+"invalid" -- the one case that clears kdh_rt. A 429, 5xx or dropped
+connection is "unavailable": retried once after 400 ms, the cookie kept, the
+page load sent to /login/?why=unavailable, where `resume()` asks GET
+/api/session (retried 3x) and goes straight in. Before, a 429 wiped the
+long-lived cookie. A dead token redirects with `why=revoked`. /login/ also
+retries the hand-off POST 3x (10 s timeout) so one dropped reply no longer
+leaves a rep on an hour-long fallback sign-in. Root cause still on Gavin:
+JWT expiry (ROADMAP "Session length") -- fewer rotations, fewer lost ones.
+
+## "Not real time" notice for reps (2026-10-05)
+
+`liveNotice()` in shared/kdh-user.js puts an amber, non-dismissible WARNING
+under the top bar on every page a rep (or a manager previewing one) opens:
+this site does NOT update in real time, use the Encompass dashboard
+(DashboardID=184193) for live incentive / MPO data. Managers do not see it.
+Remove it by deleting that function and its one call in chrome().
+
+## September is on the Incentives "Previous Months" toggle (2026-10-05)
+
+hub.js `INC_MONTHS`: pills read "August 2026" / "September 2026"; the
+September placeholder note is gone, so September lists the programs that
+ENDED in it (`endedIn`, period.end in Sep 2026: 9 programs for a typical
+rep). Programs still running into October stay in the live list above.
+MPOs need no edit: when October's month is added to the MPO programs.js
+MONTHS array and its files are dropped in, `mpoRepMonth` makes October the
+current month and September becomes a stepped-back month automatically (the
+MPO tracker pages default to the LAST month in MONTHS). Next month: add the
+October pill here once its programs have ended. hub.js tag 20261005c.
+
+## October 2026 Off-Premise MPO tab (2026-10-05)
+
+October_2026_MPO.docx: Constellation 75% Corona Innovation Distro (30%, 'pct_of_goal'
+with an ASSIGNED per-rep goal: the "( Innovation SKUs Placements 9/1/2026 - 11/30/2026 )
+Goals" column of RDE's "Constellation Innovation Fall 2026 OFF w Goals" export
+(MPOs/off-prem/constellation_innovation_fall.csv) = 100% of the INCENTIVE goal; the MPO
+target is 75% of it (Gavin, 2026-10-05, corrected -- the first build used a one-month
+export and screenshot goals). DISPLAY (Gavin, 2026-10-05): the goal shown is the FULL 100% Goals-column number ("77 of 86"); reaching 75% of it (65) is what makes the card "Achieved" -- the bar fills toward 100%, status / "still needed" read against the 75% bar (metricFor `needText` / hub `needNum`). Progress = the same export's 9/1-11/30 placements, so it
+runs through Nov 30 (periodEnd). Each rep's block starts with a SUBTOTAL row (first
+product's name, carries the goal) that is dropped when it equals the rest; reps with no
+goal (Alisa Acciardi, John Neukum, John O'Donoghue, Dylan Rubino) are not scored.
+BBC 50% Buying Accounts Lytt (30%, 'pct_of_base' 0.5, 1+ SKU, built 2026-10-05 from lytt_october.csv over sales_reps_customer_base_core.csv MINUS Whole Foods -- they cannot sell alcohol; the removal is Lytt-only, Keystone / Fever Tree still read the shared file; Lytt buyers outside a rep's base are NOT counted and printed; see the CUSTOMER BASE REFRESH note below for the 2026-10-05 base), Molly's
+(2) New Placements (15%) and Wine (1) New Placement (15%) as 'new_placements' on
+the two-window exports (base 7/1-9/30, current 10/1-10/31), POS (5) Cooler Door
+Stickers (10%, awaiting until October's iSellBeer Promos_Report is merged with
+generate_2026-09.py --merge-cooler-doors, then flip hasData). Run
+`python3 MPOs/off-prem/generate_2026-10.py` (rebuilds per-rep copies). programs.js
+OBJECTIVES_2026_10 + a MONTHS entry; objectives may carry `awaiting`/`awaitingNote`
+(hub shows "Awaiting the first export", not "verified by hand") and `typeNote`. The
+objective NAME's prefix before " – " sets the hub supplier (SUPPLIER_ALIAS).
+On-Premise October (docx: Carbliss 40%, BBC Oktoberfest conversion, Spirits
+follow-up, iSellBeer 5 photos) is NOT built yet.
+
+## CUSTOMER BASE REFRESH, 2026-10-05 (REMEMBER THIS)
+
+Gavin sent RDE's "Entire Core Market Off Prem Accts" export (513 accounts: +25 vs the
+488 on file, 0 closed, no rep changes; 23 carry the "Sales" area placeholder, one extra
+column "Sales Route Num"). It was applied through territory-accounts/refresh_customer_bases.py
+-- saved over territory-accounts/core_market_off_prem.csv -- which now accepts "Sales" in
+THAT export only (CORE_OFF_AREAS) and no longer keeps an old out-of-scope row beside a
+fresh row with the same key. It updated ALL THREE bases: MPOs/off-prem/
+sales_reps_customer_base_core.csv (Lytt's / Keystone's denominator), MPOs/on-prem/
+sales_reps_customer_base.csv (on-prem off-premise exclusion) and incentive-tracking/data/
+customer_base_full.csv (+25 each; 31 accounts have a blank Draft Package, read as not
+draft-capable). Then re-run: MPOs/off-prem/generate_2026-10.py and incentive-tracking/
+generate.py (14 program blobs moved -- mostly refreshed 2026 case volumes on target lists
+plus the 25 new accounts). Closed months (Aug / Sep MPO files) were NOT rebuilt, and August / September INCENTIVES were restored to what was published (Gavin, 2026-10-05): generate.py now restores them from incentive-tracking/data/frozen/ on every run (KDH_UNFREEZE=1 re-opens a month), and the refreshed versions are filed in incentive-tracking/data/refreshed_archive/. Only October's incentive blob moved (lagunitas_sprint, industrial_arts, mabi_single_serve). The 25
+added: Chris Payton, Dan Lagala, Derrick Laws, Javier Melo, Klejdi Lamo, Robin Feldman 1
+each; Dave Ehlers, Pablo Lopez, Shane Barreca, Jayson Romine 2 each; Matt Powierski 5;
+Phil Ernst 5 (incl. USA Wine Traders Paramus 80004, a Lytt buyer); and 1 for the house
+"Default". RULE (Gavin): Whole Foods accounts are removed for the Lytt incentive ONLY
+(they cannot sell alcohol) -- done in MPOs/off-prem/generate_2026-10.py, not in the shared
+files. Next refresh: save the new export over territory-accounts/core_market_off_prem.csv,
+run `python3 territory-accounts/refresh_customer_bases.py --dry-run`, review, run it for
+real, then the two generators above.
+
+## October 2026 On-Premise MPO tab + "latest month" defaults (2026-10-05)
+
+OCTOBER_ON_PREM_2026_MPO.docx (25% each): iSellBeer (5) feature photos is BUILT (2026-10-13):
+`build_feature_photos()` in MPOs/on-prem/generate_2026-10.py reads the cumulative iSellBeer archive
+MPOs/on-prem/isellbeer_feature_photos.xlsx (seeded from Promos_Report_52; weekly pulls merge with
+`python3 MPOs/on-prem/generate_2026-10.py --merge-photos Promos_Report_NN.xlsx`), counts EVERY
+October row whatever its element (Gavin: "count all the data"), scored per DISTINCT PHOTO, except
+PHOTO_EXCLUDED_ACCOUNTS (230915 Crystal Sprs/Wild Turkey, 123 Crystal Springs Rd -- Gavin: leave
+out). on-prem programs.js gained buildPhotosDataset / lineTablePhotos (ported from off-prem). CARBLISS 40% buying accounts is
+BUILT (2026-10-05): a 'followup' objective with pct 0.4 over MPOs/on-prem/
+core_market_on_prem_accts.csv (RDE "Entire Core Market On Prem Accts", 1,047 accounts for the
+roster) as the denominator, DONE = bought Carbliss 9/1-10/31 per carbliss_buying_accounts.csv
+(September carries over); all 127 buyers were in their rep's base. That on-prem export was
+used for Carbliss ONLY -- the territory-accounts three-file refresh was NOT run for it (offer
+it to Gavin). Hub: followup objectives list their own base accounts as targets / done
+accounts as credited (hub.js nextAccounts / closedFor / buyingFor). BBC Oktoberfest Draft
+Conversion and Wine & Spirits Spirits Follow-Up are a NEW on-prem objective type,
+'followup': per rep a list of base accounts, each done or not (target = every base
+account, `pct:1`). Run `python3 MPOs/on-prem/generate_2026-10.py` (rebuilds per-rep
+copies). Conversion (Gavin's windows, 2026-10-05): base = accounts with NET Summer
+Ale keg units > 0 loaded 4/1-7/17, done = NET Octoberfest keg units > 0 loaded
+8/1-10/23 (a keg returned is nothing; house "reps" Default / Office Tell Sell
+dropped). Spirits: base = accounts with a
+7/1-9/30 spirits placement, done = any October placement at that account; accounts
+new in October are not in the base. ASSUMPTION to confirm: "complete" / "all" =
+100% of the rep's own list. Inputs: sam_adams_kegs_summer_to_octoberfest.csv,
+spirits_followup_placements.csv. Defaults: the Incentive Tracker's DEFAULT_MONTH_KEY
+is now the LAST entry of MONTHS (no more editing it each month), the MPO trackers
+already default to the last month, and the hub's Previous Months toggle opens on the
+latest ended month (September).
+
+## Carbliss MPO tracker: fixed window, house total, penetration (2026-10-06)
+
+`carbliss-mpo/` (page + `generate.py` + README.txt). Gavin's brief: rebuild the
+Carbliss on-premise MPO around launch-period buying, NOT a rolling L90. PROGRAM
+PERIOD Aug 1 - Oct 30, 2026 inclusive (fixed; "Program Period: Aug 1-Oct 30,
+2026"); launch = first Carbliss load sheet on file (Jun 2, 2026, corroborated by
+the rolling master: no Carbliss sales before June 2026). Data = two EXISTING files,
+read in place: carbliss-onprem-targets/carbliss_buyers_l90.csv (load-sheet dates,
+Buyers 2026 flag; ON-PREMISE only, month-by-month equal to the master's on-prem
+buyers) and MPOs/on-prem/core_market_on_prem_accts.csv (the denominator, same base
+the October MPO's Carbliss objective uses, house reps Default / Office Tell Sell
+dropped). Qualifying purchase = a load-sheet row with Buyers 2026 > 0, any Carbliss
+flavor, counted by CustomerID once; the RDE flag does not net same-month returns
+(2 accounts, documented). Page: house card ("Carbliss Buying Accounts / N Accounts
+Bought During the Program Period / Aug 1-Oct 30 . Sales Through <latest load-sheet
+date>"), the rep card ("X of Y Assigned Accounts Bought Carbliss / Z% Account
+Penetration"), search + All Accounts / Program Buyers / Program Nonbuyers, rows
+Account | Bought Aug 1-Oct 30 | Bought Since Launch | Last Carbliss Purchase (check /
+X text labels; "Unknown" only if coverage starts after launch), stacked labelled
+rows under 760px. Managers: rep groups (collapsible) + rep select, DM scoped to
+their team (kdhTeam), house total stays company-wide. Reps: served their own
+`rep/<key>/program.json` (tools/rep_slices.py carbliss_mpo + middleware
+repSlicePath / SLICE_DIRS / REP_PATHS), pinned by kdhMatchName, fail closed.
+`generate.py --finalize` writes data/final.json (denied to reps, in .vercelignore):
+later runs read the program-period fields from it so nothing after Oct 30 can
+change the result, while Since Launch / Last Purchase keep updating. State: filters
+in the hash, groups + scroll in sessionStorage; account links carry from= / fl=.
+Accounts missing from the Account page's books (21) are listed unlinked. NOT
+changed: the October MPO objective "Carbliss 40% buying accounts" (Sep 1-Oct 31,
+40% target) -- a different definition; ROADMAP asks Gavin which to keep. Tests
+(scratchpad): cm_test.mjs (rep / phone / dark / manager / DM / preview / unmatched),
+cm_mw_test.mjs (real middleware.js with stubbed Supabase). Tags: carbliss-mpo.css /
+.js 20261006d, kdh-user.js 20261006b (new Programs sidebar item "Carbliss MPO").
+
+Follow-up (2026-10-06, Gavin): the tracker now LIVES IN THE CARD. Program period is Aug 1 - OCT 31
+(PERIOD_END in generate.py; supersedes the Oct 30 above). The "Carbliss MPO" Programs sidebar item and the
+rep / manager home tiles are REMOVED; /carbliss-mpo/ still exists (data + page) but nothing links to it.
+The October on-premise "Carbliss Buying Accounts" card (guided.js `carblissCard` / `hydrateCarbliss`, only
+for key carbliss in 2026-10 on the on-prem page) shows two centered tiles against the rep's own base --
+Program Period (Aug 1-Oct 31) "X of Y, Z%" and Since Launch (Jun 2 - latest load sheet) "X of Y, Z%",
+read from carbliss-mpo/data/program.json (a rep is served their own copy) -- plus the credit pill,
+deadline and weight; NO goal band, Current / Still Needed, View Eligible Accounts or Details; the one
+link is "See Leaderboard" -> /carbliss-onprem-targets/. The 40% goal still drives the credit pill
+(metricFor untouched). That leaderboard page was reformatted (a CSS block at the end of its <style>):
+everything centered, larger type, tiles / leaderboard rows / buyers / toolbar centered, and the
+accounts table is one labelled centered block per account under 900px (no sideways scroll; a "Sort by"
+select replaces the hidden header sorting; Rep hidden for reps). Generator untouched, so it survives
+refreshes. Tests (scratchpad): card_test.mjs, lb_test.mjs. Tags: guided.js 20261006d, guided.css
+20261006b, kdh-user.js 20261006c.
+
+Leaderboard page rebuilt (2026-10-06, Gavin): /carbliss-onprem-targets/ is now "Carbliss Leaderboard" (nav label,
+rep home tile, manager card renamed). The Sun Cruiser / White Claw pitch TABLE, its toolbar, the three stat tiles
+(target / opportunity / without SC-WC) and the pitch panel are REMOVED (the generator still embeds that data,
+unused). The win-back list shows "last <date>" with no day counts. The REP LEADERBOARD ranks reps by ROLLING-90
+buyers over the rep's whole on-premise account base (the MPO base): "34 of 122 accounts · 28%", ties on share
+then name, from `board` in carbliss-mpo/data/program.json (counts per rep, no names; every rep's copy carries it).
+Below it, ROSTER: sales rep -> customers with L90 Buyer / YTD Buyer (since launch) / Last Purchase, for ALL of
+the rep's assigned accounts (a rep sees only their own group, a DM their team, a manager every rep as
+collapsible groups; filters search / rep / All - L90 buyers - Fell off L90 - Never bought). program.json
+accounts gained `l90` (the RDE Buyers L90 flag) and the file gained `board`. The old goal bar and buyers card stay.
+Tags: kdh-user.js 20261006d. Tests (scratchpad): lb2_test.mjs.
+L90 REDEFINED (Gavin, same day): on the leaderboard page, the MPO card and the roster, "L90" = bought in the FIXED program
+period Aug 1 - Oct 31 (program.json `prog`), NOT the RDE rolling-90 flag (that flag is no longer read; program.json `l90` is gone,
+`board.l90` = accounts with prog). Fell Off L90 = bought since launch but not in the period. The page reads everything from
+program.json (buyers card, bar, leaderboard, roster); the roster has Search / Sales Rep / Town / L90 Buyer / YTD Buyer filters.
+TEAM GOAL: `L90_GOAL = 331` in carbliss-mpo/generate.py (meta.goal) -- the company chases 331 L90 buyers out of the entire core
+market on-premise base (1,047). A "Team L90 Goal" bar tops the leaderboard page (160 of 331, 171 to go, "Goal 331 of 1,047 On-Premise
+Accounts") and one line sits on the MPO Carbliss card for every rep; company-wide counts only. guided.js 20261006e.
+Follow-up (same day): the leaderboard's "Show All Reps" / "Show Top 10" toggle sits top right of its card (a rep below #10 opens it
+expanded); the old Sun Cruiser / White Claw goal bar is now "<Your|Team|Company> Customer Base": YTD buyers of the
+rep's whole core-market on-premise account base ("42 of 122 Accounts"), from program.json `board`.
+
+## COPY + LAYOUT STANDARD -- every page, every time (Gavin, 2026-10-06)
+
+Reps are beer sales reps: they do not read paragraphs. For every page you build or touch:
+- SHORT COPY. Labels and numbers first. No lede paragraphs, no "how this works" essays, no restating what a
+  number already says. One short line of context at most ("Data through Oct 16, 2026", "L90 = bought in the
+  last 90 days"). Put any rule detail in a fold or the README, never on the main screen. Cut stale copy when the
+  feature it described is gone.
+- CAPITALIZATION. Title Case for page names, section headings, card titles, tile labels, column headings, buttons
+  and filter labels ("Rep Leaderboard", "L90 Buyer", "Win Back", "See Leaderboard"); sentence case only for the
+  rare explanatory line. Same word, same spelling everywhere (L90, YTD, Account / Accounts).
+- TYPE. One face (Inter via the skin). Headings 16-18px / 600, body 15-16px, secondary 14px, nothing under 14px
+  except icons; big figures 30-48px / 600-700. No all-caps, no letter-spacing.
+- LAYOUT. One centered column per page (960px, 16px side padding): header, cards, filter bar and lists share the
+  same left and right edges; no panel wider than its neighbors. Spacing steps 12 / 14 / 16px between and inside
+  cards. Centered text inside cards. Filters in one grid row (search full width on top). Phones: stack into
+  labelled blocks, never a sideways-scrolling table. Verify at 390 / 820 / 1366, light and dark, before pushing.
+- Carbliss Leaderboard (carbliss-onprem-targets/) is the reference page: its last <style> block ("PAGE STANDARD").
+
+## Boston Beer's seasonal-conversion sheets vs the RDE keg export (2026-10-05)
+
+Gavin sent Boston Beer's own "10-05-26 Sam Adams Seasonal Conversion Fall.xlsx" (per-rep
+scoreboard, 307 prior-season accounts, 264 converted = 86.0%) and "Seasonal Unconverted
+Accounts Fall.xlsx" (43 accounts, by ROUTE, no rep column) and asked whether they match the
+RDE keg export behind the October on-prem Oktoberfest MPO (335 accounts, 287 converted =
+85.7%). VERDICT: same story, not the same list. Percentages agree; the big reps are within
+1-3 accounts (Nick 79/73 vs 78/72, Allison 56/49 vs 55/48, Brian 53/50 vs 54/51, Paul 46/33
+vs 46/32, Dan 4/3 = 4/3). Differences, all explainable: (1) Boston Beer counts by ROUTE and
+leaves out package accounts Encompass keeps (Jayson 12 vs 1, Mike Ast 12 vs 8, Klejdi 5 vs
+2) and has no rows for Dave Ehlers, Phil Ernst, Shane Barreca (8 accounts); (2) its base
+window runs past 7/17 (Hapgoods bought 7/22-23 and is in their base, not ours); (3) timing:
+Straphanger and Skylands show Octoberfest loaded 10/2 in Encompass but "not converted" on
+their 10/5 sheet; (4) 5 of their 43 unconverted accounts (Chelas, Andiamo's, Masonic Temple,
+Z's Casual Dining, Knights of Columbus) are not in the Encompass keg export at all, and the two
+VFW posts sit under the Encompass house account "NJ VETERANS NETWORK RENAISSANCE FESTIVAL"
+(rep "Default"). The MPO stays on the RDE export (Gavin's windows, rep-assigned). The
+Boston Beer files can score the October INCENTIVE through
+incentive-tracking/convert_sam_adams_official.py if Gavin wants -- not loaded yet.
+
 ## Team Activity page: team/ (2026-09-28)
 
 `team/index.html` + `team/team.css` is the manager's read of the
@@ -522,10 +755,674 @@ back). What changed, and the rules that now hold:
   Half") instead of first-word fragments.
 - REP WORKSPACE: MPO tiles carry `rep=` for a manager viewing a rep
   (`setMpoHref`), so the tracker opens on that rep.
+- AS-REP MODE (2026-09-29, Gavin: "on rep view the rep can only see
+  their data"): a MANAGER who arrives at an MPO tracker or the hub with
+  `rep=` in the hash (the workspace tiles) sees that rep's page exactly
+  as the rep would -- guided.js `asRep` (+ `html.g-asrep` hides
+  .g-viewbar / .js-back / .js-startover, view forced to rep) and hub
+  `state.asRep` (Rep mode forced; no "Choose another rep", "By program"
+  or Rep/Manager toggle). The only way out is the top-bar chip's
+  "Change" (now a BUTTON: `kdhViewing(name, fn)`), which returns to the
+  picker with the manager tools back; a rep picked from the picker keeps
+  them (that is the "unless otherwise stated"). `.kdh-b.kdh-back` is now
+  a solid brand button, 40px (44px on phones). Test: asrep_test.mjs.
+MOBILE FIRST (2026-09-29, Gavin: the site is used mostly on iPad and
+iPhone -- update mobile first, then desktop): scratchpad mobile_audit.mjs
+loads 20 page/role combinations (manager, rep, manager-in-preview) at
+390x844, 820x1180 and 1180x820 with touch emulation and flags horizontal
+overflow, a top bar wider than the screen, visible text under 11.5px and
+tap targets under 34px. Rules that came out of it: the Viewing /
+Previewing chip is a DIRECT CHILD of .kdh-bar-in (kdh-user.js chrome()
+builds `chips` beside `.kdh-acts`) so below 600px it takes a full row of
+its own under badge + Back + theme + avatar; theme button 36px (40px on
+phones), chip Change / Exit preview 36-40px tall, Back 44px on phones;
+kdh-skin.css lifts the pages' 10-11px captions (Carbliss labels/th,
+tap .ct/.gl/.f-lbl/.lbl, Red Bull .lbl/.lab/.l/.rk/.tag.*) to 12.5px and
+gives every button/select/pill min-height 36px (40px under 820px); the
+Carbliss pitch panel is position:sticky inside the sideways-scrolling
+table so it reads without scrolling; and kdh-user.js `liftSmallType()`
+(+ a MutationObserver) sets font-size 12.5px !important on any visible
+text element that computes smaller, on every dashboard, after every
+re-render -- so no page can ship a caption a rep cannot read in a store.
 Screens: scratchpad smoke.mjs (14 pages x desktop/phone x light/dark,
-console errors + horizontal overflow). Tags: kdh.css/skin/rep.css
-20260929a, kdh-user.js 20260929d, hub.js/css 20260929b, guided.js/css
-20260929c.
+console errors + horizontal overflow) and mobile_audit.mjs. Tags: kdh.css/skin/rep.css
+20260929b (kdh.css) / 20260929a, kdh-user.js 20260929e, hub.js 20260929c, guided.js
+20260929d.
+
+## Mobile rep experience on the Encompass pattern + reliable "View as rep" (2026-09-30)
+
+Gavin's brief, with the Encompass incentive dashboards as the reference
+(their simple supplier tiles and program lists; NOT their MPO sections,
+banners or colours). What holds now:
+- CHROME (shared/kdh-user.js, tag 20260930a; kdh.css 20260930a): the top
+  bar is badge + page name, the Viewing / Previewing chip, the Back
+  button, and ONE account button (avatar + caret, `#kdhMenuBtn`) that
+  opens the account menu `#kdhMenu`: View as rep / Change rep + Exit
+  preview (managers), Manager home, Team activity, Rep workspace (or Rep
+  home), Dark mode / Light mode (`#kdhTheme`, now inside the menu), Sign
+  out. Theme and Sign out are no longer in the bar. A landing page carries
+  `<meta name="kdh-home">` and gets no Back button. The three landing
+  pages (root index.html, rep/index.html, team/index.html) no longer
+  carry their own static bar -- kdh-user.js injects the same one
+  everywhere. The old fixed bottom preview bar (`#kdhPreviewBar`) is GONE:
+  the only indicator is the small chip `#kdhPreviewChip` ("Previewing
+  Mike Ast · Exit"), full-width row under the bar on phones.
+- VIEW AS REP: `kdhViewAsRep()` opens `#kdhPicker`, a bottom sheet (centred
+  dialog on desktop) with a search box (`#kdhPickerSearch`) and the reps
+  grouped by DM from `shared/dm-groups.js` (loaded on demand), scoped by
+  kdhTeam for a DM, house "reps" dropped. Picking a rep writes the
+  kdh_preview cookie and goes to /rep/. Exit (`kdhExitPreview`) clears the
+  cookie and goes to the MANAGER HOME (root), never a reload in place. The
+  manager home also has a "View as rep" button (`#viewAsRepBtn`) in its
+  header; the rep home keeps the "Viewing as" select + "Preview as this
+  rep" for managers.
+- PREVIEW IS READ-ONLY: `RA.previewOf(rep)` in hub.js -- a manager
+  previewing a rep sees the rep's own Done / Follow up / Not now buttons
+  DISABLED with "Saving is off in preview — these are Mike's own marks";
+  the account list says so once. Never a live button that would stamp the
+  manager's name. ra_test.mjs checks nothing is POSTed.
+- REP HOME (rep/index.html, rep.css 20260930a): identity line (accounts +
+  top areas; own title / Reports to only on the rep's own page), a
+  "Follow-ups (N)" row (`#fuRow`) that opens the full list in place
+  (`#fuList`; each row links to that account's screen in the hub,
+  `#view=acct&prog=&n=&list=follow`), then Programs and Trackers as
+  compact rows (`.rows .row`: icon, h3, one status line, chevron; the
+  `c-*` / `s-*` ids and the status logic are unchanged). Cards (`.grid
+  a.card`) remain for the manager home.
+- HUB REP-MODE FLOW (hub.js / hub.css 20260930a): views `rep` (Incentives
+  = one `.hrow.sup` per supplier; MPO tabs = one `.hrow.prog` per
+  objective), `sup` (a supplier's programs), `detail` (the program
+  summary `screenProgramRep`: supplier line, name, status tag + deadline
+  once, "Qualifies: <sellAsk>", the `progFacts()` read -- main "6 of 8
+  accounts", need "2 more accounts needed" / "Goal met", one bar, the
+  goal rule in small type -- then rows Potential accounts / Credited
+  accounts / Follow-ups with counts, brand goals for retention programs,
+  "How it is scored" and "Progress so far" as folds), `accts` (searchable
+  list; rows = name, town · territory, one opportunity / credited line;
+  Done and Not now as folds at the foot) and `acct` (one account: facts,
+  credited lines, the rep's marks). Hash carries `sup=`, `list=`, `n=`.
+  A supplier with ONE program skips the supplier screen. `scrollMem`
+  restores the scroll position on Back; `acctQ` keeps the search text.
+  Manager Mode (desktop, `isMgr()`) keeps every old screen untouched; the
+  old rep detail page (`screenDetailRep`) is no longer reachable.
+  `progFacts()` is THE one place progress wording comes from: unit from
+  the goal text first (`unitOf`), MPO units from the objective, a
+  percent goal (Lytt) read as accounts from the tracker's
+  `buyingAccountCount` / `eligibleAccountCount` (goal = ceil(tier x
+  eligible)), never inferred from a rounded %, with "Current account
+  coverage 19.4% · Target 25%" as the rule line; house goals say so.
+- MPO TRACKERS (guided.js / guided.css 20260930a): `repObjectiveCard` is
+  the same summary -- short name, credit pill, "3 of 13 buying accounts",
+  "10 more buying accounts needed", one bar, "Goal is 40% of your
+  account base (13 of 31)", then a quiet Details fold with the full name,
+  the weight and the tracker's own drill-down. m.value / m.goal /
+  m.remaining are untouched.
+- TESTS: scratchpad preview_flow.mjs (the brief's checklist at 375 / 390 /
+  430 / 820: View as rep -> Mike Ast -> Incentives -> Boston Beer -> Lytt
+  -> Potential accounts -> Fair Lawn, Back keeps rep / list / scroll /
+  search, reload keeps the rep, Exit restores the manager, preview ==
+  real rep sign-in screen for screen, light + dark with folds open),
+  ra_test.mjs (rewritten for the account screen), fu_test / back_test /
+  ui_test / mgr_test / lock_test2 / team_test / dm_test updated for the
+  menu and chip, mgr_desktop.mjs (Manager Mode unchanged).
+
+## Accounts tab + Account page (2026-09-30)
+
+`accounts/` is the "what should I do at this account today?" page: a
+searchable list of the signed-in rep's assigned accounts (a manager: their
+team's, rep named per row, rep + "needs attention" filters) and ONE
+account page opened from the list, the rep home's follow-ups, the hub's
+account screen ("Full account page") and the Tap Tracker's account cards
+(`.acct-page-link`; the tracker now honours `#q=<name>` to land on an
+account). `accounts/README.txt` has every rule; `REPORTING_REQUEST.md` is
+the consolidated ask to Gavin. Key facts:
+- DATA IS PER REP. `accounts/generate.py` writes `data/book/<key>.js`,
+  `data/reps/<key>.json`, `data/sales/<key>/<n>.json` from the customer
+  base, the Rolling Distribution master (product x account x month, Jan
+  2025 -> last loaded month), products.csv / customers.csv, the deciles
+  file and the Tap Tracker's embedded survey. `<key>` = name key
+  (mike-ast). RUN IT after hub/generate.py, a rolling month, or a tap
+  rebuild. 45 MB of generated JSON is git-tracked (one file per account).
+- ENFORCED IN THE MIDDLEWARE: for a rep, `/hub/data/accounts.js` is
+  REWRITTEN (`x-middleware-rewrite`) to their own `data/book/<key>.js`,
+  and any `data/{book,reps,sales}/<other key>` request is 403. `check()`
+  now keeps `name` from allowed_users; `nameKey()` there mirrors
+  kdh-user.js (nickname map). '/accounts/' is in REP_PATHS. Managers pass
+  through; a DM's team scope stays client-side (kdhTeam), as everywhere.
+  scratchpad mw_test.mjs exercises this with a stubbed Supabase; the
+  rewrite header itself needs one live check on Vercel (ROADMAP). The
+  other rep-page datasets (program_data.js, MPO month JSON, tap HTML)
+  still carry every rep -- the pre-existing gap, stated in the README.
+- hub.js has a LIBRARY MODE: with no `#app` on the page (`LIB`), it builds
+  PROGRAMS and exposes `window.KohlerHub` (loadFor, nextAccounts, distFor,
+  accountsFor, progFacts, sellAsk, endsLabel, isActive, availability,
+  supportAllows, isDollarProgram, mpoRepMonth, incRows, RA, roster,
+  dmGroups) and does nothing else -- no render, no popstate/resize
+  handlers, no noRoster cover. The accounts page never uses `data-act`
+  (the hub's click handler is still registered).
+- FOCUS (max 3, fixed order): newest open follow-up; overdue tap survey
+  (>60 days); program LEADS = the trackers' warm opportunity lists
+  (`a.warm` from nextAccounts), cold eligibility only when the program
+  ends within 14 days; possible reorder gaps (regular product: 4+ of the
+  last 12 months, median gap <= 3, not bought >= 2 months and >= 2x the
+  gap; identical in generate.py and accounts.js `reorderGaps()`). List
+  chips count warm leads only; "needs attention" = follow-ups + leads +
+  surveys (reorder checks have their own filter).
+- Notes are READ here (rep_actions via PostgREST with the signed-in
+  token) and edited only in the hub; preview says saving is off.
+- Entry points: rep home "My accounts" row (`#c-acct`) + follow-ups now
+  open the account page (`from`/`fl` carry the return); manager home
+  "Accounts" card (20 dashboards now); account menu "My accounts" /
+  "Accounts". Tests: scratchpad acct_test.mjs, mw_test.mjs.
+
+## October 2026 tab on the Incentive Tracker + hub (2026-09-30)
+
+Third month: `PROGRAM_LIST_2026_10` / `PROGRAM_DATA_2026_10` (markers
+`/* PROGRAM_DATA_10_START */..END` in incentive-tracking/index.html,
+`oct()` getter, MONTHS entry, DEFAULT_MONTH_KEY = '2026-10'). Four new
+programs have builders and exports (`data/mabi_single_serve.csv`,
+`lagunitas_sprint.csv`, `famosa_october.csv`, `industrial_arts.csv`);
+Four Loko and the Sam Adams seasonal conversion are structure-only until
+Gavin sends their files. The tracker README's OCTOBER 2026 section lists
+every rule, the stated ASSUMPTIONS (rep needs 3 Lagunitas PODs before
+any pays; Industrial Arts = new brand so every account is a non-buy and
+every SKU core; Southern District rate on 1+ SKU; Touchdowns & Tea runs
+through Oct 31; the MABI export is M.A.D.E.-only) and the refresh step.
+A registry entry may carry `period:{start,end}`; hub.js `incPeriod`
+honours it before the blob's window (used for Touchdowns & Tea, Lytt and
+the Oct 23 conversion deadline). `incBlob` checks the October blob
+first; rep/ and team/ stub `PROGRAM_DATA_2026_10={}`. Registry tag
+20260930b everywhere. Test: scratchpad oct_test.mjs.
+
+## Touchdowns & Tea: one card, two legs inside; hub hides data-less shapes; deck logos (2026-09-30)
+
+Gavin's final call after a first split into two cards: ONE "Touchdowns &
+Tea" card with the Off-Premise and On-Premise programs separated inside
+it. The October registry entry keeps key `touchdowns_tea` (same as
+September; the hub's buildPrograms lets the newest month win, so one
+card). PROGRAM_SUMMARY.touchdowns_tea returns `legs` (label, where, ask,
+big, cap, line, need, status, next, rules per leg); the tracker's
+progress screen draws a `.v3-leg` tile and a "What to do next" per leg,
+the hub's program screen (`screenProgramRep`) draws `.px-leg` blocks and
+groups "How it is scored" by leg through ruleNoMoney, and
+`cardTouchdownsTea` is one card with two `.leg` sections. `legs` is a
+general mechanism: any SUMMARY adapter may return it; keep dollars out
+of ask / big / cap / line / need. Still in place from the same day:
+`entry.dataKey` (hub.js `incBlob`, programs.js `summarize`) and
+`entry.hub===false` (skipped by buildPrograms) exist but no entry uses
+them now; the hub's `forRep` returns null for a program with no data for
+anyone and no manual feed, so "Awaiting data" rows never reach a rep
+(the tracker still shows those shapes); seven brand marks were cut from
+the October deck into incentive-tracking/assets/logos (Twisted Tea and
+Heineken still have none). Tags: programs.js 20260930d, hub.js
+20260930c, hub.css 20260930b, hub/accounts.js 20260930b.
+
+## A program's summary headline must be a field metric, never dollars (2026-09-30)
+
+Touchdowns & Tea vanished from the hub's Boston Beer list because its
+summary adapter led with "$497 earned" and hub.js `isDollarProgram`
+drops any program whose headline / goal / still-needed carries a `$`
+(Gavin's 2026-09-11 rule: no dollars on the rep page). Gavin's call:
+keep it listed, show only distribution -- the adapter now reads "15 new
+12pk placements · 272 on-prem cases" and the payout lives only on the
+tracker's own card. When adding a program to `SUMMARY` in
+incentive-tracking/programs.js, put placements / accounts / cases in
+`now` / `label` and keep money out of `now`, `goal` and `remain` (a sub
+line is scrubbed by `subNoMoney`), or the hub will hide the program.
+
+## Carbliss targets: rolling-90 buyers, fell-off alert, pitch first, sell sheets (2026-09-30)
+
+`carbliss-onprem-targets/` gained two inputs: `carbliss_buyers_l90.csv`
+(the RDE "Carbliss Buyers (ON) L90 vs Start" export, one row per load
+sheet with Buyers L90 / Buyers 2026 flags) and `brands_sell_sheets.xlsx`
+(Encompass Brands export: a sell-sheet URL per Carbliss flavor). Rules
+in the README: YTD buyer = any load sheet with Buyers 2026 = 1, rolling-90
+buyer = any with Buyers L90 = 1, FELL OFF = YTD without L90; the window
+is read from the data, days are counted to the export's last date. The
+page shows a buyers card (YTD / rolling-90 / fell off + the fell-off
+list, scoped rep / DM team / manager or Rep filter), red / green badges on
+rows, a "Fell off rolling 90 only" filter, the Pitch button as the
+left-most (sticky) column, and a sell-sheet picker in the pitch panel
+(pitched flavors first and marked, on-menu marked, missing URL shown as
+"No sheet yet"; the rep chooses). Buyers outside the SC/WC target list
+are counted in the card and flagged, not added to the table. The
+generator tolerates either file missing. Test: scratchpad
+carbliss_test.mjs.
+
+## Theme follows the device until chosen; the switch is in the bar (2026-09-30)
+
+Gavin's brief replaced the 2026-09-29 "light for everyone" rule: with no
+saved choice the site follows the DEVICE setting (prefers-color-scheme,
+live); a tap on the bar's switch saves the choice in localStorage
+`kdh_theme` and it persists on that device; "Use device theme" in the
+account menu clears it. `data-theme` is ALWAYS set explicitly on <html>:
+the inline head snippet on every page (shared/README.txt has the exact
+line -- saved choice, else matchMedia, before first paint, so nothing
+flashes) and `applyTheme()` in kdh-user.js do the same thing, so every
+stylesheet keys on `[data-theme="dark"]` alone through the kdh tokens.
+The bar carries `#kdhThemeBtn` (sun/moon + "Light"/"Dark", role=switch,
+aria-checked = dark) beside the account button on phones, iPads and
+desktop; the menu keeps Dark mode / Light mode and adds
+`#kdhThemeDevice`. `window.kdhTheme` (choose / toggle / saved / current)
+and the `kdh:theme` document event let a page with its own switch
+(rolling-distribution, metlife) follow -- and those pages no longer SAVE
+the device default as a choice on load (they did). Test: scratchpad
+theme_test.mjs (device dark/light with nothing saved on 9 pages before
+first paint, choice persists across pages and reload, device flip
+followed only without a choice, reset item, bar fits at 390/820 in both
+themes). Tags: kdh-user.js 20260930c, kdh.css 20260930b.
+
+## Sign-in remembers the email; sessions persist; "Not you? Switch account" (2026-09-30)
+
+`login/index.html` keeps the last successfully signed-in address in
+localStorage `kdh_email` (set in `finish()`), prefills the email step
+and shows "Signing in as <email> · Not you? Switch account"
+(`#switchRow` / `#switchAcct`). A remembered email grants NOTHING: the
+password (or code) and the middleware's allow-list check are unchanged,
+and the page never stores a password. Sessions were already preserved
+by supabase-js (`persistSession`, refresh tokens) whenever "Remember me
+on this device" is checked: a visit to /login/ with a valid stored
+session goes straight through `onAuthStateChange` -> `enter()` ->
+`finish()`, re-issues the kdh_at / kdh_user cookies and bounces to
+`next` -- that is also how an expired kdh_at cookie (the middleware's
+`?why=expired`) recovers without a password. With the box unchecked the
+stored session is dropped after sign-in, so nothing survives closing
+the browser. Switch account = forget the email, clearPending, clear the
+cookies, drop the stored session and sign out, then a clean email step;
+"Use a different email" (password step), "Use a different email" (code
+step) and the create-password step's back link forget the email too.
+Sign out (the menu's `/login/?signout=1`) ends the session but KEEPS the
+prefilled email, which is the shared-device trade-off: the next person
+taps Switch account. Test: scratchpad login_email_test.mjs (+ the
+existing remember_test / login_pw_test / login_test). Still on Gavin
+(ROADMAP): the Supabase JWT expiry, which decides how long kdh_at lives
+before the silent refresh has to happen.
+
+## Leaderboards on Red Bull and Carbliss (2026-09-30)
+
+Both trackers rank reps on the metric each page already used for one
+rep. RED BULL: `ranked()` = Core+ accounts (an account buying Regular +
+Free + Flavor in the buying period), tiebreak total buying accounts,
+then name; competition ranks (1, 2, 2, 4) marked "=". `boardHtml(me)`
+draws the same board for managers (rows tappable, as before) and at the
+foot of a locked rep's page (rows static, own row `.lrow.me` + "you",
+aria-current). CARBLISS: `renderBoard()` = accounts carrying Carbliss
+among the rep's on-premise Sun Cruiser / White Claw target accounts (the
+rep goal bar's number), tiebreak share of their own targets, then name;
+top 10 open, the rest fold (auto-open when the signed-in rep is below
+10). Both boards show the reporting period (Jul 1 – Sep 30, 2026 /
+2026 year to date), the data date (period.json export_last_date /
+meta.generatedAt, which generate.py now writes -- the header's fake
+"Updated <today>" is gone) and a plain "How the ranking works" note
+that says target lists / routes differ in size. Aggregate counts only:
+no account names, and a rep's own account table / filters stay pinned
+exactly as before; a DM's rep filter stays their team while the board
+is company-wide (aggregates are not account detail). Test: scratchpad
+lb_test.mjs (ranks recomputed from data.csv / the embedded data, ties,
+own-row mark, no other rep's account names in the visible text, period
++ date + note, manager rows still open a rep, 390/820/1366).
+
+## Buying alerts + patterns on My Accounts (2026-09-30)
+
+Reorder / lapsed-buyer / buying-less-often alerts and a Buying patterns
+section, added to the EXISTING Accounts list and Account page (no new
+tab; managers see them across their team). `accounts/patterns.py` is
+THE rule engine: `generate.py` runs it per account and writes
+`alerts` / `summary` / `families` / `alertProducts` on each list row
+and `findings` (alerts with evidence + patterns) on the sales file;
+`accounts.js` only renders (the old JS `reorderGaps()` copy is gone --
+never re-derive a rule on the page). Every threshold is named in
+patterns.py's docstring and accounts/README.txt ("BUYING ALERTS &
+PATTERNS"): monthly grain (buying MONTHS, intervals in months -- there
+are no invoice dates), reference month = last non-partial month in the
+rolling master's sources.json (Aug 2026; nothing grows more overdue
+than the data), recurring = 6+ buying months in 18, regular = median
+gap <= 3, possible reorder = at least a month PAST the usual gap,
+lapsed = past max(2I, I+2) and within 3 months of that mark (older =
+"no longer bought", history not alert), buying less often = 5+ buying
+months in the prior 6 and 3+ fewer in the recent 6 (only on products
+with no other alert), seasonal / irregular / one-time / occasional
+never alert, "family still bought: <product>, <month>" marks a likely
+switch. `accounts/backtest.py` runs the engine with the reference
+month moved back and reports how often flagged products were bought
+again within 3 months (2026-09-30: reorder 72-85%, lapsed 52-69%,
+baseline 95%); the thresholds were tuned on it (RECUR_MIN 4 -> 6 cut
+flagged accounts from 80% to 51%). Re-run it after each rolling month.
+List: All accounts / Needs attention / Follow-ups, a reason select
+under Needs attention (`kind=`), brand family under More filters
+(`fam=`), evidence lines under rows, header counts accounts with an
+alert and product alerts separately; Back keeps every filter. Account
+page: Focus takes the two strongest alerts with evidence, Sales &
+reorders has the alerts table (8 + fold) and rule note, Buying
+patterns has buying months / order size / volume (equal-length,
+labelled periods, % only on a 10+ case base), product mix, consistent
+products, and folds for top products, families, new placements
+(repeat vs one-time), size changes, switches, no-longer-bought,
+seasonal. No resolve / snooze state in v1 (README says what it would
+need; a completed follow-up must never close a sales gap). Wording:
+never "lost", never a confirmed need. Tests: scratchpad
+alerts_test.mjs + acct_test.mjs; rep.css's `.card p` two-line clamp is
+undone in accounts.css for these prose cards.
+
+## PRODUCT DIRECTION (Gavin, 2026-09-30): a knowledge expert in the rep's pocket
+
+Gavin asked for this to be remembered. The app is to become "a knowledge
+expert in your pocket that you can talk to about the accounts on your
+route." Two asks, both judged achievable:
+1. STARRED PRODUCTS + INVENTORY ALERTS. Reps want to star products (with
+   a quantity they need, e.g. 25 cases) and be pinged when available-to-
+   sell inventory drops below it, runs low, sells out or comes back --
+   because an order at another account can deplete stock while they are
+   writing theirs. Blocked on data, not code: there is no accurate
+   inventory RDE yet (the /inventory/ export is a stale snapshot) and no
+   Snowflake connector for live availability. Before building: confirm
+   which Encompass field is sellable inventory, when an order reduces it,
+   how allocations / holds / receipts move it, and the feed's refresh
+   delay (Snowflake ingestion does not by itself make it live). Without
+   live data: favourites + alerts on refreshed reports, labelled with the
+   update time, and never a claim to catch depletion mid-order. An alert
+   never reserves stock. Reps must not see other reps' customers or
+   orders through it.
+2. ACCOUNT-AWARE AI CHATBOT (+ MOCK PITCH). A chatbot on the Account page
+   that answers about that account's buying history and patterns
+   (seasonals, packages / brands that work in the area, what to pitch
+   that also finishes an incentive, the evidence), inheriting the
+   selected account and the rep / team permissions, showing the reporting
+   period behind each answer, explaining VERIFIED numbers rather than
+   computing from memory; comparable-account suggestions are evidence-
+   based, never guaranteed demand. Plus MOCK PITCH practice: the agent
+   plays the store owner with objections so the rep can refine a pitch
+   before walking in; invented objections are labelled as practice.
+   Started 2026-09-30 (see the next section) on the exports we have;
+   Snowflake later improves freshness. Gavin started with the chatbot.
+
+## Account assistant: My Accounts -> Ask (2026-09-30; v2 hardened the same day)
+
+The first piece of the product direction above. `api/chat.js` is a Vercel
+Edge Function (raw fetch to the Claude Messages API -- no SDK because the
+site has no build/install step). api/README.txt is the full contract; the
+rules that hold:
+- THE BROWSER IS NOT TRUSTED. The page (`accounts/assistant.js`, v2) posts
+  only `{v:2, mode, account:<customer #>, rep, page:{programs, warehouse,
+  warehouseAsOf}, messages}`. The function re-checks kdh_at against
+  allowed_users, then AUTHORIZES THE ACCOUNT: a rep may ask only about a
+  customer number on `/accounts/data/reps/<own key>.json` (key = the
+  middleware's nameKey of allowed_users.name -- NICK + nameKey are a
+  byte-for-byte MIRROR of middleware.js, pinned by chat_api_test.mjs); a
+  district manager only about reps in their shared/dm-groups.js group; any
+  other manager about any rep. Wrong rep / number -> 403. The route and
+  sales files are fetched from the deployment's own origin WITH the
+  caller's cookies, so the middleware's per-rep 403s hold underneath.
+  Preview changes only a label; a manager is a manager.
+- THE RECORD IS SERVER-BUILT from reps/<key>.json + sales/<key>/<n>.json +
+  rep_actions (caller's token), with a COVERAGE object (every product,
+  cases per month, Jan 2025 -> reference month; how many products are
+  inline vs behind the tools; load date; notInData). The page's program
+  status + warehouse availability travel as a separate PAGE CONTEXT block
+  the prompt must quote as "the tracker shows", never as fact.
+- THREE TOOLS compute on the FULL record on the server (product_history,
+  period_totals, list_products; MAX_ROUNDS 4; thinking blocks replayed
+  verbatim between rounds). Sums are code, not model arithmetic. The model
+  may say a product was never bought only after product_history found no
+  match.
+- ANSWER FOOTER (UI): "Monthly sales record through Aug 2026, loaded Sep
+  22, 2026 · checked the full record (product history) · Check: Purchase
+  history · Alerts · Patterns · Programs" (data-go links). Prompt: period
+  on every number, OBSERVED apart from INFERRED, alerts are possibilities,
+  no dollars, say when history is too short or data is missing.
+- PITCH: buyer facts only from the record; mood / space / competitor visit
+  = SIMULATED objections; never invent prices, margins, deals, inventory,
+  competitor facts, supplier promises or customer quotes; approved product
+  info = record + PAGE CONTEXT. FEEDBACK marks the invented objections as
+  simulated and rewrites one opener from the record only.
+- TRANSCRIPTS: sessionStorage of the tab under
+  `kdh_ask:<hash(email|preview)>:<n>`; `KdhAssistant.forget()` /
+  `forgetAsk()` clear `kdh_ask:*` in kdh-user.js setPreview (enter AND
+  exit preview) and in /login/ on sign-out, switch account and sign-in.
+  "Delete this conversation" (confirm) empties one. Nothing in Supabase
+  but the ledger. Cross-device saving = an authenticated table with RLS,
+  not Snowflake.
+- MODEL: `claude-opus-5-5` (verified ID; $4/$20 per MTok, cache read
+  $0.20), effort low, streaming, `fallbacks:"default"` under beta
+  `server-side-fallback-2026-07-01` = a classifier refusal (HTTP 200,
+  stop_reason refusal) is re-run server-side on Anthropic's recommended
+  model for that category; message_start names the model that served, so
+  `usage.fellBack` and the ledger record it. KDH_CHAT_MODEL / KDH_CHAT_EFFORT
+  configure; a MANAGER may pass body.model from the allowlist (opus 5.5,
+  sonnet 5.5) for comparisons; a rep gets 403; an unknown model 503.
+- COST CONTROL: every answer -> public.assistant_usage (migration
+  20260930210000_assistant_usage.sql, verified on local Postgres 16:
+  trigger stamps the caller, RLS own/manager, no update/delete);
+  kdh_assistant_quota() enforces KDH_CHAT_USER_DAILY (60) and
+  KDH_CHAT_DAILY_USD (20) before each call; missing migration -> 503
+  (KDH_CHAT_NO_LEDGER=1 only on a throwaway preview). KDH_CHAT_USERS =
+  pilot email list. Cost is an ESTIMATE ($0.05-0.07 first question at
+  list price) until the ledger and tools/assistant-eval/run.mjs measure it.
+- LIVE since 2026-10-09 (Gavin ran the ledger migration, set the key +
+  KDH_CHAT_USERS + KDH_CHAT_DAILY_USD=10 on Vercel Production): a real
+  question answered end to end, so self-origin fetch and POST /api/chat
+  work on the deployment. Still unmeasured: the Opus-vs-Sonnet comparison.
+  Managers see the upstream reason on a failed question ("Claude API HTTP
+  401: invalid x-api-key" was the first live failure: a mis-pasted key). Pilot steps
+  (Preview-only key, KDH_CHAT_USERS = Gavin, run.mjs, then 2-3 reps) are
+  in api/README.txt; tools/ is in .vercelignore.
+- DATA SOURCE INTERFACE: `StaticExportSource` (dmGroups, repIndex, route,
+  account, notes) is the only place the function reads data; a Snowflake /
+  Postgres source implements the same five methods. Route-wide or
+  comparable-account questions need a permission rule first, not a
+  connector.
+- PRE-EXISTING GAP, unchanged: program_data.js, MPO month JSON, tap HTML,
+  redbull/data.csv and Carbliss rows still carry every rep to any rep.
+Tags: accounts.js 20260930e, assistant.js 20260930b, accounts.css
+20260930f, kdh-user.js 20260930d. Tests: scratchpad chat_api_test.mjs (60
+checks, self-origin reads through the real middleware.js),
+assistant_test.mjs, mw_test.mjs.
+
+## Hub Incentives: "Previous months" August / September toggle (2026-09-30)
+
+Gavin: a month toggle so reps can review previous months' incentives;
+August live, September held until Friday's recap. hub.js: the "Ended
+programs" fold is replaced by `prevMonthsHtml(rep)` -- a `.iprev` block
+under the live Incentives list with `.mpill` pills from `INC_MONTHS`
+(`state.im`, hash `im=` when not August). August lists programs whose
+period END falls in that month (`endedIn`), "Ended Aug 31, 2026" once
+(the old fold printed "Ended Ended"); a month with a `note` (September)
+shows that notice instead of rows. TO ADD SEPTEMBER ON FRIDAY: drop the
+`note` / `sub` from the September entry in INC_MONTHS -- the ended
+September programs then list themselves (they end Sep 30 and are
+"ended" from Oct 1). Adding October later = one more INC_MONTHS entry.
+Both the new supplier screen and the older iview call the same renderer.
+Tags: hub.js 20260930d, hub.css 20260930c. Test: scratchpad
+incmonth_test.mjs.
+
+## My Accounts on the Encompass pattern: a four-section Account page (2026-09-30)
+
+Gavin's brief with 13 Encompass screenshots (route list, customer page +
+tool menu, Invoice Edit, Products, Accounts Receivable, Shopping Cart):
+recreate the account-servicing workflow inside My Accounts, cleaner, and
+ask for the data we lack. The Account page (`accounts/accounts.js`) is now
+FOUR SECTIONS under a compact selector (`.secnav`, `sec=` in the hash,
+switched in place; `data-go="<sec>:<id>"` links open a section at a
+block): Overview (address + Directions via a Google Maps web URL, premise
++ Draft/Package service type, area, size class, "2026 so far" stops ·
+points · cases from the deciles workbook, one unavailable line for
+contact / hours / instructions; Focus; At-a-glance rows into the other
+sections), Sales & Products (the existing sales, alerts and patterns
+plus the PRODUCT LIST: Previously purchased by default, All eligible =
+`data/catalog.json` minus families the territory workbook blocks for the
+account's area, search by name / #, supplier -> family -> package
+filters, the warehouse's sellable units exactly as ../inventory/ computes
+them with the report date and a stale tag, Lead tags from the rep's warm
+program lists, Carbliss sell-sheet links), Invoices & Balances (the
+monthly purchase record labelled "not invoices" + ONE unavailable state
+for invoices / AR / backorders / allocations -- no zeros, no estimates,
+no dollars) and Tasks & Resources (Programs, Notes, Taps, then Tools &
+links that work + one line for the Encompass-only tools with no
+documented link). `accounts/generate.py` also writes the catalogue and
+adds `service`, `stops2026`, `distPts` per account; catalog.json has no
+customer data so the middleware lets a rep fetch it like index.json.
+`accounts/REPORTING_REQUEST.md` is the consolidated ask (have / essential
+E1-E6 / optional O1-O6 / 14 definitions to confirm / live-only
+integrations / where each file goes). RULES: never draw a control that
+does not work (no cart, order, payment, sync, iSellBeer buttons until the
+integration is documented); never invent an app URL scheme; never derive
+balances, stock-outs, allocations or expiry from sales; dollars stay off
+rep pages until Gavin says who sees them. Tags: accounts.css 20260930d,
+accounts.js 20260930c. Tests: scratchpad sections_test.mjs + acct_test /
+alerts_test / mw_test.
+
+## Responsive formatting cleanup: Tap Tracker panels and friends (2026-09-30)
+
+Gavin's targeted brief (keep the design; fix the formatting). Tap tracker
+(`isellbeer/tap-survey-tracking/index.html`; the generator only replaces
+the data script, so these survive a refresh):
+- The drill panels ("Accounts needing a resurvey", "Taps the iSellBeer
+  app has on the wrong side", every other `renderDrill` / `brandListDrill`
+  panel) have a two-part head: `.drill-text` (title + count, the
+  description at full width, one "Tap an account to open it" hint) and
+  `.drill-acts` (Show in list, Close). One row on desktop; stacked on
+  phones (≤760px). Never the description squeezed beside the buttons.
+- On phones the drill table renders as one labelled row per account:
+  the cells carry `data-l` ("Ours", "Theirs", the extra column's label,
+  the competitor-brands label, "Visited") and CSS shows them as lines;
+  the mix bar is hidden there (the numbers say it). A panel with 9+ rows
+  gets class `long` and scrolls inside (70vh); a short one sizes itself.
+- Wording: resurvey sub = "Overdue or due within 7 days of the 60-day
+  resurvey deadline. Most overdue first."; the "Click a row..." tail
+  moved to the hint line.
+- The floating phone Reset (`.fab-reset`) is hidden for good -- the
+  toolbar's Reset All is the control; the Expand all / Collapse all
+  buttons share one row; county chips fill the row (`.cgroups .cgroup`
+  full width, chips two-up); brand names wrap instead of clipping; each
+  account row says "N ours · M theirs" in words (`.acct-ot`) beside the
+  bar; the long explanatory footer is a folded "How to read this page".
+Carbliss: stat tiles two-up across the phone, filters full width, the
+Rep column (`.col-rep`) hidden for a signed-in rep, the account column
+sticky while the table scrolls sideways on phones.
+The Michelob Bounty Program banner (`#michBanner`) is REMOVED (Gavin,
+2026-09-30); the tab's renderer and embedded data stay, unreachable, and
+every reference is null-guarded, so generate_michelob.py still runs clean.
+Checks: scratchpad tap_shots.mjs (both panels at 375/390/430, rep preview
+and manager), sweep.mjs / pager.mjs (viewport-by-viewport screenshots of
+the rep pages), plus the usual suites and mobile_audit.mjs.
+
+## Navigation + list/detail refinement after Shopify iOS and Todoist web (2026-10-01)
+
+Gavin's brief: calm, readable, easy to navigate; presentation only, every
+feature / calculation / permission kept. Mobbin references actually
+inspected: Shopify iOS customers home (screen ee48860f-dbd6-4328-8625-
+6f75b3a42a22), collections list with search + sort/filter (eab2fe5e-4828-
+4aeb-95fb-31806cd5fdbd), filter sheet (e55becd9-7b37-48d3-ace0-
+85af80d42e50), inventory rows with an "Available" column (fc0929f7-1961-
+4a38-9e43-d1f5ae64c410), grouped store details (fbb2d740-fac2-49f3-8714-
+2d201bf200aa), grouped notification sections (f5ea019f-8a43-4c42-9415-
+b184dc2f9f5d); Todoist web Today with the labelled sidebar and selected
+pill (fedfc0e2-73d1-42b6-853c-fb41ec5919f7, ff7aab78-...), Overdue section
+heading (e80e5692-9bdd-41ac-81df-25e8dd7e104a), Upcoming day sections
+(e563a772-95ea-4aea-abff-dabc5887026b). What holds now:
+- PRIMARY NAVIGATION (shared/kdh-user.js `navItems` / `navCurrent` /
+  `tabBar`, kdh.css "PRIMARY NAVIGATION"): reps Home / Accounts /
+  Incentives, managers Home / Accounts / Incentives / Team, always with
+  text labels. 760px and up: links in the top bar, the current one a tinted
+  pill (aria-current=page). Under 760px: a fixed bottom tab bar `#kdhTabs`
+  (icon over label, accent + top marker for the current one) and the page
+  gets bottom padding (`html.kdh-has-tabs`) so it never covers a record or
+  button. Trackers and MPO pages mark Home (they open from it); /rep/ marks
+  nothing for a manager (it is the rep workspace, in the menu). A page with
+  its own bottom tabs opts out: `<meta name="kdh-tabs" content="off">`
+  (metlife-audit). Phones show the page name beside the badge.
+- BACK: a quiet outline button, shown only when it adds a destination the
+  navigation does not carry ("‹ Incentive Hub", "‹ Team Activity", "‹ Rep
+  workspace"); returning to your own home is the Home item, so the old blue
+  "Back to Rep Home" button is gone. Pages' own contextual back links
+  (accounts "‹ Accounts" with filters kept, hub "‹ Boston Beer") stay.
+  returnTarget() and its sessionStorage memory are unchanged.
+- ACCOUNT MENU: only what the navigation does not carry -- View as rep /
+  Change rep / Exit preview, Rep workspace (managers), Dark / Light, Use
+  device theme, Sign out. No second copy of Home / Accounts / Team.
+- MY ACCOUNTS LIST: no kicker (the nav names the section); "All · Needs
+  attention · Follow-ups" is a segmented control `#needSeg` (buttons with
+  `data-need` "", any, follow, counts inside, aria-pressed) replacing the
+  old select; the reason select still appears under Needs attention; the
+  rule text is a folded "What counts as needing attention". Rows: name,
+  then "Town · #n · premise", then ONE `.row-att` block (chips + the
+  findings line) only when there is something to say.
+- ACCOUNT PAGE: header = name + "Town · premise · Account #n" (+ "Rep: X"
+  for managers) on one line; Overview opens with FOCUS (the most useful
+  next action), then "Details & servicing" (`.dgroup`: label beside value
+  at every width, Directions as a labelled button in the Address row,
+  one "Contact & hours" line saying it is in Encompass), then At a glance.
+  Focus rows: coloured kind label, the task, why, the link; buying-alert
+  items keep their "not a confirmed need" caveat (`.cav`); the rep's own
+  program progress is no longer repeated in Focus (it lives in Programs).
+  BUG FIXED: a program that had already ended (September MPO shown as the
+  fallback month) appeared as "Program ending soon"; Focus now requires
+  period.end >= today.
+- REP HOME: tools are compact CARDS (`.rows.tiles` grid: 3 across on
+  tablets/desktop, 2 on phones with the icon beside the name; the first of
+  three runs full width on phones; My accounts, alone in its section, is a
+  full-width row). Follow-ups stay a compact action list. Rep kicker
+  hidden for reps (the nav says Home). MPO fallback status reads "Showing
+  September · October not in yet".
+- AUDIT: scratchpad elong_audit.mjs loads 24 page/role combinations at 375
+  / 390 / 430 with every <details> open and flags page scroll, elongated
+  text (<34% wide, 4.5+ lines), squeezed title+button rows, clipped or
+  off-screen buttons, and a last control covered by the tab bar
+  (INJECT=1 proves the checks fire). ux_shots.mjs takes the before/after
+  set (OUT=before|after, THEME, W, PAGES).
+Tags: kdh-user.js 20261001a, kdh.css / kdh-skin.css 20261001a, rep.css
+20261001a, accounts.css / accounts.js 20261001a.
+
+## Redesign on the Jobber pattern: Today, records, trackers (2026-10-01, second pass)
+
+Gavin's brief: the first pass kept too much of the old structure; this one
+restructures screens around the rep's loop -- find an account, see what
+needs attention, open the evidence, act, come back. ONE primary visual
+language: Jobber iOS (field service). Mobbin screens inspected: Jobber
+request record fd3c5053-9fe6-42f0-9ea5-a5e1e1ef2df3 (status line, title,
+address, full-width Directions, primary actions, tabs), Jobber job
+fb82e72d-18f7-41ae-9127-6ec221711f74 (sections with arrow rows), Jobber
+today's appointments f50ec472-c3f8-4bdc-8bd5-dbd856936025; ShopBack
+"Criteria to be met" 01cb698b-79fa-40a2-a23c-ee861b27ace0 (what is still
+missing, in words); Mesh timeline 9bb39df5-fb13-4cf5-b659-1df2e3e0d722;
+plus the Shopify / Todoist screens of the first pass. NOT on Mobbin:
+Square's seller app (only the consumer Square Go profile), Pipedrive,
+HubSpot. What holds now:
+- REP HOME (rep/index.html `today()`): "Needs attention on your route"
+  under the name -- Possible reorders, Lapsed buyers, Tap surveys due
+  (counts from the rep's own accounts/data/reps/<key>.json, the key looked
+  up in accounts/data/index.json via kdhMatchName -- kdhNameKey's format is
+  NOT the file key) and "Everything that needs attention"; each row opens
+  /accounts/ already filtered (`need=any&kind=...`, `rep=` for a manager).
+  Same rules as the list (patterns.py alerts, tap >= 53 days), so the
+  numbers match. Then tools as cards.
+- MY ACCOUNTS: Needs attention (no reason picked) is grouped into Todoist
+  sections -- Follow-ups, Tap survey due, Program leads, Possible reorders
+  & lapsed buyers, Buying less often -- each account ONCE under its
+  strongest reason (`GROUPS` / `listBody()`); matchesNeed is unchanged.
+  The search + segmented filter bar is sticky (not while More filters is
+  open). `rowHtml()` is the one row renderer.
+- ACCOUNT PAGE (record): header = status line ("3 things to do here" /
+  "Nothing flagged right now"), name, town · premise · #, street address,
+  a full-width labelled Directions button; then the section tabs.
+  Overview order: NEXT ACTIONS (rows that are links; alert items say
+  "Last bought <month> · usually every N months", with the one-line "a gap
+  in the data" caveat), BUYING (three numbers -- last purchase, cases in
+  the last 3 months vs the 3 before, products in 12 months -- the alert
+  counts and the largest alert in one line, and "See purchase history &
+  alerts" into Sales), CONTACT & SERVICING (address only when the export
+  lacks a street), MORE FOR THIS ACCOUNT (Products, Invoices, Programs,
+  Notes, Taps), and the data notes folded under "About this data".
+- RED BULL (redbull/index.html): rep view = progress card (Core+ of
+  buying accounts, N to finish, M one product away, rank + period), "Still
+  to finish" grouped One / Two products away with "Sell <missing>" in
+  words and the products it already buys, Core+ accounts folded, team-goal
+  cards, leaderboard, then "How it works" (the rule, the tag key, the goal
+  / period sentence from the old lede, the counting note). The lede is
+  hidden; period + data date are one quiet line. Managers on phones pick a
+  rep from `#repPick` (a select) instead of 13 chips. isComplete /
+  missingFor / repStats / ranked are untouched.
+- INCENTIVES (hub program screen) is the benchmark and is unchanged.
 
 ## Rep workspace: "Your follow-ups" strip (2026-09-28)
 
@@ -817,3 +1714,1737 @@ link, remembered in localStorage. Simple renders `simpleView()` from the `QS` nu
 full `qualityView()` / `rebuyView()` stash as they run, so the two can
 never disagree; keep it that way (never recompute in the simple view)
 and keep Gavin's full layout untouched -- he uses it himself.
+
+## Visual refinement: Inter, Title Case, Shopify surfaces (2026-10-01, third pass)
+
+Gavin's brief: one professional look, no feature changes. References,
+each result's app verified on Mobbin (mobbin.com itself is blocked by the
+egress proxy, so only the tool's previews were readable): Shopify iOS
+customers home ee48860f-dbd6-4328-8625-6f75b3a42a22 and inventory rows
+fc0929f7-1961-4a38-9e43-d1f5ae64c410 (primary: list header, search,
+rows with metadata, plain surfaces); Jobber iOS request / job records
+fd3c5053-9fe6-42f0-9ea5-a5e1e1ef2df3, fb82e72d-18f7-41ae-9127-6ec221711f74
+(address + small Directions action); Pipedrive web organization page
+eec508ff-3536-4479-bd16-ebf8c5e46d16 (grouped detail sections, Focus);
+Todoist web (section headings, first pass). Square and HubSpot are NOT on
+Mobbin -- searches returned other apps. What holds now:
+- TYPE: Inter, self-hosted (`assets/fonts/inter.woff2`, variable 100-900,
+  latin, OFL in OFL-inter.txt). shared/fonts.css maps Inter AND the old
+  names (Source Sans 3, Oswald) to that one file; kdh-skin.css aliases
+  every display face to it and forces `--kdh-body` on all text except
+  code/svg. Scale: page titles 24-28px / 600, section headings 17px / 600,
+  record titles 16px / 600, body 16px, metadata 14px. Nothing above 600
+  under 30px; `liftSmallType()` in kdh-user.js also drops 600+ to 500
+  below 14.5px. Normal letter spacing, no text-transform anywhere.
+- TOKENS (kdh.css): neutral Shopify-like greys (bg #F1F2F4, surface #FFF,
+  text #1A1C1F), Kohler blue #2F5FC4 as the one accent, radius 8/12,
+  shadows near zero; dark palette under `[data-theme="dark"]`.
+- TITLE CASE for page names, nav, tabs, section headings, buttons that
+  name a destination ("View Follow-up", "View All Action Items", "View
+  Purchase History"); sentence case for explanations; done in the strings,
+  never with CSS. `<meta name="kdh-page" data-manager="...">` lets a page
+  name itself differently for a manager (accounts: "My Accounts" /
+  "Accounts"). Rep nav label is "My Accounts".
+- REP HOME: Needs Attention is a one-row strip of counts (`.tstats`,
+  Possible Reorders / Lapsed Products / Surveys Due, each a filtered list)
+  with "View All Action Items" in the section head.
+- MY ACCOUNTS: title + counts, search, the segmented views, then ONE row of
+  small labelled controls (`.fbar`): Reason (Needs Attention only), More
+  Filters (brand family), Data · <month> (dates + what counts as needing
+  attention). Ids kindSel / famSel / .more-filters / .legend unchanged.
+- ACCOUNT PAGE: "N Action Items" status, address with a small labelled
+  Directions button beside it (`.rec-loc`, `.btn.sm.rec-dir`); action rows
+  = kind, task, one evidence line with the caveat inline (`.cav`, "Not a
+  confirmed need"), the destination; the full evidence lives in Sales.
+  Sections: Next Actions, Buying Summary, Contact & Servicing, More for
+  This Account, Purchase History, Buying Patterns, ... Ask the Assistant.
+  Alert kinds: Possible Reorder / Lapsed Product / Buying Less Often (a
+  lapsed product never implies the account is lost).
+- RED BULL: plain compact header, solid bars, "Accounts to Complete",
+  "1 / 2 Products Needed", "Progress vs. Team Goal", "Rep Leaderboard",
+  "How It Works". kdh-skin.css "SOLID SURFACES" removes decorative
+  gradients sitewide (header glows, Carbliss goal / leaderboard bars, tap
+  cards, hub stat tiles and channel heads).
+- ASSISTANT: one-line intro, coverage under "What It Can Answer" /
+  "How Practice Works" folds; "Practice a Pitch", "Get Feedback",
+  "Delete Conversation". Behaviour unchanged.
+Audits: scratchpad font_audit.mjs (Inter file loaded, family, weights,
+tracking, transforms on 14 pages) and case_audit.mjs (lowercase words in
+headings / nav / tabs; h1/h2 size+weight). Tags: kdh-user.js 20261001c,
+kdh-skin.css 20261001c, kdh.css 20261001c, rep.css 20261001c,
+accounts.css / accounts.js 20261001c, assistant.js 20261001a, hub.js /
+hub.css 20261001a, guided.css / guided.js 20261001a.
+Follow-up the same day (Gavin): ACCOUNT SIZE (class + gross-profit decile)
+is MANAGERS ONLY -- the Account page's "Size" row and the assistant's
+packet (accounts.js `isMgr`, api/chat.js `viewer.role`) drop it for a rep
+and for a manager previewing a rep. The manager home's "Viewing as"
+switcher (Gavin only) lists NAMES ONLY; when a name appears twice the
+untitled entry is the personal test account, labelled "Gavin Sharkey
+(Personal)", and the work account is selected by default.
+
+## Every rep dataset is served per rep (2026-10-01)
+
+Gavin's rule: a rep sees only their own data -- now enforced on the wire,
+not just on screen. `tools/rep_slices.py` writes one copy per rep key
+(middleware.js `nameKey()`, nickname map READ from middleware.js) of:
+program_data.js -> `incentive-tracking/data/rep/<key>.js` (byRep cut to the
+rep, leaderboards dropped, program-level house / pace fields kept,
+`__anyData` per program -- hub.js `incHasAnyData(entry, month)` reads it);
+MPO month files -> `MPOs/<ch>-prem/data/<YYYY-MM>/rep/<key>/<file>.json`
+(rows by SALES_REP_ASSIGNED / SALES_REP_NAME / REP; ONE blanked row when the
+rep has none, because the builders read columns from the first row and
+return null on []); `redbull/rep/<key>/data.csv` (other reps' rows kept
+with the customer name replaced by "Account N", so ranked() / teamStats()
+are unchanged and no other account name ships); Carbliss and Tap Tracker
+pages -> `<dir>/rep/<key>/index.html` with the embedded data cut to the rep
+plus `meta.board` (Carbliss leaderboard counts, read by renderBoard) and
+`company.usBrandTotals` (Tap Peer Playbook, read in place of
+computeCC(RECORDS)). Account size moved to `accounts/data/size.json`
+(managers only; accounts.js `SIZES`, api/chat.js `src.size()`).
+middleware.js (rep branch): `repSlicePath()` rewrites the shared URL to the
+rep's copy (`_none` = empty copy for a name matching no key; the key list
+`SLICE_KEYS` between the markers is WRITTEN by the script), `repDenied()`
+403s direct requests for any copy, `size.json`, and raw .csv/.tsv/.xls(x)
+except redbull/goals.csv. REP_PATHS gained `/incentive-tracking/assets/`
+(logos: reps had been seeing initials). Managers get the full files.
+EVERY generator for these datasets runs the script at its end (a
+`__main__` block appended to each); `python3 tools/rep_slices.py --check`
+exits 1 if a copy is stale. If you add a dataset a rep page loads, add it
+to rep_slices.py AND repSlicePath(). Visible differences for a rep: the
+Carbliss town list shows only their own towns; Red Bull's "Data updated"
+is the export's last date (period.json), not the file timestamp. Tests:
+scratchpad slice_test.mjs (4 reps x 13 pages: identical visible text from
+the copy through the real middleware vs the full files; copies hold only
+the rep's rows) + mw_test.mjs (rewrites, denials, managers unchanged).
+Needs one live check on Vercel (ROADMAP "Now").
+
+## Rebuild around the account workspace: app shell, Shopify list, Attio record (2026-10-02)
+
+Gavin's brief: actions first, one professional system, every permission /
+preview safeguard / calculation / export path kept. References inspected on
+Mobbin: Shopify All Customers 775ea206 (list), Attio Company Detail 070de66a
+(record), Shopify Products 691c0f9f (product list), Todoist Today 75c4093b
+(sections, browse-level progress). What holds now:
+- APP SHELL (kdh-user.js, kdh.css "APP SHELL"; shared/README.txt has it all):
+  bottom bar under 1024px -- reps Home / My Accounts / Programs / More,
+  managers + Team -- with safe-area clearance; a labelled sidebar from 1024px
+  (Programs sub-list, Trackers, Manager groups, the person at the foot). More
+  / the foot open ONE menu (tools, View as Rep / Exit Preview, theme, Sign
+  Out); the menu is moved to <body> (a fixed sheet inside the blurred bar is
+  clipped). Trackers mark More. `kdh-tabs` meta opts out (metlife).
+- STATE: kdhRemember / kdhRecall keep each section's last URL in
+  sessionStorage `kdh_nav:<email|preview>:<key>`; nav links with data-nav
+  accounts / programs go back there. Preview changes and /login/ sign-out
+  clear kdh_nav:*, kdh_acct*, kdh_from:*. My Accounts also restores scroll.
+- MY ACCOUNTS: title, search, All / Needs Attention / Follow-Ups, one row of
+  secondary filters, then rows with ONE leading action + "N More Items".
+  The order (leadOf in accounts.js) is documented in accounts/README.txt
+  LIST -- follow-up, overdue survey, program lead, survey due, possible
+  reorder, lapsed product, buying less often. Needs Attention groups by it.
+- ACCOUNT PAGE: Overview / Products / History / More (`sec=`, `sub=`).
+  Old `sec=sales|inv|tasks|ask` and data-go keys (`sales:alerts` ...) are
+  translated by LEGACY_SEC / GO / goTarget() -- keep them; the rep home,
+  hub, tap tracker and assistant footer still emit the old keys.
+- PRODUCTS: mode / search / Filters / freshness directly above the rows;
+  "Stock at last update: N units" = KOHLER'S WAREHOUSE, never retail
+  shelf; a past arrival date says "(past estimate)"; 40 rows + Show More;
+  state per account in sessionStorage.
+- PROGRAMS: the hub's Incentives list is supplier sections with every
+  program's progress row beneath (no supplier tap needed; the sup screen
+  still exists for deep links). Tabs are underlined, short labels on
+  phones, the refreshed line names only the tab's own feed.
+- MPO TRACKERS (guided.js / .css): one summary card (weighted %, bar,
+  "4 of 5 objectives at goal · 1 in progress · 0 not started") instead
+  of four tiles; compact objective cards; smaller picker; Jul/Aug/Sep pills.
+- TAP TRACKER: account-first -- title + "Latest survey <date> · Data loaded
+  <date>", Accounts / Brands, search + Resurvey filter (`#res=due|over`,
+  state.res) + Reset, More Filters (a fold on phones), results, then the
+  analytics + target tools in `#tapAnalytics` (closed; remembered in
+  localStorage kdh_tap_analytics). A single rep's card is a plain header
+  (`.solo`), no inner scroll. Generator still replaces only the data.
+- RED BULL: "Your Progress" / "Team Progress" headings; periodState() tags
+  the buying window Ended / Current / Upcoming from period.json, with an
+  "ended -- final numbers" note.
+- Bug fixed: single-column `.grid` in rep.css used `1fr` (min-content), so
+  a card's nowrap status pushed the manager home to 389px on a 375 phone
+  and the fifth tab off-screen; it is `minmax(0,1fr)` now.
+Tests (scratchpad): journey_test.mjs (search -> account -> next action ->
+Products -> product search -> freshness -> History -> Back keeps search ->
+Programs -> My Accounts restores the list; 6 sizes x light/dark), and the
+updated sections / alerts / assistant / preview_flow / ra / oct / back /
+team / theme / hubonly / mgr_desktop. Tags 20261002a (kdh-user, kdh.css,
+skin, rep.css, accounts, guided, hub).
+
+## Account map, photos, notes, export, Incentive Performance (2026-10-02, second build)
+
+Gavin's 13-part brief. Mobbin references inspected and mapped (komoot map +
+place sheet -> accounts/map.js; Freeform photo source menu -> the photo
+flow; folk notes + Outseta activity -> Notes & Activity; Attio record ->
+Account Details; Amplitude export menu -> hub exports; Mintlify analytics ->
+performance/). What holds now:
+- MAP (accounts/map.js, `KdhMap.mount`): My Accounts has List / Map
+  (`mode=map`), same search, filters and authorized rows as the list. Pins
+  cluster (Leaflet 1.9.4 + markercluster 1.5.3 VENDORED in assets/vendor --
+  cdnjs is blocked; licences beside them); a selected pin opens a sheet:
+  name, town, address, ONE action (leadOf), Open Account, Directions.
+  Coordinates: `accounts/geo.csv` (customer_num,lat,lng,source; generate.py
+  refuses points outside northern NJ) -> device cache `kdh_geo:v1` ->
+  `api/geocode.js` (US Census batch; route authorized server-side exactly
+  like api/chat.js; reps' REP_PATHS include /api/geocode). Unplaceable
+  accounts stay listed under "Not on the map" with the reason. Location is
+  asked only on "Use My Location". Scope is "All Assigned Accounts" only:
+  there is NO schedule data, so no Today's Stops and no stop order (never
+  invent one). Tiles: OSM standard (TILE_URL is the one place to swap in a
+  commercial provider before heavy use). Census + tiles NOT verified live
+  from the build environment.
+- NOTES + PHOTOS (accounts/activity.js, `KdhActivity`): notes are
+  rep_actions rows (`program_id 'note:<uuid>'`, status note / follow with
+  optional `follow_on` date / done) -- the existing write-back, not a second
+  system; there were never device-only notes to migrate. Photos: Add Photo
+  -> type (Display / Window / Cooler Door off-premise, Tap Handle on) ->
+  Take Photo (getUserMedia asked only then; refusal -> library) / Choose From
+  Library -> Preview -> Save; resized to 2048px JPEG (drops GPS), uploaded to
+  private bucket `account-photos/<customer #>/<uuid>.jpg` with progress,
+  then the account_photos row; "Saved" only after both; failure -> Retry.
+  No iSellBeer sync claim anywhere. Preview is read-only (no composer, Add
+  Photo, Mark Done, Remove). Migration
+  `supabase/migrations/20261002120000_account_notes_photos.sql` (+
+  `supabase/seed/account_assignments.sql`, WRITTEN by accounts/generate.py
+  -- re-run it in the SQL Editor after reassignments) adds
+  account_assignments, `kdh_name_key` (SQL mirror of middleware nameKey --
+  sql_notes_test compares every name), `kdh_can_access_account`, the
+  note/follow_on columns + policies on rep_actions, account_photos + the
+  bucket policies. Until it is run the page says so (UPDATE_SQL) and the
+  hub's marks keep working.
+- ACCOUNT PAGE: header actions Add Note / Add Photo / Ask About This
+  Account; Overview = Next Actions (+ open follow-up notes), Notes &
+  Activity, Sales Context in the main column; Account Details (Account,
+  Location, Contact & Servicing fold, Rep for managers) and Photos in the
+  side column from 1024px, stacked on phones. More -> Photos sub. Ask sub
+  has "Back to Overview" and "<account> · sales record <period>".
+- ASSISTANT: six starter questions (accounts/assistant.js); api/chat.js
+  prompt adds: account qualification vs rep progress kept apart, eligible
+  products tied to the requirement, warehouse stock dated and labelled,
+  no sell-through claims, seasonal only from patterns. Mock pitch unchanged.
+- TITLES: `shared/program-titles.js` (`kdhTitle(id, fallback)`) maps every
+  program id to a concise title; supplier / premise are metadata; the full
+  source name stays on the program screen (`.px-full`, "Full program
+  name"). Labels only -- ids, rules, goals untouched. Add a line per new
+  program. Loaded by hub, accounts, rep, team, both MPO pages, performance.
+- NAV: reps Home / My Accounts / Programs / Inventory / More (Inventory =
+  /inventory/, now in REP_PATHS -- warehouse stock only, no customer data);
+  managers keep Home / Accounts / Programs / Team / More with Inventory in
+  the menu (`invm`) and Incentive Performance (`perf`) in the sidebar.
+- EXPORTS (hub.js MANAGER EXPORTS): Program View and a program's manager
+  screen have Export Data (CSV of the COMPLETE filtered set x authorized
+  roster, optional credited lines, header rows with filters, scope,
+  generated time, freshness) and Export Recap (print-ready, Save as PDF;
+  definitions + freshness; payout rule lines removed -- no dollars). DM
+  scope applies; reps and preview cannot export. Test: export_test.mjs.
+- INCENTIVE PERFORMANCE (performance/, managers only -- not in REP_PATHS,
+  and the page refuses a rep or preview cookie): period + program pickers,
+  metric groups that all read "Not Calculable With Current Data" with the
+  reason once per group, the sales-vs-qualifying-vs-credited distinction,
+  a data-coverage table (HEAD probes of the money / adjust / month files),
+  the 12 definitions Gavin must confirm, and What Is Needed (P1-P4 in
+  accounts/REPORTING_REQUEST.md section 9). NO financial number is computed
+  until Gavin confirms the definitions; qualifying-sales GP is never called
+  profit caused by an incentive.
+- CONTRAST: scratchpad contrast_audit.mjs measures every visible text
+  element and placeholder (WCAG AA 4.5 / 3 large) on 20 page/role views,
+  light + dark. Fixes: --kdh-text-4 #676C74 / dark #8F939C, --kdh-ok
+  #13733A, --kdh-gold #8A6100, `::placeholder` = text-3 (kdh.css + skin),
+  text on a filled accent uses --kdh-brand-ink (dark accent is light),
+  hub's unavailable rows dim by colour not opacity, Red Bull medals/tags and
+  Inventory status colours on tokens, login --ink-3 #64748B. 0 failures at
+  375 / 390 / 430 / 820 / 1180 / 1440. Don't dim text with opacity.
+Tags 20261002b (kdh-user, kdh.css, skin, rep.css, accounts, activity, map,
+assistant, hub, guided, team.css, program-titles, performance). Tests:
+map_test, notes_photos_test, sql_notes_test (local Postgres 16), export_test,
+contrast_audit + the existing suites.
+
+## Stay signed in: the server holds the session (2026-10-02)
+
+Gavin: every rep complained about typing email + password again and again.
+Cause: the only long-lived part of a sign-in (Supabase's refresh token) lived
+in /login/'s localStorage, so each hourly access-token expiry bounced the rep
+to /login/, and anything that lost that storage (Safari's 7-day cap on
+script-written cookies/storage, an iPhone home-screen app's own jar, an
+unticked "Remember me" that stuck) meant typing it all again. Now:
+- `api/session.js` (Edge function; excluded from the middleware matcher, does
+  its own checks, same-origin only): POST {refresh_token, remember} after
+  sign-in -> redeems it (Supabase rotates it; proves it), checks the allow
+  list, sets `kdh_rt` (HttpOnly, value `k1.<token>` = remember / `k0.` =
+  session only), `kdh_at` and `kdh_user` FROM THE SERVER (400-day Max-Age
+  when remembered, none otherwise). GET renews kdh_at if under 10 min left
+  and answers {ok, role, name} (401 = no session). DELETE revokes the
+  session at Supabase (`/auth/v1/logout?scope=local`) and clears every
+  cookie.
+- `middleware.js`: before the check, when kdh_at is missing or has under 10
+  minutes left and kdh_rt is present, it redeems kdh_rt
+  (`refreshSession`, deduped per isolate) and returns the normal response
+  plus the new Set-Cookies (re-issuing kdh_user from allowed_users -- check()
+  now also selects title / reports_to); an /api/* function gets the renewed
+  cookie in its request (x-middleware-override-headers). A dead refresh
+  token clears kdh_rt and falls through to /login/ as before; Supabase
+  unreachable keeps it. Redirects are built by hand (Response.redirect has
+  immutable headers).
+- `login/index.html`: finish() POSTs the session to /api/session and, on
+  success, drops supabase-js's stored copy (`sb-*`; the server rotated the
+  token). If the hand-off fails the stored session stays as the old-style
+  fallback. With no stored session the page first asks GET /api/session and
+  goes straight in when the server still has one; otherwise a REMEMBERED
+  EMAIL opens straight on the password box (focused, so iOS Keychain /
+  browser autofill fills it); first-timers get the email step. "Remember me
+  on this device" starts TICKED on every visit (`keepChoice`, an untick no
+  longer sticks) and reads "Stay signed in on this device until you sign
+  out. Untick on a shared device." Sign out and Switch account call DELETE.
+  The page still never stores a password.
+- `shared/kdh-user.js` keep-alive: on load, when the page comes back into
+  view and every 5 minutes, if kdh_at has under 10 minutes left it calls GET
+  /api/session; `window.kdhFreshToken()`. hub.js RA reads the cookie at each
+  request (`tok()`), not once at load; activity.js already did.
+- Lasts until Sign out on that device: Supabase refresh tokens do not
+  expire unless the project sets a session time-box / inactivity timeout
+  (Auth -> Sessions) -- leave those off. Tests: scratchpad session_test.mjs
+  (27 server checks: hand-off, rotation, cookie flags, CSRF, renewal in the
+  middleware, API cookie forwarding, revoked / down cases, GET, DELETE) and
+  stay_test.mjs (14 browser checks), plus the updated login_pw_test /
+  login_email_test / remember_test. Tags kdh-user.js / hub.js 20261002c.
+
+## Account workspace, third build: activity, opportunities, drafts, exceptions (2026-10-03)
+
+Gavin's brief (Mobbin refs: Shopify Home, Jobber client detail, HubSpot
+contact activities, komoot photos, Attio My Tasks). NOT built on purpose:
+Quick Visit Recap and Follow-Up From a Note (Gavin: not in this round). What
+holds now (accounts/README.txt has every rule):
+- BUTTONS: rep/rep.css "BUTTONS" -- 44px (.sm 40px), radius 10, visible
+  border, icon + label in one control, selected (aria-pressed) / pressed /
+  focus-visible / loading (aria-busy spinner) / disabled; spacing 8/12/16/24
+  (--sp-1..4). shared/README.txt "BUTTONS + DATA SOURCES".
+- REP HOME (rep/index.html): name header, account search (-> /accounts/#q=),
+  a prominent My Accounts row, "Needs Attention" rows with labelled counts
+  (Open Follow-Ups / Possible Reorders / Lapsed Products / Tap Surveys Due
+  -> filtered My Accounts), a quiet line when nothing is open, tools as one
+  card style; stale MPO months read "<Month> results · <Month> not yet
+  published". #fuRow / #fuList / .tstat are gone (.rh-arow rows).
+- MY ACCOUNTS: title + List/Map on one row, a count line only when filtered,
+  row "Also N possible reorders · M lapsed products" (L.moreText).
+- ACCOUNT ACTIVITY (accounts/activity.js): one timeline -- notes,
+  follow-ups (+ done), photos, program marks, tap survey passes, monthly
+  PURCHASE ACTIVITY (never "invoice", never "visit"); stable ids; Taken vs
+  Uploaded on photos; Overview shows 5 + View All; More -> Account Activity
+  (sub=activity; sub=notes and data-go tasks:notes map to it) has type
+  chips, search, Load Older.
+- OPPORTUNITIES (accounts/opps.js, KdhOpps): "Programs This Account Could
+  Help Complete" on the Overview (top 3) and More -> Programs (all +
+  credited + don't-apply). Only programs whose tracker lists the account,
+  not ended, sellable in the area; Selling Resources = requirement, NO
+  approved pitch (none exists -- never generate one), sell sheets (Carbliss
+  only), packages, warehouse units with the report date (snapshot, stale
+  tag > 7 days). Rep's overall progress on its own line ("Mike's" for a
+  manager). "View N Eligible Products" opens Products searched to the family.
+- DRAFTS: note -> localStorage kdh_draft:v1:<fnv(email)>:<n>:note, photo ->
+  IndexedDB kdh-drafts; owner = the REAL signed-in email (never preview).
+  States Draft — Saved on This Device / Pending Upload / Uploading / Saved
+  / Upload Failed — Retry; Retry is a tap (no background sync); a retry
+  re-checks the session + owner and cannot duplicate (note:<uuid> id and
+  storage_path unique -> 409/23505 = already saved). /login/ was NOT
+  changed: drafts are invisible to anyone else by the owner hash.
+- PHOTO LABELS: Uncategorized allowed; optional brand / program; filters
+  (type, search, date, taken by, brand); author-only Edit Labels. Needs
+  supabase/migrations/20261003090000_photo_labels.sql (run by Gavin
+  2026-10-02, no errors; verified locally first).
+- EXCEPTIONS (exceptions/, managers only, not in REP_PATHS; refuses rep and
+  rep preview): overdue / due-soon / undated-14-day follow-ups, tap surveys
+  past or near 60 days, programs ending within 14 days with work left
+  (rep-level, with the tracker's leads). Grouped by account, account vs
+  exception counts, priority order printed on the page, 25 accounts at a
+  time, filters rep / search / type / due (hash). No checkboxes; no issue
+  source exists (says so). Sidebar Manager -> Exceptions + manager home card
+  (21 cards now). exceptions/README.txt.
+- DATA SOURCES: shared/kdh-data.js (KdhData) -- loaders + the dataset list
+  with freshness; access is still decided only by the middleware and RLS.
+- REQUEST: accounts/REPORTING_REQUEST.md section 10 (S1 SQL; essential A1
+  approved pitches, A2 sell sheets for all brands, A3 visit records, A4
+  issue log; optional B1-B5; three definitions).
+Tests (scratchpad): drafts_test.mjs (30: draft reload, other-person
+isolation, offline Pending Upload, lost reply -> no duplicate, photo
+draft reload + Retry, Discard), notes_photos_test.mjs (updated),
+sql_notes_test.sh (43, incl. photo labels), exceptions_test.mjs. Tags
+20261003a (rep.css, accounts.*, activity, opps, kdh-user, exceptions).
+
+## Merchandising records, iSellBeer import, recap; one eligibility rule (2026-10-04)
+
+Gavin's brief (Mobbin refs: Apple Notes capture -> the capture sheet, Jobber
+Job Detail -> the record viewer's information panel, Google Photos info ->
+metadata outside the image, komoot Photos -> the gallery, Upwork Custom
+Export -> the recap filters). NOT built on purpose: Quick Visit Recap and
+Follow-Up From a Note. merchandising/README.txt has every rule; what holds:
+- RECORDS: a merchandising record = one observation at one account
+  (merch_records) with photos (merch_record_photos, a photo in ONE record),
+  product / brand lines (merch_lines: quantity NULL = not recorded, never 0;
+  a quantity always has a unit, "unspecified" = the source gave none; tap
+  lines keep iSellBeer's US/THEM and the Tap Tracker's audited side apart)
+  and an optional program. Migration
+  `supabase/migrations/20261004090000_merchandising.sql` (NOT YET RUN by
+  Gavin -- ROADMAP "Now"); until it runs, photos save one per record and the
+  pages say so (`merchSaveMissing`). Accounts, records, photos and lines are
+  counted separately everywhere; nothing is called a "placement".
+- TYPES: shared/merch-types.js (`KdhMerch`) is the one list -- Display,
+  Window, Cooler Door, Tap Handles, Menu Placement, Other Activation;
+  subtypes; premise defaults (Off: display / window / cooler_door / other;
+  On: tap_handle / menu / other); units; `qtyText()`. iSellBeer Promotion
+  Type / Theme / Elements stay as text on imported records; "MBO" is never
+  mapped to a program.
+- CAPTURE (accounts/activity.js `photoFlow`, `KdhActivity.capture`): Type ->
+  Photos -> Details -> Save Photos. Take Photo = `<input type=file
+  accept=image/* capture=environment>` (#capIn) -- no getUserMedia, no
+  video element, no microphone; Choose From Photos = #libIn (multiple);
+  Retake (#retakeIn) keeps everything else. JPEG re-encode, orientation from
+  the image, EXIF/GPS dropped, long edge 2560 (3200 for menu / other). Record
+  drafts in IndexedDB kdh-drafts v2 store "records" under the REAL signed-in
+  email; retry-safe ('hub:'+uuid key, storage 409 = exists). Add Evidence on
+  a Program Opportunities card preselects program + category (keg/draft ->
+  tap_handle, on-premise -> menu, else display). Evidence is NOT credit.
+- IMPORT (managers: merchandising/import/, `merchandising/isb-import.js`
+  `KdhIsb`, dependency-free xlsx + PDF readers): CustomerID-only matching,
+  stable keys (isb:display / isb:taps / isb:promo, never Promo #), hyperlink
+  TARGETS, PDF pages matched only by hand (else Review Queue, storage
+  `_review/`), reconciliation before Import, re-import restates. The export
+  files carry emails in photo URLs -- they stay out of the repo (public).
+- RECAP (managers: merchandising/, recap.js): filters account / rep (DM =
+  team) / dates / supplier-brand / category / program / source; four count
+  tiles; Download CSV (one row per line, filters + counts in header rows) and
+  Export Recap (print page, photos full width, first 150 records) use exactly
+  `view()`. Linked from the sidebar (Manager -> Merchandising, tool `merch`)
+  and the manager home (22 cards now).
+- ELIGIBILITY: hub/accounts.js `PROGRAM_PRODUCTS` + `eligibleProducts(p,
+  rows, famKey)` is the ONE product rule for a program; opps.js
+  (`KdhOpps.eligibleFor`), the Products list (Lead tags, `plist.prog` filter
+  from "View N Eligible Products") and the assistant packet
+  (`productsThatCount` / `eligibleHere` / `eligibleExamples`) all read it.
+  Lagunitas Sprint = the 13 products of incentive-tracking/data/lagunitas_sprint.csv.
+  PROGRAM_BRANDS holds brand FAMILIES only: "Lagunitas Brewing Co" (the
+  supplier) was removed because a not-on-file name switches the territory
+  filter off -- Union / Essex accounts were listed as targets. The Incentive
+  Tracker's own Lagunitas "Stores To Target" still ignores the workbook
+  (generate.py targets_from) -- open question 11.4 in REPORTING_REQUEST.md.
+- ACCOUNT PAGE: "Program Opportunities" (card: Program -> What to Sell ->
+  What Is Needed -> Deadline; Details fold for the rest); "No purchases in
+  the available history" (hub `NO_BUY`, the old string still matched);
+  "Check with the buyer; ordering history does not explain the gap"; one
+  address block (header); Next Actions + alerts table explain the order.
+- ASSISTANT: GET /api/chat = availability (codes, `setup` step for managers,
+  never a secret, never a model call); the page disables the box until it is
+  available; it does not look at photos (page + prompt).
+- MANAGERS: hub lands a signed-in manager on Program View (Manager Mode on a
+  computer) with a Rep filter (#pvRep); Rep Mode on Program View opens the
+  picker; Export = two buttons, Download CSV / Export Recap (+ Options).
+  Exceptions: Group By rep (default) / type / urgency / account (`by=`),
+  per-section caps, "based on the tap data loaded <date>", a Data Sources
+  fold, and an empty state that never calls missing data a clean bill.
+Tags: hub.js / hub.css / hub/accounts.js / accounts.* / opps / activity /
+assistant / exceptions.* 20261004a, kdh-user.js / kdh-data.js 20261004b.
+Tests (scratchpad): opp_elig_test, recap_test, merch_capture_test,
+isb_test, imp_test, sql_merch_test.sh, exceptions_test, chat_api_test (71),
+assistant_test, export_test, mgr_desktop, dm_test, notes_photos_test /
+drafts_test (ported to the new flow) + the existing suites.
+
+## Photo remove / edit: same sign-in, verified (2026-10-05)
+
+Gavin removed a photo, saw "Photo removed", and it stayed. Cause: the page
+offered Remove when the author's NAME matched, but the database policy
+("remove own photos": author_email = kdh_caller_email()) checks the
+SIGN-IN, and Gavin's work and personal accounts share one name; row-level
+security then deleted nothing and answered 204, which the page took as
+success. Now (accounts/activity.js, tag 20261005a): PHOTO_COLS reads
+author_email and "mine" = same email (`mineLegacy`); a same-name photo from
+another sign-in shows "Saved by another sign-in ... Only that sign-in can
+edit or remove it"; every DELETE goes through `deleteRow()` (prefer
+return=representation, 0 rows = "Not removed ...", the storage file is
+removed only after the row is gone) and every PATCH checks a row came back.
+Never trust a 2xx from PostgREST as proof a write under RLS happened.
+Tests: notes_photos_test (same name other sign-in, refused delete, own
+delete) with RLS-faithful stubs in it and merch_capture_test.
+PHOTO ADMIN (2026-10-05, Gavin: "I oversee the whole iSellBeer operation"):
+migration `20261005090000_photo_admin.sql` adds allowed_users.photo_admin +
+`kdh_is_photo_admin()` and widens three DELETE policies (account_photos,
+merch_records -- any source, storage.objects in account-photos) to "author OR
+photo admin". The flag is set by hand in Supabase (no email in the public repo);
+nobody can set it on themselves. activity.js asks the RPC once per page
+(`isPhotoAdmin()`, `st.admin`) and draws "Remove (Photo Admin)" / "Remove Photo
+(Photo Admin)" on other people's and imported records -- never in preview; edits
+stay author-only. Removing a record also deletes its photo rows (imported link
+photos included) and files. Tests: sql_admin_test.sh (19), notes_photos_test,
+merch_capture_test. activity.js tag 20261005b.
+
+
+## iSellBeer import at full scale: PDF pages by link, clean Account page (2026-10-05)
+
+Gavin's first real export (Report 68: 1,391 rows -> 899 display records, 146
+accounts, 80 on 58001) and photo PDFs too big for chat. Imports run ON THE SITE
+(merchandising/import/, files read in the browser); never route them through a
+chat. What holds:
+- PDF PAGES MATCH BY LINK: every iSellBeer photo-PDF page carries a link
+  annotation to its photo (`view-photo/<type>/<photo id>`), identical to the
+  export's Photo cell. `pdfImages()` (now ASYNC) walks the page tree, inflates
+  compressed object streams (split / re-saved PDFs -- tested with pikepdf
+  copies), returns {page, bytes, links}; `matchPage()` pairs a page with the
+  record holding that photo. Never by position. The page image is iSellBeer's
+  printed frame around the photo, so it is a REPORT PAGE (photo_kind
+  report_page), stored at `<account>/isb-<photo id>.jpg` and attached to the
+  EXISTING photo row by `kdh_merch_attach_photos` (migration
+  20261005100000_isb_pdf_photos.sql, which also lets the relabel trigger fill a
+  NULL storage_path under the same account and nothing else). A later PDF (or
+  part) looks its links up in account_photos; a photo not in the Hub yet is
+  skipped ("import the spreadsheet, then add this PDF again"), never queued.
+  Only link-less pages get the hand picker / review queue.
+- Records go 150 per kdh_merch_import call; pages upload 4 at a time with
+  progress (#impProg); everything is safe to repeat.
+- ACCOUNT PAGE AT SCALE (accounts/activity.js tag 20261005c): Overview recent
+  activity excludes imports and adds ONE "Imported From iSellBeer · N records"
+  row (`importSummaryHtml`, link sets `pf.src`); Account Activity folds imports
+  per month (`groupImports`, only on All with no search); gallery pages 24
+  (`pf.limit`, #phMore) with a Source select (#phSrc); Overview tiles and a
+  record's photo order prefer stored copies (also in merchandising/recap.js);
+  `hydrateImages` loads through an IntersectionObserver.
+Tests (scratchpad): isb_test (39, split PDFs), imp_test (rewritten: link
+match, re-import, PDF before spreadsheet, split PDF later, review queue),
+sql_pdf_test.sh (13), scale_test.mjs (Report 68 at 390/820/1280 + dark),
+merch_capture_test updated.
+
+## Merchandising: PODs + Signage; Excel export like iSellBeer's (2026-10-05)
+
+Gavin wants reps to capture in the Hub instead of iSellBeer: off-premise
+displays, PODs, cooler doors, windows, signage; on-premise taps, menu promos
+(+ signage). shared/merch-types.js gained `pod` and `signage` (BY_PREMISE in
+that order; PODs take product lines like displays; opps.js `evidenceCat` sends
+placement programs to PODs); the DB checks need
+`supabase/migrations/20261005120000_merch_pod_signage.sql` (sql_pod_test.sh).
+The Merchandising page's Download Excel (`downloadXlsx`, writer
+shared/xlsx-write.js, signed links via `KdhData.signUrls`) is the
+iSellBeer-style export of exactly the filtered view; CSV and Export Recap stay.
+NOT done, Gavin's decision first (ROADMAP "Now"): seven pages are still built
+from iSellBeer exports (MPO cooler doors / Lytt POS / Bardstown menus, Display
+Auction, Tier 1 recap, Tap Tracker, Executive Overview) -- dropping iSellBeer
+means rewiring each to read Hub records. Hub tap captures have brand + handle
+count only, no ours/theirs, so they cannot feed the Tap Tracker yet.
+Tests: recap_test (Excel opened in openpyxl), merch_capture_test, opp_elig_test.
+
+## Hub tap lines label themselves Ours / Theirs (2026-10-05)
+
+Gavin: tap captures need US vs THEM, labelled correctly by territory. The
+rulebook already existed -- the Tap Tracker's
+`isellbeer/tap-survey-tracking/iSellBeer_TAPS_US_THEM_Mediator.xlsx` (Master -
+US vs THEM: brand family x distribution area). `build_tap_rules.py` (run at the
+end of the tap generate.py) writes `shared/data/tap-rules.json` with
+audit_engine's own resolution steps (families compared UPPER CASE, as the audit
+does); it was checked equal to `audit()` on all 6,870 surveyed taps.
+accounts/activity.js `tapLabel(rules, brand, ctx.area)` -- ctx.area is the
+account's `area` (a "Sales" account already carries its county; Morris 1/2/3
+kept) -- labels each tap line; a ruled brand is fixed (no override), an
+unknown one shows Ours / Theirs buttons (the rep's call). Saved as
+merch_lines.ownership_source + ownership_rule 'territory' | 'rep' through
+`supabase/migrations/20261005140000_tap_us_them.sql` (kdh_merch_save
+redefined, otherwise identical; sql_tap_test.sh). Shown in the viewer, the
+activity summary ("N ours · M theirs", handles counted) and the Excel / CSV
+exports (US/THEM + basis). The Tap Tracker itself does NOT read Hub tap lines
+yet. Test: scratchpad tap_own_test.mjs (Bergen Ours / Union Theirs / not
+carried / rep's call / save payload / viewer).
+
+## Tap Tracker reads the Hub's own tap surveys (2026-10-05)
+
+First iSellBeer-fed page rewired (Gavin: "start with the tap tracker").
+`isellbeer/tap-survey-tracking/hub-taps.js` (`KdhTapHub`) fetches tap_handle
+merch_records + lines + a 1-day signed photo link with the VIEWER's token (RLS:
+a rep gets only their accounts) while the page parses; the main script is now
+`window.__tapMain`, started when `KdhTapHub.ready` settles (6 s cap), and calls
+`KdhTapHub.apply(DATA)` first. Merge rule = the 2026-09-04 current-lineup rule
+across sources: newest pass per account (iSellBeer or Hub) is current, every
+other pass goes to HISTORY (no totals). Hub-only accounts come from
+hub/data/accounts.js -- NOTE it declares `const HUB_ACCOUNTS`, a global
+binding that is NOT on window (read it bare). Capture now requires Ours /
+Theirs on every named tap line. README "HUB TAP SURVEYS ON THIS PAGE" has the
+rules; tests: scratchpad tap_hub_test.mjs (+ tap_own_test, slice_test,
+lock_test2, dm_test). Still iSellBeer-only: MPO cooler doors / Lytt POS /
+Bardstown menus, Display Auction, Tier 1 recap, Executive Overview.
+
+## Add Photos redesigned for the phone: the type decides the form (2026-10-05)
+
+Gavin's brief (with iPhone screenshots of the old long form): never ask twice,
+never show a field that does not apply, mobile first. accounts/activity.js
+`typeStep` / `detailsStep` were rewritten (same drafts, same uploadRecord, same
+storage paths, same kdh_merch_save); `shared/merch-types.js ITEMS` is the one
+spec per type (pick sku / brand / either / tap, chip groups with codes, qty,
+price, record-level `rec` for tap location, `what` for Other) plus
+`itemText()` / `optLabel()` used by the sheet, the activity card, the viewer and
+the recap exports. Items are merch_lines rows: product / brand / family /
+supplier / package, quantity + unit (facings, taps), ownership (taps), and the
+two new columns `attrs` (jsonb codes) + `consumer_price` -- migration
+`supabase/migrations/20261005160000_capture_items.sql` (redefines kdh_merch_save
+once more; sql_items_test.sh). activity.js / recap.js read the new columns with a
+fallback to the old select until it is run. `sheet()` gained `{sub, foot, cls,
+noFocus}`: a footer that stays above the keyboard by sizing the overlay to
+window.visualViewport, and focused inputs are scrolled into view. The search
+panel (`pickPanel`) ranks this account's own products (ctx.extra.bought, from its
+sales file, most recent first) then catalog.json (ctx.extra.catalog) then the
+territory list's other brands. No generic Caption / Brands / Program /
+Location / Products block anywhere in capture -- don't add one back; a program
+comes only from Add Evidence. Tests (scratchpad): cap2_test.mjs (Gavin's
+acceptance script, 47 checks, 375/390/393/430 x light/dark: fit, tap targets,
+progressive reveal, totals, save / retry / double tap, keyboard stand-in),
+plus merch_capture_test / tap_own_test / notes_photos_test / drafts_test ported
+to the new flow, recap_test (Excel item columns).
+Save for Later (same day, Gavin): footer Cancel · Save for Later · Save. It writes
+the draft to IndexedDB (`d.later = true`) with no checks and no upload and closes;
+`draftsHtml` shows "Saved for Later" + "N photos · N items", and My Accounts
+renders `#laterStrip` from `KdhActivity.savedForLater()` (this person's drafts on
+this phone, every account; hidden in preview). Device-only by design -- nothing is
+on the account until Save. cap2_test.mjs covers it (57 checks).
+
+## Boston Beer seasonal sheets now score the October MPO + incentive (2026-10-05)
+
+Gavin: "use the boston beer files to update this mpo and incentive." The two
+10-05-26 workbooks (Seasonal Conversion Fall + Unconverted Accounts Fall) were
+flattened with `python3 incentive-tracking/convert_sam_adams_official.py --oct
+--as-of 2026-10-05 <scoreboard.xlsx> <unconverted.xlsx>` into
+data/sam_adams_seasonal_oct_official.csv / _unconverted.csv (`--oct` keeps
+September's sam_adams_conversion_* files, which sit behind the frozen
+September blob; raw workbooks archived beside them). INCENTIVE: October's
+`sam_adams_cold_snap` now has a builder (`build_sam_adams_cold_snap()`, card
+`cardSamAdamsColdSnap`): lines = Prev Season accounts, converted / not
+converted / gained straight from the scoreboard, unconverted list by route.
+Tracker-only pay (deck): >=10 lines: 90% (and 10+ conversions) $300, 100% $400;
+<10 lines: 80% gives $20 per conversion; +$50 per gained line. ASSUMPTION: the
+10-conversion minimum applies to the $300/$400 tiers only. MPO: `apply_boston_beer()`
+in MPOs/on-prem/generate_2026-10.py makes Boston Beer's counts the MPO's for every
+rep on their scoreboard (base = Prev Season, done = Converted; unconverted accounts
+are the named targets, matched to RDE by outlet name; surplus RDE conversions --
+newest first Octoberfest keg -- are dropped, a shortfall is filled with
+"Converted account (Boston Beer count)" lines). Dave Ehlers, Phil Ernst, Shane
+Barreca (no BB row) and route 90 stay on the RDE list. House total now 271 of 313.
+Refresh = rerun converter with `--oct` on the new pair, then both generators.
+
+## MPO cards v3: requirement-first (2026-10-05)
+
+Gavin's brief: cards say Current of Required, Still Needed, ONE bar toward the
+MPO requirement, weight as secondary, and "How This Goal Is Calculated".
+metricFor (MPOs/off-prem/programs.js) is the single source: pct_of_goal with
+assigned goals and pct_of_base now return goal = the REQUIREMENT (assigned goal
+x 75%, or eligible base x 50%, ROUNDED UP), pct = value / requirement, plus
+`requirement`, `underlying` and `explain` (lines shown in the fold; hub forRep
+passes them). Constellation: goal file reconciled (every rep's subtotal row =
+sum of product rows; window 9/1-11/30 for goal and results alike). The 100% goal
+is no longer the displayed headline (supersedes the 2026-10-05 "show 100%" note).
+UNVERIFIED, awaiting Gavin: rounding rule (ceil assumed, matters for 7
+fractional reps), the placement unit definition, Lytt 1+ SKU qualification.
+MPO credit is all-or-nothing per the docx (Achieved / Not Achieved x weight).
+Surfaces: guided.js (rep card, manager program card, rep rows, points summary --
+objectives with no data are "Not Counted" and the result is labelled partial),
+hub.js (rep program screen, mpoRepCard, manager card + summary), Lytt records
+(`lineTableLytt`: Qualifying Accounts, product name / package / date / cases,
+`Potential Accounts` wording). Tags 20261005e/g.
+
+Follow-up (same day, Gavin): Lytt October needs 3+ DISTINCT SKUs per account (minSkus 3 -- supersedes the 1+ SKU assumption above); "How This Goal Is Calculated" REMOVED from every MPO card (the Details fold keeps the rules); reps an objective does not cover (no account base / no goal) are no longer listed in manager rep rows and are out of reps_total (Lytt and Constellation now count covered reps only: 23 and 16); detail tables share one spacing style (guided.css, stacked labelled rows under 640px, followup cells carry data-l).
+
+Follow-up 2 (same day, Gavin): the manager "Program results" points summary box is REMOVED on both MPO pages (guided.js screenProgram, hub.js mpoSectionHtml -- no summary tiles at all now); program tiles and rep cards are center-aligned (title, supplier / period, figure, bar, caption, weight, Review Reps). The rep's own "MPO Points Earned" card on a rep's page was left in place.
+
+Follow-up 3 (same day, Gavin): the rep's own "MPO Points Earned" card is REMOVED from the rep page (no points summary anywhere on the MPO pages now). MPO tiles carry the rewards-deck supplier mark (guided.js `MPO_LOGO` / `logoHtml`, hub.js `MPO_BRAND_LOGO`, files in incentive-tracking/assets/logos): Corona Innovation = Constellation, Lytt, Molly's, Oktoberfest conversion = Boston Beer + Sam Adams, plus the older months' Keystone / Molson Coors / New Belgium / Yave / 2XO / Bardstown / Famosa. General objectives (Wine, Spirits follow-up, Cooler Door Stickers, iSellBeer photos) show no mark, and Carbliss has none because no Carbliss art is in the decks cut so far -- drop carbliss.png in the logos folder and add `carbliss:['carbliss.png']` to MPO_LOGO (and the hub map). Tags guided.css / hub.js / hub.css 20261005j.
+
+Managers land on Program View on EVERY device (2026-10-05, Gavin): hub.js `mgrCapable()` = wide screen OR a signed-in manager (not a rep preview), used by isMgr / restore / applyHash / set-mode, so phones and iPads no longer force a manager into the rep picker. Scope is unchanged: a DM (kdhTeam match) sees only their team (HUB_TEAM; Mike Engel's picker reads "All reps (4)"), every other manager -- VP, Gavin, anyone without a team -- sees everyone. An explicit deep link (`rep=` / `only=inc`) still wins. Cache-tag lesson: when guided.js changes, bump ITS `?v=` in both MPO index.html files (the logos shipped without it and did not show).
+
+A signed-in manager ALWAYS starts the hub in Manager Mode / Program View (2026-10-05): a stale `Rep view` saved in localStorage (the hub's LS_KEY) used to keep them on the "Choose a rep" picker after the program-view default shipped. Switching to Rep view still works for the visit; a reload goes back to Program View. hub.js tag 20261005l.
+
+October POS (5) Cooler Door Stickers is LIVE (2026-10-05): Promos_Report_47 (10/1-10/5) was merged into the shared archive MPOs/off-prem/pos_cooler_door_promos.xlsx (3 cooler-door rows in, 105 -> 108; the other 2 rows were not cooler doors) with `python3 MPOs/off-prem/generate_2026-10.py --merge-cooler-doors Promos_Report_NN.xlsx` -- the October generator now does the merge AND writes data/2026-10/mpo_pos_cooler_doors.json = archive rows dated 10/xx/2026 only, scored per DISTINCT PHOTO ('photos' builder, goal 5). programs.js pos_stickers is hasData:true with a 2026-10 table entry. Weekly: same command with the new Promos_Report. Do NOT rerun generate_2026-09.py for this -- it reads the whole archive. Jayson Romine has 3 of 5 so far. `patrick infante` (photo taker, not on the roster) is a pre-existing unmatched name.
+
+Manager navigation cleanup (2026-10-05, Gavin: "redundant and confusing"): manager home has ONE primary action, "View as Rep" (picker -> preview cookie -> /rep/); Gavin's manager preview is a quiet "Preview as a manager" text button that reveals the select ("Preview as" + "Preview"), no always-on "Viewing as" row. In the hub a manager no longer sees "Choose Another Rep" (the top-bar "Viewing <rep> · Change" chip and the Program View rep filter cover it) or the Rep view / Manager view toggle (managers are always in Manager Mode; seeing a rep as they do = View as Rep); the only secondary link is "‹ Program View"; the redundant name label above the title is gone. Non-manager, non-locked users in Rep Mode keep "Choose Another Rep". Tags hub.js / rep.css 20261005n. Fix 2026-10-06: leaving the as-rep view (the chip's Change, or home) now puts a signed-in manager back in Manager Mode (hub.js `leaveAsRep()`); before, the as-rep's forced Rep Mode stuck, so the next rep picked showed "Choose Another Rep" and no "‹ Program View". asrep_test / mgr_desktop assert the current controls. hub.js 20261006b.
+
+## Program eligibility: one calculation, ID joins only (2026-10-05)
+
+Gavin's brief: "What should I do at this account?" / "Which account helps me
+finish this program?" -- verify the rules first, then the screens.
+`tools/program_eligibility.py` is THE account-level calculation (run by
+MPOs/off-prem/generate_2026-10.py and accounts/generate.py; `--check` = exit 1
+if stale). It joins the trackers' own exports to the rolling sales master on
+CustomerID + ProductID ONLY and writes `shared/data/program-rules.json` (rules +
+qualifying products with package / size / ProductID, each rule tagged
+verified / assumed / unverified with its evidence, the open questions; NO
+customer data) and `accounts/data/elig/<rep key>.json` (eligible accounts,
+credited results, remaining opportunities with a reason code: sku = buys the
+brand not this product, lapsed = bought before not in the window, brand = new
+to the brand, partial = some this period). The middleware serves a rep only
+their own elig file (ACCOUNT_DATA regex now includes `elig`). Programs built:
+Corona Innovation (kind placements), Lytt Buying Accounts and Carbliss 40%
+(kind accounts, minSkus 3 / 1). Add a program = one function in the script.
+VERIFIED for Corona Innovation: the 11 products the RDE export counts (Modelo
+Chelada Suprema x2, Modelo Negra 2/12/12 oz CAN only, Pacifico 1/24/7 oz,
+Vicky Mango, Sunbrew x4, Corona NA 4/6 btl + 2/12 btl) -- other packages of
+those brands do not count; off-premise Core Market only; repeat buyers count;
+Phil Ernst 54 of 69 = 75% x 92. Account-level credit comes from the master
+(through September), so the workspace says "42 by account, 12 more credited
+after" -- the export has no customer column (REPORTING_REQUEST 12, C2).
+`shared/eligibility.js` (KdhElig) is the browser side: model(), accountsView(),
+accountLine(), forAccount(), productIds(). Readers: hub.js PROGRAM WORKSPACE
+(`screenWorkspaceRep` replaces the rep program screen when a rule exists:
+"54 of 69 / Required Placements / 15 More Needed", one bar, View Eligible
+Accounts, Details with Original Goal / MPO Requirement and the tagged rules,
+then tabs Eligible Accounts / Qualifying Products / Credited Results; state
+pv / pp / pq / pr in the hash; manager Program View gets `workspaceTeamHtml`
+with a rep filter), accounts/opps.js `fromRule` (Program Opportunities: What
+to Sell = the exact products still open here, What Is Needed, Deadline,
+Already Credited Here, reasons per product in Details, a Qualifying Products
+link), and hub/accounts.js `eligibleProducts` (Products list filter, Lead
+tags, assistant context) -- one product rule. Accounts open the unified
+Account page with `fl=<Title> Eligible Accounts`; Back lands on the same
+program, product, search, rep and scroll (sessionStorage kdh_hubpos:, and
+boot() honours a program deep link on a navigation, not a reload). Also fixed:
+'off:constellation_innovation' had NO brand families in PROGRAM_BRANDS, so the
+old target list offered Essex / Hudson / Union accounts. Tests (scratchpad):
+elig_rules_test.py (the checklist: same-brand non-qualifying SKUs, packages,
+territories, previously credited, multiple gaps, baseline, minimums, missing
+data), elig_test.mjs (tracker == calculation for 60 rep-programs, both flows,
+6 sizes x 2 themes), mw_test.mjs. Tags: hub.js 20261005o, hub.css 20261005k,
+hub/accounts.js 20261005d, eligibility.js 20261005a.
+
+## Card readability: goal first, contrast, tables that fit (2026-10-06)
+
+Gavin's brief (reps like the simple design; make every number easier to read).
+Every incentive / MPO card now reads Title -> GOAL -> Current / Still Needed ->
+one bar -> deadline -> View Eligible Accounts, with weight / full name / rules
+secondary. MPO trackers (guided.js `repObjectiveCard`, class `g-obj-v4`, still
+centered): a `.g-goal` band ("Goal 69 Placements" + `goalWhy()` = "75% of your
+92-placement program goal" from the metric's own `underlying` / `explain` /
+`pctRule`, else the tracker's % goal text), `.g-stats` (Current "54 of 69" /
+Still Needed "15 Placements" or "Met"), "78% of the requirement", `deadlineOf()`
+("Ends Nov 30 · 55 days left" / "Ended ..."), `.g-elig` link to the hub
+(`eligibleHref()`: the program workspace when a rule exists, hidden for photo
+objectives, met goals and ended months), "MPO weight: 30%", and Details = full
+program name + the tracker's table only (the duplicate "Worth 30%" / "Goal:"
+lines are gone). on-prem followup metrics now also return `underlying` /
+`pctRule` for share-of-base goals (Carbliss 40%). HUB: progFacts() returns
+`cur / goalN / needN / unit / why` on every branch with a countable goal;
+`goalBlockHtml()` (program screen + workspace summary, `.gb*`), `goalLineHtml()`
+(Manager Mode MPO + incentive cards) and the list rows (`.hrow-g` "Goal 69
+Placements", then "54 of 69 · 15 more needed") all draw from it; `goalContext()`
+drops a restated count from the tracker's text ("2 of 51 cases (Oct 2025 pace)"
+-> "Oct 2025 pace"); `mpoGoalWhy()` mirrors guided.js. Fixed on the way: the
+Manager Mode program cards (`.pcard`) had a hard-coded navy (#162037) from the
+old dark theme -- dark title on dark card in light mode -- now on the tokens.
+TABLES: `shared/fit-tables.js` (`KdhFit.tables(root)`, called after every
+guided.js / hub render and when a rep row's detail fills) hides a column that is
+blank or a dash on EVERY row of the whole table (zero is a value; a link /
+photo counts as filled) and says so under the table ("Column hidden (blank on
+every row): Base Period."), labels cells (`data-l`) and tags tables kf-2 (two
+columns: stays a real table on a phone, name left / number right) or kf-n
+(stacked labelled records, facts side by side). Tables are content-width with
+right-aligned numbers under their headings; the old page rule
+`.rep-sub-inner table{min-width:540px;white-space:nowrap}` had pushed the
+placement counts OFF a phone screen -- overridden in guided.css. Never put a
+percentage width on a cell in these auto-layout tables (it stretches the table).
+Presentation only: no number, record or rule changed. Tests (scratchpad):
+card_audit.mjs (6 pages x 375/390/430/820/1180/1440 x light/dark: goal shown,
+no sideways scroll, every table number on screen, measured contrast of goal /
+stats / labels / table text >= 4.5 -- worst 5.93), elig_test.mjs (updated for
+the goal block), the usual suites. Tags: guided.js / guided.css / fit-tables.js /
+hub.js / hub.css / on-prem programs.js 20261006a.
+
+## Eligible Accounts, simplified; Back returns to where you came from (2026-10-06)
+
+Gavin's brief (screenshots of the MPO card -> hub workspace): one destination,
+less detail, a return path that goes back to the exact screen. The rep's
+program workspace in the hub (`screenWorkspaceRep`, Rep Mode, any program with
+a rule in shared/data/program-rules.json -- today Corona Innovation, Lytt,
+Carbliss 40%) now reads: Back -> title (+ supplier · channel · month) ->
+`pwFocusSummary()` (Goal / Current / Still Needed tiles, one bar, deadline) ->
+`pwProductsFold()` "Qualifying Products" <details>, CLOSED by default (open
+when the link carries pv=prods): short name, "Package … · Size …", and ONE
+condition line only where it changes what counts ("Only the Modelo Negra
+packages listed here count", from excludedProducts' families; for account
+programs one rule line, "An account counts once it buys 3 different products
+from this list") -> "Eligible Accounts" heading + search -> rows
+(`pwFocusAccounts`: name, town, what is still needed = KdhElig.accountLine().what,
+Open Account). Gone from the REP screen: the second "View Eligible Accounts"
+button, the Details fold (pwDetails: original goal, rounding, rules, evidence),
+the Eligible / Qualifying / Credited tabs, the per-row evidence line and #number,
+"How is this ordered?", the territory note. The rules stay on the MPO tracker
+card's Details; the evidence (reasons per product, already credited) on the
+Account page's Program Opportunities. Manager Program View
+(`workspaceTeamHtml`) still uses pwTabs / pwBody / pwDetails unchanged.
+RETURN PATH: every link into a hub program screen carries `ret=<path+hash of
+the page it came from>` -- MPO trackers (guided.js `eligibleHref`, rep +
+month + view), the Account page (`progLink`) and Exceptions (`progLink`).
+Inside the hub, go() records the hub screen being left (e.g. the Off-Premise
+tab) as `state.ret`; leaving the program screens clears it; hashOf carries
+it on detail / accts / acct, so the Account-page round trip keeps it.
+`safeRet()` accepts only a same-origin path (never /login/), `retLabel()`
+names it ("Back to Off-Premise MPOs" / "On-Premise MPOs" / "Account" / "My
+Accounts" / "Exceptions" / "Incentives" / a supplier / "Program View"),
+`retLinkHtml()` draws a link for another page and a `back-ret` button (replays
+the hub hash, restores scrollMem) for a hub screen. No ret on the focused
+screen (a bookmark) -> `fallbackBack()` = the rep's own tracker for that
+program's month. Scroll: guided.js saves sessionStorage `kdh_mpopos:<path+hash>`
+when "View Eligible Accounts" is tapped and restores it on return; the hub's
+`kdh_hubpos:` keeps the list's scroll / search across the Account page.
+SIDEBAR: kdh-user.js `where()` marks the hub's MPO tabs (cat=off / on) as
+Off- / On-Premise MPOs instead of Incentives, and `window.kdhSyncNav()` (called
+by hub render) re-marks it after in-page navigation. Test: scratchpad
+elig_trip_test.mjs (MPO screen -> eligible -> products -> account -> back ->
+back at 390 light/dark, 820, 1366 dark; hub-tab entry; direct open fallback;
+off-site ret ignored). Tags: hub.js 20261006d, hub.css 20261006c, guided.js
+20261006b, accounts.js / exceptions.js 20261006a, kdh-user.js 20261006a.
+
+## Incentives get the same Eligible Accounts page; one-line products (2026-10-06)
+
+Gavin: "apply the same eligible accounts page to the incentive programs" and
+"put the brand and package in one line". hub.js `screenProgramRep` now hands
+every incentive with an account list (`!legs && !brandGoals && !hold &&
+C.targets!=null`) to `screenIncentiveFocus()`: Back -> title -> summary
+(`pwFocusSummary` when the goal is countable, else the old main / need / bar
+block) -> "What Counts" (`sellAsk`) -> `incProductsFold()` -> "Eligible
+Accounts" + search -> rows -> Done / Not Now folds -> Credited Accounts row,
+How It Is Scored and Progress So Far as folds BELOW the list. Retention
+(brand goals), Touchdowns & Tea (legs), accounts-to-hold lists, unavailable /
+awaiting programs keep the old program screen. Rows are list `elig` (LISTS
+gains 'Eligible Accounts'; acctRowsFor treats it as the live target list):
+name, town, the reason only when it is not NO_BUY, "Open Account" -> the hub
+account screen (credits + the rep's Done / Follow Up / Not Now marks), whose
+Back is `back-prog` "<title> Eligible Accounts"; back-prog / back-accts now
+restore scrollMem. QP_OPEN (sessionStorage kdh_qpopen) keeps an opened Qualifying Products fold open for
+the visit so Back lands on the same page height. PRODUCTS: `qpFoldHtml()` is
+shared by the MPO rule page and the incentive page -- one line per product,
+the full catalogue name (brand + package, "Corona Non-Alcoholic 4/6/12 oz
+Btl"), no separate Package / Size line; the condition line names what does
+NOT count ("Doesn't count: Corona Non-Alcohol 2/12/12 oz Can", or "Other
+Modelo Negra flavors and packages don't count (4)" past two) from the rule's
+excludedProducts. Incentive products come from ../accounts/data/catalog.json
+(`hubCatalog()`, loaded once) through hub/accounts.js `eligibleProducts`:
+exact for Lagunitas (PROGRAM_PRODUCTS), otherwise the brand family with the
+note "Every <family> product we carry. The program's exact SKU list is not on
+file yet..." -- REPORTING_REQUEST section 13 asks Gavin for per-program SKU
+CSVs. Tests (scratchpad): inc_trip_test.mjs (Incentives list -> Lagunitas ->
+products -> search -> account -> back -> back at 390 light/dark, 820, 1366;
+account-page entry -> "Back to Account"), elig_trip_test.mjs (one-line names,
+named exclusions). Tags hub.js 20261006f, hub.css 20261006d.
+Same day, follow-up: the focused page also serves MPO objectives WITHOUT a
+rule (Molly's, Wine, Oktoberfest conversion, Spirits follow-up) -- their
+card's "View Eligible Accounts" used to open the old program screen with a
+second "View Eligible Accounts" button; now every MPO card lands on a
+focused page (rule programs on screenWorkspaceRep, the rest on
+screenIncentiveFocus) with "Back to <Off|On>-Premise MPOs". hub/accounts.js
+PROGRAM_PRODUCTS gained 'on:sam_adams_conversion' = the two Sam Adams
+Octoberfest kegs (#3813 15.5 gal, #3862 5.2 gal; the generator counts keg
+units) instead of all 66 Samuel Adams products. The October INCENTIVE
+sam_adams_cold_snap stays on the family until Gavin's SKU list arrives.
+hub/accounts.js 20261006a.
+
+## Official SKU lists per program: tools/program_skus.py (2026-10-06)
+
+Gavin sent the October Off-Premise MPO SKU exports (Corona Innovation 11,
+Lytt 6, Molly's 5, Wine 60). `python3 tools/program_skus.py add <program id>
+<export.csv> [--source TEXT]` keeps ONLY Product Num + Product Name (Gavin:
+disregard the cases / placements columns) in MPOs/<on|off>-prem/skus/
+<YYYY-MM>_<key>.csv (incentives: incentive-tracking/data/skus/<key>.csv), logs
+the source + date in that folder's sources.json, and builds
+shared/data/program-skus.js (`window.KDH_PROGRAM_SKUS[programId]`; no
+customer data; `--check` = exit 1 if stale). It reads "Product Num", "Product
+ID" or "Product Num & Name" columns. READERS: hub/accounts.js
+`eligibleProducts()` uses the official list first (after a KdhElig rule) --
+so the Products list's program filter, Lead tags, Program Opportunities and
+the assistant's context use it; hub.js `incProductsFold()` shows it directly
+(its own names, no "not on file" note); tools/program_eligibility.py reads it
+through `program_skus.official()` -- Corona Innovation stops on a product the
+report counts that is NOT on the list, adds an official SKU nobody has placed
+yet, and marks the list verified (productsExhaustive true, rule "Official SKU
+list"); Lytt stops if the list ever differs from the Lytt family. Both lists
+matched what the reports had shown exactly, so no account data moved.
+program-skus.js is loaded before hub/accounts.js on hub, accounts, exceptions
+and performance. Tags: hub/accounts.js 20261006b, hub.js 20261006g,
+program-skus.js 20261006a. New list = run `add`, then
+`python3 tools/program_eligibility.py` when the program has a rule.
+
+## Page standard applied sitewide (2026-10-06, branch only until Gavin approves pictures)
+
+Rep home, manager home, Team Activity, Exceptions, My Accounts + Account page, Incentive Hub (rep screens and
+Program View), both MPO trackers, Red Bull, Tap Tracker and Inventory now follow the COPY + LAYOUT STANDARD:
+960px centered column, page headers and summary cards centered, dense lists / tables left-aligned, short copy
+(rules moved into closed folds), Title Case in the strings, floors 13px tags / 14px secondary (`MIN_PX` 13 in
+kdh-user.js), phones stack into labelled blocks. The amber banner reads "Not Real Time. For live incentive and
+MPO data, Open Encompass." Each page has a "PAGE STANDARD" CSS block at the end of its stylesheet. NOT yet
+covered: manager tools (performance, merchandising, rolling-distribution, cockpit, W&S, metlife, etc.).
+Tests that match old copy ("accounts on your route", "In progress", "Manager Dashboards", "Why:") need updating.
+
+## Account contacts: private table, never in the repo (2026-10-06)
+
+Encompass' "Customers" export (Customer ID, Primary Contact, Phone, Email, 2,912
+rows) fills the Account page's Contact group. The repo is PUBLIC, so the data
+lives only in Supabase `public.account_contacts` (migration
+`20261006100000_account_contacts.sql`; RLS = `kdh_can_access_account`, the notes /
+photos rule: a rep reads only accounts assigned to them, a manager all; nobody
+signed in can write). `tools/load_contacts.py <export.csv>` cleans the names
+(proper case, Mc / O' / D', "_12" suffixes, phone numbers / account codes /
+extensions / (notes) / symbols stripped, " / " between two people, "None" and
+emails typed in the name box dropped) and writes the git-ignored
+`supabase/data/account_contacts.sql` (replaces the table in one transaction) for
+Gavin to paste into the SQL Editor. accounts.js `loadContact(n)` reads one row
+with the caller's token and sets contact_name / phone / email; no row = "No
+contact is on file". Verified on local Postgres 16 (rep sees own accounts only,
+manager all, writes and anon refused, migration idempotent). Never commit the
+generated SQL or the export. accounts.js tag 20261006a.
+
+## Kohler brand across the Hub, both themes (2026-10-07)
+
+Gavin's brief: make the Hub look like Kohler's official sales app, light and
+dark, keeping the compact layouts. kohlerdistributing.co is BLOCKED by this
+environment's network policy (curl + WebFetch both denied), so colours were
+SAMPLED from the official logo files and adapted for contrast -- the table and
+every rule are in shared/README.txt "KOHLER BRAND". Tokens (shared/kdh.css):
+light bg #F4F6FA, text #0E1A33, Kohler blue #2866C0 (actions / selection /
+focus), navy #0B2466 (headings via a zero-specificity `:where(h1,h2,h3)` and
+the desktop sidebar in BOTH themes), gold #E4A252 as `--kdh-accent` for three
+short decorative rules only; dark = deep navy canvas #0A1226, surfaces
+#111C36, blue #6AA1FF with a navy label. Warnings moved to burnt orange
+(#B54708 / #FB923C) so gold never reads as a status. Chrome (kdh-user.js): the
+sidebar lockup = official badge + "Kohler" / "Distribution Hub" + gold rule;
+top bar = badge on a white tile + a 3px Kohler-blue top edge; theme-color meta
+follows the theme. /login/ restyled (presentation only -- every step, id and
+guard unchanged): square Kohler logo in the card, the warehouse aerial photo on
+the left from 960px with its caption on a solid navy band, light / dark via
+the shared snippet + its own switch (`#loginTheme`, same kdh_theme). App name
+is "Kohler Distribution Hub" (titles, manifest; short_name "Kohler Hub").
+Fixed on the way: hub.css's generic `.sub` card leaked onto the sidebar's
+sub-items (reset in kdh.css), the hub's premise chips were dark-theme colours
+in light mode, the Export Recap print page / map "you" marker / sign-in
+email used the old blue. Assets: assets/brand/ (kohler-logo-square[-192].webp,
+warehouse-aerial[-sm].webp). Tests (scratchpad): brand_test.mjs (71: logo
+pixels >= 2x display and unstretched, sign-in photo only >= 960 and the form
+in the top third at 375-1366, theme switch saves + persists across 7 pages +
+reload with data-theme set before DOMContentLoaded, typed search kept on
+toggle, focus ring >= 3:1, sidebar selection + aria-current, gold != warn),
+contrast_audit.mjs (login added; 0 failures at 390 / 820 / 1366, both themes),
+mobile_audit.mjs, brand_shots.mjs (paired light/dark shots). Tags: kdh.css
+20261007c, kdh-skin.css / rep.css 20261007c, kdh-user.js / hub.css / hub.js /
+map.js 20261007a.
+Merged with main the same day: rep.css / hub.css 20261007m, hub.js 20261007n
+(both sides changed them); the home headings' gold rule is centred under main's
+centred page-standard headers; shared/carbliss-tiles.css (main's new Carbliss
+tiles) now takes its red from --kdh-bad / --kdh-bad-soft (its fixed #d63c2d pill
+was 3.57:1 light / 3.19:1 dark), tag 20261007m. Never give a shared component a
+fixed colour: use the kdh tokens so both themes stay AA.
+
+## Company photos + a cleaner sign-in (2026-10-07, second request)
+
+Gavin sent screenshots of kohlerdistributing.co (Beer / Wine & Spirits / Beyond
+Beer tiles, About Us team photo, Our Mission) and asked for them in the Hub and a
+cleaner sign-in. Photos were CUT FROM THE SCREENSHOTS into assets/brand/
+(team.webp, beer.webp, wine-spirits.webp, beyond-beer.webp; ~580px sources, so
+never shown wider than ~640px). /login/ v3: the form on a plain page (no box,
+Title Case labels/buttons, shorter lead), and a navy "story" panel -- the team
+photo, "Kohler Distribution Hub" with the gold word, the mission line ("Committed
+to the growth of all brands through the continued development of our people.")
+and the three category photos -- as the left half from 960px and BELOW the form
+on phones (the email box stays on the first screen). Every step / id / guard of
+the sign-in logic is unchanged. Across the site: kdh.css `.kdh-band` (photo strip,
+top of rep home, manager home, Wine & Spirits, Carbliss Leaderboard, Tap Tracker)
+and `.kdh-portfolio` ("Our Portfolio" + mission + category photos at the foot of
+both homes; decoration, not links -- no dataset splits Beer / W&S / Beyond Beer).
+Fixed on the way (a regression from the brand pass): the zero-specificity
+`:where(h1,h2,h3)` navy heading rule beat the WHITE that Wine & Spirits' navy
+header passed down, so its title and subtitle were navy on navy in light mode --
+the skin now forces white there; and its "i" badges are navy on gold. A
+scratchpad head_audit.mjs checks every dashboard's h1-h3 against its real
+(gradient-aware) background: 0 failures. shared/README.txt "COMPANY PHOTOS" has
+the rules. Tags: kdh.css 20261007p (imported by rep.css + kdh-skin.css),
+kdh-skin.css / rep.css 20261007p.
+
+## Manager Home + Rep Home v4: compact header, grouped tool cards (2026-10-07)
+
+Gavin's brief with a dark concept image; Mobbin refs inspected: HoneyBook Home
+(82fb022a-9a06-4774-9942-f857076567e0: compact left identity header, separated work
+sections) and Dropbox quick actions (8f6b34cd-2a14-47a7-86db-5e905e64c44a: bordered,
+consistently aligned action tiles). Both homes now: a left-aligned title ("Manager
+Home" / "Rep Home", 30px, gold rule) with name / role / reporting line under it
+(#who / #repName + #metaRest), the preview controls as secondary buttons on the right
+(View as Rep, Preview as Manager for Gavin, the rep home's Viewing as + Preview as This
+Rep), NO team photo in the working area (the portfolio strip at the foot is now
+`.kdh-portfolio.compact`), and ONE tool card `.kt` (rep/rep.css "HOMES v4";
+shared/README.txt "HOME TOOL CARD"): icon tile, title, one line, a status line only
+where real data exists, chevron, the whole card one link; the "Open ->" labels and
+repeated footer words are gone. Manager groups: Accounts & Team (Accounts, Team),
+Programs (Incentives, Off/On-Premise MPOs), Trackers (Tap, Red Bull, Carbliss
+Leaderboard), Manager Tools (Merchandising, Exceptions, Incentive Performance -- a NEW
+card, it was sidebar-only), Sales Performance (6), Warehouse & Inventory (3), Planning
+& Field (2027 Planning, iSellBeer Activity, MetLife) = 23 cards, every old destination
+kept. Rep: My Accounts (big card, `.kt-lg`; its search box was REMOVED 2026-10-08, Gavin: redundant -- search
+lives on My Accounts), Needs Attention (unchanged
+rows), Programs (Incentives = the hub card, Off/On MPOs), Trackers (Tap, Red Bull,
+Carbliss Leaderboard -- was mislabelled "Carbliss MPO"; status "Team X / 331 L90 ·
+Y / 331 Aug-Oct"), Tools (Inventory, Account Map = /accounts/#mode=map, rep= for a
+manager). Card borders use --kdh-border-2 (3:1 vs the page in both themes). Grid: 1
+column < 640px, 2 to 1279px (odd last card spans the row), 3 from 1280px (iPad
+landscape stays 2 -- 3 made 171px-tall cards beside the sidebar). Tests (scratchpad):
+home_test.mjs (216: both homes x 375/390/430/820/1180/1366 x light/dark -- every
+destination, one link per card, no clipping / sideways scroll, text 4.5:1, borders
+3:1, compact desktop heights, bottom bar never covers the last card, keyboard Tab +
+Enter, View as Rep / Viewing as / Preview as This Rep), updated mgr_test (23 cards),
+team_test, fu_test, hubonly_test, preview_flow. Tags rep.css / kdh.css / kdh-skin.css
+20261007q.
+
+## Carbliss on-premise MPO IS the Carbliss Leaderboard's program (2026-10-07)
+
+Gavin: "the program is the same as the leaderboard we made." The October on-premise objective
+"Carbliss – 40% Buying Accounts" no longer reads MPOs/on-prem/carbliss_buying_accounts.csv (Sep 1 -
+Oct 31; kept on disk, unused). `build_carbliss()` in MPOs/on-prem/generate_2026-10.py copies, per base
+account, the `prog` flag from carbliss-mpo/data/program.json -- bought Carbliss on a load sheet Aug 1 -
+Oct 31, 2026 (the leaderboard's "L90", what its Rep Leaderboard ranks and its Team L90 Goal sums), over
+the same core on-premise base, honouring the leaderboard's --finalize freeze. DONE_DATE = the latest
+in-period load sheet from carbliss-onprem-targets/carbliss_buyers_l90.csv. Per rep the MPO equals
+`board[].l90` / `base` exactly (182 of 1,047 in rep bases on 2026-10-07). Credit is still 40% of the
+rep's own base (the docx, metricFor unchanged); the team goal 331 is the leaderboard's. NOT the same:
+the cards' "L90 Buyers" tile (byrep.l90, RDE rolling-90 flag, company 257) -- that is a separate
+number on both pages. carbliss-mpo/generate.py now runs MPOs/on-prem/generate_2026-10.py (which runs
+rep_slices) and tools/program_eligibility.py at its end, so ONE command refreshes all three. Registry:
+periodStart/End + periodText "Aug 1 – Oct 31, 2026"; program_eligibility's Carbliss rule period Aug 1 -
+Oct 31 (lapsed = "not since Aug 1"); hub Carbliss rules line. Tags: on-prem programs.js / hub.js
+20261007r. Test: scratchpad cb_same_test.mjs (every rep: hub metric == board, card tile == board,
+pill follows the same count).
+Follow-up (same day, Gavin): on the On-Premise MPO's Program View (managers), the Carbliss program card's
+header now shows the leaderboard's company tiles (KdhCarbTiles compact: L90 / Aug 1 – Oct 31 / YTD /
+Fell Off L90 against the 331 team goal) instead of the "N of 21 Reps at Goal" figure + bar; that count moved
+into the meta line ("MPO Weight 25% · 1 of 21 Reps at Goal"), Review Reps unchanged. guided.js `programCard`
+(`.g-cb-co`, filled by hydrateCarbliss), guided.js / guided.css 20261007r. Test: scratchpad cbhead_shot.mjs.
+Second follow-up (same day, Gavin: "instead of Review Reps, have the card take managers and reps to the
+leaderboard"): the Carbliss program card on Program View is now ONE LINK to /carbliss-onprem-targets/
+(guided.js `carblissProgramCard`, an <a class="g-prog-head g-prog-link">, no js-prog, no rep list), ending
+"Open Carbliss Leaderboard"; the rep's own Carbliss card already links there ("Open Carbliss Leaderboard").
+Other program cards still expand to Review Reps. The tiles carry no "Company Carbliss Buyers" heading on this
+card (noTitle) -- the card title already says Carbliss. guided.js 20261007t, guided.css 20261007s. Test: scratchpad
+cbhead_link.mjs (manager card click + rep card link -> leaderboard, 390 / 1366, light / dark).
+Third follow-up (same day, Gavin): the Carbliss program card has NO title line either ("Carbliss Buying Accounts /
+Aug 1 – Oct 31, 2026" was redundant) -- it opens on "Team Goal: 331 Buyers" and the tiles; the link's aria-label
+carries the program name and period. guided.js / guided.css 20261007u.
+
+## Incentives page has no MPOs; MPO trackers open By Program (2026-10-07)
+
+Gavin: "remove the mpos from the incentive tab; default view for on and off premise MPO = by program."
+HUB (hub.js 20261007s): `tabbar()` lists only Incentives (one tab = no bar); `screenRep()` turns any
+MPO / mixed category (cat=off|on|mpo|all, old links included) into the Incentives page; Program View is
+Incentives only (`state.filters.type` forced to 'inc', the Type filter is gone, exports likewise:
+`programsForExport`). MPO program SCREENS still open by deep link -- the MPO cards' "View Eligible
+Accounts" -> hub workspace (Back returns to the tracker via ret= / fallbackBack). The picker copy says
+"incentives" only. MPO TRACKERS (guided.js 20261007v): with no rep / program / view in the link, EVERY
+manager -- DMs included (replaces the 2026-09-29 "a DM starts by rep" rule) -- opens on View by Program;
+the remembered view is no longer restored. A link that names a rep or program still wins; a signed-in rep
+(or a manager previewing one) stays pinned to their own page. Tests (scratchpad): nompo_test.mjs; updated
+hubonly_test, mgr_desktop, elig_trip_test (hub-tab entry removed), dm_test (DM opens By Program, By Rep
+picker is the team), export_test (no Type filter).
+
+## October Off-Premise MPO refresh; Lytt counts Aug 1 - Oct 31 (2026-10-07)
+
+New RDE exports saved over MPOs/off-prem/lytt_october.csv, mollys_new_placements.csv and
+wine_new_placements.csv; `python3 MPOs/off-prem/generate_2026-10.py` rebuilt the month, the per-rep
+copies and the eligibility files. LYTT RULE (Gavin): 50% of the rep's off-premise CORE base (Whole Foods
+still removed), August and September distribution counts -- the export's window is Aug 1 - Oct 31 and
+generate_2026-10.py `check_window`s it (LYTT_START) -- and an account qualifies with 3+ DISTINCT Lytt SKUs
+over that window. NEW: a SKU whose cases net to 0 or less over the window (bought, then fully returned) is
+dropped -- 11 lines, incl. all 6 at Roserne Liquors North (Palmisano) and 3 at Franklin Lake Liq (Ast);
+ASSUMPTION, confirm with Gavin. Result 2026-10-07: 157 qualifying accounts, 2 reps at 50% (Derrick Laws
+18/17, Michael Harboy 3/3); Phil Ernst 14/15. tools/program_eligibility.py `lytt()` reads the same file
+with the same net rule (period Aug 1 - Oct 31, "since Aug 1" wording); programs.js periodText updated.
+Molly's 8 new placements, Wine 11. CONSTELLATION NOT CHANGED: Gavin's "Constellation Innovation OCTOBER
+2026 MPO OFF RDE" export (saved as constellation_innovation_october_accounts.csv, NOT read by anything) is
+October-only placements by account with no goal column (201 placements vs 699 in the 9/1-11/30 fall export
+the card scores against the fall goals) -- asked Gavin whether the MPO is October-only and what the goal is.
+Tags: off-prem programs.js 20261007w. Tests: elig_test (Lytt card now Aug 1 - Oct 31; account 50003),
+elig_trip_test, card_audit, opp_elig_test.
+
+## October Off-Premise MPO refresh, 2026-10-16
+
+New exports for all five objectives. Constellation now arrives as an .xlsx grouped by rep (rep row, then product
+rows, plus a Total row): `python3 MPOs/off-prem/convert_constellation_xlsx.py <export.xlsx>` writes
+constellation_innovation_fall.csv in the old layout (asserts each rep row = sum of its products). MPO = 75% of the
+Goals column, rounded half up (unchanged). Cooler doors: Promos_Report_53 merged (8 new; the merge warned that 10/13
+had no rows -- re-pull from 10/13 if that day was not quiet). generate_2026-09.py's `%-m/%-d/%Y` strftime calls were
+replaced with plain f-strings so the generators run on Windows Python (openpyxl must be installed there).
+Result: Constellation 4 of 16 at 75% (Matt Powierski, Dave Ehlers, Javier Melo, Michael Harboy); Lytt 162 qualifying,
+3 reps at 50% (Derrick Laws, Michael Harboy, Phil Ernst 15/15); Molly's 19 new; Wine 26 new; cooler doors 25, 3 reps at 5.
+
+## Gavin's answers, 2026-10-07: core base from the Customers export; Constellation by Oct 31
+
+LYTT: Aug + Sep + Oct distribution counts (window Aug 1 - Oct 31); fully returned SKUs do NOT count (confirmed).
+CUSTOMER BASE (confirmed): OFF-PREMISE accounts in the CORE MARKET only -- Distribution Area Bergen, Passaic,
+Passaic-FF, Morris 1, Morris 3, Sussex (Morris 2 is neither core nor southern); Southern District = Essex,
+Hudson, Union; an area of "Sales" is placed by its County (Bergen / Passaic / Sussex -> core). Whole Foods is
+never part of these programs. Source = Encompass "Customers" export of ACTIVE accounts, saved as
+territory-accounts/customers_active.csv (no phones / emails in it -- checked); MPOs/off-prem/generate_2026-10.py
+`build_core_off_base()` builds the Lytt denominator from it (2026 cases for target ordering still come from
+sales_reps_customer_base_core.csv; that shared file is NOT rewritten -- closed months read it). 506 accounts on
+2026-10-07 (was 513 from the RDE core export: 20 dropped -- inactive / Costco / BJ's / house accounts -- 18 added,
+incl. 5 MetLife concession stands under Alex Rodriguez filed Off Premise / "Sales" / Bergen). CONSTELLATION: the
+fall export (9/1-11/30 window, Goals column = 100% goal) is the source again; the MPO = 75% of the goal ROUNDED
+to the nearest whole number, halves up (programs.js buildPctOfGoalDataset when goals exist; program_eligibility
+`req`), reached BY OCT 31 (periodEnd 2026-10-31, periodText Sep 1 - Oct 31). Dave Ehlers 82/65 and Michael Harboy
+11/11 achieved -- matches Gavin. Whole Foods was briefly taken off Constellation's eligible lists and is BACK (Gavin: leave it in). The cards' rounding note now says "rounded up" or "rounded down" as
+it happened. The October-only Constellation file was deleted. No freeze needed: Gavin keeps November invoices
+out of the fall export. Tags: off-prem programs.js / hub.js / guided.js 20261007x.
+
+## THE REP ACCOUNT BASE = the active Customers export; Core Market vs Southern District (Gavin, 2026-10-07 -- REMEMBER)
+
+Gavin: "use that customer file as account base for reps going forward and remember the dist area breakdown."
+SOURCE: Encompass "Customers" export of ACTIVE accounts, saved as territory-accounts/customers_active.csv
+(columns Customer ID, Customer Name, On Premise, Sales Rep Name, Class, Chain, Account Status, Draft Package,
+Customer Type, Shipping Address, City, County, Distribution Area, District Manager Name -- NO phones / emails;
+check every new copy before committing, the repo is public). ONE reader: tools/customer_base.py.
+TERRITORY: CORE MARKET = Distribution Area Bergen, Passaic, Passaic-FF, Morris 1, Morris 3, Sussex. SOUTHERN
+DISTRICT = Essex, Hudson, Union. "Sales" is a placeholder -> use its County (Bergen / Passaic / Sussex = core;
+Essex / Hudson / Union = southern; Warren, Somerset ... = neither). Morris 2 and Middlesex belong to neither.
+PROGRAM BASES (`program_base(premise, "core")`): the rep's accounts of that premise in the Core Market, minus
+Whole Foods (cannot sell alcohol) and minus the five MetLife Stadium concession stands filed off-premise under
+Alex Rodriguez (`LEFT_OUT`: Qsr, Lounge, Victory Terrace, Backyard, Izod Center -- Gavin: "leave out").
+Whole Foods STAYS in Constellation Innovation (its placements count; only Corona Non-Alcoholic is offered there).
+WHO READS IT (2026-10-07): hub/generate.py -> hub/data/accounts.js (every rep's book: 2,850 accounts, 27 reps;
+was the Sales_Reps_Customer_Base.xlsx YTD-buyer workbook, 2,351) -> accounts/generate.py (My Accounts books,
+stale rep folders for John Neukum / Chris Politano removed); MPOs/off-prem/generate_2026-10.py (Lytt base, 501);
+carbliss-mpo/generate.py (Carbliss on-premise base 1,127, was 1,047 from core_market_on_prem_accts.csv -- no
+rep's credit flipped); `python3 tools/customer_base.py --write-incentive-base` rewrites
+incentive-tracking/data/customer_base_full.csv in its old layout for incentive-tracking/generate.py (August /
+September stay frozen). 2026 CASES everywhere come from the Rolling Distribution sales master (one scale; the
+old workbook's numbers were on another) and only order / label target lists. Closed months (Aug / Sep MPO
+files) and MPOs/*/sales_reps_customer_base*.csv are NOT rebuilt. supabase/seed/account_assignments.sql was
+regenerated (2,850 accounts): Gavin must paste it into the Supabase SQL Editor so notes / photos / contacts
+permissions follow the new books.
+REFRESH: save the new export over territory-accounts/customers_active.csv, then run hub/generate.py,
+`python3 tools/customer_base.py --write-incentive-base`, incentive-tracking/generate.py, accounts/generate.py,
+carbliss-mpo/generate.py (it rebuilds the on-prem MPO + eligibility) and MPOs/off-prem/generate_2026-10.py.
+Constellation: Gavin keeps November invoices out of the fall export -- no freeze needed.
+
+
+## Oktoberfest MPO from the RDE export; Boston Beer still scores the incentive (2026-10-07)
+
+After reconciling Gavin's RDE "Sam Adams Kegs: Summer Ale to Octoberfest" export against Boston Beer's
+10/5 sheets, Gavin's answers: the October on-prem OBJECTIVE is built from the RDE alone
+(MPOs/on-prem/generate_2026-10.py `build_conversion`; `apply_boston_beer` deleted): ON-PREMISE accounts
+only (export's Premise column), Dave Ehlers / Phil Ernst / Shane Barreca LEFT OUT (their keg accounts are
+liquor stores), ON_PREM_EXTRA = Milton Inn, White Deer Inn, The George Inn KEPT (filed Off Premise, bars),
+Gavin's ORIGINAL windows -- BASE = net Summer Ale keg units > 0 4/1-7/17, DONE = net Octoberfest > 0
+8/1-10/23 (card deadline periodEnd 2026-10-23) -- NEVER the Buyer Count column (~29% of rows are 0-unit
+lines with Buyer Count 1), house reps dropped. Result: 268 of 305.
+The October INCENTIVE sam_adams_cold_snap keeps Boston Beer's scoreboard as its numbers (Gavin: never
+report wrongly). Its unconverted list is now matched to Encompass customers through
+incentive-tracking/data/sam_adams_bb_to_encompass.csv (all 43 by street address; Chelas = The Little
+Falls Tavern 13002, Z's Casual Dining = Acquaviva Restaurant 230921, Knights of Columbus Rochelle Park =
+Columbian Club (Z) 78018 / Office Tell Sell = their route 90; every one IS in the RDE export -- supersedes
+"5 not in the export" in the 2026-10-05 note). generate.py `build_sam_adams_cold_snap` stops if a new
+Boston Beer outlet has no row there (add it), adds customerNum / customer (Encompass name) / octLoaded
+(first net-positive Octoberfest keg 8/1-10/23 in the MPO keg export) and `toClose`. The tracker card shows
+"Accounts To Close" (Encompass name · # · town, Boston Beer's name only when it really differs) and a
+separate "Octoberfest Loaded, Not Yet On Boston Beer's Report" list (Straphanger, Skylands, Ruth's
+Chris) -- counts unchanged; the hub lists the accounts to close first ("Still on Summer Ale · Boston
+Beer list"). Refresh: new Boston Beer pair -> convert_sam_adams_official.py --oct, then generate.py.
+Tags: incentive programs.js / hub.js / on-prem programs.js 20261007z.
+
+## Reps see only the programs their route can reach (2026-10-07)
+
+Gavin: "when the rep signs in they see only the MPOs and incentives that are available to them."
+A program is OUT OF REACH for a rep when (hub.js `availability`): the brand cannot be sold at any
+account on the route (territory workbook), the route has no account of the program's premise
+(NEW: checked even when any brand counts; an existing credit keeps it -- Jayson's Oktoberfest),
+the program is Core Market-only and the route is Southern District (`territoryEligible`), or an
+account-count MPO goal exceeds the accounts that could count. Out-of-reach programs are no longer
+shown greyed ("Unavailable based on account base/territory" / "Not in Your Territory") -- they are
+NOT LISTED: hub `incRows`, `sortedForRep`, `endedIn`. MPO trackers (guided.js init wraps H.metric):
+an objective on the Off- / On-Premise page is hidden for a rep with no account of that premise
+(`shared/data/rep-premise.js`, counts only, written by hub/generate.py; the three Inns in
+customer_base.ON_PREM_BARS count as on-premise) unless they already have credit, and a "Not
+scored" objective (no base / no goal) is no longer drawn on the rep's page; a page with nothing
+left shows "No <scope> MPOs Apply to Your Route This Month". Rep home hides the Off- / On-Premise
+MPO tile for a route with no account of that premise (Allison: no Off-Premise; Shane: no
+On-Premise). Managers' Program View is unchanged apart from these reps dropping out of an
+objective's rep list. Test: scratchpad reach_test.mjs. Tags hub.js 20261007y2, guided.js / rep.css /
+on-prem programs.js 20261007z.
+SPIRITS FOLLOW-UP is ON-PREMISE ONLY (Gavin, 2026-10-07): his RDE export now filters On Premise (all
+107 base accounts on-premise; was ~85% off-premise). 12 of 107 done; 16 reps scored, off-premise reps
+(Hakan, Jayson, Shane, Dave, ...) no longer carry it. Note: the export's "Spirits" segment includes BJ's
+hard root beer / prickly pear kegs and a New Holland coconut rum beer; Gavin filtered them (and a Molly's Irish Cream line) out of the export on 2026-10-07 -- 105 base accounts, 11 done.
+
+## October incentives refreshed + Four Loko built (2026-10-07)
+
+Gavin sent new RDE exports (through Oct 9) for MABI single serve, Lagunitas Sprint, Famosa, Industrial Arts
+and Four Loko; saved under incentive-tracking/data/ and `python3 incentive-tracking/generate.py` re-run.
+Lagunitas is all NEW placements -- "POD" always means new POD (already how the builder counts it).
+FOUR LOKO (`build_four_loko()`): NO PAYMENTS -- cases 10/1-11/30 vs last year (four_loko.csv) and NEW
+Sour Apple / USA placements from the RDE placement exports (four_loko_new_placements.csv; current-window
+flag with none in 7/1-9/30; four_loko_placements_all.csv cross-checks it). Gavin's "volume" file carried
+placements, not cases, so cases still come from the first export. INDUSTRIAL ARTS: off-premise tracks all
+16oz / 19.2oz / 12oz packages, on-premise only Wrench draft (Pocket Wrench excluded). Gavin confirmed the
+Sam Adams draft conversion ends Oct 23 and Touchdowns & Tea ends Oct 31 (both already built that way).
+Cache tags programs.js / program_data.js 20261007zz.
+
+## My Accounts / program wording refresh; Rep Home v5 REVERTED (2026-10-08)
+
+Gavin's brief asked for Option C's account-first layout + Option B's priority list. A Rep Home v5 ("Today",
+account search, "Your Priorities", grouped Quick Access) shipped and was REVERTED the same day at Gavin's
+request ("Before looks better for this screen"): rep/index.html and rep/rep.css are back to the v4 Rep Home
+(2026-10-07 section above), which is the same layout as the Manager Home. Do not bring v5 back unless he asks.
+Kept from that pass: the rep bottom tab reads "Accounts" (aria-label "My Accounts"; "My Accounts" was cut off
+at 390px). Presentation only -- no rule, number, permission or data source changed. MY ACCOUNTS: segmented `#needSeg` = All Accounts / Needs Attention /
+Follow-Ups (3 equal columns, count under the label below 520px); the header no longer repeats alert counts or
+the sales month (the Data pop has it); a filtered list shows `.afl` = filters in words · N Accounts · Clear
+(`activeLine()`, `#clearAll`). PROGRAMS: "Still Needed" is "Remaining" everywhere (hub goal blocks, workspace,
+summary strip, guided.js cards); eligible rows say what is left ("Needs 1 more qualifying product · has 2 of
+3", KdhElig.accountLine names the first open product "+ N more"), a no-purchase eligible row says "No
+qualifying purchase yet · data through <date>", and hub `noBuyText()` always carries the period. Hub marks are
+Done / Follow-Up / Not Now. Also: the W&S "i" badges are navy on a fixed light gold (skin), and the amber
+banner's "Open Encompass" link has a 41px tap area. Tags: rep.css / hub.js / eligibility.js / accounts.js /
+accounts.css / guided.js / kdh-skin.css 20261008a; kdh-user.js 20261008d (sidebar icon for Non-Buy Reports); rep.css 20261008c (the revert).
+
+## MPO cards: "Potential Accounts" dropdown replaces "View Eligible Accounts" (2026-10-08)
+
+Gavin (tested in Dave Ehlers' preview): the card answers "which accounts can I sell these exact SKUs into for more
+credit?" in place. guided.js `potentialSlot()` / `hydratePotential()` draw a collapsed "Potential Accounts <N>"
+toggle (styled like the old button; N = distinct accounts that can still earn credit) between the deadline and the
+weight; the Details / distribution-history fold is unchanged. Inside: one short note (the counting rule + data date),
+then per account name · town, what is left (Lytt: "2 more different products (has 1 of 3)"; on-prem: "One Oktoberfest
+keg by Oct 23"), its warm reason ("Buys Molly's (Dec 2025)"), and the exact SKUs still open (6 or fewer shown, else 4 +
+"N More Products"); 20 accounts, then "Show All N Accounts". Hidden when the goal is met (all-or-nothing credit: no
+extra credit), the month has ended, or the objective is photos; Carbliss keeps its own card. SOURCES (no rule is
+re-derived on the page): KdhElig (shared/eligibility.js, now loaded by both MPO pages) for Corona Innovation, Lytt and
+the NEW rules for Molly's / Wine -- tools/program_eligibility.py `new_placements()` (NEW_PLACEMENTS): official SKU list,
+the tracker's own export (credited = NEW_PLACEMENT; a key bought Jul 1 - Sep 30 is NOT an opportunity; the rest is),
+Brand Permissions CAN SELL by area (hub/data/accounts.js HUB_BRANDS), Whole Foods non-alcoholic only, both premises
+because the tracker counts on-premise rows (ASSUMED -- question N1). Credit totals match the tracker exactly (Molly's
+8, Wine 11). 'brand' ops are stored as [pid, code] to keep the files small (elig total 4.8 MB, largest 430 KB);
+eligibility.js `fillWhy()` restores the text on load. On-prem follow-ups: on-prem programs.js `potentialFor()` (host
+`potential`) = the objective's own open base accounts; Oktoberfest lists the two kegs (#3813 / #3862, the size they
+ran first on top); Spirits lists what was placed there Jul - Sep and FLAGS that the program's spirits SKU list is not
+on file. A program with no rule / no file says "Potential accounts aren't available ..." instead of guessing.
+Side effects of the new rules: the hub's Molly's / Wine program screens now use the rule workspace, and the Account
+page's Program Opportunities list them ("One new placement per product", opps.js). Tests (scratchpad): pot_test.mjs
+(Dave preview + real sign-in, 390 / 820 / 1366, light / dark: no link left, met Corona has no list, Lytt 23, collapsed
+by default, opens in place, Details kept, partial gap named, Wine folds, Joes Beer omits the 750 mL it bought Jul-Sep,
+no sideways scroll), pot_on.mjs (Allison: Oktoberfest 7, Spirits 18), elig_trip_test (now enters the hub by URL).
+Tags: guided.js / guided.css / eligibility.js 20261008b, opps.js 20261008a.
+
+## MPO cards: Details + Potential Accounts side by side, one shared product list (2026-10-08, "Option 2")
+
+Supersedes the layout of the section above (the data rules there still hold). Under every On- / Off-Premise MPO
+summary, guided.js `actionsHtml()` draws `.g-acts`: a muted AMBER "Details" control (`.g-act-d`, the old Details /
+distribution-history content, unchanged) and a wider muted GREEN "Potential Accounts (N)" control (`.g-act-p`; green
+marks the control, never earned credit), equal height (46px, !important because kdh-skin's `button:not(...)` 40px rule
+is more specific), chevrons, one open at a time, the open one closes on a second tap; panels open inline below
+(`.g-det-body` / `.g-pot-body`). Details alone (`.one`) when there is nothing to add (met goal, ended month, photos).
+Below 431px the grid is `minmax(96px,.85fr) minmax(0,2fr)` so "Potential Accounts (23)" stays on one line.
+Inside Potential Accounts (`potBodyHtml`): ONE "Qualifying Products (N)" fold (`.pa-qp`, collapsed; name + #ProductID)
+or, with no official list (Spirits), a flagged note; then compact rows (`.pa-row-btn`: name, town, chevron), ONE account
+open at a time per list. An open row (`.pa-det`) = requirement (`.pa-req`: "Needs 1 More Qualifying SKU", "Any Qualifying
+Product = 1 New Placement", "Needs 1 Oktoberfest Keg by Oct 23" ...), one line of context (Has X of 3 / what it had /
+the warm reason), then ONLY the products still open THERE -- when that equals the shared list it shows "See the N
+Qualifying Products" (`.pa-seeall`, opens the shared fold) instead of repeating it -- options fold after 8, then "Open
+Account ›". Data: KdhElig (`potFromElig`) for rule programs, on-prem programs.js `potentialFor()` (objective `potential`
+config) for the follow-ups; towns for those come from the rep's elig file. Counts = distinct accounts that can still
+add credit (unchanged). Tests (scratchpad): pot_test.mjs (318 checks: Dave Ehlers preview + sign-in, 375/390/430/820/
+1180/1366 x light/dark, exclusion, one account open, shared list once, contrast >= 4.5, September Details only),
+pot_on.mjs (Allison Scott: Oktoberfest 7 with 2 kegs, Spirits 18 flagged). Tags guided.js / guided.css 20261008c,
+on-prem programs.js 20261008b.
+
+
+## Manage Programs: managers build incentives and MPOs in the Hub (2026-10-08)
+
+Gavin's 12-section brief; first milestone = a clearly labelled TEST program created, submitted, approved and
+seen in the existing Programs experience by its participants. `/manage-programs/` (index.html, manage.css,
+manage.js; managers only -- not in REP_PATHS, refuses a rep cookie / rep preview) is a seven-step wizard
+(Basics, Participants & Accounts, Products, Dates & Rules, Goals, Financial Terms, Preview & Submit) with
+tabs Create / Drafts / Awaiting Approval / Scheduled-Active / Ended-Awaiting Closeout / Closed / Test
+Programs / Templates, Save Draft, Duplicate (a TEST copy), Save as Template. manage-programs/README.txt has
+the definition schema, lifecycle and rules. NO SECOND PROGRAM SYSTEM: `shared/custom-programs.js`
+(`KdhPrograms`) loads the viewer's approved programs (RPC kdh_my_programs; a manager previewing a rep gets
+that rep's view INCLUDING test programs, a real rep never sees a test program), evaluates every objective
+in the browser from `accounts/data/hist/<rep key>.json` (net cases per product per month, Jan 2025 -> last
+loaded month, written by tools/program_history.py at the end of accounts/generate.py, served per rep by the
+middleware's ACCOUNT_DATA) + `accounts/data/products.json`, and hands results to the EXISTING renderers:
+incentives -> `window.KDH_CUSTOM_PROGRAMS` -> hub.js buildPrograms (id `inc:cp_<8>`, `Test` tag, excluded
+from exports); MPOs -> `window.KDH_CUSTOM_MPOS` -> each MPO index.html's `customFor(monthKey)` (objective
+with `custom:` host, weight null = "Manager-built objective -- no MPO weight", skipped by weightedForRep) ->
+guided.js draws the same v4 card with Details + Potential Accounts. GOTCHA: build the objective as
+`Object.assign({}, c.objective, {custom:c})` -- the objective's own `custom:true` flag must not overwrite
+the host reference, or metricFor is never called. PERMISSIONS live in the database
+(`supabase/migrations/20261008120000_manage_programs.sql`: programs / program_versions / program_finance /
+program_events / program_templates / program_notices / program_notice_reads / program_closeouts,
+product_master; RPCs kdh_program_scope / _people / _scope_problem / _save / _submit / _withdraw / _review /
+_duplicate / _closeout / _archive, kdh_my_programs, kdh_my_program_notices): the approver is
+`allowed_users.program_admin = true` (a flag, never a name); a brand manager (`program_brands text[]`) may
+use any rep but only their suppliers' products; a DM (reports_to chain, `kdh_reports_under`) only their
+team; neither = drafts only, cannot submit with participants or products; nobody approves their own
+program except the approver; reps read only approved non-test programs they are in. Finance is a SEPARATE
+table (program_finance.terms) never selected for participants, and kdh_program_save strips finance / payout
+/ rates / billback / dollars keys from a definition. Versions: a revision is a new draft version, v1 stays
+live until the new one is approved, and approving a change to a published program REQUIRES recalc =
+retroactive | future (`coalesce(p->>'recalc','')` -- a NULL `not in` never raises). Support status per
+objective (supported / awaiting_data / awaiting_calc / awaiting_evidence / awaiting_decision) is drawn on
+the card -- a missing month is never a zero, a fractional account goal with no rounding rule is "Needs a
+decision", merch / photos are "recorded, not verified", and a REAL program cannot be submitted with an
+objective beyond supported / awaiting_data. Not scored in v1 (saved, labelled): rolling windows, house
+totals on a rep's card, growth / retention without a comparison period, tiered / package payouts (text only
+in the manager preview). Seeds: tools/program_seed.py writes supabase/seed/product_master.sql and
+program_brands.sql (REVIEW before running -- brand managers by name match from the Fusion supplier list).
+The list page refreshes its program list when a deep link names an id it has not loaded (openEdit /
+openReview call loadLists), so a program created elsewhere opens by URL. Tests (scratchpad):
+sql_programs_test.sh (56, local Postgres 16), mp_test.mjs (59, stub mp_stub.mjs mirrors the SQL; 1366 /
+390, light / dark). Tags 20261008a (manage.*, custom-programs.js, kdh-data.js on the MPO pages), hub.js 20261008b (custom programs group under the hub supplier heading through SUPPLIERS.rde).
+
+## Manage Programs v2: the builder (2026-10-08, same day)
+
+Gavin's brief after the first screenshot: too cramped and wordy, participant ticks jumped the page to the
+top, products could only be picked as a whole brand. Mobbin refs: Shopify "Add products" dialog
+(fbc7fee1 / e8987660: search, filters, a checkbox per variant, "N selected", Cancel / Add) and Asana
+"New project" (ec2a0523: concise labels, spaced fields, one Continue). manage-programs/README.txt
+"Version 2" has every rule; the ones to remember:
+- NEVER re-render the step on a participant tick: `pickChanged()` patches the definition, the count chip,
+  the summary line and `#stepErrs` in place (scroll, focus and search text survive). Every other re-render
+  goes through `renderWizard({keep:true})` (scrollY + focused control restored). Bulk actions are scoped
+  to the visible, enabled rows ("Select All N Filtered"), so scope limits hold.
+- PRODUCTS are SKUs: `products.include` is mostly `{type:'sku'}` entries from the Add Products dialog
+  (`openProductModal`, `S.pm.checked` persists across search / filter; filtering never selects); a whole
+  family / supplier / package is a deliberate `pm-group` add labelled with its count; Remove on a product
+  that came from a group writes a `{type:'sku'}` EXCLUSION (Excluded Products, Restore); `products.dynamic`
+  may be true only while a group rule exists (`hasGroupSelection`; collect() forces false otherwise).
+  Schema unchanged, so custom-programs.js / preview / published program read the same list.
+- WHICH ACCOUNTS COUNT: fixed = the list is re-read on every draft save, sent at submit, LOCKED by approval;
+  a revision keeps the approved list for reps whose account filter is unchanged (`resolveParticipants` via
+  `approvedVersion()`); dynamic = re-read at every view. Copy on the cards is Gavin's wording.
+- DELETE is recoverable: migration `20261008180000_program_delete.sql` (status 'deleted', deleted_at / by /
+  from, restored_at; `kdh_program_may_manage` = the old can_edit, `kdh_program_can_edit` false while
+  deleted, trigger `programs_guard_deleted` refuses any other status change until `kdh_program_restore`
+  (sets `kdh.restoring`), `kdh_program_republish` admin-only). Owner / in-scope manager may delete a draft
+  or TEST program; a published real program is the approver's to delete and restore; a submitted draft
+  leaves the queue and comes back as a draft; a live program comes back UNPUBLISHED (tag "Not Published",
+  approver's "Publish Approved vN"). mp_stub.mjs mirrors all of it. Step nav: only VISITED steps show
+  check / "!" (`S.visited`). Tags manage.* 20261008b, custom-programs.js 20261008b (rules text wording).
+  Tests: mp2_test.mjs (77 x 1366 / 820 / 390, light / dark), mp_test.mjs (59), sql_programs_test.sh (80).
+
+## Manage Programs v3: objectives step, relevant dates, supplier-limited products, Review & Submit (2026-10-08)
+
+Gavin's third brief the same day (Mobbin: Zillow review screens aa311974 / 2653c9ea for the stacked
+sections + persistent action area; Deputy is not on Mobbin, so Cash App 72e44691 / Turo 7e7fe513 / Zopa
+a5f2f215 stood in for the label-value review rows). manage-programs/README.txt "Version 3" has every rule;
+the ones to remember:
+- EIGHT STEPS: Basics, Participants & Accounts, Products, Objectives, Dates & Rules, Goals, Financial Terms,
+  Review & Submit (`LAST = 8`; hash `ret=review` makes the footer carry "Return to Review").
+- `o.metric` STAYS THE STORED AUTHORITY (the evaluator, hub and MPO cards read it); the Objectives step
+  derives it from measure / qualification / unit (`kindOf()` / `metricFrom()` in manage.js). Bottles / units =
+  `o.volumeUnit:'units'` and the evaluator returns awaiting_calc (the record is in cases).
+- DATE RULES ARE PER OBJECTIVE: `o.nonBuyDays` + `o.nonBuyAnchor:'program_start'` (new buyers / new
+  placements only; the evaluator reads `o.nonBuyDays || def.period.nonBuyDays || 90`), `o.comparison`
+  (growth / retention only), `o.actDates` + `o.followOn` (merchandising activity dates). `normalizeObjective()`
+  deletes what a metric does not use on every collect and on load, and `validate()` only checks what applies --
+  a hidden value can never score or block. `upgradeDef()` migrates v2 drafts (period.nonBuyDays / baseline
+  copied onto the objectives, `def.suppliers` from `def.supplier`). Don't re-add program-wide non-buy /
+  baseline fields.
+- SUPPLIERS: `def.suppliers` (list, Basics) with `def.supplier = suppliers[0]` for the hub heading. The product
+  dialog pool is only those suppliers; removing one with selections opens a dialog (`supplierOff` /
+  `supplierImpact` / `removeSupplier`) and nothing moves until confirmed; `outOfScope()` lists stale
+  selections (#outScope, a step-3 blocker) and migration `20261008200000_program_suppliers.sql` makes
+  `kdh_program_scope_problem` refuse them server-side for everyone (mp_stub mirrors it). Adding a supplier
+  never selects products.
+- REVIEW: `reviewSections()` is shared by step 8 (`edit:true`) and the approver page (`edit:false`); the
+  evaluator's `finish()` now computes the goal before giving up on data and marks `notReady` (valueText "Not yet
+  available") for awaiting_data / awaiting_calc -- a missing month is never a 0. KdhPrograms exposes
+  `goalSummary` / `objectiveRule` / `MEASURE_TEXT` / `monthLabel`; `rulesText` uses the direct wording.
+Tags manage.js / manage.css / custom-programs.js 20261008c. Tests: scratchpad mp3_test.mjs, mp_test (60),
+mp2_test, sql_programs_test.sh (83).
+
+## Non-Buy Reports: one engine, two experiences (2026-10-08; approved and merged to main the same day)
+
+Gavin's brief: a manager reporting tool ("where are the distribution gaps across my authorized accounts,
+and which reps can act on them?") with a simplified rep version under My Accounts ("which accounts on
+my route can I sell this product to?"). Built on branch claude/non-buy-reports, approved by Gavin and merged
+to main on 2026-10-08; the saved-report migration is on Gavin (ROADMAP Now). nonbuy/README.txt has every rule; the ones to remember:
+- THE RULE: an opportunity is shown only for a product the account is PERMITTED to buy, judged per account
+  x product (`KdhNonBuyEngine.eligibility`: Brand Permissions family x area CAN SELL; Whole Foods
+  non-alcoholic only; area / family not on file = UNKNOWN, counted and reported, never permission).
+  Historical purchases stay factual; permission is never inferred from a purchase.
+- PURCHASE = net cases > 0 in a sales month (the record is monthly net cases); a purchase fully returned
+  in the same month nets to 0 and does not count -- Gavin has NOT confirmed that rule yet (REPORTING_REQUEST
+  14, N2). Dates are whole sales months: requested vs effective vs coverage are always printed; a range
+  with no complete month cannot run (never a zero).
+- LAYERS: nonbuy/engine.js (pure calc, RULE_VERSION in every snapshot / export), nonbuy/source-static.js
+  (the only reader of today's exports + kdh_program_scope + the saved-report table; a Snowflake source
+  implements the same methods), nonbuy/nonbuy.js (screens). Manager scope = kdh_program_scope (admin all,
+  DM team, brand manager every rep but only their suppliers' products, neither = NOBODY); a rep is forced to
+  their own route whatever a criteria object says (the middleware serves only their book + hist anyway).
+- DATA ADDED: hub/generate.py + tools/customer_base.py now carry Encompass Chain and Customer Type on every
+  account row (`chain`, `type`) -- hub/data/accounts.js and the per-rep books were regenerated (books, elig,
+  hist rebuilt by accounts/generate.py). middleware REP_PATHS gained '/nonbuy/'; kdh-user.js toolItems 'nb'
+  (managers) and where() (reps: nav accounts); manager home card (25 now); My Accounts header link.
+- SAVED ROWS: migration 20261009090000_nonbuy_reports.sql (table nonbuy_reports + kdh_nonbuy_save +
+  kdh_nonbuy_shared; RLS own rows; a target list is shared EXPLICITLY and a rep gets only their own subset; a
+  rep can never share). The page works without it (generate + export) and says so.
+- MOBBIN: Shopify Select Products 823f4ce6 / Manage Products 9fadbfbf inspected by id; the Calendly
+  (222efb40) and Zillow (6f72137e) ids the brief names are not returned by the plugin's search -- sibling
+  screens of the same pages were used; say so, never claim the exact ids were seen.
+Tests (scratchpad): nb_test.mjs (66 x 375/390/430/820/1366, light + dark), nb_smoke.mjs, sql_nonbuy_test.sh
+(13), nb_stub.mjs; mgr_test expects 25 cards now.
+
+## Stay signed in, server-held: kdh_sid + public.kdh_sessions (2026-10-13)
+
+Reps: "it makes me log in every time, even with Remember me". ROOT CAUSE: the 2026-10-02 design kept
+Supabase's refresh token in the kdh_rt cookie; Supabase ROTATES it on every renewal (hourly), so the
+browser had to receive and store a new cookie on each one -- mostly on pass-through middleware
+responses. Any renewal whose reply was lost (cellular) or whose Set-Cookie the browser never applied
+left the phone sending the OLD token; Supabase treats a used token sent again more than 10 s later
+as theft and revokes the whole session -> `why=revoked` -> password box, an hour after every
+sign-in. (The 2026-10-05 note that a 429 wiped the cookie was a symptom of the same repeated
+renewals.) NOW: the browser holds one random device secret (HttpOnly `kdh_sid`, "k1."/"k0." prefix =
+remember / session-only, NEVER rotates); the refresh token + latest access token live in
+`public.kdh_sessions` keyed by sha256(secret) (migration `20261013090000_kdh_sessions.sql`, RPCs
+kdh_session_create / get(p_claim) / put / release / delete, anon-callable, table unreadable through
+the API; a row is deleted when the email leaves allowed_users). api/session.js `resolveSession()` is
+the ONE resolver (middleware + GET/POST/DELETE): a fresh kdh_at is used as is; else the store renews
+(claim -> redeem -> put; a concurrent renewal waits 1.2 s and re-reads; a lost reply just renews
+again from the row, within Supabase's reuse window the same token comes back); per-isolate caches
+(`sidCache` 5 min, `sidInflight`). A PAGE LOAD with a missing / expired kdh_at is sent by the
+middleware through `GET /api/session?next=<path>` (a function reply, so the cookies reliably land
+before the page's scripts run; `kdh_hop` 20 s guards against a bounce); data fetches renew inline
+with best-effort pass-through cookies and the kdh-user.js keep-alive. UNTIL GAVIN RUNS THE MIGRATION
+the RPCs 404 and everything works the old kdh_rt way (`storeKnownMissing`, memo 60 s); a kdh_rt device
+moves to the store on its next renewal with no extra sign-in. Not verified live (kohlerdisthub.com and
+vercel.com are blocked from the build environment). Supabase settings to keep OFF: Single session per
+user, time-box, inactivity timeout. Tests (scratchpad): session2_test.mjs (48: real middleware.js +
+api/session.js against a fake Supabase with rotation / reuse window / family revocation and a jar that
+drops cookies), sql_sessions_test.sh (17, local Postgres 16).
+
+
+## Account assistant v3: sales assistant, not data analyst (2026-10-13)
+
+Gavin's brief: the Account page chatbot must give a rep "what to know, what to do, what to say" in
+five seconds on a phone, not analysis. Wire format stays v2; api/README.txt "V3" has the full list.
+- PROMPT (api/chat.js STABLE): answer first; match the question (fact = one line; what-to-sell = 1-3
+  ranked **1. Product** / **Why:** / **Do:** / **Say:** "..." items; reorder = most overdue first + Do;
+  program = what THIS account still needs + counting products it lacks + deadline + step; "tell the
+  buyer" = 2-4 spoken sentences; bigger questions = 3-5 bullets); never list everything (offer more in
+  one line); plain rep language; follow-ups continue the last answer. Every v2 grounding rule is kept
+  (record > tools > page context, period on every number, FACT apart from SUGGESTION, alerts are
+  possibilities, recommend only bought-before / buys-the-family / tracker-lead / alert, no invented
+  interest, stock, promotions or completion, no dollars, monthly grain).
+- SHAPE HINT: `intentOf(last user message)` -> a one-line system block AFTER the two cached blocks
+  (more / talk / program / reorder / priority / sell / recent / fact / summary / none). Never cached.
+- PACKET: `account.buyer` (account_contacts.contact_name, caller's token, name only), `recent3`
+  (last 3 months product by product), `patterns.seasonal[].monthsOfYear`.
+- PAGE CONTEXT: the page's own ranked Program Opportunities (`opportunities`, from opps.js build(),
+  with up to 3 counting products + warehouse units/date, open and completed products), `credited`,
+  and `nextActions` (the Next Actions rows, HTML stripped) travel in `page` (accounts.js buildPacket
+  takes `OPP, focusTop`; assistant.js pageContext caps 8 / 6 / 4; chat.js re-caps and keeps them when
+  the 24 KB cut hits). Same list and same product rule as the page, so the two never disagree.
+- PAGE: starter questions = the questions reps ask (the program one names the top opportunity);
+  md() renders the shapes (number badge, `.lbl`, `.say`, <ol>), accounts.css adds the styles and a
+  wider bubble on phones. "What It Can Answer" updated.
+- EVAL: tools/assistant-eval/run.mjs `--set reps` (12 rep questions on/off-premise, "show more" as a
+  second turn) + READABILITY check per answer. NOT run live from here (no key / cookie in the build
+  environment): Gavin runs it against kohlerdisthub.com with his browser cookie (api/README.txt
+  pilot step 5) and reads the READABILITY and NUMBER CHECK columns.
+Tags: accounts.css / accounts.js / assistant.js 20261013a. Tests (scratchpad): chat_v3_test.mjs
+(57, handler under Node with stubbed Supabase + Anthropic, real route / sales files, authorization
+re-checked), md_v3_test.mjs (17).
+
+## Brand managers: Program View for their brands only (2026-10-14)
+
+Gavin (previewing as a manager): a BRAND MANAGER covers a supplier with every rep under them; a
+DISTRICT MANAGER covers a team of reps across every supplier and has Program View or rep view only.
+The hub now opens a brand manager on Program View cut to their suppliers. WHO COVERS WHAT comes from
+Gavin's Encompass "Brand Families" export (Brand Family ID / Brand Family / Supplier / License Number =
+the brand manager), saved as shared/data/brand_families.csv; `python3 tools/program_seed.py` turns it
+into shared/data/brand-managers.json (manager -> suppliers -> brand families; names and brand names
+only) AND supabase/seed/program_brands.sql (the same suppliers per manager, for Manage Programs /
+Non-Buy scope -- optional, Gavin reviews and runs it). 9 brand managers on 2026-10-14 (Chris Politano
+19 suppliers / 45 families, Dan Downing 7 / 77, Jason Koo 40 / 76, Perry Calderone 7 / 56, Sean
+Donahue 23 / 36, Steve Halloran 11 / 59, Tom Gibbons 11 / 38; Chris McCrohan = Red Bull and Denise
+Montes = Vinaio / Food & Bev are DISTRICT MANAGERS too). HYBRID RULE (Gavin, 2026-10-14: "Chris McCrohan
+is a hybrid brand manager and on-premise manager -- allow him to also see his team of reps"): a DM who
+also carries a brand keeps their TEAM ACROSS EVERY SUPPLIER on the hub and both MPO trackers (they skip the
+brand scope when kdhTeam() matches; the Red Bull tracker is company-wide for everyone anyway), and in the
+database migration `20261014120000_hybrid_scope.sql` makes kdh_program_scope return `hybrid: true` and
+kdh_program_scope_problem read team + brands as a UNION (a program is in scope when every participant is
+on the team, any supplier, OR every product is one of the brands, any rep); manage.js opens both pickers
+for a hybrid (hybridTeam / hybridBrands kept for the hint) and nonbuy/source-static.js treats a hybrid as
+team + every supplier. Never an intersection: that was the bug (team, but Red Bull products only). Refresh = save the new export over the
+CSV and re-run the script. `kdhBrandScope()` in shared/kdh-user.js answers with a list of names =
+the manager's SUPPLIERS plus the brand FAMILIES filed under them (so a program filed as "Carbliss"
+reaches the manager of "SN Food & Beverage LLC"; `.suppliers` on the array keeps the supplier names for
+display): source order = the database row (`allowed_users.program_brands`, Gavin's override, read with
+the caller's token; a 400 from a database without the column is just "no row"), else the preview
+cookie's `brands` (the manager home switcher copies them from kdh_team once migration
+`20261014090000_team_brands.sql` has run -- optional now), else brand-managers.json by NAME
+(kdhMatchName); the families always come from the file; cached 10 min in sessionStorage
+`kdh_brands:<email|preview:name>`. hub.js: `BRAND_SCOPE` (null = every supplier) is awaited (3 s cap) BEFORE the first build for
+any manager, `buildPrograms()` keeps only programs whose supplier matches (`brandAllows`: p.supplier,
+the MPO name prefix `rawSupplier`, SUPPLIERS[supKey].name / .rde, compared with `brandKey()` which strips
+Company / Brewing Co / Beverage / Brands ... so "Constellation Brands" = Constellation and "Phusion
+Projects" = Four Loko), so Program View, its Supplier filter ("Your Suppliers (N)"), a rep's page and the
+exports ("Brands: ...") all know just their brands; a "Your Brands: ..." line sits under the title. The
+roster is NOT cut (all reps); the DM team cut (HUB_TEAM) is separate and still applies. `rebuildPrograms`
+waits for boot (`BOOTED`). ALSO: `SIGNED_MGR` now includes a MANAGER PREVIEW (role manager), so Gavin
+previewing any manager lands on Program View on every device instead of the rep picker; a rep preview
+has role 'rep' and is unchanged. Exports stay off in preview. ONE MATCHING RULE for every page:
+`kdhBrandMatch(names, brands)` + `kdhMpoSupplierNames(objective)` (objective key -> deck supplier,
+the name prefix with the BBC / HUSA / Spirits aliases, a manager-built objective's supplier; Wine /
+POS / iSellBeer photos have none) live in shared/kdh-user.js. MPO TRACKERS (guided.js `BRANDS`,
+`brandReady`): init wraps H.objectives with the same cut for a manager and `refresh()` waits for the
+scope (3 s cap); View by Program and a rep's page list only their objectives, the head says "your
+brands: ...", and with nothing matching both show "None of Your Brands Are on the <scope> MPO This
+Month" (Gavin's wording). Pushing before the migration / brands are set is safe: no brands = no scope.
+Tests: scratchpad brand_test.mjs (hub: brand preview desktop + phone, real sign-in + cache, missing
+column -> the file, preview without cookie brands -> the file, Carbliss by family, DM-with-brands
+keeps everything, VP, rep preview, signed-in rep, switcher cookie) and brand_mpo_test.mjs (both
+trackers: Constellation preview -> Corona Innovation only off-prem, the empty message on-prem on
+By Program and a rep's page, phone, real sign-in, Chris Politano from the file = Lytt / Oktoberfest /
+Carbliss, DM, rep preview, signed-in rep); Playwright over Edge (`channel:'msedge'`, npm i playwright
+in the scratchpad), stubbed Supabase. Tags: hub.js / kdh-user.js / guided.js 20261014a.
+
+## Rep Inventory page on one report (2026-10-14)
+
+Gavin's brief (inventory/design-refs/CLAUDE_CODE_PROMPT.md + three Mobbin screenshots there: Shopify inventory
+list, Resy grouped list, Copilot filter chip). `inventory/generate.py` now reads ONE Encompass report
+(`python3 inventory/generate.py [path]`, default ../inventory-data/Inventory_Report.csv; columns Product Num Name,
+Supplier, Brand Family, On Floor Inventory, Pre Sales, Allocated, Available) instead of the three shared exports --
+inventory-overview/ (the executive view) still reads those five and was NOT touched. Available is used exactly as
+reported; status is a unit threshold now (Out <= 0, Low 1-24, In Stock 25+), the snapshot date is the report FILE's
+modified time (no date column), stale tag past 7 days. The old days-of-cover / on-the-way / just-arrived /
+backordered fields are GONE (the report has no rate of sale, purchase orders or receipts); accounts/generate.py still
+reads this page's rep-data JSON (num / name / supplier / available / status; doi / nextArrival / backordered are
+absent -> null in catalog.json), so run it after each inventory refresh. Page (`inventory/index.html`, standalone, no
+fetches): "Inventory" + "Inventory as of <date>", three KPI tiles that are filters (Products Available / Out of
+Stock / Running Low), search (150 ms debounce, substring over "<num> <name>"), Sort sheet (Available high-low
+default, A-Z, Pre Sales high-low), Filter bottom sheet (Supplier + Brand Family multi-select with find boxes,
+families narrow to the chosen suppliers), chips row (active supplier / brand chips FIRST with x, then All / In Stock
+/ Low / Out; counts hidden under 480px so all four fit), rows = description bold / "#num · Brand Family" / Available
+pill (--kdh-ok / -warn / -bad + soft), tap expands one row at a time to a 2x2 On Floor / Pre Sales / Allocated /
+Available grid on phones, inline figures on >= 768px; sticky Supplier headers (A-Z) when no search / filter, flat
+list otherwise; chunked rendering (60 then 120 via IntersectionObserver + Show More fallback -- the first IO
+notification carries stale geometry, so `near()` re-checks the real position); skeleton until first paint; state
+`kdh_inv:v2` in localStorage (sort + filters, not the search). GOTCHA: `[hidden]{display:none!important}` is in the
+page CSS because `.more{display:flex}` / `.sclr{display:flex}` beat the hidden attribute. Sheets are z-index 1200
+(above the bar, banner and tabs). Test: scratchpad inv_test.mjs (310 checks: rep + manager, 390 / 820 / 1366, light /
+dark, contrast, sticky offsets, persistence, chunking) + mobile_audit / contrast_audit / elong_audit on the page.
+Refresh = save the report as inventory-data/Inventory_Report.csv, run the two generators (ROADMAP Now).
+
+## Inventory: starred products, brand-manager scope, role defaults (2026-10-14)
+
+Gavin: "allow sales reps to star certain products" and "have the brand managers only see their
+products/brands/suppliers"; defaults tailored to the rep's and the manager's day. inventory/README.txt has the
+rules. STARS: every row carries a 44px star (`.star`, left slot; a tap never expands the row). Starred products
+form a "Starred" group at the TOP of the grouped list (header "N Out · M Low · K Products"; the rows also stay
+under their supplier) and a Starred chip (`F.status='star'`, star + count only under 480px so all five chips fit
+375px). Storage: localStorage `kdh_inv_star:v1:<fnv(email)>` {on, off} is always the truth on the device;
+`Stars.load()` syncs with `public.product_stars` (migration `20261014150000_product_stars.sql`: email stamped
+from the token, own rows only, a manager never sees a rep's; sql_stars_test.sh) through the signed-in token --
+404 = migration not run = device-only; `off` holds removals the server has not confirmed, retried on the next
+load, so a lost DELETE never resurrects a star. PREVIEW: `kdhUser().preview` -> `html.no-star`, no control, no
+chip, no group (a star would be the manager's). Stars never reserve or watch stock; About This Data says so.
+BRAND SCOPE: `scopePromise()` = null for a rep / rep preview, null when `kdhTeam(window.KDH_DM_GROUPS)` matches
+(a hybrid DM keeps everything, as on the hub / MPO trackers), else `kdhBrandScope()` with a 3 s cap; `applyScope`
+cuts `P = ALL.filter(p => kdhBrandMatch([p.supplier, p.family], scope))` BEFORE the first render (skeleton
+meanwhile), `index()` rebuilds the supplier / family / status counts from P, and the header gains "Your
+Suppliers: A, B, C (and N more)". Carbliss reaches the SN Food & Beverage manager by FAMILY. Nothing in scope ->
+"None of Your Suppliers Are on This Report" (no Clear). The page now loads shared/auth-config.js (the star sync's
+feature switch, 404 on a static server = off) and shared/dm-groups.js. Tests: scratchpad inv2_test.mjs (179) +
+inv_test.mjs (310) + sql_stars_test.sh (10) + contrast / mobile / elong audits.
+
+## Business map + the warehouse / delivery workflow (Gavin, 2026-10-14 -- tabled, REMEMBER)
+
+Gavin's list of areas still to bring onto the site: Warehouse (scan SKUs on arrival so reps know inventory was
+received), IT, Finance, Sales Associate portal. Added on review: Delivery / drivers (the largest missing group),
+Purchasing / supplier management (open POs, arrivals, out-of-code), POS / marketing requests, suppliers as
+read-only outside viewers (scoped like brand managers), compliance. Rule restated: Encompass stays the system of
+record for orders, invoices and balances; the site shows, reminds and coordinates, never takes an order or moves
+money. The warehouse + delivery day (7 hand-offs, receipts -> starred reps -> routes -> driver Delivered /
+refusal -> rep follow-up) is written out in ROADMAP.md "Tabled"; Gavin tabled it on 2026-10-14 and asked that it
+be kept. Transactional Encompass data (invoice / purchase transaction tables) belongs in Supabase with RLS, never
+in this PUBLIC repo (prices / dollars); see the same ROADMAP entry's neighbour when that work starts.
+
+## "Ledger Plan" = Gavin's name for the system-of-record question (2026-10-14, REMEMBER)
+
+When Gavin says "Ledger Plan" he means: could kohlerdisthub.com hold invoices / purchase transactions /
+balances itself and take a rep's order, replacing Encompass as the system of record? The full answer is in
+ROADMAP.md "Tabled" under that name: three tiers (read-only mirror in Supabase with RLS; order capture through
+Encompass's API if it exists; replacing Encompass = a separate company project, not this site), what an
+invoice really depends on, and the recommendation (build the mirror, ask Encompass about API order creation,
+never replace from here). Tabled by Gavin on 2026-10-14; recall it by name, do not rebuild the argument.
+
+## Field Tasks: reps hand work to sales associates (2026-10-14)
+
+Gavin's brief (sales-associates/design-refs/CLAUDE_CODE_PROMPT.md; refs Attio My Tasks, Jira list +
+status dropdown, Asana task detail, Jobber / ClickUp new task, Bolt "Check your photo", Airtable
+overview). `/tasks/` is ONE page with three views by role (tasks/README.txt has every rule;
+sales-associates/PLAN.md is the fit / data model / MVP-vs-v2 / assumptions write-up the brief asked
+for). ROLE 'associate' (allowed_users, Gavin's migration 20261014150000_associate_role.sql, nine
+merchandisers): middleware.js ASSOCIATE_PATHS = /tasks/ + /shared/, home /tasks/, everything else
+redirects (403 for data); kdh-user.js `isAssoc` / `homeOf`: Home = /tasks/, no tools, no liveNotice,
+sidebar + menu say "Sales Associate", `html.kdh-assoc`. Reps / managers get a "Field Tasks" tool
+(group 'Field', NAV_ICON.tasks, where() -> more/tasks) and a home card each (manager home now 27
+cards; rep home #c-tasks). DATA: migration `20261014180000_field_tasks.sql` -- field_tasks (creator
+STAMPED from the token, assignee must be an associate, Display / Tap Handle cannot be Done without a
+photo, Blocked needs a reason, an associate may change only status / photo / note, only an unstarted
+task may be withdrawn), field_task_comments (status lines written by a trigger -- the audit trail;
+kind 'status' is reserved through the kdh.task_sys setting), field_task_reads (the "New" chip),
+kdh_people(role) (associates for anyone signed in, reps for managers), kdh_task_member, bucket
+task-photos/<task id>/<uuid>.jpg. RLS = rep / associate / manager; the page never filters by name
+except PREVIEW (a manager viewing as a rep: that rep's tasks by name, read-only, nothing written).
+Every PATCH / DELETE counts the rows that come back (never trust a 2xx under RLS). Polling 30 s while
+visible; no push / email yet (v2 list in PLAN.md). Tests (scratchpad): sql_tasks_test.sh (32),
+tasks_test.mjs (74 with an RLS-faithful PostgREST stub, tasks_stub.mjs), mw_test.mjs. kdh-user.js tag
+20261014b on every page (100 files, incl. per-rep copies -- rep_slices --check is clean).
+
+## View As: one picker for Manager / Rep / Associate (2026-10-14)
+
+Gavin: "add View as Associate, same as View as Rep; combine View as into one dropdown that lets me preview as a
+manager, rep and associate." kdh-user.js `viewAs(role)` (global `kdhViewAs`; `kdhViewAsRep` = viewAs('rep')) is
+the ONE picker (`#kdhPicker`): a role row `#kdhPickerRoles` (Manager only for the OWNER, g.sharkey@kohlerdist.com,
+now a constant in kdh-user.js; Rep and Associate for every manager), title / sub / search placeholder per role,
+`loadPeople(role)`: rep = dm-groups scoped by kdhTeam (unchanged), associate = RPC kdh_people('associate'),
+manager = RPC kdh_team's managers (names only, "(Personal)" for the untitled duplicate, program_brands carried).
+Picking: rep -> bare-name cookie -> /rep/; associate -> {name, role:'associate', email} -> /tasks/; manager ->
+{name, role:'manager', title, dm, brands} -> the manager home; picking yourself on Manager = exit. `user()` returns
+an ASSOCIATE PREVIEW as {role:'associate', preview:true, previewEmail} so the chrome becomes the associate's (Home
+= /tasks/, no tools, no banner) and the chip says "Previewing X (associate)". tasks.js: PREVIEW = any preview (read-
+only); an associate preview lists the tasks assigned to that associate (by email when the cookie has it, else by
+name). The manager home has ONE "View As" button (`#viewAsBtn`); the old #viewAsRepBtn / #mgrToggle / #mgrSelect /
+#mgrPreviewBtn and the page's own kdh_team switcher are gone; the menu item (`#kdhViewAsRep`, id kept) reads "View
+As". The rep home's own "Viewing as" / "Preview as This Rep" controls are untouched. Tests (scratchpad):
+viewas_test.mjs (owner phone: three tabs, associate preview chrome + read-only queue, rep, Exit, manager preview,
+self = leave; DM desktop: two tabs; rep: none), mgr_test / home_test / preview_flow updated. Tags kdh-user.js
+20261014c, tasks.js 20261014b. FIX (same day, Gavin's screenshot): the role row collapsed to a sliver on desktop with
+the full rep list -- the sheet is a flex column capped at 80vh and the list (flex:1) squeezed it; the injected
+picker CSS now pins the header, role row, sub line and search to flex:none and the role buttons to 44px
+(!important, because kdh-skin's generic button rule wins otherwise). kdh-user.js 20261014d.
+
+## Supplier Budgets: the tracker workbook in Supabase, entered on the site (2026-10-14)
+
+Gavin's brief (supplier-budget/design-refs/CLAUDE_CODE_PROMPT.md): the "Supplier Budgets Tracker" workbook
+becomes `/supplier-budget/` for Alexis (office assistant, a manager in allowed_users). THE REPO IS PUBLIC: nothing
+from the workbook is committed -- the workbook itself, the generated seed SQL (`supabase/data/`, git-ignored) and
+every dollar live in Supabase only. The OLD page's `supplier-budget/expenses.csv` + `generate.py` (dollars embedded
+in a public page since July) are deleted from the tree; the CSV stays in git history until Gavin orders a rewrite
+(ROADMAP "Tabled"). Migration `supabase/migrations/20261014210000_supplier_budget.sql`: `allowed_users.budget_editor`
+(flag, set by hand, like photo_admin) + `kdh_is_budget_editor()` (editor OR program_admin); `budget_accounts` (the
+Budget tab: year + account unique, code, supplier, brand_manager, description, file_name, vendor_default,
+budget_amount NULL = none, basis_text, active, needs_review); `supplier_expenses` (the Expenses tab; `kohler_spend`
+is ALWAYS total - billback by trigger; site rows need 0 <= billback <= total and a date in last..next year; imported
+rows skip that; `source` site / import_2026 / import_2025, `source_key` unique so a re-pasted seed never duplicates,
+`sheet_values` = the original cells); `supplier_expense_events` (create / update diff / delete; `kdh.seeding` = '1'
+skips it; editors read); `budget_vendors` (typeahead, filled by the trigger). RLS: editor / admin everything; another
+manager reads only accounts whose brand_manager is them (`kdh_name_key`) or whose supplier matches their
+program_brands (`kdh_brand_key` = SQL mirror of kdh-user.js brandKey, prefix match >= 4 chars) via
+`kdh_budget_can_read`; reps / anon nothing. `kdh_budget_me()` tells the page {editor, admin, manager}. Name stamps
+(created_name / updated_name) come from allowed_users through the trigger so the page shows "Edited by Alexis" with
+no email. SEED: `python3 supplier-budget/seed_from_workbook.py <xlsx>` -> `supabase/data/supplier_budget_seed_part1.sql`,
+`_part2.sql` ... (self-contained parts under the SQL Editor's ~1 MB cap, part 1 holds the accounts; multi-row
+inserts joined to budget_accounts by year + account) + `_report.txt` (never commit; verified on local Postgres:
+987 + 917 rows, idempotent); Budget tab -> accounts, Expenses 2026 -> import_2026, Expenses 2025 rows dated 2025
+-> import_2025 under inactive 2025 account rows (its 2026 rows are copies of the 2026 tab and are skipped);
+an Expenses Account with no Budget row -> a placeholder account with needs_review (59 on 2026-10-14, NEVER mapped by
+guess); the report lists the 172 Kohler Spend disagreements (computed value wins), 26 blank Totals (derived from
+Spend + Billback), the 2062 Year typo, 21 brand-manager and 128 code disagreements with the Budget row (the Budget
+row wins on the page). PAGE (`budget.js` / `budget.css`, refuses a rep cookie or ANY preview -- RLS would use the
+manager's token and mislead): Ledger (sheet columns in order, sticky sortable header, search, Account / Supplier /
+Brand Manager / Billback / date filters, Year defaults to the current year, newest first, 100 + Show More, strip
+for the current filter, stacked rows under 760px, CSV for editors, tap = Edit or read-only view), Add Expense
+(account picker grouped by supplier with code + brand manager, vendor typeahead + Kohler one tap + the account's
+default vendor, Kohler Spend live, Received Yes/No + date, Save / Save and Add Another keeps Date-Account-Vendor,
+the saved row highlighted at the top), Edit / Delete (confirm) / Received flip from the row, Budget tab (spent, %
+bar, billback outstanding, tap-to-edit amount, Add Account, Needs Review). A non-editor manager also gets the
+`kdhBrandScope()` cut and a "Your Suppliers" line. NAV: manager home card in "Planning & Finance" (renamed from
+Planning & Field; 28 cards now), sidebar tool `sb`; not in REP_PATHS. Gavin's steps are in ROADMAP "Now" (run the
+migration, paste the seed, set budget_editor for Alexis). Tests (scratchpad): sql_budget_test.sh (39),
+budget_test.mjs (78, stub budget_stub.mjs), mgr_test expects 28 cards. kdh-user.js tag 20261014e everywhere.
+LIVE 2026-10-15 (Gavin ran the migration, pasted the seed -- in TWO PARTS, the SQL Editor caps a query at ~1 MB --
+and set Alexis's flag). Same day, Gavin: (1) "Time Entered" column = created_at of site-entered rows ("Imported" for
+the seed's), FIRST column and the DEFAULT SORT newest on top (sessionStorage key kdh_sb_sort2; a save resets to it;
+ties fall to Date); (2) "all columns in one view, no scrolling": table-layout fixed with COLS[].w percentages, wrapped
+cells at 13px, short dates, compact Received ("Yes Oct 20" / "No"), soft-hyphenated headers, the ledger view at full
+width from 1100px (`.sb.wide`), header sticky under the top bar (`--sb-top` measured from #kdhBar + #kdhLive), Year
+and Notes hidden under 1100px (`data-narrow`); (3) VIEW AS a manager works here: a MANAGER preview is read-only, the
+page asks `kdh_budget_standing(name)` (migration `20261015090000_budget_preview.sql`, managers only, by kdh_name_key)
+for the previewed person's editor / admin / program_brands and cuts the rows client-side (an editor's page with Add
+Expense disabled; a brand manager's accounts by name + brands); without the RPC the preview is read-only over every
+account and names the migration. A rep / associate preview is still refused. Tags budget.js / .css 20261015a;
+budget_test.mjs 95, sql_budget_test.sh 43.
+
+## The FINANCE workspace: Alexis sees incentives, MPOs and budgets only (2026-10-15)
+
+Gavin: "Alexis handles all billbacks and recaps to send to supplier for incentive programs ... give her the incentives
+and MPO functions so she can recap as well as supplier budgets ... and hide the rest." `allowed_users.workspace` (NULL =
+full site; 'finance'; check constraint; migration `20261015120000_finance_workspace.sql`, which also redefines
+`kdh_team()` to return `workspace` and `kdh_budget_standing()` to carry it). She stays role 'manager' so every RLS rule
+and the hub / MPO data are unchanged. ENFORCED in middleware.js: `check()` now selects `*` from allowed_users (a column
+a migration has not added yet must never break sign-in) and keeps `workspace` in the verdict; a manager with
+workspace 'finance' may open only `FINANCE_PATHS` (/hub/, /MPOs/, /supplier-budget/, /rep/rep.css -- the
+STYLESHEET the manager home and Supplier Budgets link, not the rep home: Alexis's first real sign-in showed an
+unstyled page with giant icons because it was blocked, something a View As preview (Gavin's own full access)
+can never show; mw_test now walks every <link>/<script> of her five pages through the middleware,
+/incentive-tracking/{programs.js,data/,assets/} -- never the tracker or performance pages, /shared/, /carbliss-mpo/data/, /api/, and of /accounts/data/ only elig / hist / catalog / index /
+products -- never a rep's route or sales files), anything else redirects to `FINANCE_HOME` /hub/ (403 for data).
+The kdh_user cookie carries `ws` (api/session.js accessCookies, login/index.html, both now select `*`).
+CHROME (kdh-user.js tag 20261015c everywhere): `isFin(u)` (also from a manager preview cookie's `ws`); navItems =
+Home (the root page) / Incentives (/hub/, phone-bar word "Programs" -- six tabs must fit 375px, `short` labels) /
+Off-Premise ("Off-Prem") / On-Premise ("On-Prem") / Budgets (keys home / inc / off / on / sb), toolItems = a
+toolItems = NONE (the INCENTIVE TRACKER and INCENTIVE PERFORMANCE pages are NOT hers -- Gavin, 2026-10-15: "remove it
+from all aspects of site unless I say otherwise" -- the middleware allows only incentive-tracking's programs.js /
+data/ / assets/ that the hub loads; the sidebar's group list still knows a 'Finance' group for later), where()
+maps those pages, homeOf = ROOT, no View As in the menu, the foot / menu say "Finance", the bar names the root page
+"Home". HER HOME (Gavin: "a home page with just those tabs she has available") = the manager home (index.html)
+with every card outside hub / MPOs / supplier-budget / performance / incentive-tracking hidden, empty sections
+hidden, the title "Home" (FOUR cards: Incentives, Off / On-Premise MPOs, Supplier Budgets; tests count
+`a.kt:not([hidden])`); the middleware lets a finance manager open `/` and
+`/index.html` and sends her there from anything else (FINANCE_HOME '/'). View As -> Manager lists her by name
+only (Gavin: no "(Finance)" tag), carries `ws` in the preview cookie and lands on the manager home, which then
+trims itself. Tests (scratchpad): mw_test (finance paths, home redirect, 403s, full manager
+untouched), fin_test.mjs (14: sidebar, bottom bar, menu, trimmed home, picker label), sql_budget_test.sh (46),
+viewas / mgr / home / tasks / budget suites. NOTE: scratchpad session_test.mjs has 2 failures that predate this
+(it describes the 2026-10-02 kdh_rt design; session2_test.mjs, which replaced it, is not in this scratchpad).
+
+## Supplier Budgets round two: New Account, saved vendors, no-split rule, invoice links, editable history (2026-10-15)
+
+Gavin's six asks; supplier-budget/README.txt "ROUND TWO" has every rule. Migration
+`20261015150000_budget_rules.sql` (NOT yet run by Gavin; the page works without it): budget_accounts.billback_rule
+('split' 50/50 = the form fills half the Total until a billback is typed; 'none' = billback locked at 0, Kohler Spend
+= Total; 'manual'), backfilled once (Crown / Constellation -> none, 50/50 basis or mostly-half rows -> split, else
+manual; a re-run keeps rules set on the site). CONSTELLATION / CROWN NEVER SPLIT (Gavin) -- enforced by
+supplier_expenses_guard on insert and on any edit touching account / total / billback; budget_accounts_stamp forces
+'none' for a Crown / Constellation name, supplier or description. 8 rows split before the rule are left alone; the
+optional cleanup SQL is in the README (ROADMAP Now). The guard also: credits allowed on site rows (billback between the
+Total and 0), the open-year date check only on insert or a date change, a vendor typed in other capitals reuses the
+saved spelling, vendor uses count only on a new row or a vendor change. budget_settings (key / value; managers read,
+editors write; invoice_link must be https://*.encompass8.com with {invoice}). PAGE (budget.js / .css 20261015b): File
+column gone (table + CSV); "+ New Account" in the Add Expense picker (accountSheet(null, false, {name, year, onSaved}))
+and on the Budget tab; the picker lists the EXPENSE's year; saved vendors on tap + recent quick buttons + last vendor
+used on the account; invoice links (`invHtml` / `invUrl`, numeric invoices only, new tab, row click ignores them) set
+once in the Ledger's "Invoice Links to Encompass" fold from one pasted invoice address -- never a guessed URL format;
+validate(f, e) checks only what changed, so the 39 imported credit rows (and 102 odd 2025 rows) that refused every
+edit now save. Messages: a message travels only to the screen it was sent to (go() + hashchange). Tests (scratchpad):
+sql_budget_test.sh 65, budget_test.mjs 167, sb_shots.mjs.
+
+## UPC Registration Audit: IT's one page, brand managers' tool (2026-10-15)
+
+The /upc-crossref-audit skill moved onto the site: `/upc-audit/` (index.html, upc.js, upc.css, engine.js,
+README.txt has every rule). Vlad (IT) adds the FileMaker product export (12 columns; UPC = ABC_UPC_Text) and the
+ABC registration search download (sheets Data / Distributor / Criteria; XML is namespace-prefixed, which
+shared/xlsx-read.js -- the isb-import reader made shared and prefix-tolerant -- handles); engine.js (KdhUpc)
+matches IN THE BROWSER, nothing uploaded. Gavin's rules: license 3403-23-652-002 only (Criteria checked, other
+licenses / missing Criteria refused); a registration counts when State = Current and it expires in the CURRENT
+YEAR OR LATER (a file filtered to a past year is refused; several ABC files merge, e.g. 2026 + 2027); UPC match
+exact, then leading zeros stripped; ANY ABC row for the UPC with FileMaker's reg # counts. Results: notreg /
+notonreg / expired ("Still to Register") + pending / wrongreg / noupc / match -- ALL shown (Gavin). First run
+2026-10-15: 2,057 matched, 56 / 44 / 3 / 0 / 11 / 0. ACCESS (Gavin: "myself, vlad and every brand manager"):
+allowed_users.role 'it' (new; IT_PATHS /upc-audit/, /shared/, /rep/rep.css; no other RLS grant -- not a manager)
+and allowed_users.upc_audit for managers (migration `20261015190000_upc_audit.sql` sets it for program_admin +
+the brand-managers.json names; `supabase/seed/upc_audit_access.sql` from tools/program_seed.py adds new ones).
+The kdh_user cookie carries `upc:1` (api/session.js, login/, middleware verdict.upc); kdh-user.js `isIT` /
+`canUpc` (IT: one nav item "UPC Audit", no tools / banner / Back; managers: Manager tool + a hidden-unless-flag
+card on the manager home). NOTES are an append-only log per product code (upc_notes: status and/or text, the
+result then, author stamped; no update / delete); upc_runs keeps each run's counts + open codes so the next run
+says New / Still Open / Resolved. Preview: rep / associate refused, manager read-only. Excel download (Summary,
+Need Attention, All Products) via shared/xlsx-write.js -- MOVED from merchandising/ (reps' Non-Buy export could
+not load it from /merchandising/). Also fixed: associates were blocked from /rep/rep.css (tasks/ unstyled -- the
+same bug as finance), now in ASSOCIATE_PATHS. Tests (scratchpad upc2/): upc_test.mjs 46, sql_upc_test.sh 32,
+mw_test.mjs (IT routing + every asset of upc-audit and tasks passes). kdh-user.js 20261015h everywhere.
+

@@ -111,6 +111,14 @@ the two boards were cross-checked per rep afterwards (101 accounts each, zero
 differences). Whenever this file changes, change that one to match in the same
 commit.
 
+2026-09-30 REFRESH: actuals.csv onto the 274-row export (sync rule -- this
+  file had stayed on the 9/28 254-row pull while MPOs/off-prem already
+  carried the 9/29 one; the 9/30 export Gavin sent is identical to that, so
+  both files hold the same 274 rows again). 202 -> 216 distinct accounts
+  house-wide; 8 -> 10 qualified, 6 -> 7 at bonus, ,285 -> ,545
+  projected. Newly qualified: Dave Ehlers 16 of 14; Anthony Palmisano 11 of 11. Newly at bonus:
+  Jayson Romine 18 of 18. Moves: Anthony Palmisano 7 -> 11, Dave Ehlers 12 -> 16, Derrick Laws 19 -> 21, Jayson Romine 17 -> 18, Jim Heaney 14 -> 15, Klejdi Lamo 16 -> 17, Shane Barreca 5 -> 6.
+
 2026-09-28 REFRESH: actuals.csv onto the 254-row export (14 new rows, none
   removed -- diffed before the run, all dated 9/28-9/30). 190 -> 202 distinct
   accounts house-wide; still 8 qualified, 5 -> 6 at bonus, $1,135 -> $1,285

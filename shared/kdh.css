@@ -7,53 +7,64 @@
    onto these tokens and aliases its fonts.
 
    Tokens are namespaced --kdh-* so they never collide with a
-   dashboard's own --card / --accent / --line. LIGHT IS THE DEFAULT for
-   everyone (2026-09-29 overhaul: one light, neutral application look);
-   dark is an explicit choice (data-theme="dark" on <html>, remembered
-   in localStorage kdh_theme -- shared/kdh-user.js). Change light and
-   dark TOGETHER.
+   dashboard's own --card / --accent / --line. THEME (2026-09-30): the
+   person's saved choice (localStorage kdh_theme) wins; with none, the
+   DEVICE setting applies. data-theme is always set explicitly on <html>
+   (inline in every <head>, then shared/kdh-user.js), so every rule here
+   keys on [data-theme="dark"] alone. Change light and dark TOGETHER.
    Type (2026-09-29): ONE readable application face, Source Sans 3, for
    headings and body alike -- no condensed display type, no all-caps
    headings, no letter-spacing. Kohler shows through the badge and a
    restrained blue accent. */
 
 /* ---- fonts (self-hosted: assets/fonts/, see shared/fonts.css) ---- */
-@import url("fonts.css?v=20260928c");
+@import url("fonts.css?v=20261001a");
 
 /* ---- tokens ---- */
 :root{
-  --kdh-bg:#F3F5F8; --kdh-surface:#FFFFFF; --kdh-surface-2:#F1F3F6; --kdh-surface-3:#E9EDF3;
-  --kdh-text:#0F172A; --kdh-text-2:#475569; --kdh-text-3:#64748B; --kdh-text-4:#94A3B8;
-  --kdh-border:#E2E8F0; --kdh-border-2:#CBD5E1;
-  --kdh-brand:#2F5FC4; --kdh-brand-2:#244C9E; --kdh-brand-soft:#EAF0FB; --kdh-brand-ink:#FFFFFF; --kdh-ring:rgba(47,95,196,.35);
-  --kdh-navy:#12275F; --kdh-navy-ink:#FFFFFF;
-  --kdh-ok:#15803D; --kdh-ok-soft:#E8F7EE; --kdh-warn:#B45309; --kdh-warn-soft:#FDF1DC; --kdh-bad:#B42318; --kdh-bad-soft:#FDECEA;
-  --kdh-gold:#C48A11; --kdh-gold-soft:#FBF1D6;
-  --kdh-r:8px; --kdh-r-lg:10px; --kdh-r-xl:14px;
-  --kdh-shadow:0 1px 2px rgba(15,23,42,.04); --kdh-shadow-h:0 4px 12px rgba(15,23,42,.08);
-  --kdh-head:"Source Sans 3",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; --kdh-body:"Source Sans 3",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  /* 2026-10-07 KOHLER BRAND (sampled from the official logo files -- see shared/README.txt
+     "KOHLER BRAND"): Kohler blue for actions + navigation, deep Kohler navy for headings and
+     the sidebar mark, warm gold as a small decorative accent only. Every text pair >= 4.5:1. */
+  --kdh-bg:#F4F6FA; --kdh-surface:#FFFFFF; --kdh-surface-2:#F7F9FC; --kdh-surface-3:#EDF1F7;
+  --kdh-text:#0E1A33; --kdh-text-2:#3C4A63; --kdh-text-3:#55627A; --kdh-text-4:#5B677D;
+  --kdh-border:#DCE2EC; --kdh-border-2:#7B88A0;
+  --kdh-brand:#2866C0; --kdh-brand-2:#1F55A6; --kdh-brand-soft:#E8F0FC; --kdh-brand-ink:#FFFFFF; --kdh-ring:rgba(61,130,252,.40);
+  --kdh-focus:#2866C0;
+  --kdh-navy:#0B2466; --kdh-navy-ink:#FFFFFF; --kdh-head-c:#0B2466;
+  --kdh-accent:#E4A252; --kdh-accent-soft:#FBF1E2;
+  --kdh-ok:#13733A; --kdh-ok-soft:#E6F4EA; --kdh-warn:#B54708; --kdh-warn-soft:#FDEFE4; --kdh-bad:#B42318; --kdh-bad-soft:#FCEBEA;
+  --kdh-gold:#875A0E; --kdh-gold-soft:#FBF1E2;
+  --kdh-r:8px; --kdh-r-lg:12px; --kdh-r-xl:14px;
+  --kdh-shadow:0 1px 0 rgba(11,36,102,.06); --kdh-shadow-h:0 2px 10px rgba(11,36,102,.10);
+  --kdh-head:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; --kdh-body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   --kdh-max:1120px;
 }
-/* dark: only when chosen (no device auto-switch -- one predictable look) */
+/* dark tokens: deep Kohler navy canvas (the media block is a belt-and-braces copy for a page that has not set data-theme yet) */
 @media (prefers-color-scheme:dark){
   :root[data-theme="dark"]{
-    --kdh-bg:#0F1523; --kdh-surface:#161D2E; --kdh-surface-2:#1C2437; --kdh-surface-3:#243049;
-    --kdh-text:#EEF2F8; --kdh-text-2:#B4BDD0; --kdh-text-3:#8D98B2; --kdh-text-4:#66718C;
-    --kdh-border:#263049; --kdh-border-2:#36447A;
-    --kdh-brand:#6C93E8; --kdh-brand-2:#8AA9F0; --kdh-brand-soft:#1E2C4D; --kdh-brand-ink:#0B1226; --kdh-ring:rgba(108,147,232,.45);
-    --kdh-ok:#4ADE80; --kdh-ok-soft:#14331F; --kdh-warn:#F5B84C; --kdh-warn-soft:#3B2A0C; --kdh-bad:#F87171; --kdh-bad-soft:#3A1A1A;
-    --kdh-gold:#F2C14E; --kdh-gold-soft:#3B300C;
-    --kdh-shadow:0 1px 2px rgba(0,0,0,.3); --kdh-shadow-h:0 6px 16px rgba(0,0,0,.4);
+  --kdh-bg:#0A1226; --kdh-surface:#111C36; --kdh-surface-2:#16223F; --kdh-surface-3:#1D2B4D;
+    --kdh-text:#EEF2FA; --kdh-text-2:#C5CEDF; --kdh-text-3:#A7B3C9; --kdh-text-4:#9DA9C0;
+    --kdh-border:#26365C; --kdh-border-2:#5D72A6;
+    --kdh-brand:#6AA1FF; --kdh-brand-2:#8DB8FF; --kdh-brand-soft:#18315F; --kdh-brand-ink:#06122E; --kdh-ring:rgba(106,161,255,.45);
+    --kdh-focus:#8AB8FF;
+    --kdh-navy:#0B2466; --kdh-navy-ink:#FFFFFF; --kdh-head-c:#F4F7FD;
+    --kdh-accent:#F0B866; --kdh-accent-soft:#33280F;
+    --kdh-ok:#4ADE80; --kdh-ok-soft:#14301E; --kdh-warn:#FB923C; --kdh-warn-soft:#3A2210; --kdh-bad:#F87171; --kdh-bad-soft:#3A1C1C;
+    --kdh-gold:#F0B866; --kdh-gold-soft:#33280F;
+    --kdh-shadow:0 1px 0 rgba(0,0,0,.35); --kdh-shadow-h:0 4px 14px rgba(0,0,0,.45);
   }
 }
 :root[data-theme="dark"]{
-  --kdh-bg:#0F1523; --kdh-surface:#161D2E; --kdh-surface-2:#1C2437; --kdh-surface-3:#243049;
-  --kdh-text:#EEF2F8; --kdh-text-2:#B4BDD0; --kdh-text-3:#8D98B2; --kdh-text-4:#66718C;
-  --kdh-border:#263049; --kdh-border-2:#36447A;
-  --kdh-brand:#6C93E8; --kdh-brand-2:#8AA9F0; --kdh-brand-soft:#1E2C4D; --kdh-brand-ink:#0B1226; --kdh-ring:rgba(108,147,232,.45);
-  --kdh-ok:#4ADE80; --kdh-ok-soft:#14331F; --kdh-warn:#F5B84C; --kdh-warn-soft:#3B2A0C; --kdh-bad:#F87171; --kdh-bad-soft:#3A1A1A;
-  --kdh-gold:#F2C14E; --kdh-gold-soft:#3B300C;
-  --kdh-shadow:0 1px 2px rgba(0,0,0,.3); --kdh-shadow-h:0 6px 16px rgba(0,0,0,.4);
+  --kdh-bg:#0A1226; --kdh-surface:#111C36; --kdh-surface-2:#16223F; --kdh-surface-3:#1D2B4D;
+  --kdh-text:#EEF2FA; --kdh-text-2:#C5CEDF; --kdh-text-3:#A7B3C9; --kdh-text-4:#9DA9C0;
+  --kdh-border:#26365C; --kdh-border-2:#5D72A6;
+  --kdh-brand:#6AA1FF; --kdh-brand-2:#8DB8FF; --kdh-brand-soft:#18315F; --kdh-brand-ink:#06122E; --kdh-ring:rgba(106,161,255,.45);
+  --kdh-focus:#8AB8FF;
+  --kdh-navy:#0B2466; --kdh-navy-ink:#FFFFFF; --kdh-head-c:#F4F7FD;
+  --kdh-accent:#F0B866; --kdh-accent-soft:#33280F;
+  --kdh-ok:#4ADE80; --kdh-ok-soft:#14301E; --kdh-warn:#FB923C; --kdh-warn-soft:#3A2210; --kdh-bad:#F87171; --kdh-bad-soft:#3A1C1C;
+  --kdh-gold:#F0B866; --kdh-gold-soft:#33280F;
+  --kdh-shadow:0 1px 0 rgba(0,0,0,.35); --kdh-shadow-h:0 4px 14px rgba(0,0,0,.45);
 }
 html{color-scheme:light}
 html[data-theme="dark"]{color-scheme:dark}
@@ -69,9 +80,14 @@ html[data-theme="dark"]{color-scheme:dark}
    </div></div> */
 .kdh-bar{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--kdh-surface) 92%,transparent);backdrop-filter:saturate(1.2) blur(8px);-webkit-backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid var(--kdh-border);font-family:var(--kdh-body);font-size:15px;line-height:1.4;color:var(--kdh-text)}
 .kdh-bar *{box-sizing:border-box}
-.kdh-bar-in{max-width:var(--kdh-max);margin:0 auto;padding:0 20px;height:52px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.kdh-bar-in{max-width:var(--kdh-max);margin:0 auto;padding:0 20px;height:52px;display:flex;align-items:center;justify-content:flex-end;gap:12px}
+.kdh-bar-in > .kdh-logo{margin-right:auto}
+/* the Viewing / Previewing chip is its own child of the bar (not inside the
+   actions), so on a phone it can take a full row of its own */
+#kdhViewing:empty{display:none}
+#kdhViewing,#kdhPreviewChip{order:1} .kdh-bar-in > .kdh-acts{order:2}
 .kdh-bar.wide .kdh-bar-in{max-width:none}
-.kdh-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--kdh-text);font-family:var(--kdh-head);font-size:16px;font-weight:700;letter-spacing:0;text-transform:none;white-space:nowrap;min-width:0}
+.kdh-logo{display:flex;align-items:center;gap:10px;min-height:40px;text-decoration:none;color:var(--kdh-text);font-family:var(--kdh-head);font-size:16px;font-weight:600;letter-spacing:0;text-transform:none;white-space:nowrap;min-width:0}
 .kdh-logo img{width:28px;height:28px;border-radius:6px;border:1px solid var(--kdh-border);background:#fff;object-fit:contain;flex:none}
 .kdh-logo small{font-family:var(--kdh-body);font-weight:500;color:var(--kdh-text-3);text-transform:none;letter-spacing:0;font-size:13.5px;margin-left:2px;overflow:hidden;text-overflow:ellipsis}
 .kdh-logo small::before{content:"/";color:var(--kdh-border-2);margin-right:8px}
@@ -82,42 +98,88 @@ html[data-theme="dark"]{color-scheme:dark}
 .kdh-b.kdh-outline:hover{border-color:var(--kdh-border-2)}
 .kdh-b.kdh-primary{background:var(--kdh-brand);color:var(--kdh-brand-ink);border-color:var(--kdh-brand)}
 .kdh-b.kdh-primary:hover{background:var(--kdh-brand-2);border-color:var(--kdh-brand-2)}
-.kdh-b.kdh-icon{width:32px;padding:0;justify-content:center;border-color:var(--kdh-border);background:var(--kdh-surface)}
+.kdh-b.kdh-icon{width:36px;height:36px;padding:0;justify-content:center;border-color:var(--kdh-border);background:var(--kdh-surface)}
 .kdh-b.kdh-icon svg{width:16px;height:16px}
 .kdh-b.kdh-icon .moon{display:none}
 html[data-theme="dark"] .kdh-b.kdh-icon .sun{display:none} html[data-theme="dark"] .kdh-b.kdh-icon .moon{display:block}
-@media (prefers-color-scheme:dark){ html:not([data-theme="light"]) .kdh-b.kdh-icon .sun{display:none} html:not([data-theme="light"]) .kdh-b.kdh-icon .moon{display:block} }
-.kdh-av{width:26px;height:26px;border-radius:50%;background:var(--kdh-brand);color:var(--kdh-brand-ink);font-family:var(--kdh-head);font-size:11.5px;font-weight:700;letter-spacing:0;display:inline-flex;align-items:center;justify-content:center;flex:none}
+/* the theme switch in the bar (2026-09-30): icon of the current mode + its name */
+.kdh-b.kdh-theme{height:36px;padding:0 10px 0 8px;gap:6px;cursor:pointer;font-weight:600}
+.kdh-b.kdh-theme .moon{display:none}
+html[data-theme="dark"] .kdh-b.kdh-theme .sun{display:none} html[data-theme="dark"] .kdh-b.kdh-theme .moon{display:block}
+.kdh-b.kdh-theme[aria-checked="true"]{border-color:var(--kdh-border-2)}
+.kdh-av{width:26px;height:26px;border-radius:50%;background:var(--kdh-brand);color:var(--kdh-brand-ink);font-family:var(--kdh-head);font-size:11.5px;font-weight:600;letter-spacing:0;display:inline-flex;align-items:center;justify-content:center;flex:none}
 /* who is being viewed (a manager on a rep's page) -- distinct from who is signed in */
 .kdh-chip{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px 0 8px;border-radius:999px;background:var(--kdh-brand-soft);color:var(--kdh-brand);font-size:13.5px;font-weight:600;white-space:nowrap;border:1px solid transparent}
-.kdh-chip b{font-weight:700}
-.kdh-chip a,.kdh-chip button{font:inherit;font-weight:600;color:var(--kdh-brand);background:none;border:0;padding:0 0 0 6px;margin:0;cursor:pointer;text-decoration:underline;text-underline-offset:2px;border-left:1px solid var(--kdh-border-2);margin-left:2px}
+.kdh-chip b{font-weight:600}
+.kdh-chip > span{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.kdh-chip a,.kdh-chip button{display:inline-flex;align-items:center;min-height:36px;font:inherit;font-weight:600;color:var(--kdh-brand);background:none;border:0;padding:0 2px 0 8px;margin:0 -4px 0 2px;cursor:pointer;text-decoration:underline;text-underline-offset:2px;border-left:1px solid var(--kdh-border-2)}
 .kdh-chip.kdh-preview{background:var(--kdh-gold-soft);color:#7A5A0C}
 html[data-theme="dark"] .kdh-chip.kdh-preview{color:var(--kdh-gold)}
 .kdh-chip.kdh-preview a,.kdh-chip.kdh-preview button{color:inherit}
 .kdh-chip svg{width:14px;height:14px}
-.kdh-b.kdh-user{cursor:default}
-.kdh-b.kdh-user:hover{background:transparent}
+/* the account button (2026-09-30): avatar + name + caret, opens the account menu */
+.kdh-b.kdh-user{cursor:pointer;height:36px;padding:0 8px 0 4px;gap:8px;border-color:var(--kdh-border);background:var(--kdh-surface)}
+.kdh-b.kdh-user:hover{background:var(--kdh-surface-2)}
+.kdh-b.kdh-user > svg{width:14px;height:14px;color:var(--kdh-text-3)}
+.kdh-b.kdh-user[aria-expanded="true"]{background:var(--kdh-surface-2);border-color:var(--kdh-border-2)}
 .kdh-b svg{width:16px;height:16px;flex:none}
-.kdh-b.kdh-back{height:36px;padding:0 12px 0 8px;font-weight:600;color:var(--kdh-brand);border-color:var(--kdh-brand-soft);background:var(--kdh-brand-soft)}
-.kdh-b.kdh-back:hover{background:var(--kdh-brand);color:var(--kdh-brand-ink);border-color:var(--kdh-brand)}
+.kdh-b.kdh-back{height:40px;padding:0 14px 0 10px;font-size:14.5px;font-weight:600;color:var(--kdh-brand-ink);border-color:var(--kdh-brand);background:var(--kdh-brand);box-shadow:var(--kdh-shadow)}
+.kdh-b.kdh-back:hover{background:var(--kdh-brand-2);border-color:var(--kdh-brand-2);color:var(--kdh-brand-ink)}
 .kdh-b.kdh-back svg{margin-left:-2px;width:18px;height:18px}
 @media (max-width:599px){
   .kdh-bar-in{padding:0 14px;height:50px;gap:8px}
   .kdh-logo{font-size:15px;gap:8px}
   .kdh-logo small{display:none}
-  .kdh-b.kdh-user{padding:0 4px} .kdh-name{display:none}
-  .kdh-chip{font-size:12.5px;padding:0 8px;height:30px}
+  .kdh-b.kdh-user{padding:0 6px 0 4px;height:40px;gap:4px} .kdh-name{display:none}
+  .kdh-menu{right:8px;left:auto;width:min(300px,calc(100vw - 16px))}
+  /* phones: the Viewing / Previewing chip gets its own full-width row under the bar */
+  .kdh-chip{font-size:14px;padding:0 4px 0 12px;height:40px;width:100%;justify-content:space-between;border-radius:10px}
+  .kdh-bar-in{flex-wrap:wrap;height:auto;min-height:50px;padding-top:0;padding-bottom:0;row-gap:0}
+  .kdh-bar-in > .kdh-logo,.kdh-bar-in > .kdh-acts{height:50px}
+  #kdhViewing:not(:empty),#kdhPreviewChip{flex:1 1 100%;order:3;display:flex;padding:0 0 8px;height:auto;margin:0}
+  .kdh-chip a,.kdh-chip button{min-height:40px;padding:0 10px}
+  .kdh-b.kdh-icon{width:40px;height:40px}
+  .kdh-b.kdh-theme{height:40px;padding:0 8px 0 7px;font-size:13px}
   .kdh-b.kdh-hide-sm{display:none}
   .kdh-b{padding:0 8px;font-size:13px}
-  .kdh-b.kdh-back{height:40px;padding:0 12px 0 8px;font-size:14px}
+  .kdh-b.kdh-back{height:44px;padding:0 12px 0 8px;font-size:14.5px}
   .kdh-b.kdh-back span{white-space:nowrap}
   /* with a Back button in the bar, the wordmark gives way to the badge alone */
   .kdh-bar:has(.kdh-back) .kdh-logo{font-size:0;gap:0}
   .kdh-bar:has(.kdh-back) .kdh-logo img{width:30px;height:30px}
 }
-/* the preview-as-rep bar sits under the top bar on every page */
-#kdhPreviewBar{font-family:var(--kdh-body)!important}
+/* ---- the account menu (2026-09-30): under the avatar, right-aligned ---- */
+.kdh-bar{position:sticky}
+.kdh-menu{position:absolute;top:calc(100% + 6px);right:max(12px,calc((100% - var(--kdh-max)) / 2 + 20px));width:264px;z-index:60;background:var(--kdh-surface);border:1px solid var(--kdh-border);border-radius:12px;box-shadow:var(--kdh-shadow-h);padding:6px;display:flex;flex-direction:column}
+.kdh-menu[hidden]{display:none}
+.kdh-menu-h{display:flex;flex-direction:column;gap:2px;padding:10px 12px 9px;border-bottom:1px solid var(--kdh-border);margin-bottom:6px;min-width:0}
+.kdh-menu-h b{font-size:15px;font-weight:600;color:var(--kdh-text)}
+.kdh-menu-h span{font-size:12.5px;color:var(--kdh-text-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kdh-menu-i{display:flex;align-items:center;flex-wrap:wrap;gap:0 10px;min-height:44px;padding:8px 12px;border:0;border-radius:8px;background:none;font:inherit;font-size:15px;font-weight:500;line-height:1.3;color:var(--kdh-text);text-decoration:none;text-align:left;cursor:pointer;width:100%}
+.kdh-menu-i:hover{background:var(--kdh-surface-2)}
+.kdh-menu-i small{flex-basis:100%;font-size:12.5px;color:var(--kdh-text-3);font-weight:400}
+.kdh-menu-i svg{width:16px;height:16px;color:var(--kdh-text-3);flex:none}
+#kdhViewAsRep{color:var(--kdh-brand);font-weight:600}
+#kdhTheme.kdh-menu-i .moon{display:none}
+html[data-theme="dark"] #kdhTheme.kdh-menu-i .sun{display:none} html[data-theme="dark"] #kdhTheme.kdh-menu-i .moon{display:block}
+/* ---- "View as rep": the searchable rep sheet (phone: bottom sheet; desktop: centred dialog) ---- */
+.kdh-sheet-wrap{position:fixed;inset:0;z-index:1000;font-family:var(--kdh-body);color:var(--kdh-text)}
+.kdh-sheet-wrap[hidden]{display:none}
+.kdh-sheet-back{position:absolute;inset:0;background:rgba(15,23,42,.45)}
+.kdh-sheet{position:absolute;left:0;right:0;bottom:0;max-height:88vh;background:var(--kdh-surface);border-radius:16px 16px 0 0;box-shadow:0 -8px 30px rgba(0,0,0,.25);display:flex;flex-direction:column;padding:14px 16px calc(14px + env(safe-area-inset-bottom));box-sizing:border-box}
+@media (min-width:700px){ .kdh-sheet{left:50%;right:auto;top:50%;bottom:auto;transform:translate(-50%,-50%);width:440px;max-height:80vh;border-radius:16px} }
+.kdh-sheet-h{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.kdh-sheet-h b{font-size:18px;font-weight:600}
+.kdh-sheet-x{min-height:40px;padding:0 12px;border:1px solid var(--kdh-border);background:var(--kdh-surface);border-radius:8px;font:inherit;font-size:14px;font-weight:600;color:var(--kdh-text-2);cursor:pointer}
+.kdh-sheet-p{margin:6px 0 10px;font-size:14px;color:var(--kdh-text-2);line-height:1.45}
+.kdh-sheet .kdh-field{font-size:16px;min-height:44px}
+.kdh-sheet-list{overflow:auto;margin-top:8px;flex:1;min-height:140px;-webkit-overflow-scrolling:touch}
+.kdh-sheet-dm{font-size:13px;font-weight:600;color:var(--kdh-text-3);padding:10px 4px 4px}
+.kdh-sheet-i{display:flex;align-items:center;gap:10px;width:100%;min-height:48px;padding:6px 8px;border:0;border-radius:10px;background:none;font:inherit;font-size:16px;font-weight:500;color:var(--kdh-text);text-align:left;cursor:pointer}
+.kdh-sheet-i:hover{background:var(--kdh-surface-2)}
+.kdh-sheet-i.on{background:var(--kdh-brand-soft)}
+.kdh-sheet-i small{margin-left:auto;font-size:12.5px;color:var(--kdh-brand);font-weight:600;white-space:nowrap}
+.kdh-sheet-empty{padding:16px 8px;color:var(--kdh-text-3)}
 
 /* ---- generic components (kdh- prefixed; dashboards keep their own
    class names and get these looks through kdh-skin.css) ---- */
@@ -126,8 +188,8 @@ html[data-theme="dark"] .kdh-chip.kdh-preview{color:var(--kdh-gold)}
 .kdh-pill.on,.kdh-pill.active,.kdh-pill[aria-pressed="true"],.kdh-pill[aria-selected="true"]{background:var(--kdh-brand);color:var(--kdh-brand-ink);border-color:var(--kdh-brand)}
 .kdh-card{background:var(--kdh-surface);border:1px solid var(--kdh-border);border-radius:var(--kdh-r-lg);box-shadow:var(--kdh-shadow);padding:14px 16px}
 .kdh-kicker{font-family:var(--kdh-body);font-size:13px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--kdh-text-3);margin:0 0 4px}
-.kdh-h1{font-family:var(--kdh-head);font-weight:700;font-size:26px;letter-spacing:-.01em;line-height:1.2;margin:0;color:var(--kdh-text)}
-.kdh-h2{font-family:var(--kdh-head);font-size:17px;font-weight:700;letter-spacing:0;text-transform:none;margin:0;color:var(--kdh-text)}
+.kdh-h1{font-family:var(--kdh-head);font-weight:600;font-size:26px;letter-spacing:normal;line-height:1.2;margin:0;color:var(--kdh-text)}
+.kdh-h2{font-family:var(--kdh-head);font-size:17px;font-weight:600;letter-spacing:0;text-transform:none;margin:0;color:var(--kdh-text)}
 /* page header: one title, a short line under it, a return link above it */
 .kdh-page-head{padding:18px 0 12px}
 .kdh-return{display:inline-flex;align-items:center;gap:4px;font-size:13.5px;font-weight:600;color:var(--kdh-brand);text-decoration:none;margin:0 0 8px;min-height:32px}
@@ -178,3 +240,224 @@ html[data-theme="dark"] .kdh-chip.kdh-preview{color:var(--kdh-gold)}
 .kdh-state.stale{border-style:solid;border-color:var(--kdh-warn);background:var(--kdh-warn-soft);color:var(--kdh-warn)}
 .kdh-state.stale b{color:inherit}
 .kdh-state a{color:var(--kdh-brand);font-weight:600}
+
+/* ==== PRIMARY NAVIGATION (2026-10-01) ===================================
+   After Todoist web's labelled sidebar (selected = tinted pill + bold) and
+   Shopify iOS's tab bar. Tablets / desktop: labelled links in the top bar.
+   Phones (<760px): a bottom tab bar, icon over a text label, the current
+   one in the accent colour; the page gets bottom padding so the bar never
+   covers a record or a button. The Back button is now a quiet outline
+   button that names only a destination the navigation does not show. */
+.kdh-logo .kdh-word{white-space:nowrap}
+.kdh-nav{display:flex;align-items:center;gap:2px;margin-right:auto;min-width:0}
+.kdh-bar-in > .kdh-logo{margin-right:12px}
+.kdh-bar-in:not(:has(.kdh-nav)) > .kdh-logo{margin-right:auto}
+.kdh-nav-i{display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 12px;border-radius:8px;color:var(--kdh-text-2);font-size:14.5px;font-weight:600;text-decoration:none;white-space:nowrap}
+.kdh-nav-i svg{width:17px;height:17px;flex:none;color:var(--kdh-text-3)}
+.kdh-nav-i:hover{background:var(--kdh-surface-2);color:var(--kdh-text)}
+.kdh-nav-i.on{background:var(--kdh-brand-soft);color:var(--kdh-brand)}
+.kdh-nav-i.on svg{color:var(--kdh-brand)}
+.kdh-nav-i:focus-visible,.kdh-tab:focus-visible{outline:2px solid var(--kdh-ring);outline-offset:2px}
+/* the page name is the small grey line under the wordmark; with the nav
+   showing the section, keep it only where it says more than the nav */
+.kdh-bar.kdh-has-cur .kdh-logo small{display:none}
+.kdh-b.kdh-back{height:36px;padding:0 12px 0 8px;font-size:14px;font-weight:600;color:var(--kdh-text);border-color:var(--kdh-border);background:var(--kdh-surface);box-shadow:none}
+.kdh-b.kdh-back:hover{background:var(--kdh-surface-2);border-color:var(--kdh-border-2);color:var(--kdh-text)}
+.kdh-b.kdh-back svg{width:16px;height:16px;color:var(--kdh-brand)}
+@media (max-width:1099px){
+  .kdh-logo .kdh-word{display:none}
+  .kdh-logo small{display:none}
+}
+.kdh-tabs{display:none}
+@media (max-width:759px){
+  .kdh-nav{display:none}
+  .kdh-bar-in > .kdh-logo{margin-right:auto}
+  /* phones show the page name beside the badge (the tab bar shows the section) */
+  .kdh-logo .kdh-word{display:none}
+  .kdh-bar .kdh-logo small,.kdh-bar.kdh-has-cur .kdh-logo small{display:block;font-size:15px;font-weight:600;color:var(--kdh-text);margin:0;max-width:38vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .kdh-bar .kdh-logo small::before{display:none}
+  .kdh-bar.kdh-bar:has(.kdh-back) .kdh-logo small{display:none}
+  .kdh-b.kdh-back{height:40px;font-size:14px}
+  .kdh-tabs{display:block;position:fixed;left:0;right:0;bottom:0;z-index:55;background:color-mix(in srgb,var(--kdh-surface) 96%,transparent);backdrop-filter:saturate(1.2) blur(8px);-webkit-backdrop-filter:saturate(1.2) blur(8px);border-top:1px solid var(--kdh-border);padding-bottom:env(safe-area-inset-bottom);font-family:var(--kdh-body)}
+  .kdh-tabs-in{display:flex;max-width:560px;margin:0 auto}
+  .kdh-tab{flex:1 1 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:56px;padding:6px 4px 5px;color:var(--kdh-text-3);font-size:12.5px;font-weight:600;line-height:1.2;text-decoration:none;position:relative}
+  .kdh-tab svg{width:22px;height:22px}
+  .kdh-tab.on{color:var(--kdh-brand)}
+  .kdh-tab.on::before{content:'';position:absolute;top:0;left:28%;right:28%;height:3px;border-radius:0 0 3px 3px;background:var(--kdh-brand)}
+  html.kdh-has-tabs body{padding-bottom:calc(64px + env(safe-area-inset-bottom)) !important}
+  html.kdh-has-tabs #selectionSumBar{bottom:calc(76px + env(safe-area-inset-bottom)) !important}
+}
+@media print{ .kdh-tabs,.kdh-nav{display:none !important} }
+
+/* ==== APP SHELL (2026-10-02) =============================================
+   Shopify iOS (All Customers 775ea206): a small labelled bottom tab bar.
+   Todoist web (Today): a stable labelled sidebar, tinted selected item.
+   Under 1024px: bottom tabs (Home / My Accounts / Programs / [Team] / More),
+   More opens the one menu as a sheet above the bar. From 1024px: a fixed
+   240px sidebar with the same destinations spelled out and the account
+   button at its foot; the top bar becomes the page header (page name,
+   Back, Viewing / Previewing chip, theme). Content always clears both. */
+:root{--kdh-side-w:240px;--kdh-tabs-h:60px}
+.kdh-side{display:none}
+.kdh-tabs{display:block;position:fixed;left:0;right:0;bottom:0;z-index:55;background:color-mix(in srgb,var(--kdh-surface) 96%,transparent);backdrop-filter:saturate(1.2) blur(8px);-webkit-backdrop-filter:saturate(1.2) blur(8px);border-top:1px solid var(--kdh-border);padding-bottom:env(safe-area-inset-bottom);font-family:var(--kdh-body)}
+.kdh-tabs-in{display:flex;max-width:640px;margin:0 auto}
+.kdh-tab{flex:1 1 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:var(--kdh-tabs-h);padding:6px 2px 5px;color:var(--kdh-text-3);font:inherit;font-size:12.5px;font-weight:500;line-height:1.2;text-decoration:none;position:relative;background:none;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.kdh-tab svg{width:22px;height:22px}
+.kdh-tab.on{color:var(--kdh-brand);font-weight:600}
+.kdh-tab.on::before{content:'';position:absolute;top:0;left:26%;right:26%;height:2px;border-radius:0 0 2px 2px;background:var(--kdh-brand)}
+.kdh-tab:focus-visible{outline:2px solid var(--kdh-ring);outline-offset:-2px}
+html.kdh-has-tabs body{padding-bottom:calc(var(--kdh-tabs-h) + 12px + env(safe-area-inset-bottom)) !important}
+html.kdh-has-tabs #selectionSumBar{bottom:calc(var(--kdh-tabs-h) + 12px + env(safe-area-inset-bottom)) !important}
+.kdh-nav{display:none !important}
+/* the one menu: a sheet above the tab bar on phones / iPads */
+.kdh-menu{position:fixed;left:0;right:0;top:auto;bottom:calc(var(--kdh-tabs-h) + env(safe-area-inset-bottom));width:auto;max-height:calc(100vh - var(--kdh-tabs-h) - 60px);overflow:auto;z-index:70;border-radius:14px 14px 0 0;padding:6px 8px 10px;box-shadow:0 -10px 30px rgba(15,23,42,.18)}
+@media (min-width:640px){ .kdh-menu{left:auto;right:12px;width:340px;border-radius:14px;bottom:calc(var(--kdh-tabs-h) + 10px + env(safe-area-inset-bottom))} }
+.kdh-menu-h{flex-direction:row;flex-wrap:wrap;align-items:center;column-gap:10px}
+.kdh-menu-h b{flex:1 1 auto}
+.kdh-menu-h > span{flex-basis:100%;order:3}
+.kdh-menu-x{min-height:36px;padding:0 12px;border:1px solid var(--kdh-border);border-radius:8px;background:var(--kdh-surface);font:inherit;font-size:14px;font-weight:500;color:var(--kdh-text-2);cursor:pointer}
+.kdh-menu-g{font-size:13px;font-weight:500;color:var(--kdh-text-3);padding:10px 12px 2px}
+.kdh-menu-i{color:var(--kdh-text);text-decoration:none}
+.kdh-menu-i > span{flex:1 1 auto}
+.kdh-menu-i.on{background:var(--kdh-brand-soft);color:var(--kdh-brand)}
+.kdh-menu-i.on svg{color:var(--kdh-brand)}
+html.kdh-menu-open .kdh-tabs{z-index:71}
+/* the top bar on phones and iPads: badge + page name, Back, theme */
+.kdh-bar .kdh-logo .kdh-word{display:none}
+.kdh-bar .kdh-logo small{display:block;font-size:15px;font-weight:600;color:var(--kdh-text);margin:0;max-width:44vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kdh-bar .kdh-logo small::before{display:none}
+.kdh-bar-in > .kdh-logo{margin-right:auto}
+@media (max-width:599px){ .kdh-bar:has(.kdh-back) .kdh-logo small{display:none} }
+.kdh-b.kdh-back{height:36px;padding:0 12px 0 8px;font-size:14px;font-weight:500;color:var(--kdh-text);border-color:var(--kdh-border);background:var(--kdh-surface);box-shadow:none}
+.kdh-b.kdh-back:hover{background:var(--kdh-surface-2);border-color:var(--kdh-border-2);color:var(--kdh-text)}
+.kdh-b.kdh-back svg{width:16px;height:16px;color:var(--kdh-brand)}
+@media (max-width:599px){ .kdh-b.kdh-back{height:40px} }
+
+@media (min-width:1024px){
+  .kdh-tabs{display:none}
+  html.kdh-has-tabs body{padding-bottom:0 !important}
+  html.kdh-has-side body{padding-left:var(--kdh-side-w) !important}
+  .kdh-side{display:flex;flex-direction:column;position:fixed;left:0;top:0;bottom:0;width:var(--kdh-side-w);z-index:56;background:var(--kdh-surface-2);border-right:1px solid var(--kdh-border);font-family:var(--kdh-body);padding:12px 10px 10px;box-sizing:border-box}
+  .kdh-side *{box-sizing:border-box}
+  .kdh-side-logo{display:flex;align-items:center;gap:9px;height:40px;padding:0 8px;margin-bottom:10px;color:var(--kdh-text);font-size:15px;font-weight:600;text-decoration:none}
+  .kdh-side-logo img{width:28px;height:28px;border-radius:6px}
+  .kdh-side-nav{flex:1;overflow:auto;display:flex;flex-direction:column;gap:1px}
+  .kdh-side-i{display:flex;align-items:center;gap:10px;min-height:38px;padding:0 10px;border-radius:8px;color:var(--kdh-text-2);font-size:14.5px;font-weight:500;text-decoration:none}
+  .kdh-side-i svg{width:18px;height:18px;flex:none;color:var(--kdh-text-3)}
+  .kdh-side-i:hover{background:var(--kdh-surface-3);color:var(--kdh-text)}
+  .kdh-side-i.on{background:var(--kdh-brand-soft);color:var(--kdh-brand);font-weight:600}
+  .kdh-side-i.on svg{color:var(--kdh-brand)}
+  .kdh-side-i:focus-visible{outline:2px solid var(--kdh-ring);outline-offset:-2px}
+  .kdh-side-sub{display:flex;flex-direction:column;gap:1px;margin:1px 0 4px 18px;padding-left:10px;border-left:1px solid var(--kdh-border)}
+  .kdh-side-i.sub{min-height:34px;font-size:14px}
+  .kdh-side-i.sub svg{width:16px;height:16px}
+  .kdh-side-h{font-size:13px;font-weight:500;color:var(--kdh-text-3);padding:14px 10px 4px}
+  .kdh-side-foot{border-top:1px solid var(--kdh-border);padding-top:8px}
+  .kdh-side-user{display:flex;align-items:center;gap:10px;width:100%;min-height:48px;padding:6px 8px;border:0;border-radius:8px;background:none;font:inherit;color:var(--kdh-text);text-align:left;cursor:pointer}
+  .kdh-side-user:hover,.kdh-side-user[aria-expanded="true"]{background:var(--kdh-surface-3)}
+  .kdh-side-user > svg{width:14px;height:14px;color:var(--kdh-text-3);flex:none;transform:rotate(180deg)}
+  .kdh-side-who{display:flex;flex-direction:column;min-width:0;flex:1}
+  .kdh-side-who b{font-size:14px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .kdh-side-who small{font-size:12.5px;color:var(--kdh-text-3)}
+  /* the menu opens above the account button; tools are in the sidebar already */
+  .kdh-menu{left:10px;right:auto;top:auto;bottom:68px;width:280px;border-radius:12px;box-shadow:var(--kdh-shadow-h)}
+  .kdh-menu-tools{display:none}
+  .kdh-menu-x{display:none}
+  /* the top bar is the page header beside the sidebar */
+  .kdh-bar .kdh-logo img{display:none}
+  .kdh-bar .kdh-logo small{font-size:15px;max-width:none}
+  .kdh-bar-in{max-width:none;padding:0 24px}
+}
+@media print{ .kdh-tabs,.kdh-side,.kdh-menu{display:none !important} html.kdh-has-side body{padding-left:0 !important} }
+/* five tabs (a manager's bar) must fit a 375px phone: no tab may grow past its share */
+.kdh-tabs .kdh-tab{min-width:0;flex:1 1 0;padding-left:2px;padding-right:2px;margin:0;border:0;background:none;box-shadow:none}
+.kdh-tabs .kdh-tab span{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* placeholders pass AA in both themes (contrast audit 2026-10-02) */
+::placeholder{color:var(--kdh-text-3);opacity:1}
+
+/* ==== KOHLER BRAND (2026-10-07) ==========================================
+   Gavin: the Hub should read as Kohler's own sales app in both themes.
+   Colours are SAMPLED from the official logo files (the company site could
+   not be reached from the build environment) and adapted for contrast --
+   shared/README.txt "KOHLER BRAND" lists sampled vs. used values.
+   - Kohler blue (--kdh-brand) = actions, links, selected navigation
+   - Kohler navy = headings (light) and the desktop sidebar (both themes)
+   - warm gold (--kdh-accent) = small DECORATIVE rules only, never a status
+   - statuses keep their own colours AND text labels; warnings are a burnt
+     orange (--kdh-warn) so they never read as brand gold */
+:where(h1,h2,h3){color:var(--kdh-head-c)}
+:focus-visible{outline:2px solid var(--kdh-focus);outline-offset:2px}
+.kdh-nav-i:focus-visible,.kdh-side-i:focus-visible{outline:2px solid var(--kdh-focus);outline-offset:-2px}
+.kdh-tab:focus-visible{outline:2px solid var(--kdh-focus);outline-offset:-3px}
+/* top bar: a slim Kohler-blue top edge; the badge always sits on a white tile so it reads on both themes */
+.kdh-bar{box-shadow:inset 0 3px 0 #2866C0}
+.kdh-logo img{width:32px;height:32px;border-radius:8px;border:1px solid var(--kdh-border);background:#fff;padding:1px;object-fit:contain}
+.kdh-chip.kdh-preview{color:var(--kdh-gold)}
+/* bottom tabs: the selected tab carries a 3px Kohler-blue marker */
+.kdh-tab.on::before{height:3px;border-radius:0 0 3px 3px}
+/* desktop sidebar: Kohler navy in BOTH themes, the official badge + wordmark lockup, a short gold rule */
+@media (min-width:1024px){
+  .kdh-side{background:#0B2466;border-right:1px solid #06195A;color:#E8EEFB}
+  html[data-theme="dark"] .kdh-side{background:#081633;border-right-color:#26365C}
+  .kdh-side-logo{position:relative;height:auto;gap:12px;padding:4px 8px 14px;margin-bottom:12px;color:#FFFFFF;border-bottom:1px solid rgba(255,255,255,.12)}
+  .kdh-side-logo::after{content:'';position:absolute;left:8px;bottom:-2px;width:44px;height:3px;border-radius:2px;background:var(--kdh-accent)}
+  .kdh-side-logo img{width:40px;height:48px;border-radius:0;object-fit:contain;flex:none}
+  .kdh-lock{display:flex;flex-direction:column;min-width:0}
+  .kdh-lock b{font-size:19px;font-weight:700;line-height:1.1;color:#FFFFFF}
+  .kdh-lock small{font-size:13px;font-weight:500;line-height:1.3;color:#C2CEEA}
+  .kdh-side-i{color:#D9E1F2}
+  .kdh-side-i svg{color:#A9BADC}
+  .kdh-side-i:hover{background:rgba(255,255,255,.08);color:#FFFFFF}
+  .kdh-side-i.on{background:rgba(106,161,255,.22);color:#FFFFFF;font-weight:600;box-shadow:inset 3px 0 0 #8DB8FF}
+  .kdh-side-i.on svg{color:#B5D0FF}
+  .kdh-side-i:focus-visible{outline-color:#B5D0FF}
+  .kdh-side a:focus-visible,.kdh-side button:focus-visible{outline:2px solid #B5D0FF}
+  /* the hub has its own generic .sub card class; never let it reach the sidebar's sub-items */
+  .kdh-side .kdh-side-i.sub{width:auto;min-height:34px;padding:0 10px;gap:10px;background:transparent;border:0;border-radius:8px;box-shadow:none;transform:none;opacity:1;font-size:14px}
+  .kdh-side .kdh-side-i.sub:hover{background:rgba(255,255,255,.08);border:0}
+  .kdh-side .kdh-side-i.sub.on{background:rgba(106,161,255,.22);box-shadow:inset 3px 0 0 #8DB8FF}
+  .kdh-side-sub{border-left-color:rgba(255,255,255,.16)}
+  .kdh-side-h{color:#B3C1E0}
+  .kdh-side-foot{border-top-color:rgba(255,255,255,.12)}
+  .kdh-side-user{color:#FFFFFF}
+  .kdh-side-user:hover,.kdh-side-user[aria-expanded="true"]{background:rgba(255,255,255,.08)}
+  .kdh-side-who small{color:#C2CEEA}
+  .kdh-side-user > svg{color:#A9BADC}
+}
+
+/* COMPANY PHOTOS (2026-10-07, Gavin: "include these images throughout the
+   site"). Cut from kohlerdistributing.co: the team in front of the Hawthorne
+   building (assets/brand/team.webp) and the Beer / Wine & Spirits / Beyond
+   Beer portfolio photos. Two components, decoration only -- never a control,
+   never text laid on a photo:
+   .kdh-band       a slim photo strip at the top of a page (max 640px wide so
+                   the ~580px source is not blown up; gold rule under it)
+   .kdh-portfolio  "Our Portfolio" on solid navy at the foot of the homes:
+                   the mission line + the three category photos */
+.kdh-band{display:block;margin:0 auto 16px;max-width:640px;height:clamp(104px,20vw,170px);border-radius:14px;overflow:hidden;background:#0B2466;border-bottom:3px solid #E4A154}
+.kdh-band img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 60%}
+.kdh-band.team img{object-position:50% 86%}
+.kdh-portfolio{margin:32px auto 8px;max-width:640px;padding:22px 20px 20px;border-radius:16px;background:#0B2466;color:#FFFFFF;border-top:3px solid #E4A154;text-align:center}
+:root[data-theme="dark"] .kdh-portfolio{background:#0E2A73}
+.kdh-portfolio h2{margin:0 0 6px!important;font-size:20px!important;font-weight:700!important;line-height:1.2;color:#FFFFFF!important}
+.kdh-portfolio h2 span{color:#E4A154}
+.kdh-portfolio p{margin:0 auto 16px;max-width:520px;font-size:15px;line-height:1.5;color:#D9E1F2}
+.kdh-portfolio ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.kdh-portfolio li{margin:0}
+.kdh-portfolio img{display:block;width:100%;height:auto;aspect-ratio:526/432;object-fit:cover;border-radius:10px;background:#16306F}
+.kdh-portfolio li span{display:block;margin-top:7px;font-size:14px;font-weight:600;line-height:1.25;color:#FFFFFF}
+/* a page band sits a step below the bar and pulls the page header up to it */
+.kdh-band{margin-top:16px}
+.kdh-band + .rh-head,.kdh-band + .ws,.kdh-band + header{margin-top:0!important;padding-top:8px!important}
+.gx-head .kdh-band{margin-top:4px}
+.kdh-band.cans img{object-position:50% 30%}
+/* .kdh-portfolio.compact (2026-10-07, homes v4): the same content as a slim
+   strip -- heading + mission on the left, the three category photos at a fixed
+   small size on the right; stacked on phones. */
+.kdh-portfolio.compact{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:20px;padding:18px 22px;text-align:left;border-radius:14px}
+.kdh-portfolio.compact .kp-text{min-width:0}
+.kdh-portfolio.compact p{margin:0;max-width:440px}
+.kdh-portfolio.compact ul{grid-template-columns:repeat(3,128px);gap:12px}
+.kdh-portfolio.compact li span{font-size:14px;text-align:center}
+@media (max-width:759px){ .kdh-portfolio.compact{grid-template-columns:minmax(0,1fr);padding:16px} .kdh-portfolio.compact ul{grid-template-columns:repeat(3,minmax(0,1fr))} }

@@ -940,6 +940,71 @@ Write-back (2026-09-25): on kohlerdisthub.com every target list a rep
   A manager looking at a rep (or previewing as them) sees chips only.
   Nothing renders on github.io (no auth). Cache tag 20260925h.
 
+REP-MODE FLOW ON THE ENCOMPASS PATTERN (2026-09-30, per Gavin)
+Reps liked the Encompass incentive dashboards' plain organisation, so the
+rep side of the hub is now separate screens instead of one long page:
+  Incentives            one row per supplier (logo, name, status dots,
+                        "N programs · M need attention"); a supplier with
+                        one program opens that program directly
+  Supplier              one row per program: name + small status tag,
+                        channel · deadline (once), "6 of 8 accounts · 2
+                        more accounts needed", a thin bar
+  Program               ONE summary block (supplier line, name, status +
+                        deadline, "Qualifies: ...", the main figure, what
+                        remains, the bar, the goal rule in small type),
+                        then rows Potential accounts / Credited accounts /
+                        Follow-ups with counts, brand goals for retention
+                        programs, "How it is scored" and "Progress so far"
+                        as folds. No "Next" panel (it repeated the
+                        remaining requirement).
+  Accounts              searchable list: name, town · territory, one
+                        opportunity or credited line, the rep's own mark
+                        as a small tag; Done and Not now as folds at the
+                        foot. Back restores the scroll position and the
+                        search text.
+  Account               facts (program, what to sell, opportunity, last
+                        activity, 2026 volume), what the tracker credits
+                        to it, and the rep's Done / Follow up / Not now +
+                        note. In preview (a manager as the rep) the
+                        buttons are disabled with a note; nothing saves.
+The MPO tabs list objectives as the same program rows; both kinds open
+the same program screen. Hash keys: view=rep|sup|detail|accts|acct with
+sup=, list=targets|dist|follow|done|skip, n=<account number>.
+progFacts() in hub.js is the single source of the progress wording (unit
+from the goal text, MPO unit from the objective; a percent goal such as
+Lytt is stated in accounts from the tracker's buyingAccountCount /
+eligibleAccountCount, goal = ceil(tier x eligible) -- never from the
+rounded percentage -- with "Current account coverage 19.4% · Target 25%"
+under it). Manager Mode (desktop) still has every old screen: supplier
+sections with expanding rows, objective cards with account tabs, Program
+View, the full detail page with rankings.
+
+MANAGER LANDING + EXPORT BUTTONS (2026-10-04)
+A signed-in manager on a computer starts in Manager Mode and lands on
+Program View (the team / program overview) instead of the name picker; a
+deep link still wins, and a manager who chose Rep Mode keeps it (switching to
+Rep Mode on Program View opens the picker). Phones keep the picker (Manager
+Mode is desktop-only). Program View has a Rep filter (team-scoped, grouped by
+DM) that opens that rep's programs. The Export menu is now two visible
+buttons, Download CSV and Export Recap, with an Options fold for credited
+lines / account detail; both still export the complete filtered set for the
+authorized roster. An eligible account with no purchase of the brand reads
+"No purchases in the available history" (NO_BUY; the account screen adds the
+tracker data's refresh date) instead of "Never bought it".
+Tests: scratchpad export_test / mgr_desktop / hubonly_test / dm_test.
+
+PROGRAM WORKSPACE (2026-10-05)
+A program with a verified rule (shared/data/program-rules.json, written by
+tools/program_eligibility.py) opens as a workspace instead of the older
+program screen: summary in the requirement's own units ("54 of 69 Required
+Placements", "15 More Needed"), one bar, View Eligible Accounts, a Details fold
+(Original Goal, MPO Requirement with the math, weight, every rule tagged
+Verified / Assumed / Unverified), then Eligible Accounts / Qualifying Products /
+Credited Results. Picking a product filters the accounts to that product
+(`pp=` in the hash; `pv=`, `pq=`, `pr=` keep the view, search and the
+manager's rep filter). Each account opens the Account page; its Back returns
+here with the same filters and scroll. Managers get the same views for their
+team on Program View (rep filter). Programs without a rule keep the old screen.
 
 Lytt-only account exclusion (2026-10-16, per Gavin: "Lena y Carbon Broaster
   (20124) remove this account from Pablo's customer base for lytt. It is on
@@ -947,8 +1012,8 @@ Lytt-only account exclusion (2026-10-16, per Gavin: "Lena y Carbon Broaster
   #20124 as Off Premise, so it sat in Pablo Lopez's off-premise book and
   showed as a Lytt target. LYTT_BASE_EXCLUDED / PROGRAM_BASE_EXCLUDED at the
   top of accounts.js now skip it in classify() for the three Lytt programs
-  only (inc:lytt, off:bbc_lytt, off:disruptors): Pablo's Lytt universe and
-  eligible list go 27 -> 26, and nobody else's change. Every other program
+  only (inc:lytt, off:bbc_lytt, off:disruptors): Pablo's Lytt universe
+  drops by one (28 -> 27 on the 2026-10-08 account base), and nobody else's changes. Every other program
   keeps the account, and data/accounts.js is untouched, so a generate.py
   re-run cannot restore it. Same shape as incentive-tracking's
   LYTT_BASE_EXCLUDED (Dan Lagala, #10102). The incentive tracker itself never

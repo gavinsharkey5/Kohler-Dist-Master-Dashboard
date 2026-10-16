@@ -54,6 +54,33 @@ One-time setup (done 2026-09-24 unless noted)
     signin@kohlerdisthub.com, host smtp.resend.com:465, user resend,
     password = Resend API key (2026-09-25). Rate limit raised to 100/hour.
 
+Manage Programs (2026-10-08)
+----------------------------
+  Manager-built incentives / MPOs (manage-programs/README.txt). In the SQL
+  Editor, in order:
+    1. migrations/20261008120000_manage_programs.sql (idempotent; after the
+       photo_admin migration), then migrations/20261008180000_program_delete.sql,
+       then migrations/20261008200000_program_suppliers.sql (v3: products must
+       belong to the suppliers chosen in Basics; idempotent);
+       Non-Buy Reports (branch, after Gavin approves it): migrations/
+       20261009090000_nonbuy_reports.sql (saved reports / templates / target lists)
+       (Delete Program / Restore / Publish Again; status 'deleted').
+    2. update public.allowed_users set program_admin = true where email = '<Gavin>';
+       -- the program approver is this flag, never a name.
+    3. seed/product_master.sql (product # / name / supplier / family /
+       package; no customer data) -- re-run after a product refresh
+       (python3 tools/program_seed.py regenerates both seed files).
+    4. seed/program_brands.sql -- REVIEW FIRST: it sets program_brands (the
+       suppliers a brand manager may build programs for) by name match from
+       the Fusion supplier list. Edit the arrays, or set them by hand:
+       update public.allowed_users set program_brands = array['Constellation Brands']
+         where email = '<brand manager>';
+  District managers need nothing: their team is the reports_to chain already
+  in allowed_users. A manager with neither can save drafts but not submit a
+  program with participants or products. Participants read programs only
+  through kdh_my_programs / kdh_my_program_notices (no finance column is
+  ever selected); every other table is managers-only by RLS.
+
 Adding / removing people
 ------------------------
   Supabase -> Table Editor -> allowed_users. One row per person: email
@@ -62,6 +89,17 @@ Adding / removing people
   bounces to the sign-in page within five minutes (middleware cache).
   Bulk: python3 supabase/import_allowed_users.py <encompass export>
   then paste supabase/data/allowed_users.sql into the SQL Editor.
+  One person WITH a password set for them (2026-10-13): copy
+  supabase/add_user_with_password.sql, fill in EMAIL / NAME / ROLE /
+  PASSWORD, keep the copy in supabase/data/ (git-ignored) and run it in
+  the SQL Editor. It upserts the allow-list row, creates the auth.users
+  account with the bcrypt hash and the matching auth.identities row,
+  and prints kdh_signin_mode = 'password'; the person then signs in
+  with email + password, no "Create your password" step. Safe to re-run;
+  the commented update at its foot resets an existing password.
+  Verified on local Postgres 16 against the three sign-in migrations.
+  A person whose name is on no rep roster must be a manager (a rep with
+  no matching name is locked out of every page).
 
 Things to know
 --------------
@@ -170,3 +208,108 @@ Rep write-back: rep_actions (2026-09-25)
   the token and allowed_users by a trigger, never trusted from the page.
   Table Editor -> rep_actions shows the whole log; filter rep_name to
   see one rep, or updated_at to see today's.
+
+Account assistant usage ledger (2026-09-30)
+--------------------------------------------
+  Run migrations/20260930210000_assistant_usage.sql once in the SQL
+  Editor before turning the assistant on. It creates public.assistant_usage
+  (one row per answer: tokens, rounds, latency, model, estimated USD --
+  no question text, no answers, no account names; who asked is stamped
+  from the token) and kdh_assistant_quota(), which api/chat.js reads before
+  every call to enforce KDH_CHAT_USER_DAILY (requests per person per UTC
+  day) and KDH_CHAT_DAILY_USD (everyone's estimated spend per UTC day).
+  A person reads their own rows, a manager everyone's; nothing is updated
+  or deleted. Without the migration the assistant answers 503 on purpose.
+  Verified on 2026-09-30 against a local Postgres 16: the trigger overrode
+  a forged user_email, the other rep saw 0 rows and a 0 quota, the manager
+  saw all rows, update / delete / anon were refused, and the migration
+  applied twice cleanly. The spend query is at the foot of the file.
+
+
+NOTES + PHOTOS (2026-10-02)
+Run migrations/20261002120000_account_notes_photos.sql, then
+seed/account_assignments.sql, in the SQL Editor. The migration adds
+account_assignments (customer # -> rep key), kdh_name_key() (a mirror of
+middleware.js nameKey, nickname map included), kdh_can_access_account(),
+general notes + follow_on dates on rep_actions, the account_photos table,
+and the private account-photos bucket with policies (a rep reads / adds
+photos only on accounts assigned to them, removes only their own; managers
+read all). The seed is written by accounts/generate.py on every run --
+re-run it after any reassignment, or a rep's photo and note access will
+follow the old assignment. Both are idempotent. Verified on local Postgres
+16 (scratchpad sql_notes_test).
+
+PHOTO LABELS (2026-10-03)
+Run migrations/20261003090000_photo_labels.sql after the notes + photos file.
+Idempotent. category may be empty (Uncategorized), adds brand / program_id
+(<= 120 chars), and lets ONLY the author update category, caption, brand,
+program_id; a trigger keeps the account, file, author, premise, size and
+times as they were. Verified on a local Postgres 16 (scratchpad
+sql_notes_test.sh, 43 checks).
+
+MERCHANDISING RECORDS (2026-10-04)
+Run migrations/20261004090000_merchandising.sql after the photo labels file.
+Idempotent. account_photos: storage_path may be empty (an iSellBeer link with
+no stored copy), adds source / source_url (unique) / photo_kind (original or
+report_page) / photo_status (stored, link, unavailable), category also allows
+menu and other. New tables: merch_records (one observation at one account,
+source_key unique), merch_lines (product / brand lines; quantity NULL = not
+recorded, never 0; quantity_unit required with a quantity; US/THEM source and
+audited correction kept apart), merch_record_photos, merch_import_batches,
+merch_review (unmatched report pages). Functions: kdh_merch_save (Hub capture,
+retry-safe), kdh_merch_import (managers only; restates by source_key, dedupes
+photos by link / path), kdh_merch_resolve (attach a review item; the file must
+sit under that account). RLS through kdh_can_access_account; only the author
+edits or removes a Hub record. Verified on a local Postgres 16 (scratchpad
+sql_merch_test.sh, 26 checks). merchandising/README.txt has the rules.
+
+PHOTO ADMIN (2026-10-05)
+Run migrations/20261005090000_photo_admin.sql after the merchandising file.
+Idempotent. Adds allowed_users.photo_admin (default false) and
+kdh_is_photo_admin(); a photo admin may remove ANY account photo row, ANY
+merchandising record (Hub or imported; lines and photo links cascade) and ANY
+stored image file in account-photos. Authors keep removing their own. Reading
+is unchanged. Nobody can set the flag on themselves (signed-in people only
+READ their own allow-list row). The repo names no admin -- turn it on in the
+SQL Editor:  update public.allowed_users set photo_admin = true where email = '<email>';
+or tick photo_admin on that row in Table Editor -> allowed_users. Verified on
+local Postgres 16 (scratchpad sql_admin_test.sh, 19 checks).
+
+iSELLBEER PHOTO PDFs (2026-10-05)
+Run migrations/20261005100000_isb_pdf_photos.sql after the merchandising file
+(idempotent). Adds kdh_merch_attach_photos(p) (managers only): for each
+{source_url, storage_path} it fills the stored copy of a photo an earlier
+import created as a link -- only when it has none, only under that photo's own
+account folder -- and labels it a report page. It never creates a photo. The
+relabel trigger is redefined with that one exception (a NULL storage_path may
+be filled under the same account; a stored path still never changes).
+Verified on local Postgres 16 (scratchpad sql_pdf_test.sh, 13 checks).
+
+STAY SIGNED IN (2026-10-02; server-held since 2026-10-13)
+Reps stay signed in on a device until they sign out. RUN
+migrations/20261013090000_kdh_sessions.sql (idempotent): it adds
+public.kdh_sessions, where the server keeps each device's Supabase refresh
+token and renews it (api/session.js + middleware.js). The browser holds only a
+random device secret (HttpOnly cookie kdh_sid) that never changes, so a renewal
+whose reply is lost on a phone no longer ends the sign-in. Before 2026-10-13
+the refresh token itself sat in the kdh_rt cookie and Supabase's rotation on
+every renewal (plus its 10 s reuse window) signed reps out whenever a renewed
+cookie did not land -- "it makes me log in every time". Until the migration
+has run the site keeps working the old way; devices move over on their next
+renewal, nobody has to sign in again for it. The table is reachable only
+through its kdh_session_* functions (keyed by a hash of the secret); removing
+someone from allowed_users deletes their rows. Verified on local Postgres 16
+(scratchpad sql_sessions_test.sh, 17 checks) and end to end with a stubbed
+Supabase (session2_test.mjs, 47 checks).
+Settings that would end sessions early: Authentication -> Sessions "Time-box
+user sessions", "Inactivity timeout" and "Single session per user" -- leave
+all three off. JWT expiry (access token) can stay at the default hour; raising
+it (up to a week) only makes renewals rarer. Refresh token rotation and its
+reuse interval (default 10 s) stay as they are.
+
+ACCOUNT CONTACTS (2026-10-06)
+Run migrations/20261006100000_account_contacts.sql (idempotent), then the file
+tools/load_contacts.py writes to supabase/data/account_contacts.sql (git-ignored).
+Replaces the whole table in one transaction, so a refresh is the same two steps.
+Reps read contacts only for their assigned accounts (account_assignments), managers
+all; no signed-in writes. Needs the 20261002120000 migration first.

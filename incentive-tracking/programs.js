@@ -147,6 +147,13 @@ const PROGRAM_LOGOS = {
   'mabi_retention_fall': 'assets/logos/mark_anthony.png',
   'yuengling_retention_fall': 'assets/logos/yuengling.png',
   'new_belgium_distribution_retain': 'assets/logos/new_belgium.png',
+  // October 2026 marks cut from the 2026 October Rewards Deck (2026-09-30)
+  'mabi_single_serve': ['assets/logos/white_claw.png', 'assets/logos/mikes_harder.png', 'assets/logos/cayman_jack.png'],
+  'sam_adams_cold_snap': ['assets/logos/boston_beer.png', 'assets/logos/sam_adams.png'],
+  'lagunitas_sprint': 'assets/logos/lagunitas.png',
+  'famosa_oct': 'assets/logos/famosa.png',
+  'industrial_arts': 'assets/logos/industrial_arts.png',
+  'four_loko': 'assets/logos/four_loko.png',
   // heineken_husa has NO logo on purpose: the September deck's HUSA slide is a
   // goals table with no Heineken artwork anywhere in the file, and progLogo()
   // renders no chip for an unmapped key. Drop a Heineken mark in here if one
@@ -271,6 +278,7 @@ const PROGRAM_LIST_2026_08 = [
 // ---------------------------------------------------------------------------
 
 const sept = key => rep => (PROGRAM_DATA_2026_09[key]||{}).byRep?.[rep];
+const oct  = key => rep => (PROGRAM_DATA_2026_10[key]||{}).byRep?.[rep];
 
 const PROGRAM_LIST_2026_09 = [
   // --- New September programs -------------------------------------------
@@ -408,6 +416,112 @@ const PROGRAM_LIST_2026_09 = [
   // re-adding them to October's list is just these few lines again.
 ];
 
+// --- OCTOBER 2026 (2026-09-30, from the 2026 October Rewards Deck) ----------
+// New: six programs. Four have exports and builders in generate.py
+// (PROGRAM_DATA_2026_10); Four Loko Volume and the Sam Adams seasonal
+// conversion are STRUCTURE ONLY (rules + zero-state card) until Gavin sends
+// their exports. Ongoing: the deck's "continuing programs" that carry an
+// October window, pointing at the same September / August datasets. A
+// `period` on an entry overrides the blob's window for the hub (used where
+// the deck extends a program past the window its data was built for).
+const PROGRAM_LIST_2026_10 = [
+  {key:'mabi_single_serve', group:'new', title:'Mark Anthony Fall Single Serve Incentive', shortTitle:'MABI Single Serve', tag:'Oct–Nov',
+   pitch:`Sell in 8 or more White Claw single-serve packages, and 8 or more Mike's Harder / Cayman Jack — each leg pays, and M.A.D.E. packages pay double.`,
+   getRep:oct('mabi_single_serve'),
+   metric:d=>d.totalPods, metricLabel:'single-serve packages sold in', fmt:v=>v.toFixed(0)},
+  {key:'four_loko', group:'new', title:'Four Loko Volume Rewards', shortTitle:'Four Loko', tag:'Oct–Nov',
+   pitch:`Get Four Loko back to positive growth — five new Sour Apple or USA placements switch the per-case payout on.`,
+   getRep:oct('four_loko'),
+   metric:d=>d.cases26, metricLabel:'cases (Oct–Nov)', fmt:v=>v.toFixed(0)},
+  {key:'lagunitas_sprint', group:'new', title:'Lagunitas Sprint to the Finish', shortTitle:'Lagunitas', tag:'October',
+   pitch:`Open new Lagunitas IPA and Little Sumpin' package PODs off-premise — three unlocks your payout, and a new IPA draft account pays $100.`,
+   getRep:oct('lagunitas_sprint'),
+   metric:d=>d.podCount, metricLabel:'new PODs', fmt:v=>v.toFixed(0)},
+  {key:'famosa_oct', group:'new', title:'Push Famosa', shortTitle:'Famosa', tag:'October',
+   pitch:`Beat last October's Famosa cases — once your route is positive, every case pays.`,
+   getRep:oct('famosa_oct'),
+   metric:d=>d.growth, metricLabel:'case growth vs Oct 2025', fmt:v=>(v>0?'+':'')+v.toFixed(0)},
+  {key:'sam_adams_cold_snap', group:'new', title:'Sam Adams Seasonal Draft Conversion', shortTitle:'Sam Adams: seasonal conversion', tag:'Oct 1–23',
+   period:{start:'2026-10-01', end:'2026-10-23'},
+   pitch:`Convert every seasonal handle by October 23 — 90% of your lines pays $300, all of them $400.`,
+   getRep:oct('sam_adams_cold_snap'),
+   metric:d=>d.hasBase ? d.convertedPct : null, metricLabel:'% of lines converted', fmt:v=>v.toFixed(0)+'%',
+   },
+  {key:'industrial_arts', group:'new', title:'Industrial Arts Target Account Launch', shortTitle:'Industrial Arts', tag:'Oct–Dec',
+   pitch:`Open accounts on Industrial Arts — three core SKUs opens a store, and a Wrench draft line at a target account pays $100 in October.`,
+   getRep:oct('industrial_arts'),
+   metric:d=>d.totalNew, metricLabel:'accounts opened + draft lines', fmt:v=>v.toFixed(0)},
+
+  // --- Ongoing: the deck's continuing programs, same data as before -----
+  // Touchdowns & Tea is ONE card with two labelled legs inside it (Gavin,
+  // 2026-09-30, second brief: "one card but then separate the on and off
+  // programs within that card"). Its SUMMARY adapter returns `legs`; the
+  // tracker's progress screen and the hub's program screen draw one block
+  // per leg (Off-Premise stores, On-Premise bars), each with its own
+  // requirement, progress and what is still needed. The September tab's
+  // entry has the same key, so the hub shows this one card only.
+  {key:'touchdowns_tea', group:'ongoing', title:'Touchdowns & Tea', shortTitle:'Touchdowns & Tea', tag:'Sept–Oct',
+   period:{start:'2026-09-01', end:'2026-10-31'},
+   pitch:`Own football season for Sun Cruiser and Twisted Tea — new 12-packs in stores, cases in bars, and a display or feature pays on top.`,
+   getRep:sept('touchdowns_tea'),
+   metric:d=>d.payout, metricLabel:'tracked $', fmt:v=>'$'+v.toLocaleString('en-US')},
+  {key:'lytt', group:'ongoing', title:'Lytt Launch', shortTitle:'Lytt', tag:'Aug–Dec',
+   period:{start:'2026-08-01', end:'2026-12-31'},
+   pitch:`The more of your accounts that carry Lytt, the higher your per-case rate — the rate you reached pays through December.`,
+   getRep:rep=>(PROGRAM_DATA['lytt']||{}).byRep?.[rep],
+   metric:d=>d.penetrationPct, metricLabel:'penetration', fmt:v=>v.toFixed(1)+'%'},
+  {key:'other_half', group:'ongoing', title:'Other Half Target Account Launch', shortTitle:'Other Half', tag:'Sept–Dec',
+   pitch:`Open a non-buy target account on Other Half core draft and keep it buying — the back half pays more than the front.`,
+   getRep:sept('other_half'),
+   metric:d=>d.offPremNewCount, metricLabel:'accounts opened', fmt:v=>v.toFixed(0)},
+  {key:'le_grand_noir', group:'ongoing', title:'Le Grand Noir Volume Incentive', shortTitle:'Le Grand Noir', tag:'Aug–Oct',
+   pitch:`Sell Le Grand Noir — once the house hits 70 cases, every case pays $10.`,
+   getRep:rep=>(PROGRAM_DATA['le_grand_noir']||{}).byRep?.[rep],
+   metric:d=>d.cases, metricLabel:'cases (Aug–Oct)', fmt:v=>v.toFixed(0)},
+  {key:'printed_menu', group:'ongoing', title:'Bardstown / Green River Printed Menu Program', shortTitle:'Printed Menu', tag:'Sept–Dec',
+   pitch:`Get Bardstown or Green River onto a new printed menu — every mention pays $50.`,
+   getRep:sept('printed_menu'),
+   metric:d=>d.mentions, metricLabel:'menu mentions', fmt:v=>v.toFixed(0),
+   manual:true, awaitingNote:`Photo-verified program — menu mentions are submitted and verified manually, so there is no RDE feed behind this card. The rules above are the whole program.`},
+  {key:'bardstown_display', group:'ongoing', title:'Bardstown / Green River Display & Activation', shortTitle:'Bardstown Display', tag:'Sept–Oct',
+   pitch:`Build a 3-case stack off-premise or a branded activation on-premise — both pay per account.`,
+   getRep:sept('bardstown_display'),
+   metric:d=>d.displays, metricLabel:'displays / activations', fmt:v=>v.toFixed(0),
+   manual:true, awaitingNote:`Photo- and documentation-verified program — displays and activations are submitted manually, so there is no RDE feed behind this card. The rules above are the whole program.`},
+  {key:'two_xo', group:'ongoing', title:'2XO Bourbon', shortTitle:'2XO Bourbon', tag:'Sept–Oct (retro Aug)',
+   pitch:`60-day non-buy accounts: pair American Oak with French Oak off-premise, or land a 2-bottle POD on-premise.`,
+   getRep:sept('two_xo'),
+   metric:d=>d.offPremNewCount + d.onPremNewCount, metricLabel:'PODs / case pairs', fmt:v=>v.toFixed(0)},
+
+  // --- Retention -----------------------------------------------------------
+  {key:'mc_retention', group:'retention', title:'MolsonCoors Distro Rewards — Retention', shortTitle:'MolsonCoors', tag:'Jul 27–Oct 25',
+   pitch:`Hold the MolsonCoors distribution you built — every brand goal you keep through October 25 pays.`,
+   getRep:rep=>(PROGRAM_DATA['mc_retention']||{}).byRep?.[rep],
+   metric:d=>d.overallPct, metricLabel:'overall % of goal', fmt:v=>v.toFixed(0)+'%'},
+  {key:'constellation_fall', group:'retention', title:'Constellation Fall Distribution Rewards', shortTitle:'Constellation', tag:'Sept–Nov',
+   pitch:`A fresh set of Corona, Modelo, Impact and Innovation goals for the fall period — off-premise, plus every on-premise package and draft brand family you poured this spring.`,
+   getRep:sept('constellation_fall'),
+   metric:d=>d.overallPct, metricLabel:'% of overall goal (off + on premise)', fmt:v=>v.toFixed(0)+'%'},
+  {key:'mabi_retention_fall', group:'retention', title:'Mark Anthony MADE Distro Rewards — Retention', shortTitle:'Mark Anthony', tag:'Sept–Nov',
+   pitch:`Hold your MADE placements at 90% of goal through November.`,
+   getRep:sept('mabi_retention_fall'),
+   metric:d=>d.pct, metricLabel:'% of MADE goal', fmt:v=>v.toFixed(0)+'%'},
+  {key:'yuengling_retention_fall', group:'retention', title:'Yuengling Distro Rewards — Retention', shortTitle:'Yuengling', tag:'Sept–Nov',
+   pitch:`Hold 95% of last fall's buyers for every Yuengling brand family — off-premise and on-premise — through November. Each goal held pays.`,
+   getRep:sept('yuengling_retention_fall'),
+   metric:d=>d.overallPct, metricLabel:'% of overall goal', fmt:v=>v.toFixed(0)+'%'},
+  {key:'heineken_husa', group:'retention', title:'Heineken USA SDD Distro Rewards — Retention', shortTitle:'Heineken USA', tag:'Oct–Dec',
+   pitch:`Hold your Heineken, Heineken 0.0 and Dos Equis distribution goals through December — every goal held pays.`,
+   getRep:oct('heineken_husa'),
+   metric:d=>d.overallPct, metricLabel:'% of overall goal', fmt:v=>v.toFixed(0)+'%',
+   awaitingNote:`Awaiting the Heineken USA distribution export — the goals above are the deck's; your numbers fill in once the data lands.`},
+  {key:'new_belgium_distribution_retain', group:'retention', title:'New Belgium Distribution — Retain', shortTitle:'New Belgium', tag:'Sept–Dec',
+   period:{start:'2026-09-01',end:'2026-12-31'},
+   pitch:`Hold the report's off-premise distribution goals through December — Voodoo 12pk, Voodoo 19.2oz, and Hearted / Kirin six-packs.`,
+   getRep:oct('new_belgium_distribution_retain'),
+   metric:d=>d.overallPct, metricLabel:'% of package-group goals covered', fmt:v=>v.toFixed(1)+'%'},
+];
+
 // Month tabs. September is the landing page as of 2026-09-04 (per Gavin:
 // "make september 2026 the default tab reps see"), so DEFAULT_MONTH_KEY is
 // explicit rather than positional -- unlike MPOs/on-prem/index.html, which
@@ -436,8 +550,17 @@ const MONTHS = [
      ongoing:['1911','woodchuck','tona','lytt','le_grand_noir','garage_beer_president','sam_adams'],
      retention:['mc_retention','constellation_fall','mabi_retention_fall','yuengling_retention_fall'],
    }},
+  {key:'2026-10', label:'October 2026', newLabel:'October 2026 programs',
+   programs:PROGRAM_LIST_2026_10,
+   repCards:{
+     new:['mabi_single_serve','lagunitas_sprint','industrial_arts','famosa_oct','four_loko','sam_adams_cold_snap'],
+     ongoing:['touchdowns_tea','lytt','other_half','le_grand_noir','printed_menu','bardstown_display','two_xo'],
+     retention:['mc_retention','constellation_fall','mabi_retention_fall','yuengling_retention_fall','heineken_husa','new_belgium_distribution_retain'],
+   }},
 ];
-const DEFAULT_MONTH_KEY = '2026-09';
+// October is the landing tab from 2026-09-30 (the September programs end
+// today; the October ones start tomorrow and reps open the page for them).
+const DEFAULT_MONTH_KEY = MONTHS[MONTHS.length-1].key;   // always the most recent month (Gavin, 2026-10-05)
 
 let activeMonth = MONTHS.find(m=>m.key===DEFAULT_MONTH_KEY) || MONTHS[0];
 // Every renderer reads PROGRAM_LIST; reassigning it on a tab switch is what
@@ -522,72 +645,59 @@ function cardTouchdownsTea(rep){
   const d = P.byRep?.[rep];
   if(!d) return '';
   const R = (P.meta||{}).rates||{};
+  const entry = PROGRAM_LIST.find(e=>e.key==='touchdowns_tea');
+  const sc = d.byBrand?.['Sun Cruiser']||0, tt = d.byBrand?.['Twisted Tea']||0;
+  const legHead = (badge, title, sub) => `<div class="leg-head"><span class="leg-badge">${badge}</span><div class="leg-text"><div class="leg-title">${title}</div><div class="leg-sub">${sub}</div></div></div>`;
 
-  const board = statBoard([
-    {num:d.offPremNewCount, label:'New 12pk Placements', status:cntStatus(d.offPremNewCount), sub:`$${R.placement||15} each, off-premise`},
-    {num:d.onPremCases.toFixed(0), label:'On-Prem Cases', status:cntStatus(d.onPremCases), sub:`$${R.onPremCase||1} a case`},
-    {num:d.payout?`$${d.payout.toLocaleString('en-US')}`:'$0', label:'Tracked Earnings', sub:'Floor displays and features pay on top — not counted here'},
+  // ---- Off-Premise leg: new 12pk placements in stores ----
+  const offBoard = statBoard([
+    {num:d.offPremNewCount, label:'New 12pk Placements', status:cntStatus(d.offPremNewCount), sub:`$${R.placement||15} each`},
+    {num:sc, label:'Sun Cruiser', sub:'12pk placements'},
+    {num:tt, label:'Twisted Tea', sub:'12pk placements'},
+    {num:d.offPremTargetCount||0, label:'Stores Still To Land', sub:'no 12pk since June'},
   ]);
-
   const pkgBlock = earnBlock({
-    icon:'🏈', title:'New Off-Premise 12pk Placements',
-    rate:`EARN $${R.placement||15}`,
-    rateNote:'per new 12pk SKU placement on Sun Cruiser or Twisted Tea. "New" = the account didn’t buy that 12pk SKU June–August, then bought it in September. A second 12pk SKU at the same account counts again.',
-    whatToDo:'Get Sun Cruiser or Twisted Tea 12pks into stores that did not buy them over the summer. The export only carries 12pks, so every placement here is a qualifying one.',
-    stats:[
-      {num:d.offPremNewCount, label:'New Accounts'},
-      {num:d.byBrand?.['Sun Cruiser']||0, label:'Sun Cruiser'},
-      {num:d.byBrand?.['Twisted Tea']||0, label:'Twisted Tea'},
-    ],
-    detail:{
-      label:'Your New 12pk Accounts',
-      items:(d.offPremNew||[]).map(a=>({name:a.customer, sub:(a.brands||[]).join(', '), stat:a.date||''})),
-      emptyMsg:'No new 12pk placements yet this month.',
-    },
-    opportunity:{
-      label:'New Accounts To Target',
-      count:d.offPremTargetCount,
-      note:'Stores on your list with no Sun Cruiser or Twisted Tea 12pk purchases since June — each one you land pays $15.',
-      items:(d.offPremTargets||[]).map(a=>({name:a.customer, stat:casesStat(a.cases2026)})),
-      moreCount:Math.max(0, (d.offPremTargetCount||0) - (d.offPremTargets||[]).length),
-      emptyMsg:'No stores left to target on your list right now.',
-    },
+    icon:'🏈', title:'New 12pk Placements', rate:`EARN $${R.placement||15}`,
+    rateNote:'per new 12pk SKU placement on Sun Cruiser or Twisted Tea. "New" = the store did not buy that 12pk SKU June–August. A second 12pk SKU at the same store counts again.',
+    steps:[{text:'Place a Sun Cruiser or Twisted Tea 12pk in a store that did not buy it over the summer', done:d.offPremNewCount>0}, {text:'Add the second brand’s 12pk at the same store — it counts again', done:sc>0 && tt>0}],
+    detail:{label:'Your New 12pk Placements', items:(d.offPremNew||[]).map(a=>({name:a.customer, sub:(a.brands||[]).join(', '), stat:a.date||''})), emptyMsg:'No new 12pk placements yet.'},
+    opportunity:{label:'Stores To Target', count:d.offPremTargetCount, note:`Stores on your list with no Sun Cruiser or Twisted Tea 12pk since June — each one pays $${R.placement||15}.`, items:(d.offPremTargets||[]).map(a=>({name:a.customer, stat:casesStat(a.cases2026)})), moreCount:Math.max(0,(d.offPremTargetCount||0)-(d.offPremTargets||[]).length), emptyMsg:'No stores left to target on your list right now.'},
   });
+  const display = earnBlock({icon:'📸', title:'Floor Displays With Football POS', rate:`$${R.floorCase||1} A CASE`, rateNote:'Photo verified in iSellBeer — not tracked on this page',
+    whatToDo:`A floor display with football POS pays $${R.floorCase||1} a case on a ${R.floorMinCases||25}-case minimum and cannot be co-branded. Take the picture in iSellBeer.`});
 
+  // ---- On-Premise leg: cases sold into bars and restaurants ----
+  const onBoard = statBoard([
+    {num:d.onPremCases.toFixed(0), label:'Cases Sold', status:cntStatus(d.onPremCases), sub:`$${R.onPremCase||1} a case`},
+    {num:d.onPremAccountCount, label:'Accounts Buying', sub:'bars & restaurants'},
+    {num:`$${(d.onPremCasePayout||0).toLocaleString('en-US')}`, label:'Earned On Cases', sub:'features pay on top'},
+  ]);
   const onBlock = earnBlock({
-    icon:'🍻', title:'On-Premise Cases Sold',
-    rate:`EARN $${R.onPremCase||1} A CASE`,
-    rateNote:'every case sold on-premise in September. The goal is Sun Cruiser as the lead football hard tea.',
-    whatToDo:'Every case you sell into a bar or restaurant this month pays a dollar. There is no minimum and no qualifier on this leg — it starts paying from case one.',
-    stats:[
-      {num:d.onPremCases.toFixed(0), label:'Cases Sold'},
-      {num:d.onPremAccountCount, label:'Accounts Buying'},
-      {num:`$${d.onPremCasePayout.toLocaleString('en-US')}`, label:'Earned', cls:d.onPremCasePayout?'':'dim'},
-    ],
-    detail:{
-      label:'Your On-Premise Accounts',
-      items:(d.onPremAccounts||[]).map(a=>({name:a.customer, stat:a.cases.toFixed(0)+' cs'})),
-      emptyMsg:'No on-premise cases yet this month.',
-    },
+    icon:'🍻', title:'Cases Sold On-Premise', rate:`EARN $${R.onPremCase||1} A CASE`,
+    rateNote:'every Sun Cruiser or Twisted Tea case sold into a bar or restaurant, from case one. The goal is Sun Cruiser as the lead football hard tea.',
+    steps:[{text:'Sell Sun Cruiser into a bar or restaurant — the first case already pays', done:d.onPremCases>0}, {text:'Keep the cases coming through October', done:d.onPremCases>=10}],
+    detail:{label:'Your On-Premise Accounts', items:(d.onPremAccounts||[]).map(a=>({name:a.customer, stat:a.cases.toFixed(0)+' cs'})), emptyMsg:'No on-premise cases yet.'},
   });
+  const feature = earnBlock({icon:'📸', title:'Football Features', rate:`$${R.feature||25} A FEATURE`, rateNote:'Photo verified in iSellBeer — not tracked on this page',
+    whatToDo:`Any account running a football feature pays $${R.feature||25}. It needs an iSellBeer menu or bucket picture, and the bucket special must be under $35 for 5 cans.`});
 
-  const manual = earnBlock({
-    icon:'📸', title:'Floor Displays & Football Features',
-    rate:`$${R.floorCase||1} A CASE · $${R.feature||25} A FEATURE`,
-    rateNote:'Photo verified — not tracked on this page',
-    whatToDo:`A floor display with football POS pays $${R.floorCase||1} a case on a ${R.floorMinCases||25}-case minimum and cannot be co-branded, and any account running a football feature pays $${R.feature||25}. Both need an iSellBeer picture — the display needs a photo of the floor, the feature needs the menu or bucket, and a bucket special has to be under $35 for 5 cans. No export carries POS or photo status, so these are not in the earnings above. Keep submitting them; they still pay.`,
-  });
+  const total = `<div class="prog-foot-note">Tracked so far: <strong>$${(d.payout||0).toLocaleString('en-US')}</strong> — $${(d.placementPayout||0).toLocaleString('en-US')} on 12pk placements and $${(d.onPremCasePayout||0).toLocaleString('en-US')} on on-premise cases. Floor displays and features are photo verified and are not counted here.</div>`;
 
   return `<div class="prog-card">
     <div class="prog-head">
-      <div class="prog-name-row">${progLogo('touchdowns_tea')}<span class="prog-name">Touchdowns &amp; Tea</span><span class="prog-tag">September</span>${terrTag('touchdowns_tea')}</div>
+      <div class="prog-name-row">${progLogo('touchdowns_tea')}<span class="prog-name">Touchdowns &amp; Tea</span><span class="prog-tag">${esc(entry ? entry.tag : 'Sept–Oct')}</span>${terrTag('touchdowns_tea')}</div>
       ${progPitch('touchdowns_tea')}
     </div>
     <div class="prog-body">
-      ${board}
-      ${pkgBlock}
-      ${onBlock}
-      ${manual}
+      <section class="leg leg-off">
+        ${legHead('Off-Premise', 'Stores: new 12-packs', 'Sun Cruiser and Twisted Tea 12pks in stores that did not buy them June–August')}
+        ${offBoard}${pkgBlock}${display}
+      </section>
+      <section class="leg leg-on">
+        ${legHead('On-Premise', 'Bars &amp; restaurants: cases sold', 'Every Sun Cruiser or Twisted Tea case, from case one')}
+        ${onBoard}${onBlock}${feature}
+      </section>
+      ${total}
     </div>
   </div>`;
 }
@@ -861,6 +971,64 @@ function cardSamAdamsConversion(rep){
   </div>`;
 }
 
+// Boston Beer's outlet name beside the Encompass one only when they really differ (Chelas =
+// The Little Falls Tavern), not for spelling: its first real word missing from the Encompass name.
+function bbAlias(a){
+  if(!a.customer) return false;
+  const w = a.account.toLowerCase().replace(/[^a-z0-9 ]/g,'').split(/\s+/).find(x=>x.length>2 && x!=='the');
+  return !!w && !a.customer.toLowerCase().replace(/[^a-z0-9]/g,'').includes(w.replace(/s$/,''));
+}
+function cardSamAdamsColdSnap(rep){
+  const P = PROGRAM_DATA_2026_10['sam_adams_cold_snap']||{};
+  const d = P.byRep?.[rep];
+  if(!d) return '';
+  const asOf = d.asOf ? new Date(d.asOf+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'}) : '';
+  const ces = n => `${Number(n||0).toFixed(1)} CE`;
+  const pct = d.hasBase ? (d.convertedPct||0) : null;
+  const board = statBoard([
+    {num:d.hasOfficial?`${d.converted} of ${d.lines}`:'—', label:'Lines Converted', status:d.converted>0?'good':null,
+     sub:d.hasOfficial?`${pct!=null?pct.toFixed(0)+'% · ':''}Boston Beer scoreboard, ${asOf}`:'Not on Boston Beer’s scoreboard'},
+    {num:d.hasOfficial?d.notConverted:'—', label:'Still To Convert', sub:d.hasOfficial?`${d.gained} gained lines not from conversion`:''},
+    {num:d.payout?`$${d.payout.toLocaleString('en-US')}`:'$0', label:'Tracked Earnings', sub:'Converted lines tier + gained-line bonus'},
+  ]);
+  const mainBlock = (!d.hasOfficial || !d.hasBase)
+    ? naBlock('No Lines To Score', `Boston Beer’s seasonal conversion scoreboard (as of ${asOf}) shows no prior-season lines for you, so there is no conversion percentage. Gained lines still pay $50 each.`)
+    : earnBlock({
+      icon:'🍂', title:'Convert Every Seasonal Draft Handle By October 23',
+      rate:`${pct.toFixed(0)}% CONVERTED`,
+      rateNote:d.smallBook
+        ? `You have fewer than 10 lines, so the 80% rule applies: convert at least 80% for $20 per conversion. Boston Beer’s count as of ${asOf}.`
+        : `90% of your lines pays $300 and all of them pays $400, with at least 10 conversions to qualify. Boston Beer’s count as of ${asOf}.`,
+      steps:[
+        {text:d.smallBook?`Reach 80% of your ${d.lines} lines`:`Reach 90% of your ${d.lines} lines — ${d.toNinety} more conversion${d.toNinety===1?'':'s'}`, done:d.smallBook?pct>=80:pct>=90},
+        {text:`Convert all ${d.lines} lines for the top tier — ${d.notConverted} still to go`, done:d.notConverted===0},
+        {text:`Open Octoberfest at accounts that never had Summer Ale — $50 each (${d.gained} so far)`, done:d.gained>0},
+      ],
+      stats:[{num:d.converted,label:'Converted'},{num:d.notConverted,label:'Not Yet',dim:d.notConverted===0},{num:d.gained,label:'Gained'}],
+      progress:{pct:pct||0, caption:`${d.converted} of ${d.lines} lines converted · conversions must be final by Oct 23`},
+      opportunity:{
+        label:`Accounts To Close`, count:(d.unconvertedAccounts||[]).filter(a=>!a.octLoaded).length,
+        note:`Boston Beer’s unconverted list (${asOf}) matched to your Encompass accounts, biggest Summer Ale pourers first. Boston Beer’s name is shown when it differs.`,
+        items:(d.unconvertedAccounts||[]).filter(a=>!a.octLoaded).map(a=>({name:`${a.customer||a.account} · #${a.customerNum} · ${a.city}${bbAlias(a)?` (Boston Beer: ${a.account})`:''}`, stat:`${ces(a.prevCEs)} last season`})),
+        emptyMsg:'Every account on Boston Beer’s unconverted list has an Octoberfest keg loaded in Encompass.',
+      },
+      extra:(d.unconvertedAccounts||[]).some(a=>a.octLoaded) ? detailList({
+        label:`Octoberfest Loaded, Not Yet On Boston Beer’s Report`,
+        items:(d.unconvertedAccounts||[]).filter(a=>a.octLoaded).map(a=>({name:`${a.customer||a.account} · #${a.customerNum}`, sub:`Octoberfest keg loaded ${new Date(a.octLoaded+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'})} (Encompass) · still counted as not converted until Boston Beer’s next report`, status:'progress'})),
+        emptyMsg:'',
+      }) : '',
+    });
+  return `<div class="prog-card">
+    <div class="prog-head">
+      <div class="prog-name-row">${progLogo('sam_adams_cold_snap')}<span class="prog-name">Sam Adams Seasonal Draft Conversion</span><span class="prog-tag">Oct 1&ndash;23</span>${terrTag('sam_adams_cold_snap')}</div>
+      ${progPitch('sam_adams_cold_snap')}
+    </div>
+    <div class="prog-body">${board}${mainBlock}
+      <div class="prog-foot-note">Scored from Boston Beer’s seasonal conversion scoreboard as of ${asOf} (route ${esc(d.route||'—')}), by route. The unconverted list comes from their companion workbook and updates with their next report.</div>
+    </div>
+  </div>`;
+}
+
 // 2XO Bourbon. Off-premise pays for the American+French Oak PAIR, not either
 // oak alone, so this is the one program where opening a single SKU shows as
 // "not yet a placement" rather than a smaller placement -- see build_two_xo().
@@ -1017,7 +1185,147 @@ function cardOtherHalf(rep){
   </div>`;
 }
 
+// ---- October 2026 cards ----
+function cardLagunitasSprint(rep){
+  const P = PROGRAM_DATA_2026_10['lagunitas_sprint']||{}; const d = P.byRep?.[rep]; if(!d) return '';
+  const m = P.meta||{}, R = m.rates||{};
+  const board = statBoard([
+    {num:d.podCount, label:'New PODs', status:cntStatus(d.podCount), sub:`${m.repQualifier||3} to qualify · $${d.rate} each`},
+    {num:`${d.byBrand.ipa} / ${d.byBrand.lss}`, label:'IPA / Little Sumpin’', sub:'package PODs'},
+    {num:d.draftChannelOk===false?'N/A':d.draftQualifiedCount, label:'New IPA Draft Accounts', sub:d.draftChannelOk===false?'No keg accounts on your route':`$${R.draft||100} each`},
+    {num:`${m.housePods||0} / ${m.houseGoal||40}`, label:'House New PODs', status:m.houseQualified?'good':null, sub:m.houseQualified?'House goal met — $15 a POD':'Below the house goal — $10 a POD'},
+  ]);
+  const pkg = earnBlock({
+    icon:'🏁', title:'New IPA & Little Sumpin’ Package PODs (Off-Premise)',
+    rate:`$${R.pod||10} PER POD · $${R.podFull||15} WHEN YOU AND THE HOUSE QUALIFY`,
+    rateNote:`A POD is one Lagunitas IPA or Little Sumpin' package SKU at one store that did not buy it Oct–Nov last year. You need ${m.repQualifier||3} PODs for any to pay; the house needs ${m.houseGoal||40} for the $15 rate.`,
+    steps:[
+      {text:`Open ${m.repQualifier||3} new IPA or Little Sumpin' package PODs — $10 each`, done:d.qualified},
+      {text:`House reaches ${m.houseGoal||40} new PODs — every POD pays $15`, done:!!m.houseQualified},
+    ],
+    stats:[{num:d.podCount, label:'Your PODs'}, {num:d.reorderCount, label:'Reorders (not new)'}, {num:d.accounts, label:'Buying accounts'}],
+    detail:{label:'Your New PODs', items:(d.pods||[]).map(p=>({name:p.customer, sub:p.product, stat:p.date||''})), emptyMsg:'No new package PODs yet this month.'},
+    opportunity:{label:'Stores To Target', count:d.offPremTargetCount, note:'Off-premise accounts on your route with no Lagunitas in the window — an IPA 6pk or Little Sumpin\' can pack here is a POD.',
+      items:(d.offPremTargets||[]).map(a=>({name:a.customer, stat:casesStat(a.cases2026)})), moreCount:Math.max(0,(d.offPremTargetCount||0)-(d.offPremTargets||[]).length), emptyMsg:'Every store on your list already buys Lagunitas.'},
+  });
+  const draft = d.draftChannelOk===false ? naBlock('Draft — Not Applicable To Your Route', 'None of your on-premise accounts pour kegs, so the $100 IPA draft leg does not apply to you. The package PODs above are your full opportunity.')
+    : earnBlock({
+    icon:'🍺', title:'New IPA Draft Accounts (On-Premise)', rate:`EARN $${R.draft||100} · $${R.rebuy||50} NOVEMBER REBUY`,
+    rateNote:'A non-buy target account taking a Lagunitas IPA 15.5 or 7.75 gal keg pays $100; the same account buying the keg again in November pays $50 more.',
+    stats:[{num:d.draftQualifiedCount, label:'New draft accounts'}, {num:d.rebuyCount, label:'November rebuys'}, {num:d.draftReorderCount, label:'Already pouring (not new)'}],
+    detail:{label:'Your Draft Accounts', items:(d.draftAccounts||[]).map(a=>({name:a.customer, sub:a.status==='new'?'new this year':'poured last year too', stat:a.bbl.toFixed(2)+' bbl', status:a.status==='new'?'qualified':'progress'})), emptyMsg:'No Lagunitas kegs on your route yet this month.'},
+  });
+  return `<div class="prog-card"><div class="prog-head"><div class="prog-name-row">${progLogo('lagunitas_sprint')}<span class="prog-name">Lagunitas Sprint to the Finish</span><span class="prog-tag">October</span>${terrTag('lagunitas_sprint')}</div>${progPitch('lagunitas_sprint')}</div>
+    <div class="prog-body">${board}${pkg}${draft}<div class="prog-foot-note">Window ${esc(m.currentWindow||'10/1 – 11/30/2026')} against ${esc(m.baseWindow||'the same window in 2025')}; the export has no premise column, so stores and bars are told apart by the customer base and kegs count as on-premise.</div></div></div>`;
+}
+function cardFamosaOct(rep){
+  const P = PROGRAM_DATA_2026_10['famosa_oct']||{}; const d = P.byRep?.[rep]; if(!d) return '';
+  const m = P.meta||{}, R = m.rates||{};
+  const board = statBoard([
+    {num:Math.round(d.cases26), label:'Cases Oct 2026', status:cntStatus(d.cases26), sub:`vs ${Math.round(d.cases25)} in Oct 2025`},
+    {num:(d.growth>0?'+':'')+Math.round(d.growth), label:'Growth', status:d.growth>0?'good':null, sub:d.positive?'Route is positive':'Not positive yet'},
+    {num:d.accounts, label:'Buying Accounts', sub:'this October'},
+    {num:d.payout?`$${d.payout.toLocaleString('en-US')}`:'$0', label:'Earned So Far', sub:d.positive?'route positive':'pays once positive'},
+  ]);
+  const prods = Object.entries(d.byProduct||{}).sort((a,b)=>b[1].cases26-a[1].cases26).map(([n,v])=>({name:n, stat:`${Math.round(v.cases26)} vs ${Math.round(v.cases25)} LY`}));
+  const block = earnBlock({
+    icon:'🍺', title:'Push Famosa — Every Package Counts', rate:`$${R.case||2} A CASE · $${R.case7oz||3} ON 7OZ`,
+    rateNote:'Pays on every Famosa case you sell in October once your route is ahead of October 2025. Below last year, nothing pays yet.',
+    steps:[{text:`Pass last October's ${Math.round(d.cases25)} cases`, done:d.positive}, {text:'Every case after that pays — 7oz pays $3', done:d.positive && d.cases26>0}],
+    stats:[{num:Math.round(d.cases26), label:'Cases this Oct'}, {num:Math.round(d.cases25), label:'Cases last Oct'}, {num:Math.round(d.cases7oz), label:'7oz cases'}],
+    detail:{label:'Your Famosa Accounts', items:(d.accountList||[]).map(a=>({name:a.customer, stat:`${a.cases26} vs ${a.cases25} LY`, status:a.cases26>=a.cases25&&a.cases26>0?'qualified':'progress'})), emptyMsg:'No Famosa sold yet this October.'},
+    opportunity:{label:'Bought Famosa Last October, Not Yet This Year', count:(d.lostAccounts||[]).length, note:'The quickest cases to win back.', items:(d.lostAccounts||[]).map(a=>({name:a.customer, stat:`${a.cases25} cs last Oct`})), emptyMsg:'Every last-October buyer has bought again.'},
+    extra: prods.length ? detailList({label:'By Package', items:prods}) : '',
+  });
+  return `<div class="prog-card"><div class="prog-head"><div class="prog-name-row">${progLogo('famosa_oct')}<span class="prog-name">Push Famosa</span><span class="prog-tag">October</span>${terrTag('famosa_oct')}</div>${progPitch('famosa_oct')}</div>
+    <div class="prog-body">${board}${block}</div></div>`;
+}
+function cardFourLoko(rep){
+  const P = PROGRAM_DATA_2026_10['four_loko']||{}; const d = P.byRep?.[rep]; if(!d) return '';
+  const m = P.meta||{}, Q = m.qualifier||5;
+  const board = statBoard([
+    {num:d.placementCount, label:'New Sour Apple / USA Placements', status:cntStatus(d.placementCount), sub:d.qualified?`${Q}+ placements`:`${d.toQualifier} more to reach ${Q}`},
+    {num:Math.round(d.cases26), label:'Cases Oct–Nov', status:cntStatus(d.cases26), sub:`vs ${Math.round(d.cases25)} in Oct–Nov 2025`},
+    {num:(d.growth>0?'+':'')+Math.round(d.growth), label:'Growth vs Last Year', status:d.positive?'good':null, sub:d.positive?'Ahead of last year':`${Math.round(d.toPositive)+1} cases to pass last year`},
+    {num:d.accounts, label:'Buying Accounts', sub:'this window'},
+  ]);
+  const prods = Object.entries(d.byProduct||{}).sort((a,b)=>b[1].cases26-a[1].cases26).map(([n,v])=>({name:n, stat:`${Math.round(v.cases26)} vs ${Math.round(v.cases25)} LY`}));
+  const block = earnBlock({
+    icon:'⚡', title:'Four Loko Volume Rewards', rate:`${Q} NEW SOUR APPLE / USA PLACEMENTS`,
+    rateNote:`A new placement is Sour Apple or USA at an account that had no placement of that SKU 7/1–9/30/2026. Volume compares cases 10/1–11/30/2026 with the same window last year.`,
+    steps:[
+      {text:`Place Sour Apple or USA at ${Q} accounts that did not carry it Jul–Sep`, done:d.qualified},
+      {text:`Pass last year's ${Math.round(d.cases25)} cases`, done:d.positive},
+    ],
+    stats:[{num:d.placementCount, label:'New placements'}, {num:Math.round(d.cases26), label:'Cases this year'}, {num:Math.round(d.cases25), label:'Cases last year'}],
+    detail:{label:'Your New Placements', items:(d.placements||[]).map(p=>({name:p.customer, sub:p.product, stat:p.date||''})), emptyMsg:'No new Sour Apple or USA placements yet.'},
+    opportunity:{label:'Bought Four Loko Last Year, Not Yet This Year', count:(d.lostAccounts||[]).length, note:'Win these back.', items:(d.lostAccounts||[]).map(a=>({name:a.customer, stat:`${a.cases25} cs last year`})), emptyMsg:'Every account that bought last year has bought again.'},
+    extra: prods.length ? detailList({label:'By Flavor', items:prods}) : '',
+  });
+  return `<div class="prog-card"><div class="prog-head"><div class="prog-name-row">${progLogo('four_loko')}<span class="prog-name">Four Loko Volume Rewards</span><span class="prog-tag">Oct–Nov</span>${terrTag('four_loko')}</div>${progPitch('four_loko')}</div>
+    <div class="prog-body">${board}${block}<div class="prog-foot-note">Cases through ${esc(m.casesThrough||'')}: ${esc(m.currentWindow||'10/1 – 11/30/2026')} against ${esc(m.baseWindow||'the same window in 2025')}. Placements: ${esc(m.placeWindow||'')} with none in ${esc(m.placeBaseWindow||'')}.</div></div></div>`;
+}
+function cardIndustrialArts(rep){
+  const P = PROGRAM_DATA_2026_10['industrial_arts']||{}; const d = P.byRep?.[rep]; if(!d) return '';
+  const m = P.meta||{}, R = m.rates||{};
+  const board = statBoard([
+    {num:d.openedCount, label:'Accounts Opened', status:cntStatus(d.openedCount), sub:d.southern?`$${R.southern||50} each (Southern District)`:`${m.openSkus||3}+ core SKUs · $${R.open||40} each`},
+    {num:d.progressCount, label:'In Progress', sub:'1–2 SKUs in so far'},
+    {num:d.draftChannelOk===false?'N/A':d.draftQualifiedCount, label:'Wrench Draft Lines', sub:d.draftChannelOk===false?'No keg accounts on your route':`$${R.draft||100} in October`},
+    {num:d.payout?`$${d.payout.toLocaleString('en-US')}`:'$0', label:'Earned So Far', sub:'Oct 1 – Dec 31'},
+  ]);
+  const off = earnBlock({
+    icon:'🔧', title:'Open Stores With Industrial Arts (Off-Premise)',
+    rate: d.southern ? `$${R.southern||50} PER ACCOUNT OPENED` : `$${R.open||40} PER ACCOUNT · $${R.extraSku||10} PER SKU OVER ${m.openSkus||3}`,
+    rateNote: d.southern ? 'Southern District: every account opened with Industrial Arts pays $50.' : `An account is opened once it carries ${m.openSkus||3} core Industrial Arts SKUs; every SKU past ${m.openSkus||3} adds $10.`,
+    whatToDo:'Lead with Wrench Hazy IPA in three packs (6/4/16, 12pk, 19.2oz) — three SKUs in one store opens it. Torque Wrench, Tool Box, Pocket Wrench, Metric Pils and Hex Bolt add $10 each.',
+    stats:[{num:d.openedCount, label:'Opened'}, {num:d.skuPlacements, label:'SKUs placed'}, {num:Math.round(d.caseVolume), label:'Cases'}],
+    detail:{label:'Your Industrial Arts Accounts', items:(d.accounts||[]).map(a=>({name:a.customer, sub:a.skuList.join(' · '), stat:a.opened?`opened · $${a.payout}`:`${a.toOpen} more SKU${a.toOpen===1?'':'s'}`, status:a.opened?'qualified':'progress'})), emptyMsg:'Nothing placed yet.'},
+    opportunity:{label:'Stores To Target', count:d.offPremTargetCount, note:'Off-premise accounts on your route with no Industrial Arts yet.', items:(d.offPremTargets||[]).map(a=>({name:a.customer, stat:casesStat(a.cases2026)})), moreCount:Math.max(0,(d.offPremTargetCount||0)-(d.offPremTargets||[]).length), emptyMsg:'Every store on your list carries Industrial Arts.'},
+  });
+  const draft = d.draftChannelOk===false ? naBlock('Draft — Not Applicable To Your Route', 'None of your on-premise accounts pour kegs, so the Wrench draft leg does not apply to you.')
+    : earnBlock({icon:'🍺', title:'Wrench Draft At Target Accounts (On-Premise)', rate:`$${R.draft||100} IN OCTOBER · $${R.draftHold||250} FOR NOV + DEC`,
+      rateNote:'A non-buy target account buying Wrench draft in October pays $100; the same account buying it in both November and December pays $250 more. Minimum each month: one 1/2 bbl or two 1/6 bbls.',
+      stats:[{num:d.draftQualifiedCount, label:'Lines in October'}, {num:d.draftHoldCount, label:'Held Nov + Dec'}],
+      detail:{label:'Your Wrench Draft Accounts', items:(d.draftAccounts||[]).map(a=>({name:a.customer, stat:a.bbl.toFixed(2)+' bbl', status:a.qualifies?'qualified':'progress'})), emptyMsg:'No Wrench kegs on your route yet.'}});
+  return `<div class="prog-card"><div class="prog-head"><div class="prog-name-row">${progLogo('industrial_arts')}<span class="prog-name">Industrial Arts Target Account Launch</span><span class="prog-tag">Oct–Dec</span>${terrTag('industrial_arts')}</div>${progPitch('industrial_arts')}</div>
+    <div class="prog-body">${board}${off}${draft}<div class="prog-foot-note">Industrial Arts is a new brand, so every account in the export counts as a non-buy and every SKU as core (the deck names no core list). Window ${esc(m.window||'10/1 – 12/31/2026')}.</div></div></div>`;
+}
+function cardMabiSingleServe(rep){
+  const P = PROGRAM_DATA_2026_10['mabi_single_serve']||{}; const d = P.byRep?.[rep]; if(!d) return '';
+  const m = P.meta||{}, R = m.rates||{}, Q = m.qualifier||8;
+  const leg = (g, title, icon, madeList) => earnBlock({
+    icon, title, rate:`$${R.leg||15} AT ${Q}+ PACKAGES · $${R.legMade||30} IF ALL M.A.D.E.`,
+    rateNote:`Sell in ${Q} or more single-serve packages (one SKU at one account = one package). When every one is a M.A.D.E. SKU the leg pays $30.`,
+    steps:[{text:`Sell in ${Q} single-serve packages`, done:g.qualified}, {text:'Keep every package on the M.A.D.E. list — the payout doubles', done:g.qualified && g.allMade}],
+    stats:[{num:g.count, label:'Packages sold in'}, {num:g.madeCount, label:'M.A.D.E.'}, {num:g.qualified?`$${g.payout}`:`${g.toQualifier} to go`, label:g.qualified?'Earned':'To qualify'}],
+    detail:{label:'Your Packages', items:(g.pods||[]).map(p=>({name:p.customer, sub:p.product, stat:p.made?'M.A.D.E.':'not M.A.D.E.', status:p.made?'qualified':'progress'})), emptyMsg:'No single-serve packages yet in the window.'},
+    extra:`<div class="prog-foot-note">M.A.D.E.: ${esc(madeList)}</div>`,
+  });
+  const board = statBoard([
+    {num:d.wc.count, label:'White Claw Packages', status:d.wc.qualified?'good':null, sub:d.wc.qualified?`Qualified · $${d.wc.payout}`:`${d.wc.toQualifier} more to ${Q}`},
+    {num:d.harder.count, label:'Harder / Cayman Packages', status:d.harder.qualified?'good':null, sub:d.harder.qualified?`Qualified · $${d.harder.payout}`:`${d.harder.toQualifier} more to ${Q}`},
+    {num:d.accounts, label:'Accounts', sub:'buying single serves'},
+    {num:d.payout?`$${d.payout}`:'$0', label:'Earned So Far', sub:'Sept 1 – Nov 30 purchases'},
+  ]);
+  return `<div class="prog-card"><div class="prog-head"><div class="prog-name-row">${progLogo('mabi_single_serve')}<span class="prog-name">Mark Anthony Fall Single Serve Incentive</span><span class="prog-tag">Oct–Nov</span>${terrTag('mabi_single_serve')}</div>${progPitch('mabi_single_serve')}</div>
+    <div class="prog-body">${board}
+    ${leg(d.wc, 'White Claw 19.2oz Single Serves', '🌊', 'Black Cherry, Mango, Grapefruit, Blackberry, Peach, Surge Blood Orange, Surge Cranberry, Surge Blueberry, Surge Grape')}
+    ${leg(d.harder, "Mike's Harder & Cayman Jack Single Serves", '🍋', 'Harder Lemonade, Cranberry, Mango, Pink Lemonade, Strawberry Pineapple, Black Cherry, Cayman Jacked Margarita, Cayman Jacked Strawberry Margarita')}
+    <div class="prog-foot-note">Purchases from Sept 1 count. The export Gavin pulls carries the M.A.D.E. single-serve SKUs only, so a non-M.A.D.E. single serve sold in cannot show here.</div></div></div>`;
+}
+
+function cardNewBelgiumRetain(rep){
+  const P=PROGRAM_DATA_2026_10.new_belgium_distribution_retain||{}, d=P.byRep?.[rep];
+  if(!d)return notApplicableCard('new_belgium_distribution_retain','New Belgium Distribution — Retain','Sept–Dec','Not included in this report','The supplied filtered report has no row for you; no zero result or goal has been assigned.');
+  const m=P.meta||{};
+  const groups=(d.groups||[]).map(g=>`<section class="earn-block"><h3>${esc(g.label)}</h3><div class="prog-foot-note">${g.placements} of ${g.goal} placements · ${g.toGo?g.toGo+' remaining':'Goal met so far'}</div><div class="earn-progress-track"><div class="earn-progress-fill" style="width:${Math.min(100,g.pct||0)}%"></div></div><details class="fold-list"><summary>See ${g.products.length} reported SKUs</summary>${g.products.map(p=>`<div style="padding:12px 0;border-bottom:1px solid var(--border);overflow-wrap:anywhere"><strong>${esc(p.id+' · '+p.product)}</strong><div class="prog-foot-note">${p.placements} placed · ${p.goal} goal · ${p.toGo||0} remaining</div></div>`).join('')}</details></section>`).join('');
+  return `<div class="prog-card"><div class="prog-head"><div class="prog-name-row">${progLogo('new_belgium_distribution_retain')}<span class="prog-name">New Belgium Distribution — Retain</span><span class="prog-tag">Sept–Dec</span>${terrTag('new_belgium_distribution_retain')}</div>${progPitch('new_belgium_distribution_retain')}</div><div class="prog-body">${statBoard([{num:d.placements,label:'Reported placements'},{num:d.overallGoal,label:'Report goal'},{num:d.overallToGo,label:'Still needed'},{num:d.goalsRetained+' / '+d.goalsTotal,label:'Package groups at goal'}])}${groups}<div class="prog-foot-note">Reporting window Sep 1 – Dec 31, 2026, confirmed by Gavin Oct 16 (the deck labels this phase Oct–Nov). Report generated ${esc((m.reportCreated||'').replace('T',' '))}. Rep and package-group totals are authoritative. Visible SKU goals do not add up to group goals and zero-activity SKUs may be hidden. Hearted and Kirin share one six-pack goal in this report.</div><div class="prog-foot-note">Progress only. Tiered payouts are not provided. Core bonus is unverified: prior-period results and May–October growth were not supplied. No customer-level purchase detail is included in this report.</div></div></div>`;
+}
+
 const PROGRAM_CARD_FN = {
+  'new_belgium_distribution_retain': cardNewBelgiumRetain,
+  'lagunitas_sprint': cardLagunitasSprint, 'famosa_oct': cardFamosaOct, 'four_loko': cardFourLoko, 'industrial_arts': cardIndustrialArts, 'mabi_single_serve': cardMabiSingleServe,
   '1911': card1911, 'woodchuck': cardWoodchuck, 'tona': cardTona,
   'path_to_victory': cardPathToVictory, 'sam_adams': cardSamAdams, 'boston_beer': cardBostonBeer,
   'new_belgium': cardNewBelgium, 'lytt': cardLytt, 'fall_seasonal': cardFallSeasonal,
@@ -1036,6 +1344,7 @@ const PROGRAM_CARD_FN = {
   'constellation_fall': cardConstellationFall,
   'yuengling_retention_fall': cardYuenglingRetentionFall,
   'sam_adams_conversion': cardSamAdamsConversion,
+  'sam_adams_cold_snap': cardSamAdamsColdSnap,
 };
 
 // Zero-state card for a program whose rules and goals are known but whose data
@@ -1048,7 +1357,7 @@ function cardAwaitingData(key){
   const entry = (PROGRAM_LIST||[]).find(e=>e.key===key) || {};
   const rules = PROGRAM_RULES[key]||[];
   const note = entry.awaitingNote
-    || `Awaiting the first September export — the rules and goals above are live, and your numbers will fill in here once the data lands.`;
+    || `Awaiting the first ${esc((activeMonth&&activeMonth.label||'').split(' ')[0]||'')} export — the rules and goals above are live, and your numbers will fill in here once the data lands.`;
   return `<div class="prog-card">
     <div class="prog-head">
       <div class="prog-name-row">${progLogo(key)}<span class="prog-name">${esc(entry.title||key)}</span><span class="prog-tag">${esc(entry.tag||'')}</span>${terrTag(key)}${entry.manual?'<span class="prog-tag">Manually verified</span>':''}</div>
@@ -3461,6 +3770,12 @@ const SUPPLIERS = {
   cruz:          {name:'YaVe Tequila',      rde:'Cruz Beverage',                logo:'assets/logos/yave.png'},
   mollys:        {name:"Molly's",           rde:"Molly's",                      logo:'assets/logos/mollys.png'},
   house:         {name:'Kohler House Programs', rde:'(multiple suppliers)',     logo:'../assets/kohler-logo-badge.png'},
+  // October 2026 (marks cut from the deck; Heineken has none)
+  lagunitas:     {name:'Lagunitas',         rde:'Lagunitas Brewing Co',         logo:'assets/logos/lagunitas.png'},
+  famosa:        {name:'Famosa',            rde:'Central Beer Import & Export',  logo:'assets/logos/famosa.png'},
+  industrial_arts:{name:'Industrial Arts',  rde:'Industrial Arts Brewing',      logo:'assets/logos/industrial_arts.png'},
+  phusion:       {name:'Four Loko',         rde:'Phusion Projects',             logo:'assets/logos/four_loko.png'},
+  heineken:      {name:'Heineken USA',      rde:'Heineken USA',                 logo:''},
 };
 // Program -> supplier key. Programs spanning several suppliers (the fall
 // seasonal push, the display auction) sit under "Kohler House Programs"
@@ -3480,6 +3795,8 @@ const PROGRAM_SUPPLIER = {
   path_to_victory:'victory', yave:'cruz', mollys:'mollys',
   fall_seasonal:'house', display_auction:'house',
   path_to_victory_sd:'victory', fall_seasonal_sd:'house',
+  mabi_single_serve:'mark_anthony', four_loko:'phusion', lagunitas_sprint:'lagunitas', famosa_oct:'famosa',
+  sam_adams_cold_snap:'boston_beer', industrial_arts:'industrial_arts', heineken_husa:'heineken',
 };
 function supplierOf(key){ return SUPPLIERS[PROGRAM_SUPPLIER[key]] || SUPPLIERS.house; }
 
@@ -3503,6 +3820,12 @@ const pl = (n,w) => `${n} ${w}${n===1?'':'s'}`;
 const money = v => '$'+Math.round(v||0).toLocaleString('en-US');
 
 const PROGRAM_SUMMARY = {
+  new_belgium_distribution_retain:(d,m)=>({goal:true,now:d.overallHeld,target:d.overallGoal,unit:'placements',
+    label:`${d.overallHeld} of ${d.overallGoal} placements toward goals`,
+    remain:d.overallToGo?`${d.overallToGo} placements still needed`:null,
+    sub:`${d.goalsRetained} of ${d.goalsTotal} package-group goals met · Sep 1 – Dec 31`,
+    next:d.overallToGo?`Close <strong>${d.overallToGo} placement gaps</strong> across your package groups by Dec 31. Extra placements in one group do not replace another group's shortfall.`:`Every reported package-group goal is met so far. Keep the distribution in place through Dec 31.`,
+    segments:(d.groups||[]).map(g=>({label:g.label,pct:g.pct,line:`${g.placements} of ${g.goal} placements · ${g.toGo} remaining`}))}),
   keystone_ice:(d)=>({goal:true, now:d.accounts, target:d.qualifier, unit:'accounts',
     label:`${d.accounts} of ${d.qualifier} accounts`,
     remain:d.qualified?null:`${pl(d.toQualifier,'account')} to go`,
@@ -3511,9 +3834,50 @@ const PROGRAM_SUMMARY = {
                     : `You are earning $5 an account. <strong>${pl(d.toBonus,'more account')}</strong> doubles it to $10 on every one.`)
       : `Sell Keystone Ice 24oz into <strong>${pl(d.toQualifier,'more account')}</strong> to switch your payout on.`}),
 
-  touchdowns_tea:(d)=>({goal:false, now:d.payout, unit:'$',
-    label:money(d.payout)+' earned', sub:`${pl(d.offPremNewCount,'new 12pk placement')} · ${Math.round(d.onPremCases)} on-prem cases`,
-    next:`Every new 12pk placement pays <strong>$15</strong> and every on-premise case pays <strong>$1</strong>.`}),
+  // Headline is DISTRIBUTION, not money (Gavin, 2026-09-30: "put it under
+  // Boston Beer incentives, do not include the payout amounts, only the
+  // distribution/placement data"). A dollar headline made the hub's Rep Mode
+  // drop the whole program (isDollarProgram); the payout stays on this
+  // tracker's own card and leaderboard.
+  touchdowns_tea:(d,m)=>{
+    const R = (m&&m.rates)||{};
+    const sc = (d.byBrand||{})['Sun Cruiser']||0, tt = (d.byBrand||{})['Twisted Tea']||0;
+    const cases = Math.round(d.onPremCases||0), accts = d.onPremAccountCount||0, targets = d.offPremTargetCount||0;
+    return {goal:false, now:d.offPremNewCount, unit:'placements',
+    label:`${pl(d.offPremNewCount,'new 12pk placement')} · ${cases} on-prem cases`,
+    sub:`Sun Cruiser and Twisted Tea 12-packs off-premise, cases on-premise`,
+    next:`Place Sun Cruiser or Twisted Tea 12-packs off-premise and keep the cases moving on-premise — every one counts.`,
+    // ONE card, two legs (2026-09-30): each leg carries its own requirement
+    // (ask), the number that matters (big + cap), a supporting line, what is
+    // still needed, a status, the next step and its rules. No dollars in
+    // ask / big / cap / line / need -- the hub prints those as-is.
+    legs:[
+      {key:'off', label:'Off-Premise', where:'Stores',
+       ask:'Place Sun Cruiser or Twisted Tea 12-packs in stores that did not buy them over the summer.',
+       big:String(d.offPremNewCount), cap:d.offPremNewCount===1 ? 'new 12pk placement' : 'new 12pk placements',
+       line:`${sc} Sun Cruiser · ${tt} Twisted Tea`,
+       need: targets>0 ? `${pl(targets,'store')} on your list still to land — each one counts` : 'Every store on your list already carries a 12-pack',
+       status: d.offPremNewCount>0 ? 'earned' : 'notstarted',
+       next:'Get Sun Cruiser or Twisted Tea 12-packs into stores that did not buy them June–August. Each new 12pk SKU counts, so the second brand at the same store counts again. A floor display with football POS (25-case minimum, photo in iSellBeer) pays on top.',
+       rules:[
+         `$${R.placement||15} for every new 12pk placement of Sun Cruiser or Twisted Tea — "new" = no purchase of that 12pk SKU June–August`,
+         `$${R.floorCase||1} per case on a floor display with football POS — ${R.floorMinCases||25}-case minimum, cannot be co-branded`,
+         'Floor displays need an iSellBeer picture',
+       ]},
+      {key:'on', label:'On-Premise', where:'Bars & restaurants',
+       ask:'Sell Sun Cruiser or Twisted Tea cases into bars and restaurants.',
+       big:String(cases), cap:cases===1 ? 'case sold' : 'cases sold',
+       line:`${pl(accts,'account')} buying`,
+       need:'Every case counts from case one — no goal to count down',
+       status: cases>0 ? 'earned' : 'notstarted',
+       next:'Sell Sun Cruiser into your bars — the first case already counts. A football feature (menu or bucket special, photo in iSellBeer) pays on top.',
+       rules:[
+         `$${R.onPremCase||1} per case sold on-premise, from case one — the goal is Sun Cruiser as the lead football hard tea`,
+         `$${R.feature||25} for any account running a football feature`,
+         'Feature needs an iSellBeer menu or bucket picture; the bucket special must be under $35 for 5 cans',
+       ]},
+    ]};
+  },
 
   evil_genius:(d,m)=>({goal:true, now:d.totalNewPlacements, target:(m&&m.qualifier)||3, unit:'placements',
     label:`${d.totalNewPlacements} of ${(m&&m.qualifier)||3} placements`,
@@ -3528,6 +3892,36 @@ const PROGRAM_SUMMARY = {
   // hides (isDollarProgram in hub/hub.js). Same shape as other_half --
   // the count up top, the earnings in the sub, which the tracker and
   // Manager Mode still print and Rep Mode drops.
+  // ---- October 2026 ----
+  // open-ended (every POD pays once 3 are in), so no "% complete" -- the
+  // qualifier reads as a remain line instead of a goal
+  lagunitas_sprint:(d,m)=>({goal:false, now:d.podCount, unit:'PODs',
+    label:`${pl(d.podCount,'new POD')}${d.qualified?' · qualified':''}${d.draftQualifiedCount?` · ${pl(d.draftQualifiedCount,'draft account')}`:''}`,
+    remain:d.qualified?null:`${pl(d.toQualifier,'more POD')} to qualify`,
+    sub:`${d.byBrand.ipa} IPA · ${d.byBrand.lss} Little Sumpin'`,
+    next:d.qualified ? `Keep opening IPA and Little Sumpin' package PODs — every one counts, and the house needs ${(m&&m.houseGoal)||40} for the higher rate.`
+      : `Open <strong>${pl(d.toQualifier,'more IPA or Little Sumpin\' package POD')}</strong> off-premise to switch your payout on.`}),
+  famosa_oct:(d)=>({goal:true, now:d.cases26, target:d.cases25, unit:'cases',
+    label:`${Math.round(d.cases26)} of ${Math.round(d.cases25)} cases (Oct 2025 pace)`,
+    remain:d.positive?null:(d.toPositive>0?`${Math.round(d.toPositive)} more cases to go positive`:null),
+    sub:`${d.positive?'Positive':'Not yet positive'} vs last October · ${pl(d.accounts,'buying account')}`,
+    next:d.positive ? `You are ahead of last October — every Famosa case keeps paying.` : `Sell <strong>${Math.round(d.toPositive)+1} more Famosa cases</strong> than you have to pass last October and switch the payout on.`}),
+  industrial_arts:(d,m)=>({goal:false, now:d.openedCount, unit:'accounts',
+    label:`${pl(d.openedCount,'account')} opened${d.progressCount?` · ${d.progressCount} in progress`:''}${d.draftQualifiedCount?` · ${pl(d.draftQualifiedCount,'draft line')}`:''}`,
+    sub:`${pl(d.skuPlacements,'Industrial Arts SKU')} placed`,
+    next:`Open a store with <strong>${(m&&m.openSkus)||3} core SKUs</strong>${d.southern?' (Southern District: any account opened counts)':''}, or place a <strong>Wrench draft line</strong> at a target account in October.`}),
+  mabi_single_serve:(d,m)=>({goal:true, now:Math.min(d.wc.count,(m&&m.qualifier)||8)+Math.min(d.harder.count,(m&&m.qualifier)||8), target:((m&&m.qualifier)||8)*2, unit:'packages',
+    label:`${d.wc.count} White Claw · ${d.harder.count} Harder / Cayman single-serve packages`,
+    remain:(d.wc.qualified&&d.harder.qualified)?null:[!d.wc.qualified?`${pl(d.wc.toQualifier,'more White Claw')}`:'', !d.harder.qualified?`${pl(d.harder.toQualifier,'more Harder / Cayman')}`:''].filter(Boolean).join(' · '),
+    sub:`${d.legsQualified} of 2 legs at 8+`,
+    next:(d.wc.qualified&&d.harder.qualified) ? `Both legs are in — keep every package M.A.D.E. and the payout doubles.` : `Sell in <strong>${[!d.wc.qualified?pl(d.wc.toQualifier,'more White Claw 19.2oz'):'', !d.harder.qualified?pl(d.harder.toQualifier,'more Harder / Cayman single serve'):''].filter(Boolean).join(' and ')}</strong>.`}),
+  four_loko:(d,m)=>({goal:true, now:d.cases26, target:d.cases25, unit:'cases',
+    label:`${Math.round(d.cases26)} of ${Math.round(d.cases25)} cases (Oct–Nov 2025 pace)`,
+    remain:d.positive?null:(d.toPositive>0?`${Math.round(d.toPositive)} more cases to pass last year`:null),
+    sub:`${pl(d.placementCount,'new Sour Apple / USA placement')}`,
+    next:`Place <strong>Sour Apple or USA</strong> at accounts that did not carry it Jul–Sep${d.positive?'':' and pass last year\'s cases'}.`}),
+  sam_adams_cold_snap:(d)=>({goal:true, now:d.converted||0, target:d.lines||0, unit:'lines', label:`${d.converted||0} of ${d.lines||0} lines converted`, next:d.notConverted>0?`Convert ${d.notConverted} more seasonal handle${d.notConverted===1?'':'s'} by October 23.`:`Every seasonal handle is converted — hold them through October 23.`}),
+
   montauk:(d)=>({goal:false, now:d.totalNewPlacements, unit:'placements',
     label:`${pl(d.totalNewPlacements,'new placement')}`, sub:money(d.payout)+' earned',
     next:`Every new Wave Chaser placement pays <strong>$10–$15</strong>, and a new draught line pays <strong>$100</strong>.`}),
@@ -3796,7 +4190,8 @@ function summarize(entry, rep){
   if(!d || !fn) return {status:'soon', soon:true,
     next:entry.manual ? 'Submitted and verified by hand — nothing to track here yet.'
                       : 'Waiting on the first export for this program.'};
-  const P = (PROGRAM_DATA_2026_09[entry.key] || PROGRAM_DATA[entry.key] || {});
+  const dk = entry.dataKey || entry.key;
+  const P = ((typeof PROGRAM_DATA_2026_10!=='undefined' && PROGRAM_DATA_2026_10[dk]) || PROGRAM_DATA_2026_09[dk] || PROGRAM_DATA[dk] || {});
   const s = fn(d, P.meta, P) || {};
   let pct;
   if(s.pctOverride!=null) pct = s.pctOverride;
@@ -3817,6 +4212,51 @@ function summarize(entry, rep){
 // leaderboard page (per Gavin, 2026-08-18: no paragraphs -- a rep should
 // get the program in a few seconds). Adapted per incentive from the deck.
 const PROGRAM_RULES = {
+  // ---- October 2026 (2026 October Rewards Deck) ----
+  'mabi_single_serve': [
+    'Runs Oct 1 – Nov 30 (purchases Sept 1 – Nov 30 count)',
+    '$15 for selling in 8 or more White Claw single-serve packages',
+    '$15 for selling in 8 or more Mike\'s Harder and Cayman Jack single-serve packages',
+    'Bonus: a leg pays $30 instead of $15 when every package counted is a M.A.D.E. SKU',
+    'White Claw 19.2oz M.A.D.E.: Black Cherry, Mango, Grapefruit, Blackberry, Peach, Surge Blood Orange, Surge Cranberry, Surge Blueberry, Surge Grape',
+    'Harder / Cayman 19.2oz & 23.5oz M.A.D.E.: Harder Lemonade, Cranberry, Mango, Pink Lemonade, Strawberry Pineapple, Black Cherry, Cayman Jacked Margarita, Cayman Jacked Strawberry Margarita',
+  ],
+  'four_loko': [
+    'Runs Oct 1 – Nov 30 — get Four Loko back to positive growth',
+    'Qualifier: 5 new placements of Sour Apple and/or USA (90-day non-buy) to earn payouts',
+    '$0.50 for every case sold in October and November',
+    '$1.00 for every case sold if your route is positive for the two months',
+    'A placement counts when the account had not bought that SKU in the 90 days before',
+  ],
+  'lagunitas_sprint': [
+    'Runs Oct 1–31',
+    'Off-premise: $10 per new POD on every Lagunitas IPA and Little Sumpin\' package',
+    '$15 per POD once you have 3 PODs and the house has 40 new PODs',
+    'Qualifiers: 3 PODs per rep · house 40 new PODs',
+    'On-premise: a non-buy target account taking an IPA 15.5 or 7.75 gal keg pays $100',
+    'A November rebuy of that keg pays a $50 bonus',
+  ],
+  'famosa_oct': [
+    'Runs Oct 1–31 — grow Famosa volume, all packages count',
+    'Qualifier: your route must be positive for October vs October 2025',
+    '$2.00 per case on 12oz 6pk and 12pk, 24oz and 32oz',
+    '$3.00 per case on Famosa 7oz',
+  ],
+  'sam_adams_cold_snap': [
+    'Convert the seasonal draft handles by October 23 — conversions must be final by then to pay',
+    '$300 for converting 90% of your lines · $400 for 100%',
+    '10 conversions to qualify; with fewer than 10 accounts, hit 80% of conversions for $20 per conversion',
+    'Bonus: $50 for every new Octoberfest line at an account that did not have Summer Ale',
+  ],
+  'industrial_arts': [
+    'Runs Oct 1 – Dec 31',
+    'On-premise: a non-buy target account buying Wrench draft in October pays $100',
+    'The same account buying Wrench draft in both November and December pays $250',
+    'Draft minimum each month: one 1/2 bbl or two 1/6 bbls',
+    'Off-premise: $40 per non-buy account opened with at least 3 core SKUs',
+    '$10 per SKU sold over 3',
+    'Southern District: $50 per account opened with Industrial Arts',
+  ],
   '1911': [
     '$10 per new off-premise placement',
     '$100 per new draft placement — pays once that account hits 2 barrels',
@@ -4055,10 +4495,14 @@ const PROGRAM_RULES = {
     'House goals must be achieved for full payout — otherwise qualifying reps are paid 50%',
   ],
   'new_belgium_distribution_retain': [
-    'Retain your New Belgium core brand distribution goals through October–November',
-    'Earn a tiered payout for every brand goal retained',
+    'Reporting window: September 1 – December 31, 2026 (Gavin confirmed Oct 16; deck phase is labelled Oct–Nov)',
+    'Off-premise only; only reps present in the filtered supplier report are included',
+    'Reach each reported package-group distribution goal; excess in one group does not cover another group',
+    'Rep and package-group totals are authoritative; the visible SKU goals are independent and do not add up exactly',
+    'Hearted and Kirin are combined in one six-pack report goal; separate brand goals cannot be inferred',
     'Core brands: Voodoo 12pk · Voodoo 19.2oz · Hearted Family · Kirin',
-    'Core bonus: retain both periods AND post positive New Belgium growth May–October for an additional tiered bonus',
+    'Core bonus is unverified: both-period retention results and May–October growth are not supplied; payout tiers are also not provided',
+    'The supplier report contains no account-level purchase detail; see the full program details for its snapshot date',
   ],
 };
 
@@ -4067,6 +4511,48 @@ const PROGRAM_RULES = {
 // placement to go", "No activity yet"). cls on a metric or status:
 // good (green) / warn (amber) / bad (red) / gray-dim (neutral).
 const PROGRAM_BOARD = {
+  'new_belgium_distribution_retain':d=>({metrics:[{num:d.placements,label:'reported placements'},{num:d.overallGoal,label:'goal'},{num:d.overallToGo,label:'remaining'}],status:d.goalsRetained===d.goalsTotal?{cls:'good',label:'All group goals met so far'}:{cls:'warn',label:`${d.goalsRetained} / ${d.goalsTotal} group goals met`}}),
+  // ---- October 2026 ----
+  'lagunitas_sprint': d=>({
+    metrics:[
+      {num:d.podCount, label:'new PODs', cls:d.podCount>0?'good':'dim'},
+      {num:`${d.byBrand.ipa} / ${d.byBrand.lss}`, label:'IPA / LSS'},
+      d.draftChannelOk===false ? {num:'N/A', label:'draft', cls:'dim'} : {num:d.draftQualifiedCount, label:'draft accounts', cls:d.draftQualifiedCount>0?'good':null},
+    ],
+    status: d.qualified ? {cls:'good', label:`✓ Qualified · $${d.rate} a POD`} : d.podCount>0 ? {cls:'warn', label:`${d.toQualifier} POD${d.toQualifier===1?'':'s'} to qualify`} : {cls:'gray', label:'No PODs yet'},
+  }),
+  'four_loko': d=>({
+    metrics:[
+      {num:d.placementCount, label:'new placements', cls:d.placementCount>0?'good':'dim'},
+      {num:Math.round(d.cases26), label:'cases Oct–Nov'},
+      {num:(d.growth>0?'+':'')+Math.round(d.growth), label:'vs last year', cls:d.growth>0?'good':d.growth<0?'bad':'dim'},
+    ],
+    status: d.positive ? {cls:'good', label:'✓ Ahead of last year'} : d.cases26>0 ? {cls:'warn', label:`${Math.round(d.toPositive)+1} cases to pass last year`} : {cls:'gray', label:'No Four Loko yet'},
+  }),
+  'famosa_oct': d=>({
+    metrics:[
+      {num:Math.round(d.cases26), label:'cases Oct 2026', cls:d.cases26>0?'good':'dim'},
+      {num:Math.round(d.cases25), label:'cases Oct 2025'},
+      {num:(d.growth>0?'+':'')+Math.round(d.growth), label:'growth', cls:d.growth>0?'good':d.growth<0?'bad':'dim'},
+    ],
+    status: d.positive ? {cls:'good', label:`✓ Positive · $${d.payout.toLocaleString('en-US')}`} : d.cases26>0 ? {cls:'warn', label:`${Math.round(d.toPositive)+1} cases to go positive`} : {cls:'gray', label:'No Famosa yet this month'},
+  }),
+  'industrial_arts': d=>({
+    metrics:[
+      {num:d.openedCount, label:'accounts opened', cls:d.openedCount>0?'good':'dim'},
+      {num:d.skuPlacements, label:'SKUs placed'},
+      d.draftChannelOk===false ? {num:'N/A', label:'draft', cls:'dim'} : {num:d.draftQualifiedCount, label:'draft lines', cls:d.draftQualifiedCount>0?'good':null},
+    ],
+    status: d.openedCount>0 || d.draftQualifiedCount>0 ? {cls:'good', label:`✓ $${d.payout.toLocaleString('en-US')} earned`} : d.progressCount>0 ? {cls:'warn', label:`${d.progressCount} account${d.progressCount===1?'':'s'} 1–2 SKUs in`} : {cls:'gray', label:'Nothing placed yet'},
+  }),
+  'mabi_single_serve': d=>({
+    metrics:[
+      {num:d.wc.count, label:'White Claw', cls:d.wc.qualified?'good':null},
+      {num:d.harder.count, label:'Harder / Cayman', cls:d.harder.qualified?'good':null},
+      {num:d.payout?`$${d.payout}`:'$0', label:'earned', cls:d.payout?'good':'dim'},
+    ],
+    status: d.legsQualified===2 ? {cls:'good', label:'✓ Both legs qualified'} : d.legsQualified===1 ? {cls:'good', label:'✓ One leg qualified'} : d.totalPods>0 ? {cls:'warn', label:`${Math.min(d.wc.toQualifier,d.harder.toQualifier)} more to a first leg`} : {cls:'gray', label:'No single serves yet'},
+  }),
   'yuengling_retention_fall': d=>({
     metrics:[
       {num:d.hasAnyGoal?`${d.goalsRetained} / ${d.goalsTotal}`:'—', label:'goals held', cls:d.hasAnyGoal&&d.goalsRetained===d.goalsTotal?'good':(d.goalsRetained>0?'warn':'dim')},
@@ -4387,4 +4873,3 @@ function medal(rank){
   if(rank===3) return '🥉';
   return '#'+rank;
 }
-

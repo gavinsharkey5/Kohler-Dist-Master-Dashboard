@@ -1,22 +1,44 @@
 [
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 92005,
-    "CUSTOMER_NAME": "Kinchley's",
+    "CUSTOMER_NUM": 92014,
+    "CUSTOMER_NAME": "Ramsey Country Clb",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-09-29",
+    "DATE": "2026-09-30",
     "PERIOD": "current",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 1
   },
   {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27085,
-    "CUSTOMER_NAME": "Cazadores Bar (Z) LLC",
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 88002,
+    "CUSTOMER_NAME": "Nellie's Place (P)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-09-29",
+    "DATE": "2026-09-30",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "CUSTOMER_NUM": 15069,
+    "CUSTOMER_NAME": "Mexico Bar & Grill",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-30",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 89002,
+    "CUSTOMER_NAME": "Allendale Bar & Grill",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-30",
     "PERIOD": "current",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 1
@@ -25,6 +47,105 @@
     "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 31006,
     "CUSTOMER_NAME": "The Roosevelt",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-30",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "CUSTOMER_NUM": 27118,
+    "CUSTOMER_NAME": "Arepa Express",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-30",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191004,
+    "CUSTOMER_NAME": "Club 15(P)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-30",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 41013,
+    "CUSTOMER_NAME": "Viva Margarita Hackensack",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-30",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "CUSTOMER_NUM": 24063,
+    "CUSTOMER_NAME": "Noches De Colombia (Clifton)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-30",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "CUSTOMER_NUM": 45005,
+    "CUSTOMER_NAME": "Colonial Bar",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-30",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "CUSTOMER_NUM": 41008,
+    "CUSTOMER_NAME": "Noches De Colombia (Hackensack)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-29",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "CUSTOMER_NUM": 52005,
+    "CUSTOMER_NAME": "Noches De Colombia(Englewood))",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-29",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "CUSTOMER_NUM": 77014,
+    "CUSTOMER_NAME": "Blvd Bar & Grill (Z)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-29",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "CUSTOMER_NUM": 52037,
+    "CUSTOMER_NAME": "Colombia Kaliente",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-09-29",
@@ -44,9 +165,97 @@
     "NEW_PLACEMENT": 0
   },
   {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "CUSTOMER_NUM": 27070,
+    "CUSTOMER_NAME": "Saritas Mexican Rest(A)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-29",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "CUSTOMER_NUM": 27094,
+    "CUSTOMER_NAME": "El Anochecer",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-29",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "CUSTOMER_NUM": 25053,
+    "CUSTOMER_NAME": "Lamayoria Bar Restaurant",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-29",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "CUSTOMER_NUM": 42014,
+    "CUSTOMER_NAME": "Segovia Steak House(A)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-29",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "CUSTOMER_NUM": 26003,
+    "CUSTOMER_NAME": "La Casona Cafe Restaurant Bar",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-29",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "CUSTOMER_NUM": 20104,
+    "CUSTOMER_NAME": "Roses Bar & Liquors",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-29",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 49085,
-    "CUSTOMER_NAME": "Tommy's Tavern + Tap (Edgewater)",
+    "CUSTOMER_NUM": 92005,
+    "CUSTOMER_NAME": "Kinchley's",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-29",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "CUSTOMER_NUM": 36025,
+    "CUSTOMER_NAME": "Karol's Pub (A)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-29",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "CUSTOMER_NUM": 77017,
+    "CUSTOMER_NAME": "Hook & Reel",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-09-29",
@@ -61,6 +270,83 @@
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-09-29",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 96006,
+    "CUSTOMER_NAME": "Blue Moon Mexican Cafe",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-29",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 49085,
+    "CUSTOMER_NAME": "Tommy's Tavern + Tap (Edgewater)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-29",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "CUSTOMER_NUM": 27085,
+    "CUSTOMER_NAME": "Cazadores Bar (Z) LLC",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-29",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "CUSTOMER_NUM": 27106,
+    "CUSTOMER_NAME": "La Posada",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-29",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "CUSTOMER_NUM": 22065,
+    "CUSTOMER_NAME": "Mambo Lounge (P)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-29",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "CUSTOMER_NUM": 39004,
+    "CUSTOMER_NAME": "Noches De Colombia (S. Hackensack))",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-29",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 50008,
+    "CUSTOMER_NAME": "101 Pub (A)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-28",
     "PERIOD": "current",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 1
@@ -88,42 +374,20 @@
     "NEW_PLACEMENT": 1
   },
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 50008,
-    "CUSTOMER_NAME": "101 Pub (A)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-28",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 1
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 22016,
-    "CUSTOMER_NAME": "Johnny A's (P) Hitchn Pos",
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "CUSTOMER_NUM": 45005,
+    "CUSTOMER_NAME": "Colonial Bar",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-09-25",
     "PERIOD": "current",
     "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 1
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 84009,
-    "CUSTOMER_NAME": "Mac Murphy",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-25",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 1
+    "NEW_PLACEMENT": 0
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 230119,
-    "CUSTOMER_NAME": "Smokey's Brick Oven Tav.",
+    "CUSTOMER_NUM": 1035,
+    "CUSTOMER_NAME": "Old School Pub P)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-09-25",
@@ -143,6 +407,17 @@
     "NEW_PLACEMENT": 1
   },
   {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "CUSTOMER_NUM": 84009,
+    "CUSTOMER_NAME": "Mac Murphy",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-25",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
     "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 13003,
     "CUSTOMER_NAME": "Maggie's Town Tav.(P)",
@@ -154,9 +429,9 @@
     "NEW_PLACEMENT": 1
   },
   {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 1035,
-    "CUSTOMER_NAME": "Old School Pub P)",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 22016,
+    "CUSTOMER_NAME": "Johnny A's (P) Hitchn Pos",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-09-25",
@@ -165,12 +440,23 @@
     "NEW_PLACEMENT": 1
   },
   {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 45005,
-    "CUSTOMER_NAME": "Colonial Bar",
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 230119,
+    "CUSTOMER_NAME": "Smokey's Brick Oven Tav.",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-09-25",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 230702,
+    "CUSTOMER_NAME": "Hyde-Away Rest & Tap Room",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-24",
     "PERIOD": "current",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 0
@@ -179,83 +465,6 @@
     "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 49076,
     "CUSTOMER_NAME": "Raku Izakaya (Z)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-24",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 1
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24022,
-    "CUSTOMER_NAME": "Applebee's Clifton",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-24",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 1
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 190108,
-    "CUSTOMER_NAME": "Harrigan's Rest. (P)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-24",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 1
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 191406,
-    "CUSTOMER_NAME": "Courtyard Marriott Mt Arl",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-24",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 1
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 76001,
-    "CUSTOMER_NAME": "Golden Pub (P)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-24",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 1
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 14002,
-    "CUSTOMER_NAME": "Applebee's (Totowa) (A)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-24",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 1
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31043,
-    "CUSTOMER_NAME": "House of Que (East Rutherford)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-24",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 1
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 74012,
-    "CUSTOMER_NAME": "Iron Horse",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-09-24",
@@ -275,9 +484,9 @@
     "NEW_PLACEMENT": 1
   },
   {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 4003,
-    "CUSTOMER_NAME": "Cinco De Mayo (Z)",
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 190108,
+    "CUSTOMER_NAME": "Harrigan's Rest. (P)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-09-24",
@@ -286,9 +495,9 @@
     "NEW_PLACEMENT": 1
   },
   {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 27067,
-    "CUSTOMER_NAME": "Ukranian (Z) Center",
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "CUSTOMER_NUM": 76001,
+    "CUSTOMER_NAME": "Golden Pub (P)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-09-24",
@@ -308,9 +517,42 @@
     "NEW_PLACEMENT": 1
   },
   {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 21038,
-    "CUSTOMER_NAME": "Freddie's Dugout",
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 31043,
+    "CUSTOMER_NAME": "House of Que (East Rutherford)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-24",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 4003,
+    "CUSTOMER_NAME": "Cinco De Mayo (Z)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-24",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 14002,
+    "CUSTOMER_NAME": "Applebee's (Totowa) (A)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-24",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 191406,
+    "CUSTOMER_NAME": "Courtyard Marriott Mt Arl",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-09-24",
@@ -341,152 +583,53 @@
     "NEW_PLACEMENT": 1
   },
   {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 230702,
-    "CUSTOMER_NAME": "Hyde-Away Rest & Tap Room",
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "CUSTOMER_NUM": 27067,
+    "CUSTOMER_NAME": "Ukranian (Z) Center",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-09-24",
     "PERIOD": "current",
     "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
+    "NEW_PLACEMENT": 1
   },
   {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 83008,
-    "CUSTOMER_NAME": "Glen Rock Ac Clb(P)",
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 74012,
+    "CUSTOMER_NAME": "Iron Horse",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-09-23",
+    "DATE": "2026-09-24",
     "PERIOD": "current",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 1
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 78017,
-    "CUSTOMER_NAME": "El Asadero Mexican Grill (Rochelle Park)",
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "CUSTOMER_NUM": 21038,
+    "CUSTOMER_NAME": "Freddie's Dugout",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-09-23",
+    "DATE": "2026-09-24",
     "PERIOD": "current",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 1
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 88003,
-    "CUSTOMER_NAME": "W's Village Grille",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 24022,
+    "CUSTOMER_NAME": "Applebee's Clifton",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-09-23",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 1
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 94016,
-    "CUSTOMER_NAME": "Doc Watsons NJ",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-23",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 1
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44008,
-    "CUSTOMER_NAME": "GOGIYA",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-23",
+    "DATE": "2026-09-24",
     "PERIOD": "current",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 191209,
-    "CUSTOMER_NAME": "Valley Tavern",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-23",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 28015,
-    "CUSTOMER_NAME": "K Of C N Arlington (Z)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-23",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 230120,
-    "CUSTOMER_NAME": "Village Saloon (P)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-23",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 1
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 1033,
-    "CUSTOMER_NAME": "D'Boathaus Restaurant",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-23",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 1
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 190710,
-    "CUSTOMER_NAME": "Hilton Garden Inn Rockaway",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-23",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 1
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 77031,
-    "CUSTOMER_NAME": "Parkway Lanes",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-23",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 1
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 34018,
-    "CUSTOMER_NAME": "Hilton Hasbrk Hts #50591",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-23",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 1
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 14013,
-    "CUSTOMER_NAME": "Elks Post 2111 (A)",
+    "CUSTOMER_NUM": 1028,
+    "CUSTOMER_NAME": "J & S Roadhouse",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-09-23",
@@ -507,8 +650,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 37055,
-    "CUSTOMER_NAME": "82 OAK BAR & BISTRO",
+    "CUSTOMER_NUM": 94016,
+    "CUSTOMER_NAME": "Doc Watsons NJ",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-09-23",
@@ -517,9 +660,9 @@
     "NEW_PLACEMENT": 1
   },
   {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 1028,
-    "CUSTOMER_NAME": "J & S Roadhouse",
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 190710,
+    "CUSTOMER_NAME": "Hilton Garden Inn Rockaway",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-09-23",
@@ -539,45 +682,133 @@
     "NEW_PLACEMENT": 1
   },
   {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191706,
-    "CUSTOMER_NAME": "Freddy's Lake House Bar And Grill",
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 191209,
+    "CUSTOMER_NAME": "Valley Tavern",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-09-22",
+    "DATE": "2026-09-23",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 37055,
+    "CUSTOMER_NAME": "82 OAK BAR & BISTRO",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-23",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 77031,
+    "CUSTOMER_NAME": "Parkway Lanes",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-23",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 78017,
+    "CUSTOMER_NAME": "El Asadero Mexican Grill (Rochelle Park)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-23",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 1033,
+    "CUSTOMER_NAME": "D'Boathaus Restaurant",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-23",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "CUSTOMER_NUM": 44008,
+    "CUSTOMER_NAME": "GOGIYA",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-23",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "CUSTOMER_NUM": 83008,
+    "CUSTOMER_NAME": "Glen Rock Ac Clb(P)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-23",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 230120,
+    "CUSTOMER_NAME": "Village Saloon (P)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-23",
     "PERIOD": "current",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 12047,
-    "CUSTOMER_NAME": "American Lgn 174 Wayne",
+    "CUSTOMER_NUM": 34018,
+    "CUSTOMER_NAME": "Hilton Hasbrk Hts #50591",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-09-22",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44035,
-    "CUSTOMER_NAME": "O'Malleys Pub LLC DBA Blackbird Pub",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-22",
+    "DATE": "2026-09-23",
     "PERIOD": "current",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 1
   },
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 86002,
-    "CUSTOMER_NAME": "Doghouse Saloon (Z)",
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 88003,
+    "CUSTOMER_NAME": "W's Village Grille",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-09-22",
+    "DATE": "2026-09-23",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 14013,
+    "CUSTOMER_NAME": "Elks Post 2111 (A)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-23",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 28015,
+    "CUSTOMER_NAME": "K Of C N Arlington (Z)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-23",
     "PERIOD": "current",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 0
@@ -586,17 +817,6 @@
     "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 191219,
     "CUSTOMER_NAME": "Berkshire Valley Gc",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-22",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 1
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 230433,
-    "CUSTOMER_NAME": "Stillwater Area Vol Fire",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-09-22",
@@ -616,75 +836,9 @@
     "NEW_PLACEMENT": 1
   },
   {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 230108,
-    "CUSTOMER_NAME": "Vfw 7248 Sparta",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-22",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 190905,
-    "CUSTOMER_NAME": "Elevengreen",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-22",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 73007,
-    "CUSTOMER_NAME": "Bensi (P)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-22",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 1
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 15079,
-    "CUSTOMER_NAME": "American Lgn Totowa",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-22",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 83009,
-    "CUSTOMER_NAME": "Jalapeno Mex. Grille(A)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-22",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 1
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 78010,
-    "CUSTOMER_NAME": "American Lgn Rochelle Pk",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-22",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 1
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 77025,
-    "CUSTOMER_NAME": "Parkway Diner (Z)",
+    "CUSTOMER_NUM": 191706,
+    "CUSTOMER_NAME": "Freddy's Lake House Bar And Grill",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-09-22",
@@ -705,30 +859,74 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 47006,
-    "CUSTOMER_NAME": "Elks Post 1506",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-22",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 24043,
-    "CUSTOMER_NAME": "Valley Regency",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-22",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 95002,
     "CUSTOMER_NAME": "Indian Trail Club",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-22",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 230108,
+    "CUSTOMER_NAME": "Vfw 7248 Sparta",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-22",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 86002,
+    "CUSTOMER_NAME": "Doghouse Saloon (Z)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-22",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "CUSTOMER_NUM": 83009,
+    "CUSTOMER_NAME": "Jalapeno Mex. Grille(A)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-22",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 12047,
+    "CUSTOMER_NAME": "American Lgn 174 Wayne",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-22",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 77025,
+    "CUSTOMER_NAME": "Parkway Diner (Z)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-22",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 73007,
+    "CUSTOMER_NAME": "Bensi (P)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-09-22",
@@ -760,14 +958,80 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 74014,
-    "CUSTOMER_NAME": "American Lgn (Z) (Westwood)",
+    "CUSTOMER_NUM": 230433,
+    "CUSTOMER_NAME": "Stillwater Area Vol Fire",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-09-21",
+    "DATE": "2026-09-22",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 24043,
+    "CUSTOMER_NAME": "Valley Regency",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-22",
     "PERIOD": "current",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 15079,
+    "CUSTOMER_NAME": "American Lgn Totowa",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-22",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 47006,
+    "CUSTOMER_NAME": "Elks Post 1506",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-22",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 190905,
+    "CUSTOMER_NAME": "Elevengreen",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-22",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 78010,
+    "CUSTOMER_NAME": "American Lgn Rochelle Pk",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-22",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "CUSTOMER_NUM": 44035,
+    "CUSTOMER_NAME": "O'Malleys Pub LLC DBA Blackbird Pub",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-22",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -781,20 +1045,20 @@
     "NEW_PLACEMENT": 1
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 58005,
-    "CUSTOMER_NAME": "Feathers (A)",
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 74014,
+    "CUSTOMER_NAME": "American Lgn (Z) (Westwood)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-09-18",
+    "DATE": "2026-09-21",
     "PERIOD": "current",
     "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 1
+    "NEW_PLACEMENT": 0
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 15006,
-    "CUSTOMER_NAME": "Great Notch Inn(Z)",
+    "CUSTOMER_NUM": 58005,
+    "CUSTOMER_NAME": "Feathers (A)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-09-18",
@@ -814,12 +1078,12 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 230123,
-    "CUSTOMER_NAME": "Sparta Lanes (Pino)",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 15006,
+    "CUSTOMER_NAME": "Great Notch Inn(Z)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-09-17",
+    "DATE": "2026-09-18",
     "PERIOD": "current",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 1
@@ -834,6 +1098,17 @@
     "PERIOD": "current",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 230123,
+    "CUSTOMER_NAME": "Sparta Lanes (Pino)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-17",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -880,6 +1155,17 @@
     "NEW_PLACEMENT": 1
   },
   {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 190709,
+    "CUSTOMER_NAME": "Adams (P)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-15",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
     "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 191203,
     "CUSTOMER_NAME": "American Lgn Oak Ridge Post 423",
@@ -891,12 +1177,12 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 190709,
-    "CUSTOMER_NAME": "Adams (P)",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 13002,
+    "CUSTOMER_NAME": "The Little Falls Tavern",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-09-15",
+    "DATE": "2026-09-11",
     "PERIOD": "current",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 1
@@ -916,17 +1202,6 @@
     "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 12026,
     "CUSTOMER_NAME": "WAYNE ALE HOUSE & PIZZA",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-11",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 1
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 13002,
-    "CUSTOMER_NAME": "The Little Falls Tavern",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-09-11",
@@ -958,6 +1233,17 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 81015,
+    "CUSTOMER_NAME": "Fair Lawn Athletic Club",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-10",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 71005,
     "CUSTOMER_NAME": "Park Steakhouse",
     "BRAND_FAMILY": "Carbliss",
@@ -980,17 +1266,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 28015,
-    "CUSTOMER_NAME": "K Of C N Arlington (Z)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-10",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 230108,
     "CUSTOMER_NAME": "Vfw 7248 Sparta",
     "BRAND_FAMILY": "Carbliss",
@@ -999,17 +1274,6 @@
     "PERIOD": "current",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 81015,
-    "CUSTOMER_NAME": "Fair Lawn Athletic Club",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-09-10",
-    "PERIOD": "current",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -1023,9 +1287,9 @@
     "NEW_PLACEMENT": 1
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 21043,
-    "CUSTOMER_NAME": "Duffy's Tavern (Z)",
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 28015,
+    "CUSTOMER_NAME": "K Of C N Arlington (Z)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-09-10",
@@ -1034,12 +1298,12 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 231309,
-    "CUSTOMER_NAME": "The Stuffed Olive_2",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 21043,
+    "CUSTOMER_NAME": "Duffy's Tavern (Z)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-09-09",
+    "DATE": "2026-09-10",
     "PERIOD": "current",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 0
@@ -1056,12 +1320,12 @@
     "NEW_PLACEMENT": 1
   },
   {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 45005,
-    "CUSTOMER_NAME": "Colonial Bar",
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 231309,
+    "CUSTOMER_NAME": "The Stuffed Olive_2",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-09-03",
+    "DATE": "2026-09-09",
     "PERIOD": "current",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 0
@@ -1070,6 +1334,17 @@
     "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 3002,
     "CUSTOMER_NAME": "The Celtic Knot",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-09-03",
+    "PERIOD": "current",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "CUSTOMER_NUM": 45005,
+    "CUSTOMER_NAME": "Colonial Bar",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-09-03",
@@ -1100,9 +1375,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 74014,
-    "CUSTOMER_NAME": "American Lgn (Z) (Westwood)",
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 50008,
+    "CUSTOMER_NAME": "101 Pub (A)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-09-01",
@@ -1111,9 +1386,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 50008,
-    "CUSTOMER_NAME": "101 Pub (A)",
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 74014,
+    "CUSTOMER_NAME": "American Lgn (Z) (Westwood)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-09-01",
@@ -1232,17 +1507,6 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 3002,
-    "CUSTOMER_NAME": "The Celtic Knot",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-08-13",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
     "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 42015,
     "CUSTOMER_NAME": "Amer Lgn (Z) Little Ferry",
@@ -1254,12 +1518,12 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 37005,
-    "CUSTOMER_NAME": "Charlies Tav(Z)",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 3002,
+    "CUSTOMER_NAME": "The Celtic Knot",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-08-12",
+    "DATE": "2026-08-13",
     "PERIOD": "base",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 0
@@ -1276,12 +1540,12 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 86002,
-    "CUSTOMER_NAME": "Doghouse Saloon (Z)",
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 37005,
+    "CUSTOMER_NAME": "Charlies Tav(Z)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-08-11",
+    "DATE": "2026-08-12",
     "PERIOD": "base",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 0
@@ -1298,9 +1562,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 191203,
-    "CUSTOMER_NAME": "American Lgn Oak Ridge Post 423",
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 86002,
+    "CUSTOMER_NAME": "Doghouse Saloon (Z)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-08-11",
@@ -1321,11 +1585,11 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 5016,
-    "CUSTOMER_NAME": "Vfw Butler",
+    "CUSTOMER_NUM": 191203,
+    "CUSTOMER_NAME": "American Lgn Oak Ridge Post 423",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-08-07",
+    "DATE": "2026-08-11",
     "PERIOD": "base",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 0
@@ -1342,12 +1606,12 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191504,
-    "CUSTOMER_NAME": "The Jefferson House",
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 5016,
+    "CUSTOMER_NAME": "Vfw Butler",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-08-05",
+    "DATE": "2026-08-07",
     "PERIOD": "base",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 0
@@ -1375,6 +1639,17 @@
     "NEW_PLACEMENT": 0
   },
   {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191504,
+    "CUSTOMER_NAME": "The Jefferson House",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-08-05",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
     "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 76013,
     "CUSTOMER_NAME": "Vfw Of Saddlebrook",
@@ -1386,42 +1661,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 4007,
-    "CUSTOMER_NAME": "Karls Stumble Inn",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-31",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 231214,
-    "CUSTOMER_NAME": "Mt Creek Kink (So)A",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-31",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 70004,
     "CUSTOMER_NAME": "Davey's Locker (A)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-31",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 1004,
-    "CUSTOMER_NAME": "The Vreeland Store",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-31",
@@ -1452,9 +1694,53 @@
     "NEW_PLACEMENT": 0
   },
   {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 231214,
+    "CUSTOMER_NAME": "Mt Creek Kink (So)A",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-31",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 4007,
+    "CUSTOMER_NAME": "Karls Stumble Inn",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-31",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 1004,
+    "CUSTOMER_NAME": "The Vreeland Store",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-31",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 231302,
+    "CUSTOMER_NAME": "Thirsty Farmer",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-30",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 230312,
-    "CUSTOMER_NAME": "Skyland Baseball",
+    "CUSTOMER_NUM": 191504,
+    "CUSTOMER_NAME": "The Jefferson House",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-30",
@@ -1485,9 +1771,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191504,
-    "CUSTOMER_NAME": "The Jefferson House",
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 54001,
+    "CUSTOMER_NAME": "Tenafly Pizza (Z)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-30",
@@ -1507,20 +1793,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 231302,
-    "CUSTOMER_NAME": "Thirsty Farmer",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-30",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 54001,
-    "CUSTOMER_NAME": "Tenafly Pizza (Z)",
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 230312,
+    "CUSTOMER_NAME": "Skyland Baseball",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-30",
@@ -1530,8 +1805,30 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 30002,
+    "CUSTOMER_NAME": "American Lgn 109 (P) Rutherford",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-29",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 12023,
     "CUSTOMER_NAME": "The Village Inn",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-29",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 191209,
+    "CUSTOMER_NAME": "Valley Tavern",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-29",
@@ -1562,9 +1859,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 30002,
-    "CUSTOMER_NAME": "American Lgn 109 (P) Rutherford",
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 231303,
+    "CUSTOMER_NAME": "The Sussex Saloon",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-29",
@@ -1584,17 +1881,6 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 191209,
-    "CUSTOMER_NAME": "Valley Tavern",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-29",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 61004,
     "CUSTOMER_NAME": "Andiamo",
@@ -1606,20 +1892,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 231303,
-    "CUSTOMER_NAME": "The Sussex Saloon",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-29",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 231002,
-    "CUSTOMER_NAME": "Stew N Dolly's Place",
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 86002,
+    "CUSTOMER_NAME": "Doghouse Saloon (Z)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-28",
@@ -1639,9 +1914,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 86002,
-    "CUSTOMER_NAME": "Doghouse Saloon (Z)",
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 230930,
+    "CUSTOMER_NAME": "Brick & Brew",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-28",
@@ -1661,9 +1936,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 190220,
-    "CUSTOMER_NAME": "Reservoir Tavern(A)",
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 231002,
+    "CUSTOMER_NAME": "Stew N Dolly's Place",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-28",
@@ -1672,9 +1947,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 230930,
-    "CUSTOMER_NAME": "Brick & Brew",
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 190220,
+    "CUSTOMER_NAME": "Reservoir Tavern(A)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-28",
@@ -1705,9 +1980,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 15079,
-    "CUSTOMER_NAME": "American Lgn Totowa",
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 30026,
+    "CUSTOMER_NAME": "Simulcast",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-24",
@@ -1738,6 +2013,17 @@
     "NEW_PLACEMENT": 0
   },
   {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 15079,
+    "CUSTOMER_NAME": "American Lgn Totowa",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-24",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
     "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 29035,
     "CUSTOMER_NAME": "Marty Gra's (A)",
@@ -1750,19 +2036,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 30026,
-    "CUSTOMER_NAME": "Simulcast",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-24",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31052,
-    "CUSTOMER_NAME": "Mozzarella Bar",
+    "CUSTOMER_NUM": 29036,
+    "CUSTOMER_NAME": "Mr.Bruno's",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-23",
@@ -1772,41 +2047,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 190104,
-    "CUSTOMER_NAME": "Black Rabbit Saloon LLC",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-23",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 36014,
-    "CUSTOMER_NAME": "Viva Margarita Wallington",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-23",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 70008,
-    "CUSTOMER_NAME": "Hearth & Tap Co.",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-23",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31011,
-    "CUSTOMER_NAME": "Blarney Station",
+    "CUSTOMER_NUM": 230702,
+    "CUSTOMER_NAME": "Hyde-Away Rest & Tap Room",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-23",
@@ -1837,9 +2079,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 230702,
-    "CUSTOMER_NAME": "Hyde-Away Rest & Tap Room",
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 31052,
+    "CUSTOMER_NAME": "Mozzarella Bar",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-23",
@@ -1849,11 +2091,110 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 29036,
-    "CUSTOMER_NAME": "Mr.Bruno's",
+    "CUSTOMER_NUM": 31011,
+    "CUSTOMER_NAME": "Blarney Station",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-23",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 36014,
+    "CUSTOMER_NAME": "Viva Margarita Wallington",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-23",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 70008,
+    "CUSTOMER_NAME": "Hearth & Tap Co.",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-23",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 190104,
+    "CUSTOMER_NAME": "Black Rabbit Saloon LLC",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-23",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 71011,
+    "CUSTOMER_NAME": "Marriott (P) Park Ridge",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-22",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 94006,
+    "CUSTOMER_NAME": "Harvest and Ale",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-22",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 62015,
+    "CUSTOMER_NAME": "Elks Lodge 2304(Z)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-22",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 230312,
+    "CUSTOMER_NAME": "Skyland Baseball",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-22",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 85001,
+    "CUSTOMER_NAME": "Eleven Central",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-22",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 50001,
+    "CUSTOMER_NAME": "Andy's Corner (Z)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-22",
     "PERIOD": "base",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 0
@@ -1881,75 +2222,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 85001,
-    "CUSTOMER_NAME": "Eleven Central",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-22",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 94006,
-    "CUSTOMER_NAME": "Harvest and Ale",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-22",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 71011,
-    "CUSTOMER_NAME": "Marriott (P) Park Ridge",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-22",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 230312,
-    "CUSTOMER_NAME": "Skyland Baseball",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-22",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 50001,
-    "CUSTOMER_NAME": "Andy's Corner (Z)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-22",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 62015,
-    "CUSTOMER_NAME": "Elks Lodge 2304(Z)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-22",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 73001,
-    "CUSTOMER_NAME": "Lou's",
+    "CUSTOMER_NUM": 93005,
+    "CUSTOMER_NAME": "Mason Jar Restaurant",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-21",
@@ -1958,9 +2233,20 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 93005,
-    "CUSTOMER_NAME": "Mason Jar Restaurant",
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 86002,
+    "CUSTOMER_NAME": "Doghouse Saloon (Z)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-21",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 73001,
+    "CUSTOMER_NAME": "Lou's",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-21",
@@ -1991,20 +2277,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 86002,
-    "CUSTOMER_NAME": "Doghouse Saloon (Z)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-21",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 25027,
-    "CUSTOMER_NAME": "Sportzone B&G (P)",
+    "CUSTOMER_NUM": 12022,
+    "CUSTOMER_NAME": "Grasshopper Too (A)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-17",
@@ -2025,8 +2300,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 19004,
-    "CUSTOMER_NAME": "Shortways' Barn (A)",
+    "CUSTOMER_NUM": 1005,
+    "CUSTOMER_NAME": "Grasshopper Irish Pub (A)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-17",
@@ -2036,8 +2311,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12022,
-    "CUSTOMER_NAME": "Grasshopper Too (A)",
+    "CUSTOMER_NUM": 19004,
+    "CUSTOMER_NAME": "Shortways' Barn (A)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-17",
@@ -2058,8 +2333,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 1005,
-    "CUSTOMER_NAME": "Grasshopper Irish Pub (A)",
+    "CUSTOMER_NUM": 25027,
+    "CUSTOMER_NAME": "Sportzone B&G (P)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-17",
@@ -2079,9 +2354,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 15079,
-    "CUSTOMER_NAME": "American Lgn Totowa",
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "CUSTOMER_NUM": 45005,
+    "CUSTOMER_NAME": "Colonial Bar",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-16",
@@ -2113,8 +2388,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 42015,
-    "CUSTOMER_NAME": "Amer Lgn (Z) Little Ferry",
+    "CUSTOMER_NUM": 15079,
+    "CUSTOMER_NAME": "American Lgn Totowa",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-16",
@@ -2145,9 +2420,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 45005,
-    "CUSTOMER_NAME": "Colonial Bar",
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 42015,
+    "CUSTOMER_NAME": "Amer Lgn (Z) Little Ferry",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-16",
@@ -2156,9 +2431,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 231601,
-    "CUSTOMER_NAME": "Farmstead Golf (P)",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 8015,
+    "CUSTOMER_NAME": "Thatcher Mc Ghees (A)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-15",
@@ -2167,9 +2442,20 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 8015,
-    "CUSTOMER_NAME": "Thatcher Mc Ghees (A)",
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 231719,
+    "CUSTOMER_NAME": "Layton Tavern",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-15",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 231601,
+    "CUSTOMER_NAME": "Farmstead Golf (P)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-15",
@@ -2189,17 +2475,6 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 77003,
-    "CUSTOMER_NAME": "Blue 42 Restaurant & Bar",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-15",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 75001,
     "CUSTOMER_NAME": "Emerson Hotel",
@@ -2211,9 +2486,20 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 231719,
-    "CUSTOMER_NAME": "Layton Tavern",
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 77003,
+    "CUSTOMER_NAME": "Blue 42 Restaurant & Bar",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-15",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 19012,
+    "CUSTOMER_NAME": "Bottagra Rest (P)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-15",
@@ -2244,42 +2530,31 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 19012,
-    "CUSTOMER_NAME": "Bottagra Rest (P)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-15",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 231309,
-    "CUSTOMER_NAME": "The Stuffed Olive_2",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-14",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 190601,
-    "CUSTOMER_NAME": "Thatcher Mcghee's (A)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-14",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
     "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 38002,
     "CUSTOMER_NAME": "Satin Dolls (A)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-14",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 24029,
+    "CUSTOMER_NAME": "Dingo's Den (P)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-14",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 25036,
+    "CUSTOMER_NAME": "Dingbatz (P)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-14",
@@ -2310,20 +2585,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 191203,
-    "CUSTOMER_NAME": "American Lgn Oak Ridge Post 423",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-14",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 15074,
-    "CUSTOMER_NAME": "Bask 46",
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 231309,
+    "CUSTOMER_NAME": "The Stuffed Olive_2",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-14",
@@ -2343,9 +2607,20 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24029,
-    "CUSTOMER_NAME": "Dingo's Den (P)",
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 190601,
+    "CUSTOMER_NAME": "Thatcher Mcghee's (A)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-14",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 191203,
+    "CUSTOMER_NAME": "American Lgn Oak Ridge Post 423",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-14",
@@ -2366,8 +2641,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 25036,
-    "CUSTOMER_NAME": "Dingbatz (P)",
+    "CUSTOMER_NUM": 15074,
+    "CUSTOMER_NAME": "Bask 46",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-14",
@@ -2376,9 +2651,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44028,
-    "CUSTOMER_NAME": "512 Bar",
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 42015,
+    "CUSTOMER_NAME": "Amer Lgn (Z) Little Ferry",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-10",
@@ -2399,17 +2674,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 42015,
-    "CUSTOMER_NAME": "Amer Lgn (Z) Little Ferry",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-10",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 230807,
     "CUSTOMER_NAME": "North Shore House",
     "BRAND_FAMILY": "Carbliss",
@@ -2420,20 +2684,20 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 84022,
-    "CUSTOMER_NAME": "Park West Tavern",
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "CUSTOMER_NUM": 44028,
+    "CUSTOMER_NAME": "512 Bar",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-07-09",
+    "DATE": "2026-07-10",
     "PERIOD": "base",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 190708,
-    "CUSTOMER_NAME": "American Lgn Rockaway",
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191504,
+    "CUSTOMER_NAME": "The Jefferson House",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-09",
@@ -2453,9 +2717,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 73002,
-    "CUSTOMER_NAME": "The Cornerstone (P)",
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "CUSTOMER_NUM": 84022,
+    "CUSTOMER_NAME": "Park West Tavern",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-09",
@@ -2475,9 +2739,20 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191504,
-    "CUSTOMER_NAME": "The Jefferson House",
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 190708,
+    "CUSTOMER_NAME": "American Lgn Rockaway",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-09",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 73002,
+    "CUSTOMER_NAME": "The Cornerstone (P)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-09",
@@ -2497,9 +2772,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 190301,
-    "CUSTOMER_NAME": "American Lgn Lake Hiawath",
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 230428,
+    "CUSTOMER_NAME": "O'reilly Pub (P)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-08",
@@ -2519,9 +2794,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 230428,
-    "CUSTOMER_NAME": "O'reilly Pub (P)",
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 190301,
+    "CUSTOMER_NAME": "American Lgn Lake Hiawath",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-08",
@@ -2533,28 +2808,6 @@
     "SALES_REP_ASSIGNED": "Brian Sengebush",
     "CUSTOMER_NUM": 231715,
     "CUSTOMER_NAME": "Gyp's Tavern",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-07",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 190714,
-    "CUSTOMER_NAME": "Green Pond Yacht Club (Z)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-07",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 231708,
-    "CUSTOMER_NAME": "American Lgn Branchville",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-07",
@@ -2585,12 +2838,23 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 3002,
-    "CUSTOMER_NAME": "The Celtic Knot",
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 190714,
+    "CUSTOMER_NAME": "Green Pond Yacht Club (Z)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-07-03",
+    "DATE": "2026-07-07",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 231708,
+    "CUSTOMER_NAME": "American Lgn Branchville",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-07",
     "PERIOD": "base",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 0
@@ -2607,20 +2871,20 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 191207,
-    "CUSTOMER_NAME": "Daily Planet (A)",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 3002,
+    "CUSTOMER_NAME": "The Celtic Knot",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-07-02",
+    "DATE": "2026-07-03",
     "PERIOD": "base",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 0
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 93018,
-    "CUSTOMER_NAME": "Courtyard Mahwah",
+    "CUSTOMER_NUM": 23012,
+    "CUSTOMER_NAME": "Moose Lodge (Z)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-02",
@@ -2632,6 +2896,17 @@
     "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 24043,
     "CUSTOMER_NAME": "Valley Regency",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-02",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 191207,
+    "CUSTOMER_NAME": "Daily Planet (A)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-02",
@@ -2652,8 +2927,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 74014,
-    "CUSTOMER_NAME": "American Lgn (Z) (Westwood)",
+    "CUSTOMER_NUM": 93018,
+    "CUSTOMER_NAME": "Courtyard Mahwah",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-02",
@@ -2663,8 +2938,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 23012,
-    "CUSTOMER_NAME": "Moose Lodge (Z)",
+    "CUSTOMER_NUM": 74014,
+    "CUSTOMER_NAME": "American Lgn (Z) (Westwood)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-02",
@@ -2676,6 +2951,17 @@
     "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 83011,
     "CUSTOMER_NAME": "Stone & Rail",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-07-01",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 47014,
+    "CUSTOMER_NAME": "K Of C 2229 (Z)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-07-01",
@@ -2706,20 +2992,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 47014,
-    "CUSTOMER_NAME": "K Of C 2229 (Z)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-07-01",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 39010,
-    "CUSTOMER_NAME": "Players Club (Z)",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 11007,
+    "CUSTOMER_NAME": "Meadows Golf Club(P)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-30",
@@ -2728,9 +3003,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 11007,
-    "CUSTOMER_NAME": "Meadows Golf Club(P)",
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 39010,
+    "CUSTOMER_NAME": "Players Club (Z)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-30",
@@ -2783,6 +3058,17 @@
     "NEW_PLACEMENT": 0
   },
   {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 39006,
+    "CUSTOMER_NAME": "Fat Bastard & Sons",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-26",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
     "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 47019,
     "CUSTOMER_NAME": "Hilton Garden Inn Ridgefield Park",
@@ -2816,12 +3102,34 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 39006,
-    "CUSTOMER_NAME": "Fat Bastard & Sons",
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 230915,
+    "CUSTOMER_NAME": "Crystal Sprs/Wild Turkey",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-06-26",
+    "DATE": "2026-06-25",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 54014,
+    "CUSTOMER_NAME": "Elks Post 2271 (Z)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-25",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "CUSTOMER_NUM": 45005,
+    "CUSTOMER_NAME": "Colonial Bar",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-25",
     "PERIOD": "base",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 0
@@ -2849,28 +3157,6 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 54014,
-    "CUSTOMER_NAME": "Elks Post 2271 (Z)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-25",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 230915,
-    "CUSTOMER_NAME": "Crystal Sprs/Wild Turkey",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-25",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
     "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 44027,
     "CUSTOMER_NAME": "354 Steakhouse (A)",
@@ -2883,52 +3169,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 45005,
-    "CUSTOMER_NAME": "Colonial Bar",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-25",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 190919,
-    "CUSTOMER_NAME": "Amer Lgn Of Wharton 91",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-24",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 38028,
-    "CUSTOMER_NAME": "Colombia Bakery Factory & Restaurant",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-24",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 47017,
     "CUSTOMER_NAME": "Westside Village (A)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-24",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 35009,
-    "CUSTOMER_NAME": "Fiesta (A)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-24",
@@ -2948,12 +3190,34 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 24018,
-    "CUSTOMER_NAME": "Agave Cantina Mexicana",
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "CUSTOMER_NUM": 38028,
+    "CUSTOMER_NAME": "Colombia Bakery Factory & Restaurant",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-06-23",
+    "DATE": "2026-06-24",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 190919,
+    "CUSTOMER_NAME": "Amer Lgn Of Wharton 91",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-24",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "CUSTOMER_NUM": 35009,
+    "CUSTOMER_NAME": "Fiesta (A)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-24",
     "PERIOD": "base",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 0
@@ -2962,6 +3226,17 @@
     "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 80028,
     "CUSTOMER_NAME": "El Cid",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-23",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "CUSTOMER_NUM": 24018,
+    "CUSTOMER_NAME": "Agave Cantina Mexicana",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-23",
@@ -2992,17 +3267,6 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 41006,
-    "CUSTOMER_NAME": "Straphanger Saloon (A)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-19",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
     "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 14008,
     "CUSTOMER_NAME": "The Barnyard and Carriage House",
@@ -3014,20 +3278,20 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44028,
-    "CUSTOMER_NAME": "512 Bar",
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 41006,
+    "CUSTOMER_NAME": "Straphanger Saloon (A)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-06-18",
+    "DATE": "2026-06-19",
     "PERIOD": "base",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 69003,
-    "CUSTOMER_NAME": "Edgewood Country Club",
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 230903,
+    "CUSTOMER_NAME": "Black Bear Golf(A)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-18",
@@ -3047,31 +3311,20 @@
     "NEW_PLACEMENT": 0
   },
   {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "CUSTOMER_NUM": 44028,
+    "CUSTOMER_NAME": "512 Bar",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-18",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
     "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 28026,
     "CUSTOMER_NAME": "Elks Post 1992 (Z)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-18",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 23013,
-    "CUSTOMER_NAME": "Vfw 7165 (P)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-18",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 230903,
-    "CUSTOMER_NAME": "Black Bear Golf(A)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-18",
@@ -3091,20 +3344,31 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 81017,
-    "CUSTOMER_NAME": "JJ's Pub",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 23013,
+    "CUSTOMER_NAME": "Vfw 7165 (P)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-06-17",
+    "DATE": "2026-06-18",
     "PERIOD": "base",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 71009,
-    "CUSTOMER_NAME": "American Lgn Park Ridge",
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 69003,
+    "CUSTOMER_NAME": "Edgewood Country Club",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-18",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191009,
+    "CUSTOMER_NAME": "Mason Street Grille",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-17",
@@ -3124,9 +3388,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191009,
-    "CUSTOMER_NAME": "Mason Street Grille",
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 71009,
+    "CUSTOMER_NAME": "American Lgn Park Ridge",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-17",
@@ -3135,12 +3399,12 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 230915,
-    "CUSTOMER_NAME": "Crystal Sprs/Wild Turkey",
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "CUSTOMER_NUM": 81017,
+    "CUSTOMER_NAME": "JJ's Pub",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-06-16",
+    "DATE": "2026-06-17",
     "PERIOD": "base",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 0
@@ -3149,6 +3413,17 @@
     "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 20055,
     "CUSTOMER_NAME": "Paruta's (A)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-16",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 230915,
+    "CUSTOMER_NAME": "Crystal Sprs/Wild Turkey",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-16",
@@ -3180,19 +3455,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 34016,
-    "CUSTOMER_NAME": "Vfw Hasbrouck (A)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-12",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 24018,
-    "CUSTOMER_NAME": "Agave Cantina Mexicana",
+    "CUSTOMER_NUM": 15079,
+    "CUSTOMER_NAME": "American Lgn Totowa",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-12",
@@ -3202,8 +3466,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 15079,
-    "CUSTOMER_NAME": "American Lgn Totowa",
+    "CUSTOMER_NUM": 34016,
+    "CUSTOMER_NAME": "Vfw Hasbrouck (A)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-12",
@@ -3223,20 +3487,20 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44048,
-    "CUSTOMER_NAME": "Clubhouse Cafe (P)",
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "CUSTOMER_NUM": 24018,
+    "CUSTOMER_NAME": "Agave Cantina Mexicana",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-06-11",
+    "DATE": "2026-06-12",
     "PERIOD": "base",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 14010,
-    "CUSTOMER_NAME": "Uncorked (P)",
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191505,
+    "CUSTOMER_NAME": "Mckenna's Pub (P)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-11",
@@ -3256,9 +3520,20 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 190203,
-    "CUSTOMER_NAME": "Boonton Lanes",
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 192156,
+    "CUSTOMER_NAME": "Hapgoods Restaurant",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-11",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "CUSTOMER_NUM": 44048,
+    "CUSTOMER_NAME": "Clubhouse Cafe (P)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-11",
@@ -3270,17 +3545,6 @@
     "SALES_REP_ASSIGNED": "Brian Sengebush",
     "CUSTOMER_NUM": 191504,
     "CUSTOMER_NAME": "The Jefferson House",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-11",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 230915,
-    "CUSTOMER_NAME": "Crystal Sprs/Wild Turkey",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-11",
@@ -3301,8 +3565,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191505,
-    "CUSTOMER_NAME": "Mckenna's Pub (P)",
+    "CUSTOMER_NUM": 190203,
+    "CUSTOMER_NAME": "Boonton Lanes",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-11",
@@ -3311,12 +3575,34 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 192156,
-    "CUSTOMER_NAME": "Hapgoods Restaurant",
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 230915,
+    "CUSTOMER_NAME": "Crystal Sprs/Wild Turkey",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-11",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 14010,
+    "CUSTOMER_NAME": "Uncorked (P)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-11",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "CUSTOMER_NUM": 81012,
+    "CUSTOMER_NAME": "Dutch House",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-10",
     "PERIOD": "base",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 0
@@ -3366,28 +3652,6 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 81012,
-    "CUSTOMER_NAME": "Dutch House",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-10",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24019,
-    "CUSTOMER_NAME": "Sharky's Wings(P)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-09",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
     "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 7003,
     "CUSTOMER_NAME": "Blu Ale House",
@@ -3405,6 +3669,28 @@
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-09",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 24019,
+    "CUSTOMER_NAME": "Sharky's Wings(P)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-09",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 190214,
+    "CUSTOMER_NAME": "Johnnie's Tavern",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-08",
     "PERIOD": "base",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 0
@@ -3432,20 +3718,53 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 190214,
-    "CUSTOMER_NAME": "Johnnie's Tavern",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 3002,
+    "CUSTOMER_NAME": "The Celtic Knot",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-06-08",
+    "DATE": "2026-06-05",
     "PERIOD": "base",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44025,
-    "CUSTOMER_NAME": "Rudys (A)",
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 191815,
+    "CUSTOMER_NAME": "Eastern Asian Bistro/Bar",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-05",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 37034,
+    "CUSTOMER_NAME": "Blackjack Mulligans(P) (Garfield)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-05",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 25056,
+    "CUSTOMER_NAME": "Emerald Corner (Z)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-05",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 5008,
+    "CUSTOMER_NAME": "Celtic Crossings",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-05",
@@ -3476,9 +3795,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 5008,
-    "CUSTOMER_NAME": "Celtic Crossings",
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 70008,
+    "CUSTOMER_NAME": "Hearth & Tap Co.",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-05",
@@ -3487,20 +3806,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 3002,
-    "CUSTOMER_NAME": "The Celtic Knot",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-05",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 37034,
-    "CUSTOMER_NAME": "Blackjack Mulligans(P) (Garfield)",
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "CUSTOMER_NUM": 44025,
+    "CUSTOMER_NAME": "Rudys (A)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-05",
@@ -3520,42 +3828,53 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 191815,
-    "CUSTOMER_NAME": "Eastern Asian Bistro/Bar",
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 80007,
+    "CUSTOMER_NAME": "The Orange Lantern",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-06-05",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 25056,
-    "CUSTOMER_NAME": "Emerald Corner (Z)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-05",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 70008,
-    "CUSTOMER_NAME": "Hearth & Tap Co.",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-05",
+    "DATE": "2026-06-04",
     "PERIOD": "base",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 0
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 80040,
-    "CUSTOMER_NAME": "Biagio's",
+    "CUSTOMER_NUM": 79001,
+    "CUSTOMER_NAME": "Victor's Maywood Inn",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-04",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "CUSTOMER_NUM": 44047,
+    "CUSTOMER_NAME": "Sedona Tap House",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-04",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "CUSTOMER_NUM": 44028,
+    "CUSTOMER_NAME": "512 Bar",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-04",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 11007,
+    "CUSTOMER_NAME": "Meadows Golf Club(P)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-04",
@@ -3565,8 +3884,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 191207,
-    "CUSTOMER_NAME": "Daily Planet (A)",
+    "CUSTOMER_NUM": 231307,
+    "CUSTOMER_NAME": "Skylands Wine& Beer Garden",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-04",
@@ -3587,17 +3906,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 230929,
-    "CUSTOMER_NAME": "Airport Pub & Pkg",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-04",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "CUSTOMER_NUM": 231210,
     "CUSTOMER_NAME": "Bally Owen Golf Club",
     "BRAND_FAMILY": "Carbliss",
@@ -3608,97 +3916,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 79001,
-    "CUSTOMER_NAME": "Victor's Maywood Inn",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-04",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 231307,
-    "CUSTOMER_NAME": "Skylands Wine& Beer Garden",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-04",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191007,
-    "CUSTOMER_NAME": "Charley's Tavern",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-04",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44047,
-    "CUSTOMER_NAME": "Sedona Tap House",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-04",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 80007,
-    "CUSTOMER_NAME": "The Orange Lantern",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-04",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 11007,
-    "CUSTOMER_NAME": "Meadows Golf Club(P)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-04",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 32023,
-    "CUSTOMER_NAME": "Redd's Rest (Z)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-04",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44028,
-    "CUSTOMER_NAME": "512 Bar",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-04",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 230903,
-    "CUSTOMER_NAME": "Black Bear Golf(A)",
+    "CUSTOMER_NUM": 230929,
+    "CUSTOMER_NAME": "Airport Pub & Pkg",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-04",
@@ -3718,34 +3938,56 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 28015,
-    "CUSTOMER_NAME": "K Of C N Arlington (Z)",
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 191207,
+    "CUSTOMER_NAME": "Daily Planet (A)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-06-03",
+    "DATE": "2026-06-04",
     "PERIOD": "base",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 74002,
-    "CUSTOMER_NAME": "Elks Post 1562",
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 32023,
+    "CUSTOMER_NAME": "Redd's Rest (Z)",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-06-03",
+    "DATE": "2026-06-04",
     "PERIOD": "base",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 80027,
-    "CUSTOMER_NAME": "Ridgewood Country Club",
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191007,
+    "CUSTOMER_NAME": "Charley's Tavern",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
-    "DATE": "2026-06-03",
+    "DATE": "2026-06-04",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 230903,
+    "CUSTOMER_NAME": "Black Bear Golf(A)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-04",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 80040,
+    "CUSTOMER_NAME": "Biagio's",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-04",
     "PERIOD": "base",
     "BUYER_COUNT": 1,
     "NEW_PLACEMENT": 0
@@ -3754,50 +3996,6 @@
     "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 15081,
     "CUSTOMER_NAME": "Evolution Restaurant & Bar",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-03",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 37010,
-    "CUSTOMER_NAME": "Vfw Outwater (Z) Lane",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-03",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 42007,
-    "CUSTOMER_NAME": "Vfw 809 (P)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-03",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 50036,
-    "CUSTOMER_NAME": "Moose Lodge 961 (Z)",
-    "BRAND_FAMILY": "Carbliss",
-    "PRODUCT_NAME": "",
-    "DATE": "2026-06-03",
-    "PERIOD": "base",
-    "BUYER_COUNT": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 2009,
-    "CUSTOMER_NAME": "Frungillo Caterers",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-03",
@@ -3818,6 +4016,72 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 74002,
+    "CUSTOMER_NAME": "Elks Post 1562",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-03",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 2009,
+    "CUSTOMER_NAME": "Frungillo Caterers",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-03",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 50036,
+    "CUSTOMER_NAME": "Moose Lodge 961 (Z)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-03",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 28015,
+    "CUSTOMER_NAME": "K Of C N Arlington (Z)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-03",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "CUSTOMER_NUM": 80027,
+    "CUSTOMER_NAME": "Ridgewood Country Club",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-03",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 37010,
+    "CUSTOMER_NAME": "Vfw Outwater (Z) Lane",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-03",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 12023,
     "CUSTOMER_NAME": "The Village Inn",
     "BRAND_FAMILY": "Carbliss",
@@ -3829,8 +4093,19 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 12047,
-    "CUSTOMER_NAME": "American Lgn 174 Wayne",
+    "CUSTOMER_NUM": 42007,
+    "CUSTOMER_NAME": "Vfw 809 (P)",
+    "BRAND_FAMILY": "Carbliss",
+    "PRODUCT_NAME": "",
+    "DATE": "2026-06-03",
+    "PERIOD": "base",
+    "BUYER_COUNT": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 77013,
+    "CUSTOMER_NAME": "William J. Mulligan VFW Post 281",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-02",
@@ -3851,8 +4126,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 77013,
-    "CUSTOMER_NAME": "William J. Mulligan VFW Post 281",
+    "CUSTOMER_NUM": 12047,
+    "CUSTOMER_NAME": "American Lgn 174 Wayne",
     "BRAND_FAMILY": "Carbliss",
     "PRODUCT_NAME": "",
     "DATE": "2026-06-02",

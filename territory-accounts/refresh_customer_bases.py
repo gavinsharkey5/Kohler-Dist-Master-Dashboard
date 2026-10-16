@@ -60,6 +60,13 @@ SCOPED_AREAS = CORE_MARKET_AREAS | SOUTHERN_DISTRICT_AREAS
 # whole point of this script.
 SALES_FALLBACK_COUNTIES = {"Bergen", "Passaic", "Sussex", "Essex", "Hudson", "Union"}
 
+# 2026-10-05: the "Entire Core Market Off Prem Accts" export now lists accounts
+# whose Distribution Area is RDE's "Sales" placeholder (23 of 513) and carries an
+# extra "Sales Route Num" column (ignored: only RAW_COLS are read). Those rows ARE
+# Core Market accounts -- the export is already scoped to it -- so that one file
+# may carry "Sales"; every other export still refuses it.
+CORE_OFF_AREAS = CORE_MARKET_AREAS | {"Sales"}
+
 
 def in_scope(row):
     area = row["Distribution Area"].strip()
@@ -110,7 +117,7 @@ def build_fresh_index():
     fresh = {}
     loads = [
         (CORE_MARKET_ON, CORE_MARKET_AREAS, "On Premise"),
-        (CORE_MARKET_OFF, CORE_MARKET_AREAS, "Off Premise"),
+        (CORE_MARKET_OFF, CORE_OFF_AREAS, "Off Premise"),
         (SOUTHERN_ON, SOUTHERN_DISTRICT_AREAS, "On Premise"),
         (SOUTHERN_OFF, SOUTHERN_DISTRICT_AREAS, "Off Premise"),
     ]
@@ -128,7 +135,10 @@ def refresh_scoped(target_path, fresh, extra_cols_fn, dry_run):
     old_rows = load_csv(target_path)
     old_by_key = {(r["Sales Rep Assigned"].strip(), r["Customer Num"].strip()): r for r in old_rows}
 
-    kept_out_of_scope = [r for r in old_rows if not in_scope(r)]
+    # An old out-of-scope row (e.g. Sales + Morris) whose key the fresh exports now
+    # carry is replaced by the fresh row, not kept beside it as a duplicate.
+    kept_out_of_scope = [r for r in old_rows if not in_scope(r)
+                         and (r["Sales Rep Assigned"].strip(), r["Customer Num"].strip()) not in fresh]
     old_in_scope_keys = {k for k, r in old_by_key.items() if in_scope(r)}
     fresh_in_scope_keys = set(fresh)  # every fresh row is already scope-validated by load_raw()
 
@@ -189,7 +199,7 @@ def main():
           f"Southern District)")
 
     # --- off-prem's Core Market denominator: full replace, Core Market only ---
-    core_off_rows = load_raw(CORE_MARKET_OFF, CORE_MARKET_AREAS, "Off Premise")
+    core_off_rows = load_raw(CORE_MARKET_OFF, CORE_OFF_AREAS, "Off Premise")
     old_off = load_csv(OFF_PREM_CORE_CSV)
     old_off_keys = {(r["Sales Rep Assigned"].strip(), r["Customer Num"].strip()) for r in old_off}
     new_off_keys = {(r["Sales Rep Assigned"].strip(), r["Customer Num"].strip()) for r in core_off_rows}

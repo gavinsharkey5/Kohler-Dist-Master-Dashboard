@@ -1,81 +1,64 @@
 #!/usr/bin/env python3
-"""Builds the embedded JSON for index.html -- the REP-FACING inventory view.
+"""Builds the embedded JSON for index.html -- the REP-FACING inventory list.
 
 One question: WHAT CAN I SELL RIGHT NOW? Everything here serves that. There is
 deliberately no cost, no inventory value, no write-off exposure and no aging
-analysis -- that is the executive view's job (../inventory-overview/), and a rep
-standing in an account does not need it. Rebuilt 2026-08-28 per Gavin, who split
-the two audiences apart: "Rep View = what can I sell? Executive View = what
-inventory risk are we carrying?"
+analysis -- that is the executive view's job (../inventory-overview/).
 
-Reads THREE of the five shared exports in ../inventory-data/ (the exec view
-reads all five):
+Rebuilt 2026-10-14 on ONE report (Gavin's brief, inventory/design-refs/
+CLAUDE_CODE_PROMPT.md) in place of the three shared exports in
+../inventory-data/ that the 2026-08-28 build read. The report has exactly
+these columns:
 
-  inventory_status.csv       The spine. One row per product, GROUPED BY SUPPLIER
-                             -- a supplier header row (numeric columns blank),
-                             its products, then a "Total" subtotal. Product cells
-                             read "<prod #> <product name>".
-                             `Available` is the sellable number and is taken AS
-                             DELIVERED. It is not recomputed here, and should not
-                             be: no arithmetic on the visible columns reproduces
-                             it (Inventory - Allocated - Pre-Sales - Unsellable
-                             matches only 3,292 of 4,240 rows), while it equals
-                             On-Floor on 4,057 of them. Encompass is reporting
-                             something closer to physical floor stock than to a
-                             ledger subtraction, and a number a rep sees here has
-                             to match the number they see in Encompass.
-  inventory_projections.csv  Days of cover per product (real DOI, ~2,700
-                             products), plus Ordered and Next Receive Date --
-                             which is why the rep view does NOT need the 17,000-
-                             row purchase_transactions.csv to answer "is more
-                             coming?". Projections covers MORE products for that
-                             question (490) than the purchase file does (346).
-                             Supplier-grouped like the status export; a row whose
-                             Product Num is not numeric is a group header.
-                             ITS MONTH COLUMNS SHIFT EVERY PULL, so anything
-                             reading them must match by pattern, not by name.
-                             (This view only reads DOI/Ordered/Next Receive, so
-                             it is immune -- noted because the exec view is not.)
-  inventory_received.csv     Recent receipts -- "what just came in". A rolling
-                             ~3-month window, which is all this view needs.
+  Product Num Name     "<product number> <description>", e.g.
+                       "2409 Corona Extra 1/24/12 oz Loose Btl". Split on the
+                       first space into `num` and `name`.
+  Supplier             the grouping the page uses (~124).
+  Brand Family         Encompass's own family (~326) -- a real field now, no
+                       longer derived from the product name.
+  On Floor Inventory   units on the floor.
+  Pre Sales            units sold but not yet shipped, as Encompass reports it.
+  Allocated            units held back, as Encompass reports it.
+  Available            THE sellable number, taken AS DELIVERED. Never
+                       re-derived here: no arithmetic on the other columns is
+                       guaranteed to reproduce it, and the number a rep sees
+                       here has to match the number they see in Encompass.
 
-Stock status, on real days of cover rather than the receipt-pattern proxies the
-first build used:
-  OUT    nothing available to sell
-  LOW    1-14 days of cover left
-  OK     15-89 days
-  HEAVY  90+ days -- plenty, sell it hard
-A product with no projections row gets status UNKNOWN, not a guess.
+Numbers: the four numeric columns are coerced to floats (blank = 0; a
+leading '-' or accounting parentheses = negative; thousands commas dropped).
+Status, on Available alone (the report carries no rate of sale):
+  OUT   Available <= 0
+  LOW   Available 1-24
+  OK    Available 25+
+The snapshot date is the report FILE's modified time (the report has no date
+column); the page flags a snapshot older than 7 days.
 
-Run: python3 generate.py
+Run: python3 generate.py [path/to/Inventory_Report.csv]
+     default path ../inventory-data/Inventory_Report.csv
+Then run ../accounts/generate.py so the Account page's product list picks up
+the same snapshot (it reads this file's rep-data JSON).
 """
 import csv
 import datetime
 import json
 import os
 import re
+import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-DATA = os.path.join(HERE, os.pardir, 'inventory-data')
-STATUS_CSV = os.path.join(DATA, 'inventory_status.csv')
-PROJECTIONS_CSV = os.path.join(DATA, 'inventory_projections.csv')
-RECEIVED_CSV = os.path.join(DATA, 'inventory_received.csv')
+DEFAULT_REPORT = os.path.join(HERE, os.pardir, 'inventory-data', 'Inventory_Report.csv')
 HTML = os.path.join(HERE, 'index.html')
 
-LOW_DOI = 14        # days of cover at or under which a product is "running low"
-HEAVY_DOI = 90      # days of cover at or over which there is plenty to push
-JUST_IN_DAYS = 14   # a receipt inside this window counts as "just arrived"
+LOW_MAX = 24   # Available 1..LOW_MAX = running low; above = in stock
+STALE_DAYS = 7
 
-MONTH_RE = re.compile(r'^[A-Z][a-z]{2} \d{2}$')
-# Pack config lives at the end of the product name ("4/6/12 oz Can"). Derived,
-# like brand -- no export carries a package field. Parses on ~85% of stocked
-# products; the rest simply show no pack and are excluded from that filter
-# rather than bucketed into a wrong one.
-PACK_RE = re.compile(r'(\d+(?:/[\d.]+)+\s*(?:oz|ml|l|gal)\b.*)$', re.I)
+COLS = ['Product Num Name', 'Supplier', 'Brand Family',
+        'On Floor Inventory', 'Pre Sales', 'Allocated', 'Available']
+NUM_COLS = COLS[3:]
 
 
 def num(v):
-    """Encompass writes negatives in accounting form -- ' (14)' means -14."""
+    """Blank = 0. '-14', '(14)' and '-1.00' are all -14 / -1; commas dropped."""
     s = str(v or '').replace(',', '').replace('$', '').strip()
     if not s or s == '-':
         return 0.0
@@ -88,225 +71,111 @@ def num(v):
         return 0.0
 
 
-def parse_date(s):
-    s = str(s or '').strip()
-    if not s:
-        return None
-    try:
-        return datetime.datetime.strptime(s, '%m/%d/%Y').date()
-    except ValueError:
-        return None
+def split_name(label):
+    """'2409 Corona Extra 1/24/12 oz Loose Btl' -> ('2409', 'Corona Extra ...').
+    A label with no leading number keeps the whole text as the name."""
+    m = re.match(r'^(\d+)\s+(.*)$', label.strip())
+    if m:
+        return m.group(1), m.group(2).strip()
+    return '', label.strip()
 
 
-def brand_of(name):
-    """Derived, not a real field -- no export carries a brand column. The first
-    word of the product name is the brand in this catalogue's naming, which
-    holds well enough to filter by; the page says it is derived."""
-    toks = str(name or '').split()
-    return toks[0] if toks else '(unknown)'
-
-
-def pack_of(name):
-    m = PACK_RE.search(str(name or '').strip())
-    return m.group(1).strip() if m else ''
-
-
-def load_status():
-    products, supplier = {}, None
-    with open(STATUS_CSV, newline='', encoding='utf-8-sig') as f:
-        for row in csv.DictReader(f):
-            label = (row.get('Product') or '').strip()
-            if not label:
-                continue
-            if not (row.get('Inventory') or '').strip():
-                supplier = label
-                continue
-            if label == 'Total':
-                continue
-            m = re.match(r'^(\d+)\s+(.*)$', label)
-            if not m:
-                continue
-            pnum, pname = m.group(1), m.group(2).strip()
-            products[pnum] = {
-                'num': pnum, 'name': pname,
-                'supplier': supplier or '(unassigned)',
-                'brand': brand_of(pname), 'pack': pack_of(pname),
-                'onHand': num(row.get('Inventory')),
-                'available': num(row.get('Available')),
-                'unsellable': num(row.get('Unsellable')),
-                'doi': None, 'incoming': 0.0, 'nextArrival': None,
-                'backordered': 0.0, 'lastRecv': None, 'recvUnits': 0.0,
-            }
-    return products
-
-
-def load_projections(products):
-    """DOI and inbound. Skips group headers (non-numeric Product Num).
-
-    Inbound is deliberately NOT taken at face value. 211 of the 490 products
-    carrying a Next Receive Date on the 8/28 pull are dated in the PAST -- some
-    back to 2021 -- and between them they hold 139,772 of the 239,497 units the
-    export calls "Ordered". They are stale purchase orders nobody closed out.
-    Promising a rep 13,815 cases of Corona against a 2023 date is worse than
-    telling them nothing, so only a future-dated arrival counts as inbound here;
-    the stale ones are counted and reported, not silently dropped."""
-    matched, stale_units, stale_products = 0, 0.0, 0
-    with open(PROJECTIONS_CSV, newline='', encoding='utf-8-sig') as f:
-        for row in csv.DictReader(f):
-            pnum = str(row.get('Product Num') or '').strip()
-            if not pnum.isdigit():
-                continue
-            p = products.get(pnum)
-            if not p:
-                continue
-            matched += 1
-            doi = str(row.get('Days of Inventory') or '').strip()
-            p['doi'] = num(doi) if doi else None
-            p['backordered'] = num(row.get('Backordered'))
-            ordered = num(row.get('Ordered'))
-            arrival = parse_date(row.get('Next Receive Date'))
-            p['orderedRaw'] = ordered
-            p['nextArrival'] = arrival
-            p['incoming'] = ordered      # trimmed to future-dated only in main()
-    return matched, stale_units, stale_products
-
-
-def load_received(products):
-    """Recent receipts. Lots whose product number is not in the status export are
-    pallets, bulkhead spacers and kegboard -- warehouse handling material, not
-    sellable stock -- so they join nothing and are counted separately."""
-    lots, unmatched = [], 0
-    with open(RECEIVED_CSV, newline='', encoding='utf-8-sig') as f:
-        for row in csv.DictReader(f):
-            pnum = (row.get('Product') or '').strip()
-            when = parse_date(row.get('Receive Date'))
-            units = num(row.get('Num Units'))
-            lots.append({'num': pnum, 'when': when, 'units': units})
-            p = products.get(pnum)
-            if not p:
-                unmatched += 1
-                continue
-            if when and (p['lastRecv'] is None or when > p['lastRecv']):
-                p['lastRecv'] = when
-    return lots, unmatched
-
-
-def status_of(p):
-    if p['available'] <= 0:
+def status_of(avail):
+    if avail <= 0:
         return 'out'
-    if p['doi'] is None:
-        return 'unknown'
-    if p['doi'] <= LOW_DOI:
+    if avail <= LOW_MAX:
         return 'low'
-    if p['doi'] >= HEAVY_DOI:
-        return 'heavy'
     return 'ok'
 
 
+def load(path):
+    rows, skipped = [], 0
+    with open(path, newline='', encoding='utf-8-sig') as f:
+        reader = csv.DictReader(f)
+        reader.fieldnames = [(h or '').strip() for h in reader.fieldnames or []]
+        missing = [c for c in COLS if c not in reader.fieldnames]
+        if missing:
+            sys.exit(f'report is missing columns: {missing}\n   has: {reader.fieldnames}')
+        for r in reader:
+            label = (r.get('Product Num Name') or '').strip()
+            if not label:
+                skipped += 1
+                continue
+            pnum, pname = split_name(label)
+            avail = num(r.get('Available'))
+            rows.append({
+                'num': pnum, 'name': pname, 'label': label,
+                'supplier': (r.get('Supplier') or '').strip() or '(no supplier)',
+                'family': (r.get('Brand Family') or '').strip() or '(no brand family)',
+                'onFloor': num(r.get('On Floor Inventory')),
+                'preSales': num(r.get('Pre Sales')),
+                'allocated': num(r.get('Allocated')),
+                'available': avail,
+                'status': status_of(avail),
+            })
+    return rows, skipped
+
+
 def main():
-    products = load_status()
-    proj_matched, _, _ = load_projections(products)
-    lots, unmatched = load_received(products)
+    path = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_REPORT
+    if not os.path.exists(path):
+        sys.exit(f'report not found: {path}\n   usage: python3 generate.py [path/to/Inventory_Report.csv]')
+    rows, skipped = load(path)
+    if not rows:
+        sys.exit('report has no product rows')
 
-    # "Today" is the newest receive date in the data, not the clock, so day
-    # counts stay pinned to the snapshot and an old pull doesn't silently age.
-    dates = [l['when'] for l in lots if l['when']]
-    today = max(dates) if dates else datetime.date.today()
-    just_in = today - datetime.timedelta(days=JUST_IN_DAYS)
+    # The report carries no date column: the file's modified time is the
+    # snapshot date, and the page ages the snapshot from it.
+    mtime = datetime.datetime.fromtimestamp(os.path.getmtime(path))
+    as_of = mtime.date()
 
-    for l in lots:
-        p = products.get(l['num'])
-        if p and l['when'] and l['when'] >= just_in:
-            p['recvUnits'] += l['units']
-
-    # Drop stale inbound (see load_projections). Counted for the page's notes so
-    # the gap between "Ordered" and what a rep is actually promised is visible.
-    stale_units, stale_products = 0.0, 0
-    for p in products.values():
-        if p['incoming'] > 0 and (p['nextArrival'] is None or p['nextArrival'] < today):
-            stale_units += p['incoming']
-            stale_products += 1
-            p['incoming'] = 0.0
-            p['staleArrival'] = p['nextArrival']
-            p['nextArrival'] = None
-
-    for p in products.values():
-        p['status'] = status_of(p)
-
-    # A rep only cares about what is sellable or about to be. Everything else --
-    # dead catalogue rows with no stock, no availability and no recent receipt --
-    # is dropped, which is what keeps this page small enough to open on a phone.
-    live = [p for p in products.values()
-            if p['available'] > 0 or p['onHand'] > 0
-            or p['recvUnits'] > 0 or p['incoming'] > 0]
-
-    counts = {k: sum(1 for p in live if p['status'] == k)
-              for k in ['out', 'low', 'ok', 'heavy', 'unknown']}
-    just_arrived = sorted([p for p in live if p['recvUnits'] > 0],
-                          key=lambda p: (p['lastRecv'] or today, p['recvUnits']),
-                          reverse=True)
+    counts = {k: sum(1 for p in rows if p['status'] == k) for k in ('out', 'low', 'ok')}
+    suppliers = sorted({p['supplier'] for p in rows}, key=str.lower)
+    families = sorted({p['family'] for p in rows}, key=str.lower)
 
     payload = {
         'generatedAt': datetime.datetime.now(datetime.timezone.utc)
                        .replace(microsecond=0).isoformat().replace('+00:00', 'Z'),
-        'asOf': today.isoformat(),
-        'justInDays': JUST_IN_DAYS,
-        'lowDoi': LOW_DOI, 'heavyDoi': HEAVY_DOI,
+        'asOf': as_of.isoformat(),
+        'source': os.path.basename(path),
+        'lowMax': LOW_MAX,
+        'staleDays': STALE_DAYS,
         'summary': {
-            'available': sum(p['available'] for p in live),
-            'productsAvailable': sum(1 for p in live if p['available'] > 0),
-            'productsTotal': len(products),
-            'suppliers': len({p['supplier'] for p in live}),
+            'products': len(rows),
+            'productsAvailable': counts['ok'] + counts['low'],
+            'available': sum(p['available'] for p in rows if p['available'] > 0),
+            'suppliers': len(suppliers),
+            'families': len(families),
             'counts': counts,
-            'justInUnits': sum(p['recvUnits'] for p in live),
-            'justInProducts': len(just_arrived),
-            'incomingUnits': sum(p['incoming'] for p in live),
-            'incomingProducts': sum(1 for p in live if p['incoming'] > 0),
-            'backordered': sum(p['backordered'] for p in live),
-            'staleOrderUnits': stale_units,
-            'staleOrderProducts': stale_products,
         },
-        'justArrived': [{'num': p['num'], 'name': p['name'], 'supplier': p['supplier'],
-                         'units': p['recvUnits'], 'available': p['available'],
-                         'when': p['lastRecv'].isoformat() if p['lastRecv'] else None}
-                        for p in just_arrived[:60]],
         'products': [{'num': p['num'], 'name': p['name'], 'supplier': p['supplier'],
-                      'brand': p['brand'], 'pack': p['pack'],
-                      'available': p['available'], 'onHand': p['onHand'],
-                      'doi': p['doi'], 'status': p['status'],
-                      'incoming': p['incoming'],
-                      'nextArrival': p['nextArrival'].isoformat() if p['nextArrival'] else None,
-                      'backordered': p['backordered'],
-                      'recvUnits': p['recvUnits'],
-                      'lastRecv': p['lastRecv'].isoformat() if p['lastRecv'] else None}
-                     for p in sorted(live, key=lambda p: -p['available'])],
+                      'family': p['family'], 'available': p['available'],
+                      'onFloor': p['onFloor'], 'preSales': p['preSales'],
+                      'allocated': p['allocated'], 'status': p['status']}
+                     for p in sorted(rows, key=lambda p: (-p['available'], p['name'].lower()))],
     }
 
-    data_json = json.dumps(payload, separators=(',', ':'))
+    data_json = json.dumps(payload, separators=(',', ':'), ensure_ascii=False)
     html = open(HTML, encoding='utf-8').read()
     new_html, n = re.subn(
         r'(<script id="rep-data" type="application/json">).*?(</script>)',
-        lambda m: m.group(1) + data_json.replace('\\', '\\\\') + m.group(2),
+        lambda m: m.group(1) + data_json.replace('\\', '\\\\').replace('</', '<\\/') + m.group(2),
         html, count=1, flags=re.S)
     assert n == 1, 'rep-data script tag not found in index.html'
     open(HTML, 'w', encoding='utf-8').write(new_html)
 
     s = payload['summary']
-    print(f"As of {today:%m/%d/%Y} (newest receive date in the export)")
-    print(f"  Sellable: {s['available']:,.0f} units across {s['productsAvailable']:,} products "
-          f"({s['suppliers']} suppliers)")
-    print(f"  Status: out {counts['out']:,} | low {counts['low']:,} | ok {counts['ok']:,} | "
-          f"heavy {counts['heavy']:,} | no rate {counts['unknown']:,}")
-    print(f"  Just arrived (last {JUST_IN_DAYS}d): {s['justInUnits']:,.0f} units over "
-          f"{s['justInProducts']:,} products")
-    print(f"  Inbound: {s['incomingUnits']:,.0f} units over {s['incomingProducts']:,} products; "
-          f"backordered {s['backordered']:,.0f}")
-    print(f"  Stale orders IGNORED (Next Receive Date in the past): "
-          f"{s['staleOrderUnits']:,.0f} units over {s['staleOrderProducts']:,} products")
-    print(f"  Days of cover matched on {proj_matched:,} products from the projections export")
-    print(f"  Listed: {len(payload['products']):,} of {s['productsTotal']:,} catalogue rows "
-          f"({s['productsTotal'] - len(payload['products']):,} dead rows omitted)")
-    print(f"  Receipt lots joining no product (pallets/dunnage): {unmatched:,}")
+    neg_floor = sum(1 for p in rows if p['onFloor'] < 0)
+    neg_avail = sum(1 for p in rows if p['available'] < 0)
+    no_num = sum(1 for p in rows if not p['num'])
+    print(f"Report: {path}")
+    print(f"  Snapshot date (file modified): {as_of:%m/%d/%Y}")
+    print(f"  {s['products']:,} products · {s['suppliers']} suppliers · {s['families']} brand families"
+          + (f" · {skipped} blank rows skipped" if skipped else ''))
+    print(f"  Available: {s['available']:,.0f} units across {s['productsAvailable']:,} products")
+    print(f"  Status: out {counts['out']:,} (Available <= 0) | low {counts['low']:,} (1-{LOW_MAX}) | "
+          f"in stock {counts['ok']:,} ({LOW_MAX + 1}+)")
+    print(f"  Negative Available: {neg_avail} · negative On Floor: {neg_floor} · rows with no product number: {no_num}")
     print(f"  Wrote {len(data_json):,} bytes of JSON into index.html")
 
 

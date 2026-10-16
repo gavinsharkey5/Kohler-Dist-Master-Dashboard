@@ -1,0 +1,21 @@
+Local newsletter file readers
+
+SheetJS Community Edition 0.20.3 (mini build, XLSX and CSV):
+https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.mini.min.js
+https://docs.sheetjs.com/docs/getting-started/installation/standalone/
+
+@kenjiuno/msgreader 1.29.0, browser bundle with Buffer compatibility shims:
+https://github.com/HiraokaHyperTools/msgreader
+Build-only esbuild 0.25.12; exact dependency versions/integrity in dependencies-lock.json.
+Entry exports MsgReader; Buffer is injected into the bundle scope, not the site's global scope.
+
+Tesseract.js 7.0.0 with tesseract.js-core 7.0.0, LSTM-only cores:
+https://github.com/naptha/tesseract.js
+https://github.com/naptha/tesseract.js-core
+
+English language data: @tesseract.js-data/eng 1.0.0, 4.0.0_best_int/eng.traineddata.gz:
+https://github.com/naptha/tessdata
+
+Libraries are self-hosted and loaded on demand. No original employee files
+or employee photographs are included in these assets. OCR languages, workers
+and core files use same-origin URLs; no third-party processing is invoked.

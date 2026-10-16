@@ -43,6 +43,11 @@ const HUB_ROSTER_SCOPED = HUB_TEAM ? HUB_ROSTER.filter(r=>HUB_TEAM.reps.includes
 const HUB_DM_GROUPS_SCOPED = HUB_TEAM ? HUB_DM_GROUPS.filter(g=>g.dm===HUB_TEAM.dm || g.under===HUB_TEAM.dm) : HUB_DM_GROUPS;
 (function(ROSTER, DM_GROUPS){
 'use strict';
+// LIBRARY MODE (2026-09-30): the Accounts page loads this file for its
+// adapters -- programs(), nextAccounts(), distFor(), progFacts() ... --
+// with no #app on the page. Then nothing here renders, routes or covers
+// the page; the API on window.KohlerHub is the whole contract.
+const LIB = !document.getElementById('app');
 // A support rep is in the hub for a named set of on-prem objectives only.
 const isSupport = rep => Object.prototype.hasOwnProperty.call(HUB_SUPPORT, rep);
 const supportAllows = (rep, p) => !isSupport(rep) || (p.type==='MPO' && p.source==='on' && HUB_SUPPORT[rep].objectives.includes(p.key));
@@ -198,14 +203,17 @@ const INC_CHANNEL = {
   keystone_ice:'off', lytt:'off', tona:'off', sun_cruiser:'off', path_to_victory:'off', path_to_victory_sd:'off', mollys:'off',
   display_auction:'off', mabi_retention:'off', mabi_retention_fall:'off',
   sam_adams_conversion:'on', printed_menu:'on', new_belgium:'on',
+  mabi_single_serve:'off', four_loko:'off', sam_adams_cold_snap:'on', new_belgium_distribution_retain:'off',
 };
 const CHANNEL_LABEL = {on:'On-Premise', off:'Off-Premise', both:'On & Off-Premise'};
 
-function incBlob(key){ return PROGRAM_DATA_2026_09[key] || PROGRAM_DATA[key] || {}; }
+function incBlob(key){ return (typeof PROGRAM_DATA_2026_10!=='undefined' && PROGRAM_DATA_2026_10[key]) || PROGRAM_DATA_2026_09[key] || PROGRAM_DATA[key] || {}; }
 function incPeriod(entry, month){
-  const P = incBlob(entry.key);
+  const P = incBlob(entry.dataKey||entry.key);
   const year = +month.key.slice(0,4);
-  let start = parseISO(P.periodStart), end = parseISO(P.periodEnd);
+  // a registry entry may carry its own window (2026-09-30: the October tab
+  // extends Touchdowns & Tea and Lytt past the window their data was built for)
+  let start = entry.period ? parseISO(entry.period.start) : parseISO(P.periodStart), end = entry.period ? parseISO(entry.period.end) : parseISO(P.periodEnd);
   if(!start && P.meta && P.meta.startDate) start = parseUS(P.meta.startDate);
   if(!end && P.meta && P.meta.endDate) end = parseUS(P.meta.endDate);
   if(!start || !end){
@@ -220,26 +228,38 @@ function withIncMonth(month, fn){
   PROGRAM_LIST = month.programs; activeMonth = month;
   try { return fn(); } finally { PROGRAM_LIST = pm; activeMonth = am; }
 }
-function incHasAnyData(entry){ return ROSTER.some(r=>!!entry.getRep(r)); }
+// A rep's browser gets a per-rep copy of the program data (tools/rep_slices.py,
+// 2026-10-01): other reps' rows are gone, so "anyone has data" is carried by
+// the copy's __anyData mark on each program instead of a roster scan.
+function incHasAnyData(entry, month){
+  if(ROSTER.some(r=>!!entry.getRep(r))) return true;
+  const k = entry.dataKey||entry.key;
+  const B = month && month.key==='2026-10' && typeof PROGRAM_DATA_2026_10!=='undefined' ? PROGRAM_DATA_2026_10 : month && month.key==='2026-09' ? PROGRAM_DATA_2026_09 : PROGRAM_DATA;
+  return !!((B && B[k] && B[k].__anyData) || incBlob(k).__anyData);
+}
 
 function makeIncentive(entry, month){
   const sup = supplierOf(entry.key);
-  const anyData = incHasAnyData(entry);
+  const anyData = incHasAnyData(entry, month);
   const period = incPeriod(entry, month);
   const chan = INC_CHANNEL[entry.key] || 'both';
-  const P = incBlob(entry.key);
+  const P = incBlob(entry.dataKey||entry.key);
   const rules = PROGRAM_RULES[entry.key] || [];
   const p = {
     id: 'inc:'+entry.key, source:'inc', key: entry.key, monthKey: month.key, monthLabel: month.label,
-    name: entry.title, shortName: entry.shortTitle || entry.title, pitch: entry.pitch || '',
+    name: entry.title, shortName: (window.kdhTitle ? window.kdhTitle('inc:'+entry.key, entry.shortTitle || entry.title) : (entry.shortTitle || entry.title)), pitch: entry.pitch || '',
     type: 'Incentive', group: entry.group || 'new', supKey: PROGRAM_SUPPLIER[entry.key] || 'house', channel: chan, channelLabel: CHANNEL_LABEL[chan],
     supplier: sup.name, supplierLogo: assetPath(sup.logo), brandLogos: progLogos(entry.key).map(assetPath),
-    period, refreshed: incRefreshed(), manual: !!entry.manual, awaitingNote: entry.awaitingNote || '',
+    period, refreshed: entry.key==='new_belgium_distribution_retain' && P.meta?.reportCreated ? P.meta.reportCreated.replace('T',' ').slice(0,16) : incRefreshed(), manual: !!entry.manual, awaitingNote: entry.awaitingNote || '',
     rules, reward: rules.find(r=>/\$|win|trip|ticket|bonus|commission/i.test(r)) || '',
     territory: CORE_MARKET_PROGRAM_KEYS.has(entry.key) ? 'Core Market counties' : 'All counties',
     entry, month,
   };
   p.forRep = function(rep){
+    // A program with no data at all and no manual feed is a shape waiting on
+    // its first export -- it stays off every rep's list until then (Gavin,
+    // 2026-09-30: the awaiting rows were redundant). The tracker still shows it.
+    if(!anyData && !entry.manual) return null;
     const d = entry.getRep(rep);
     if(!d && anyData) return null;                       // program has data, none for this rep: not in it
     if(d && d.programEligible===false) return null;
@@ -263,6 +283,7 @@ function makeIncentive(entry, month){
       status, pace: openEnded ? (started?'earned':'notstarted') : s.status, pct, openEnded,
       now: s.label || '', sub: s.sub || '', goal: goalText, remain: s.remain || null, next: s.next || '',
       segments: s.segments || null, house: !!s.house, valueNum: s.now, goalNum: s.target,
+      legs: (s.legs && s.legs.length) ? s.legs : null,     // one card, two programs inside (Touchdowns & Tea)
     };
   };
   p.detailHtml = rep => withIncMonth(month, ()=>fixAssets(cardFor(entry.key, rep)));
@@ -319,12 +340,13 @@ const MPO_SCOPES = {
 };
 const SUPPLIER_ALIAS = {'BBC':'Boston Beer', 'HUSA':'Heineken USA', 'Spirits':'Carbliss', 'Lofted Spirits':'Bardstown Bourbon',
   'Sapporo Light':'Sapporo', 'Famosa 7oz':'Famosa', 'POS':'Kohler House Programs', 'Disruptors':'Kohler House Programs',
-  'iSellBeer Execution':'Kohler House Programs'};
+  'iSellBeer Execution':'Kohler House Programs', 'Wine':'Wine & Spirits'};
 const SUPPLIER_LOGO_KEY = {'Molson Coors':'molson_coors','Boston Beer':'boston_beer','Constellation':'constellation',
   'New Belgium':'new_belgium','Bardstown Bourbon':'bardstown','Kohler House Programs':'house'};
-const MPO_BRAND_LOGO = {keystone_ice:'keystone_ice.png', bbc_lytt:'lytt.png', disruptors:'lytt.png', constellation_gaintain:'constellation.png',
+const MPO_BRAND_LOGO = {sam_adams_conversion:'boston_beer.png', constellation_innovation:'constellation.png', keystone_ice:'keystone_ice.png', bbc_lytt:'lytt.png', disruptors:'lytt.png', constellation_gaintain:'constellation.png',
   corona_premier:'constellation.png', new_belgium:'new_belgium.png', bardstown_menu:'bardstown.png', molson_coors:'molson_coors.png',
-  fever_tree:'molson_coors.png', angry_orchard:'boston_beer.png', ws_2xo:'two_xo.png', carbliss:null};
+  fever_tree:'molson_coors.png', angry_orchard:'boston_beer.png', ws_2xo:'two_xo.png', mollys:'mollys.png', yave:'yave.png', green_river:'bardstown.png', famosa:'famosa.png', carbliss:null};
+const sam_adams_conversion_extra = k => k==='sam_adams_conversion' ? 'sam_adams.png' : '';
 const TYPE_NOTE = {
   dual: 'Every brand target must be hit for the objective to count — it is not a combined pool.',
   pct_of_base: 'Your target is a share of your OWN account base, so every rep has a different number.',
@@ -370,17 +392,17 @@ function makeMpo(scope, month, o){
   const rules = [];
   if(o.goalLabel) rules.push(`Goal: ${o.goalLabel}`);
   rules.push(`Worth ${weightPct}% of the ${month.label} ${S.label} MPO — the MPO is 20% of total commission eligibility, weighted across the month's objectives`);
-  if(TYPE_NOTE[o.type]) rules.push(TYPE_NOTE[o.type]);
+  if(o.typeNote || TYPE_NOTE[o.type]) rules.push(o.typeNote || TYPE_NOTE[o.type]);
   if(o.key==='new_belgium' && TYPE_NOTE.new_belgium && o.type!=='new_belgium') rules.push(TYPE_NOTE.new_belgium);
   if(!o.hasData) rules.push('Verified from iSellBeer photos — there is no data feed behind this objective, so no numbers show here.');
   if(o.periodEnd) rules.push(`Runs through ${fmtDayYear(end)}, so it keeps accruing after the rest of the month's objectives close.`);
   const data = () => (mpoState[scope] && mpoState[scope][month.key]) || {};
   const p = {
     id: `${scope}:${month.key}:${o.key}`, source: scope, key: o.key, monthKey: month.key, monthLabel: month.label,
-    name: o.name, shortName: o.shortName || o.name, pitch: o.goalLabel ? `${o.goalLabel} — ${weightPct}% of the ${S.label} MPO.` : '',
+    name: o.name, shortName: (window.kdhTitle ? window.kdhTitle(`${scope}:${month.key}:${o.key}`, o.shortName || o.name) : (o.shortName || o.name)), pitch: o.goalLabel ? `${o.goalLabel} — ${weightPct}% of the ${S.label} MPO.` : '',
     type:'MPO', channel: S.channel, channelLabel: CHANNEL_LABEL[S.channel],
-    supplier, supplierLogo: supLogo, brandLogos: brand ? [brand] : [],
-    period, refreshed: '', manual: !o.hasData, awaitingNote: '',
+    supplier, rawSupplier: rawSup, supplierLogo: supLogo, brandLogos: brand ? [brand] : [],
+    period, refreshed: '', manual: !o.hasData && !o.awaiting, awaitingNote: o.awaitingNote || '',
     rules, reward: `${weightPct}% of the ${S.label} MPO (20% of commission eligibility)`,
     territory: '', objective: o, month, scope,
     get loaded(){ return !!data().DATA; },
@@ -400,7 +422,7 @@ function makeMpo(scope, month, o){
       ? `You hit this objective — keep it there through <strong>${E(endTxt)}</strong>.`
       : started
         ? `You need <strong>${E(m.remainText||'')}</strong> more by ${E(endTxt)}.`
-        : `Nothing counted yet — you need <strong>${E(m.goalText||'')}</strong> by ${E(endTxt)}.`;
+        : `Nothing counted yet — you need <strong>${E(m.needText||m.goalText||'')}</strong> by ${E(endTxt)}.`;
     return {
       status, pace: paceFromPct(pct, done, started), pct, openEnded:false,
       now: m.valueText, sub: '', goal: m.goalText, remain: m.remainText || null, next,
@@ -409,7 +431,8 @@ function makeMpo(scope, month, o){
       // Spirits); `line` stays for the detail screen's existing renderer.
       segments: m.subs ? m.subs.map(s=>({label:s.label, pct:s.pct, line:`${s.value} of ${s.goal}`,
                                          valueText:s.valueText || `${s.value} / ${s.goal}`, status:s.status})) : null,
-      valueNum: m.value, goalNum: m.goal, weight: weightPct,
+      valueNum: m.value, goalNum: m.goal, needNum: m.needText ? m.remaining : undefined, weight: weightPct,
+      explain: m.explain || null, underlying: m.underlying, pctRule: m.pctRule,
     };
   };
   p.detailHtml = function(rep){
@@ -452,19 +475,71 @@ function makeMpo(scope, month, o){
    THE UNIFIED LIST
    ==================================================================== */
 let PROGRAMS = [];
+/* BRAND MANAGER SCOPE (2026-10-14, Gavin): a brand manager covers a supplier
+   (or a few) with EVERY rep under them, while a district manager covers a
+   team of reps across every supplier. kdhBrandScope() (shared/kdh-user.js)
+   gives the Fusion supplier names on the manager's allowed_users.program_brands
+   -- or the ones a manager preview carries -- and buildPrograms() then keeps
+   only programs of those suppliers, so Program View, its Supplier filter, a
+   rep's page and the exports all know just their brands. The roster is NOT
+   cut (all reps). A DM, a VP or Gavin (no brands on file) keeps every
+   supplier; the DM team cut (HUB_TEAM) is separate and still applies.
+   Names match the forgiving way: "Boston Beer Company" = "Boston Beer",
+   "MolsonCoors Beverage Company" = "Molson Coors", "Constellation Brands" =
+   "Constellation", "Phusion Projects" = Four Loko (through SUPPLIERS.rde). */
+let BRAND_SCOPE = null;          // ['Boston Beer Company', ...] or null = every supplier
+// the names a program is filed under; matched by kdhBrandMatch (shared/kdh-user.js: ONE rule for the hub and the MPO trackers)
+function programSupplierNames(p){
+  const names = [p.supplier, p.rawSupplier];
+  const sk = p.supKey || SUPPLIER_LOGO_KEY[p.supplier];
+  if(sk && typeof SUPPLIERS!=='undefined' && SUPPLIERS[sk]) names.push(SUPPLIERS[sk].name, SUPPLIERS[sk].rde);
+  if(p.type==='MPO' && window.kdhMpoSupplierNames) names.push(...window.kdhMpoSupplierNames(p.objective || {key:p.key, name:p.name, custom:p.custom}));
+  return names.filter(Boolean);
+}
+const brandAllows = p => !BRAND_SCOPE || !window.kdhBrandMatch || window.kdhBrandMatch(programSupplierNames(p), BRAND_SCOPE);
+// the suppliers a brand manager's programs are filed under (for the Program View line and the exports)
+function brandScopeText(){
+  if(!BRAND_SCOPE) return '';
+  const sups = [...new Set(PROGRAMS.map(p=>p.supplier))].sort((a,b)=>a.localeCompare(b));
+  return sups.length ? sups.join(', ') : (BRAND_SCOPE.suppliers || BRAND_SCOPE).join(', ');
+}
+let BOOTED = false;
 function buildPrograms(){
   const out = [];
   // Incentives: one entry per program key, the newest month's registry wins
   // (the six "ongoing" programs appear on both tabs pointing at one dataset).
   const seen = new Map();
   MONTHS.slice().reverse().forEach(month=>{
-    month.programs.forEach(entry=>{ if(!seen.has(entry.key)) seen.set(entry.key, makeIncentive(entry, month)); });
+    month.programs.forEach(entry=>{ if(entry.hub===false) return; if(!seen.has(entry.key)) seen.set(entry.key, makeIncentive(entry, month)); });
   });
   out.push(...seen.values());
   Object.keys(MPO_SCOPES).forEach(scope=>{
     MPO_SCOPES[scope].mod.MONTHS.forEach(month=>{ month.objectives.forEach(o=>out.push(makeMpo(scope, month, o))); });
   });
-  PROGRAMS = out;
+  // Manager-built programs (shared/custom-programs.js, 2026-10-08): approved
+  // definitions evaluated in the browser, handed over as ready-made hub entries.
+  // Incentives list like any other; MPO-kind ones render on the MPO trackers
+  // and reach the hub only by deep link. A TEST program carries isTest.
+  (window.KDH_CUSTOM_PROGRAMS||[]).forEach(c=>{
+    if(!c || !c.id) return;
+    if(c.kind==='mpo' && !/prog=inc:cp_/.test(location.hash)) return;
+    if(HubAccounts.PROGRAM_BRANDS[c.id]===undefined) HubAccounts.PROGRAM_BRANDS[c.id] = null;   // any brand: the product list is explicit
+    // group under the hub's own supplier heading (the builder stores the Fusion name, e.g. "Boston Beer Company")
+    if(typeof SUPPLIERS!=='undefined' && c.supplier){ const sk = Object.keys(SUPPLIERS).find(k=>SUPPLIERS[k].rde===c.supplier || SUPPLIERS[k].name===c.supplier); if(sk){ c.supKey = sk; c.supplier = SUPPLIERS[sk].name; if(!c.supplierLogo) c.supplierLogo = assetPath(SUPPLIERS[sk].logo); } }
+    const res = c.program && c.program.definition && c.program.definition.products && c.program.definition.products.resolved;
+    if(res && res.length){ window.KDH_PROGRAM_SKUS = window.KDH_PROGRAM_SKUS || {}; window.KDH_PROGRAM_SKUS[c.id] = {source:'Manage Programs', products: res.map(x=>({id:String(x.id), name:x.name}))}; }
+    out.push(c);
+  });
+  PROGRAMS = BRAND_SCOPE ? out.filter(brandAllows) : out;
+}
+// Called by shared/custom-programs.js once its programs (and a rep's results) are in.
+function rebuildPrograms(){
+  if(!BOOTED) return;              // boot() builds once the brand scope is known
+  buildPrograms(); acctCache.clear();
+  if(LIB) return;
+  const h = readHash();
+  if(h.prog && h.prog!==state.prog && PROGRAMS.some(p=>p.id===h.prog)) applyHash();
+  render();
 }
 const isActive = p => p.period.end >= TODAY;
 function inCategory(p, cat){
@@ -520,6 +595,15 @@ function availability(p, rep){
   if(isSupport(rep)) return {ok:true};          // no route: any account counts
   if(p.type==='MPO' && !mpoMonthLoaded(p.source, p.monthKey)) return {ok:true};
   const A = accountsFor(p, rep);
+  // NO ACCOUNT OF THE PROGRAM'S PREMISE (2026-10-07, Gavin: a rep sees only the programs
+  // available to them): an on-premise program for a rep whose book has no on-premise account
+  // (or off for off) is out of reach even when any brand counts -- unless the tracker already
+  // credits them something (Jayson's Oktoberfest Inns), which stays on their page.
+  if(A.universe===0 && (p.channel==='on' || p.channel==='off')){
+    const r0 = p.forRep(rep);
+    if(!(r0 && Number(r0.valueNum) > 0))
+      return {ok:false, why:UNAVAILABLE, sub:`No ${p.channel==='on'?'on-premise':'off-premise'} accounts on your route.`};
+  }
   if(A.any) return {ok:true};
   const reach = A.eligible.length + A.buying.length;
   if(reach===0){
@@ -586,6 +670,7 @@ function sortedForRep(rep, cat){
       const av = availability(p, rep);
       if(!av.ok) r = Object.assign({}, r, {status:'unavailable', pace:'notstarted', pct:null, unavailable:true, why:av.why, sub:av.sub, next:'', remain:null});
     }
+    if(r.status==='unavailable') return;          // out of reach for this rep: not listed (2026-10-07)
     const past = p.type==='MPO' && viewingPast(p.source);
     rows.push({p, r, g: sortGroup(p, r, past), days: daysLeft(p.period.end)});
   });
@@ -605,7 +690,25 @@ function sortedForRep(rep, cat){
 const openCards = new Set();   // program ids expanded in place on the rep page
 const acctTabs = {};           // program id -> active account tab
 const acctMore = {};           // program id|tab -> show every row
-const state = {mode:'rep', view:'home', rep:null, main:null, cat:null, month:null, prog:null, from:null, peek:null, filters:{type:'all', chan:'all', sup:'all', month:'active'}, showEnded:false, only:null};
+const state = {mode:'rep', view:'home', rep:null, main:null, cat:null, month:null, prog:null, from:null, peek:null, filters:{type:'all', chan:'all', sup:'all', month:'active'}, showEnded:false, only:null, sup:null, list:null, n:null, im:'2026-09', pv:null, pp:null, pq:'', pq2:'', pr:null, plim:30, ret:null};
+// PREVIOUS MONTHS on the Incentives screen (Gavin, 2026-09-30): a simple
+// August / September toggle under the live list so reps can review an
+// earlier month's incentives. Each month lists the programs that ENDED in it
+// (endedIn); a program still running into the next month stays in the live
+// list above. September went live 2026-10-05 (the `note` placeholder is gone).
+// Adding October later = one more entry here once its programs have ended.
+const INC_MONTHS = [
+  {key:'2026-08', label:'August 2026'},
+  {key:'2026-09', label:'September 2026'},
+];
+// REP-MODE FLOW (2026-09-30, Gavin's Encompass brief): Incentives (one row
+// per supplier) -> a supplier's programs -> ONE program's summary -> an
+// account list (potential / credited / follow-ups, searchable) -> one
+// account (details, credited lines, the rep's own marks). Views: rep, sup,
+// detail, accts, acct. Manager Mode (desktop) keeps its own screens.
+const LISTS = {targets:'Potential Accounts', elig:'Eligible Accounts', dist:'Credited Accounts', follow:'Follow-ups', done:'Done', skip:'Not Now', hold:'Accounts to Hold'};
+const scrollMem = {};          // hash -> scrollY, so Back lands where the list was
+const acctQ = {};              // account-list search text, per program|list
 // only:'inc' (from the rep workspace's Incentive Hub tile, `only=inc` in the
 // hash) shows the Incentives tab alone -- the MPO tabs are their own tiles.
 // Signed-in identity (the `kdh_user` cookie /login/ sets on kohlerdisthub.com).
@@ -621,7 +724,7 @@ const KDH_USER = (()=>{ try{ if(window.kdhUser) return window.kdhUser(); const m
 const LOCKED_REP = (()=>{
   if(!(KDH_USER && KDH_USER.role !== 'manager' && KDH_USER.name)) return null;
   const m = window.kdhMatchName ? window.kdhMatchName(KDH_USER.name, HUB_ROSTER) : (HUB_ROSTER.includes(KDH_USER.name) ? KDH_USER.name : null);
-  if(!m && window.kdhNoRoster){ document.addEventListener('DOMContentLoaded', ()=>window.kdhNoRoster('Incentive Hub')); if(document.readyState!=='loading') window.kdhNoRoster('Incentive Hub'); }
+  if(!m && window.kdhNoRoster && !LIB){ document.addEventListener('DOMContentLoaded', ()=>window.kdhNoRoster('Incentive Hub')); if(document.readyState!=='loading') window.kdhNoRoster('Incentive Hub'); }
   return m;
 })();
 
@@ -639,19 +742,23 @@ const LOCKED_REP = (()=>{
    (github.io has no auth-config.js, no cookie) none of this renders. */
 const RA = (()=>{
   const cfg = window.KDH_AUTH || null;
-  const token = (()=>{ try{ const m = document.cookie.match(/(?:^|;\s*)kdh_at=([^;]*)/); return m ? decodeURIComponent(m[1]) : ''; }catch(e){ return ''; } })();
-  const on = !!(cfg && cfg.url && cfg.key && token);
+  // read at each request: the keep-alive (shared/kdh-user.js) renews the cookie while the page is open
+  const tok = ()=>{ try{ const m = document.cookie.match(/(?:^|;\s*)kdh_at=([^;]*)/); return m ? decodeURIComponent(m[1]) : ''; }catch(e){ return ''; } };
+  const on = !!(cfg && cfg.url && cfg.key && tok());
   const map = new Map();      // program_id|account_num -> {status, note, updated_at}
   let loadedFor = null, loading = false, err = '';
   const num = a => a && a.n!=null ? String(a.n) : 'name:'+HubAccounts.norm(a ? a.name : '');
   const key = (pid, a) => pid+'|'+num(a);
   const base = () => cfg.url.replace(/\/$/,'')+'/rest/v1/rep_actions';
-  const hdr = extra => Object.assign({apikey:cfg.key, authorization:'Bearer '+token, accept:'application/json'}, extra||{});
+  const hdr = extra => Object.assign({apikey:cfg.key, authorization:'Bearer '+tok(), accept:'application/json'}, extra||{});
   // Only the signed-in person edits their own list. A manager previewing
   // or viewing a rep sees the marks but cannot press (their token would
   // stamp the rows with the manager's own name).
   const canEdit = rep => on && KDH_USER && !KDH_USER.preview && !!rep && KDH_USER.name === rep;
   const canShow = rep => on && !!rep;
+  // A manager previewing a rep sees the rep's own controls, disabled, with a
+  // note -- never a live button that would stamp the manager's name (2026-09-30).
+  const previewOf = rep => on && !!(KDH_USER && KDH_USER.preview && KDH_USER.role !== 'manager' && !!rep && KDH_USER.name === rep);
   async function load(rep){
     if(!on || !rep || loading || loadedFor===rep) return;
     loading = true; err = '';
@@ -690,11 +797,11 @@ const RA = (()=>{
     }catch(e){ map.set(key(pid, a), cur); err = 'Couldn’t clear that ('+(e.message||e)+').'; }
     render();
   }
-  return {on, canEdit, canShow, load, set, clear, num,
+  return {on, canEdit, canShow, previewOf, load, set, clear, num,
     get: (pid, a) => map.get(key(pid, a)) || null,
     error: () => err, isLoading: () => loading, loadedFor: () => loadedFor};
 })();
-const RA_LABEL = {done:'Done', follow:'Follow up', skip:'Not now'};
+const RA_LABEL = {done:'Done', follow:'Follow-Up', skip:'Not Now'};
 const RA_MARK  = {done:'✓', follow:'⚑', skip:'–'};
 let raEdit = null;   // "program|acct" whose note box is open
 const raFoldOpen = new Set();   // "program|status" folds the rep opened (re-renders keep them open)
@@ -723,7 +830,11 @@ function raStrip(p, a, edit, show){
     const b = (k2, l) => `<button type="button" class="ra-b ${k2}${st && st.status===k2 ? ' on' : ''}" data-act="ra-set" data-prog="${E(p.id)}" data-n="${E(RA.num(a))}" data-status="${k2}" aria-pressed="${st && st.status===k2 ? 'true' : 'false'}">${RA_MARK[k2]} ${l}</button>`;
     return note + (raEdit===k
       ? `<form class="ra-edit" data-prog="${E(p.id)}" data-n="${E(RA.num(a))}"><input type="text" maxlength="200" placeholder="Note (who you spoke to, what they said…)" value="${E(st ? st.note : '')}" autocomplete="off"><button type="submit" class="ra-b on">Save</button><button type="button" class="ra-b" data-act="ra-cancel">Cancel</button></form>`
-      : `<div class="ra">${b('done','Done')}${b('follow','Follow up')}${b('skip','Not now')}<button type="button" class="ra-b note" data-act="ra-note" data-prog="${E(p.id)}" data-n="${E(RA.num(a))}">${st && st.note ? 'Edit note' : '+ Note'}</button>${st && st.saving ? '<span class="ra-saving">Saving…</span>' : ''}</div>`);
+      : `<div class="ra">${b('done','Done')}${b('follow','Follow-Up')}${b('skip','Not Now')}<button type="button" class="ra-b note" data-act="ra-note" data-prog="${E(p.id)}" data-n="${E(RA.num(a))}">${st && st.note ? 'Edit note' : '+ Note'}</button>${st && st.saving ? '<span class="ra-saving">Saving…</span>' : ''}</div>`);
+  }
+  if(RA.previewOf(state.rep)){
+    const b = (k2, l) => `<button type="button" class="ra-b ${k2}${st && st.status===k2 ? ' on' : ''}" disabled aria-disabled="true">${RA_MARK[k2]} ${l}</button>`;
+    return note + `<div class="ra ra-off">${b('done','Done')}${b('follow','Follow-Up')}${b('skip','Not Now')}</div><div class="ra-pv">Saving is off in preview — these are ${E(first(state.rep))}’s own marks.</div>`;
   }
   if(st) return note + `<div class="ra"><span class="ra-chip ${st.status}">${RA_MARK[st.status]} ${RA_LABEL[st.status]}${raDay(st.updated_at) ? ' · '+raDay(st.updated_at) : ''}</span></div>`;
   return '';
@@ -731,7 +842,7 @@ function raStrip(p, a, edit, show){
 const raTag = (p, a, edit, show) => { const st = show ? RA.get(p.id, a) : null; return st && edit ? `<span class="ra-tag ${st.status}">${RA_MARK[st.status]} ${RA_LABEL[st.status]}</span>` : ''; };
 const raRowCls = (p, a, show) => { const st = show ? RA.get(p.id, a) : null; return st ? ' ra-'+st.status : ''; };
 const raNotes = (show, edit, rows, marks) => (show && RA.error() ? `<div class="ra-err">${E(RA.error())}</div>` : '')
-  + (edit && rows.length && !marks ? `<div class="ra-hint">Tap <b>Done</b>, <b>Follow up</b> or <b>Not now</b> under an account to keep track — your manager sees your marks too.</div>` : '');
+  + (edit && rows.length && !marks ? `<div class="ra-hint">Tap <b>Done</b>, <b>Follow-Up</b> or <b>Not Now</b> under an account to keep track — your manager sees your marks too.</div>` : '');
 // One visit-list row. `edit` = the signed-in rep on their own list.
 function planRowHtml(p, a, edit, show){
   const meta = E([a.city, a.area].filter(Boolean).join(' · ')) + (a.cases>0 ? ` · ${E(fmtCases(a.cases))}/yr` : '');
@@ -762,20 +873,44 @@ function persist(){ try{ localStorage.setItem(LS_KEY, JSON.stringify({rep:state.
 // narrow window) always gets Rep Mode, and a mode=manager link opened there
 // is rewritten to Rep Mode.
 const isMobile = () => window.innerWidth < 760 || (window.matchMedia('(pointer:coarse)').matches && window.innerWidth < 1100) || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-const isMgr = () => state.mode==='manager' && !isMobile();
-window.addEventListener('resize', ()=>{ if(state.mode==='manager') render(); });
-function restore(){ try{ const s = JSON.parse(localStorage.getItem(LS_KEY)||'{}'); if(s.mode==='manager' && !isMobile()) state.mode = 'manager'; }catch(e){} }
+// Manager Mode needs a wide screen -- unless the person is a signed-in manager (2026-10-05, Gavin: managers
+// open on the program view everywhere; DMs are already cut to their team by HUB_TEAM).
+const mgrCapable = () => !isMobile() || SIGNED_MGR;
+const isMgr = () => state.mode==='manager' && mgrCapable();
+// Leaving one rep's view (Change / home): a signed-in manager goes back to Manager Mode --
+// managers always browse in Manager Mode; only the as-rep view forces Rep Mode.
+const leaveAsRep = () => { state.asRep = false; if(SIGNED_MGR && mgrCapable()) state.mode = 'manager'; };
+window.addEventListener('resize', ()=>{ if(!LIB && state.mode==='manager') render(); });
+// A signed-in manager on a computer starts in Manager Mode (2026-10-04, Gavin:
+// no repeated mode screens); a manager who switched to Rep Mode keeps it.
+// A manager being PREVIEWED by Gavin counts too (2026-10-14): kdhUser() gives
+// that manager's role, so the preview opens on Program View exactly as they
+// would, not on the rep picker. A rep preview has role 'rep' and is excluded.
+const SIGNED_MGR = !!(KDH_USER && KDH_USER.role === 'manager');
+function restore(){ try{ const s = JSON.parse(localStorage.getItem(LS_KEY)||'{}');
+  if(mgrCapable() && (s.mode==='manager' || SIGNED_MGR)) state.mode = 'manager'; }catch(e){ if(SIGNED_MGR && mgrCapable()) state.mode = 'manager'; } }
 function hashOf(){
   const p = [];
   if(state.view!=='home') p.push('view='+state.view);
   if(state.rep && state.view!=='programs' && state.view!=='program') p.push('rep='+encodeURIComponent(state.rep));
-  if(state.cat && (state.view==='rep' || state.view==='detail')) p.push('cat='+state.cat);
+  if(state.cat && (state.view==='rep' || state.view==='detail' || state.view==='sup' || state.view==='accts' || state.view==='acct')) p.push('cat='+state.cat);
+  if(state.sup && state.view==='sup') p.push('sup='+encodeURIComponent(state.sup));
+  if(state.list && (state.view==='accts' || state.view==='acct')) p.push('list='+state.list);
+  if(state.n!=null && state.view==='acct') p.push('n='+encodeURIComponent(state.n));
   if(state.month && state.view==='rep') p.push('month='+state.month);
-  if(state.prog && (state.view==='detail' || state.view==='program')) p.push('prog='+encodeURIComponent(state.prog));
+  if(state.prog && (state.view==='detail' || state.view==='program' || state.view==='accts' || state.view==='acct')) p.push('prog='+encodeURIComponent(state.prog));
   if(state.from && state.view==='detail') p.push('from='+state.from);
+  if(state.ret && (state.view==='detail' || state.view==='accts' || state.view==='acct')) p.push('ret='+encodeURIComponent(state.ret));
   if(state.peek && state.view==='detail') p.push('who='+encodeURIComponent(state.peek));
+  if(state.prog && (state.view==='detail' || state.view==='program')){
+    if(state.pv && state.pv!=='accts') p.push('pv='+state.pv);
+    if(state.pp) p.push('pp='+encodeURIComponent(state.pp));
+    if(state.pq) p.push('pq='+encodeURIComponent(state.pq));
+    if(state.pr) p.push('pr='+encodeURIComponent(state.pr));
+  }
   if(isMgr()) p.push('mode=manager');
   if(state.only) p.push('only='+state.only);
+  if(state.im && state.im!==INC_MONTHS[INC_MONTHS.length-1].key && (state.view==='rep' || state.view==='sup')) p.push('im='+state.im);
   return p.length ? '#'+p.join('&') : '#';
 }
 function readHash(){
@@ -783,32 +918,58 @@ function readHash(){
   h.split('&').filter(Boolean).forEach(kv=>{ const i = kv.indexOf('='); if(i<0) return; o[kv.slice(0,i)] = decodeURIComponent(kv.slice(i+1)); });
   return o;
 }
+// Carbliss MPO (2026-10-07, Gavin): the leaderboard IS this month's Carbliss MPO, so every way into that program
+// (Program View card, rep row, old deep links) lands on /carbliss-onprem-targets/ with no second screen.
+const CB_PROG = 'on:2026-10:carbliss', CB_HREF = '../carbliss-onprem-targets/';
 function applyHash(){
   const h = readHash();
+  if(!LIB && h.prog===CB_PROG && !h.acct){ location.replace(CB_HREF); return; }
   if(h.rep && ROSTER.includes(h.rep)) state.rep = h.rep;
   if(h.main==='inc' || h.main==='mpo') state.main = h.main;
   if(h.cat && CATEGORIES.some(c=>c.key===h.cat)){ state.cat = h.cat; state.main = tabOf(h.cat); }
   state.month = h.month && Object.keys(MPO_SCOPES).some(sc=>MPO_SCOPES[sc].mod.MONTHS.some(m=>m.key===h.month)) ? h.month : null;
   state.prog = h.prog && PROGRAMS.some(p=>p.id===h.prog) ? h.prog : null;
   state.from = h.from || null;
+  state.ret = safeRet(h.ret);
+  state.pv = ['accts','prods','cred'].includes(h.pv) ? h.pv : null;
+  state.pp = h.pp || null; state.pq = h.pq || ''; state.pr = h.pr && ROSTER.includes(h.pr) ? h.pr : null;
   state.peek = (h.who && ROSTER.includes(h.who) && h.who!==state.rep) ? h.who : null;
-  if(h.mode==='manager') state.mode = isMobile() ? 'rep' : 'manager'; else if(h.mode==='rep') state.mode = 'rep';
+  if(h.mode==='manager') state.mode = mgrCapable() ? 'manager' : 'rep'; else if(h.mode==='rep') state.mode = 'rep';
   const v = h.view;
   // view=pick was the old "what are you looking for?" / supplier step -- an
   // old link now lands straight on the rep's dashboard with that tab open.
-  if(v==='programs' || v==='program' || v==='rep' || v==='detail' || v==='home') state.view = v;
+  state.sup = h.sup && PROGRAMS.some(p=>p.supplier===h.sup) ? h.sup : null;
+  state.list = LISTS[h.list] ? h.list : null;
+  state.n = h.n!=null && h.n!=='' ? String(h.n) : null;
+  if(v==='programs' || v==='program' || v==='rep' || v==='detail' || v==='home' || v==='sup' || v==='accts' || v==='acct') state.view = v;
   else if(v==='pick'){ state.view = 'rep'; state.cat = (h.main ? tabOf(h.main) : null) || state.cat || lastTab(); }
   else state.view = 'home';
-  if((state.view==='rep' || state.view==='detail') && !state.rep) state.view = 'home';
+  if((state.view==='rep' || state.view==='detail' || state.view==='sup' || state.view==='accts' || state.view==='acct') && !state.rep) state.view = 'home';
+  if(state.view==='sup' && !state.sup) state.view = 'rep';
+  if((state.view==='accts' || state.view==='acct') && !state.prog) state.view = 'rep';
+  if(state.view==='accts' && !state.list) state.list = 'targets';
+  if(state.view==='acct' && state.n==null) state.view = 'accts';
   if(state.view==='rep' && !state.cat){ state.cat = lastTab(); }
   state.main = tabOf(state.cat);
   if((state.view==='detail' || state.view==='program') && !state.prog) state.view = state.rep ? 'rep' : 'programs';
-  if(isMobile() && (state.view==='programs' || state.view==='program')) state.view = state.rep ? 'rep' : 'home';
+  if(!mgrCapable() && (state.view==='programs' || state.view==='program')) state.view = state.rep ? 'rep' : 'home';
   state.only = TAB_KEYS.includes(h.only) ? h.only : null;
+  state.im = INC_MONTHS.some(m=>m.key===h.im) ? h.im : INC_MONTHS[INC_MONTHS.length-1].key;
   applyOnly();
   lockState();
 }
 function go(next, replace){
+  if(!LIB && next.prog===CB_PROG && (next.view==='program' || next.view==='detail' || next.view==='workspace')){ location.href = CB_HREF; return; }
+  try{ scrollMem[location.hash||'#'] = window.scrollY; }catch(e){}
+  // RETURN PATH (2026-10-06): a program screen remembers the exact screen it
+  // was opened from (another page's link passes ret=; inside the hub it is the
+  // hub screen we are leaving), and its Back goes there.
+  if(!('ret' in next) && next.view!==undefined){
+    const into = next.view==='detail' || next.view==='accts' || next.view==='acct';
+    const inside = state.view==='detail' || state.view==='accts' || state.view==='acct';
+    if(!into) next.ret = null;
+    else if(!inside && state.view!=='home') next.ret = location.pathname + (location.hash || '#');
+  }
   Object.assign(state, next);
   applyOnly();
   lockState();
@@ -818,14 +979,17 @@ function go(next, replace){
   render();
   if(next.view!==undefined) window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
 }
-window.addEventListener('popstate', ()=>{ applyHash(); const h = hashOf(); if(h!==(location.hash||'#')) history.replaceState(null, '', h); render(); });
+window.addEventListener('popstate', ()=>{ if(LIB) return; applyHash(); const h = hashOf(); if(h!==(location.hash||'#')) history.replaceState(null, '', h); render();
+  // Back restores where the list was scrolled to (2026-09-30).
+  const y = scrollMem[location.hash||'#']; if(typeof y==='number') requestAnimationFrame(()=>window.scrollTo(0, y)); });
 
 /* ====================================================================
    RENDERING
    ==================================================================== */
 const app = () => $('#app');
 const first = rep => String(rep||'').split(' ')[0];
-const possessive = rep => { const f = first(rep); return f + (f.endsWith('s') ? '’' : '’s'); };
+const isSelf = rep => !!((LOCKED_REP && rep === LOCKED_REP) || state.asRep);   // a signed-in rep (or a manager seeing the page as that rep) reads 'Your'
+const possessive = rep => { if (isSelf(rep)) return 'Your'; const f = first(rep); return f + (f.endsWith('s') ? '’' : '’s'); };
 
 function chip(cls, text, ic){ return `<span class="chip ${cls}">${ic?`<span class="ic">${ic}</span>`:''}${E(text)}</span>`; }
 function statusChip(r, small){
@@ -855,6 +1019,7 @@ function flags(p, r){
   return out.join('');
 }
 const plw = (n,w)=>`${n} ${w}${n===1?'':'s'}`;
+const plwT = (n,w)=>`${n} ${w}${n===1?'':'s'}`;
 const pl = plw;
 
 /* ---- topbar ---- */
@@ -868,12 +1033,11 @@ function topbar(){
       <div class="nj-hero-row"><img class="hero-logo-badge" src="../assets/kohler-logo-badge.png" alt="Kohler Distributing Company"><span class="nj-hero-script">Northern NJ</span></div>
     </div></div>
     ${state.view!=='home' ? `<div class="navrow">
-      <div class="navl">${rep && onRep ? `<span class="nav-rep">👤 ${E(state.peek && state.view==='detail' ? state.peek : rep)}</span>` : ''}</div>
+      <div class="navl"></div>
       <div class="navr">
-        ${rep && state.view!=='rep' ? `<button class="nbtn" data-act="my-programs">${LOCKED_REP ? 'My programs' : 'All of ' + E(rep.split(' ')[0]) + '’s programs'}</button>` : ''}
-        ${!LOCKED_REP && state.view!=='home' ? `<button class="nbtn quiet" data-act="home">Choose another rep</button>` : ''}
-        ${isMgr() && !(state.view==='programs' || state.view==='program') ? `<button class="nbtn quiet" data-act="programs">By program</button>` : ''}
-        ${isMobile() || LOCKED_REP ? '' : `<span class="modeseg" role="group" aria-label="How much detail"><button class="mseg${isMgr()?'':' active'}" data-act="set-mode" data-mode="rep">Rep view</button><button class="mseg${isMgr()?' active':''}" data-act="set-mode" data-mode="manager">Manager view</button></span>`}
+        ${rep && state.view!=='rep' && isMgr() ? `<button class="nbtn" data-act="my-programs">All of ${E(rep.split(' ')[0])}’s programs</button>` : ''}
+        ${isMgr() && !state.asRep && !(state.view==='programs' || state.view==='program') ? `<button class="nbtn quiet" data-act="programs">‹ Program View</button>` : ''}
+        ${!isMgr() && !LOCKED_REP && !state.asRep && state.view!=='home' ? `<button class="nbtn quiet" data-act="home">Choose Another Rep</button>` : ''}
       </div>
     </div>` : ''}
   </div>`;
@@ -886,14 +1050,16 @@ function topbar(){
 function refreshedLine(){
   // Only the feeds this screen shows: incentives-only mode (the workspace's
   // Incentive Hub tile) says nothing about the MPO boards (2026-09-28).
-  const lines = [['Incentives', incRefreshed()]];
-  (state.only==='inc' ? [] : ['off','on']).forEach(s=>{
+  // and on a rep's tab only that tab's feed (2026-10-02): one quiet line, not three
+  const tabNow = (state.view==='rep' || state.view==='sup' || state.view==='detail') && ['inc','off','on'].includes(tabOf(state.cat)) ? tabOf(state.cat) : '';
+  const lines = tabNow && tabNow!=='inc' ? [] : [['Data', incRefreshed()]];
+  (state.only==='inc' || tabNow==='inc' ? [] : ['off','on'].filter(x=>!tabNow || x===tabNow)).forEach(s=>{
     const st = mpoState[s]||{}; const mk = mpoRepMonth(s);
     const iso = (st[mk] && st[mk].syncedAt) || Object.keys(st).map(k=>st[k].syncedAt).filter(Boolean).sort().pop();
-    lines.push([MPO_SCOPES[s].label, iso ? fmtSynced(iso) : 'loading…']);
+    lines.push([tabNow ? 'Data' : MPO_SCOPES[s].label, iso ? fmtSynced(iso) : 'loading…']);
   });
   return `<p class="updated"><span class="livedot"></span><span class="upd-lines">${lines.map(([k,v])=>
-    `<span class="upd"><span class="upd-k">${E(k)} refreshed</span> <span class="upd-v">${E(v||'—')}</span></span>`).join('')}</span></p>`;
+    `<span class="upd"><span class="upd-k">${E(k)} Refreshed</span> <span class="upd-v">${E(v||'—')}</span></span>`).join('')}</span></p>`;
 }
 
 /* ---- landing ---- */
@@ -907,12 +1073,12 @@ function screenHome(){
   const mgrPicker = !LOCKED_REP && !!(KDH_USER && KDH_USER.role === 'manager');
   return `<div class="homeview">
     <div class="home-head">
-      <h1>${mgrPicker ? 'Choose a rep' : 'Choose your name'}</h1>
-      <p class="home-sub">${mgrPicker ? 'Tap a name to see that rep’s incentives and MPOs.' : 'Tap your name to see your incentives and MPOs.'}</p>
+      <h1>${mgrPicker ? 'Choose a Rep' : 'Choose Your Name'}</h1>
+      <p class="home-sub">${mgrPicker ? 'Tap a name to see that rep’s incentives.' : 'Tap your name to see your incentives.'}</p>
       ${refreshedLine()}
     </div>
     <div id="repList" class="replist">${repListHtml()}</div>
-    <div class="home-foot">${isMobile() ? '' : isMgr() ? `Manager Mode is on · <a href="#" data-act="programs">Browse by program</a> · <a href="#" data-act="set-mode" data-mode="rep">Back to Rep Mode</a>` : `Manager? <a href="#" data-act="set-mode" data-mode="manager">Switch to Manager Mode (desktop)</a>`}</div>
+    <div class="home-foot">${isMobile() ? '' : isMgr() ? `<a href="#" data-act="programs">Back to Program View</a>` : `Manager? <a href="#" data-act="set-mode" data-mode="manager">Switch to Manager Mode (desktop)</a>`}</div>
   </div>`;
 }
 // Reps under their District Manager, in DM_GROUPS order; anyone on the
@@ -977,10 +1143,10 @@ function incNums(r){
 // something about today; 5 is what does not apply to them at all.
 function incBand(p, r){
   if(!r) return null;
-  if(r.status==='unavailable') return {band:5, label:'Not in your territory', cls:'na'};
-  if(r.soon) return {band:4, label:'Awaiting data', cls:'na'};
+  if(r.status==='unavailable') return {band:5, label:'Not in Your Territory', cls:'na'};
+  if(r.soon) return {band:4, label:'Awaiting Data', cls:'na'};
   const N = incNums(r);
-  if(!N) return {band:3, label:'No set goal', cls:'open'};
+  if(!N) return {band:3, label:'No Set Goal', cls:'open'};
   if(N.need<=0) return {band:2, label:'Goal Met', cls:'met'};
   if(r.pace==='close' || r.pace==='ontrack') return {band:1, label:'On Track', cls:'ontrack'};
   return {band:0, label:'Needs Attention', cls:'attn'};
@@ -1018,7 +1184,9 @@ function cmpKey(a, b){
 function unitOf(r){
   // "16 cases to go", "9,305 CE to unlock", "3 placements", "40% of base" -> cases / CE / placements / ''
   const grab = t => { const m = String(t||'').replace(/,/g,'').match(/^\s*[\d.]+\s*([A-Za-z][A-Za-z' -]*?)(?:\s+(?:to go|to unlock|to earn|more|needed|remaining|left))?\s*$/); if(!m) return ''; const u = m[1].trim(); return /^(of|more|to)\b/i.test(u) ? '' : u; };
-  return grab(r.remain) || grab(r.goal) || grab(r.now) || '';
+  // The goal text first (2026-09-30): "281 cases behind" and "2 lines still
+  // on Summer Ale" are the remaining text, not the unit.
+  return grab(r.goal) || grab(r.now) || grab(r.remain) || '';
 }
 const plural = (n, u) => u ? (n===1 && /s$/.test(u) ? u.replace(/s$/,'') : u) : '';
 // "4 of 20 cases sold · 16 cases remaining · Ends Sep 30"
@@ -1054,6 +1222,7 @@ function incRowHtml(p, r, b, rep){
     <div class="irow-head">
       <span class="irow-top"><span class="irow-name">${E(p.shortName||p.name)}</span><span class="ist ${b.cls}">${b.band<=2?`<i class="idot ${b.cls}"></i>`:''}${E(b.label)}</span></span>
       <span class="irow-meta">${E(meta)}</span>
+      ${off ? '' : goalLineHtml(progFacts(p, r, rep))}
       ${qual}
       ${figures}
       ${bar}
@@ -1089,12 +1258,15 @@ function incRowDetail(p, r, rep, targets, dist, which){
     ? `<div class="it-note">No potential accounts currently identified.</div>`
     : acctList(key, ACCT_COLS.targets, targets, {prog:p, rep});
   if(BG.length){
+    if(p.key==='new_belgium_distribution_retain') return sec('Your package-group goals',brandGoalsHtml(BG,{noTitle:true}))
+      + sec('Account detail','<p class="it-note">This export contains rep and SKU totals, with no customer-level purchases. An account hold or win-back list cannot be verified from it.</p>')
+      + sec('How it is scored',repRulesHtml(p,'ibul')) + full;
     return sec('Your brand goals', brandGoalsHtml(BG, {noTitle:true, oneGoal: p.key==='mabi_retention_fall' ? (r.goal||'goal') : ''}))
       + sec(`Accounts to hold${targets.length?' · '+raLive(p, rep, targets).length:''}`, table, listMore(key, raLive(p, rep, targets)))
       + sec('How it is scored', repRulesHtml(p, 'ibul'))
       + full;
   }
-  const marksNote = (RA.canShow && targets.length) ? `<div class="it-note quiet">Done, Follow up and Not now are your own notes for planning visits. Credit for this program comes only from sales data — see "${E(SEC_LABEL.dist)}".</div>` : '';
+  const marksNote = (RA.canShow && targets.length) ? `<div class="it-note quiet">Done, Follow-Up and Not Now are your own notes for planning visits. Credit for this program comes only from sales data — see "${E(SEC_LABEL.dist)}".</div>` : '';
   return sec(`Potential accounts${targets.length?' · '+raLive(p, rep, targets).length:''}`, table + marksNote, listMore(key, raLive(p, rep, targets)))
     + ((fams && fams.length) ? sec('Pays on', `<div class="itext">${E(fams.join(' · '))}</div>`) : '')
     + sec('How it is scored', repRulesHtml(p, 'ibul'))
@@ -1109,13 +1281,17 @@ function incRows(rep){
     if(!supportAllows(rep, p)) return;
     const r = p.forRep(rep); if(!r) return;
     if(isDollarProgram(r)) return;             // money is not a field metric
-    if(!availability(p, rep).ok && r.status!=='unavailable') return;
+    // Out of reach for this rep -- brand not sellable on the route, no account of the
+    // program's premise, or a Core Market program for a Southern District route -- is not
+    // listed at all (Gavin, 2026-10-07: reps see only what is available to them).
+    if(r.status==='unavailable' || !availability(p, rep).ok) return;
     const b = incBand(p, r); if(!b) return;
     rows.push({p, r, b});
   });
   return rows;
 }
 function screenRepIncentives(rep){
+  if(!isMgr()) return screenSuppliers(rep);
   const rows = incRows(rep);
   const sups = new Map();
   rows.forEach(x=>{ const k = x.p.supplier;
@@ -1155,7 +1331,7 @@ function screenRepIncentives(rep){
       <span class="isum-i met"><b>${met}</b> ${met===1?'goal':'goals'} met</span>
       <span class="isum-i ontrack"><b>${onTrack}</b> on track</span>
       <span class="isum-i attn"><b>${attn}</b> need${attn===1?'s':''} attention</span>
-      ${unitBits.length ? `<span class="isum-i units"><span class="isum-k">Still needed</span> ${unitBits.join('<span class="isum-sep">·</span>')}</span>` : ''}
+      ${unitBits.length ? `<span class="isum-i units"><span class="isum-k">Remaining</span> ${unitBits.join('<span class="isum-sep">·</span>')}</span>` : ''}
     </div>`;
 
   const body = groups.map(g=>{
@@ -1169,7 +1345,7 @@ function screenRepIncentives(rep){
     // fourteen suppliers to find out what needs attention.
     const mini = expanded ? '' : `<div class="imini-list">${g.list.map(x=>{
       const N = incNums(x.r); const u = N ? unitOf(x.r) : '';
-      const prog = !N ? E(x.r.now || (x.r.soon ? 'Awaiting data' : x.r.openEnded ? 'Every one pays' : '')) : (u ? `${fmtN(N.cur)} of ${fmtN(N.goal)} ${E(u)}` : `${E(x.r.now||fmtN(N.cur))} of ${E(x.r.goal||fmtN(N.goal))}`);
+      const prog = !N ? E(x.r.now || (x.r.soon ? 'Awaiting data' : x.r.openEnded ? 'Every One Pays' : '')) : (u ? `${fmtN(N.cur)} of ${fmtN(N.goal)} ${E(u)}` : `${E(x.r.now||fmtN(N.cur))} of ${E(x.r.goal||fmtN(N.goal))}`);
       return `<button class="imini" data-act="open-prog" data-sup="${E(key)}" data-prog="${E(x.p.id)}">
         <span class="imini-n">${E(x.p.shortName||x.p.name)}</span>
         <span class="imini-s ${x.b.cls}">${x.b.band<=2?`<i class="idot ${x.b.cls}"></i>`:''}${E(x.b.label)}</span>
@@ -1185,23 +1361,7 @@ function screenRepIncentives(rep){
     </section>`;
   }).join('');
 
-  // Programs that ended in the last four months, for the record -- closed
-  // by default so they never compete with live work.
-  const ended = [];
-  PROGRAMS.forEach(p=>{
-    if(p.type!=='Incentive' || isActive(p) || !supportAllows(rep, p)) return;
-    if(daysLeft(p.period.end) < -120) return;
-    const r = p.forRep(rep); if(!r || r.status==='unavailable' || isDollarProgram(r)) return;
-    ended.push({p, r});
-  });
-  ended.sort((a,b)=>b.p.period.end - a.p.period.end);
-  const endedHtml = ended.length ? `<details class="iended"${state.showEnded?' open':''}>
-      <summary>Ended programs <span class="iended-n">${ended.length}</span><span class="iended-s">Finished in the last four months</span></summary>
-      <div class="iended-list">${ended.map(x=>{ const N = incNums(x.r); const u = N ? unitOf(x.r) : '';
-        const fin = N ? (u ? `${fmtN(N.cur)} of ${fmtN(N.goal)} ${E(u)}` : `${E(x.r.now||'')} of ${E(x.r.goal||'')}`) : E(x.r.now||'');
-        const okd = x.r.status==='complete'||x.r.status==='exceeded';
-        return `<div class="iended-row"><span class="iended-name">${E(x.p.shortName||x.p.name)}<span class="iended-sup">${E(x.p.supplier)}</span></span><span class="iended-fin${okd?' ok':''}">${okd?'Goal met · ':''}${fin}</span><span class="iended-when">Ended ${E(shortEnds(x.p.period).replace(/^Ends /,''))}</span></div>`; }).join('')}</div>
-    </details>` : '';
+  const endedHtml = prevMonthsHtml(rep);
 
   return `<div class="repview iview">
     <div class="rep-head">
@@ -1232,12 +1392,14 @@ function subStat(rep, sub){
 // already on the page -- no extra screen, no menu, no confirm.
 function tabbar(rep, cat){
   const cur = tabOf(cat);
-  const tabs = TABS.filter(m=>!state.only || m.key===state.only);
+  // MPOs are not on the Incentives page (Gavin, 2026-10-07): they live on the two MPO trackers, so the
+  // only tab is Incentives and the bar disappears. MPO program screens still open by deep link.
+  const tabs = TABS.filter(m=>m.key==='inc');
   if(tabs.length < 2) return '';     // one tab is not a choice (incentives-only mode, 2026-09-28)
   return `<div class="tabbar" role="tablist">${tabs.map(m=>{
     const on = m.key===cur, n = tabCount(rep, m.key);
     return `<button class="tab${on?' active':''}" data-act="set-cat" data-cat="${m.key}" role="tab" aria-selected="${on?'true':'false'}">
-      <span class="tab-ic">${m.ic}</span><span class="tab-l">${E(m.label)}</span>${n===null?'':`<span class="tab-n">${n}</span>`}</button>`;
+      <span class="tab-l"><span class="tl-long">${E(m.label)}</span><span class="tl-short">${E(m.label.replace(/ MPOs$/,''))}</span></span>${n===null?'':`<span class="tab-n">${n}</span>`}</button>`;
   }).join('')}</div>`;
 }
 // Programs behind a tab. Incentives counts what the incentive page itself
@@ -1254,7 +1416,7 @@ function monthStrip(scope){
   if(months.length < 2) return '';
   const cur = mpoViewMonth(scope), live = mpoRepMonth(scope);
   return `<div class="mstrip" role="tablist" aria-label="Month">${months.map(m=>
-    `<button class="mpill${m.key===cur?' active':''}" data-act="set-month" data-month="${E(m.key)}" role="tab" aria-selected="${m.key===cur?'true':'false'}">${E(m.label)}${m.key===live?'<span class="mpill-now">Now</span>':''}</button>`
+    `<button class="mpill${m.key===cur?' active':''}" data-act="set-month" data-month="${E(m.key)}" role="tab" aria-selected="${m.key===cur?'true':'false'}"><span class="tl-long">${E(m.label)}</span><span class="tl-short">${E(m.label.replace(/^(\w{3})\w*/,'$1'))}</span>${m.key===live?'<span class="mpill-now">Now</span>':''}</button>`
   ).join('')}</div>`;
 }
 // Incentives, grouped by supplier for the picker: suppliers with live
@@ -1274,7 +1436,9 @@ function repSuppliers(rep){
 }
 /* ---- rep program list ---- */
 function screenRep(){
-  const rep = state.rep, cat = state.cat || 'all';
+  const rep = state.rep;
+  let cat = state.cat || 'inc';
+  if(!(cat==='inc' || cat.startsWith('sup:'))){ cat = 'inc'; state.cat = 'inc'; state.main = 'inc'; }
   // Incentives are one page now -- no supplier step, no program step (v11).
   if(cat==='inc') return screenRepIncentives(rep);
   const rows = sortedForRep(rep, cat);
@@ -1292,7 +1456,7 @@ function screenRep(){
   const subline = bySup
     ? `${plw(active.length,'incentive')}${active.filter(x=>isEarned(x.r)).length?` · <strong class="ok">${active.filter(x=>isEarned(x.r)).length} already earned</strong>`:''}${counts.ending?` · <strong>${counts.ending} ending soon</strong>`:''}`
     : isMpoCat
-      ? `${plw(active.length,'program')} · ${counts.complete} at goal · ${active.length-counts.complete}${past?' missed':' still open'}`
+      ? `${plwT(active.length,'Program')} · ${counts.complete} At Goal · ${active.length-counts.complete}${past?' Missed':' Still Open'}`
       : `${plw(active.length,'active program')}${counts.ending?` · <strong>${counts.ending} ending soon</strong>`:''}`;
   let html = `<div class="rep-head">
     <div class="rep-title"><h1>${E(possessive(rep))} ${E(catMeta.label)}</h1>
@@ -1327,7 +1491,7 @@ function screenRep(){
     return `<div class="repview">${html}</div>`;
   }
   html += renderGroups(rows, rep, {quiet: bySup || isMpoCat});
-  return `<div class="repview${bySup?' single':''}">${html}</div>`;
+  return `<div class="repview${bySup?' single':''}${isMgr()?'':' hview'}">${html}</div>`;
 }
 function mpoMonthLabel(scope){ const mk = mpoViewMonth(scope); const m = MPO_SCOPES[scope].mod.MONTHS.find(x=>x.key===mk); return m ? m.label : mk; }
 function renderGroups(rows, rep, opts){
@@ -1351,7 +1515,7 @@ function renderGroups(rows, rep, opts){
       }
     }
     if(x.g===8 && !state.showEnded) return;
-    if(!open){ html += '<div class="cards">'; open = true; }
+    if(!open){ html += isMgr() ? '<div class="cards">' : '<div class="hlist">'; open = true; }
     html += programCard(x.p, x.r, rep);
   });
   if(open) html += '</div>';
@@ -1403,8 +1567,13 @@ function buyingFor(p, rep){
     const r = (sd.reps||[]).find(x=>x.rep===rep); if(!r || !Array.isArray(r.lines)) return;
     r.lines.forEach(l=>{
       const name = l.customer; if(!name) return;
+      // FOLLOW-UP objectives (Oktoberfest conversion, Spirits follow-up, Carbliss
+      // 40%): every base account is a line, but only a DONE one is "already
+      // buying" -- the rest are the targets.
+      if(p.objective.type==='followup' && !l.done) return;
       let note = '';
-      if(p.objective.type==='photos') note = 'photo submitted';
+      if(p.objective.type==='followup') note = l.doneDetail || 'done';
+      else if(p.objective.type==='photos') note = 'photo submitted';
       else if(l.new_buyer==='1' || l.isNew) note = 'new this month';
       else if(l.period==='base') note = 'bought in base period';
       else if(l.period==='current') note = 'repeat buyer';
@@ -1475,7 +1644,10 @@ function accountsPanel(p, rep){
 // What to sell, per program, in the words a rep would use on the floor.
 // Fallback (any program not listed): the mapped brand families + the unit.
 const SELL_ASK = {
-  'inc:keystone_ice':'Place Keystone Ice 24oz cans.', 'inc:touchdowns_tea':'Place Sun Cruiser or Twisted Tea 12-packs.',
+  'inc:keystone_ice':'Place Keystone Ice 24oz cans.', 'inc:touchdowns_tea':'Place Sun Cruiser or Twisted Tea 12-packs in stores; sell cases into bars.',
+  'inc:mabi_single_serve':'Sell in White Claw 19.2oz and Mike\'s Harder / Cayman Jack single serves.', 'inc:four_loko':'Place Four Loko Sour Apple or USA and sell cases.',
+  'inc:lagunitas_sprint':"Place Lagunitas IPA or Little Sumpin' packages, or an IPA keg.", 'inc:famosa_oct':'Sell Famosa — every package.',
+  'inc:sam_adams_cold_snap':'Convert the seasonal draft handle.', 'inc:industrial_arts':'Place 3 Industrial Arts SKUs, or a Wrench draft line.',
   'inc:evil_genius':"Place Stacy's Mom, Adulting or 867-5309.", 'inc:other_half':'Place Other Half core draft, or 3+ SKUs in a store.',
   'inc:montauk':'Place Wave Chaser cans or a Wave Chaser tap.', 'inc:sam_adams_conversion':'Switch the Summer Ale handle to Octoberfest.',
   'inc:printed_menu':'Get Bardstown or Green River on a printed menu.', 'inc:bardstown_display':'Build a 3-case Bardstown or Green River stack.',
@@ -1488,24 +1660,33 @@ const SELL_ASK = {
   'inc:yuengling_retention':'Keep Yuengling Lager and Flight placed.', 'inc:sun_cruiser':'Sell more Sun Cruiser than last year.',
   'inc:yave':'Open a new YaVe account.', 'inc:mollys':"Place Molly's 1.75L.", 'inc:path_to_victory':'Sell Victory Monkey 6-packs.', 'inc:path_to_victory_sd':'Open a new Victory Monkey 6-pack POD.', 'inc:fall_seasonal_sd':'Sell Fall Seasonal packages and kegs.',
   'inc:boston_beer':'Place an Angry Orchard or Dogfish Head tap.', 'inc:new_belgium':'Place a Juicy Haze or Two Hearted tap.',
-  'inc:sam_adams':'Sell more Sam Adams than last Aug–Sep — finish positive and your commission doubles.', 'inc:new_belgium_distribution':"Sell more Bell's, Kirin and Voodoo.",
+  'inc:sam_adams':'Sell more Sam Adams than last Aug–Sep — finish positive and your commission doubles.', 'inc:new_belgium_distribution_retain':'Hold Voodoo 12pk, Voodoo 19.2oz, and the combined Hearted / Kirin six-pack goal.', 'inc:new_belgium_distribution':"Sell more Bell's, Kirin and Voodoo.",
+  'on:sam_adams_conversion':'Swap Summer Ale kegs for Oktoberfest at every account.', 'on:spirits_followup':'Re-order spirits at every account you placed in Jul–Sep.',
   'on:carbliss':'Open a new Carbliss account.', 'on:fever_tree':'Place Fever Tree.', 'on:bardstown_menu':'Get Bardstown or Green River on the menu.',
   'on:husa_xx_draft':'Place a Dos Equis tap.', 'on:angry_orchard':'Place an Angry Orchard tap.', 'on:molson_coors':'Place Peroni and Coors Banquet.',
   'on:wine_spirits':'Place YaVe and Leyenda.', 'on:sapporo_na':'Place Sapporo NA.',
   'off:constellation_gaintain':'Place Corona.', 'off:keystone_ice':'Place Keystone Ice 24oz cans.', 'off:fever_tree':'Place Fever Tree.',
   'off:wine_spirits_any':'Place a new wine or spirits SKU.', 'off:pos_stickers':'Put up a cooler door sticker and photograph it.',
+  'off:constellation_innovation':'Place the Corona Innovation products — Corona Sunbrew, Corona Non-Alcoholic, Modelo Chelada Suprema, Modelo Negra 12 oz cans, Pacifico 7 oz, Vicky Mango.', 'off:mollys':'Place Molly\u2019s Irish Cream.', 'off:wine_new':'Place a new wine SKU.',
   'off:corona_premier':'Place Corona Premier suitcases.', 'off:bbc_lytt':'Place 3 or more Lytt SKUs.', 'off:disruptors':'Photograph Lytt POS in iSellBeer.',
   'off:molson_coors':'Place Peroni and Coors Banquet.', 'off:wine_spirits':'Place Le Grand Noir, Leyenda and Green River.',
   'off:new_belgium':"Place Bell's, Voodoo and Kirin.", 'off:ws_2xo':'Place 2XO, Le Grand and YaVe.', 'off:sapporo_light':'Place Sapporo Light.', 'off:famosa':'Place Famosa 7oz.',
 };
 const RETENTION = /retention|_fall$|mc_retention/;
 function sellAsk(p){
+  if(p.sellAsk) return p.sellAsk;                         // manager-built programs carry their own
   const k = HubAccounts.brandKey(p);
   if(SELL_ASK[k]) return SELL_ASK[k];
   const fams = HubAccounts.PROGRAM_BRANDS[k];
   if(fams && fams.length) return `Place ${fams.slice(0,3).join(', ')}${fams.length>3?' and more':''}.`;
   return 'See the program rules.';
 }
+// An eligible account with no purchase of the brand in the tracker's data.
+// Worded for what the data can show (2026-10-04): the history has a start
+// date, so it is never "never bought it".
+const NO_BUY = 'No purchases in the available history';
+// the period always travels with it (2026-10-08): the tracker's data date, or its program window
+const noBuyText = (why, p) => why!==NO_BUY || !p ? why : p.refreshed ? `${NO_BUY} (tracker data through ${p.refreshed})` : (p.period && p.period.label ? `${NO_BUY} (${p.period.label})` : why);
 // The tracker's own opportunity lists for this rep -- warm leads that
 // should top the visit list: an account one SKU short, one oak short, a
 // handle still pouring Summer Ale, a big account that has never bought it.
@@ -1514,17 +1695,17 @@ function warmTargets(p, rep){
   const push = (name, why, warm)=>{ if(name) out.push({k:HubAccounts.norm(name), why, warm:!!warm}); };
   if(p.source==='inc'){
     const d = p.entry.getRep(rep); if(!d) return out;
-    (d.partialAccounts||[]).forEach(it=>push(it.customer, `${it.need} SKU${it.need===1?'':'s'} short`, true));
+    (d.partialAccounts||[]).forEach(it=>push(it.customer, `Needs ${it.need} more qualifying product${it.need===1?'':'s'}${it.skus!=null ? ` · has ${it.skus} of ${it.skus+it.need}` : ''}`, true));
     (d.offPremSingles||[]).forEach(it=>push(it.customer, 'Add the other oak', true));
     (d.onPremBuilding||[]).forEach(it=>push(it.customer, 'Needs a 2nd bottle', true));
-    (d.unconvertedAccounts||[]).forEach(it=>push(it.account, 'Still on Summer Ale', true));
+    (d.unconvertedAccounts||[]).forEach(it=>push(it.customer||it.account, it.octLoaded ? `Octoberfest loaded ${new Date(it.octLoaded+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'})} · not yet on Boston Beer’s report` : 'Still on Summer Ale · Boston Beer list', !it.octLoaded));
     if(d.encompass) (d.encompass.notConvertedAccounts||[]).forEach(it=>push(it.customer, 'Still on Summer Ale', true));
-    Object.keys(d).forEach(k=>{ if(/Targets$|Whitespace$/.test(k) && Array.isArray(d[k])) d[k].forEach(it=>push(it.customer, 'Never bought it', false)); });
+    Object.keys(d).forEach(k=>{ if(/Targets$|Whitespace$/.test(k) && Array.isArray(d[k])) d[k].forEach(it=>push(it.customer, NO_BUY, false)); });
     return out;
   }
   const slot = mpoState[p.source] && mpoState[p.source][p.monthKey]; const D = slot && slot.DATA; const d = D && D[p.key]; if(!d) return out;
   const sets = d.subs ? d.subs : [d];
-  sets.forEach(sd=>{ const t = sd.targetsByRep && sd.targetsByRep[rep]; if(t) t.forEach(it=>push(it.customer, it.product ? `Missing ${it.product}` : 'Never bought it', false)); });
+  sets.forEach(sd=>{ const t = sd.targetsByRep && sd.targetsByRep[rep]; if(t) t.forEach(it=>push(it.customer, it.product ? `Missing ${it.product}` : NO_BUY, false)); });
   return out;
 }
 // Prioritised visit list: warm leads first, then the biggest eligible
@@ -1532,13 +1713,34 @@ function warmTargets(p, rep){
 // already removed the rest); retention programs list the accounts to HOLD.
 function nextAccounts(p, rep){
   const A = accountsFor(p, rep);
+  // This supplier export is rep x package group x SKU; it carries no customers.
+  if(p.key==='new_belgium_distribution_retain') return {rows:[],hold:true,A};
   if(RETENTION.test(p.key)) return {rows: A.buying.filter(a=>!a.foreign).map(a=>Object.assign({}, a, {why: 'Keep ordering'})), hold:true, A};
   const byKey = new Map(); A.eligible.forEach(a=>byKey.set(HubAccounts.norm(a.name), a)); A.buying.forEach(a=>byKey.set(HubAccounts.norm(a.name), a));
   const warm = warmTargets(p, rep); const seen = new Set(); const rows = [];
   warm.filter(w=>w.warm).forEach(w=>{ const a = byKey.get(w.k); if(a && !seen.has(w.k)){ seen.add(w.k); rows.push(Object.assign({}, a, {why:w.why, warm:true})); } });
   const cold = new Map(); warm.filter(w=>!w.warm).forEach(w=>{ if(!cold.has(w.k)) cold.set(w.k, w.why); });
   A.eligible.forEach(a=>{ const k = HubAccounts.norm(a.name); if(seen.has(k)) return; seen.add(k);
-    rows.push(Object.assign({}, a, {why: cold.get(k) || 'Never bought it'})); });
+    rows.push(Object.assign({}, a, {why: cold.get(k) || (p.type==='MPO' ? `No qualifying purchase in ${(p.objective&&p.objective.periodText)||'this period'}` : NO_BUY)})); });
+  // FOLLOW-UP objectives score against the rep's own BASE list (a Summer Ale
+  // account, a Q3 spirits placement, a core on-premise account), so only those
+  // base accounts still to do are targets -- not every account the brand could
+  // be sold to.
+  if(p.source!=='inc' && p.objective && p.objective.type==='followup'){
+    const slot = mpoState[p.source] && mpoState[p.source][p.monthKey]; const D = slot && slot.DATA;
+    const fr = D && D[p.key] && (D[p.key].reps||[]).find(x=>x.rep===rep);
+    if(fr){
+      // The rows ARE the base accounts still to do (named from the tracker's own
+      // list), borrowing city / area / cases from the rep's book when it has the
+      // account -- the brand-eligibility rules do not apply to a follow-up.
+      const book = new Map(); (HUB_ACCOUNTS.reps[rep]||[]).forEach(a=>{ book.set(HubAccounts.norm(a.name), a); if(a.n!=null) book.set(String(a.n), a); });
+      const keep = (fr.lines||[]).filter(l=>!l.done).map(l=>{
+        const a = book.get(String(l.num)) || book.get(HubAccounts.norm(l.customer));
+        return Object.assign({}, a || {name:l.customer, n:l.num, city:'', area:'', prem:'', cases:null}, {why: l.had || NO_BUY});
+      });
+      return {rows: keep, hold:false, A};
+    }
+  }
   return {rows, hold:false, A};
 }
 /* ---- Closed / Completed: the placements the tracker already credits ---- */
@@ -1613,6 +1815,7 @@ function closedFor(p, rep){
         }
         else if(t==='new_placements'){ if(l.isNew) add(l.customer, l.product, '', l.current ? l.current+' placement'+(l.current===1?'':'s') : '', photo); }
         else if(t==='pct_of_base') add(l.customer, l.product, '', 'on the shelf', photo);
+        else if(t==='followup'){ if(l.done) add(l.customer, l.doneDetail, l.doneDate, '', ''); }
         else if(l.new_buyer==='1') add(l.customer, l.product || label, l.date, '', photo);
       });
     });
@@ -1901,6 +2104,14 @@ function brandGoals(p, rep){
   const G = [];
   const push = (title, unit, rows) => { if(rows && rows.length) G.push({title, unit, rows}); };
   switch(p.key){
+    case 'new_belgium_distribution_retain':
+      push('Package-group goals', 'placements', (d.groups||[]).map(g=>{
+        const r=row(g.label,g.placements,g.goal,'placements');
+        r.products=skuRows(g.products,'placements');
+        r.productsNote='SKU targets are shown as reported. They do not sum to the package-group goal; zero-activity products may be hidden. The group total is the scoring target.';
+        return r;
+      }));
+      break;
     case 'mc_retention':
       push('Off-Premise', 'placements', (d.offBrands||[]).map(b=>row(b.label, b.actual, b.goal, 'placements')));
       push('On-Premise Draft', 'buyers', (d.onBrands||[]).map(b=>row(b.label, b.actual, b.goal, 'buyers')));
@@ -2121,22 +2332,30 @@ const G_STATUS_MARK = {achieved:'\u2713', inprogress:'\u25CF', notstarted:'\u25C
 const gStatusOf = r => (r.status==='complete'||r.status==='exceeded') ? 'achieved'
                      : r.status==='notstarted' ? 'notstarted' : 'inprogress';
 function mpoQuickHtml(p, r){
-  const st = gStatusOf(r), done = st==='achieved';
+  const st = gStatusOf(r);
   const weight = r.weight!=null ? r.weight : Math.round((p.objective.weight||0)*100);
-  // Same shape as guided.js's repObjectiveCard (2026-09-28): the pill says
-  // whether credit is earned, three facts, no duplicate Goal tag.
   const CREDIT = {achieved:'Goal achieved · credit earned', inprogress:'In progress · credit not yet earned', notstarted:'Not started'};
+  // READABILITY (2026-10-06): Goal line (count + unit + the rule behind it),
+  // then Current / Still Needed, one bar -- the same read as the MPO trackers.
+  const f = progFacts(p, r, null) || {};
+  const has = f.goalN!=null && isFinite(Number(f.goalN));
+  const met = has && f.needN<=0;
+  const facts = has ? `${goalLineHtml(f)}
+    <div class="gb-stats mq-stats">
+      <div class="gb-stat"><span class="gb-sl">Current</span><span class="gb-sv">${fmtN(f.cur)}<span class="gb-of"> of ${fmtN(f.goalN)}</span></span></div>
+      <div class="gb-stat${met?' met':''}"><span class="gb-sl">Remaining</span><span class="gb-sv">${met ? 'Met' : fmtN(f.needN)}</span><span class="gb-su">${met ? 'Goal complete' : E(titleW(uPl(f.needN, f.unit||'')))}</span></div>
+    </div>`
+    : `<div class="g-facts g-facts-3">
+      <div><div class="g-fact-l">Goal</div><div class="g-fact-v">${E(r.goal||'\u2014')}</div></div>
+      <div><div class="g-fact-l">Current</div><div class="g-fact-v">${E(r.now||'\u2014')}</div></div>
+      <div><div class="g-fact-l">Remaining</div><div class="g-fact-v${r.remain?'':' good'}">${E(r.remain || 'None')}</div></div>
+    </div>`;
   return `<div class="g-tags mpo-tags">
-      <span class="g-tag weight">${weight}% of MPO</span>
       <span class="g-pill ${st}">${G_STATUS_MARK[st]} ${CREDIT[st]||G_STATUS_TEXT[st]}</span>
     </div>
-    <div class="g-facts g-facts-3">
-      <div><div class="g-fact-l">My Goal</div><div class="g-fact-v">${E(r.goal||'\u2014')}</div></div>
-      <div><div class="g-fact-l">Where I Am</div><div class="g-fact-v${done?' good':''}">${E(r.now||'\u2014')}</div></div>
-      <div><div class="g-fact-l">Still Needed</div><div class="g-fact-v${r.remain?'':' good'}">${E(r.remain || 'None')}</div></div>
-    </div>
+    ${facts}
     <div class="g-bar"><div class="g-bar-fill ${st}" style="width:${Math.max(0,Math.min(100,r.pct||0))}%"></div></div>
-    <div class="g-barcap"><span>${Math.round(r.pct||0)}% of goal</span></div>
+    <div class="g-barcap"><span>${Math.round(r.pct||0)}% of the goal</span><span>MPO weight: ${weight}%</span></div>
     ${(r.segments && r.segments.length) ? `<div class="mpo-subs">${r.segments.map(g=>`<div class="mpo-sub">
         <div class="g-barcap"><span>${E(g.label)}</span><strong>${E(g.valueText)}</strong></div>
         <div class="g-bar"><div class="g-bar-fill ${E(g.status||'inprogress')}" style="width:${Math.max(0,Math.min(100,g.pct||0))}%"></div></div>
@@ -2181,7 +2400,10 @@ const fmtN = v => { const n = Number(v); if(!isFinite(n)) return '—';
 function mpoNums(r){
   const cur = Number(r.valueNum), goal = Number(r.goalNum);
   if(!isFinite(cur) || !isFinite(goal) || goal<=0) return null;
-  return {cur, goal, need: Math.max(goal-cur, 0)};
+  // needNum: an objective whose "Achieved" bar is below the goal shown (Corona
+  // Innovation: goal 100%, Achieved at 75%) says what is still needed for THAT bar.
+  const need = isFinite(Number(r.needNum)) && r.needNum!==undefined && r.needNum!==null ? Number(r.needNum) : Math.max(goal-cur, 0);
+  return {cur, goal, need};
 }
 // The accounts that can close the gap. Same nextAccounts() the rest of the
 // hub uses, so territory and account-base rules are unchanged -- this only
@@ -2224,14 +2446,13 @@ function mpoRepCard(p, r, rep){
   const nT = targets ? targets.length : null;
 
   const figures = `<div class="mfig">
-      <div class="mf"><div class="mf-l">Current</div><div class="mf-v">${N?fmtN(N.cur):E(r.now||'—')}</div></div>
-      <div class="mf"><div class="mf-l">Goal</div><div class="mf-v">${N?fmtN(N.goal):E(r.goal||'—')}</div></div>
-      <div class="mf need${met?' met':''}"><div class="mf-l">${met?'Status':'Still Needed'}</div>
+      <div class="mf"><div class="mf-l">Current</div><div class="mf-v">${N?fmtN(N.cur)+`<span class="mf-of"> of ${fmtN(N.goal)}</span>`:E(r.now||'—')}</div></div>
+      <div class="mf need${met?' met':''}"><div class="mf-l">${met?'Status':'Remaining'}</div>
         <div class="mf-v">${met?'Goal met':(N?fmtN(N.need):E(r.remain||'—'))}</div>
         ${!met && unit ? `<div class="mf-u">${E(unit)}</div>` : ''}</div>
     </div>`;
   const bar = `<div class="mbar"><div class="mbar-fill" style="width:${pct}%"></div></div>
-    <div class="mbar-cap"><span>${Math.round(pct)}% of goal</span>${o.goalLabel?`<span class="mbar-goal">${E(o.goalLabel)}</span>`:''}</div>`;
+    <div class="mbar-cap"><span>${Math.round(pct)}% of this MPO requirement</span><span class="mbar-goal">MPO Weight: ${Math.round((o.weight||0)*100)}%</span></div>`;
 
   // Collapsed: the first few accounts. Expanded: all of them, then the
   // supporting detail. Both come from the same list.
@@ -2247,8 +2468,9 @@ function mpoRepCard(p, r, rep){
 
   return `<article class="mcard${sec?' open':''}${met?' met':''}" id="card-${E(p.id)}">
     <div class="mcard-head">
-      <div class="mcard-name">${E(o.name)}</div>
-      <div class="mcard-sup">${sup}</div>
+      <div class="mcard-name">${E(p.shortName||o.name)}</div>
+      <div class="mcard-sup">${E(p.supplier)} · ${E(o.periodText||periodLabel(p.period))}</div>
+      ${goalLineHtml(progFacts(p, r, rep))}
       ${figures}
       ${bar}
       ${loading}
@@ -2290,9 +2512,9 @@ function mpoRepCardDetail(p, r, rep, targets, dist, which){
 }
 
 function programCard(p, r, rep){
-  // Rep Mode MPO cards are the streamlined worklist card above. Manager Mode
-  // keeps the dashboards' objective card, and incentives are untouched.
-  if(p.type==='MPO' && !isMgr()) return mpoRepCard(p, r, rep);
+  // Rep Mode: every program is one tappable row that opens its own screen
+  // (2026-09-30). Manager Mode keeps the dashboards' objective card.
+  if(!isMgr()) return progRowHtml(p, r, rep);
   const bySup = String(state.cat||'').startsWith('sup:');
   const kind = p.type==='MPO' ? E(p.channelLabel)+' MPO' : ({new:'New', ongoing:'Ongoing', retention:'Retention'}[p.group]||'')+' incentive';
   const sup = bySup ? kind : `${E(p.supplier)} · ${kind}`;
@@ -2324,7 +2546,7 @@ function programCard(p, r, rep){
     quick = `<div class="quick">
         <div class="q goal"><span class="ql"><span class="qi">🎯</span>Goal</span><span class="qv">${E(r.openEnded ? 'No cap' : (r.goal||'—'))}</span></div>
         <div class="q prog"><span class="ql"><span class="qi">📍</span>Where you are</span><span class="qv">${E(r.now||'—')}</span></div>
-        <div class="q need"><span class="ql"><span class="qi">⏳</span>Still need</span><span class="qv${r.remain?'':' ok'}">${E(r.remain || (done ? 'Done ✓' : (r.openEnded ? 'Every one pays' : '—')))}</span></div>
+        <div class="q need"><span class="ql"><span class="qi">⏳</span>Still need</span><span class="qv${r.remain?'':' ok'}">${E(r.remain || (done ? 'Done ✓' : (r.openEnded ? 'Every One Pays' : '—')))}</span></div>
       </div>
       <div class="barrow">${barHtml(r)}<span class="barrow-pct ${r.pace}">${E(pctTxt || (r.status==='notstarted' ? '0' : '✓'))}</span></div>
       ${dead}`;
@@ -2352,7 +2574,7 @@ function programCard(p, r, rep){
     <button class="pcard-head" data-act="toggle-card" data-prog="${E(p.id)}" aria-expanded="${open?'true':'false'}">
       <div class="pcard-top">
         ${logoStrip(p)}
-        <div class="pcard-title"><div class="pcard-name">${E(p.type==='MPO' ? p.name : (p.shortName||p.name))}</div><div class="pcard-sup">${sup}</div></div>
+        <div class="pcard-title"><div class="pcard-name">${E(p.shortName||p.name)}</div><div class="pcard-sup">${sup}</div></div>
         <div class="pcard-status">${(p.type==='MPO' && !soon) ? '' : statusChip(r)}${flags(p, r)}</div>
       </div>
       ${quick}
@@ -2383,7 +2605,7 @@ function screenDetailRep(p, r, rep, back){
     <div class="dfacts three">
       <div class="dfact"><span class="dfact-l">Your goal</span><span class="dfact-v">${E(r.goal||'—')}</span></div>
       <div class="dfact"><span class="dfact-l">Where you stand</span><span class="dfact-v">${E(r.now||'—')}</span>${repSub(r)?`<span class="dfact-s">${E(repSub(r))}</span>`:''}</div>
-      <div class="dfact"><span class="dfact-l">Still needed</span><span class="dfact-v">${E(r.remain || (r.openEnded ? 'No cap — every one pays' : (soon ? '—' : 'Done ✓')))}</span><span class="dfact-s ${daysLeft(p.period.end)<=ENDING_SOON_DAYS && isActive(p)?'urgent':''}">${E(endsLabel(p.period))}</span></div>
+      <div class="dfact"><span class="dfact-l">Remaining</span><span class="dfact-v">${E(r.remain || (r.openEnded ? 'No cap — every one pays' : (soon ? '—' : 'Done ✓')))}</span><span class="dfact-s ${daysLeft(p.period.end)<=ENDING_SOON_DAYS && isActive(p)?'urgent':''}">${E(endsLabel(p.period))}</span></div>
     </div>
     ${r.next ? `<div class="nextbox"><div class="nextbox-l">Your next move</div><div class="nextbox-t">${nextNoMoney(r.next)}</div></div>` : ''}
     ${(()=>{ const BG = brandGoals(p, rep); return BG.length
@@ -2413,7 +2635,7 @@ function screenDetail(){
   if(!av.ok || r.status==='unavailable') return `<div class="detail">${back}<div class="dhero st-unavailable"><div class="dhero-top">${logoStrip(p,'lg')}</div><div class="dhero-sup">${E(p.supplier)}</div><h1 class="dhero-name">${E(p.name)}</h1>
     <div class="dhero-line">${statusChip({status:'unavailable'})}</div><p class="dhero-pitch">${E(r.sub || av.sub || 'The brand can’t be sold at any account on your route.')} Shown for awareness only — not counted in your goals.</p></div>
     <section class="dsec"><h2 class="dsec-h">How it pays</h2><ul class="rules">${p.rules.map(x=>`<li>${p.type==='Incentive' ? ruleHl(x) : E(x)}</li>`).join('')}</ul></section></div>`;
-  if(!isMgr()) return screenDetailRep(p, r, rep, back);
+  if(!isMgr()) return screenProgramRep(p, r, rep);
   const big = soon ? '—' : (r.openEnded ? r.now : Math.round(r.pct)+'%');
   const cap = soon ? (r.loading ? 'Loading…' : 'Not being tracked yet') : (r.openEnded ? (r.sub || 'So far this period') : 'Complete');
   const tl = soon ? null : p.timeline(rep);
@@ -2541,23 +2763,20 @@ function mpoProgramCardHtml(p){
   const g = loaded ? p.atGoal() : null;
   const pct = loaded ? p.objPct() : 0;
   const all = !!(g && g.total && g.n === g.total);
+  const has = !!(g && g.total);
+  const share = has ? (g.n/g.total)*100 : 0;
+  const mlogo = MPO_BRAND_LOGO[o.key] ? `<div class="g-logos">${[sam_adams_conversion_extra(o.key), MPO_BRAND_LOGO[o.key]].filter(Boolean).map(f=>`<img class="g-logo" src="${E(INC_ASSETS+'assets/logos/'+f)}" alt="" loading="lazy" onerror="this.remove()">`).join('')}</div>` : '';
   return `<div class="g-prog"><button class="g-prog-head" data-act="open-program" data-prog="${E(p.id)}">
+      ${mlogo}
       <div class="g-prog-top">
-        <span class="g-prog-name">${E(o.name)}${o.supplier?`<span class="g-reprow-dm">${E(o.supplier)}</span>`:''}</span>
-        <span class="g-prog-right">
-          <span><span class="g-prog-atgoal${all?' good':''}">${g ? g.n+' / '+g.total : '—'}</span>
-            <span class="g-prog-atgoal-l">reps at goal</span></span>
-          <span class="g-chev">&#9656;</span>
-        </span>
+        <span class="g-prog-name">${E(p.shortName||o.name)}<span class="g-reprow-dm">${E(o.supplier||p.supplier||'')}${(o.periodText||p.monthLabel)?' · '+E(o.periodText||p.monthLabel):''}</span></span>
+        <span class="g-chev">&#9656;</span>
       </div>
-      <div class="g-tags" style="margin:12px 0 0">
-        <span class="g-tag weight">${Math.round((o.weight||0)*100)}% of MPO</span>
-        ${o.goalLabel?`<span class="g-tag">Goal: ${E(o.goalLabel)}</span>`:''}
-        <span class="g-tag">${plw((M.rosterFor ? M.rosterFor(o.key) : M.ROSTER).length,'eligible rep')}</span>
-        ${g?`<span class="g-tag">${Math.round(g.total?(g.n/g.total)*100:0)}% at goal</span>`
-           :`<span class="g-tag">${loaded?'Not tracked with data':'Loading…'}</span>`}
-      </div>
-      <div class="g-bar"><div class="g-bar-fill ${all?'achieved':pct>0?'inprogress':'notstarted'}" style="width:${Math.max(0,Math.min(100,pct))}%"></div></div>
+      ${isCarbliss(p) && cbData() ? window.KdhCarbTiles.html(cbData(), {compact:true, noTitle:true}) : has ? `<div class="g-fig"><span class="g-fig-n">${g.n}</span><span class="g-fig-of"> of ${g.total}</span><span class="g-fig-u">Reps at Goal</span></div>
+        <div class="g-bar"><div class="g-bar-fill ${all?'achieved':g.n>0?'inprogress':'notstarted'}" style="width:${Math.round(share)}%"></div></div>
+        <div class="g-bar-cap">Team Progress: ${Math.round(share)}% of eligible reps at goal</div>`
+        : `<div class="g-need">${loaded?'No data yet \u2014 not counted':'Loading…'}</div>`}
+      <div class="g-meta">MPO Weight: ${Math.round((o.weight||0)*100)}%<span class="g-review">Review Reps</span></div>
     </button></div>`;
 }
 
@@ -2573,31 +2792,172 @@ function mpoSectionHtml(scope, mk, progs){
   const D = mpoDataFor(scope, mk);
   const objPct = o => (D && o.hasData) ? M.objPct(o, D) : 0;
   const atGoal = o => (D && o.hasData) ? M.atGoalFor(o, D) : null;
-  const weighted = objs.reduce((t,o)=> t + (o.weight||0)*objPct(o), 0);
-  const sums = [{l:'Overall Weighted MPO', n:D?Math.round(weighted)+'%':'—',
-    cls: !D ? 'mute' : weighted>=90 ? 'good' : weighted>=50 ? 'accent' : '',
-    s:`across all ${objs.length} objective${objs.length===1?'':'s'}`}];
-  objs.forEach(o=>{
-    const g = atGoal(o);
-    if(!g){ sums.push({l:E(o.shortName||o.name), n:'—', cls:'mute', s:D?'not tracked yet':'loading…'}); return; }
-    sums.push({l:E(o.shortName||o.name)+(g.headline?'':' – Reps at Goal'),
-      n: g.headline || (g.n+' / '+g.total),
-      cls: g.cls || (g.total && g.n===g.total ? 'good' : (g.n ? 'accent' : 'mute')),
-      s: g.sub || o.goalLabel || ''});
-  });
   const hidden = objs.length - progs.length;
   return `<section class="g pv-mpo">
     <div class="g-step-head">
       <div class="g-title">${E(S.label)} MPO</div>
-      <div class="g-sub">${E(month?month.label:mk)} · tap a program to see every rep&rsquo;s result.${hidden>0?` <span class="pv-mpo-filtered">${hidden} more objective${hidden===1?'':'s'} hidden by your filters — the summary still covers all ${objs.length}.</span>`:''}</div>
+      <div class="g-sub">${E(month?month.label:mk)}${hidden>0?` · <span class="pv-mpo-filtered">${hidden} More Hidden by Filters</span>`:''}</div>
     </div>
-    <div class="g-sum-grid">${sums.map(k=>`<div class="g-sum"><div class="g-sum-l">${k.l}</div>
-      <div class="g-sum-n ${k.cls}">${k.n}</div><div class="g-sum-s">${E(k.s)}</div></div>`).join('')}</div>
     ${progs.map(mpoProgramCardHtml).join('')}
   </section>`;
 }
 
+/* ====================================================================
+   MANAGER EXPORTS (2026-10-02; Amplitude's export menu: data vs report)
+   EXPORT DATA = the COMPLETE filtered result set as CSV -- every program
+   the Program View filters keep, crossed with every rep on this manager's
+   authorized roster (ROSTER is already cut to a district manager's team),
+   not just what is drawn on screen. EXPORT RECAP = a print-ready report
+   (Save as PDF from the print dialog) of the same set: team results per
+   program, every rep's progress and what is left, deadlines, definitions
+   and data freshness; account lines only when asked for. Both reuse the
+   trackers' own numbers (p.forRep, progFacts, programStats, distFor) --
+   nothing is recalculated, nothing is narrated, and a lead or eligible
+   account is never shown as a result. Manager Mode only (reps never reach
+   Program View); preview cannot export.
+   ==================================================================== */
+const EXPORT_DEFS = [
+  ['Participating reps', 'Reps on this manager’s roster the program applies to and the tracker has data for (territory and support-rep rules applied).'],
+  ['Qualified / at goal', 'The tracker’s own status: an incentive marked complete or exceeded, or an MPO objective marked achieved.'],
+  ['Progress, goal, remaining', 'The tracker’s figures for that rep, in the program’s own unit; remaining = goal minus current, never below zero.'],
+  ['Credited lines', 'Placements or purchases the tracker credits to the rep (customer, product, date). Some trackers publish a total without lines.'],
+  ['Not included', 'Possible opportunities, eligible accounts and leads are not results and are not counted. No payout or dollar figures are in this export.'],
+];
+function exportFilterText(f){
+  const sup = f.sup==='all' ? 'All suppliers' : f.sup;
+  const mon = f.month==='active' ? 'Active now' : f.month==='all' ? 'All months' : f.month;
+  return `Type: ${f.type==='all'?'All':f.type==='inc'?'Incentives':'MPOs'} · Premise: ${f.chan==='all'?'All':f.chan==='on'?'On-Premise':'Off-Premise'} · Supplier: ${sup} · Month: ${mon}`;
+}
+function exportScopeText(){ return (HUB_TEAM ? `${HUB_TEAM.dm}’s team (${ROSTER.length} reps)` : `Every rep (${ROSTER.length})`) + (BRAND_SCOPE ? ` · Brands: ${brandScopeText()}` : ''); }
+function programsForExport(onlyId){
+  if(onlyId){ const one = PROGRAMS.find(p=>p.id===onlyId); if(one && one.isTest) return []; }   // a TEST program never reaches a recap
+  if(onlyId){ const p = PROGRAMS.find(x=>x.id===onlyId); return p ? [p] : []; }
+  const f = Object.assign({}, state.filters, {type:'inc'});
+  return PROGRAMS.filter(p=>
+    (f.type==='all' || (f.type==='inc' ? p.type==='Incentive' : p.type==='MPO')) &&
+    (f.chan==='all' || p.channel===f.chan || (p.channel==='both')) &&
+    (f.sup==='all' || p.supplier===f.sup) &&
+    (f.month==='all' ? true : f.month==='active' ? isActive(p) : p.monthKey===f.month) && !p.isTest)
+    .sort((a,b)=> (isActive(b)-isActive(a)) || (a.period.end-b.period.end) || a.name.localeCompare(b.name));
+}
+const isoDay = d => d instanceof Date && !isNaN(d) ? new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,10) : '';
+function dataDateOf(p){ if(p.type!=='MPO') return p.refreshed || incRefreshed() || ''; const sl = (mpoState[p.source]||{})[p.monthKey]; return sl && sl.syncedAt ? fmtSynced(sl.syncedAt) : ''; }
+function qualifiedOf(p, r){ if(!r) return ''; if(p.type==='MPO') return gStatusOf(r)==='achieved' ? 'yes' : 'no'; return (r.status==='complete' || r.status==='exceeded') ? 'yes' : 'no'; }
+function exportRows(list, withLines){
+  const repDm = rep => { const g = DM_GROUPS.find(x=>x.reps.includes(rep)); return g ? g.dm : ''; };
+  const rows = [];
+  list.forEach(p=>{
+    const loaded = p.type!=='MPO' || mpoMonthLoaded(p.source, p.monthKey);
+    ROSTER.forEach(rep=>{
+      if(!supportAllows(rep, p)) return;
+      const r = loaded ? p.forRep(rep) : null; if(!r) return;
+      const f = progFacts(p, r, rep) || {};
+      const N = p.type==='MPO' ? mpoNums(r) : incNums(r);
+      const unit = p.type==='MPO' ? ((p.objective && p.objective.unit) || '') : (unitOf(r)||'');
+      const strip = v => String(v||'').replace(/<[^>]+>/g,'').replace(/&amp;/g,'&').replace(/&#39;/g,"'").replace(/&quot;/g,'"').replace(/&lt;/g,'<').replace(/&gt;/g,'>');
+      const base = {record:'rep_progress', program_id:p.id, program_title:p.shortName||p.name, program_source_name:p.name, type:p.type, supplier:p.supplier, premise:p.channelLabel, month:p.monthKey,
+        period_start:isoDay(p.period.start), period_end:isoDay(p.period.end), rep, district_manager:repDm(rep),
+        status: f.label || '', qualified: qualifiedOf(p, r), current: N ? N.cur : '', goal: N ? N.goal : '', remaining: N ? N.need : '', unit,
+        progress_text: strip(f.main), remaining_text: strip(f.need), pct: r.pct!=null ? Math.round(r.pct*10)/10 : '', data_as_of: dataDateOf(p),
+        account_num:'', account_name:'', product:'', credit_date:''};
+      rows.push(base);
+      if(withLines && r.status!=='unavailable' && !r.soon){
+        distFor(p, rep).forEach(x=>rows.push(Object.assign({}, base, {record:'credited_line', status:'', qualified:'', current:'', goal:'', remaining:'', progress_text:'', remaining_text:'', pct:'',
+          account_num: x.n || '', account_name: x.name || '', product: x.what || '', credit_date: x.date || ''})));
+      }
+    });
+  });
+  return rows;
+}
+const csvCell = v => { const t = String(v==null?'':v); return /[",\n\r]/.test(t) ? '"'+t.replace(/"/g,'""')+'"' : t; };
+function downloadText(name, text, type){
+  const blob = new Blob([text], {type});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name;
+  document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+}
+function exportStamp(){ const d = new Date(); return {iso: d.toISOString(), label: d.toLocaleString('en-US', {month:'short', day:'numeric', year:'numeric', hour:'numeric', minute:'2-digit'}), file: d.toISOString().slice(0,16).replace(/[:T]/g,'-')}; }
+async function ensureLoadedFor(list){ const need = neededMonths(list); if(need.length) await Promise.all(need.map(x=>ensureMpoMonth(x[0], x[1]))); }
+async function exportData(onlyId, withLines){
+  const list = programsForExport(onlyId);
+  await ensureLoadedFor(list);
+  const rows = exportRows(list, withLines);
+  const st = exportStamp();
+  const cols = ['record','program_id','program_title','program_source_name','type','supplier','premise','month','period_start','period_end','rep','district_manager','status','qualified','current','goal','remaining','unit','progress_text','remaining_text','pct','data_as_of','account_num','account_name','product','credit_date'];
+  const head = [
+    ['# Kohler Distribution Hub — Program Data Export'], ['# Generated', st.label], ['# Filters', onlyId ? 'One program: '+(list[0] ? list[0].shortName||list[0].name : onlyId) : exportFilterText(state.filters)],
+    ['# Scope', exportScopeText()], ['# Programs', String(list.length)], ['# Rows', String(rows.length)+(withLines ? ' (rep progress + credited lines)' : ' (rep progress)')],
+    ['# Note', 'Tracker figures as published; leads and eligible accounts are not results; no dollar figures.'], []];
+  const text = head.map(r=>r.map(csvCell).join(',')).join('\r\n') + '\r\n' + cols.join(',') + '\r\n' + rows.map(r=>cols.map(c=>csvCell(r[c])).join(',')).join('\r\n') + '\r\n';
+  downloadText(`kohler-programs-${st.file}.csv`, '﻿'+text, 'text/csv;charset=utf-8');
+  return {rows: rows.length, programs: list.length};
+}
+async function exportRecap(onlyId, withAccounts){
+  const list = programsForExport(onlyId);
+  await ensureLoadedFor(list);
+  const st = exportStamp();
+  const esc = E;
+  const sections = list.map(p=>{
+    const loaded = p.type!=='MPO' || mpoMonthLoaded(p.source, p.monthKey);
+    const stt = loaded ? programStats(p) : null;
+    const reps = [];
+    if(loaded) ROSTER.forEach(rep=>{ if(!supportAllows(rep, p)) return; const r = p.forRep(rep); if(!r || r.soon) return; reps.push({rep, r, f: progFacts(p, r, rep) || {}}); });
+    reps.sort((a,b)=> (qualifiedOf(p,b.r)==='yes') - (qualifiedOf(p,a.r)==='yes') || ((b.r.pct||0)-(a.r.pct||0)) || a.rep.localeCompare(b.rep));
+    const repRows = reps.map(({rep, r, f})=>`<tr><td>${esc(rep)}</td><td>${f.main||'—'}</td><td>${f.need && f.need!==f.label ? f.need : (qualifiedOf(p,r)==='yes' ? 'Goal met' : '—')}</td><td>${esc(f.label||'')}</td></tr>${withAccounts ? (()=>{ const L = r.status==='unavailable' ? [] : distFor(p, rep); return L.length ? `<tr class="lines"><td></td><td colspan="3">${L.map(x=>`${esc(x.name)}${x.n ? ' #'+esc(x.n) : ''} · ${esc(x.what||'')}${x.date ? ' · '+esc(x.date) : ''}`).join('<br>')}</td></tr>` : ''; })() : ''}`).join('');
+    // the program's own requirement lines; payout terms ($) stay on the trackers, not in a performance recap
+    const rules = (p.rules||[]).map(x=>String(x).replace(/<[^>]+>/g,'')).filter(x=>!/\$\s?\d/.test(x)).slice(0,3).map(x=>`<li>${esc(x)}</li>`).join('');
+    return `<section class="prog"><h2>${esc(p.shortName||p.name)}</h2>
+      <p class="meta">${esc(p.supplier)} · ${esc(p.channelLabel)} · ${esc(p.type==='MPO' ? p.monthLabel+' MPO' : 'Incentive')} · ${esc(p.period.label)} · ${esc(endsLabel(p.period))}</p>
+      ${p.shortName && p.shortName!==p.name ? `<p class="full">Full program name: ${esc(p.name)}</p>` : ''}
+      ${rules ? `<ul class="rules">${rules}</ul>` : ''}
+      ${!loaded ? '<p class="na">Data not loaded for this month.</p>' : p.manual ? '<p class="na">Verified by hand from iSellBeer photos — no data feed, so no completion numbers.</p>' : !stt.participants ? '<p class="na">No export for this program yet.</p>' : `
+      <div class="kpis"><div><b>${stt.participants}</b><span>participating reps</span></div><div><b>${stt.complete}</b><span>at goal</span></div><div><b>${Math.round(stt.pctComplete)}%</b><span>of reps at goal</span></div>${stt.avg!=null ? `<div><b>${Math.round(stt.avg)}%</b><span>average progress</span></div>` : ''}</div>
+      <table><thead><tr><th>Rep</th><th>Current</th><th>Remaining</th><th>Status</th></tr></thead><tbody>${repRows}</tbody></table>`}
+      <p class="fresh">Data as of ${esc(dataDateOf(p) || 'not stated')}</p></section>`;
+  }).join('');
+  const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Program Recap · ${esc(st.label)}</title>
+<style>
+@page{size:letter;margin:14mm}
+body{font:14px/1.45 -apple-system,"Segoe UI",Inter,Arial,sans-serif;color:#1a1c1f;margin:24px;max-width:960px}
+h1{font-size:22px;margin:0 0 4px} h2{font-size:17px;margin:0 0 2px} .sub{color:#4a4f57;margin:0 0 2px}
+.bar{display:flex;gap:8px;margin:12px 0 18px} .bar button{font:inherit;padding:8px 14px;border-radius:8px;border:1px solid #2866C0;background:#2866C0;color:#fff;cursor:pointer}
+.prog{border-top:1px solid #d5d8dd;padding:14px 0 10px;break-inside:avoid-page} .meta,.full,.fresh{color:#4a4f57;margin:2px 0} .fresh{font-size:12.5px}
+.rules{margin:6px 0 8px;padding-left:18px;color:#33373d} .na{color:#4a4f57;font-style:italic}
+.kpis{display:flex;flex-wrap:wrap;gap:8px 22px;margin:8px 0} .kpis b{display:block;font-size:18px} .kpis span{color:#4a4f57;font-size:12.5px}
+table{width:100%;border-collapse:collapse;margin:6px 0} th,td{text-align:left;padding:5px 8px;border-bottom:1px solid #e3e5e8;vertical-align:top} th{font-size:12.5px;color:#4a4f57;font-weight:600}
+tr.lines td{font-size:12.5px;color:#33373d;border-bottom:1px solid #e3e5e8}
+dl{display:grid;grid-template-columns:200px 1fr;gap:4px 14px} dt{font-weight:600} dd{margin:0;color:#33373d}
+@media print{.bar{display:none} body{margin:0}}
+</style></head><body>
+<h1>Program Recap</h1>
+<p class="sub">Generated ${esc(st.label)} · ${esc(exportScopeText())}</p>
+<p class="sub">${esc(onlyId ? 'One program' : exportFilterText(state.filters))} · ${list.length} ${list.length===1?'program':'programs'}${withAccounts ? ' · with credited account lines' : ''}</p>
+<p class="sub">Incentive data refreshed ${esc(incRefreshed()||'—')}. MPO data dates are shown per program.</p>
+<div class="bar"><button onclick="window.print()">Print / Save as PDF</button></div>
+${sections || '<p class="na">No programs match these filters.</p>'}
+<section class="prog"><h2>Definitions</h2><dl>${EXPORT_DEFS.map(([a,b])=>`<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('')}</dl></section>
+</body></html>`;
+  const w = window.open('', '_blank');
+  if(w && w.document){ w.document.open(); w.document.write(html); w.document.close(); }
+  else downloadText(`kohler-program-recap-${st.file}.html`, html, 'text/html;charset=utf-8');
+  return {programs: list.length, html};
+}
+// EXPORTS (2026-10-04, Gavin: explicit buttons, not a hidden menu). Both read
+// the COMPLETE filtered set for the authorized roster -- never just the page.
+function exportMenuHtml(onlyId){
+  if(!isMgr() || LOCKED_REP || state.asRep || (KDH_USER && KDH_USER.preview)) return '';
+  const pid = onlyId ? ` data-prog="${E(onlyId)}"` : '';
+  const ico = d => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+  return `<div class="xbar" role="group" aria-label="Export">
+    <button type="button" class="xbtn2" data-act="export-data"${pid}>${ico('<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>')}<b>Download CSV</b></button>
+    <button type="button" class="xbtn2" data-act="export-recap"${pid}>${ico('<path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/>')}<b>Export Recap</b></button>
+    <details class="xopts"><summary>Options</summary><div class="xpanel">
+      <label class="xopt"><input type="checkbox" id="xLines"> CSV: include credited account lines</label>
+      <label class="xopt"><input type="checkbox" id="xAccts"> Recap: include account detail</label>
+      <p class="xnote">${E(exportScopeText())} · tracker figures as published · no dollar figures</p></div></details>
+  </div>`;
+}
 function screenPrograms(){
+  state.filters.type = 'inc';      // Incentives only (2026-10-07): MPOs are on their trackers
   const f = state.filters;
   const sups = [...new Set(PROGRAMS.map(p=>p.supplier))].sort((a,b)=>a.localeCompare(b));
   const months = [...new Set(PROGRAMS.map(p=>p.monthKey))].sort().reverse();
@@ -2611,14 +2971,14 @@ function screenPrograms(){
   list.sort((a,b)=> (isActive(b)-isActive(a)) || (a.period.end-b.period.end) || a.name.localeCompare(b.name));
   const sel = (name, opts, val) => `<select class="fsel" data-filter="${name}">${opts.map(o=>`<option value="${E(o.v)}"${o.v===val?' selected':''}>${E(o.l)}</option>`).join('')}</select>`;
   let html = `<div class="pv-head">
-    <h1>Program View</h1>
-    <p class="pv-sub">Every program on the board, by program instead of by rep — participation, completion and who is where.</p>
+    <div class="pv-title"><h1>Program View</h1>${exportMenuHtml('')}</div>
+    ${BRAND_SCOPE ? `<p class="pv-sub pv-brands">${sups.length ? 'Your Brands: '+E(brandScopeText()) : 'No programs on the Hub for your brands ('+E((BRAND_SCOPE.suppliers || BRAND_SCOPE).join(', '))+')'}</p>` : ''}
     ${refreshedLine()}
     <div class="filters">
-      <div class="fgrp"><span class="fl">Type</span>${['all','inc','mpo'].map(v=>`<button class="fpill${f.type===v?' active':''}" data-filter="type" data-v="${v}">${v==='all'?'All':v==='inc'?'Incentives':'MPOs'}</button>`).join('')}</div>
       <div class="fgrp"><span class="fl">Channel</span>${['all','on','off'].map(v=>`<button class="fpill${f.chan===v?' active':''}" data-filter="chan" data-v="${v}">${v==='all'?'All':v==='on'?'On-Premise':'Off-Premise'}</button>`).join('')}</div>
-      <div class="fgrp"><span class="fl">Supplier</span>${sel('sup', [{v:'all',l:'All suppliers'}].concat(sups.map(s=>({v:s,l:s}))), f.sup)}</div>
-      <div class="fgrp"><span class="fl">Month</span>${sel('month', [{v:'active',l:'Active now'},{v:'all',l:'All months'}].concat(months.map(m=>({v:m,l:monthLabel(m)}))), f.month)}</div>
+      <div class="fgrp"><span class="fl">Supplier</span>${sel('sup', [{v:'all',l:BRAND_SCOPE ? `Your Suppliers (${sups.length})` : 'All Suppliers'}].concat(sups.map(s=>({v:s,l:s}))), f.sup)}</div>
+      <div class="fgrp"><span class="fl">Rep</span><select class="pv-rep" id="pvRep" aria-label="Open one rep’s programs"><option value="">All Reps (${ROSTER.length})</option>${DM_GROUPS.map(g=>({dm:g.dm, reps:g.reps.filter(r=>ROSTER.includes(r))})).filter(g=>g.reps.length).map(g=>`<optgroup label="${E(g.dm)}">${g.reps.map(r=>`<option value="${E(r)}">${E(r)}</option>`).join('')}</optgroup>`).join('')}${(()=>{ const inG = new Set(DM_GROUPS.flatMap(g=>g.reps)); const o = ROSTER.filter(r=>!inG.has(r)); return o.length ? `<optgroup label="Other">${o.map(r=>`<option value="${E(r)}">${E(r)}</option>`).join('')}</optgroup>` : ''; })()}</select></div>
+      <div class="fgrp"><span class="fl">Month</span>${sel('month', [{v:'active',l:'Active Now'},{v:'all',l:'All Months'}].concat(months.map(m=>({v:m,l:monthLabel(m)}))), f.month)}</div>
     </div>
   </div>`;
   if(pending.length) html += `<div class="loading">Loading MPO data for ${pending.map(x=>MPO_SCOPES[x[0]].label+' '+monthLabel(x[1])).join(', ')}…</div>`;
@@ -2671,9 +3031,105 @@ function screenPrograms(){
     </article>`;}).join('')}</div>`;
   return `<div class="pview">${html}</div>`;
 }
+
+/* ---- Carbliss On-Premise, manager side (2026-10-06): same numbers as the MPO card and the
+   leaderboard page (carbliss-mpo/data/program.json): L90 = bought Aug 1 - Oct 31, Team L90 Goal. ---- */
+const isCarbliss = p => !!(p && p.type==='MPO' && /^on:2026-10:carbliss$/.test(p.id));
+let CB_DATA;
+function cbData(){
+  if(CB_DATA!==undefined) return CB_DATA;
+  CB_DATA = null;
+  fetch('../carbliss-mpo/data/program.json', {credentials:'same-origin'}).then(r=>r.ok ? r.json() : null).catch(()=>null)
+    .then(d=>{ CB_DATA = d || false; if(!LIB && (state.view==='programs' || state.view==='program')) render(); });
+  return null;
+}
+const cbShare = (n, d) => d ? Math.round(n/d*1000)/10 : 0;
+function cbBoard(d){
+  return d.board.filter(b=>b.base>0).map(b=>({rep:b.rep, l90:b.l90, ytd:b.ytd, base:b.base, share:b.l90/b.base}))
+    .sort((a,b)=> b.share-a.share || a.rep.localeCompare(b.rep))
+    .reduce((out,x,i)=>{ out.push({...x, rank: i && out[i-1].share===x.share ? out[i-1].rank : i+1}); return out; }, []);
+}
+
+const CBF = {rep:'', q:'', l90:'', ytd:'', lim:100};
+const cbLongDate = iso => iso ? new Date(iso+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '';
+const cbYn = (on, y, n) => on ? `<span class="yn y">✓ ${y}</span>` : `<span class="yn n">✕ ${n}</span>`;
+function cbRows(d){
+  const q = CBF.q.trim().toLowerCase();
+  return d.accounts.filter(a=>{
+    const ytd = a.since==='yes';
+    if(CBF.rep && a.rep!==CBF.rep) return false;
+    if(CBF.l90==='yes' && !a.prog) return false; if(CBF.l90==='no' && a.prog) return false;
+    if(CBF.ytd==='yes' && !ytd) return false; if(CBF.ytd==='no' && ytd) return false;
+    if(q && !(a.name.toLowerCase().includes(q) || (a.town||'').toLowerCase().includes(q) || String(a.n).includes(q) || a.rep.toLowerCase().includes(q))) return false;
+    return true;
+  }).sort((x,y)=> x.rep.localeCompare(y.rep) || x.name.localeCompare(y.name));
+}
+function cbTableHtml(d){
+  const rows = cbRows(d), shown = rows.slice(0, CBF.lim);
+  const href = a => '../accounts/#acct='+encodeURIComponent(a.n)+'&rep='+encodeURIComponent(a.rep)+'&from='+encodeURIComponent(location.pathname+location.hash)+'&fl='+encodeURIComponent('Carbliss Buying Accounts');
+  return `<p class="cb-count">${rows.length.toLocaleString('en-US')} ${rows.length===1?'Account':'Accounts'}</p>
+    ${rows.length ? `<div class="cbt-wrap"><table class="cbt"><thead><tr><th>Sales Rep</th><th>Customer</th><th>L90 Buyer</th><th>YTD Buyer</th><th>Last Purchase</th></tr></thead><tbody>${shown.map(a=>`<tr>
+      <td data-l="Sales Rep" class="cbt-rep">${E(a.rep)}</td>
+      <td class="cbt-name">${a.page ? `<a href="${E(href(a))}">${E(a.name)}</a>` : E(a.name)}<span class="cbt-town">${E(a.town||'')}</span></td>
+      <td data-l="L90 Buyer">${cbYn(a.prog,'Yes','No')}</td>
+      <td data-l="YTD Buyer">${a.since==='unknown' ? '<span class="yn">Unknown</span>' : cbYn(a.since==='yes','Yes','No')}</td>
+      <td data-l="Last Purchase">${a.last ? E(cbLongDate(a.last)) : '<span class="cbt-none">None</span>'}</td></tr>`).join('')}</tbody></table></div>
+    ${rows.length>shown.length ? `<button type="button" class="cb-more" id="cbMore">Show ${Math.min(100, rows.length-shown.length)} More</button>` : ''}` : '<div class="empty slim">No accounts match.</div>'}`;
+}
+function cbRosterHtml(d, p){
+  const reps = [...new Set(d.accounts.map(a=>a.rep))].sort();
+  const sel = (id, opts, cur) => `<select id="${id}" class="cb-sel">${opts.map(o=>`<option value="${E(o[0])}"${o[0]===cur?' selected':''}>${E(o[1])}</option>`).join('')}</select>`;
+  return `<section class="dsec cbroster" id="cbRoster">
+    <h2 class="dsec-h">Accounts by Rep</h2>
+    <div class="cb-filters">
+      <input type="search" id="cbQ" class="cb-q" placeholder="Search Account, Town or Rep" value="${E(CBF.q)}" autocomplete="off">
+      ${sel('cbRep', [['','All Sales Reps'], ...reps.map(r=>[r,r])], CBF.rep)}
+      ${sel('cbL90', [['','L90 Buyer: All'],['yes','L90 Buyer: Yes'],['no','L90 Buyer: No']], CBF.l90)}
+      ${sel('cbYtd', [['','YTD Buyer: All'],['yes','YTD Buyer: Yes'],['no','YTD Buyer: No']], CBF.ytd)}
+    </div>
+    <div id="cbTable">${cbTableHtml(d)}</div>
+  </section>`;
+}
+(function(){
+  const redo = () => { const d = CB_DATA, t = document.getElementById('cbTable'); if(d && t) t.innerHTML = cbTableHtml(d); };
+  document.addEventListener('input', e=>{ if(e.target.id==='cbQ'){ CBF.q = e.target.value; CBF.lim = 100; redo(); } });
+  document.addEventListener('change', e=>{
+    const id = e.target.id, m = {cbRep:'rep', cbL90:'l90', cbYtd:'ytd'};
+    if(m[id]){ CBF[m[id]] = e.target.value; CBF.lim = 100; redo(); }
+  });
+  document.addEventListener('click', e=>{ if(e.target.id==='cbMore'){ CBF.lim += 100; redo(); } });
+})();
+function screenProgramCarbliss(p){
+  const d = cbData();
+  const head = `<div class="pv-title"><button class="back" data-act="programs"><span class="ar">‹</span> Back to Program View</button>${exportMenuHtml(p.id)}</div>`;
+  if(!d) return `<div class="detail pdetail">${head}<div class="kdh-state ${d===false?'empty':'loading'}">${d===false?'Carbliss data is not available.':'Loading…'}</div></div>`;
+  const m = d.meta, goal = m.goal, n = d.house.buyers;
+  const board = cbBoard(d);
+  const ytdAll = d.board.reduce((a,b)=>a+b.ytd,0), fell = ytdAll - n;
+  const row = x => `<button class="lrow" data-act="open-for-rep" data-prog="${E(p.id)}" data-rep="${E(x.rep)}">
+      <span class="lrank">${x.rank<=3 ? ['🥇','🥈','🥉'][x.rank-1] : '#'+x.rank}</span>
+      <span class="lname">${E(x.rep)}</span>
+      <span class="lval">${x.l90} of ${x.base} · ${cbShare(x.l90,x.base)}%</span>
+      <span class="lbar"><span class="bar sm"><span class="bar-fill ontrack" style="width:${Math.max(x.share*100,2)}%"></span></span></span>
+    </button>`;
+  return `<div class="detail pdetail cbmgr">${head}
+    <div class="dhero cbhero">
+      <div class="dhero-top">${logoStrip(p,'lg')}<div class="dhero-meta">${typeChips(p)}<span class="chip sup">${E(p.supplier)}</span></div></div>
+      <h1 class="dhero-name">Carbliss Buying Accounts</h1>
+      <div class="dhero-sup">${E(p.monthLabel)} · MPO Weight 25%</div>
+      ${window.KdhCarbTiles.html(d, {noTitle:true, link:'../carbliss-onprem-targets/'})}
+      <div class="dhero-line"><span class="period">📅 Aug 1 – Oct 31, 2026 · ${E(endsLabel(p.period))}</span></div>
+    </div>
+    <details class="dsec fold"><summary class="dsec-h">Rules</summary>
+      <ul class="rules"><li>L90 = bought Carbliss Aug 1 – Oct 31, 2026</li><li>Team goal: ${goal} L90 buyers of ${d.house.base.toLocaleString('en-US')} core market on-premise accounts</li><li>Credit: 40% of your own on-premise accounts are L90 buyers (Aug 1 – Oct 31)</li></ul>
+    </details>
+    ${workspaceTeamHtml(p) ? `<details class="dsec fold"><summary class="dsec-h">Team Opportunities</summary>${workspaceTeamHtml(p)}</details>` : ''}
+  </div>`;
+}
 function screenProgram(){
   const p = PROGRAMS.find(x=>x.id===state.prog);
   if(!p) return `<div class="empty">That program is not on the board.</div>`;
+  if(isCarbliss(p)) return screenProgramCarbliss(p);
   const loaded = p.type!=='MPO' || mpoMonthLoaded(p.source, p.monthKey);
   const st = loaded ? programStats(p) : null;
   const rank = loaded ? p.ranking() : [];
@@ -2681,7 +3137,7 @@ function screenProgram(){
   const ag = (loaded && p.atGoal) ? p.atGoal() : null;
   const notIn = loaded ? ROSTER.filter(rep=>supportAllows(rep, p) && !p.forRep(rep)) : [];
   return `<div class="detail pdetail">
-    <button class="back" data-act="programs"><span class="ar">‹</span> Back to Program View</button>
+    <div class="pv-title"><button class="back" data-act="programs"><span class="ar">‹</span> Back to Program View</button>${exportMenuHtml(p.id)}</div>
     <div class="dhero">
       <div class="dhero-top">${logoStrip(p,'lg')}<div class="dhero-meta">${typeChips(p)}<span class="chip sup">${E(p.supplier)}</span>${p.territory?`<span class="chip terr">${E(p.territory)}</span>`:''}${isActive(p)?'':'<span class="chip over">Ended</span>'}</div></div>
       <div class="dhero-sup">${E(p.supplier)} · ${E(p.monthLabel)}</div>
@@ -2702,6 +3158,7 @@ function screenProgram(){
       <ul class="rules">${p.rules.map(x=>`<li>${p.type==='Incentive' ? ruleHl(x) : E(x)}</li>`).join('')}</ul>
       ${p.type==='MPO' ? `<p class="note"><a href="${E(MPO_SCOPES[p.source].page)}#view=program&program=${encodeURIComponent(p.key)}&month=${E(p.monthKey)}">Open on the ${E(p.channelLabel)} MPO tracker ›</a></p>` : `<p class="note"><a href="${INC_ASSETS}index.html">Open the Incentive Tracker ›</a></p>`}
     </section>
+    ${loaded ? workspaceTeamHtml(p) : ''}
     <section class="dsec">
       <h2 class="dsec-h">Rep rankings</h2>
       ${rank.length ? `<p class="dsec-p">${plw(rank.length,'rep')} ranked by ${E(rank[0].metricLabel)} · tap a rep for their full breakdown</p>${leaderboard(p, rank, state.rep, 0)}` : `<div class="empty small">${loaded ? 'No rep activity yet for this program.' : 'Loading…'}</div>`}
@@ -2710,8 +3167,751 @@ function screenProgram(){
   </div>`;
 }
 
+
+/* ====================================================================
+   REP-MODE SCREENS (2026-09-30) -- Incentives > Supplier > Program >
+   Accounts > Account. Built from the same p.forRep() / nextAccounts() /
+   distFor() / RA the page already had; nothing is recomputed here.
+   ==================================================================== */
+const CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>';
+const BACKI = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>';
+const uPl = (n, u) => { u = String(u||'').trim(); if(!u) return ''; if(n===1) return /s$/.test(u) && !/ss$/.test(u) ? u.replace(/s$/,'') : u; return /s$/.test(u) ? u : u+'s'; };
+const returnLink = (act, label, extra) => `<button class="hreturn" data-act="${act}"${extra||''}>${BACKI}<span>${E(label)}</span></button>`;
+// ret= must be a page of this site (never another origin, never /login/).
+function safeRet(s){
+  if(!s) return null;
+  try{ const u = new URL(s, location.href); if(u.origin!==location.origin || /\/login\//.test(u.pathname)) return null; return u.pathname + u.search + u.hash; }catch(e){ return null; }
+}
+// What the originating screen is called, for "Back to <name>".
+function retLabel(ret){
+  const u = new URL(ret, location.href), path = u.pathname;
+  const h = {}; u.hash.replace(/^#/,'').split('&').forEach(kv=>{ const i = kv.indexOf('='); if(i>0) h[kv.slice(0,i)] = decodeURIComponent(kv.slice(i+1)); });
+  if(/\/MPOs\/off-prem\//.test(path)) return 'Off-Premise MPOs';
+  if(/\/MPOs\/on-prem\//.test(path)) return 'On-Premise MPOs';
+  if(/\/accounts\//.test(path)) return h.acct ? 'Account' : (MGR_REAL() ? 'Accounts' : 'My Accounts');
+  if(/\/exceptions\//.test(path)) return 'Exceptions';
+  if(path===location.pathname){
+    if(h.view==='sup' && h.sup) return h.sup;
+    if(h.view==='programs' || h.view==='program') return 'Program View';
+    const c = h.cat || '';
+    if(c==='inc' || /^sup:/.test(c)) return 'Incentives';
+    if(c==='on') return 'On-Premise MPOs';
+    if(c==='off') return 'Off-Premise MPOs';
+    if(c==='mpo') return 'MPOs';
+    if(c==='all') return 'All Programs';
+  }
+  return 'Previous Screen';
+}
+// "Back to <origin>": another page is a plain link; a hub screen is replayed in place.
+function retLinkHtml(){
+  if(!state.ret) return '';
+  const same = new URL(state.ret, location.href).pathname===location.pathname;
+  const label = 'Back to '+retLabel(state.ret);
+  return same ? returnLink('back-ret', label) : `<a class="hreturn" href="${E(state.ret)}" data-ret="1">${BACKI}<span>${E(label)}</span></a>`;
+}
+// Opened with no origin (a bookmark, a typed link): an MPO goes back to the
+// rep's own tracker on that program's month; anything else to its hub list.
+function fallbackBack(p){
+  if(p.type!=='MPO') return '';
+  const href = `../MPOs/${p.source}-prem/#view=rep&rep=${encodeURIComponent(state.rep||'')}&month=${encodeURIComponent(p.monthKey||'')}`;
+  return `<a class="hreturn" href="${E(href)}">${BACKI}<span>Back to ${E(p.channelLabel)} MPOs</span></a>`;
+}
+// ONE READ OF A PROGRAM'S PROGRESS, used by every row and the program
+// screen: {main "6 of 8 accounts", need "2 more accounts needed" | "Goal met",
+// pct, cls met|ontrack|attn|open|na, label, rule (the supporting goal text)}.
+// "75% of your 92-placement program goal" / "50% of your 29 eligible accounts
+// (14.5, rounded up)" -- from the metric's own numbers; empty for a plain count.
+function mpoGoalWhy(p, r, N){
+  const u = Number(r.underlying);
+  if(r.underlying==null || !isFinite(u) || !u){ const g = String(r.goal||''); return /%/.test(g) ? g.replace(/^my /i,'your ').replace(/ my /g,' your ').replace(/^./, c=>c.toUpperCase()) : ''; }
+  let pct = Math.round(N.goal/u*100);
+  const m = /(\d+(?:\.\d+)?)%/.exec((r.explain||[]).join(' ')); if(m) pct = Number(m[1]);
+  if(r.pctRule) pct = Math.round(Number(r.pctRule)*100);
+  const exact = Math.round(u*pct)/100, rnd = exact!==N.goal ? ` (${fmtN(exact)}, rounded ${N.goal > exact ? 'up' : 'down'})` : '';
+  const t = p.objective && p.objective.type;
+  if(t==='pct_of_goal') return `${pct}% of your ${fmtN(u)}-${(p.objective.unit||'placement')} program goal${rnd}`;
+  return `${pct}% of your ${fmtN(u)} eligible accounts${rnd}`;
+}
+// The goal's context without restating the numbers the card already shows:
+// "2 of 51 cases (Oct 2025 pace)" -> "Oct 2025 pace"; "894 vs 1175 cases last Aug–Sep" -> "".
+function goalContext(t){
+  let x = String(t||'').replace(/<[^>]+>/g,'').trim();
+  x = x.replace(/^[\d,.]+\s*(?:of|vs\.?|\/)\s*[\d,.]+\s*[^(·]*/i, '').replace(/^[\s·,-]+/, '').replace(/^\((.*)\)$/, '$1').trim();
+  return x;
+}
+const titleW = t => String(t||'').replace(/\b([a-z])/g, c=>c.toUpperCase());
+// THE GOAL BLOCK (2026-10-06, readability brief): Goal (count + unit, and the
+// rule behind it) -> Current / Still Needed -> one bar -> deadline. Built only
+// from progFacts' own numbers; null when the program has no countable goal.
+// Compact goal line for the Manager Mode cards: "Goal 69 Placements · 75% of your 92-placement program goal".
+function goalLineHtml(f){
+  if(!f || f.goalN==null || !isFinite(Number(f.goalN))) return '';
+  return `<div class="mgoal"><span class="mgoal-l">Goal</span> <b>${fmtN(f.goalN)}${f.unit ? ' '+E(titleW(uPl(f.goalN, f.unit))) : ''}</b>${f.why ? `<span class="mgoal-why">${E(f.why)}</span>` : ''}</div>`;
+}
+function goalBlockHtml(p, f, opt){
+  opt = opt || {};
+  if(!f || f.goalN==null || !isFinite(Number(f.goalN))) return '';
+  const unitG = f.unit ? ' '+E(titleW(uPl(f.goalN, f.unit))) : '';
+  const met = f.needN<=0;
+  const days = daysLeft(p.period.end);
+  const dl = isActive(p) ? `Ends <b>${E(fmtDay(p.period.end))}</b> · ${days<=0 ? 'last day' : plw(days,'day')+' left'}` : `Ended ${E(fmtDayYear(p.period.end))}`;
+  return `<div class="gb">
+      <div class="gb-goal"><span class="gb-l">Goal</span><span class="gb-v">${fmtN(f.goalN)}${unitG}</span>${f.why ? `<span class="gb-why">${E(f.why)}</span>` : ''}</div>
+      <div class="gb-stats">
+        <div class="gb-stat"><span class="gb-sl">Current</span><span class="gb-sv">${fmtN(f.cur)}<span class="gb-of"> of ${fmtN(f.goalN)}</span></span></div>
+        <div class="gb-stat${met?' met':''}"><span class="gb-sl">Remaining</span><span class="gb-sv">${met ? 'Met' : fmtN(f.needN)}</span><span class="gb-su">${met ? 'Goal complete' : E(titleW(uPl(f.needN, f.unit||'')))}</span></div>
+      </div>
+      ${hbar(f)}
+      <div class="gb-cap">${Math.round(f.pct||0)}% of the goal</div>
+      <div class="gb-dl">${dl}</div>
+      ${opt.button || ''}
+    </div>`;
+}
+function progFacts(p, r, rep){
+  if(!r) return null;
+  if(r.status==='unavailable') return {main:'Not in your territory', need:'', pct:null, cls:'na', label:'Not in your territory', rule:r.sub||''};
+  if(r.soon) return {main: r.loading ? 'Loading…' : (p.manual ? 'Verified by hand from iSellBeer photos' : 'Awaiting the first export'), need:'', pct:null, cls:'na', label: r.loading ? 'Loading' : 'Awaiting Data', rule:''};
+  if(p.type==='MPO'){
+    const N = mpoNums(r); const unit = (p.objective && p.objective.unit) || '';
+    const st = gStatusOf(r); const cls = st==='achieved' ? 'met' : st==='inprogress' ? 'ontrack' : 'open';
+    const label = st==='achieved' ? 'Goal Met' : st==='inprogress' ? 'In Progress' : 'Not Started';
+    if(!N) return {main:E(r.now||'—'), need:E(r.remain||''), pct:r.pct, cls, label, rule:r.goal||''};
+    const main = unit ? `${fmtN(N.cur)} of ${fmtN(N.goal)} required ${uPl(N.goal, unit)}` : `${E(r.now||fmtN(N.cur))} of ${E(r.goal||fmtN(N.goal))}`;
+    const need = N.need<=0 ? 'Requirement met' : (unit ? `${fmtN(N.need)} more ${uPl(N.need, unit)} needed` : `${E(r.remain||fmtN(N.need)+' more needed')}`);
+    // The tracker's own goal text carries the rule ("40% of my account base (13 of 31)").
+    const rule = r.explain && r.explain.length ? r.explain[1] || r.explain[0] : (r.goal && !/^\d[\d,.]*\s/.test(String(r.goal)) ? 'Goal is '+String(r.goal).replace(/^my /,'your ').replace(/ my /,' your ') : '');
+    return {main, need, pct:Math.max(0,Math.min(100,r.pct||0)), cls, label, rule, segments:r.segments||null, explain:r.explain||null, weight:r.weight,
+      cur:N.cur, goalN:N.goal, needN:N.need, unit, why: mpoGoalWhy(p, r, N)};
+  }
+  const b = incBand(p, r) || {cls:'open', label:''};
+  if(r.openEnded) return {main:E(r.now||'—'), need:'Every One Pays', pct:null, cls:'open', label:b.label, rule:''};
+  const N = incNums(r);
+  if(!N) return {main:E(r.now||'—'), need:E(r.remain||''), pct:r.pct, cls:b.cls, label:b.label, rule:''};
+  // A percentage goal (Lytt: "25% of your accounts"): say it in accounts
+  // when the tracker gives the counts, never inferred from a rounded %.
+  if(/%/.test(String(r.goal||'')) && p.source==='inc'){
+    const d = p.entry.getRep(rep) || {};
+    const buying = Number(d.buyingAccountCount), elig = Number(d.eligibleAccountCount), tier = Number(N.goal);
+    const cov = Number(N.cur);
+    if(isFinite(buying) && isFinite(elig) && elig>0 && isFinite(tier)){
+      const goalN = Math.ceil(tier/100*elig - 1e-9), needN = Math.max(0, goalN - buying);
+      const rule = `Current account coverage ${fmtN(cov)}% · Target ${fmtN(tier)}% (${fmtN(goalN)} of your ${fmtN(elig)} eligible accounts)`;
+      return {main:`${fmtN(buying)} of ${fmtN(goalN)} accounts`, need: needN<=0 ? (tier>=100 ? 'Top tier reached' : 'Goal met') : `${fmtN(needN)} more ${uPl(needN,'account')} needed`, pct:Math.max(0,Math.min(100,r.pct||0)), cls:b.cls, label:b.label, rule,
+        cur:buying, goalN, needN, unit:'account', why:`${fmtN(tier)}% of your ${fmtN(elig)} eligible accounts · current coverage ${fmtN(cov)}%`};
+    }
+    const pts = Math.max(0, N.goal - N.cur);
+    return {main:`Current account coverage ${fmtN(N.cur)}%`, need: pts<=0 ? 'Goal met' : `Target ${fmtN(N.goal)}% · ${fmtN(pts)} percentage points remaining`, pct:Math.max(0,Math.min(100,r.pct||0)), cls:b.cls, label:b.label, rule:''};
+  }
+  const u = unitOf(r);
+  const house = r.house ? ' (house goal)' : '';
+  if(u){
+    // The tracker's own headline stays as the supporting line when it says
+    // more than the count ("894 vs 1175 Sam Adams cases last Aug–Sep").
+    const plain = new RegExp('^[\\d,.]+ of [\\d,.]+ '+u.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'$','i').test(String(r.now||'').trim());
+    const rule = [r.house ? subNoMoney(r.sub) : '', (!plain && r.now && !/\$/.test(r.now)) ? r.now : ''].filter(Boolean).join(' · ');
+    return {main:`${fmtN(N.cur)} of ${fmtN(N.goal)} ${E(uPl(N.goal,u))}${house}`, need: N.need<=0 ? 'Goal met' : `${fmtN(N.need)} more ${E(uPl(N.need,u))} needed${r.house?' company-wide':''}`, pct:Math.max(0,Math.min(100,(N.cur/N.goal)*100)), cls:b.cls, label:b.label, rule,
+      cur:N.cur, goalN:N.goal, needN:N.need, unit:u, why:[r.house ? 'House goal — counted company-wide' : '', goalContext(rule)].filter(Boolean).join(' · ')};
+  }
+  return {main:E(r.now||`${fmtN(N.cur)} of ${fmtN(N.goal)}`), need: N.need<=0 ? 'Goal met' : E(r.remain||`${fmtN(N.need)} more needed`), pct:Math.max(0,Math.min(100,(N.cur/N.goal)*100)), cls:b.cls, label:b.label, rule:''};
+}
+const htag = f => f && f.label ? `<span class="htag ${f.cls}">${E(f.label)}</span>` : '';
+const hbar = f => (f && f.pct!=null) ? `<div class="hbar ${f.cls}"><div class="hbar-fill" style="width:${Math.round(f.pct)}%"></div></div>` : '';
+// One program as a row: name + status, supplier/channel and the deadline
+// once, one progress line, a thin bar. Tap opens the program.
+function progRowHtml(p, r, rep, noSup){
+  const f = progFacts(p, r, rep) || {main:'', need:'', cls:'open', label:''};
+  const meta = [state.view==='sup' || noSup ? p.channelLabel : `${p.supplier} · ${p.channelLabel}`, endsLabel(p.period)].filter(Boolean).join(' · ');
+  const off = r.status==='unavailable' || r.soon;
+  const rowLogo = (p.type==='MPO' && p.brandLogos && p.brandLogos[0]) ? `<img class="hrow-lg" src="${E(p.brandLogos[0])}" alt="" loading="lazy" onerror="this.remove()">` : '';
+  return `<button class="hrow prog${off?' off':''}" data-act="open" data-prog="${E(p.id)}" id="card-${E(p.id)}">
+    ${rowLogo}<span class="hrow-main">
+      <span class="hrow-t"><span>${E(p.type==='MPO' ? (p.shortName||p.name) : (p.shortName||p.name))}</span>${p.isTest?'<span class="htag test">Test</span>':''}${htag(f)}</span>
+      <span class="hrow-s">${E(meta)}</span>
+      ${(!off && f.goalN!=null) ? `<span class="hrow-g"><span>Goal</span> <b>${fmtN(f.goalN)}${f.unit ? ' '+E(titleW(uPl(f.goalN, f.unit))) : ''}</b></span>
+      <span class="hrow-p"><b>${fmtN(f.cur)}</b> of ${fmtN(f.goalN)} · ${f.needN<=0 ? '<b class="ok">Goal Met</b>' : `<b>${fmtN(f.needN)}</b> more needed`}</span>`
+        : (f.main ? `<span class="hrow-p"><b>${f.main}</b>${f.need && f.need!==f.label ? ` · ${f.need}` : ''}</span>` : '')}
+      ${off ? '' : hbar(f)}
+    </span>${CHEV}</button>`;
+}
+// Incentives grouped by supplier, sorted the way the old page sorted them.
+function supProgs(rep){
+  const rows = incRows(rep);
+  const sups = new Map();
+  rows.forEach(x=>{ const k = x.p.supplier; if(!sups.has(k)) sups.set(k, []); sups.get(k).push(x); });
+  sups.forEach(list=>list.sort((a,b)=>cmpKey(incSortKey(a), incSortKey(b))));
+  return sups;
+}
+function supOrder(sups){
+  const groups = [...sups.entries()].map(([name, list])=>({name, list,
+    top: Math.max(...list.map(x=>{ const v = incPctDone(x); return v==null ? -1 : v; })),
+    band: Math.min(...list.map(x=>x.b.band))}));
+  groups.sort((a,b)=> b.top-a.top || a.band-b.band || a.name.localeCompare(b.name));
+  return groups;
+}
+// Programs that ENDED in a given month (period end inside it), for the record.
+function endedIn(rep, key){
+  const out = [];
+  PROGRAMS.forEach(p=>{
+    if(p.type!=='Incentive' || isActive(p) || !supportAllows(rep, p)) return;
+    const e = p.period.end; const k = e.getFullYear()+'-'+String(e.getMonth()+1).padStart(2,'0');
+    if(k!==key) return;
+    const r = p.forRep(rep); if(!r || r.status==='unavailable' || isDollarProgram(r) || !availability(p, rep).ok) return;
+    out.push({p, r});
+  });
+  out.sort((a,b)=>b.p.period.end - a.p.period.end || a.p.supplier.localeCompare(b.p.supplier));
+  return out;
+}
+// The "Previous months" block: August / September pills, then that month's
+// ended programs (name · supplier, the finish, the end date) or the notice
+// for a month whose recap is not in yet.
+function prevMonthsHtml(rep){
+  const cur = INC_MONTHS.find(m=>m.key===state.im) || INC_MONTHS[INC_MONTHS.length-1];
+  const pills = INC_MONTHS.map(m=>`<button class="mpill${m.key===cur.key?' active':''}" data-act="set-inc-month" data-im="${E(m.key)}" role="tab" aria-selected="${m.key===cur.key?'true':'false'}">${E(m.label)}</button>`).join('');
+  let body;
+  if(cur.note){
+    body = `<div class="kdh-state empty"><b>${E(cur.note)}</b>${cur.sub ? `<span>${E(cur.sub)}</span>` : ''}</div>`;
+  } else {
+    const ended = endedIn(rep, cur.key);
+    body = ended.length ? `<div class="iended-list">${ended.map(x=>{ const f = progFacts(x.p, x.r, rep);
+        const okd = x.r.status==='complete'||x.r.status==='exceeded';
+        return `<div class="iended-row"><span class="iended-name">${E(x.p.shortName||x.p.name)}<span class="iended-sup">${E(x.p.supplier)}</span></span><span class="iended-fin${okd?' ok':''}">${okd?'Goal met · ':''}${f.main}</span><span class="iended-when">Ended ${E(fmtDay(x.p.period.end))}</span></div>`; }).join('')}</div>`
+      : `<div class="kdh-state empty"><b>No ${E(cur.label)} incentives on record ${isSelf(rep) ? 'for you' : 'for '+E(first(rep))}.</b></div>`;
+  }
+  return `<section class="iprev" aria-label="Previous months">
+      <div class="iprev-head"><span class="iprev-t">Previous Months</span><span class="iprev-s">Review an earlier month’s incentives</span></div>
+      <div class="mstrip" role="tablist">${pills}</div>
+      ${body}
+    </section>`;
+}
+const endedHtml = rep => prevMonthsHtml(rep);
+/* ---- Incentives: one row per supplier ---- */
+function screenSuppliers(rep){
+  const sups = supProgs(rep); const groups = supOrder(sups);
+  const rows = [...sups.values()].flat();
+  const met = rows.filter(x=>x.b.band===2).length, onTrack = rows.filter(x=>x.b.band===1).length, attn = rows.filter(x=>x.b.band===0).length;
+  // PROGRESS BEFORE DRILLING IN (2026-10-02, Todoist's sections): each
+  // supplier is a heading with its programs listed beneath it -- name,
+  // status, progress, what is left, deadline -- so nothing needs another
+  // tap just to see where a program stands. A row opens the program.
+  const list = groups.map(g=>{
+    const logo = (g.list[0] && g.list[0].p.supplierLogo) || '';
+    return `<section class="hsupg" aria-label="${E(g.name)}">
+      <div class="hsupg-h">${supLogoHtml(g.name, logo)}<span class="hsupg-n">${E(g.name)}</span><span class="hsupg-c">${plwT(g.list.length,'Program')}</span></div>
+      <div class="hlist">${g.list.map(x=>progRowHtml(x.p, x.r, rep, true)).join('')}</div></section>`;
+  }).join('');
+  return `<div class="hview">
+    <div class="rep-head">
+      <div class="rep-title"><h1>${E(possessive(rep))} Incentives</h1>
+        ${roleLine(rep)}${tapShareLink(rep)}
+        <div class="rep-sub">${plwT(rows.length,'Program')}${rows.length ? ` · <span class="hs met">${met} Met</span> · <span class="hs ontrack">${onTrack} On Track</span> · <span class="hs attn">${attn} Need${attn===1?'s':''} Attention</span>` : ''}</div>
+        ${refreshedLine()}</div>
+      ${tabbar(rep, 'inc')}
+    </div>
+    ${rows.length ? `<div class="hsups">${list}</div>` : `<div class="kdh-state empty"><b>No incentives apply to you right now.</b></div>`}
+    ${endedHtml(rep)}
+  </div>`;
+}
+/* ---- one supplier's programs ---- */
+function screenSupplier(){
+  const rep = state.rep, name = state.sup;
+  const list = supProgs(rep).get(name) || [];
+  const logo = (list[0] && list[0].p.supplierLogo) || '';
+  return `<div class="hview">
+    ${returnLink('back-list', 'Incentives')}
+    <div class="hhead"><div class="hhead-row">${supLogoHtml(name, logo, 'lg')}<div><h1>${E(name)}</h1><p class="hsub">${plw(list.length,'program')} for ${isSelf(rep) ? 'you' : E(first(rep))}</p></div></div></div>
+    ${list.length ? `<div class="hlist">${list.map(x=>progRowHtml(x.p, x.r, rep)).join('')}</div>` : `<div class="kdh-state empty"><b>Nothing here right now.</b></div>`}
+  </div>`;
+}
+/* ---- one program: the summary, then the account lists ---- */
+function backForProgram(p, focus){
+  if(state.ret) return retLinkHtml();
+  if(focus && p.type==='MPO') return fallbackBack(p);
+  if(focus){   // an incentive opened with no origin: its supplier screen or the Incentives list
+    const sups = supProgs(state.rep);
+    return (sups.has(p.supplier) && sups.get(p.supplier).length>1) ? returnLink('back-sup', 'Back to '+p.supplier) : returnLink('back-list', 'Back to Incentives');
+  }
+  if(p.type==='MPO') return returnLink('back-list', `${p.channelLabel} MPOs`);
+  const sups = supProgs(state.rep); const k = p.supplier;
+  if(sups.has(k) && sups.get(k).length>1) return returnLink('back-sup', p.supplier);
+  return returnLink('back-list', 'Incentives');
+}
+function listCounts(p, r, rep){
+  const off = r.status==='unavailable' || r.soon;
+  const loading = p.type==='MPO' && !mpoMonthLoaded(p.source, p.monthKey);
+  if(off || loading) return {loading, targets:null, dist:null, follow:null, hold:false};
+  const plan = nextAccounts(p, rep);
+  const T = raSplit(p, rep, plan.rows.filter(a=>!a.foreign));
+  return {loading:false, hold:plan.hold, targets:T.live.length, done:T.done.length, skip:T.later.length, dist:distFor(p, rep).length, follow:T.on ? T.follow.length : null};
+}
+function screenProgramRep(p, r, rep){
+  const f = progFacts(p, r, rep);
+  const off = r.status==='unavailable' || r.soon;
+  const WR = !off && eligRule(p);
+  if(WR){ const w = screenWorkspaceRep(p, r, rep, WR); if(w) return w; }
+  const C = listCounts(p, r, rep);
+  const BG = off ? [] : brandGoals(p, rep);
+  // Incentives with an account list get the same Eligible Accounts page as
+  // the MPOs (2026-10-06). Retention (brand goals), two-leg programs and
+  // accounts-to-hold lists keep the screen below.
+  if(!off && !(r.legs && r.legs.length) && !BG.length && !C.loading && !C.hold && C.targets!=null) return screenIncentiveFocus(p, r, rep, f, C);
+  const fams = HubAccounts.PROGRAM_BRANDS[HubAccounts.brandKey(p)];
+  const row = (list, label, n, sub) => n==null ? '' : `<button class="hrow" data-act="accts" data-prog="${E(p.id)}" data-list="${list}"><span class="hrow-main"><span class="hrow-t"><span>${E(label)}</span></span>${sub?`<span class="hrow-s">${E(sub)}</span>`:''}</span><span class="hcount">${n}</span>${CHEV}</button>`;
+  const lists = C.loading ? `<div class="kdh-state loading">Loading this month’s accounts…</div>` : off ? '' : p.key==='new_belgium_distribution_retain' ? `<p class="hnote">Report generated ${E(p.refreshed)}. This report contains rep and SKU totals, with no customer-level purchases. Account detail is unavailable.</p>` : `<div class="hlist">
+      ${BG.length ? '' : row('targets', C.hold ? LISTS.hold : LISTS.targets, C.targets, C.hold ? 'Keep these ordering' : (C.targets ? 'Where to go next' : 'Every eligible account already buys it'))}
+      ${row('dist', LISTS.dist, C.dist, C.dist ? `Credited in ${periodLabel(p.period)}` : 'Nothing credited yet')}
+      ${C.follow ? row('follow', LISTS.follow, C.follow, 'Accounts you flagged to get back to') : ''}
+    </div>`;
+  const weight = p.type==='MPO' ? `<li>Worth ${E(String(r.weight||Math.round((p.objective.weight||0)*100)))}% of the ${E(p.monthLabel)} ${E(p.channelLabel)} MPO.</li>` : '';
+  // A program with LEGS (Touchdowns & Tea, 2026-09-30): one card, and inside
+  // it one block per leg -- Off-Premise / On-Premise -- each with its own
+  // Qualifies line, big number, supporting line and what is still needed.
+  // "How it is scored" groups the rules the same way. No dollars reach the
+  // page: the leg's own lines carry none and its rules go through ruleNoMoney.
+  const legs = (!off && r.legs && r.legs.length) ? r.legs : null;
+  const legHtml = g => `<section class="px-leg" data-leg="${E(g.key||'')}">
+        <div class="px-leg-head"><span class="px-leg-badge">${E(g.label)}</span>${g.where?`<span class="px-leg-where">${E(g.where)}</span>`:''}</div>
+        ${g.ask?`<p class="px-qual"><span>Qualifies</span>${E(g.ask)}</p>`:''}
+        <div class="px-main">${E(g.big)} ${E(g.cap)}</div>
+        ${g.line?`<div class="px-rule">${E(g.line)}</div>`:''}
+        ${g.need?`<div class="px-need open">${E(g.need)}</div>`:''}
+      </section>`;
+  const legRules = legs ? legs.map(g=>{ const R = (g.rules||[]).map(ruleNoMoney).filter(Boolean);
+      return R.length ? `<div class="px-leg-badge sm">${E(g.label)}</div><ul class="ibul">${R.map(x=>`<li>${E(x)}</li>`).join('')}</ul>` : ''; }).join('') : '';
+  const rules = legRules || repRulesHtml(p, 'ibul');
+  const tl = off ? null : p.timeline(rep);
+  // Goal -> Current / Still Needed -> bar -> deadline -> View Eligible Accounts (2026-10-06)
+  const eligBtn = (!off && !legs && !C.loading && !C.hold && C.targets && !BG.length && f && f.needN>0)
+    ? `<button class="pw-btn outline gb-btn" data-act="accts" data-prog="${E(p.id)}" data-list="targets">View Eligible Accounts</button>` : '';
+  const gbHtml = (!off && !legs) ? goalBlockHtml(p, f, {button: eligBtn}) : '';
+  return `<div class="hview">
+    ${backForProgram(p)}
+    <div class="px${legs?' has-legs':''}">
+      <h1 class="px-name">${E(p.shortName||p.name)}</h1>
+      <div class="px-sup">${E(p.supplier)} · ${E(p.channelLabel)}${p.type==='MPO' ? ' · '+E(p.monthLabel)+' MPO' : ''}</div>
+      <div class="px-meta">${htag(f)}${gbHtml ? '' : `<span class="px-ends">${E(endsLabel(p.period))}</span>`}</div>
+      ${off ? `<div class="kdh-state ${r.status==='unavailable'?'unavailable':'empty'}"><b>${f.main}</b>${f.rule?`<span>${E(f.rule)}</span>`:''}</div>` : legs ? `
+      <div class="px-legs">${legs.map(legHtml).join('')}</div>` : `
+      ${gbHtml ? gbHtml : `<div class="px-prog">
+        <div class="px-main">${f.main}</div>
+        <div class="px-need ${f.cls}">${f.need}</div>
+        ${hbar(f)}
+        ${p.type==='MPO' ? '' : (f.rule ? `<div class="px-rule">${f.rule}</div>` : '')}
+      </div>`}
+      ${f.segments && f.segments.length ? `<div class="px-segs">${f.segments.map(g=>`<div class="px-seg"><span>${E(g.label)}</span><b>${E(g.valueText)}</b></div>`).join('')}</div>` : ''}
+      <p class="px-qual"><span>Qualifies</span>${E(sellAsk(p))}</p>
+      ${p.type==='MPO' ? `<div class="px-cap dim">MPO weight: ${Math.round((f.weight||0))}%</div>` : ''}`}
+    </div>
+    ${lists}
+    ${BG.length ? `<section class="hsec"><h2>${p.key==='new_belgium_distribution_retain'?'Your Package-Group Goals':'Your Brand Goals'}</h2>${brandGoalsHtml(BG, {noTitle:true, oneGoal: p.key==='mabi_retention_fall' ? (r.goal||'goal') : ''})}</section>` : ''}
+    <details class="hdet"><summary>How It Is Scored</summary>
+      ${p.shortName && p.shortName!==p.name ? `<p class="px-full"><span>Full program name</span>${E(p.name)}</p>` : ''}
+      ${legRules ? legRules : rules ? rules.replace('<ul class="ibul">', '<ul class="ibul">'+weight) : `<ul class="ibul">${weight}</ul>`}
+      ${(fams && fams.length) ? `<p class="hnote">Pays on ${E(fams.join(' · '))}.</p>` : ''}
+      <p class="hnote">Runs ${E(p.period.label)} · numbers as of ${E(p.refreshed||'—')}</p>
+    </details>
+    ${tl && tl.length ? `<details class="hdet"><summary>Progress So Far</summary>${chartHtml(tl, p, r)}</details>` : ''}
+  </div>`;
+}
+function incProductsFold(p){
+  // the program's official SKU list wins: its own names, no catalogue needed
+  const off = window.KDH_PROGRAM_SKUS && window.KDH_PROGRAM_SKUS[p.id];
+  if(off && off.products && off.products.length) return qpFoldHtml({products: off.products, open: state.pv==='prods'});
+  const cat = hubCatalog();
+  if(cat===null) return qpFoldHtml({products:[], loading:true});
+  if(!cat) return '';
+  const E2 = HubAccounts.eligibleProducts(p, cat.products||[]);
+  if(E2.any || !E2.rows.length) return '';
+  const fams = HubAccounts.PROGRAM_BRANDS[HubAccounts.brandKey(p)] || [];
+  const products = E2.rows.map(c=>({id:c[0], name:c[1], family:c[3]}));
+  return qpFoldHtml({products, open: state.pv==='prods',
+    note: E2.byProduct ? '' : `Every ${fams.length ? fams.join(' / ') : 'brand'} product we carry. The program’s exact SKU list is not on file yet, so only what “What Counts” names is certain to count.`});
+}
+function screenIncentiveFocus(p, r, rep, f, C){
+  const key = p.id+'|elig';
+  const plan = nextAccounts(p, rep);
+  const T = raSplit(p, rep, plan.rows.filter(a=>!a.foreign));
+  const n = T.on ? T.live.length : plan.rows.filter(a=>!a.foreign).length;
+  const q = acctQ[key]||'';
+  const folds = T.on ? [['done', T.done.length], ['skip', T.later.length]].filter(x=>x[1]).map(([k,c])=>`<button class="hrow fold" data-act="accts" data-prog="${E(p.id)}" data-list="${k}"><span class="hrow-main"><span class="hrow-t"><span>${RA_MARK[k]} ${E(LISTS[k])}</span></span></span><span class="hcount">${c}</span>${CHEV}</button>`).join('') : '';
+  const pv = RA.previewOf(rep) ? `<p class="hnote">Marks are ${E(first(rep))}’s own. Saving is off while you preview.</p>` : '';
+  const countable = f && f.goalN!=null && isFinite(Number(f.goalN));
+  const sum = countable ? pwFocusSummary(p, f) : `<div class="px-prog"><div class="px-main">${f.main}</div><div class="px-need ${f.cls}">${f.need}</div>${hbar(f)}${f.rule ? `<div class="px-rule">${f.rule}</div>` : ''}<div class="pwf-dl">${E(endsLabel(p.period))}</div></div>`;
+  const rules = repRulesHtml(p, 'ibul');
+  const fams = HubAccounts.PROGRAM_BRANDS[HubAccounts.brandKey(p)];
+  const tl = p.timeline(rep);
+  return `<div class="hview">
+    ${backForProgram(p, true)}
+    <div class="px pw pwf">
+      <h1 class="px-name">${E(p.shortName||p.name)}</h1>
+      <div class="px-sup">${E(p.supplier)} · ${E(p.channelLabel)}${p.type==='MPO' ? ' · '+E(p.monthLabel)+' MPO' : ''}</div>
+      ${sum}
+      <p class="pwf-ask"><span>What Counts</span>${E(sellAsk(p))}</p>
+    </div>
+    ${incProductsFold(p)}
+    <section class="pw-view pwf-list" id="pwList">
+      <h2 class="pwf-h">Eligible Accounts <span class="pw-tn">${fmtN(n)}</span></h2>
+      <div class="pw-tools hsearch"><input type="search" class="kdh-field pw-q" placeholder="Search accounts" value="${E(q)}" data-key="${E(key)}" autocomplete="off" aria-label="Search eligible accounts"></div>
+      ${pv}
+      <div class="hlist" id="acctRows">${acctRowsHtml(key)}</div>
+      ${folds ? `<div class="hlist hfolds">${folds}</div>` : ''}
+    </section>
+    <div class="pwf-more">
+      ${C.dist!=null ? `<button class="hrow" data-act="accts" data-prog="${E(p.id)}" data-list="dist"><span class="hrow-main"><span class="hrow-t"><span>${E(LISTS.dist)}</span></span><span class="hrow-s">${C.dist ? `Credited in ${E(periodLabel(p.period))}` : 'Nothing credited yet'}</span></span><span class="hcount">${C.dist}</span>${CHEV}</button>` : ''}
+      <details class="hdet"><summary>How It Is Scored</summary>
+        ${p.shortName && p.shortName!==p.name ? `<p class="px-full"><span>Full program name</span>${E(p.name)}</p>` : ''}
+        ${rules || ''}
+        ${(fams && fams.length) ? `<p class="hnote">Pays on ${E(fams.join(' · '))}.</p>` : ''}
+        <p class="hnote">Runs ${E(p.period.label)} · numbers as of ${E(p.refreshed||'—')}</p>
+      </details>
+      ${tl && tl.length ? `<details class="hdet"><summary>Progress So Far</summary>${chartHtml(tl, p, r)}</details>` : ''}
+    </div>
+  </div>`;
+}
+/* ====================================================================
+   PROGRAM WORKSPACE (2026-10-05, the eligibility brief) -- for a program
+   that has a verified rule in shared/data/program-rules.json (KdhElig):
+   the summary in the requirement's own units, ONE bar, "View Eligible
+   Accounts", the goal math under Details (only what is verified, each
+   rule tagged), then three views over ONE calculation:
+     Eligible Accounts (default) -- accounts in scope with a remaining
+       opportunity, the reason the data supports, filtered by product /
+       search / rep (managers), ordered by the rule's own order
+     Qualifying Products -- ProductID, package, size; "View Eligible
+       Accounts" filters the account list to that product
+     Credited Results -- what the tracker already counts, by account
+   Accounts open the unified Account page with a contextual Back that
+   returns here with program, product, search, rep and scroll kept.
+   Numbers are read from the generated files; nothing is recomputed here.
+   ==================================================================== */
+const ELIG = {ready:false, files:new Map()};
+let HUB_CATALOG;                 // ../accounts/data/catalog.json, loaded the first time an incentive page needs it
+function hubCatalog(){
+  if(HUB_CATALOG!==undefined) return HUB_CATALOG;
+  HUB_CATALOG = null;
+  fetch('../accounts/data/catalog.json', {credentials:'same-origin'}).then(r=>r.ok ? r.json() : null).catch(()=>null)
+    .then(d=>{ HUB_CATALOG = d || false; if(!LIB && state.view==='detail') render(); });
+  return null;
+}
+const eligRule = p => (window.KdhElig && ELIG.ready) ? window.KdhElig.rule(p.id) : null;
+function eligData(rep){
+  if(!window.KdhElig) return null;
+  if(ELIG.files.has(rep)) return ELIG.files.get(rep);
+  ELIG.files.set(rep, undefined);
+  window.KdhElig.load(rep).then(d=>{ ELIG.files.set(rep, d||null); if(!LIB) render(); });
+  return undefined;
+}
+const PW_VIEWS = [['accts','Eligible Accounts'], ['prods','Qualifying Products'], ['cred','Credited Results']];
+const STATUS_TAG = {verified:'Verified', assumed:'Assumed', unverified:'Unverified'};
+const pwUnit = (R, n) => R.kind==='placements' ? (n===1 ? 'Placement' : 'Placements') : (n===1 ? 'Buying Account' : 'Buying Accounts');
+const MGR_REAL = () => !!(KDH_USER && KDH_USER.role==='manager' && !KDH_USER.preview);
+function pwAcctHref(R, a, rep){
+  const label = (R.title||'Program')+' Eligible Accounts';
+  return `../accounts/#acct=${encodeURIComponent(a.n)}${MGR_REAL() ? '&rep='+encodeURIComponent(rep||a.rep||'') : ''}&sec=more&sub=programs&from=${encodeURIComponent(location.pathname+hashOf())}&fl=${encodeURIComponent(label)}`;
+}
+function pwInBook(rep, n){ return bookIndex(rep).has(String(n)); }
+function pwDetails(p, r, R, M, single){
+  const t = single ? (single.tracker||{}) : {};
+  const st = s => `<span class="pw-st ${s}">${STATUS_TAG[s]||s}</span>`;
+  const rows = [];
+  const rnd = R.rules.find(x=>x.k==='Rounding') || {status:'assumed'};
+  if(single && R.requirement.kind==='pct_of_assigned_goal' && t.goal){
+    const exact = Math.round(t.goal*R.requirement.pct*100)/100;
+    rows.push(`<div class="pw-kv"><span>Original Goal</span><b>${fmtN(t.goal)} ${pwUnit(R, t.goal)}</b>${st('verified')}</div>`);
+    rows.push(`<div class="pw-kv"><span>MPO Requirement</span><b>${Math.round(R.requirement.pct*100)}% × ${fmtN(t.goal)} = ${fmtN(exact)}${exact!==t.requirement ? ' → '+fmtN(t.requirement) : ''}</b>${exact!==t.requirement ? st(rnd.status) : st('verified')}</div>`);
+  }
+  if(single && R.requirement.kind==='pct_of_base' && t.base){
+    const exact = Math.round(t.base*R.requirement.pct*100)/100;
+    rows.push(`<div class="pw-kv"><span>Account Base</span><b>${fmtN(t.base)} Accounts</b>${st('verified')}</div>`);
+    rows.push(`<div class="pw-kv"><span>MPO Requirement</span><b>${Math.round(R.requirement.pct*100)}% × ${fmtN(t.base)} = ${fmtN(exact)}${exact!==t.requirement ? ' → '+fmtN(t.requirement) : ''}</b>${exact!==t.requirement ? st(rnd.status) : st('verified')}</div>`);
+  }
+  if(p.type==='MPO') rows.push(`<div class="pw-kv"><span>Weight</span><b>${Math.round((p.objective.weight||0)*100)}% of the ${E(p.monthLabel)} ${E(p.channelLabel)} MPO</b></div>`);
+  return `<details class="hdet pw-det"><summary>Details</summary>
+      <div class="pw-kvs">${rows.join('')}</div>
+      <p class="pw-measure">${E(R.measure)}</p>
+      <p class="px-full"><span>Full program name</span>${E(R.official)}</p>
+      <h3 class="pw-h3">Program Rules</h3>
+      <ul class="pw-rules">${R.rules.map(x=>`<li><div class="pw-rk"><b>${E(x.k)}</b>${st(x.status)}</div><div>${E(x.v)}</div>${x.status!=='verified' || x.evidence ? `<div class="pw-ev">${E(x.evidence||'')}</div>` : ''}</li>`).join('')}</ul>
+      <p class="hnote">${E(R.detail.note)}</p>
+      <p class="hnote">Tracker numbers as of ${E(p.refreshed||'—')}. Photos and notes are not credit.</p>
+    </details>`;
+}
+function pwTabs(M, R){
+  const n = {accts: M.totals.open, prods: R.products.length, cred: R.kind==='placements' ? M.totals.tracker : M.credited.length};
+  const pv = state.pv || 'accts';
+  return `<div class="pw-tabs" role="tablist">${PW_VIEWS.map(([k,l])=>`<button class="pw-tab${k===pv?' on':''}" role="tab" aria-selected="${k===pv}" data-act="pw-view" data-pv="${k}"><span class="pw-tl">${E(l)}</span><span class="pw-tn">${fmtN(n[k])}</span></button>`).join('')}</div>`;
+}
+function pwAccounts(M, R, reps){
+  const many = reps.length>1;
+  const rows = window.KdhElig.accountsView(M, {product: state.pp, q: state.pq, rep: state.pr});
+  const P = state.pp ? R.products.find(x=>String(x.id)===String(state.pp)) : null;
+  const lim = state.plim || 30;
+  const opps = R.kind==='placements' ? rows.reduce((s,a)=>s + (state.pp ? 1 : (a.op||[]).length), 0) : rows.length;
+  const count = R.kind==='placements'
+    ? `${plw(rows.length,'account')} · ${plw(opps, 'product opportunity').replace('opportunitys','opportunities')}`
+    : (R.minSkus||1)>1 ? `${plw(rows.length,'account')} below ${R.minSkus} different products` : `${plw(rows.length,'account')} not buying yet`;
+  const repSel = many ? `<select class="kdh-field pw-rep" data-pw="rep" aria-label="Rep"><option value="">All Reps (${reps.length})</option>${reps.map(x=>`<option${x.rep===state.pr?' selected':''}>${E(x.rep)}</option>`).join('')}</select>` : '';
+  const chip = P ? `<button class="pw-chip" data-act="pw-prod" data-pp="">Product: ${E(P.name)} <span aria-hidden="true">✕</span><span class="sr">Clear product filter</span></button>` : '';
+  const list = rows.slice(0, lim).map(a=>{
+    const L = window.KdhElig.accountLine(M, a, state.pp);
+    const inBook = pwInBook(a.rep, a.n);
+    const meta = [a.city, '#'+a.n, many ? a.rep : ''].filter(Boolean).join(' · ');
+    const head = `<span class="hrow-t"><span>${E(a.name)}</span></span><span class="hrow-s">${E(meta)}</span>
+        <span class="pw-what"><b>${E(L.what)}</b></span>
+        ${L.why ? `<span class="pw-why c-${E(L.code)}">${E(L.why)}</span>` : ''}`;
+    return inBook
+      ? `<a class="hrow acct pw-row" href="${E(pwAcctHref(R, a, a.rep))}" data-pwpos="1"><span class="hrow-main">${head}</span><span class="pw-open">Open Account</span>${CHEV}</a>`
+      : `<div class="hrow acct pw-row nolink"><span class="hrow-main">${head}<span class="pw-why">Not in My Accounts yet — the account list is as of ${E((HubAccounts.asOf)||'—')}</span></span></div>`;
+  }).join('');
+  return `<div class="pw-tools">
+      <input type="search" class="kdh-field pw-q" data-pw="q" placeholder="Search accounts" value="${E(state.pq||'')}" autocomplete="off" aria-label="Search accounts">
+      ${repSel}
+    </div>
+    ${chip}
+    <div class="pw-count">${E(count)}${P && R.kind==='placements' ? ' for this product' : ''}</div>
+    <details class="pw-order"><summary>How is this ordered?</summary><p>${E(R.order)}</p></details>
+    ${rows.length ? `<div class="hlist">${list}</div>${rows.length>lim ? `<button class="pw-btn outline wide" data-act="pw-more">Show More · ${rows.length-lim} more</button>` : ''}`
+      : `<div class="kdh-state empty"><b>${state.pq ? 'No account matches “'+E(state.pq)+'”.' : P ? 'Every eligible account already has this product.' : 'No eligible account is left to reach.'}</b></div>`}
+    ${M.totals.excluded ? `<p class="hnote">${plw(M.totals.excluded,'account')} outside the program’s territory ${M.totals.excluded===1?'is':'are'} not listed (${E(R.universe.territory)}: ${E(R.universe.areas.join(', '))}).</p>` : ''}`;
+}
+function pwProducts(M, R){
+  const q = String(state.pq2||'').trim().toLowerCase();
+  const rows = M.products.filter(x=>!q || (x.name+' '+x.id+' '+x.package).toLowerCase().includes(q));
+  return `<div class="pw-tools"><input type="search" class="kdh-field pw-q" data-pw="q2" placeholder="Search products" value="${E(state.pq2||'')}" autocomplete="off" aria-label="Search products"></div>
+    ${R.productsExhaustive ? '' : `<p class="pw-warn">${E(R.productsNote)}</p>`}
+    <div class="hlist">${rows.map(x=>{
+        const inner = `<span class="hrow-main">
+        <span class="hrow-t"><span>${E(x.name)}</span></span>
+        <span class="hrow-s">${E([x.package, x.size, '#'+x.id].filter(Boolean).join(' · '))}</span>
+        <span class="pw-why">${R.kind==='placements' ? `${plw(x.open,'account')} could add it · ${fmtN(x.credited)} credited by account` : `${(R.minSkus||1)>1 ? `Counts toward ${R.minSkus} different ${E(R.families[0])} products` : `Any ${E(R.families[0])} product counts`} · ${plw(x.open,'account')} still to reach`}</span></span>`;
+        return x.open ? `<button class="hrow pw-prow" data-act="pw-prod" data-pp="${E(x.id)}">${inner}<span class="pw-open">View Eligible Accounts</span>${CHEV}</button>` : `<div class="hrow pw-prow nolink">${inner}</div>`;
+      }).join('') || `<div class="kdh-state empty"><b>No product matches.</b></div>`}</div>
+    ${R.excludedProducts && R.excludedProducts.length ? `<details class="hdet"><summary>Same Brands That Don’t Count · ${R.excludedProducts.length}</summary>
+      <p class="hnote">${E(R.excludedProducts[0].why)}.</p><ul class="pw-ex">${R.excludedProducts.map(x=>`<li>${E(x.name)} <span>#${E(x.id)}</span></li>`).join('')}</ul></details>` : ''}`;
+}
+function pwCredited(M, R, reps){
+  const many = reps.length>1;
+  let rows = M.credited.filter(c=>!state.pr || c.rep===state.pr);
+  const groups = new Map();
+  rows.forEach(c=>{ const k = c.rep+'|'+c.n; if(!groups.has(k)) groups.set(k, {rep:c.rep, n:c.n, name:c.name, city:c.city, items:[]}); const g = groups.get(k);
+    if(c.product) g.items.push(c.product.name); (c.products||[]).forEach(x=>g.items.push(x.name)); });
+  const T = M.totals;
+  const head = R.kind==='placements'
+    ? `<div class="pw-count"><b>${fmtN(T.tracker)} ${pwUnit(R, T.tracker)}</b> credited by the tracker${many ? ' across '+plw(reps.length,'rep') : ''}</div>
+       ${T.afterDetail>0 ? `<p class="pw-warn">${fmtN(T.detail)} are shown by account (sales record through ${E(R.detail.throughLabel)}). ${fmtN(T.afterDetail)} more were credited by the tracker after that — the account detail is not in the data yet.</p>` : ''}`
+    : `<div class="pw-count"><b>${plw(groups.size, 'buying account')}</b>${(R.minSkus||1)>1 ? ` with ${R.minSkus}+ different ${E(R.families[0])} products` : ''} (${E(R.detail.throughLabel ? 'loads through '+R.detail.throughLabel : '')})</div>`;
+  const list = [...groups.values()].map(g=>{
+    const inBook = pwInBook(g.rep, g.n);
+    const inner = `<span class="hrow-main"><span class="hrow-t"><span>${E(g.name||'#'+g.n)}</span></span><span class="hrow-s">${E([g.city, '#'+g.n, many ? g.rep : ''].filter(Boolean).join(' · '))}</span><span class="pw-why">${E(g.items.join(' · '))}</span></span>`;
+    return inBook ? `<a class="hrow acct pw-row" href="${E(pwAcctHref(R, g, g.rep))}" data-pwpos="1">${inner}${CHEV}</a>` : `<div class="hrow acct pw-row nolink">${inner}</div>`;
+  }).join('');
+  return head + (list ? `<div class="hlist">${list}</div>` : `<div class="kdh-state empty"><b>Nothing credited by account yet.</b></div>`);
+}
+function pwBody(M, R, reps){
+  const pv = state.pv || 'accts';
+  return `<section class="pw-view" id="pwList" data-pv="${pv}">${pv==='prods' ? pwProducts(M, R) : pv==='cred' ? pwCredited(M, R, reps) : pwAccounts(M, R, reps)}</section>`;
+}
+// The rep's ELIGIBLE ACCOUNTS screen (Rep Mode program screen; simplified
+// 2026-10-06, Gavin): Back to where it was opened -> title -> Goal / Current /
+// Still Needed -> Qualifying Products (folded) -> search -> the accounts. No
+// second "View Eligible Accounts" button, no rules fold, no tabs: the rules
+// stay on the tracker card, the evidence on the Account page.
+function pwFocusSummary(p, f){
+  if(!f || f.goalN==null || !isFinite(Number(f.goalN))) return '';
+  const met = f.needN<=0, unit = t => f.unit ? E(titleW(uPl(t, f.unit))) : '';
+  const days = daysLeft(p.period.end);
+  const dl = isActive(p) ? `Ends <b>${E(fmtDay(p.period.end))}</b> · ${days<=0 ? 'last day' : plw(days,'day')+' left'}` : `Ended ${E(fmtDayYear(p.period.end))}`;
+  return `<div class="pwf-sum">
+      <div class="pwf-stats">
+        <div class="pwf-stat"><span class="pwf-l">Goal</span><span class="pwf-v">${fmtN(f.goalN)}</span><span class="pwf-u">${unit(f.goalN)}</span></div>
+        <div class="pwf-stat"><span class="pwf-l">Current</span><span class="pwf-v">${fmtN(f.cur)}</span><span class="pwf-u">of ${fmtN(f.goalN)}</span></div>
+        <div class="pwf-stat${met?' met':''}"><span class="pwf-l">Remaining</span><span class="pwf-v">${met ? 'Met' : fmtN(f.needN)}</span><span class="pwf-u">${met ? 'Goal complete' : unit(f.needN)}</span></div>
+      </div>
+      ${hbar(f)}
+      <div class="pwf-dl">${dl}</div>
+    </div>`;
+}
+// Qualifying Products: each product as one line, brand + package ("Corona
+// Non-Alcoholic 4/6/12 oz Btl"), and a condition only where it changes what
+// counts -- the same brand's packages the report does NOT count, by name.
+// Shared by the MPO rule page and the incentive page (2026-10-06).
+function qpCondition(fam, ex){
+  if(!ex || !ex.length) return '';
+  if(ex.length<=2) return `Doesn’t count: ${ex.map(x=>x.name).join(', ')}`;
+  return `Other ${fam} flavors and packages don’t count (${ex.length})`;
+}
+// Remember an opened Qualifying Products fold per program for the visit, so a
+// Back from an account lands on the same page (same height, same scroll).
+// Kept in sessionStorage so the trip through the Account page (a new page) keeps it too.
+const QP_KEY = 'kdh_qpopen';
+const QP_OPEN = (()=>{ try{ return new Set(JSON.parse(sessionStorage.getItem(QP_KEY)||'[]')); }catch(e){ return new Set(); } })();
+document.addEventListener('toggle', e=>{ const d = e.target; if(!d || !d.matches || !d.matches('details.pwq') || !state.prog) return;
+  if(d.open) QP_OPEN.add(state.prog); else QP_OPEN.delete(state.prog);
+  try{ sessionStorage.setItem(QP_KEY, JSON.stringify([...QP_OPEN])); }catch(err){} }, true);
+function qpFoldHtml(o){
+  o.open = o.open || QP_OPEN.has(state.prog);
+  const exBy = new Map(); (o.excluded||[]).forEach(x=>{ if(!x.family) return; if(!exBy.has(x.family)) exBy.set(x.family, []); exBy.get(x.family).push(x); });
+  const noted = new Set();
+  const rows = o.products.slice().sort((a,b)=>String(a.family||'').localeCompare(String(b.family||'')) || String(a.name).localeCompare(String(b.name))).map(x=>{
+    let cond = '';
+    if(x.family && exBy.has(x.family) && !noted.has(x.family)){ noted.add(x.family); cond = qpCondition(x.family, exBy.get(x.family)); }
+    return `<li class="pwq-row"><span class="pwq-n">${E(x.name)}</span>${cond ? `<span class="pwq-c">${E(cond)}</span>` : ''}</li>`;
+  }).join('');
+  return `<details class="pwq"${o.open ? ' open' : ''}><summary><span>Qualifying Products</span>${o.products.length ? `<span class="pw-tn">${fmtN(o.products.length)}</span>` : ''}</summary>
+      ${o.rule ? `<p class="pwq-rule">${E(o.rule)}</p>` : ''}
+      ${o.loading ? `<p class="pwq-note">Loading products…</p>` : rows ? `<ul class="pwq-list">${rows}</ul>` : ''}
+      ${o.note ? `<p class="pwq-note">${E(o.note)}</p>` : ''}
+    </details>`;
+}
+function pwProductsFold(R){
+  const rule = R.kind==='placements' ? '' : (R.minSkus||1)>1
+    ? `An account counts once it buys ${R.minSkus} different products from this list.`
+    : `An account counts with any one product from this list.`;
+  return qpFoldHtml({products: R.products, excluded: R.excludedProducts, rule, open: state.pv==='prods',
+    note: R.productsExhaustive ? '' : 'This list comes from the report so far; a product no one has placed yet may not be on it.'});
+}
+function pwFocusAccounts(M, R, rep){
+  const rows = window.KdhElig.accountsView(M, {product: state.pp, q: state.pq});
+  const P = state.pp ? R.products.find(x=>String(x.id)===String(state.pp)) : null;
+  const lim = state.plim || 30;
+  const chip = P ? `<button class="pw-chip" data-act="pw-prod" data-pp="">Product: ${E(P.name)} <span aria-hidden="true">✕</span><span class="sr">Clear product filter</span></button>` : '';
+  const list = rows.slice(0, lim).map(a=>{
+    const L = window.KdhElig.accountLine(M, a, state.pp);
+    const head = `<span class="hrow-t"><span>${E(a.name)}</span></span>${a.city ? `<span class="hrow-s">${E(a.city)}</span>` : ''}<span class="pw-what">${E(L.what)}</span>`;
+    return pwInBook(a.rep, a.n)
+      ? `<a class="hrow acct pw-row" href="${E(pwAcctHref(R, a, a.rep))}" data-pwpos="1"><span class="hrow-main">${head}</span><span class="pw-open">Open Account</span>${CHEV}</a>`
+      : `<div class="hrow acct pw-row nolink"><span class="hrow-main">${head}<span class="pw-why">Not in My Accounts yet</span></span></div>`;
+  }).join('');
+  return `<h2 class="pwf-h">Eligible Accounts <span class="pw-tn">${fmtN(M.totals.open)}</span></h2>
+    <div class="pw-tools"><input type="search" class="kdh-field pw-q" data-pw="q" placeholder="Search accounts" value="${E(state.pq||'')}" autocomplete="off" aria-label="Search eligible accounts"></div>
+    ${chip}
+    ${state.pq || P ? `<div class="pw-count">${plw(rows.length,'account')}${P ? ' for this product' : ''}</div>` : ''}
+    ${rows.length ? `<div class="hlist">${list}</div>${rows.length>lim ? `<button class="pw-btn outline wide" data-act="pw-more">Show More · ${rows.length-lim} more</button>` : ''}`
+      : `<div class="kdh-state empty"><b>${state.pq ? 'No account matches “'+E(state.pq)+'”.' : P ? 'Every eligible account already has this product.' : 'No eligible account is left to reach.'}</b></div>`}`;
+}
+function screenWorkspaceRep(p, r, rep, R){
+  const d = eligData(rep);
+  const f = progFacts(p, r, rep) || {};
+  const top = `${backForProgram(p, true)}
+    <div class="px pw pwf">
+      <h1 class="px-name">${E(R.title)}</h1>
+      <div class="px-sup">${E(p.supplier)} · ${E(p.channelLabel)}${p.type==='MPO' ? ' · '+E(p.monthLabel)+' MPO' : ''}</div>`;
+  if(d===undefined) return `<div class="hview">${top}</div><div class="kdh-state loading">Loading eligible accounts…</div></div>`;
+  if(!d || !d.programs || !d.programs[p.id]) return null;   // no file for this rep: fall back to the tracker's own screen
+  const M = window.KdhElig.model(p.id, [{rep, data:d}]);
+  return `<div class="hview">${top}
+      ${pwFocusSummary(p, f)}
+    </div>
+    ${pwProductsFold(R)}
+    <section class="pw-view pwf-list" id="pwList">${pwFocusAccounts(M, R, rep)}</section>
+  </div>`;
+}
+// The manager's program screen: the team's accounts with a rep filter.
+function workspaceTeamHtml(p){
+  const R = eligRule(p); if(!R) return '';
+  const files = ROSTER.map(rep=>({rep, data:eligData(rep)}));
+  if(files.some(x=>x.data===undefined)) return `<section class="dsec"><h2 class="dsec-h">Eligible Accounts</h2><div class="kdh-state loading">Loading the team’s accounts…</div></section>`;
+  const reps = files.filter(x=>x.data && x.data.programs && x.data.programs[p.id]);
+  if(!reps.length) return '';
+  const M = window.KdhElig.model(p.id, reps);
+  const T = M.totals;
+  return `<section class="dsec pw pw-team"><h2 class="dsec-h">Team Opportunities</h2>
+    <p class="dsec-p">${plw(reps.length,'rep')} · ${plw(T.open,'account')} still to reach${R.kind==='placements' ? ' · '+fmtN(T.opportunities)+' product opportunities' : ''} · ${fmtN(T.tracker)} of ${fmtN(T.requirement)} required ${pwUnit(R, T.requirement).toLowerCase()} across scored reps</p>
+    ${pwTabs(M, R)}${pwBody(M, R, reps)}
+    ${pwDetails(p, null, R, M, null)}
+  </section>`;
+}
+/* ---- account lists ---- */
+function acctRowsFor(p, rep, list){
+  const plan = nextAccounts(p, rep); const rows = plan.rows.filter(a=>!a.foreign);
+  const T = raSplit(p, rep, rows);
+  if(list==='dist') return distFor(p, rep).map(x=>Object.assign({}, x, {line:[x.what, x.date].filter(Boolean).join(' · ')}));
+  const withLine = a => Object.assign({}, a, {line: plan.hold ? 'Keep ordering' : noBuyText(a.why||'', p)});
+  if(list==='follow') return T.follow.map(withLine);
+  if(list==='done') return T.done.map(withLine);
+  if(list==='skip') return T.later.map(withLine);
+  return (T.on ? T.live : rows).map(withLine);
+}
+function acctRowsHtml(key){
+  const [pid, list] = key.split('|'); const p = PROGRAMS.find(x=>x.id===pid); const rep = state.rep;
+  if(!p) return '';
+  const q = String(acctQ[key]||'').trim().toLowerCase();
+  const rows = acctRowsFor(p, rep, list).filter(a=>!q || String(a.name||'').toLowerCase().includes(q) || String(a.city||'').toLowerCase().includes(q));
+  if(!rows.length) return `<div class="kdh-state empty"><b>${q ? 'No account matches “'+E(q)+'”.' : list==='elig' ? 'No eligible account is left to reach.' : 'Nothing here yet.'}</b></div>`;
+  const show = RA.canShow(rep), edit = RA.canEdit(rep);
+  const elig = list==='elig';
+  return rows.map(a=>{
+    const st = show && list!=='dist' ? RA.get(p.id, a) : null;
+    const town = elig ? (a.city||'') : [a.city, a.area || a.rawArea].filter(Boolean).join(' · ');
+    return `<button class="hrow acct${st?' ra-'+st.status:''}" data-act="open-acct" data-n="${E(RA.num(a))}" data-list="${list}">
+      <span class="hrow-main"><span class="hrow-t"><span>${E(a.name)}</span>${st && list!=='follow' ? `<span class="ra-tag ${st.status}">${RA_MARK[st.status]} ${RA_LABEL[st.status]}</span>` : ''}</span>
+        ${town ? `<span class="hrow-s">${E(town)}</span>` : ''}
+        ${a.line ? `<span class="hrow-p">${E(elig && a.why===NO_BUY ? 'No qualifying purchase yet'+(p.refreshed ? ' · data through '+p.refreshed : '') : a.line)}${list==='follow' && st && st.note ? ` · <i>${E(st.note)}</i>` : ''}</span>` : ''}</span>${elig ? '<span class="pw-open">Open Account</span>' : ''}${CHEV}</button>`;
+  }).join('');
+}
+function screenAccounts(){
+  const p = PROGRAMS.find(x=>x.id===state.prog); const rep = state.rep; const list = state.list || 'targets';
+  if(!p) return `<div class="empty">That program is not on the board.</div>`;
+  const r = p.forRep(rep);
+  if(p.type==='MPO' && !mpoMonthLoaded(p.source, p.monthKey)) return `<div class="hview">${returnLink('back-prog', p.shortName||p.name)}<div class="kdh-state loading">Loading this month’s accounts…</div></div>`;
+  const plan = nextAccounts(p, rep);
+  const key = p.id+'|'+list;
+  const rows = acctRowsFor(p, rep, list);
+  const T = raSplit(p, rep, plan.rows.filter(a=>!a.foreign));
+  const title = list==='targets' && plan.hold ? LISTS.hold : LISTS[list];
+  const sub = list==='dist' ? (r ? reconLine(p, r, rows).t : '') : list==='targets' ? (plan.hold ? 'Accounts already buying — keep them ordering.' : 'In your book, in territory, not buying it yet. Warm leads first.') : list==='follow' ? 'Accounts you flagged to get back to.' : '';
+  const q = acctQ[key]||'';
+  const folds = list==='targets' && T.on ? [['done', T.done.length], ['skip', T.later.length]].filter(x=>x[1]).map(([k,n])=>`<button class="hrow fold" data-act="accts" data-prog="${E(p.id)}" data-list="${k}"><span class="hrow-main"><span class="hrow-t"><span>${RA_MARK[k]} ${E(LISTS[k])}</span></span></span><span class="hcount">${n}</span>${CHEV}</button>`).join('') : '';
+  const pv = RA.previewOf(rep) ? `<p class="hnote">Marks are ${E(first(rep))}’s own. Saving is off while you preview.</p>` : '';
+  return `<div class="hview">
+    ${returnLink('back-prog', p.shortName||p.name)}
+    <div class="hhead"><h1>${E(title)}</h1><p class="hsub">${rows.length} ${rows.length===1?'account':'accounts'} · ${E(p.shortName||p.name)}${sub ? ' · '+E(sub) : ''}</p></div>
+    ${rows.length>6 ? `<div class="hsearch"><input type="search" class="kdh-field" placeholder="Search accounts" value="${E(q)}" data-key="${E(key)}" autocomplete="off" aria-label="Search accounts"></div>` : ''}
+    ${pv}
+    <div class="hlist" id="acctRows">${acctRowsHtml(key)}</div>
+    ${folds ? `<div class="hlist hfolds">${folds}</div>` : ''}
+  </div>`;
+}
+/* ---- one account ---- */
+function screenAccount(){
+  const p = PROGRAMS.find(x=>x.id===state.prog); const rep = state.rep; const list = state.list || 'targets';
+  if(!p) return `<div class="empty">That program is not on the board.</div>`;
+  if(p.type==='MPO' && !mpoMonthLoaded(p.source, p.monthKey)) return `<div class="hview">${returnLink('back-accts', LISTS[list]||'Accounts')}<div class="kdh-state loading">Loading…</div></div>`;
+  const n = String(state.n);
+  const plan = nextAccounts(p, rep);
+  let a = plan.rows.find(x=>RA.num(x)===n) || null;
+  const credited = distFor(p, rep).filter(x=>RA.num(x)===n || (a && HubAccounts.norm(x.name)===HubAccounts.norm(a.name)));
+  if(!a){ const d = credited[0]; const book = bookIndex(rep).get(n); a = book ? Object.assign({}, book) : (d ? {name:d.name, n:d.n, city:d.city, area:d.area} : null); }
+  if(!a) return `<div class="hview">${returnLink('back-accts', LISTS[list]||'Accounts')}<div class="kdh-state empty"><b>That account is not on this list.</b></div></div>`;
+  const show = RA.canShow(rep), edit = RA.canEdit(rep);
+  const st = show ? RA.get(p.id, a) : null;
+  const kv = (k, v) => v ? `<div class="hkv"><span>${E(k)}</span><span>${v}</span></div>` : '';
+  const meta = [a.n!=null ? 'Account #'+a.n : '', a.city, a.area || a.rawArea, a.prem ? a.prem+'-premise' : ''].filter(Boolean).join(' · ');
+  const strip = show ? raStrip(p, a, edit, show) : '';
+  const onList = plan.rows.some(x=>RA.num(x)===n);
+  return `<div class="hview">
+    ${list==='elig' ? returnLink('back-prog', (p.shortName||p.name)+' Eligible Accounts') : returnLink('back-accts', LISTS[list]||'Accounts')}
+    <div class="hhead"><h1>${E(a.name)}</h1><p class="hsub">${E(meta)}</p></div>
+    <p class="hnote" style="margin-top:-4px"><a href="../accounts/#acct=${encodeURIComponent(a.n!=null ? a.n : '')}${(KDH_USER && KDH_USER.role==='manager') ? '&rep='+encodeURIComponent(rep) : ''}&from=${encodeURIComponent(location.pathname+location.hash)}&fl=${encodeURIComponent('Incentive Hub')}" style="color:var(--accent);font-weight:600;text-decoration:none">Full account page — purchases, programs, notes, taps ›</a></p>
+    <div class="hcard">
+      ${kv('Program', E(p.shortName||p.name) + ' · ' + E(p.supplier))}
+      ${kv('What to sell', E(sellAsk(p)))}
+      ${onList ? kv(plan.hold ? 'Status' : 'Opportunity', E(noBuyText(a.why || (plan.hold ? 'Keep ordering' : NO_BUY), p))) : ''}
+      ${a.note ? kv('Last activity', E(a.note)) : ''}
+      ${a.cases>0 ? kv('2026 volume', E(fmtCases(a.cases))+' a year, all brands') : ''}
+    </div>
+    <section class="hsec"><h2>Credited for This Program</h2>
+      ${credited.length ? `<div class="hcard">${credited.map(x=>`<div class="hkv"><span>${E(x.date||'—')}</span><span>${E([x.what, x.note && x.note!=='photo' ? x.note : ''].filter(Boolean).join(' · ')||'Credited')}${x.photo ? ` · <a href="${E(x.photo)}" target="_blank" rel="noopener">View photo ›</a>` : ''}</span></div>`).join('')}</div>` : `<p class="hnote">Nothing credited to this account yet. Credit comes only from sales data.</p>`}
+    </section>
+    ${show ? `<section class="hsec"><h2>Your Notes</h2>
+      <div class="hcard hra">${strip || `<div class="ra"><span class="ra-chip">No mark yet</span></div>`}${RA.error() ? `<div class="ra-err">${E(RA.error())}</div>` : ''}
+      ${edit ? `<p class="hnote">Done, Follow-Up and Not Now are your own planning notes. They don’t change credit.</p>` : ''}</div>
+    </section>` : ''}
+  </div>`;
+}
+
 /* ---- main render ---- */
 function render(){
+  if(LIB){ acctCache.clear(); return; }
   acctCache.clear();
   if(RA.on && state.rep && RA.loadedFor()!==state.rep) RA.load(state.rep);
   const root = app();
@@ -2719,19 +3919,25 @@ function render(){
   if(state.view==='home') body = screenHome();
   else if(state.view==='rep') body = screenRep();
   else if(state.view==='detail') body = screenDetail();
+  else if(state.view==='sup') body = screenSupplier();
+  else if(state.view==='accts') body = screenAccounts();
+  else if(state.view==='acct') body = screenAccount();
   else if(state.view==='programs') body = screenPrograms();
   else if(state.view==='program') body = screenProgram();
   document.body.classList.toggle('is-home', state.view==='home');
   root.innerHTML = topbar() + `<main class="wrap">${body}</main>`;
+  if(window.KdhFit) window.KdhFit.tables(root);
+  try{ if(window.kdhSyncNav) window.kdhSyncNav(); }catch(e){}
   // The top bar says whose page this is (a manager on a rep's screen).
-  try{ if(window.kdhViewing) window.kdhViewing((state.view==='rep'||state.view==='detail') && !LOCKED_REP ? (state.peek && state.view==='detail' ? state.peek : state.rep) : '', '#'); }catch(e){}
+  try{ if(window.kdhViewing) window.kdhViewing((state.view==='rep'||state.view==='detail'||state.view==='sup'||state.view==='accts'||state.view==='acct') && !LOCKED_REP ? (state.peek && state.view==='detail' ? state.peek : state.rep) : '', function(){ openCards.clear(); state.showEnded = false; leaveAsRep(); go({view:'home', rep:null, main:null, cat:null, prog:null, peek:null, from:null}); }); }catch(e){}
   document.title = state.view==='rep' && state.rep ? `${possessive(state.rep)} Incentives & MPOs | Kohler` : 'Incentives & MPO Hub | Kohler Distributing';
   // Kick off any MPO month this screen needs, then re-render once it lands.
   let needed = [];
   if(state.view==='rep') needed = PROGRAMS.filter(p=>inCategory(p, state.cat||'all')
     && (p.type==='MPO' ? p.monthKey===mpoViewMonth(p.source) : (isActive(p) || state.showEnded)));
   else if(state.view==='home') needed = PROGRAMS.filter(p=>p.type==='MPO' && p.monthKey===mpoRepMonth(p.source));   // for the refreshed stamps
-  else if(state.view==='detail' || state.view==='program'){ const p = PROGRAMS.find(x=>x.id===state.prog); if(p) needed=[p]; }
+  else if(state.view==='detail' || state.view==='program' || state.view==='accts' || state.view==='acct'){ const p = PROGRAMS.find(x=>x.id===state.prog); if(p) needed=[p]; }
+  else if(state.view==='sup') needed = PROGRAMS.filter(p=>p.type==='MPO' && p.monthKey===mpoRepMonth(p.source));
   else if(state.view==='programs'){ const f=state.filters; needed = PROGRAMS.filter(p=>p.type==='MPO' && (f.month==='all' ? true : f.month==='active' ? isActive(p) : p.monthKey===f.month)); }
   if(needed.length){ const token = ++renderToken; loadFor(needed).then(did=>{ if(did && token===renderToken) render(); }); }
 }
@@ -2754,9 +3960,9 @@ document.addEventListener('click', e=>{
   const act = t.dataset.act;
   if(t.tagName==='A') e.preventDefault();
   switch(act){
-    case 'home': openCards.clear(); state.showEnded = false; go({view:'home', rep:null, main:null, cat:null, prog:null, peek:null, from:null}); break;
+    case 'home': openCards.clear(); state.showEnded = false; leaveAsRep(); go({view:'home', rep:null, main:null, cat:null, prog:null, peek:null, from:null}); break;
     // Picking a name IS the whole landing step: open that rep's dashboard.
-    case 'pick-rep': { const who = LOCKED_REP || t.dataset.rep, tab = isSupport(who) ? 'on' : lastTab();   // support lands on the on-prem MPO
+    case 'pick-rep': { state.asRep = false; const who = LOCKED_REP || t.dataset.rep, tab = isSupport(who) ? 'on' : lastTab();   // support lands on the on-prem MPO
       openCards.clear(); state.showEnded = false;
       go({view:'rep', rep:who, cat:tab, main:tabOf(tab), month:null, prog:null, peek:null, from:null}); break; }
     case 'back-home': go({view:'home', prog:null, peek:null, from:null}); break;
@@ -2771,6 +3977,7 @@ document.addEventListener('click', e=>{
       if(el){ const y = el.getBoundingClientRect().top + window.pageYOffset - 64; window.scrollTo({top:y, behavior:'smooth'}); }
       break; }
     case 'toggle-ended': state.showEnded = !state.showEnded; render(); break;
+    case 'set-inc-month': { const y = window.scrollY; state.im = INC_MONTHS.some(m=>m.key===t.dataset.im) ? t.dataset.im : INC_MONTHS[0].key; history.replaceState(null, '', hashOf()); render(); window.scrollTo(0, y); break; }
     case 'card-sec': { const id = t.dataset.prog, k = t.dataset.sec;
       // One section at a time per card, so a phone never stacks two long lists.
       if(cardSec[id]===k) delete cardSec[id]; else cardSec[id] = k;
@@ -2792,10 +3999,36 @@ document.addEventListener('click', e=>{
       { const el = document.querySelector('.ra-edit input'); if(el){ el.focus(); el.setSelectionRange(el.value.length, el.value.length); } } break;
     case 'ra-cancel': raEdit = null; render(); break;
     case 'log-more': logMore[t.dataset.key] = !logMore[t.dataset.key]; render(); break;
-    case 'set-mode': if(LOCKED_REP) break; state.mode = (t.dataset.mode==='manager' && !isMobile()) ? 'manager' : 'rep'; persist(); history.replaceState(null, '', hashOf()); render(); break;
+    case 'set-mode': if(LOCKED_REP || state.asRep) break; state.mode = (t.dataset.mode==='manager' && mgrCapable()) ? 'manager' : 'rep'; persist();
+      // Program View is a Manager Mode screen: switching to Rep Mode there opens the rep picker
+      if(state.mode==='rep' && (state.view==='programs' || state.view==='program')){ go({view:'home', prog:null, peek:null, from:null}); break; }
+      history.replaceState(null, '', hashOf()); render(); break;
     case 'reset-all': try{ localStorage.removeItem(LS_KEY); sessionStorage.removeItem(TAB_KEY); }catch(e){} openCards.clear(); state.showEnded = false; state.peek = null; state.prog = null; state.rep = null; state.cat = null; state.main = null;
       go({view:'home'}, true); break;
     case 'open': go({view:'detail', prog:t.dataset.prog, from:null, peek:null}); break;
+    case 'export-data': case 'export-recap': {
+      if(!isMgr() || (KDH_USER && KDH_USER.preview)) break;
+      const lines = !!(document.getElementById(t.dataset.act==='export-data' ? 'xLines' : 'xAccts')||{}).checked;
+      const lbl = t.querySelector('b'); const was = lbl.textContent; lbl.textContent = 'Preparing…'; t.disabled = true;
+      (t.dataset.act==='export-data' ? exportData(t.dataset.prog||'', lines) : exportRecap(t.dataset.prog||'', lines))
+        .catch(e=>{ alert('Export failed: '+(e && e.message || e)); })
+        .finally(()=>{ lbl.textContent = was; t.disabled = false; const d = t.closest('details'); if(d) d.open = false; });
+      break; }
+    case 'open-sup': { const name = t.dataset.sup; const one = supProgs(state.rep).get(name) || [];
+      // One program only: skip the supplier screen (2026-09-30).
+      if(one.length===1) go({view:'detail', prog:one[0].p.id, sup:name, from:null, peek:null}); else go({view:'sup', sup:name}); break; }
+    case 'back-list': { openCards.clear(); go({view:'rep', cat: state.cat || lastTab(), main: tabOf(state.cat || lastTab()), prog:null, sup:null, list:null, n:null, from:null, peek:null}); break; }
+    case 'back-sup': { if(state.sup && supProgs(state.rep).has(state.sup) && supProgs(state.rep).get(state.sup).length>1) go({view:'sup', prog:null, list:null, n:null}); else go({view:'rep', prog:null, sup:null, list:null, n:null}); break; }
+    case 'accts': go({view:'accts', prog:t.dataset.prog || state.prog, list:t.dataset.list || 'targets', n:null}); break;
+    case 'open-acct': go({view:'acct', n:t.dataset.n, list:t.dataset.list || state.list || 'targets'}); break;
+    // program workspace (2026-10-05)
+    case 'pw-view': { const pv = t.dataset.pv || 'accts'; state.pv = pv==='accts' ? null : pv; state.plim = 30; history.replaceState(null, '', hashOf()); render(); pwScrollToList(); break; }
+    case 'pw-prod': { state.pp = t.dataset.pp || null; state.pv = null; state.plim = 30; history.pushState(null, '', hashOf()); render(); pwScrollToList(); break; }
+    case 'pw-more': { state.plim = (state.plim||30) + 60; render(); break; }
+    case 'back-ret': { const u = new URL(state.ret, location.href); history.pushState(null, '', u.hash || '#'); applyHash(); const h = hashOf(); if(h!==(location.hash||'#')) history.replaceState(null, '', h); render();
+      const y = scrollMem[location.hash||'#']; window.scrollTo(0, typeof y==='number' ? y : 0); break; }
+    case 'back-prog': { go({view:'detail', list:null, n:null}); const y = scrollMem[location.hash||'#']; if(typeof y==='number') window.scrollTo(0, y); break; }
+    case 'back-accts': { go({view:'accts', n:null}); const y = scrollMem[location.hash||'#']; if(typeof y==='number') window.scrollTo(0, y); break; }
     case 'open-for-rep': {
       const who = t.dataset.rep;
       // A manager (or a curious rep) opening someone else's row peeks at
@@ -2812,7 +4045,23 @@ document.addEventListener('keydown', e=>{
   const t = e.target.closest('article[data-act]'); if(!t) return;
   e.preventDefault(); t.click();
 });
+function pwScrollToList(){ requestAnimationFrame(()=>{ const el = document.getElementById('pwList') && document.querySelector('.pw-tabs'); if(el) el.scrollIntoView({block:'start'}); }); }
+document.addEventListener('input', e=>{
+  const w = e.target.closest('[data-pw]');
+  if(w && (w.dataset.pw==='q' || w.dataset.pw==='q2')){
+    if(w.dataset.pw==='q') state.pq = w.value; else state.pq2 = w.value;
+    state.plim = 30; history.replaceState(null, '', hashOf());
+    const pos = w.selectionStart; render();
+    const again = document.querySelector('[data-pw="'+w.dataset.pw+'"]'); if(again){ again.focus(); try{ again.setSelectionRange(pos, pos); }catch(err){} }
+    return;
+  }
+  const t = e.target.closest('.hsearch input'); if(!t) return;
+  acctQ[t.dataset.key] = t.value;
+  const list = document.getElementById('acctRows'); if(list) list.innerHTML = acctRowsHtml(t.dataset.key);
+});
 document.addEventListener('change', e=>{
+  if(e.target.dataset && e.target.dataset.pw==='rep'){ state.pr = e.target.value || null; state.plim = 30; history.replaceState(null, '', hashOf()); render(); return; }
+  if(e.target.id==='pvRep'){ const who = e.target.value; if(who && ROSTER.includes(who)){ state.asRep = false; const tab = isSupport(who) ? 'on' : lastTab(); openCards.clear(); go({view:'rep', rep:who, cat:tab, main:tabOf(tab), month:null, prog:null, peek:null, from:null}); } return; }
   const t = e.target.closest('.fsel'); if(!t) return;
   state.filters[t.dataset.filter] = t.value; render();
 });
@@ -2831,8 +4080,23 @@ document.addEventListener('click', e=>{
 });
 
 /* ---- boot ---- */
+const PW_POS = 'kdh_hubpos:';
+document.addEventListener('click', e=>{
+  const a = e.target.closest('a[data-pwpos]'); if(!a) return;
+  try{ sessionStorage.setItem(PW_POS+location.pathname+(location.hash||'#'), String(window.scrollY)); }catch(err){}
+}, true);
+function pwRestoreScroll(){
+  try{ const k = PW_POS+location.pathname+(location.hash||'#'); const y = sessionStorage.getItem(k);
+    if(y==null) return; sessionStorage.removeItem(k);
+    // wait for the account list (the eligibility file loads after the first render)
+    let tries = 0; const t = setInterval(()=>{ if(document.getElementById('pwList') || ++tries>40){ clearInterval(t); window.scrollTo(0, Number(y)||0); } }, 75); }catch(e){}
+}
 function boot(){
+  BOOTED = true;
   buildPrograms();
+  if(LIB) return;                  // the Accounts page drives the rest itself
+  // Program eligibility rules (shared/eligibility.js): render again once they land.
+  if(window.KdhElig) window.KdhElig.ready().then(ok=>{ ELIG.ready = !!ok; if(ok && (state.view==='detail' || state.view==='program')) render(); });
   restore();                       // only the Rep / Manager mode survives a reload
   // A reload ALWAYS starts over on the home screen with an empty picker (per
   // Gavin, 2026-09-10) -- whatever the URL hash or the last visit said. The
@@ -2842,15 +4106,41 @@ function boot(){
   // `rep=<name>` (a manager previewing someone) and/or `only=inc` (the
   // Incentive Hub tile). Those land where they say.
   const deep = readHash();
-  if((deep.rep && ROSTER.includes(deep.rep)) || TAB_KEYS.includes(deep.only)){ applyHash(); if(state.rep && state.view==='home'){ state.view = 'rep'; state.cat = state.cat || lastTab(); state.main = tabOf(state.cat); applyOnly(); } }
+  // A manager sent here for ONE rep (the workspace tiles) gets that rep's
+  // page as the rep sees it: Rep view, no picker/program/mode controls
+  // (2026-09-29, per Gavin). The "Viewing <rep> · Change" chip is the way out.
+  state.asRep = !!(deep.rep && ROSTER.includes(deep.rep) && !LOCKED_REP && KDH_USER && KDH_USER.role === 'manager');
+  if(state.asRep) state.mode = 'rep';
+  // Coming BACK from the Account page (a navigation, not a reload) to a program
+  // workspace: land on that program with its product / search / rep kept.
+  let navType = ''; try{ navType = (performance.getEntriesByType('navigation')[0]||{}).type || ''; }catch(e){}
+  const pwBack = navType!=='reload' && deep.prog && PROGRAMS.some(p=>p.id===deep.prog) && (deep.view==='detail' || (deep.view==='program' && isMgr()));
+  if(pwBack && deep.view==='program'){ applyHash(); }
+  else if((deep.rep && ROSTER.includes(deep.rep)) || TAB_KEYS.includes(deep.only)){ applyHash(); if(state.rep && state.view==='home'){ state.view = 'rep'; state.cat = state.cat || lastTab(); state.main = tabOf(state.cat); applyOnly(); } }
   lockState();                     // a signed-in rep opens straight on their own page
-  history.replaceState(null, '', (LOCKED_REP || state.rep || state.only) ? hashOf() : '#');
+  // A manager in Manager Mode lands on the team / program overview (Program
+  // View, with its rep filter) instead of the name picker -- a deep link wins.
+  if(state.view==='home' && !state.rep && !state.only && !state.asRep && !LOCKED_REP && isMgr()) state.view = 'programs';
+  history.replaceState(null, '', (LOCKED_REP || state.rep || state.only || state.view==='programs' || state.view==='program') ? hashOf() : '#');
   render();
+  if(pwBack) pwRestoreScroll();
   // Warm the active MPO months in the background so the first tap is instant.
   Object.keys(MPO_SCOPES).forEach(scope=>{
     MPO_SCOPES[scope].mod.MONTHS.forEach(m=>{ if(mpoMonthActive(scope, m)) ensureMpoMonth(scope, m.key).then(()=>{ if(state.view!=='home') render(); }); });
   });
 }
-window.KohlerHub = {state, programs:()=>PROGRAMS, sortedForRep, programStats, render, buyingFor, accountsFor, nextAccounts, closedFor};
-boot();
+window.KohlerHub = {NO_BUY, state, programs:()=>PROGRAMS, sortedForRep, programStats, render, rebuild:rebuildPrograms, buyingFor, accountsFor, nextAccounts, closedFor,
+  // library surface for the Accounts page (2026-09-30)
+  lib:LIB, loadFor, distFor, progFacts, sellAsk, endsLabel, periodLabel, isActive, incBand, isDollarProgram, availability, supportAllows, isSupport,
+  mpoRepMonth, mpoMonthLoaded, scopes:MPO_SCOPES, incRows, RA, lockedRep:LOCKED_REP, roster:ROSTER, dmGroups:DM_GROUPS, brandScope:()=>BRAND_SCOPE};
+// A manager's brand scope must be known BEFORE the first build, or Program
+// View would flash every supplier: wait for it (3 s at most), then boot.
+// Reps, rep previews and library mode boot at once.
+if(!LIB && KDH_USER && KDH_USER.role==='manager' && window.kdhBrandScope){
+  let started = false;
+  // a district manager who also carries a brand keeps every supplier (their team is the scope)
+  const start = sc => { if(started) return; started = true; BRAND_SCOPE = !HUB_TEAM && Array.isArray(sc) && sc.length ? sc : null; boot(); };
+  try{ window.kdhBrandScope().then(start, ()=>start(null)); }catch(e){ start(null); }
+  setTimeout(()=>start(null), 3000);
+} else boot();
 })(HUB_ROSTER_SCOPED, HUB_DM_GROUPS_SCOPED);

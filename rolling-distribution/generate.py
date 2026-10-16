@@ -175,8 +175,19 @@ def write_month(mk, cells):
 
 # ---------------------------------------------------------------- ingest
 
+ALIASES = {'Product Num Name': 'Product Num & Name', 'Product Num and Name': 'Product Num & Name',
+           'Customer Num & Name': 'Customer Num Name', 'Customer Num and Name': 'Customer Num Name',
+           'Customer Num Company': 'Customer Num & Company', 'Customer Num and Company': 'Customer Num & Company'}
+
+
+def norm(hdr):
+    """Fusion renames columns between pulls ('Product Num & Name' became 'Product Num Name' on 2026-10-01);
+    map the known variants back to the canonical spelling before anything looks at a header."""
+    return [ALIASES.get(x.strip(), x.strip()) for x in hdr]
+
+
 def detect(hdr):
-    h = [x.strip() for x in hdr]
+    h = norm(hdr)
     if 'Product Num & Name' in h and 'Customer Num Name' in h:
         return 'detail'
     if 'Product Num & Name' in h and 'Package' in h:
@@ -210,7 +221,7 @@ def metric_cols(hdr):
 def ingest_detail(path, products, customers, sources, complete):
     with open(path, newline='', encoding='utf-8-sig') as fh:
         r = csv.reader(fh)
-        hdr = [x.strip() for x in next(r)]
+        hdr = norm(next(r))
         col = {h: i for i, h in enumerate(hdr)}
         for need in ['Supplier', 'Brand Family', 'Brand', 'Product Num & Name', 'Customer Num Name',
                      'On Premise', 'Shipping Address', 'County', 'Distribution Area']:
@@ -275,7 +286,7 @@ def ingest_product(path, products):
     n = 0; new = 0
     with open(path, newline='', encoding='utf-8-sig') as fh:
         r = csv.reader(fh)
-        hdr = [x.strip() for x in next(r)]
+        hdr = norm(next(r))
         col = {h: i for i, h in enumerate(hdr)}
         for x in r:
             if not any(v.strip() for v in x):
@@ -293,7 +304,7 @@ def ingest_customer(path, customers):
     n = 0; new = 0
     with open(path, newline='', encoding='utf-8-sig') as fh:
         r = csv.reader(fh)
-        hdr = [x.strip() for x in next(r)]
+        hdr = norm(next(r))
         col = {h: i for i, h in enumerate(hdr)}
         for x in r:
             if not any(v.strip() for v in x):
@@ -312,7 +323,7 @@ def ingest_supplier(path, suppliers):
     n = 0
     with open(path, newline='', encoding='utf-8-sig') as fh:
         r = csv.reader(fh)
-        hdr = [x.strip() for x in next(r)]
+        hdr = norm(next(r))
         col = {h: i for i, h in enumerate(hdr)}
         # the brand-manager column is whatever is not the id / name column
         bm_col = [i for i, h in enumerate(hdr) if h not in ('Supplier ID', 'Supplier')]
@@ -351,7 +362,7 @@ def area_key(name):
 
 def ingest_territory(path, territory):
     rows = read_rows(path)
-    hdr = [x.strip() for x in rows[0]]
+    hdr = norm(rows[0])
     col = {h: i for i, h in enumerate(hdr)}
     fam_c, terr_c = col['Brand Family'], col['Territory']
     area_cols = []
@@ -389,7 +400,7 @@ def ingest_money(path, customers, sources):
     exported = export_date(path)
     with open(path, newline='', encoding='utf-8-sig') as fh:
         r = csv.reader(fh)
-        hdr = [x.strip() for x in next(r)]
+        hdr = norm(next(r))
         col = {h: i for i, h in enumerate(hdr)}
         cols = collections.defaultdict(dict)
         for i, h in enumerate(hdr):
@@ -522,7 +533,7 @@ def ingest_adjust(path, sources):
     exported = export_date(path)
     with open(path, newline='', encoding='utf-8-sig') as fh:
         r = csv.reader(fh)
-        hdr = [x.strip() for x in next(r)]
+        hdr = norm(next(r))
         col = {h: i for i, h in enumerate(hdr)}
         cols = {}
         for i, h in enumerate(hdr):

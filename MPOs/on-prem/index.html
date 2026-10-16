@@ -13,7 +13,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Dist Hub">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<link rel="stylesheet" href="../shared/guided.css?v=20260929c">
+<link rel="stylesheet" href="../shared/guided.css?v=20261008c">
 <style>
   :root{
     /* Kohler Distributing navy -- shared with the Incentive Tracker and
@@ -174,11 +174,16 @@
     th, td{padding:9px 7px;}
   }
 
+  /* iSellBeer photo drill-down (2026-10-13), same as off-prem */
+  .photo-btn{color:var(--accent);font-weight:600;text-decoration:none;white-space:nowrap;}
+  .photo-btn:hover{text-decoration:underline;}
+  .photo-sub{color:var(--text-dim);font-size:12px;}
 </style>
-<script>try{var t=localStorage.getItem('kdh_theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<script>try{var t=localStorage.getItem('kdh_theme');if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="kdh-page" content="On-Premise MPOs">
 <!-- Site design system: maps this page's variables + fonts onto shared/kdh.css. Keep it LAST in <head>. -->
-<link rel="stylesheet" href="../../shared/kdh-skin.css?v=20260929a">
+<link rel="stylesheet" href="../../shared/carbliss-tiles.css?v=20261007m">
+<link rel="stylesheet" href="../../shared/kdh-skin.css?v=20261008a">
 </head>
 <body>
 
@@ -195,7 +200,7 @@
 <header>
   <div class="eyebrow" id="eyebrow">On-Premise · July 2026</div>
   <h1>On-Prem MPO Tracker</h1>
-  <p class="sub">20% of Total Commission Eligibility — weighted across 4 objectives. Every numeric goal below is a <strong>per-rep</strong> target.</p>
+  <p class="sub">20% of Total Commission Eligibility</p>
   <p class="updated" id="updated-line"></p>
 </header>
 
@@ -209,9 +214,18 @@
 <div id="g-anchor"></div>
 <main id="objectives"></main>
 
-<script src="../../shared/kdh-user.js?v=20260929d"></script>
-<script src="../shared/guided.js?v=20260929c"></script>
-<script src="programs.js?v=20260917i"></script>
+<script src="../../shared/kdh-user.js?v=20261015i"></script>
+<script src="../../hub/data/accounts.js?v=20261008a"></script>
+<script src="../../shared/auth-config.js"></script>
+<script src="../../shared/kdh-data.js?v=20261008a"></script>
+<script src="../../shared/custom-programs.js?v=20261008c"></script>
+<script src="../../shared/carbliss-tiles.js?v=20261007b"></script>
+<script src="../../shared/program-titles.js?v=20261005e"></script>
+<script src="../../shared/fit-tables.js?v=20261006a"></script>
+<script src="../../shared/data/rep-premise.js?v=20261007z"></script>
+<script src="../../shared/eligibility.js?v=20261008b"></script>
+<script src="../shared/guided.js?v=20261014a"></script>
+<script src="programs.js?v=20261013a"></script>
 <script>
 // Everything that COMPUTES this dashboard -- roster, month registry, JSON
 // builders, the per-rep metric and drill-down markup -- lives in programs.js
@@ -229,7 +243,7 @@ function showDataError(msg){
 
 function renderMonthBar(){
   const bar = document.getElementById('monthbar');
-  bar.innerHTML = MONTHS.map(m=>`<button class="monthtab${m.key===activeMonth?' active':''}" data-month="${m.key}">${m.label}</button>`).join('');
+  bar.innerHTML = MONTHS.map(m=>`<button class="monthtab${m.key===activeMonth?' active':''}" data-month="${m.key}">${m.label.replace(/^(\w{3})\w* /,'$1 ')}</button>`).join('');
   bar.querySelectorAll('.monthtab').forEach(b=>b.addEventListener('click',()=>{
     if(b.dataset.month===activeMonth) return;
     loadMonth(b.dataset.month);
@@ -238,11 +252,16 @@ function renderMonthBar(){
 }
 
 
+// Manager-built objectives (shared/custom-programs.js, 2026-10-08): approved MPO
+// programs for this premise and month ride beside the registry's objectives.
+const CP_SCOPE = 'on';
+function customFor(mk){ return (window.KDH_CUSTOM_MPOS||[]).filter(c=>c.scope===CP_SCOPE && c.month===mk).map(c=>Object.assign({}, c.objective, {custom:c})); }
+window.kdhCustomMposChanged = function(){ OBJECTIVES = (MONTHS.find(m=>m.key===activeMonth)||{objectives:[]}).objectives.concat(customFor(activeMonth)); if(Object.keys(DATA).length) renderMain(); };
 async function loadMonth(monthKey){
   const month = MONTHS.find(m=>m.key===monthKey);
   if(!month) return;
   activeMonth = monthKey;
-  OBJECTIVES = month.objectives;
+  OBJECTIVES = month.objectives.concat(customFor(monthKey));
   DATA = {};
   activeRep = null;
   renderMonthBar();
@@ -269,9 +288,14 @@ function objPct(o){ return OnPremMPO.objPct(o, DATA); }
 let activeRep = null;
 const container = document.getElementById('objectives');
 
-function metricFor(o, rep){ return OnPremMPO.metricFor(o, rep, DATA); }
-function detailFor(o, rep){ return OnPremMPO.detailFor(o, rep, DATA, activeMonth); }
-function atGoalFor(o){ return OnPremMPO.atGoalFor(o, DATA); }
+function metricFor(o, rep){ return o.custom ? (o.custom.metricFor ? o.custom.metricFor(rep) : null) : OnPremMPO.metricFor(o, rep, DATA); }
+function detailFor(o, rep){ return o.custom ? (o.custom.detailHtml ? o.custom.detailHtml(rep) : '') : OnPremMPO.detailFor(o, rep, DATA, activeMonth); }
+function atGoalFor(o){
+  if(!o.custom) return OnPremMPO.atGoalFor(o, DATA);
+  const ms = ROSTER.map(r=>metricFor(o, r)).filter(m=>m && !m.notScored && !m.hidden);
+  return ms.length ? {n: ms.filter(m=>m.status==='achieved').length, total: ms.length} : null;
+}
+function potentialFor(o, rep){ return o.custom ? (o.custom.potential ? o.custom.potential(rep) : null) : OnPremMPO.potentialFor(o, rep, DATA); }
 
 MPOGuided.init({
   scope: 'On-Premise',
@@ -284,6 +308,7 @@ MPOGuided.init({
   monthLabel: ()=>(MONTHS.find(m=>m.key===activeMonth)||{}).label||'',
   metric: metricFor,
   detailHtml: detailFor,
+  potential: potentialFor,
   programPct: objPct,
   atGoal: atGoalFor,
   loadMonth: loadMonth

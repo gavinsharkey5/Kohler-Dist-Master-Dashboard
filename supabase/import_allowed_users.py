@@ -20,7 +20,8 @@ title; "Manager" who they report to. Rows with no usable email are
 listed at the end and skipped. An "Active" column, if present, drops
 anyone not Active.
 
-role (rep / manager) comes from the Encompass role: "Sales" and
+role (rep / manager / associate) comes from the Encompass role: "Merchandisers"
+are associates (migration 20261014150000_associate_role.sql); "Sales" and
 "Sales/Delivery" are reps, everything else (Sales Manager, Sales
 Manager+, Sales District Manager, Brand Managers/Marketing) is a
 manager. --manager / --rep override by email.
@@ -73,6 +74,7 @@ def main():
     ap.add_argument("--out", default=os.path.join(HERE, "data", "allowed_users.sql"))
     ap.add_argument("--manager", action="append", default=[], help="email to force to manager (repeatable)")
     ap.add_argument("--rep", action="append", default=[], help="email to force to rep (repeatable)")
+    ap.add_argument("--associate", action="append", default=[], help="email to force to associate (repeatable)")
     a = ap.parse_args()
 
     header, body = read_rows(a.file)
@@ -92,6 +94,7 @@ def main():
 
     managers = {m.strip().lower() for m in a.manager}
     reps = {m.strip().lower() for m in a.rep}
+    associates = {m.strip().lower() for m in a.associate}
     seen, skipped, inactive = {}, [], []
     for r in body:
         def cell(i):
@@ -111,6 +114,8 @@ def main():
             role = "manager"
         elif email in reps:
             role = "rep"
+        elif email in associates or title.lower() in ("merchandisers", "merchandiser", "sales associate"):
+            role = "associate"   # needs migration 20261014150000_associate_role.sql
         else:
             role = "rep" if title.lower() in ("sales", "sales/delivery", "") else "manager"
         seen[email] = (name.strip(), phone, role, title, reports_to)

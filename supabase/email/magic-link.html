@@ -1,6 +1,6 @@
-<!-- Kohler Dist Hub sign-in email (2026-09-28). Paste the whole thing into
+<!-- Kohler Distribution Hub sign-in email (2026-09-28). Paste the whole thing into
      Supabase -> Authentication -> Emails -> "Magic Link" (Source view) AND
-     "Confirm sign up". Subject: Your Kohler Dist Hub sign-in code
+     "Confirm sign up". Subject: Your Kohler Distribution Hub sign-in code
      {{ .Token }} is the one-time code the sign-in page takes; the button
      ({{ .ConfirmationURL }}) is the same one-time key as a link. Table
      layout + inline styles so Outlook, Gmail and Apple Mail agree. The logo
@@ -8,23 +8,23 @@
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#EEF2F7;padding:32px 12px;font-family:'Segoe UI',Helvetica,Arial,sans-serif;">
   <tr><td align="center">
     <table role="presentation" width="460" cellpadding="0" cellspacing="0" style="max-width:460px;width:100%;background:#FFFFFF;border-radius:16px;overflow:hidden;box-shadow:0 2px 8px rgba(15,23,42,.08);">
-      <tr><td style="background:#12275F;padding:20px 28px;">
+      <tr><td style="background:#0B2466;padding:20px 28px;">
         <table role="presentation" cellpadding="0" cellspacing="0"><tr>
           <td style="padding-right:12px;"><img src="https://kohlerdisthub.com/assets/kohler-logo-badge.png" width="36" height="44" alt="" style="display:block;border-radius:6px;background:#FFFFFF;padding:2px;"></td>
           <td>
             <span style="display:block;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#C7D2FE;">Kohler Distributing</span>
-            <span style="display:block;margin-top:2px;font-size:20px;font-weight:700;color:#FFFFFF;letter-spacing:.3px;">Kohler Dist Hub</span>
+            <span style="display:block;margin-top:2px;font-size:20px;font-weight:700;color:#FFFFFF;letter-spacing:.3px;">Kohler Distribution Hub</span>
           </td>
         </tr></table>
       </td></tr>
       <tr><td style="padding:28px 28px 6px;">
         <h1 style="margin:0 0 8px;font-size:22px;line-height:1.25;color:#0F172A;font-weight:700;">Your sign-in code</h1>
-        <p style="margin:0 0 18px;font-size:16px;line-height:1.5;color:#475569;">Enter this code on the Kohler Dist Hub sign-in page. It works once and expires in one hour.</p>
+        <p style="margin:0 0 18px;font-size:16px;line-height:1.5;color:#475569;">Enter this code on the Kohler Distribution Hub sign-in page. It works once and expires in one hour.</p>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 22px;"><tr><td align="center" style="background:#F1F5F9;border:1px solid #E2E8F0;border-radius:12px;padding:18px 12px;">
-          <span style="display:inline-block;font-size:36px;line-height:1.1;letter-spacing:10px;font-weight:700;color:#12275F;font-family:Consolas,'Courier New',monospace;">{{ .Token }}</span>
+          <span style="display:inline-block;font-size:36px;line-height:1.1;letter-spacing:10px;font-weight:700;color:#0B2466;font-family:Consolas,'Courier New',monospace;">{{ .Token }}</span>
         </td></tr></table>
         <p style="margin:0 0 12px;font-size:14px;line-height:1.5;color:#475569;">Signing in from a computer or Safari instead? This button does the same thing as the code:</p>
-        <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 24px;"><tr><td style="background:#1F4FD8;border-radius:10px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 24px;"><tr><td style="background:#2866C0;border-radius:10px;">
           <a href="{{ .ConfirmationURL }}" style="display:inline-block;padding:12px 22px;font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#FFFFFF;text-decoration:none;">Sign in</a>
         </td></tr></table>
         <p style="margin:0 0 6px;font-size:13px;line-height:1.5;color:#94A3B8;">Use the code <i>or</i> the button, not both &mdash; they are the same one-time key. If you didn&rsquo;t ask for this email, ignore it; nobody can sign in without it.</p>

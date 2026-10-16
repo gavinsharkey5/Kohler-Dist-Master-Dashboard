@@ -1,0 +1,1052 @@
+[
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 10007,
+    "CUSTOMER_NAME": "Bardis (P)",
+    "BASE_DETAIL": "2 spirits: Green River Honey 1/750 mL Btl, Travelers Club Vodka 12/1 L Btl",
+    "BASE_DATE": "8/14/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Travelers Club Vodka 12/1 L Btl",
+    "DONE_DATE": "10/2/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 1005,
+    "CUSTOMER_NAME": "Grasshopper Irish Pub (A)",
+    "BASE_DETAIL": "1 spirit: Bardstown Origin Series Bourbon 1/750 mL Btl",
+    "BASE_DATE": "7/17/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 11011,
+    "CUSTOMER_NAME": "Sunset Pub & Grill(Z)",
+    "BASE_DETAIL": "1 spirit: Green River 1885 Bourbon 1/1 L Btl",
+    "BASE_DATE": "8/31/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12022,
+    "CUSTOMER_NAME": "Grasshopper Too (A)",
+    "BASE_DETAIL": "1 spirit: Bardstown Origin Series Bourbon 1/750 mL Btl",
+    "BASE_DATE": "7/17/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12026,
+    "CUSTOMER_NAME": "WAYNE ALE HOUSE & PIZZA",
+    "BASE_DETAIL": "1 spirit: Green River Honey 1/750 mL Btl",
+    "BASE_DATE": "9/4/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Green River Honey 1/750 mL Btl",
+    "DONE_DATE": "10/5/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12032,
+    "CUSTOMER_NAME": "Casa Don Manuel",
+    "BASE_DETAIL": "4 spirits: YaVe Tequila Blanco 1/6/750 mL Btl, YaVe Tequila Jalapeno 1/6/750 mL Btl, YaVe Tequila Mango 1/6/750 mL Btl, YaVe Tequila Reposado 1/6/750 mL Btl",
+    "BASE_DATE": "8/19/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12036,
+    "CUSTOMER_NAME": "Brokedown Palace",
+    "BASE_DETAIL": "1 spirit: Green River 1885 Bourbon 1/1 L Btl",
+    "BASE_DATE": "8/26/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12051,
+    "CUSTOMER_NAME": "Packanack Golf (P)",
+    "BASE_DETAIL": "1 spirit: Pride & Clarke Vodka 1/12/750 mL Btl",
+    "BASE_DATE": "8/14/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 13003,
+    "CUSTOMER_NAME": "Maggie's Town Tav.(P)",
+    "BASE_DETAIL": "1 spirit: Green River Honey 1/750 mL Btl",
+    "BASE_DATE": "7/24/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 15006,
+    "CUSTOMER_NAME": "Great Notch Inn(Z)",
+    "BASE_DETAIL": "1 spirit: Leyenda 1925 Blanco Tequila 1/750 ML Btl",
+    "BASE_DATE": "8/7/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 15074,
+    "CUSTOMER_NAME": "Bask 46",
+    "BASE_DETAIL": "1 spirit: Green River Honey 1/750 mL Btl",
+    "BASE_DATE": "9/2/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 19004,
+    "CUSTOMER_NAME": "Shortways' Barn (A)",
+    "BASE_DETAIL": "1 spirit: Travelers Club Vodka 12/1 L Btl",
+    "BASE_DATE": "9/3/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 19006,
+    "CUSTOMER_NAME": "Blackjack Mulligans (Hawthorne)",
+    "BASE_DETAIL": "1 spirit: YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "BASE_DATE": "8/28/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 19012,
+    "CUSTOMER_NAME": "Bottagra Rest (P)",
+    "BASE_DETAIL": "1 spirit: Bardstown Origin Series Bourbon 1/750 mL Btl",
+    "BASE_DATE": "9/9/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 21043,
+    "CUSTOMER_NAME": "Duffy's Tavern (Z)",
+    "BASE_DETAIL": "1 spirit: Green River Honey 1/750 mL Btl",
+    "BASE_DATE": "9/2/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 25056,
+    "CUSTOMER_NAME": "Emerald Corner (Z)",
+    "BASE_DETAIL": "1 spirit: Green River Honey 1/750 mL Btl",
+    "BASE_DATE": "7/17/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 25083,
+    "CUSTOMER_NAME": "Rutt's Hut (A)",
+    "BASE_DETAIL": "1 spirit: Bardstown Origin Series Bourbon 1/750 mL Btl",
+    "BASE_DATE": "9/30/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 7003,
+    "CUSTOMER_NAME": "Blu Ale House",
+    "BASE_DETAIL": "2 spirits: YaVe Tequila Coconut 1/6/750 mL Btl, YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "BASE_DATE": "9/22/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "DONE_DATE": "10/6/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 8004,
+    "CUSTOMER_NAME": "The Side Door (P)",
+    "BASE_DETAIL": "2 spirits: YaVe Tequila Coconut 1/6/750 mL Btl, YaVe Tequila Mango 1/6/750 mL Btl",
+    "BASE_DATE": "8/20/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 8006,
+    "CUSTOMER_NAME": "pompton crafthouse",
+    "BASE_DETAIL": "3 spirits: Southern Tier Cinnamon Candy Apple Whiskey 6/750 mL Btl, Southern Tier Peanut Butter Cup Whiskey 6/750 mL Btl, Southern Tier Pumking Whiskey 6/750 mL Btl",
+    "BASE_DATE": "8/31/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 8015,
+    "CUSTOMER_NAME": "Thatcher Mc Ghees (A)",
+    "BASE_DETAIL": "1 spirit: Green River Honey 1/750 mL Btl",
+    "BASE_DATE": "7/15/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 1007,
+    "CUSTOMER_NAME": "The Greenwood Tavern",
+    "BASE_DETAIL": "2 spirits: Bardstown Origin Series Bourbon 1/750 mL Btl, Green River Wheated 1/750 mL",
+    "BASE_DATE": "8/5/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 231210,
+    "CUSTOMER_NAME": "Bally Owen Golf Club",
+    "BASE_DETAIL": "1 spirit: Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl",
+    "BASE_DATE": "7/29/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 231213,
+    "CUSTOMER_NAME": "The Kites (P)",
+    "BASE_DETAIL": "1 spirit: Bardstown Origin Series Bourbon 1/750 mL Btl",
+    "BASE_DATE": "9/3/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 231305,
+    "CUSTOMER_NAME": "Early American Tavern",
+    "BASE_DETAIL": "1 spirit: Green River Wheated 1/750 mL",
+    "BASE_DATE": "8/13/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 190104,
+    "CUSTOMER_NAME": "Black Rabbit Saloon LLC",
+    "BASE_DETAIL": "1 spirit: Green River Wheated 1/750 mL",
+    "BASE_DATE": "7/2/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 190217,
+    "CUSTOMER_NAME": "Nostrana Ristorante",
+    "BASE_DETAIL": "1 spirit: Bardstown Origin Series Bourbon 1/750 mL Btl",
+    "BASE_DATE": "7/15/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 190905,
+    "CUSTOMER_NAME": "Elevengreen",
+    "BASE_DETAIL": "2 spirits: Bardstown Origin Series Bourbon 1/750 mL Btl, Bardstown Origin Series High Wheat 1/750 mL Btl",
+    "BASE_DATE": "9/22/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Bardstown Origin Series Bourbon 1/750 mL Btl, Bardstown Origin Series High Wheat 1/750 mL Btl",
+    "DONE_DATE": "10/8/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191001,
+    "CUSTOMER_NAME": "Stone Water",
+    "BASE_DETAIL": "3 spirits: Bardstown Origin Series Bourbon 1/750 mL Btl, Bardstown Origin Series High Wheat 1/750 mL Btl, Green River Wheated 1/750 mL",
+    "BASE_DATE": "9/29/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191009,
+    "CUSTOMER_NAME": "Mason Street Grille",
+    "BASE_DETAIL": "3 spirits: 2XO French Oak 1/750 mL Btl, Leyenda 1925 Blanco Tequila 1/750 ML Btl, YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "BASE_DATE": "8/24/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 191510,
+    "CUSTOMER_NAME": "Lola's Restaurant",
+    "BASE_DETAIL": "2 spirits: Leyenda 1925 Blanco Tequila 1/750 ML Btl, YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "BASE_DATE": "8/21/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 230103,
+    "CUSTOMER_NAME": "St.Moritz Grill & Bar",
+    "BASE_DETAIL": "1 spirit: Bardstown Origin Series Bourbon 1/750 mL Btl",
+    "BASE_DATE": "7/14/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 230122,
+    "CUSTOMER_NAME": "Krogh's Restaurant & Brew Pub",
+    "BASE_DETAIL": "1 spirit: Green River Honey 1/750 mL Btl",
+    "BASE_DATE": "8/25/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Bardstown Collaboration Series Lochs Of Jura 1/750 mL Btl, Bardstown Discovery 2026 1/750 mL Btl",
+    "DONE_DATE": "10/1/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "CUSTOMER_NUM": 80027,
+    "CUSTOMER_NAME": "Ridgewood Country Club",
+    "BASE_DETAIL": "3 spirits: Leyenda 1925 Anejo Tequila 1/750 ML Btl, Leyenda 1925 Blanco Tequila 1/750 ML Btl, Leyenda 1925 Reposado Tequila 1/750 ML Btl",
+    "BASE_DATE": "9/28/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "CUSTOMER_NUM": 20058,
+    "CUSTOMER_NAME": "Krystal Bar(P) & Liqs.",
+    "BASE_DETAIL": "1 spirit: Pride & Clarke Vodka 24/375 mL Btl",
+    "BASE_DATE": "7/3/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dylan Rubino",
+    "CUSTOMER_NUM": 170266,
+    "CUSTOMER_NAME": "San Patricios Jersey City",
+    "BASE_DETAIL": "1 spirit: OVO Vodka 1/12/750 mL Btl",
+    "BASE_DATE": "7/8/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dylan Rubino",
+    "CUSTOMER_NUM": 170291,
+    "CUSTOMER_NAME": "IKOS Greek Mediterranean",
+    "BASE_DETAIL": "1 spirit: OVO Vodka 1/12/750 mL Btl",
+    "BASE_DATE": "7/30/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "OVO Vodka 1/12/750 mL Btl",
+    "DONE_DATE": "10/15/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dylan Rubino",
+    "CUSTOMER_NUM": 171353,
+    "CUSTOMER_NAME": "Fork Hill Kitchen",
+    "BASE_DETAIL": "1 spirit: Southern Tier Pumking Whiskey 6/750 mL Btl",
+    "BASE_DATE": "9/3/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jaime Colonna",
+    "CUSTOMER_NUM": 170042,
+    "CUSTOMER_NAME": "O'nieal's (A)",
+    "BASE_DETAIL": "1 spirit: OVO Vodka 1/12/750 mL Btl",
+    "BASE_DATE": "9/3/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "OVO Vodka 1/12/750 mL Btl",
+    "DONE_DATE": "10/8/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jaime Colonna",
+    "CUSTOMER_NUM": 170118,
+    "CUSTOMER_NAME": "Madison Bar & Grill",
+    "BASE_DETAIL": "1 spirit: Southern Tier Pumking Whiskey 6/750 mL Btl",
+    "BASE_DATE": "9/24/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jaime Colonna",
+    "CUSTOMER_NUM": 170280,
+    "CUSTOMER_NAME": "Stingray Lounge",
+    "BASE_DETAIL": "1 spirit: OVO Vodka 1/12/750 mL Btl",
+    "BASE_DATE": "8/20/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "CUSTOMER_NUM": 20055,
+    "CUSTOMER_NAME": "Paruta's (A)",
+    "BASE_DETAIL": "3 spirits: Pride & Clarke Vodka 1/12/750 mL Btl, Pride & Clarke Vodka 24/375 mL Btl, Pride & Clarke Vodka 48/200 mL Btl",
+    "BASE_DATE": "9/15/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Pride & Clarke Vodka 48/200 mL Btl",
+    "DONE_DATE": "10/13/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "CUSTOMER_NUM": 20061,
+    "CUSTOMER_NAME": "Seguidilla 56 Lounge & Liquors",
+    "BASE_DETAIL": "5 spirits: Leyenda 1925 Anejo Tequila 1/750 ML Btl, Leyenda 1925 Blanco Tequila 1/750 ML Btl, Leyenda 1925 Reposado Tequila 1/750 ML Btl, Pride & Clarke Vodka 24/375 mL Btl ...",
+    "BASE_DATE": "9/10/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "CUSTOMER_NUM": 22065,
+    "CUSTOMER_NAME": "Mambo Lounge (P)",
+    "BASE_DETAIL": "1 spirit: Desquite Artesanal 6/750 mL Btl",
+    "BASE_DATE": "7/31/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "CUSTOMER_NUM": 27001,
+    "CUSTOMER_NAME": "Fiesta Night Club(P)",
+    "BASE_DETAIL": "3 spirits: Desquite Artesanal 6/750 mL Btl, Leyenda 1925 Blanco Tequila 1/750 ML Btl, Leyenda 1925 Reposado Tequila 1/750 ML Btl",
+    "BASE_DATE": "9/22/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "CUSTOMER_NUM": 32011,
+    "CUSTOMER_NAME": "La Fortaleza (Carlstadt)",
+    "BASE_DETAIL": "1 spirit: Leyenda 1925 Blanco Tequila 1/750 ML Btl",
+    "BASE_DATE": "7/2/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "CUSTOMER_NUM": 36026,
+    "CUSTOMER_NAME": "Agave Cocina Mexicana",
+    "BASE_DETAIL": "5 spirits: YaVe Tequila Blanco 1/6/750 mL Btl, YaVe Tequila Coconut 1/6/750 mL Btl, YaVe Tequila Jalapeno 1/6/750 mL Btl, YaVe Tequila Mango 1/6/750 mL Btl ...",
+    "BASE_DATE": "8/21/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "John O'Donoghue",
+    "CUSTOMER_NUM": 190016,
+    "CUSTOMER_NAME": "12 Islands Greek Taverna",
+    "BASE_DETAIL": "1 spirit: Isidoros Arvanitis Plomari Ouzo 12/750 mL Btl",
+    "BASE_DATE": "7/31/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Isidoros Arvanitis Plomari Ouzo 12/750 mL Btl",
+    "DONE_DATE": "10/2/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "CUSTOMER_NUM": 36043,
+    "CUSTOMER_NAME": "Sports Bar & Liquors",
+    "BASE_DETAIL": "1 spirit: American Fruit Sour Cherry Liqueur 12/375 mL",
+    "BASE_DATE": "8/6/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "CUSTOMER_NUM": 84007,
+    "CUSTOMER_NAME": "Steel Wheel Tavern",
+    "BASE_DETAIL": "2 spirits: Leyenda 1925 Blanco Tequila 1/750 ML Btl, Leyenda 1925 Reposado Tequila 1/750 ML Btl",
+    "BASE_DATE": "8/25/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "CUSTOMER_NUM": 84015,
+    "CUSTOMER_NAME": "The Office 2131 Ridgewood",
+    "BASE_DETAIL": "1 spirit: Green River Wheated 1/750 mL",
+    "BASE_DATE": "8/13/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Green River Wheated 1/750 mL",
+    "DONE_DATE": "10/13/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "CUSTOMER_NUM": 84022,
+    "CUSTOMER_NAME": "Park West Tavern",
+    "BASE_DETAIL": "5 spirits: Bardstown Origin Series Bourbon 1/750 mL Btl, Leyenda 1925 Anejo Tequila 1/750 ML Btl, Leyenda 1925 Blanco Tequila 1/750 ML Btl, Leyenda 1925 Reposado Tequila 1/750 ML Btl ...",
+    "BASE_DATE": "9/30/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Bardstown Origin Series Bourbon 1/750 mL Btl, OVO Vodka 1/12/750 mL Btl",
+    "DONE_DATE": "10/13/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 28021,
+    "CUSTOMER_NAME": "Brazilian Spices Steakhouse & Pizza",
+    "BASE_DETAIL": "1 spirit: Pride & Clarke Vodka 12/1 L Btl",
+    "BASE_DATE": "7/2/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 31027,
+    "CUSTOMER_NAME": "New Park Tav (A)",
+    "BASE_DETAIL": "1 spirit: Green River Honey 1/750 mL Btl",
+    "BASE_DATE": "9/8/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 31029,
+    "CUSTOMER_NAME": "Annabella's House Of Mozz",
+    "BASE_DETAIL": "3 spirits: Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl, Bardstown Origin Series Double Barrel Rye 1/750 mL Btl, Bardstown Origin Series High Wheat 1/750 mL Btl",
+    "BASE_DATE": "9/29/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 37034,
+    "CUSTOMER_NAME": "Blackjack Mulligans(P) (Garfield)",
+    "BASE_DETAIL": "1 spirit: YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "BASE_DATE": "8/28/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 38002,
+    "CUSTOMER_NAME": "Satin Dolls (A)",
+    "BASE_DETAIL": "1 spirit: 2XO American Oak 1/750 mL Btl",
+    "BASE_DATE": "7/14/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 49049,
+    "CUSTOMER_NAME": "The Metropolitan Lounge",
+    "BASE_DETAIL": "3 spirits: Leyenda 1925 Anejo Tequila 1/750 ML Btl, Leyenda 1925 Blanco Tequila 1/750 ML Btl, Leyenda 1925 Reposado Tequila 1/750 ML Btl",
+    "BASE_DATE": "9/4/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 80011,
+    "CUSTOMER_NAME": "Casa De Montecristo",
+    "BASE_DETAIL": "3 spirits: Bardstown Origin Series Bourbon 1/750 mL Btl, Leyenda 1925 Anejo Tequila 1/750 ML Btl, Leyenda 1925 Reposado Tequila 1/750 ML Btl",
+    "BASE_DATE": "7/27/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 88003,
+    "CUSTOMER_NAME": "W's Village Grille",
+    "BASE_DETAIL": "2 spirits: Bardstown Origin Series Bourbon 1/750 mL Btl, Bardstown Origin Series High Wheat 1/750 mL Btl",
+    "BASE_DATE": "9/23/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 89002,
+    "CUSTOMER_NAME": "Allendale Bar & Grill",
+    "BASE_DETAIL": "1 spirit: Dogfish Head Straight Whiskey 6/750 mL Btl",
+    "BASE_DATE": "9/23/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "CUSTOMER_NUM": 27015,
+    "CUSTOMER_NAME": "Dona Maria Rest",
+    "BASE_DETAIL": "5 spirits: YaVe Tequila Blanco 1/6/750 mL Btl, YaVe Tequila Coconut 1/6/750 mL Btl, YaVe Tequila Jalapeno 1/6/750 mL Btl, YaVe Tequila Mango 1/6/750 mL Btl ...",
+    "BASE_DATE": "7/24/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "CUSTOMER_NUM": 27067,
+    "CUSTOMER_NAME": "Ukranian (Z) Center",
+    "BASE_DETAIL": "2 spirits: Hetman Elite Vodka 1/6/700 mL Btl, Ukrainian Spirit Vodka 1/12/1 L Btl",
+    "BASE_DATE": "7/10/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "CUSTOMER_NUM": 39004,
+    "CUSTOMER_NAME": "Noches De Colombia (S. Hackensack))",
+    "BASE_DETAIL": "5 spirits: 2XO French Oak 1/750 mL Btl, 2XO The Collectibles Hip Hop Blend 1/750 mL Btl, Desquite Artesanal 6/750 mL Btl, Paradisse Fassionola Liqueur 6/750 mL Btl ...",
+    "BASE_DATE": "9/30/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Desquite Artesanal 6/750 mL Btl",
+    "DONE_DATE": "10/8/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "CUSTOMER_NUM": 40031,
+    "CUSTOMER_NAME": "Azul Restaurant",
+    "BASE_DETAIL": "1 spirit: Leyenda 1925 Reposado Tequila 1/750 ML Btl",
+    "BASE_DATE": "9/23/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "CUSTOMER_NUM": 52005,
+    "CUSTOMER_NAME": "Noches De Colombia(Englewood))",
+    "BASE_DETAIL": "1 spirit: 2XO The Collectibles Hip Hop Blend 1/750 mL Btl",
+    "BASE_DATE": "9/30/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 39006,
+    "CUSTOMER_NAME": "Fat Bastard & Sons",
+    "BASE_DETAIL": "4 spirits: Striped Pig Doppio 1/6/750 mL Btl, YaVe Tequila Coconut 1/6/750 mL Btl, YaVe Tequila Jalapeno 1/6/750 mL Btl, YaVe Tequila Mango 1/6/750 mL Btl",
+    "BASE_DATE": "8/31/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 39010,
+    "CUSTOMER_NAME": "Players Club (Z)",
+    "BASE_DETAIL": "7 spirits: Bardstown Origin Series Bourbon 1/750 mL Btl, Bardstown Origin Series High Wheat 1/750 mL Btl, Green River Wheated 1/750 mL, Striped Pig Doppio 1/6/750 mL Btl ...",
+    "BASE_DATE": "7/28/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 40008,
+    "CUSTOMER_NAME": "Tavern 61 (Z)",
+    "BASE_DETAIL": "1 spirit: Bardstown Origin Series Bourbon 1/750 mL Btl",
+    "BASE_DATE": "7/9/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Bardstown Origin Series Bourbon 1/750 mL Btl",
+    "DONE_DATE": "10/5/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 40032,
+    "CUSTOMER_NAME": "Side Bar",
+    "BASE_DETAIL": "1 spirit: YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "BASE_DATE": "9/16/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 41006,
+    "CUSTOMER_NAME": "Straphanger Saloon (A)",
+    "BASE_DETAIL": "2 spirits: Green River Honey 1/750 mL Btl, Travelers Club Vodka 12/1 L Btl",
+    "BASE_DATE": "9/25/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Travelers Club Vodka 12/1 L Btl",
+    "DONE_DATE": "10/2/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 41010,
+    "CUSTOMER_NAME": "Lenoras Bar (P)",
+    "BASE_DETAIL": "2 spirits: Striped Pig Doppio 1/6/750 mL Btl, Travelers Club Vodka 12/1 L Btl",
+    "BASE_DATE": "9/17/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Striped Pig Doppio 1/6/750 mL Btl, Travelers Club Vodka 12/1 L Btl",
+    "DONE_DATE": "10/6/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 41023,
+    "CUSTOMER_NAME": "The Whiskey Priest (Hackensack)",
+    "BASE_DETAIL": "2 spirits: Leyenda 1925 Reposado Tequila 1/750 ML Btl, YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "BASE_DATE": "8/25/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 50001,
+    "CUSTOMER_NAME": "Andy's Corner (Z)",
+    "BASE_DETAIL": "2 spirits: Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl, Bardstown Origin Series Bourbon 1/750 mL Btl",
+    "BASE_DATE": "9/2/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 50029,
+    "CUSTOMER_NAME": "La Tequilera Restaurant",
+    "BASE_DETAIL": "1 spirit: YaVe Tequila Coconut 1/6/750 mL Btl",
+    "BASE_DATE": "7/30/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 54001,
+    "CUSTOMER_NAME": "Tenafly Pizza (Z)",
+    "BASE_DETAIL": "1 spirit: Paradisse Fassionola Liqueur 6/750 mL Btl",
+    "BASE_DATE": "7/30/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 59001,
+    "CUSTOMER_NAME": "ORA",
+    "BASE_DETAIL": "1 spirit: Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl",
+    "BASE_DATE": "9/1/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl",
+    "DONE_DATE": "10/8/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 60002,
+    "CUSTOMER_NAME": "QB's Bar and Grill",
+    "BASE_DETAIL": "1 spirit: Paradisse Fassionola Liqueur 6/750 mL Btl",
+    "BASE_DATE": "9/17/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 61004,
+    "CUSTOMER_NAME": "Andiamo",
+    "BASE_DETAIL": "2 spirits: 2XO French Oak 1/750 mL Btl, Traveler's Club Vodka 6/1.75 L Btl",
+    "BASE_DATE": "9/22/2026",
+    "DONE": 1,
+    "DONE_DETAIL": "2XO French Oak 1/750 mL Btl, Traveler's Club Vodka 6/1.75 L Btl",
+    "DONE_DATE": "10/6/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 65007,
+    "CUSTOMER_NAME": "86 and Vine",
+    "BASE_DETAIL": "1 spirit: Bardstown Origin Series Bourbon 1/750 mL Btl",
+    "BASE_DATE": "7/13/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 67014,
+    "CUSTOMER_NAME": "The Rockleigh C C (P)",
+    "BASE_DETAIL": "1 spirit: YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "BASE_DATE": "7/31/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 69003,
+    "CUSTOMER_NAME": "Edgewood Country Club",
+    "BASE_DETAIL": "1 spirit: Paradisse Fassionola Liqueur 6/750 mL Btl",
+    "BASE_DATE": "7/30/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 69009,
+    "CUSTOMER_NAME": "Rivervale Country Club",
+    "BASE_DETAIL": "2 spirits: Travelers Club Vodka 12/1 L Btl, YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "BASE_DATE": "9/16/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 69012,
+    "CUSTOMER_NAME": "449 Prime @ Edgewood Country Club",
+    "BASE_DETAIL": "2 spirits: Green River Honey 1/750 mL Btl, YaVe Tequila Mango 1/6/750 mL Btl",
+    "BASE_DATE": "7/30/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 70012,
+    "CUSTOMER_NAME": "Fire & Oak (A)",
+    "BASE_DETAIL": "1 spirit: Bardstown Origin Series Double Barrel Rye 1/750 mL Btl",
+    "BASE_DATE": "9/30/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 71011,
+    "CUSTOMER_NAME": "Marriott (P) Park Ridge",
+    "BASE_DETAIL": "2 spirits: 2XO French Oak 1/750 mL Btl, Green River Wheated 1/750 mL",
+    "BASE_DATE": "9/25/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 73001,
+    "CUSTOMER_NAME": "Lou's",
+    "BASE_DETAIL": "3 spirits: Green River Honey 1/750 mL Btl, YaVe Tequila Coconut 1/6/750 mL Btl, YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "BASE_DATE": "8/7/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 73002,
+    "CUSTOMER_NAME": "The Cornerstone (P)",
+    "BASE_DETAIL": "2 spirits: Striped Pig Doppio 1/6/750 mL Btl, YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "BASE_DATE": "7/24/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 81027,
+    "CUSTOMER_NAME": "RP Prime Steakhouse",
+    "BASE_DETAIL": "1 spirit: Bardstown Origin Series Bourbon 1/750 mL Btl",
+    "BASE_DATE": "7/30/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 85001,
+    "CUSTOMER_NAME": "Eleven Central",
+    "BASE_DETAIL": "1 spirit: Paradisse Fassionola Liqueur 6/750 mL Btl",
+    "BASE_DATE": "8/4/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 86002,
+    "CUSTOMER_NAME": "Doghouse Saloon (Z)",
+    "BASE_DETAIL": "1 spirit: YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "BASE_DATE": "7/28/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 76021,
+    "CUSTOMER_NAME": "Saddle Brook Liquor & Bar",
+    "BASE_DETAIL": "1 spirit: Southern Tier Creme Brulee Whiskey 6/750 mL Btl",
+    "BASE_DATE": "8/18/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 12023,
+    "CUSTOMER_NAME": "The Village Inn",
+    "BASE_DETAIL": "4 spirits: Bardstown Collaboration Series Pierre Ferrand 1/750 mL Btl, Bardstown Discovery #13 1/750 mL Btl, Green River 1885 Bourbon 1/1 L Btl, YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "BASE_DATE": "9/16/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 15079,
+    "CUSTOMER_NAME": "American Lgn Totowa",
+    "BASE_DETAIL": "2 spirits: Green River Bourbon 1/750 mL Btl, Green River Bourbon 250th Army Anniversary 1/750 mL",
+    "BASE_DATE": "9/25/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 15081,
+    "CUSTOMER_NAME": "Evolution Restaurant & Bar",
+    "BASE_DETAIL": "1 spirit: Leyenda 1925 Blanco Tequila 1/750 ML Btl",
+    "BASE_DATE": "9/2/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 191301,
+    "CUSTOMER_NAME": "Lake Hopatcong Yacht Club",
+    "BASE_DETAIL": "1 spirit: Green River Wheated 1/750 mL",
+    "BASE_DATE": "9/11/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 191406,
+    "CUSTOMER_NAME": "Courtyard Marriott Mt Arl",
+    "BASE_DETAIL": "3 spirits: Bardstown Collaboration Series Lochs Of Jura 1/750 mL Btl, Bardstown Discovery 2026 1/750 mL Btl, Bardstown Origin Series High Wheat 1/750 mL Btl",
+    "BASE_DATE": "9/11/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 192156,
+    "CUSTOMER_NAME": "Hapgoods Restaurant",
+    "BASE_DETAIL": "2 spirits: Leyenda 1925 Blanco Tequila 1/750 ML Btl, YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "BASE_DATE": "9/2/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 30017,
+    "CUSTOMER_NAME": "Renaissance Meadowlands",
+    "BASE_DETAIL": "1 spirit: Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl",
+    "BASE_DATE": "9/2/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 34016,
+    "CUSTOMER_NAME": "Vfw Hasbrouck (A)",
+    "BASE_DETAIL": "2 spirits: Leyenda 1925 Blanco Tequila 1/750 ML Btl, YaVe Tequila Blanco 1/6/750 mL Btl",
+    "BASE_DATE": "8/6/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 34018,
+    "CUSTOMER_NAME": "Hilton Hasbrk Hts #50591",
+    "BASE_DETAIL": "2 spirits: Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl, Green River Wheated 1/750 mL",
+    "BASE_DATE": "8/13/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 5016,
+    "CUSTOMER_NAME": "Vfw Butler",
+    "BASE_DETAIL": "1 spirit: Green River 1885 Bourbon 1/1 L Btl",
+    "BASE_DATE": "8/7/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 60017,
+    "CUSTOMER_NAME": "K Of C Dumont",
+    "BASE_DETAIL": "1 spirit: Green River Bourbon 1/750 mL Btl",
+    "BASE_DATE": "9/17/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 74011,
+    "CUSTOMER_NAME": "IL Vero Westwood",
+    "BASE_DETAIL": "2 spirits: Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl, Bardstown Origin Series Bourbon 1/750 mL Btl",
+    "BASE_DATE": "9/21/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 93018,
+    "CUSTOMER_NAME": "Courtyard Mahwah",
+    "BASE_DETAIL": "4 spirits: Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl, Green River Honey 1/750 mL Btl, Green River Wheated 1/750 mL, Leyenda 1925 Anejo Tequila 1/750 ML Btl",
+    "BASE_DATE": "8/7/2026",
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
+  }
+]

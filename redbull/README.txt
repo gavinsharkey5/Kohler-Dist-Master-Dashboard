@@ -63,6 +63,11 @@ Files:
                   export as .csv or .xlsx.
   index.html      The page itself.
 
+2026-10-06 CHECK -- RDE_Red_Bull_Tracker_June_1_Start_4.csv: 977 rows, 7/1 through
+9/30, identical in content to the 9/30 build (170 buying accounts, 162 Regular /
+82 Free / 56 Flavor); nothing to change. The buying period has ended, so the
+numbers are final unless Gavin sets a new period (--start / --end).
+
 2026-09-17 REFRESH -- RDE_Red_Bull_Tracker_Apr_1_Start_5.csv (1,827 rows,
 4/1 through 9/17, nothing dated ahead of the pull this time). Buying accounts
 hold at 197 -- no account joined or dropped -- but four existing accounts
@@ -118,6 +123,24 @@ june july sept", so one build (commit 6ea9fa0) counted June and read 177
 accounts / Core 71 / Core+ 38. Gavin the same day: "make this start in
 july ignore june my apologies" -- July 1 it is, and June rows are dropped
 on every build from here.
+
+2026-09-30 REFRESH -- RDE_Red_Bull_Tracker_June_1_Start_3.csv (977 rows,
+7/1 through 9/30 -- starts July 1, nothing dropped; the export's last rows
+are dated 9/30, the day of the pull and the last day of the buying period).
+Diffed against the 9/25 build. Buying accounts 168 -> 170
+(2 joined, 0 left), Regular 161 -> 162, Free 78 -> 82,
+Flavor 52 -> 56. Core 72 -> 75 of 162, CORE+ 43 -> 47 of 75.
+  Joined: Anthony Palmisano / The Stuffed Olive_2 (all 3); Nick Melissari / Woodstone Pizza B & G (Free only).
+  Left: none.
+  Newly Core+ (all 3):
+    Allison Scott      WAYNE ALE HOUSE & PIZZA            Core -> all 3
+    Anthony Palmisano  Tony's Pizza (P)                   Core -> all 3
+    Robin Feldman      Homewood Suites By Hilton          Regular only -> all 3
+  Other moves:
+    Allison Scott      Bottagra Rest (P)                  Regular only -> Core
+Core+ leaderboard: Paul Mclaughlin 14, Allison Scott 8 -> 9, Anthony Palmisano 4 -> 6, Brian Sengebush 6, Nick Melissari 6, Robin Feldman 4 -> 5, Dan Lagala 1.
+The page's leaderboard is now shown to signed-in reps too (2026-09-30,
+see the Rep leaderboard note below); nothing in this refresh changes that.
 
 2026-09-25 REFRESH -- RDE_Red_Bull_Tracker_June_1_Start_2.csv (926 rows,
 7/1 through 9/25 -- starts July 1, nothing dropped; July 345 and August 293
@@ -222,3 +245,20 @@ totals still appear as goal-less cards further down each rep's page.
 index.html's ingestData() only checks whether a (customer, category)
 row EXISTS for a rep, not the Bought column's value -- so Bought is
 always written as 1 by generate.py, matching the existing file.
+
+Rep leaderboard (2026-09-30)
+----------------------------
+Everyone sees the leaderboard -- managers at the top of the "All reps"
+view (as before), a signed-in rep at the foot of their own page, with
+their row marked "you". Rows carry aggregate counts only (Core+ of N
+buying accounts, the per-category tallies, the share bar), never account
+names, so a rep learns nothing about another rep's customers; a rep's
+rows are not tappable (setRep pins them anyway). One function, ranked()
+in index.html, orders everyone: Core+ accounts, then total buying
+accounts as the tiebreak, then name; reps still level share a rank
+(1, 2, 2, 4, marked "=" -- competition ranking, so a tie never pushes
+anyone down). The board names the buying period (period.json label) and
+the data date (period.json export_last_date, the last order date in the
+export; the header's "Data updated" is the file's last-modified time).
+The note under the board says how the ranking works and that routes
+differ in size, which is why the share bar is shown beside the count.

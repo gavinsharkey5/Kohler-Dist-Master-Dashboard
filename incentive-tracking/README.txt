@@ -289,6 +289,130 @@ Switching tabs keeps the selected rep (a rep wants their own next
 month's card, not the program grid) and clears any open program detail,
 since program keys differ between months.
 
+OCTOBER 2026 (added 2026-09-30, from the 2026 October Rewards Deck)
+==================================================================
+A third month tab (PROGRAM_LIST_2026_10 / PROGRAM_DATA_2026_10, marker pair
+/* PROGRAM_DATA_10_START */ .. _END in index.html, the `oct()` getter, an
+October entry in MONTHS). October is the DEFAULT tab as of 2026-09-30 --
+the September programs end that day. The hub picks the month up on its
+own (buildPrograms walks MONTHS newest-first; incBlob now checks the
+October blob first).
+
+NEW PROGRAMS (deck p2-p7) -- exports Gavin sent 2026-09-30, saved as:
+  data/mabi_single_serve.csv   "RDE MABI FALL SINGLE SERVE INCENTIVE OCT-NOV"
+  data/lagunitas_sprint.csv    "RDE LAGUNITAS SPRINT TO THE FINISH OCTOBER"
+  data/famosa_october.csv      "RDE FAMOSA OCTOBER 2026"
+  data/industrial_arts.csv     "RDE INDUSTRIAL ARTS TARGET ACCOUNT LAUNCH OCTOBER"
+Refresh = save the new export over the same name, python3 generate.py.
+  mabi_single_serve   build_mabi_single_serve(). A "package sold in" is one
+                      single-serve SKU at one account with a placement in
+                      the window (POD grain). 8+ White Claw = $15, 8+ Mike's
+                      Harder / Cayman Jack = $15, a leg pays $30 when every
+                      package counted is M.A.D.E. (deck list, matched on the
+                      product name). Window Sept 1 - Nov 30 per the deck.
+                      NOTE the export only carries the 16 M.A.D.E. SKUs, so
+                      the MADE test reads true for every row.
+  lagunitas_sprint    build_lagunitas_sprint(). Off-premise POD = (rep,
+                      customer, Product Num) with a placement 10/1-11/30/2026
+                      and none 10/1-11/30/2025, IPA + Little Sumpin' packages
+                      only; $10 a POD, $15 once the rep has 3 AND the house
+                      40. On-premise: a keg account with no keg placement
+                      last year = $100; a November keg rebuy = +$50 (counted
+                      when November rows exist). No premise column in the
+                      export -> premise from customer_base_full.csv, kegs
+                      are on-premise by nature. ASSUMED: nothing pays until
+                      the rep has 3 PODs.
+  famosa_oct          build_famosa_october(). Cases Oct 2026 vs Oct 2025 per
+                      rep; the rep must be positive to earn; $2 a case, $3
+                      on the 7oz (product name). Ranked on case growth.
+  industrial_arts     build_industrial_arts(). Off-premise: an account is
+                      OPENED at 3+ distinct SKUs with a placement in the
+                      window (10/1-12/31) -> $40 + $10 per SKU over 3;
+                      Southern District (MIKE_KENNEDY_TEAM) $50 per account
+                      opened (ASSUMED: 1+ SKU). On-premise: Wrench keg in
+                      October at the 1/3 bbl minimum = $100; Nov AND Dec =
+                      +$250 (counted when those months exist). ASSUMED: a
+                      new brand, so every account is a non-buy and every
+                      SKU is core (the deck names no core list).
+                      GAVIN 2026-10-07: off-premise tracks ALL 16oz, 19.2oz and 12oz
+                      packages (IA_OFF_SIZES); on-premise is ONLY Wrench draft
+                      (Industrial Arts Wrench ... keg / bbl; Pocket Wrench is a
+                      different beer and no longer counts).
+  four_loko           BUILT 2026-10-07, NO PAYMENTS (Gavin: just cases vs last year and
+                      new placements). CASES = data/four_loko.csv (RDE "FOUR LOKO
+                      VOLUME REWARDS OCT-NOV", Cases 10/1-11/30/2026 vs 2025, net
+                      of returns; loads through the date printed by generate.py).
+                      NEW PLACEMENTS = RDE's own flags: data/four_loko_new_placements.csv
+                      (Sour Apple 7925 + USA 7935 only; "Placements 10/1-11/30/2026" vs
+                      "Placements 7/1/2026-9/30/2026") -- a (rep, customer, SKU) with a
+                      current placement and NONE in 7/1-9/30. data/four_loko_placements_all.csv
+                      (every SKU, same two columns) is the cross-check: generate.py
+                      stops if its Sour Apple / USA rows disagree. NOTE: the file Gavin
+                      named "VOLUME_2" carries placements, not cases, so the cases
+                      still come from the first export -- re-pull it for fresher volume.
+                      The deck's 5-placement qualifier shows as progress only.
+  LAGUNITAS (Gavin, 2026-10-07): the whole program is NEW placements -- every
+                      "POD" in the deck means a NEW POD (SKU at an account with
+                      no placement the same window last year). The builder
+                      already works that way; export saved 2026-10-07 covers
+                      10/1-11/30.
+  sam_adams_cold_snap BUILT 2026-10-05 from Boston Beer workbooks (see CLAUDE.md). The deck slide reads "convert Cold
+                      Snap to Summer Ale by October 23" -- almost certainly
+                      a carry-over typo (Octoberfest -> Cold Snap is the
+                      seasonal move); the rules are shown as the deck words
+                      them, period 10/1-10/23 via a registry `period`.
+ONGOING on the October tab (same datasets as before): touchdowns_tea
+(registry `period` 9/1-10/31 -- the deck lists it as continuing with no
+end date; ASSUMED through October), lytt (`period` 8/1-12/31: the rate
+reached pays through Dec 31 per p20), other_half, le_grand_noir,
+printed_menu, bardstown_display, two_xo. RETENTION: mc_retention,
+constellation_fall, mabi_retention_fall, yuengling_retention_fall, plus
+heineken_husa (Oct-Dec) and new_belgium_distribution_retain (Oct-Nov) as
+structure-only shapes again. A registry entry's `period` now overrides the
+blob's window in the hub (hub.js incPeriod) -- that is how an extended
+program keeps its September data and an October end date.
+TOUCHDOWNS & TEA IS ONE CARD WITH TWO LEGS INSIDE IT (Gavin, 2026-09-30,
+in two steps: first "the current card feels overcrowded", then "make it one
+card but then separate the on and off programs within that card"). The
+October tab carries one registry entry, key touchdowns_tea (same key as
+September, so the hub -- newest month wins -- shows one card). Its SUMMARY
+adapter returns `legs`: [{key:'off', label:'Off-Premise', where, ask, big,
+cap, line, need, status, next, rules}, {key:'on', ...}]. The tracker's
+progress screen (screenProgress in index.html) draws one `.v3-leg` tile per
+leg -- badge, Qualifies-style ask, the big number, a supporting line, what is
+still needed -- and one "What to do next" per leg; the hub's program screen
+(hub.js screenProgramRep) draws the same as `.px-leg` blocks and groups "How
+it is scored" by leg (rules pass through ruleNoMoney, so no dollars reach a
+rep). cardTouchdownsTea() is the full card: two `.leg` sections (Off-Premise
+stores / On-Premise bars), each with its own Where You Stand tiles,
+requirement block and photo-verified extra, then one tracked-earnings line.
+A program adds legs by returning `legs` from its SUMMARY adapter; keep
+dollars out of ask / big / cap / line / need. generate.py is untouched.
+HUB HIDES SHAPES WITHOUT DATA (same day): a registry entry with no byRep for
+anyone and no manual feed (Four Loko, the seasonal conversion, Heineken USA,
+New Belgium retain) returns null from forRep, so reps do not see "Awaiting
+data" rows; the tracker keeps showing the shape with its rules.
+LOGOS cut from the deck (assets/logos/, <=200x75, opaque): lagunitas,
+famosa, industrial_arts, four_loko, white_claw, mikes_harder, cayman_jack.
+Still missing: twisted_tea.png (not in any deck) and a Heineken mark.
+
+NOT ADDED: "Long Drink Intro" is on the deck's title slide but has no
+slide; the Peroni & Banquet target draft slide (p11) is the Feb-Apr program
+whose retention window ended in June.
+Cards: cardLagunitasSprint / cardFamosaOct / cardIndustrialArts /
+cardMabiSingleServe; boards in PROGRAM_BOARD; SUMMARY adapters lead with
+distribution (no dollars in a headline -- the hub drops dollar programs);
+rules in PROGRAM_RULES; suppliers lagunitas / famosa / industrial_arts /
+phusion / heineken added with no logo files (progLogo renders nothing).
+hub/accounts.js PROGRAM_BRANDS: Industrial Arts is null (not in the brand
+workbook yet). Tests: scratchpad oct_test.mjs (tabs, every October card,
+structure-only shapes, hub suppliers and screens, no dollars).
+First numbers (2026-09-30, two days of October): Lagunitas 7 new PODs
+house-wide (Phil Ernst 6), Famosa 46 vs 4,085 cases LY, Industrial Arts 5
+accounts opened (Michael Harboy 2, Anthony Palmisano, Shane Barreca, Mike
+Ast), single serve 1,480 PODs since Sept 1 (15 reps at 8+ White Claw, 12
+at 8+ Harder / Cayman).
+
 SEPTEMBER 2026 (structure only, from the September Rewards Deck)
 ================================================================
 Built 2026-08-31 as STRUCTURE ONLY -- no September RDE export existed
@@ -3638,6 +3762,135 @@ The off-premise MPO "Constellation - 30% Corona Gaintain Distro"
 (MPOs/off-prem) is a different program with its own 30%-of-last-fall goal
 and is NOT changed by this file.
 
+2026-09-30 -- TOUCHDOWNS & TEA HEADLINE IS DISTRIBUTION, NOT DOLLARS (Gavin)
+Gavin asked why Touchdowns & Tea was not under Boston Beer on the hub's
+incentive tab. Its summary adapter (SUMMARY.touchdowns_tea in programs.js)
+led with the payout ("$497 earned"), and the hub's Rep Mode drops any
+program whose headline / goal / still-needed carries a dollar figure
+(hub.js isDollarProgram, per Gavin's 2026-09-11 "no dollars on the rep
+page") -- so it was the one program on the site that rule removed. Per
+Gavin ("put it under Boston Beer incentives, do not include the payout
+amounts, only the distribution/placement data") the adapter now reads
+"15 new 12pk placements · 272 on-prem cases" (now = offPremNewCount, unit
+placements, no set goal) with a money-free sub and next line. The tracker's
+own card (cardTouchdownsTea) and leaderboard still show every payout leg
+-- only the shared summary changed. programs.js tag bumped to 20260930a
+on hub/, accounts/, rep/ and team/.
+
+2026-09-30 SEVENTH REFRESH -- Yuengling Fall (off _7 / packages _9 / draft _9) + Southern District (Path to Victory vSD _1, Fall Seasonal vSD _5)
+  python3 generate.py
+Five flat CSVs straight over data/yuengling_retention_fall_off.csv /
+_packages_on.csv / _draft_on.csv, path_to_victory_sd.csv and
+fall_seasonal_sd.csv, same headers. 0 YUENGLING GOALS MOVED (goal column
+identical row for row in all three). Day 30 of 91, still 6 / 58 brand goals
+held across 18 reps, 0 reps holding every goal.
+  Yuengling  off Lager 286 -> 291/338, Flight 108 -> 117/152, Light Lager 73
+             -> 81/134; packages Lager 179 -> 190/258, Flight 2/6.
+             DRAFT STILL READS THE ACCOUNT SHEET (rule 6): 150/293 Lager and
+             3/7 Flight did NOT move because yuengling_retention_fall_draft_
+             on_detail.csv was not re-sent; the _9 summary is stored but the
+             page counts draft from the detail file. OPEN WITH GAVIN: send the
+             draft account-level export to refresh the draft numbers.
+  Path to Victory (vSD)  84 new 6pk PODs of 257 (was 79 of 249), $840
+             trackable, 684 units: Dylan Rubino 31, Alisa Acciardi 18, Jaime
+             Colonna 18, Hakan Sadik 7, Andrew Lundy 4, Michael Harboy 3, Alex
+             Rodriguez 2, John O'Donoghue 1.
+  Fall Seasonal (vSD)  4,894 cases -> 5,076.8 package CE (was 4,896 CE
+             before the 9/25 pull), 65 sixtels, 70 half-kegs, 159 other kegs,
+             $3,603 trackable: Jaime Colonna 1,227 CE, Michael Harboy 1,026,
+             John O'Donoghue 895, Alisa Acciardi 651, Andrew Lundy 627, Dylan
+             Rubino 360, Hakan Sadik 256, Alex Rodriguez 33.
+Hub cache tag bumped (20260930h).
+
+2026-09-30 SIXTH REFRESH -- Molson Coors retention (on + off, grouped workbooks _7) + MABI Fall actuals _12
+  python3 convert_mc_retention.py <On_Premise ... w Goals_7.xlsx> <Off_Premise ... w Goals_7.xlsx>
+  python3 convert_mabi_fall.py MABI_Fall_2026_Retention_12.csv data/mabi_retention_fall_goals_source.csv
+  python3 generate.py
+(openpyxl had to be pip-installed in this session's container first.)
+MABI: goals stay frozen -- mabi_retention_fall_goals.csv and
+mabi_retention_fall_brand_goals.csv came out of the converter unchanged, every
+brand subtotal / rep total reconciled. Actuals 697 -> 724 product rows, house
+4,566 -> 5,027 of 7,326 on the roster (62.3% -> 68.6%), still 0 of 24 reps at
+their 90% goal, day 30 of 91.
+MOLSON COORS: both workbooks converted (sheets matched by premise, same
+07/27-10/31 window); every rep, DM and report total reconciled, 0 (rep, brand)
+pairs added or dropped, and 0 of 121 goal values moved (37 off-prem and 8
+on-prem actuals did). OFF-PREM HOUSE NOW PAST ITS GOAL: 2,895 -> 2,988 of
+2,912 placements. On 761 -> 770 of 840 buyers. Brand goals retained 44 -> 46
+of 100. Hub cache tag bumped (20260930g).
+
+2026-09-30 FIFTH REFRESH -- Constellation Fall: Packages ON, Draft ON, Impact / Modelo Gaintain / Innovation OFF
+  python3 generate.py
+Five exports (Corona Gaintain not re-pulled; it is on this morning's sync).
+Off-prem goals stay FROZEN (data/constellation_fall_off_goals.csv, Dave
+Ehlers' overrides re-applied); 0 goal drift on on-prem packages and draft.
+Day 30 of 91.
+  Off-prem house   Modelo Gaintain 2,038 -> 2,122 of 2,395, Impact 2,815 ->
+                   2,955 of 3,452, Innovation 582 -> 650 of 1,400, Corona
+                   Gaintain 1,263 of 1,610 (unchanged). Still 0 of 22 reps
+                   holding every off-prem category.
+  On-prem          Packages 1,257 -> 1,340 of 2,107 buyers (5 of 20 reps
+                   holding every family); Draft 165 -> 172 of 381 (0 of 12
+                   reps), 23 empty-keg pickups excluded.
+Rows: packages 11,036 -> 11,420 (+392 / -8), draft 1,918 -> 1,960 (+42),
+Impact 3,912 -> 3,944, Modelo Gaintain 2,529 -> 2,536, Innovation 1,524 ->
+1,548 (off-prem exports restate in place). Hub cache tag bumped (20260930f).
+
+2026-09-30 FOURTH REFRESH -- Evil Genius, Montauk, 2XO, Other Half (draft on-prem + off-prem)
+  python3 generate.py
+Diffed row by row first. Evil Genius 365 -> 369 rows (+4, none removed): 15
+placements still, CE 96 -> 105 vs 98 last September, 10 reps ahead, bonus CE
+29 -> 35. Montauk 1,438 -> 1,462 (+25 / -1): 43 -> 44 new placements (draft 3
+-> 4). 2XO 86 -> 92 rows (+9 / -3; includes Phil Ernst's three 10/1 rows at
+USA Wine Traders Paramus, the window runs through 10/31): off-premise pairs
+3 -> 4, on-premise 2+-unit PODs 0 -> 1, units 8 -> 11. Other Half off-prem
+926 -> 1,096 rows (+177 / -7): accounts opened 189 -> 208, 86 at the Southern
+District flat rate (unconfirmed reading, unchanged). Other Half draft on-prem
+68 -> 82 rows (+14): 58 accounts active in September (38 at the 1/3 bbl
+floor), still NOT paid -- needs October for the two-month hold. Hub cache tag
+bumped (20260930e) for program_data.js.
+
+2026-09-30 THIRD REFRESH -- Garage Beer President, Touchdowns & Tea (off + on), Le Grand Noir, Sam Adams Fast Start
+  python3 generate.py
+All five diffed row by row first; nothing was removed except where a restated
+total moved. Garage Beer President restated in place: house 8,629.15 ->
+8,840.89 CE of 9,305, every rep up but Dylan Rubino (still -43 vs last year)
+and John Neukum. Touchdowns & Tea OFF 4,589 -> 4,698 rows (+109, none removed),
+ON 2,460 -> 2,544 (+84); off-prem 12pk placements 123 -> 140, on-prem cases
+1,639 -> 1,847. Le Grand Noir 32 -> 34 rows (+2: Mike Ast / Park West Tavern
+9/30, Shane Barreca / Wine & Whiskey 9/24), house 32 -> 34 of 70 cases. Sam
+Adams Fast Start restated in place (157 rows; house 11,024 -> 12,499 cases vs
+14,956 last year): 4 -> 6 reps positive (commission doubled). Hub cache tag
+bumped (20260930d) for program_data.js.
+
+2026-09-30 SECOND REFRESH -- 1911, Woodchuck, Tona, Lytt (Keystone re-sent, unchanged)
+  python3 generate.py
+Keystone _33 (274 rows) is the same multiset already on keystone-ice/actuals.csv
+and MPOs/off-prem/keystone_ice_24oz.csv -- left alone. The other four were
+diffed row by row first: 1911 1,855 -> 1,949 rows (+98 / -4; the four dropped
+rows are 9/25 lines: Allison Scott / Kitchen & Beer Bar x3, John O'Donoghue /
+Main St Wines x1), Woodchuck 581 -> 618 (+37), Tona 344 -> 356 (+12), Lytt
+762 -> 791 (+29). Headlines: 1911 326 -> 360 new placements across the roster,
+Woodchuck 57 -> 66, Tona 14 -> 15 new 24 oz placements, Lytt top penetration
+56.2% with 12 reps in a tier. Exports carry data through 9/30, the last day
+of the window. Hub cache tag bumped (20260930c) for program_data.js.
+
+2026-10-01 REFRESH -- Corona Gaintain sync only (riding the off-prem refresh)
+The 10/1 off-prem batch's Corona Gaintain export (123 rows, restated in
+place, every rep up or flat) went onto
+data/constellation_fall_corona_gaintain_off.csv per the sync rule. The
+Keystone export was identical to the 9/30 file, so keystone-ice is
+unchanged. Nothing else re-pulled. Hub cache tag bumped (20261001a).
+
+2026-09-30 REFRESH -- Corona Gaintain + Keystone sync only (riding the off-prem refresh)
+The 9/30 off-prem batch's Corona Gaintain export (123 rows, restated in
+place, only Jayson Romine up) and 274-row Keystone export went here per the
+sync rules -- data/constellation_fall_corona_gaintain_off.csv had stayed on
+the 9/28 file and keystone-ice/actuals.csv on the 9/28 254-row pull, so
+both boards caught up to the 9/29-9/30 numbers in this run. Keystone 202 ->
+216 accounts, 8 -> 10 of 17 reps qualified. Nothing else re-pulled. Hub
+cache tag bumped (20260930a).
+
 2026-09-16 REFRESH -- Corona Gaintain + Keystone sync only (riding the off-prem refresh)
 The 9/16 off-prem batch carried a new "Constellation Corona Gaintain FALL 2026
 OFF w/ Goals" export (122 rows, restated in place, values only up) and a
@@ -5343,3 +5596,50 @@ Programs with zero "$" in Rep Mode, Chris Payton has neither, detail
 pages read "1065.8 package CE / 67 kegs" and "25 new 6pk PODs / 55 PODs
 active"; the tracker's September rep view shows both cards.
 Hub cache tag bumped for the new programs.js / program_data.js.
+
+NEW BELGIUM DISTRIBUTION -- RETAIN (2026-10-16)
+=============================================
+The existing October retention entry now reads the supplied New Belgium
+distribution workbook. The source report's Details tab says Sep 1-Dec 31,
+2026, overriding the deck's Oct-Nov phase label, confirmed by Gavin Oct 16.
+Only the 13 reps in the filtered report participate. Missing reps have no
+score, not zero. This feed is off-premise only.
+
+Authoritative values are the report TOTAL, rep totals, and package-group
+totals. All three reconcile: 1,092 placements against a goal of 1,826.
+The three package groups are Voodoo 12pk, Voodoo 19.2oz, and a COMBINED
+Hearted/Kirin six-pack goal. Do not invent separate Hearted and Kirin goals.
+SKU actuals reconcile to their groups; visible SKU GOALS do not add up
+exactly to the report's rounded group targets. The report also has NonZero=1.
+Keep those SKU goals as supplied, show them in drilldowns, and score against
+the reported group totals. Credit is capped at each group goal so an excess
+in one package cannot erase a different package's shortfall.
+
+The report has no customer IDs/purchase lines, payout tier amounts,
+prior-period retention results, or May-October growth comparison. Do not
+invent an account hold list, estimated payout, or core-bonus qualification.
+The UI describes those limitations. It shows report generation time, not a
+claim that sales are loaded through that minute.
+
+Source: New_Belgium_Distribution_Report_(September_-_October_2026)_v1.xlsx
+(received Oct 16; Report ID 26632319, generated 2026-10-16 09:42).
+Deck: 2026 October Rewards Deck.pdf, page 21.
+
+Refresh:
+  1. Replace data/new_belgium_distribution_retain.xlsx with the new export.
+  2. python convert_new_belgium_retain.py
+  3. For this program alone, set KDH_ONLY_PROGRAMS=new_belgium_distribution_retain
+     then run python generate.py. Unset the variable afterward for full builds.
+     PowerShell: $env:KDH_ONLY_PROGRAMS='new_belgium_distribution_retain'
+     PowerShell reset: Remove-Item Env:KDH_ONLY_PROGRAMS
+The generator also rebuilds the protected per-rep copies. The converter
+refuses changed reporting windows, missing/nonnumeric counts, duplicate
+groups/products, or totals that fail reconciliation.
+A Windows-compatible timestamp format lets the normal generator run here.
+
+Verification:
+  python tools/new-belgium-retain-test.py
+  node tools/new-belgium-retain-browser.cjs
+The browser check uses local Edge on Windows and validates source totals,
+per-rep data slices, unrelated published snapshots, manager ranking,
+SKU drilldowns, and light/dark layouts at 320/390/820/1440px.

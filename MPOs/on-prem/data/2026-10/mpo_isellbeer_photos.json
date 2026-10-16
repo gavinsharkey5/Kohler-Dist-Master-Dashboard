@@ -1,0 +1,112 @@
+[
+  {
+    "REP": "Mike Ast",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "PARK WEST TAVERN",
+    "CITY": "RIDGEWOOD",
+    "BRAND": "OVO VODKA",
+    "DETAIL": "Spirit List, Menu, Table Tent",
+    "QUANTITY": null,
+    "DATE": "10/13/2026 02:43 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/f8780b87-7a12-43db-9f2f-0c96f20e0a69/"
+  },
+  {
+    "REP": "Mike Ast",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "PARK WEST TAVERN",
+    "CITY": "RIDGEWOOD",
+    "BRAND": "BARDSTOWN BOURBON CO. ORIGIN BOURBON",
+    "DETAIL": "Spirit List, Menu, Table Tent",
+    "QUANTITY": null,
+    "DATE": "10/13/2026 02:43 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/f8780b87-7a12-43db-9f2f-0c96f20e0a69/"
+  },
+  {
+    "REP": "Brian Sengebush",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "STONE WATER",
+    "CITY": "LAKE HOPATCONG",
+    "BRAND": "BARDSTOWN BOURBON CO. ORIGIN WHEATED BOURBON",
+    "DETAIL": "Menu",
+    "QUANTITY": null,
+    "DATE": "10/09/2026 01:17 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/5afd5dfa-ac55-456c-8d39-36363d0d7689/"
+  },
+  {
+    "REP": "Brian Sengebush",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "STONE WATER",
+    "CITY": "LAKE HOPATCONG",
+    "BRAND": "BARDSTOWN BOURBON CO. ORIGIN BOURBON",
+    "DETAIL": "Menu",
+    "QUANTITY": null,
+    "DATE": "10/09/2026 01:15 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/a05b9cb2-cbe8-4e8c-a600-b451016a7521/"
+  },
+  {
+    "REP": "Brian Sengebush",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "STONE WATER",
+    "CITY": "LAKE HOPATCONG",
+    "BRAND": "GREEN RIVER KENTUCKY STRAIGHT WHEATED BOURBON WHISKEY",
+    "DETAIL": "Menu",
+    "QUANTITY": null,
+    "DATE": "10/09/2026 01:11 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/93de16ed-9366-4aef-ad7f-0a677870607a/"
+  },
+  {
+    "REP": "Brian Sengebush",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "STONE WATER",
+    "CITY": "LAKE HOPATCONG",
+    "BRAND": "GREEN RIVER KENTUCKY STRAIGHT WHEATED BOURBON WHISKEY",
+    "DETAIL": "Menu",
+    "QUANTITY": null,
+    "DATE": "10/09/2026 01:07 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/e3f7e082-b274-4b27-b540-989c96320e59/"
+  },
+  {
+    "REP": "Paul Mclaughlin",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "LOU'S",
+    "CITY": "HILLSDALE",
+    "BRAND": "GREEN RIVER HONEY FINISHED BOURBON",
+    "DETAIL": "Table Tent",
+    "QUANTITY": null,
+    "DATE": "10/07/2026 02:17 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/1248c27f-0fc9-4c63-88cb-a29b6ebc7a28/"
+  },
+  {
+    "REP": "Paul Mclaughlin",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "QB'S BAR AND GRILL",
+    "CITY": "DUMONT",
+    "BRAND": "BARDSTOWN BOURBON CO. ORIGIN BOURBON",
+    "DETAIL": "Menu, Table Tent",
+    "QUANTITY": null,
+    "DATE": "10/07/2026 01:39 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/35f68cfb-3735-45b6-b80b-37dfd607b604/"
+  },
+  {
+    "REP": "Brian Sengebush",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "HARRIGAN'S REST. (P)",
+    "CITY": "MONTVILLE",
+    "BRAND": "GREEN RIVER HONEY FINISHED BOURBON",
+    "DETAIL": "POS",
+    "QUANTITY": null,
+    "DATE": "10/07/2026 12:51 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/d2153432-bcea-46c7-abfa-99c3d8fbbcd9/"
+  },
+  {
+    "REP": "Brian Sengebush",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "HARRIGAN'S REST. (P)",
+    "CITY": "MONTVILLE",
+    "BRAND": "GREEN RIVER HONEY FINISHED BOURBON",
+    "DETAIL": "Table Tent",
+    "QUANTITY": null,
+    "DATE": "10/07/2026 12:47 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/1b7445a4-b943-46f5-b063-d65caf0a9b9b/"
+  }
+]

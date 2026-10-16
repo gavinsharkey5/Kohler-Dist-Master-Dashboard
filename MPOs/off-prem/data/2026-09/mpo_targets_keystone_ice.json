@@ -19,12 +19,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 3001,
-    "CUSTOMER_NAME": "Best Cellars (Wanaque)",
-    "AREA": "Passaic-FF"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "CUSTOMER_NUM": 4002,
     "CUSTOMER_NAME": "Bloomingdale Discount Liq",
     "AREA": "Passaic"
@@ -34,12 +28,6 @@
     "CUSTOMER_NUM": 10003,
     "CUSTOMER_NAME": "Buy Rite W &L Pompton(P)",
     "AREA": "Morris 3"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 8002,
-    "CUSTOMER_NAME": "Country Convenience Store",
-    "AREA": "Passaic-FF"
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -79,21 +67,9 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 231805,
-    "CUSTOMER_NAME": "Meloi Liquors",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "CUSTOMER_NUM": 2003,
     "CUSTOMER_NAME": "Ringwood W&L",
     "AREA": "Passaic-FF"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 5001,
-    "CUSTOMER_NAME": "River Place Food Store",
-    "AREA": "Morris 3"
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -427,12 +403,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 58004,
-    "CUSTOMER_NAME": "Country Wine & Liquors",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52008,
     "CUSTOMER_NAME": "Englewood Liq (A)",
     "AREA": "Bergen"
@@ -463,12 +433,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 57003,
-    "CUSTOMER_NAME": "Joes Beer Wine & Spirits",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 57006,
     "CUSTOMER_NAME": "New Milford Liquors",
     "AREA": "Bergen"
@@ -487,12 +451,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 58002,
-    "CUSTOMER_NAME": "River Edge Wine & Liquor",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52029,
     "CUSTOMER_NAME": "Santa Barbara",
     "AREA": "Bergen"
@@ -501,12 +459,6 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52015,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Englewd",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 56013,
-    "CUSTOMER_NAME": "Time Lounge And Liq (A)",
     "AREA": "Bergen"
   },
   {
@@ -571,12 +523,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 17002,
-    "CUSTOMER_NAME": "Hillcrest Liqrs (A)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 20066,
     "CUSTOMER_NAME": "J & B Bar & Liq (Z)",
     "AREA": "Passaic"
@@ -615,12 +561,6 @@
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 20126,
     "CUSTOMER_NAME": "Scheps Discount Bar/Liq",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 13001,
-    "CUSTOMER_NAME": "Shop Rite Liq (A)Littlefl",
     "AREA": "Passaic"
   },
   {
@@ -829,12 +769,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "CUSTOMER_NUM": 230911,
-    "CUSTOMER_NAME": "The Right Bottle",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
     "CUSTOMER_NUM": 230121,
     "CUSTOMER_NAME": "White Deer Inn",
     "AREA": "Sussex"
@@ -898,12 +832,6 @@
     "CUSTOMER_NUM": 25032,
     "CUSTOMER_NAME": "Liquor Mart 46",
     "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 29003,
-    "CUSTOMER_NAME": "Liquor Shed",
-    "AREA": "Bergen"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -1131,12 +1059,6 @@
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 191608,
     "CUSTOMER_NAME": "Shop-Rite(A) Netcong",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 190304,
-    "CUSTOMER_NAME": "Shoppers Disc Liquor",
     "AREA": "Morris 1"
   },
   {
@@ -1677,12 +1599,6 @@
     "SALES_REP_ASSIGNED": "Shane Barreca",
     "CUSTOMER_NUM": 70001,
     "CUSTOMER_NAME": "Montvale Wine/Liq & Beer",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 62006,
-    "CUSTOMER_NAME": "Murphy's Fine Wines & Liquors (UNI 4H Inc.)",
     "AREA": "Bergen"
   },
   {

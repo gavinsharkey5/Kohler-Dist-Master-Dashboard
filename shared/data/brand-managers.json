@@ -1,0 +1,818 @@
+{
+ "source": "the Encompass Brand Families export (shared/data/brand_families.csv)",
+ "generated": "2026-10-14",
+ "managers": {
+  "Chris McCrohan": {
+   "suppliers": [
+    "Red Bull"
+   ],
+   "families": {
+    "Red Bull": [
+     "Red Bull"
+    ]
+   }
+  },
+  "Chris Politano": {
+   "suppliers": [
+    "2 Towns Ciderhouse",
+    "Bell's",
+    "Boston Beer Company",
+    "Brewt's LLC",
+    "Buzbee's Beverages USA LLC",
+    "Cavalier Ventures, LLC",
+    "Crook & Marker",
+    "Forged Irish Stout",
+    "Hornell Brewing Company",
+    "Kimo Spirits",
+    "Laird & Company",
+    "Montauk Brewing Co",
+    "New Belgium Brewing Company",
+    "Park Street Imports",
+    "Passion Tree Co",
+    "SN Food & Beverage LLC",
+    "Saratoga",
+    "Talkhouse Encore",
+    "Viva Beverages Inc"
+   ],
+   "families": {
+    "2 Towns Ciderhouse": [
+     "Craftwell"
+    ],
+    "Bell's": [
+     "Bell's",
+     "Bell's Hearted Family",
+     "Bell's Seasonal"
+    ],
+    "Boston Beer Company": [
+     "Angry Orchard",
+     "Bevy Long Drink",
+     "Coney Island",
+     "Dogfish Head Beer",
+     "Dogfish Head Spirits",
+     "Hard Mountain Dew",
+     "Jim Beam Kentucky",
+     "Lytt",
+     "Marathon",
+     "Samuel Adams",
+     "Sauza",
+     "Sinless Vodka Cocktail",
+     "Sun Cruiser",
+     "Traveler",
+     "Truly",
+     "Twisted Tea",
+     "Wild Leaf"
+    ],
+    "Brewt's LLC": [
+     "Brewt's"
+    ],
+    "Buzbee's Beverages USA LLC": [
+     "Buzbee's"
+    ],
+    "Cavalier Ventures, LLC": [
+     "Coastal Cocktails"
+    ],
+    "Crook & Marker": [
+     "Crooked Tea"
+    ],
+    "Forged Irish Stout": [
+     "Forged Irish Stout"
+    ],
+    "Hornell Brewing Company": [
+     "Arizona Hard"
+    ],
+    "Kimo Spirits": [
+     "Trusted Friend Cocktails"
+    ],
+    "Laird & Company": [
+     "Five O'Clock"
+    ],
+    "Montauk Brewing Co": [
+     "Montauk",
+     "Popsicle Hard"
+    ],
+    "New Belgium Brewing Company": [
+     "Fat Tire Family",
+     "Kirin Ichiban",
+     "Kirin Light",
+     "Lightstrike",
+     "New Belgium Brewing Company",
+     "Voodoo Family",
+     "Voodoo Hardcharged"
+    ],
+    "Park Street Imports": [
+     "Plaid Duck"
+    ],
+    "Passion Tree Co": [
+     "Pop Sips"
+    ],
+    "SN Food & Beverage LLC": [
+     "Carbliss"
+    ],
+    "Saratoga": [
+     "Saratoga"
+    ],
+    "Talkhouse Encore": [
+     "Talkhouse Encore"
+    ],
+    "Viva Beverages Inc": [
+     "Aviv Zero Proof Cocktails",
+     "Viva Tequila Seltzer"
+    ]
+   }
+  },
+  "Dan Downing": {
+   "suppliers": [
+    "Athletic Brewing Company",
+    "Efes",
+    "FIFCO",
+    "Global Village Imp.",
+    "MolsonCoors Beverage Company",
+    "Narragansett",
+    "Total Beverage Solutions"
+   ],
+   "families": {
+    "Athletic Brewing Company": [
+     "Athletic"
+    ],
+    "Efes": [
+     "Efes"
+    ],
+    "FIFCO": [
+     "Genesee",
+     "Imperial"
+    ],
+    "Global Village Imp.": [
+     "Augustiner"
+    ],
+    "MolsonCoors Beverage Company": [
+     "Aguila",
+     "Arnold Palmer",
+     "Blue Moon",
+     "Cape Line",
+     "Coors",
+     "Coors 0.0",
+     "Coors Edge",
+     "Coors Extra Gold",
+     "Coors Light",
+     "Coors Seltzer",
+     "Crispin",
+     "Cristal",
+     "Cusquena",
+     "Fever Tree",
+     "Fosters",
+     "George Killian's",
+     "Grolsch",
+     "Hamm's",
+     "Hamm's Light",
+     "Happy Thursday Spiked Refresher",
+     "Henry's Hard Sodas",
+     "Henry's Hard Sparkling",
+     "Henry's Weinhards",
+     "Hop Valley",
+     "Icehouse",
+     "Icehouse Edge",
+     "Keystone",
+     "Lech",
+     "Leinenkugel",
+     "Lite",
+     "Mickey Malt",
+     "Miller Extra Light",
+     "Miller Fortune",
+     "Miller Genuine Draft",
+     "Miller High Life",
+     "Miller High Life Light",
+     "Milwaukee's Best",
+     "Milwaukee's Best Ice",
+     "Milwaukee's Best Light",
+     "Molson",
+     "Monaco",
+     "Movo",
+     "NaKed Life",
+     "Old English",
+     "Peroni",
+     "Pilsner Urquell",
+     "Proof Point",
+     "Redd's",
+     "Redd's Wicked",
+     "Simply Spiked",
+     "Smith & Forge",
+     "Sol",
+     "St Archer",
+     "Steel Reserve",
+     "Steel Reserve Alloy Series",
+     "Testing a new Brand Family 2",
+     "Third Shift",
+     "Topo Chico",
+     "Two Hats",
+     "Tyskie Gronie",
+     "Vizzy",
+     "Zima"
+    ],
+    "Narragansett": [
+     "Del's Shandy",
+     "Narragansett"
+    ],
+    "Total Beverage Solutions": [
+     "Banks",
+     "Carib",
+     "Mackeson",
+     "Magners",
+     "Rekorderlig",
+     "Sea Dog",
+     "Shipyard",
+     "Weihenstephaner"
+    ]
+   }
+  },
+  "Denise Montes": {
+   "suppliers": [
+    "Food & Bev Enterprise LLC",
+    "Vinaio Imports LTD"
+   ],
+   "families": {
+    "Food & Bev Enterprise LLC": [
+     "Aguila Import",
+     "Costenita",
+     "Food & Bev",
+     "Poker Import"
+    ],
+    "Vinaio Imports LTD": [
+     "Carinoso",
+     "Cerveza Republica LA Tuya",
+     "Cerveza Republica La Tuya 5.0 La Dura"
+    ]
+   }
+  },
+  "Jason Koo": {
+   "suppliers": [
+    "1925 Spirits LLC",
+    "Alte Beverage",
+    "Bardstown Bourbon Co",
+    "Bella Ray Beverage",
+    "Blaze Life LLC",
+    "Caravella Inc",
+    "Chateau Diana Winery",
+    "Cooper Spirits",
+    "Crescent Canna",
+    "Cruz Beverage",
+    "Dad Grass",
+    "Delta Beverage LLC",
+    "Dreamz Invenstments LLC",
+    "Eleven20",
+    "Emergent Beverage Partners",
+    "Jerzey Jungle LLC",
+    "Licores Artesanales",
+    "Little Water Distillery",
+    "Lo Secco LLC",
+    "Lodo Brands",
+    "Modern Infusions",
+    "Molly's",
+    "OVO Vodka LLC",
+    "Oceano",
+    "Paradisse Spirits LLC",
+    "Pio Imports",
+    "Power Distribution LLC",
+    "Prestige",
+    "Prestige Beverage Group",
+    "Pride & Clarke",
+    "Primos Imports LLC",
+    "Radix Labs",
+    "Riviera Imports",
+    "SPYRT Worldwide",
+    "Savorian INC",
+    "Surface Brands",
+    "The Old G LLC",
+    "Tilray Alternative Beverage",
+    "Travelers Club",
+    "Waterloo Gin"
+   ],
+   "families": {
+    "1925 Spirits LLC": [
+     "Leyenda 1925"
+    ],
+    "Alte Beverage": [
+     "Alte Beverage"
+    ],
+    "Bardstown Bourbon Co": [
+     "Bardstown Bourbon",
+     "Bardstown Green River"
+    ],
+    "Bella Ray Beverage": [
+     "Bella Ray"
+    ],
+    "Blaze Life LLC": [
+     "Bodega Chiller",
+     "Bodega Quarters",
+     "Mota'Lada"
+    ],
+    "Caravella Inc": [
+     "2 Canos",
+     "Caravella",
+     "Dancing Vines",
+     "Poca Loca"
+    ],
+    "Chateau Diana Winery": [
+     "Chateau Diana"
+    ],
+    "Cooper Spirits": [
+     "Lock Stock & Barrel",
+     "Slow & Low"
+    ],
+    "Crescent Canna": [
+     "Crescent 9"
+    ],
+    "Cruz Beverage": [
+     "YaVe Tequila"
+    ],
+    "Dad Grass": [
+     "Dad Grass"
+    ],
+    "Delta Beverage LLC": [
+     "Delta"
+    ],
+    "Dreamz Invenstments LLC": [
+     "Brio"
+    ],
+    "Eleven20": [
+     "Eleven20 Tequila"
+    ],
+    "Emergent Beverage Partners": [
+     "Beckett's D9",
+     "Boldt Infused D9",
+     "Crooked Beverage",
+     "Hectare's",
+     "Lark Infused D9"
+    ],
+    "Jerzey Jungle LLC": [
+     "Jerzey Jungle"
+    ],
+    "Licores Artesanales": [
+     "Desquite"
+    ],
+    "Little Water Distillery": [
+     "48 Blocks",
+     "Rusted Revolver",
+     "Whitecap"
+    ],
+    "Lo Secco LLC": [
+     "Lo Secco"
+    ],
+    "Lodo Brands": [
+     "LoDo"
+    ],
+    "Modern Infusions": [
+     "Fiveislands",
+     "Hi5"
+    ],
+    "Molly's": [
+     "Molly's"
+    ],
+    "OVO Vodka LLC": [
+     "OVO Vodka"
+    ],
+    "Oceano": [
+     "Oceano"
+    ],
+    "Paradisse Spirits LLC": [
+     "Paradisse"
+    ],
+    "Pio Imports": [
+     "Bloom Bubbles"
+    ],
+    "Power Distribution LLC": [
+     "Belize Breeze"
+    ],
+    "Prestige": [
+     "Fix Hellas",
+     "Greek Spirits",
+     "Greek Wines",
+     "Jacques Bardelot",
+     "Kinky Cocktail",
+     "Mythos",
+     "Wint Gluhwein"
+    ],
+    "Prestige Beverage Group": [
+     "2XO",
+     "Beviamo",
+     "Gionelli",
+     "Le Grand Noir",
+     "Overstone"
+    ],
+    "Pride & Clarke": [
+     "Pride & Clarke"
+    ],
+    "Primos Imports LLC": [
+     "Charro",
+     "Guaname Rompope",
+     "Monte Xanic",
+     "NAMI Sake",
+     "Rompe Corazon"
+    ],
+    "Radix Labs": [
+     "Find Wunder"
+    ],
+    "Riviera Imports": [
+     "Ecaana"
+    ],
+    "SPYRT Worldwide": [
+     "Hetman Vodka",
+     "Shabo Wine",
+     "Ukrainian Spirit"
+    ],
+    "Savorian INC": [
+     "Calise",
+     "Castellani Etichetta Gialla",
+     "Les Domaniales Rose D' Anjou Loire",
+     "Stoney River"
+    ],
+    "Surface Brands": [
+     "La Bodega",
+     "Poggio Torselli"
+    ],
+    "The Old G LLC": [
+     "The Old G"
+    ],
+    "Tilray Alternative Beverage": [
+     "Fizzy Jane",
+     "Happy Flower",
+     "Herb & Bloom"
+    ],
+    "Travelers Club": [
+     "Travelers Club"
+    ],
+    "Waterloo Gin": [
+     "Waterloo Gin"
+    ]
+   }
+  },
+  "Perry Calderone": {
+   "suppliers": [
+    "DG Yuengling Inc",
+    "Gambrinus Imports",
+    "Global Beer",
+    "Heineken USA",
+    "Lagunitas Brewing Co",
+    "Pampa Beverages",
+    "Paulaner"
+   ],
+   "families": {
+    "DG Yuengling Inc": [
+     "Dg Yuengling Inc",
+     "Yuengling Black & Tan",
+     "Yuengling Bongo Fizz",
+     "Yuengling Flight",
+     "Yuengling Golden Pilsner",
+     "Yuengling Hershey's Chocolate Porter",
+     "Yuengling Lager",
+     "Yuengling Light Lager",
+     "Yuengling Oktoberfest",
+     "Yuengling Premium",
+     "Yuengling Premium Light",
+     "Yuengling Raging Eagle"
+    ],
+    "Gambrinus Imports": [
+     "Shiner"
+    ],
+    "Global Beer": [
+     "Baptist Wit",
+     "Bavik",
+     "Czechvar",
+     "Daura",
+     "De Garre",
+     "Estrella",
+     "Gulden Draak",
+     "Monk''s Cafe",
+     "Petrus",
+     "Piraat",
+     "Stiegl",
+     "Sullivan's",
+     "Yard House"
+    ],
+    "Heineken USA": [
+     "Affligem",
+     "Amstel",
+     "Bohemia",
+     "Bohemia Noche",
+     "Buckler",
+     "Carta Blanca",
+     "Cervezas De Mexico",
+     "Dos Equis",
+     "Heineken 0.0",
+     "Heineken 0.0 Ultimate",
+     "Heineken Dark",
+     "Heineken Light",
+     "Heineken Silver",
+     "Heineken USA",
+     "Murphy's",
+     "Newcastle",
+     "Prestige Lager",
+     "Red Stripe",
+     "Strongbow",
+     "Tecate",
+     "Tecate Light",
+     "Tiger"
+    ],
+    "Lagunitas Brewing Co": [
+     "Lagunitas",
+     "Lagunitas NA"
+    ],
+    "Pampa Beverages": [
+     "Quilmes"
+    ],
+    "Paulaner": [
+     "Fruli",
+     "Hacker-Pschorr",
+     "Ohara's",
+     "Paulaner",
+     "Tsingtao"
+    ]
+   }
+  },
+  "Sean Donahue": {
+   "suppliers": [
+    "Alias Brew Works",
+    "BJ'S Private Label Brew",
+    "Barn Brew Co",
+    "Bold Rock Hard Cider",
+    "Cape May",
+    "Cricket Hill",
+    "Duclaw Brewing",
+    "Evil Genius",
+    "Flying Fish",
+    "Garage Beer",
+    "Industrial Arts Brewing Co",
+    "Ithaca",
+    "Newburgh Brewing",
+    "Other Half Brewing Co",
+    "River Horse Brewing Co",
+    "Sapporo",
+    "Sixpoint Brewing",
+    "Source Brewing",
+    "Southern Tier Brewing Company",
+    "Southern Tier Distilling Company",
+    "Stone Brewing",
+    "Unibroue",
+    "Victory Brewing Company"
+   ],
+   "families": {
+    "Alias Brew Works": [
+     "Alias Brew Works"
+    ],
+    "BJ'S Private Label Brew": [
+     "BJ'S Private Label Brewa"
+    ],
+    "Barn Brew Co": [
+     "Barn Brew"
+    ],
+    "Bold Rock Hard Cider": [
+     "Bold Rock"
+    ],
+    "Cape May": [
+     "Cape May"
+    ],
+    "Cricket Hill": [
+     "Cricket Hill"
+    ],
+    "Duclaw Brewing": [
+     "Duclaw"
+    ],
+    "Evil Genius": [
+     "Evil Genius"
+    ],
+    "Flying Fish": [
+     "Big Mans Brew",
+     "Flying Fish",
+     "Flying Fish Box of Bones Variety"
+    ],
+    "Garage Beer": [
+     "Garage Beer"
+    ],
+    "Industrial Arts Brewing Co": [
+     "Industrial Arts"
+    ],
+    "Ithaca": [
+     "Ithaca"
+    ],
+    "Newburgh Brewing": [
+     "Newburgh"
+    ],
+    "Other Half Brewing Co": [
+     "Other Half"
+    ],
+    "River Horse Brewing Co": [
+     "River Horse Brewing Co",
+     "The Garden State Experience"
+    ],
+    "Sapporo": [
+     "Sapporo"
+    ],
+    "Sixpoint Brewing": [
+     "Sixpoint",
+     "Sixpoint Summer Sesh"
+    ],
+    "Source Brewing": [
+     "Jade",
+     "Source Brewing",
+     "Source It's A Me",
+     "Source Jersey Lager",
+     "Source Ultra Citra",
+     "Source of Hoppiness",
+     "Superbloom"
+    ],
+    "Southern Tier Brewing Company": [
+     "Southern Tier"
+    ],
+    "Southern Tier Distilling Company": [
+     "Southern Tier Distilling",
+     "Victory House Pour Vodka"
+    ],
+    "Stone Brewing": [
+     "Stone Brewing",
+     "Stone Premium & Smooth Beer Co"
+    ],
+    "Unibroue": [
+     "Unibroue"
+    ],
+    "Victory Brewing Company": [
+     "Monkey Family",
+     "Victory"
+    ]
+   }
+  },
+  "Steve Halloran": {
+   "suppliers": [
+    "Artisanal Imports",
+    "Beak & Skiff",
+    "Cerveceria La Tropical",
+    "Constellation Brands",
+    "HOP WTR",
+    "Mark Anthony",
+    "Noca Beverages",
+    "Phusion Projects",
+    "Point Brewing",
+    "US Beverage",
+    "Vermont Hard Cider"
+   ],
+   "families": {
+    "Artisanal Imports": [
+     "Palma",
+     "Tona"
+    ],
+    "Beak & Skiff": [
+     "1911 Hard Cider",
+     "1911 Spirits"
+    ],
+    "Cerveceria La Tropical": [
+     "La Tropical"
+    ],
+    "Constellation Brands": [
+     "Corona Extra",
+     "Corona Familiar",
+     "Corona Light",
+     "Corona NA",
+     "Corona Premier",
+     "Corona Refresca",
+     "Corona Seltzer",
+     "Corona Sunbrew",
+     "Modelo Aquas Frescas",
+     "Modelo Chelada",
+     "Modelo Especial",
+     "Modelo Negra",
+     "Modelo Oro",
+     "Pacifico",
+     "The Drop",
+     "Victoria"
+    ],
+    "HOP WTR": [
+     "HOP WTR"
+    ],
+    "Mark Anthony": [
+     "Cayman Jack",
+     "Dillon's Cocktails",
+     "Long Drink",
+     "Mike's Hard Dirty Lemonade",
+     "Mike's Hard Lemonade",
+     "Mike's Harder",
+     "Mxd Cocktails",
+     "Ole",
+     "White Claw"
+    ],
+    "Noca Beverages": [
+     "Noca"
+    ],
+    "Phusion Projects": [
+     "Bartender Series",
+     "Basic",
+     "Earthquake",
+     "Four Loko",
+     "Hard Fresco",
+     "John Daly",
+     "Mamita's",
+     "Moskato",
+     "Pirate Water",
+     "Signture Cockt"
+    ],
+    "Point Brewing": [
+     "Point",
+     "Whole Hog"
+    ],
+    "US Beverage": [
+     "1911",
+     "Beak & Skiff",
+     "Birra Moretti",
+     "Dragon Stout",
+     "Inedit",
+     "Innis & Gunn",
+     "Moosehead",
+     "Row 94",
+     "Sagres Cerveja",
+     "Sammy's Beach Bum",
+     "Tagus"
+    ],
+    "Vermont Hard Cider": [
+     "Day Chaser",
+     "Viva Spritz",
+     "Woodchuck",
+     "Wyder's"
+    ]
+   }
+  },
+  "Tom Gibbons": {
+   "suppliers": [
+    "American Fruits",
+    "Citizen Cider",
+    "FX Matt",
+    "Famosa",
+    "Great Lakes",
+    "Harpoon Brewery",
+    "Hofbrauhaus USA",
+    "Pabst Brewing Company",
+    "Radeberger USA",
+    "Sierra Nevada Brewing Company",
+    "Warwick Valley"
+   ],
+   "families": {
+    "American Fruits": [
+     "American Fruit"
+    ],
+    "Citizen Cider": [
+     "Citizen Cider"
+    ],
+    "FX Matt": [
+     "Flying Dog Brewing Co",
+     "Friday Beers",
+     "Kingfisher Premium",
+     "Mckenzie's",
+     "Right Coast",
+     "Saranac"
+    ],
+    "Famosa": [
+     "Famosa"
+    ],
+    "Great Lakes": [
+     "Float Shoppe",
+     "Great Lakes"
+    ],
+    "Harpoon Brewery": [
+     "Long Trail",
+     "Otter Creek",
+     "Shed"
+    ],
+    "Hofbrauhaus USA": [
+     "Hofbrau Usa"
+    ],
+    "Pabst Brewing Company": [
+     "Colt 45",
+     "Country Club",
+     "Jack Daniels Country Cocktails",
+     "Lone Star",
+     "New Holland Brewing Co",
+     "Old Milwaukee",
+     "Pabst Blue Ribbon",
+     "Pabst Light",
+     "Schaefer",
+     "Schlitz",
+     "Schlitz Malt",
+     "Small Town",
+     "St Ides"
+    ],
+    "Radeberger USA": [
+     "Clausthaler",
+     "Dab",
+     "Radeberger",
+     "Schofferhofer"
+    ],
+    "Sierra Nevada Brewing Company": [
+     "Sierra Nevada",
+     "Strainge Beast"
+    ],
+    "Warwick Valley": [
+     "Doc's",
+     "Gin Pig",
+     "Vodka Hog",
+     "Warwick Gin"
+    ]
+   }
+  }
+ }
+}
