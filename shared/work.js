@@ -38,6 +38,8 @@ function renderDay(){
  if(!card)return;
  const today=day(),mine=tasks.filter(t=>t.associate_email===me&&((t.status!=='done'&&t.planned_on<=today)||(t.status==='done'&&t.completed_at&&day(new Date(t.completed_at))===today))).sort((a,b)=>a.sort_order-b.sort_order||a.created_at.localeCompare(b.created_at));
  const delegated=tasks.filter(t=>t.rep_email===me&&t.associate_email!==me&&t.status!=='done'),list=view==='delegated'?delegated:mine,manager=U.role==='manager',done=mine.filter(t=>t.status==='done').length;
+ card.kdhTaskSummary={open:mine.filter(t=>t.status!=='done').length,delegated:delegated.length,blocked:mine.filter(t=>t.status==='blocked').length};
+ document.dispatchEvent(new CustomEvent('kdh:work-summary',{detail:card.kdhTaskSummary}));
  if(selectedTask&&!tasks.some(t=>t.id===selectedTask))selectedTask=null;
  let groups='';
  if(ordering){groups=list.map(t=>taskRow(t,view==='personal')).join('');}

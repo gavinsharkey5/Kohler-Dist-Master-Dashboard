@@ -354,6 +354,7 @@
       var on = (a.classList.contains('sub') || !main[k]) ? w.tool === k : (k === w.nav && (!w.tool || k !== 'programs' || w.tool === 'inc'));
       a.classList.toggle('on', on);
       if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+      if(on&&a.closest('details.kdh-side-group'))a.closest('details.kdh-side-group').open=true;
     });
   }
   window.kdhSyncNav = syncSide;
@@ -364,18 +365,29 @@
     var home = homeOf(u);
     var groups = {}; toolItems(u).forEach(function (t) { (groups[t.group] = groups[t.group] || []).push(t); });
     var html = '<a class="kdh-side-logo" href="' + home + '" aria-label="Kohler Distribution Hub home"><img src="' + ROOT + 'assets/kohler-logo-badge.png" alt="" width="40" height="48"><span class="kdh-lock"><b>Kohler</b><small>Distribution Hub</small></span></a><nav class="kdh-side-nav" aria-label="Main">';
-    navItems(u).forEach(function (it) {
+    var signatureManager=isMgr&&!isFin(u),primary=navItems(u);
+    html+='<div class="kdh-side-h">Workspace</div>';
+    primary.filter(function(it){return !signatureManager||['home','accounts','programs'].indexOf(it.key)!==-1;}).forEach(function (it) {
       html += link('kdh-side-i', it, it.key === w.nav && (!w.tool || it.key !== 'programs' || w.tool === 'inc'));
       if (it.key === 'programs') {
-        html += '<div class="kdh-side-sub">' + link('kdh-side-i sub', { key: 'inc', label: 'Incentives', href: progDefault(u) }, w.tool === 'inc', ' data-navto="programs"') +
-          (groups.Programs || []).map(function (t) { return link('kdh-side-i sub', t, w.tool === t.key); }).join('') + '</div>';
+        html += '<details class="kdh-side-group"'+(w.nav==='programs'?' open':'')+'><summary>Program tools</summary><div class="kdh-side-sub">' + link('kdh-side-i sub', { key: 'inc', label: 'Incentives', href: progDefault(u) }, w.tool === 'inc', ' data-navto="programs"') +
+          (groups.Programs || []).map(function (t) { return link('kdh-side-i sub', t, w.tool === t.key); }).join('') + '</div></details>';
       }
     });
+    if(signatureManager){
+      var budget=(groups.Manager||[]).filter(function(t){return t.key==='sb';})[0];
+      if(budget)html+=link('kdh-side-i',budget,w.tool==='sb');
+      html+='<div class="kdh-side-h">Operations</div>';
+      (groups.Field||[]).forEach(function(t){html+=link('kdh-side-i',t,w.tool===t.key);});
+      primary.filter(function(it){return ['team','inventory'].indexOf(it.key)!==-1;}).forEach(function(it){html+=link('kdh-side-i',it,it.key===w.nav);});
+    }
     ['Trackers', 'Field', 'Finance', 'Manager'].forEach(function (g) {
       if (!groups[g]) return;
-      var list = groups[g].filter(function (t) { return !t.menuOnly; });
+      if(signatureManager&&g==='Field')return;
+      var list = groups[g].filter(function (t) { return !t.menuOnly&&!(signatureManager&&t.key==='sb'); });
       if (!list.length) return;
-      html += '<div class="kdh-side-h">' + g + '</div>' + list.map(function (t) { return link('kdh-side-i', t, w.tool === t.key); }).join('');
+      var current=list.some(function(t){return w.tool===t.key;});
+      html += '<details class="kdh-side-group"'+(current?' open':'')+'><summary>'+(g==='Manager'?'Reports & tools':g)+'</summary><div class="kdh-side-sub">'+list.map(function (t) { return link('kdh-side-i sub', t, w.tool === t.key); }).join('')+'</div></details>';
     });
     html += '</nav>';
     if (who) html += '<div class="kdh-side-foot"><button type="button" class="kdh-side-user" id="kdhMenuBtn" aria-haspopup="true" aria-expanded="false" aria-label="Account menu, signed in as ' + esc(who) + '"><span class="kdh-av">' + esc(initials(who)) + '</span><span class="kdh-side-who"><b>' + esc(who) + '</b><small>' + (isFin(u) && !u.preview ? 'Finance' : isMgr || u.preview ? 'Manager' : isAssoc(u) ? 'Sales Associate' : isIT(u) ? 'IT' : 'Sales Rep') + '</small></span>' + CARET + '</button></div>';
@@ -916,7 +928,7 @@
   function addUpcLinks(u) {
     var it = { key: 'upc', group: 'Manager', label: 'UPC Registration Audit', href: IT_HOME }, on = where(u).tool === 'upc', tmp = document.createElement('div');
     var nav = document.querySelector('#kdhSide .kdh-side-nav');
-    if (nav && !nav.querySelector('a[data-nav="upc"]')) { tmp.innerHTML = link('kdh-side-i', it, on); nav.insertBefore(tmp.firstChild, nav.querySelector('a[data-nav="ws"]')); }
+    if (nav && !nav.querySelector('a[data-nav="upc"]')) { tmp.innerHTML = link('kdh-side-i sub', it, on); var before=nav.querySelector('a[data-nav="ws"]');if(before)before.parentNode.insertBefore(tmp.firstChild,before);else nav.appendChild(tmp.firstChild); }
     var tools = document.querySelector('#kdhMenu .kdh-menu-tools');
     if (tools && !tools.querySelector('a[href$="upc-audit/"]')) {
       tmp.innerHTML = '<a class="kdh-menu-i" href="' + esc(it.href) + '">' + NAV_ICON.upc + '<span>' + esc(it.label) + '</span></a>';
@@ -941,6 +953,7 @@
     var sc = document.createElement('script'); sc.src = (ROOT || '/') + 'shared/auth-config.js'; sc.onload = ask; document.head.appendChild(sc);
   }
   function boot() { chrome(); bar(); watchType(); keepAlive(); checkUpc();
+    if(document.querySelector('main.home')){var signature=document.createElement('script');signature.src=(ROOT||'/')+'shared/signature-home.js?v=20261016signature1';document.head.appendChild(signature);}
     if (user() && (user().preview || user().ws === 'finance')) document.querySelectorAll('[data-my-day]').forEach(function(el){el.hidden=true;});
     if (user() && !user().preview && user().ws !== 'finance') { var work = document.createElement('script'); work.src = (ROOT || '/') + 'shared/work.js?v=20261015ui'; document.head.appendChild(work); }
   }

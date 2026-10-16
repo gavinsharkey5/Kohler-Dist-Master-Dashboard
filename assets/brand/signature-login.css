@@ -1,0 +1,11 @@
+/* Signature sign-in styling. Public assets only; no authentication changes.
+   Mirrors shared/signature.css because shared application CSS requires sign-in. */
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:100 1000;font-display:swap;src:url('../fonts/dm-sans.ttf') format('truetype')}
+html:root{--canvas:#F3F5F8;--card:#FFFFFF;--ink:#15263C;--ink-2:#40516A;--ink-3:#59677B;--line:#DCE2E9;--edge:#8795A8;--field:#F7F9FC;--field-on:#FFFFFF;--blue:#245B9E;--blue-deep:#194A86;--btn-ink:#FFFFFF;--navy:#112B49;--head-c:#15263C;--gold:#BC8741;--focus:#245B9E;--head:'DM Sans',Inter,system-ui,sans-serif;--body:'DM Sans',Inter,system-ui,sans-serif}
+html:root[data-theme="dark"]{--canvas:#101A29;--card:#17263A;--ink:#F0F4FA;--ink-2:#CBD6E5;--ink-3:#AFBDD1;--line:#33465F;--edge:#6B819F;--field:#1B2D44;--field-on:#243A54;--blue:#9AC5FF;--blue-deep:#B8D7FF;--btn-ink:#0E253F;--head-c:#F0F4FA;--gold:#D8AE70;--focus:#B8D7FF}
+html:root .story,html:root .story-photo{background:#112B49}
+html:root .story h2 span{color:#D8AE70}
+html:root .story h2,html:root h1,html:root .wordmark{font-weight:600}
+html:root .field{border-width:1px;border-radius:6px}
+html:root .btn{border-radius:6px;font-weight:500}
+html:root .brand img{border-radius:6px}
