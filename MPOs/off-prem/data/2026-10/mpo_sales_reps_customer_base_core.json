@@ -4291,16 +4291,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 20124,
-    "CUSTOMER_NAME": "Lena y Carbon Broaster",
-    "SHIPPING_ADDRESS": "21 Mill St.",
-    "CITY": "Paterson",
-    "AREA": "Passaic",
-    "COUNTY": "Passaic",
-    "CASES": 67.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 20042,
     "CUSTOMER_NAME": "Midtown Liquors",
     "SHIPPING_ADDRESS": "274 Broadway",

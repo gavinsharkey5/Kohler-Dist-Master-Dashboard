@@ -77,24 +77,6 @@ const PROGRAM_BRANDS = {
   'off:ws_2xo':['2XO'], 'off:sapporo_light':['Sapporo'], 'off:famosa':['Famosa'],
 };
 
-// LYTT-ONLY ACCOUNT EXCLUSION (2026-10-16, per Gavin: "Lena y Carbon Broaster
-// (20124) remove this account from Pablo's customer base for lytt. It is on
-// premise and is counting as off"). The Sales Reps' Customer Base files all
-// file 20124 as Off Premise, so it sat in Pablo Lopez's off-premise book and
-// showed up as a Lytt target. It comes out of his book for the three Lytt
-// programs ONLY -- this file's classify() skips the row before it is counted
-// as universe, eligible, buying or can't-sell. Every other program keeps it,
-// and data/accounts.js (generate.py's output) is untouched, so a regenerate
-// cannot hand it back. Widen to other brands only on an explicit ask.
-// Same shape as incentive-tracking's LYTT_BASE_EXCLUDED (Dan Lagala, #10102).
-const LYTT_BASE_EXCLUDED = {
-  // rep: { customer num: why }
-  'Pablo Lopez': { '20124': 'Lena y Carbon Broaster (on premise, filed as off premise)' },
-};
-const PROGRAM_BASE_EXCLUDED = {
-  'inc:lytt': LYTT_BASE_EXCLUDED, 'off:bbc_lytt': LYTT_BASE_EXCLUDED, 'off:disruptors': LYTT_BASE_EXCLUDED,
-};
-
 // PRODUCT-LEVEL ELIGIBILITY (2026-10-04): when a program pays on only SOME of a
 // brand family's products, the rule lives here once and every page uses it --
 // the Account page's opportunity cards and Products list, and the assistant's
@@ -189,12 +171,10 @@ function classify(p, rep, buying){
   const chan = p.channel;                       // 'on' | 'off' | 'both'
   const inPrem = a => chan==='both' || (chan==='on' ? a.prem==='On' : a.prem==='Off');
   const B = familiesFor(p);
-  const baseOut = (PROGRAM_BASE_EXCLUDED[brandKey(p)] || {})[rep] || {};
-  const out = {eligible:[], buying:[], high:[], excluded:[], unknown:[], offPremise:0, universe:0, baseExcluded:[],
+  const out = {eligible:[], buying:[], high:[], excluded:[], unknown:[], offPremise:0, universe:0,
                any:B.any, families:B.fams.map(f=>f.name), notes:B.notes.slice(), territory:B.fams.map(f=>f.name+': '+f.territory)};
   const seen = new Set();
   book.forEach(a=>{
-    if(baseOut[String(a.n)]){ out.baseExcluded.push({n:a.n, name:a.name, why:baseOut[String(a.n)]}); return; }
     const row = Object.assign({}, a);
     const k = norm(a.name);
     // "Already buying" is matched against the rep's WHOLE book, whichever

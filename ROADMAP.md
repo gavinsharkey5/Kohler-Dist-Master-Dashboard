@@ -353,11 +353,11 @@ device, a decision).
 - **Account-aware assistant + mock pitch** -- built 2026-09-30 and hardened the same day (server-side account authorization, server-built record, tools on the full record, ledger + spend limits); waiting on the pilot above. Snowflake later adds freshness (daily grain, invoices, inventory); route-wide / comparable-account questions need a permission rule first.
 
 ## Done
-- [x] 2026-10-16 One on-premise account that was filed as off-premise is
-  out of one rep's Lytt lists in the hub (Lytt programs only; every other
-  program keeps it). Nothing to do on your side. If the account's premise is
-  fixed in Encompass, the exclusion (LYTT_BASE_EXCLUDED in hub/accounts.js)
-  can be deleted.
+- [x] 2026-10-16 One account Encompass now files as on-premise (it was still
+  coming through as off-premise) is out of one rep's off-premise lists and
+  goals: the account base file was corrected to match Encompass and the
+  hub, account pages and October off-premise MPO data were rebuilt. Nothing
+  to do on your side; the next Encompass export will carry the same value.
 - [x] **Finance workspace LIVE (2026-10-15).** Gavin ran the finance and budget-preview migrations and added the
   finance person's allow-list row. Her Home shows four cards (Incentives, Off / On-Premise MPOs, Supplier Budgets);
   every other page sends her home. First real sign-in showed an unstyled page (the middleware blocked the shared

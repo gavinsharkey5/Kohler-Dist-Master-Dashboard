@@ -1006,17 +1006,18 @@ manager's rep filter). Each account opens the Account page; its Back returns
 here with the same filters and scroll. Managers get the same views for their
 team on Program View (rep filter). Programs without a rule keep the old screen.
 
-Lytt-only account exclusion (2026-10-16, per Gavin: "Lena y Carbon Broaster
-  (20124) remove this account from Pablo's customer base for lytt. It is on
-  premise and is counting as off"): the Sales Reps' Customer Base files file
-  #20124 as Off Premise, so it sat in Pablo Lopez's off-premise book and
-  showed as a Lytt target. LYTT_BASE_EXCLUDED / PROGRAM_BASE_EXCLUDED at the
-  top of accounts.js now skip it in classify() for the three Lytt programs
-  only (inc:lytt, off:bbc_lytt, off:disruptors): Pablo's Lytt universe
-  drops by one (28 -> 27 on the 2026-10-08 account base), and nobody else's changes. Every other program
-  keeps the account, and data/accounts.js is untouched, so a generate.py
-  re-run cannot restore it. Same shape as incentive-tracking's
-  LYTT_BASE_EXCLUDED (Dan Lagala, #10102). The incentive tracker itself never
-  counted #20124 (it is not in customer_base_full.csv). Fixing the premise at
-  the source (Encompass) would make this entry unnecessary. Cache tag
-  accounts.js 20261016a.
+Account 20124 reclassified On Premise (2026-10-16, per Gavin: Lena y Carbon
+  Broaster is on premise in Encompass; it was still filed Off Premise in the
+  export and showed in Pablo Lopez's off-premise Lytt lists and counts, e.g.
+  October's BBC Lytt 50% goal read 14 accounts instead of 13). Fixed at the
+  SOURCE, not with a code exclusion: territory-accounts/customers_active.csv
+  now says On Premise for #20124 (what the next Encompass export will say),
+  and the builds that read it were re-run -- tools/customer_base.py
+  --write-incentive-base, hub/generate.py, accounts/generate.py,
+  MPOs/off-prem/generate_2026-10.py. Pablo's off-premise Core Market base
+  27 -> 26 (hub 28 -> 27 off-premise accounts; on-premise 56 -> 57). An
+  earlier Lytt-only exclusion in accounts.js (PR #72) was removed as
+  redundant. NOT re-run: the on-premise MPO and Carbliss generators, so
+  those boards pick #20124 up on their next normal refresh. Closed-month
+  tracker snapshots (data/frozen/) never counted it. Cache tags: accounts.js
+  and data/accounts.js 20261016b.
