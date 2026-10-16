@@ -10,6 +10,7 @@ Legend: `[ ]` open, `[~]` built, waiting on a step outside the repo,
 device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
+
 - [ ] **UPC Registration Audit for Vlad (2026-10-15).** Built: /upc-audit/ -- Vlad adds his FileMaker export
   and the ABC registration search (license -002; this year's file, plus next year's once renewals start), the
   page matches them on UPC in his browser and lists what still needs registering (Not Registered, UPC Not on
@@ -353,6 +354,17 @@ device, a decision).
 - **Account-aware assistant + mock pitch** -- built 2026-09-30 and hardened the same day (server-side account authorization, server-built record, tools on the full record, ledger + spend limits); waiting on the pilot above. Snowflake later adds freshness (daily grain, invoices, inventory); route-wide / comparable-account questions need a permission rule first.
 
 ## Done
+
+- [x] **Supplier invoice PDFs (2026-10-16).** View PDF / Open in Encompass /
+  Missing PDF beside each invoice, plus editor bulk upload with reviewed filename
+  matches, duplicate detection and per-file retry. Private storage, scoped access,
+  both migrations and the first example attachment are configured in the connected
+  project. Verified with 22 SQL and 22 browser checks; supplier-budget/README.txt.
+- [x] 2026-10-16 One on-premise account that was filed as off-premise is
+  out of one rep's Lytt lists in the hub (Lytt programs only; every other
+  program keeps it). Nothing to do on your side. If the account's premise is
+  fixed in Encompass, the exclusion (LYTT_BASE_EXCLUDED in hub/accounts.js)
+  can be deleted.
 - [x] **Finance workspace LIVE (2026-10-15).** Gavin ran the finance and budget-preview migrations and added the
   finance person's allow-list row. Her Home shows four cards (Incentives, Off / On-Premise MPOs, Supplier Budgets);
   every other page sends her home. First real sign-in showed an unstyled page (the middleware blocked the shared

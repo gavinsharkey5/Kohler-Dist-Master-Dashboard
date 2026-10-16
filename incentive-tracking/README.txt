@@ -5623,3 +5623,49 @@ the period ends; every other September program stays frozen (verified: nothing e
 in September moved). MABI and Yuengling moved only their day / pace fields -- no
 new data since 9/30. Also: the "Data Refreshed" stamp no longer uses %-d (crashed
 on Windows Python), and index.html is read / written as UTF-8.
+NEW BELGIUM DISTRIBUTION -- RETAIN (2026-10-16)
+=============================================
+The existing October retention entry now reads the supplied New Belgium
+distribution workbook. The source report's Details tab says Sep 1-Dec 31,
+2026, overriding the deck's Oct-Nov phase label, confirmed by Gavin Oct 16.
+Only the 13 reps in the filtered report participate. Missing reps have no
+score, not zero. This feed is off-premise only.
+
+Authoritative values are the report TOTAL, rep totals, and package-group
+totals. All three reconcile: 1,092 placements against a goal of 1,826.
+The three package groups are Voodoo 12pk, Voodoo 19.2oz, and a COMBINED
+Hearted/Kirin six-pack goal. Do not invent separate Hearted and Kirin goals.
+SKU actuals reconcile to their groups; visible SKU GOALS do not add up
+exactly to the report's rounded group targets. The report also has NonZero=1.
+Keep those SKU goals as supplied, show them in drilldowns, and score against
+the reported group totals. Credit is capped at each group goal so an excess
+in one package cannot erase a different package's shortfall.
+
+The report has no customer IDs/purchase lines, payout tier amounts,
+prior-period retention results, or May-October growth comparison. Do not
+invent an account hold list, estimated payout, or core-bonus qualification.
+The UI describes those limitations. It shows report generation time, not a
+claim that sales are loaded through that minute.
+
+Source: New_Belgium_Distribution_Report_(September_-_October_2026)_v1.xlsx
+(received Oct 16; Report ID 26632319, generated 2026-10-16 09:42).
+Deck: 2026 October Rewards Deck.pdf, page 21.
+
+Refresh:
+  1. Replace data/new_belgium_distribution_retain.xlsx with the new export.
+  2. python convert_new_belgium_retain.py
+  3. For this program alone, set KDH_ONLY_PROGRAMS=new_belgium_distribution_retain
+     then run python generate.py. Unset the variable afterward for full builds.
+     PowerShell: $env:KDH_ONLY_PROGRAMS='new_belgium_distribution_retain'
+     PowerShell reset: Remove-Item Env:KDH_ONLY_PROGRAMS
+The generator also rebuilds the protected per-rep copies. The converter
+refuses changed reporting windows, missing/nonnumeric counts, duplicate
+groups/products, or totals that fail reconciliation.
+A Windows-compatible timestamp format lets the normal generator run here.
+
+Verification:
+  python tools/new-belgium-retain-test.py
+  node tools/new-belgium-retain-browser.cjs
+The browser check uses local Edge on Windows and validates source totals,
+per-rep data slices, unrelated published snapshots, manager ranking,
+SKU drilldowns, and light/dark layouts at 320/390/820/1440px.

@@ -179507,6 +179507,16 @@ const PROGRAM_DATA_2026_10 = {
             "octLoaded": null
           },
           {
+            "account": "Red Lobster #255",
+            "address": "520 Us Hwy 46, Wayne Nj",
+            "city": "Wayne",
+            "prevCEs": 11.48,
+            "currentLYCEs": 4.59,
+            "customerNum": "12054",
+            "customer": "Red Lobster 225 Wayne",
+            "octLoaded": null
+          },
+          {
             "account": "Feathers",
             "address": "77 Kinderkamack Rd, River Edge Nj",
             "city": "River Edge",
@@ -179545,19 +179555,9 @@ const PROGRAM_DATA_2026_10 = {
             "customerNum": "12035",
             "customer": "Preakness Hills (A) cc",
             "octLoaded": null
-          },
-          {
-            "account": "Red Lobster #255",
-            "address": "520 Us Hwy 46, Wayne Nj",
-            "city": "Wayne",
-            "prevCEs": 11.48,
-            "currentLYCEs": 4.59,
-            "customerNum": "12054",
-            "customer": "Red Lobster 225 Wayne",
-            "octLoaded": "2026-10-13"
           }
         ],
-        "toClose": 6
+        "toClose": 7
       },
       "Andrew Lundy": {
         "route": null,
@@ -179594,6 +179594,16 @@ const PROGRAM_DATA_2026_10 = {
         "hasOfficial": true,
         "unconvertedAccounts": [
           {
+            "account": "Zs Casual Dining",
+            "address": "87 Nj 23, Hamburg Nj",
+            "city": "Hamburg",
+            "prevCEs": 6.89,
+            "currentLYCEs": 4.59,
+            "customerNum": "230921",
+            "customer": "ACQUAVIVA RESTAURANT",
+            "octLoaded": null
+          },
+          {
             "account": "Veterans Of Foreign Wars #8441",
             "address": "313 St Rte 94, Vernon Nj",
             "city": "Vernon",
@@ -179601,6 +179611,16 @@ const PROGRAM_DATA_2026_10 = {
             "currentLYCEs": 0.0,
             "customerNum": "231206",
             "customer": "Vfw 8441 Vernon",
+            "octLoaded": null
+          },
+          {
+            "account": "Whiskey Wolf Tavern",
+            "address": "399 Lake Shore Dr, Hewitt Nj",
+            "city": "Hewitt",
+            "prevCEs": 2.3,
+            "currentLYCEs": 9.19,
+            "customerNum": "1214",
+            "customer": "Whiskey Wolf Tavern (P)",
             "octLoaded": null
           },
           {
@@ -179612,29 +179632,9 @@ const PROGRAM_DATA_2026_10 = {
             "customerNum": "231307",
             "customer": "Skylands Wine& Beer Garden",
             "octLoaded": "2026-10-02"
-          },
-          {
-            "account": "Zs Casual Dining",
-            "address": "87 Nj 23, Hamburg Nj",
-            "city": "Hamburg",
-            "prevCEs": 6.89,
-            "currentLYCEs": 4.59,
-            "customerNum": "230921",
-            "customer": "ACQUAVIVA RESTAURANT",
-            "octLoaded": "2026-10-16"
-          },
-          {
-            "account": "Whiskey Wolf Tavern",
-            "address": "399 Lake Shore Dr, Hewitt Nj",
-            "city": "Hewitt",
-            "prevCEs": 2.3,
-            "currentLYCEs": 9.19,
-            "customerNum": "1214",
-            "customer": "Whiskey Wolf Tavern (P)",
-            "octLoaded": "2026-10-13"
           }
         ],
-        "toClose": 1
+        "toClose": 3
       },
       "Brian Sengebush": {
         "route": "11",
@@ -180191,6 +180191,16 @@ const PROGRAM_DATA_2026_10 = {
             "octLoaded": null
           },
           {
+            "account": "Axia Taverna",
+            "address": "18 Piedmont Rd, Tenafly Nj",
+            "city": "Tenafly",
+            "prevCEs": 2.3,
+            "currentLYCEs": 0.0,
+            "customerNum": "54012",
+            "customer": "Axia Taverna",
+            "octLoaded": null
+          },
+          {
             "account": "Green Point",
             "address": "15 Rivervale Rd, Westwood Nj",
             "city": "Westwood",
@@ -180219,19 +180229,9 @@ const PROGRAM_DATA_2026_10 = {
             "customerNum": "41006",
             "customer": "Straphanger Saloon (A)",
             "octLoaded": "2026-10-02"
-          },
-          {
-            "account": "Axia Taverna",
-            "address": "18 Piedmont Rd, Tenafly Nj",
-            "city": "Tenafly",
-            "prevCEs": 2.3,
-            "currentLYCEs": 0.0,
-            "customerNum": "54012",
-            "customer": "Axia Taverna",
-            "octLoaded": "2026-10-13"
           }
         ],
-        "toClose": 12
+        "toClose": 13
       },
       "Phil Ernst": {
         "route": null,
@@ -180364,7 +180364,2681 @@ const PROGRAM_DATA_2026_10 = {
         "Route 90 (unassigned)"
       ]
     }
+  },
+  "new_belgium_distribution_retain": {
+    "byRep": {
+      "Anthony Palmisano": {
+        "placements": 92,
+        "goal": 160,
+        "rep": "Anthony Palmisano",
+        "groups": [
+          {
+            "placements": 34,
+            "goal": 60,
+            "sourceLabel": "12pk Can",
+            "label": "Voodoo 12pk",
+            "products": [
+              {
+                "placements": 7,
+                "goal": 14,
+                "id": "6729",
+                "product": "New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
+                "pct": 50.0,
+                "toGo": 7,
+                "retained": false
+              },
+              {
+                "placements": 5,
+                "goal": 11,
+                "id": "6764",
+                "product": "New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
+                "pct": 45.45,
+                "toGo": 6,
+                "retained": false
+              },
+              {
+                "placements": 10,
+                "goal": 13,
+                "id": "6792",
+                "product": "New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
+                "pct": 76.92,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 12,
+                "goal": 14,
+                "id": "16712",
+                "product": "New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
+                "pct": 85.71,
+                "toGo": 2,
+                "retained": false
+              }
+            ],
+            "visibleSkuGoal": 52,
+            "skuGoalDifference": 8,
+            "pct": 56.67,
+            "toGo": 26,
+            "retained": false
+          },
+          {
+            "placements": 54,
+            "goal": 85,
+            "sourceLabel": "19.2oz Can",
+            "label": "Voodoo 19.2oz",
+            "products": [
+              {
+                "placements": 12,
+                "goal": 20,
+                "id": "6731",
+                "product": "New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
+                "pct": 60.0,
+                "toGo": 8,
+                "retained": false
+              },
+              {
+                "placements": 14,
+                "goal": 20,
+                "id": "6778",
+                "product": "New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
+                "pct": 70.0,
+                "toGo": 6,
+                "retained": false
+              },
+              {
+                "placements": 3,
+                "goal": 9,
+                "id": "16702",
+                "product": "New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
+                "pct": 33.33,
+                "toGo": 6,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 4,
+                "id": "6728",
+                "product": "New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
+                "pct": 25.0,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 8,
+                "goal": 10,
+                "id": "6791",
+                "product": "New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
+                "pct": 80.0,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 3,
+                "goal": 4,
+                "id": "6790",
+                "product": "New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
+                "pct": 75.0,
+                "toGo": 1,
+                "retained": false
+              },
+              {
+                "placements": 13,
+                "goal": 14,
+                "id": "16726",
+                "product": "New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
+                "pct": 92.86,
+                "toGo": 1,
+                "retained": false
+              }
+            ],
+            "visibleSkuGoal": 81,
+            "skuGoalDifference": 4,
+            "pct": 63.53,
+            "toGo": 31,
+            "retained": false
+          },
+          {
+            "placements": 4,
+            "goal": 15,
+            "sourceLabel": "6pk Can + Btl",
+            "label": "Hearted + Kirin 6pk (combined report goal)",
+            "products": [
+              {
+                "placements": 1,
+                "goal": 5,
+                "id": "10730",
+                "product": "Bell's Hazy Hearted IPA 4/6/12 oz Can",
+                "pct": 20.0,
+                "toGo": 4,
+                "retained": false
+              },
+              {
+                "placements": 2,
+                "goal": 4,
+                "id": "10701",
+                "product": "Bell's Two Hearted 4/6/12 oz Btl",
+                "pct": 50.0,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 3,
+                "id": "20201",
+                "product": "Kirin Ichiban 4/6/12 oz Btl",
+                "pct": 33.33,
+                "toGo": 2,
+                "retained": false
+              }
+            ],
+            "visibleSkuGoal": 12,
+            "skuGoalDifference": 3,
+            "pct": 26.67,
+            "toGo": 11,
+            "retained": false
+          }
+        ],
+        "overallHeld": 92,
+        "overallGoal": 160,
+        "overallToGo": 68,
+        "overallPct": 57.5,
+        "goalsRetained": 0,
+        "goalsTotal": 3
+      },
+      "Chris Payton": {
+        "placements": 111,
+        "goal": 177,
+        "rep": "Chris Payton",
+        "groups": [
+          {
+            "placements": 31,
+            "goal": 60,
+            "sourceLabel": "12pk Can",
+            "label": "Voodoo 12pk",
+            "products": [
+              {
+                "placements": 5,
+                "goal": 15,
+                "id": "16712",
+                "product": "New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
+                "pct": 33.33,
+                "toGo": 10,
+                "retained": false
+              },
+              {
+                "placements": 9,
+                "goal": 15,
+                "id": "6729",
+                "product": "New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
+                "pct": 60.0,
+                "toGo": 6,
+                "retained": false
+              },
+              {
+                "placements": 5,
+                "goal": 10,
+                "id": "6764",
+                "product": "New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
+                "pct": 50.0,
+                "toGo": 5,
+                "retained": false
+              },
+              {
+                "placements": 10,
+                "goal": 14,
+                "id": "6792",
+                "product": "New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
+                "pct": 71.43,
+                "toGo": 4,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 3,
+                "id": "10702",
+                "product": "Bell's Two Hearted 2/12/12 oz Can",
+                "pct": 33.33,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 2,
+                "id": "10755",
+                "product": "Bell's Variety 2/12/12 oz Can",
+                "pct": 50.0,
+                "toGo": 1,
+                "retained": false
+              }
+            ],
+            "visibleSkuGoal": 59,
+            "skuGoalDifference": 1,
+            "pct": 51.67,
+            "toGo": 29,
+            "retained": false
+          },
+          {
+            "placements": 77,
+            "goal": 107,
+            "sourceLabel": "19.2oz Can",
+            "label": "Voodoo 19.2oz",
+            "products": [
+              {
+                "placements": 16,
+                "goal": 23,
+                "id": "6731",
+                "product": "New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
+                "pct": 69.57,
+                "toGo": 7,
+                "retained": false
+              },
+              {
+                "placements": 4,
+                "goal": 10,
+                "id": "6790",
+                "product": "New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
+                "pct": 40.0,
+                "toGo": 6,
+                "retained": false
+              },
+              {
+                "placements": 6,
+                "goal": 10,
+                "id": "16702",
+                "product": "New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
+                "pct": 60.0,
+                "toGo": 4,
+                "retained": false
+              },
+              {
+                "placements": 17,
+                "goal": 20,
+                "id": "16726",
+                "product": "New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
+                "pct": 85.0,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 20,
+                "goal": 23,
+                "id": "6778",
+                "product": "New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
+                "pct": 86.96,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 6,
+                "goal": 8,
+                "id": "6728",
+                "product": "New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
+                "pct": 75.0,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 8,
+                "goal": 10,
+                "id": "6791",
+                "product": "New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
+                "pct": 80.0,
+                "toGo": 2,
+                "retained": false
+              }
+            ],
+            "visibleSkuGoal": 104,
+            "skuGoalDifference": 3,
+            "pct": 71.96,
+            "toGo": 30,
+            "retained": false
+          },
+          {
+            "placements": 3,
+            "goal": 10,
+            "sourceLabel": "6pk Can + Btl",
+            "label": "Hearted + Kirin 6pk (combined report goal)",
+            "products": [
+              {
+                "placements": 1,
+                "goal": 3,
+                "id": "10701",
+                "product": "Bell's Two Hearted 4/6/12 oz Btl",
+                "pct": 33.33,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 2,
+                "goal": 4,
+                "id": "20201",
+                "product": "Kirin Ichiban 4/6/12 oz Btl",
+                "pct": 50.0,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 0,
+                "goal": 1,
+                "id": "20211",
+                "product": "Kirin Light 4/6/12 oz Btl",
+                "pct": 0.0,
+                "toGo": 1,
+                "retained": false
+              }
+            ],
+            "visibleSkuGoal": 8,
+            "skuGoalDifference": 2,
+            "pct": 30.0,
+            "toGo": 7,
+            "retained": false
+          }
+        ],
+        "overallHeld": 111,
+        "overallGoal": 177,
+        "overallToGo": 66,
+        "overallPct": 62.71,
+        "goalsRetained": 0,
+        "goalsTotal": 3
+      },
+      "Dan Lagala": {
+        "placements": 67,
+        "goal": 104,
+        "rep": "Dan Lagala",
+        "groups": [
+          {
+            "placements": 17,
+            "goal": 32,
+            "sourceLabel": "12pk Can",
+            "label": "Voodoo 12pk",
+            "products": [
+              {
+                "placements": 1,
+                "goal": 6,
+                "id": "16712",
+                "product": "New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
+                "pct": 16.67,
+                "toGo": 5,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 5,
+                "id": "6764",
+                "product": "New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
+                "pct": 20.0,
+                "toGo": 4,
+                "retained": false
+              },
+              {
+                "placements": 6,
+                "goal": 8,
+                "id": "20204",
+                "product": "Kirin Ichiban 2/12/12 oz Can",
+                "pct": 75.0,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 3,
+                "goal": 5,
+                "id": "6792",
+                "product": "New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
+                "pct": 60.0,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 6,
+                "goal": 6,
+                "id": "6729",
+                "product": "New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
+                "pct": 100.0,
+                "toGo": 0,
+                "retained": true
+              }
+            ],
+            "visibleSkuGoal": 30,
+            "skuGoalDifference": 2,
+            "pct": 53.12,
+            "toGo": 15,
+            "retained": false
+          },
+          {
+            "placements": 42,
+            "goal": 56,
+            "sourceLabel": "19.2oz Can",
+            "label": "Voodoo 19.2oz",
+            "products": [
+              {
+                "placements": 1,
+                "goal": 5,
+                "id": "6790",
+                "product": "New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
+                "pct": 20.0,
+                "toGo": 4,
+                "retained": false
+              },
+              {
+                "placements": 7,
+                "goal": 11,
+                "id": "16726",
+                "product": "New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
+                "pct": 63.64,
+                "toGo": 4,
+                "retained": false
+              },
+              {
+                "placements": 7,
+                "goal": 11,
+                "id": "6778",
+                "product": "New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
+                "pct": 63.64,
+                "toGo": 4,
+                "retained": false
+              },
+              {
+                "placements": 3,
+                "goal": 5,
+                "id": "16702",
+                "product": "New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
+                "pct": 60.0,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 5,
+                "goal": 4,
+                "id": "20207",
+                "product": "Kirin Ichiban 1/15/19.2 oz Can",
+                "pct": 125.0,
+                "toGo": 0,
+                "retained": true
+              },
+              {
+                "placements": 5,
+                "goal": 4,
+                "id": "6728",
+                "product": "New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
+                "pct": 125.0,
+                "toGo": 0,
+                "retained": true
+              },
+              {
+                "placements": 11,
+                "goal": 11,
+                "id": "6731",
+                "product": "New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
+                "pct": 100.0,
+                "toGo": 0,
+                "retained": true
+              },
+              {
+                "placements": 3,
+                "goal": 3,
+                "id": "6791",
+                "product": "New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
+                "pct": 100.0,
+                "toGo": 0,
+                "retained": true
+              }
+            ],
+            "visibleSkuGoal": 54,
+            "skuGoalDifference": 2,
+            "pct": 75.0,
+            "toGo": 14,
+            "retained": false
+          },
+          {
+            "placements": 8,
+            "goal": 16,
+            "sourceLabel": "6pk Can + Btl",
+            "label": "Hearted + Kirin 6pk (combined report goal)",
+            "products": [
+              {
+                "placements": 7,
+                "goal": 11,
+                "id": "20201",
+                "product": "Kirin Ichiban 4/6/12 oz Btl",
+                "pct": 63.64,
+                "toGo": 4,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 3,
+                "id": "20211",
+                "product": "Kirin Light 4/6/12 oz Btl",
+                "pct": 33.33,
+                "toGo": 2,
+                "retained": false
+              }
+            ],
+            "visibleSkuGoal": 14,
+            "skuGoalDifference": 2,
+            "pct": 50.0,
+            "toGo": 8,
+            "retained": false
+          }
+        ],
+        "overallHeld": 67,
+        "overallGoal": 104,
+        "overallToGo": 37,
+        "overallPct": 64.42,
+        "goalsRetained": 0,
+        "goalsTotal": 3
+      },
+      "Dave Ehlers": {
+        "placements": 113,
+        "goal": 155,
+        "rep": "Dave Ehlers",
+        "groups": [
+          {
+            "placements": 23,
+            "goal": 43,
+            "sourceLabel": "12pk Can",
+            "label": "Voodoo 12pk",
+            "products": [
+              {
+                "placements": 3,
+                "goal": 10,
+                "id": "16712",
+                "product": "New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
+                "pct": 30.0,
+                "toGo": 7,
+                "retained": false
+              },
+              {
+                "placements": 6,
+                "goal": 10,
+                "id": "6729",
+                "product": "New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
+                "pct": 60.0,
+                "toGo": 4,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 4,
+                "id": "20204",
+                "product": "Kirin Ichiban 2/12/12 oz Can",
+                "pct": 25.0,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 5,
+                "goal": 8,
+                "id": "6764",
+                "product": "New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
+                "pct": 62.5,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 6,
+                "goal": 8,
+                "id": "6792",
+                "product": "New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
+                "pct": 75.0,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 2,
+                "goal": 3,
+                "id": "10702",
+                "product": "Bell's Two Hearted 2/12/12 oz Can",
+                "pct": 66.67,
+                "toGo": 1,
+                "retained": false
+              }
+            ],
+            "visibleSkuGoal": 43,
+            "skuGoalDifference": 0,
+            "pct": 53.49,
+            "toGo": 20,
+            "retained": false
+          },
+          {
+            "placements": 79,
+            "goal": 94,
+            "sourceLabel": "19.2oz Can",
+            "label": "Voodoo 19.2oz",
+            "products": [
+              {
+                "placements": 4,
+                "goal": 7,
+                "id": "6791",
+                "product": "New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
+                "pct": 57.14,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 19,
+                "goal": 21,
+                "id": "16726",
+                "product": "New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
+                "pct": 90.48,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 16,
+                "goal": 18,
+                "id": "6731",
+                "product": "New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
+                "pct": 88.89,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 8,
+                "goal": 9,
+                "id": "6790",
+                "product": "New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
+                "pct": 88.89,
+                "toGo": 1,
+                "retained": false
+              },
+              {
+                "placements": 17,
+                "goal": 18,
+                "id": "6778",
+                "product": "New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
+                "pct": 94.44,
+                "toGo": 1,
+                "retained": false
+              },
+              {
+                "placements": 11,
+                "goal": 12,
+                "id": "16702",
+                "product": "New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
+                "pct": 91.67,
+                "toGo": 1,
+                "retained": false
+              },
+              {
+                "placements": 4,
+                "goal": 4,
+                "id": "6728",
+                "product": "New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
+                "pct": 100.0,
+                "toGo": 0,
+                "retained": true
+              }
+            ],
+            "visibleSkuGoal": 89,
+            "skuGoalDifference": 5,
+            "pct": 84.04,
+            "toGo": 15,
+            "retained": false
+          },
+          {
+            "placements": 11,
+            "goal": 18,
+            "sourceLabel": "6pk Can + Btl",
+            "label": "Hearted + Kirin 6pk (combined report goal)",
+            "products": [
+              {
+                "placements": 0,
+                "goal": 3,
+                "id": "10730",
+                "product": "Bell's Hazy Hearted IPA 4/6/12 oz Can",
+                "pct": 0.0,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 4,
+                "goal": 7,
+                "id": "10701",
+                "product": "Bell's Two Hearted 4/6/12 oz Btl",
+                "pct": 57.14,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 2,
+                "goal": 5,
+                "id": "20201",
+                "product": "Kirin Ichiban 4/6/12 oz Btl",
+                "pct": 40.0,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 0,
+                "goal": 1,
+                "id": "10731",
+                "product": "Bell's Light Hearted Ale 4/6/12 oz Can",
+                "pct": 0.0,
+                "toGo": 1,
+                "retained": false
+              },
+              {
+                "placements": 3,
+                "goal": 2,
+                "id": "107006",
+                "product": "Bell's Big Hearted 4/6/12 oz Can",
+                "pct": 150.0,
+                "toGo": 0,
+                "retained": true
+              },
+              {
+                "placements": 2,
+                "goal": 2,
+                "id": "20211",
+                "product": "Kirin Light 4/6/12 oz Btl",
+                "pct": 100.0,
+                "toGo": 0,
+                "retained": true
+              }
+            ],
+            "visibleSkuGoal": 20,
+            "skuGoalDifference": -2,
+            "pct": 61.11,
+            "toGo": 7,
+            "retained": false
+          }
+        ],
+        "overallHeld": 113,
+        "overallGoal": 155,
+        "overallToGo": 42,
+        "overallPct": 72.9,
+        "goalsRetained": 0,
+        "goalsTotal": 3
+      },
+      "Derrick Laws": {
+        "placements": 17,
+        "goal": 52,
+        "rep": "Derrick Laws",
+        "groups": [
+          {
+            "placements": 4,
+            "goal": 16,
+            "sourceLabel": "12pk Can",
+            "label": "Voodoo 12pk",
+            "products": [
+              {
+                "placements": 1,
+                "goal": 4,
+                "id": "16712",
+                "product": "New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
+                "pct": 25.0,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 4,
+                "id": "6729",
+                "product": "New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
+                "pct": 25.0,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 0,
+                "goal": 3,
+                "id": "6792",
+                "product": "New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
+                "pct": 0.0,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 3,
+                "id": "6764",
+                "product": "New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
+                "pct": 33.33,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 1,
+                "id": "10702",
+                "product": "Bell's Two Hearted 2/12/12 oz Can",
+                "pct": 100.0,
+                "toGo": 0,
+                "retained": true
+              }
+            ],
+            "visibleSkuGoal": 15,
+            "skuGoalDifference": 1,
+            "pct": 25.0,
+            "toGo": 12,
+            "retained": false
+          },
+          {
+            "placements": 11,
+            "goal": 28,
+            "sourceLabel": "19.2oz Can",
+            "label": "Voodoo 19.2oz",
+            "products": [
+              {
+                "placements": 1,
+                "goal": 6,
+                "id": "6731",
+                "product": "New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
+                "pct": 16.67,
+                "toGo": 5,
+                "retained": false
+              },
+              {
+                "placements": 4,
+                "goal": 6,
+                "id": "6778",
+                "product": "New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
+                "pct": 66.67,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 0,
+                "goal": 1,
+                "id": "107007",
+                "product": "Bell's Big Hearted 1/15/19.2 oz Can",
+                "pct": 0.0,
+                "toGo": 1,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 2,
+                "id": "6790",
+                "product": "New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
+                "pct": 50.0,
+                "toGo": 1,
+                "retained": false
+              },
+              {
+                "placements": 2,
+                "goal": 3,
+                "id": "16726",
+                "product": "New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
+                "pct": 66.67,
+                "toGo": 1,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 2,
+                "id": "6791",
+                "product": "New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
+                "pct": 50.0,
+                "toGo": 1,
+                "retained": false
+              },
+              {
+                "placements": 2,
+                "goal": 2,
+                "id": "16702",
+                "product": "New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
+                "pct": 100.0,
+                "toGo": 0,
+                "retained": true
+              }
+            ],
+            "visibleSkuGoal": 22,
+            "skuGoalDifference": 6,
+            "pct": 39.29,
+            "toGo": 17,
+            "retained": false
+          },
+          {
+            "placements": 2,
+            "goal": 8,
+            "sourceLabel": "6pk Can + Btl",
+            "label": "Hearted + Kirin 6pk (combined report goal)",
+            "products": [
+              {
+                "placements": 1,
+                "goal": 3,
+                "id": "20201",
+                "product": "Kirin Ichiban 4/6/12 oz Btl",
+                "pct": 33.33,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 0,
+                "goal": 2,
+                "id": "20211",
+                "product": "Kirin Light 4/6/12 oz Btl",
+                "pct": 0.0,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 2,
+                "id": "10730",
+                "product": "Bell's Hazy Hearted IPA 4/6/12 oz Can",
+                "pct": 50.0,
+                "toGo": 1,
+                "retained": false
+              }
+            ],
+            "visibleSkuGoal": 7,
+            "skuGoalDifference": 1,
+            "pct": 25.0,
+            "toGo": 6,
+            "retained": false
+          }
+        ],
+        "overallHeld": 17,
+        "overallGoal": 52,
+        "overallToGo": 35,
+        "overallPct": 32.69,
+        "goalsRetained": 0,
+        "goalsTotal": 3
+      },
+      "Jayson Romine": {
+        "placements": 118,
+        "goal": 183,
+        "rep": "Jayson Romine",
+        "groups": [
+          {
+            "placements": 41,
+            "goal": 72,
+            "sourceLabel": "12pk Can",
+            "label": "Voodoo 12pk",
+            "products": [
+              {
+                "placements": 11,
+                "goal": 22,
+                "id": "16712",
+                "product": "New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
+                "pct": 50.0,
+                "toGo": 11,
+                "retained": false
+              },
+              {
+                "placements": 10,
+                "goal": 20,
+                "id": "6729",
+                "product": "New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
+                "pct": 50.0,
+                "toGo": 10,
+                "retained": false
+              },
+              {
+                "placements": 6,
+                "goal": 11,
+                "id": "6764",
+                "product": "New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
+                "pct": 54.55,
+                "toGo": 5,
+                "retained": false
+              },
+              {
+                "placements": 2,
+                "goal": 6,
+                "id": "10702",
+                "product": "Bell's Two Hearted 2/12/12 oz Can",
+                "pct": 33.33,
+                "toGo": 4,
+                "retained": false
+              },
+              {
+                "placements": 10,
+                "goal": 12,
+                "id": "6792",
+                "product": "New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
+                "pct": 83.33,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 2,
+                "goal": 3,
+                "id": "10755",
+                "product": "Bell's Variety 2/12/12 oz Can",
+                "pct": 66.67,
+                "toGo": 1,
+                "retained": false
+              }
+            ],
+            "visibleSkuGoal": 74,
+            "skuGoalDifference": -2,
+            "pct": 56.94,
+            "toGo": 31,
+            "retained": false
+          },
+          {
+            "placements": 67,
+            "goal": 90,
+            "sourceLabel": "19.2oz Can",
+            "label": "Voodoo 19.2oz",
+            "products": [
+              {
+                "placements": 12,
+                "goal": 18,
+                "id": "16726",
+                "product": "New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
+                "pct": 66.67,
+                "toGo": 6,
+                "retained": false
+              },
+              {
+                "placements": 12,
+                "goal": 16,
+                "id": "6731",
+                "product": "New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
+                "pct": 75.0,
+                "toGo": 4,
+                "retained": false
+              },
+              {
+                "placements": 2,
+                "goal": 5,
+                "id": "6790",
+                "product": "New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
+                "pct": 40.0,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 6,
+                "goal": 9,
+                "id": "16702",
+                "product": "New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
+                "pct": 66.67,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 8,
+                "goal": 10,
+                "id": "6791",
+                "product": "New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
+                "pct": 80.0,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 2,
+                "goal": 3,
+                "id": "10704",
+                "product": "Bell's Two Hearted 1/15/19.2 oz Can",
+                "pct": 66.67,
+                "toGo": 1,
+                "retained": false
+              },
+              {
+                "placements": 9,
+                "goal": 10,
+                "id": "6728",
+                "product": "New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
+                "pct": 90.0,
+                "toGo": 1,
+                "retained": false
+              },
+              {
+                "placements": 16,
+                "goal": 16,
+                "id": "6778",
+                "product": "New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
+                "pct": 100.0,
+                "toGo": 0,
+                "retained": true
+              }
+            ],
+            "visibleSkuGoal": 87,
+            "skuGoalDifference": 3,
+            "pct": 74.44,
+            "toGo": 23,
+            "retained": false
+          },
+          {
+            "placements": 10,
+            "goal": 21,
+            "sourceLabel": "6pk Can + Btl",
+            "label": "Hearted + Kirin 6pk (combined report goal)",
+            "products": [
+              {
+                "placements": 2,
+                "goal": 6,
+                "id": "10730",
+                "product": "Bell's Hazy Hearted IPA 4/6/12 oz Can",
+                "pct": 33.33,
+                "toGo": 4,
+                "retained": false
+              },
+              {
+                "placements": 4,
+                "goal": 8,
+                "id": "10701",
+                "product": "Bell's Two Hearted 4/6/12 oz Btl",
+                "pct": 50.0,
+                "toGo": 4,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 3,
+                "id": "107006",
+                "product": "Bell's Big Hearted 4/6/12 oz Can",
+                "pct": 33.33,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 2,
+                "id": "10731",
+                "product": "Bell's Light Hearted Ale 4/6/12 oz Can",
+                "pct": 50.0,
+                "toGo": 1,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 2,
+                "id": "20201",
+                "product": "Kirin Ichiban 4/6/12 oz Btl",
+                "pct": 50.0,
+                "toGo": 1,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 1,
+                "id": "20211",
+                "product": "Kirin Light 4/6/12 oz Btl",
+                "pct": 100.0,
+                "toGo": 0,
+                "retained": true
+              }
+            ],
+            "visibleSkuGoal": 22,
+            "skuGoalDifference": -1,
+            "pct": 47.62,
+            "toGo": 11,
+            "retained": false
+          }
+        ],
+        "overallHeld": 118,
+        "overallGoal": 183,
+        "overallToGo": 65,
+        "overallPct": 64.48,
+        "goalsRetained": 0,
+        "goalsTotal": 3
+      },
+      "Jim Heaney": {
+        "placements": 90,
+        "goal": 165,
+        "rep": "Jim Heaney",
+        "groups": [
+          {
+            "placements": 17,
+            "goal": 40,
+            "sourceLabel": "12pk Can",
+            "label": "Voodoo 12pk",
+            "products": [
+              {
+                "placements": 4,
+                "goal": 10,
+                "id": "6729",
+                "product": "New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
+                "pct": 40.0,
+                "toGo": 6,
+                "retained": false
+              },
+              {
+                "placements": 7,
+                "goal": 12,
+                "id": "6792",
+                "product": "New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
+                "pct": 58.33,
+                "toGo": 5,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 6,
+                "id": "6764",
+                "product": "New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
+                "pct": 16.67,
+                "toGo": 5,
+                "retained": false
+              },
+              {
+                "placements": 4,
+                "goal": 8,
+                "id": "16712",
+                "product": "New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
+                "pct": 50.0,
+                "toGo": 4,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 2,
+                "id": "10702",
+                "product": "Bell's Two Hearted 2/12/12 oz Can",
+                "pct": 50.0,
+                "toGo": 1,
+                "retained": false
+              }
+            ],
+            "visibleSkuGoal": 38,
+            "skuGoalDifference": 2,
+            "pct": 42.5,
+            "toGo": 23,
+            "retained": false
+          },
+          {
+            "placements": 68,
+            "goal": 105,
+            "sourceLabel": "19.2oz Can",
+            "label": "Voodoo 19.2oz",
+            "products": [
+              {
+                "placements": 5,
+                "goal": 13,
+                "id": "6790",
+                "product": "New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
+                "pct": 38.46,
+                "toGo": 8,
+                "retained": false
+              },
+              {
+                "placements": 11,
+                "goal": 18,
+                "id": "16726",
+                "product": "New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
+                "pct": 61.11,
+                "toGo": 7,
+                "retained": false
+              },
+              {
+                "placements": 7,
+                "goal": 12,
+                "id": "16702",
+                "product": "New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
+                "pct": 58.33,
+                "toGo": 5,
+                "retained": false
+              },
+              {
+                "placements": 5,
+                "goal": 9,
+                "id": "6728",
+                "product": "New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
+                "pct": 55.56,
+                "toGo": 4,
+                "retained": false
+              },
+              {
+                "placements": 14,
+                "goal": 18,
+                "id": "6731",
+                "product": "New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
+                "pct": 77.78,
+                "toGo": 4,
+                "retained": false
+              },
+              {
+                "placements": 7,
+                "goal": 9,
+                "id": "6791",
+                "product": "New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
+                "pct": 77.78,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 19,
+                "goal": 18,
+                "id": "6778",
+                "product": "New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
+                "pct": 105.56,
+                "toGo": 0,
+                "retained": true
+              }
+            ],
+            "visibleSkuGoal": 97,
+            "skuGoalDifference": 8,
+            "pct": 64.76,
+            "toGo": 37,
+            "retained": false
+          },
+          {
+            "placements": 5,
+            "goal": 20,
+            "sourceLabel": "6pk Can + Btl",
+            "label": "Hearted + Kirin 6pk (combined report goal)",
+            "products": [
+              {
+                "placements": 2,
+                "goal": 7,
+                "id": "10701",
+                "product": "Bell's Two Hearted 4/6/12 oz Btl",
+                "pct": 28.57,
+                "toGo": 5,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 4,
+                "id": "20201",
+                "product": "Kirin Ichiban 4/6/12 oz Btl",
+                "pct": 25.0,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 3,
+                "id": "107006",
+                "product": "Bell's Big Hearted 4/6/12 oz Can",
+                "pct": 33.33,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 3,
+                "id": "10730",
+                "product": "Bell's Hazy Hearted IPA 4/6/12 oz Can",
+                "pct": 33.33,
+                "toGo": 2,
+                "retained": false
+              }
+            ],
+            "visibleSkuGoal": 17,
+            "skuGoalDifference": 3,
+            "pct": 25.0,
+            "toGo": 15,
+            "retained": false
+          }
+        ],
+        "overallHeld": 90,
+        "overallGoal": 165,
+        "overallToGo": 75,
+        "overallPct": 54.55,
+        "goalsRetained": 0,
+        "goalsTotal": 3
+      },
+      "Klejdi Lamo": {
+        "placements": 97,
+        "goal": 168,
+        "rep": "Klejdi Lamo",
+        "groups": [
+          {
+            "placements": 27,
+            "goal": 56,
+            "sourceLabel": "12pk Can",
+            "label": "Voodoo 12pk",
+            "products": [
+              {
+                "placements": 8,
+                "goal": 19,
+                "id": "16712",
+                "product": "New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
+                "pct": 42.11,
+                "toGo": 11,
+                "retained": false
+              },
+              {
+                "placements": 4,
+                "goal": 12,
+                "id": "6729",
+                "product": "New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
+                "pct": 33.33,
+                "toGo": 8,
+                "retained": false
+              },
+              {
+                "placements": 7,
+                "goal": 11,
+                "id": "6792",
+                "product": "New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
+                "pct": 63.64,
+                "toGo": 4,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 5,
+                "id": "6764",
+                "product": "New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
+                "pct": 20.0,
+                "toGo": 4,
+                "retained": false
+              },
+              {
+                "placements": 4,
+                "goal": 7,
+                "id": "10702",
+                "product": "Bell's Two Hearted 2/12/12 oz Can",
+                "pct": 57.14,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 2,
+                "goal": 5,
+                "id": "10755",
+                "product": "Bell's Variety 2/12/12 oz Can",
+                "pct": 40.0,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 2,
+                "id": "20204",
+                "product": "Kirin Ichiban 2/12/12 oz Can",
+                "pct": 50.0,
+                "toGo": 1,
+                "retained": false
+              }
+            ],
+            "visibleSkuGoal": 61,
+            "skuGoalDifference": -5,
+            "pct": 48.21,
+            "toGo": 29,
+            "retained": false
+          },
+          {
+            "placements": 62,
+            "goal": 96,
+            "sourceLabel": "19.2oz Can",
+            "label": "Voodoo 19.2oz",
+            "products": [
+              {
+                "placements": 1,
+                "goal": 7,
+                "id": "6728",
+                "product": "New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
+                "pct": 14.29,
+                "toGo": 6,
+                "retained": false
+              },
+              {
+                "placements": 19,
+                "goal": 25,
+                "id": "6731",
+                "product": "New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
+                "pct": 76.0,
+                "toGo": 6,
+                "retained": false
+              },
+              {
+                "placements": 20,
+                "goal": 25,
+                "id": "6778",
+                "product": "New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
+                "pct": 80.0,
+                "toGo": 5,
+                "retained": false
+              },
+              {
+                "placements": 3,
+                "goal": 8,
+                "id": "16702",
+                "product": "New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
+                "pct": 37.5,
+                "toGo": 5,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 5,
+                "id": "6790",
+                "product": "New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
+                "pct": 20.0,
+                "toGo": 4,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 4,
+                "id": "6791",
+                "product": "New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
+                "pct": 25.0,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 17,
+                "goal": 19,
+                "id": "16726",
+                "product": "New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
+                "pct": 89.47,
+                "toGo": 2,
+                "retained": false
+              }
+            ],
+            "visibleSkuGoal": 93,
+            "skuGoalDifference": 3,
+            "pct": 64.58,
+            "toGo": 34,
+            "retained": false
+          },
+          {
+            "placements": 8,
+            "goal": 16,
+            "sourceLabel": "6pk Can + Btl",
+            "label": "Hearted + Kirin 6pk (combined report goal)",
+            "products": [
+              {
+                "placements": 4,
+                "goal": 7,
+                "id": "10701",
+                "product": "Bell's Two Hearted 4/6/12 oz Btl",
+                "pct": 57.14,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 3,
+                "id": "10730",
+                "product": "Bell's Hazy Hearted IPA 4/6/12 oz Can",
+                "pct": 33.33,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 3,
+                "id": "10731",
+                "product": "Bell's Light Hearted Ale 4/6/12 oz Can",
+                "pct": 33.33,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 2,
+                "goal": 2,
+                "id": "20201",
+                "product": "Kirin Ichiban 4/6/12 oz Btl",
+                "pct": 100.0,
+                "toGo": 0,
+                "retained": true
+              }
+            ],
+            "visibleSkuGoal": 15,
+            "skuGoalDifference": 1,
+            "pct": 50.0,
+            "toGo": 8,
+            "retained": false
+          }
+        ],
+        "overallHeld": 97,
+        "overallGoal": 168,
+        "overallToGo": 71,
+        "overallPct": 57.74,
+        "goalsRetained": 0,
+        "goalsTotal": 3
+      },
+      "Matt Powierski": {
+        "placements": 86,
+        "goal": 143,
+        "rep": "Matt Powierski",
+        "groups": [
+          {
+            "placements": 14,
+            "goal": 32,
+            "sourceLabel": "12pk Can",
+            "label": "Voodoo 12pk",
+            "products": [
+              {
+                "placements": 0,
+                "goal": 7,
+                "id": "16712",
+                "product": "New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
+                "pct": 0.0,
+                "toGo": 7,
+                "retained": false
+              },
+              {
+                "placements": 4,
+                "goal": 8,
+                "id": "6729",
+                "product": "New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
+                "pct": 50.0,
+                "toGo": 4,
+                "retained": false
+              },
+              {
+                "placements": 2,
+                "goal": 5,
+                "id": "6764",
+                "product": "New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
+                "pct": 40.0,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 3,
+                "id": "20204",
+                "product": "Kirin Ichiban 2/12/12 oz Can",
+                "pct": 33.33,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 5,
+                "goal": 7,
+                "id": "6792",
+                "product": "New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
+                "pct": 71.43,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 2,
+                "id": "10702",
+                "product": "Bell's Two Hearted 2/12/12 oz Can",
+                "pct": 50.0,
+                "toGo": 1,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 1,
+                "id": "10755",
+                "product": "Bell's Variety 2/12/12 oz Can",
+                "pct": 100.0,
+                "toGo": 0,
+                "retained": true
+              }
+            ],
+            "visibleSkuGoal": 33,
+            "skuGoalDifference": -1,
+            "pct": 43.75,
+            "toGo": 18,
+            "retained": false
+          },
+          {
+            "placements": 70,
+            "goal": 102,
+            "sourceLabel": "19.2oz Can",
+            "label": "Voodoo 19.2oz",
+            "products": [
+              {
+                "placements": 9,
+                "goal": 17,
+                "id": "16726",
+                "product": "New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
+                "pct": 52.94,
+                "toGo": 8,
+                "retained": false
+              },
+              {
+                "placements": 13,
+                "goal": 20,
+                "id": "6731",
+                "product": "New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
+                "pct": 65.0,
+                "toGo": 7,
+                "retained": false
+              },
+              {
+                "placements": 16,
+                "goal": 20,
+                "id": "6778",
+                "product": "New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
+                "pct": 80.0,
+                "toGo": 4,
+                "retained": false
+              },
+              {
+                "placements": 8,
+                "goal": 11,
+                "id": "6728",
+                "product": "New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
+                "pct": 72.73,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 4,
+                "goal": 7,
+                "id": "6791",
+                "product": "New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
+                "pct": 57.14,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 11,
+                "goal": 14,
+                "id": "16702",
+                "product": "New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
+                "pct": 78.57,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 9,
+                "goal": 10,
+                "id": "6790",
+                "product": "New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
+                "pct": 90.0,
+                "toGo": 1,
+                "retained": false
+              }
+            ],
+            "visibleSkuGoal": 99,
+            "skuGoalDifference": 3,
+            "pct": 68.63,
+            "toGo": 32,
+            "retained": false
+          },
+          {
+            "placements": 2,
+            "goal": 9,
+            "sourceLabel": "6pk Can + Btl",
+            "label": "Hearted + Kirin 6pk (combined report goal)",
+            "products": [
+              {
+                "placements": 1,
+                "goal": 3,
+                "id": "20201",
+                "product": "Kirin Ichiban 4/6/12 oz Btl",
+                "pct": 33.33,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 3,
+                "id": "20211",
+                "product": "Kirin Light 4/6/12 oz Btl",
+                "pct": 33.33,
+                "toGo": 2,
+                "retained": false
+              }
+            ],
+            "visibleSkuGoal": 6,
+            "skuGoalDifference": 3,
+            "pct": 22.22,
+            "toGo": 7,
+            "retained": false
+          }
+        ],
+        "overallHeld": 86,
+        "overallGoal": 143,
+        "overallToGo": 57,
+        "overallPct": 60.14,
+        "goalsRetained": 0,
+        "goalsTotal": 3
+      },
+      "Michael Harboy": {
+        "placements": 16,
+        "goal": 47,
+        "rep": "Michael Harboy",
+        "groups": [
+          {
+            "placements": 5,
+            "goal": 17,
+            "sourceLabel": "12pk Can",
+            "label": "Voodoo 12pk",
+            "products": [
+              {
+                "placements": 1,
+                "goal": 4,
+                "id": "16712",
+                "product": "New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
+                "pct": 25.0,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 2,
+                "goal": 4,
+                "id": "6764",
+                "product": "New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
+                "pct": 50.0,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 2,
+                "goal": 3,
+                "id": "6792",
+                "product": "New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
+                "pct": 66.67,
+                "toGo": 1,
+                "retained": false
+              }
+            ],
+            "visibleSkuGoal": 11,
+            "skuGoalDifference": 6,
+            "pct": 29.41,
+            "toGo": 12,
+            "retained": false
+          },
+          {
+            "placements": 10,
+            "goal": 24,
+            "sourceLabel": "19.2oz Can",
+            "label": "Voodoo 19.2oz",
+            "products": [
+              {
+                "placements": 2,
+                "goal": 4,
+                "id": "6790",
+                "product": "New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
+                "pct": 50.0,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 2,
+                "goal": 4,
+                "id": "16726",
+                "product": "New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
+                "pct": 50.0,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 3,
+                "goal": 4,
+                "id": "6731",
+                "product": "New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
+                "pct": 75.0,
+                "toGo": 1,
+                "retained": false
+              },
+              {
+                "placements": 3,
+                "goal": 4,
+                "id": "6778",
+                "product": "New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
+                "pct": 75.0,
+                "toGo": 1,
+                "retained": false
+              }
+            ],
+            "visibleSkuGoal": 16,
+            "skuGoalDifference": 8,
+            "pct": 41.67,
+            "toGo": 14,
+            "retained": false
+          },
+          {
+            "placements": 1,
+            "goal": 6,
+            "sourceLabel": "6pk Can + Btl",
+            "label": "Hearted + Kirin 6pk (combined report goal)",
+            "products": [
+              {
+                "placements": 0,
+                "goal": 1,
+                "id": "107006",
+                "product": "Bell's Big Hearted 4/6/12 oz Can",
+                "pct": 0.0,
+                "toGo": 1,
+                "retained": false
+              },
+              {
+                "placements": 0,
+                "goal": 1,
+                "id": "10701",
+                "product": "Bell's Two Hearted 4/6/12 oz Btl",
+                "pct": 0.0,
+                "toGo": 1,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 1,
+                "id": "10730",
+                "product": "Bell's Hazy Hearted IPA 4/6/12 oz Can",
+                "pct": 100.0,
+                "toGo": 0,
+                "retained": true
+              }
+            ],
+            "visibleSkuGoal": 3,
+            "skuGoalDifference": 3,
+            "pct": 16.67,
+            "toGo": 5,
+            "retained": false
+          }
+        ],
+        "overallHeld": 16,
+        "overallGoal": 47,
+        "overallToGo": 31,
+        "overallPct": 34.04,
+        "goalsRetained": 0,
+        "goalsTotal": 3
+      },
+      "Mike Ast": {
+        "placements": 83,
+        "goal": 129,
+        "rep": "Mike Ast",
+        "groups": [
+          {
+            "placements": 30,
+            "goal": 43,
+            "sourceLabel": "12pk Can",
+            "label": "Voodoo 12pk",
+            "products": [
+              {
+                "placements": 4,
+                "goal": 11,
+                "id": "16712",
+                "product": "New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
+                "pct": 36.36,
+                "toGo": 7,
+                "retained": false
+              },
+              {
+                "placements": 3,
+                "goal": 6,
+                "id": "10702",
+                "product": "Bell's Two Hearted 2/12/12 oz Can",
+                "pct": 50.0,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 3,
+                "id": "10755",
+                "product": "Bell's Variety 2/12/12 oz Can",
+                "pct": 33.33,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 8,
+                "goal": 10,
+                "id": "6729",
+                "product": "New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
+                "pct": 80.0,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 5,
+                "goal": 7,
+                "id": "6764",
+                "product": "New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
+                "pct": 71.43,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 2,
+                "id": "20204",
+                "product": "Kirin Ichiban 2/12/12 oz Can",
+                "pct": 50.0,
+                "toGo": 1,
+                "retained": false
+              },
+              {
+                "placements": 8,
+                "goal": 7,
+                "id": "6792",
+                "product": "New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
+                "pct": 114.29,
+                "toGo": 0,
+                "retained": true
+              }
+            ],
+            "visibleSkuGoal": 46,
+            "skuGoalDifference": -3,
+            "pct": 69.77,
+            "toGo": 13,
+            "retained": false
+          },
+          {
+            "placements": 41,
+            "goal": 70,
+            "sourceLabel": "19.2oz Can",
+            "label": "Voodoo 19.2oz",
+            "products": [
+              {
+                "placements": 3,
+                "goal": 9,
+                "id": "6791",
+                "product": "New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
+                "pct": 33.33,
+                "toGo": 6,
+                "retained": false
+              },
+              {
+                "placements": 6,
+                "goal": 10,
+                "id": "16726",
+                "product": "New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
+                "pct": 60.0,
+                "toGo": 4,
+                "retained": false
+              },
+              {
+                "placements": 11,
+                "goal": 15,
+                "id": "6731",
+                "product": "New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
+                "pct": 73.33,
+                "toGo": 4,
+                "retained": false
+              },
+              {
+                "placements": 11,
+                "goal": 15,
+                "id": "6778",
+                "product": "New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
+                "pct": 73.33,
+                "toGo": 4,
+                "retained": false
+              },
+              {
+                "placements": 4,
+                "goal": 7,
+                "id": "16702",
+                "product": "New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
+                "pct": 57.14,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 3,
+                "id": "10704",
+                "product": "Bell's Two Hearted 1/15/19.2 oz Can",
+                "pct": 33.33,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 2,
+                "goal": 4,
+                "id": "6790",
+                "product": "New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
+                "pct": 50.0,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 3,
+                "goal": 5,
+                "id": "6728",
+                "product": "New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
+                "pct": 60.0,
+                "toGo": 2,
+                "retained": false
+              }
+            ],
+            "visibleSkuGoal": 68,
+            "skuGoalDifference": 2,
+            "pct": 58.57,
+            "toGo": 29,
+            "retained": false
+          },
+          {
+            "placements": 12,
+            "goal": 16,
+            "sourceLabel": "6pk Can + Btl",
+            "label": "Hearted + Kirin 6pk (combined report goal)",
+            "products": [
+              {
+                "placements": 6,
+                "goal": 8,
+                "id": "10701",
+                "product": "Bell's Two Hearted 4/6/12 oz Btl",
+                "pct": 75.0,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 2,
+                "id": "10730",
+                "product": "Bell's Hazy Hearted IPA 4/6/12 oz Can",
+                "pct": 50.0,
+                "toGo": 1,
+                "retained": false
+              },
+              {
+                "placements": 2,
+                "goal": 3,
+                "id": "10731",
+                "product": "Bell's Light Hearted Ale 4/6/12 oz Can",
+                "pct": 66.67,
+                "toGo": 1,
+                "retained": false
+              },
+              {
+                "placements": 3,
+                "goal": 2,
+                "id": "20201",
+                "product": "Kirin Ichiban 4/6/12 oz Btl",
+                "pct": 150.0,
+                "toGo": 0,
+                "retained": true
+              }
+            ],
+            "visibleSkuGoal": 15,
+            "skuGoalDifference": 1,
+            "pct": 75.0,
+            "toGo": 4,
+            "retained": false
+          }
+        ],
+        "overallHeld": 83,
+        "overallGoal": 129,
+        "overallToGo": 46,
+        "overallPct": 64.34,
+        "goalsRetained": 0,
+        "goalsTotal": 3
+      },
+      "Phil Ernst": {
+        "placements": 96,
+        "goal": 168,
+        "rep": "Phil Ernst",
+        "groups": [
+          {
+            "placements": 24,
+            "goal": 48,
+            "sourceLabel": "12pk Can",
+            "label": "Voodoo 12pk",
+            "products": [
+              {
+                "placements": 4,
+                "goal": 15,
+                "id": "16712",
+                "product": "New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
+                "pct": 26.67,
+                "toGo": 11,
+                "retained": false
+              },
+              {
+                "placements": 4,
+                "goal": 10,
+                "id": "6792",
+                "product": "New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
+                "pct": 40.0,
+                "toGo": 6,
+                "retained": false
+              },
+              {
+                "placements": 2,
+                "goal": 5,
+                "id": "10755",
+                "product": "Bell's Variety 2/12/12 oz Can",
+                "pct": 40.0,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 7,
+                "goal": 10,
+                "id": "6729",
+                "product": "New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
+                "pct": 70.0,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 2,
+                "goal": 4,
+                "id": "10702",
+                "product": "Bell's Two Hearted 2/12/12 oz Can",
+                "pct": 50.0,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 5,
+                "goal": 7,
+                "id": "6764",
+                "product": "New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
+                "pct": 71.43,
+                "toGo": 2,
+                "retained": false
+              }
+            ],
+            "visibleSkuGoal": 51,
+            "skuGoalDifference": -3,
+            "pct": 50.0,
+            "toGo": 24,
+            "retained": false
+          },
+          {
+            "placements": 57,
+            "goal": 98,
+            "sourceLabel": "19.2oz Can",
+            "label": "Voodoo 19.2oz",
+            "products": [
+              {
+                "placements": 10,
+                "goal": 18,
+                "id": "16726",
+                "product": "New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
+                "pct": 55.56,
+                "toGo": 8,
+                "retained": false
+              },
+              {
+                "placements": 6,
+                "goal": 13,
+                "id": "6728",
+                "product": "New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
+                "pct": 46.15,
+                "toGo": 7,
+                "retained": false
+              },
+              {
+                "placements": 9,
+                "goal": 15,
+                "id": "6778",
+                "product": "New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
+                "pct": 60.0,
+                "toGo": 6,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 7,
+                "id": "6791",
+                "product": "New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
+                "pct": 14.29,
+                "toGo": 6,
+                "retained": false
+              },
+              {
+                "placements": 7,
+                "goal": 13,
+                "id": "16702",
+                "product": "New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
+                "pct": 53.85,
+                "toGo": 6,
+                "retained": false
+              },
+              {
+                "placements": 8,
+                "goal": 11,
+                "id": "6790",
+                "product": "New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
+                "pct": 72.73,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 14,
+                "goal": 15,
+                "id": "6731",
+                "product": "New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
+                "pct": 93.33,
+                "toGo": 1,
+                "retained": false
+              },
+              {
+                "placements": 2,
+                "goal": 2,
+                "id": "10704",
+                "product": "Bell's Two Hearted 1/15/19.2 oz Can",
+                "pct": 100.0,
+                "toGo": 0,
+                "retained": true
+              }
+            ],
+            "visibleSkuGoal": 94,
+            "skuGoalDifference": 4,
+            "pct": 58.16,
+            "toGo": 41,
+            "retained": false
+          },
+          {
+            "placements": 15,
+            "goal": 22,
+            "sourceLabel": "6pk Can + Btl",
+            "label": "Hearted + Kirin 6pk (combined report goal)",
+            "products": [
+              {
+                "placements": 5,
+                "goal": 8,
+                "id": "10701",
+                "product": "Bell's Two Hearted 4/6/12 oz Btl",
+                "pct": 62.5,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 3,
+                "id": "10730",
+                "product": "Bell's Hazy Hearted IPA 4/6/12 oz Can",
+                "pct": 33.33,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 3,
+                "id": "10731",
+                "product": "Bell's Light Hearted Ale 4/6/12 oz Can",
+                "pct": 33.33,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 7,
+                "goal": 6,
+                "id": "20201",
+                "product": "Kirin Ichiban 4/6/12 oz Btl",
+                "pct": 116.67,
+                "toGo": 0,
+                "retained": true
+              },
+              {
+                "placements": 1,
+                "goal": 1,
+                "id": "20211",
+                "product": "Kirin Light 4/6/12 oz Btl",
+                "pct": 100.0,
+                "toGo": 0,
+                "retained": true
+              }
+            ],
+            "visibleSkuGoal": 21,
+            "skuGoalDifference": 1,
+            "pct": 68.18,
+            "toGo": 7,
+            "retained": false
+          }
+        ],
+        "overallHeld": 96,
+        "overallGoal": 168,
+        "overallToGo": 72,
+        "overallPct": 57.14,
+        "goalsRetained": 0,
+        "goalsTotal": 3
+      },
+      "Shane Barreca": {
+        "placements": 106,
+        "goal": 175,
+        "rep": "Shane Barreca",
+        "groups": [
+          {
+            "placements": 38,
+            "goal": 53,
+            "sourceLabel": "12pk Can",
+            "label": "Voodoo 12pk",
+            "products": [
+              {
+                "placements": 4,
+                "goal": 10,
+                "id": "10702",
+                "product": "Bell's Two Hearted 2/12/12 oz Can",
+                "pct": 40.0,
+                "toGo": 6,
+                "retained": false
+              },
+              {
+                "placements": 8,
+                "goal": 12,
+                "id": "6729",
+                "product": "New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
+                "pct": 66.67,
+                "toGo": 4,
+                "retained": false
+              },
+              {
+                "placements": 12,
+                "goal": 15,
+                "id": "16712",
+                "product": "New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
+                "pct": 80.0,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 7,
+                "goal": 9,
+                "id": "6792",
+                "product": "New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
+                "pct": 77.78,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 2,
+                "goal": 4,
+                "id": "6764",
+                "product": "New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
+                "pct": 50.0,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 2,
+                "goal": 3,
+                "id": "20204",
+                "product": "Kirin Ichiban 2/12/12 oz Can",
+                "pct": 66.67,
+                "toGo": 1,
+                "retained": false
+              },
+              {
+                "placements": 3,
+                "goal": 3,
+                "id": "10755",
+                "product": "Bell's Variety 2/12/12 oz Can",
+                "pct": 100.0,
+                "toGo": 0,
+                "retained": true
+              }
+            ],
+            "visibleSkuGoal": 56,
+            "skuGoalDifference": -3,
+            "pct": 71.7,
+            "toGo": 15,
+            "retained": false
+          },
+          {
+            "placements": 47,
+            "goal": 81,
+            "sourceLabel": "19.2oz Can",
+            "label": "Voodoo 19.2oz",
+            "products": [
+              {
+                "placements": 7,
+                "goal": 15,
+                "id": "6731",
+                "product": "New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
+                "pct": 46.67,
+                "toGo": 8,
+                "retained": false
+              },
+              {
+                "placements": 10,
+                "goal": 16,
+                "id": "16726",
+                "product": "New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
+                "pct": 62.5,
+                "toGo": 6,
+                "retained": false
+              },
+              {
+                "placements": 5,
+                "goal": 10,
+                "id": "6790",
+                "product": "New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
+                "pct": 50.0,
+                "toGo": 5,
+                "retained": false
+              },
+              {
+                "placements": 10,
+                "goal": 15,
+                "id": "6778",
+                "product": "New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
+                "pct": 66.67,
+                "toGo": 5,
+                "retained": false
+              },
+              {
+                "placements": 5,
+                "goal": 10,
+                "id": "16702",
+                "product": "New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
+                "pct": 50.0,
+                "toGo": 5,
+                "retained": false
+              },
+              {
+                "placements": 4,
+                "goal": 6,
+                "id": "6728",
+                "product": "New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
+                "pct": 66.67,
+                "toGo": 2,
+                "retained": false
+              },
+              {
+                "placements": 3,
+                "goal": 4,
+                "id": "10704",
+                "product": "Bell's Two Hearted 1/15/19.2 oz Can",
+                "pct": 75.0,
+                "toGo": 1,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 2,
+                "id": "6791",
+                "product": "New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
+                "pct": 50.0,
+                "toGo": 1,
+                "retained": false
+              },
+              {
+                "placements": 2,
+                "goal": 1,
+                "id": "20207",
+                "product": "Kirin Ichiban 1/15/19.2 oz Can",
+                "pct": 200.0,
+                "toGo": 0,
+                "retained": true
+              }
+            ],
+            "visibleSkuGoal": 79,
+            "skuGoalDifference": 2,
+            "pct": 58.02,
+            "toGo": 34,
+            "retained": false
+          },
+          {
+            "placements": 21,
+            "goal": 41,
+            "sourceLabel": "6pk Can + Btl",
+            "label": "Hearted + Kirin 6pk (combined report goal)",
+            "products": [
+              {
+                "placements": 8,
+                "goal": 14,
+                "id": "10701",
+                "product": "Bell's Two Hearted 4/6/12 oz Btl",
+                "pct": 57.14,
+                "toGo": 6,
+                "retained": false
+              },
+              {
+                "placements": 2,
+                "goal": 6,
+                "id": "107006",
+                "product": "Bell's Big Hearted 4/6/12 oz Can",
+                "pct": 33.33,
+                "toGo": 4,
+                "retained": false
+              },
+              {
+                "placements": 2,
+                "goal": 6,
+                "id": "10730",
+                "product": "Bell's Hazy Hearted IPA 4/6/12 oz Can",
+                "pct": 33.33,
+                "toGo": 4,
+                "retained": false
+              },
+              {
+                "placements": 2,
+                "goal": 6,
+                "id": "10731",
+                "product": "Bell's Light Hearted Ale 4/6/12 oz Can",
+                "pct": 33.33,
+                "toGo": 4,
+                "retained": false
+              },
+              {
+                "placements": 6,
+                "goal": 9,
+                "id": "20201",
+                "product": "Kirin Ichiban 4/6/12 oz Btl",
+                "pct": 66.67,
+                "toGo": 3,
+                "retained": false
+              },
+              {
+                "placements": 1,
+                "goal": 4,
+                "id": "20211",
+                "product": "Kirin Light 4/6/12 oz Btl",
+                "pct": 25.0,
+                "toGo": 3,
+                "retained": false
+              }
+            ],
+            "visibleSkuGoal": 45,
+            "skuGoalDifference": -4,
+            "pct": 51.22,
+            "toGo": 20,
+            "retained": false
+          }
+        ],
+        "overallHeld": 106,
+        "overallGoal": 175,
+        "overallToGo": 69,
+        "overallPct": 60.57,
+        "goalsRetained": 0,
+        "goalsTotal": 3
+      }
+    },
+    "periodStart": "2026-09-01",
+    "periodEnd": "2026-12-31",
+    "house": {
+      "placements": 1092,
+      "goal": 1826
+    },
+    "meta": {
+      "source": "new_belgium_distribution_retain.xlsx",
+      "reportId": 26632319,
+      "reportCreated": "2026-10-16T09:42:00",
+      "periodStart": "2026-09-01",
+      "periodEnd": "2026-12-31",
+      "deckPeriod": "October-November",
+      "windowConfirmed": "2026-10-16",
+      "channel": "off",
+      "nonZeroFilter": 1,
+      "scope": "Only reps present in the supplied filtered report",
+      "goalBasis": "Reported rep and package-group totals; SKU goals are independent, not additive",
+      "window": "Sep 1 - Dec 31, 2026",
+      "bonusStatus": "Unverified: prior-period results and May-October growth not supplied",
+      "payoutAvailable": false,
+      "customerDetailAvailable": false
+    }
   }
 };
-const PROGRAM_DATA_REFRESHED = "Oct 16, 2026, 11:30 AM ET";
-const PROGRAM_DATA_REFRESHED_AT = "2026-10-16T15:30:06Z";
+const PROGRAM_DATA_REFRESHED = "Oct 16, 2026, 11:33 AM ET";
+const PROGRAM_DATA_REFRESHED_AT = "2026-10-16T15:33:12Z";
