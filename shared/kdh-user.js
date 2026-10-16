@@ -369,7 +369,7 @@
     html+='<div class="kdh-side-h">Workspace</div>';
     primary.filter(function(it){return !signatureManager||['home','accounts','programs'].indexOf(it.key)!==-1;}).forEach(function (it) {
       if (it.key === 'programs') {
-        html += '<details class="kdh-side-group"'+(w.nav==='programs'?' open':'')+'><summary>Programs</summary><div class="kdh-side-sub">' + link('kdh-side-i sub', { key: 'inc', label: 'Incentives', href: progDefault(u) }, w.tool === 'inc', ' data-navto="programs"') +
+        html += '<details class="kdh-side-group"'+(w.nav==='programs'?' open':'')+'><summary><span class="kdh-side-group-label">'+NAV_ICON.programs+'<span>Programs</span></span></summary><div class="kdh-side-sub">' + link('kdh-side-i sub', { key: 'inc', label: 'Incentives', href: progDefault(u) }, w.tool === 'inc', ' data-navto="programs"') +
           (groups.Programs || []).map(function (t) { return link('kdh-side-i sub', t, w.tool === t.key); }).join('') + '</div></details>';
       } else html += link('kdh-side-i', it, it.key === w.nav);
     });
