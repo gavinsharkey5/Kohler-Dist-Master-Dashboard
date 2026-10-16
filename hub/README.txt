@@ -1005,3 +1005,18 @@ Credited Results. Picking a product filters the accounts to that product
 manager's rep filter). Each account opens the Account page; its Back returns
 here with the same filters and scroll. Managers get the same views for their
 team on Program View (rep filter). Programs without a rule keep the old screen.
+
+Lytt-only account exclusion (2026-10-16, per Gavin: "Lena y Carbon Broaster
+  (20124) remove this account from Pablo's customer base for lytt. It is on
+  premise and is counting as off"): the Sales Reps' Customer Base files file
+  #20124 as Off Premise, so it sat in Pablo Lopez's off-premise book and
+  showed as a Lytt target. LYTT_BASE_EXCLUDED / PROGRAM_BASE_EXCLUDED at the
+  top of accounts.js now skip it in classify() for the three Lytt programs
+  only (inc:lytt, off:bbc_lytt, off:disruptors): Pablo's Lytt universe
+  drops by one (28 -> 27 on the 2026-10-08 account base), and nobody else's changes. Every other program
+  keeps the account, and data/accounts.js is untouched, so a generate.py
+  re-run cannot restore it. Same shape as incentive-tracking's
+  LYTT_BASE_EXCLUDED (Dan Lagala, #10102). The incentive tracker itself never
+  counted #20124 (it is not in customer_base_full.csv). Fixing the premise at
+  the source (Encompass) would make this entry unnecessary. Cache tag
+  accounts.js 20261016a.
