@@ -134,6 +134,9 @@ html:root .sb .filters,html:root .sb .ledger-filters{background:var(--kdh-surfac
 html:root .sb .led{border-color:var(--kdh-border);border-radius:12px;box-shadow:var(--kdh-shadow);background:var(--kdh-surface)}
 html:root .sb .led th{background:var(--kdh-surface-2);color:var(--kdh-text-3);font-size:13px;font-weight:500}
 html:root .sb .led td{padding-top:18px;padding-bottom:18px;border-color:var(--kdh-border);line-height:1.5}
+html:root .sb table.ledger th:last-child,html:root .sb table.ledger td:last-child{padding-left:4px;padding-right:4px}
+html:root .sb table.ledger th:last-child .column-sort{overflow-wrap:normal;word-break:normal}
+html:root .sb .received-cell .rec{white-space:nowrap;max-width:none}
 html:root .sb .led tr:nth-child(even){background:var(--kdh-surface-2)}
 html:root .sb .invoice-number{font-size:15px;font-weight:600}
 html:root .sb .received-pill,html:root .sb .sb-doc-status{border-radius:5px}
