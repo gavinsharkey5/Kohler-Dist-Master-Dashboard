@@ -63,6 +63,11 @@ device, a decision).
 
 ## Done
 
+- [x] 2026-10-16 One on-premise account that was filed as off-premise is
+  out of one rep's Lytt lists in the hub (Lytt programs only; every other
+  program keeps it). Nothing to do on your side. If the account's premise is
+  fixed in Encompass, the exclusion (LYTT_BASE_EXCLUDED in hub/accounts.js)
+  can be deleted.
 - [x] 2026-09-28 Rep pages simplified: one "Back to My Dashboards" button
   on every page, hero photos / crumbs / long intros gone for reps, MPO
   header stacked (name, premise, manager) with no Step badge, objective

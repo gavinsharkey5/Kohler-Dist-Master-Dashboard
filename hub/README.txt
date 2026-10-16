@@ -939,3 +939,19 @@ Write-back (2026-09-25): on kohlerdisthub.com every target list a rep
   top, Done / Not now fold away under the list and leave the counts.
   A manager looking at a rep (or previewing as them) sees chips only.
   Nothing renders on github.io (no auth). Cache tag 20260925h.
+
+
+Lytt-only account exclusion (2026-10-16, per Gavin: "Lena y Carbon Broaster
+  (20124) remove this account from Pablo's customer base for lytt. It is on
+  premise and is counting as off"): the Sales Reps' Customer Base files file
+  #20124 as Off Premise, so it sat in Pablo Lopez's off-premise book and
+  showed as a Lytt target. LYTT_BASE_EXCLUDED / PROGRAM_BASE_EXCLUDED at the
+  top of accounts.js now skip it in classify() for the three Lytt programs
+  only (inc:lytt, off:bbc_lytt, off:disruptors): Pablo's Lytt universe and
+  eligible list go 27 -> 26, and nobody else's change. Every other program
+  keeps the account, and data/accounts.js is untouched, so a generate.py
+  re-run cannot restore it. Same shape as incentive-tracking's
+  LYTT_BASE_EXCLUDED (Dan Lagala, #10102). The incentive tracker itself never
+  counted #20124 (it is not in customer_base_full.csv). Fixing the premise at
+  the source (Encompass) would make this entry unnecessary. Cache tag
+  accounts.js 20261016a.
