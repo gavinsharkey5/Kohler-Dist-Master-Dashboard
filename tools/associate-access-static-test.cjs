@@ -4,7 +4,7 @@ const source=fs.readFileSync(path.join(root,'middleware.js'),'utf8').replace(/^i
 const context=vm.createContext({Response,Request,URL,console});vm.runInContext(source,context);
 let checks=0;
 function route(p,role='associate',document=false){context.req=new Request('https://example.test'+p,{headers:{accept:document?'text/html':'application/json'}});context.url=new URL(context.req.url);context.verdict={ok:true,role};return vm.runInContext('route(req,url,verdict)',context);}
-for(const p of ['/accounts/field.html','/accounts/field.js','/accounts/field.css','/accounts/accounts.css','/accounts/activity.js','/api/field-accounts','/accounts/data/catalog.json','/shared/merch-types.js','/tasks/']){assert.equal(route(p).headers.get('x-middleware-next'),'1',p);checks++;}
+for(const p of ['/accounts/field.html','/accounts/field.js','/accounts/field.css','/accounts/accounts.css','/accounts/activity.js','/api/field-accounts','/api/field-accounts/','/accounts/data/catalog.json','/shared/merch-types.js','/tasks/']){assert.equal(route(p).headers.get('x-middleware-next'),'1',p);checks++;}
 for(const p of ['/accounts/data/sales/rep-one/001.json','/accounts/data/reps/rep-one.json','/hub/data/accounts.js','/supplier-budget/','/manage-programs/','/api/chat','/api/geocode']){assert.equal(route(p).status,403,p);checks++;}
 assert.ok(route('/accounts/', 'associate',true).headers.get('x-middleware-rewrite').endsWith('/accounts/field.html'));checks++;
 for(const p of ['/api/field-accounts','/accounts/field.html']){assert.equal(route(p,'rep').status,403);checks++;}

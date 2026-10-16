@@ -70,7 +70,7 @@ const ASSOCIATE_ACCOUNT_FILES = ['/accounts/field.html', '/accounts/field.js', '
 const ASSOCIATE_HOME = '/tasks/';
 function associateMayOpen(pathname) {
   const p = pathname.split('?')[0];
-  return ASSOCIATE_ACCOUNT_FILES.includes(p) || ASSOCIATE_PATHS.some((pre) => p.startsWith(pre) || p + '/' === pre || p === pre.replace(/\/$/, '') + '/index.html');
+  return ASSOCIATE_ACCOUNT_FILES.includes(p.replace(/\/$/,'')) || ASSOCIATE_PATHS.some((pre) => p.startsWith(pre) || p + '/' === pre || p === pre.replace(/\/$/, '') + '/index.html');
 }
 
 // The FINANCE workspace (allowed_users.workspace = 'finance', 2026-10-15): a
