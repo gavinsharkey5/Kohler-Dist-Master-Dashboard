@@ -3448,3 +3448,12 @@ not load it from /merchandising/). Also fixed: associates were blocked from /rep
 same bug as finance), now in ASSOCIATE_PATHS. Tests (scratchpad upc2/): upc_test.mjs 46, sql_upc_test.sh 32,
 mw_test.mjs (IT routing + every asset of upc-audit and tasks passes). kdh-user.js 20261015h everywhere.
 
+
+## Sept-Nov incentives are NOT frozen with September (2026-10-16)
+
+constellation_fall, mabi_retention_fall and yuengling_retention_fall live in the September
+blob (the October tab reads them via sept()), so the 2026-10-05 closed-month freeze had been
+holding them at that day's data. generate.py `SEPT_PROGRAMS_STILL_RUNNING` now rebuilds them
+live over data/frozen/; every other September program stays frozen. Constellation Fall's six
+exports were refreshed the same day (incentive-tracking/README.txt has the numbers). On
+Windows run the generator with PYTHONUTF8=1.

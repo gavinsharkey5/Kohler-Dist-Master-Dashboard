@@ -5299,6 +5299,9 @@ def build_four_loko():
                      "placeWindow": cur_w, "placeBaseWindow": base_w, "offRoster": off_roster}}
 
 
+SEPT_PROGRAMS_STILL_RUNNING = ("constellation_fall", "mabi_retention_fall", "yuengling_retention_fall")
+
+
 def main():
     if "--freeze-constellation-fall-off-goals" in sys.argv:
         freeze_constellation_fall_off_goals()
@@ -5566,6 +5569,10 @@ def main():
           f"({sum(len(d['off']['atRisk']) + len(d['onPkg']['atRisk']) for d in yu.values())} at risk) | draft "
           f"{sum(d['draft']['units'] for d in yu.values())} units across {sum(1 for d in yu.values() if d['draftInReport'])} reps (no goals tracked)")
 
+    # SEPT-NOV PROGRAMS ARE NOT CLOSED (2026-10-16). They are registered in the
+    # September blob (the October tab reads them through sept()), so the freeze
+    # below must not restore them: they rebuild on every run until Nov 30.
+    # Before this, the 2026-10-05 freeze silently held them at that day's data.
     # CLOSED MONTHS ARE PUBLISHED SNAPSHOTS (Gavin, 2026-10-05). August and
     # September are restored from data/frozen/ so a customer-base or CSV refresh
     # cannot move a finished month's numbers; only October (and later) rebuild.
@@ -5579,15 +5586,23 @@ def main():
         if all(p.exists() for p in frozen.values()):
             fresh_08 = json.dumps(data, sort_keys=True)
             fresh_09 = json.dumps(data_09, sort_keys=True)
-            data = json.loads(frozen["data"].read_text())
-            data_09 = json.loads(frozen["data_09"].read_text())
+            live_09 = {k: data_09[k] for k in SEPT_PROGRAMS_STILL_RUNNING if k in data_09}
+            data = json.loads(frozen["data"].read_text(encoding="utf-8"))
+            data_09 = json.loads(frozen["data_09"].read_text(encoding="utf-8"))
+            # Sept-Nov programs live in the September blob but are NOT closed:
+            # they keep rebuilding until their period ends.
+            stale = sorted(k for k, v in live_09.items() if data_09.get(k) != v)
+            data_09.update(live_09)
+            if stale:
+                print(f"Still-running programs in the September blob rebuilt live: {', '.join(stale)}")
+            fresh_09 = json.dumps(data_09, sort_keys=True)
             moved = [n for n, was, now in (("August", json.dumps(data, sort_keys=True), fresh_08),
                                            ("September", json.dumps(data_09, sort_keys=True), fresh_09)) if was != now]
             print("Closed months restored from data/frozen/ (August, September)"
                   + (f"; this run would have changed: {', '.join(moved)} (not applied -- KDH_UNFREEZE=1 to apply)" if moved else "; no difference"))
 
     payload = json.dumps(data, indent=2)
-    html = INDEX_HTML.read_text()
+    html = INDEX_HTML.read_text(encoding="utf-8")
     start_marker = "/* PROGRAM_DATA_START */"
     end_marker = "/* PROGRAM_DATA_END */"
     start = html.index(start_marker) + len(start_marker)
@@ -5620,9 +5635,9 @@ def main():
     try:
         from zoneinfo import ZoneInfo
         now_et = now_utc.astimezone(ZoneInfo("America/New_York"))
-        today = now_et.strftime("%b %-d, %Y, %-I:%M %p ET")
+        today = f"{now_et:%b} {now_et.day}, {now_et.year}, {now_et.hour % 12 or 12}:{now_et:%M %p} ET"
     except Exception:
-        today = now_utc.strftime("%b %-d, %Y, %-I:%M %p UTC")
+        today = f"{now_utc:%b} {now_utc.day}, {now_utc.year}, {now_utc.hour % 12 or 12}:{now_utc:%M %p} UTC"
     refreshed_at = now_utc.isoformat().replace("+00:00", "Z")
     date_start_marker = "<!-- DATA_REFRESHED_START -->"
     date_end_marker = "<!-- DATA_REFRESHED_END -->"
@@ -5631,7 +5646,7 @@ def main():
     html = html[:date_start] + today + html[date_end:]
 
     check_registry_metrics(html + PROGRAMS_JS.read_text(), data, data_09)
-    INDEX_HTML.write_text(html)
+    INDEX_HTML.write_text(html, encoding="utf-8")
     print(f"Wrote PROGRAM_DATA into index.html, stamped Data Refreshed as {today}")
 
     # The hub (hub/index.html) reads these same blobs as a script of its own

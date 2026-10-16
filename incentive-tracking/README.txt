@@ -5596,3 +5596,30 @@ Programs with zero "$" in Rep Mode, Chris Payton has neither, detail
 pages read "1065.8 package CE / 67 kegs" and "25 new 6pk PODs / 55 PODs
 active"; the tracker's September rep view shows both cards.
 Hub cache tag bumped for the new programs.js / program_data.js.
+
+2026-10-16 REFRESH -- Constellation Fall, all six exports (first since 9/30)
+Packages ON, Draft ON, Impact OFF, Modelo Gaintain OFF, Corona Gaintain OFF
+(w/ Goals shape) and Innovation OFF (w/ Goals shape -- the same file the October
+Off-Premise MPO already loaded this morning; its numbers are unchanged there).
+
+  Off-premise   Corona Gaintain 1,292 -> 1,438 / 1,610 · Modelo Gaintain 2,122
+                -> 2,270 / 2,395 · Impact 2,955 -> 3,341 / 3,452 · Innovation
+                650 -> 882 / 1,400. 3 of 22 reps hold every off-prem category.
+  On-prem pkg   1,340 -> 1,531 of 2,107 buyers; 6 of 20 reps hold every family.
+  On-prem draft 172 -> 206 of 381 buyers; 16 empty-keg pickups excluded.
+  Overall       1 of 24 reps holding every goal across off + on. Day 46 of 91.
+
+Goals held: Innovation's export Goals column is 90% of the frozen spring base
+(Matt Powierski 148 vs 164); the frozen 100% goal stands, per the 2026-09-08 rule.
+Corona Gaintain's Goals column equals the frozen goals. Drift: 1 Modelo Gaintain
+SKU row and 2 on-prem package family rows (Pablo Lopez), frozen wins.
+
+FIX -- SEPT-NOV PROGRAMS WERE HELD BY THE CLOSED-MONTH FREEZE. constellation_fall,
+mabi_retention_fall and yuengling_retention_fall are registered in the September
+blob (the October tab reads them through sept()), and the 2026-10-05 freeze restored
+the whole September blob, so all three sat at that day's numbers ("day 31 of 91").
+generate.py now carries SEPT_PROGRAMS_STILL_RUNNING live over the frozen blob until
+the period ends; every other September program stays frozen (verified: nothing else
+in September moved). MABI and Yuengling moved only their day / pace fields -- no
+new data since 9/30. Also: the "Data Refreshed" stamp no longer uses %-d (crashed
+on Windows Python), and index.html is read / written as UTF-8.
