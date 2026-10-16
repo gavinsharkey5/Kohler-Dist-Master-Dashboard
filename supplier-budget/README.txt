@@ -163,6 +163,20 @@ ROUND TWO (2026-10-15, Gavin; migration 20261015150000_budget_rules.sql)
     rides along onto the next form (it did).
 
 INVOICE DOCUMENTS (2026-10-16)
+  FOLLOW-UP: New Expense now accepts one or more PDFs before Save or Save and Add
+  Another. Files are validated before the expense insert. Once the expense returns
+  its permanent ID, selected PDFs attach to that row. A failed PDF upload opens the
+  saved expense with Retry Selected PDFs, never another expense insert. Selection
+  clears after a successful save, Save and Add Another, or Cancel. An unfinished
+  file selection/retry queue lives in the current page; after reloading, use Attach
+  PDF on the saved expense. Editor permissions are unchanged.
+
+  LEDGER LAYOUT: nine grouped columns replace fifteen narrow columns. Date includes
+  year and entry time; Vendor includes Description; Account includes GL Code and
+  Brand Manager; Items includes Notes. Total, Kohler Spend and Billback remain
+  aligned columns. The Sort By control retains every original field and direction;
+  CSV exports are unchanged. Below 1280px, labelled cards keep the page readable.
+
   Apply migrations 20261016150055_supplier_invoice_documents.sql and
   20261016150710_invoice_document_grants.sql. Already applied to the connected
   Kohler Dist Hub project during implementation; other environments need both.
@@ -179,7 +193,7 @@ INVOICE DOCUMENTS (2026-10-16)
 
   Ledger invoice cells and phone cards show View PDF, Open in Encompass, Missing
   PDF and (editors) Attach PDF. The saved expense edit/read view also has documents.
-  New expenses must be saved first. PDF status failures say "unavailable", not
+  New Expense uploads save immediately after the expense. PDF status failures say "unavailable", not
   "missing". View PDF creates a private signed link valid for 60 seconds, opening
   the browser PDF viewer (which also offers download). The supplied Kohler Encompass
   invoice address is the default; a saved invoice_link setting overrides it.
