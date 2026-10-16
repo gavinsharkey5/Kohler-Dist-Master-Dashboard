@@ -1,12 +1,6 @@
-/* Kohler Distribution Hub -- who is signed in, for the pages.
-   /login/ leaves a readable `kdh_user` cookie ({name, role, email, title,
-   dm}). A manager can also set `kdh_preview` (from the rep workspace's
-   "Preview as this rep", or -- Gavin only -- the manager page's "Preview
-   as this manager") and then every page behaves as if that person had
-   signed in, with a fixed bar at the bottom to exit. The cookie is a bare
-   rep name, or JSON {name, role:'manager', title, dm} for a manager.
-   Access is decided by the Vercel middleware from the real login, never
-   by these cookies. */
+/* Kohler Distribution Hub -- signed-in identity and role-scoped navigation.
+   View As is disabled. Legacy preview cookies are ignored and cleared.
+   Server middleware and database policies decide access from the real login. */
 (function (global) {
   function cookie(name) {
     var m = document.cookie.match(new RegExp('(?:^|;\\s*)' + name + '=([^;]*)'));
@@ -16,16 +10,6 @@
     try {
       var u = JSON.parse(cookie('kdh_user') || 'null');
       if (!u) return null;
-      if (u.role === 'manager') {
-        var p = cookie('kdh_preview');
-        if (p) {
-          var o = null; try { o = p.charAt(0) === '{' ? JSON.parse(p) : null; } catch (e2) {}
-          if (o && o.role === 'manager' && o.name) return { name: o.name, role: 'manager', preview: true, manager: u.name, email: u.email, title: o.title || '', dm: o.dm || '', brands: Array.isArray(o.brands) && o.brands.length ? o.brands.slice() : null, ws: o.ws || '' };
-          // an associate preview (2026-10-14): the whole site becomes that associate's (one page, Field Tasks)
-          if (o && o.role === 'associate' && o.name) return { name: o.name, role: 'associate', preview: true, manager: u.name, email: u.email, title: '', dm: '', previewEmail: o.email || '' };
-          return { name: (o && o.name) || p, role: 'rep', preview: true, manager: u.name, email: u.email, title: '', dm: '' };
-        }
-      }
       return u;
     } catch (e) { return null; }
   }
@@ -34,11 +18,9 @@
   // kdh_ask:<viewer>:<account>; a change of who we are looking as drops them
   // all so the next person (or the manager back in their own shoes) starts clean.
   function forgetAsk() { try { Object.keys(sessionStorage).filter(function (k) { return k.indexOf('kdh_ask:') === 0; }).forEach(function (k) { sessionStorage.removeItem(k); }); } catch (e) {} }
-  function setPreview(v) {
-    forgetAsk();
-    forgetNav();
-    var val = v && typeof v === 'object' ? JSON.stringify(v) : (v || '');
-    document.cookie = 'kdh_preview=' + encodeURIComponent(val) + '; Path=/; Max-Age=' + (val ? 86400 : 0) + '; Secure; SameSite=Lax';
+  function setPreview() {
+    forgetAsk(); forgetNav();
+    document.cookie = 'kdh_preview=; Path=/; Max-Age=0; SameSite=Lax';
   }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   // THE PREVIEW INDICATOR (2026-09-30): one small chip in the top bar --
@@ -71,7 +53,7 @@
   })();
   var REP_HOME = ROOT + 'rep/';
   // Sales associates use Field Tasks and the account photo directory.
-  var ASSOC_HOME = ROOT + 'tasks/';
+  var ASSOC_HOME = ROOT + 'associate/';
   function isAssoc(u) { return !!(u && u.role === 'associate'); }
   // the FINANCE workspace (allowed_users.workspace = 'finance', 2026-10-15): a manager -- Alexis, billbacks and
   // supplier recaps -- whose site is the Incentive Hub, the Incentive Tracker, both MPO trackers, Supplier Budgets
@@ -238,7 +220,7 @@
   function progDefault(u) { return ROOT + 'hub/' + (u.role === 'manager' ? '' : '#view=rep&rep=' + encodeURIComponent(u.name) + '&cat=inc'); }
   function navItems(u) {
     if (!u) return [];
-    if (isAssoc(u)) return [{ key: 'home', label: 'Home', href: ASSOC_HOME }, { key: 'accounts', label: 'Accounts', href: ROOT + 'accounts/field.html' }];
+    if (isAssoc(u)) return [{ key: 'home', label: 'Home', href: ASSOC_HOME }, { key: 'accounts', label: 'Accounts', href: ROOT + 'accounts/field.html' }, { key: 'tasks', label: 'Field Tasks', href: ROOT + 'tasks/' }];
     if (isIT(u)) return [{ key: 'upc', label: 'UPC Audit', href: IT_HOME }];
     if (isFin(u)) return [
       { key: 'home', label: 'Home', href: FIN_HOME },
@@ -281,7 +263,6 @@
     if (isMgr) t.push({ key: 'nb', group: 'Manager', label: 'Non-Buy Reports', href: ROOT + 'nonbuy/' });
     if (isMgr) t.push({ key: 'sb', group: 'Manager', label: 'Supplier Budgets', href: ROOT + 'supplier-budget/' });
     if (canUpc(u)) t.push({ key: 'upc', group: 'Manager', label: 'UPC Registration Audit', href: IT_HOME });
-    if (isMgr) t.push({ key: 'ws', group: 'Manager', label: 'Rep Workspace', href: REP_HOME });
     return t;
   }
   // where this page sits: {nav: primary key, tool: tool key or ''}
@@ -297,7 +278,8 @@
       return { nav: rel === '' || rel === 'index.html' ? 'home' : '', tool: '' };
     }
     if (/^upc-audit\//.test(rel)) return isIT(u) ? { nav: 'upc', tool: '' } : { nav: 'more', tool: 'upc' };
-    if (/^tasks\//.test(rel)) return isAssoc(u) ? { nav: 'home', tool: '' } : { nav: 'more', tool: 'tasks' };
+    if (/^associate\//.test(rel)) return { nav: 'home', tool: '' };
+    if (/^tasks\//.test(rel)) return isAssoc(u) ? { nav: 'tasks', tool: '' } : { nav: 'more', tool: 'tasks' };
     if (/^accounts\//.test(rel)) return { nav: 'accounts', tool: '' };
     if (/^hub\//.test(rel)) {   // the hub's MPO tabs mark their MPO item (2026-10-06)
       var cat = (location.hash.match(/[#&]cat=([^&]+)/) || [])[1];
@@ -451,7 +433,7 @@
     // BACK: concise, contextual, and only when it adds a destination the
     // navigation does not already show (the Incentive Hub a tracker was
     // opened from, Team Activity, the rep workspace).
-    if (!isHomePage() && !isAssoc(u) && !isIT(u)) {   // an associate's / IT's only page is their home
+    if (!isHomePage() && !isIT(u)) {
       var back = returnTarget();
       var dup = u && (back.href === home || back.href === homeOf(u) || /Back to (Rep|Manager) Home/.test(back.label) && back.href === home);
       if (!u || !dup) acts += '<a class="kdh-b kdh-outline kdh-back" href="' + esc(back.href) + '">' + BACK + '<span>' + esc(back.label.replace(/^Back to /, '')) + '</span></a>';
@@ -488,10 +470,6 @@
     var role = isFin(u) && !u.preview ? 'Finance' : isMgr || u.preview ? 'Manager' : isAssoc(u) ? 'Sales Associate' : isIT(u) ? 'IT' : 'Sales Rep';
     var w = where(u);
     var items = '';
-    if ((isMgr && !isFin(u)) || u.preview) {
-      items += '<button type="button" class="kdh-menu-i" id="kdhViewAsRep">' + NAV_ICON.eye + '<span>View As</span><small>See the site as a ' + (isOwner(u) ? 'manager, rep or associate' : 'rep or associate') + '</small></button>';
-      if (u.preview) items += '<button type="button" class="kdh-menu-i" id="kdhExitPreview2">' + BACK + '<span>Exit Preview</span><small>Back to your own pages</small></button>';
-    }
     // the tools: listed here for phones and iPads; the desktop sidebar shows them itself
     var tools = toolItems(u), groups = [];
     tools.forEach(function (t) { if (groups.indexOf(t.group) < 0) groups.push(t.group); });
@@ -526,146 +504,12 @@
     var mc = document.getElementById('kdhMenuClose'); if (mc) mc.addEventListener('click', function (e) { e.stopPropagation(); openMenu(false); });
     if (document.__kdhMenuDoc) return; document.__kdhMenuDoc = 1;
     document.addEventListener('click', function (e) { var m = document.getElementById('kdhMenu'); if (m && !m.hidden && !m.contains(e.target)) openMenu(false); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { openMenu(false); closePicker(); } });
-    var v = document.getElementById('kdhViewAsRep'); if (v) v.addEventListener('click', function () { openMenu(false); viewAs(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { openMenu(false); } });
     var x2 = document.getElementById('kdhExitPreview2'); if (x2) x2.addEventListener('click', exitPreview);
     themeLabel();
   }
-  // ---- "View as rep": a searchable rep picker (2026-09-30) ----
-  // A manager picks a rep and the whole site shows what that rep sees
-  // (the kdh_preview cookie), starting on the rep's home page. The roster
-  // is the DM groups file (shared/dm-groups.js, loaded on demand); a
-  // district manager only sees their own team. Reads on the page are the
-  // rep's own -- writes (Done / Follow up / Not now) stay off in preview.
-  function loadGroups(cb) {
-    if (global.KDH_DM_GROUPS) return cb(global.KDH_DM_GROUPS);
-    var s = document.createElement('script'); s.src = ROOT + 'shared/dm-groups.js';
-    s.onload = function () { cb(global.KDH_DM_GROUPS || []); }; s.onerror = function () { cb([]); };
-    document.head.appendChild(s);
-  }
-  function closePicker() { var p = document.getElementById('kdhPicker'); if (p) p.hidden = true; }
-  // VIEW AS (2026-10-14, Gavin: "combine View as and create a dropdown that allows me to
-  // preview as a manager, rep and associate"). One sheet, a role row on top:
-  //   Rep        every manager; a DM sees their team (dm-groups, as before) -> /rep/
-  //   Associate  every manager; kdh_people('associate') -> /tasks/ (their one page)
-  //   Manager    Gavin only (OWNER); kdh_team's managers -> the manager home
-  // The preview cookie is the same as before (a bare name = rep; JSON with role for a
-  // manager or an associate). Picking yourself on the Manager list = exit. Reads are the
-  // previewed person's; writes stay off everywhere in preview.
   var OWNER = 'g.sharkey@kohlerdist.com';
   function isOwner(u) { return !!(u && String(u.email || '').toLowerCase() === OWNER); }
-  var ROLE_TEXT = {
-    rep: { title: 'View as Rep', sub: 'Every page will show exactly what this rep sees. Their notes and follow-ups stay read-only while you preview.', search: 'Search reps', empty: 'No rep matches' },
-    associate: { title: 'View as Associate', sub: 'The site becomes that associate’s: their Field Tasks queue, read-only.', search: 'Search associates', empty: 'No associate matches' },
-    manager: { title: 'View as Manager', sub: 'Every page will show what this manager sees (their team, their brands). Pick yourself to leave preview.', search: 'Search managers', empty: 'No manager matches' }
-  };
-  var pickRole = 'rep', pickerGroups = [], peopleCache = {};
-  function rpc(name, body) {
-    var cfg = global.KDH_AUTH || {}, tok = cookie('kdh_at');
-    if (!cfg.url || !cfg.key || !tok) return Promise.resolve(null);
-    return fetch(String(cfg.url).replace(/\/$/, '') + '/rest/v1/rpc/' + name, { method: 'POST', headers: { apikey: cfg.key, authorization: 'Bearer ' + tok, 'content-type': 'application/json' }, body: JSON.stringify(body || {}) })
-      .then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
-  }
-  function loadPeople(role, cb) {
-    if (peopleCache[role]) return cb(peopleCache[role]);
-    if (role === 'rep') return loadGroups(function (groups) {
-      var T = team(groups);
-      var g = (T ? groups.filter(function (g) { return g.dm === T.dm || g.under === T.dm; }) : groups)
-        .map(function (g) { return { dm: g.dm, people: (g.reps || []).filter(isRep).slice().sort().map(function (r) { return { name: r }; }) }; }).filter(function (g) { return g.people.length; });
-      peopleCache.rep = g; cb(g);
-    });
-    if (role === 'associate') return rpc('kdh_people', { p_role: 'associate' }).then(function (rows) {
-      var list = (rows || []).filter(function (r) { return r && r.name; }).map(function (r) { return { name: r.name, email: r.email || '', dm: r.reports_to || '' }; });
-      var g = list.length ? [{ dm: '', people: list }] : [];
-      peopleCache.associate = g; cb(g);
-    });
-    return rpc('kdh_team', {}).then(function (team) {
-      var mgrs = (team || []).filter(function (t) { return t && t.role === 'manager' && t.name; }).sort(function (a, b) { return a.name.localeCompare(b.name); });
-      // names only; when a name appears twice the entry with no title is that person's personal (test) account
-      var seen = {}; mgrs.forEach(function (m) { seen[m.name] = (seen[m.name] || 0) + 1; });
-      var list = mgrs.map(function (m) { return { name: m.name, label: m.name + (seen[m.name] > 1 && !m.title ? ' (Personal)' : ''), title: m.title || '', dm: m.reports_to || '', brands: Array.isArray(m.program_brands) ? m.program_brands.filter(Boolean) : [], ws: m.workspace || '' }; });
-      var g = list.length ? [{ dm: '', people: list }] : [];
-      peopleCache.manager = g; cb(g);
-    });
-  }
-  function viewAs(role) {
-    var u = user(); if (!u || u.role !== 'manager' && !(u.preview && isOwner(u))) return;
-    var owner = isOwner(u);
-    var p = document.getElementById('kdhPicker');
-    if (!p) {
-      if (!document.getElementById('kdhPickerCss')) {
-        var st = document.createElement('style'); st.id = 'kdhPickerCss';
-        st.textContent = '#kdhPicker .kdh-sheet-roles,#kdhPicker .kdh-sheet-h,#kdhPicker .kdh-sheet-p,#kdhPicker #kdhPickerSearch{flex:none}' +
-          '.kdh-sheet-roles{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;border:1px solid var(--kdh-border-2);border-radius:10px;overflow:hidden;margin:10px 0 8px}' +
-          '.kdh-sheet-roles button{min-height:44px!important;height:44px;padding:0 6px;line-height:1.2;border:0;border-left:1px solid var(--kdh-border);background:var(--kdh-surface);font:inherit;font-size:15px;font-weight:600;color:var(--kdh-text-2);cursor:pointer;white-space:nowrap}' +
-          '.kdh-sheet-roles button:first-child{border-left:0}.kdh-sheet-roles button[aria-selected="true"]{background:var(--kdh-brand);color:var(--kdh-brand-ink)}' +
-          '.kdh-sheet-i small{display:block;font-weight:500;font-size:13px;color:var(--kdh-text-3)}';
-        document.head.appendChild(st);
-      }
-      p = document.createElement('div'); p.id = 'kdhPicker'; p.className = 'kdh-sheet-wrap';
-      p.innerHTML = '<div class="kdh-sheet-back"></div><div class="kdh-sheet" role="dialog" aria-modal="true" aria-labelledby="kdhPickerTitle">' +
-        '<div class="kdh-sheet-h"><b id="kdhPickerTitle">View As</b><button type="button" class="kdh-sheet-x" aria-label="Close">Close</button></div>' +
-        '<div class="kdh-sheet-roles" role="tablist" aria-label="Who to view as" id="kdhPickerRoles">' +
-          (owner ? '<button type="button" role="tab" data-role="manager">Manager</button>' : '') +
-          '<button type="button" role="tab" data-role="rep">Rep</button><button type="button" role="tab" data-role="associate">Associate</button></div>' +
-        '<p class="kdh-sheet-p" id="kdhPickerSub"></p>' +
-        '<input type="search" id="kdhPickerSearch" class="kdh-field" placeholder="Search" autocomplete="off" aria-label="Search">' +
-        '<div id="kdhPickerList" class="kdh-sheet-list"><div class="kdh-sheet-empty">Loading…</div></div></div>';
-      document.body.appendChild(p);
-      p.querySelector('.kdh-sheet-back').addEventListener('click', closePicker);
-      p.querySelector('.kdh-sheet-x').addEventListener('click', closePicker);
-      p.querySelector('#kdhPickerRoles').addEventListener('click', function (e) { var b = e.target.closest('[data-role]'); if (b) showRole(b.getAttribute('data-role')); });
-      p.addEventListener('click', function (e) {
-        var b = e.target.closest('[data-pick]'); if (!b) return;
-        var cur = user(), who = {}; try { who = JSON.parse(b.getAttribute('data-pick')); } catch (e2) { return; }
-        if (pickRole === 'rep') { setPreview(who.name); location.href = REP_HOME; return; }
-        if (pickRole === 'associate') { setPreview({ name: who.name, role: 'associate', email: who.email || '' }); location.href = ASSOC_HOME; return; }
-        // manager: picking yourself = leave preview
-        var me = cur && (cur.preview ? cur.manager : cur.name);
-        if (who.name === me) setPreview(''); else setPreview({ name: who.name, role: 'manager', title: who.title || '', dm: who.dm || '', brands: who.brands || [], ws: who.ws || '' });
-        location.href = ROOT || '/';
-      });
-      document.getElementById('kdhPickerSearch').addEventListener('input', function () { renderPicker(this.value); });
-    }
-    p.hidden = false;
-    showRole(role || (u.preview ? u.role : 'rep'));
-  }
-  function showRole(role) {
-    if (role === 'manager' && !isOwner(user())) role = 'rep';
-    pickRole = role;
-    var T = ROLE_TEXT[role];
-    Array.prototype.forEach.call(document.querySelectorAll('#kdhPickerRoles [data-role]'), function (b) { b.setAttribute('aria-selected', b.getAttribute('data-role') === role ? 'true' : 'false'); });
-    document.getElementById('kdhPickerTitle').textContent = T.title;
-    document.getElementById('kdhPickerSub').textContent = T.sub;
-    var inp = document.getElementById('kdhPickerSearch'); inp.value = ''; inp.placeholder = T.search; inp.setAttribute('aria-label', T.search);
-    document.getElementById('kdhPickerList').innerHTML = '<div class="kdh-sheet-empty">Loading…</div>';
-    pickerGroups = [];
-    loadPeople(role, function (groups) {
-      if (pickRole !== role) return;
-      pickerGroups = groups;
-      renderPicker('');
-      if (window.innerWidth >= 700) setTimeout(function () { inp.focus(); }, 50);
-    });
-  }
-  function renderPicker(q) {
-    var list = document.getElementById('kdhPickerList'); if (!list) return;
-    var cur = user(); var now = cur && cur.preview && cur.role === pickRole ? cur.name : '';
-    var me = pickRole === 'manager' && cur ? (cur.preview ? cur.manager : cur.name) : '';
-    q = String(q || '').trim().toLowerCase();
-    var html = '';
-    pickerGroups.forEach(function (g) {
-      var people = g.people.filter(function (r) { return !q || r.name.toLowerCase().indexOf(q) >= 0 || (g.dm || '').toLowerCase().indexOf(q) >= 0; });
-      if (!people.length) return;
-      html += (g.dm ? '<div class="kdh-sheet-dm">' + esc(g.dm) + '</div>' : '') + people.map(function (r) {
-        var on = r.name === now, self = r.name === me && !cur.preview;
-        return '<button type="button" class="kdh-sheet-i' + (on ? ' on' : '') + '" data-rep="' + esc(r.name) + '" data-pick="' + esc(JSON.stringify(r)) + '"><span class="kdh-av">' + esc(initials(r.name)) + '</span><span>' + esc(r.label || r.name) +
-          (on ? '<small>Previewing now</small>' : self ? '<small>You</small>' : r.name === me && cur.preview ? '<small>Leave preview</small>' : r.dm && pickRole !== 'rep' ? '<small>Reports to ' + esc(r.dm) + '</small>' : '') + '</span></button>';
-      }).join('');
-    });
-    var T = ROLE_TEXT[pickRole];
-    list.innerHTML = html || '<div class="kdh-sheet-empty">' + (q ? T.empty + ' “' + esc(q) + '”.' : pickRole === 'associate' ? 'No sales associates are on the allow list yet.' : 'Nobody to show.') + '</div>';
-  }
-  function viewAsRep() { viewAs('rep'); }
   // "Viewing <rep>" in the top bar: a manager looking at one rep's page
   // says so next to the way back. changeHref (optional) is where "Change"
   // goes -- the page's own picker. Pass '' to clear.
@@ -850,10 +694,8 @@
   global.kdhPreviewBar = bar;
   global.kdhBackBar = backBar;
   global.kdhViewing = viewing;
-  global.kdhViewAsRep = viewAsRep;
   global.kdhIsFinance = isFin;
   global.kdhCanUpc = canUpc;
-  global.kdhViewAs = viewAs;
   global.kdhIsOwner = isOwner;
   global.kdhExitPreview = exitPreview;
   global.kdhReturnTarget = returnTarget;
@@ -954,7 +796,7 @@
     if (window.KDH_AUTH) return ask();
     var sc = document.createElement('script'); sc.src = (ROOT || '/') + 'shared/auth-config.js'; sc.onload = ask; document.head.appendChild(sc);
   }
-  function boot() { chrome(); bar(); watchType(); keepAlive(); checkUpc();
+  function boot() { if(cookie('kdh_preview'))setPreview(); chrome(); bar(); watchType(); keepAlive(); checkUpc();
     var signatureBar=document.querySelector('.kdh-bar');if(signatureBar){var signatureBarSize=function(){document.documentElement.style.setProperty('--signature-bar-height',signatureBar.getBoundingClientRect().height+'px');};signatureBarSize();if(window.ResizeObserver)new ResizeObserver(signatureBarSize).observe(signatureBar);}
     if(document.querySelector('main.home')){var signature=document.createElement('script');signature.src=(ROOT||'/')+'shared/signature-home.js?v=20261016signature1';document.head.appendChild(signature);}
     if (user() && (user().preview || user().ws === 'finance')) document.querySelectorAll('[data-my-day]').forEach(function(el){el.hidden=true;});

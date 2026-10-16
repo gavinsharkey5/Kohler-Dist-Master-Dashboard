@@ -65,9 +65,9 @@ const REP_HOME = '/rep/';
 // A SALES ASSOCIATE (allowed_users.role = 'associate', 2026-10-14) does field
 // work reps hand them, plus photos on every customer account. Their account
 // directory contains identity/location only; task rows remain RLS scoped.
-const ASSOCIATE_PATHS = ['/tasks/', '/shared/', '/rep/rep.css'];
+const ASSOCIATE_PATHS = ['/associate/', '/tasks/', '/shared/', '/rep/rep.css'];
 const ASSOCIATE_ACCOUNT_FILES = ['/accounts/field.html', '/accounts/field.js', '/accounts/field.css', '/accounts/accounts.css', '/accounts/activity.js', '/accounts/data/catalog.json', '/api/field-accounts'];
-const ASSOCIATE_HOME = '/tasks/';
+const ASSOCIATE_HOME = '/associate/';
 function associateMayOpen(pathname) {
   const p = pathname.split('?')[0];
   return ASSOCIATE_ACCOUNT_FILES.includes(p.replace(/\/$/,'')) || ASSOCIATE_PATHS.some((pre) => p.startsWith(pre) || p + '/' === pre || p === pre.replace(/\/$/, '') + '/index.html');
@@ -263,6 +263,7 @@ function route(request, url, verdict) {
       return redirect(new URL(IT_HOME, url).toString());
     }
     if (verdict.role === 'manager') {
+      if (wantsDocument(request) && /^\/(rep|associate)\/(index\.html)?$/.test(url.pathname)) return redirect(new URL('/',url).toString());
       if (isUpcPath(url.pathname)) {
         if (verdict.upc) return passThrough();
         if (!wantsDocument(request)) {

@@ -371,7 +371,7 @@
       return r && r.busy ? null : r;
     });
   }
-  function homeFor(role) { return next === '/' && role !== 'manager' ? (role === 'it' ? '/upc-audit/' : role === 'associate' ? '/tasks/' : '/rep/') : next; }
+  function homeFor(role) { return next === '/' && role !== 'manager' ? (role === 'it' ? '/upc-audit/' : role === 'associate' ? '/associate/' : '/rep/') : next; }
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];

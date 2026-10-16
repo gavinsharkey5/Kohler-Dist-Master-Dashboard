@@ -20,6 +20,7 @@ http.createServer((req,res)=>{
  if(p==='/shared/auth-config.js'){res.setHeader('content-type',types['.js']);return res.end('window.KDH_AUTH={url:'+JSON.stringify(origin)+',key:"synthetic-preview"}');}
  if(p==='/api/session')return json(res,{});
  if(p==='/api/field-accounts')return json(res,{accounts:fieldAccounts});
+ if(p==='/hub/data/accounts.js'){res.setHeader('content-type',types['.js']);return res.end('const HUB_ACCOUNTS='+JSON.stringify({asOf:'2026-10-16',reps:{'Preview Rep':[{n:101,name:'Example Market',city:'Hawthorne',area:'Passaic',prem:'Off'}]}})+';const HUB_BRANDS={};');}
  if(p==='/accounts/data/catalog.json')return json(res,{products:[[101,'Example Lager','Example Supplier','Example Brand','Case']],inventory:{}});
  let user=people.manager;try{user=JSON.parse(decodeURIComponent((req.headers.cookie||'').match(/kdh_user=([^;]+)/)?.[1]||''));}catch{}
  if(p.startsWith('/rest/v1/')){

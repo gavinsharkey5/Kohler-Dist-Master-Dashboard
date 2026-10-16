@@ -669,10 +669,7 @@ async function handle(request) {
   // 4. the record and the caller's notes, from trusted sources
   const [sales, notes, contact] = await Promise.all([src.account(repKey, n), src.notes(n, routeRep), src.contact ? src.contact(n) : null]);
   const R = makeRecord(row, sales, route);
-  const previewOf = who.role === 'manager' ? readCookie(request.headers.get('cookie'), 'kdh_preview') : '';
-  let previewName = '';
-  if (previewOf) { try { const o = previewOf.charAt(0) === '{' ? JSON.parse(previewOf) : null; previewName = (o && o.name) || previewOf; } catch { previewName = previewOf; } }
-  const viewer = { name: who.name || 'a Kohler user', role: who.role || 'rep', preview: previewName ? `previewing ${previewName} (read-only)` : undefined };
+  const viewer = { name: who.name || 'a Kohler user', role: who.role || 'rep' };
   const packet = packetFor(R, viewer, notes, { warehouse: page && page.warehouse, contact });
 
   // 5. spend limits
