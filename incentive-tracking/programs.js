@@ -515,11 +515,11 @@ const PROGRAM_LIST_2026_10 = [
    getRep:oct('heineken_husa'),
    metric:d=>d.overallPct, metricLabel:'% of overall goal', fmt:v=>v.toFixed(0)+'%',
    awaitingNote:`Awaiting the Heineken USA distribution export — the goals above are the deck's; your numbers fill in once the data lands.`},
-  {key:'new_belgium_distribution_retain', group:'retention', title:'New Belgium Distribution — Retain', shortTitle:'New Belgium', tag:'Oct–Nov',
-   pitch:`Retain every New Belgium core brand goal through November — Voodoo 12pk, Voodoo 19.2oz, Hearted Family and Kirin.`,
+  {key:'new_belgium_distribution_retain', group:'retention', title:'New Belgium Distribution — Retain', shortTitle:'New Belgium', tag:'Sept–Dec',
+   period:{start:'2026-09-01',end:'2026-12-31'},
+   pitch:`Hold the report's off-premise distribution goals through December — Voodoo 12pk, Voodoo 19.2oz, and Hearted / Kirin six-packs.`,
    getRep:oct('new_belgium_distribution_retain'),
-   metric:d=>d.overallPct, metricLabel:'% of goals retained', fmt:v=>v.toFixed(0)+'%',
-   awaitingNote:`Awaiting the New Belgium retention export — the goals above are the deck's; your numbers fill in once the data lands.`},
+   metric:d=>d.overallPct, metricLabel:'% of package-group goals covered', fmt:v=>v.toFixed(1)+'%'},
 ];
 
 // Month tabs. September is the landing page as of 2026-09-04 (per Gavin:
@@ -1315,7 +1315,16 @@ function cardMabiSingleServe(rep){
     <div class="prog-foot-note">Purchases from Sept 1 count. The export Gavin pulls carries the M.A.D.E. single-serve SKUs only, so a non-M.A.D.E. single serve sold in cannot show here.</div></div></div>`;
 }
 
+function cardNewBelgiumRetain(rep){
+  const P=PROGRAM_DATA_2026_10.new_belgium_distribution_retain||{}, d=P.byRep?.[rep];
+  if(!d)return notApplicableCard('new_belgium_distribution_retain','New Belgium Distribution — Retain','Sept–Dec','Not included in this report','The supplied filtered report has no row for you; no zero result or goal has been assigned.');
+  const m=P.meta||{};
+  const groups=(d.groups||[]).map(g=>`<section class="earn-block"><h3>${esc(g.label)}</h3><div class="prog-foot-note">${g.placements} of ${g.goal} placements · ${g.toGo?g.toGo+' remaining':'Goal met so far'}</div><div class="earn-progress-track"><div class="earn-progress-fill" style="width:${Math.min(100,g.pct||0)}%"></div></div><details class="fold-list"><summary>See ${g.products.length} reported SKUs</summary>${g.products.map(p=>`<div style="padding:12px 0;border-bottom:1px solid var(--border);overflow-wrap:anywhere"><strong>${esc(p.id+' · '+p.product)}</strong><div class="prog-foot-note">${p.placements} placed · ${p.goal} goal · ${p.toGo||0} remaining</div></div>`).join('')}</details></section>`).join('');
+  return `<div class="prog-card"><div class="prog-head"><div class="prog-name-row">${progLogo('new_belgium_distribution_retain')}<span class="prog-name">New Belgium Distribution — Retain</span><span class="prog-tag">Sept–Dec</span>${terrTag('new_belgium_distribution_retain')}</div>${progPitch('new_belgium_distribution_retain')}</div><div class="prog-body">${statBoard([{num:d.placements,label:'Reported placements'},{num:d.overallGoal,label:'Report goal'},{num:d.overallToGo,label:'Still needed'},{num:d.goalsRetained+' / '+d.goalsTotal,label:'Package groups at goal'}])}${groups}<div class="prog-foot-note">Reporting window Sep 1 – Dec 31, 2026, confirmed by Gavin Oct 16 (the deck labels this phase Oct–Nov). Report generated ${esc((m.reportCreated||'').replace('T',' '))}. Rep and package-group totals are authoritative. Visible SKU goals do not add up to group goals and zero-activity SKUs may be hidden. Hearted and Kirin share one six-pack goal in this report.</div><div class="prog-foot-note">Progress only. Tiered payouts are not provided. Core bonus is unverified: prior-period results and May–October growth were not supplied. No customer-level purchase detail is included in this report.</div></div></div>`;
+}
+
 const PROGRAM_CARD_FN = {
+  'new_belgium_distribution_retain': cardNewBelgiumRetain,
   'lagunitas_sprint': cardLagunitasSprint, 'famosa_oct': cardFamosaOct, 'four_loko': cardFourLoko, 'industrial_arts': cardIndustrialArts, 'mabi_single_serve': cardMabiSingleServe,
   '1911': card1911, 'woodchuck': cardWoodchuck, 'tona': cardTona,
   'path_to_victory': cardPathToVictory, 'sam_adams': cardSamAdams, 'boston_beer': cardBostonBeer,
@@ -3811,6 +3820,12 @@ const pl = (n,w) => `${n} ${w}${n===1?'':'s'}`;
 const money = v => '$'+Math.round(v||0).toLocaleString('en-US');
 
 const PROGRAM_SUMMARY = {
+  new_belgium_distribution_retain:(d,m)=>({goal:true,now:d.overallHeld,target:d.overallGoal,unit:'placements',
+    label:`${d.overallHeld} of ${d.overallGoal} placements toward goals`,
+    remain:d.overallToGo?`${d.overallToGo} placements still needed`:null,
+    sub:`${d.goalsRetained} of ${d.goalsTotal} package-group goals met · Sep 1 – Dec 31`,
+    next:d.overallToGo?`Close <strong>${d.overallToGo} placement gaps</strong> across your package groups by Dec 31. Extra placements in one group do not replace another group's shortfall.`:`Every reported package-group goal is met so far. Keep the distribution in place through Dec 31.`,
+    segments:(d.groups||[]).map(g=>({label:g.label,pct:g.pct,line:`${g.placements} of ${g.goal} placements · ${g.toGo} remaining`}))}),
   keystone_ice:(d)=>({goal:true, now:d.accounts, target:d.qualifier, unit:'accounts',
     label:`${d.accounts} of ${d.qualifier} accounts`,
     remain:d.qualified?null:`${pl(d.toQualifier,'account')} to go`,
@@ -4480,10 +4495,14 @@ const PROGRAM_RULES = {
     'House goals must be achieved for full payout — otherwise qualifying reps are paid 50%',
   ],
   'new_belgium_distribution_retain': [
-    'Retain your New Belgium core brand distribution goals through October–November',
-    'Earn a tiered payout for every brand goal retained',
+    'Reporting window: September 1 – December 31, 2026 (Gavin confirmed Oct 16; deck phase is labelled Oct–Nov)',
+    'Off-premise only; only reps present in the filtered supplier report are included',
+    'Reach each reported package-group distribution goal; excess in one group does not cover another group',
+    'Rep and package-group totals are authoritative; the visible SKU goals are independent and do not add up exactly',
+    'Hearted and Kirin are combined in one six-pack report goal; separate brand goals cannot be inferred',
     'Core brands: Voodoo 12pk · Voodoo 19.2oz · Hearted Family · Kirin',
-    'Core bonus: retain both periods AND post positive New Belgium growth May–October for an additional tiered bonus',
+    'Core bonus is unverified: both-period retention results and May–October growth are not supplied; payout tiers are also not provided',
+    'The supplier report contains no account-level purchase detail; see the full program details for its snapshot date',
   ],
 };
 
@@ -4492,6 +4511,7 @@ const PROGRAM_RULES = {
 // placement to go", "No activity yet"). cls on a metric or status:
 // good (green) / warn (amber) / bad (red) / gray-dim (neutral).
 const PROGRAM_BOARD = {
+  'new_belgium_distribution_retain':d=>({metrics:[{num:d.placements,label:'reported placements'},{num:d.overallGoal,label:'goal'},{num:d.overallToGo,label:'remaining'}],status:d.goalsRetained===d.goalsTotal?{cls:'good',label:'All group goals met so far'}:{cls:'warn',label:`${d.goalsRetained} / ${d.goalsTotal} group goals met`}}),
   // ---- October 2026 ----
   'lagunitas_sprint': d=>({
     metrics:[
@@ -4853,4 +4873,3 @@ function medal(rank){
   if(rank===3) return '🥉';
   return '#'+rank;
 }
-

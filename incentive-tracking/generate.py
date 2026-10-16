@@ -1763,6 +1763,45 @@ def build_garage_beer_president():
 NEW_BELGIUM_DIST_BRANDS = ["Bell's", "Bell's Hearted Family", "Kirin Ichiban", "Kirin Light", "Voodoo Family"]
 
 
+def build_new_belgium_distribution_retain():
+    """Supplier report totals are authoritative; visible SKU goals do not add up.
+    Only source-listed reps participate. Extra placements in one package group
+    cannot make up another group's shortfall. No payout/bonus can be verified.
+    """
+    source = json.loads((DATA_DIR / "new_belgium_distribution_retain.json").read_text())
+    meta = source["meta"]
+    if (meta["periodStart"], meta["periodEnd"]) != ("2026-09-01", "2026-12-31"):
+        raise ValueError("New Belgium retention window changed; confirm first")
+    by_rep = {}
+    def scored(row):
+        goal, actual = row["goal"], row["placements"]
+        return dict(row, pct=round(actual / goal * 100, 2) if goal else None,
+                    toGo=max(0, goal-actual) if goal else None,
+                    retained=actual>=goal if goal else None)
+    for row in source["reps"]:
+        rep = row["rep"]
+        if rep not in ROSTER:
+            raise ValueError("New Belgium source rep not on roster: " + rep)
+        groups = []
+        for raw in row["groups"]:
+            group = scored(raw)
+            group["products"] = sorted([scored(p) for p in raw["products"]],
+                key=lambda p: (p["retained"] is not False, -(p["toGo"] or 0), p["product"]))
+            groups.append(group)
+        goaled = [g for g in groups if g["goal"]>0]
+        goal = sum(g["goal"] for g in goaled)
+        held = sum(min(g["placements"],g["goal"]) for g in goaled)
+        by_rep[rep] = dict(row, groups=groups, overallHeld=held, overallGoal=goal,
+            overallToGo=sum(g["toGo"] for g in goaled),
+            overallPct=round(held/goal*100,2) if goal else None,
+            goalsRetained=sum(g["retained"] for g in goaled), goalsTotal=len(goaled))
+    return {"byRep": by_rep, "periodStart": meta["periodStart"], "periodEnd": meta["periodEnd"],
+            "house": source["house"],
+            "meta": dict(meta, window="Sep 1 - Dec 31, 2026",
+                         bonusStatus="Unverified: prior-period results and May-October growth not supplied",
+                         payoutAvailable=False, customerDetailAvailable=False)}
+
+
 def build_new_belgium_distribution():
     """New Belgium Distribution -- Push Volume phase only. The deck's
     full program is Achieve (May-Jun) / Push Volume (Jul-Aug) / Retain
@@ -5351,6 +5390,7 @@ def main():
     # the Sam Adams seasonal conversion have no builder yet: their registry
     # entries stay on the zero-state card until Gavin sends the exports.
     data_10 = {
+        "new_belgium_distribution_retain": build_new_belgium_distribution_retain(),
         "lagunitas_sprint": build_lagunitas_sprint(),
         "famosa_oct": build_famosa_october(),
         "industrial_arts": build_industrial_arts(),
@@ -5586,6 +5626,22 @@ def main():
             print("Closed months restored from data/frozen/ (August, September)"
                   + (f"; this run would have changed: {', '.join(moved)} (not applied -- KDH_UNFREEZE=1 to apply)" if moved else "; no difference"))
 
+    # A focused source refresh must not restate other October incentives from
+    # newer MPO files. Preserve their published blobs unless explicitly selected.
+    only = {k.strip() for k in os.environ.get('KDH_ONLY_PROGRAMS', '').split(',') if k.strip()}
+    if only:
+        unknown = only - data_10.keys()
+        if unknown:
+            raise ValueError('Unknown October program(s): ' + ', '.join(sorted(unknown)))
+        old_html = INDEX_HTML.read_text()
+        old_october = re.search(r'const PROGRAM_DATA_2026_10 = (\{.*?\});\s*/\* PROGRAM_DATA_10_END', old_html, re.S)
+        if not old_october:
+            raise ValueError('Cannot find the published October snapshot for focused refresh')
+        published = json.loads(old_october.group(1))
+        published.update({key: data_10[key] for key in only})
+        data_10 = published
+        print('Focused October refresh: ' + ', '.join(sorted(only)))
+
     payload = json.dumps(data, indent=2)
     html = INDEX_HTML.read_text()
     start_marker = "/* PROGRAM_DATA_START */"
@@ -5620,9 +5676,9 @@ def main():
     try:
         from zoneinfo import ZoneInfo
         now_et = now_utc.astimezone(ZoneInfo("America/New_York"))
-        today = now_et.strftime("%b %-d, %Y, %-I:%M %p ET")
+        today = now_et.strftime("%b ") + str(now_et.day) + now_et.strftime(", %Y, ") + str(now_et.hour % 12 or 12) + now_et.strftime(":%M %p ET")
     except Exception:
-        today = now_utc.strftime("%b %-d, %Y, %-I:%M %p UTC")
+        today = now_utc.strftime("%b ") + str(now_utc.day) + now_utc.strftime(", %Y, ") + str(now_utc.hour % 12 or 12) + now_utc.strftime(":%M %p UTC")
     refreshed_at = now_utc.isoformat().replace("+00:00", "Z")
     date_start_marker = "<!-- DATA_REFRESHED_START -->"
     date_end_marker = "<!-- DATA_REFRESHED_END -->"
