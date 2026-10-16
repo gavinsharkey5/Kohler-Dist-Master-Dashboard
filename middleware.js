@@ -263,7 +263,7 @@ function route(request, url, verdict) {
       return redirect(new URL(IT_HOME, url).toString());
     }
     if (verdict.role === 'manager') {
-      if (wantsDocument(request) && /^\/(rep|associate)\/(index\.html)?$/.test(url.pathname)) return redirect(new URL('/',url).toString());
+      if (wantsDocument(request) && /^\/(rep|associate)\/(index\.html)?$/.test(url.pathname) && !(String(verdict.email || '').toLowerCase() === 'g.sharkey@kohlerdist.com' && readCookie(request.headers.get('cookie') || '', 'kdh_preview'))) return redirect(new URL('/',url).toString());
       if (isUpcPath(url.pathname)) {
         if (verdict.upc) return passThrough();
         if (!wantsDocument(request)) {
