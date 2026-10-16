@@ -60,4 +60,3 @@ for insert to authenticated with check (
 );
 -- No overwrite/delete policy: corrections are additional documents; preserve originals.
 notify pgrst, 'reload schema';
-
