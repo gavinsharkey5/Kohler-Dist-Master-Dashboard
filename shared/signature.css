@@ -44,7 +44,7 @@ html:root .kdh-tabs{background:var(--kdh-surface);border-color:var(--kdh-border)
 html:root .kdh-tab.on{background:var(--kdh-brand-soft);color:var(--kdh-brand)}
 html:root .kdh-menu,html:root .kdh-picker{background:var(--kdh-surface);border-color:var(--kdh-border);border-radius:12px}
 html:root .kdh-side-group{border:0;padding:0;margin:3px 0}
-html:root .kdh-side-group>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:38px;padding:8px 12px;color:var(--signature-side-muted);font-size:13px;font-weight:500;border-radius:6px;cursor:pointer}
+html:root .kdh-side-group>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:38px;padding:8px 12px;color:var(--signature-side-ink);font-size:14px;font-weight:400;border-radius:6px;cursor:pointer}
 html:root .kdh-side-group>summary::-webkit-details-marker{display:none}
 html:root .kdh-side-group-label{display:flex;align-items:center;gap:10px}
 html:root .kdh-side-group-label>svg{width:17px;height:17px;flex-shrink:0;color:var(--signature-side-muted)}
