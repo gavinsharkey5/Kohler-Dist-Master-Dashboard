@@ -3457,3 +3457,9 @@ holding them at that day's data. generate.py `SEPT_PROGRAMS_STILL_RUNNING` now r
 live over data/frozen/; every other September program stays frozen. Constellation Fall's six
 exports were refreshed the same day (incentive-tracking/README.txt has the numbers). On
 Windows run the generator with PYTHONUTF8=1.
+Same day: mc_retention (Jul 27 - Oct 25, in the AUGUST blob) joined via
+`AUG_PROGRAMS_STILL_RUNNING`; MABI Fall and Molson Coors refreshed; Heineken USA SDD
+retention (`heineken_husa`, Oct 1 - Nov 30) BUILT from four RDE "with Goals" exports
+(`build_heineken_husa`, data/heineken_husa_*.csv, card cardHeinekenHusa, hub TOTALS_ONLY).
+Its goal split and the deck-vs-export goal mismatch are open questions for Gavin
+(incentive-tracking/README.txt). Tags: incentive programs.js / hub.js / program_data.js 20261016c.

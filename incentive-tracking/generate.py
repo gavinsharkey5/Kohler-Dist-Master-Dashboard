@@ -1763,6 +1763,190 @@ def build_garage_beer_president():
 NEW_BELGIUM_DIST_BRANDS = ["Bell's", "Bell's Hearted Family", "Kirin Ichiban", "Kirin Light", "Voodoo Family"]
 
 
+# ---- Heineken USA SDD retention (October 2026) ----------------------------
+# Four RDE "with Goals" exports, all GROUPED trees flattened with nothing
+# marking the levels (the same layout as the Constellation / MABI exports):
+#   off_national   report Total row, then per rep: rep total, product rows
+#   on_dos_equis   report Total row, then per rep: rep total, product rows
+#   on_packages    per rep: rep total, then per brand family a family
+#                  subtotal followed by its product rows (no report Total)
+#   on_draft       per rep: rep total, then per keg a product subtotal
+#                  followed by its customer rows (no report Total)
+# The first row of a block borrows a label from the row under it, so a level
+# is read by POSITION and every subtotal is then RECONCILED against its
+# children on the current and base columns; a mismatch refuses to publish.
+# GOALS are the export's own "( ... ) Goals" column, taken as supplied (they
+# are not always 100% of the 6/1-8/31 base: Allison Scott's draft goal is 13
+# on a base of 14). Each goal is scored on its own: off-premise National and
+# on-premise Dos Equis packages = the rep goal, on-premise packages = one
+# goal per brand family (Heineken, Heineken 0.0), on-premise draft = one goal
+# per rep with the keg sizes' own goals shown underneath. ASSUMPTION, to
+# confirm with Gavin: that split of what counts as "a goal".
+HEINEKEN_HUSA_FILES = [
+    {"key": "off_national", "label": "Off-Premise National", "file": "heineken_husa_off_national.csv",
+     "unit": "placements", "metric": "Placement Count", "total": True, "levels": ("rep", "product")},
+    {"key": "on_packages", "label": "On-Premise Packages", "file": "heineken_husa_on_packages.csv",
+     "unit": "placements", "metric": "Placement Count", "total": False, "levels": ("rep", "brand", "product")},
+    {"key": "on_draft", "label": "On-Premise Draft", "file": "heineken_husa_on_draft.csv",
+     "unit": "buyers", "metric": "Buyer Count", "total": False, "levels": ("rep", "product", "customer")},
+    {"key": "on_dos_equis", "label": "On-Premise Dos Equis Packages", "file": "heineken_husa_on_dos_equis.csv",
+     "unit": "placements", "metric": "Placement Count", "total": True, "levels": ("rep", "product")},
+]
+HEINEKEN_HUSA_WINDOW = "10/1/2026 - 11/30/2026"
+HEINEKEN_HUSA_BASE = "6/1/2026 - 8/31/2026"
+HEINEKEN_HUSA_FAMILY_LABEL = {"Heineken USA": "Heineken", "Heineken 0.0": "Heineken 0.0"}
+
+
+def _husa_split(name):
+    m = re.match(r"\s*(\d+)\s+(.*)", name or "")
+    return (m.group(1), m.group(2).strip()) if m else ("", (name or "").strip())
+
+
+def _husa_parse(spec):
+    rows = read_rows(spec["file"])
+    f = list(rows[0].keys())
+    cur = next(c for c in f if c.strip().startswith(spec["metric"]) and HEINEKEN_HUSA_WINDOW in c)
+    base = next(c for c in f if c.strip().startswith(spec["metric"]) and HEINEKEN_HUSA_BASE in c)
+    goal = next(c for c in f if c.strip().startswith("(") and c.strip().endswith("Goals"))
+
+    def val(r):
+        return (to_num(r[cur]), to_num(r[base]), to_num(r[goal]))
+
+    def err(m):
+        return SystemExit(f"{spec['file']}: {m} -- the export's layout has changed, refusing to publish.")
+
+    total = None
+    if spec["total"]:
+        total, rows = val(rows[0]), rows[1:]
+    reps, order = {}, []
+    for r in rows:
+        rep = (r["Sales Rep Assigned"] or "").strip()
+        if rep not in reps:
+            reps[rep] = []
+            order.append(rep)
+        reps[rep].append(r)
+    out = {}
+    for rep in order:
+        block = reps[rep]
+        t = val(block[0])
+        body = block[1:]
+        node = {"placements": t[0], "base": t[1], "goal": t[2], "children": []}
+        if len(spec["levels"]) == 2:
+            for r in body:
+                pid, name = _husa_split(r["Product Num & Name"])
+                c, b, g = val(r)
+                node["children"].append({"id": pid, "product": name, "placements": c, "base": b, "goal": g or None})
+        else:
+            key_col = "Brand Family" if spec["levels"][1] == "brand" else "Product Num & Name"
+            groups, prev = [], None
+            for r in body:
+                k = (r[key_col] or "").strip()
+                c, b, g = val(r)
+                if not groups or k != prev:
+                    groups.append({"key": k, "placements": c, "base": b, "goal": g, "children": []})
+                else:
+                    if spec["levels"][2] == "product":
+                        pid, name = _husa_split(r["Product Num & Name"])
+                    else:
+                        pid, name = "", (r["Customer Num Name"] or "").strip()
+                    groups[-1]["children"].append({"id": pid, "product": name, "placements": c, "base": b})
+                prev = k
+            for gr in groups:
+                sc = sum(x["placements"] for x in gr["children"])
+                sb = sum(x["base"] for x in gr["children"])
+                if abs(sc - gr["placements"]) > 1e-6 or abs(sb - gr["base"]) > 1e-6:
+                    raise err(f"{rep} / {gr['key']} subtotal {gr['placements']:g}/{gr['base']:g} != rows {sc:g}/{sb:g}")
+            node["children"] = groups
+            gs = sum(gr["goal"] for gr in groups)
+            if abs(gs - t[2]) > 1e-6:
+                print(f"heineken_husa: {spec['key']} {rep}: rep goal {t[2]:g} vs its sub-goals {gs:g} (sub-goals scored)")
+        sc = sum(x["placements"] for x in node["children"])
+        sb = sum(x["base"] for x in node["children"])
+        if abs(sc - t[0]) > 1e-6 or abs(sb - t[1]) > 1e-6:
+            raise err(f"{rep} total {t[0]:g}/{t[1]:g} != rows {sc:g}/{sb:g}")
+        out[rep] = node
+    if total is not None:
+        sc = sum(n["placements"] for n in out.values())
+        sb = sum(n["base"] for n in out.values())
+        sg = sum(n["goal"] for n in out.values())
+        if abs(sc - total[0]) > 1e-6 or abs(sb - total[1]) > 1e-6 or abs(sg - total[2]) > 1e-6:
+            raise err(f"report Total {total} != reps {sc:g}/{sb:g}/{sg:g}")
+    return out
+
+
+def build_heineken_husa():
+    """Heineken USA SDD Distro Rewards -- Retention, Oct 1 - Nov 30 2026, from
+    the four RDE "with Goals" exports. See HEINEKEN_HUSA_FILES. Reps off the
+    roster (Office Tell Sell, Chris Politano) are dropped and printed."""
+    def scored(label, now, goal, base, unit, products, section):
+        now, goal = int(round(now)), int(round(goal))
+        return {"label": label, "section": section, "placements": now, "goal": goal, "base": int(round(base)),
+                "unit": unit, "pct": round(now / goal * 100, 2) if goal else None,
+                "toGo": max(0, goal - now) if goal else None,
+                "retained": now >= goal if goal else None, "products": products}
+
+    def prod(p, unit):
+        g = int(round(p["goal"])) if p.get("goal") else None
+        now = int(round(p["placements"]))
+        return {"id": p["id"], "product": p["product"], "placements": now, "base": int(round(p["base"])),
+                "goal": g, "unit": unit, "toGo": max(0, g - now) if g else None,
+                "retained": now >= g if g else None, "lost": now == 0 and p["base"] > 0}
+
+    def order(ps):
+        return sorted(ps, key=lambda p: (p["retained"] is not False, -(p["toGo"] or 0),
+                                         -(p["base"] - p["placements"]), p["product"]))
+
+    parsed = {s["key"]: _husa_parse(s) for s in HEINEKEN_HUSA_FILES}
+    off_roster = sorted({r for d in parsed.values() for r in d if r not in ROSTER})
+    by_rep = {}
+    for spec in HEINEKEN_HUSA_FILES:
+        u, key = spec["unit"], spec["key"]
+        for rep, n in parsed[key].items():
+            if rep not in ROSTER:
+                continue
+            groups = by_rep.setdefault(rep, [])
+            if key == "on_packages":
+                for fam in n["children"]:
+                    label = f"On-Premise {HEINEKEN_HUSA_FAMILY_LABEL.get(fam['key'], fam['key'])} Packages"
+                    groups.append(scored(label, fam["placements"], fam["goal"], fam["base"], u,
+                                         order([prod(p, u) for p in fam["children"]]), key))
+            elif key == "on_draft":
+                kegs = []
+                for k in n["children"]:
+                    pid, name = _husa_split(k["key"])
+                    row = prod({"id": pid, "product": name, "placements": k["placements"], "base": k["base"],
+                                "goal": k["goal"]}, u)
+                    row["accounts"] = sorted(({"customer": c["product"], "now": int(round(c["placements"])),
+                                               "base": int(round(c["base"]))} for c in k["children"]),
+                                             key=lambda c: (c["now"] > 0, c["customer"]))
+                    kegs.append(row)
+                groups.append(scored(spec["label"], n["placements"], n["goal"], n["base"], u, order(kegs), key))
+            else:
+                groups.append(scored(spec["label"], n["placements"], n["goal"], n["base"], u,
+                                     order([prod(p, u) for p in n["children"]]), key))
+    out = {}
+    for rep, groups in by_rep.items():
+        goaled = [g for g in groups if g["goal"] > 0]
+        goal = sum(g["goal"] for g in goaled)
+        held = sum(min(g["placements"], g["goal"]) for g in goaled)
+        out[rep] = {"rep": rep, "groups": groups, "overallHeld": held, "overallGoal": goal,
+                    "overallToGo": sum(g["toGo"] for g in goaled),
+                    "overallPct": round(held / goal * 100, 2) if goal else None,
+                    "goalsRetained": sum(1 for g in goaled if g["retained"]), "goalsTotal": len(goaled)}
+    house = {}
+    for g in (g for d in out.values() for g in d["groups"]):
+        h = house.setdefault(g["label"], {"label": g["label"], "unit": g["unit"], "placements": 0, "goal": 0,
+                                          "reps": 0, "held": 0})
+        h["placements"] += g["placements"]
+        h["goal"] += g["goal"]
+        if g["goal"]:
+            h["reps"] += 1
+            h["held"] += 1 if g["retained"] else 0
+    return {"byRep": out, "house": list(house.values()), "periodStart": "2026-10-01", "periodEnd": "2026-11-30",
+            "meta": {"window": "Oct 1 - Nov 30, 2026", "baseWindow": "Jun 1 - Aug 31, 2026",
+                     "offRoster": off_roster, "goalSource": "RDE export Goals column"}}
+
+
 def build_new_belgium_distribution_retain():
     """Supplier report totals are authoritative; visible SKU goals do not add up.
     Only source-listed reps participate. Extra placements in one package group
@@ -5339,6 +5523,8 @@ def build_four_loko():
 
 
 SEPT_PROGRAMS_STILL_RUNNING = ("constellation_fall", "mabi_retention_fall", "yuengling_retention_fall")
+# The August blob holds mc_retention (Jul 27 - Oct 25), still running in October.
+AUG_PROGRAMS_STILL_RUNNING = ("mc_retention",)
 
 
 def main():
@@ -5394,6 +5580,7 @@ def main():
     # entries stay on the zero-state card until Gavin sends the exports.
     data_10 = {
         "new_belgium_distribution_retain": build_new_belgium_distribution_retain(),
+        "heineken_husa": build_heineken_husa(),
         "lagunitas_sprint": build_lagunitas_sprint(),
         "famosa_oct": build_famosa_october(),
         "industrial_arts": build_industrial_arts(),
@@ -5626,16 +5813,17 @@ def main():
         if all(p.exists() for p in frozen.values()):
             fresh_08 = json.dumps(data, sort_keys=True)
             fresh_09 = json.dumps(data_09, sort_keys=True)
+            live_08 = {k: data[k] for k in AUG_PROGRAMS_STILL_RUNNING if k in data}
             live_09 = {k: data_09[k] for k in SEPT_PROGRAMS_STILL_RUNNING if k in data_09}
             data = json.loads(frozen["data"].read_text(encoding="utf-8"))
             data_09 = json.loads(frozen["data_09"].read_text(encoding="utf-8"))
-            # Sept-Nov programs live in the September blob but are NOT closed:
-            # they keep rebuilding until their period ends.
-            stale = sorted(k for k, v in live_09.items() if data_09.get(k) != v)
+            # Programs still running (Sept-Nov in September, MolsonCoors to Oct 25
+            # in August) are NOT closed: they keep rebuilding until they end.
+            stale = sorted(k for k, v in live_09.items() if data_09.get(k) != v) + sorted(k for k, v in live_08.items() if data.get(k) != v)
             data_09.update(live_09)
+            data.update(live_08)
             if stale:
-                print(f"Still-running programs in the September blob rebuilt live: {', '.join(stale)}")
-            fresh_09 = json.dumps(data_09, sort_keys=True)
+                print(f"Still-running programs in the closed-month blobs rebuilt live: {', '.join(stale)}")
             moved = [n for n, was, now in (("August", json.dumps(data, sort_keys=True), fresh_08),
                                            ("September", json.dumps(data_09, sort_keys=True), fresh_09)) if was != now]
             print("Closed months restored from data/frozen/ (August, September)"

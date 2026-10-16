@@ -1258,7 +1258,7 @@ function incRowDetail(p, r, rep, targets, dist, which){
     ? `<div class="it-note">No potential accounts currently identified.</div>`
     : acctList(key, ACCT_COLS.targets, targets, {prog:p, rep});
   if(BG.length){
-    if(p.key==='new_belgium_distribution_retain') return sec('Your package-group goals',brandGoalsHtml(BG,{noTitle:true}))
+    if(TOTALS_ONLY.has(p.key)) return sec(p.key==='heineken_husa'?'Your goals':'Your package-group goals',brandGoalsHtml(BG,{noTitle:true}))
       + sec('Account detail','<p class="it-note">This export contains rep and SKU totals, with no customer-level purchases. An account hold or win-back list cannot be verified from it.</p>')
       + sec('How it is scored',repRulesHtml(p,'ibul')) + full;
     return sec('Your brand goals', brandGoalsHtml(BG, {noTitle:true, oneGoal: p.key==='mabi_retention_fall' ? (r.goal||'goal') : ''}))
@@ -1660,7 +1660,7 @@ const SELL_ASK = {
   'inc:yuengling_retention':'Keep Yuengling Lager and Flight placed.', 'inc:sun_cruiser':'Sell more Sun Cruiser than last year.',
   'inc:yave':'Open a new YaVe account.', 'inc:mollys':"Place Molly's 1.75L.", 'inc:path_to_victory':'Sell Victory Monkey 6-packs.', 'inc:path_to_victory_sd':'Open a new Victory Monkey 6-pack POD.', 'inc:fall_seasonal_sd':'Sell Fall Seasonal packages and kegs.',
   'inc:boston_beer':'Place an Angry Orchard or Dogfish Head tap.', 'inc:new_belgium':'Place a Juicy Haze or Two Hearted tap.',
-  'inc:sam_adams':'Sell more Sam Adams than last Aug–Sep — finish positive and your commission doubles.', 'inc:new_belgium_distribution_retain':'Hold Voodoo 12pk, Voodoo 19.2oz, and the combined Hearted / Kirin six-pack goal.', 'inc:new_belgium_distribution':"Sell more Bell's, Kirin and Voodoo.",
+  'inc:sam_adams':'Sell more Sam Adams than last Aug–Sep — finish positive and your commission doubles.', 'inc:heineken_husa':'Hold your Heineken, Heineken 0.0 and Dos Equis goals off- and on-premise through November.', 'inc:new_belgium_distribution_retain':'Hold Voodoo 12pk, Voodoo 19.2oz, and the combined Hearted / Kirin six-pack goal.', 'inc:new_belgium_distribution':"Sell more Bell's, Kirin and Voodoo.",
   'on:sam_adams_conversion':'Swap Summer Ale kegs for Oktoberfest at every account.', 'on:spirits_followup':'Re-order spirits at every account you placed in Jul–Sep.',
   'on:carbliss':'Open a new Carbliss account.', 'on:fever_tree':'Place Fever Tree.', 'on:bardstown_menu':'Get Bardstown or Green River on the menu.',
   'on:husa_xx_draft':'Place a Dos Equis tap.', 'on:angry_orchard':'Place an Angry Orchard tap.', 'on:molson_coors':'Place Peroni and Coors Banquet.',
@@ -1673,6 +1673,8 @@ const SELL_ASK = {
   'off:new_belgium':"Place Bell's, Voodoo and Kirin.", 'off:ws_2xo':'Place 2XO, Le Grand and YaVe.', 'off:sapporo_light':'Place Sapporo Light.', 'off:famosa':'Place Famosa 7oz.',
 };
 const RETENTION = /retention|_fall$|mc_retention/;
+// Supplier reports with rep / SKU totals and no account list: no hold list is built.
+const TOTALS_ONLY = new Set(['new_belgium_distribution_retain','heineken_husa']);
 function sellAsk(p){
   if(p.sellAsk) return p.sellAsk;                         // manager-built programs carry their own
   const k = HubAccounts.brandKey(p);
@@ -1714,7 +1716,7 @@ function warmTargets(p, rep){
 function nextAccounts(p, rep){
   const A = accountsFor(p, rep);
   // This supplier export is rep x package group x SKU; it carries no customers.
-  if(p.key==='new_belgium_distribution_retain') return {rows:[],hold:true,A};
+  if(TOTALS_ONLY.has(p.key)) return {rows:[],hold:true,A};
   if(RETENTION.test(p.key)) return {rows: A.buying.filter(a=>!a.foreign).map(a=>Object.assign({}, a, {why: 'Keep ordering'})), hold:true, A};
   const byKey = new Map(); A.eligible.forEach(a=>byKey.set(HubAccounts.norm(a.name), a)); A.buying.forEach(a=>byKey.set(HubAccounts.norm(a.name), a));
   const warm = warmTargets(p, rep); const seen = new Set(); const rows = [];
@@ -2104,6 +2106,13 @@ function brandGoals(p, rep){
   const G = [];
   const push = (title, unit, rows) => { if(rows && rows.length) G.push({title, unit, rows}); };
   switch(p.key){
+    case 'heineken_husa':
+      push('Heineken USA goals', 'placements', (d.groups||[]).filter(g=>g.goal>0).map(g=>{
+        const r=row(g.label,g.placements,g.goal,g.unit);
+        r.products=skuRows(g.products,g.unit);
+        return r;
+      }));
+      break;
     case 'new_belgium_distribution_retain':
       push('Package-group goals', 'placements', (d.groups||[]).map(g=>{
         const r=row(g.label,g.placements,g.goal,'placements');
@@ -3456,7 +3465,7 @@ function screenProgramRep(p, r, rep){
   if(!off && !(r.legs && r.legs.length) && !BG.length && !C.loading && !C.hold && C.targets!=null) return screenIncentiveFocus(p, r, rep, f, C);
   const fams = HubAccounts.PROGRAM_BRANDS[HubAccounts.brandKey(p)];
   const row = (list, label, n, sub) => n==null ? '' : `<button class="hrow" data-act="accts" data-prog="${E(p.id)}" data-list="${list}"><span class="hrow-main"><span class="hrow-t"><span>${E(label)}</span></span>${sub?`<span class="hrow-s">${E(sub)}</span>`:''}</span><span class="hcount">${n}</span>${CHEV}</button>`;
-  const lists = C.loading ? `<div class="kdh-state loading">Loading this month’s accounts…</div>` : off ? '' : p.key==='new_belgium_distribution_retain' ? `<p class="hnote">Report generated ${E(p.refreshed)}. This report contains rep and SKU totals, with no customer-level purchases. Account detail is unavailable.</p>` : `<div class="hlist">
+  const lists = C.loading ? `<div class="kdh-state loading">Loading this month’s accounts…</div>` : off ? '' : TOTALS_ONLY.has(p.key) ? `<p class="hnote">Report generated ${E(p.refreshed)}. This report contains rep and SKU totals, with no customer-level purchases. Account detail is unavailable.</p>` : `<div class="hlist">
       ${BG.length ? '' : row('targets', C.hold ? LISTS.hold : LISTS.targets, C.targets, C.hold ? 'Keep these ordering' : (C.targets ? 'Where to go next' : 'Every eligible account already buys it'))}
       ${row('dist', LISTS.dist, C.dist, C.dist ? `Credited in ${periodLabel(p.period)}` : 'Nothing credited yet')}
       ${C.follow ? row('follow', LISTS.follow, C.follow, 'Accounts you flagged to get back to') : ''}
@@ -3502,7 +3511,7 @@ function screenProgramRep(p, r, rep){
       ${p.type==='MPO' ? `<div class="px-cap dim">MPO weight: ${Math.round((f.weight||0))}%</div>` : ''}`}
     </div>
     ${lists}
-    ${BG.length ? `<section class="hsec"><h2>${p.key==='new_belgium_distribution_retain'?'Your Package-Group Goals':'Your Brand Goals'}</h2>${brandGoalsHtml(BG, {noTitle:true, oneGoal: p.key==='mabi_retention_fall' ? (r.goal||'goal') : ''})}</section>` : ''}
+    ${BG.length ? `<section class="hsec"><h2>${p.key==='new_belgium_distribution_retain'?'Your Package-Group Goals':p.key==='heineken_husa'?'Your Goals':'Your Brand Goals'}</h2>${brandGoalsHtml(BG, {noTitle:true, oneGoal: p.key==='mabi_retention_fall' ? (r.goal||'goal') : ''})}</section>` : ''}
     <details class="hdet"><summary>How It Is Scored</summary>
       ${p.shortName && p.shortName!==p.name ? `<p class="px-full"><span>Full program name</span>${E(p.name)}</p>` : ''}
       ${legRules ? legRules : rules ? rules.replace('<ul class="ibul">', '<ul class="ibul">'+weight) : `<ul class="ibul">${weight}</ul>`}

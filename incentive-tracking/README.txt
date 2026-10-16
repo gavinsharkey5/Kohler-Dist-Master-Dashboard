@@ -5669,3 +5669,32 @@ Verification:
 The browser check uses local Edge on Windows and validates source totals,
 per-rep data slices, unrelated published snapshots, manager ranking,
 SKU drilldowns, and light/dark layouts at 320/390/820/1440px.
+
+2026-10-16 REFRESH (2) -- Molson Coors, MABI Fall, and Heineken USA goes live
+MOLSON COORS RETENTION (Jul 27 - Oct 25): both "w/ Goals" workbooks through
+convert_mc_retention.py (every rep, DM and report total reconciled). 46 -> 53 of
+100 brand goals held; off 2,988 -> 3,227 / 2,912 placements, on 770 -> 795 / 840
+buyers. mc_retention lives in the AUGUST blob, so it is now in
+AUG_PROGRAMS_STILL_RUNNING (same freeze bug as the Sept-Nov programs). Side
+effect: Alex Rodriguez and Hakan Sadik flip to territoryEligible (the 10/7
+customer base gave them Core Market accounts); neither has a goal.
+MABI FALL: convert_mabi_fall.py <actuals.csv> data/mabi_retention_fall_goals_source.csv
+-- goals unchanged (7,326, the 9/23 goals file). House 5,027 -> 6,016 (82.1%).
+
+HEINEKEN USA SDD RETENTION (heineken_husa) -- BUILT. Four RDE "with Goals"
+exports saved as data/heineken_husa_{off_national,on_packages,on_draft,
+on_dos_equis}.csv; build_heineken_husa() parses each grouped tree by position
+and reconciles every subtotal (see HEINEKEN_HUSA_FILES). Window Oct 1 - Nov 30
+(the exports' own; the registry said Oct-Dec), base Jun 1 - Aug 31. Goals = the
+export's Goals column. Scored goals: Off-Premise National (rep goal), On-Premise
+Heineken Packages and Heineken 0.0 Packages (one per family), On-Premise Draft
+(rep goal, buyers; keg sizes + accounts underneath), On-Premise Dos Equis
+Packages (rep goal). ASSUMPTION to confirm: that split. House: off National 571 /
+1,628; on Heineken pkg 350 / 760; on Heineken 0.0 pkg 139 / 375; Dos Equis pkg
+14 / 59; draft 22 / 37 buyers. The deck's goals (off National 840, on National
+1,035, Local 455 / 55, Innovation) do NOT match these exports and the Local /
+Innovation goals have no export -- not built. Off roster: Chris Politano, Office
+Tell Sell. Card cardHeinekenHusa, hub TOTALS_ONLY (no hold list, like New
+Belgium). Refresh: save the four exports over those files, then
+KDH_ONLY_PROGRAMS=new_belgium_distribution_retain,heineken_husa python generate.py
+(add any other October program you are refreshing to that list).

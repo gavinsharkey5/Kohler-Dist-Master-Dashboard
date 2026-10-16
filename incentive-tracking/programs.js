@@ -510,11 +510,11 @@ const PROGRAM_LIST_2026_10 = [
    pitch:`Hold 95% of last fall's buyers for every Yuengling brand family — off-premise and on-premise — through November. Each goal held pays.`,
    getRep:sept('yuengling_retention_fall'),
    metric:d=>d.overallPct, metricLabel:'% of overall goal', fmt:v=>v.toFixed(0)+'%'},
-  {key:'heineken_husa', group:'retention', title:'Heineken USA SDD Distro Rewards — Retention', shortTitle:'Heineken USA', tag:'Oct–Dec',
-   pitch:`Hold your Heineken, Heineken 0.0 and Dos Equis distribution goals through December — every goal held pays.`,
+  {key:'heineken_husa', group:'retention', title:'Heineken USA SDD Distro Rewards — Retention', shortTitle:'Heineken USA', tag:'Oct–Nov',
+   period:{start:'2026-10-01',end:'2026-11-30'},
+   pitch:`Hold your Heineken, Heineken 0.0 and Dos Equis distribution goals through November — off-premise National, on-premise packages, draft and Dos Equis packages.`,
    getRep:oct('heineken_husa'),
-   metric:d=>d.overallPct, metricLabel:'% of overall goal', fmt:v=>v.toFixed(0)+'%',
-   awaitingNote:`Awaiting the Heineken USA distribution export — the goals above are the deck's; your numbers fill in once the data lands.`},
+   metric:d=>d.overallPct, metricLabel:'% of overall goal', fmt:v=>v.toFixed(0)+'%'},
   {key:'new_belgium_distribution_retain', group:'retention', title:'New Belgium Distribution — Retain', shortTitle:'New Belgium', tag:'Sept–Dec',
    period:{start:'2026-09-01',end:'2026-12-31'},
    pitch:`Hold the report's off-premise distribution goals through December — Voodoo 12pk, Voodoo 19.2oz, and Hearted / Kirin six-packs.`,
@@ -1323,8 +1323,21 @@ function cardNewBelgiumRetain(rep){
   return `<div class="prog-card"><div class="prog-head"><div class="prog-name-row">${progLogo('new_belgium_distribution_retain')}<span class="prog-name">New Belgium Distribution — Retain</span><span class="prog-tag">Sept–Dec</span>${terrTag('new_belgium_distribution_retain')}</div>${progPitch('new_belgium_distribution_retain')}</div><div class="prog-body">${statBoard([{num:d.placements,label:'Reported placements'},{num:d.overallGoal,label:'Report goal'},{num:d.overallToGo,label:'Still needed'},{num:d.goalsRetained+' / '+d.goalsTotal,label:'Package groups at goal'}])}${groups}<div class="prog-foot-note">Reporting window Sep 1 – Dec 31, 2026, confirmed by Gavin Oct 16 (the deck labels this phase Oct–Nov). Report generated ${esc((m.reportCreated||'').replace('T',' '))}. Rep and package-group totals are authoritative. Visible SKU goals do not add up to group goals and zero-activity SKUs may be hidden. Hearted and Kirin share one six-pack goal in this report.</div><div class="prog-foot-note">Progress only. Tiered payouts are not provided. Core bonus is unverified: prior-period results and May–October growth were not supplied. No customer-level purchase detail is included in this report.</div></div></div>`;
 }
 
+function cardHeinekenHusa(rep){
+  const P=PROGRAM_DATA_2026_10.heineken_husa||{}, d=P.byRep?.[rep];
+  if(!d)return notApplicableCard('heineken_husa','Heineken USA SDD Distro Rewards — Retention','Oct–Nov','Not in this report','The Heineken USA retention exports have no goal for you; no zero result has been assigned.');
+  const m=P.meta||{};
+  const u=g=>g.unit==='buyers'?'buyers':'placements';
+  const groups=(d.groups||[]).filter(g=>g.goal>0).map(g=>{
+    const items=(g.products||[]).map(p=>`<div style="padding:12px 0;border-bottom:1px solid var(--border);overflow-wrap:anywhere"><strong>${esc((p.id?p.id+' · ':'')+p.product)}</strong><div class="prog-foot-note">${p.placements} now · ${p.base} in Jun–Aug${p.goal?` · goal ${p.goal}${p.toGo?' · '+p.toGo+' remaining':' · met'}`:''}</div>${(p.accounts||[]).length?`<div class="prog-foot-note">${p.accounts.map(a=>esc(a.customer)+(a.now>0?' ✓':' — not yet')).join(' · ')}</div>`:''}</div>`).join('');
+    return `<section class="earn-block"><h3>${esc(g.label)}</h3><div class="prog-foot-note">${g.placements} of ${g.goal} ${u(g)} · ${g.toGo?g.toGo+' remaining':'Goal met so far'}</div><div class="earn-progress-track"><div class="earn-progress-fill" style="width:${Math.min(100,g.pct||0)}%"></div></div>${items?`<details class="fold-list"><summary>See ${g.products.length} ${g.section==='on_draft'?'keg sizes':'SKUs'}</summary>${items}</details>`:''}</section>`;
+  }).join('');
+  return `<div class="prog-card"><div class="prog-head"><div class="prog-name-row">${progLogo('heineken_husa')}<span class="prog-name">Heineken USA SDD Distro Rewards — Retention</span><span class="prog-tag">Oct–Nov</span>${terrTag('heineken_husa')}</div>${progPitch('heineken_husa')}</div><div class="prog-body">${statBoard([{num:d.overallHeld,label:'Held toward goals'},{num:d.overallGoal,label:'Goal'},{num:d.overallToGo,label:'Still needed'},{num:d.goalsRetained+' / '+d.goalsTotal,label:'Goals met'}])}${groups}<div class="prog-foot-note">Window ${esc(m.window||'Oct 1 – Nov 30, 2026')}, against ${esc(m.baseWindow||'Jun 1 – Aug 31, 2026')}. Goals are the Heineken USA report's own. Draft counts buyers; everything else counts placements.</div></div></div>`;
+}
+
 const PROGRAM_CARD_FN = {
   'new_belgium_distribution_retain': cardNewBelgiumRetain,
+  'heineken_husa': cardHeinekenHusa,
   'lagunitas_sprint': cardLagunitasSprint, 'famosa_oct': cardFamosaOct, 'four_loko': cardFourLoko, 'industrial_arts': cardIndustrialArts, 'mabi_single_serve': cardMabiSingleServe,
   '1911': card1911, 'woodchuck': cardWoodchuck, 'tona': cardTona,
   'path_to_victory': cardPathToVictory, 'sam_adams': cardSamAdams, 'boston_beer': cardBostonBeer,
@@ -3820,6 +3833,10 @@ const pl = (n,w) => `${n} ${w}${n===1?'':'s'}`;
 const money = v => '$'+Math.round(v||0).toLocaleString('en-US');
 
 const PROGRAM_SUMMARY = {
+  heineken_husa:(d,m)=>({goal:true,now:d.overallHeld,target:d.overallGoal,unit:'placements',
+    label:`${d.overallHeld} of ${d.overallGoal} toward goals`,
+    remain:d.overallToGo?`${d.overallToGo} still needed`:null,
+    sub:`${d.goalsRetained} of ${d.goalsTotal} goals met · Oct 1 – Nov 30`}),
   new_belgium_distribution_retain:(d,m)=>({goal:true,now:d.overallHeld,target:d.overallGoal,unit:'placements',
     label:`${d.overallHeld} of ${d.overallGoal} placements toward goals`,
     remain:d.overallToGo?`${d.overallToGo} placements still needed`:null,
@@ -4482,15 +4499,13 @@ const PROGRAM_RULES = {
     'Draft counts an account only once a keg is on the books this fall — a buyer flagged on an empty pickup does not count',
   ],
   'heineken_husa': [
-    'Retain your Heineken distribution goals from September through November',
+    'Window: October 1 – November 30, 2026, against your June 1 – August 31 distribution',
+    'Goals are the Heineken USA report\'s own goal column, one per section',
+    'Off-premise National — Heineken, Heineken 0.0 and Dos Equis Lager placements',
+    'On-premise packages — one goal for Heineken, one for Heineken 0.0',
+    'On-premise draft — Heineken keg buyers (20 L and 13.2 gal)',
+    'On-premise Dos Equis packages — Dos Equis Lager and Amber placements',
     'Up to $500 for hitting all distribution goals',
-    'Off-premise National goal 840 — Heineken Original, Heineken 0.0, Dos Equis Lager',
-    'Off-premise Local goal 455 — Heineken loose bottle, 24oz, 16oz 4pk can, 7oz loose, suitcase can',
-    'Off-premise Innovation: Ultimate 6pk bottle & 12pk cans 75 · Heineken 0.0 12pk bottle 25',
-    'On-premise National goal 1,035 — Heineken Original, Heineken 0.0, Dos Equis Lager draft',
-    'On-premise Local goal 55 — Heineken draft, Dos Equis Lager package',
-    '90-day non-buy bonus: off-premise 1–5 case buy or new account plus rebuy pays $15',
-    '90-day non-buy bonus: on-premise package 1 case pays $15, draft 1 barrel pays $100',
     'Reps who achieve all three periods earn an additional $500',
     'House goals must be achieved for full payout — otherwise qualifying reps are paid 50%',
   ],
@@ -4511,6 +4526,7 @@ const PROGRAM_RULES = {
 // placement to go", "No activity yet"). cls on a metric or status:
 // good (green) / warn (amber) / bad (red) / gray-dim (neutral).
 const PROGRAM_BOARD = {
+  'heineken_husa':d=>({metrics:[{num:d.overallHeld,label:'held'},{num:d.overallGoal,label:'goal'},{num:d.overallToGo,label:'remaining'}],status:d.goalsRetained===d.goalsTotal?{cls:'good',label:'All goals met so far'}:{cls:'warn',label:`${d.goalsRetained} / ${d.goalsTotal} goals met`}}),
   'new_belgium_distribution_retain':d=>({metrics:[{num:d.placements,label:'reported placements'},{num:d.overallGoal,label:'goal'},{num:d.overallToGo,label:'remaining'}],status:d.goalsRetained===d.goalsTotal?{cls:'good',label:'All group goals met so far'}:{cls:'warn',label:`${d.goalsRetained} / ${d.goalsTotal} group goals met`}}),
   // ---- October 2026 ----
   'lagunitas_sprint': d=>({
