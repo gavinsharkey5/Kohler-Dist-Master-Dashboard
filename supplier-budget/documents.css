@@ -1,0 +1,25 @@
+.invoice-docs{display:flex;flex-direction:column;align-items:flex-start;gap:5px;margin-top:5px;font-size:11px;line-height:1.35}
+.card .f div:has(.invoice-docs){grid-column:1 / -1}
+.card .f div:has(.invoice-docs) b{white-space:normal;overflow:visible;text-overflow:clip;text-align:right}
+.pdf-link{display:inline-block;border:0;background:none;color:var(--kdh-brand);padding:2px 0;font:inherit;text-align:left;text-decoration:underline;cursor:pointer;overflow-wrap:anywhere}
+.pdf-link:disabled{opacity:.6;cursor:wait}
+.pdf-status{color:var(--kdh-text-3)}
+.pdf-status.missing{color:var(--kdh-warn)}
+.pdf-filename{overflow-wrap:anywhere;color:var(--kdh-text-2)}
+.pdf-toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin:12px 0;font-size:14px;color:var(--kdh-text-2)}
+.pdf-dialog{box-sizing:border-box;width:min(800px,calc(100vw - 24px));max-height:88vh;overflow:auto;border:1px solid var(--kdh-border);border-radius:16px;padding:22px;background:var(--kdh-surface);color:var(--kdh-text);font:14px/1.5 Inter,system-ui,sans-serif}
+.pdf-dialog::backdrop{background:rgba(0,0,0,.6)}
+.pdf-dialog h2{margin:0;font-size:20px}
+.pdf-dialog-head{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.pdf-dialog .btn{min-height:44px;cursor:pointer;font:inherit;border:1px solid var(--kdh-border);border-radius:8px;padding:8px 14px;background:var(--kdh-surface-2,var(--kdh-surface));color:var(--kdh-text)}
+.pdf-dialog .btn:disabled{opacity:.6;cursor:default}
+.pdf-dialog .primary{background:var(--kdh-brand);color:var(--kdh-brand-ink)}
+.pdf-picker{display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pdf-picker input{max-width:100%;font:inherit}
+.pdf-queue{display:grid;gap:12px;margin:16px 0}
+.pdf-queue-row{border:1px solid var(--kdh-border);border-radius:10px;padding:12px;display:grid;gap:6px;min-width:0}
+.pdf-queue-row b{overflow-wrap:anywhere}
+.pdf-queue-row label{display:grid;gap:4px;color:var(--kdh-text-2)}
+.pdf-queue-row select,.pdf-queue-row input{width:100%;min-width:0;min-height:44px;font:inherit;background:var(--kdh-surface);color:var(--kdh-text);border:1px solid var(--kdh-border);border-radius:8px;padding:6px}
+.pdf-dialog button:focus-visible,.pdf-link:focus-visible{outline:2px solid var(--kdh-brand);outline-offset:3px}
+@media(max-width:759px){.invoice-docs{font-size:13px;gap:4px}.invoice-docs .pdf-link{min-height:32px}.pdf-dialog{padding:16px}}

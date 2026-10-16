@@ -162,8 +162,52 @@ ROUND TWO (2026-10-15, Gavin; migration 20261015150000_budget_rules.sql)
   MESSAGES: a "saved" message shows once, on the screen it was sent to; it no longer
     rides along onto the next form (it did).
 
+INVOICE DOCUMENTS (2026-10-16)
+  Apply migrations 20261016150055_supplier_invoice_documents.sql and
+  20261016150710_invoice_document_grants.sql. Already applied to the connected
+  Kohler Dist Hub project during implementation; other environments need both.
+  Private Storage bucket: supplier-invoices. Metadata: supplier_invoice_documents.
+  No invoice PDFs or document metadata belong in this PUBLIC repository.
+  Documents attach to the permanent supplier_expenses.id, never an array position
+  or just an invoice number. Existing expense/account RLS controls metadata and
+  file access; budget editors/program admins upload, scoped managers read.
+  Created time and uploader name are stamped by the database. The grants migration
+  removes inherited API TRUNCATE/TRIGGER/REFERENCES privileges (RLS does not cover
+  TRUNCATE). API roles receive only SELECT/INSERT. No overwrite/delete policies:
+  upload corrections as additional PDFs. An expense with supporting documents
+  cannot be deleted until an administrator resolves its document retention.
+
+  Ledger invoice cells and phone cards show View PDF, Open in Encompass, Missing
+  PDF and (editors) Attach PDF. The saved expense edit/read view also has documents.
+  New expenses must be saved first. PDF status failures say "unavailable", not
+  "missing". View PDF creates a private signed link valid for 60 seconds, opening
+  the browser PDF viewer (which also offers download). The supplied Kohler Encompass
+  invoice address is the default; a saved invoice_link setting overrides it.
+  Numeric ledger references open that source record; vendor invoice numbers which
+  are not Encompass invoice IDs may not resolve in Encompass.
+
+  BULK: Ledger -> Bulk Upload PDFs. Select up to 200 PDFs, at most 20 MB each.
+  Recommended filenames: INVOICE Supplier.pdf. The matcher suggests only exact
+  invoice tokens containing a digit; generic labels such as "Samples" are manual.
+  Matches use all visible expenses, across years, rather than just the filtered
+  screen. If the same invoice occurs on multiple rows/years, select the intended
+  expense. Use Find an Expense for unmatched files. Review before Upload Reviewed
+  PDFs; unmatched/invalid files are skipped, failures remain for retry. Files with
+  the same SHA-256 on the same expense are skipped as duplicates. One invoice with
+  multiple allocation rows needs explicit attachment to each intended expense.
+  Successful uploads persist immediately; closing/reloading a batch keeps them.
+  An upload whose metadata save fails keeps its immutable object for a safe retry
+  in that dialog. An abandoned unlinked object is private and can be reviewed by
+  an administrator. There is no automatic Encompass export/API integration.
+
+  Verification (synthetic fixtures; tools/node_modules via npm ci --prefix tools):
+    node tools/invoice-documents-sql-test.cjs
+    node tools/invoice-documents-browser-test.cjs
+  Browser suite uses installed Chrome, or KDH_BROWSER_CHANNEL for another channel.
+  Screenshots are written beside the checkout, not into the public repo.
+
 NOT IN V1 (on purpose)
-  File attachments (File Name is text, as on the sheet); approvals / sign-off;
+  Approvals / sign-off;
   email reminders for outstanding billbacks; monthly / quarterly roll-ups; vendor
   management beyond the typeahead; deleting an account that has expenses;
   restoring a deleted expense (the event row keeps it; an editor re-enters it);

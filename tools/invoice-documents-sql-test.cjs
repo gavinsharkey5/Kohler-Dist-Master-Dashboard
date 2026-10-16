@@ -1,0 +1,57 @@
+const {PGlite}=require('@electric-sql/pglite');
+const fs=require('fs'),path=require('path'),assert=require('node:assert/strict');
+(async()=>{
+const db=new PGlite(); let count=0;
+await db.exec(`create role anon; create role authenticated; create schema auth; create schema storage;
+create function auth.jwt() returns jsonb language sql stable as $$select coalesce(nullif(current_setting('request.jwt.claims',true),''),'{}')::jsonb$$;
+create function auth.uid() returns uuid language sql stable as $$select (auth.jwt()->>'sub')::uuid$$;
+create function public.kdh_is_budget_editor() returns boolean language sql stable as $$select coalesce((auth.jwt()->>'editor')::boolean,false)$$;
+create function public.kdh_caller_name_or(text) returns text language sql stable as $$select coalesce(auth.jwt()->>'name',$1)$$;
+grant usage on schema auth,storage to authenticated,anon;
+create table public.supplier_expenses(id uuid primary key,reader text);
+alter table public.supplier_expenses enable row level security;
+grant select on public.supplier_expenses to authenticated;
+create policy "expense scope" on public.supplier_expenses for select to authenticated using(kdh_is_budget_editor() or reader=auth.jwt()->>'email');
+create table storage.buckets(id text primary key,name text,public boolean,file_size_limit bigint,allowed_mime_types text[]);
+create table storage.objects(id uuid default gen_random_uuid(),bucket_id text,name text,owner_id text,metadata jsonb);
+alter table storage.objects enable row level security; grant select,insert,update,delete on storage.objects to authenticated;
+insert into supplier_expenses values('10000000-0000-0000-0000-000000000001','reader@test'),('10000000-0000-0000-0000-000000000002','other@test');`);
+await db.exec(fs.readFileSync(path.join(__dirname,'../supabase/migrations/20261016150055_supplier_invoice_documents.sql'),'utf8'));
+await db.exec(fs.readFileSync(path.join(__dirname,'../supabase/migrations/20261016150710_invoice_document_grants.sql'),'utf8'));
+const e='10000000-0000-0000-0000-000000000001',d='20000000-0000-0000-0000-000000000001',uid='30000000-0000-0000-0000-000000000001';
+const object=`insert into storage.objects(bucket_id,name,owner_id,metadata) values('supplier-invoices','${e}/${d}.pdf','${uid}','{"size":10}')`;
+const doc=`insert into supplier_invoice_documents(id,expense_id,storage_path,file_name,size_bytes,sha256,uploaded_name) values('${d}','${e}','${e}/${d}.pdf','1234567.pdf',10,'${'a'.repeat(64)}','Spoofed')`;
+async function identity(email,editor=false){await db.exec('reset role');await db.query('select set_config($1,$2,false)',['request.jwt.claims',JSON.stringify({email,editor,sub:uid,name:'Editor One'})]);await db.exec('set role authenticated');}
+async function check(name,fn){await fn();count++;console.log('PASS',name);}
+async function fails(sql){await assert.rejects(()=>db.exec(sql));}
+await identity('editor@test',true);
+await check('metadata cannot be recorded without an uploaded object',()=>fails(doc));
+await check('editor uploads scoped immutable PDF',()=>db.exec(object));
+await check('size must match stored file',()=>fails(doc.replace(".pdf',10,",".pdf',11,")));
+await check('editor records attachment',()=>db.exec(doc));
+await check('uploader stamp cannot be spoofed',async()=>assert.equal((await db.query('select uploaded_name from supplier_invoice_documents')).rows[0].uploaded_name,'Editor One'));
+await check('duplicate attachment rejected',()=>fails(doc.replaceAll(d,'20000000-0000-0000-0000-000000000002')));
+await check('path must match expense and document UUID',()=>fails(doc.replace("'1234567.pdf'","'bad.txt'")));
+await check('oversized files refused',()=>fails(doc.replace(".pdf',10,",".pdf',20971521,")));
+await check('PDF overwrite refused',async()=>assert.equal((await db.query("update storage.objects set metadata='{}' returning *")).rows.length,0));
+await check('PDF deletion refused',async()=>assert.equal((await db.query('delete from storage.objects returning *')).rows.length,0));
+await identity('reader@test');
+await check('scoped manager reads metadata',async()=>assert.equal((await db.query('select * from supplier_invoice_documents')).rows.length,1));
+await check('scoped manager reads private file',async()=>assert.equal((await db.query('select * from storage.objects')).rows.length,1));
+await check('read-only manager cannot upload',()=>fails(object));
+await check('read-only manager cannot add metadata',()=>fails(doc));
+await identity('other@test');
+await check('unrelated manager cannot read metadata',async()=>assert.equal((await db.query('select * from supplier_invoice_documents')).rows.length,0));
+await check('unrelated manager cannot read file',async()=>assert.equal((await db.query('select * from storage.objects')).rows.length,0));
+await identity('rep@test');
+await check('rep cannot read file or metadata',async()=>{assert.equal((await db.query('select * from supplier_invoice_documents')).rows.length,0);assert.equal((await db.query('select * from storage.objects')).rows.length,0);});
+await db.exec('reset role;set role anon');
+await check('anonymous cannot access documents',()=>fails('select * from supplier_invoice_documents'));
+await check('anonymous cannot truncate documents',()=>fails('truncate supplier_invoice_documents'));
+await identity('editor@test',true);
+await check('editor cannot truncate documents',()=>fails('truncate supplier_invoice_documents'));
+await db.exec('reset role');
+await check('private bucket restricts content and size',async()=>{const b=(await db.query('select * from storage.buckets')).rows[0];assert.equal(b.public,false);assert.equal(+b.file_size_limit,20971520);assert.deepEqual(b.allowed_mime_types,['application/pdf']);});
+await check('expense with supporting document cannot be deleted',()=>fails('delete from supplier_expenses'));
+console.log(count+' invoice document SQL checks passed');await db.close();
+})().catch(e=>{console.error(e);process.exit(1)});

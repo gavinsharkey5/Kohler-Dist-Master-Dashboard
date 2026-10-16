@@ -10,6 +10,12 @@ Legend: `[ ]` open, `[~]` built, waiting on a step outside the repo,
 device, a decision).
 
 ## Now -- needs Gavin (built in the repo, not live until these are done)
+
+- [~] **Supplier invoice PDFs (2026-10-16).** Built View PDF / Open in Encompass /
+  Missing PDF beside each invoice, plus editor bulk upload with reviewed filename
+  matches, duplicate detection and per-file retry. Private storage and both invoice
+  document migrations are applied to the connected project. Page assets await
+  deployment from codex/supplier-invoice-documents; see supplier-budget/README.txt.
 - [ ] **UPC Registration Audit for Vlad (2026-10-15).** Built: /upc-audit/ -- Vlad adds his FileMaker export
   and the ABC registration search (license -002; this year's file, plus next year's once renewals start), the
   page matches them on UPC in his browser and lists what still needs registering (Not Registered, UPC Not on

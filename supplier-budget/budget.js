@@ -77,6 +77,13 @@ function friendly(e){
   return m.length > 160 ? m.slice(0, 160) + '…' : m;
 }
 const EXP_COLS = 'id,account_id,expense_date,year,invoice,vendor,items_purchased,total_amount,billback_amount,kohler_spend,billback_received,received_date,notes,source,created_by,created_name,created_at,updated_by,updated_name,updated_at';
+async function loadExpenses(){
+  const rows = [];
+  for(let offset = 0;; offset += 500){
+    const page = await rest('supplier_expenses?select=' + EXP_COLS + '&order=expense_date.desc,created_at.desc,id.asc&limit=500&offset=' + offset);
+    rows.push(...page); if(page.length < 500) return rows;
+  }
+}
 async function load(){
   S.err = null; S.missing = false;
   try{
@@ -89,7 +96,7 @@ async function load(){
     }
     const [acc, exp, ven, set] = await Promise.all([
       rest('budget_accounts?select=*&order=year.desc,account.asc'),
-      rest('supplier_expenses?select=' + EXP_COLS + '&order=expense_date.desc,created_at.desc&limit=20000'),
+      loadExpenses(),
       rest('budget_vendors?select=name,uses,last_used&order=uses.desc,name.asc').catch(() => []),
       rest('budget_settings?select=key,value').catch(() => { S.settingsMissing = true; return []; })
     ]);
@@ -108,6 +115,10 @@ async function load(){
   }
 }
 const canEdit = () => !PREVIEW && !!(S.me && (S.me.editor || S.me.admin));
+const invoiceDocs = window.KdhInvoiceDocuments.create({rest, cfg, canEdit, rows: () => joined(), changed: () => {
+  const panel = $('#sbInvoiceDocs'), e = (S.expenses || []).find(x => x.id === view().id);
+  if(panel && e) panel.innerHTML = invoiceDocs.html(e, true); else render();
+}});
 const previewEditor = () => PREVIEW && !!(S.me && (S.me.editor || S.me.admin));
 const acctById = id => (S.accounts || []).find(a => a.id === id);
 // SAVED VENDORS: by uses for the typeahead, by last use for the quick buttons (a new name is saved by the database on Save)
@@ -125,7 +136,9 @@ const hasRules = () => (S.accounts || []).some(a => a && 'billback_rule' in a);
 function ruleOf(a){ if(!a) return 'manual'; if(a.billback_rule) return a.billback_rule; return NO_SPLIT_RX.test([a.account, a.supplier, a.description].join(' ')) ? 'none' : 'manual'; }
 // INVOICE LINKS: a numeric invoice opens in Encompass once an editor saves one invoice's address (settings.invoice_link)
 const invNum = v => { const m = String(v == null ? '' : v).trim().match(/^(\d{3,})(?:\.0+)?$/); return m ? m[1] : ''; };
-const invUrl = v => { const n = invNum(v), t = S.settings.invoice_link; return n && t ? t.split('{invoice}').join(encodeURIComponent(n)) : ''; };
+const ENCOMPASS_INVOICE = 'https://kohlerdist.encompass8.com/Home?DashboardID=100100&TableName=Invoice&TabDashboardID=158170&KeyValue={invoice}&Parameters=F%3AInvoiceID~V%3A{invoice}~O%3AE';
+const invUrl = v => { const n = invNum(v), t = S.settings.invoice_link || ENCOMPASS_INVOICE; return n && t ? t.split('{invoice}').join(encodeURIComponent(n)) : ''; };
+function invoiceCell(r){ const u = invUrl(r.invoice); return '<span>' + esc(r.invoice || '—') + '</span>' + (u ? '<span class="invoice-docs"><a class="inv pdf-link" href="' + esc(u) + '" target="_blank" rel="noopener">Open in Encompass</a></span>' : '') + invoiceDocs.html(r); }
 function invHtml(v){ if(v == null || v === '') return ''; const u = invUrl(v); return u ? '<a class="inv" href="' + esc(u) + '" target="_blank" rel="noopener" title="Open invoice ' + esc(invNum(v)) + ' in Encompass">' + esc(invNum(v)) + '</a>' : esc(v); }
 // the brand-scope cut the brief asks for (RLS already applies the same rule server-side with the database's own brands)
 function visibleAccounts(){
@@ -256,7 +269,7 @@ function renderLedger(){
       '<div><label for="sbFrom">From</label><input type="date" id="sbFrom" data-f="from" value="' + esc(S.f.from) + '"></div>' +
       '<div><label for="sbTo">To</label><input type="date" id="sbTo" data-f="to" value="' + esc(S.f.to) + '"></div>' +
     '</div>' +
-    activeLine(rows.length) +
+    invoiceDocs.toolbar() + activeLine(rows.length) +
     (rows.length ? tableHtml(shown) + cardsHtml(shown) : '<div class="kdh-state empty"><b>No Expenses Match</b><span>' + (all.length ? 'Change the filters.' : (S.missing ? '' : 'Nothing has been entered yet.')) + '</span></div>') +
     (rows.length > S.shown ? '<div class="more"><button type="button" class="btn" id="sbMore">Show More (' + (rows.length - S.shown).toLocaleString() + ' Left)</button></div>' : '') +
     '<div class="sb-note">' + rows.length.toLocaleString() + ' of ' + all.length.toLocaleString() + ' rows' + (canEdit() ? ' · <button type="button" class="back" id="sbCsv">Export CSV</button>' : '') + '</div>' +
@@ -280,7 +293,7 @@ function cell(r, c){
   if(c.k === 'created_at'){ const t = tEntered(r); return t ? esc(t) : '<span class="muted">Imported</span>'; }
   if(c.k === 'expense_date') return '<span class="nw">' + esc(dShort(r.expense_date)) + '</span>';
   if(c.k === 'billback_received') return recBtn(r, true);
-  if(c.k === 'invoice') return invHtml(r.invoice);
+  if(c.k === 'invoice') return invoiceCell(r);
   if(c.k === 'code' || c.k === 'year') return '<span class="nw">' + esc(r[c.k] == null ? '' : r[c.k]) + '</span>';
   if(c.money) return esc(money(n2(r[c.k])));
   if(c.k === 'vendor') return esc(r.vendor) + editedBy(r) + (r.source === 'import_2025' ? '<span class="chip hist">History</span>' : '');
@@ -299,7 +312,7 @@ function cardsHtml(rows){
     (tEntered(r) ? '<span class="m">Entered ' + esc(tEntered(r)) + '</span>' : '') +
     (r.items_purchased ? '<span class="m">' + esc(r.items_purchased) + '</span>' : '') +
     '<span class="f"><div><span>Kohler Spend</span><b>' + esc(money(n2(r.kohler_spend))) + '</b></div><div><span>Billback</span><b>' + esc(money(n2(r.billback_amount))) + '</b></div>' +
-    (r.invoice ? '<div><span>Invoice</span><b>' + invHtml(r.invoice) + '</b></div>' : '') + (r.brand_manager ? '<div><span>Brand Manager</span><b>' + esc(r.brand_manager) + '</b></div>' : '') + '</span>' +
+    '<div><span>Invoice</span><b>' + invoiceCell(r) + '</b></div>' + (r.brand_manager ? '<div><span>Brand Manager</span><b>' + esc(r.brand_manager) + '</b></div>' : '') + '</span>' +
     '<span class="row2">' + recBtn(r) + editedBy(r) + '</span></div>').join('') + '</div>';
 }
 function wireLedger(rows){
@@ -311,7 +324,7 @@ function wireLedger(rows){
   $$('th[data-sort]').forEach(th => th.addEventListener('click', () => { const k = th.dataset.sort; S.sort = S.sort.k === k ? {k, d: -S.sort.d} : {k, d: k === 'expense_date' || k === 'created_at' || COLS.find(c => c.k === k).num ? -1 : 1}; sset('kdh_sb_sort2', S.sort); renderLedger(); }));
   const more = $('#sbMore'); if(more) more.addEventListener('click', () => { S.shown += PAGE; renderLedger(); });
   $$('[data-go]').forEach(b => b.addEventListener('click', () => go(b.dataset.go)));
-  $$('tr.r,.card[data-id]').forEach(el => { el.addEventListener('click', ev => { if(ev.target.closest('[data-rec],a.inv')) return; go('edit=' + el.dataset.id); }); el.addEventListener('keydown', ev => { if(ev.key === 'Enter' && ev.target === el) go('edit=' + el.dataset.id); }); });
+  $$('tr.r,.card[data-id]').forEach(el => { el.addEventListener('click', ev => { if(ev.target.closest('[data-rec],a.inv,[data-pdf],[data-attach-pdf]')) return; go('edit=' + el.dataset.id); }); el.addEventListener('keydown', ev => { if(ev.key === 'Enter' && ev.target === el) go('edit=' + el.dataset.id); }); });
   $$('[data-rec]').forEach(b => b.addEventListener('click', ev => { ev.stopPropagation(); if(!canEdit()) return; toggleReceived(b.dataset.rec, b); }));
   const csv = $('#sbCsv'); if(csv) csv.addEventListener('click', () => exportCsv(rows));
   wireInvLink();
@@ -342,13 +355,13 @@ function exportCsv(rows){
 /* ---------------- invoice links (editors set one Encompass address) ---------------- */
 function invLinkFold(){
   if(!canEdit()) return '';
-  const on = !!S.settings.invoice_link;
+  const on = true;
   return '<details class="fold" id="sbInvFold"><summary>Invoice Links to Encompass' + (on ? ' · On' : '') + '</summary><div class="body">' +
     (S.settingsMissing ? '<p class="sb-note" style="margin:0">Run supabase/migrations/20261015150000_budget_rules.sql to turn this on.</p>' :
     '<p class="sb-note" style="margin:0 0 10px">' + (on ? 'Numeric invoice numbers open in Encompass.' : 'Open any invoice in Encompass, copy the address from the browser, and paste it here with that invoice\'s number. Every numeric invoice on this page then opens in Encompass.') + '</p>' +
     '<div class="two"><div class="fld"><label for="ilUrl">Address of One Invoice</label><input type="text" id="ilUrl" inputmode="url" placeholder="https://kohlerdist.encompass8.com/…" autocomplete="off"></div>' +
     '<div class="fld"><label for="ilNum">That Invoice\'s Number</label><input type="text" id="ilNum" inputmode="numeric" autocomplete="off"></div></div>' +
-    '<div class="err" id="ilErr"></div><div class="acts" style="margin-top:8px"><button type="button" class="btn" id="ilSave">Save Link</button>' + (on ? '<button type="button" class="btn ghost" id="ilOff">Turn Off</button>' : '') + '</div>') +
+    '<div class="err" id="ilErr"></div><div class="acts" style="margin-top:8px"><button type="button" class="btn" id="ilSave">Save Link</button>' + (S.settings.invoice_link ? '<button type="button" class="btn ghost" id="ilOff">Use Default Link</button>' : '') + '</div>') +
     '</div></details>';
 }
 function linkTemplate(url, num){
@@ -358,7 +371,6 @@ function linkTemplate(url, num){
   if(u.protocol !== 'https:' || !/(^|\.)encompass8\.com$/i.test(u.hostname)) return {err: 'That is not an Encompass address (it should end in encompass8.com).'};
   const parts = url.split(num);
   if(parts.length === 1) return {err: 'That number is not in the address. Copy the address while that invoice is open.'};
-  if(parts.length > 2) return {err: 'That number appears more than once in the address. Pick an invoice with a different number.'};
   return {t: parts.join('{invoice}')};
 }
 function wireInvLink(){
@@ -379,7 +391,7 @@ function wireInvLink(){
   });
   if(off) off.addEventListener('click', async () => {
     off.setAttribute('aria-busy', 'true');
-    try{ await put(null); S.msg = {text: 'Invoice links turned off.'}; renderLedger(); }
+    try{ await put(null); S.msg = {text: 'Default Kohler Encompass links restored.'}; renderLedger(); }
     catch(e){ off.removeAttribute('aria-busy'); err.textContent = friendly(e); }
   });
 }
@@ -412,7 +424,7 @@ function renderForm(e){
       '<div class="fld"><label for="fNotes">Notes <small>optional</small></label><textarea id="fNotes" name="notes">' + esc(f.notes) + '</textarea></div>' +
       (edit ? '<div class="facts">' + (e.created_name ? '<div><span>Added</span><b>' + esc(e.created_name) + ' · ' + esc(dShort((e.created_at || '').slice(0, 10))) + '</b></div>' : '') + (e.updated_name && e.updated_at !== e.created_at ? '<div><span>Last Edited</span><b>' + esc(e.updated_name) + ' · ' + esc(dShort((e.updated_at || '').slice(0, 10))) + '</b></div>' : '') + '</div>' : '') +
       '<div class="savebar"><button type="submit" class="btn primary" id="fSave">' + (edit ? 'Save Changes' : 'Save') + '</button>' + (edit ? '<button type="button" class="btn" id="fDelete">Delete</button>' : '<button type="submit" class="btn" id="fSaveAdd" data-again="1">Save and Add Another</button>') + '<button type="button" class="btn ghost" id="fCancel">Cancel</button></div>' +
-    '</form>';
+    '</form>' + (e ? '<h2>Invoice Documents</h2><div id="sbInvoiceDocs">' + invoiceDocs.html(e, true) + '</div>' : '<p class="sb-note">Save the expense, then attach its PDF from the invoice row.</p>');
   wireForm(f, e);
 }
 function acctLine(a){ return [a.code ? 'Code ' + a.code : '', a.brand_manager, a.supplier, a.description].filter(Boolean).join(' · '); }
@@ -533,6 +545,7 @@ function renderView(e){
   app.innerHTML = '<button type="button" class="back" id="sbBack">‹ Ledger</button><h1>' + esc(e.vendor) + '<small>' + esc(dShort(e.expense_date)) + ' · ' + esc(a.account || '') + '</small></h1>' +
     '<div class="facts">' + [['Total', money(n2(e.total_amount))], ['Kohler Spend', money(n2(e.kohler_spend))], ['Billback', money(n2(e.billback_amount))], ['Billback Received', e.billback_received ? 'Yes' + (e.received_date ? ' · ' + dShort(e.received_date) : '') : 'No'], ['Invoice', e.invoice ? {h: invHtml(e.invoice)} : '—'], ['Items Purchased', e.items_purchased || '—'], ['Code', a.code || '—'], ['Brand Manager', a.brand_manager || '—'], ['Supplier', a.supplier || '—'], ['Description', a.description || '—'], ['Notes', e.notes || '—']].map(x => '<div><span>' + esc(x[0]) + '</span><b>' + (x[1] && x[1].h ? x[1].h : esc(x[1])) + '</b></div>').join('') + '</div>' +
     '<p class="sb-note">' + (PREVIEW ? 'Saving is off in preview.' + (previewEditor() ? ' ' + esc(first(U.name)) + ' can edit this row when signed in.' : '') : 'Read only. Only a budget editor can change an expense.') + '</p>';
+  app.insertAdjacentHTML('beforeend', '<h2>Invoice Documents</h2><div id="sbInvoiceDocs">' + invoiceDocs.html(e, true) + '</div>' + (invUrl(e.invoice) ? '<p><a class="inv" target="_blank" rel="noopener" href="' + esc(invUrl(e.invoice)) + '">Open in Encompass</a></p>' : ''));
   $('#sbBack').addEventListener('click', () => go('ledger'));
 }
 
@@ -618,6 +631,7 @@ function accountSheet(a, budgetOnly, opt){
 /* ---------------- boot ---------------- */
 (async function(){
   await load();
+  await invoiceDocs.load();
   render();
   const v = view(); if(v.v === 'new' && !canEdit()) go('ledger');
 })();
