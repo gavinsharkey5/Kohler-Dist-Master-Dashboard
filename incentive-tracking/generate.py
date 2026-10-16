@@ -1777,11 +1777,10 @@ NEW_BELGIUM_DIST_BRANDS = ["Bell's", "Bell's Hearted Family", "Kirin Ichiban", "
 # children on the current and base columns; a mismatch refuses to publish.
 # GOALS are the export's own "( ... ) Goals" column, taken as supplied (they
 # are not always 100% of the 6/1-8/31 base: Allison Scott's draft goal is 13
-# on a base of 14). Each goal is scored on its own: off-premise National and
-# on-premise Dos Equis packages = the rep goal, on-premise packages = one
-# goal per brand family (Heineken, Heineken 0.0), on-premise draft = one goal
-# per rep with the keg sizes' own goals shown underneath. ASSUMPTION, to
-# confirm with Gavin: that split of what counts as "a goal".
+# on a base of 14). ONE GOAL PER FILE PER REP (Gavin, 2026-10-16): the rep
+# row's Goals cell in each export. The family / keg sub-goals inside packages
+# and draft are not scored; draft lists its keg sizes underneath. The deck's
+# goals (840 / 1,035 / Local / Innovation) are NOT used -- the files win.
 HEINEKEN_HUSA_FILES = [
     {"key": "off_national", "label": "Off-Premise National", "file": "heineken_husa_off_national.csv",
      "unit": "placements", "metric": "Placement Count", "total": True, "levels": ("rep", "product")},
@@ -1859,7 +1858,7 @@ def _husa_parse(spec):
             node["children"] = groups
             gs = sum(gr["goal"] for gr in groups)
             if abs(gs - t[2]) > 1e-6:
-                print(f"heineken_husa: {spec['key']} {rep}: rep goal {t[2]:g} vs its sub-goals {gs:g} (sub-goals scored)")
+                print(f"heineken_husa: {spec['key']} {rep}: rep goal {t[2]:g} vs its sub-goals {gs:g} (rep goal scored)")
         sc = sum(x["placements"] for x in node["children"])
         sb = sum(x["base"] for x in node["children"])
         if abs(sc - t[0]) > 1e-6 or abs(sb - t[1]) > 1e-6:
@@ -1906,10 +1905,16 @@ def build_heineken_husa():
                 continue
             groups = by_rep.setdefault(rep, [])
             if key == "on_packages":
+                # one goal per rep (the rep row's Goals cell); both families' SKUs underneath
+                skus = {}
                 for fam in n["children"]:
-                    label = f"On-Premise {HEINEKEN_HUSA_FAMILY_LABEL.get(fam['key'], fam['key'])} Packages"
-                    groups.append(scored(label, fam["placements"], fam["goal"], fam["base"], u,
-                                         order([prod(p, u) for p in fam["children"]]), key))
+                    for p in fam["children"]:
+                        k = (p["id"], p["product"])
+                        q = skus.setdefault(k, {"id": p["id"], "product": p["product"], "placements": 0.0, "base": 0.0})
+                        q["placements"] += p["placements"]
+                        q["base"] += p["base"]
+                groups.append(scored(spec["label"], n["placements"], n["goal"], n["base"], u,
+                                     order([prod(p, u) for p in skus.values()]), key))
             elif key == "on_draft":
                 kegs = []
                 for k in n["children"]:

@@ -5698,3 +5698,8 @@ Tell Sell. Card cardHeinekenHusa, hub TOTALS_ONLY (no hold list, like New
 Belgium). Refresh: save the four exports over those files, then
 KDH_ONLY_PROGRAMS=new_belgium_distribution_retain,heineken_husa python generate.py
 (add any other October program you are refreshing to that list).
+HEINEKEN, GAVIN'S ANSWERS (same day): (1) a goal = the Goals column of each
+file -- ONE goal per file per rep (the rep row's Goals cell), so on-premise
+packages is one Heineken + Heineken 0.0 goal (house 489 / 1,135), not two; the
+family / keg sub-goals are not scored. (2) The files' goals are right, not the
+deck's. (3) Local / Innovation: not needed. 22 reps, 53 goals, 4 held so far.

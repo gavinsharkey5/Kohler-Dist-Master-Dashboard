@@ -4500,9 +4500,9 @@ const PROGRAM_RULES = {
   ],
   'heineken_husa': [
     'Window: October 1 – November 30, 2026, against your June 1 – August 31 distribution',
-    'Goals are the Heineken USA report\'s own goal column, one per section',
+    'Four goals, one per Heineken USA report — each is that report’s own Goals number for you',
     'Off-premise National — Heineken, Heineken 0.0 and Dos Equis Lager placements',
-    'On-premise packages — one goal for Heineken, one for Heineken 0.0',
+    'On-premise packages — Heineken and Heineken 0.0 placements',
     'On-premise draft — Heineken keg buyers (20 L and 13.2 gal)',
     'On-premise Dos Equis packages — Dos Equis Lager and Amber placements',
     'Up to $500 for hitting all distribution goals',

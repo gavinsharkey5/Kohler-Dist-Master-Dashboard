@@ -183327,7 +183327,7 @@ const PROGRAM_DATA_2026_10 = {
             ]
           },
           {
-            "label": "On-Premise Heineken Packages",
+            "label": "On-Premise Packages",
             "section": "on_packages",
             "placements": 0,
             "goal": 1,
@@ -183463,14 +183463,14 @@ const PROGRAM_DATA_2026_10 = {
             ]
           },
           {
-            "label": "On-Premise Heineken 0.0 Packages",
+            "label": "On-Premise Packages",
             "section": "on_packages",
-            "placements": 0,
-            "goal": 2,
-            "base": 2,
+            "placements": 6,
+            "goal": 13,
+            "base": 13,
             "unit": "placements",
-            "pct": 0.0,
-            "toGo": 2,
+            "pct": 46.15,
+            "toGo": 7,
             "retained": false,
             "products": [
               {
@@ -183494,20 +183494,7 @@ const PROGRAM_DATA_2026_10 = {
                 "toGo": null,
                 "retained": null,
                 "lost": true
-              }
-            ]
-          },
-          {
-            "label": "On-Premise Heineken Packages",
-            "section": "on_packages",
-            "placements": 6,
-            "goal": 11,
-            "base": 11,
-            "unit": "placements",
-            "pct": 54.55,
-            "toGo": 5,
-            "retained": false,
-            "products": [
+              },
               {
                 "id": "1818",
                 "product": "Heineken 1/12/22 oz Btl",
@@ -183683,7 +183670,7 @@ const PROGRAM_DATA_2026_10 = {
         "overallToGo": 80,
         "overallPct": 44.44,
         "goalsRetained": 0,
-        "goalsTotal": 4
+        "goalsTotal": 3
       },
       "Jim Heaney": {
         "rep": "Jim Heaney",
@@ -183790,14 +183777,14 @@ const PROGRAM_DATA_2026_10 = {
             ]
           },
           {
-            "label": "On-Premise Heineken 0.0 Packages",
+            "label": "On-Premise Packages",
             "section": "on_packages",
             "placements": 0,
-            "goal": 1,
-            "base": 1,
+            "goal": 2,
+            "base": 2,
             "unit": "placements",
             "pct": 0.0,
-            "toGo": 1,
+            "toGo": 2,
             "retained": false,
             "products": [
               {
@@ -183810,20 +183797,7 @@ const PROGRAM_DATA_2026_10 = {
                 "toGo": null,
                 "retained": null,
                 "lost": true
-              }
-            ]
-          },
-          {
-            "label": "On-Premise Heineken Packages",
-            "section": "on_packages",
-            "placements": 0,
-            "goal": 1,
-            "base": 1,
-            "unit": "placements",
-            "pct": 0.0,
-            "toGo": 1,
-            "retained": false,
-            "products": [
+              },
               {
                 "id": "1808",
                 "product": "Heineken 1/24/12 oz Loose Btl",
@@ -183843,7 +183817,7 @@ const PROGRAM_DATA_2026_10 = {
         "overallToGo": 106,
         "overallPct": 33.33,
         "goalsRetained": 0,
-        "goalsTotal": 3
+        "goalsTotal": 2
       },
       "Shane Barreca": {
         "rep": "Shane Barreca",
@@ -184062,14 +184036,14 @@ const PROGRAM_DATA_2026_10 = {
             ]
           },
           {
-            "label": "On-Premise Heineken Packages",
+            "label": "On-Premise Packages",
             "section": "on_packages",
-            "placements": 18,
-            "goal": 41,
-            "base": 41,
+            "placements": 21,
+            "goal": 55,
+            "base": 55,
             "unit": "placements",
-            "pct": 43.9,
-            "toGo": 23,
+            "pct": 38.18,
+            "toGo": 34,
             "retained": false,
             "products": [
               {
@@ -184082,6 +184056,28 @@ const PROGRAM_DATA_2026_10 = {
                 "toGo": null,
                 "retained": null,
                 "lost": false
+              },
+              {
+                "id": "1870",
+                "product": "Heineken 0.0 4/6/11.2 oz Btl",
+                "placements": 3,
+                "base": 13,
+                "goal": null,
+                "unit": "placements",
+                "toGo": null,
+                "retained": null,
+                "lost": false
+              },
+              {
+                "id": "1873",
+                "product": "Heineken 0.0 2/12/11.2 oz Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": null,
+                "unit": "placements",
+                "toGo": null,
+                "retained": null,
+                "lost": true
               },
               {
                 "id": "1816",
@@ -184115,41 +184111,6 @@ const PROGRAM_DATA_2026_10 = {
                 "toGo": null,
                 "retained": null,
                 "lost": false
-              }
-            ]
-          },
-          {
-            "label": "On-Premise Heineken 0.0 Packages",
-            "section": "on_packages",
-            "placements": 3,
-            "goal": 14,
-            "base": 14,
-            "unit": "placements",
-            "pct": 21.43,
-            "toGo": 11,
-            "retained": false,
-            "products": [
-              {
-                "id": "1870",
-                "product": "Heineken 0.0 4/6/11.2 oz Btl",
-                "placements": 3,
-                "base": 13,
-                "goal": null,
-                "unit": "placements",
-                "toGo": null,
-                "retained": null,
-                "lost": false
-              },
-              {
-                "id": "1873",
-                "product": "Heineken 0.0 2/12/11.2 oz Btl",
-                "placements": 0,
-                "base": 1,
-                "goal": null,
-                "unit": "placements",
-                "toGo": null,
-                "retained": null,
-                "lost": true
               }
             ]
           },
@@ -184214,7 +184175,7 @@ const PROGRAM_DATA_2026_10 = {
         "overallToGo": 147,
         "overallPct": 31.94,
         "goalsRetained": 0,
-        "goalsTotal": 5
+        "goalsTotal": 4
       },
       "Matt Powierski": {
         "rep": "Matt Powierski",
@@ -184321,14 +184282,14 @@ const PROGRAM_DATA_2026_10 = {
             ]
           },
           {
-            "label": "On-Premise Heineken Packages",
+            "label": "On-Premise Packages",
             "section": "on_packages",
-            "placements": 8,
-            "goal": 15,
-            "base": 15,
+            "placements": 14,
+            "goal": 23,
+            "base": 23,
             "unit": "placements",
-            "pct": 53.33,
-            "toGo": 7,
+            "pct": 60.87,
+            "toGo": 9,
             "retained": false,
             "products": [
               {
@@ -184336,6 +184297,17 @@ const PROGRAM_DATA_2026_10 = {
                 "product": "Heineken 4/6/12 oz Btl",
                 "placements": 8,
                 "base": 14,
+                "goal": null,
+                "unit": "placements",
+                "toGo": null,
+                "retained": null,
+                "lost": false
+              },
+              {
+                "id": "1870",
+                "product": "Heineken 0.0 4/6/11.2 oz Btl",
+                "placements": 5,
+                "base": 7,
                 "goal": null,
                 "unit": "placements",
                 "toGo": null,
@@ -184352,30 +184324,6 @@ const PROGRAM_DATA_2026_10 = {
                 "toGo": null,
                 "retained": null,
                 "lost": true
-              }
-            ]
-          },
-          {
-            "label": "On-Premise Heineken 0.0 Packages",
-            "section": "on_packages",
-            "placements": 6,
-            "goal": 8,
-            "base": 8,
-            "unit": "placements",
-            "pct": 75.0,
-            "toGo": 2,
-            "retained": false,
-            "products": [
-              {
-                "id": "1870",
-                "product": "Heineken 0.0 4/6/11.2 oz Btl",
-                "placements": 5,
-                "base": 7,
-                "goal": null,
-                "unit": "placements",
-                "toGo": null,
-                "retained": null,
-                "lost": false
               },
               {
                 "id": "1873",
@@ -184427,7 +184375,7 @@ const PROGRAM_DATA_2026_10 = {
         "overallToGo": 111,
         "overallPct": 35.47,
         "goalsRetained": 1,
-        "goalsTotal": 4
+        "goalsTotal": 3
       },
       "Chris Payton": {
         "rep": "Chris Payton",
@@ -184534,14 +184482,14 @@ const PROGRAM_DATA_2026_10 = {
             ]
           },
           {
-            "label": "On-Premise Heineken Packages",
+            "label": "On-Premise Packages",
             "section": "on_packages",
-            "placements": 9,
-            "goal": 23,
-            "base": 23,
+            "placements": 12,
+            "goal": 34,
+            "base": 34,
             "unit": "placements",
-            "pct": 39.13,
-            "toGo": 14,
+            "pct": 35.29,
+            "toGo": 22,
             "retained": false,
             "products": [
               {
@@ -184556,10 +184504,10 @@ const PROGRAM_DATA_2026_10 = {
                 "lost": false
               },
               {
-                "id": "1808",
-                "product": "Heineken 1/24/12 oz Loose Btl",
-                "placements": 5,
-                "base": 8,
+                "id": "1870",
+                "product": "Heineken 0.0 4/6/11.2 oz Btl",
+                "placements": 1,
+                "base": 7,
                 "goal": null,
                 "unit": "placements",
                 "toGo": null,
@@ -184567,34 +184515,10 @@ const PROGRAM_DATA_2026_10 = {
                 "lost": false
               },
               {
-                "id": "1822",
-                "product": "Heineken 1/24/12 oz Loose Can",
-                "placements": 2,
-                "base": 2,
-                "goal": null,
-                "unit": "placements",
-                "toGo": null,
-                "retained": null,
-                "lost": false
-              }
-            ]
-          },
-          {
-            "label": "On-Premise Heineken 0.0 Packages",
-            "section": "on_packages",
-            "placements": 3,
-            "goal": 11,
-            "base": 11,
-            "unit": "placements",
-            "pct": 27.27,
-            "toGo": 8,
-            "retained": false,
-            "products": [
-              {
-                "id": "1870",
-                "product": "Heineken 0.0 4/6/11.2 oz Btl",
-                "placements": 1,
-                "base": 7,
+                "id": "1808",
+                "product": "Heineken 1/24/12 oz Loose Btl",
+                "placements": 5,
+                "base": 8,
                 "goal": null,
                 "unit": "placements",
                 "toGo": null,
@@ -184633,6 +184557,17 @@ const PROGRAM_DATA_2026_10 = {
                 "toGo": null,
                 "retained": null,
                 "lost": false
+              },
+              {
+                "id": "1822",
+                "product": "Heineken 1/24/12 oz Loose Can",
+                "placements": 2,
+                "base": 2,
+                "goal": null,
+                "unit": "placements",
+                "toGo": null,
+                "retained": null,
+                "lost": false
               }
             ]
           }
@@ -184642,7 +184577,7 @@ const PROGRAM_DATA_2026_10 = {
         "overallToGo": 150,
         "overallPct": 27.54,
         "goalsRetained": 0,
-        "goalsTotal": 3
+        "goalsTotal": 2
       },
       "Mike Ast": {
         "rep": "Mike Ast",
@@ -184749,16 +184684,27 @@ const PROGRAM_DATA_2026_10 = {
             ]
           },
           {
-            "label": "On-Premise Heineken Packages",
+            "label": "On-Premise Packages",
             "section": "on_packages",
-            "placements": 4,
-            "goal": 16,
-            "base": 16,
+            "placements": 6,
+            "goal": 25,
+            "base": 25,
             "unit": "placements",
-            "pct": 25.0,
-            "toGo": 12,
+            "pct": 24.0,
+            "toGo": 19,
             "retained": false,
             "products": [
+              {
+                "id": "1870",
+                "product": "Heineken 0.0 4/6/11.2 oz Btl",
+                "placements": 2,
+                "base": 7,
+                "goal": null,
+                "unit": "placements",
+                "toGo": null,
+                "retained": null,
+                "lost": false
+              },
               {
                 "id": "1806",
                 "product": "Heineken 4/6/12 oz Btl",
@@ -184791,30 +184737,6 @@ const PROGRAM_DATA_2026_10 = {
                 "toGo": null,
                 "retained": null,
                 "lost": false
-              }
-            ]
-          },
-          {
-            "label": "On-Premise Heineken 0.0 Packages",
-            "section": "on_packages",
-            "placements": 2,
-            "goal": 9,
-            "base": 9,
-            "unit": "placements",
-            "pct": 22.22,
-            "toGo": 7,
-            "retained": false,
-            "products": [
-              {
-                "id": "1870",
-                "product": "Heineken 0.0 4/6/11.2 oz Btl",
-                "placements": 2,
-                "base": 7,
-                "goal": null,
-                "unit": "placements",
-                "toGo": null,
-                "retained": null,
-                "lost": false
               },
               {
                 "id": "1873",
@@ -184835,7 +184757,7 @@ const PROGRAM_DATA_2026_10 = {
         "overallToGo": 93,
         "overallPct": 34.04,
         "goalsRetained": 0,
-        "goalsTotal": 3
+        "goalsTotal": 2
       },
       "Javier Melo": {
         "rep": "Javier Melo",
@@ -184942,14 +184864,14 @@ const PROGRAM_DATA_2026_10 = {
             ]
           },
           {
-            "label": "On-Premise Heineken 0.0 Packages",
+            "label": "On-Premise Packages",
             "section": "on_packages",
-            "placements": 4,
-            "goal": 13,
-            "base": 13,
+            "placements": 31,
+            "goal": 68,
+            "base": 68,
             "unit": "placements",
-            "pct": 30.77,
-            "toGo": 9,
+            "pct": 45.59,
+            "toGo": 37,
             "retained": false,
             "products": [
               {
@@ -184963,52 +184885,6 @@ const PROGRAM_DATA_2026_10 = {
                 "retained": null,
                 "lost": false
               },
-              {
-                "id": "1872",
-                "product": "Heineken 0.0 2/12/11.2 oz Can",
-                "placements": 0,
-                "base": 1,
-                "goal": null,
-                "unit": "placements",
-                "toGo": null,
-                "retained": null,
-                "lost": true
-              },
-              {
-                "id": "1871",
-                "product": "Heineken 0.0 4/6/11.2 oz Can",
-                "placements": 0,
-                "base": 1,
-                "goal": null,
-                "unit": "placements",
-                "toGo": null,
-                "retained": null,
-                "lost": true
-              },
-              {
-                "id": "1873",
-                "product": "Heineken 0.0 2/12/11.2 oz Btl",
-                "placements": 1,
-                "base": 1,
-                "goal": null,
-                "unit": "placements",
-                "toGo": null,
-                "retained": null,
-                "lost": false
-              }
-            ]
-          },
-          {
-            "label": "On-Premise Heineken Packages",
-            "section": "on_packages",
-            "placements": 27,
-            "goal": 55,
-            "base": 55,
-            "unit": "placements",
-            "pct": 49.09,
-            "toGo": 28,
-            "retained": false,
-            "products": [
               {
                 "id": "1806",
                 "product": "Heineken 4/6/12 oz Btl",
@@ -185047,6 +184923,28 @@ const PROGRAM_DATA_2026_10 = {
                 "product": "Heineken 4/6/12 oz Can",
                 "placements": 0,
                 "base": 2,
+                "goal": null,
+                "unit": "placements",
+                "toGo": null,
+                "retained": null,
+                "lost": true
+              },
+              {
+                "id": "1872",
+                "product": "Heineken 0.0 2/12/11.2 oz Can",
+                "placements": 0,
+                "base": 1,
+                "goal": null,
+                "unit": "placements",
+                "toGo": null,
+                "retained": null,
+                "lost": true
+              },
+              {
+                "id": "1871",
+                "product": "Heineken 0.0 4/6/11.2 oz Can",
+                "placements": 0,
+                "base": 1,
                 "goal": null,
                 "unit": "placements",
                 "toGo": null,
@@ -185140,6 +185038,17 @@ const PROGRAM_DATA_2026_10 = {
                 "toGo": null,
                 "retained": null,
                 "lost": true
+              },
+              {
+                "id": "1873",
+                "product": "Heineken 0.0 2/12/11.2 oz Btl",
+                "placements": 1,
+                "base": 1,
+                "goal": null,
+                "unit": "placements",
+                "toGo": null,
+                "retained": null,
+                "lost": false
               },
               {
                 "id": "1818",
@@ -185248,7 +185157,7 @@ const PROGRAM_DATA_2026_10 = {
         "overallToGo": 118,
         "overallPct": 36.9,
         "goalsRetained": 0,
-        "goalsTotal": 5
+        "goalsTotal": 4
       },
       "Derrick Laws": {
         "rep": "Derrick Laws",
@@ -185344,13 +185253,13 @@ const PROGRAM_DATA_2026_10 = {
             ]
           },
           {
-            "label": "On-Premise Heineken Packages",
+            "label": "On-Premise Packages",
             "section": "on_packages",
-            "placements": 10,
-            "goal": 23,
-            "base": 23,
+            "placements": 12,
+            "goal": 25,
+            "base": 25,
             "unit": "placements",
-            "pct": 43.48,
+            "pct": 48.0,
             "toGo": 13,
             "retained": false,
             "products": [
@@ -185443,34 +185352,21 @@ const PROGRAM_DATA_2026_10 = {
                 "lost": false
               },
               {
-                "id": "1817",
-                "product": "Heineken 6/4/16 oz Can",
-                "placements": 1,
-                "base": 0,
+                "id": "1870",
+                "product": "Heineken 0.0 4/6/11.2 oz Btl",
+                "placements": 2,
+                "base": 2,
                 "goal": null,
                 "unit": "placements",
                 "toGo": null,
                 "retained": null,
                 "lost": false
-              }
-            ]
-          },
-          {
-            "label": "On-Premise Heineken 0.0 Packages",
-            "section": "on_packages",
-            "placements": 2,
-            "goal": 2,
-            "base": 2,
-            "unit": "placements",
-            "pct": 100.0,
-            "toGo": 0,
-            "retained": true,
-            "products": [
+              },
               {
-                "id": "1870",
-                "product": "Heineken 0.0 4/6/11.2 oz Btl",
-                "placements": 2,
-                "base": 2,
+                "id": "1817",
+                "product": "Heineken 6/4/16 oz Can",
+                "placements": 1,
+                "base": 0,
                 "goal": null,
                 "unit": "placements",
                 "toGo": null,
@@ -185508,8 +185404,8 @@ const PROGRAM_DATA_2026_10 = {
         "overallGoal": 141,
         "overallToGo": 95,
         "overallPct": 32.62,
-        "goalsRetained": 1,
-        "goalsTotal": 4
+        "goalsRetained": 0,
+        "goalsTotal": 3
       },
       "Anthony Palmisano": {
         "rep": "Anthony Palmisano",
@@ -185605,14 +185501,14 @@ const PROGRAM_DATA_2026_10 = {
             ]
           },
           {
-            "label": "On-Premise Heineken Packages",
+            "label": "On-Premise Packages",
             "section": "on_packages",
-            "placements": 2,
-            "goal": 12,
-            "base": 12,
+            "placements": 5,
+            "goal": 25,
+            "base": 25,
             "unit": "placements",
-            "pct": 16.67,
-            "toGo": 10,
+            "pct": 20.0,
+            "toGo": 20,
             "retained": false,
             "products": [
               {
@@ -185626,41 +185522,6 @@ const PROGRAM_DATA_2026_10 = {
                 "retained": null,
                 "lost": false
               },
-              {
-                "id": "1822",
-                "product": "Heineken 1/24/12 oz Loose Can",
-                "placements": 0,
-                "base": 1,
-                "goal": null,
-                "unit": "placements",
-                "toGo": null,
-                "retained": null,
-                "lost": true
-              },
-              {
-                "id": "1808",
-                "product": "Heineken 1/24/12 oz Loose Btl",
-                "placements": 1,
-                "base": 1,
-                "goal": null,
-                "unit": "placements",
-                "toGo": null,
-                "retained": null,
-                "lost": false
-              }
-            ]
-          },
-          {
-            "label": "On-Premise Heineken 0.0 Packages",
-            "section": "on_packages",
-            "placements": 3,
-            "goal": 13,
-            "base": 13,
-            "unit": "placements",
-            "pct": 23.08,
-            "toGo": 10,
-            "retained": false,
-            "products": [
               {
                 "id": "1870",
                 "product": "Heineken 0.0 4/6/11.2 oz Btl",
@@ -185693,6 +185554,28 @@ const PROGRAM_DATA_2026_10 = {
                 "toGo": null,
                 "retained": null,
                 "lost": true
+              },
+              {
+                "id": "1822",
+                "product": "Heineken 1/24/12 oz Loose Can",
+                "placements": 0,
+                "base": 1,
+                "goal": null,
+                "unit": "placements",
+                "toGo": null,
+                "retained": null,
+                "lost": true
+              },
+              {
+                "id": "1808",
+                "product": "Heineken 1/24/12 oz Loose Btl",
+                "placements": 1,
+                "base": 1,
+                "goal": null,
+                "unit": "placements",
+                "toGo": null,
+                "retained": null,
+                "lost": false
               }
             ]
           },
@@ -185737,7 +185620,7 @@ const PROGRAM_DATA_2026_10 = {
         "overallToGo": 95,
         "overallPct": 26.92,
         "goalsRetained": 0,
-        "goalsTotal": 4
+        "goalsTotal": 3
       },
       "Pablo Lopez": {
         "rep": "Pablo Lopez",
@@ -185844,14 +185727,14 @@ const PROGRAM_DATA_2026_10 = {
             ]
           },
           {
-            "label": "On-Premise Heineken Packages",
+            "label": "On-Premise Packages",
             "section": "on_packages",
-            "placements": 22,
-            "goal": 53,
-            "base": 54,
+            "placements": 30,
+            "goal": 72,
+            "base": 73,
             "unit": "placements",
-            "pct": 41.51,
-            "toGo": 31,
+            "pct": 41.67,
+            "toGo": 42,
             "retained": false,
             "products": [
               {
@@ -185866,10 +185749,32 @@ const PROGRAM_DATA_2026_10 = {
                 "lost": false
               },
               {
+                "id": "1870",
+                "product": "Heineken 0.0 4/6/11.2 oz Btl",
+                "placements": 5,
+                "base": 15,
+                "goal": null,
+                "unit": "placements",
+                "toGo": null,
+                "retained": null,
+                "lost": false
+              },
+              {
                 "id": "1808",
                 "product": "Heineken 1/24/12 oz Loose Btl",
                 "placements": 4,
                 "base": 14,
+                "goal": null,
+                "unit": "placements",
+                "toGo": null,
+                "retained": null,
+                "lost": false
+              },
+              {
+                "id": "1873",
+                "product": "Heineken 0.0 2/12/11.2 oz Btl",
+                "placements": 3,
+                "base": 4,
                 "goal": null,
                 "unit": "placements",
                 "toGo": null,
@@ -185903,41 +185808,6 @@ const PROGRAM_DATA_2026_10 = {
                 "product": "Heineken 1/24/12 oz Loose Can",
                 "placements": 1,
                 "base": 1,
-                "goal": null,
-                "unit": "placements",
-                "toGo": null,
-                "retained": null,
-                "lost": false
-              }
-            ]
-          },
-          {
-            "label": "On-Premise Heineken 0.0 Packages",
-            "section": "on_packages",
-            "placements": 8,
-            "goal": 19,
-            "base": 19,
-            "unit": "placements",
-            "pct": 42.11,
-            "toGo": 11,
-            "retained": false,
-            "products": [
-              {
-                "id": "1870",
-                "product": "Heineken 0.0 4/6/11.2 oz Btl",
-                "placements": 5,
-                "base": 15,
-                "goal": null,
-                "unit": "placements",
-                "toGo": null,
-                "retained": null,
-                "lost": false
-              },
-              {
-                "id": "1873",
-                "product": "Heineken 0.0 2/12/11.2 oz Btl",
-                "placements": 3,
-                "base": 4,
                 "goal": null,
                 "unit": "placements",
                 "toGo": null,
@@ -186036,7 +185906,7 @@ const PROGRAM_DATA_2026_10 = {
         "overallToGo": 114,
         "overallPct": 35.23,
         "goalsRetained": 1,
-        "goalsTotal": 5
+        "goalsTotal": 4
       },
       "Michael Harboy": {
         "rep": "Michael Harboy",
@@ -186178,7 +186048,7 @@ const PROGRAM_DATA_2026_10 = {
             ]
           },
           {
-            "label": "On-Premise Heineken Packages",
+            "label": "On-Premise Packages",
             "section": "on_packages",
             "placements": 0,
             "goal": 1,
@@ -186270,7 +186140,7 @@ const PROGRAM_DATA_2026_10 = {
             ]
           },
           {
-            "label": "On-Premise Heineken Packages",
+            "label": "On-Premise Packages",
             "section": "on_packages",
             "placements": 1,
             "goal": 1,
@@ -186340,14 +186210,14 @@ const PROGRAM_DATA_2026_10 = {
             ]
           },
           {
-            "label": "On-Premise Heineken Packages",
+            "label": "On-Premise Packages",
             "section": "on_packages",
-            "placements": 71,
-            "goal": 152,
-            "base": 152,
+            "placements": 109,
+            "goal": 236,
+            "base": 236,
             "unit": "placements",
-            "pct": 46.71,
-            "toGo": 81,
+            "pct": 46.19,
+            "toGo": 127,
             "retained": false,
             "products": [
               {
@@ -186355,6 +186225,17 @@ const PROGRAM_DATA_2026_10 = {
                 "product": "Heineken 4/6/12 oz Btl",
                 "placements": 64,
                 "base": 125,
+                "goal": null,
+                "unit": "placements",
+                "toGo": null,
+                "retained": null,
+                "lost": false
+              },
+              {
+                "id": "1870",
+                "product": "Heineken 0.0 4/6/11.2 oz Btl",
+                "placements": 36,
+                "base": 77,
                 "goal": null,
                 "unit": "placements",
                 "toGo": null,
@@ -186384,6 +186265,17 @@ const PROGRAM_DATA_2026_10 = {
                 "lost": true
               },
               {
+                "id": "1873",
+                "product": "Heineken 0.0 2/12/11.2 oz Btl",
+                "placements": 1,
+                "base": 4,
+                "goal": null,
+                "unit": "placements",
+                "toGo": null,
+                "retained": null,
+                "lost": false
+              },
+              {
                 "id": "1817",
                 "product": "Heineken 6/4/16 oz Can",
                 "placements": 1,
@@ -186393,6 +186285,28 @@ const PROGRAM_DATA_2026_10 = {
                 "toGo": null,
                 "retained": null,
                 "lost": false
+              },
+              {
+                "id": "1872",
+                "product": "Heineken 0.0 2/12/11.2 oz Can",
+                "placements": 1,
+                "base": 2,
+                "goal": null,
+                "unit": "placements",
+                "toGo": null,
+                "retained": null,
+                "lost": false
+              },
+              {
+                "id": "1871",
+                "product": "Heineken 0.0 4/6/11.2 oz Can",
+                "placements": 0,
+                "base": 1,
+                "goal": null,
+                "unit": "placements",
+                "toGo": null,
+                "retained": null,
+                "lost": true
               },
               {
                 "id": "1820",
@@ -186437,63 +186351,6 @@ const PROGRAM_DATA_2026_10 = {
                 "toGo": null,
                 "retained": null,
                 "lost": false
-              }
-            ]
-          },
-          {
-            "label": "On-Premise Heineken 0.0 Packages",
-            "section": "on_packages",
-            "placements": 38,
-            "goal": 84,
-            "base": 84,
-            "unit": "placements",
-            "pct": 45.24,
-            "toGo": 46,
-            "retained": false,
-            "products": [
-              {
-                "id": "1870",
-                "product": "Heineken 0.0 4/6/11.2 oz Btl",
-                "placements": 36,
-                "base": 77,
-                "goal": null,
-                "unit": "placements",
-                "toGo": null,
-                "retained": null,
-                "lost": false
-              },
-              {
-                "id": "1873",
-                "product": "Heineken 0.0 2/12/11.2 oz Btl",
-                "placements": 1,
-                "base": 4,
-                "goal": null,
-                "unit": "placements",
-                "toGo": null,
-                "retained": null,
-                "lost": false
-              },
-              {
-                "id": "1872",
-                "product": "Heineken 0.0 2/12/11.2 oz Can",
-                "placements": 1,
-                "base": 2,
-                "goal": null,
-                "unit": "placements",
-                "toGo": null,
-                "retained": null,
-                "lost": false
-              },
-              {
-                "id": "1871",
-                "product": "Heineken 0.0 4/6/11.2 oz Can",
-                "placements": 0,
-                "base": 1,
-                "goal": null,
-                "unit": "placements",
-                "toGo": null,
-                "retained": null,
-                "lost": true
               }
             ]
           },
@@ -186668,7 +186525,7 @@ const PROGRAM_DATA_2026_10 = {
         "overallToGo": 142,
         "overallPct": 46.82,
         "goalsRetained": 1,
-        "goalsTotal": 5
+        "goalsTotal": 4
       },
       "Robin Feldman": {
         "rep": "Robin Feldman",
@@ -186698,14 +186555,14 @@ const PROGRAM_DATA_2026_10 = {
             ]
           },
           {
-            "label": "On-Premise Heineken Packages",
+            "label": "On-Premise Packages",
             "section": "on_packages",
-            "placements": 37,
-            "goal": 115,
-            "base": 115,
+            "placements": 53,
+            "goal": 167,
+            "base": 167,
             "unit": "placements",
-            "pct": 32.17,
-            "toGo": 78,
+            "pct": 31.74,
+            "toGo": 114,
             "retained": false,
             "products": [
               {
@@ -186720,10 +186577,32 @@ const PROGRAM_DATA_2026_10 = {
                 "lost": false
               },
               {
+                "id": "1870",
+                "product": "Heineken 0.0 4/6/11.2 oz Btl",
+                "placements": 14,
+                "base": 41,
+                "goal": null,
+                "unit": "placements",
+                "toGo": null,
+                "retained": null,
+                "lost": false
+              },
+              {
                 "id": "1808",
                 "product": "Heineken 1/24/12 oz Loose Btl",
                 "placements": 11,
                 "base": 29,
+                "goal": null,
+                "unit": "placements",
+                "toGo": null,
+                "retained": null,
+                "lost": false
+              },
+              {
+                "id": "1873",
+                "product": "Heineken 0.0 2/12/11.2 oz Btl",
+                "placements": 1,
+                "base": 10,
                 "goal": null,
                 "unit": "placements",
                 "toGo": null,
@@ -186786,6 +186665,17 @@ const PROGRAM_DATA_2026_10 = {
                 "lost": true
               },
               {
+                "id": "1872",
+                "product": "Heineken 0.0 2/12/11.2 oz Can",
+                "placements": 1,
+                "base": 1,
+                "goal": null,
+                "unit": "placements",
+                "toGo": null,
+                "retained": null,
+                "lost": false
+              },
+              {
                 "id": "1813",
                 "product": "Heineken 1/18/12 oz Btl",
                 "placements": 2,
@@ -186800,52 +186690,6 @@ const PROGRAM_DATA_2026_10 = {
                 "id": "1828",
                 "product": "Heineken 1/24/7 oz Loose Btl",
                 "placements": 2,
-                "base": 1,
-                "goal": null,
-                "unit": "placements",
-                "toGo": null,
-                "retained": null,
-                "lost": false
-              }
-            ]
-          },
-          {
-            "label": "On-Premise Heineken 0.0 Packages",
-            "section": "on_packages",
-            "placements": 16,
-            "goal": 52,
-            "base": 52,
-            "unit": "placements",
-            "pct": 30.77,
-            "toGo": 36,
-            "retained": false,
-            "products": [
-              {
-                "id": "1870",
-                "product": "Heineken 0.0 4/6/11.2 oz Btl",
-                "placements": 14,
-                "base": 41,
-                "goal": null,
-                "unit": "placements",
-                "toGo": null,
-                "retained": null,
-                "lost": false
-              },
-              {
-                "id": "1873",
-                "product": "Heineken 0.0 2/12/11.2 oz Btl",
-                "placements": 1,
-                "base": 10,
-                "goal": null,
-                "unit": "placements",
-                "toGo": null,
-                "retained": null,
-                "lost": false
-              },
-              {
-                "id": "1872",
-                "product": "Heineken 0.0 2/12/11.2 oz Can",
-                "placements": 1,
                 "base": 1,
                 "goal": null,
                 "unit": "placements",
@@ -186896,7 +186740,7 @@ const PROGRAM_DATA_2026_10 = {
         "overallToGo": 118,
         "overallPct": 31.4,
         "goalsRetained": 0,
-        "goalsTotal": 3
+        "goalsTotal": 2
       },
       "Alisa Acciardi": {
         "rep": "Alisa Acciardi",
@@ -187117,14 +186961,14 @@ const PROGRAM_DATA_2026_10 = {
         "rep": "Allison Scott",
         "groups": [
           {
-            "label": "On-Premise Heineken 0.0 Packages",
+            "label": "On-Premise Packages",
             "section": "on_packages",
-            "placements": 31,
-            "goal": 78,
-            "base": 78,
+            "placements": 104,
+            "goal": 190,
+            "base": 190,
             "unit": "placements",
-            "pct": 39.74,
-            "toGo": 47,
+            "pct": 54.74,
+            "toGo": 86,
             "retained": false,
             "products": [
               {
@@ -187132,6 +186976,17 @@ const PROGRAM_DATA_2026_10 = {
                 "product": "Heineken 0.0 4/6/11.2 oz Btl",
                 "placements": 31,
                 "base": 72,
+                "goal": null,
+                "unit": "placements",
+                "toGo": null,
+                "retained": null,
+                "lost": false
+              },
+              {
+                "id": "1806",
+                "product": "Heineken 4/6/12 oz Btl",
+                "placements": 66,
+                "base": 94,
                 "goal": null,
                 "unit": "placements",
                 "toGo": null,
@@ -187159,30 +187014,6 @@ const PROGRAM_DATA_2026_10 = {
                 "toGo": null,
                 "retained": null,
                 "lost": true
-              }
-            ]
-          },
-          {
-            "label": "On-Premise Heineken Packages",
-            "section": "on_packages",
-            "placements": 73,
-            "goal": 112,
-            "base": 112,
-            "unit": "placements",
-            "pct": 65.18,
-            "toGo": 39,
-            "retained": false,
-            "products": [
-              {
-                "id": "1806",
-                "product": "Heineken 4/6/12 oz Btl",
-                "placements": 66,
-                "base": 94,
-                "goal": null,
-                "unit": "placements",
-                "toGo": null,
-                "retained": null,
-                "lost": false
               },
               {
                 "id": "1808",
@@ -187413,22 +187244,33 @@ const PROGRAM_DATA_2026_10 = {
         "overallToGo": 97,
         "overallPct": 54.25,
         "goalsRetained": 0,
-        "goalsTotal": 4
+        "goalsTotal": 3
       },
       "Paul Mclaughlin": {
         "rep": "Paul Mclaughlin",
         "groups": [
           {
-            "label": "On-Premise Heineken Packages",
+            "label": "On-Premise Packages",
             "section": "on_packages",
-            "placements": 62,
-            "goal": 128,
-            "base": 128,
+            "placements": 85,
+            "goal": 197,
+            "base": 197,
             "unit": "placements",
-            "pct": 48.44,
-            "toGo": 66,
+            "pct": 43.15,
+            "toGo": 112,
             "retained": false,
             "products": [
+              {
+                "id": "1870",
+                "product": "Heineken 0.0 4/6/11.2 oz Btl",
+                "placements": 22,
+                "base": 62,
+                "goal": null,
+                "unit": "placements",
+                "toGo": null,
+                "retained": null,
+                "lost": false
+              },
               {
                 "id": "1806",
                 "product": "Heineken 4/6/12 oz Btl",
@@ -187474,6 +187316,17 @@ const PROGRAM_DATA_2026_10 = {
                 "lost": false
               },
               {
+                "id": "1871",
+                "product": "Heineken 0.0 4/6/11.2 oz Can",
+                "placements": 0,
+                "base": 3,
+                "goal": null,
+                "unit": "placements",
+                "toGo": null,
+                "retained": null,
+                "lost": true
+              },
+              {
                 "id": "1821",
                 "product": "Heineken Aluminum 1/24/11.2 oz Btl",
                 "placements": 0,
@@ -187485,10 +187338,32 @@ const PROGRAM_DATA_2026_10 = {
                 "lost": true
               },
               {
+                "id": "1873",
+                "product": "Heineken 0.0 2/12/11.2 oz Btl",
+                "placements": 1,
+                "base": 3,
+                "goal": null,
+                "unit": "placements",
+                "toGo": null,
+                "retained": null,
+                "lost": false
+              },
+              {
                 "id": "1813",
                 "product": "Heineken 1/18/12 oz Btl",
                 "placements": 0,
                 "base": 2,
+                "goal": null,
+                "unit": "placements",
+                "toGo": null,
+                "retained": null,
+                "lost": true
+              },
+              {
+                "id": "1872",
+                "product": "Heineken 0.0 2/12/11.2 oz Can",
+                "placements": 0,
+                "base": 1,
                 "goal": null,
                 "unit": "placements",
                 "toGo": null,
@@ -187549,63 +187424,6 @@ const PROGRAM_DATA_2026_10 = {
                 "toGo": null,
                 "retained": null,
                 "lost": false
-              }
-            ]
-          },
-          {
-            "label": "On-Premise Heineken 0.0 Packages",
-            "section": "on_packages",
-            "placements": 23,
-            "goal": 69,
-            "base": 69,
-            "unit": "placements",
-            "pct": 33.33,
-            "toGo": 46,
-            "retained": false,
-            "products": [
-              {
-                "id": "1870",
-                "product": "Heineken 0.0 4/6/11.2 oz Btl",
-                "placements": 22,
-                "base": 62,
-                "goal": null,
-                "unit": "placements",
-                "toGo": null,
-                "retained": null,
-                "lost": false
-              },
-              {
-                "id": "1871",
-                "product": "Heineken 0.0 4/6/11.2 oz Can",
-                "placements": 0,
-                "base": 3,
-                "goal": null,
-                "unit": "placements",
-                "toGo": null,
-                "retained": null,
-                "lost": true
-              },
-              {
-                "id": "1873",
-                "product": "Heineken 0.0 2/12/11.2 oz Btl",
-                "placements": 1,
-                "base": 3,
-                "goal": null,
-                "unit": "placements",
-                "toGo": null,
-                "retained": null,
-                "lost": false
-              },
-              {
-                "id": "1872",
-                "product": "Heineken 0.0 2/12/11.2 oz Can",
-                "placements": 0,
-                "base": 1,
-                "goal": null,
-                "unit": "placements",
-                "toGo": null,
-                "retained": null,
-                "lost": true
               }
             ]
           },
@@ -187715,7 +187533,7 @@ const PROGRAM_DATA_2026_10 = {
         "overallToGo": 121,
         "overallPct": 41.55,
         "goalsRetained": 0,
-        "goalsTotal": 4
+        "goalsTotal": 3
       }
     },
     "house": [
@@ -187728,19 +187546,11 @@ const PROGRAM_DATA_2026_10 = {
         "held": 1
       },
       {
-        "label": "On-Premise Heineken Packages",
+        "label": "On-Premise Packages",
         "unit": "placements",
-        "placements": 350,
-        "goal": 760,
+        "placements": 489,
+        "goal": 1135,
         "reps": 17,
-        "held": 1
-      },
-      {
-        "label": "On-Premise Heineken 0.0 Packages",
-        "unit": "placements",
-        "placements": 139,
-        "goal": 375,
-        "reps": 14,
         "held": 1
       },
       {
@@ -187773,5 +187583,5 @@ const PROGRAM_DATA_2026_10 = {
     }
   }
 };
-const PROGRAM_DATA_REFRESHED = "Oct 16, 2026, 11:44 AM ET";
-const PROGRAM_DATA_REFRESHED_AT = "2026-10-16T15:44:34Z";
+const PROGRAM_DATA_REFRESHED = "Oct 16, 2026, 11:47 AM ET";
+const PROGRAM_DATA_REFRESHED_AT = "2026-10-16T15:47:52Z";
