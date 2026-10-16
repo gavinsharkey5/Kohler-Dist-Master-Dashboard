@@ -1,5 +1,27 @@
 [
   {
+    "REP": "Mike Ast",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "PARK WEST TAVERN",
+    "CITY": "RIDGEWOOD",
+    "BRAND": "OVO VODKA",
+    "DETAIL": "Spirit List, Menu, Table Tent",
+    "QUANTITY": null,
+    "DATE": "10/13/2026 02:43 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/f8780b87-7a12-43db-9f2f-0c96f20e0a69/"
+  },
+  {
+    "REP": "Mike Ast",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "PARK WEST TAVERN",
+    "CITY": "RIDGEWOOD",
+    "BRAND": "BARDSTOWN BOURBON CO. ORIGIN BOURBON",
+    "DETAIL": "Spirit List, Menu, Table Tent",
+    "QUANTITY": null,
+    "DATE": "10/13/2026 02:43 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/f8780b87-7a12-43db-9f2f-0c96f20e0a69/"
+  },
+  {
     "REP": "Brian Sengebush",
     "SOURCE": "Promo",
     "CUSTOMER_NAME": "STONE WATER",

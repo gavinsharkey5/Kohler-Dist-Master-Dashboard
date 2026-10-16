@@ -1067,7 +1067,7 @@
     "BASE_DATE": "",
     "DONE": 1,
     "DONE_DETAIL": "Carbliss",
-    "DONE_DATE": "9/11/2026"
+    "DONE_DATE": "10/15/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -2127,7 +2127,7 @@
     "BASE_DATE": "",
     "DONE": 1,
     "DONE_DETAIL": "Carbliss",
-    "DONE_DATE": "9/24/2026"
+    "DONE_DATE": "10/15/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -3007,7 +3007,7 @@
     "BASE_DATE": "",
     "DONE": 1,
     "DONE_DETAIL": "Carbliss",
-    "DONE_DATE": "10/7/2026"
+    "DONE_DATE": "10/14/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -4005,9 +4005,9 @@
     "CUSTOMER_NAME": "Cantina Bar",
     "BASE_DETAIL": "Passaic",
     "BASE_DATE": "",
-    "DONE": 1,
-    "DONE_DETAIL": "Carbliss",
-    "DONE_DATE": "10/14/2026"
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -4025,9 +4025,9 @@
     "CUSTOMER_NAME": "Clary's Restaurant & Bar",
     "BASE_DETAIL": "Passaic",
     "BASE_DATE": "",
-    "DONE": 1,
-    "DONE_DETAIL": "Carbliss",
-    "DONE_DATE": "10/14/2026"
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -4035,9 +4035,9 @@
     "CUSTOMER_NAME": "Club Sq (A)",
     "BASE_DETAIL": "Passaic",
     "BASE_DATE": "",
-    "DONE": 1,
-    "DONE_DETAIL": "Carbliss",
-    "DONE_DATE": "10/14/2026"
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -4355,9 +4355,9 @@
     "CUSTOMER_NAME": "Venus Bar & Restaurant",
     "BASE_DETAIL": "Passaic",
     "BASE_DATE": "",
-    "DONE": 1,
-    "DONE_DETAIL": "Carbliss",
-    "DONE_DATE": "10/14/2026"
+    "DONE": 0,
+    "DONE_DETAIL": "",
+    "DONE_DATE": ""
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -5915,9 +5915,9 @@
     "CUSTOMER_NAME": "Mr.Bruno's",
     "BASE_DETAIL": "Lyndhurst",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/14/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -6467,7 +6467,7 @@
     "BASE_DATE": "",
     "DONE": 1,
     "DONE_DETAIL": "Carbliss",
-    "DONE_DATE": "10/7/2026"
+    "DONE_DATE": "10/14/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -6655,9 +6655,9 @@
     "CUSTOMER_NAME": "Whiskey Roads",
     "BASE_DETAIL": "Little Ferry",
     "BASE_DATE": "",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "Carbliss",
+    "DONE_DATE": "10/16/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -9457,7 +9457,7 @@
     "BASE_DATE": "",
     "DONE": 1,
     "DONE_DETAIL": "Carbliss",
-    "DONE_DATE": "10/8/2026"
+    "DONE_DATE": "10/14/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",

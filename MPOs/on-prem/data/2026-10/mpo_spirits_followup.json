@@ -365,9 +365,9 @@
     "CUSTOMER_NAME": "IKOS Greek Mediterranean",
     "BASE_DETAIL": "1 spirit: OVO Vodka 1/12/750 mL Btl",
     "BASE_DATE": "7/30/2026",
-    "DONE": 0,
-    "DONE_DETAIL": "",
-    "DONE_DATE": ""
+    "DONE": 1,
+    "DONE_DETAIL": "OVO Vodka 1/12/750 mL Btl",
+    "DONE_DATE": "10/15/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Dylan Rubino",
@@ -716,7 +716,7 @@
     "BASE_DETAIL": "2 spirits: Striped Pig Doppio 1/6/750 mL Btl, Travelers Club Vodka 12/1 L Btl",
     "BASE_DATE": "9/17/2026",
     "DONE": 1,
-    "DONE_DETAIL": "Striped Pig Doppio 1/6/750 mL Btl",
+    "DONE_DETAIL": "Striped Pig Doppio 1/6/750 mL Btl, Travelers Club Vodka 12/1 L Btl",
     "DONE_DATE": "10/6/2026"
   },
   {
@@ -786,7 +786,7 @@
     "BASE_DETAIL": "2 spirits: 2XO French Oak 1/750 mL Btl, Traveler's Club Vodka 6/1.75 L Btl",
     "BASE_DATE": "9/22/2026",
     "DONE": 1,
-    "DONE_DETAIL": "2XO French Oak 1/750 mL Btl",
+    "DONE_DETAIL": "2XO French Oak 1/750 mL Btl, Traveler's Club Vodka 6/1.75 L Btl",
     "DONE_DATE": "10/6/2026"
   },
   {
