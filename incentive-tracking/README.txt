@@ -5703,3 +5703,13 @@ file -- ONE goal per file per rep (the rep row's Goals cell), so on-premise
 packages is one Heineken + Heineken 0.0 goal (house 489 / 1,135), not two; the
 family / keg sub-goals are not scored. (2) The files' goals are right, not the
 deck's. (3) Local / Innovation: not needed. 22 reps, 53 goals, 4 held so far.
+
+2026-10-16 REFRESH (3) -- Yuengling Fall, three flat exports (no conversion)
+Saved over yuengling_retention_fall_{off,packages_on,draft_on}.csv. 6 -> 13 of 58
+brand goals held, 0 reps holding every goal, day 46 of 91.
+  Off-premise   Flight 117 -> 128 / 152 · Lager 291 -> 312 / 338 · Light Lager 81 -> 96 / 134
+  On-prem pkg   Flight 2 -> 5 / 6 · Lager 190 -> 211 / 258
+  On-prem draft UNCHANGED, 150 / 293 Lager, 3 / 7 Flight -- still counted from
+                yuengling_retention_fall_draft_on_detail.csv, the 2026-09-10 account
+                export (empty-keg rule). The summary sent today says ~279 Lager buyers
+                but includes empty pickups. Needs the RDE draft ACCOUNT export.
