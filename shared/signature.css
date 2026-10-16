@@ -46,6 +46,8 @@ html:root .kdh-menu,html:root .kdh-picker{background:var(--kdh-surface);border-c
 html:root .kdh-side-group{border:0;padding:0;margin:3px 0}
 html:root .kdh-side-group>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:38px;padding:8px 12px;color:var(--signature-side-muted);font-size:13px;font-weight:500;border-radius:6px;cursor:pointer}
 html:root .kdh-side-group>summary::-webkit-details-marker{display:none}
+html:root .kdh-side-group-label{display:flex;align-items:center;gap:10px}
+html:root .kdh-side-group-label>svg{width:17px;height:17px;flex-shrink:0;color:var(--signature-side-muted)}
 html:root .kdh-side-group>summary::after{content:'›';font-size:20px;line-height:1;transform:rotate(0deg)}
 html:root .kdh-side-group[open]>summary::after{transform:rotate(90deg)}
 html:root .kdh-side-group>summary:hover{background:var(--signature-selected);color:#FFF}
