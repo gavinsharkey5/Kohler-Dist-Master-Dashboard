@@ -137,6 +137,9 @@ html:root .sb .led td{padding-top:18px;padding-bottom:18px;border-color:var(--kd
 html:root .sb table.ledger th:last-child,html:root .sb table.ledger td:last-child{padding-left:4px;padding-right:4px}
 html:root .sb table.ledger th:last-child .column-sort{overflow-wrap:normal;word-break:normal}
 html:root .sb .received-cell .rec{white-space:nowrap;max-width:none}
+html:root .sb table.ledger th.num,html:root .sb table.ledger td.num,
+html:root .sb table.ledger th[data-sort="billback_received"],html:root .sb table.ledger td:last-child{text-align:center}
+html:root .sb table.ledger .received-cell{align-items:center}
 html:root .sb .led tr:nth-child(even){background:var(--kdh-surface-2)}
 html:root .sb .invoice-number{font-size:15px;font-weight:600}
 html:root .sb .received-pill,html:root .sb .sb-doc-status{border-radius:5px}
