@@ -31,6 +31,7 @@ html:root[data-theme="dark"]{
 }
 html:root .kdh-bar{background:var(--kdh-surface);backdrop-filter:none;-webkit-backdrop-filter:none;border-bottom:1px solid var(--kdh-border)}
 html:root .kdh-bar-in{min-height:62px;height:auto;padding-top:8px;padding-bottom:8px}
+html:root .topbar,html:root #acctApp .filters{top:var(--signature-bar-height,63px)}
 html:root .kdh-logo small{font-weight:500;font-size:14px}
 html:root .kdh-b{border-radius:6px}
 html:root .kdh-state{border-radius:var(--kdh-r-lg)}
