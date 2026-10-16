@@ -4497,6 +4497,7 @@ const PROGRAM_RULES = {
     'Up to $500 for every brand goal retained',
     'Off-premise families: Lager · Flight · Light Lager · On-premise packages: Lager · Flight · On-premise draft: Lager · Flight',
     'Draft counts an account only once a keg is on the books this fall — a buyer flagged on an empty pickup does not count',
+    'Draft goals are the Yuengling draft report’s own goal for each family',
   ],
   'heineken_husa': [
     'Window: October 1 – November 30, 2026, against your June 1 – August 31 distribution',

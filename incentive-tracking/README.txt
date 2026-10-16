@@ -5713,3 +5713,12 @@ brand goals held, 0 reps holding every goal, day 46 of 91.
                 yuengling_retention_fall_draft_on_detail.csv, the 2026-09-10 account
                 export (empty-keg rule). The summary sent today says ~279 Lager buyers
                 but includes empty pickups. Needs the RDE draft ACCOUNT export.
+YUENGLING DRAFT (same day, Gavin): goals = the draft summary's "( Buyer Count
+9/1/2026 - 11/30/2026 ) Goals" column (YUENGLING_FALL_EXPORT_GOAL_SIDES =
+{"draft"}; off-premise and packages keep ceil(0.95 x base)); distribution =
+the new RDE account export saved over yuengling_retention_fall_draft_on_detail.csv
+(customer x family, no Load Sheet Date column -- the reader tolerates that, so
+"last purchase" is blank). Lager 150 -> 266 / 292, Flight 3 -> 2 / 7 (Brian
+Sengebush's and Robin Feldman's Flight accounts are empty-keg rows); 15 flagged
+buyers with no kegs excluded. Anthony Palmisano now holds Lager (26 of 26).
+Refresh: save both draft exports over those two files, then generate.py.

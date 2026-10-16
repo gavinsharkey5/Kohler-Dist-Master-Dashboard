@@ -2226,6 +2226,14 @@ def _mdy_key(d):
     return (int(m.group(3)), int(m.group(1)), int(m.group(2))) if m else (0, 0, 0)
 
 
+# DRAFT GOALS ARE THE EXPORT'S OWN "( ... ) Goals" column (Gavin, 2026-10-16:
+# "use this column as goals"), not ceil(0.95 x base); they differ where Kohler
+# rounds down (Paul Mclaughlin Lager: 36, not 37). Off-premise and packages
+# still use _yuengling_fall_goal(). Draft CURRENT still comes from the account
+# sheet (YUENGLING_FALL_DRAFT_DETAIL, buyer + net kegs > 0).
+YUENGLING_FALL_EXPORT_GOAL_SIDES = {"draft"}
+
+
 def _yuengling_fall_goal(base):
     """95% of the rep's fall-2025 buyer count for that brand family, ROUNDED
     UP (Gavin, 2026-09-10: "I meant round up" -- 0.95 x 25 = 23.75 -> 24).
@@ -2276,6 +2284,9 @@ def build_yuengling_retention_fall():
         cols = list(rows[0].keys())
         base_col = next(c for c in cols if c.startswith("Buyer Count") and "2025" in c)
         cur_col = next(c for c in cols if c.startswith("Buyer Count") and "2026" in c)
+        goal_col = next((c for c in cols if c.strip().startswith("(") and c.strip().endswith("Goals")), None)
+        if side in YUENGLING_FALL_EXPORT_GOAL_SIDES and goal_col is None:
+            raise SystemExit(f"{filename}: no '( ... ) Goals' column -- {side} goals come from it (Gavin, 2026-10-16)")
         totals, detail = _split_report_subtotals(rows, "Sales Rep Assigned")
         per_rep = defaultdict(dict)
         for r in detail:
@@ -2288,7 +2299,8 @@ def build_yuengling_retention_fall():
             cur = to_num(r.get(cur_col)) if (r.get(cur_col) or "").strip() else 0.0
             if fam in per_rep[rep]:
                 raise SystemExit(f"{filename}: two '{fam}' rows for {rep} -- export shape changed?")
-            per_rep[rep][fam] = {"label": fam, "base": round(base), "actual": round(cur)}
+            per_rep[rep][fam] = {"label": fam, "base": round(base), "actual": round(cur),
+                                 "exportGoal": round(to_num(r.get(goal_col))) if goal_col and (r.get(goal_col) or "").strip() else None}
         # Reconcile every rep's total row against its own brand rows, both columns.
         for rep, fams in per_rep.items():
             t = totals.get(rep)
@@ -2321,7 +2333,8 @@ def build_yuengling_retention_fall():
                         excluded_empties += det["empties"]
                     else:
                         b["accounts"] = []
-                b["goal"] = _yuengling_fall_goal(b["base"])
+                eg = b.pop("exportGoal", None)
+                b["goal"] = (eg or None) if side in YUENGLING_FALL_EXPORT_GOAL_SIDES else _yuengling_fall_goal(b["base"])
                 b["pct"] = round(b["actual"] / b["goal"] * 100, 1) if b["goal"] else None
                 b["held"] = bool(b["goal"] and b["actual"] >= b["goal"])
                 b["toGo"] = max(0, b["goal"] - b["actual"]) if b["goal"] else 0
