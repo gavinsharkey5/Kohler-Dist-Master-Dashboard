@@ -63,14 +63,14 @@ const REP_PATHS = [
 const REP_HOME = '/rep/';
 
 // A SALES ASSOCIATE (allowed_users.role = 'associate', 2026-10-14) does field
-// work reps hand them: displays, tap handles, POS. They may open only the
-// Field Tasks page and what it loads; everything else sends them there
-// (403 for a data fetch). Which tasks they see is row-level security.
-const ASSOCIATE_PATHS = ['/tasks/', '/shared/', '/rep/rep.css'];   // rep.css = the stylesheet tasks/ links (NOT the rep home; the same unstyled-page bug as finance, 2026-10-15)
+// work reps hand them, plus photos on every customer account. Their account
+// directory contains identity/location only; task rows remain RLS scoped.
+const ASSOCIATE_PATHS = ['/tasks/', '/shared/', '/rep/rep.css'];
+const ASSOCIATE_ACCOUNT_FILES = ['/accounts/field.html', '/accounts/field.js', '/accounts/field.css', '/accounts/accounts.css', '/accounts/activity.js', '/accounts/data/catalog.json', '/api/field-accounts'];
 const ASSOCIATE_HOME = '/tasks/';
 function associateMayOpen(pathname) {
   const p = pathname.split('?')[0];
-  return ASSOCIATE_PATHS.some((pre) => p.startsWith(pre) || p + '/' === pre || p === pre.replace(/\/$/, '') + '/index.html');
+  return ASSOCIATE_ACCOUNT_FILES.includes(p) || ASSOCIATE_PATHS.some((pre) => p.startsWith(pre) || p + '/' === pre || p === pre.replace(/\/$/, '') + '/index.html');
 }
 
 // The FINANCE workspace (allowed_users.workspace = 'finance', 2026-10-15): a
@@ -125,6 +125,7 @@ function nameKey(n) {
 }
 const ACCOUNT_DATA = /^\/accounts\/data\/(book|reps|sales|elig|hist)\/([a-z0-9-]+)(\.js|\.json|\/[0-9a-z_-]+\.json)$/;
 function accountDataVerdict(pathname, name) {
+  if (/^\/accounts\/field\.(html|js|css)$/.test(pathname)) return 'deny'; // the all-customer field directory is for associates and managers
   if (pathname === '/accounts/data/index.json') return 'ok';
   const m = pathname.match(ACCOUNT_DATA);
   if (!m) return 'ok';                                  // not a data slice
@@ -282,6 +283,7 @@ function route(request, url, verdict) {
       return redirect(new URL(FINANCE_HOME, url).toString());
     }
     if (verdict.role === 'associate') {
+      if (url.pathname === '/accounts/' || url.pathname === '/accounts' || url.pathname === '/accounts/index.html') return rewrite(new URL('/accounts/field.html', url));
       if (associateMayOpen(url.pathname)) return passThrough();
       if (!wantsDocument(request)) {
         return new Response(JSON.stringify({ error: 'not available to sales associates' }), {
