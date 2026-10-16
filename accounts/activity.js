@@ -93,7 +93,7 @@ async function load(n, force){
   const base = 'select=id,program_id,account_num,account_name,status,note,updated_at,created_at,rep_name';
   let recs = [];
   await Promise.all([
-    rest('field_tasks?select=id,title,status,created_at,completed_at,completed_by,rep_name,associate_name,updated_at,field_task_comments(id,kind,body,created_at,author_name)&account_num=eq.'+encodeURIComponent(n)+'&order=updated_at.desc&limit=500').then(rows=>{out.tasks=rows||[];}).catch(e=>{out.tasksError=e.message;}),
+    rest('field_tasks?select=id,title,status,created_at,completed_at,completed_by,rep_name,associate_email,associate_name,updated_at,field_task_comments(id,kind,body,created_at,author_name)&account_num=eq.'+encodeURIComponent(n)+'&order=updated_at.desc&limit=500').then(rows=>{out.tasks=rows||[];}).catch(e=>{out.tasksError=e.message;}),
     rest('rep_actions?'+base+',follow_on&account_num=eq.'+encodeURIComponent(n)+'&order=updated_at.desc&limit=200')
       .catch(e=>{ if(needsUpdate(e)){ out.update = true; return rest('rep_actions?'+base+'&account_num=eq.'+encodeURIComponent(n)+'&order=updated_at.desc&limit=200'); } throw e; })
       .then(rows=>{ out.notes = Array.isArray(rows) ? rows : []; })
@@ -1159,7 +1159,7 @@ function detailsStep(d){
        <button type="button" class="btn outline" id="capLater">Save for Later</button>
        <button type="button" class="btn primary" id="capSave"><span class="cs-lbl">${d.state==='failed' || d.state==='pending' ? 'Retry' : 'Save'}</span></button></div>`});
   const $ = s => w.querySelector(s);
-  let t = 0; const persist = () => { clearTimeout(t); t = setTimeout(async ()=>{ if(d.photos.length){ d.at = Date.now(); await IDB.put('records', d); } }, 300); };
+  let t = 0; const persist = () => { clearTimeout(t); t = setTimeout(async ()=>{ if(d.photos.length && d.state!=='saved'){ d.at = Date.now(); await IDB.put('records', d); } }, 300); };
   const err = m => { const e = $('#capErr'); e.hidden = !m; e.textContent = m || ''; };
   function itemDone(l){
     if(!l || !(l.brand || l.product_num)) return false;
@@ -1322,6 +1322,7 @@ function detailsStep(d){
   const saveBtn = $('#capSave'), lbl = saveBtn.querySelector('.cs-lbl');
   saveBtn.addEventListener('click', async ()=>{
     if(saveBtn.getAttribute('aria-busy')==='true') return;          // one save at a time
+    clearTimeout(t); // a pending draft write must not recreate a successfully saved record
     if(!d.photos.length){ err('Take or choose a photo first.'); return; }
     if(!closeEditor()){ render(); return; }
     if(spec.rec && spec.rec.req && !d.location){ err(`Choose the ${spec.rec.l.toLowerCase()}.`); return; }

@@ -1,0 +1,17 @@
+.field-head{padding:28px 0 22px;border-bottom:1px solid var(--kdh-border);margin-bottom:22px}
+.field-head h1{font-size:28px;margin:0 0 8px}
+.field-head p{color:var(--kdh-text-3);margin:0;line-height:1.5}
+.field-filters{display:grid;grid-template-columns:minmax(180px,2fr) minmax(120px,1fr) minmax(160px,1fr);gap:14px;margin:22px 0}
+.field-filters label{display:grid;gap:7px;font-size:14px}
+.field-filters input,.field-filters select{width:100%;min-height:44px;padding:10px;border:1px solid var(--kdh-border-2);border-radius:6px;background:var(--kdh-surface);color:var(--kdh-text);font:inherit}
+.field-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:16px 0}
+.field-account{display:block;padding:18px;border:1px solid var(--kdh-border);border-radius:10px;background:var(--kdh-surface);color:var(--kdh-text);text-decoration:none}
+.field-account:hover{border-color:var(--kdh-brand)}
+.field-account b,.field-account span{display:block}
+.field-account span{color:var(--kdh-text-3);font-size:13px;margin-top:7px;line-height:1.5}
+.field-back{display:inline-block;margin:22px 0 0}
+.field-section{margin:26px 0}
+.field-section h2{font-size:19px;margin-bottom:14px}
+.field-task{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px;border-bottom:1px solid var(--kdh-border);color:var(--kdh-text);text-decoration:none}
+.field-task span{font-size:13px;color:var(--kdh-text-3)}
+@media(max-width:650px){.field-filters,.field-list{grid-template-columns:minmax(0,1fr)}.field-head h1{font-size:24px}}

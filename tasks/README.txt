@@ -3,7 +3,7 @@ FIELD TASKS (/tasks/) -- 2026-10-14
 A rep hands account work to a SALES ASSOCIATE (build a display, swap a tap
 handle, drop POS, other); the associate works a queue, updates the status,
 attaches the completion photo and talks to the rep in one thread; a manager
-reads everything. sales-associates/PLAN.md is the plan Gavin asked for (fit,
+sees work for their reporting team. sales-associates/PLAN.md is the plan Gavin asked for (fit,
 data model, MVP vs v2, assumptions). This file is the operating reference.
 
 FILES
@@ -23,8 +23,10 @@ WHO SEES WHAT (row-level security; the page only draws)
   associate   tasks assigned to them; may change status / photo / note; comment
   rep         tasks they created; edit the definition, reassign, withdraw an
               unstarted task; comment
-  manager     every task; comment; read-only screen (the database would let a
-              manager edit too -- the page does not offer it)
+  manager     their own tasks and tasks created by their reporting reps or
+              assigned to their reporting reps; sharing an associate never
+              exposes another rep's tasks. May assign any sales associate;
+              rep assignment and account selection stay team scoped.
   preview     a manager viewing as a rep (that rep's tasks), as an associate
               (that associate's queue; View As -> Associate) or as a manager:
               read-only, nothing is written (no New Task, no composer, no

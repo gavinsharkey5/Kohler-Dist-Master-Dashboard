@@ -4,6 +4,9 @@
   "buildCommand": null,
   "installCommand": null,
   "trailingSlash": true,
+  "functions": {
+    "api/field-accounts.js": { "includeFiles": "territory-accounts/customers_active.csv" }
+  },
   "headers": [
     {
       "source": "/(.*)",

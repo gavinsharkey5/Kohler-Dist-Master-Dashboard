@@ -70,7 +70,7 @@
     try { var src = (document.currentScript && document.currentScript.src) || ''; var i = src.indexOf('shared/kdh-user.js'); return i > 0 ? src.slice(0, i) : ''; } catch (e) { return ''; }
   })();
   var REP_HOME = ROOT + 'rep/';
-  // A SALES ASSOCIATE (role 'associate', 2026-10-14) has ONE page: Field Tasks.
+  // Sales associates use Field Tasks and the account photo directory.
   var ASSOC_HOME = ROOT + 'tasks/';
   function isAssoc(u) { return !!(u && u.role === 'associate'); }
   // the FINANCE workspace (allowed_users.workspace = 'finance', 2026-10-15): a manager -- Alexis, billbacks and
@@ -238,7 +238,7 @@
   function progDefault(u) { return ROOT + 'hub/' + (u.role === 'manager' ? '' : '#view=rep&rep=' + encodeURIComponent(u.name) + '&cat=inc'); }
   function navItems(u) {
     if (!u) return [];
-    if (isAssoc(u)) return [{ key: 'home', label: 'Home', href: ASSOC_HOME }];
+    if (isAssoc(u)) return [{ key: 'home', label: 'Home', href: ASSOC_HOME }, { key: 'accounts', label: 'Accounts', href: ROOT + 'accounts/field.html' }];
     if (isIT(u)) return [{ key: 'upc', label: 'UPC Audit', href: IT_HOME }];
     if (isFin(u)) return [
       { key: 'home', label: 'Home', href: FIN_HOME },
@@ -388,7 +388,7 @@
       var list = groups[g].filter(function (t) { return !t.menuOnly&&!(signatureManager&&t.key==='sb'); });
       if (!list.length) return;
       var current=list.some(function(t){return w.tool===t.key;});
-      var groupLabel=g==='Manager'?'Reports & tools':g,groupIcon=g==='Trackers'?NAV_ICON.trackers:g==='Manager'?NAV_ICON.reports:'';
+      var groupLabel=g==='Manager'?'Reports & Tools':g,groupIcon=g==='Trackers'?NAV_ICON.trackers:g==='Manager'?NAV_ICON.reports:'';
       html += '<details class="kdh-side-group"'+(current?' open':'')+'><summary>'+(groupIcon?'<span class="kdh-side-group-label">'+groupIcon+'<span>'+groupLabel+'</span></span>':groupLabel)+'</summary><div class="kdh-side-sub">'+list.map(function (t) { return link('kdh-side-i sub', t, w.tool === t.key); }).join('')+'</div></details>';
     });
     html += '</nav>';
