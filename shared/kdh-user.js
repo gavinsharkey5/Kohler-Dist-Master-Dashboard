@@ -200,6 +200,8 @@
     home: I('<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/>'),
     accounts: I('<path d="M3 9.5 4.5 4h15L21 9.5"/><path d="M3 9.5a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/><path d="M5 12v9h14v-9"/><path d="M10 21v-5h4v5"/>'),
     programs: I('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/>'),
+    trackers: I('<path d="M3 3v18h18"/><path d="m7 14 4-4 4 3 6-7"/>'),
+    reports: I('<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 17v-3M12 17v-6M16 17v-4"/>'),
     team: I('<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8"/><path d="M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/>'),
     inventory: I('<path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5"/><path d="M12 13v8"/>'),
     exc: I('<path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4"/><path d="M12 17h.01"/>'),
@@ -386,7 +388,8 @@
       var list = groups[g].filter(function (t) { return !t.menuOnly&&!(signatureManager&&t.key==='sb'); });
       if (!list.length) return;
       var current=list.some(function(t){return w.tool===t.key;});
-      html += '<details class="kdh-side-group"'+(current?' open':'')+'><summary>'+(g==='Manager'?'Reports & tools':g)+'</summary><div class="kdh-side-sub">'+list.map(function (t) { return link('kdh-side-i sub', t, w.tool === t.key); }).join('')+'</div></details>';
+      var groupLabel=g==='Manager'?'Reports & tools':g,groupIcon=g==='Trackers'?NAV_ICON.trackers:g==='Manager'?NAV_ICON.reports:'';
+      html += '<details class="kdh-side-group"'+(current?' open':'')+'><summary>'+(groupIcon?'<span class="kdh-side-group-label">'+groupIcon+'<span>'+groupLabel+'</span></span>':groupLabel)+'</summary><div class="kdh-side-sub">'+list.map(function (t) { return link('kdh-side-i sub', t, w.tool === t.key); }).join('')+'</div></details>';
     });
     html += '</nav>';
     if (who) html += '<div class="kdh-side-foot"><button type="button" class="kdh-side-user" id="kdhMenuBtn" aria-haspopup="true" aria-expanded="false" aria-label="Account menu, signed in as ' + esc(who) + '"><span class="kdh-av">' + esc(initials(who)) + '</span><span class="kdh-side-who"><b>' + esc(who) + '</b><small>' + (isFin(u) && !u.preview ? 'Finance' : isMgr || u.preview ? 'Manager' : isAssoc(u) ? 'Sales Associate' : isIT(u) ? 'IT' : 'Sales Rep') + '</small></span>' + CARET + '</button></div>';

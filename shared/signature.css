@@ -68,7 +68,7 @@ html:root .kdh-side-group .kdh-side-sub{margin:0 0 8px 12px;padding-left:8px}
  html:root .kdh-side-i.on svg{color:var(--signature-gold)}
  html:root .kdh-side .kdh-side-i.sub{color:var(--signature-side-ink);font-size:13px;min-height:38px;border-radius:5px;padding:8px 10px}
  html:root .kdh-side-sub{border-color:rgba(255,255,255,.17)}
- html:root .kdh-side-h{color:var(--signature-side-muted);font-size:11px;font-weight:500;padding:16px 12px 5px;margin:0}
+ html:root .kdh-side-h{color:var(--signature-gold);font-size:15px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:22px 12px 9px;margin:0}
  html:root .kdh-side-foot{border-color:rgba(255,255,255,.15);padding-top:14px}
  html:root .kdh-side-user{color:#FFF;padding:8px 5px}
  html:root .kdh-side-who small{color:var(--signature-side-muted)}
