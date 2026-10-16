@@ -1,5 +1,93 @@
 [
   {
+    "REP": "Matt Powierski",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "WINE GRAND (CARLSTADT)",
+    "CITY": "CARLSTADT",
+    "BRAND": "MONACO",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 11,
+    "DATE": "10/15/2026 12:17 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/5907cfd3-d027-4d86-94a7-71e5f19357b7/"
+  },
+  {
+    "REP": "Dave Ehlers",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "W E BEVERAGE (A)",
+    "CITY": "ENGLEWOOD",
+    "BRAND": "MONACO",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 4,
+    "DATE": "10/14/2026 01:34 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/c896fc79-f578-41ec-8653-673825f192bf/"
+  },
+  {
+    "REP": "Mike Ast",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "LINCOLN PARK FINE WINES & SPIRITS",
+    "CITY": "LINCOLN PARK",
+    "BRAND": "ATHLETIC RUN WILD NA IPA",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "10/14/2026 01:34 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/ec7f195e-4511-4a81-b1be-21a540e2a774/"
+  },
+  {
+    "REP": "Pablo Lopez",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "CARISMA LIQ & GROC (P)",
+    "CITY": "PATERSON",
+    "BRAND": "MONACO BLUE CRUSH",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "10/14/2026 11:42 AM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/64ae619c-b5dc-4a5c-a33a-bc443f987c32/"
+  },
+  {
+    "REP": "Chris Payton",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "EXQUISITE W & L (A)",
+    "CITY": "RIDGEFIELD PARK",
+    "BRAND": "BLUE MOON BELGIAN WHITE ALE",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "10/14/2026 11:28 AM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/35585cb5-ce1a-4c02-b5a8-21740c6ec404/"
+  },
+  {
+    "REP": "Chris Payton",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "EXQUISITE W & L (A)",
+    "CITY": "RIDGEFIELD PARK",
+    "BRAND": "ARNOLD PALMER SPIKED",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "10/14/2026 11:28 AM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/b21ee0bf-3de8-4b77-9225-a748f906e664/"
+  },
+  {
+    "REP": "Chris Payton",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "EXQUISITE W & L (A)",
+    "CITY": "RIDGEFIELD PARK",
+    "BRAND": "SIMPLY SPIKED VARIETY",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "10/14/2026 11:28 AM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/b21ee0bf-3de8-4b77-9225-a748f906e664/"
+  },
+  {
+    "REP": "Shane Barreca",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "CORK & KEG (A)",
+    "CITY": "EMERSON",
+    "BRAND": "SUN CRUISERS RTD",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "10/14/2026 07:25 AM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/58a2b19e-04af-47a7-bdac-cb5e9c5dbdd9/"
+  },
+  {
     "REP": "Chris Payton",
     "SOURCE": "Promo",
     "CUSTOMER_NAME": "WOODRIDGE WINES & LIQ(A)",

@@ -525,6 +525,33 @@
     "SALES_REP_ASSIGNED": "Chris Payton",
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 38007,
+    "CUSTOMER_NAME": "Garden Liquors (P)",
+    "DATE": "10/9/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 38007,
+    "CUSTOMER_NAME": "Garden Liquors (P)",
+    "DATE": "10/9/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 38007,
+    "CUSTOMER_NAME": "Garden Liquors (P)",
+    "DATE": "10/9/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 79002,
     "CUSTOMER_NAME": "Hollywd Liq&Deli (A)",
     "DATE": "8/12/2026",
@@ -651,6 +678,15 @@
     "SALES_REP_ASSIGNED": "Chris Payton",
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 34007,
+    "CUSTOMER_NAME": "Liquor Masters (P)",
+    "DATE": "10/16/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 34001,
     "CUSTOMER_NAME": "Meadowland Wine & Liquor",
     "DATE": "10/1/2026",
@@ -842,6 +878,15 @@
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 50007,
     "CUSTOMER_NAME": "Welsh Farms",
+    "DATE": "10/9/2026",
+    "CASES": 2.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 50007,
+    "CUSTOMER_NAME": "Welsh Farms",
     "DATE": "8/14/2026",
     "CASES": 1.0
   },
@@ -860,7 +905,43 @@
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 50007,
     "CUSTOMER_NAME": "Welsh Farms",
+    "DATE": "10/9/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 50007,
+    "CUSTOMER_NAME": "Welsh Farms",
     "DATE": "8/14/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 35001,
+    "CUSTOMER_NAME": "Westmont Liquors 64",
+    "DATE": "10/19/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 35001,
+    "CUSTOMER_NAME": "Westmont Liquors 64",
+    "DATE": "10/19/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 35001,
+    "CUSTOMER_NAME": "Westmont Liquors 64",
+    "DATE": "10/19/2026",
     "CASES": 1.0
   },
   {
@@ -966,6 +1047,15 @@
     "SALES_REP_ASSIGNED": "Dan Lagala",
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 48006,
+    "CUSTOMER_NAME": "Andres Wine & Spirits",
+    "DATE": "10/16/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 43004,
     "CUSTOMER_NAME": "Boulevard Liq.(Fairview)",
     "DATE": "8/5/2026",
@@ -1014,6 +1104,15 @@
     "CUSTOMER_NUM": 43004,
     "CUSTOMER_NAME": "Boulevard Liq.(Fairview)",
     "DATE": "8/5/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 49019,
+    "CUSTOMER_NAME": "Bp Gas Station",
+    "DATE": "10/9/2026",
     "CASES": 1.0
   },
   {
@@ -1137,6 +1236,15 @@
     "SALES_REP_ASSIGNED": "Dan Lagala",
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 49044,
+    "CUSTOMER_NAME": "Linwood Wine-Hudson Light",
+    "DATE": "10/14/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 49027,
     "CUSTOMER_NAME": "Linwood Wine-Linwood Plaza",
     "DATE": "8/5/2026",
@@ -1347,6 +1455,15 @@
     "CUSTOMER_NUM": 43005,
     "CUSTOMER_NAME": "Rome Liquors (Fairview)",
     "DATE": "8/5/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 44040,
+    "CUSTOMER_NAME": "Stop N Go Conven. (P)",
+    "DATE": "10/16/2026",
     "CASES": 1.0
   },
   {
@@ -1392,6 +1509,33 @@
     "CUSTOMER_NUM": 44040,
     "CUSTOMER_NAME": "Stop N Go Conven. (P)",
     "DATE": "9/17/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 54006,
+    "CUSTOMER_NAME": "Tenafly Fine Wine & Spirits",
+    "DATE": "10/15/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 54006,
+    "CUSTOMER_NAME": "Tenafly Fine Wine & Spirits",
+    "DATE": "10/15/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 54006,
+    "CUSTOMER_NAME": "Tenafly Fine Wine & Spirits",
+    "DATE": "10/15/2026",
     "CASES": 1.0
   },
   {
@@ -3254,6 +3398,15 @@
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 231316,
     "CUSTOMER_NAME": "Patricks Wine Barn",
+    "DATE": "10/9/2026",
+    "CASES": 2.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 231316,
+    "CUSTOMER_NAME": "Patricks Wine Barn",
     "DATE": "8/4/2026",
     "CASES": 1.0
   },
@@ -3281,6 +3434,15 @@
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 231316,
     "CUSTOMER_NAME": "Patricks Wine Barn",
+    "DATE": "10/9/2026",
+    "CASES": 2.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 231316,
+    "CUSTOMER_NAME": "Patricks Wine Barn",
     "DATE": "8/4/2026",
     "CASES": 1.0
   },
@@ -3290,7 +3452,25 @@
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 231316,
     "CUSTOMER_NAME": "Patricks Wine Barn",
+    "DATE": "10/9/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 231316,
+    "CUSTOMER_NAME": "Patricks Wine Barn",
     "DATE": "8/4/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 231316,
+    "CUSTOMER_NAME": "Patricks Wine Barn",
+    "DATE": "10/9/2026",
     "CASES": 1.0
   },
   {
@@ -4350,6 +4530,33 @@
     "SALES_REP_ASSIGNED": "Jim Heaney",
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 25017,
+    "CUSTOMER_NAME": "Savers Club Liquor Locker",
+    "DATE": "10/15/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 25017,
+    "CUSTOMER_NAME": "Savers Club Liquor Locker",
+    "DATE": "10/15/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 25017,
+    "CUSTOMER_NAME": "Savers Club Liquor Locker",
+    "DATE": "10/15/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 24002,
     "CUSTOMER_NAME": "Swizzle Stick Liq (A)",
     "DATE": "8/6/2026",
@@ -4722,6 +4929,15 @@
     "CUSTOMER_NUM": 190907,
     "CUSTOMER_NAME": "Wharton Liquor Store",
     "DATE": "8/27/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 77022,
+    "CUSTOMER_NAME": "All Star Wine & Liquor",
+    "DATE": "10/9/2026",
     "CASES": 1.0
   },
   {
@@ -4789,6 +5005,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 32016,
+    "CUSTOMER_NAME": "Cobblestone Hill Deli",
+    "DATE": "10/9/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 37002,
@@ -4893,6 +5118,33 @@
     "CUSTOMER_NUM": 36016,
     "CUSTOMER_NAME": "King Liquors",
     "DATE": "8/12/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 77009,
+    "CUSTOMER_NAME": "M & M Wine & Spirits",
+    "DATE": "10/9/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 77009,
+    "CUSTOMER_NAME": "M & M Wine & Spirits",
+    "DATE": "10/9/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 77009,
+    "CUSTOMER_NAME": "M & M Wine & Spirits",
+    "DATE": "10/9/2026",
     "CASES": 1.0
   },
   {
@@ -5433,15 +5685,6 @@
     "CUSTOMER_NUM": 11014,
     "CUSTOMER_NAME": "Wayne Liquor Locker",
     "DATE": "8/5/2026",
-    "CASES": 1.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "BRAND_FAMILY": "",
-    "CUSTOMER_NUM": 89005,
-    "CUSTOMER_NAME": "Allendale Wine Shoppe",
-    "DATE": "10/13/2026",
     "CASES": 1.0
   },
   {
@@ -5691,33 +5934,6 @@
     "SALES_REP_ASSIGNED": "Mike Ast",
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "BRAND_FAMILY": "",
-    "CUSTOMER_NUM": 17012,
-    "CUSTOMER_NAME": "Speedy Mart (P)",
-    "DATE": "10/13/2026",
-    "CASES": 1.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "BRAND_FAMILY": "",
-    "CUSTOMER_NUM": 17012,
-    "CUSTOMER_NAME": "Speedy Mart (P)",
-    "DATE": "10/13/2026",
-    "CASES": 1.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "BRAND_FAMILY": "",
-    "CUSTOMER_NUM": 17012,
-    "CUSTOMER_NAME": "Speedy Mart (P)",
-    "DATE": "10/13/2026",
-    "CASES": 1.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 88005,
     "CUSTOMER_NAME": "Waldwick Wine/Spirits",
     "DATE": "8/28/2026",
@@ -5766,6 +5982,51 @@
     "CUSTOMER_NUM": 27005,
     "CUSTOMER_NAME": "#1 Liqrs (P)",
     "DATE": "8/31/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 20014,
+    "CUSTOMER_NAME": "Bombolon Liquor & Grocery",
+    "DATE": "10/16/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 20022,
+    "CUSTOMER_NAME": "Caraballo's",
+    "DATE": "10/16/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 20022,
+    "CUSTOMER_NAME": "Caraballo's",
+    "DATE": "10/16/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 20022,
+    "CUSTOMER_NAME": "Caraballo's",
+    "DATE": "10/16/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 20022,
+    "CUSTOMER_NAME": "Caraballo's",
+    "DATE": "10/16/2026",
     "CASES": 1.0
   },
   {
@@ -6285,6 +6546,33 @@
     "SALES_REP_ASSIGNED": "Phil Ernst",
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 81014,
+    "CUSTOMER_NAME": "Shop Rite Liq(A) Fair Lwn",
+    "DATE": "10/15/2026",
+    "CASES": 2.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 81014,
+    "CUSTOMER_NAME": "Shop Rite Liq(A) Fair Lwn",
+    "DATE": "10/15/2026",
+    "CASES": 2.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 81014,
+    "CUSTOMER_NAME": "Shop Rite Liq(A) Fair Lwn",
+    "DATE": "10/15/2026",
+    "CASES": 2.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 25010,
     "CUSTOMER_NAME": "Stew Leonard's Wines & Spirits of Clifton",
     "DATE": "9/10/2026",
@@ -6395,6 +6683,15 @@
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 20106,
     "CUSTOMER_NAME": "Super Wine Warehse(P)Pate",
+    "DATE": "10/15/2026",
+    "CASES": 2.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 20106,
+    "CUSTOMER_NAME": "Super Wine Warehse(P)Pate",
     "DATE": "9/4/2026",
     "CASES": 1.0
   },
@@ -6413,8 +6710,26 @@
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 20106,
     "CUSTOMER_NAME": "Super Wine Warehse(P)Pate",
+    "DATE": "10/15/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 20106,
+    "CUSTOMER_NAME": "Super Wine Warehse(P)Pate",
     "DATE": "9/4/2026",
     "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 20106,
+    "CUSTOMER_NAME": "Super Wine Warehse(P)Pate",
+    "DATE": "10/15/2026",
+    "CASES": 2.0
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -6432,6 +6747,15 @@
     "CUSTOMER_NUM": 20106,
     "CUSTOMER_NAME": "Super Wine Warehse(P)Pate",
     "DATE": "9/4/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 20106,
+    "CUSTOMER_NAME": "Super Wine Warehse(P)Pate",
+    "DATE": "10/15/2026",
     "CASES": 1.0
   },
   {

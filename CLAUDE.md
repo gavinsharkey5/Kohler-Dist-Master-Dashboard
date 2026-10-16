@@ -2758,6 +2758,17 @@ the card scores against the fall goals) -- asked Gavin whether the MPO is Octobe
 Tags: off-prem programs.js 20261007w. Tests: elig_test (Lytt card now Aug 1 - Oct 31; account 50003),
 elig_trip_test, card_audit, opp_elig_test.
 
+## October Off-Premise MPO refresh, 2026-10-16
+
+New exports for all five objectives. Constellation now arrives as an .xlsx grouped by rep (rep row, then product
+rows, plus a Total row): `python3 MPOs/off-prem/convert_constellation_xlsx.py <export.xlsx>` writes
+constellation_innovation_fall.csv in the old layout (asserts each rep row = sum of its products). MPO = 75% of the
+Goals column, rounded half up (unchanged). Cooler doors: Promos_Report_53 merged (8 new; the merge warned that 10/13
+had no rows -- re-pull from 10/13 if that day was not quiet). generate_2026-09.py's `%-m/%-d/%Y` strftime calls were
+replaced with plain f-strings so the generators run on Windows Python (openpyxl must be installed there).
+Result: Constellation 4 of 16 at 75% (Matt Powierski, Dave Ehlers, Javier Melo, Michael Harboy); Lytt 162 qualifying,
+3 reps at 50% (Derrick Laws, Michael Harboy, Phil Ernst 15/15); Molly's 19 new; Wine 26 new; cooler doors 25, 3 reps at 5.
+
 ## Gavin's answers, 2026-10-07: core base from the Customers export; Constellation by Oct 31
 
 LYTT: Aug + Sep + Oct distribution counts (window Aug 1 - Oct 31); fully returned SKUs do NOT count (confirmed).

@@ -253,6 +253,18 @@
   },
   {
     "SALES_REP_ASSIGNED": "Andrew Lundy",
+    "PRODUCT_NAME": "101091 Lo Secco Prosecco 1/12/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 250048,
+    "CUSTOMER_NAME": "Park Beverage",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/14/2026",
+    "LAST_DATE": "10/14/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Andrew Lundy",
     "PRODUCT_NAME": "101021 Carinoso Durazno 1/12/750 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 250042,
@@ -310,6 +322,90 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Andrew Lundy",
+    "PRODUCT_NAME": "200171 Chateau Diana Caberner Sauvigon 12/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 250027,
+    "CUSTOMER_NAME": "Wine Anthology (A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/14/2026",
+    "LAST_DATE": "10/14/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Andrew Lundy",
+    "PRODUCT_NAME": "200172 Chateau Diana Chardonnay 12/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 250027,
+    "CUSTOMER_NAME": "Wine Anthology (A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/14/2026",
+    "LAST_DATE": "10/14/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Andrew Lundy",
+    "PRODUCT_NAME": "200174 Chateau Diana Pinot Grigio 12/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 250027,
+    "CUSTOMER_NAME": "Wine Anthology (A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/14/2026",
+    "LAST_DATE": "10/14/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Andrew Lundy",
+    "PRODUCT_NAME": "200191 Chateau Diana Non-Alcoholic Cabernet Sauvignon 12/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 250027,
+    "CUSTOMER_NAME": "Wine Anthology (A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/14/2026",
+    "LAST_DATE": "10/14/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Andrew Lundy",
+    "PRODUCT_NAME": "200192 Chateau Diana Non-Alcoholic Chardonnay 12/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 250027,
+    "CUSTOMER_NAME": "Wine Anthology (A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/14/2026",
+    "LAST_DATE": "10/14/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Andrew Lundy",
+    "PRODUCT_NAME": "200193 Chateau Diana Non-Alcoholic Merlot 12/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 250027,
+    "CUSTOMER_NAME": "Wine Anthology (A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/14/2026",
+    "LAST_DATE": "10/14/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Andrew Lundy",
+    "PRODUCT_NAME": "9409 Terredirai Bloom Bubbles Sparkling Non-Alcoholic 1/12/750 ML Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 250027,
+    "CUSTOMER_NAME": "Wine Anthology (A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/14/2026",
+    "LAST_DATE": "10/14/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -454,6 +550,18 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "100953 Castellani Etichetta Gialla Pinot Noir 1/12/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 35001,
+    "CUSTOMER_NAME": "Westmont Liquors 64",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/23/2026",
+    "LAST_DATE": "10/23/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -714,10 +822,10 @@
     "CUSTOMER_NUM": 120002,
     "CUSTOMER_NAME": "PICNIC",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "10/13/2026",
+    "LAST_DATE": "10/13/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -1425,7 +1533,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "10/2/2026",
-    "LAST_DATE": "10/2/2026"
+    "LAST_DATE": "10/15/2026"
   },
   {
     "SALES_REP_ASSIGNED": "John O'Donoghue",
@@ -1437,7 +1545,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "10/2/2026",
-    "LAST_DATE": "10/2/2026"
+    "LAST_DATE": "10/15/2026"
   },
   {
     "SALES_REP_ASSIGNED": "John O'Donoghue",
@@ -1594,6 +1702,18 @@
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "",
     "LAST_DATE": ""
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "100956 Stoney River Sauvignon Blanc 1/12/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 191803,
+    "CUSTOMER_NAME": "Kingston Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/9/2026",
+    "LAST_DATE": "10/9/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -1873,6 +1993,18 @@
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
+    "PRODUCT_NAME": "200194 Chateau Diana Non-Alcoholic Moscato 12/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 12005,
+    "CUSTOMER_NAME": "Shay's Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1,
+    "PLACED_DATE": "10/15/2026",
+    "LAST_DATE": "10/15/2026"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Michael Harboy",
     "PRODUCT_NAME": "200191 Chateau Diana Non-Alcoholic Cabernet Sauvignon 12/750 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 11014,
@@ -1953,7 +2085,7 @@
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
     "PLACED_DATE": "10/13/2026",
-    "LAST_DATE": "10/13/2026"
+    "LAST_DATE": "10/16/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -2094,10 +2226,10 @@
     "CUSTOMER_NUM": 61004,
     "CUSTOMER_NAME": "Andiamo",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "10/14/2026",
+    "LAST_DATE": "10/14/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -2310,10 +2442,10 @@
     "CUSTOMER_NUM": 12023,
     "CUSTOMER_NAME": "The Village Inn",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0,
-    "PLACED_DATE": "",
-    "LAST_DATE": ""
+    "PLACED_DATE": "10/9/2026",
+    "LAST_DATE": "10/9/2026"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",

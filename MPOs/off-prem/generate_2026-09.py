@@ -269,7 +269,7 @@ def check_window(col, expected_start, label):
     got = datetime(int(year), int(month), int(day))
     if got != expected_start:
         raise SystemExit(
-            f"{label}: expected a window starting {expected_start:%-m/%-d/%Y}, "
+            f"{label}: expected a window starting {expected_start.month}/{expected_start.day}/{expected_start.year}, "
             f"got column {col!r}. Check the export's date range before rerunning."
         )
 
@@ -515,8 +515,8 @@ def build_new_placements(path, product_col=None, base_start=None, current_start=
             "BASE_PLACEMENTS": a["base"],
             "CURRENT_PLACEMENTS": a["current"],
             "NEW_PLACEMENT": is_new,
-            "PLACED_DATE": a["first_dt"].strftime("%-m/%-d/%Y") if a["first_dt"] else "",
-            "LAST_DATE": a["last_dt"].strftime("%-m/%-d/%Y") if a["last_dt"] else "",
+            "PLACED_DATE": f"{a['first_dt'].month}/{a['first_dt'].day}/{a['first_dt'].year}" if a["first_dt"] else "",
+            "LAST_DATE": f"{a['last_dt'].month}/{a['last_dt'].day}/{a['last_dt'].year}" if a["last_dt"] else "",
         })
     out.sort(key=lambda row: (row["SALES_REP_ASSIGNED"], row["CUSTOMER_NAME"], row["PRODUCT_NAME"]))
     return out, new_placements, new_keys, len(out), summed_alt
