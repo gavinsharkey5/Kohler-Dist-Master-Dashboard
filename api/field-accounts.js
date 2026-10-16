@@ -31,7 +31,7 @@ export default async function handler(req,res){
   if(!auth.ok)return res.status(auth.status===401?401:503).json({error:'Could not verify your sign-in.'});
   const rows=await auth.json(),u=Array.isArray(rows)?rows[0]:null;
   if(!u||!['associate','manager'].includes(u.role)||u.workspace==='finance')return res.status(403).json({error:'Accounts are not available in this workspace.'});
-  if(!directory)directory=parseDirectory(await readFile(new URL('../territory-accounts/customers_active.csv',import.meta.url),'utf8'));
+  if(!directory)directory=parseDirectory(await readFile(process.cwd()+'/territory-accounts/customers_active.csv','utf8'));
   return res.status(200).json({accounts:directory});
  }catch{return res.status(503).json({error:'Accounts could not be loaded. Please try again.'});}
 }
