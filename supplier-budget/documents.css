@@ -1,12 +1,18 @@
-.invoice-docs{display:flex;flex-direction:column;align-items:flex-start;gap:5px;margin-top:5px;font-size:11px;line-height:1.35}
+.invoice-docs{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:8px;font-size:12px;line-height:1.4}
+.invoice-number{display:block;font-weight:700;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.sb a.invoice-source{display:inline-block;font-size:11px;font-weight:500;margin-top:8px;white-space:normal;text-decoration:none;line-height:1.5}
+.sb a.invoice-source:hover{text-decoration:underline}
 .card .f div:has(.invoice-docs){grid-column:1 / -1}
 .card .f div:has(.invoice-docs) b{white-space:normal;overflow:visible;text-overflow:clip;text-align:right}
 .pdf-link{display:inline-block;border:0;background:none;color:var(--kdh-brand);padding:2px 0;font:inherit;text-align:left;text-decoration:underline;cursor:pointer;overflow-wrap:anywhere}
 .pdf-link:disabled{opacity:.6;cursor:wait}
+.invoice-docs .pdf-link{display:inline-flex;align-items:center;justify-content:center;min-height:28px;padding:3px 8px;border:1px solid var(--kdh-border-2);border-radius:6px;background:var(--kdh-surface);text-decoration:none;font-weight:600;font-size:11px}
+.invoice-docs [data-pdf]{background:var(--kdh-brand-soft);border-color:var(--kdh-brand-soft);color:var(--kdh-brand)}
+.invoice-docs .pdf-link:hover{border-color:var(--kdh-brand)}
 .pdf-status{color:var(--kdh-text-3)}
-.pdf-status.missing{color:var(--kdh-warn)}
+.pdf-status.missing{color:var(--kdh-warn);display:inline-block;background:var(--kdh-warn-soft);border-radius:4px;padding:3px 6px;font-size:11px}
 .pdf-filename{overflow-wrap:anywhere;color:var(--kdh-text-2)}
-.pdf-toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin:12px 0;font-size:14px;color:var(--kdh-text-2)}
+.pdf-toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin:0;font-size:13px;color:var(--kdh-text-3)}
 .pdf-dialog{box-sizing:border-box;width:min(800px,calc(100vw - 24px));max-height:88vh;overflow:auto;border:1px solid var(--kdh-border);border-radius:16px;padding:22px;background:var(--kdh-surface);color:var(--kdh-text);font:14px/1.5 Inter,system-ui,sans-serif}
 .pdf-dialog::backdrop{background:rgba(0,0,0,.6)}
 .pdf-dialog h2{margin:0;font-size:20px}
@@ -23,3 +29,11 @@
 .pdf-queue-row select,.pdf-queue-row input{width:100%;min-width:0;min-height:44px;font:inherit;background:var(--kdh-surface);color:var(--kdh-text);border:1px solid var(--kdh-border);border-radius:8px;padding:6px}
 .pdf-dialog button:focus-visible,.pdf-link:focus-visible{outline:2px solid var(--kdh-brand);outline-offset:3px}
 @media(max-width:759px){.invoice-docs{font-size:13px;gap:4px}.invoice-docs .pdf-link{min-height:32px}.pdf-dialog{padding:16px}}
+.new-expense-pdfs{padding:18px;border:1px solid var(--kdh-border-2);border-radius:12px;background:var(--kdh-surface)}
+.new-expense-pdfs>label{display:block;font-size:14px;font-weight:600}
+.new-expense-pdfs label small{font-weight:400;color:var(--kdh-text-3)}
+.new-expense-pdfs .hint{font-size:13px;color:var(--kdh-text-3);margin:5px 0 12px}
+.new-expense-pdfs input{max-width:100%;font:inherit;font-size:14px}
+.new-expense-pdfs input::file-selector-button{padding:9px 12px;margin-right:10px;border:1px solid var(--kdh-border-2);border-radius:6px;background:var(--kdh-surface-2);color:var(--kdh-text);cursor:pointer}
+.new-expense-pdfs ul{padding-left:20px;margin:12px 0;font-size:13px;overflow-wrap:anywhere}
+.new-expense-pdfs .err{color:var(--kdh-bad);font-size:13px;margin-top:8px}

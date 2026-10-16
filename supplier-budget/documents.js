@@ -16,7 +16,8 @@ function matches(name, rows) {
   });
 }
 function create(host) {
-  let docs = [], state = 'loading', queue = [], busy = false, dialog;
+  let docs = [], state = 'loading', queue = [], busy = false, dialog, staged = [], stageError = '';
+  const pending = new Map();
   const rows = () => host.rows();
   const forRow = id => docs.filter(d => d.expense_id === id);
   async function storage(path, options, retried) {
@@ -43,7 +44,8 @@ function create(host) {
     const files = forRow(r.id);
     const status = state === 'error' ? '<span class="pdf-status">PDF status unavailable</span>' : state === 'loading' ? '<span class="pdf-status">Checking PDFs…</span>' : !files.length ? '<span class="pdf-status missing">Missing PDF</span>' : '';
     return '<span class="invoice-docs">' + status + files.map((d, i) => '<button type="button" class="pdf-link" data-pdf="' + esc(d.id) + '" title="' + esc(d.file_name + (d.uploaded_name ? ' · Uploaded by ' + d.uploaded_name : '') + ' · ' + d.created_at.slice(0,10)) + '">View PDF' + (files.length > 1 ? ' ' + (i+1) : '') + '</button>' + (detail ? '<span class="pdf-filename">' + esc(d.file_name) + '</span>' : '')).join('') +
-      (host.canEdit() && state === 'ready' ? '<button type="button" class="pdf-link" data-attach-pdf="' + esc(r.id) + '">Attach PDF</button>' : '') + '</span>';
+      (host.canEdit() && state === 'ready' ? '<button type="button" class="pdf-link" data-attach-pdf="' + esc(r.id) + '">Attach PDF</button>' : '') +
+      (host.canEdit() && pending.has(r.id) ? '<button type="button" class="pdf-link" data-retry-expense-pdf="' + esc(r.id) + '">Retry Selected PDFs</button><span class="pdf-status">The expense is saved; some PDFs still need uploading.</span>' : '') + '</span>';
   }
   function toolbar() { return '<div class="pdf-toolbar"><span>Invoice documents</span>' + (host.canEdit() && state === 'ready' ? '<button class="btn" type="button" data-bulk-pdf>Bulk Upload PDFs</button>' : '') + (state === 'error' ? '<span>PDF status could not be loaded.</span><button type="button" class="btn" data-retry-pdf>Retry PDFs</button>' : '') + '</div>'; }
   async function open(id, button) {
@@ -114,6 +116,41 @@ function create(host) {
     updateSave();
   }
   function updateSave() { dialog.querySelector('[data-save]').disabled = busy || !queue.some(q => q.expense && !q.invalid && !q.done); }
+  function newExpenseHtml() {
+    return '<section class="new-expense-pdfs"><label for="sbNewPdfs">Invoice PDFs <small>optional</small></label><p class="hint">Choose the invoice PDF before saving. PDF only, up to 20 MB per file.</p><input id="sbNewPdfs" type="file" accept="application/pdf,.pdf" multiple' + (state !== 'ready' ? ' disabled' : '') + '><div id="sbSelectedPdfs" aria-live="polite">' + stagedHtml() + '</div><div class="err" id="sbPdfError" role="status">' + esc(stageError || (state !== 'ready' ? 'PDF attachments are temporarily unavailable. Retry PDFs on the Ledger or reload the page.' : '')) + '</div></section>';
+  }
+  function stagedHtml() { return staged.length || stageError ? '<ul>' + staged.map(q => '<li>' + esc(q.file.name) + '</li>').join('') + '</ul><button type="button" class="btn sm" data-clear-draft-pdfs>Clear Selected PDFs</button>' : ''; }
+  function wireNewExpense(form) {
+    const input = form.querySelector('#sbNewPdfs'); if (!input) return;
+    input.addEventListener('change', () => {
+      const files = Array.from(input.files), err = form.querySelector('#sbPdfError');
+      if (files.length > 200 || files.some(f => !/\.pdf$/i.test(f.name) || !f.size || f.size > MAX)) {
+        staged = []; input.value = ''; stageError = 'Choose up to 200 nonempty PDFs, no larger than 20 MB each.'; err.textContent = stageError;
+      } else { staged = files.map(file => ({file,id:crypto.randomUUID(),done:false})); stageError = ''; err.textContent = ''; }
+      form.querySelector('#sbSelectedPdfs').innerHTML = stagedHtml();
+    });
+  }
+  async function validateNewExpense() {
+    if(stageError) throw new Error(stageError);
+    for (const q of staged) if (new TextDecoder().decode(await q.file.slice(0,5).arrayBuffer()) !== '%PDF-') throw new Error(q.file.name + ' is not a PDF. Choose a valid PDF before saving.');
+  }
+  async function flushPending(id) {
+    const items = pending.get(id) || [];
+    for (const q of items) {
+      if (q.done) continue;
+      try { q.expense = id; await attach(q); q.done = true; q.error = ''; }
+      catch (e) { q.error = e.message; }
+    }
+    const failed = items.filter(q => !q.done).length;
+    if (!failed) pending.delete(id);
+    return {total:items.length,attached:items.length-failed,failed};
+  }
+  async function saveNewExpense(expense) {
+    if (staged.length) pending.set(expense.id, staged);
+    staged = [];
+    return flushPending(expense.id);
+  }
+  function clearNewExpense(){ staged = []; stageError = ''; }
   async function attach(q) {
     if (!host.canEdit() || !rows().some(r => r.id === q.expense)) throw new Error('That expense is no longer available.');
     const bytes = await q.file.arrayBuffer();
@@ -153,13 +190,19 @@ function create(host) {
     dialog.querySelector('[role=status]').textContent = done + ' of ' + queue.length + ' files attached or already present. Resolve remaining matches or retry failed files.';
   }
   document.addEventListener('click', e => {
-    const b = e.target.closest('[data-pdf],[data-attach-pdf],[data-bulk-pdf],[data-retry-pdf]'); if (!b) return;
+    const b = e.target.closest('[data-pdf],[data-attach-pdf],[data-bulk-pdf],[data-retry-pdf],[data-clear-draft-pdfs],[data-retry-expense-pdf]'); if (!b) return;
     e.preventDefault(); e.stopPropagation();
-    if (b.hasAttribute('data-pdf')) open(b.dataset.pdf,b);
+    if (b.hasAttribute('data-clear-draft-pdfs')) { clearNewExpense(); const input = document.getElementById('sbNewPdfs'); if (input) input.value = ''; const list = document.getElementById('sbSelectedPdfs'); if (list) list.innerHTML = ''; const err = document.getElementById('sbPdfError'); if(err) err.textContent = ''; }
+    else if (b.hasAttribute('data-retry-expense-pdf')) {
+      if (!host.canEdit() || b.disabled) return;
+      b.disabled = true;
+      flushPending(b.dataset.retryExpensePdf).then(result => { host.uploadResult(result); });
+    }
+    else if (b.hasAttribute('data-pdf')) open(b.dataset.pdf,b);
     else if (b.hasAttribute('data-retry-pdf')) load().then(host.changed);
     else launch(b.dataset.attachPdf || '');
   });
-  return {load, html, toolbar};
+  return {load, html, toolbar, newExpenseHtml, wireNewExpense, validateNewExpense, saveNewExpense, clearNewExpense};
 }
 root.KdhInvoiceDocuments = {create, matches};
 })(typeof window === 'undefined' ? globalThis : window);

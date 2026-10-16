@@ -24,11 +24,17 @@ const cfg = () => { const c = window.KDH_AUTH; const t = cookie('kdh_at'); retur
 const MIGRATION = 'supabase/migrations/20261014210000_supplier_budget.sql';
 const PAGE = 100;
 const YEAR = new Date().getFullYear();
-const COLS = [ // Time Entered first (the default sort), then the sheet's columns in its order. k = sort key
+const SORT_COLS = [ // All original fields remain available for sorting and CSV export.
   {k: 'created_at', l: 'Time Entered', w: 7}, {k: 'expense_date', l: 'Date', w: 5}, {k: 'year', l: 'Year', num: 1, w: 4, narrow: 1}, {k: 'invoice', l: 'Invoice', w: 7}, {k: 'vendor', l: 'Vendor', w: 7},
   {k: 'description', l: 'Description', acct: 1, w: 7.5}, {k: 'brand_manager', l: 'Brand Manager', acct: 1, w: 7}, {k: 'items_purchased', l: 'Items Purchased', wrap: 1, w: 9},
   {k: 'total_amount', l: 'Total', num: 1, money: 1, w: 7}, {k: 'kohler_spend', l: 'Kohler Spend', num: 1, money: 1, w: 7}, {k: 'billback_amount', l: 'Billback', num: 1, money: 1, w: 6.5},
   {k: 'billback_received', l: 'Received', w: 6}, {k: 'code', l: 'Code', acct: 1, w: 5}, {k: 'account', l: 'Account', acct: 1, w: 10.5}, {k: 'notes', l: 'Notes', wrap: 1, w: 4.5, narrow: 1}];
+const COLS = [
+  {k:'expense_date',l:'Date',w:9}, {k:'invoice',l:'Invoice & Documents',w:15},
+  {k:'vendor',l:'Vendor / Description',w:12}, {k:'account',l:'Account / Manager',w:16},
+  {k:'items_purchased',l:'Items / Notes',w:13}, {k:'total_amount',l:'Total',num:1,money:1,w:9},
+  {k:'kohler_spend',l:'Kohler Spend',num:1,money:1,w:10}, {k:'billback_amount',l:'Billback',num:1,money:1,w:9},
+  {k:'billback_received',l:'Received',w:7}];
 const S = {me: null, accounts: null, expenses: null, vendors: [], recent: [], settings: {}, settingsMissing: false, scope: undefined, missing: false, err: null,
   f: Object.assign({q: '', year: String(YEAR), acct: '', sup: '', bm: '', rec: '', from: '', to: ''}, sget('kdh_sb_f') || {}),
   sort: sget('kdh_sb_sort2') || {k: 'created_at', d: -1}, shown: PAGE, hl: '', msg: null, form: null, keep: null, scroll: 0};
@@ -118,6 +124,10 @@ const canEdit = () => !PREVIEW && !!(S.me && (S.me.editor || S.me.admin));
 const invoiceDocs = window.KdhInvoiceDocuments.create({rest, cfg, canEdit, rows: () => joined(), changed: () => {
   const panel = $('#sbInvoiceDocs'), e = (S.expenses || []).find(x => x.id === view().id);
   if(panel && e) panel.innerHTML = invoiceDocs.html(e, true); else render();
+}, uploadResult: result => {
+  S.msg = {text: result.failed ? 'Expense saved. Some PDFs still need uploading; use Retry Selected PDFs.' : 'Expense and selected PDFs saved.',bad:!!result.failed};
+  const form = $('#sbForm'); if(form && S.form) $$('[name]',form).forEach(el => { if(el.type !== 'file') S.form[el.name] = el.value; });
+  render();
 }});
 const previewEditor = () => PREVIEW && !!(S.me && (S.me.editor || S.me.admin));
 const acctById = id => (S.accounts || []).find(a => a.id === id);
@@ -138,7 +148,7 @@ function ruleOf(a){ if(!a) return 'manual'; if(a.billback_rule) return a.billbac
 const invNum = v => { const m = String(v == null ? '' : v).trim().match(/^(\d{3,})(?:\.0+)?$/); return m ? m[1] : ''; };
 const ENCOMPASS_INVOICE = 'https://kohlerdist.encompass8.com/Home?DashboardID=100100&TableName=Invoice&TabDashboardID=158170&KeyValue={invoice}&Parameters=F%3AInvoiceID~V%3A{invoice}~O%3AE';
 const invUrl = v => { const n = invNum(v), t = S.settings.invoice_link || ENCOMPASS_INVOICE; return n && t ? t.split('{invoice}').join(encodeURIComponent(n)) : ''; };
-function invoiceCell(r){ const u = invUrl(r.invoice); return '<span>' + esc(r.invoice || '—') + '</span>' + (u ? '<span class="invoice-docs"><a class="inv pdf-link" href="' + esc(u) + '" target="_blank" rel="noopener">Open in Encompass</a></span>' : '') + invoiceDocs.html(r); }
+function invoiceCell(r){ const u = invUrl(r.invoice); return '<span class="invoice-number">' + esc(r.invoice || '—') + '</span>' + invoiceDocs.html(r) + (u ? '<a class="inv invoice-source" href="' + esc(u) + '" target="_blank" rel="noopener">Open in Encompass <span aria-hidden="true">↗</span></a>' : ''); }
 function invHtml(v){ if(v == null || v === '') return ''; const u = invUrl(v); return u ? '<a class="inv" href="' + esc(u) + '" target="_blank" rel="noopener" title="Open invoice ' + esc(invNum(v)) + ' in Encompass">' + esc(invNum(v)) + '</a>' : esc(v); }
 // the brand-scope cut the brief asks for (RLS already applies the same rule server-side with the database's own brands)
 function visibleAccounts(){
@@ -175,7 +185,7 @@ function filtered(rows){
   });
 }
 function sorted(rows){
-  const {k, d} = S.sort; const col = COLS.find(c => c.k === k) || COLS[0];
+  const {k, d} = S.sort; const col = SORT_COLS.find(c => c.k === k) || SORT_COLS[0];
   return rows.slice().sort((a, b) => {
     let x = a[k], y = b[k];
     if(col.num){ x = x == null ? -Infinity : +x; y = y == null ? -Infinity : +y; }
@@ -269,7 +279,7 @@ function renderLedger(){
       '<div><label for="sbFrom">From</label><input type="date" id="sbFrom" data-f="from" value="' + esc(S.f.from) + '"></div>' +
       '<div><label for="sbTo">To</label><input type="date" id="sbTo" data-f="to" value="' + esc(S.f.to) + '"></div>' +
     '</div>' +
-    invoiceDocs.toolbar() + activeLine(rows.length) +
+    '<div class="ledger-tools">' + invoiceDocs.toolbar() + '<div class="ledger-sort"><label for="sbSort">Sort by</label><select id="sbSort">' + SORT_COLS.map(c => '<option value="' + c.k + '"' + (S.sort.k === c.k ? ' selected' : '') + '>' + esc(c.l) + '</option>').join('') + '</select><button type="button" class="btn sm" id="sbSortDir" aria-label="' + (S.sort.d < 0 ? 'Sort ascending' : 'Sort descending') + '">' + (S.sort.d < 0 ? '↓' : '↑') + '</button></div></div>' + activeLine(rows.length) +
     (rows.length ? tableHtml(shown) + cardsHtml(shown) : '<div class="kdh-state empty"><b>No Expenses Match</b><span>' + (all.length ? 'Change the filters.' : (S.missing ? '' : 'Nothing has been entered yet.')) + '</span></div>') +
     (rows.length > S.shown ? '<div class="more"><button type="button" class="btn" id="sbMore">Show More (' + (rows.length - S.shown).toLocaleString() + ' Left)</button></div>' : '') +
     '<div class="sb-note">' + rows.length.toLocaleString() + ' of ' + all.length.toLocaleString() + ' rows' + (canEdit() ? ' · <button type="button" class="back" id="sbCsv">Export CSV</button>' : '') + '</div>' +
@@ -279,8 +289,8 @@ function renderLedger(){
 function recBtn(r, compact){
   if(!(r.billback_amount > 0)) return '<span class="rec none">—</span>';
   const on = !!r.billback_received;
-  const label = on ? (compact ? 'Yes' : 'Received') + (r.received_date ? ' ' + dShort(r.received_date) : '') : (compact ? 'No' : 'Not Yet');
-  return '<button type="button" class="rec' + (on ? ' yes' : '') + '" data-rec="' + esc(r.id) + '"' + (canEdit() ? '' : ' disabled') + ' aria-pressed="' + on + '" title="' + (canEdit() ? 'Tap to mark ' + (on ? 'not received' : 'received') : (on ? 'Billback received' : 'Billback not yet received')) + '">' + esc(label) + '</button>';
+  const label = on ? (compact ? 'Yes' : 'Received') : (compact ? 'Pending' : 'Not Yet');
+  return '<span class="received-cell"><button type="button" class="rec' + (on ? ' yes' : '') + '" data-rec="' + esc(r.id) + '"' + (canEdit() ? '' : ' disabled') + ' aria-pressed="' + on + '" title="' + (canEdit() ? 'Tap to mark ' + (on ? 'not received' : 'received') : (on ? 'Billback received' : 'Billback not yet received')) + '">' + esc(label) + '</button>' + (on && r.received_date ? '<span class="cell-secondary">' + esc(dShort(r.received_date)) + '</span>' : '') + '</span>';
 }
 function editedBy(r){ const who = r.updated_name || r.created_name; if(!who || r.source !== 'site' && !r.updated_name) return ''; const same = !r.updated_at || r.updated_at === r.created_at; return '<span class="edited">' + (same ? 'Added' : 'Edited') + ' by ' + esc(first(who)) + ' ' + esc(dShort((r.updated_at || r.created_at || '').slice(0, 10))) + '</span>'; }
 function tEntered(r){
@@ -291,17 +301,19 @@ function tEntered(r){
 }
 function cell(r, c){
   if(c.k === 'created_at'){ const t = tEntered(r); return t ? esc(t) : '<span class="muted">Imported</span>'; }
-  if(c.k === 'expense_date') return '<span class="nw">' + esc(dShort(r.expense_date)) + '</span>';
+  if(c.k === 'expense_date') return '<span class="cell-primary date-value">' + esc(dNum(r.expense_date)) + '</span><span class="cell-secondary">' + (tEntered(r) ? 'Entered ' + esc(tEntered(r)) : 'Imported') + '</span>';
   if(c.k === 'billback_received') return recBtn(r, true);
   if(c.k === 'invoice') return invoiceCell(r);
   if(c.k === 'code' || c.k === 'year') return '<span class="nw">' + esc(r[c.k] == null ? '' : r[c.k]) + '</span>';
-  if(c.money) return esc(money(n2(r[c.k])));
-  if(c.k === 'vendor') return esc(r.vendor) + editedBy(r) + (r.source === 'import_2025' ? '<span class="chip hist">History</span>' : '');
+  if(c.money) return '<span class="money-value' + (c.k === 'kohler_spend' ? ' spend-value' : '') + '">' + esc(money(n2(r[c.k]))) + '</span>';
+  if(c.k === 'vendor') return '<span class="cell-primary">' + esc(r.vendor || '—') + '</span>' + (r.description ? '<span class="cell-secondary">' + esc(r.description) + '</span>' : '') + editedBy(r) + (r.source === 'import_2025' ? '<span class="chip hist">History</span>' : '');
+  if(c.k === 'account') return '<span class="cell-primary">' + esc(r.account || '—') + '</span>' + (r.code ? '<span class="account-code">GL ' + esc(r.code) + '</span>' : '') + (r.brand_manager ? '<span class="cell-secondary">' + esc(r.brand_manager) + '</span>' : '');
+  if(c.k === 'items_purchased') return '<span class="cell-primary">' + esc(r.items_purchased || '—') + '</span>' + (r.notes ? '<span class="cell-secondary row-notes">Note: ' + esc(r.notes) + '</span>' : '');
   return esc(r[c.k] == null ? '' : r[c.k]);
 }
 function tableHtml(rows){
   const s = S.sort;
-  return '<div class="tbl-wrap"><table class="led"><thead><tr>' + COLS.map(c => '<th' + (c.num ? ' class="num"' : '') + (c.narrow ? ' data-narrow="1"' : '') + ' style="width:' + c.w + '%" data-sort="' + c.k + '" aria-sort="' + (s.k === c.k ? (s.d > 0 ? 'ascending' : 'descending') : 'none') + '">' + esc(c.l).replace('Description', 'Descrip&shy;tion').replace('Received', 'Re&shy;ceived') + (s.k === c.k ? '<span class="ar">' + (s.d > 0 ? '▲' : '▼') + '</span>' : '') + '</th>').join('') + '</tr></thead><tbody>' +
+  return '<div class="tbl-wrap"><table class="led ledger"><thead><tr>' + COLS.map(c => '<th' + (c.num ? ' class="num"' : '') + ' style="width:' + c.w + '%" data-sort="' + c.k + '" aria-sort="' + (s.k === c.k ? (s.d > 0 ? 'ascending' : 'descending') : 'none') + '"><button type="button" class="column-sort">' + esc(c.l) + (s.k === c.k ? '<span class="ar">' + (s.d > 0 ? '▲' : '▼') + '</span>' : '') + '</button></th>').join('') + '</tr></thead><tbody>' +
     rows.map(r => '<tr class="r' + (r.id === S.hl ? ' hl' : '') + (r.source === 'import_2025' ? ' hist' : '') + '" data-id="' + esc(r.id) + '">' + COLS.map(c => '<td' + (c.num ? ' class="num"' : c.wrap ? ' class="wrap"' : '') + (c.narrow ? ' data-narrow="1"' : '') + ' title="' + esc(c.money ? '' : (r[c.k] || '')) + '">' + cell(r, c) + '</td>').join('') + '</tr>').join('') +
     '</tbody></table></div>';
 }
@@ -323,8 +335,10 @@ function wireLedger(rows){
   const cl = $('#sbClear'); if(cl) cl.addEventListener('click', () => { S.f = {q: '', year: String(YEAR), acct: '', sup: '', bm: '', rec: '', from: '', to: ''}; S.shown = PAGE; sset('kdh_sb_f', S.f); renderLedger(); });
   $$('th[data-sort]').forEach(th => th.addEventListener('click', () => { const k = th.dataset.sort; S.sort = S.sort.k === k ? {k, d: -S.sort.d} : {k, d: k === 'expense_date' || k === 'created_at' || COLS.find(c => c.k === k).num ? -1 : 1}; sset('kdh_sb_sort2', S.sort); renderLedger(); }));
   const more = $('#sbMore'); if(more) more.addEventListener('click', () => { S.shown += PAGE; renderLedger(); });
+  $('#sbSort').addEventListener('change', ev => { const k = ev.target.value, c = SORT_COLS.find(c => c.k === k); S.sort = {k, d: c.num || ['expense_date','created_at'].includes(k) ? -1 : 1}; sset('kdh_sb_sort2', S.sort); renderLedger(); });
+  $('#sbSortDir').addEventListener('click', () => { S.sort.d *= -1; sset('kdh_sb_sort2', S.sort); renderLedger(); });
   $$('[data-go]').forEach(b => b.addEventListener('click', () => go(b.dataset.go)));
-  $$('tr.r,.card[data-id]').forEach(el => { el.addEventListener('click', ev => { if(ev.target.closest('[data-rec],a.inv,[data-pdf],[data-attach-pdf]')) return; go('edit=' + el.dataset.id); }); el.addEventListener('keydown', ev => { if(ev.key === 'Enter' && ev.target === el) go('edit=' + el.dataset.id); }); });
+  $$('tr.r,.card[data-id]').forEach(el => { el.addEventListener('click', ev => { if(ev.target.closest('[data-rec],a.inv,[data-pdf],[data-attach-pdf],[data-retry-expense-pdf]')) return; go('edit=' + el.dataset.id); }); el.addEventListener('keydown', ev => { if(ev.key === 'Enter' && ev.target === el) go('edit=' + el.dataset.id); }); });
   $$('[data-rec]').forEach(b => b.addEventListener('click', ev => { ev.stopPropagation(); if(!canEdit()) return; toggleReceived(b.dataset.rec, b); }));
   const csv = $('#sbCsv'); if(csv) csv.addEventListener('click', () => exportCsv(rows));
   wireInvLink();
@@ -422,15 +436,17 @@ function renderForm(e){
       '<div class="fld"><label>Billback Received?</label><div class="toggle2" id="fRec"><button type="button" data-v="0" aria-pressed="' + !f.billback_received + '">No</button><button type="button" data-v="1" aria-pressed="' + !!f.billback_received + '">Yes</button></div></div></div>' +
       '<div class="fld" id="fRecDateFld"' + (f.billback_received ? '' : ' hidden') + '><label for="fRecDate">Received Date</label><input type="date" id="fRecDate" name="received_date" value="' + esc(f.received_date) + '"></div>' +
       '<div class="fld"><label for="fNotes">Notes <small>optional</small></label><textarea id="fNotes" name="notes">' + esc(f.notes) + '</textarea></div>' +
+      (!edit ? invoiceDocs.newExpenseHtml() : '') +
       (edit ? '<div class="facts">' + (e.created_name ? '<div><span>Added</span><b>' + esc(e.created_name) + ' · ' + esc(dShort((e.created_at || '').slice(0, 10))) + '</b></div>' : '') + (e.updated_name && e.updated_at !== e.created_at ? '<div><span>Last Edited</span><b>' + esc(e.updated_name) + ' · ' + esc(dShort((e.updated_at || '').slice(0, 10))) + '</b></div>' : '') + '</div>' : '') +
       '<div class="savebar"><button type="submit" class="btn primary" id="fSave">' + (edit ? 'Save Changes' : 'Save') + '</button>' + (edit ? '<button type="button" class="btn" id="fDelete">Delete</button>' : '<button type="submit" class="btn" id="fSaveAdd" data-again="1">Save and Add Another</button>') + '<button type="button" class="btn ghost" id="fCancel">Cancel</button></div>' +
-    '</form>' + (e ? '<h2>Invoice Documents</h2><div id="sbInvoiceDocs">' + invoiceDocs.html(e, true) + '</div>' : '<p class="sb-note">Save the expense, then attach its PDF from the invoice row.</p>');
+    '</form>' + (e ? '<h2>Invoice Documents</h2><div id="sbInvoiceDocs">' + invoiceDocs.html(e, true) + '</div>' : '');
   wireForm(f, e);
 }
 function acctLine(a){ return [a.code ? 'Code ' + a.code : '', a.brand_manager, a.supplier, a.description].filter(Boolean).join(' · '); }
 function pickedHtml(a){ return '<div class="picked" id="fPicked"><span>' + esc(a.account) + '<small>' + esc(acctLine(a) || 'No code or supplier on file') + '</small></span><button type="button" class="btn sm ghost" id="fAcctChange">Change</button></div>'; }
 function wireForm(f, e){
   const form = $('#sbForm');
+  if(!e) invoiceDocs.wireNewExpense(form);
   const capture = () => { ['expense_date','invoice','vendor','items_purchased','total_amount','billback_amount','notes','received_date'].forEach(k => { const el = form.elements[k]; if(el) f[k] = el.value; }); };
   const calc = () => { capture(); const t = n2(f.total_amount), b = n2(f.billback_amount) || 0; $('#fSpend').textContent = money(t == null ? null : Math.round((t - b) * 100) / 100, '—'); };
   // the account's billback rule: none = locked at 0, split = half the Total until the billback is typed by hand
@@ -449,8 +465,8 @@ function wireForm(f, e){
   const invIn = form.elements.invoice, invA = $('#fInvLink');
   if(invIn && invA) invIn.addEventListener('input', () => { const u = invUrl(invIn.value); invA.hidden = !u; if(u) invA.href = u; });
   form.addEventListener('input', ev => { calc(); const fld = ev.target.closest('.fld'); if(fld){ const er = fld.querySelector('.err'); if(er) er.textContent = ''; } });
-  $('#sbBack').addEventListener('click', () => { S.form = null; S.msg = null; go('ledger'); });
-  $('#fCancel').addEventListener('click', () => { S.form = null; S.msg = null; go('ledger'); });
+  $('#sbBack').addEventListener('click', () => { if(!e) invoiceDocs.clearNewExpense(); S.form = null; S.msg = null; go('ledger'); });
+  $('#fCancel').addEventListener('click', () => { if(!e) invoiceDocs.clearNewExpense(); S.form = null; S.msg = null; go('ledger'); });
   // account picker: grouped by supplier, code + brand manager under each option
   const mountPicker = () => {
     const inp = $('#fAcct'), opts = $('#fAcctOpts'); if(!inp) return;
@@ -497,21 +513,25 @@ function wireForm(f, e){
     }catch(err){ del.removeAttribute('aria-busy'); S.msg = {text: friendly(err), bad: true}; renderForm(e); }
   });
   form.addEventListener('submit', async ev => {
-    ev.preventDefault(); capture();
+    ev.preventDefault(); if(form.dataset.saving) return; capture();
     const again = !!(ev.submitter && ev.submitter.dataset.again);
     const errs = validate(f, e);
     $$('[data-err]', form).forEach(el => { el.textContent = errs[el.dataset.err] || ''; });
     if(Object.keys(errs).length){ const bad = form.querySelector('[data-err]:not(:empty)'); if(bad) bad.closest('.fld').scrollIntoView({block: 'center'}); return; }
-    const btn = ev.submitter || $('#fSave'); btn.setAttribute('aria-busy', 'true');
+    const btn = ev.submitter || $('#fSave'); btn.setAttribute('aria-busy', 'true'); form.dataset.saving = '1';
+    $$('button,input,select,textarea', form).forEach(b => b.disabled = true); $('#sbBack').disabled = true;
     const body = {expense_date: f.expense_date, account_id: f.account_id, vendor: canonVendor(f.vendor), items_purchased: f.items_purchased.trim() || null, invoice: f.invoice.trim() || null, total_amount: n2(f.total_amount), billback_amount: n2(f.billback_amount) || 0, billback_received: !!f.billback_received, received_date: f.billback_received ? (f.received_date || TODAY) : null, notes: f.notes.trim() || null};
     try{
+      if(!e) await invoiceDocs.validateNewExpense();
       let r;
       if(e) r = await rest('supplier_expenses?id=eq.' + encodeURIComponent(e.id) + '&select=' + EXP_COLS, Object.assign({method: 'PATCH', body}, rep()));
       else r = await rest('supplier_expenses?select=' + EXP_COLS, Object.assign({method: 'POST', body}, rep()));
       if(!r || !r.length) throw new Error('Not saved: the database did not return the row (no permission?).');
       replaceRow(r[0]); useVendor(r[0].vendor);
-      S.hl = r[0].id; S.form = null; S.msg = {text: e ? 'Changes saved.' : 'Expense saved.'};
-      if(again){ S.keep = {expense_date: f.expense_date, account_id: f.account_id, vendor: f.vendor}; S.msg = {text: 'Expense saved. Date, Account and Vendor kept.'}; renderForm(null); return; }
+      const pdfs = !e ? await invoiceDocs.saveNewExpense(r[0]) : null;
+      S.hl = r[0].id; S.form = null; S.msg = {text: e ? 'Changes saved.' : pdfs && pdfs.total ? 'Expense and PDFs saved.' : 'Expense saved.'};
+      if(pdfs && pdfs.failed){ S.keep = null; S.msg = {text:'Expense saved. ' + pdfs.failed + ' PDF upload(s) need retrying. Use Retry Selected PDFs below; do not enter the expense again.',bad:true}; go('edit=' + r[0].id); return; }
+      if(again){ S.keep = {expense_date: f.expense_date, account_id: f.account_id, vendor: f.vendor}; S.msg = {text: 'Expense' + (pdfs && pdfs.total ? ' and PDFs' : '') + ' saved. Date, Account and Vendor kept.'}; renderForm(null); return; }
       S.keep = null;
       // make sure the saved row is in view: its year, sorted newest first
       if(S.f.year && S.f.year !== String(r[0].year)){ S.f.year = String(r[0].year); sset('kdh_sb_f', S.f); }

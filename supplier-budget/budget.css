@@ -132,3 +132,37 @@ a.inv:focus-visible{outline:none;box-shadow:0 0 0 3px var(--kdh-ring);border-rad
 .pick .opts button.newacct small{font-weight:500}
 .sb input:disabled{background:var(--kdh-surface-2);color:var(--kdh-text-2);cursor:not-allowed}
 
+/* Ledger: related details share a column; amounts keep a common baseline. */
+.sb .fbar{padding:16px;border:1px solid var(--kdh-border);border-radius:12px;background:var(--kdh-surface);gap:12px 16px;grid-template-columns:repeat(2,minmax(0,1fr))}
+.sb .fbar .q{grid-column:1/-1}
+@media(min-width:760px){.sb .fbar{grid-template-columns:repeat(4,minmax(0,1fr))}.sb .fbar .q{grid-column:auto}}
+.ledger-tools{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin:18px 0 14px}
+.ledger-sort{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--kdh-text-3)}
+.sb .ledger-sort select{width:170px;min-height:38px;font-size:13px;padding:6px 10px}
+.ledger-sort .btn{min-height:38px;font-size:18px}
+.sb table.led th{padding:13px 12px;hyphens:none;-webkit-hyphens:none;line-height:1.4;font-size:12px;letter-spacing:.02em;vertical-align:middle}
+.sb table.led td{padding:16px 12px;hyphens:none;-webkit-hyphens:none;line-height:1.5}
+.sb table.ledger th,.sb table.ledger td{padding-left:10px;padding-right:10px}
+.sb .column-sort{border:0;padding:0;min-height:32px;font:inherit;font-weight:600;letter-spacing:inherit;text-align:inherit;color:inherit;background:none;cursor:pointer;width:100%}
+.sb .column-sort:focus-visible{outline:2px solid var(--kdh-brand);outline-offset:3px;border-radius:3px}
+.cell-primary{display:block;font-weight:500;color:var(--kdh-text);overflow-wrap:anywhere}
+.cell-secondary{display:block;margin-top:5px;font-size:12px;line-height:1.45;color:var(--kdh-text-3);overflow-wrap:anywhere}
+.date-value{white-space:nowrap;font-size:12px;font-variant-numeric:tabular-nums}
+.account-code{display:inline-block;margin-top:6px;padding:1px 5px;border:1px solid var(--kdh-border);border-radius:4px;font-size:11px;letter-spacing:.02em;color:var(--kdh-text-3);font-variant-numeric:tabular-nums}
+.money-value{display:block;font-size:13px;font-variant-numeric:tabular-nums;letter-spacing:-.025em}
+.spend-value{font-weight:700;color:var(--kdh-text)}
+.sb table.ledger th.num,.sb table.ledger td.num{background:var(--kdh-surface-2)}
+.sb table.ledger th.num,.sb table.ledger td.num{padding-left:7px;padding-right:7px}
+.sb table.ledger th.num:nth-child(6),.sb table.ledger td.num:nth-child(6){border-left:1px solid var(--kdh-border)}
+.sb table.ledger th.num:nth-child(8),.sb table.ledger td.num:nth-child(8){border-right:1px solid var(--kdh-border)}
+.received-cell{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.received-cell .cell-secondary{margin-top:0;white-space:nowrap;font-size:11px}
+.sb .received-cell .rec{font-size:11px;min-height:26px;padding:3px 7px}
+.sb table.led tbody tr:last-child td{border-bottom:0}
+.sb table.led tbody tr:nth-child(even):not(.hl):not(:hover) td:not(.num){background:var(--kdh-surface-2)}
+@media(max-width:1279px){.sb .tbl-wrap{display:none}.sb .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:14px}}
+@media(min-width:1280px){.sb .tbl-wrap{display:block}.sb .cards{display:none}}
+.card .f div b{white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere}
+.card .f div{align-items:flex-start}
+@media(max-width:479px){.ledger-tools{align-items:stretch;gap:12px}.ledger-sort{width:100%;justify-content:flex-end}.sb .fbar{padding:12px;gap:10px}.sb .fbar select,.sb .fbar input{font-size:14px;padding:8px}}
+

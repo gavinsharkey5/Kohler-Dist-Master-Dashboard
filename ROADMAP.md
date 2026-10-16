@@ -355,6 +355,12 @@ device, a decision).
 
 ## Done
 
+- [x] **Supplier budget layout and New Expense PDFs (2026-10-16).** Nine grouped
+  ledger columns, aligned financial figures, compact document actions, responsive
+  cards and sorting by every original field. Budget editors can select PDFs in New
+  Expense and use either Save action; failed file uploads retry against the saved
+  expense without entering it again. Existing budget permissions remain in force.
+
 - [x] **Supplier invoice PDFs (2026-10-16).** View PDF / Open in Encompass /
   Missing PDF beside each invoice, plus editor bulk upload with reviewed filename
   matches, duplicate detection and per-file retry. Private storage, scoped access,
